@@ -2,214 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D280055F8A9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 09:20:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 218E955F8C2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 09:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231856AbiF2HTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 03:19:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35370 "EHLO
+        id S231135AbiF2HWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 03:22:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbiF2HTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 03:19:13 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE9533EBA
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 00:18:36 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220629071831epoutp03acd2621a840e3512c90d4322464cfebf~9BkBUYDSC1657816578epoutp03W
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:18:31 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220629071831epoutp03acd2621a840e3512c90d4322464cfebf~9BkBUYDSC1657816578epoutp03W
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1656487111;
-        bh=1wS6cRdRjTdFjT3S6Lk+8PVzesqj0XsuvTbIfj3KJOI=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=ItIV6k3kAysuTVNtmru2Lfh+kwOHeq48XGZ7C+ATdwo/Y/EovLapo7iKA0zQ05Eva
-         iiZdzb4masqIpUsY5Q9yT3+aDJ/7qwoHgo4AF8kL+2wl2I1ZQJdJyYygbFOKkAQNgb
-         9NAILRfk40ujnZV9iJp3f+wHTirCsHv1L9jFneWc=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-        20220629071830epcas2p16267bd2ee8f19f7cc80872ccc82441de~9BkAzc2M20582005820epcas2p1T;
-        Wed, 29 Jun 2022 07:18:30 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.97]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4LXt9L1LCNz4x9Pt; Wed, 29 Jun
-        2022 07:18:30 +0000 (GMT)
-X-AuditID: b6c32a47-5e1ff700000025aa-00-62bbfcc50a4e
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D4.38.09642.5CCFBB26; Wed, 29 Jun 2022 16:18:30 +0900 (KST)
-Mime-Version: 1.0
-Subject: Re: [PATCH v3 2/5] dt-bindings: phy: Add ARTPEC-8 PCIe phy
-Reply-To: wangseok.lee@samsung.com
-Sender: Wangseok Lee <wangseok.lee@samsung.com>
-From:   Wangseok Lee <wangseok.lee@samsung.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>
-CC:     Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>,
-        Yeeun Kim <yeeun119.kim@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <20220620083821epcms2p57a65984523a0f2a3815e4873e8bfc6df@epcms2p5>
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220629071829epcms2p65eab75702495a939f3f6e4ea020181de@epcms2p6>
-Date:   Wed, 29 Jun 2022 16:18:29 +0900
-X-CMS-MailID: 20220629071829epcms2p65eab75702495a939f3f6e4ea020181de
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOJsWRmVeSWpSXmKPExsWy7bCmhe6xP7uTDFYeZbJY0pRh8fKQpsX8
-        I+dYLXbPWM5kMXPqGWaL54dmMVt8alG1uPC0h83i5ax7bBbnz29gt2jo+c1qceTNR2aL/cdX
-        Mllc3jWHzeLsvONsFhNWfWOxePP7BbvFucWZFq17j7Bb7Lxzgtni19Y/TA6iHmvmrWH0uL4u
-        wGPBplKPTas62TyeXJnO5LF5Sb1H35ZVjB7Hb2xn8vi8SS6AMyrbJiM1MSW1SCE1Lzk/JTMv
-        3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoMyWFssScUqBQQGJxsZK+nU1RfmlJ
-        qkJGfnGJrVJqQUpOgXmBXnFibnFpXrpeXmqJlaGBgZEpUGFCdsbaF29YC76ZV/QsPsXUwLjM
-        rIuRk0NCwETi6NtOxi5GLg4hgR2MErf2vGfvYuTg4BUQlPi7QxikRljAWWLX/01sILaQgJLE
-        jjXzmCHi+hLXV3SzgthsAroS/xa/ZAOZIyIwi01iydelTCAOs8ACRon9v/cxQmzjlZjR/pQF
-        wpaW2L58K1icU8BP4vH95UwQcQ2JH8t6mSFsUYmbq9+yw9jvj82HmiMi0XrvLFSNoMSDn7uh
-        4lISC54cYoWwqyX2//0NNbOBUaL/firIYxJAV++4bgwS5hXwlbg0dyMbSJhFQFXi9VMviAoX
-        idcPuEEqmAW0JZYtfM0MEmYW0JRYv0sfokJZ4sgtFpiXGjb+ZkdnMwvwSXQc/gsX3zHvCdQp
-        ahLzVu5knsCoPAsRzLOQ7JqFsGsBI/MqRrHUguLc9NRiowJjeMwm5+duYgSncC33HYwz3n7Q
-        O8TIxMF4iFGCg1lJhHfhmZ1JQrwpiZVVqUX58UWlOanFhxhNgX6cyCwlmpwPzCJ5JfGGJpYG
-        JmZmhuZGpgbmSuK8XikbEoUE0hNLUrNTUwtSi2D6mDg4pRqYkrYfmn9AgCvULH7FpCeX98ld
-        P/yQfaKOfwOHvxPD69hzrDu6DfLXZV80TZ74K+df27wJMrnfXdLmP74upBiysHjL9lnqRsea
-        xXe9rU/6rPFi3yH/zU17w9+YmrIl/zBrDzQR2mSgZrbUZCLD3ai/vGK7NEyW5PuKpS7Qb5b+
-        p2w7l/2enbJlTba2u4h8/cWqSycOhxtE9lqVqH5OVVEPuPHDs6Lb9tYpPnHVFe5eLz/5737Q
-        GXb7cP6WvNuT9vGkKzx4dvPt9x6rmBkH2bJcA4rmRta5X+NrzHssNv1czMGqcOGSaMmijh9c
-        n5b8bfkeXvjh5g7+T44/H/TMqN6qvd2/7/B2gx8Lt/5juHxCiaU4I9FQi7moOBEAlf9ktWoE
-        AAA=
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7
-References: <20220620083821epcms2p57a65984523a0f2a3815e4873e8bfc6df@epcms2p5>
-        <4b4b08af-887b-89e9-b4a5-93e7d8a03222@kernel.org>
-        <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
-        <20220614012916epcms2p5cf8d55e7420dea10bb4a05d91aaf99dd@epcms2p5>
-        <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p6>
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S231856AbiF2HWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 03:22:42 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D99340C9
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 00:22:41 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id bd16so20492566oib.6
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 00:22:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to;
+        bh=TvfrSXu4f0TU8sJk8nHVngOGB75STSEGTvK6rVGCRBo=;
+        b=KSYNVPp/M+aBIfHacFqj11Sm5k23Er/fz5hD79lvLg2qAdMiNwn7Ieu7YNV90mA70F
+         daalhEZkwB6Apo4Ai71cvL4evznxFuW7QZ/jnNWgrXANheLoBxRLyN5sSUQiVHgCv9HR
+         97v9IV3l+QYGVehGdIPIXHssVTk8Z6wn9878g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to;
+        bh=TvfrSXu4f0TU8sJk8nHVngOGB75STSEGTvK6rVGCRBo=;
+        b=0tREjXUKnUVfgNHdTKqvPiB0TsMHLjx25OzMyeU6okKeaKLAmsov7oWx53/AR3QJcT
+         tK/QrDPn9LRQN8Jp/sETUU/vOVr0Xa8OKFOlZvYosy81Lfzmy1rQII3fErWMHcpqRfX6
+         63u5XeVyGN6YTp/U0ITMlYN55movrD6Am5q281tRGrX0VAH99vM57DWBpb3Re36/QkXp
+         +5PeNv9HundkYUSgsGiZGes+uuqUob3kf8uZwmOXrSdcshWNy6O3JGWduaB+HRG35DG2
+         qK+6NwuiVxU1wtNb2Bz12gb2j0YOAnk+8Am+uYlrrzkgNFQ4vzfbArRim2B/mPaVUpC2
+         iKdQ==
+X-Gm-Message-State: AJIora+xWdAMa56hkMlMcBKa2Vjv+8JCWY+5A5Vk4+Jmb+OwVXolxzti
+        A3KDPhLiD80ujicn/L+lSN36JiAnByicjI03LJ/vow==
+X-Google-Smtp-Source: AGRyM1v4WSDbVO+K2+4kAKFrYZQtpAn74YXqFxA1mnEY/IT8bcyyhmbIZcF9WfGx+sYO6Yz4yLIx2Fc2KzL9daEEeyw=
+X-Received: by 2002:a05:6808:171c:b0:334:9342:63ef with SMTP id
+ bc28-20020a056808171c00b00334934263efmr1192888oib.63.1656487360982; Wed, 29
+ Jun 2022 00:22:40 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 29 Jun 2022 02:22:40 -0500
+MIME-Version: 1.0
+In-Reply-To: <1656484485-23350-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1656484485-23350-1-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 29 Jun 2022 02:22:40 -0500
+Message-ID: <CAE-0n50XpUfe9LQ0UByRXeWVcHjzXTmSb+Lf5m87pJmhjA0wVg@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: qcom: sc7280: Fix compile bug
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@quicinc.com, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz,
+        quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
+        robh+dt@kernel.org, srinivas.kandagatla@linaro.org, tiwai@suse.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Just a gentle ping for this patch, if any concern on this patch please let =
-me know.
+Quoting Srinivasa Rao Mandadapu (2022-06-28 23:34:45)
+> Fix the compilation error, caused by updtating constant variable.
 
+s/updtating/updating/
 
-On=C2=A020/06/2022=C2=A017:38,=C2=A0Wangseok=C2=A0Lee=C2=A0wrote:=0D=0A>=20=
-On=C2=A017/06/2022=C2=A007:59,=C2=A0Krzysztof=C2=A0Kozlowski=C2=A0wrote:=0D=
-=0A>>=C2=A0On=C2=A013/06/2022=C2=A018:29,=C2=A0Wangseok=C2=A0Lee=C2=A0wrote=
-:=0D=0A>>>=C2=A0Signed-off-by:=C2=A0Wangseok=C2=A0Lee=C2=A0<wangseok.lee=40=
-samsung.com>=0D=0A>>>=C2=A0---=0D=0A>>>=C2=A0v2->v3=C2=A0:=0D=0A>>>=C2=A0-m=
-odify=C2=A0version=C2=A0history=C2=A0to=C2=A0fit=C2=A0the=C2=A0linux=C2=A0c=
-ommit=C2=A0rule=0D=0A>>>=C2=A0-remove=C2=A0'Device=C2=A0Tree=C2=A0Bindings'=
-=C2=A0on=C2=A0title=0D=0A>>>=C2=A0-remove=C2=A0clock-names=C2=A0entries=0D=
-=0A>>>=C2=A0-change=C2=A0node=C2=A0name=C2=A0to=C2=A0soc=C2=A0from=C2=A0art=
-pec8=C2=A0on=C2=A0excamples=0D=0A>>>=C2=A0=0D=0A>>>=C2=A0v1->v2=C2=A0:=0D=
-=0A>>>=C2=A0-'make=C2=A0dt_binding_check'=C2=A0result=C2=A0improvement=0D=
-=0A>>>=C2=A0-Add=C2=A0the=C2=A0missing=C2=A0property=C2=A0list=0D=0A>>>=C2=
-=A0-Align=C2=A0the=C2=A0indentation=C2=A0of=C2=A0continued=C2=A0lines/entri=
-es=0D=0A>>>=C2=A0---=0D=0A>>>=C2=A0=C2=A0.../bindings/phy/axis,artpec8-pcie=
--phy.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=7C=C2=A073=C2=A0+=
-+++++++++++++++++++++=0D=0A>>>=C2=A0=C2=A01=C2=A0file=C2=A0changed,=C2=A073=
-=C2=A0insertions(+)=0D=0A>>>=C2=A0=C2=A0create=C2=A0mode=C2=A0100644=C2=A0D=
-ocumentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml=0D=0A>>>=C2=
-=A0=0D=0A>>>=C2=A0diff=C2=A0--git=C2=A0a/Documentation/devicetree/bindings/=
-phy/axis,artpec8-pcie-phy.yaml=C2=A0b/Documentation/devicetree/bindings/phy=
-/axis,artpec8-pcie-phy.yaml=0D=0A>>>=C2=A0new=C2=A0file=C2=A0mode=C2=A01006=
-44=0D=0A>>>=C2=A0index=C2=A00000000..316b774=0D=0A>>>=C2=A0---=C2=A0/dev/nu=
-ll=0D=0A>>>=C2=A0+++=C2=A0b/Documentation/devicetree/bindings/phy/axis,artp=
-ec8-pcie-phy.yaml=0D=0A>>>=C2=A0=40=40=C2=A0-0,0=C2=A0+1,73=C2=A0=40=40=0D=
-=0A>>>=C2=A0+=23=C2=A0SPDX-License-Identifier:=C2=A0GPL-2.0-only=C2=A0OR=C2=
-=A0BSD-2-Clause=0D=0A>>>=C2=A0+%YAML=C2=A01.2=0D=0A>>>=C2=A0+---=0D=0A>>>=
-=C2=A0+=24id:=C2=A0https://protect2.fireeye.com/v1/url?k=3D84f6a8c0-e57dbdd=
-9-84f7238f-74fe485cbfec-e81bd79bfd1ff442&q=3D1&e=3D6739af06-730c-48db-aef8-=
-026a9aaee1b4&u=3Dhttp%3A%2F%2Fdevicetree.org%2Fschemas%2Fphy%2Faxis%2Cartpe=
-c8-pcie-phy.yaml%23=0D=0A>>>=C2=A0+=24schema:=C2=A0https://protect2.fireeye=
-.com/v1/url?k=3Db4f1a4ba-d57ab1a3-b4f02ff5-74fe485cbfec-7f885cbe82dc7860&q=
-=3D1&e=3D6739af06-730c-48db-aef8-026a9aaee1b4&u=3Dhttp%3A%2F%2Fdevicetree.o=
-rg%2Fmeta-schemas%2Fcore.yaml%23=0D=0A>>>=C2=A0+=0D=0A>>>=C2=A0+title:=C2=
-=A0ARTPEC-8=C2=A0SoC=C2=A0PCIe=C2=A0PHY=0D=0A>>>=C2=A0+=0D=0A>>>=C2=A0+main=
-tainers:=0D=0A>>>=C2=A0+=C2=A0=C2=A0-=C2=A0Jesper=C2=A0Nilsson=C2=A0<jesper=
-.nilsson=40axis.com>=0D=0A>>>=C2=A0+=0D=0A>>>=C2=A0+properties:=0D=0A>>>=C2=
-=A0+=C2=A0=C2=A0compatible:=0D=0A>>>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0const:=
-=C2=A0axis,artpec8-pcie-phy=0D=0A>>>=C2=A0+=0D=0A>>>=C2=A0+=C2=A0=C2=A0reg:=
-=0D=0A>>>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0items:=0D=0A>>>=C2=A0+=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0description:=C2=A0PHY=C2=A0registers.=0D=0A>=
->>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0description:=C2=A0PHY=
-=C2=A0coding=C2=A0sublayer=C2=A0registers.=0D=0A>>>=C2=A0+=0D=0A>>>=C2=A0+=
-=C2=A0=C2=A0reg-names:=0D=0A>>>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0items:=0D=0A>=
->>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0const:=C2=A0phy=0D=0A>>=
->=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0const:=C2=A0pcs=0D=0A>>>=
-=C2=A0+=0D=0A>>>=C2=A0+=C2=A0=C2=A0=22=23phy-cells=22:=0D=0A>>>=C2=A0+=C2=
-=A0=C2=A0=C2=A0=C2=A0const:=C2=A00=0D=0A>>>=C2=A0+=0D=0A>>>=C2=A0+=C2=A0=C2=
-=A0clocks:=0D=0A>>>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0items:=0D=0A>>>=C2=A0+=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0description:=C2=A0PCIe=C2=A0PHY=C2=
-=A0reference=C2=A0clock=0D=0A>=20=0D=0A>=20refer=C2=A0to=C2=A0sample-schema=
-.yaml,=C2=A0even=C2=A0if=C2=A0the=C2=A0clock=C2=A0item=C2=A0is=C2=A0single,=
-=0D=0A>=20it=C2=A0seems=C2=A0to=C2=A0be=C2=A0used=C2=A0as=C2=A0follows.=0D=
-=0A>=20=0D=0A>=20clocks:=0D=0A>=20=C2=A0=C2=A0maxItems:=C2=A01=0D=0A>=20=0D=
-=0A>=20clock-names:=0D=0A>=20=C2=A0=C2=A0items:=0D=0A>=20=C2=A0=C2=A0=C2=A0=
-=C2=A0-=C2=A0const:=C2=A0ref=0D=0A>=20=0D=0A>=20If=C2=A0only=C2=A0=22clocks=
-:=22=C2=A0are=C2=A0define=C2=A0and=C2=A0clock-names=C2=A0are=C2=A0not=C2=A0=
-define,=0D=0A>=20the=C2=A0following=C2=A0warning=C2=A0occurs.=0D=0A>=20=22'=
-clock-names'=C2=A0does=C2=A0not=C2=A0match=C2=A0any=C2=A0of=C2=A0the=C2=A0r=
-egexes=22=0D=0A>=20=0D=0A>>>=C2=A0+=0D=0A>>>=C2=A0+=C2=A0=C2=A0num-lanes:=
-=0D=0A>>>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0const:=C2=A02=0D=0A>>>=C2=A0+=0D=0A=
->>>=C2=A0+=C2=A0=C2=A0lcpll-ref-clk:=0D=0A>>>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=
-=A0const:=C2=A01=0D=0A>>=C2=A0=0D=0A>>=C2=A0Unknown=C2=A0field...=C2=A0cust=
-om=C2=A0properties=C2=A0need=C2=A0vendor=C2=A0(axis,),=C2=A0type=C2=A0(bool=
-ean)=0D=0A>>=C2=A0and=C2=A0description.=0D=0A>>=C2=A0=0D=0A>=20=0D=0A>=20=
-=22lcpl-ref-clk=22=C2=A0has=C2=A0an=C2=A0enum=C2=A0type=C2=A0value,=C2=A0so=
-=C2=A0i=C2=A0will=C2=A0modify=C2=A0it=C2=A0as=C2=A0below.=0D=0A>=20=0D=0A>=
-=20=0D=0A>=20axis,lcpll-ref-clk:=0D=0A>=20=C2=A0=C2=A0description:=0D=0A>=
-=20=C2=A0=C2=A0=C2=A0=C2=A0select=C2=A0the=C2=A0reference=C2=A0clock=C2=A0o=
-f=C2=A0phy=C2=A0and=C2=A0initialization=C2=A0is=C2=A0performed=0D=0A>=20=C2=
-=A0=C2=A0=C2=A0=C2=A0with=C2=A0the=C2=A0reference=C2=A0clock=C2=A0according=
-=C2=A0to=C2=A0the=C2=A0selected=C2=A0value.=0D=0A>=20=C2=A0=C2=A0=24ref:=C2=
-=A0/schemas/types.yaml=23/definitions/uint32=0D=0A>=20=C2=A0=C2=A0enum:=C2=
-=A0=5B=C2=A00,=C2=A01,=C2=A02,=C2=A03,=C2=A04=C2=A0=5D=0D=0A>=20=0D=0A>>>=
-=C2=A0+=0D=0A>>>=C2=A0+required:=0D=0A>>>=C2=A0+=C2=A0=C2=A0-=C2=A0compatib=
-le=0D=0A>>>=C2=A0+=C2=A0=C2=A0-=C2=A0reg=0D=0A>>>=C2=A0+=C2=A0=C2=A0-=C2=A0=
-reg-names=0D=0A>>>=C2=A0+=C2=A0=C2=A0-=C2=A0=22=23phy-cells=22=0D=0A>>>=C2=
-=A0+=C2=A0=C2=A0-=C2=A0clocks=0D=0A>>>=C2=A0+=C2=A0=C2=A0-=C2=A0clock-names=
-=0D=0A>>>=C2=A0+=C2=A0=C2=A0-=C2=A0samsung,fsys-sysreg=0D=0A>>=C2=A0=0D=0A>=
->=C2=A0Same=C2=A0problem=C2=A0as=C2=A0in=C2=A0patch=C2=A0=231.=0D=0A>>=C2=
-=A0=0D=0A>=20=0D=0A>=20I=C2=A0will=C2=A0add=C2=A0the=C2=A0following=C2=A0it=
-ems=C2=A0to=C2=A0the=C2=A0property.=0D=0A>=20=0D=0A>=20samsung,fsys-sysreg:=
-=0D=0A>=20=C2=A0=C2=A0description:=0D=0A>=20=C2=A0=C2=A0=C2=A0=C2=A0Phandle=
-=C2=A0to=C2=A0system=C2=A0register=C2=A0of=C2=A0fsys=C2=A0block.=0D=0A>=20=
-=C2=A0=C2=A0=24ref:=C2=A0/schemas/types.yaml=23/definitions/phandle=0D=0A>=
-=20=0D=0A>>>=C2=A0+=C2=A0=C2=A0-=C2=A0num-lanes=0D=0A>>>=C2=A0+=C2=A0=C2=A0=
--=C2=A0lcpll-ref-clk=0D=0A>>>=C2=A0+=0D=0A>>>=C2=A0+additionalProperties:=
-=C2=A0true=0D=0A>>=C2=A0=0D=0A>>=C2=A0No,=C2=A0this=C2=A0must=C2=A0be=C2=A0=
-false.=0D=0A>>=C2=A0=0D=0A>=20=0D=0A>=20yes,=C2=A0i=C2=A0miss=C2=A0it.=C2=
-=A0I=C2=A0will=C2=A0fix=C2=A0this.=0D=0A>=20=0D=0A>>=C2=A0Best=C2=A0regards=
-,=0D=0A>>=C2=A0Krzysztof=0D=0A>=20=0D=0A>=20Thank=C2=A0you=C2=A0for=C2=A0ki=
-ndness=C2=A0reivew.=0D=0A>=20=0D=0A>=20Best=C2=A0regards,=0D=0A>=20Wangseok=
-=C2=A0Lee
+> Hence remove redundant constant variable, which is no more useful
+> as per new design.
+>
+> The issue is due to some unstaged changes. Fix it up.
+>
+> Fixes: 36fe26843d6d ("pinctrl: qcom: sc7280: Add clock optional check for ADSP bypass targets")
+>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> ---
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
