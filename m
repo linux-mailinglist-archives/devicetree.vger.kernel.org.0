@@ -2,114 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F9D75601B4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 15:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B5715601D1
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:01:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230338AbiF2Nuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 09:50:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51652 "EHLO
+        id S231298AbiF2OBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 10:01:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbiF2Nue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 09:50:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2AC6DFE0;
-        Wed, 29 Jun 2022 06:50:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S229952AbiF2OB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:01:29 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB0B23141;
+        Wed, 29 Jun 2022 07:01:25 -0700 (PDT)
+Received: from zn.tnic (p200300ea97156ae0329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9715:6ae0:329c:23ff:fea6:a903])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7CDB261E88;
-        Wed, 29 Jun 2022 13:50:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBB75C341C8;
-        Wed, 29 Jun 2022 13:50:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656510632;
-        bh=VMfYKMWvhAYlNBRE5+J2Dkfi0eUU5Q30vFi/V4AWzHU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=GETHWCkoSunTjq5u/0ujktPGg6qtbdHdVHdWoYf1iSUuprFkUAPWvwpaMVasEEMgH
-         ck4EhHotuESssRD0XtA51/KmRvIz0Px+QWuMvmoyKKYZ7hphq4EOup14rzDny0ltYu
-         qfrWbQWPN67T9bwHwCuJBB6twuWGKP1l9vg4itG6tBtpw6jkIHx+P6DiidGOfUdoYs
-         ZTyTEkTORxkaxp/voyd8v8VBgVa8bFQVCz9Vk7Qnd4T/zdUniGqYmL56VwEJ8ccG4C
-         fwwFdGiUcdcHjhdjM53dP+qF+OhNT1zPeDjL8HTEZLX4UoMnHLP1aY/cT7OKYT7KNV
-         e5EgHi251y34g==
-Received: by mail-ua1-f47.google.com with SMTP id s4so2632872uad.0;
-        Wed, 29 Jun 2022 06:50:32 -0700 (PDT)
-X-Gm-Message-State: AJIora9+FZiZJjDZeswQMYWNyHlRN/KUpbm1x36djzlRZAJKtbTwegXO
-        Va12xI6cOCW3eNNCEdUS5XPWOBcHMp7jLDVnmQ==
-X-Google-Smtp-Source: AGRyM1vKGXqFayysL8pEeROfaIV0o7ghK/bslJjjPn8tNlKPkGvn1x3tqB9tWvX/xYVyIkhnRX8ry8eIzxcL8s3QRD4=
-X-Received: by 2002:a05:6130:3aa:b0:37f:26c0:e196 with SMTP id
- az42-20020a05613003aa00b0037f26c0e196mr1628527uab.43.1656510631830; Wed, 29
- Jun 2022 06:50:31 -0700 (PDT)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id AF6A31EC04C2;
+        Wed, 29 Jun 2022 16:01:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1656511279;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=1nfA4bd39uY9wmMuXeUB/WuKXARluBCBaMbOeIYcBnY=;
+        b=LRK5ezlYQtIou/WwjqaCHEkzUwF537MTzAq2lHavZu/AFBFt05GjuZvi60LPc/HaFKAxzq
+        8gWqVL7Mu26tnpybnyjQJEPDCModDkJIdXd2axk+QkTaTDn2Byx0on7m3eWcQgCLlHow8m
+        WLyN6KMa6BsOQrx4FEIgjDu5NbaXcMM=
+Date:   Wed, 29 Jun 2022 16:01:15 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Jonathan McDowell <noodles@fb.com>
+Cc:     kernel test robot <lkp@intel.com>,
+        "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
+        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "x86@kernel.org" <x86@kernel.org>,
+        Mimi Zohar <zohar@linux.ibm.com>, Baoquan He <bhe@redhat.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-integrity@vger.kernel.org" <linux-integrity@vger.kernel.org>,
+        "kexec@lists.infradead.org" <kexec@lists.infradead.org>
+Subject: Re: [PATCH] of: Correctly annotate IMA kexec buffer functions
+Message-ID: <YrxbK4IsYb6yls5d@zn.tnic>
+References: <202206291039.yGgljGbx-lkp@intel.com>
+ <YrwPjnxBk3Xyuakg@zn.tnic>
+ <Yrwg1aYEnFz38V6+@noodles-fedora.dhcp.thefacebook.com>
 MIME-Version: 1.0
-References: <20220628194526.111501-1-phil.edworthy@renesas.com>
- <20220628194526.111501-2-phil.edworthy@renesas.com> <1656468579.925440.1403681.nullmailer@robh.at.kernel.org>
- <CAMuHMdVsdh1YpVtq7570_kNOWUm5sMb=Fm=Dv_8qOS=hg3iuKA@mail.gmail.com> <43a19f7f-016a-0820-adf1-41419fe82d28@linaro.org>
-In-Reply-To: <43a19f7f-016a-0820-adf1-41419fe82d28@linaro.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 29 Jun 2022 07:50:20 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJfrqPbu3RZ0wuY9GiiJ6tNmOSqdmdjRHXOYqoL=xUE9w@mail.gmail.com>
-Message-ID: <CAL_JsqJfrqPbu3RZ0wuY9GiiJ6tNmOSqdmdjRHXOYqoL=xUE9w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: Document RZ/V2M I2C controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Yrwg1aYEnFz38V6+@noodles-fedora.dhcp.thefacebook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 2:15 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 29/06/2022 08:53, Geert Uytterhoeven wrote:
-> > Hi Rob,
-> >
-> > On Wed, Jun 29, 2022 at 4:09 AM Rob Herring <robh@kernel.org> wrote:
-> >> On Tue, 28 Jun 2022 20:45:25 +0100, Phil Edworthy wrote:
-> >>> Document Renesas RZ/V2M (r9a09g011) I2C controller bindings.
-> >>>
-> >>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> >>> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> >>> ---
-> >>> v2:
-> >>>  - Use an enum and set the default for clock-frequency
-> >>>  - Add resets property
-> >>> ---
-> >>>  .../bindings/i2c/renesas,rzv2m.yaml           | 80 +++++++++++++++++++
-> >>>  1 file changed, 80 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
-> >>>
-> >>
-> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >>
-> >> yamllint warnings/errors:
-> >>
-> >> dtschema/dtc warnings/errors:
-> >> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: patternProperties:^thermistor@:properties:adi,excitation-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
-> >>         hint: Standard unit suffix properties don't need a type $ref
-> >>         from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-> >> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProperties: ^thermistor@: properties: adi,excitation-current-nanoamp
-> >> Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.example.dtb:0:0: /example-0/spi/ltc2983@0: failed to match any schema with compatible: ['adi,ltc2983']
-> >
-> > All of these look like false-positives, i.e. not related to this patch?
->
-> Few other patches also got it, I think the bot got some problem.
+On Wed, Jun 29, 2022 at 09:52:50AM +0000, Jonathan McDowell wrote:
+> Below is on top of what was in tip; I can roll a v7 if preferred but
+> I think seeing the fix on its own is clearer.
 
-Yes, and the bot's overlord failed to see that too. A change yesterday
-in dtschema main branch introduced a new warning and that requires
-clearing the CI cache which I didn't do til now.
+Yes, and you don't have to base it on top because, as I've said, I've
+zapped your other patch there.
 
-Rob
+Once IMA folks are fine with that fix of yours I can take both, if they
+wish so.
+
+> ima_free_kexec_buffer() calls into memblock_phys_free() so must be
+> annotated __meminit.
+
+Why __meminit?
+
+The very sparse comment over it says:
+
+/* Used for MEMORY_HOTPLUG */
+#define __meminit        __section(".meminit.text") __cold notrace \
+                                                  __latent_entropy
+
+so how does ima_free_kexec_buffer() have anything to do with
+MEMORY_HOTPLUG?
+
+It calls memblock_phys_free() which is __init_memblock.
+
+Now __init_memblock is defined as
+
+#define __init_memblock __meminit
+
+for some CONFIG_ARCH_KEEP_MEMBLOCK thing so I guess that is the
+connection.
+
+But then the couple other functions which call into memblock are all
+__init...
+
+IOW, I probably am missing something...
+
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
