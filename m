@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D28F95605C8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 18:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A7E15605DA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 18:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231397AbiF2Q0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 12:26:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39098 "EHLO
+        id S230079AbiF2Q2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 12:28:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229760AbiF2Q0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 12:26:32 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16473366AD;
-        Wed, 29 Jun 2022 09:26:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BFA4EB82582;
-        Wed, 29 Jun 2022 16:26:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6265BC34114;
-        Wed, 29 Jun 2022 16:26:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656519988;
-        bh=K5IYA6E8v+rzW57xBQODbxS8B9f9wrxT6wYhxuqci94=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=db5iOcKekh2RXv2e/CIs0orex5XU9Y7NYtQY9ukecZaleak8dkGLxwI+ysjVjaQN4
-         MShrAIVXttnctKAmW5ye255lwaVi0UI6tZl25Kz+UgPeT3aauNDxhWS5BV2guwwC+y
-         cubwYQzW4Ln4CYK27ppQJImnZTf5BHomwUa6ohyQCV3wNGaJ/vJL+qgNHzcY6nG+8K
-         is77SR6Cl5fxYgi5qJG6+CQEX/hGECBJKWc2oRnAqJj0btZY1vyjXTBonr7sB52fU5
-         elfHygcvDsex6mR0tgq9aGMI0ii2R+++HqmpXMeHAjoSyY1rRm2lq0Rm+38IstxeXK
-         IT1fwcANzq96A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1o6aWI-0047dB-1r;
-        Wed, 29 Jun 2022 17:26:26 +0100
-Date:   Wed, 29 Jun 2022 17:26:25 +0100
-Message-ID: <87pmir1ln2.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        with ESMTP id S229494AbiF2Q2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 12:28:38 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E0221A83D
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 09:28:35 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id x20so8992312plx.6
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 09:28:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5H2TncGeZHlVgF0rSy+eJip9+xYU/JmV0WmAXgh7ZSM=;
+        b=iQ8gweKuAZ5V6W28bDDyKzpxZFrV3Dpyy4y254On/3Db9I7vc9ssGwW3Mj3msP3fH/
+         36GQoHsTnNaZ+Us8G1yTix4PbWYfR8lP1XcqvQm0EmLYVTxCNefnlXQ83UPMXoMMSPRC
+         clN5GiPH+ktzdtyDsT9W9gquw+FWhkpZ97GnsMXcVxsDmgSWm5Tmw3HyqdQSlbBe8FMq
+         w+z4wB0r+pjRhFAoLJaIY0KxTd2mIH4+ChcbFRrQuuwCSuDMsXFTit1B3vVL3n+6Qh3k
+         IHVVx3JJnSwcmhBwzTy05G7/aBdFf/gDWGSc9SQtHnePnB64KEuNMZM7w5o0pMKer9zm
+         B68g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5H2TncGeZHlVgF0rSy+eJip9+xYU/JmV0WmAXgh7ZSM=;
+        b=lpoVEspwC3ZcqqgiIS1Hg/mwQD5I2bjyJB9AwC8LA3TPVRdVpvO/BC4wpuFlJGCiDC
+         8Lgy0ksX2ayzuaKvvmtdQWfsyCpkSwEbRpbhCGba3immbhiwfMWFA6q9ELub/r6piHE5
+         5/roN5g/wGSHpvA8+hu2sCNOHVdGAeiennfQaNdRJQiTnIlTf3ueSRdqI7hKJ832LrXT
+         wCDAkob16EguTgFesFe0Mb/APi04oG2QlQAfeFUbeyVZO/hCNUnE2xJQJ5IbNPft9BRa
+         19PvA+cf6W8+y6zIJChLUiEXyXb5tY7MHLLiBGYTFyUKDS7M+cjCUPSjK8Te07VY/vMR
+         KoPg==
+X-Gm-Message-State: AJIora8cuzlhA7iKeh/ApgbiWHG9vlOlZTu+fhRwSsspWnpbXqfiyFwd
+        /Iqdlu/yn2BAGTMO5vtFDBk/1Q==
+X-Google-Smtp-Source: AGRyM1uQlnixmQuuX5yZ8e4AcTn7YXgUCxjK/ku0GJgTHDXm2pRVLefUxGJ0ixDUObCpTattuXXqVw==
+X-Received: by 2002:a17:902:f642:b0:169:714:b079 with SMTP id m2-20020a170902f64200b001690714b079mr9833597plg.117.1656520114584;
+        Wed, 29 Jun 2022 09:28:34 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id b16-20020a170903229000b001696751796asm11660712plh.139.2022.06.29.09.28.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jun 2022 09:28:33 -0700 (PDT)
+Date:   Wed, 29 Jun 2022 10:28:31 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mike Leach <mike.leach@linaro.org>, Leo Yan <leo.yan@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v6 5/5] pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to handle GPIO interrupt
-In-Reply-To: <20220625200600.7582-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220625200600.7582-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20220625200600.7582-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be, linus.walleij@linaro.org, brgl@bgdev.pl, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, prabhakar.csengg@gmail.com, biju.das.jz@bp.renesas.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/3] dt-bindings: Arm CoreSight binding schema
+ conversions
+Message-ID: <20220629162831.GB2013207@p14s>
+References: <20220603011933.3277315-1-robh@kernel.org>
+ <20220620165541.GA1458883@p14s>
+ <20220628180118.GA703354-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220628180118.GA703354-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,53 +75,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Jun 2022 21:06:00 +0100,
-Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+On Tue, Jun 28, 2022 at 12:01:18PM -0600, Rob Herring wrote:
+> On Mon, Jun 20, 2022 at 10:55:41AM -0600, Mathieu Poirier wrote:
+> > Hi Rob,
+> > 
+> > On Thu, Jun 02, 2022 at 08:19:30PM -0500, Rob Herring wrote:
+> > > This series converts all the CoreSight debug bindings to DT schema
+> > > format. These bindings are at the top of the list of occurrences of
+> > > bindings without a schema. For arm64 dts files:
+> > > 
+> > >     702 ['arm,coresight-etm4x', 'arm,primecell']
+> > >     536 ['arm,coresight-cpu-debug', 'arm,primecell']
+> > >     509 ['arm,coresight-dynamic-funnel', 'arm,primecell']
+> > >     213 ['arm,coresight-tmc', 'arm,primecell']
+> > >     143 ['arm,coresight-dynamic-replicator', 'arm,primecell']
+> > >      97 ['arm,coresight-stm', 'arm,primecell']
+> > > 
+> > > I'll send a reply to these with the errors in dts files that this
+> > > causes. I've reviewed them and they all look legit. Xilinx Zynq though
+> > > has 3 clocks instead of 2.
+> > > 
+> > > v2:
+> > >  - Rename other Coresight bindings to use compatible string for filename
+> > >  - Add missing arm,coresight-dynamic-replicator.yaml and
+> > >    arm,coresight-static-funnel.yaml
+> > >  - Update MAINTAINERS
+> > >  - Fix coresight.txt references
+> > 
+> > What a massive undertaking... I have looked scrupulously and everything adds up.
+> > Let me know if you were looking for me to pick this up.  Otherwise:
+> > 
+> > Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 > 
-> Add IRQ domain to RZ/G2L pinctrl driver to handle GPIO interrupt.
+> Can you apply. I think there was another series from QCom touching 
+> the MAINTAINERS entry that will conflict.
+
+I just tried a rebased on today's linux-next and it didn't blow up.
+
 > 
-> GPIO0-GPIO122 pins can be used as IRQ lines but only 32 pins can be
-> used as IRQ lines at a given time. Selection of pins as IRQ lines
-> is handled by IA55 (which is the IRQC block) which sits in between the
-> GPIO and GIC.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 236 ++++++++++++++++++++++++
->  1 file changed, 236 insertions(+)
->
+> There's a couple of indentation fixups. Can you fix when applying or do 
+> you want me to resend?
 
-[...]
-
-> +static void *rzg2l_gpio_populate_parent_fwspec(struct gpio_chip *chip,
-> +					       unsigned int parent_hwirq,
-> +					       unsigned int parent_type)
-> +{
-> +	struct irq_fwspec *fwspec;
-> +
-> +	fwspec = kzalloc(sizeof(*fwspec), GFP_KERNEL);
-> +	if (!fwspec)
-> +		return NULL;
-> +
-> +	fwspec->fwnode = chip->irq.parent_domain->fwnode;
-> +	fwspec->param_count = 2;
-> +	fwspec->param[0] = parent_hwirq;
-> +	fwspec->param[1] = parent_type;
-> +
-> +	return fwspec;
-> +}
-
-I jumped at this one again.
-
-Can you please pick [1] as part of your series and write this in a way
-that doesn't require extra memory allocation? It has already been
-ack'ed by Linus anyway, and we'd put an end to this thing for good.
+Fixed and applied.
 
 Thanks,
+Mathieu
 
-	M.
-
-[1] https://lore.kernel.org/r/20220512162320.2213488-1-maz@kernel.org
-
--- 
-Without deviation from the norm, progress is not possible.
+> 
+> Rob
