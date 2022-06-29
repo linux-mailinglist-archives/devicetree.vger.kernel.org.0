@@ -2,48 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 161435601DF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C758B560250
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:16:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233814AbiF2OGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:06:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34300 "EHLO
+        id S231698AbiF2OMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 10:12:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233822AbiF2OGG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:06:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AED32A25B;
-        Wed, 29 Jun 2022 07:05:58 -0700 (PDT)
+        with ESMTP id S233962AbiF2OMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:12:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C04082F021;
+        Wed, 29 Jun 2022 07:12:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DC20061EAF;
-        Wed, 29 Jun 2022 14:05:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9053C341C8;
-        Wed, 29 Jun 2022 14:05:55 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5779BB824B5;
+        Wed, 29 Jun 2022 14:12:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05F87C341CC;
+        Wed, 29 Jun 2022 14:12:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656511557;
-        bh=1LQiXmBKTuoLLVX2WnRC35eSF4hNdTcSZ5mG47kAXVI=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=QgK/lOflsccYXb2DJBBYJq/7Mf7JKwqYiQmoWe1I31oqon7gn4CZzZRX7yz2bdzwb
-         ezXucMoklN8+FlYHS7yTmoStl9c0pwLT0tSWEKF+/F2RuMRhmX64VcTIKw7/pr3SA3
-         1ADgB/CajiR/y6sC8dAXfQ69+ShA57b62pv5wCaYcb1E+71giUjBRcC00lRLBwoLli
-         O2QkbR71LCYwIdEC2Ih+b+O9NDpBl6AdpgDReTt9GQ3ZrD1BPx8SZdul65f4cuGNGQ
-         HOXL6/IW/YID0a1TFb596BKRZQIfilw3s+6GnaW6EptvB8yInPJNX2YPilmilC9RXn
-         yig/IWtz+Y7Kg==
-From:   Mark Brown <broonie@kernel.org>
-To:     alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, shengjiu.wang@nxp.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     shengjiu.wang@gmail.com
-In-Reply-To: <1656386005-29376-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1656386005-29376-1-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v3] ASoC: dt-bindings: fsl,micfil: Convert format to json-schema
-Message-Id: <165651155548.1437597.5728269652830788201.b4-ty@kernel.org>
-Date:   Wed, 29 Jun 2022 15:05:55 +0100
+        s=k20201202; t=1656511949;
+        bh=8S+TkRsSy+p3BiBnqfbIgdvnP2TeLi48aB8hIhUXsMg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=fjLhBuC5EuNRjFebZqXprS0Z2nVi4Qz86WnqqmQTESb3Qtj1EnS+AlEv82Mc1F3vD
+         Pswr7K+3goFaC668xoi7nE62nkWMv4JusvNZ2jUlI7nvknRE5N9Jm1l9vArwjocfQL
+         JwwEjMmt96OszrRjgTcvT/qRHk22BjK5RptZ+LCKWJW5uxql9JG0aTjwZquDDnjoc2
+         03kcxBTYppM07JbhM5kLUnz9myDQvuYC4R7cdcgpyYSS8PSJjWkaz7sJIBZ6OJwQSN
+         l461+DE8OCvvpDPTY+wvQyRqp8gZsgaZL5rqLEVH9E/HM87UsOWE48jbY9jpdMJTF3
+         nrtOLoznzT/lA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1o6YQe-0004l6-9D; Wed, 29 Jun 2022 16:12:28 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 00/10] PCI: qcom: Add support for SC8280XP and SA8540P
+Date:   Wed, 29 Jun 2022 16:09:50 +0200
+Message-Id: <20220629141000.18111-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -55,35 +63,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022 11:13:25 +0800, Shengjiu Wang wrote:
-> Convert the NXP MICFIL binding to DT schema format using json-schema.
-> 
-> 
+This series adds support for the PCIe controllers found on SC8280XP and
+SA8540P.
 
-Applied to
+Included are also three patches that clean up the way the driver handles
+different IP revisions (e.g. by modelling optional clocks as being truly
+optional).
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+These patches depend on the recently merged (but currently held off?)
+PIPE clock series:
 
-Thanks!
+	https://lore.kernel.org/all/20220608105238.2973600-1-dmitry.baryshkov@linaro.org/
 
-[1/1] ASoC: dt-bindings: fsl,micfil: Convert format to json-schema
-      commit: 02d91fe47100a29a79fcb8798e45c22591ca852d
+as well as the about-to-be-merged MSI series:
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+	https://lore.kernel.org/all/20220620112015.1600380-1-dmitry.baryshkov@linaro.org/
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+While preparing the dt-binding update I found a bug in the dt-schema
+introduced by the latter series and which is fixed by the second patch
+below. Not sure it's worth respinning a v16 of the MSI series just for
+that but if so then the fix could be folded into:
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+	https://lore.kernel.org/all/20220620112015.1600380-6-dmitry.baryshkov@linaro.org/
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Johan
 
-Thanks,
-Mark
+
+Johan Hovold (10):
+  dt-bindings: PCI: qcom: Fix reset conditional
+  dt-bindings: PCI: qcom: Fix msi-interrupt conditional
+  dt-bindings: PCI: qcom: Enumerate platforms with single msi interrupt
+  dt-bindings: PCI: qcom: Add SC8280XP to binding
+  dt-bindings: PCI: qcom: Add SA8540P to binding
+  PCI: qcom: Add support for SC8280XP
+  PCI: qcom: Add support for SA8540P
+  PCI: qcom: Make all optional clocks optional
+  PCI: qcom: Clean up IP configurations
+  PCI: qcom: Sort device-id table
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  74 ++++++++++-
+ drivers/pci/controller/dwc/pcie-qcom.c        | 117 +++++++-----------
+ 2 files changed, 114 insertions(+), 77 deletions(-)
+
+-- 
+2.35.1
+
