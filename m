@@ -2,104 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF59B560389
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A47E560399
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:50:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233551AbiF2OoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:44:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51010 "EHLO
+        id S232944AbiF2OuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 10:50:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233552AbiF2OoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:44:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDBC624BCA;
-        Wed, 29 Jun 2022 07:44:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 65A3561F5F;
-        Wed, 29 Jun 2022 14:44:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDCBEC341C8;
-        Wed, 29 Jun 2022 14:44:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656513853;
-        bh=VKmQkXSSr0fp8xEEhrHuI4jJj9kI+Q29PnoOBCQnruI=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=vA081Ef0eFD0cI0hgJ6BpR90sEWAJutJfPskioZSCiyzd77Bif/1jnqHnZNZIgg9m
-         VAobGxTWWQMyurZW7mLUkZpRd5ZpE9IwDUevCR00zm4nb6uPGZoMCR3pLU+fTxtLpk
-         JgPSisiqIEqY8UfN9l8gNsSu0/uBXmuDKxN5ZV40ebwUKkPLauOuIAvwiar9/Y9WeG
-         A8or0hfYud6Y6TkS5TrM2GQwpSvX1n5SAe/vph/Q5FiETupIEDlyhSrCXQzPgLkCet
-         idpVeTgzkKWL7NNRr1i0pIO4smmMHuG8ETZVc3pG/Riyx5bo9s62nf4b2XeFA0rXO8
-         7Vj+Pe+dXD3rg==
-From:   Mark Brown <broonie@kernel.org>
-To:     krzysztof.kozlowski@linaro.org, andi@etezian.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        chanho61.park@samsung.com
-Cc:     linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        alim.akhtar@samsung.com
-In-Reply-To: <20220629102304.65712-1-chanho61.park@samsung.com>
-References: <CGME20220629102527epcas2p4ab04f91877e5f744c4a4e37827d19ce8@epcas2p4.samsung.com> <20220629102304.65712-1-chanho61.park@samsung.com>
-Subject: Re: [PATCH v3 0/4] spi support for Exynos Auto v9 SoC
-Message-Id: <165651385163.1635474.11164615734135811182.b4-ty@kernel.org>
-Date:   Wed, 29 Jun 2022 15:44:11 +0100
+        with ESMTP id S231345AbiF2OuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:50:13 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 512821CFE6;
+        Wed, 29 Jun 2022 07:50:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=S3ju5Nr7hfd110iZmCLv9+gZbDbPEjWtum1B8GQGywA=; b=JG3jkP5Vv9Jim6Yb4RJlAq1uGD
+        3iBb15pzuTWKpyaU6yeJT0oBIMMv92MtP73oxfJcRyF5x1DsurCHy7GXVe57VO4/odKav7KKvOLyH
+        Dq/OdFTasqachW8KWVoy7njWx1JMoNeEFv18ogkZcZjyjNRgEpHRcd9qXIekW5OPnU789Ep2J/3c4
+        jo2PSV3Xg0CG376aUh2TsrOzr1X9l9mqYjjfgwUbUm8oBBn1lJZbqJzRd3yGTO0WhoDRVC2ioBDVp
+        KsJAfHmzSKVBEkujLqfY4NcU2sxad2hvYD0lqZ/DlGCnqRLeQg1t7k3/LGFG5YCUlTu99V1mAC4vR
+        IrzsOMnA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33102)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1o6Z11-0003IC-E3; Wed, 29 Jun 2022 15:50:03 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1o6Z0z-0005vu-EK; Wed, 29 Jun 2022 15:50:01 +0100
+Date:   Wed, 29 Jun 2022 15:50:01 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Eric Dumazet <edumazet@google.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 02/35] dt-bindings: net: Convert FMan MAC
+ bindings to yaml
+Message-ID: <YrxmmSXdKb3pD/Nv@shell.armlinux.org.uk>
+References: <20220628221404.1444200-1-sean.anderson@seco.com>
+ <20220628221404.1444200-3-sean.anderson@seco.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220628221404.1444200-3-sean.anderson@seco.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Jun 2022 19:23:00 +0900, Chanho Park wrote:
-> Add to support Exynos Auto v9 SoC's spi. By supporting USI(Universal
-> Serial Interface) mode, the SoC can support up to 12 spi ports. Thus, we
-> need to increase MAX_SPI_PORTS from 6 to 12. The spi of the SoC can
-> support loopback mode unlike previous exynos SoCs. To separate the
-> feature, we need to add .has_loopback to the s3c64xx_spi_port_config.
-> Furthermore, it uses 4 as the default internal clock divider. We also
-> need to clk_div field of the structure and assign "2" as the default
-> value to the existing SoC's port config.
-> Device tree definitions of exynosautov9-spi will be added in separated
-> patchset to include usi(i2c/uart/spi) nodes all together.
+On Tue, Jun 28, 2022 at 06:13:31PM -0400, Sean Anderson wrote:
+> This converts the MAC portion of the FMan MAC bindings to yaml.
 > 
-> [...]
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
+> 
+> Changes in v2:
+> - New
+> 
+>  .../bindings/net/fsl,fman-dtsec.yaml          | 144 ++++++++++++++++++
+>  .../devicetree/bindings/net/fsl-fman.txt      | 128 +---------------
+>  2 files changed, 145 insertions(+), 127 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml b/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+> new file mode 100644
+> index 000000000000..809df1589f20
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+> @@ -0,0 +1,144 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/fsl,fman-dtsec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP FMan MAC
+> +
+> +maintainers:
+> +  - Madalin Bucur <madalin.bucur@nxp.com>
+> +
+> +description: |
+> +  Each FMan has several MACs, each implementing an Ethernet interface. Earlier
+> +  versions of FMan used the Datapath Three Speed Ethernet Controller (dTSEC) for
+> +  10/100/1000 MBit/s speeds, and the 10-Gigabit Ethernet Media Access Controller
+> +  (10GEC) for 10 Gbit/s speeds. Later versions of FMan use the Multirate
+> +  Ethernet Media Access Controller (mEMAC) to handle all speeds.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,fman-dtsec
+> +      - fsl,fman-xgec
+> +      - fsl,fman-memac
+> +
+> +  cell-index:
+> +    maximum: 64
+> +    description: |
+> +      FManV2:
+> +      register[bit]           MAC             cell-index
+> +      ============================================================
+> +      FM_EPI[16]              XGEC            8
+> +      FM_EPI[16+n]            dTSECn          n-1
+> +      FM_NPI[11+n]            dTSECn          n-1
+> +              n = 1,..,5
+> +
+> +      FManV3:
+> +      register[bit]           MAC             cell-index
+> +      ============================================================
+> +      FM_EPI[16+n]            mEMACn          n-1
+> +      FM_EPI[25]              mEMAC10         9
+> +
+> +      FM_NPI[11+n]            mEMACn          n-1
+> +      FM_NPI[10]              mEMAC10         9
+> +      FM_NPI[11]              mEMAC9          8
+> +              n = 1,..8
+> +
+> +      FM_EPI and FM_NPI are located in the FMan memory map.
+> +
+> +      2. SoC registers:
+> +
+> +      - P2041, P3041, P4080 P5020, P5040:
+> +      register[bit]           FMan            MAC             cell
+> +                              Unit                            index
+> +      ============================================================
+> +      DCFG_DEVDISR2[7]        1               XGEC            8
+> +      DCFG_DEVDISR2[7+n]      1               dTSECn          n-1
+> +      DCFG_DEVDISR2[15]       2               XGEC            8
+> +      DCFG_DEVDISR2[15+n]     2               dTSECn          n-1
+> +              n = 1,..5
+> +
+> +      - T1040, T2080, T4240, B4860:
+> +      register[bit]                   FMan    MAC             cell
+> +                                      Unit                    index
+> +      ============================================================
+> +      DCFG_CCSR_DEVDISR2[n-1]         1       mEMACn          n-1
+> +      DCFG_CCSR_DEVDISR2[11+n]        2       mEMACn          n-1
+> +              n = 1,..6,9,10
+> +
+> +      EVDISR, DCFG_DEVDISR2 and DCFG_CCSR_DEVDISR2 are located in
+> +      the specific SoC "Device Configuration/Pin Control" Memory
+> +      Map.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  fsl,fman-ports:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    maxItems: 2
+> +    description: |
+> +      An array of two references: the first is the FMan RX port and the second
+> +      is the TX port used by this MAC.
+> +
+> +  ptp-timer:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A reference to the IEEE1588 timer
+> +
+> +  pcsphy-handle:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A reference to the PCS (typically found on the SerDes)
 
-Applied to
+This description includes ethernet-controller.yaml, which contains:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+  pcs-handle:
+    $ref: /schemas/types.yaml#/definitions/phandle
+    description:
+      Specifies a reference to a node representing a PCS PHY device on a MDIO
+      bus to link with an external PHY (phy-handle) if exists.
 
-Thanks!
+Is there a reason why a custom property is needed rather than using the
+pcs-handle property already provided by the ethernet-controller DT
+description?
 
-[1/4] spi: s3c64xx: support loopback mode
-      commit: ffb7bcd3b27e86fa7bdbabf4488060064ec9d00d
-[2/4] spi: s3c64xx: support custom value of internal clock divider
-      commit: bfcd27dcb7b93bd1f3b89d03d8b90207876d635f
-[3/4] dt-bindings: samsung,spi: define exynosautov9 compatible
-      commit: 9dbeef8ad5f8e7d2cab7b888853b4abe9db87ffd
-[4/4] spi: s3c64xx: add spi port configuration for Exynos Auto v9 SoC
-      commit: 11d50d853dceb2df8d28bf772d3e928c1c5b137a
+Thanks.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
