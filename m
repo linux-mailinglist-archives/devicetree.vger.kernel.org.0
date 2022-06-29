@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60B3B560998
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 20:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3044A5609A8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 20:46:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231361AbiF2SpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 14:45:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56162 "EHLO
+        id S231321AbiF2SpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 14:45:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231404AbiF2So4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 14:44:56 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841C1275FF
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:55 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id be14-20020a05600c1e8e00b003a04a458c54so179582wmb.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:55 -0700 (PDT)
+        with ESMTP id S231184AbiF2SpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 14:45:03 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49ED12AC77
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:56 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id q9so23798097wrd.8
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=gc2vKH3KC5MkBHyxjlffpbpmjSYGhMGK8SuLLVbLMmA=;
-        b=b1HmM61mdW8GYiqxKQWSEMxCNUDxJBTTrlRtl15fqNYIuCkZc0o2CJdTeGIajSwT7X
-         u7/zOLw3G6g6qk7W2pP9C3CQg/YA4QDwKXxQMrOAFOIojMwCO5d2ivXFP3OKepL8vOrF
-         i3WcjcHbDjI30K+2b7eP7wJDRUdhrnDeDzRa50oEfXZTzW0Ic8RRtaW04pEbNja6qUT/
-         bCjIKRloecgdHSLASblaD+5TKC4S8bh/hwR54jV1iqeGBFZH+pojBdoaqMRd3VHtqb8k
-         aKuNrjFgo2M7HEKDHx0EAotjuGjsu78spyPlqsDURW+PCQz8XYT/XjNBhIQ6xvLK6pHA
-         ju7w==
+        bh=DNX3NBBxUOgIEO6d1lHfUfaMyrVEXszXHZidwPOOZLs=;
+        b=fJt0TNmcrxv1196YlKy+XtUiL3qH5Bi1DNi6jONPKjO1mK09TYQ50TbpaXiImC6SPX
+         wM/EbNLO8vHZI1fRyjVLA9dMDJM2IzSkNGcYb8su5xVZty48AsSus2QsfnunOQseVfNv
+         26Lk9YDEyevHgKK71onh/RYN+LNvQK+0n0ZCaKB/sLR6D7gNVndjsNGmzxOhOAuKtXzY
+         V4yiWGtn92sMUCDzfN2CyLwP/OZPoElHkS8QhNADh2m9p6pJlyepKXQV1JHQMFLnVYJj
+         RoZPOLARyx46D/J6WfBlen6szXY1KjfBMMjmyqEFn+lQH6ghSIH4H0/0xAsvL1vPoosm
+         JgJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=gc2vKH3KC5MkBHyxjlffpbpmjSYGhMGK8SuLLVbLMmA=;
-        b=e/MY7Ya3dxniDd3sM0jzu14zWNaMWfbYP0v647WcJgJ7ro8KyGggCiDjdZu31y8jmV
-         AJlP3O0OAgRQxg0RmCumo6InWObuXPttbWgy9HEuyjrqmQpSZwYGPUyn1yIhn51YVJKE
-         03BMHtU3xdJcOH0eqTk3HTpy44i6bZZFYL3qG8B21ZEnoG2Eg5/3McFTJ6JnIvtG6W9X
-         PRD7ahFYqOKfF12dpt3NNwknssEtoeGK1LaHirKlZ+URcn4FRUkE/hrRqcu9MiCZo+B+
-         WeDWmQcEEC2WeOYdItQnVcLHgZC8evzdHz5oy6/m1NUUMnYmjyeDfFs00QNejOVbSMYG
-         uglw==
-X-Gm-Message-State: AJIora/Ht3se3rh1l2mnmbbwxrhAnA5I8BQsZXGNYuCSl3FJEMJd0Qro
-        hJxVtpoYmQHNHkqGe6gf0ADvcA==
-X-Google-Smtp-Source: AGRyM1tiQTiUML69pSH/X379WColqfSCa/BD0WFCrjuoimppJGuQP+xpNrdH6dUuJmGqYoVcprXwFA==
-X-Received: by 2002:a05:600c:34ce:b0:3a0:3240:92ca with SMTP id d14-20020a05600c34ce00b003a0324092camr7157169wmq.130.1656528294078;
-        Wed, 29 Jun 2022 11:44:54 -0700 (PDT)
+        bh=DNX3NBBxUOgIEO6d1lHfUfaMyrVEXszXHZidwPOOZLs=;
+        b=j8IA2e92sRiei7u8jdWsrQeE0LadFJoF3Ubwp6FikYXz4z3jepvPdcmcl2D5cUrvHh
+         icXByHx3KV60RZv+0rrO4ZZRxnCUMUsS2dZpinEzSC3jk6XlURUeVia65SuqjugEjR11
+         PdgTeqdgRyJPwBPmVfkvn1YkOMcEmY/MBL477PAOIPhU8iunf2y43yca7z1qY6r/B774
+         noIEdbM2rWC26ojWR9fmG8jU4e+aaiVB5N/hoJdGGWRzcsKDzUPxR/jKpwnO/BG1HB39
+         kd7i6BHrPxoBp9X6SPiSXZq50RA3xXQpno51qTSpGeVgBIb0jUlOMCGaqNqViFDJ3p7t
+         WVeA==
+X-Gm-Message-State: AJIora+iPuV/eBCv3HU8liUmsh0WyJ8qxsKqO0rGYBv+F8du8FA8JaN+
+        B6dVfYf5eN/2E6gNB0MuIsM1vm1hQ/29qLizlFc=
+X-Google-Smtp-Source: AGRyM1slaB4pDiCS7kZfgH/dw/atIFKm5WMyJcMLooWgGiA6eNc01E7pK2ozv/LYUkHNxKQ7FdQ+ug==
+X-Received: by 2002:a5d:518f:0:b0:21b:8a8c:ce4 with SMTP id k15-20020a5d518f000000b0021b8a8c0ce4mr4710896wrv.614.1656528295858;
+        Wed, 29 Jun 2022 11:44:55 -0700 (PDT)
 Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id u23-20020a7bcb17000000b0039aef592ca0sm3834371wmj.35.2022.06.29.11.44.52
+        by smtp.gmail.com with ESMTPSA id u23-20020a7bcb17000000b0039aef592ca0sm3834371wmj.35.2022.06.29.11.44.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 11:44:53 -0700 (PDT)
+        Wed, 29 Jun 2022 11:44:55 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
@@ -75,9 +75,9 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
         alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: [PATCH v3 11/15] riscv: dts: canaan: use custom compatible for k210 i2s
-Date:   Wed, 29 Jun 2022 19:43:40 +0100
-Message-Id: <20220629184343.3438856-12-mail@conchuod.ie>
+Subject: [PATCH v3 12/15] riscv: dts: canaan: remove spi-max-frequency from controllers
+Date:   Wed, 29 Jun 2022 19:43:41 +0100
+Message-Id: <20220629184343.3438856-13-mail@conchuod.ie>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220629184343.3438856-1-mail@conchuod.ie>
 References: <20220629184343.3438856-1-mail@conchuod.ie>
@@ -95,47 +95,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-The devicetrees using the Canaan k210 all have a sound-dai-cells value
-of 1, whereas the standard binding example for the DesignWare i2s and
-other use cases suggest 0. Use a k210 specific compatible which
-supports this difference.
+spi-max-frequency is a device, not a controller  property and should be
+removed.
 
+Link: https://lore.kernel.org/lkml/20220526014141.2872567-1-robh@kernel.org/
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/riscv/boot/dts/canaan/k210.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/riscv/boot/dts/canaan/k210.dtsi | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/canaan/k210.dtsi b/arch/riscv/boot/dts/canaan/k210.dtsi
-index 72f70128d751..900dc629a945 100644
+index 900dc629a945..948dc235e39d 100644
 --- a/arch/riscv/boot/dts/canaan/k210.dtsi
 +++ b/arch/riscv/boot/dts/canaan/k210.dtsi
-@@ -251,7 +251,7 @@ spi2: spi@50240000 {
+@@ -451,7 +451,6 @@ spi0: spi@52000000 {
+ 				clock-names = "ssi_clk", "pclk";
+ 				resets = <&sysrst K210_RST_SPI0>;
+ 				reset-names = "spi";
+-				spi-max-frequency = <25000000>;
+ 				num-cs = <4>;
+ 				reg-io-width = <4>;
  			};
- 
- 			i2s0: i2s@50250000 {
--				compatible = "snps,designware-i2s";
-+				compatible = "canaan,k210-i2s", "snps,designware-i2s";
- 				reg = <0x50250000 0x200>;
- 				interrupts = <5>;
- 				clocks = <&sysclk K210_CLK_I2S0>;
-@@ -260,7 +260,7 @@ i2s0: i2s@50250000 {
+@@ -467,7 +466,6 @@ spi1: spi@53000000 {
+ 				clock-names = "ssi_clk", "pclk";
+ 				resets = <&sysrst K210_RST_SPI1>;
+ 				reset-names = "spi";
+-				spi-max-frequency = <25000000>;
+ 				num-cs = <4>;
+ 				reg-io-width = <4>;
  			};
- 
- 			i2s1: i2s@50260000 {
--				compatible = "snps,designware-i2s";
-+				compatible = "canaan,k210-i2s", "snps,designware-i2s";
- 				reg = <0x50260000 0x200>;
- 				interrupts = <6>;
- 				clocks = <&sysclk K210_CLK_I2S1>;
-@@ -269,7 +269,7 @@ i2s1: i2s@50260000 {
+@@ -483,8 +481,7 @@ spi3: spi@54000000 {
+ 				clock-names = "ssi_clk", "pclk";
+ 				resets = <&sysrst K210_RST_SPI3>;
+ 				reset-names = "spi";
+-				/* Could possibly go up to 200 MHz */
+-				spi-max-frequency = <100000000>;
++
+ 				num-cs = <4>;
+ 				reg-io-width = <4>;
  			};
- 
- 			i2s2: i2s@50270000 {
--				compatible = "snps,designware-i2s";
-+				compatible = "canaan,k210-i2s", "snps,designware-i2s";
- 				reg = <0x50270000 0x200>;
- 				interrupts = <7>;
- 				clocks = <&sysclk K210_CLK_I2S2>;
 -- 
 2.36.1
 
