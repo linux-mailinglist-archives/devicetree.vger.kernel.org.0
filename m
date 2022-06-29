@@ -2,90 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C01F55FA16
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 10:09:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D427955FA2E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 10:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231744AbiF2IDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 04:03:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50742 "EHLO
+        id S231255AbiF2IP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 04:15:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbiF2IDp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 04:03:45 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A6929830
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 01:03:43 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id g26so30890627ejb.5
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 01:03:43 -0700 (PDT)
+        with ESMTP id S229846AbiF2IP2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 04:15:28 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF34D3B55B
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 01:15:27 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id c65so21094445edf.4
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 01:15:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cG3vzXy564NxPyQk6j0mH7QQcpmGhb7eglXugVj6hN8=;
-        b=YPK4Y9MtYTlB+9uxDmydPXAD+nm40vRi5kfqNUZQCbI9XYMlU0HSOwbzR6G6bfbW4r
-         F0Zn6240auG9wDCOE9n576wvCFBDgppCXYG/GGdNxBsOj22QcVc7t6BadRxqNBFanvmZ
-         Hj53k762IYyi8RlPckGPXe0GiV3fZlE/f5hgZxLs3SHfwPyJi4N+lVi1HN+S2PINJ23v
-         kp9yJ05aEzIO7rA8z5nrXEOU7q1BAXOszAd9SqDfvt6GNNB+XktIVwUkJTC5bAKL1kpy
-         ZhhY/RXn66UpmjVKgVL/s3pDCyWB5ZJw9FC7ZT4el0lubErnU7RHGWnvC/2zexKIC71j
-         ZQoA==
+        bh=8tY4XO7tgRZzchD7LlRB/fCh4Gvcc6mOPpWaFNCvH1A=;
+        b=kr3zKYErJvsttiafT0lPeJcMpA+0l2OqkCYg+jmgCxobSD7QLh+Ob6f6sJ2vehWNWs
+         14CPVoH7gnUM7f/EgOBZrkFAKs0zK2NP9q/+8wWvV4r2q6nnhQy0mitzKKhyJIi9+ZBf
+         BwbUJ+01/igmtNYgrxp5yyUFpH7KQAR3FN6fgMNOqGh6sMna9P3iN2X7A4eXTGYAOGJu
+         RF0e+N0/6PY4j9mztiUZOAyxqPG96rDKweCjlYt8lRSmOOmFEEBBZlyuAZp0OsUCMh2J
+         R2+MnRVcDL0bB4cYTMy8usaJX6mOM2GV99NstvpeAK1uiOilzVby41wiee81YD7Yhrwa
+         lE5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=cG3vzXy564NxPyQk6j0mH7QQcpmGhb7eglXugVj6hN8=;
-        b=m0qk2MG6YKPQdbZVp7IlDWANnBWn0ZafHftx4d6cgeNuMnz+5ymh0YhgRXula5VU8F
-         qQ5SUMiv66MVlRXTTLNzOr6p0YV28cm5CaJXKCA+EytpVUBk+kXDSAlWCoIeczACFbAC
-         GRM1y6zkVNM+AMIrBbXKGfBz1RmpozTOCly35xUV2BNWkbB2zEoGuZt+HsuUPcyJBo7U
-         1JIZbbIiIqVfXbNLdD/ant6QSufxcLhOCau9pqWy4rKsEvYEUpHpfceEVyOv5Lnn/jmp
-         ViGiZTwlDuEvdaNZMKBPIh6lvChYZYyCJf+fSO3ojVm1sDEN40kD7h2u9aZLv/J5vdOP
-         P2YA==
-X-Gm-Message-State: AJIora+qtVDfQeUJGsltm9irujZr0jnpJwtVO5uT47GOyLi6aJMLdRLb
-        UgSinHEdbQIryMHgpS/2IQBXRg==
-X-Google-Smtp-Source: AGRyM1vMLNNjC9XXtRvbH3wYlHBLBB1LEnGfbV9c7vENLF2zfPQTUdrjciEn2ZM1kvAcRAd4swllrQ==
-X-Received: by 2002:a17:907:168f:b0:726:2bd0:1091 with SMTP id hc15-20020a170907168f00b007262bd01091mr2003312ejc.137.1656489821764;
-        Wed, 29 Jun 2022 01:03:41 -0700 (PDT)
+        bh=8tY4XO7tgRZzchD7LlRB/fCh4Gvcc6mOPpWaFNCvH1A=;
+        b=Hx5k9iqZu3npl5Iy7hRve/qtiMr1DtrF6DtkVOoF3ROIZvubjxNY1WXWX/7I5P7hkY
+         GUVjEgIoxSq2E9GSzSjE+LSxWUn8hEIv37xzIqJyA8MdtsK148tchEF1//MAAisneIdg
+         YakLVp5PCiEfnV5CLUyOwJi7xZ1ZtF5Ccj994zsNiRCk3ya5HwtoRtr4SzwTLKYZGsLV
+         mejb4tzFBz490fdhD9cJdNop8OdW6sY0LMV0lOBSSsWP56Sq+gBduEV8p9Kx7XdPyp3K
+         0gc99E3PJzrqTDbmdMHSQmEegYqvpsKDCwAOCEiMV/fe76222zqs4d/h3An155qBizJN
+         30VA==
+X-Gm-Message-State: AJIora/9AJujlFEK3Y6ITXde6q5tkqRJUHiJNXp7t/PLO7Fb9jjhEZMW
+        o8ELqENw+coUKdIuRJNWC8TRxA==
+X-Google-Smtp-Source: AGRyM1sFY7NCYQCfMxGe9czVB/WSOqGUlaOPE/PgqmHtHSMn/s2OMIPw2M/OJ5sI/ISRcELIcijPoA==
+X-Received: by 2002:a05:6402:104a:b0:435:c7cd:11dc with SMTP id e10-20020a056402104a00b00435c7cd11dcmr2542628edu.335.1656490526235;
+        Wed, 29 Jun 2022 01:15:26 -0700 (PDT)
 Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g20-20020a50d5d4000000b0042617ba63c2sm10991337edj.76.2022.06.29.01.03.40
+        by smtp.gmail.com with ESMTPSA id ci3-20020a170906c34300b00722ea7a7aeesm7387868ejb.51.2022.06.29.01.15.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 01:03:40 -0700 (PDT)
-Message-ID: <409af908-5e03-8df7-fcd5-7fab75cdfb34@linaro.org>
-Date:   Wed, 29 Jun 2022 10:03:39 +0200
+        Wed, 29 Jun 2022 01:15:24 -0700 (PDT)
+Message-ID: <43a19f7f-016a-0820-adf1-41419fe82d28@linaro.org>
+Date:   Wed, 29 Jun 2022 10:15:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v5 2/5] dt-bindings: clock: Add AST2500/AST2600 HACE reset
- definition
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: Document RZ/V2M I2C controller
 Content-Language: en-US
-To:     Neal Liu <neal_liu@aspeedtech.com>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Dhananjay Phadke <dhphadke@microsoft.com>,
-        Johnny Huang <johnny_huang@aspeedtech.com>
-Cc:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-References: <20220629032008.1579899-1-neal_liu@aspeedtech.com>
- <20220629032008.1579899-3-neal_liu@aspeedtech.com>
- <b70e06e7-81fc-dfc1-f9c5-f83cb4a18293@linaro.org>
- <HK0PR06MB32025ACEE605D1016DD3B99D80BB9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20220628194526.111501-1-phil.edworthy@renesas.com>
+ <20220628194526.111501-2-phil.edworthy@renesas.com>
+ <1656468579.925440.1403681.nullmailer@robh.at.kernel.org>
+ <CAMuHMdVsdh1YpVtq7570_kNOWUm5sMb=Fm=Dv_8qOS=hg3iuKA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <HK0PR06MB32025ACEE605D1016DD3B99D80BB9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+In-Reply-To: <CAMuHMdVsdh1YpVtq7570_kNOWUm5sMb=Fm=Dv_8qOS=hg3iuKA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,60 +84,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 09:59, Neal Liu wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Wednesday, June 29, 2022 1:58 PM
->> To: Neal Liu <neal_liu@aspeedtech.com>; Corentin Labbe
->> <clabbe.montjoie@gmail.com>; Christophe JAILLET
->> <christophe.jaillet@wanadoo.fr>; Randy Dunlap <rdunlap@infradead.org>;
->> Herbert Xu <herbert@gondor.apana.org.au>; David S . Miller
->> <davem@davemloft.net>; Rob Herring <robh+dt@kernel.org>; Krzysztof
->> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Joel Stanley <joel@jms.id.au>;
->> Andrew Jeffery <andrew@aj.id.au>; Dhananjay Phadke
->> <dhphadke@microsoft.com>; Johnny Huang
->> <johnny_huang@aspeedtech.com>
->> Cc: linux-aspeed@lists.ozlabs.org; linux-crypto@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
->> linux-kernel@vger.kernel.org; BMC-SW <BMC-SW@aspeedtech.com>
->> Subject: Re: [PATCH v5 2/5] dt-bindings: clock: Add AST2500/AST2600 HACE
->> reset definition
->>
->> On 29/06/2022 05:20, Neal Liu wrote:
->>> Add HACE reset bit definition for AST2500/AST2600.
->>>
->>> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
->>> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>  include/dt-bindings/clock/aspeed-clock.h  | 3 ++-
->>> include/dt-bindings/clock/ast2600-clock.h | 1 +
->>>  2 files changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/include/dt-bindings/clock/aspeed-clock.h
->>> b/include/dt-bindings/clock/aspeed-clock.h
->>> index 9ff4f6e4558c..6e040f7c3426 100644
->>> --- a/include/dt-bindings/clock/aspeed-clock.h
->>> +++ b/include/dt-bindings/clock/aspeed-clock.h
->>> @@ -46,11 +46,12 @@
->>>  #define ASPEED_RESET_MCTP		1
->>>  #define ASPEED_RESET_ADC		2
->>>  #define ASPEED_RESET_JTAG_MASTER	3
->>> -#define ASPEED_RESET_MIC		4
->>> +#define ASPEED_RESET_HACE		4
->>
->> I did not ack such change. This is a significant change from previous version,
->> invalidating my previous ack.
->>
->> This breaks the ABI, so NAK without proper explanation why ABI break is
->> accepted.
+On 29/06/2022 08:53, Geert Uytterhoeven wrote:
+> Hi Rob,
 > 
-> I changed the original define (MIC) into different value (see below diff), and add a new define for HACE.
-> How does that break the ABI? I'll be appreciated if you can explain it more details.
-> And sorry for not remove ack with new change.
+> On Wed, Jun 29, 2022 at 4:09 AM Rob Herring <robh@kernel.org> wrote:
+>> On Tue, 28 Jun 2022 20:45:25 +0100, Phil Edworthy wrote:
+>>> Document Renesas RZ/V2M (r9a09g011) I2C controller bindings.
+>>>
+>>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+>>> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>> ---
+>>> v2:
+>>>  - Use an enum and set the default for clock-frequency
+>>>  - Add resets property
+>>> ---
+>>>  .../bindings/i2c/renesas,rzv2m.yaml           | 80 +++++++++++++++++++
+>>>  1 file changed, 80 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: patternProperties:^thermistor@:properties:adi,excitation-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
+>>         hint: Standard unit suffix properties don't need a type $ref
+>>         from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProperties: ^thermistor@: properties: adi,excitation-current-nanoamp
+>> Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.example.dtb:0:0: /example-0/spi/ltc2983@0: failed to match any schema with compatible: ['adi,ltc2983']
+> 
+> All of these look like false-positives, i.e. not related to this patch?
 
-Yes, this breaks ABI. Previously the ASPEED_RESET_MIC define had value
-of 4, now it has value of something else.
+Few other patches also got it, I think the bot got some problem.
+
 
 Best regards,
 Krzysztof
