@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2D3255F333
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:10:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92A2A55F33F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:11:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbiF2CJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 22:09:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58720 "EHLO
+        id S231261AbiF2CKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 22:10:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230359AbiF2CJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:09:53 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A1A2E693;
-        Tue, 28 Jun 2022 19:09:50 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id r133so14686897iod.3;
-        Tue, 28 Jun 2022 19:09:50 -0700 (PDT)
+        with ESMTP id S231281AbiF2CKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:10:10 -0400
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7BC22ED46;
+        Tue, 28 Jun 2022 19:10:06 -0700 (PDT)
+Received: by mail-il1-f173.google.com with SMTP id 9so9375639ill.5;
+        Tue, 28 Jun 2022 19:10:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=waCJIZKcY+s87HZbkQDuAXOTS88eENMKzg5sjsc1NzY=;
-        b=K1J9kY/z9z26xkxUg/hMbVlci583PznauOMdrUB1JPIBohx5dMc7phx+Ia3+6mcS3j
-         R7a3XH8iwbIrKr5CO/fIGHYI2WO4yy0CvLT0uwWd7CIjn+Mt7XCts4xeLbG9K38BNPeF
-         EMhxvzJ1voq+OuYTSofviVdmpBE7fl8bGIxnOAKGCFnddSf/f4eeBxPBfR7e2x7WWj6R
-         BuroIu2dnBIjVx5J77cqK0+IBhH7dPIxX5OHqUzGNBewTIzfGGFcjOzEBj7RqQpVwAcj
-         hgL5Jyccd22uuA0wFORTm51JCDZhm+Cqg8IMNv1zsCLnCoHjpXxrFrBjx2OkKBfDmI5O
-         4JYw==
-X-Gm-Message-State: AJIora/PyTXB5rGtBY8T0cJm/HybDecXqqnb1M+fsL5ESzltkRBXX8pN
-        dgAl3ijtHZJHqoyqy/Yx4Q==
-X-Google-Smtp-Source: AGRyM1vdK8gQg0KczW14+8tjZakRIV3kb131xnXsYvJk4n/AJZUPHnqUJmxDkVAJ8/u+E2ECEObOTg==
-X-Received: by 2002:a02:90ce:0:b0:32e:e2ce:b17c with SMTP id c14-20020a0290ce000000b0032ee2ceb17cmr705645jag.268.1656468589332;
-        Tue, 28 Jun 2022 19:09:49 -0700 (PDT)
+        bh=akCaK7/6hiO9qiDqUC6BjphM3QTCscKxuIGksCMRv4Q=;
+        b=qw7QGmRtknT8SHk4/fjSpan3+R2RdbsAn3+a6UmKweoDKdHuU+8KLOy3Ot+hJ8w/iy
+         3zChQgqhWh3o+jWY4kPsmfTQ9+ys2BZBw7KHrVgMJgjeoFJqRVqUiDsaEx4zwaK2Hgek
+         JYyiNhdt/ok56z4G/T7ViDNxpJrvfj9z0HrSKcvXKVGyqIjSmSA6KUmIkyqrplDdwYeQ
+         /tsTRGN7UJBjgBOrGDUozmO1Th0rNFeFwVfVI+9to/jNKAFgk2vuLMge52gVEyiqFrD6
+         I2t/M4/o4Q6+QQvDIJ9kRxMX+3MhrkoRT28Q0AWBhxukXFmD1Cc7NOcWyEj01iS/CZpt
+         sOYQ==
+X-Gm-Message-State: AJIora8Zf+CRohPEPWe9EI7I5V7paPM2LwagUp0XrDX4FNIyu1g/GCAc
+        SlvgApfbOHHYcbIK59A2pg==
+X-Google-Smtp-Source: AGRyM1s+vAu0J3FAxJurSCzpU4DCe5h38yk8r+xC7m9WUBJ56dufRl4BRYIH390A+L4jw+4zToyPjA==
+X-Received: by 2002:a05:6e02:216b:b0:2da:c09b:179f with SMTP id s11-20020a056e02216b00b002dac09b179fmr659560ilv.0.1656468605851;
+        Tue, 28 Jun 2022 19:10:05 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id a12-20020a029f8c000000b0032b3a7817dbsm6538536jam.159.2022.06.28.19.09.47
+        by smtp.gmail.com with ESMTPSA id w18-20020a92c892000000b002d909e3d89esm6515075ilo.60.2022.06.28.19.10.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 19:09:49 -0700 (PDT)
-Received: (nullmailer pid 1403676 invoked by uid 1000);
+        Tue, 28 Jun 2022 19:10:05 -0700 (PDT)
+Received: (nullmailer pid 1403684 invoked by uid 1000);
         Wed, 29 Jun 2022 02:09:39 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Jens Axboe <axboe@kernel.dk>, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk@vger.kernel.org
-In-Reply-To: <20220628184137.21678-3-ansuelsmth@gmail.com>
-References: <20220628184137.21678-1-ansuelsmth@gmail.com> <20220628184137.21678-3-ansuelsmth@gmail.com>
-Subject: Re: [PATCH v3 2/4] dt-bindings: arm: msm: Convert kpss-acc driver Documentation to yaml
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20220628221404.1444200-2-sean.anderson@seco.com>
+References: <20220628221404.1444200-1-sean.anderson@seco.com> <20220628221404.1444200-2-sean.anderson@seco.com>
+Subject: Re: [PATCH net-next v2 01/35] dt-bindings: phy: Add QorIQ SerDes binding
 Date:   Tue, 28 Jun 2022 20:09:39 -0600
-Message-Id: <1656468579.900344.1403675.nullmailer@robh.at.kernel.org>
+Message-Id: <1656468579.935954.1403683.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,24 +67,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022 20:41:35 +0200, Christian Marangi wrote:
-> Convert kpss-acc driver Documentation to yaml.
-> The original Documentation was wrong all along. Fix it while we are
-> converting it.
-> The example was wrong as kpss-acc-v2 should only expose the regs but we
-> don't have any driver that expose additional clocks. The kpss-acc driver
-> is only specific to v1. For this exact reason, limit all the additional
-> bindings (clocks, clock-names, clock-output-names and #clock-cells) to
-> v1 and also flag that these bindings should NOT be used for v2.
+On Tue, 28 Jun 2022 18:13:30 -0400, Sean Anderson wrote:
+> This adds a binding for the SerDes module found on QorIQ processors. The
+> phy reference has two cells, one for the first lane and one for the
+> last. This should allow for good support of multi-lane protocols when
+> (if) they are added. There is no protocol option, because the driver is
+> designed to be able to completely reconfigure lanes at runtime.
+> Generally, the phy consumer can select the appropriate protocol using
+> set_mode. For the most part there is only one protocol controller
+> (consumer) per lane/protocol combination. The exception to this is the
+> B4860 processor, which has some lanes which can be connected to
+> multiple MACs. For that processor, I anticipate the easiest way to
+> resolve this will be to add an additional cell with a "protocol
+> controller instance" property.
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Each serdes has a unique set of supported protocols (and lanes). The
+> support matrix is stored in the driver and is selected based on the
+> compatible string. It is anticipated that a new compatible string will
+> need to be added for each serdes on each SoC that drivers support is
+> added for. There is no "generic" compatible string for this reason.
+> 
+> There are two PLLs, each of which can be used as the master clock for
+> each lane. Each PLL has its own reference. For the moment they are
+> required, because it simplifies the driver implementation. Absent
+> reference clocks can be modeled by a fixed-clock with a rate of 0.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
->  .../bindings/arm/msm/qcom,kpss-acc.txt        | 49 ----------
->  .../bindings/arm/msm/qcom,kpss-acc.yaml       | 94 +++++++++++++++++++
->  2 files changed, 94 insertions(+), 49 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.yaml
+> 
+> Changes in v2:
+> - Add #clock-cells. This will allow using assigned-clocks* to configure
+>   the PLLs.
+> - Allow a value of 1 for phy-cells. This allows for compatibility with
+>   the similar (but according to Ioana Ciornei different enough) lynx-28g
+>   binding.
+> - Document phy cells in the description
+> - Document the structure of the compatible strings
+> - Fix example binding having too many cells in regs
+> - Move compatible first
+> - Refer to the device in the documentation, rather than the binding
+> - Remove minItems
+> - Rename to fsl,lynx-10g.yaml
+> - Use list for clock-names
+> 
+>  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 93 +++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -92,23 +121,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.yaml: allOf:0: 'then' is a dependency of 'if'
-	hint: Keywords must be a subset of known json-schema keywords
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.yaml: allOf:0: 'then' is a dependency of 'else'
-	hint: Keywords must be a subset of known json-schema keywords
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.yaml: allOf:0:if: 'if' is a dependency of 'then'
-	hint: Keywords must be a subset of known json-schema keywords
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
 /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: patternProperties:^thermistor@:properties:adi,excitation-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
 	hint: Standard unit suffix properties don't need a type $ref
 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.yaml: ignoring, error in schema: allOf: 0
 /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProperties: ^thermistor@: properties: adi,excitation-current-nanoamp
 Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.example.dtb:0:0: /example-0/spi/ltc2983@0: failed to match any schema with compatible: ['adi,ltc2983']
-Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.example.dtb:0:0: /example-0/clock-controller@2088000: failed to match any schema with compatible: ['qcom,kpss-acc-v1']
-Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.example.dtb:0:0: /example-1/clock-controller@f9088000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
 
 doc reference errors (make refcheckdocs):
 
