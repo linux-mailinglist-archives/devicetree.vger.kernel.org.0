@@ -2,79 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F96155FEAE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:32:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF4155FEBC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:37:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232389AbiF2LcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 07:32:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37430 "EHLO
+        id S232640AbiF2LhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 07:37:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232702AbiF2LcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:32:10 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E02A13ED3A
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:32:05 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id ge10so31960652ejb.7
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:32:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=z7YdxvHVrANcl7/MwaXyOEvtHd06mWAjfHecZi9wxDA=;
-        b=wGH6hq8FO42nMsH7uuRTjyg1xyAs0bk732kzq6bPIZKP0VVWLVmchGvj9wufryAbMo
-         7EbCmPP9FkNAA5gjUP1pNiMUBQpHEvmLP0S30OiA++FnBwbAlKpc9MLUms6jkTLdjSCy
-         dBeCogdBD6h+ETxna6DBOJw17214BgCxfr7+Ctyda3FWsG1Dnu1KWxS8VxeURS92tSmC
-         K7qMbqF0eGzhSNME+tftxIeWCND/9y0h9zRR9DE6NLa6i+0639DI4Zg57KZ40NkKK0gA
-         DgaReJvdAUvZrO5GjBW7M4kCsaxdbP9kOQ1F7VobumPa3sa3E68YFkr95E6aWjEQepk+
-         tZxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=z7YdxvHVrANcl7/MwaXyOEvtHd06mWAjfHecZi9wxDA=;
-        b=amZIHYTpEas52+1cMB+dTi8IrYNgZahGRkk5w5FKLt7vQtgGNnZ5TkiipEX9rT/Nee
-         sI9djoitqZwpBbwOcJ0IR78J6iKNnx8tN8UdL0xOg3co1DqMrABU7mx4YuL2MOA2GHtS
-         gH2QlRWpanQCw//kXyrtISXDUVXv9MC7s5OIEbAN9qAkWpLiH/3l3PkBdNB9XJ459nRB
-         384KEr4xbZy1TCmm6P96JX6K1nx/Aey61C3fa5/0SaYZG5I78A4Hb6Ik8XMgVLBhHttI
-         cavcFtUgLHMkhaODvbugvgLhR7PReH9AGVoXm9y9zcwuCmkw8RfpSi8bo2UHe0hr+6m4
-         hhsA==
-X-Gm-Message-State: AJIora910aY2mQww8w3H71KwX9KeHnn6EkLsoFCP+GxpKnYtyLfjDOCg
-        LEFUwXVZT+wX4e260IsB1nMbNA==
-X-Google-Smtp-Source: AGRyM1vCAkX9bFVsQfuTLGX2ok/ViPnL2u3W6VZSGnPeXBWryLaSYEnMX7e/7rGW7Grc+BVzqHHXaw==
-X-Received: by 2002:a17:906:1ca:b0:715:73f3:b50f with SMTP id 10-20020a17090601ca00b0071573f3b50fmr2799072ejj.374.1656502324385;
-        Wed, 29 Jun 2022 04:32:04 -0700 (PDT)
-Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id fx24-20020a170906b75800b006fec63e564bsm7616985ejb.30.2022.06.29.04.32.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 04:32:03 -0700 (PDT)
-Message-ID: <479a021a-36eb-7b44-9e14-51e16d1b64fb@linaro.org>
-Date:   Wed, 29 Jun 2022 13:32:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: sdm845: Add CPU BWMON
-Content-Language: en-US
-To:     Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        with ESMTP id S232638AbiF2LhD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:37:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 251E4FD34;
+        Wed, 29 Jun 2022 04:37:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A76A5619AF;
+        Wed, 29 Jun 2022 11:37:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE976C34114;
+        Wed, 29 Jun 2022 11:36:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656502622;
+        bh=dSIdq7JC6ZEBfIR3l2QmQJOHZZDgsMua0zlvIzt80VI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IV64jujEl1lfHCsDBW591Z3BuiCMrIU1O+WBuUGXrYJCNxyJjoJttqABwpFMZ3Y81
+         hFgcFrRiBEfZ79QE0+MzKYtiLyU0qTgQq5hm8iOxqNhI0IOxEnpjZV37yn/2P0qkME
+         uwtMyolDR98EaqjZsUdOPDFMuxIgi+yYB9RCZy6SJ69jtsyHqDoLzDkmcxfqyCkMod
+         ZonjXv/6q4AiNDqGREDG36d4clUnuH1uY0tbpFNnBJrFC66UeZVdoEj/X2L3fUVQvi
+         QKQx/AyuetBLk+hSJnkXVLgBvo3+6z370tYOGoY6Mdr/h5byfIStAK6WjrqdadfPlZ
+         4pl75ifwn9iwQ==
+Date:   Wed, 29 Jun 2022 12:36:56 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Chanho Park <chanho61.park@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andi Shyti <andi@etezian.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Thara Gopinath <thara.gopinath@gmail.com>
-References: <20220629075250.17610-1-krzysztof.kozlowski@linaro.org>
- <20220629075250.17610-5-krzysztof.kozlowski@linaro.org>
- <87b83a0c-0ea2-6839-1d90-8f1145ed9ed2@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <87b83a0c-0ea2-6839-1d90-8f1145ed9ed2@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/4] spi: s3c64xx: support custom value of internal
+ clock divider
+Message-ID: <Yrw5WKWq6sMEKBmn@sirena.org.uk>
+References: <20220629102304.65712-1-chanho61.park@samsung.com>
+ <CGME20220629102527epcas2p42e99f44d529d215623bd0e12a082d1dd@epcas2p4.samsung.com>
+ <20220629102304.65712-3-chanho61.park@samsung.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="HAtCNg6OqyvUsmZi"
+Content-Disposition: inline
+In-Reply-To: <20220629102304.65712-3-chanho61.park@samsung.com>
+X-Cookie: Booths for two or more.
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,55 +64,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 13:22, Rajendra Nayak wrote:
-> 
-> 
-> On 6/29/2022 1:22 PM, Krzysztof Kozlowski wrote:
->> Add device node for CPU-memory BWMON device (bandwidth monitoring) on
->> SDM845 measuring bandwidth between CPU (gladiator_noc) and Last Level
->> Cache (memnoc).  Usage of this BWMON allows to remove fixed bandwidth
->> votes from cpufreq (CPU nodes) thus achieve high memory throughput even
->> with lower CPU frequencies.
->>
->> Co-developed-by: Thara Gopinath <thara.gopinath@gmail.com>
->> Signed-off-by: Thara Gopinath <thara.gopinath@gmail.com>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 38 ++++++++++++++++++++++++++++
->>   1 file changed, 38 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> index 83e8b63f0910..e0f088996390 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> @@ -2026,6 +2026,44 @@ llcc: system-cache-controller@1100000 {
->>   			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
->>   		};
->>   
->> +		pmu@1436400 {
->> +			compatible = "qcom,sdm845-cpu-bwmon", "qcom,msm8998-cpu-bwmon";
->> +			reg = <0 0x01436400 0 0x600>;
->> +			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
->> +			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_LLCC 3>;
->> +
->> +			operating-points-v2 = <&cpu_bwmon_opp_table>;
->> +
->> +			cpu_bwmon_opp_table: opp-table {
->> +				compatible = "operating-points-v2";
->> +
->> +				/*
->> +				 * The interconnect paths bandwidths taken from
->> +				 * cpu4_opp_table bandwidth.
->> +				 * They also match different tables from
->> +				 * msm-4.9 downstream kernel:
->> +				 *  - the OSM L3 from bandwidth table of
->> +				 *    qcom,cpu4-l3lat-mon (qcom,core-dev-table);
->> +				 *    bus width: 16 bytes;
->> +				 */
-> 
-> Maybe the comment needs an update?
 
-Yes, a bit.
+--HAtCNg6OqyvUsmZi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best regards,
-Krzysztof
+On Wed, Jun 29, 2022 at 07:23:02PM +0900, Chanho Park wrote:
+> Modern exynos SoCs such as Exynos Auto v9 have different internal clock
+> divider, for example "4". To support this internal value, this adds
+> clk_div of the s3c64xx_spi_port_config and assign "2" as the default
+> value to existing s3c64xx_spi_port_config.
+
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--HAtCNg6OqyvUsmZi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmK8OVcACgkQJNaLcl1U
+h9AXKQgAg14h9aGv1DqGvTWdAbzqKiPCrC+YB/liN+o0njPpCkRImRxdJePYOZMC
+rneJPQfxB4/o+cchNoMZ1c9j18GOeg2eunlGA2PZ8T8ZLq7j8b0F0b4smTquLJiY
+QmSR1kO/Ml+3dlG9Ct/iW2MMoWIEBVpl8jN/oHhr6PcHMAJ6xCTEIgap78HwV7XP
+0IL+i0NfvKI7KzB6aXgQj+06JPfdoo29e8sn+skc2M2lQGJcnCHnPSMUjZKkOkB2
+KNDO3Ur3bAh+CVdfpzgrcOaH5l7Y3tlGdfnrrlypYU5hcN4LGeich8y3m3ROYUfD
+hefzVZwI+AGqT5gaimihDj27rxsyqQ==
+=+CO7
+-----END PGP SIGNATURE-----
+
+--HAtCNg6OqyvUsmZi--
