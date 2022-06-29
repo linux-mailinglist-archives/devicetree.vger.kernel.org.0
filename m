@@ -2,113 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D7B7560733
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 19:18:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88067560763
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 19:33:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231161AbiF2RSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 13:18:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60934 "EHLO
+        id S229567AbiF2RdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 13:33:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbiF2RSf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 13:18:35 -0400
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 780831A81A;
-        Wed, 29 Jun 2022 10:18:34 -0700 (PDT)
-Received: by mail-qv1-f53.google.com with SMTP id i17so25724680qvo.13;
-        Wed, 29 Jun 2022 10:18:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wXWhdEBTbV2up4EX48hH9r3b+lA3Y6CLLpslrOxD3K0=;
-        b=N2cqZYRJFjkmwRvQ0cQ/VNu2IotSnz9jByD9KcYko7LlpewY62XwgRd8wfB9LunCNl
-         pRZtTMAf7MP8Z+7vVZS2LOo3tcCn3BYAPaNIx46E5JP7ZiHnYlncRxyFRwKuSIWXRGp6
-         w7bTNjNVn9Hk5dTq+3IzjQJxSbbHMklH71Gml7XDKTivCr0l9wFoRHhMmdxyxUlMSB/p
-         p2ATqBWVZd6yAaDGs3NjFGaD0kqL9imluMQQpBfQeGG2slQjDT5ahV/+3mqzSV2gtG/l
-         lzcjhKGSC8s1wzbQjMNSWLsQtkiNwrZK+iBhGhjZu1xxJ08vA8gOsFxx2TdrrJvEnXbv
-         mbqA==
-X-Gm-Message-State: AJIora9H+C0VNLF1Y9sMlNyiTR5XzXhycmNCWCjdY8CqZ2U7cTFJpdmd
-        mS70Pvz2QjGdoVXXnF+AQeBoV41t9CsEIw==
-X-Google-Smtp-Source: AGRyM1sarY6A/Bs9v3pw+inXLsGQAJqOW2U+DrbYzSuNSv2rbd1DQ6m8rnp4YHMrOtMiy7i9+ubYHQ==
-X-Received: by 2002:a0c:b258:0:b0:470:5709:4007 with SMTP id k24-20020a0cb258000000b0047057094007mr8576008qve.83.1656523113040;
-        Wed, 29 Jun 2022 10:18:33 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id d8-20020ac85ac8000000b00304e70585f9sm11967887qtd.72.2022.06.29.10.18.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 10:18:32 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id p7so27716969ybm.7;
-        Wed, 29 Jun 2022 10:18:31 -0700 (PDT)
-X-Received: by 2002:a05:6902:120e:b0:634:6f29:6b84 with SMTP id
- s14-20020a056902120e00b006346f296b84mr4496162ybu.604.1656523111456; Wed, 29
- Jun 2022 10:18:31 -0700 (PDT)
+        with ESMTP id S229894AbiF2RdE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 13:33:04 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E1D93C73B;
+        Wed, 29 Jun 2022 10:33:01 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 293FC3D7;
+        Wed, 29 Jun 2022 19:32:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1656523979;
+        bh=Bz+fn/nhW/HeNRPw/laOwYHfB9cQJCj7oVKsDW89m34=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VERPl+T+Zv2xZi1ia04OnQXFfPB7Y0t/Z05jadMvstQPmFPB78HjazkKDztBN7bLT
+         h5t5rVOIBjsgc09ajwsyg7atynSewIQlpW3SNMt/SDyLKru4dK0a0uG4b2Hi9lkp09
+         z8B3wBAWCv0lFE9+b7LU1mi/DCgXGHrdTtkYKu2U=
+Date:   Wed, 29 Jun 2022 20:32:39 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, djakov@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        abel.vesa@nxp.com, abailon@baylibre.com, marex@denx.de,
+        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
+        aford173@gmail.com, kernel@pengutronix.de,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, abelvesa@kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2 7/9] interconnect: imx: set of_node for interconnect
+ provider
+Message-ID: <YryMt4CfQNkIHwiV@pendragon.ideasonboard.com>
+References: <20220616073320.2203000-1-peng.fan@oss.nxp.com>
+ <20220616073320.2203000-8-peng.fan@oss.nxp.com>
+ <3c773637f626877832041d3065f387261ba70816.camel@pengutronix.de>
 MIME-Version: 1.0
-References: <20220628194526.111501-1-phil.edworthy@renesas.com> <c168df990e1187bf44a5c46be53aa6b20d30d14d.camel@pengutronix.de>
-In-Reply-To: <c168df990e1187bf44a5c46be53aa6b20d30d14d.camel@pengutronix.de>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 29 Jun 2022 19:18:18 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXV72_BWOpU=O13Fa3-t001YSRdsFePSHBS=Xvh1jY1EQ@mail.gmail.com>
-Message-ID: <CAMuHMdXV72_BWOpU=O13Fa3-t001YSRdsFePSHBS=Xvh1jY1EQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] i2c: Add new driver for Renesas RZ/V2M controller
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Sven Peter <sven@svenpeter.dev>, Jan Dabros <jsd@semihalf.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Tyrone Ting <kfting@nuvoton.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3c773637f626877832041d3065f387261ba70816.camel@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philipp,
+On Wed, Jun 29, 2022 at 05:08:58PM +0200, Lucas Stach wrote:
+> Am Donnerstag, dem 16.06.2022 um 15:33 +0800 schrieb Peng Fan (OSS):
+> > From: Peng Fan <peng.fan@nxp.com>
+> > 
+> > The provider device is created using platform_device_register_data in
+> > imx-bus driver, which not has of_node. With of_node set, it will be
+> > easy to support QoS settings.
+> > 
+> That's a bit dangerous, as sharing a of_node between two devices can
+> lead to some reference counting issues IIRC, but then I also don't see
+> a good way to do this any differently.
+> 
+> Regards,
+> Lucas
+> 
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  drivers/interconnect/imx/imx.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/interconnect/imx/imx.c b/drivers/interconnect/imx/imx.c
+> > index 1f16eedea21c..78557fe6da2c 100644
+> > --- a/drivers/interconnect/imx/imx.c
+> > +++ b/drivers/interconnect/imx/imx.c
+> > @@ -264,6 +264,7 @@ int imx_icc_register(struct platform_device *pdev,
+> >  	provider->xlate = of_icc_xlate_onecell;
+> >  	provider->data = data;
+> >  	provider->dev = dev->parent;
+> > +	provider->dev->of_node = dev->parent->of_node;
 
-On Wed, Jun 29, 2022 at 6:21 PM Philipp Zabel <p.zabel@pengutronix.de> wrote:
-> On Di, 2022-06-28 at 20:45 +0100, Phil Edworthy wrote:
-> > The Renesas RZ/V2M SoC (r9a09g011) has a new i2c controller. This series
-> > add the driver. One annoying problem is that the SoC uses a single reset
-> > line for two i2c controllers, and unfortunately one of the controllers
-> > is managed by some firmware, not by Linux. Therefore, the driver just
-> > deasserts the reset.
->
-> This sounds scary. If the driver is never loaded, and the reset is
-> never deasserted, what happens to the firmware trying to access the
-> other i2c controller? Does it hang? Or write to the reset controller
-> registers to deassert the reset? If so, is there any protection against
-> concurrent access from firmware and reset controller driver?
+Due to the previous line, provider->dev is equal to dev->parent, so
+doesn't this essentially do
 
+	dev->parent->of_node = dev->parent->of_node;
 
-In response to v1, I wrote
+which is a no-op ?
 
-| That is actually an integration issue, not an i2c controller issue.
-|
-| Perhaps we need a RESET_IS_CRITICAL flag, cfr. CLK_IS_CRITICAL,
-| to be set by the reset provider?
+> >  	platform_set_drvdata(pdev, imx_provider);
+> >  
+> >  	ret = icc_provider_add(provider);
 
-Gr{oetje,eeting}s,
+-- 
+Regards,
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Laurent Pinchart
