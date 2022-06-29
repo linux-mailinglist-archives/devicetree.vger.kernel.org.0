@@ -2,70 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89E7A55FA4B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 10:23:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 278D955FA78
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 10:28:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbiF2IXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 04:23:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36466 "EHLO
+        id S232641AbiF2IZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 04:25:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230447AbiF2IXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 04:23:01 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2353BF8A
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 01:22:59 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id ay16so31006204ejb.6
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 01:22:59 -0700 (PDT)
+        with ESMTP id S232601AbiF2IZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 04:25:31 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A8103BFB9
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 01:25:29 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id g26so30998739ejb.5
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 01:25:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9FxvTXAyDoEN34ru1FkPgexZCj2uCfwrJpo+6ZTo0A4=;
-        b=n/Rw+Jcn+siC9rHD66Q/a/Epxq2eyLv1bnipKrH7St50QwolhBFNC5OvHqYgS08cVM
-         44jVB/YmKBprD90NMtCEUcI3r7rxWA9edsn7cMFspPviKzEcXMYUNfdi/qNUdOZGfguQ
-         SCw2ywbQ3RxV5BZVkOaUsWzz6KXF3o9zPurPpszTUZR65B0AnCAK5rWjjK+ODozaWxbc
-         Ccoxi37IMKLiSWWRIxPQIaYjRRQVuJ2of6MlcCfOkSVFATNWz2OrvQQsaeQwu+3PzSDZ
-         quLvYvP9vUPR521I25iXJY6gD6pdt1xUrltn/VOgfcLsxLK0EdY5omSh6/33SezquzAA
-         cWhg==
+        bh=i9rPYCNsKDfbWoYjqUgzaKgkcSgzPZ+JXR+K4Y0bDbs=;
+        b=Zo88AD7bUVgCpN76GlEuoeeL2hj38HRRCNQM+SXS0A5LNZvRQ+zdzvNDvYbpu2upDk
+         zy3Z47h8xeq4TEYwQC5AyrDzqmIVlFXkzWSF3Gda7eezX0qSxxznB2Bvbjc+L/DGcltd
+         PSOhl7dXScnPHp7dWkFoH0rw3ADXwO1mH9qdUvrmhYsZg4NnDKEgbC5+ypnUntse2Ad1
+         2LwmtrKdfYmtLEDbsebIb43WkqUFSq/Rf3ds8WK2Bja4rzXfs0qIVnBYE5njkdXg3zVa
+         jhYrUZZLxUioIbxiP/DL4AqkP15hCh5g93LUq7I3OhkZFaLCckUTMzUq2Dl6coKtzeEb
+         yf7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=9FxvTXAyDoEN34ru1FkPgexZCj2uCfwrJpo+6ZTo0A4=;
-        b=l1tKWK7u2n1XpjZsYR//vlHaziKsqAftfBvC9KKhlkIgkS5QhQRXubCFazF0CxabLj
-         Fgo6NVoocerg7W1ffmOLmPQLQUP59yl5xl85no9MPWJGSxLBBi8CfSuur4S9r61Jbt0F
-         y/HVzF5UCwNImThKqKiCuprWoWf1/S0b3D+H2439q0McmGEHlnn2W/r/WphbkbMTNj5F
-         giYilQ2lpybbrgCTlzFQU4MiLUwdXWFhz6AUDZZNEk/J5px+tNPY5GG2DaFg3/nvMhV8
-         HkBN6zEMR0Q03c3n7FXdwduzxtxfq/j1IFdCcMl1CYXGqwiHBdbagpnsA1DsK4711cBL
-         q0Zw==
-X-Gm-Message-State: AJIora+o1V6BBqI8/B95EDsThCYL6cPIrhTf42mIp9Ep/fuyvHFfyFh6
-        GCbcALF5E6LiqLjdkb+2OW7VGA==
-X-Google-Smtp-Source: AGRyM1vBRN/0zJCCRrvFtMg3YT78GpkmpcLfz7O2iiWHYpoCUJQvH3PfgvAAcwtKOUT0zyul+rUioQ==
-X-Received: by 2002:a17:906:9c82:b0:6df:c5f0:d456 with SMTP id fj2-20020a1709069c8200b006dfc5f0d456mr2089497ejc.287.1656490978259;
-        Wed, 29 Jun 2022 01:22:58 -0700 (PDT)
+        bh=i9rPYCNsKDfbWoYjqUgzaKgkcSgzPZ+JXR+K4Y0bDbs=;
+        b=7f97Ks7wxwtcVZbwV8sCL849xatY3UgvpOa0Jm+1l8Wgso2KCjgYS1oQOsiePYJY1O
+         hOgi/7gx4BQoJbmEm69XgeBv8XtHGnT518xLnW/eYlkf27Aruw8WgQw2e0mrJY4mOMXt
+         fwOEG2DcTCLpNhqBSy3ZiaFvN7d+IQRZARYYJsI8wHQm1/zDt9OtAG0tq+GozqSmOija
+         H3qWM0Nmw7Lh3aoJlt7tlSfT1yXBCGMW5JURUtbOSo1JnKTr4wXKcxpxNx5w+29YyxW3
+         ftUNjprMt0rwXEtI8+hYORPRXjQZFAuiMfX5hfm+Ap8gWv7/88Up2hRoGiygxiNe5h9L
+         Y2dw==
+X-Gm-Message-State: AJIora+V4lCokUohvLY5UH6Vc5+ilpyRtC+SUgQgb/KgU9NuBo8NMAeB
+        iTA1yqxaJHF4RKRAwdpJrkAtTQ==
+X-Google-Smtp-Source: AGRyM1sMVevj1qymQUk8wAipSgCB8oumS6WTh3j4eu48ndExxP2/mLSsQNe604hrk4l5BlZw35pEbA==
+X-Received: by 2002:a17:906:6a20:b0:726:7675:e15a with SMTP id qw32-20020a1709066a2000b007267675e15amr2024534ejc.668.1656491128068;
+        Wed, 29 Jun 2022 01:25:28 -0700 (PDT)
 Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ia10-20020a170907a06a00b0070b7875aa6asm7286383ejc.166.2022.06.29.01.22.57
+        by smtp.gmail.com with ESMTPSA id q2-20020a170906a08200b006fed93bf71fsm7519203ejy.18.2022.06.29.01.25.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 01:22:57 -0700 (PDT)
-Message-ID: <caba6daf-768b-d10a-7b1b-667f793a9f5c@linaro.org>
-Date:   Wed, 29 Jun 2022 10:22:56 +0200
+        Wed, 29 Jun 2022 01:25:27 -0700 (PDT)
+Message-ID: <bc6f42d9-f821-ad0c-85c8-b4a4d2146485@linaro.org>
+Date:   Wed, 29 Jun 2022 10:25:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: Document RZ/V2M I2C controller
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add rtq6056 adc support
 Content-Language: en-US
-To:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org
-References: <20220628194526.111501-1-phil.edworthy@renesas.com>
- <20220628194526.111501-2-phil.edworthy@renesas.com>
+To:     cy_huang <u0084500@gmail.com>, jic23@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1656469212-12717-1-git-send-email-u0084500@gmail.com>
+ <1656469212-12717-2-git-send-email-u0084500@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220628194526.111501-2-phil.edworthy@renesas.com>
+In-Reply-To: <1656469212-12717-2-git-send-email-u0084500@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,98 +75,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2022 21:45, Phil Edworthy wrote:
-> Document Renesas RZ/V2M (r9a09g011) I2C controller bindings.
+On 29/06/2022 04:20, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2:
->  - Use an enum and set the default for clock-frequency
->  - Add resets property
-> ---
->  .../bindings/i2c/renesas,rzv2m.yaml           | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+> Add the documentation for Richtek rtq6056.
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+> Since v2
+> - Change the resistor property name to be generic 'shunt-resistor-micro-ohms'.
+> 
+> ---
+>  .../bindings/iio/adc/richtek,rtq6056.yaml          | 56 ++++++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
 > new file mode 100644
-> index 000000000000..7f6d2bb4ecb3
+> index 00000000..fe45d8b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/i2c/renesas,rzv2m.yaml#
+> +$id: http://devicetree.org/schemas/iio/adc/richtek,rtq6056.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Renesas RZ/V2M I2C Bus Interface
+> +title: RTQ6056 Bi-Directional Current and Power Monitor with 16-bit ADC
 > +
 > +maintainers:
-> +  - Phil Edworthy <phil.edworthy@renesas.com>
+> +  - ChiYuan Huang <cy_huang@richtek.com>
 > +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +description: |
+> +  The RTQ6056 is a high accuracy current-sense monitor with I2C and SMBus
+> +  interface, and the device provides full information for system by reading
+> +  out the loading current and power.
+> +
+> +  The device monitors both of the drops across sense resistor and the BUS
+> +  voltage, converts into the current in amperes, and power in watts through
+> +  internal analog-to-digital converter ADC. The programmable calibration,
+> +  adjustable conversion time, and averaging function are also built in for
+> +  more design flexibility.
+> +
+> +  Datasheet is available at
+> +  https://www.richtek.com/assets/product_file/RTQ6056/DSQ6056-00.pdf
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,i2c-r9a09g011  # RZ/V2M
-> +      - const: renesas,rzv2m-i2c
+> +    const: richtek,rtq6056
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupts:
-> +    items:
-> +      - description: Data transmission/reception interrupt
-> +      - description: Status interrupt
+> +  "#io-channel-cells":
+> +    const: 1
 > +
-> +  interrupt-names:
-> +    items:
-> +      - const: tia
-> +      - const: tis
-> +
-> +  clock-frequency:
-> +    default: 100000
-> +    enum: [ 100000, 400000 ]
-> +    description:
-> +      Desired I2C bus clock frequency in Hz.
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
+> +  shunt-resistor-micro-ohms:
+> +    description: Shunt IN+/IN- sensing node resistor
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - power-domains
-> +  - resets
-> +  - '#address-cells'
-> +  - '#size-cells'
+> +  - "#io-channel-cells"
 > +
-> +unevaluatedProperties: false
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/r9a09g011-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    i2c0: i2c@a4030000 {
-> +            compatible = "renesas,i2c-r9a09g011", "renesas,rzv2m-i2c";
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      rtq6056@40 {
 
-I missed that part in last version - you have some weird indentation
-here. Use 4 spaces for DTS example.
+This was not fixed.
+
 
 Best regards,
 Krzysztof
