@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A0EE55FDB2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 12:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40B5755FDC4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 12:50:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230427AbiF2Kq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 06:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53544 "EHLO
+        id S231887AbiF2KtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 06:49:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbiF2Kq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 06:46:29 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA8D3E0F6
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 03:46:27 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id fw3so4074369ejc.10
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 03:46:27 -0700 (PDT)
+        with ESMTP id S229772AbiF2KtW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 06:49:22 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2441E3FC
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 03:49:21 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id lw20so31780587ejb.4
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 03:49:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cMdpnW5I3sDfoMvD9YsVURL6JcznIQt8/xjMwDyc9j0=;
-        b=lfFr6WdZD53FjuE59FWp279jcSFgvI/GN0+R8iikc7l0/5lVFlG3OkvqB7i0lA1Wvk
-         3Jk+ma+haSSfeXNjbjTstxhgd5kv1uJwjK2fZM+EXXfRImTA8DJkunOZnEqPeYwkLX8u
-         KcbSSZjfpFZQgRQ/++fni2InvatqowwUX6fzPu5wzkC/yDIM1PdKsEdyi75K9xRuuY8D
-         Ix6suQS/WWYNScEL16LctEYA7VNkKLa1tRXoDCLhRp4FnA7n+8oE/GvBxsITwfEODmS8
-         S7JmuAebqgX+xFvIGcpr1kIe7q9D2BWfEX6g3iQg+LxiydvstfZYDK8i2aY6cAJmIPUh
-         /SDA==
+        bh=baA9UVReBlJ4gVnrDyz4dAqxk2LXffGXuw2131Io+Xs=;
+        b=Xbs715B9STAbNQ0EwSFISsyIdQQ4LuTgVzpCuaPuzRZ4m129IjIXf3DRAPdaKEjYsm
+         JIDFhlVnAbe1RyL7xEGFf2fItbxHRPeukYBYU4T+tuhdZLbATg7v8I2CUi+0O/Am7saX
+         XhNmxqPoqylhbQXtRiAuTcwCT1Ko3vKEDfZEDmSYJxOozzEZXjKJnk89SV2ybwzFvPgq
+         lJknVRn4ZcMadGp5TOdSX8xfdhP1eLe6psqov8T/avJbEqdHGsNsEMkI1C4Qj2yF6quf
+         dqeyvpks+jdVhLSMPh7rL3I8KGA5fTDRhqCnCvfLKpt/synchRPUtJFNRQBF8WJLrxaW
+         k3NA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=cMdpnW5I3sDfoMvD9YsVURL6JcznIQt8/xjMwDyc9j0=;
-        b=WvIXFT04ASthq6NpvrRcdGKIlV+AmfuvuAPv+AwQqF1t8cjGu0tCz0mjg86s9xufRQ
-         I2IebirO1+JEghKkl4cSkYKSlbTVgVnvvKoq/AZgI0DMEKZiEPbOFyfEsM/7JOBTA6j5
-         QfuYZE2ZbMsR8TivMQU2qx+8FPAKt5jn/Wuglqt8LUWd1/eN11Y1KHOBMKiMRq6F9qU9
-         X/kNZRpcb0OETpOrFV3ZuVZJB72Fk+nnHlaLvSah2KR5Dd+VTOjpkP0IdxaGYHa/lfkY
-         S4e70skXqOBC78L1JFEvg6Xti8/RxivVYdtJPWJCx37FRgwNQn0AROoJc1jIqJpikHac
-         JkBg==
-X-Gm-Message-State: AJIora/TJMziS+GbOZkrTWcmFHGPjPvrme9oKvxub6rhAoJomFwq2kE8
-        krxa1nfROyXVaPNfDQ6jtfkgBQ==
-X-Google-Smtp-Source: AGRyM1vLC5RPlTyC27/aUFLIdJiU2aF7FeDA/rmWREwug6CILbkLX1jWla5EjOsjyQfNPfqA5WxyGQ==
-X-Received: by 2002:a17:906:b150:b0:711:c6a5:c5c1 with SMTP id bt16-20020a170906b15000b00711c6a5c5c1mr2661941ejb.177.1656499586211;
-        Wed, 29 Jun 2022 03:46:26 -0700 (PDT)
+        bh=baA9UVReBlJ4gVnrDyz4dAqxk2LXffGXuw2131Io+Xs=;
+        b=AJ9eL5Pd2tqREssLSFykaUzLytadu83zggkAbgVJZ3Fh8grmAwlSA3qz2PLMuSsYb5
+         3XUJzlpVy+fu0yxHjtT9AfbUj0ilsQM+XLJ/1fY+DS8S82OpI2msY8qgdJ6P7R4VhVxy
+         nKB7Dq1p9s0DBaxf919SLV/Vh8Xa20t+tv02MhmOq/E1fDlNRVGwFFfAZV0irVHu973G
+         aZm6Af8e39qORrHmdG7pIezGGbds2GdbQAXPno+DcfgqfiwGSHRjCoxOV4w+7P0ZPYaJ
+         uYhO+O8GneBn3c8r8QkOe/5rIJlx3kqoyO//f80Zx2llz9HfChMF7htBcZm+X1oxKDV9
+         oABQ==
+X-Gm-Message-State: AJIora8vDd7eTtb+vpccALxOOz0vBLSnDWhmqNMM9CYyn96vnFSmnWcd
+        Vmpo3D7pl6UPPAsRiwPp7x3vcQ==
+X-Google-Smtp-Source: AGRyM1sBR1woO9PSRLRDGfi43ztmS22+sCcHwwD1BkKikBN/g7jU5/KGldrmQEy3hRirXoLPpmSyag==
+X-Received: by 2002:a17:907:2814:b0:72a:3758:e948 with SMTP id eb20-20020a170907281400b0072a3758e948mr1713964ejc.8.1656499760309;
+        Wed, 29 Jun 2022 03:49:20 -0700 (PDT)
 Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id m2-20020a50ef02000000b00435a997303bsm10998148eds.71.2022.06.29.03.46.25
+        by smtp.gmail.com with ESMTPSA id q18-20020a17090609b200b006feaa22e367sm7527140eje.165.2022.06.29.03.49.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 03:46:25 -0700 (PDT)
-Message-ID: <dd32ee3a-9aa9-94d0-4064-ff2f72abf0fe@linaro.org>
-Date:   Wed, 29 Jun 2022 12:46:24 +0200
+        Wed, 29 Jun 2022 03:49:19 -0700 (PDT)
+Message-ID: <51748cbc-e895-13cc-6b8e-8c62b211aa4e@linaro.org>
+Date:   Wed, 29 Jun 2022 12:49:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 2/3] dt-bindings: thermal: qcom-tsens: Add MSM8909
- compatible
+Subject: Re: [PATCH v4 3/7] dt-bindings: reset: Add bindings for MT6795 Helio
+ X10 reset controllers
 Content-Language: en-US
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20220627131415.2868938-1-stephan.gerhold@kernkonzept.com>
- <20220627131415.2868938-3-stephan.gerhold@kernkonzept.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        y.oudjana@protonmail.com, jason-jh.lin@mediatek.com,
+        ck.hu@mediatek.com, fparent@baylibre.com, rex-bc.chen@mediatek.com,
+        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
+        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
+        sam.shih@mediatek.com, wenst@chromium.org,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        kernel@collabora.com, Rob Herring <robh@kernel.org>
+References: <20220627085632.23797-1-angelogioacchino.delregno@collabora.com>
+ <20220627085632.23797-4-angelogioacchino.delregno@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220627131415.2868938-3-stephan.gerhold@kernkonzept.com>
+In-Reply-To: <20220627085632.23797-4-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,15 +88,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2022 15:14, Stephan Gerhold wrote:
-> MSM8909 uses the TSENS v0.1 block similar to other SoCs like MSM8916.
-> Document the "qcom,msm8909-tsens" compatible in the existing schema.
+On 27/06/2022 10:56, AngeloGioacchino Del Regno wrote:
+> Add the reset controller bindings for MT6795.
 > 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 > ---
+>  include/dt-bindings/reset/mt6795-resets.h | 50 +++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 include/dt-bindings/reset/mt6795-resets.h
+> 
+> diff --git a/include/dt-bindings/reset/mt6795-resets.h b/include/dt-bindings/reset/mt6795-resets.h
+> new file mode 100644
+> index 000000000000..0a6514884eae
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/mt6795-resets.h
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You still need vendor prefix.
 
 
 Best regards,
