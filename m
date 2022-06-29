@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4200055FF3C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 14:09:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16EE655FF4B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 14:12:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230496AbiF2MIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 08:08:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39002 "EHLO
+        id S231634AbiF2MMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 08:12:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229828AbiF2MIL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 08:08:11 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D6A1DD7
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:08:07 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id h23so32070205ejj.12
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:08:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VQvrq36Ub//nJeMH+4IujCfCMUXPGt0nmKpTahRoY0Y=;
-        b=R3rXrWGRkIFrpTNQIko+IMi3mb57TfabMBpZ3vfI0KcKtdCIaAP/zkFKBJO3O4SFJ5
-         CjsFghNlc7mUxsI9Z5kmL5awoJ8aACxIVgtvQAby5YMqlFl1hOKpzaDFW1YLNsG3fqVR
-         h/PVY/yrS7/pcJbVa5nF+k7uGEAWSEwP3uV9QHUF8KaY7hLbvZIinC8xixeB6vwjJvFY
-         FISfCbbsgD0xTzAk3OIhi8VEl3PQZ05V/3e4tSWYEMrVoneC6RtctvSbKad645jUzDU8
-         SRxo0I+OREUDOEHU8iz/sStZ9tWYhC8aSQudQx6h1TtrOJuPmHrJxK+46KeMdAn2Cmgf
-         pCRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VQvrq36Ub//nJeMH+4IujCfCMUXPGt0nmKpTahRoY0Y=;
-        b=O+bp0BJtDreRkh5CrwA7Ft9dRxK+Yb/khImWxDc5oCdQoXOP0lGeBT+WRqCf9sGjrH
-         i7kCehXI+VCk4gyCnvK5Bq9BuZCv86hegk6SPp1FRVjXW5XoCAv/QAHsR/Lo7mREFE+S
-         6Ujy2HF0w/rsxyAabfgE/hEIqxpVcW2luKKfWH+cNCet5C9GRevi+0Z+p/F/ZiUmA7wU
-         b5AcPJoEuz1O8/MxpVzPumKSNcAY5dS3LkxzrEC8IRns6r748e8PHSwuHf4Gy8tXrZbd
-         qZWdiw51c1bp0Uku1pDlGzZ6vpfnETtLe6WMeklP0IFJnFaWUJevVsMx83hwmdymGSry
-         GF2g==
-X-Gm-Message-State: AJIora+dnFFK9UZIjK1WLZXZJ+NVmeaGKw8g9BCznu08sql1TOTiYGOw
-        c43eXU5WvTddbUDiKlT64hn9oQ==
-X-Google-Smtp-Source: AGRyM1u8EhSLSXoIchWFFE8Kf94rq07ZLyyCvbo6ssbRKd3BYrEFlqS2MOqasNkDpfSA2G5eHDgXAA==
-X-Received: by 2002:a17:907:1314:b0:722:fc80:3b34 with SMTP id vj20-20020a170907131400b00722fc803b34mr2949437ejb.583.1656504486124;
-        Wed, 29 Jun 2022 05:08:06 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b7-20020a1709064d4700b0070f6855b90bsm7692878ejv.170.2022.06.29.05.08.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 05:08:05 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229916AbiF2MMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 08:12:33 -0400
+X-Greylist: delayed 241 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 29 Jun 2022 05:12:32 PDT
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E2B3B3F9;
+        Wed, 29 Jun 2022 05:12:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1656504731; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=PGK/k9DeAdxOtwaTL/Ud+3uQ4Q+GGYlfiEYU7tvaIdpH0HgYd18h/U4BPUy2a1X/BTvVX+0Re+6i0KL8M+mptABBTC9TAKqGIEa88fdcxgSVd82I+693RbzLHKmur39aNxfYu5LBNu922V+EkH5cP9FGvnee6CObGNPVMwYPksQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1656504731; h=Content-Type:Content-Transfer-Encoding:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=7Nlg+/A/2lG7nPrwCN9OcJJY+B+CLo/eWqxjs4IwRvk=; 
+        b=bLWrd8ZFSymnFvnBMogKwxmaM2t90gywSpTObFBzNgJlHdmUOqSc1srfQkKZA5nEHuHkc/ssjNXcxVuS59QaWr9DXToMvQ565+mPPhApYS1YwHFdAMdpM8ziz9KEY15TrZp6F4FCpK5PQM52jiLYAa+4+Ky18kGSDkOJ2W475no=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1656504731;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To:Cc;
+        bh=7Nlg+/A/2lG7nPrwCN9OcJJY+B+CLo/eWqxjs4IwRvk=;
+        b=SO/kyUlNlVYkl9JJB8ag+o5yHnDYD5i65OTv9i3S/z2DTnU5wCe6nAsOrlXV8Mlq
+        J2tHohR+IX4gQWKvIgKjPiXUkUDNVTQg6xAuLaW/Z3XZLRQJuhGl7KHVonRv0L5qHPe
+        d6L/blNyZCKH+dL14HyDzVRYooB3QlxJugCC4dMU=
+Received: from [10.10.10.122] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1656504730341712.7546788738672; Wed, 29 Jun 2022 05:12:10 -0700 (PDT)
+Message-ID: <e20a43f7-ed3e-83ef-a863-43cb11535ec2@arinc9.com>
+Date:   Wed, 29 Jun 2022 15:12:05 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 2/2] MIPS: dts: align gpio-key node names with dtschema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rahul Bedarkar <rahulbedarkar89@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: media: samsung,s5pv210-jpeg: convert to dtschema
-Date:   Wed, 29 Jun 2022 14:08:03 +0200
-Message-Id: <20220629120803.61965-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220624170740.66271-1-krzysztof.kozlowski@linaro.org>
+ <20220624170740.66271-2-krzysztof.kozlowski@linaro.org>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20220624170740.66271-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,187 +70,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Samsung SoC JPEG codec bindings to DT schema.
+On 24.06.2022 20:07, Krzysztof Kozlowski wrote:
+> The node names should be generic and DT schema expects certain pattern
+> (e.g. with key/button/switch).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The original bindings were quite old and incomplete, so change during
-conversion:
-1. Add typical (already used) properties like iommus and power domains.
-2. Document samsung,exynos4212-jpeg compatible (already used in DTS and
-   driver).
-3. List clocks per each variant.
+Acked-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/media/exynos-jpeg-codec.txt      |  16 ---
- .../bindings/media/samsung,s5pv210-jpeg.yaml  | 123 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 3 files changed, 124 insertions(+), 16 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/exynos-jpeg-codec.txt
- create mode 100644 Documentation/devicetree/bindings/media/samsung,s5pv210-jpeg.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/exynos-jpeg-codec.txt b/Documentation/devicetree/bindings/media/exynos-jpeg-codec.txt
-deleted file mode 100644
-index ce9a22689e53..000000000000
---- a/Documentation/devicetree/bindings/media/exynos-jpeg-codec.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--Samsung S5P/Exynos SoC series JPEG codec
--
--Required properties:
--
--- compatible	: should be one of:
--		  "samsung,s5pv210-jpeg", "samsung,exynos4210-jpeg",
--		  "samsung,exynos3250-jpeg", "samsung,exynos5420-jpeg",
--		  "samsung,exynos5433-jpeg";
--- reg		: address and length of the JPEG codec IP register set;
--- interrupts	: specifies the JPEG codec IP interrupt;
--- clock-names   : should contain:
--		   - "jpeg" for the core gate clock,
--		   - "sclk" for the special clock (optional).
--- clocks	: should contain the clock specifier and clock ID list
--		  matching entries in the clock-names property; from
--		  the common clock bindings.
-diff --git a/Documentation/devicetree/bindings/media/samsung,s5pv210-jpeg.yaml b/Documentation/devicetree/bindings/media/samsung,s5pv210-jpeg.yaml
-new file mode 100644
-index 000000000000..e28d6ec56c0b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/samsung,s5pv210-jpeg.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/samsung,s5pv210-jpeg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung S5PV210 and Exynos SoC JPEG codec
-+
-+maintainers:
-+  - Jacek Anaszewski <jacek.anaszewski@gmail.com>
-+  - Krzysztof Kozlowski <krzk@kernel.org>
-+  - Sylwester Nawrocki <s.nawrocki@samsung.com>
-+  - Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - samsung,s5pv210-jpeg
-+      - samsung,exynos3250-jpeg
-+      - samsung,exynos4210-jpeg
-+      - samsung,exynos4212-jpeg
-+      - samsung,exynos5420-jpeg
-+      - samsung,exynos5433-jpeg
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 4
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 4
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - reg
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,s5pv210-jpeg
-+              - samsung,exynos4210-jpeg
-+              - samsung,exynos4212-jpeg
-+              - samsung,exynos5420-jpeg
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+        clock-names:
-+          items:
-+            - const: jpeg
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynos3250-jpeg
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+          maxItems: 2
-+        clock-names:
-+          items:
-+            - const: jpeg
-+            - const: sclk
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynos5433-jpeg
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 4
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: pclk
-+            - const: aclk
-+            - const: aclk_xiu
-+            - const: sclk
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/exynos5433.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    codec@15020000 {
-+        compatible = "samsung,exynos5433-jpeg";
-+        reg = <0x15020000 0x10000>;
-+        interrupts = <GIC_SPI 411 IRQ_TYPE_LEVEL_HIGH>;
-+        clock-names = "pclk", "aclk", "aclk_xiu", "sclk";
-+        clocks = <&cmu_mscl CLK_PCLK_JPEG>,
-+                 <&cmu_mscl CLK_ACLK_JPEG>,
-+                 <&cmu_mscl CLK_ACLK_XIU_MSCLX>,
-+                 <&cmu_mscl CLK_SCLK_JPEG>;
-+        iommus = <&sysmmu_jpeg>;
-+        power-domains = <&pd_mscl>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d208bf3b6f11..7669bb12deea 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2728,6 +2728,7 @@ M:	Sylwester Nawrocki <s.nawrocki@samsung.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-media@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/media/samsung,s5pv210-jpeg.yaml
- F:	drivers/media/platform/samsung/s5p-jpeg/
- 
- ARM/SAMSUNG S5P SERIES Multi Format Codec (MFC) SUPPORT
--- 
-2.34.1
-
+Cheers.
+Arınç
