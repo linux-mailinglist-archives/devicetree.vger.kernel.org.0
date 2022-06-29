@@ -2,143 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92A2A55F33F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FBB655F34F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:20:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231261AbiF2CKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 22:10:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59358 "EHLO
+        id S229553AbiF2CUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 22:20:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231281AbiF2CKK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:10:10 -0400
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7BC22ED46;
-        Tue, 28 Jun 2022 19:10:06 -0700 (PDT)
-Received: by mail-il1-f173.google.com with SMTP id 9so9375639ill.5;
-        Tue, 28 Jun 2022 19:10:06 -0700 (PDT)
+        with ESMTP id S229489AbiF2CUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:20:20 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12632205F4;
+        Tue, 28 Jun 2022 19:20:20 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id jh14so12751563plb.1;
+        Tue, 28 Jun 2022 19:20:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=rlgeYTKJxDBdTrgiYt+xBlY3VqeL9LFxhA7ObySVmls=;
+        b=Asfrq9DkHEDXEOE6TLp9NaixoEmjkbBjN4QAx1t6Jdz3CAHsjxDxSsf/t1Zsa5FrLv
+         eAV53wLS92Woy/9kPUoKw6SQqLTHED9oDevHdXwa9oMp4e9GWW0+nmsl0RbwD9CJXOFQ
+         GCgFaZgfpAFwIz4ff4T+BSFPWrdWJlSGLsGCefl80M3lE323Og+zDqV58X0dvy1Vremt
+         rYc1LPNQcFkeAVqStAbUK+BbVm8pUQ0NtQYuBDioKE3vMVBSdi0iCHPnNoZZbFhjiUg0
+         13cHDeE6Fr0g76Quc0Gi25gyzsEX4DGgu6Zgs2zVujBmeqXmkGTlsbP2jY7fqAVZL6sm
+         oEJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=akCaK7/6hiO9qiDqUC6BjphM3QTCscKxuIGksCMRv4Q=;
-        b=qw7QGmRtknT8SHk4/fjSpan3+R2RdbsAn3+a6UmKweoDKdHuU+8KLOy3Ot+hJ8w/iy
-         3zChQgqhWh3o+jWY4kPsmfTQ9+ys2BZBw7KHrVgMJgjeoFJqRVqUiDsaEx4zwaK2Hgek
-         JYyiNhdt/ok56z4G/T7ViDNxpJrvfj9z0HrSKcvXKVGyqIjSmSA6KUmIkyqrplDdwYeQ
-         /tsTRGN7UJBjgBOrGDUozmO1Th0rNFeFwVfVI+9to/jNKAFgk2vuLMge52gVEyiqFrD6
-         I2t/M4/o4Q6+QQvDIJ9kRxMX+3MhrkoRT28Q0AWBhxukXFmD1Cc7NOcWyEj01iS/CZpt
-         sOYQ==
-X-Gm-Message-State: AJIora8Zf+CRohPEPWe9EI7I5V7paPM2LwagUp0XrDX4FNIyu1g/GCAc
-        SlvgApfbOHHYcbIK59A2pg==
-X-Google-Smtp-Source: AGRyM1s+vAu0J3FAxJurSCzpU4DCe5h38yk8r+xC7m9WUBJ56dufRl4BRYIH390A+L4jw+4zToyPjA==
-X-Received: by 2002:a05:6e02:216b:b0:2da:c09b:179f with SMTP id s11-20020a056e02216b00b002dac09b179fmr659560ilv.0.1656468605851;
-        Tue, 28 Jun 2022 19:10:05 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id w18-20020a92c892000000b002d909e3d89esm6515075ilo.60.2022.06.28.19.10.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 19:10:05 -0700 (PDT)
-Received: (nullmailer pid 1403684 invoked by uid 1000);
-        Wed, 29 Jun 2022 02:09:39 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20220628221404.1444200-2-sean.anderson@seco.com>
-References: <20220628221404.1444200-1-sean.anderson@seco.com> <20220628221404.1444200-2-sean.anderson@seco.com>
-Subject: Re: [PATCH net-next v2 01/35] dt-bindings: phy: Add QorIQ SerDes binding
-Date:   Tue, 28 Jun 2022 20:09:39 -0600
-Message-Id: <1656468579.935954.1403683.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=rlgeYTKJxDBdTrgiYt+xBlY3VqeL9LFxhA7ObySVmls=;
+        b=SvLPA2I7apaakYIZrIqoGJ/p+caiDMNkCDVCAnwavcigtNv+7J+GX2So2oczQ5JfoA
+         Y/ny4cvq8hiIo9OGRmNF/eLOVXBtSp/CpWLw3Q/zsWB/2uqY5ZuTtRfYRf0WmhxFxZTw
+         3Gmmeh74N+7DrC8A2rgrIi9U2OFZ6rj4GWQRChiDu78DAD5P19TeSndrDjlY1OT0IYYv
+         x/UvslFwzZeQsyB18pY73kc+yF3NN61FEec7ztbKeqVVp/ka33OhrtQzhgbtC2fRybri
+         IqqyEs1c39lz7fGzKw8aYM1Zr0gbV+Om6aE4qW/3BWIst3/wH2t9ht8izzK4Wo4rBRUX
+         UrlQ==
+X-Gm-Message-State: AJIora/SjXZFNPell5sTLKkK6CiwO8DyrBnZPA66WjlnYopVcJaeoT6P
+        mIy1Pii5exX6mc2MlOzsHlXzXzVUFGg=
+X-Google-Smtp-Source: AGRyM1v/ayIzyNIeUDcObnQHPxXau0MRrWv2PtOl7K6jdnh20ferQPLXLDrB7Du5ep/zyZoPLrTBaA==
+X-Received: by 2002:a17:90b:3e86:b0:1ec:fc46:9e1b with SMTP id rj6-20020a17090b3e8600b001ecfc469e1bmr3004092pjb.155.1656469219432;
+        Tue, 28 Jun 2022 19:20:19 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:46a:3e21:914b:bb3e:3e56:4806])
+        by smtp.gmail.com with ESMTPSA id p26-20020a056a0026da00b005251e2b53acsm10089015pfw.116.2022.06.28.19.20.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 28 Jun 2022 19:20:18 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     jic23@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] Add Richtek RTQ6056 support
+Date:   Wed, 29 Jun 2022 10:20:10 +0800
+Message-Id: <1656469212-12717-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022 18:13:30 -0400, Sean Anderson wrote:
-> This adds a binding for the SerDes module found on QorIQ processors. The
-> phy reference has two cells, one for the first lane and one for the
-> last. This should allow for good support of multi-lane protocols when
-> (if) they are added. There is no protocol option, because the driver is
-> designed to be able to completely reconfigure lanes at runtime.
-> Generally, the phy consumer can select the appropriate protocol using
-> set_mode. For the most part there is only one protocol controller
-> (consumer) per lane/protocol combination. The exception to this is the
-> B4860 processor, which has some lanes which can be connected to
-> multiple MACs. For that processor, I anticipate the easiest way to
-> resolve this will be to add an additional cell with a "protocol
-> controller instance" property.
-> 
-> Each serdes has a unique set of supported protocols (and lanes). The
-> support matrix is stored in the driver and is selected based on the
-> compatible string. It is anticipated that a new compatible string will
-> need to be added for each serdes on each SoC that drivers support is
-> added for. There is no "generic" compatible string for this reason.
-> 
-> There are two PLLs, each of which can be used as the master clock for
-> each lane. Each PLL has its own reference. For the moment they are
-> required, because it simplifies the driver implementation. Absent
-> reference clocks can be modeled by a fixed-clock with a rate of 0.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> 
-> Changes in v2:
-> - Add #clock-cells. This will allow using assigned-clocks* to configure
->   the PLLs.
-> - Allow a value of 1 for phy-cells. This allows for compatibility with
->   the similar (but according to Ioana Ciornei different enough) lynx-28g
->   binding.
-> - Document phy cells in the description
-> - Document the structure of the compatible strings
-> - Fix example binding having too many cells in regs
-> - Move compatible first
-> - Refer to the device in the documentation, rather than the binding
-> - Remove minItems
-> - Rename to fsl,lynx-10g.yaml
-> - Use list for clock-names
-> 
->  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> 
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This patch series is to enable Richtek RTQ6056 support.
 
-yamllint warnings/errors:
+The RTQ6056 is a high accuracy current-sense monitor with I2C interface, and
+the device provides full information for system by reading out the load current
+and power.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: patternProperties:^thermistor@:properties:adi,excitation-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProperties: ^thermistor@: properties: adi,excitation-current-nanoamp
-Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.example.dtb:0:0: /example-0/spi/ltc2983@0: failed to match any schema with compatible: ['adi,ltc2983']
+Since v2
+- Change the resistor property name to be generic 'shunt-resistor-micro-ohms'.
+- Rename file from 'rtq6056-adc' to 'rtq6056'.
+- Refine the ABI, if generic already defined it, remove it and check the channel
+  report unit.
+- Add copyright text.
+- include the correct header.
+- change the property parsing name.
+- To use iio_chan_spec address field.
+- Refine each channel separate and shared_by_all.
+- Use pm_runtime and pm_runtime_autosuspend.
+- Remove the shutdown callback. From the HW suggestion, it's not recommended to
+  use battery as the power supply.
+- Check all scale unit (voltage->mV, current->mA, power->milliWatt).
+- Use the read_avail to provide the interface for attribute value list.
+- Add comma for the last element in the const integer array.
+- Refine each ADC label text.
+- In read_label callback, replace snprintf to sysfs_emit.
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/
+ChiYuan Huang (2):
+  dt-bindings: iio: adc: Add rtq6056 adc support
+  iio: adc: Add rtq6056 support
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+ .../ABI/testing/sysfs-bus-iio-adc-rtq6056          |   6 +
+ .../bindings/iio/adc/richtek,rtq6056.yaml          |  56 ++
+ drivers/iio/adc/Kconfig                            |  15 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/rtq6056.c                          | 670 +++++++++++++++++++++
+ 5 files changed, 748 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+ create mode 100644 drivers/iio/adc/rtq6056.c
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+2.7.4
 
