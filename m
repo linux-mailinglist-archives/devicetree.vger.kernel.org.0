@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19AEE55F493
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 05:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E6BD55F4F2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 06:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230302AbiF2Dvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 23:51:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42344 "EHLO
+        id S230459AbiF2EL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 00:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229977AbiF2Dvc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 23:51:32 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6F7721246;
-        Tue, 28 Jun 2022 20:51:30 -0700 (PDT)
-X-UUID: 1d64b464cc424b43b8463d9e17a7516b-20220629
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.7,REQID:f3a6d0ec-03cd-469f-ba75-57c8a5738483,OB:10,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:45
-X-CID-INFO: VERSION:1.1.7,REQID:f3a6d0ec-03cd-469f-ba75-57c8a5738483,OB:10,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:45
-X-CID-META: VersionHash:87442a2,CLOUDID:964b0c86-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:9ab0d72c7f79,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 1d64b464cc424b43b8463d9e17a7516b-20220629
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1645961264; Wed, 29 Jun 2022 11:51:25 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 29 Jun 2022 11:51:24 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 29 Jun 2022 11:51:24 +0800
-Message-ID: <fcb60f65a30721970b7647633feea4f1df1bf774.camel@mediatek.com>
-Subject: Re: [PATCH v12 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 29 Jun 2022 11:51:24 +0800
-In-Reply-To: <20220627080341.5087-6-rex-bc.chen@mediatek.com>
-References: <20220627080341.5087-1-rex-bc.chen@mediatek.com>
-         <20220627080341.5087-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230259AbiF2ELz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 00:11:55 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B2736324
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 21:11:54 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id l81so20015908oif.9
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 21:11:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MdFPqd732DS30jFNC43fudujZD0ohWzK0v59dUm/e+g=;
+        b=uT8x4i4bwxUgQuVFU7XLfQLJyui3EMpoCgaPELdMwaGhPYQge7itji9XlRIS67E+/+
+         633Wxci6LnX9u4naBYcNVP04lZZio2krFvkpzFrkiyyTX3sz36vUvGhM9xhFRyhQCUXy
+         sRiaeN+ucbZBk5QFpkOrvwnG/exUlb7yDuQpdRDVnQxH9mqQF0J2WJ06ntca2G0CTkkA
+         my/XM4HBYrNaO77i0IEuuF81WYYFCD2Zl9HdHCTRPx9I+33t/nmNxIyO5YRF6H0hWnYG
+         k0oM30JywHcpX5m8pQzKEFA3HVZZyDZDYhzSnJuo54XhYi08CGCPSd+SoBKZVLXtDNc+
+         z2qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MdFPqd732DS30jFNC43fudujZD0ohWzK0v59dUm/e+g=;
+        b=SKsoSytuFFmOZw9JVxxH1Xg8rR/vaPL8E4fu/YMe76qe3nIVLB4cR7B1PQsqRlcQS6
+         Em+SzTpZ/Bopt05l9gLaYYbuRHpjvDuHQS20pv/u8rvcaf5yzZiYczxKvkoVgcL3iRnX
+         HG3D3mmO2EnSlnx8tPgAO0DSA6yKZaj6f2PXvPy6pwVEV6anCcss2OjdoAQwJk/yNBDC
+         dNayjhNukX85ZdzVFqwg8r2fHUncGaJv3D0Q24qKpZGF5iGf8+IRaLdr6Y6b2HAk2uAY
+         iY9bVrNDmCHrzbjZ80NjRn94NGgloMVKajYhE6mQoqQh9f+Isq9UsKGWOfGjIRYHuYGD
+         cR+g==
+X-Gm-Message-State: AJIora8gBqozy8pPIqqN+EQHAPnrKodwnX/8ZJhB8vuV5noFel6/WgXa
+        aCLPRuvDwqRTJ7m1sOAeuuYOozW5uUOU1w==
+X-Google-Smtp-Source: AGRyM1uVZfbtak6txUqQT6+yqXmqHE+bs9G3w8uy1R0KuBW7xTMCozDJGoHJI/sKL0l90zqysGDDRA==
+X-Received: by 2002:a05:6808:171c:b0:334:9342:63ef with SMTP id bc28-20020a056808171c00b00334934263efmr886955oib.63.1656475913546;
+        Tue, 28 Jun 2022 21:11:53 -0700 (PDT)
+Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id p12-20020a9d4e0c000000b00616ec82b29bsm1578692otf.35.2022.06.28.21.11.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 21:11:52 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Johan Hovold <johan@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/5] arm64: dts: qcom: Introduce SC8280XP
+Date:   Tue, 28 Jun 2022 21:14:33 -0700
+Message-Id: <20220629041438.1352536-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,76 +73,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+This series introduces the Qualcomm 8cx Gen 3 platform, with basic support for
+the CRD reference device and the SA8295P automotive development platform.
 
-On Mon, 2022-06-27 at 16:03 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
-> 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+The Lenovo Thinkpad X13s dts was part of this series, but Johan reposed a
+polished version at [1], which I intend to merge on top of this series.
 
-[snip]
+[1] https://lore.kernel.org/all/20220622132617.24604-1-johan+linaro@kernel.org/
 
-> +
-> +static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
-> +{
-> +	struct mtk_dp *mtk_dp = dev;
-> +	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
-> +
-> +	if (mtk_dp->train_info.cable_state_change) {
-> +		mtk_dp->train_info.cable_state_change = false;
-> +
-> +		mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> +				   DP_PWR_STATE_BANDGAP_TPLL_LANE,
-> +				   DP_PWR_STATE_MASK);
-> +		drm_dp_read_dpcd_caps(&mtk_dp->aux, buf);
-> +		mtk_dp->train_info.link_rate =
-> +			min_t(int, mtk_dp->max_linkrate,
-> +			      buf[mtk_dp->max_linkrate]);
-> +		mtk_dp->train_info.lane_count =
-> +			min_t(int, mtk_dp->max_lanes,
-> +			      drm_dp_max_lane_count(buf));
+Bjorn Andersson (5):
+  dt-bindings: arm: qcom: Document additional sc8280xp devices
+  dt-bindings: mailbox: qcom-ipcc: Add NSP1 client
+  arm64: dts: qcom: add SC8280XP platform
+  arm64: dts: qcom: sc8280xp: Add reference device
+  arm64: dts: qcom: add SA8540P and ADP
 
-If the state_change is unplug, why do you modify link_rate and
-lane_count?
-If the state_change is plug, there is a training flow to decide
-link_rate and lane_count. I think the training flow is correct and any
-modification here is redundant.
+ .../devicetree/bindings/arm/qcom.yaml         |    2 +
+ arch/arm64/boot/dts/qcom/Makefile             |    2 +
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts      |  406 ++++
+ arch/arm64/boot/dts/qcom/sa8540p.dtsi         |  133 +
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  427 ++++
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi  |  109 +
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 2142 +++++++++++++++++
+ include/dt-bindings/mailbox/qcom-ipcc.h       |    1 +
+ 8 files changed, 3222 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sa8540p.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp.dtsi
 
-Regards,
-CK
-
-> +	}
-> +
-> +	if (mtk_dp->train_info.irq_sta.hpd_inerrupt) {
-> +		dev_dbg(mtk_dp->dev, "MTK_DP_HPD_INTERRUPT\n");
-> +		mtk_dp->train_info.irq_sta.hpd_inerrupt = false;
-> +		mtk_dp_hpd_sink_event(mtk_dp);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
+-- 
+2.35.1
 
