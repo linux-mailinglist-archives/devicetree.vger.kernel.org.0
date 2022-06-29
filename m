@@ -2,75 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAF18560114
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 15:17:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E15A355FC2A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:38:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233241AbiF2NNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 09:13:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46544 "EHLO
+        id S232767AbiF2JiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 05:38:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233185AbiF2NN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 09:13:27 -0400
-X-Greylist: delayed 11997 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 29 Jun 2022 06:13:26 PDT
-Received: from 16.mo582.mail-out.ovh.net (16.mo582.mail-out.ovh.net [87.98.139.208])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34A8B95BC
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 06:13:26 -0700 (PDT)
-Received: from player731.ha.ovh.net (unknown [10.111.172.22])
-        by mo582.mail-out.ovh.net (Postfix) with ESMTP id A0FF121405
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 09:33:43 +0000 (UTC)
-Received: from etezian.org (bbcs-175-223.cust.wingo.ch [178.238.175.223])
-        (Authenticated sender: andi@etezian.org)
-        by player731.ha.ovh.net (Postfix) with ESMTPSA id 129A42BD37AE9;
-        Wed, 29 Jun 2022 09:33:31 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-108S00272303c45-9778-4737-9c0f-c5461f48230c,
-                    27473AD2557E96BAE247B01472F11916F8881100) smtp.auth=andi@etezian.org
-X-OVh-ClientIp: 178.238.175.223
-Date:   Wed, 29 Jun 2022 12:33:19 +0300
-From:   Andi Shyti <andi@etezian.org>
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        with ESMTP id S232966AbiF2JiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:38:06 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F91B4F
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:38:04 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id o9so21330308edt.12
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:38:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=I9e0lYWy7uCJKoc96qsb2y1N0WG5Wc6UBbbE3PgOBhw=;
+        b=wE4NGpCV0Qay9co9/9Z/AnRX+pXDoASpC/BRAAOfsOfqnzKaCl+um6OjOKSdMJAWGt
+         i458BtNboglnzROsVbkmWr0nF9xFgY+lusy85PBuQMsMPscSoW7gE3hSTK8vt3wlM0GP
+         Qojxy2hBc8G+vA4fgosegavTaZ84SbgYNZgIVsInn7IkxUgRiYxtou4HAEMPRk1BlbjI
+         hQWRIxQym6yQl/K+3BxNtGvZIJSPwJGV1bOjVxHqhA9p0E1CPDIyClElmT8sgM8La3lv
+         KmGK99lnc30oNTJHvVV9YkAolJ858I+VG4nOO2H0+0XOsZdGZUc+Oyvrj8ke8JQdfp8U
+         Uq4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=I9e0lYWy7uCJKoc96qsb2y1N0WG5Wc6UBbbE3PgOBhw=;
+        b=hK4OzTMKcAhvlpGWXv+mX6YNCsCqy1HfYiZoHecCQhFX0pz0+BGZXlhN52tr7LRR2w
+         XKm5rNaFWMkj+RNIpScmd+Zbarwerm9Ae4sb+6IBtuExiQUpgmQxmWfwP2c1FHMiDQqW
+         HjgObtKmO+FOz8HPFzvS8/ozqBrCrtzCHyLirqbZ89jqf9cMP8Z2zlQKpdDkz4YzTPx5
+         up+os7kvscTggnzoVAPdBd8J0tpvS3sDx+Vya2IvZ8H4enQELfA7Mv/5Dz+Q0X3q8eL8
+         2RdzcS+R7LUdwLgue2BROspJa2lDhCm4nv8oO0ckvAg3lpXiIWagnSobZxVoq+e1rO34
+         rk2Q==
+X-Gm-Message-State: AJIora+iP5qZotdDj7F1EmMJrpCOUsQ15E7ij7s/J6GyJuRJLsvf77aL
+        azPqhs2OoL5o2sjou4X+riSodQ==
+X-Google-Smtp-Source: AGRyM1seX/TiNSAbkRI6XBjpkxXx0lXfchCFWLwc9HbhIIJqmmot84t+JZ4qoenRaC6OqphS1co2yw==
+X-Received: by 2002:a05:6402:448a:b0:435:3fbe:2593 with SMTP id er10-20020a056402448a00b004353fbe2593mr2956604edb.226.1656495483272;
+        Wed, 29 Jun 2022 02:38:03 -0700 (PDT)
+Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id a4-20020a170906274400b00726b03f83a0sm3289270ejd.33.2022.06.29.02.38.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 02:38:02 -0700 (PDT)
+Message-ID: <91d972d2-689c-d357-869f-fbd826173e33@linaro.org>
+Date:   Wed, 29 Jun 2022 11:38:01 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Add DT schema for
+ qcom,msm8909-tlmm
+Content-Language: en-US
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] spi: s3c64xx: support loopback mode
-Message-ID: <YrwcXzROjBeDCjaO@jack.zhora.eu>
-References: <20220628044222.152794-1-chanho61.park@samsung.com>
- <CGME20220628044432epcas2p2116480d15be87cb723855b7a39ced6dc@epcas2p2.samsung.com>
- <20220628044222.152794-2-chanho61.park@samsung.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220628044222.152794-2-chanho61.park@samsung.com>
-X-Ovh-Tracer-Id: 2051108159235492376
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudegledgudeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtrodttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpeefheefueelleeghfehgeeiudfgieefffdviedtjeduvdfhhfdthedvteeltdfhueenucfkpheptddrtddrtddrtddpudejkedrvdefkedrudejhedrvddvfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrjeefuddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheekvd
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=unavailable autolearn_force=no version=3.4.6
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220628145502.4158234-1-stephan.gerhold@kernkonzept.com>
+ <20220628145502.4158234-2-stephan.gerhold@kernkonzept.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220628145502.4158234-2-stephan.gerhold@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chanho,
-
-On Tue, Jun 28, 2022 at 01:42:19PM +0900, Chanho Park wrote:
-> Modern exynos SoCs can support self loopback mode via setting BIT(3) of
-> MODE_CFG register. Previous SoCs don't have the bit so we need to add
-> has_loopback field in the s3c64xx_spi_port_config. Exynos Auto v9 SoC
-> has the bit and it will define the field to "true".
-> When it is set, SPI_LOOP mode will be marked.
+On 28/06/2022 16:55, Stephan Gerhold wrote:
+> Document the "qcom,msm8909-tlmm" compatible for the TLMM/pin control
+> block in the MSM8909 SoC, together with the allowed GPIOs and functions.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> ---
+>  .../bindings/pinctrl/qcom,msm8909-tlmm.yaml   | 152 ++++++++++++++++++
+>  1 file changed, 152 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+> new file mode 100644
+> index 000000000000..e03530091478
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+> @@ -0,0 +1,152 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,msm8909-tlmm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. MSM8909 TLMM block
+> +
+> +maintainers:
+> +  - Stephan Gerhold <stephan@gerhold.net>
+> +
+> +description: |
+> +  This binding describes the Top Level Mode Multiplexer (TLMM) block found
+> +  in the MSM8909 platform.
+> +
+> +allOf:
+> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,msm8909-tlmm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts: true
+> +  interrupt-controller: true
+> +  '#interrupt-cells': true
+> +  gpio-controller: true
+> +  gpio-reserved-ranges: true
+> +  '#gpio-cells': true
+> +  gpio-ranges: true
+> +  wakeup-parent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
+> +  '-state$':
+> +    oneOf:
+> +      - $ref: "#/$defs/qcom-msm8909-tlmm-state"
 
-Reviewed-by: Andi Shyti <andi@etezian.org>
+No quotes here and other places, should be needed. I know you copied
+from other bindings, but at least let's try new files to be proper.
 
-Thanks,
-Andi
+> +      - patternProperties:
+> +          ".*":
+> +            $ref: "#/$defs/qcom-msm8909-tlmm-state"
+> +
+> +$defs:
+> +  qcom-msm8909-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
+
+Overall looks ok, to me, so with quote changes:
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
