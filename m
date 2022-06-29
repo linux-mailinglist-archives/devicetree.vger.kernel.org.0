@@ -2,177 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 612CC55F6B7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 08:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C353555F6B5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 08:36:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232172AbiF2Ger (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 02:34:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44020 "EHLO
+        id S231648AbiF2GfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 02:35:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232134AbiF2Gem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 02:34:42 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A48222B25E
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 23:34:41 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id fi2so30452081ejb.9
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 23:34:41 -0700 (PDT)
+        with ESMTP id S232137AbiF2GfK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 02:35:10 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AACC02C11E;
+        Tue, 28 Jun 2022 23:35:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EmERg3nlw3fI08RWFRLas0/UbKz83F820Tzvq+AS7+Y=;
-        b=vyh694gOH4oD+ETeT3V6t7TbZoq5lHvVgMW/SAG0AD4uAJHGkAGGjz1EQWtgruTKs0
-         B91/7vVz1B2C4Kbgrk3wWrBjiDaTaH1AfgO2bdEgGiYbv/d0hwyOo40tIk/M4NS/fSsO
-         pAlllgZEgk66o1ZCA7J4NllsI6HkmwU7W5QiYQqDpMBgXFwbF97BxIzFBaCXMhiktt9Q
-         Gs98YDea9tygoQCxqTZ1KIUg9FLFpeHv5zkG2ec0CiPY3I6EcFWCLYb4aoEVQEemjU8b
-         JE2tGPVWGejZAbwv0GGRnZj5Im8lPzQqNHu3fdvh0OQkYdjgX9qvvT/g5QRjYZrpmT5U
-         nH9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=EmERg3nlw3fI08RWFRLas0/UbKz83F820Tzvq+AS7+Y=;
-        b=5iZmDmHv6etIIugPpI3AsShf7Upg9R/uLooggkOiW0ngQ5j7ihJDWl+ZSpGHZxh+Ps
-         N+Ivq6ytAqx2PpTUFnyOCIOq54pVRN+iPx2I8j/BczKVqm7kWcJB86XbkqIknf7eTmpD
-         w96fQXJHiuEKgcjIolH382XffP824Wrv/MPIDDSdIcoB3qBJDqJKniPEKLWrgSs3d+0g
-         qTAXJRl9XjbSqnUZZrAnqCoW3WblnECb+tiTwqw2E0q/gCQJLn7VG9gGBmp8Q6P24s+s
-         V7/rgc3IwLfSexBr6eVQz94Ht4KavnU7ts5iEwak1UYwp3bxz2rTqvsT5RimGOJTnnEu
-         RGDQ==
-X-Gm-Message-State: AJIora/7lSEYpSHeoUx0H8Pqlj1CciIL5kWEM6meHf7biGx8D7NG8AJJ
-        5Ffzs6/OVcrjdsUdOhcbV3ngMw==
-X-Google-Smtp-Source: AGRyM1uFIbKAyhcok94Ie/62FVbVNJ8GIeKit7vF4RsjLCPSfb0Lp5f0QUVqbru1QAGPf/Y60DXxFA==
-X-Received: by 2002:a17:907:d89:b0:726:9d87:e4c0 with SMTP id go9-20020a1709070d8900b007269d87e4c0mr1732632ejc.216.1656484480272;
-        Tue, 28 Jun 2022 23:34:40 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z4-20020a1709060f0400b00722f069fd40sm7248744eji.159.2022.06.28.23.34.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 23:34:39 -0700 (PDT)
-Message-ID: <291c1ff5-f864-3a8b-d151-d2ec805c8e5d@linaro.org>
-Date:   Wed, 29 Jun 2022 08:34:38 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656484509; x=1688020509;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=v+gu24eR5X5gNDxb60UqmAtP1yQjJyAU6/mkcYmJQno=;
+  b=ymY2TuwwKv+WCXHoI0pSHDHiQ2LFBs9xcYLpgWwKDwrJq29OicmAfhcw
+   jBOXwfHCoMma5IOU7ZmxMHhKhwt/aZtTCp14LqXphnBcfQoM2uP+qtVJc
+   7c6J+HXfNtv1R0TfSuZ0BmBlBbJD/znSuhbTY0F7McJefmQLDuJ9CNnYJ
+   c=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 28 Jun 2022 23:35:09 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 23:35:08 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 28 Jun 2022 23:35:08 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 28 Jun 2022 23:35:01 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH] pinctrl: qcom: sc7280: Fix compile bug
+Date:   Wed, 29 Jun 2022 12:04:45 +0530
+Message-ID: <1656484485-23350-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH V3 05/11] arm64: tegra: Add regulators required for PCIe
-Content-Language: en-US
-To:     Vidya Sagar <vidyas@nvidia.com>, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com
-Cc:     kishon@ti.com, vkoul@kernel.org, kw@linux.com,
-        p.zabel@pengutronix.de, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-References: <20220629060435.25297-1-vidyas@nvidia.com>
- <20220629060435.25297-6-vidyas@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220629060435.25297-6-vidyas@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 08:04, Vidya Sagar wrote:
-> Add regulator supplies required for PCIe functionality. The supplies
-> include 1.8V, 3.3V and 12V.
-> 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
-> V3:
-> * New patch in this series
-> 
->  .../boot/dts/nvidia/tegra234-p3701-0000.dtsi  | 24 +++++++++++++++++++
->  .../boot/dts/nvidia/tegra234-p3737-0000.dtsi  | 23 ++++++++++++++++++
->  2 files changed, 47 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
-> index 798de9226ba5..d53901ba45f6 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
-> @@ -6,6 +6,30 @@
->  	model = "NVIDIA Jetson AGX Orin";
->  	compatible = "nvidia,p3701-0000", "nvidia,tegra234";
->  
-> +	fixed-regulators {
-> +		compatible = "simple-bus";
-> +		device_type = "fixed-regulators";
-> +		#address-cells = <0x1>;
-> +		#size-cells = <0x0>;
+Fix the compilation error, caused by updtating constant variable.
+Hence remove redundant constant variable, which is no more useful
+as per new design.
 
-This is not a bus, fixed regulators are not part of some bus.
+The issue is due to some unstaged changes. Fix it up.
 
-> +
-> +		p3701_vdd_1v8_ls: regulator@3 {
-> +			compatible = "regulator-fixed";
-> +			reg = <3>;
+Fixes: 36fe26843d6d ("pinctrl: qcom: sc7280: Add clock optional check for ADSP bypass targets")
 
-This fails schema. No.
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+---
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 5 +----
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.h | 1 -
+ 2 files changed, 1 insertion(+), 5 deletions(-)
 
-> +			regulator-name = "vdd-1v8-ls-sw5";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-always-on;
-> +		};
+diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+index b5d1b99..e97ce45 100644
+--- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
++++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+@@ -388,9 +388,6 @@ int lpi_pinctrl_probe(struct platform_device *pdev)
+ 	pctrl->data = data;
+ 	pctrl->dev = &pdev->dev;
+ 
+-	data->is_clk_optional = of_property_read_bool(dev->of_node,
+-						      "qcom,adsp-bypass-mode");
+-
+ 	pctrl->clks[0].id = "core";
+ 	pctrl->clks[1].id = "audio";
+ 
+@@ -404,7 +401,7 @@ int lpi_pinctrl_probe(struct platform_device *pdev)
+ 		return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
+ 				     "Slew resource not provided\n");
+ 
+-	if (data->is_clk_optional)
++	if (of_property_read_bool(dev->of_node, "qcom,adsp-bypass-mode"))
+ 		ret = devm_clk_bulk_get_optional(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
+ 	else
+ 		ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
+diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+index 759d5d8..afbac2a 100644
+--- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
++++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+@@ -77,7 +77,6 @@ struct lpi_pinctrl_variant_data {
+ 	int ngroups;
+ 	const struct lpi_function *functions;
+ 	int nfunctions;
+-	bool is_clk_optional;
+ };
+ 
+ int lpi_pinctrl_probe(struct platform_device *pdev);
+-- 
+2.7.4
 
-Missing blank line.
-
-> +		p3701_vdd_AO_1v8: regulator@5 {
-> +			compatible = "regulator-fixed";
-> +			reg = <5>;
-> +			regulator-name = "vdd-AO-1v8-sw2";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-always-on;
-> +		};
-> +	};
-> +
->  	bus@0 {
->  		spi@3270000 {
->  			status = "okay";
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-> index a85993c85e45..bb503643dd38 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-> @@ -2,4 +2,27 @@
->  
->  / {
->  	compatible = "nvidia,p3737-0000";
-> +
-> +	fixed-regulators {
-> +		p3737_vdd_3v3_pcie: regulator@105 {
-> +			compatible = "regulator-fixed";
-> +			reg = <105>;
-> +			regulator-name = "vdd-3v3-pcie";
-> +			regulator-min-microvolt = <3300000>;
-> +			regulator-max-microvolt = <3300000>;
-> +			gpio = <&gpio TEGRA234_MAIN_GPIO(Z, 2) 0>;
-> +			enable-active-high;
-> +			regulator-boot-on;
-> +		};
-
-Same comments.
-
-> +		p3737_vdd_12v_pcie: regulator@114 {
-> +			compatible = "regulator-fixed";
-> +			reg = <114>;
-> +			regulator-name = "vdd-12v-pcie";
-> +			regulator-min-microvolt = <12000000>;
-> +			regulator-max-microvolt = <12000000>;
-> +			gpio = <&gpio TEGRA234_MAIN_GPIO(A, 1) 1>;
-> +			regulator-boot-on;
-> +			enable-active-low;
-> +		};
-> +	};
->  };
-
-
-Best regards,
-Krzysztof
