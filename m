@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09B4055F340
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D85055F332
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:10:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231373AbiF2CKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 22:10:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59000 "EHLO
+        id S230515AbiF2CJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 22:09:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231165AbiF2CKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:10:08 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3EF326C5;
-        Tue, 28 Jun 2022 19:10:03 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id h85so14683077iof.4;
-        Tue, 28 Jun 2022 19:10:03 -0700 (PDT)
+        with ESMTP id S230494AbiF2CJy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:09:54 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05FD82F035;
+        Tue, 28 Jun 2022 19:09:52 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id p14so9388890ile.1;
+        Tue, 28 Jun 2022 19:09:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=LN+78puhwYgKBtGz2TuDo+Xg7t/Ipevze3ieJ206j4Y=;
-        b=cQka8Kajrz27cvfwVqVCDOpDQ9f8zqznaxA+QKh0SxSrSkmE+cC4kMUTAtE02Cjawx
-         RmsAP5ZVOD2f9UtcwIBImaAL31DnadXG5/lZ9R+jtBgSkrKcohIF5laKd4vYzTb19kGx
-         4ZYjhQXbwxpJoVPIcaDbKkNJSpSTcDSBI7sZclWidqvmDLZCXbsdrXVKNXTc351cHyJL
-         hSw6h2UGsZVneAu95/9O2V3Bbb1uvZL8QP2Z70D4+XJT1YcJrPWTcxxyqfNwY+AjoOvq
-         /qtb/vJ/T7SKlxpQ43U/a1B86UiNukg+24YF7pUXFKZsYy7/vmx249A/d/Qsshc/Q2lj
-         M5DQ==
-X-Gm-Message-State: AJIora+tams5HpGwq4k7O1VCYmvCLpwalL0ueNR5Exx3SmJEcofi9QjJ
-        TgjBxWpn+TbnSK2evTqn5Q==
-X-Google-Smtp-Source: AGRyM1tYMYPFp2t74pAadIvPmONlKDfgpVJ9eVS2orkI/qmxrWCHXrzijGo4rGJR+DGI/H8yB6clFw==
-X-Received: by 2002:a05:6638:191b:b0:33c:8b14:e7e4 with SMTP id p27-20020a056638191b00b0033c8b14e7e4mr621920jal.212.1656468603517;
-        Tue, 28 Jun 2022 19:10:03 -0700 (PDT)
+        bh=KRTT6Azh9uxqOFNuSyZW507CLCYjuVxnJ4RN/7AtHio=;
+        b=49f/e4pzqHX5s25pRq6HKRfoYO+hbA2T45feRHFVoX+2meOHsu3io0dIUk9ONukLcT
+         S2u2Xgywx4lBuWe6LIfoT77EguWT55WN1N5jOYXtr+XLZihyVsITljEMzESAMa55OjsM
+         XDhJsXRpZLygWyMa0BBoqmEYPHhoQiWGmeht49BFGmY76mu3cLZrONFUBejxIi5THzA/
+         UhF7MIHC55xnvs3Mk70ZtvNd1WjdYaIw8e9/wGseqzBWuRXxQCzXKpJgy6uamIMhUQkY
+         Vin0XtORKBr01m7n8huwulrhAjTDMlHWYJD0nJR5FF8QkVXcXheoVFuj5N4kYV5R9QrG
+         LqGw==
+X-Gm-Message-State: AJIora/cSUHhvYpjbOeUzE8pz8J0WZWvQbQri5y6qS+iob2u+mo+G0sZ
+        a/rh1g5yAIwszbwW0AZKlpgCMPBIbA==
+X-Google-Smtp-Source: AGRyM1vm/3awWZKf90R45i7ajA8U/kHl44mlIm8F1PM0xFI/hAAsHVC/ESKDGC20/Lctak5l6wnN8A==
+X-Received: by 2002:a05:6e02:10cf:b0:2d9:2310:e6b3 with SMTP id s15-20020a056e0210cf00b002d92310e6b3mr596558ilj.212.1656468591269;
+        Tue, 28 Jun 2022 19:09:51 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id s10-20020a5ec64a000000b0067520155dedsm5407453ioo.15.2022.06.28.19.10.00
+        by smtp.gmail.com with ESMTPSA id m9-20020a02cdc9000000b00331fdc68ccesm6573548jap.140.2022.06.28.19.09.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 19:10:03 -0700 (PDT)
-Received: (nullmailer pid 1403680 invoked by uid 1000);
+        Tue, 28 Jun 2022 19:09:50 -0700 (PDT)
+Received: (nullmailer pid 1403682 invoked by uid 1000);
         Wed, 29 Jun 2022 02:09:39 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     heiko@sntech.de, contact@artur-rojek.eu,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        jic23@kernel.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        linux-input@vger.kernel.org, paul@crapouillou.net,
-        maccraft123mc@gmail.com, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org
-In-Reply-To: <20220628191500.69831-2-macroalpha82@gmail.com>
-References: <20220628191500.69831-1-macroalpha82@gmail.com> <20220628191500.69831-2-macroalpha82@gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: adc-joystick: add poll-interval-ms
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org
+In-Reply-To: <20220628194526.111501-2-phil.edworthy@renesas.com>
+References: <20220628194526.111501-1-phil.edworthy@renesas.com> <20220628194526.111501-2-phil.edworthy@renesas.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: Document RZ/V2M I2C controller
 Date:   Tue, 28 Jun 2022 20:09:39 -0600
-Message-Id: <1656468579.916584.1403679.nullmailer@robh.at.kernel.org>
+Message-Id: <1656468579.925440.1403681.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,21 +62,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022 14:14:58 -0500, Chris Morgan wrote:
-> New devicetree attribute of "poll-interval-ms".
+On Tue, 28 Jun 2022 20:45:25 +0100, Phil Edworthy wrote:
+> Document Renesas RZ/V2M (r9a09g011) I2C controller bindings.
 > 
-> Add poll-interval support for the adc-joystick documentation. This is
-> an optional value and if not provided the adc-joystick works as it
-> does today (with triggered buffers). If this value is provided, the
-> adc-joystick driver is polled at the specified interval. A new
-> attribute was added instead of using the existing attribute of
-> "poll-interval" to comply with rules detailed in property-units.yaml.
-> 
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/input/adc-joystick.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> v2:
+>  - Use an enum and set the default for clock-frequency
+>  - Add resets property
+> ---
+>  .../bindings/i2c/renesas,rzv2m.yaml           | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -86,15 +83,10 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/adc-joystick.yaml: properties:poll-interval-ms: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
 /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: patternProperties:^thermistor@:properties:adi,excitation-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
 	hint: Standard unit suffix properties don't need a type $ref
 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/adc-joystick.yaml: ignoring, error in schema: properties: poll-interval-ms
 /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProperties: ^thermistor@: properties: adi,excitation-current-nanoamp
-Documentation/devicetree/bindings/input/adc-joystick.example.dtb:0:0: /example-0/adc-joystick: failed to match any schema with compatible: ['adc-joystick']
 Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.example.dtb:0:0: /example-0/spi/ltc2983@0: failed to match any schema with compatible: ['adi,ltc2983']
 
 doc reference errors (make refcheckdocs):
