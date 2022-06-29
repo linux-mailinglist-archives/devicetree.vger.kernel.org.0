@@ -2,104 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B5715601D1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:01:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 377255601E4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231298AbiF2OBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:01:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57612 "EHLO
+        id S233306AbiF2ODQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 10:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229952AbiF2OB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:01:29 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB0B23141;
-        Wed, 29 Jun 2022 07:01:25 -0700 (PDT)
-Received: from zn.tnic (p200300ea97156ae0329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9715:6ae0:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id AF6A31EC04C2;
-        Wed, 29 Jun 2022 16:01:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1656511279;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=1nfA4bd39uY9wmMuXeUB/WuKXARluBCBaMbOeIYcBnY=;
-        b=LRK5ezlYQtIou/WwjqaCHEkzUwF537MTzAq2lHavZu/AFBFt05GjuZvi60LPc/HaFKAxzq
-        8gWqVL7Mu26tnpybnyjQJEPDCModDkJIdXd2axk+QkTaTDn2Byx0on7m3eWcQgCLlHow8m
-        WLyN6KMa6BsOQrx4FEIgjDu5NbaXcMM=
-Date:   Wed, 29 Jun 2022 16:01:15 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Jonathan McDowell <noodles@fb.com>
-Cc:     kernel test robot <lkp@intel.com>,
-        "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
-        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "x86@kernel.org" <x86@kernel.org>,
-        Mimi Zohar <zohar@linux.ibm.com>, Baoquan He <bhe@redhat.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-integrity@vger.kernel.org" <linux-integrity@vger.kernel.org>,
-        "kexec@lists.infradead.org" <kexec@lists.infradead.org>
-Subject: Re: [PATCH] of: Correctly annotate IMA kexec buffer functions
-Message-ID: <YrxbK4IsYb6yls5d@zn.tnic>
-References: <202206291039.yGgljGbx-lkp@intel.com>
- <YrwPjnxBk3Xyuakg@zn.tnic>
- <Yrwg1aYEnFz38V6+@noodles-fedora.dhcp.thefacebook.com>
+        with ESMTP id S233148AbiF2ODO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:03:14 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B4E6AE58
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:03:10 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id u12so32757779eja.8
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=X21RDYcZyPdAdSSiWnF38ilXDUTAkDc85p4urcENWOs=;
+        b=zp6x20OMhnXPHzNNi8WXugTMQFDEqCtld64Is1YD14JQCItQk0qaYwSpD1zeZmO/I8
+         JAn4GAgxjF8nFRDdIP2xbh0uvfE6wa7w+sVJK0IYyM6Qon7wsewcSuTMpXS6grEENUuN
+         2sjKO2jNlLLJlPyw2lmQv6YAx0oZrDL1pJels5dy2jy8xSAoHvKwYmCvMYX5UFmUxutN
+         Dw3BPl8BD99rKr5Dkz5RInSpxo55gFMUql9l4hDDPxF3KLe54xNhT03VZhL3ypi0L8an
+         eAOLZqhsA/+wNgGGEXH5My3uVM/1A7Zh+G97JQmTZ654pB613w5h0CkjgVuJ/YNmI5qf
+         sV3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=X21RDYcZyPdAdSSiWnF38ilXDUTAkDc85p4urcENWOs=;
+        b=0zCwZqOYV30NJcc7zeteYl3/EtIqgGLzw0VyhxxRi1SGOSxAroZ/yyClm3VI8BUTeY
+         1bYeLIyRPZtt3KxP53GNW1bUM/Woza6KeKEwlD2ewBfaUH0Mr0Iy4opNNl76wdRP7zod
+         Ykfm5E6rsdkmt7ThFBwg3vGAi2vua0l8DKlSuYwoPNPo8nHQucfrCTMDAXw2yZw1NH3q
+         07GpZEQLsVhhstdc+GdJe8i3O9/5iBDRT97NqfvLnxQixk5aLbBmH/03H78YWNwaCUuG
+         Q22jj6eEkFQWFSMXG2uTvt+KU13TDk7kVC0zStXzYSRR/MAx9J6J1Nbz0hnM1r3hj8gp
+         f7bQ==
+X-Gm-Message-State: AJIora/A4CNvtOPoDshrn388EQvjA22/hxGkXAezH3PjJxttj3O9BXcu
+        t02TpfZR64ud4mxO4iTFkJNdtQ==
+X-Google-Smtp-Source: AGRyM1vfBpeK5a2y8Ai17mRG/zLK0C47Ezcpl3fOTQHlpYcTCUwBcZxJdjE29jGIN0w0jpEOhFnqJg==
+X-Received: by 2002:a17:906:9245:b0:726:3b57:1046 with SMTP id c5-20020a170906924500b007263b571046mr3576647ejx.221.1656511386646;
+        Wed, 29 Jun 2022 07:03:06 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id f9-20020a17090660c900b007262a5e2204sm7739260ejk.153.2022.06.29.07.03.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jun 2022 07:03:05 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: [PATCH v6 0/4] soc/arm64: qcom: Add initial version of bwmon
+Date:   Wed, 29 Jun 2022 16:02:58 +0200
+Message-Id: <20220629140302.236715-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Yrwg1aYEnFz38V6+@noodles-fedora.dhcp.thefacebook.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 09:52:50AM +0000, Jonathan McDowell wrote:
-> Below is on top of what was in tip; I can roll a v7 if preferred but
-> I think seeing the fix on its own is clearer.
+Hi,
 
-Yes, and you don't have to base it on top because, as I've said, I've
-zapped your other patch there.
+Changes since v5
+================
+1. Rename compatible (and files) to qcom,msm8998-llcc-bwmon as Rajendra suggested.
+   Keep the reviews/acks as the change is not significant.
+2. Update comment in DTS, update description in bindings and in Kconfig.
 
-Once IMA folks are fine with that fix of yours I can take both, if they
-wish so.
+Changes since v4
+================
+1. Patch #1 (binding): Use qcom,msm8998-cpu-bwmon fallback compatible, only one
+   interconnect. Rename to qcom,msm8998-cpu-bwmon.yaml. This reflects
+   discussion with Bjorn, about the proper fallback compatible. Driver was
+   tested only on SDM845, so only that one compatible is actually implemented.
+   Keep the reviews/acks as the change is not significant.
+2. Patch #4 (DTS): Use qcom,msm8998-cpu-bwmon fallback compatible, only one
+   interconnect, use the LLCC bandwidth in OPP.
 
-> ima_free_kexec_buffer() calls into memblock_phys_free() so must be
-> annotated __meminit.
+remove unused irq_enable (kbuild robot);
+Changes since v3
+================
+1. Patch #2 (bwmon): remove unused irq_enable (kbuild robot);
+   split bwmon_clear() into clearing counters and interrupts, so bwmon_start()
+   does not clear the counters twice.
 
-Why __meminit?
+Changes since v2
+================
+1. Spent a lot of time on benchmarking and learning the BWMON behavior.
+2. Drop PM/OPP patch - applied.
+3. Patch #1: drop opp-avg-kBps.
+4. Patch #2: Add several comments explaining pieces of code and BWMON, extend
+   commit msg with measurements, extend help message, add new #defines to document
+   some magic values, reorder bwmon clear/disable/enable operations to match
+   downstream source and document this with comments, fix unit count from 1 MB
+   to 65 kB.
+5. Patch #4: drop opp-avg-kBps.
+6. Add accumulated Rb tags.
 
-The very sparse comment over it says:
+Changes since v1
+================
+1. Add defconfig change.
+2. Fix missing semicolon in MODULE_AUTHOR.
+3. Add original downstream (msm-4.9 tree) copyrights to the driver.
 
-/* Used for MEMORY_HOTPLUG */
-#define __meminit        __section(".meminit.text") __cold notrace \
-                                                  __latent_entropy
+Description
+===========
+BWMON is a data bandwidth monitor providing throughput/bandwidth over certain
+interconnect links in a SoC.  It might be used to gather current bus usage and
+vote for interconnect bandwidth, thus adjusting the bus speed based on actual
+usage.
 
-so how does ima_free_kexec_buffer() have anything to do with
-MEMORY_HOTPLUG?
+The work is built on top of Thara Gopinath's patches with several cleanups,
+changes and simplifications.
 
-It calls memblock_phys_free() which is __init_memblock.
+Cc: Rajendra Nayak <quic_rjendra@quicinc.com>
 
-Now __init_memblock is defined as
+Best regards,
+Krzysztof
 
-#define __init_memblock __meminit
+Krzysztof Kozlowski (4):
+  dt-bindings: interconnect: qcom,msm8998-cpu-bwmon: add BWMON device
+  soc: qcom: icc-bwmon: Add bandwidth monitoring driver
+  arm64: defconfig: enable Qualcomm Bandwidth Monitor
+  arm64: dts: qcom: sdm845: Add CPU BWMON
 
-for some CONFIG_ARCH_KEEP_MEMBLOCK thing so I guess that is the
-connection.
-
-But then the couple other functions which call into memblock are all
-__init...
-
-IOW, I probably am missing something...
-
-Thx.
+ .../interconnect/qcom,msm8998-llcc-bwmon.yaml |  85 ++++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  37 ++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/soc/qcom/Kconfig                      |  15 +
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/icc-bwmon.c                  | 421 ++++++++++++++++++
+ 7 files changed, 567 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,msm8998-llcc-bwmon.yaml
+ create mode 100644 drivers/soc/qcom/icc-bwmon.c
 
 -- 
-Regards/Gruss,
-    Boris.
+2.34.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
