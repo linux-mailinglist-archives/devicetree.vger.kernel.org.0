@@ -2,165 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E465356026A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D8B560272
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:21:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbiF2ORA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:17:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47374 "EHLO
+        id S231345AbiF2OVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 10:21:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbiF2OQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:16:59 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623842ED5B;
-        Wed, 29 Jun 2022 07:16:58 -0700 (PDT)
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25TEElIS003730;
-        Wed, 29 Jun 2022 14:16:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=cHy38VAaYfwUL1rpWnFpkNYgiHgrJYl/KVo8ZW+UcrM=;
- b=eU8PvES2MDv1rWgeOGt4waBT2BpeTvMJzfYXZeu0jOhn7/f4QaXZIU2oCXg9Xh8yhMGd
- xFcCftfvts7SjW2abIhfNCae8fMezIYeEFpdxGR1Seqq38pNZprkr8WYcsC5lU1gmRyz
- B3pa63LIb0ErZv2drcuvX5QWWduVcSTM7j9qeU79TWgah5icw46NSrW6bPRhxE4Mipcz
- TWWgfaEGXt4pchopFzm5JBCH4T3rtGiXDKworScHTCsxUAtuSrwjpjdxJkcO4erLs6AG
- KwaIHbgOBMJBUCUwkSDtYbf3fvTb6eCyXyO3JbvmJZebCTv4uS2QGPezgMrrQDv2xo8O TQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3h0rb580v1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 29 Jun 2022 14:16:41 +0000
-Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 25TEGfHl008991;
-        Wed, 29 Jun 2022 14:16:41 GMT
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3h0rb580ut-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 29 Jun 2022 14:16:41 +0000
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 25TE5xGh004496;
-        Wed, 29 Jun 2022 14:16:40 GMT
-Received: from b03cxnp08025.gho.boulder.ibm.com (b03cxnp08025.gho.boulder.ibm.com [9.17.130.17])
-        by ppma03dal.us.ibm.com with ESMTP id 3gwt0aggdq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 29 Jun 2022 14:16:40 +0000
-Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
-        by b03cxnp08025.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 25TEGcsd25821584
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 29 Jun 2022 14:16:38 GMT
-Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 982C1BE051;
-        Wed, 29 Jun 2022 14:16:38 +0000 (GMT)
-Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 16305BE054;
-        Wed, 29 Jun 2022 14:16:38 +0000 (GMT)
-Received: from [9.47.158.152] (unknown [9.47.158.152])
-        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Wed, 29 Jun 2022 14:16:38 +0000 (GMT)
-Message-ID: <6e097ec9-0657-b920-89c5-cef3e95bd7ea@linux.ibm.com>
-Date:   Wed, 29 Jun 2022 10:16:37 -0400
+        with ESMTP id S229654AbiF2OVJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:21:09 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 455DC1B7AD;
+        Wed, 29 Jun 2022 07:21:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D1E3060F6A;
+        Wed, 29 Jun 2022 14:21:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26B52C34114;
+        Wed, 29 Jun 2022 14:21:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656512467;
+        bh=OYKzPYxHTOMiN4mNEQ3kYHayFya3umGiQznKSLxwEz8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SX4DDeafZB2Em2q9yBygWmXs80vIeocbXTcr9hjy9ft9NrMM+2KpboJNjLtQ36K5L
+         slD4RlDhWfbmFcN7LC8IjGeLRWolnsvj1rSKMAgF715T7gzLqfS+5daLiEcVUMsW5l
+         xd0sg/iRH3T5KFh6OYf4lJiJTyppvcmE+M3O2NeD6UgqICqtEJyQe5swfqfi9RIvKA
+         YjSbfslE8IB3ZkaCyNcCEMHnGh9W0UyA3lN24AxUFtnuQq/+1W8mYj4EsNoGAo6Leh
+         Ykt7uym+0rxbrk7VEUxwMSWHL8KAcq9BX99yfyktImjRIIzfOuPgR3w4nSvrb4koVF
+         ti3WQC6Arut8Q==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o6YYz-0004rF-U8; Wed, 29 Jun 2022 16:21:06 +0200
+Date:   Wed, 29 Jun 2022 16:21:05 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v15 5/7] dt-bindings: PCI: qcom: Support additional MSI
+ interrupts
+Message-ID: <Yrxf0QANRAeLCVAU@hovoldconsulting.com>
+References: <20220620112015.1600380-1-dmitry.baryshkov@linaro.org>
+ <20220620112015.1600380-6-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 1/3] tpm: of: Move of-tree specific code from tpm
- driver into of driver
-Content-Language: en-US
-To:     Jarkko Sakkinen <jarkko@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, kexec@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
-        nayna@linux.ibm.com, nasastry@in.ibm.com,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Frank Rowand <frowand.list@gmail.com>
-References: <20220616154130.2052541-1-stefanb@linux.ibm.com>
- <20220616154130.2052541-2-stefanb@linux.ibm.com>
- <20220627224325.GB3082294-robh@kernel.org>
- <170c78f7-f0ba-c186-dacf-55759dae9b83@linux.ibm.com>
- <Yru83e4OLW7vH5/o@kernel.org>
-From:   Stefan Berger <stefanb@linux.ibm.com>
-In-Reply-To: <Yru83e4OLW7vH5/o@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: tIUxx4YKQ9ejkBKzzE9b6Rri7pkvOR0z
-X-Proofpoint-GUID: _H4DtsbsPJ0mRAmXjonrw9KfRF1GT3s2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-06-29_17,2022-06-28_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- mlxscore=0 phishscore=0 lowpriorityscore=0 priorityscore=1501
- suspectscore=0 mlxlogscore=999 spamscore=0 bulkscore=0 impostorscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2204290000 definitions=main-2206290052
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220620112015.1600380-6-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/28/22 22:45, Jarkko Sakkinen wrote:
-> On Tue, Jun 28, 2022 at 09:29:48AM -0400, Stefan Berger wrote:
->>
->>
->> On 6/27/22 18:43, Rob Herring wrote:
->>> On Thu, Jun 16, 2022 at 11:41:28AM -0400, Stefan Berger wrote:
->>>> Simplify tpm_read_log_of() by moving Openfirmware-specific code into
->>>> the Openfirmware driver to make the code reusable. Call the new
->>>
->>> There is no such 'Openfirmware driver'.
->>>
->>>> of_tpm_get_sml_parameters() function from the TPM Openfirmware driver.
->>>>
->>>> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
->>>> Cc: Jarkko Sakkinen <jarkko@kernel.org>
->>>> Cc: Jason Gunthorpe <jgg@ziepe.ca>
->>>> Cc: Rob Herring <robh+dt@kernel.org>
->>>> Cc: Frank Rowand <frowand.list@gmail.com>
->>>> ---
->>>>    drivers/char/tpm/eventlog/of.c | 31 +++++--------------------------
->>>>    drivers/of/Makefile            |  2 +-
->>>>    drivers/of/device_node.c       | 27 +++++++++++++++++++++++++++
->>>
->>> Humm, definitely the wrong direction. Generally, code for specific
->>> bindings does not go in drivers/of/. There used to be some, but we've
->>> moved it to the appropriate subsystems. kexec was an exception to not
->>> have 2 copies of the same code in arch/.
->>
->> The function I am moving here is called by the TPM subsystem and also now by
->> of/kexec.c. The latter is compiled under the following conditions:
->>
->> ifdef CONFIG_KEXEC_FILE
->> ifdef CONFIG_OF_FLATTREE
->> obj-y	+= kexec.o
->> endif
->> endif
->>
->> The code that current calls it is compiled under the following conditions:
->>
->> tpm-$(CONFIG_OF) += eventlog/of.o
->>
->> To make it available to both I could keep it in the TPM subsystem like this:
->>
->> obj-$(CONFIG_OF) = tpm_of.o
->>
->>
->> Jarrko, if you read this, any comment?
->>
->>
->>     Stefan
+On Mon, Jun 20, 2022 at 02:20:13PM +0300, Dmitry Baryshkov wrote:
+> On Qualcomm platforms each group of 32 MSI vectors is routed to the
+> separate GIC interrupt. Document mapping of additional interrupts.
 > 
-> Why can't you convert of_tpm_get_sml_parameters() to inline function?
-
-I can do that and put it into include/linux/tpm.h. The only concern 
-would have been the size of the function.
-
-Thanks,
-    Stefan
-
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 51 +++++++++++++++++--
+>  1 file changed, 48 insertions(+), 3 deletions(-)
 > 
-> BR, Jarkko
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index 0b69b12b849e..7e84063afe25 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -43,11 +43,12 @@ properties:
+>      maxItems: 5
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 8
+>  
+>    interrupt-names:
+> -    items:
+> -      - const: msi
+> +    minItems: 1
+> +    maxItems: 8
+>  
+>    # Common definitions for clocks, clock-names and reset.
+>    # Platform constraints are described later.
+> @@ -623,6 +624,50 @@ allOf:
+>          - resets
+>          - reset-names
+>  
+> +    # On newer chipsets support either 1 or 8 msi interrupts
+> +    # On older chipsets it's always 1 msi interrupt
+> +  - if:
+> +      properties:
+> +        compatibles:
+
+This conditional always evaluates to false due to the typo in the
+property name here (plural "compatibles").
+
+I've just posted a fix for this (and another bug just like it) as part
+of a series that depends on this series:
+
+	https://lore.kernel.org/all/20220629141000.18111-1-johan+linaro@kernel.org/
+
+Not sure if you need to respin a v16 just for this but otherwise it
+could be folded in here.
+
+> +          contains:
+> +            enum:
+> +              - qcom,pcie-msm8996
+> +              - qcom,pcie-sc7280
+> +              - qcom,pcie-sc8180x
+> +              - qcom,pcie-sdm845
+> +              - qcom,pcie-sm8150
+> +              - qcom,pcie-sm8250
+> +              - qcom,pcie-sm8450-pcie0
+> +              - qcom,pcie-sm8450-pcie1
+> +    then:
+> +      oneOf:
+> +        - properties:
+> +            interrupts:
+> +              maxItems: 1
+> +            interrupt-names:
+> +              items:
+> +                - const: msi
+> +        - properties:
+> +            interrupts:
+> +              minItems: 8
+> +            interrupt-names:
+> +              items:
+> +                - const: msi0
+> +                - const: msi1
+> +                - const: msi2
+> +                - const: msi3
+> +                - const: msi4
+> +                - const: msi5
+> +                - const: msi6
+> +                - const: msi7
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        interrupt-names:
+> +          items:
+> +            - const: msi
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+
+Johan
