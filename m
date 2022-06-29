@@ -2,210 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12753560136
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 15:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 507DC560142
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 15:29:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232733AbiF2NX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 09:23:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57024 "EHLO
+        id S231897AbiF2N22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 09:28:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbiF2NX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 09:23:56 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5A01EEE4
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 06:23:55 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id q6so32495000eji.13
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 06:23:55 -0700 (PDT)
+        with ESMTP id S229968AbiF2N21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 09:28:27 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ACD11902D;
+        Wed, 29 Jun 2022 06:28:25 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id jb13so14109743plb.9;
+        Wed, 29 Jun 2022 06:28:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=bTc+9vraxg+Jp5bKZOKnmt3sZm7i9sLfDA3h0E40ZE0=;
-        b=kuTZc/BMdKAqCExUt2A8qTipZw8vfXBlk3C1NkvhN1p+yEqZmGRE8a1vRdzbc9HFHw
-         sJgEJreP4zorhl7lPCqvI4GvePU7NY9g3Q43XF2R6PBKJq074n7/I59hGjoGUHCDwSN/
-         rfAN3r9Ca8oan4l+NphL4xHs+QVMSBYWtqXWY5lHjakGRYWpFPX5iq0K/Oa/So+G7ihV
-         dnzn3CEbyb/ECUR/BsKu2rXe+Oc6DXNOB/+wGb4ld0OzLSbl6ipOXyIkekI+eKDJTvNW
-         D7WECRmatbLhomSFBeMGgEFnd+JYg7eX/itdHpvb/EmeDTUYbeMfGGFzcWK6vFgtb1bK
-         LCPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=bTc+9vraxg+Jp5bKZOKnmt3sZm7i9sLfDA3h0E40ZE0=;
-        b=r/WDj+9MZ/C2Venit+wQvTFoqM/qIl6WsgjEzUwZ5f2m0XpyV30kOUU/NToJ+ZpwO4
-         PRWNqPAEtAy+/OFF3a0tsj0n7bX/fH5pRYmQ7+Pv3wjLuuc8UnF+lkVSovOCvWC4HQq1
-         ugI6fDlb9McKgXdasVNXG2GbHfJNVbKbOXXfZ/EYmdceF/yKO6ODy1Veqh131pX3RMRk
-         L8SG9zIFs+ETjL99rz5rv/YGcZSAR0Wa8NwmJDgMU5G0X5EvfPaoRJ9nUkCZB9+nGviY
-         mbgsDfDAZ2kF+Tm83ETJYXtYKO+i3bGDq7X7O/9xuH++P6ZaCCL9uEtQ17YVM6fvwBXH
-         Repw==
-X-Gm-Message-State: AJIora8jpeqwooT8yBmEzeWiIblCQh1cjO/mm9vg3PGdWDSq8EkGgiea
-        ON7x7MVX6dAICD0MsyIXOG/luQ==
-X-Google-Smtp-Source: AGRyM1v11VnSNbZ6+il0NcaTX8oa+GpOwQoB5uOk6h/4PSodDcPkMaY3ClrXxIlnVUVvaEiCBXZdvQ==
-X-Received: by 2002:a17:906:58cf:b0:722:e4e1:c174 with SMTP id e15-20020a17090658cf00b00722e4e1c174mr3326097ejs.85.1656509034201;
-        Wed, 29 Jun 2022 06:23:54 -0700 (PDT)
-Received: from [192.168.0.185] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i25-20020a056402055900b00435681476c7sm11456559edx.10.2022.06.29.06.23.53
+        bh=j7eMblZ/umfNsu6amY7Gfrgh8aKRk8TXNeQEA2osXGM=;
+        b=qB+LK4bUP2pVrDcZnUOgL3pm7iIsQWJH0BWoAjH2r5nHj7VZCSi9STgZg2acwbSQQZ
+         KV99vdnkERyU02Vg/HEE2q5SZiMrSIVunb3aru/NmvExPwWernWgdgvu3pDtFPDd5KgY
+         syyaZzc7ceMLGP4jv9+g2sZfRBV0Kef0Bdh6fVCSFKGjbutJ5jUJKPTwz1GaThitudGL
+         SK3J7+JgRO/k4n6zRM1Cor9d9h2Babyn0oL9qdGRAX+g/SCzvNRPcBfFVfgib1qvBMqY
+         u4GFSBOtHXIIHjRF37at7ehOWROgxMEWyfCiij3eUx6KoyPuhu7He2h6u2V9b9ovHERr
+         lajw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :subject:content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=j7eMblZ/umfNsu6amY7Gfrgh8aKRk8TXNeQEA2osXGM=;
+        b=ZzSIiYZuEzuVuCzE4vjjnanE2ARwMQFbuv68OrBAXArVB0Ptq9m5Rq06Q61TW82DFy
+         H9SSl3gIEhfqf2KV0aqyZTSaScbSFENfvSrLs6OJf8znD0L6v4nVza4j4S9keOLduPog
+         4PXa/7lFPuZOUb1k1Kj0SNhOFGjXSyrW9U4Xs5GRvm/kZ9wXpkZkMcYihg0PVzxkuQ/M
+         yn6ErH5ybhtD7MCb4KEoqG2/tdoL7JcMN1gOVGEXDstbrNLG+ItKHwtwtLV3uFdu/EF5
+         rcQt/oQMlP7Fmshe2lzfEwWvUtXcVPQpg7pozbAeJO8rgzsYaJnrdHiN6rN74Z6P+vB/
+         N2LA==
+X-Gm-Message-State: AJIora9eKL6AvvfmePpuu0Rxdx9ZXFOHGIEEoGSKZ3u9uNmaiJYd2SW7
+        4Df6DPo6N6otjabm0bTzhnNs7EoN5TE=
+X-Google-Smtp-Source: AGRyM1uRW3TiEavmuScTeedq6x/Emvmj08CLZePmHPOHDet4jJYb3gDk7lKGD8lz403QJaBip4nOEg==
+X-Received: by 2002:a17:90b:4c4e:b0:1ec:bc42:47c2 with SMTP id np14-20020a17090b4c4e00b001ecbc4247c2mr5640272pjb.180.1656509305035;
+        Wed, 29 Jun 2022 06:28:25 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id bd7-20020a056a00278700b0052090076426sm11785914pfb.19.2022.06.29.06.28.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 06:23:53 -0700 (PDT)
-Message-ID: <a2422718-2ec4-dbad-0245-1d78dbb39f25@linaro.org>
-Date:   Wed, 29 Jun 2022 15:23:52 +0200
+        Wed, 29 Jun 2022 06:28:23 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <072325f3-dab4-6b50-3959-bddc6330732f@roeck-us.net>
+Date:   Wed, 29 Jun 2022 06:28:21 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: spi: convert spi_atmel to json-schema
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: realtek,otto-wdt: add RTL9310
 Content-Language: en-US
-To:     Sergiu Moga <sergiu.moga@microchip.com>, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Kavyasree.Kotagiri@microchip.com, UNGLinuxDriver@microchip.com
-References: <20220629125804.137099-1-sergiu.moga@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220629125804.137099-1-sergiu.moga@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Sander Vanheule <sander@svanheule.net>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <84d873d7dd375cd2392f89fa6bd9e0fe5dda4e1c.1656356377.git.sander@svanheule.net>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <84d873d7dd375cd2392f89fa6bd9e0fe5dda4e1c.1656356377.git.sander@svanheule.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 14:58, Sergiu Moga wrote:
-> Convert SPI binding for Atmel/Microchip SoCs to Device Tree Schema
-> format.
+On 6/27/22 12:00, Sander Vanheule wrote:
+> Add the realtek,rtl9310-wdt compatible to the Realtek Otto watchdog
+> binding.
 > 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> Signed-off-by: Sander Vanheule <sander@svanheule.net>
+
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+
 > ---
->  .../devicetree/bindings/spi/atmel,spi.yaml    | 82 +++++++++++++++++++
->  .../devicetree/bindings/spi/spi_atmel.txt     | 36 --------
->  2 files changed, 82 insertions(+), 36 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/atmel,spi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi_atmel.txt
+>   Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/atmel,spi.yaml b/Documentation/devicetree/bindings/spi/atmel,spi.yaml
-> new file mode 100644
-> index 000000000000..751618a47235
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/atmel,spi.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/atmel,spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Atmel SPI device
-> +
-> +maintainers:
-> +  - Mark Brown <broonie@kernel.org>
+> diff --git a/Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml b/Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
+> index 11b220a5e0f6..099245fe7b10 100644
+> --- a/Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
+> @@ -29,6 +29,7 @@ properties:
+>         - realtek,rtl8380-wdt
+>         - realtek,rtl8390-wdt
+>         - realtek,rtl9300-wdt
+> +      - realtek,rtl9310-wdt
+>   
+>     reg:
+>       maxItems: 1
 
-This should be rather someone from Microchip.
-
-> +
-> +allOf:
-> +  - $ref: "spi-controller.yaml#"
-
-No need for quotes.
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: atmel,at91rm9200-spi
-> +      - items:
-
-These are not items, just single entry. Should be combined with above
-and made an 'enum'.
-
-> +          - const: microchip,sam9x60-spi
-> +      - items:
-> +          - const: microchip,sam9x60-spi
-> +          - const: atmel,at91rm9200-spi
-
-This is wrong. Either this is a fallback or it is not. It's not the
-Schroedinger's cat... Maybe your DTS are wrong.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  cs-gpios: true
-
-No need, coming from spi-controller.yaml.
-
-> +
-> +  clock-names:
-> +    description:
-> +      Tuple listing input clock names, "spi_clk" is a required element.
-
-Skip description.
-
-> +    contains:
-> +      const: spi_clk
-> +    additionalItems: true
-
-no additionalItems.
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  atmel,fifo-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Maximum number of data the RX and TX FIFOs can store for FIFO
-> +      capable SPI controllers.
-
-minimum and maximum for values, if it is known.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clock-names
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi1: spi@fffcc000 {
-> +        compatible = "atmel,at91rm9200-spi";
-> +        reg = <0xfffcc000 0x4000>;
-> +        interrupts = <13 IRQ_TYPE_LEVEL_HIGH 5>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        clocks = <&spi1_clk>;
-> +        clock-names = "spi_clk", "str2";
-
-This does not make really sense. You have one clock.
-
-> +        cs-gpios = <&pioB 3 GPIO_ACTIVE_HIGH>;
-> +        atmel,fifo-size = <32>;
-> +
-> +        mmc@0 {
-> +            compatible = "mmc-spi-slot";
-> +            reg = <0>;
-> +            gpios = <&pioC 4 GPIO_ACTIVE_HIGH>;    /* CD */
-> +            spi-max-frequency = <25000000>;
-> +        };
-
-
-Best regards,
-Krzysztof
