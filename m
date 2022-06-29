@@ -2,111 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCD185609AD
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 20:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA530560956
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 20:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbiF2Sp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 14:45:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56538 "EHLO
+        id S230342AbiF2Sok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 14:44:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231533AbiF2SpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 14:45:24 -0400
-X-Greylist: delayed 185 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 29 Jun 2022 11:45:23 PDT
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B5424BE7;
-        Wed, 29 Jun 2022 11:45:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1656528135;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=4NqtGbDAxBLulsvaYxNMvmwnavVr0rNTo9Kj5OnQgwM=;
-    b=sxJJg8HHS0bfDv7UUqMwc/C9TaxRAv27nJuHr4gdZyJgrsHxKTpk4BFwh/1rJr9fC7
-    hcLxxp18nfuCBaAN/lA4daLVKImRQDRMTogSsxf5npmiH5d+EFmRKZJgzAn48EPPOi1c
-    z/Zbze1yOEi0CSK0Mxys+omQp7RDodBs7SbWU//T0oSsW7az2/Fo6q7R0QSZnzpE9QRZ
-    VrdDDiFTqoM3bGY+GOsOdZuQpkbKRDYoBnestKpTxTJXTinLatz1g7NcCIR37FqNBlkc
-    7ztADPNCp17ycbX/W7Qg8xpwOHbcZh1OYvv+4HrtjbuQFc2u8Y7Z8Rtb8Gw9zZUz39Hl
-    Ncig==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrK8+86Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.46.1 AUTH)
-    with ESMTPSA id yfdd30y5TIgF0cZ
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Wed, 29 Jun 2022 20:42:15 +0200 (CEST)
-Date:   Wed, 29 Jun 2022 20:42:08 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229948AbiF2Soj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 14:44:39 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB63925296
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:37 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id k129so8496840wme.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ujlFidKBYN3+gnt+1Wkvol7kmUwt+TJSsn/V9xvehgY=;
+        b=FOsaCOs4FhntcBVLVzvRAs2gDZxoyx3YHWEOhRh45yswt/+jKUwE/J0wNxaZ37V6Uc
+         zuxSruVBSYWJDtgARcDoe5RocT823Ey0njk5JlleU3d0qYwcgqh6fodDsvAnnvbvV7Rm
+         PY3MlPeU1iH3j3/ZPjhi8DaO/OfWsUbzBea7z+PFQC921e9IBleQBh66fo7u2hKhyarj
+         5uvUGrXTVCRqFYQUTptcKkWgRxYwWQNU4qoXt5ehOXJMh8e1gGppyJaQ2eRKydUR+3Ht
+         l5p4BtxvL9zi+7zSv32N5RRgYtbMdTeb2fbubnUmSY4CPVXLHJ7NbZqjxV/soVbvVz+r
+         yCJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ujlFidKBYN3+gnt+1Wkvol7kmUwt+TJSsn/V9xvehgY=;
+        b=eA+Fo8CsEZf32Tsgzb120BY5198KyuRoA2/EwLIUkx9T5jDxY+Rw3yadmFoorJ/4a5
+         LVnFxb3Q8Hfc3uI8y3sHEoWvJ1p7AJ3BCkzNxdeqPQ2SkUv1luUrKvVad2lNAoL1vw2b
+         78V+4D/HX0z1BJtfSVbqw6oQu3zu8hBpM/Bg7H/mhpVcKm+kxzN0/dcigsrMC+N35urt
+         hiFjsIy9lm8OJFHjWRQiOmHIPLfALjEBX1wd/UHDnHgxJElrohUY3V/DJqgEgvKdq1Fz
+         DwbOr1AKauqFIfwqJxMJcMHyILAKheZfnHIDv5FzGP/6sCzeH2f4GV+9dA5Ls0yyRvlB
+         F0Jw==
+X-Gm-Message-State: AJIora+x5HJ7q8AueZIKSGlXHBnTlMe1mNIzTJnkEUvQ8srAFbC5RA27
+        uDSBkdRLwQU3SaFsp/C62wH82w==
+X-Google-Smtp-Source: AGRyM1vkI72xwUrVzdm01K07LqtX2m50dz3LRYbM6zcBvoybVSkmTwAhtiBUgec39zvaIkLF0EZJrg==
+X-Received: by 2002:a05:600c:3516:b0:39c:8091:31b6 with SMTP id h22-20020a05600c351600b0039c809131b6mr7587210wmq.164.1656528276189;
+        Wed, 29 Jun 2022 11:44:36 -0700 (PDT)
+Received: from henark71.. ([51.37.234.167])
+        by smtp.gmail.com with ESMTPSA id u23-20020a7bcb17000000b0039aef592ca0sm3834371wmj.35.2022.06.29.11.44.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jun 2022 11:44:35 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Johan Hovold <johan@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 3/5] arm64: dts: qcom: add SC8280XP platform
-Message-ID: <Yryc8AUIPoWmeyB9@gerhold.net>
-References: <20220629041438.1352536-1-bjorn.andersson@linaro.org>
- <20220629041438.1352536-4-bjorn.andersson@linaro.org>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH v3 00/15] Canaan devicetree fixes
+Date:   Wed, 29 Jun 2022 19:43:29 +0100
+Message-Id: <20220629184343.3438856-1-mail@conchuod.ie>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220629041438.1352536-4-bjorn.andersson@linaro.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 09:14:36PM -0700, Bjorn Andersson wrote:
-> Introduce initial support for the Qualcomm SC8280XP platform, aka 8cx
-> Gen 3. This initial contribution supports SMP, CPUfreq, CPU cluster
-> idling, GCC, TLMM, SMMU, RPMh regulators, power-domains and clocks,
-> interconnects, some QUPs, UFS, remoteprocs, USB, watchdog, LLCC and
-> tsens.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> 
-> Changes since v2:
-> - Fixed include sort order
-> - Dropped a stray newline in &CPU0
-> - Renamed reserved-memory regions
-> - Dropped clock-frequency of the timers node
-> - Reduced #address-cells and #size-cells to 1 in timer node
-> 
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2142 ++++++++++++++++++++++++
->  1 file changed, 2142 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> new file mode 100644
-> index 000000000000..c9d608ac87fa
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -0,0 +1,2142 @@
-[...]
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +		clock-frequency = <19200000>;
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Please drop the "clock-frequency" here as well (if possible).
+Hey all,
+This series should rid us of dtbs_check errors for the RISC-V Canaan k210
+based boards. To make keeping it that way a little easier, I changed the
+Canaan devicetree Makefile so that it would build all of the devicetrees
+in the directory if SOC_CANAAN.
+
+I *DO NOT* have any Canaan hardware so I have not tested any of this in
+action. Since I sent v1, I tried to buy some since it's cheap - but could
+out of the limited stockists none seemed to want to deliver to Ireland :(
+I based the series on next-20220617.
 
 Thanks,
-Stephan
+Conor.
+
+Changes since v2:
+- i2s: added clocks maxItems
+- dma: unconditionally extended the interrupts & dropped canaan
+  compatible
+- timer: as per Sergey, split the timer dts nodes in 2 & drop the
+  binding patch
+- ili9341: add a canaan specific compatible to the binding and dts
+
+Changes since v1:
+- I added a new dt node & compatible for the SRAM memory controller due
+  Damien's wish to preserve the inter-op with U-Boot.
+- The dw-apb-ssi binding now uses the default rx/tx widths
+- A new patch fixes bus {ranges,reg} warnings
+- Rearranged the patches in a slightly more logical order
+
+Conor Dooley (15):
+  dt-bindings: display: convert ilitek,ili9341.txt to dt-schema
+  dt-bindings: display: ili9341: document canaan kd233's lcd
+  ASoC: dt-bindings: convert designware-i2s to dt-schema
+  spi: dt-bindings: dw-apb-ssi: update spi-{r,t}x-bus-width
+  dt-bindings: dma: dw-axi-dmac: extend the number of interrupts
+  dt-bindings: memory-controllers: add canaan k210 sram controller
+  riscv: dts: canaan: fix the k210's memory node
+  riscv: dts: canaan: fix the k210's timer nodes
+  riscv: dts: canaan: fix mmc node names
+  riscv: dts: canaan: fix kd233 display spi frequency
+  riscv: dts: canaan: use custom compatible for k210 i2s
+  riscv: dts: canaan: remove spi-max-frequency from controllers
+  riscv: dts: canaan: fix bus {ranges,reg} warnings
+  riscv: dts: canaan: add specific compatible for kd233's LCD
+  riscv: dts: canaan: build all devicetress if SOC_CANAAN
+
+ .../bindings/display/ilitek,ili9341.txt       | 27 ------
+ .../display/panel/ilitek,ili9341.yaml         | 49 +++++++---
+ .../bindings/dma/snps,dw-axi-dmac.yaml        |  4 +-
+ .../memory-controllers/canaan,k210-sram.yaml  | 52 ++++++++++
+ .../bindings/sound/designware-i2s.txt         | 35 -------
+ .../bindings/sound/snps,designware-i2s.yaml   | 94 +++++++++++++++++++
+ .../bindings/spi/snps,dw-apb-ssi.yaml         |  6 --
+ arch/riscv/boot/dts/canaan/Makefile           | 10 +-
+ arch/riscv/boot/dts/canaan/canaan_kd233.dts   |  6 +-
+ arch/riscv/boot/dts/canaan/k210.dtsi          | 76 ++++++++++-----
+ .../riscv/boot/dts/canaan/sipeed_maix_bit.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maix_dock.dts      |  2 +-
+ arch/riscv/boot/dts/canaan/sipeed_maix_go.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maixduino.dts      |  2 +-
+ 14 files changed, 253 insertions(+), 114 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/designware-i2s.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml
+
+
+base-commit: 07dc787be2316e243a16a33d0a9b734cd9365bd3
+-- 
+2.36.1
+
