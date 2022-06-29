@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5403D55FBAE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:20:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A03155FBAB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:20:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232365AbiF2JTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 05:19:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60680 "EHLO
+        id S231659AbiF2JTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 05:19:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232198AbiF2JTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:19:32 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F4C3369DD
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:19:30 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id fd6so21289788edb.5
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:19:30 -0700 (PDT)
+        with ESMTP id S232173AbiF2JTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:19:38 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78D5B36B43
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:19:37 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id l2-20020a05600c4f0200b0039c55c50482so11055959wmq.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:19:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=owp2sKpOvZLelw+J7uoupyFiJ/5VI7r+UIGpCWr6KDM=;
-        b=Ja32fG6hA1Xk14bswf5jxwDw5I3IUOyEzphOyI0UMmMNSH5k4HmoGffQJpVnExxUL9
-         B6B+/dk2yvniR2xiZrxGikeCOS1+ThIaKFWX6N6YuaWFHin1mnkfYMj78Vq4FhNF/Laj
-         Jn6t1UahZZU/KGHy4lc53aGrQodz01a01rjb4WXyC7gOCuuvjZwE4PzXWWg9yM+Mm9wX
-         eX+VKEUAYVwLNzzo/mUTJvksmaWpBAN9iqSQ8PLigMhFDdDnrmALTeWiTut7kiccXoPK
-         5LStDVl22Jsv+i6sn+W9m7rUQWkdSWNZtZaOBWIAR4hmRmLTOUjtI+8vNvG+fgazkyB4
-         a8+g==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=YC/LHOFu9z3TE53r3VhOCZbqb8mVfAzk25v1LWZ+ZqI=;
+        b=Ed3hgWnUxXFI184u9opb9TjXY2T34eE81AbBniGXLVVcHymbxexa4jdBt/lXMF9Kkz
+         FdUIWe7VfK4fPiDQVZBi+nA107B3LsrueCE+px7xbaU4/KmqAvz6zlFzpDmteH/JBoCV
+         f0Fq/QLru2/cRpLwCoIq1P05VTwcCI+DT4wreP413sh7YNjbpABPjVzskPNc/5IZ6mBj
+         VEHYnWm5hhwBjgfMRH53biJjU/ZiDX34DEVgtM6EKtMmmIoIeqKyLoJt0Yu9EWkB3D7Q
+         +cZtw01FNAooe+AqUQo5FKPVRZz0P79O5WQq+JTJ/OQ2WZDPHX/9FRUzFBxHzhhpy7v4
+         JKGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=owp2sKpOvZLelw+J7uoupyFiJ/5VI7r+UIGpCWr6KDM=;
-        b=j1Kgl7/iLd1r6Pi/tn/VBcge8OraltIm4NNmkHe4+4S71V3dtrCHpci+QCYbm51UdK
-         VGCd4vAbWLTZ/p31VIBYf4Cxj2PJt0EZnoufWYTZzpXo1rjur0iJMsSFCzxQoIg648qX
-         9Mkd8cRLge8TCGiPP6dON73xcjAbDC+DmDE/SGHKMo+bJcePTo4H4wbBZAynuQY2x6lh
-         YE1mveYZ5MMDoZfsuAFxkosaZdfzhlbZruNzdKoTdtdsxoswpxr0ijN6jT5XXKN9EB8N
-         WRDCjkG49CeKnEb7BOTXthEwI9mrmxFB69p4pfB7J4Q34d/0GaLBOR71ylqp9xnVw0ur
-         xNmg==
-X-Gm-Message-State: AJIora9eflQ3TjdSPBVsKmu0KYIlVjphlVeOzhFhzF6+1cH9Amj7qzUq
-        KBwnfSnPk2TdNJQALeYf4HStVA==
-X-Google-Smtp-Source: AGRyM1uKnAZkB/DxDxKRkat8hrZpbm+OcAgU7aRZNF9rRAEBkxOgdV6PlFEgHSSa3ylaKpJ+5+Xafg==
-X-Received: by 2002:a05:6402:520c:b0:435:af40:8dc6 with SMTP id s12-20020a056402520c00b00435af408dc6mr2907592edd.343.1656494368874;
-        Wed, 29 Jun 2022 02:19:28 -0700 (PDT)
-Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e19-20020a1709061e9300b00726f520bba0sm1093923ejj.216.2022.06.29.02.19.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 02:19:28 -0700 (PDT)
-Message-ID: <218135d6-b9f8-d1e8-453f-d7715387ff32@linaro.org>
-Date:   Wed, 29 Jun 2022 11:19:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 4/4] spi: s3c64xx: add spi port configuration for
- Exynos Auto v9 SoC
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=YC/LHOFu9z3TE53r3VhOCZbqb8mVfAzk25v1LWZ+ZqI=;
+        b=s+f4t8ULQtPHWaxeR4kBn/xnVq7phzwtzx6rXkSIVjF/LqkBTreQAMovSp+rUv7E4h
+         x3nuOzziYUIO3Jo6E+Y8mnxwbgNjsCYgeV1f7Uqccjg7rT1l0xu6GV0AOR2g+tWQ3EFC
+         yob0v0/RBxhAZe7YhnG3oLAvSgFpRZ0HlWo/ADFJXr72EiQQY1mNMDKPBXZQpSCdllEN
+         HMy3ZPw53/vLflFytpb25nXi97G+/BhpgPswEBrUVJQJmKlg3u0DSpEzg2RNZoF3Zq91
+         Y/6Br9SvwTINaTc0Fw8sbuQf1iOaZbCIlsCEkihdhzLoQcnJxylwmB5ve5CH43MUGfpP
+         q3IQ==
+X-Gm-Message-State: AJIora+ADvsYMxlHGeGrTvGTra7TU3y7MptLOlprX4/bIkHPLfOZv5Lb
+        ggAdlBRaDir5olOQ+WVRzT27Zw==
+X-Google-Smtp-Source: AGRyM1uPINxoFek608dfPS7Ua084BqSv6/lwLBKamjon+SCiL8Hvf8zdgsyn+vfL4ZDpJjRuBbE0ww==
+X-Received: by 2002:a05:600c:3508:b0:39c:8240:5538 with SMTP id h8-20020a05600c350800b0039c82405538mr4557016wmq.165.1656494376065;
+        Wed, 29 Jun 2022 02:19:36 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id e10-20020adffd0a000000b0021a3dd1c5d5sm16004597wrr.96.2022.06.29.02.19.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jun 2022 02:19:34 -0700 (PDT)
+Date:   Wed, 29 Jun 2022 10:19:32 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220628044222.152794-1-chanho61.park@samsung.com>
- <CGME20220628044432epcas2p2e2b4c0d52f11c0bf543c537e819224bc@epcas2p2.samsung.com>
- <20220628044222.152794-5-chanho61.park@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220628044222.152794-5-chanho61.park@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] mfd: axp20x: Add AXP221/AXP223/AXP809 GPIO cells
+Message-ID: <YrwZJEFNBUJvmA6x@google.com>
+References: <20220621034224.38995-1-samuel@sholland.org>
+ <20220621034224.38995-3-samuel@sholland.org>
+ <CACRpkdaxodnaJsKfFMvYHWtPwZyACiec4iX3ZXSBL5Ptfa6mRg@mail.gmail.com>
+ <ffe66c81-9a2c-e2b3-ad9c-ad46824fe76e@sholland.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ffe66c81-9a2c-e2b3-ad9c-ad46824fe76e@sholland.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,20 +79,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2022 06:42, Chanho Park wrote:
-> Add exynosautov9 spi port configuration. It supports up to 12 spis so
-> MAX_SPI_PORTS should be increased from 6 to 12.
-> It has DIV_4 as the default internal clock divider and an internal
-> loopback mode to run a loopback test.
+On Tue, 28 Jun 2022, Samuel Holland wrote:
+
+> On 6/28/22 9:03 AM, Linus Walleij wrote:
+> > On Tue, Jun 21, 2022 at 5:42 AM Samuel Holland <samuel@sholland.org> wrote:
+> > 
+> >> These PMICs all contain a compatible GPIO controller.
+> >>
+> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> > 
+> > If I can get Lee's ACK on this patch I suppose I can apply patches
+> > 1-3 to the pin control tree?
 > 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
->  drivers/spi/spi-s3c64xx.c | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
+> Looks like he already applied v1 of this patch (which was identical):
 > 
+> https://lore.kernel.org/lkml/YrnZof9lwsIQCqu7@google.com/
 
+Right, you don't need this one Linus.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Please take the others.
 
-Best regards,
-Krzysztof
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
