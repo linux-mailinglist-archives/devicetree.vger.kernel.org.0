@@ -2,97 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE2045605AD
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 18:21:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E2F5605AA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 18:21:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230286AbiF2QVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 12:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35152 "EHLO
+        id S232012AbiF2QVY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 Jun 2022 12:21:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229699AbiF2QVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 12:21:16 -0400
-Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CB37A34BB9;
-        Wed, 29 Jun 2022 09:21:15 -0700 (PDT)
-Received: from gate.crashing.org (localhost.localdomain [127.0.0.1])
-        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id 25TGD56V017150;
-        Wed, 29 Jun 2022 11:13:05 -0500
-Received: (from segher@localhost)
-        by gate.crashing.org (8.14.1/8.14.1/Submit) id 25TGD3U2017144;
-        Wed, 29 Jun 2022 11:13:03 -0500
-X-Authentication-Warning: gate.crashing.org: segher set sender to segher@kernel.crashing.org using -f
-Date:   Wed, 29 Jun 2022 11:13:03 -0500
-From:   Segher Boessenkool <segher@kernel.crashing.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Ash Logan <ash@heyquark.com>, krzysztof.kozlowski+dt@linaro.org,
-        paulus@samba.org, mpe@ellerman.id.au, christophe.leroy@csgroup.eu,
-        robh+dt@kernel.org, benh@kernel.crashing.org,
-        devicetree@vger.kernel.org, linkmauve@linkmauve.fr,
-        linux-kernel@vger.kernel.org, rw-r-r-0644@protonmail.com,
-        joel@jms.id.au, linuxppc-dev@lists.ozlabs.org, j.ne@posteo.net
-Subject: Re: [PATCH v3 02/12] powerpc: wiiu: device tree
-Message-ID: <20220629161302.GG25951@gate.crashing.org>
-References: <20220622131037.57604-1-ash@heyquark.com> <20220628133144.142185-1-ash@heyquark.com> <20220628133144.142185-3-ash@heyquark.com> <c760e444-57c3-0e1a-0e4d-f79d6ae9867a@linaro.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c760e444-57c3-0e1a-0e4d-f79d6ae9867a@linaro.org>
-User-Agent: Mutt/1.4.2.3i
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S231949AbiF2QVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 12:21:21 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 184F435257
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 09:21:20 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o6aR1-00060d-Vh; Wed, 29 Jun 2022 18:21:00 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o6aQu-003QoU-LD; Wed, 29 Jun 2022 18:20:56 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o6aQx-000DVO-GS; Wed, 29 Jun 2022 18:20:55 +0200
+Message-ID: <c168df990e1187bf44a5c46be53aa6b20d30d14d.camel@pengutronix.de>
+Subject: Re: [PATCH v2 0/2] i2c: Add new driver for Renesas RZ/V2M controller
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Sven Peter <sven@svenpeter.dev>, Jan Dabros <jsd@semihalf.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Date:   Wed, 29 Jun 2022 18:20:55 +0200
+In-Reply-To: <20220628194526.111501-1-phil.edworthy@renesas.com>
+References: <20220628194526.111501-1-phil.edworthy@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 11:58:18AM +0200, Krzysztof Kozlowski wrote:
-> On 28/06/2022 15:31, Ash Logan wrote:
-> > +	model = "nintendo,wiiu";
+Hi Phil,
+
+On Di, 2022-06-28 at 20:45 +0100, Phil Edworthy wrote:
+> Hi,
 > 
-> It's not compatible, but user-visible string, e.g. "Nintendo Wii U"
+> The Renesas RZ/V2M SoC (r9a09g011) has a new i2c controller. This series
+> add the driver. One annoying problem is that the SoC uses a single reset
+> line for two i2c controllers, and unfortunately one of the controllers
+> is managed by some firmware, not by Linux. Therefore, the driver just
+> deasserts the reset.
 
-The "model" property in OF is documented as:
+This sounds scary. If the driver is never loaded, and the reset is
+never deasserted, what happens to the firmware trying to access the
+other i2c controller? Does it hang? Or write to the reset controller
+registers to deassert the reset? If so, is there any protection against
+concurrent access from firmware and reset controller driver?
 
----
-“model”                                                                S
-Standard property name to define a manufacturer’s model number.
-
-prop-encoded-array:
-  Text string, encoded with encode-string.
-A manufacturer-dependent string that generally specifies the model name
-and number (including revision level) for this device. The format of the
-text string is arbitrary, although in conventional usage the string
-begins with the name of the device’s manufacturer as with the “name”
-property.
-Although there is no standard interpretation for the value of the
-“model” property, a specific device driver might use it to learn, for
-instance, the revision level of its particular device.
-
-See also: property, model.
-
-Used as: " XYZCO,1416-02" encode-string " model" property
----
-
-> > +	cpus {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> > +		/* TODO: Add SMP */
-> > +		PowerPC,espresso@0 {
-> 
-> Node name should be generic, so "cpu". Unless something needs the
-> specific node name?
-
-This is how most other PowerPC firmwares do it.  The PowerPC processor
-binding is older than the generic naming practice, so CPU nodes have
-device_type "cpu" instead.  This is a required property btw, with that
-value.  (There is no requirement on the names of the CPU nodes).
-
-There is no added value in generic naming for CPU nodes anyway, since
-you just find them as the children of the "/cpus" node :-)
-
-
-Segher
+regards
+Philipp
