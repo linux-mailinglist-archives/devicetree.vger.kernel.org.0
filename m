@@ -2,98 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCF4155FEBC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A6A655FEBE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:37:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232640AbiF2LhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 07:37:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42472 "EHLO
+        id S232749AbiF2LhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 07:37:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232638AbiF2LhD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:37:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 251E4FD34;
-        Wed, 29 Jun 2022 04:37:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A76A5619AF;
-        Wed, 29 Jun 2022 11:37:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE976C34114;
-        Wed, 29 Jun 2022 11:36:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656502622;
-        bh=dSIdq7JC6ZEBfIR3l2QmQJOHZZDgsMua0zlvIzt80VI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IV64jujEl1lfHCsDBW591Z3BuiCMrIU1O+WBuUGXrYJCNxyJjoJttqABwpFMZ3Y81
-         hFgcFrRiBEfZ79QE0+MzKYtiLyU0qTgQq5hm8iOxqNhI0IOxEnpjZV37yn/2P0qkME
-         uwtMyolDR98EaqjZsUdOPDFMuxIgi+yYB9RCZy6SJ69jtsyHqDoLzDkmcxfqyCkMod
-         ZonjXv/6q4AiNDqGREDG36d4clUnuH1uY0tbpFNnBJrFC66UeZVdoEj/X2L3fUVQvi
-         QKQx/AyuetBLk+hSJnkXVLgBvo3+6z370tYOGoY6Mdr/h5byfIStAK6WjrqdadfPlZ
-         4pl75ifwn9iwQ==
-Date:   Wed, 29 Jun 2022 12:36:56 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andi Shyti <andi@etezian.org>,
+        with ESMTP id S232638AbiF2LhO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:37:14 -0400
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F5AAB7F1;
+        Wed, 29 Jun 2022 04:37:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kernkonzept.com; s=mx1; h=In-Reply-To:Content-Type:MIME-Version:References:
+        Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=SSCPB9pAS9pvDKAWwMFfH89gInRxYovar8rDhCnxRHg=; b=DX5Xm9MwAXtkIm20QZxbhCZkSJ
+        IIKRCau45yfAPH1ZJGPk1+Dk1urm0m+5hLkSKdkSYlyXWO5FJngUZmtLakMiWFHBqJrXEF1qNOnK4
+        IBSZpGLenQOCyutD5NmZh+MNrVoSX29vmmm2CAEWG4b9CsXK5BpoZ14IQNk3DOexageyJQxI+QGKK
+        60RE4C74Q+BclH0TA+aMA+7+7EmiqAgvMLY0aIAoC6TFYqmyIeodohMe7XQwjzr7dI0L5EEFyNxJC
+        RotL/aEskwlj/weqLDo8dQpL6OLCHm3HpMyYbmfdRsUpWZYX1Mhd3KUc8moiYIImkpLCY67lkPKAi
+        NqZSS0pQ==;
+Received: from [10.22.3.24] (helo=kernkonzept.com)
+        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
+        id 1o6W0I-006Sbe-5S; Wed, 29 Jun 2022 13:37:06 +0200
+Date:   Wed, 29 Jun 2022 13:37:00 +0200
+From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/4] spi: s3c64xx: support custom value of internal
- clock divider
-Message-ID: <Yrw5WKWq6sMEKBmn@sirena.org.uk>
-References: <20220629102304.65712-1-chanho61.park@samsung.com>
- <CGME20220629102527epcas2p42e99f44d529d215623bd0e12a082d1dd@epcas2p4.samsung.com>
- <20220629102304.65712-3-chanho61.park@samsung.com>
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Add DT schema for
+ qcom,msm8909-tlmm
+Message-ID: <Yrw5UnFXKCZvAr2d@kernkonzept.com>
+References: <20220628145502.4158234-1-stephan.gerhold@kernkonzept.com>
+ <20220628145502.4158234-2-stephan.gerhold@kernkonzept.com>
+ <91d972d2-689c-d357-869f-fbd826173e33@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="HAtCNg6OqyvUsmZi"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220629102304.65712-3-chanho61.park@samsung.com>
-X-Cookie: Booths for two or more.
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <91d972d2-689c-d357-869f-fbd826173e33@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 29, 2022 at 11:38:01AM +0200, Krzysztof Kozlowski wrote:
+> On 28/06/2022 16:55, Stephan Gerhold wrote:
+> > Document the "qcom,msm8909-tlmm" compatible for the TLMM/pin control
+> > block in the MSM8909 SoC, together with the allowed GPIOs and functions.
+> > 
+> > Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> > ---
+> >  .../bindings/pinctrl/qcom,msm8909-tlmm.yaml   | 152 ++++++++++++++++++
+> >  1 file changed, 152 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+> > new file mode 100644
+> > index 000000000000..e03530091478
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+> > @@ -0,0 +1,152 @@
+> > [...]
+> > +patternProperties:
+> > +  '-state$':
+> > +    oneOf:
+> > +      - $ref: "#/$defs/qcom-msm8909-tlmm-state"
+> 
+> No quotes here and other places, should be needed. I know you copied
+> from other bindings, but at least let's try new files to be proper.
+> 
 
---HAtCNg6OqyvUsmZi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The quotes are necessary, since # starts a comment in YAML and the
+property would be effectively empty. :)
 
-On Wed, Jun 29, 2022 at 07:23:02PM +0900, Chanho Park wrote:
-> Modern exynos SoCs such as Exynos Auto v9 have different internal clock
-> divider, for example "4". To support this internal value, this adds
-> clk_div of the s3c64xx_spi_port_config and assign "2" as the default
-> value to existing s3c64xx_spi_port_config.
+I tried it anyway but "dt_binding_check" complains as suspected:
+qcom,msm8909-tlmm.yaml: patternProperties:-state$:oneOf:0:$ref: None is not of type 'string'
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
-
---HAtCNg6OqyvUsmZi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmK8OVcACgkQJNaLcl1U
-h9AXKQgAg14h9aGv1DqGvTWdAbzqKiPCrC+YB/liN+o0njPpCkRImRxdJePYOZMC
-rneJPQfxB4/o+cchNoMZ1c9j18GOeg2eunlGA2PZ8T8ZLq7j8b0F0b4smTquLJiY
-QmSR1kO/Ml+3dlG9Ct/iW2MMoWIEBVpl8jN/oHhr6PcHMAJ6xCTEIgap78HwV7XP
-0IL+i0NfvKI7KzB6aXgQj+06JPfdoo29e8sn+skc2M2lQGJcnCHnPSMUjZKkOkB2
-KNDO3Ur3bAh+CVdfpzgrcOaH5l7Y3tlGdfnrrlypYU5hcN4LGeich8y3m3ROYUfD
-hefzVZwI+AGqT5gaimihDj27rxsyqQ==
-=+CO7
------END PGP SIGNATURE-----
-
---HAtCNg6OqyvUsmZi--
+Thanks,
+Stephan
