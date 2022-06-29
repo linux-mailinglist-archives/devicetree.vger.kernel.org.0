@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A03155FBAB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:20:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E54E055FBB0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231659AbiF2JTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 05:19:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60836 "EHLO
+        id S231194AbiF2JUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 05:20:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232173AbiF2JTi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:19:38 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78D5B36B43
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:19:37 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id l2-20020a05600c4f0200b0039c55c50482so11055959wmq.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:19:37 -0700 (PDT)
+        with ESMTP id S230525AbiF2JUl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:20:41 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0926D369C4
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:20:40 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id c65so21315865edf.4
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:20:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=YC/LHOFu9z3TE53r3VhOCZbqb8mVfAzk25v1LWZ+ZqI=;
-        b=Ed3hgWnUxXFI184u9opb9TjXY2T34eE81AbBniGXLVVcHymbxexa4jdBt/lXMF9Kkz
-         FdUIWe7VfK4fPiDQVZBi+nA107B3LsrueCE+px7xbaU4/KmqAvz6zlFzpDmteH/JBoCV
-         f0Fq/QLru2/cRpLwCoIq1P05VTwcCI+DT4wreP413sh7YNjbpABPjVzskPNc/5IZ6mBj
-         VEHYnWm5hhwBjgfMRH53biJjU/ZiDX34DEVgtM6EKtMmmIoIeqKyLoJt0Yu9EWkB3D7Q
-         +cZtw01FNAooe+AqUQo5FKPVRZz0P79O5WQq+JTJ/OQ2WZDPHX/9FRUzFBxHzhhpy7v4
-         JKGg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=/bGFUVva0+eqpjZbExgqKoAVcxN/oVONvgi4F4arg44=;
+        b=t4IGMtdSyE/Wo7kjPAJ53CR2QfXqvh1cbI0QM6qHJEDsxh4FTpOMqTTC7yWSBE5OrF
+         GWiXmlYmjE8gKpJOJdQnWsfWNOy0PiLTr6gXdiEiP0ehu7dQKNdvSds4zF3xEU6/PyY8
+         8xqXCN6CpWeoOFbULJ7QV2UloefWyunwXOIPVqaXHRnGo3OeJWnFCNBOsS1aZH866RuC
+         tsJiIj3wKulYvzImnBe6A+mzOOh7SAn/4KNVWFguXw7ruBwnHXWawMW5bQu5RgzCa5Nb
+         fKc67uYmFP//Sy9mIh3aRLL+yW1UGu9aiTjTMnI4dr/ii4la2YHJgbXpVZmP9lEajECO
+         1ekQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=YC/LHOFu9z3TE53r3VhOCZbqb8mVfAzk25v1LWZ+ZqI=;
-        b=s+f4t8ULQtPHWaxeR4kBn/xnVq7phzwtzx6rXkSIVjF/LqkBTreQAMovSp+rUv7E4h
-         x3nuOzziYUIO3Jo6E+Y8mnxwbgNjsCYgeV1f7Uqccjg7rT1l0xu6GV0AOR2g+tWQ3EFC
-         yob0v0/RBxhAZe7YhnG3oLAvSgFpRZ0HlWo/ADFJXr72EiQQY1mNMDKPBXZQpSCdllEN
-         HMy3ZPw53/vLflFytpb25nXi97G+/BhpgPswEBrUVJQJmKlg3u0DSpEzg2RNZoF3Zq91
-         Y/6Br9SvwTINaTc0Fw8sbuQf1iOaZbCIlsCEkihdhzLoQcnJxylwmB5ve5CH43MUGfpP
-         q3IQ==
-X-Gm-Message-State: AJIora+ADvsYMxlHGeGrTvGTra7TU3y7MptLOlprX4/bIkHPLfOZv5Lb
-        ggAdlBRaDir5olOQ+WVRzT27Zw==
-X-Google-Smtp-Source: AGRyM1uPINxoFek608dfPS7Ua084BqSv6/lwLBKamjon+SCiL8Hvf8zdgsyn+vfL4ZDpJjRuBbE0ww==
-X-Received: by 2002:a05:600c:3508:b0:39c:8240:5538 with SMTP id h8-20020a05600c350800b0039c82405538mr4557016wmq.165.1656494376065;
-        Wed, 29 Jun 2022 02:19:36 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id e10-20020adffd0a000000b0021a3dd1c5d5sm16004597wrr.96.2022.06.29.02.19.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 02:19:34 -0700 (PDT)
-Date:   Wed, 29 Jun 2022 10:19:32 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] mfd: axp20x: Add AXP221/AXP223/AXP809 GPIO cells
-Message-ID: <YrwZJEFNBUJvmA6x@google.com>
-References: <20220621034224.38995-1-samuel@sholland.org>
- <20220621034224.38995-3-samuel@sholland.org>
- <CACRpkdaxodnaJsKfFMvYHWtPwZyACiec4iX3ZXSBL5Ptfa6mRg@mail.gmail.com>
- <ffe66c81-9a2c-e2b3-ad9c-ad46824fe76e@sholland.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/bGFUVva0+eqpjZbExgqKoAVcxN/oVONvgi4F4arg44=;
+        b=dmXKZPj9bchvKROHinZ8Zam6YFqFpyPLHGAlqXq3N3Q21qGScnENQeF330tFb2DHLP
+         idOfg7pTdxeQzJvWDziOZpheaYh4qTbRqaGFyv003Xn61G1zQoa7/tqLBZ7dfnvVzKZ8
+         7jFTp6/kP6fY0DS+wokfu8/H3su4+IkaYyiddeLvk7axmNvk/FvUjAk6a+8dxwzC7/pu
+         aWeN39T2M2qfbm6wbjTv8BibS+E8WZgLB2OOL3sxrAa6RGXAV+3sFrXIZ54SvmzTa1Jh
+         1bj6LUphHW5+XVgvyJJHK02M66yYfxub/Je3cp+m9CEBUmvDI+mM3EWNxdYBakJw0paN
+         jWIA==
+X-Gm-Message-State: AJIora88RbpFokKQsjtxfMCoRTL7IvPN/CN6EmWJ64O3yw1j5pJLgKU5
+        MH8+7eSj0kRwUKTaLBO+lDQYag==
+X-Google-Smtp-Source: AGRyM1tLnCrLFBxSD3CTHZS2Sh6m8XGADO7azFSR+gipDQQY0MwG6f87/Kqe5qHGjjI/cHBeJVec8Q==
+X-Received: by 2002:a05:6402:538d:b0:435:7ca6:a136 with SMTP id ew13-20020a056402538d00b004357ca6a136mr2945835edb.268.1656494438629;
+        Wed, 29 Jun 2022 02:20:38 -0700 (PDT)
+Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id oz20-20020a170906cd1400b006f3ef214dc7sm7416333ejb.45.2022.06.29.02.20.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 02:20:38 -0700 (PDT)
+Message-ID: <da86b25a-097d-63fe-083a-5600b72b0bdb@linaro.org>
+Date:   Wed, 29 Jun 2022 11:20:36 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ffe66c81-9a2c-e2b3-ad9c-ad46824fe76e@sholland.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 2/4] spi: s3c64xx: support custom value of internal
+ clock divider
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220628044222.152794-1-chanho61.park@samsung.com>
+ <CGME20220628044432epcas2p11e6f927321c30cf5557dbd41d749ef28@epcas2p1.samsung.com>
+ <20220628044222.152794-3-chanho61.park@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220628044222.152794-3-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,28 +80,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022, Samuel Holland wrote:
-
-> On 6/28/22 9:03 AM, Linus Walleij wrote:
-> > On Tue, Jun 21, 2022 at 5:42 AM Samuel Holland <samuel@sholland.org> wrote:
-> > 
-> >> These PMICs all contain a compatible GPIO controller.
-> >>
-> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> > 
-> > If I can get Lee's ACK on this patch I suppose I can apply patches
-> > 1-3 to the pin control tree?
+On 28/06/2022 06:42, Chanho Park wrote:
+> Modern exynos SoCs such as Exynos Auto v9 has different internal clock
+> divider, for example "4". To support this internal value, this adds
+> clk_div of the s3c64xx_spi_port_config and assign "2" as the default
+> value to existing s3c64xx_spi_port_config.
 > 
-> Looks like he already applied v1 of this patch (which was identical):
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  drivers/spi/spi-s3c64xx.c | 28 ++++++++++++++++++++--------
+>  1 file changed, 20 insertions(+), 8 deletions(-)
 > 
-> https://lore.kernel.org/lkml/YrnZof9lwsIQCqu7@google.com/
+> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+> index b3c50c7665fc..51a0e830441b 100644
+> --- a/drivers/spi/spi-s3c64xx.c
+> +++ b/drivers/spi/spi-s3c64xx.c
+> @@ -131,6 +131,7 @@ struct s3c64xx_spi_dma_data {
+>   * @fifo_lvl_mask: Bit-mask for {TX|RX}_FIFO_LVL bits in SPI_STATUS register.
+>   * @rx_lvl_offset: Bit offset of RX_FIFO_LVL bits in SPI_STATUS regiter.
+>   * @tx_st_done: Bit offset of TX_DONE bit in SPI_STATUS regiter.
+> + * @clk_div: Internal clock divider, if not specified, use 2 as the default.
+>   * @quirks: Bitmask of known quirks
+>   * @high_speed: True, if the controller supports HIGH_SPEED_EN bit.
+>   * @clk_from_cmu: True, if the controller does not include a clock mux and
+> @@ -148,6 +149,7 @@ struct s3c64xx_spi_port_config {
+>  	int	rx_lvl_offset;
+>  	int	tx_st_done;
+>  	int	quirks;
+> +	int	clk_div;
+>  	bool	high_speed;
+>  	bool	clk_from_cmu;
+>  	bool	clk_ioclk;
+> @@ -620,6 +622,7 @@ static int s3c64xx_spi_config(struct s3c64xx_spi_driver_data *sdd)
+>  	void __iomem *regs = sdd->regs;
+>  	int ret;
+>  	u32 val;
+> +	u32 div = sdd->port_conf->clk_div;
+>  
+>  	/* Disable Clock */
+>  	if (!sdd->port_conf->clk_from_cmu) {
+> @@ -668,16 +671,15 @@ static int s3c64xx_spi_config(struct s3c64xx_spi_driver_data *sdd)
+>  	writel(val, regs + S3C64XX_SPI_MODE_CFG);
+>  
+>  	if (sdd->port_conf->clk_from_cmu) {
+> -		/* The src_clk clock is divided internally by 2 */
+> -		ret = clk_set_rate(sdd->src_clk, sdd->cur_speed * 2);
+> +		ret = clk_set_rate(sdd->src_clk, sdd->cur_speed * div);
+>  		if (ret)
+>  			return ret;
+> -		sdd->cur_speed = clk_get_rate(sdd->src_clk) / 2;
+> +		sdd->cur_speed = clk_get_rate(sdd->src_clk) / div;
+>  	} else {
+>  		/* Configure Clock */
+>  		val = readl(regs + S3C64XX_SPI_CLK_CFG);
+>  		val &= ~S3C64XX_SPI_PSR_MASK;
+> -		val |= ((clk_get_rate(sdd->src_clk) / sdd->cur_speed / 2 - 1)
+> +		val |= ((clk_get_rate(sdd->src_clk) / sdd->cur_speed / div - 1)
+>  				& S3C64XX_SPI_PSR_MASK);
+>  		writel(val, regs + S3C64XX_SPI_CLK_CFG);
+>  
+> @@ -871,6 +873,7 @@ static int s3c64xx_spi_setup(struct spi_device *spi)
+>  	struct s3c64xx_spi_csinfo *cs = spi->controller_data;
+>  	struct s3c64xx_spi_driver_data *sdd;
+>  	int err;
+> +	u32 div = 2;
 
-Right, you don't need this one Linus.
+This assignment is not effective - shortly later is being overwritten.
 
-Please take the others.
+>  
+>  	sdd = spi_master_get_devdata(spi->master);
+>  	if (spi->dev.of_node) {
+> @@ -889,22 +892,24 @@ static int s3c64xx_spi_setup(struct spi_device *spi)
+>  
+>  	pm_runtime_get_sync(&sdd->pdev->dev);
+>  
+> +	div = sdd->port_conf->clk_div;
+> +
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+
+Best regards,
+Krzysztof
