@@ -2,70 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 115DF56213D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 19:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD592562146
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 19:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232887AbiF3R1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 13:27:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50540 "EHLO
+        id S235650AbiF3RaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 13:30:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232771AbiF3R1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 13:27:19 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3582A3EA9A;
-        Thu, 30 Jun 2022 10:27:18 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id r133so19821246iod.3;
-        Thu, 30 Jun 2022 10:27:18 -0700 (PDT)
+        with ESMTP id S235462AbiF3RaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 13:30:07 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C156546
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:30:05 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id bi22-20020a05600c3d9600b003a04de22ab6so27990wmb.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:30:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=rBlnAHZeL5VXmWVXaof16R/ixBz+W8sUAmztG7bWwdA=;
+        b=K/Dd7SQmYF1n30wjzfyn+wicHPLnbgHBONWFA8yAzv5u7Fky/uX0TGZGQaO+6dFuom
+         awxlBLCLS0X9hQhgqJoAMg6wxGndw53pbu69G315tkgEUpHyFbeY3Vpkjirw3+vb3tsw
+         kNoYgqP9blq7fPXcJEIZzxuE2kCGoQrJMzxEMeOs6A1FPTa++hVZHHveIt8jEWbTf5Vt
+         sCpqz0irESo8uEhacBZmzgdgVIJPeRrkYnCmhBNcXs7TrBn3tDc7J7VYMcCXHCI2wxgR
+         oQdua2yioRJKcxkhcmgDSVtH8LOas0DUeKKZe0WnAmVmagyolaBzbSzPqiudslvlVrnY
+         sdJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gAIq4Rl9pd6TxPRv3sr3GJgtDudvjHKIBCMW/VUrpdE=;
-        b=oE8p0anwU9KdLpAzwLKYsBB/NV98tbTkO2WIaqSuJoRe+fzwOKa+aM0xLfm1vHVitl
-         ch62Wzq7ug6bsUreKkr/SvflnQFDnPB77VEfZtU059kbMG8oi1cPVGa6OVcwJfwCHO+4
-         EqOx8gJ7D3pWIoIxxgWrhTHmpUNr0AzVygdrmPwnoVr9QdEPod73rAAc80wIaabFmh6W
-         u/T8GokxM5oAs2w2DMQKPtixYpe+hZqF3YJYLkEDch2w+llharZeXCKAGPgzddIGljrH
-         asQlffBtl31Ofh7WxSB6gmsJeVx6vJNJaTlZwaeIM3pn94Mp8a2zNwhU0n/SAc3k9HcU
-         20vQ==
-X-Gm-Message-State: AJIora/OlzILBud/RLpckBpuz8sro0snH5vjXD8QoFapPbPT0FIf14fW
-        nEfywTqYoioG+EV7D+sJ5Q==
-X-Google-Smtp-Source: AGRyM1uTqecJG4oLM0Hqt1nbSkcVzYR2SuSmzltnPom8Dgg7oWRL1d/WE3gL0+M9bu23yw3WQc4lpg==
-X-Received: by 2002:a05:6638:1686:b0:33e:9977:2e1f with SMTP id f6-20020a056638168600b0033e99772e1fmr160037jat.7.1656610035981;
-        Thu, 30 Jun 2022 10:27:15 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p192-20020a0229c9000000b0033cd5a2b231sm1818537jap.47.2022.06.30.10.27.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 10:27:15 -0700 (PDT)
-Received: (nullmailer pid 2943107 invoked by uid 1000);
-        Thu, 30 Jun 2022 17:27:13 -0000
-Date:   Thu, 30 Jun 2022 11:27:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Paolo Abeni <pabeni@redhat.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Eric Dumazet <edumazet@google.com>,
-        linux-kernel@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH net-next v2 01/35] dt-bindings: phy: Add QorIQ SerDes
- binding
-Message-ID: <20220630172713.GA2921749-robh@kernel.org>
-References: <20220628221404.1444200-1-sean.anderson@seco.com>
- <20220628221404.1444200-2-sean.anderson@seco.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=rBlnAHZeL5VXmWVXaof16R/ixBz+W8sUAmztG7bWwdA=;
+        b=WxP5Yo8JuKSbKIkaPJ+VVKOainQj6ZG3unJR4wFED0wGCSyVXetQRDEOrQft8c65WN
+         Fj1ebjWS5dCOorMky1VfEOWfCr+9FpoMT1SiyKFOI3osZsVCuGlApGysongDkg6usqMP
+         e9v4LfebTRn7U3sI3Sza7PtefTL7Eg/Gi9n6++CjH1i2QkXKoT8tdKBc3in+O7AQKfoT
+         E2ZY7OMlNu2EyO0hAhBjOZgK1WZE2Y8W53sFoJ0IjVgBEkF7yuSh9kUwGaTHwzWoqLvd
+         IbOE9YrcWhtv92Z/w9StJXDHZPopGy39Ak+h2/J47/d2Io7EWzKX4Cdw0wJN4pP7MfoA
+         +GKg==
+X-Gm-Message-State: AJIora9BYfmX87l33eGREq9rg8OhYmNtRxzCE28OH7d/p28BzJQwnwD+
+        w6iL6FKppapLngTT8eC8kyWM/A==
+X-Google-Smtp-Source: AGRyM1tLj/vYf0am5BBMHwtKy2IXo0Ez0eVYfADzx1DrAlAhLtgm15DK4/UdzX7sr7zxKR5O2uYPJg==
+X-Received: by 2002:a7b:c354:0:b0:39c:6753:21f8 with SMTP id l20-20020a7bc354000000b0039c675321f8mr11578038wmj.113.1656610204470;
+        Thu, 30 Jun 2022 10:30:04 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id w24-20020a7bc758000000b003a018e43df2sm3323922wmk.34.2022.06.30.10.30.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jun 2022 10:30:04 -0700 (PDT)
+Message-ID: <d177d650-0c61-0ae0-17bb-9d4311582652@linaro.org>
+Date:   Thu, 30 Jun 2022 18:30:02 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220628221404.1444200-2-sean.anderson@seco.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 4/7] dt-bindings: msm: dsi: Add vdd* descriptions back in
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
+        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
+        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org>
+ <20220630120845.3356144-5-bryan.odonoghue@linaro.org>
+ <9BCE52A8-E26D-43A0-86D2-90DFE6CB6C62@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <9BCE52A8-E26D-43A0-86D2-90DFE6CB6C62@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,178 +80,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 06:13:30PM -0400, Sean Anderson wrote:
-> This adds a binding for the SerDes module found on QorIQ processors. The
-> phy reference has two cells, one for the first lane and one for the
-> last. This should allow for good support of multi-lane protocols when
-> (if) they are added. There is no protocol option, because the driver is
-> designed to be able to completely reconfigure lanes at runtime.
-> Generally, the phy consumer can select the appropriate protocol using
-> set_mode. For the most part there is only one protocol controller
-> (consumer) per lane/protocol combination. The exception to this is the
-> B4860 processor, which has some lanes which can be connected to
-> multiple MACs. For that processor, I anticipate the easiest way to
-> resolve this will be to add an additional cell with a "protocol
-> controller instance" property.
+On 30/06/2022 18:16, Dmitry Baryshkov wrote:
 > 
-> Each serdes has a unique set of supported protocols (and lanes). The
-> support matrix is stored in the driver and is selected based on the
-> compatible string. It is anticipated that a new compatible string will
-> need to be added for each serdes on each SoC that drivers support is
-> added for. There is no "generic" compatible string for this reason.
-> 
-> There are two PLLs, each of which can be used as the master clock for
-> each lane. Each PLL has its own reference. For the moment they are
-> required, because it simplifies the driver implementation. Absent
-> reference clocks can be modeled by a fixed-clock with a rate of 0.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> 
-> Changes in v2:
-> - Add #clock-cells. This will allow using assigned-clocks* to configure
->   the PLLs.
-> - Allow a value of 1 for phy-cells. This allows for compatibility with
->   the similar (but according to Ioana Ciornei different enough) lynx-28g
->   binding.
-> - Document phy cells in the description
-> - Document the structure of the compatible strings
-> - Fix example binding having too many cells in regs
-> - Move compatible first
-> - Refer to the device in the documentation, rather than the binding
-> - Remove minItems
-> - Rename to fsl,lynx-10g.yaml
-> - Use list for clock-names
-> 
->  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> new file mode 100644
-> index 000000000000..b5a6f631df9f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/fsl,lynx-10g.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP Lynx 10G SerDes
-> +
-> +maintainers:
-> +  - Sean Anderson <sean.anderson@seco.com>
-> +
-> +description: |
-> +  These Lynx "SerDes" devices are found in NXP's QorIQ line of processors. The
-> +  SerDes provides up to eight lanes. Each lane may be configured individually,
-> +  or may be combined with adjacent lanes for a multi-lane protocol. The SerDes
-> +  supports a variety of protocols, including up to 10G Ethernet, PCIe, SATA, and
-> +  others. The specific protocols supported for each lane depend on the
-> +  particular SoC.
-> +
-> +properties:
-> +  compatible:
-> +    description: |
-> +      Each compatible is of the form "fsl,<soc-name>-serdes-<instance>".
-> +      Although many registers are compatible between different SoCs, the
-> +      supported protocols and lane assignments tend to be unique to each SerDes.
-> +      Additionally, the method of activating protocols may also be unique.
+> All three descriptions are the same. This looks like a c&p issue
 
-We typically have properties for handling these variables. Numbering 
-instances is something we avoid.
+Those are what the previous values were.
 
-> +      Because of this, each SerDes instance will need its own compatible string.
-
-> +      In cases where two SoCs share the same SerDes implementation (such as the
-> +      LS1046A and LS1026A), both SoCs should share the same compatible strings.
-
-No, not unless the 2 parts are just fuse or package pinout differences. 
-Otherwise, there's always the chance they are not 'the same' and have 
-different bugs.
-
-You could have "fsl,ls1046a-serdes", "fsl,ls1026a-serdes" (whichever SoC 
-is older last) if you think they are 'the same'.
-
-
-> +    enum:
-> +      - fsl,ls1046a-serdes-1
-> +      - fsl,ls1046a-serdes-2
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +    description: |
-> +      The cell contains the index of the PLL, starting from 0. Note that when
-> +      assigning a rate to a PLL, the PLLs' rates are divided by 1000 to avoid
-> +      overflow. A rate of 5000000 corresponds to 5GHz.
-> +
-> +  "#phy-cells":
-> +    minimum: 1
-> +    maximum: 2
-> +    description: |
-> +      The cells contain the following arguments:
-> +      - The first lane in the group. Lanes are numbered based on the register
-> +        offsets, not the I/O ports. This corresponds to the letter-based ("Lane
-> +        A") naming scheme, and not the number-based ("Lane 0") naming scheme. On
-> +        most SoCs, "Lane A" is "Lane 0", but not always.
-> +      - Last lane. For single-lane protocols, this should be the same as the
-> +        first lane.
-> +      If no lanes in a SerDes can be grouped, then #phy-cells may be 1, and the
-> +      first cell will specify the only lane in the group.
-
-Usually when we have per lane phys, the consumer side will have a 'phys' 
-entry per lane.
-
-Having a variable number of cells isn't great either. We usually only do 
-that when we have to extend an existing binding.
-
-> +
-> +  clocks:
-> +    maxItems: 2
-> +    description: |
-> +      Clock for each PLL reference clock input.
-> +
-> +  clock-names:
-> +    items:
-> +      - enum: &clocks
-> +          - ref0
-> +          - ref1
-> +      - enum: *clocks
-
-Whoa, there's a first. Don't use YAML anchors and references. We only 
-support JSON subset of YAML.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - "#clock-cells"
-> +  - "#phy-cells"
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    serdes1: phy@1ea0000 {
-> +      #clock-cells = <1>;
-> +      #phy-cells = <2>;
-> +      compatible = "fsl,ls1046a-serdes-1";
-> +      reg = <0x1ea0000 0x2000>;
-> +      clocks = <&clk_100mhz>, <&clk_156mhz>;
-> +      clock-names = "ref0", "ref1";
-> +      assigned-clocks = <&serdes1 0>;
-> +      assigned-clock-rates = <5000000>;
-> +    };
-> +
-> +...
-> -- 
-> 2.35.1.1320.gc452695387.dirty
-> 
-> 
+I'll come up with something less robotic though.
