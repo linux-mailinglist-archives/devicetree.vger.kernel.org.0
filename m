@@ -2,67 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E31856222E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:38:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8995C562239
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236628AbiF3SiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 14:38:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51930 "EHLO
+        id S236685AbiF3SmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 14:42:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233011AbiF3SiW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:38:22 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E338A175AD
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:38:18 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id o9so27692752edt.12
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:38:18 -0700 (PDT)
+        with ESMTP id S236119AbiF3Sl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:41:59 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A883CA6A
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:41:58 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id c65so48406edf.4
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:41:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2DwEM0qN8ptN2i11wSwIxwERJqz2l48AZXNzyEzFpDc=;
-        b=cNYBI273VbE+YS8dSUNXib07/1hOFtWSnlwLabTH/pH5jbi6ghQvicYI9bqFppVBQ5
-         bRjecihaozaIBQTwXBUMur6ONNFxXJ3jSi0PDl4pHw2Wc941rLKQpaTlBaI6K8FK4P/D
-         KrF4YdIABvpqW9Ew2N+zH3okrNI+mUwWf3IGNX0V/iIkRdIlBtQJD+e65rpDI/Tty6UM
-         SMqIfPXgXjUcZOqkh/j4SNiosPUD2qoOee6GkSkQYSEs38OUssBaUNAuFALSORPzXSGC
-         GqXwoppoKYVsqWvJT/P4SLs4Ule0iYEX5YS4sZkzS1QDELV6l4BZNtx7LpafzxSIXCtn
-         nT6A==
+        bh=r0BVI/sdd04/zhgmWH7aIaeeBm4+Vvke6BUCZyn3hyg=;
+        b=uQTmE1Um4nOuhHiHeoUXDpZUYNgOcZG0vZxcrqiB1QeU5sNRVVLaPdb2o1oZqUOXfF
+         A5sa7uthLkoOVgJDy+fMTIUpr6aOnUSjdNFaWhhriiLY4PiMOg3pIX8QBA4Uo4ssS/wV
+         qp9uGYpWrM0dQxdlb11sJihLToqdMiZwOYQO4ufTpOpWqdCkRv66MabVG6kXOORGcoUY
+         kvRRElmIve3QQM04NCRKPZh8sfP3QTPCwONY2feUHQZZVX01bwUxeWcEtrpYDlReQDz6
+         N+7T0ZVmAdDC0isxLUhFpOERJZp15rEytx4xmTeeMioSZYJg8KxWis5O9Md+XRBYEoHa
+         K5Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2DwEM0qN8ptN2i11wSwIxwERJqz2l48AZXNzyEzFpDc=;
-        b=X/+u9xJioB0/6oqjTkpWXBzCGkxaMYVeet4+ukTFyTmiwkk/ZKxXBE0kFmBx/Zl1Ua
-         h4KXtba5QlIsuv6Js3BLAtNYGPDnM6Yu472pfpw2fgZDyE+1rE3R8Zv/dp3Qj0S9go9/
-         1SDrpxe2poq+iCMOa/zZMgT2DOwXVkfbR0mTxRzGT0JT/rSZY9ELu2phBp2B5f4RXjH9
-         ONZwAWw+VonO8qLzvtEi7+V68NtiSckWmAOzYhH+4iFdiKh3CqkB04pEfOjB3OYgs42N
-         k0v5RSowDYV2RViPM6WcC1liK0/135fbP4flwTfBBrfL9xeezNWamlHH5AEMsndqK62y
-         xUqw==
-X-Gm-Message-State: AJIora93cpra5nBSLGC2/H2TK7MUkHWLC1qkZl5Ep2XdmjCB5wv2SjON
-        FUna5pDXZwxGsL/KDE2h+gzqpg==
-X-Google-Smtp-Source: AGRyM1vuyOxW82jIW7r9UF2V1ofcD2quQQ/dTTrpq1GH9PYUiDLvQx1LBnxuFB68D5Kq4WY2sPeDcA==
-X-Received: by 2002:a05:6402:5388:b0:435:71b:5d44 with SMTP id ew8-20020a056402538800b00435071b5d44mr13163885edb.364.1656614297494;
-        Thu, 30 Jun 2022 11:38:17 -0700 (PDT)
+        bh=r0BVI/sdd04/zhgmWH7aIaeeBm4+Vvke6BUCZyn3hyg=;
+        b=zDUIcTdGDvcHlfdsECSk8802PBvNYllT1Ct3OdFqzuA1BV2O1jO7177MEUZ1KseO0Z
+         YxDZfuaJmyO7oWVtJGuBvGMpJ7aJqvjAXrfF3OzGhJ4vs+9Swehom1WQrO7+7a+4avlR
+         BgCUeQg28qJZZnVY6Ek9lJfT6pZO/1YmCN7zn0s+HUn5P+wqcLwotTgHcJqlTTyzfkql
+         WbWtT0hgVJECNx373CtWCxBGUCB5MmJIyQPZSeVW8sgpjPgzc6xZo7fYYoT5e89FW4Kd
+         ABPhW8V4YW5Fc7BcqP10BW47YQ1n2bB23BOS8qzSdXla3U1sMo0xEIze6u93Df647FQ9
+         57cA==
+X-Gm-Message-State: AJIora8UCi9i85dt0eLCbD1P8tsD+nez8RTvPhRokmn0F9MZk9nhG9uf
+        vEmJSjHRmU4hUGHbxpKoqzSqGQ==
+X-Google-Smtp-Source: AGRyM1vkKMX06qz0erPeOdymXkH8eYsVt8dkgi/ckKf9JT6cSQDwknrl7psQLouE7nProJTlZBG24g==
+X-Received: by 2002:a05:6402:1c09:b0:435:6562:e70d with SMTP id ck9-20020a0564021c0900b004356562e70dmr13185356edb.203.1656614517044;
+        Thu, 30 Jun 2022 11:41:57 -0700 (PDT)
 Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e34-20020a056402332200b00437d2b6cae5sm3617447eda.83.2022.06.30.11.38.15
+        by smtp.gmail.com with ESMTPSA id p9-20020a170906614900b006f3ef214dc3sm9302978ejl.41.2022.06.30.11.41.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 11:38:16 -0700 (PDT)
-Message-ID: <f86cf3e0-d678-f134-32cc-92143dc42ce1@linaro.org>
-Date:   Thu, 30 Jun 2022 20:38:15 +0200
+        Thu, 30 Jun 2022 11:41:56 -0700 (PDT)
+Message-ID: <42b8bf2c-c343-8fd4-17fd-f22ed83d5d0d@linaro.org>
+Date:   Thu, 30 Jun 2022 20:41:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 2/2] dt-bindings: mailbox: qcom: Add clock-output-names
+Subject: Re: [PATCH v2 2/2] dt-bindings: mediatek: Add assigned clock property
+ and axi clock in example
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, jassisinghbrar@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220630043536.3308546-1-bryan.odonoghue@linaro.org>
- <20220630043536.3308546-3-bryan.odonoghue@linaro.org>
+To:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, bin.zhang@mediatek.com,
+        benliang.zhao@mediatek.com, linux-mediatek@lists.infradead.org
+References: <20220630090157.29486-1-xiangsheng.hou@mediatek.com>
+ <20220630090157.29486-3-xiangsheng.hou@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630043536.3308546-3-bryan.odonoghue@linaro.org>
+In-Reply-To: <20220630090157.29486-3-xiangsheng.hou@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,31 +77,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 06:35, Bryan O'Donoghue wrote:
-> Add clock-output-names as optional so that SoCs such as the msm8939 which
-> have multiple a53 PLLs can latch the appropriate output name in
-> drivers/clk/qcom/apcs-msm8916.c.
+On 30/06/2022 11:01, Xiangsheng Hou wrote:
+> For mt8173, it is needed to add the axi clock for dma mode.
+> And it is may needed to adjust default spi frequency.
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
 > ---
->  .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml   | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml  | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> index f342494fd6108..7f3816cbc0353 100644
-> --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> @@ -63,6 +63,11 @@ properties:
->        - const: aux
->        - const: ref
+> diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+> index 41e60fe4b09f..7523d992a614 100644
+> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+> @@ -61,6 +61,12 @@ properties:
+>        - const: axi
+>        - const: axi_s
 >  
-> +  clock-output-names:
-> +    Usage: optional
-> +    Value type: <string>
-> +    Definition: Name of the output clock.
+> +  assigned-clocks:
+> +    maxItems: 1
+> +
+> +  assigned-clock-parents:
+> +    maxItems: 1
 > +
 
-Not a proper DT schema syntax.
+There is usually no reason to put this in the bindings.
+
+>  required:
+>    - compatible
+>    - reg
+> @@ -82,8 +88,8 @@ examples:
+>          compatible = "mediatek,mt8173-nor";
+>          reg = <0 0x1100d000 0 0xe0>;
+>          interrupts = <1>;
+> -        clocks = <&pericfg CLK_PERI_SPI>, <&topckgen CLK_TOP_SPINFI_IFR_SEL>;
+> -        clock-names = "spi", "sf";
+> +        clocks = <&pericfg CLK_PERI_SPI>, <&topckgen CLK_TOP_SPINFI_IFR_SEL>, <&pericfg CLK_PERI_NFI>;
+> +        clock-names = "spi", "sf", "axi";
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+
 
 Best regards,
 Krzysztof
