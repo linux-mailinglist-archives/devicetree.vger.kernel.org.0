@@ -2,77 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E52E56143A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 10:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3D295614B4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 10:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233600AbiF3IHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 04:07:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33120 "EHLO
+        id S233411AbiF3ITa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 04:19:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233642AbiF3IHY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 04:07:24 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 504F64161E
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 01:07:22 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id e2so25486814edv.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 01:07:22 -0700 (PDT)
+        with ESMTP id S233471AbiF3ITH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 04:19:07 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E804B23
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 01:17:48 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id u14so8702298ljh.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 01:17:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=SX35NYBl18cFyXPhs0piBZ6V9yukiQBwYl3DBSAgvYo=;
-        b=zf/eWGICuhybaZpy1CYnjb96uihegSq1Tm0FONQB4g6jCYFYZ4evOOd9zFLURUeg4D
-         KF0vMmPJF8UfVJOZogLmaTd8EpPM/izgNr5TYWsjDyAMvNWfyl0ZIjn72zYHr3gxuB+o
-         Sx64LlvAuzXC8uFkkPNIJMEoNGvuXXmaKLzn9/rE9XQH7HDi1yo35v1Wzf2ywcYQF3gu
-         pL11d7T5o/I5yjSzlOq5DWSILePGOXbMhWtD5vqY6phtmXogvaCePXiuF23rBqeT6PWO
-         t4OoL52dphH5uZ19j42T/sJVOca+nCyrqFWMvP4H1W4SCi51pYN/mUemOOaburGdOGUM
-         +Mrg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iwgwXCkgqhWhsAYcDwBGLHI9mFw90gt72ulhS68U2Tk=;
+        b=MngPsYYp9yTp+LiWi6ew/M9vK4DeUiYv2hq/teOhHL9u2Y2nqC6dMWQdsqcXqGIODw
+         5tMduKfmxgvq6EO4slP/MOuEhJ/WvLvwZotvNohXUK99MuXA0lQ3a1xEkb4EDqkR0W5c
+         8kbBmk9EL5S2NMCd2ExsuIU3tTL9EqkRwuX/nggVOQ5vc6ClSG9xdxDChYJi9i6HjR+J
+         +L+HRmDhZgsSiNW91MuMe/Nqi5uRaBAIxBTqknL5q0fRd9m8cC9MbShyVurX4faqetor
+         KlWrThKAjCog5/QDKZZoX4QqiYCm6mEv5CvTTntXJ0UtWOwcrMFN9+E0VCrOhrs8PNhb
+         K46A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=SX35NYBl18cFyXPhs0piBZ6V9yukiQBwYl3DBSAgvYo=;
-        b=ePtE5H1OmzaJe6jeHN9eR8n4T4zHqaKrDrdoOuqUrU8X5OxPP/XSnVtGI3Ko3rS1QA
-         IqFctrFxrAJQ1bsDuAvBfZixaTH8jRtEQ7YWNfAhWJFxDKRVwCmQFYTBfrX+U+9tsBiC
-         Aji9kjkJehjNVfrxNUqMB5pCH9PzEA/rB9DRpLC5AE6ntXjPhOPGX8Pw6/Wu4gqeTgbA
-         Fq6t7TYGMQHW1jDi4vqFYT9enwIrX4S4WXgWjGG/PZcMLOYR5satTlIxHzwUTz1UUsAK
-         J6YgOkyivV7atx2IIraKMnJ+w8fzinZnh0GFpoGW554xGeMeqNSTyZEQFbmtHav1dsr+
-         Uj0g==
-X-Gm-Message-State: AJIora+TTOOTNiV28PHANox7/ZVswOS4/8AOkg3xBSWh+5Kc45T2B4vj
-        2kSgmKhiovGsAa5OlVyFljn1BQ==
-X-Google-Smtp-Source: AGRyM1vZqX5lmlghOj96ey25H6ZkmHIbZtFnwEa5ZWItru/2ZEgAy7KZZwC7Ej81Ewk34r6HMc6fhQ==
-X-Received: by 2002:a05:6402:847:b0:437:62bd:bbc0 with SMTP id b7-20020a056402084700b0043762bdbbc0mr9706897edz.285.1656576440937;
-        Thu, 30 Jun 2022 01:07:20 -0700 (PDT)
-Received: from [192.168.0.187] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id n4-20020aa7c784000000b00437e08d319csm1529439eds.61.2022.06.30.01.07.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 01:07:20 -0700 (PDT)
-Message-ID: <167f09c1-795d-1471-20f7-9f4df29355ed@linaro.org>
-Date:   Thu, 30 Jun 2022 10:07:19 +0200
+        bh=iwgwXCkgqhWhsAYcDwBGLHI9mFw90gt72ulhS68U2Tk=;
+        b=5fltdSYGLDqliB91tA7rHI9bb2RynWg+XsSiTXTAnuYQ3qsI4YI4FhSE8F5Qg7hjR7
+         l3jkpjNofUj2EnupXHSau8JHKq9cecemFvpQxOIRq/pz0GiR0dibjY4afzaV2wdNRPMO
+         93KfwMMQT5/cfD1sBRHprVsJxwQg67Ng+Eylu05y3/0brY0JQbxuchceBzNAuQpr37N/
+         SR8W+mK9fvd8jAn6u7C3P8Ty3fv1bSz8xTRVbFjCi4SP2MpJXmorKPNVnIMxC9MqF9iK
+         7tLyLC+KyIY3TJTbGNXB5gudjeHIuFIiTpMAM708jZlSMd2iW1f2X3MOfuxiJ4iMhdC7
+         X1BA==
+X-Gm-Message-State: AJIora/gUJf0cQ4Mq3TP+4Mmikp6B9J/MLCCXT78OPdgrHrZhtX9sSSh
+        YO58wrbAFS3GYxb+zunbv0Hfxg==
+X-Google-Smtp-Source: AGRyM1vG5Bcu+l/FIdi7zPxP8vjkhzHPb/yFlAt0h9EmzNtCM6r+XXga3thU/FLotGxVtQDRs9fYkg==
+X-Received: by 2002:a2e:b049:0:b0:25a:89a2:df44 with SMTP id d9-20020a2eb049000000b0025a89a2df44mr4456080ljl.207.1656577066598;
+        Thu, 30 Jun 2022 01:17:46 -0700 (PDT)
+Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id p18-20020a2eb992000000b0025bda317bdcsm913623ljp.88.2022.06.30.01.17.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jun 2022 01:17:44 -0700 (PDT)
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v9 0/7] clk: qcom: add camera clock controller driver for SM8450 SoC
+Date:   Thu, 30 Jun 2022 11:17:40 +0300
+Message-Id: <20220630081742.2554006-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v4 5/6] media: dt-bindings: ov5693: document YAML binding
-Content-Language: en-US
-To:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        quentin.schulz@theobroma-systems.com,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Daniel Scally <djrscally@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220630074525.481790-1-tommaso.merciai@amarulasolutions.com>
- <20220630074525.481790-6-tommaso.merciai@amarulasolutions.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630074525.481790-6-tommaso.merciai@amarulasolutions.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,15 +70,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 09:45, Tommaso Merciai wrote:
-> Add documentation of device tree in YAML schema for the OV5693
-> CMOS image sensor from Omnivision
-> 
-> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Sakari Ailus <sakari.ailus@iki.fi>
+The patchset adds support of a camera clock controller found on
+QCOM SM8450 SoC, noticeably a camcc pll2 is a new "rivian evo"
+type of pll, its generic support is added in the series.
 
-How Sakari's tag appeared here? There was no email from him.
+Note that SM8450 ES variant has a slightly different configurtion,
+the published version is intended to support SM8450 CS SoC.
 
-Best regards,
-Krzysztof
+Changes from v8 to v9:
+* removed clock-names property per request from Bjorn,
+* corrected a path in the yaml file to the added include file,
+* put status property as the last one in the list of properties,
+* non-functional changes in the clock provider driver code.
+
+Changes from v7 to v8:
+* rebased on top of v5.19-rc2,
+* added Stephen's tags,
+* improved an example found in added yaml file,
+* improved some of the commit messages,
+* narrowed down a list of included headers,
+* constified .hw.init anonymous structs.
+
+Changes from v6 to v7:
+* rebased on top of v5.19-rc1,
+* fixed a warning in a usage example found in yaml file.
+
+Changes from v5 to v6:
+* rebased on top of linux-next,
+* added Rob's tag,
+* fixed a topology of power domains around titan_top.
+
+Changes from v4 to v5:
+* fixed the same typo in a usage example found in yaml file as in v3
+  change.
+
+Changes from v3 to v4:
+* fixed a changed path in the yaml file.
+
+Changes from v2 to v3:
+* fixed a typo in a usage example found in yaml file,
+* renamed dt related files to match the compatible "qcom,sm8450-camcc",
+* minor fixes in the driver per review requests from Bjorn,
+* added Bjorn's tag to a change of exported symbols namespace.
+
+Changes from v1 to v2:
+* updated qcom,camcc-sm8450.yaml according to review comments from Rob,
+* changed qcom,camcc-sm8450.h licence to dual one,
+* disabled camcc device tree node by default,
+* added Stephen's tag,
+* rebased the series on top of clk-for-5.18
+
+Vladimir Zapolskiy (7):
+  dt-bindings: clock: add QCOM SM8450 camera clock bindings
+  arm64: dts: qcom: sm8450: Add description of camera clock controller
+  clk: qcom: clk-alpha-pll: fix clk_trion_pll_configure description
+  clk: qcom: clk-alpha-pll: limit exported symbols to GPL licensed code
+  clk: qcom: clk-alpha-pll: add Lucid EVO PLL configuration interfaces
+  clk: qcom: clk-alpha-pll: add Rivian EVO PLL configuration interfaces
+  clk: qcom: add camera clock controller driver for SM8450 SoC
+
+ .../bindings/clock/qcom,sm8450-camcc.yaml     |   80 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |   16 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/camcc-sm8450.c               | 2856 +++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.c              |  144 +-
+ drivers/clk/qcom/clk-alpha-pll.h              |   11 +-
+ include/dt-bindings/clock/qcom,sm8450-camcc.h |  159 +
+ 8 files changed, 3268 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+ create mode 100644 drivers/clk/qcom/camcc-sm8450.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm8450-camcc.h
+
+-- 
+2.33.0
+
