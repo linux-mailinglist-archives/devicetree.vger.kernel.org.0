@@ -2,81 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 585575624F6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 23:16:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F7B95624FD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 23:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237386AbiF3VQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 17:16:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37704 "EHLO
+        id S237406AbiF3VR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 17:17:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237381AbiF3VQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 17:16:25 -0400
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13B5F33374;
-        Thu, 30 Jun 2022 14:16:25 -0700 (PDT)
-Received: by mail-il1-f172.google.com with SMTP id i17so188617ils.12;
-        Thu, 30 Jun 2022 14:16:25 -0700 (PDT)
+        with ESMTP id S237483AbiF3VR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 17:17:27 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E84133E32;
+        Thu, 30 Jun 2022 14:17:24 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id q18so467629pld.13;
+        Thu, 30 Jun 2022 14:17:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EnTvSgePrhZFZaFA+2vKdGcqExajag+7cCIQmnEgyew=;
+        b=bjk8OnY7U11eIZMBhp3vNNXPhem7A1k/Hi4MA2rhKBbqaNqBkk1iqFOneaRWc9q5/3
+         z9vLJXiU2lTROIarHTFAYWdH4wNAFvElaJFGhSgr1qSVVJNco8VX0dRnZiG7UObpAd+G
+         cIaXpDkPyV4T6UhGlL7zktFXFxov0HB+KdGA/AXR4UbGDpvbZSzVy4wEZRJB5F4TyxIk
+         U2DtiTfh/Ut1cw81B6H7VwzRw17+INs8BbR/hQ5/N7l+J7bZn0mpKCyfEuH0w/vSeUq7
+         CIynOo0cLiE2oMWpDyw6h5idtsaSvqjROoz60YTDF316pYKuN6pEwAcLRjWT0DazBo2M
+         tdHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JaiQRa9DAPraA6IMeaHtsfsxx9rxyM6yNzdmE/ofRe0=;
-        b=2clDUQ7ir8bhlWYioCIafiJYrcouS/8maeKeq1J3EZGFmUmhl3fa82ekjKstMJZ5wt
-         ktZ8kkkOLjNIfNKTvScpF0jit+zaT28e//moDUp6CZMAB6emv3g+WLpiwZMGzQXy3bC5
-         Hv+iou3baZAacHn0iKhIp/LdAe+Xp5G/o6h3urv+kcD7nbqoYsUJOcM/WLZkr2znd4qZ
-         xe4RljPrmWQ4bx5yWNXEexhO3GWWcO1HDvxxwTwMjGsXjAuz912KLdvrNEh38mjF95vk
-         ZGS/0U2U8J9hiKjBBbOKUtMrbBWoHPe6JirOZ400pWfjc1ptn5ilZq5Ixk3a+xAGEAFr
-         911Q==
-X-Gm-Message-State: AJIora9/ht7vnCYpTO3AbrbqJVOvz2lJZY5onkxVeWJ7oNa8dfdCgWE3
-        kIqSrAiLEvedHYyxX+MZwQ==
-X-Google-Smtp-Source: AGRyM1tr/0Nir5l5yIltvIP2yFTOmc1ev6s/ojbhFKZsOAYnOc1wSCyWQORxf+5cOM98VXcgkiHZlw==
-X-Received: by 2002:a92:cd8f:0:b0:2d9:5d44:6a53 with SMTP id r15-20020a92cd8f000000b002d95d446a53mr6406085ilb.226.1656623784259;
-        Thu, 30 Jun 2022 14:16:24 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id bs27-20020a056638451b00b0033195fabca4sm9166992jab.175.2022.06.30.14.16.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 14:16:23 -0700 (PDT)
-Received: (nullmailer pid 3313669 invoked by uid 1000);
-        Thu, 30 Jun 2022 21:16:20 -0000
-Date:   Thu, 30 Jun 2022 15:16:20 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     robh+dt@kernel.org, linux-pm@vger.kernel.org, ilia.lin@kernel.org,
-        agross@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, krzk+dt@kernel.org,
-        bjorn.andersson@linaro.org, rafael@kernel.org,
-        viresh.kumar@linaro.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [RESEND PATCH 1/5] dt-bindings: opp: Add missing compat devices
-Message-ID: <20220630211620.GA3313612-robh@kernel.org>
-References: <20220629130303.3288306-1-bryan.odonoghue@linaro.org>
- <20220629130303.3288306-2-bryan.odonoghue@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EnTvSgePrhZFZaFA+2vKdGcqExajag+7cCIQmnEgyew=;
+        b=ClljQnOwjrthPGxc0FKq3gqX7CVRWsBZVul1SDVrAVNrhVDq+N5pBg0w6jUgE1AsOw
+         RSSFrhwDNGLRCgxUkNW7Stbkv87sSb9D/yfHUhwjA2dO0vdXGEpXFW6kiEHdpAxcGQMX
+         kWTgVpw8mZbx8pFCwkEEe4JJr8t0IjYb04W5qoJwWwFCJQkDXEuRO4gREUh05fiHyH+Z
+         MWIIcP6jHS2QkmSsEpjtdhRH3ya3MiNj6ZWdcC8PPLvKJ7uiOca2UR66Dwco82yX33nd
+         9TfqGCAjXMaxzKdGaQJTo4S3S8UF8x9otO5PrNm9rq9PDaUxoINneQ/CXqQrdHge7AQp
+         TU5Q==
+X-Gm-Message-State: AJIora8NMwDkj8XVmLKBxQ4+nGod3+DREjC1qMDDMnuUMbGDafOonDnU
+        y7S1HEfAbFYUdVrebJD31N4+InHjUmnQ++ttv2k=
+X-Google-Smtp-Source: AGRyM1vDBqhj2OxY6I/jEe7NDmicgN5u0qhJW6F86uSrh4ePqT8HV5n1Y4MixJh4nUoBdYYphPXooSKsm1LfMjPGOoQ=
+X-Received: by 2002:a17:903:328e:b0:16b:8745:bb77 with SMTP id
+ jh14-20020a170903328e00b0016b8745bb77mr17422936plb.70.1656623843711; Thu, 30
+ Jun 2022 14:17:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220629130303.3288306-2-bryan.odonoghue@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220630210327.4645-1-kris@embeddedTS.com>
+In-Reply-To: <20220630210327.4645-1-kris@embeddedTS.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 30 Jun 2022 18:17:11 -0300
+Message-ID: <CAOMZO5DJBQxc9ewO7R_uoHy3_kKq9mGShQn-oJiGyNwWxobsEg@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: imx6qdl-ts7970: Fix ngpio typo and count
+To:     Kris Bahnsen <kris@embeddedts.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Mark Featherston <mark@embeddedts.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Jun 2022 14:02:59 +0100, Bryan O'Donoghue wrote:
-> A number of devices listed in drivers/cpufreq/qcom-cpufreq-nvmem.c appear
-> to be missing from the compatible list.
-> 
-> Cc: ilia.lin@kernel.org
-> Cc: robh+dt@kernel.org
-> Cc: krzk+dt@kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml     | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+Hi Kris,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Thu, Jun 30, 2022 at 6:03 PM Kris Bahnsen <kris@embeddedts.com> wrote:
+>
+> Device-tree incorrectly used "ngpio" which caused the driver to
+> fallback to 32 ngpios.
+>
+> This platform has 62 GPIO registers.
+>
+> Fixes: 9ff8e9fccef9 ("ARM: dts: TS-7970: add basic device tree")
+> Signed-off-by: Kris Bahnsen <kris@embeddedTS.com>
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
