@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 405D75626BE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 01:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E705626C1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 01:19:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231976AbiF3XLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 19:11:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59404 "EHLO
+        id S231915AbiF3XLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 19:11:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232034AbiF3XLP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 19:11:15 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBBD110551;
-        Thu, 30 Jun 2022 16:11:00 -0700 (PDT)
+        with ESMTP id S232085AbiF3XL3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 19:11:29 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B5358FEB;
+        Thu, 30 Jun 2022 16:11:19 -0700 (PDT)
 Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 59ADCD24;
-        Fri,  1 Jul 2022 01:08:04 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BED202A4E;
+        Fri,  1 Jul 2022 01:08:07 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1656630484;
-        bh=UO6yiqlbKWLK2QZVfa94bRYu5Tm4S6nvLjYgFBUA5io=;
+        s=mail; t=1656630488;
+        bh=jX2xREptjTcdw3Dt0HLdq+66A0eTeJEwSsBRZlLZKZg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DANhgPIOXJeWsadSLN68WkSa7k+Q2amqpyTR190WXqMkPEHqwnIHNN8vxgZcgG1F9
-         Q+YPFYmg+kJcgXPjayOA0fbwPG3vriZ1bWJ4su8aT7AZxb14zvqnfMsQkiy5tVtJhd
-         VWjP0EQkSkePqrR8/C086jSKvuKrQX7ATJ1I16r4=
+        b=EvZC8Tay6ZZf3hId1Peivl/WpYQTPS4d9QT7MRg6/icHhbW10EV+CpIekr63gLCrh
+         QoJ2BhBaE/1MKPMZWFz5L/NQdU3Rs9NDfYePknZ9Y2xZ5zMHNQ99j2ktcXg+saxpnX
+         JLAIE1sosJJ3XhzRmScxbMeE+Wj5L3i6ouCSqYSw=
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     linux-media@vger.kernel.org
 Cc:     linux-rockchip@lists.infradead.org,
@@ -34,9 +34,9 @@ Cc:     linux-rockchip@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 42/55] dt-bindings: media: rkisp1: Add port for parallel interface
-Date:   Fri,  1 Jul 2022 02:07:00 +0300
-Message-Id: <20220630230713.10580-43-laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v2 47/55] dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
+Date:   Fri,  1 Jul 2022 02:07:05 +0300
+Message-Id: <20220630230713.10580-48-laurent.pinchart@ideasonboard.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220630230713.10580-1-laurent.pinchart@ideasonboard.com>
 References: <20220630230713.10580-1-laurent.pinchart@ideasonboard.com>
@@ -53,50 +53,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Paul Elder <paul.elder@ideasonboard.com>
 
-The rkisp1 can take an input on the parallel interface. Add a port for
-it, and update the required field. At least one port is required, and
-both may be specified.
+The i.MX8MP ISP is compatbile with the rkisp1 driver. Add it to the list
+of compatible strings. While at it, expand on the description of the
+clocks to make it clear which clock in the i.MX8MP ISP they map to,
+based on the names from the datasheet (which are confusing).
 
 Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
 Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- .../bindings/media/rockchip-isp1.yaml         | 23 +++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/media/rockchip-isp1.yaml | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-index d1489b177331..b3661d7d4357 100644
+index b3661d7d4357..95cf945f7ac5 100644
 --- a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
 +++ b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-@@ -84,8 +84,27 @@ properties:
-                 minItems: 1
-                 maxItems: 4
+@@ -16,6 +16,7 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - fsl,imx8mp-isp
+       - rockchip,px30-cif-isp
+       - rockchip,rk3399-cif-isp
  
--    required:
--      - port@0
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: connection point for input on the parallel interface
-+
-+        properties:
-+          bus-type:
-+            enum: [5, 6]
-+
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+        required:
-+          - bus-type
-+
-+    anyOf:
-+      - required:
-+          - port@0
-+      - required:
-+          - port@1
+@@ -36,9 +37,9 @@ properties:
+     minItems: 3
+     items:
+       # isp0 and isp1
+-      - description: ISP clock
+-      - description: ISP AXI clock
+-      - description: ISP AHB clock
++      - description: ISP clock (for imx8mp, clk)
++      - description: ISP AXI clock (for imx8mp, m_hclk)
++      - description: ISP AHB clock (for imx8mp, hclk)
+       # only for isp1
+       - description: ISP Pixel clock
  
- required:
-   - compatible
 -- 
 Regards,
 
