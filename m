@@ -2,53 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24C4B5621F0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 789995621F8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:26:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236607AbiF3SWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 14:22:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39084 "EHLO
+        id S236168AbiF3S0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 14:26:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236651AbiF3SWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:22:40 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CFF7A427C4;
-        Thu, 30 Jun 2022 11:22:39 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BBDC61063;
-        Thu, 30 Jun 2022 11:22:39 -0700 (PDT)
-Received: from bogus (unknown [10.57.39.193])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0F6993F5A1;
-        Thu, 30 Jun 2022 11:22:33 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 19:21:22 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Conor.Dooley@microchip.com
-Cc:     Niklas.Cassel@wdc.com, mail@conchuod.ie, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        sam@ravnborg.org, Eugeniy.Paltsev@synopsys.com, vkoul@kernel.org,
-        lgirdwood@gmail.com, broonie@kernel.org, fancer.lancer@gmail.com,
-        daniel.lezcano@linaro.org, palmer@dabbelt.com, palmer@rivosinc.com,
-        tglx@linutronix.de, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, masahiroy@kernel.org,
-        damien.lemoal@opensource.wdc.com, geert@linux-m68k.org,
-        dillon.minfei@gmail.com, joabreu@synopsys.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 00/15] Canaan devicetree fixes
-Message-ID: <20220630182122.j7m32mh3xmxwatga@bogus>
-References: <20220629184343.3438856-1-mail@conchuod.ie>
- <Yr3PKR0Uj1bE5Y6O@x1-carbon>
- <20220630175318.g2zmu6ek7l5iakve@bogus>
- <d0634053-d882-fcb5-fd56-32dfbcf4d5ba@microchip.com>
+        with ESMTP id S232034AbiF3S0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:26:43 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8718427C3
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:26:42 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id k20so6278090edj.13
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:26:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3PuKRPSh/SF/mxBY/1za++HjaAyQMFu7x1JJ22qYOXM=;
+        b=zZ/EeN3zeXi31IHT5fF4r2wtXa+gLWo3QARAfliuQE71n85cUS0mgowsaA2Lx9y2dK
+         TgBc4uy7pjBVI5uhshS19E1fb4q7L9ekQ+H21QOe48C5owjGSHhN4VwxCd/Ke5ONnWlv
+         cb1FeTYiL/QyieURcBAuVP/w4hXbtgy0DFqNyMFS+FOXZW/wpLXBSjlMzVV0Yfzrnpnx
+         DgjRrZ+i5VQYuHztLw94rBdVaeUNSMqfw2PaEecSFrkamhdxzetr9gFBOMC4veCWUAGQ
+         SnzBN9CFBxu9XNAkYnDIqVzrWgy2pIL5FaM0S3zr7UdVdmpPccJnvaNxxRGIXOvH/+dg
+         iYTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3PuKRPSh/SF/mxBY/1za++HjaAyQMFu7x1JJ22qYOXM=;
+        b=4d++/YkjRH+bult4S31+isyK3LiMabw+qnJWD3IsZc2aIa/cz+AQDQudias+gDlJgK
+         /WoCjV2xYTE1gNWXlXrJvk+4UU6XyIpI6+D5wY8EIAwFZw4+6/pDx/8QFynEOjsXFYVs
+         EWzE0JrFr1lG5cNgP59ebTi4pFgC2eQKzLDPCdoEfLw+tlG9jOgb0s6uLqaR0pMCFH5e
+         ld2K3M8ieBEDTM8pPWf/qiO4mtMnOro+XT8W2jhIgT3SUhObgdh/qw5wON1kebN1qJ6Y
+         /qb9kjXLfrdWo6a6Beum13Hlc1d4DptpABw4TMusXnUAiOlcJ+EHldSGZtU/s472iXf4
+         HbWA==
+X-Gm-Message-State: AJIora+yee+kN++EUtuDFnmWwSROGBxvgOT2nemudHi5whqQPQtqIVZE
+        QrwfkAbjh7dAGO21rKBPT+9f+w==
+X-Google-Smtp-Source: AGRyM1vxpcdirC6ssqEpjBo44u4Nv5ptVnTjPfoVH9pTB1R4a19Izads/YPO52H2pW4Q+/RBj4t5Og==
+X-Received: by 2002:a05:6402:3514:b0:435:f24a:fbad with SMTP id b20-20020a056402351400b00435f24afbadmr12919908edd.311.1656613601340;
+        Thu, 30 Jun 2022 11:26:41 -0700 (PDT)
+Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d10-20020a17090648ca00b0070b8a467c82sm9378218ejt.22.2022.06.30.11.26.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jun 2022 11:26:40 -0700 (PDT)
+Message-ID: <86504cd3-71ae-32df-0772-e246ff5bd6fa@linaro.org>
+Date:   Thu, 30 Jun 2022 20:26:39 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d0634053-d882-fcb5-fd56-32dfbcf4d5ba@microchip.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 01/11] dt-bindings: arm: mediatek: Add MT8195 Cherry
+ Tomato Chromebooks
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        hsinyi@chromium.org, nfraprado@collabora.com,
+        allen-kh.cheng@mediatek.com, gtk3@inbox.ru, luca@z3ntu.xyz,
+        sam.shih@mediatek.com, sean.wang@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wenst@chromium.org
+References: <20220630153316.308767-1-angelogioacchino.delregno@collabora.com>
+ <20220630153316.308767-2-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220630153316.308767-2-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,55 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 06:01:09PM +0000, Conor.Dooley@microchip.com wrote:
-> On 30/06/2022 18:53, Sudeep Holla wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > On Thu, Jun 30, 2022 at 04:28:26PM +0000, Niklas Cassel wrote:
-> >> On Wed, Jun 29, 2022 at 07:43:29PM +0100, Conor Dooley wrote:
-> >>> From: Conor Dooley <conor.dooley@microchip.com>
-> >>>
-> >>> Hey all,
-> >>> This series should rid us of dtbs_check errors for the RISC-V Canaan k210
-> >>> based boards. To make keeping it that way a little easier, I changed the
-> >>> Canaan devicetree Makefile so that it would build all of the devicetrees
-> >>> in the directory if SOC_CANAAN.
-> >>>
-> >>> I *DO NOT* have any Canaan hardware so I have not tested any of this in
-> >>> action. Since I sent v1, I tried to buy some since it's cheap - but could
-> >>> out of the limited stockists none seemed to want to deliver to Ireland :(
-> >>> I based the series on next-20220617.
-> >>>
-> >>
-> >> I first tried to apply your series on top of next-20220630,
-> >> but was greeted by a bunch of different warnings on boot,
-> >> including endless RCU stall warnings.
-> >> However, even when booting next-20220630 without your patches,
-> >> I got the same warnings and RCU stall.
-> >>
-> > 
-> > Is it possible to share the boot logs please ?
-> > Conor is having issues with my arch_topology/cacheinfo updates in -next.
-> > I would like to know if your issue is related to that or not ?
-> > 
-> >> So I tested your series on top of v5.19-rc4 +
-> >> commit 0397d50f4cad ("spi: dt-bindings: Move 'rx-sample-delay-ns' to
-> >> spi-peripheral-props.yaml") cherry-picked,
-> >> (in order to avoid conflicts when applying your series,)
-> >> and the board was working as intended, no warnings or RCU stalls.
-> >>
-> > 
-> > If possible can you give this branch[1] a try where my changes are and doesn't
-> > have any other changes from -next. Sorry to bother you.
-> > 
-> > Conor seem to have issue with this commit[2], so if you get issues try to
-> > check if [3] works.
+On 30/06/2022 17:33, AngeloGioacchino Del Regno wrote:
+> Document board compatibles for the MT8195 Cherry platform's
+> Tomato Chromebooks, at the time of writing composed of four
+> revisions (r0, r1, r2, r3-r4).
 > 
-> FWIW, my problems with that are not on canaan hw.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-I understand that, just helps to eliminate and see what are the possible
-issues.
 
--- 
-Regards,
-Sudeep
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
