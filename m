@@ -2,60 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B882562423
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 22:30:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4816556246E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 22:40:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236414AbiF3Uag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 16:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55572 "EHLO
+        id S236312AbiF3Ukm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 16:40:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232654AbiF3Uag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 16:30:36 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB4932D1EA;
-        Thu, 30 Jun 2022 13:30:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1656621031;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=gdRmpcca4i4lwPdM656qdPHVyT+kvm6dYdfWzxLz8Ng=;
-    b=o0WzeEza2AbtizdYqI8WdiNpNcD4Gium2//qCG6EqbmF+/Fw9y30Oak2hxiID6VxPs
-    CxosbIVMp4mFt1382Zz9hxcUydFYzXW3llpK1928ufthOzTjVAPomDswSn9uzNerXr8z
-    Vv7DZlm/7B0RHYgFgbFwLfKww1XAuL8wKswkTaAMF8U87KgYaVnUqdPje5bf+JF5HAq8
-    vMD4gPbb3awx6l5jbOQaCOxl5PAmyXTIyYl+g14AhO+8NBdqp3TSlpHRKBZaXqk6jqka
-    RzraMTvOTbboof5qbZJH1AdIgArCz4v2HHKzZ/dvQFfKrjp6otZQKTsj1WbNwvqJ4QTt
-    ilnQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrK8+86Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.46.1 AUTH)
-    with ESMTPSA id yfdd30y5UKUV4xa
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 30 Jun 2022 22:30:31 +0200 (CEST)
-Date:   Thu, 30 Jun 2022 22:30:29 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, myungjoo.ham@samsung.com,
-        cw00.choi@samsung.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gurus@codeaurora.org,
-        aghayal@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pm8941-misc: Fix usb_id and usb_vbus
- definitions
-Message-ID: <Yr4H5Ti0kmQlja98@gerhold.net>
-References: <20220630042357.3308128-1-bryan.odonoghue@linaro.org>
- <7a3efafc-71b2-c474-bb73-6959c701f459@linaro.org>
+        with ESMTP id S231316AbiF3Ukl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 16:40:41 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C69B22DB;
+        Thu, 30 Jun 2022 13:40:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1656621640; x=1688157640;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dLHwojcIwhnxNiJZmRhvdWkTN7FOsnP5rdFn+0H9dDI=;
+  b=VKHeF8RNBqZIcBwicqtq9t42AcBwiu4mh6kuKKXsu8Ssx/KBYBqFi9dc
+   phuFJjWHNzTgS0RX7eUgJH3D6rPeJkPxlfayDVHjtWFDOfz6MoGJETzsY
+   XnNurJH1j3uNp5ledT8EWNf7opWzkCRr9Q+PRHdG8SZTw5vvsuR6HqdQL
+   u4xcNw7WUE0a5XZvivGM0p7uDCmtaFT11BFiyoMM3QszT5Iw+kE368l0n
+   76M5dFLW1MebWxd4x7dp4V4LRoDt9i1C7KCcJ1+jg6HswY4fd82DTzPv0
+   psrbbbVQfX8TQwV/pzTDmtwK8dKGfrxExAh8IFEgw487z6vbXrkgUZ+1d
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,235,1650956400"; 
+   d="scan'208";a="170590192"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Jun 2022 13:40:39 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 30 Jun 2022 13:40:39 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Thu, 30 Jun 2022 13:40:39 -0700
+Date:   Thu, 30 Jun 2022 22:44:33 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Michael Walle <michael@walle.cc>
+CC:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <UNGLinuxDriver@microchip.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next 0/4] net: lan966x: hardcode port count
+Message-ID: <20220630204433.hg2a2ws2zk5p73ld@soft-dev3-1.localhost>
+References: <20220630140237.692986-1-michael@walle.cc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <7a3efafc-71b2-c474-bb73-6959c701f459@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220630140237.692986-1-michael@walle.cc>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,46 +66,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 08:47:32PM +0200, Krzysztof Kozlowski wrote:
-> On 30/06/2022 06:23, Bryan O'Donoghue wrote:
-> > diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> > index 6a9c96f0352ac..1bc412a4ac5e6 100644
-> > --- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> > +++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> > @@ -27,10 +27,14 @@ properties:
-> >  
-> >    interrupt-names:
-> >      minItems: 1
-> > -    items:
-> > -      - const: usb_id
-> > -      - const: usb_vbus
-> > -
-> > +    anyOf:
-> > +      - items:
-> > +          - const: usb_id
-> > +          - const: usb_vbus
-> > +      - items:
-> > +          - const: usb_id
+The 06/30/2022 16:02, Michael Walle wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > 
-> I don't think you can have ID connected and VBUS disconnected, therefore
-> is it even possible to have missing VBUS interrupt?
+> Don't rely on the device tree to count the number of physical port. Instead
+> introduce a new compatible string which the driver can use to select the
+> correct port count.
+> 
+> This also hardcodes the generic compatible string to 8. The rationale is
+> that this compatible string was just used for the LAN9668 for now and I'm
+> not even sure the current driver would support the LAN9662.
+
+It works also on LAN9662, but I didn't have time to send patches for
+DTs. Then when I send patches for LAN9662, do I need to go in all dts
+files to change the compatible string for the 'switch' node?
+
+> 
+> Michael Walle (4):
+>   net: lan966x: hardcode the number of external ports
+>   dt-bindings: net: lan966x: add specific compatible string
+>   net: lan966x: add new compatible microchip,lan9668-switch
+>   ARM: dts: lan966x: use new microchip,lan9668-switch compatible
+> 
+>  .../net/microchip,lan966x-switch.yaml         |  5 +++-
+>  arch/arm/boot/dts/lan966x.dtsi                |  2 +-
+>  .../ethernet/microchip/lan966x/lan966x_main.c | 24 +++++++++++++------
+>  3 files changed, 22 insertions(+), 9 deletions(-)
+> 
+> --
+> 2.30.2
 > 
 
-The driver was originally made for pm8941, which uses exactly the
-usb_id-only configuration (see arch/arm/boot/dts/qcom-pm8941.dtsi):
-
-        usb_id: misc@900 {
-                compatible = "qcom,pm8941-misc";
-                reg = <0x900>;
-                interrupts = <0x0 0x9 0 IRQ_TYPE_EDGE_BOTH>;
-                interrupt-names = "usb_id";
-        };
-
-The "usb_vbus" interrupt is basically already assigned to the charger
-node ("usb-valid" in qcom,pm8941-charger), so I'm not sure if it's
-possible to add it to the extcon node as well. The charger driver
-provides a separate extcon device with the VBUS state so it's not much
-of a problem in practice.
-
-Thanks,
-Stephan
+-- 
+/Horatiu
