@@ -2,64 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B1CD562643
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 00:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAF53562655
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 00:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230008AbiF3WxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 18:53:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44058 "EHLO
+        id S230476AbiF3W7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 18:59:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiF3WxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 18:53:03 -0400
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DEE85073B;
-        Thu, 30 Jun 2022 15:53:02 -0700 (PDT)
-Received: by mail-il1-f176.google.com with SMTP id h5so351094ili.3;
-        Thu, 30 Jun 2022 15:53:02 -0700 (PDT)
+        with ESMTP id S229697AbiF3W7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 18:59:40 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E12944D16F
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 15:59:31 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-101bb9275bcso1261342fac.8
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 15:59:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=X+YOW7gymoq6p54kuAg0y4LK1kLT0zocnaMJboxGrsU=;
+        b=LFmipgv0Q2D25QLpPe/Pg0B/X3coeBlnwZnf7GrtlboNOw0qhexKayD2jMjcUhS+Rc
+         /v3OyIAKAKO6VFF5QjmcuZsht15IwshhudaBuW1QxETOYmRMPAFN4W5ijt2JCtvoirYl
+         WseBLetocdfIRqd2YU4SKtZwRrEkoGRUFdCg0Ju+rr9cc+XttMOCHZTFnpgtDqkKbgK7
+         aCXoyG/S0yqzP9KNqKaBvIKvCWlOk2iZOz/INnIsuzK1FUlvIAwWbFFrW4qLhMZTxwc6
+         kYLkB2gmjBa7LO2THTqtJiEyBZjmru0wR893piOalfoUSFBC6PedlhJqJqPfH2NmY/rZ
+         5eCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9hv5oNcNK2+cdyG2/zQ0DP6reJJ+TytST3AKiSEqkZ4=;
-        b=sl3DQ4x4n5ayoc3fn8NkjObeOivntIzfMijCA+mAX6rsZYDoaoEaqL4VWYVO5XBdoP
-         Yp/hNkUohmYwtvdP4f5EBb7GKnWrqoff1GyFJYJTqvRX0X6ZOqYOX0T6XYQ0rzJoa53R
-         0ktUKTJHGcGNkpmRbcQeWvyLNX7fCWiq1hznnZw/lH67ALciHNALx16ZYmPccLrp9/VW
-         kOxwADGQkFhvMIHCaTrqOh9DKnR2uv1h1jNqHhkSAKArPhH+HVYeuvlSN29AhTElmyBq
-         yXqWKyO6YRDvjszFd8HPk1/2F/V9ALMr2O/C+KZUHV21DzEVocHIuXL/iSahCyDKJsGi
-         sGdw==
-X-Gm-Message-State: AJIora+wJN4Xwy+yjs1XsdNjTsWnbpCcHUkl9pGh48JEj9LSqSEX+9fL
-        G/oFKZipace9GC32ZDkc+3gRCjH2dg==
-X-Google-Smtp-Source: AGRyM1s/HZ+kLEhLlwXvQwmAE1qhv2MrusAGfXIf/YxcTBBEnYQjNN30/6l30rdtW3qqeFI5bgt33Q==
-X-Received: by 2002:a05:6e02:1c0e:b0:2da:87c1:5f17 with SMTP id l14-20020a056e021c0e00b002da87c15f17mr6618379ilh.133.1656629581407;
-        Thu, 30 Jun 2022 15:53:01 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q189-20020a6b8ec6000000b0065a47e16f4esm9483823iod.32.2022.06.30.15.53.00
+        bh=X+YOW7gymoq6p54kuAg0y4LK1kLT0zocnaMJboxGrsU=;
+        b=pxdB9zYpqFBeGEdDRrmdgAYRnu9X0ZLqg4NE1JiGPvfkscvuyr0+uhFJKJb1s887+L
+         qgmhGWV+bzDMYGMjh83J7Q/TozAFMFnIdvFi5ATsKLO/XFhnjD+zbddmit+jOdBcI+5F
+         nEybLeW1Undm8r/xE0IQ9k4JAsASNLLIfKKimUiPdAxC1Estlqkfs/5gNA/OCrqY4Evu
+         ijcgtANDZRzRM63n21ionZu6OeQ8k/HFM8CMR0R9cc86cgc80SuzTY9mFF6QdlO6mA4M
+         F8IakRqvbtw4o8tassJdHKfro2ebpiHgfkR8DJ0dMyooQeUTWvJNBq0SH02btccshkG6
+         An6w==
+X-Gm-Message-State: AJIora89QwK/+IymN+X6utUJ/iyDHPyzvJQur79dXPBoyh/vuOtzCZ5T
+        2lxZ1Kww212owzJsD9oAhZGScg==
+X-Google-Smtp-Source: AGRyM1v1gpzW6017TKVLsRI3kd4o5RZjQ1cOKjRE1jlcR8QCX1c4TZxVbRXb9mu58am9PIxOFJ9zQQ==
+X-Received: by 2002:a05:6870:f616:b0:f2:dac0:e339 with SMTP id ek22-20020a056870f61600b000f2dac0e339mr8223802oab.116.1656629971234;
+        Thu, 30 Jun 2022 15:59:31 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s24-20020a056808009800b00333f889c9c2sm10642248oic.33.2022.06.30.15.59.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 15:53:01 -0700 (PDT)
-Received: (nullmailer pid 3476577 invoked by uid 1000);
-        Thu, 30 Jun 2022 22:52:59 -0000
-Date:   Thu, 30 Jun 2022 16:52:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: Re: [PATCH 01/11] dt-bindings: display/msm: split qcom, mdss bindings
-Message-ID: <20220630225259.GA3449913-robh@kernel.org>
-References: <20220625232513.522599-1-dmitry.baryshkov@linaro.org>
- <20220625232513.522599-2-dmitry.baryshkov@linaro.org>
+        Thu, 30 Jun 2022 15:59:30 -0700 (PDT)
+Date:   Thu, 30 Jun 2022 17:59:28 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     agross@kernel.org, jassisinghbrar@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v4 4/6] mailbox: qcom-apcs-ipc: add IPQ8074 APSS clock
+ controller support
+Message-ID: <Yr4q0G1AT4YSOIU5@builder.lan>
+References: <20220515204540.477711-1-robimarko@gmail.com>
+ <20220515204540.477711-4-robimarko@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220625232513.522599-2-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20220515204540.477711-4-robimarko@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,262 +74,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 26, 2022 at 02:25:03AM +0300, Dmitry Baryshkov wrote:
-> Split Mobile Display SubSystem (MDSS) root node bindings to the separate
-> yaml file. Changes to the existing (txt) schema:
->  - Add optional "vbif_nrt_phys" region used by msm8996
->  - Make "bus" and "vsync" clocks optional (they are not used by some
->    platforms)
->  - Add (optional) "core" clock added recently to the mdss driver
->  - Add optional resets property referencing MDSS reset
->  - Define child nodes together with compatibles
+On Sun 15 May 15:45 CDT 2022, Robert Marko wrote:
+
+> IPQ8074 has the APSS clock controller utilizing the same register space as
+> the APCS, so provide access to the APSS utilizing a child device like
+> IPQ6018 does as well, but just by utilizing the IPQ8074 specific APSS
+> clock driver.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Also, APCS register space in IPQ8074 is 0x6000 so max_register needs to be
+> updated to 0x5FFC.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 > ---
->  .../devicetree/bindings/display/msm/mdp5.txt  |  30 +--
->  .../devicetree/bindings/display/msm/mdss.yaml | 173 ++++++++++++++++++
->  2 files changed, 174 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/mdss.yaml
+>  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/mdp5.txt b/Documentation/devicetree/bindings/display/msm/mdp5.txt
-> index 43d11279c925..65d03c58dee6 100644
-> --- a/Documentation/devicetree/bindings/display/msm/mdp5.txt
-> +++ b/Documentation/devicetree/bindings/display/msm/mdp5.txt
-> @@ -2,37 +2,9 @@ Qualcomm adreno/snapdragon MDP5 display controller
+> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> index 80a54d81412e..b3b9debf5673 100644
+> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> @@ -33,6 +33,10 @@ static const struct qcom_apcs_ipc_data ipq6018_apcs_data = {
+>  	.offset = 8, .clk_name = "qcom,apss-ipq6018-clk"
+>  };
 >  
->  Description:
+> +static const struct qcom_apcs_ipc_data ipq8074_apcs_data = {
+> +	.offset = 8, .clk_name = "qcom,apss-ipq8074-clk"
+> +};
+> +
+>  static const struct qcom_apcs_ipc_data msm8916_apcs_data = {
+>  	.offset = 8, .clk_name = "qcom-apcs-msm8916-clk"
+>  };
+> @@ -57,7 +61,7 @@ static const struct regmap_config apcs_regmap_config = {
+>  	.reg_bits = 32,
+>  	.reg_stride = 4,
+>  	.val_bits = 32,
+> -	.max_register = 0x1008,
+> +	.max_register = 0x5FFC,
+
+Please use lower case hex digits.
+
+And please send the mailbox patches separately, to make it clear for the
+maintainers that this can be picked independently of others.
+
+Regards,
+Bjorn
+
+>  	.fast_io = true,
+>  };
 >  
-> -This is the bindings documentation for the Mobile Display Subsytem(MDSS) that
-> -encapsulates sub-blocks like MDP5, DSI, HDMI, eDP etc, and the MDP5 display
-> +This is the bindings documentation for the MDP5 display
->  controller found in SoCs like MSM8974, APQ8084, MSM8916, MSM8994 and MSM8996.
->  
-> -MDSS:
-> -Required properties:
-> -- compatible:
-> -  * "qcom,mdss" - MDSS
-> -- reg: Physical base address and length of the controller's registers.
-> -- reg-names: The names of register regions. The following regions are required:
-> -  * "mdss_phys"
-> -  * "vbif_phys"
-> -- interrupts: The interrupt signal from MDSS.
-> -- interrupt-controller: identifies the node as an interrupt controller.
-> -- #interrupt-cells: specifies the number of cells needed to encode an interrupt
-> -  source, should be 1.
-> -- power-domains: a power domain consumer specifier according to
-> -  Documentation/devicetree/bindings/power/power_domain.txt
-> -- clocks: device clocks. See ../clocks/clock-bindings.txt for details.
-> -- clock-names: the following clocks are required.
-> -  * "iface"
-> -  * "bus"
-> -  * "vsync"
-> -- #address-cells: number of address cells for the MDSS children. Should be 1.
-> -- #size-cells: Should be 1.
-> -- ranges: parent bus address space is the same as the child bus address space.
-> -
-> -Optional properties:
-> -- clock-names: the following clocks are optional:
-> -  * "lut"
-
-What happened to lut?
-
-> -
->  MDP5:
->  Required properties:
->  - compatible:
-> diff --git a/Documentation/devicetree/bindings/display/msm/mdss.yaml b/Documentation/devicetree/bindings/display/msm/mdss.yaml
-> new file mode 100644
-> index 000000000000..55c70922361d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/mdss.yaml
-> @@ -0,0 +1,173 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/mdss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Mobile Display SubSystem (MDSS) dt properties
-
-s/dt properties//
-
-> +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> +  - Rob Clark <robdclark@gmail.com>
-> +
-> +description: |
-
-Don't need '|'.
-
-> +  This is the bindings documentation for the Mobile Display Subsytem(MDSS) that
-> +  encapsulates sub-blocks like MDP5, DSI, HDMI, eDP, etc.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,mdss
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    minItems: 2
-> +    items:
-> +      - const: mdss_phys
-> +      - const: vbif_phys
-> +      - const: vbif_nrt_phys
-
-Let's not continue with the _phys silliness.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller:
-> +    true
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +    description: |
-> +      The MDSS power domain provided by GCC
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: iface
-> +      - const: bus
-> +      - const: vsync
-> +      - const: core
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges:
-> +    true
-> +
-> +  resets:
-> +    items:
-> +      - description: MDSS_CORE reset
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +  - power-domains
-> +  - clocks
-> +  - clock-names
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +patternProperties:
-> +  "^mdp@(0|[1-9a-f][0-9a-f]*)$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - qcom,mdp5
-
-These child nodes need to reference child schemas or be complete. If 
-they aren't converted, then just 'type: object' and be done with it.
-
-> +
-> +  "^dsi@(0|[1-9a-f][0-9a-f]*)$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - qcom,mdss-dsi-ctrl
-> +
-> +  "^dsi-phy@(0|[1-9a-f][0-9a-f]*)$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - qcom,dsi-phy-7nm
-> +          - qcom,dsi-phy-7nm-8150
-> +          - qcom,dsi-phy-10nm
-> +          - qcom,dsi-phy-10nm-8998
-> +          - qcom,dsi-phy-14nm
-> +          - qcom,dsi-phy-14nm-660
-> +          - qcom,dsi-phy-14nm-8953
-> +          - qcom,dsi-phy-20nm
-> +          - qcom,dsi-phy-28nm-8960
-> +          - qcom,dsi-phy-28nm-hpm
-> +          - qcom,dsi-phy-28nm-lp
-> +          - qcom,sc7280-dsi-phy-7nm
-> +
-> +  "^hdmi-phy@(0|[1-9a-f][0-9a-f]*)$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - qcom,hdmi-phy-8660
-> +          - qcom,hdmi-phy-8960
-> +          - qcom,hdmi-phy-8974
-> +          - qcom,hdmi-phy-8084
-> +          - qcom,hdmi-phy-8996
-> +
-> +  "^hdmi-tx@(0|[1-9a-f][0-9a-f]*)$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - qcom,hdmi-tx-8084
-> +          - qcom,hdmi-tx-8660
-> +          - qcom,hdmi-tx-8960
-> +          - qcom,hdmi-tx-8974
-> +          - qcom,hdmi-tx-8994
-> +          - qcom,hdmi-tx-8996
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-msm8916.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    mdss@1a00000 {
-> +      compatible = "qcom,mdss";
-> +      reg = <0x1a00000 0x1000>,
-> +            <0x1ac8000 0x3000>;
-> +      reg-names = "mdss_phys", "vbif_phys";
-> +
-> +      power-domains = <&gcc MDSS_GDSC>;
-> +
-> +      clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> +               <&gcc GCC_MDSS_AXI_CLK>,
-> +               <&gcc GCC_MDSS_VSYNC_CLK>;
-> +      clock-names = "iface",
-> +                    "bus",
-> +                    "vsync";
-> +
-> +      interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +      interrupt-controller;
-> +      #interrupt-cells = <1>;
-> +
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      ranges;
-> +
-> +    };
-> +...
+> @@ -142,7 +146,7 @@ static int qcom_apcs_ipc_remove(struct platform_device *pdev)
+>  /* .data is the offset of the ipc register within the global block */
+>  static const struct of_device_id qcom_apcs_ipc_of_match[] = {
+>  	{ .compatible = "qcom,ipq6018-apcs-apps-global", .data = &ipq6018_apcs_data },
+> -	{ .compatible = "qcom,ipq8074-apcs-apps-global", .data = &msm8994_apcs_data },
+> +	{ .compatible = "qcom,ipq8074-apcs-apps-global", .data = &ipq8074_apcs_data },
+>  	{ .compatible = "qcom,msm8916-apcs-kpss-global", .data = &msm8916_apcs_data },
+>  	{ .compatible = "qcom,msm8939-apcs-kpss-global", .data = &msm8916_apcs_data },
+>  	{ .compatible = "qcom,msm8953-apcs-kpss-global", .data = &msm8994_apcs_data },
 > -- 
-> 2.35.1
-> 
+> 2.36.1
 > 
