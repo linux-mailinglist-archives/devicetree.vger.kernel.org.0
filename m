@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F2656222D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E31856222E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:38:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236111AbiF3Shs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 14:37:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51220 "EHLO
+        id S236628AbiF3SiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 14:38:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235808AbiF3Shs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:37:48 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E648143398
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:37:46 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id k20so6312274edj.13
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:37:46 -0700 (PDT)
+        with ESMTP id S233011AbiF3SiW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:38:22 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E338A175AD
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:38:18 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id o9so27692752edt.12
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:38:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=UGGrUYFGtLESoSS2rsNev5359I+9qUzB9ek9G4Qz7uw=;
-        b=BMDwOu1iMHdN/94k0T57BSZk6Ka2rjPA+yoEJvBvvMc/Gwo6WSABuWeZmjb68VZxsC
-         cf/ddiswpYS37nUGMgrVNctpRxdymbfFaWTVgIyQbSHsW7DLYsRXUb+rGAZ5Bm6q9ITT
-         BM9SrGQGZhCGmnVmirm6lxkoy9aVsforz+HxYqh87vp8+fzspUmnm8kLgXe9Hl6qjyk4
-         edIuRV5ceN4gtJzGoO+F9o7OYHLvO/RTG+kWp7yj05N2Dy8CYs8X3pf3mk9LZyoMT/ga
-         1/V1DqJEx8+Ivzhrq3esF5osKtBoo9jZEsIFusx5B7bmDX8D+EoEVzb+bnp8GwtEF7qr
-         nQwA==
+        bh=2DwEM0qN8ptN2i11wSwIxwERJqz2l48AZXNzyEzFpDc=;
+        b=cNYBI273VbE+YS8dSUNXib07/1hOFtWSnlwLabTH/pH5jbi6ghQvicYI9bqFppVBQ5
+         bRjecihaozaIBQTwXBUMur6ONNFxXJ3jSi0PDl4pHw2Wc941rLKQpaTlBaI6K8FK4P/D
+         KrF4YdIABvpqW9Ew2N+zH3okrNI+mUwWf3IGNX0V/iIkRdIlBtQJD+e65rpDI/Tty6UM
+         SMqIfPXgXjUcZOqkh/j4SNiosPUD2qoOee6GkSkQYSEs38OUssBaUNAuFALSORPzXSGC
+         GqXwoppoKYVsqWvJT/P4SLs4Ule0iYEX5YS4sZkzS1QDELV6l4BZNtx7LpafzxSIXCtn
+         nT6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=UGGrUYFGtLESoSS2rsNev5359I+9qUzB9ek9G4Qz7uw=;
-        b=KzXGOkx/tLqTRwGOtTb3Sk5WGH+dKqnMzlHXFJ/SKAzIqsnlXOn624s1U9zK91poCP
-         nwGS9bn8oq03JrM8B/3hn9m2ZWlN4m5/4rqdlfg+bi7vvioUCYEdzRWXtrpp7AaMS5aV
-         eh2ddBD9/6qqhhhzvJ9+/ZgK3LHJMBqQOcV4Mjq9qgV6OMaWE4WHG59rwvG6G4tNdhjn
-         bvIbNA0XCLPYpDgzgux9EZSMS9fR5nkOeaSCFhbT7HgMzQf7BlUj3Ywee9ux8P+OQhEb
-         /gVVs4m7K80Ci7iVXflARk6ZU7FgnnP7wqYCMkifauoMWfxQ+/4xJXIgJ/nnC3MkHl9l
-         nYBQ==
-X-Gm-Message-State: AJIora8vDV+REVYmsv2uqLInRVnw6ejiMwCNG+mJHGdcf8bhnuk0lGN2
-        OvoZMh2Bd0LNztVhwt+ISaH+fw==
-X-Google-Smtp-Source: AGRyM1u3+PvK76fsXCzRLEryKlS/LLxqIEfJGGkbPSWvuPgDleiH5x/0VdYGGFhx9tY7hChc96qMkA==
-X-Received: by 2002:a05:6402:42c8:b0:435:b99c:35f9 with SMTP id i8-20020a05640242c800b00435b99c35f9mr13853065edc.137.1656614265507;
-        Thu, 30 Jun 2022 11:37:45 -0700 (PDT)
+        bh=2DwEM0qN8ptN2i11wSwIxwERJqz2l48AZXNzyEzFpDc=;
+        b=X/+u9xJioB0/6oqjTkpWXBzCGkxaMYVeet4+ukTFyTmiwkk/ZKxXBE0kFmBx/Zl1Ua
+         h4KXtba5QlIsuv6Js3BLAtNYGPDnM6Yu472pfpw2fgZDyE+1rE3R8Zv/dp3Qj0S9go9/
+         1SDrpxe2poq+iCMOa/zZMgT2DOwXVkfbR0mTxRzGT0JT/rSZY9ELu2phBp2B5f4RXjH9
+         ONZwAWw+VonO8qLzvtEi7+V68NtiSckWmAOzYhH+4iFdiKh3CqkB04pEfOjB3OYgs42N
+         k0v5RSowDYV2RViPM6WcC1liK0/135fbP4flwTfBBrfL9xeezNWamlHH5AEMsndqK62y
+         xUqw==
+X-Gm-Message-State: AJIora93cpra5nBSLGC2/H2TK7MUkHWLC1qkZl5Ep2XdmjCB5wv2SjON
+        FUna5pDXZwxGsL/KDE2h+gzqpg==
+X-Google-Smtp-Source: AGRyM1vuyOxW82jIW7r9UF2V1ofcD2quQQ/dTTrpq1GH9PYUiDLvQx1LBnxuFB68D5Kq4WY2sPeDcA==
+X-Received: by 2002:a05:6402:5388:b0:435:71b:5d44 with SMTP id ew8-20020a056402538800b00435071b5d44mr13163885edb.364.1656614297494;
+        Thu, 30 Jun 2022 11:38:17 -0700 (PDT)
 Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s12-20020a170906354c00b0072637b9c8c0sm8669926eja.219.2022.06.30.11.37.44
+        by smtp.gmail.com with ESMTPSA id e34-20020a056402332200b00437d2b6cae5sm3617447eda.83.2022.06.30.11.38.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 11:37:44 -0700 (PDT)
-Message-ID: <7824e14b-89fb-a816-441d-012d76def59a@linaro.org>
-Date:   Thu, 30 Jun 2022 20:37:43 +0200
+        Thu, 30 Jun 2022 11:38:16 -0700 (PDT)
+Message-ID: <f86cf3e0-d678-f134-32cc-92143dc42ce1@linaro.org>
+Date:   Thu, 30 Jun 2022 20:38:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox: qcom: Add syscon const for
- relevant entries
+Subject: Re: [PATCH 2/2] dt-bindings: mailbox: qcom: Add clock-output-names
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
         bjorn.andersson@linaro.org, jassisinghbrar@gmail.com,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220630043536.3308546-1-bryan.odonoghue@linaro.org>
- <20220630043536.3308546-2-bryan.odonoghue@linaro.org>
+ <20220630043536.3308546-3-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630043536.3308546-2-bryan.odonoghue@linaro.org>
+In-Reply-To: <20220630043536.3308546-3-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,83 +76,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 30/06/2022 06:35, Bryan O'Donoghue wrote:
-> msm8916, msm8939, msm8953, msm8994 and qcs404 already declare or should
-> declare syscon as they have drivers that use syscon inside of the apcs-kpss
-> block.
-> 
-> grep apcs arch/arm64/boot/dts/qcom/* | grep syscon
-> 
-> Add in the additional syscon in the documentation for the above mentioned
-> parts.
-
-Subject should have prefix:
-dt-bindings: mailbox: qcom,apcs-kpss-global:
-
+> Add clock-output-names as optional so that SoCs such as the msm8939 which
+> have multiple a53 PLLs can latch the appropriate output name in
+> drivers/clk/qcom/apcs-msm8916.c.
 > 
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  .../mailbox/qcom,apcs-kpss-global.yaml        | 44 ++++++++++---------
->  1 file changed, 24 insertions(+), 20 deletions(-)
+>  .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml   | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> index 3b5ba7ecc19d9..f342494fd6108 100644
+> index f342494fd6108..7f3816cbc0353 100644
 > --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
 > +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> @@ -15,26 +15,30 @@ maintainers:
+> @@ -63,6 +63,11 @@ properties:
+>        - const: aux
+>        - const: ref
 >  
->  properties:
->    compatible:
-> -    enum:
-> -      - qcom,ipq6018-apcs-apps-global
-> -      - qcom,ipq8074-apcs-apps-global
-> -      - qcom,msm8916-apcs-kpss-global
-> -      - qcom,msm8939-apcs-kpss-global
-> -      - qcom,msm8953-apcs-kpss-global
-> -      - qcom,msm8976-apcs-kpss-global
-> -      - qcom,msm8994-apcs-kpss-global
-> -      - qcom,msm8996-apcs-hmss-global
-> -      - qcom,msm8998-apcs-hmss-global
-> -      - qcom,qcm2290-apcs-hmss-global
-> -      - qcom,qcs404-apcs-apps-global
-> -      - qcom,sc7180-apss-shared
-> -      - qcom,sc8180x-apss-shared
-> -      - qcom,sdm660-apcs-hmss-global
-> -      - qcom,sdm845-apss-shared
-> -      - qcom,sm6125-apcs-hmss-global
-> -      - qcom,sm6115-apcs-hmss-global
-> -      - qcom,sm8150-apss-shared
-> -
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - qcom,ipq6018-apcs-apps-global
-> +              - qcom,ipq8074-apcs-apps-global
-> +              - qcom,msm8976-apcs-kpss-global
-> +              - qcom,msm8996-apcs-hmss-global
-> +              - qcom,msm8998-apcs-hmss-global
-> +              - qcom,qcm2290-apcs-hmss-global
-> +              - qcom,sc7180-apss-shared
-> +              - qcom,sc8180x-apss-shared
-> +              - qcom,sdm660-apcs-hmss-global
-> +              - qcom,sdm845-apss-shared
-> +              - qcom,sm6125-apcs-hmss-global
-> +              - qcom,sm6115-apcs-hmss-global
-> +              - qcom,sm8150-apss-shared
+> +  clock-output-names:
+> +    Usage: optional
+> +    Value type: <string>
+> +    Definition: Name of the output clock.
+> +
 
-These are not items, but one item, so enum directly under oneOf.
-
-> +      - items:
-> +          - enum:
-> +              - qcom,msm8916-apcs-kpss-global
-> +              - qcom,msm8939-apcs-kpss-global
-> +              - qcom,msm8953-apcs-kpss-global
-> +              - qcom,msm8994-apcs-kpss-global
-> +              - qcom,qcs404-apcs-apps-global
-> +          - const: syscon
->    reg:
->      maxItems: 1
->  
-
+Not a proper DT schema syntax.
 
 Best regards,
 Krzysztof
