@@ -2,67 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 466FE5626D4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 01:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C340562695
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 01:18:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232297AbiF3XNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 19:13:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35162 "EHLO
+        id S232327AbiF3XOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 19:14:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232023AbiF3XNi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 19:13:38 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F4C922B33;
-        Thu, 30 Jun 2022 16:13:15 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id v185so659724ioe.11;
-        Thu, 30 Jun 2022 16:13:14 -0700 (PDT)
+        with ESMTP id S232367AbiF3XOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 19:14:45 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D287641F;
+        Thu, 30 Jun 2022 16:14:43 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id u20so674846iob.8;
+        Thu, 30 Jun 2022 16:14:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8mU7qq1xT9xP4AkHkk9ztlC+s1KHGpH2/AR1TP7Q5AU=;
-        b=Nec7cJj6+pkbrR3PoOoB+Zs/eF/5mt2uCKXJ/NTYYkFpyKFce5U16Wqw+2ABFeC26Q
-         z6unKNhu6JXnlmbPCOutIrMjip4/JlcaPxAa/bN3Ai8v2WQjWWqKX81Lc76qQxD0Fr9h
-         7A9V/78YSCLAsccsxW8jMzMd8SIubXaSYF+YOSNwKe2pZ3zScluY+sSYQAZgDOL9nQas
-         yB1Xo/g3cJ10fWL37qABCW3gRwG5gvwy+sECGBuBTeFYeoNVyTqHnj1bb7BUk+mLxD17
-         WaXZ21v42k7tZ2zohiaTbm4dIJRoY0dayUhvq1F8gIFyhjCdCH4AY8zX1okpOzthYRRD
-         T/Dg==
-X-Gm-Message-State: AJIora8c0SxUQhEUkE9JOW3XDrnVPiHHdjkY3SwORuek7UqPpzNSdgpv
-        v9tEjM9PZrLZliDK0jbqnA==
-X-Google-Smtp-Source: AGRyM1tH4HtQwEQklQC5StD8tG8HSFDW3U9bg3qVFD5iYWgjqigY+f6NDhBsU0FoXSsPKDeApCefIA==
-X-Received: by 2002:a5d:9758:0:b0:669:7d33:c556 with SMTP id c24-20020a5d9758000000b006697d33c556mr5613843ioo.2.1656630794249;
-        Thu, 30 Jun 2022 16:13:14 -0700 (PDT)
+        bh=/GS4VqtaJdqJSvRiDmjqKEuDBsco5w/MSERegvSlNYo=;
+        b=MVsJjthYZa5Ax2q1nNnfJuEloOywNzTPG1CI66S4SR2xBnkfo+2lbq2oXdEjclYAPt
+         nYweabcuR+v2HACQ/RKcUwsL8C31/ds67yAx7ofaAq/69dD0MIqDoCRmJQVKHMMeyXxl
+         cngltVxr7u7Vjf9ky25mXQVDuR4vLju9qcrEPRPAI82zz+LR88OO1H8By3irQ7Dils23
+         fL5G+8md5MK966uDcVFsrmv1mi07QrMlEYWf3oRHebSF1AYhT/JLRrlqEXfl+m77y5cY
+         qzS/mfa9okg97aQ69tKhD3nibRjYt1TMXtvzIXBfU1fZLki2uDx8GKzpicIlSz61IBUx
+         Z5/A==
+X-Gm-Message-State: AJIora8Jw8+tjRGCpBe4Yzn94uuKydLhDCiAufEAn3jI0QKvrqvFdA9M
+        uLSpWrHiW9raIx58JVQbqA==
+X-Google-Smtp-Source: AGRyM1sJUPYBAoDl3kH4LmZNrZzwvpPud88QJXBsdw546xQxeoqVi/3TPmeC2oC5hXyxlJjn9x30Rg==
+X-Received: by 2002:a05:6638:339b:b0:33e:98e7:152e with SMTP id h27-20020a056638339b00b0033e98e7152emr1194416jav.93.1656630882498;
+        Thu, 30 Jun 2022 16:14:42 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id s21-20020a6bdc15000000b0067533ab9404sm6237051ioc.16.2022.06.30.16.13.11
+        by smtp.gmail.com with ESMTPSA id a17-20020a056e0208b100b002d955fab9dbsm8570417ilt.23.2022.06.30.16.14.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 16:13:13 -0700 (PDT)
-Received: (nullmailer pid 3508147 invoked by uid 1000);
-        Thu, 30 Jun 2022 23:13:11 -0000
-Date:   Thu, 30 Jun 2022 17:13:11 -0600
+        Thu, 30 Jun 2022 16:14:42 -0700 (PDT)
+Received: (nullmailer pid 3510734 invoked by uid 1000);
+        Thu, 30 Jun 2022 23:14:40 -0000
+Date:   Thu, 30 Jun 2022 17:14:40 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, stefan@agner.ch, shawnguo@kernel.org,
-        abel.vesa@nxp.com, linux@armlinux.org.uk, linus.walleij@linaro.org,
-        tglx@linutronix.de, devicetree@vger.kernel.org, linux-imx@nxp.com,
-        cniedermaier@dh-electronics.com, kernel@pengutronix.de,
-        tharvey@gateworks.com, festevam@gmail.com, clin@suse.com,
-        robh+dt@kernel.org, sebastian.reichel@collabora.com,
-        leoyang.li@nxp.com, dev@lynxeye.de, olof@lixom.net,
-        linux-clk@vger.kernel.org, mturquette@baylibre.com,
-        aisheng.dong@nxp.com, Mr.Bossman075@gmail.com,
-        marcel.ziswiler@toradex.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, daniel.lezcano@linaro.org,
-        s.hauer@pengutronix.de, sboyd@kernel.org,
-        giulio.benetti@benettiengineering.com
-Subject: Re: [PATCH v4 06/13] dt-bindings: clock: imx: Add documentation for
- i.MXRT1170 clock
-Message-ID: <20220630231311.GA3508108-robh@kernel.org>
-References: <20220626064523.3683775-1-Mr.Bossman075@gmail.com>
- <20220626064523.3683775-7-Mr.Bossman075@gmail.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Support Opensource <support.opensource@diasemi.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 18/20] dt-bindings: mfd: update dlg,da9063.yaml
+ reference
+Message-ID: <20220630231440.GA3510679-robh@kernel.org>
+References: <cover.1656234456.git.mchehab@kernel.org>
+ <da459164d166d994b06f9ce8bf3a2108ccd0abd5.1656234456.git.mchehab@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220626064523.3683775-7-Mr.Bossman075@gmail.com>
+In-Reply-To: <da459164d166d994b06f9ce8bf3a2108ccd0abd5.1656234456.git.mchehab@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -74,23 +72,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Jun 2022 02:45:16 -0400, Jesse Taube wrote:
-> Add DT binding documentation for i.MXRT1170 clock driver.
+On Sun, 26 Jun 2022 10:11:04 +0100, Mauro Carvalho Chehab wrote:
+> Changeset 441613662db7 ("dt-bindings: mfd: Convert da9063 to yaml")
+> renamed: Documentation/devicetree/bindings/mfd/da9063.txt
+> to: Documentation/devicetree/bindings/mfd/dlg,da9063.yaml.
 > 
-> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> Update its cross-reference accordingly.
+> 
+> Fixes: 441613662db7 ("dt-bindings: mfd: Convert da9063 to yaml")
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 > ---
-> V1 -> V2:
->  - Change title to Clock Controller
->  - Rename to add fsl
-> V2 -> V3:
->  - Remove unused include causing error
-> V3 -> V4:
->  - Add fsl to schema id
-> ---
->  .../bindings/clock/fsl,imxrt1170-clock.yaml   | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,imxrt1170-clock.yaml
+> 
+> To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
+> See [PATCH v2 00/20] at: https://lore.kernel.org/all/cover.1656234456.git.mchehab@kernel.org/
+> 
+>  Documentation/devicetree/bindings/input/da9062-onkey.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
