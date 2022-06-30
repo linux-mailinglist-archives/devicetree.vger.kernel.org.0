@@ -2,120 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0688F5613D2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39AAD5613DE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 10:00:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbiF3H6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 03:58:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51222 "EHLO
+        id S233525AbiF3H7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 03:59:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233470AbiF3H63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:58:29 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C834517E00
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:58:28 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id e12so7990958lfr.6
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:58:28 -0700 (PDT)
+        with ESMTP id S232959AbiF3H7J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:59:09 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47A1C41319;
+        Thu, 30 Jun 2022 00:59:07 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-317a66d62dfso171009787b3.7;
+        Thu, 30 Jun 2022 00:59:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=PJMxRQnUNYQvlP7uEfgVmlMLr9rQqkQej3JH4PVMmdE=;
-        b=aL1aT606iCTFZOa/2t6AEC5jU+oUtmBus4SJqq2CmfTKiyfQ/t/MuzUQoj4kPih6LN
-         z7bL8E2SkH+TygVqlIkH55VjhnzTFy+9ntS7JhexGfq6JOEmJoGAO/i0PlyAEQQRQhH1
-         D/sfrHWRL5hGqPCz7w5GBV6deH7m4tKJU6JP7RsNgf4wgx5XHJNy37DaNRHTw2x7SxHp
-         Hdl+nqel2qgIFwSch8+CJ13tF/O66m5JJ2LmB6HqYdeUvedEEUUxNQy4Q7ZGfPt6ffWk
-         LmmSvKfvlPWHNcM1TvXFzjZKiJGR0KKr99rD9Fz4Yqj/+ZUSKMhw6eBFmhslOX8PoGOG
-         nNeg==
+        bh=Wzp+0Ca5DBgGqXHIatlXSPmTeEJ8VcvhTsReClfiz3I=;
+        b=fcJRnvlrEwLctduY40xOq44ATbs8o33Boc/pFvwq9Vzv/x0aI/7eBELkUaUY2YrHpa
+         cD9Gls4dh+70scT6EfgRKk9W9/FqbotPrdFRerYOzfp4AifNhx/dG3qZBjiIbWgNQOK7
+         kXwO9U7pp8/yuOuhuPXUADjZWkc6/3UzcWgOvYGTNrmhJ0NhEuAmhyyKnUyr+T+iIwuM
+         +e/YDBNUTquCR1TvLkQNbUIl97Q+A8UrVkJ0NoSrpE8XijNpJ6y397TMl0PqrWzZc/cA
+         mfwJQbHS5JPVGggYYlDHwLCggCfyTnJwgOV+LZ+HLY6JEhOQTy4/6NI41kOzBzGzCNhx
+         1+yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=PJMxRQnUNYQvlP7uEfgVmlMLr9rQqkQej3JH4PVMmdE=;
-        b=pod3q7FPK7ZJXXwnDsjJRJH30C/x0oOA/bKFIqZZZ2G8HduXePiGqkzuGZxKbHnznm
-         9Wp30qlvfTIpGq4HK6NvtihIbNUXW5RZcbjHXtN5Z1+11pUe4LDyt/MvbSQmR8r6BQzC
-         CXOz/lG4rfTC/lfcSVMSxtP82yiI31LLcjMqDM1MfAFfhmE9Vltcq69FfoXYbugJhPKn
-         IwjziZpDV1J+x0j0DZkHzRFMvUnNtzpCGTs4Tcy8IDU228IxCPe985LlUlZxe10CD39J
-         DNFknsgcJXqcZGpuNIO2nGSkk0XERyDfJqe16eo1ErhOIiaQ5vgjQsB5XfshLFc7Gacp
-         jJ5w==
-X-Gm-Message-State: AJIora/28wQ/rw6K8QkC3GP/4ECdOlGVGMu6qrXD1MAxKs8Kb+62hZLd
-        uXXi7H+Gdwoi6BSgQ321tS2dDvAB3+0hgPGMRitSJQ==
-X-Google-Smtp-Source: AGRyM1ukGrSjpcuXE6bxl7rgH/OwrTDEttO2nj/+IU/ofXWJ4zArZf0/xpIclGzIJCRitKTVLVeQ1Et1Raj+eI45QaY=
-X-Received: by 2002:a05:6512:2399:b0:47f:ad15:886f with SMTP id
- c25-20020a056512239900b0047fad15886fmr4639899lfv.226.1656575907178; Thu, 30
- Jun 2022 00:58:27 -0700 (PDT)
+        bh=Wzp+0Ca5DBgGqXHIatlXSPmTeEJ8VcvhTsReClfiz3I=;
+        b=OfA0OldPPRS1gTmg3T84DnxrcKh4F6jqG5Q5cSGggfRv8CI1+XOoZP+796BFkdO/oJ
+         C2pIO7jl2puigacGmpk/nTpHzw+RK/llA4br0sIqQGfBFnxp5FmfSdi5mOAmVnzXu0Ba
+         Z4K+InQ4b176FKDV7i54ld6//iZFFrKyrHn0vahzyNLYP6MCbrqbK52Ym76MeAuE9a7S
+         Wp6bFvm9ytWckvYg0eCpe563Q9/5TdIUWJBd+XeLlrYb5ECLFy1kCmTJicic1erUaI2R
+         7u9ELfMDfDEfFt2IDOH0ISuON0vPY4H8S9XybiOVn0prYswdT9y/NB+Qan7blxRhNX0U
+         N2PQ==
+X-Gm-Message-State: AJIora9vNl1hhn7RAZvE4YMsEPuTYq6h4C9cEL/bBMmT87iVFD6Odpx3
+        9QB/ZrUDJq+nPnv9chz4KdILAmzDNRfq3QlEyf4=
+X-Google-Smtp-Source: AGRyM1uW1tm4RgeNJdIpXjCO46GUp0F/56c9Nd32bamzq8p05fH4mWEnaDtnFVe/pVck0EFdNmmSic7VvYWEYfXw4lw=
+X-Received: by 2002:a81:2386:0:b0:317:6586:8901 with SMTP id
+ j128-20020a812386000000b0031765868901mr8814171ywj.195.1656575946260; Thu, 30
+ Jun 2022 00:59:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <CGME20220630021951epcas2p26cd4a554f01f9cb6e44acd813eee15fd@epcas2p2.samsung.com>
- <cover.1656554759.git.chanho61.park@samsung.com> <8d7029cdf7b2ce0d1c43e6f91b3b9fdadece08ee.1656554759.git.chanho61.park@samsung.com>
- <CAPLW+4noFAHc+g7jTaaiMQH871OkqcOWjZ85-mpfPVbjiFO1iA@mail.gmail.com> <415e6440-0b46-8d3c-2e29-841bdb16e29a@linaro.org>
-In-Reply-To: <415e6440-0b46-8d3c-2e29-841bdb16e29a@linaro.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Thu, 30 Jun 2022 10:58:16 +0300
-Message-ID: <CAPLW+4kpH39O4hZNRG_JdVuV7v3PeA4biWSvdC5pZfGc-4GdXQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: samsung: usi: add
- exynosautov9-usi compatible
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Chanho Park <chanho61.park@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+References: <20220629143046.213584-1-aidanmacdonald.0x0@gmail.com> <20220629143046.213584-9-aidanmacdonald.0x0@gmail.com>
+In-Reply-To: <20220629143046.213584-9-aidanmacdonald.0x0@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 30 Jun 2022 09:58:26 +0200
+Message-ID: <CAHp75VfFSOp1eNVOwoW4S6Z84aR52uoGuSty_Dgbs97+h5sdrg@mail.gmail.com>
+Subject: Re: [PATCH v4 08/15] iio: adc: axp20x_adc: Minor code cleanups
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, quic_gurus@quicinc.com,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Michael Walle <michael@walle.cc>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Jun 2022 at 10:11, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Wed, Jun 29, 2022 at 4:30 PM Aidan MacDonald
+<aidanmacdonald.0x0@gmail.com> wrote:
 >
-> On 30/06/2022 07:59, Sam Protsenko wrote:
-> > Hi Chanho,
-> >
-> > On Thu, 30 Jun 2022 at 05:19, Chanho Park <chanho61.park@samsung.com> wrote:
-> >>
-> >> Add samsung,exynosautov9-uart dedicated compatible for representing
-> >> usi of Exynos Auto v9 SoC.
-> >>
-> >> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> >> ---
-> >>  .../devicetree/bindings/soc/samsung/exynos-usi.yaml       | 8 ++++++--
-> >>  1 file changed, 6 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> >> index fde886a8cf43..6e806e950a36 100644
-> >> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> >> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> >> @@ -22,8 +22,12 @@ properties:
-> >>      pattern: "^usi@[0-9a-f]+$"
-> >>
-> >>    compatible:
-> >> -    enum:
-> >> -      - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - const: samsung,exynosautov9-usi
-> >> +          - const: samsung,exynos850-usi
-> >> +      - enum:
-> >> +          - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
-> >>
-> >
-> > Why "samsung,exynos850-usi" is duplicated? Maybe it would be correct
-> > to leave only "items" and remove the "enum"?
+> The code may be clearer if parameters are not re-purposed to hold
+> temporary results like register values, so introduce local variables
+> as necessary to avoid that. Regroup macros based on chip type, and
+> use the FIELD_PREP() macro instead of a hand-rolled version.
+
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+
+> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+> ---
+>  drivers/iio/adc/axp20x_adc.c | 61 +++++++++++++++++++-----------------
+>  1 file changed, 32 insertions(+), 29 deletions(-)
 >
-> It has to be like this. Either you use exynos850-usi directly (on
-> Exynos850) or as a fallback (on Autov9).
+> diff --git a/drivers/iio/adc/axp20x_adc.c b/drivers/iio/adc/axp20x_adc.c
+> index 53bf7d4899d2..ab25e6e1ff65 100644
+> --- a/drivers/iio/adc/axp20x_adc.c
+> +++ b/drivers/iio/adc/axp20x_adc.c
+> @@ -5,6 +5,7 @@
+>   *     Quentin Schulz <quentin.schulz@free-electrons.com>
+>   */
+>
+> +#include <linux/bitfield.h>
+>  #include <linux/completion.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/io.h>
+> @@ -22,20 +23,20 @@
+>  #include <linux/mfd/axp20x.h>
+>
+>  #define AXP20X_ADC_EN1_MASK                    GENMASK(7, 0)
+> -
+>  #define AXP20X_ADC_EN2_MASK                    (GENMASK(3, 2) | BIT(7))
+> +
+>  #define AXP22X_ADC_EN1_MASK                    (GENMASK(7, 5) | BIT(0))
+>
+>  #define AXP20X_GPIO10_IN_RANGE_GPIO0           BIT(0)
+>  #define AXP20X_GPIO10_IN_RANGE_GPIO1           BIT(1)
+> -#define AXP20X_GPIO10_IN_RANGE_GPIO0_VAL(x)    ((x) & BIT(0))
+> -#define AXP20X_GPIO10_IN_RANGE_GPIO1_VAL(x)    (((x) & BIT(0)) << 1)
+>
+>  #define AXP20X_ADC_RATE_MASK                   GENMASK(7, 6)
+> -#define AXP813_V_I_ADC_RATE_MASK               GENMASK(5, 4)
+> -#define AXP813_ADC_RATE_MASK                   (AXP20X_ADC_RATE_MASK | AXP813_V_I_ADC_RATE_MASK)
+>  #define AXP20X_ADC_RATE_HZ(x)                  ((ilog2((x) / 25) << 6) & AXP20X_ADC_RATE_MASK)
+> +
+>  #define AXP22X_ADC_RATE_HZ(x)                  ((ilog2((x) / 100) << 6) & AXP20X_ADC_RATE_MASK)
+> +
+> +#define AXP813_V_I_ADC_RATE_MASK               GENMASK(5, 4)
+> +#define AXP813_ADC_RATE_MASK                   (AXP20X_ADC_RATE_MASK | AXP813_V_I_ADC_RATE_MASK)
+>  #define AXP813_TS_GPIO0_ADC_RATE_HZ(x)         AXP20X_ADC_RATE_HZ(x)
+>  #define AXP813_V_I_ADC_RATE_HZ(x)              ((ilog2((x) / 100) << 4) & AXP813_V_I_ADC_RATE_MASK)
+>  #define AXP813_ADC_RATE_HZ(x)                  (AXP20X_ADC_RATE_HZ(x) | AXP813_V_I_ADC_RATE_HZ(x))
+> @@ -234,7 +235,7 @@ static int axp20x_adc_raw(struct iio_dev *indio_dev,
+>                           struct iio_chan_spec const *chan, int *val)
+>  {
+>         struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> -       int size = 12;
+> +       int ret, size;
+>
+>         /*
+>          * N.B.:  Unlike the Chinese datasheets tell, the charging current is
+> @@ -246,10 +247,11 @@ static int axp20x_adc_raw(struct iio_dev *indio_dev,
+>         else
+>                 size = 12;
+>
+> -       *val = axp20x_read_variable_width(info->regmap, chan->address, size);
+> -       if (*val < 0)
+> -               return *val;
+> +       ret = axp20x_read_variable_width(info->regmap, chan->address, size);
+> +       if (ret < 0)
+> +               return ret;
+>
+> +       *val = ret;
+>         return IIO_VAL_INT;
+>  }
+>
+> @@ -257,11 +259,13 @@ static int axp22x_adc_raw(struct iio_dev *indio_dev,
+>                           struct iio_chan_spec const *chan, int *val)
+>  {
+>         struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> +       int ret;
+>
+> -       *val = axp20x_read_variable_width(info->regmap, chan->address, 12);
+> -       if (*val < 0)
+> -               return *val;
+> +       ret = axp20x_read_variable_width(info->regmap, chan->address, 12);
+> +       if (ret < 0)
+> +               return ret;
+>
+> +       *val = ret;
+>         return IIO_VAL_INT;
+>  }
+>
+> @@ -269,11 +273,13 @@ static int axp813_adc_raw(struct iio_dev *indio_dev,
+>                           struct iio_chan_spec const *chan, int *val)
+>  {
+>         struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> +       int ret;
+>
+> -       *val = axp20x_read_variable_width(info->regmap, chan->address, 12);
+> -       if (*val < 0)
+> -               return *val;
+> +       ret = axp20x_read_variable_width(info->regmap, chan->address, 12);
+> +       if (ret < 0)
+> +               return ret;
+>
+> +       *val = ret;
+>         return IIO_VAL_INT;
+>  }
+>
+> @@ -443,27 +449,27 @@ static int axp20x_adc_offset_voltage(struct iio_dev *indio_dev, int channel,
+>                                      int *val)
+>  {
+>         struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> +       unsigned int regval;
+>         int ret;
+>
+> -       ret = regmap_read(info->regmap, AXP20X_GPIO10_IN_RANGE, val);
+> +       ret = regmap_read(info->regmap, AXP20X_GPIO10_IN_RANGE, &regval);
+>         if (ret < 0)
+>                 return ret;
+>
+>         switch (channel) {
+>         case AXP20X_GPIO0_V:
+> -               *val &= AXP20X_GPIO10_IN_RANGE_GPIO0;
+> +               regval = FIELD_GET(AXP20X_GPIO10_IN_RANGE_GPIO0, regval);
+>                 break;
+>
+>         case AXP20X_GPIO1_V:
+> -               *val &= AXP20X_GPIO10_IN_RANGE_GPIO1;
+> +               regval = FIELD_GET(AXP20X_GPIO10_IN_RANGE_GPIO1, regval);
+>                 break;
+>
+>         default:
+>                 return -EINVAL;
+>         }
+>
+> -       *val = *val ? 700000 : 0;
+> -
+> +       *val = regval ? 700000 : 0;
+>         return IIO_VAL_INT;
+>  }
+>
+> @@ -548,7 +554,7 @@ static int axp20x_write_raw(struct iio_dev *indio_dev,
+>                             long mask)
+>  {
+>         struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> -       unsigned int reg, regval;
+> +       unsigned int regmask, regval;
+>
+>         /*
+>          * The AXP20X PMIC allows the user to choose between 0V and 0.7V offsets
+> @@ -560,25 +566,22 @@ static int axp20x_write_raw(struct iio_dev *indio_dev,
+>         if (val != 0 && val != 700000)
+>                 return -EINVAL;
+>
+> -       val = val ? 1 : 0;
+> -
+>         switch (chan->channel) {
+>         case AXP20X_GPIO0_V:
+> -               reg = AXP20X_GPIO10_IN_RANGE_GPIO0;
+> -               regval = AXP20X_GPIO10_IN_RANGE_GPIO0_VAL(val);
+> +               regmask = AXP20X_GPIO10_IN_RANGE_GPIO0;
+> +               regval = FIELD_PREP(AXP20X_GPIO10_IN_RANGE_GPIO0, !!val);
+>                 break;
+>
+>         case AXP20X_GPIO1_V:
+> -               reg = AXP20X_GPIO10_IN_RANGE_GPIO1;
+> -               regval = AXP20X_GPIO10_IN_RANGE_GPIO1_VAL(val);
+> +               regmask = AXP20X_GPIO10_IN_RANGE_GPIO1;
+> +               regval = FIELD_PREP(AXP20X_GPIO10_IN_RANGE_GPIO1, !!val);
+>                 break;
+>
+>         default:
+>                 return -EINVAL;
+>         }
+>
+> -       return regmap_update_bits(info->regmap, AXP20X_GPIO10_IN_RANGE, reg,
+> -                                 regval);
+> +       return regmap_update_bits(info->regmap, AXP20X_GPIO10_IN_RANGE, regmask, regval);
+>  }
+>
+>  static const struct iio_info axp20x_adc_iio_info = {
+> --
+> 2.35.1
 >
 
-Thanks for the explanation, I never thought about that case before,
-though noticed that pattern in bindings long ago.
 
-> Best regards,
-> Krzysztof
+-- 
+With Best Regards,
+Andy Shevchenko
