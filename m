@@ -2,129 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07CA2560EC8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 03:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31282560F0E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 04:20:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbiF3Brg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 21:47:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47714 "EHLO
+        id S231349AbiF3CT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 22:19:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiF3Brf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 21:47:35 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099F42E6BC;
-        Wed, 29 Jun 2022 18:47:27 -0700 (PDT)
-X-UUID: a00f99f6eb09426cacfa53421093aea0-20220630
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.7,REQID:399da4d9-4e8f-48ee-942f-56e82ae7da42,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:87442a2,CLOUDID:f6972386-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: a00f99f6eb09426cacfa53421093aea0-20220630
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1718973781; Thu, 30 Jun 2022 09:47:24 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 30 Jun 2022 09:47:22 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 30 Jun 2022 09:47:22 +0800
-Message-ID: <599af6f875cb85bab1a6f0e03bbfb74a2a3b948c.camel@mediatek.com>
-Subject: Re: [PATCH v12 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 30 Jun 2022 09:47:22 +0800
-In-Reply-To: <20220627080341.5087-6-rex-bc.chen@mediatek.com>
-References: <20220627080341.5087-1-rex-bc.chen@mediatek.com>
-         <20220627080341.5087-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229838AbiF3CT6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 22:19:58 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF3B369E3
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 19:19:55 -0700 (PDT)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220630021952epoutp0389478c2f7430b143547f621a6aa1cf3b~9RIjxr9LC1668016680epoutp032
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:19:52 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220630021952epoutp0389478c2f7430b143547f621a6aa1cf3b~9RIjxr9LC1668016680epoutp032
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1656555592;
+        bh=XDklniwh3QyfjPxOJhBkr0ZUQ5RAQCRt+ldHWtZVb8k=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=diG+WOJGBIqVPHAUAMVAicGdDDgHGXQiR4NU8LovgFYCPi7gpE79firjlFIApUFPA
+         aL4KUeNZEJYaoruvlhQvahapFgkoHXrMhg1Mh2KnmIf8YfEetQyCUg2Ajqb/YW4d52
+         6V656QASdQlrT22jTvRXkTcA9tzBhRyczM94Upmg=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20220630021952epcas2p3f9d4f3ecead1ea5f4a15c8fb028653fb~9RIjXrQPo1312413124epcas2p3T;
+        Thu, 30 Jun 2022 02:19:52 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.101]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4LYMVH6M7Jz4x9QC; Thu, 30 Jun
+        2022 02:19:51 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        A7.47.09662.7480DB26; Thu, 30 Jun 2022 11:19:51 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+        20220630021951epcas2p3fb04daeddd98c74cbee3fed5044da6f9~9RIiT4NVz0138301383epcas2p34;
+        Thu, 30 Jun 2022 02:19:51 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220630021951epsmtrp1f61c9b28f917a5bf423029f18b7dfc70~9RIiTG_r21479214792epsmtrp1X;
+        Thu, 30 Jun 2022 02:19:51 +0000 (GMT)
+X-AuditID: b6c32a48-9e1ff700000025be-25-62bd08478215
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        37.06.08802.7480DB26; Thu, 30 Jun 2022 11:19:51 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220630021951epsmtip264f187aa7b2da0e67e5854ca44cb262b~9RIiJAXyD3172731727epsmtip2l;
+        Thu, 30 Jun 2022 02:19:51 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH v2 0/4] support USI for Exynos Auto v9 SoC
+Date:   Thu, 30 Jun 2022 11:16:52 +0900
+Message-Id: <cover.1656554759.git.chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpjk+LIzCtJLcpLzFFi42LZdljTXNedY2+SweunBhYP5m1js7i8X9ti
+        /pFzrBY7Go6wWvS9eMhssenxNVaLGef3MVm07j3CbvG8bx+TA6fHplWdbB53ru1h89i8pN6j
+        b8sqRo/Pm+QCWKOybTJSE1NSixRS85LzUzLz0m2VvIPjneNNzQwMdQ0tLcyVFPISc1NtlVx8
+        AnTdMnOAzlFSKEvMKQUKBSQWFyvp29kU5ZeWpCpk5BeX2CqlFqTkFJgX6BUn5haX5qXr5aWW
+        WBkaGBiZAhUmZGe077IuOMBVMXlTM2sD42mOLkYODgkBE4k/LyS7GLk4hAR2MEpsmPubBcL5
+        xCjR8fkKO4TzmVFi55yHrF2MnGAdbx82sUEkdjFKNF5tgGr5yCjx+sx1NpAqNgFdiS3PXzGC
+        2CIC8RLPL7wHK2IWmMQkcb6jmRkkISxgJfHn+2awBhYBVYm1T9+A2bwCNhKXLxxmh1gnL7Fh
+        fi8zRFxQ4uTMJywgNjNQvHnrbGaImmvsEn/ve0PYLhKzf+2DigtLvDq+BWqOlMTL/jYou1hi
+        6axPTCAHSQg0MEpc3vaLDSJhLDHrWTsjKGSYBTQl1u/ShwSSssSRW1Br+SQ6Dv9lhwjzSnS0
+        CUE0qksc2D6dBcKWleie8xkaWB4Sey63g10jJBArca+/nWUCo/wsJM/MQvLMLIS9CxiZVzGK
+        pRYU56anFhsVmMDjNDk/dxMjOEFqeexgnP32g94hRiYOxkOMEhzMSiK8C8/sTBLiTUmsrEot
+        yo8vKs1JLT7EaAoM3onMUqLJ+cAUnVcSb2hiaWBiZmZobmRqYK4kzuuVsiFRSCA9sSQ1OzW1
+        ILUIpo+Jg1OqgSnqu5RVp6FQ6tMXrCH+69zLnN/cqz7899RCpZMnfTscohxtfjn+f3N1671F
+        +7adZTdOZ+01rP7yyGHjl43XVUU/Fnhn283O2CJ4ZG3E///R1zNt/n7oW/gpzGlPwcfGwt9N
+        WTPEFzVoPv6mfv/VWZO0J8ozLz4PNHpjc6V239yFe58ydM5oPsTwNTmsZJout8JpM5YPx2zs
+        1/I3qs35u9aKXzo9bIVQlc+ObzoPfA8FT5lzQJaHsUrNRsQph1HE3uD+zW8CM87wbZPu2NLA
+        bShwIK31XOtNyevW7tI7tieeeVzW6fbC//e5mrD/yZ+6mi7etzr4ki04opXxYbH2lBpTrW87
+        Eyc4zF0t4RbGy6TEUpyRaKjFXFScCACdT+E+GQQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOLMWRmVeSWpSXmKPExsWy7bCSvK47x94kg32X+C0ezNvGZnF5v7bF
+        /CPnWC12NBxhteh78ZDZYtPja6wWM87vY7Jo3XuE3eJ53z4mB06PTas62TzuXNvD5rF5Sb1H
+        35ZVjB6fN8kFsEZx2aSk5mSWpRbp2yVwZbTvsi44wFUxeVMzawPjaY4uRk4OCQETibcPm9i6
+        GLk4hAR2MEpc3X2ECSIhK/Hs3Q52CFtY4n7LEVaIoveMEleWLmIBSbAJ6Epsef6KEcQWEYiX
+        2PxlIQtIEbPANCaJjsczwLqFBawk/nzfzAZiswioSqx9+gbM5hWwkbh84TDUBnmJDfN7mSHi
+        ghInZz4BW8AMFG/eOpt5AiPfLCSpWUhSCxiZVjFKphYU56bnFhsWGOWllusVJ+YWl+al6yXn
+        525iBIetltYOxj2rPugdYmTiYDzEKMHBrCTCu/DMziQh3pTEyqrUovz4otKc1OJDjNIcLEri
+        vBe6TsYLCaQnlqRmp6YWpBbBZJk4OKUamKrcrernTrkjKqb84tpd/9iaL8WenfkTn63T+KF4
+        OVfpfMWkJUVt4b62ldn20+P9hAt8DRzsZVecWBvyaOellq/z2sw3+C+JyVsToh8SGf228OFu
+        4V9fVGNmXwq+9OrlwWKGC8xVfxNKd0rkXPzV11xnx92ScmZLWuTxrLzGlbvUJzhPN6qcOuVL
+        fT6/8bWGaZdlZpw9ojxRjTW2U6ba8cvnjQt9jwT+ipgQz/6Y49lpqRKpH9pMn+OZ0ivOOR8s
+        CN1wY+viEs07YafMZnW4SR89ss9ugdiSFRN4Q8TWM0RbMjAfuanHsvZL6KX/FaYf+jKzmbK/
+        FwluMQjdxLPdfPPW9On9jzeYBpQYHLh7WImlOCPRUIu5qDgRAKoWTNfKAgAA
+X-CMS-MailID: 20220630021951epcas2p3fb04daeddd98c74cbee3fed5044da6f9
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220630021951epcas2p3fb04daeddd98c74cbee3fed5044da6f9
+References: <CGME20220630021951epcas2p3fb04daeddd98c74cbee3fed5044da6f9@epcas2p3.samsung.com>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+Add to support USI(Universal Serial Interface) for Exynos Auto v9 SoC.
+This patchset is built on top of below patchset.
+- spi patchset:
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+- serial patch to expand serial devices to 12:
+https://lore.kernel.org/linux-samsung-soc/20220629005538.60132-1-chanho61.park@samsung.com/
 
-On Mon, 2022-06-27 at 16:03 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
-> 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+The SoC supports up to 12 USIs so they can be configured as below
+- 12 x UARTs(4pins)
+- 12 x SPIs(4pins)
+- 24 x I2C
+- 12 x UARTS(2pin) and 12 x I2C
 
-[snip]
+Changes from v1:
+- Move all usi nodes from exynosautov9-usi.dtsi to exynosautov9.dtsi as
+  suggested by Krzysztof
+- Add exynosautov9-usi and exynosautov9-uart compatibles
+- Drop unnecessary /* USI: */ comments
+- Separate phandles of dmas nodes
 
-> +
-> +static void mtk_dp_power_disable(struct mtk_dp *mtk_dp)
-> +{
-> +	mtk_dp_write(mtk_dp, MTK_DP_TOP_PWR_STATE, 0);
-> +
-> +	mtk_dp_write(mtk_dp, MTK_DP_0034,
-> +		     DA_CKM_CKTX0_EN_FORCE_EN |
-> +		     DA_CKM_BIAS_LPF_EN_FORCE_VAL |
-> +		     DA_CKM_BIAS_EN_FORCE_VAL |
-> +		     DA_XTP_GLB_LDO_EN_FORCE_VAL |
-> +		     DA_XTP_GLB_AVD10_ON_FORCE_VAL);
+Chanho Park (4):
+  dt-bindings: soc: samsung: usi: add exynosautov9-usi compatible
+  dt-bindings: serial: samsung: add exynosautov9-uart compatible
+  arm64: dts: exynosautov9: add pdma0 device tree node
+  arm64: dts: exynosautov9: add usi device tree nodes
 
-Is this clock gating? If so, separate this to ccf driver.
+ .../bindings/serial/samsung_uart.yaml         |    5 +-
+ .../bindings/soc/samsung/exynos-usi.yaml      |    8 +-
+ .../boot/dts/exynos/exynosautov9-sadk.dts     |    2 +
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 1087 ++++++++++++++++-
+ 4 files changed, 1094 insertions(+), 8 deletions(-)
 
-Regards,
-CK
-
-> +
-> +	/* Disable RX */
-> +	mtk_dp_write(mtk_dp, MTK_DP_1040, 0);
-> +	mtk_dp_write(mtk_dp, MTK_DP_TOP_MEM_PD,
-> +		     0x550 | BIT(FUSE_SEL_SHIFT) |
-> BIT(MEM_ISO_EN_SHIFT));
-> +}
-> +
+-- 
+2.36.1
 
