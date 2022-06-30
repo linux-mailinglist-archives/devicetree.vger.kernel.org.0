@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 935D65622A7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:07:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27DE85622AE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:11:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236367AbiF3THS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 15:07:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44500 "EHLO
+        id S236719AbiF3TLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 15:11:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235955AbiF3THS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:07:18 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C663EF3B
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:07:15 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id fw3so13161992ejc.10
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:07:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=piUvaKld1qnxNrwH7NkZMI/BexFhn+OSQaZXyTTeJsI=;
-        b=eQw6FUbHKgkJq1YC9al1cNe3NQgmszYemmYaTiH1/rsAigg5ZM1R5g1fWZGQyi8OtI
-         cZYdnaLOcyS3TdfPJaFd+QYRKRKQNA24W/PbMEyn4VQwLsEiRzf5BKAaW+lXS6t/fqJy
-         pAI+SGeQ8kuqDVz24cIxREJAnuOSlYDQEqj/93nnnIFZ403sQwUN+Cvvu7H7nGkBTocd
-         1R9pwmDlFrMy4o0/O5Y+ZK573GqPjvOOYaQ2R5JAMo13kgIZSDOofajkaoqo/H+05r0a
-         n7iymGYTobF/QUFBZDqxebkdLVhUzKgsswOfJH9p7AtjBpOrKr44Ard2UehbZMAm8dwp
-         tfgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=piUvaKld1qnxNrwH7NkZMI/BexFhn+OSQaZXyTTeJsI=;
-        b=YUrhkxtcBx3biEwTk66o2meKbkgUurt7GKu3NUMqnIII1BGP/z54Nr35JVi+nrw5xs
-         +EUl0bpSbr6LUoi05UQHiLIpsfZs1IPk9ZgmdUjvdSMMSzeayIMhbKxmMnhS9SPqUTv5
-         y6UX30BjcaZpb4zMXWlbe7iS1PhfI+hUEi8j1fqejWAbKjxO92hkV0YonKSsbqP739UJ
-         ErOp8p064VwHh8nx42pxIMC1LOZqwP0ak/0ub7FET1zMhlKUnYamf8+T44u2IpVq0Sz1
-         gJQlGYHJqbqdNaBSQvdXM9Fpr4rFnCdhyTSwBRr7rpsWnHtDJL6qE6LSrEDHt3pqsQIG
-         r5Yg==
-X-Gm-Message-State: AJIora8GDlBvkiq4rBcYDmaHzJv38zcQpGTLofs0h9mP4hTY3rOfFE9E
-        VwKkttDa+jCKme8KF55wuHx9ng==
-X-Google-Smtp-Source: AGRyM1sN9V+G1ISGzNAljgC1ZskGE8aiGAvRJTluEXUI/K/w5Rtck42hyZUKEfhoNWVmdkLfJ0jXlA==
-X-Received: by 2002:a17:906:c151:b0:726:9266:ab90 with SMTP id dp17-20020a170906c15100b007269266ab90mr10468471ejc.525.1656616033978;
-        Thu, 30 Jun 2022 12:07:13 -0700 (PDT)
-Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id fi9-20020a170906da0900b00722e5b234basm9496996ejb.179.2022.06.30.12.07.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 12:07:13 -0700 (PDT)
-Message-ID: <f1d3cd34-bece-c0de-1c3f-ed53b9a8118b@linaro.org>
-Date:   Thu, 30 Jun 2022 21:07:12 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 7/7] dt-bindings: msm: dsi: Add missing
- qcom,dsi-phy-regulator-ldo-mode
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
-        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org>
- <20220630120845.3356144-8-bryan.odonoghue@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630120845.3356144-8-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S236557AbiF3TLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:11:31 -0400
+Received: from smtp-out3.electric.net (smtp-out3.electric.net [208.70.128.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9263728E30;
+        Thu, 30 Jun 2022 12:11:30 -0700 (PDT)
+Received: from 1o6zZX-0007xl-WA by out3d.electric.net with emc1-ok (Exim 4.94.2)
+        (envelope-from <kris@embeddedTS.com>)
+        id 1o6zZZ-0007zz-U8; Thu, 30 Jun 2022 12:11:29 -0700
+Received: by emcmailer; Thu, 30 Jun 2022 12:11:29 -0700
+Received: from [66.210.251.27] (helo=mail.embeddedts.com)
+        by out3d.electric.net with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <kris@embeddedTS.com>)
+        id 1o6zZX-0007xl-WA; Thu, 30 Jun 2022 12:11:28 -0700
+Received: from tsdebian (97-120-89-198.ptld.qwest.net [97.120.89.198])
+        by mail.embeddedts.com (Postfix) with ESMTPSA id 222601ACCE;
+        Thu, 30 Jun 2022 12:11:27 -0700 (MST)
+Message-ID: <1656616263.4126.2.camel@embeddedTS.com>
+Subject: Re: [PATCH] ARM: dts: imx6qdl-ts7970: Fix ngpio typo and count
+From:   Kris Bahnsen <kris@embeddedTS.com>
+Reply-To: kris@embeddedTS.com
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Mark Featherston <mark@embeddedTS.com>
+Date:   Thu, 30 Jun 2022 12:11:03 -0700
+In-Reply-To: <1654112f-839f-1de2-0f00-fbf501824d6d@linaro.org>
+References: <20220630182746.3813-1-kris@embeddedTS.com>
+         <1654112f-839f-1de2-0f00-fbf501824d6d@linaro.org>
+Organization: embeddedTS
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
 Content-Transfer-Encoding: 7bit
+X-Outbound-IP: 66.210.251.27
+X-Env-From: kris@embeddedTS.com
+X-Proto: esmtps
+X-Revdns: wsip-66-210-251-27.ph.ph.cox.net
+X-HELO: mail.embeddedts.com
+X-TLS:  TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256
+X-Authenticated_ID: 
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (b)
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=embeddedTS.com; s=mailanyone20220121;h=Mime-Version:References:In-Reply-To:Date:To:From:Message-ID; bh=qMObpzT3wXlxPCBmJZM9zsuJ7xMlvsw1Ae+alyFAqAQ=;b=h/wv8/6TmfbYre87mo7wM6DJ+f19ScmYPA8H8bD2GgUFg7j/avZAAfy39ldpfUgzal09r0trklPlXRIFDqzO2OvpqfSSTkHtlfRv3SCt9eip5QVaVAGif1hvexOKus/Qf/IciKcxf6sJ+Vxxh5vbDh1ztDZ1btoP+VDBEbB7t5vo6+wyQt0REOYuEixpahjSOWVYilttXqamJtV2yDrMbo1nK9nwlbwA70vYYVL70eVYbJpqfgABX3PQjT8dwoeLP2Wm8aW2ksHNcl68K/LM60ECu+/JhqAgrisvRkKXDitTMFjfKM6dwW6rvj4uwH5dG6j+xg2mv3xJswCPvB71yQ==;
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,37 +74,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 14:08, Bryan O'Donoghue wrote:
-> Add in missing qcom,dsi-phy-regulator-ldo-mode to the 28nm DSI PHY.
-> When converting from .txt to .yaml we missed this one.
+On Thu, 2022-06-30 at 20:56 +0200, Krzysztof Kozlowski wrote:
+> On 30/06/2022 20:27, Kris Bahnsen wrote:
+> > Device-tree incorrectly used "ngpio" which caused the driver to
+> > fallback to 32 ngpios.
+> > 
+> > This platform has 62 GPIO registers.
+> > 
+> > Signed-off-by: Kris Bahnsen <kris@embeddedTS.com>
+> > ---
 > 
-> Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../devicetree/bindings/display/msm/dsi-phy-28nm.yaml          | 3 +++
->  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-> index 9ecd513d93661..3551e166db966 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-> @@ -40,6 +40,9 @@ properties:
->        - description: dsi phy register set
->        - description: dsi phy regulator register set
->  
-> +  qcom,dsi-phy-regulator-ldo-mode:
-> +    description: Boolean value indicating if the LDO mode PHY regulator is wanted.
+> Ah and one more - for some reason you did not send it to maintainers, so
+> patch will be most likely ignored. Please use scripts/get_maintainer.pl
+> to CC relevant people.
 
-You need type:boolean. Didn't dt_bindings_check complain?
+I reviewed that output and erred on the side of not generating
+too much noise and skipped folks/lists marked as general ARM/NXP
+maintainers. I'll be sure to send to all in the future.
 
-Then description can be shorter "Whether the LDO mode PHY regulator is
-wanted."
+Forgot about Fixes: tag, I'll add that in a v2.
 
-> +
->    reg-names:
->      items:
->        - const: dsi_pll
+Thanks for the feedback.
 
-
-Best regards,
-Krzysztof
+> 
+> Best regards,
+> Krzysztof
+> 
