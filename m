@@ -2,59 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 783985626D8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 01:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 574B656269F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 01:18:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232539AbiF3XRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 19:17:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39174 "EHLO
+        id S232646AbiF3XSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 19:18:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232597AbiF3XRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 19:17:16 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2151599F4;
-        Thu, 30 Jun 2022 16:17:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5AB5AB82BEA;
-        Thu, 30 Jun 2022 23:17:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC06DC341C7;
-        Thu, 30 Jun 2022 23:17:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656631021;
-        bh=n6mhqJyBBGDTk5KWSPiBhw/VEJ5HKNOC9gzwL4tu7Gw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=g0ywGvs4T3+HsnunBmZj5bd7HklMf7tvLU+rEjx98mg6OGxaro3YPTcFdcD58IgSG
-         0l0JbSVNpFigNfJDb3Bx+riZKhV2t4f5hgA6WoR1lvoBDUukGSviBFimnodSrq0O2p
-         i7I9C6deqLQyZIL400b0aXqkGXUUUi3LaNkyW5oDxb0G1xnNB99O03Drf55Mz6X8OD
-         FwZSVgGNyRTZSxlPZ0/3Qg0b2nf5okvpYNPwkN2wY2RyUh+dhs3wL7Stlg7QVPKmIZ
-         yDFmRvDHntMaWyJU5syRkzEb+QujjFTHD27tU/I59FBkztFdSsrs4QrMmw3RezIczO
-         TymCZLkFmprCQ==
-Date:   Fri, 1 Jul 2022 02:16:57 +0300
-From:   Jarkko Sakkinen <jarkko@kernel.org>
-To:     Stefan Berger <stefanb@linux.ibm.com>
-Cc:     Rob Herring <robh@kernel.org>, kexec@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
-        nayna@linux.ibm.com, nasastry@in.ibm.com,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 1/3] tpm: of: Move of-tree specific code from tpm
- driver into of driver
-Message-ID: <Yr4u6eADhCEc6rSM@kernel.org>
-References: <20220616154130.2052541-1-stefanb@linux.ibm.com>
- <20220616154130.2052541-2-stefanb@linux.ibm.com>
- <20220627224325.GB3082294-robh@kernel.org>
- <170c78f7-f0ba-c186-dacf-55759dae9b83@linux.ibm.com>
- <Yru83e4OLW7vH5/o@kernel.org>
- <6e097ec9-0657-b920-89c5-cef3e95bd7ea@linux.ibm.com>
+        with ESMTP id S232672AbiF3XSW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 19:18:22 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C6F8B05;
+        Thu, 30 Jun 2022 16:18:12 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id d3so681082ioi.9;
+        Thu, 30 Jun 2022 16:18:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=9gNUQLHFQPHo0E6Bk43UyIkswDGTVgKImpHtKfx0xvg=;
+        b=k8FAvHCTXex7ryloSNa6RtOC1axvQQFUzg1rBPL5WVT21XDUP1KKbuGi/k6VzeEVJP
+         flx8Vc3aeyHY8qRXnCKK/SxAFKhKcvBOLXCyfLBbJhz0JqmeQlHlzM8E1IhL5I0O9DhD
+         qiygQ1gP5TW0xElpF+fpL48cVBPeGyKlXLsE/f4iQwfts/LWCoWyVWY+wRdDYHL/qeUQ
+         lhVsARKeoeTSk7MmCcE1U7CfQXiPoyGyp1qdCZMUxPo0G/r7RI83LJmo27TeiKVXEI7o
+         ap8vw1GnUqvn0ldsmr1alpRgJl8ewujy+UXF/AnkmrUfQe7+83mJoOQDE5NNBhb9ee4C
+         eS+g==
+X-Gm-Message-State: AJIora8E81FX8W3Nn/3jw2t+pHe/vuMVcUwUdVSIi1gOWSWCFeANaTZ5
+        LsC6pe+53Pptsoz1aK302g==
+X-Google-Smtp-Source: AGRyM1su16XuZ3P1C/gSpnPqv5Wj9auvAHesaclQYdz2S96RxT7/OA1S+mZcS20iiJlEwB9ke8UXdg==
+X-Received: by 2002:a05:6638:410e:b0:33c:d3b8:a4bd with SMTP id ay14-20020a056638410e00b0033cd3b8a4bdmr6441419jab.264.1656631091659;
+        Thu, 30 Jun 2022 16:18:11 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id s8-20020a92cb08000000b002d900368a19sm8478492ilo.22.2022.06.30.16.18.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jun 2022 16:18:11 -0700 (PDT)
+Received: (nullmailer pid 3516208 invoked by uid 1000);
+        Thu, 30 Jun 2022 23:18:09 -0000
+Date:   Thu, 30 Jun 2022 17:18:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?77+977+977+9zrHvv70vVGl6ZW4gUGxhdGZvcm0gTGFiKFNSKS/vv73vvLo=?=
+         =?utf-8?B?77+977+977+977+9?= <inki.dae@samsung.com>
+Cc:     'Krzysztof Kozlowski' <krzysztof.kozlowski@linaro.org>,
+        'Seung-Woo Kim' <sw0312.kim@samsung.com>,
+        'Kyungmin Park' <kyungmin.park@samsung.com>,
+        'David Airlie' <airlied@linux.ie>,
+        'Daniel Vetter' <daniel@ffwll.ch>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
+        'Alim Akhtar' <alim.akhtar@samsung.com>,
+        'Kishon Vijay Abraham I' <kishon@ti.com>,
+        'Vinod Koul' <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH 1/2] drm/exynos: MAINTAINERS: move Joonyoung Shim to
+ credits
+Message-ID: <20220630231809.GA3514176-robh@kernel.org>
+References: <CGME20220626163558epcas1p3f525431b9fb237bd420ad1453daaf1ac@epcas1p3.samsung.com>
+ <20220626163320.6393-1-krzysztof.kozlowski@linaro.org>
+ <0de401d88c38$23aeb8e0$6b0c2aa0$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <6e097ec9-0657-b920-89c5-cef3e95bd7ea@linux.ibm.com>
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0de401d88c38$23aeb8e0$6b0c2aa0$@samsung.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,65 +77,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 10:16:37AM -0400, Stefan Berger wrote:
+On Thu, Jun 30, 2022 at 01:16:14PM +0900, ���α�/Tizen Platform Lab(SR)/�Ｚ���� wrote:
 > 
 > 
-> On 6/28/22 22:45, Jarkko Sakkinen wrote:
-> > On Tue, Jun 28, 2022 at 09:29:48AM -0400, Stefan Berger wrote:
-> > > 
-> > > 
-> > > On 6/27/22 18:43, Rob Herring wrote:
-> > > > On Thu, Jun 16, 2022 at 11:41:28AM -0400, Stefan Berger wrote:
-> > > > > Simplify tpm_read_log_of() by moving Openfirmware-specific code into
-> > > > > the Openfirmware driver to make the code reusable. Call the new
-> > > > 
-> > > > There is no such 'Openfirmware driver'.
-> > > > 
-> > > > > of_tpm_get_sml_parameters() function from the TPM Openfirmware driver.
-> > > > > 
-> > > > > Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
-> > > > > Cc: Jarkko Sakkinen <jarkko@kernel.org>
-> > > > > Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> > > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > > Cc: Frank Rowand <frowand.list@gmail.com>
-> > > > > ---
-> > > > >    drivers/char/tpm/eventlog/of.c | 31 +++++--------------------------
-> > > > >    drivers/of/Makefile            |  2 +-
-> > > > >    drivers/of/device_node.c       | 27 +++++++++++++++++++++++++++
-> > > > 
-> > > > Humm, definitely the wrong direction. Generally, code for specific
-> > > > bindings does not go in drivers/of/. There used to be some, but we've
-> > > > moved it to the appropriate subsystems. kexec was an exception to not
-> > > > have 2 copies of the same code in arch/.
-> > > 
-> > > The function I am moving here is called by the TPM subsystem and also now by
-> > > of/kexec.c. The latter is compiled under the following conditions:
-> > > 
-> > > ifdef CONFIG_KEXEC_FILE
-> > > ifdef CONFIG_OF_FLATTREE
-> > > obj-y	+= kexec.o
-> > > endif
-> > > endif
-> > > 
-> > > The code that current calls it is compiled under the following conditions:
-> > > 
-> > > tpm-$(CONFIG_OF) += eventlog/of.o
-> > > 
-> > > To make it available to both I could keep it in the TPM subsystem like this:
-> > > 
-> > > obj-$(CONFIG_OF) = tpm_of.o
-> > > 
-> > > 
-> > > Jarrko, if you read this, any comment?
-> > > 
-> > > 
-> > >     Stefan
+> > -----Original Message-----
+> > From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+> > Sent: Monday, June 27, 2022 1:33 AM
+> > To: Inki Dae <inki.dae@samsung.com>; Seung-Woo Kim
+> > <sw0312.kim@samsung.com>; Kyungmin Park <kyungmin.park@samsung.com>; David
+> > Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>; Rob Herring
+> > <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > <krzysztof.kozlowski+dt@linaro.org>; Alim Akhtar
+> <alim.akhtar@samsung.com>;
+> > Kishon Vijay Abraham I <kishon@ti.com>; Vinod Koul <vkoul@kernel.org>;
+> > linux-kernel@vger.kernel.org; dri-devel@lists.freedesktop.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> > samsung-soc@vger.kernel.org; linux-phy@lists.infradead.org
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Subject: [PATCH 1/2] drm/exynos: MAINTAINERS: move Joonyoung Shim to
+> > credits
 > > 
-> > Why can't you convert of_tpm_get_sml_parameters() to inline function?
+> > Emails to Joonyoung Shim bounce ("550 5.1.1 Recipient address rejected:
+> > User unknown"), so move him to credits file.
+> > 
 > 
-> I can do that and put it into include/linux/tpm.h. The only concern would
-> have been the size of the function.
+> Applied.
 
-It is somewhat insignificant amount (dozens of bytes at most).
-
-BR, Jarkko
+Both patches or just this one?
