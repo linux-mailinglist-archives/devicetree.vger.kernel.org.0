@@ -2,67 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE05B56104C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 06:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A66A15611F2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 07:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231889AbiF3Efp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 00:35:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45896 "EHLO
+        id S229844AbiF3FyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 01:54:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231416AbiF3Efo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 00:35:44 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 836C81DA73
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:35:43 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id l68so5521074wml.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:35:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=lAB0XA/QUtzjvvdVj5TZsij0CUewEyhxlHuwrr+z+/I=;
-        b=IGpmhgGV+bN8n4jkVU/FQ9qSnGDuv4uNhnmtMKouQ2FWajTDd9vJ2m8BJBDnMiixjs
-         25cFC6S7Hi/E5k5KLDetzk5nLrUby9S322RB9aoc+5+uUWbRnsUil614YhCT5DB8oUKD
-         bKhhxHjxzI/4rmuTGBBfycY40iCc3++NDMFif2FOwWafzbrar9RVRnx88mZ+aLnIWT2A
-         Xaf777IHHxII5TaeBgNyA3VtT+72ebYa+uzKfLeP1v+DdK4B1V13U9qjjCqJH92XLL+k
-         KZOJSPJlfkpHWB8XD8WdTuOx2j77fR0DZXbKpKotL6KOGzTaiWDSmNhQje2EKfGYL0SB
-         InYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=lAB0XA/QUtzjvvdVj5TZsij0CUewEyhxlHuwrr+z+/I=;
-        b=lpWgvik/k4lfxrrN6DNxXR5N/pHKis39EyvBXbYXt+/HLF6JbCkrIULu4l23Ghqkdf
-         behBZu3mUdd5Y4t9xSNtc6G8PbCrQM9oue9z/Ov3ZEK9jR0hlecT0RqhL9zdVu8Umv+E
-         p66fejLP+/uWahFqMPobVWE810AlYj9XQw9Z7AAE51II6coEqBzSnBlyE08f+nWVaIKP
-         V4KUPJzGT2wEzEGn39shkm4o5+MSH7XlY7pHyyeGEwQtDtQqOxYCAM37p6k3K7ZxiFwb
-         Pj+x0GwrwrswVotGeizWxZafPGQWfSG0kJq367OEYo9pWIsb0l3wX+PGvY+CMFPA4wXe
-         PIKA==
-X-Gm-Message-State: AJIora88T/haDpsGC0X5xENjEWJDl9mZI5OBIGyVks9KZm3WHjc7snEd
-        o9L2pjGVeVbW/wuljZdyjGXuLg==
-X-Google-Smtp-Source: AGRyM1tJJTX7TL131B5lf3LzQBza6PPM+nKmvX9YuoZiXRj++vDakDjuwYCgD99s8N/9enr3OK4Ppg==
-X-Received: by 2002:a05:600c:da:b0:3a1:20eb:dd40 with SMTP id u26-20020a05600c00da00b003a120ebdd40mr7456509wmm.25.1656563742063;
-        Wed, 29 Jun 2022 21:35:42 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id k1-20020a5d6281000000b0021b9e360523sm18642335wru.8.2022.06.29.21.35.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 21:35:41 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH 2/2] dt-bindings: mailbox: qcom: Add clock-output-names
-Date:   Thu, 30 Jun 2022 05:35:36 +0100
-Message-Id: <20220630043536.3308546-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220630043536.3308546-1-bryan.odonoghue@linaro.org>
-References: <20220630043536.3308546-1-bryan.odonoghue@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S229479AbiF3FyQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 01:54:16 -0400
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B143C2BB27;
+        Wed, 29 Jun 2022 22:54:14 -0700 (PDT)
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 013051A09D4;
+        Thu, 30 Jun 2022 07:54:13 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B84B71A06F8;
+        Thu, 30 Jun 2022 07:54:12 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id E7FC2180222C;
+        Thu, 30 Jun 2022 13:54:10 +0800 (+08)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        shengjiu.wang@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] Add support of two Audio PLL source
+Date:   Thu, 30 Jun 2022 13:39:08 +0800
+Message-Id: <1656567554-32122-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,31 +43,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clock-output-names as optional so that SoCs such as the msm8939 which
-have multiple a53 PLLs can latch the appropriate output name in
-drivers/clk/qcom/apcs-msm8916.c.
+i.MX8MQ/MN/MM/MP platforms typically have 2 AUDIO PLLs being
+configured to handle 8kHz and 11kHz series audio rates.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml   | 5 +++++
- 1 file changed, 5 insertions(+)
+The patches implement the functionality to select at runtime
+the appropriate AUDIO PLL for root clock, if there is no
+two PLL registered, then no action taken.
 
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-index f342494fd6108..7f3816cbc0353 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-@@ -63,6 +63,11 @@ properties:
-       - const: aux
-       - const: ref
- 
-+  clock-output-names:
-+    Usage: optional
-+    Value type: <string>
-+    Definition: Name of the output clock.
-+
- required:
-   - compatible
-   - reg
+Shengjiu Wang (6):
+  ASoC: fsl_utils: Add function to handle PLL clock source
+  ASoC: fsl_spdif: Add support for PLL switch at runtime.
+  ASoC: fsl_micfil: Add support for PLL switch at runtime
+  ASoC: fsl_sai: Add support for PLL switch at runtime
+  ASoC: dt-bindings: fsl_spdif: Add two PLL clock source
+  ASoC: dt-bindings: fsl-sai: Add two PLL clock source
+
+ .../devicetree/bindings/sound/fsl,spdif.yaml  |  4 ++
+ .../devicetree/bindings/sound/fsl-sai.txt     |  3 +
+ sound/soc/fsl/Kconfig                         |  3 +
+ sound/soc/fsl/fsl_micfil.c                    | 41 +++++++++++
+ sound/soc/fsl/fsl_sai.c                       | 54 +++++++++++++++
+ sound/soc/fsl/fsl_sai.h                       |  2 +
+ sound/soc/fsl/fsl_spdif.c                     | 57 +++++++++++++--
+ sound/soc/fsl/fsl_utils.c                     | 69 +++++++++++++++++++
+ sound/soc/fsl/fsl_utils.h                     |  9 +++
+ 9 files changed, 237 insertions(+), 5 deletions(-)
+
 -- 
-2.36.1
+2.17.1
 
