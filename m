@@ -2,84 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC7C356250D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 23:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5034E562549
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 23:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237469AbiF3VWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 17:22:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44060 "EHLO
+        id S237587AbiF3Vc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 17:32:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237509AbiF3VW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 17:22:29 -0400
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 177E04D157;
-        Thu, 30 Jun 2022 14:22:29 -0700 (PDT)
-Received: by mail-il1-f171.google.com with SMTP id p9so212209ilj.7;
-        Thu, 30 Jun 2022 14:22:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=T4909o+ZJwgi1L8MENIjc0OE7vRQ1YbJuBfUhGjWQ1Y=;
-        b=X8pUNAquAXfSF/uIdQO/a2jFB2pKta48hmSBJ7I+sX3P3PoIFYLYf8dOX46bm2N9fp
-         ODNn9jmEg2AQQn42m0nS2ks/IvwS/PL6TAa92R9Kfc6qHvWn2jOtNOQHXD+XD4Do5H9S
-         wrm5ovy20+TSiUSqhSpe9XR3gu6ioR7cYhYi2yhvH8XAxdXllu2HhjjNJAQ5gSMLMOJd
-         vSwa24OqYbCYaN+jp4+IPMCa0T9pCb9tHHuHxxUcRwdL/0gyh4mSgBksKC+14L+uO0lq
-         rhI/5e0TwRJFitI+MYk3Q249AP2sXnh68X1R69AxJv8lLEobLE0fEBUdMEH+QQyRqeeN
-         /pxg==
-X-Gm-Message-State: AJIora/Nkvei6StRl5rwJcl8CY7ADuVWCd/nDHWVvZMwO6tIyIIQK0MD
-        4q8h9/KXBm+dHSNMcxN8Og==
-X-Google-Smtp-Source: AGRyM1tUHkRznlT3Zwq7RVA5PUw0xyPJTRlCsDeBnrR2kcY+djt+IfRnZuYf80Z7Nv6TfFTCt9EuSA==
-X-Received: by 2002:a92:d5cf:0:b0:2d1:d9b0:d5b1 with SMTP id d15-20020a92d5cf000000b002d1d9b0d5b1mr6199947ilq.252.1656624148343;
-        Thu, 30 Jun 2022 14:22:28 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m4-20020a924b04000000b002d3edd935e5sm8402748ilg.53.2022.06.30.14.22.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 14:22:27 -0700 (PDT)
-Received: (nullmailer pid 3323810 invoked by uid 1000);
-        Thu, 30 Jun 2022 21:22:26 -0000
-Date:   Thu, 30 Jun 2022 15:22:26 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com, sean.wang@mediatek.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, nfraprado@collabora.com,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: mt8195: Add and use
- drive-strength-microamp
-Message-ID: <20220630212226.GA3323748-robh@kernel.org>
-References: <20220630131543.225554-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S233496AbiF3VcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 17:32:25 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25E0E50715;
+        Thu, 30 Jun 2022 14:32:25 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 2DA3D22236;
+        Thu, 30 Jun 2022 23:32:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1656624742;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=hhIM7xkXVLpCgTOC9u3u0l6IjtG+a88bi2pntBrpJIo=;
+        b=hT11cBNXtnyB1FKwoVxTYskaPjbn+HRZOW0dtvXqnJjTwl4IOPN22WvQMtA18pog25XKyP
+        SnIMOdm11PExB994mPfRKmKLvxSf2D7NXOQAF2cSXI5tC9D/dUfSXs1kCa2XgpQ3UMtEAr
+        XJ1mefUOgXAdvhuqdxj2p/hWOZ/ZqlA=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220630131543.225554-1-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 30 Jun 2022 23:32:21 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
+In-Reply-To: <20220630212120.t3in6i7s7chaqacr@skbuf>
+References: <3ab8afab-b6b7-46aa-06d4-6740cee422d7@linaro.org>
+ <288f56ba9cfad46354203b7698babe91@walle.cc>
+ <daaddbd5-1cd4-d3ce-869a-249bdd8aecb9@linaro.org>
+ <96f40ae6abf76af3b643b1e1c60d1d9f@walle.cc>
+ <f9eb6d94-c451-0c9f-f123-2f1324f68b68@linaro.org>
+ <CAHp75VdWdUY-XyGBsQb3i9thCswmBo4UEAEaZCO5MC_HMW+fSQ@mail.gmail.com>
+ <20220628205254.gnllvaz7w5jmpfe5@soft-dev3-1.localhost>
+ <4782de1fc6692a98bd6c267c2714325f@walle.cc>
+ <20220630201617.sqpihcevym7sxqng@soft-dev3-1.localhost>
+ <b0e3cd1f6b210943030a1e7a355d1a7f@walle.cc>
+ <20220630212120.t3in6i7s7chaqacr@skbuf>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <65a17cff8d80b0c27976a2c2a17519bf@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Jun 2022 15:15:43 +0200, AngeloGioacchino Del Regno wrote:
-> As was already done for MT8192 in commit b52e695324bb ("dt-bindings:
-> pinctrl: mt8192: Add drive-strength-microamp"), replace the custom
-> mediatek,drive-strength-adv property with the standardized pinconf
-> 'drive-strength-microamp' one.
+Am 2022-06-30 23:21, schrieb Vladimir Oltean:
+> On Thu, Jun 30, 2022 at 11:00:37PM +0200, Michael Walle wrote:
+>> > > > It is not possible to have a defined for the MAX number of ports that
+>> > > > supported by lan966x. Which is 8. And assigned that define to
+>> > > > num_phys_ports instead of counting the entries in DT?
+>> > >
+>> > > You mean also for the lan9662? I'm pretty sure that doesn't
+>> > > work. Have a look where num_phys_ports is used. One random
+>> > > example:
+>> > > https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/microchip/lan966x/lan966x_main.c#L874
+>> > >
+>> > > So if your switch only has 4 ports, then I'd guess you'll
+>> > > access a non-existing register.
+>> >
+>> > Underneath lan662 and lan668 is the same chip. The HW people disable
+>> > some ports/features on each platform but from what I know you will still
+>> > be able to access the registers.
+>> 
+>> I noticed that there are still 8 ports in the register description and
+>> assumed that it was wrong [1]. But ok, that makes sense in some way.
+>> OTOH that means, we cannot do the guesswork Vladimir proposed.
+>> 
+>> -michael
+>> 
+>> [1] 
+>> https://microchip-ung.github.io/lan9662_reginfo/reginfo_LAN9662.html
 > 
-> Similarly to the mt8192 counterpart, there's no user of property
-> 'mediatek,drive-strength-adv', hence removing it is safe.
+> Are you 100% positive that the default values for the flooding PGIDs 
+> are
+> GENMASK(8, 0) for a 4-port switch? And that the packet buffer has the
+> same size for a switch with half as many ports? Ok...
 > 
-> Fixes: 69c3d58dc187 ("dt-bindings: pinctrl: mt8195: Add mediatek,drive-strength-adv property")
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/pinctrl/pinctrl-mt8195.yaml      | 27 ++-----------------
->  1 file changed, 2 insertions(+), 25 deletions(-)
-> 
+> But in that case, what exactly is the problem if the port count of 8 is
+> a synthesis time constant for lan966x, and if the CPU port module is
+> always at index 8 in the analyzer (with a gap between indices 4 and 7)?
+> Just hardcode lan966x->num_phys_ports to 8 and work with that 
+> throughout.
+> Allocate lan966x->ports as an array of 8 pointers to struct 
+> lan966x_port
+> (which they are already), and the pointers themselves are populated as
+> being the netdev_priv of the interfaces that are actually present and
+> used. Literally the only thing you need to fix is that you need to
+> hardcode num_phys_ports to 8, problem solved. It means that lan9662 is
+> nothing but a lan9668 where the last 4 ports have 'status = "disabled"'
+> in the device tree.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+If that's the case, sure. The last four ports can just be omitted no?
+Of course you'll lose the possibility to validate the device tree ports
+input, i.e. port@5 would perfectly valid although it doesn't make any
+sense for the lan9662. (Regardless if it is disabled, or if it's 
+omitted)
+
+-michael
