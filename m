@@ -2,131 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 042C1561715
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 12:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F28E56174B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 12:08:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234049AbiF3KCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 06:02:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36970 "EHLO
+        id S234049AbiF3KHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 06:07:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234246AbiF3KCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 06:02:50 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A51743EE1;
-        Thu, 30 Jun 2022 03:02:50 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 6C45A5C0249;
-        Thu, 30 Jun 2022 06:02:49 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Thu, 30 Jun 2022 06:02:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1656583369; x=1656669769; bh=RR
-        JIdrAZofAfNPH9Ms80aUvsjV2YDmaSvFUGEVQFoI0=; b=MhFhECyTKDc6fKbJX8
-        v6K6uLvYAy+WPV7z5+cM+mF8ZKDQM3KM2+HUCpdUHt+HclhTQ5oKXsZsOZXNuZhi
-        3kJwOy+02A2YkQ22uf9Z6GhhAZF704H1vVjBCtQRB6jKatfiRJzLwMvaklox6UXp
-        HukRMi4OSb3uWFxcR4nDRVEOuQLr4/azJ97y01o6ygZySkylznH9xqpYByUqQFVB
-        Vb0zdLjOHygWjXBqT/x8zwtddAFUOB/oa7xVpvteBiXZLJRHbLqMlhdZZXJKJZtO
-        OylRD++UrLbbXL5DOgct6zw4XliK9Un604lX9f7dVSJxfd/0nVGjFF9bt+MXPTrO
-        0HoQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1656583369; x=1656669769; bh=RRJIdrAZofAfN
-        PH9Ms80aUvsjV2YDmaSvFUGEVQFoI0=; b=FwLCNgj8ef0QZbrz4RcGVYTl5wm2i
-        FAT+kHCegEvqrgMI3bDELH/vSfe1yP/e+pNcWku4RrDk3/aVBDALQm9q0bY6hMty
-        5xH2PxDGuhX1M6PIs+J1ueBBf6reRnVImHwotMYTIrajVzlFwbL4rNJYxGoXLUp4
-        mC2bB7Og/GZX2hTMIK0yeEkGY5ZdZKheSYa30uS1z6NR4AFB5KA0hQ51sy7gqm/N
-        C51+r48vP6nb7Qwsz2Rneft9HVyyPlAQiisvfs6SOSMmWq6o6/FyTm5odu1TwU8T
-        o9TC8xmN2NSsOAUKizn+CM3yLOI1wxbcXjzXVm30A4uHbNSU4REDkxlmQ==
-X-ME-Sender: <xms:yXS9YuvS0UKoN7QsKJ79BjTtmlhyA9eGZGptPZj6qYfK2c4ntXUcDw>
-    <xme:yXS9YjcMcHl0s4RI86A5AmpbT4TIxraKL83hOmAd7DN50CNlAMjLSOvroM5mrszw_
-    r0n7stQ2YccqMmrsw>
-X-ME-Received: <xmr:yXS9Ypz1wkuWh8stqiNp0_wa8AKZ6c2a83i0PnECcPqAZuMoU1imgaFQV3U8GrElHcQOSfuFlK0fh_SUwrKb_dU3UMvWR8LYaErmidj8nVBd597OulntltWEbFWj8mszx-_eSw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehuddgvddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepudekteeuudehtdelteevgfduvddvjefhfedulefgudevgeeghefg
-    udefiedtveetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:yXS9YpMnYGNMKuHk9EAA-1jewKV76hQf6cJP_BSW69bWyBofB_H8Jg>
-    <xmx:yXS9Yu-vRuXN3okDz-OCdE40D2lcNV7_nP1jIQaQ1JF3Fm7Bo6wGxg>
-    <xmx:yXS9YhU_ZBTaCCv9xr7bjjdcwzAM71z5aPcZpA0dBQO3KJJqqssVtQ>
-    <xmx:yXS9YpcRjg0fxvDznVJHYarskSV-1C9DSdQb6yCKfiT0F4NxNZLaMQ>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 30 Jun 2022 06:02:48 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     Guo Ren <guoren@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v3 4/4] irqchip/sifive-plic: Fix T-HEAD PLIC edge trigger handling
-Date:   Thu, 30 Jun 2022 05:02:41 -0500
-Message-Id: <20220630100241.35233-5-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220630100241.35233-1-samuel@sholland.org>
-References: <20220630100241.35233-1-samuel@sholland.org>
+        with ESMTP id S234811AbiF3KHW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 06:07:22 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD6A2443CB
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:07:05 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id cf14so25841670edb.8
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:07:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=QiZFE3NY4GpzbWqcVyfbAnOQf74waO1WZQ6maNc0JPw=;
+        b=eo3tpQhml3zuLS6EMetDbiMihtcGUCI0LuemTL7CehN2ehr/usuoPH5bwJZgtW6Dbj
+         hHhi8hchNa20ttbPTb4C/agoXHVRFnA7C2mNoYAhVgG21xklwR39m3HaNLIAfVgp+O2B
+         HUhU73gt3m0oEw2UlAcQeRZWyEQyKhjMuEsQRoQzO8V+AZHuVzw5jZZs2JKTzFyPfBWe
+         KDqG9UiR+DK+rd7+9BY2eLJNLh/WFrS4F92IWbcyQM5DW5rklklTVjMfjkPo+ldsKte2
+         XNsnceeVIgLLnGybmTqhOP+2XwLkQmQCYsgTvB68lwEppERccpmnsZ/6zfeUWteWzbCG
+         5Hxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QiZFE3NY4GpzbWqcVyfbAnOQf74waO1WZQ6maNc0JPw=;
+        b=ljWXZFDFIQDaEIpvbw3jFtfV41VOlNtQQ+KTH2oCyitC7LKwo0/erJgC3CtJW9HM/X
+         mnppt1pXEYhf+U1sloU+RLE8feTgrnDz49/mltNZv55k3/A+LLP0Y+p+IFyoA3iuHRKi
+         rTN6CNZzKw6DOeNyIWTI6WWlb0Ff5+RZwkO72uS9C2XuQOBbUrOvpDwP71x2El9L3vpz
+         Z7oMlzl1V6eDZ9R2X6IASKABk/0uyRqnTBD9avYN+nbkldTEgjztCQuTpfu2fvcBhMY+
+         2CX+F2r9YxqG0fS00PtWep34cWGlg/weSCVOmfWwOT2Q+kct8wZy5s1pkqf0Mry1xmRT
+         j1vw==
+X-Gm-Message-State: AJIora8UI4CJOwh8UuM87RoRdDDSKykczPNQeogKg/SsXoFV4ROeW6zk
+        4wRQTacORRfdCTYU7kPCQh542g==
+X-Google-Smtp-Source: AGRyM1sRuht+AaZtKiV7wXncnzcPYsM4VrO1Sxs8tTbqxYOin4IohCnFH9E62zxQFeOe/1NdCdXk4w==
+X-Received: by 2002:aa7:d5c9:0:b0:435:8099:30e6 with SMTP id d9-20020aa7d5c9000000b00435809930e6mr10509066eds.384.1656583624201;
+        Thu, 30 Jun 2022 03:07:04 -0700 (PDT)
+Received: from [192.168.0.189] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id jz18-20020a17090775f200b0070fd7da3e47sm8859460ejc.127.2022.06.30.03.07.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jun 2022 03:07:03 -0700 (PDT)
+Message-ID: <6fafbed8-9c6d-ae1b-c613-44982b681276@linaro.org>
+Date:   Thu, 30 Jun 2022 12:07:02 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-bindings: misc: tmr-manager: Add device-tree
+ binding for TMR Manager
+Content-Language: en-US
+To:     "Rao, Appana Durga Kedareswara" 
+        <appana.durga.kedareswara.rao@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "derek.kiernan@xilinx.com" <derek.kiernan@xilinx.com>,
+        "dragan.cvetic@xilinx.com" <dragan.cvetic@xilinx.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Cc:     "git (AMD-Xilinx)" <git@amd.com>, "git@xilinx.com" <git@xilinx.com>
+References: <20220628054338.1631516-1-appana.durga.rao@xilinx.com>
+ <20220628054338.1631516-2-appana.durga.rao@xilinx.com>
+ <fc685f00-41e5-e64c-09b8-662b01a46f6c@linaro.org>
+ <6f5a1b1e-b484-3a15-00be-2c1ddc09468e@amd.com>
+ <e43bede7-2a0a-5114-e9ec-9e1449bf4e47@linaro.org>
+ <a653cb16-4aa9-693a-ac32-cc7b1b999b92@amd.com>
+ <dd709b5a-1cd8-0343-028a-5d134a9de81a@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <dd709b5a-1cd8-0343-028a-5d134a9de81a@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The T-HEAD PLIC ignores additional edges seen while an edge-triggered
-interrupt is being handled. Because of this behavior, the driver needs
-to complete edge-triggered interrupts in the .irq_ack callback before
-handling them, instead of in the .irq_eoi callback afterward. Otherwise,
-it could miss some interrupts.
+On 29/06/2022 14:37, Rao, Appana Durga Kedareswara wrote:
+> Hi,
+> 
+> 
+> On 29/06/22 5:29 pm, Michal Simek wrote:
+>>
+>>
+>> On 6/29/22 13:45, Krzysztof Kozlowski wrote:
+>>> On 29/06/2022 13:23, Michal Simek wrote:
+>>>>
+>>>>
+>>>> On 6/29/22 12:07, Krzysztof Kozlowski wrote:
+>>>>> On 28/06/2022 07:43, Appana Durga Kedareswara rao wrote:
+>>>>>> This commit adds documentation for Triple Modular Redundancy(TMR) 
+>>>>>> Manager
+>>>>>> IP. The Triple Modular Redundancy(TMR) Manager is responsible for 
+>>>>>> handling
+>>>>>> the TMR subsystem state, including fault detection and error recovery
+>>>>>> provides soft error detection, correction and recovery features.
+>>>>>>
+>>>>>> Signed-off-by: Appana Durga Kedareswara rao 
+>>>>>> <appana.durga.rao@xilinx.com>
+>>>>>> ---
+>>>>>>    .../bindings/misc/xlnx,tmr-manager.yaml       | 48 
+>>>>>> +++++++++++++++++++
+>>>>>
+>>>>> This is not a misc device. Find appropriate subsystem for it. It's not
+>>>>> EDAC, right?
+>>>>
+>>>> We were thinking where to put it but it is not EDAC driver.
+>>>> If you have better suggestion for subsystem please let us know.
+>>>
+>>> I don't know what's the device about. The description does not help:
+>>>
+>>> "TMR Manager is responsible for TMR subsystem state..."
+>>
+>> ok. let's improve commit message in v2.
+> 
+> Sure will improve the commit message in v2.
+>>
+>> TMR - triple module redundancy.
+>>
+>> You design the system with one CPU which is default microblaze 
+>> configuration with interrupt controller, timer and other IPs.
+>>
+>> And then say I want to do it triple redundant with all that voting, etc.
+>> If you want to get all details you can take a look at this guide
+>>
+>> https://www.xilinx.com/content/dam/xilinx/support/documents/ip_documentation/tmr/v1_0/pg268-tmr.pdf 
+>>
+>>
+>> In short TMR manager is servicing all that 3 cores and making sure that 
+>> they are all running in sync. If not it has capability recover the 
+>> system. It means cpu gets to break handler (it is the part of microblaze 
+>> series) and it restarts all cpus.
+>>
+>> And TMR inject driver is module which is capable to inject error to 
+>> internal memory to cause the exception to exercise that recovery code.
+>>
+>> Kedar: Feel free to correct me or add more details.
+> 
+> Thanks Michal for the detailed explanation.
+> 
+> The Triple Modular Redundancy(TMR) subsystem has three Microblaze 
+> processor instances, If any one of the Microblaze processors goes to an 
+> unknown state due to fault injection break handler will get called, 
+> which in turn calls the tmr manager driver API to perform recovery.
+> like Michal said TMR inject driver is capable of inject error to
+> internal memory to cause fault in one the Microblaze processor
+> 
+> @Krzysztof : please let me know if more information required about
+> this TMR subsystem will provide.
 
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+Some features sound like watchdog. If it was ARM, I would suggest to put
+it under "soc". Is a term System-on-Chip applicable to Microblaze? Other
+option is to store it under microblaze (although for ARM and RISC-V this
+is actually discouraged in favor of soc).
 
-Changes in v3:
- - Rebased on top of the RZ/Five patches
-
- drivers/irqchip/irq-sifive-plic.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-index 90e44367bee9..b3a36dca7f1b 100644
---- a/drivers/irqchip/irq-sifive-plic.c
-+++ b/drivers/irqchip/irq-sifive-plic.c
-@@ -474,7 +474,6 @@ static int __init plic_init(struct device_node *node,
- 
- IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
- IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy systems */
--IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_init); /* for firmware driver */
- 
- static int __init plic_edge_init(struct device_node *node,
- 				 struct device_node *parent)
-@@ -483,3 +482,4 @@ static int __init plic_edge_init(struct device_node *node,
- }
- 
- IRQCHIP_DECLARE(andestech_nceplic100, "andestech,nceplic100", plic_edge_init);
-+IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_edge_init);
--- 
-2.35.1
-
+Best regards,
+Krzysztof
