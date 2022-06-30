@@ -2,121 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77EE1561414
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 10:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC4EF561425
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 10:06:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230451AbiF3IDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 04:03:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56232 "EHLO
+        id S233490AbiF3IFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 04:05:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233372AbiF3ICs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 04:02:48 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 066534132A;
-        Thu, 30 Jun 2022 01:02:46 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-31772f8495fso171102057b3.4;
-        Thu, 30 Jun 2022 01:02:45 -0700 (PDT)
+        with ESMTP id S233589AbiF3IFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 04:05:23 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98F8E4132A
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 01:05:20 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id ay16so37405745ejb.6
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 01:05:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wryy9746UaaGxV4FOLo7kKFh4EpIsQh9KMPdBAHP8Z0=;
-        b=EuqGaFPUEjQeNovEFyIsPzEevrE/MyEERD8z6GV/KX+v8SZLmmoKF99fCL1Tc8OzSY
-         NCI8GtLKjbJhst1BQ6klzruatF3NI38f7A6HoGL7U+aWkhSBVBxR0X4MKJtlOcjKAB/C
-         9H2peAEDN1eDhy5ic1slnnIeJ1yGD+KQNOb3Tzsjb4ZcgldL5HgG6AihQI9wJFIvWk90
-         8xZKVPnqaskPj90bptVjhmIYZogXpMUTlun/wSR/YCGfhC3Tc0vzlk1ORBe9bkapGc8p
-         tv3gsDFh8bHhGp+WWkt5GDJNkzLknsdlxPQgJnz7NyRWQL5I+tosJSI1lRcgoHqNOdBX
-         JdZg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ik6FUsCzNZiu9EfbLO72KDalLuo/xuLvHalvhOV/dIo=;
+        b=icYGEKccYdgHInp7tFB1pnhXjU18hV9rabV4eo63UYUr7kbNWe1Luob0Q56hhZny06
+         CSnX1+qqxWY3m8x7As3Ku17HEike7DGNmxm96b5JEL2+7WjblF05FuxhIE0kjIpxmPTW
+         Hu4mNfW87bJgt2ybaCZv0yQNAwlku6Ev2P4hWQYaL7T0QrepVa6RKhxQ4mdAlPSMfIYu
+         PA3aGI7TAL/2RGawYGzzKvjKVRWrVN/D9fqfWM77OIi+Q35d9JN8pi3++frjmhMo4UAq
+         4PJs9GyK5MW38RIGt1r/oKuMhW5+Xj8qYZ33dSi0yPdqxi8D2rs/UB4v8ywVrk42J9d5
+         BHkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wryy9746UaaGxV4FOLo7kKFh4EpIsQh9KMPdBAHP8Z0=;
-        b=oGDXxXLctprrQ8uQWYaeFKCLIDFM/5Wh1cSXj85pG61olCb36FYQex8nLAhAFQLrTG
-         ZrSQaYpDIgMxDcPPn1nHpR81h013Gixi3Xg/l6OxTDHEuFJET9X+Fbmsd6cL6fOng6GM
-         jQLo2JyQkr8SWe+3kbLOfiv1SrfjTfV3NT3+9zAN6DFVgApi5i1Mle2LeAyumqkS6V2V
-         GnNmV0BZEbYlLBcJVAyuOvrFwdrDjeJ3bc+Sg92WUgpnnBEFqpqoEEuwanLLWvUb4XoU
-         NbUOQ9fTz8WGEH7Gt90WzSgIDAtOnFi+PSMn2iC3LSE1mEso2QoPaVckQKiBYjo8wOx2
-         R3Gg==
-X-Gm-Message-State: AJIora+FoLhJ2GuBJ/YYFavO3E68/VmsGvBV9b6Gfqow3w53jPSBleCI
-        CPL79Y8X9L56w2cDmIJzcW2bidieMXet2A7hm5c=
-X-Google-Smtp-Source: AGRyM1tQjxmbD422jLcHIB0ewRpbtEaFVyHc3AuXiZDShY6jeHf515TJp/d6+dz8eUSii25nd5yw8hg9NywapvMWtu0=
-X-Received: by 2002:a81:2386:0:b0:317:6586:8901 with SMTP id
- j128-20020a812386000000b0031765868901mr8832602ywj.195.1656576165059; Thu, 30
- Jun 2022 01:02:45 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ik6FUsCzNZiu9EfbLO72KDalLuo/xuLvHalvhOV/dIo=;
+        b=uapNXL0ybMSyUqHmYKcEIQJtx5cr1biS2kMFjHDJ09Cf8G+cY/jDgZDkpuZMhd5Mkh
+         TLXErv4lBrzlsfTaEXiQUKTZHKjrhiOwmQrdKxcfPufKcr3bDbONQ2Aa40pTbhh017Ed
+         af/GxJ4tVVAAXS5yldj+7+lM54Ejdo9YND65DWFfrz+NVz024R6aXPtA1prdnT9lVN6d
+         k5s4+vSz57jO8FRZ0sl9g0WFeJ4mCXOpvs/vqsvDzFDPAk294fM38sTFsMpzhHPy/MkM
+         okHGvJw8aysOGIgy6e19k94IeKMiqbcS8C3E5omFC7rf6gTJm9sGMW3YEPr4i2x9qJmx
+         wWuQ==
+X-Gm-Message-State: AJIora9HbfXXsntnhihKP4bMrf6Aqkp2Z499lTK8SgGi8jE1bDSMMFPA
+        lkHm6EJpEN0VSd+R5EdSWb1S/Q==
+X-Google-Smtp-Source: AGRyM1tP/qfGO00LL1laS/lsR3dmHQ5UYROZqBJGZ2LruhAHU+Vv5k0qyGUeWXitMSWJcKXmzVS7Qg==
+X-Received: by 2002:a17:906:7482:b0:722:edf9:e72f with SMTP id e2-20020a170906748200b00722edf9e72fmr7608726ejl.92.1656576319111;
+        Thu, 30 Jun 2022 01:05:19 -0700 (PDT)
+Received: from [192.168.0.187] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id bg6-20020a170906a04600b00722e31fcf42sm8747619ejb.184.2022.06.30.01.05.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jun 2022 01:05:18 -0700 (PDT)
+Message-ID: <8f51aed8-956b-ac09-3baf-2b4572db1352@linaro.org>
+Date:   Thu, 30 Jun 2022 10:05:17 +0200
 MIME-Version: 1.0
-References: <20220629143046.213584-1-aidanmacdonald.0x0@gmail.com>
- <CAHp75Vc=PWXauEKDNX+vmqv=oO1LDv8-GgU3OFZXjf8yJrG8wA@mail.gmail.com>
- <CAHp75VeqvCnWtWLF1zySPGkfBT5obosu0h_pZEhz+pOQWzMdWQ@mail.gmail.com> <Yr1W/m6UV3792GvF@google.com>
-In-Reply-To: <Yr1W/m6UV3792GvF@google.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 30 Jun 2022 10:02:08 +0200
-Message-ID: <CAHp75VdC=Dw_YnTuzZ+PMLfr0y1NcH2DQ1bRccU8e=cGLWznuQ@mail.gmail.com>
-Subject: Re: [PATCH v4 00/15] Add support for AXP192 PMIC
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [RFC] Correct memory layout reporting for "jedec,lpddr2" and
+ related bindings
+Content-Language: en-US
+To:     Julius Werner <jwerner@chromium.org>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Jian-Jia Su <jjsu@google.com>,
+        Doug Anderson <dianders@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, quic_gurus@quicinc.com,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Michael Walle <michael@walle.cc>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Nikola Milosavljevic <mnidza@outlook.com>
+References: <CAODwPW9E8wWwxbYKyf4_-JFb4F-JSmLR3qOF_iudjX0f9ndF0A@mail.gmail.com>
+ <CAODwPW8fiFSNehZbZDdR9kjHxohLGiyE7edU=Opy0xV_P8JbEQ@mail.gmail.com>
+ <3bb0ffa0-8091-0848-66af-180a41a68bf7@linaro.org>
+ <CAODwPW89xZQZiZdQNt6+CcRjz=nbEAAFH0h_dBFSE5v3aFU4rQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAODwPW89xZQZiZdQNt6+CcRjz=nbEAAFH0h_dBFSE5v3aFU4rQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 9:55 AM Lee Jones <lee.jones@linaro.org> wrote:
-> On Wed, 29 Jun 2022, Andy Shevchenko wrote:
-> > On Wed, Jun 29, 2022 at 11:14 PM Andy Shevchenko
-> > <andy.shevchenko@gmail.com> wrote:
-> > > On Wed, Jun 29, 2022 at 4:29 PM Aidan MacDonald
-> > > <aidanmacdonald.0x0@gmail.com> wrote:
-> > > >
-> > > > Changes in v4:
-> > > >
-> > > > * Drop regmap-irq patches and rebase on top of the regmap-irq
-> > > >   refactoring series[1], which implements the same functionality.
-> > > > * Reorder mfd_cells, putting one-line entries at the bottom.
-> > > > * Fix incorrect example in axp192-gpio device tree bindings.
-> > > > * Perform adc_en2 flag -> adc_en2_mask conversion in axp20x_adc
-> > > >   as a separate patch.
-> > > > * Simplify axp192_usb_power_set_current_max().
-> > > > * Drop unneeded OF dependency in pin control driver, and document
-> > > >   tables used for describing register layouts.
-> > > > * Various style fixups suggested by Andy Shevchenko.
-> > >
-> > > For patches 6-11
-> > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> >
-> > Ditto for patches 13-15.
->
-> Not sure `b4` will pick these up!
+On 30/06/2022 03:03, Julius Werner wrote:
+>>> For the latter, I would suggest adding a new property "channel-io-width" which
+>>
+>> No, because io-width is a standard property, so it should be used
+>> instead. It could be defined in channel node.
+> 
+> What exactly do you mean by "standard property" -- do you mean in an
+> LPDDR context, or for device tree bindings in general? In other device
+> tree bindings, the only thing I can find is `reg-io-width`,
 
-No it won't. But it's not an issue, one may use `git msg-filter` for
-that, esp. taking into account that series most likely will be resent
-due to patch 12 (`but not fully sure it will be the case).
+I had impression I saw io-width outside of LPPDR bindings, but
+apparently it's only reg-io-width
 
-For your convenience I have added on per patch basis.
+>  so that's
+> not quite the same (and wouldn't seem to preclude calling a field here
+> `channel-io-width`, since the width that's talking about is not the
+> width of a register).
 
--- 
-With Best Regards,
-Andy Shevchenko
+reg-io-width is not only about register width, but width of access size
+or width of IO.
+
+
+> In LPDDR context, the term "IO width" mostly
+> appears specifically for the bit field in Mode Register 8 that
+> describes the amount of DQ pins going into one individual LPDDR chip.
+> The field that I need to encode for the channel here is explicitly
+> *not* that, it's the amount of DQ pins coming *out* of the LPDDR
+> controller, and as explained in my original email those two numbers
+> need not necessarily be the same when multiple LPDDR chips are hooked
+> up in parallel. So, yes, I could call both of these properties
+> `io-width` with one in the rank node and one in the channel node...
+> but I think giving the latter one a different name (e.g.
+> `channel-io-width`) would be better to avoid confusion and provide a
+> hint that there's an important difference between these numbers.
+
+Send the bindings, we'll see what the DT binding maintainers will say. :)
+
+> 
+>> You also need a timings node. I don't think it would be different for
+>> each of ranks, would it?
+> 
+> I think it might be? I'm honestly not a memory expert so I'm not
+> really sure (Jian-Jia in CC might know this?), but since different
+> ranks can be asymmetric (even when they're on the same part), I could
+> imagine that, say, the larger rank might need slightly longer
+> precharge time or something like that. They at least all implement a
+> separate set of mode registers, so they could theoretically be
+> configured with different latency settings through those.
+
+This feels weird... although maybe one or few parameters of timings
+could be different.
+
+How the asymmetric SDRAMs report density? This is a field with
+fixed/enum values, so does it mean two-rank-asymmetric module has two
+registers, one per each rank and choice of register depends on chip select?
+
+> 
+>>>> (Also, btw, would it make sense to use this opportunity to combine the
+>>>> "jedec,lpddr2" and "jedec,lpddr3" bindings into a single document?
+>>
+>> These bindings are quite different, so combining would result in big
+>> allOf. I am not sure if there is benefit in that.
+> 
+> They should basically be 100% identical outside of the timings. I can
+> see that jedec,lpddr2 is currently missing the manufacturer-id
+> property, that's probably an oversight -- Mode Register 5 with that ID
+> exists for LPDDR2 just as well as for LPDDR3, and we're already
+> passing the revision IDs which is kinda useless without also passing
+> the manufacturer ID as well (because the revision IDs are
+> vendor-specific).
+
+Manufacturer ID is taken from compatible. LPDDR3 has it deprecated.
+
+> So merging the bindings would fix that. 
+
+Nothing to fix, it was by choice.
+
+> The only
+> other difference I can see are the deprecated
+> `revision-id1`/`revision-id2` fields for jedec,lpddr2 -- if I use a
+> property inclusion mechanism like Doug suggested, those could stay
+> separate in jedec,lpddr2 only (since they're deprecated anyway and
+> replaced by `revision-id` in the combined bindings).
+> 
+> For the timings, I'm okay with keeping them separate.
+
+
+Best regards,
+Krzysztof
