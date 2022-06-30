@@ -2,122 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 497C1561AB0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 14:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D5D4561AB8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 14:49:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235060AbiF3MqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 08:46:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53928 "EHLO
+        id S234379AbiF3Mst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 08:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235043AbiF3MqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 08:46:15 -0400
-Received: from smtp2.infineon.com (smtp2.infineon.com [IPv6:2a00:18f0:1e00:4::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FB1D22508;
-        Thu, 30 Jun 2022 05:46:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
-  t=1656593174; x=1688129174;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=+S/i0os03fT4PDMmolQDm3D23GK/ZwuYZfdR8J4uDrE=;
-  b=K9eMvdpR1j9KVuHduZd7t9BDwgGHotADx4kMXTtNqGCm1GRJW3DCac3e
-   qGIFjtVAOXkEuzY/4/yg6yempXAgW04ez10VGK0N6VSr1Ks/xLzaj5OsI
-   wgytUK/OP/SFZKSfPGmnC1VJK1pxIKB9uNmBYgMUUigadS2euVIn9xkJO
-   Q=;
-X-SBRS: None
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="186455692"
-X-IronPort-AV: E=Sophos;i="5.92,234,1650924000"; 
-   d="scan'208";a="186455692"
-Received: from unknown (HELO mucxv001.muc.infineon.com) ([172.23.11.16])
-  by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2022 14:46:13 +0200
-Received: from MUCSE803.infineon.com (MUCSE803.infineon.com [172.23.29.29])
+        with ESMTP id S234580AbiF3Mss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 08:48:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF6F337A90;
+        Thu, 30 Jun 2022 05:48:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mucxv001.muc.infineon.com (Postfix) with ESMTPS;
-        Thu, 30 Jun 2022 14:46:13 +0200 (CEST)
-Received: from MUCSE807.infineon.com (172.23.29.33) by MUCSE803.infineon.com
- (172.23.29.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Thu, 30 Jun
- 2022 14:46:13 +0200
-Received: from ISCNPF0RJXQS.infineon.com (172.23.8.247) by
- MUCSE807.infineon.com (172.23.29.33) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.26; Thu, 30 Jun 2022 14:46:11 +0200
-From:   Hakan Jansson <hakan.jansson@infineon.com>
-CC:     Hakan Jansson <hakan.jansson@infineon.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Eric Dumazet" <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
-        <linux-bluetooth@vger.kernel.org>
-Subject: [PATCH v2 4/5] Bluetooth: hci_bcm: Prevent early baudrate setting in autobaud mode
-Date:   Thu, 30 Jun 2022 14:45:23 +0200
-Message-ID: <a211533dc6c9a0d5a5d1533d24a26fb996d45dc7.1656583541.git.hakan.jansson@infineon.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1656583541.git.hakan.jansson@infineon.com>
-References: <cover.1656583541.git.hakan.jansson@infineon.com>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E5F4161E76;
+        Thu, 30 Jun 2022 12:48:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAB46C34115;
+        Thu, 30 Jun 2022 12:48:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656593326;
+        bh=k/q/fhQMiNHwRSXcnMIjj16X53/sqxQxXQ33UBBRBQg=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=OWFzgAPisJ3hZoUITVF00FrWji4mXjlyy7SdsD71uKqqobN9B4pAfM11CjhFgChKa
+         73deDyqQDY+CST+2qjun2EBLp9xqPtTacuwGMmWfsHQRmpC7rtW4gqENCP1hpHTf4K
+         JCDA5A7eAKdXNklG71V93HR2st/ZYAeZ2m/6GeQ1ivqiYskk4Dj3nlWvV0nbyFPbMN
+         1XaMitcGXlzG9Z8J0plWmCKyrXveMkg73ASnkmOPGxK5TZcNrT6PTqBR9xSu5wZznx
+         RaQKJ3HkuCk50EjZ+fYRg9t3kqoYu2hUT/Hn22sIyrUjzNmUZPo+W70ukb2oJ+n8Tp
+         Rc+rqHeA+Iv2Q==
+From:   Mark Brown <broonie@kernel.org>
+To:     agross@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, bryan.odonoghue@linaro.org,
+        lgirdwood@gmail.com
+Cc:     devicetree@vger.kernel.org, quic_srivasam@quicinc.com,
+        quic_potturu@quicinc.com, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org
+In-Reply-To: <20220629114012.3282945-1-bryan.odonoghue@linaro.org>
+References: <20220629114012.3282945-1-bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: Fix description for msm8916
+Message-Id: <165659332361.455663.5255774878482906847.b4-ty@kernel.org>
+Date:   Thu, 30 Jun 2022 13:48:43 +0100
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.23.8.247]
-X-ClientProxiedBy: MUCSE824.infineon.com (172.23.29.55) To
- MUCSE807.infineon.com (172.23.29.33)
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Always prevent trying to set device baudrate before calling setup() when
-using autobaud mode.
+On Wed, 29 Jun 2022 12:40:12 +0100, Bryan O'Donoghue wrote:
+> For the existing msm8916 bindings the minimum reg/reg-names is 1 not 2.
+> Similarly the minimum interrupt/interrupt-names is 1 not 2.
+> 
+> 
 
-This was previously happening for devices which had device specific data
-with member no_early_set_baudrate set to 0.
+Applied to
 
-Signed-off-by: Hakan Jansson <hakan.jansson@infineon.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
-V1 -> V2:
-  - No changes, submitted as part of updated patch series
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
- drivers/bluetooth/hci_bcm.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Thanks!
 
-diff --git a/drivers/bluetooth/hci_bcm.c b/drivers/bluetooth/hci_bcm.c
-index 9a129867a4c0..0ae627c293c5 100644
---- a/drivers/bluetooth/hci_bcm.c
-+++ b/drivers/bluetooth/hci_bcm.c
-@@ -484,7 +484,7 @@ static int bcm_open(struct hci_uart *hu)
- 		/* If oper_speed is set, ldisc/serdev will set the baudrate
- 		 * before calling setup()
- 		 */
--		if (!bcm->dev->no_early_set_baudrate)
-+		if (!bcm->dev->no_early_set_baudrate && !bcm->dev->use_autobaud_mode)
- 			hu->oper_speed = bcm->dev->oper_speed;
- 
- 		err = bcm_gpio_set_power(bcm->dev, true);
-@@ -1204,9 +1204,6 @@ static int bcm_of_probe(struct bcm_device *bdev)
- {
- 	bdev->use_autobaud_mode = device_property_read_bool(bdev->dev,
- 							    "brcm,requires-autobaud-mode");
--	if (bdev->use_autobaud_mode)
--		bdev->no_early_set_baudrate = true;
--
- 	device_property_read_u32(bdev->dev, "max-speed", &bdev->oper_speed);
- 	device_property_read_u8_array(bdev->dev, "brcm,bt-pcm-int-params",
- 				      bdev->pcm_int_params, 5);
--- 
-2.25.1
+[1/1] ASoC: dt-bindings: Fix description for msm8916
+      commit: 59d0319cadff71a74c55fafc6f3cc1f2aeb6538f
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
