@@ -2,118 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 992FA560FCA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 05:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B984560FEA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 06:12:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231197AbiF3Dy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 23:54:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48242 "EHLO
+        id S229732AbiF3EKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 00:10:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbiF3Dy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 23:54:57 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954B419C30
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 20:54:56 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-fe023ab520so24158571fac.10
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 20:54:56 -0700 (PDT)
+        with ESMTP id S231991AbiF3EKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 00:10:41 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BECB73CFD7
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:10:37 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id bi22-20020a05600c3d9600b003a04de22ab6so841222wmb.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:10:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5OWFEvvnhWbk5JUNHWESexfCKhPu41TnYPW0LjUtHpU=;
-        b=pSsWDCAXql821vGLsIMyJgV0Pos3oBe0HeeKnRxTpl73Klu0EhWoM7Bxw6TV9XuMWk
-         +8B7GcNu7hFRCdWVpcEZiJ94XFXRWchn7gt0794aJtPtxgVedoebvlKTu2byHKqHkBAD
-         lH1KUTGy/UAe0clm2oCRmYiZ2BbZXC36X6piwT9n4YHLW/XeutzYAwYyMPFxS1CkHBil
-         fYt0jqXjKYmo0HoWfoCqbZmgCw6KElamOJ+JCJ/qjw6akyrASip4f/yUpQPYg6gB3P4p
-         3CAdiZfX8fcknSy7GVasRGsudhVFa7r3lxWQ8E76/8Ej997x660FAjSUBMqCeovZT4pR
-         uvMg==
+        d=nexus-software-ie.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=208GMSX5gYG7ZWlHbNAB3NjhHqI6KTTBfChR003rass=;
+        b=ZBR/J5DP3+qcmhyEQ1VO2wpXe/UUJTp7es5GEp/vqhLQlbDlm9ZRQ7P/5i2b2bZ2CG
+         OFdYcGwYPUme38hdaK9BIxvKL9Hd8HlE5eGL3NiwkCALMUS+iZWfakRwtQzUoVkQ3GTh
+         5k6N5muLCg2gs5Im2J+bQml/YMXRNzjW9yRg2C3HPJwoL9z+mlA69Gy/wCwCnNkeZT0p
+         onHwPKImlHQDPpGW54CwRItOTrK3mytalJ3VGaeLry1DA6Mu0+mvGZHmg+882qKm8GP3
+         OoAR4Y/t0uK1Yhl+3M1DobF6G5DbJzFfeKf1eduWM9sweLPA4/SP6ECznmXZqiiSn/LU
+         yLIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5OWFEvvnhWbk5JUNHWESexfCKhPu41TnYPW0LjUtHpU=;
-        b=XK8EHC36rwcoUKHrleTxRfGnHduRvpmp5yz/su1QQCqgvcsh1UV51jKbCyScFRHnIh
-         B3d3kw9oXEWC6lViFcRNhpZKmxPJPpswZSompSYPI9VIVFFigveUq14msjHHkfkSWn3c
-         qFkvYr4gvy7t2V03ZCDTyStHHGtTK6zuPl+FAI+nopxd7Yo/7I4ns3bSKtmTwypqb0NW
-         pOhZCeNsMVY6xIfprNgUgmUQ7TmnAaV4T3W2sArZnW88J81RDRyq85Pl46Ph4drFvcXA
-         NV4ln9sxAT1sO2L/mykzSUxokzKMuO+e2QQPPv65hCB5Zwz4NcmVhx53Gsgqxa6hjgSV
-         j/Dg==
-X-Gm-Message-State: AJIora85VlSSH6553sDCzlWCb70jvTxSKxsCQPQ5lLr1SKh66zM5fQEA
-        7cmPlkgIz8LUpvTKxOm4YJs4DA==
-X-Google-Smtp-Source: AGRyM1uy7iCrWBTCWRBIvFIB7IlrUkZ+YNjXeLqJ/7yEta29DPxlz4F1dZj3TgnN/TGG2nqk7YCDGw==
-X-Received: by 2002:a05:6870:6314:b0:10b:9595:62db with SMTP id s20-20020a056870631400b0010b959562dbmr2456208oao.128.1656561294787;
-        Wed, 29 Jun 2022 20:54:54 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a2-20020a05680804c200b0032e3cca8561sm9662636oie.21.2022.06.29.20.54.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 20:54:54 -0700 (PDT)
-Date:   Wed, 29 Jun 2022 22:54:52 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: sdm845: Enable user LEDs on DB845c
-Message-ID: <Yr0ejA2RdEOj2AIg@builder.lan>
-References: <20220505022706.1692554-1-bjorn.andersson@linaro.org>
- <20220505022706.1692554-3-bjorn.andersson@linaro.org>
- <20220530070608.GB1363@bug>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=208GMSX5gYG7ZWlHbNAB3NjhHqI6KTTBfChR003rass=;
+        b=vjD7S8OgKNnPY2ad4ASkQQWnPv95sOUC4CrGUVIy9lAqmMc3piU/ak+H9f+LLyt6tv
+         tVNbuDXs0Gg4zyy6G0cn3U3Awp432C3akTt1PhE7uSXJOaUqExgVGxSQw7iNz7tCwb1i
+         NRw3Vg+QTo4nX+Blv+MTNGQXY3RYCXoz3sChqiGVA0GtBUwmh+Bfrald2Orz4E+hAKNp
+         Pek/ZhFo6vHO/KA4n2LnythT8XlQnwMxwftebAhtm0TXbm6mbhFWp74dQmHsi08E3TGk
+         81FgqIBhw3YR63MF9kmvvjYO8W10k0uThQqKlANLgOU3afqNUghKJilwdf0Ga4ITfPfT
+         n/ew==
+X-Gm-Message-State: AJIora+0r0w2jVHLi/3vGlT9AYQxKEgnpMCryK9D4vG9VaRXiDctcZ8v
+        4aw9OiEfazIHJc78JffYXXQa1g==
+X-Google-Smtp-Source: AGRyM1vJ5a/hVCn9v/GNPHBHfodqb9V2qpq0FRrTdnp69bxOdOwcudYmU5tDSPC6GAfQsnfNyZNogA==
+X-Received: by 2002:a05:600c:350:b0:3a0:4910:9ebc with SMTP id u16-20020a05600c035000b003a049109ebcmr7574533wmd.148.1656562236349;
+        Wed, 29 Jun 2022 21:10:36 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id bk20-20020a0560001d9400b0021b8b998ca5sm17092678wrb.107.2022.06.29.21.10.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 21:10:35 -0700 (PDT)
+Message-ID: <3168903b-6850-a9eb-ead5-1389aa37485c@nexus-software.ie>
+Date:   Thu, 30 Jun 2022 05:10:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220530070608.GB1363@bug>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [RESEND PATCH 1/5] dt-bindings: opp: Add missing compat devices
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        ilia.lin@kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        linux-pm@vger.kernel.org, rafael@kernel.org,
+        bjorn.andersson@linaro.org, krzk+dt@kernel.org,
+        viresh.kumar@linaro.org, linux-arm-msm@vger.kernel.org
+References: <20220629130303.3288306-1-bryan.odonoghue@linaro.org>
+ <20220629130303.3288306-2-bryan.odonoghue@linaro.org>
+ <1656542219.641791.1042479.nullmailer@robh.at.kernel.org>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <1656542219.641791.1042479.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 30 May 02:06 CDT 2022, Pavel Machek wrote:
+On 29/06/2022 23:36, Rob Herring wrote:
+> On Wed, 29 Jun 2022 14:02:59 +0100, Bryan O'Donoghue wrote:
+>> A number of devices listed in drivers/cpufreq/qcom-cpufreq-nvmem.c appear
+>> to be missing from the compatible list.
+>>
+>> Cc: ilia.lin@kernel.org
+>> Cc: robh+dt@kernel.org
+>> Cc: krzk+dt@kernel.org
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> ---
+>>   .../devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml     | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@0: 'power-domains' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@0: 'power-domain-names' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@1: 'power-domains' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@1: 'power-domain-names' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@100: 'power-domains' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@100: 'power-domain-names' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@101: 'power-domains' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@101: 'power-domain-names' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-0:opp-307200000: 'required-opps' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-0:opp-1401600000: 'required-opps' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-0:opp-1593600000: 'required-opps' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-1:opp-307200000: 'required-opps' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-1:opp-1804800000: 'required-opps' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-1:opp-1900800000: 'required-opps' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-1:opp-2150400000: 'required-opps' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
 
-> Hi!
-> 
-> > The DB845c has 4 "user LEDs", the last one is already supported as it's
-> > just wired to a gpio. Now that the LPG binding is in place we can wire
-> > up the other 3 LEDs as well.
-> 
-> 
-> > +&pmi8998_lpg {
-> > +	status = "okay";
-> > +
-> > +	qcom,power-source = <1>;
-> > +
-> > +	led@3 {
-> > +		reg = <3>;
-> > +		color = <LED_COLOR_ID_GREEN>;
-> > +		function = LED_FUNCTION_HEARTBEAT;
-> > +		function-enumerator = <3>;
-> > +
-> > +		linux,default-trigger = "heartbeat";
-> > +		default-state = "on";
-> > +	};
-> > +
-> > +	led@4 {
-> > +		reg = <4>;
-> > +		color = <LED_COLOR_ID_GREEN>;
-> > +		function = LED_FUNCTION_INDICATOR;
-> > +		function-enumerator = <2>;
-> > +	};
-> > +
-> > +	led@5 {
-> > +		reg = <5>;
-> > +		color = <LED_COLOR_ID_GREEN>;
-> > +		function = LED_FUNCTION_INDICATOR;
-> > +		function-enumerator = <1>;
-> > +	};
-> 
-> Do the LEDs have some kind of markings? Marking them as "indicator" is not too useful.
-> 
+Well I didn't see those errors but, I don't mind fixing them.
 
-Unfortunately no, there is just 4 green LEDs tightly packed together (3
-driven by the lpg, 1 by a gpio), with no indications of which is which.
-
-Regards,
-Bjorn
+I'll do a V2 for these
