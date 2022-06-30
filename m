@@ -2,74 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8995C562239
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:42:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A301562245
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:45:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236685AbiF3SmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 14:42:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54308 "EHLO
+        id S236251AbiF3SoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 14:44:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236119AbiF3Sl7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:41:59 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A883CA6A
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:41:58 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id c65so48406edf.4
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:41:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=r0BVI/sdd04/zhgmWH7aIaeeBm4+Vvke6BUCZyn3hyg=;
-        b=uQTmE1Um4nOuhHiHeoUXDpZUYNgOcZG0vZxcrqiB1QeU5sNRVVLaPdb2o1oZqUOXfF
-         A5sa7uthLkoOVgJDy+fMTIUpr6aOnUSjdNFaWhhriiLY4PiMOg3pIX8QBA4Uo4ssS/wV
-         qp9uGYpWrM0dQxdlb11sJihLToqdMiZwOYQO4ufTpOpWqdCkRv66MabVG6kXOORGcoUY
-         kvRRElmIve3QQM04NCRKPZh8sfP3QTPCwONY2feUHQZZVX01bwUxeWcEtrpYDlReQDz6
-         N+7T0ZVmAdDC0isxLUhFpOERJZp15rEytx4xmTeeMioSZYJg8KxWis5O9Md+XRBYEoHa
-         K5Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=r0BVI/sdd04/zhgmWH7aIaeeBm4+Vvke6BUCZyn3hyg=;
-        b=zDUIcTdGDvcHlfdsECSk8802PBvNYllT1Ct3OdFqzuA1BV2O1jO7177MEUZ1KseO0Z
-         YxDZfuaJmyO7oWVtJGuBvGMpJ7aJqvjAXrfF3OzGhJ4vs+9Swehom1WQrO7+7a+4avlR
-         BgCUeQg28qJZZnVY6Ek9lJfT6pZO/1YmCN7zn0s+HUn5P+wqcLwotTgHcJqlTTyzfkql
-         WbWtT0hgVJECNx373CtWCxBGUCB5MmJIyQPZSeVW8sgpjPgzc6xZo7fYYoT5e89FW4Kd
-         ABPhW8V4YW5Fc7BcqP10BW47YQ1n2bB23BOS8qzSdXla3U1sMo0xEIze6u93Df647FQ9
-         57cA==
-X-Gm-Message-State: AJIora8UCi9i85dt0eLCbD1P8tsD+nez8RTvPhRokmn0F9MZk9nhG9uf
-        vEmJSjHRmU4hUGHbxpKoqzSqGQ==
-X-Google-Smtp-Source: AGRyM1vkKMX06qz0erPeOdymXkH8eYsVt8dkgi/ckKf9JT6cSQDwknrl7psQLouE7nProJTlZBG24g==
-X-Received: by 2002:a05:6402:1c09:b0:435:6562:e70d with SMTP id ck9-20020a0564021c0900b004356562e70dmr13185356edb.203.1656614517044;
-        Thu, 30 Jun 2022 11:41:57 -0700 (PDT)
-Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p9-20020a170906614900b006f3ef214dc3sm9302978ejl.41.2022.06.30.11.41.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 11:41:56 -0700 (PDT)
-Message-ID: <42b8bf2c-c343-8fd4-17fd-f22ed83d5d0d@linaro.org>
-Date:   Thu, 30 Jun 2022 20:41:54 +0200
+        with ESMTP id S234038AbiF3SoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:44:09 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D26722CDDD;
+        Thu, 30 Jun 2022 11:44:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656614648; x=1688150648;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dYv/UTYgVlfEsqp2DTCmC737DJrOyfrarI+FKWvwhMA=;
+  b=PiDkqQrt3SwX1E2SIQMaVwaPc49yekcfqAPCuF7aCdNtGjX/lpy9VMBx
+   fbtjtcPwlNYgqwfgXqQgerXvMFnVwT5T4eMUS2X9T5zKE1Hhwpd/iETg8
+   6W34fwASbbc3lgrrXbwPB2JKljFXHpA+g2KxPE3nuzhPT/Bi/lPjyo/Yo
+   +IIS4Lw9WEqgkHqGVO3pTU0IlqEZTqP1uTp4jUBaDThnB+uRA1b4Bdz3B
+   AhUxqLQVKt3jsI3MfFS+v+anYJb0UkvsO9m2TUKJKbGLePDHzjk47bOon
+   cZUVxf4dEwjbolX9k4gSuspMaCUZyMDZv3c0W2GVGjYgk27/++JIXlhEB
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10394"; a="283534633"
+X-IronPort-AV: E=Sophos;i="5.92,235,1650956400"; 
+   d="scan'208";a="283534633"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2022 11:44:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,235,1650956400"; 
+   d="scan'208";a="595917126"
+Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 30 Jun 2022 11:44:06 -0700
+Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o6z93-000D50-By;
+        Thu, 30 Jun 2022 18:44:05 +0000
+Date:   Fri, 1 Jul 2022 02:44:01 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Taniya Das <quic_tdas@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     kbuild-all@lists.01.org, Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Taniya Das <quic_tdas@quicinc.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Update lpassaudio clock
+ controller for resets
+Message-ID: <202207010242.gFemy13K-lkp@intel.com>
+References: <20220614161118.12458-1-quic_tdas@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: mediatek: Add assigned clock property
- and axi clock in example
-Content-Language: en-US
-To:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, bin.zhang@mediatek.com,
-        benliang.zhao@mediatek.com, linux-mediatek@lists.infradead.org
-References: <20220630090157.29486-1-xiangsheng.hou@mediatek.com>
- <20220630090157.29486-3-xiangsheng.hou@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630090157.29486-3-xiangsheng.hou@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220614161118.12458-1-quic_tdas@quicinc.com>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,47 +69,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 11:01, Xiangsheng Hou wrote:
-> For mt8173, it is needed to add the axi clock for dma mode.
-> And it is may needed to adjust default spi frequency.
-> 
-> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-> ---
->  .../devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml  | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
-> index 41e60fe4b09f..7523d992a614 100644
-> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
-> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
-> @@ -61,6 +61,12 @@ properties:
->        - const: axi
->        - const: axi_s
->  
-> +  assigned-clocks:
-> +    maxItems: 1
-> +
-> +  assigned-clock-parents:
-> +    maxItems: 1
-> +
+Hi Taniya,
 
-There is usually no reason to put this in the bindings.
+Thank you for the patch! Yet something to improve:
 
->  required:
->    - compatible
->    - reg
-> @@ -82,8 +88,8 @@ examples:
->          compatible = "mediatek,mt8173-nor";
->          reg = <0 0x1100d000 0 0xe0>;
->          interrupts = <1>;
-> -        clocks = <&pericfg CLK_PERI_SPI>, <&topckgen CLK_TOP_SPINFI_IFR_SEL>;
-> -        clock-names = "spi", "sf";
-> +        clocks = <&pericfg CLK_PERI_SPI>, <&topckgen CLK_TOP_SPINFI_IFR_SEL>, <&pericfg CLK_PERI_NFI>;
-> +        clock-names = "spi", "sf", "axi";
->          #address-cells = <1>;
->          #size-cells = <0>;
->  
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v5.19-rc4 next-20220630]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Taniya-Das/arm64-dts-qcom-sc7280-Update-lpassaudio-clock-controller-for-resets/20220615-001326
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20220701/202207010242.gFemy13K-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/3156737d3479e335c9ffd0d65e51b1ae6b6d1ec5
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Taniya-Das/arm64-dts-qcom-sc7280-Update-lpassaudio-clock-controller-for-resets/20220615-001326
+        git checkout 3156737d3479e335c9ffd0d65e51b1ae6b6d1ec5
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
 
-Best regards,
-Krzysztof
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> ERROR: Input tree has errors, aborting (use -f to force output)
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
