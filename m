@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE55E560F9D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 05:30:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 197BD560FA6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 05:33:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231945AbiF3Da3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 23:30:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33122 "EHLO
+        id S231861AbiF3Dc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 23:32:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231533AbiF3Da2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 23:30:28 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A1BF340FC
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 20:30:27 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id s124so24434324oia.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 20:30:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vmWO1bX6e8/Hu74o/LHcG8YcSD0XqQe6mmyPQwkDsH0=;
-        b=KtTuvfGKJFovDnq4WF87SWlUm/o+U7aMWXjeXmq4aaJuRE/4Qv3e56VMOFiWLOBR4X
-         ZN5yqS87AUWbPB6iTd/Wwv8gu+Y2YfgqlzXd5e52VwQIjvu0lmNWQs6RBa1w0x71o1Wh
-         Opy217J7SVwkFpDD4KCECh2y2B3X5ml4uuRblBaATnEfiJBwSbM5LZghGgcsye0b+vVI
-         qy/q76O7cI2+JjTGDef8K09dm1TK0TL4cnuIZjRDn9fbRaXAM8QAkAfz/VgvroqDfBaV
-         VNSDNZZNQVMljn67Ujrvn2XSQaKQlRsW/icEML1R0ChYr7wm1wpEgSbL0TYWOP4QF+o1
-         SM/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vmWO1bX6e8/Hu74o/LHcG8YcSD0XqQe6mmyPQwkDsH0=;
-        b=MhLvcoBTEXpN8sCq4dejyvZ2EJTIwcYQa+ZONysyU2jdKYnWMTnN9AppC4W8qLvMIL
-         PinAcxHh5DJggLvjCuI9ZqQvqI4Ge4G0EhpQoj8bHbBSx6J28kdzAMrewNq/11+WIkOh
-         LpKz/tThjRSdb6d1OJ4nKZWSjJJ3iUmoPtxnYpJ8Kg5hT2hGkccN9t0X5RUgWvEKFsVL
-         q7fMi0zWfL3Z7T/anJWdjzHoYxQbnBdaqnzOocVZ0M49bJA8+v5/d1+tom987RrwzItk
-         yYl+/BXU3EHoodEXyb9Qb+Ls8hRjr/FhAXDDmrkQXTIVjMjsz0Pqu5/da8iqnZ92p7XK
-         g6EQ==
-X-Gm-Message-State: AJIora9hAPYCjn7JgV+jd5oFNnHiP2cAzXdMn7bwlFCikSobng/kQxNO
-        zqyT4Yyk5R4i5PJjtqGIxllZ2Q==
-X-Google-Smtp-Source: AGRyM1t4p1tRCN42sY1rawYoYJ6RPTS2JYo+xN86JOKVaP6uhUJLJTfm4SCjmYJOZvHZM85eJ9qkBg==
-X-Received: by 2002:a05:6808:17a0:b0:32f:5531:7b52 with SMTP id bg32-20020a05680817a000b0032f55317b52mr5218614oib.220.1656559826817;
-        Wed, 29 Jun 2022 20:30:26 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w22-20020a9d5a96000000b00616caca05adsm6666353oth.80.2022.06.29.20.30.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 20:30:25 -0700 (PDT)
-Date:   Wed, 29 Jun 2022 22:30:23 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH 06/13] arm64: dts: qcom: correct DWC3 node names and unit
- addresses
-Message-ID: <Yr0Yz7UATt0aqvL1@builder.lan>
-References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
- <20220504131923.214367-7-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S230467AbiF3Dcx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 23:32:53 -0400
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 73D3F3ED1E;
+        Wed, 29 Jun 2022 20:32:49 -0700 (PDT)
+Received: from [192.168.87.140] (unknown [50.47.106.71])
+        by linux.microsoft.com (Postfix) with ESMTPSA id AEA4320C356C;
+        Wed, 29 Jun 2022 20:32:48 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com AEA4320C356C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1656559969;
+        bh=/k7/Ios7kMwnOVfXomswkjdfzlVmFyFC8zlXDL/hS7c=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=icnBPCjZzmSx/YLBYV6S80B/dKMnpsEtN/EdokHorijjEuD6uHQb/NwcjU+frFkGW
+         tYxunl1IfiV2rCdolLl/zSVZG0sIuoWlKuxczI3S2nb7zutD84Eb6eZQmbWtlHm8DO
+         vs6v1s5deWk7d/WCzk4mFaR3G1GA1W3nWNQh6vQo=
+Message-ID: <845139cd-f2df-3204-8639-297da145fec1@linux.microsoft.com>
+Date:   Wed, 29 Jun 2022 20:32:48 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220504131923.214367-7-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v6 2/5] dt-bindings: clock: Add AST2500/AST2600 HACE reset
+ definition
+Content-Language: en-US
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Dhananjay Phadke <dhphadke@microsoft.com>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220629094426.1930589-1-neal_liu@aspeedtech.com>
+ <20220629094426.1930589-3-neal_liu@aspeedtech.com>
+ <c24d0e6d-d9ba-68c5-b1c8-13ad31d39ec8@linux.microsoft.com>
+ <HK0PR06MB3202B894962013238CB93B2880BA9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+From:   Dhananjay Phadke <dphadke@linux.microsoft.com>
+In-Reply-To: <HK0PR06MB3202B894962013238CB93B2880BA9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,29 +71,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 04 May 08:19 CDT 2022, Krzysztof Kozlowski wrote:
-[..]
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 692cf4be4eef..6af80a627c3a 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -3868,7 +3868,7 @@ usb_1: usb@a6f8800 {
->  					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
->  			interconnect-names = "usb-ddr", "apps-usb";
->  
-> -			usb_1_dwc3: dwc3@a600000 {
-> +			usb_1_dwc3: usb@a600000 {
+On 6/29/2022 8:17 PM, Neal Liu wrote:
+[...]
+>> On 6/29/2022 2:44 AM, Neal Liu wrote:
+>>> Add HACE reset bit definition for AST2500/AST2600.
+>>>
+>>> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
+>>> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
+>>> ---
+>>>    include/dt-bindings/clock/aspeed-clock.h  | 1 +
+>>>    include/dt-bindings/clock/ast2600-clock.h | 1 +
+>>>    2 files changed, 2 insertions(+)
+>>>
+>>> diff --git a/include/dt-bindings/clock/aspeed-clock.h
+>>> b/include/dt-bindings/clock/aspeed-clock.h
+>>> index 9ff4f6e4558c..06d568382c77 100644
+>>> --- a/include/dt-bindings/clock/aspeed-clock.h
+>>> +++ b/include/dt-bindings/clock/aspeed-clock.h
+>>> @@ -52,5 +52,6 @@
+>>>    #define ASPEED_RESET_I2C		7
+>>>    #define ASPEED_RESET_AHB		8
+>>>    #define ASPEED_RESET_CRT1		9
+>>> +#define ASPEED_RESET_HACE		10
+>>
+>> NAK.
+>>
+>> I replied to older v5 of this patch, but this v6 also looks incorrect as per HW
+>> manual.
+>>
+>> https://lore.kernel.org/linux-arm-kernel/20220629032008.1579899-1-neal_liu
+>> @aspeedtech.com/T/#m000bd3388b3e41117aa0eef10bf6f8a6a3a85cce
+>>
+>> For both AST2400 and AST2500:
+>> SCU04[10] = PECI.
+>>
+>> It will be best to refactor/split aspeed-clock.h into separate files.
+> 
+> Hi, based on @Krzysztof mentioned, change these define is not allowed due to breaking ABI.
+> So another way is to define a new value(interface), and we can change driver's implementation.
+> I know this is not intuitive to hardware register's value, it also confused me at the first time.
+> 
+> 
 
-Linux uses the dev_name() when identifying each of these controllers in
-/sys/class/UDC, as such changing the name here will break existing USB
-ConfigFS Gadget users.
+This is not SW ABI issue. Each controller in the device-tree needs
+correct clock and reset paths. aspeed-clock.h is shared between g4 and 
+g5 dtsi. Not sure how you picked bit 10 for HACE, it's for resetting
+PECI controller.
 
-We had this fixed for a while, but where forced to revert it.
+See drivers/clk/clk-aspeed.c, which BTW is duplicating same stuff.
+         [ASPEED_RESET_MIC]      = 18,
+         [ASPEED_RESET_PWM]      =  9,
+         [ASPEED_RESET_PECI]     = 10,
 
+FWIW, the reset bit for HACE and MIC are interchanged for AST2400 and 
+AST2500 (at least as per HW datasheet).
 
-So I think, in order for us to merge this without breaking AOSP, we'd
-need to come up with a way to retain the old UDC name (perhaps a label
-property?)
+So this is really fixing what's apparently already broken.
 
 Regards,
-Bjorn
+Dhananjay
