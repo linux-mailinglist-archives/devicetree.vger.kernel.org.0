@@ -2,63 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64CA1562378
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E30DF5623A3
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233279AbiF3Tug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 15:50:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48910 "EHLO
+        id S236588AbiF3T4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 15:56:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236405AbiF3Tug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:50:36 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D232143EF7
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:50:34 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B921A843D1;
-        Thu, 30 Jun 2022 21:50:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1656618632;
-        bh=t3edvrBc5ncxUU2vc3gtlwOKIuTYYnqtG/mMyVUOLCA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dIFFUBo6h6+5fAcP9Jcwz2fopbPGevtwsk8RQfrG7+uiNx7Ptl0aqehD2Y+GFwugd
-         WKTrggrc//kP6khRjIb8qXWtrTRFW8eDwY6S9C0aJOdPnkCjaGbzobeIt0k0dIY4TN
-         E5ysjC0Q2RzIrqr8Zw85XQcly2qSKv0kNUdvh6Tkk3WdqxOro9h6haQ6/LrgBJtZ04
-         vX5mlrv6a9OolAE6QgyoChN1TOas6e1mg4koEAq/xdh2abVde/7dMEByZCPenMXrM5
-         0KG48PXHWa9xgWoHXfB+FM3Q/5qENl7UZUuS2DSduDX6n1bkhM6O+Uqg/H7M9KBdmO
-         YAB6Y1JRnum3Q==
-Message-ID: <247d48ae-d22f-4adc-07c0-74dbccfc9390@denx.de>
-Date:   Thu, 30 Jun 2022 21:50:31 +0200
+        with ESMTP id S236111AbiF3T4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:56:49 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6AF645040
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:56:47 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id i126so701915oih.4
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:56:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=gboqnFzZ9ZxrTwUZ6WoU6968NwUUgD1UzCCueja8BgY=;
+        b=I+h5q/QxmSgU2Xn6TLqFpiyXdlVZ919B4FJoNbgwmk3sIYwyarHIJ86nxrcCPpb4bx
+         skrcEy4pYPPBpeyQ1AZBHx6JFHj1QPOSRFane0fNyRGpyUw7JRHile4y4wW+LwZ+4cLR
+         TtP+sgAkSVRz1HyjXn/kXfjEux0Otz6kKePg0OcIH3zXSQlALgV4tTeRSM/DOPpQo19X
+         rGpzy00/i/JIATf27P0BP+zVeKhX/Bwtadr5N5mzgHGEqhzc92VcosxKBojsre483aVd
+         lC4wlpP73Mkc7S2Y0uYP6Eft2e1UTg5GXMFDNKi73aHrH4xzizt0caA1BfUFp0VNk5Tc
+         7prg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=gboqnFzZ9ZxrTwUZ6WoU6968NwUUgD1UzCCueja8BgY=;
+        b=w3S9Vz+YnrmCwzzzd0y1iXy8VUc0K8qXJ1jLvbQ4AijCFvQMu4ZeDrRTwHoIxGVU5K
+         mR/ZIS6uWwcholrI9DebrgIVlxYh1gDorrcQ76s/kFSPjcLRC3sjP9U7mEo28lh9cKiX
+         Urs0vsmRFc5oSvK+2Sj9e8aWfnYlOEBp/MrQq9TSH/wZ2HJkPJhE24uFzOer1jkQUqwW
+         9kA46nsdFrLj1lynD7fGUz396X2pbH7sjZ1jrWbHIgl2t09Bez8YmLF0br0f+HUdgB4w
+         A3X6/joC/GzjShnkWEB3bUfPn3m/b7ZpDPb3g0EZ6wszHrw8/6e4HtFTBKiGjBV9ijQS
+         wzEA==
+X-Gm-Message-State: AJIora89p5h2fwT8urt0rhze2bIFrvSDp71gDnO5onykWpbXeJ9CaLCU
+        htd8p9iX/RZ+dNfyTO/81bLnJg==
+X-Google-Smtp-Source: AGRyM1tUfOefuvaZG6KMm5IzvtBIQ0uGoQ5jBW6zY56LCV44QQt1Xp03TNrIfDW5/93qhc1L3b4jYQ==
+X-Received: by 2002:a05:6808:f12:b0:335:c055:768e with SMTP id m18-20020a0568080f1200b00335c055768emr3410019oiw.186.1656619007244;
+        Thu, 30 Jun 2022 12:56:47 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id bl29-20020a056808309d00b0032ed2343100sm10842807oib.14.2022.06.30.12.56.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jun 2022 12:56:46 -0700 (PDT)
+Date:   Thu, 30 Jun 2022 14:56:44 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: Re: [PATCH v3 2/4] leds: qcom-lpg: Add PM660L configuration and
+ compatible
+Message-ID: <Yr3//P1IHJQV3mMt@builder.lan>
+References: <20220511190718.764445-1-marijn.suijten@somainline.org>
+ <20220511190718.764445-2-marijn.suijten@somainline.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: soc: imx8mp-media-blk-ctrl: Add LDB into DT
- example
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20220630173922.92296-1-marex@denx.de>
- <f0366170-c1b6-9573-3e9c-9b1ace2dfbad@linaro.org>
- <b6badccf-8910-da26-bbcc-1302d957a2bd@denx.de>
- <27495fa3-b4ae-7502-45f8-5eb4c5e36640@linaro.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <27495fa3-b4ae-7502-45f8-5eb4c5e36640@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220511190718.764445-2-marijn.suijten@somainline.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,50 +82,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/30/22 21:31, Krzysztof Kozlowski wrote:
+On Wed 11 May 14:07 CDT 2022, Marijn Suijten wrote:
 
-Hi,
-
-[...]
-
->>>> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
->>>> index b246d8386ba4a..05a19d3229830 100644
->>>> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
->>>> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
->>>> @@ -18,11 +18,18 @@ properties:
->>>>      compatible:
->>>>        items:
->>>>          - const: fsl,imx8mp-media-blk-ctrl
->>>> +      - const: simple-mfd
->>>
->>> Not really... simple-mfd means devices is really simple and you just use
->>> it to instantiate children. However this is not simple - it's a power
->>> domain controller with several clocks and power domains as input.
->>>
->>> It's not a simple MFD, but a regular device.
->>
->> I don't understand this comment. The LDB bridge is literally two
->> registers with a few bits in this media block controller register area.
->> Can you expand on why the simple-mfd is unsuitable and what should it be
->> instead ?
+> Inherit PM660L PMIC LPG/triled block configuration from downstream
+> drivers and DT sources, consisting of a triled block with automatic
+> trickle charge control and source selection, three colored led channels
+> belonging to the synchronized triled block and one loose PWM channel.
 > 
-> Looking at the bindings you have there 10 power domains, 10 input clocks
-> and a domain provider. The driver is also not that simple which is
-> another argument that this is not simple-mfd. Simply, it is not simple.
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Pavel, please pick this change and I'll pick the dts changes through the
+qcom tree.
+
+Regards,
+Bjorn
+
+> ---
 > 
-> What I meant, is that probably you should populate children from the
-> driver instead of adding simple-mfd compatible. Once you add simple-mfd,
-> you cannot remove it and children cannot use anything from the parent.
-
-No, I don't think so.
-
-The block controller provides those 10 power domains, those are separate 
-things controlled by separate registers within the block control 
-register space.
-
-This LDB bridge are two more completely unrelated registers which have 
-nothing to do with those power domains . They are just in the same 
-register block because they had to put those registers somewhere. And 
-they are mixed literally in the middle of the register block, because 
-there was space it seems. Hence the simple-mfd is I think the right 
-thing here.
+> Changes since v2:
+> - Constify channels struct-array (Bjorn);
+> - Correct LUT size to 49 slots (Bjorn).
+> 
+> v2: https://lore.kernel.org/linux-leds/20220507221123.2201668-1-marijn.suijten@somainline.org/T/#u
+> 
+> Changes since v1:
+> - Rebased to pick up pm8350c in the diff-context (Pavel).
+> 
+> v1: https://lore.kernel.org/linux-leds/20220504205704.699500-1-marijn.suijten@somainline.org/T/#u
+> 
+>  drivers/leds/rgb/leds-qcom-lpg.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+> index cfa3362b2457..44b0d1a563df 100644
+> --- a/drivers/leds/rgb/leds-qcom-lpg.c
+> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
+> @@ -1271,6 +1271,23 @@ static int lpg_remove(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +static const struct lpg_data pm660l_lpg_data = {
+> +	.lut_base = 0xb000,
+> +	.lut_size = 49,
+> +
+> +	.triled_base = 0xd000,
+> +	.triled_has_atc_ctl = true,
+> +	.triled_has_src_sel = true,
+> +
+> +	.num_channels = 4,
+> +	.channels = (const struct lpg_channel_data[]) {
+> +		{ .base = 0xb100, .triled_mask = BIT(5) },
+> +		{ .base = 0xb200, .triled_mask = BIT(6) },
+> +		{ .base = 0xb300, .triled_mask = BIT(7) },
+> +		{ .base = 0xb400 },
+> +	},
+> +};
+> +
+>  static const struct lpg_data pm8916_pwm_data = {
+>  	.num_channels = 1,
+>  	.channels = (const struct lpg_channel_data[]) {
+> @@ -1391,6 +1408,7 @@ static const struct lpg_data pm8350c_pwm_data = {
+>  };
+>  
+>  static const struct of_device_id lpg_of_table[] = {
+> +	{ .compatible = "qcom,pm660l-lpg", .data = &pm660l_lpg_data },
+>  	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
+>  	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
+>  	{ .compatible = "qcom,pm8350c-pwm", .data = &pm8350c_pwm_data },
+> -- 
+> 2.36.1
+> 
