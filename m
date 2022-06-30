@@ -2,70 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A8895615A7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 11:08:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7C45615B8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 11:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbiF3JHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 05:07:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35540 "EHLO
+        id S232859AbiF3JMz convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 30 Jun 2022 05:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233567AbiF3JHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 05:07:39 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576561CB2F
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:07:37 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id i15so32687802ybp.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:07:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LM7syOsuEujen5dmBbJf2NA8ECKqk41TV2371TTE0Ek=;
-        b=TlEFTT+BqFbp7eqEnEAaggxbVkXRy71Zg2YuphHqLVH39D8HbYrV6YvFEfMc8Hot+2
-         08kRtTlZAtWvUHnwVyl/4zRAODaPgbpoKw1P8cWZCrnt58/uqImCJVrkST2NpLCZcwto
-         W6bj0ML9VQIeiSmriEbyERn++O5W79kZXSKmRYNeF8VWcIWcql2c4BcI1KdUtjOsci+X
-         QTBBP/Dy724Srhf6ViUXgxtuEqLWD8c8v9tDJt1boGEzWf2TTkYD5o8RxFetHT0BXe22
-         lgCu/QfYNpCqbBu1/kczyPPtJSpGtWwdA7Q/7zKFyymFEPbLHWMFwks+BzWYbOI+M61A
-         WnIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LM7syOsuEujen5dmBbJf2NA8ECKqk41TV2371TTE0Ek=;
-        b=wWQsFjNQ8GJSZE01hRJqgxkQTP7081HYa6CJZSdqla7oXapHBqvLLW/5InGGWZ4hT6
-         tKtD1E7FOGnpEG16kGn64X9G5VW+Agd5xofKS3ZJd8iVWSUVgasLq65P/WXN8jSVVwYl
-         c4zbZPaN/nhwvM1Y0lfmi++OtbHMDozAR/drQ0cMPEsr8pdZdcJ9+xJmyR0j0fPCyRFF
-         WBjdSS4NhbjX4ikLDcD+SLQJuVjeBWg9xF+A7+dJqu7AegEYsKQA0LtrjDylSIVN7FvT
-         l+Ixh+1MuvIlCWAaiqkIcx3Z73hZ2G4W6M82/rmferGPQM6n42s8JG7dhTKiW4gPfWIF
-         DLNw==
-X-Gm-Message-State: AJIora8xzmUj+uKrUc13gh5Hr8ouv6zhuK3BRxIk5CMw9XtqzKExcNxX
-        zqmiILfqmpMh5w49IvQfqquKjQgs66YvslhFQWIQFw==
-X-Google-Smtp-Source: AGRyM1txhj6Bt2Ppk95Xs8lzgpOlcXsxAyKn9sSO7LnkUjia6xoliisgZJZfuZHQrrccsWvvlPua0vjyAqBysuk9X1M=
-X-Received: by 2002:a25:d82:0:b0:66c:dafa:48c6 with SMTP id
- 124-20020a250d82000000b0066cdafa48c6mr8388465ybn.492.1656580056618; Thu, 30
- Jun 2022 02:07:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <CGME20220629102527epcas2p42e99f44d529d215623bd0e12a082d1dd@epcas2p4.samsung.com>
- <20220629102304.65712-1-chanho61.park@samsung.com> <20220629102304.65712-3-chanho61.park@samsung.com>
-In-Reply-To: <20220629102304.65712-3-chanho61.park@samsung.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 30 Jun 2022 11:07:25 +0200
-Message-ID: <CACRpkdadUF8iQhhpO53VgbY0NBqJsmW7sXGUayN4+LrRYouwVA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] spi: s3c64xx: support custom value of internal
- clock divider
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        with ESMTP id S233291AbiF3JMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 05:12:54 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C101CFE8
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:12:50 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o6qDn-0002b6-SL; Thu, 30 Jun 2022 11:12:23 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o6qDh-003YyD-6B; Thu, 30 Jun 2022 11:12:20 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o6qDk-0003Cl-3a; Thu, 30 Jun 2022 11:12:20 +0200
+Message-ID: <813a3b51f82a11a86bd3af2c3299c344e08e8963.camel@pengutronix.de>
+Subject: Re: [PATCH v1 04/14] reset: add polarfire soc reset support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-riscv@lists.infradead.org
+Date:   Thu, 30 Jun 2022 11:12:20 +0200
+In-Reply-To: <20220630080532.323731-5-conor.dooley@microchip.com>
+References: <20220630080532.323731-1-conor.dooley@microchip.com>
+         <20220630080532.323731-5-conor.dooley@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,26 +67,240 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 12:27 PM Chanho Park <chanho61.park@samsung.com> wrote:
+Hi Conor,
 
-> Modern exynos SoCs such as Exynos Auto v9 have different internal clock
-> divider, for example "4". To support this internal value, this adds
-> clk_div of the s3c64xx_spi_port_config and assign "2" as the default
-> value to existing s3c64xx_spi_port_config.
->
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+On Do, 2022-06-30 at 09:05 +0100, Conor Dooley wrote:
+Add support for the resets on Microchip's PolarFire SoC (MPFS).
+Reset control is a single register, wedged in between registers for
+clock control. To fit with existed DT etc, the reset controller is
 
-I don't really see why this divider value should be hard-coded like this.
+existing                     ^
 
-I guess it is some default value, that's OK I guess, then call it:
+created using the aux device framework & set up in the clock driver.
 
-> + * @clk_div: Internal clock divider
-> +       int     clk_div;
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ drivers/reset/Kconfig      |   9 +++
+ drivers/reset/Makefile     |   2 +-
+ drivers/reset/reset-mpfs.c | 145 +++++++++++++++++++++++++++++++++++++
+ 3 files changed, 155 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/reset/reset-mpfs.c
 
-clk_div_default
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 93c8d07ee328..edf48951f763 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -122,6 +122,15 @@ config RESET_MCHP_SPARX5
+ 	help
+ 	  This driver supports switch core reset for the Microchip Sparx5 SoC.
+ 
 
-And the documentation should say "clock divider to be used
-by default unless a specific clock frequency is configured"
++config RESET_POLARFIRE_SOC
++	bool "Microchip PolarFire SoC (MPFS) Reset Driver"
++	depends on AUXILIARY_BUS && MCHP_CLK_MPFS
++	default MCHP_CLK_MPFS
++	help
++	  This driver supports peripheral reset for the Microchip PolarFire SoC
++
++	  CONFIG_RESET_MPFS
 
-Yours,
-Linus Walleij
+This doesn't look intentional.
+
++
+ config RESET_MESON
+ 	tristate "Meson Reset Driver"
+ 	depends on ARCH_MESON || COMPILE_TEST
+diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+index a80a9c4008a7..5fac3a753858 100644
+--- a/drivers/reset/Makefile
++++ b/drivers/reset/Makefile
+@@ -17,6 +17,7 @@ obj-$(CONFIG_RESET_K210) += reset-k210.o
+ obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
+ obj-$(CONFIG_RESET_LPC18XX) += reset-lpc18xx.o
+ obj-$(CONFIG_RESET_MCHP_SPARX5) += reset-microchip-sparx5.o
++obj-$(CONFIG_RESET_POLARFIRE_SOC) += reset-mpfs.o
+ obj-$(CONFIG_RESET_MESON) += reset-meson.o
+ obj-$(CONFIG_RESET_MESON_AUDIO_ARB) += reset-meson-audio-arb.o
+ obj-$(CONFIG_RESET_NPCM) += reset-npcm.o
+@@ -38,4 +39,3 @@ obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
+ obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
+ obj-$(CONFIG_RESET_ZYNQ) += reset-zynq.o
+ obj-$(CONFIG_ARCH_ZYNQMP) += reset-zynqmp.o
+-
+diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
+new file mode 100644
+index 000000000000..49c47a3e6c70
+--- /dev/null
++++ b/drivers/reset/reset-mpfs.c
+@@ -0,0 +1,145 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * PolarFire SoC (MPFS) Peripheral Clock Reset Controller
++ *
++ * Author: Conor Dooley <conor.dooley@microchip.com>
++ * Copyright (c) 2022 Microchip Technology Inc. and its subsidiaries.
++ *
++ */
++#include <linux/auxiliary_bus.h>
++#include <linux/delay.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/reset-controller.h>
++#include <dt-bindings/clock/microchip,mpfs-clock.h>
++#include <soc/microchip/mpfs.h>
++
++/*
++ * The ENVM reset is the lowest bit in the register & I am using the CLK_FOO
++ * defines in the dt to make things easier to configure - so this is accounting
++ * for the offset of 3 there.
++ */
++#define MPFS_PERIPH_OFFSET	CLK_ENVM
++#define MPFS_NUM_RESETS		30u
++#define MPFS_SLEEP_MIN_US	100
++#define MPFS_SLEEP_MAX_US	200
++
++/*
++ * Peripheral clock resets
++ */
++
++static int mpfs_assert(struct reset_controller_dev *rcdev, unsigned long id)
++{
++	u32 reg;
++
++	reg = mpfs_reset_read(rcdev->dev);
++	reg |= (1u << id);
++	mpfs_reset_write(rcdev->dev, reg);
+
+This is missing a spinlock to protect against concurrent read-modify-
+writes.
+
++
++	return 0;
++}
++
++static int mpfs_deassert(struct reset_controller_dev *rcdev, unsigned long id)
++{
++	u32 reg, val;
++
++	reg = mpfs_reset_read(rcdev->dev);
++	val = reg & ~(1u << id);
+
+You could use BIT(id) instead of (1u << id).
+
++	mpfs_reset_write(rcdev->dev, val);
++
++	return 0;
++}
++
++static int mpfs_status(struct reset_controller_dev *rcdev, unsigned long id)
++{
++	u32 reg = mpfs_reset_read(rcdev->dev);
++
++	return (reg & (1u << id));
+
+Side note, this works because MPFS_NUM_RESETS makes sure the sign bit
+is never hit.
+
++}
++
++static int mpfs_reset(struct reset_controller_dev *rcdev, unsigned long id)
++{
++	mpfs_assert(rcdev, id);
++
++	usleep_range(MPFS_SLEEP_MIN_US, MPFS_SLEEP_MAX_US);
++
++	mpfs_deassert(rcdev, id);
++
++	return 0;
++}
++
++static const struct reset_control_ops mpfs_reset_ops = {
++	.reset = mpfs_reset,
++	.assert = mpfs_assert,
++	.deassert = mpfs_deassert,
++	.status = mpfs_status,
++};
++
++static int mpfs_reset_xlate(struct reset_controller_dev *rcdev,
++			    const struct of_phandle_args *reset_spec)
++{
++	unsigned int index = reset_spec->args[0];
++
++	/*
++	 * CLK_RESERVED does not map to a clock, but it does map to a reset,
++	 * so it has to be accounted for here. It is the reset for the fabric,
++	 * so if this reset gets called - do not reset it.
++	 */
++	if (index == CLK_RESERVED) {
++		dev_err(rcdev->dev, "Resetting the fabric is not supported\n");
++		return -EINVAL;
++	}
++
++	if (index < MPFS_PERIPH_OFFSET || index >= (MPFS_PERIPH_OFFSET + rcdev->nr_resets)) {
++		dev_err(rcdev->dev, "Invalid reset index %u\n", reset_spec->args[0]);
+
+s/reset_spec->args[0]/index/
+
++		return -EINVAL;
++	}
++
++	return index - MPFS_PERIPH_OFFSET;
++}
++
++static int mpfs_reset_probe(struct auxiliary_device *adev,
++			    const struct auxiliary_device_id *id)
++{
++	struct device *dev = &adev->dev;
++	struct reset_controller_dev *rcdev;
++	int ret;
++
++	rcdev = devm_kzalloc(dev, sizeof(*rcdev), GFP_KERNEL);
++	if (!rcdev)
++		return -ENOMEM;
++
++	rcdev->dev = dev;
++	rcdev->dev->parent = adev->dev.parent;
+
+s/adev->dev./dev->/
+
++	rcdev->ops = &mpfs_reset_ops;
++	rcdev->of_node = adev->dev.parent->of_node;
+
+s/adev->dev./dev->/
+
++	rcdev->of_reset_n_cells = 1;
++	rcdev->of_xlate = mpfs_reset_xlate;
++	rcdev->nr_resets = MPFS_NUM_RESETS;
++
++	ret = devm_reset_controller_register(dev, rcdev);
++	if (!ret)
++		dev_info(dev, "Registered MPFS reset controller\n");
+
+Is this really useful information for most users?
+
++
++	return ret;
++}
++
++static const struct auxiliary_device_id mpfs_reset_ids[] = {
++	{
++		.name = "clk_mpfs.reset-mpfs",
++	},
++	{ }
++};
++MODULE_DEVICE_TABLE(auxiliary, mpfs_reset_ids);
++
++static struct auxiliary_driver mpfs_reset_driver = {
++	.probe		= mpfs_reset_probe,
++	.id_table	= mpfs_reset_ids,
++};
++
++module_auxiliary_driver(mpfs_reset_driver);
++
++MODULE_DESCRIPTION("Microchip PolarFire SoC Reset Driver");
++MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
++MODULE_LICENSE("GPL");
++MODULE_IMPORT_NS(MCHP_CLK_MPFS);
+
+regards
+Philipp
