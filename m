@@ -2,88 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD592562146
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 19:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96666562165
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 19:40:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235650AbiF3RaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 13:30:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54248 "EHLO
+        id S234372AbiF3Rjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 13:39:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235462AbiF3RaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 13:30:07 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C156546
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:30:05 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id bi22-20020a05600c3d9600b003a04de22ab6so27990wmb.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:30:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rBlnAHZeL5VXmWVXaof16R/ixBz+W8sUAmztG7bWwdA=;
-        b=K/Dd7SQmYF1n30wjzfyn+wicHPLnbgHBONWFA8yAzv5u7Fky/uX0TGZGQaO+6dFuom
-         awxlBLCLS0X9hQhgqJoAMg6wxGndw53pbu69G315tkgEUpHyFbeY3Vpkjirw3+vb3tsw
-         kNoYgqP9blq7fPXcJEIZzxuE2kCGoQrJMzxEMeOs6A1FPTa++hVZHHveIt8jEWbTf5Vt
-         sCpqz0irESo8uEhacBZmzgdgVIJPeRrkYnCmhBNcXs7TrBn3tDc7J7VYMcCXHCI2wxgR
-         oQdua2yioRJKcxkhcmgDSVtH8LOas0DUeKKZe0WnAmVmagyolaBzbSzPqiudslvlVrnY
-         sdJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=rBlnAHZeL5VXmWVXaof16R/ixBz+W8sUAmztG7bWwdA=;
-        b=WxP5Yo8JuKSbKIkaPJ+VVKOainQj6ZG3unJR4wFED0wGCSyVXetQRDEOrQft8c65WN
-         Fj1ebjWS5dCOorMky1VfEOWfCr+9FpoMT1SiyKFOI3osZsVCuGlApGysongDkg6usqMP
-         e9v4LfebTRn7U3sI3Sza7PtefTL7Eg/Gi9n6++CjH1i2QkXKoT8tdKBc3in+O7AQKfoT
-         E2ZY7OMlNu2EyO0hAhBjOZgK1WZE2Y8W53sFoJ0IjVgBEkF7yuSh9kUwGaTHwzWoqLvd
-         IbOE9YrcWhtv92Z/w9StJXDHZPopGy39Ak+h2/J47/d2Io7EWzKX4Cdw0wJN4pP7MfoA
-         +GKg==
-X-Gm-Message-State: AJIora9BYfmX87l33eGREq9rg8OhYmNtRxzCE28OH7d/p28BzJQwnwD+
-        w6iL6FKppapLngTT8eC8kyWM/A==
-X-Google-Smtp-Source: AGRyM1tLj/vYf0am5BBMHwtKy2IXo0Ez0eVYfADzx1DrAlAhLtgm15DK4/UdzX7sr7zxKR5O2uYPJg==
-X-Received: by 2002:a7b:c354:0:b0:39c:6753:21f8 with SMTP id l20-20020a7bc354000000b0039c675321f8mr11578038wmj.113.1656610204470;
-        Thu, 30 Jun 2022 10:30:04 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id w24-20020a7bc758000000b003a018e43df2sm3323922wmk.34.2022.06.30.10.30.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 10:30:04 -0700 (PDT)
-Message-ID: <d177d650-0c61-0ae0-17bb-9d4311582652@linaro.org>
-Date:   Thu, 30 Jun 2022 18:30:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 4/7] dt-bindings: msm: dsi: Add vdd* descriptions back in
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
-        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        with ESMTP id S233863AbiF3Rji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 13:39:38 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53FD21107
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:39:37 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id B5640842D0;
+        Thu, 30 Jun 2022 19:39:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1656610775;
+        bh=gLy1//28wUBXNtxNj+UL/N0qEuZeBJdS8jvKgQKkrzg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=GehRBY2hZ+1ZxMJdt6aAPS7rdeZmtpYLNyLsmGl99OnnGSQk8eyj0KuJB8SodUar8
+         MjYISdhtVGLZwaxHD/7f5dDRSIjRXQcM7rgJGSyFEfh6umvkLMYNG1HjwjYNv7e/ql
+         LZUv3SScqKClYRgK5cxFqW9NE4ySKmHIYA/Fx+aV0DD98OFq0B8nZgHfYbp+AqeqcF
+         ZxJXC3+yS77ELrr+7i3/kPap9OSLjvg5TVtUlCoM0mTkLy+SIjCNOBK/NNhVPgE/4r
+         BZMyZOEvOhlQPjZ01hfeDW2/fTFejIoVyBvA7Ez/cCvPLC+vLykOXAO3YqOZW8kxtI
+         fXtc4t3uBTBiQ==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org
-References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org>
- <20220630120845.3356144-5-bryan.odonoghue@linaro.org>
- <9BCE52A8-E26D-43A0-86D2-90DFE6CB6C62@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <9BCE52A8-E26D-43A0-86D2-90DFE6CB6C62@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Subject: [PATCH] dt-bindings: soc: imx8mp-media-blk-ctrl: Add LDB into DT example
+Date:   Thu, 30 Jun 2022 19:39:22 +0200
+Message-Id: <20220630173922.92296-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 18:16, Dmitry Baryshkov wrote:
-> 
-> All three descriptions are the same. This looks like a c&p issue
+Document the LDB bridge subnode and add the subnode into the example.
+For the subnode to work, the block control must be compatible with
+simple-mfd in addition to the existing compatibles.
 
-Those are what the previous values were.
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Paul Elder <paul.elder@ideasonboard.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+---
+ .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 54 ++++++++++++++++++-
+ 1 file changed, 53 insertions(+), 1 deletion(-)
 
-I'll come up with something less robotic though.
+diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+index b246d8386ba4a..05a19d3229830 100644
+--- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
++++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+@@ -18,11 +18,18 @@ properties:
+   compatible:
+     items:
+       - const: fsl,imx8mp-media-blk-ctrl
++      - const: simple-mfd
+       - const: syscon
+ 
+   reg:
+     maxItems: 1
+ 
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
+   '#power-domain-cells':
+     const: 1
+ 
+@@ -64,9 +71,16 @@ properties:
+       - const: isp
+       - const: phy
+ 
++  bridge@5c:
++    type: object
++    $ref: "/schemas/display/bridge/fsl,ldb.yaml#"
++    unevaluatedProperties: false
++
+ required:
+   - compatible
+   - reg
++  - '#address-cells'
++  - '#size-cells'
+   - '#power-domain-cells'
+   - power-domains
+   - power-domain-names
+@@ -81,7 +95,7 @@ examples:
+     #include <dt-bindings/power/imx8mp-power.h>
+ 
+     media_blk_ctl: blk-ctl@32ec0000 {
+-        compatible = "fsl,imx8mp-media-blk-ctrl", "syscon";
++        compatible = "fsl,imx8mp-media-blk-ctrl", "simple-mfd", "syscon";
+         reg = <0x32ec0000 0x138>;
+         power-domains = <&mediamix_pd>, <&mipi_phy1_pd>, <&mipi_phy1_pd>,
+                         <&mediamix_pd>, <&mediamix_pd>, <&mipi_phy2_pd>,
+@@ -100,5 +114,43 @@ examples:
+         clock-names = "apb", "axi", "cam1", "cam2", "disp1", "disp2",
+                       "isp", "phy";
+         #power-domain-cells = <1>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        bridge@5c {
++            compatible = "fsl,imx8mp-ldb";
++            clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
++            clock-names = "ldb";
++            reg = <0x5c 0x4>, <0x128 0x4>;
++            reg-names = "ldb", "lvds";
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++
++                    ldb_from_lcdif2: endpoint {
++                        remote-endpoint = <&lcdif2_to_ldb>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++
++                    ldb_lvds_ch0: endpoint {
++                        remote-endpoint = <&ldb_to_lvdsx4panel>;
++                    };
++                };
++
++                port@2 {
++                    reg = <2>;
++
++                    ldb_lvds_ch1: endpoint {
++                    };
++                };
++            };
++        };
+     };
+ ...
+-- 
+2.35.1
+
