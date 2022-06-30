@@ -2,81 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02C1256234C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:37:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4033656234E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:37:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236912AbiF3Tfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 15:35:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37142 "EHLO
+        id S236970AbiF3Thf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 15:37:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236739AbiF3Tfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:35:43 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1064A43AF5
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:35:42 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id go6so476351pjb.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:35:42 -0700 (PDT)
+        with ESMTP id S236950AbiF3The (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:37:34 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D509140E7A;
+        Thu, 30 Jun 2022 12:37:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=HPqBYBlLTOMK1qOOrCVZV8mMsTTnAaW6SeEmmR24dkw=;
-        b=JgU/8dDdLh39FOHDtB4AmUWjf7ovmaGZuK/G8C1PG/C/tYs735zbQK0N/MnZlnSPLB
-         ZLK10V1TD8tvUZXXl9Ko8jDPOCz8/3m124YGDC9/2FXlcTKGUbo6f+Rex7iF+7A195kQ
-         rJ6uJKAq9QbVm/Vk4hmgV2uKn+MTr34Wk+ZPg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=HPqBYBlLTOMK1qOOrCVZV8mMsTTnAaW6SeEmmR24dkw=;
-        b=wob9qDuu+2rD78hvib71f7ez8YJq0CwU7tDbBybtTGJaeTbo0JFcsoPIcQOda+R9AY
-         2sL1RkAe50CFddJu5hxQ1ZZ1vCH8G5213JX9E7l0UgPcb70OU8S7Nn5Ar4jwEtbj1LwQ
-         ZhEMqh00s7+k5REdcRCB3asqmIOkWyoxRZrP+3Lco4+NUOCRft98kSaiRyUrBy45rZA+
-         qd/x7Ysd+AmyVis+HXslw3HI4ru//age6rg3G1HzFnZ4VGLKG3wsyVY01EQenlI85Mu7
-         ty2r1PclL67A2TsmqTaiRJJ8U0l9swvMR4Z4mVS8iVjiw6U0VetZLv318goNds0xPUwo
-         zgwA==
-X-Gm-Message-State: AJIora9L3QlF3RV09C3QXJKwbZ1YHVqvJjXaQ8uAgth6ZuRU1zR6EaBC
-        Ca/ADrWYpL5ROOZMLqRXbRrzAg==
-X-Google-Smtp-Source: AGRyM1vKEnFsSb/7xvOUe8N53dVQYfzaU0mqetLQxEbvbMl83VqlJ3+QnERF74meQu8+e3UuCc1hrw==
-X-Received: by 2002:a17:902:c950:b0:16b:8ec7:b34 with SMTP id i16-20020a170902c95000b0016b8ec70b34mr16017029pla.143.1656617741784;
-        Thu, 30 Jun 2022 12:35:41 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:9fbf:277c:23e1:eabb])
-        by smtp.gmail.com with UTF8SMTPSA id be19-20020a056a001f1300b005254c71df0esm13732068pfb.86.2022.06.30.12.35.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 12:35:41 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-usb@vger.kernel.org,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Peter Chen <peter.chen@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Bhuvanesh Surachari <Bhuvanesh_Surachari@mentor.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Kai-Heng Feng <kai.heng.feng@canonical.com>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Subject: [PATCH v24 4/4] usb: core: hub: Create platform devices for onboard hubs in hub_probe()
-Date:   Thu, 30 Jun 2022 12:35:30 -0700
-Message-Id: <20220630123445.v24.4.Ic9dd36078f9d803de82ca01a6700c58b8e4de27e@changeid>
-X-Mailer: git-send-email 2.37.0.rc0.161.g10f37bed90-goog
-In-Reply-To: <20220630193530.2608178-1-mka@chromium.org>
-References: <20220630193530.2608178-1-mka@chromium.org>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656617848; x=1688153848;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=gZreJKV+oMv/NDuxMdMPpFmRx9/TyNbeHXnP+CefYZM=;
+  b=omKGcov1tXyi4JgK5Mpnhlc+ardIzrZph60kTVDg0XuuYbRW2xjxX8Au
+   mxgALTa9ZxCBXbhxsVzJ1Z/W2ug7xA3YN+b3X7j2tp8z+lS6X4mHDg1Nr
+   v/jKOzOAsmXYWiYczqr4k3hzflyXCJxKddWyB8kLwrWvIypvNXMDFXl4+
+   s=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 30 Jun 2022 12:37:28 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2022 12:37:28 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 30 Jun 2022 12:37:27 -0700
+Received: from [10.134.66.165] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 30 Jun
+ 2022 12:37:27 -0700
+Message-ID: <0f4eb095-efc2-f7cf-af84-1c381d53382a@quicinc.com>
+Date:   Thu, 30 Jun 2022 12:37:26 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2] dt-bindings: power: reset: qcom-pon: update "reg"
+ property details
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <corbet@lwn.net>, <sre@kernel.org>, <robh+dt@kernel.org>
+CC:     <vkoul@kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        David Collins <quic_collinsd@quicinc.com>
+References: <20220628015845.28751-1-quic_amelende@quicinc.com>
+ <1576e17a-add4-83b4-3847-458fea9fd831@linaro.org>
+From:   Anjelique Melendez <quic_amelende@quicinc.com>
+In-Reply-To: <1576e17a-add4-83b4-3847-458fea9fd831@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,88 +70,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Call onboard_hub_create/destroy_pdevs() from hub_probe/disconnect()
-to create/destroy platform devices for onboard USB hubs that may be
-connected to the hub. The onboard hubs must have nodes in the
-device tree.
 
-onboard_hub_create/destroy_pdevs() are NOPs unless
-CONFIG_USB_ONBOARD_HUB=y/m.
 
-Also add a field to struct usb_hub to keep track of the onboard hub
-platform devices that are owned by the hub.
+On 6/29/2022 3:35 AM, Krzysztof Kozlowski wrote:
+> On 28/06/2022 03:58, Anjelique Melendez wrote:
+>> From: David Collins <quic_collinsd@quicinc.com>
+>>
+>> Update the description of "reg" property to add the PON_PBS base
+>> address along with PON_HLOS base address.  Also add "reg-names"
+>> property description.
+>>
+>> Signed-off-by: David Collins <quic_collinsd@quicinc.com>
+>> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+>> ---
+>>
+>> New patch series to sperate this patch from applied patches.
+>> Last comments from original patch series can be found
+>> https://lore.kernel.org/linux-arm-msm/27515993-18f3-8891-4835-9b6a8d7f86b0@quicinc.com/
+>>
+>> changes since v1:
+>>   - Updated path which was missing Documention/devicetree prefix
+>>   - Updated CC list
+>>   
+>>  ../bindings/power/reset/qcom,pon.yaml | 20 +++++++++++++++++++-
+>>  1 file changed, 19 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+>> index 353f155d..1d8cf900 100644
+>> --- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+>> +++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+>> @@ -26,8 +26,26 @@ properties:
+>>        - qcom,pm8998-pon
+>>  
+>>    reg:
+>> -    maxItems: 1
+>> +    description: |
+>> +      Specifies the SPMI base address for the PON (power-on) peripheral.  For
+>> +      PMICs that have the PON peripheral (GEN3) split into PON_HLOS and PON_PBS
+>> +      (e.g. PMK8350), this can hold addresses of both PON_HLOS and PON_PBS
+>> +      peripherals.  In that case, the PON_PBS address needs to be specified to
+>> +      facilitate software debouncing on some PMICs.
+> 
+> You need separate compatibles for that and constraints (allOf:if:then)
+> for each variant.
+> 
+So I have been looking into using the separate compatible strings however
+have run into a few problems.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
+The compatible strings in this binding relate to the parent pon device,
+while gen1/gen2/gen3 relate to the children devices.
+For example, qcom,pm8941-resin/qcpm,pm8941-pwrkey are gen1/gen2 children
+and defined under a parent pon device with the "qcom,pm8998-pon" compatible string
+but qcom,pmk8350-resin/pmk8350-resin are gen3 children and would also be defined
+under a parent pon device with the "qcom,pm8998-pon" compatible string.
+Currently the children do not define their own "reg" property and will use the
+register(s) address(es) defined for their parent[1].
+Because of this we are unable to use the compatibles to separate the constraints
+for gen1/gen2 vs gen3.
 
-Changes in v24:
-- none
+There are two possible suggestions we came up with that could solve this.
+1. Add a new compatible string to this binding such as "qcom,pmk8350-pon". We would then
+place all gen3 children devices under this compatible string thus being able to use
+allOf:if:then for the constraints.This would also require a few changes within
+driver/power/supply/qcom,pon.c. 
 
-Changes in v23:
-- added Doug's 'Reviewed-by' tag
+2. reg-names is not consumed by anything but rather used for clarification
+for users as what the register(s) address relates to. We could get rid of
+the property and simply have "reg" with minItem:1 and maxItem:2.
 
-Changes in v22:
-- patch added to the series (moved creation/deletion from HCD)
 
- drivers/usb/core/hub.c | 9 ++++++++-
- drivers/usb/core/hub.h | 1 +
- 2 files changed, 9 insertions(+), 1 deletion(-)
+Would love to hear your thoughts or other suggestions you may have!
 
-diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
-index 68e9121c1878..8055130ee602 100644
---- a/drivers/usb/core/hub.c
-+++ b/drivers/usb/core/hub.c
-@@ -23,6 +23,7 @@
- #include <linux/usb.h>
- #include <linux/usbdevice_fs.h>
- #include <linux/usb/hcd.h>
-+#include <linux/usb/onboard_hub.h>
- #include <linux/usb/otg.h>
- #include <linux/usb/quirks.h>
- #include <linux/workqueue.h>
-@@ -1752,6 +1753,8 @@ static void hub_disconnect(struct usb_interface *intf)
- 	if (hub->quirk_disable_autosuspend)
- 		usb_autopm_put_interface(intf);
- 
-+	onboard_hub_destroy_pdevs(&hub->onboard_hub_devs);
-+
- 	kref_put(&hub->kref, hub_release);
- }
- 
-@@ -1869,6 +1872,7 @@ static int hub_probe(struct usb_interface *intf, const struct usb_device_id *id)
- 	INIT_DELAYED_WORK(&hub->leds, led_work);
- 	INIT_DELAYED_WORK(&hub->init_work, NULL);
- 	INIT_WORK(&hub->events, hub_event);
-+	INIT_LIST_HEAD(&hub->onboard_hub_devs);
- 	spin_lock_init(&hub->irq_urb_lock);
- 	timer_setup(&hub->irq_urb_retry, hub_retry_irq_urb, 0);
- 	usb_get_intf(intf);
-@@ -1889,8 +1893,11 @@ static int hub_probe(struct usb_interface *intf, const struct usb_device_id *id)
- 		usb_autopm_get_interface_no_resume(intf);
- 	}
- 
--	if (hub_configure(hub, &desc->endpoint[0].desc) >= 0)
-+	if (hub_configure(hub, &desc->endpoint[0].desc) >= 0) {
-+		onboard_hub_create_pdevs(hdev, &hub->onboard_hub_devs);
-+
- 		return 0;
-+	}
- 
- 	hub_disconnect(intf);
- 	return -ENODEV;
-diff --git a/drivers/usb/core/hub.h b/drivers/usb/core/hub.h
-index 22ea1f4f2d66..ccf90052d12a 100644
---- a/drivers/usb/core/hub.h
-+++ b/drivers/usb/core/hub.h
-@@ -73,6 +73,7 @@ struct usb_hub {
- 	spinlock_t		irq_urb_lock;
- 	struct timer_list	irq_urb_retry;
- 	struct usb_port		**ports;
-+	struct list_head        onboard_hub_devs;
- };
- 
- /**
--- 
-2.37.0.rc0.161.g10f37bed90-goog
+Thanks,
+Anjelique
 
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/input/misc/pm8941-pwrkey.c?h=v5.19-rc4#n274
+>> +    minItems: 1
+>> +    maxItems: 2
+>>  
+>> +  reg-names:
+>> +    description: |
+>> +      For PON GEN1 and GEN2, it should be "pon". For PON GEN3 it should include
+>> +      "pon_hlos" and optionally "pon_pbs".
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +    items:
+>> +      anyOf:
+>> +        - const: pon_hlos
+>> +        - const: pon_pbs
+>> +        - const: pon
+> 
+> First, you missed Rob's comment, that names should be without "pon" prefix.
+> 
+> Second, uUnfortunately this cannot be such flexible. Items have to be
+> strictly ordered. You mentioned in description something about gen1/2/3,
+> so probably what you want per-variant, specific list
+> 
+> Best regards,
+> Krzysztof
