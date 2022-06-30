@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE555615FB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 11:18:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51843561602
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 11:18:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234246AbiF3JRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 05:17:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44098 "EHLO
+        id S233414AbiF3JSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 05:18:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234310AbiF3JR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 05:17:26 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20EB43AC2
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:16:17 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id r18so17820322edb.9
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:16:17 -0700 (PDT)
+        with ESMTP id S234148AbiF3JSC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 05:18:02 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B15D43FBF2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:16:47 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-31bf327d4b5so83387897b3.13
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:16:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Jxh9+8wGKifer/pkVBwkWFz/cUObqSEK4gTsvDCOLoQ=;
-        b=mtiJ96LmLCRmWOanbe4ljk3xT3YdaBPutJSnlnWsxIYdNS9uCVN/HAHRCmp0acxDWV
-         rRNbdX9q9ZTX2WKIGY62cj2PCkJ3HDA44PxEcjzLDxS6iafRpTUiVmalPY3vA677ko7n
-         61aO/2oFVlXmsx844VQlHLW80YR1GOupEAi4o=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=y2VcWUn76owMkahIiSpe6u3dmJvIJ7O7/SunZB5ovaY=;
+        b=EIZ5mBcgizaSwAGmq8RVN4Ev0EgefBfQ1Zkam3vTcFZbuOMtG8vnYJWocqRzbgnrqp
+         Hyzh/VH2EDFZWQs5uN738AesOeGyPhc5e45LDg+anBaRy2a/EN28QLRuUcxDG6InguBL
+         pOALxDvaFC8nD2KIw6whHPam9YQAA4HbTu7zN9ag0BnhNxbWZDVQCAlBupiGGjRkroZc
+         zqCG8/QOEmVkq9Rxpb7H/Uk7/vbJqADBHWAqo0UNOxAROQET3/nNxpJmgENWPr6uP2am
+         q0DOqGm9kzthmJVC+WO1GuLwK1cWU7dKrDuHI4ShAORa95YMl1DfAI6HD9Z5WInpN8nO
+         TWgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Jxh9+8wGKifer/pkVBwkWFz/cUObqSEK4gTsvDCOLoQ=;
-        b=jWJMyKBmJjhE2R+HhHls0Gb2ZkW6ul0/doKmSAQ1hDIkrdOOCW2qMwMfx7dCA0MCVU
-         JhywDR/fYhW5QbvRqa5zFljF90FKFDHUgBLxTCln+4b2A4YfmnMZsGTRzT4YvvvQYmDv
-         RJTrXShZA+xda578wwXhk2XYfKe9df2gRzZ81hE/k+SkM24A4Xgm0SFXiatXLOpq2oT0
-         N2siZ54xrIssAqwRITUy8lQgT9iLJf11OltgeAOvnPjbePJrOfVoRg4qJv5ugpHU0HDA
-         E5W5ux2sdYUPYldui6gF9AdBqrbJ/Zx6sEucRYG619nsGSBMm2Wle7yMDfYpI0lUzexC
-         zRPA==
-X-Gm-Message-State: AJIora9JdGfZpEMGtfxAecPRBuLhGsw9eV7BsmsFJDTWKsnWmkDYTbNp
-        t8wleLHF+0YoKjTS9XpbXDESqw==
-X-Google-Smtp-Source: AGRyM1tftLZ2XSVsXGwKY1tVp8BzpGnUHbWht4UDCihn1aRATfSGrqPAHKl0L1tGrObwQOnOD1W32A==
-X-Received: by 2002:a05:6402:4306:b0:435:a1c9:4272 with SMTP id m6-20020a056402430600b00435a1c94272mr10263737edc.205.1656580576250;
-        Thu, 30 Jun 2022 02:16:16 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-58-216.cust.vodafonedsl.it. [188.217.58.216])
-        by smtp.gmail.com with ESMTPSA id q10-20020a170906940a00b006fe8bf56f53sm8947680ejx.43.2022.06.30.02.16.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 02:16:15 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 11:16:13 +0200
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=y2VcWUn76owMkahIiSpe6u3dmJvIJ7O7/SunZB5ovaY=;
+        b=xEI8FElRDb4DDYQy63aXesXCIZn6j2m50AWQm3YGQMIbLrzSnit4F2PcGCuXLUtGc1
+         67KMKWHbhQu+ahAQ/N5YTsaJDxjRg3E7pdtq77UYchYDYyGKnegiQuK/MJCQXjmnHK1u
+         kmC3re47wq1eRWmyKTDKaWb65dSuCbResgWPLVCXBxukiAL1M0vjBssQ6i4m9sh/1/ff
+         Jr5Gboe0K2S2e+Kxkg9DzYTDyZfkCK3ADel2FMEppMbpPv+s53DBucsYpyoF43xwGOYd
+         cVlDpophB97Yo1E+DgTvMEebWMbZmSSIuU8ghgTxibD6pEVfrsYq0gQrkl+ovA6ivd74
+         //Bw==
+X-Gm-Message-State: AJIora8U6ZXU5OjHen+qGozU0bKmS/Pat4lOZaAWEWid4DhHul4eIg8N
+        dM7Zrxv9XPgmQRNUeb1R8b2H24WYNUNr7ZqHVzxX0g==
+X-Google-Smtp-Source: AGRyM1tjLZ153j7Np3XGNGpSK5G64rKc8JOpc+/Fc3g7HcwAIDXbcAmIMxNFbsul/0N0Bx967t8Cyw5rxHBJe9cOL4w=
+X-Received: by 2002:a81:71c6:0:b0:318:38d5:37f3 with SMTP id
+ m189-20020a8171c6000000b0031838d537f3mr9507316ywc.268.1656580607004; Thu, 30
+ Jun 2022 02:16:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <CGME20220629102527epcas2p42e99f44d529d215623bd0e12a082d1dd@epcas2p4.samsung.com>
+ <20220629102304.65712-1-chanho61.park@samsung.com> <20220629102304.65712-3-chanho61.park@samsung.com>
+In-Reply-To: <20220629102304.65712-3-chanho61.park@samsung.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 30 Jun 2022 11:16:35 +0200
+Message-ID: <CACRpkdagXnR0jjHNOVgGkh_ZntfzF0h4D_+DX85jNy7q=6DNEw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] spi: s3c64xx: support custom value of internal
+ clock divider
+To:     Chanho Park <chanho61.park@samsung.com>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        quentin.schulz@theobroma-systems.com,
-        Daniel Scally <djrscally@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 5/6] media: dt-bindings: ov5693: document YAML binding
-Message-ID: <20220630091613.GD482517@tom-ThinkPad-T14s-Gen-2i>
-References: <20220630074525.481790-1-tommaso.merciai@amarulasolutions.com>
- <20220630074525.481790-6-tommaso.merciai@amarulasolutions.com>
- <167f09c1-795d-1471-20f7-9f4df29355ed@linaro.org>
- <20220630090232.GC482517@tom-ThinkPad-T14s-Gen-2i>
- <Yr1pD2U2ilXXXX+Q@valkosipuli.retiisi.eu>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yr1pD2U2ilXXXX+Q@valkosipuli.retiisi.eu>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,51 +73,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+On Wed, Jun 29, 2022 at 12:27 PM Chanho Park <chanho61.park@samsung.com> wrote:
 
-On Thu, Jun 30, 2022 at 12:12:47PM +0300, Sakari Ailus wrote:
-> On Thu, Jun 30, 2022 at 11:02:32AM +0200, Tommaso Merciai wrote:
-> > On Thu, Jun 30, 2022 at 10:07:19AM +0200, Krzysztof Kozlowski wrote:
-> > > On 30/06/2022 09:45, Tommaso Merciai wrote:
-> > > > Add documentation of device tree in YAML schema for the OV5693
-> > > > CMOS image sensor from Omnivision
-> > > > 
-> > > > Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> > > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > Reviewed-by: Sakari Ailus <sakari.ailus@iki.fi>
-> > > 
-> > > How Sakari's tag appeared here? There was no email from him.
-> > 
-> > Sakari made me some review on v2, but I think he forgot to add the mailing
-> > list in cc. ( I suppose :) )
-> > 
-> > Let me know if I need to remove this.
-> 
-> You're only supposed to put these tags into patches if you get them in
-> written form as part of the review, signalling acceptance of the patch in
-> various forms. Just commenting a patch does not imply this.
-> 
-> Please also see Documentation/process/submitting-patches.rst for more
-> information on how to use the tags.
+> Modern exynos SoCs such as Exynos Auto v9 have different internal clock
+> divider, for example "4". To support this internal value, this adds
+> clk_div of the s3c64xx_spi_port_config and assign "2" as the default
+> value to existing s3c64xx_spi_port_config.
+>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
 
-Thanks for sharing this. My bad.
-I remove your tags.
+While this gives a way to set up the default clock divider (which is
+fair) I think
+you should probably go the extra mile and make this clock divider a proper
+clock abstraction, so the driver can respect the DT standard property
+spi-max-frequency
+from Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
 
-Regards,
-Tommaso
+This actually isn't very hard: look for example in the PL111 driver,
+a hardware block that contains a similar internal clock divider:
+drivers/gpu/drm/pl111/pl111_display.c
+check how we define a clock from pl111_clk_div_ops.
+in pl111_init_clock_divider().
 
-> 
-> -- 
-> Sakari Ailus
+Then the driver probe() just grabs that clock and sets the frequency.
+The algorithms should be pretty much copy/paste.
 
--- 
-Tommaso Merciai
-Embedded Linux Engineer
-tommaso.merciai@amarulasolutions.com
-__________________________________
-
-Amarula Solutions SRL
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-T. +39 042 243 5310
-info@amarulasolutions.com
-www.amarulasolutions.com
+Yours,
+Linus Walleij
