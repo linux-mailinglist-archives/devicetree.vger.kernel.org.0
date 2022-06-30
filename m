@@ -2,74 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86C37562285
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55F1056228E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:04:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236794AbiF3TDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 15:03:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41278 "EHLO
+        id S236786AbiF3TEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 15:04:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236785AbiF3TDK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:03:10 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22DE13E21
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:03:09 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id fw3so13142789ejc.10
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:03:09 -0700 (PDT)
+        with ESMTP id S236741AbiF3TEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:04:10 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 116B937034
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:04:09 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id d2so29059921ejy.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:04:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=GpKJCo0z+0F48dHPgWjsxiLcXHO5Rv5PyoIecr+e2rs=;
-        b=MccCW8dY7vG3xhtvzfyIfsmly5wO9Bj3r/786LZlsTGJG1KtSTawNyUDha23FOPdbt
-         in321vPuFvG5p140Q3D+gRkJQIESxX/qIta4M+mYf5Xs2RUmXsaBoclV/MK7CAbYewtc
-         tgKHKVu9cpUg+dV3bSHaLQdx1Nfmzu088v5fqh/+I8Dil02llhQyd4F824GEa/1UeqZ8
-         aI85iC0P+64xOSKC9i5kStuzFf6bVycus9GZo7SbUY76978kgcdxbTdxw4jXVdZprPTt
-         KXBVgQi+KLoL/eCP90eaIW4rOQWYYx4hRVwq1xQkiFq6R6fgtks2QviX1VowECBbr2Xd
-         q49Q==
+        bh=A5BPRjCLjMz6n70RysGv/HeCg7F5lkJ+/NTpqGV0Rcw=;
+        b=HKUSRukkVJd1EOTlpGzZ8EDl1SGJ3FY3+yWHHTsOwej3pK7VoxUl4bMC7BB7wWBk+H
+         gXpnTxmEyNKNvIqHMmGlvkqBoBB5Cg4z89Ca2ybIHgT2M3XlW8SqZa4usMtgr+3S3Y4b
+         sH2A1vu/YuaaFjFKg9iggU7HOABsmeAPdWbSI4whOSykXCyjG7zITAQgMkgUk4jLO0BI
+         ptcOUnGDxXvioZDKIbO+9bsA2ZLU6NP2zJsENoDrcGwiS0CZRRrAO6Q8BX2ho1kRdjbA
+         SmubYJTFhqQRODWBrOPP4c8UC7DB8LDVo9Id/V/x89Up3g9SXkpmXlfnE4MJ/HD3lBHs
+         bCrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=GpKJCo0z+0F48dHPgWjsxiLcXHO5Rv5PyoIecr+e2rs=;
-        b=JvXMj6vtD6TEtYxuBm7b4iyGfVj2dRJ7whXgcNqWTmVPSU6HWR/jERx30KTQkuo2K/
-         D6zresYv2dwRCxoiVV69lNSmDpxiCFuMeou2bydbrdTY9uQjIg6rvYZkEM6Fhzc4khHU
-         uSXF6KOzisjr+m0rWgx26S0E7CDuJkuaJDxQcV/u4UrUBF0jQRVRtx1cNNQyHT/yONB9
-         urNK5yvr/C/1VhTEe66/YV1MCr+uPM0Mde1kLFgRgwiHFonk88f15urdor/EWQkYcShK
-         qz2i9Df8K/yyClAHEsvZxpC46J7j5xqXQe+T1ye8vUP+irPS9T8wJiEbtalhpF/G2q8l
-         MFDw==
-X-Gm-Message-State: AJIora+fo4FSqxhnxasc43Uay3nea90y2+w/zkA26rWOo+DOd7gmBRFX
-        QCeuc94Rd9DbsnfCoihyvUgtxA==
-X-Google-Smtp-Source: AGRyM1so7aTmcV3aL5Tj0v8g4vOpq7WUBZK6Lcz/cmcmwzkaTjOH+yON1rQFOa6/2xM9DqNP+6+aiw==
-X-Received: by 2002:a17:906:4f:b0:712:af2:29d9 with SMTP id 15-20020a170906004f00b007120af229d9mr10490071ejg.751.1656615788289;
-        Thu, 30 Jun 2022 12:03:08 -0700 (PDT)
+        bh=A5BPRjCLjMz6n70RysGv/HeCg7F5lkJ+/NTpqGV0Rcw=;
+        b=MtMyBMfue7i47wusHAiAplYGdPmeGGroXWCOOI9OCsAi1SuuaXj7lEoIeLNtklHvIV
+         nlK2M8mbDpGx/cVIk0KS8hBYKayHEV24uRWvwRR2pHQoJbjCBaXi/lasaBxcOCdceIOO
+         vzGxewTWDx3zvSjoStRAyiul5OCaRogZJ591Vz6s+qD0XWMFKIWCkTmX8jX33ydINTsB
+         twXcNljP3TBbc2N/evG8r2codRolOnhM+S2d/LJy2KDq+eEA/NY55L83CRSSTKZv+YXq
+         SfN2tUjseuNoRaNnGAt1/Nq1wiO6g/xtOzNlx8yQFytcB3dP0sChy5F3/15u48sJLZ1e
+         nPfw==
+X-Gm-Message-State: AJIora9x3ZB72Zx+y2lj8QP+qDzPCGi2ViFKUw+xkUvSf+1t3IVbYcmE
+        b8Z9cVJOUUMHTkJwXGfNLmPnwA==
+X-Google-Smtp-Source: AGRyM1t6404Tdoq6Wq/sQaLZ0Ytbji5kaAU5uTST3P1dC2xlN/EQMnBp1Pbl9D8/U74kNDTA9wujZg==
+X-Received: by 2002:a17:907:961c:b0:726:9f09:6b3c with SMTP id gb28-20020a170907961c00b007269f096b3cmr10496797ejc.711.1656615847677;
+        Thu, 30 Jun 2022 12:04:07 -0700 (PDT)
 Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id d10-20020a056402400a00b004357ab9cfb1sm13692392eda.26.2022.06.30.12.03.05
+        by smtp.gmail.com with ESMTPSA id x13-20020a170906b08d00b00724261b592esm9419163ejy.186.2022.06.30.12.04.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 12:03:07 -0700 (PDT)
-Message-ID: <b0a2686f-2749-1269-4855-0f889dfd056b@linaro.org>
-Date:   Thu, 30 Jun 2022 21:03:05 +0200
+        Thu, 30 Jun 2022 12:04:06 -0700 (PDT)
+Message-ID: <a19ea366-6607-e54b-4ee2-8d8fa7fb9752@linaro.org>
+Date:   Thu, 30 Jun 2022 21:04:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 4/7] dt-bindings: msm: dsi: Add vdd* descriptions back in
+Subject: Re: [PATCH 5/7] dt-bindings: msm: dsi: Fix clock declarations
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
-        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
+        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
 Cc:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
         bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org
 References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org>
- <20220630120845.3356144-5-bryan.odonoghue@linaro.org>
- <9BCE52A8-E26D-43A0-86D2-90DFE6CB6C62@linaro.org>
- <d177d650-0c61-0ae0-17bb-9d4311582652@linaro.org>
+ <20220630120845.3356144-6-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d177d650-0c61-0ae0-17bb-9d4311582652@linaro.org>
+In-Reply-To: <20220630120845.3356144-6-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,22 +79,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 19:30, Bryan O'Donoghue wrote:
-> On 30/06/2022 18:16, Dmitry Baryshkov wrote:
->>
->> All three descriptions are the same. This looks like a c&p issue
+On 30/06/2022 14:08, Bryan O'Donoghue wrote:
+> When converting from .txt to .yaml dt-binding descriptions we appear to
+> have missed some of the previous detail on the number and names of
+> permissible clocks.
 > 
-> Those are what the previous values were.
+> Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../display/msm/dsi-controller-main.yaml      | 23 +++++++++++++------
+>  1 file changed, 16 insertions(+), 7 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> index fd9d472437853..b24ba6c346a77 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> @@ -28,22 +28,31 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> -    items:
+> -      - description: Display byte clock
+> -      - description: Display byte interface clock
+> -      - description: Display pixel clock
+> -      - description: Display escape clock
+> -      - description: Display AHB clock
+> -      - description: Display AXI clock
+> +    minItems: 6
+> +    maxItems: 9
+>  
+>    clock-names:
+>      items:
+>        - const: byte
+> +        description: Display byte clock
 
-No, original TXT had different descriptions:
+Descriptions should stay where they were. Just add minItems and new items.
 
--- vdd-supply: phandle to vdd regulator device node
+>        - const: byte_intf
+> +        description: Display byte interface clock
+>        - const: pixel
+> +        description: Display pixel clock
+>        - const: core
+> +        description: Display escape clock
+>        - const: iface
+> +        description: Display AHB clock
+>        - const: bus
+> +        description: Display AXI clock
+> +      - const: core_mmss
+> +        description: Core MultiMedia SubSystem clock
+> +      - const: mdp_core
+> +        description: MDP Core clock
+> +      - const: mnoc
+> +        description: MNOC clock
+> +    minItems: 6
+> +    maxItems: 9
 
--- vddio-supply: phandle to vdd-io regulator device node
+maxItems are not needed.
 
--- vdda-supply: phandle to vdda regulator device node
-
+>  
+>    phys:
+>      maxItems: 1
 
 
 Best regards,
