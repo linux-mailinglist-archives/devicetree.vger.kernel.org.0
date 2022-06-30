@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3422F562111
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 19:18:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BC20562118
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 19:18:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232227AbiF3RST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 13:18:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44074 "EHLO
+        id S229906AbiF3RS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 13:18:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbiF3RSS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 13:18:18 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C704E0B7
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:18:17 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id t24so34935596lfr.4
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:18:17 -0700 (PDT)
+        with ESMTP id S235234AbiF3RSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 13:18:25 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27B6B15FD3
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:18:24 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id u14so10595854ljh.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:18:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:user-agent:in-reply-to:references
          :message-id:mime-version:content-transfer-encoding;
-        bh=UpQMYfTCkZFCElPUIkQZ0t3q6QcWT/d12W6Q6Gj/wdk=;
-        b=KDSjQztjqQQrjMn0kmMzCWNHZ2HRm6CDDz8fgbDsvk2e1kTyNN6fgjbKHXUCJRasiq
-         P7AluDq9/SMEIfVagtwgIOt6CZQqf6huCYPPtX8r0y7Bhu2SeaIGC51SHT7YRjcSqSpP
-         hVmR4rfT/hupzC2yhpiCZ2FWyRuxEZ/8/OnrtqEIqZ5IROcoID/qaBGSdVnNa32VB1vi
-         On26XhRD+v11DJdWgwAKXq4i41DW65lZYOxlRT33Tx0NnHZiTP5aD7I8wxJ3cM/Ib4al
-         OUZYFx9ccLhB6znssJBxfCxnUOfl/pkK0uksS61SGi7A3mwZQRTbJfr13SL/0ZA8qre6
-         T3KQ==
+        bh=p+MC8dZLXIrERN6EMKEuoKgZGT7k1itKEIo1H3PViBE=;
+        b=lyTVGZFiwZJPq5wuSCqTGoizXJ9avR8a6qsmAVGVEzrwqjjWzSU4LEQ6LYYRg1azR5
+         Hwf3BZHNw6z+tZQNR5nACDJwEkedHXwT2ep4lYgxt4YXT26/j9GvKSrhXfT0tIeHe3P3
+         PidtEbYCddr/wd9enPtBFe2FR18Kdfz1y6sqslB45EsdZrvMbt7f0T199FvYfWljetWQ
+         NTDrsz/U1K6wYyIgmA11sEDKi0WpCJOaa8ph7Q+K1QI20YxW77Q/9rHb5g6AZSvOeSKO
+         OmxsxyPpKJCzHukhbhrhJlVV6qwBkV2ddb7Uau7L9gaQ2YB9Fv+KT9g2hRn8CK0SxZSX
+         x9Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:user-agent:in-reply-to
          :references:message-id:mime-version:content-transfer-encoding;
-        bh=UpQMYfTCkZFCElPUIkQZ0t3q6QcWT/d12W6Q6Gj/wdk=;
-        b=bxnv1ZoK6+TUtfe0jY2MjPhcvcwq+s9XljpopaUwgL+hYGxD8i5MUA9+ZhSR2UhymK
-         HV4oioDtLF6VPlyy97mJol0RoHNzJ/7zMao91RFZquG0RGNulVL/8x51/f+gJzsR4NwH
-         DE+b+sXxH8/tfzLf3kH7HK5WG3C8zbr/jhGvuydikqg1GAWJ360MZSDcO4pvWLFUuVe3
-         92TAGIbU+E27CiymAMBoNGkATkGcFEKtUPkV970vVBwijKvmZLH3gnKdXqHmdE85etrY
-         XYNDIjlAZufX3LgMjcqH5is12qAL8NtZYpTfInSCdYdaaoiNlwxGVLmj2k28zzHRC8a/
-         EhaQ==
-X-Gm-Message-State: AJIora977l4jbOztx04i4W++ea3DN8au3+paVrWbOexja2Dz3GgkIZ3W
-        TrhfL6cdbPdxfory0gYX+KCn2Q==
-X-Google-Smtp-Source: AGRyM1tQzKJXYNFt5hP0RUwkl5L6brdWePRXelfIltOSkZTl37nvLKOgiaGQjx1/xBLyBrtXukcB5A==
-X-Received: by 2002:a05:6512:2390:b0:481:6f3:2de7 with SMTP id c16-20020a056512239000b0048106f32de7mr6343987lfv.497.1656609495560;
-        Thu, 30 Jun 2022 10:18:15 -0700 (PDT)
+        bh=p+MC8dZLXIrERN6EMKEuoKgZGT7k1itKEIo1H3PViBE=;
+        b=T813WsJfrDs2Y7Ht5FNw7Trmt83SVLv5QU2Jmr8joKfhEeoQNuKXFK6ojgqs3raGcG
+         nCjLg4X4g+bLz0PgdJBp/L6pABIw3sf13WdPhuDPPwSSvllov/G3jzWEdkaIUk8oc6Eg
+         q/nXi7Bw6oP3Fvo8iJT+/amYoJqMfh7OMaSATTRcvxmaJSPr+03tCLDamE01NX1zycS9
+         06iBYsRwNUJ02Cl/s0HRYsNIKPA88pC1HzsxApb46HnI51yKayUYvhNuawb7Icmjl4O4
+         QXnEJTxbh2jTimfeINjZodcLjBvi6xPdAG3O9RbHe4wciEtkHu0vLuk7cX01FUGsm/vH
+         rcEg==
+X-Gm-Message-State: AJIora9k/zR6HvwfxqHX0g8VRnpEsZS4U4xp/Sasb1xUeTheRzfLHtoQ
+        lvS5Zbn5u7ZwZf6jnIkfU6yGsQ==
+X-Google-Smtp-Source: AGRyM1v1g8fAyFtEBbGG/KyBWA9/U06AHFGsRQFMCh3W++tYPsmXQxDhYCvVjVLts8SIzzEg6qKodw==
+X-Received: by 2002:a2e:9f12:0:b0:25b:ad89:80e8 with SMTP id u18-20020a2e9f12000000b0025bad8980e8mr5371518ljk.145.1656609502443;
+        Thu, 30 Jun 2022 10:18:22 -0700 (PDT)
 Received: from [127.0.0.1] ([94.25.229.210])
-        by smtp.gmail.com with ESMTPSA id a8-20020a2eb548000000b0025a97366430sm2679838ljn.68.2022.06.30.10.18.14
+        by smtp.gmail.com with ESMTPSA id n4-20020a05651203e400b0047a0bf9540asm3191312lfq.213.2022.06.30.10.18.21
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 30 Jun 2022 10:18:14 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 20:15:53 +0300
+        Thu, 30 Jun 2022 10:18:21 -0700 (PDT)
+Date:   Thu, 30 Jun 2022 20:16:48 +0300
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
         quic_abhinavk@quicinc.com, sean@poorly.run, airlied@linux.ie,
@@ -57,18 +57,18 @@ CC:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
         bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org, bryan.odonoghue@linaro.org
-Subject: Re: [PATCH 3/7] dt-bindings: msm: dsi: Fix power-domains constraint
+Subject: Re: [PATCH 4/7] dt-bindings: msm: dsi: Add vdd* descriptions back in
 User-Agent: K-9 Mail for Android
-In-Reply-To: <20220630120845.3356144-4-bryan.odonoghue@linaro.org>
-References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org> <20220630120845.3356144-4-bryan.odonoghue@linaro.org>
-Message-ID: <11097A0A-862E-4600-ABF4-34BD36CFB6F3@linaro.org>
+In-Reply-To: <20220630120845.3356144-5-bryan.odonoghue@linaro.org>
+References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org> <20220630120845.3356144-5-bryan.odonoghue@linaro.org>
+Message-ID: <9BCE52A8-E26D-43A0-86D2-90DFE6CB6C62@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain;
  charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,40 +78,58 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 30 June 2022 15:08:41 GMT+03:00, Bryan O'Donoghue <bryan=2Eodonoghue@li=
+On 30 June 2022 15:08:42 GMT+03:00, Bryan O'Donoghue <bryan=2Eodonoghue@li=
 naro=2Eorg> wrote:
->The existing msm8916=2Edtsi does not depend on nor require power-domains=
-=2E
->Drop from the list of required=2E
+>When converting from =2Etxt to =2Eyaml we didn't include descriptions for=
+ the
+>existing regulator supplies=2E
+>
+>- vdd
+>- vdda
+>- vddio
+>
+>Add those descriptions into the yaml now as they were prior to the
+>conversion=2E
 >
 >Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bin=
 dings")
 >Signed-off-by: Bryan O'Donoghue <bryan=2Eodonoghue@linaro=2Eorg>
-
-
-Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
-
 >---
-> =2E=2E=2E/devicetree/bindings/display/msm/dsi-controller-main=2Eyaml    =
- | 1 -
-> 1 file changed, 1 deletion(-)
+> =2E=2E=2E/bindings/display/msm/dsi-controller-main=2Eyaml    | 12 ++++++=
+++++++
+> 1 file changed, 12 insertions(+)
 >
 >diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller=
 -main=2Eyaml b/Documentation/devicetree/bindings/display/msm/dsi-controller=
 -main=2Eyaml
->index 101adec8d9152=2E=2E91324f0828448 100644
+>index 91324f0828448=2E=2Efd9d472437853 100644
 >--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main=
 =2Eyaml
 >+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main=
 =2Eyaml
->@@ -136,7 +136,6 @@ required:
->   - phy-names
->   - assigned-clocks
->   - assigned-clock-parents
->-  - power-domains
->   - ports
+>@@ -125,6 +125,18 @@ properties:
+>       - port@0
+>       - port@1
 >=20
-> additionalProperties: false
+>+  vdd-supply:
+>+    description:
+>+      Phandle to vdd regulator device node
+>+
+>+  vddio-supply:
+>+    description:
+>+      Phandle to vdd regulator device node
+>+
+>+  vdda-supply:
+>+    description:
+>+      Phandle to vdd regulator device node
+
+
+All three descriptions are the same=2E This looks like a c&p issue
+
+>+
+> required:
+>   - compatible
+>   - reg
 
 --=20
 With best wishes
