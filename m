@@ -2,100 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E95E561318
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:17:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39E3656131B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:17:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232051AbiF3HQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 03:16:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44828 "EHLO
+        id S232461AbiF3HQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 03:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232001AbiF3HQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:16:12 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBD330F6D
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:16:10 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id c13so25278338eds.10
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:16:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Se9PAbHiO1jMTkhXH+gjlL2eCcfcxzVHjO3BT8HcTMk=;
-        b=uYDwo8yFEMZxXygiwcQLnlRPWXJzAwg5VlKHqG1W/9yzpzhTKIX/aGgDLOJyfm1uJR
-         DKafO81M6bDYbiHgKa0ciXZ974TnuZbu61JRmlOIGQqwzAaWdl/3u0euTJbb9biRjwyk
-         XXml/MQaTrtxaFgu8H+9iT5+5OoZemtcXQLpyH/kqVeRsmjuePHmGeUDYBb3uqXIp09l
-         SnMz5+EJ6TJYY5mOy2akTBZq+MgxPUv1c9LnrTrnIBVh5mnYxC5pJcb9n3Wmr87VK3tY
-         3plsKAUy0i0w1iFDPI2DLeAgBLezBCCNCi/4aDpXaJfHia7J5DjXICef/Q2/OVhj0a0I
-         cSsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Se9PAbHiO1jMTkhXH+gjlL2eCcfcxzVHjO3BT8HcTMk=;
-        b=3X9fQqkZunaJ0suqIU1V3ZKU9XgYPV0bSJExkSoeflmZmSASC8LkPNJ6+l01YZOpQC
-         FHlSHWiBSfeDTEbIjekv3almJxPQ/XGXnjioBmVxzLRjWoN0wN6JIVxB/RyBc+JNakxH
-         jY3vciPzeP0+yMVJ2fF4+gLyvP3BmbPciiIbfBq10HI8xZud9ymn/3dpxBPuWMcNdxdd
-         fJ1Ajs9qZqrQWEZRN8TVcRuEPmEIVNEi6PCk2Qa8qk98g1Vwh1S+v0PKxASHHS3sq1yu
-         GS5EAhWs7Sz5JMm1n0VZyKtdA/uZDxRxCsp/Eodkod21BumZTxE0AaUPGcxeAbTsOX5A
-         Kavw==
-X-Gm-Message-State: AJIora97wZNHAxZrC/fSrNR8zDrpFyxRYZaQ/YaeKKpOrDPkdQxRy2Da
-        BSz+2O+YajXQjCGlk+Yohv3R7w==
-X-Google-Smtp-Source: AGRyM1t3vyzgUafwfHvDRxnaU/OU/7ysmU/StzH4CO/jMHjw4lxorN8MvyI7JSU/Zjg4dNsCHV3KWA==
-X-Received: by 2002:a05:6402:d05:b0:425:b7ab:776e with SMTP id eb5-20020a0564020d0500b00425b7ab776emr9740463edb.142.1656573369012;
-        Thu, 30 Jun 2022 00:16:09 -0700 (PDT)
-Received: from [192.168.0.187] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h8-20020a170906260800b00718f4d4f073sm8687223ejc.88.2022.06.30.00.16.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 00:16:08 -0700 (PDT)
-Message-ID: <6e27989c-ab2f-821d-d855-d8cd5c492145@linaro.org>
-Date:   Thu, 30 Jun 2022 09:16:07 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: serial: samsung: add
- exynosautov9-uart compatible
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
+        with ESMTP id S231690AbiF3HQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:16:43 -0400
+X-Greylist: delayed 70667 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 30 Jun 2022 00:16:42 PDT
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0539838199;
+        Thu, 30 Jun 2022 00:16:41 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3C033240011;
+        Thu, 30 Jun 2022 07:16:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1656573400;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=9I94e4QJGBDEKtn1NYQX9pGoS4V5rF6gB5rgv3ePiKY=;
+        b=f1D5owjWynMmSNvMz/29rgnS21+K0IiCKp4Q9pLK4PR/JbHpD4NuS+5PkOWug5hXGX/1c0
+        qA4QB5yL58gvxqdMb8wfap5OvlGS8XR1sGAmO2D0JFodHMDhIa6Gwmep4OIFX2lg9nB8vx
+        2RuAsIBg5a5fMFsg4QFGXnvMK88ycDolLJ0jqX4TyUiyXKnSsjoNB7n7CNEqUmGpWtEijI
+        GAWNSXlFwJN4bL0r03f7/CAqqRpgUYRdofQYKBADNJb9xufoH0C7FkvI0AbvEUKdaMbXpR
+        +FQy3m9wcU+6BSf1VfptrzqejlDFFXLqPjrt7ED0DDbf8KtaoLmtPngXyfnjqA==
+Date:   Thu, 30 Jun 2022 09:16:36 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1656554759.git.chanho61.park@samsung.com>
- <CGME20220630021951epcas2p1d35e3e0b6d4267eccbe0468b15a558f0@epcas2p1.samsung.com>
- <eb82ba7e93f6b0e5c22d1e2bbad2cc4056e5cb31.1656554759.git.chanho61.park@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <eb82ba7e93f6b0e5c22d1e2bbad2cc4056e5cb31.1656554759.git.chanho61.park@samsung.com>
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mtd/partitions: Convert
+ arm-firmware-suite to DT schema
+Message-ID: <20220630091636.03386395@xps-13>
+In-Reply-To: <20220629185031.23826-1-robh@kernel.org>
+References: <20220629185031.23826-1-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 04:16, Chanho Park wrote:
-> Add samsung,exynosautov9-uart dedicated compatible for representing
-> uart of Exynos Auto v9 SoC.
+Hi Rob,
 
-s/uart of Exynos Auto v9 SoC/UART of Exynos Auto v9 SoC/
-> 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+robh@kernel.org wrote on Wed, 29 Jun 2022 12:50:30 -0600:
+
+> Convert the arm,arm-firmware-suite partition binding to DT schema
+> format. Simple conversion as there's only a compatible property.
+>=20
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
 > ---
->  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
+> v2:
+>  - Fix example dtc warning
+> ---
+>  .../mtd/partitions/arm,arm-firmware-suite.txt | 17 -----------
+>  .../partitions/arm,arm-firmware-suite.yaml    | 28 +++++++++++++++++++
+>  2 files changed, 28 insertions(+), 17 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/arm,=
+arm-firmware-suite.txt
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/arm,=
+arm-firmware-suite.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-fir=
+mware-suite.txt b/Documentation/devicetree/bindings/mtd/partitions/arm,arm-=
+firmware-suite.txt
+> deleted file mode 100644
+> index d5c5616f6db5..000000000000
+> --- a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-s=
+uite.txt
+> +++ /dev/null
+> @@ -1,17 +0,0 @@
+> -ARM AFS - ARM Firmware Suite Partitions
+> -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> -
+> -The ARM Firmware Suite is a flash partitioning system found on the
+> -ARM reference designs: Integrator AP, Integrator CP, Versatile AB,
+> -Versatile PB, the RealView family, Versatile Express and Juno.
+> -
+> -Required properties:
+> -- compatible : (required) must be "arm,arm-firmware-suite"
+> -
+> -Example:
+> -
+> -flash@0 {
+> -	partitions {
+> -		compatible =3D "arm,arm-firmware-suite";
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-fir=
+mware-suite.yaml b/Documentation/devicetree/bindings/mtd/partitions/arm,arm=
+-firmware-suite.yaml
+> new file mode 100644
+> index 000000000000..76c88027b6d2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-s=
+uite.yaml
+> @@ -0,0 +1,28 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/partitions/arm,arm-firmware-suite=
+.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM Firmware Suite (AFS) Partitions
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: |
+> +  The ARM Firmware Suite is a flash partitioning system found on the
+> +  ARM reference designs: Integrator AP, Integrator CP, Versatile AB,
+> +  Versatile PB, the RealView family, Versatile Express and Juno.
+> +
+> +properties:
+> +  compatible:
+> +    const: arm,arm-firmware-suite
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    partitions {
+> +        compatible =3D "arm,arm-firmware-suite";
+> +    };
+> +...
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+Thanks,
+Miqu=C3=A8l
