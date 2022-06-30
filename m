@@ -2,84 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8415613C3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:55:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C709D5613C7
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:55:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232963AbiF3Hzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 03:55:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48070 "EHLO
+        id S233234AbiF3Hzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 03:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbiF3Hzs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:55:48 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E0B73EF3D
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:55:46 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id s1so25969564wra.9
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:55:46 -0700 (PDT)
+        with ESMTP id S233297AbiF3Hzt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:55:49 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C094B3FD8E
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:55:47 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id pk21so37397510ejb.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:55:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=amarulasolutions.com; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=cJpP1OkS6rqgrKq9b3POAwWxBCAPWm4YoIECgKmS3yQ=;
-        b=BbWdRrgZMdJ1PQyfce9NujC+Cv9Kn+TUQxncoG2TTnGy4BeFv0ZlRlRS3m01fdorNR
-         FZseq2tmJLiA0yMcKydgJl6Q92/IT69YiSmFlRAHCvfjH20hwuUf3inAGwYznkg31ZvR
-         YqYpktKRMrtuQntm3KQeOflrQtoyrHFsL6N7RMYzbJcFqR/Y6R+MB/JpYdpGQc68To4R
-         IUX0Y9rcbFNNL8US3uwCwIMxoVJx+T9w61Ohi9KO07ymvquF5mOxWsGzp+lbjvXYB3SP
-         diY8SNgQZ6nzfrTdgfwzvOX/7pDMBdxHfYrFqR2zGpbuSI44NC3c6l0+4jASQef6w6kL
-         X5sw==
+         :content-disposition:in-reply-to;
+        bh=aF/vEDhaI5UVVLV88GtQNx4eslB+Jp6D1zXXDLVk0z0=;
+        b=SdAzaqx0a2HqVvHti2rhUsh4ejd+qNYnUrNZk75ymkYzwt1/6LoGUcBrepuEpk0tEf
+         NY60QN6MuAUGwQNI0pmmgTokJBXmKwOo3/dKRbMaRZAoWxngW0zgvzxzrAJPrAN1voiB
+         Nfbc1Q6DNzFRVi7zOCSyfVsTLyCKlnJgF0CQI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=cJpP1OkS6rqgrKq9b3POAwWxBCAPWm4YoIECgKmS3yQ=;
-        b=LjtnB5B1u5x3uZHXTe/BuKJ90RSbSCjtBH2zDuVQ8KNrjY7ye9/twN7k/C5v2lobUr
-         TP/IFJoNpqfGDCWcXpVtaWWwqNxD++jTQsCp/urjJfWlobWSTOieVCVksSoUGi405+Er
-         THJ+w3MkM/CFqehBZx/JNnu6OafgH7wqU+mXMvKNrPy2oB214xY1KGzjfoP9FZNK572x
-         o7VSBviPh+E9ZHO8/1lDSjD5ZqgO2DO/ssOMUpffRJxhbZol+NtJKfGxZ8CJyYVcRX7B
-         m/VbO6ZzKOp3E0icHVfYD2QRhroovRZAmX5o1qWsNoRdk3PAZLdJIl5QJ7sT6W2navfZ
-         vgJw==
-X-Gm-Message-State: AJIora/uUeR7M44sxF8JsFjDSqQvo3/IWyJlvJgPr42sR50/o86NGFeg
-        W0jmX6vVewVVUDunEm9xQHj7sg==
-X-Google-Smtp-Source: AGRyM1uB8V88VxEz2AKA9EorOVdKaOEl38ZHL2JsuaOgJS62ydwWd+4V518CKzvP1GQDbSXI1x4IYg==
-X-Received: by 2002:a5d:508c:0:b0:21b:8cd2:2210 with SMTP id a12-20020a5d508c000000b0021b8cd22210mr6726289wrt.527.1656575744886;
-        Thu, 30 Jun 2022 00:55:44 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id z9-20020adfec89000000b0021b89f8662esm18282326wrn.13.2022.06.30.00.55.43
+         :mime-version:content-disposition:in-reply-to;
+        bh=aF/vEDhaI5UVVLV88GtQNx4eslB+Jp6D1zXXDLVk0z0=;
+        b=Mujyr4gjuGBzBL8T3ajrRq2nkDZjPZNU7LLgNbsx4v5H2fFG4CHh0nWvua6kyh+Khe
+         EKwaa+cdgV3xbGYTO+S4PJ1vd3krhF5iwjosNwaQcS67WwhqxarkAH3nMdSzfqH3fWl/
+         o7Hyp8ZZbqwWo8A7bbuA6Q2GtH5zxrERLWd26e4/isx3a7hLqUlpfqOaAvdiFKYKuApW
+         Y3EyPz9+CdqwXlFQWnpcnUT+QJkPnLDf3PdLkZeuzL3SxW+7ZhlY3wdAIfs8HxBrlRIr
+         xcNb82IZIMo0Smda9ULNl+C81PbZZghQ0tItidbxxCEofAvhKGBnRQrLCK0F5jVG1cTU
+         /Zkw==
+X-Gm-Message-State: AJIora9MXfuUHkfTqefHjmIWN1gx+oWntFkHPV7hU/pHJSJKLaL5MIyv
+        m3cKxPKfhfw0JP+8nspKuDZSUN5yEf8jZA==
+X-Google-Smtp-Source: AGRyM1sFxgnCxjRqgI34Ka4G2ur+BiufICOZE9Ek9zsmUXbnylVTyNwys7genpkhFF1IKXTYPS9oWg==
+X-Received: by 2002:a17:906:51cf:b0:722:e994:948e with SMTP id v15-20020a17090651cf00b00722e994948emr7380018ejk.656.1656575746195;
+        Thu, 30 Jun 2022 00:55:46 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-58-216.cust.vodafonedsl.it. [188.217.58.216])
+        by smtp.gmail.com with ESMTPSA id le23-20020a170906ae1700b006f3ef214dbesm8660122ejb.36.2022.06.30.00.55.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 00:55:44 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 08:55:42 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thu, 30 Jun 2022 00:55:45 -0700 (PDT)
+Date:   Thu, 30 Jun 2022 09:55:43 +0200
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        quentin.schulz@theobroma-systems.com,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, quic_gurus@quicinc.com,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Michael Walle <michael@walle.cc>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v4 00/15] Add support for AXP192 PMIC
-Message-ID: <Yr1W/m6UV3792GvF@google.com>
-References: <20220629143046.213584-1-aidanmacdonald.0x0@gmail.com>
- <CAHp75Vc=PWXauEKDNX+vmqv=oO1LDv8-GgU3OFZXjf8yJrG8wA@mail.gmail.com>
- <CAHp75VeqvCnWtWLF1zySPGkfBT5obosu0h_pZEhz+pOQWzMdWQ@mail.gmail.com>
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/6] media: dt-bindings: ov5693: document YAML binding
+Message-ID: <20220630075543.GA482517@tom-ThinkPad-T14s-Gen-2i>
+References: <20220629152933.422990-1-tommaso.merciai@amarulasolutions.com>
+ <20220629152933.422990-6-tommaso.merciai@amarulasolutions.com>
+ <673c2e59-d1c5-f6b8-df80-b5a46a7aa92e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75VeqvCnWtWLF1zySPGkfBT5obosu0h_pZEhz+pOQWzMdWQ@mail.gmail.com>
+In-Reply-To: <673c2e59-d1c5-f6b8-df80-b5a46a7aa92e@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -90,36 +74,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Jun 2022, Andy Shevchenko wrote:
+Hi Krzysztof,
 
-> On Wed, Jun 29, 2022 at 11:14 PM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Wed, Jun 29, 2022 at 4:29 PM Aidan MacDonald
-> > <aidanmacdonald.0x0@gmail.com> wrote:
-> > >
-> > > Changes in v4:
-> > >
-> > > * Drop regmap-irq patches and rebase on top of the regmap-irq
-> > >   refactoring series[1], which implements the same functionality.
-> > > * Reorder mfd_cells, putting one-line entries at the bottom.
-> > > * Fix incorrect example in axp192-gpio device tree bindings.
-> > > * Perform adc_en2 flag -> adc_en2_mask conversion in axp20x_adc
-> > >   as a separate patch.
-> > > * Simplify axp192_usb_power_set_current_max().
-> > > * Drop unneeded OF dependency in pin control driver, and document
-> > >   tables used for describing register layouts.
-> > > * Various style fixups suggested by Andy Shevchenko.
-> >
-> >
-> > For patches 6-11
-> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+On Wed, Jun 29, 2022 at 08:14:52PM +0200, Krzysztof Kozlowski wrote:
+> On 29/06/2022 17:29, Tommaso Merciai wrote:
+> > Add documentation of device tree in YAML schema for the OV5693
+> > CMOS image sensor from Omnivision
+> > 
+> > Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> > ---
+> > Changes since v1:
+> >  - Fix allOf position as suggested by Krzysztof
+> >  - Remove port description as suggested by Krzysztof
+> >  - Fix EOF as suggested by Krzysztof
+> > 
+> > Changes since v2:
+> >  - Fix commit body as suggested by Krzysztof
 > 
-> Ditto for patches 13-15.
+> You received a tag, so if you decided to send v3, you need to include it.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Not sure `b4` will pick these up!
+Thanks for suggestion.
+
+Regards,
+Tommaso
+
+> 
+> 
+> Best regards,
+> Krzysztof
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Tommaso Merciai
+Embedded Linux Engineer
+tommaso.merciai@amarulasolutions.com
+__________________________________
+
+Amarula Solutions SRL
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+T. +39 042 243 5310
+info@amarulasolutions.com
+www.amarulasolutions.com
