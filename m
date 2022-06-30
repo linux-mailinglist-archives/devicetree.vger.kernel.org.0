@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0433561756
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 12:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4126561768
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 12:14:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232411AbiF3KKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 06:10:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47904 "EHLO
+        id S234817AbiF3KO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 06:14:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234775AbiF3KKD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 06:10:03 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81D2C44757
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:10:01 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id c65so25870959edf.4
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:10:01 -0700 (PDT)
+        with ESMTP id S234659AbiF3KOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 06:14:20 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A80E444A31
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:14:18 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id o25so5574713ejm.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:14:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=x6R57O4urDU2YjNPka2DlENCvQCcdTvXSj/0KHICFvk=;
-        b=eKHSxJefHg0CoOL2feCoVC5QCjWK9UF6S0HKL9jJOuBW37cd3oXCW3nTgIzOVHssPj
-         8PBatKJJnBYHF7qSohjVIoypeRZdXwDJXQxqxfrs2Gr10gGecbM7ok/vl+Qxfse/g72Q
-         0BRoQZU1FJK6I/e0+N5/Lqi9TbcE3DjSuijZk=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Gz9U498Ga7oW36mbkP5elxAzpUunXzjXqS0lF6Fh1go=;
+        b=qsmrg2Xbr6hN9gngstsAMVB19+D9tKyENvVOZRQ3A2xe6F1qs71TO+Tmd/HV1wpIj4
+         KUaYE7FgretY2BvKwNzbTCeLcAn+lCgYxLCkxBCu907ytbdFIO3Ks8HbaA+++ArRxNMI
+         OaSX5b94zjCkXHGbrGOjlZArP9adN595Y8Z64f9gus6xNWcBVHGLMceFCkd7OXT/SNBt
+         9HVFkUANQRuAzLYkJfQAGL3Pxykg+B95H9n9C8rXGb0o6Bg86aIvE9Mg3YMx7fzhQTTq
+         oa/+28TAVfwMy+hEJ389pHjm+dCkS//1D8Fj/bRLnVhQpwSfHdHVPLcI6UWBuPxLRbe/
+         djdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=x6R57O4urDU2YjNPka2DlENCvQCcdTvXSj/0KHICFvk=;
-        b=AZ5yfVkeijXS3AjuWyoGBHLYR7wlHfm7/4SgmFDXPQmaFqbGb+Ydj79guwoAQ97wMC
-         GCDP6EySPjkOJpoMTpDc1YPwhv8uWx4uSbzJ66JT1N8ci9TO/pJJa110XSyZjDOt7G9d
-         wHvN4rRV7EwYKkzVzMIJjlax+LgHn9z46XZC8Mw6eiMB0Y7qdXLc76cceOQZy0sO0shV
-         c36WNdmXP8gdqaMk15UW135yMCDQldSjLymJLMK2lMC6/aD+N+TUUh1XAm7yfqyJ46T+
-         h9rZbMC63qm6CGM9tar4QJp8hStLQPT6HV1Yq5DMWrIMsqdpRxjnclNabTJiToXXWss0
-         7Yrg==
-X-Gm-Message-State: AJIora/6+P30xq9xYRo47dnybZwLxEOXxECXp+LlJXjCJhJ/IO3/xy/m
-        jhwCnzWmvjYOBGAQqKy9CKNmpA==
-X-Google-Smtp-Source: AGRyM1s57Tso0VPPeTN/5BjZ19cWWdP1rE0VdmfYtKSB4A4yhMw+PDOMywZW8+5MiwdKuvAraxT43w==
-X-Received: by 2002:a05:6402:2743:b0:437:d467:4a57 with SMTP id z3-20020a056402274300b00437d4674a57mr10586294edd.235.1656583800074;
-        Thu, 30 Jun 2022 03:10:00 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-58-216.cust.vodafonedsl.it. [188.217.58.216])
-        by smtp.gmail.com with ESMTPSA id q4-20020a1709064cc400b006fec4ee28d0sm8824131ejt.189.2022.06.30.03.09.58
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Gz9U498Ga7oW36mbkP5elxAzpUunXzjXqS0lF6Fh1go=;
+        b=JF8u9tk8k69Lf4fnNao6PyItsuY5ZsZzR9Mhuo0wsTQ4fIOwndBbPlGO7zJ0LfoATu
+         mw6vAIt86Sk9oeDpoRthNydReWGJ7nMx5YTZuJHbopDxOXn8F+89OodUpZz5X1VCgfto
+         KMIseVgYO+uob4ftpCevN6kgeEANmngfpzaon7NS4wQhCcsJh/MC5IUBOgkpU68JDdXc
+         isN2n+YITTmSD4denVFxXm1RyxQthICE8LNuLTIrcZJTIi3kzNvsCy4AH6HF8gMig0kd
+         vtTBGlyjAhpc1z2M/9vxExiVfILInp9KKXIOBB5IGUWQZ6+rkT1T46h/Lqa8TigZYUzR
+         FThw==
+X-Gm-Message-State: AJIora9MFsf9KKbzbe4hhZl0BnCPV0Bndp2aZpUSMUkQjbtxQXuXSkpy
+        CSs5diEI3om81yO6F+xBCeGC0BbKUH5ozQ==
+X-Google-Smtp-Source: AGRyM1u5pG6fts56IVeSD0MlCFfNtg1PUlGS28CTdoZXtAbU6Q1DdHp4BHKz5rT+0dHdUKYd0KGstQ==
+X-Received: by 2002:a17:906:3f09:b0:712:466:e04a with SMTP id c9-20020a1709063f0900b007120466e04amr8045243ejj.719.1656584057197;
+        Thu, 30 Jun 2022 03:14:17 -0700 (PDT)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id i3-20020a170906444300b006feec47dae7sm9000105ejp.149.2022.06.30.03.14.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 03:09:59 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 12:09:57 +0200
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        quentin.schulz@theobroma-systems.com,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 5/6] media: dt-bindings: ov5693: document YAML binding
-Message-ID: <20220630100957.GE482517@tom-ThinkPad-T14s-Gen-2i>
-References: <20220630074525.481790-1-tommaso.merciai@amarulasolutions.com>
- <20220630074525.481790-6-tommaso.merciai@amarulasolutions.com>
- <167f09c1-795d-1471-20f7-9f4df29355ed@linaro.org>
- <20220630090232.GC482517@tom-ThinkPad-T14s-Gen-2i>
- <Yr1pD2U2ilXXXX+Q@valkosipuli.retiisi.eu>
- <20220630091613.GD482517@tom-ThinkPad-T14s-Gen-2i>
- <Yr1xzeqW2p4jVDzS@valkosipuli.retiisi.eu>
+        Thu, 30 Jun 2022 03:14:16 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v2] arm64: dts: qcom: sdm845: Switch PSCI cpu idle states from PC to OSI
+Date:   Thu, 30 Jun 2022 13:14:03 +0300
+Message-Id: <20220630101403.1888541-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yr1xzeqW2p4jVDzS@valkosipuli.retiisi.eu>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,72 +72,452 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+Switch from the flat PC idle states of sdm845 to OSI hierarchical idle
+states. The exceptions are the cheza plaftorms, which need to remain with
+PC idle states. So in order allow all the other platforms to switch,
+while cheza platforms to remain the same, replace the PC idle states with
+the OSI ones in the main SDM845 dtsi, and then override the inherited OSI
+states with PC ones, delete inherited psci cpus nodes, domain idle states
+and power domain properties.
 
-On Thu, Jun 30, 2022 at 12:50:05PM +0300, Sakari Ailus wrote:
-> Hi Tommaso,
-> 
-> On Thu, Jun 30, 2022 at 11:16:13AM +0200, Tommaso Merciai wrote:
-> > Hi Sakari,
-> > 
-> > On Thu, Jun 30, 2022 at 12:12:47PM +0300, Sakari Ailus wrote:
-> > > On Thu, Jun 30, 2022 at 11:02:32AM +0200, Tommaso Merciai wrote:
-> > > > On Thu, Jun 30, 2022 at 10:07:19AM +0200, Krzysztof Kozlowski wrote:
-> > > > > On 30/06/2022 09:45, Tommaso Merciai wrote:
-> > > > > > Add documentation of device tree in YAML schema for the OV5693
-> > > > > > CMOS image sensor from Omnivision
-> > > > > > 
-> > > > > > Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> > > > > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > > > Reviewed-by: Sakari Ailus <sakari.ailus@iki.fi>
-> > > > > 
-> > > > > How Sakari's tag appeared here? There was no email from him.
-> > > > 
-> > > > Sakari made me some review on v2, but I think he forgot to add the mailing
-> > > > list in cc. ( I suppose :) )
-> > > > 
-> > > > Let me know if I need to remove this.
-> > > 
-> > > You're only supposed to put these tags into patches if you get them in
-> > > written form as part of the review, signalling acceptance of the patch in
-> > > various forms. Just commenting a patch does not imply this.
-> > > 
-> > > Please also see Documentation/process/submitting-patches.rst for more
-> > > information on how to use the tags.
-> > 
-> > Thanks for sharing this. My bad.
-> > I remove your tags.
-> 
-> The patches themselves seem fine. I'd just drop the 4th patch or at least
-> come up with a better name for ov5693_hwcfg() --- you're acquiring
-> resources there, and that generally fits well for probe. The code is fine
-> already.
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
 
-Then we don't need v5 with your reviewed tags removed?
+Changes since v1:
+ * fixed the commit message as suggested by Krzysztof
+ * dropped blank line sdm845 dtsi
+ * renamed sdm845 dtsi psci subnodes to power domain cpus and cluster
+ * fixed indentation for idle states in cheza dtsi
 
-I think the patch4 is needed to add dts support properly.
-Also this contains devm_clk_get_optional fix suggested by Jacopo and
-support for ACPI-based platforms that specify the clock frequency by
-using the "clock-frequency" property instead of specifying a clock
-provider reference.
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 132 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi       | 135 ++++++++++++---------
+ 2 files changed, 213 insertions(+), 54 deletions(-)
 
-Some suggestion on the function name?
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+index e7e4cc5936aa..13d3d7328210 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+@@ -145,6 +145,138 @@ panel_in_edp: endpoint {
+ 	};
+ };
 
-Thanks,
-Tommaso
++&psci {
++	/delete-node/ cpu0;
++	/delete-node/ cpu1;
++	/delete-node/ cpu2;
++	/delete-node/ cpu3;
++	/delete-node/ cpu4;
++	/delete-node/ cpu5;
++	/delete-node/ cpu6;
++	/delete-node/ cpu7;
++	/delete-node/ cpu-cluster0;
++};
++
++&cpus {
++	/delete-node/ domain-idle-states;
++};
++
++&cpu_idle_states {
++	LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
++		compatible = "arm,idle-state";
++		idle-state-name = "little-power-down";
++		arm,psci-suspend-param = <0x40000003>;
++		entry-latency-us = <350>;
++		exit-latency-us = <461>;
++		min-residency-us = <1890>;
++		local-timer-stop;
++	};
++
++	LITTLE_CPU_SLEEP_1: cpu-sleep-0-1 {
++		compatible = "arm,idle-state";
++		idle-state-name = "little-rail-power-down";
++		arm,psci-suspend-param = <0x40000004>;
++		entry-latency-us = <360>;
++		exit-latency-us = <531>;
++		min-residency-us = <3934>;
++		local-timer-stop;
++	};
++
++	BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
++		compatible = "arm,idle-state";
++		idle-state-name = "big-power-down";
++		arm,psci-suspend-param = <0x40000003>;
++		entry-latency-us = <264>;
++		exit-latency-us = <621>;
++		min-residency-us = <952>;
++		local-timer-stop;
++	};
++
++	BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
++		compatible = "arm,idle-state";
++		idle-state-name = "big-rail-power-down";
++		arm,psci-suspend-param = <0x40000004>;
++		entry-latency-us = <702>;
++		exit-latency-us = <1061>;
++		min-residency-us = <4488>;
++		local-timer-stop;
++	};
++
++	CLUSTER_SLEEP_0: cluster-sleep-0 {
++		compatible = "arm,idle-state";
++		idle-state-name = "cluster-power-down";
++		arm,psci-suspend-param = <0x400000F4>;
++		entry-latency-us = <3263>;
++		exit-latency-us = <6562>;
++		min-residency-us = <9987>;
++		local-timer-stop;
++	};
++};
++
++&CPU0 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++			   &LITTLE_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU1 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++			   &LITTLE_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU2 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++			   &LITTLE_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU3 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++			   &LITTLE_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU4 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++	cpu-idle-states = <&BIG_CPU_SLEEP_0
++			   &BIG_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU5 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++	cpu-idle-states = <&BIG_CPU_SLEEP_0
++			   &BIG_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU6 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++	cpu-idle-states = <&BIG_CPU_SLEEP_0
++			   &BIG_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU7 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++	cpu-idle-states = <&BIG_CPU_SLEEP_0
++			   &BIG_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
+ /*
+  * Reserved memory changes
+  *
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 83439739de37..491b3d66ffc0 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -188,7 +188,7 @@ spss_mem: spss@97b00000 {
+ 		};
+ 	};
 
-> 
-> -- 
-> Sakari Ailus
+-	cpus {
++	cpus: cpus {
+ 		#address-cells = <2>;
+ 		#size-cells = <0>;
 
--- 
-Tommaso Merciai
-Embedded Linux Engineer
-tommaso.merciai@amarulasolutions.com
-__________________________________
+@@ -197,15 +197,14 @@ CPU0: cpu@0 {
+ 			compatible = "qcom,kryo385";
+ 			reg = <0x0 0x0>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+-					   &LITTLE_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
+ 			capacity-dmips-mhz = <611>;
+ 			dynamic-power-coefficient = <290>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+ 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
++			power-domains = <&CPU_PD0>;
++			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			next-level-cache = <&L2_0>;
+ 			L2_0: l2-cache {
+@@ -222,15 +221,14 @@ CPU1: cpu@100 {
+ 			compatible = "qcom,kryo385";
+ 			reg = <0x0 0x100>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+-					   &LITTLE_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
+ 			capacity-dmips-mhz = <611>;
+ 			dynamic-power-coefficient = <290>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+ 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
++			power-domains = <&CPU_PD1>;
++			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			next-level-cache = <&L2_100>;
+ 			L2_100: l2-cache {
+@@ -244,15 +242,14 @@ CPU2: cpu@200 {
+ 			compatible = "qcom,kryo385";
+ 			reg = <0x0 0x200>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+-					   &LITTLE_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
+ 			capacity-dmips-mhz = <611>;
+ 			dynamic-power-coefficient = <290>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+ 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
++			power-domains = <&CPU_PD2>;
++			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			next-level-cache = <&L2_200>;
+ 			L2_200: l2-cache {
+@@ -266,9 +263,6 @@ CPU3: cpu@300 {
+ 			compatible = "qcom,kryo385";
+ 			reg = <0x0 0x300>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+-					   &LITTLE_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
+ 			capacity-dmips-mhz = <611>;
+ 			dynamic-power-coefficient = <290>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+@@ -276,6 +270,8 @@ &LITTLE_CPU_SLEEP_1
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+ 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+ 			#cooling-cells = <2>;
++			power-domains = <&CPU_PD3>;
++			power-domain-names = "psci";
+ 			next-level-cache = <&L2_300>;
+ 			L2_300: l2-cache {
+ 				compatible = "cache";
+@@ -289,14 +285,13 @@ CPU4: cpu@400 {
+ 			reg = <0x0 0x400>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <1024>;
+-			cpu-idle-states = <&BIG_CPU_SLEEP_0
+-					   &BIG_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
+ 			dynamic-power-coefficient = <442>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+ 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
++			power-domains = <&CPU_PD4>;
++			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			next-level-cache = <&L2_400>;
+ 			L2_400: l2-cache {
+@@ -311,14 +306,13 @@ CPU5: cpu@500 {
+ 			reg = <0x0 0x500>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <1024>;
+-			cpu-idle-states = <&BIG_CPU_SLEEP_0
+-					   &BIG_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
+ 			dynamic-power-coefficient = <442>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+ 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
++			power-domains = <&CPU_PD5>;
++			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			next-level-cache = <&L2_500>;
+ 			L2_500: l2-cache {
+@@ -333,14 +327,13 @@ CPU6: cpu@600 {
+ 			reg = <0x0 0x600>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <1024>;
+-			cpu-idle-states = <&BIG_CPU_SLEEP_0
+-					   &BIG_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
+ 			dynamic-power-coefficient = <442>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+ 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
++			power-domains = <&CPU_PD6>;
++			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			next-level-cache = <&L2_600>;
+ 			L2_600: l2-cache {
+@@ -355,14 +348,13 @@ CPU7: cpu@700 {
+ 			reg = <0x0 0x700>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <1024>;
+-			cpu-idle-states = <&BIG_CPU_SLEEP_0
+-					   &BIG_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
+ 			dynamic-power-coefficient = <442>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+ 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
++			power-domains = <&CPU_PD7>;
++			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+ 			next-level-cache = <&L2_700>;
+ 			L2_700: l2-cache {
+@@ -407,53 +399,35 @@ core7 {
+ 			};
+ 		};
 
-Amarula Solutions SRL
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-T. +39 042 243 5310
-info@amarulasolutions.com
-www.amarulasolutions.com
+-		idle-states {
++		cpu_idle_states: idle-states {
+ 			entry-method = "psci";
+
+ 			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+ 				compatible = "arm,idle-state";
+-				idle-state-name = "little-power-down";
+-				arm,psci-suspend-param = <0x40000003>;
++				idle-state-name = "little-rail-power-collapse";
++				arm,psci-suspend-param = <0x40000004>;
+ 				entry-latency-us = <350>;
+ 				exit-latency-us = <461>;
+ 				min-residency-us = <1890>;
+ 				local-timer-stop;
+ 			};
+
+-			LITTLE_CPU_SLEEP_1: cpu-sleep-0-1 {
+-				compatible = "arm,idle-state";
+-				idle-state-name = "little-rail-power-down";
+-				arm,psci-suspend-param = <0x40000004>;
+-				entry-latency-us = <360>;
+-				exit-latency-us = <531>;
+-				min-residency-us = <3934>;
+-				local-timer-stop;
+-			};
+-
+ 			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+ 				compatible = "arm,idle-state";
+-				idle-state-name = "big-power-down";
+-				arm,psci-suspend-param = <0x40000003>;
++				idle-state-name = "big-rail-power-collapse";
++				arm,psci-suspend-param = <0x40000004>;
+ 				entry-latency-us = <264>;
+ 				exit-latency-us = <621>;
+ 				min-residency-us = <952>;
+ 				local-timer-stop;
+ 			};
++		};
+
+-			BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
+-				compatible = "arm,idle-state";
+-				idle-state-name = "big-rail-power-down";
+-				arm,psci-suspend-param = <0x40000004>;
+-				entry-latency-us = <702>;
+-				exit-latency-us = <1061>;
+-				min-residency-us = <4488>;
+-				local-timer-stop;
+-			};
+-
++		domain-idle-states {
+ 			CLUSTER_SLEEP_0: cluster-sleep-0 {
+-				compatible = "arm,idle-state";
+-				idle-state-name = "cluster-power-down";
+-				arm,psci-suspend-param = <0x400000F4>;
++				compatible = "domain-idle-state";
++				idle-state-name = "cluster-power-collapse";
++				arm,psci-suspend-param = <0x4100c244>;
+ 				entry-latency-us = <3263>;
+ 				exit-latency-us = <6562>;
+ 				min-residency-us = <9987>;
+@@ -1050,9 +1024,62 @@ slpi_smp2p_in: slave-kernel {
+ 		};
+ 	};
+
+-	psci {
++	psci: psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
++
++		CPU_PD0: power-domain-cpu0 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD1: power-domain-cpu1 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD2: power-domain-cpu2 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD3: power-domain-cpu3 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD4: power-domain-cpu4 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD5: power-domain-cpu5 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD6: power-domain-cpu6 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD7: power-domain-cpu7 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CLUSTER_PD: power-domain-cluster {
++			#power-domain-cells = <0>;
++			domain-idle-states = <&CLUSTER_SLEEP_0>;
++		};
+ 	};
+
+ 	soc: soc@0 {
+--
+2.34.3
+
