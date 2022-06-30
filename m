@@ -2,100 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF528562218
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8F2656222D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:37:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236699AbiF3Sdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 14:33:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48530 "EHLO
+        id S236111AbiF3Shs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 14:37:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233056AbiF3Sdq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:33:46 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC63225586
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:33:43 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id ej4so4927edb.7
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:33:43 -0700 (PDT)
+        with ESMTP id S235808AbiF3Shs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:37:48 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E648143398
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:37:46 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id k20so6312274edj.13
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:37:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yJGEttsMIPFNExRUVjMuioYnkzWMdO3yRAB963cFp2o=;
-        b=bVZKc01WEs5LMjU5JtELjSXU1pShwhHGLZhNmZYt3wfTdiQE/yN2UAshZdvCOv8QGq
-         jvuwowiNtOjr5posUthWXU7PWhNZt5GOF4X2vS97DTQrhkMDd85y2516gnqfIuFFlh2I
-         ruddBdJWCPzK2JSEvz6DATLXX11xi0ZKag2bf5Laj6MHMpCI7ursQwhCZpecYj90tw5h
-         nPUB4qcjaCKLvbhHoLjfivF0IkdS9P0U2XM5vlr2MQX+1XbAOzaKqW9xv/xG0frtmHy6
-         SsZzW6ElgdT4rkY8rdjUlQFfxOrx2HPWseOs3kKWIzs1pfoxsos6mZK6KSJsuFIKNtoI
-         Jsqw==
+        bh=UGGrUYFGtLESoSS2rsNev5359I+9qUzB9ek9G4Qz7uw=;
+        b=BMDwOu1iMHdN/94k0T57BSZk6Ka2rjPA+yoEJvBvvMc/Gwo6WSABuWeZmjb68VZxsC
+         cf/ddiswpYS37nUGMgrVNctpRxdymbfFaWTVgIyQbSHsW7DLYsRXUb+rGAZ5Bm6q9ITT
+         BM9SrGQGZhCGmnVmirm6lxkoy9aVsforz+HxYqh87vp8+fzspUmnm8kLgXe9Hl6qjyk4
+         edIuRV5ceN4gtJzGoO+F9o7OYHLvO/RTG+kWp7yj05N2Dy8CYs8X3pf3mk9LZyoMT/ga
+         1/V1DqJEx8+Ivzhrq3esF5osKtBoo9jZEsIFusx5B7bmDX8D+EoEVzb+bnp8GwtEF7qr
+         nQwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=yJGEttsMIPFNExRUVjMuioYnkzWMdO3yRAB963cFp2o=;
-        b=GiRmn2yRLQYiG2zQUqCQjmgEmNNW46/i+Oi4nk4mbcZ49/2V7dMqoI1GrPEsM1l+2A
-         OIlujIEGM45VpRC0YGBLitT9SybBCuAkA5U+lJ8OjAuWAv8xvJ5c1zDwT/vNPF85hFQD
-         nSbkkn2FjXShkOFZ3u6J+QDu70wAgAmGZKXfe/e03D3XStn9wiuIDwULJho/qBTLJzGH
-         tc0ySoyTbYgTZrh9RfhLhl63SiIyV0P1RmYOT8ZrGTpIk0kHbyIsWPwlW2HDmmzU4Btn
-         BRttcnCAVqhQdP9ZL317+HBa1ypIT4Ej2cKZsSnKwjyHCTVHxi8rTUi46RG4yG9lwzZM
-         hG0A==
-X-Gm-Message-State: AJIora8/U237Jx56eP7CkuaR5tJW9hihCnpbKv1f0YzekGjQoXFCNQ+v
-        ElQPz52rgv2tOfMD1OMl3gjJ8g==
-X-Google-Smtp-Source: AGRyM1s8xy762cCi9FZl1Kcj0KeKPHclcEopngQ5Us/lz3lUXqlZKh+6oqktKAwNKh4wiC/U7Zn6jA==
-X-Received: by 2002:a05:6402:3708:b0:433:2d3b:ed5 with SMTP id ek8-20020a056402370800b004332d3b0ed5mr13495310edb.246.1656614022289;
-        Thu, 30 Jun 2022 11:33:42 -0700 (PDT)
+        bh=UGGrUYFGtLESoSS2rsNev5359I+9qUzB9ek9G4Qz7uw=;
+        b=KzXGOkx/tLqTRwGOtTb3Sk5WGH+dKqnMzlHXFJ/SKAzIqsnlXOn624s1U9zK91poCP
+         nwGS9bn8oq03JrM8B/3hn9m2ZWlN4m5/4rqdlfg+bi7vvioUCYEdzRWXtrpp7AaMS5aV
+         eh2ddBD9/6qqhhhzvJ9+/ZgK3LHJMBqQOcV4Mjq9qgV6OMaWE4WHG59rwvG6G4tNdhjn
+         bvIbNA0XCLPYpDgzgux9EZSMS9fR5nkOeaSCFhbT7HgMzQf7BlUj3Ywee9ux8P+OQhEb
+         /gVVs4m7K80Ci7iVXflARk6ZU7FgnnP7wqYCMkifauoMWfxQ+/4xJXIgJ/nnC3MkHl9l
+         nYBQ==
+X-Gm-Message-State: AJIora8vDV+REVYmsv2uqLInRVnw6ejiMwCNG+mJHGdcf8bhnuk0lGN2
+        OvoZMh2Bd0LNztVhwt+ISaH+fw==
+X-Google-Smtp-Source: AGRyM1u3+PvK76fsXCzRLEryKlS/LLxqIEfJGGkbPSWvuPgDleiH5x/0VdYGGFhx9tY7hChc96qMkA==
+X-Received: by 2002:a05:6402:42c8:b0:435:b99c:35f9 with SMTP id i8-20020a05640242c800b00435b99c35f9mr13853065edc.137.1656614265507;
+        Thu, 30 Jun 2022 11:37:45 -0700 (PDT)
 Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id w3-20020a1709067c8300b00722fc0779e3sm9482072ejo.85.2022.06.30.11.33.39
+        by smtp.gmail.com with ESMTPSA id s12-20020a170906354c00b0072637b9c8c0sm8669926eja.219.2022.06.30.11.37.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 11:33:41 -0700 (PDT)
-Message-ID: <78faf75d-80b7-7a0e-e306-6351dbe5133c@linaro.org>
-Date:   Thu, 30 Jun 2022 20:33:39 +0200
+        Thu, 30 Jun 2022 11:37:44 -0700 (PDT)
+Message-ID: <7824e14b-89fb-a816-441d-012d76def59a@linaro.org>
+Date:   Thu, 30 Jun 2022 20:37:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v6 02/14] dt-bindings: pinctrl: imx: Add fsl,scu-iomux
- yaml file
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: qcom: Add syscon const for
+ relevant entries
 Content-Language: en-US
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Liu Ying <victor.liu@nxp.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
- <20220629164414.301813-3-viorel.suman@oss.nxp.com>
- <f0634bf0-77e9-939e-693f-31d50af4768c@linaro.org>
- <20220630123754.esbuac4pfktlseh2@fsr-ub1664-116>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, jassisinghbrar@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220630043536.3308546-1-bryan.odonoghue@linaro.org>
+ <20220630043536.3308546-2-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630123754.esbuac4pfktlseh2@fsr-ub1664-116>
+In-Reply-To: <20220630043536.3308546-2-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -108,52 +76,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 14:37, Viorel Suman (OSS) wrote:
-> On 22-06-29 19:53:51, Krzysztof Kozlowski wrote:
->> On 29/06/2022 18:44, Viorel Suman (OSS) wrote:
->>> From: Abel Vesa <abel.vesa@nxp.com>
->>>
->>> In order to replace the fsl,scu txt file from bindings/arm/freescale,
->>> we need to split it between the right subsystems. This patch documents
->>> separately the 'iomux/pinctrl' child node of the SCU main node.
->>>
->>> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
->>> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
->>> ---
->>>  .../bindings/pinctrl/fsl,scu-pinctrl.yaml     | 68 +++++++++++++++++++
->>>  1 file changed, 68 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
->>> new file mode 100644
->>> index 000000000000..76a2e7b28172
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
-> [...]
->>> +      fsl,pins:
->>> +        description:
->>> +          each entry consists of 3 integers and represents the pin ID, the mux value
->>> +          and config setting for the pin. The first 2 integers - pin_id and mux_val - are
->>> +          specified using a PIN_FUNC_ID macro, which can be found in
->>> +          <include/dt-bindings/pinctrl/pads-imx8qxp.h>. The last integer CONFIG is
->>> +          the pad setting value like pull-up on this pin. Please refer to the
->>> +          appropriate i.MX8 Reference Manual for detailed CONFIG settings.
->>> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
->>
->> Look at fsl,imx8mq-pinctrl.yaml. Each item is described (items under items).
+On 30/06/2022 06:35, Bryan O'Donoghue wrote:
+> msm8916, msm8939, msm8953, msm8994 and qcs404 already declare or should
+> declare syscon as they have drivers that use syscon inside of the apcs-kpss
+> block.
 > 
-> Added them initially, but later dropped because of some logs like
-> "pinctrl@xxxxxxx: usdhc1grp:fsl,pins:0: [...] is too long" shown by
-> "make dt_binding_check dtbs_check DT_SCHEMA_FILES=[...]/fsl,scu-pinctrl.yaml"
+> grep apcs arch/arm64/boot/dts/qcom/* | grep syscon
 > 
-> Same logs are shown for "fsl,imx8mq-pinctrl.yaml". Will add the items description in the next
-> version.
->
+> Add in the additional syscon in the documentation for the above mentioned
+> parts.
 
-The fsl,imx8mq-pinctrl.yaml should be correct and I don't see the reason
-why dtschema complains in some of the entries. It's like one define was
-not correct... I'll take a look at this later, but anyway keep the same
-as fsl,imx8mq-pinctrl.yaml even if it complains.
+Subject should have prefix:
+dt-bindings: mailbox: qcom,apcs-kpss-global:
+
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../mailbox/qcom,apcs-kpss-global.yaml        | 44 ++++++++++---------
+>  1 file changed, 24 insertions(+), 20 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+> index 3b5ba7ecc19d9..f342494fd6108 100644
+> --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+> @@ -15,26 +15,30 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - qcom,ipq6018-apcs-apps-global
+> -      - qcom,ipq8074-apcs-apps-global
+> -      - qcom,msm8916-apcs-kpss-global
+> -      - qcom,msm8939-apcs-kpss-global
+> -      - qcom,msm8953-apcs-kpss-global
+> -      - qcom,msm8976-apcs-kpss-global
+> -      - qcom,msm8994-apcs-kpss-global
+> -      - qcom,msm8996-apcs-hmss-global
+> -      - qcom,msm8998-apcs-hmss-global
+> -      - qcom,qcm2290-apcs-hmss-global
+> -      - qcom,qcs404-apcs-apps-global
+> -      - qcom,sc7180-apss-shared
+> -      - qcom,sc8180x-apss-shared
+> -      - qcom,sdm660-apcs-hmss-global
+> -      - qcom,sdm845-apss-shared
+> -      - qcom,sm6125-apcs-hmss-global
+> -      - qcom,sm6115-apcs-hmss-global
+> -      - qcom,sm8150-apss-shared
+> -
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - qcom,ipq6018-apcs-apps-global
+> +              - qcom,ipq8074-apcs-apps-global
+> +              - qcom,msm8976-apcs-kpss-global
+> +              - qcom,msm8996-apcs-hmss-global
+> +              - qcom,msm8998-apcs-hmss-global
+> +              - qcom,qcm2290-apcs-hmss-global
+> +              - qcom,sc7180-apss-shared
+> +              - qcom,sc8180x-apss-shared
+> +              - qcom,sdm660-apcs-hmss-global
+> +              - qcom,sdm845-apss-shared
+> +              - qcom,sm6125-apcs-hmss-global
+> +              - qcom,sm6115-apcs-hmss-global
+> +              - qcom,sm8150-apss-shared
+
+These are not items, but one item, so enum directly under oneOf.
+
+> +      - items:
+> +          - enum:
+> +              - qcom,msm8916-apcs-kpss-global
+> +              - qcom,msm8939-apcs-kpss-global
+> +              - qcom,msm8953-apcs-kpss-global
+> +              - qcom,msm8994-apcs-kpss-global
+> +              - qcom,qcs404-apcs-apps-global
+> +          - const: syscon
+>    reg:
+>      maxItems: 1
+>  
 
 
 Best regards,
