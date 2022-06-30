@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C07B56268E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 01:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B3F15626E9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 01:19:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbiF3XMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 19:12:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60530 "EHLO
+        id S232215AbiF3XMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 19:12:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232252AbiF3XMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 19:12:15 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB6559266;
-        Thu, 30 Jun 2022 16:12:01 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id w10so368764ilj.4;
-        Thu, 30 Jun 2022 16:12:01 -0700 (PDT)
+        with ESMTP id S232223AbiF3XMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 19:12:48 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43A6205D7
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 16:12:37 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id k7so358028ils.8
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 16:12:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JR5S4FbFlm7AB5LCYD9+AL7FKrg6jOTlb2pwSAOVR1Q=;
-        b=aHiUSHZmpfGLR0+cVIViN//sa5e4nxnUqN0Q1zvYLAhNQ4DdAYmygnIgKLo7NWO39a
-         glp8hW0UfDEGt7BcotQ6P5CTtmGz9Hxz83mlnd4we0N4qR68YsbDRBQ5Ga7jV1ntHl7G
-         u9C0GMdfCVkD5Xiz08hSo6CT3NCSjivv0lcv6WMPatFr3fJZTvmPYqgLGYgqm93lzN8L
-         nrH8xNWXrYd7yDZWY/Gv/nHACVA6Y/Q0ot5caFzT87oqg+ftIwS6cnsv/YAIjWpUwv3W
-         b7Se/GLv8LnxykhS8dzszCh7n/Dne1bLDky3abFTEjPFmAwNrRXmG6BPJ1AJX1+cgcBY
-         mnxw==
-X-Gm-Message-State: AJIora+xA8WHAvkVWtYGdwFulT2OGs8F5j4J5X81P++Cez8bLQ1A1psA
-        oNnrptSyyBZ8ut2BoGCqTQ==
-X-Google-Smtp-Source: AGRyM1uBaPXhKWPlpc8IwKyqrezf9NwpIw7AH2Glps8IXHvnspekczjlquysBEytKUZDVq41aMdZkg==
-X-Received: by 2002:a05:6e02:1845:b0:2da:bc96:8ab2 with SMTP id b5-20020a056e02184500b002dabc968ab2mr6657738ilv.22.1656630721191;
-        Thu, 30 Jun 2022 16:12:01 -0700 (PDT)
+        bh=iHugPUU0MDR5+K9E0jP2XLgfCe7UY26FEf9lftsm730=;
+        b=sPMxef3r+mCgrNEwTZBNQAAbDmZ+hQhOqDrzSwkRbv4bGQ5fguz6cyzXf+hafzFZ1E
+         xJjjjOf9GQmA1snw8KgnbUARskt/J0mbHfJ7KMR0uEhvERQ1YOy0V9q+QDPD6s3wtKUx
+         1O4XKlLlYIvQjwwrXYGJmvLA2WCi5QIKY9ZdKsXAuSHpBEJUSqz60TKQHIC1d2DgsBho
+         q8N6mmghwoJDdNPMObi0GnENyztckWhU/iDJHYsysbJcVn7X2qJZkWTfSUvnoTXzTZ3/
+         8rJbWGKIRBQPY6BAsisqBwvj1HbCvdEamsgpLcKwm2zo5E16t7SkZlFBwZ18U+b9D1bs
+         63mA==
+X-Gm-Message-State: AJIora+5GP6xKvGsq5hilDe8S2KYO/bnVkpgIRfZ72cL9Qb2hhgx9rhl
+        3skDxB4qYYt2iniMaan+IA==
+X-Google-Smtp-Source: AGRyM1tT5CG0yLSSc/va+12RRrHObFuWAOcrGlHu0n3+pHcA/vXqxOczeWF54MgY48MhFLDcGe3lww==
+X-Received: by 2002:a92:d24c:0:b0:2d9:2b03:10d8 with SMTP id v12-20020a92d24c000000b002d92b0310d8mr7092646ilg.117.1656630756932;
+        Thu, 30 Jun 2022 16:12:36 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j194-20020a0263cb000000b00331f8fff9a3sm9119127jac.64.2022.06.30.16.12.00
+        by smtp.gmail.com with ESMTPSA id x8-20020a6bd008000000b006755ae0679bsm4256075ioa.50.2022.06.30.16.12.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 16:12:00 -0700 (PDT)
-Received: (nullmailer pid 3506024 invoked by uid 1000);
-        Thu, 30 Jun 2022 23:11:59 -0000
-Date:   Thu, 30 Jun 2022 17:11:59 -0600
+        Thu, 30 Jun 2022 16:12:36 -0700 (PDT)
+Received: (nullmailer pid 3507068 invoked by uid 1000);
+        Thu, 30 Jun 2022 23:12:34 -0000
+Date:   Thu, 30 Jun 2022 17:12:34 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: Re: [PATCH 11/11] dt-bindings: display/msm: move common DPU
- properties to dpu-common.yaml
-Message-ID: <20220630231159.GA3497845-robh@kernel.org>
-References: <20220625232513.522599-1-dmitry.baryshkov@linaro.org>
- <20220625232513.522599-12-dmitry.baryshkov@linaro.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Patrick Delaunay <patrick.delaunay@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/7] dt-bindings: arm: stm32: Add compatible string
+ for DH electronics DHCOR DRC Compact
+Message-ID: <20220630231234.GA3506992-robh@kernel.org>
+References: <20220626002105.198854-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220625232513.522599-12-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220626002105.198854-1-marex@denx.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,80 +68,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 26, 2022 at 02:25:13AM +0300, Dmitry Baryshkov wrote:
-> Move properties common to all DPU DT nodes to the dpu-common.yaml
+On Sun, 26 Jun 2022 02:20:59 +0200, Marek Vasut wrote:
+> Add DT compatible string for DH electronics STM32MP15xx DHCOR on DRC Compact
+> carrier board into YAML DT binding document. This system is a general purpose
+> DIN Rail Controller design.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Alexandre Torgue <alexandre.torgue@st.com>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Patrice Chotard <patrice.chotard@st.com>
+> Cc: Patrick Delaunay <patrick.delaunay@st.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> To: linux-arm-kernel@lists.infradead.org
 > ---
->  .../bindings/display/msm/dpu-common.yaml      | 47 +++++++++++++++++++
->  .../bindings/display/msm/dpu-msm8998.yaml     | 28 ++---------
->  .../bindings/display/msm/dpu-qcm2290.yaml     | 29 ++----------
->  .../bindings/display/msm/dpu-sc7180.yaml      | 32 ++-----------
->  .../bindings/display/msm/dpu-sc7280.yaml      | 32 ++-----------
->  .../bindings/display/msm/dpu-sdm845.yaml      | 32 ++-----------
->  6 files changed, 67 insertions(+), 133 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-common.yaml
+> V2: Split DHCOM and DHCOR SoM entries
+> V3: No change
+> ---
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-common.yaml b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
-> new file mode 100644
-> index 000000000000..f3465ee3a4ab
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
-> @@ -0,0 +1,47 @@
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/dpu-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display DPU dt properties (common properties)
-> +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> +  - Krishna Manikandan <quic_mkrishn@quicinc.com>
-> +  - Rob Clark <robdclark@gmail.com>
-> +
-> +description: |
-> +  Device tree bindings for the DPU display controller, common properties.
 
-Common properties for QCom DPU display controller
-
-> +
-> +properties:
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  operating-points-v2: true
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-
-Now this schema is applied twice.
-
-> +    description: |
-> +      Contains the list of output ports from DPU device. These ports
-> +      connect to interfaces that are external to the DPU hardware,
-> +      such as DSI, DP etc. Each output port contains an endpoint that
-> +      describes how it is connected to an external interface.
-
-This description is marginally useful. Each port will say it is an 
-output to X. So you could just remove.
-
-> +
-> +patternProperties:
-> +  (mdp-)?opp-table:
-> +    $ref: /schemas/opp/opp-v2.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - interrupts
-> +  - power-domains
-> +  - operating-points-v2
-> +  - ports
-> +
-> +additionalProperties: true
+Reviewed-by: Rob Herring <robh@kernel.org>
