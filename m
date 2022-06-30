@@ -2,153 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39E3656131B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35DBD561332
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:27:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232461AbiF3HQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 03:16:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
+        id S231335AbiF3H1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 03:27:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231690AbiF3HQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:16:43 -0400
-X-Greylist: delayed 70667 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 30 Jun 2022 00:16:42 PDT
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0539838199;
-        Thu, 30 Jun 2022 00:16:41 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 3C033240011;
-        Thu, 30 Jun 2022 07:16:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1656573400;
+        with ESMTP id S230135AbiF3H1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:27:02 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10CEB3879C;
+        Thu, 30 Jun 2022 00:27:01 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 73BC52223E;
+        Thu, 30 Jun 2022 09:26:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1656574018;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=9I94e4QJGBDEKtn1NYQX9pGoS4V5rF6gB5rgv3ePiKY=;
-        b=f1D5owjWynMmSNvMz/29rgnS21+K0IiCKp4Q9pLK4PR/JbHpD4NuS+5PkOWug5hXGX/1c0
-        qA4QB5yL58gvxqdMb8wfap5OvlGS8XR1sGAmO2D0JFodHMDhIa6Gwmep4OIFX2lg9nB8vx
-        2RuAsIBg5a5fMFsg4QFGXnvMK88ycDolLJ0jqX4TyUiyXKnSsjoNB7n7CNEqUmGpWtEijI
-        GAWNSXlFwJN4bL0r03f7/CAqqRpgUYRdofQYKBADNJb9xufoH0C7FkvI0AbvEUKdaMbXpR
-        +FQy3m9wcU+6BSf1VfptrzqejlDFFXLqPjrt7ED0DDbf8KtaoLmtPngXyfnjqA==
-Date:   Thu, 30 Jun 2022 09:16:36 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: mtd/partitions: Convert
- arm-firmware-suite to DT schema
-Message-ID: <20220630091636.03386395@xps-13>
-In-Reply-To: <20220629185031.23826-1-robh@kernel.org>
-References: <20220629185031.23826-1-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        bh=zjrfyTV5MhZ/ZdhkEC7JgGAqSs/5JnxfS2vRsmrz01Y=;
+        b=EJK731q8CqsM1mgdMNjEaM2dgFiziXDifqo3WToZDaj4/VuCqHc8NQ6d5qwFH80aM3N59p
+        jvx3lH9jp+d3AC+Rkmk/cmITFnlJN6830y8jsk7n+X6Y+2iH7n71q2SEHMb5wFKQiwSamH
+        8sIQet4ySkEdu3YoS2gQ0l2gXUZY71o=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 30 Jun 2022 09:26:55 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
+        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com, lars@metafoo.de,
+        rafael@kernel.org, quic_gurus@quicinc.com,
+        sebastian.reichel@collabora.com, andy.shevchenko@gmail.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 13/16] pinctrl: Add AXP192 pin control driver
+In-Reply-To: <me4ummrWKIPseIG4ay7yCfrumN8sIdvc@localhost>
+References: <20220618214009.2178567-1-aidanmacdonald.0x0@gmail.com>
+ <20220618214009.2178567-14-aidanmacdonald.0x0@gmail.com>
+ <cafd8a40ad35dcf8a35350261af6031c@walle.cc>
+ <me4ummrWKIPseIG4ay7yCfrumN8sIdvc@localhost>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <01a338e8f94b077df3fe2c4f13d4da28@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Am 2022-06-27 15:12, schrieb Aidan MacDonald:
 
-robh@kernel.org wrote on Wed, 29 Jun 2022 12:50:30 -0600:
+>> I *think* what is needed for gpio-regmap to support this is:
+>>  - support values and masks for the direction, for now, we
+>>    only support single bits.
+>>  - support the pinctrl_gpio_direction_{input,output} calls
+>> 
+>> -michael
+> 
+> That sounds about right, thanks for taking a look.
 
-> Convert the arm,arm-firmware-suite partition binding to DT schema
-> format. Simple conversion as there's only a compatible property.
->=20
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+I thought you were trying to add these to gpio-regmap? Unless
+I'm missing something, that should be easy enough.
 
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
-
-> ---
-> v2:
->  - Fix example dtc warning
-> ---
->  .../mtd/partitions/arm,arm-firmware-suite.txt | 17 -----------
->  .../partitions/arm,arm-firmware-suite.yaml    | 28 +++++++++++++++++++
->  2 files changed, 28 insertions(+), 17 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/arm,=
-arm-firmware-suite.txt
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/arm,=
-arm-firmware-suite.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-fir=
-mware-suite.txt b/Documentation/devicetree/bindings/mtd/partitions/arm,arm-=
-firmware-suite.txt
-> deleted file mode 100644
-> index d5c5616f6db5..000000000000
-> --- a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-s=
-uite.txt
-> +++ /dev/null
-> @@ -1,17 +0,0 @@
-> -ARM AFS - ARM Firmware Suite Partitions
-> -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> -
-> -The ARM Firmware Suite is a flash partitioning system found on the
-> -ARM reference designs: Integrator AP, Integrator CP, Versatile AB,
-> -Versatile PB, the RealView family, Versatile Express and Juno.
-> -
-> -Required properties:
-> -- compatible : (required) must be "arm,arm-firmware-suite"
-> -
-> -Example:
-> -
-> -flash@0 {
-> -	partitions {
-> -		compatible =3D "arm,arm-firmware-suite";
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-fir=
-mware-suite.yaml b/Documentation/devicetree/bindings/mtd/partitions/arm,arm=
--firmware-suite.yaml
-> new file mode 100644
-> index 000000000000..76c88027b6d2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-s=
-uite.yaml
-> @@ -0,0 +1,28 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/partitions/arm,arm-firmware-suite=
-.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Firmware Suite (AFS) Partitions
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: |
-> +  The ARM Firmware Suite is a flash partitioning system found on the
-> +  ARM reference designs: Integrator AP, Integrator CP, Versatile AB,
-> +  Versatile PB, the RealView family, Versatile Express and Juno.
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,arm-firmware-suite
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    partitions {
-> +        compatible =3D "arm,arm-firmware-suite";
-> +    };
-> +...
-
-
-Thanks,
-Miqu=C3=A8l
+-michael
