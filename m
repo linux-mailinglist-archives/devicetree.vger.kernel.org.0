@@ -2,166 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75C0B560E12
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 02:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6625560E86
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 03:04:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229828AbiF3Adt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 20:33:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57780 "EHLO
+        id S230241AbiF3BD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 21:03:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbiF3Ads (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 20:33:48 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587D822B26;
-        Wed, 29 Jun 2022 17:33:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1656549204;
-        bh=6lMtPAGrUriFxRzqDiaMwPvLBe2jbc2oorL+KRQ6G0E=;
-        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=OTfO9M329EBUUJzlZ1kbot16CJAYzs5ESaOYQyePWGapX3napQEOrHhH7cKml2QQ/
-         yIgsiGzNOB4dIvRKTFL1sn18+xH2wDYOedTHKmXxKV/NZzbYt4gtSpsf+jRgT+FmgI
-         MvL1/vex3OQvuxQOnMwOSZifdykD17XemB3nxQjE=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.0.69] ([46.223.3.23]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MuUnA-1npSBa1f4k-00rWrE; Thu, 30
- Jun 2022 02:33:24 +0200
-Message-ID: <16841959-42c9-cbd7-e767-39050134b070@gmx.de>
-Date:   Thu, 30 Jun 2022 02:33:23 +0200
+        with ESMTP id S229570AbiF3BDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 21:03:55 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3B321812
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 18:03:53 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id d17so19240261wrc.10
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 18:03:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5NQqj0qR4ORy93iwIYJOr5BAi74gi8sfq3SZuaybn8I=;
+        b=C2c49isPrbsmtusAZGmeODl5nBRjEPvakPfcutjnGFq9an2Lex4u4Hh9ZJOzgzS9xj
+         bXnM0cFTF5LPByoIwfwx4lo4a/JmZOyybxfXyHxY+9GsWMB4nM5v23mNCBvYnS+RvmOz
+         5pvpzmlkck2etpBOTF2/sMWwkC3hTKhBwg3Us=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5NQqj0qR4ORy93iwIYJOr5BAi74gi8sfq3SZuaybn8I=;
+        b=qOArd6CpJdKTmtwYKiVWwwvWsf70uIw34M3HxTafeXRne3ZkbXjTKQ0di6RtRcha+m
+         CNmMZN9r6U+Izl87i2VtIXjCN6w3iAsed6sxfrA6pCFL92MtyKMQEHpMW+AP7i5TIYtp
+         BVZV9LLs2P7bNLlpZSD5T9JHSx2S4I18IHOI2GIahsmV5PHnuM5Zl84pA4qYEbB598aC
+         dPbAoM8buimVzfEDxO8QEdCpcGCVIKoNIGibPMO2P1KMempRkTgJoWdUS0q2TuAtu94W
+         gtNrkQhxhiXWqotytG2SEMNjCIoNJ7scUCvJ4gTznwGp5ad8FqesD5iM0MRDT4tYQAm6
+         n3IA==
+X-Gm-Message-State: AJIora+l9HgSrhsAh9mNvypSxVWgO1l506EoA4hLv4Wx/BtvUHcnnndr
+        Vxr0niJSseCxyuhVM8rc7gjtv5U+1JtBUvo91cO5kRHhJCrwZA==
+X-Google-Smtp-Source: AGRyM1sSHSQkz6DcECWQWK9PFYTmQIZjagW/7lH1bk6p1RXPMkoHKGLN9IvbWPW99XWqmIQF4/UuX4vl7IEyBKdUVpQ=
+X-Received: by 2002:adf:ce8a:0:b0:21b:bced:6883 with SMTP id
+ r10-20020adfce8a000000b0021bbced6883mr5637675wrn.25.1656551031938; Wed, 29
+ Jun 2022 18:03:51 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 7/8] serial: ar933x: Remove redundant assignment in
- rs485_config
-Content-Language: en-US
-To:     =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        vz@mleia.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-serial <linux-serial@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, lukas@wunner.de,
-        p.rosenberger@kunbus.com, Lino Sanfilippo <l.sanfilippo@kunbus.com>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
- <20220622154659.8710-8-LinoSanfilippo@gmx.de>
- <f7beef4-c422-cae3-8e22-8652b407434@linux.intel.com>
- <df19d91d-371b-f0e9-e37c-2bde00d2b840@gmx.de>
- <033c8d2-3f2e-afe6-2e98-14a61c872b4b@linux.intel.com>
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-In-Reply-To: <033c8d2-3f2e-afe6-2e98-14a61c872b4b@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:fymyF5SOHTcLkP7SEfj64ke4xtX230O6VAwEagenoFcJ803fosw
- wkg5UGVaEOg6mVKNvQrFLo8N9QdLAqIzLyznEhSbCt4CfIOaGpRfpcT2jTa/dFg/21oLz6p
- krFyF6418nG9fkDLq6N6SGQmMORLvyhEuWF5knUEIyvYIEOe5HGI8I6nw8l1WOqTVyioAkZ
- /SC596f1UWyQ3Du22z4Ng==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:51DN12aZLlc=:3sUM85SzIBq78Pf0cH/jpZ
- Ff/FgiAP9iq/TGsKaU2CVbxwuvh2qU9ccFYq4RvM/H9Szz+FUBDyknuam+NCMMrvEVHfpsila
- 2o/e6UWmIcVXThNt/6x2d5hsJojpWVJlR1GKe/EjPRKej4ke4dIqtuqyJ6pktJQ90m+YhZ68n
- 2K4/glejULVCiwiJHgxfPzkR3FS/rawy0oNz11xbpQvELDmrNA3zqQt7Y3pDqhs/vsq89rN1W
- pzo9Z2WQ5cTlVgrSnGsK14Oqc4S+QZ0HuJp9I58GoQXRevss4nfbQEbgvCHn4oupbTZe2lI/6
- MgokvufMg02+ZmYV62KzPADovBJe0Fl+F7feC8Bw0RGg9oFiSKiDmpqcTcwTwXRwhEaG09A3H
- 0rovTr+3LTmF1FujvCyKNc75Yt9LzIpLp9wLvwsmC+QEcAKTe9z2bV66zj7f/lFX9T0TLpEoA
- oCoBP8PBUxn4CHXuXfYE4uGOl2oB7Iw4hi2Ozx+JVE9t2sejxw3iS50svgJ+ZtgweUYc+PoFH
- vlW6yTgHGyXEu76bJMs1gRcalZcoUZBqJxadnEv89l+p5Z8WDa8RjKOg+ocDbpa7l49sAFgdH
- vll/9sLnhHSXSREYxfW7+qXqjqpn3j3UqMoh3Qnhs/KG4+AlEkYtJ+jco6VamT+Kt5xrCdHPZ
- vJODztbVUAw+ExqmVbALP6vu+st3rFHoEyYxcvdCdVDiAkS7LFgCvqxQ2E17dh6BLDz+9o+fq
- Td9hAqJigYZSvtAXF7Urp185ZUpk3UWzSb9jRnM+NeoOiVfDAeY7H2iylUgKLWbGbnceJZb+J
- R+/gD6wRWezhyRpIi1TFr57PC3DCj/a/YX8IO/+kIpUZUzVy07XPQmi+JFG2kNzCRwrAqhpI0
- qOWavPFe8OuQBn2fA/BxuCzXczlUOGX8whbS7m8x7K/gtogfeonF67/4PuTHXSv91ZM88RjwV
- SX8Ek6DzIBrtBvp8tl1rbmeuGx78g75ovVKjK1KrYFfryg5qUPXOvD4r5XXJ+kH/UJ9n0jcGU
- AYkTAOEa4RFKz7JVHWSq194siH6Ch8XkzpEZpNh4o7g3iu+HfJzytOAcDbuK9UDXq1O2Ff6Pk
- t1n2/gCvleNT5e6BkAIA7exqLvxSZsrmbBpn5X4jCKZJ/aaQnPO1gALFg==
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <CAODwPW9E8wWwxbYKyf4_-JFb4F-JSmLR3qOF_iudjX0f9ndF0A@mail.gmail.com>
+ <CAODwPW8fiFSNehZbZDdR9kjHxohLGiyE7edU=Opy0xV_P8JbEQ@mail.gmail.com> <3bb0ffa0-8091-0848-66af-180a41a68bf7@linaro.org>
+In-Reply-To: <3bb0ffa0-8091-0848-66af-180a41a68bf7@linaro.org>
+From:   Julius Werner <jwerner@chromium.org>
+Date:   Wed, 29 Jun 2022 18:03:40 -0700
+Message-ID: <CAODwPW89xZQZiZdQNt6+CcRjz=nbEAAFH0h_dBFSE5v3aFU4rQ@mail.gmail.com>
+Subject: Re: [RFC] Correct memory layout reporting for "jedec,lpddr2" and
+ related bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Julius Werner <jwerner@chromium.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Jian-Jia Su <jjsu@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Nikola Milosavljevic <mnidza@outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> You need to base your upstream work on upstream tree. My email was
+> changed like three months ago...
 
+Apologies, I just used the same email that I sent patches to last
+year. Once I write an actual patch for this issue, I'll make sure to
+use get_maintainer.pl.
 
-On 27.06.22 10:14, Ilpo J=C3=A4rvinen wrote:
-> On Sun, 26 Jun 2022, Lino Sanfilippo wrote:
+> >> We need to be able to report the information that's currently encoded
+> >> in the "jedec,lpddr2" binding separately for each channel+rank
+> >> combination, and we need to be able to tell how many LPDDR chips are
+> >> combined under a single memory channel.
 >
->> On 25.06.22 at 12:14, Ilpo J=C3=A4rvinen wrote:
->>> On Wed, 22 Jun 2022, Lino Sanfilippo wrote:
->>>
->>>> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
->>>>
->>>> In uart_set_rs485_config() the serial core already assigns the passed
->>>> serial_rs485 struct to the uart port.
->>>>
->>>> So remove the assignment in the drivers rs485_config() function to av=
-oid
->>>> redundancy.
->>>>
->>>> Signed-off-by: Lino Sanfilippo <l.sanfilippo@kunbus.com>
->>>> ---
->>>>  drivers/tty/serial/ar933x_uart.c | 1 -
->>>>  1 file changed, 1 deletion(-)
->>>>
->>>> diff --git a/drivers/tty/serial/ar933x_uart.c b/drivers/tty/serial/ar=
-933x_uart.c
->>>> index ab2c5b2a1ce8..857e010d01dc 100644
->>>> --- a/drivers/tty/serial/ar933x_uart.c
->>>> +++ b/drivers/tty/serial/ar933x_uart.c
->>>> @@ -591,7 +591,6 @@ static int ar933x_config_rs485(struct uart_port *=
-port,
->>>>  		dev_err(port->dev, "RS485 needs rts-gpio\n");
->>>>  		return 1;
->>>>  	}
->>>> -	port->rs485 =3D *rs485conf;
->>>>  	return 0;
->>>>  }
->>>
->>> Hmm, I realize that for some reason I missed cleaning up this particul=
-ar
->>> driver after introducing the serial_rs485 sanitization. It shouldn't n=
-eed
->>> that preceeding if block either because ar933x_no_rs485 gets applied i=
-f
->>> there's no rts_gpiod so the core clears SER_RS485_ENABLED.
->>
->> I think we still need that "if" in case that RS485 was not enabled at d=
-river
->> startup (no rs485-enabled-at-boot-time) and no RTS GPIO was defined but=
- then
->> RS485 is enabled via TIOCSRS485.
->>
->> Maybe in ar933x_uart_probe()
->>
->> 	if ((port->rs485.flags & SER_RS485_ENABLED) &&
->> 	    !up->rts_gpiod) {
->> 		dev_err(&pdev->dev, "lacking rts-gpio, disabling RS485\n");
->> 		port->rs485.flags &=3D ~SER_RS485_ENABLED;
->> 		port->rs485_supported =3D &ar933x_no_rs485;
->> 	}
->>
->> should rather be
+> Why?
 >
-> I think it would be better (and what I should have done while moving the
-> check there in the first place but I missed it). In addition, however, i=
-t
-> would be useful to not print unnecessarily:
+> At beginning of your message you kind of mixed two different usages:
+> 1. Knowing the topology of the memory.
+> 2. Figuring out total memory.
 >
->> 	if (!up->rts_gpiod) {
+> Implementing (1) above would probably solve your (2) use case. But if
+> you only need (2), do you really need to define entire topology?
+
+Okay, sorry, I wasn't clear here. We are really interested in topology
+(for documentation and SKU identification purposes), so "just"
+figuring out total memory is not enough. The point I wanted to make is
+more that we want to be able to identify the whole topology down to
+the exact number of components on each layer, so the existing binding
+(which just defines one LPDDR chip without explaining how many
+instances of it there are and how they're hooked up together) is not
+enough. Saying "I want to be able to figure out total memory from
+this" is more like an easy way to verify that all the information
+we're looking for is available... i.e. if all the LPDDR chips and
+their amounts and relations to each other are described in a way
+that's detailed enough that I can total up their density values and
+come up with the same number that the /memory node says, then I know
+we're not missing any layer of information. But ultimately I'm
+interested in being able to read out the whole topology, not just
+total capacity.
+
+>> For the latter, I would suggest adding a new property "channel-io-width" which
 >
-> if (port->rs485.flags & SER_RS485_ENABLED) {
+> No, because io-width is a standard property, so it should be used
+> instead. It could be defined in channel node.
+
+What exactly do you mean by "standard property" -- do you mean in an
+LPDDR context, or for device tree bindings in general? In other device
+tree bindings, the only thing I can find is `reg-io-width`, so that's
+not quite the same (and wouldn't seem to preclude calling a field here
+`channel-io-width`, since the width that's talking about is not the
+width of a register). In LPDDR context, the term "IO width" mostly
+appears specifically for the bit field in Mode Register 8 that
+describes the amount of DQ pins going into one individual LPDDR chip.
+The field that I need to encode for the channel here is explicitly
+*not* that, it's the amount of DQ pins coming *out* of the LPDDR
+controller, and as explained in my original email those two numbers
+need not necessarily be the same when multiple LPDDR chips are hooked
+up in parallel. So, yes, I could call both of these properties
+`io-width` with one in the rank node and one in the channel node...
+but I think giving the latter one a different name (e.g.
+`channel-io-width`) would be better to avoid confusion and provide a
+hint that there's an important difference between these numbers.
+
+> You also need a timings node. I don't think it would be different for
+> each of ranks, would it?
+
+I think it might be? I'm honestly not a memory expert so I'm not
+really sure (Jian-Jia in CC might know this?), but since different
+ranks can be asymmetric (even when they're on the same part), I could
+imagine that, say, the larger rank might need slightly longer
+precharge time or something like that. They at least all implement a
+separate set of mode registers, so they could theoretically be
+configured with different latency settings through those.
+
+> >> (Also, btw, would it make sense to use this opportunity to combine the
+> >> "jedec,lpddr2" and "jedec,lpddr3" bindings into a single document?
 >
->> 		dev_err(&pdev->dev, "lacking rts-gpio, disabling RS485\n");
->> 		port->rs485.flags &=3D ~SER_RS485_ENABLED;
->
-> }
+> These bindings are quite different, so combining would result in big
+> allOf. I am not sure if there is benefit in that.
 
+They should basically be 100% identical outside of the timings. I can
+see that jedec,lpddr2 is currently missing the manufacturer-id
+property, that's probably an oversight -- Mode Register 5 with that ID
+exists for LPDDR2 just as well as for LPDDR3, and we're already
+passing the revision IDs which is kinda useless without also passing
+the manufacturer ID as well (because the revision IDs are
+vendor-specific). So merging the bindings would fix that. The only
+other difference I can see are the deprecated
+`revision-id1`/`revision-id2` fields for jedec,lpddr2 -- if I use a
+property inclusion mechanism like Doug suggested, those could stay
+separate in jedec,lpddr2 only (since they're deprecated anyway and
+replaced by `revision-id` in the combined bindings).
 
-Right. I will send a fix for this with the new version of my series.
-
-Regards,
-Lino
-
-
+For the timings, I'm okay with keeping them separate.
