@@ -2,129 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 388325616D8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 11:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B0256170C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 12:02:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234580AbiF3JzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 05:55:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
+        id S234190AbiF3KCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 06:02:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230350AbiF3JzW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 05:55:22 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F0C43AC3
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:55:21 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id g16-20020a17090a7d1000b001ea9f820449so2406123pjl.5
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=u7LUrk2PQT0QuXB1ls6VgilrLt2bHgnHDE3d6QTzFn0=;
-        b=c/DcgPgMH8qK2qxUIRsHd9NqftRr5oOqCKgNKsTYK9Ah3ft5fkyKKV4WRq6k/ioEnb
-         FDGp4U9eidt4JRmGu66TBiGZELG4YTrTtM0AxUEKNv6seRbXzzmIF7xJw7VYLZbYBa2S
-         crLMn6gMWb0pxVvN/I7kTzlOk3azNREd2eiIqUI1Y23twMHRptJwjDGpFApP1+kdXnsR
-         rFsmc4gFxhPnYKP9ln61ppIgsi/8qIClZILFDJikmUlT9XroMVDP1vAoOT4/99YZgymY
-         7imFj7AYTE6nyfF9DiIm8Erjf4uggZy1hwQT7TRjjiAlIQQ6cYDBsc8nBkDQS1zbU1TN
-         8HUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=u7LUrk2PQT0QuXB1ls6VgilrLt2bHgnHDE3d6QTzFn0=;
-        b=wIiTYjiQaYj8AFVL5O63YR2A89Bfcde4jmeJpv/x+KRSj8dwSMcvgmNiBvPMXokHGf
-         HiZNOTeH53K9zn73oHnRSM5kAqukgR9xMe1lEjBm/rj9KKM4GSwnUq4CP8g0stxfQoZf
-         XaxJMWENqE25pcE+IFlz8D4Bo44B6g+qHxmjQtqFIy+pHS0epIyDXfzXAuVdXZD+Yykw
-         hHQbV71ldNgVBlyYCj12uXCUmfJv+hrF91Lay+JXtV7Kqhl/+GyPkIq3f9ylkRHhu4lB
-         k5XBntDu3jtMvgn+eNYneKZk6w2hkBgJEsOalz39TMbkOf6QfO+/ScmBkezLGwwLpIvt
-         5F+w==
-X-Gm-Message-State: AJIora8Bst+RcB12SOEAatgxSG8h1r1ZGIJH5jZ1mWkJ0J6DRjNHWxeG
-        BH+yNyFQR/ZGBzQ5Pp/jslH4ow==
-X-Google-Smtp-Source: AGRyM1uvH6vnV3smGE+NjUvesmv27eoJ+j0uGzL/Bge/ktMXro/pYdvZBQiFwmnYgfr7zCKmlhbBdg==
-X-Received: by 2002:a17:90b:4c4d:b0:1ec:bb28:9819 with SMTP id np13-20020a17090b4c4d00b001ecbb289819mr9106630pjb.140.1656582920705;
-        Thu, 30 Jun 2022 02:55:20 -0700 (PDT)
-Received: from localhost ([122.172.201.58])
-        by smtp.gmail.com with ESMTPSA id f80-20020a623853000000b005252380a87bsm13040768pfa.59.2022.06.30.02.55.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 02:55:20 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 15:25:18 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233213AbiF3KCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 06:02:46 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4BC43EDE;
+        Thu, 30 Jun 2022 03:02:44 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 17EE65C02FC;
+        Thu, 30 Jun 2022 06:02:44 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Thu, 30 Jun 2022 06:02:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1656583364; x=1656669764; bh=TAIcAgNNAp
+        8QIpHYtRSOz7CgB2mDvAl/qh8TqyK3DN8=; b=kAh6BD1/2JQxR0GOot/3t8mSpi
+        vycaf/hQi7/JQ4dG4h4VMpo17DAf8hfCNrN1inbvsJ7YxLvtAh12DTTQ4biXxQmS
+        cQO9j5i0GRD1WVJbznGceotDIOfy40F2kbY3ou9mynkfUWYMQbHmrBHyGFry/fBZ
+        Kd31DppBoaPDw9Hp0Y5CZRFvAmxlsJcvFKFtnAF+rWBKReDoTZfSBIfWiE+a4K0l
+        c1eRcACljbAavkOfLoNpHaZPx0cs78wUWOBse/HuHge4rRC/Kok23I6xSY9x5IAZ
+        YwUltXKxvO3mDWDQRwq1wY4Axiw9MGL7dJ99VoWLTZGNeeH/DS+Lfst0KLQA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1656583364; x=1656669764; bh=TAIcAgNNAp8QI
+        pHYtRSOz7CgB2mDvAl/qh8TqyK3DN8=; b=DY8j6Sphwo6tsraAxL0XaL+iqKHvo
+        SECDDRp1VCzTl/FX6UcQJtjXfNR+4we5qVwkcrfntQpzcuDTcJ69Ndpa8n2PA+2r
+        x8Ny1TYPZvMyjH+oCTxOyKSBbUfzGp/JShj2ZH02VHERWvvorzxRqvYz17L/s2aq
+        GTQge0JbZ9duyX7u3grnE+9SzxBGvny5VnL/mBUKVsi4CFM35g4oSbjXIm+sAZFb
+        shQCKsyCcqHx2349tLpSzLQ/u52klDz6ga/ULao6UkpKF3V7QVwpgkOrxAfxZLGX
+        LGh/DA2WJKEdZz/WoSGY+aM39DWO0eQPOyVneWuXgNfZLr+5ZQXc0vJmg==
+X-ME-Sender: <xms:w3S9YkZxbMdgdMdH7ND4D-gjocW3k7dZLXI5f19oDYa9L7ZuhBTBzg>
+    <xme:w3S9YvY6b7-Z3c7dO9bDRQduPp3XVdAj3eAdHstSNLASoRudMCT7nLwIg--YiSfiU
+    dyy1B9-ChOXl-ByrQ>
+X-ME-Received: <xmr:w3S9Yu92fReuoFg6kXGhyaWcbP7v3V5g-RgMKatddj-QYpJhcuDwWB_ud-nvAK6-JIY7wRI4-A1_1zEifXERD24AVf79EQLXzk1t_LRhNJet-1ukzo2Ym-6LRq6uVFK6cbK6jQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehuddgvddtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpeefkedvudekfeehgffgteekieehhfekfeegteefgfduhfffvdehvdet
+    keegfefgteenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
+    ugdrohhrgh
+X-ME-Proxy: <xmx:w3S9YurJfeQX2H8_wCkg5sdfNMLGcHSD09xum9Shj7UYN-msPa0haw>
+    <xmx:w3S9Yvr48pi_BoW0cksUsZsuWPwu_fheEygwvQu43DvFBDF0S5BFew>
+    <xmx:w3S9YsQ6gz4R6bl5pOwfWUjfEMmQEsn4wAsgLVwMoc6W0Vqb0LKBXA>
+    <xmx:xHS9YvbemzsULfjHqmtTw3WTUNcwSByu2lDc_D36bJ44S0UF9pLXnA>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 30 Jun 2022 06:02:42 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Guo Ren <guoren@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Samuel Holland <samuel@sholland.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v3 2/7] dt-bindings: opp: accept array of frequencies
-Message-ID: <20220630095518.zhvocdbupqqkyps7@vireshk-i7>
-References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
- <20220513061347.46480-3-krzysztof.kozlowski@linaro.org>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: [PATCH v3 0/4] Add PLIC support for Renesas RZ/Five SoC / Fix T-HEAD PLIC edge flow
+Date:   Thu, 30 Jun 2022 05:02:37 -0500
+Message-Id: <20220630100241.35233-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220513061347.46480-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13-05-22, 08:13, Krzysztof Kozlowski wrote:
-> Devices might need to control several clocks when scaling the frequency
-> and voltage.  Allow passing array of clock frequencies, similarly to the
-> voltages.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
-> ---
-> 
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> index 76c8acd981b3..66d0ec763f0b 100644
-> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> @@ -50,6 +50,16 @@ patternProperties:
->            property to uniquely identify the OPP nodes exists. Devices like power
->            domains must have another (implementation dependent) property.
->  
-> +          Entries for multiple clocks shall be provided in the same field, as
-> +          array of frequencies.  The OPP binding doesn't provide any provisions
-> +          to relate the values to their clocks or the order in which the clocks
-> +          need to be configured and that is left for the implementation
-> +          specific binding.
-> +        minItems: 1
-> +        maxItems: 16
-> +        items:
-> +          maxItems: 1
-> +
->        opp-microvolt:
->          description: |
->            Voltage for the OPP
+This patch series adds PLIC support for Renesas RZ/Five SoC.
 
-Applied. Thanks.
+Since the T-HEAD C900 PLIC has the same behavior, it also applies the
+fix for that variant.
+
+This series is an update of v2 of the RZ/Five series[0], and replaces
+the separate T-HEAD series[1].
+
+[0]: https://lore.kernel.org/linux-riscv/20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[1]: https://lore.kernel.org/linux-riscv/20220627051257.38543-1-samuel@sholland.org/
+
+Changes in v3:
+ - Add a more detailed explanation for why #interrupt-cells differs
+ - Add andestech,nceplic100 as a fallback compatible
+ - Separate the conditional part of the binding into two blocks (one for
+   the PLIC implementation and the other for the SoC integration)
+ - Use a quirk bit for selecting the flow instead of a variant ID
+ - Use the andestech,nceplic100 compatible to select the new behavior
+ - Use handle_edge_irq instead of handle_fasteoi_ack_irq so .irq_ack
+   always gets called
+ - Do not set the handler name, as RISC-V selects GENERIC_IRQ_SHOW_LEVEL
+ - Use the same name for plic_edge_chip as plic_chip
+
+Changes in v2:
+ - Fixed review comments pointed by Marc and Krzysztof.
+
+Changes in v1:
+ - Fixed review comments pointed by Rob and Geert.
+ - Changed implementation for EDGE interrupt handling on Renesas RZ/Five
+   SoC.
+
+Lad Prabhakar (2):
+  dt-bindings: interrupt-controller: sifive,plic: Document Renesas
+    RZ/Five SoC
+  irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
+
+Samuel Holland (2):
+  dt-bindings: interrupt-controller: Require trigger type for T-HEAD
+    PLIC
+  irqchip/sifive-plic: Fix T-HEAD PLIC edge trigger handling
+
+ .../sifive,plic-1.0.0.yaml                    | 65 +++++++++++++--
+ drivers/irqchip/irq-sifive-plic.c             | 80 +++++++++++++++++--
+ 2 files changed, 135 insertions(+), 10 deletions(-)
 
 -- 
-viresh
+2.35.1
+
