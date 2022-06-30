@@ -2,325 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0112561373
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:44:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4621C56137E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:46:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233097AbiF3Hoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 03:44:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36616 "EHLO
+        id S233201AbiF3Hpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 03:45:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232259AbiF3Hoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:44:38 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2110.outbound.protection.outlook.com [40.107.20.110])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2797831F;
-        Thu, 30 Jun 2022 00:44:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bY2Nssa/wjUaSFR7x8pBETm3EyQE4JuaQWcPNI7Ln1UhkitTBAaSz+HLY6+TSbhOr2mv6DrHY2ODLvHDbWSIl85Vu9MBei0QA49nYgI2tafc+zKnWibyopMxrjBgDt91mW5Iq7MZCLmkOEXx7vkyq/RVXCN2fHsQY+s4JnXJCKelRg50PMFQ7dvNYZHCC5DZ5J+bNIxELYWEXsVJpz9IqsxWIqXF13F37+FYiHaXfjhXjNciTU1EIHxWkIK/fPGMNbH3TizGs/ubNPW4INmnaWXyIvF8H1yy4ETWfftxvjyLOpP+hI89Az/TuQqAxwX3kUlvFoWxQbrzaHb5rPaxFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JGnLTaY8fE7hwjQhvTntfrnVf6s/PiS9faHqyaBVmFc=;
- b=QmYnFZzjcuZyqyWRff/eQ6JlwLxYe+EqaImY10LZ8sz+/c1tVc7T6g+8LphsBtNCuzmsxaJXIN/i0fR0M49a/pDxWGoJtJpex/X0OL2jfNqoDiF/VS63wU40e/SsmpmNdBnRBtzNXZvn56ajU5Dx5av1Ahj0k6g9pBR4tEMJM6li34PnI/YCsx7o2hE9sGy50NXHo2XcRD22pv9GFbNdeJUYXbjrSZ6P4mCFGVPQpat+R1+3x2ZG/n+NwnGVI6kMqwz6M4wgM23eTNS7/kWZCW2mIDE2Dm97oJZsx++pOxE0D/q9gA4PcSwmf9BPShrwWzSc+BIDSh+ytT+MOi31DQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JGnLTaY8fE7hwjQhvTntfrnVf6s/PiS9faHqyaBVmFc=;
- b=HZfGZMpSjEhXPWnKgOrtd1BdlTtNHbixLka4B+dGBjAM+FeSnlGeIaGRlpx2cMHXmLIOHa18He6nQ4Abz3ZUZOn1OJEpQxuvFGVAvPgD+tlckLxKT5KtLQGjpN5gBuqTdrksLuY+nk2Oote/3UQuiXHuBrH+0TbnIQlwvco22mI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axentia.se;
-Received: from AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
- by DB7PR02MB5370.eurprd02.prod.outlook.com (2603:10a6:10:34::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.15; Thu, 30 Jun
- 2022 07:44:33 +0000
-Received: from AM0PR02MB4436.eurprd02.prod.outlook.com
- ([fe80::11f2:df70:b231:2b45]) by AM0PR02MB4436.eurprd02.prod.outlook.com
- ([fe80::11f2:df70:b231:2b45%4]) with mapi id 15.20.5395.015; Thu, 30 Jun 2022
- 07:44:33 +0000
-Message-ID: <3503471d-2d5e-572b-39e7-d715a909749d@axentia.se>
-Date:   Thu, 30 Jun 2022 09:44:31 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: Regression: at24 eeprom writing times out on sama5d3
-Content-Language: en-US
-From:   Peter Rosin <peda@axentia.se>
-To:     Codrin.Ciubotariu@microchip.com, linux-i2c@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Ludovic.Desroches@microchip.com, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org, wsa@kernel.org,
-        kamel.bouhara@bootlin.com
-References: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
- <2bb4868b-90ab-887e-bf13-9de8b79231bd@microchip.com>
- <38dedc92-62a2-7365-6fda-95d6404be749@axentia.se>
-In-Reply-To: <38dedc92-62a2-7365-6fda-95d6404be749@axentia.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GV3P280CA0001.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:b::31) To AM0PR02MB4436.eurprd02.prod.outlook.com
- (2603:10a6:208:ed::15)
+        with ESMTP id S233148AbiF3Hpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:45:40 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C47B23A70A
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:45:38 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id z19so25342422edb.11
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:45:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=2VoT8i8QeRks6MlNZX2wBTS/uT3kTm3TDTeb8DcOv84=;
+        b=Cg9ldFAaThDM26guf461l+5hmf9AUk2f8wu5v9WUkPIRT1g2qexq3gpJpL+fr9Lyc9
+         VA0WfJrfo8XlXEvlfJ5kk8uoVJmCBMgGWEzXG+Uuc1SZEOKzsvFQaO8pwnIkQSZhQPYB
+         +QPhGBko/zn+LtGQbPbP5e3dKyuQQ+T0bj1ds=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=2VoT8i8QeRks6MlNZX2wBTS/uT3kTm3TDTeb8DcOv84=;
+        b=lZ+2dVhXMFm1oiC0UJ5w8s814gSMgvOgR6T/NqNa9YKCq8+dxL058beST/BPMUOMOw
+         Mw0h4x9XtcHHC+HEGME//OQ/E8ubq75UqkXh4B6UsEpeqsuweTjIT/yLi+ZEQzvKD9z6
+         HxRbcOapjqlyI/3rNpT6fvkuHqt50TmWxX0s6gujzOfrxf6BYkNk/TyguXHU62V3UwTR
+         8d4hp5nlyC3ol0GeJgtqpVgNFasj5/dRSDSOLxVngpwS8eQYtNa2GDPCrtIenj3dZhoW
+         RvB6sqozWq73M/FgaAp1Fm4nWIdCLPVZOEorxR1Q6qWgNbze9ZhackLr61r+KRLVV+01
+         hSqg==
+X-Gm-Message-State: AJIora/HoNy5bIhYEXzDeVUkdobzhJ3E35On3ysHeM0z0285RxwRgAGV
+        Zub3FZF7S5cTdkO4Ishgz7VH1mSc7i4QvA==
+X-Google-Smtp-Source: AGRyM1tzmpExmPgVDkzSX2xg767f6uWXrRkq/o6zPDN/PQYKdNvvBvcAXHnBfwWXSwDagnWlMbeC5Q==
+X-Received: by 2002:a05:6402:438a:b0:435:bc23:d615 with SMTP id o10-20020a056402438a00b00435bc23d615mr9597360edc.283.1656575137327;
+        Thu, 30 Jun 2022 00:45:37 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i.station (net-188-217-58-216.cust.vodafonedsl.it. [188.217.58.216])
+        by smtp.gmail.com with ESMTPSA id b13-20020aa7c90d000000b0043564320274sm12594731edt.19.2022.06.30.00.45.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jun 2022 00:45:37 -0700 (PDT)
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     tommaso.merciai@amarulasolutions.com
+Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        quentin.schulz@theobroma-systems.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 5/6] media: dt-bindings: ov5693: document YAML binding
+Date:   Thu, 30 Jun 2022 09:45:24 +0200
+Message-Id: <20220630074525.481790-6-tommaso.merciai@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220630074525.481790-1-tommaso.merciai@amarulasolutions.com>
+References: <20220630074525.481790-1-tommaso.merciai@amarulasolutions.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1e8067b8-4be6-4ee3-0060-08da5a6c5fa2
-X-MS-TrafficTypeDiagnostic: DB7PR02MB5370:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xzpz9anhlZHTgkZs6sEVMbDFtaZDetrplMsK7nStnGdZCqGJS5HaYgDagZUiqiU5M+DyWcQzn9cVWHbILkwMNT16H/V6rt8f2U18hs4uQVPlqNCQycu+4fxvlUJsHi2lkJoqw+2rWzyr5dF6korM23RUjp3xBznr9ouhfsx0cfN7lCmgIjHESNAyZPKVwM8kokvPscuctnfWGr8gL/2Xd3XRAvrz66MYV44hJnCBOfyazDqEvZuyP9AwCLcwPB9z+2ye0yHQ4aImbZdAApSzrHWofF8+vUPRsYNtkaLrrSVI3bnXE2q1qb7XhwjK+Hs6hk3ncd9BBjC2kN6ZVte62TPnfR0HdJpwtiw7C/bScANTAk0CHhFQZo+dHFKDDTB5CAPFOxdD0iJlqxWQpDopuufyAr0eTJUV7sKDGxYlpBN6e9EL6bH3mcjRkJjcmaKD8gqFIRtDNJAEMdabNJpfrJ5hdtuFTsFJslN2dm+RJl5kv/oIKv/LQOqK7SwAbzpV1fTmSNgMH49gRF8XrwdSKIKFCATM8VOYA/6ByA5+mhbwiPfdoRy7ZuSdU0HLgmsmBSiMZAjgEEzWF3h9XKfblJ8AubeXlrwUhdaWv9oxdTxxvmKK2MENGD6QIAiBuX/Txlhlee7qQQspHPaJnNR5T58jpt1HPoTIDTjilAYbmFZrOky1Pc92mZGPYe/0yZ+p/rQVAVxK7lDYFOyALP2jzz75fGkGgOX9IfzRRYt05NqKopYMDUF3Q0fCcwmGEK6vNNnCGJcm35gW0lgvKafsJfxzRSo1Py+5rfSz/7JvhYz8UoQ0OQ+y3sifvTrvWvesluXOJaYDQ4/on0Ylpms+gcnR0l/9wvA1LHunSIjHaV4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR02MB4436.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(346002)(366004)(396003)(136003)(376002)(39830400003)(66476007)(66556008)(8676002)(36756003)(4326008)(7416002)(66946007)(83380400001)(5660300002)(8936002)(6486002)(30864003)(966005)(31686004)(316002)(478600001)(2906002)(41300700001)(6512007)(26005)(2616005)(53546011)(6506007)(186003)(31696002)(38100700002)(86362001)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TktIU0oxWUFvRXl0eS9uSm9YNlBuRlpiT3lqWmpGOFMxRGRvZXhOMVY0LzF4?=
- =?utf-8?B?bVMxUWczMkcxNDBjTDhlVXZSMkM2dWJEMWFvN3FZWmxoL3R5NC9Kd1hwYy9k?=
- =?utf-8?B?RFp0a2VGRWZuY3VqdlZpNm1ndzdRdjZNSTZRQi9UcS9BaUdmQ25HNG9wMnNQ?=
- =?utf-8?B?M3A0SjBHQ1ZsWVIzaWRCU1Rzei96bVBHSHJPTWhDaHNDZXN2by8zNDZFM0hn?=
- =?utf-8?B?VVpiM3Nta0pQWG8ranF6TkNuMkp0ZXBJaVBoTWZHSHJJVUJuQ25sZk05QmFn?=
- =?utf-8?B?Qk92bjhOZEVObElydHRJTlRWdXc0dTEzaHk2RUVKUDdzUGFPQ1RiODRMZVU5?=
- =?utf-8?B?ZGZ5bEIvbVdZNy81ZUl6MWo1WjdrZFFvemtrNmN3dDl2MG1kTDEvQ2xkWFM3?=
- =?utf-8?B?ZU5xT0dZR3VMbElCaDFEWFJIbjVtZ29XWUlsT1RyZ3JLV21kSmgrdnZMVzNs?=
- =?utf-8?B?czhnMWJIaFQ1QmZRR2g1SGp3aHI2eHN1KzA3azlPUjRlWUxXMXNGdGUyVFNk?=
- =?utf-8?B?d2poMmxzU2lCeVZiV1FqaDFweFFmRCtvODZnVUtWYVllRUZUc2psaHg0bDZY?=
- =?utf-8?B?Mmd5c0FwNS8wZy9xK2Q4VFVZZ2lNYVk1WmpPeVRaNlF0Z1RPSCs3eHpwRTQr?=
- =?utf-8?B?cGpQRWRkQkNha3Z1bExkMHF1dVRBc2kxS1JUVVZCL0R1S2NxckpsaWdlUmpP?=
- =?utf-8?B?TTZzcERBSVNKTXJvTG90OG44NVZOZFM1VjJjRG9qZU8yb3Jrb1dqdUJqQW5j?=
- =?utf-8?B?VU1OckRrMmUwNzBZbThXUmc4bHdDTVlNa2VDMTEvbU8rcnFTamxBaXRKV0g2?=
- =?utf-8?B?UGNYYUR4VHZHZXFnemhhTE95aGxqbk5rWDByV3hkTC92REVVTU54b1lnTDMw?=
- =?utf-8?B?WlJRZEowYnMrOC9Lbk5MaDFwWTA5MHczdkQ3OWhkdE9VaXI3Zlhkbk8xNnVI?=
- =?utf-8?B?dDk5Q2pRVTJEbEpoY245Z1BhYmErV2lGaDQ0bUlzbDlJcnFGUXNBSWhnVHc2?=
- =?utf-8?B?Wkk0U2JHYyt4QkZzL1lnVFVMZHAydENYbTlnUHMzTmhCR2RCQ0ZZVlNnOGgr?=
- =?utf-8?B?ZjRGaldFSGZScXhKWUgrQWg0TTA5K3JwVS9HS0NESVFvMnNiSDlzaDJ3b25B?=
- =?utf-8?B?V2J1ZmNsRS9XaTNYazUzbjMrR1RnNnNTWkRuSW4zdXd4MjFUZHp1NkhrY3cz?=
- =?utf-8?B?UWlaTTFoZU9VOWhOckRZbzkybTNDcUZvb0pCVGVPZkY4VmpiVERmWnRLVU9i?=
- =?utf-8?B?TWVFRUNwY0tCZFJJK1VOVHVTbWRjUmhPWGVJVVp4RWdrK2NpSUh4eXFmRzdz?=
- =?utf-8?B?ZFg3ejJ1ZHpZZnBtMHpRVkxqRlZYTXB6VGF5RnMzcmRDWHNTS1p1N09odTVT?=
- =?utf-8?B?QjJGcFlmcW9scE1DeUs4dkhQdW1EN3hqR0prbzVQbzhXT0NpNTVRcjVYNXM5?=
- =?utf-8?B?WTJXeUphVFpBaGdFa0t2VXVvTmJCR1VwMGZlSmRyODIvNXVYblJza0RjNUlM?=
- =?utf-8?B?Um1hNHBCY2FYMGR4U3lBNW1pcUpKaEN0ckRBbWNjakcyNUFVWENVUlFBa2Uv?=
- =?utf-8?B?enpNdkxGSExDekU0VzM0MExORjFFQy9NTlFZZmdiaFZMRHFiTTMvQldXM3FR?=
- =?utf-8?B?N1BHaTJTa2NEaUpENDY5RXIxVFRsYWM2VDd6NEdwblY5NzZXMEpIMzJrYUh2?=
- =?utf-8?B?QWVmanZlY3ZnMVdaaCtYRFRKUnVQaVpxZENZU0NoMGk4WVNrYjYwejA5Vlhp?=
- =?utf-8?B?TVNZNE9DM3dVdnBzK0dBNEt0b0JsT3VyQmlWNmhwSC85bExDZ0JDT1FUaGFC?=
- =?utf-8?B?eGpiY0JkYW5Kb1JUdytVemUzV0dmYjVLVlpoU0piZHJEYTBHdnNQcGpxck1Q?=
- =?utf-8?B?cmt0RzgrK1VhVjlReFFFYWVpcS9iWGpwN1pNTkZ1SnFtMmc2Zmc2WU1icGg2?=
- =?utf-8?B?VjNuZnl1SDRlTjl3eno1djJtbDY1QVRMQUZ6Q0U4b3lzcU1Bd0RZSURLMWxC?=
- =?utf-8?B?ZDVJZERCaWVEbFJWaFlSYWJHOGlPMG5zZ3V2TDIxeU1YODRBbCttTk1yZjdh?=
- =?utf-8?B?QlBRci9VMEY4aDE0WElRNlc4WXVESEl1NldDSUJmbGJWVG9RdWNwcUs3aFJY?=
- =?utf-8?Q?QVxnyrYOFFYQgbnH3zN80vmeZ?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e8067b8-4be6-4ee3-0060-08da5a6c5fa2
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR02MB4436.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2022 07:44:33.6266
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dv6QusGoNIsDkd9TfJxJNwYbsrHIfoh7qLJGUIjgeHBXOedQjRfUhGcufuWvNM1F
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR02MB5370
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi again.
+Add documentation of device tree in YAML schema for the OV5693
+CMOS image sensor from Omnivision
 
-2022-06-10 at 22:51, Peter Rosin wrote:
-> Hi!
-> 
-> 2022-06-10 at 09:35, Codrin.Ciubotariu@microchip.com wrote:
->> On 09.06.2022 17:28, Peter Rosin wrote:
->>> Hi!
->>
->> Hi Peter,
->>
->>>
->>> I have not actually bisected this issue but reverting the effects of
->>> patch a4bd8da893a3 ("ARM: dts: at91: sama5d3: add i2c gpio pinctrl")
->>> makes the problem go away.
->>>
->>> I.e. I need something like this in my dts
->>>
->>> &i2c2 {
->>>          status = "okay";
->>>
->>>          pinctrl-names = "default";
->>>          /delete-property/ pinctrl-1;
->>>          /delete-property/ sda-gpios;
->>>          /delete-property/ scl-gpios;
->>>
->>>          eeprom@50 {
->>>                  compatible = "st,24c64", "atmel,24c64";
->>>                  reg = <0x50>;
->>>                  wp-gpios = <&filter_gpio 7 GPIO_ACTIVE_HIGH>;
->>>          };
->>> };
->>>
->>> for multi-page eeprom writes to not time out (a page is 32 bytes on this
->>> eeprom).
->>>
->>> For reference, the current defaults for this SoC/I2C-bus, that I modify,
->>> are:
->>>
->>>          pinctrl-names = "default", "gpio";
->>>          pinctrl-0 = <&pinctrl_i2c2>;
->>>          pinctrl-1 = <&pinctrl_i2c2_gpio>;
->>>          sda-gpios = <&pioA 18 GPIO_ACTIVE_HIGH>;
->>>          scl-gpios = <&pioA 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->>>
->>> I suspect that the underlying reason is that the bus recovery takes
->>> too long and that the at24 eeprom driver gives up prematurely. I doubt
->>> that this is chip specific, but I don't know that.
->>>
->>> I can work around the issue in user space with by writing in 4 byte
->>> chunks, like so
->>>
->>> dd if=source.file of=/sys/bus/i2c/devices/2-0050/eeprom obs=4
->>>
->>> but that is really ugly and gets slow too, about 20 seconds to program
->>> the full 8kB eeprom. With the above in my dts it takes a second or
->>> so (a bit more with dynamic debug active).
->>>
->>>
->>> If I run
->>>
->>> dd if=source.file of=/sys/bus/i2c/devices/2-0050/eeprom
->>>
->>> with a source.file of 8kB and the upstream dts properties in place, I can
->>> collect the following debug output from at24, i2c-core and i2c-at91:
->>>
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@0 --> 0 (-23170)
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
->>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@32 --> -121 (-23169)
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@32 --> 0 (-23168)
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
->>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@64 --> -121 (-23168)
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@64 --> 0 (-23167)
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
->>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@96 --> -121 (-23167)
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: controller timed out
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
->>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@96 --> -110 (-23155)
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: controller timed out
->>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
->>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@96 --> -110 (-23143)
->>>
->>> And then there is no more action. I.e. only a couple of 32 byte pages
->>> are written.
->>>
->>> With the above mentioned dts override in place I instead get this, which is
->>> a lot more sensible:
->>>
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@0 --> 0 (753629)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@32 --> -121 (753629)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@32 --> 0 (753630)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@64 --> -121 (753630)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@64 --> 0 (753631)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@96 --> -121 (753631)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@96 --> 0 (753632)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@128 --> -121 (753632)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@128 --> 0 (753633)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@160 --> -121 (753633)
->>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@160 --> 0 (753634)
->>> ... snip ...
->>> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8128 --> -121 (753883)
->>> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8128 --> 0 (753884)
->>> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: received nack
->>> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8160 --> -121 (753884)
->>> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
->>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
->>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer complete
->>> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8160 --> 0 (753885)
->>
->> could you please apply this patch-set [1] and let us know if it 
->> addresses your issue?
->>
->> Thanks and best regards,
->> Codrin
->>
->> https://patchwork.ozlabs.org/project/linux-i2c/list/?series=255408
-> 
-> That series does indeed help! I'll reply with a tested-by etc on the
-> first two patches, I can't test patch 3/3 with my sama5d3 board...
-> 
-> Thank you very much!
+Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Sakari Ailus <sakari.ailus@iki.fi>
+---
+Changes since v1:
+ - Fix allOf position as suggested by Krzysztof
+ - Remove port description as suggested by Krzysztof
+ - Fix EOF as suggested by Krzysztof
 
-Since replying to the actual patches do not work for me, I'm writing here
-instead. Sorry about that. As stated above, it /seems/ to work much better
-with these patches. But I fooled myself and there is still some remaining
-trouble. It is not uncommon that the second (32-byte) page in the eeprom
-is not written correctly for whatever reason. I do not know why it's
-always the second page that gets corrupted, but this is a bad problem since
-the failure is completely silent.
+Changes since v2:
+ - Fix commit body as suggested by Krzysztof
 
-Cheers,
-Peter
+Changes since v3:
+ - Add reviewed-by tags, ssuggested by Jacopo, Krzysztof
+
+ .../bindings/media/i2c/ovti,ov5693.yaml       | 106 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 107 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+new file mode 100644
+index 000000000000..b83c9fc04023
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+@@ -0,0 +1,106 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2022 Amarulasolutions
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5693.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Omnivision OV5693 CMOS Sensor
++
++maintainers:
++  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
++
++description: |
++  The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
++  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
++  sub-sampled, and windowed 10-bit MIPI images in various formats via the
++  Serial Camera Control Bus (SCCB) interface.
++
++  OV5693 is controlled via I2C and two-wire Serial Camera Control Bus (SCCB).
++  The sensor output is available via CSI-2 serial data output (up to 2-lane).
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: ovti,ov5693
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description:
++      System input clock (aka XVCLK). From 6 to 27 MHz.
++    maxItems: 1
++
++  dovdd-supply:
++    description:
++      Digital I/O voltage supply, 1.8V.
++
++  avdd-supply:
++    description:
++      Analog voltage supply, 2.8V.
++
++  dvdd-supply:
++    description:
++      Digital core voltage supply, 1.2V.
++
++  reset-gpios:
++    description:
++      The phandle and specifier for the GPIO that controls sensor reset.
++      This corresponds to the hardware pin XSHUTDN which is physically
++      active low.
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - dovdd-supply
++  - avdd-supply
++  - dvdd-supply
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/px30-cru.h>
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov5693: camera@36 {
++            compatible = "ovti,ov5693";
++            reg = <0x36>;
++
++            reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&cif_clkout_m0>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clock-rates = <19200000>;
++
++            avdd-supply = <&vcc_1v8>;
++            dvdd-supply = <&vcc_1v2>;
++            dovdd-supply = <&vcc_2v8>;
++
++            rotation = <90>;
++            orientation = <0>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2>;
++                    link-frequencies = /bits/ 64 <450000000>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 1fc9ead83d2a..844307cb20c4 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14719,6 +14719,7 @@ M:	Daniel Scally <djrscally@gmail.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+ F:	drivers/media/i2c/ov5693.c
+ 
+ OMNIVISION OV5695 SENSOR DRIVER
+-- 
+2.25.1
+
