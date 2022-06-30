@@ -2,124 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1592B56227E
+	by mail.lfdr.de (Postfix) with ESMTP id EB269562283
 	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:03:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236758AbiF3TCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 15:02:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40606 "EHLO
+        id S236798AbiF3TDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 15:03:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236802AbiF3TC0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:02:26 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61BD33F320
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:02:25 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id pk21so40837904ejb.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:02:25 -0700 (PDT)
+        with ESMTP id S236790AbiF3TDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:03:31 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2303631F;
+        Thu, 30 Jun 2022 12:03:31 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id q132so24935ybg.10;
+        Thu, 30 Jun 2022 12:03:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Ixd94IRcNWmkrcI7JCVI0OAMPGWl8miuu6Ps54C+2g8=;
-        b=idykG8TOvg1pBqYBbUECorw1f9FdQEkkxnBxGMMWoaUfgs2vbHyvwnDZHOhlcqmIV1
-         PGqN4FHN+DUGgLtYL249n6LKKLQu2SpGGz3PtDmbl/TESPHukU608sUL9atc7ECYQo+I
-         iRPp6E8EwTQojmhBDiPobz/bWdTB7TTmH9kv2JYLV3tPRBics9ffEdlHcKiuWF9IS2dp
-         GiXvE+yqpnYEUQpfrJ0ifPWQoHrgEc8XAp+Hld88ZKZ/3wyvo8Di0Ez84WH7VLHasBXq
-         qQLUeVoC2lnYv45Zlrk6dktBl38EYbRtH9GdxWEIGIf1UE8/KFrs/qDm7KTUsB+jDDCO
-         PVVw==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1YP4rROQ1KlH9M242+3quyf1kYcOl9MA5IfXsRWFwso=;
+        b=h2im3IXFyogBb14K6BHYaDSE5rpz351bdfXp9jmHfEOAr+b+AQKkLt4CYSVDElw2fh
+         kwU+gYpGccPZWggO+Jfu3ZqvTRiEs/F5EE3gVad9VC1VDqxCEFCDqh23+VQ/QPnoc33g
+         Eo/wG6mqvs0a+KwTUpzsA9cKeecgoamMY1J2u+qL/zwb0vJD7lb3X3/AE3E/Jo0lrzgx
+         K04c0QaBU1t25yhIKcR0GlivbHPaI1ck6crO+s3CvGKoE0blb771/Nyx0lvkAYiqcSsJ
+         ZMB2xZFE2AxvwVz4tmohJrNeEIWJqM9UFLCABStEup/glneFbNgXU4sAHEbOf628dFwG
+         grjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Ixd94IRcNWmkrcI7JCVI0OAMPGWl8miuu6Ps54C+2g8=;
-        b=GGJAUvcIv1MsdfwEKyP10D1jcYIArWnWamoo+LEq3IKoiihxRE4QBZmQUT80XCt8R1
-         OKEVaBCpFZ+KCi/Mh5o/uO079I1yM6FGQQRH62Rjg0Y68wLJyGsIANVQEe+oma5hQM1/
-         nwrcTMaB6s994iyVBCgzGOpVCdN+/5iD05RDj5YUK0bGWymxrk8yND9qp84d262JigZ/
-         YOGyOkhmCR7V7dW1tnnIVO9IPhVY3txj6TXciYmvKvUXd7+Fa1dCrhyEi5NOgWaZuSKE
-         eWqpgJP0URz06keG7+JwUO1zKKrgvLUi2AUhVfaJG3avbUolLJfmdzV3Ebtj5UawCVAh
-         fL9A==
-X-Gm-Message-State: AJIora8M2HTlPg0/zhUm7U/DfZ/9fXc7Pj2gpCNz3MA/aY/tIPiSzHcs
-        N1Z6OluAvyOxjIbprp+oZ6OsRw==
-X-Google-Smtp-Source: AGRyM1sNQbYgzNCNcBZYSUraU9r7SoPRVicUzCyAkVm+94gqR6RR/SXc2tLl3AtqayNJrd6UcQhmlg==
-X-Received: by 2002:a17:906:4b0c:b0:726:41df:5580 with SMTP id y12-20020a1709064b0c00b0072641df5580mr10841935eju.263.1656615743720;
-        Thu, 30 Jun 2022 12:02:23 -0700 (PDT)
-Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h10-20020a50ed8a000000b00435728cd12fsm13680849edr.18.2022.06.30.12.02.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 12:02:21 -0700 (PDT)
-Message-ID: <54d564fa-3c46-78d4-59a3-4efa5a5bf319@linaro.org>
-Date:   Thu, 30 Jun 2022 21:02:20 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1YP4rROQ1KlH9M242+3quyf1kYcOl9MA5IfXsRWFwso=;
+        b=A9sWlDh/JQeVPaDbGQDTnIBoEbZuWt8+K1uzYgvnf+YzagG2dQoT2NUbIM25EYjv7M
+         Uc2+yU//dkXBUokH7ZRHgUDJhVYLnVvlDMPQx9WuCOFiDn99E6+fohqVfpLEAzqhYrFo
+         wIYCW0BfwYa8N5RiEV5ITg7mPkL1Z1eSDT7anTt2iboreL5xFD45ljEpXt/uKLbbptbz
+         w1Lsi09hTGzfquZYEb0ZX9hzIGFF1o/OykXPW9WB1bR7O4SEGPYvBn1UVMFH0RAQkOtp
+         l0bwJN36I9NTvZoineX7lxaHhIsIzCaZgoZs4u71zElnie+sL+xhahDeRX6923/MUX9k
+         uM5g==
+X-Gm-Message-State: AJIora/j/2mIi55Q9inYZZKaOUNh/A5UgvQHaveGH1lFWxoUZNsBRLTf
+        ZmCUACD4pP6Yy9Z18RnQqUY/Q7FZ0pZrRL70e9Y=
+X-Google-Smtp-Source: AGRyM1vGdc4tj1sIjgz8UYjpRrxDv/s84ytlBbORBjuGdinTMQCg18ZnMkqwM6+ZhPswFP/8ZGSKkh7uLCbGZmDByLs=
+X-Received: by 2002:a05:6902:10c9:b0:668:e27c:8f7 with SMTP id
+ w9-20020a05690210c900b00668e27c08f7mr11119502ybu.128.1656615810234; Thu, 30
+ Jun 2022 12:03:30 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 4/7] dt-bindings: msm: dsi: Add vdd* descriptions back in
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
-        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org>
- <20220630120845.3356144-5-bryan.odonoghue@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630120845.3356144-5-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220629115010.10538-1-andriy.shevchenko@linux.intel.com> <20220630162716.GA2842206-robh@kernel.org>
+In-Reply-To: <20220630162716.GA2842206-robh@kernel.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 30 Jun 2022 21:02:53 +0200
+Message-ID: <CAHp75VdARCTnpEMyVRAWv7jVSj_+m8_xYiNTwmX6LCzpZT8Tuw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] of: unittest: Switch to use fwnode instead of of_node
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Frank Rowand <frank.rowand@sony.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 14:08, Bryan O'Donoghue wrote:
-> When converting from .txt to .yaml we didn't include descriptions for the
-> existing regulator supplies.
-> 
-> - vdd
-> - vdda
-> - vddio
-> 
-> Add those descriptions into the yaml now as they were prior to the
-> conversion.
-> 
-> Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/display/msm/dsi-controller-main.yaml    | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 91324f0828448..fd9d472437853 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -125,6 +125,18 @@ properties:
->        - port@0
->        - port@1
->  
-> +  vdd-supply:
-> +    description:
-> +      Phandle to vdd regulator device node
-> +
-> +  vddio-supply:
-> +    description:
-> +      Phandle to vdd regulator device node
-> +
-> +  vdda-supply:
-> +    description:
-> +      Phandle to vdd regulator device node
-> +
+On Thu, Jun 30, 2022 at 6:29 PM Rob Herring <robh@kernel.org> wrote:
+> On Wed, Jun 29, 2022 at 02:50:09PM +0300, Andy Shevchenko wrote:
+> > GPIO library now accepts fwnode as a firmware node, so
+> > switch the module to use it.
 
-They should be also added to required fields, because before they were
-required.
+...
 
+> > -     devptr->chip.of_node = pdev->dev.of_node;
+> > +     devptr->chip.fwnode = dev_fwnode(&pdev->dev);
+>
+> Perhaps I want the DT test code to test using the of_node pointer. We do
+> want that to work, right?
 
-Best regards,
-Krzysztof
+Nope. We want to get rid of of_node in GPIO.
+
+> I'm really not a fan of fwnode'ifying things that are DT only. It's
+> really pointless churn.
+
+Other way around, keeping an of_node for just 3 drivers (and counting
+down) + one test case is pointless churn.
+
+But I got that commit message that is unclear about the intentions
+behind. I will update that if you agree on the rest.
+
+-- 
+With Best Regards,
+Andy Shevchenko
