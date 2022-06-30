@@ -2,104 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C24CD5621AA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47EC75621B3
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235974AbiF3SDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 14:03:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52244 "EHLO
+        id S234707AbiF3SIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 14:08:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236542AbiF3SDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:03:17 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205FB1181D
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:03:11 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id o25so8056024ejm.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:03:11 -0700 (PDT)
+        with ESMTP id S232827AbiF3SId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:08:33 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A9B32AE32
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:08:32 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id ge10so40544215ejb.7
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:08:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0uH+swHPlJ9RojSxikcvtTdTm2Ft6StJ5nSjXFZviuQ=;
-        b=mJyJ63L6G3LfrFNNOPQL+JCUsu4K66zLibFmLn6QDWgTUkWw45WcS1kbpltS66qyoC
-         h5dyEEH5b8qkX/57TOgz6MWYJlU6EmcnHvNQ6DICRXnrUNKfKv5z47oRruC40/ELf0Dq
-         8XBH+e/zPZeg/uRg51ZCSrbIo0A6ARJP5QT+yr+/eCNyC78bDz6Y9fl8xEt8sq4068vA
-         BkIx4SyM4HuXLLHPn66lSEjJ20PxaMzytdPjOo043SlTKNiiS7YtqXPfQBcSd2CF+Ur9
-         zsCmOjU11pUatUz+iJ3N3i96JGTxXGJSjWgv2RtcDCyiHbmZBjYYXeK8S+MRck82xk6H
-         O2Bg==
+        bh=j9nxxeU6YahBlPI3fltsFIAQYvUShziYDUlxlVJ26QI=;
+        b=s7/VHFicVnBs4CDWhCQ0pGpMWLIZSHESOOZqYY9o1QnXFH9b1V7ZMWT6hjoCjkI1qn
+         fbchF1I675KOR1DeQOaW3s0GywbT++EH9hk/yr7Fl/gSztFmPYDkOYxT3d2tR8MvXzun
+         MMua4OGm6vgAsbx1Yk8ywkMY4CczTbmz6u9aVy+w7lUTRwp7YRblXfuMmSXHkrG7zkQ4
+         GCPhPq98aJRwmuUc1RVdJ0TuIIy3F5lLifLhpXtNCAAppn2oCZjuMe4rDvoXzL4KkbXV
+         OoUtfsV8les8wEGdBGWXL3kPF+wBgiGrbj5f+sl460jiz29icwR57Iyr6Q/WfRjDP9LY
+         kALA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=0uH+swHPlJ9RojSxikcvtTdTm2Ft6StJ5nSjXFZviuQ=;
-        b=3g6NRVq9X1AYgW9g+WQ0vTWH5AI58hn1CcLrzL9czaOzzKFUlS2hON1oIQ41vyf4k3
-         MXOWHBiKN/hY6XDbxiKEcJkZ8d8Pz4f4lb8td2PeI7ZEKWPsfEbeWwd2mTWaC7zLIQBr
-         1qw4cpHHMFZ0hFu1Unj2c+/q5Ys8Nf8Iyysg4LsRt1QoIKC9HCOfBYXbF5imugThYjFD
-         mh0TcZAgG/OqdKsuz4EUsu+OQhnO+t8xJmnLbq9PXvZNWUaZnGsxY29jEPNpVsLPIxg2
-         6YoO6AfHMLaYF6XLjTqfwcCuqA48ElmS1DEiqzlkPHueFjTn8qsqsjwQDQtzHnma5Y+z
-         s0Cw==
-X-Gm-Message-State: AJIora97Qh+nh1tF872O7q3JyGNiqONexlbgY489m6KdWdDltj9h6s8p
-        s3TUkbhll4Fj5rKTxBcQiu7Cyg==
-X-Google-Smtp-Source: AGRyM1tYnKg/a71RXO4vS6NNUZ8q1v3nVBYI/1+tx/313mwWo6s1xK6fPmKQRUx5yy1KucH3TezGwg==
-X-Received: by 2002:a17:906:749b:b0:722:d9ce:fac3 with SMTP id e27-20020a170906749b00b00722d9cefac3mr9698020ejl.699.1656612190144;
-        Thu, 30 Jun 2022 11:03:10 -0700 (PDT)
+        bh=j9nxxeU6YahBlPI3fltsFIAQYvUShziYDUlxlVJ26QI=;
+        b=nzEpcsRkCVBdTZrlJuKjUhG7EKOerP6L+/TOd1oH7zH7HQPAGPLFqRhB+L2KUrpszI
+         9thUo6Ca1zLTi26U7Z1ipbGGS11GSdJIkiDiEIvwmo1r3TLr2jo7/CI74IGCzdYq6OYH
+         hY7qHnonxfKtcSxIFsIZCahT4JN+LJmK6xV2hxjN7hYLUJAHGZ9yCPxGozt3KU51+jhE
+         M6UTPj1H9EQw90KstQiGpOcjoBwwuusOw372cK5vQHEy+V//MF7E0b6xmNEe/OSKVlJ1
+         q5F2sLdDeFLu3hhkJUNQB6o6RDBhRyfeTZGqHt0tMwFyqHd/qUK5cagBqszDMJRcpAJ2
+         XWHA==
+X-Gm-Message-State: AJIora96OQPhtmnW1Hqn5pvbj+h7maNfyOBAs5adprS25SOEu1zytier
+        rrgJvTmAfWaS3PXjGa5Qu7+pZA==
+X-Google-Smtp-Source: AGRyM1sJdaf8gq6PHdDzpHLzfj8N8B+yZ1A+B1WdVVsBABfBd2PsxvWUCMFM/rwuYdwKoPz6aeHo7g==
+X-Received: by 2002:a17:906:2001:b0:6f3:bd7f:d878 with SMTP id 1-20020a170906200100b006f3bd7fd878mr9869519ejo.133.1656612510651;
+        Thu, 30 Jun 2022 11:08:30 -0700 (PDT)
 Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k10-20020a170906970a00b006fea59ef3a5sm9427520ejx.32.2022.06.30.11.03.07
+        by smtp.gmail.com with ESMTPSA id a18-20020a170906671200b00718e4e64b7bsm9382773ejp.79.2022.06.30.11.08.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 11:03:09 -0700 (PDT)
-Message-ID: <c4f26508-45bb-d553-36b9-27ace8bed71f@linaro.org>
-Date:   Thu, 30 Jun 2022 20:03:07 +0200
+        Thu, 30 Jun 2022 11:08:29 -0700 (PDT)
+Message-ID: <db9d9455-37af-1616-8f7f-3d752e7930f1@linaro.org>
+Date:   Thu, 30 Jun 2022 20:08:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v6 00/14] dt-bindings: arm: freescale: Switch fsl,scu from
- txt to yaml
+Subject: Re: [PATCH net-next v2 01/35] dt-bindings: phy: Add QorIQ SerDes
+ binding
 Content-Language: en-US
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Paolo Abeni <pabeni@redhat.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Eric Dumazet <edumazet@google.com>,
+        linux-kernel@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Liu Ying <victor.liu@nxp.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
- <0e515289-9d3c-9c61-950d-09c14b33c8c2@linaro.org>
- <20220630121042.7kwomc4jc4zppoyw@fsr-ub1664-116>
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+References: <20220628221404.1444200-1-sean.anderson@seco.com>
+ <20220628221404.1444200-2-sean.anderson@seco.com>
+ <20220630172713.GA2921749-robh@kernel.org>
+ <7fe84856-7115-b0f4-b0e1-0b47acbddb7a@seco.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630121042.7kwomc4jc4zppoyw@fsr-ub1664-116>
+In-Reply-To: <7fe84856-7115-b0f4-b0e1-0b47acbddb7a@seco.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -107,34 +88,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 14:13, Viorel Suman (OSS) wrote:
-> On 22-06-29 19:51:06, Krzysztof Kozlowski wrote:
->> On 29/06/2022 18:44, Viorel Suman (OSS) wrote:
->>> From: Viorel Suman <viorel.suman@nxp.com>
+On 30/06/2022 20:01, Sean Anderson wrote:
+> Hi Rob,
+> 
+> On 6/30/22 1:27 PM, Rob Herring wrote:
+>> On Tue, Jun 28, 2022 at 06:13:30PM -0400, Sean Anderson wrote:
+>>> This adds a binding for the SerDes module found on QorIQ processors. The
+>>> phy reference has two cells, one for the first lane and one for the
+>>> last. This should allow for good support of multi-lane protocols when
+>>> (if) they are added. There is no protocol option, because the driver is
+>>> designed to be able to completely reconfigure lanes at runtime.
+>>> Generally, the phy consumer can select the appropriate protocol using
+>>> set_mode. For the most part there is only one protocol controller
+>>> (consumer) per lane/protocol combination. The exception to this is the
+>>> B4860 processor, which has some lanes which can be connected to
+>>> multiple MACs. For that processor, I anticipate the easiest way to
+>>> resolve this will be to add an additional cell with a "protocol
+>>> controller instance" property.
 >>>
->>> Changes since v5: https://lore.kernel.org/lkml/20220616164303.790379-1-viorel.suman@nxp.com/
->>>   * Updated according to Krzysztof Kozlowski comments
+>>> Each serdes has a unique set of supported protocols (and lanes). The
+>>> support matrix is stored in the driver and is selected based on the
+>>> compatible string. It is anticipated that a new compatible string will
+>>> need to be added for each serdes on each SoC that drivers support is
+>>> added for. There is no "generic" compatible string for this reason.
 >>>
+>>> There are two PLLs, each of which can be used as the master clock for
+>>> each lane. Each PLL has its own reference. For the moment they are
+>>> required, because it simplifies the driver implementation. Absent
+>>> reference clocks can be modeled by a fixed-clock with a rate of 0.
+>>>
+>>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>>> ---
+>>>
+>>> Changes in v2:
+>>> - Add #clock-cells. This will allow using assigned-clocks* to configure
+>>>   the PLLs.
+>>> - Allow a value of 1 for phy-cells. This allows for compatibility with
+>>>   the similar (but according to Ioana Ciornei different enough) lynx-28g
+>>>   binding.
+>>> - Document phy cells in the description
+>>> - Document the structure of the compatible strings
+>>> - Fix example binding having too many cells in regs
+>>> - Move compatible first
+>>> - Refer to the device in the documentation, rather than the binding
+>>> - Remove minItems
+>>> - Rename to fsl,lynx-10g.yaml
+>>> - Use list for clock-names
+>>>
+>>>  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 93 +++++++++++++++++++
+>>>  1 file changed, 93 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+>>> new file mode 100644
+>>> index 000000000000..b5a6f631df9f
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+>>> @@ -0,0 +1,93 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/phy/fsl,lynx-10g.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: NXP Lynx 10G SerDes
+>>> +
+>>> +maintainers:
+>>> +  - Sean Anderson <sean.anderson@seco.com>
+>>> +
+>>> +description: |
+>>> +  These Lynx "SerDes" devices are found in NXP's QorIQ line of processors. The
+>>> +  SerDes provides up to eight lanes. Each lane may be configured individually,
+>>> +  or may be combined with adjacent lanes for a multi-lane protocol. The SerDes
+>>> +  supports a variety of protocols, including up to 10G Ethernet, PCIe, SATA, and
+>>> +  others. The specific protocols supported for each lane depend on the
+>>> +  particular SoC.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    description: |
+>>> +      Each compatible is of the form "fsl,<soc-name>-serdes-<instance>".
+>>> +      Although many registers are compatible between different SoCs, the
+>>> +      supported protocols and lane assignments tend to be unique to each SerDes.
+>>> +      Additionally, the method of activating protocols may also be unique.
 >>
->> My comment a about removal of each part of TXT bindings in each patch,
->> was not addressed. Your approach makes it more difficult to read patches
->> and makes sense only if each subsystem maintainer will take the patches
->> (separately). If the patches are going through one tree, then better to
->> remove the TXT gradually.
->>
->> So the question - who is going to take each of the patches?
+>> We typically have properties for handling these variables. Numbering 
+>> instances is something we avoid.
 > 
-> Hi Krzysztof,
-> 
-> I just understood the context of your comment, will do it in the next version.
-> 
-> Assuming TXT is removed from aggregating TXT - fsl,scu.txt - gradually, do you expect the
-> removed to be added into the aggregating YAML - fsl,scu.yaml - also gradually within the
-> same patch ?
+> On v1, Krzysztof said that this was a better route...
 
-Each patch making the conversion should remove the piece being
-converted. Then finally the patch adding fsl,scu.yaml should remove the
-last pieces (remaining ones).
+I commented about "-1" and "-2" saying you have to make them properties.
+You disagreed and with long messages were convincing me that "-1" and
+"-2" is the only reasonable approach. I never said it is a better route.
+I explicitly asked in several places for defining these as properties,
+not as compatibles.
+
+You are twisting the entire discussion now.
 
 Best regards,
 Krzysztof
