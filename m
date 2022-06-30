@@ -2,87 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56879561031
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 06:29:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C7CB561048
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 06:35:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231623AbiF3E3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 00:29:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40882 "EHLO
+        id S231853AbiF3Efm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 00:35:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230135AbiF3E3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 00:29:12 -0400
-Received: from ni.piap.pl (ni.piap.pl [195.187.100.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D90FF33E28;
-        Wed, 29 Jun 2022 21:29:10 -0700 (PDT)
-Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
-        by ni.piap.pl (Postfix) with ESMTPSA id DB312C3F3EDF;
-        Thu, 30 Jun 2022 06:29:06 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl DB312C3F3EDF
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
-        t=1656563347; bh=h1CvsX5f0r5ND4l/vVuhCgjxDaKnyXHFKfDiL3Ks5Yw=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=GLt2XT7f6rm1gzfK7d46W8JtcpT/qQH4WaOG5gTiptH7NCqixhgnuT/E4NdnYvupp
-         7ssruRSLPXILRjAq7OdvvoAfdHDzyKR8b4FQdLa8zQ34Fc5sCsdTOCxvQlaEeOrnDG
-         J5O5bUhy5qPn0/VWvC+aDSgQA/hrIoH2acyxgbz8=
-From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Joe Perches <joe@perches.com>
-Subject: Re: [PATCH v8 2/2] On Semi AR0521 sensor driver
-References: <m3pmn66pie.fsf@t19.piap.pl> <m3h78i6p4t.fsf@t19.piap.pl>
-        <20220301093107.ihokyp4xptkzpbpc@uno.localdomain>
-        <m38rtt7sx7.fsf@t19.piap.pl>
-        <20220301143044.2l4vlwbnh5n3g5ng@uno.localdomain>
-        <m37d7ufrzx.fsf@t19.piap.pl> <m3pmkryywn.fsf@t19.piap.pl>
-        <YrziTabYLlZ2bX+1@valkosipuli.retiisi.eu>
-Sender: khalasa@piap.pl
-Date:   Thu, 30 Jun 2022 06:29:06 +0200
-In-Reply-To: <YrziTabYLlZ2bX+1@valkosipuli.retiisi.eu> (Sakari Ailus's message
-        of "Thu, 30 Jun 2022 02:37:49 +0300")
-Message-ID: <m34k027p0t.fsf@t19.piap.pl>
+        with ESMTP id S230135AbiF3Efm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 00:35:42 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC8B1DA73
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:35:41 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id e28so20222301wra.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:35:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mF82bNKU7H4VWQP1YGukVst2LLNLKLALPHMqosyLacQ=;
+        b=sFewG08kIEOas7MAKG8nACszaWiiZX9jCyBqLE/xBMk3SfClZEGO8IhZLjWcJ2fgPU
+         lnHAn/0mOi0tu3hovtuId46ERS/2EN2fQ3f6WWBeqtkX8YAKo49eAF67kCGEc8atWCly
+         pb7oOXfxHlUYYNIw/ycdg5XUeYCsxTBuDZ0ypgEn3l2fsNhFjGPwFClbs0ZvbKKWu2mR
+         UL7KhMYDIRwOoT6VgywuDsFe+4irSHen6muKLUY0zsvWJ5O2EcxKC1FCnIUN5JAMPoNg
+         dQYoivATX/59pc+CEi9UGyLu88QDAkE/q+oMHs4qdlfl1t0M0UxgKD7kaPHiuRyn+zi+
+         AKpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mF82bNKU7H4VWQP1YGukVst2LLNLKLALPHMqosyLacQ=;
+        b=wUh23jSaX7a3ffQL2wAq4OTH3PrYLKPfOj7BviWMAhqvasL/DD3xuk5hIV/1+GrMKN
+         Zd5NiHoh4pXDovFL1y4bbxyfYKgpO+0+UAKNu/M5X3nWnATifwpe9C3vqSLYqlgcoMoO
+         P/a5BsebRSOGh9y57BtIdeeIRp30VQAsWPgJR3RzYXMVBeHLQgoTpvB882htU477/Dv6
+         dEkZz4H+DvgY3ppO/wqnCu9uYbrsJQfGnpLdDtWOIEMlutpXIK84aYrIeVstKMrMwkd1
+         me9MulyFJ697PQ5+ljni6ykI0JI5ZIJv7jqaJ0qmI+uS3531M9n502dh1NMRlhw2UCks
+         pQFw==
+X-Gm-Message-State: AJIora+cdjsJ6srorUabgLIYURKt1sOeZrRea3hPmO3kEZKztBYju58n
+        BJsV9UZERX0ZGjHVwI9uz6gv4g==
+X-Google-Smtp-Source: AGRyM1sYqdpwtzWOHk363f7BKWapsJVRhHSOK/anpZD6GbS9MUXD6TzzAcvrrYxs8k2VHxfWMvJN3Q==
+X-Received: by 2002:a5d:53ca:0:b0:21b:940f:8e29 with SMTP id a10-20020a5d53ca000000b0021b940f8e29mr6400535wrw.490.1656563739666;
+        Wed, 29 Jun 2022 21:35:39 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id k1-20020a5d6281000000b0021b9e360523sm18642335wru.8.2022.06.29.21.35.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jun 2022 21:35:39 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        jassisinghbrar@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        bryan.odonoghue@linaro.org
+Subject: [PATCH 0/2] Two apcs-kpss-global.yaml fixes
+Date:   Thu, 30 Jun 2022 05:35:34 +0100
+Message-Id: <20220630043536.3308546-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-KLMS-Message-Action: skipped
-X-KLMS-AntiSpam-Status: not scanned, license restriction
-X-KLMS-AntiPhishing: not scanned, license restriction
-X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, not scanned, license restriction
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+Adding in msm8939.dtsi and running the binding checks is throwing up two
+errors for me.
 
-Sakari Ailus <sakari.ailus@iki.fi> writes:
+In the first instance we use syscon on the 8939 and should declare it in
+the compat list. Doing a quick grep it looks like that fix should be
+applied to a number of existing declarations too.
 
-> I've
-> applied it with these changes:
->
-> diff --git a/drivers/media/i2c/ar0521.c b/drivers/media/i2c/ar0521.c
-...
-> @@ -1056,4 +1058,4 @@ module_i2c_driver(ar0521_i2c_driver);
->=20=20
->  MODULE_DESCRIPTION("AR0521 MIPI Camera subdev driver");
->  MODULE_AUTHOR("Krzysztof Ha=C5=82asa <khalasa@piap.pl>");
-> -MODULE_LICENSE("GPL v2");
-> +MODULE_LICENSE("GPL");
+In the second instance we just need to document clock-output-names for the
+a53 mux PLL.
 
-Why did you change this? Are now "GPL v2" tags forbidden in
-drivers/media?
+Bryan O'Donoghue (2):
+  dt-bindings: mailbox: qcom: Add syscon const for relevant entries
+  dt-bindings: mailbox: qcom: Add clock-output-names
 
-Thanks for looking at this, though.
---=20
-Krzysztof "Chris" Ha=C5=82asa
+ .../mailbox/qcom,apcs-kpss-global.yaml        | 49 +++++++++++--------
+ 1 file changed, 29 insertions(+), 20 deletions(-)
 
-Sie=C4=87 Badawcza =C5=81ukasiewicz
-Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+-- 
+2.36.1
+
