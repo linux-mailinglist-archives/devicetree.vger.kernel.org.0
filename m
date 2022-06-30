@@ -2,152 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DAB8561E56
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 16:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D59B561E6D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 16:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234525AbiF3Opu convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 30 Jun 2022 10:45:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54054 "EHLO
+        id S235612AbiF3Ovy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 10:51:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234227AbiF3Opt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 10:45:49 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C5691AF3A
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 07:45:48 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1o6vPz-0001Ot-GB; Thu, 30 Jun 2022 16:45:19 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1o6vPs-003bq3-Kk; Thu, 30 Jun 2022 16:45:16 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1o6vPv-000AeP-9t; Thu, 30 Jun 2022 16:45:15 +0200
-Message-ID: <be61be2446998c40b51a33453dda4d0b5f1518c3.camel@pengutronix.de>
-Subject: Re: [PATCH v2 0/2] i2c: Add new driver for Renesas RZ/V2M controller
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Sven Peter <sven@svenpeter.dev>, Jan Dabros <jsd@semihalf.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Tyrone Ting <kfting@nuvoton.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Date:   Thu, 30 Jun 2022 16:45:15 +0200
-In-Reply-To: <TYYPR01MB7086706381CDCEF4F582690CF5BA9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-References: <20220628194526.111501-1-phil.edworthy@renesas.com>
-         <c168df990e1187bf44a5c46be53aa6b20d30d14d.camel@pengutronix.de>
-         <CAMuHMdXV72_BWOpU=O13Fa3-t001YSRdsFePSHBS=Xvh1jY1EQ@mail.gmail.com>
-         <TYYPR01MB7086706381CDCEF4F582690CF5BA9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S235425AbiF3Ovw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 10:51:52 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A4261D0D3
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 07:51:51 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id q9so27692410wrd.8
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 07:51:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=9Vy0Q0yOTMgozrHr/k/yV5yONhH9Zbt0a1EaEatVf+M=;
+        b=r4J30h3bEqLpGViZoCt3O4Hu1A5Wj8yEoXJyszGfn/2GIs+kmRDBHulPLdUyC4Ipgf
+         511lhEjeX6IjV6aAfF4VgBZrNrJgHftDLZbVV7kyp+6VJtKdZ/CQfMINKKgXtPTKNGZt
+         5L2uSoPR4Ll1ZcvuB0Pp5zfWhANJGiUi77pZuSpTenN24NJaiedqX+Ma26654YC4zDcg
+         +hbWPRjgQObK+W99vRfGDLVj3QX/o1hqIR+2AYQhIKXLEOV2e98MCtRtla8lQgWG9uDV
+         BCYikfSKz9/5Et7f0xcWox2UNv/tFKLx+pSXweXdeRvtvKiRMe0thmxCDXTmS1TYJ6OK
+         Pvaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=9Vy0Q0yOTMgozrHr/k/yV5yONhH9Zbt0a1EaEatVf+M=;
+        b=540zQozOzT/1dTYaWIzteyUfUQq/RMxxiE7uTCDKb6tw7hR/FskxAmhNUtvPIIBYnw
+         SfcCJh7h6JqxXhvQeLS6Bcwb1MnfLtTAV9kV+S6Dbdds4mqAjuEJ7tnXHmXnBQIGGhXG
+         YDiBD3F7uJEaV6r5FJAig3YZjYhUTln24t2O4Rp0moKdXGYIL09FuamU8BtiKZpl37na
+         TK/7EKtXlYcKPRYRhYHpUXgEtpUIFD2O1QVrjk8dcyVcIZMlBI5BSAKnNjzpyaqt8im2
+         UpS3TtJ9SZkc68uR3mGNj46xGXVA75ER2b45bhm+EptQM0JarnCZ0w8E3ANaqwsiyGAf
+         DuOw==
+X-Gm-Message-State: AJIora8zYnWj6oXRIbE27d55uVfZkpsXx2bL9bCiEVws246KT6K6KXH5
+        ZvM56HrvC4FDmt6JTCpe3YgpHA==
+X-Google-Smtp-Source: AGRyM1sZE6o0QXRdpPatXcWMIkBfS5RwTO5A1CXqWo9NWMsluuItsc+JQISfOGpvtoQ5/vBZ9B/ppA==
+X-Received: by 2002:a5d:47a1:0:b0:21d:1723:94f3 with SMTP id 1-20020a5d47a1000000b0021d172394f3mr8540807wrb.580.1656600710016;
+        Thu, 30 Jun 2022 07:51:50 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id r16-20020a05600c35d000b003a0375c4f73sm7209219wmq.44.2022.06.30.07.51.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jun 2022 07:51:49 -0700 (PDT)
+Date:   Thu, 30 Jun 2022 16:51:47 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     John Keeping <john@metanate.com>
+Cc:     heiko@sntech.de, ardb@kernel.org, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v7 14/33] crypto: rockchip: handle reset also in PM
+Message-ID: <Yr24g3LoO5uFuCux@Red>
+References: <20220508185957.3629088-1-clabbe@baylibre.com>
+ <20220508185957.3629088-15-clabbe@baylibre.com>
+ <YrBUODGF51oUsF1f@donbot>
+ <YrF74tmA9qc+I3JF@Red>
+ <YrHJn6Pl5B/1pj9L@donbot>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YrHJn6Pl5B/1pj9L@donbot>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Phil,
-
-On Do, 2022-06-30 at 13:43 +0000, Phil Edworthy wrote:
-> Hi Philipp, Geert,
-> 
-> On 29 June 2022 18:18 Geert Uytterhoeven wrote:
-> > On Wed, Jun 29, 2022 at 6:21 PM Philipp Zabel wrote:
-> > > On Di, 2022-06-28 at 20:45 +0100, Phil Edworthy wrote:
-> > > > The Renesas RZ/V2M SoC (r9a09g011) has a new i2c controller. This
-> > series
-> > > > add the driver. One annoying problem is that the SoC uses a single
-> > reset
-> > > > line for two i2c controllers, and unfortunately one of the controllers
-> > > > is managed by some firmware, not by Linux. Therefore, the driver just
-> > > > deasserts the reset.
+Le Tue, Jun 21, 2022 at 02:37:35PM +0100, John Keeping a �crit :
+> On Tue, Jun 21, 2022 at 10:05:54AM +0200, LABBE Corentin wrote:
+> > Le Mon, Jun 20, 2022 at 12:04:24PM +0100, John Keeping a �crit :
+> > > On Sun, May 08, 2022 at 06:59:38PM +0000, Corentin Labbe wrote:
+> > > > reset could be handled by PM functions.
 > > > 
-> > > This sounds scary. If the driver is never loaded, and the reset is
-> > > never deasserted, what happens to the firmware trying to access the
-> > > other i2c controller? Does it hang? Or write to the reset controller
-> > > registers to deassert the reset? If so, is there any protection against
-> > > concurrent access from firmware and reset controller driver?
-> Where a common reset is used by Linux and some firmware, I think we have to
-> ensure/assume that both only ever de-assert it.
-
-We also have to make sure that no read-modify-write cycles are required
-to deassert the resets if we can't lock between firmware and kernel.
-Otherwise concurrent access could cause a deassert to be reverted.
-
-> In this particular SoC, the register used to assert/de-assert the reset
-> has write enable bits in the upper half of the reg. There shouldn't be any
-> issues with both trying to de-assert the reset at the same time.
-
-Which reset driver is handling the reset for this i2c module?
-
-> > In response to v1, I wrote
+> > > Is there any further rationale for this?
+> > > 
+> > > After this change there is no longer a guaranteed reset pulse on probe
+> > > since the reset control may already be de-asserted.  This is normally
+> > > the most important case for a reset as it's the only time when the state
+> > > of the hardware is unknown.
+> > > 
+> > > The original use of devm_add_action_or_reset() seems a bit weird already
+> > > since there doesn't seem to be any need to assert reset when the driver
+> > > is unloaded.
+> > > 
 > > 
-> > > That is actually an integration issue, not an i2c controller issue.
-> > > 
-> > > Perhaps we need a RESET_IS_CRITICAL flag, cfr. CLK_IS_CRITICAL,
-> > > to be set by the reset provider?
+> > I am not an hw engineer, so my knowledge on reset is low.
+> > So why not having a reset pulse on probe is a problem ?
 > 
-> From what I understand, there are two main use cases for resets:
-> 1. Often reset lines may be asserted at power on and so a driver needs to
->    de-assert them so that the module can be used.
+> The point of the reset is to bring the hardware back to a known state.
+> Since we don't know what state the hardware will be in following the
+> bootloader or previous OS, I think the reset in probe is the only place
+> that it is important.
+> 
+> If this patch isn't fixing anything, I suggest just dropping it.
 
-There are resets that are not initially asserted (among them the self-
-deasserting resets) that are required to be asserted some time during
-boot, to put some hardware into a well defined state.
-I don't think those should be shared, but they sometimes are.
+Thanks for the explanation, I will re-add the reset at probe.
 
-> 2. A driver may need to reset the module for some reason. I have only
->    seen this with watchdog timers with no way out.
-
-Grep for device_reset() or reset_control_reset() for some examples.
-Also there are quite a few assert/udelay/deassert calls in drivers.
-
-Also many drivers assert the reset again during remove(). Whether that
-is always necessary or useful, I can't say.
-
-It's sometimes nice during development, to be able to reload a kernel
-module or rebind a driver to reset some locked up hardware.
-
-> So if a driver does not need to reset the module, shouldn't the driver
-> only ever be de-asserting the reset line?
-
-I'm not sure the driver can always know this if it is used on different
-platforms.
-
-> If so, it also doesn’t matter whether the reset is shared with other
-> modules or not.
-> If a driver needs to reset the module, then the reset cannot be shared
-> with other modules used by firmware or Linux, or we cannot use any
-> other modules that share the reset line.
-
-It can be shared for the special case of multiple modules requiring a
-shared reset line to be asserted once, at some time before the modules
-are used. The reset controller API supports this for the
-reset_control_reset() call.
-
-regards
-Philipp
