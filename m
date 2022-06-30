@@ -2,267 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAEC55612B0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 08:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 765CF5612EB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:08:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232832AbiF3GpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 02:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47864 "EHLO
+        id S232988AbiF3HIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 03:08:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232840AbiF3GpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 02:45:17 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D103135D
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 23:45:15 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id by38so21782012ljb.10
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 23:45:15 -0700 (PDT)
+        with ESMTP id S232102AbiF3HIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:08:44 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FD42E0A8
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:08:42 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id k22so25809319wrd.6
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:08:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:subject:user-agent:in-reply-to:references:message-id
-         :mime-version:content-transfer-encoding;
-        bh=fTV3UZJ8iWa2cSqb4oJMbGSxrzXh4aLO9yzSsaSbNW8=;
-        b=sQ9mpyLEUMu6hJYiXdFDncQJ0BJCa0ot78zi4pUlPT7BFc1v8Yh/MQgyo0E1wiOljb
-         Tl+6R0AfPc8ImR3AKsWMP7G4PYLa7h9v/XJXineSAeEC7LsEAFB6eVp+2rYOYsI0xjyT
-         XN3rDDxv+lrxceIdHxjWz8g19DPvLUBPkzsk74lvrlyodedG8fFbBi/EuzJl6r8VD4O7
-         yr2ko687WHJ/ZkL786xe9BD+SEjfimE+KQ6a8rcT8yZRs0/bG8HQzAgiaNmyjf8Og9uy
-         NgLzAeooWsIXOgd2H0VjXBhgLabIex/hIXQTmUAEGltppttpn5fD2ZcSt1gOFezRQ5tE
-         DYzw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ayzM4tdWAxdTq2eOnCE6d3LLrIch4LIjhD1aFF0Ci5w=;
+        b=71/VDhbaQSupQXYHrFC/jsNZ3D60v/ZgSkvNe9aWH58blGUOZNhCiH9E0fnbWR3O+7
+         tGezD/f9rZHNYSaLwhAJDcgSe2tdFW/z8Ybll36I3xVXdH85VYnJZkWam5TM3XMr/Sac
+         wuUTnOaSiVTPitMCAKgNWhnB6V2VGAQOVEnoic1SzXHlOlrO9kaJ5HiRSCUzSjHo2kwV
+         f0iIjoEfsXdWcm9BLyMNWTAvOfPVSm2C9JXqV+LIJ36724Tw86uMuiJy8f0PAiHdIp0g
+         Ryqr7c8ufaryfqZNPFqYm37ZCBTN0yZmPr2pg5MVtJLPG9hKVt8QDTN8mnCyVfCV/fOt
+         rXKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:subject:user-agent:in-reply-to
-         :references:message-id:mime-version:content-transfer-encoding;
-        bh=fTV3UZJ8iWa2cSqb4oJMbGSxrzXh4aLO9yzSsaSbNW8=;
-        b=qbAYsaxDZYKxDp9dexwoY/m6ODJs/IK0bS5CEdXNi+O8GMpmT5eljZpWA2Qt4zhsEu
-         EijuY0JZ+EtTkqXXU02OAgmdahRcr+l9qHoJWvH8IW433u0bNcAaLDlMVDdz4qN5wCP8
-         YzqUCS1gzFrbfZ5oYBjCMN3V1UnJrfXOdeOlveF44XeO6uLxZqpWCzf/Al3VgfQKVkWa
-         rL51mTE4aQoiDe+Dpmf+kdQVglFu0vwQ84+JdCwQbLgxMsGIp1ThEnBtr8PxsXxz7fGz
-         90PVItC/xWHoFyXxcqy4N7eKEf1FwRomzSikAeNMhKFp8B38YXg7fqOcP2kxqEahda7f
-         4mKA==
-X-Gm-Message-State: AJIora9ejiZvFIv6u05F5ifOyT8GaF0PfZBVDUeq0wKBoLjqUlN9/Gy4
-        akZt99QgQ26m6ZnDmu4ttHdP3g==
-X-Google-Smtp-Source: AGRyM1sg5NrMfFA43dw9hkBCjjzWbbjZlTBQWU2W1F81EEQzjiWxr05HUwdPiFvHyKlySpuzKLH/Pw==
-X-Received: by 2002:a05:651c:158c:b0:250:a23d:2701 with SMTP id h12-20020a05651c158c00b00250a23d2701mr4209164ljq.475.1656571513552;
-        Wed, 29 Jun 2022 23:45:13 -0700 (PDT)
-Received: from [127.0.0.1] ([94.25.229.210])
-        by smtp.gmail.com with ESMTPSA id 20-20020ac25f54000000b0047fa0251460sm2942546lfz.174.2022.06.29.23.45.12
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 Jun 2022 23:45:12 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 09:43:05 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Christian Marangi <ansuelsmth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_3/5=5D_dt-bindings=3A_arm=3A_msm=3A_R?= =?US-ASCII?Q?ework_kpss-gcc_driver_Documentation_to_yaml?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20220629121441.6552-4-ansuelsmth@gmail.com>
-References: <20220629121441.6552-1-ansuelsmth@gmail.com> <20220629121441.6552-4-ansuelsmth@gmail.com>
-Message-ID: <D90DE67E-DA29-4A0D-BBC1-C8209FDF69D3@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ayzM4tdWAxdTq2eOnCE6d3LLrIch4LIjhD1aFF0Ci5w=;
+        b=mTMLJCPyBU/dH2P+ilNjyL3cgxxq1oLDhIL3tMfsUf2GrDh81/TyldoOQsWR4XznxY
+         OiECkc6ToN8NMWVCatMp8JN8EkSqwYvOTsxAuH3Nq2gdDzt4qThgkE4ANGG7j6eDTICU
+         Xa0AQqaGJjBCRU+25/OjZvQAC1YfrUhautjD0Gu+BmbuB9+oD4JOboOnGW0Mj8q4PMf4
+         099bBZNJzpoWQAYGl5nKoP9hLY8XE45TDQ8vMe2RvidkHnW8qvSjvLZJa1goNT2Q2LRX
+         r/Ye87WHDEQsyPyb17FM7xsvfPghwUCacc1qC7VrQVz58W5VcOvr3frC7s06IOls7lZq
+         wV9w==
+X-Gm-Message-State: AJIora8ybQIS970yC2hEYvUaIvM+HoQ7AICTe6Y8EXWKfrDDfWxPNoe/
+        RlrOCbELSgtUsQSr084yreJbxw==
+X-Google-Smtp-Source: AGRyM1uQlTw63DMb8FdmLCF0nOX+VkDo2Bx+oRykHs0C6C6jifuUrkDqjXKm/mEHjiF/Sc9XTsJUig==
+X-Received: by 2002:a5d:4b04:0:b0:21b:8640:273f with SMTP id v4-20020a5d4b04000000b0021b8640273fmr6917973wrq.195.1656572920550;
+        Thu, 30 Jun 2022 00:08:40 -0700 (PDT)
+Received: from localhost.localdomain (120.205.87.79.rev.sfr.net. [79.87.205.120])
+        by smtp.gmail.com with ESMTPSA id u23-20020a7bcb17000000b0039aef592ca0sm5397421wmj.35.2022.06.30.00.08.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jun 2022 00:08:39 -0700 (PDT)
+From:   Julien Panis <jpanis@baylibre.com>
+To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Julien Panis <jpanis@baylibre.com>
+Subject: [PATCH] arm64: dts: ti: k3-am62: add watchdog nodes
+Date:   Thu, 30 Jun 2022 09:08:26 +0200
+Message-Id: <20220630070826.11074-1-jpanis@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add nodes for watchdogs :
+- 5 in main domain
+- 1 in MCU domain
+- 1 in wakeup domain
 
+Signed-off-by: Julien Panis <jpanis@baylibre.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 45 ++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  9 +++++
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  9 +++++
+ 3 files changed, 63 insertions(+)
 
-On 29 June 2022 15:14:39 GMT+03:00, Christian Marangi <ansuelsmth@gmail=2E=
-com> wrote:
->Rework kpss-gcc driver Documentation to yaml Documentation=2E
->The current kpss-gcc Documentation have major problems and can't be
->converted directly=2E Introduce various changes to the original
->Documentation=2E
->
->Add #clock-cells additional binding as this clock outputs a static clk
->named acpu_l2_aux with supported compatible=2E
->Only some compatible require and outputs a clock, for the others, set
->only the reg as a required binding to correctly export the kpss-gcc
->registers=2E As the reg is shared also add the required syscon compatible=
-=2E
->
->Signed-off-by: Christian Marangi <ansuelsmth@gmail=2Ecom>
->---
-> =2E=2E=2E/bindings/arm/msm/qcom,kpss-gcc=2Etxt        | 44 ---------
-> =2E=2E=2E/bindings/arm/msm/qcom,kpss-gcc=2Eyaml       | 90 +++++++++++++=
-++++++
-> 2 files changed, 90 insertions(+), 44 deletions(-)
-> delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-g=
-cc=2Etxt
-> create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-g=
-cc=2Eyaml
->
->diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc=2Etx=
-t b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc=2Etxt
->deleted file mode 100644
->index e628758950e1=2E=2E000000000000
->--- a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc=2Etxt
->+++ /dev/null
->@@ -1,44 +0,0 @@
->-Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)
->-
->-PROPERTIES
->-
->-- compatible:
->-	Usage: required
->-	Value type: <string>
->-	Definition: should be one of the following=2E The generic compatible
->-			"qcom,kpss-gcc" should also be included=2E
->-			"qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc"
->-			"qcom,kpss-gcc-apq8064", "qcom,kpss-gcc"
->-			"qcom,kpss-gcc-msm8974", "qcom,kpss-gcc"
->-			"qcom,kpss-gcc-msm8960", "qcom,kpss-gcc"
->-
->-- reg:
->-	Usage: required
->-	Value type: <prop-encoded-array>
->-	Definition: base address and size of the register region
->-
->-- clocks:
->-	Usage: required
->-	Value type: <prop-encoded-array>
->-	Definition: reference to the pll parents=2E
->-
->-- clock-names:
->-	Usage: required
->-	Value type: <stringlist>
->-	Definition: must be "pll8_vote", "pxo"=2E
->-
->-- clock-output-names:
->-	Usage: required
->-	Value type: <string>
->-	Definition: Name of the output clock=2E Typically acpu_l2_aux indicatin=
-g
->-		    an L2 cache auxiliary clock=2E
->-
->-Example:
->-
->-	l2cc: clock-controller@2011000 {
->-		compatible =3D "qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc";
->-		reg =3D <0x2011000 0x1000>;
->-		clocks =3D <&gcc PLL8_VOTE>, <&gcc PXO_SRC>;
->-		clock-names =3D "pll8_vote", "pxo";
->-		clock-output-names =3D "acpu_l2_aux";
->-	};
->diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc=2Eya=
-ml b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc=2Eyaml
->new file mode 100644
->index 000000000000=2E=2E27f7df7e3ec4
->--- /dev/null
->+++ b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc=2Eyaml
->@@ -0,0 +1,90 @@
->+# SPDX-License-Identifier: GPL-2=2E0-only OR BSD-2-Clause
->+%YAML 1=2E2
->+---
->+$id: http://devicetree=2Eorg/schemas/arm/msm/qcom,kpss-gcc=2Eyaml#
->+$schema: http://devicetree=2Eorg/meta-schemas/core=2Eyaml#
->+
->+title: Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)
->+
->+maintainers:
->+  - Christian Marangi <ansuelsmth@gmail=2Ecom>
->+
->+description: |
->+  Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)=2E Use=
-d
->+  to control L2 mux (in the current implementation) and provide access
->+  to the kpss-gcc registers=2E
->+
->+properties:
->+  compatible:
->+    items:
->+      - enum:
->+          - qcom,kpss-gcc-ipq8064
->+          - qcom,kpss-gcc-apq8064
->+          - qcom,kpss-gcc-msm8974
->+          - qcom,kpss-gcc-msm8960
->+          - qcom,kpss-gcc-msm8660
->+          - qcom,kpss-gcc-mdm9615
->+      - const: qcom,kpss-gcc
->+      - const: syscon
->+
->+  reg:
->+    maxItems: 1
->+
->+  clocks:
->+    items:
->+      - description: phandle to pll8_vote
->+      - description: phandle to pxo_board
->+
->+  clock-names:
->+    items:
->+      - const: pll8_vote
->+      - const: pxo
->+
->+  '#clock-cells':
->+    const: 0
->+
->+required:
->+  - compatible
->+  - reg
->+
->+if:
->+  properties:
->+    compatible:
->+      contains:
->+        enum:
->+          - qcom,kpss-gcc-ipq8064
->+          - qcom,kpss-gcc-apq8064
->+          - qcom,kpss-gcc-msm8974
->+          - qcom,kpss-gcc-msm8960
->+then:
->+  required:
->+    - clocks
->+    - clock-names
->+    - '#clock-cells'
->+else:
->+  properties:
->+    clock: false
->+    clock-names: false
->+    '#clock-cells': false
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index 5b2c210c592c..7202937618b7 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -572,4 +572,49 @@ main_mcan0: can@20701000 {
+ 		interrupt-names = "int0", "int1";
+ 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+ 	};
++
++	main_rti0: watchdog@e000000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e000000 0x00 0x100>;
++		clocks = <&k3_clks 125 0>;
++		power-domains = <&k3_pds 125 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 125 0>;
++		assigned-clock-parents = <&k3_clks 125 2>;
++	};
++
++	main_rti1: watchdog@e010000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e010000 0x00 0x100>;
++		clocks = <&k3_clks 126 0>;
++		power-domains = <&k3_pds 126 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 126 0>;
++		assigned-clock-parents = <&k3_clks 126 2>;
++	};
++
++	main_rti2: watchdog@e020000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e020000 0x00 0x100>;
++		clocks = <&k3_clks 127 0>;
++		power-domains = <&k3_pds 127 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 127 0>;
++		assigned-clock-parents = <&k3_clks 127 2>;
++	};
++
++	main_rti3: watchdog@e030000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e030000 0x00 0x100>;
++		clocks = <&k3_clks 128 0>;
++		power-domains = <&k3_pds 128 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 128 0>;
++		assigned-clock-parents = <&k3_clks 128 2>;
++	};
++
++	main_rti15: watchdog@e0f0000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e0f0000 0x00 0x100>;
++		clocks = <&k3_clks 130 0>;
++		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 130 0>;
++		assigned-clock-parents = <&k3_clks 130 2>;
++	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+index f56c803560f2..f82e94def774 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+@@ -81,4 +81,13 @@ mcu_gpio0: gpio@4201000 {
+ 		clocks = <&k3_clks 79 0>;
+ 		clock-names = "gpio";
+ 	};
++
++	mcu_rti0: watchdog@4880000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x04880000 0x00 0x100>;
++		clocks = <&k3_clks 131 0>;
++		power-domains = <&k3_pds 131 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 131 0>;
++		assigned-clock-parents = <&k3_clks 131 2>;
++	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+index 4090134676cf..3c95ac3a0dd5 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+@@ -38,4 +38,13 @@ wkup_i2c0: i2c@2b200000 {
+ 		clocks = <&k3_clks 107 4>;
+ 		clock-names = "fck";
+ 	};
++
++	wkup_rti0: watchdog@2b000000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x2b000000 0x00 0x100>;
++		clocks = <&k3_clks 132 0>;
++		power-domains = <&k3_pds 132 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 132 0>;
++		assigned-clock-parents = <&k3_clks 132 2>;
++	};
+ };
+-- 
+2.25.1
 
-I suppose this chunk is not so correct=2E We can not describe these proper=
-ties as required since current DTs do not have them=2E Also if somebody dec=
-ides to fix the mdm9615 or msm8660 platforms, he works have to change this =
-(again)=2E Thus I'd just leave this whole chunk out=2E
-
->+
->+additionalProperties: false
->+
->+examples:
->+  - |
->+    #include <dt-bindings/clock/qcom,gcc-ipq806x=2Eh>
->+
->+    clock-controller@2011000 {
->+      compatible =3D "qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc", "syscon";
->+      reg =3D <0x2011000 0x1000>;
->+      clocks =3D <&gcc PLL8_VOTE>, <&pxo_board>;
->+      clock-names =3D "pll8_vote", "pxo";
->+      #clock-cells =3D <0>;
->+    };
->+
->+  - |
->+    clock-controller@2011000 {
->+      compatible =3D "qcom,kpss-gcc-mdm9615", "qcom,kpss-gcc", "syscon";
->+      reg =3D <0x02011000 0x1000>;
->+    };
->+=2E=2E=2E
->+
-
---=20
-With best wishes
-Dmitry
