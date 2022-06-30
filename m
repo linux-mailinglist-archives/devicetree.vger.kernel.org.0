@@ -2,117 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5533D5615DB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 11:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EE555615FB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 11:18:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234220AbiF3JQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 05:16:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44712 "EHLO
+        id S234246AbiF3JRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 05:17:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234223AbiF3JPh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 05:15:37 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C12138D97;
-        Thu, 30 Jun 2022 02:15:01 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id o4so22356034wrh.3;
-        Thu, 30 Jun 2022 02:15:01 -0700 (PDT)
+        with ESMTP id S234310AbiF3JR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 05:17:26 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20EB43AC2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:16:17 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id r18so17820322edb.9
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 02:16:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=amarulasolutions.com; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Qs5w4mXuxTGM+ANX6aO1XbOmipxzruUkk3yjzx/1m5M=;
-        b=Nxg1/Tz+7NmXT7PN4DRl96HH/dnYCeyzAmCpGGPJO94V2LQY/Pv9ZvvK+KXVSFyWJG
-         LmEffNuq+MGRK6Ln5VbwJQSDeX0pvMljGL2Wo0URtPtHOkocBs4W7eDxv3Wid809cqdw
-         wEEcDPnD9Ve0MjXKzX5TEufvyz8DjbHkqJCpxBOlKVLxM99p76zxsb/gk7m7rcI+bICb
-         iZ+cbJhluyhfCKjcdoeBlKsfuy5AU4hFNHDiBeGfiXz3EkTEU4vi7dFUEjMWTQjApXVd
-         h0yF3DBfiMAVmKMex/PMYCPJ5Z2V2nOXNhJu5tTWJMrUaa/434dvcVTtiZnSduSf+jzQ
-         DwVA==
+         :content-disposition:in-reply-to;
+        bh=Jxh9+8wGKifer/pkVBwkWFz/cUObqSEK4gTsvDCOLoQ=;
+        b=mtiJ96LmLCRmWOanbe4ljk3xT3YdaBPutJSnlnWsxIYdNS9uCVN/HAHRCmp0acxDWV
+         rRNbdX9q9ZTX2WKIGY62cj2PCkJ3HDA44PxEcjzLDxS6iafRpTUiVmalPY3vA677ko7n
+         61aO/2oFVlXmsx844VQlHLW80YR1GOupEAi4o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Qs5w4mXuxTGM+ANX6aO1XbOmipxzruUkk3yjzx/1m5M=;
-        b=t7Fr6M0KK53FKbs2XjFDMdFe9m3BaDnvJbFk/2+djyWNtgwCdoqNmv4gfHCIhLwGUm
-         OoKWD+AIxu7RwpGUBA4DXkGzc/RH6ysYyOzGK1niKtxsBbuNiND4e+SeCIxhAkgYfY4h
-         VogjAJd+ac2yIUU7LiAeiVRuvelvJYAFtaEBw17JCd0B8cXlgKfiYUC7L+64Afs/QR8m
-         J4Qx9DTGtkzmhuDQZevvy/Si6k4rF+v7V8449F0WZ+YQGUJHQu3Z/Xrmb7j+DbDtMPmM
-         PMKn2KB0h6CWRsUcc+1fLSyvLvEytxdx0XfwdXA7i+E4X/8DEg5HYMNNk5iKux0UsLNt
-         MG7A==
-X-Gm-Message-State: AJIora/YuY0A9K2tTNS1KQ4Qy3YPGGFnBtk6U3Zti4heM2x4XwwXH9JI
-        98MLPYcEtRXVjyxBJuVVsKg=
-X-Google-Smtp-Source: AGRyM1uSdCfWkJvQdIqiusHWM74RinDF4sSDArFlNmspUI7tsygjA00oqo2g1lG7SW6cb7DySb0KMQ==
-X-Received: by 2002:a5d:64ae:0:b0:21b:b923:7ad5 with SMTP id m14-20020a5d64ae000000b0021bb9237ad5mr7068522wrp.460.1656580499792;
-        Thu, 30 Jun 2022 02:14:59 -0700 (PDT)
-Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id m2-20020adffa02000000b0021d163daeb0sm11623695wrr.108.2022.06.30.02.14.58
+         :mime-version:content-disposition:in-reply-to;
+        bh=Jxh9+8wGKifer/pkVBwkWFz/cUObqSEK4gTsvDCOLoQ=;
+        b=jWJMyKBmJjhE2R+HhHls0Gb2ZkW6ul0/doKmSAQ1hDIkrdOOCW2qMwMfx7dCA0MCVU
+         JhywDR/fYhW5QbvRqa5zFljF90FKFDHUgBLxTCln+4b2A4YfmnMZsGTRzT4YvvvQYmDv
+         RJTrXShZA+xda578wwXhk2XYfKe9df2gRzZ81hE/k+SkM24A4Xgm0SFXiatXLOpq2oT0
+         N2siZ54xrIssAqwRITUy8lQgT9iLJf11OltgeAOvnPjbePJrOfVoRg4qJv5ugpHU0HDA
+         E5W5ux2sdYUPYldui6gF9AdBqrbJ/Zx6sEucRYG619nsGSBMm2Wle7yMDfYpI0lUzexC
+         zRPA==
+X-Gm-Message-State: AJIora9JdGfZpEMGtfxAecPRBuLhGsw9eV7BsmsFJDTWKsnWmkDYTbNp
+        t8wleLHF+0YoKjTS9XpbXDESqw==
+X-Google-Smtp-Source: AGRyM1tftLZ2XSVsXGwKY1tVp8BzpGnUHbWht4UDCihn1aRATfSGrqPAHKl0L1tGrObwQOnOD1W32A==
+X-Received: by 2002:a05:6402:4306:b0:435:a1c9:4272 with SMTP id m6-20020a056402430600b00435a1c94272mr10263737edc.205.1656580576250;
+        Thu, 30 Jun 2022 02:16:16 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-58-216.cust.vodafonedsl.it. [188.217.58.216])
+        by smtp.gmail.com with ESMTPSA id q10-20020a170906940a00b006fe8bf56f53sm8947680ejx.43.2022.06.30.02.16.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 02:14:58 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 11:14:57 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Kartik <kkartik@nvidia.com>
-Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
-        krzk+dt@kernel.org, jonathanh@nvidia.com, spujar@nvidia.com,
-        akhilrajeev@nvidia.com, rgumasta@nvidia.com, pshete@nvidia.com,
-        vidyas@nvidia.com, mperttunen@nvidia.com, mkumard@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] clocksource/drivers/timer-tegra186: Add support
- for Tegra234 SoC
-Message-ID: <Yr1pkVSyL5c2Upot@orome>
-References: <1656527344-28861-1-git-send-email-kkartik@nvidia.com>
- <1656527344-28861-4-git-send-email-kkartik@nvidia.com>
+        Thu, 30 Jun 2022 02:16:15 -0700 (PDT)
+Date:   Thu, 30 Jun 2022 11:16:13 +0200
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        quentin.schulz@theobroma-systems.com,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 5/6] media: dt-bindings: ov5693: document YAML binding
+Message-ID: <20220630091613.GD482517@tom-ThinkPad-T14s-Gen-2i>
+References: <20220630074525.481790-1-tommaso.merciai@amarulasolutions.com>
+ <20220630074525.481790-6-tommaso.merciai@amarulasolutions.com>
+ <167f09c1-795d-1471-20f7-9f4df29355ed@linaro.org>
+ <20220630090232.GC482517@tom-ThinkPad-T14s-Gen-2i>
+ <Yr1pD2U2ilXXXX+Q@valkosipuli.retiisi.eu>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YaXGqWVK0MNVNA+1"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1656527344-28861-4-git-send-email-kkartik@nvidia.com>
-User-Agent: Mutt/2.2.6 (2022-06-05)
+In-Reply-To: <Yr1pD2U2ilXXXX+Q@valkosipuli.retiisi.eu>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sakari,
 
---YaXGqWVK0MNVNA+1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Jun 30, 2022 at 12:12:47PM +0300, Sakari Ailus wrote:
+> On Thu, Jun 30, 2022 at 11:02:32AM +0200, Tommaso Merciai wrote:
+> > On Thu, Jun 30, 2022 at 10:07:19AM +0200, Krzysztof Kozlowski wrote:
+> > > On 30/06/2022 09:45, Tommaso Merciai wrote:
+> > > > Add documentation of device tree in YAML schema for the OV5693
+> > > > CMOS image sensor from Omnivision
+> > > > 
+> > > > Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> > > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > Reviewed-by: Sakari Ailus <sakari.ailus@iki.fi>
+> > > 
+> > > How Sakari's tag appeared here? There was no email from him.
+> > 
+> > Sakari made me some review on v2, but I think he forgot to add the mailing
+> > list in cc. ( I suppose :) )
+> > 
+> > Let me know if I need to remove this.
+> 
+> You're only supposed to put these tags into patches if you get them in
+> written form as part of the review, signalling acceptance of the patch in
+> various forms. Just commenting a patch does not imply this.
+> 
+> Please also see Documentation/process/submitting-patches.rst for more
+> information on how to use the tags.
 
-On Wed, Jun 29, 2022 at 11:59:01PM +0530, Kartik wrote:
-> The timer IP block present on Tegra234 SoC supports watchdog timer
-> functionality that can be used to recover from system hangs. The
-> watchdog timer uses a timer in the background for countdown.
->=20
-> Signed-off-by: Kartik <kkartik@nvidia.com>
-> ---
->  drivers/clocksource/timer-tegra186.c | 6 ++++++
->  1 file changed, 6 insertions(+)
+Thanks for sharing this. My bad.
+I remove your tags.
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+Regards,
+Tommaso
 
---YaXGqWVK0MNVNA+1
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> -- 
+> Sakari Ailus
 
------BEGIN PGP SIGNATURE-----
+-- 
+Tommaso Merciai
+Embedded Linux Engineer
+tommaso.merciai@amarulasolutions.com
+__________________________________
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmK9aZEACgkQ3SOs138+
-s6H2kxAAnVIhlBIvG4c9Owk/ZtFX96RF4Jt9EWdPmTyr/G9sYbZVar+FkfzfE6ug
-4fOwrV8YFUx1sRuxvVpd/hRjBKcwMsoGHfFvfh26xaGgsqZRcua7/vNtzKxuGEF4
-18mfJ17pJdksMGeUyXwaFz6hfqpNxJjTQ1NV6eCQoQN/tSsvVNtQ1odfvDcI96+K
-1GQ/YfTJfl4r4luhl+ba7hXVmEAnUOpgLUrYZ0pjXxAPTa5qRJC1Z+kphzno6v5F
-p9I2vgFf4vh7Zxdeu5EreGlkR0KhKmkmFVoYMS9xa+3m1dHFra2850M+gKank0+k
-4p0FHWpyngwm1Q/8BTeFaIPZ57van8l3PAcnnRkTd5ZiiiAUfy2wyohSFDE0aDr6
-Uhx+ueIxYfT26zOv/iKMd78yvayTQKQnOfqgny5KgbjUwmJMvFqwFjmkt43NVTB7
-0LgCvgBasb/ZC5c+iFCFNy+FmXhzdFapGr9gaH+aHpH/sXo4F4SXWPOjbOGD2oJn
-QODrlUBFbJoIk4AUnWIt6+QxZPNXpT7MCfuQqAq2rzSLb3c/VukEZ2oYm74DtZL3
-VD8pgW8zZtd2Hr73hErbkK/7LhTlUq9/6AffaNOaN9IfARrdJ1HOpddipsdeeyRu
-5JEdLy7ugdRbPxDvsTi3yHb4J065d3JcRFrw+vATciL716Y6LyA=
-=Ma1N
------END PGP SIGNATURE-----
-
---YaXGqWVK0MNVNA+1--
+Amarula Solutions SRL
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+T. +39 042 243 5310
+info@amarulasolutions.com
+www.amarulasolutions.com
