@@ -2,100 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A33E2561F3A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 17:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 218A7561F52
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 17:33:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235405AbiF3P2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 11:28:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37530 "EHLO
+        id S235952AbiF3Pdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 11:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235787AbiF3P2L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 11:28:11 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 785C36582;
-        Thu, 30 Jun 2022 08:28:08 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id h85so19486183iof.4;
-        Thu, 30 Jun 2022 08:28:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=v3fCsU8QvmYK6uO1hQCv7+cOLqDCcdfggA8x53nv70M=;
-        b=YeLYKjR6/9iZPpfsC5/1Qt/mazEHARmW/zpJjGywZDW8tVictELn6C3Q8jUUxyVlPG
-         pa30e18Leyp7Lys1yJVZFcMCR3tQIcwkAQaq7SIcSuCxMuKqf1qDjdxdumiBw3AUcP/u
-         BvWR/0CoWN6jhNxdVc8NhbDO4X+UuwE+rBTZSFTDqsu2Wdg3/IVxdnXnglJzt53va1LZ
-         FJCF2uQWWO12ALadajMSWAqcoAaaBRUVJdT5hm+H1PdPh3HLHAtC0s3Hz+9lQWNBiQtd
-         iZBv9dctU9WeAwfxy2Eir9+7JsBf3RRxI3fkrxFg6VAHQ2GNDLWKSaqZO9oXz0OLOGix
-         gKDw==
-X-Gm-Message-State: AJIora8hZPBJGWqd/v1s/vahyvX2kgHAI4lyehJdC7OESQKphDNYVIcm
-        DOZKxd98wW5nZub25di0Xw==
-X-Google-Smtp-Source: AGRyM1uiMa8Lbawmqk7m9RBiNYGmneqDL6HHs6q1fDNwTcu2C1YoflyIvtE/Nt4vca8Xd91yTDwTiw==
-X-Received: by 2002:a6b:cd43:0:b0:675:b0bf:d999 with SMTP id d64-20020a6bcd43000000b00675b0bfd999mr1189535iog.193.1656602887765;
-        Thu, 30 Jun 2022 08:28:07 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id a13-20020a927f0d000000b002d8f50441absm8082320ild.10.2022.06.30.08.28.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 08:28:07 -0700 (PDT)
-Received: (nullmailer pid 2744540 invoked by uid 1000);
-        Thu, 30 Jun 2022 15:28:06 -0000
-Date:   Thu, 30 Jun 2022 09:28:06 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Vincent Knecht <vincent.knecht@mailoo.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v1 RESEND 1/7] dt-bindings: leds: Convert is31fl319x to
- dtschema
-Message-ID: <20220630152806.GA2732671-robh@kernel.org>
-References: <20220628182147.2837180-1-vincent.knecht@mailoo.org>
- <20220628182147.2837180-2-vincent.knecht@mailoo.org>
- <1656468579.884791.1403671.nullmailer@robh.at.kernel.org>
+        with ESMTP id S235957AbiF3Pd3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 11:33:29 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE17E5592;
+        Thu, 30 Jun 2022 08:33:26 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8AAD26601966;
+        Thu, 30 Jun 2022 16:33:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1656603204;
+        bh=EudDgFiZB1R9NaUbxHSruCGuiD0p7vpdf1apIJF86C8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=a22QgeEDiZNL1AUeZlBoDNE8gsCktZVRPfcQ6Tj+bhXjunFSzUdo0LsPkkxsLxllR
+         Zs2ZkGg9cr+WB2BGKG1tvraC5g4zJTgYefqiB/WuMFtdhXe2s0yWG2vYA+7TEA7Lo4
+         sgwR7l0/LEnGywJcbG126AEI7SOT9VhxH9IlJN7zpDH+WUImRaBi/zfKEAiWjldD7A
+         kERUlxwVHhnAO/bmwhZ3iD9jOwenRzvhuIln1Hf24uVb6QGprJgO24V2YDR/6YiV0j
+         OzoD1r1JCC4hQ9Lr/eXm0XKXSOo10WZaxcdDCD/cehyopMG0aBgDJUXZ3nPu/W9MyP
+         jMmJx6cJPlbzA==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, hsinyi@chromium.org,
+        nfraprado@collabora.com, allen-kh.cheng@mediatek.com,
+        gtk3@inbox.ru, luca@z3ntu.xyz, sam.shih@mediatek.com,
+        sean.wang@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wenst@chromium.org
+Subject: [PATCH 00/11] MT8195 Chromebooks devicetrees - Google Tomato
+Date:   Thu, 30 Jun 2022 17:33:05 +0200
+Message-Id: <20220630153316.308767-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1656468579.884791.1403671.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 08:09:39PM -0600, Rob Herring wrote:
-> On Tue, 28 Jun 2022 20:21:39 +0200, Vincent Knecht wrote:
-> > Convert leds-is31fl319x.txt to dtschema.
-> > Set license to the one recommended by DT project.
+This is the first part for upstreaming Google's Cherry Tomato
+Chromebook (Acer Chromebook Spin 513): in this series, we introduce
+the devicetrees for the four revisions of this Chromebook and enable
+every controller and feature that can be added as per the current
+state of the main SoC devicetrees (mt8195.dtsi) and its PMIC
+devicetree (mt6359.dtsi).
 
-Do you have permission to do so? The original .txt file is default GPL2 
-and owned by H. Nikolaus Schaller. 
+More parts will come as soon as more support will be added by
+MediaTek in the mt8195 devicetree.
 
-> > 
-> > Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> > ---
-> >  .../bindings/leds/issi,is31fl319x.yaml        | 113 ++++++++++++++++++
-> >  .../bindings/leds/leds-is31fl319x.txt         |  61 ----------
-> >  2 files changed, 113 insertions(+), 61 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/leds/issi,is31fl319x.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/leds/leds-is31fl319x.txt
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: patternProperties:^thermistor@:properties:adi,excitation-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
-> 	hint: Standard unit suffix properties don't need a type $ref
-> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProperties: ^thermistor@: properties: adi,excitation-current-nanoamp
-> Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.example.dtb:0:0: /example-0/spi/ltc2983@0: failed to match any schema with compatible: ['adi,ltc2983']
+Note: This series will introduce a dtbs_check warning about a failure
+      to match compatible for 'mediatek,mt6359': that's expected, as
+      this is defined in devicetree/bindings/mfd/mt6397.txt (so there
+      is no schema, yet).
 
-You can ignore this. The bot went amuck.
 
-Rob
+This series depends on the following fixes:
+[1]: https://patchwork.kernel.org/project/linux-mediatek/patch/20220630110453.186526-1-angelogioacchino.delregno@collabora.com/
+[2]: https://patchwork.kernel.org/project/linux-mediatek/patch/20220630122334.216903-1-angelogioacchino.delregno@collabora.com/
+[3]: https://patchwork.kernel.org/project/linux-mediatek/patch/20220630131543.225554-1-angelogioacchino.delregno@collabora.com/
+
+AngeloGioacchino Del Regno (11):
+  dt-bindings: arm: mediatek: Add MT8195 Cherry Tomato Chromebooks
+  arm64: dts: mediatek: Introduce MT8195 Cherry platform's Tomato
+  arm64: dts: mediatek: cherry: Assign interrupt line to MT6359 PMIC
+  arm64: dts: mediatek: cherry: Add platform regulators layout and
+    config
+  arm64: dts: mediatek: cherry: Add support for internal eMMC storage
+  arm64: dts: mediatek: cherry: Document gpios and add default pin
+    config
+  arm64: dts: mediatek: cherry: Enable I2C and SPI controllers
+  arm64: dts: mediatek: cherry: Enable T-PHYs and USB XHCI controllers
+  arm64: dts: mediatek: cherry: Enable MT6360 sub-pmic on I2C7
+  arm64: dts: mediatek: cherry: Enable support for the SPI NOR flash
+  arm64: dts: mediatek: cherry: Add I2C-HID touchscreen on I2C4
+
+ .../devicetree/bindings/arm/mediatek.yaml     |  13 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   3 +
+ .../dts/mediatek/mt8195-cherry-tomato-r1.dts  |  15 +
+ .../dts/mediatek/mt8195-cherry-tomato-r2.dts  |  35 +
+ .../dts/mediatek/mt8195-cherry-tomato-r3.dts  |  36 +
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      | 715 ++++++++++++++++++
+ 6 files changed, 817 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+
+-- 
+2.35.1
+
