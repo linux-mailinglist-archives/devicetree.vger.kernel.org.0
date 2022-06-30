@@ -2,86 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8CF5619AD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 13:57:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B8A95619C0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 14:01:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235144AbiF3L5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 07:57:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41686 "EHLO
+        id S235033AbiF3MBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 08:01:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230395AbiF3L5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 07:57:05 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A59AB5A454
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 04:57:01 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-3178acf2a92so176430707b3.6
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 04:57:01 -0700 (PDT)
+        with ESMTP id S233206AbiF3MBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 08:01:36 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E9F74788
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 05:01:35 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-31c1d580e4bso44446357b3.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 05:01:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=T2nf43YSG2Rmj+bAJwbn+WqQ9U0uX95RW/bS0f0BEIk=;
-        b=xX22BKzLNWetYuGqacglbCbctbEFAqaw/9VSCakoyY1uZ/lUsbRrOi5MPNjNdCKQN7
-         auegeivkAV5FQ+lTQkNytjNOQrKUT15ORn8L+4LjcV4/uZT3Ecv8R4+ZE2VzN/1pkJCB
-         LTWU6L9wNQlbxiWOMY3eRQzSab60pao7/ezDEKGrL6FPkEZrhFYs3flAtJlnGJ67hw+W
-         DuugEAx86feg+q2PbjwxvDQ7IXtr/G2VXfl/TsXaUiX539ecJD45jYNRoQ5QyTV8/qgz
-         8Y5gnJ6P5kyLFyFoIGcVUWqtd/mvRLwwkDlWsR9NkgrPm0BFzV0FtoyvPPkJU/bWtbjE
-         CpQw==
+        bh=IvKEIjzjU4LPTr3SH+n5s231w0NrZo/WhcQOyoRJxbo=;
+        b=a577l4Vwc0EvrQPcjQ592IpDDOqs2LH+70gy+iEjdBsvx/M+bx4LDU/okbZz+EzTqi
+         xSieK68x+/jTJbzDuRhio2KXcNXf0mkhWxYirTxSaHR6mIMshUGdnfcgCiZ9AwdRQSgO
+         25NyP8dFEV3pN3d1oHjNF6ZqiAFATjrBn6Egx98w5UfA20iSIrbR6ezgv9/C7D7PlpcL
+         30bbGK+9O72XSPAJ4koLw6SCMjBK4qMLY3vvYmD2EBRMEibfqNTR/vBb7jSifBVshGc8
+         Eeex8qLNzbVVxBPymsKqZ94yfUM2QzbBq+r67bcDv/t8Ql9tJPkhkYXnrbi5mGtDoEFP
+         XgIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=T2nf43YSG2Rmj+bAJwbn+WqQ9U0uX95RW/bS0f0BEIk=;
-        b=a+WpYOhFeUyALCf/ZZxn33TKxveSpPcDfUwfHdRZfyUIVddMc1dFymzK/jnkPmrT3p
-         OeBkgwzJhoPWW25MPtgxfwEjwWskEA+76LKtW3SroHKhyYnsi4rfD00DVRwmt1eHc1tC
-         jY0Rn3FJsgwVhGF87sunjIVwQxa24eATXBRoY8Bh5dCb7jbQyMqk5nyhWBH/n85BYjiK
-         Ycn1VbhvZLIheOVS0XbFGIY/6XOY+lNXYLi9eRgkWrThV6WFEeyRnFrlm67m6RiPTI6b
-         DXkzkpmhhgKLG4eEijSOhKMnzFJ0fKvjIRA6+o/UGp2EbqnivkCW0lNBWjwj5tMshvH5
-         uI4g==
-X-Gm-Message-State: AJIora8Ws/1RnsNjRrv0n0a4qck0ZBkj4SNPNggCG59i3PcigX0GNudX
-        nf6cYNgJrydZZkPdCnePRtsVrNYif12UmlcAU/5AxQ==
-X-Google-Smtp-Source: AGRyM1vpjSh9Y05u4DDxMAgxG1Ha5a6O1Yp1CqeRVvx6hQ7LjjtidYeoQ5W9aC0ImR5rk487POkEk9TQdl0wKxfgqfc=
-X-Received: by 2002:a81:d05:0:b0:317:76a1:9507 with SMTP id
- 5-20020a810d05000000b0031776a19507mr10201231ywn.151.1656590220853; Thu, 30
- Jun 2022 04:57:00 -0700 (PDT)
+        bh=IvKEIjzjU4LPTr3SH+n5s231w0NrZo/WhcQOyoRJxbo=;
+        b=JBrC5ZI4QrRphVkkaIBUjfzZlH+KWHQgPq5d6eIRokfacGAxt5FY4Xcd/DQZx8fkXN
+         awkPuGTHwjWZNpvxQdKkflYjnlOVma34ckyAzKwKR4VJTvHcDm/Vn51WrAtmOPMXRHor
+         y/uj/cCnursW/GHlSlHXoUcHYRaXL5mske+2w6L4V73AZjI+osnACuhHAj/QH9etNfHC
+         u4tpSt7R31O7f5MtKiJ9EaTi48hzFiXY+53+plmQo9X4V19sEeHk9Tv1UjMrzfuWsfMG
+         KVzccOmh2QqOKgKIo5/ogl2lx5iGcvQQ1/ntqqh0Xwj1ktQpqql7UpOT2b4MPxg3NG+4
+         ooxg==
+X-Gm-Message-State: AJIora9ioaSUwYvFl5YYe0RhTnZNebmvvlTT2lIh+2VeIMJxfCYYus8X
+        dl83jL2eF/4dONPJMGRAMwljXk0tGpgEfP6tr6h25g==
+X-Google-Smtp-Source: AGRyM1sAv3huAMlZJPo1fFK7z2myKSXoujboeKvI27J2j4nuaqNB9V7fuVMOuLmlv2hgqaEtUA8aZivsjOqi4VQlE0I=
+X-Received: by 2002:a0d:e20a:0:b0:317:ce36:a3a0 with SMTP id
+ l10-20020a0de20a000000b00317ce36a3a0mr10375298ywe.448.1656590494542; Thu, 30
+ Jun 2022 05:01:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220628081709.829811-1-colin.foster@in-advantage.com>
- <20220628081709.829811-4-colin.foster@in-advantage.com> <CAHp75Vcm=Zopv2CZZFWwqgxQ_g8XqNRZB6zEcX3F4BhmcPGxFA@mail.gmail.com>
- <20220628182535.GC855398@euler> <CAHp75VejZB8Wg4tuz51r1ezLw0vawP+LNcYkmHd5FjyQTW4asA@mail.gmail.com>
-In-Reply-To: <CAHp75VejZB8Wg4tuz51r1ezLw0vawP+LNcYkmHd5FjyQTW4asA@mail.gmail.com>
+References: <1656489290-20881-1-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1656489290-20881-1-git-send-email-quic_srivasam@quicinc.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 30 Jun 2022 13:56:49 +0200
-Message-ID: <CACRpkdbi+LmLSuqLn5=K-KvSzLrYQs2H5mwSkOVi+5xTJoZBzQ@mail.gmail.com>
-Subject: Re: [PATCH v11 net-next 3/9] pinctrl: ocelot: allow pinctrl-ocelot to
- be loaded as a module
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Colin Foster <colin.foster@in-advantage.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
+Date:   Thu, 30 Jun 2022 14:01:22 +0200
+Message-ID: <CACRpkdYPQoDQ6oUBfB__pBvqMUD7yBaeuDcLfOqRKHm6sFkc7Q@mail.gmail.com>
+Subject: Re: [PATCH v2] pinctrl: qcom: sc7280: Fix compile bug
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
+        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,34 +71,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 9:00 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
->
-> On Tue, Jun 28, 2022 at 8:25 PM Colin Foster
-> <colin.foster@in-advantage.com> wrote:
-> > On Tue, Jun 28, 2022 at 02:53:49PM +0200, Andy Shevchenko wrote:
-> > > On Tue, Jun 28, 2022 at 10:17 AM Colin Foster
-> > > <colin.foster@in-advantage.com> wrote:
->
-> ...
->
-> > > >  builtin_platform_driver(ocelot_pinctrl_driver);
-> > >
-> > > This contradicts the logic behind this change. Perhaps you need to
-> > > move to module_platform_driver(). (Yes, I think functionally it won't
-> > > be any changes if ->remove() is not needed, but for the sake of
-> > > logical correctness...)
-> >
-> > I'll do this. Thanks.
-> >
-> > Process question: If I make this change is it typical to remove all
-> > Reviewed-By tags? I assume "yes"
->
-> I would not. This change is logical continuation and I truly believe
-> every reviewer will agree on it.
+On Wed, Jun 29, 2022 at 9:55 AM Srinivasa Rao Mandadapu
+<quic_srivasam@quicinc.com> wrote:
 
-I would have to think hard to remember a single review comment from Andy
-where I didn't think "ah, yeah he's right", so definately keep mine.
+> Fix the compilation error, caused by updating constant variable.
+> Hence remove redundant constant variable, which is no more useful
+> as per new design.
+>
+> The issue is due to some unstaged changes. Fix it up.
+>
+> Fixes: 36fe26843d6d ("pinctrl: qcom: sc7280: Add clock optional check for ADSP bypass targets")
+>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+
+Patch applied, thanks for fixing this!
 
 Yours,
 Linus Walleij
