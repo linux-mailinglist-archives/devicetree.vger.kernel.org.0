@@ -2,112 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 974A3560FFB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 06:24:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8660056102C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 06:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231620AbiF3EYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 00:24:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37328 "EHLO
+        id S231891AbiF3EZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 00:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230022AbiF3EYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 00:24:02 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1C132EE9
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:24:01 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id s1so25332049wra.9
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:24:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+gc2pfqdlbXIZ0VWFy8LDQmiYN4Kvsy5JJdLdp7+YMo=;
-        b=wmyNSYLyh3OTKn2BuKgHKW2bZsCk777Bej8jjoIQpWSBskVJsS8zzAvoNCIxKIQLWy
-         6wAfGm4AE39f5hm5OLxkibcz85RPO8aD01bbdA+RsmS/JUCU+KozCqlnrDRKaiDQxO1f
-         I8/cErG63rx6DilRwVDb0WpvsYXVUAWzPTB8jP8KsU8R5eYhEXTlkNM8PCdzr9zNCMeM
-         iYHcXra6nLgGhwZS5l6O6MkaDShZJ5+OxJcnY8YBlYkB1YDosdRI1dZO32Z1rgY2Vjq0
-         DGCUAlxMlmtuYjUP2fLw7jOMQe6ZCaj4mrqKPtwAA3BYzkTdg81zaOzYHsaoNMjo5cyj
-         izZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+gc2pfqdlbXIZ0VWFy8LDQmiYN4Kvsy5JJdLdp7+YMo=;
-        b=eTe7CqA3iKUo6TuLborU2awssbua6pQk6Zra8KAm0oKwuoIJevJ/8hXQwZdCqAwfcc
-         41Uxe1T9eXXU7fnWZp9YJAQys0AI09ZwwZeo8I2yUXULsKOwSWlf2a2slB6Vn489zy+i
-         MLpFgHj0OQSltXexltAZtSZdHg8xZRlubfg2R+zuLUOHfTbEF51oTlTUX9i/AWweyB6b
-         ZX6XKWnxpY/Nvi8JuaRRXW/65GX5F0XUOignSkMRGrf5J4UacQfCl2VAwXMAg8rGxljh
-         RJMq/c0WB8sumcbiIv7lJxQji5kxYRj4V0Rd1aTLYZiSNGgi1XjaJOyHElovw7+gjYq1
-         2FGw==
-X-Gm-Message-State: AJIora8qPKZZIEvcnCSybBX+tfpyhpE5EFPN/vs9TtVixPjRIMaLtFCL
-        JEHh3e92FFCslBM4zaNBMIFEQA==
-X-Google-Smtp-Source: AGRyM1u+q7RLVYTy7D1ioa/GA24TzTsVQh2hDlkZ19jwfVnkPYA5pEkFsR9A8gojXhWJNEgRZ0XMEQ==
-X-Received: by 2002:adf:ef42:0:b0:21b:8e58:f24b with SMTP id c2-20020adfef42000000b0021b8e58f24bmr6327192wrp.257.1656563039767;
-        Wed, 29 Jun 2022 21:23:59 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id u20-20020a05600c19d400b0039c4f53c4fdsm1328634wmq.45.2022.06.29.21.23.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 21:23:59 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        myungjoo.ham@samsung.com, cw00.choi@samsung.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gurus@codeaurora.org, aghayal@codeaurora.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH] dt-bindings: pm8941-misc: Fix usb_id and usb_vbus definitions
-Date:   Thu, 30 Jun 2022 05:23:57 +0100
-Message-Id: <20220630042357.3308128-1-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S231929AbiF3EZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 00:25:54 -0400
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7E63A72D;
+        Wed, 29 Jun 2022 21:25:53 -0700 (PDT)
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id 887CE68AA6; Thu, 30 Jun 2022 06:25:49 +0200 (CEST)
+Date:   Thu, 30 Jun 2022 06:25:49 +0200
+From:   Christoph Hellwig <hch@lst.de>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     palmer@dabbelt.com, paul.walmsley@sifive.com,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        wefu@redhat.com, guoren@kernel.org, cmuellner@linux.com,
+        philipp.tomsich@vrull.eu, hch@lst.de, samuel@sholland.org,
+        atishp@atishpatra.org, anup@brainfault.org, mick@ics.forth.gr,
+        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        drew@beagleboard.org, rdunlap@infradead.org
+Subject: Re: [PATCH v5 1/4] of: also handle dma-noncoherent in
+ of_dma_is_coherent()
+Message-ID: <20220630042549.GA4958@lst.de>
+References: <20220629215944.397952-1-heiko@sntech.de> <20220629215944.397952-2-heiko@sntech.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220629215944.397952-2-heiko@sntech.de>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dts validation is throwing an error for me on 8916 and 8939 with
-extcon@1300. In this case we have usb_vbus but not usb_id.
+Looks good assuming the new binding is accepted by the maintainers:
 
-Looking at the pm8941-misc driver we can have usb_id, usb_vbus or both at
-the same time.
-
-Expand the definition with anyOf to capture the three different valid
-modes.
-
-Fixes: 4fcdd677c4ea ("bindings: pm8941-misc: Add support for VBUS detection")
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-index 6a9c96f0352ac..1bc412a4ac5e6 100644
---- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-+++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-@@ -27,10 +27,14 @@ properties:
- 
-   interrupt-names:
-     minItems: 1
--    items:
--      - const: usb_id
--      - const: usb_vbus
--
-+    anyOf:
-+      - items:
-+          - const: usb_id
-+          - const: usb_vbus
-+      - items:
-+          - const: usb_id
-+      - items:
-+          - const: usb_vbus
- required:
-   - compatible
-   - reg
--- 
-2.36.1
-
+Reviewed-by: Christoph Hellwig <hch@lst.de>
