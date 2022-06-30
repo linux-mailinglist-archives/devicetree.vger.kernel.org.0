@@ -2,56 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B70A15625D9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 00:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 405595625EB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 00:16:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230130AbiF3WMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 18:12:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34796 "EHLO
+        id S230305AbiF3WQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 18:16:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbiF3WMk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 18:12:40 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D611E58FD9;
-        Thu, 30 Jun 2022 15:12:37 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id p9so283535ilj.7;
-        Thu, 30 Jun 2022 15:12:37 -0700 (PDT)
+        with ESMTP id S230310AbiF3WQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 18:16:02 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3945722C;
+        Thu, 30 Jun 2022 15:15:59 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id l24so521472ion.13;
+        Thu, 30 Jun 2022 15:15:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uEYiALVVqC9pNT2EOGV6KbYNg7mGQno5eraMM95U0FI=;
-        b=kbETdLcuC7+9IJAuWotKmrqwsvDITyjk18F+VRlNfWbvO5hDIv9JePYlY8LLOztPE8
-         MdczSkFm2WBmPFOKfsQnRffD4LjqiYRVZT6PShPuBzriVqR/ftbiqnvVqHKyQuuxUk4k
-         uwuvb3+qEYs5GxRkmPBfLqX7Gr2bz49cjx5gHm/8DvTB7XQK451wvcYcORGQZwAZmj5n
-         ixs+THVbacHc04D4Jtpirly/N6OLYPRX3qYRaOobs4TbLdPJYLZ+oyLDSvuvhPhEF5k7
-         vTVjEF6cZs6mp7BxKFbci7yD8Rr1ef5y4GiX/sPxWvIDY3+XNrdsWnlf7RhW9QYXQ30t
-         dQmQ==
-X-Gm-Message-State: AJIora+429FSsBOYsRaMDaeyoC5tKGhUUTgZOik94ppTviV74tnqZlsu
-        ha3C5gAOW/I7HEJyArLLDdl02mOdbA==
-X-Google-Smtp-Source: AGRyM1vDkToWbOoz2ljzZuj2fVl5AP8zEWgeQwQYd85sxaQlj7ewiUDOGUK4ons2Pcz/r4M4ZeDetA==
-X-Received: by 2002:a05:6e02:1c01:b0:2d9:a3ae:16be with SMTP id l1-20020a056e021c0100b002d9a3ae16bemr6624007ilh.68.1656627156993;
-        Thu, 30 Jun 2022 15:12:36 -0700 (PDT)
+        bh=ak3+dnp61amEiQ9u+EY3cuHBMwvFNkOIcVD4cKlddrk=;
+        b=3K3kN7WLOEo6JiJedzr/1+Pd/kwHHBTlMgsLbE2g3JZ//lPiYR4Yr03vUkA1bmbU3W
+         cuv8BgMht4zvoV0p/nHPAs5IjBKC2nt4iq/bzGt7FJWlU74x3JxlQWtbReOPKcy5F+sq
+         pyHm0AjrJGyVSga8QCLuNYWvl0VncMcmSluRdSJpWpWEinQo4PU83UkuB2GUnV4wW3Na
+         CIDb92B/rzLlcN+/Vu1m1ScbFw0MaA0fCwDrzGX4YCwxproDsSP2JkIF/RFXXtXhyAi7
+         Z0c8ZW0Euzu1r+grVamFKRveWdjdvveXeXCueh6JzeEE2bNjFscOAvjmJQoV6+teN0Jk
+         fhuA==
+X-Gm-Message-State: AJIora/qCyayC4hfS6fE2bKZt9ySqiKs5thdY8gkAeTk4s22Rpj6qFPP
+        SUGFd5KmBBjcSP0q4qGJIg==
+X-Google-Smtp-Source: AGRyM1vE/h3cXANQTxAFuDv4VQARTKgj8HZVod3l/44O5+NhZJF0h2bjCBppIfPdZR/32eQjnyvy7g==
+X-Received: by 2002:a05:6602:13c8:b0:669:c3de:776f with SMTP id o8-20020a05660213c800b00669c3de776fmr5469069iov.124.1656627359098;
+        Thu, 30 Jun 2022 15:15:59 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r19-20020a02c853000000b00339dfb793aesm9153635jao.86.2022.06.30.15.11.58
+        by smtp.gmail.com with ESMTPSA id b9-20020a05660214c900b006762d8becd4sm139051iow.55.2022.06.30.15.15.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 15:12:06 -0700 (PDT)
-Received: (nullmailer pid 3411989 invoked by uid 1000);
-        Thu, 30 Jun 2022 22:11:57 -0000
-Date:   Thu, 30 Jun 2022 16:11:57 -0600
+        Thu, 30 Jun 2022 15:15:58 -0700 (PDT)
+Received: (nullmailer pid 3418639 invoked by uid 1000);
+        Thu, 30 Jun 2022 22:15:56 -0000
+Date:   Thu, 30 Jun 2022 16:15:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     michaelsh@nvidia.com
-Cc:     linux@roeck-us.net, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, vadimp@nvidia.com
-Subject: Re: [PATCH hwmon-next v4 2/3] dt-bindings: hwmon: add Microchip
- EMC2305 fan controller.
-Message-ID: <20220630221157.GA3402568-robh@kernel.org>
-References: <20220623165217.59252-1-michaelsh@nvidia.com>
- <20220623165217.59252-3-michaelsh@nvidia.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>
+Cc:     airlied@linux.ie, ck.hu@mediatek.com, devicetree@vger.kernel.org,
+        granquet@baylibre.com, matthias.bgg@gmail.com, msp@baylibre.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        chunkuang.hu@kernel.org, linux-arm-kernel@lists.infradead.org,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, jitao.shi@mediatek.com,
+        angelogioacchino.delregno@collabora.com, daniel@ffwll.ch,
+        wenst@chromium.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v14 01/15] dt-bindings: mediatek,dpi: Add DP_INTF
+ compatible
+Message-ID: <20220630221556.GA3418578-robh@kernel.org>
+References: <20220624030946.14961-1-rex-bc.chen@mediatek.com>
+ <20220624030946.14961-2-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220623165217.59252-3-michaelsh@nvidia.com>
+In-Reply-To: <20220624030946.14961-2-rex-bc.chen@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,53 +70,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 07:52:16PM +0300, michaelsh@nvidia.com wrote:
-> From: Michael Shych <michaelsh@nvidia.com>
+On Fri, 24 Jun 2022 11:09:32 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 > 
-> Add basic description of emc2305 driver device tree binding.
+> DP_INTF is similar to DPI but does not have the exact same feature set
+> or register layouts.
 > 
-> Signed-off-by: Michael Shych <michaelsh@nvidia.com>
-> Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
+> DP_INTF is the sink of the display pipeline that is connected to the
+> DisplayPort controller and encoder unit. It takes the same clocks as
+> DPI.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> [Bo-Chen: Modify reviewers' comments.]
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> v2->v3
-> Changes pointed out by Rob Herring and Guenter Roeck:
-> - Describe separate channels of fan-controller;
-> - Remove pwm_max property;
-> - Fix compatible property.
-> Changes added by Michael Shych:
-> - Fix dt binding check warnings.
-> v1->v2
-> - Fix dt binding check errors;
-> - Add descriptions;
-> - Add missing fields;
-> - Change the patch subject name;
-> - Separate pwm-min, pwm-max per PWM channel.
-> ---
->  .../bindings/hwmon/microchip,emc2305.yaml          | 106 +++++++++++++++++++++
->  1 file changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+>  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> new file mode 100644
-> index 000000000000..d054ba46ae23
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> @@ -0,0 +1,106 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/microchip,emc2305.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip EMC2305 RPM-based PWM Fan Speed Controller
 
-RPM-based? So there is a tach signal too? Don't those need the number of 
-pulses per revolution that the fan provides.
-
-To repeat what I say for every fan controller binding now, until there's 
-a common binding to describe fan controllers, fans and their 
-relationship to each other, I'm not signing off on any fan binding 
-doing its own thing.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
