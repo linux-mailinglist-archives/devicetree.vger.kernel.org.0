@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18723562274
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:01:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1592B56227E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:03:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236767AbiF3TBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 15:01:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40140 "EHLO
+        id S236758AbiF3TCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 15:02:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235833AbiF3TBf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:01:35 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F491EAD1
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:01:34 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id ay16so40799401ejb.6
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:01:34 -0700 (PDT)
+        with ESMTP id S236802AbiF3TC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:02:26 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61BD33F320
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:02:25 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id pk21so40837904ejb.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:02:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7R3EeNPzdygH8nRe9+P7GLctFQM9EBB/aI4yYSr62I4=;
-        b=NK+H2mBjbhrWNGMYPJwaM/UHjXkznSmyep+1uI0lkd61j8Eeo8TvvpLs5O+TpckPgv
-         OQu+vScJWmOCnEwaeCPNzkaJnpJidORQR5VH7pgnuVjiScU1KPwBObtMPE6C1wYltcfN
-         t+eRAeRssEmEi1eskMxRxKRrVnb9hvBGPAG7IdII/ay/FdjdfU20K5LV61zNZ604TE00
-         c46G3XljCYCICuHECSgxyaEXYRJTnan82+EEWpDjHLea6wkKvluzMYuuySdvetIvQrjS
-         duf2DLErmwyqM2Q926r3n3eXOYHoybx8P85V5oKk3GYOBmRU70TDdD69igREWLT/j7pV
-         +t9g==
+        bh=Ixd94IRcNWmkrcI7JCVI0OAMPGWl8miuu6Ps54C+2g8=;
+        b=idykG8TOvg1pBqYBbUECorw1f9FdQEkkxnBxGMMWoaUfgs2vbHyvwnDZHOhlcqmIV1
+         PGqN4FHN+DUGgLtYL249n6LKKLQu2SpGGz3PtDmbl/TESPHukU608sUL9atc7ECYQo+I
+         iRPp6E8EwTQojmhBDiPobz/bWdTB7TTmH9kv2JYLV3tPRBics9ffEdlHcKiuWF9IS2dp
+         GiXvE+yqpnYEUQpfrJ0ifPWQoHrgEc8XAp+Hld88ZKZ/3wyvo8Di0Ez84WH7VLHasBXq
+         qQLUeVoC2lnYv45Zlrk6dktBl38EYbRtH9GdxWEIGIf1UE8/KFrs/qDm7KTUsB+jDDCO
+         PVVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=7R3EeNPzdygH8nRe9+P7GLctFQM9EBB/aI4yYSr62I4=;
-        b=e9n8L5ynRMqC29R86hNLe3Ew5ngpaD0gy+WeQAunOAjJrymMBGiesKcCyISoHAOxEX
-         Rp7lggBHgRCDRl5q2areSbI5p9Ga3bgfuEa71L2IW3a94FSUTXuMeJkSbWytkzH37p2R
-         UGuVVqKa8PcGt4YYktcOaRYpk7qbaIYnLlLXStvfrEJohmYySfcqVNydMdeidFnIDJjp
-         6GEc/OU99fWviuhxr22AlNfXTfuYKV7zinSAB+RaerM4BWXiV3NOH/GITJQFVB9eYJFT
-         UjC3D/mr4EWRbQEYESUNWtOUozsYHnax1Gw2BsPLiKlhVxLIPjksFybCMvpjM64iyR3d
-         pRAw==
-X-Gm-Message-State: AJIora/VpW3dJjR11r/wJtluBWKvI0wMp5sdXQI/l9Kzg0GGBPjc4fRu
-        /YHXrdpjvfuAIgpoM5lMOtuS/A==
-X-Google-Smtp-Source: AGRyM1vhswn16NyT0InBsZNwoGOr4FxxTju8XfhZuAiehPGyXIC6OjtkJ+rmHAOxYVgb7LzdHv6Tgg==
-X-Received: by 2002:a17:907:1608:b0:726:a7b7:cd7a with SMTP id hb8-20020a170907160800b00726a7b7cd7amr9827374ejc.682.1656615692696;
-        Thu, 30 Jun 2022 12:01:32 -0700 (PDT)
+        bh=Ixd94IRcNWmkrcI7JCVI0OAMPGWl8miuu6Ps54C+2g8=;
+        b=GGJAUvcIv1MsdfwEKyP10D1jcYIArWnWamoo+LEq3IKoiihxRE4QBZmQUT80XCt8R1
+         OKEVaBCpFZ+KCi/Mh5o/uO079I1yM6FGQQRH62Rjg0Y68wLJyGsIANVQEe+oma5hQM1/
+         nwrcTMaB6s994iyVBCgzGOpVCdN+/5iD05RDj5YUK0bGWymxrk8yND9qp84d262JigZ/
+         YOGyOkhmCR7V7dW1tnnIVO9IPhVY3txj6TXciYmvKvUXd7+Fa1dCrhyEi5NOgWaZuSKE
+         eWqpgJP0URz06keG7+JwUO1zKKrgvLUi2AUhVfaJG3avbUolLJfmdzV3Ebtj5UawCVAh
+         fL9A==
+X-Gm-Message-State: AJIora8M2HTlPg0/zhUm7U/DfZ/9fXc7Pj2gpCNz3MA/aY/tIPiSzHcs
+        N1Z6OluAvyOxjIbprp+oZ6OsRw==
+X-Google-Smtp-Source: AGRyM1sNQbYgzNCNcBZYSUraU9r7SoPRVicUzCyAkVm+94gqR6RR/SXc2tLl3AtqayNJrd6UcQhmlg==
+X-Received: by 2002:a17:906:4b0c:b0:726:41df:5580 with SMTP id y12-20020a1709064b0c00b0072641df5580mr10841935eju.263.1656615743720;
+        Thu, 30 Jun 2022 12:02:23 -0700 (PDT)
 Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id jz27-20020a17090775fb00b006fecf74395bsm9485367ejc.8.2022.06.30.12.01.31
+        by smtp.gmail.com with ESMTPSA id h10-20020a50ed8a000000b00435728cd12fsm13680849edr.18.2022.06.30.12.02.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 12:01:31 -0700 (PDT)
-Message-ID: <225e70ec-553d-4d44-fc61-543128b2ad67@linaro.org>
-Date:   Thu, 30 Jun 2022 21:01:30 +0200
+        Thu, 30 Jun 2022 12:02:21 -0700 (PDT)
+Message-ID: <54d564fa-3c46-78d4-59a3-4efa5a5bf319@linaro.org>
+Date:   Thu, 30 Jun 2022 21:02:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 3/7] dt-bindings: msm: dsi: Fix power-domains constraint
+Subject: Re: [PATCH 4/7] dt-bindings: msm: dsi: Add vdd* descriptions back in
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
         quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
@@ -64,9 +64,9 @@ Cc:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org
 References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org>
- <20220630120845.3356144-4-bryan.odonoghue@linaro.org>
+ <20220630120845.3356144-5-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630120845.3356144-4-bryan.odonoghue@linaro.org>
+In-Reply-To: <20220630120845.3356144-5-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,31 +80,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 30/06/2022 14:08, Bryan O'Donoghue wrote:
-> The existing msm8916.dtsi does not depend on nor require power-domains.
-> Drop from the list of required.
-
-That's not good reason. The bindings are about hardware so the question
-is whether being a part of power domain or toggling power domain on/off
-is considered required for the DSI.
-
+> When converting from .txt to .yaml we didn't include descriptions for the
+> existing regulator supplies.
 > 
-> Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> - vdd
+> - vdda
+> - vddio
+> 
+> Add those descriptions into the yaml now as they were prior to the
+> conversion.
+> 
+> Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  .../devicetree/bindings/display/msm/dsi-controller-main.yaml     | 1 -
->  1 file changed, 1 deletion(-)
+>  .../bindings/display/msm/dsi-controller-main.yaml    | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 101adec8d9152..91324f0828448 100644
+> index 91324f0828448..fd9d472437853 100644
 > --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 > +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -136,7 +136,6 @@ required:
->    - phy-names
->    - assigned-clocks
->    - assigned-clock-parents
-> -  - power-domains
->    - ports
+> @@ -125,6 +125,18 @@ properties:
+>        - port@0
+>        - port@1
 >  
->  additionalProperties: false
+> +  vdd-supply:
+> +    description:
+> +      Phandle to vdd regulator device node
+> +
+> +  vddio-supply:
+> +    description:
+> +      Phandle to vdd regulator device node
+> +
+> +  vdda-supply:
+> +    description:
+> +      Phandle to vdd regulator device node
+> +
+
+They should be also added to required fields, because before they were
+required.
 
 
 Best regards,
