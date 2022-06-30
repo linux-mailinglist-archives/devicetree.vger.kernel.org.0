@@ -2,72 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 532DB56220B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:31:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF528562218
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 20:33:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236656AbiF3Sah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 14:30:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45638 "EHLO
+        id S236699AbiF3Sdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 14:33:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236652AbiF3Sag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:30:36 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D64E42A19
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:30:35 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id z41so32782ede.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:30:35 -0700 (PDT)
+        with ESMTP id S233056AbiF3Sdq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 14:33:46 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC63225586
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:33:43 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id ej4so4927edb.7
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 11:33:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8HMvgDx0M45hOe9EzGAGdmmBFNF04LJ7caeVS5Jltm8=;
-        b=I0Vj0nW8bONLNtF/M3fSTsRtcr+3vp0s5xn6kieZd2YagFyEH59dTgYRoNVVl3e8SJ
-         CfDNk4pq4B/V3S0UOnERenMxrbwzJqPZtNagRNAi054J37qoGYTs1y2jVtlI7SJ4NJhd
-         U7N4gRAvP+QARTwqkf1YOxspcUKugRIXBNlgt/TFDB9VOrgoHZ0p1LtjjPtwwTyNiUKx
-         Ay5TLzocbIUS9/ZyIr7F9899+VFeN+SKq/ajtjUpSbA3AofF90AqCVgr1Bzd9To016VJ
-         pRYvajT3FpbLD0yqzBX6vvfVdVYpS/nIDwnFGNDbLfRB9YmrO9sqnHuwYVgYkwdE7fcJ
-         sJIQ==
+        bh=yJGEttsMIPFNExRUVjMuioYnkzWMdO3yRAB963cFp2o=;
+        b=bVZKc01WEs5LMjU5JtELjSXU1pShwhHGLZhNmZYt3wfTdiQE/yN2UAshZdvCOv8QGq
+         jvuwowiNtOjr5posUthWXU7PWhNZt5GOF4X2vS97DTQrhkMDd85y2516gnqfIuFFlh2I
+         ruddBdJWCPzK2JSEvz6DATLXX11xi0ZKag2bf5Laj6MHMpCI7ursQwhCZpecYj90tw5h
+         nPUB4qcjaCKLvbhHoLjfivF0IkdS9P0U2XM5vlr2MQX+1XbAOzaKqW9xv/xG0frtmHy6
+         SsZzW6ElgdT4rkY8rdjUlQFfxOrx2HPWseOs3kKWIzs1pfoxsos6mZK6KSJsuFIKNtoI
+         Jsqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=8HMvgDx0M45hOe9EzGAGdmmBFNF04LJ7caeVS5Jltm8=;
-        b=tzRCDW9vlWCjCxjeFfK3nB7LkGGLM0wHuRCoaoYgPYWso+M3JgwHbyOi0a0aQmRgwL
-         wdkUjM8fDYY2nUCYNyS58uJryAgs1xv+a5KKNUz7zEA+0/gqvblZHTR6Tu6jvr4Zb5AS
-         WfUvwJXymhQSfLKxuGtITBS9OmgRo5+oysgZi6cYdB5lFAZO3O2UYZkyfQJ/JsZAL6QX
-         At/KT6fHbNOCfX66CvZk642q544wxFEHYYUYFL4uddNr0a3kUArpVE4+FcfyUPBKIaTM
-         juhs1iv4mQ39CGv38UMDhJ9qUp7S9hIhFikocCX/uO3pB/6LNfVhKpodDGIRc/WV9fI7
-         1PJw==
-X-Gm-Message-State: AJIora9sg7Pv6NdTAR0qRAHMcoTYBuvI7VpaiaXgHQKkfqiAnhhpCQTS
-        1TADpzzh5BMNlXcmaLNOlCvDFw==
-X-Google-Smtp-Source: AGRyM1s4MONlgYXs7qxpA3tmdCGfx/WaTLR64DFqg92GMhzYfpDH56CO77DwihQhw6Y6IHLTTjcdxQ==
-X-Received: by 2002:a05:6402:d5e:b0:435:dc14:d457 with SMTP id ec30-20020a0564020d5e00b00435dc14d457mr13333068edb.58.1656613833032;
-        Thu, 30 Jun 2022 11:30:33 -0700 (PDT)
+        bh=yJGEttsMIPFNExRUVjMuioYnkzWMdO3yRAB963cFp2o=;
+        b=GiRmn2yRLQYiG2zQUqCQjmgEmNNW46/i+Oi4nk4mbcZ49/2V7dMqoI1GrPEsM1l+2A
+         OIlujIEGM45VpRC0YGBLitT9SybBCuAkA5U+lJ8OjAuWAv8xvJ5c1zDwT/vNPF85hFQD
+         nSbkkn2FjXShkOFZ3u6J+QDu70wAgAmGZKXfe/e03D3XStn9wiuIDwULJho/qBTLJzGH
+         tc0ySoyTbYgTZrh9RfhLhl63SiIyV0P1RmYOT8ZrGTpIk0kHbyIsWPwlW2HDmmzU4Btn
+         BRttcnCAVqhQdP9ZL317+HBa1ypIT4Ej2cKZsSnKwjyHCTVHxi8rTUi46RG4yG9lwzZM
+         hG0A==
+X-Gm-Message-State: AJIora8/U237Jx56eP7CkuaR5tJW9hihCnpbKv1f0YzekGjQoXFCNQ+v
+        ElQPz52rgv2tOfMD1OMl3gjJ8g==
+X-Google-Smtp-Source: AGRyM1s8xy762cCi9FZl1Kcj0KeKPHclcEopngQ5Us/lz3lUXqlZKh+6oqktKAwNKh4wiC/U7Zn6jA==
+X-Received: by 2002:a05:6402:3708:b0:433:2d3b:ed5 with SMTP id ek8-20020a056402370800b004332d3b0ed5mr13495310edb.246.1656614022289;
+        Thu, 30 Jun 2022 11:33:42 -0700 (PDT)
 Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c11-20020aa7c98b000000b00435a912358dsm13601687edt.30.2022.06.30.11.30.31
+        by smtp.gmail.com with ESMTPSA id w3-20020a1709067c8300b00722fc0779e3sm9482072ejo.85.2022.06.30.11.33.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 11:30:32 -0700 (PDT)
-Message-ID: <306aa2da-9393-2a01-63a4-e1c81fa85e39@linaro.org>
-Date:   Thu, 30 Jun 2022 20:30:31 +0200
+        Thu, 30 Jun 2022 11:33:41 -0700 (PDT)
+Message-ID: <78faf75d-80b7-7a0e-e306-6351dbe5133c@linaro.org>
+Date:   Thu, 30 Jun 2022 20:33:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH] FROMLIST: arm64: dts: qcom: Add LTE SKUs for
- sc7280-villager family
+Subject: Re: [PATCH v6 02/14] dt-bindings: pinctrl: imx: Add fsl,scu-iomux
+ yaml file
 Content-Language: en-US
-To:     Jimmy Chen <jinghung.chen3@hotmail.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     swboyd@chromium.org, dianders@chromium.org,
-        Jimmy Chen <jinghung.chen43@yahoo.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <SG2PR03MB5006F091C2016ADE8A9A208ECCBA9@SG2PR03MB5006.apcprd03.prod.outlook.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Viorel Suman <viorel.suman@nxp.com>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Liu Ying <victor.liu@nxp.com>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
+ <20220629164414.301813-3-viorel.suman@oss.nxp.com>
+ <f0634bf0-77e9-939e-693f-31d50af4768c@linaro.org>
+ <20220630123754.esbuac4pfktlseh2@fsr-ub1664-116>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SG2PR03MB5006F091C2016ADE8A9A208ECCBA9@SG2PR03MB5006.apcprd03.prod.outlook.com>
+In-Reply-To: <20220630123754.esbuac4pfktlseh2@fsr-ub1664-116>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,180 +108,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 08:26, Jimmy Chen wrote:
-> From: Jimmy Chen <jinghung.chen43@yahoo.com>
+On 30/06/2022 14:37, Viorel Suman (OSS) wrote:
+> On 22-06-29 19:53:51, Krzysztof Kozlowski wrote:
+>> On 29/06/2022 18:44, Viorel Suman (OSS) wrote:
+>>> From: Abel Vesa <abel.vesa@nxp.com>
+>>>
+>>> In order to replace the fsl,scu txt file from bindings/arm/freescale,
+>>> we need to split it between the right subsystems. This patch documents
+>>> separately the 'iomux/pinctrl' child node of the SCU main node.
+>>>
+>>> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+>>> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
+>>> ---
+>>>  .../bindings/pinctrl/fsl,scu-pinctrl.yaml     | 68 +++++++++++++++++++
+>>>  1 file changed, 68 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
+>>> new file mode 100644
+>>> index 000000000000..76a2e7b28172
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
+> [...]
+>>> +      fsl,pins:
+>>> +        description:
+>>> +          each entry consists of 3 integers and represents the pin ID, the mux value
+>>> +          and config setting for the pin. The first 2 integers - pin_id and mux_val - are
+>>> +          specified using a PIN_FUNC_ID macro, which can be found in
+>>> +          <include/dt-bindings/pinctrl/pads-imx8qxp.h>. The last integer CONFIG is
+>>> +          the pad setting value like pull-up on this pin. Please refer to the
+>>> +          appropriate i.MX8 Reference Manual for detailed CONFIG settings.
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>>
+>> Look at fsl,imx8mq-pinctrl.yaml. Each item is described (items under items).
 > 
-> This adds LTE skus for villager device tree files.
+> Added them initially, but later dropped because of some logs like
+> "pinctrl@xxxxxxx: usdhc1grp:fsl,pins:0: [...] is too long" shown by
+> "make dt_binding_check dtbs_check DT_SCHEMA_FILES=[...]/fsl,scu-pinctrl.yaml"
 > 
-> Signed-off-by: Jimmy Chen <jinghung.chen43@yahoo.com>
-> Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
+> Same logs are shown for "fsl,imx8mq-pinctrl.yaml". Will add the items description in the next
+> version.
+>
 
-Use one identity and fix the subject - it's corrupted.
-
-> ---
-> 
->  arch/arm64/boot/dts/qcom/Makefile                 |  3 +++
->  .../arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |  7 -------
->  arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts |  1 +
->  .../qcom/sc7280-herobrine-herobrine-r1-lte.dts    | 14 ++++++++++++++
->  .../boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi   | 15 +++++++++++++++
->  .../dts/qcom/sc7280-herobrine-villager-r0-lte.dts | 14 ++++++++++++++
->  .../dts/qcom/sc7280-herobrine-villager-r1-lte.dts | 14 ++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi          |  1 +
->  8 files changed, 62 insertions(+), 7 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1-lte.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 2f8aec2cc6db6..ab1066883c468 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -85,7 +85,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
-> +dtb-$(CONFIG_ARCH_QCOM) += sc7280-herobrine-herobrine-r1-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
-> +dtb-$(CONFIG_ARCH_QCOM) += sc7280-herobrine-villager-r0-lte.dtb
-> +dtb-$(CONFIG_ARCH_QCOM) += sc7280-herobrine-villager-r1-lte.dtb
-
-This looks not aligned with other entries.
-
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> index 9f4a9c263c351..b1f83ddb4e23a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> @@ -83,13 +83,6 @@ spi_flash: flash@0 {
->  	};
->  };
->  
-> -/* Modem setup is different on Chrome setups than typical Qualcomm setup */
-> -&remoteproc_mpss {
-> -	status = "okay";
-> -	compatible = "qcom,sc7280-mss-pil";
-> -	iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
-> -	memory-region = <&mba_mem>, <&mpss_mem>;
-> -};
->  
->  /* Increase the size from 2.5MB to 8MB */
->  &rmtfs_mem {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> index a4ac33c4fd59a..7aaba5e51af01 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> @@ -8,6 +8,7 @@
->  /dts-v1/;
->  
->  #include "sc7280-herobrine.dtsi"
-> +#include "sc7280-herobrine-lte-sku.dtsi"
->  
->  / {
->  	model = "Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+)";
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1-lte.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1-lte.dts
-> new file mode 100644
-> index 0000000000000..e37773fd63b3b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1-lte.dts
-> @@ -0,0 +1,14 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Herobrine board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +
-> +#include "sc7280-herobrine-villager-r0.dts"
-> +#include "sc7280-herobrine-lte-sku.dtsi"
-> +
-> +/{
-> +	model = "Google Herobrine (rev1+) with LTE";
-> +	compatible = "google,herobrine-sku0", "qcom,sc7280";
-
-DT bindings update is needed. Unless it is already part of some other
-set, but then this should be explained in some cover letter.
-
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
-> new file mode 100644
-> index 0000000000000..c628910b310d3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
-> @@ -0,0 +1,15 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +  /*
-> +   * Google Herobrine dts fragment for LTE SKUs
-> +   *
-> +   * Copyright 2022 Google LLC.
-> +   */
-> +/* Modem setup is different on Chrome setups than typical Qualcomm setup */
-> +&remoteproc_mpss {
-> +	status = "okay";
-> +	compatible = "qcom,sc7280-mss-pil";
-> +	iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
-> +	memory-region = <&mba_mem>, <&mpss_mem>;
-> +	firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
-> +			"qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
-> new file mode 100644
-> index 0000000000000..672cb78e3088f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
-> @@ -0,0 +1,14 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Villager board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +
-> +#include "sc7280-herobrine-villager-r0.dts"
-> +#include "sc7280-herobrine-lte-sku.dtsi"
-> +
-> +/ {
-> +	model = "Google Villager (rev0) with LTE";
-> +	compatible = "google,villager-rev0-sku0", "qcom,sc7280";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
-> new file mode 100644
-> index 0000000000000..2f05a19cc388e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
-> @@ -0,0 +1,14 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Villager board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +
-> +#include "sc7280-herobrine-villager-r1.dts"
-> +#include "sc7280-herobrine-lte-sku.dtsi"
-> +
-> +/ {
-> +	model = "Google Villager (rev1+) with LTE";
-> +	compatible = "google,villager-sku0", "qcom,sc7280";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 5eb668991e249..6928a0908fcd6 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -13,6 +13,7 @@
->  #include "pmk8350.dtsi"
->  
->  #include "sc7280-chrome-common.dtsi"
-> +#include "sc7280-herobrine-lte-sku.dtsi"
-
-This looks like independent commit.
-
->  
->  / {
->  	aliases {
+The fsl,imx8mq-pinctrl.yaml should be correct and I don't see the reason
+why dtschema complains in some of the entries. It's like one define was
+not correct... I'll take a look at this later, but anyway keep the same
+as fsl,imx8mq-pinctrl.yaml even if it complains.
 
 
 Best regards,
