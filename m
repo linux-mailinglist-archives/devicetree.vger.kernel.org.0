@@ -2,98 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B3FA561B6E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 15:32:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 962AD561B7F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 15:42:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233783AbiF3NcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 09:32:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37032 "EHLO
+        id S234766AbiF3NmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 09:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234211AbiF3NcN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 09:32:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E7EB366B7;
-        Thu, 30 Jun 2022 06:32:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230223AbiF3NmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 09:42:19 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1622020F55;
+        Thu, 30 Jun 2022 06:42:18 -0700 (PDT)
+Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BF78A61F89;
-        Thu, 30 Jun 2022 13:32:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FDAEC34115;
-        Thu, 30 Jun 2022 13:32:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656595932;
-        bh=P4ygcIAZvGne77x7p3ESNwZJYO63gwNBVMImtEJj/Aw=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=uaLMUe0Kjgw7n42wD8QtWWvbYn63qmHgABLj0+dirlxPm7dLoQ8BxA3CimjMDUhB8
-         e52pmNAiqhXWOJIukn5AgG8zcO2cEcVKw6PmvTkMXeZpYrLSqdu0NVy1ydMyH/DKCQ
-         hVyKYIazGjilWAK6i9GvmJuKaMeV2ACUWbmJ7b54Rxqb8zaHHWyAyTXxINIA4pvCV2
-         5cPn/IJ2TYqaYYAhLIxFRsaRWcRtibZ6tdmN6QgyNvALkv9pMsmzgXlgvaTjy4Mmft
-         HeUzOxJonMkfb7otYacjhbuGzEPksBxuETqyuyMf8KJwSO0Ao4SEhOb6rWrX0RChNV
-         Hfc/RZV5a/NPA==
-From:   Mark Brown <broonie@kernel.org>
-To:     stephan.gerhold@kernkonzept.com
-Cc:     bjorn.andersson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, lgirdwood@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20220623094614.1410180-1-stephan.gerhold@kernkonzept.com>
-References: <20220623094614.1410180-1-stephan.gerhold@kernkonzept.com>
-Subject: Re: [PATCH 0/3] regulator: qcom_smd: Add PM8909 and fix pm8916_pldo range
-Message-Id: <165659593011.540699.6977460772131709701.b4-ty@kernel.org>
-Date:   Thu, 30 Jun 2022 14:32:10 +0100
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9CEA06601946;
+        Thu, 30 Jun 2022 14:42:15 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1656596536;
+        bh=zjw1NKua1OqhkkVVGCT+4W7JxDOLoG6XHBVU7jGOB78=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=P9919LpkeDWT5+HIeeW2bFNEx3vluBXhRHVunbOdmiOxE5AMsYc3EIknZZC8HTypM
+         4Dp+4pbIvhlvpeL8um1PDGdwC7Vi5vSzfxtjECgd4OH9Qfc/XUIl3OBwkWd0atKeyZ
+         NdskSN9hnlzhV8zbWFxpw2YCGcVmTjLWu22cvtz8l+TaLfXiQ2Em79ySYC8eZFJEfq
+         wqvkcKWLsSI0ISmzWwKJY9jSrrECO1E12OxA27xzCJxJN5FxMIQ6rY3Dte0qCVrbGJ
+         ewSmuHn3Zja+o7xQdK1bEesESYxYl0ojf9/egs/8r1Uf3P0zMTJbo4c8L5Y/mo4h0E
+         fwJk5jdV6EvLw==
+Date:   Thu, 30 Jun 2022 09:42:10 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH 3/5] arm64: dts: mt8192: Add display nodes
+Message-ID: <20220630134210.7j665amh6tbeaecv@notapiano>
+References: <20220629121358.19458-1-allen-kh.cheng@mediatek.com>
+ <20220629121358.19458-4-allen-kh.cheng@mediatek.com>
+ <20220629232429.c5oysjgy6gflqhct@notapiano>
+ <99342f13190cb4ea103c4227e6672eb5cad63b82.camel@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <99342f13190cb4ea103c4227e6672eb5cad63b82.camel@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Jun 2022 11:46:11 +0200, Stephan Gerhold wrote:
-> Fix the voltage range for the pm8916_pldo in the qcom_smd-regulator
-> driver and add definitions for the regulators available in PM8909.
+On Thu, Jun 30, 2022 at 05:41:31PM +0800, allen-kh.cheng wrote:
+> Hi Nícolas, 
 > 
-> Stephan Gerhold (3):
->   regulator: qcom_smd: Fix pm8916_pldo range
->   regulator: dt-bindings: qcom,smd-rpm: Add PM8909
->   regulator: qcom_smd: Add PM8909 RPM regulators
+> On Wed, 2022-06-29 at 19:24 -0400, Nícolas F. R. A. Prado wrote:
+> > On Wed, Jun 29, 2022 at 08:13:56PM +0800, Allen-KH Cheng wrote:
+> > > Add display nodes and gce info for mt8192 SoC.
+> > > 
+> > > GCE (Global Command Engine) properties to the display nodes in
+> > > order to
+> > > enable the usage of the CMDQ (Command Queue), which is required for
+> > > operating the display.
+> > > 
+> > > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> > > Reviewed-by: AngeloGioacchino Del Regno <
+> > > angelogioacchino.delregno@collabora.com>
+> > > ---
+> > >  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 136
+> > > +++++++++++++++++++++++
+> > >  1 file changed, 136 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > index a07edc82d403..26d01544b4ea 100644
+> > > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+[..]
+> > > +		rdma0: rdma@14007000 {
+> > > +			compatible = "mediatek,mt8192-disp-rdma";
+> > 
+> > dtbs_check is complaining that there isn't a "mediatek,mt8183-disp-
+> > rdma"
+> > fallback compatible here. But given that the rdma driver matches
+> > directly to the
+> > mt8192 compatible, I think the node here is fine, and the binding is
+> > the one
+> > that should be updated.
+> > 
 > 
-> [...]
+> I have checked the binding and driver again.
+> 
+> I prefer use "mediatek,mt8186-disp-rdma" as fallback and remove mt8192
+> compatible and data in mtk_disp_rdma.c because they are the same with
+> mt8183.
+> 
+> Do you think it is okay?
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/3] regulator: qcom_smd: Fix pm8916_pldo range
-      commit: e8977917e116d1571dacb8e9864474551c1c12bd
-[2/3] regulator: dt-bindings: qcom,smd-rpm: Add PM8909
-      commit: 8cbb948a7cc2875d09234e2ce0424bc501c370b9
-[3/3] regulator: qcom_smd: Add PM8909 RPM regulators
-      commit: bc4d193238be4ef8ecee1ba0e0371169ad448c31
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Sure, that sounds good to me as well.
 
 Thanks,
-Mark
+Nícolas
