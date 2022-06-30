@@ -2,72 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 561A75620DA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 19:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79B8D5620F2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 19:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbiF3RHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 13:07:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36350 "EHLO
+        id S235536AbiF3RKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 13:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236341AbiF3RHs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 13:07:48 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D1FC3ED2B
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:07:47 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id a2so34883258lfg.5
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:07:47 -0700 (PDT)
+        with ESMTP id S235251AbiF3RKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 13:10:46 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB8E235269
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:10:44 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-2ef5380669cso185661477b3.9
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 10:10:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:user-agent:in-reply-to:references
-         :message-id:mime-version:content-transfer-encoding;
-        bh=5h9m2r1as3dVO5Ej+4ZiJew20CUmK76LyEozgtg6ehk=;
-        b=RpClWCfbqMGu2IaKWsyy/R7HM5UFKNt5IfpnOqCRNW7IeAGO0hOQ8gg3W3l8GwANGS
-         DndKo5NBBpM7M4OzjLhDl4yyHG1a2jZ4FTPnoNrWLzvsn56ATwrLWpSkSt5wSv3rKAzi
-         b1UlsdO/ZFFZxcP7I301pb460P5tLR90qusgBA9D80fQZCRHaYD/f/Mndrmv46pmuxKa
-         qEzW8NhW1huy78tXn0ahmqTf/fRTK83e6KpRM2Og0b/4LkNTnPkTIS2PQ3Ww9KSWtv6m
-         aaO7S3XYrMgcSvL2T3iBfBcprAhBJamvksBcnSLMCPD8Pwrhs6FSQnvorU6rgaqtRhRa
-         q6qg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=C4tyH3Wyg1tODv7Sm2smKsBoDS+J8nqhwGQaq6vu3uY=;
+        b=gnYGD2jS1FIJGGpq0jD3UITkms56aodG5VSVUw4KGb2NOASUoMBZF4GAF2pCZD4yuT
+         1BUfIMSa7UwkVNInhHWxVQsdUY45IwPorOfEp3ZMwrgvpq7Eq/wAAm816woi+NAnVzkO
+         puOGIsOCuaPz5ZUYu6Y4EcKmJFWfdgBhBGv2w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:user-agent:in-reply-to
-         :references:message-id:mime-version:content-transfer-encoding;
-        bh=5h9m2r1as3dVO5Ej+4ZiJew20CUmK76LyEozgtg6ehk=;
-        b=ynKQHF9L/3fCwIjugW4d/mcl05zupdLVqV+EOuOgfRa8vGH8+f2/Yw+loZGhpEiJKy
-         sU+ruPyBtrk12F8VUlB2Yok+KEqEMsIOllPukVd2LI3o/ZDgRlgfb4EapN1q6c/XJb5z
-         ssI9jk3AYk996h1ywG3DoR4wPIA69NtzHQLonn3jCbE266z8zk1fnXWCRh6PYTAwssvn
-         HFsQj6xgk+YL1Y4xUBYyfRBeC5VM1iVQM2+/NTAExEM0/8nOzHTj3q5x4dp8s5D+PXDU
-         JB1ZjqJCxNR0hMjzzOpiFHy/ILcus7pgYrRylfH0hIa0E1n81uD/kRrnbJG94DJIXVXB
-         KgWg==
-X-Gm-Message-State: AJIora9U64DfRxQAVUxhbKJKvUmCMl03tesiGEGYRm0koJ8Fo3PRZg3e
-        x/UoWTRTRDN8qepbqnFrFIDgSA==
-X-Google-Smtp-Source: AGRyM1sYxOrvJE5VNAQuV35nuPVYN8Uc4ZOlo7XwTERwo1oW9GaijikgQCz+byZALgT7XFQduQmvEg==
-X-Received: by 2002:a05:6512:3e0e:b0:47f:6a95:9b98 with SMTP id i14-20020a0565123e0e00b0047f6a959b98mr6372997lfv.177.1656608865898;
-        Thu, 30 Jun 2022 10:07:45 -0700 (PDT)
-Received: from [127.0.0.1] ([94.25.229.210])
-        by smtp.gmail.com with ESMTPSA id c7-20020a19e347000000b004791fc12f6asm3194067lfk.46.2022.06.30.10.07.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 30 Jun 2022 10:07:44 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 20:07:41 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, sean@poorly.run, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-CC:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, bryan.odonoghue@linaro.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_2/7=5D_dt-bindings=3A_msm=3A_ds?= =?US-ASCII?Q?i=3A_Fix_operating-points-v2_constraint?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20220630120845.3356144-3-bryan.odonoghue@linaro.org>
-References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org> <20220630120845.3356144-3-bryan.odonoghue@linaro.org>
-Message-ID: <6334180D-C29F-4EB4-BD2D-1F832E9FF990@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=C4tyH3Wyg1tODv7Sm2smKsBoDS+J8nqhwGQaq6vu3uY=;
+        b=fjwrCXFMVcUY3N2qaKBUMY9/VinWjYkc2AYcE9mmVyrOwG94jI+AdIiOtY1YK9nRDm
+         aAJ15td8ZY/iYm9BAKaD5BRf8Y8Sx4EcRW4QDnYauh4pYVxC+sW53TR9RBVFAJQlYue8
+         4vE6MsYDMYL0N3qfLrqzXtfsfSyeNWSQEBtKUv1yapbvCEXaBhHPaWbXl/Sz06P3Dht3
+         Kc5bpGwVEmtuyyoL9gXy4pRKbL69DFgz9Cw+OX2W27v/etWWVPbxcKx1Ahl+LG2dA+4e
+         FSsK9ugAhrwHe5bJO9jt3a5oSD0mooF2dCIQRCifslUmqPRzGiZxbwx59ybHmQSzcVYj
+         pgMQ==
+X-Gm-Message-State: AJIora9thpB7dREN5oiGs6Q3JvRLciV1xc10M7GaeAhzqhzbkqpiZUhh
+        tX3kbDVFE3cHNQs9lzX04XWkI4QeUya1qlk5VeDOKg==
+X-Google-Smtp-Source: AGRyM1uMIL9QXjLW/PVKIiDg5RY+SUgQa/orAvMkYfMDivtbvx25fWOLwDlCvs4yZik4khUw0Q+DzoBnfW9oVFDgjCg=
+X-Received: by 2002:a81:5745:0:b0:318:99e6:3279 with SMTP id
+ l66-20020a815745000000b0031899e63279mr11262932ywb.311.1656609043950; Thu, 30
+ Jun 2022 10:10:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20220622173605.1168416-1-pmalani@chromium.org>
+ <20220622173605.1168416-2-pmalani@chromium.org> <20220627210407.GA2905757-robh@kernel.org>
+ <CACeCKackdbDZrk5fk7qyMwSdTdzyTS=m1vHPFnQOj672W=2nOA@mail.gmail.com>
+ <20220628182336.GA711518-robh@kernel.org> <CAEXTbpex9nxP-nyPWvSBchAW4j3C4MZfVHTb=5X0iSLY1bSAKg@mail.gmail.com>
+ <CAEXTbpf_jxK-R5aA81FCbpAH4bChA2B9+8qExZUbA7Y+Ort=Gg@mail.gmail.com>
+ <CAL_Jsq+C04RXLtm6Ac85Ru3EGwJbqV_UD3_dDWVrKvFSvdm7Ng@mail.gmail.com>
+ <CAE-0n53ers881LOTCEmKDDxJQt+5vvXJSURs=o6TcOiR5m_EAw@mail.gmail.com>
+ <CACeCKacJnnk4_dXEX7XiboOWrYpfAcE=ukP63agVAYUxWR9Vbg@mail.gmail.com> <CAE-0n50jm1ovUcBC0GCQJszk-4u+0vDQtAxHxsu9SLyn_CkQuQ@mail.gmail.com>
+In-Reply-To: <CAE-0n50jm1ovUcBC0GCQJszk-4u+0vDQtAxHxsu9SLyn_CkQuQ@mail.gmail.com>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Thu, 30 Jun 2022 10:10:32 -0700
+Message-ID: <CACeCKadtmGZ5iuTHdMms6ZHGn-Uv=MbcdtqmUzqCb=5WHuPj2Q@mail.gmail.com>
+Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Pin-yen Lin <treapking@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,42 +96,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+(CC+ Bjorn)
 
-
-On 30 June 2022 15:08:40 GMT+03:00, Bryan O'Donoghue <bryan=2Eodonoghue@li=
-naro=2Eorg> wrote:
->The existing msm8916=2Edtsi does not depend on nor require operating poin=
-ts=2E
+On Wed, Jun 29, 2022 at 4:55 PM Stephen Boyd <swboyd@chromium.org> wrote:
 >
->Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bin=
-dings")
->Signed-off-by: Bryan O'Donoghue <bryan=2Eodonoghue@linaro=2Eorg>
-
-
-Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
-
->---
-> =2E=2E=2E/devicetree/bindings/display/msm/dsi-controller-main=2Eyaml    =
- | 1 -
-> 1 file changed, 1 deletion(-)
+> Quoting Prashant Malani (2022-06-29 15:55:10)
+> > On Wed, Jun 29, 2022 at 2:58 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> > >
+> > > My understanding is there are 4 DP lanes on it6505 and two lanes are
+> > > connected to one usb-c-connector and the other two lanes are connected
+> > > to a different usb-c-connector. The IT6505 driver will send DP out on
+> > > the associated two DP lanes depending on which usb-c-connector has DP
+> > > pins assigned by the typec manager.
+> [...]
+> >
+> > We can adopt this binding, but from what I gathered in this thread, that
+> > shouldn't be done, because IT6505 isn't meant to be aware of Type-C
+> > connections at all.
 >
->diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller=
--main=2Eyaml b/Documentation/devicetree/bindings/display/msm/dsi-controller=
--main=2Eyaml
->index 717a5d255ffe4=2E=2E101adec8d9152 100644
->--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main=
-=2Eyaml
->+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main=
-=2Eyaml
->@@ -137,7 +137,6 @@ required:
->   - assigned-clocks
->   - assigned-clock-parents
->   - power-domains
->-  - operating-points-v2
->   - ports
->=20
-> additionalProperties: false
+> How will the driver know which usb-c-connector to route DP to without
+> making the binding aware of typec connections?
 
---=20
-With best wishes
-Dmitry
+I agree with you; I'm saying my interpretation of the comments of this
+thread are that it's not the intended usage of the it6505 part, so the driver
+shouldn't be updated to support that.
+
+>
+> HPD can be signalled out of band, or not at all (no-hpd). I suspect it's
+> valid to ignore/disconnect the HPD pin here and start/stop DP when, for
+> example, the HPD pin toggles within a dp-connector. HPD could be
+> signaled directly to the kernel via an out of band gpio going from the
+> dp-connector to the SoC. In this case HPD for each dp-connector could be
+> a different gpio and the driver may be required to arbitrate between the
+> two dp-connectors with some 'first to signal wins' logic or something.
+
+Sure, it's possible. I just didn't see anything in the anx7625 datasheet
+to suggest it supported 2x1-lane DP outputs.
+
+For that matter I don't think even it6505 supports > 1 DP sink (based
+on my reading of the datasheet), but I don't have too much experience
+with these parts.
+
+
+> > My interpretation of the current mode-switch search code [1] is that
+> > a top level property of "mode-switch" is required.
+>
+> Yeah that's how it is right now, but does it have to stay that way?
+> Could the code search the graph and look for a matching node that's
+> registered with the typec framework?
+
+I'll have to get back to you on that after reading the code a bit more.
+Maybe Heikki or Bjorn have some comments about it.
+The ACPI Type-C ports do require a device handle labelled "mode-switch"
+which points to the switch device.
