@@ -2,174 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 765CF5612EB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6200A5612F4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 09:12:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232988AbiF3HIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 03:08:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38400 "EHLO
+        id S232051AbiF3HL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 03:11:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232102AbiF3HIo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:08:44 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FD42E0A8
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:08:42 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id k22so25809319wrd.6
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:08:41 -0700 (PDT)
+        with ESMTP id S230061AbiF3HL5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 03:11:57 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E63C2FFF3
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:11:56 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id o9so25267754edt.12
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 00:11:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ayzM4tdWAxdTq2eOnCE6d3LLrIch4LIjhD1aFF0Ci5w=;
-        b=71/VDhbaQSupQXYHrFC/jsNZ3D60v/ZgSkvNe9aWH58blGUOZNhCiH9E0fnbWR3O+7
-         tGezD/f9rZHNYSaLwhAJDcgSe2tdFW/z8Ybll36I3xVXdH85VYnJZkWam5TM3XMr/Sac
-         wuUTnOaSiVTPitMCAKgNWhnB6V2VGAQOVEnoic1SzXHlOlrO9kaJ5HiRSCUzSjHo2kwV
-         f0iIjoEfsXdWcm9BLyMNWTAvOfPVSm2C9JXqV+LIJ36724Tw86uMuiJy8f0PAiHdIp0g
-         Ryqr7c8ufaryfqZNPFqYm37ZCBTN0yZmPr2pg5MVtJLPG9hKVt8QDTN8mnCyVfCV/fOt
-         rXKw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=1JnF9FCH107+rnCgnTKrA6bh7uOLfYkwJEC44Tp4oG0=;
+        b=tqmxNteBrHNpKcsY4l4MLcq5PYOpyF5j28Z9lNCmyTJizJNEd3uuAZKXr9vATgL8UM
+         fZJOzmkfw9iF72T4VZCVvSPnBuArJ8oEVC1b+SoW4NbIUeETBXUFmdY3olZRQ+fW13TC
+         h0g3DGwVVAkuTjyMgGekRPomO/26Egr7T55HNC99QZKgo422j2fKY15wTfIbQG+9ANDU
+         v7jlAngVhhwVuMwLeyJslVJpnOuGUbRfawqeI5aO/0X3eIlquJbDx2w/NYRvyHuljOG4
+         QoP60SYqO9x3zuUIUC9oZcEDNdv9rzA5nP0elglkEjf55ZH2keLhEaSmuo/ArsgX2fre
+         6l8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ayzM4tdWAxdTq2eOnCE6d3LLrIch4LIjhD1aFF0Ci5w=;
-        b=mTMLJCPyBU/dH2P+ilNjyL3cgxxq1oLDhIL3tMfsUf2GrDh81/TyldoOQsWR4XznxY
-         OiECkc6ToN8NMWVCatMp8JN8EkSqwYvOTsxAuH3Nq2gdDzt4qThgkE4ANGG7j6eDTICU
-         Xa0AQqaGJjBCRU+25/OjZvQAC1YfrUhautjD0Gu+BmbuB9+oD4JOboOnGW0Mj8q4PMf4
-         099bBZNJzpoWQAYGl5nKoP9hLY8XE45TDQ8vMe2RvidkHnW8qvSjvLZJa1goNT2Q2LRX
-         r/Ye87WHDEQsyPyb17FM7xsvfPghwUCacc1qC7VrQVz58W5VcOvr3frC7s06IOls7lZq
-         wV9w==
-X-Gm-Message-State: AJIora8ybQIS970yC2hEYvUaIvM+HoQ7AICTe6Y8EXWKfrDDfWxPNoe/
-        RlrOCbELSgtUsQSr084yreJbxw==
-X-Google-Smtp-Source: AGRyM1uQlTw63DMb8FdmLCF0nOX+VkDo2Bx+oRykHs0C6C6jifuUrkDqjXKm/mEHjiF/Sc9XTsJUig==
-X-Received: by 2002:a5d:4b04:0:b0:21b:8640:273f with SMTP id v4-20020a5d4b04000000b0021b8640273fmr6917973wrq.195.1656572920550;
-        Thu, 30 Jun 2022 00:08:40 -0700 (PDT)
-Received: from localhost.localdomain (120.205.87.79.rev.sfr.net. [79.87.205.120])
-        by smtp.gmail.com with ESMTPSA id u23-20020a7bcb17000000b0039aef592ca0sm5397421wmj.35.2022.06.30.00.08.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 00:08:39 -0700 (PDT)
-From:   Julien Panis <jpanis@baylibre.com>
-To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Julien Panis <jpanis@baylibre.com>
-Subject: [PATCH] arm64: dts: ti: k3-am62: add watchdog nodes
-Date:   Thu, 30 Jun 2022 09:08:26 +0200
-Message-Id: <20220630070826.11074-1-jpanis@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        bh=1JnF9FCH107+rnCgnTKrA6bh7uOLfYkwJEC44Tp4oG0=;
+        b=Odq3C5Hil5KDvQ/B5gD06/vcBNV5nxafcb8wTBEdfiYMCpl1D/5pJhX42Eo89DUOMN
+         rx+q7FMsLOxc52gzBjlsGEsPxxbPSxB8ulDxI3XXRrHMGHuZMtA0UXjW8gWercoHSEF4
+         aT8qneHZjG7zDuT7ofUDftuqdm1xDCNWDNNI4bUQrROC+Uoh4FaVy1XrvOltr+OVCRkN
+         w5pCexStdjSgnszQ2Nl7wfyDczruDU8B5jQIwxOlnemkg/CU3wXMHoCGDwx9v5qbg+24
+         skWfmRPUJQLV8EHVtP2h2UBdhMHU7c/qdfAdS5E9rYXdMVBOtt/6JhUo5bzIB116OciB
+         2ETA==
+X-Gm-Message-State: AJIora/btfAptDS0LwXUjrKBisTQVnOPpxY/xIgVOJrw+3B44oER6kv1
+        stHanxkg8Usqk9cmRZHr89eK1Q==
+X-Google-Smtp-Source: AGRyM1vUqSz513lr544IF6wYf2/WELZsmHa2Ulj31CJPfb/i775RKLhx4h6mQENJr97DBWUQQRpX5w==
+X-Received: by 2002:a50:c8cd:0:b0:435:688d:6c59 with SMTP id k13-20020a50c8cd000000b00435688d6c59mr9323009edh.271.1656573115145;
+        Thu, 30 Jun 2022 00:11:55 -0700 (PDT)
+Received: from [192.168.0.187] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id y14-20020a170906448e00b0072737733f9asm2095042ejo.106.2022.06.30.00.11.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jun 2022 00:11:54 -0700 (PDT)
+Message-ID: <415e6440-0b46-8d3c-2e29-841bdb16e29a@linaro.org>
+Date:   Thu, 30 Jun 2022 09:11:53 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: samsung: usi: add
+ exynosautov9-usi compatible
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <CGME20220630021951epcas2p26cd4a554f01f9cb6e44acd813eee15fd@epcas2p2.samsung.com>
+ <cover.1656554759.git.chanho61.park@samsung.com>
+ <8d7029cdf7b2ce0d1c43e6f91b3b9fdadece08ee.1656554759.git.chanho61.park@samsung.com>
+ <CAPLW+4noFAHc+g7jTaaiMQH871OkqcOWjZ85-mpfPVbjiFO1iA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAPLW+4noFAHc+g7jTaaiMQH871OkqcOWjZ85-mpfPVbjiFO1iA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for watchdogs :
-- 5 in main domain
-- 1 in MCU domain
-- 1 in wakeup domain
+On 30/06/2022 07:59, Sam Protsenko wrote:
+> Hi Chanho,
+> 
+> On Thu, 30 Jun 2022 at 05:19, Chanho Park <chanho61.park@samsung.com> wrote:
+>>
+>> Add samsung,exynosautov9-uart dedicated compatible for representing
+>> usi of Exynos Auto v9 SoC.
+>>
+>> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+>> ---
+>>  .../devicetree/bindings/soc/samsung/exynos-usi.yaml       | 8 ++++++--
+>>  1 file changed, 6 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+>> index fde886a8cf43..6e806e950a36 100644
+>> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+>> @@ -22,8 +22,12 @@ properties:
+>>      pattern: "^usi@[0-9a-f]+$"
+>>
+>>    compatible:
+>> -    enum:
+>> -      - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
+>> +    oneOf:
+>> +      - items:
+>> +          - const: samsung,exynosautov9-usi
+>> +          - const: samsung,exynos850-usi
+>> +      - enum:
+>> +          - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
+>>
+> 
+> Why "samsung,exynos850-usi" is duplicated? Maybe it would be correct
+> to leave only "items" and remove the "enum"?
 
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
----
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 45 ++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  9 +++++
- arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  9 +++++
- 3 files changed, 63 insertions(+)
+It has to be like this. Either you use exynos850-usi directly (on
+Exynos850) or as a fallback (on Autov9).
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index 5b2c210c592c..7202937618b7 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -572,4 +572,49 @@ main_mcan0: can@20701000 {
- 		interrupt-names = "int0", "int1";
- 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
- 	};
-+
-+	main_rti0: watchdog@e000000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e000000 0x00 0x100>;
-+		clocks = <&k3_clks 125 0>;
-+		power-domains = <&k3_pds 125 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 125 0>;
-+		assigned-clock-parents = <&k3_clks 125 2>;
-+	};
-+
-+	main_rti1: watchdog@e010000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e010000 0x00 0x100>;
-+		clocks = <&k3_clks 126 0>;
-+		power-domains = <&k3_pds 126 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 126 0>;
-+		assigned-clock-parents = <&k3_clks 126 2>;
-+	};
-+
-+	main_rti2: watchdog@e020000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e020000 0x00 0x100>;
-+		clocks = <&k3_clks 127 0>;
-+		power-domains = <&k3_pds 127 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 127 0>;
-+		assigned-clock-parents = <&k3_clks 127 2>;
-+	};
-+
-+	main_rti3: watchdog@e030000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e030000 0x00 0x100>;
-+		clocks = <&k3_clks 128 0>;
-+		power-domains = <&k3_pds 128 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 128 0>;
-+		assigned-clock-parents = <&k3_clks 128 2>;
-+	};
-+
-+	main_rti15: watchdog@e0f0000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e0f0000 0x00 0x100>;
-+		clocks = <&k3_clks 130 0>;
-+		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 130 0>;
-+		assigned-clock-parents = <&k3_clks 130 2>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-index f56c803560f2..f82e94def774 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-@@ -81,4 +81,13 @@ mcu_gpio0: gpio@4201000 {
- 		clocks = <&k3_clks 79 0>;
- 		clock-names = "gpio";
- 	};
-+
-+	mcu_rti0: watchdog@4880000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x04880000 0x00 0x100>;
-+		clocks = <&k3_clks 131 0>;
-+		power-domains = <&k3_pds 131 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 131 0>;
-+		assigned-clock-parents = <&k3_clks 131 2>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-index 4090134676cf..3c95ac3a0dd5 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-@@ -38,4 +38,13 @@ wkup_i2c0: i2c@2b200000 {
- 		clocks = <&k3_clks 107 4>;
- 		clock-names = "fck";
- 	};
-+
-+	wkup_rti0: watchdog@2b000000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x2b000000 0x00 0x100>;
-+		clocks = <&k3_clks 132 0>;
-+		power-domains = <&k3_pds 132 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 132 0>;
-+		assigned-clock-parents = <&k3_clks 132 2>;
-+	};
- };
--- 
-2.25.1
-
+Best regards,
+Krzysztof
