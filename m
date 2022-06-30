@@ -2,78 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B06E562372
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64CA1562378
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 21:51:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235729AbiF3TtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 15:49:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47828 "EHLO
+        id S233279AbiF3Tug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 15:50:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235176AbiF3TtH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:49:07 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A15820F49
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:49:06 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id v9so87100wrp.7
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:49:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6tnKa6j0KUTAns+9a5hu7e9HMdmQnDavnOA9sl0AIJw=;
-        b=njyHn6aTwltxlDIvONhFpvjWImdwFbcxV+4iHtUnmq17Z2D2qLtMXnUyw7I1zpOZX5
-         DJxgodxX1pg57tqiCqKtVwDfitRIWbUeosHao0kCyMemcdLbpQ3gGXS60ftMr+swK8JJ
-         XMbvAsyvlDTGVU90VTN5GrC6vkMNEYQ/q4mggitoR4nitzTuHo/T3rZP1vssev6UBIIU
-         BKAyX9cpWILuv8wkR2dFcpXCgNnprozdL9dJlDrMYfu8fNOp0HKQa5Uxng1lC5nvpGn3
-         cVRnQUfVNadjAkNMpjM/UY7fmJp9eqo+8jJ4lmupI90NHghoS7YhHqbbYZ5zWQbA/B/s
-         LLrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6tnKa6j0KUTAns+9a5hu7e9HMdmQnDavnOA9sl0AIJw=;
-        b=b2MnxlNhrXA6uSPBXrUlgXEPl7RaHTmmlv65zlzN3E9aBczds5T/VZrTicaQl3onvO
-         +WDIAuwJcRAqPCVyfPUy+aKrJSmcRZ/TNd2OhDzLBge+3JFLk8FAN5WmMySQsjVGpSBw
-         YCimWyQmNOANNKfnlzjlxPF9qYOflJYG7Q+9g91DK+xZ3z1G5+YZW+fZAdtfOZx4NL4G
-         KpUfTsGIdv3oDfT2O1N4Bp6aBqvUkja90hkCWxZOzZghex0FnSw3UwB5r21BjVZtjkEg
-         94L7+mNK7wS4YfFDoqDPXs5d/4CCzxv2fCoeEBaocYx77kTJv4ABfgZaS2SSrXiz6UD+
-         Pufg==
-X-Gm-Message-State: AJIora9K8SIz0uskRqhI3gkceapWMA4TW68dKrXXK72Y+IBDk40gGUr7
-        2s8ecF/feWmtuVd4knsmngpK2Q==
-X-Google-Smtp-Source: AGRyM1sZHMnJrHelAuAUGs13a3YkMH9sihf7xkfePW0UaKfmk8KPRg67Ro+MceNbycq1UCObq1QnZQ==
-X-Received: by 2002:adf:e252:0:b0:21b:827e:4c63 with SMTP id bl18-20020adfe252000000b0021b827e4c63mr9834152wrb.307.1656618544868;
-        Thu, 30 Jun 2022 12:49:04 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id g20-20020a7bc4d4000000b0039c798b2dc5sm3634442wmk.8.2022.06.30.12.49.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 12:49:04 -0700 (PDT)
-Message-ID: <054043a5-3643-aa5b-4204-8cacb7b3ae9a@linaro.org>
-Date:   Thu, 30 Jun 2022 20:49:03 +0100
+        with ESMTP id S236405AbiF3Tug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 15:50:36 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D232143EF7
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 12:50:34 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id B921A843D1;
+        Thu, 30 Jun 2022 21:50:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1656618632;
+        bh=t3edvrBc5ncxUU2vc3gtlwOKIuTYYnqtG/mMyVUOLCA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=dIFFUBo6h6+5fAcP9Jcwz2fopbPGevtwsk8RQfrG7+uiNx7Ptl0aqehD2Y+GFwugd
+         WKTrggrc//kP6khRjIb8qXWtrTRFW8eDwY6S9C0aJOdPnkCjaGbzobeIt0k0dIY4TN
+         E5ysjC0Q2RzIrqr8Zw85XQcly2qSKv0kNUdvh6Tkk3WdqxOro9h6haQ6/LrgBJtZ04
+         vX5mlrv6a9OolAE6QgyoChN1TOas6e1mg4koEAq/xdh2abVde/7dMEByZCPenMXrM5
+         0KG48PXHWa9xgWoHXfB+FM3Q/5qENl7UZUuS2DSduDX6n1bkhM6O+Uqg/H7M9KBdmO
+         YAB6Y1JRnum3Q==
+Message-ID: <247d48ae-d22f-4adc-07c0-74dbccfc9390@denx.de>
+Date:   Thu, 30 Jun 2022 21:50:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 3/7] dt-bindings: msm: dsi: Fix power-domains constraint
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: soc: imx8mp-media-blk-ctrl: Add LDB into DT
+ example
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org
-References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org>
- <20220630120845.3356144-4-bryan.odonoghue@linaro.org>
- <225e70ec-553d-4d44-fc61-543128b2ad67@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <225e70ec-553d-4d44-fc61-543128b2ad67@linaro.org>
+References: <20220630173922.92296-1-marex@denx.de>
+ <f0366170-c1b6-9573-3e9c-9b1ace2dfbad@linaro.org>
+ <b6badccf-8910-da26-bbcc-1302d957a2bd@denx.de>
+ <27495fa3-b4ae-7502-45f8-5eb4c5e36640@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <27495fa3-b4ae-7502-45f8-5eb4c5e36640@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,15 +66,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 20:01, Krzysztof Kozlowski wrote:
-> On 30/06/2022 14:08, Bryan O'Donoghue wrote:
->> The existing msm8916.dtsi does not depend on nor require power-domains.
->> Drop from the list of required.
+On 6/30/22 21:31, Krzysztof Kozlowski wrote:
+
+Hi,
+
+[...]
+
+>>>> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+>>>> index b246d8386ba4a..05a19d3229830 100644
+>>>> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+>>>> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+>>>> @@ -18,11 +18,18 @@ properties:
+>>>>      compatible:
+>>>>        items:
+>>>>          - const: fsl,imx8mp-media-blk-ctrl
+>>>> +      - const: simple-mfd
+>>>
+>>> Not really... simple-mfd means devices is really simple and you just use
+>>> it to instantiate children. However this is not simple - it's a power
+>>> domain controller with several clocks and power domains as input.
+>>>
+>>> It's not a simple MFD, but a regular device.
+>>
+>> I don't understand this comment. The LDB bridge is literally two
+>> registers with a few bits in this media block controller register area.
+>> Can you expand on why the simple-mfd is unsuitable and what should it be
+>> instead ?
 > 
-> That's not good reason. The bindings are about hardware so the question
-> is whether being a part of power domain or toggling power domain on/off
-> is considered required for the DSI.
+> Looking at the bindings you have there 10 power domains, 10 input clocks
+> and a domain provider. The driver is also not that simple which is
+> another argument that this is not simple-mfd. Simply, it is not simple.
+> 
+> What I meant, is that probably you should populate children from the
+> driver instead of adding simple-mfd compatible. Once you add simple-mfd,
+> you cannot remove it and children cannot use anything from the parent.
 
-AFAIK no but, I will check this again and if it is definitely not 
-required, I'll churn the commit log to describe it better.
+No, I don't think so.
 
+The block controller provides those 10 power domains, those are separate 
+things controlled by separate registers within the block control 
+register space.
+
+This LDB bridge are two more completely unrelated registers which have 
+nothing to do with those power domains . They are just in the same 
+register block because they had to put those registers somewhere. And 
+they are mixed literally in the middle of the register block, because 
+there was space it seems. Hence the simple-mfd is I think the right 
+thing here.
