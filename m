@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0DA6561224
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 07:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28BA6561228
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 07:59:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232674AbiF3F6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 01:58:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43342 "EHLO
+        id S232439AbiF3F7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 01:59:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232353AbiF3F6Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 01:58:25 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38D7A5592
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 22:58:24 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id m14-20020a17090a668e00b001ee6ece8368so1800563pjj.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 22:58:24 -0700 (PDT)
+        with ESMTP id S230099AbiF3F7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 01:59:34 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73F1D6400
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 22:59:33 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id o23so21666813ljg.13
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 22:59:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mOcKN2QE8NoS+NlXFqyzvr6uXu60h5tTF9oQlF/WJLc=;
-        b=pZjsRZTAwDlI6M2jOs66KZmBv8r8btKEibDsbfGgZSpidDHtmMDdj6IC77PdRTCtqt
-         p6uBX2yhxuwyhTrdxYbhL1BA8hOxIBCmJvd+WJ151KUlBRSyqdx8RXwGZIAm578e7gm8
-         fTumnZDyFspv0s9uN93zk+/M+quP154g5IbRGFKaqFw1If+UahOcYIcK50KX+PPr69xt
-         c9CYNWVgY/B9FYW0KvmnfHzZsMUuqljPikr1xXTraKp694O7k7vmK6GtE9adBR7Vy0SE
-         iJPpvqpBotCziNebA1k74r5bF59nrsAfeBFpwa5iRyG7x3sj9b/V2QQ38vpWeLWJ7J1s
-         hdQg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Rj55wFa+cwBwJLUF5zB5D7ughNA2ZeQCpO8eyDVzukE=;
+        b=oDSwztU73dz6Yd5TtYHJpoHj+g+8HG9vzz7XC9t+qaaICCML3WeETUPIibHX9xdmOI
+         nas/HsCNs4Ekpebb2Ee0dwHO+9kP32Dp8W1dOifpzg0ZLvqiZktAjH3DhwyZfyH2YFvR
+         xYeeg/4X2UMJf4volwohGNzRctOg1f1c7V/DbF+gghtxGPYa+gWh29Jh+BX+MVdnQraE
+         J/67twegu6EVYG6T/6pwTqJhuEt2I37edoho7M50a7OaVT0WoLsdW3FsnZgbyZjr1P2F
+         DeBbzlzQ3zHD7GWJAry3zTi6WT4SWMDXVY0XIYpRoUgzzYGs33KImzG/Bq6Kzgu3HVHo
+         vTow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mOcKN2QE8NoS+NlXFqyzvr6uXu60h5tTF9oQlF/WJLc=;
-        b=oHyYNpBUGciqCM4dDsk6a6vZ4HSQOznzfd5LB0SMa98pG5o5xpwK8L12YpP+hdoDWx
-         IAILGIqUeynKrGx9moWF/qEj0ia94+1Y/xUkYwCM0i7BzGRZYZF7V8t2UgO51qYk4+jn
-         XOtstn+bxF7nWd8MdOzN97byM76q09PKO8xFALWUzGv4MCgMfkzmwXNBPOsO2gIG3hXV
-         C/+T01bu75WkB5CMo3jDYCUpQ8FJNxyyxm26az3FhT7ngdvgb0QoAhfxK5bf2lssyFx1
-         dJhY/csWUPgBFpA6uZG+IUPUlto1QE+DigWhn4HZcrqe2KO1pcPySyeo9U7IDL1BAJog
-         fu7A==
-X-Gm-Message-State: AJIora8PSZzR9bNBJAlNxA6w5y1r7eUivUiEdxadc187AbyEaItc5BDO
-        CN8keIp63otueBI8hbHWjG7vbQ==
-X-Google-Smtp-Source: AGRyM1vqhX+FQ8dE0YoXIV3JRUBlBXZSr4HU0Fid4k1/qav4hqj7bVmuCBytiMOacAgz/y291CanFw==
-X-Received: by 2002:a17:903:41d2:b0:16a:2cc4:4824 with SMTP id u18-20020a17090341d200b0016a2cc44824mr13069024ple.112.1656568703771;
-        Wed, 29 Jun 2022 22:58:23 -0700 (PDT)
-Received: from leo-build-box.lan ([154.3.32.171])
-        by smtp.gmail.com with ESMTPSA id b14-20020a17090a550e00b001e31f4cc977sm3309288pji.56.2022.06.29.22.58.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 22:58:23 -0700 (PDT)
-From:   Leo Yan <leo.yan@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Leo Yan <leo.yan@linaro.org>
-Subject: [PATCH v2 5/5] interconnect: qcom: icc-rpm: Set bandwidth and clock for bucket values
-Date:   Thu, 30 Jun 2022 13:57:22 +0800
-Message-Id: <20220630055723.704605-6-leo.yan@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220630055723.704605-1-leo.yan@linaro.org>
-References: <20220630055723.704605-1-leo.yan@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Rj55wFa+cwBwJLUF5zB5D7ughNA2ZeQCpO8eyDVzukE=;
+        b=c+u3MmAQ0gWtO3oU9n0KGb8loQQn8mIVwXD5mqHEi7xxnZt3+rBwCobXb5qAvQo/4k
+         9hx4fkoeNljxRjnYJ/f2Xnkk2WLdqJ/EwVgcg7bq2mSp7ORr82SVDbd3XPrl0hAO1egr
+         CmF7Dt/Tu5JVmIVGCnXe1N5mfa5PWwKrGSSFQs8jw4XUxXdRRMEzVo9SFrvNNedy34oA
+         8THlVkTeDd17uSt2N470kjcdvs0+loKqIeDgUUBLEhh83304Q714Cr0PjXV2WsE2n36P
+         kFNx+9x25qJD+yq6gLHzY3Ykwb8VczLftyMtc8tKb2uDh4LJQQAKrMqIdZQ2mwyBlL5J
+         SW8A==
+X-Gm-Message-State: AJIora/2Z76+sd9tMVbQa8mmS4nTz4sZsjLV1mBN/F4uXZjtXznymGd/
+        Vr5u84vxTGGHffVwdClnP6ZAbUxhLSl3Gmdjy24ASjseD+FrJI6x
+X-Google-Smtp-Source: AGRyM1ucQG/qsZjKDQSwgiXTqjD0CajwMVbG19J0dnNN2YqHzmx896/P4iARa7PaEMmBqD0KlVM6KEtODCv2IywCdmc=
+X-Received: by 2002:a2e:8ec9:0:b0:25a:754d:db39 with SMTP id
+ e9-20020a2e8ec9000000b0025a754ddb39mr3974428ljl.4.1656568771680; Wed, 29 Jun
+ 2022 22:59:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CGME20220630021951epcas2p26cd4a554f01f9cb6e44acd813eee15fd@epcas2p2.samsung.com>
+ <cover.1656554759.git.chanho61.park@samsung.com> <8d7029cdf7b2ce0d1c43e6f91b3b9fdadece08ee.1656554759.git.chanho61.park@samsung.com>
+In-Reply-To: <8d7029cdf7b2ce0d1c43e6f91b3b9fdadece08ee.1656554759.git.chanho61.park@samsung.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Thu, 30 Jun 2022 08:59:20 +0300
+Message-ID: <CAPLW+4noFAHc+g7jTaaiMQH871OkqcOWjZ85-mpfPVbjiFO1iA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: samsung: usi: add
+ exynosautov9-usi compatible
+To:     Chanho Park <chanho61.park@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,138 +71,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit uses buckets for support bandwidth and clock rates.  It
-introduces a new function qcom_icc_bus_aggregate() to calculate the
-aggregate average and peak bandwidths for every bucket, and also it
-calculates the maximum aggregate values across all buckets.
+Hi Chanho,
 
-The maximum aggregate values are used to calculate the final bandwidth
-requests.  And we can set the clock rate per bucket, we use SLEEP bucket
-as default bucket if a platform doesn't enable the interconnect path
-tags in DT binding; otherwise, we use WAKE bucket to set active clock
-and use SLEEP bucket for other clocks.  So far we don't use AMC bucket.
+On Thu, 30 Jun 2022 at 05:19, Chanho Park <chanho61.park@samsung.com> wrote:
+>
+> Add samsung,exynosautov9-uart dedicated compatible for representing
+> usi of Exynos Auto v9 SoC.
+>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  .../devicetree/bindings/soc/samsung/exynos-usi.yaml       | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> index fde886a8cf43..6e806e950a36 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> @@ -22,8 +22,12 @@ properties:
+>      pattern: "^usi@[0-9a-f]+$"
+>
+>    compatible:
+> -    enum:
+> -      - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
+> +    oneOf:
+> +      - items:
+> +          - const: samsung,exynosautov9-usi
+> +          - const: samsung,exynos850-usi
+> +      - enum:
+> +          - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
+>
 
-Signed-off-by: Leo Yan <leo.yan@linaro.org>
----
- drivers/interconnect/qcom/icc-rpm.c | 80 ++++++++++++++++++++++++-----
- 1 file changed, 67 insertions(+), 13 deletions(-)
+Why "samsung,exynos850-usi" is duplicated? Maybe it would be correct
+to leave only "items" and remove the "enum"?
 
-diff --git a/drivers/interconnect/qcom/icc-rpm.c b/drivers/interconnect/qcom/icc-rpm.c
-index b025fc6b97c9..4b932eb807c7 100644
---- a/drivers/interconnect/qcom/icc-rpm.c
-+++ b/drivers/interconnect/qcom/icc-rpm.c
-@@ -302,18 +302,62 @@ static int qcom_icc_bw_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
- 	return 0;
- }
- 
-+/**
-+ * qcom_icc_bus_aggregate - aggregate bandwidth by traversing all nodes
-+ * @provider: generic interconnect provider
-+ * @agg_avg: an array for aggregated average bandwidth of buckets
-+ * @agg_peak: an array for aggregated peak bandwidth of buckets
-+ * @max_agg_avg: pointer to max value of aggregated average bandwidth
-+ * @max_agg_peak: pointer to max value of aggregated peak bandwidth
-+ */
-+static void qcom_icc_bus_aggregate(struct icc_provider *provider,
-+				   u64 *agg_avg, u64 *agg_peak,
-+				   u64 *max_agg_avg, u64 *max_agg_peak)
-+{
-+	struct icc_node *node;
-+	struct qcom_icc_node *qn;
-+	int i;
-+
-+	/* Initialise aggregate values */
-+	for (i = 0; i < QCOM_ICC_NUM_BUCKETS; i++) {
-+		agg_avg[i] = 0;
-+		agg_peak[i] = 0;
-+	}
-+
-+	*max_agg_avg = 0;
-+	*max_agg_peak = 0;
-+
-+	/*
-+	 * Iterate nodes on the interconnect and aggregate bandwidth
-+	 * requests for every bucket.
-+	 */
-+	list_for_each_entry(node, &provider->nodes, node_list) {
-+		qn = node->data;
-+		for (i = 0; i < QCOM_ICC_NUM_BUCKETS; i++) {
-+			agg_avg[i] += qn->sum_avg[i];
-+			agg_peak[i] = max_t(u64, agg_peak[i], qn->max_peak[i]);
-+		}
-+	}
-+
-+	/* Find maximum values across all buckets */
-+	for (i = 0; i < QCOM_ICC_NUM_BUCKETS; i++) {
-+		*max_agg_avg = max_t(u64, *max_agg_avg, agg_avg[i]);
-+		*max_agg_peak = max_t(u64, *max_agg_peak, agg_peak[i]);
-+	}
-+}
-+
- static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- {
- 	struct qcom_icc_provider *qp;
- 	struct qcom_icc_node *src_qn = NULL, *dst_qn = NULL;
- 	struct icc_provider *provider;
--	struct icc_node *n;
- 	u64 sum_bw;
- 	u64 max_peak_bw;
- 	u64 rate;
--	u32 agg_avg = 0;
--	u32 agg_peak = 0;
-+	u64 agg_avg[QCOM_ICC_NUM_BUCKETS], agg_peak[QCOM_ICC_NUM_BUCKETS];
-+	u64 max_agg_avg, max_agg_peak;
- 	int ret, i;
-+	int bucket;
- 
- 	src_qn = src->data;
- 	if (dst)
-@@ -321,12 +365,11 @@ static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- 	provider = src->provider;
- 	qp = to_qcom_provider(provider);
- 
--	list_for_each_entry(n, &provider->nodes, node_list)
--		provider->aggregate(n, 0, n->avg_bw, n->peak_bw,
--				    &agg_avg, &agg_peak);
-+	qcom_icc_bus_aggregate(provider, agg_avg, agg_peak, &max_agg_avg,
-+			       &max_agg_peak);
- 
--	sum_bw = icc_units_to_bps(agg_avg);
--	max_peak_bw = icc_units_to_bps(agg_peak);
-+	sum_bw = icc_units_to_bps(max_agg_avg);
-+	max_peak_bw = icc_units_to_bps(max_agg_peak);
- 
- 	ret = __qcom_icc_set(src, src_qn, sum_bw);
- 	if (ret)
-@@ -337,12 +380,23 @@ static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- 			return ret;
- 	}
- 
--	rate = max(sum_bw, max_peak_bw);
--
--	do_div(rate, src_qn->buswidth);
--	rate = min_t(u64, rate, LONG_MAX);
--
- 	for (i = 0; i < qp->num_clks; i++) {
-+		/*
-+		 * Use WAKE bucket for active clock, otherwise, use SLEEP bucket
-+		 * for other clocks.  If a platform doesn't set interconnect
-+		 * path tags, by default use sleep bucket for all clocks.
-+		 *
-+		 * Note, AMC bucket is not supported yet.
-+		 */
-+		if (!strcmp(qp->bus_clks[i].id, "bus_a"))
-+			bucket = QCOM_ICC_BUCKET_WAKE;
-+		else
-+			bucket = QCOM_ICC_BUCKET_SLEEP;
-+
-+		rate = icc_units_to_bps(max(agg_avg[bucket], agg_peak[bucket]));
-+		do_div(rate, src_qn->buswidth);
-+		rate = min_t(u64, rate, LONG_MAX);
-+
- 		if (qp->bus_clk_rate[i] == rate)
- 			continue;
- 
--- 
-2.25.1
-
+>    reg: true
+>
+> --
+> 2.36.1
+>
