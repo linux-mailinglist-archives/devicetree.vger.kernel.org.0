@@ -2,62 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95FF85625CD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 00:04:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F18195625CE
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 00:05:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231176AbiF3WEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 18:04:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53254 "EHLO
+        id S229868AbiF3WFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 18:05:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbiF3WEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 18:04:53 -0400
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CD305720F
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 15:04:53 -0700 (PDT)
-Received: by mail-il1-f170.google.com with SMTP id f15so262265ilj.11
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 15:04:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=g/aXAomXuNpsWAEsulspUaIhuU7tIZVVPwox3ZokL7Y=;
-        b=TGW1/y+uGaTkXzenPskQdDeK0XQTVp1SwHCUSvbfthiCKyFFBfhpEN+Jn31KpZyGxx
-         3QURYHGN7rDZGem7gwmChGLepec0GyS1PpKm9h6LhpCcj1YHPjCUOFdrjxfnXiySLK94
-         amr5Cbu0b04iUZhvdcOSht8RfM2SZQLr6OrEJa3exFw7PZQKz+n18X0Hm7np06to3dj2
-         Ij8p6Mt+aM/6SB6C/BCKIkjWarcJ8kUPIjPeCWIBPNxHBvcOYPCJ5umOf7XE2g/8TLEI
-         NEXAtM/nLGmfVk74wjgw/kN+rMpH7x8PVXbMBJ2SYg8KstH8LiwiAOoc2Z6Jan9aCqZk
-         fKFQ==
-X-Gm-Message-State: AJIora/P5KAvx5fef5eFlq0Xa5jgEBJJFdB+cIzqKAfQPau/pzmcHwHE
-        tux6srKPrE37fz1L2tmHTw==
-X-Google-Smtp-Source: AGRyM1tLrGOw2gEy6Em72iuYVvoQZF4R6ngPGiWPXVdM2zQLMrrkfHiEj66cnU9r5jaTk8EY3wFa9Q==
-X-Received: by 2002:a92:c901:0:b0:2da:8497:501f with SMTP id t1-20020a92c901000000b002da8497501fmr6066244ilp.182.1656626692534;
-        Thu, 30 Jun 2022 15:04:52 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id u9-20020a056e021a4900b002d946b38ce2sm8392225ilv.46.2022.06.30.15.04.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 15:04:52 -0700 (PDT)
-Received: (nullmailer pid 3400426 invoked by uid 1000);
-        Thu, 30 Jun 2022 22:04:50 -0000
-Date:   Thu, 30 Jun 2022 16:04:50 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH 3/6] dt-bindings: power: rockchip: Add bindings for rk3588
-Message-ID: <20220630220450.GA3400376-robh@kernel.org>
-References: <20220623162309.243766-1-sebastian.reichel@collabora.com>
- <20220623162309.243766-4-sebastian.reichel@collabora.com>
+        with ESMTP id S229623AbiF3WFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 18:05:44 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 494385720F
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 15:05:41 -0700 (PDT)
+Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 9C1D72054E;
+        Fri,  1 Jul 2022 00:05:38 +0200 (CEST)
+Date:   Fri, 1 Jul 2022 00:05:31 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, myungjoo.ham@samsung.com,
+        cw00.choi@samsung.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gurus@codeaurora.org,
+        aghayal@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pm8941-misc: Fix usb_id and usb_vbus
+ definitions
+Message-ID: <20220630220531.nk7ho42btnphmwks@SoMainline.org>
+References: <20220630042357.3308128-1-bryan.odonoghue@linaro.org>
+ <7a3efafc-71b2-c474-bb73-6959c701f459@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220623162309.243766-4-sebastian.reichel@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <7a3efafc-71b2-c474-bb73-6959c701f459@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,13 +47,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Jun 2022 18:23:06 +0200, Sebastian Reichel wrote:
-> Add the compatible string for RK3588 SoC.
+On 2022-06-30 20:47:32, Krzysztof Kozlowski wrote:
+> On 30/06/2022 06:23, Bryan O'Donoghue wrote:
+> > dts validation is throwing an error for me on 8916 and 8939 with
+> > extcon@1300. In this case we have usb_vbus but not usb_id.
+> > 
+> > Looking at the pm8941-misc driver we can have usb_id, usb_vbus or both at
+> > the same time.
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  .../devicetree/bindings/power/rockchip,power-controller.yaml    | 2 ++
->  1 file changed, 2 insertions(+)
+> Implementation is not the best reason to change bindings. Implementation
+> can change, bindings should not.
 > 
+> > 
+> > Expand the definition with anyOf to capture the three different valid
+> > modes.
+> > 
+> > Fixes: 4fcdd677c4ea ("bindings: pm8941-misc: Add support for VBUS detection")
+> > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > ---
+> >  .../devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 12 ++++++++----
+> >  1 file changed, 8 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> > index 6a9c96f0352ac..1bc412a4ac5e6 100644
+> > --- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> > +++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> > @@ -27,10 +27,14 @@ properties:
+> >  
+> >    interrupt-names:
+> >      minItems: 1
+> > -    items:
+> > -      - const: usb_id
+> > -      - const: usb_vbus
+> > -
+> > +    anyOf:
+> > +      - items:
+> > +          - const: usb_id
+> > +          - const: usb_vbus
+> > +      - items:
+> > +          - const: usb_id
+> 
+> I don't think you can have ID connected and VBUS disconnected, therefore
+> is it even possible to have missing VBUS interrupt?
 
-Acked-by: Rob Herring <robh@kernel.org>
+This is how I've been using it on the pmi8950 (apologies, patches not
+yet upstream) because both interrupts are on a different block:
+
+    pmi8950_usb_vbus: extcon-chgpth@1300 {
+        compatible = "qcom,pm8941-misc";
+        interrupts = <0x2 0x13 0x2 IRQ_TYPE_NONE>;
+        interrupt-names = "usb_vbus";
+    };
+
+    pmi8950_usb_id: extcon-otg@1100 {
+        compatible = "qcom,pm8941-misc";
+        interrupts = <0x2 0x11 0x3 IRQ_TYPE_NONE>;
+        interrupt-names = "usb_id";
+    };
+
+This also results in annoying errors (back in the day, found these on a
+5.13 log but surely remember seeing it on 5.18 as well):
+
+    [    1.377491] extcon-pm8941-misc 200f000.spmi:pmic@2:extcon_chgpth@1300: IRQ usb_id not found
+    [    1.380399] extcon-pm8941-misc 200f000.spmi:pmic@2:extcon_otg@1100: IRQ usb_vbus not found
+
+Now, given that the offset also seems to be encoded in the interrupt
+definition, and it's been functioning without `reg` (required by the
+dt-bindings but I see no register mapping in the driver, it reads
+interrupt line level from the irqchip directly), it is perhaps possible
+to throw them into one DT node without address altogether?  (untested)
+
+    pmi8950_usb_extcon: extcon {
+        compatible = "qcom,pm8941-misc";
+        interrupts = <0x2 0x11 0x3 IRQ_TYPE_NONE>,
+                     <0x2 0x13 0x2 IRQ_TYPE_NONE>;
+        interrupt-names = "usb_id", "usb_vbus";
+    };
+
+- Marijn
