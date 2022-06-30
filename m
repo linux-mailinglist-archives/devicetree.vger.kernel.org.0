@@ -2,73 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EC1B56151B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 10:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF4D561536
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 10:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232911AbiF3I3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 04:29:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33358 "EHLO
+        id S233645AbiF3Igy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 04:36:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233446AbiF3I3k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 04:29:40 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08279B30;
-        Thu, 30 Jun 2022 01:29:37 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id j21so32456227lfe.1;
-        Thu, 30 Jun 2022 01:29:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=PsBHGFQ8BgFUT5RFMX64e2Cinbnfgc5LS96HHjhx2Ns=;
-        b=eqk/ejoJYg18atheE6dB2+gp+sjR0NJehewpaTKusOOc4Gi76xgOXWUr/AeynopHtm
-         lQPrPhNXnB7Z4zQ0EW058ZELzDmzHLusEQJCFRmW9/qSIHSC4tLq9+sxw3r0TdZuwCyj
-         BJ1rLz/BjqPx8QsGMwax69M+waf0uKBoYVxFr1mzfxG64Pvxz+REv55wpmLFBF1nCTdW
-         U2yqZjVWoS5imgUyU1Cg2CxkrL2nw3tZ6k/zWvocIl4kEzSx0tMpiuZjmo9RYp7UwiHw
-         Aj+Vo8k3pXtp0eLYmhQiL9kaB/qGvOMadb7+/722+ytD3NhiWmgoUa8UpjzhRhcvsSIx
-         hSfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PsBHGFQ8BgFUT5RFMX64e2Cinbnfgc5LS96HHjhx2Ns=;
-        b=8LIMqxgeujysD+yoHkHqPYbWHjBWFpWuan3Go9nLLaGSd3QJnFXVcj1wnp51ZKfi84
-         NCIKHQlW8PvCrr7HKF/7nO1KWBGlM+UGZpIryJ3z4RW4tQVbTIf9He0OLoGqwtR2ZTNk
-         X2xQ5V72jBv0ajNyhpQ5RcfiMe9+MMkZ4WZxFgLF1zUgmV8vjEhUo6vEOSrJdzVgYUxz
-         V7OvXD6E0tOsUd/qOtV8dZqyh0fjN2tllUbJQNfwn1hMUqiToJETpGU5mWvTPQ/lMG8v
-         HEYIrxSh+5Yhc0dUok17lQWuMAg+ljt+hmh08CDBUnU4OTsA5nby964+sho9oTqCw01m
-         oxuA==
-X-Gm-Message-State: AJIora9kMZIaKB8ekvUcaj3A6ffN5jzaLinFHe1HmJ5liOEHvY+mN3gm
-        puuVCquBuRv7vA5BKWrPHPI=
-X-Google-Smtp-Source: AGRyM1vjCeUPX1qrmmV50QUgY3vnb+sMzRFCSNP3gJbrS5m+iVVDhtB+fl1TQwbtaaa5PNoZoY3Q2w==
-X-Received: by 2002:a05:6512:24d:b0:47f:6457:4082 with SMTP id b13-20020a056512024d00b0047f64574082mr4624340lfo.43.1656577775124;
-        Thu, 30 Jun 2022 01:29:35 -0700 (PDT)
-Received: from gmail.com (c-2ec2f5c4-74736162.cust.telenor.se. [46.194.245.196])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac25f08000000b00477cab33759sm2960517lfq.256.2022.06.30.01.29.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 01:29:34 -0700 (PDT)
-Date:   Thu, 30 Jun 2022 10:32:42 +0200
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kent Gustavsson <kent@minoris.se>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S233600AbiF3Igx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 04:36:53 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80058.outbound.protection.outlook.com [40.107.8.58])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47724340E2;
+        Thu, 30 Jun 2022 01:36:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BSw6F0gv759jaYhLQ93Xe++9HgWvWZIfEWQpErOIuCqgNIj5tzFNFhLwhc98Y1sX8UVHTcD54uhg4QdMHce+gV+Uc0SCyLbvCRCG1DB0OwnNfBtPlG137nCHlO6rhtCOsUq9dtN8ahxlJsZlxOTWuBkcL7uvM3TNOkUt5yQ68trGiGfwEtAbmZ7P7yCcUHPtXX8UZNtlg0yg9HK+kbpKzGsvPHSweL6ZSjRJbKYjHuvUGsTflXE3C6ne363SG2p3qbIgvJTz4Vv0wHmAIgWgU3rmYxBw3QLYLnZOM1glkbmQzD5su4fexBgU6rwuhQjqXzF9XNTcw8pYIPvo1vmrSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lFF6a57o2xRCd04noXHIZZR0YhO8eJFPxovZMIis6R0=;
+ b=SdjNxrnkeEyXDwbreRSoejUv1Cd8iF6qDdH2V6bb/2Ni2dvaRSl0wxcMkuHCHL/J6naO2Sq2TFtZGAewBIUhKIDAopSiRnwizWUemPm26rnccotUTjm8FzQlzMNZEbCnxIkDYAmWRAzLg7sZr6ZHIWhcSR3nGD0TtU7Ln9k1Jt6g18iFmJVdT6dndZgLNmT+u+lZFcWLRb2YUWUqVkKfwtVSwn1lV0FjnMtKVCf+Io59+ifZqY7I3LJ0ZLMol/RHuS+3UHOAWuSFaUay0Dk1pX7fpLrdiwRF1ZE5fIGWtSP15JTB6DcokgQ25QLBAMF03HEdTDYwTDhYSJ9iHEwJng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lFF6a57o2xRCd04noXHIZZR0YhO8eJFPxovZMIis6R0=;
+ b=RyGd9mfIWnRgy7ATxWhfKyWGgBy/UAIgr+9ApdCg7HOGgvRK4IVhiup7muoxIjS9y6gJzYUIvHkYt1/etTVznUAsP/QSq6lLP20FHlnyx4H0Oc+m4/uqQzfw5sjrYdQVwJWf5Gqk3WCFrExSDXjrXbRF4Cgt7/7YyFN5q14RThs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB5005.eurprd04.prod.outlook.com (2603:10a6:803:57::30)
+ by PAXPR04MB8623.eurprd04.prod.outlook.com (2603:10a6:102:21a::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.15; Thu, 30 Jun
+ 2022 08:36:49 +0000
+Received: from VI1PR04MB5005.eurprd04.prod.outlook.com
+ ([fe80::6546:3ee1:5e6c:278f]) by VI1PR04MB5005.eurprd04.prod.outlook.com
+ ([fe80::6546:3ee1:5e6c:278f%5]) with mapi id 15.20.5395.015; Thu, 30 Jun 2022
+ 08:36:49 +0000
+Date:   Thu, 30 Jun 2022 11:36:36 +0300
+From:   Viorel Suman <viorel.suman@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 03/10] iio: adc: mcp3911: add support for buffers
-Message-ID: <Yr1fqi/49l1nWYtt@gmail.com>
-References: <20220625103853.2470346-1-marcus.folkesson@gmail.com>
- <20220625103853.2470346-3-marcus.folkesson@gmail.com>
- <20220625124537.163bf426@jic23-huawei>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="KfwtesvVeNKYhzrQ"
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Liu Ying <victor.liu@nxp.com>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 10/14] arm64: dts: freescale: imx8qxp: Remove
+ unnecessary clock related entries
+Message-ID: <20220630083636.2c7mclmbq3tjma2j@fsr-ub1664-116>
+References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
+ <20220629164414.301813-11-viorel.suman@oss.nxp.com>
+ <483d5115-4027-e811-8bce-15da6c7c660f@linaro.org>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220625124537.163bf426@jic23-huawei>
+In-Reply-To: <483d5115-4027-e811-8bce-15da6c7c660f@linaro.org>
+X-ClientProxiedBy: AM4PR0902CA0012.eurprd09.prod.outlook.com
+ (2603:10a6:200:9b::22) To VI1PR04MB5005.eurprd04.prod.outlook.com
+ (2603:10a6:803:57::30)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5238a5d4-7697-42aa-e2b8-08da5a73accd
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8623:EE_
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WaYwGmkhrBOHGGNNkq/5erOJkzZGIyTp8FNdbile4b4p0aBSeXMK2ykSmLZuf88DhaNcXATvEQmvRrjAl0SwX5ZpOT87UFFE6PVEdDPAiUDX+iDAErhqF8ICja1WSE6BSToZEHa0QavBdFnGVtetLq4D6oYxDcDScyeCwPc4YEGVgcWe+sLwjhkePRVvUbW2rMzpodPucP/WB1Hv+fPC2sc28wT9MKRnuTNxRzekgaeyv4KsYnqMTKKE9Ym5E6HKC2MlyXXTiJvFT3mYDStGh0oHW+Lm0V67WC5zgBM1cZ1mMUI7jJqfBJPNyRy209UEaHVCXJMnz9+18iM4Xt8e4W/3bh07r8r2A8k7FZUABUOjOf4MxSPEKasieLDgLl0KIrtH5nsM3aQSEYjGIqq4YH0lkm+ZubJMfSDcARSF39gXOb+NbaKxQFIJAkWRxBcQvOgfkQjxacsDcioSpyK5bae4JXFWFECS6OrG0eugZgUa4wR55wuyqgTBa23tuv8Vk97A7HqhWnlJTQrjPSdcdyccliOGsQAxJvNGtV418dAeodRguWVlbWr3z115JEiIqivwTebCrVDX/o68j59oeaS9YiesUmN2wI5crs0be8Z1YMOw0zVE7SS5lbQjRR5MutUwcFfxQZ3qpLISclK0zT8wGp0UNMAw6tczRKDJkBbj6KpvOoSsf8CLzz1MF/C/+CGrDl4eE7l89c1nqgXEo8bY0bXnxtoUuAVGFLLNXEqb4nihWgUUKL07B8wC0AwwSq3woFFjBdvtaT8OGXdlSTN1yaBEHdem26JlbQJi7uZ80b75kgmIGKzv4sKZl8QXMFinHm5hwf1urpNM2MH+0g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5005.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(4636009)(346002)(39860400002)(396003)(376002)(136003)(366004)(316002)(186003)(6666004)(2906002)(41300700001)(6486002)(26005)(33716001)(86362001)(44832011)(54906003)(6512007)(9686003)(1076003)(6916009)(478600001)(66476007)(5660300002)(7416002)(7406005)(38100700002)(38350700002)(8936002)(83380400001)(8676002)(4326008)(6506007)(52116002)(53546011)(66946007)(66556008)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?i+uOUD6mOb3bq51ikxjyifc/+X0bZz8+DcXcpYZsK5vqApkkL3inYYIiqIQp?=
+ =?us-ascii?Q?/jZUFcCp49sSSHZaMoq67GHUp2qMxZKko9QTryu6BpxyzO3pNEv00qvEcUmi?=
+ =?us-ascii?Q?4cV+Mv43tDzVc7m0AKG/lqEQ8QyaxIGsvtrLekUw9gGy+jYFtqIjQkNeS8wp?=
+ =?us-ascii?Q?AxKSKzvWM83CE2+6KxQBQGFr5m4Scd2T2JcmmJLY8o8wAyaNuU0yaUHWmDUo?=
+ =?us-ascii?Q?mxW7QwGFTELq85IDND3KWb6YgnduNde7Y035v3fj7UiX5mOWfWpLC9CCuqc8?=
+ =?us-ascii?Q?tr3I4CiBJzDVtVhS1JzemmTqzAUKGk5BAkn+1eymLSczNs6X4hB3BaIIHLv1?=
+ =?us-ascii?Q?EfrMe8I1uk1xRUzvn88kt0q84vFTV4MylbxAUP52xggnzGCgotlbJlp30ZxF?=
+ =?us-ascii?Q?SVJPuUa0pMRnrmHqlyzfbU08R7WYKUeeKvVBtPySYw9WUgWZRsnXwi416N2S?=
+ =?us-ascii?Q?QwimMJyjReFZ0YNHI8W2ul8H2D83rFcLa97KiUdCS5J+1JtCbSuzN7DXcRi+?=
+ =?us-ascii?Q?scxWdFfscSEGIeEY6ovrU/9ySK2u258hPeZwWt9qebLTmlKz7A527xYd7hyJ?=
+ =?us-ascii?Q?QgghlgGEnjnaXRoTbX56mEFHPtKKxNf6qXt1GPEejUh9dTgYYGkBcsq92WfP?=
+ =?us-ascii?Q?Nv+AsKeVXGdz4GbYJYgLSm4VqD3miXyD8ZVwefYsfpUCw4tuj3jPEeRMcOcx?=
+ =?us-ascii?Q?di8Z70qhDLkQLFv1t1lHFDLs0j9qZ8LP3X9kMA5OR14h4jEAyS7QYzPYLAZ7?=
+ =?us-ascii?Q?llCWzLckefThRTW6n5jBtfDidTJWjhaj14ZtA/GgJBPJ4Gpqb3uu/GcHJH/5?=
+ =?us-ascii?Q?LatxhYhdZhb8oN3S0HyV8z6w9dn+bQrl9xu796VKUNa2E8ejWmLcmTLLllnM?=
+ =?us-ascii?Q?+AxITzh07J07Ia/NwoxXtn1iDNmGjC/jL12MnvCCb80nqVLTS+nOh0AZyBRU?=
+ =?us-ascii?Q?GI6ObvCSAJOuassufMgR+22eq4BtsokzIv4w3i3Hr5OqVhHI99l8+krMKMXV?=
+ =?us-ascii?Q?LRoQocYNLgq2hLk0WWi4droz3y4prJJla+GEMwxg8Mz9yaeG+Epty+DHgEsa?=
+ =?us-ascii?Q?/oZjUye61gdb6W5kkOd7m19hlY+9Fr3RuIdeOS8I6TrMFvZwKos3RmgfCpbM?=
+ =?us-ascii?Q?CHB9opdqAxvp7WjYfr6tZRx/sbq6fVFX+RxcV4w2fWzMeq0bD2zNz+JPi/8b?=
+ =?us-ascii?Q?qwC+BEIg8B9VOK9UDdxEFd6i2JIVaCjkVrEvgXvvYUAqRLyX67hCrVpNqTw/?=
+ =?us-ascii?Q?e+reOZQlA569aLoy/DPzIvdjWbouBX+SjOAzUBdGhUjO2gllX7Hk4DlelSXf?=
+ =?us-ascii?Q?PBjnXKHA//oGLdZbmg19z3TuuR6GEhtGXLrOrKsBdvhAJPb2MDewsYfLQmEL?=
+ =?us-ascii?Q?ae2YN0rw3kNQrO7WjWLVdOBxQq4G5GIcmpY3GJwK04nXCMUwG939DEkwRIpB?=
+ =?us-ascii?Q?dza6/4p+fomuVa6tlJqW4JFEVxt+LqAnOnHUBbKQkGyzB7hiMMbt1/lkOAqz?=
+ =?us-ascii?Q?53V4YrjEOpsqhBqGI0ezPjXVLvgMFXm4ESFevltxQxVHNxKNbk3J5dLE1ciw?=
+ =?us-ascii?Q?B5XnCVB7Qaa6DGeBK6hctOw3O7UdKQYvWXQV5vn+?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5238a5d4-7697-42aa-e2b8-08da5a73accd
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5005.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2022 08:36:49.5290
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uUODE7D8V4y9UEWVHCjPNB2FRZKXsGrFsoPvDRtg26mQKD5CVPh+ioM7TzUbnYglxUcha4pgbvYYDC5gFqH0UA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8623
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,211 +146,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22-06-29 20:04:43, Krzysztof Kozlowski wrote:
+> On 29/06/2022 18:44, Viorel Suman (OSS) wrote:
+> > From: Viorel Suman <viorel.suman@nxp.com>
+> > 
+> > "clocks" and "clock-names" are not used the driver, so
+> > remove them in order to match the yaml definition.
+> 
+> So this explains the unexpected change in the bindings... but actually
+> it does not explain whether it is correct or not. Just because driver
+> does not use it, is not a proof that clocks are not there. In different
+> OS/implementation this DTS might break stuff, so basically it is ABI
+> break. DTS should describe the hardware fully, so if the clocks are
+> there, should be in DTS regardless of the driver.
 
---KfwtesvVeNKYhzrQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Krzysztof,
 
-Hi Jonathan,
+Both XTAL clocks - 24MHz and 32kHz - are still defined in DTSI files, see for instance in
+arch/arm64/boot/dts/freescale/imx8qxp.dtsi :
+---------------
+        xtal32k: clock-xtal32k {
+                compatible = "fixed-clock";
+                #clock-cells = <0>;
+                clock-frequency = <32768>;
+                clock-output-names = "xtal_32KHz";
+        };
 
-On Sat, Jun 25, 2022 at 12:45:37PM +0100, Jonathan Cameron wrote:
-> On Sat, 25 Jun 2022 12:38:46 +0200
-> Marcus Folkesson <marcus.folkesson@gmail.com> wrote:
->=20
-> > Add support for buffers to make the driver fit for more usecases.
-> >=20
-> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> Hi Marcus,
->=20
-> Good to see this feature.  A few comments inline, mostly around
-> optimising the data flow / device accesses.
->=20
-> Thanks,
->=20
-> Jonathan
->=20
-> > ---
-> >=20
-> > Notes:
-> >     v2:
-> >         - No changes
-> >=20
-> >  drivers/iio/adc/mcp3911.c | 58 ++++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 57 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/iio/adc/mcp3911.c b/drivers/iio/adc/mcp3911.c
-> > index 25a235cce56c..2a4bf374f140 100644
-> > --- a/drivers/iio/adc/mcp3911.c
-> > +++ b/drivers/iio/adc/mcp3911.c
-> > @@ -9,6 +9,10 @@
-> >  #include <linux/delay.h>
-> >  #include <linux/err.h>
-> >  #include <linux/iio/iio.h>
-> > +#include <linux/iio/buffer.h>
-> > +#include <linux/iio/triggered_buffer.h>
-> > +#include <linux/iio/trigger_consumer.h>
-> > +#include <linux/iio/trigger.h>
-> >  #include <linux/module.h>
-> >  #include <linux/mod_devicetable.h>
-> >  #include <linux/property.h>
-> > @@ -54,6 +58,10 @@ struct mcp3911 {
-> >  	struct regulator *vref;
-> >  	struct clk *clki;
-> >  	u32 dev_addr;
-> > +	struct {
-> > +		u32 channels[2];
-> > +		s64 ts __aligned(8);
-> > +	} scan;
-> >  };
-> > =20
-> >  static int mcp3911_read(struct mcp3911 *adc, u8 reg, u32 *val, u8 len)
-> > @@ -187,16 +195,58 @@ static int mcp3911_write_raw(struct iio_dev *indi=
-o_dev,
-> >  		.type =3D IIO_VOLTAGE,				\
-> >  		.indexed =3D 1,					\
-> >  		.channel =3D idx,					\
-> > +		.scan_index =3D idx,				\
-> >  		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |	\
-> >  			BIT(IIO_CHAN_INFO_OFFSET) |		\
-> >  			BIT(IIO_CHAN_INFO_SCALE),		\
-> > +		.scan_type =3D {					\
-> > +			.sign =3D 's',				\
-> > +			.realbits =3D 24,				\
-> > +			.storagebits =3D 32,			\
-> > +		},						\
-> >  }
-> > =20
-> >  static const struct iio_chan_spec mcp3911_channels[] =3D {
-> >  	MCP3911_CHAN(0),
-> >  	MCP3911_CHAN(1),
-> > +	IIO_CHAN_SOFT_TIMESTAMP(2),
-> >  };
-> > =20
-> > +static irqreturn_t mcp3911_trigger_handler(int irq, void *p)
-> > +{
-> > +	struct iio_poll_func *pf =3D p;
-> > +	struct iio_dev *indio_dev =3D pf->indio_dev;
-> > +	struct mcp3911 *adc =3D iio_priv(indio_dev);
-> > +	int scan_index;
-> > +	int i =3D 0;
-> > +	u32 val;
-> > +
-> > +	mutex_lock(&adc->lock);
-> > +	for_each_set_bit(scan_index, indio_dev->active_scan_mask,
-> > +			indio_dev->masklength) {
-> > +		const struct iio_chan_spec *scan_chan =3D
-> > +			&indio_dev->channels[scan_index];
-> > +		int ret =3D mcp3911_read(adc,
-> > +				MCP3911_CHANNEL(scan_chan->channel), &val, 3);
->=20
-> I was a bit surprised not to see some overlap of address setting and
-> read out here if both channels are enabled, so opened up the data sheet.
->=20
-> Can we take advantage of "Continuous communication looping on address set"
+        xtal24m: clock-xtal24m {
+                compatible = "fixed-clock";
+                #clock-cells = <0>;
+                clock-frequency = <24000000>;
+                clock-output-names = "xtal_24MHz";
+        };
+---------------
+Both can be seen in /sys/kernel/debug/clk/clk_summary once boot is complete, both can be referenced
+in any DTS node, so there is no ABI break.
 
-Sure, I will make it use continuous reads when both channels are enabled,
-thanks.
+"DTS should describe the hardware fully" - this is true in case the OS is supposed to controll the
+hardware fully. i.MX8 System Controller Unit concept implies resources being allocated and managed
+by SCU, there is no direct OS access to some hardware. SCU actually defines the hardware environment
+the OS is being able to see and run within. SCU is able to define several such isolated hardware
+environments, each having its own OS running. So, in this particular case - i.MX8 SCU concept -
+DTS should describe the hardware from the perspective of the hardware environment exposed by SCU to
+OS.
 
-> (6.7 on the datasheet).  Also for buffered capture we'd normally make
-> things like shifting and endian conversion a userspace problem.  Can we
-> not do that here for some reason?  You'd need to take care to ensure
-
-The endian conversion&shifting was actually the reason for why I did not
-make use of continoues reads from the beginning.
-
-> any buffers that might be used directly for DMA obey DMA safety rules
-> (currently avoided by using spi_write_then_read), but it would be
-> nice to do less data manipulation int his path if we can.
-
-I will change to spi_sync() and skip the data manipulation.
-
->=20
->=20
->=20
-> > +
-> > +		if (ret < 0) {
-> > +			dev_warn(&adc->spi->dev,
-> > +					"failed to get conversion data\n");
-> > +			goto out;
-> > +		}
-> > +
-> > +		adc->scan.channels[i] =3D val;
-> > +		i++;
-> > +	}
-> > +	iio_push_to_buffers_with_timestamp(indio_dev, &adc->scan,
-> > +			iio_get_time_ns(indio_dev)); =20
-> > +out:
-> > +	mutex_unlock(&adc->lock);
-> > +	iio_trigger_notify_done(indio_dev->trig);
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
-> >  static const struct iio_info mcp3911_info =3D {
-> >  	.read_raw =3D mcp3911_read_raw,
-> >  	.write_raw =3D mcp3911_write_raw,
-> > @@ -303,7 +353,7 @@ static int mcp3911_probe(struct spi_device *spi)
-> >  		goto clk_disable;
-> > =20
-> >  	indio_dev->name =3D spi_get_device_id(spi)->name;
-> > -	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> > +	indio_dev->modes =3D INDIO_DIRECT_MODE | INDIO_BUFFER_TRIGGERED;
->=20
-> The core sets INDIO_BUFFER_TRIGGERED as part of devm_iio_triggered_buffer=
-_setup()
-> so you need to set DIRECT_MODE here (that one isn't visible to the core)
-
-Ok, thank you. I sent patches that fixes this in two other ADC-drivers
-as well to avoid more people following the same thing.
-
->=20
-> >  	indio_dev->info =3D &mcp3911_info;
-> >  	spi_set_drvdata(spi, indio_dev);
-> > =20
-> > @@ -312,6 +362,12 @@ static int mcp3911_probe(struct spi_device *spi)
-> > =20
-> >  	mutex_init(&adc->lock);
-> > =20
-> > +	ret =3D devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-> Can't use devm here for the same reason it was inappropriate in patch 2.
->=20
-> I'd suggest a precursor patch(es) to move the driver fully over to
-> devm_ managed such that you don't need a remove function and the ordering
-> is maintained.
-
-Yep, I will keep this and fix patch 2 instead.
-
-> > +			NULL,
-> > +			mcp3911_trigger_handler, NULL);
-> > +	if (ret)
-> > +		goto clk_disable;
-> > +
-> >  	ret =3D devm_iio_device_register(&adc->spi->dev, indio_dev);
-> >  	if (ret)
-> >  		goto clk_disable;
->=20
-
-/Marcus
-
---KfwtesvVeNKYhzrQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmK9X6UACgkQiIBOb1ld
-UjLVXRAAi+2ypYWt5I0kPX7JtuXSrmmTToAIBK8Vluw/SyV+1LIlLIaXec1epThH
-Z8CqrtZPJWy5+Zdv7yjQWm//E0/ZS/7ZE8RBJafisvT9O0rI0CPalIoVhuycOCav
-YYiPuAes1ZO42bjr8vg5Q3p8eFlVbg7q7S1nVE8F5Lz95C1eDKCyNr7q56e0I+za
-K4lIWhVxk1H+PK2qbwXbaotZVxrE+E6IHYxbaLbM9aM4wSYJDwZQRJg5KahoOhhn
-MRHFdqiu3uMC43hIbj2/d6Vou0szIBXuEUoaDmNqMFbjTIT7kdJ44yP9jli+p757
-LpNaYspk4hy1QILGPBhlv/lY4e2IWy3YX2bcWaoYhwRkfD3666oXIsTopSg4u09M
-bx5vcdVV2rxAVqD9gwfDskan33F4nW0x6kmfChYrhJ66hpLT6qadAAKkmZWWeRDz
-VBPte44q9Az4FNCQYW79hy2E0W/bGrrzk7GWwLn73aNwDfXcrWQNwUTFn9BvU+a2
-lVWZ2IpjVv+JAOhyqujyOgRG5y8Hdswrj7MOTqBSvSUnPSiUEfw6VFbnIEKf4vDI
-ZFT3EJ0qJGrrT/KGrcC7P8HMZ6rFAP793PieAinoFbBrD67wiGqqikNPUtf5hCaX
-iwEycKWDsKg/79GFDkuELTuAKDDHXJc99C6LZWdU1fg+Ls7JtVc=
-=5u7F
------END PGP SIGNATURE-----
-
---KfwtesvVeNKYhzrQ--
+Best regards,
+Viorel 
