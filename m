@@ -2,91 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F28E56174B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 12:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0433561756
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 12:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234049AbiF3KHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 06:07:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
+        id S232411AbiF3KKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 06:10:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234811AbiF3KHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 06:07:22 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD6A2443CB
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:07:05 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id cf14so25841670edb.8
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:07:05 -0700 (PDT)
+        with ESMTP id S234775AbiF3KKD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 06:10:03 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81D2C44757
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:10:01 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id c65so25870959edf.4
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 03:10:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QiZFE3NY4GpzbWqcVyfbAnOQf74waO1WZQ6maNc0JPw=;
-        b=eo3tpQhml3zuLS6EMetDbiMihtcGUCI0LuemTL7CehN2ehr/usuoPH5bwJZgtW6Dbj
-         hHhi8hchNa20ttbPTb4C/agoXHVRFnA7C2mNoYAhVgG21xklwR39m3HaNLIAfVgp+O2B
-         HUhU73gt3m0oEw2UlAcQeRZWyEQyKhjMuEsQRoQzO8V+AZHuVzw5jZZs2JKTzFyPfBWe
-         KDqG9UiR+DK+rd7+9BY2eLJNLh/WFrS4F92IWbcyQM5DW5rklklTVjMfjkPo+ldsKte2
-         XNsnceeVIgLLnGybmTqhOP+2XwLkQmQCYsgTvB68lwEppERccpmnsZ/6zfeUWteWzbCG
-         5Hxw==
+        d=amarulasolutions.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=x6R57O4urDU2YjNPka2DlENCvQCcdTvXSj/0KHICFvk=;
+        b=eKHSxJefHg0CoOL2feCoVC5QCjWK9UF6S0HKL9jJOuBW37cd3oXCW3nTgIzOVHssPj
+         8PBatKJJnBYHF7qSohjVIoypeRZdXwDJXQxqxfrs2Gr10gGecbM7ok/vl+Qxfse/g72Q
+         0BRoQZU1FJK6I/e0+N5/Lqi9TbcE3DjSuijZk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=QiZFE3NY4GpzbWqcVyfbAnOQf74waO1WZQ6maNc0JPw=;
-        b=ljWXZFDFIQDaEIpvbw3jFtfV41VOlNtQQ+KTH2oCyitC7LKwo0/erJgC3CtJW9HM/X
-         mnppt1pXEYhf+U1sloU+RLE8feTgrnDz49/mltNZv55k3/A+LLP0Y+p+IFyoA3iuHRKi
-         rTN6CNZzKw6DOeNyIWTI6WWlb0Ff5+RZwkO72uS9C2XuQOBbUrOvpDwP71x2El9L3vpz
-         Z7oMlzl1V6eDZ9R2X6IASKABk/0uyRqnTBD9avYN+nbkldTEgjztCQuTpfu2fvcBhMY+
-         2CX+F2r9YxqG0fS00PtWep34cWGlg/weSCVOmfWwOT2Q+kct8wZy5s1pkqf0Mry1xmRT
-         j1vw==
-X-Gm-Message-State: AJIora8UI4CJOwh8UuM87RoRdDDSKykczPNQeogKg/SsXoFV4ROeW6zk
-        4wRQTacORRfdCTYU7kPCQh542g==
-X-Google-Smtp-Source: AGRyM1sRuht+AaZtKiV7wXncnzcPYsM4VrO1Sxs8tTbqxYOin4IohCnFH9E62zxQFeOe/1NdCdXk4w==
-X-Received: by 2002:aa7:d5c9:0:b0:435:8099:30e6 with SMTP id d9-20020aa7d5c9000000b00435809930e6mr10509066eds.384.1656583624201;
-        Thu, 30 Jun 2022 03:07:04 -0700 (PDT)
-Received: from [192.168.0.189] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id jz18-20020a17090775f200b0070fd7da3e47sm8859460ejc.127.2022.06.30.03.07.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jun 2022 03:07:03 -0700 (PDT)
-Message-ID: <6fafbed8-9c6d-ae1b-c613-44982b681276@linaro.org>
-Date:   Thu, 30 Jun 2022 12:07:02 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=x6R57O4urDU2YjNPka2DlENCvQCcdTvXSj/0KHICFvk=;
+        b=AZ5yfVkeijXS3AjuWyoGBHLYR7wlHfm7/4SgmFDXPQmaFqbGb+Ydj79guwoAQ97wMC
+         GCDP6EySPjkOJpoMTpDc1YPwhv8uWx4uSbzJ66JT1N8ci9TO/pJJa110XSyZjDOt7G9d
+         wHvN4rRV7EwYKkzVzMIJjlax+LgHn9z46XZC8Mw6eiMB0Y7qdXLc76cceOQZy0sO0shV
+         c36WNdmXP8gdqaMk15UW135yMCDQldSjLymJLMK2lMC6/aD+N+TUUh1XAm7yfqyJ46T+
+         h9rZbMC63qm6CGM9tar4QJp8hStLQPT6HV1Yq5DMWrIMsqdpRxjnclNabTJiToXXWss0
+         7Yrg==
+X-Gm-Message-State: AJIora/6+P30xq9xYRo47dnybZwLxEOXxECXp+LlJXjCJhJ/IO3/xy/m
+        jhwCnzWmvjYOBGAQqKy9CKNmpA==
+X-Google-Smtp-Source: AGRyM1s57Tso0VPPeTN/5BjZ19cWWdP1rE0VdmfYtKSB4A4yhMw+PDOMywZW8+5MiwdKuvAraxT43w==
+X-Received: by 2002:a05:6402:2743:b0:437:d467:4a57 with SMTP id z3-20020a056402274300b00437d4674a57mr10586294edd.235.1656583800074;
+        Thu, 30 Jun 2022 03:10:00 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-58-216.cust.vodafonedsl.it. [188.217.58.216])
+        by smtp.gmail.com with ESMTPSA id q4-20020a1709064cc400b006fec4ee28d0sm8824131ejt.189.2022.06.30.03.09.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jun 2022 03:09:59 -0700 (PDT)
+Date:   Thu, 30 Jun 2022 12:09:57 +0200
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        quentin.schulz@theobroma-systems.com,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 5/6] media: dt-bindings: ov5693: document YAML binding
+Message-ID: <20220630100957.GE482517@tom-ThinkPad-T14s-Gen-2i>
+References: <20220630074525.481790-1-tommaso.merciai@amarulasolutions.com>
+ <20220630074525.481790-6-tommaso.merciai@amarulasolutions.com>
+ <167f09c1-795d-1471-20f7-9f4df29355ed@linaro.org>
+ <20220630090232.GC482517@tom-ThinkPad-T14s-Gen-2i>
+ <Yr1pD2U2ilXXXX+Q@valkosipuli.retiisi.eu>
+ <20220630091613.GD482517@tom-ThinkPad-T14s-Gen-2i>
+ <Yr1xzeqW2p4jVDzS@valkosipuli.retiisi.eu>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/4] dt-bindings: misc: tmr-manager: Add device-tree
- binding for TMR Manager
-Content-Language: en-US
-To:     "Rao, Appana Durga Kedareswara" 
-        <appana.durga.kedareswara.rao@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "derek.kiernan@xilinx.com" <derek.kiernan@xilinx.com>,
-        "dragan.cvetic@xilinx.com" <dragan.cvetic@xilinx.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Cc:     "git (AMD-Xilinx)" <git@amd.com>, "git@xilinx.com" <git@xilinx.com>
-References: <20220628054338.1631516-1-appana.durga.rao@xilinx.com>
- <20220628054338.1631516-2-appana.durga.rao@xilinx.com>
- <fc685f00-41e5-e64c-09b8-662b01a46f6c@linaro.org>
- <6f5a1b1e-b484-3a15-00be-2c1ddc09468e@amd.com>
- <e43bede7-2a0a-5114-e9ec-9e1449bf4e47@linaro.org>
- <a653cb16-4aa9-693a-ac32-cc7b1b999b92@amd.com>
- <dd709b5a-1cd8-0343-028a-5d134a9de81a@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dd709b5a-1cd8-0343-028a-5d134a9de81a@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yr1xzeqW2p4jVDzS@valkosipuli.retiisi.eu>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,83 +80,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 14:37, Rao, Appana Durga Kedareswara wrote:
-> Hi,
-> 
-> 
-> On 29/06/22 5:29 pm, Michal Simek wrote:
->>
->>
->> On 6/29/22 13:45, Krzysztof Kozlowski wrote:
->>> On 29/06/2022 13:23, Michal Simek wrote:
->>>>
->>>>
->>>> On 6/29/22 12:07, Krzysztof Kozlowski wrote:
->>>>> On 28/06/2022 07:43, Appana Durga Kedareswara rao wrote:
->>>>>> This commit adds documentation for Triple Modular Redundancy(TMR) 
->>>>>> Manager
->>>>>> IP. The Triple Modular Redundancy(TMR) Manager is responsible for 
->>>>>> handling
->>>>>> the TMR subsystem state, including fault detection and error recovery
->>>>>> provides soft error detection, correction and recovery features.
->>>>>>
->>>>>> Signed-off-by: Appana Durga Kedareswara rao 
->>>>>> <appana.durga.rao@xilinx.com>
->>>>>> ---
->>>>>>    .../bindings/misc/xlnx,tmr-manager.yaml       | 48 
->>>>>> +++++++++++++++++++
->>>>>
->>>>> This is not a misc device. Find appropriate subsystem for it. It's not
->>>>> EDAC, right?
->>>>
->>>> We were thinking where to put it but it is not EDAC driver.
->>>> If you have better suggestion for subsystem please let us know.
->>>
->>> I don't know what's the device about. The description does not help:
->>>
->>> "TMR Manager is responsible for TMR subsystem state..."
->>
->> ok. let's improve commit message in v2.
-> 
-> Sure will improve the commit message in v2.
->>
->> TMR - triple module redundancy.
->>
->> You design the system with one CPU which is default microblaze 
->> configuration with interrupt controller, timer and other IPs.
->>
->> And then say I want to do it triple redundant with all that voting, etc.
->> If you want to get all details you can take a look at this guide
->>
->> https://www.xilinx.com/content/dam/xilinx/support/documents/ip_documentation/tmr/v1_0/pg268-tmr.pdf 
->>
->>
->> In short TMR manager is servicing all that 3 cores and making sure that 
->> they are all running in sync. If not it has capability recover the 
->> system. It means cpu gets to break handler (it is the part of microblaze 
->> series) and it restarts all cpus.
->>
->> And TMR inject driver is module which is capable to inject error to 
->> internal memory to cause the exception to exercise that recovery code.
->>
->> Kedar: Feel free to correct me or add more details.
-> 
-> Thanks Michal for the detailed explanation.
-> 
-> The Triple Modular Redundancy(TMR) subsystem has three Microblaze 
-> processor instances, If any one of the Microblaze processors goes to an 
-> unknown state due to fault injection break handler will get called, 
-> which in turn calls the tmr manager driver API to perform recovery.
-> like Michal said TMR inject driver is capable of inject error to
-> internal memory to cause fault in one the Microblaze processor
-> 
-> @Krzysztof : please let me know if more information required about
-> this TMR subsystem will provide.
+Hi Sakari,
 
-Some features sound like watchdog. If it was ARM, I would suggest to put
-it under "soc". Is a term System-on-Chip applicable to Microblaze? Other
-option is to store it under microblaze (although for ARM and RISC-V this
-is actually discouraged in favor of soc).
+On Thu, Jun 30, 2022 at 12:50:05PM +0300, Sakari Ailus wrote:
+> Hi Tommaso,
+> 
+> On Thu, Jun 30, 2022 at 11:16:13AM +0200, Tommaso Merciai wrote:
+> > Hi Sakari,
+> > 
+> > On Thu, Jun 30, 2022 at 12:12:47PM +0300, Sakari Ailus wrote:
+> > > On Thu, Jun 30, 2022 at 11:02:32AM +0200, Tommaso Merciai wrote:
+> > > > On Thu, Jun 30, 2022 at 10:07:19AM +0200, Krzysztof Kozlowski wrote:
+> > > > > On 30/06/2022 09:45, Tommaso Merciai wrote:
+> > > > > > Add documentation of device tree in YAML schema for the OV5693
+> > > > > > CMOS image sensor from Omnivision
+> > > > > > 
+> > > > > > Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> > > > > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > > > Reviewed-by: Sakari Ailus <sakari.ailus@iki.fi>
+> > > > > 
+> > > > > How Sakari's tag appeared here? There was no email from him.
+> > > > 
+> > > > Sakari made me some review on v2, but I think he forgot to add the mailing
+> > > > list in cc. ( I suppose :) )
+> > > > 
+> > > > Let me know if I need to remove this.
+> > > 
+> > > You're only supposed to put these tags into patches if you get them in
+> > > written form as part of the review, signalling acceptance of the patch in
+> > > various forms. Just commenting a patch does not imply this.
+> > > 
+> > > Please also see Documentation/process/submitting-patches.rst for more
+> > > information on how to use the tags.
+> > 
+> > Thanks for sharing this. My bad.
+> > I remove your tags.
+> 
+> The patches themselves seem fine. I'd just drop the 4th patch or at least
+> come up with a better name for ov5693_hwcfg() --- you're acquiring
+> resources there, and that generally fits well for probe. The code is fine
+> already.
 
-Best regards,
-Krzysztof
+Then we don't need v5 with your reviewed tags removed?
+
+I think the patch4 is needed to add dts support properly.
+Also this contains devm_clk_get_optional fix suggested by Jacopo and
+support for ACPI-based platforms that specify the clock frequency by
+using the "clock-frequency" property instead of specifying a clock
+provider reference.
+
+Some suggestion on the function name?
+
+Thanks,
+Tommaso
+
+> 
+> -- 
+> Sakari Ailus
+
+-- 
+Tommaso Merciai
+Embedded Linux Engineer
+tommaso.merciai@amarulasolutions.com
+__________________________________
+
+Amarula Solutions SRL
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+T. +39 042 243 5310
+info@amarulasolutions.com
+www.amarulasolutions.com
