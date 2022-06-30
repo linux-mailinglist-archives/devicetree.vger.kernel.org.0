@@ -2,149 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C44A561669
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 11:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE38856167D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 11:38:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233850AbiF3JeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 05:34:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38066 "EHLO
+        id S234488AbiF3Jhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 05:37:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234045AbiF3Jd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 05:33:59 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2059.outbound.protection.outlook.com [40.107.237.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A8C73EF21;
-        Thu, 30 Jun 2022 02:33:58 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FLSDy7/czhsUJ+7W0JXd4L2WK/qTGm7YlIS+gzORadN5RAKixwvQz/3rSWTn5bzHRZbJwzarWjsBPy2kTb3t/ilGlcA+zJxOGdoTImu2EM3ByVdz19u3OLiw+Us07WUKL6f2jActHd+GLHu35tfYP1YpzbqESaWs/rsa3Ux0dB5E8K+3HWK6plcUu79vPZns3b3HwPHbdOtDkd59C3AGWnkzEIzNhuS73seEr7fvKfez8Y58oLNAwEarmAI4/KmPWZaUAqHqsItcBb3zvWTG8vF5WfiDObrQE0b944nABf3Vd6U0JXlQtZjLj/eg/wt36wLlGHp1qjfRTEQW8Csq8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rsl6b/PWwOhRsS65A8ZY8teTkJs0tS/scjs2aVlhq/k=;
- b=LhEMKVQBVRFXSqcjHgF+Cakm3EwOx8eS6leP+ohkLAcmdFe0J2Ep5t1Acz1mwBF/+DK1Tp0u2VXgtvUKOYLUV0S/baFoXaocj84uEDn5nFrldrgY9xCGcKwZ7eI9JIWSTYRUhNoOaVzpYnR1uBQ4S1WMWdjBb5BIhirQScQt24wCB3cs2iDOnoFg5m65C/Z6GMnSHjKivkE7wvGnAkAEz534rcEx/GTrxN6M6/zP0ZPWR/7ngEB4ofnW0VKqfdmXe72Ng1tIJRNshxfQzcTHJSVVmjORVUy2eAf2dtWcI6Zih1v25iDTo2Iqc0xd3YLuE+75LMLYZXdS5tSGOwX/dQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rsl6b/PWwOhRsS65A8ZY8teTkJs0tS/scjs2aVlhq/k=;
- b=IryUkb/hLUqWf3YYkunD83c6Iw6Fup1ff132LmsSZzlzy9XPfxhgcCOmhmRtTwCCKdZ9ItenrQB9IMfXw+g1P0duBoQ8L3IQ5BolbJjCX543OHurK93p2eJGWfd+4YtzCKWL09uG7/Msg7nSJaSDzpIxrmZv2DJQ5PDOhiEN0YeQOhv9Yhz8DDCB9ShUav+e//2dVyP3PGGs6xGEofaC3otxCk4tKRBCrYtcWRSl7MQ0skhVwWRJ0a2ghN6TzeY7XwyBs7+gFFT6uZhCPMTpxqcEhBsmVb/203bAdRq/6TXOjnkR/5/uy0krG6e5LQ+WFD0WF2bi9whzUsjVnlnKpQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- SN1PR12MB2559.namprd12.prod.outlook.com (2603:10b6:802:29::30) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5395.14; Thu, 30 Jun 2022 09:33:56 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::190c:967c:2b86:24a8]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::190c:967c:2b86:24a8%4]) with mapi id 15.20.5395.014; Thu, 30 Jun 2022
- 09:33:56 +0000
-Message-ID: <17e4590b-a3c1-6d45-4dab-f06537f46396@nvidia.com>
-Date:   Thu, 30 Jun 2022 10:33:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/6] dt-bindings: timer: Add Tegra186 & Tegra234 Timer
-Content-Language: en-US
-To:     Kartik <kkartik@nvidia.com>, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, robh+dt@kernel.org, krzk+dt@kernel.org,
-        thierry.reding@gmail.com, spujar@nvidia.com,
-        akhilrajeev@nvidia.com, rgumasta@nvidia.com, pshete@nvidia.com,
-        vidyas@nvidia.com, mperttunen@nvidia.com, mkumard@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <1656527344-28861-1-git-send-email-kkartik@nvidia.com>
- <1656527344-28861-2-git-send-email-kkartik@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <1656527344-28861-2-git-send-email-kkartik@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0381.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:18f::8) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+        with ESMTP id S234471AbiF3Jhk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 05:37:40 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BF9643394;
+        Thu, 30 Jun 2022 02:37:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656581858; x=1688117858;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=SiWYp6V7Ga7ZVV5qR8lJV/JYj43BEQHW4fc7n1UtpMM=;
+  b=HlKGga7/MWnkQxBCm2AyNJ0qs5PMWIdt+nqy1C57O8wWIqZriq+7h0xA
+   FXLn6WEHQ10EmXwwLQL3DDzVodTlUU7eqrcazqNjDfnHBzRn5NYiVGPK4
+   CcoNAKbY+1WIsqIFQ8NmHid88NLf68eQX8oXhCoKmxY+ncRAgDYMN4T1R
+   0=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 30 Jun 2022 02:37:37 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2022 02:37:37 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 30 Jun 2022 02:37:37 -0700
+Received: from [10.50.47.78] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 30 Jun
+ 2022 02:37:32 -0700
+Message-ID: <f8e70198-d0d8-5500-2869-be9e3a34f3c1@quicinc.com>
+Date:   Thu, 30 Jun 2022 15:07:29 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ab4ca8cc-f917-4e1a-f0e4-08da5a7ba707
-X-MS-TrafficTypeDiagnostic: SN1PR12MB2559:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?N3dYSjNENlJRbHEwZytIS2lBNVRWb3RXNy93WVdSVkppSVlGYnFxd2RlOVlB?=
- =?utf-8?B?aGRaaTBuQmNIbVcyK0dVMkF4dnIwcml6VWZTNzJlcE5zb1pmbDF3ZVV2S2x4?=
- =?utf-8?B?MlM0VjVJVkhPYUhsNTZuZm5MbG12UXBsSUpIZTAzQ0Z3b1h3bDMwUXJWb1Vt?=
- =?utf-8?B?anJlZzNTVjgvMElTOVFOVlVMbDIrNUhnODJMb2wyMDc5N0ZLWmdydWU4VkVs?=
- =?utf-8?B?cXR0ZGlyaGpKcWgwREFSV3ZkdWdRVDdrSjZGYXlCeGx0VEl6TWorNGwrci9m?=
- =?utf-8?B?SG12Mk9vSmlORDNYRDFoNWdwUExXVUY1MEtxYXc4eUxCaXZzSEpsQjFOKzdm?=
- =?utf-8?B?Ukl0YnVkQlAxWi9GSjlsTGprOUIyUENJV1hxQzhjdjVhV3RVVFRxVFNwL3g2?=
- =?utf-8?B?U1c5amdiclNUSStkMXBqTzFJdHlFUk5zZ2YydlVJa1YxaVRybVVjalBUVlAw?=
- =?utf-8?B?QU1lWGNrckN3NVZ4WmQ2a2RtM20yRm56QmRjM0VENE54eHhZUmIvMWRrbGJC?=
- =?utf-8?B?Z3hYZmpUblhrY1lkMEhuZ2Z4dDZnamQ1T2oyMm13OFh5Yi81RzlINEVLdFlZ?=
- =?utf-8?B?WUpMaGRmcGRFbnZwZXd5dWowU3dEZU5sallFSUJpTnh2KzlIc1dxMXV4NnBN?=
- =?utf-8?B?bXhLb1h6bTJJN2Vmcmo0WlJmZXFBd1ltQThCbWhydXJmdUhMWGhwcXA2cFRi?=
- =?utf-8?B?VmVCRHk1Z09wVWFHSkZ1SkdEZ2xaZ3pxa0VHdytlNlJicWh1Z3AzVUNKajRE?=
- =?utf-8?B?aE84NzVYcWhDeGgvYlB1aTFtMFZ2Z0RaT0l0MGdOOTA4UFROa3B6ZUNDS2s1?=
- =?utf-8?B?eWxjeEtVdlFZcTRlLzUzbUo3R1RSRzQ3dEpCV09FZnRsTDd4ampIWFkwZXVW?=
- =?utf-8?B?UkJUWjM1dEdxSTBsNXFBQUJCUXpBSStrY2tBL2kyNWpqY1I1RFMzN2M5T0xP?=
- =?utf-8?B?aDM1REVCQ3NuL25SZEVwYlR6RmdVd3FmMmtObFpreWNpM25jUzBWRFRUWlF5?=
- =?utf-8?B?WHhtSlRyRCtHblBoU2ExUFhkaWFsMi81RzEzL2lBQUNmYXJ4d0pJNytHNHRw?=
- =?utf-8?B?em5hUU54MjlpMTlYemRacU5oYVFLZ0VuSFJ5WFI0M2w0dHVpbks5UXA5QXUy?=
- =?utf-8?B?WHQxZlpQeVJEYURCdzk0R3dQdFRpVlRNYko2TFhtSVRqZHUySmM5MDJieVc1?=
- =?utf-8?B?MGJmakY5WHdIbi9zZHR5SW9iNmtCd0UxTUhXam1DV2tBcm9hR2x5WUdmK3Fx?=
- =?utf-8?B?YlQ4TFlGcTA2SGdSSVZQcGg0eFRqYmd0b3pSOGQ4Smh3YXJ5dEZ5RVVnbkdM?=
- =?utf-8?Q?htkG+ZtZDAoxM=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(346002)(366004)(396003)(376002)(39860400002)(66946007)(186003)(316002)(6666004)(8676002)(66556008)(6506007)(86362001)(36756003)(31696002)(5660300002)(53546011)(6512007)(26005)(2616005)(8936002)(55236004)(31686004)(2906002)(66476007)(921005)(41300700001)(478600001)(6486002)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Wkh6K0RZZlZMRk5pQ3Z1bWJwOGhJUkdFTW9Sdys5L0tJV09HVmRuNFNmRy9s?=
- =?utf-8?B?NXdhcGV0UFhJWEpvWUJlK0wwVUZsa2x5RVR1bndaM0tjVmJXVFFDV0Faelpp?=
- =?utf-8?B?WG1vTDBJUENoSkZUUmpXeElVQjhkSnd2SnZLSnBMREc1SW93RUd3OWJHUVJB?=
- =?utf-8?B?aDk0eS9mcW9TZ1I3dU43TktZdVFGdnRxR1pEbFdHZTJQeFJ3aC82OTgxbUxP?=
- =?utf-8?B?SVdaTEkzSzFYVXVacVBsWUN4M25hZDZMZnltUzg1N3NOaC93UXhxWlc2d1Z4?=
- =?utf-8?B?MVRIRnV4Unp1M3gycEs0Mjk1aUdJR3JCNlo5L2NVMStjWkVBbWFkMmNRN1NN?=
- =?utf-8?B?RThzNnVOZEtEYU9HK0RpNGFORDYwQnBKVzRDQmRwNmhwZFNuMnhYNjNrblFQ?=
- =?utf-8?B?Snh0Szdwb0ZNYjI4ZnRNeDdUNGFRU1kvNm5tS1BhS01vUGRKZFV5anJRTmNX?=
- =?utf-8?B?NklCaEtDNElQRytFR05LUnR0VGxrTlFnbGRNRk1qRzk3bTdPL3hGakpYM04w?=
- =?utf-8?B?ZnQ2M3Q0MFhRbVBvZWU0SmgrSWlwbW4vazJpMjhOMitUK1JYVUFDbGZXRk1k?=
- =?utf-8?B?STFQS3U3T1hGN3lJNW1uWTNZSnVpVjJCM0ttbGppanVFN2M3cDh5d0lZelJ1?=
- =?utf-8?B?d2NtckJpYWZLNlljRFNHa1FPWk9ScFZmOGlkV3BnV21RSHdJM3d1L0VQbEV6?=
- =?utf-8?B?YzdtQ1dGOU5LdW10VWFUNFNxeFhydFVHTHVDc25tVitqQ3p3dmQzS29mb3Q2?=
- =?utf-8?B?UDY4U25IeU1QcUtka3dIbFhxQTI0TnVVN3NGWUdzTzZ0OVVRMmk1VVFTeElE?=
- =?utf-8?B?anZ1eFQ0dGwwMGpsd2hvVXQ0bUprWGFjVXoxd09mUkdBWkRPUTVMRUx4RVA1?=
- =?utf-8?B?NUJuVmRJdng0ZEljdDZSanA2dnhnVjBDV0UrSnZ3cktRNzZuY1VNWE13eXBN?=
- =?utf-8?B?KzV5anR0UmNjKzVDZ2FXbTdmNlpTalpmcG1uVTh5czFqWnVZK3hOd1pvMkJS?=
- =?utf-8?B?NEdBZHZRMWxXQ1NrTG95cnV1akFVNG9zcDBxb1ZDaFk5eXpGU0ZQb3VUUlFZ?=
- =?utf-8?B?cWlydzhSYWhFbnZLNUtUK3g2WG9sb0RFbTl5MndOSHI2MUtaVXJuQUdDOVR4?=
- =?utf-8?B?S2RscTdseDY3WXhyVUt6Uml5d3hXY2k4ZGl5Vyt4YkpJMllrS20xRjUzeW4x?=
- =?utf-8?B?MkRJV2JLVE5HQnF6eDlETzJWVVB2M2VuQ1QwRGtLT21tSFZQcGl3Q2tWWFBN?=
- =?utf-8?B?OWc2aWtYemRZd3RUb2hjUlZjUGF0MTZjRnJUZ0RZbm90NG00dHZXOTVBQitW?=
- =?utf-8?B?OEUxT1AvL01iaVpSYmM1V1pFS1k3RmNlVS91R3pTSm9WaklST0JQMUx1TFNj?=
- =?utf-8?B?S214MjUvOUdDbUNta055cDk4RkdLZ0NBaGVDdW92NEJFQi90Y2VkZldQbTB2?=
- =?utf-8?B?NU9NQ1ZYL3FJekNmVVZ3aktxMk1KdlVBaTFONXVEdHc2RVJpdzl0TmxNdnUv?=
- =?utf-8?B?bzExS3FLOXhsMGFEVWdyM0tDQU9laTR4YzUvZ25oa0s2TVVSelgyYmFDcS9P?=
- =?utf-8?B?dlFvdThkakIzczgxeXp3ckR5dXNwVlN1SGtmUGdEWlY3N1hSeStoanBydnBH?=
- =?utf-8?B?RmFMVHNLWWl1TEFidDMrS216M2VQVzc5SThkdUtqalZIT1JJTGtua3Y0WUtN?=
- =?utf-8?B?WVpHSWpWMjkvK0o5b2toQzB6TkNOaUFpY3RPbWpRTUNaMlZ1Yk9LTVBXejFO?=
- =?utf-8?B?SFRwZHArVTgrZTdCaTd2ZUJXaW04MHV1ZTcvb1RxK2tIT1N0MlpCSWgxdklT?=
- =?utf-8?B?REx4Skc3eWpLLzZOTzZCNkF2L2F6KzFqVVoxV2FGU2xOelNGeDVXbW01Sysr?=
- =?utf-8?B?dVRrQStSaDd5WWYxcWM1VktmUDludlVXTEIvUXp4bmY5ZlVld2QvOG9XWHgx?=
- =?utf-8?B?VWplU1NVUmlveDVJY3pWYXhMTVdkaXU3NkhURUQxc0oyUGY3cVlYQm93Ull5?=
- =?utf-8?B?YWI3cnZPa0NHZVQxSlowTUF4QzY0M21RRUVoYnJNTmwwUCs4VjNrVzVjdmUx?=
- =?utf-8?B?L1JCL0FXTFNKWWM5ZnlOS2pDekhtSWE1RFZaaVhVa1E1eVZzd1FPRmw4alNG?=
- =?utf-8?Q?5oB/ymEoAeCySevhA+Mi8TGVr?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab4ca8cc-f917-4e1a-f0e4-08da5a7ba707
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2022 09:33:55.9107
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 03MM5Hw9STbotpD4hOp4zKkzZE1EISHg6xer00bfWw7i9tLLU576+o8HInUIxveY0WQn8HER4RT+K7qU4D7duA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2559
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+Content-Language: en-US
+To:     Lee Jones <lee.jones@linaro.org>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_jprakash@quicinc.com>
+References: <1655200111-18357-7-git-send-email-quic_c_skakit@quicinc.com>
+ <YquZRcuRCrdF+Q1z@google.com>
+ <eccbb030-97f7-3a6c-958e-05adcdca6210@quicinc.com>
+ <YrAt6dq6ty9p8d05@google.com>
+ <a11732d6-a9b1-7ead-e89a-564a57a7192b@quicinc.com>
+ <503f1a8b-eadb-d3a6-6e24-d60437f778b6@quicinc.com>
+ <YrlfF+DMlGFsVBdk@google.com>
+ <a1c6e3c9-962d-411e-7fbf-9e760e9dc8c0@quicinc.com>
+ <Yrqw1YRyCGG+d4GL@google.com>
+ <4112b5af-15de-007c-fcc2-c31ce9f9e426@quicinc.com>
+ <YrxtXdOsIZ5LKhdV@google.com>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+In-Reply-To: <YrxtXdOsIZ5LKhdV@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -152,142 +82,259 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 29/06/2022 19:28, Kartik wrote:
-> The Tegra186 timer provides ten 29-bit timer counters and one 32-bit
-> timestamp counter. The Tegra234 timer provides sixteen 29-bit timer
-> counters and one 32-bit timestamp counter. Each NV timer selects its
-> timing reference signal from the 1 MHz reference generated by USEC,
-> TSC or either clk_m or OSC. Each TMR can be programmed to generate
-> one-shot, periodic, or watchdog interrupts.
-> 
-> Signed-off-by: Kartik <kkartik@nvidia.com>
-> ---
->   .../bindings/timer/nvidia,tegra186-timer.yaml | 111 ++++++++++++++++++
->   1 file changed, 111 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml b/Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml
-> new file mode 100644
-> index 000000000000..5dc091532cd7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/timer/nvidia,tegra186-timer.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: NVIDIA Tegra186 timer
-> +
-> +maintainers:
-> +  - Thierry Reding <treding@nvidia.com>
-> +
-> +description: >
-> +  The Tegra timer provides 29-bit timer counters and a 32-bit timestamp
-> +  counter. Each NV timer selects its timing reference signal from the 1 MHz
-> +  reference generated by USEC, TSC or either clk_m or OSC. Each TMR can be
-> +  programmed to generate one-shot, periodic, or watchdog interrupts.
-> +
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: nvidia,tegra186-timer
-> +        description: >
-> +          The Tegra186 timer provides ten 29-bit timer counters.
-> +      - const: nvidia,tegra234-timer
-> +        description: >
-> +          The Tegra234 timer provides sixteen 29-bit timer counters.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts: true
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra186-timer
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 1
-> +          maxItems: 10
-> +          description: >
-> +            A list of 10 interrupts; one per each timer channels 0 through 9.
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra234-timer
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 1
-> +          maxItems: 16
-> +          description: >
-> +            A list of 16 interrupts; one per each timer channels 0 through 15.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    timer@3010000 {
-> +        compatible = "nvidia,tegra186-timer";
-> +        reg = <0x03010000 0x000e0000>;
-> +        interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    timer@2080000 {
-> +        compatible = "nvidia,tegra234-timer";
-> +        reg = <0x02080000 0x00121000>;
-> +        interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
+On 6/29/2022 8:48 PM, Lee Jones wrote:
+> On Wed, 29 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+>
+>> On 6/28/2022 1:12 PM, Lee Jones wrote:
+>>> On Tue, 28 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+>>>
+>>>> On 6/27/2022 1:11 PM, Lee Jones wrote:
+>>>>> On Mon, 27 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+>>>>>
+>>>>>> Hi Lee,
+>>>>>>
+>>>>>>
+>>>>>> On 6/20/2022 4:37 PM, Satya Priya Kakitapalli (Temp) wrote:
+>>>>>>> On 6/20/2022 1:50 PM, Lee Jones wrote:
+>>>>>>>> On Mon, 20 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+>>>>>>>>
+>>>>>>>>> On 6/17/2022 2:27 AM, Lee Jones wrote:
+>>>>>>>>>> On Tue, 14 Jun 2022, Satya Priya wrote:
+>>>>>>>>>>
+>>>>>>>>>>> Use i2c_new_dummy_device() to register pm8008-regulator
+>>>>>>>>>>> client present at a different address space, instead of
+>>>>>>>>>>> defining a separate DT node. This avoids calling the probe
+>>>>>>>>>>> twice for the same chip, once for each client pm8008-infra
+>>>>>>>>>>> and pm8008-regulator.
+>>>>>>>>>>>
+>>>>>>>>>>> As a part of this define pm8008_regmap_init() to do regmap
+>>>>>>>>>>> init for both the clients and define pm8008_get_regmap() to
+>>>>>>>>>>> pass the regmap to the regulator driver.
+>>>>>>>>>>>
+>>>>>>>>>>> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+>>>>>>>>>>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>>>>>>>>>>> ---
+>>>>>>>>>>> Changes in V15:
+>>>>>>>>>>>       - None.
+>>>>>>>>>>>
+>>>>>>>>>>> Changes in V14:
+>>>>>>>>>>>       - None.
+>>>>>>>>>>>
+>>>>>>>>>>> Changes in V13:
+>>>>>>>>>>>       - None.
+>>>>>>>>>>>
+>>>>>>>>>>>       drivers/mfd/qcom-pm8008.c       | 34
+>>>>>>>>>>> ++++++++++++++++++++++++++++++++--
+>>>>>>>>>>>       include/linux/mfd/qcom_pm8008.h |  9 +++++++++
+>>>>>>>>>>>       2 files changed, 41 insertions(+), 2 deletions(-)
+>>>>>>>>>>>       create mode 100644 include/linux/mfd/qcom_pm8008.h
+>>>>>>>>>>>
+>>>>>>>>>>> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+>>>>>>>>>>> index 569ffd50..55e2a8e 100644
+>>>>>>>>>>> --- a/drivers/mfd/qcom-pm8008.c
+>>>>>>>>>>> +++ b/drivers/mfd/qcom-pm8008.c
+>>>>>>>>>>> @@ -9,6 +9,7 @@
+>>>>>>>>>>>       #include <linux/interrupt.h>
+>>>>>>>>>>>       #include <linux/irq.h>
+>>>>>>>>>>>       #include <linux/irqdomain.h>
+>>>>>>>>>>> +#include <linux/mfd/qcom_pm8008.h>
+>>>>>>>>>>>       #include <linux/module.h>
+>>>>>>>>>>>       #include <linux/of_device.h>
+>>>>>>>>>>>       #include <linux/of_platform.h>
+>>>>>>>>>>> @@ -57,6 +58,7 @@ enum {
+>>>>>>>>>>>       struct pm8008_data {
+>>>>>>>>>>>           struct device *dev;
+>>>>>>>>>>> +    struct regmap *regulators_regmap;
+>>>>>>>>>>>           int irq;
+>>>>>>>>>>>           struct regmap_irq_chip_data *irq_data;
+>>>>>>>>>>>       };
+>>>>>>>>>>> @@ -150,6 +152,12 @@ static struct regmap_config
+>>>>>>>>>>> qcom_mfd_regmap_cfg = {
+>>>>>>>>>>>           .max_register    = 0xFFFF,
+>>>>>>>>>>>       };
+>>>>>>>>>>> +struct regmap *pm8008_get_regmap(const struct pm8008_data *chip)
+>>>>>>>>>>> +{
+>>>>>>>>>>> +    return chip->regulators_regmap;
+>>>>>>>>>>> +}
+>>>>>>>>>>> +EXPORT_SYMBOL_GPL(pm8008_get_regmap);
+>>>>>>>>>> Seems like abstraction for the sake of abstraction.
+>>>>>>>>>>
+>>>>>>>>>> Why not do the dereference inside the regulator driver?
+>>>>>>>>> To derefer this in the regulator driver, we need to have the
+>>>>>>>>> pm8008_data
+>>>>>>>>> struct definition in the qcom_pm8008 header file.
+>>>>>>>>>
+>>>>>>>>> I think it doesn't look great to have only that structure in
+>>>>>>>>> header and all
+>>>>>>>>> other structs and enum in the mfd driver.
+>>>>>>>> Then why pass 'pm8008_data' at all?
+>>>>>>> There is one more option, instead of passing the pm8008_data, we could
+>>>>>>> pass the pdev->dev.parent and get the pm8008 chip data directly in the
+>>>>>>> pm8008_get_regmap() like below
+>>>>>>>
+>>>>>>>
+>>>>>>> struct regmap *pm8008_get_regmap(const struct device *dev)
+>>>>>>>     {
+>>>>>>>         const struct pm8008_data *chip = dev_get_drvdata(dev);
+>>>>>>>
+>>>>>>>         return chip->regulators_regmap;
+>>>>>>> }
+>>>>>>> EXPORT_SYMBOL_GPL(pm8008_get_regmap);
+>>>>>>>
+>>>>>>>
+>>>>>>> By doing this we can avoid having declaration of pm8008_data also in the
+>>>>>>> header. Please let me know if this looks good.
+>>>>>>>
+>>>>>> Could you please confirm on this?
+>>>>>>
+>>>>>>>> What's preventing you from passing 'regmap'?
+>>>>>>> I didn't get what you meant here, could you please elaborate a bit?
+>>>>> Ah yes.  I authored you a patch, but became distracted. Here:
+>>>>>
+>>>>> -----8<--------------------8<-------
+>>>>>
+>>>>> From: Lee Jones <lee.jones@linaro.org>
+>>>>>
+>>>>> mfd: pm8008: Remove driver data structure pm8008_data
+>>>>> Maintaining a local driver data structure that is never shared
+>>>>> outside of the core device is an unnecessary complexity.  Half of the
+>>>>> attributes were not used outside of a single function, one of which
+>>>>> was not used at all.  The remaining 2 are generic and can be passed
+>>>>> around as required.
+>>>> Okay, but we still need to store the regulators_regmap, which is required in
+>>>> the pm8008 regulator driver. Could we use a global variable for it?
+>>> Look down ...
+>>>
+>>>>> Signed-off-by: Lee Jones <lee.jones@linaro.org>
+>>>>> ---
+>>>>>     drivers/mfd/qcom-pm8008.c | 53 ++++++++++++++++++-----------------------------
+>>>>>     1 file changed, 20 insertions(+), 33 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+>>>>> index c472d7f8103c4..4b8ff947762f2 100644
+>>>>> --- a/drivers/mfd/qcom-pm8008.c
+>>>>> +++ b/drivers/mfd/qcom-pm8008.c
+>>>>> @@ -54,13 +54,6 @@ enum {
+>>>>>     #define PM8008_PERIPH_OFFSET(paddr)	(paddr - PM8008_PERIPH_0_BASE)
+>>>>> -struct pm8008_data {
+>>>>> -	struct device *dev;
+>>>>> -	struct regmap *regmap;
+>>>>> -	int irq;
+>>>>> -	struct regmap_irq_chip_data *irq_data;
+>>>>> -};
+>>>>> -
+>>>>>     static unsigned int p0_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_0_BASE)};
+>>>>>     static unsigned int p1_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_1_BASE)};
+>>>>>     static unsigned int p2_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_2_BASE)};
+>>>>> @@ -150,7 +143,7 @@ static struct regmap_config qcom_mfd_regmap_cfg = {
+>>>>>     	.max_register	= 0xFFFF,
+>>>>>     };
+>>>>> -static int pm8008_init(struct pm8008_data *chip)
+>>>>> +static int pm8008_init(struct regmap *regmap)
+>>>>>     {
+>>>>>     	int rc;
+>>>>> @@ -160,34 +153,31 @@ static int pm8008_init(struct pm8008_data *chip)
+>>>>>     	 * This is required to enable the writing of TYPE registers in
+>>>>>     	 * regmap_irq_sync_unlock().
+>>>>>     	 */
+>>>>> -	rc = regmap_write(chip->regmap,
+>>>>> -			 (PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET),
+>>>>> -			 BIT(0));
+>>>>> +	rc = regmap_write(regmap, (PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>>>>>     	if (rc)
+>>>>>     		return rc;
+>>>>>     	/* Do the same for GPIO1 and GPIO2 peripherals */
+>>>>> -	rc = regmap_write(chip->regmap,
+>>>>> -			 (PM8008_GPIO1_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>>>>> +	rc = regmap_write(regmap, (PM8008_GPIO1_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>>>>>     	if (rc)
+>>>>>     		return rc;
+>>>>> -	rc = regmap_write(chip->regmap,
+>>>>> -			 (PM8008_GPIO2_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>>>>> +	rc = regmap_write(regmap, (PM8008_GPIO2_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>>>>>     	return rc;
+>>>>>     }
+>>>>> -static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+>>>>> +static int pm8008_probe_irq_peripherals(struct device *dev,
+>>>>> +					struct regmap *regmap,
+>>>>>     					int client_irq)
+>>>>>     {
+>>>>>     	int rc, i;
+>>>>>     	struct regmap_irq_type *type;
+>>>>>     	struct regmap_irq_chip_data *irq_data;
+>>>>> -	rc = pm8008_init(chip);
+>>>>> +	rc = pm8008_init(regmap);
+>>>>>     	if (rc) {
+>>>>> -		dev_err(chip->dev, "Init failed: %d\n", rc);
+>>>>> +		dev_err(dev, "Init failed: %d\n", rc);
+>>>>>     		return rc;
+>>>>>     	}
+>>>>> @@ -207,10 +197,10 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+>>>>>     				IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_LEVEL_LOW);
+>>>>>     	}
+>>>>> -	rc = devm_regmap_add_irq_chip(chip->dev, chip->regmap, client_irq,
+>>>>> +	rc = devm_regmap_add_irq_chip(dev, regmap, client_irq,
+>>>>>     			IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
+>>>>>     	if (rc) {
+>>>>> -		dev_err(chip->dev, "Failed to add IRQ chip: %d\n", rc);
+>>>>> +		dev_err(dev, "Failed to add IRQ chip: %d\n", rc);
+>>>>>     		return rc;
+>>>>>     	}
+>>>>> @@ -220,26 +210,23 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+>>>>>     static int pm8008_probe(struct i2c_client *client)
+>>>>>     {
+>>>>>     	int rc;
+>>>>> -	struct pm8008_data *chip;
+>>>>> -
+>>>>> -	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+>>>>> -	if (!chip)
+>>>>> -		return -ENOMEM;
+>>>>> +	struct device *dev;
+>>>>> +	struct regmap *regmap;
+>>>>> -	chip->dev = &client->dev;
+>>>>> -	chip->regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+>>>>> -	if (!chip->regmap)
+>>>>> +	dev = &client->dev;
+>>>>> +	regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+>>>>> +	if (!regmap)
+>>>>>     		return -ENODEV;
+>>>>> -	i2c_set_clientdata(client, chip);
+>>>>> +	i2c_set_clientdata(client, regmap);
+>>> Here ^
+>>
+>> I have added a dummy device and set the client data by passing regmap, see
+>> below:
+>>
+>> +       regulators_client = i2c_new_dummy_device(client->adapter,
+>> client->addr + 1);
+>> +       if (IS_ERR(regulators_client)) {
+>> +               dev_err(dev, "can't attach client\n");
+>> +               return PTR_ERR(regulators_client);
+>> +       }
+>> +
+>> +       regulators_regmap = devm_regmap_init_i2c(regulators_client,
+>> &qcom_mfd_regmap_cfg[1]);
+>> +       if (!regmap)
+>> +               return -ENODEV;
+>> +
+>> +       i2c_set_clientdata(client, regulators_regmap);
+>>
+>> Now if i try to get this regmap from regulator driver by doing
+>>
+>> struct regmap *regmap = dev_get_drvdata(pdev->dev.parent);
+>>
+>> it still gets me the regmap of pm8008@8 device and not the regulator device
+>> regmap (0x9). Not sure if I'm missing something here.
+> So you need to pass 2 regmap pointers?
+>
+> If you need to pass more than one item to the child devices, you do
+> need to use a struct for that.
 
 
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+I need to pass only one regmap out of the two, but i am not able to 
+retrieve the correct regmap simply by doing i2c_set_clientdata
 
-Thanks!
-Jon
--- 
-nvpublic
+probably because we are having all the child nodes under same DT node 
+and thus not able to distinguish based on the dev pointer
+
+
