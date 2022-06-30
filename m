@@ -2,75 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B984560FEA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 06:12:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EC3C560FF1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 06:16:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbiF3EKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 00:10:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57892 "EHLO
+        id S231630AbiF3EQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 00:16:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231991AbiF3EKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 00:10:41 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BECB73CFD7
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:10:37 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id bi22-20020a05600c3d9600b003a04de22ab6so841222wmb.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:10:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexus-software-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=208GMSX5gYG7ZWlHbNAB3NjhHqI6KTTBfChR003rass=;
-        b=ZBR/J5DP3+qcmhyEQ1VO2wpXe/UUJTp7es5GEp/vqhLQlbDlm9ZRQ7P/5i2b2bZ2CG
-         OFdYcGwYPUme38hdaK9BIxvKL9Hd8HlE5eGL3NiwkCALMUS+iZWfakRwtQzUoVkQ3GTh
-         5k6N5muLCg2gs5Im2J+bQml/YMXRNzjW9yRg2C3HPJwoL9z+mlA69Gy/wCwCnNkeZT0p
-         onHwPKImlHQDPpGW54CwRItOTrK3mytalJ3VGaeLry1DA6Mu0+mvGZHmg+882qKm8GP3
-         OoAR4Y/t0uK1Yhl+3M1DobF6G5DbJzFfeKf1eduWM9sweLPA4/SP6ECznmXZqiiSn/LU
-         yLIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=208GMSX5gYG7ZWlHbNAB3NjhHqI6KTTBfChR003rass=;
-        b=vjD7S8OgKNnPY2ad4ASkQQWnPv95sOUC4CrGUVIy9lAqmMc3piU/ak+H9f+LLyt6tv
-         tVNbuDXs0Gg4zyy6G0cn3U3Awp432C3akTt1PhE7uSXJOaUqExgVGxSQw7iNz7tCwb1i
-         NRw3Vg+QTo4nX+Blv+MTNGQXY3RYCXoz3sChqiGVA0GtBUwmh+Bfrald2Orz4E+hAKNp
-         Pek/ZhFo6vHO/KA4n2LnythT8XlQnwMxwftebAhtm0TXbm6mbhFWp74dQmHsi08E3TGk
-         81FgqIBhw3YR63MF9kmvvjYO8W10k0uThQqKlANLgOU3afqNUghKJilwdf0Ga4ITfPfT
-         n/ew==
-X-Gm-Message-State: AJIora+0r0w2jVHLi/3vGlT9AYQxKEgnpMCryK9D4vG9VaRXiDctcZ8v
-        4aw9OiEfazIHJc78JffYXXQa1g==
-X-Google-Smtp-Source: AGRyM1vJ5a/hVCn9v/GNPHBHfodqb9V2qpq0FRrTdnp69bxOdOwcudYmU5tDSPC6GAfQsnfNyZNogA==
-X-Received: by 2002:a05:600c:350:b0:3a0:4910:9ebc with SMTP id u16-20020a05600c035000b003a049109ebcmr7574533wmd.148.1656562236349;
-        Wed, 29 Jun 2022 21:10:36 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id bk20-20020a0560001d9400b0021b8b998ca5sm17092678wrb.107.2022.06.29.21.10.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 21:10:35 -0700 (PDT)
-Message-ID: <3168903b-6850-a9eb-ead5-1389aa37485c@nexus-software.ie>
-Date:   Thu, 30 Jun 2022 05:10:34 +0100
+        with ESMTP id S229479AbiF3EQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 00:16:28 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8482377F9
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 21:16:22 -0700 (PDT)
+Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220630041617epoutp03f7fbbd4e75f82dac3de1ad49945f99a6~9SuM200AS2774127741epoutp03Y
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 04:16:17 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220630041617epoutp03f7fbbd4e75f82dac3de1ad49945f99a6~9SuM200AS2774127741epoutp03Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1656562577;
+        bh=WYo+8++U2XG7rGkYKmdbzvrC7WI9k8fTzCRkX5FeOR8=;
+        h=From:To:In-Reply-To:Subject:Date:References:From;
+        b=RZlHy7Y3RgnXhaktEJeZTYJEACo5Npfj7cDGJSAcSo/BLwvC/pj5J3K2imVX0tkKH
+         GUCoQNo1GxlOExUzhIxee1LDT2+99C3IgXBxXASvSIwzppfkAg61ZfGJMtm1/y76Zt
+         W7BRmC/gImTvvm8kqUnd74xcaI6wJm6VwxuXAEoo=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20220630041617epcas1p2e6c393b9dd489291a46448eb94d680cb~9SuMRhUi91655416554epcas1p23;
+        Thu, 30 Jun 2022 04:16:17 +0000 (GMT)
+Received: from epsmges1p4.samsung.com (unknown [182.195.38.237]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4LYQ4c0Fkvz4x9Q3; Thu, 30 Jun
+        2022 04:16:16 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmges1p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        AA.26.10203.F832DB26; Thu, 30 Jun 2022 13:16:15 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220630041615epcas1p17a727ebc024297c2a5e6ed879abcef6d~9SuKz4mJP1022110221epcas1p1-;
+        Thu, 30 Jun 2022 04:16:15 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220630041615epsmtrp1c20ff3825e2619240e59b05ce64a628c~9SuKynX7W1942119421epsmtrp1r;
+        Thu, 30 Jun 2022 04:16:15 +0000 (GMT)
+X-AuditID: b6c32a38-597ff700000027db-c2-62bd238f7c17
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        0A.B3.08802.F832DB26; Thu, 30 Jun 2022 13:16:15 +0900 (KST)
+Received: from inkidae001 (unknown [10.113.221.213]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220630041615epsmtip2daa72489fc999f2f6cee0e9f8bcaaf03~9SuKdaJQY0204302043epsmtip2k;
+        Thu, 30 Jun 2022 04:16:15 +0000 (GMT)
+From:   =?ks_c_5601-1987?B?tOvAzrHiL1RpemVuIFBsYXRmb3JtIExhYihTUikvu++8usD8wNo=?= 
+        <inki.dae@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Seung-Woo Kim'" <sw0312.kim@samsung.com>,
+        "'Kyungmin Park'" <kyungmin.park@samsung.com>,
+        "'David Airlie'" <airlied@linux.ie>,
+        "'Daniel Vetter'" <daniel@ffwll.ch>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
+        "'Vinod Koul'" <vkoul@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+In-Reply-To: <20220626163320.6393-1-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH 1/2] drm/exynos: MAINTAINERS: move Joonyoung Shim to
+ credits
+Date:   Thu, 30 Jun 2022 13:16:14 +0900
+Message-ID: <0de401d88c38$23aeb8e0$6b0c2aa0$@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [RESEND PATCH 1/5] dt-bindings: opp: Add missing compat devices
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        ilia.lin@kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        linux-pm@vger.kernel.org, rafael@kernel.org,
-        bjorn.andersson@linaro.org, krzk+dt@kernel.org,
-        viresh.kumar@linaro.org, linux-arm-msm@vger.kernel.org
-References: <20220629130303.3288306-1-bryan.odonoghue@linaro.org>
- <20220629130303.3288306-2-bryan.odonoghue@linaro.org>
- <1656542219.641791.1042479.nullmailer@robh.at.kernel.org>
-From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
-In-Reply-To: <1656542219.641791.1042479.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="ks_c_5601-1987"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: ko
+Thread-Index: AQJghn6p1dSqDKoivxgEEVwDdxk9yAKXUcLlrEKoniA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFJsWRmVeSWpSXmKPExsWy7bCmgW6/8t4kg+U3rSx6z51ksngwbxub
+        xf9tE5kt5h85x2px5et7NosLT3vYLPpePGS22Pt6K7vF2aY37BabHl9jtbi8aw6bxYRV31gs
+        Zpzfx2TRuvcIu8WMyS/ZLHbeOcHsIOCx99sCFo9NqzrZPO5c28Pmsf3bA1aP+93HmTw2L6n3
+        6NuyitHj+I3tTB6fN8kFcEZl22SkJqakFimk5iXnp2TmpdsqeQfHO8ebmhkY6hpaWpgrKeQl
+        5qbaKrn4BOi6ZeYAvaGkUJaYUwoUCkgsLlbSt7Mpyi8tSVXIyC8usVVKLUjJKTAt0CtOzC0u
+        zUvXy0stsTI0MDAyBSpMyM44/u4fa8FhgYrri3ayNzA+4O1i5OSQEDCRuPPpAUsXIxeHkMAO
+        Ronl05cwQjifGCVOXT/OCuF8ZpSYOPk2K0zLvCsNUIldjBI3dx+Dcl4ySjRMecsIUsUmkCFx
+        t30xWIeIwHxWiUfPk0FsTgFnies3X7GD2MICQRLv/v0FWs7BwSKgKnFhvSlImFfAUqJ17SsW
+        CFtQ4uTMJ2A2s4CRxJLV85kgbHmJ7W/nMEMcpCDx8+kyVoi4iMTszjZmiLVWEmsWrQP7TULg
+        BYfEh//fWCAaXCTeNfyAahaWeHV8CzuELSXxsr+NHaJhMqPEnesroLpnMEoc/nmdEaLKWGL/
+        0slMELaixM7fcxkhVvNJvPvawwryjYQAr0RHmxBEiZLEsYs3oFolJC4smcgGUeIhcfBK7QRG
+        xVlI/pyF5M9ZSP6cheS3BYwsqxjFUguKc9NTiw0LTODxnZyfu4kRnMi1LHYwzn37Qe8QIxMH
+        4yFGCQ5mJRHehWd2JgnxpiRWVqUW5ccXleakFh9iNAWG/ERmKdHkfGAuySuJNzSxNDAxMzI2
+        sTA0M1QS5+2dejpRSCA9sSQ1OzW1ILUIpo+Jg1OqgSmix9NS5+S5+y0vTjyenDJlhkTs50fT
+        3V9fd21PNpCa4s/99fbH+GMiTO921co8DK79mfWIQ/PTdp0D9p7f0lRm7AyoZFZMm3He4Gqo
+        htyn7HeqRlrXKl6fS1n166cOz92Vs7puGbBaPXGzv3LM6c/Vld+2KuamBHC4cv/68qnx4SH+
+        9cvXrPomxTWJX5s90GiOapPWirTjzzz+8uy0V+w9OPmy5eXs1XwBFu+kk1hWPdn6eBZ/xfwP
+        b68KROpaNatP3vCk2EixRPmM0Ju6O2uLpVVvR4dX/VE90DZRef6kyYX96XxlKYvuW8m85NeZ
+        Wz9xVXq2Bvsm5rQnuhWeZmEypzftm5bGqh6yjHPtllAlluKMREMt5qLiRABvXwPAbQQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrGIsWRmVeSWpSXmKPExsWy7bCSvG6/8t4kg/svRC16z51ksngwbxub
+        xf9tE5kt5h85x2px5et7NosLT3vYLPpePGS22Pt6K7vF2aY37BabHl9jtbi8aw6bxYRV31gs
+        Zpzfx2TRuvcIu8WMyS/ZLHbeOcHsIOCx99sCFo9NqzrZPO5c28Pmsf3bA1aP+93HmTw2L6n3
+        6NuyitHj+I3tTB6fN8kFcEZx2aSk5mSWpRbp2yVwZRx/94+14LBAxfVFO9kbGB/wdjFyckgI
+        mEjMu9LA2sXIxSEksINRYu+RZvYuRg6ghITElq0cEKawxOHDxRAlzxklnsxezAbSyyaQJjFp
+        7n6wXhGB1awSV7asYoKomsIo8WHBEVaQKk4BZ4nrN1+xg9jCAgESO498BVvAIqAqcWG9KUiY
+        V8BSonXtKxYIW1Di5MwnYDYz0HGNh7uhbHmJ7W/nMEMcrSDx8+kyVoi4iMTszjawuIiAlcSa
+        RetYJjAKzUIyahaSUbOQjJqFpH0BI8sqRsnUguLc9NxiwwKjvNRyveLE3OLSvHS95PzcTYzg
+        qNXS2sG4Z9UHvUOMTByMhxglOJiVRHgXntmZJMSbklhZlVqUH19UmpNafIhRmoNFSZz3QtfJ
+        eCGB9MSS1OzU1ILUIpgsEwenVAPT+Z9b5M9Pf6bJEb7wvd/y3W5mjyJdbdN9ft+sV+1Z8nDi
+        oxeGpzvTJkZsvd3/Tf94X6Rft7R2eDnn9EPH+9lldFIseYL9Pyw90L5JKm2DgLPOOo5PizJe
+        3XNzLf2mGCl7ev0muwIB8aT4F5r9a28+Eo/sZtz/dIuNSwfnkuz6e5sY/vjtljfpPXTr876u
+        fycbl908m+OkkrSqw+aJvfmfSWos0gG8mx9O/jP5phCPu6+peIzeqobGc0ofMhViuubILex+
+        uDEmx7lOOfuJ+Ov9jD0Kj8//8Nl0ep5/7lKby81qLVfnSL6tYNR9GaDZ+ujsinuTmZpXTjR0
+        1Qt1n/qrmTN+xtTV6txHlLcE/qxWYinOSDTUYi4qTgQAKL4DqUkDAAA=
+X-CMS-MailID: 20220630041615epcas1p17a727ebc024297c2a5e6ed879abcef6d
+X-Msg-Generator: CA
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220626163558epcas1p3f525431b9fb237bd420ad1453daaf1ac
+References: <CGME20220626163558epcas1p3f525431b9fb237bd420ad1453daaf1ac@epcas1p3.samsung.com>
+        <20220626163320.6393-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,74 +132,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 23:36, Rob Herring wrote:
-> On Wed, 29 Jun 2022 14:02:59 +0100, Bryan O'Donoghue wrote:
->> A number of devices listed in drivers/cpufreq/qcom-cpufreq-nvmem.c appear
->> to be missing from the compatible list.
->>
->> Cc: ilia.lin@kernel.org
->> Cc: robh+dt@kernel.org
->> Cc: krzk+dt@kernel.org
->> Cc: devicetree@vger.kernel.org
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>   .../devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml     | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
+
+
+> -----Original Message-----
+> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+> Sent: Monday, June 27, 2022 1:33 AM
+> To: Inki Dae <inki.dae@samsung.com>; Seung-Woo Kim
+> <sw0312.kim@samsung.com>; Kyungmin Park <kyungmin.park@samsung.com>; David
+> Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>; Rob Herring
+> <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Alim Akhtar
+<alim.akhtar@samsung.com>;
+> Kishon Vijay Abraham I <kishon@ti.com>; Vinod Koul <vkoul@kernel.org>;
+> linux-kernel@vger.kernel.org; dri-devel@lists.freedesktop.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; linux-phy@lists.infradead.org
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Subject: [PATCH 1/2] drm/exynos: MAINTAINERS: move Joonyoung Shim to
+> credits
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@0: 'power-domains' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@0: 'power-domain-names' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@1: 'power-domains' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@1: 'power-domain-names' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@100: 'power-domains' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@100: 'power-domain-names' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@101: 'power-domains' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@101: 'power-domain-names' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-0:opp-307200000: 'required-opps' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-0:opp-1401600000: 'required-opps' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-0:opp-1593600000: 'required-opps' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-1:opp-307200000: 'required-opps' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-1:opp-1804800000: 'required-opps' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-1:opp-1900800000: 'required-opps' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: /: opp-table-1:opp-2150400000: 'required-opps' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+> Emails to Joonyoung Shim bounce ("550 5.1.1 Recipient address rejected:
+> User unknown"), so move him to credits file.
 > 
 
-Well I didn't see those errors but, I don't mind fixing them.
+Applied.
 
-I'll do a V2 for these
+Thanks,
+Inki Dae
+
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  CREDITS     | 4 ++++
+>  MAINTAINERS | 1 -
+>  2 files changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/CREDITS b/CREDITS
+> index 7e85a53b6a88..91a564c17012 100644
+> --- a/CREDITS
+> +++ b/CREDITS
+> @@ -3491,6 +3491,10 @@ D: wd33c93 SCSI driver (linux-m68k)
+>  S: San Jose, California
+>  S: USA
+> 
+> +N: Joonyoung Shim
+> +E: y0922.shim@samsung.com
+> +D: Samsung Exynos DRM drivers
+> +
+>  N: Robert Siemer
+>  E: Robert.Siemer@gmx.de
+>  P: 2048/C99A4289 2F DC 17 2E 56 62 01 C8  3D F2 AC 09 F2 E5 DD EE
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 19875f60ebb1..d208bf3b6f11 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6695,7 +6695,6 @@ F:	drivers/gpu/drm/bridge/
+> 
+>  DRM DRIVERS FOR EXYNOS
+>  M:	Inki Dae <inki.dae@samsung.com>
+> -M:	Joonyoung Shim <jy0922.shim@samsung.com>
+>  M:	Seung-Woo Kim <sw0312.kim@samsung.com>
+>  M:	Kyungmin Park <kyungmin.park@samsung.com>
+>  L:	dri-devel@lists.freedesktop.org
+> --
+> 2.34.1
+
+
