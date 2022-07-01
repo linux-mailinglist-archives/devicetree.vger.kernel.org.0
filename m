@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA27C56360D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 16:44:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 760AA563615
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 16:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230452AbiGAOoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 10:44:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41032 "EHLO
+        id S231316AbiGAOro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 10:47:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229998AbiGAOo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 10:44:28 -0400
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C8D13E84;
-        Fri,  1 Jul 2022 07:44:28 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id w10so1549270ilj.4;
-        Fri, 01 Jul 2022 07:44:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ytccVTPOAVJYoaiSKyc0iiVcQYhIGLNNjeSgQTrxPac=;
-        b=etBF3h/sROX/O+VkG1fvRXqVtANkWmO6S/xZ6MY5mcrYhxb9eEJqdF54Sks9GY3Pyq
-         bZ0xhyvCyAwCXT8PaJuHfeXN45sLv3JqTEXA0Eft3174EhH5iXmzXivZv+XxtzACowSt
-         r2Ibw6+14BqUhNroxSigsRsvW4N5Xv87h9pvKiYeLnHtTgtxPCcb4UnPnwBGI33Mo9hr
-         1P9TMs1VBm10m9qx2GoUDhDRtkNfFF0HlEikb4m+/Dtfegt/Mv1Y+RnY85Q8ScSrbwAL
-         sIOjGKJ7m0OAeIPYdgYCJrxZTM9aaMcHz7tKymiAcblBaR2+T0VQbHnKR/2J81JQo3BL
-         z4pg==
-X-Gm-Message-State: AJIora9AtYooxCIpmrIlTlS7NoUKLmGjsDRDdwdq2a8zz74evfMn10kZ
-        2CX4DMMHV+3ixPJbssDeCQ==
-X-Google-Smtp-Source: AGRyM1uzdTpatC7zqZJnxWDfoRAtzaFQwkHUDgHjdzvkIy8cLMH/g0o6FP2Cp2hjNV62WE067Yx5HQ==
-X-Received: by 2002:a92:cd8d:0:b0:2d9:5692:5141 with SMTP id r13-20020a92cd8d000000b002d956925141mr8668884ilb.15.1656686667304;
-        Fri, 01 Jul 2022 07:44:27 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j12-20020a6b794c000000b0067275a52928sm10352684iop.9.2022.07.01.07.44.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Jul 2022 07:44:26 -0700 (PDT)
-Received: (nullmailer pid 904416 invoked by uid 1000);
-        Fri, 01 Jul 2022 14:44:24 -0000
-Date:   Fri, 1 Jul 2022 08:44:24 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        with ESMTP id S232086AbiGAOr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 10:47:28 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32AD315A23;
+        Fri,  1 Jul 2022 07:47:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1656686844; x=1688222844;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=InPQjTtxtZt/cuIXvTi8e6zJruYYN0QpYqw3w6rX3q4=;
+  b=WDDQtcpxVlz2CWCOiuy3Ib0SAA8Q/fknkoo0sOhmC/KWgDlCsjZFplTE
+   L6B889pVsxEkVyTdMVoaYGVa1Pp9i2sEPB6VZ3CNCGqqvcWADOLtqiUqq
+   ELak8WzAsqSd4nT+8Kzom92nzySR3oQVhPLzkwT1TzQWqxqkkwD/oRl0E
+   UhO9hSPNVUAFxThKxdFyOL76BuijISl8pjRHLHI7dU+Vxh/2ZdahQHL4v
+   31UGL5lLpTuIrF80f1AbZ01P66ZpZirMqXO7lPA/NwMsQeMlpHJ7ageFW
+   gpEoCoEb2IVg+Em4xlZQHFcTy0A6+3gqVljTtP143mz3LeGAs9c6cbJ6+
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,237,1650956400"; 
+   d="scan'208";a="162955109"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Jul 2022 07:47:23 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 1 Jul 2022 07:47:21 -0700
+Received: from CHE-LT-I17769U.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Fri, 1 Jul 2022 07:47:01 -0700
+From:   Arun Ramadoss <arun.ramadoss@microchip.com>
+To:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <bpf@vger.kernel.org>
+CC:     Woojung Huh <woojung.huh@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/17] dt-bindings: PCI: dwc: Add max-link-speed
- common property
-Message-ID: <20220701144424.GA804716-robh@kernel.org>
-References: <20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru>
- <20220610085706.15741-5-Sergey.Semin@baikalelectronics.ru>
- <20220615145550.GA1069883-robh@kernel.org>
- <20220619142720.tzfgefunvf3kirul@mobilestation>
+        Russell King <linux@armlinux.org.uk>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Martin KaFai Lau <kafai@fb.com>,
+        "Song Liu" <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>
+Subject: [Patch net-next v15 00/13] net: dsa: microchip: DSA Driver support for LAN937x
+Date:   Fri, 1 Jul 2022 20:16:39 +0530
+Message-ID: <20220701144652.10526-1-arun.ramadoss@microchip.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220619142720.tzfgefunvf3kirul@mobilestation>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,113 +77,244 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 19, 2022 at 05:27:20PM +0300, Serge Semin wrote:
-> On Wed, Jun 15, 2022 at 08:55:50AM -0600, Rob Herring wrote:
-> > On Fri, Jun 10, 2022 at 11:56:52AM +0300, Serge Semin wrote:
-> > > In accordance with [1] DW PCIe controllers support up to Gen5 link speed.
-> > > Let's add the max-link-speed property upper bound to 5 then. The DT
-> > > bindings of the particular devices are expected to setup more strict
-> > > constraint on that parameter.
-> > > 
-> > > [1] Synopsys DesignWare Cores PCI Express Controller Databook, Version
-> > > 5.40a, March 2019, p. 27
-> > > 
-> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > 
-> > > ---
-> > > 
-> > > Changelog v3:
-> > > - This is a new patch unpinned from the next one:
-> > >   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
-> > >   by the Rob' request. (@Rob)
-> > > ---
-> > >  Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml | 3 +++
-> > >  Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml     | 2 ++
-> > >  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml        | 1 +
-> > >  3 files changed, 6 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> > > index 627a5d6625ba..b2fbe886981b 100644
-> > > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> > > @@ -45,6 +45,9 @@ properties:
-> > >        the peripheral devices available on the PCIe bus.
-> > >      maxItems: 1
-> > >  
-> > > +  max-link-speed:
-> > > +    maximum: 5
-> > 
-> 
-> > Unless the default is less than the max, shouldn't the max here be 1 
-> > less than the h/w max?
-> 
-> Why? AFAIU max-link-speed semantics it works as less-than-or-equal
-> operator isn't it? The modern DW PCIe Root ports and Endpoints
-> IP-cores support up to Gen5 PCIe speed including the Gen5 mode (see
-> the CX_MAX_PCIE_SPEED IP-core synthesize paramter). It's reasonable to
-> set the max-link-speed here to be in coherency with the IP-core
-> reference manual.
+LAN937x is a Multi-Port 100BASE-T1 Ethernet Physical Layer switch
+compliant with the IEEE 802.3bw-2015 specification. The device provides
+100 Mbit/s transmit and receive capability over a single Unshielded
+Twisted Pair (UTP) cable. LAN937x is successive revision of KSZ series
+switch.
+This series of patches provide the DSA driver support for
+Microchip LAN937X switch through MII/RMII interface. The RGMII interface
+support will be added in the follow up series.  LAN937x uses the most of
+functionality of KSZ9477.
 
-It is supposed to be an override for the default. Wouldn't the default 
-always be the max the IP supports?
+The LAN937x switch series family consists of following SKUs:
 
-In any case, this max is only accurate for the current/latest version of 
-the IP. For older versions, it's not an accurate limit. I think it 
-should just be dropped and each controller needs to provide a limit.
+LAN9370:
+  - 4 T1 Phys
+  - 1 RGMII port
+
+LAN9371:
+  - 3 T1 Phys & 1 TX Phy
+  - 2 RGMII ports
+
+LAN9372:
+  - 5 T1 Phys & 1 TX Phy
+  - 2 RGMII ports
+
+LAN9373:
+  - 5 T1 Phys
+  - 2 RGMII
+  - 1 SGMII port
+
+LAN9374:
+  - 6 T1 Phys
+  - 2 RGMII ports
+
+Changes in v15:
+- fixed compilation issue.
+- Updated the phylink_mac_link_up to check only for 10/100/1000 speed.
+
+Changes in v14:
+- Updated the patch series to latest ksz code refactoring.
+- RGMII register configuration is removed from the series. It will be added in
+the follow up patch series.
+
+Changes in v13:
+- Fixed the compilation issue in patch 5 and 6
+
+Changes in v12:
+- Removed the reduntant spi indirect enable in lan937x_init
+- Used the ksz_port_stp_state_set function
+- Apply rgmii internal delay only if it is rgmii port
+- Set the bit for 100baseTx in phylink_get_caps
+- Moved the ethtool related API from patch 5 to 7
+- Moved lan_alu_entry struct in lan937x_dev.h from patch 5 to 9
+- Moved lan_vlan_entry in lan937x_dev.h from patch 5 to 10
+- Used the ksz_get_stats64 function for get_stats64 hook
+- Splitted the patch 5. one for port configuration, spi driver, phy read &
+  write and mtu configuration.
+- Updated the indentation in ethernet-controller.yaml
+- lan937x.yaml: Removed the blank lines, updated the ethernet handle to macb0.
+  Added the rgmii internal delay only for the ports.
+
+Changes in v11:
+- Tagged as RFC to get the feedback for the subpatches 1/10, 5/10 and 6/10
+
+Changes in v10:
+- dsa.yaml: dropped moving mdio properties to dsa.yaml as per the feedback
+https://patchwork.kernel.org/project/netdevbpf/patch/20220318085540.281721-3-prasanna.vengateshan@microchip.com/#24787466
+- microchip,lan937x.yaml: Naming convention changes in the example
+- lan937x_main.c: Moving configurations from lan937x_reset_switch() to setup()
+- lan937x_main.c: helper function has been introduced for
+  lan937x_internal_phy_read & write
+- lan937x_dev.h: lan_alu_struct struct data type changes
+- lan937x_main.c: lan937x_get_stats64 make non blocking
+- lan937x_main.c: modified lan937x_port_mirror_add to include extack
+
+Changes in v9:
+- lan937x_main.c: of_node_put() correction in lan937x_parse_dt_rgmii_delay
+- lan937x_dev.c: removed the interface checks from lan937x_apply_rgmii_delay.
+- changes in ethernet-controller.yaml and dsa.yaml
+
+Changes in v8:
+- lan937x_dev.c: fixed lan937x_r_mib_pkt warning in the sub patches
+- lan937x_main.c: phylink_autoneg_inband() check removed in
+  lan937x_phylink_mac_link_up()
+- lan937x_main.c: made legacy_pre_march2020 = false as this is non-legacy driver
+  and indentation correction in lan937x_phylink_mac_link_up()
+- removed unnecessary parenthesis in lan937x_get_strings()
+
+Changes in v7:
+- microchip,lan937x.yaml: *-internal-delay-ps enum values & commit messages
+  corrections
+- lan937x_main.c: removed phylink_validate() and added phylink_get_caps()
+- lan937x_main.c: added support for ethtool standard stats   (get_eth_*_stats
+  and get_stats64)
+- lan937x_main.c: removed unnecessary PVID read from lan937x_port_vlan_del()
+- integrated the changes of ksz9477 multi bridging support to lan937x dev and
+  tested both multi bridging and STP
+- lan937x_port_vlan_del - dummy pvid read removed
+
+Changes in v6:
+- microchip_t1.c: There was new merge done in the net-next tree for
+  microchip_1.c after the v5 submission. Hence rebased it for v6.
+
+Changes in v5:
+- microchip,lan937x.yaml: Added mdio properties detail
+- microchip,lan937x.yaml: *-internal-delay-ps added under port node
+- lan937x_dev.c: changed devm_mdiobus_alloc from of_mdiobus_register as suggested
+  by Vladimir
+- lan937x_dev.c: added dev_info for rgmii internal delay & error message to user
+  in case of out of range values
+- lan937x_dev.c: return -EOPNOTSUPP for C45 regnum values for
+  lan937x_sw_mdio_read & write operations
+- return from function with out storing in a variable
+- lan937x_main.c: Added vlan_enable info in vlan_filtering API
+- lan937x_main.c: lan937x_port_vlan_del: removed unintended PVID write
+
+Changes in v4:
+- tag_ksz.c: cpu_to_be16 to  put_unaligned_be16
+- correct spacing in comments
+- tag_ksz.c: NETIF_F_HW_CSUM fix is integrated
+- lan937x_dev.c: mdio_np is removed from global and handled locally
+- lan937x_dev.c: unused functions removed lan937x_cfg32 & lan937x_port_cfg32
+- lan937x_dev.c: lan937x_is_internal_100BTX_phy_port function name changes
+- lan937x_dev.c: RGMII internal delay handling for MAC. Delay values are
+  retrieved from DTS and updated
+- lan937x_dev.c: corrected mutex operations for few dev variables
+- microchip,lan937x.yaml: introduced rx-internal-delay-ps &
+  tx-internal-delay-ps for RGMII internal delay
+- lan937x_dev.c: Unnecessary mutex_lock has been removed
+- lan937x_main.c: PHY_INTERFACE_MODE_NA handling for lan937x_phylink_validate
+- lan937x_main.c: PORT_MIRROR_SNIFFER check in right place
+- lan937x_main.c: memset is used instead of writing 0's individually in
+  lan937x_port_fdb_add function
+- lan937x_main.c: Removed \n from NL_SET_ERR_MSG_MOD calls
+
+Changes in v3:
+- Removed settings of cnt_ptr to zero and the memset()
+  added a cleanup patch which moves this into ksz_init_mib_timer().
+- Used ret everywhere instead of rc
+- microchip,lan937x.yaml: Remove mdio compatible
+- microchip_t1.c: Renaming standard phy registers
+- tag_ksz.c: LAN937X_TAIL_TAG_OVERRIDE renaming
+  LAN937X_TAIL_TAG_BLOCKING_OVERRIDE
+- tag_ksz.c: Changed Ingress and Egress naming convention based on
+  Host
+- tag_ksz.c: converted to skb_mac_header(skb) from
+  (is_link_local_ether_addr(hdr->h_dest))
+- lan937x_dev.c: Removed BCAST Storm protection settings since we
+  have Tc commands for them
+- lan937x_dev.c: Flow control setting in lan937x_port_setup function
+- lan937x_dev.c: RGMII internal delay added only for cpu port,
+- lan937x_dev.c: of_get_compatible_child(node,
+  "microchip,lan937x-mdio") to of_get_child_by_name(node, "mdio");
+- lan937x_dev.c:lan937x_get_interface API: returned
+  PHY_INTERFACE_MODE_INTERNAL instead of PHY_INTERFACE_MODE_NA
+- lan937x_main.c: Removed compat interface implementation in
+  lan937x_config_cpu_port() API & dev_info corrected as well
+- lan937x_main.c: deleted ds->configure_vlan_while_not_filtering
+  = true
+- lan937x_main.c: Added explanation for lan937x_setup lines
+- lan937x_main.c: FR_MAX_SIZE correction in lan937x_get_max_mtu API
+- lan937x_main.c: removed lan937x_port_bridge_flags dummy functions
+- lan937x_spi.c - mdiobus_unregister to be added to spi_remove
+  function
+- lan937x_main.c: phy link layer changes
+- lan937x_main.c: port mirroring: sniff port selection limiting to
+  one port
+- lan937x_main.c: Changed to global vlan filtering
+- lan937x_main.c: vlan_table array to structure
+- lan937x_main.c -Use extack instead of reporting errors to Console
+- lan937x_main.c - Remove cpu_port addition in vlan_add api
+- lan937x_main.c - removed pvid resetting
+
+Changes in v2:
+- return check for register read/writes
+- dt compatible compatible check is added against chip id value
+- lan937x_internal_t1_tx_phy_write() is renamed to
+  lan937x_internal_phy_write()
+- lan937x_is_internal_tx_phy_port is renamed to
+  lan937x_is_internal_100BTX_phy_port as it is 100Base-Tx phy
+- Return value for lan937x_internal_phy_write() is -EOPNOTSUPP
+  in case of failures
+- Return value for lan937x_internal_phy_read() is 0xffff
+  for non existent phy
+- cpu_port checking is removed from lan937x_port_stp_state_set()
+- lan937x_phy_link_validate: 100baseT_Full to 100baseT1_Full
+- T1 Phy driver is moved to drivers/net/phy/microchip_t1.c
+- Tx phy driver support will be added later
+- Legacy switch checkings in dts file are removed.
+- tag_ksz.c: Re-used ksz9477_rcv for lan937x_rcv
+- tag_ksz.c: Xmit() & rcv() Comments are corrected w.r.to host
+- net/dsa/Kconfig: Family skew numbers altered in ascending order
+- microchip,lan937x.yaml: eth is replaced with ethernet
+- microchip,lan937x.yaml: spi1 is replaced with spi
+- microchip,lan937x.yaml: cpu labelling is removed
+- microchip,lan937x.yaml: port@x value will match the reg value now
+
+Arun Ramadoss (10):
+  net: dsa: microchip: generic access to ksz9477 static and reserved
+    table
+  net: dsa: microchip: add DSA support for microchip LAN937x
+  net: dsa: microchip: lan937x: add dsa_tag_protocol
+  net: dsa: microchip: lan937x: add phy read and write support
+  net: dsa: microchip: lan937x: register mdio-bus
+  net: dsa: microchip: lan937x: add MTU and fast_age support
+  net: dsa: microchip: lan937x: add phylink_get_caps support
+  net: dsa: microchip: lan937x: add phylink_mac_link_up support
+  net: dsa: microchip: lan937x: add phylink_mac_config support
+  net: dsa: microchip: add LAN937x in the ksz spi probe
+
+Prasanna Vengateshan (3):
+  dt-bindings: net: make internal-delay-ps based on phy-mode
+  dt-bindings: net: dsa: dt bindings for microchip lan937x
+  net: dsa: tag_ksz: add tag handling for Microchip LAN937x
+
+ .../bindings/net/dsa/microchip,lan937x.yaml   | 192 +++++++
+ .../bindings/net/ethernet-controller.yaml     |  35 +-
+ MAINTAINERS                                   |   1 +
+ drivers/net/dsa/microchip/Kconfig             |   2 +-
+ drivers/net/dsa/microchip/Makefile            |   1 +
+ drivers/net/dsa/microchip/ksz9477.c           |  27 +-
+ drivers/net/dsa/microchip/ksz9477_reg.h       |   3 -
+ drivers/net/dsa/microchip/ksz_common.c        | 105 ++++
+ drivers/net/dsa/microchip/ksz_common.h        |  20 +
+ drivers/net/dsa/microchip/ksz_spi.c           |  26 +
+ drivers/net/dsa/microchip/lan937x.h           |  27 +
+ drivers/net/dsa/microchip/lan937x_main.c      | 484 ++++++++++++++++++
+ drivers/net/dsa/microchip/lan937x_reg.h       | 180 +++++++
+ include/net/dsa.h                             |   2 +
+ net/dsa/Kconfig                               |   4 +-
+ net/dsa/tag_ksz.c                             |  59 +++
+ 16 files changed, 1143 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+ create mode 100644 drivers/net/dsa/microchip/lan937x.h
+ create mode 100644 drivers/net/dsa/microchip/lan937x_main.c
+ create mode 100644 drivers/net/dsa/microchip/lan937x_reg.h
 
 
-> > >    num-lanes:
-> > >      description:
-> > >        Number of PCIe link lanes to use. Can be omitted should the already
-> > > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
-> > > index dcd521aed213..fc3b5d4ac245 100644
-> > > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
-> > > @@ -55,4 +55,6 @@ examples:
-> > >  
-> > >        phys = <&pcie_phy0>, <&pcie_phy1>, <&pcie_phy2>, <&pcie_phy3>;
-> > >        phy-names = "pcie0", "pcie1", "pcie2", "pcie3";
-> > > +
-> > > +      max-link-speed = <3>;
-> > >      };
-> > > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > > index 4a5c8b933b52..01cedf51e0f8 100644
-> > > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > > @@ -74,4 +74,5 @@ examples:
-> > >        phy-names = "pcie";
-> > >  
-> > >        num-lanes = <1>;
-> > > +      max-link-speed = <3>;
-> > 
-> 
-> > This should give you an error because pci-bus.yaml only goes up to 4. 
-> 
-> I've set max-link-speed to "3" here. So no error will be caused neither
-> by this schema nor by the pci-bus.yaml bindings.
-> 
-> * Though these examples won't be evaluated because the generic DW PCIe
-> RP and EP schemas have been marked as "select: false".
+base-commit: dbdd9a28e1406ab8218a69e60f10a168b968c81d
+-- 
+2.36.1
 
-Uh, I don't know what I was thinking...
-
-> 
-> > 
-> > I'm not really sure that limiting it in the common schema is too useful. 
-> > We're going to be updating it one step at a time. Limiting it is really 
-> > only helpful for specific implementations.
-> > 
-> 
-> I disagree. As I said above the max PCIe speed limit set here has been
-> taken from the HW reference manual so it describes the modern DW PCIe
-> controllers capability. No mater what value is set by the pci-bus.yaml
-> schema (eventually we'll get to have it increased to Gen5 too) we can
-> use the DW PCIe-specific limitation here as a known upper capabilities
-> bound.
-
-The latest DWC IP is likely going to support the latest gen within some 
-amount of time. With each bump, we're going to have to update 
-pci-bus.yaml and then this one too. Yet neither really has any impact 
-if we provide a per controller limit.
-
-Rob
