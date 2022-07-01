@@ -2,72 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A01B2563AF7
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 22:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF96B563B17
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 22:32:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231829AbiGAUQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 16:16:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52198 "EHLO
+        id S231958AbiGAURt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 16:17:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbiGAUQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 16:16:45 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C912BE35;
-        Fri,  1 Jul 2022 13:16:44 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id h85so3304026iof.4;
-        Fri, 01 Jul 2022 13:16:44 -0700 (PDT)
+        with ESMTP id S231596AbiGAURp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 16:17:45 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EE6215732;
+        Fri,  1 Jul 2022 13:17:44 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id k15so3294800iok.5;
+        Fri, 01 Jul 2022 13:17:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=iai4M0Qdr1FOx8lEHtRcXeLjjaSNw8WkrWJ5/mveph8=;
-        b=KJ0uNdjI9/59sbfTFaMUEQeObAYKgQFM0MISPVgl9BbncAmFxNVVY5QYARgo6zVO42
-         Q6DTtAYn8mLMxvMHYh+MVte7f9+mj5yxq4QTVUb1ehngbgPGCtI2fjE0xMPW/7eHRSVu
-         WWPmt0touFazQG6dZgCAwKAHA4oN7f6GpQjOa1ALrvgWjbuM3O1wsThQGnWMxaSINM2s
-         zgSrmkZXWELe9KBCk/3wfWCuK9aSJn/xh7IhqhnIvxuwUseOEPNcsIctD+Ym3OD2t3xx
-         ONyJii8dVuE0OyYpoBEztUxKBCoH1E1Qc5UfO/lmpFN+7aVghF3aZG8qd44NBiE8u0fN
-         zfIw==
-X-Gm-Message-State: AJIora8HWfR650rZJ9QH8S7KLrTdYNovmEHzxgQ1E8cgGhHpAyUDooFf
-        d1zOuR4mXTNX6+PIDas4Iw==
-X-Google-Smtp-Source: AGRyM1uaZN/DnLFYf6p+gTHuGH7e0vRFkxMe8V6s93gu4NO90M6hf4FCyXXOCiD+WjgHsmQ5PQkUzg==
-X-Received: by 2002:a05:6638:3385:b0:339:ea59:a31f with SMTP id h5-20020a056638338500b00339ea59a31fmr9322712jav.55.1656706603440;
-        Fri, 01 Jul 2022 13:16:43 -0700 (PDT)
+        bh=L+J73+vdV/PGctyRmhCgIGT9iR/WXHXxzhXGHKHUvwY=;
+        b=3yUT0hAin7BfWJN6lCoPk3WIkf8JJ5OpdL9jCYJYvzpkqpF52imgcCwNP1KPCsdZEK
+         lqsnYZqY+3k9gd5BEEIoWwNeDPEAUMxqEh0N0Eo7WERshRhjETW7AOTLJ1xkwNg/eTAw
+         PvkSqLWLObXQbxmSMP42IpOqjVZGFvsl6WAW9pAI61k8JuqMYWEPaYfXKDpdd0FFSuga
+         /gUk3oSMzt7n4TwxweDSC9M8pPLVkaFXqPFyIOrDw9CX1VkkuYjrAL4csBeQUGNd9ZS+
+         E+QkXz8TwZKhUZXMBrRtRnv3gkhu6YcIeyhSVSeajCV6zpmLwiabgi2PPKw0OMOaQDwV
+         WzMQ==
+X-Gm-Message-State: AJIora97xivKQ+FNSiAkNjB1khGuXtskTTDewMV94uYg9g+QH4Ogb534
+        HtGwCoYPhm2r3Tj2Y6rAYg==
+X-Google-Smtp-Source: AGRyM1sVN6vixZJkx0n3n55NBj1VVJZFB80abfEjRsMa+IerrCpMxFINUJUSe7TfvsJe3mf+nfyCmw==
+X-Received: by 2002:a05:6638:380e:b0:33c:bbf7:56c0 with SMTP id i14-20020a056638380e00b0033cbbf756c0mr10243381jav.71.1656706663566;
+        Fri, 01 Jul 2022 13:17:43 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id s10-20020a5ec64a000000b0067520155dedsm8721425ioo.15.2022.07.01.13.16.41
+        by smtp.gmail.com with ESMTPSA id s21-20020a6bdc15000000b0067533ab9404sm7279557ioc.16.2022.07.01.13.17.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Jul 2022 13:16:42 -0700 (PDT)
-Received: (nullmailer pid 1448435 invoked by uid 1000);
-        Fri, 01 Jul 2022 20:16:40 -0000
-Date:   Fri, 1 Jul 2022 14:16:40 -0600
+        Fri, 01 Jul 2022 13:17:43 -0700 (PDT)
+Received: (nullmailer pid 1450120 invoked by uid 1000);
+        Fri, 01 Jul 2022 20:17:41 -0000
+Date:   Fri, 1 Jul 2022 14:17:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Mathias Nyman <mathias.nyman@intel.com>,
-        Stephen Boyd <swboyd@chromium.org>,
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-usb@vger.kernel.org,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bastien Nocera <hadess@hadess.net>
-Subject: Re: [PATCH v24 2/4] dt-bindings: usb: rts5411: Rename property
- 'companion-hub' to 'peer-hub'
-Message-ID: <20220701201640.GA1448375-robh@kernel.org>
-References: <20220630193530.2608178-1-mka@chromium.org>
- <20220630123445.v24.2.Ie2bbbd3f690826404b8f1059d24edcab33ed898f@changeid>
+        Dafna Hirschfeld <dafna@fastmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Helen Koike <helen.koike@collabora.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 42/55] dt-bindings: media: rkisp1: Add port for
+ parallel interface
+Message-ID: <20220701201741.GA1450061-robh@kernel.org>
+References: <20220630230713.10580-1-laurent.pinchart@ideasonboard.com>
+ <20220630230713.10580-43-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220630123445.v24.2.Ie2bbbd3f690826404b8f1059d24edcab33ed898f@changeid>
+In-Reply-To: <20220630230713.10580-43-laurent.pinchart@ideasonboard.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -79,24 +69,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Jun 2022 12:35:28 -0700, Matthias Kaehlcke wrote:
-> In the context of USB the term 'companion-hub' is misleading, change the
-> name of the property to 'peer-hub'.
+On Fri, 01 Jul 2022 02:07:00 +0300, Laurent Pinchart wrote:
+> From: Paul Elder <paul.elder@ideasonboard.com>
 > 
-> There are no upstream users of the 'companion-hub' property, neither in
-> the device tree, nor on the driver side, so renaming it shouldn't cause
-> any compatibility issues with existing device trees.
+> The rkisp1 can take an input on the parallel interface. Add a port for
+> it, and update the required field. At least one port is required, and
+> both may be specified.
 > 
-> Changes in v24:
-> - patch added to the series
-> 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
-> 
-> (no changes since v1)
-> 
->  .../devicetree/bindings/usb/realtek,rts5411.yaml       | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+>  .../bindings/media/rockchip-isp1.yaml         | 23 +++++++++++++++++--
+>  1 file changed, 21 insertions(+), 2 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
