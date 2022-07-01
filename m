@@ -2,46 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C982563492
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 15:46:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9326E5634A7
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 15:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231704AbiGANpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 09:45:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38026 "EHLO
+        id S231792AbiGANtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 09:49:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231529AbiGANpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 09:45:11 -0400
-Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AAD923179;
-        Fri,  1 Jul 2022 06:45:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1656683090; bh=EPRbWh0tzKYymsptHWHi5nsOsq0gpHqDa+CF9plfPgs=;
-        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Type:Content-Transfer-Encoding;
-        b=kM4AcPVCshUpZTW2lZ37tgWPya/NZsqIBTGNztoTAPsvazv83TNNThwmKZ4hOFjdC
-         BedZE/Jnlge+ZQGiZws/fC6hVmyv+Quvx0mLFOqPWiilr2nIVyHgIJjjuv8gBPwz+4
-         b4NumsSGs9D1XkrtUTsaidmh/hzvxSZkdzIuV6HI=
-Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
-        via [213.182.55.207]
-        Fri,  1 Jul 2022 15:44:50 +0200 (CEST)
-X-EA-Auth: qaoKUwbs7hh/IYly2JMApoKz5jfmzeHGcFyBoM7IWQjWisitYWMWndSIpu0P7jO25vOwwROUSz9SkMn0xCM09SI++wjjVr9V5GslrsgOxGQ=
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Vincent Knecht <vincent.knecht@mailoo.org>
-Subject: [PATCH v2 6/6] leds: is31fl319x: Add support for is31fl319{0,1,3} chips
-Date:   Fri,  1 Jul 2022 15:44:13 +0200
-Message-Id: <20220701134415.4017794-7-vincent.knecht@mailoo.org>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20220701134415.4017794-1-vincent.knecht@mailoo.org>
-References: <20220701134415.4017794-1-vincent.knecht@mailoo.org>
+        with ESMTP id S230133AbiGANtp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 09:49:45 -0400
+Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA32C27B32;
+        Fri,  1 Jul 2022 06:49:42 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mail.sberdevices.ru (Postfix) with ESMTP id EA7935FD03;
+        Fri,  1 Jul 2022 16:49:39 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1656683380;
+        bh=YXUoraWfnYfy0hSgolh/FxiWqXDsGzZ4lVAE9CP5umc=;
+        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
+        b=jeIH+5NN2v4t2D8ZdTOioxfh08oUzODDmcpPa4W2LCteNTrAtCKp100sTP77aO9LQ
+         lP63XC7PgS4xkOjaUp/24GXZWAktK/YKCuyP7pYuDpSrfD51Pf7IRxDrwnc8Hpgkdf
+         Fe4rY1jzWfVfsbtPibsCbbJnJ83UupA11w42xBKScvEqzi2D1tOISDC5o0w++/lZby
+         I+VDly2EdmneivYbfmTzO7yg/odpxhCSdkxQTCRGx6KnLolOgViUXJhVMf9Mn8W/Yb
+         jgZ/2bXUvPDdvBIfBRuiZkXbJawt7YtBJRyHyoWLf1tVKmdDXAYEDLzwqvDkbxFFqd
+         msPEEzug9xiHA==
+Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
+        by mail.sberdevices.ru (Postfix) with ESMTP;
+        Fri,  1 Jul 2022 16:49:39 +0300 (MSK)
+From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
+To:     Jonathan Cameron <jic23@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "stephan@gerhold.net" <stephan@gerhold.net>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
+ driver
+Thread-Topic: [PATCH v3 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
+ driver
+Thread-Index: AQHYgW2+up0uMWdZgUWEAW/5cCPkBq1WepyAgBLyeQA=
+Date:   Fri, 1 Jul 2022 13:49:10 +0000
+Message-ID: <20220701134734.nfc6xa4q7rhfi3r7@CAB-WSD-L081021.sigma.sbrf.ru>
+References: <20220616104211.9257-1-ddrokosov@sberdevices.ru>
+ <20220616104211.9257-3-ddrokosov@sberdevices.ru>
+ <20220619132703.5cf3b090@jic23-huawei>
+In-Reply-To: <20220619132703.5cf3b090@jic23-huawei>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.12]
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <036813C44A635F4DA01F1C93886F5056@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/07/01 07:59:00 #19867624
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -51,236 +78,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set specific chipset structs values for is31fl319{0,1,3}
-so that those chips can actually work.
-Datasheets:
-https://lumissil.com/assets/pdf/core/IS31FL3190_DS.pdf
-https://lumissil.com/assets/pdf/core/IS31FL3191_DS.pdf
-https://lumissil.com/assets/pdf/core/IS31FL3193_DS.pdf
-https://lumissil.com/assets/pdf/core/IS31FL3196_DS.pdf
-https://lumissil.com/assets/pdf/core/IS31FL3199_DS.pdf
+Hello Jonathan,
 
-Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
----
- drivers/leds/leds-is31fl319x.c | 164 ++++++++++++++++++++++++++++++---
- 1 file changed, 150 insertions(+), 14 deletions(-)
+Sorry for the delayed response.
 
-diff --git a/drivers/leds/leds-is31fl319x.c b/drivers/leds/leds-is31fl319x.c
-index eb8601a203a8..0260c28de96a 100644
---- a/drivers/leds/leds-is31fl319x.c
-+++ b/drivers/leds/leds-is31fl319x.c
-@@ -21,6 +21,31 @@
- 
- /* register numbers */
- #define IS31FL319X_SHUTDOWN		0x00
-+
-+/* registers for 3190, 3191 and 3193 */
-+#define IS31FL3190_BREATHING		0x01
-+#define IS31FL3190_LEDMODE		0x02
-+#define IS31FL3190_CURRENT		0x03
-+#define IS31FL3190_PWM(channel)		(0x04 + channel)
-+#define IS31FL3190_DATA_UPDATE		0x07
-+#define IS31FL3190_T0(channel)		(0x0a + channel)
-+#define IS31FL3190_T1T2(channel)	(0x10 + channel)
-+#define IS31FL3190_T3T4(channel)	(0x16 + channel)
-+#define IS31FL3190_TIME_UPDATE		0x1c
-+#define IS31FL3190_LEDCONTROL		0x1d
-+#define IS31FL3190_RESET		0x2f
-+
-+#define IS31FL3190_CURRENT_MIN		((u32)5000)
-+#define IS31FL3190_CURRENT_DEFAULT	((u32)42000)
-+#define IS31FL3190_CURRENT_MAX		((u32)42000)
-+#define IS31FL3190_CURRENT_MASK		GENMASK(4, 2)
-+#define IS31FL3190_CURRENT_5_mA		0x02
-+#define IS31FL3190_CURRENT_10_mA	0x01
-+#define IS31FL3190_CURRENT_17dot5_mA	0x04
-+#define IS31FL3190_CURRENT_30_mA	0x03
-+#define IS31FL3190_CURRENT_42_mA	0x00
-+
-+/* registers for 3196 and 3199 */
- #define IS31FL3196_CTRL1		0x01
- #define IS31FL3196_CTRL2		0x02
- #define IS31FL3196_CONFIG1		0x03
-@@ -92,6 +117,37 @@ static bool is31fl319x_readable_reg(struct device *dev, unsigned int reg)
- 	return false;
- }
- 
-+static bool is31fl3190_volatile_reg(struct device *dev, unsigned int reg)
-+{ /* volatile registers are not cached */
-+	switch (reg) {
-+	case IS31FL3190_DATA_UPDATE:
-+	case IS31FL3190_TIME_UPDATE:
-+	case IS31FL3190_RESET:
-+		return true; /* always write-through */
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct reg_default is31fl3190_reg_defaults[] = {
-+	{ IS31FL3190_LEDMODE, 0x00},
-+	{ IS31FL3190_CURRENT, 0x00},
-+	{ IS31FL3190_PWM(0), 0x00},
-+	{ IS31FL3190_PWM(1), 0x00},
-+	{ IS31FL3190_PWM(2), 0x00},
-+};
-+
-+static struct regmap_config is31fl3190_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = IS31FL3190_RESET,
-+	.cache_type = REGCACHE_FLAT,
-+	.readable_reg = is31fl319x_readable_reg,
-+	.volatile_reg = is31fl3190_volatile_reg,
-+	.reg_defaults = is31fl3190_reg_defaults,
-+	.num_reg_defaults = ARRAY_SIZE(is31fl3190_reg_defaults),
-+};
-+
- static bool is31fl3196_volatile_reg(struct device *dev, unsigned int reg)
- { /* volatile registers are not cached */
- 	switch (reg) {
-@@ -129,6 +185,63 @@ static struct regmap_config is31fl3196_regmap_config = {
- 	.num_reg_defaults = ARRAY_SIZE(is31fl3196_reg_defaults),
- };
- 
-+static int is31fl3190_brightness_set(struct led_classdev *cdev,
-+				     enum led_brightness brightness)
-+{
-+	struct is31fl319x_led *led = container_of(cdev, struct is31fl319x_led,
-+						  cdev);
-+	struct is31fl319x_chip *is31 = led->chip;
-+	int chan = led - is31->leds;
-+	int ret;
-+	int i;
-+	u8 ctrl = 0;
-+
-+	dev_dbg(&is31->client->dev, "%s %d: %d\n", __func__, chan, brightness);
-+
-+	mutex_lock(&is31->lock);
-+
-+	/* update PWM register */
-+	ret = regmap_write(is31->regmap, IS31FL3190_PWM(chan), brightness);
-+	if (ret < 0)
-+		goto out;
-+
-+	/* read current brightness of all PWM channels */
-+	for (i = 0; i < is31->cdef->num_leds; i++) {
-+		unsigned int pwm_value;
-+		bool on;
-+
-+		/*
-+		 * since neither cdev nor the chip can provide
-+		 * the current setting, we read from the regmap cache
-+		 */
-+
-+		ret = regmap_read(is31->regmap, IS31FL3190_PWM(i), &pwm_value);
-+		dev_dbg(&is31->client->dev, "%s read %d: ret=%d: %d\n",
-+			__func__, i, ret, pwm_value);
-+		on = ret >= 0 && pwm_value > LED_OFF;
-+
-+		ctrl |= on << i;
-+	}
-+
-+	if (ctrl > 0) {
-+		dev_dbg(&is31->client->dev, "power up %02x\n", ctrl);
-+		regmap_write(is31->regmap, IS31FL3190_LEDCONTROL, ctrl);
-+		/* update PWMs */
-+		regmap_write(is31->regmap, IS31FL3190_DATA_UPDATE, 0x00);
-+		/* enable chip from shut down and enable all channels */
-+		ret = regmap_write(is31->regmap, IS31FL319X_SHUTDOWN, 0x20);
-+	} else {
-+		dev_dbg(&is31->client->dev, "power down\n");
-+		/* shut down (no need to clear LEDCONTROL) */
-+		ret = regmap_write(is31->regmap, IS31FL319X_SHUTDOWN, 0x01);
-+	}
-+
-+out:
-+	mutex_unlock(&is31->lock);
-+
-+	return ret;
-+}
-+
- static int is31fl3196_brightness_set(struct led_classdev *cdev,
- 				     enum led_brightness brightness)
- {
-@@ -195,24 +308,24 @@ static int is31fl3196_brightness_set(struct led_classdev *cdev,
- 
- static const struct is31fl319x_chipdef is31fl3190_cdef = {
- 	.num_leds = 1,
--	.reset_reg = IS31FL3196_RESET,
--	.is31fl319x_regmap_config = &is31fl3196_regmap_config,
--	.brightness_set = is31fl3196_brightness_set,
--	.current_default = IS31FL3196_CURRENT_DEFAULT,
--	.current_min = IS31FL3196_CURRENT_MIN,
--	.current_max = IS31FL3196_CURRENT_MAX,
--	.is_3196or3199 = true,
-+	.reset_reg = IS31FL3190_RESET,
-+	.is31fl319x_regmap_config = &is31fl3190_regmap_config,
-+	.brightness_set = is31fl3190_brightness_set,
-+	.current_default = IS31FL3190_CURRENT_DEFAULT,
-+	.current_min = IS31FL3190_CURRENT_MIN,
-+	.current_max = IS31FL3190_CURRENT_MAX,
-+	.is_3196or3199 = false,
- };
- 
- static const struct is31fl319x_chipdef is31fl3193_cdef = {
- 	.num_leds = 3,
--	.reset_reg = IS31FL3196_RESET,
--	.is31fl319x_regmap_config = &is31fl3196_regmap_config,
--	.brightness_set = is31fl3196_brightness_set,
--	.current_default = IS31FL3196_CURRENT_DEFAULT,
--	.current_min = IS31FL3196_CURRENT_MIN,
--	.current_max = IS31FL3196_CURRENT_MAX,
--	.is_3196or3199 = true,
-+	.reset_reg = IS31FL3190_RESET,
-+	.is31fl319x_regmap_config = &is31fl3190_regmap_config,
-+	.brightness_set = is31fl3190_brightness_set,
-+	.current_default = IS31FL3190_CURRENT_DEFAULT,
-+	.current_min = IS31FL3190_CURRENT_MIN,
-+	.current_max = IS31FL3190_CURRENT_MAX,
-+	.is_3196or3199 = false,
- };
- 
- static const struct is31fl319x_chipdef is31fl3196_cdef = {
-@@ -360,6 +473,26 @@ static int is31fl319x_parse_dt(struct device *dev,
- 	return ret;
- }
- 
-+static inline int is31fl3190_microamp_to_cs(struct device *dev, u32 microamp)
-+{
-+	switch (microamp) {
-+	case 5000:
-+		return IS31FL3190_CURRENT_5_mA;
-+	case 10000:
-+		return IS31FL3190_CURRENT_10_mA;
-+	case 17500:
-+		return IS31FL3190_CURRENT_17dot5_mA;
-+	case 30000:
-+		return IS31FL3190_CURRENT_30_mA;
-+	case 42000:
-+		return IS31FL3190_CURRENT_42_mA;
-+	default:
-+		dev_warn(dev, "Unsupported current value: %d, using 5000 µA!\n", microamp);
-+	}
-+
-+	return IS31FL3190_CURRENT_5_mA;
-+}
-+
- static inline int is31fl3196_microamp_to_cs(struct device *dev, u32 microamp)
- { /* round down to nearest supported value (range check done by caller) */
- 	u32 step = microamp / IS31FL3196_CURRENT_STEP;
-@@ -436,6 +569,9 @@ static int is31fl319x_probe(struct i2c_client *client,
- 		regmap_write(is31->regmap, IS31FL3196_CONFIG2,
- 			     is31fl3196_microamp_to_cs(dev, aggregated_led_microamp) |
- 			     is31fl3196_db_to_gain(is31->audio_gain_db));
-+	else
-+		regmap_update_bits(is31->regmap, IS31FL3190_CURRENT, IS31FL3190_CURRENT_MASK,
-+				   is31fl3190_microamp_to_cs(dev, aggregated_led_microamp));
- 
- 	for (i = 0; i < is31->cdef->num_leds; i++) {
- 		struct is31fl319x_led *led = &is31->leds[i];
--- 
-2.35.3
+On Sun, Jun 19, 2022 at 01:27:03PM +0100, Jonathan Cameron wrote:
+> On Thu, 16 Jun 2022 10:42:14 +0000
+> Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
+>=20
+> > MSA311 is a tri-axial, low-g accelerometer with I2C digital output for
+> > sensitivity consumer applications. It has dynamical user selectable ful=
+l
+> > scales range of +-2g/+-4g/+-8g/+-16g and allows acceleration measuremen=
+ts
+> > with output data rates from 1Hz to 1000Hz.
+> >=20
+> > Datasheet can be found at following URL:
+> > https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
+> >=20
+> > This driver supports following MSA311 features:
+> >     - IIO interface
+> >     - Different power modes: NORMAL and SUSPEND (using pm_runtime)
+> >     - ODR (Output Data Rate) selection
+> >     - Scale and samp_freq selection
+> >     - IIO triggered buffer, IIO reg access
+> >     - NEW_DATA interrupt + trigger
+> >=20
+> > Below features to be done:
+> >     - Motion Events: ACTIVE, TAP, ORIENT, FREEFALL
+> >     - Low Power mode
+> >=20
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> Hi Dmitry,
+>=20
+> A few things I missed before + I'm still not happy with the runtime
+> pm handling.  One case that isn't covered well is !CONFIG_RUNTIME_PM
+>=20
+> Thanks,
+>=20
+> Jonathan
+>=20
 
+...
 
+> > +static irqreturn_t msa311_buffer_thread(int irq, void *p)
+> > +{
+> > +	struct iio_poll_func *pf =3D p;
+> > +	struct iio_dev *indio_dev =3D pf->indio_dev;
+> > +	struct msa311_priv *msa311 =3D iio_priv(indio_dev);
+> > +	struct device *dev =3D &msa311->i2c->dev;
+> > +	const struct iio_chan_spec *chan;
+> > +	__le16 axis;
+> > +	int bit =3D 0, err, i =3D 0;
+> > +
+> > +	/* Ensure correct alignment of time stamp when present */
+> > +	struct {
+> > +		__le16 channels[MSA311_SI_Z + 1];
+> > +		s64 ts __aligned(8);
+> > +	} buf;
+> > +
+> > +	memset(&buf, 0, sizeof(buf));
+> > +
+> > +	mutex_lock(&msa311->lock);
+> > +
+> > +	for_each_set_bit(bit, indio_dev->active_scan_mask,
+> > +			 indio_dev->masklength) {
+> > +		chan =3D &msa311_channels[bit];
+>=20
+> Nothing to do with your driver, but feels like it's worth
+> exploring a
+> 	for_each_chan_in_iio_scan(struct iio_chan_spec, struct iio_dev) macro.
+>=20
+> I'll add that to my todo list.
+>=20
 
+If you don't mind, I can prepare such a patch.
+
+...
+
+> When this unwind we will disable autosuspend etc, but leave the device
+> in whatever state it happens to be in at that stage (if I understand
+> this handling correctly).  That might seem like a bad thing, but if
+> we register a devm_add_action_or_reset() callback before this which
+> disables the device independently of anything to do with runtime PM,
+> then the device will
+> a) Be turned off as desired.
+> b) It'll still be turned off even if runtime pm is disabled for the syste=
+m
+>    which is nice.
+>=20
+> Given the particular state register must be writeable and is presumably
+> idempotent, can we just call=20
+> err =3D msa311_set_pwr_mode(msa311, MSA311_PWR_MODE_SUSPEND);
+> Unconditionally in such a callback?
+
+I think it's a good idea. I didn't think about the configs when runtime pm
+is disabled. So looks like we need to make sure that device is workable
+from a pm perspective, and it is achievable only using a direct
+msa311_set_pwr_mode() call as you suggested below.
+
+> > +	err =3D devm_pm_runtime_enable(dev);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	/* Resume msa311 logic before any interactions with registers */
+> > +	err =3D pm_runtime_resume_and_get(dev);
+> I missed this before, but if runtime pm is disabled, this won't do anythi=
+ng
+> so device won't be powered on.
+>=20
+> One common(ish) way to handle this is the following sequence.
+>=20
+> 1) Power up supply regs etc and a register a devm_ callback to turn them =
+off again.
+> 2) Put the device into a non suspend state (not using runtime pm calls).
+> 3) Register a callback to turn it off again (that is safe against it bein=
+g
+>    turned off via another path such as runtime pm).
+> 4) pm_runtime_set_active() to let the runtime pm code know it is turned o=
+n.
+> 5) devm_pm_runtime_enable()
+> 6) autosuspend setup and enablement.
+>=20
+> If runtime pm isn't enabled then only 1-3 happen.  We waste power but the
+> device works.
+
+--=20
+Thank you,
+Dmitry=
