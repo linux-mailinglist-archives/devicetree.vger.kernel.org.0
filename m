@@ -2,72 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7C8D563BCE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 23:37:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9FBA563C19
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 23:54:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230044AbiGAVhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 17:37:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54530 "EHLO
+        id S230044AbiGAVyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 17:54:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbiGAVhH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 17:37:07 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8197D5C94E;
-        Fri,  1 Jul 2022 14:37:05 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id h20so2151982ilj.13;
-        Fri, 01 Jul 2022 14:37:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=J86v2cLDP22dhdMQY1gkogeTSb0Yh6JFnGz+u5RmAN4=;
-        b=n7EBcob2aoNHxC3VdPMo1ya4BTxVa2InRSrwDJr5w049qokmz0zxnfDLxuHFZws8jm
-         A5ScfalNpF+UP1plY/q37I0bzHDx73uikxv1F5dlGwoPEhjH7t9wYitbioLlFXW87S3q
-         4RTQzDHDBM/BweJzZCFhh2AmQ2fEyDn5syFUMETKUSi7BKgu4+qun5L9MLo/LlZTZzZl
-         MrT2+MzRW48jskGRyv9amINACQYWIp9nFT32LaE+3xpg0o16amIqIm2ZYanWkBqa5NBz
-         w3qa9QqpWULIwdcftW2HRlLzKchu1IhpPCuj+BCAMRb91VowQAR70xHfAlFxJM4MGFaN
-         JSAQ==
-X-Gm-Message-State: AJIora9dVxF842sfFyDyKgt4SJ0PXP1ND7j+1/sF+U8iyD5XG95UNJtZ
-        j0lffUs3KOHfJ8vPtaLs+w==
-X-Google-Smtp-Source: AGRyM1sYR91twYxQYAQPVbEe2Fqnz0wIkKnwr9gOaTJIX2q5xD/4kgmop65ap+DhwWDj1Bc3j/yEmw==
-X-Received: by 2002:a05:6e02:1c85:b0:2da:956b:6bc with SMTP id w5-20020a056e021c8500b002da956b06bcmr9686339ill.36.1656711424773;
-        Fri, 01 Jul 2022 14:37:04 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id x5-20020a026f05000000b0033eb2f2ccfasm100716jab.43.2022.07.01.14.37.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Jul 2022 14:37:04 -0700 (PDT)
-Received: (nullmailer pid 1599831 invoked by uid 1000);
-        Fri, 01 Jul 2022 21:37:02 -0000
-Date:   Fri, 1 Jul 2022 15:37:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
-        <nfraprado@collabora.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: usb: mtk-xhci: Make all clocks
- required
-Message-ID: <20220701213702.GA1591697-robh@kernel.org>
-References: <20220623193702.817996-1-nfraprado@collabora.com>
- <20220623193702.817996-3-nfraprado@collabora.com>
- <93c6b7201533325cf7758637dd194a372f3c00c6.camel@mediatek.com>
- <20220629185546.z6rn7xp3ejpmaupi@notapiano>
+        with ESMTP id S229911AbiGAVyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 17:54:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1696F37D;
+        Fri,  1 Jul 2022 14:54:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5A03C623A5;
+        Fri,  1 Jul 2022 21:54:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3830C341CA;
+        Fri,  1 Jul 2022 21:54:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656712446;
+        bh=zLSrvBOSLFfwPH+CZlrioDDqxBhPCGJ2SPJ+RZzc68M=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MgvqiDHV7+Ms6yNohjOqoachbPDBtV5mW7sIE8RUq4xD4Ck7w/Ql6NIhKO5hiF9MO
+         hTtF7kNpst0GSfyjVOGWqccbjJK9IE3fZZPtACk81oHMFwnoKmualtVTEUv1rubGql
+         XxX+a863Uex/xrgt4zkh/5JJYtCU/n1ylFLt7v0AwgCYYOYZbqhe1QeuF7UMIysrbO
+         f1NQDMzZpxnY8O+KOoWliDoy24OeZo3ZetRM7ZsT9QjwJWgl9/9PLAI2nH6JEYBJXo
+         FUQ6lScG7zEBxmIFn94DakBZ6drG3b6hrovqkIwHAFOmI8AUBH6S3t67iAiqDRX55i
+         X4qLVOtd4AGdQ==
+Received: by mail-vs1-f50.google.com with SMTP id 189so3520813vsh.2;
+        Fri, 01 Jul 2022 14:54:06 -0700 (PDT)
+X-Gm-Message-State: AJIora9gQwUatI2DSgVMF+8FxK++cIEffysV7LPIj0QFqRKZU2EBNkI6
+        N2tO0UmXXTuR/f0n2uTzKbOdo9RQRCIrd6bisQ==
+X-Google-Smtp-Source: AGRyM1s0H7pARALLTirJ/KD0L+zTvOACU6mqxw9K9rYjeZ3l6HiWuonAyHglQk/j+3PQjKBHqo4gfcClDxV74nts52o=
+X-Received: by 2002:a67:c187:0:b0:354:3ab2:ba65 with SMTP id
+ h7-20020a67c187000000b003543ab2ba65mr12609378vsj.53.1656712445667; Fri, 01
+ Jul 2022 14:54:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220629185546.z6rn7xp3ejpmaupi@notapiano>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20220526211046.367938-1-linus.walleij@linaro.org> <20220605142540.GA3448684-robh@kernel.org>
+In-Reply-To: <20220605142540.GA3448684-robh@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 1 Jul 2022 15:53:54 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKRK5Oxz+PfJXZ9NYBYWmMdYGfRo-q=SOKnkDbr_QO6xg@mail.gmail.com>
+Message-ID: <CAL_JsqKRK5Oxz+PfJXZ9NYBYWmMdYGfRo-q=SOKnkDbr_QO6xg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: i2c: Rewrite Nomadik I2C bindings in YAML
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Linux I2C <linux-i2c@vger.kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,74 +61,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 02:55:46PM -0400, Nícolas F. R. A. Prado wrote:
-> On Tue, Jun 28, 2022 at 08:57:45AM +0800, Chunfeng Yun wrote:
-> > Hi Nícolas,
-> > 
-> > On Thu, 2022-06-23 at 15:37 -0400, Nícolas F. R. A. Prado wrote:
-> > > All of the clocks listed in the binding are always wired to the XHCI
-> > > controller hardware blocks on all SoCs. The reason some clocks were
-> > > made
-> > > optional in the binding was to account for the fact that depending on
-> > > the SoC, some of the clocks might be fixed (ie not controlled by
-> > > software).
-> > > 
-> > > Given that the devicetree should represent the hardware, make all
-> > > clocks
-> > > required in the binding. Subsequent patches will make the DTS changes
-> > > to
-> > > specify fixed-clocks for the clocks that aren't controllable.
-> > > 
-> > > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > > 
-> > > ---
-> > > 
-> > > Changes in v2:
-> > > - Undid clock list changes that allowed middle clocks to be missing
-> > > from
-> > >   v1 and made all clocks required instead
-> > > - Rewrote commit message and title
-> > > 
-> > >  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 4 +
-> > > ---
-> > >  1 file changed, 1 insertion(+), 3 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > xhci.yaml
-> > > index 63cbc2b62d18..1444d18ef9bc 100644
-> > > --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> > > @@ -67,7 +67,6 @@ properties:
-> > >      maxItems: 1
-> > >  
-> > >    clocks:
-> > > -    minItems: 1
-> > >      items:
-> > >        - description: Controller clock used by normal mode
-> > >        - description: Reference clock used by low power mode etc
-> > > @@ -76,9 +75,8 @@ properties:
-> > >        - description: controller clock
-> > >  
-> > >    clock-names:
-> > > -    minItems: 1
-> > >      items:
-> > > -      - const: sys_ck  # required, the following ones are optional
-> > > +      - const: sys_ck
-> > >        - const: ref_ck
-> > >        - const: mcu_ck
-> > >        - const: dma_ck
-> > 
-> > This patch causes more check warning, I prefer to leave dt-bindings
-> > unchanged, but just fix mt8195's dts warning instead, thanks a lot
-> 
-> Hi Chunfeng,
-> 
-> the warnings reported by Rob's bot only happen if patches 3 and 4 aren't applied
-> to adapt the devicetrees. They are ABI breaking changes, but I understood this
-> as the desired solution from the discussion we had with Krzysztof on v1 [1].
+On Sun, Jun 5, 2022 at 8:26 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, 26 May 2022 23:10:46 +0200, Linus Walleij wrote:
+> > This rewrites the Nomadik I2C bindings in YAML, some extra
+> > tweaks were needed because of the way the original nomadik
+> > names the compatible with two compatibles and the DB8500
+> > with three, and the two main variants use a different clock
+> > name.
+> >
+> > Cc: devicetree@vger.kernel.org
+> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> > ---
+> >  .../devicetree/bindings/i2c/i2c-nomadik.txt   |  23 ----
+> >  .../bindings/i2c/st,nomadik-i2c.yaml          | 113 ++++++++++++++++++
+> >  MAINTAINERS                                   |   2 +-
+> >  3 files changed, 114 insertions(+), 24 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-nomadik.txt
+> >  create mode 100644 Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> >
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-The warnings have nothing to do with patches 3 and 4 as those are for 
-dts files. It's examples in bindings that are the problem.
+Due to partially broken 'unevaluatedProperties' implementation, this
+error is going to show up when fixed.
 
-Rob
+Documentation/devicetree/bindings/i2c/st,nomadik-i2c.example.dtb:
+i2c@80004000: Unevaluated properties are not allowed ('v-i2c-supply',
+'power-domains' were unexpected)
+        From schema:
+/home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
