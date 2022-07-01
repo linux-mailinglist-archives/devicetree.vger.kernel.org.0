@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32B33563A76
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 22:12:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D2A9563AD0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 22:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231261AbiGAUIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 16:08:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42662 "EHLO
+        id S232466AbiGAULy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 16:11:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbiGAUIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 16:08:14 -0400
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A12AABCAB;
-        Fri,  1 Jul 2022 13:08:13 -0700 (PDT)
-Received: by mail-il1-f171.google.com with SMTP id h5so2073766ili.3;
-        Fri, 01 Jul 2022 13:08:13 -0700 (PDT)
+        with ESMTP id S232460AbiGAULa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 16:11:30 -0400
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D9E53EC7;
+        Fri,  1 Jul 2022 13:11:18 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id p9so2063856ilj.7;
+        Fri, 01 Jul 2022 13:11:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4cmnyqPkxRKsOWfhu6C2d1GUwRFJleTnc3K78+DNh4Q=;
-        b=25WRjAsrLpJZdmYvnQbcrWjX29IH3uEXOwxdShdQK8uFXjrYHL2Aa9J1aNURqfEJM7
-         x4fFMuKvgZwkrIWJzNb1MfGLTiwHUrr0EBnE//FpfXP+ICReBT6AwbEvZQ9tATaVB820
-         4uPNo/Bbg3ct2/QQn35F6mfb6LKw11qNDqiWDRy021ohdK+H6eWV3IcdgW49oCU0flRJ
-         6N5vfqpYbBVyA8u55rdc+VhOIGlMDb1s2GFYh+ljw+/Y2t67XtND6CbDlZ03VCx97zp7
-         tzuFwPq2N+cWx8WXWCgOwiAsXoPYjkX9XWLWgFJtPI/kxXUkYryXXzAgq1jtsWCkaKb9
-         ruMA==
-X-Gm-Message-State: AJIora8aPjPs1WpdyhcxNR3Gpmb8PuVDvxtpB26EdNRdnt5Cc2TJKBNC
-        dBXRBF8Iq0hKNTRapzn/yw==
-X-Google-Smtp-Source: AGRyM1t7QhI/co6WT+YVr0GACSS5wqpKqx2bIyp4sLjEcTPc+AkfkcpJUsWupz4KPq9xMx3pGwFSzA==
-X-Received: by 2002:a05:6e02:1686:b0:2da:9ac2:ea85 with SMTP id f6-20020a056e02168600b002da9ac2ea85mr9840480ila.108.1656706092762;
-        Fri, 01 Jul 2022 13:08:12 -0700 (PDT)
+        bh=bsGXONk8NHMc+Ouuuz0n5DIppbte+ODnFw+dCWHoPlk=;
+        b=v9MqdTa7InzFzmLBZom1H7DMfvvAqhSScmN5AM4u7tswSJjxKza12fFhjZuBDzvfCg
+         Kn1wFHVQrNORtzZsIu4V5nxPrtNSAbj/pv6w/EVgVbXbWRqs2q2/LWITbaZ7wEqWjaWh
+         AFCZczKIvGAloHgewAOWt+O08wkvG9qpvYI6fXMySzxAzw+m8un5oJMW6gKm9IkBelRi
+         HbuD3PtnJsCi4IGzNt5jfN6S9KKP7lsEcYdD2J6zOoMm9BfwcfAqaq8LjaEsq74+hF4x
+         YnbQqudxylqUQpqEwh5eEyCNVnKJzpx/cr/bOsEC7zK+LQehxn5ZF1k67b2f+UHlSmPv
+         t58g==
+X-Gm-Message-State: AJIora8qdvD05qQc/UpSLnqlApKD9tC0dbjnLoJJ7KdctGVlpAQ1BGuJ
+        9zXur4SNcqw6xt9yZwTXwA==
+X-Google-Smtp-Source: AGRyM1sQr9on9f/i3W+HzDLrop3QB8HUNE+suPlqzim3Ia3W9/3g2hWw9BJyd/+X2qBvEEHcaQiZqg==
+X-Received: by 2002:a05:6e02:180d:b0:2d9:26a6:d016 with SMTP id a13-20020a056e02180d00b002d926a6d016mr9294139ilv.170.1656706277255;
+        Fri, 01 Jul 2022 13:11:17 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id v6-20020a92d246000000b002d921e1abf2sm9314367ilg.85.2022.07.01.13.08.10
+        by smtp.gmail.com with ESMTPSA id f7-20020a05660215c700b00674f80edd63sm10897632iow.23.2022.07.01.13.11.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Jul 2022 13:08:12 -0700 (PDT)
-Received: (nullmailer pid 1434390 invoked by uid 1000);
-        Fri, 01 Jul 2022 20:08:09 -0000
-Date:   Fri, 1 Jul 2022 14:08:09 -0600
+        Fri, 01 Jul 2022 13:11:16 -0700 (PDT)
+Received: (nullmailer pid 1439506 invoked by uid 1000);
+        Fri, 01 Jul 2022 20:11:15 -0000
+Date:   Fri, 1 Jul 2022 14:11:14 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
-        daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org,
-        quic_mkrishn@quicinc.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: msm: dsi: Fix phy-name binding
-Message-ID: <20220701200809.GA1433418-robh@kernel.org>
-References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org>
- <20220630120845.3356144-2-bryan.odonoghue@linaro.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     nfraprado@collabora.com, devicetree@vger.kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        linux-mediatek@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        linux-kernel@vger.kernel.org, sean.wang@mediatek.com,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: mt8195: Fix name for
+ mediatek,rsel-resistance-in-si-unit
+Message-ID: <20220701201114.GA1439444-robh@kernel.org>
+References: <20220630122334.216903-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220630120845.3356144-2-bryan.odonoghue@linaro.org>
+In-Reply-To: <20220630122334.216903-1-angelogioacchino.delregno@collabora.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,35 +67,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 01:08:39PM +0100, Bryan O'Donoghue wrote:
-> The driver doesn't care about the name of the phy in DTS. msm8916 has since
-> 2016 named the phy "dsi-phy" with later SoCs taking the name "dsi".
-
-Also, for the subject, it's 'phy-names' not 'phy-name'.
-
-> There's no reason to have a constraint on the name here, simply to have a
-> name. Remove the redundant const in favour of maxItems: 1.
+On Thu, 30 Jun 2022 14:23:34 +0200, AngeloGioacchino Del Regno wrote:
+> When this property was introduced, it contained underscores, but
+> the actual code wants dashes.
 > 
-> Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Change it from mediatek,rsel_resistance_in_si_unit to
+> mediatek,rsel-resistance-in-si-unit.
+> 
+> Fixes: 91e7edceda96 ("dt-bindings: pinctrl: mt8195: change pull up/down description")
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 880bfe930830c..717a5d255ffe4 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -49,7 +49,7 @@ properties:
->      maxItems: 1
->  
->    phy-names:
-> -    const: dsi
-> +    maxItems: 1
->  
->    "#address-cells": true
->  
-> -- 
-> 2.36.1
+> Note: No devicetree uses this property as of now.
+>       Even if any DT did, it wouldn't work, as the pinctrl code checks
+>       for 'mediatek,rsel-resistance-in-si-unit'.
 > 
+>  .../devicetree/bindings/pinctrl/pinctrl-mt8195.yaml    | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
 > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
