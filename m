@@ -2,120 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 162105636EE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 17:31:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D213A5636F5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 17:32:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbiGAPbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 11:31:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57570 "EHLO
+        id S231724AbiGAPc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 11:32:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbiGAPbU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 11:31:20 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5CC1D11D;
-        Fri,  1 Jul 2022 08:31:19 -0700 (PDT)
-Received: from notapiano (unknown [193.27.14.116])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5210F660194C;
-        Fri,  1 Jul 2022 16:31:16 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656689478;
-        bh=z052kP4hfB8gSwGmauqevNpl/h4dfkQWDsl3Df3UJEA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ie+CqVG7TZ1FdMjN8qXgzQKJ5XPLxMvIDk5BuEFxgGtv7A1mgat8nsFLiRVWMw6L8
-         bnkTSzr8FRMZZtWQc+ywHUngWZFgurCK/Ysq7DxkQyCe0/b8GnDZuunLAaHfxMDQqT
-         xogXa0h7rNiWHWmw/GtwTZh8fiTHpVdQJtCEKxQc4+VEp7X9h/rR5mg8s3fzBzWUQt
-         PhGunL8AAgW8aHMu2T1PPm1bJf+9P2teAWWHlJVLgGD+rS5Nsd/ZCHW1Oz08bJEUhf
-         RWTq3HaC0CcFe12HXJ63XtMvnshZzbvMzuUb7C1tIlkQ9aV9P2+v8gFV8O4cvEVDSJ
-         FC7YVe2eafc8g==
-Date:   Fri, 1 Jul 2022 11:31:11 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, hsinyi@chromium.org,
-        allen-kh.cheng@mediatek.com, gtk3@inbox.ru, luca@z3ntu.xyz,
-        sam.shih@mediatek.com, sean.wang@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, wenst@chromium.org
-Subject: Re: [PATCH 01/11] dt-bindings: arm: mediatek: Add MT8195 Cherry
- Tomato Chromebooks
-Message-ID: <20220701153111.glbd6gophzipwtjk@notapiano>
-References: <20220630153316.308767-1-angelogioacchino.delregno@collabora.com>
- <20220630153316.308767-2-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S229559AbiGAPc2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 11:32:28 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 852AD3336E;
+        Fri,  1 Jul 2022 08:32:27 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id p13so1663764ilq.0;
+        Fri, 01 Jul 2022 08:32:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qcaQLVSAjs08L4iBTq66quSSrYfZtmetVnMPwSREdjs=;
+        b=vJPnD1pIPYJ/3oFkz1YqxNpE2xbO3yrvTwoB2rLMU5DMCZmV3mF6BYS7RB4vHTuXFQ
+         dneT/g18DWHHZUeXzwRtFVz/2mGjppsUtORtj2d0JCtLyTfqjpu5SH+ts5Q99tIjsLKI
+         219DoNCMRbCtfL1o5+1MatXsNOtjw6LlJgQQOyOI86DwefGu91G7W95HBVcVIWVYyA7d
+         UMeTaCzUirOQxTG3e1QCNHH23ahQYt4SMn0FxKFzMOeMb99rhx9FUXsIajh/6/UzbjHr
+         Ua6io8YHL4Nw/rvpMRKF0xu752qFO2jASmMMOdz7xi+fp6gyUndaeS6PZqlSCdKSSUfx
+         8luQ==
+X-Gm-Message-State: AJIora8nXRZv8UB9S/tqjJgDOZZSl0E6Z7E+DbotTzszWY9yZjac1vU3
+        ZvFwlFC32KZ0GyP/XE24CA==
+X-Google-Smtp-Source: AGRyM1vLH7YULELjPbz07BEHH0lCB3QbkZccfzpFmFvHBn/Rf1cIyRKwM5psyF45vUu8tcchBneotA==
+X-Received: by 2002:a05:6e02:1c89:b0:2da:9746:c0f3 with SMTP id w9-20020a056e021c8900b002da9746c0f3mr8701760ill.298.1656689546793;
+        Fri, 01 Jul 2022 08:32:26 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id o9-20020a056e02102900b002d40b591700sm9243107ilj.7.2022.07.01.08.32.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Jul 2022 08:32:26 -0700 (PDT)
+Received: (nullmailer pid 986633 invoked by uid 1000);
+        Fri, 01 Jul 2022 15:32:25 -0000
+Date:   Fri, 1 Jul 2022 09:32:25 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org, pavel@ucw.cz,
+        krzk+dt@kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: leds: Add bindings for the TLC5925
+ controller
+Message-ID: <20220701153225.GA986576-robh@kernel.org>
+References: <20220627083835.106676-1-jjhiblot@traphandler.com>
+ <20220627083835.106676-2-jjhiblot@traphandler.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220630153316.308767-2-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220627083835.106676-2-jjhiblot@traphandler.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 05:33:06PM +0200, AngeloGioacchino Del Regno wrote:
-> Document board compatibles for the MT8195 Cherry platform's
-> Tomato Chromebooks, at the time of writing composed of four
-> revisions (r0, r1, r2, r3-r4).
+On Mon, 27 Jun 2022 10:38:33 +0200, Jean-Jacques Hiblot wrote:
+> Add bindings documentation for the TLC5925 LED controller.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>  .../devicetree/bindings/leds/ti,tlc5925.yaml  | 105 ++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/ti,tlc5925.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index dd6c6e8011f9..3e0afa17ed2e 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -144,6 +144,19 @@ properties:
->            - const: google,spherion-rev0
->            - const: google,spherion
->            - const: mediatek,mt8192
-> +      - description: Google Tomato (Acer Chromebook Spin 513)
 
-Hi Angelo,
-
-searching for "Acer Chromebook Spin 513" I found that there are two different
-chromebooks:
-
-https://www.acer.com/ac/en/US/content/series/acerchromebookspin513
-https://www.acer.com/ac/en/GB/content/series/acerchromebookspin513cp5132h
-
-The first one is a Qualcomm based one, while the second is mt8195-based, so I
-assume that's Tomato.
-
-They can be telled apart by the model name though: the Qualcomm one is
-"CP513-1H", while Tomato is "CP513-2H". So I suggest to add the "CP513-2H" here
-in the description, as well as in the cover letter, to avoid confusion between
-the two.
-
-Thanks,
-Nícolas
-
-> +        items:
-> +          - enum:
-> +              - google,tomato-rev2
-> +              - google,tomato-rev1
-> +          - const: google,tomato
-> +          - const: mediatek,mt8195
-> +      - description: Google Tomato (rev3 - 4)
-> +        items:
-> +          - const: google,tomato-rev4
-> +          - const: google,tomato-rev3
-> +          - const: google,tomato
-> +          - const: mediatek,mt8195
->        - items:
->            - enum:
->                - mediatek,mt8186-evb
-> -- 
-> 2.35.1
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
