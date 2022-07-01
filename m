@@ -2,209 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B2656394C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 20:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D7CC56394F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 20:48:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230296AbiGASqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 14:46:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36294 "EHLO
+        id S231406AbiGASq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 14:46:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiGASqN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 14:46:13 -0400
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A26F731509;
-        Fri,  1 Jul 2022 11:46:12 -0700 (PDT)
-Received: by mail-il1-f181.google.com with SMTP id n14so1933730ilt.10;
-        Fri, 01 Jul 2022 11:46:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YCxDpLwBlPepXGkzDGgiHX6IUAIxVYfbH4RlDrqpozU=;
-        b=OpTVlCrUoCdovibCe8lhEYFaPF25bHhtLdcVAohxL0SJ+iEmjVzQxT5kF30o8R40nJ
-         5t65mpzFt2JY4jt8noU7v3Mj87z7piNQATEer9MvzwB3ZLb58e6fI+JVJ0U6gFcvH5qR
-         TVKl8cJjPJsSHu7cEzugRqc+URm0POPVKZ+j4BNAF6tL6Fk+8u93uiEQDjZmcXKXNu9O
-         88QGtL17ia1ADUHgI/zSixsqk3twN4khyJ1Ub4yJUSCv/1BnMjzCzd/k3weAUw24WXZk
-         TY+qmj8+ID+ZzAPPnOonxJFrETstINh+pfhoUzGqfXrsFYINl/+fOXViZ+sqrXNN9k6N
-         oL0w==
-X-Gm-Message-State: AJIora/bavbw2ZBs27Moaf+bKjbhmNJyLzhtHiAzwEza6DxX0Z285SMA
-        GpRbRKvba9vfv3lYai/XbDOzBU0olA==
-X-Google-Smtp-Source: AGRyM1vmCcJU7aTAizYs4y6g0psY8dvbn56iRKlXvByEcGeUeD1uRKs+viF1YrYraeb0qf42lLz73w==
-X-Received: by 2002:a92:d0a:0:b0:2d1:e698:5c4c with SMTP id 10-20020a920d0a000000b002d1e6985c4cmr8972116iln.316.1656701171809;
-        Fri, 01 Jul 2022 11:46:11 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id cn22-20020a0566383a1600b0033171dafaa0sm2180894jab.178.2022.07.01.11.46.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Jul 2022 11:46:11 -0700 (PDT)
-Received: (nullmailer pid 1301953 invoked by uid 1000);
-        Fri, 01 Jul 2022 18:46:09 -0000
-Date:   Fri, 1 Jul 2022 12:46:09 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kartik <kkartik@nvidia.com>
-Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de, krzk+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, spujar@nvidia.com,
-        akhilrajeev@nvidia.com, rgumasta@nvidia.com, pshete@nvidia.com,
-        vidyas@nvidia.com, mperttunen@nvidia.com, mkumard@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: timer: Add Tegra186 & Tegra234 Timer
-Message-ID: <20220701184609.GA1293870-robh@kernel.org>
-References: <1656527344-28861-1-git-send-email-kkartik@nvidia.com>
- <1656527344-28861-2-git-send-email-kkartik@nvidia.com>
+        with ESMTP id S229553AbiGASq5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 14:46:57 -0400
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9DC344C6;
+        Fri,  1 Jul 2022 11:46:53 -0700 (PDT)
+Date:   Fri, 01 Jul 2022 18:46:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1656701209; x=1656960409;
+        bh=Y5fzhHEQzXr1TjcKrd5HowR3mxV+jXMy30QqWAFASuc=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
+         Feedback-ID:Message-ID;
+        b=P5naxX4WrHW2BtWg1QCbMy/x6OzFDeVzSApY8zpSnbpKwrb+fOwzBEuT40W5Ij7XS
+         oRBUBYdS9gJbohKTt4SeUkR0D13zG6XIcjdTICgfBvObZRssTOHnjsdHOaMrndt2hL
+         kyie3FqxV0w2WD6MdhN5Wh5Vm6zzngwtjJoXS4QI=
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: Add LPG to pm8916, pm8994, pmi8994 and pmi8998
+Message-ID: <2e506766-39f3-b70f-b91e-ce120293d05e@connolly.tech>
+In-Reply-To: <20220505022706.1692554-2-bjorn.andersson@linaro.org>
+References: <20220505022706.1692554-1-bjorn.andersson@linaro.org> <20220505022706.1692554-2-bjorn.andersson@linaro.org>
+Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1656527344-28861-2-git-send-email-kkartik@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 11:58:59PM +0530, Kartik wrote:
-> The Tegra186 timer provides ten 29-bit timer counters and one 32-bit
-> timestamp counter. The Tegra234 timer provides sixteen 29-bit timer
-> counters and one 32-bit timestamp counter. Each NV timer selects its
-> timing reference signal from the 1 MHz reference generated by USEC,
-> TSC or either clk_m or OSC. Each TMR can be programmed to generate
-> one-shot, periodic, or watchdog interrupts.
-> 
-> Signed-off-by: Kartik <kkartik@nvidia.com>
+
+
+On 05/05/2022 03:27, Bjorn Andersson wrote:
+> Add PWM/LPG nodes to the PMICs currently supported by the binding.
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+fwiw:
+Reviewed-by: Caleb Connolly <caleb@connolly.tech>
 > ---
->  .../bindings/timer/nvidia,tegra186-timer.yaml | 111 ++++++++++++++++++
->  1 file changed, 111 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml b/Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml
-> new file mode 100644
-> index 000000000000..5dc091532cd7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/nvidia,tegra186-timer.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/timer/nvidia,tegra186-timer.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>   arch/arm64/boot/dts/qcom/pm8916.dtsi  |  8 ++++++++
+>   arch/arm64/boot/dts/qcom/pm8994.dtsi  | 10 ++++++++++
+>   arch/arm64/boot/dts/qcom/pmi8994.dtsi | 10 ++++++++++
+>   arch/arm64/boot/dts/qcom/pmi8998.dtsi | 11 ++++++++++-
+>   4 files changed, 38 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/q=
+com/pm8916.dtsi
+> index d58902432812..99bf8387bfb6 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
+> @@ -125,6 +125,14 @@ pm8916_1: pmic@1 {
+>   =09=09#address-cells =3D <1>;
+>   =09=09#size-cells =3D <0>;
+>
+> +=09=09pm8916_pwm: pwm {
+> +=09=09=09compatible =3D "qcom,pm8916-pwm";
 > +
-> +title: NVIDIA Tegra186 timer
+> +=09=09=09#pwm-cells =3D <2>;
 > +
-> +maintainers:
-> +  - Thierry Reding <treding@nvidia.com>
+> +=09=09=09status =3D "disabled";
+> +=09=09};
 > +
-> +description: >
-> +  The Tegra timer provides 29-bit timer counters and a 32-bit timestamp
-> +  counter. Each NV timer selects its timing reference signal from the 1 MHz
-> +  reference generated by USEC, TSC or either clk_m or OSC. Each TMR can be
-> +  programmed to generate one-shot, periodic, or watchdog interrupts.
+>   =09=09pm8916_vib: vibrator@c000 {
+>   =09=09=09compatible =3D "qcom,pm8916-vib";
+>   =09=09=09reg =3D <0xc000>;
+> diff --git a/arch/arm64/boot/dts/qcom/pm8994.dtsi b/arch/arm64/boot/dts/q=
+com/pm8994.dtsi
+> index 5ab46117d737..ab342397fcd8 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8994.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8994.dtsi
+> @@ -135,6 +135,16 @@ pmic@1 {
+>   =09=09#address-cells =3D <1>;
+>   =09=09#size-cells =3D <0>;
+>
+> +=09=09pm8994_lpg: lpg {
+> +=09=09=09compatible =3D "qcom,pm8994-lpg";
 > +
+> +=09=09=09#address-cells =3D <1>;
+> +=09=09=09#size-cells =3D <0>;
+> +=09=09=09#pwm-cells =3D <2>;
 > +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: nvidia,tegra186-timer
-> +        description: >
-> +          The Tegra186 timer provides ten 29-bit timer counters.
-> +      - const: nvidia,tegra234-timer
-> +        description: >
-> +          The Tegra234 timer provides sixteen 29-bit timer counters.
+> +=09=09=09status =3D "disabled";
+> +=09=09};
 > +
-> +  reg:
-> +    maxItems: 1
+>   =09=09pm8994_spmi_regulators: regulators {
+>   =09=09=09compatible =3D "qcom,pm8994-regulators";
+>   =09=09};
+> diff --git a/arch/arm64/boot/dts/qcom/pmi8994.dtsi b/arch/arm64/boot/dts/=
+qcom/pmi8994.dtsi
+> index 6e7c252568e6..b1b50c99ada2 100644
+> --- a/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+> @@ -27,6 +27,16 @@ pmic@3 {
+>   =09=09#address-cells =3D <1>;
+>   =09=09#size-cells =3D <0>;
+>
+> +=09=09pmi8994_lpg: lpg {
+> +=09=09=09compatible =3D "qcom,pmi8994-lpg";
 > +
-> +  interrupts: true
+> +=09=09=09#address-cells =3D <1>;
+> +=09=09=09#size-cells =3D <0>;
+> +=09=09=09#pwm-cells =3D <2>;
 > +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra186-timer
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 1
-> +          maxItems: 10
-> +          description: >
-> +            A list of 10 interrupts; one per each timer channels 0 through 9.
+> +=09=09=09status =3D "disabled";
+> +=09=09};
+> +
+>   =09=09pmi8994_spmi_regulators: regulators {
+>   =09=09=09compatible =3D "qcom,pmi8994-regulators";
+>   =09=09=09#address-cells =3D <1>;
+> diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/=
+qcom/pmi8998.dtsi
+> index 0fef5f113f05..7af106683f8d 100644
+> --- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+> @@ -42,6 +42,16 @@ lab: lab {
+>   =09=09=09};
+>   =09=09};
+>
+> +=09=09pmi8998_lpg: lpg {
+> +=09=09=09compatible =3D "qcom,pmi8998-lpg";
+> +
+> +=09=09=09#address-cells =3D <1>;
+> +=09=09=09#size-cells =3D <0>;
+> +=09=09=09#pwm-cells =3D <2>;
+> +
+> +=09=09=09status =3D "disabled";
+> +=09=09};
+> +
+>   =09=09pmi8998_wled: leds@d800 {
+>   =09=09=09compatible =3D "qcom,pmi8998-wled";
+>   =09=09=09reg =3D <0xd800 0xd900>;
+> @@ -52,6 +62,5 @@ pmi8998_wled: leds@d800 {
+>
+>   =09=09=09status =3D "disabled";
+>   =09=09};
+> -
+>   =09};
+>   };
+> --
+> 2.35.1
+>
 
-The schema says it is a list of 1 to 10 interrupts. Which is it. Surely 
-the h/w is fixed. If so, drop 'minItems' and the first sentence.
+--
+Kind Regards,
+Caleb
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra234-timer
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 1
-> +          maxItems: 16
-> +          description: >
-> +            A list of 16 interrupts; one per each timer channels 0 through 15.
-
-ditto
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    timer@3010000 {
-> +        compatible = "nvidia,tegra186-timer";
-> +        reg = <0x03010000 0x000e0000>;
-> +        interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    timer@2080000 {
-> +        compatible = "nvidia,tegra234-timer";
-> +        reg = <0x02080000 0x00121000>;
-> +        interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
-> -- 
-> 2.17.1
-> 
-> 
