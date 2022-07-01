@@ -2,120 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB41563763
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 18:07:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41B7056377B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 18:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbiGAQHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 12:07:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58400 "EHLO
+        id S231496AbiGAQMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 12:12:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbiGAQHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 12:07:03 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7948222BE6
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 09:07:01 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id k20so3485980edj.13
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 09:07:01 -0700 (PDT)
+        with ESMTP id S231163AbiGAQMF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 12:12:05 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B94CB237DC;
+        Fri,  1 Jul 2022 09:12:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iU1WXNqtWMrZUa+JVDcKXW+n/u2YiixZY6UAGKLDnPg=;
-        b=iq8OARlHdwjKJaotlBm1jpgne1kU1PT5n8rnl6fpp9YAyJoLGzBe5hekwwTHO4U6WG
-         ZHK2qR50/rtNqUyDApnn0W+70spOH37v/wSryluuzENNpTsfhHWf5E7ADyc2jEgaJWZ7
-         jHT3znd5Z/JBcuN1ieNFm6MgqTMUf+yFMuuW4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iU1WXNqtWMrZUa+JVDcKXW+n/u2YiixZY6UAGKLDnPg=;
-        b=vObb7dyjuAHHDJcbyqvvzKMCT464/gXAdBnL5Fbrtwv0/8Ra2D3ODXLLO3LitBlMao
-         YhUCOGt4sULNbGNMoX5/6JkJ5vuTS3o+JSiLyKmW/deGGN6dmu55MVK43aPffZsg2hAD
-         llVpso1gpO4gp7os4mDmvAGqIqnREiA2ULMdQp2yd/Gdd4TxG/2V/gWbfF4J2SSkCNzi
-         ybJFjSqYaAg+y3B04D0HNDndIk6BYCY8le2ul1nU99rJ1BAtuZA3TYo2LJ7Qklqqbij5
-         wPFbq7Q1QJHPu2eh53Es4CKIHDQK63aTHGL006DMovm72qJblKlgUsf55iV1swAtfyl0
-         b3ZA==
-X-Gm-Message-State: AJIora8NY2u5QF7gURJNo4DkckEGt2XXs3HN8BGRvWyVyEZzf8l8ys/r
-        txj8jtzlF9Aivzs75dKFgdTuL2HE2MgDbcVU
-X-Google-Smtp-Source: AGRyM1u/zmB+w2MXA/3awm+FVQSvUCzulO1KeSTecPL4cOvxIvEQHb0qL7t7gwsTdI9jkGgU6gilhw==
-X-Received: by 2002:a05:6402:3514:b0:435:f24a:fbad with SMTP id b20-20020a056402351400b00435f24afbadmr19169383edd.311.1656691619786;
-        Fri, 01 Jul 2022 09:06:59 -0700 (PDT)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com. [209.85.128.47])
-        by smtp.gmail.com with ESMTPSA id o7-20020a170906860700b00722d5f07864sm10393003ejx.225.2022.07.01.09.06.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 09:06:58 -0700 (PDT)
-Received: by mail-wm1-f47.google.com with SMTP id 205-20020a1c02d6000000b003a03567d5e9so3566403wmc.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 09:06:58 -0700 (PDT)
-X-Received: by 2002:a05:600c:4e8d:b0:3a1:2e4d:1dd2 with SMTP id
- f13-20020a05600c4e8d00b003a12e4d1dd2mr17792094wmq.85.1656691617857; Fri, 01
- Jul 2022 09:06:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <1656690436-15221-1-git-send-email-quic_khsieh@quicinc.com>
-In-Reply-To: <1656690436-15221-1-git-send-email-quic_khsieh@quicinc.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 1 Jul 2022 09:06:45 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V5uLz9aqrgHrsPYHzBXL+Bx5Ds8aEP_kSzA29d-9jtBg@mail.gmail.com>
-Message-ID: <CAD=FV=V5uLz9aqrgHrsPYHzBXL+Bx5Ds8aEP_kSzA29d-9jtBg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dta: qcom: sc7180: delete vdda-1p2 and vdda-0p9
- from mdss_dp
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>
-Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656691925; x=1688227925;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references;
+  bh=1d2wYW3ewRhZyGFM6oKSePTdDddbGJiMNxXm0ckzdk4=;
+  b=akBN+Mqo6A4vDp4TwAY2Q39MO4S32r4joXxcrIKGc2EWHIO0TBIjCPdJ
+   lI8+ZDyT47X3W+OKkWnwXngwrqVgMX09JzlRFBuy9R0CG7ibJGU2HVyzs
+   8GaHvDlFyFmxPRiegFc+JlHlQuXh9hLR5ZhyLgXXuboIazNRKgpn0DAHX
+   Q=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 01 Jul 2022 09:12:05 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 01 Jul 2022 09:12:02 -0700
+X-QCInternal: smtphost
+Received: from hu-krichai-hyd.qualcomm.com (HELO hu-sgudaval-hyd.qualcomm.com) ([10.213.110.37])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 01 Jul 2022 21:41:41 +0530
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
+        id 45D30425A; Fri,  1 Jul 2022 21:41:41 +0530 (+0530)
+From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
+To:     helgaas@kernel.org
+Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mka@chromium.org,
+        quic_vbadigan@quicinc.com, quic_hemantk@quicinc.com,
+        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
+        quic_ramkri@quicinc.com, manivannan.sadhasivam@linaro.org,
+        swboyd@chromium.org, dmitry.baryshkov@linaro.org,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        quic_mkrishn@quicinc.com, quic_kalyant@quicinc.coml,
-        freedreno <freedreno@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v2 2/3] dt-bindings: pci: QCOM Adding sc7280 aggre0, aggre1 clocks
+Date:   Fri,  1 Jul 2022 21:41:38 +0530
+Message-Id: <1656691899-21315-3-git-send-email-quic_krichai@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1656691899-21315-1-git-send-email-quic_krichai@quicinc.com>
+References: <1656062391-14567-1-git-send-email-quic_krichai@quicinc.com>
+ <1656691899-21315-1-git-send-email-quic_krichai@quicinc.com>
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Adding aggre0 and aggre1 clock entries to PCIe node. 
 
-On Fri, Jul 1, 2022 at 8:47 AM Kuogee Hsieh <quic_khsieh@quicinc.com> wrote:
->
-> Both vdda-1p2-supply and vdda-0p9-supply regulators are controlled
-> by dp combo phy. Therefore remove them from dp controller.
->
-> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index 732e118..824a98c 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -813,8 +813,6 @@ hp_i2c: &i2c9 {
->         pinctrl-names = "default";
->         pinctrl-0 = <&dp_hot_plug_det>;
->         data-lanes = <0 1>;
-> -       vdda-1p2-supply = <&vdda_usb_ss_dp_1p2>;
-> -       vdda-0p9-supply = <&vdda_usb_ss_dp_core>;
->  };
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index 0b69b12..8f29bdd 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -423,8 +423,8 @@ allOf:
+     then:
+       properties:
+         clocks:
+-          minItems: 11
+-          maxItems: 11
++          minItems: 13
++          maxItems: 13
+         clock-names:
+           items:
+             - const: pipe # PIPE clock
+@@ -437,6 +437,8 @@ allOf:
+             - const: bus_slave # Slave AXI clock
+             - const: slave_q2a # Slave Q2A clock
+             - const: tbu # PCIe TBU clock
++            - const: aggre0 # Aggre NoC PCIe CENTER SF AXI clock
++            - const: aggre1 # Aggre NoC PCIe1 AXI clock
+             - const: ddrss_sf_tbu # PCIe SF TBU clock
+         resets:
+           maxItems: 1
+-- 
+2.7.4
 
-NOTE: this is somewhat related to Kuogee's series [1] but it's OK to
-take even though his series hasn't landed. On trogdor we always keep
-these regulators in HPM mode so we're not truly dependent on the
-addition of regulator_set_load in the DP PHY.
-
-[1] https://lore.kernel.org/lkml/8b751eb3-2e19-0e03-4c94-b26b3badd397@linaro.org/
-
--Doug
