@@ -2,92 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F06F6563B73
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 23:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BA5A563B95
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 23:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232011AbiGAUty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 16:49:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48338 "EHLO
+        id S229541AbiGAUyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 16:54:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231237AbiGAUts (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 16:49:48 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2F516051C;
-        Fri,  1 Jul 2022 13:49:46 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 194so987224ybc.4;
-        Fri, 01 Jul 2022 13:49:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L3xyYkVUb08ki16owDdwA0s6fxyBYTVKhzo/OZc4swY=;
-        b=Q2bHi8xGPVEu5bceVUNZYHpmzzugqU9zcEOTOg2MdUoxdlZMrh2dhUi/3V/yVyoP8T
-         7JZKoRSgqiX3kGpk6q8nfQN+YnjerSQKLRyC5wB9fCeMncQJ3qV6JNf2cjyYqUtH+8NM
-         pdl9uOadAWBK3qlpdDJd7bhS4ek7Jt+2teWEvzgDro4DgmMj/6UqIUVyrft2OnpZsIjb
-         valYyD/7fj2Fg3XZsjwz0WFbMBR4OJjKVoa+i9poO3QyMXjzjnCbuPxui6Unq14iapP6
-         HLgpXiF/htqOgwAORxZbk3vYkJwLJnrzVADBiTnCagwQpcjAD42LQfLIDiM/Jnv7p14Z
-         c5ig==
+        with ESMTP id S231897AbiGAUyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 16:54:49 -0400
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87E3D6758A;
+        Fri,  1 Jul 2022 13:54:47 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id w10so2132063ilj.4;
+        Fri, 01 Jul 2022 13:54:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L3xyYkVUb08ki16owDdwA0s6fxyBYTVKhzo/OZc4swY=;
-        b=hoP3kRxZBoTr0SSee1gkWBKvlMMDQkwsoLbTU4sFhYYI/VF7RlnLQWs8AMcJd8bRyl
-         nIHeZIxVn+asVm/e963cFPup21Gm+vqOHatPbnwmizFewNPdOQMz4rcpLeJZDsMaMBiB
-         WQrj76oiDIzmM59BiYbt3yEfCoJcYn9vZo+gIXORLPXNyb6aG2q+LPJ1xU1lYbvzSCxW
-         uImUaQJQTTAIwYnRrJuVmtlh/GYhyuGoI1zLA00+um0dSHl5FS35I5vQNj+xg7wbBf6S
-         j1TrlK6IBWmaq9kONH/qBivIbEC0okFDNG6jOCY+gyG0pEycoeJ9IGuFxHYE05p8kEZ5
-         wPGQ==
-X-Gm-Message-State: AJIora9i/dBkJqzCeChptcyKzi0iYbykXMuN2X/00gH6e8fQCznK8nmn
-        kMXHl7S0so6L//fMCYVohNwXyNX9gG/2INnmKV8=
-X-Google-Smtp-Source: AGRyM1sSuMB2bm2+fgeAw4QBEbPXyLstIl8n4mXHDssuvKcqLX+xrURcZllP7cVih4dACkvtsUY4DWlFxSN1vsLxeLQ=
-X-Received: by 2002:a05:6902:1142:b0:66d:999a:81a7 with SMTP id
- p2-20020a056902114200b0066d999a81a7mr13503264ybu.460.1656708586203; Fri, 01
- Jul 2022 13:49:46 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HrTG0yud13UmQCFPBZCzpXGEK9vy1R8RoOTRKyUValo=;
+        b=hsZ38frC9/v4kyCR0xX5oPjxfvz0ZzBnppjpnuvsi+zbkyfQGoNo4CVN04ihBBAppP
+         PwktEFyKiqUos25gq+yhTO/XozNyW9NbY+CzqB4EBv8XR0MOAgO8d8SSNTZqlBl25xK6
+         HyVaSN9XQ1XbuNQqG20kz8B9hmhoTDhdOZCvXg1WlEPoT1JiNyRDHOC3P7I7ZAo8QkP7
+         uvSZyzkWpbZ7QARQQzM7dD9nkyitNTFR3GUnllstwDZvwnJwbtv0S6BooB7ayJxOsd61
+         SBP5JNXIGqnBYjQpUf+bA+g2DCcdLZRWRnO2XPVPy95elzPGM0tzCn2jr1JRcXPp5U7a
+         p5Wg==
+X-Gm-Message-State: AJIora+cBi3gRIYCkPsOTTirL0NBsDlXa7t1r+M0vsGNRcybptP8M4i6
+        sKP8y29UOsKJsFdIRNeMwA==
+X-Google-Smtp-Source: AGRyM1tN03ajV9JtjOBB9YmRsmAfhh0DZ3pRb8uoazawRe++MW5uDTrgKNun8JIBUIZsI2Usu7M1NQ==
+X-Received: by 2002:a92:ddd1:0:b0:2d5:4877:65c8 with SMTP id d17-20020a92ddd1000000b002d5487765c8mr9847783ilr.267.1656708886842;
+        Fri, 01 Jul 2022 13:54:46 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id f65-20020a0284c7000000b00339ddd8adddsm10257382jai.98.2022.07.01.13.54.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Jul 2022 13:54:46 -0700 (PDT)
+Received: (nullmailer pid 1511267 invoked by uid 1000);
+        Fri, 01 Jul 2022 20:54:44 -0000
+Date:   Fri, 1 Jul 2022 14:54:44 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com,
+        shengjiu.wang@gmail.com, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, devicetree@vger.kernel.org,
+        krzk+dt@kernel.org, perex@perex.cz, linuxppc-dev@lists.ozlabs.org,
+        festevam@gmail.com, alsa-devel@alsa-project.org,
+        broonie@kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 5/6] ASoC: dt-bindings: fsl_spdif: Add two PLL clock
+ source
+Message-ID: <20220701205444.GA1511232-robh@kernel.org>
+References: <1656667961-1799-1-git-send-email-shengjiu.wang@nxp.com>
+ <1656667961-1799-6-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-References: <20220701134415.4017794-1-vincent.knecht@mailoo.org>
- <20220701134415.4017794-5-vincent.knecht@mailoo.org> <CAHp75Vf1nMi6OAbksNMCEkq3snrtDQSwRcSnbkB=gPwS=WWz9A@mail.gmail.com>
-In-Reply-To: <CAHp75Vf1nMi6OAbksNMCEkq3snrtDQSwRcSnbkB=gPwS=WWz9A@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 1 Jul 2022 22:49:08 +0200
-Message-ID: <CAHp75VdpQ5J1nSONpM=C9YL1Qd6sJMLbrmGT_3uQHn8Um_0++w@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] leds: is31fl319x: Use non-wildcard names for vars,
- structs and defines
-To:     Vincent Knecht <vincent.knecht@mailoo.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1656667961-1799-6-git-send-email-shengjiu.wang@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 1, 2022 at 10:47 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Fri, Jul 1, 2022 at 3:45 PM Vincent Knecht <vincent.knecht@mailoo.org> wrote:
+On Fri, 01 Jul 2022 17:32:40 +0800, Shengjiu Wang wrote:
+> Add two PLL clock source, they are the parent clocks of root clock
+> one is for 8kHz series rates, another one is for 11kHz series rates.
+> They are optional clocks, if there are such clocks, then driver
+> can switch between them for supporting more accurate rates.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/sound/fsl,spdif.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-...
-
-> > +#define IS31FL3196_CURRENT_MIN         ((u32)5000)
-> > +#define IS31FL3196_CURRENT_MAX         ((u32)40000)
-> > +#define IS31FL3196_CURRENT_STEP                ((u32)5000)
-> > +#define IS31FL3196_CURRENT_DEFAULT     ((u32)20000)
-
-Also why no units as below, for example, has?
-
-> > +#define IS31FL3196_AUDIO_GAIN_DB_MAX   ((u32)21)
-> > +#define IS31FL3196_AUDIO_GAIN_DB_STEP  ((u32)3)
-
--- 
-With Best Regards,
-Andy Shevchenko
+Acked-by: Rob Herring <robh@kernel.org>
