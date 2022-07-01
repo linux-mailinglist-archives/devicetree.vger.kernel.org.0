@@ -2,130 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9803B562798
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 02:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3909B5627B2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 02:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbiGAAKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 20:10:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52834 "EHLO
+        id S229639AbiGAA1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 20:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbiGAAKC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 20:10:02 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6B54D4D4
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 17:10:02 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id d3so774637ioi.9
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 17:10:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Rvgw2gV9oI41r7piGxIllnTvFTiZDqgR+p9fNGyz+94=;
-        b=i1hx4du+x7rW6Rak3tAjrzIIAj1UlmIC4DRxGPUSICJuX9T7wQORIxNlCNOYFDE28E
-         x4wbDeuj0W6k5hyitqKcpHZ/+PlSwTDfSHt4XJC4rQhtDsRH1agRfB2hOL0hV6PNPwlc
-         hBTuswYBb7F2u8h7bX3MqIrWpAgY8mEpxWCizV2LhmWX9ibKRsPgAKpsX0hidMz1nSM/
-         lvmbHDfQzBUc2cJ9oXx+iZ/8juA1zuqaVOSEELUCP/cVSLMheNBukJYrVpKk6gvnxWEs
-         3Gxrbc3Njv9QE6EzgF3ZpnPnBi18/D8HC8oLO4bKkj1oaCC4DZI5ZBZuRzx0/vpfehBJ
-         xmQQ==
-X-Gm-Message-State: AJIora+vViPrqo6JGRi9+GFG+xEspZr1MuU5aBtcwZslatCmVrThuC6W
-        PBMgMYe/HMXnJAA/5gcxTw==
-X-Google-Smtp-Source: AGRyM1vvlzCpy9/ye6a/kOwidICU5eNh+knIL9xMEORJHu35USN544S7EiLWpV4+h0d7dzl70LL3Kg==
-X-Received: by 2002:a05:6602:154f:b0:675:b957:70a3 with SMTP id h15-20020a056602154f00b00675b95770a3mr1402129iow.109.1656634201371;
-        Thu, 30 Jun 2022 17:10:01 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id u13-20020a5d870d000000b00669ceb1d521sm9662724iom.10.2022.06.30.17.10.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 17:10:01 -0700 (PDT)
-Received: (nullmailer pid 3600592 invoked by uid 1000);
-        Fri, 01 Jul 2022 00:09:59 -0000
-Date:   Thu, 30 Jun 2022 18:09:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: imx8mp-media-blk-ctrl: Add LDB into DT
- example
-Message-ID: <20220701000959.GA3588170-robh@kernel.org>
-References: <20220630173922.92296-1-marex@denx.de>
- <f0366170-c1b6-9573-3e9c-9b1ace2dfbad@linaro.org>
- <b6badccf-8910-da26-bbcc-1302d957a2bd@denx.de>
- <27495fa3-b4ae-7502-45f8-5eb4c5e36640@linaro.org>
- <247d48ae-d22f-4adc-07c0-74dbccfc9390@denx.de>
+        with ESMTP id S229609AbiGAA1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 20:27:14 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EBA853EE4
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 17:27:10 -0700 (PDT)
+Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220701002707epoutp01152365c8c2222f661629a4ec367cefc2~9jPZA2_jH1413014130epoutp01k
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 00:27:07 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220701002707epoutp01152365c8c2222f661629a4ec367cefc2~9jPZA2_jH1413014130epoutp01k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1656635227;
+        bh=+Uyb+Sk9Z1bPH9TkanCr784yxeep/5h/CN3g6+QH9Ek=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=vNSqZrunEY9HMqIO8YinpsThIhnsb5J2WYapwt/ztW7i/Y707AsHUYZh1WXBRyUsU
+         CQ6Z6LBtGEJCcZhBqHOLcAQqGRohNO4ehSoie5gKKunpP/3Mfr0kWZmc98WgapOL4k
+         BzuwfD3ZHFN8SrWXwZEqhqbo7La36nOK4WLJ5UWU=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20220701002706epcas1p113cb9a3baabc0f597413b32f79379797~9jPYWUx-u3255832558epcas1p1z;
+        Fri,  1 Jul 2022 00:27:06 +0000 (GMT)
+Received: from epsmges1p1.samsung.com (unknown [182.195.36.132]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4LYwxj1ykvz4x9QH; Fri,  1 Jul
+        2022 00:27:05 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        45.50.09657.95F3EB26; Fri,  1 Jul 2022 09:27:05 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220701002704epcas1p25ab6878a9c21a75aab727dd49171859e~9jPWuQnF22489424894epcas1p2M;
+        Fri,  1 Jul 2022 00:27:04 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220701002704epsmtrp1fe3bfe1e96cb9cd283cc616bcab41096~9jPWtM00O2207222072epsmtrp1X;
+        Fri,  1 Jul 2022 00:27:04 +0000 (GMT)
+X-AuditID: b6c32a35-71dff700000025b9-c7-62be3f59b291
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        F1.A7.08905.85F3EB26; Fri,  1 Jul 2022 09:27:04 +0900 (KST)
+Received: from inkidae001 (unknown [10.113.221.213]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220701002702epsmtip19324f07764b919acde6d7a9e7f559267~9jPUYjXaT3142831428epsmtip12;
+        Fri,  1 Jul 2022 00:27:02 +0000 (GMT)
+From:   =?UTF-8?B?64yA7J246riwL1RpemVuIFBsYXRmb3JtIExhYihTUikv7IK87ISx7KCE7J6Q?= 
+        <inki.dae@samsung.com>
+To:     "'Rob Herring'" <robh@kernel.org>
+Cc:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Seung-Woo Kim'" <sw0312.kim@samsung.com>,
+        "'Kyungmin Park'" <kyungmin.park@samsung.com>,
+        "'David Airlie'" <airlied@linux.ie>,
+        "'Daniel Vetter'" <daniel@ffwll.ch>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
+        "'Vinod Koul'" <vkoul@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+In-Reply-To: <20220630231809.GA3514176-robh@kernel.org>
+Subject: RE: [PATCH 1/2] drm/exynos: MAINTAINERS: move Joonyoung Shim to
+ credits
+Date:   Fri, 1 Jul 2022 09:27:01 +0900
+Message-ID: <003301d88ce1$49e82330$ddb86990$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <247d48ae-d22f-4adc-07c0-74dbccfc9390@denx.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJghn6p1dSqDKoivxgEEVwDdxk9yAKXUcLlA0cSKuMCrijEvqwUTSIg
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrNJsWRmVeSWpSXmKPExsWy7bCmrm6k/b4kg19beS16z51ksngwbxub
+        xf9tE5kt5h85x2px5et7NosLT3vYLPpePGS22Pt6K7vF2aY37BabHl9jtbi8aw6bxYRV31gs
+        Zpzfx2Txf88OdosZk1+yWey8c4LZQcBj77cFLB6bVnWyedy5tofNY/u3B6we97uPM3lsXlLv
+        0bdlFaPH8RvbmTw+b5IL4IzKtslITUxJLVJIzUvOT8nMS7dV8g6Od443NTMw1DW0tDBXUshL
+        zE21VXLxCdB1y8wBekNJoSwxpxQoFJBYXKykb2dTlF9akqqQkV9cYquUWpCSU2BaoFecmFtc
+        mpeul5daYmVoYGBkClSYkJ3R9XIZW8E7yYqjW9exNzA2SXYxcnJICJhINK56w9TFyMUhJLCD
+        UeL0pp1QzidGie9/epkhnG+MEt0NT5hhWratm8IOkdjLKHF7+XJWCOclo8Sm/SvBqtgE0iXu
+        djcwgdgiAqoSTbMesIAUMQv8ZJGYevkZK0iCU8BcorftLyOILSwQJPHu318WEJtFQEXi26kV
+        YM28ApYSp88sY4WwBSVOznwCVsMsoC2xbOFrqJMUJH4+hagREXCTOPD1AytEjYjE7M42sB8k
+        BL5wSKw9sYgNosFFYsW8O6wQtrDEq+Nb2CFsKYmX/W3sEA2TGSXuXF/BAuHMYJQ4/PM6I0SV
+        scT+pZOBzuMAWqEpsX6XPkRYUWLn77mMEJv5JN597WEFKZEQ4JXoaBOCKFGSOHbxBtQUCYkL
+        SyayTWBUmoXkt1lIfpuF5IdZCMsWMLKsYhRLLSjOTU8tNiwwhEd4cn7uJkZwKtcy3cE48e0H
+        vUOMTByMhxglOJiVRHjZ5u1NEuJNSaysSi3Kjy8qzUktPsRoCgzticxSosn5wGySVxJvaGJp
+        YGJmZGxiYWhmqCTOu2ra6UQhgfTEktTs1NSC1CKYPiYOTqkGpoKl0csnmryf479Pa/lDH8ac
+        WNd3fXb5Dk//sP+uq97dayN9Yt68GSkJr0I2cH5bfErNXjnp+x43hX9OfZExhYpify4YPFD+
+        wbs4cdYz+5y0Xcs4Ejplb38r/BEeazb5+sWV4p/fqLiWPLEWnnMnpGGVnYJr1sUiLrWXC1bJ
+        PtMJXfQ2LiLx+ba86QyqhoHHtd7tdf3aunnX3vTXQU+0F1qf335s1nPTlE3zVnmuF+/5yuTE
+        8LIg89+jg+/+qh8P39ta86R2f95B/t2aSgn7N/xo3nzkxok35taLhYQWqf1b9n5+bNB9mYnq
+        8ifW3F/1QnymRiOnVsS2JOaZbWYJJTu4XF/LctRUlTMw8145zKjEUpyRaKjFXFScCACFmc0g
+        bgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPIsWRmVeSWpSXmKPExsWy7bCSnG6E/b4kgy//VC16z51ksngwbxub
+        xf9tE5kt5h85x2px5et7NosLT3vYLPpePGS22Pt6K7vF2aY37BabHl9jtbi8aw6bxYRV31gs
+        Zpzfx2Txf88OdosZk1+yWey8c4LZQcBj77cFLB6bVnWyedy5tofNY/u3B6we97uPM3lsXlLv
+        0bdlFaPH8RvbmTw+b5IL4IzisklJzcksSy3St0vgylh9Rqtgt3DFhsc1DYynBboYOTkkBEwk
+        tq2bwt7FyMUhJLCbUeLzpMmMXYwcQAkJiS1bOSBMYYnDh4tByoUEnjNKPGxUB7HZBFIlbnz6
+        yA5iiwioSjTNesACMoZZoJlVYuvp08wQDW8ZJe40BIPYnALmEr1tfxlBbGGBAImdR76CNbMI
+        qEh8O7WCCcTmFbCUOH1mGSuELShxcuYTFhCbWUBbovdhKyOMvWzha2aI+xUkfj6FqBcRcJM4
+        8PUDK0SNiMTszjbmCYzCs5CMmoVk1Cwko2YhaVnAyLKKUTK1oDg3PbfYsMAwL7Vcrzgxt7g0
+        L10vOT93EyM4jrU0dzBuX/VB7xAjEwfjIUYJDmYlEV62eXuThHhTEiurUovy44tKc1KLDzFK
+        c7AoifNe6DoZLySQnliSmp2aWpBaBJNl4uCUamBye+R75lLkwUuKMUfP232dtXdeqYvGzcQy
+        7psrOBjT3s+c0Jhl9u+E0KYVz1b82XlrC8OxvW2fXmuIyd4S8npkeb13w6EjtaXn3U0Wzjdq
+        jJt4Ye77B6fSwn6c/TbxcuGpCQZXFA8E7JwtyLZj6oWEbNO7X59/TA38dlaDSfLqj5Vicyo1
+        eSy1Zknc0TwlVKMeJ2DAkf1H5uf/2FfTD63ViQj2qf61Re9V2By5vYeyUtNcvK9rC6yq/dpS
+        O+2nApPpqylX1jkfb4z49nbf/8ap6i1SzrJfaqqW2pdMd7i1wDtbgnXBkf49nnX+c/4IrQiq
+        7GjxyXBhZ3kvd2/jDufPz90ffHuf9vrq3HbmqHd/uJRYijMSDbWYi4oTAR7STMxSAwAA
+X-CMS-MailID: 20220701002704epcas1p25ab6878a9c21a75aab727dd49171859e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220626163558epcas1p3f525431b9fb237bd420ad1453daaf1ac
+References: <CGME20220626163558epcas1p3f525431b9fb237bd420ad1453daaf1ac@epcas1p3.samsung.com>
+        <20220626163320.6393-1-krzysztof.kozlowski@linaro.org>
+        <0de401d88c38$23aeb8e0$6b0c2aa0$@samsung.com>
+        <20220630231809.GA3514176-robh@kernel.org>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 09:50:31PM +0200, Marek Vasut wrote:
-> On 6/30/22 21:31, Krzysztof Kozlowski wrote:
-> 
-> Hi,
-> 
-> [...]
-> 
-> > > > > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-> > > > > index b246d8386ba4a..05a19d3229830 100644
-> > > > > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-> > > > > @@ -18,11 +18,18 @@ properties:
-> > > > >      compatible:
-> > > > >        items:
-> > > > >          - const: fsl,imx8mp-media-blk-ctrl
-> > > > > +      - const: simple-mfd
-> > > > 
-> > > > Not really... simple-mfd means devices is really simple and you just use
-> > > > it to instantiate children. However this is not simple - it's a power
-> > > > domain controller with several clocks and power domains as input.
-> > > > 
-> > > > It's not a simple MFD, but a regular device.
-> > > 
-> > > I don't understand this comment. The LDB bridge is literally two
-> > > registers with a few bits in this media block controller register area.
-> > > Can you expand on why the simple-mfd is unsuitable and what should it be
-> > > instead ?
-> > 
-> > Looking at the bindings you have there 10 power domains, 10 input clocks
-> > and a domain provider. The driver is also not that simple which is
-> > another argument that this is not simple-mfd. Simply, it is not simple.
-> > 
-> > What I meant, is that probably you should populate children from the
-> > driver instead of adding simple-mfd compatible. Once you add simple-mfd,
-> > you cannot remove it and children cannot use anything from the parent.
-> 
-> No, I don't think so.
-> 
-> The block controller provides those 10 power domains, those are separate
-> things controlled by separate registers within the block control register
-> space.
-> 
-> This LDB bridge are two more completely unrelated registers which have
-> nothing to do with those power domains . They are just in the same register
-> block because they had to put those registers somewhere. And they are mixed
-> literally in the middle of the register block, because there was space it
-> seems. Hence the simple-mfd is I think the right thing here.
+Hi Rob,
 
-Was 'simple-mfd' missing or LDB bridge wasn't a child node? I though 
-this was a no functional change patch. Seems more than just update the 
-example.
-
-'simple-mfd' is saying the child has 0 dependence on the parent. IMO, 
-'syscon' contradicts that, but that's an all to common pattern. You are 
-saying all the clocks (or any other resources) in the parent can be off 
-and the LDB bridge is still functional.
-
-Rob
+> -----Original Message-----
+> From: Rob Herring =5Bmailto:robh=40kernel.org=5D
+> Sent: Friday, July 1, 2022 8:18 AM
+> To: =EF=BF=BD=EF=BF=BD=EF=BF=BD=CE=B1=EF=BF=BD/Tizen=20Platform=20Lab(SR)=
+/=EF=BF=BD=EF=BC=BA=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=20<inki.dae=40samsu=
+ng.com>=0D=0A>=20Cc:=20'Krzysztof=20Kozlowski'=20<krzysztof.kozlowski=40lin=
+aro.org>;=20'Seung-Woo=20Kim'=0D=0A>=20<sw0312.kim=40samsung.com>;=20'Kyung=
+min=20Park'=0D=0A>=20<kyungmin.park=40samsung.com>;=20'David=20Airlie'=20<a=
+irlied=40linux.ie>;=20'Daniel=0D=0A>=20Vetter'=20<daniel=40ffwll.ch>;=20'Kr=
+zysztof=20Kozlowski'=0D=0A>=20<krzysztof.kozlowski+dt=40linaro.org>;=20'Ali=
+m=20Akhtar'=0D=0A>=20<alim.akhtar=40samsung.com>;=20'Kishon=20Vijay=20Abrah=
+am=20I'=20<kishon=40ti.com>;=0D=0A>=20'Vinod=20Koul'=20<vkoul=40kernel.org>=
+;=20linux-kernel=40vger.kernel.org;=20dri-=0D=0A>=20devel=40lists.freedeskt=
+op.org;=20devicetree=40vger.kernel.org;=20linux-arm-=0D=0A>=20kernel=40list=
+s.infradead.org;=20linux-samsung-soc=40vger.kernel.org;=20linux-=0D=0A>=20p=
+hy=40lists.infradead.org=0D=0A>=20Subject:=20Re:=20=5BPATCH=201/2=5D=20drm/=
+exynos:=20MAINTAINERS:=20move=20Joonyoung=20Shim=0D=0A>=20to=20credits=0D=
+=0A>=20=0D=0A>=20On=20Thu,=20Jun=2030,=202022=20at=2001:16:14PM=20+0900,=20=
+=EF=BF=BD=EF=BF=BD=EF=BF=BD=CE=B1=EF=BF=BD/Tizen=20Platform=20Lab(SR)/=EF=
+=BF=BD=0D=0A>=20=EF=BC=BA=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=20wrote:=0D=
+=0A>=20>=0D=0A>=20>=0D=0A>=20>=20>=20-----Original=20Message-----=0D=0A>=20=
+>=20>=20From:=20Krzysztof=20Kozlowski=20=5Bmailto:krzysztof.kozlowski=40lin=
+aro.org=5D=0D=0A>=20>=20>=20Sent:=20Monday,=20June=2027,=202022=201:33=20AM=
+=0D=0A>=20>=20>=20To:=20Inki=20Dae=20<inki.dae=40samsung.com>;=20Seung-Woo=
+=20Kim=0D=0A>=20>=20>=20<sw0312.kim=40samsung.com>;=20Kyungmin=20Park=0D=0A=
+>=20<kyungmin.park=40samsung.com>;=20David=0D=0A>=20>=20>=20Airlie=20<airli=
+ed=40linux.ie>;=20Daniel=20Vetter=20<daniel=40ffwll.ch>;=20Rob=20Herring=0D=
+=0A>=20>=20>=20<robh+dt=40kernel.org>;=20Krzysztof=20Kozlowski=0D=0A>=20>=
+=20>=20<krzysztof.kozlowski+dt=40linaro.org>;=20Alim=20Akhtar=0D=0A>=20>=20=
+<alim.akhtar=40samsung.com>;=0D=0A>=20>=20>=20Kishon=20Vijay=20Abraham=20I=
+=20<kishon=40ti.com>;=20Vinod=20Koul=20<vkoul=40kernel.org>;=0D=0A>=20>=20>=
+=20linux-kernel=40vger.kernel.org;=20dri-devel=40lists.freedesktop.org;=0D=
+=0A>=20>=20>=20devicetree=40vger.kernel.org;=20linux-arm-kernel=40lists.inf=
+radead.org;=20linux-=0D=0A>=20>=20>=20samsung-soc=40vger.kernel.org;=20linu=
+x-phy=40lists.infradead.org=0D=0A>=20>=20>=20Cc:=20Krzysztof=20Kozlowski=20=
+<krzysztof.kozlowski=40linaro.org>=0D=0A>=20>=20>=20Subject:=20=5BPATCH=201=
+/2=5D=20drm/exynos:=20MAINTAINERS:=20move=20Joonyoung=20Shim=0D=0A>=20to=0D=
+=0A>=20>=20>=20credits=0D=0A>=20>=20>=0D=0A>=20>=20>=20Emails=20to=20Joonyo=
+ung=20Shim=20bounce=20(=22550=205.1.1=20Recipient=20address=20rejected:=0D=
+=0A>=20>=20>=20User=20unknown=22),=20so=20move=20him=20to=20credits=20file.=
+=0D=0A>=20>=20>=0D=0A>=20>=0D=0A>=20>=20Applied.=0D=0A>=20=0D=0A>=20Both=20=
+patches=20or=20just=20this=20one?=0D=0A=0D=0AAh,=20didn't=20check=20it.=20I=
+=20will=20take=20other=20one=20too.=20Please=20let=20me=20know=20if=20there=
+=20is=20any=20problem.=0D=0A=0D=0AThanks,=0D=0AInki=20Dae=0D=0A=0D=0A
