@@ -2,57 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D2FE5633E6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 15:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852145633F1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 15:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234828AbiGANBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 09:01:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58322 "EHLO
+        id S235955AbiGANCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 09:02:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234005AbiGANBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 09:01:50 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDABF443D0
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 06:01:49 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o7GHF-0002ni-LQ; Fri, 01 Jul 2022 15:01:41 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o7GH7-003mvK-2Z; Fri, 01 Jul 2022 15:01:36 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o7GH9-002Jzq-VC; Fri, 01 Jul 2022 15:01:35 +0200
-Date:   Fri, 1 Jul 2022 15:01:33 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nikita Travkin <nikita@trvn.ru>
-Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
-        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
-        masneyb@onstation.org, sean.anderson@seco.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v7 1/2] dt-bindings: pwm: Document clk based PWM
- controller
-Message-ID: <20220701130133.st7zaw4ta4v42fiy@pengutronix.de>
-References: <20220612132203.290726-1-nikita@trvn.ru>
- <20220612132203.290726-2-nikita@trvn.ru>
+        with ESMTP id S235533AbiGANCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 09:02:34 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B32E4160C;
+        Fri,  1 Jul 2022 06:02:31 -0700 (PDT)
+Received: from p508fd39e.dip0.t-ipconnect.de ([80.143.211.158] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1o7GHv-0001X7-Qh; Fri, 01 Jul 2022 15:02:23 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>, Ondrej Jirman <x@xff.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH 1/6] dt-bindings: pinctrl: Add compatibles for Allwinner D1/D1s
+Date:   Fri, 01 Jul 2022 15:02:23 +0200
+Message-ID: <4880134.Sgy9Pd6rRy@phil>
+In-Reply-To: <20220626021148.56740-2-samuel@sholland.org>
+References: <20220626021148.56740-1-samuel@sholland.org> <20220626021148.56740-2-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kgghnss7vxtqvlnc"
-Content-Disposition: inline
-In-Reply-To: <20220612132203.290726-2-nikita@trvn.ru>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,46 +48,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am Sonntag, 26. Juni 2022, 04:11:42 CEST schrieb Samuel Holland:
+> D1 contains a pin controller similar to previous SoCs, but with some
+> register layout changes. It includes 6 interrupt-capable pin banks.
+> 
+> D1s is a low pin count version of the D1 SoC, with some pins omitted.
+> The remaining pins have the same function assignments as D1.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
---kgghnss7vxtqvlnc
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On a D1-Nezha
+Tested-by: Heiko Stuebner <heiko@sntech.de>
 
-Hello,
 
-[fixing the address of the devicetree list]
 
-On Sun, Jun 12, 2022 at 06:22:02PM +0500, Nikita Travkin wrote:
-> Add YAML devicetree binding for clk based PWM controller
->=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-
-I'm discarding this patch from the PWM patchwork as I expect it to be
-resent when the review comments for patch 2 are addressed.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---kgghnss7vxtqvlnc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmK+8CoACgkQwfwUeK3K
-7AmtdQf9E3zHemlvY2NEH8un1rijwUybR8QZ7J7kEdj4B4ATuXYPwq+N2B+O1MVt
-x7q9zbTSLLUFTf+2gM7hxTNdkH+82upf4SaYNncMDcgZyDZMCGBZuvS8lvB9pHxz
-rFlB0iDQIfkIT3tTLf1dM+7ZQv+hsP+GV7mstsv8R5ifjGXvihilS2RP1fu8h9mV
-/Qi0gIzikwqfGd/5CewNv4XzWvkGiYsdVUchoOUmdk7oCvg4i41K9Um3Pp6JGkcW
-A6JSRXCfiawikKUOYda/3BjeynG65HVW+rq/Wy+JEBUKpc0rTmYUbR4Wcy5nZcof
-c75IRUFjARv5BWkAfjYqMMyAcCS5ZQ==
-=zTYG
------END PGP SIGNATURE-----
-
---kgghnss7vxtqvlnc--
