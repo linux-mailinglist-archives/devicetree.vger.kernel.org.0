@@ -2,143 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D143562B89
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 08:26:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51159562BBF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 08:29:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234814AbiGAG0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 02:26:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57986 "EHLO
+        id S233411AbiGAG2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 02:28:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234776AbiGAG0v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 02:26:51 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1175D45054
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 23:26:51 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id c15so1488158ljr.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 23:26:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=8cvn4OI0YG23eBzT25QIL10M0drau64R5BF4I+eueZ8=;
-        b=IVRSFW2bwDcxAvPzl0Y9tKTZOwAwBG/SiOmsrTwNMpa3TUdRr7f8QxkZXWG4eFqVD+
-         y79n1nP7BB8qFUUqmC+wk64rOX6mavRT/Gyrum7aE7e0WMl6xjT/llcG4EQKJui4Rffl
-         qmzCu6URNMVjSWvjsZfi6FpjXV4hDh8R6dsVTmHSkhepFWFGtakazPZTXLRgcRe/Ouuc
-         7iph2FT4XA+q0MgjmcEVnMqearb4v8BS9irsqdvswt5fFTSXqHj6awC3/ls+h+j/MOxS
-         vvjHWJYbwP5cKg2Ko2C5KFfrMaOr8MTLCtPSBrIuRsoZnpg3LSWo4C483fKnJIk1XBM5
-         +4MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=8cvn4OI0YG23eBzT25QIL10M0drau64R5BF4I+eueZ8=;
-        b=bv463/BwqmF11R0H/aMTh7dj/BQCdZjXE/grWuGjNYCpYLvGu/dYwWTsB/ueVpxPPJ
-         1D6xz8GTPoWAz66QdDY2KWbLIJP4ZxDwC0fk9CyW5OmxQlZF2gePAnrs62B/8iAFiqCr
-         2CLRCpKfe7Xee0Exu1rwX8H5uJbkCEhyedKG+bVPvCAxnUGrFYgz3aJQ2EKTARo3PE4h
-         6CkWFV/Jf/OdAHioL8bGRAhdNeKVPpfPp72IhWsGeeIkeuzI9OUeuuqF0zIeLIFVMyji
-         qNczbZN4md79Ytu0KdbMn0/JYIMV3tEF1zCFQ6ahBfvbwJHDHJmSX1K0bx7TT9zjP/y2
-         n/FQ==
-X-Gm-Message-State: AJIora9ESX8vN6cJ3/689A0SHt9aS9Dwjvt6E3hO2YJB/oKH4+QkDpRY
-        dGBdWeVzceUPg9cyu2ZtTSMz9g==
-X-Google-Smtp-Source: AGRyM1uk0uvRkD2Sh3lsXaWFyQwKvZTKywf3CIAzDF5XV/pwfV80xy9qWvRaGMYSQHmP5q3+aiI9fg==
-X-Received: by 2002:a2e:8910:0:b0:25a:7eda:e4df with SMTP id d16-20020a2e8910000000b0025a7edae4dfmr7267800lji.316.1656656809442;
-        Thu, 30 Jun 2022 23:26:49 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id s14-20020a19770e000000b0047faefd9f24sm3476581lfc.207.2022.06.30.23.26.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jun 2022 23:26:49 -0700 (PDT)
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [PATCH v10 2/7] arm64: dts: qcom: sm8450: Add description of camera clock controller
-Date:   Fri,  1 Jul 2022 09:26:22 +0300
-Message-Id: <20220701062622.2757831-3-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220701062622.2757831-1-vladimir.zapolskiy@linaro.org>
-References: <20220701062622.2757831-1-vladimir.zapolskiy@linaro.org>
+        with ESMTP id S234194AbiGAG2Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 02:28:25 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D30CD101C5;
+        Thu, 30 Jun 2022 23:28:19 -0700 (PDT)
+X-UUID: d17b5972165d407d924c54959dc312da-20220701
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.7,REQID:f53950f9-c55e-4c4a-82d8-4b1500bde6e7,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:87442a2,CLOUDID:569b4586-57f0-47ca-ba27-fe8c57fbf305,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: d17b5972165d407d924c54959dc312da-20220701
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1574199247; Fri, 01 Jul 2022 14:28:11 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 1 Jul 2022 14:28:09 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Fri, 1 Jul 2022 14:28:09 +0800
+From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
+        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Bo-Chen Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v13 00/10] drm/mediatek: Add MT8195 DisplayPort driver
+Date:   Fri, 1 Jul 2022 14:27:58 +0800
+Message-ID: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The change adds description of Qualcomm SM8450 camera clock controller.
+This patch is separated from v10 which is including dp driver, phy driver
+and dpintf driver. This series is only contained the DisplayPort driver.
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
-Changes	from v9 to v10:
-* fixed a commit message per a review comment from Vinod.
+This series can be tested using 5.19-rc2 kernel and I test it in MT8195
+Tomato Chromebook. Modetest these modes:
 
-Changes from v8 to v9:
-* removed a clock-names property,
-* placed a status property as the last one in the list of properties
+for eDP:
+  #0 2256x1504 60.00 2256 2304 2336 2536 1504 1507 1513 1549 235690 flags: phsync, nvsync; type: preferred, driver
+  #1 2256x1504 48.00 2256 2304 2336 2536 1504 1507 1513 1549 188550 flags: phsync, nvsync; type: driver
 
-Changes from v7 to v8:
-* rebased on top of v5.19-rc2,
-* minor improvement to the commit message.
+for DP:
+  #0 1920x1080 60.00 1920 2008 2052 2200 1080 1084 1089 1125 148500 flags: phsync, pvsync; type: preferred, driver
+  #1 1920x1080 59.94 1920 2008 2052 2200 1080 1084 1089 1125 148352 flags: phsync, pvsync; type: driver
+  #2 1920x1080 50.00 1920 2448 2492 2640 1080 1084 1089 1125 148500 flags: phsync, pvsync; type: driver
+  #3 1680x1050 59.95 1680 1784 1960 2240 1050 1053 1059 1089 146250 flags: nhsync, pvsync; type: driver
+  #4 1600x900 60.00 1600 1624 1704 1800 900 901 904 1000 108000 flags: phsync, pvsync; type: driver
+  #5 1280x1024 60.02 1280 1328 1440 1688 1024 1025 1028 1066 108000 flags: phsync, pvsync; type: driver
+  #6 1280x800 59.81 1280 1352 1480 1680 800 803 809 831 83500 flags: nhsync, pvsync; type: driver
+  #7 1280x720 60.00 1280 1390 1430 1650 720 725 730 750 74250 flags: phsync, pvsync; type: driver
+  #8 1280x720 59.94 1280 1390 1430 1650 720 725 730 750 74176 flags: phsync, pvsync; type: driver
+  #9 1280x720 50.00 1280 1720 1760 1980 720 725 730 750 74250 flags: phsync, pvsync; type: driver
+  #10 1024x768 60.00 1024 1048 1184 1344 768 771 777 806 65000 flags: nhsync, nvsync; type: driver
+  #11 800x600 60.32 800 840 968 1056 600 601 605 628 40000 flags: phsync, pvsync; type: driver
+  #12 720x576 50.00 720 732 796 864 576 581 586 625 27000 flags: nhsync, nvsync; type: driver
+  #13 720x480 60.00 720 736 798 858 480 489 495 525 27027 flags: nhsync, nvsync; type: driver
+  #14 720x480 59.94 720 736 798 858 480 489 495 525 27000 flags: nhsync, nvsync; type: driver
+  #15 640x480 60.00 640 656 752 800 480 490 492 525 25200 flags: nhsync, nvsync; type: driver
+  #16 640x480 59.94 640 656 752 800 480 490 492 525 25175 flags: nhsync, nvsync; type: driver
 
-Changes from v6 to v7:
-* rebased on top of v5.19-rc1.
+Changes from v12 for dp driver:
+dt-binding:
+  - Fix build error.
+embedded dp drivers:
+  - Revise Kconfig to let this driver independent.
+  - Drop some unused/redundant drivers.
+  - Move some features to patches of external dp and audio.
+  - Refine format error control flow.
+  - Add error control of write register functions.
+  - Use mtk sip common definitions.
 
-Changes from v5 to v6:
-* rebased on top of linux-next.
+Changes from v11 for dp driver:
+dt-binding:
+  - Use data-lanes to determine the max supported lane numbers.
+  - Add mhz to max-linkrate to show the units.
+embedded dp drivers:
+  - Modify Makefile.
+  - Drop some unused/redundant drivers.
+  - Move some features to patches of external dp and audio.
+  - Modify break condition of training loop to control cr/eq fail.
+  - Replace some function/definition with ones of common drm drivers.
+  - Remove dp_lock mutex because it's only locked in power_on/off.
+  - Add drm_dp_aux_(un)register in mtk_dp_bridge_(de)attach.
 
-Changes from v3 to v5:
-* none.
+Changes from v10 for dp driver:
+- Drop return value for write registers to make code more clear.
+- Refine training state.
+- Add property for dt-binding.
+- Add new bug fix patches for audio and suspend.
+- Rebase to v5.19-rc1.
 
-Changes from v2 to v3:
-* account a renamed header file.
+Changes from v9:
+- The DP-Phy is back to being a child device of the DP driver (as in v8)
+- hot plug detection has been added back to Embedded Display Port... as
+  after discussing with mediatek experts, this is needed eventhough the
+  Embedded Display port is not un-pluggable
+- rebased on linux-next
+- simplified/split train_handler function, as suggested by Rex
+- added comments on the sleep/delays present in the code
+- removed previous patch introducing retries when receiving AUX_DEFER as
+  this is already handled in the dp_aux framework
+- added max-lane and max-linkrate device tree u8 properties instead of
+  hardcoded #defines
 
-Changes from v1 to v2:
-* disabled camcc device tree node by default.
+Older revisions:
+RFC - https://lore.kernel.org/linux-mediatek/20210816192523.1739365-1-msp@baylibre.com/
+v1  - https://lore.kernel.org/linux-mediatek/20210906193529.718845-1-msp@baylibre.com/
+v2  - https://lore.kernel.org/linux-mediatek/20210920084424.231825-1-msp@baylibre.com/
+v3  - https://lore.kernel.org/linux-mediatek/20211001094443.2770169-1-msp@baylibre.com/
+v4  - https://lore.kernel.org/linux-mediatek/20211011094624.3416029-1-msp@baylibre.com/
+v5  - https://lore.kernel.org/all/20211021092707.3562523-1-msp@baylibre.com/
+v6  - https://lore.kernel.org/linux-mediatek/20211110130623.20553-1-granquet@baylibre.com/
+v7  - https://lore.kernel.org/linux-mediatek/20211217150854.2081-1-granquet@baylibre.com/
+v8  - https://lore.kernel.org/linux-mediatek/20220218145437.18563-1-granquet@baylibre.com/
+v9  - https://lore.kernel.org/all/20220327223927.20848-1-granquet@baylibre.com/
+v10 - https://lore.kernel.org/all/20220523104758.29531-1-granquet@baylibre.com/
+v11 - https://lore.kernel.org/r/20220610105522.13449-1-rex-bc.chen@mediatek.com
+v12 - https://lore.kernel.org/all/20220627080341.5087-1-rex-bc.chen@mediatek.com/
 
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Bo-Chen Chen (2):
+  drm/mediatek: set monitor to DP_SET_POWER_D3 to avoid garbage
+  drm/mediatek: fix no audio when resolution change
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index b06c7d748232..de83df1c73c5 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-sm8450.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sm8450-camcc.h>
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
-@@ -2301,6 +2302,21 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 			};
- 		};
- 
-+		camcc: clock-controller@ade0000 {
-+			compatible = "qcom,sm8450-camcc";
-+			reg = <0 0x0ade0000 0 0x20000>;
-+			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>;
-+			power-domains = <&rpmhpd SM8450_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+			status = "disabled";
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sm8450-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
+Guillaume Ranquet (4):
+  drm/edid: Convert cea_sad helper struct to kernelDoc
+  drm/edid: Add cea_sad helpers for freq/length
+  drm/mediatek: Add MT8195 External DisplayPort support
+  drm/mediatek: DP audio support for MT8195
+
+Jitao Shi (1):
+  drm/mediatek: add hpd debounce
+
+Markus Schneider-Pargmann (3):
+  dt-bindings: mediatek,dp: Add Display Port binding
+  video/hdmi: Add audio_infoframe packing for DP
+  drm/mediatek: Add MT8195 Embedded DisplayPort driver
+
+ .../display/mediatek/mediatek,dp.yaml         |  108 +
+ drivers/gpu/drm/drm_edid.c                    |   73 +
+ drivers/gpu/drm/mediatek/Kconfig              |    9 +
+ drivers/gpu/drm/mediatek/Makefile             |    2 +
+ drivers/gpu/drm/mediatek/mtk_dp.c             | 2986 +++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_dp_reg.h         |  545 +++
+ drivers/video/hdmi.c                          |   82 +-
+ include/drm/display/drm_dp.h                  |    2 +
+ include/drm/drm_edid.h                        |   26 +-
+ include/linux/hdmi.h                          |    7 +-
+ 10 files changed, 3817 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_dp.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_dp_reg.h
+
 -- 
-2.33.0
+2.18.0
 
