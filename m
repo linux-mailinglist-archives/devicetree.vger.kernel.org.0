@@ -2,89 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B424562B2F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 08:04:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C281A562B37
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 08:08:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233683AbiGAGEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 02:04:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39020 "EHLO
+        id S234116AbiGAGIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 02:08:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232320AbiGAGEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 02:04:12 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D46A47C;
-        Thu, 30 Jun 2022 23:04:12 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id c4so1415679plc.8;
-        Thu, 30 Jun 2022 23:04:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=WXjo0OX6xuyHFGICQ2esxWAIECEIwWtW1QElWT53ifs=;
-        b=cmzd9n7JHhzr129FZ1i8U8xjzLkPtOuXff4obAo7+5F3r2aTAk+bC+H20wXSTZBKV4
-         ScHXG69OKetUTygY1Tn35zD12MUwmhXangrQ6bntV0ieyXHNwSjMInOwETONBYWeGT9y
-         P8EWwO3Aul3GZ9rcUt9diwPq7uJW0tGxmql3uyXnphizuox39OK2i2rVC+vlf4dx7lC4
-         gVF/GWn8bcv7sDWzN7ZSeZW7vRmTr3y1WdLlW1Y389gVLl6j73TApyLpgmZ0VcX3krui
-         3OUzOPKLxTHSin0yN/QxUYaipvDRqncSG8XV3f7kWsdjLlQF+/aTEbdByVMPAfIEXGog
-         drFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=WXjo0OX6xuyHFGICQ2esxWAIECEIwWtW1QElWT53ifs=;
-        b=LDnc3KiVu9WOhmNv5IAK0gbCgWcGHRdBmvrDcdK/kRUzghK1f3HbME/bE+QoXDGiFF
-         WpDOFg2mE7m4SO7j1wd8Hs2lHLuNjSmmrlb1jNMbqpXuyy82pTI6+okXmHfAoE187FBj
-         0SD14h+esigW9g4buCRwGegocOkgjg5UlyL9CsnGeJO+xg/u1mCw5RHHTfvIS0bdbSHc
-         Lz0ciX69l42DBFuP+EFCaFum1DhNUHmgnqJx8ygW7U/P2NHDnTiWavr8CKJliXUa8q84
-         1kumzz0MQCxF73wXxusb8bgxIOyUoDoNmXPIzU4XIiI+7UvjNVgl4S3QO18qqUGqmaLO
-         fwoA==
-X-Gm-Message-State: AJIora9Ynu1Z4LF6LG4SfEoLD90duLn4+cZWAG/JnD0VO7e31VTeoor+
-        j76k7GSsSZgTAPQGMz+/7UwY7eSGpVnArhW802k=
-X-Google-Smtp-Source: AGRyM1uzPPXbi+B9TQoHXWjOOIT2JnSv58mTdoDQQFiqYXMuRNN1J5TP4jaPNCKQ51Hod232nUikIH4MUatkv/OjcAk=
-X-Received: by 2002:a17:902:b289:b0:16b:940d:18bb with SMTP id
- u9-20020a170902b28900b0016b940d18bbmr16539697plr.83.1656655451649; Thu, 30
- Jun 2022 23:04:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220620124146.5330-1-mtwget@gmail.com> <YrmMdcz9mJS1sXyS@atomide.com>
-In-Reply-To: <YrmMdcz9mJS1sXyS@atomide.com>
-From:   Yu-Tung Chang <mtwget@gmail.com>
-Date:   Fri, 1 Jul 2022 14:04:01 +0800
-Message-ID: <CAHRgzyOsxaC2HM=xAMxFUadTEdTBk-yiMjC=-Y=UynoiULSXDw@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: am33xx: Fix MMCHS0 dma properties
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Benoit Cousson <bcousson@baylibre.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>
+        with ESMTP id S234650AbiGAGI3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 02:08:29 -0400
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E27F612ACF;
+        Thu, 30 Jun 2022 23:08:26 -0700 (PDT)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4LZ4WS4bkVz9sSW;
+        Fri,  1 Jul 2022 08:08:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dylanvanassche.be;
+        s=MBO0001; t=1656655700;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ApVaQ0+81CkJu3JOr6ozmZ5VOG1Au9PWb++lawJbq8c=;
+        b=AkuP/0hAHrQ+30wDcGwGcc7q+zkgNsp7snOmpWfaVuTRYZU0cRCZdWL9TR2VaUZ0AiY2Ln
+        ksbikUObPuU/HLJ7CnNyDWFeCasPcn5SY5MaAovjwkR92QonydDXf15HEigCEAuJJ/ras2
+        grxouwE4AVOr8RBhCtuiu2MYiCPDex5JVFQpFnhprTdXPEhVl8TCm3oap5oz55JzPFNe3J
+        EAbZZ0YPnm1IYXsLraVf9h8AfkSkvmzMCRhFTlW+QfH3FU17oEVjTwk1MkGalx0xeIWlCO
+        VPNeq44Ow2Q6pII8ih/UwzrzFfYtqnW174iE5JeZXrpOJv8eDRVBQQLgjxIv9w==
+Message-ID: <8c771e3a76ba1c41bbd955aeabe06a5f70abcece.camel@dylanvanassche.be>
+Subject: Re: [PATCH 0/4] arm64: dts: qcom: Add a few LPG LEDs
+From:   Dylan Van Assche <me@dylanvanassche.be>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Fri, 01 Jul 2022 08:08:18 +0200
+In-Reply-To: <20220505022706.1692554-1-bjorn.andersson@linaro.org>
+References: <20220505022706.1692554-1-bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+X-Rspamd-Queue-Id: 4LZ4WS4bkVz9sSW
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tony Lindgren <tony@atomide.com> =E4=BA=8E2022=E5=B9=B46=E6=9C=8827=E6=97=
-=A5=E5=91=A8=E4=B8=80 18:54=E5=86=99=E9=81=93=EF=BC=9A
+On Wed, 2022-05-04 at 19:27 -0700, Bjorn Andersson wrote:
+> Now that the LPG binding is accepted, sprinkle some lpg definitions
+> in various
+> PMIC files and define the LPG attached LEDs for RB3 and db820c.
+>=20
+> Bjorn Andersson (4):
+> =C2=A0 arm64: dts: qcom: Add LPG to pm8916, pm8994, pmi8994 and pmi8998
+> =C2=A0 arm64: dts: qcom: sdm845: Enable user LEDs on DB845c
+> =C2=A0 arm64: dts: qcom: pmi8994: Define MPP block
+> =C2=A0 arm64: dts: qcom: db820c: Add user LEDs
+>=20
+> =C2=A0arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 56
+> +++++++++++++++++++++
+> =C2=A0arch/arm64/boot/dts/qcom/pm8916.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 8 +++
+> =C2=A0arch/arm64/boot/dts/qcom/pm8994.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 10 ++++
+> =C2=A0arch/arm64/boot/dts/qcom/pmi8994.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 20 ++++++++
+> =C2=A0arch/arm64/boot/dts/qcom/pmi8998.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 11 +++-
+> =C2=A0arch/arm64/boot/dts/qcom/sdm845-db845c.dts=C2=A0 | 31 ++++++++++++
+> =C2=A06 files changed, 135 insertions(+), 1 deletion(-)
+>=20
 
->
-> Hi,
->
-> * YuTong Chang <mtwget@gmail.com> [220620 15:36]:
-> > According to technical manual(table 11-24), the DMA of MMCHS0 should be
-> > direct mapped.
->
-> Could this be a bug in the manual assuming mmchs0 is working? Or does thi=
-s
-> fix something for you?
->
-It modified in commit b5e5090660742c838ddc0b5d1a001e6fe3d5bfd5,
-the dma of mmc1 was changed to edma_xbar and did not explain why it should
-not match the document.
-> Regards,
->
-> Tony
+Changes look good to me, I applied similar changes here:
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20220512054439.139=
+71-1-me@dylanvanassche.be/
+
+Reviewed-by: Dylan Van Assche <me@dylanvanassche.be>
+
+Thanks!
+Dylan
