@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97C48563190
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:39:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FD64563194
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:40:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236648AbiGAKjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 06:39:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33164 "EHLO
+        id S236673AbiGAKj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 06:39:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236554AbiGAKjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:39:07 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E204574DE7
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 03:39:05 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id x184so3259617ybg.12
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 03:39:05 -0700 (PDT)
+        with ESMTP id S236564AbiGAKjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:39:22 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E29B7B356
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 03:39:21 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-31bf327d4b5so19018947b3.13
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 03:39:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=FvJVjczKtDiPL6abszYdMKTMozraAWQUFyZEkrc/JT8=;
-        b=dh+SVF87cEY5zYSqbnal08C6dKRjPJnNOKlb1mMKAZP8LVYhRu+8Q0N2o1moi8IzN5
-         NEw2E9+JqjSGn5PanmLxNkgDwgOmzxpgSWUzwrVIMggQ0IQnv43D0jH4lpSHkVw4xmin
-         z1CL49mZMPMA/BEGxuLz/WvbHIAwgpBBXJYDA=
+        bh=Qdoe7uBh5YdgvwDoXEs4z1E7HWiqcjddIo/k1Wuymko=;
+        b=Xb91NjUW1NKOPKi4zPVohamVP+8ax7DOIzihV1AuAcHJuFg/wSUZ4VQSqo9g4umKKB
+         PP3nvsfaz/wdbShIqCD2QerXBI4Oa/GDcwV/Gxr4OsISgq6SVElNyQK29wHQhiBHjTZ7
+         3cT/zWNf4ePJBtSiNx5pKWo1zZx+eagvmQpws=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=FvJVjczKtDiPL6abszYdMKTMozraAWQUFyZEkrc/JT8=;
-        b=nbqbFnoL2M2hkQ1RSNf1BgQht47X2FUL4Wfz+gf48eiijazX9gtaMHoj4i7laVFAT0
-         JmubsbQUH7L/TDDRS2vMvFWHggZgGH8rwsQgXwDRfOe1HhPMb8+APN/KgtS8cbB/m6c5
-         xieyfcqUyRotisredn2W9didURkfZzPjKXlA6gJiyWY4sPjsuET/hjPwl6F9QRh7K2GX
-         AubpAoLOLg1bqERjDL59MSKjGLQO9Nm1srfafMjlV17CYK+RidyRJjWRH9GtM8WE2vlD
-         k33NnWb50yT6Ov/HP+PP298vb7LXLhVll5s4q+vlg78ZvO4+rhTWW1fuIVt4wdXoj35l
-         6WZg==
-X-Gm-Message-State: AJIora8i0wfJtyJxlnzu6chD5hx8hI5WMYFN3xMB/QBS7o5TfQpfngTP
-        UoNI9kaZnpuCzMw1EHZemJ3h9kcdbg87cz0yuH4LWA==
-X-Google-Smtp-Source: AGRyM1srrLz3JQ87+W13agmcb1kXXtofB5K+QT9XZkN6dy2Rpvl7sdgAuv0zOBNAjH/1QNRT/nW2/BLw5XDm0zzHvs0=
-X-Received: by 2002:a25:6644:0:b0:66d:c0b8:81ab with SMTP id
- z4-20020a256644000000b0066dc0b881abmr6710851ybm.85.1656671944937; Fri, 01 Jul
- 2022 03:39:04 -0700 (PDT)
+        bh=Qdoe7uBh5YdgvwDoXEs4z1E7HWiqcjddIo/k1Wuymko=;
+        b=U1O/pp56unLjlgcmqQ6NNaFxMYaoLvTmbUX17mVQ4xtwPG0ql0Q2ymmHkDKSiuy8rx
+         MhoH9LlFGytiUeredo5Kjgx0+jWj183OYKJ9EG+EktBzMJjUqP7hFPflMkmLenOFZx10
+         w8Ohch0DOTnZHjL5bIns/JyZ8EKV2xrhdWKt9kSLGvsWO+hl0y8DxZ2HzJB4pufglNTP
+         haHFxLf8M92hYuW/k0Cw7PI5LwNFNrztTm2A3Caw7LMya8x6H8dEgkR+uvhwFp1Nrf7S
+         0Bw9SHRU2gbOduqcgwiT3ahoHzL24o+dcLFg7JymoXkQ7rkCnFjIXSbySEQo7J6P/BBY
+         SGjg==
+X-Gm-Message-State: AJIora9vDE5+Oq/UivTzG6FveFQ3TxnpK57/LtVNdSPYpAqoLyZUVG3r
+        MFuOLE2UhdSs8hK6nriWs2IB3Le3FvYrRR4/KXQqcg==
+X-Google-Smtp-Source: AGRyM1tbkJBX9Hzk5eZ2TzQQEIas6RfLq5EG7NxvFxwC+16yjoYuQTo0iO6rbWqDLmQcGCC2g9iUmZB7QTkK9dbk+4Y=
+X-Received: by 2002:a81:2386:0:b0:317:6586:8901 with SMTP id
+ j128-20020a812386000000b0031765868901mr15850223ywj.195.1656671960400; Fri, 01
+ Jul 2022 03:39:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220629155956.1138955-1-nfraprado@collabora.com> <20220629155956.1138955-18-nfraprado@collabora.com>
-In-Reply-To: <20220629155956.1138955-18-nfraprado@collabora.com>
+References: <20220629155956.1138955-1-nfraprado@collabora.com> <20220629155956.1138955-19-nfraprado@collabora.com>
+In-Reply-To: <20220629155956.1138955-19-nfraprado@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 1 Jul 2022 18:38:53 +0800
-Message-ID: <CAGXv+5FdiJQV68JaBPYnV9Gd1GhUF=6gvZ7ZfkK6ZuyRzVsGkQ@mail.gmail.com>
-Subject: Re: [PATCH v4 17/19] arm64: dts: mediatek: asurada: Enable MMC
+Date:   Fri, 1 Jul 2022 18:39:09 +0800
+Message-ID: <CAGXv+5EmQRup7x=qsTLMj-90Y0TB7mAcisOVmwm4kFiD8Lhwrg@mail.gmail.com>
+Subject: Re: [PATCH v4 18/19] arm64: dts: mediatek: asurada: Enable SCP
 To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
         <nfraprado@collabora.com>
 Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
@@ -72,10 +72,11 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Thu, Jun 30, 2022 at 12:00 AM N=C3=ADcolas F. R. A. Prado
 <nfraprado@collabora.com> wrote:
 >
-> Enable both MMC controllers present on Asurada. MMC0 is for
-> non-removable internal memory, while MMC1 is an SD card slot. MMC1 isn't
-> used on all machines, but in those cases the CD interrupt is never
-> triggered and thus it is basically as if it was disabled.
+> Enable support for the SCP co-processor present on MT8192. It is used
+> as part of the video encoding and decoding processes.
+>
+> A region of memory is carved out for its use, and remoteproc setup for
+> communication with the ChromeOS EC.
 >
 > Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
 > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
