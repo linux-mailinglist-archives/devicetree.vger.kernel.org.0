@@ -2,103 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DE3A563167
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:31:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BBB256316C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233605AbiGAKbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 06:31:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51326 "EHLO
+        id S233699AbiGAKco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 06:32:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232328AbiGAKbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:31:24 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E715C76942;
-        Fri,  1 Jul 2022 03:31:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 906FEB82F4D;
-        Fri,  1 Jul 2022 10:31:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58122C3411E;
-        Fri,  1 Jul 2022 10:31:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656671480;
-        bh=PzSQe20vyGgKjj7bh4FY+eUYxZ15YBI0Skb7DjyLz/8=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=kwBlRyc/+7zHK/+D1Orop4T33zg2uPrmUjsGkNZAU52FjlKmpsb++xU1wPmV1Sdrw
-         k4lB1lGBPqolSXmaVZcNAGFjgST13USJwcNorRHO0OGx/hzi0VABG7ZTo8N7/TuHE2
-         HxaECpn986NnZFTn1yzoeBsf+ZI4OSJnoey0UsvUno7oDZ+pMXkeNnXKR1PwQQv7H/
-         N9kuWrxo5c2iCitQqKmW068YiY9uPx4FEOea91RPuRZGwW8oY4qU7G4DXYqbe8FC8m
-         c/Z3X/cBEeVfPh/ZqshT/s0Jav6xLxcoMGxNTeEs/B5Wuklqf7C6n5RtWyUg6RAJla
-         6Gx1v1dJgB63g==
-From:   Mark Brown <broonie@kernel.org>
-To:     mail@conchuod.ie, palmer@dabbelt.com, palmer@rivosinc.com,
-        lgirdwood@gmail.com, thierry.reding@gmail.com,
-        fancer.lancer@gmail.com, daniel.lezcano@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, sam@ravnborg.org, vkoul@kernel.org,
-        airlied@linux.ie, Eugeniy.Paltsev@synopsys.com
-Cc:     conor.dooley@microchip.com, paul.walmsley@sifive.com,
-        linux-riscv@lists.infradead.org, linux-spi@vger.kernel.org,
-        niklas.cassel@wdc.com, linux-kernel@vger.kernel.org,
-        damien.lemoal@opensource.wdc.com, dmaengine@vger.kernel.org,
-        aou@eecs.berkeley.edu, joabreu@synopsys.com, tglx@linutronix.de,
-        dillon.minfei@gmail.com, alsa-devel@alsa-project.org,
-        geert@linux-m68k.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, masahiroy@kernel.org
-In-Reply-To: <20220629184343.3438856-1-mail@conchuod.ie>
-References: <20220629184343.3438856-1-mail@conchuod.ie>
-Subject: Re: (subset) [PATCH v3 00/15] Canaan devicetree fixes
-Message-Id: <165667147407.1756128.12037224598634241859.b4-ty@kernel.org>
-Date:   Fri, 01 Jul 2022 11:31:14 +0100
+        with ESMTP id S236190AbiGAKcl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:32:41 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E0F796AF
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 03:32:39 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id fd6so2389925edb.5
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 03:32:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JOFbrEFB9DCfHsTRcts2PWWLes6+Uj7GP9RbVOzCFVM=;
+        b=G+gv7lbE9ycKvCE2XLzqdLc2Ydvt8ZMtLvSeU8HaZ9IBTC9+4C4J6ma8pDYRasv6wq
+         dcAt/tL/BVFPZBcEhMgdJxdBXiLcrR5bmHv75VIK3GY2JxCSNscmZtvnZBYdFRUX9Qcy
+         IisiKj6sGhICKwcz5anBl2siQIhcRP+Uc4j32evQkEIK3AZcvRK1nehjJQIM5EzR/bPG
+         fi6N0RqIPnU/tv562fCX7SXzZa+R0t5D5E/Ffu34GINVQTBi1YcK1LVQLyZlIFvcww/7
+         Qm2IqQQtvN82DMspOaGPkO152of48xEt9tQYjv0rwDLdjcEcLNFX8kaM4qN61e0hgIvf
+         93/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JOFbrEFB9DCfHsTRcts2PWWLes6+Uj7GP9RbVOzCFVM=;
+        b=a0bjtMVJtqlp9b7lpdedrFrW8U5Y1Ra2XZK0J1LsM/+zJPjXErCYrVXEhXv+hWnwr1
+         5L8RC6+5N5drWOt2i0FeDhmFAnDr+vT5sWmBcFFtpt/e1U2MWxCTlQTGGXL1iDXoBRpb
+         0SU3ntph61Fo+0eIjUJHL4qk5/WtTASvxNmAcpDaq0ijTANNKC3MVgt47eb9HI+DYYJ/
+         Cwd+27enpc7pDV57UJOHfsbuCFoLtx7JkLbFOkduc8KW7afhnjL338WgfnuJlrEF3ebV
+         gL8BEigsIdKcuOAfYuaV5EL7x1DquAMsg9weJWFLeizKsoS3B7FjZ5vD23xvi2fAd+BZ
+         53Uw==
+X-Gm-Message-State: AJIora9vbypSxZFpNm1cdzW9ffSUUV7Vvmn3UdtP3bPGHiziabdHopXt
+        ZgdTClndXGaqHKDAYzo9oCILIVv1bkmag/eXpPdE1w==
+X-Google-Smtp-Source: AGRyM1vgIA6SqnHR0nHNlzVRqwiqRXFzYSzGJQPFnq7om9GgN5s8pDmkyBxQwG7kziOKv65nyKva/jRmpalBobiJTEQ=
+X-Received: by 2002:a05:6402:d0a:b0:437:66ca:c211 with SMTP id
+ eb10-20020a0564020d0a00b0043766cac211mr18200869edb.29.1656671558454; Fri, 01
+ Jul 2022 03:32:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220623160801.240779-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20220623160801.240779-1-sebastian.reichel@collabora.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 1 Jul 2022 12:32:27 +0200
+Message-ID: <CAMRc=Mc9KHb1Y4EGbhaAKgVFwto+ujcF9f+VWC2P9imbawrcog@mail.gmail.com>
+Subject: Re: [PATCH 0/2] RK3588 GPIO Support
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Jun 2022 19:43:29 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Hey all,
-> This series should rid us of dtbs_check errors for the RISC-V Canaan k210
-> based boards. To make keeping it that way a little easier, I changed the
-> Canaan devicetree Makefile so that it would build all of the devicetrees
-> in the directory if SOC_CANAAN.
-> 
-> [...]
+On Thu, Jun 23, 2022 at 6:08 PM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> This has been part of a bigger patchset adding basic rk3588 support.
+> Since that gets more and more out of hand, I'm now sending patches
+> for each subsystem as individual patchset. Previou patchet:
+>
+> https://lore.kernel.org/all/20220504213251.264819-1-sebastian.reichel@collabora.com/
+>
+> Changes:
+>  * None (except for collecting Acks)
+>
+> -- Sebastian
+>
+> Jianqun Xu (1):
+>   gpio: rockchip: add support for rk3588
+>
+> Sebastian Reichel (1):
+>   dt-bindings: gpio: rockchip: add gpio-ranges
+>
+>  Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml | 2 ++
+>  drivers/gpio/gpio-rockchip.c                                   | 3 ++-
+>  2 files changed, 4 insertions(+), 1 deletion(-)
+>
+> --
+> 2.35.1
+>
 
-Applied to
+Both applied, thanks!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[04/15] spi: dt-bindings: dw-apb-ssi: update spi-{r,t}x-bus-width
-        commit: 8b037cabc4966b010c44a76e05a43d276318bc49
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Bart
