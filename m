@@ -2,160 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C5AC562D0A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6836D562D11
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235215AbiGAHus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 03:50:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47462 "EHLO
+        id S235475AbiGAHyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 03:54:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230525AbiGAHur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:50:47 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 925931EC7F;
-        Fri,  1 Jul 2022 00:50:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1656661846; x=1688197846;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=c5ECrdpL3f4PkZc7aQyj1GpfyUlLs/Bj4rBFRxF2clU=;
-  b=lmK8jhzYJMa8vd4Kcjfc4E1aVdc7gc6ChAF5sKhNjq99W+qnFyE1xyV/
-   IrsBGt57UcVfe1DQyI8lMQRrvapnZsF61ylZ8LIQNvfWHO5/rYvv51m1L
-   1toIXHI74tqLs2FyraiSTMXBF8Djau6fQOwy03ELcV9QSnJXLdYymobYQ
-   ggKsJfq+Tst9YQLJEF7jBOTK732ZjTbczsi35q/8mT2U7pX8GI6w0YlzC
-   UwhwFeJqPrvxknjhvO8sn29nKH5R1Hv1h6nGu7Rzwpg55WDbWC4siU5kr
-   /kuE7qoCiDMkt5CjjeG8JJPN7hHumrHo9mnqusZV2TsH+1VPOyUzKD3Ge
-   g==;
-X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; 
-   d="scan'208";a="165967751"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Jul 2022 00:50:45 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 1 Jul 2022 00:50:45 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Fri, 1 Jul 2022 00:50:45 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ARsGAFGiHAgkwlrwt6PQd1DJIyQr3lNNqyzHp6r1enW6cHWnbo6S9gxZfjMg0JVNLNbMELzZv8bRhLNnoGItFVvtjg98o4BO+TE/B4xgGIO6R1Actgd/kIHsjHEbMzbCkSNFiu5Y0FRt1oqz4Ed60lPRraQ2swgiq/GWlvBHHgn7LRC4xuB2yOsoAjCKVnTnJHQRifDgHlombyYsa1a3gJFWobTnKldSg1WMf0N0ZcYa9KSlYrugdYPUmtwQ/DYmCDA5vnxB3b9WgOHA7oYjfnRDZt4hNulP1k7FK7RX5c9/+EVF4DTdgHNKBide8VHyUxp7hNvfxQHKNMY1HboKiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c5ECrdpL3f4PkZc7aQyj1GpfyUlLs/Bj4rBFRxF2clU=;
- b=A09P+vLFTOS5CyZ71uQMAMfC/cbpDodlvFRubpS0r6l+TM3blP2M9WCWVm1O4PxCoBkUpRyxkowdbhDEB93HKjcTHKdL4vp+BEeYHWofrAy17DSAFCJ9BL3blQ6I8bGr82yNn0Rgva8anAZjs83sLj7m+cc9ZIgNCHPS3YzN3P+okIwSSZOBZHgK7L4QMOd805MP2KwmO5EqG/7uSML88CP76QD8WBPfRk+Z04z4NaYZJVmH+uTCnfNAHUny3T3jXxYGV8dBhTWhPNe3HpAKPPta5CKZWyYgzg9bTpctpkyYEgWzbcJGsZGdV3Gq6sZeu2BeZ993IW/1UDilHxjK9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S234668AbiGAHya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:54:30 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B639B6D55E
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 00:54:26 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id u12-20020a05600c210c00b003a02b16d2b8so1058120wml.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 00:54:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c5ECrdpL3f4PkZc7aQyj1GpfyUlLs/Bj4rBFRxF2clU=;
- b=MiqxgYFzpaKi4L4hUhW6OTA02Ee6ZxgB9VALUP6iHU6BHesnMOsdhhfvJ0xDOsY1IYoj2ol+cHLL3BO0g4k2E2GtTd48ZMnlzUsxdgZ+KFrcmafYQZBTqXsM86AQIPveb284nu/ESMeouJT5+N5z8Zg3SLT+LbOhDUfA8+v5dQU=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
- by CY5PR11MB6318.namprd11.prod.outlook.com (2603:10b6:930:3e::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Fri, 1 Jul
- 2022 07:50:40 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::699b:5c23:de4f:2bfa]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::699b:5c23:de4f:2bfa%4]) with mapi id 15.20.5395.015; Fri, 1 Jul 2022
- 07:50:40 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <Nicolas.Ferre@microchip.com>, <robh@kernel.org>,
-        <Sergiu.Moga@microchip.com>
-CC:     <Claudiu.Beznea@microchip.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <UNGLinuxDriver@microchip.com>, <linux-spi@vger.kernel.org>,
-        <robh+dt@kernel.org>, <broonie@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <Kavyasree.Kotagiri@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: spi: convert spi_atmel to json-schema
-Thread-Topic: [PATCH] dt-bindings: spi: convert spi_atmel to json-schema
-Thread-Index: AQHYjAnpJ9RPijNCmEOYEPo+O29OJq1pI/YAgAACdoA=
-Date:   Fri, 1 Jul 2022 07:50:40 +0000
-Message-ID: <671850a1-8a87-b15b-c776-c0dbbc9de38e@microchip.com>
-References: <20220629125804.137099-1-sergiu.moga@microchip.com>
- <1656542219.625404.1042476.nullmailer@robh.at.kernel.org>
- <8191d9e3-88e9-c8fb-2544-d25d3a93d0a8@microchip.com>
- <a85357c2-a2f6-472e-50a8-2dcf41217ac1@microchip.com>
-In-Reply-To: <a85357c2-a2f6-472e-50a8-2dcf41217ac1@microchip.com>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 400d2e81-7fdc-4593-fb11-08da5b3664ea
-x-ms-traffictypediagnostic: CY5PR11MB6318:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iC7lGx25ccQV3uVK3ewTNkM1clYjBRdS3mO/CsPB6Mfkgqu+K3wI8ndv1I+/d4VUA/9kFet4Uk/RxyzyxHEHm97Iu/9y+EDJejDyfNwsgczz1tZzoMAeufPTOFmeSWErI3cL2kmubvP39NyEERGb9Tty+7kp3eXUQH3cz5hAgUIGvRTxyfZ1jU7neC26m7MPFOa5VTxlYzz0zgjAoHO4mb6z4Zgl7a7tEaNgg0McQlBtgVhvyuVMZ2kMeXk746WihJYFiRzMwFHNRfG0zuj5FyGG4DIqhIwf0H9UABM81i06CkppL9q8c769pvRgrM4I1m3H6e8sLg+ziJkdHck3Ug8AovDRHcBZEbD1FhK4qHqSNUo9fn31HGZmPiMKDJu5/kJ3boRqlx7lw3m2Q1jAG+mt4y94JqtwWKEdpsFTtTnrdvwqa1r5D1CLJbVBKgYmF+6/glLDI0ApD3mBhKM+rHmqrvA+641vvSddq8Q9ZmPinX3bdRRdbay4axw9qSF2U98KYtGdDHRCh8BTAdQp2NHbukJ8JFI0rSSaztF6h89sVBP02PiPzuETeS3KvSPOQW+71L3lTAO6ULEL+lzTU4RCE+dlK9t0Dh2Lba5r1btxeA+Sjn0XU//RELFcg5ZoBfitjELl4FDxPOa+TQ+8qqGbLx5gt0mhnEKahEzxdG3gsfvcqbb1DyaHAOCuTT512Usp5vFaMAgUkyqaAEEM0AEtimPcFY6dU1clbdRWKJuqsXlLd/fJsTe9iHr8KZAY/P7f84G9FeziYtiqpHtoyuKJuKeMdj/gxyR+uQNvBUOysHisHKbMDbUgxgg2Yp02eKVnRIzIB3ZqARVM32ZE4ixjz6lLH6oqxBlCSBvKbII+uj8vZlYNaGKqobUOYsIy
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(376002)(39860400002)(366004)(136003)(346002)(8936002)(66476007)(6486002)(2906002)(91956017)(5660300002)(66446008)(66946007)(8676002)(66556008)(478600001)(6636002)(71200400001)(316002)(31686004)(4326008)(54906003)(76116006)(110136005)(36756003)(64756008)(26005)(2616005)(38100700002)(38070700005)(186003)(6506007)(6512007)(41300700001)(53546011)(86362001)(83380400001)(122000001)(31696002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?R2w0d2FQK0tLYXphdTV1Z285aWVFakJHWGtKVHZVL0tjSDZCMjB5bWFEb3hm?=
- =?utf-8?B?Q3RQdjFZMjQ5YzNiRGU0RExzd0pRZXVTZFI3SWNpa05mRjNmUWgzVzBlNUpR?=
- =?utf-8?B?N01tZ2w2dFZGb3VKKzJialQrY1Mrc3NoWE5TNkpRZ2FrbVZqSFNtdjdZanZ1?=
- =?utf-8?B?M0FCRHU3d3AyRkgwZTgyUTFWRjNwZzNCTHJSRlZVOUNBNDExd1RUemI4SDMw?=
- =?utf-8?B?NE5pcC9vVlNLYURiWTNYcWZBMXlLL1JHYWxXSDl0ZjBjemxiV296blBLMmIz?=
- =?utf-8?B?bWNmTlpqckFreTRBVEM3Zk05aEdiaURCeUR6Z3o4UHhSV2xVZmhaNGxYMnd4?=
- =?utf-8?B?Yy9FUW9EQU5UN3NNRE8ydEExNFVkZjVrOGNqWjBlaWR4UStDVFk4ZDFUV2xI?=
- =?utf-8?B?OGxoVEVmUHlJeEEwWkN1b0wySHRvNk9nNzZaZkFJZmY1N3ZSZFBWNllaT3JK?=
- =?utf-8?B?bGhEck4zbE5RVHd0S2ZiOXRwV2ZFcCtLK2lsZVFVSCtmZ0tDRWpDeGppdytP?=
- =?utf-8?B?Ym9iblVUTXlqeWV1TWtybWUzUU5IZmJtRFJZMkxvYVRKNnE4WHRHT3B1RnN6?=
- =?utf-8?B?MEp6QXBXcHFzR2ZnVW5sdTR0N0wrbTdZMlRCRHZPYXNmTzRZSmhxa0R2NS84?=
- =?utf-8?B?cGIrZGcwQ2QwQnVsc1F0NjJpR3ZZOWRxajlKNEwydEliK25acVFkTnNNajVk?=
- =?utf-8?B?cmlOV0tBVks1NWdVRjBYQW1FTDhSWW9LdHV0ZS9TU2FwWTNiZWJOcXRrK3pM?=
- =?utf-8?B?YkY4QlJlSmYzRDFteWRSR2Zvbkt2SWFjZ005ODBXc2hVQkpPR3dqUmJITWVJ?=
- =?utf-8?B?TEc1WDBkUTBmUDlXenRoWE44NTl2Qm1tWFZOZitDK0VrNDNVMWxKQ2ZsendK?=
- =?utf-8?B?QkdyZDk0TTFOUE84cHo0Q3BwRTVhUkNlTThWbTYrNVNIaHRTRGk5Z1RnZnhu?=
- =?utf-8?B?N0ZXMFlqNW5MVjRSNTRpRHp4dzNYYjkweWYzZ3h0UzR2cytSOUtlY3U5VnJw?=
- =?utf-8?B?R2VMOE5DcmVYWW4xMktUcHhQTDZveFMzM2ZmUG11VGNPTE9RQ2lNS0Z5TnVn?=
- =?utf-8?B?cmRqdDArZHN2OW1IalFZelpPQ0NnQW9vN1B4VDEzeW5abUlva3plN2hTOWlB?=
- =?utf-8?B?WXR5Qk8vRG50OG9RbmtibC9WNWgzN053VEFiM293cCtsVjhHL054VWw3a0tT?=
- =?utf-8?B?cDRBV1VPY3Z4S21QYWVOaGZvQ3JINmlIelZ3VExLSnJGNVkwUjFOb0w4SDdy?=
- =?utf-8?B?eXlHWFhJOGZTb1FzL0M1MjIxSnEwZjhSbWVKYWxNTGUyRlU3S0taLzBKWlQv?=
- =?utf-8?B?U0dTVjRjcDNadkhYcGtYakkyK0RwTGFhRnVRakZaNUlQTGFuamVOM0tKWHJU?=
- =?utf-8?B?TGU0OWFGR3VkWTQ1UUFNbjBrbmRES3BWM1FHMnJqUytsNHJBTHJPYVlGNVgv?=
- =?utf-8?B?RGEwWkp3RitHSmczUzJlaEJuMGUwR1c3Tm8vS1A1QTNaSXpZeCtnQmhZdU12?=
- =?utf-8?B?eSs5MDZPM2FtSkRHRzg4SHY3d3pUK1doREVvMVRuVUs1NXVTTTkzelRaNG4w?=
- =?utf-8?B?Z1c2TGFaNkQ5WGxLTWZkck5xRUFxUUlyWXQ1NHpEcEFLSVZWUW91c1hyZnpw?=
- =?utf-8?B?WVV0dy9aSzNPalp5aEg5dk5uakJnNklSVy9JUDBXeEFHWEZDZ3FieWx4c0VP?=
- =?utf-8?B?UlQvdERUemVNVnNHTlc0Y2JWTlFvTmpvSThUTk1WVHdveTVYQUJCTk9YTm1L?=
- =?utf-8?B?bWVVZHl5d1ZIYmgxck4wSEF0T2ZUSkRJRDBUT2k4T1pvYVYrYVBmSUlhNS9O?=
- =?utf-8?B?WW9ESW1GRkdNV2pLQjFpdERORGZNaTFYMmFIdkUwL3hNa3p6NjNpdFNzbjE3?=
- =?utf-8?B?MDBUVFJjejRtRjZGQXJuK0hkU2JWK2dTSmpwaWN0ZWVEajdURThjWFAzZEp0?=
- =?utf-8?B?emJQbUUyVzNrMWpiR1haOTV5dGtyblJ5ajJkeGxvZlR1TG9IZHJVSlZtMnc0?=
- =?utf-8?B?YUthaEFZdncxMCs0aXJTWmV5bFBObmlEckU1QlRiZGhORElWT1JJRFJZT1FH?=
- =?utf-8?B?alZoYmVYYlZkeEJoMVZMQTlMTE14M2c4MmZIL1JjZGJ5YUNlNVl0SzBsYU5t?=
- =?utf-8?Q?zvjtFrjYp7fv4GU+FxDwC5R++?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F4A70901B4DA3840BFF68706281827A8@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=n2Zqxh7nSmgWYgW/ZD6J+5BG3tcyDdgubBYSFmnRv50=;
+        b=VyiBClpkPul60ENiNvZ3CZsGo0/nwPez+KfNBJc/iph5Ul6Vo5FwGCwPsBbfvOzwmI
+         MwPld6bHunEBH8snOQm8XE6OPwMRYlRcCXAlK715xmgJ8Y4vm8AUyeLWoL01Pbq7Rneo
+         F0YLZOoGqeGDPVJwbjb4T8iPXF7M50lhBnnuqHNXBe7btqzUObt0/BzgsqzCYrQbKxKc
+         Ltj28JaKKaaSH85iv3/w8T7aXtqqAFKWDJK4ADhqNS9uRcL7t3Vbh2xTwdzeTW0P6Rhi
+         inykgS2ag3DSWsV0UEAyYc722xzoDX8yETjwdNgP1QAOEJHjCzUSpOhw9lVnDeWJ/pv6
+         MvLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=n2Zqxh7nSmgWYgW/ZD6J+5BG3tcyDdgubBYSFmnRv50=;
+        b=gV/zoQXJQuhhXHSINIvUmBohSshwld4/+BRRdSLrKKznayh6hbCbGOAm2qKFOGbEp6
+         +XQNnVCm6zinbcCXGNyv1T1pC9z9Gyo3BmPMoS33JznBmfS5FNRQ8/tRXMiprZQ+Q2WG
+         HYxkCH/eP1C8G1pjjv4tNateMNM4Wd0vraAOWgTwD+ABmtdIkx1oG6uqLCL+QRZ8++7e
+         qVJ4GvHaKy638VHVZ/5DT7nCbUMX2fGLPY2+DuiZwxEsI74uTy5iTrZ3TkrFLSbt72VM
+         HxvHI4Poe83JfzPzLexPH4E3uvjKX6BGAIQQjyHCFDMy7jHm1jduF7DWQfVC/zTOMSih
+         psSw==
+X-Gm-Message-State: AJIora8llPq7s8Wh3hsOK0sX2R7AT9L66gXGkWzIKIXvg9DG9xDw+rbZ
+        nX50Z4sc3//yuh2gL0qurTDVeQ==
+X-Google-Smtp-Source: AGRyM1t3BcsSsWdXuaRyrOnMhOxZWZjK/ro+zphNxno8y/aOin7lVbBd62DM3DDIgsQ39Xiefs6dEg==
+X-Received: by 2002:a05:600c:1c84:b0:3a0:69fe:18fe with SMTP id k4-20020a05600c1c8400b003a069fe18femr14946530wms.40.1656662065225;
+        Fri, 01 Jul 2022 00:54:25 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id m2-20020a05600c3b0200b0039c63f4bce0sm5646009wms.12.2022.07.01.00.54.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Jul 2022 00:54:24 -0700 (PDT)
+Date:   Fri, 1 Jul 2022 08:54:22 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+Message-ID: <Yr6oLlmfWRkiAZG7@google.com>
+References: <a11732d6-a9b1-7ead-e89a-564a57a7192b@quicinc.com>
+ <503f1a8b-eadb-d3a6-6e24-d60437f778b6@quicinc.com>
+ <YrlfF+DMlGFsVBdk@google.com>
+ <a1c6e3c9-962d-411e-7fbf-9e760e9dc8c0@quicinc.com>
+ <Yrqw1YRyCGG+d4GL@google.com>
+ <4112b5af-15de-007c-fcc2-c31ce9f9e426@quicinc.com>
+ <YrxtXdOsIZ5LKhdV@google.com>
+ <f8e70198-d0d8-5500-2869-be9e3a34f3c1@quicinc.com>
+ <Yr18M9dzTOWL0m2c@google.com>
+ <de1f3f33-0a8c-eb87-694c-16ebf2835720@quicinc.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 400d2e81-7fdc-4593-fb11-08da5b3664ea
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2022 07:50:40.5204
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zKfN3ejQGjTRc3ILLpbYwOHgTYi16XRZQ4ZVRr4MxAjaOdGBK3n/W2u6y9hJ2pwwZmCNOefxuAfV90q2HO61pmDuJpgmrzbUEemyiZ12VjQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6318
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <de1f3f33-0a8c-eb87-694c-16ebf2835720@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -163,32 +85,341 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDEvMDcvMjAyMiAwODo0MSwgTmljb2xhcyBGZXJyZSB3cm90ZToNCj4gSGkgQ29ub3IsDQo+
-IA0KPiBPbiAzMC8wNi8yMDIyIGF0IDAwOjQ1LCBDb25vciBEb29sZXkgLSBNNTI2OTEgd3JvdGU6
-DQo+PiBPbiAyOS8wNi8yMDIyIDIzOjM2LCBSb2IgSGVycmluZyB3cm90ZToNCj4+PiBPbiBXZWQs
-IDI5IEp1biAyMDIyIDE1OjU4OjA0ICswMzAwLCBTZXJnaXUgTW9nYSB3cm90ZToNCj4+Pj4gQ29u
-dmVydCBTUEkgYmluZGluZyBmb3IgQXRtZWwvTWljcm9jaGlwIFNvQ3MgdG8gRGV2aWNlIFRyZWUg
-U2NoZW1hDQo+Pj4+IGZvcm1hdC4NCj4+Pj4NCj4+Pj4gU2lnbmVkLW9mZi1ieTogU2VyZ2l1IE1v
-Z2EgPHNlcmdpdS5tb2dhQG1pY3JvY2hpcC5jb20+DQo+Pj4+IC0tLQ0KPj4+PiDCoCAuLi4vZGV2
-aWNldHJlZS9iaW5kaW5ncy9zcGkvYXRtZWwsc3BpLnlhbWzCoMKgwqAgfCA4MiArKysrKysrKysr
-KysrKysrKysrDQo+Pj4+IMKgIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9zcGlfYXRtZWwu
-dHh0wqDCoMKgwqAgfCAzNiAtLS0tLS0tLQ0KPj4+PiDCoCAyIGZpbGVzIGNoYW5nZWQsIDgyIGlu
-c2VydGlvbnMoKyksIDM2IGRlbGV0aW9ucygtKQ0KPj4+PiDCoCBjcmVhdGUgbW9kZSAxMDA2NDQg
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9hdG1lbCxzcGkueWFtbA0KPj4+
-PiDCoCBkZWxldGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L3NwaS9zcGlfYXRtZWwudHh0DQo+Pj4+DQo+Pj4NCj4+PiBNeSBib3QgZm91bmQgZXJyb3JzIHJ1
-bm5pbmcgJ21ha2UgRFRfQ0hFQ0tFUl9GTEFHUz0tbSBkdF9iaW5kaW5nX2NoZWNrJw0KPj4+IG9u
-IHlvdXIgcGF0Y2ggKERUX0NIRUNLRVJfRkxBR1MgaXMgbmV3IGluIHY1LjEzKToNCj4+Pg0KPj4+
-IHlhbWxsaW50IHdhcm5pbmdzL2Vycm9yczoNCj4+Pg0KPj4+IGR0c2NoZW1hL2R0YyB3YXJuaW5n
-cy9lcnJvcnM6DQo+Pj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9hdG1l
-bCxzcGkuZXhhbXBsZS5kdGI6MDowOiAvZXhhbXBsZS0wL3NwaUBmZmZjYzAwMC9tbWNAMDogZmFp
-bGVkIHRvIG1hdGNoIGFueSBzY2hlbWEgd2l0aCBjb21wYXRpYmxlOiBbJ21tYy1zcGktc2xvdCdd
-DQo+Pg0KPj4gTXkgY29udmVyc2lvbiBvZiB0aGlzIHNob3VsZCBiZSBpbiAtbmV4dCByaWdodD8N
-Cj4gDQo+IEFyZW4ndCB5b3UgdGFsa2luZyBhYm91dA0KPiBEb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3Mvc3BpL21pY3JvY2hpcCxtcGZzLXNwaS55YW1sIG9yIERvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9mcGdhL21pY3JvY2hpcCxtcGYtc3BpLWZwZ2EtbWdyLnlhbWwN
-Cj4gcmF0aGVyIHRoYW4gYXRtZWwsc3BpLnlhbWwgPw0KDQpOb3BlLCBJIGNvbnZlcnRlZCBtbWMt
-c3BpLXNsb3QgOikNCkFuZCBJIGNoZWNrZWQsIGl0IGlzIGluIC1uZXh0IDIyNmUwOWRlMGFjZCAo
-ImR0LWJpbmRpbmdzOiBtbWM6DQpjb252ZXJ0IG1tYy1zcGktc2xvdCB0byB5YW1sIikpDQpXYXMg
-anVzdCBwb2ludGluZyBvdXQgdGhhdCB0aGlzIGVycm9yIGZyb20gdGhlIGJvdCBpcyBub3QgcmVh
-bGx5DQphIHByb2JsZW0uDQoNCg0K
+On Fri, 01 Jul 2022, Satya Priya Kakitapalli (Temp) wrote:
+
+> 
+> On 6/30/2022 4:04 PM, Lee Jones wrote:
+> > On Thu, 30 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+> > 
+> > > On 6/29/2022 8:48 PM, Lee Jones wrote:
+> > > > On Wed, 29 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+> > > > 
+> > > > > On 6/28/2022 1:12 PM, Lee Jones wrote:
+> > > > > > On Tue, 28 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+> > > > > > 
+> > > > > > > On 6/27/2022 1:11 PM, Lee Jones wrote:
+> > > > > > > > On Mon, 27 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+> > > > > > > > 
+> > > > > > > > > Hi Lee,
+> > > > > > > > > 
+> > > > > > > > > 
+> > > > > > > > > On 6/20/2022 4:37 PM, Satya Priya Kakitapalli (Temp) wrote:
+> > > > > > > > > > On 6/20/2022 1:50 PM, Lee Jones wrote:
+> > > > > > > > > > > On Mon, 20 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+> > > > > > > > > > > 
+> > > > > > > > > > > > On 6/17/2022 2:27 AM, Lee Jones wrote:
+> > > > > > > > > > > > > On Tue, 14 Jun 2022, Satya Priya wrote:
+> > > > > > > > > > > > > 
+> > > > > > > > > > > > > > Use i2c_new_dummy_device() to register pm8008-regulator
+> > > > > > > > > > > > > > client present at a different address space, instead of
+> > > > > > > > > > > > > > defining a separate DT node. This avoids calling the probe
+> > > > > > > > > > > > > > twice for the same chip, once for each client pm8008-infra
+> > > > > > > > > > > > > > and pm8008-regulator.
+> > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > As a part of this define pm8008_regmap_init() to do regmap
+> > > > > > > > > > > > > > init for both the clients and define pm8008_get_regmap() to
+> > > > > > > > > > > > > > pass the regmap to the regulator driver.
+> > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> > > > > > > > > > > > > > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> > > > > > > > > > > > > > ---
+> > > > > > > > > > > > > > Changes in V15:
+> > > > > > > > > > > > > >        - None.
+> > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > Changes in V14:
+> > > > > > > > > > > > > >        - None.
+> > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > Changes in V13:
+> > > > > > > > > > > > > >        - None.
+> > > > > > > > > > > > > > 
+> > > > > > > > > > > > > >        drivers/mfd/qcom-pm8008.c       | 34
+> > > > > > > > > > > > > > ++++++++++++++++++++++++++++++++--
+> > > > > > > > > > > > > >        include/linux/mfd/qcom_pm8008.h |  9 +++++++++
+> > > > > > > > > > > > > >        2 files changed, 41 insertions(+), 2 deletions(-)
+> > > > > > > > > > > > > >        create mode 100644 include/linux/mfd/qcom_pm8008.h
+> > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+> > > > > > > > > > > > > > index 569ffd50..55e2a8e 100644
+> > > > > > > > > > > > > > --- a/drivers/mfd/qcom-pm8008.c
+> > > > > > > > > > > > > > +++ b/drivers/mfd/qcom-pm8008.c
+> > > > > > > > > > > > > > @@ -9,6 +9,7 @@
+> > > > > > > > > > > > > >        #include <linux/interrupt.h>
+> > > > > > > > > > > > > >        #include <linux/irq.h>
+> > > > > > > > > > > > > >        #include <linux/irqdomain.h>
+> > > > > > > > > > > > > > +#include <linux/mfd/qcom_pm8008.h>
+> > > > > > > > > > > > > >        #include <linux/module.h>
+> > > > > > > > > > > > > >        #include <linux/of_device.h>
+> > > > > > > > > > > > > >        #include <linux/of_platform.h>
+> > > > > > > > > > > > > > @@ -57,6 +58,7 @@ enum {
+> > > > > > > > > > > > > >        struct pm8008_data {
+> > > > > > > > > > > > > >            struct device *dev;
+> > > > > > > > > > > > > > +    struct regmap *regulators_regmap;
+> > > > > > > > > > > > > >            int irq;
+> > > > > > > > > > > > > >            struct regmap_irq_chip_data *irq_data;
+> > > > > > > > > > > > > >        };
+> > > > > > > > > > > > > > @@ -150,6 +152,12 @@ static struct regmap_config
+> > > > > > > > > > > > > > qcom_mfd_regmap_cfg = {
+> > > > > > > > > > > > > >            .max_register    = 0xFFFF,
+> > > > > > > > > > > > > >        };
+> > > > > > > > > > > > > > +struct regmap *pm8008_get_regmap(const struct pm8008_data *chip)
+> > > > > > > > > > > > > > +{
+> > > > > > > > > > > > > > +    return chip->regulators_regmap;
+> > > > > > > > > > > > > > +}
+> > > > > > > > > > > > > > +EXPORT_SYMBOL_GPL(pm8008_get_regmap);
+> > > > > > > > > > > > > Seems like abstraction for the sake of abstraction.
+> > > > > > > > > > > > > 
+> > > > > > > > > > > > > Why not do the dereference inside the regulator driver?
+> > > > > > > > > > > > To derefer this in the regulator driver, we need to have the
+> > > > > > > > > > > > pm8008_data
+> > > > > > > > > > > > struct definition in the qcom_pm8008 header file.
+> > > > > > > > > > > > 
+> > > > > > > > > > > > I think it doesn't look great to have only that structure in
+> > > > > > > > > > > > header and all
+> > > > > > > > > > > > other structs and enum in the mfd driver.
+> > > > > > > > > > > Then why pass 'pm8008_data' at all?
+> > > > > > > > > > There is one more option, instead of passing the pm8008_data, we could
+> > > > > > > > > > pass the pdev->dev.parent and get the pm8008 chip data directly in the
+> > > > > > > > > > pm8008_get_regmap() like below
+> > > > > > > > > > 
+> > > > > > > > > > 
+> > > > > > > > > > struct regmap *pm8008_get_regmap(const struct device *dev)
+> > > > > > > > > >      {
+> > > > > > > > > >          const struct pm8008_data *chip = dev_get_drvdata(dev);
+> > > > > > > > > > 
+> > > > > > > > > >          return chip->regulators_regmap;
+> > > > > > > > > > }
+> > > > > > > > > > EXPORT_SYMBOL_GPL(pm8008_get_regmap);
+> > > > > > > > > > 
+> > > > > > > > > > 
+> > > > > > > > > > By doing this we can avoid having declaration of pm8008_data also in the
+> > > > > > > > > > header. Please let me know if this looks good.
+> > > > > > > > > > 
+> > > > > > > > > Could you please confirm on this?
+> > > > > > > > > 
+> > > > > > > > > > > What's preventing you from passing 'regmap'?
+> > > > > > > > > > I didn't get what you meant here, could you please elaborate a bit?
+> > > > > > > > Ah yes.  I authored you a patch, but became distracted. Here:
+> > > > > > > > 
+> > > > > > > > -----8<--------------------8<-------
+> > > > > > > > 
+> > > > > > > > From: Lee Jones <lee.jones@linaro.org>
+> > > > > > > > 
+> > > > > > > > mfd: pm8008: Remove driver data structure pm8008_data
+> > > > > > > > Maintaining a local driver data structure that is never shared
+> > > > > > > > outside of the core device is an unnecessary complexity.  Half of the
+> > > > > > > > attributes were not used outside of a single function, one of which
+> > > > > > > > was not used at all.  The remaining 2 are generic and can be passed
+> > > > > > > > around as required.
+> > > > > > > Okay, but we still need to store the regulators_regmap, which is required in
+> > > > > > > the pm8008 regulator driver. Could we use a global variable for it?
+> > > > > > Look down ...
+> > > > > > 
+> > > > > > > > Signed-off-by: Lee Jones <lee.jones@linaro.org>
+> > > > > > > > ---
+> > > > > > > >      drivers/mfd/qcom-pm8008.c | 53 ++++++++++++++++++-----------------------------
+> > > > > > > >      1 file changed, 20 insertions(+), 33 deletions(-)
+> > > > > > > > 
+> > > > > > > > diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+> > > > > > > > index c472d7f8103c4..4b8ff947762f2 100644
+> > > > > > > > --- a/drivers/mfd/qcom-pm8008.c
+> > > > > > > > +++ b/drivers/mfd/qcom-pm8008.c
+> > > > > > > > @@ -54,13 +54,6 @@ enum {
+> > > > > > > >      #define PM8008_PERIPH_OFFSET(paddr)	(paddr - PM8008_PERIPH_0_BASE)
+> > > > > > > > -struct pm8008_data {
+> > > > > > > > -	struct device *dev;
+> > > > > > > > -	struct regmap *regmap;
+> > > > > > > > -	int irq;
+> > > > > > > > -	struct regmap_irq_chip_data *irq_data;
+> > > > > > > > -};
+> > > > > > > > -
+> > > > > > > >      static unsigned int p0_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_0_BASE)};
+> > > > > > > >      static unsigned int p1_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_1_BASE)};
+> > > > > > > >      static unsigned int p2_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_2_BASE)};
+> > > > > > > > @@ -150,7 +143,7 @@ static struct regmap_config qcom_mfd_regmap_cfg = {
+> > > > > > > >      	.max_register	= 0xFFFF,
+> > > > > > > >      };
+> > > > > > > > -static int pm8008_init(struct pm8008_data *chip)
+> > > > > > > > +static int pm8008_init(struct regmap *regmap)
+> > > > > > > >      {
+> > > > > > > >      	int rc;
+> > > > > > > > @@ -160,34 +153,31 @@ static int pm8008_init(struct pm8008_data *chip)
+> > > > > > > >      	 * This is required to enable the writing of TYPE registers in
+> > > > > > > >      	 * regmap_irq_sync_unlock().
+> > > > > > > >      	 */
+> > > > > > > > -	rc = regmap_write(chip->regmap,
+> > > > > > > > -			 (PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET),
+> > > > > > > > -			 BIT(0));
+> > > > > > > > +	rc = regmap_write(regmap, (PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+> > > > > > > >      	if (rc)
+> > > > > > > >      		return rc;
+> > > > > > > >      	/* Do the same for GPIO1 and GPIO2 peripherals */
+> > > > > > > > -	rc = regmap_write(chip->regmap,
+> > > > > > > > -			 (PM8008_GPIO1_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+> > > > > > > > +	rc = regmap_write(regmap, (PM8008_GPIO1_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+> > > > > > > >      	if (rc)
+> > > > > > > >      		return rc;
+> > > > > > > > -	rc = regmap_write(chip->regmap,
+> > > > > > > > -			 (PM8008_GPIO2_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+> > > > > > > > +	rc = regmap_write(regmap, (PM8008_GPIO2_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+> > > > > > > >      	return rc;
+> > > > > > > >      }
+> > > > > > > > -static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+> > > > > > > > +static int pm8008_probe_irq_peripherals(struct device *dev,
+> > > > > > > > +					struct regmap *regmap,
+> > > > > > > >      					int client_irq)
+> > > > > > > >      {
+> > > > > > > >      	int rc, i;
+> > > > > > > >      	struct regmap_irq_type *type;
+> > > > > > > >      	struct regmap_irq_chip_data *irq_data;
+> > > > > > > > -	rc = pm8008_init(chip);
+> > > > > > > > +	rc = pm8008_init(regmap);
+> > > > > > > >      	if (rc) {
+> > > > > > > > -		dev_err(chip->dev, "Init failed: %d\n", rc);
+> > > > > > > > +		dev_err(dev, "Init failed: %d\n", rc);
+> > > > > > > >      		return rc;
+> > > > > > > >      	}
+> > > > > > > > @@ -207,10 +197,10 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+> > > > > > > >      				IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_LEVEL_LOW);
+> > > > > > > >      	}
+> > > > > > > > -	rc = devm_regmap_add_irq_chip(chip->dev, chip->regmap, client_irq,
+> > > > > > > > +	rc = devm_regmap_add_irq_chip(dev, regmap, client_irq,
+> > > > > > > >      			IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
+> > > > > > > >      	if (rc) {
+> > > > > > > > -		dev_err(chip->dev, "Failed to add IRQ chip: %d\n", rc);
+> > > > > > > > +		dev_err(dev, "Failed to add IRQ chip: %d\n", rc);
+> > > > > > > >      		return rc;
+> > > > > > > >      	}
+> > > > > > > > @@ -220,26 +210,23 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+> > > > > > > >      static int pm8008_probe(struct i2c_client *client)
+> > > > > > > >      {
+> > > > > > > >      	int rc;
+> > > > > > > > -	struct pm8008_data *chip;
+> > > > > > > > -
+> > > > > > > > -	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+> > > > > > > > -	if (!chip)
+> > > > > > > > -		return -ENOMEM;
+> > > > > > > > +	struct device *dev;
+> > > > > > > > +	struct regmap *regmap;
+> > > > > > > > -	chip->dev = &client->dev;
+> > > > > > > > -	chip->regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+> > > > > > > > -	if (!chip->regmap)
+> > > > > > > > +	dev = &client->dev;
+> > > > > > > > +	regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+> > > > > > > > +	if (!regmap)
+> > > > > > > >      		return -ENODEV;
+> > > > > > > > -	i2c_set_clientdata(client, chip);
+> > > > > > > > +	i2c_set_clientdata(client, regmap);
+> > > > > > Here ^
+> > > > > I have added a dummy device and set the client data by passing regmap, see
+> > > > > below:
+> > > > > 
+> > > > > +       regulators_client = i2c_new_dummy_device(client->adapter,
+> > > > > client->addr + 1);
+> > > > > +       if (IS_ERR(regulators_client)) {
+> > > > > +               dev_err(dev, "can't attach client\n");
+> > > > > +               return PTR_ERR(regulators_client);
+> > > > > +       }
+> > > > > +
+> > > > > +       regulators_regmap = devm_regmap_init_i2c(regulators_client,
+> > > > > &qcom_mfd_regmap_cfg[1]);
+> > > > > +       if (!regmap)
+> > > > > +               return -ENODEV;
+> > > > > +
+> > > > > +       i2c_set_clientdata(client, regulators_regmap);
+> > > > > 
+> > > > > Now if i try to get this regmap from regulator driver by doing
+> > > > > 
+> > > > > struct regmap *regmap = dev_get_drvdata(pdev->dev.parent);
+> > > > > 
+> > > > > it still gets me the regmap of pm8008@8 device and not the regulator device
+> > > > > regmap (0x9). Not sure if I'm missing something here.
+> > > > So you need to pass 2 regmap pointers?
+> > > > 
+> > > > If you need to pass more than one item to the child devices, you do
+> > > > need to use a struct for that.
+> > > I need to pass only one regmap out of the two, but i am not able to retrieve
+> > > the correct regmap simply by doing i2c_set_clientdata
+> > > 
+> > > probably because we are having all the child nodes under same DT node and
+> > > thus not able to distinguish based on the dev pointer
+> > You can only pull out (get) the pointer that you put in (set).
+> > 
+> > Unless you over-wrote it later in the thread of execution, you are
+> > pulling out whatever regulators_regmap happens to be.
+> > 
+> > Is qcom_mfd_regmap_cfg[1] definitely the one you want?
+> 
+> 
+> Yes, I need qcom_mfd_regmap_cfg[1]
+> 
+> Pasting code snippet for reference:
+> 
+> static struct regmap_config qcom_mfd_regmap_cfg[2] = {
+>      {
+> 
+>          .name = "infra",
+>          .reg_bits   = 16,
+>          .val_bits   = 8,
+>          .max_register   = 0xFFFF,
+>      },
+>      {
+>          .name = "regulators",
+>          .reg_bits   = 16,
+>          .val_bits   = 8,
+>          .max_register   = 0xFFFF,
+>      },
+> 
+> };
+> 
+> 
+> Inside pm8008_probe:
+> 
+> 
+>      regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg[0]);
+>      if (!regmap)
+>          return -ENODEV;
+> 
+>      i2c_set_clientdata(client, regmap);
+> 
+> 
+>      regulators_client = i2c_new_dummy_device(client->adapter, client->addr
+> + 1);
+>      if (IS_ERR(regulators_client)) {
+>          dev_err(dev, "can't attach client\n");
+>          return PTR_ERR(regulators_client);
+>      }
+> 
+>      regulators_regmap = devm_regmap_init_i2c(regulators_client,
+> &qcom_mfd_regmap_cfg[1]);
+>      if (!regmap)
+>          return -ENODEV;
+> 
+>      i2c_set_clientdata(regulators_client, regulators_regmap);
+
+You can't call this twice.
+
+Doing so with over-write regmap with regulators_regmap.
+
+You said you only needed one?
+
+  "I need to pass only one regmap out of the two, but i am not able to retrieve"
+
+> In qcom-pm8008-regulator.c I tried to get the regmap using
+> 
+> dev_get_regmap(pdev->dev.parent, "regulators");
+
+I haven't looked at this API before.  I suggest that this would be
+used *instead* of passing the regmap pointer via driver_data.
+
+It looks like you're using different devices to init your regmaps;
+'client' and 'regulator_client' (derived from client->adapter).
+
+"regulators" is registered using regulators_regmap which was *not*
+init'ed with pdev->dev.parent (same as client->dev), so trying to
+dev_get_regmap() with that device pointer will not work.
+
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
