@@ -2,412 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E70C756288D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 03:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEC9856289A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 03:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231356AbiGABtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 21:49:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57324 "EHLO
+        id S232487AbiGABzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 21:55:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiGABtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 21:49:49 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EC917065;
-        Thu, 30 Jun 2022 18:49:40 -0700 (PDT)
-X-UUID: a6682a9cd6874e1a8bccb9f02746467f-20220701
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.7,REQID:28219278-acca-48ab-8809-b404b55b9524,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:25
-X-CID-META: VersionHash:87442a2,CLOUDID:2f4c4dd6-5d6d-4eaf-a635-828a3ee48b7c,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: a6682a9cd6874e1a8bccb9f02746467f-20220701
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1591349146; Fri, 01 Jul 2022 09:49:35 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 1 Jul 2022 09:49:33 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Fri, 1 Jul 2022 09:49:32 +0800
-Message-ID: <dbf562f2894163163a2bb6a02dac057965523b1d.camel@mediatek.com>
-Subject: Re: [PATCH v4, 1/8] dt-bindings: media: mediatek: vcodec: Adds
- encoder cores dt-bindings for mt8195
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Tomasz Figa" <tfiga@google.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        "Alexandre Courbot" <acourbot@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <nicolas.dufresne@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 1 Jul 2022 09:49:32 +0800
-In-Reply-To: <20220630222414.GA3419242-robh@kernel.org>
-References: <20220624082335.10165-1-irui.wang@mediatek.com>
-         <20220624082335.10165-2-irui.wang@mediatek.com>
-         <20220630222414.GA3419242-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S232223AbiGABzA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 21:55:00 -0400
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8025C975
+        for <devicetree@vger.kernel.org>; Thu, 30 Jun 2022 18:54:57 -0700 (PDT)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220701015452epoutp023e43b41003630a6ee2ba041a1508daee~9kcAssKqa1182711827epoutp02Q
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 01:54:52 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220701015452epoutp023e43b41003630a6ee2ba041a1508daee~9kcAssKqa1182711827epoutp02Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1656640492;
+        bh=dc5BZSrh8Qzb5+NzapevGb8fICfGbUyOB0tNOPIqj/c=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=XNqtUmWPCqSRKRK7ijPYvuIS7LZ5M0Hz3gahGbF8KmNl2x/i5FzGbCCEXyzCsqtxP
+         Pb+W8azyAeJDNhZgaluBDsAzJknXqo/TBxI24qLmFWxmBteD/W5QBAQs4bzPaaOtbr
+         zPB3t5L66qtCyxD40f4sfSsCMVDch8I2uJJvSMfc=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+        20220701015451epcas2p1da5c11009b17aca7baeecff6bf7886ba~9kcALD0jy2754627546epcas2p1K;
+        Fri,  1 Jul 2022 01:54:51 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.91]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4LYytz2gjDz4x9QT; Fri,  1 Jul
+        2022 01:54:51 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        E5.CF.09650.BE35EB26; Fri,  1 Jul 2022 10:54:51 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220701015450epcas2p486f1a131e1d8d11979e1e61d6250a4f2~9kb-RUHZw0812008120epcas2p4F;
+        Fri,  1 Jul 2022 01:54:50 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220701015450epsmtrp1de094a657f32c39e0c704d955d7e6b75~9kb-QSo9g0894608946epsmtrp1_;
+        Fri,  1 Jul 2022 01:54:50 +0000 (GMT)
+X-AuditID: b6c32a46-0b9ff700000025b2-97-62be53eb0a61
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        C9.E4.08905.AE35EB26; Fri,  1 Jul 2022 10:54:50 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220701015450epsmtip216f1482943b9d919633d1f7b6a9b70ff~9kb-CMgud0445504455epsmtip2U;
+        Fri,  1 Jul 2022 01:54:50 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH v3 0/5] support USI for Exynos Auto v9 SoC
+Date:   Fri,  1 Jul 2022 10:52:21 +0900
+Message-Id: <20220701015226.32781-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        RCVD_IN_MSPIKE_H2,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupgk+LIzCtJLcpLzFFi42LZdljTXPd18L4kg3/dIhYP5m1js7i8X9ti
+        /pFzrBY7Go6wWvS9eMhssenxNVaLGef3MVm07j3CbvG8bx+TA6fHplWdbB53ru1h89i8pN6j
+        b8sqRo/Pm+QCWKOybTJSE1NSixRS85LzUzLz0m2VvIPjneNNzQwMdQ0tLcyVFPISc1NtlVx8
+        AnTdMnOAzlFSKEvMKQUKBSQWFyvp29kU5ZeWpCpk5BeX2CqlFqTkFJgX6BUn5haX5qXr5aWW
+        WBkaGBiZAhUmZGf8f/CYreAsd8Xa2YdYGxi3cHYxcnJICJhIzPm/ir2LkYtDSGAHo8SBtZeZ
+        QBJCAp8YJV52lEAkvjFK7Jv6mhGm4/eKTjaIxF5GieP9z6DaPzJK/H75ig2kik1AV2LL81dg
+        HSIC8RLPL7xnASliFpjEJHG+o5kZJCEsYCVx8+JnsH0sAqoSl74+BLN5BewkvrcuYYJYJy+x
+        YX4vM0RcUOLkzCcsIDYzULx562xmkKESArfYJV6f2sQG0eAi8WbaAShbWOLV8S3sELaUxMv+
+        Nii7WGLprE9MEM0NjBKXt/2CajCWmPWsHehsDqANmhLrd+mDmBICyhJHbkHt5ZPoOPyXHSLM
+        K9HRJgTRqC5xYPt0FghbVqJ7zmdWCNtD4kHjeVZIkMZKrH3ziH0Co/wsJN/MQvLNLIS9CxiZ
+        VzGKpRYU56anFhsVGMFjNTk/dxMjOElque1gnPL2g94hRiYOxkOMEhzMSiK8bPP2JgnxpiRW
+        VqUW5ccXleakFh9iNAWG70RmKdHkfGCaziuJNzSxNDAxMzM0NzI1MFcS5/VK2ZAoJJCeWJKa
+        nZpakFoE08fEwSnVwHQ22HOuqN7lCtMJtu3b//0Vlt7dL/K9LEg5cFfGr1qji4qHvA/tl87X
+        v+/l2Xzo2z8rxkKVWsvwmLPvsxKmRGoa1b/lC2VheV6/PE9q94oPbxYdOxmkWVW2TeOh8TXV
+        Mp907RKzT/vkbeIS05077dMzZycemN5vksk/MXOb1/wFAtvCq1VPTDoWdcp0gnDrk45O1fO/
+        pLYKT7LQSRaYYVBt7VAweX7c+tUrF51Imv1HUHhvQrRRivDj9ulrVNLXCqwUK9jfsYDtsfic
+        UueQuHzt7TIzfU7K1G1ucvwkEBZdfMEqkWNnlsPqHWXHeA0f9t560+J4OkLeIk4+bWZBi/4t
+        s5fMk7Ny9feJMUgrsRRnJBpqMRcVJwIAp+NlIhsEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBLMWRmVeSWpSXmKPExsWy7bCSvO6r4H1JBssOGVs8mLeNzeLyfm2L
+        +UfOsVrsaDjCatH34iGzxabH11gtZpzfx2TRuvcIu8Xzvn1MDpwem1Z1snncubaHzWPzknqP
+        vi2rGD0+b5ILYI3isklJzcksSy3St0vgyvj/4DFbwVnuirWzD7E2MG7h7GLk5JAQMJH4vaKT
+        rYuRi0NIYDejxNxbnxghErISz97tYIewhSXutxxhhSh6zyixv6+VFSTBJqArseX5K7AGEYF4
+        ic1fFrKAFDELTGOS6Hg8A6xbWMBK4ubFz0wgNouAqsSlrw/BbF4BO4nvrUuYIDbIS2yY38sM
+        EReUODnzCQuIzQwUb946m3kCI98sJKlZSFILGJlWMUqmFhTnpucWGxYY5qWW6xUn5haX5qXr
+        JefnbmIEB66W5g7G7as+6B1iZOJgPMQowcGsJMLLNm9vkhBvSmJlVWpRfnxRaU5q8SFGaQ4W
+        JXHeC10n44UE0hNLUrNTUwtSi2CyTBycUg1M042etXEviLskfWpF9Lu5yXfcCl7lC9Rtcr3/
+        /M5Vp02TE3c1f5Y5IbP3AIeRwMMaP+kXUvv+t5sa/r+9x0Xh4d/yTiMFqcXTnsvJLY7XWjup
+        OMx3Oo/8BY/HJrX91l4/ePYuLOQ4fSbxxN9ojojTPxNXfLB4bfCmw0dZPMn0VJnXLZFSkb83
+        hNa/C+fe8fdf9AUzneqVBQ7/RBqa2IM/fzEoDvOoZ/q4TFpI//ALrY0ZvO0MPDHfenOaVRN6
+        d5jJuovm8R/cOePeuwPf8i/Nu8gX5eWXwjj/jAiDXefdObofD05XWXipdbb4xnt8OawqNTl/
+        zh2z/epxe9kargsTQhlmPTZeKbPzQW5v47I8JZbijERDLeai4kQArby8HMsCAAA=
+X-CMS-MailID: 20220701015450epcas2p486f1a131e1d8d11979e1e61d6250a4f2
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220701015450epcas2p486f1a131e1d8d11979e1e61d6250a4f2
+References: <CGME20220701015450epcas2p486f1a131e1d8d11979e1e61d6250a4f2@epcas2p4.samsung.com>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Rob,
+Add to support USI(Universal Serial Interface) for Exynos Auto v9 SoC.
+This patchset is built on top of below patchset.
+- spi patchset:
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+- serial patch to expand serial devices to 12:
+git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git
+in the tty-testing branch.
 
-Thank you for reviewing.
+The SoC supports up to 12 USIs so they can be configured as below
+- 12 x UARTs(4pins)
+- 12 x SPIs(4pins)
+- 24 x I2C
+- 12 x UARTS(2pin) and 12 x I2C
 
-On Thu, 2022-06-30 at 16:24 -0600, Rob Herring wrote:
-> On Fri, Jun 24, 2022 at 04:23:28PM +0800, Irui Wang wrote:
-> > mt8195 has two H264 encoder hardware, which are named core0 and
-> > core1.
-> > The two encoder cores are independent, we can just enable one core
-> > to
-> > do encoding or enable both of them to achieve higher performance.
-> > We
-> > pick core0 as main device and core1 as its subdevice, it just a way
-> > to
-> > to manage the two encoder hardware, because they are two equal
-> > encoder
-> > hardware with the same function.
-> 
-> If the h/w is symmetrical, why did you do this?
-We want to register the two cores into one V4L2 device, and use core0
-by default, as for core1, we can enable it when the firmware supports.
-I think it should be one way to manage the two encoder hardware, and we
-can still use core0 normally event if the firmware doesn't support
-multi-core encode.
+Changes from v2:
+- Add R-B tags for #1 and #2 dt-binding patches
+- Separate usi0 changes
 
-> 
-> > 
-> > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-> > ---
-> >  .../media/mediatek,vcodec-encoder-core.yaml   | 225
-> > ++++++++++++++++++
-> >  .../media/mediatek,vcodec-encoder.yaml        |   1 -
-> >  2 files changed, 225 insertions(+), 1 deletion(-)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
-> > core.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
-> > core.yaml
-> > b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
-> > core.yaml
-> > new file mode 100644
-> > index 000000000000..afd7d645aa80
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
-> > encoder-core.yaml
-> > @@ -0,0 +1,225 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +
-> > +%YAML 1.2
-> > +---
-> > +$id: "
-> > http://devicetree.org/schemas/media/mediatek,vcodec-encoder-core.yaml#
-> > "
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: MediaTek Video Encoder Accelerator With Multi Core
-> > +
-> > +maintainers:
-> > +  - Irui Wang <irui.wang@mediatek.com>
-> > +
-> > +description: |
-> > +  MediaTek Video Encoder is the video encoder hardware present in
-> > MediaTek
-> > +  SoCs which supports high resolution encoding functionalities. To
-> > meet higher
-> > +  encoder performance, there will be one or more encoder hardware
-> > inside SoC,
-> > +  which named core0, core1, etc.. For example, mt8195 has two
-> > encoder hardware,
-> > +  the two encoder cores block diagram, can check below.
-> > +  --------------------------------------------------------------
-> > +  Input frame  0     1     2     3     4     5     6
-> > +               |     |     |     |     |     |     |
-> > +               v     |     v     |     v     |     v
-> > +           +-------+ | +-------+ | +-------+ | +-------+
-> > +           | core0 | | | core0 | | | core0 | | | core0 |
-> > +           +-------+ | +-------+ | +-------+ | +-------+
-> > +               |     |     |     |     |     |     |
-> > +               |     v     |     v     |     v     |
-> > +               | +-------+ | +-------+ | +-------+ |
-> > +               | | core1 | | | core1 | | | core1 | |
-> > +               | +-------+ | +-------+ | +-------+ |
-> > +               |     |     |     |     |     |     |
-> > +               v     v     v     v     v     v     v    <parent>
-> > +  --------------------------------------------------------------
-> > +                            core || index               <child>
-> > +                                 \/
-> > +       +--------------------------------------------------+
-> > +       |                     core0/core1                  |
-> > +       |             enable/disable power/clk/irq         |
-> > +       +--------------------------------------------------+
-> > +  --------------------------------------------------------------
-> > +  As above, there are two cores child devices, they are two
-> > encoder hardware
-> > +  which can encode input frames in order. When start encoding,
-> > input frame 0
-> > +  will be encoded by core0, and input frame 1 can be encoded by
-> > core1 even if
-> > +  frame 0 has not been encoded done yet, after frame 0 encoded
-> > done, frame 2
-> > +  will be encoded by core0, even input frames are encoded by core0
-> > and odd
-> > +  input frames are encoded by core1, these two encoder cores
-> > encode ench input
-> > +  frames in this overlapping manner.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - mediatek,mt8195-vcodec-enc
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  mediatek,scp:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: |
-> > +      The node of system control processor (SCP), using
-> > +      the remoteproc & rpmsg framework.
-> > +
-> > +  mediatek,venc-multi-core:
-> 
-> Can't you detect this with presence of child nodes?
-We plan to delete the property in next version.
+Changes from v1:
+- Move all usi nodes from exynosautov9-usi.dtsi to exynosautov9.dtsi as
+  suggested by Krzysztof
+- Add exynosautov9-usi and exynosautov9-uart compatibles
+- Drop unnecessary /* USI: */ comments
+- Separate phandles of dmas nodes
 
-> 
-> > +    type: boolean
-> > +    description: |
-> > +      Indicates whether the encoder has multiple cores or not. We
-> > use this
-> > +      to probe additional encoder cores device.
-> > +
-> > +  iommus:
-> > +    minItems: 1
-> > +    maxItems: 32
-> > +    description: |
-> > +      List of the hardware port in respective IOMMU block for
-> > current Socs.
-> > +      Refer to bindings/iommu/mediatek,iommu.yaml.
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    maxItems: 1
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  dma-ranges:
-> > +    maxItems: 1
-> > +    description: |
-> > +      Describes the physical address space of IOMMU maps to
-> > memory.
-> > +
-> > +  "#address-cells":
-> > +    const: 2
-> > +
-> > +  "#size-cells":
-> > +    const: 2
-> > +
-> > +  ranges: true
-> > +
-> > +# Required child node:
-> > +patternProperties:
-> > +  "^venc-core@[0-9a-f]+$":
-> > +    type: object
-> > +    description: |
-> > +      The video encoder core device node which should be added as
-> > subnodes to
-> > +      the main venc node, it represents a encoder hardware.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        items:
-> > +          - const: mediatek,mtk-venc-hw
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      mediatek,hw-id:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description: |
-> > +          Current encoder core id. We use it to pick which one
-> > encoder core
-> > +          will be used to encoding current input frame.
-> > +
-> > +      iommus:
-> > +        minItems: 1
-> > +        maxItems: 32
-> 
-> It looks like there are 9 iommus. How does this vary on an mt8195
-> SoC?
-Currently, mt8195 defines total 27 iommus for Larb19, and now we can
-use 9 iommus of them.
+Chanho Park (5):
+  dt-bindings: soc: samsung: usi: add exynosautov9-usi compatible
+  dt-bindings: serial: samsung: add exynosautov9-uart compatible
+  arm64: dts: exynosautov9: add pdma0 device tree node
+  arm64: dts: exynosautov9: prepare usi0 changes
+  arm64: dts: exynosautov9: add usi device tree nodes
 
-Thanks
-Best Regards
-> 
-> > +        description: |
-> > +          List of the hardware port in respective IOMMU block for
-> > current Socs.
-> > +          Refer to bindings/iommu/mediatek,iommu.yaml.
-> > +
-> > +      interrupts:
-> > +        maxItems: 1
-> > +
-> > +      clocks:
-> > +        maxItems: 1
-> > +
-> > +      clock-names:
-> > +        maxItems: 1
-> > +
-> > +      power-domains:
-> > +        maxItems: 1
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +      - mediatek,hw-id
-> > +      - iommus
-> > +      - interrupts
-> > +      - clocks
-> > +      - clock-names
-> > +      - assigned-clocks
-> > +      - assigned-clock-parents
-> > +      - power-domains
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - mediatek,scp
-> > +  - iommus
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - dma-ranges
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/memory/mt8195-memory-port.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/clock/mt8195-clk.h>
-> > +    #include <dt-bindings/power/mt8195-power.h>
-> > +
-> > +    soc {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        venc: venc@1a020000 {
-> > +            compatible = "mediatek,mt8195-vcodec-enc";
-> > +            reg = <0 0x1a020000 0 0x10000>;
-> > +            mediatek,scp = <&scp>;
-> > +            mediatek,venc-multi-core;
-> > +            iommus = <&iommu_vdo M4U_PORT_L19_VENC_RCPU>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_REC>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_BSDMA>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_SV_COMV>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_RD_COMV>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_CUR_LUMA>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_CUR_CHROMA>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_REF_LUMA>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_REF_CHROMA>;
-> > +            interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +            clocks = <&vencsys CLK_VENC_VENC>;
-> > +            clock-names = "clk_venc";
-> > +            power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
-> > +            dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-> > +            #address-cells = <2>;
-> > +            #size-cells = <2>;
-> > +            ranges;
-> > +
-> > +            venc-core@1b020000 {
-> > +                compatible = "mediatek,mtk-venc-hw";
-> > +                reg = <0 0x1b020000 0 0x10000>;
-> > +                mediatek,hw-id = <1>;
-> > +                iommus = <&iommu_vpp M4U_PORT_L20_VENC_RCPU>,
-> > +                         <&iommu_vpp M4U_PORT_L20_VENC_REC>,
-> > +                         <&iommu_vpp M4U_PORT_L20_VENC_BSDMA>,
-> > +                         <&iommu_vpp M4U_PORT_L20_VENC_SV_COMV>,
-> > +                         <&iommu_vpp M4U_PORT_L20_VENC_RD_COMV>,
-> > +                         <&iommu_vpp M4U_PORT_L20_VENC_CUR_LUMA>,
-> > +                         <&iommu_vpp
-> > M4U_PORT_L20_VENC_CUR_CHROMA>,
-> > +                         <&iommu_vpp M4U_PORT_L20_VENC_REF_LUMA>,
-> > +                         <&iommu_vpp
-> > M4U_PORT_L20_VENC_REF_CHROMA>;
-> > +                interrupts = <GIC_SPI 346 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +                clocks = <&vencsys_core1 CLK_VENC_CORE1_VENC>;
-> > +                clock-names = "clk_venc_core1";
-> > +                assigned-clocks = <&topckgen CLK_TOP_VENC>;
-> > +                assigned-clock-parents = <&topckgen
-> > CLK_TOP_UNIVPLL_D4>;
-> > +                power-domains = <&spm
-> > MT8195_POWER_DOMAIN_VENC_CORE1>;
-> > +            };
-> > +        };
-> > +    };
-> > diff --git
-> > a/Documentation/devicetree/bindings/media/mediatek,vcodec-
-> > encoder.yaml
-> > b/Documentation/devicetree/bindings/media/mediatek,vcodec-
-> > encoder.yaml
-> > index d36fcca04cbc..11682659c4c4 100644
-> > --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-
-> > encoder.yaml
-> > +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
-> > encoder.yaml
-> > @@ -21,7 +21,6 @@ properties:
-> >        - mediatek,mt8173-vcodec-enc
-> >        - mediatek,mt8183-vcodec-enc
-> >        - mediatek,mt8192-vcodec-enc
-> > -      - mediatek,mt8195-vcodec-enc
-> >  
-> >    reg:
-> >      maxItems: 1
-> > -- 
-> > 2.18.0
-> > 
-> > 
+ .../bindings/serial/samsung_uart.yaml         |    5 +-
+ .../bindings/soc/samsung/exynos-usi.yaml      |    8 +-
+ .../boot/dts/exynos/exynosautov9-sadk.dts     |    2 +
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 1087 ++++++++++++++++-
+ 4 files changed, 1094 insertions(+), 8 deletions(-)
+
+-- 
+2.36.1
 
