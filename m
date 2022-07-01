@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FD0C562E32
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B23AD562E3D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:30:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233089AbiGAI3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 04:29:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58808 "EHLO
+        id S235218AbiGAI3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 04:29:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235248AbiGAI2q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:28:46 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAEA521827
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 01:28:44 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id u12so2688888eja.8
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 01:28:44 -0700 (PDT)
+        with ESMTP id S235936AbiGAI3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:29:45 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34A1270E58
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 01:29:44 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id h23so2667509ejj.12
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 01:29:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=KpRihbZiSTt9WSRfafM5Hr6SzD6WulPA9ejW+Q/RSW4=;
-        b=urqzcie5Vsin+uIl/jgbKt65PLgul2NzQXuJT76Fp6UK2Nk6X2m4bHrGffOW0JjmuE
-         bp3HklF/K6nR3d+yvEq1LonlPa4C73uWvY1875g2tmBhQ/PdioH6R/ArOhhJDOECD+bq
-         nMMzilAeWFUFDvsO45lhzLtFgGdjpJnUnF60WFOsm2gccwSmsWDjyjlx79q/Yd9/qMYh
-         qTUc2IrHfHMtOrWE3VCLxFa4AXGnAeimo4dqdLdrCUeqzu56YZ7SjQewdsEJj5inHQ/J
-         tJPSMqnL/N7HbQIJbl7uhQrOqtV1EyejR6AOOKZr/1swaQrJ8mGrNL9ZFlQXGVfhAsMD
-         Ng1A==
+        bh=dxZbpRkh5l4JeCdeImv9Ijljaa3y0PVNYCMebKYCl5U=;
+        b=JzK4vRtf2boD93GH5GeGpymBSJi2/wRmfBUvwyV19BN6BECcAB5LUoqtwFaeVfUBPz
+         nY3OwaYESyX7QZ2Tnule/458OtqLPPcxlVeD/+2ZKHRAQhy5jC2pcksMsOQuFSWnqOxJ
+         Tpfj6eWejLln5hf23mQfXSdxfxSI7BWuccMLNcFpgO3LjeEJ7gi0P8vjxNPZsL7Nw7hm
+         e7QVEpvH84B7eLpa/73jfdZ+TC8BBN1cB0VRzFDCkijH+T39KeYCFXZW3uh5MbZgS+oD
+         l3Zz1bfBNd6KWcd2PZeAZkA7B9oi/Hzjkfhqv740zDyyVEkVfoXgOGqsp7veVEdGnqt4
+         2ltw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=KpRihbZiSTt9WSRfafM5Hr6SzD6WulPA9ejW+Q/RSW4=;
-        b=kA3lfDRTxCu8qDOz8lqa21khZW2Lcc0mjgIuCNu3MAhJi1oKmqhgprdPMWCjX88KTD
-         ASh6FqB8i+ILeo5cclytOw5Wq0er4d23jYuWO5vGSlld0Icgzad+DjlboOmNnWh8UQ+d
-         q9vwvpc4uA+v+XOsqhIi72GzDsyfLJ9hbHMUMHuC1HUzpyHySJgu5QRSV8zgXljC3VBD
-         Fc5iK/0QvHgz9IZbu/GiKricDPmpWgoG9ZpXdFnAm0VcZZYs6pxanfHrfU0a2eHeRmER
-         u+fccgvdcUubyWh9ZQ+ghgM+jN7TUH7T7b4D+xexv18MzER9v5sRBIUCD2oSA0UbaruQ
-         PcAg==
-X-Gm-Message-State: AJIora8rQb6T/tiSx8ULf9G5HcjWgCR5o97IxwZW1PN5UN5wHJD+K/n8
-        cdcUIncovWux+pq8JjDRRVNCBw==
-X-Google-Smtp-Source: AGRyM1tsY/ZhfsK0nitrIZl9qMahGP5WendMPNYNOe5gVtJZkp37q6OwEpwydF354sR9EH6KMrEG0w==
-X-Received: by 2002:a17:907:7d8b:b0:726:aad6:f421 with SMTP id oz11-20020a1709077d8b00b00726aad6f421mr12821705ejc.80.1656664123249;
-        Fri, 01 Jul 2022 01:28:43 -0700 (PDT)
+        bh=dxZbpRkh5l4JeCdeImv9Ijljaa3y0PVNYCMebKYCl5U=;
+        b=Qql10JhbT+n+F+PiVNd0kLLw737YVfTWgRRYMd/1pUaseiVPk04JMBvp/2VVjdLY5l
+         SJ368R2xp7UF+sfzcZYzDo51q+yXN875g5CI1LIxsnmckw5KSBMZ+HT2LUzIwgyWsddW
+         M0XeBrQS1PhOR/dZLmpTnR5sFA3bdIDUGEsewKSKlW97iJwrk1BgkwtnYiByBwmPcjG8
+         YoLqcWOlfaOJYCvtS6Mv5uP7BkEy7WrQf9l2btw2twxN6cC2p86YpMwCblMAuLYw5YsG
+         espgik+pZJ7O3ItBWH1R3nxg998Zm5eAhmyGM5DRXzoFCBVd2vTsbLj2Ya6jw6ptSs/f
+         j6dw==
+X-Gm-Message-State: AJIora9/TbAK9qoWb/we2qkTFKhcA9+rEdH2ToGh9n+pkH81JPPwiPb9
+        IdcUeIZljoLmZ/m4zmBdCrydLg==
+X-Google-Smtp-Source: AGRyM1vRa+C2UOMEzZXuI0s812xXVlGPUrJ3Cy8g8SB9jAZEyZodSm6NyqwYhJ9kBMUX7Gh97vNwVw==
+X-Received: by 2002:a17:906:7288:b0:722:da04:da51 with SMTP id b8-20020a170906728800b00722da04da51mr13174406ejl.316.1656664182607;
+        Fri, 01 Jul 2022 01:29:42 -0700 (PDT)
 Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id d16-20020a170906545000b006feb20b5235sm10202295ejp.84.2022.07.01.01.28.42
+        by smtp.gmail.com with ESMTPSA id s6-20020a1709062ec600b00711d88ae162sm10147597eji.24.2022.07.01.01.29.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 01:28:42 -0700 (PDT)
-Message-ID: <2d63cbf2-8e59-a8db-3faf-747b92d2eb66@linaro.org>
-Date:   Fri, 1 Jul 2022 10:28:41 +0200
+        Fri, 01 Jul 2022 01:29:42 -0700 (PDT)
+Message-ID: <3c17965c-a588-0580-c7d5-f6252712c35d@linaro.org>
+Date:   Fri, 1 Jul 2022 10:29:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH] MAINTAINERS: pinctrl: update qcom file list to include
- yaml files
+Subject: Re: [PATCH 01/10] dt-bindings: PCI: qcom: Fix reset conditional
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org, linus.walleij@linaro.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220629092514.70752-1-srinivas.kandagatla@linaro.org>
+References: <20220629141000.18111-1-johan+linaro@kernel.org>
+ <20220629141000.18111-2-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220629092514.70752-1-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220629141000.18111-2-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,31 +83,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 11:25, Srinivas Kandagatla wrote:
-> Currently Qualcomm pinctrl MAINTAINERS file list does not include yaml
-> files. Include this for correctness.
+On 29/06/2022 16:09, Johan Hovold wrote:
+> Fix the reset conditional which always evaluated to true due to a
+> misspelled property name ("compatibles" in plural).
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index c4648e86dc14..71e7725aa574 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15765,6 +15765,7 @@ M:	Bjorn Andersson <bjorn.andersson@linaro.org>
->  L:	linux-arm-msm@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/pinctrl/qcom,*.txt
-> +F:	Documentation/devicetree/bindings/pinctrl/qcom,*.yaml
+> Fixes: 6700a9b00f0a ("dt-bindings: PCI: qcom: Do not require resets on msm8996 platforms")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-Instead just:
-Documentation/devicetree/bindings/pinctrl/qcom,*
 
->  F:	drivers/pinctrl/qcom/
->  
->  PIN CONTROLLER - RENESAS
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
