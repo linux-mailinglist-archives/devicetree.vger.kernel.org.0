@@ -2,235 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E83715629EF
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD335629ED
 	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 05:59:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233073AbiGAD5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jun 2022 23:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37056 "EHLO
+        id S233510AbiGAD7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jun 2022 23:59:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233234AbiGAD5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 23:57:41 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31E6167593;
-        Thu, 30 Jun 2022 20:57:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1656647860; x=1688183860;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=Zls6Ps8N+fstYX2fEoETd+zT7xiKPJECEBkqyCtuCWI=;
-  b=L+KWHyZz3TNr/tNkqdpUnYRCZWd5gYW05fk0jgIAMUA3MXaPSZWoc3mK
-   tYcwll/nD9zDb8UDfJgglHf7yRCHHV4rERuzcTx7qe9koJYsNjSkvY2aG
-   i83Ko8b1eQQjN6ixamP7HEpxS2D6D451qMF1DstNLa0JN+6JGHEw7sYQe
-   MoFBKUuEa9xOFvTHFVdckLk7nuFnthvF3+Wfjz6J8DhMvVdr+KWeVUfx2
-   Ks3Cc2M+BNK2nK0OeQqt3O81Mo9S0AQrwBZ3RCaCafFh6fMHRxHhyzZGm
-   M2fAPmSDenYUOZ3TXMldWKxAHJBGykT3vsoqn62XfOkJ1rve9SEYPHCod
-   A==;
-X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; 
-   d="scan'208";a="165946886"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Jun 2022 20:57:38 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 30 Jun 2022 20:57:38 -0700
-Received: from training-HP-280-G1-MT-PC.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Thu, 30 Jun 2022 20:57:33 -0700
-From:   Divya Koppera <Divya.Koppera@microchip.com>
-To:     <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>
-CC:     <UNGLinuxDriver@microchip.com>, <Madhuri.Sripada@microchip.com>
-Subject: [PATCH v3 net-next 2/2] net: phy: micrel: Adding LED feature for LAN8814 PHY
-Date:   Fri, 1 Jul 2022 09:27:09 +0530
-Message-ID: <20220701035709.10829-3-Divya.Koppera@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220701035709.10829-1-Divya.Koppera@microchip.com>
-References: <20220701035709.10829-1-Divya.Koppera@microchip.com>
+        with ESMTP id S233771AbiGAD65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jun 2022 23:58:57 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 470C16758A;
+        Thu, 30 Jun 2022 20:58:56 -0700 (PDT)
+X-UUID: c8942c8113e44446ac8218def143e582-20220701
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.7,REQID:98d646e1-8d6a-4ee5-bb0b-aa3d0b9cbca4,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:87442a2,CLOUDID:a8804186-57f0-47ca-ba27-fe8c57fbf305,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: c8942c8113e44446ac8218def143e582-20220701
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1184908001; Fri, 01 Jul 2022 11:58:48 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 1 Jul 2022 11:58:46 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Fri, 1 Jul 2022 11:58:46 +0800
+From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
+        <xinlei.lee@mediatek.com>, <liangxu.xu@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Bo-Chen Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v15 00/16] drm/mediatek: Add MT8195 dp_intf driver
+Date:   Fri, 1 Jul 2022 11:58:29 +0800
+Message-ID: <20220701035845.16458-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LED support for extended mode where
-LED 1: Enhanced Mode 5 (10M/1000M/Activity)
-LED 2: Enhanced Mode 4 (100M/1000M/Activity)
+The dpi/dpintf driver and the added helper functions are required for
+the DisplayPort driver to work.
 
-By default it supports KSZ9031 LED mode
+This series is separated from [1] which is original from Guillaume.
+The display port driver is [2].
 
-Signed-off-by: Divya Koppera <Divya.Koppera@microchip.com>
----
-v2 -> v3:
-- Fixed compilation issues
+Changes for v15:
+1. Add a patch to remove support for output yuv422 for previous socs.
+2. Only remain output format of reg888/yuv422 support for mt8195.
+3. Adjust the order of patches.
 
-v1 -> v2:
-- No changes
----
- drivers/net/phy/micrel.c | 73 ++++++++++++++++++++++++++++++----------
- 1 file changed, 56 insertions(+), 17 deletions(-)
+Changes for v14:
+1. Separate a new binding patch to modify mediatek string format.
+2. Use GENMASK(4, 0) for INT_MATRIX_SEL_MASK in patch
+   "Add YUV422 output support"
+3. Change kernel doc description of support_direct_pin.
+4. Change to use pixels_per_iter to control quantity of transferred
+   pixels per iterration.
 
-diff --git a/drivers/net/phy/micrel.c b/drivers/net/phy/micrel.c
-index 22139901f01c..e78d0bf69bc3 100644
---- a/drivers/net/phy/micrel.c
-+++ b/drivers/net/phy/micrel.c
-@@ -209,6 +209,9 @@
- #define PTP_TSU_INT_STS_PTP_RX_TS_OVRFL_INT_	BIT(1)
- #define PTP_TSU_INT_STS_PTP_RX_TS_EN_		BIT(0)
- 
-+#define LAN8814_LED_CTRL_1			0x0
-+#define LAN8814_LED_CTRL_1_KSZ9031_LED_MODE_	BIT(6)
-+
- /* PHY Control 1 */
- #define MII_KSZPHY_CTRL_1			0x1e
- #define KSZ8081_CTRL1_MDIX_STAT			BIT(4)
-@@ -308,6 +311,10 @@ struct kszphy_priv {
- 	u64 stats[ARRAY_SIZE(kszphy_hw_stats)];
- };
- 
-+static const struct kszphy_type lan8814_type = {
-+	.led_mode_reg		= ~LAN8814_LED_CTRL_1,
-+};
-+
- static const struct kszphy_type ksz8021_type = {
- 	.led_mode_reg		= MII_KSZPHY_CTRL_2,
- 	.has_broadcast_disable	= true,
-@@ -1688,6 +1695,30 @@ static int kszphy_suspend(struct phy_device *phydev)
- 	return genphy_suspend(phydev);
- }
- 
-+static void kszphy_parse_led_mode(struct phy_device *phydev)
-+{
-+	const struct kszphy_type *type = phydev->drv->driver_data;
-+	const struct device_node *np = phydev->mdio.dev.of_node;
-+	struct kszphy_priv *priv = phydev->priv;
-+	int ret;
-+
-+	if (type && type->led_mode_reg) {
-+		ret = of_property_read_u32(np, "micrel,led-mode",
-+					   &priv->led_mode);
-+
-+		if (ret)
-+			priv->led_mode = -1;
-+
-+		if (priv->led_mode > 3) {
-+			phydev_err(phydev, "invalid led mode: 0x%02x\n",
-+				   priv->led_mode);
-+			priv->led_mode = -1;
-+		}
-+	} else {
-+		priv->led_mode = -1;
-+	}
-+}
-+
- static int kszphy_resume(struct phy_device *phydev)
- {
- 	int ret;
-@@ -1720,7 +1751,6 @@ static int kszphy_probe(struct phy_device *phydev)
- 	const struct device_node *np = phydev->mdio.dev.of_node;
- 	struct kszphy_priv *priv;
- 	struct clk *clk;
--	int ret;
- 
- 	priv = devm_kzalloc(&phydev->mdio.dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -1730,20 +1760,7 @@ static int kszphy_probe(struct phy_device *phydev)
- 
- 	priv->type = type;
- 
--	if (type && type->led_mode_reg) {
--		ret = of_property_read_u32(np, "micrel,led-mode",
--				&priv->led_mode);
--		if (ret)
--			priv->led_mode = -1;
--
--		if (priv->led_mode > 3) {
--			phydev_err(phydev, "invalid led mode: 0x%02x\n",
--				   priv->led_mode);
--			priv->led_mode = -1;
--		}
--	} else {
--		priv->led_mode = -1;
--	}
-+	kszphy_parse_led_mode(phydev);
- 
- 	clk = devm_clk_get(&phydev->mdio.dev, "rmii-ref");
- 	/* NOTE: clk may be NULL if building without CONFIG_HAVE_CLK */
-@@ -2815,8 +2832,23 @@ static int lan8814_ptp_probe_once(struct phy_device *phydev)
- 	return 0;
- }
- 
-+static void lan8814_setup_led(struct phy_device *phydev, int val)
-+{
-+	int temp;
-+
-+	temp = lanphy_read_page_reg(phydev, 5, LAN8814_LED_CTRL_1);
-+
-+	if (val)
-+		temp |= LAN8814_LED_CTRL_1_KSZ9031_LED_MODE_;
-+	else
-+		temp &= ~LAN8814_LED_CTRL_1_KSZ9031_LED_MODE_;
-+
-+	lanphy_write_page_reg(phydev, 5, LAN8814_LED_CTRL_1, temp);
-+}
-+
- static int lan8814_config_init(struct phy_device *phydev)
- {
-+	struct kszphy_priv *lan8814 = phydev->priv;
- 	int val;
- 
- 	/* Reset the PHY */
-@@ -2835,6 +2867,9 @@ static int lan8814_config_init(struct phy_device *phydev)
- 	val |= LAN8814_ALIGN_TX_A_B_SWAP;
- 	lanphy_write_page_reg(phydev, 2, LAN8814_ALIGN_SWAP, val);
- 
-+	if (lan8814->led_mode >= 0)
-+		lan8814_setup_led(phydev, lan8814->led_mode);
-+
- 	return 0;
- }
- 
-@@ -2855,6 +2890,7 @@ static int lan8814_release_coma_mode(struct phy_device *phydev)
- 
- static int lan8814_probe(struct phy_device *phydev)
- {
-+	const struct kszphy_type *type = phydev->drv->driver_data;
- 	struct kszphy_priv *priv;
- 	u16 addr;
- 	int err;
-@@ -2863,10 +2899,12 @@ static int lan8814_probe(struct phy_device *phydev)
- 	if (!priv)
- 		return -ENOMEM;
- 
--	priv->led_mode = -1;
--
- 	phydev->priv = priv;
- 
-+	priv->type = type;
-+
-+	kszphy_parse_led_mode(phydev);
-+
- 	/* Strap-in value for PHY address, below register read gives starting
- 	 * phy address value
- 	 */
-@@ -3068,6 +3106,7 @@ static struct phy_driver ksphy_driver[] = {
- 	.phy_id_mask	= MICREL_PHY_ID_MASK,
- 	.name		= "Microchip INDY Gigabit Quad PHY",
- 	.config_init	= lan8814_config_init,
-+	.driver_data	= &lan8814_type,
- 	.probe		= lan8814_probe,
- 	.soft_reset	= genphy_soft_reset,
- 	.read_status	= ksz9031_read_status,
+Changes for v13:
+1. Change mediatek,mt8195-dp_intf to mediatek,mt8195-dp-intf.
+2. Add kernel doc for mtk_dpi_conf.
+3. Drop patch of tvd_pll enable.
+4. Squash some color format transfer related patches.
+5. Add new patch to support setting of direct connection to pins.
+6. Change fix tag of "drm/mediatek: dpi: Only enable dpi after the bridge is enabled".
+
+Changes for v12:
+1. Remove pll_gate.
+2. Add more detailed commit message.
+3. Separate tvd_clk patch and yuv422 output support from add dpintf
+   support patch
+4. Remove limit patch and use common driver codes to determine this.
+
+Changes for v11:
+1. Rename ck_cg to pll_gate.
+2. Add some commit message to clarify the modification reason.
+3. Fix some driver order and modify for reviewers' comments.
+
+[1]:https://lore.kernel.org/all/20220523104758.29531-1-granquet@baylibre.com/
+[2]:https://lore.kernel.org/all/20220610105522.13449-1-rex-bc.chen@mediatek.com/
+
+Bo-Chen Chen (6):
+  dt-bindings: mediatek,dpi: Revise mediatek strings to correct format
+  drm/mediatek: dpi: Add kernel document for struct mtk_dpi_conf
+  drm/mediatek: dpi: Remove output format of YUV
+  drm/mediatek: dpi: Add support for quantization range
+  drm/mediatek: dpi: Add YUV422 output support
+  drm/mediatek: dpi: add config to support direct connection to dpi
+    panels
+
+Guillaume Ranquet (9):
+  drm/mediatek: dpi: implement a CK/DE pol toggle in SoC config
+  drm/mediatek: dpi: implement a swap_input toggle in SoC config
+  drm/mediatek: dpi: move dimension mask to SoC config
+  drm/mediatek: dpi: move hvsize_mask to SoC config
+  drm/mediatek: dpi: move swap_shift to SoC config
+  drm/mediatek: dpi: move the yuv422_en_bit to SoC config
+  drm/mediatek: dpi: move the csc_enable bit to SoC config
+  drm/mediatek: dpi: Only enable dpi after the bridge is enabled
+  drm/mediatek: dpi: Add dp_intf support
+
+Markus Schneider-Pargmann (1):
+  dt-bindings: mediatek,dpi: Add DP_INTF compatible
+
+ .../display/mediatek/mediatek,dpi.yaml        |  11 +-
+ drivers/gpu/drm/mediatek/mtk_dpi.c            | 283 ++++++++++++++----
+ drivers/gpu/drm/mediatek/mtk_dpi_regs.h       |  18 ++
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   |   4 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |   1 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   3 +
+ 6 files changed, 257 insertions(+), 63 deletions(-)
+
 -- 
-2.17.1
+2.18.0
 
