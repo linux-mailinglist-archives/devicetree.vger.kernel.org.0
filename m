@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2144A56318A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97C48563190
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236512AbiGAKhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 06:37:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57836 "EHLO
+        id S236648AbiGAKjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 06:39:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236504AbiGAKhE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:37:04 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A81BB76EBB
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 03:37:03 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-317710edb9dso19901017b3.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 03:37:03 -0700 (PDT)
+        with ESMTP id S236554AbiGAKjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:39:07 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E204574DE7
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 03:39:05 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id x184so3259617ybg.12
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 03:39:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=jBVQj6zu0U7jkHVLOzPHDFiH21K5735tKjSbqEv4spg=;
-        b=jr5qzoxv0EQ6ow5RimCUL0thLdOlKD2Mp38XOhb2QCXhk3ERPNY7lFT6qKHXl9VBDy
-         3VztuzSi0gzHi5W2lZY6EJt+PWBD8VxpvAA9O3tF3+kniNwtzA+xS+BXdAnpZoD9nAjt
-         7bEbC85ysE3WcOt7m4FVavxND3V930mWPz1zM=
+        bh=FvJVjczKtDiPL6abszYdMKTMozraAWQUFyZEkrc/JT8=;
+        b=dh+SVF87cEY5zYSqbnal08C6dKRjPJnNOKlb1mMKAZP8LVYhRu+8Q0N2o1moi8IzN5
+         NEw2E9+JqjSGn5PanmLxNkgDwgOmzxpgSWUzwrVIMggQ0IQnv43D0jH4lpSHkVw4xmin
+         z1CL49mZMPMA/BEGxuLz/WvbHIAwgpBBXJYDA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jBVQj6zu0U7jkHVLOzPHDFiH21K5735tKjSbqEv4spg=;
-        b=Wfq/07NfK3ojGiKptCijrJscXvB8ubQgK+sWkybPPtZFuYklz4ot5LmIMJns7jq8jy
-         UC1aHN9LNcggLZHaO7k3ogbuH3GSeqgoXrvJg1/Kzt72CZ4m9viKqwBRMAQN483N0FoW
-         5FUPuao1cvV9yBwF5poetPM6vBD4CyfoNojD+rd8LH0ZtbRf40mfUGR4EgdCwjqrhMLe
-         2OG29mxjoKivg6JvbjkYiNk/Up7MOxzg5xYFQ+iRDfWFs6EQc08qsbcFExG5uhyBkOwd
-         tCOYOMdFzP9U65mEwi8sTwGyIyvREKWS1LgeZr6Vf62yw1pjMTNHsNcWeOImW01s0mx1
-         D7YQ==
-X-Gm-Message-State: AJIora/5PqJKm5PCEbMGbEgOrMRWAVRRT8xylZG8rR+0jdIlGm/2R6kG
-        FEveKWa/jsec3OgH2v0J4Uf1rNYAklks6LuHB1mWRw==
-X-Google-Smtp-Source: AGRyM1uHIKIv2IBD8W2iw2DM4IM3lmhp0SNZnRvFfOIGzZkNmD+miY/TbPeNxObyuEbB3d9mNtWcA1MjAOFyTnhGSuE=
-X-Received: by 2002:a81:19ca:0:b0:31b:732c:15e9 with SMTP id
- 193-20020a8119ca000000b0031b732c15e9mr16065949ywz.167.1656671822866; Fri, 01
- Jul 2022 03:37:02 -0700 (PDT)
+        bh=FvJVjczKtDiPL6abszYdMKTMozraAWQUFyZEkrc/JT8=;
+        b=nbqbFnoL2M2hkQ1RSNf1BgQht47X2FUL4Wfz+gf48eiijazX9gtaMHoj4i7laVFAT0
+         JmubsbQUH7L/TDDRS2vMvFWHggZgGH8rwsQgXwDRfOe1HhPMb8+APN/KgtS8cbB/m6c5
+         xieyfcqUyRotisredn2W9didURkfZzPjKXlA6gJiyWY4sPjsuET/hjPwl6F9QRh7K2GX
+         AubpAoLOLg1bqERjDL59MSKjGLQO9Nm1srfafMjlV17CYK+RidyRJjWRH9GtM8WE2vlD
+         k33NnWb50yT6Ov/HP+PP298vb7LXLhVll5s4q+vlg78ZvO4+rhTWW1fuIVt4wdXoj35l
+         6WZg==
+X-Gm-Message-State: AJIora8i0wfJtyJxlnzu6chD5hx8hI5WMYFN3xMB/QBS7o5TfQpfngTP
+        UoNI9kaZnpuCzMw1EHZemJ3h9kcdbg87cz0yuH4LWA==
+X-Google-Smtp-Source: AGRyM1srrLz3JQ87+W13agmcb1kXXtofB5K+QT9XZkN6dy2Rpvl7sdgAuv0zOBNAjH/1QNRT/nW2/BLw5XDm0zzHvs0=
+X-Received: by 2002:a25:6644:0:b0:66d:c0b8:81ab with SMTP id
+ z4-20020a256644000000b0066dc0b881abmr6710851ybm.85.1656671944937; Fri, 01 Jul
+ 2022 03:39:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220701090547.21429-1-allen-kh.cheng@mediatek.com> <20220701090547.21429-2-allen-kh.cheng@mediatek.com>
-In-Reply-To: <20220701090547.21429-2-allen-kh.cheng@mediatek.com>
+References: <20220629155956.1138955-1-nfraprado@collabora.com> <20220629155956.1138955-18-nfraprado@collabora.com>
+In-Reply-To: <20220629155956.1138955-18-nfraprado@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 1 Jul 2022 18:36:51 +0800
-Message-ID: <CAGXv+5FTXXWZU4FyqJ7uqoPGso7ofsb1=QS0mU8Ay2hSz7rFXQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] drm/mediatek: Remove mt8192 display rdma compatible
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Date:   Fri, 1 Jul 2022 18:38:53 +0800
+Message-ID: <CAGXv+5FdiJQV68JaBPYnV9Gd1GhUF=6gvZ7ZfkK6ZuyRzVsGkQ@mail.gmail.com>
+Subject: Re: [PATCH v4 17/19] arm64: dts: mediatek: asurada: Enable MMC
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
 Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,20 +69,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 1, 2022 at 5:05 PM Allen-KH Cheng
-<allen-kh.cheng@mediatek.com> wrote:
+On Thu, Jun 30, 2022 at 12:00 AM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
 >
-> The compatible =E2=80=9Cmediatek,mt8192-disp-rdma=E2=80=9D is being used =
-for reading
-> the data into DMA for back-end panel driver in mt8192 but there is
-> no difference between mt8183 and mt8192 in rdma driver.
+> Enable both MMC controllers present on Asurada. MMC0 is for
+> non-removable internal memory, while MMC1 is an SD card slot. MMC1 isn't
+> used on all machines, but in those cases the CD interrupt is never
+> triggered and thus it is basically as if it was disabled.
 >
-> Remove compatible =E2=80=9Cmediatek,mt8192-disp-rdma=E2=80=9D from the dr=
-iver and
-> should use =E2=80=9Cmediatek,mt8183-disp-rdma=E2=80=9D as fallback in 819=
-2 DTS
-> according to the mediatek,rdma.yaml.
->
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
