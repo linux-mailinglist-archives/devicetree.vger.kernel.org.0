@@ -2,127 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0868B563C50
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 00:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D799563C5D
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 00:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbiGAW0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 18:26:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59120 "EHLO
+        id S229911AbiGAWay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 18:30:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiGAW0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 18:26:19 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D4BF6EE93;
-        Fri,  1 Jul 2022 15:26:18 -0700 (PDT)
-Received: from notapiano (unknown [194.36.25.35])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4E0F566017F5;
-        Fri,  1 Jul 2022 23:26:14 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656714377;
-        bh=beS5ia/epfrcQ6hdTw5AHZCvOKhrfWGiS1y5nk9Am2U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=STp0U8Ao78Klox+71MTgbfJRjfjdaEkXSCVsMjF5mHJRTTbTpaseIN+VA/bXaOYc0
-         q4TDttde0IZm4jASx3gX9Qz6dEjt6JtTI4EnLJvcI/GlxsUqPfg/wxObtjCXbTnvrW
-         53xvASSd4bs07A3030tOm4YsYmhAZT1rSni07usd9LH2syDI2ELgG/J8Do7vHzoA2c
-         bRSxM+vyoGri8THfzfKwk3yRO2HZETNaq+cP0G25t56PZWLHZYef26VDjNE8SYG83W
-         kql0SmkB4QuqKSLQk7AQz55lfZlpVaaIHcXuE6ZS8EIkDeW1IqM0G8EYiVC1dU8NKV
-         Pw6wnMVaNLD0w==
-Date:   Fri, 1 Jul 2022 18:26:09 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, hsinyi@chromium.org,
-        allen-kh.cheng@mediatek.com, gtk3@inbox.ru, luca@z3ntu.xyz,
-        sam.shih@mediatek.com, sean.wang@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, wenst@chromium.org
-Subject: Re: [PATCH 04/11] arm64: dts: mediatek: cherry: Add platform
- regulators layout and config
-Message-ID: <20220701222609.w6nowe5ng4ndszol@notapiano>
-References: <20220630153316.308767-1-angelogioacchino.delregno@collabora.com>
- <20220630153316.308767-5-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S229496AbiGAWay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 18:30:54 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AED2338795;
+        Fri,  1 Jul 2022 15:30:53 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id b24so2845573qkn.4;
+        Fri, 01 Jul 2022 15:30:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ZRqXDVBh2tyzQxE0lZROBHIZNd62HH6YkugnzahAVfE=;
+        b=DSaCxZBgTmQp1xce3Jhu90CL1ztuJjAzTXLm35TAcdlEwGPjL8vSEQH7DxAmv/O/39
+         uWskVo1L2IAhL6MYAVGTkn3tB+IrMnep4ORmEqpwbA8qzRJbaWJxhG7y5Vxw1Q4SL8lp
+         HR85ZmyZWwvviBhDk73MDgMkRjWnmBKFlO1RbXW2GW27wjK3i34h5wd9BhfXxeME/5Nn
+         vJwqzWzdVhWwF6LafX0GhhxljaQUnYYp/DplBCRCd7UDPhinw4luglRUCkEYaOsXKc5Z
+         edE0fg6BBBQO1I9bfOQmC1ZaEa1Qu8JWRROn6hw4RI/BbLfftcARZO6wDbvvrmy8Id51
+         IY5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ZRqXDVBh2tyzQxE0lZROBHIZNd62HH6YkugnzahAVfE=;
+        b=CePfax79QFIbJvxLfcHtmf2bFRjub/gohoXDKVVFCtlBfBCkKBVHl+EUqOe4OjKIYp
+         w+9ybd7rzf1slbcuAOmGY6zUQTLc5GcC3M43fwKckLmplR43RK10FiBGB4LyTNCULOF5
+         y4/Nw/Vhk4YFCdHrWsfqgickeE4zk9yhEdrI+jhF89SJLhSEuxVVsKryMBSAArYwlWE2
+         rOIId99il59v+At4kGUJspM+iohATZwDmGIw6BcaGG9ItIBTxJpoVqVqUkBx2ynNX1ig
+         tHdSnjSJM2BD7daJhIw6hRS4MAbDG/vfhVqt/bc8WCA2Uzu+laTnOcGHV0MiHeoz3H8b
+         kiWQ==
+X-Gm-Message-State: AJIora+aqV3qGXI+hoiQn9VkAGJdxIB5r56jbB8Wv6Iy6EP32SyyvE3h
+        ugN/taJf4vTCzeEUM3WD7vc=
+X-Google-Smtp-Source: AGRyM1vB1SZ62N+Gy6jjsx4kJJzWeanIHG6jkt/r0+yoo6UePFIYHvj4XFuf4u/EPQXOjEjQmUmhxQ==
+X-Received: by 2002:a05:620a:3c4:b0:6af:6468:1c0b with SMTP id r4-20020a05620a03c400b006af64681c0bmr12494113qkm.584.1656714652751;
+        Fri, 01 Jul 2022 15:30:52 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id h2-20020ac85482000000b00317cd3edab4sm14284228qtq.11.2022.07.01.15.30.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Jul 2022 15:30:52 -0700 (PDT)
+Message-ID: <fe25fc8a-843c-72c2-e352-88fe9d819ac2@gmail.com>
+Date:   Fri, 1 Jul 2022 15:30:45 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220630153316.308767-5-angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: Add missing 'reg'
+ property
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220701222240.1706272-1-robh@kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220701222240.1706272-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 05:33:09PM +0200, AngeloGioacchino Del Regno wrote:
-> Add the regulators layout for this platform, including the basic power
-> rails controlled by the EC (and/or always on).
-> Moreover, include the MT6359 PMIC devicetree and add some configuration
-> for its regulators, essential to keep the machine alive after booting.
+On 7/1/22 15:22, Rob Herring wrote:
+> The 'reg' property is missing from the mediatek,mt7530 schema which
+> results in the following warning once 'unevaluatedProperties' is fixed:
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 102 ++++++++++++++++++
->  1 file changed, 102 insertions(+)
+> Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.example.dtb: switch@0: Unevaluated properties are not allowed ('reg' was unexpected)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> index 14f8f30b1eb3..091338f7d5ff 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> @@ -5,6 +5,7 @@
->  
->  #include <dt-bindings/gpio/gpio.h>
->  #include "mt8195.dtsi"
-> +#include "mt6359.dtsi"
->  
->  / {
->  	aliases {
-> @@ -19,6 +20,107 @@ memory@40000000 {
->  		device_type = "memory";
->  		reg = <0 0x40000000 0 0x80000000>;
->  	};
-> +
-> +	/* system wide LDO 3.3V power rail */
-> +	pp3300_z5: regulator-3v3-pp3300-ldo-z5 {
+> Fixes: e0dda3119741 ("dt-bindings: net: dsa: convert binding for mediatek switches")
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-I wouldn't have both "3v3" and "pp3300" in the node name since they mean the
-same thing, but feel free to ignore this comment :).
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pp3300_ldo_z5";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&ppvar_sys>;
-> +	};
-> +
-> +	/* separately switched 3.3V power rail */
-> +	pp3300_s3: regulator-3v3-pp3300-s3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pp3300_s3";
-> +		/* automatically sequenced by PMIC EXT_PMIC_EN2 */
-> +		regulator-always-on;
-> +		regulator-boot-on;
-
-Missing regulator-min/max-microvolt?
-
-> +		vin-supply = <&pp3300_z2>;
-> +	};
-[..]
-> -- 
-> 2.35.1
-> 
-
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Thanks,
-Nícolas
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
