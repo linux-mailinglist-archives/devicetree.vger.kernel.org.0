@@ -2,120 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F5D9563958
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 20:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F0F05639D5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 21:29:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229845AbiGASt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 14:49:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39472 "EHLO
+        id S229553AbiGATXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 15:23:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229606AbiGASt2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 14:49:28 -0400
-X-Greylist: delayed 156 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 01 Jul 2022 11:49:27 PDT
-Received: from mail-40136.proton.ch (mail-40136.proton.ch [185.70.40.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A210A393C0
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 11:49:27 -0700 (PDT)
-Date:   Fri, 01 Jul 2022 18:49:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1656701366; x=1656960566;
-        bh=zQWT4Uc8+YmYw2TxYPvOLJlF/WYStwcBkfDP+kL3slk=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
-         Feedback-ID:Message-ID;
-        b=jwXHH/O0q5vKDe5ybHjy1io/I/lEKQhLM3MQOa4UEg50DEOZgwcj/6/yjxJ63SY9h
-         WpGaaIQrxEXOJsPX31nEh0+a+oRv1Oi4OGr7RoghUe5MhCPq8XXxJpbliA7BpmsYME
-         hbW2uXzBo2MpLL8bZ8Ezer6gywYTyB9lsFt9tzHc=
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: sdm845: Enable user LEDs on DB845c
-Message-ID: <d12442a6-a0f1-0cb4-caa0-b7bb22fff28d@connolly.tech>
-In-Reply-To: <20220505022706.1692554-3-bjorn.andersson@linaro.org>
-References: <20220505022706.1692554-1-bjorn.andersson@linaro.org> <20220505022706.1692554-3-bjorn.andersson@linaro.org>
-Feedback-ID: 10753939:user:proton
+        with ESMTP id S229534AbiGATXk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 15:23:40 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F53D13F61;
+        Fri,  1 Jul 2022 12:23:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 53647CE34E4;
+        Fri,  1 Jul 2022 19:23:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E296C3411E;
+        Fri,  1 Jul 2022 19:23:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656703415;
+        bh=1bpO1iUTJJ3kstbZPucPenalfy/kzfO3W/0wHPIy6SE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=L80dVd7DLxVj0PBdm4QrguFAY5Dka9xMqyiKuVhhxISMH28ztUmvV676wTasz/GGE
+         93fD1Ywn8nHe7VIZ0brY7idrgj8PGh43uwUHH3cPHT9qejrldyiONBwZziOt/wXrg2
+         9gq7suTL5oS7ZZROPB+H3xxzde/iiqIM83VP3pubs0Zpg4y/Hln1mdKbp6sskj2H23
+         XWV6TBiC4/jAnRq49vGTsdgIh9Sz7zVocUiFd9liYu09bAy8wDLWcMqKk260ZSYM/5
+         bYOYh3wR+zxti3VdhBFfQok7lwZo28PHObt50NLSNXID1uhtb2SVl/CsHwqYSDUmu+
+         3MDm/1i2KDwIQ==
+From:   Conor Dooley <conor@kernel.org>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-riscv@lists.infradead.org
+Subject: [PATCH v4 00/14] Canaan devicetree fixes
+Date:   Fri,  1 Jul 2022 20:22:46 +0100
+Message-Id: <20220701192300.2293643-1-conor@kernel.org>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Conor Dooley <conor.dooley@microchip.com>
+
+Hey all,
+This series should rid us of dtbs_check errors for the RISC-V Canaan k210
+based boards. To make keeping it that way a little easier, I changed the
+Canaan devicetree Makefile so that it would build all of the devicetrees
+in the directory if SOC_CANAAN.
+
+I *DO NOT* have any Canaan hardware so I have not tested any of this in
+action. Since I sent v1, I tried to buy some since it's cheap - but could
+out of the limited stockists none seemed to want to deliver to Ireland :(
+I based the series on next-20220617.
+
+Thanks,
+Conor.
+
+Changes since v3:
+- dts: drop the bogus "regs" property pointed out by Niklas
+- dma/timer: add Serge's reviews (and expand on the dma interrupt
+  description)
+- dts: add Niklas' T-b where I felt it was suitable. lmk if you think it
+  applies more broadly
+- spi: drop the applied spi dt-binding change. Thanks Mark.
+
+Changes since v2:
+- i2s: added clocks maxItems
+- dma: unconditionally extended the interrupts & dropped canaan
+  compatible
+- timer: as per Sergey, split the timer dts nodes in 2 & drop the
+  binding patch
+- ili9341: add a canaan specific compatible to the binding and dts
+
+Changes since v1:
+- I added a new dt node & compatible for the SRAM memory controller due
+  Damien's wish to preserve the inter-op with U-Boot.
+- The dw-apb-ssi binding now uses the default rx/tx widths
+- A new patch fixes bus {ranges,reg} warnings
+- Rearranged the patches in a slightly more logical order
 
 
-On 05/05/2022 03:27, Bjorn Andersson wrote:
-> The DB845c has 4 "user LEDs", the last one is already supported as it's
-> just wired to a gpio. Now that the LPG binding is in place we can wire
-> up the other 3 LEDs as well.
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Reviewed-by: Caleb Connolly <caleb@connolly.tech>
-> ---
->   arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 31 ++++++++++++++++++++++
->   1 file changed, 31 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot=
-/dts/qcom/sdm845-db845c.dts
-> index 194ebeb3259c..e4d3de0a1e6d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -5,6 +5,7 @@
->
->   /dts-v1/;
->
-> +#include <dt-bindings/leds/common.h>
->   #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->   #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->   #include <dt-bindings/sound/qcom,q6afe.h>
-> @@ -606,6 +607,36 @@ resin {
->   =09};
->   };
->
-> +&pmi8998_lpg {
-> +=09status =3D "okay";
-> +
-> +=09qcom,power-source =3D <1>;
-> +
-> +=09led@3 {
-> +=09=09reg =3D <3>;
-> +=09=09color =3D <LED_COLOR_ID_GREEN>;
-> +=09=09function =3D LED_FUNCTION_HEARTBEAT;
-> +=09=09function-enumerator =3D <3>;
-> +
-> +=09=09linux,default-trigger =3D "heartbeat";
-> +=09=09default-state =3D "on";
-> +=09};
-> +
-> +=09led@4 {
-> +=09=09reg =3D <4>;
-> +=09=09color =3D <LED_COLOR_ID_GREEN>;
-> +=09=09function =3D LED_FUNCTION_INDICATOR;
-> +=09=09function-enumerator =3D <2>;
-> +=09};
-> +
-> +=09led@5 {
-> +=09=09reg =3D <5>;
-> +=09=09color =3D <LED_COLOR_ID_GREEN>;
-> +=09=09function =3D LED_FUNCTION_INDICATOR;
-> +=09=09function-enumerator =3D <1>;
-> +=09};
-> +};
-> +
->   /* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
->   &q6afedai {
->   =09qi2s@22 {
-> --
-> 2.35.1
->
+Conor Dooley (14):
+  dt-bindings: display: convert ilitek,ili9341.txt to dt-schema
+  dt-bindings: display: ili9341: document canaan kd233's lcd
+  ASoC: dt-bindings: convert designware-i2s to dt-schema
+  dt-bindings: dma: dw-axi-dmac: extend the number of interrupts
+  dt-bindings: memory-controllers: add canaan k210 sram controller
+  riscv: dts: canaan: fix the k210's memory node
+  riscv: dts: canaan: fix the k210's timer nodes
+  riscv: dts: canaan: fix mmc node names
+  riscv: dts: canaan: fix kd233 display spi frequency
+  riscv: dts: canaan: use custom compatible for k210 i2s
+  riscv: dts: canaan: remove spi-max-frequency from controllers
+  riscv: dts: canaan: fix bus {ranges,reg} warnings
+  riscv: dts: canaan: add specific compatible for kd233's LCD
+  riscv: dts: canaan: build all devicetress if SOC_CANAAN
 
---
-Kind Regards,
-Caleb
+ .../bindings/display/ilitek,ili9341.txt       | 27 ------
+ .../display/panel/ilitek,ili9341.yaml         | 49 +++++++---
+ .../bindings/dma/snps,dw-axi-dmac.yaml        |  7 +-
+ .../memory-controllers/canaan,k210-sram.yaml  | 52 ++++++++++
+ .../bindings/sound/designware-i2s.txt         | 35 -------
+ .../bindings/sound/snps,designware-i2s.yaml   | 94 +++++++++++++++++++
+ arch/riscv/boot/dts/canaan/Makefile           | 10 +-
+ arch/riscv/boot/dts/canaan/canaan_kd233.dts   |  6 +-
+ arch/riscv/boot/dts/canaan/k210.dtsi          | 73 +++++++++-----
+ .../riscv/boot/dts/canaan/sipeed_maix_bit.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maix_dock.dts      |  2 +-
+ arch/riscv/boot/dts/canaan/sipeed_maix_go.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maixduino.dts      |  2 +-
+ 13 files changed, 253 insertions(+), 108 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/designware-i2s.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml
+
+
+base-commit: 6cc11d2a1759275b856e464265823d94aabd5eaf
+-- 
+2.37.0
 
