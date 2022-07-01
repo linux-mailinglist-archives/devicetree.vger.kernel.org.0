@@ -2,58 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36E82562C57
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 163C4562C69
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:17:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235324AbiGAHKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 03:10:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39238 "EHLO
+        id S229689AbiGAHRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 03:17:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235367AbiGAHKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:10:13 -0400
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F044868A0B;
-        Fri,  1 Jul 2022 00:10:11 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 34E29100006;
-        Fri,  1 Jul 2022 07:10:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1656659410;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=TAVl3S8ScYCQZWxGRYXT6xqPfVpbnnDskmYQYuu02mo=;
-        b=RdVNE00Qe16mfApzHbUeADqeDz3OVtP/S7p2Cv8BDCRDmQULMk0TDlkhkArGFMb+8mA9mW
-        YbrrIVfgNXWp6qKNkfwSxttfIp9aHTHUZk1jonuIUhLYjyFho8rQ+2174l6vXdsD8t+evL
-        Qvht+2YPXxm9FmWrfr4o1JIXzDJwRgXH3fxqLYDprqfSIXz5QFHa/Hmf9dMlWgbjFGgq53
-        gTTpTv+0WrOJSDluCnfoanKlPy9eXOWkWq5HT5PoAL4+zQlfk0zqd4bIR28ByTlaeBk7K2
-        buvHVktN3qKapGtMmN1ixHGHkOERCl1llrFprAT2J1ErmlcSdABTMeueyiBzzg==
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v4 3/3] ARM: dts: lan966x: Add UDPHS support
-Date:   Fri,  1 Jul 2022 09:09:28 +0200
-Message-Id: <20220701070928.459135-4-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20220701070928.459135-1-herve.codina@bootlin.com>
-References: <20220701070928.459135-1-herve.codina@bootlin.com>
+        with ESMTP id S231703AbiGAHRa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:17:30 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F2066B810;
+        Fri,  1 Jul 2022 00:17:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656659849; x=1688195849;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=1qOZObxWI6xM7PGIqUE7RlnqOh3OC/iQrpJ9yTLkXvI=;
+  b=YnEdluos3mjWN9crYKEJAWLURErlLZbXNgvUrwvwwkfzsecFXNrqus+A
+   QppDWRKHhrHVfMZyj9LGBMdiBvCTNmfLp/G+zjT/q4vdyBX+w5Ec8fLcX
+   3gl5MZRcBbmCuUDKpWjPtni1Nkjdm1PQvESRJbvK65hW+3+Ko6kKkMdSP
+   w=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 01 Jul 2022 00:17:29 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jul 2022 00:17:26 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 1 Jul 2022 00:17:26 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 1 Jul 2022 00:17:20 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <vkoul@kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [RESEND v5 0/2] Add software clock gating requirement check
+Date:   Fri, 1 Jul 2022 12:47:05 +0530
+Message-ID: <1656659827-27450-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,39 +65,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add UDPHS (the USB High Speed Device Port controller) support.
+This patch set is to add software clock gating requirement check
 
-The both lan966x SOCs (LAN9662 and LAN9668) have the same UDPHS
-IP. This IP is also the same as the one present in the SAMA5D3
-SOC.
+Changes Since V4:
+	-- Fix error check, after a reset control get api return
+	-- Fix typo in commit message
+Changes Since V3:
+	-- Remove redundant check before reset control call
+	-- Reorganiaze patches.
+	-- Fix typos.
+Changes Since V2:
+	-- Fix if check before reset control call	
+Changes Since V1:
+	-- Use boolean flag for bool variable initialization
+	   instead of hard coding.
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- arch/arm/boot/dts/lan966x.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+	
+Srinivasa Rao Mandadapu (2):
+  soundwire: qcom: Add flag for software clock gating check
+  ASoC: qcom: soundwire: Enable software clock gating requirement flag
 
-diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
-index 3cb02fffe716..c98e7075c2b4 100644
---- a/arch/arm/boot/dts/lan966x.dtsi
-+++ b/arch/arm/boot/dts/lan966x.dtsi
-@@ -458,6 +458,17 @@ cpu_ctrl: syscon@e00c0000 {
- 			reg = <0xe00c0000 0x350>;
- 		};
- 
-+		udc: usb@e0808000 {
-+			compatible = "microchip,lan9662-udc",
-+				     "atmel,sama5d3-udc";
-+			reg = <0x00200000 0x80000>,
-+			      <0xe0808000 0x400>;
-+			interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks GCK_GATE_UDPHS>, <&nic_clk>;
-+			clock-names = "pclk", "hclk";
-+			status = "disabled";
-+		};
-+
- 		can0: can@e081c000 {
- 			compatible = "bosch,m_can";
- 			reg = <0xe081c000 0xfc>, <0x00100000 0x4000>;
+ drivers/soundwire/qcom.c | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
 -- 
-2.35.3
+2.7.4
 
