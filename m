@@ -2,73 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94009563024
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 11:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF778563095
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 11:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234991AbiGAJcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 05:32:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50940 "EHLO
+        id S235442AbiGAJrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 05:47:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234437AbiGAJcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 05:32:06 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBEE772ECD
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 02:32:04 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id d17so2313035wrc.10
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 02:32:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=K/qT8HI2IqBp+p+vLx0KCA0Y3Vg7TWHkgf6rKbyd91I=;
-        b=jQVIbj6sAcLvohWrMBnN1TQ54Yg3N1Kmn75Zyp2ZQZDjOPdFGLH8O78gn9hnBdbsmV
-         EbWZRaO1JfZFyGeoWGpPli705Wkm1IxeXBMtI5P5rpdoQuFWrC3tGxrelAcpGnDMLunZ
-         VJXmEKqzImhpLYldUHoVkn50JpEaV+/7hwkAzQhAfZLzIUg8+Qb2+ZfrkcjlX6u/0WYH
-         aAl36C1f8tNFEN30xK6vYtEC2dt5EjrvFDSDJKc2leNpRR16i020X3hSzXKQSdeujVAe
-         PeI6F3xmz1o8BIo/gYeSnEgupttsDP26xq6edXELpzVqmVs3vt4IPohSFqXEIIAnXvuP
-         IPyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=K/qT8HI2IqBp+p+vLx0KCA0Y3Vg7TWHkgf6rKbyd91I=;
-        b=ob109LTh/3CSRJiMJE+6ZJLhBcL6OukuE3qfbxmFhfphRkeYgDZ6U/Uax9Ot2fQIN6
-         TM4u4i1YcidXPK+pH8bfUJiayijAlYsImSDkNAwomP/JzTSSBn4jjJx58ZPz4MYH1KcF
-         NDcT+4aWJOdxtRQfaUhpzqpPiTX+nl4UPNVlT3KTAXgWQHrp+Aw8naBxLkHGhjeJA/QK
-         tcXH0CE7KLUEhuwos789mS7aZwXMOW6GZji1Rfp+rntbGsn80XJue0uzeKdehOtZCN0S
-         LTM0+QpJUgB+mPbNC3hcMSMGtCxrW3tRrrSBbOP0IDOY7lnfOXbYCLt+HqHNFc3ySFbY
-         ykSg==
-X-Gm-Message-State: AJIora/w6SawyiMtQ2+SsbYVm7y8Td/lgDBjE14bEalxeQQJnJSnBvR8
-        gOjDpgYXix1+phXy5eDb6sDwGg==
-X-Google-Smtp-Source: AGRyM1tBa9IhGYtmY3U/be2Xw3a3xwiE2Lb3fVVi0Sxl27A1vYaw0AAirK2iQMhTqdnf7O5+BVXHKA==
-X-Received: by 2002:a5d:59a7:0:b0:21b:cd67:52d9 with SMTP id p7-20020a5d59a7000000b0021bcd6752d9mr13159506wrr.194.1656667923466;
-        Fri, 01 Jul 2022 02:32:03 -0700 (PDT)
-Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id m21-20020a05600c4f5500b003a0502c620dsm5787744wmq.44.2022.07.01.02.32.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 02:32:02 -0700 (PDT)
-Message-ID: <a8d688b8-95ac-1c01-222e-65a6c9f83c8a@linaro.org>
-Date:   Fri, 1 Jul 2022 10:32:01 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] MAINTAINERS: pinctrl: update qcom file list to include
- yaml files
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        bjorn.andersson@linaro.org, linus.walleij@linaro.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220629092514.70752-1-srinivas.kandagatla@linaro.org>
- <2d63cbf2-8e59-a8db-3faf-747b92d2eb66@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <2d63cbf2-8e59-a8db-3faf-747b92d2eb66@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S236194AbiGAJr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 05:47:28 -0400
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6EB274DF4;
+        Fri,  1 Jul 2022 02:47:27 -0700 (PDT)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 2AB88201398;
+        Fri,  1 Jul 2022 11:47:26 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E74C620138B;
+        Fri,  1 Jul 2022 11:47:25 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 3D995181D0CA;
+        Fri,  1 Jul 2022 17:47:24 +0800 (+08)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        shengjiu.wang@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] Add support of two Audio PLL source
+Date:   Fri,  1 Jul 2022 17:32:35 +0800
+Message-Id: <1656667961-1799-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,38 +43,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+i.MX8MQ/MN/MM/MP platforms typically have 2 AUDIO PLLs being
+configured to handle 8kHz and 11kHz series audio rates.
 
+The patches implement the functionality to select at runtime
+the appropriate AUDIO PLL for root clock, if there is no
+two PLL registered, then no action taken.
 
-On 01/07/2022 09:28, Krzysztof Kozlowski wrote:
-> On 29/06/2022 11:25, Srinivas Kandagatla wrote:
->> Currently Qualcomm pinctrl MAINTAINERS file list does not include yaml
->> files. Include this for correctness.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> ---
->>   MAINTAINERS | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index c4648e86dc14..71e7725aa574 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -15765,6 +15765,7 @@ M:	Bjorn Andersson <bjorn.andersson@linaro.org>
->>   L:	linux-arm-msm@vger.kernel.org
->>   S:	Maintained
->>   F:	Documentation/devicetree/bindings/pinctrl/qcom,*.txt
->> +F:	Documentation/devicetree/bindings/pinctrl/qcom,*.yaml
-> 
-> Instead just:
-> Documentation/devicetree/bindings/pinctrl/qcom,*
-> 
-Makes more sense, will do that in next spin.
+change in v2:
+- simply the logic for calling reparent function
 
---srini
->>   F:	drivers/pinctrl/qcom/
->>   
->>   PIN CONTROLLER - RENESAS
-> 
-> 
-> Best regards,
-> Krzysztof
+Shengjiu Wang (6):
+  ASoC: fsl_utils: Add function to handle PLL clock source
+  ASoC: fsl_spdif: Add support for PLL switch at runtime.
+  ASoC: fsl_micfil: Add support for PLL switch at runtime
+  ASoC: fsl_sai: Add support for PLL switch at runtime
+  ASoC: dt-bindings: fsl_spdif: Add two PLL clock source
+  ASoC: dt-bindings: fsl-sai: Add two PLL clock source
+
+ .../devicetree/bindings/sound/fsl,spdif.yaml  |  4 ++
+ .../devicetree/bindings/sound/fsl-sai.txt     |  3 +
+ sound/soc/fsl/Kconfig                         |  3 +
+ sound/soc/fsl/fsl_micfil.c                    | 31 +++++++++
+ sound/soc/fsl/fsl_sai.c                       | 38 ++++++++++
+ sound/soc/fsl/fsl_sai.h                       |  2 +
+ sound/soc/fsl/fsl_spdif.c                     | 48 +++++++++++--
+ sound/soc/fsl/fsl_utils.c                     | 69 +++++++++++++++++++
+ sound/soc/fsl/fsl_utils.h                     |  7 ++
+ 9 files changed, 200 insertions(+), 5 deletions(-)
+
+-- 
+2.17.1
+
