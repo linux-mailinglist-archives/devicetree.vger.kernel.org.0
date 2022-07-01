@@ -2,75 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63144562C84
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47825562C87
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:25:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234233AbiGAHXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 03:23:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49732 "EHLO
+        id S232365AbiGAHZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 03:25:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234518AbiGAHXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:23:12 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D47411A32
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 00:23:10 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id h23so2384571ejj.12
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 00:23:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NtCWNBdxsNIXQ2rUguLIy4qA0OP4W7EvzMXhx3Pf4yk=;
-        b=PXrZPHygCfppWrM76d8bNxLtSPtwSI6Yl3cL070Jw7F8g+v/ba88d6TK7Eb8WMfL/F
-         M4EF08zGnAWIHYW/wsCJC29gbPyw9im+CMBvjf2qCfsS5xcQxUCswNqJ8jYlOGb2EdZ2
-         Y09HItXrpg7L7UbR8gbykYErH7Ll2QuDHy7FLv9Nlg2MGEewTJYw0LGosEV082tS+fx6
-         7E2LnqbKOipJeqqVoVXrvJIGm+2y4JexamAGfXFeXeQcZIpsqCrvX6MCIp+rPMOwaHOG
-         lx+lJWnbDS2pSFAXcQrWawUQe3DCv+zaLE1qfLrFcaEDd3M3q1pf86De53jGYwvyHBKs
-         M33g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=NtCWNBdxsNIXQ2rUguLIy4qA0OP4W7EvzMXhx3Pf4yk=;
-        b=5vw/UthS67FLJZehvlT4kISmSv03TKmt9Oc3iMYGrAutWkCjV0cSZE+KzORDzGCQPL
-         IFAasSUBsPWMyogcm5h4KHgas/Mv92wsj5lmiJe7q0YcpfXXlK/pX+5YFdD3R33OkcLo
-         iLd3sgtwO94hrueJqXTIvjq0AUk58UuVqcFDBU9Ad9f8JBrvbflmdhc2hMqWlsuQyxMO
-         Q7xks87DtfdX2pith7rLaZHTJ0epcdVXgkN1xCWAeO3vt55Xp6GQcKycE0dXlGt6b84g
-         M4/S2tJIUA4Wpj0L6JgcITinL2GWbNbXGD7yXNvxF2mb6oLTVVEsn4N+zPOt6c/i/NbJ
-         uWzQ==
-X-Gm-Message-State: AJIora++JTYwR76p90G7INqrvM/sqi6dXaRSfoJW69pGlnfvqJp+hZE3
-        qt+BIyTXpfVJx/nSyp/n1sUaZg==
-X-Google-Smtp-Source: AGRyM1vke7tDLQ7V6xjkmNvjREL24jVF+ebKzZh+L86yFZGxSnoYBWAMx9yy8Ro5a12YfhaFDLs+PA==
-X-Received: by 2002:a17:907:8a25:b0:726:c9f2:2f5e with SMTP id sc37-20020a1709078a2500b00726c9f22f5emr12622718ejc.286.1656660188577;
-        Fri, 01 Jul 2022 00:23:08 -0700 (PDT)
-Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id w2-20020a170906384200b00722f8d02928sm10199555ejc.174.2022.07.01.00.23.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 00:23:07 -0700 (PDT)
-Message-ID: <99a5d9ac-9c20-b441-44af-26772a0e989d@linaro.org>
-Date:   Fri, 1 Jul 2022 09:23:06 +0200
+        with ESMTP id S231829AbiGAHZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:25:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1DE3150C
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 00:25:08 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o7B1S-0004u3-9I; Fri, 01 Jul 2022 09:25:02 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o7B1N-003k2e-R9; Fri, 01 Jul 2022 09:25:01 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o7B1Q-002H6l-Cf; Fri, 01 Jul 2022 09:25:00 +0200
+Date:   Fri, 1 Jul 2022 09:25:00 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8195: add pwm node
+Message-ID: <20220701072500.3rgvscnulhjmjhb6@pengutronix.de>
+References: <20220531114544.144785-1-fparent@baylibre.com>
+ <20220531114544.144785-2-fparent@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2] dt-bindings: power: reset: qcom-pon: update "reg"
- property details
-Content-Language: en-US
-To:     Anjelique Melendez <quic_amelende@quicinc.com>, corbet@lwn.net,
-        sre@kernel.org, robh+dt@kernel.org
-Cc:     vkoul@kernel.org, linux-doc@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        David Collins <quic_collinsd@quicinc.com>
-References: <20220628015845.28751-1-quic_amelende@quicinc.com>
- <1576e17a-add4-83b4-3847-458fea9fd831@linaro.org>
- <0f4eb095-efc2-f7cf-af84-1c381d53382a@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0f4eb095-efc2-f7cf-af84-1c381d53382a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7jpbomglvpzfusz7"
+Content-Disposition: inline
+In-Reply-To: <20220531114544.144785-2-fparent@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,92 +57,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 21:37, Anjelique Melendez wrote:
-> 
-> 
-> On 6/29/2022 3:35 AM, Krzysztof Kozlowski wrote:
->> On 28/06/2022 03:58, Anjelique Melendez wrote:
->>> From: David Collins <quic_collinsd@quicinc.com>
->>>
->>> Update the description of "reg" property to add the PON_PBS base
->>> address along with PON_HLOS base address.  Also add "reg-names"
->>> property description.
->>>
->>> Signed-off-by: David Collins <quic_collinsd@quicinc.com>
->>> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
->>> ---
->>>
->>> New patch series to sperate this patch from applied patches.
->>> Last comments from original patch series can be found
->>> https://lore.kernel.org/linux-arm-msm/27515993-18f3-8891-4835-9b6a8d7f86b0@quicinc.com/
->>>
->>> changes since v1:
->>>   - Updated path which was missing Documention/devicetree prefix
->>>   - Updated CC list
->>>   
->>>  ../bindings/power/reset/qcom,pon.yaml | 20 +++++++++++++++++++-
->>>  1 file changed, 19 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
->>> index 353f155d..1d8cf900 100644
->>> --- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
->>> +++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
->>> @@ -26,8 +26,26 @@ properties:
->>>        - qcom,pm8998-pon
->>>  
->>>    reg:
->>> -    maxItems: 1
->>> +    description: |
->>> +      Specifies the SPMI base address for the PON (power-on) peripheral.  For
->>> +      PMICs that have the PON peripheral (GEN3) split into PON_HLOS and PON_PBS
->>> +      (e.g. PMK8350), this can hold addresses of both PON_HLOS and PON_PBS
->>> +      peripherals.  In that case, the PON_PBS address needs to be specified to
->>> +      facilitate software debouncing on some PMICs.
->>
->> You need separate compatibles for that and constraints (allOf:if:then)
->> for each variant.
->>
-> So I have been looking into using the separate compatible strings however
-> have run into a few problems.
-> 
-> The compatible strings in this binding relate to the parent pon device,
-> while gen1/gen2/gen3 relate to the children devices.
-> For example, qcom,pm8941-resin/qcpm,pm8941-pwrkey are gen1/gen2 children
-> and defined under a parent pon device with the "qcom,pm8998-pon" compatible string
-> but qcom,pmk8350-resin/pmk8350-resin are gen3 children and would also be defined
-> under a parent pon device with the "qcom,pm8998-pon" compatible string.
-> Currently the children do not define their own "reg" property and will use the
-> register(s) address(es) defined for their parent[1].
-> Because of this we are unable to use the compatibles to separate the constraints
-> for gen1/gen2 vs gen3.
-> 
-> There are two possible suggestions we came up with that could solve this.
-> 1. Add a new compatible string to this binding such as "qcom,pmk8350-pon". We would then
-> place all gen3 children devices under this compatible string thus being able to use
-> allOf:if:then for the constraints.This would also require a few changes within
-> driver/power/supply/qcom,pon.c.
 
-Usually more compatibles allows more flexibility. In this case it
-clearly looks like qcom,pm8998-pon is too generic, because it covers
-devices with different programming model, although it is more of
-programming model of children. Anyway you need the new compatible.
+--7jpbomglvpzfusz7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The problem is that b2de43136058 ("arm64: dts: qcom: pmk8350: Add
-peripherals for pmk8350")
- introduced DTS with old compatible, so keep it backwards compatible -
-you now need a pmk8350-pon with fallback to pm8998.
+Hello,
 
-> 
-> 2. reg-names is not consumed by anything but rather used for clarification
-> for users as what the register(s) address relates to. We could get rid of
-> the property and simply have "reg" with minItem:1 and maxItem:2.
+On Tue, May 31, 2022 at 01:45:44PM +0200, Fabien Parent wrote:
+> MT8195's PWM IP has 4 PWM blocks.
+>=20
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8195.dtsi
+> index d076a376bdcc..366543f27a99 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -367,6 +367,21 @@ pwrap: pwrap@10024000 {
+>  			assigned-clock-parents =3D <&topckgen CLK_TOP_ULPOSC1_D10>;
+>  		};
+> =20
+> +		pwm0: pwm@10048000 {
+> +			compatible =3D "mediatek,mt8195-pwm",
+> +				     "mediatek,mt8183-pwm";
+> +			reg =3D <0 0x10048000 0 0x1000>;
+> +			#pwm-cells =3D <2>;
+> +			clocks =3D <&infracfg_ao CLK_INFRA_AO_PWM_H>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM1>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM2>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM3>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM4>;
+> +			clock-names =3D "top", "main", "pwm1", "pwm2", "pwm3",
+> +				      "pwm4";
+> +		};
+> +
 
-We can remove them, but the my last comment about fixed order remains.
-If you remove reg-names, I expect that reg has items with description,
-in a fixed order. I don't know how it would look like since you have
-there two items and three items at the same time and description is
-confusing on its own.
+I wonder why will pick up this patch? Will patch 1 then go the same
+path, or is that one supposed to go via the pwm tree?
 
+Best regards
+Uwe
 
-Best regards,
-Krzysztof
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--7jpbomglvpzfusz7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmK+oUkACgkQwfwUeK3K
+7Ang2gf+Kl9JecJpvkoirnmDAmLOLjFtUVPIXpmZTrlJ1C07oaQ3+h6VzBQ84sJT
+BbROJc039OnAHAKkscpVcssNm2nFpm+t05wBMuDO4wipvehakAzbHL4m4o4xEOTT
+wkRjbHcNEmPLB/yhJBx9U32vPNctKWygGYEG+eIYc2rNnaseHdlK73k2Ks9VH1Vg
+0gt7tSg6IA6um6QTDMwB7anVI0wWX3S6kk5Shozd65S/egyIsDFZsKwoTzgPX+qa
+W6gEhUfx9NkbHxBH3nN3rBN1TPLHNHB5QYLEm9jHWmeaupZtl2Gf14AQET+haWjT
+4YX6PFmjZMynfmh/2KKAQv1N+EhLJg==
+=hTm4
+-----END PGP SIGNATURE-----
+
+--7jpbomglvpzfusz7--
