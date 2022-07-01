@@ -2,129 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6076D563032
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 11:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F12F5630C6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 11:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234024AbiGAJdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 05:33:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53128 "EHLO
+        id S229638AbiGAJ4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 05:56:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232029AbiGAJdh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 05:33:37 -0400
-Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8471C74371;
-        Fri,  1 Jul 2022 02:33:32 -0700 (PDT)
-Received: from pro2.mail.ovh.net (unknown [10.109.143.68])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 2E11311478EAB;
-        Fri,  1 Jul 2022 11:33:29 +0200 (CEST)
-Received: from [192.168.1.41] (88.161.25.233) by DAG1EX2.emp2.local
- (172.16.2.2) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Fri, 1 Jul 2022
- 11:33:29 +0200
-Message-ID: <c84d0513-b89b-0eea-eeaf-68dc634bd7b0@traphandler.com>
-Date:   Fri, 1 Jul 2022 11:33:22 +0200
+        with ESMTP id S229508AbiGAJ4R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 05:56:17 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2427C74DCB;
+        Fri,  1 Jul 2022 02:56:16 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id c13so2251541eds.10;
+        Fri, 01 Jul 2022 02:56:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=bSK5YfoZwCXwkULWVh7uTnuiTWCdHyPzN8Uo8aQIwuI=;
+        b=MpnRS2WGAMXjw/f5eFw/cm1ESr3K0ONH/W6phu40t7UzRPIj72paEcOT9BFX0KaUw8
+         o4+D/EikvH8VgljOXcuw7mnIHrz1ZIfMAaAVVqFu7TUp2DicnPoDD01GqxQtt3IMM/8F
+         XbdR7fvH6ATs24+5X6S4BOuu7LnHmmthGOc13pSgJO1LltGUur/IL7z379JcfWj2cKeQ
+         64sGtGpBf4PqtFYuEjnoSHar2ZvZJlscF4W86NZ2qdLqyS2p/5OeWqqEfPNv2fySoRPc
+         yuYYXgH0tJPSdpjzDcxIIr6Z7GH8RLSNnbgxhfaYq00oI00z8CTz+ECyeAplYFRjPFMC
+         qHmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=bSK5YfoZwCXwkULWVh7uTnuiTWCdHyPzN8Uo8aQIwuI=;
+        b=k77aIRv3xaUpKJkZ0u95XMOlaiWGXzHPynSyGQpYKuIIbEwYlMyZQ9CnN4Ifc9ajaX
+         6gO4ysnD7GnePYvhvIl+/9+eEeDvUlZn64PSHMWJPRQMoT01v8aCTr3/ymtCb5JFp7OE
+         qBp2koEJIPnCpicTawwfVbTgobdCAsDKJdAkfCwwuxPMDNz+2/5hefrhEG410pOG6rni
+         dP4q4oSrKZnQxh93gxWUC9ZVx9RFgmoF3och73V+dET5zu/XN235M8sPWpB1TuUvs1xl
+         iXNgHsSTh4vHnjMh5klKCwt0j5q5XOz+Blf7lcNh/VvmC/fg7vGLoRUpn377fHPsQd6p
+         RFZg==
+X-Gm-Message-State: AJIora9eAvT8TeOPgWKHmK/NayF1QNJYDhU4XvfG8rCes4MWjzThKEDf
+        kBR7KywfUS0Z9C0TZqo4AKSSoHgLKFDtvFruHjyzrlWMomc=
+X-Google-Smtp-Source: AGRyM1sTIw3tTlyImwoh4qrwr7WEcgMjJ4bbk9FzKTMVaiOUyz3jY8oWaEk+SYYD/6k+RQraBRzcw8oVEJ0ES5Ghc4Q=
+X-Received: by 2002:a05:6402:358c:b0:435:9daf:e825 with SMTP id
+ y12-20020a056402358c00b004359dafe825mr17697800edc.375.1656669374541; Fri, 01
+ Jul 2022 02:56:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 3/4] dt-bindings: leds: Add binding for a multicolor group
- of LEDs
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <pavel@ucw.cz>, <sven.schwermer@disruptive-technologies.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <johan+linaro@kernel.org>,
-        <marijn.suijten@somainline.org>, <bjorn.andersson@linaro.org>,
-        <andy.shevchenko@gmail.com>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220615154918.521687-1-jjhiblot@traphandler.com>
- <20220615154918.521687-4-jjhiblot@traphandler.com>
- <20220627221257.GA3046298-robh@kernel.org>
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-In-Reply-To: <20220627221257.GA3046298-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: DAG2EX1.emp2.local (172.16.2.11) To DAG1EX2.emp2.local
- (172.16.2.2)
-X-Ovh-Tracer-Id: 13792836810162911707
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudehfedgudekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgihesthejredttdefjeenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepuefgvedvledufeekjeeltedvjeeuuddvtdetjeefjedvveehkeeufeeihfelgfeknecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkpheptddrtddrtddrtddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehvdek
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <1655892104-10874-1-git-send-email-u0084500@gmail.com>
+ <1655892104-10874-3-git-send-email-u0084500@gmail.com> <Yrm9ObaltUiQUTqS@google.com>
+ <CADiBU3802sLTPjrGiaQ-xw-2jep1UXo+t7pYc6bCC4MiJLhOyA@mail.gmail.com>
+ <CADiBU3838Mgi3sqv+R_=8g-ROTrbN45AKPaTS_9GCWVDYASMyg@mail.gmail.com> <Yr6kVg2OlHkm6+bB@google.com>
+In-Reply-To: <Yr6kVg2OlHkm6+bB@google.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Fri, 1 Jul 2022 17:56:02 +0800
+Message-ID: <CADiBU396poOuzdGABzTazouM5MX=auZ9OdyT_sqWrKnZk3tFRw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] mfd: rt5120: Add Richtek PMIC support
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>, dmitry.torokhov@gmail.com,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 28/06/2022 00:12, Rob Herring wrote:
-> On Wed, Jun 15, 2022 at 05:49:17PM +0200, Jean-Jacques Hiblot wrote:
->> This allows to group multiple monochromatic LEDs into a multicolor
->> LED, e.g. RGB LEDs.
->>
->> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
->> ---
->>   .../bindings/leds/leds-group-multicolor.yaml  | 94 +++++++++++++++++++
->>   1 file changed, 94 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
->> new file mode 100644
->> index 000000000000..30a67985ae33
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
->> @@ -0,0 +1,94 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/leds/leds-group-multicolor.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Multi-color LED built with monochromatic LEDs
->> +
->> +maintainers:
->> +  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
->> +
->> +description: |
->> +  This driver combines several monochromatic LEDs into one multi-color
->> +  LED using the multicolor LED class.
->> +
->> +properties:
->> +  compatible:
->> +    const: leds-group-multicolor
->> +
->> +  multi-led:
->> +    type: object
->> +
->> +    patternProperties:
->> +      "^led-[0-9a-z]+$":
->> +        type: object
->> +        $ref: common.yaml#
->> +
->> +        additionalProperties: false
->> +
->> +        properties:
->> +          leds:
-> Not a standard property. What is the type?
-That would be a reference to the node of a LED
-> Really, just do a GPIO multi-color LED binding similar to the PWM one
-> rather than adding this layer. I suppose you could combine LEDs from all
-> different controllers, but that seems somewhat unlikely to me.
-
-I'm not using gpio leds, rather leds driven by two TLC5925.
-
-I agree that combining from different model of controller is unlikely. 
-However from 2 separate chips of the same model is not (ex: driving 5 
-RGB LEDs with two 8-output chips)
-
-In the case of the TLC5925, that is not really a problem because as long 
-as the chips are on the same CS, they are considered as a single entity 
-by the driver. But for I2C chips at least that would be a problem.
-
-
-JJ
-
+Lee Jones <lee.jones@linaro.org> =E6=96=BC 2022=E5=B9=B47=E6=9C=881=E6=97=
+=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=883:38=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> Rob
+> On Fri, 01 Jul 2022, ChiYuan Huang wrote:
+>
+> > HI, Lee:
+> >
+> > ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B46=E6=9C=8827=
+=E6=97=A5 =E9=80=B1=E4=B8=80 =E6=99=9A=E4=B8=8A10:56=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > >
+> > > Lee Jones <lee.jones@linaro.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=8827=
+=E6=97=A5 =E9=80=B1=E4=B8=80 =E6=99=9A=E4=B8=8A10:22=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > > >
+> > > > On Wed, 22 Jun 2022, cy_huang wrote:
+> > > >
+> > > > > From: ChiYuan Huang <cy_huang@richtek.com>
+> > > > >
+> > > > > Add Richtek RT5120 PMIC I2C driver.
+> > > >
+> > > > Why a whole new driver?
+> > > >
+> > > > How different is this to rt5033?
+> > > >
+> > > > Looks like this could easily be woven into this existing support?
+> > > >
+> > > It's different with the function domain.
+> > > RT5033 is most like as the SubPMIC that includes PMU (battery
+> > > charger/gauge/led/few buck and ldo)
+> > > RT5120 is a main PMIC with default-on power that follows the boot on =
+sequence.
+> > > RT5120 only integrates regulator and power key report module.
+> > >
+> > Since I have explained the chip difference, do you still think it's
+> > better to merge this code into rt5033 mfd?
+>
+> I think it's okay to group devices which are similar but not exactly
+> the same, if they can be.  The integration of this device into the
+> other looks trivial to my naive eyes.
+>
+> A PMIC is a PMIC, main or sub.
+>
+M.. ok. I will try to group all chip changes like as devices
+list/regmap_irq/regmap_config ..., etc.
+Treat it as one set of chip config and use 'of_device_get_match_data'
+to get the chip config data.
+
+> > > > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > > > > ---
+> > > > >  drivers/mfd/Kconfig  |  12 +++++
+> > > > >  drivers/mfd/Makefile |   1 +
+> > > > >  drivers/mfd/rt5120.c | 125 +++++++++++++++++++++++++++++++++++++=
+++++++++++++++
+> > > > >  3 files changed, 138 insertions(+)
+> > > > >  create mode 100644 drivers/mfd/rt5120.c
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Principal Technical Lead - Developer Services
+> Linaro.org =E2=94=82 Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
