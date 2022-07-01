@@ -2,90 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14815562E22
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E10F562E3F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236309AbiGAI1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 04:27:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58810 "EHLO
+        id S235464AbiGAI2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 04:28:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236338AbiGAI1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:27:07 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93FF17BD39;
-        Fri,  1 Jul 2022 01:24:46 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E6AC66601974;
-        Fri,  1 Jul 2022 09:24:43 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656663885;
-        bh=6VbdfSOOs3Mk31GnoM4flK6rivXwW2rx7zZhOL2M5uc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=mYFw5+jeerPUkzUWglYj+XMjkDIMdGTB6AeVXME2HCO7fsc2gX3Ece34moLO8e2la
-         b2A7aelCOsmvOQZ60qGa5LMnK+LSwPdbm17RzOE5f+9tp44JSrUkXv89n7Y4oHFehA
-         9lhXRhDnDJB0AcvhDJUloxfrrNo4JjRBbn1ccpHXU60sG2h2NQPVHSqhdqwQFSAaDb
-         mnon/U++cZloCHMuYbRrnyYgsasVnFie+kgNKgV3/pSwWQ0p8a3ljeJXbo0Co4IIf1
-         flbgLkTb5B/Skq6rh4ENMfCNDsBbrg9/H+AwfYsd82jv8irpKCDymb6PBQriLJU6G+
-         TvSwAP4NuNdLw==
-Message-ID: <250cd177-fbbf-343c-80c1-d9278c01410a@collabora.com>
-Date:   Fri, 1 Jul 2022 10:24:41 +0200
+        with ESMTP id S237033AbiGAI2P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:28:15 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2392973923
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 01:27:12 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id z19so1973248edb.11
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 01:27:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=v/Zxb9W8O8eRVs5/InMAsyQTUlGI/gryyZcdLf1NOHY=;
+        b=L4fMdargZ8xcfVXz6mNXitWSJTViGJv5eiUCXzkwy377I87uPo4UCG2yAVi2ceMV39
+         wb1WtjigHk/ie6BZQl4gGH2rX7a0ksABSn/XW8NlTmAbO/xapLc7p7uMkAmvm6VekWbV
+         gVDrmxiMazZioK8nfFKqfQq9wtTNmsz1GJd9dazzBZoKykagkA8qhsECI7lCBSjOIkyF
+         6+fc+KwbYu0aAt5LyDLQRJzVrqASGVKj7eQrVfh2Dlyw4vOpIRCHirFkmWRk4SRUvEYQ
+         ZsPvF1rS7SDTdZaF4siqubFwHtbIY6L0wJMGdUBnywhpA+6YVlZKysRuNTJliE/iQULz
+         bKig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=v/Zxb9W8O8eRVs5/InMAsyQTUlGI/gryyZcdLf1NOHY=;
+        b=RZUAa7bFbRArdpA9MGO975+AlJnBPNKY8We8SB8sza2WJzf4yOURz34/E4HL6zl78A
+         hmfmMdFshD9jHfEh4YNl/nL4n5AGbgbDcuqjAroXH6J6K6PzM8RjNKFnc9t7iPAHK81u
+         t/Ol7g6gmcBRZIgucEWpcUSyyUtjBu5z27dYgyNplJ/wOkBSDdtgqrUjGHiHMGunW8QW
+         Fu7sKc8I/iN46aHNzrnWHQ/82z6QsDaaikguzZm4amRqsaphJPq6ndv0t2A10V7XMWJE
+         ZeITWcMvyMlyRkoYjAel46Dn0YNYmtCVEjF1jId60g14ThV6CNdYTvifjEBQsxhXfLTZ
+         q6xg==
+X-Gm-Message-State: AJIora/j3qDPVzS2zhf5L85q+MeURVdm/ikMmDQH2r5jZovueq42+yOE
+        CiomRNnEaOISwwZM6kitWYJNfQ==
+X-Google-Smtp-Source: AGRyM1tScn7KIU+3W84vLEUFBbrstXRj8Nc/Bkxh/DrTf137hHWP/YmAXJJ0PaNhzaZzFdcMbhkQ+Q==
+X-Received: by 2002:aa7:c38c:0:b0:435:8013:41e7 with SMTP id k12-20020aa7c38c000000b00435801341e7mr17133597edq.206.1656664030658;
+        Fri, 01 Jul 2022 01:27:10 -0700 (PDT)
+Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id k12-20020a17090666cc00b007041e969a8asm10180161ejp.97.2022.07.01.01.27.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Jul 2022 01:27:10 -0700 (PDT)
+Message-ID: <a9be8f4c-ec35-1457-742b-fdef55640fe6@linaro.org>
+Date:   Fri, 1 Jul 2022 10:27:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v13 10/10] drm/mediatek: fix no audio when resolution
- change
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ti,adc128s052: Add adc08c and
+ adc10c family
 Content-Language: en-US
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
-        tzimmermann@suse.de, matthias.bgg@gmail.com, deller@gmx.de,
-        airlied@linux.ie
-Cc:     msp@baylibre.com, granquet@baylibre.com, jitao.shi@mediatek.com,
-        wenst@chromium.org, ck.hu@mediatek.com, liangxu.xu@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-fbdev@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
- <20220701062808.18596-11-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220701062808.18596-11-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Nishanth Menon <nm@ti.com>,
+        Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     Florian Eckert <fe@dev.tdt.de>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+References: <20220701042919.18180-1-nm@ti.com>
+ <20220701042919.18180-2-nm@ti.com>
+ <5dbf57e4-7573-fa63-d8f1-6ecde08a0875@linaro.org>
+In-Reply-To: <5dbf57e4-7573-fa63-d8f1-6ecde08a0875@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/07/22 08:28, Bo-Chen Chen ha scritto:
-> When switching resolutions, config the audio setting with the
-> previous audio parameters.
+On 01/07/2022 08:38, Krzysztof Kozlowski wrote:
+> On 01/07/2022 06:29, Nishanth Menon wrote:
+>> The adcxx4s communicates with a host processor via an SPI/Microwire Bus
+>> interface. The device family responds with 12bit data, of which the LSB
+>> bits are 0 for the lower resolution devices. I have been able to test
+>> adc102s051, hence adding just the missing ones in that family.
+>>
+>> Lets reuse the binding to support the family of devices with name
+>> ADC<bb><c>S<sss>, where
+>> * bb is the resolution in number of bits (8, 10, 12)
+>> * c is the number of channels (1, 2, 4, 8)
+>> * sss is the maximum conversion speed (021 for 200 kSPS, 051 for 500 kSPS
+>>   and 101 for 1 MSPS)
+>>
+>> Complete datasheets are available at TI's website here:
+>>   https://www.ti.com/lit/gpn/adc<bb><c>s<sss>.pdf
+>>
+>> Handling of 8, 10 and 12 bits converters are the same, the
+>> unavailable bits are 0 in LSB :)
+>>
+>> Inspired-by: drivers/hwmon/adcxx.c
+>>
+>> Signed-off-by: Nishanth Menon <nm@ti.com>
+>> ---
+>>
+>> Checkpatch does complain with Inspired-by: insisting it to be an email
+>> address.. but I was really inspired by the hwmon driver.. Don't know
+>> what else to say here.. we could probably drop it?
 > 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> Drop it or convert to just test.
 
-Change the title to:
-drm/mediatek: Use cached audio config when changing resolution
+This should be:
 
-...and a more suitable description would be:
+Drop it or convert to just text sentence.
 
-Use the cached audio configuration during a resolution switch
-to avoid loss of sound.
-
-(perhaps also explain why we're losing it and why using cached
-data is necessary).
-
-After which...
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Best regards,
+Krzysztof
