@@ -2,124 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61302562CD9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 657B6562CEB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:46:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233874AbiGAHlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 03:41:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38786 "EHLO
+        id S235296AbiGAHqG convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 1 Jul 2022 03:46:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbiGAHly (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:41:54 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9CF11409D;
-        Fri,  1 Jul 2022 00:41:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1656661312; x=1688197312;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=6+6Lv6Z81pEXaBMjGbvAZKSh8w+AukCkGPMgazAg30o=;
-  b=qGgi7AnXE0ZZbdIBZ7A2lgwCrm95/7a5QMlu2RrFBBTguHvgekEvHs1j
-   vAhkJOaaxtHFwOVGHgwkhPUUeWIPzn+WmYFU8KoLzIfFVwB5uCSnts/Ps
-   r1tAAWyrvmzVC5SnP5KMBJEeSr7sEs7x7+sfr8prL34NfyKgslPc9kf3q
-   LdagReElTpF+4g5safl3oYJtdThUzUjIFlVps0rIax6UsT4pl0jpKHVHY
-   mkPdmA+PDAC5QOrIcgXhZodSRkhKRvnjVKCIUKtmgWzD68vBBDghrWBo4
-   P8ZAUyulvPjVnzB3G3orfMnTcHQme/eF5KbDu3tzl2kExPle8J97UDame
-   g==;
-X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; 
-   d="scan'208";a="180328294"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Jul 2022 00:41:52 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 1 Jul 2022 00:41:51 -0700
-Received: from [10.12.72.20] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Fri, 1 Jul 2022 00:41:49 -0700
-Message-ID: <a85357c2-a2f6-472e-50a8-2dcf41217ac1@microchip.com>
-Date:   Fri, 1 Jul 2022 09:41:48 +0200
+        with ESMTP id S229689AbiGAHqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:46:06 -0400
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC6D948837;
+        Fri,  1 Jul 2022 00:46:04 -0700 (PDT)
+Received: by mail-qv1-f42.google.com with SMTP id n15so3339835qvh.12;
+        Fri, 01 Jul 2022 00:46:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=wE4bFtTL36vFmikZ1ytwvzCWwTBgGc5pXW0bXvIIsbc=;
+        b=MTKEDwujyQaxHEO0aCHEmM7pJvCzOCWCffrlGAoY9GeArM+S5SFKuA3D2bVzcrsfJc
+         jbdUc03pMHz87gFbv5L+xf27FcCJgKDFjw/tkgKvsHkiRsyVhxyAEn1bySGIyiWYpQVg
+         1q9L9wZcFZjaeo7yeSbgzJYzwirjmjIPgiUgHsIlGXSibyR6XlVTvHj+cynIoHnhwsmP
+         ySqKayh3cy/wQlPoyme2h+9S1rtJiiGBvxccdhwK7ANhtGJ+k7464V230wG9StzaOqWk
+         wUg7UCgkiPu4m2fDVT2Xw5GvwBn/wcjZS4wECKlbtiWaCL9xsyNF6/McuaSrgj8Uh2wC
+         v0ZA==
+X-Gm-Message-State: AJIora8rfUEk22h8NSvIpdvHGW8ihjStHdJdJ02vhb+i6HEp5hR1HBhT
+        eMAQloR8BWDnok0HlzOG3Z819t29mjFNPw==
+X-Google-Smtp-Source: AGRyM1vhfhp+91QYY3y9wnv6FH7LV7i9o2/+15bpimdDz+wTZB3Maiv4UfamJnQJMw0znb85v3v1uQ==
+X-Received: by 2002:a05:622a:1aa8:b0:31b:f4b9:650c with SMTP id s40-20020a05622a1aa800b0031bf4b9650cmr11266535qtc.1.1656661563921;
+        Fri, 01 Jul 2022 00:46:03 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id m5-20020ac84445000000b00307beda5c6esm13975709qtn.26.2022.07.01.00.46.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Jul 2022 00:46:03 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id r3so2649874ybr.6;
+        Fri, 01 Jul 2022 00:46:03 -0700 (PDT)
+X-Received: by 2002:a05:6902:1246:b0:66d:5b0b:19b0 with SMTP id
+ t6-20020a056902124600b0066d5b0b19b0mr13181284ybu.365.1656661562781; Fri, 01
+ Jul 2022 00:46:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: spi: convert spi_atmel to json-schema
-Content-Language: en-US
-To:     Conor Dooley - M52691 <Conor.Dooley@microchip.com>,
-        Rob Herring <robh@kernel.org>,
-        Sergiu Moga - M68701 <Sergiu.Moga@microchip.com>
-CC:     Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        UNGLinuxDriver <UNGLinuxDriver@microchip.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Kavyasree Kotagiri - I30978 
-        <Kavyasree.Kotagiri@microchip.com>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20220629125804.137099-1-sergiu.moga@microchip.com>
- <1656542219.625404.1042476.nullmailer@robh.at.kernel.org>
- <8191d9e3-88e9-c8fb-2544-d25d3a93d0a8@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <8191d9e3-88e9-c8fb-2544-d25d3a93d0a8@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220630162515.37302-1-clement.leger@bootlin.com>
+In-Reply-To: <20220630162515.37302-1-clement.leger@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 1 Jul 2022 09:45:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX135BkyDnedizD-9u1htwjbOa2=ko1Vm+mk0Jh3R+KPw@mail.gmail.com>
+Message-ID: <CAMuHMdX135BkyDnedizD-9u1htwjbOa2=ko1Vm+mk0Jh3R+KPw@mail.gmail.com>
+Subject: Re: [PATCH net-next v2] dt-bindings: net: dsa: renesas,rzn1-a5psw:
+ add interrupts description
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+Hi Clément,
 
-On 30/06/2022 at 00:45, Conor Dooley - M52691 wrote:
-> On 29/06/2022 23:36, Rob Herring wrote:
->> On Wed, 29 Jun 2022 15:58:04 +0300, Sergiu Moga wrote:
->>> Convert SPI binding for Atmel/Microchip SoCs to Device Tree Schema
->>> format.
->>>
->>> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
->>> ---
->>>   .../devicetree/bindings/spi/atmel,spi.yaml    | 82 +++++++++++++++++++
->>>   .../devicetree/bindings/spi/spi_atmel.txt     | 36 --------
->>>   2 files changed, 82 insertions(+), 36 deletions(-)
->>>   create mode 100644 Documentation/devicetree/bindings/spi/atmel,spi.yaml
->>>   delete mode 100644 Documentation/devicetree/bindings/spi/spi_atmel.txt
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> Documentation/devicetree/bindings/spi/atmel,spi.example.dtb:0:0: /example-0/spi@fffcc000/mmc@0: failed to match any schema with compatible: ['mmc-spi-slot']
-> 
-> My conversion of this should be in -next right?
+On Thu, Jun 30, 2022 at 6:26 PM Clément Léger <clement.leger@bootlin.com> wrote:
+> Describe the switch interrupts (dlr, switch, prp, hub, pattern) which
+> are connected to the GIC.
+>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+> Changes in V2:
+>  - Fix typo in interrupt-names property.
 
-Aren't you talking about
-Documentation/devicetree/bindings/spi/microchip,mpfs-spi.yaml or 
-Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-rather than atmel,spi.yaml ?
+Thanks for the update!
 
-> Is this just an incorrect base for the bot, or am I missing
-> something?
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+but some suggestions below.
 
-[..]
+> --- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> @@ -26,6 +26,22 @@ properties:
+>    reg:
+>      maxItems: 1
+>
+> +  interrupts:
+> +    items:
+> +      - description: DLR interrupt
 
-Regards,
-   Nicolas
+Device Level Ring (DLR) interrupt?
 
+> +      - description: Switch interrupt
+> +      - description: PRP interrupt
 
--- 
-Nicolas Ferre
+Parallel Redundancy Protocol (PRP) interrupt?
+
+> +      - description: Integrated HUB module interrupt
+> +      - description: RX Pattern interrupt
+
+Receive Pattern Match interrupt?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
