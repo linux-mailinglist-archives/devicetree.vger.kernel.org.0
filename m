@@ -2,126 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1126456366A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 17:03:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07DD9563688
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 17:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231551AbiGAPC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 11:02:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59068 "EHLO
+        id S231485AbiGAPFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 11:05:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231599AbiGAPC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 11:02:56 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEDD63DDC3;
-        Fri,  1 Jul 2022 08:02:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1656687776; x=1688223776;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3p1haOctquxewPlqf+5TUBaW2f+6nbsODmUnBqHiBj8=;
-  b=rPacwOmsl1v6tsZZjDOdCrblMjM6MFaQWSRwAI37GLzwoiBECQriF42i
-   OCvrOlXSI/KglgvyxpF64eD4bnLC0jMpqvECPdznjICnzR8pcAY8GrFOR
-   cbFwkOWoRwMnh3H1Dtt6QbT8gsM/TYga3oMzcJA0LrIQ8pG3jBv4TT2yG
-   E99z3C8VId1fZFZ+GkMp3MfX99NnCe5SodIHNNFJeb/LhgLaveBrAYVr1
-   vOqONgCI4xfViakh/S3yu6H4oMObwHnER/lMA+pBSdmbIW9RT675MMgOH
-   vApogXfm1d09NvL9uumFKhVi4BQxXBYLOM23RjyR3kD8oGs7wgelrEOXP
-   A==;
-X-IronPort-AV: E=Sophos;i="5.92,237,1650956400"; 
-   d="scan'208";a="162957738"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Jul 2022 08:02:55 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 1 Jul 2022 08:02:51 -0700
-Received: from CHE-LT-I17769U.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 1 Jul 2022 08:02:31 -0700
-From:   Arun Ramadoss <arun.ramadoss@microchip.com>
-To:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <bpf@vger.kernel.org>
-CC:     Woojung Huh <woojung.huh@microchip.com>,
-        <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexei Starovoitov <ast@kernel.org>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        Andrii Nakryiko <andrii@kernel.org>,
-        Martin KaFai Lau <kafai@fb.com>,
-        "Song Liu" <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
-        John Fastabend <john.fastabend@gmail.com>,
-        KP Singh <kpsingh@kernel.org>
-Subject: [Patch net-next v15 06/13] net: dsa: microchip: lan937x: add dsa_tag_protocol
-Date:   Fri, 1 Jul 2022 20:32:23 +0530
-Message-ID: <20220701150223.23832-1-arun.ramadoss@microchip.com>
+        with ESMTP id S231146AbiGAPFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 11:05:08 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA897A5;
+        Fri,  1 Jul 2022 08:05:07 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id fi2so4550642ejb.9;
+        Fri, 01 Jul 2022 08:05:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XyG7pVB+BWkSEILuApybwvIv5TWweJG/YFmaKnGvDs8=;
+        b=GkH9eF8aeiaz/mE+MhnMAQlvEBNDPJT5nf1+ieBvlXSwdRBHnmd1dNDoveeFCXYi9e
+         Qm4jFeuOByLw1NYi0+K4MqOIQsJgtXUqDtSyp9d4DypQTgknP8Tr+Ubs/qoQXd9iEioX
+         eBo258I/RPgFUnM76IFEBBJt5BkATZsG6FAJaTm1mqLn+dD4gJLo8fc2491R302zEegL
+         BwcnFxrSsXTqtY95cxyVVuaEEy5+MsDXVFGrncyTivbCcRiPCgq0tNllXNuz6F7pPxY9
+         /sxLBpgYxR5/sO5AyaVVO2MGYfTRJ3cmogrEGJkYR2mS3tJiI9UlOjZDDz5vIesfDQnH
+         Y6qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XyG7pVB+BWkSEILuApybwvIv5TWweJG/YFmaKnGvDs8=;
+        b=l/4dGqggBhwFrVc40fe1n9khb/Sz5J2LmnkkaL2frt4UYkf6C5qNdWZDVZe/9rEi/N
+         JWkSoWZHfqvRBCCRU24cMJcMqhXl3aUKGQOpy7bNPauX8cJXtxpJYn5XYT4vHuFrsJQ5
+         Pr3jDPcad+Gt1EyZ02YAzir2EMbullhZj/+JfSUCihSfkVc71ireojdqlATD43vdpJJk
+         vozyckHBmWaqtor3F2bjc8eptexASFMvr+amwdJPB6d+MC1F5Y56UV07boiU3aVsLKqk
+         NqXTK0SVa3HFIvxizLpLdewlPkcqWDrfKfyNPx0f0Zmqv1VRVHE6Lg6zTZaW+m5+2rOq
+         SupA==
+X-Gm-Message-State: AJIora8b5RcAMh13w+IGBWxhkmkRVCYqvzsb2a62Iiev3uPATKl9Ekki
+        FRv0FTHOyTdwXqeBvlkNaog=
+X-Google-Smtp-Source: AGRyM1vyYh5MdkvxvBq8TOIRHx1Vmdi6lzWt5t4as9pzfnz5mEgNuyTqiF2IxQRGaNSU6tmB28AC7A==
+X-Received: by 2002:a17:906:528d:b0:726:38df:6f70 with SMTP id c13-20020a170906528d00b0072638df6f70mr15068799ejm.61.1656687906087;
+        Fri, 01 Jul 2022 08:05:06 -0700 (PDT)
+Received: from localhost (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id t25-20020a056402241900b0043589eba83bsm4771446eda.58.2022.07.01.08.05.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Jul 2022 08:05:05 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Prathamesh Shete <pshete@nvidia.com>,
+        Vidya Sagar <vidyas@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: [PATCH 0/4] pinctrl: tegra: Separate Tegra194 instances
+Date:   Fri,  1 Jul 2022 17:04:57 +0200
+Message-Id: <20220701150501.443296-1-thierry.reding@gmail.com>
 X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220701144652.10526-1-arun.ramadoss@microchip.com>
-References: <20220701144652.10526-1-arun.ramadoss@microchip.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch update the ksz_get_tag_protocol to return LAN937x specific
-tag if the chip id matches one of LAN937x series switch
+From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Arun Ramadoss <arun.ramadoss@microchip.com>
----
- drivers/net/dsa/microchip/ksz_common.c | 3 +++
- drivers/net/dsa/microchip/ksz_common.h | 9 +++++++++
- 2 files changed, 12 insertions(+)
+This patch series changes the pin controller DT description on Tegra194
+in order to properly describe how the hardware works. Currently a
+simplified description is used that merges two pin controller instances
+(called AON and main) into a single DT node. This has some disadvantages
+such as creating a complicated mapping between the pins in those pin
+controllers and the corresponding GPIO controllers (which are already
+separated).
 
-diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index 83e44598d00c..07b6f34a437e 100644
---- a/drivers/net/dsa/microchip/ksz_common.c
-+++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -1254,6 +1254,9 @@ static enum dsa_tag_protocol ksz_get_tag_protocol(struct dsa_switch *ds,
- 	    dev->chip_id == KSZ9567_CHIP_ID)
- 		proto = DSA_TAG_PROTO_KSZ9477;
- 
-+	if (is_lan937x(dev))
-+		proto = DSA_TAG_PROTO_LAN937X_VALUE;
-+
- 	return proto;
- }
- 
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index 5f69dc872752..bf4f3f3922a5 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -403,6 +403,15 @@ static inline void ksz_regmap_unlock(void *__mtx)
- 	mutex_unlock(mtx);
- }
- 
-+static inline int is_lan937x(struct ksz_device *dev)
-+{
-+	return dev->chip_id == LAN9370_CHIP_ID ||
-+		dev->chip_id == LAN9371_CHIP_ID ||
-+		dev->chip_id == LAN9372_CHIP_ID ||
-+		dev->chip_id == LAN9373_CHIP_ID ||
-+		dev->chip_id == LAN9374_CHIP_ID;
-+}
-+
- /* STP State Defines */
- #define PORT_TX_ENABLE			BIT(2)
- #define PORT_RX_ENABLE			BIT(1)
+As a prerequisite, the first patch in this series converts the device
+tree bindings to json-schema. A second patch then adds an additional
+compatible string for the AON instance (along with more details about
+each controller's pins) and finally patch 3 converts the driver to
+cope with these changes. A fourth patch makes the corresponding
+changes in the Tegra194 DTS file.
+
+Note that while this changes the DT node in an incompatible way, this
+doesn't have any practical implications for backwards-compatibility. The
+reason for this is that device trees have only reconfigured a very
+narrow subset of pins of the main controller, so the new driver will
+remain backwards-compatible with old device trees.
+
+Thierry
+
+Thierry Reding (4):
+  dt-bindings: pinctrl: tegra: Convert to json-schema
+  dt-bindings: pinctrl: tegra194: Separate instances
+  pinctrl: tegra: Separate Tegra194 instances
+  arm64: tegra: Separate AON pinmux from main pinmux on Tegra194
+
+ .../bindings/clock/nvidia,tegra124-dfll.yaml  |   2 +-
+ .../pinctrl/nvidia,tegra114-pinmux.txt        | 131 -------
+ .../pinctrl/nvidia,tegra114-pinmux.yaml       | 264 +++++++++++++++
+ .../pinctrl/nvidia,tegra124-pinmux.txt        | 153 ---------
+ .../pinctrl/nvidia,tegra124-pinmux.yaml       | 287 ++++++++++++++++
+ .../pinctrl/nvidia,tegra194-pinmux.txt        | 107 ------
+ .../pinctrl/nvidia,tegra194-pinmux.yaml       | 320 ++++++++++++++++++
+ .../pinctrl/nvidia,tegra20-pinmux.txt         | 143 --------
+ .../pinctrl/nvidia,tegra20-pinmux.yaml        | 203 +++++++++++
+ .../pinctrl/nvidia,tegra210-pinmux.txt        | 166 ---------
+ .../pinctrl/nvidia,tegra210-pinmux.yaml       | 232 +++++++++++++
+ .../pinctrl/nvidia,tegra30-pinmux.txt         | 144 --------
+ .../pinctrl/nvidia,tegra30-pinmux.yaml        | 268 +++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  13 +-
+ drivers/pinctrl/tegra/pinctrl-tegra.c         |  33 +-
+ drivers/pinctrl/tegra/pinctrl-tegra.h         |   2 +
+ drivers/pinctrl/tegra/pinctrl-tegra194.c      | 286 +++++++++-------
+ 17 files changed, 1758 insertions(+), 996 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra114-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra114-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra124-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra124-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra194-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra194-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra20-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra20-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra210-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra210-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra30-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra30-pinmux.yaml
+
 -- 
 2.36.1
 
