@@ -2,75 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9326E5634A7
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 15:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E919F5634D0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 16:03:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231792AbiGANtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 09:49:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43592 "EHLO
+        id S231411AbiGAODv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 10:03:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiGANtp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 09:49:45 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA32C27B32;
-        Fri,  1 Jul 2022 06:49:42 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id EA7935FD03;
-        Fri,  1 Jul 2022 16:49:39 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1656683380;
-        bh=YXUoraWfnYfy0hSgolh/FxiWqXDsGzZ4lVAE9CP5umc=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=jeIH+5NN2v4t2D8ZdTOioxfh08oUzODDmcpPa4W2LCteNTrAtCKp100sTP77aO9LQ
-         lP63XC7PgS4xkOjaUp/24GXZWAktK/YKCuyP7pYuDpSrfD51Pf7IRxDrwnc8Hpgkdf
-         Fe4rY1jzWfVfsbtPibsCbbJnJ83UupA11w42xBKScvEqzi2D1tOISDC5o0w++/lZby
-         I+VDly2EdmneivYbfmTzO7yg/odpxhCSdkxQTCRGx6KnLolOgViUXJhVMf9Mn8W/Yb
-         jgZ/2bXUvPDdvBIfBRuiZkXbJawt7YtBJRyHyoWLf1tVKmdDXAYEDLzwqvDkbxFFqd
-         msPEEzug9xiHA==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Fri,  1 Jul 2022 16:49:39 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     Jonathan Cameron <jic23@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
- driver
-Thread-Topic: [PATCH v3 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
- driver
-Thread-Index: AQHYgW2+up0uMWdZgUWEAW/5cCPkBq1WepyAgBLyeQA=
-Date:   Fri, 1 Jul 2022 13:49:10 +0000
-Message-ID: <20220701134734.nfc6xa4q7rhfi3r7@CAB-WSD-L081021.sigma.sbrf.ru>
-References: <20220616104211.9257-1-ddrokosov@sberdevices.ru>
- <20220616104211.9257-3-ddrokosov@sberdevices.ru>
- <20220619132703.5cf3b090@jic23-huawei>
-In-Reply-To: <20220619132703.5cf3b090@jic23-huawei>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <036813C44A635F4DA01F1C93886F5056@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S230467AbiGAODv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 10:03:51 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F8530F44;
+        Fri,  1 Jul 2022 07:03:48 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 70A0940011;
+        Fri,  1 Jul 2022 14:03:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1656684211;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=+L8QLajr74iqGSCFKxQfGD00RTWpYu+5/EnCEEB0stg=;
+        b=FnOWE9J1W70ff+2EMnfrFI3/sjG8N6x30dDC8EzQKe82aGioLmg0DWlxHFDRZABDeBNCHl
+        JuezjGbvMQqG3SksfB0+z2hOTgaVJOGK8ev0PVMjseVoSf9v8IzWplO7pHLULa8rvT9Mwv
+        VhgbAAxjsZ2BEEU7Q89LyIM/hcm/G67NZeT43ixQSgOHUTmZX1k0eCZrbjgqS8y5ezqnfx
+        OU/xdzCQ1lLb/Oy9f9iZLDhrRbDaMuEl1UVnRan7R+vNYSRmhKY/mTOj1wWn1WLK13Wcjb
+        wPdztjBC+lsAL7dvEjd8UkURBXv63DjgylURw46UXbiRtc3cPRREsbMSiFcX9Q==
+Date:   Fri, 1 Jul 2022 16:03:27 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     <Claudiu.Beznea@microchip.com>
+Cc:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <Nicolas.Ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <Horatiu.Vultur@microchip.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 3/3] ARM: dts: lan966x: Add UDPHS support
+Message-ID: <20220701160327.102880e5@bootlin.com>
+In-Reply-To: <72a1e572-45d7-de18-8f1f-9035d75b562b@microchip.com>
+References: <20220701070928.459135-1-herve.codina@bootlin.com>
+        <20220701070928.459135-4-herve.codina@bootlin.com>
+        <72a1e572-45d7-de18-8f1f-9035d75b562b@microchip.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/07/01 07:59:00 #19867624
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,131 +61,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Jonathan,
+Hi Claudiu,
 
-Sorry for the delayed response.
+On Fri, 1 Jul 2022 10:56:46 +0000
+<Claudiu.Beznea@microchip.com> wrote:
 
-On Sun, Jun 19, 2022 at 01:27:03PM +0100, Jonathan Cameron wrote:
-> On Thu, 16 Jun 2022 10:42:14 +0000
-> Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
->=20
-> > MSA311 is a tri-axial, low-g accelerometer with I2C digital output for
-> > sensitivity consumer applications. It has dynamical user selectable ful=
-l
-> > scales range of +-2g/+-4g/+-8g/+-16g and allows acceleration measuremen=
-ts
-> > with output data rates from 1Hz to 1000Hz.
+> On 01.07.2022 10:09, Herve Codina wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
+the content is safe
 > >=20
-> > Datasheet can be found at following URL:
-> > https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
+> > Add UDPHS (the USB High Speed Device Port controller) support.
 > >=20
-> > This driver supports following MSA311 features:
-> >     - IIO interface
-> >     - Different power modes: NORMAL and SUSPEND (using pm_runtime)
-> >     - ODR (Output Data Rate) selection
-> >     - Scale and samp_freq selection
-> >     - IIO triggered buffer, IIO reg access
-> >     - NEW_DATA interrupt + trigger
+> > The both lan966x SOCs (LAN9662 and LAN9668) have the same UDPHS
+> > IP. This IP is also the same as the one present in the SAMA5D3
+> > SOC.
 > >=20
-> > Below features to be done:
-> >     - Motion Events: ACTIVE, TAP, ORIENT, FREEFALL
-> >     - Low Power mode
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  arch/arm/boot/dts/lan966x.dtsi | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
 > >=20
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> Hi Dmitry,
+> > diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x=
+.dtsi
+> > index 3cb02fffe716..c98e7075c2b4 100644
+> > --- a/arch/arm/boot/dts/lan966x.dtsi
+> > +++ b/arch/arm/boot/dts/lan966x.dtsi
+> > @@ -458,6 +458,17 @@ cpu_ctrl: syscon@e00c0000 {
+> >                         reg =3D <0xe00c0000 0x350>;
+> >                 };
+> >=20
+> > +               udc: usb@e0808000 {
+> > +                       compatible =3D "microchip,lan9662-udc",
+> > +                                    "atmel,sama5d3-udc";
+> > +                       reg =3D <0x00200000 0x80000>,
+> > +                             <0xe0808000 0x400>;
+> > +                       interrupts =3D <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
+> > +                       clocks =3D <&clks GCK_GATE_UDPHS>, <&nic_clk>;
+> > +                       clock-names =3D "pclk", "hclk";
+> > +                       status =3D "disabled";
+> > +               };
+> > + =20
 >=20
-> A few things I missed before + I'm still not happy with the runtime
-> pm handling.  One case that isn't covered well is !CONFIG_RUNTIME_PM
+> I have these compilation warnings:
 >=20
-> Thanks,
->=20
-> Jonathan
->=20
+>   DTC     arch/arm/boot/dts/lan966x-pcb8291.dtb
+> arch/arm/boot/dts/lan966x.dtsi:461.21-470.5: Warning (simple_bus_reg):
+> /soc/usb@e0808000: simple-bus unit address format error, expected "200000"
+>   DTC     arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb
+> arch/arm/boot/dts/lan966x.dtsi:461.21-470.5: Warning (simple_bus_reg):
+> /soc/usb@e0808000: simple-bus unit address format error, expected "200000"
+>   DTC     arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dtb
+> arch/arm/boot/dts/lan966x.dtsi:461.21-470.5: Warning (simple_bus_reg):
+> /soc/usb@e0808000: simple-bus unit address format error, expected "200000"
 
-...
+I am a bit confused but these warnings do not appear on my side (patches
+based on v5.19-rc1).
+What is the exact command that leads to these warning ?
 
-> > +static irqreturn_t msa311_buffer_thread(int irq, void *p)
-> > +{
-> > +	struct iio_poll_func *pf =3D p;
-> > +	struct iio_dev *indio_dev =3D pf->indio_dev;
-> > +	struct msa311_priv *msa311 =3D iio_priv(indio_dev);
-> > +	struct device *dev =3D &msa311->i2c->dev;
-> > +	const struct iio_chan_spec *chan;
-> > +	__le16 axis;
-> > +	int bit =3D 0, err, i =3D 0;
-> > +
-> > +	/* Ensure correct alignment of time stamp when present */
-> > +	struct {
-> > +		__le16 channels[MSA311_SI_Z + 1];
-> > +		s64 ts __aligned(8);
-> > +	} buf;
-> > +
-> > +	memset(&buf, 0, sizeof(buf));
-> > +
-> > +	mutex_lock(&msa311->lock);
-> > +
-> > +	for_each_set_bit(bit, indio_dev->active_scan_mask,
-> > +			 indio_dev->masklength) {
-> > +		chan =3D &msa311_channels[bit];
->=20
-> Nothing to do with your driver, but feels like it's worth
-> exploring a
-> 	for_each_chan_in_iio_scan(struct iio_chan_spec, struct iio_dev) macro.
->=20
-> I'll add that to my todo list.
->=20
-
-If you don't mind, I can prepare such a patch.
-
-...
-
-> When this unwind we will disable autosuspend etc, but leave the device
-> in whatever state it happens to be in at that stage (if I understand
-> this handling correctly).  That might seem like a bad thing, but if
-> we register a devm_add_action_or_reset() callback before this which
-> disables the device independently of anything to do with runtime PM,
-> then the device will
-> a) Be turned off as desired.
-> b) It'll still be turned off even if runtime pm is disabled for the syste=
-m
->    which is nice.
->=20
-> Given the particular state register must be writeable and is presumably
-> idempotent, can we just call=20
-> err =3D msa311_set_pwr_mode(msa311, MSA311_PWR_MODE_SUSPEND);
-> Unconditionally in such a callback?
-
-I think it's a good idea. I didn't think about the configs when runtime pm
-is disabled. So looks like we need to make sure that device is workable
-from a pm perspective, and it is achievable only using a direct
-msa311_set_pwr_mode() call as you suggested below.
-
-> > +	err =3D devm_pm_runtime_enable(dev);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	/* Resume msa311 logic before any interactions with registers */
-> > +	err =3D pm_runtime_resume_and_get(dev);
-> I missed this before, but if runtime pm is disabled, this won't do anythi=
-ng
-> so device won't be powered on.
->=20
-> One common(ish) way to handle this is the following sequence.
->=20
-> 1) Power up supply regs etc and a register a devm_ callback to turn them =
-off again.
-> 2) Put the device into a non suspend state (not using runtime pm calls).
-> 3) Register a callback to turn it off again (that is safe against it bein=
-g
->    turned off via another path such as runtime pm).
-> 4) pm_runtime_set_active() to let the runtime pm code know it is turned o=
-n.
-> 5) devm_pm_runtime_enable()
-> 6) autosuspend setup and enablement.
->=20
-> If runtime pm isn't enabled then only 1-3 happen.  We waste power but the
-> device works.
+Thanks,
+Herv=C3=A9
 
 --=20
-Thank you,
-Dmitry=
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
