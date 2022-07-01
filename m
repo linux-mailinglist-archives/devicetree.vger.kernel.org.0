@@ -2,45 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B648356342B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 15:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB7B6563448
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 15:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234244AbiGANN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 09:13:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42456 "EHLO
+        id S229968AbiGANYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 09:24:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234017AbiGANN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 09:13:27 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E19CCC8;
-        Fri,  1 Jul 2022 06:13:24 -0700 (PDT)
-Received: from p508fd39e.dip0.t-ipconnect.de ([80.143.211.158] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1o7GST-0001fu-9M; Fri, 01 Jul 2022 15:13:17 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Samuel Holland <samuel@sholland.org>,
+        with ESMTP id S229529AbiGANYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 09:24:06 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8DE765D55
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 06:24:05 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o7Gcp-0005xu-GZ; Fri, 01 Jul 2022 15:23:59 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o7Gck-003nLS-PU; Fri, 01 Jul 2022 15:23:58 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o7Gcn-002KQZ-5J; Fri, 01 Jul 2022 15:23:57 +0200
+Date:   Fri, 1 Jul 2022 15:23:44 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>, Ondrej Jirman <x@xff.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 6/6] pinctrl: sunxi: Add driver for Allwinner D1/D1s
-Date:   Fri, 01 Jul 2022 15:13:17 +0200
-Message-ID: <17090319.JCcGWNJJiE@phil>
-In-Reply-To: <20220626021148.56740-7-samuel@sholland.org>
-References: <20220626021148.56740-1-samuel@sholland.org> <20220626021148.56740-7-samuel@sholland.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8195: add pwm node
+Message-ID: <20220701132344.vy2w3tx5glmrgbya@pengutronix.de>
+References: <20220531114544.144785-1-fparent@baylibre.com>
+ <20220531114544.144785-2-fparent@baylibre.com>
+ <20220701072500.3rgvscnulhjmjhb6@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xui4lo5jobfysqwp"
+Content-Disposition: inline
+In-Reply-To: <20220701072500.3rgvscnulhjmjhb6@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,67 +58,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Sonntag, 26. Juni 2022, 04:11:47 CEST schrieb Samuel Holland:
-> These SoCs contain a pinctrl with a new register layout. Use the variant
-> parameter to set the right register offsets. This pinctrl also increases
-> the number of functions per pin from 8 to 16, taking advantage of all 4
-> bits in the mux config field (so far, only functions 0-8 and 14-15 are
-> used). This increases the maximum possible number of functions.
-> 
-> D1s is a low pin count version of the D1 SoC, with some pins omitted.
-> The remaining pins have the same function assignments as D1.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-On a D1-Nezha
-Tested-by: Heiko Stuebner <heiko@sntech.de>
+--xui4lo5jobfysqwp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Hello,
 
-with one remark below
+On Fri, Jul 01, 2022 at 09:25:00AM +0200, Uwe Kleine-K=F6nig wrote:
+> I wonder why will pick up this patch? Will patch 1 then go the same
 
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> index ec7daaa5666b..350044d4c1b5 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> @@ -1297,11 +1297,11 @@ static int sunxi_pinctrl_build_state(struct platform_device *pdev)
->  
->  	/*
->  	 * Find an upper bound for the maximum number of functions: in
-> -	 * the worst case we have gpio_in, gpio_out, irq and up to four
-> +	 * the worst case we have gpio_in, gpio_out, irq and up to seven
->  	 * special functions per pin, plus one entry for the sentinel.
->  	 * We'll reallocate that later anyway.
->  	 */
-> -	pctl->functions = kcalloc(4 * pctl->ngroups + 4,
-> +	pctl->functions = kcalloc(7 * pctl->ngroups + 4,
->  				  sizeof(*pctl->functions),
->  				  GFP_KERNEL);
->  	if (!pctl->functions)
-> @@ -1494,9 +1494,15 @@ int sunxi_pinctrl_init_with_variant(struct platform_device *pdev,
->  	pctl->dev = &pdev->dev;
->  	pctl->desc = desc;
->  	pctl->variant = variant;
-> -	pctl->bank_mem_size = BANK_MEM_SIZE;
-> -	pctl->pull_regs_offset = PULL_REGS_OFFSET;
-> -	pctl->dlevel_field_width = DLEVEL_FIELD_WIDTH;
-> +	if (pctl->variant >= PINCTRL_SUN20I_D1) {
-> +		pctl->bank_mem_size = D1_BANK_MEM_SIZE;
-> +		pctl->pull_regs_offset = D1_PULL_REGS_OFFSET;
-> +		pctl->dlevel_field_width = D1_DLEVEL_FIELD_WIDTH;
-> +	} else {
-> +		pctl->bank_mem_size = BANK_MEM_SIZE;
-> +		pctl->pull_regs_offset = PULL_REGS_OFFSET;
-> +		pctl->dlevel_field_width = DLEVEL_FIELD_WIDTH;
-> +	}
+I think my question is clear, but in case it's not: s/why/who/
 
-this is likely ok for _one_ variant (so for now this should be ok) but
-will get ugly when there are more of them.
+> path, or is that one supposed to go via the pwm tree?
 
-So in the long term it might make sense to pass these values in from
-the soc-specific driver maybe?
+Best regards
+Uwe
 
 
-Heiko
 
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
+--xui4lo5jobfysqwp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmK+9V0ACgkQwfwUeK3K
+7AlSrgf+P7HokPzYJcLz1i8OVvZtt/3C3sXTf3NXmiSxxegT3LP71x71/BIkYjoV
+2PoXvxeAVv2/messCMQ6vP79SXVkQ1fTNQLrEcX7YHJyxT19K+0G0RTn82vf8SfJ
+oxv2ADzLB6qziR02eFBIRGQiZ5ypOgK4AONG8mXQLtVPM7VzSJ79NUOrC4NsznLZ
+T35JrwhDtVOAVWA7zZNwTAI2f8hPPOQFf6fvpmlklLq/JD11yQ5NU400UpY+z26b
+SjrXLF2srqXdMFPOBkTy9xFjs6GtQc6fxbDgEVLNrXUMs4HvjxhTex0bmFvMh6ss
+AFCi6yLd+CiVxnW2mTnhD9k3QAbFKA==
+=+UjS
+-----END PGP SIGNATURE-----
+
+--xui4lo5jobfysqwp--
