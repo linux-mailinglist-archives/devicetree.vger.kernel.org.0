@@ -2,71 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A8DD56315A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DE3A563167
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:31:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236280AbiGAK3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 06:29:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49422 "EHLO
+        id S233605AbiGAKbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 06:31:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236281AbiGAK26 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:28:58 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 85AA474DE7;
-        Fri,  1 Jul 2022 03:28:57 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 834F21515;
-        Fri,  1 Jul 2022 03:28:57 -0700 (PDT)
-Received: from [10.57.85.211] (unknown [10.57.85.211])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9E8F73F66F;
-        Fri,  1 Jul 2022 03:28:53 -0700 (PDT)
-Message-ID: <15baa17c-b2d1-329f-366f-69ad209a879a@arm.com>
-Date:   Fri, 1 Jul 2022 11:28:52 +0100
+        with ESMTP id S232328AbiGAKbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:31:24 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E715C76942;
+        Fri,  1 Jul 2022 03:31:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 906FEB82F4D;
+        Fri,  1 Jul 2022 10:31:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58122C3411E;
+        Fri,  1 Jul 2022 10:31:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656671480;
+        bh=PzSQe20vyGgKjj7bh4FY+eUYxZ15YBI0Skb7DjyLz/8=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=kwBlRyc/+7zHK/+D1Orop4T33zg2uPrmUjsGkNZAU52FjlKmpsb++xU1wPmV1Sdrw
+         k4lB1lGBPqolSXmaVZcNAGFjgST13USJwcNorRHO0OGx/hzi0VABG7ZTo8N7/TuHE2
+         HxaECpn986NnZFTn1yzoeBsf+ZI4OSJnoey0UsvUno7oDZ+pMXkeNnXKR1PwQQv7H/
+         N9kuWrxo5c2iCitQqKmW068YiY9uPx4FEOea91RPuRZGwW8oY4qU7G4DXYqbe8FC8m
+         c/Z3X/cBEeVfPh/ZqshT/s0Jav6xLxcoMGxNTeEs/B5Wuklqf7C6n5RtWyUg6RAJla
+         6Gx1v1dJgB63g==
+From:   Mark Brown <broonie@kernel.org>
+To:     mail@conchuod.ie, palmer@dabbelt.com, palmer@rivosinc.com,
+        lgirdwood@gmail.com, thierry.reding@gmail.com,
+        fancer.lancer@gmail.com, daniel.lezcano@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        daniel@ffwll.ch, sam@ravnborg.org, vkoul@kernel.org,
+        airlied@linux.ie, Eugeniy.Paltsev@synopsys.com
+Cc:     conor.dooley@microchip.com, paul.walmsley@sifive.com,
+        linux-riscv@lists.infradead.org, linux-spi@vger.kernel.org,
+        niklas.cassel@wdc.com, linux-kernel@vger.kernel.org,
+        damien.lemoal@opensource.wdc.com, dmaengine@vger.kernel.org,
+        aou@eecs.berkeley.edu, joabreu@synopsys.com, tglx@linutronix.de,
+        dillon.minfei@gmail.com, alsa-devel@alsa-project.org,
+        geert@linux-m68k.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, masahiroy@kernel.org
+In-Reply-To: <20220629184343.3438856-1-mail@conchuod.ie>
+References: <20220629184343.3438856-1-mail@conchuod.ie>
+Subject: Re: (subset) [PATCH v3 00/15] Canaan devicetree fixes
+Message-Id: <165667147407.1756128.12037224598634241859.b4-ty@kernel.org>
+Date:   Fri, 01 Jul 2022 11:31:14 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.10.0
-Subject: Re: [PATCH v11 7/9] dt-bindings: arm: Adds CoreSight TPDA hardware
- definitions
-To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-References: <20220620120101.2906-1-quic_jinlmao@quicinc.com>
- <20220620120101.2906-8-quic_jinlmao@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20220620120101.2906-8-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2022 13:00, Mao Jinlong wrote:
-> Adds new coresight-tpda.yaml file describing the bindings required
-> to define tpda in the device trees.
+On Wed, 29 Jun 2022 19:43:29 +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Mike Leach <mike.leach@linaro.org>
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> Hey all,
+> This series should rid us of dtbs_check errors for the RISC-V Canaan k210
+> based boards. To make keeping it that way a little easier, I changed the
+> Canaan devicetree Makefile so that it would build all of the devicetrees
+> in the directory if SOC_CANAAN.
+> 
+> [...]
 
-Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[04/15] spi: dt-bindings: dw-apb-ssi: update spi-{r,t}x-bus-width
+        commit: 8b037cabc4966b010c44a76e05a43d276318bc49
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
