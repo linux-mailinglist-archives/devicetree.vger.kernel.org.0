@@ -2,100 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D799563C5D
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 00:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 756F3563C6B
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 00:37:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbiGAWay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 18:30:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33898 "EHLO
+        id S229774AbiGAWhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 18:37:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiGAWay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 18:30:54 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AED2338795;
-        Fri,  1 Jul 2022 15:30:53 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id b24so2845573qkn.4;
-        Fri, 01 Jul 2022 15:30:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZRqXDVBh2tyzQxE0lZROBHIZNd62HH6YkugnzahAVfE=;
-        b=DSaCxZBgTmQp1xce3Jhu90CL1ztuJjAzTXLm35TAcdlEwGPjL8vSEQH7DxAmv/O/39
-         uWskVo1L2IAhL6MYAVGTkn3tB+IrMnep4ORmEqpwbA8qzRJbaWJxhG7y5Vxw1Q4SL8lp
-         HR85ZmyZWwvviBhDk73MDgMkRjWnmBKFlO1RbXW2GW27wjK3i34h5wd9BhfXxeME/5Nn
-         vJwqzWzdVhWwF6LafX0GhhxljaQUnYYp/DplBCRCd7UDPhinw4luglRUCkEYaOsXKc5Z
-         edE0fg6BBBQO1I9bfOQmC1ZaEa1Qu8JWRROn6hw4RI/BbLfftcARZO6wDbvvrmy8Id51
-         IY5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZRqXDVBh2tyzQxE0lZROBHIZNd62HH6YkugnzahAVfE=;
-        b=CePfax79QFIbJvxLfcHtmf2bFRjub/gohoXDKVVFCtlBfBCkKBVHl+EUqOe4OjKIYp
-         w+9ybd7rzf1slbcuAOmGY6zUQTLc5GcC3M43fwKckLmplR43RK10FiBGB4LyTNCULOF5
-         y4/Nw/Vhk4YFCdHrWsfqgickeE4zk9yhEdrI+jhF89SJLhSEuxVVsKryMBSAArYwlWE2
-         rOIId99il59v+At4kGUJspM+iohATZwDmGIw6BcaGG9ItIBTxJpoVqVqUkBx2ynNX1ig
-         tHdSnjSJM2BD7daJhIw6hRS4MAbDG/vfhVqt/bc8WCA2Uzu+laTnOcGHV0MiHeoz3H8b
-         kiWQ==
-X-Gm-Message-State: AJIora+aqV3qGXI+hoiQn9VkAGJdxIB5r56jbB8Wv6Iy6EP32SyyvE3h
-        ugN/taJf4vTCzeEUM3WD7vc=
-X-Google-Smtp-Source: AGRyM1vB1SZ62N+Gy6jjsx4kJJzWeanIHG6jkt/r0+yoo6UePFIYHvj4XFuf4u/EPQXOjEjQmUmhxQ==
-X-Received: by 2002:a05:620a:3c4:b0:6af:6468:1c0b with SMTP id r4-20020a05620a03c400b006af64681c0bmr12494113qkm.584.1656714652751;
-        Fri, 01 Jul 2022 15:30:52 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id h2-20020ac85482000000b00317cd3edab4sm14284228qtq.11.2022.07.01.15.30.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 15:30:52 -0700 (PDT)
-Message-ID: <fe25fc8a-843c-72c2-e352-88fe9d819ac2@gmail.com>
-Date:   Fri, 1 Jul 2022 15:30:45 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: Add missing 'reg'
- property
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S229496AbiGAWg7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 18:36:59 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09A138795;
+        Fri,  1 Jul 2022 15:36:58 -0700 (PDT)
+Received: from notapiano (unknown [194.36.25.35])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 070F266017F5;
+        Fri,  1 Jul 2022 23:36:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1656715017;
+        bh=vZ3irZ1TSm2BYJfU1kDyXnE/zMCI6E+fE9pW9wuk8Go=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eSR5xImLUn316LrjljZ1ZE2vpJUZM4TVRpGvnWzfv4NErflfdKirKLu8UPCVzqron
+         l4YGAOJWdXyKYK6D2OrVmU07Xj0/Wp+90Ey1FT9698Nd5TWi4qJsOKQTIY9ABVbCMN
+         73NxzIc/WJqP1kt5p7h2izMmWdnFOy5ZA4odTghE7lkPbjsABsydmEZO4ZmDIsu2P0
+         /SJkm9X2cTQ12UVvM/HQm4peSCLCUgGBID/YFa8egtT/YuL0NskPQ/6Jzx/Y01WWsm
+         w5IUGXT1fRjR8AILu/a22mSqxIsQb+bVOnQ2gE95eNxUzjd1ezd55oFIdvr5gGXm92
+         I3XECuFDuJE8g==
+Date:   Fri, 1 Jul 2022 18:36:48 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, hsinyi@chromium.org,
+        allen-kh.cheng@mediatek.com, gtk3@inbox.ru, luca@z3ntu.xyz,
+        sam.shih@mediatek.com, sean.wang@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220701222240.1706272-1-robh@kernel.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220701222240.1706272-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        linux-mediatek@lists.infradead.org, wenst@chromium.org
+Subject: Re: [PATCH 05/11] arm64: dts: mediatek: cherry: Add support for
+ internal eMMC storage
+Message-ID: <20220701223648.ps76hfjdnfoj3bf2@notapiano>
+References: <20220630153316.308767-1-angelogioacchino.delregno@collabora.com>
+ <20220630153316.308767-6-angelogioacchino.delregno@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220630153316.308767-6-angelogioacchino.delregno@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/1/22 15:22, Rob Herring wrote:
-> The 'reg' property is missing from the mediatek,mt7530 schema which
-> results in the following warning once 'unevaluatedProperties' is fixed:
+On Thu, Jun 30, 2022 at 05:33:10PM +0200, AngeloGioacchino Del Regno wrote:
+> Add mtk-sd controller and pin configuration to enable the internal
+> eMMC storage: now it is possible to mount a rootfs located at the
+> internal storage.
 > 
-> Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.example.dtb: switch@0: Unevaluated properties are not allowed ('reg' was unexpected)
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
 > 
-> Fixes: e0dda3119741 ("dt-bindings: net: dsa: convert binding for mediatek switches")
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> index 091338f7d5ff..8c4b492f774f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> @@ -9,6 +9,7 @@
+>  
+>  / {
+>  	aliases {
+> +		mmc0 = &mmc0;
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+There was this discussion about adding aliases on dtsi's or not [1]. The
+case in favor of adding them in the dtsi seemed stronger, but it wasn't
+conclusive... Anyway, I guess it's fine.
+
+[1] https://lore.kernel.org/all/CAD=FV=Wi9xTnWTPbakSnf9rKkiT+4AT=3db-uwhww1bdLKjv9g@mail.gmail.com/
+
+>  		serial0 = &uart0;
+>  	};
+[..]
+> +&pio {
+> +	mmc0_pins_default: mmc0-default-pins {
+> +		pins-cmd-dat {
+> +			pinmux = <PINMUX_GPIO126__FUNC_MSDC0_DAT0>,
+> +				 <PINMUX_GPIO125__FUNC_MSDC0_DAT1>,
+> +				 <PINMUX_GPIO124__FUNC_MSDC0_DAT2>,
+> +				 <PINMUX_GPIO123__FUNC_MSDC0_DAT3>,
+> +				 <PINMUX_GPIO119__FUNC_MSDC0_DAT4>,
+> +				 <PINMUX_GPIO118__FUNC_MSDC0_DAT5>,
+> +				 <PINMUX_GPIO117__FUNC_MSDC0_DAT6>,
+> +				 <PINMUX_GPIO116__FUNC_MSDC0_DAT7>,
+> +				 <PINMUX_GPIO121__FUNC_MSDC0_CMD>;
+> +			input-enable;
+> +			drive-strength = <MTK_DRIVE_6mA>;
+
+These MTK_DRIVE_*mA macros map directly to the values, and the drive-strength
+property is already standard and defined to take values in mA, so it's better to
+use the value directly:
+
+	drive-strength = <6>;
+
+(Likewise below and in some other patches)
+
+Otherwise,
+
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
+Thanks,
+Nícolas
