@@ -2,99 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB7B6563448
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 15:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 424AC563497
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 15:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbiGANYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 09:24:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50954 "EHLO
+        id S231599AbiGANpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 09:45:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbiGANYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 09:24:06 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8DE765D55
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 06:24:05 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o7Gcp-0005xu-GZ; Fri, 01 Jul 2022 15:23:59 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o7Gck-003nLS-PU; Fri, 01 Jul 2022 15:23:58 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o7Gcn-002KQZ-5J; Fri, 01 Jul 2022 15:23:57 +0200
-Date:   Fri, 1 Jul 2022 15:23:44 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231299AbiGANpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 09:45:09 -0400
+Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50CC624095;
+        Fri,  1 Jul 2022 06:45:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1656683074; bh=/XIhNMsHfQVnHoWDZvZkTtokLC+p1iZNKAj10GG4dFs=;
+        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
+         MIME-Version:Content-Transfer-Encoding;
+        b=CXeaETQDvzvpSjUh5ZX355D1eVfYDPYzgACJBgCKdoTJPon5TcN8k/T/oUdjosoFq
+         +gXzt8pUD/wmK01WjfmjU8YwwKFZF5BApHR1YK8+h5/Iz/pBEGHAKc8BaSSFVsH5Mn
+         K9h3f6lhJyllyr87/6hNZd0Hdxbr4+n1KQvFRjcI=
+Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
+        via [213.182.55.207]
+        Fri,  1 Jul 2022 15:44:34 +0200 (CEST)
+X-EA-Auth: lcIWkkblNbzzBCcQkHdR0O3Z4YAtjsrC42K4XxJM9tCOSbHzQ+RnVhXuiGmbEj4DqKkTBMDLwoeOrv1+uKiuCKJoIB3Z146gp51fEw3Liqw=
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8195: add pwm node
-Message-ID: <20220701132344.vy2w3tx5glmrgbya@pengutronix.de>
-References: <20220531114544.144785-1-fparent@baylibre.com>
- <20220531114544.144785-2-fparent@baylibre.com>
- <20220701072500.3rgvscnulhjmjhb6@pengutronix.de>
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: [PATCH v2 0/6] leds: Fix/Add is31fl319{0,1,3} support
+Date:   Fri,  1 Jul 2022 15:44:07 +0200
+Message-Id: <20220701134415.4017794-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xui4lo5jobfysqwp"
-Content-Disposition: inline
-In-Reply-To: <20220701072500.3rgvscnulhjmjhb6@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes since v2:
+- keep original bindings license and maintainer/owner (Rob)
+- squash bindings patches 2 & 4 (Krzysztof)
 
---xui4lo5jobfysqwp
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-On Fri, Jul 01, 2022 at 09:25:00AM +0200, Uwe Kleine-K=F6nig wrote:
-> I wonder why will pick up this patch? Will patch 1 then go the same
-
-I think my question is clear, but in case it's not: s/why/who/
-
-> path, or is that one supposed to go via the pwm tree?
-
-Best regards
-Uwe
+Changes since v1:
+- no change, resending after configuring git to accomodate
+  for smtp provider limit of 5 emails per batch
+- just change cover-letter to mention si-en chip for idol347
 
 
+The is31fl3190, is31fl3191 and is31fl3193 chips (1 or 3 PWM channels)
+cannot be handled the same as is31fl3196 and is31fl3199,
+if only because the register map is different.
+Also:
+- the software shutdown bit is reversed
+- and additional field needs to be set to enable all channels
+- the led-max-microamp current values and setting are not the same
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Datasheets:
+https://lumissil.com/assets/pdf/core/IS31FL3190_DS.pdf
+https://lumissil.com/assets/pdf/core/IS31FL3191_DS.pdf
+https://lumissil.com/assets/pdf/core/IS31FL3193_DS.pdf
+https://lumissil.com/assets/pdf/core/IS31FL3196_DS.pdf
+https://lumissil.com/assets/pdf/core/IS31FL3199_DS.pdf
 
---xui4lo5jobfysqwp
-Content-Type: application/pgp-signature; name="signature.asc"
+This series:
 
------BEGIN PGP SIGNATURE-----
+- converts dt-bindings to dtschema, adding all si-en compatibles
+  for convenience and consistency, and adding constraints on
+  supported values for eg. reg address and led-max-microamp
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmK+9V0ACgkQwfwUeK3K
-7AlSrgf+P7HokPzYJcLz1i8OVvZtt/3C3sXTf3NXmiSxxegT3LP71x71/BIkYjoV
-2PoXvxeAVv2/messCMQ6vP79SXVkQ1fTNQLrEcX7YHJyxT19K+0G0RTn82vf8SfJ
-oxv2ADzLB6qziR02eFBIRGQiZ5ypOgK4AONG8mXQLtVPM7VzSJ79NUOrC4NsznLZ
-T35JrwhDtVOAVWA7zZNwTAI2f8hPPOQFf6fvpmlklLq/JD11yQ5NU400UpY+z26b
-SjrXLF2srqXdMFPOBkTy9xFjs6GtQc6fxbDgEVLNrXUMs4HvjxhTex0bmFvMh6ss
-AFCi6yLd+CiVxnW2mTnhD9k3QAbFKA==
-=+UjS
------END PGP SIGNATURE-----
+- changes vars, structs and defines to not use 319X suffix
+  but 3190 for 319{0,1,3} and 3196 for 319{6,9}
 
---xui4lo5jobfysqwp--
+- adds fields in chipdef struct for chip-specific values
+
+- only in the last patch, adds is31fl319{0,1,3} specific values
+  so those chips can work.
+
+Tested on msm8916-alcatel-idol347, which probably has an
+si-en,sn3190 or si-en,sn3191 (only one white led indicator).
+
+Vincent Knecht (6):
+  dt-bindings: leds: Convert is31fl319x to dtschema
+  dt-bindings: leds: is31fl319x: Document variants specificities
+  leds: is31fl319x: Add missing si-en compatibles
+  leds: is31fl319x: Use non-wildcard names for vars, structs and defines
+  leds: is31fl319x: Move chipset-specific values in chipdef struct
+  leds: is31fl319x: Add support for is31fl319{0,1,3} chips
+
+ .../bindings/leds/issi,is31fl319x.yaml        | 193 +++++++++
+ .../bindings/leds/leds-is31fl319x.txt         |  61 ---
+ drivers/leds/leds-is31fl319x.c                | 406 +++++++++++++-----
+ 3 files changed, 488 insertions(+), 172 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/issi,is31fl319x.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-is31fl319x.txt
+
+-- 
+2.35.3
+
+
+
