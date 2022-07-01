@@ -2,150 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C0BA562D8C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07666562D94
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:16:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231576AbiGAIOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 04:14:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42964 "EHLO
+        id S229957AbiGAIQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 04:16:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229957AbiGAIOJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:14:09 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624CE48821;
-        Fri,  1 Jul 2022 01:14:08 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3FA956601974;
-        Fri,  1 Jul 2022 09:14:05 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656663247;
-        bh=oX88CugqBfAMEuhfwgO7WJ1IBMMlTDVxIs1zooaswFg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=OrhyVBuFvFKAcT64g3zBqktpN6W6lmU6Z7vqgOE+kfn63T3GUrTPJf1Brz6hpDrus
-         zY/MMpdHKye4D1rc5SHWwbNyJ/rM4S3NJsgL9538JL85q1d8o+KvsX4uW+bdplDH+d
-         k9wzv6YqD1Ac+hOJ016TwfphmemQzRLsXI8D91pJc4Sn9vzQZP+dGY0uouTZny/68V
-         gYpiHqbS/wmnq6esnVTOtYzOsdC73JJGMzMJ4FQKztfvN4ZgrbPK8DUFZ2w5/N7Tv3
-         Kt9ACJ1fKb8l8eYtcMzZVJIfKWPpuNCQkyR2LQ6yNw3U8qT3IHl2+GS5UFAuBCxHye
-         5WSCex46vm2uQ==
-Message-ID: <5971f465-9514-d830-8467-e722475ecc7f@collabora.com>
-Date:   Fri, 1 Jul 2022 10:14:02 +0200
+        with ESMTP id S236059AbiGAIQN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:16:13 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E5070ADA;
+        Fri,  1 Jul 2022 01:16:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1656663374; x=1688199374;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=OJ9GWkLVaAs1Fsv4I7CHxNkbdrvjBd0hQHJ/FoewQ1k=;
+  b=geGgtg2x/qfyj4iIO9KsKggh5BqYchQS/0XsTOBIv91yz9mFOXJuHGhI
+   o0a8Ht+nlnzQnmK2WAmhcTgvdz6bc39jHhKyKByjEiVStK9+orfNBDmdl
+   Zj4ar1HHCYMtCH4P451Nxx5dOB7GN9uiQ5SfTF4DEuZBOwJxh1P+BODNh
+   PJcLpw9pwkyLbX6cNBJH8iWykgesEE8xl7RrAVlLAhYEWhEjzCtPphaJU
+   0wnM0o5Vm+xoBWHZueREJVTJagC3rhkqXF5YCptqnG5V5FRhuVqL36ijE
+   ZOP4khp9Lecw5fneLhVwW1Zu34DbIZFL/lqBnZO1vg41txJGsg2eqa6Er
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; 
+   d="scan'208";a="162901313"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Jul 2022 01:16:11 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 1 Jul 2022 01:16:10 -0700
+Received: from [10.12.72.20] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 1 Jul 2022 01:16:08 -0700
+Message-ID: <91e03ee2-a11c-7c71-73f6-d76e07c10cd0@microchip.com>
+Date:   Fri, 1 Jul 2022 10:16:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v13 06/10] drm/mediatek: Add MT8195 External DisplayPort
- support
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] ARM: dts: lan966x: Add mcan1 node.
 Content-Language: en-US
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
-        tzimmermann@suse.de, matthias.bgg@gmail.com, deller@gmx.de,
-        airlied@linux.ie
-Cc:     msp@baylibre.com, granquet@baylibre.com, jitao.shi@mediatek.com,
-        wenst@chromium.org, ck.hu@mediatek.com, liangxu.xu@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-fbdev@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
- <20220701062808.18596-7-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220701062808.18596-7-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        <alexandre.belloni@bootlin.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        Claudiu Beznea <Claudiu.Beznea@microchip.com>
+CC:     <arnd@arndb.de>, <soc@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <UNGLinuxDriver@microchip.com>
+References: <20220627110552.26315-1-kavyasree.kotagiri@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20220627110552.26315-1-kavyasree.kotagiri@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/07/22 08:28, Bo-Chen Chen ha scritto:
-> From: Guillaume Ranquet <granquet@baylibre.com>
+On 27/06/2022 at 13:05, Kavyasree Kotagiri wrote:
+> Add the mcan1 node. By default, keep it disabled.
 > 
-> This patch adds External DisplayPort support to the mt8195 eDP driver.
-> 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+
+Looks good to me:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+We'll queue in the next dt branch soon, for integration through arm-soc 
+tree.
+
+Thanks, regards,
+   Nicolas
+
 > ---
->   drivers/gpu/drm/mediatek/mtk_dp.c     | 197 +++++++++++++++++++++-----
->   drivers/gpu/drm/mediatek/mtk_dp_reg.h |   1 +
->   2 files changed, 161 insertions(+), 37 deletions(-)
+>   arch/arm/boot/dts/lan966x.dtsi | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-> index b672d5a6f5bd..c3be97dd055c 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> @@ -105,6 +105,7 @@ struct mtk_dp {
->   	struct regmap *regs;
+> diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
+> index 3cb02fffe716..25cfa89dde7b 100644
+> --- a/arch/arm/boot/dts/lan966x.dtsi
+> +++ b/arch/arm/boot/dts/lan966x.dtsi
+> @@ -473,6 +473,21 @@
+>   			status = "disabled";
+>   		};
 >   
->   	bool enabled;
-> +	bool has_fec;
-
-You're introducing this has_fec variable here....
-
->   
->   	struct drm_connector *conn;
->   };
-
-
-> @@ -1018,6 +1074,8 @@ static void mtk_dp_initialize_priv_data(struct mtk_dp *mtk_dp)
->   	mtk_dp->info.depth = DP_MSA_MISC_8_BPC;
->   	memset(&mtk_dp->info.timings, 0, sizeof(struct mtk_dp_timings));
->   	mtk_dp->info.timings.frame_rate = 60;
+> +		can1: can@e0820000 {
+> +			compatible = "bosch,m_can";
+> +			reg = <0xe0820000 0xfc>, <0x00100000 0x8000>;
+> +			reg-names = "m_can", "message_ram";
+> +			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "int0", "int1";
+> +			clocks = <&clks GCK_ID_MCAN1>, <&clks GCK_ID_MCAN1>;
+> +			clock-names = "hclk", "cclk";
+> +			assigned-clocks = <&clks GCK_ID_MCAN1>;
+> +			assigned-clock-rates = <40000000>;
+> +			bosch,mram-cfg = <0x4000 0 0 64 0 0 32 32>;
+> +			status = "disabled";
+> +		};
 > +
-> +	mtk_dp->has_fec = false;
+>   		reset: reset-controller@e200400c {
+>   			compatible = "microchip,lan966x-switch-reset";
+>   			reg = <0xe200400c 0x4>;
 
-.... setting it as false here ....
 
->   }
->   
->   static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
-
-> @@ -1498,15 +1562,38 @@ static int mtk_dp_init_port(struct mtk_dp *mtk_dp)
->   static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
->   {
->   	struct mtk_dp *mtk_dp = dev;
-> +	int event;
->   	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
->   
-> +	event = mtk_dp_plug_state(mtk_dp) ?
-> +		connector_status_connected : connector_status_disconnected;
-> +
-> +	if (event < 0)
-> +		return IRQ_HANDLED;
-> +
-> +	dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
-
-P.S.: This should be a dev_dbg().
-
-> +	drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
-> +
->   	if (mtk_dp->train_info.cable_state_change) {
->   		mtk_dp->train_info.cable_state_change = false;
->   
-> -		mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> -				   DP_PWR_STATE_BANDGAP_TPLL_LANE,
-> -				   DP_PWR_STATE_MASK);
-> -		drm_dp_read_dpcd_caps(&mtk_dp->aux, buf);
-> +		if (!mtk_dp->train_info.cable_plugged_in) {
-> +			mtk_dp_video_mute(mtk_dp, true);
-> +
-> +			mtk_dp_initialize_priv_data(mtk_dp);
-> +			mtk_dp_set_idle_pattern(mtk_dp, true);
-> +			if (mtk_dp->has_fec)
-
-...and you're checking it here, but there's nothing ever setting that as true!
-
-Is there anything you forgot? :-)
-
-Cheers,
-Angelo
+-- 
+Nicolas Ferre
