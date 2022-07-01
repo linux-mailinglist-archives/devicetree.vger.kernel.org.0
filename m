@@ -2,139 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89F0C5635A3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 16:33:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA309563600
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 16:42:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232153AbiGAOdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 10:33:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51664 "EHLO
+        id S233677AbiGAOlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 10:41:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231575AbiGAOdc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 10:33:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A02273F89C;
-        Fri,  1 Jul 2022 07:28:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3CC076227C;
-        Fri,  1 Jul 2022 14:28:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CC2DC341C7;
-        Fri,  1 Jul 2022 14:28:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656685730;
-        bh=eb0RVw4u/anxVBhBeK6RNGoBor+v7IkGnAADFe79wz8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=N4dveUvYzzWyC8fMV0v0hedmOK1ZAMnFbdqhysk4WaSM0nBJ5UGNNFqdZwQ6rvMIn
-         CP7ClyXkRLM/63cRf55J9y6B7IMxWTTHcdoGVsMy4uSFk7LGQjzFjqRc6omPUcwwRn
-         B9kqf9pRrlu6yoi8KFGJ7VRs49YYxJ/d2sia7XcvSGprDsbgyvadOiPqbzPAT1XDvJ
-         9lUkAzGaYu2A49lfHm5lhFMTyzyBYx8+fliV5Kgwv/5AtG9NtVvmMuvIb5P+3JK/48
-         moPFmDTxjnYJm7qHwhnkR8pKAXK4Y2HtDwBqgBMGVmYIOksPHsfjZwJ/VArWBElV2u
-         fj3qZ04BLthLw==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1o7HdY-004bu7-EO;
-        Fri, 01 Jul 2022 15:28:48 +0100
-MIME-Version: 1.0
-Date:   Fri, 01 Jul 2022 15:28:48 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Guo Ren <guoren@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 0/4] Add PLIC support for Renesas RZ/Five SoC / Fix
- T-HEAD PLIC edge flow
-In-Reply-To: <20220630100241.35233-1-samuel@sholland.org>
-References: <20220630100241.35233-1-samuel@sholland.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <92a45bf04cfe140c7605559fa3d8f4eb@kernel.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: samuel@sholland.org, prabhakar.mahadev-lad.rj@bp.renesas.com, prabhakar.csengg@gmail.com, sagar.kadam@sifive.com, paul.walmsley@sifive.com, palmer@dabbelt.com, guoren@kernel.org, tglx@linutronix.de, geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231975AbiGAOlA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 10:41:00 -0400
+Received: from mail-wm1-x34a.google.com (mail-wm1-x34a.google.com [IPv6:2a00:1450:4864:20::34a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51BE2F595
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 07:40:25 -0700 (PDT)
+Received: by mail-wm1-x34a.google.com with SMTP id c185-20020a1c35c2000000b0039db3e56c39so3132872wma.5
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 07:40:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=f72vaIwdDRJKKgyhDAvpG/wPqltF4guZxd93ZnednlM=;
+        b=QLXtZCx/2BbsgwC4Iwx2bMs9DxdMYumaCezysgylc6xoafelXZYU007Fclwu0SIEGI
+         l5+OABExGosSAAecd+z9tOXKqGGP53DrN5coZCueSL/Cu61Bq+OtPFU+IU1s6+Kmqm39
+         vBvsCh3t8l7b/kbIf4t21twfda35PFO8cM4s1QL0tcAIZHy85B3zeHmUzrSV9615Acxi
+         /4zkV5UA49UCDMYzWcYX1W1IV5BfOr+Zd9vMldAwA4D/p351CL3/FHIJUDStNMIA/5I0
+         8wpJrKszpXlXdlPBfZhAVjr90d7WuffTnu4Ay1rzfAUP5Y41xMaMxWgQ6CraDN5Pr3uT
+         f5Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=f72vaIwdDRJKKgyhDAvpG/wPqltF4guZxd93ZnednlM=;
+        b=W+zZYnRGH6p6N1/dDQiwKKTutAi7WsLWlvG3eJGfyzxBARzXCNqi+WwDNjsBowGXgs
+         jbkGF29obCgzEyibB3ePfRLjEBqAWFSrKuN9GP6ggVPCsBywCF6fhWORD03+MOUQPTxX
+         +w7Q5F+ZriqrpqHTNLSkJbbyu4ZR+QfFakbG0pZDe9n69+jy+7i4H7mPbt5pPTrzsBMC
+         f8GFq42wi9cE0mK8xPGYnaAwKPK9BL5L/r7e5/v838Ys8gygi/Stn3mdZCVl4O5V+LRf
+         k2eHGX0vhToGON4vOLbUnH9uE41KQ/yLPiDreVIrnaCPfMCx19gLdLQ5QYnvtZUriXAP
+         skGQ==
+X-Gm-Message-State: AJIora/zM8nYTzl+sIv7tdI8E5w2W4EzlJMOnlnZKn+BQ60BTdd0GdqH
+        R5cRiISu5Z6/qVpEwhFBw/B0YP5441A8v839cX0=
+X-Google-Smtp-Source: AGRyM1v0CB6Lm1qUdcISaT4k+g3l4Ch6gd3BTqkg3Vk6J71cTw8twfp91PHSeg20JGl30t2EQPslUnGSWIcP+40GHtw=
+X-Received: from sene.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:27c4])
+ (user=sebastianene job=sendgmr) by 2002:a05:600c:1f19:b0:3a1:8d3b:91ad with
+ SMTP id bd25-20020a05600c1f1900b003a18d3b91admr3953960wmb.111.1656686423837;
+ Fri, 01 Jul 2022 07:40:23 -0700 (PDT)
+Date:   Fri,  1 Jul 2022 14:40:12 +0000
+Message-Id: <20220701144013.1085272-1-sebastianene@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.37.0.rc0.161.g10f37bed90-goog
+Subject: [PATCH v9 0/2] Detect stalls on guest vCPUS
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sebastian Ene <sebastianene@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-06-30 11:02, Samuel Holland wrote:
-> This patch series adds PLIC support for Renesas RZ/Five SoC.
-> 
-> Since the T-HEAD C900 PLIC has the same behavior, it also applies the
-> fix for that variant.
-> 
-> This series is an update of v2 of the RZ/Five series[0], and replaces
-> the separate T-HEAD series[1].
-> 
-> [0]:
-> https://lore.kernel.org/linux-riscv/20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> [1]:
-> https://lore.kernel.org/linux-riscv/20220627051257.38543-1-samuel@sholland.org/
-> 
-> Changes in v3:
->  - Add a more detailed explanation for why #interrupt-cells differs
->  - Add andestech,nceplic100 as a fallback compatible
->  - Separate the conditional part of the binding into two blocks (one 
-> for
->    the PLIC implementation and the other for the SoC integration)
->  - Use a quirk bit for selecting the flow instead of a variant ID
->  - Use the andestech,nceplic100 compatible to select the new behavior
->  - Use handle_edge_irq instead of handle_fasteoi_ack_irq so .irq_ack
->    always gets called
->  - Do not set the handler name, as RISC-V selects 
-> GENERIC_IRQ_SHOW_LEVEL
->  - Use the same name for plic_edge_chip as plic_chip
-> 
-> Changes in v2:
->  - Fixed review comments pointed by Marc and Krzysztof.
-> 
-> Changes in v1:
->  - Fixed review comments pointed by Rob and Geert.
->  - Changed implementation for EDGE interrupt handling on Renesas 
-> RZ/Five
->    SoC.
-> 
-> Lad Prabhakar (2):
->   dt-bindings: interrupt-controller: sifive,plic: Document Renesas
->     RZ/Five SoC
->   irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
-> 
-> Samuel Holland (2):
->   dt-bindings: interrupt-controller: Require trigger type for T-HEAD
->     PLIC
->   irqchip/sifive-plic: Fix T-HEAD PLIC edge trigger handling
-> 
->  .../sifive,plic-1.0.0.yaml                    | 65 +++++++++++++--
->  drivers/irqchip/irq-sifive-plic.c             | 80 +++++++++++++++++--
->  2 files changed, 135 insertions(+), 10 deletions(-)
+This adds a mechanism to detect stalls on the guest vCPUS by creating a
+per CPU hrtimer which periodically 'pets' the host backend driver.
+On a conventional watchdog-core driver, the userspace is responsible for
+delivering the 'pet' events by writing to the particular /dev/watchdogN node.
+In this case we require a strong thread affinity to be able to
+account for lost time on a per vCPU basis.
 
-I'm going to provisionally queue this into -next so that it
-can get some testing. I'd still want the DT changes to be
-Ack'ed before the next merge window though.
+This device driver acts as a soft lockup detector by relying on the host
+backend driver to measure the elapesed time between subsequent 'pet' events.
+If the elapsed time doesn't match an expected value, the backend driver
+decides that the guest vCPU is locked and resets the guest. The host
+backend driver takes into account the time that the guest is not
+running. The communication with the backend driver is done through MMIO
+and the register layout of the virtual watchdog is described as part of
+the backend driver changes.
 
-Thanks,
+The host backend driver is implemented as part of:
+https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
 
-         M.
+Changelog v9:
+ - make the driver depend on CONFIG_OF
+ - remove the platform_(set|get)_drvdata calls and keep a per-cpu static
+   variable `vm_stall_detect` as suggested by Guenter on the (v8) series
+ - improve commit description and fix styling
+
+Changelog v8:
+ - fix the yamlint dtschema warning caused by the missing 'reg' property 
+
+Changelog v7:
+ - fix the dtschema warnings for 'timeout-sec' property
+ - rename vcpu_stall_detector.yaml to qemu,vcpu_stall_detector.yaml and
+   place the file under misc
+ - improve the Kconfig description for the driver by making it KVM
+   specific
+
+Changelog v6:
+ - fix issues reported by lkp@intel robot:
+     building for ARCH=h8300 incorrect type in assignment
+     (different address spaces)
+
+Sebastian Ene (2):
+  dt-bindings: vcpu_stall_detector: Add qemu,vcpu-stall-detector
+    compatible
+  misc: Add a mechanism to detect stalls on guest vCPUs
+
+ .../misc/qemu,vcpu-stall-detector.yaml        |  51 +++++
+ drivers/misc/Kconfig                          |  13 ++
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/vcpu_stall_detector.c            | 212 ++++++++++++++++++
+ 4 files changed, 277 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/qemu,vcpu-stall-detector.yaml
+ create mode 100644 drivers/misc/vcpu_stall_detector.c
+
 -- 
-Jazz is not dead. It just smells funny...
+2.37.0.rc0.161.g10f37bed90-goog
+
