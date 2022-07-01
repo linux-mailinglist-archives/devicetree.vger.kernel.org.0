@@ -2,114 +2,371 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A10705630EF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5804D5630EB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 12:04:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232001AbiGAKEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 06:04:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57036 "EHLO
+        id S233692AbiGAKEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 06:04:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234227AbiGAKEg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:04:36 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50FE374349
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 03:04:33 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id n185so974258wmn.4
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 03:04:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WVWYtq9qgpkICN1wpy8/eRBhp82z5RdrXpx5rdm1/pM=;
-        b=bPB1oTsiALdh1aHAewG8DDcM7Y6A308OEyrAZWkwEvXTz5xweEJTwuKxEwlfjKUdKh
-         0rY5dc8uQwpO6CTGdtjYbNYLlgyed69w2KRyoxIJlQPsXaWtAwbznwGLycU2Tpd38M/X
-         iW8U/gj+q8msZlBrTuxOSLaAq3e6NYJAr05Rc8FXRjBEJkexj8f17PRk1WkNVrK+DmqS
-         SzosC856omyRf+FiTX2o4vDKU5mxWcg1Fvwjy2IyBT27Ki6a6rgihS16bhFh8zxyxZRr
-         3FJvK5OsNNB4MqaYgUFIDAXrZ6tFufcOfvuPwtzxNLqQZlHMCwXrMhxLfAGcbS7Z/fvm
-         FXQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WVWYtq9qgpkICN1wpy8/eRBhp82z5RdrXpx5rdm1/pM=;
-        b=vcw6Ydt5qvKhkX/rXK6sNAilyD5HOsPgdMEcU97HYAWGy74yDDOKEb8zitHM6M1Xc6
-         ioseiIChtnHjg9kCG5crKabGDS8dly61rzX95l7jG4DzbYXRAFkkX7eOAPiIOkoFw2kC
-         +28tpgO32BNt/X9dgL2zZ9IoKOOoRpco9Sdsyj/o2yMWC1bej628VaBKJUj5sAwCNTwC
-         9wHgNaUaW6NsDEtgH48ivY5W8qMPrmOx4ys70LvfymL0BSpa8uBNVZGVmPhMNgyxaiGb
-         dTFkzGFAYDnRACD2Zkb+ynSneZHP7VS/QS/A2UwOsiJYWaGxT9Wtm+z+eL44wdcr5Zkd
-         w/qA==
-X-Gm-Message-State: AJIora8I+6oYrfYjzp2dpzaQffT85ZO6KW+v/ql88z5n4Bk6Cs8Glyfo
-        UVipFVPMgqAQTUq2BTc3z2AzdQ==
-X-Google-Smtp-Source: AGRyM1uPuOCbP0a6mF/0olXBoqm4K2ERnhaH8Qv2XtSK2cfhaQt8X/8B8T3N/FCTkxmypHAt2j+g7Q==
-X-Received: by 2002:a7b:c1d2:0:b0:3a0:4c75:87cf with SMTP id a18-20020a7bc1d2000000b003a04c7587cfmr17126392wmj.200.1656669871886;
-        Fri, 01 Jul 2022 03:04:31 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id l34-20020a05600c1d2200b003a03e63e428sm7834172wms.36.2022.07.01.03.04.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Jul 2022 03:04:31 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        myungjoo.ham@samsung.com, cw00.choi@samsung.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        stephan@gerhold.net, marijn.suijten@somainline.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH v2] dt-bindings: pm8941-misc: Fix usb_id and usb_vbus definitions
-Date:   Fri,  1 Jul 2022 11:04:05 +0100
-Message-Id: <20220701100405.3586820-1-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S232001AbiGAKEc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 06:04:32 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BEE47435F;
+        Fri,  1 Jul 2022 03:04:30 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2619A93D011383;
+        Fri, 1 Jul 2022 12:04:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=s/3+jV9+O1IBVlCw2ZX4h54WPSBF1jcAeoBhVxWXd80=;
+ b=TWaVWDsXcFHXhqQeFX8SPdZ0XTgUOPUYYi3oKyWzagcQVVq3oVwzv2VKGFEvWOy7D6k3
+ cogzJfDp3/tjAQxoOuuyclfhca2cGNC5I16fHxMccbMQe86x79gQ5jzexYkSjqT6049a
+ ZsJQi3dzUoqw73BBK8mHNGulFRZ++vv7O1FTYaYt0tWL14Ngr1ABj1rMt+J4tZ9YSzZT
+ YDN0DuaEZ2IZnSIiCXdDs13cUEl54dWRjgBcmL/7heqfWkMonLB88nMPo/NoIA7sYVRr
+ V0EQbWD/Q1nOzo1m4VRZrOge7YN3N1yefwijgjEj1ps7aIzSefZtEc/VWSxS95gV4HC3 ZQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3h1x2brajt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 01 Jul 2022 12:04:13 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E1D2310002A;
+        Fri,  1 Jul 2022 12:04:11 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 65001216EDE;
+        Fri,  1 Jul 2022 12:04:11 +0200 (CEST)
+Received: from [10.252.5.136] (10.75.127.48) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Fri, 1 Jul
+ 2022 12:04:07 +0200
+Message-ID: <dfad8fb5-6205-d620-81eb-5d44b9175e05@foss.st.com>
+Date:   Fri, 1 Jul 2022 12:04:06 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 1/4] dt-bindings: usb: typec: add bindings for stm32g0
+ controller
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <robh+dt@kernel.org>
+CC:     <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <amelie.delaunay@foss.st.com>, <alexandre.torgue@foss.st.com>,
+        <gregkh@linuxfoundation.org>, <heikki.krogerus@linux.intel.com>
+References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
+ <20220624155413.399190-2-fabrice.gasnier@foss.st.com>
+ <ddb0e946-c955-1404-c1cd-c2548f34ec35@linaro.org>
+ <845d6817-d2e4-7925-f7f5-da1102514636@foss.st.com>
+ <286633b2-43d2-655e-b3f1-54bf5c7a4a21@linaro.org>
+ <6ef58f1f-ee8a-b060-6fda-d1388b3ede6d@foss.st.com>
+ <f86dd47c-0fc5-6c93-a49e-534610d10c49@linaro.org>
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+In-Reply-To: <f86dd47c-0fc5-6c93-a49e-534610d10c49@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-01_06,2022-06-28_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dts validation is throwing an error for me on 8916 and 8939 with
-extcon@1300. In that case we have usb_vbus but not usb_id.
+On 6/29/22 07:54, Krzysztof Kozlowski wrote:
+> On 28/06/2022 19:01, Fabrice Gasnier wrote:
+> 
+>>>>>> +  connector:
+>>>>>> +    type: object> +    allOf:
+>>>>>> +      - $ref: ../connector/usb-connector.yaml#
+>>>>>
+>>>>> Full path, so /schemas/connector/...
+>>>>>
+>>>>> unevaluatedProperties: false
+>>
+>> Hi Krzysztof,
+>>
+>> I Just figured out usb-connector schema has "additionalProperties:
+>> true". Adding "unevaluatedProperties: false" here seem to be useless.
+>> At least at my end, this make any dummy property added in the example
+>> below to be validated without error by the schema.
+> 
+> No, it's expected. The common schema allows additional properties. You
+> specific device schema (including common) should not allow anything more
+> and this is expressed like you mentioned.
+> 
+> However depending on the version of dtschema, the
+> unevaluatedProperties:false might still be not implemented. AFAIK, Rob
+> added it quite recently.
+> 
+>>
+>> Should this be updated in usb-connector.yaml instead ?
+> 
+> No
+> 
+>>
+>> Shall I omit it here in the end ?
+> 
+> You need to add here unevaluatedProperties: false (on the level of this
+> $ref)
+> 
+>>
+>>>>
+>>>> ack,
+>>>>
+>>>>>
+>>>>>> +
+>>>>>> +  firmware-name:
+>>>>>> +    description: |
+>>>>>> +      Should contain the name of the default firmware image
+>>>>>> +      file located on the firmware search path
+>>>>>> +
+>>>>>> +  wakeup-source: true
+>>>>>> +  power-domains: true
+>>>>>
+>>>>> maxItems
+>>>>
+>>>> Do you mean maxItems regarding the "power-domains" property ?
+>>>
+>>> Yes.
+>>>
+>>>> This will depend on the user platform, where it's used as an I2C device.
+>>>> So I'm not sure this can / should be specified here.
+>>>> Could please you clarify ?
+>>>
+>>> Then maybe this property is not valid here. Power domains usually are
+>>> used for blocks of a SoC, having common power source and power gating.
+>>> In your case it looks much more like a regulator supply.
+>>
+>> This property is used in our implementation to refer to SOC PM domain
+>> for GPIO that is used to wakeup the system. This isn't only a regulator,
+>> this PM domain serves various IPs such as I2C, GPIO, UART... (it manages
+>> regulator and clocks used in low power).
+>>
+>> I can limit to 1 item if this is fine for you ?
+>>
+>> e.g. maxItems: 1
+> 
+> Yes, it's good (assuming it is true :) ).
+> 
+>>
+>>>
+>>>>
+>>>>>
+>>>>>> +
+>>>>>> +required:
+>>>>>> +  - compatible
+>>>>>> +  - reg
+>>>>>> +  - interrupts
+>>>>>> +
+>>>>>> +additionalProperties: false
+>>>>>> +
+>>>>>> +examples:
+>>>>>> +  - |
+>>>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>>> +    i2c5 {
+>>>>>
+>>>>> Just "i2c"
+>>>>
+>>>> ack,
+>>>>
+>>>>>
+>>>>>> +      #address-cells = <1>;
+>>>>>> +      #size-cells = <0>;
+>>>>>> +
+>>>>>> +      stm32g0@53 {
+>>>>>
+>>>>> Generic node name describing class of the device.
+>>>>
+>>>>
+>>>> I wasn't aware of generic node name for an I2C device (not talking of
+>>>> the controller). I may have missed it.
+>>>>
+>>>> Could you please clarify ?
+>>>
+>>> The class of a device is not a I2C device. I2C is just a bus. For
+>>> example the generic name for Power Management IC connected over I2C
+>>> (quite common case) is "pmic".
+>>>
+>>> For USB HCD controllers the generic name is "usb". For USB
+>>> ports/connectors this is "connector". So what is your hardware?
+>>> "interface" is a bit too unspecific to figure it out.
+>>
+>> Thanks, I better understand your point now.
+>>
+>> A common definition for the hardware here could be "USB Type-C PD
+>> controller". I'll improve this schema title by the way.
+>>
+>> I had a quick look in various .dts files. I could find mainly:
+>> - typec-portc@hh
+>> - usb-typec@hh
+>> - typec@hh
+>>
+>> Not sure if this has already been discussed in other reviews, it lacks
+>> the "controller" idea in the naming IMHO.
+>> Perhaps something like "typec-pd-controller" or
+>> "usb-typec-pd-controller" could be used here ?
+>>
+>> Otherwise, I could adopt the shortest "typec" name if it's fine for you ?
+> 
+> typec sounds good.
+> 
+>>
+>>>
+>>>>
+>>>>>
+>>>>>> +        compatible = "st,stm32g0-typec";
+>>>>>> +        reg = <0x53>;
+>>>>>> +        /* Alert pin on GPIO PE12 */
+>>>>>> +        interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
+>>>>>> +        interrupt-parent = <&gpioe>;
+>>>>>> +
+>>>>>> +        /* Example with one type-C connector */
+>>>>>> +        connector {
+>>>>>> +          compatible = "usb-c-connector";
+>>>>>> +          label = "USB-C";
+>>>>>> +
+>>>>>> +          port {
+>>>>>
+>>>>> This does not look like proper schema of connector.yaml.
+>>>>
+>>>> This refers to graph.yaml [1], where similar example is seen [2].
+>>>>
+>>>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L79
+>>>>
+>>>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L207
+>>>
+>>> Just look at the usb-conector schema. It's different. You miss ports.
+>>> Maybe other properties as well.
+>>
+>>
+>> (I may miss something, and got confused around port/ports earlier)
+>> The graph properties seems to allow both the 'port' and 'ports' syntax
+>> thanks to the graph definition.
+>> The "port" syntax is also used in other typec controller schemas.
+>>
+>> There's only one port in this example. Of course other example could use
+>> two or more ports (like for USB HS / SS / aux) which would require using
+>> the "ports" node (with port@0/1/2 childs).
+>>
+>> I can adopt the "ports" node if you prefer. As I see it just doesn't
+>> bring much in the current example (The only drawback is this adds one
+>> indentation/node level w.r.t. the bellow example, so not a big deal).
+> 
+> The graph schema allows, but you include here usb-connector schema which
+> requires to put it under "ports". You should not use it differently, so
+> I expect here "ports" property, even with one port.
 
-It wasn't immediately obvious if there was a valid use-case for the
-existing code for usb_id in isolation, however discussing further, we
-concluded that usb_id, usb_vbus or (usb_id | usb_vbus) are valid
-combinations as an external IC may be responsible for usb_id or usb_vbus.
+Hi Krzysztof,
 
-Expand the definition with anyOf to capture the three different valid
-modes.
+This makes senses. I've updated this locally and also put this in .dts
+file (not sent yet with this series as I lack some dependencies not yet
+upstream).
 
-Fixes: 4fcdd677c4ea ("bindings: pm8941-misc: Add support for VBUS detection")
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+I'm able to validate the schema, with your statement, by using
+dt_binding_check.
+
+/* Example with one type-C connector */
+connector {
+  compatible = "usb-c-connector";
+  label = "USB-C";
+
+  ports {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    port@0 {
+      reg = <0>;
+      con_usb_c_ep: endpoint {
+        remote-endpoint = <&usb_ep>;
+      };
+    };
+  };
+};
+
+Still when build the .dts (in my downstream, with W=1) I observe various
+case, for a single port usage (e.g. USB HS only).
+
+
+With above example I get:
 ---
- .../devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+Warning (graph_child_address): /soc/..../connector/ports: graph node has
+single child node 'port@0', #address-cells/#size-cells are not necessary
 
-diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-index 6a9c96f0352ac..1bc412a4ac5e6 100644
---- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-+++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-@@ -27,10 +27,14 @@ properties:
- 
-   interrupt-names:
-     minItems: 1
--    items:
--      - const: usb_id
--      - const: usb_vbus
--
-+    anyOf:
-+      - items:
-+          - const: usb_id
-+          - const: usb_vbus
-+      - items:
-+          - const: usb_id
-+      - items:
-+          - const: usb_vbus
- required:
-   - compatible
-   - reg
--- 
-2.36.1
+Remove them as not necessary (suggested by this warning):
+---
+/* Example with one type-C connector */
+connector {
+  compatible = "usb-c-connector";
+  label = "USB-C";
 
+  ports {
+    port {
+      con_usb_c_ep: endpoint {
+        remote-endpoint = <&usb_ep>;
+      };
+    };
+  };
+};
+
+Then I no longer get this warning upon build. But the dtbs_check complains:
+---
+connector: ports: 'port@0' is a required property
+	From schema: ..
+Documentation/devicetree/bindings/connector/usb-connector.yaml
+
+So It looks like to me there's something missing to handle the single
+port case in usb-connector.yaml, when using the "ports".
+
+Maybe usb-connector could be updated to handle "port" (w/o unit-addr) ?
+I'm talking about:
+    required:
+      - port@0
+
+So, I came up with:
+
+--- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
++++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+@@ -176,6 +176,9 @@ properties:
+       port number as described below.
+
+     properties:
++      port:
++        $ref: /schemas/graph.yaml#/properties/port
++
+       port@0:
+         $ref: /schemas/graph.yaml#/properties/port
+         description: High Speed (HS), present in all connectors.
+@@ -189,8 +192,11 @@ properties:
+         description: Sideband Use (SBU), present in USB-C. This
+describes the
+           alternate mode connection of which SBU is a part.
+
+-    required:
+-      - port@0
++    oneOf:
++      - required:
++          - port
++      - required:
++          - port@0
+
+
+Do you agree on this approach ? (I can add a pre-cursor patch to this
+series, to handle the single port case)
+
+
+Please advise,
+Best Regards,
+Fabrice
+
+> 
+> Best regards,
+> Krzysztof
