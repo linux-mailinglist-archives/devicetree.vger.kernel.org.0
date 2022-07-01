@@ -2,80 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDECD562E3A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:30:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12754562E4B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:32:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236338AbiGAIaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 04:30:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35414 "EHLO
+        id S234459AbiGAIcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 04:32:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236359AbiGAIaK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:30:10 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4476870ADF
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 01:29:58 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id lw20so2720391ejb.4
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 01:29:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=W2JBG9IMgo5iuUpGjo0Ma0emVBYFSehxFIdcsMEXUdA=;
-        b=arFQqYu6F88L3CXLHaovq6nC8iPoIB5p/cUlMA41dv82tviQib8TEVgLwkCk5Oyu5M
-         O2nhQgu0phboN7L+EY4ZSPWK7by9eue8AdroQbTlVFfK34VGzZtIsT5FhmxfB1z2REgC
-         2TxfH0ogXBYtzT1QoRTuJThP+EktiC9LGj6rhgFfQMPPAossEMyTL3ofHZY+lNP9HkQR
-         boptAY61H7EZd0f7mJlPhkpha3bZzBPm8Xl/yKKijjUYLdHES4yXURuUAbQ+KkdD8HJ3
-         3mJVoHQAjtNw/3XQmf1tSMvI22n3zAy8DTuGDhGXdYjiXw+kacaTQTm10pQxKR0XOHtD
-         eNYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=W2JBG9IMgo5iuUpGjo0Ma0emVBYFSehxFIdcsMEXUdA=;
-        b=jbrO//CSNptHEZcyCzrnKglkarxoCVeeA+K4Rsy9txNa6nsn2RBfxOdYIIx3bUtYCT
-         Gw/D05HLAQMEQZen1tXq8RI6B37BJsPYiIzSc/yCJWfpUc9MowTl247kmuqB05cmFVR9
-         ziIY3+pkQNZySaYTiAQo/pIefgcuu8mHrz4hehNATIjvGpb4cQdtvELmVvJNSRYzacQC
-         kZkKxQaWYwwp6jgjCbjHuPBFGGcopII/J7a5YQzxcYjRrorXxhPy2/yHg9SmZEI05zRH
-         RgF4jteYevYAJtt1B+LSQHsnvwFt4wWBU/ibrcCKPUxmyxgSR3fnpuJ+m2kwYKWXjU4x
-         ByHw==
-X-Gm-Message-State: AJIora/9mbrMh02g+5sko8XQwPpyc+moT21xqte10bqUGJqN3Nlz51R8
-        sTbF3d2kEqEcuJ19Zt0MoaMs7g==
-X-Google-Smtp-Source: AGRyM1vv2YExw/cf6QKoCypS6wU8W0tcFVHArFOydF7PZL2zFGDhvteLzs9veunwCivobmZcttE8wQ==
-X-Received: by 2002:a17:906:dc8f:b0:725:28d1:422d with SMTP id cs15-20020a170906dc8f00b0072528d1422dmr12676225ejc.131.1656664196827;
-        Fri, 01 Jul 2022 01:29:56 -0700 (PDT)
-Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id v10-20020a1709063bca00b00706e8ac43b8sm10100208ejf.199.2022.07.01.01.29.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 01:29:56 -0700 (PDT)
-Message-ID: <9115208b-23c9-0741-2fe0-9e833800375a@linaro.org>
-Date:   Fri, 1 Jul 2022 10:29:55 +0200
+        with ESMTP id S233234AbiGAIcD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:32:03 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47A41B49;
+        Fri,  1 Jul 2022 01:32:01 -0700 (PDT)
+Received: (Authenticated sender: contact@artur-rojek.eu)
+        by mail.gandi.net (Postfix) with ESMTPA id E13541BF20E;
+        Fri,  1 Jul 2022 08:31:56 +0000 (UTC)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 02/10] dt-bindings: PCI: qcom: Fix msi-interrupt
- conditional
-Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220629141000.18111-1-johan+linaro@kernel.org>
- <20220629141000.18111-3-johan+linaro@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220629141000.18111-3-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 01 Jul 2022 10:31:56 +0200
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        maccraft123mc@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        dmitry.torokhov@gmail.com, paul@crapouillou.net, jic23@kernel.org,
+        linux-iio@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v6 2/3] Input: adc-joystick - Add polled input device
+ support
+In-Reply-To: <20220629222931.30599-3-macroalpha82@gmail.com>
+References: <20220629222931.30599-1-macroalpha82@gmail.com>
+ <20220629222931.30599-3-macroalpha82@gmail.com>
+Message-ID: <4ef0af5a7f3de2e6114e11e22cea3ad1@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,15 +45,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 16:09, Johan Hovold wrote:
-> Fix the msi-interrupt conditional which always evaluated to false due to
-> a misspelled property name ("compatibles" in plural).
+On 2022-06-30 00:29, Chris Morgan wrote:
+> Add polled input device support to the adc-joystick driver. This is
+> useful for devices which do not have hardware capable triggers on
+> their SARADC. Code modified from adc-joystick.c changes made by Maya
+> Matuszczyk.
 > 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+Hey Chris,
 
+the patch is looking good, thanks for sticking through! :)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+With the poll-interval property adjusted to whatever naming ends up 
+decided on in patch 1/3:
+Acked-by: Artur Rojek <contact@artur-rojek.eu>
+> ---
+>  drivers/input/joystick/adc-joystick.c | 51 +++++++++++++++++++++------
+>  1 file changed, 40 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/input/joystick/adc-joystick.c
+> b/drivers/input/joystick/adc-joystick.c
+> index 78ebca7d400a..e52f8b2b5563 100644
+> --- a/drivers/input/joystick/adc-joystick.c
+> +++ b/drivers/input/joystick/adc-joystick.c
+> @@ -26,8 +26,23 @@ struct adc_joystick {
+>  	struct adc_joystick_axis *axes;
+>  	struct iio_channel *chans;
+>  	int num_chans;
+> +	bool polled;
+>  };
+> 
+> +static void adc_joystick_poll(struct input_dev *input)
+> +{
+> +	struct adc_joystick *joy = input_get_drvdata(input);
+> +	int i, val, ret;
+> +
+> +	for (i = 0; i < joy->num_chans; i++) {
+> +		ret = iio_read_channel_raw(&joy->chans[i], &val);
+> +		if (ret < 0)
+> +			return;
+> +		input_report_abs(input, joy->axes[i].code, val);
+> +	}
+> +	input_sync(input);
+> +}
+> +
+>  static int adc_joystick_handle(const void *data, void *private)
+>  {
+>  	struct adc_joystick *joy = private;
+> @@ -179,6 +194,7 @@ static int adc_joystick_probe(struct 
+> platform_device *pdev)
+>  	int error;
+>  	int bits;
+>  	int i;
+> +	unsigned int poll_interval;
+> 
+>  	joy = devm_kzalloc(dev, sizeof(*joy), GFP_KERNEL);
+>  	if (!joy)
+> @@ -215,8 +231,17 @@ static int adc_joystick_probe(struct 
+> platform_device *pdev)
+>  	joy->input = input;
+>  	input->name = pdev->name;
+>  	input->id.bustype = BUS_HOST;
+> -	input->open = adc_joystick_open;
+> -	input->close = adc_joystick_close;
+> +
+> +	joy->polled = !device_property_read_u32(dev, "poll-interval-ms",
+> +						&poll_interval);
+> +
+> +	if (joy->polled) {
+> +		input_setup_polling(input, adc_joystick_poll);
+> +		input_set_poll_interval(input, poll_interval);
+> +	} else {
+> +		input->open = adc_joystick_open;
+> +		input->close = adc_joystick_close;
+> +	}
+> 
+>  	error = adc_joystick_set_axes(dev, joy);
+>  	if (error)
+> @@ -229,16 +254,20 @@ static int adc_joystick_probe(struct
+> platform_device *pdev)
+>  		return error;
+>  	}
+> 
+> -	joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+> -	if (IS_ERR(joy->buffer)) {
+> -		dev_err(dev, "Unable to allocate callback buffer\n");
+> -		return PTR_ERR(joy->buffer);
+> -	}
+> +	if (!joy->polled) {
+> +		joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle,
+> +						     joy);
+> +		if (IS_ERR(joy->buffer)) {
+> +			dev_err(dev, "Unable to allocate callback buffer\n");
+> +			return PTR_ERR(joy->buffer);
+> +		}
+> 
+> -	error = devm_add_action_or_reset(dev, adc_joystick_cleanup, 
+> joy->buffer);
+> -	if (error)  {
+> -		dev_err(dev, "Unable to add action\n");
+> -		return error;
+> +		error = devm_add_action_or_reset(dev, adc_joystick_cleanup,
+> +						 joy->buffer);
+> +		if (error)  {
+> +			dev_err(dev, "Unable to add action\n");
+> +			return error;
+> +		}
+>  	}
+> 
+>  	return 0;
