@@ -2,133 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 657B6562CEB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADDDF562CF4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 09:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235296AbiGAHqG convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 1 Jul 2022 03:46:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42248 "EHLO
+        id S235418AbiGAHrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 03:47:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbiGAHqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:46:06 -0400
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC6D948837;
-        Fri,  1 Jul 2022 00:46:04 -0700 (PDT)
-Received: by mail-qv1-f42.google.com with SMTP id n15so3339835qvh.12;
-        Fri, 01 Jul 2022 00:46:04 -0700 (PDT)
+        with ESMTP id S235411AbiGAHrO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 03:47:14 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A563B53D3D
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 00:47:12 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id d2so2575544ejy.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 00:47:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m9LluxtMdj10AOwxO8dQarqqYheoPawjt1DHgDLPduA=;
+        b=NXEGXj+8sJof4bqVatqLMyyQ/gW2KnQk0bLezkssNXsLrJ3hwqPCqsYkAxJ17Qmd3c
+         1YcuSw3QkJm05feG1+O6aNvVoy/Nq4x6+vbIjeW8bMJdB9ad4SOpBhBMYv15YssZFaXh
+         K6/B7KPDkaSyl5/vPtckTq5fAxA1+h37e9Qiw8pCap13G5UwjbrlNr0Ysu1xYr+EmiwQ
+         Kr/Ptrs+Dz5TrTpKZLFrTR6ah4kmjDOe2rU1eJQYYKW7+NcQPCWaMqnkMLbC4lELe6uB
+         qnk5sSxFjakYjEbLNwpzDARiA62yVD0Y6vkF2lDUv9G9yVi8Racmh4MPlqXC8CkD+M2y
+         wfGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=wE4bFtTL36vFmikZ1ytwvzCWwTBgGc5pXW0bXvIIsbc=;
-        b=MTKEDwujyQaxHEO0aCHEmM7pJvCzOCWCffrlGAoY9GeArM+S5SFKuA3D2bVzcrsfJc
-         jbdUc03pMHz87gFbv5L+xf27FcCJgKDFjw/tkgKvsHkiRsyVhxyAEn1bySGIyiWYpQVg
-         1q9L9wZcFZjaeo7yeSbgzJYzwirjmjIPgiUgHsIlGXSibyR6XlVTvHj+cynIoHnhwsmP
-         ySqKayh3cy/wQlPoyme2h+9S1rtJiiGBvxccdhwK7ANhtGJ+k7464V230wG9StzaOqWk
-         wUg7UCgkiPu4m2fDVT2Xw5GvwBn/wcjZS4wECKlbtiWaCL9xsyNF6/McuaSrgj8Uh2wC
-         v0ZA==
-X-Gm-Message-State: AJIora8rfUEk22h8NSvIpdvHGW8ihjStHdJdJ02vhb+i6HEp5hR1HBhT
-        eMAQloR8BWDnok0HlzOG3Z819t29mjFNPw==
-X-Google-Smtp-Source: AGRyM1vhfhp+91QYY3y9wnv6FH7LV7i9o2/+15bpimdDz+wTZB3Maiv4UfamJnQJMw0znb85v3v1uQ==
-X-Received: by 2002:a05:622a:1aa8:b0:31b:f4b9:650c with SMTP id s40-20020a05622a1aa800b0031bf4b9650cmr11266535qtc.1.1656661563921;
-        Fri, 01 Jul 2022 00:46:03 -0700 (PDT)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id m5-20020ac84445000000b00307beda5c6esm13975709qtn.26.2022.07.01.00.46.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 00:46:03 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id r3so2649874ybr.6;
-        Fri, 01 Jul 2022 00:46:03 -0700 (PDT)
-X-Received: by 2002:a05:6902:1246:b0:66d:5b0b:19b0 with SMTP id
- t6-20020a056902124600b0066d5b0b19b0mr13181284ybu.365.1656661562781; Fri, 01
- Jul 2022 00:46:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220630162515.37302-1-clement.leger@bootlin.com>
-In-Reply-To: <20220630162515.37302-1-clement.leger@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 1 Jul 2022 09:45:51 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX135BkyDnedizD-9u1htwjbOa2=ko1Vm+mk0Jh3R+KPw@mail.gmail.com>
-Message-ID: <CAMuHMdX135BkyDnedizD-9u1htwjbOa2=ko1Vm+mk0Jh3R+KPw@mail.gmail.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: dsa: renesas,rzn1-a5psw:
- add interrupts description
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m9LluxtMdj10AOwxO8dQarqqYheoPawjt1DHgDLPduA=;
+        b=GdCq6V4iGBc0MWR05ifRixCjzMEBADhCR+l8hvHYiw4L1T+2g2XhuQ+1H0V1GEOnqg
+         99G0ksoMSSFsNpdyI25W5Amyqp08JSZzKEvbUiamrsUdczGOZpHfxNLYEnCsYrR8NnJi
+         NnCzKQ0quaGLxYSrfj+UGfvc4LhUD43NneySiQEku0778CSEN43xdvXYSpJimmxMbWsU
+         jQ8AnGCRoe3Q5s04vbU+kIxO3oYh/U7zcCJU6Py3PKPXyGQsoWBRZ+0W6y6Q4OG6YxLB
+         fbWAKrt6zoP2ZS2DGCsD1TFzfCF11ffYaTcaeCfC/zGRDYichqccjdqyx+zOyBfrP1Ai
+         KxkA==
+X-Gm-Message-State: AJIora/RLn06nLApRqWxb+18NiTZRcJaZjYQG7a5AIw1HqA5RMzaODYR
+        qPmuqx7gwPZ6n30WsbJ7SLyfZg==
+X-Google-Smtp-Source: AGRyM1vPSlGFlyi4PfcCGNONdQN0a8R4BJ8wunE9JqDWhsdlm1U3EDjpawSYW8EGgSrBIneNdaN6PQ==
+X-Received: by 2002:a17:907:d17:b0:726:a3be:bba4 with SMTP id gn23-20020a1709070d1700b00726a3bebba4mr12903075ejc.584.1656661631244;
+        Fri, 01 Jul 2022 00:47:11 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id u5-20020a170906068500b00703671ebe65sm9992497ejb.198.2022.07.01.00.47.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Jul 2022 00:47:10 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Subject: [PATCH] dt-bindings: qcom: readme: document preferred compatible naming
+Date:   Fri,  1 Jul 2022 09:46:59 +0200
+Message-Id: <20220701074659.12680-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Clément,
+Compatibles can come in two formats.  Either "vendor,ip-soc" or
+"vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
+readme file documenting preferred policy.
 
-On Thu, Jun 30, 2022 at 6:26 PM Clément Léger <clement.leger@bootlin.com> wrote:
-> Describe the switch interrupts (dlr, switch, prp, hub, pattern) which
-> are connected to the GIC.
->
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
-> Changes in V2:
->  - Fix typo in interrupt-names property.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks for the update!
+---
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-but some suggestions below.
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: Alex Elder <elder@linaro.org>
+Cc: Robert Foss <robert.foss@linaro.org>
+Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ .../devicetree/bindings/soc/qcom/README.rst      | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/README.rst
 
-> --- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> @@ -26,6 +26,22 @@ properties:
->    reg:
->      maxItems: 1
->
-> +  interrupts:
-> +    items:
-> +      - description: DLR interrupt
+diff --git a/Documentation/devicetree/bindings/soc/qcom/README.rst b/Documentation/devicetree/bindings/soc/qcom/README.rst
+new file mode 100644
+index 000000000000..322b329ac7c1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/README.rst
+@@ -0,0 +1,16 @@
++.. SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++
++Qualcomm SoC compatibles naming convention
++==========================================
++1. When adding new compatibles in new bindings, use the format:
++   ::
++
++     qcom,SoC-IP
++
++   For example:
++   ::
++
++     qcom,sdm845-llcc-bwmon
++
++2. When adding new compatibles to existing bindings, use the format
++   in the existing binding, even if it contradicts the above.
+-- 
+2.34.1
 
-Device Level Ring (DLR) interrupt?
-
-> +      - description: Switch interrupt
-> +      - description: PRP interrupt
-
-Parallel Redundancy Protocol (PRP) interrupt?
-
-> +      - description: Integrated HUB module interrupt
-> +      - description: RX Pattern interrupt
-
-Receive Pattern Match interrupt?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
