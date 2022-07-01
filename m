@@ -2,105 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B4AB562FBC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 11:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94009563024
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 11:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232328AbiGAJUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 05:20:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36364 "EHLO
+        id S234991AbiGAJcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 05:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbiGAJUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 05:20:19 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4AEF5726D
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 02:20:17 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id n8so2226362eda.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 02:20:17 -0700 (PDT)
+        with ESMTP id S234437AbiGAJcG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 05:32:06 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBEE772ECD
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 02:32:04 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id d17so2313035wrc.10
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 02:32:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pfKYT8Jc1FgDc3r1JIflZV77YweLo1R+EqwQmp3TQuk=;
-        b=ch9J5WbROG+jFYrJopCRfju4DrXngt+3FL4iUbLI5xy2A2uxWhyz0d2sZe0ciworIt
-         Y+W0HNSRUW3C2v9jOosbXtU97scLz/mZJYuff7rkoQbjUvzoAK1b19V43MiwZ2ABOmpp
-         y+lE7/GDO3uyzkuPgaXeLChgWkIoqKN6A9wrB2nbqd1ifLeYnLehAsomrnoRbmxMOOHV
-         xX0kTd4uqvnW33YGaOrU+WWAJ8EimtEVWWzZTaY4c42VdOGFUbwd5Adepb+roAcyieuZ
-         05OqCxuBlRansgNqWbLq+fnL3c3bRXWLnL/nzfTsn4g33JBBmRNt3yFbjHUL4HZ8ZwlO
-         O9bw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=K/qT8HI2IqBp+p+vLx0KCA0Y3Vg7TWHkgf6rKbyd91I=;
+        b=jQVIbj6sAcLvohWrMBnN1TQ54Yg3N1Kmn75Zyp2ZQZDjOPdFGLH8O78gn9hnBdbsmV
+         EbWZRaO1JfZFyGeoWGpPli705Wkm1IxeXBMtI5P5rpdoQuFWrC3tGxrelAcpGnDMLunZ
+         VJXmEKqzImhpLYldUHoVkn50JpEaV+/7hwkAzQhAfZLzIUg8+Qb2+ZfrkcjlX6u/0WYH
+         aAl36C1f8tNFEN30xK6vYtEC2dt5EjrvFDSDJKc2leNpRR16i020X3hSzXKQSdeujVAe
+         PeI6F3xmz1o8BIo/gYeSnEgupttsDP26xq6edXELpzVqmVs3vt4IPohSFqXEIIAnXvuP
+         IPyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pfKYT8Jc1FgDc3r1JIflZV77YweLo1R+EqwQmp3TQuk=;
-        b=Tdop6S3afhfO4Sv1PXSW1N55szZzACVptQ9SVXPZhW4tTzQzzNz0/ngHAcG7aMvxuC
-         GkbRH0583q+onKAjdiLncx0fNEermA61wARbPKgCL7BQ/OrmgKn6lgH1e2phgl6MXIau
-         Q0iZJyQJySpMztfvl6t+p7NYWXvjPRW8k9BkncuUhVVrN4312FIxvgZNfsdWCZTUorYb
-         aYpvAgXxeHllCdJh/xwcq39XUBctFSoFSrVXsWvUB+uvPAfr5FdsciJNz8AAiLMQVvru
-         3pglwZwnF2lTWMgf1UwNTNO3MjatBaCxPVjt43F0z8jMbe0M6fRrZhMLiekV3eVQXWMH
-         yN+g==
-X-Gm-Message-State: AJIora+3RQBbTYv+MuzZkEegWSrQP0+TvD9lsqYLeU+SkrST85qYoVWg
-        GwYvYAZSLNYck3+sHbiA00Bjkkt59U6g9hasoOHmAw==
-X-Google-Smtp-Source: AGRyM1tAfFM4zxkGfwOTJkzWnl2exmPlKQgrm30eNhARBnWFfa/vm+SDMnOKQLWQIcWGJSdB8mTjO58N3bFdzE4Nlps=
-X-Received: by 2002:a05:6402:150:b0:437:b93c:3a9 with SMTP id
- s16-20020a056402015000b00437b93c03a9mr16897407edu.82.1656667216308; Fri, 01
- Jul 2022 02:20:16 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=K/qT8HI2IqBp+p+vLx0KCA0Y3Vg7TWHkgf6rKbyd91I=;
+        b=ob109LTh/3CSRJiMJE+6ZJLhBcL6OukuE3qfbxmFhfphRkeYgDZ6U/Uax9Ot2fQIN6
+         TM4u4i1YcidXPK+pH8bfUJiayijAlYsImSDkNAwomP/JzTSSBn4jjJx58ZPz4MYH1KcF
+         NDcT+4aWJOdxtRQfaUhpzqpPiTX+nl4UPNVlT3KTAXgWQHrp+Aw8naBxLkHGhjeJA/QK
+         tcXH0CE7KLUEhuwos789mS7aZwXMOW6GZji1Rfp+rntbGsn80XJue0uzeKdehOtZCN0S
+         LTM0+QpJUgB+mPbNC3hcMSMGtCxrW3tRrrSBbOP0IDOY7lnfOXbYCLt+HqHNFc3ySFbY
+         ykSg==
+X-Gm-Message-State: AJIora/w6SawyiMtQ2+SsbYVm7y8Td/lgDBjE14bEalxeQQJnJSnBvR8
+        gOjDpgYXix1+phXy5eDb6sDwGg==
+X-Google-Smtp-Source: AGRyM1tBa9IhGYtmY3U/be2Xw3a3xwiE2Lb3fVVi0Sxl27A1vYaw0AAirK2iQMhTqdnf7O5+BVXHKA==
+X-Received: by 2002:a5d:59a7:0:b0:21b:cd67:52d9 with SMTP id p7-20020a5d59a7000000b0021bcd6752d9mr13159506wrr.194.1656667923466;
+        Fri, 01 Jul 2022 02:32:03 -0700 (PDT)
+Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id m21-20020a05600c4f5500b003a0502c620dsm5787744wmq.44.2022.07.01.02.32.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Jul 2022 02:32:02 -0700 (PDT)
+Message-ID: <a8d688b8-95ac-1c01-222e-65a6c9f83c8a@linaro.org>
+Date:   Fri, 1 Jul 2022 10:32:01 +0100
 MIME-Version: 1.0
-References: <20220629170420.2712077-1-l.stach@pengutronix.de> <20220629170420.2712077-2-l.stach@pengutronix.de>
-In-Reply-To: <20220629170420.2712077-2-l.stach@pengutronix.de>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 1 Jul 2022 11:20:05 +0200
-Message-ID: <CAMRc=MeN6JxtSJ8kNrvrMZJGcnv9SYzH0JO6RQUc6PQzqYMp-g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: pca9570: add pca9571 support
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, patchwork-lst@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] MAINTAINERS: pinctrl: update qcom file list to include
+ yaml files
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        bjorn.andersson@linaro.org, linus.walleij@linaro.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220629092514.70752-1-srinivas.kandagatla@linaro.org>
+ <2d63cbf2-8e59-a8db-3faf-747b92d2eb66@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <2d63cbf2-8e59-a8db-3faf-747b92d2eb66@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 7:04 PM Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> The PCA9571 very similar to the PCA9570, it only differs in the
-> number of GPIOs.
->
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
->  drivers/gpio/gpio-pca9570.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpio/gpio-pca9570.c b/drivers/gpio/gpio-pca9570.c
-> index cb2b2f735c15..ab2a652964ec 100644
-> --- a/drivers/gpio/gpio-pca9570.c
-> +++ b/drivers/gpio/gpio-pca9570.c
-> @@ -121,12 +121,14 @@ static int pca9570_probe(struct i2c_client *client)
->
->  static const struct i2c_device_id pca9570_id_table[] = {
->         { "pca9570", 4 },
-> +       { "pca9571", 8 },
->         { /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(i2c, pca9570_id_table);
->
->  static const struct of_device_id pca9570_of_match_table[] = {
->         { .compatible = "nxp,pca9570", .data = (void *)4 },
-> +       { .compatible = "nxp,pca9571", .data = (void *)8 },
->         { /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, pca9570_of_match_table);
-> --
-> 2.30.2
->
 
-Applied, thanks!
 
-Bart
+On 01/07/2022 09:28, Krzysztof Kozlowski wrote:
+> On 29/06/2022 11:25, Srinivas Kandagatla wrote:
+>> Currently Qualcomm pinctrl MAINTAINERS file list does not include yaml
+>> files. Include this for correctness.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>   MAINTAINERS | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index c4648e86dc14..71e7725aa574 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -15765,6 +15765,7 @@ M:	Bjorn Andersson <bjorn.andersson@linaro.org>
+>>   L:	linux-arm-msm@vger.kernel.org
+>>   S:	Maintained
+>>   F:	Documentation/devicetree/bindings/pinctrl/qcom,*.txt
+>> +F:	Documentation/devicetree/bindings/pinctrl/qcom,*.yaml
+> 
+> Instead just:
+> Documentation/devicetree/bindings/pinctrl/qcom,*
+> 
+Makes more sense, will do that in next spin.
+
+--srini
+>>   F:	drivers/pinctrl/qcom/
+>>   
+>>   PIN CONTROLLER - RENESAS
+> 
+> 
+> Best regards,
+> Krzysztof
