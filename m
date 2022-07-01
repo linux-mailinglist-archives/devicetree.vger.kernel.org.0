@@ -2,156 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45E01563701
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 17:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CEA656370E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 17:40:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230172AbiGAPgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 11:36:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33986 "EHLO
+        id S229553AbiGAPkq convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 1 Jul 2022 11:40:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbiGAPgl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 11:36:41 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A4B3969C;
-        Fri,  1 Jul 2022 08:36:41 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id v9so3748034wrp.7;
-        Fri, 01 Jul 2022 08:36:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:from:to:cc:subject:in-reply-to:date:message-id
-         :mime-version;
-        bh=sYub0N475p+0VGhz+u6M1TELUK/iEnZfnAN/MojLZIE=;
-        b=dG3gWMTpxupxXO5Q1Yvv+bsWdhehMZxuBXH5mWSRK5qvyNzPOk6iHYgtKuXRgtzr1u
-         3QAhhbmKg3B0F1sHW7iP59NwsIZQA5BSBsiaNy93hT7b+WQRpOa9A4KcznOX0nLjDxkK
-         DWGZsPYbl3YTeWXgkL9XThoAAhc/5eXVopqOidZhV4ZtAeGtlA8INFSkoaT16O1XZX49
-         vE1WL4T8PROyZl/q4dJC4UevHEMgYvZrxx9Ppdd+PmOVoMIYfyW0hh4GYjJs/ogqUlMS
-         JmcVgJMX78rmCAtFIF8jnsP7CY/kngr+1OH5tlB8Ev2kxKZlGZm+SJISO2zKDBbeboA4
-         YSgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:from:to:cc:subject:in-reply-to:date
-         :message-id:mime-version;
-        bh=sYub0N475p+0VGhz+u6M1TELUK/iEnZfnAN/MojLZIE=;
-        b=kjeYi6I++K1zoQCZ4nBpp4xiSCzrdvPDwS4B9to8HjoZ8eqr9NH/FW+dMZrKsXyBi+
-         kV8X4qwm5qt846UlzmCgwBpRs5ruw5WkzdFWGmTX+C/yU8/E+nGAOV5RpVcxSUk5b0O8
-         UcHzNj4Rf8s2NqYHchzyqY+rIgEKZK4nUgNvf24XoUJRXI/iYf8hOjYPqx46l8EZR3qF
-         Bj2anAYrHn70mAkvLGW1zxkthTsG/Nn1aJwPSjvOXXf4k2O30PmwO9TXAtSPvkl98Adk
-         p0rCXQi/DdUpmTBruwBY1UknoaCMqla5m5tEE2rfnfs/MUQDH3j9Mu7l01B73vFoF5HL
-         pSeA==
-X-Gm-Message-State: AJIora9z3S+eYnziX1HD48fo1jXTResbg0Om7ZWPI+7zj20ub3/JfEaN
-        nuMFmLczkcN+QAvTWT74N20=
-X-Google-Smtp-Source: AGRyM1uXzal0NgDC531OK+6wzV83ogvagHoNoOJlLzY7A1trI1imJ0FnVhho2+YakzVrN5zBn1NY6w==
-X-Received: by 2002:adf:f184:0:b0:21b:6c76:5b6e with SMTP id h4-20020adff184000000b0021b6c765b6emr13423763wro.126.1656689799526;
-        Fri, 01 Jul 2022 08:36:39 -0700 (PDT)
-Received: from localhost (92.40.202.205.threembb.co.uk. [92.40.202.205])
-        by smtp.gmail.com with ESMTPSA id a1-20020a05600c348100b003a03be22f9fsm1656240wmq.18.2022.07.01.08.36.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Jul 2022 08:36:38 -0700 (PDT)
-References: <20220629143046.213584-1-aidanmacdonald.0x0@gmail.com>
- <20220629143046.213584-13-aidanmacdonald.0x0@gmail.com>
- <CAHp75Vduv_fN=2DKbOwReRoPeAYjGqSANT7UhDaRifUJ4zf5XQ@mail.gmail.com>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, quic_gurus@quicinc.com,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Michael Walle <michael@walle.cc>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v4 12/15] pinctrl: Add AXP192 pin control driver
-In-reply-to: <CAHp75Vduv_fN=2DKbOwReRoPeAYjGqSANT7UhDaRifUJ4zf5XQ@mail.gmail.com>
-Date:   Fri, 01 Jul 2022 16:37:45 +0100
-Message-ID: <oMIjFujkw4ZeuMGoTkWq64BbfEejJF12@localhost>
+        with ESMTP id S229535AbiGAPkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 11:40:45 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0153F3F89B
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 08:40:43 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o7Ikf-00006u-HT; Fri, 01 Jul 2022 17:40:13 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o7IkZ-003oKw-3y; Fri, 01 Jul 2022 17:40:10 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o7Ikb-000AJF-Sx; Fri, 01 Jul 2022 17:40:09 +0200
+Message-ID: <2d0f161e879175dea310ed77797f83f29c2b9503.camel@pengutronix.de>
+Subject: Re: [PATCH v2 0/2] i2c: Add new driver for Renesas RZ/V2M controller
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Sven Peter <sven@svenpeter.dev>, Jan Dabros <jsd@semihalf.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Date:   Fri, 01 Jul 2022 17:40:09 +0200
+In-Reply-To: <CAMuHMdXV72_BWOpU=O13Fa3-t001YSRdsFePSHBS=Xvh1jY1EQ@mail.gmail.com>
+References: <20220628194526.111501-1-phil.edworthy@renesas.com>
+         <c168df990e1187bf44a5c46be53aa6b20d30d14d.camel@pengutronix.de>
+         <CAMuHMdXV72_BWOpU=O13Fa3-t001YSRdsFePSHBS=Xvh1jY1EQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Geert,
 
-Andy Shevchenko <andy.shevchenko@gmail.com> writes:
+On Mi, 2022-06-29 at 19:18 +0200, Geert Uytterhoeven wrote:
+> Hi Philipp,
+> 
+> On Wed, Jun 29, 2022 at 6:21 PM Philipp Zabel <p.zabel@pengutronix.de> wrote:
+> > On Di, 2022-06-28 at 20:45 +0100, Phil Edworthy wrote:
+> > > The Renesas RZ/V2M SoC (r9a09g011) has a new i2c controller. This series
+> > > add the driver. One annoying problem is that the SoC uses a single reset
+> > > line for two i2c controllers, and unfortunately one of the controllers
+> > > is managed by some firmware, not by Linux. Therefore, the driver just
+> > > deasserts the reset.
+> > 
+> > This sounds scary. If the driver is never loaded, and the reset is
+> > never deasserted, what happens to the firmware trying to access the
+> > other i2c controller? Does it hang? Or write to the reset controller
+> > registers to deassert the reset? If so, is there any protection against
+> > concurrent access from firmware and reset controller driver?
+> 
+> In response to v1, I wrote
+> 
+> > That is actually an integration issue, not an i2c controller issue.
+> > 
+> > Perhaps we need a RESET_IS_CRITICAL flag, cfr. CLK_IS_CRITICAL,
+> > to be set by the reset provider?
 
-> On Wed, Jun 29, 2022 at 4:30 PM Aidan MacDonald
-> <aidanmacdonald.0x0@gmail.com> wrote:
->>
->> The AXP192 PMIC's GPIO registers are much different from the GPIO
->> registers of the AXP20x and AXP813 PMICs supported by the existing
->> pinctrl-axp209 driver. It makes more sense to add a new driver for
->> the AXP192, rather than add support in the existing axp20x driver.
->>
->> The pinctrl-axp192 driver is considerably more flexible in terms of
->> register layout and should be able to support other X-Powers PMICs.
->> Interrupts and pull down resistor configuration are supported too.
->
-> ...
->
->> +config PINCTRL_AXP192
->> +       tristate "X-Powers AXP192 PMIC pinctrl and GPIO Support"
->> +       depends on MFD_AXP20X
->> +       select PINMUX
->> +       select GENERIC_PINCONF
->> +       select GPIOLIB
->> +       help
->> +         AXP PMICs provide multiple GPIOs that can be muxed for different
->> +         functions. This driver bundles a pinctrl driver to select the function
->> +         muxing and a GPIO driver to handle the GPIO when the GPIO function is
->> +         selected.
->> +         Say Y to enable pinctrl and GPIO support for the AXP192 PMIC.
->
-> What will be the module name if compiled as a module?
->
-> ...
->
->> +/**
->> + * struct axp192_pctl_function - describes a function that GPIOs may have
->> + *
->> + * @name: Function name
->> + * @muxvals: Mux values used for selecting this function, one per GPIO.
->> + *           The i'th element corresponds to the i'th GPIO and is written
->> + *           to the GPIO's control register field to select this function.
->> + *           U8_MAX indicates that the pin does not support this function.
->> + * @groups: Array of @ngroups groups listing pins supporting this function.
->> + * @ngroups: Number of pin groups.
->> + */
->> +struct axp192_pctl_function {
->> +       const char              *name;
->> +       /* Mux value written to the control register to select the function (-1 if unsupported) */
->> +       const u8                *muxvals;
->> +       const char * const      *groups;
->> +       unsigned int            ngroups;
->> +};
->
-> Can it be replaced by struct function_desc?
-> https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/pinmux.h#L130
+I would just let the reset controller driver implement this by
+disabling _assert and _reset for those firmware-shared resets.
 
-That'd work, but using the generic infrastructure doesn't allow me to
-simplify anything -- I can eliminate three trivial functions, but the
-generic code is higher overhead (extra allocations, radix trees, ...)
-so I'd prefer to stick with the current approach.
-
->> +       ret = devm_gpiochip_add_data(dev, &pctl->chip, pctl);
->> +       if (ret)
->> +               dev_err_probe(dev, ret, "Failed to register GPIO chip\n");
->
-> Missed return.
-
-Thanks for catching this, that was pretty silly of me...
+regards
+Philipp
