@@ -2,86 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AAA256392C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 20:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBBC4563930
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 20:33:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230401AbiGAS35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 14:29:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54936 "EHLO
+        id S229553AbiGASdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 14:33:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiGAS34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 14:29:56 -0400
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F014220F7;
-        Fri,  1 Jul 2022 11:29:55 -0700 (PDT)
-Received: by mail-il1-f171.google.com with SMTP id i17so1903740ils.12;
-        Fri, 01 Jul 2022 11:29:55 -0700 (PDT)
+        with ESMTP id S229529AbiGASdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 14:33:55 -0400
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DAE32EFF;
+        Fri,  1 Jul 2022 11:33:54 -0700 (PDT)
+Received: by mail-qk1-f174.google.com with SMTP id b24so2453428qkn.4;
+        Fri, 01 Jul 2022 11:33:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BfKQ/G9vpK8o5YTL2HP8aX5XHf4iZZVbeFdacSW26dw=;
-        b=F3fH6wCX0QPYKO+MXVgsBJkE7hfRcflKpN7gcMbXKQ2PKUumHMBA6G8y8eoEVjevqj
-         GaX5peWnQZWC38l+htKUUkikIfqQXMMwNzKmxOOLgr90pzUtmtwqlTEDndYfhEKfnbbK
-         LttzBv7NFI/TPApHwKNLdANyaaPbzZ7M1oRTWsre1XCjFW+LYqX7S11NY40e2R6BJd7c
-         K31b8oyncc2oV2RSmxH9l349aOlojYJmIeicLsYvwGRAtck6xidZ6av2C6GuUskDgTCS
-         ywv1QqNNpd1rmakdbDd2DyGG28S4cOOvPEf1udV//6amoD0Ko2koTrkwGRKjxGj/Zqzx
-         qVFg==
-X-Gm-Message-State: AJIora/AJHV1roWRUT7jOYWAE4P98KSqqSvyug0P6ohbSaeLAkVQnYWL
-        +TBja93kIfZcZXL8hLXEMw==
-X-Google-Smtp-Source: AGRyM1tBKEgt1I1S8M/iPVEROlqIos3uYk9EAnVDY4/jM8aYz7DrKKhMtpqYzQsLktxj6j+5uHUlHA==
-X-Received: by 2002:a05:6e02:144d:b0:2da:b8f7:402a with SMTP id p13-20020a056e02144d00b002dab8f7402amr8861719ilo.178.1656700194546;
-        Fri, 01 Jul 2022 11:29:54 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id o126-20020a022284000000b00339f193b8ddsm10184094jao.130.2022.07.01.11.29.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Jul 2022 11:29:54 -0700 (PDT)
-Received: (nullmailer pid 1275524 invoked by uid 1000);
-        Fri, 01 Jul 2022 18:29:52 -0000
-Date:   Fri, 1 Jul 2022 12:29:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 07/10] PCI: qcom: Add support for SA8540P
-Message-ID: <20220701182952.GB1266081-robh@kernel.org>
-References: <20220629141000.18111-1-johan+linaro@kernel.org>
- <20220629141000.18111-8-johan+linaro@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5CPgSxlxvAD6mxf8VRHupyPppcZp6QH5VnwOoF3PTjo=;
+        b=oM136O7pbMkKZWjM/Bks7ER8Ydfcj+Qyts3FT/hgHCYdNP3r6t1Zyiis5zFUhNTb8r
+         n+jIUZqv1F5UH2rL2WYzwKMsr+qp8TsdAaWG8ryddFsM3uCR5WiwasU5fp6nxdgJOxFy
+         4kUyhFA2bAXsEfWPyldUHf3nwTWptYevVZ9JUwl+QqJ/8cnlB2dWMdodLKFt+ZUbJJCS
+         McTknanMI+y7nL3Bj+TF+SrGI5sqWY4ZuX8eToQ6Amc9OBujIFhWbSj5roZsmbCHxdDL
+         XgxnT3QzQZCsMM7HKOD/pqWPSynW/I/wfTkapiXMtzt2kX9O/Ly/OdMVTg1lONQF6YI/
+         CmEg==
+X-Gm-Message-State: AJIora+RcqgsmKSHg7FIOjqW+4c9fTFdLGMIJSrplUaDMfmLyZfkvD+l
+        nHO5pNJ+E1lixyDQ7tLX4zJwu+dXG0ocCQ==
+X-Google-Smtp-Source: AGRyM1vPUaCgX1d2BNK70OXZKI8ltkJGTA9v07Gx86YPl5UhFhAAZUyHZPydugVx9WQxmjATXzefwQ==
+X-Received: by 2002:a05:620a:9de:b0:6af:20a:586f with SMTP id y30-20020a05620a09de00b006af020a586fmr11884385qky.432.1656700433428;
+        Fri, 01 Jul 2022 11:33:53 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id bq9-20020a05620a468900b006af6f0893c6sm7425194qkb.91.2022.07.01.11.33.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Jul 2022 11:33:53 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id 194so460731ybc.4;
+        Fri, 01 Jul 2022 11:33:53 -0700 (PDT)
+X-Received: by 2002:a05:6902:1246:b0:66d:5b0b:19b0 with SMTP id
+ t6-20020a056902124600b0066d5b0b19b0mr16010441ybu.365.1656700432819; Fri, 01
+ Jul 2022 11:33:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220629141000.18111-8-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220701162320.102165-1-biju.das.jz@bp.renesas.com> <20220701162320.102165-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220701162320.102165-2-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 1 Jul 2022 20:33:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUNm+HubG_JWwGWcSu4rJc=0-YUf1+1BpQQ6QX-5LOYrw@mail.gmail.com>
+Message-ID: <CAMuHMdUNm+HubG_JWwGWcSu4rJc=0-YUf1+1BpQQ6QX-5LOYrw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: r9a06g032: Add CAN{0,1} nodes
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 04:09:57PM +0200, Johan Hovold wrote:
-> The SA8540P platform has five PCIe controllers: two 4-lane, two 2-lane
-> and one 1-lane.
-> 
-> Add a new "qcom,pcie-sa8540p" compatible string and reuse the 1.9.0 ops.
-> 
-> Note that like for SC8280XP, the SA8540 controllers need two or three
-> interconnect clocks to be enabled.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 6 ++++++
->  1 file changed, 6 insertions(+)
+Hi Biju,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Fri, Jul 1, 2022 at 6:23 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add CAN{0,1} nodes to R9A06G032 (RZ/N1) SoC DTSI.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> @@ -423,6 +423,24 @@ gic: interrupt-controller@44101000 {
+>                         interrupts =
+>                                 <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>;
+>                 };
+> +
+> +               can0: can@52104000 {
+> +                       compatible = "nxp,sja1000";
+
+Is this block 100% compatible to the nxp,sja1000 block, or do we
+need an SoC-specific compatible value?
+
+> +                       reg = <0x52104000 0x800>;
+> +                       reg-io-width = <4>;
+> +                       interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&sysctrl R9A06G032_HCLK_CAN0>;
+
+According to the (old) bindings, the clock rate is specified using the
+non-standard "nxp,external-clock-frequency property" (seems like both
+bindings and driver can use some overhaul), and defaults to 16 MHz.
+According to the RZ/N1S documentation, the CAN clock is 48 MHz?
+
+> +                       status = "disabled";
+> +               };
+> +
+> +               can1: can@52105000 {
+> +                       compatible = "nxp,sja1000";
+> +                       reg = <0x52105000 0x800>;
+> +                       reg-io-width = <4>;
+> +                       interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&sysctrl R9A06G032_HCLK_CAN1>;
+> +                       status = "disabled";
+> +               };
+>         };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
