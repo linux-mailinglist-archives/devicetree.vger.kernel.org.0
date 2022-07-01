@@ -2,108 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99BAD5638B9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 19:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC1C85638C8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 19:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230238AbiGARsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 13:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53766 "EHLO
+        id S231343AbiGARxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 13:53:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbiGARsv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 13:48:51 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1388538BDA;
-        Fri,  1 Jul 2022 10:48:51 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id jb13so2998035plb.9;
-        Fri, 01 Jul 2022 10:48:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:content-language:to
-         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=w8ctqatJb7u4wWUQyGLLZgkC1Wle0LtPgmcAJi4CUns=;
-        b=A5Wvvtym4/wLlTBOj30oJN9D7GLZIYLlK8s5IFwowxkRKWAxC1zm/aEYNQg5xOcf3J
-         PrJOSYJdpNvEay2v8U+GvkqgjrvaQtZu/RKsead4yU+wLwdIJIbyXjsu0f4m4Xcugf/a
-         2uZL34ba0aTPHzOZ4VntmCAOUbsj8ACY9dTCkjEmzPD6b0oso8xOD9lEuWKUvoELQfh8
-         ZzzO+6wo6inzFVaWhHrsIFMmL9pAwi9nTTQ2N2DBejuOgEUH4RDjPkzV5AgBsEYyaJ3T
-         6GiT/nwYmz4WPE7kT0wTyx6P8taDiavSq58lO4YzgAIlj/Op6ObtzpUvpmwLA4OTxEme
-         P1OA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=w8ctqatJb7u4wWUQyGLLZgkC1Wle0LtPgmcAJi4CUns=;
-        b=PrBUSCZsA9Aaj7n92jnX/41tMoShQf7qsGUWe8+BY/82GQ+YhnBO3YkZgiQgw0XWK4
-         zuw42n1CkvhjuNytc5mpw82lUEq34ux49b//m0ppDw8OZ5HsTjISoSaoZ+GMsk1MJDRz
-         0fMWogPbiluochxaYVyro7rhOCoUIKiP8Fpg1Qdu2waVzhoDu/QC0mFrR/xjrUL9Hnlh
-         fFx2NcgsOhLm3lIcpVnWSKAMZRbtY/9vMXV92UIK/Ov182+imvyp/sFDNzDeWKKGGKYm
-         ui1mfWqzY2gDSgLCMA2SU7VqVkJg4mvd0mJps2MIJhcrqnVDbOOkepAVHKlrmFcx0o3+
-         MaJg==
-X-Gm-Message-State: AJIora9Ixz6maF7G0OpsxadYZDAsHIB2OAlfCfbkqQrpFH9bQBZllwT7
-        Jupwi9PwDXCTfQeG3oA+8EaO49ZRFuA=
-X-Google-Smtp-Source: AGRyM1s0b4US9fvkID/aTJUDfgkNZbYGo6AEeGc9vKfLGCGEQjcbNFTPqhIqXILiZggwaSRK4ixsjA==
-X-Received: by 2002:a17:902:edd1:b0:158:8318:b51e with SMTP id q17-20020a170902edd100b001588318b51emr21900633plk.89.1656697730516;
-        Fri, 01 Jul 2022 10:48:50 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d76-20020a621d4f000000b005255151e248sm16539633pfd.174.2022.07.01.10.48.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 10:48:49 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <0d045bb8-a519-39d4-17fa-123f90969bd9@roeck-us.net>
-Date:   Fri, 1 Jul 2022 10:48:47 -0700
+        with ESMTP id S230238AbiGARxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 13:53:48 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 786B73AA5B;
+        Fri,  1 Jul 2022 10:53:46 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id A9EF71BF205;
+        Fri,  1 Jul 2022 17:53:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1656698024;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=ANua7sLiiWlgviVfQqW0rs1+s39N6me9FtrJ3TzFU+Q=;
+        b=b91HGovyZaZ4+ncVRPP+QBF+8oGYi1ZQXtxudn2Sxr+1uN/wRFdlErQV2LmWXw+JT+NnMz
+        AU0fLIUo73TQGKqfhNGBeCr22YHmsaEbOYewSVRmDAHEs3rd+PVT0kNunpNdRJ087nPEQ+
+        RJBfZRetpREigqqFglaoxL+HCdMvqHZ7SqSdPLt6UKbzQpQpzULCTDIbp6ZN0ltuZAIBba
+        A7v6TeCRjyPyo+ddytUjkqyQZTWM5tBQLGcE4PqX2xW/mAQSkKUGkL2Ul1U4XKd6t7qx0p
+        8KdW56jAKDAkIlHBSRXHAlXG7f6yk6AQqH13FUZr6bAAFoEhXkxhaAtNfa7uwg==
+From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Rob Herring <robh@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH net-next v3] dt-bindings: net: dsa: renesas,rzn1-a5psw: add interrupts description
+Date:   Fri,  1 Jul 2022 19:52:31 +0200
+Message-Id: <20220701175231.6889-1-clement.leger@bootlin.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Isaac True <isaac.true@canonical.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        wim@linux-watchdog.org
-References: <20220629110626.2158127-1-isaac.true@canonical.com>
- <20220629110626.2158127-2-isaac.true@canonical.com>
- <20220701171829.GA1149706-robh@kernel.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 2/2] watchdog: gpio: add configurable minimum interval
-In-Reply-To: <20220701171829.GA1149706-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/1/22 10:18, Rob Herring wrote:
-> On Wed, Jun 29, 2022 at 01:06:26PM +0200, Isaac True wrote:
->> Add the "min_hw_margin_ms" parameter to gpio_wdt devices, allowing a
->> minimum interval to be specified, stopping watchdog devices from being
->> fed too quickly if they require a certain interval between feeds.
-> 
-> I assume there is some real platform with a real problem you are trying
-> to solve? Details please.
-> 
+Describe the switch interrupts (dlr, switch, prp, hub, pattern) which
+are connected to the GIC.
 
-Agreed, this should be explained in more detail.
+Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+Changes in V3:
+ - Renamed a few interrupt description with Geert suggestions.
 
-> Can you just hardcode some min? Maybe 10% of the max or something. Is
-> there a downside to a larger than necessary min?
-> 
+Changes in V2:
+ - Fix typo in interrupt-names property.
 
-That would result in extra overhead in the watchdog core which would not
-be required for all other hardware using this driver. I'd rather avoid that.
+ .../bindings/net/dsa/renesas,rzn1-a5psw.yaml  | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-> Wouldn't be better to fix this without requiring a DT change and that
-> could work on stable kernels if needed.
-> 
+diff --git a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+index 103b1ef5af1b..4d428f5ad044 100644
+--- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+@@ -26,6 +26,22 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  interrupts:
++    items:
++      - description: Device Level Ring (DLR) interrupt
++      - description: Switch interrupt
++      - description: Parallel Redundancy Protocol (PRP) interrupt
++      - description: Integrated HUB module interrupt
++      - description: Receive Pattern Match interrupt
++
++  interrupt-names:
++    items:
++      - const: dlr
++      - const: switch
++      - const: prp
++      - const: hub
++      - const: ptrn
++
+   power-domains:
+     maxItems: 1
+ 
+@@ -76,6 +92,7 @@ examples:
+   - |
+     #include <dt-bindings/gpio/gpio.h>
+     #include <dt-bindings/clock/r9a06g032-sysctrl.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     switch@44050000 {
+         compatible = "renesas,r9a06g032-a5psw", "renesas,rzn1-a5psw";
+@@ -83,6 +100,12 @@ examples:
+         clocks = <&sysctrl R9A06G032_HCLK_SWITCH>, <&sysctrl R9A06G032_CLK_SWITCH>;
+         clock-names = "hclk", "clk";
+         power-domains = <&sysctrl>;
++        interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "dlr", "switch", "prp", "hub", "ptrn";
+ 
+         dsa,member = <0 0>;
+ 
+-- 
+2.36.1
 
-Presumably that is some new hardware. Most of the watchdog drivers
-needing this value can derive it from the compatible property. The
-gpio watchdog driver is a bit different since it is supposed to work
-on a variety of hardware using gpio pins for watchdog control.
-
-Guenter
