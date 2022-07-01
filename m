@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA21562E58
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20918562E5D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jul 2022 10:35:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233056AbiGAIdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 04:33:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39224 "EHLO
+        id S235364AbiGAIfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 04:35:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234753AbiGAIdj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:33:39 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69D9F248F3
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 01:33:38 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id z41so2056557ede.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 01:33:38 -0700 (PDT)
+        with ESMTP id S235227AbiGAIfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 04:35:08 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFA170ADF
+        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 01:35:04 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id ej4so2016701edb.7
+        for <devicetree@vger.kernel.org>; Fri, 01 Jul 2022 01:35:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zcyeyug8N5POp+3jt+1UqliyhOpxyagkLr/iLfovg0Q=;
-        b=gYtlT963/Z6mi/VhzzIocugVatvlQipb8905qqzzqduECW/jCqUE8gUcsn4Glji28x
-         05fZ12pMnwHkMbJYCQLTrOQOvRR2C7nLtZpX2PwsG0cqGa68jSGybvO+eRnMoRrDb5iq
-         j7WZVIjil1liqg8EBMJQOV781GQPOftNEEmTkk1U3LyoLN3KPbMkwnAdlDITA4QAIx0D
-         v4LP+ZQp3zfADpjJrY3uHTH49c6lvQnq5KDTJPz0+Slcz/rqXivhmCWXJAZvaQMMNzIk
-         cIslbw4ZdmwMY5yH6TyV9qhvmwluY26XQIlDW8FI41QBI9Wi5y8FzadfmjY+dt0qH23c
-         4Hzg==
+        bh=yMa2IUU0MMjVVFZMbcvg6SCECsrNdRpao2T0ErtMqsA=;
+        b=W2O615zY5ih5nD4IwyMjJFYDvAf4FusViu+KrnCWjgqcoBbGZuRmZnE21hRHFQctdD
+         IyL2wXWczPl5+abTumlZjVh/XEmP2/CUGHCZYtAiKJ47DF4TewkQxcCsA2EWM9jsg/jr
+         R16GpzVOrnSmxAgsXYAocuqkSVshtDzdUB6JCA396glcX02IwlbybY0In3pERkbDg8RF
+         Y7kTk2UXf3wvj6y3nL+0Yh/h0Za9/iBO67g9XCOtUpE0JXbuQ9bdSxzpWXekqX+zhkh1
+         MCflSS+jUFg1QYnKO+Bd8D50D6xPvrVSv4iQJ+sHElkjXV7gnjY8CxlswzoDQoPIsIHF
+         vjAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=zcyeyug8N5POp+3jt+1UqliyhOpxyagkLr/iLfovg0Q=;
-        b=bATC5cr/5NMH8+vSqOYS4fXzuHmNuZ5LqqlHKVewB/hVFP/vqJJB3QIILjyjr4Sba0
-         qB+fTrzerUKqaowbRFnxnByyzfmIKLY3tvP8ZSD0t2d0o6D9IuMcGgkNnF63t4vEuVA0
-         T6PljPVdxHGn7ao96rEm1vtMNb9EUpWNGC/PoRzqdFT34y/6u1jNQb6AH21d/kTfK8Mv
-         MWV5yOWMoTFjmiISxhqK8liY+5K7HWVx+IfhlLVGYHj298Dh1gYGxXEe07+JBI4sO3bD
-         eERUwZA6arFQHRezMc3t65VfplcApHbVWO7Vb0IHD8i7VCNi0nCAN5Gjjgi/Rvf4X2cW
-         LvVQ==
-X-Gm-Message-State: AJIora+lIcy0GsyRwtFr7W58aNP4Cl58az8TZkJ2x5eyj4giC5EE4+MG
-        6wxLHCvTnEicCsU6MPfaEgfHsQ==
-X-Google-Smtp-Source: AGRyM1vvvzQ7PqwrAL7vOdGWHHfWG7Dx96ZnyzSBQFpZo0/VK6hwnKrYxGxaG7XKf4RAolcyGIle4w==
-X-Received: by 2002:a05:6402:2548:b0:437:62de:668 with SMTP id l8-20020a056402254800b0043762de0668mr17174670edb.143.1656664417062;
-        Fri, 01 Jul 2022 01:33:37 -0700 (PDT)
+        bh=yMa2IUU0MMjVVFZMbcvg6SCECsrNdRpao2T0ErtMqsA=;
+        b=T1GNt/YkDEjUnt9S8DjtJQ50leSfbbpYiqjJkd2X0iUbO3c3Vqgu2JizE5Agu8aS+V
+         hmb4ovW/7iGTGjMLpge2rLB4BUnT/NVwmCLPL3GSY7tqyBBiFPLpxgldE1Y0lG3rp4Sz
+         lOoorfnXbRRIuLkAOcIJ+Ick9vmXdPCYqA3tEYIlI9BR33WaxZ6bFEuml/8PaPKMnG7q
+         J7/Xk+QEQTLodKZy2xdEk9ihhmzMf/RndVofrhvBnUaSrWCropXhihqjVz6pt3A/4hG8
+         01NiIpGQaydX79Mvgb3wC7Q6YRso28AmBGDA87bEV9jedsO7f5ipv5tOHSGSDGhlIFHk
+         3SCQ==
+X-Gm-Message-State: AJIora8Nf8j13rimrATR/PbVjxyp6fNVfNumwG3n2efs+r8r9JU0iCl/
+        dpHdNhMmkTQi2VJ18AkEGrvKXg==
+X-Google-Smtp-Source: AGRyM1tKBOo52SFuio4IS4Jh7TszbiuHbVz1Y1z4yV20RnFhz4nN5NcxJkkBjMXnWFUqhCJYBK2Jwg==
+X-Received: by 2002:a05:6402:524d:b0:437:8d2e:c675 with SMTP id t13-20020a056402524d00b004378d2ec675mr17894302edd.65.1656664503461;
+        Fri, 01 Jul 2022 01:35:03 -0700 (PDT)
 Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g3-20020a1709061c8300b0070759e37183sm10133834ejh.59.2022.07.01.01.33.36
+        by smtp.gmail.com with ESMTPSA id pj10-20020a170906d78a00b006fa84a0af2asm10183514ejb.16.2022.07.01.01.35.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Jul 2022 01:33:36 -0700 (PDT)
-Message-ID: <c20ba06c-b37a-e91c-84c6-6d2147bb2478@linaro.org>
-Date:   Fri, 1 Jul 2022 10:33:35 +0200
+        Fri, 01 Jul 2022 01:35:02 -0700 (PDT)
+Message-ID: <3facb426-e9d0-9421-2eeb-bb2939982a4f@linaro.org>
+Date:   Fri, 1 Jul 2022 10:35:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
@@ -88,57 +88,10 @@ On 29/06/2022 16:09, Johan Hovold wrote:
 > Explicitly enumerate the older platforms that have a single msi host
 > interrupt. This allows for adding further platforms without resorting
 > to nested conditionals.
-> 
-> Drop the redundant comment about older chipsets instead of moving it.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-This does not exist in linux-next, so it should be squashed it with the
-previous series.
-
-> ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml      | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index a1b4fc70e162..8560c65e6f0b 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -625,7 +625,6 @@ allOf:
->          - reset-names
->  
->      # On newer chipsets support either 1 or 8 msi interrupts
-> -    # On older chipsets it's always 1 msi interrupt
->    - if:
->        properties:
->          compatible:
-> @@ -660,7 +659,21 @@ allOf:
->                  - const: msi5
->                  - const: msi6
->                  - const: msi7
-> -    else:
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pcie-apq8064
-> +              - qcom,pcie-apq8084
-> +              - qcom,pcie-ipq4019
-> +              - qcom,pcie-ipq6018
-> +              - qcom,pcie-ipq8064
-> +              - qcom,pcie-ipq8064-v2
-> +              - qcom,pcie-ipq8074
-> +              - qcom,pcie-qcs404
-
-Otherwise I cannot even check the context...
-
-> +    then:
->        properties:
->          interrupts:
->            maxItems: 1
-
+How does it allow it? New platform if not explicitly added to first
+"if:" will fall into the "else:", so will be handled and there is no
+need for nested if.
 
 Best regards,
 Krzysztof
