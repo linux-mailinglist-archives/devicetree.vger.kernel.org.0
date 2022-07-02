@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3957564336
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 01:12:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BDA7564340
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 01:12:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbiGBXEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 19:04:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55010 "EHLO
+        id S230055AbiGBXMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 19:12:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiGBXEe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 19:04:34 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38E65B7EB;
-        Sat,  2 Jul 2022 16:04:33 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id pk21so10315391ejb.2;
-        Sat, 02 Jul 2022 16:04:33 -0700 (PDT)
+        with ESMTP id S229468AbiGBXMm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 19:12:42 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A533FBC1A;
+        Sat,  2 Jul 2022 16:12:41 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id mf9so10395882ejb.0;
+        Sat, 02 Jul 2022 16:12:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=q4Q0u3OQPYSEIHOkfKsjK+dUNLGGXfSmT08dMRTZRyc=;
-        b=GKIjLleN2Qf7u+9okq7Vd6qkSsc3mf7MgRNZWk8SQDtG6CEqKhTSfzCPmeAAkzQZ4g
-         IdwxNXqneAvIAL8P81nHB2Bb/0GoY2KGrV5MXHUfZj9L+SONWt8LvmF+gT7EJk+7nhlh
-         mb0ul7mWDozIXgW7uyXStqlqMcoGaP8huGmE7crxE0GIbFUOyw9Bi8YuC0VdPBtKZQ5R
-         xZktX10C1ibypwB9XvKzljcbV1DsOphHvGjJEPGBJFf6ZwhZRJ/cPKRapsRdLas8ZKQT
-         Zz0hZrIq7Yg7IJ3t8SlernEF6UjcQ0RTHxWYaXgki+lRVmq+d4DR1pgNeO2RcL3w0B9B
-         nQyw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yzk0+Vxi71Pub0ZkiSwkLXSH/y4ORS5C+17h3e17Dxg=;
+        b=Uy72K6Ks6msSG4PAFeH7ClB2jPVidM1WTYEdtFISTRooGCrXC62LlhkOu5iD1VXDgu
+         x9RM4zu8pcMlLQc8ARfDuFLJinI1jMBr/O0i/wdAAdFsdQBN8xPS5gNpe1S5dOzRCuXP
+         KwBXd5xaCZ+HBKX10x8omVtUPXZFzyyIuo+tSoxNqOE5Pb4W1OhgYIVl7Unz1fmL6ff8
+         jZLgqF/o6VDQUgw08JKfzGITq3nFIM+DhmVZFkzceYE+LlgIA9wOFd7dzQak+81jpkgT
+         kYLZcINa7ddqUJ0VT3aHq41G3fH7LRuOL6JOPZjBlV5rC4ezolw4D0HXCHhSUl1ro6Yi
+         HG8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=q4Q0u3OQPYSEIHOkfKsjK+dUNLGGXfSmT08dMRTZRyc=;
-        b=gaDLDnZzBJ6rFD+k+p/l1oMdRsVOGGknM6/hGLqDLHUnilYpU1EAa9sSKtLTDlelth
-         nFvDbcDHGhVv0c4qSeJrdbiBAH3v0opylQqKRshZmJiEXZRDmwJKz08KtBXmD4nH5yzL
-         ohGkB7PJvW4go0qiKbyej+QfwATcwLVlV34rANdbejsQ9vyQh5LR3LfS6U4lvxwoxj8E
-         dxHS/KuUUGTLVTQYEHK100QcTTDzpl/2OOua2NR9EgNpcAh+CDrbMH9lNKDMYmgmqKgs
-         NVuzyGRi4NGuCwYqNyLKrOORoxnn6nMoku/5VRCcH8d/CDARmDoSjfRKFi2RH6f5nMib
-         WdaQ==
-X-Gm-Message-State: AJIora9qvk5VuImLQn0wAVXgi1lUfXvTNk7tAY6C4zMRDo6lTqKN5VK0
-        enEY9sAMBLLWHLZQ5cfM/7NujKiRmrv/ZmgI0Xc=
-X-Google-Smtp-Source: AGRyM1uTEi+dowzJS3hYBz1ryLHs2/it9gJrhBZslQZ4YqcQBE4bP0ofSJArdONYEdYHdmbEGYEx4xqL+BxvVNazowA=
-X-Received: by 2002:a17:906:7386:b0:715:7024:3df7 with SMTP id
- f6-20020a170906738600b0071570243df7mr21406740ejl.543.1656803071611; Sat, 02
- Jul 2022 16:04:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220628124441.2385023-1-martin.blumenstingl@googlemail.com>
- <20220628124441.2385023-4-martin.blumenstingl@googlemail.com> <20220701163350.GA1078312-robh@kernel.org>
-In-Reply-To: <20220701163350.GA1078312-robh@kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yzk0+Vxi71Pub0ZkiSwkLXSH/y4ORS5C+17h3e17Dxg=;
+        b=t1E6Nwewlc8AG1PV7C7iJnbXhn9cqzuChrQzjVtOZy5sGSEjP7YNLDJ5x1R7ey+Ggo
+         03cNdXWy1FDtFLKZw2G+x7rzPZroS939QSpYvXLKjIiMWEDXC3ZsMx/npQtP/zImHv8h
+         45Ni6Q5qiKe9rHyB8st9lKxDe2l38ZOMhSwQe3LKyFBu10+whE2LPn6wENELVbwz+9K5
+         jHcmLUKX/rah+V1GHXyrblpq/DyOReht4zPeViBrmiL9h0sp25ZP06InLaNskppPKut3
+         6p0I8Kzk37euI1fKm9stJIXVb9S4VnhMt31M77HBIfoaG4OPF4Glq+JQG1q+5hJaWnec
+         W6dA==
+X-Gm-Message-State: AJIora+ckGh9ldMig/8mY5AR8R9esE+xAHFQBl71dgfp6FtIWG4OXxSj
+        PWJCh4BoZWRWKduITi0m1ZI=
+X-Google-Smtp-Source: AGRyM1viR73Qu1u7FTg69uJgtEsw+275wE8OAb8mDOIOrGlBdlBUamZM8GMZCjrMH3PLCj3SP0ApLw==
+X-Received: by 2002:a17:907:3e08:b0:726:2af1:1d5f with SMTP id hp8-20020a1709073e0800b007262af11d5fmr21760647ejc.235.1656803560144;
+        Sat, 02 Jul 2022 16:12:40 -0700 (PDT)
+Received: from localhost.localdomain (dynamic-2a01-0c23-c4d4-2700-f22f-74ff-fe21-0725.c23.pool.telefonica.de. [2a01:c23:c4d4:2700:f22f:74ff:fe21:725])
+        by smtp.googlemail.com with ESMTPSA id uz12-20020a170907118c00b00711aed17047sm12234329ejb.28.2022.07.02.16.12.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Jul 2022 16:12:39 -0700 (PDT)
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 3 Jul 2022 01:04:20 +0200
-Message-ID: <CAFBinCARuO0WFLufwgPxQkY_Mh+Pfn6V8QAe-HZ8sjUBKTYhtQ@mail.gmail.com>
-Subject: Re: [PATCH v1 3/9] dt-bindings: reset: intel,rcu-gw: Update bindings
- for "legacy" SoCs
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, vkoul@kernel.org, kishon@ti.com,
-        rtanwar@maxlinear.com
-Content-Type: text/plain; charset="UTF-8"
+To:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, tlanger@maxlinear.com,
+        rtanwar@maxlinear.com, miquel.raynal@bootlin.com, richard@nod.at,
+        vigneshr@ti.com,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v3 0/8] intel-nand-controller: Fixes, cleanups and questions
+Date:   Sun,  3 Jul 2022 01:12:19 +0200
+Message-Id: <20220702231227.1579176-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.37.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -69,116 +69,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- Hi Rob,
+Hello,
 
-On Fri, Jul 1, 2022 at 6:33 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Jun 28, 2022 at 02:44:35PM +0200, Martin Blumenstingl wrote:
-> > The Lantiq Amazon-SE, Danube, xRX100 and xRX200 SoCs have up to two USB2
-> > PHYs which are part of the RCU register space. The RCU registers on
-> > these SoCs are using big endian. Update the binding for these SoCs to
-> > properly describe this IP:
-> > - Add compatible strings for Amazon-SE, Danube and xRX100
-> > - Rename the xRX200 compatible string (which is not used anywhere) and
-> >   switch to the one previously documented in mips/lantiq/rcu.txt
-> > - Allow usage of "simple-mfd" and "syscon" in the compatible string so the
-> >   child devices (USB2 PHYs) can be described
-> > - Allow #address-cells and #size-cells to be set to 1 for describing the
-> >   child devices (USB2 PHYs)
-> > - #reset-cells must always be 3 (offset, reset bit and status bit) on the
-> >   legacy SoCs while LGM uses a fixed value of 2 (offset and reset bit -
-> >   status bit is always identical to the reset bit).
-> >
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > ---
-> >  .../bindings/reset/intel,rcu-gw.yaml          | 84 +++++++++++++++++--
-> >  1 file changed, 79 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml b/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml
-> > index be64f8597710..b90913c7b7d3 100644
-> > --- a/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml
-> > +++ b/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml
-> > @@ -11,9 +11,16 @@ maintainers:
-> >
-> >  properties:
-> >    compatible:
-> > -    enum:
-> > -      - intel,rcu-lgm
-> > -      - intel,rcu-xrx200
->
-> It is okay to remove/change this because ?
-I'll update the description in v2. The "intel,rcu-xrx200" compatible
-string isn't used anywhere (upstream or downstream in OpenWrt).
-u-boot on Lantiq xRX200 SoCs is too old to pass a dtb to the kernel,
-so we're appending the DTB to the kernel image.
+I am trying to replace the xway_nand driver (which is still using the
+legacy NAND API) with the intel-nand-controller driver. The Intel LGM
+IP (for which intel-nand-controller was implemented) uses a newer
+version of the EBU NAND and HSNAND IP found in Lantiq XWAY SoCs. The
+most notable change is the addition of HSNAND Intel LGM SoCs (it's not
+clear to me if/which Lantiq SoCs also have this DMA engine).
 
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - lantiq,ase-rcu
-> > +              - lantiq,danube-rcu
-> > +              - lantiq,xrx100-rcu
-> > +              - lantiq,xrx200-rcu
-> > +          - const: simple-mfd
->
-> This says child nodes have 0 dependence on anything in the parent node.
-> Such as a clock in the parent needing to be enabled.
->
-> > +          - const: syscon
->
-> Given the child nodes depend on this, I find the combination to be a
-> contradiction. But it's widely used, so oh well.
-I can think of two ways to solve this:
-1) remove the simple-mfd compatible string and make the driver also
-discover child nodes
-2) remove the simple-mfd compatible string and remove the USB PHY
-child nodes - then add add #phy-cells = <1> to the RCU node itself
-(and somehow update the RCU and USB PHY drivers accordingly)
-3) introduce a separate child node for the reset-controller, then the
-child nodes depend on each other (but there's no strict dependency on
-the parent anymore other than the fact that the parent needs a
-"syscon" compatible string).
+While testing my changes on a Lantiq xRX200 SoC I came across some
+issues with the intel-nand-controller driver. The problems I found are:
+1) Mismatch between dt-bindings and driver implementation (compatible
+   string, patch #1 and patch #4) and hardware capabilities (number of
+   CS lines, patch #1).
+2) The driver reads the CS (chip select) line from the NAND controller's
+   reg property. In the dt-bindings example this is 0xe0f00000. Instead
+   it must be read from the NAND chip (child node).
+3) A few smaller code cleanups to make the driver easier to understand
+   (patches #5 to #8)
+4) I tried to understand the timing parameter calculation code but found
+   that it probably doesn't work on the Intel LGM SoCs either. The
+   dt-bindings example use clock ID 125 which is LGM_GCLK_EBU. So far
+   this is fine because EBU is the actual IP block for the NAND
+   interface. However, drivers/clk/x86/clk-lgm.c defines this clock as
+   a gate without a parent, so it's rate (as read by Linux) is always 0.
+   The intel-nand-controller driver then tries to calculate:
+     rate = clk_get_rate(ctrl->clk) / HZ_PER_MHZ
+   (rate will be 0 because clk_get_rate() returns 0) and then:
+     DIV_ROUND_UP(USEC_PER_SEC, rate)
+   (this then tries to divide by zero)
 
-My understanding of this IP block is that it was initially designed as
-a reset controller, hence its name "reset controller unit" (RCU). Then
-additional logic was added after the fact.
-So I think 1) (dropping the simple-mfd compatible string) or 2)
-(dropping the simple-mfd compatible string and the child nodes
-altogether) is the right way to go here. Which route would you go and
-why?
+For me to move forward with the transition from xway_nand to the
+intel-nand-controller driver I to understand a few more details:
+- Who from Maxlinear (who took over Intel's AnyWAN division, which
+  previously worked on the drivers for the Intel LGM SoCs) can send a
+  patch to correct the LGM_GCLK_EBU clock rate in
+  drivers/clk/x86/clk-lgm.c? Or is LGM dead and the various drivers
+  should be removed instead?
+- Who from Maxlinear can provide insights into which clock is connected
+  to the EBU NAND controller on Lantiq XWAY (Danube, xRX100, xRX200,
+  xRX300) SoCs as well as newer GRX350/GRX550 SoCs so that I can make
+  the intel-nand-controller work without hardcoded timing settings on
+  the XWAY SoCs?
 
-[...]
-> > +patternProperties:
-> > +  "^usb2-phy@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: "../phy/lantiq,xway-rcu-usb2-phy.yaml"
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: intel,rcu-lgm
-> > +    then:
-> > +      properties:
-> > +        "#reset-cells":
-> > +          const: 2
->
-> else:
->   properties:
->     "#reset-cells":
->       const: 3
-much shorter, thanks - I'll take care of this in v2.
+Due to the severity of issues 2) and 4) above I am targeting linux-next
+with this series. In my opinion there's no point in backporting these
+fixes to a driver which has been broken since it was upstreamed.
 
-[...]
-> > +        usb_phy0: usb2-phy@18 {
-> > +            compatible = "lantiq,xrx200-usb2-phy";
-> > +            reg = <0x18 4>, <0x38 4>;
-> > +            status = "disabled";
->
-> Why is your example disabled? Don't use 'status' in examples.
-I should know this better - I'll fix this in v2.
+Changes since v1 from [0]:
+- Thanks to Miguel for confirming that the reg property of the NAND chip
+  is the chip select number of the NAND controller. I removed a question
+  about this from the cover-letter.
+- Fixed accidental $id change in patch #1 which fixes a binding error
+  reported by Rob's bot
+- Dropped RFC status
+
+Changes since v2 from [1]:
+- Renamed the binding file (in patch #1) to match the new compatible
+  string as suggested by Rob
+- Added Rob's Acked-by to patch #2 (thank you!)
 
 
 Best regards,
 Martin
+
+
+[0] https://lore.kernel.org/linux-mtd/20220628163850.17c56935@xps-13/T/#m4b2b6e1c970adf074a17ab9568637aff90e6ca36
+[1] https://lore.kernel.org/linux-mtd/20220629213508.1989600-1-martin.blumenstingl@googlemail.com/T/#u
+
+
+Martin Blumenstingl (8):
+  dt-bindings: mtd: intel: lgm-nand: Fix compatible string
+  dt-bindings: mtd: intel: lgm-nand: Fix maximum chip select value
+  mtd: rawnand: intel: Read the chip-select line from the correct OF
+    node
+  mtd: rawnand: intel: Remove undocumented compatible string
+  mtd: rawnand: intel: Don't re-define NAND_DATA_IFACE_CHECK_ONLY
+  mtd: rawnand: intel: Remove unused nand_pa member from ebu_nand_cs
+  mtd: rawnand: intel: Remove unused clk_rate member from struct
+    ebu_nand
+  mtd: rawnand: intel: Use devm_platform_ioremap_resource_byname()
+
+ ...l,lgm-nand.yaml => intel,lgm-ebunand.yaml} |  8 +++---
+ drivers/mtd/nand/raw/intel-nand-controller.c  | 28 +++++++++----------
+ 2 files changed, 17 insertions(+), 19 deletions(-)
+ rename Documentation/devicetree/bindings/mtd/{intel,lgm-nand.yaml => intel,lgm-ebunand.yaml} (91%)
+
+-- 
+2.37.0
+
