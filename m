@@ -2,84 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADC5656402D
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 15:10:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCC0F564058
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 15:26:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229592AbiGBNKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 09:10:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50072 "EHLO
+        id S230155AbiGBN0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 09:26:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiGBNKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 09:10:46 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 769BD9FFD;
-        Sat,  2 Jul 2022 06:10:40 -0700 (PDT)
-Received: (Authenticated sender: didi.debian@cknow.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id CB176E0004;
-        Sat,  2 Jul 2022 13:10:32 +0000 (UTC)
-From:   Diederik de Haas <didi.debian@cknow.org>
-To:     heiko@sntech.de, ardb@kernel.org, herbert@gondor.apana.org.au,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: Re: [PATCH v7 00/33] crypto: rockchip: permit to pass self-tests
-Date:   Sat, 02 Jul 2022 15:10:22 +0200
-Message-ID: <5836825.lOV4Wx5bFT@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20220508185957.3629088-1-clabbe@baylibre.com>
-References: <20220508185957.3629088-1-clabbe@baylibre.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4750321.31r3eYUQgx"; micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229497AbiGBN0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 09:26:52 -0400
+X-Greylist: delayed 75126 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 02 Jul 2022 06:26:50 PDT
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A2BEE0A;
+        Sat,  2 Jul 2022 06:26:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1656768396;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=ADhBACrz2Qr0S090wS1ZIeXS8nBhvOhWtGz98bfbjKc=;
+    b=R2EZDoOxGYQL6npqnTUNFLU0N0ESBh2a/SC1H16XCaCAx4XMSGZeC3sAus7KN6KPLK
+    86cT70xlMus+iqlYKDBgSTMFkylLoWvWNgE8jckxVWC/V1YvytrqrIsGOwlVYVUDjIpH
+    B6m3nTaZYOp6tGlll/5qo3cPGKwSGLbbRAFrU+Q3fWmGG/MzZ7t7sRulvz8jyVhCiJ0C
+    Ujmjv+Dsgnu2qLZ6BaY2JymHXVGC4E5ERY/uwuTDu5V+vY0wjtRAc8es54D/2yNCnuOA
+    hXLk7gcx1vyZymkMp+vnFo8tds1kjp2wzMqW0PEdCir7ZzVBcxt0dyQ4UILz4EdhH1ti
+    73eg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBp5hRw/qOxWRk4dH6mrCd8hjwtNJ1XR1aCfoW9lMn+10EiTZKVKiKo"
+X-RZG-CLASS-ID: mo00
+Received: from [IPv6:2001:16b8:2d3c:9600:bc62:e093:3980:49eb]
+    by smtp.strato.de (RZmta 47.46.1 AUTH)
+    with ESMTPSA id x1817fy62DQXDwp
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Sat, 2 Jul 2022 15:26:33 +0200 (CEST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v2 1/6] dt-bindings: leds: Convert is31fl319x to dtschema
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20220701134415.4017794-2-vincent.knecht@mailoo.org>
+Date:   Sat, 2 Jul 2022 15:26:32 +0200
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-leds@vger.kernel.org,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <99DCB131-5A1F-4F8B-8E3F-1AE283AA591A@goldelico.com>
+References: <20220701134415.4017794-1-vincent.knecht@mailoo.org>
+ <20220701134415.4017794-2-vincent.knecht@mailoo.org>
+To:     Vincent Knecht <vincent.knecht@mailoo.org>,
+        Rob Herring <robh+dt@kernel.org>
+X-Mailer: Apple Mail (2.3445.104.21)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---nextPart4750321.31r3eYUQgx
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Sat, 02 Jul 2022 15:10:22 +0200
-Message-ID: <5836825.lOV4Wx5bFT@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20220508185957.3629088-1-clabbe@baylibre.com>
-References: <20220508185957.3629088-1-clabbe@baylibre.com>
-MIME-Version: 1.0
+Hi Vincent,
 
-On Sunday, 8 May 2022 20:59:24 CEST Corentin Labbe wrote:
-> The rockchip crypto driver is broken and do not pass self-tests.
-> This serie's goal is to permit to become usable and pass self-tests.
-> 
-> This whole serie is tested on a rk3328-rock64, rk3288-miqi and
-> rk3399-khadas-edge-v with selftests (with
-> CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
+> Am 01.07.2022 um 15:44 schrieb Vincent Knecht =
+<vincent.knecht@mailoo.org>:
+>=20
+> Convert leds-is31fl319x.txt to dtschema.
+>=20
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+> .../bindings/leds/issi,is31fl319x.yaml        | 113 ++++++++++++++++++
+> .../bindings/leds/leds-is31fl319x.txt         |  61 ----------
+> 2 files changed, 113 insertions(+), 61 deletions(-)
+> create mode 100644 =
+Documentation/devicetree/bindings/leds/issi,is31fl319x.yaml
+> delete mode 100644 =
+Documentation/devicetree/bindings/leds/leds-is31fl319x.txt
+>=20
+> diff --git =
+a/Documentation/devicetree/bindings/leds/issi,is31fl319x.yaml =
+b/Documentation/devicetree/bindings/leds/issi,is31fl319x.yaml
+> new file mode 100644
+> index 000000000000..17635a7cf8af
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/issi,is31fl319x.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/issi,is31fl319x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ISSI LED controllers bindings for IS31FL319{0,1,3,6,9}
+> +
+> +maintainers:
+> +  - H. Nikolaus Schaller <hns@goldelico.com>
+> +
 
-https://salsa.debian.org/kernel-team/linux/-/merge_requests/493 is where I 
-integrated this patch set with the Debian kernel and tested that successfully 
-on my Pine64 Rock64.
-IOW: Tested-by Diederik de Haas <didi.debian@cknow.org>
+as noted for v1 you can change this as it is a new file (just same idea =
+in different language) and I won't have time to maintain it.
 
-AFAIK, this patch set has also been tested on rk3399-rockpro64 by sigmaris.
---nextPart4750321.31r3eYUQgx
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCYsBDvgAKCRDXblvOeH7b
-blpaAP9kFZ/boaOXl0bbOZEIBmCFypk1uuBcJuyFoKwO5UqmFQD+IfGRbHcHhnvC
-lA2OKhtfIjfHBONu1gwLt9f2XbMMBQk=
-=PeHT
------END PGP SIGNATURE-----
-
---nextPart4750321.31r3eYUQgx--
-
-
-
+BR and thanks,
+Nikolaus=
