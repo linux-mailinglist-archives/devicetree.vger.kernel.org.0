@@ -2,116 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5FA5641A8
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 18:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 160DA5641BE
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 19:03:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232272AbiGBQvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 12:51:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50166 "EHLO
+        id S232304AbiGBRDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 13:03:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232079AbiGBQvc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 12:51:32 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1274BDE93;
-        Sat,  2 Jul 2022 09:51:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1656780663;
-        bh=mUyhruXIhmuUViMeDFbRQp4XSTkRwYDiNt+WsCvGuuM=;
-        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=IAv5TECA6DaGDanu4F2UESXF9U4moCqIxQji5xOqiyBEcqkHYY6nfGeJy9vMUCEeH
-         CEo2AWjmKthmW2XDuFNd+PGaGDVhDJnJ9Ewwb8ZthEs4qEX3YEQb28EWUBVY3Reh6I
-         /Y8bOrvSyWmXh7j1b7mgqHSSYAPko34986YQpylI=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.0.69] ([46.223.3.210]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MMofW-1nr6qx0112-00Ik4J; Sat, 02
- Jul 2022 18:51:03 +0200
-Message-ID: <dd7bd8a5-19e2-fc39-357a-7633cf4997e4@gmx.de>
-Date:   Sat, 2 Jul 2022 18:50:59 +0200
+        with ESMTP id S231520AbiGBRDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 13:03:41 -0400
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB190B49A;
+        Sat,  2 Jul 2022 10:03:40 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 854275C0163;
+        Sat,  2 Jul 2022 13:03:38 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Sat, 02 Jul 2022 13:03:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1656781418; x=
+        1656867818; bh=Qw0g3C0GCDs1Krht9RCgkXeovny/SwSqNa/Sv0Q8bjY=; b=r
+        VBmpVASF3jGoNCF0i3CEx9TlVgGKj0OIneOTRlhXTcUF1aH8xwkouQul4YGZyo9N
+        38t3tff/NNFZ02/gKboaO750iZXP+xjqHHvh9rb4oidrqjAc1Mg5WEEOLX3A7718
+        1xK5grx9rr7PB/ANdUtcvKIx7GCzVtR3JMyoKCm7cKrxvG2C8KVAUx4SKM+7HwlZ
+        WqAWv4bI6hLkgi6DszVYYQjGTDTIbrpOKJbKXyfP8IxC7hjo41Wg8Z44QWpGEMcA
+        sbfY0dnYXGmKNdb4pXv+8Nf4VLg6cC7yx2iSJpO0xhdyzqyOQSk6rlN9TZm3BNck
+        S+1pMMU6a5bFZaNqqH0pA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1656781418; x=
+        1656867818; bh=Qw0g3C0GCDs1Krht9RCgkXeovny/SwSqNa/Sv0Q8bjY=; b=T
+        ppaHG4SJqXpXhMgJtsJGffsPppzujMcVklJ3+5w9qgoLM6dqxncKPUNeaMJ5Culi
+        ptGAq03MhAyCjDrli2HPZcglwmUgCH6rb/ZoDP74QlOEPG2gQ2yRXW39nDq8MY0C
+        hok1XMR9kclnYF4DiQKS6ed22hJhO5aoCNh8frNhmsURfb4aMQ34ifPeYFyTkDjr
+        bo69tLzhx6mT1cL6etOgdIGXEZCY6iwLnrz9O9KFU+eDxgPRl9DCRT9fgZZLGyt9
+        +8VtWqWYHdY9L9GsP3iMMrShgaKwUwsec8L3RCmLpf8ATVQtYVhTcpI9jOdI7pVR
+        HYHjkfUaXvlFm4rrylFdQ==
+X-ME-Sender: <xms:aXrAYtJBfCwcoLHxzIR-JgbhSU4eaizYBIRq0ERcnQNYwGuC3GhKVw>
+    <xme:aXrAYpLOmKVutZb6yu3HYCeiVQFWvcN4V4d87F4pKW_dFnwZgvBmxR-j07ccPuLby
+    0B7ai-f0ZSncDkz_w>
+X-ME-Received: <xmr:aXrAYlt4n80duRIcxG3KRfPyEvfC6rMAfsSOgbI79ObjyKRJFfbGHYIPQePRKXlvz9dkAtu1m9tjCP_QLVJheTpN_ROTUq-6CxE3AxqgddDcVUuFXkVVHWWs1w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehhedguddtjecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefuvfevfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgr
+    mhhuvghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqne
+    cuggftrfgrthhtvghrnhepjeelfedutdeggeevvdekheefjeefvefgfeeiffefgeduieeu
+    tdehkeejleegueejnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhl
+    lhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:aXrAYuZsz_UhmxI7CZwIMhHnE7Ru2l2YpXe0FML3IXw21_Z6miFdLg>
+    <xmx:aXrAYkbGcxlj6Wr6DVO-pJyxY8wGCkVp1_guGuIIrjnkxXV0QHY6UA>
+    <xmx:aXrAYiDs3Nfgdt2Yi9_IFnu52i2FkaI1oHEo-_L5-QzfBEcLN7tnMw>
+    <xmx:anrAYkqyaJmGZ7Dom7nJNRuGR-A8SCLakorPvruP0KUk4hSVZtFXUg>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 2 Jul 2022 13:03:36 -0400 (EDT)
+Subject: Re: [PATCH 0/3] ARM: sunxi: Remove A31 and A23/A33 platform SMP code
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-clk@vger.kernel.org, Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Emilio_L=c3=b3pez?= <emilio@elopez.com.ar>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
+References: <20220531045038.42230-1-samuel@sholland.org>
+ <2833034.e9J7NaK4W3@kista>
+ <20220613121729.46233a75@donnerap.cambridge.arm.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <87fd9c7a-69be-e846-45ae-de3d773ba33a@sholland.org>
+Date:   Sat, 2 Jul 2022 12:03:35 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/8] serial: core: only get RS485 termination gpio if
- supported
+In-Reply-To: <20220613121729.46233a75@donnerap.cambridge.arm.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-To:     =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Lukas Wunner <lukas@wunner.de>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        vz@mleia.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-serial <linux-serial@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
- <20220622154659.8710-2-LinoSanfilippo@gmx.de>
- <20220625194951.GA2879@wunner.de>
- <fbce8d7e-86e-d47e-bcd8-5b99754d1d2e@linux.intel.com>
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-In-Reply-To: <fbce8d7e-86e-d47e-bcd8-5b99754d1d2e@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:KV+4xPvzh0c7cByKeFFk/pLcKFJ1ZO2uSNEEgxRyg3FJs6W66M9
- 49CwH2GFa49hMrEpMPhGlXwgvKHiWeWkhZCbzE+fUo+oFH8iEd8Zl2HWpS2wXZPhVHdaqJs
- leXq7fpqRzpmIyK8+yZCGLeZYwSRvY5RB5KFL8igB7oZ6m7qLsVtxAlB0ufkvllsNyh2x7L
- gYhtSjBVzSb9SMohfo1eg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:gK6ld9oDcxA=:ClhnIwM/mA5AvWRKq/whT4
- vlqN9ckew6KPdywCugY9q9WBB1eWTfDTaHJcW3F9ZUHgIEqOk+XzSLwP7KT3GReWRQji/VKnw
- B3u0LmhLwS+Ci88M0h4Ta9LxE5zfxaFG/Sw+1964WrE5HYDkFr0k8IKNNukSvYjPGQFgdfkX3
- c1QwcRCCNhOJv1wpdAHtk61guvU7OtENaYGZnwlIrW6VRDiKOUjAcU4TBiwmVcIn2dARxFtyn
- 6e7gS9RBXJbJdvUGzLvYOBNC10egN/hP4tn7tQd9pi0jaxKl766tgH0vYZlYVNH/saqde/nDW
- W4PTZBlp1SHkYcAwDpqBNTEOGAar5EZ64jOLBf4kE0Fry6qQsLJ/22MDXKpyfWw9/X4HVY4Ru
- oNoxRN+p6moAVOAdvHwU8ziXYmVNTS8MgACHc15vr0R3jTasfznn8S0NPrjlYmoeDxCERlNBu
- 0/NAxzslsTmAij2gD4ZstA98YC/mZm6cF5N1eIucf/ehWzRmaWpxmpLRlvSQZiXwwEQiVdZAk
- 7Us7+SpGyeEesQTNCEpUM9U3Pkz7v082PoIcrUp//9130HnghuozMgfJyUUhgfw/kSYvSwOWH
- sZCeaXdVzuCycsaorpb3ehKi2wzzy4dPjVmQpVE5erKV1zi3xaBr6+bRyrF0hM3sZ1jnp9BHF
- FOEgi3VrXFjUPtRV6x717bHt0jz2SK4NQwgI5k7609GYIWUzHZPbz84kv7Jyp6BUEMs+jO3rb
- gHdjWCWuknMkJWVTo4Rr8QQuHCL0627C6YyH6wT9qGtBYFHZdACwmMyautyW8XuSa/WNxxxVi
- WltMwdTyclzPTY4DKU86Sb9i03GETuX93OmB41XMljBbh8OKo8qXqY8xvC93eCwp9pHLlphi8
- x67OU+iEmIF+80BOZWSIOUkGN7jlkRStF+ncNEgoosBHvLV9aZFb1PIhKMKkYNEEEGd0fVZyP
- hbNRyrtFv9lKEjI88QHKD8xhY2qbGcb/2N784nwVDKof4Krg7fSOcXOTzfx/jOYsOzh5pqp3q
- RkfRe5xMAXArhsO3S3oAJGlbnxP3OM3cD4LDpbh0Meg5KEVsHtG82Y11d5cjq3JZSKPQb9qvf
- 6JbgCcch4pAhMuMX8wIWlOdRFqEy1rBZ/dvlbQB2B2foNy27TUdKMQWDg==
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+[+ clock maintainers]
 
-On 27.06.22 11:05, Ilpo J=C3=A4rvinen wrote:
-> On Sat, 25 Jun 2022, Lukas Wunner wrote:
+On 6/13/22 6:17 AM, Andre Przywara wrote:
+> On Sun, 12 Jun 2022 23:09:07 +0200
+> Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
+> 
+> Hi Samuel,
+> 
+>> Dne torek, 31. maj 2022 ob 06:50:35 CEST je Samuel Holland napisal(a):
+>>> This series is preparation for converting the PRCM MFD and legacy clock
+>>> drivers to a CCU clock driver.
+> 
+> May I ask what the purpose of this exercise is? So if I understand
+> correctly, then it's about to convert the sun8i-a23-prcm MFD driver and
+> its children to a single "modern style" CCU clock driver, with its opaque
+> DT node?
 
+Yes, the purpose is to finish the conversion that was started six years
+ago[1][2], and eventually delete drivers/clk/sunxi.
+
+[1]: https://git.kernel.org/torvalds/c/78a9f0dbcd60
+[2]: https://git.kernel.org/torvalds/c/2c89ce4f4b19
+
+> If that changes the compatible strings or the references to the clock
+> providers (and I guess it would need to?), then this would mean an
+> incompatible change. Which also means we would need to keep the old code
+> around, to maintain compatibility with "old" DTs? So what is the win then?
+> Now we have *two* clock drivers, for the same device, which need
+> maintenance and testing.
+
+We already have two drivers for the PRCM. ccu-sun8i-r, which is already built in
+to all MACH_SUN8I kernels, was originally intended to support A31/A23/A33, but
+nobody ever implemented it. See the comment in the binding header:
+
+    /* 8 is reserved for CLK_APB0_W1 on A31 */
+
+The benefits of conversion are:
+ - U-Boot does not have to add support for an already-deprecated clock framework.
+ - Users who know they have a recent devicetree can disable CLK_SUNXI.
+ - Eventually we can disable CLK_SUNXI and delete drivers/clk/sunxi.
+
+Yes, we need to keep the old code for several years to support existing
+devicetrees. That is exactly why I want to do the conversion as soon as
+possible: to get that clock started now.
+
+> So can you confirm that this will be a breaking change?
+
+Yes, just like the other half of the CCU conversion was.
+
+>> The platform SMP code references the PRCM
+>>> node to map its MMIO space, which will break when the PRCM node is
+>>> removed/replaced.  
 >>
->> I think what you want to do is amend uart_get_rs485_mode() to set
->> SER_RS485_TERMINATE_BUS in port->rs485_supported_flags if a GPIO
->> was found in the DT.  Instead of the change proposed above.
+>> Why can't we just leave old platform code? If older dtb file is used, it would 
+>> still work. Actually, isn't trivial to support new CCU binding too, just by 
+>> including new CCU compatible string? IIUC new CCU node will have same address 
+>> as current PRCM node.
 
-Agreed.
+Yes, I could add the new compatible. I was trying to avoid adding more code and
+more complexity to code that appeared to be unused in the first place.
 
->
-> That seems appropriate (and is a fix).
->
-> What makes it a bit complicated though is that it's a pointer currently
-> and what it points to is shared per driver (besides being const):
-> 	const struct serial_rs485       *rs485_supported;
-> While it could be embedded into uart_port, there's the .padding which we
-> might not want to bloat uart_port with. Perhaps create non-uapi struct
-> kserial_rs485 w/o .padding and add static_assert()s to ensure the
-> layout is identical to serial_rs485?
->
->
+> This aims for a similar direction, though in this case the alternative
+> (PSCI) predates the sunxi specific method in the kernel support. Can we
+> just deprecate this code, maybe issue a warning, with the hint to update
+> the bootloader (which might not be possible for some devices)?
 
-This seems to be indeed the cleanest solution.
+Since mainline U-Boot provides PSCI, I assume the purpose of this code was to
+support the vendor bootloader blob. And the threads adding this code[3][4]
+confirm that. In that case, users would have to be using a DTB shipped with the
+kernel, not the one provided by the bootloader. So if we change the devicetree,
+we have to change the code, too.
 
 Regards,
-Lino
+Samuel
 
+[3]: https://lore.kernel.org/lkml/20131110100312.GI26440@lukather/
+[4]: https://lore.kernel.org/lkml/1426649042-30547-1-git-send-email-wens@csie.org/
 
-
+> Cheers,
+> Andre
+> 
+>> Best regards,
+>> Jernej
+>>
+>>>
+>>> Since PSCI has been available for 7+ years, instead of trying to deal
+>>> with the migration, I think it's safe to just delete this code.
+>>>
+>>>
+>>> Samuel Holland (3):
+>>>   ARM: sunxi: Remove A31 and A23/A33 platform SMP code
+>>>   ARM: dts: sunxi: Remove obsolete CPU enable methods
+>>>   dt-bindings: arm: Remove obsolete CPU enable methods
+>>>
+>>>  .../devicetree/bindings/arm/cpus.yaml         |   2 -
+>>>  arch/arm/boot/dts/sun6i-a31.dtsi              |   1 -
+>>>  arch/arm/boot/dts/sun8i-a23-a33.dtsi          |   1 -
+>>>  arch/arm/mach-sunxi/Makefile                  |   1 -
+>>>  arch/arm/mach-sunxi/platsmp.c                 | 194 ------------------
+>>>  5 files changed, 199 deletions(-)
+>>>  delete mode 100644 arch/arm/mach-sunxi/platsmp.c
+>>>
+>>> -- 
+>>> 2.35.1
