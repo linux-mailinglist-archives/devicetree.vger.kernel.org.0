@@ -2,170 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6C8563F14
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 10:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BEBD563F1A
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 10:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230141AbiGBIYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 04:24:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39268 "EHLO
+        id S229468AbiGBIgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 04:36:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiGBIY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 04:24:27 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2103817076;
-        Sat,  2 Jul 2022 01:24:20 -0700 (PDT)
-X-UUID: b518ebb2c55747a29ab47cbac9f5d735-20220702
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.7,REQID:bd850b7c-41ba-4c95-add6-93540d2b178b,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:87442a2,CLOUDID:4d5d3863-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: b518ebb2c55747a29ab47cbac9f5d735-20220702
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 753641580; Sat, 02 Jul 2022 16:24:15 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Sat, 2 Jul 2022 16:24:13 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 2 Jul 2022 16:24:12 +0800
-Message-ID: <5f85280ea5fd0d4b445307a13a70c3e3fe552ccf.camel@mediatek.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: usb: mtk-xhci: Make all clocks
- required
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh@kernel.org>,
-        "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <kernel@collabora.com>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
-Date:   Sat, 2 Jul 2022 16:24:12 +0800
-In-Reply-To: <20220701213702.GA1591697-robh@kernel.org>
-References: <20220623193702.817996-1-nfraprado@collabora.com>
-         <20220623193702.817996-3-nfraprado@collabora.com>
-         <93c6b7201533325cf7758637dd194a372f3c00c6.camel@mediatek.com>
-         <20220629185546.z6rn7xp3ejpmaupi@notapiano>
-         <20220701213702.GA1591697-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229446AbiGBIgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 04:36:43 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C8C15A2C
+        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 01:36:40 -0700 (PDT)
+Received: from [192.168.1.101] (abxi46.neoplus.adsl.tpnet.pl [83.9.2.46])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id C330D3F6DB;
+        Sat,  2 Jul 2022 10:36:36 +0200 (CEST)
+Message-ID: <3d1c84f6-bd38-902f-3499-d32d0d4ab846@somainline.org>
+Date:   Sat, 2 Jul 2022 10:36:35 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: qcom: readme: document preferred compatible
+ naming
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+References: <20220701074659.12680-1-krzysztof.kozlowski@linaro.org>
+ <20220701204218.GA1478943-robh@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20220701204218.GA1478943-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,TVD_PH_BODY_ACCOUNTS_PRE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-07-01 at 15:37 -0600, Rob Herring wrote:
-> On Wed, Jun 29, 2022 at 02:55:46PM -0400, Nícolas F. R. A. Prado
-> wrote:
-> > On Tue, Jun 28, 2022 at 08:57:45AM +0800, Chunfeng Yun wrote:
-> > > Hi Nícolas,
-> > > 
-> > > On Thu, 2022-06-23 at 15:37 -0400, Nícolas F. R. A. Prado wrote:
-> > > > All of the clocks listed in the binding are always wired to the
-> > > > XHCI
-> > > > controller hardware blocks on all SoCs. The reason some clocks
-> > > > were
-> > > > made
-> > > > optional in the binding was to account for the fact that
-> > > > depending on
-> > > > the SoC, some of the clocks might be fixed (ie not controlled
-> > > > by
-> > > > software).
-> > > > 
-> > > > Given that the devicetree should represent the hardware, make
-> > > > all
-> > > > clocks
-> > > > required in the binding. Subsequent patches will make the DTS
-> > > > changes
-> > > > to
-> > > > specify fixed-clocks for the clocks that aren't controllable.
-> > > > 
-> > > > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > > > 
-> > > > ---
-> > > > 
-> > > > Changes in v2:
-> > > > - Undid clock list changes that allowed middle clocks to be
-> > > > missing
-> > > > from
-> > > >   v1 and made all clocks required instead
-> > > > - Rewrote commit message and title
-> > > > 
-> > > >  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml |
-> > > > 4 +
-> > > > ---
-> > > >  1 file changed, 1 insertion(+), 3 deletions(-)
-> > > > 
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > xhci.yaml
-> > > > index 63cbc2b62d18..1444d18ef9bc 100644
-> > > > --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > xhci.yaml
-> > > > +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > xhci.yaml
-> > > > @@ -67,7 +67,6 @@ properties:
-> > > >      maxItems: 1
-> > > >  
-> > > >    clocks:
-> > > > -    minItems: 1
-> > > >      items:
-> > > >        - description: Controller clock used by normal mode
-> > > >        - description: Reference clock used by low power mode
-> > > > etc
-> > > > @@ -76,9 +75,8 @@ properties:
-> > > >        - description: controller clock
-> > > >  
-> > > >    clock-names:
-> > > > -    minItems: 1
-> > > >      items:
-> > > > -      - const: sys_ck  # required, the following ones are
-> > > > optional
-> > > > +      - const: sys_ck
-> > > >        - const: ref_ck
-> > > >        - const: mcu_ck
-> > > >        - const: dma_ck
-> > > 
-> > > This patch causes more check warning, I prefer to leave dt-
-> > > bindings
-> > > unchanged, but just fix mt8195's dts warning instead, thanks a
-> > > lot
-> > 
-> > Hi Chunfeng,
-> > 
-> > the warnings reported by Rob's bot only happen if patches 3 and 4
-> > aren't applied
-> > to adapt the devicetrees. They are ABI breaking changes, but I
-> > understood this
-> > as the desired solution from the discussion we had with Krzysztof
-> > on v1 [1].
+
+
+On 1.07.2022 22:42, Rob Herring wrote:
+> On Fri, Jul 01, 2022 at 09:46:59AM +0200, Krzysztof Kozlowski wrote:
+>> Compatibles can come in two formats.  Either "vendor,ip-soc" or
+>> "vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
+>> readme file documenting preferred policy.
 > 
-> The warnings have nothing to do with patches 3 and 4 as those are
-> for 
-> dts files. It's examples in bindings that are the problem.
-Yes, I mean almost all existing dts supporting mtk-xhci will also cause
-similar warnings, as changes in patches 3, 4;
-
-It seems less flexible to make all clock required, not only changes all
-existing ones but also need more changes if additional clock is added.
-
+> Is this all I needed to do to stop this from QCom? </sarcasm>
 > 
-> Rob
+> This convention is not QCom specific, though the error mostly is. 
+> Perhaps this should be documented generically.
+> 
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Cc: Vinod Koul <vkoul@kernel.org>
+>> Cc: Alex Elder <elder@linaro.org>
+>> Cc: Robert Foss <robert.foss@linaro.org>
+>> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>> ---
+>>  .../devicetree/bindings/soc/qcom/README.rst      | 16 ++++++++++++++++
+>>  1 file changed, 16 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/README.rst
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/qcom/README.rst b/Documentation/devicetree/bindings/soc/qcom/README.rst
+>> new file mode 100644
+>> index 000000000000..322b329ac7c1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/qcom/README.rst
+>> @@ -0,0 +1,16 @@
+>> +.. SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +
+>> +Qualcomm SoC compatibles naming convention
+>> +==========================================
+>> +1. When adding new compatibles in new bindings, use the format:
+>> +   ::
+>> +
+>> +     qcom,SoC-IP
+>> +
+>> +   For example:
+>> +   ::
+>> +
+>> +     qcom,sdm845-llcc-bwmon
+> 
+> Assuming the list of possible SoCs was maintained, you could make this a 
+> schema. Though there might be false positives.
+Maybe there could be a list of *all* (maaaybe except the really vintage ones
+that could barely run Linux at all, if even..), qcom SoCs (for example based
+on the Wikipedia one [1]) that would account for future porting and could be
+updated with new platforms as they get released?
 
+Konrad
+
+[1] https://en.wikipedia.org/wiki/List_of_Qualcomm_Snapdragon_processors
+>
+>> +
+>> +2. When adding new compatibles to existing bindings, use the format
+>> +   in the existing binding, even if it contradicts the above.
+>> -- 
+>> 2.34.1
+>>
+>>
