@@ -2,113 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 898445642A1
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 21:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B14FD5642B6
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 22:29:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbiGBTw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 15:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55146 "EHLO
+        id S229876AbiGBU3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 16:29:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230258AbiGBTwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 15:52:55 -0400
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5467B86E;
-        Sat,  2 Jul 2022 12:52:54 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 536175C0152;
-        Sat,  2 Jul 2022 15:52:54 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Sat, 02 Jul 2022 15:52:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1656791574; x=1656877974; bh=Yv
-        Glt1rTnRirLsLlAHuPoEj1EgT6NLZWDvwyEakI4Yw=; b=E3dXktjJI4YfkXGADb
-        eKG5xZsEihcJ6i8ApIDeOxgD5Kz0TzxWygPax/Hhbcofhr9P+wGwePZxZuluAsnF
-        lpZSBmdWOe+6ztJ+ycEWH4/7x9Zi37ntFe/eCw+bD+uI7s0h0uppSDReHNMJb+7q
-        MKcSAS30iTJRHQKm8ttM8Oahcd/XRZsMCkejfn+phezurkQWUsp3q5XVBnmY0jkU
-        pFXvxOmKCxhvXl5bfsoXcTeapqm+OJNHIXQqb1GPSfwTNKvDk/WKezxUaaHjNhGI
-        Ia/ajslSJNKT0kMBc2EbfSp/Mhp9CwZa3BFZPL7ox3mbv4HHqmmJea/khw8Ryzfm
-        CTRA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1656791574; x=1656877974; bh=YvGlt1rTnRirL
-        sLlAHuPoEj1EgT6NLZWDvwyEakI4Yw=; b=gYHsLMtTqjrDlQz2TtxP+U5mxcI5l
-        QWVff78oezSaIDDUm3rH9fGaocmw8hD+LyWtB7a0vlHyWRae2c0RespO1I46o7Co
-        3R0GipqDs5/emYI1ec2A+ZEdcqZCu4jjlIOWUHFj3VRbMQ5KFnrWWLoRU1g+cgJS
-        RAtURFkzWGGyhXjYKX6Mh0QaFaNE/1OTBqbj9BukeIoDUp+cQ+5NW0r43Zc6SRlz
-        UiGmQ2NvSCtKCskll1TzqCgXBkPX61beDKZJ3jo6FOa0I3MTnKM2jIi3yxw7aw/1
-        wVxGhu63ia7wBO65TV1f9QI93RoE5Z81KbDhkWqwhZNg3rQFoghSBiwXg==
-X-ME-Sender: <xms:FqLAYkL-oEgcpV73YpN3YSezNc1m387JiEtOk7FUGWW4C7yGQd04-w>
-    <xme:FqLAYkKqyXlkaBT0zIGa7RCPIe82k2LOlGlDut4jBINISUAFuu4DENurMPcZUCImN
-    xVMyUk6ugtLlGJZtQ>
-X-ME-Received: <xmr:FqLAYksiDTJmoLhAtkawd7IQkRteMMWkuoyhkAZPpq2vh-gezLeUCBUbE0XgfW8luk8Fyfipzl8uZaO9ra79GxMEUOhlHWO5eVcAlJ2kNzfHzxBXh_ex8ZtCotFZY4y_GE1B8A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehhedgudegfecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpedukeetueduhedtleetvefguddvvdejhfefudelgfduveeggeeh
-    gfdufeeitdevteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:FqLAYhZobgj03oOQKCXUpSQBgsZAruSr_LJ2hzUOgYftVr-XXjoHxg>
-    <xmx:FqLAYrbZEQ0cYkf_sLYRSEU6pj5FwT5C5A51DqC_RERWZMULIMjU1w>
-    <xmx:FqLAYtDS4aKW2DKHss7k8tLhxd___CzUJ7ir9dgXwFh3mZ4cVupeVQ>
-    <xmx:FqLAYoRFGuykpNYcbpxL76K3ZKf2GbkdyxSfxddzWIFbUdJX1-Eisg>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 2 Jul 2022 15:52:53 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        with ESMTP id S229436AbiGBU3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 16:29:39 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98BFBF5D;
+        Sat,  2 Jul 2022 13:29:38 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id e40so6885426eda.2;
+        Sat, 02 Jul 2022 13:29:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=OV+VH3ejxTOPhJCvTbtM9lAhiNsNlXfTZrLr2VYv0q0=;
+        b=p6yaS1FSKTSFFsBMibD0IXB/DFpLrMLuxJoB/xOJqUUETATFYdIeuvRIPb6scPfoYG
+         bSBoGR+QqhIYT3TWBWtAm0QuiVPumg+J6McmYxRjmBTl1k/1U61sqpCL1fGgnaUPjf80
+         1YOYE4aw5YmfMDeRal07dHj0VObpCtPjQKAAkDWblzmqLGeE7myuyhoz9aMMvKljTqmF
+         iShG3lBuPgvyrC9sC+jbLGpDnAZYc3QvtXMskZEPP/07Rx5yrT4VKILdlW0/NRj6m0Pj
+         F6ZCY1pzkZ7VZf5UtMz/EvUIw25vP5aljBf7xdxxw1RQQhrgN6gtshZ9yimNcG13SH5a
+         lmtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=OV+VH3ejxTOPhJCvTbtM9lAhiNsNlXfTZrLr2VYv0q0=;
+        b=BpMLl41tXDFjMqWiIMfGEmwQr/jIA6C7gATQD6HHqyOgtb/VCTy2dRRPQnq6DvDbd6
+         +1iB55AP8k8GACSJ7CXo1vwyjWS26c5AzLPQZ/9PMtXcWgu47KurXn4r1SFp7dT9gdco
+         wGIxgjas6H7NWg/QpcJRw1d0QGNNOykpRaAH3lH4DOt6ZxVBHu+9GK86ZDok2Z+q1JEE
+         aaih5F9I5OdD+a8GasAjDuuLn+uxIYSi89czZRQi710FHOFHnWGoSDRw+c8bzHu2WzT2
+         juxtSrGtNXuxntJNrhj3s49pU4B9h3lBYVGipf+xxhSrAWmHfZGtH3ascSjY9ExZlAah
+         FaIw==
+X-Gm-Message-State: AJIora9ZHOeFllNQ+oMhJ8N9pjplWxkh2ApBeljOo0wWJyeP1lcocId5
+        wUsPwr/DVXuMz/IqQMZXUJE=
+X-Google-Smtp-Source: AGRyM1uKvqc3mvz9z8LqDdfV/Fy8cu02zPY3BhLSn/f525LA7ITVIhC/aHi3rQLrgIafrQHlFTnG6Q==
+X-Received: by 2002:a50:fd16:0:b0:435:9170:8e2c with SMTP id i22-20020a50fd16000000b0043591708e2cmr27500981eds.216.1656793777413;
+        Sat, 02 Jul 2022 13:29:37 -0700 (PDT)
+Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
+        by smtp.gmail.com with ESMTPSA id g20-20020a50d5d4000000b0042617ba63c2sm17553929edj.76.2022.07.02.13.29.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Jul 2022 13:29:36 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Chen-Yu Tsai <wens@csie.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>, Ondrej Jirman <x@xff.cz>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-usb@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: usb: generic-ohci: Add Allwinner D1 compatible
-Date:   Sat,  2 Jul 2022 14:52:49 -0500
-Message-Id: <20220702195249.54160-4-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220702195249.54160-1-samuel@sholland.org>
-References: <20220702195249.54160-1-samuel@sholland.org>
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 4/6] pinctrl: sunxi: Refactor register/offset calculation
+Date:   Sat, 02 Jul 2022 22:29:35 +0200
+Message-ID: <2116734.Icojqenx9y@jernej-laptop>
+In-Reply-To: <20220626021148.56740-5-samuel@sholland.org>
+References: <20220626021148.56740-1-samuel@sholland.org> <20220626021148.56740-5-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Allwinner D1 contains USB controllers which claim to be compatible
-with the OHCI specification version 1.0a.
+Dne nedelja, 26. junij 2022 ob 04:11:45 CEST je Samuel Holland napisal(a):
+> Starting with the D1/D1s/T113 SoC, Allwinner changed the layout of the
+> pinctrl registers. This new layout widens the drive level field, which
+> affects the pull register offset and the overall bank size.
+> 
+> As a first step to support this, combine the register and offset
+> calculation functions, and refactor the math to depend on one constant
+> for field widths instead of three. This minimizes the code size impact
+> of making some of the factors dynamic.
+> 
+> While rewriting these functions, move them to the implementation file,
+> since that is the only file where they are used. And make the comment
+> more generic, without mentioning specific offsets/sizes.
+> 
+> The callers are updated to expect a shifted mask, and to use consistent
+> terminology (reg/shift/mask/val).
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+Nice cleanup.
 
- Documentation/devicetree/bindings/usb/generic-ohci.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-index bb6bbd5f129d..180361b79f52 100644
---- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-+++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-@@ -28,6 +28,7 @@ properties:
-               - allwinner,sun8i-h3-ohci
-               - allwinner,sun8i-r40-ohci
-               - allwinner,sun9i-a80-ohci
-+              - allwinner,sun20i-d1-ohci
-               - brcm,bcm3384-ohci
-               - brcm,bcm63268-ohci
-               - brcm,bcm6328-ohci
--- 
-2.35.1
+Best regards,
+Jernej
+
 
