@@ -2,157 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A79A563EA5
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 07:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 482A4563EFA
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 09:59:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231350AbiGBFZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 01:25:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33030 "EHLO
+        id S231572AbiGBH7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 03:59:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiGBFZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 01:25:49 -0400
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1E822B2E;
-        Fri,  1 Jul 2022 22:25:48 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 667545C0170;
-        Sat,  2 Jul 2022 01:25:47 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Sat, 02 Jul 2022 01:25:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1656739547; x=1656825947; bh=Tf
-        wGykUWVQ4iE6lFrnkkSnFLx6F0x4K2zszUvg3ut5E=; b=bIvJSEKTWi2bYZ/+Bz
-        zaPRdi4kzggMW1dxBJAucTPjByNiQuYB8gmWbfwbz/Rp1GXG0wEwbYWPRPVpFM8R
-        gqMUEgqHSYVNmJXodQNHEsHbNq8xPagTjpBDCLI+cJ/nzQkfJT1AgcIHD+6qgE1y
-        57W7gnOY6nGVbtSz8HjRJrMr7xmuRNVcuuItRJjVk+7O80aO84S7mgWcj09fjKGD
-        ceEFf0Ym/Zlv5UPwRoSon53WkwhgreYJt4tPn8p+R55KShBBIA5gt1VbKYYI6BEG
-        I5WAPKH1m966+bapvomAaFeUq2Re1A764uNHbf6efYQdDfwzeZ3M9Be2pMMDlwzo
-        M81w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1656739547; x=1656825947; bh=TfwGykUWVQ4iE
-        6lFrnkkSnFLx6F0x4K2zszUvg3ut5E=; b=WDjgOW8dtx8gQP4y5+3D4Qkf6y3n1
-        Gf1Rrb3Pm9KWLzUFidWP1Q4U1iPZIX1aJUfyjJUowTkG8u+Ku8RVDu6HybIU7fVY
-        TUuoN9V7bBwxEA3HY6PcanjjFZAwZGzf1BpIAA3IR0etus5Ac6176WPv2yg/wZjk
-        FXMR3eM1wUVbLcpwPjLLzIXt2UvK/vg9M2lR6k3KOKTHP/W7ts2WqM4B5blfzkcN
-        rn35oLx0tDaVOUFMf+fZjZdF8Z8D9DALYHnEgwfyPuT0OryeUTmrAcftnjF5Hh1x
-        DOeSHimGnla3udZwBW+H6TOmRsiAaY9CIZ5Gz2u2DVWORZ+Tu4Jzw7wIw==
-X-ME-Sender: <xms:2ta_YvbT8AVxfgcdEX2VpITqQtf--ZuzIRybBNg-XVuh5OWWvub7hA>
-    <xme:2ta_YuZft-iEe0oDNnbniXz2IPTKn9et844CnO_KE1eybaSdu6wkOiXvbOc05r_LD
-    0RZeOCUsI3JVDeD7A>
-X-ME-Received: <xmr:2ta_Yh_RpKl0v_4D3zODKxA1bfN_7tbMjO2tmQTDnaSA5biqErt7H9v1-QLPzQ-eorhoUPryCysS59tyqJuKtw2rxBuMrK0Ow_AwNv-gtipTNXUBU6Um1WWntClv1Xmd7yYowg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehgedgleeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepudekteeuudehtdelteevgfduvddvjefhfedulefgudevgeeghefg
-    udefiedtveetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:2ta_YlpQhj4drFM7GmE1AaemBFo4PWWNp_Mru1Oneh4M18jgjY6VBA>
-    <xmx:2ta_YqrWnKYh4_Qh5tjj-tBI56rqpLrQEn4idDUURxSLjnX7MO4Y9Q>
-    <xmx:2ta_YrS-QqukOsRtmu-nEF34YVHF7watPscLekVavZmq8EjIcZa2Uw>
-    <xmx:29a_YnTmlSmvGlEo_dME-vh-QuucUjMNnss8i1h2nugBhWo8n9FSaQ>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 2 Jul 2022 01:25:46 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH 2/2] arm64: dts: allwinner: a100: Update I2C controller fallback
-Date:   Sat,  2 Jul 2022 00:25:43 -0500
-Message-Id: <20220702052544.31443-2-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220702052544.31443-1-samuel@sholland.org>
-References: <20220702052544.31443-1-samuel@sholland.org>
+        with ESMTP id S230183AbiGBH7B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 03:59:01 -0400
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8464B2253B
+        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 00:59:00 -0700 (PDT)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-101d96fe0a5so6487247fac.2
+        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 00:59:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:in-reply-to:references:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=T1Hz1Fw4YGwAf7T09zcUk3JF7qeu3as0E0fDJAm8aSU=;
+        b=dEzxx003u0zrXHVL03mK6zzDVJszYn8/2yqCawYglQmnYOG62nrVIAO2RVxySI8XMz
+         1deAHPY3YnSMm9a8xScUZzAbYw6fRsLxU58I1MT5q/HHbVc2DxfDWmcVzodAG1lSIXdR
+         f0gUExY/lwBP7zy3+B8E7f+KpNgc9xSk8r15G+aaZPaJwXfkFN9Dla/m8dOPFm2pc8Gi
+         LfZdDqkhyiwUDfhLS8V432ylOKlJewChxXYK8JqMsi+O38F5m5vcYLyiX4IHXPumQGgR
+         gnecX6jLceEZZ8+zfLwh6T/fesKDC5dyq3590+bAO0aOAFFSNzOiad8FPjc+WisRvpSP
+         u2QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:in-reply-to:references
+         :from:date:message-id:subject:to:content-transfer-encoding;
+        bh=T1Hz1Fw4YGwAf7T09zcUk3JF7qeu3as0E0fDJAm8aSU=;
+        b=xHExG7RDXa8zgaSKYPGnAW6dVzVVajBBjMywIsHaLoSCylIyX1Lb9woPbXuzMtnPGH
+         MTohDjEo5PcNjxgsnzeMQwbhvuX6yjnbITJjKNj5mJ2uJNPCsIyrFiiYd4teErZERUNC
+         KNrDX9z1aEYBEDwjcp3jUdmL84rKu2NwULIWuZlHlRvdZEIyk4MO/cjRYQe6FbT2JwFE
+         PTPT0CiMfmAC39cJ9uKvSQK2VD8MJcounMWCbnhoKvWelScfTT2zWhykVd7TEv57BN06
+         5X7lEhz6xzDxFVC0udGIWu+AqLq7KW9nb6jBEKP8jPbl9Q2DsVhaHOpOBjD5tllqluRn
+         Tb0g==
+X-Gm-Message-State: AJIora8eZM/Dnki6Dhb7tsE5i0Q1MWVcplUVLjU1j11IInPWumN8gpEK
+        zJwFNw7Ch+Oo0SkyU5QSZXQIfz8QCG7vopLl2tNyqqKMQ2KQnA==
+X-Google-Smtp-Source: AGRyM1sVamQntmjPUqMuOH3VtFXF+v9cybeQB+xkPl1tA9UpK6paM5hDtBDy5VFGOe+ofgVgAYyKwJqXxU0TxYyFhxQ=
+X-Received: by 2002:a17:90b:4c0d:b0:1ed:2466:c0d3 with SMTP id
+ na13-20020a17090b4c0d00b001ed2466c0d3mr23426605pjb.6.1656748373653; Sat, 02
+ Jul 2022 00:52:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:6a20:2988:b0:88:12be:1cf2 with HTTP; Sat, 2 Jul 2022
+ 00:52:53 -0700 (PDT)
+Reply-To: office002282215720@gmail.com
+In-Reply-To: <CALsVJWO8f4wUmrBYCj4Xi+2-5MfDfw+KvJv=moBU4S8wKPnVOQ@mail.gmail.com>
+References: <CALsVJWO8f4wUmrBYCj4Xi+2-5MfDfw+KvJv=moBU4S8wKPnVOQ@mail.gmail.com>
+From:   Martial Akakpo <ponaefalou@gmail.com>
+Date:   Sat, 2 Jul 2022 07:52:53 +0000
+Message-ID: <CALsVJWPRbM0Ns9ovX4_aip7UeV=tmzB4ttitKvt-0qH5_-6_sQ@mail.gmail.com>
+Subject: Fwd:
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=4.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The I2C controllers in the A100 SoC are newer-generation hardware
-which includes an offload engine. Signify that by including the
-allwinner,sun8i-v536-i2c fallback compatible, as V536 is the first
-SoC with this generation of I2C controller.
+Drag=C4=83 prieten=C4=83,
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+ Am fost =C8=99ocat c=C4=83 a=C8=9Bi =C3=AEncetat s=C4=83 mai comunica=C8=
+=9Bi cu mine, chiar nu v=C4=83
+=C3=AEn=C8=9Beleg motivul pentru care face=C8=9Bi acest lucru, dar acum sun=
+t foarte
+fericit s=C4=83 v=C4=83 informez despre succesul meu =C3=AEn scoaterea fond=
+ului din
+banc=C4=83 cu ajutorul unui personal care lucreaz=C4=83 =C3=AEn biroul de r=
+emiten=C8=9Be
+=C8=99i, de asemenea, cu asisten=C8=9Ba special=C4=83 a unei femei de aface=
+ri
+franceze care se ocupa de alt=C4=83 logistic=C4=83. Cu toate acestea, am l=
+=C4=83sat
+suma de 50.000 USD (doar cincizeci de mii de dolari SUA) =C3=AEntr-un card
+de retragere de numerar ATM.
 
- arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+Ace=C8=99ti 50.000 USD sunt pentru tine =C8=99i sunt =C3=AEn mod inten=C8=
+=9Bionat pentru
+compensarea ta pentru efortul mic =C3=AEn aceast=C4=83 tranzac=C8=9Bie. Car=
+dul ATM
+este un card de plat=C4=83 global care este acceptabil, func=C8=9Bional =C8=
+=99i
+utilizabil =C3=AEn =C3=AEntreaga lume pentru a efectua retrageri zilnice de=
+ bani
+de la orice loca=C8=9Bie ATM.nee
+3000 USD pe zi, cardul ATM este pe numele dvs., iar codul PIN va fi =C3=AEn=
+ plic
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-index f6d7d7f7fdab..548539c93ab0 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-@@ -203,6 +203,7 @@ uart4: serial@5001000 {
- 
- 		i2c0: i2c@5002000 {
- 			compatible = "allwinner,sun50i-a100-i2c",
-+				     "allwinner,sun8i-v536-i2c",
- 				     "allwinner,sun6i-a31-i2c";
- 			reg = <0x05002000 0x400>;
- 			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-@@ -215,6 +216,7 @@ i2c0: i2c@5002000 {
- 
- 		i2c1: i2c@5002400 {
- 			compatible = "allwinner,sun50i-a100-i2c",
-+				     "allwinner,sun8i-v536-i2c",
- 				     "allwinner,sun6i-a31-i2c";
- 			reg = <0x05002400 0x400>;
- 			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-@@ -227,6 +229,7 @@ i2c1: i2c@5002400 {
- 
- 		i2c2: i2c@5002800 {
- 			compatible = "allwinner,sun50i-a100-i2c",
-+				     "allwinner,sun8i-v536-i2c",
- 				     "allwinner,sun6i-a31-i2c";
- 			reg = <0x05002800 0x400>;
- 			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-@@ -239,6 +242,7 @@ i2c2: i2c@5002800 {
- 
- 		i2c3: i2c@5002c00 {
- 			compatible = "allwinner,sun50i-a100-i2c",
-+				     "allwinner,sun8i-v536-i2c",
- 				     "allwinner,sun6i-a31-i2c";
- 			reg = <0x05002c00 0x400>;
- 			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-@@ -315,6 +319,7 @@ r_uart: serial@7080000 {
- 
- 		r_i2c0: i2c@7081400 {
- 			compatible = "allwinner,sun50i-a100-i2c",
-+				     "allwinner,sun8i-v536-i2c",
- 				     "allwinner,sun6i-a31-i2c";
- 			reg = <0x07081400 0x400>;
- 			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
-@@ -329,6 +334,7 @@ r_i2c0: i2c@7081400 {
- 
- 		r_i2c1: i2c@7081800 {
- 			compatible = "allwinner,sun50i-a100-i2c",
-+				     "allwinner,sun8i-v536-i2c",
- 				     "allwinner,sun6i-a31-i2c";
- 			reg = <0x07081800 0x400>;
- 			interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.35.1
+ =C8=9Ai-a=C8=99 fi trimis singur cardul de la bancomat, dar nu am timp s=
+=C4=83 fac
+asta acum, pentru c=C4=83 trebuie s=C4=83 m=C4=83 =C3=AEnt=C3=A2lnesc urgen=
+t cu colegii mei de
+afaceri din =C8=9Aara Indoneziei din Asia. M=C4=83 voi =C3=AEndrepta c=C4=
+=83tre aeroport
+de =C3=AEndat=C4=83 ce v=C4=83 voi trimite acest e-mail, deoarece voi pleca=
+ din =C8=9Bara
+mea =C3=AEn Indonezia, unde voi continua cu angajamentele de afaceri
+petroliere.
 
+Pentru binele dumneavoastr=C4=83, am l=C4=83sat cardul de la bancomat unui
+reverend P=C4=83rinte Arhiepiscop Philippe Kpodzro, acum merge=C8=9Bi mai
+departe =C8=99i contacta=C8=9Bi-l prin adresa lui de e-mail, astfel =C3=AEn=
+c=C3=A2t s=C4=83
+poat=C4=83 folosi oricare dintre companiile de postare s=C4=83 v=C4=83 post=
+eze
+articolul prin adresa dvs. de contact. contacta=C8=9Bi imediat Rev. pentru
+a v=C4=83 putea trimite cardul ATM.
+
+Mai jos este contactul p=C4=83rintelui Philippe.
+
+Nume: Arhiepiscopul Philippe Kpodzro
+
+E-mail: pkpodzro5@gmail.com
+
+Site: https://fr.wikipedia.org/wiki/Philippe_Kpodzro
+
+ Sper s=C4=83 aud c=C4=83 a=C8=9Bi colectat fondul. In fata auditorilor
+ cred c=C4=83 nu pretinde=C8=9Bi desp=C4=83gubirea
+
+Toate cele bune
+Arhiepiscop
