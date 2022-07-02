@@ -2,132 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 482A4563EFA
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 09:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6C8563F14
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 10:24:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231572AbiGBH7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 03:59:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54164 "EHLO
+        id S230141AbiGBIYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 04:24:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbiGBH7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 03:59:01 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8464B2253B
-        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 00:59:00 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-101d96fe0a5so6487247fac.2
-        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 00:59:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:in-reply-to:references:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=T1Hz1Fw4YGwAf7T09zcUk3JF7qeu3as0E0fDJAm8aSU=;
-        b=dEzxx003u0zrXHVL03mK6zzDVJszYn8/2yqCawYglQmnYOG62nrVIAO2RVxySI8XMz
-         1deAHPY3YnSMm9a8xScUZzAbYw6fRsLxU58I1MT5q/HHbVc2DxfDWmcVzodAG1lSIXdR
-         f0gUExY/lwBP7zy3+B8E7f+KpNgc9xSk8r15G+aaZPaJwXfkFN9Dla/m8dOPFm2pc8Gi
-         LfZdDqkhyiwUDfhLS8V432ylOKlJewChxXYK8JqMsi+O38F5m5vcYLyiX4IHXPumQGgR
-         gnecX6jLceEZZ8+zfLwh6T/fesKDC5dyq3590+bAO0aOAFFSNzOiad8FPjc+WisRvpSP
-         u2QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:in-reply-to:references
-         :from:date:message-id:subject:to:content-transfer-encoding;
-        bh=T1Hz1Fw4YGwAf7T09zcUk3JF7qeu3as0E0fDJAm8aSU=;
-        b=xHExG7RDXa8zgaSKYPGnAW6dVzVVajBBjMywIsHaLoSCylIyX1Lb9woPbXuzMtnPGH
-         MTohDjEo5PcNjxgsnzeMQwbhvuX6yjnbITJjKNj5mJ2uJNPCsIyrFiiYd4teErZERUNC
-         KNrDX9z1aEYBEDwjcp3jUdmL84rKu2NwULIWuZlHlRvdZEIyk4MO/cjRYQe6FbT2JwFE
-         PTPT0CiMfmAC39cJ9uKvSQK2VD8MJcounMWCbnhoKvWelScfTT2zWhykVd7TEv57BN06
-         5X7lEhz6xzDxFVC0udGIWu+AqLq7KW9nb6jBEKP8jPbl9Q2DsVhaHOpOBjD5tllqluRn
-         Tb0g==
-X-Gm-Message-State: AJIora8eZM/Dnki6Dhb7tsE5i0Q1MWVcplUVLjU1j11IInPWumN8gpEK
-        zJwFNw7Ch+Oo0SkyU5QSZXQIfz8QCG7vopLl2tNyqqKMQ2KQnA==
-X-Google-Smtp-Source: AGRyM1sVamQntmjPUqMuOH3VtFXF+v9cybeQB+xkPl1tA9UpK6paM5hDtBDy5VFGOe+ofgVgAYyKwJqXxU0TxYyFhxQ=
-X-Received: by 2002:a17:90b:4c0d:b0:1ed:2466:c0d3 with SMTP id
- na13-20020a17090b4c0d00b001ed2466c0d3mr23426605pjb.6.1656748373653; Sat, 02
- Jul 2022 00:52:53 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:a05:6a20:2988:b0:88:12be:1cf2 with HTTP; Sat, 2 Jul 2022
- 00:52:53 -0700 (PDT)
-Reply-To: office002282215720@gmail.com
-In-Reply-To: <CALsVJWO8f4wUmrBYCj4Xi+2-5MfDfw+KvJv=moBU4S8wKPnVOQ@mail.gmail.com>
-References: <CALsVJWO8f4wUmrBYCj4Xi+2-5MfDfw+KvJv=moBU4S8wKPnVOQ@mail.gmail.com>
-From:   Martial Akakpo <ponaefalou@gmail.com>
-Date:   Sat, 2 Jul 2022 07:52:53 +0000
-Message-ID: <CALsVJWPRbM0Ns9ovX4_aip7UeV=tmzB4ttitKvt-0qH5_-6_sQ@mail.gmail.com>
-Subject: Fwd:
-To:     undisclosed-recipients:;
+        with ESMTP id S229468AbiGBIY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 04:24:27 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2103817076;
+        Sat,  2 Jul 2022 01:24:20 -0700 (PDT)
+X-UUID: b518ebb2c55747a29ab47cbac9f5d735-20220702
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.7,REQID:bd850b7c-41ba-4c95-add6-93540d2b178b,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:87442a2,CLOUDID:4d5d3863-0b3f-4b2c-b3a6-ed5c044366a0,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: b518ebb2c55747a29ab47cbac9f5d735-20220702
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 753641580; Sat, 02 Jul 2022 16:24:15 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 2 Jul 2022 16:24:13 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 2 Jul 2022 16:24:12 +0800
+Message-ID: <5f85280ea5fd0d4b445307a13a70c3e3fe552ccf.camel@mediatek.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: usb: mtk-xhci: Make all clocks
+ required
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Rob Herring <robh@kernel.org>,
+        "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, <kernel@collabora.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
+Date:   Sat, 2 Jul 2022 16:24:12 +0800
+In-Reply-To: <20220701213702.GA1591697-robh@kernel.org>
+References: <20220623193702.817996-1-nfraprado@collabora.com>
+         <20220623193702.817996-3-nfraprado@collabora.com>
+         <93c6b7201533325cf7758637dd194a372f3c00c6.camel@mediatek.com>
+         <20220629185546.z6rn7xp3ejpmaupi@notapiano>
+         <20220701213702.GA1591697-robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=4.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: ****
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drag=C4=83 prieten=C4=83,
+On Fri, 2022-07-01 at 15:37 -0600, Rob Herring wrote:
+> On Wed, Jun 29, 2022 at 02:55:46PM -0400, Nícolas F. R. A. Prado
+> wrote:
+> > On Tue, Jun 28, 2022 at 08:57:45AM +0800, Chunfeng Yun wrote:
+> > > Hi Nícolas,
+> > > 
+> > > On Thu, 2022-06-23 at 15:37 -0400, Nícolas F. R. A. Prado wrote:
+> > > > All of the clocks listed in the binding are always wired to the
+> > > > XHCI
+> > > > controller hardware blocks on all SoCs. The reason some clocks
+> > > > were
+> > > > made
+> > > > optional in the binding was to account for the fact that
+> > > > depending on
+> > > > the SoC, some of the clocks might be fixed (ie not controlled
+> > > > by
+> > > > software).
+> > > > 
+> > > > Given that the devicetree should represent the hardware, make
+> > > > all
+> > > > clocks
+> > > > required in the binding. Subsequent patches will make the DTS
+> > > > changes
+> > > > to
+> > > > specify fixed-clocks for the clocks that aren't controllable.
+> > > > 
+> > > > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > > > 
+> > > > ---
+> > > > 
+> > > > Changes in v2:
+> > > > - Undid clock list changes that allowed middle clocks to be
+> > > > missing
+> > > > from
+> > > >   v1 and made all clocks required instead
+> > > > - Rewrote commit message and title
+> > > > 
+> > > >  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml |
+> > > > 4 +
+> > > > ---
+> > > >  1 file changed, 1 insertion(+), 3 deletions(-)
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/usb/mediatek,mtk-
+> > > > xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-
+> > > > xhci.yaml
+> > > > index 63cbc2b62d18..1444d18ef9bc 100644
+> > > > --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-
+> > > > xhci.yaml
+> > > > +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-
+> > > > xhci.yaml
+> > > > @@ -67,7 +67,6 @@ properties:
+> > > >      maxItems: 1
+> > > >  
+> > > >    clocks:
+> > > > -    minItems: 1
+> > > >      items:
+> > > >        - description: Controller clock used by normal mode
+> > > >        - description: Reference clock used by low power mode
+> > > > etc
+> > > > @@ -76,9 +75,8 @@ properties:
+> > > >        - description: controller clock
+> > > >  
+> > > >    clock-names:
+> > > > -    minItems: 1
+> > > >      items:
+> > > > -      - const: sys_ck  # required, the following ones are
+> > > > optional
+> > > > +      - const: sys_ck
+> > > >        - const: ref_ck
+> > > >        - const: mcu_ck
+> > > >        - const: dma_ck
+> > > 
+> > > This patch causes more check warning, I prefer to leave dt-
+> > > bindings
+> > > unchanged, but just fix mt8195's dts warning instead, thanks a
+> > > lot
+> > 
+> > Hi Chunfeng,
+> > 
+> > the warnings reported by Rob's bot only happen if patches 3 and 4
+> > aren't applied
+> > to adapt the devicetrees. They are ABI breaking changes, but I
+> > understood this
+> > as the desired solution from the discussion we had with Krzysztof
+> > on v1 [1].
+> 
+> The warnings have nothing to do with patches 3 and 4 as those are
+> for 
+> dts files. It's examples in bindings that are the problem.
+Yes, I mean almost all existing dts supporting mtk-xhci will also cause
+similar warnings, as changes in patches 3, 4;
 
- Am fost =C8=99ocat c=C4=83 a=C8=9Bi =C3=AEncetat s=C4=83 mai comunica=C8=
-=9Bi cu mine, chiar nu v=C4=83
-=C3=AEn=C8=9Beleg motivul pentru care face=C8=9Bi acest lucru, dar acum sun=
-t foarte
-fericit s=C4=83 v=C4=83 informez despre succesul meu =C3=AEn scoaterea fond=
-ului din
-banc=C4=83 cu ajutorul unui personal care lucreaz=C4=83 =C3=AEn biroul de r=
-emiten=C8=9Be
-=C8=99i, de asemenea, cu asisten=C8=9Ba special=C4=83 a unei femei de aface=
-ri
-franceze care se ocupa de alt=C4=83 logistic=C4=83. Cu toate acestea, am l=
-=C4=83sat
-suma de 50.000 USD (doar cincizeci de mii de dolari SUA) =C3=AEntr-un card
-de retragere de numerar ATM.
+It seems less flexible to make all clock required, not only changes all
+existing ones but also need more changes if additional clock is added.
 
-Ace=C8=99ti 50.000 USD sunt pentru tine =C8=99i sunt =C3=AEn mod inten=C8=
-=9Bionat pentru
-compensarea ta pentru efortul mic =C3=AEn aceast=C4=83 tranzac=C8=9Bie. Car=
-dul ATM
-este un card de plat=C4=83 global care este acceptabil, func=C8=9Bional =C8=
-=99i
-utilizabil =C3=AEn =C3=AEntreaga lume pentru a efectua retrageri zilnice de=
- bani
-de la orice loca=C8=9Bie ATM.nee
-3000 USD pe zi, cardul ATM este pe numele dvs., iar codul PIN va fi =C3=AEn=
- plic
+> 
+> Rob
 
- =C8=9Ai-a=C8=99 fi trimis singur cardul de la bancomat, dar nu am timp s=
-=C4=83 fac
-asta acum, pentru c=C4=83 trebuie s=C4=83 m=C4=83 =C3=AEnt=C3=A2lnesc urgen=
-t cu colegii mei de
-afaceri din =C8=9Aara Indoneziei din Asia. M=C4=83 voi =C3=AEndrepta c=C4=
-=83tre aeroport
-de =C3=AEndat=C4=83 ce v=C4=83 voi trimite acest e-mail, deoarece voi pleca=
- din =C8=9Bara
-mea =C3=AEn Indonezia, unde voi continua cu angajamentele de afaceri
-petroliere.
-
-Pentru binele dumneavoastr=C4=83, am l=C4=83sat cardul de la bancomat unui
-reverend P=C4=83rinte Arhiepiscop Philippe Kpodzro, acum merge=C8=9Bi mai
-departe =C8=99i contacta=C8=9Bi-l prin adresa lui de e-mail, astfel =C3=AEn=
-c=C3=A2t s=C4=83
-poat=C4=83 folosi oricare dintre companiile de postare s=C4=83 v=C4=83 post=
-eze
-articolul prin adresa dvs. de contact. contacta=C8=9Bi imediat Rev. pentru
-a v=C4=83 putea trimite cardul ATM.
-
-Mai jos este contactul p=C4=83rintelui Philippe.
-
-Nume: Arhiepiscopul Philippe Kpodzro
-
-E-mail: pkpodzro5@gmail.com
-
-Site: https://fr.wikipedia.org/wiki/Philippe_Kpodzro
-
- Sper s=C4=83 aud c=C4=83 a=C8=9Bi colectat fondul. In fata auditorilor
- cred c=C4=83 nu pretinde=C8=9Bi desp=C4=83gubirea
-
-Toate cele bune
-Arhiepiscop
