@@ -2,80 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70EA2563D95
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 03:45:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 383C5563DDC
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 05:02:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229775AbiGBBpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Jul 2022 21:45:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55884 "EHLO
+        id S230483AbiGBDCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Jul 2022 23:02:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbiGBBpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 21:45:05 -0400
-Received: from m15113.mail.126.com (m15113.mail.126.com [220.181.15.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 420912FFE9
-        for <devicetree@vger.kernel.org>; Fri,  1 Jul 2022 18:45:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-        s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=jDDYR
-        CttHQnQCQgonIIxRbg5MV4N0kxy7fvlxNsqxms=; b=EVP+Pm6SXrYSveuzn5+91
-        cKtszZ0mFzRHRohVQoeh8eJ+u+Fv/bgtqLeePiHstumYl+tB9RjDZL1oeQfSQn3j
-        AI6ZJQJoi/9rgJ7zl0oadGoD6ntZeDutuKVvYnrwVqmPEeubqKQ/dp7hSRzyWHYS
-        40cMFvBrGmV8/4R0kcVQ64=
-Received: from localhost.localdomain (unknown [124.16.139.61])
-        by smtp3 (Coremail) with SMTP id DcmowABX85QRo79i87hdEQ--.62291S2;
-        Sat, 02 Jul 2022 09:44:50 +0800 (CST)
-From:   Liang He <windhl@126.com>
-To:     robh+dt@kernel.org, frowand.list@gmail.com,
-        devicetree@vger.kernel.org, windhl@126.com, linmq006@gmail.com
-Subject: [PATCH] of: device: Fix missing of_node_put() in of_dma_set_restricted_buffer
-Date:   Sat,  2 Jul 2022 09:44:49 +0800
-Message-Id: <20220702014449.263772-1-windhl@126.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229486AbiGBDCo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Jul 2022 23:02:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ECD2377D4;
+        Fri,  1 Jul 2022 20:02:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6F7CD61903;
+        Sat,  2 Jul 2022 03:02:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 110AEC341C6;
+        Sat,  2 Jul 2022 03:02:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656730962;
+        bh=QZKkKnbfMMAAGcvlDsl6UzLYU+1c9zGZndPC4xxCHWk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=DSkhhUR7voEI82iNnVEEhuYItFrUt78qLJuiMf77EQdhHeUpY7aWjwHpVdSQBzjGg
+         z9t3J0Qs+iW4GRZm7XjU37JcyuOSiqrv6knxWaDBxo37MfnmHprJIwYAgwfFd8epJk
+         tAITY9hH/vmgCHGCb8sboE479usE1f47pbf+XOVcfH2WuYp+F5/6x5nB7o3w5OUJ5J
+         E4NrzEaOhXe2gVy39juqToD++AKquSrS86/Z7vJNdBRbA0yLRM96v9P0L3nuvClSp7
+         XsfAMYq5D5LbzfdkB7AHObfsNwRWVDXRaDRnRFZXrUuzMEiJy8mPT/otSlRoigA/u4
+         btew7iHktCeTw==
+Date:   Fri, 1 Jul 2022 20:02:41 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        katie.morris@in-advantage.com
+Subject: Re: [PATCH v12 net-next 9/9] mfd: ocelot: add support for the
+ vsc7512 chip via spi
+Message-ID: <20220701200241.388e1fd5@kernel.org>
+In-Reply-To: <20220701192609.3970317-10-colin.foster@in-advantage.com>
+References: <20220701192609.3970317-1-colin.foster@in-advantage.com>
+        <20220701192609.3970317-10-colin.foster@in-advantage.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: DcmowABX85QRo79i87hdEQ--.62291S2
-X-Coremail-Antispam: 1Uf129KBjvdXoWrKF48ur4xtryfCr4ktFy7Wrg_yoWfArb_GF
-        12vFZrXrnYvFn3Wr9xtrWfu3sayr4SgrWrXF40qas3ta12vry5XF15Xry5Ka4j9rW7AF98
-        Xr1Dtr40yF4UWjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_k9NDUUUUU==
-X-Originating-IP: [124.16.139.61]
-X-CM-SenderInfo: hzlqvxbo6rjloofrz/1tbizhMyF18RPal1JQAAsy
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We should use of_node_put() for the reference 'node' returned by
-of_parse_phandle() which will increase the refcount.
+On Fri,  1 Jul 2022 12:26:09 -0700 Colin Foster wrote:
+> The VSC7512 is a networking chip that contains several peripherals. Many of
+> these peripherals are currently supported by the VSC7513 and VSC7514 chips,
+> but those run on an internal CPU. The VSC7512 lacks this CPU, and must be
+> controlled externally.
+> 
+> Utilize the existing drivers by referencing the chip as an MFD. Add support
+> for the two MDIO buses, the internal phys, pinctrl, and serial GPIO.
 
-Fixes: fec9b625095f ("of: Add plumbing for restricted DMA pool")
-Co-authored-by: Miaoqian Lin <linmq006@gmail.com>
-Signed-off-by: Liang He <windhl@126.com>
----
- drivers/of/device.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+allmodconfig is not happy, I didn't spot that being mentioned as
+expected:
 
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 874f031442dc..75b6cbffa755 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -81,8 +81,11 @@ of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
- 		 * restricted-dma-pool region is allowed.
- 		 */
- 		if (of_device_is_compatible(node, "restricted-dma-pool") &&
--		    of_device_is_available(node))
-+		    of_device_is_available(node)) {
-+			of_node_put(node);
- 			break;
-+		}
-+		of_node_put(node);
- 	}
- 
- 	/*
--- 
-2.25.1
-
+ERROR: modpost: "ocelot_spi_init_regmap" [drivers/mfd/ocelot-core.ko] undefined!
+WARNING: modpost: module ocelot-spi uses symbol ocelot_chip_reset from namespace MFD_OCELOT, but does not import it.
+WARNING: modpost: module ocelot-spi uses symbol ocelot_core_init from namespace MFD_OCELOT, but does not import it.
+make[2]: *** [../scripts/Makefile.modpost:128: modules-only.symvers] Error 1
+make[1]: *** [/home/nipa/net-next/Makefile:1757: modules] Error 2
