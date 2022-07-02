@@ -2,81 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46F9A563E3C
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 06:25:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 072AF563EA7
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jul 2022 07:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232013AbiGBEYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 00:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57960 "EHLO
+        id S231485AbiGBFZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 01:25:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231243AbiGBEYx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 00:24:53 -0400
+        with ESMTP id S229951AbiGBFZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 01:25:49 -0400
 Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DEC828E31;
-        Fri,  1 Jul 2022 21:24:52 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 31CD45C020F;
-        Sat,  2 Jul 2022 00:24:51 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Sat, 02 Jul 2022 00:24:51 -0400
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D2452C673;
+        Fri,  1 Jul 2022 22:25:48 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 0AA685C0195;
+        Sat,  2 Jul 2022 01:25:46 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Sat, 02 Jul 2022 01:25:46 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
         cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1656735891; x=1656822291; bh=LG
-        V0UgiQ5BsxhP6kl4zQXzxA4vF4AWjRJhvCPcjVLAA=; b=mTLu5+HMsxS/tj+kVe
-        0xH5f5Upim2cayZaeXIRca25FqAEFVsqJp0UFlZJ1m5M5of7cqYL39h0GRdXF78+
-        aYOYBmxk9/6ieCibKJSPIVx1a+8m8pbsryCRYlNDL5EWn8iqeoeiwGaVUhnhjlTR
-        bA7rsIZKAf79eXfFsUKLKQZe8k2wumK29lmnCVMpg8PPZczzh7hWNvm7VBTtQfDj
-        4s3NEpyrpiPrgRfkLxdpLGP69GC4HYShiTzkzSf0zEx5s5GgZdIhHFym5m4L9Gf1
-        mY7BW1IXNC56Strlv3KhitrniALbquDbVDV6c/AheeNDtlPgM7s2BnpZ2vqhd/ve
-        +Lhw==
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm3; t=1656739546; x=1656825946; bh=ZDVhLQRWt4nVJ5OST5kNBSRBh
+        F8l/TWZdl9kfqTRWzI=; b=mIbeZnXFq0Rs6r+UoMXOGz25PnMMgtnD8SvbMSpBB
+        aGWj8+hY6AD9fRzW3cl0iqrLhGC3k0+DiILkLuzB3VJ3quyitNDNIPfUR1Op9U3r
+        C0sjBHqG2z3FEL6zVX4X/AE13KiNPf4wI4RfaX29ckzu6ox4Ib9nMP+6ajfnteSZ
+        hKHbd/N90oho/qgBmqkCjcjCQvIAKvPF5H139EQq5EkNODFVkQW3lGNIravAOKEd
+        hTHjCDyh6DtJDuU/AqkYEQK+FjrNCte4VxrcBJ1ihAJFnOfxk5LfXb2uHUy9nupJ
+        ckLLVq4AADxJBvKmDpFD8ugr2FlvLNo+qZnYqHUJqzy1A==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1656735891; x=1656822291; bh=LGV0UgiQ5Bsxh
-        P6kl4zQXzxA4vF4AWjRJhvCPcjVLAA=; b=vUGCkQ0awWg4+ubo+VMfiDcVKsFHx
-        Q5y1kUwg4zUVDyP2oo5trdlvTWcvSfkYMGoBBTL1F1TvBu7GquOnanSz8ImyBQuB
-        Ywr72cPHB4bIf3q5Q8lePoy3l/lMYSRFpLBk5hahmZWIf8z2vuwuIrR+Re+fGFV9
-        p6kjShPJua30vLSm2qlcY6q7exuLOL3+GGfCx9NHcWWEPLlHQ8Vx44ZKBngZPNbs
-        EiME5lyknBDaGs+xqJFtw325qaC3aCDUS3jyywinT2xRzadXwV3w6Gs4bdcw5jhc
-        lUoYtWuNkNQPjIiTYjLZX0Z+tUv4Aco5xHdW+drykQWZDeib04m0XpKFA==
-X-ME-Sender: <xms:ksi_Yjy__RLTikurpstx28oPU8GnXnKbctxpf_Vh-6Zh46qA1euMGw>
-    <xme:ksi_YrRwIKtuXJdGF7IOTl_a9go82GiqvKoYB5X8MMqe5tv7-xA3CyfsA2x6T2RHA
-    5tCT3XbBzjohZEzpA>
-X-ME-Received: <xmr:ksi_YtUMYvcNSPEzWO7dIdleiN82wxYywLI8JJLDd_cZJ6F4tWW_JFxq8NUiIczIiHX0fvA3ZPWu0TTth7cPIG-NuJcQgIP5tuun2o1EV8f6eJnsXfvlP24bCdFhhznpU0vcJA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehgedgkeegucetufdoteggodetrfdotf
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+        1656739546; x=1656825946; bh=ZDVhLQRWt4nVJ5OST5kNBSRBhF8l/TWZdl9
+        kfqTRWzI=; b=l4sZcQ2rtRuAky8TOo1V5MnEsIFU4de9DrmGsml10Gd3V3cJziF
+        IKRWJPLZhhj+8rvUfzaLSfXjZ8MQOvEpzrFz3hGSyvpU99ysPKhLHDqt0O7Go3wc
+        hAG0FSAPabdOkj85H+OMgkL1EFyG3bZaoApKAOaNKcWNzEWQqU9vUuig7QEDSn30
+        iIozUddiIMQ7ImxbGzR9HaeQKs+8Qq3dMs8NJRZRdU4BATIi8CMJhbhHzMGgMaQq
+        myjt/137qpudzM8zJC8WMZugUhCcMtNtRLUB4/+1e3VKM+RN+llfWXv7BD10EsTx
+        +3w3WAQwib9E63qHa0KCZCbSLe9E+6gS3Fw==
+X-ME-Sender: <xms:2da_YnbURUi1iyulsI8R0PTakitGEyWvGJ5VL7jpU3-TqnJfJma9hQ>
+    <xme:2da_YmaWW_sAX8EWpqY1XyzrnGB4Rkp3w5ceJ3Nd2zeX1NdX476kGk4AFdTQruqcC
+    y2lUdYHqbBGkkJjBg>
+X-ME-Received: <xmr:2da_Yp8Fh2A6eh2pUIFds3kLes4VWHCfQeRmg-bOvdVk4Eg6bH4rzcR0nb97wOn6idcsiASChG0EEh7SkWqrDQYD6mf5asASuJLEuZSshfCa1ClJmRpX7UbcjIbbbkLRp8pDvw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehgedgleehucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepudekteeuudehtdelteevgfduvddvjefhfedulefgudevgeeghefg
-    udefiedtveetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:ksi_YthAhjuCC0Bhc28NHmtZilEUn1WgoZiV8ccHUQVRMtxQQE5hzA>
-    <xmx:ksi_YlBwz0ksZrNN7GKcnw6bC2rZLlp2uNRThOBVzXiCxdFlliQ0rQ>
-    <xmx:ksi_YmJO4TbPU3LUggFt414FYJPu4SUxmoeOS-PadJPyM30_k3admA>
-    <xmx:k8i_YptHjajYOfLN6sHdWiwyDyR0oQzedWYtVXN2SNx7RhjE04snDA>
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
+    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
+    grthhtvghrnhepkeevlefhjeeuleeltedvjedvfeefteegleehueejffehgffffeekhefh
+    hfekkeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:2da_YtqqAb7OH2GygbqbbuYrhsN7f6TAXTXsUqpFwrpc2jzKSlVDDw>
+    <xmx:2da_YipfcS8qtiuoqxbzBkqb3mza8GJiVFVZphrIZOj_1ETiNMAbHQ>
+    <xmx:2da_YjTdY7aNktkzFgJkuTSKSwVRPdoJLB4GJhfPwimtCTC9eov32g>
+    <xmx:2ta_Yh02n4mcx_MbuXT0oJAIF8cfWaTEr5LHHgEsYOKWSl1jB3j89Q>
 Feedback-ID: i0ad843c9:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 2 Jul 2022 00:24:50 -0400 (EDT)
+ 2 Jul 2022 01:25:45 -0400 (EDT)
 From:   Samuel Holland <samuel@sholland.org>
 To:     Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <maxime@cerno.tech>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: [PATCH 2/2] dt-bindings: arm: sunxi: Add several MBUS compatibles
-Date:   Fri,  1 Jul 2022 23:24:47 -0500
-Message-Id: <20220702042447.26734-2-samuel@sholland.org>
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: i2c: mv64xxx: Add variants with offload support
+Date:   Sat,  2 Jul 2022 00:25:42 -0500
+Message-Id: <20220702052544.31443-1-samuel@sholland.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220702042447.26734-1-samuel@sholland.org>
-References: <20220702042447.26734-1-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,42 +86,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All of the sunxi SoCs since at least the A33 have a similar structure
-for the MBUS and DRAM controller, but they all have minor differences in
-MBUS port assignments and DRAM controller behavior. Give each SoC its
-own compatible.
+V536 and newer Allwinner SoCs contain an updated I2C controller which
+includes an offload engine for master mode. The controller retains the
+existing register interface, so the A31 compatible still applies.
+
+Add the V536 compatible and use it as a fallback for other SoCs with the
+updated hardware. This includes two SoCs that were already documented
+(H616 and A100) and two new SoCs (R329 and D1).
 
 Signed-off-by: Samuel Holland <samuel@sholland.org>
 ---
 
- .../bindings/arm/sunxi/allwinner,sun4i-a10-mbus.yaml   | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml   | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-mbus.yaml b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-mbus.yaml
-index 2b018feb56df..99566688d033 100644
---- a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-mbus.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-mbus.yaml
-@@ -29,10 +29,20 @@ properties:
-   compatible:
-     enum:
-       - allwinner,sun5i-a13-mbus
-+      - allwinner,sun8i-a33-mbus
-+      - allwinner,sun8i-a50-mbus
-+      - allwinner,sun8i-a83t-mbus
-       - allwinner,sun8i-h3-mbus
-       - allwinner,sun8i-r40-mbus
-+      - allwinner,sun8i-v3s-mbus
-+      - allwinner,sun8i-v536-mbus
-+      - allwinner,sun20i-d1-mbus
-       - allwinner,sun50i-a64-mbus
-+      - allwinner,sun50i-a100-mbus
-       - allwinner,sun50i-h5-mbus
-+      - allwinner,sun50i-h6-mbus
-+      - allwinner,sun50i-h616-mbus
-+      - allwinner,sun50i-r329-mbus
- 
-   reg:
-     minItems: 1
+diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+index f771c09aabfc..0ec033e48830 100644
+--- a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+@@ -21,10 +21,18 @@ properties:
+           - enum:
+               - allwinner,sun8i-a23-i2c
+               - allwinner,sun8i-a83t-i2c
++              - allwinner,sun8i-v536-i2c
+               - allwinner,sun50i-a64-i2c
+-              - allwinner,sun50i-a100-i2c
+               - allwinner,sun50i-h6-i2c
++          - const: allwinner,sun6i-a31-i2c
++      - description: Allwinner SoCs with offload support
++        items:
++          - enum:
++              - allwinner,sun20i-d1-i2c
++              - allwinner,sun50i-a100-i2c
+               - allwinner,sun50i-h616-i2c
++              - allwinner,sun50i-r329-i2c
++          - const: allwinner,sun8i-v536-i2c
+           - const: allwinner,sun6i-a31-i2c
+       - const: marvell,mv64xxx-i2c
+       - const: marvell,mv78230-i2c
 -- 
 2.35.1
 
