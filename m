@@ -2,97 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F9275648BF
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 19:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19F965648E0
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 20:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232761AbiGCRCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 13:02:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44832 "EHLO
+        id S232571AbiGCSA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 14:00:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232312AbiGCRBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 13:01:55 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C905E627B;
-        Sun,  3 Jul 2022 10:01:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1656867693;
-        bh=r3dNDUDIuUE3Q0qRG27sRGL8QSUVi1dKmu2o/TP38+o=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=IrAd30hI+KUcO22l6V3kbwW5xHgsijSs1p/i71c27LXUsdMOpa0ypTKskAHkDFHpj
-         JE/09dEVOj9gGtf7+J2t/ZqJyOpZUjJpM5FA1195w5TIH9wL6esbljwXYQL4PRcvLB
-         WQyMBuSrwWdviCLV4NsgrRp/f5h69xVNUikzLV18=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from localhost.localdomain ([46.223.3.210]) by mail.gmx.net
- (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1M5QJD-1o8sJs2ocP-001Oya; Sun, 03 Jul 2022 19:01:33 +0200
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-To:     gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, vz@mleia.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lukas@wunner.de, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Subject: [PATCH v2 9/9] serial: 8250: lpc18xx: Remove redundant sanity check for RS485 flags
-Date:   Sun,  3 Jul 2022 19:00:39 +0200
-Message-Id: <20220703170039.2058202-10-LinoSanfilippo@gmx.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220703170039.2058202-1-LinoSanfilippo@gmx.de>
-References: <20220703170039.2058202-1-LinoSanfilippo@gmx.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-X-Provags-ID: V03:K1:KjAB4TazV/OvuLGClQIL62mGEv/0G6rRtTs5pe+N09lU9C9u8xm
- 81tPPKgUO4gFQ/640DbtwTghVkeUew/lXZ132Zx7lpMa7HbYuUo6nPX3HNBwTFf8pgXyXUR
- 1nuiwWq2ftAkbP7ADU8L6aiMNKMOe6wQAf0wbvKqGxPKe1TKDE8k2BjTm+ExZ1L9ivWvJKN
- o6I+B9izQFtUuVJ8eR+sw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:t+3L/KYJQ68=:Idxt9qmFJMRusII+8L49Aa
- zSEABMSFoylvJHtAm0y/CS9YVujhvonXNXu1GJTkyShWG1tLqw89/VpBtdaF2c66TTiJUgOwm
- KI6+f5TGj7Sjd7B0mmIFPwRVrJWSrHO3vM7edcNHpTa0JM3+RmZ3sNi8pjTpNCDuCgE5XlD2h
- mrm9uXPMIPy8tph8lpaYpiRBVaP7a6QTnNpWFOzQYCGe/8F6UbvMQX2oRT7BDQPOVytP02UVY
- YOVbhq3oqeAgMAptgRoq5CzPBVEWcvg9atN6dkcRD0mbqILD/eTf1NngAiLdn3xOlCKC4CxpV
- b7K0AZG7oKsqqmBarzoMIxTIObjF7JGsVyFewDGrLmOHu6UvXrKKD+M5xniRFzQaIu0378Ayn
- l9OH3QXdyePodceFWxarQrhf9GjXbzyVfh+YUILaK66fCx3LQft7Fhs95ccWKhpSY8Lms/RjF
- oRaGf0tZRFvnWA0rG4FoyI/tfd2Gb1iXqJkvC5VU1XQvcLDHmSDGo2fucc75oMYg9mD+zgu0b
- zoUGA4hSinXPuCh9TNIZOO6FVjA2Tw1dpnedxUfdcoSFziSRa8ZSYbVHGb1h3gGHx2TvXwoRr
- 4punAqCmgyhw/2/ug6fo7J4XW1Rqnp/nObBb3v3Mj0XfDN73Mcu5BvDuzpcne86IAjsKaX8km
- j3s4M96Mn72DBI+KiGyZS7wbiTLx/3dHJO4TZwLGMVOq7DuH6kfDfoah10cmEL4rEvPiX9Jph
- cPuQp1f4KdPpcu3jlt2m8Mc4P1hzY7bF924o6/Q6V5kSX5os8/S5uygtT/O8NjWCrfpSHIYvA
- ttZh7Kuiuasvf5BU3ZwBriZXY+oPOYCSO/aNB9B/BmmFpdJYcSVZTYKxqcbM2qY/sbazuHT94
- uKvBfT88apH4yV1gcuhKhapJfubzTZl0DF46zvBeH89MH7ohbCBE/8tAJDUi5lkPNEYBboYuP
- IkUAB7IH7MJFUvrbj7S7wI4HGgW2TNPi+IvwqXAwfbJbuyw4/fXty4WBMHthI46HvQnULV1l4
- N617UjZIHNOtqa1OkMSiAlUb3GPobKsTfHmbGXaziwEo8xCgHURaTxPLbz8vaAfpZ4Jyr7OFm
- 7yElBeI/pR2ocJKJx826lpW4oRhiwYe0BsN/13CYajy+gHb9xgBdcVngw==
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229549AbiGCSA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 14:00:27 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CF9C60D1;
+        Sun,  3 Jul 2022 11:00:27 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id r133so6794929iod.3;
+        Sun, 03 Jul 2022 11:00:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=0oH4Qv2b3hpacaeJbha5xxiRLG21WNmxbvy8dgQr22s=;
+        b=AOdSmEqL9Y8VBUpOZIj0YWcHxqSgD8G34oP4xKwAYbD/yD+tr4pbjAfSofsdVu5PKl
+         S6pFfxRkF3LZfCd0jy+hh2DGblxHGgpXN9wRw/jQO7ndIMxoXpg25CUoZdTLL35YQsmN
+         sMTNdQyqXDJeYSFeYiSVZ+wL0D1510itUVv+fJSU82LyaW7o5kvFnelk3biCfQx7Cjrg
+         EL3upJq+M7lgOVPTLTvBuC7ZT6lZu0JgCzLl9isHhkZbzWIYwr3DE4c31DofmGsvCilL
+         bBEawBrHeIpgDJFzbwT5dC5nuhc/mJvYWpU+i1VdqTeHzvwmpfSqTUMWdBN2Vtfb+wDm
+         brLA==
+X-Gm-Message-State: AJIora97s5xsLgxyO1ejAwKhYWCbULXC59hS2Lj3I2kWdCK1GFCsaY8o
+        NZKz85AdclsEyKgxeRxXQg==
+X-Google-Smtp-Source: AGRyM1uyZ/IzOLxMLM1fHCuuqlCDAZS8xqzT04cCI/FH8YEh27fssyASXY5sxh0osk4DmVvORf72xw==
+X-Received: by 2002:a5e:c908:0:b0:675:7f2c:b266 with SMTP id z8-20020a5ec908000000b006757f2cb266mr13808388iol.7.1656871226347;
+        Sun, 03 Jul 2022 11:00:26 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id z7-20020a923207000000b002d1d3b1abbesm11176112ile.80.2022.07.03.11.00.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Jul 2022 11:00:25 -0700 (PDT)
+Received: (nullmailer pid 1705438 invoked by uid 1000);
+        Sun, 03 Jul 2022 18:00:23 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das@bp.renesas.com>, linux-can@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Eric Dumazet <edumazet@google.com>
+In-Reply-To: <20220703104705.341070-2-biju.das.jz@bp.renesas.com>
+References: <20220703104705.341070-1-biju.das.jz@bp.renesas.com> <20220703104705.341070-2-biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: can: sja1000: Convert to json-schema
+Date:   Sun, 03 Jul 2022 12:00:23 -0600
+Message-Id: <1656871223.903187.1705437.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogTGlubyBTYW5maWxpcHBvIDxsLnNhbmZpbGlwcG9Aa3VuYnVzLmNvbT4KCkJlZm9yZSB0
-aGUgZHJpdmVycyByczQ4NV9jb25maWcoKSBmdW5jdGlvbiBpcyBjYWxsZWQgdGhlIHNlcmlhbCBj
-b3JlCmFscmVhZHkgZW5zdXJlcyB0aGF0IG9ubHkgb25lIG9mIGJvdGggb3B0aW9ucyBSVFMgb24g
-c2VuZCBvciBSVFMgYWZ0ZXIgc2VuZAppcyBzZXQuIFNvIHJlbW92ZSB0aGUgY29uY2VybmluZyBz
-YW5pdHkgY2hlY2sgaW4gdGhlIGRyaXZlciBmdW5jdGlvbiB0bwphdm9pZCByZWR1bmRhbmN5LgoK
-U2lnbmVkLW9mZi1ieTogTGlubyBTYW5maWxpcHBvIDxsLnNhbmZpbGlwcG9Aa3VuYnVzLmNvbT4K
-UmV2aWV3ZWQtYnk6IElscG8gSsOkcnZpbmVuIDxpbHBvLmphcnZpbmVuQGxpbnV4LmludGVsLmNv
-bT4KLS0tCiBkcml2ZXJzL3R0eS9zZXJpYWwvODI1MC84MjUwX2xwYzE4eHguYyB8IDYgKy0tLS0t
-CiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDUgZGVsZXRpb25zKC0pCgpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy90dHkvc2VyaWFsLzgyNTAvODI1MF9scGMxOHh4LmMgYi9kcml2ZXJzL3R0
-eS9zZXJpYWwvODI1MC84MjUwX2xwYzE4eHguYwppbmRleCBkN2NiM2JiNTIwNjkuLmZiYTBiYjE3
-ZTUzNiAxMDA2NDQKLS0tIGEvZHJpdmVycy90dHkvc2VyaWFsLzgyNTAvODI1MF9scGMxOHh4LmMK
-KysrIGIvZHJpdmVycy90dHkvc2VyaWFsLzgyNTAvODI1MF9scGMxOHh4LmMKQEAgLTQ0LDEyICs0
-NCw4IEBAIHN0YXRpYyBpbnQgbHBjMTh4eF9yczQ4NV9jb25maWcoc3RydWN0IHVhcnRfcG9ydCAq
-cG9ydCwgc3RydWN0IGt0ZXJtaW9zICp0ZXJtaW9zCiAJCXJzNDg1X2N0cmxfcmVnIHw9IExQQzE4
-WFhfVUFSVF9SUzQ4NUNUUkxfTk1NRU4gfAogCQkJCSAgTFBDMThYWF9VQVJUX1JTNDg1Q1RSTF9E
-Q1RSTDsKIAotCQlpZiAocnM0ODUtPmZsYWdzICYgU0VSX1JTNDg1X1JUU19PTl9TRU5EKSB7CisJ
-CWlmIChyczQ4NS0+ZmxhZ3MgJiBTRVJfUlM0ODVfUlRTX09OX1NFTkQpCiAJCQlyczQ4NV9jdHJs
-X3JlZyB8PSBMUEMxOFhYX1VBUlRfUlM0ODVDVFJMX09JTlY7Ci0JCQlyczQ4NS0+ZmxhZ3MgJj0g
-flNFUl9SUzQ4NV9SVFNfQUZURVJfU0VORDsKLQkJfSBlbHNlIHsKLQkJCXJzNDg1LT5mbGFncyB8
-PSBTRVJfUlM0ODVfUlRTX0FGVEVSX1NFTkQ7Ci0JCX0KIAl9CiAKIAlpZiAocnM0ODUtPmRlbGF5
-X3J0c19hZnRlcl9zZW5kKSB7Ci0tIAoyLjI1LjEKCg==
+On Sun, 03 Jul 2022 11:47:00 +0100, Biju Das wrote:
+> Convert the NXP SJA1000 CAN Controller Device Tree binding
+> documentation to json-schema.
+> 
+> Update the example to match reality.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Moved $ref: can-controller.yaml# to top along with if conditional to
+>    avoid multiple mapping issues with the if conditional in the subsequent
+>    patch.
+> ---
+>  .../bindings/net/can/nxp,sja1000.yaml         | 102 ++++++++++++++++++
+>  .../devicetree/bindings/net/can/sja1000.txt   |  58 ----------
+>  2 files changed, 102 insertions(+), 58 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/can/sja1000.txt
+> 
+
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+can@4,0: nxp,tx-output-config:0:0: 22 is not one of [1, 2, 4, 6, 8, 16, 32, 48]
+	arch/arm/boot/dts/imx27-phytec-phycore-rdk.dtb
+
+can@4,0: 'reg-io-width' is a required property
+	arch/arm/boot/dts/imx27-phytec-phycore-rdk.dtb
+
