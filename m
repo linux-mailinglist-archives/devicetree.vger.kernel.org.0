@@ -2,119 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 610B656464F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 11:15:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAB17564698
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 12:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232776AbiGCJOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 05:14:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40890 "EHLO
+        id S231169AbiGCKOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 06:14:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232782AbiGCJN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 05:13:56 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2040.outbound.protection.outlook.com [40.107.22.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF0563CC;
-        Sun,  3 Jul 2022 02:13:54 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SzNmhtMbzy3yWC3QTw3FjwywsLV3oRoUe4ID5YHCYDZ4ZZP97KZTHoeyEbhBmIzphQCbSG6/CQB16aC6srOgNklKi9GCRDUJkJr0vwlaQmN1BjGMTBRu+qyexUYnmY5izRmMiMSrZDMc5KN8W6rX7SpzaYD1s0CY4DO30CR+UOK+mOHQu68d9QEJU1xzdppZAeN3jZ6W1OIV991mEG04u1tYFI1WSPtY/UAncSjFBQbE2S4SOsagNOUbivD1wuyPzsYZ/hlBJ2zWcY0ja74eIYHa3p02Aa5mXiP93l6UT1K7HGhg8nJ02t3ms8b6KZPLqOxg7UAmYB5Xg8MTez0/DQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6Gl2/EPlcXP1Mp7SUNao7Lkppmwn9KkEHDhQjQB3Les=;
- b=ZcVFlRjxoA24pIKji9xWAgllnfv6S2WlffddzkprhrQ1PhyZ3wjxS1pGYn2uNMqjYn7VI+qlVdSBU96Kob22es1IA+KfsnXsvSSI/IvUVIWFeuafQH74M4qaXdYhwFOGr2nagfQ8ppb0C7xEa+C0a8DYztg8PqJ//Z8ZYsSZrlDyjO+gxTGEoUHV1DZXBm6uN69BZRO98B4+A3LCtnRBm36KeG0OJXHFBUyUdWwYHnzcBsWuYtHwaM4wyoQVjAVmxphPheSvItNYJE7NLzsr/hm0m8T4ejXjQHjT59VxkoJCmXo9hnumELb3RzhfZrEMju5gL65MRXdXtJDmoFg8Yg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6Gl2/EPlcXP1Mp7SUNao7Lkppmwn9KkEHDhQjQB3Les=;
- b=YFs9xeHJnM5Ya1jFUVsR93QZEKn6ZLtIBtOQQ+rXJySDrW9/EZsp+wGanaNDUkp1CxNdudzA+6YZQw2JcVVbYQS4u6+gKYLArvXChi0FXidDkSaqi691AeZGKTDRjZuo1hvkWRIkSmUinjbT/sYFTj33rF2FTYGe5mToUTZyw2k=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AS8PR04MB7768.eurprd04.prod.outlook.com (2603:10a6:20b:2a4::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.19; Sun, 3 Jul
- 2022 09:13:51 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::fdd4:8557:334b:180d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::fdd4:8557:334b:180d%5]) with mapi id 15.20.5395.018; Sun, 3 Jul 2022
- 09:13:51 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     djakov@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, abelvesa@kernel.org,
-        abailon@baylibre.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com
-Cc:     kernel@pengutronix.de, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V3 7/7] arm64: dts: imx8mp: add interconnect for hsio blk ctrl
-Date:   Sun,  3 Jul 2022 17:14:51 +0800
-Message-Id: <20220703091451.1416264-8-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220703091451.1416264-1-peng.fan@oss.nxp.com>
-References: <20220703091451.1416264-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0005.apcprd02.prod.outlook.com
- (2603:1096:4:194::6) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S229779AbiGCKOM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 06:14:12 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3DAC615F;
+        Sun,  3 Jul 2022 03:14:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1656843246;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=3dxEyMqHzzsFuWVcEwH40m4/4bzynqSKKxtXxi1Ci70=;
+    b=GWi8VxyGxQC96Ieg4OyEQdBrkTOCnjmZKnW21/ycAzYH7ov1V8ddZY45Zh/jNPcSyp
+    1OdPSJA4NQ/ayvEmbvV1HrRQMsP43hKbnq9/5snoGX5VNIYg40JLeRMWOGui6e/29FmL
+    tHIpx5KlOno198HmaQQxhSnLR6v1TqySoPP5/SoOkkR6C4u0OOW7MPIzFAC42iQyJSQv
+    f5i33wIP7EyRCey/UVJ27zAIuO1Y7TPeTs9TjHIRslB7fOL0JCRtNgFTcEQqk3oxZhgm
+    Q4mBrP3ZTUtkof7FBIJpnnlYiqpGVUoV/qc5d3Ty9E10TsqX+J0yAZZ8+y3WyRYF7hsg
+    uSnA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKY7lg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.46.1 AUTH)
+    with ESMTPSA id yfdd30y63AE5AcK
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Sun, 3 Jul 2022 12:14:05 +0200 (CEST)
+Date:   Sun, 3 Jul 2022 12:13:51 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, Konrad Dybcio <konradybcio@gmail.com>
+Subject: Re: [PATCH 3/4] remoteproc: qcom: q6v5-mss: Add support for
+ SDM630/636/660 MSS remoteproc
+Message-ID: <YsFrtn0X6ywJh6d3@gerhold.net>
+References: <20220514000108.3070363-1-dmitry.baryshkov@linaro.org>
+ <20220514000108.3070363-4-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 47f80a13-2bdc-4898-e2fe-08da5cd45841
-X-MS-TrafficTypeDiagnostic: AS8PR04MB7768:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PQ663PT5oX84hdvXCo+3rWNuigWcPaMlLEmsrf53KMR3r95mOPc00vffS5wJrUTxPCQ3XZqHOrBd73taBWUfZAogV5kbn4OZXM4Rmm6bgftGlCCK/C4PNcmQTrGHZxf721RdouTiFLmGa8Abhvk9O4p9CxfmcA+HwwpjhiwOxFofkSxM1bEynHriWUA5hcqLRDNwuywEURexsV0aXYpngQhtdaFzsYxi+v1LPDq24e7fvlsZO6YNzUfUov1nvGY6Wow4FfThC2xGl67hqli4TeMw9r6dymQ4ufbI68RcXoYi7vFBZ1bxT/JHVkEQbx81tqWkOOChLcQ0DZCBxtW5JRru5p1WJz/DHMWCW488hOvxYLv551xw8RAILVWiFRfI1DQgRtVEN+zZRHOcsgt96Ybg7OHfuZYnyBH1VBNxNfvHfn10lYCcMRC2b1ZkbMMnO5DEUDmeJFyQcc4bthbVU19ix0+7GviKn4p89WjYXyKSqCLTesT5acmGw9yOtYKUrNUd500g6cHN3WebJ28nHjJ+MUBwwiWcebracJoWup0wzwWK0mWn9brTr3L7w51jCWtYUnruPPaVRpnJOnXUPTI9tgz6ROYyDiQr+t74ecPyRHCluJbjiNhAA8HEaJAq9pwjSjYjVM6c9B4yIdH6LjUhA5A66bf9D56733TYDyN/+EMs0itckeMHXZGJ+vLAFgZONzzJ41M7VIPpY9eUBCRYSwnmASr8vld3FKXtP00N7l/Nfezj6tKrTiILi2OcnTV2nsSqO5MBM0QNuK/7ZsOdlbYMwDpN9Oj04f8goUzbgqqnHA8WDoQV7esN7tm44Fz/R4TEmEojvPOBYD/roIu9aUDu7NsG6vetKu6IB4A=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(136003)(376002)(39860400002)(366004)(396003)(478600001)(4744005)(5660300002)(8936002)(7416002)(921005)(316002)(86362001)(6486002)(4326008)(8676002)(66476007)(66556008)(66946007)(2616005)(1076003)(186003)(6512007)(26005)(52116002)(2906002)(41300700001)(38100700002)(38350700002)(6506007)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mmK2hBZ8R+GJz6apOxrLqvUAF9aY4LvF4n+s97OeEzVYeCF3eImqyhwk9IGx?=
- =?us-ascii?Q?b/U7oHv/etp0jHnAJLmloAqHeHV/V0dzTsYRf10WafjGQyJ2wjkq6pALvFMq?=
- =?us-ascii?Q?EyG0h+UT31RWotF8f9tUrI6N4UfcFqLcB21+tPvOSzVSkVJaoQQIZ2/U4+7N?=
- =?us-ascii?Q?ncVZtFIaQ8CrDMnfgLlgAMPmurW0UfdU9Nkzfysd/ieHohHailYQD5JalO6O?=
- =?us-ascii?Q?EAtict/45COolrUSm+jGa6DJSVkOvYw4zez45yqwIWbtSn8r8g4ZUhNUfSPO?=
- =?us-ascii?Q?R+Oy3V8D48FtbCgHndU5/UJRB+l38WUjvTuq2hNMVVer/aU+RBKID8buYQ9A?=
- =?us-ascii?Q?uQnr24Nv6+tAHVWMh/tJjkhUo+POPV2u8s1KKEMbRRFd95ZrsDoJxWvansDg?=
- =?us-ascii?Q?zXS9mikApBNssOFqcw41ZamPO16RTOiruUI0F2C2III+A1LWzIoaFfLKuFt6?=
- =?us-ascii?Q?0s/cxXLkR00SKVXjXi+YTrN44sGBWsjaZF9/aQuBbugdvmODaar5x6XJlOH7?=
- =?us-ascii?Q?nb6E8inDKfLPpQT6QeqNztw2I5ptamxGPvp0w0yVG5tkNRq6+/e5bDBWUqMB?=
- =?us-ascii?Q?gu9u7gMnFJ4gi+1IYQXAOM2V4cAuQBXE3EBQYS8oPwpKaWzFPHYJokBSBhZz?=
- =?us-ascii?Q?mphtu95ZjdHOZnxBVRLUOjArJg157kTrn5nLhJGOLBx4m6g2iBCzpJFFQjJV?=
- =?us-ascii?Q?IE7bR7ceQAa7QxB/Y7TRXeJLSgd4S/GFuLR0qHZ4az8SI25mQmdu5QKAD71q?=
- =?us-ascii?Q?cXRhR7FzmMuCb1Fl1CH/AdwKfsDc3PUiCYiL0E/kQe6EKeTD/9LQyTzTgRtQ?=
- =?us-ascii?Q?cN2nyjhJiSHcQWHR12DanRCsGuAvUOSmIfvHKY7Rr6Pcugo4cC8MUWGkRyjQ?=
- =?us-ascii?Q?C0IOI7pPDo4Ny57NLsPFNf/PFNfoowD/cHfjUWw8WJ1ruzgMJxe42StwFagW?=
- =?us-ascii?Q?UsZZntedEDxmzS5vExd/6gJ+ZYY32DaydP0UKn6sck2nDpyAmoAZ06E7+1Ft?=
- =?us-ascii?Q?4VFwVDXVXI2xHAnRXi6csQ8fPEuicBRY69tTP1SQLFfSDMl7tx11KQtco4Bq?=
- =?us-ascii?Q?yCixYjNVhJa0fmSA1e7/OTj6LctL/ryO4ldIRu9r7fi+OJGjIbo63aVv4Fc3?=
- =?us-ascii?Q?/+mdhii4Kf/htPgmpCyPUYCKn3o5HugXcNc9Ms2I4W4Ea541H/pmBYXFh2/0?=
- =?us-ascii?Q?YrQuOYIid+KgY8MkvoDMPGWI16o1+YI7p7rGZxo6CJz1pV6q/qnvuux3I9JJ?=
- =?us-ascii?Q?BvV30ZIhKNwDUKMFR3aXrwe+BSO0BhkWg5McHRT9FmdZGyNVsA7I8CriRmAs?=
- =?us-ascii?Q?a3RVAnLlOivgFSvYXO/Ve+gul/pE0Kldl/4iS3vNGfMxd3puARXol6umCCHG?=
- =?us-ascii?Q?AvXkuc0USonahIoNE1+RS1Ud9oKHUsugB0fOrp/ca/yUzHj3fwQ8uV//2CAG?=
- =?us-ascii?Q?DTJVQcKVA2bJSNYfr/dC9Q2DsypuEbb9coJ1aOmp0Ro+tZoss7zLX9bI2EvW?=
- =?us-ascii?Q?6zYpJT2ownx5R+Mw/BHvHD/AWo4lI7FSj04jUqGQ9f3JbEaD+J15paPrIf0v?=
- =?us-ascii?Q?qYR7BFOZ5iehxTGhazxfTW5+yPFt3cFP/dCDGHHo?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47f80a13-2bdc-4898-e2fe-08da5cd45841
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2022 09:13:51.3005
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I9l/EbbsqFGtVNMqs644pvxCt9yhLIyEELLUTdaB7vbPPi6cfq6QHSXpGDFgMo26gy5Fkk5MHwdHAC633+iQ7A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7768
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220514000108.3070363-4-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -122,31 +65,129 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+On Sat, May 14, 2022 at 03:01:07AM +0300, Dmitry Baryshkov wrote:
+> From: Konrad Dybcio <konradybcio@gmail.com>
+> 
+> This adds support for sdm630/636/660 modem subsystem
+> remote processor.
+> 
+> Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
+> [DB: fixed commit message, removed note about modem restarting regularly]
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Add interconnect property for hsio blk ctrl
+I was only looking at this by coincidence recently but since it doesn't
+seem to be applied yet(?) some comments below.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+> ---
+>  drivers/remoteproc/qcom_q6v5_mss.c | 111 +++++++++++++++++++++++++++++
+>  1 file changed, 111 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
+> index af217de75e4d..7a4cca30db8a 100644
+> --- a/drivers/remoteproc/qcom_q6v5_mss.c
+> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+[...]
+> @@ -754,6 +759,79 @@ static int q6v5proc_reset(struct q6v5 *qproc)
+>  			val |= readl(qproc->reg_base + mem_pwr_ctl);
+>  			udelay(1);
+>  		}
+> +		/* Remove word line clamp */
+> +		val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+> +		val &= ~QDSP6v56_CLAMP_WL;
+> +		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+> +	} else if (qproc->version == MSS_SDM660) {
+> +		int mem_pwr_ctl;
+> +
+> +		/* Override the ACC value if required */
+> +		writel(QDSP6SS_ACC_OVERRIDE_VAL,
+> +		       qproc->reg_base + QDSP6SS_STRAP_ACC);
+> +
+> +		/* Assert resets, stop core */
+> +		val = readl(qproc->reg_base + QDSP6SS_RESET_REG);
+> +		val |= Q6SS_CORE_ARES | Q6SS_BUS_ARES_ENABLE | Q6SS_STOP_CORE;
+> +		writel(val, qproc->reg_base + QDSP6SS_RESET_REG);
+> +
+> +		/* BHS require xo cbcr to be enabled */
+> +		val = readl(qproc->reg_base + QDSP6SS_XO_CBCR);
+> +		val |= 1;
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 08bd57742294..9cceeeeb26be 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1109,6 +1109,11 @@ hsio_blk_ctrl: blk-ctrl@32f10000 {
- 						<&pgc_hsiomix>, <&pgc_pcie_phy>;
- 				power-domain-names = "bus", "usb", "usb-phy1",
- 						     "usb-phy2", "pcie", "pcie-phy";
-+				interconnects = <&noc IMX8MP_ICM_NOC_PCIE &noc IMX8MP_ICN_HSIO>,
-+						<&noc IMX8MP_ICM_USB1 &noc IMX8MP_ICN_HSIO>,
-+						<&noc IMX8MP_ICM_USB2 &noc IMX8MP_ICN_HSIO>,
-+						<&noc IMX8MP_ICM_PCIE &noc IMX8MP_ICN_HSIO>;
-+				interconnect-names = "noc-pcie", "usb1", "usb2", "pcie";
- 				#power-domain-cells = <1>;
- 			};
- 		};
--- 
-2.25.1
+val |= Q6SS_CBCR_CLKEN; (like in the existing 8996 code)
 
+> +		writel(val, qproc->reg_base + QDSP6SS_XO_CBCR);
+
+I would also expect this to wait for !Q6SS_CBCR_CLKOFF like on all the
+other SoCs. Pretty sure downstream does that for all of them in
+q6v55_branch_clk_enable().
+
+> +
+> +		/* Enable power block headswitch and wait for it to stabilize */
+> +		val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+> +		val |= QDSP6v56_BHS_ON;
+> +		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+> +		mb();
+> +		udelay(1);
+> +
+> +		for (i = BHS_CHECK_MAX_LOOPS; i > 0; i--) {
+> +			if (readl_relaxed(qproc->reg_base + QDSP6V62SS_BHS_STATUS)
+> +			    & QDSP6v55_BHS_EN_REST_ACK)
+> +				break;
+> +			udelay(1);
+> +		}
+
+This looks like readl_poll_timeout().
+
+> +		if (!i) {
+> +			pr_err("%s: BHS_EN_REST_ACK not set!\n", __func__);
+
+dev_err()
+
+> +			return -ETIMEDOUT;
+> +		}
+> +
+> +		/* Put LDO in bypass mode */
+> +		val |= QDSP6v56_LDO_BYP;
+> +		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+> +
+> +		/* Remove QMC_MEM clamp */
+> +		val &= ~QDSP6v56_CLAMP_QMC_MEM;
+> +		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+> +
+> +		/* Deassert QDSP6 compiler memory clamp */
+> +		val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+> +		val &= ~QDSP6v56_CLAMP_QMC_MEM;
+> +		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+> +
+
+Why does this clear QDSP6v56_CLAMP_QMC_MEM twice?
+
+> +		/* Deassert memory peripheral sleep and L2 memory standby */
+> +		val |= Q6SS_L2DATA_STBY_N | Q6SS_SLP_RET_N;
+> +		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+> +
+> +		/* Turn on L1, L2, ETB and JU memories 1 at a time */
+> +		mem_pwr_ctl = QDSP6V6SS_MEM_PWR_CTL;
+> +		i = 29;
+> +
+> +		val = readl(qproc->reg_base + mem_pwr_ctl);
+> +		for (; i >= 0; i--) {
+> +			val |= BIT(i);
+> +			writel(val, qproc->reg_base + mem_pwr_ctl);
+> +			/*
+> +			 * Read back value to ensure the write is done then
+> +			 * wait for 1us for both memory peripheral and data
+> +			 * array to turn on.
+> +			 */
+> +			val |= readl(qproc->reg_base + mem_pwr_ctl);
+> +			udelay(1);
+> +		}
+> +
+>  		/* Remove word line clamp */
+>  		val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
+>  		val &= ~QDSP6v56_CLAMP_WL;
+
+All in all this looks almost exactly like the existing code for
+MSS_MSM8996/8. Wouldn't it be cleaner to just add an if statement for
+the QDSP6V62SS_BHS_STATUS readl_poll_timeout() to the existing code?
+
+Thanks,
+Stephan
