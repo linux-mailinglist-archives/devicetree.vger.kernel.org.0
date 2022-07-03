@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 165F3564863
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 17:25:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA1385648B2
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 19:01:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232280AbiGCPZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 11:25:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37386 "EHLO
+        id S231972AbiGCRBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 13:01:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230446AbiGCPZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 11:25:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC6862D3;
-        Sun,  3 Jul 2022 08:25:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DEB1F60FF9;
-        Sun,  3 Jul 2022 15:25:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42747C385A2;
-        Sun,  3 Jul 2022 15:25:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656861945;
-        bh=6FZRGuGyGXrR6uSqT9Lj6raevMBa8uPkB+swZksqT8g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Jnfjjziiv5MMxIuRaSg6LT5q52q+OIrul5gcUV0jYjn4deC7F6mQtgGFOJmSBdAl0
-         7+SdkRcpFhexGoZb4lzRVq6mZJc1wAbKefVz+PuyV1KEBlpiX+/S6PdI99faDmJSAM
-         mPIv2wcYy0abVEu8yIGwxAIQqPASjcut1yD92/ioHhVeYMDzFcrpVvRCWBpWlP/dUb
-         OjauLPWnckOBclx4SUrUQEQga6KweAInZMgPn4uGvyFBOqpbqGUZQv+kYbP1fQn+IP
-         ByMbqIZQJ054r4EcKqUaiiiIhZd/9yFR39F2DMSx+qBTYmKaQXRcf6ZWadBwm2oezA
-         04iZwX3Ba/zbQ==
-Received: by mail-wr1-f48.google.com with SMTP id s1so9977505wra.9;
-        Sun, 03 Jul 2022 08:25:45 -0700 (PDT)
-X-Gm-Message-State: AJIora/yYz6kxamyHbSBz8E4/alWFzcZzkEEjh5ftl8U0bcoNj9r94eW
-        YyCxombS8TR9x/cgVpeTuc8I48MVyYWztsfFGg==
-X-Google-Smtp-Source: AGRyM1t143YoHfhT1+OzPkK/w5os5HDfXvbtq7xkqhf03LIENcWrbQDx8MClno+Ey8csr1cLW8bxwuJ/Np9kf9yY7bQ=
-X-Received: by 2002:a5d:6c62:0:b0:21d:2235:d800 with SMTP id
- r2-20020a5d6c62000000b0021d2235d800mr23103832wrz.381.1656861943448; Sun, 03
- Jul 2022 08:25:43 -0700 (PDT)
+        with ESMTP id S230283AbiGCRBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 13:01:54 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F58624F;
+        Sun,  3 Jul 2022 10:01:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1656867690;
+        bh=A80IEaOvnAlffKMAOwHrks5ajbBOXblTI1M+kCbuuS8=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=hzPKHzZZbKBd6lfxFyRYOjCi1H+RCoOd0a+IYJcMIyxE0gMvGq7/7j+Qf7el3FR1k
+         fx7JveZxbfy7sbN+SjZQiG1yh3kAuTlRSak/1KqVmGNWHZesy+WM7+v0TfqLbWFpaV
+         wkeVyQsX1143pJ/ZJClMG72uXCzhCa7O6E3vDnf8=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from localhost.localdomain ([46.223.3.210]) by mail.gmx.net
+ (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
+ 1MYvY2-1o3d6X3Cca-00Uutl; Sun, 03 Jul 2022 19:01:29 +0200
+From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
+To:     gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, vz@mleia.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lukas@wunner.de, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: [PATCH v2 0/9] Fixes and cleanup for RS485
+Date:   Sun,  3 Jul 2022 19:00:30 +0200
+Message-Id: <20220703170039.2058202-1-LinoSanfilippo@gmx.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220701090547.21429-1-allen-kh.cheng@mediatek.com>
- <20220701090547.21429-2-allen-kh.cheng@mediatek.com> <CAGXv+5FTXXWZU4FyqJ7uqoPGso7ofsb1=QS0mU8Ay2hSz7rFXQ@mail.gmail.com>
-In-Reply-To: <CAGXv+5FTXXWZU4FyqJ7uqoPGso7ofsb1=QS0mU8Ay2hSz7rFXQ@mail.gmail.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sun, 3 Jul 2022 23:25:28 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8T4+hGscNwhYnnySjzOQiuDBKiH-dvazzntnNGr6u2mw@mail.gmail.com>
-Message-ID: <CAAOTY_8T4+hGscNwhYnnySjzOQiuDBKiH-dvazzntnNGr6u2mw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] drm/mediatek: Remove mt8192 display rdma compatible
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
+X-Provags-ID: V03:K1:+BIVud8HUysptY1CRE/8CAqa8UDwjnHqFBBbZV5WVV9svCJLpjR
+ +JibWzMCIr/FhhTfcfEKHUqguDgLb1Rteay+VFIjtJs9P2DGvDGbQCMcRmuNZjbZI8uzl8Z
+ vmKnCZawWwv1fKlyp3EIDO8Fir9NharaCGEfyOr/Z0lQIIKR998tnWO3SQb1JhZ6XCWlSFu
+ JKrQ3vvafo9nGDSweHENw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:UeNGYxSx++A=:jYl0ljKHXP+26L/kNcUQX6
+ 0OUbodQpW7gP0xBKAH2stA3n67W1XVlPi8NeO5jEM63/TzeKnrmSLC259d9uui8RKjmjwu/5T
+ OUY13qP5dHwm+bymC04DwlIUfyExgnUHlBm+LD5J8cjt86guq1kaMPQZdorOadBNI1CslWQ97
+ 2T0WB06jn1UDekFOGEJnehBq6X5EF7LnuQfUVUqqfYtg7HX2XQKnroiP52n1uVp5VmqVFFKjO
+ 1n4BtDkt58rzKuzTvUuXSf50EuBZWgksSQ/1C3i2niQDyharNUwF1eyvmEOJbRA1E9WyO6gGE
+ dlwj7WYCRsvr+jdCVCKP8P/XE22vsa0Wt9aDrWhmgYi9lnmOazgRfUkJT3h3/nPfLVe7zG1Qx
+ NhlUcSZrr1M0QWB5Rikwu8+mJF0t4CmmCjRevLDF3M+pn9IPT/w8nuJvm5n02nWMDakSIM54U
+ K1kAYccBOKbTGBudoHSblw68VduU6/WMhr16KU0f3/CzRgnYnj1CKr01XQIVhakDdvxeyariL
+ LA0vAmsdB0UAY8ciQ+hHPqKO5Bvqeqt/Wt9iXdtDBkB8CyQl1u7AMmtCPikMHp5fvguU/2Xxv
+ fCoqzmpE+PcUWcTgmSTQodJfRTHAK3Mb+WwLts0aTprJ27KF2Jv1Gnbh8SaLESKa4K36RJcZJ
+ AnKXXB3dkeqo2o71klLcu/PXErXtdaMY82WdFClSOHNkrv+L9weyuLClM3BY2QxBDWOpS+yKq
+ LyFENLjSuxMlx2y6fej3uZrO9GlfCH0TUn8Htx5CDLV9SH+LMbp4hG9MuWEajPQgMMZkK+PyI
+ PIg2kRgShC0GAuI4BjIYLZs0FCxQpzVJ/6qkOHeIjK6gXDVfLRdpwsfhSi/zKYw5QlJr2YoHR
+ X+ouLlpcqZvKhLIYbnrFC+bZpiKKFH1kqKL+eHgLVMmvUxyXgtDp+jyA19acFAT1NAeIOqBNc
+ CD64c7cT9IrOvLzPOTG+voYkGRT888q5jmVYn6taOGmhHiAoS2xpVP9QhmU31hHGyWzqwSYK3
+ LiER0SUUem+zGwKj1ZTnkOof12j6Wyw4q7lyCOux4B6nRqPPLR0vdCH6SNaQ9GjU67isGFUa1
+ /IgQYBfhiLRYiSN4RTQCP8rSDbTytQwUQcc46pRFVnrvfDFnTX2jNaODQ==
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,33 +72,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Allen:
-
-Applied to mediatek-drm-next [1], thanks.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
-
-Regards,
-Chun-Kuang.
-
-Chen-Yu Tsai <wenst@chromium.org> =E6=96=BC 2022=E5=B9=B47=E6=9C=881=E6=97=
-=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=886:37=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Fri, Jul 1, 2022 at 5:05 PM Allen-KH Cheng
-> <allen-kh.cheng@mediatek.com> wrote:
-> >
-> > The compatible =E2=80=9Cmediatek,mt8192-disp-rdma=E2=80=9D is being use=
-d for reading
-> > the data into DMA for back-end panel driver in mt8192 but there is
-> > no difference between mt8183 and mt8192 in rdma driver.
-> >
-> > Remove compatible =E2=80=9Cmediatek,mt8192-disp-rdma=E2=80=9D from the =
-driver and
-> > should use =E2=80=9Cmediatek,mt8183-disp-rdma=E2=80=9D as fallback in 8=
-192 DTS
-> > according to the mediatek,rdma.yaml.
-> >
-> > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+RnJvbTogTGlubyBTYW5maWxpcHBvIDxsLnNhbmZpbGlwcG9Aa3VuYnVzLmNvbT4KClRoZSBmb2xs
+b3dpbmcgc2VyaWVzIGluY2x1ZGVzIGNsZWFudXAgYW5kIGZpeGVzIGFyb3VuZCBSUzQ4NSBpbiB0
+aGUgc2VyaWFsCmNvcmUgYW5kIHVhcnQgZHJpdmVyczoKClBhdGNoIDE6IE9ubHkgcmVxdWVzdCB0
+aGUgcnM0ODUgdGVybWluYXRpb24gZ3BpbyBpZiBpdCBpcyBzdXBwb3J0ZWQuCgkgTk9URTogCgkg
+VGhpcyBwYXRjaCBmb2xsb3dzIHRoZSBkZXNpZ24gZGVjaXNpb24gdGhhdCAicnM0ODVfc3VwcG9y
+dGVkIiBpcwoJIHNldCBieSB0aGUgZHJpdmVyIGF0IGluaXRpYWxpemF0aW9uIGFuZCBjYW5ub3Qg
+YmUgbW9kaWZpZWQKCSBhZnRlcndhcmRzLiBIb3dldmVyIHRoZSBiZXR0ZXIgYXBwcm9hY2ggd291
+bGQgYmUgdG8gbGV0IHRoZSBzZXJpYWwKCSBjb3JlIG1vZGlmeSB0aGUgdGVybWluYXRpb24gR1BJ
+TyBzdXBwb3J0IHNldHRpbmcgYmFzZWQgb24gdGhlCgkgZXhpc3RlbmNlIG9mIGEgdGVybWluYXRp
+b24gR1BJTy4gSWYgInJzNDg1X3N1cHBvcnRlZCIgaXMgbm90IGEgCgkgcmVhZC1vbmx5IHZhbHVl
+IGFueSBtb3JlIGluIGZ1dHVyZSB0aGUgbG9naWMgaW1wbGVtZW50ZWQgaW4gdGhpcwoJIHBhdGNo
+IHNob3VsZCBiZSBhZGp1c3RlZCBhY2NvcmRpbmdseS4KUGF0Y2ggMjogU2V0IHRoZSByczQ4NSB0
+ZXJtaW5hdGlvbiBHUElPIGluIHRoZSBzZXJpYWwgY29yZS4gVGhpcyBpcyBuZWVkZWQKCSBzaW5j
+ZSBpZiB0aGUgZ3BpbyBpcyBvbmx5IGFjY2Vzc2libGUgaW4gc2xlZXBhYmxlIGNvbnRleHQuIEl0
+IGFsc28KCSBpcyBhIGZ1cnRoZXIgc3RlcCB0byBtYWtlIHRoZSBSUzQ4NSBoYW5kbGluZyBtb3Jl
+IGdlbmVyaWMuClBhdGNoIDM6IE1vdmUgc2FuaXRpemluZyBvZiBSUzQ4NSBkZWxheXMgaW50byBh
+biBvd24gZnVuY3Rpb24uIFRoaXMgaXMgaW4gCgkgcHJlcGFyYXRpb24gb2YgcGF0Y2ggNC4KUGF0
+Y2ggNDogU2FuaXRpemUgUlM0ODUgZGVsYXlzIHJlYWQgZnJvbSBkZXZpY2UgdHJlZS4KUGF0Y2gg
+NTogQ29ycmVjdCBSUzQ4NSBkZWxheXMgaW4gYmluZGluZyBkb2N1bWVudGF0aW9uLgpQYXRjaCA2
+OiBSZW1vdmUgcmVkdW5kYW50IGNvZGUgaW4gODI1MF9kd2xpYi4KUGF0Y2ggNzogRml4IGNoZWNr
+IGZvciBSUzQ4NSBzdXBwb3J0LgpQYXRjaCA4OiBSZW1vdmUgcmVkdW5kYW50IGNvZGUgaW4gYXI5
+MzN4LgpQYXRjaCA5OiBSZW1vdmUgcmVkdW5kYW50IGNvZGUgaW4gODI1MC1scGMxOHh4LgoKQ2hh
+bmdlcyBpbiB2MjoKLSBwcmludCBhIHdhcm5pbmcgaWYgdGVybWluYXRpb24gR1BJTyBpcyBzcGVj
+aWZpZWQgaW4gRFQvQUNQSSBidXQgaXMgbm90CiAgc3VwcG9ydGVkIGJ5IGRyaXZlciAKLSBmaXhl
+ZCBjb21taXQgbWVzc2FnZSBmb3IgZGV2dHJlZSBkb2N1bWVudGF0aW9uIChhcyBzdWdnZXN0ZWQg
+YnkgQW5keSkKLSBmaXhlZCBjb2RlIGNvbW1lbnQKLSBhZGRlZCBwYXRjaCA3CgoKTGlubyBTYW5m
+aWxpcHBvICg5KToKICBzZXJpYWw6IGNvcmU6IG9ubHkgZ2V0IFJTNDg1IHRlcm1pbmF0aW9uIEdQ
+SU8gaWYgc3VwcG9ydGVkCiAgc2VyaWFsOiBjb3JlLCA4MjUwOiBzZXQgUlM0ODUgdGVybWluYXRp
+b24gZ3BpbyBpbiBzZXJpYWwgY29yZQogIHNlcmlhbDogY29yZTogbW92ZSBzYW5pdGl6aW5nIG9m
+IFJTNDg1IGRlbGF5cyBpbnRvIG93biBmdW5jdGlvbgogIHNlcmlhbDogY29yZTogc2FuaXRpemUg
+UlM0ODUgZGVsYXlzIHJlYWQgZnJvbSBkZXZpY2UgdHJlZQogIGR0X2JpbmRpbmdzOiByczQ4NTog
+Q29ycmVjdCBkZWxheSB2YWx1ZXMKICBzZXJpYWw6IDgyNTBfZHdsaWI6IHJlbW92ZSByZWR1bmRh
+bnQgc2FuaXR5IGNoZWNrIGZvciBSUzQ4NSBmbGFncwogIHNlcmlhbDogYXI5MzN4OiBGaXggY2hl
+Y2sgZm9yIFJTNDg1IHN1cHBvcnQKICBzZXJpYWw6IGFyOTMzeDogUmVtb3ZlIHJlZHVuZGFudCBh
+c3NpZ25tZW50IGluIHJzNDg1X2NvbmZpZwogIHNlcmlhbDogODI1MDogbHBjMTh4eDogUmVtb3Zl
+IHJlZHVuZGFudCBzYW5pdHkgY2hlY2sgZm9yIFJTNDg1IGZsYWdzCgogLi4uL2RldmljZXRyZWUv
+YmluZGluZ3Mvc2VyaWFsL3JzNDg1LnlhbWwgICAgIHwgIDQgKy0KIGRyaXZlcnMvdHR5L3Nlcmlh
+bC84MjUwLzgyNTBfZHdsaWIuYyAgICAgICAgICB8IDEwICstLQogZHJpdmVycy90dHkvc2VyaWFs
+LzgyNTAvODI1MF9scGMxOHh4LmMgICAgICAgIHwgIDYgKy0KIGRyaXZlcnMvdHR5L3NlcmlhbC84
+MjUwLzgyNTBfcG9ydC5jICAgICAgICAgICB8ICAzIC0KIGRyaXZlcnMvdHR5L3NlcmlhbC9hcjkz
+M3hfdWFydC5jICAgICAgICAgICAgICB8IDE4ICsrLS0tCiBkcml2ZXJzL3R0eS9zZXJpYWwvc2Vy
+aWFsX2NvcmUuYyAgICAgICAgICAgICAgfCA3MCArKysrKysrKysrKysrLS0tLS0tCiA2IGZpbGVz
+IGNoYW5nZWQsIDYwIGluc2VydGlvbnMoKyksIDUxIGRlbGV0aW9ucygtKQoKCmJhc2UtY29tbWl0
+OiA3MzQ5NjYwNDM4NjAzZWQxOTI4MmU3NTk0OTU2MTQwNjUzMTc4NWE1Ci0tIAoyLjI1LjEKCg==
