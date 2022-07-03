@@ -2,73 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9784564486
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:19:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4E13564439
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:19:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232117AbiGCD7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 23:59:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58074 "EHLO
+        id S232694AbiGCEAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 00:00:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232487AbiGCD7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 23:59:19 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E7F1D116
-        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:57:49 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id y77so8957922oia.3
-        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:57:49 -0700 (PDT)
+        with ESMTP id S232685AbiGCD7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 23:59:24 -0400
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61814DE9A
+        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:57:53 -0700 (PDT)
+Received: by mail-oo1-xc2a.google.com with SMTP id n11-20020a4ad12b000000b00425b01c3326so1242061oor.8
+        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:57:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=UW9H/IvY4Tfy1rI+Le9eCT3S6ebQsX4xHDT5O7cGn+s=;
-        b=Cns5stWkIRjHv4iUvWpMAL7XO4hCJgbx/+tkCya5nQgCdPM9RU30V4ZUWNJiM1e5n2
-         zIePot0t50Z3OnbRlAc+CzDlEKwWfsuwkMKtmdBXdGTTAkwOhK7XPltyL3p1fIN3fVfV
-         jQ7eXu2UCmiIhMa93BQhlnEYmsS5a6YUU3CHFwov1oyLpa0WWMAwAIapxF+PAfBiuvGE
-         cXAgl5DaISV0vRa4LTEkfie55ltAokIRYVgPx33J47on/Ke/5RLOwwHqFxn7DAQayDRS
-         4y+ysZtKmFUZYR0mKrGz4g9SL5rGohUSGGH4HDzelVAn57YMI3WwwB4vC3dE1KfOiF44
-         nLeg==
+        bh=Nt2X+uNdLrpqdwW0aiTYtzYyC6r+nlmftQUdxFVU4Xo=;
+        b=BPMHef0X/UE+4gfLJA/7h77BuJDDzVheYqkpw++CWW1epTNRvaYvKEFhd47ROXcSsG
+         FxLj4ooKK5PwIH27TXSsHnONma/iG6enxCHozjekdUvETqDuLexD8kDRSHH70cQQifWq
+         SKga7najfdqZe9ox6b8qxJwrFeQH5adIMWau/iORHltnLhQt7C2uY+OBYNQrGIc7TKqL
+         iyfiMJ3kN4GgikvTXDcCjP0dtVloWvajjiLncFDaM+Veb7tXmMQtmj2IWwBmzmo0vcoU
+         Sc8jsv/EvLZT5Zab3DdKIfVJd+RwuJF4fLB+BNmEvI1tIANuQdyX1I/T3gE5yqRelPrL
+         Ezug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=UW9H/IvY4Tfy1rI+Le9eCT3S6ebQsX4xHDT5O7cGn+s=;
-        b=rBx1t3n2A2Graq0xl5MnQzBCUur1Om3OGK+ZQVQjo5QK3daf7HtQs493Y1G072njp7
-         /Yb2CLThyt1QBDv947mbn678tPmhD2gSLD8Txfqo+zBpXpC3R/stXBHxWuhLZQ3zYTAf
-         A2mcMkJqR9v7Q3MXbzfnNHyMCRW9BJBl/uzRe89G9b0dX0rbKAQ2ld4cL5ycEpP+Hga5
-         YrXzlo1urybEQrcFnFgtI9S7vpax5ykSleUGCLbRLNytT+yd0KEvxvmDNNu83kRyo0Lv
-         DiZFziq8sdLymfpFEhbqZG8YhfFuS39ZaeWXUcZUdgzFfQZIixpyzpaUS483XUkDztpd
-         xYgQ==
-X-Gm-Message-State: AJIora9qp2IkqONUVmABxemcBD6TMKU+Uw0ENaYFHphDIc0fTnso66v9
-        akzl+jhaNA1uJkDLBBYuRg1HYg==
-X-Google-Smtp-Source: AGRyM1szLI9Z+uzAlXXOZciKArG1ZkzMdcd+g23VdWmuU5B88JfUFhf8WzQj3+a3VAT0XSwIaMLUew==
-X-Received: by 2002:a05:6808:ec1:b0:331:4236:242c with SMTP id q1-20020a0568080ec100b003314236242cmr13118751oiv.19.1656820669023;
-        Sat, 02 Jul 2022 20:57:49 -0700 (PDT)
+        bh=Nt2X+uNdLrpqdwW0aiTYtzYyC6r+nlmftQUdxFVU4Xo=;
+        b=dNHAiy54M2HVLmEoZfmn482yOr5pKoQPqO4JH468HpIVMgCqIy3BhJ/QD4dL2kj6WO
+         Wlncj4laR/lbDbvLvYjrxc1MMuBMi8edhzS0MWJQqosenRbFEKcSPj4HTEs3HgsE97ME
+         b1uiAkdpHtrbm+RL/B0eIvoEYNL+nwfwZegj1Ws2CI1qLCZeaBclqfSe+QKbDlf451kV
+         yjMNIXQXuTM0vBcBZVDJFiN9CjRY42Ah1FwT9SoZtQX6gpJfZ8Eb/Kkv9jeObvDYSMTL
+         KpvzarM95nNNd9r83ge0KF9LWmoRh9UqtRUjtO4YeesEQVinSgInxqVGw4fCUs4lb7ER
+         kWmg==
+X-Gm-Message-State: AJIora+1QkyZl8pKGgFhkusG8/ZAgPAP/aGzDDSAHWOVOYTW/xDVjPzx
+        nWD+gzJHFfgTB8sBpPlhFLEZNQ==
+X-Google-Smtp-Source: AGRyM1vE0ezP6iYXpSJ8kJRFJ+KDpplJyvj1NhwUowXIodyfRExwifaK97ELp5c/+kfnP67lB6y+Ew==
+X-Received: by 2002:a4a:3813:0:b0:425:8005:1289 with SMTP id c19-20020a4a3813000000b0042580051289mr9430592ooa.63.1656820671202;
+        Sat, 02 Jul 2022 20:57:51 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.47
+        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Jul 2022 20:57:48 -0700 (PDT)
+        Sat, 02 Jul 2022 20:57:50 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     jic23@kernel.org, Markuss Broks <markuss.broks@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        Song Qiang <songqiang1304521@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: (subset) [PATCH 5/5] arm64: dts: qcom: msm8998-xperia: Introduce ToF sensor support
-Date:   Sat,  2 Jul 2022 22:56:42 -0500
-Message-Id: <165682055970.445910.14067306079417059370.b4-ty@linaro.org>
+To:     robh+dt@kernel.org, Sibi Sankar <quic_sibis@quicinc.com>,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        swboyd@chromium.org, ohad@wizery.com, mathieu.poirier@linaro.org,
+        mka@chromium.org, agross@kernel.org
+Subject: Re: (subset) [PATCH v4 1/3] arm64: dts: qcom: sc7280: Add proxy interconnect requirements for modem
+Date:   Sat,  2 Jul 2022 22:56:44 -0500
+Message-Id: <165682055969.445910.10978173770600627077.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220523175344.5845-6-markuss.broks@gmail.com>
-References: <20220523175344.5845-1-markuss.broks@gmail.com> <20220523175344.5845-6-markuss.broks@gmail.com>
+In-Reply-To: <1652978825-5304-2-git-send-email-quic_sibis@quicinc.com>
+References: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com> <1652978825-5304-2-git-send-email-quic_sibis@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -82,16 +73,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 May 2022 20:53:44 +0300, Markuss Broks wrote:
-> This patch adds device tree support for the VL53L0X ToF sensor
-> found on all Yoshino devices.
+On Thu, 19 May 2022 22:17:03 +0530, Sibi Sankar wrote:
+> Add interconnects that are required to be proxy voted upon during modem
+> bootup on SC7280 SoCs.
 > 
 > 
 
 Applied, thanks!
 
-[5/5] arm64: dts: qcom: msm8998-xperia: Introduce ToF sensor support
-      commit: 642f13c32087c29ed907866c7e6765d472e8f457
+[1/3] arm64: dts: qcom: sc7280: Add proxy interconnect requirements for modem
+      commit: a0cdc83fa89b3a53cf03ecd338832392be0dd4b3
 
 Best regards,
 -- 
