@@ -2,106 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F965648E0
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 20:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EA925648E6
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 20:11:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbiGCSA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 14:00:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37914 "EHLO
+        id S231774AbiGCSLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 14:11:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiGCSA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 14:00:27 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CF9C60D1;
-        Sun,  3 Jul 2022 11:00:27 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id r133so6794929iod.3;
-        Sun, 03 Jul 2022 11:00:27 -0700 (PDT)
+        with ESMTP id S231362AbiGCSLl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 14:11:41 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073266153
+        for <devicetree@vger.kernel.org>; Sun,  3 Jul 2022 11:11:38 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id v9so8502506ljk.10
+        for <devicetree@vger.kernel.org>; Sun, 03 Jul 2022 11:11:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=EA2HK1w3Mx9SWECBezKw/os0mvoFNvlKu8SCzQeFYZA=;
+        b=AErGtm4DckMyY6HrGDk8x/qOpOCzcTPclkWo7BzqWtHYPQWvkAKeMSoWoZGzfokF6g
+         EHfNtu6hGsDEiZcMIBDXH7iOU4tuMG3dVspL+YAtfaHBzs9TePyr7DoDipP+LyFzmd/0
+         v2vF8tVpNzJAWX+UC2Du1olJzxPCnYAO5Na6o/aZtEiNE2i+6yzH7cu9IK/vbOQYHe4u
+         OAsXylQFD1sfvGIi/+wP4/1tgieLac/0S/qmtUJJog2pmxS1R/X6SSLnRf7ubEQajO2L
+         chf9U1eH6DkFlWM2tFlVaPMLmgt4XKC5bnY7xhmAbjt9QtavB4xfIxiAPf1aZwDNYGWD
+         tuAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=0oH4Qv2b3hpacaeJbha5xxiRLG21WNmxbvy8dgQr22s=;
-        b=AOdSmEqL9Y8VBUpOZIj0YWcHxqSgD8G34oP4xKwAYbD/yD+tr4pbjAfSofsdVu5PKl
-         S6pFfxRkF3LZfCd0jy+hh2DGblxHGgpXN9wRw/jQO7ndIMxoXpg25CUoZdTLL35YQsmN
-         sMTNdQyqXDJeYSFeYiSVZ+wL0D1510itUVv+fJSU82LyaW7o5kvFnelk3biCfQx7Cjrg
-         EL3upJq+M7lgOVPTLTvBuC7ZT6lZu0JgCzLl9isHhkZbzWIYwr3DE4c31DofmGsvCilL
-         bBEawBrHeIpgDJFzbwT5dC5nuhc/mJvYWpU+i1VdqTeHzvwmpfSqTUMWdBN2Vtfb+wDm
-         brLA==
-X-Gm-Message-State: AJIora97s5xsLgxyO1ejAwKhYWCbULXC59hS2Lj3I2kWdCK1GFCsaY8o
-        NZKz85AdclsEyKgxeRxXQg==
-X-Google-Smtp-Source: AGRyM1uyZ/IzOLxMLM1fHCuuqlCDAZS8xqzT04cCI/FH8YEh27fssyASXY5sxh0osk4DmVvORf72xw==
-X-Received: by 2002:a5e:c908:0:b0:675:7f2c:b266 with SMTP id z8-20020a5ec908000000b006757f2cb266mr13808388iol.7.1656871226347;
-        Sun, 03 Jul 2022 11:00:26 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id z7-20020a923207000000b002d1d3b1abbesm11176112ile.80.2022.07.03.11.00.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Jul 2022 11:00:25 -0700 (PDT)
-Received: (nullmailer pid 1705438 invoked by uid 1000);
-        Sun, 03 Jul 2022 18:00:23 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=EA2HK1w3Mx9SWECBezKw/os0mvoFNvlKu8SCzQeFYZA=;
+        b=kBzb7HTfy2Rp+AUG0M8XhcvfqhCRe+5CCG9pJ3/WgPQVgdZ8pJ9QDcliraB2QDSj7i
+         mfHsjLf/o5dGK75mkjc/83skO6M8oeGIHBvA/rvyX8x6PwMuxPW+Y1wDTVb9aIH/QGkV
+         ydZiu/nAjAG1nTV8TOTMWBjxHiyMJ8EO89ReQ/5UdaGteqqM1f2b/nDV6GvX8aS64O4F
+         z+v9PSq0eVbBZQUiP8Y1sIN9wvHICAnz/s2uqwbTcqe+kC5RFUdTAbdGuZDxOHRx8u74
+         QzIqlClwAVqs4MNELykfuDa6DAwHkCDWOGJ1kjrcuanRxaboz6effOILFBFBcixWJZmg
+         Boaw==
+X-Gm-Message-State: AJIora+yvVuJlgosF/VaGRh+4GvWkPpKKDtag20t1gyXnw2jBg1EQr0g
+        RbYSLu0we4+LHB639aUUar9Q8A==
+X-Google-Smtp-Source: AGRyM1tkKK+8SkFXgg4yB2FmoXvs0dFKzuwaGe5efFkEcCAcjGZEp5mVYgw8z+6ar4LH+dWt44D9XA==
+X-Received: by 2002:a05:651c:1549:b0:25b:d2dc:2e8f with SMTP id y9-20020a05651c154900b0025bd2dc2e8fmr13780446ljp.334.1656871897227;
+        Sun, 03 Jul 2022 11:11:37 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id n24-20020a05651203f800b004795311530asm4821761lfq.209.2022.07.03.11.11.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Jul 2022 11:11:36 -0700 (PDT)
+Message-ID: <ebe6eaef-8bf8-3a35-4048-d0b079b52ff2@linaro.org>
+Date:   Sun, 3 Jul 2022 20:11:34 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: soc: samsung: s5pv210-chipid: add S5PV210
+ ChipID
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das@bp.renesas.com>, linux-can@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Eric Dumazet <edumazet@google.com>
-In-Reply-To: <20220703104705.341070-2-biju.das.jz@bp.renesas.com>
-References: <20220703104705.341070-1-biju.das.jz@bp.renesas.com> <20220703104705.341070-2-biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: can: sja1000: Convert to json-schema
-Date:   Sun, 03 Jul 2022 12:00:23 -0600
-Message-Id: <1656871223.903187.1705437.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220629123543.94515-1-krzysztof.kozlowski@linaro.org>
+ <20220701173524.GA1185040-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220701173524.GA1185040-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 03 Jul 2022 11:47:00 +0100, Biju Das wrote:
-> Convert the NXP SJA1000 CAN Controller Device Tree binding
-> documentation to json-schema.
+On 01/07/2022 19:35, Rob Herring wrote:
+> On Wed, Jun 29, 2022 at 02:35:43PM +0200, Krzysztof Kozlowski wrote:
+>> Add bindings for the S5PV210 ChipID block.
 > 
-> Update the example to match reality.
+> Is this new or was undocumented?
+
+Undocumented, I'll mention in the commit msg.
+
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * Moved $ref: can-controller.yaml# to top along with if conditional to
->    avoid multiple mapping issues with the if conditional in the subsequent
->    patch.
-> ---
->  .../bindings/net/can/nxp,sja1000.yaml         | 102 ++++++++++++++++++
->  .../devicetree/bindings/net/can/sja1000.txt   |  58 ----------
->  2 files changed, 102 insertions(+), 58 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/can/sja1000.txt
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../bindings/soc/samsung/s5pv210-chipid.yaml  | 30 +++++++++++++++++++
 > 
+> samsung,s5pv210-chipid.yaml
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Hm, even for files under "samsung" directory?
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+> 
+> Surely there's other similar blocks. Can we start collecting in a 
+> common directory?
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+It's a soc-specific driver, type of soc_device. If you think it's worth
+a place of its own, I can put it somewhere dedicated.
 
-
-can@4,0: nxp,tx-output-config:0:0: 22 is not one of [1, 2, 4, 6, 8, 16, 32, 48]
-	arch/arm/boot/dts/imx27-phytec-phycore-rdk.dtb
-
-can@4,0: 'reg-io-width' is a required property
-	arch/arm/boot/dts/imx27-phytec-phycore-rdk.dtb
-
+Best regards,
+Krzysztof
