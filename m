@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DDB056447E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C627564481
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:19:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232643AbiGCD7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 23:59:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56670 "EHLO
+        id S232244AbiGCD7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 23:59:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232312AbiGCD6c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 23:58:32 -0400
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35C41BF4F
-        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:57:38 -0700 (PDT)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-101ec2d6087so8854712fac.3
-        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:57:38 -0700 (PDT)
+        with ESMTP id S232555AbiGCD6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 23:58:38 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E931CE29
+        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:57:45 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id s188so8708137oib.6
+        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:57:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=2k/Fgz9AophWhcoIr519sZ69V4V1BiY/dYo09eq3joA=;
-        b=En+hg1z5WrvULu1uNEZ6rtyfbDF/DZBOhfhOoSNIScEr8zQk0H0P76GLf2rTeqUwcg
-         o0wftojb56p14cwueNRBf6CoqF9X6zN6Yc1hoUolKyYxDKB6mYvrOG/BCsCd07Z7MCcq
-         7iEzIFnSbAP1dOs3Zy4baH7d4C3IDqh10sRND49ZlAqmK2EuPdmxniCWyF0ls4q/x2w7
-         mE257gI77Nd1werdzliQ5AS9emjEcnhMdu2tW4euZw991uXNL8gWIu6LKmpFDXMoKs30
-         8kUpXQPFJMmEW+DqFj41263/7rRjLSh/3Ytz59IO45/niPzk0mgJidW+1zDwCnFtODCZ
-         YT4g==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=VbM3m0wdaoXEDEWrc+MeHd1nc6KrRLPdYcLcN/HoqNA=;
+        b=ZWJmqKNly/PS/9lYuwxJQC2LOS80/9okwJQphsEBcdnwWOvD++o3Ov7T5GuImbXheh
+         qgFMhlmpW/ADhpxHuGH7XdAUz7Isf9baxswfXzeSweoFaXriWAHGPoeH8QWd57uz4CQ6
+         6CKLn4vMrbafTxB2W4c9XX8JsZEOw017fEI+PUUB+BC8Ta1jzIQjrf1X8sXcg5Kww8l8
+         ftfhwLdCSfNMck+3E+wmZWDY87kjc/y42r2cExlHl3jvTJgGPAPk+bWM2YWjEOs1GVY3
+         yxB2/YAisHCvl++n8a8Hi706DYcr/gtPINk9HPwAK7476mg/P9wjjqVhmSgRKHf/SFc7
+         2TXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=2k/Fgz9AophWhcoIr519sZ69V4V1BiY/dYo09eq3joA=;
-        b=C2d2ZVjAeP2t0xwy7zNxWIauIeXPFnLy64hOS+vqVHp4ymZ5Pk4MvR/SNrFa9llN4x
-         H1X6x+g2Fx8QN/ChGOehpSntP+zgtTljFoSfFplUkoL70MAfO08ujhk6HRxfV1/xr6lv
-         g2HVQF/7jha/lBRYdzQea75yhuxpriT0bxRz208xF+a23IaWrKnzYLNLjyn0KwF5t7AQ
-         TATQ+9HC6z9SDDThPUL7XtHor+gyvFZL8jw9s9JScLQA1MclLLLNpRTXOtiP+66Jy+IG
-         RsEu2Ialq+PKuvQATMTRhbhm49biiCd3mUptxRNJ5SGmZKcYpkbnaGAqykNXlNcWd/+V
-         ieOw==
-X-Gm-Message-State: AJIora/eCkU9nJx9Vq/INw+4OFDb6sIBNw0UoP5zt7BOD389eAdqoBVG
-        eAESlkEMbgRuJBLcNbgWI8YHbg==
-X-Google-Smtp-Source: AGRyM1uKpVtgkHXxjyx68+94KRjsKPFxPkGxNK2SdQajmGJ0T+lNpKGyxY37Lp5e/vdYSv8gDzlHTw==
-X-Received: by 2002:a05:6870:45a9:b0:10a:9ebc:63ab with SMTP id y41-20020a05687045a900b0010a9ebc63abmr12506689oao.209.1656820657789;
-        Sat, 02 Jul 2022 20:57:37 -0700 (PDT)
+        bh=VbM3m0wdaoXEDEWrc+MeHd1nc6KrRLPdYcLcN/HoqNA=;
+        b=tW09ToL4eosMY/IebdczjXz9dgUygpre2UKSona39VnALUOX3oKUu2/MDRr4oyADwd
+         fnSAzz4/uJ9bxFrMSv2D8zQE63wawnsUri+hY7nPlsyTzl6mqPmtlW2h/cm10gIFu8Of
+         u+3zxjsda1Ffzyy+YSNOlehUy512VjCj2vtjlzFR6i3SXJ7Sy5qyW/I4Z1TupmlmbwJN
+         D3aVB3ALy6+eHCoXCrpqmAg4NHgIKRAUzNgXE7gyH6C7thDCm/vEG1PXUclpf4lAhKhm
+         lLwtIrRWOYEKg1Yy6KrSFz+PsU6ivB+Zzt1zJTPQbD9YOdDC0yq95dxCQtusLKlUU45Q
+         3U2Q==
+X-Gm-Message-State: AJIora/AWCHcqFNnEOZZ8Hfh558XvNKzH9zzGxPLbO6GaHoDCOjElLQ3
+        dHb70DUAYq0ptrebcfjmsDrsTxxQtbCY/Q==
+X-Google-Smtp-Source: AGRyM1t31R7c6ugSbVOmvIFW3uL+Pa9g1SphC7YtRDrqwQcvVZN8qZwwMhJYDzSzg7uWuR3q+vhINQ==
+X-Received: by 2002:a05:6808:6d4:b0:32e:fdb9:9c7b with SMTP id m20-20020a05680806d400b0032efdb99c7bmr12809151oih.287.1656820658832;
+        Sat, 02 Jul 2022 20:57:38 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.36
+        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Jul 2022 20:57:37 -0700 (PDT)
+        Sat, 02 Jul 2022 20:57:38 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+To:     devicetree@vger.kernel.org,
+        "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Nikita Travkin <nikita@trvn.ru>,
+        linux-arm-msm@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Olof Johansson <olof@lixom.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        soc@kernel.org, Arnd Bergmann <arnd@arndb.de>, arm@kernel.org
-Subject: Re: (subset) [PATCH v3 24/40] arm64: dts: qcom: align led node names with dtschema
-Date:   Sat,  2 Jul 2022 22:56:31 -0500
-Message-Id: <165682055969.445910.9416568186177824296.b4-ty@linaro.org>
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: (subset) [RESEND PATCH] arm64: dts: qcom: msm8916-samsung-a2015: Add touchscreen pinctrl
+Date:   Sat,  2 Jul 2022 22:56:32 -0500
+Message-Id: <165682055971.445910.13695986393723902534.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220616005333.18491-24-krzysztof.kozlowski@linaro.org>
-References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org> <20220616005333.18491-24-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220610175332.104154-1-linmengbo0689@protonmail.com>
+References: <20220610175332.104154-1-linmengbo0689@protonmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -73,16 +75,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Jun 2022 17:53:17 -0700, Krzysztof Kozlowski wrote:
-> The node names should be generic and DT schema expects certain pattern
-> with 'led'.
+On Fri, 10 Jun 2022 17:54:09 +0000, Lin, Meng-Bo wrote:
+> A3, A5 and most of the Samsung phones with MSM8916 SoC use GPIO pin 13 for
+> touchscreen interrupts. Add touchscreen pinctrl to a2015 common dtsi.
 > 
 > 
 
 Applied, thanks!
 
-[24/40] arm64: dts: qcom: align led node names with dtschema
-        commit: 3cfe94d660a8ebc19e78ea0a4781d7e9a1054c65
+[1/1] arm64: dts: qcom: msm8916-samsung-a2015: Add touchscreen pinctrl
+      commit: 7618a2de8121d5723c0fd68a381877c8f2e31826
 
 Best regards,
 -- 
