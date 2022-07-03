@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 682B9564A76
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 01:12:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F74564A7B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 01:15:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbiGCXL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 19:11:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44616 "EHLO
+        id S231280AbiGCXPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 19:15:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230245AbiGCXL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 19:11:58 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C3CD2ADA
-        for <devicetree@vger.kernel.org>; Sun,  3 Jul 2022 16:11:54 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id c131-20020a1c3589000000b003a19b2bce36so1370994wma.4
-        for <devicetree@vger.kernel.org>; Sun, 03 Jul 2022 16:11:54 -0700 (PDT)
+        with ESMTP id S231229AbiGCXPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 19:15:16 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D37C75FDE
+        for <devicetree@vger.kernel.org>; Sun,  3 Jul 2022 16:15:14 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id t17-20020a1c7711000000b003a0434b0af7so4716165wmi.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Jul 2022 16:15:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=pensando.io; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=cEvIt0W4jMtK0kOUq02n7cnRwL93Xyq1bjqkbvvw32k=;
-        b=CiVuKlquo+4o/OdgU9j/J7SlhK5NNg9ng3XiM6R33Wpz8A0EthSdvb+5XdYtOgNvXw
-         Fcp5vU/Qz8d0IloOisuZKpr20agYbvpa1ULksUY/MVfeZz2zzGtqLRvpRqRbLLIOasXn
-         HjHT4bQ+heaVzhdmhyI8BOg4UgZlmVUb10kCbKeHDsQW6o+dX+BvHeeS6DKhJDx5v59p
-         ffoQ+ciCarbX0nVB+G10lnWd8qDquSood14rlUxNo5mXaOFcmDjPByr5DgsSLw2mQvsp
-         NYRGciH+asxSIDil2X8Pst5+/DMOVr6fTM127Qyl+6WxMAo5JTTwZYyENOPEBwJqMdlD
-         vPMg==
+        bh=UNOq6htjrGSZoa4ZtNJuMryaDHFCqFH4LbvJN4wBgSg=;
+        b=xFzJUifbjARlq5U7WXMfBsGYcprqIHLBuVS5KUrO8YvupEnrIGvxJOemXENKmTTaug
+         nX4f+3tg+GvffiEeoLFaR38JNdTCuLVMNe+52JZk2xwSTq7D0RhcgRbsofhu42HLo+4a
+         OmVtxs3GimOIIzCE7J4SWzDNsKsAov1RRbnBDYP0AI/4Fq8rsgLpq02PshLamkedM+Hj
+         sGcpJ0XJXk3y7OU7VJgufAhZ6p7QV65YZTxrfpU3AOeHZX/kjLNI3smJqO5UWGoYuDJD
+         9sNTDcCTaLrqhwZbx/Phrv4evwJLZvpnMuN92AhPt/KJ/+3PXJOg57MRmPcPPaYVPDyo
+         T6dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=cEvIt0W4jMtK0kOUq02n7cnRwL93Xyq1bjqkbvvw32k=;
-        b=2YDKhxXXRAH87318/OXEk4VgqGHdQVYdmr9Zzgm2/1HsNP9nTdHsV2hhskQj6P7FCi
-         d7N1RJQpExP0RlfnKH6r8I/RJWTLy2++YNXYj3/str5qOObs7aoHw71gG1/Ygc/PkgqT
-         3JEnGS+xvGcAc7pgnnpyYJDd3MMUnT/ESoLzGK1uDjKTH5ln927H/4ZkkbqLlR/W16Ie
-         1U9tumPnUjH3p0dNROnqDg4K2Ta5xo3HIBrm9dPv0huADSRrxGneM+FHKSEXFU9lxfaL
-         PsSVU8LMNJf8EL5SsYTX99DprWGUpquvtan3hmTDQYJ8HDUNUtQSRv0A5jtF64xYNeWu
-         7efQ==
-X-Gm-Message-State: AJIora8aWY8j6+9soihjBF9cmOcoNsPnMiAsOcuTZvF2km1oUVl9okVv
-        siJB46OapPWIxErTjP1i/2pGWix/j+6IENt0YlW+SQ==
-X-Google-Smtp-Source: AGRyM1v5SLIg8WZnDQdxcL0e+L2xOqK4GaB+5QbY5FlNGlEGYkSCm/VCy7BumOq8xzX0Maqdck28Oe3SLtxW20TxHWg=
-X-Received: by 2002:a05:600c:4f42:b0:3a0:57ed:93a9 with SMTP id
- m2-20020a05600c4f4200b003a057ed93a9mr27714140wmq.143.1656889913254; Sun, 03
- Jul 2022 16:11:53 -0700 (PDT)
+        bh=UNOq6htjrGSZoa4ZtNJuMryaDHFCqFH4LbvJN4wBgSg=;
+        b=X2DaKU5nC+CSh5lZ+1d480CZHcS5Q5bsJ84PbpaYY6gaiLxz4UUafTL/CLPtg3aFUB
+         veVz5KfCIIl48LRXmUARdqyjxOMOp0b6M0938r8pV0WV1fvbfC6uF5oX6C2f6pn6GiZI
+         m5EtRG8TwHZLmcLXu9HkATY5XJWfsg9BqhahmcSUeF/pNwMaIQ5cFsQ3NZFeY0NYsEs5
+         5zApy45m7KJ0QQnf/1EDjyt5s5bB47k11EHczqkEkZPmLskMOzYr5xajpIbA8coflF+7
+         yYOUqUAEvRuYZjRU4knnTVYrVod44aw6j/rIjb0wGslaUfD3pdhxaKLiKO7HWf83ueeo
+         2p4A==
+X-Gm-Message-State: AJIora8qXJVqbCaUbLNe/AiBDcwpIMqoi00kwmU0V71lTr8SYSQFPdUe
+        pYXOxRIn89ZItsHZeBVw9CUiQRFiAvVg+0vk+q5+aw==
+X-Google-Smtp-Source: AGRyM1u12ilO/izKn4kHnWsjcijjUts471FbN+oo6xM9zzmKa+awWfVV3TuzeKCMTIsQ0jq7eut9/5ja7GAse+bNdKU=
+X-Received: by 2002:a1c:6a04:0:b0:3a0:4ddc:9a4b with SMTP id
+ f4-20020a1c6a04000000b003a04ddc9a4bmr27366815wmc.78.1656890113408; Sun, 03
+ Jul 2022 16:15:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220613195658.5607-1-brad@pensando.io> <20220613195658.5607-3-brad@pensando.io>
- <c3785da1-0142-5c4c-4f46-c569c8c06efa@linaro.org>
-In-Reply-To: <c3785da1-0142-5c4c-4f46-c569c8c06efa@linaro.org>
+References: <20220613195658.5607-1-brad@pensando.io> <20220613195658.5607-11-brad@pensando.io>
+ <c9d90fdf-41fa-a363-fdc0-097c3d0dd547@linaro.org>
+In-Reply-To: <c9d90fdf-41fa-a363-fdc0-097c3d0dd547@linaro.org>
 From:   Brad Larson <brad@pensando.io>
-Date:   Sun, 3 Jul 2022 16:11:42 -0700
-Message-ID: <CAK9rFnydaXSjDsZf1Bnv90tBVHpZ4rr+Zufd6Cr4rJjDeB=-jg@mail.gmail.com>
-Subject: Re: [PATCH v5 02/15] dt-bindings: mmc: cdns: Add AMD Pensando Elba
- SoC binding
+Date:   Sun, 3 Jul 2022 16:15:02 -0700
+Message-ID: <CAK9rFnw=GXuAMovgq1tF9mv5maCeGKt6_bEsNcsMzskoq429OA@mail.gmail.com>
+Subject: Re: [PATCH v5 10/15] arm64: dts: Add AMD Pensando Elba SoC support
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
@@ -91,35 +90,61 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Krzysztof,
 
-On Mon, Jun 20, 2022 at 5:50 AM Krzysztof Kozlowski
+On Tue, Jun 14, 2022 at 3:44 PM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 13/06/2022 21:56, Brad Larson wrote:
-> ...
-> > --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> > @@ -13,10 +13,24 @@ maintainers:
-> >  allOf:
-> >    - $ref: mmc-controller.yaml
+> On 13/06/2022 12:56, Brad Larson wrote:
+> > From: Brad Larson <blarson@amd.com>
 > >
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - amd,pensando-elba-sd4hc
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          items:
-> > +            - description: Cadence host controller registers
-> > +            - description: Byte-lane control register
-> > +          minItems: 2
-> > +
+> > Add AMD Pensando common and Elba SoC specific device nodes
+> >
+> > Signed-off-by: Brad Larson <blarson@amd.com>
 >
-> Except Rob's comment, the entire section now should be moved to bottom -
-> just before unevaluated/additionalProperties:false
+> Thank you for your patch. There is something to discuss/improve.
+>
+> > ---
+> >  arch/arm64/boot/dts/amd/Makefile              |   1 +
+> >  arch/arm64/boot/dts/amd/elba-16core.dtsi      | 189 +++++++++++++++++
+> >  arch/arm64/boot/dts/amd/elba-asic-common.dtsi | 103 ++++++++++
+> >  arch/arm64/boot/dts/amd/elba-asic.dts         |  28 +++
+> >  arch/arm64/boot/dts/amd/elba-flash-parts.dtsi | 106 ++++++++++
+> >  arch/arm64/boot/dts/amd/elba.dtsi             | 191 ++++++++++++++++++
+> >  6 files changed, 618 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/amd/elba-16core.dtsi
+> >  create mode 100644 arch/arm64/boot/dts/amd/elba-asic-common.dtsi
+> >  create mode 100644 arch/arm64/boot/dts/amd/elba-asic.dts
+> >  create mode 100644 arch/arm64/boot/dts/amd/elba-flash-parts.dtsi
+> >  create mode 100644 arch/arm64/boot/dts/amd/elba.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/amd/Makefile b/arch/arm64/boot/dts/amd/Makefile
+> > index 68103a8b0ef5..9bba020fa880 100644
+> > --- a/arch/arm64/boot/dts/amd/Makefile
+> > +++ b/arch/arm64/boot/dts/amd/Makefile
+> > @@ -1,2 +1,3 @@
+> >  # SPDX-License-Identifier: GPL-2.0
+> >  dtb-$(CONFIG_ARCH_SEATTLE) += amd-overdrive-rev-b0.dtb amd-overdrive-rev-b1.dtb
+> > +dtb-$(CONFIG_ARCH_PENSANDO) += elba-asic.dtb
+>
+> Put it in alphabetical order, so not at the end of file.
 
-Yes, moved it to just before unevaluatedProperties
+Reversed the order in the Makefile
+
+> (...)
+>
+> > +
+> > +&spi0 {
+> > +     num-cs = <4>;
+> > +     cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
+> > +                <&porta 7 GPIO_ACTIVE_LOW>;
+> > +     status = "okay";
+> > +     spi@0 {
+>
+> Rob's  comment about bindings applies here as well, so please fix both.
+> This has to be sorted out - either it is SPI controller or MFD.
+>
+> Rest looks okay for me.
+
+Proposed a change after reviewing existing drivers in mfd directory
 
 Regards,
 Brad
