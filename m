@@ -2,68 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBC9056440A
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F2A4564549
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 07:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233053AbiGCEBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 00:01:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57166 "EHLO
+        id S229711AbiGCF3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 01:29:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232849AbiGCEAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 00:00:02 -0400
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C835DF40
-        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:58:02 -0700 (PDT)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-10bd7fbc0ddso2842495fac.1
-        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:58:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2MMLIS8cAzDkNpWsQPp28lmw+anecb/WoThsjFIeK5U=;
-        b=WC+Ziy8/Bob0X16uWX/xImZvcvjq/l5b2fLhePlorXloxVoLzhP3UfZYPi/EsxS4CY
-         jvRSKawiROUD8vmi3EEDS9HzFkY9bEXXam/n3xI42qz8xqepvAj6VuaTSHooDccdZviT
-         dDQNJOKnTxqE4mJVgoqw2+qnnklYeBIshRDiCNPzPJoABD0eoTuw3EUwWJA2urCA7Tqi
-         XJIrcrXOZJ2BC0hYOr2cPB7o2Zn9yVb76CPOPCL3W6n1s225DPmtygqle64sB1Icktrm
-         Fp1k7YSHCZa2VQah5XNB5hwFsSKZUjd6xNw8GeCKHU2Wmb5Cm+p67JnpNuj0rWN4PGvO
-         iufg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2MMLIS8cAzDkNpWsQPp28lmw+anecb/WoThsjFIeK5U=;
-        b=6WKrl22bBWZqBItFxMMqdhXe2IfEctT3B/FLXWDI4oY5GdBRevHm21QEmWsSY6V0cc
-         4cMPHkEMd4FH9n16KYfhhbLngQ1u5jwvbGQN7h4Cv29YZj76ksWy/mJZRg4CAiqZ7Nb6
-         Xgf6WFackXp/QwE5RE1DY+JZbsQmagA2QmqG+8hlNUVrpwPQYRdpJOD34Qn7A4yV+xkJ
-         4RRKi+/9C8j5P0DR1cHKlevAqyqJfTjyKdc3wc2PdMRrfCXFAsSAX8RXKraX4ShJ8bcY
-         r1v1sCr8xaChvv6H7LR4nkO0OeYZzAfCsuGGKdByXv821QacA29nDvYPAWNgkqSN3k6o
-         954g==
-X-Gm-Message-State: AJIora8VKFIooTso8bNfXzKpIDKVpqZdmEl5a3/KC8cyMnjX38K4D6n8
-        qx4yeme6yTHQMZvudWRhLG0RkwKEpLm7aw==
-X-Google-Smtp-Source: AGRyM1sn7duHueqga+9gh3H0h8NQssXx6Jmy2XwnG3kA8FZFLOTpmcvtxRBieqIvLpype8hON72xnA==
-X-Received: by 2002:a05:6870:c598:b0:108:b7e2:ac8 with SMTP id ba24-20020a056870c59800b00108b7e20ac8mr14382014oab.1.1656820681778;
-        Sat, 02 Jul 2022 20:58:01 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.58.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Jul 2022 20:58:01 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v3 0/3] arm64: dts: qcom: Get rid of some warnings
-Date:   Sat,  2 Jul 2022 22:56:54 -0500
-Message-Id: <165682055970.445910.6231160279000811511.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220606065035.553533-1-vkoul@kernel.org>
-References: <20220606065035.553533-1-vkoul@kernel.org>
+        with ESMTP id S230455AbiGCF3T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 01:29:19 -0400
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E465FC7;
+        Sat,  2 Jul 2022 22:29:17 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 468455C0067;
+        Sun,  3 Jul 2022 01:29:15 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Sun, 03 Jul 2022 01:29:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1656826155; x=
+        1656912555; bh=eu1mlB/r2fiKhhAfSH6KHcE1lAy+mJphMNtNjrgFVtU=; b=a
+        o8RGWI+PyXkL4BILUTs14PKFnfEpRDYO5DTL4SpuGcVCcBBZpRjSZ3F9XE+R26vb
+        Y+H/fMBX2gtRgJYt1XunSR1lkaoDhibsom7dlHC4oFlA82jVw7h6uGHNMQqHEOin
+        NnUUyKOVx8E8+TYeeSpEOb7PyVGKw2cGH+mIkVcLZzH08vqUJVeGjMTNpF9rC4oa
+        uNKfkUAH3q2haYrmb0INjrAEuooCWzdHDK3zxGvUGP737lldFf/fDp0Bntl+oKkN
+        hNWXEj5m89tgIzcMH/Tqc6ez7RyOxgNezJoYo8GvL34Lxc2BUKvE1aP6UpSBX1Xy
+        T9luJC87TLAM6djhXuNuw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1656826155; x=
+        1656912555; bh=eu1mlB/r2fiKhhAfSH6KHcE1lAy+mJphMNtNjrgFVtU=; b=f
+        LLL0xh3VoUln30Dh1PyZCwmzaoRSzyQTGpMR56qcDbnTylNk16feJX4omqdaKOdv
+        CmI5ff0PE4HeYUGY1GNZbXGuvwoQtHPXqOJuYf7MLqx+qMzBnEN36YKH3/M5nfv+
+        wGtNubLzmcWt0q30WzVt8oa3mQJbJ94LtpNFWiwAZns7sZXvorS+6KKFoqQj/QcY
+        MuJgs3sn190RGXoZwSlifZpuVsSm0oV6sHI/NQ8VV72r6+NJNfV4B9vyl5d9vpn0
+        JbK6vJRKL5Z8Ta524EcleNzhzIk0wv5U5ckgKZgQzppEv10HZFBKQnyZSHhKZrWu
+        CiTmF66enqO+24C77tWtg==
+X-ME-Sender: <xms:KinBYtYZHbOs_fH8q4AIHX7QTKVAXsUCV-IRS5bUw_gVQQbyq-KeBQ>
+    <xme:KinBYkZg2BVYqyi3cDJwG4qou9p54gK9PX27C-GmP9tdKljZCjL5RV8Tl7QeyFFk_
+    zjjxCJKDW-yqpCE8g>
+X-ME-Received: <xmr:KinBYv85iB_Wh2eoQZaO_155irCIKLl6rfQtyuzJyYJTyQlU5OnENbkCBSkCkbINPghF5bwvqamdmt54K-AY_ijIVeM9x9xI1LSxi0lCj1OkW7HMIfyjlWmZCA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehiedgleeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpefftdevkedvgeekueeutefgteffieelvedukeeuhfehledvhfei
+    tdehudfhudehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:KinBYro3E6-LYJtcIN5O7AV610dJn_CngShWa0mZitS1jnLwUdFUHA>
+    <xmx:KinBYoqa-7bw_Pj0PTwtfd_DDBgfQWYU08W-v_Pet9chFKJJB1uZ7A>
+    <xmx:KinBYhRlF5pHVOZQLUv4sHZJD24vhZkwehwjPCiaP7uLyqEMn98kQw>
+    <xmx:KynBYl4DP0iyyd1V5nZjGUL2YmqqR6TK4j1sOf7jRktmOZgDbEQi5Q>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 3 Jul 2022 01:29:13 -0400 (EDT)
+Subject: Re: [PATCH v2 2/5] dt-bindings: input: Centralize 'linux,code'
+ definition
+To:     Rob Herring <robh@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220608211207.2058487-1-robh@kernel.org>
+ <20220608211207.2058487-3-robh@kernel.org>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <89b57bfc-578c-0a19-fea8-3b61bdbd4358@sholland.org>
+Date:   Sun, 3 Jul 2022 00:29:12 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220608211207.2058487-3-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,25 +99,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Jun 2022 12:20:32 +0530, Vinod Koul wrote:
-> This attempts to make W=1 free from warnings for all SM* dts files.
+On 6/8/22 4:12 PM, Rob Herring wrote:
+> Multiple bindings use 'linux,code', but there is not a central
+> definition and type. Add 'linux,code' to input.yaml and update all the
+> users to use it.
 > 
-> Bunch of these are releated to node not having valid unit address and being
-> present under soc node. So moving it out fixed that. Interconnect node was
-> simple rename to remove unit address which was not really valid for these
-> nodes.
-> 
-> [...]
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/input/adc-joystick.yaml   |  2 +-
+>  .../input/allwinner,sun4i-a10-lradc-keys.yaml     |  5 ++---
 
-Applied, thanks!
+For allwinner,sun4i-a10-lradc-keys.yaml:
 
-[1/3] arm64: dts: qcom: sm8450: rename interconnect nodes
-      commit: 12cfafe7b78876133474f4b3e44e0464a94f61b0
-[2/3] arm64: dts: qcom: sm8350: Move qup-opp-tables out of soc node
-      commit: e2eedde448a9be6202fd9965aef29d4b6607ee67
-[3/3] arm64: dts: qcom: sm8250: Move qup-opp-table out of soc node
-      commit: 191c85b852c122e9282797ae3ce2a36083f1e9a9
+Acked-by: Samuel Holland <samuel@sholland.org>
 
-Best regards,
--- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+>  .../devicetree/bindings/input/azoteq,iqs7222.yaml |  7 ++-----
+>  .../devicetree/bindings/input/gpio-keys.yaml      |  1 -
+>  .../devicetree/bindings/input/input.yaml          |  8 ++++++++
+>  .../devicetree/bindings/input/iqs269a.yaml        | 15 ++++++---------
+>  .../devicetree/bindings/input/iqs626a.yaml        |  5 ++---
+>  .../devicetree/bindings/input/iqs62x-keys.yaml    |  5 ++---
+>  .../devicetree/bindings/input/max77650-onkey.yaml |  8 ++++----
+>  9 files changed, 27 insertions(+), 29 deletions(-)
