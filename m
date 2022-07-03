@@ -2,78 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7FBB56496A
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 21:01:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87160564979
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 21:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbiGCTBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 15:01:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
+        id S230108AbiGCTPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 15:15:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232312AbiGCTBa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 15:01:30 -0400
-Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com (mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A5655F75
-        for <devicetree@vger.kernel.org>; Sun,  3 Jul 2022 12:01:28 -0700 (PDT)
+        with ESMTP id S229986AbiGCTPd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 15:15:33 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E67138BC;
+        Sun,  3 Jul 2022 12:15:32 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id f39so12412934lfv.3;
+        Sun, 03 Jul 2022 12:15:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=2ZFARzV89Y+zuzcFxn0gSS6YLDJI2j0rdkLanFmF5yY=;
-        b=eqioB4rpXH0QoKiHKlPAxvqFS+D/BUinr3JU7uxhhh9+LjrL1GTFdp6jZStBuNm41Qrrvhab+Cu3t
-         VI1U97Upb3wfrbpY3hM+W26blpWZxUGS7EUJX/uqRx69RHwwgdbclPfShxwfjOyaCtU1VjltV/VNpE
-         u52YCWBEOv0LzUXcMC4rzwfMH7hTGtTZSW+iUYyWejyHasjOjbxkqTxk1/SB3lOGP/ZYtZT3yI4UpC
-         v8HgjrT3IvuQExGPBQlyTYzYcU56CKUi/AdFQeeS+UKUvY15j8Vp7qx6zbApSSqL3Q+nn4bSbMPCfb
-         ENA3xAycsf1XqU91DVqnE55xX8Jtsxw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=2ZFARzV89Y+zuzcFxn0gSS6YLDJI2j0rdkLanFmF5yY=;
-        b=Cx0a5B5/DD5o31yngzt4vl46kwrz9eGwoOOrAl4M3VJGXp3PtwfelpEWq9280dD3yZ3oDjVlNvcrU
-         qrPIkQdBQ==
-X-HalOne-Cookie: ccb8945555c39a4c9f786335d10fca6079fd2d00
-X-HalOne-ID: 894cd626-fb02-11ec-8239-d0431ea8bb10
-Received: from mailproxy1.cst.dirpod4-cph3.one.com (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-        id 894cd626-fb02-11ec-8239-d0431ea8bb10;
-        Sun, 03 Jul 2022 19:01:25 +0000 (UTC)
-Date:   Sun, 3 Jul 2022 21:01:24 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     thierry.reding@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: add EDT ETML0700Y5DHA
- panel
-Message-ID: <YsHnhBMObRy9txLp@ravnborg.org>
-References: <20220530122407.918874-1-m.felsch@pengutronix.de>
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=eG3F97a2VgYD7L6VbAezBTNfUEjS5NCnSFgyzHZI6zY=;
+        b=LmyfN1ZaO2CNjGvSwxTFzSOc9ITmuk6z2LJu0XZese4wnkDPpH3s/OZmm22WGTtTBX
+         dsx+nPHfKIVvZ7gyXvuS8+o7O+Dbbm9yNy41NzjlrERjPUjJIu3qRbp6sL5749VCbgyu
+         xvj/xuy05PXs6SyM0qymGqLgrhMe76v35j7z+wpRWzsUtyYnH5eBLQF0pTpkKYPXVuK+
+         00+TpfqybeFaS6JEhG0c+qfeYCAK5fadTCHSw0AD8wnzXBWgkLrB0acyFkE3emeZO93/
+         uR+g5LNMSoTeQI/7muZUjd8ouPnPCfHRm1Iz+CtYX3gAPvgng11SM+eCyg1APNzruO5i
+         K/Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eG3F97a2VgYD7L6VbAezBTNfUEjS5NCnSFgyzHZI6zY=;
+        b=iYdnyeAkqfzUQ5ZePqfQL3j4Qa8tcK7/ewxXIxoJArFym6kq7lZoMHGDEjv/dSf+p8
+         qfqis/2FAfKh5RrPIQI1W8fvT3wYXUuZwkkB65/MqwBhc8WlDHCZU1e7UL0WPAKhz4wZ
+         nQQWkRjvjogi1U+YcY3sKBd+ss0XjNeCdQcUiM7zt9frfqGZNfUASdkvorOmd0/gbte1
+         rZp3xXhPWTRa8+XDEnNjelSdiD0uH2jFCh8kvq2skwrsuTYAy1N+YtNOap76Vwyn/Vmh
+         KtixeF67GjoKn4WzbU/bfLAYTiZ6LYUI/GK4Dyy/HeHpDdijEvorYUIlk5GfEsCoIHoP
+         DcTA==
+X-Gm-Message-State: AJIora8wxASE3IgPdRCuOou7wRexpg8kJSvxofUxC2ONQdoliSljI8O8
+        zJ9/2dVHtZHcTEBKRkUIxks=
+X-Google-Smtp-Source: AGRyM1smPbdXGquCG625z52pig6BMRWYtEwyaBy2i6m86DT30ZxgT41H7mDGLfbq1AQebMUo5Zd6TA==
+X-Received: by 2002:a05:6512:1695:b0:47f:b0b4:3b38 with SMTP id bu21-20020a056512169500b0047fb0b43b38mr14946928lfb.248.1656875729719;
+        Sun, 03 Jul 2022 12:15:29 -0700 (PDT)
+Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
+        by smtp.gmail.com with ESMTPSA id r14-20020ac252ae000000b0047fa2cc38ccsm4822327lfm.198.2022.07.03.12.15.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Jul 2022 12:15:28 -0700 (PDT)
+Date:   Sun, 3 Jul 2022 21:18:46 +0200
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Kent Gustavsson <kent@minoris.se>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v2 04/10] iio: adc: mcp3911: add support for interrupts
+Message-ID: <YsHrlmfxOkwzVvfO@gmail.com>
+References: <20220625103853.2470346-1-marcus.folkesson@gmail.com>
+ <20220625103853.2470346-4-marcus.folkesson@gmail.com>
+ <20220625125652.2f988964@jic23-huawei>
+ <20220625130637.223180f2@jic23-huawei>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nkFejJuc99Xh3uiS"
 Content-Disposition: inline
-In-Reply-To: <20220530122407.918874-1-m.felsch@pengutronix.de>
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220625130637.223180f2@jic23-huawei>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
 
-On Mon, May 30, 2022 at 02:24:06PM +0200, Marco Felsch wrote:
-> Add binding for the Emerging Display Technology ETML0700Y5DHA panel.
-> It is a 7" WSVGA (1024x600) TFT LCD panel with:
->  - LVDS data interface,
->  - backlight and
->  - capacitive touch.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+--nkFejJuc99Xh3uiS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I have just pushed this and the second patch to drm-misc
-(drm-misc-next).
+On Sat, Jun 25, 2022 at 01:06:37PM +0100, Jonathan Cameron wrote:
+>=20
+> ...
+>=20
+> > >  static int mcp3911_probe(struct spi_device *spi)
+> > >  {
+> > >  	struct iio_dev *indio_dev;
+> > > @@ -352,6 +382,15 @@ static int mcp3911_probe(struct spi_device *spi)
+> > >  	if (ret)
+> > >  		goto clk_disable;
+> > > =20
+> > > +	if (device_property_read_bool(&adc->spi->dev, "microchip,data-ready=
+-hiz"))
+> > > +		ret =3D mcp3911_update(adc, MCP3911_REG_STATUSCOM, MCP3911_STATUSC=
+OM_DRHIZ,
+> > > +				0, 2);
+> > > +	else
+> > > +		ret =3D mcp3911_update(adc, MCP3911_REG_STATUSCOM, MCP3911_STATUSC=
+OM_DRHIZ,
+> > > +				MCP3911_STATUSCOM_DRHIZ, 2);
+> > > +	if (ret < 0)
+> > > +		goto clk_disable;
+> > > +
+> > >  	indio_dev->name =3D spi_get_device_id(spi)->name;
+> > >  	indio_dev->modes =3D INDIO_DIRECT_MODE | INDIO_BUFFER_TRIGGERED;
+> > >  	indio_dev->info =3D &mcp3911_info;
+> > > @@ -362,6 +401,32 @@ static int mcp3911_probe(struct spi_device *spi)
+> > > =20
+> > >  	mutex_init(&adc->lock);
+> > > =20
+> > > +	if (spi->irq > 0) {
+> > > +		adc->trig =3D devm_iio_trigger_alloc(&spi->dev, "%s-dev%d",
+> > > +				indio_dev->name,
+> > > +				iio_device_id(indio_dev));
+> > > +		if (!adc->trig)
+> > > +			goto clk_disable; =20
+> > You definitely want to use devm managed cleanup for these.
+> >=20
+> > There is a patch set that adds these as standard functions, but I haven=
+'t
+> > yet seen it being picked up for this cycle (reviews have been slow comi=
+ng).
+> >=20
+> > https://lore.kernel.org/all/20220520075737.758761-1-u.kleine-koenig@pen=
+gutronix.de/
+>=20
+> Ah, elsewhere in my unread email was a thread that says it's in clk-next =
+so
+> will be in the next merge window.  I haven't confirmed, but looks like St=
+ephen
+> put up an immutable branch so I could pull it into the IIO togreg branch =
+if you
+> want to transition directly to that new code. @Stephen, would you be fine
+> with me pulling your clk-devm-enable branch into IIO (with the fix which
+> got posted earlier in the week presumably also going on that branch when
+> you push out?)
 
-	Sam
+Please do, thanks
+
+>=20
+> Thanks,
+>=20
+> Jonathan
+>=20
+>=20
+>=20
+> >=20
+> > In meantime role your own with devm_add_action_or_reset()
+
+Best regards,
+Marcus Folkesson
+
+--nkFejJuc99Xh3uiS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmLB65EACgkQiIBOb1ld
+UjJCURAAlmAjxUJQVlUe+a6+y5i06nMoQcOicCOsxkIcXRqKsgwVkksbUNXX6cCF
+Oe8mJ4pLud8SRxIPSlpRSkfHffgOpcMep0M7XfnvK0+b6naQH8tQF0LBnFwRd1rS
+3o8HcG8k39RRCUzzfWO4lWFSVECC2VEZvNpIkcqy2CLGKLZc613kF6SzZnN3rZpO
+Et69bTlQ0OyOyvpw0cDg0ENTJmP397EDxj5HjOXCsAMn/pF96YkmQ2FBZsjpyiYy
+uQKvk/dzUpiLmbLYuE/vY0NMtb3RFkGGXITtOmVHraqKlgwbCfiGC5xflkSVJmkW
+IhezmhzrkoUPIVqBsp/xndClbvunkwAde0sPklgYdXD/gJhUYBNq6Hcp4xTr+IUX
+HLNb8Dc7VAofd00SedKzN5uTpxIsSXygrTE3Y0kcmUUvDMzs4Gjz1WAh2tCf5Z1F
+x2/Mxjp+cIqd38knhZiaxfbIF1vKkmD5/M2NtcZnX2nnVCDb4RtPhN9uciPLaABn
+yTox8uQucfAy9P6f/3fTjTj2ib/fv8p5mBzPHsHjQs7qBNZFRs3u6FwdckLJpRDX
+x2dqQZeuiEfsd9LrpikZrF/WJOqwlX7WJu07ZRKa8Mj48y6OjM5Jg5lQNpej/hbe
+xSadDlL+fhRAes43sTDiqUm/QLlJ+MHkmopCD0MUabtrRa2I07g=
+=uWvi
+-----END PGP SIGNATURE-----
+
+--nkFejJuc99Xh3uiS--
