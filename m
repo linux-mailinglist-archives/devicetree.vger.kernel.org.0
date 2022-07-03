@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8765E564416
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 500DB564475
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231693AbiGCD5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 23:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56348 "EHLO
+        id S231924AbiGCD5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 23:57:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231665AbiGCD5W (ORCPT
+        with ESMTP id S231700AbiGCD5W (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 23:57:22 -0400
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD4B2B4A7
-        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:57:17 -0700 (PDT)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-10be7325c29so1566035fac.0
-        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:57:17 -0700 (PDT)
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87499B4A3
+        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:57:18 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id 73-20020a9d084f000000b00616b04c7656so5096266oty.3
+        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:57:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rQQRjlUfoieJKHDRe/Btfw8pvqJc3nwY2GtYlAFBsqg=;
-        b=YI67ZrWvymTy/JtDk+8EXQRR4mqYSsDbKqP6d8ozbf3wQ1TtiJtrIt7yYKtdhgsGjL
-         15hqPsRAY+f0fZ81H5k3dN85E/wBchFzgL2OhK3Hls77tEWGnlCBVRS30C4ils+8mjjx
-         ZrAxhK4BCE1PWfGB5TQSWpctwAqFIhirKoZqpkdiGT+oazFiQ82/thYqLQelXJmMXad/
-         D62jVTFYXzvfgxf69vz4bKgdpDDVvnKHtc6m193iJgkojwcUTG+Jev/p1iAphTfX7O8I
-         jeSRBX7HhB20sfrOo+wweCEmy/QGXDawlSRblbaTYJYYkJUM72B+RCvNmiPnxmzc3ntv
-         0VkQ==
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=s77EFLX3f4858K5Tvi5UUeX7uxQG/9+kOd7qmZZ+6fk=;
+        b=W/Pd0vH2xSJvq3gQP6djtfxi5SwISkVzQzOHq0lYXWT42suNyTMJwJfG4prFfB55gh
+         iXnvDjn2GweiV6vu8xE0sFMqLgUKI7vAlYmDS868OaEFfOBXzKFjOiFfQmQoeD/jjB3j
+         /2ZuTkrJoVA+jVKsY254BFW8C2HMQPgDOolfZV/XknEc1zAP1gj34FYABEs8VZlEgwt2
+         UsErZrYSy1tdNmahCs4qwBRlZ5h0TofgoK4s0AzOfxdVyDH+ZvAVoOuB9yjIJrwMyxvI
+         ZiRrGmEBE3h7XGRmzNgdAmpwFXm6Jgvl+eJXg6Mkpi7WhFVAAD5YGO7JT0wx8L+oEn8g
+         fJsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=rQQRjlUfoieJKHDRe/Btfw8pvqJc3nwY2GtYlAFBsqg=;
-        b=Jk9/H/kogZAgTKxrIo62AVQnCi2+Eomi7I+xVcGDuwBC2f50pvhcMeTL2riG6Jc9lc
-         XUE7a5Ns6DDc+m6Vl2j6x0Yq3qWiw0beyIauvCPu0iiwbmp9XvzUHKRQLVYqmk8zu8+b
-         33omc8kmbyFGOMubaCGcgvNwqwZPUICIrLV6VvG+kOl459rxiMc1wmVaedY9oBry6n7J
-         GzWrIp3ExGh/tzlD06vRd9F7vmPwZpTFy8hyxgNW+XuUGWawYu5XhB5hjP0VVVOqQavU
-         hqTamE8EYRZF/IeQOTqDdum7o5qLncVkhBpF47MvHz7PNlo6ZnI3Jq9d2aeE9Nzr350r
-         skmA==
-X-Gm-Message-State: AJIora9EcpdZ1UK/+0y0PcQXep8/GfkryMLL9eSvOM4/kgik3H2Yv2KN
-        55Qg0PsdWjTA7jJpoNjfJ4tOnw==
-X-Google-Smtp-Source: AGRyM1s6fGI0kg64wF2hXXbf/WMK5nJWH2iwcJ4aeOHPxc7op55m7hdI2KkqJ6o1H/RmaZz7c7rNMw==
-X-Received: by 2002:a05:6870:4b44:b0:108:5271:d378 with SMTP id ls4-20020a0568704b4400b001085271d378mr14478286oab.240.1656820637107;
-        Sat, 02 Jul 2022 20:57:17 -0700 (PDT)
+        bh=s77EFLX3f4858K5Tvi5UUeX7uxQG/9+kOd7qmZZ+6fk=;
+        b=PrFIvF5lGY5rBgON76R1t5oiClIffxazteDYT1ETbv12ubsuWEtDjXR29qEOMFwxqy
+         AImVRkaVsVDze88X6aCBtIBgye9+5uYv1b28IBcUa1LnjvoWu6InR+Kii3PScd061Fch
+         mLEeOlgOe6gBVN2H0T6YvOACc8yiQU4r4CONmenXROLE23bhZyhn+bWrd7rAiUx5xeoy
+         CtKUQL5yPRFaDcZBMim4wq+bPV/iSZpoacla9lMXQYcENZ33qF6yCPao/bTq3Myz+MT7
+         gozyhRRmiA+8l4h+giZyAVnnmBR2XLfbYilFpYAqzqUmSYiNsjtKzfCRgTpSq4kGOvhi
+         bVXw==
+X-Gm-Message-State: AJIora/2dmcV5YB6lW+hxMzL/kXx/fiwXHipaH0u3CQIaBcZ+mvguKqZ
+        ly9hBO37GOQnviIIMrFDt935dQ==
+X-Google-Smtp-Source: AGRyM1twvMNTNa1pndDJEyMJm4cm8fdhKmc7/AnG+g8lqE3uPrr4ZSC1Bi+8lVgvImh21osIIZln1Q==
+X-Received: by 2002:a05:6830:1f42:b0:616:bacf:5d5f with SMTP id u2-20020a0568301f4200b00616bacf5d5fmr9612328oth.341.1656820638075;
+        Sat, 02 Jul 2022 20:57:18 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.16
+        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Jul 2022 20:57:16 -0700 (PDT)
+        Sat, 02 Jul 2022 20:57:17 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc8280xp: add Lenovo Thinkpad X13s devicetree
-Date:   Sat,  2 Jul 2022 22:56:13 -0500
-Message-Id: <165682055967.445910.376914934680767276.b4-ty@linaro.org>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH 00/13] dt-bindings/arm64: dts: qcom: minor cleanups with DT schema
+Date:   Sat,  2 Jul 2022 22:56:14 -0500
+Message-Id: <165682055968.445910.10567681463445860902.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220622132617.24604-1-johan+linaro@kernel.org>
-References: <YrMVqifgV4kZaP7F@hovoldconsulting.com> <20220622132617.24604-1-johan+linaro@kernel.org>
+In-Reply-To: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
+References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,17 +74,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Jun 2022 15:26:17 +0200, Johan Hovold wrote:
-> Add an initial devicetree for the Lenovo Thinkpad X13s with support for
-> USB, backlight, keyboard, touchpad, touchscreen (to be verified), PMICs
-> and remoteprocs.
+On Wed, 4 May 2022 15:19:10 +0200, Krzysztof Kozlowski wrote:
+> The patches are independent, so they can be picked up as is (or everything
+> through Qualcomm SoC tree).
 > 
+> Best regards,
+> Krzysztof
 > 
+> Krzysztof Kozlowski (13):
+>   dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
+>   dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
+>   dt-bindings: usb: qcom,dwc3: add IPQ8074, MSM8994, QCS404 and SM6125
+>   dt-bindings: usb: qcom,dwc3: fix clock matching
+>   arm64: dts: qcom: add missing AOSS QMP compatible fallback
+>   arm64: dts: qcom: correct DWC3 node names and unit addresses
+>   arm64: dts: qcom: ipq8074: add dedicated qcom,ipq8074-dwc3 compatible
+>   arm64: dts: qcom: msm8994: add dedicated qcom,msm8994-dwc3 compatible
+>   arm64: dts: qcom: sm6125: add dedicated qcom,sm6125-dwc3 compatible
+>   arm64: dts: qcom: qcs404: add dedicated qcom,qcs404-dwc3 compatible
+>   arm64: dts: qcom: msm8996: add clock-names to DWC3 USB node
+>   arm64: dts: qcom: align DWC3 USB clocks with DT schema
+>   arm64: dts: qcom: align DWC3 USB interrupts with DT schema
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc8280xp: add Lenovo Thinkpad X13s devicetree
-      commit: 32c231385ed437bd088d67ce7f505e1784a26430
+[05/13] arm64: dts: qcom: add missing AOSS QMP compatible fallback
+        commit: 6ba93ba9f63fbc44c3a6af7fe6f2536d009cfd5a
+[07/13] arm64: dts: qcom: ipq8074: add dedicated qcom,ipq8074-dwc3 compatible
+        (no commit info)
+[08/13] arm64: dts: qcom: msm8994: add dedicated qcom,msm8994-dwc3 compatible
+        (no commit info)
+[09/13] arm64: dts: qcom: sm6125: add dedicated qcom,sm6125-dwc3 compatible
+        (no commit info)
+[10/13] arm64: dts: qcom: qcs404: add dedicated qcom,qcs404-dwc3 compatible
+        (no commit info)
+[11/13] arm64: dts: qcom: msm8996: add clock-names to DWC3 USB node
+        (no commit info)
+[12/13] arm64: dts: qcom: align DWC3 USB clocks with DT schema
+        (no commit info)
+[13/13] arm64: dts: qcom: align DWC3 USB interrupts with DT schema
+        (no commit info)
 
 Best regards,
 -- 
