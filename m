@@ -2,151 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C719564764
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 15:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7404656476A
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 15:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232263AbiGCNLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 09:11:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58496 "EHLO
+        id S230446AbiGCNOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 09:14:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbiGCNLU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 09:11:20 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E936361;
-        Sun,  3 Jul 2022 06:11:14 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id n16-20020a17090ade9000b001ed15b37424so7043453pjv.3;
-        Sun, 03 Jul 2022 06:11:13 -0700 (PDT)
+        with ESMTP id S232127AbiGCNOC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 09:14:02 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF0F2633E;
+        Sun,  3 Jul 2022 06:14:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WBURuHC5mRla7M7QE53l3il2hg02K+3swVq5Mb4kxGU=;
-        b=l3o/GAc5mAI9f3eMVju3efbPbaUpr3pjrGJGjdtGwB5vsKjznNHKc/e01SjjHfLx45
-         DKYl8KXkfzsyMtnRD26zN79d0ZlchwbHI0RfQlKiJkoQLwtZI6Mct9iCkz8OVgQUOfHZ
-         7QLRZSLPtIFqyAC9G9GAWjkDNTr+LD1ofa/zE1OkiAFieTQTxk1WX1bK30vauzzTV4v0
-         Os4IDl12ECHKuIwPc/5zrbi34gJ/oMsVj5OjpngQGKyI74khrcMk38a3sZa7o6QggQG8
-         TKf5zDsrrT/SMb9UcNdnakHuFTnvgeDgfUkHvhf1qCvQNkiWN9HCimdU4tD1RkU6Ps2H
-         +qzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WBURuHC5mRla7M7QE53l3il2hg02K+3swVq5Mb4kxGU=;
-        b=5WonbFRA6OLxU/GFLmWSbuelWEieCZhXDxYm6UrVXGjbb0THihhrOWhdsKeDlMA/W7
-         WJ2NPR53vZ3MYgNmpQBBZb4NP3Skjq78tgFWc7D33wuY0YFgGBNj1KEzQir3ILxYNNI9
-         zGPII1yPdMZBvkexYl+1lriUY8ScmxWe0Ja1VJZUGRdN8SAhyxk/EqPUTLe7ezOLpL/q
-         jdxO1CO0Vs+fssd34kjNZrdfg0V8Z10p66OxzIuTatHXNYnaalcgedN6ivPvadumwhn+
-         0ND8Pm5vMrx6v6Fb+oHJY7e96Hw9TY9r0PdmE/eap2WDurBmNrnymP5jX3i437qFlXr8
-         s0vA==
-X-Gm-Message-State: AJIora9ajnxLtCIWXrfor/cmMnLK/pmXjIrJPWTR9IFYacHC+tuscDqZ
-        2+24kBNQ3djn369Gq93wuazHf0SI1JCbsA==
-X-Google-Smtp-Source: AGRyM1tW2mY/4yurSSym3Kl2YwoLsrtyk6xn2oUq/RmDzgd1wb1ojBLXCR5Mc3jyivbPnN+1EhrEHw==
-X-Received: by 2002:a17:903:2012:b0:16a:856:96a7 with SMTP id s18-20020a170903201200b0016a085696a7mr31735068pla.109.1656853873545;
-        Sun, 03 Jul 2022 06:11:13 -0700 (PDT)
-Received: from debian.me (subs02-180-214-232-81.three.co.id. [180.214.232.81])
-        by smtp.gmail.com with ESMTPSA id r1-20020aa79881000000b0052844157f09sm3291228pfl.51.2022.07.03.06.11.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Jul 2022 06:11:12 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id 457341036AC; Sun,  3 Jul 2022 20:11:07 +0700 (WIB)
-Date:   Sun, 3 Jul 2022 20:11:07 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     kernel test robot <lkp@intel.com>
-Cc:     andrea.merello@iit.it, jic23@kernel.org, mchehab+huawei@kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kbuild-all@lists.01.org,
-        lars@metafoo.de, robh+dt@kernel.org, andy.shevchenko@gmail.com,
-        matt.ranostay@konsulko.com, ardeleanalex@gmail.com,
-        jacopo@jmondi.org
-Subject: Re: [v6 14/14] docs: iio: add documentation for BNO055 driver
-Message-ID: <YsGVa8KFmdvGY92e@debian.me>
-References: <20220613120534.36991-15-andrea.merello@iit.it>
- <202207031509.DlBrHyaw-lkp@intel.com>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656854041; x=1688390041;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=+OFl9ft1IWqWLt94vWf4QdHJhq1ZG+iZPdu0a4H+RrU=;
+  b=IAmyaOkNaC1CgFnYq3D6bIElnC2ydgP2HSk71ZiW0GceBoWFF/UZ1Pj7
+   H3i27IOzxYlInVvkArxkUtGtRM1lBojozZVZc9c/NNDY7NUhGYaQMI6mw
+   1GvHflBJFDX4aA/Foub29JvfQtUyUV+tjy5yQw16C7eDlYZ+oCPJOd+dz
+   c=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 03 Jul 2022 06:14:01 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2022 06:14:00 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 3 Jul 2022 06:14:00 -0700
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 3 Jul 2022 06:13:54 -0700
+From:   Krishna Kurapati <quic_kriskura@quicinc.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "Doug Anderson" <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH v10 0/3] Add QCOM SNPS PHY overriding params support
+Date:   Sun, 3 Jul 2022 18:43:46 +0530
+Message-ID: <1656854029-21660-1-git-send-email-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <202207031509.DlBrHyaw-lkp@intel.com>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 03, 2022 at 03:58:15PM +0800, kernel test robot wrote:
-> Hi,
-> 
-> Thank you for the patch! Perhaps something to improve:
-> 
-> [auto build test WARNING on jic23-iio/togreg]
-> [also build test WARNING on linus/master v5.19-rc4 next-20220701]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/andrea-merello-iit-it/Add-support-for-Bosch-BNO055-IMU/20220614-203754
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-> reproduce: make htmldocs
-> 
-> If you fix the issue, kindly add following tag where applicable
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> All warnings (new ones prefixed by >>):
-> 
-> >> Documentation/iio/bno055.rst:2: WARNING: Explicit markup ends without a blank line; unexpected unindent.
-> 
-> vim +2 Documentation/iio/bno055.rst
-> 
->    > 2	==============================
->      3	BNO055 driver
->      4	==============================
->      5	
-> 
+Added support for overriding tuning parameters in QCOM SNPS PHY
+from device tree. This parameter tuning is required to tune the
+hs signal on dp/dm lines for electrical compliance to be successful.
 
-Here's the fixup:
+Changes in v10:
+Fixed patch headers.
 
----- >8 ----
+changes in v9:
+Fixed nitpick in driver code.
 
-From bb8524aa4719e54389065548c86155cbee638357 Mon Sep 17 00:00:00 2001
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-Date: Sun, 3 Jul 2022 18:37:44 +0700
-Subject: [PATCH] fixup for "docs: iio: add documentation for BNO055 driver"
+changes in v8:
+Fixed nitpick in driver code.
 
-kernel test robot reported htmldocs warning:
+changes in v7:
+Fixed nitpick in driver code and dtsi file.
 
-Documentation/iio/bno055.rst:2: WARNING: Explicit markup ends without a blank line; unexpected unindent.
+changes in v6:
+Fixed errors in dt-bindings.
+Fixed nitpick in driver code.
 
-Add missing blank between SPDX line and the page title to fix the warning.
+changes in v5:
+Fixed nitpicks in code.
+Added minimum and maximum for each parameter added in dt-bindings.
+Added proper suffixes to each parameter as per dtschema.
 
-Link: https://lore.kernel.org/lkml/202207031509.DlBrHyaw-lkp@intel.com/
-Reported-by: kernel test robot <lkp@intel.com>
-Cc: lars@metafoo.de
-Cc: robh+dt@kernel.org
-Cc: andy.shevchenko@gmail.com
-Cc: matt.ranostay@konsulko.com
-Cc: ardeleanalex@gmail.com
-Cc: jacopo@jmondi.org
-Cc: Andrea Merello <andrea.merello@iit.it>
-Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
----
- Documentation/iio/bno055.rst | 1 +
- 1 file changed, 1 insertion(+)
+changes in v4:
+Fixed nitpicks in code.
+Initial compliance test results showed overshoot in the middle of eye
+diagram. The current dt values were put in place to correct it and fix
+overshoot issue.
 
-diff --git a/Documentation/iio/bno055.rst b/Documentation/iio/bno055.rst
-index af21376d7a2533..9a489a79d8f5a8 100644
---- a/Documentation/iio/bno055.rst
-+++ b/Documentation/iio/bno055.rst
-@@ -1,4 +1,5 @@
- .. SPDX-License-Identifier: GPL-2.0
-+
- ==============================
- BNO055 driver
- ==============================
+changes in v3:
+Added support for phy tuning parameters to be represented in bps and
+corresponding register values to be written are obtained by traversing
+through data map declared in the driver.
 
----- >8 ----
+changes in v2:
+Reading the individual fields in each overriding register from
+device tree.
+
+Krishna Kurapati (2):
+  phy: qcom-snps: Add support for overriding phy tuning parameters
+  arm64: dts: qcom: sc7280: Update SNPS Phy params for SC7280 IDP device
+
+Sandeep Maheswaram (1):
+  dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy override params
+    bindings
+
+ .../bindings/phy/qcom,usb-snps-femto-v2.yaml       |  88 +++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |   6 +
+ drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c      | 260 ++++++++++++++++++++-
+ 3 files changed, 352 insertions(+), 2 deletions(-)
 
 -- 
-An old man doll... just what I always wanted! - Clara
+2.7.4
+
