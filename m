@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6978056447F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBC9056440A
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:18:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbiGCEAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 00:00:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58096 "EHLO
+        id S233053AbiGCEBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 00:01:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232801AbiGCD7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 23:59:41 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F9F0DEF3
-        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:57:59 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id h65so8911424oia.11
-        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:57:59 -0700 (PDT)
+        with ESMTP id S232849AbiGCEAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 00:00:02 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C835DF40
+        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:58:02 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-10bd7fbc0ddso2842495fac.1
+        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:58:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=eJ/HSOVi6T6+W5It4M/UYPcXmqIF2IGyMOvm2eYN/hg=;
-        b=cPQGTSOZ9AG/DoR8s7YJk3MwgY/duECkhznMoQhV9VHOHPgCoKbhkeSQkaUEZLdUJv
-         3kgb76sBG6wvqrVmvtWi67t17x4cm43Ga6124GkiDF7MgM7y+Lsnj/z9MHXl1B50RysP
-         Mote2c/eCti6U3mS2V53GpevNTPSSjowsciZk/sf+oY6dTzqLPT9I4SiaeLs5/oTJSun
-         IH/rlva/UrvwoZasNHEfWJgZk3QwMWMcJYQGTCFkRvahN+MRKze+4fqfL6aGf0fZI0jq
-         ioD0PhcNLqM/0Be1rwOVctffCJDVsMmSRUagjJb82X6ClUp8TTWRhA7oLU+fSh0EZRss
-         VMDw==
+        bh=2MMLIS8cAzDkNpWsQPp28lmw+anecb/WoThsjFIeK5U=;
+        b=WC+Ziy8/Bob0X16uWX/xImZvcvjq/l5b2fLhePlorXloxVoLzhP3UfZYPi/EsxS4CY
+         jvRSKawiROUD8vmi3EEDS9HzFkY9bEXXam/n3xI42qz8xqepvAj6VuaTSHooDccdZviT
+         dDQNJOKnTxqE4mJVgoqw2+qnnklYeBIshRDiCNPzPJoABD0eoTuw3EUwWJA2urCA7Tqi
+         XJIrcrXOZJ2BC0hYOr2cPB7o2Zn9yVb76CPOPCL3W6n1s225DPmtygqle64sB1Icktrm
+         Fp1k7YSHCZa2VQah5XNB5hwFsSKZUjd6xNw8GeCKHU2Wmb5Cm+p67JnpNuj0rWN4PGvO
+         iufg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=eJ/HSOVi6T6+W5It4M/UYPcXmqIF2IGyMOvm2eYN/hg=;
-        b=8GMkTmkSZCBTr/6gBbEs5OXFk0Tk8RG1nrQxGaZVur3krZAWMnqIuXTgeIXqjyKx6B
-         GSuKUILX/ltxQ7ALpBRSuD30MfcKDcD9kTlGIRdzemDDU1FIc93gXAh9gAQeZx4Ko3KX
-         1yjmonc/gk+3Tkyioll1lTxDZw74egtS3/xq3hNpl1dtglipWQN86R8/XfJmpciUNBxN
-         GavNfsb3wGpDG2FIChHT0nCsNxce9OLf7iGHpdeeTxVKiybBPHuPt4hQMw6PbIt2mPbi
-         NKSvsILdPDQbp0jy11NmKpqOYOxg6GQeqrcoiRYunuLwzSXbq3brX5ytLSoCVeDxDo0B
-         XbSQ==
-X-Gm-Message-State: AJIora/zZlQTRGyqBEuXYmgKXnRGk0lHa3NLeHXU9LFKYoSAXSg+D1xX
-        Tu/BTt/Md6E6nfp/256UKHMiti1wLLtaAg==
-X-Google-Smtp-Source: AGRyM1sXofxsPr+IeRS/vIyhp0YmRs7G23WDfuwp8Os14Ws4pDKs+/H7OT/xUXeyp/wv1Y7JyEka5g==
-X-Received: by 2002:aca:a904:0:b0:335:5e06:1e38 with SMTP id s4-20020acaa904000000b003355e061e38mr12960230oie.20.1656820678671;
-        Sat, 02 Jul 2022 20:57:58 -0700 (PDT)
+        bh=2MMLIS8cAzDkNpWsQPp28lmw+anecb/WoThsjFIeK5U=;
+        b=6WKrl22bBWZqBItFxMMqdhXe2IfEctT3B/FLXWDI4oY5GdBRevHm21QEmWsSY6V0cc
+         4cMPHkEMd4FH9n16KYfhhbLngQ1u5jwvbGQN7h4Cv29YZj76ksWy/mJZRg4CAiqZ7Nb6
+         Xgf6WFackXp/QwE5RE1DY+JZbsQmagA2QmqG+8hlNUVrpwPQYRdpJOD34Qn7A4yV+xkJ
+         4RRKi+/9C8j5P0DR1cHKlevAqyqJfTjyKdc3wc2PdMRrfCXFAsSAX8RXKraX4ShJ8bcY
+         r1v1sCr8xaChvv6H7LR4nkO0OeYZzAfCsuGGKdByXv821QacA29nDvYPAWNgkqSN3k6o
+         954g==
+X-Gm-Message-State: AJIora8VKFIooTso8bNfXzKpIDKVpqZdmEl5a3/KC8cyMnjX38K4D6n8
+        qx4yeme6yTHQMZvudWRhLG0RkwKEpLm7aw==
+X-Google-Smtp-Source: AGRyM1sn7duHueqga+9gh3H0h8NQssXx6Jmy2XwnG3kA8FZFLOTpmcvtxRBieqIvLpype8hON72xnA==
+X-Received: by 2002:a05:6870:c598:b0:108:b7e2:ac8 with SMTP id ba24-20020a056870c59800b00108b7e20ac8mr14382014oab.1.1656820681778;
+        Sat, 02 Jul 2022 20:58:01 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.57
+        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.58.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Jul 2022 20:57:57 -0700 (PDT)
+        Sat, 02 Jul 2022 20:58:01 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        Sireesh Kodali <sireeshkodali1@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: (subset) [PATCH v2 2/2] arm64: dts: qcom: msm8916: Fix typo in pronto remoteproc node
-Date:   Sat,  2 Jul 2022 22:56:51 -0500
-Message-Id: <165682055970.445910.12399555371619436680.b4-ty@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 0/3] arm64: dts: qcom: Get rid of some warnings
+Date:   Sat,  2 Jul 2022 22:56:54 -0500
+Message-Id: <165682055970.445910.6231160279000811511.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220526141740.15834-3-sireeshkodali1@gmail.com>
-References: <20220526141740.15834-1-sireeshkodali1@gmail.com> <20220526141740.15834-3-sireeshkodali1@gmail.com>
+In-Reply-To: <20220606065035.553533-1-vkoul@kernel.org>
+References: <20220606065035.553533-1-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -73,17 +71,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 May 2022 19:47:40 +0530, Sireesh Kodali wrote:
-> The smem-state properties for the pronto node were incorrectly labelled,
-> reading `qcom,state*` rather than `qcom,smem-state*`. Fix that, allowing
-> the stop state to be used.
+On Mon, 6 Jun 2022 12:20:32 +0530, Vinod Koul wrote:
+> This attempts to make W=1 free from warnings for all SM* dts files.
 > 
+> Bunch of these are releated to node not having valid unit address and being
+> present under soc node. So moving it out fixed that. Interconnect node was
+> simple rename to remove unit address which was not really valid for these
+> nodes.
 > 
+> [...]
 
 Applied, thanks!
 
-[2/2] arm64: dts: qcom: msm8916: Fix typo in pronto remoteproc node
-      commit: 5458d6f2827cd30218570f266b8d238417461f2f
+[1/3] arm64: dts: qcom: sm8450: rename interconnect nodes
+      commit: 12cfafe7b78876133474f4b3e44e0464a94f61b0
+[2/3] arm64: dts: qcom: sm8350: Move qup-opp-tables out of soc node
+      commit: e2eedde448a9be6202fd9965aef29d4b6607ee67
+[3/3] arm64: dts: qcom: sm8250: Move qup-opp-table out of soc node
+      commit: 191c85b852c122e9282797ae3ce2a36083f1e9a9
 
 Best regards,
 -- 
