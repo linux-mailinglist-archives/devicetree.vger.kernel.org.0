@@ -2,104 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EA925648E6
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 20:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CAA5564919
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 20:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231774AbiGCSLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 14:11:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41602 "EHLO
+        id S232301AbiGCS2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 14:28:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231362AbiGCSLl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 14:11:41 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073266153
-        for <devicetree@vger.kernel.org>; Sun,  3 Jul 2022 11:11:38 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id v9so8502506ljk.10
-        for <devicetree@vger.kernel.org>; Sun, 03 Jul 2022 11:11:38 -0700 (PDT)
+        with ESMTP id S232060AbiGCS2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 14:28:17 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89CBACF4;
+        Sun,  3 Jul 2022 11:28:16 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id d145so9971514ybh.1;
+        Sun, 03 Jul 2022 11:28:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EA2HK1w3Mx9SWECBezKw/os0mvoFNvlKu8SCzQeFYZA=;
-        b=AErGtm4DckMyY6HrGDk8x/qOpOCzcTPclkWo7BzqWtHYPQWvkAKeMSoWoZGzfokF6g
-         EHfNtu6hGsDEiZcMIBDXH7iOU4tuMG3dVspL+YAtfaHBzs9TePyr7DoDipP+LyFzmd/0
-         v2vF8tVpNzJAWX+UC2Du1olJzxPCnYAO5Na6o/aZtEiNE2i+6yzH7cu9IK/vbOQYHe4u
-         OAsXylQFD1sfvGIi/+wP4/1tgieLac/0S/qmtUJJog2pmxS1R/X6SSLnRf7ubEQajO2L
-         chf9U1eH6DkFlWM2tFlVaPMLmgt4XKC5bnY7xhmAbjt9QtavB4xfIxiAPf1aZwDNYGWD
-         tuAw==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yjZR/70PHdM2PN7TkWB0TtRfSwOaskYmscGVtZ9BAyE=;
+        b=a29l4TY5Uu+UsD/SBXw0sFjO1CW+IN2+uhmdCHwpsBPF0osshMBITJ5hDe1KBAeDZa
+         KJGZdCzp9eonNqcoi+nIi3fhaWALWPShC6m/bRxS2uuLHkr2hZiQX1r08aXHEnqmH9pi
+         mFWjFxe18nTC9aaIP+e3fsfTA97ayA3T8UN4laAbY0iMAltd4vco0URiFm24wDoRvE84
+         TsZj/T9YsPrvbd7ss4jMm1oZXCQjpq34z3+SZ1ifr4jL9A/qSCvqUJ9f12RWwS8+hO2t
+         rOS73dEP1Ai7R2jsgrCOq47pWsod3KRceFnaGulT1wn51B4VeyMk2p6sRaWzwFlkzIMr
+         r9Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=EA2HK1w3Mx9SWECBezKw/os0mvoFNvlKu8SCzQeFYZA=;
-        b=kBzb7HTfy2Rp+AUG0M8XhcvfqhCRe+5CCG9pJ3/WgPQVgdZ8pJ9QDcliraB2QDSj7i
-         mfHsjLf/o5dGK75mkjc/83skO6M8oeGIHBvA/rvyX8x6PwMuxPW+Y1wDTVb9aIH/QGkV
-         ydZiu/nAjAG1nTV8TOTMWBjxHiyMJ8EO89ReQ/5UdaGteqqM1f2b/nDV6GvX8aS64O4F
-         z+v9PSq0eVbBZQUiP8Y1sIN9wvHICAnz/s2uqwbTcqe+kC5RFUdTAbdGuZDxOHRx8u74
-         QzIqlClwAVqs4MNELykfuDa6DAwHkCDWOGJ1kjrcuanRxaboz6effOILFBFBcixWJZmg
-         Boaw==
-X-Gm-Message-State: AJIora+yvVuJlgosF/VaGRh+4GvWkPpKKDtag20t1gyXnw2jBg1EQr0g
-        RbYSLu0we4+LHB639aUUar9Q8A==
-X-Google-Smtp-Source: AGRyM1tkKK+8SkFXgg4yB2FmoXvs0dFKzuwaGe5efFkEcCAcjGZEp5mVYgw8z+6ar4LH+dWt44D9XA==
-X-Received: by 2002:a05:651c:1549:b0:25b:d2dc:2e8f with SMTP id y9-20020a05651c154900b0025bd2dc2e8fmr13780446ljp.334.1656871897227;
-        Sun, 03 Jul 2022 11:11:37 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id n24-20020a05651203f800b004795311530asm4821761lfq.209.2022.07.03.11.11.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Jul 2022 11:11:36 -0700 (PDT)
-Message-ID: <ebe6eaef-8bf8-3a35-4048-d0b079b52ff2@linaro.org>
-Date:   Sun, 3 Jul 2022 20:11:34 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yjZR/70PHdM2PN7TkWB0TtRfSwOaskYmscGVtZ9BAyE=;
+        b=6hXC89otPg45Mx6C2JrzihlOFVZF5dZjfHb2j9Pe17xCM/w+A2pSMob2I4UX+FzOXj
+         AF5nc2hvASRz79KqF1u0cd1fhi6gGbplnDCcA6paUqcVnjJG2XTdCX9kpcOQ0a3nl/FP
+         /TalQjJGI41RYpnro/iIM8FwpxCvajx34XO9/RGohzYGeFD9+akOXKnrnGgyK7Xv/RBh
+         jfcWqTR+/p4dAv+RxVqhHv1I4h7JEKzyDZPwahOg/uXwzbTXCl2kIsmKoCKuvab6O5e4
+         gt1H1P264VMdLN3ENjtpYd552k5WPkyT4fLaSDV3nZgt9Ig8M+OFRfv6fhJHr4B5HWeS
+         Q3wA==
+X-Gm-Message-State: AJIora+JJl1Nmtm0VAtnR0LuR6Cee8k8wxO+ptjvLQTfj3C9EOvFFx7x
+        mMyDcGx3C/g30NyJ4UWSiAjWRgrw8XnvMZ6j6Rw=
+X-Google-Smtp-Source: AGRyM1s3IcdAbvbL68QwHWAcHy5wnzv9v0dtbhrfomjH0uKcNBKUV4HH5ulNe6arGwBQNEnX23Qbv6HOtUoonzDrN40=
+X-Received: by 2002:a05:6902:1549:b0:66d:5f76:27ba with SMTP id
+ r9-20020a056902154900b0066d5f7627bamr26444320ybu.385.1656872895607; Sun, 03
+ Jul 2022 11:28:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: soc: samsung: s5pv210-chipid: add S5PV210
- ChipID
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220629123543.94515-1-krzysztof.kozlowski@linaro.org>
- <20220701173524.GA1185040-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220701173524.GA1185040-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220703170039.2058202-1-LinoSanfilippo@gmx.de> <20220703170039.2058202-2-LinoSanfilippo@gmx.de>
+In-Reply-To: <20220703170039.2058202-2-LinoSanfilippo@gmx.de>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sun, 3 Jul 2022 20:27:39 +0200
+Message-ID: <CAHp75VcU-gLQBvuesoYp-G91SjzeYB7PNCN17PGL7u139VZY2g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/9] serial: core: only get RS485 termination GPIO if supported
+To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Lukas Wunner <lukas@wunner.de>, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/07/2022 19:35, Rob Herring wrote:
-> On Wed, Jun 29, 2022 at 02:35:43PM +0200, Krzysztof Kozlowski wrote:
->> Add bindings for the S5PV210 ChipID block.
-> 
-> Is this new or was undocumented?
+On Sun, Jul 3, 2022 at 7:02 PM Lino Sanfilippo <LinoSanfilippo@gmx.de> wrote:
+>
+> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+>
+> In uart_get_rs485_mode() only try to get a termination GPIO if RS485 bus
+> termination is supported by the driver. This prevents from allocating
+> and holding a GPIO descriptor for the drivers lifetimg that will never be
 
-Undocumented, I'll mention in the commit msg.
+lifetiming
 
-> 
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../bindings/soc/samsung/s5pv210-chipid.yaml  | 30 +++++++++++++++++++
-> 
-> samsung,s5pv210-chipid.yaml
+> used.
 
-Hm, even for files under "samsung" directory?
+...
 
-> 
-> Surely there's other similar blocks. Can we start collecting in a 
-> common directory?
+>         port->rs485_term_gpio = devm_gpiod_get_optional(dev, "rs485-term",
+>                                                         GPIOD_OUT_LOW);
+> +
+> +       if (port->rs485_term_gpio &&
 
-It's a soc-specific driver, type of soc_device. If you think it's worth
-a place of its own, I can put it somewhere dedicated.
+This check is incorrect. Either you need to move that after error
+checking (that's what I personally prefer), or use !IS_ERR_OR_NULL().
 
-Best regards,
-Krzysztof
+> +           !(port->rs485_supported->flags & SER_RS485_TERMINATE_BUS)) {
+> +               dev_warn(port->dev,
+> +                       "%s (%d): RS485 termination gpio not supported by driver\n",
+> +                       port->name, port->line);
+> +               devm_gpiod_put(dev, port->rs485_term_gpio);
+> +               port->rs485_term_gpio = NULL;
+> +       }
+> +
+>         if (IS_ERR(port->rs485_term_gpio)) {
+>                 ret = PTR_ERR(port->rs485_term_gpio);
+>                 port->rs485_term_gpio = NULL;
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
