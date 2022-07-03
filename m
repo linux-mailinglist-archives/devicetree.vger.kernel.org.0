@@ -2,126 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC58C5647A2
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 16:00:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 165F3564863
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 17:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231875AbiGCOAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 10:00:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52824 "EHLO
+        id S232280AbiGCPZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 11:25:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230490AbiGCOAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 10:00:42 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8727E2185;
-        Sun,  3 Jul 2022 07:00:41 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id g4so12404635ybg.9;
-        Sun, 03 Jul 2022 07:00:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=q4UT8rsZ3usHBxENgRzFNvJGhv2Wm97iAnFiDWdFYFk=;
-        b=XuWQQMavd1Eellhv+zHIDsVkPTuGUHLJvk6NPD+V3c13Sz1jqo/Dopgz5DR6IEcTZx
-         38eHA214J8RjRDSUVZTYRb+cgjlrK1O+T7Z1bgOIJP+UkbuGrL3tVp5hQUwJCfpcg1Kl
-         yhNUZeZ79/dQymmE7+8R4vPsgkMc7ew+5IxlpKWWvQsO/4+Xpm58GarS9D+9Euoy/N/V
-         Q7dkJEBU+s9NKsSJMLUQzKr0G/3ZJBjPnjciCTZ//iWvlpOfnL7Ma1NIhVByX+YLtllz
-         lxabVKkRhViOrKv1b/+HMET8wGt03/SoAHHut/EaP1uIAQ8pIUEln2Vbs0zjlHp6mseW
-         FnpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=q4UT8rsZ3usHBxENgRzFNvJGhv2Wm97iAnFiDWdFYFk=;
-        b=J3F5BtBX1vFOXi4HGnylGXkCphtVAQ4T7QNcEugFrq6zJMuGq7BpCZKCK8XGoF9J0Q
-         g94qF1iyPByuJGxYPwqXhoPovr1Xr3JY3RA7hjmh9lG+LDD6hQTJOFgio+dQjBeDqrZB
-         naH8WsR/xxrJ/Ew2NXFoq+KrQrI9SJhf0/mF2DVS6JxyhZC48YqDcS6IckxTYcYuzh+v
-         YkeHPn9VNTOfhzU8N/U/ETsl6BqP6cCWdCv+NqAavFUJpiz/rCPz75WI1UuKBQPkuuLt
-         rh0xjbth9sW2RdChR0wHgIYsxRl3L+d9YCfQKbVxNBF8iebgzTzHsU1lKsF3n85679ry
-         mBRw==
-X-Gm-Message-State: AJIora9be7ca5tPbnHB15amVKESSuodFnRF/dhnMATu5qE2fFBNPsZG5
-        rmLuFzrOq4hGKBU/+xCf3tb8BkKV3fbKEKXlqIU=
-X-Google-Smtp-Source: AGRyM1vKt057dpiKMcFPH9HSDZJE+XEG1+tqdb5e+RqDVK7l7u+jZ0x1TjwdgmRNYqFQnj3TMcuPxQw+tk/eYJi3rA0=
-X-Received: by 2002:a05:6902:c4:b0:64b:4677:331b with SMTP id
- i4-20020a05690200c400b0064b4677331bmr25846878ybs.93.1656856839975; Sun, 03
- Jul 2022 07:00:39 -0700 (PDT)
+        with ESMTP id S230446AbiGCPZq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 11:25:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC6862D3;
+        Sun,  3 Jul 2022 08:25:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DEB1F60FF9;
+        Sun,  3 Jul 2022 15:25:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42747C385A2;
+        Sun,  3 Jul 2022 15:25:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656861945;
+        bh=6FZRGuGyGXrR6uSqT9Lj6raevMBa8uPkB+swZksqT8g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Jnfjjziiv5MMxIuRaSg6LT5q52q+OIrul5gcUV0jYjn4deC7F6mQtgGFOJmSBdAl0
+         7+SdkRcpFhexGoZb4lzRVq6mZJc1wAbKefVz+PuyV1KEBlpiX+/S6PdI99faDmJSAM
+         mPIv2wcYy0abVEu8yIGwxAIQqPASjcut1yD92/ioHhVeYMDzFcrpVvRCWBpWlP/dUb
+         OjauLPWnckOBclx4SUrUQEQga6KweAInZMgPn4uGvyFBOqpbqGUZQv+kYbP1fQn+IP
+         ByMbqIZQJ054r4EcKqUaiiiIhZd/9yFR39F2DMSx+qBTYmKaQXRcf6ZWadBwm2oezA
+         04iZwX3Ba/zbQ==
+Received: by mail-wr1-f48.google.com with SMTP id s1so9977505wra.9;
+        Sun, 03 Jul 2022 08:25:45 -0700 (PDT)
+X-Gm-Message-State: AJIora/yYz6kxamyHbSBz8E4/alWFzcZzkEEjh5ftl8U0bcoNj9r94eW
+        YyCxombS8TR9x/cgVpeTuc8I48MVyYWztsfFGg==
+X-Google-Smtp-Source: AGRyM1t143YoHfhT1+OzPkK/w5os5HDfXvbtq7xkqhf03LIENcWrbQDx8MClno+Ey8csr1cLW8bxwuJ/Np9kf9yY7bQ=
+X-Received: by 2002:a5d:6c62:0:b0:21d:2235:d800 with SMTP id
+ r2-20020a5d6c62000000b0021d2235d800mr23103832wrz.381.1656861943448; Sun, 03
+ Jul 2022 08:25:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220613120534.36991-15-andrea.merello@iit.it>
- <202207031509.DlBrHyaw-lkp@intel.com> <YsGVa8KFmdvGY92e@debian.me>
-In-Reply-To: <YsGVa8KFmdvGY92e@debian.me>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 3 Jul 2022 16:00:03 +0200
-Message-ID: <CAHp75VfDYRZMiz4j9KN5+ZJnudT0jfh-o_f7HBk5yc+FHqvXZg@mail.gmail.com>
-Subject: Re: [v6 14/14] docs: iio: add documentation for BNO055 driver
-To:     Bagas Sanjaya <bagasdotme@gmail.com>
-Cc:     kernel test robot <lkp@intel.com>,
-        Andrea Merello <andrea.merello@iit.it>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, kbuild-all@lists.01.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
+References: <20220701090547.21429-1-allen-kh.cheng@mediatek.com>
+ <20220701090547.21429-2-allen-kh.cheng@mediatek.com> <CAGXv+5FTXXWZU4FyqJ7uqoPGso7ofsb1=QS0mU8Ay2hSz7rFXQ@mail.gmail.com>
+In-Reply-To: <CAGXv+5FTXXWZU4FyqJ7uqoPGso7ofsb1=QS0mU8Ay2hSz7rFXQ@mail.gmail.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sun, 3 Jul 2022 23:25:28 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8T4+hGscNwhYnnySjzOQiuDBKiH-dvazzntnNGr6u2mw@mail.gmail.com>
+Message-ID: <CAAOTY_8T4+hGscNwhYnnySjzOQiuDBKiH-dvazzntnNGr6u2mw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] drm/mediatek: Remove mt8192 display rdma compatible
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        jmondi <jacopo@jmondi.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 3, 2022 at 3:11 PM Bagas Sanjaya <bagasdotme@gmail.com> wrote:
-> On Sun, Jul 03, 2022 at 03:58:15PM +0800, kernel test robot wrote:
+Hi, Allen:
 
-Please, submit it properly.
-You may add my Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Applied to mediatek-drm-next [1], thanks.
 
-(I deliberately put it on a wrong line so no tools will catch it up
-with improper commit message)
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
 
-> From bb8524aa4719e54389065548c86155cbee638357 Mon Sep 17 00:00:00 2001
-> From: Bagas Sanjaya <bagasdotme@gmail.com>
-> Date: Sun, 3 Jul 2022 18:37:44 +0700
-> Subject: [PATCH] fixup for "docs: iio: add documentation for BNO055 driver"
->
-> kernel test robot reported htmldocs warning:
->
-> Documentation/iio/bno055.rst:2: WARNING: Explicit markup ends without a blank line; unexpected unindent.
->
-> Add missing blank between SPDX line and the page title to fix the warning.
->
-> Link: https://lore.kernel.org/lkml/202207031509.DlBrHyaw-lkp@intel.com/
-> Reported-by: kernel test robot <lkp@intel.com>
-> Cc: lars@metafoo.de
-> Cc: robh+dt@kernel.org
-> Cc: andy.shevchenko@gmail.com
-> Cc: matt.ranostay@konsulko.com
-> Cc: ardeleanalex@gmail.com
-> Cc: jacopo@jmondi.org
-> Cc: Andrea Merello <andrea.merello@iit.it>
-> Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
-> ---
->  Documentation/iio/bno055.rst | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/iio/bno055.rst b/Documentation/iio/bno055.rst
-> index af21376d7a2533..9a489a79d8f5a8 100644
-> --- a/Documentation/iio/bno055.rst
-> +++ b/Documentation/iio/bno055.rst
-> @@ -1,4 +1,5 @@
->  .. SPDX-License-Identifier: GPL-2.0
-> +
->  ==============================
->  BNO055 driver
->  ==============================
->
+Regards,
+Chun-Kuang.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Chen-Yu Tsai <wenst@chromium.org> =E6=96=BC 2022=E5=B9=B47=E6=9C=881=E6=97=
+=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=886:37=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Fri, Jul 1, 2022 at 5:05 PM Allen-KH Cheng
+> <allen-kh.cheng@mediatek.com> wrote:
+> >
+> > The compatible =E2=80=9Cmediatek,mt8192-disp-rdma=E2=80=9D is being use=
+d for reading
+> > the data into DMA for back-end panel driver in mt8192 but there is
+> > no difference between mt8183 and mt8192 in rdma driver.
+> >
+> > Remove compatible =E2=80=9Cmediatek,mt8192-disp-rdma=E2=80=9D from the =
+driver and
+> > should use =E2=80=9Cmediatek,mt8183-disp-rdma=E2=80=9D as fallback in 8=
+192 DTS
+> > according to the mediatek,rdma.yaml.
+> >
+> > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+>
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
