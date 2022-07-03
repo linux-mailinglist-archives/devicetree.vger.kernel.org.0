@@ -2,64 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC7A9564427
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:19:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 545D4564402
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 06:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232770AbiGCD7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jul 2022 23:59:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57958 "EHLO
+        id S232079AbiGCD7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jul 2022 23:59:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231640AbiGCD6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 23:58:42 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42D8DCE33
-        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:57:45 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id l81so8913799oif.9
-        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:57:45 -0700 (PDT)
+        with ESMTP id S232608AbiGCD7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jul 2022 23:59:08 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C257D139
+        for <devicetree@vger.kernel.org>; Sat,  2 Jul 2022 20:57:48 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id u199so9026811oie.0
+        for <devicetree@vger.kernel.org>; Sat, 02 Jul 2022 20:57:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=zHYwjTJQYLTGvQx9gJwu+9TV173JtSa/zYqJz0bsaF8=;
-        b=eJT4rAz3DGQtPFVYYDzrnRTeP1Wrdx4lKCdPmidokv91oA3pgsQBYjM5I6sSL5Gnkn
-         T2gCCfMttyI33ggxJwt2+BjOfOJqmjMQ5MoJCwR2tzhkDiCXCaM2y6opSgqLIJiAsvUe
-         6zF5gbxJHZovdfQU2OX0KHEv067v8xXRBd8IDemvxKVLfQMBpDUs8Y0icl5nMagnEFWi
-         PDXX1ePtO9vMV9ykL3F2bJURbheKjb/8IsdMAi1CqsqhYI3ivFBAZ0rHpnTCe8Kr8SQ+
-         BPgH4pOLbXDiX4EnQRrtQzntukIsXVZlXljj2AOW2aZd3/U0IlGbqKvUzaqkoZpemy3f
-         EmCQ==
+        bh=W92t9vb8RyuMAsngPIQE5DDwov75LnCzM9uTCriJUuE=;
+        b=dtBiwIUOP73p3Ub+FJgRTZULzSMWy19sIwUMCtfYLY3c9h6VZGqcvJnJ/lgru4/nJo
+         RTE2NkiqRdWnALkUIJHia2vIoF1GwyW9pvoHw52KKNblp1q9YnVZO873NN/bmUJXvXfS
+         X8ObHCBnHB0ebShNkloMz0cZ0ctDG86xJFS0jhZVIfqCGLYFuo4ReRKUAZbhY5M1z0Pq
+         wSYGADDJ1NGDg/gQ4PQjGlRyhj7IBqLs26WsEU+6QgyvDc4fmijJZlvmce+d19NvJEPE
+         NHI98XNiSl+S7FvCWog9h9RjvbmoIKmdEp9wCwRYpDeBn/VPB9u+z74UdkVkhGrTB1jA
+         tIvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=zHYwjTJQYLTGvQx9gJwu+9TV173JtSa/zYqJz0bsaF8=;
-        b=F2XmRSkBFB2LfvtTkvdtgsyADLLfEsX2QXMoERrkBAYEFdS9IdR4hmBV/9Kx4/eYt6
-         3nfh0ZJBXBEA106ATQpnn9lGMj01jZ04d5q1PKpndDteOrUkA6UpgojVUNF/eZHEnPeN
-         CvcyCuzgoOOVmlls9iLNprJQKgovK+XFIbTwUEpS9/PR+Mn8PSY5q7U1R40GAdUJWq2P
-         HYtZ5kFQMpSAXj50/Ju3qoqUq4VUNnwptfQdggfeKBG76zwu2pFBkcmju1APyruvwIFX
-         h2EvtKNZlmF+Y9lg8M2dgQIhP4FV22QiFqQ+v03TYhHyf5o/7OnFnpP9bMeOslNZG2lY
-         pNZA==
-X-Gm-Message-State: AJIora9p852N0fsTcE792Que/XDAn8wA7q6Pcj/moSdphLjsdqGnRc08
-        PxIfhtTXW5Khmit3Mzlbs4JK9A==
-X-Google-Smtp-Source: AGRyM1sZOdHsj22pUb8C+ua7oYuZ1nWy3TeJi1IgRSCvSGZmcJWoShIWdt7ng7wBH8JBnc0K+yodCg==
-X-Received: by 2002:aca:bb56:0:b0:32f:2160:bfd8 with SMTP id l83-20020acabb56000000b0032f2160bfd8mr13850298oif.92.1656820665015;
-        Sat, 02 Jul 2022 20:57:45 -0700 (PDT)
+        bh=W92t9vb8RyuMAsngPIQE5DDwov75LnCzM9uTCriJUuE=;
+        b=zPuVQRS5lmitlzlX9MHRrpElDkPBTAG3cw21zoXVcTszmAA17psLpT7qKHnGrOY747
+         UO6Q5dxY36FsjRP5Ns1WiAF08guhtU3X/FxdVsxSBRXp8YxdQmFbZ9T4TJZ83cZ3aznU
+         VjAzwArFuX/Z3PJi5Ca3m93rtQYBLIkp6xtXRBKC9x91xwZKhTA8dMXNc6v8Ca7oAxIi
+         svMIFmCVX7uM7PmZq3z1sCd/LwBABocuRV3CTPS9DdYvsrr6Mf7N2gr5YxxGVybSiOqL
+         IE6mZuAlkPOu1IRO3yFlBKOpPF+ZzqiS5Vb2QWdIk0kw6+Farz5t1GasAw5axNOMwxCf
+         cyqw==
+X-Gm-Message-State: AJIora83ZPcnZZPYkBE882SA7EDvxF/IiSFTZPamJYRy3UQiKANb2K5U
+        yY9bArQUKIjMM52xbp9vOyEACQ==
+X-Google-Smtp-Source: AGRyM1uNAYPGQITKnJ9PX66/GdKmHQYcgLdvZwQy3L6b7FyJwRJV8X8tCMWB0wH2/SYsnFlxxGkKFg==
+X-Received: by 2002:a05:6808:148b:b0:335:8f41:3ab0 with SMTP id e11-20020a056808148b00b003358f413ab0mr13683198oiw.172.1656820667876;
+        Sat, 02 Jul 2022 20:57:47 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.43
+        by smtp.gmail.com with ESMTPSA id 25-20020aca0f19000000b0032e5d0b5d5fsm12965910oip.58.2022.07.02.20.57.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Jul 2022 20:57:44 -0700 (PDT)
+        Sat, 02 Jul 2022 20:57:47 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        devicetree@vger.kernel.org,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-leds@vger.kernel.org, Rob Herring <robh@kernel.org>,
         ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: (subset) [PATCH] ARM: dts: qcom-msm8974: fix irq type on blsp2_uart1
-Date:   Sat,  2 Jul 2022 22:56:38 -0500
-Message-Id: <165682055970.445910.18057047383947729410.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH v3 1/4] dt-bindings: leds: qcom-lpg: Add compatible for PM660L LPG block
+Date:   Sat,  2 Jul 2022 22:56:41 -0500
+Message-Id: <165682055969.445910.11818943864906447784.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220522083618.17894-1-luca@z3ntu.xyz>
-References: <20220522083618.17894-1-luca@z3ntu.xyz>
+In-Reply-To: <20220511190718.764445-1-marijn.suijten@somainline.org>
+References: <20220511190718.764445-1-marijn.suijten@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -73,15 +79,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 22 May 2022 10:36:18 +0200, Luca Weiss wrote:
-> IRQ_TYPE_NONE is invalid, so use the correct interrupt type.
+On Wed, 11 May 2022 21:07:15 +0200, Marijn Suijten wrote:
+> Document the availability of an LPG configuration for the PM660L PMIC in
+> the Qualcomm Light Pulse Generator driver.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] ARM: dts: qcom-msm8974: fix irq type on blsp2_uart1
-      commit: ab1489017aa7a9f02e24bee73cf9ec8079cd3909
+[3/4] arm64: dts: qcom: pm660l: Add LPG node
+      commit: fc41893fe8289967d0aaffab25d8bb96334cc676
+[4/4] arm64: dts: qcom: sdm630-nile: Add RGB status LED on the PM660L LPG
+      commit: dd764e1a42367c93d1e8e3f9e1ce08752a6dbac2
 
 Best regards,
 -- 
