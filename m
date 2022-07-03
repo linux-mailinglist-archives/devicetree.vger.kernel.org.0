@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16F445649E1
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 23:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 303F6564A15
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jul 2022 23:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbiGCVOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 17:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60032 "EHLO
+        id S229904AbiGCVmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 17:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbiGCVOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 17:14:36 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392832BF6
-        for <devicetree@vger.kernel.org>; Sun,  3 Jul 2022 14:14:33 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id r14so5002801wrg.1
-        for <devicetree@vger.kernel.org>; Sun, 03 Jul 2022 14:14:33 -0700 (PDT)
+        with ESMTP id S230381AbiGCVmt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 17:42:49 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7672E5FEE
+        for <devicetree@vger.kernel.org>; Sun,  3 Jul 2022 14:42:46 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id z12so1241616wrq.7
+        for <devicetree@vger.kernel.org>; Sun, 03 Jul 2022 14:42:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=pensando.io; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=iAJmsrF3a95Q+0VnUpb4xCH/13fcBF1x3IFG7cn4D6k=;
-        b=VDmU/+g6+ItGdGObsTugs6F0a9CGNn1LdQrLZ+S4bmMNhGrL4lg6f88t1G7MDd0tR3
-         7sOmPekqJ9ptc3wRbJD5hsA4Ks2lFG4iHI6Eg/TDhA7DdATqaNvtC787tfehwGBUO+p7
-         +Z9aBKzQIdUpTQVdMoJPoL+Z2LtryBDBETmz9oQcRBUlZ2qibto4P2QZ6uDlLnOE8MIO
-         enUinsLsKMH30GwVxt8Boi/c2DJDttX3PV4RnQhFD6+fgfFxXZMzvgC7NVafF3UOiGnO
-         dm87EoiKomj7Kg5I6nG4mAJNf9b5spDjBNaVEnIELcKyP0p7rg2exX0xAuXNvlg1dY0g
-         aDEw==
+        bh=zMVVNw/TspXkB20dcfkA7bJulFS5H5tiR5oe4QWMnRk=;
+        b=HsqBHDtGqFr4oqOjiezat5EsmCWzI1KD9rM2XwabQ2iO0RHte1hV/Iwz/dcTBUHBGT
+         eoyvrV7ZkMuQ+k4SwZYaNKCS7PMlRd1FInDGTV88ZbTVoGab2QsDW9xwV1n1Z4c9a1HN
+         QJD7Np2IIDr8C+YuQ104tltO5ToXrUfHe6eh8R3blGo4wZLHq4zm0vp1/nzjqMWuParm
+         aWbiAm7+UFdzvmgd+bNOr3r4/2xvTWl4SSeUyxaGyhQplfL4M8R7NX/5HleaCF9V+G/P
+         G2wDNwWY3CZRX0CCy8Zra5l4T2xGBe/x1gpl6v3SkhZH9xxib1QayfmKhCjm2YM2HX3X
+         DYPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=iAJmsrF3a95Q+0VnUpb4xCH/13fcBF1x3IFG7cn4D6k=;
-        b=snMBAXblqxrdCmyNJ0wUYTdGIuqmnAMx9nNd0+ZTQJwFBNJS3RtG30v2zC3s2Na3wj
-         +Tho5nygJCdZOo58FWOo7aYa/VJB8wiMfP8Q5zS/CZgJOhT20DoSjjBhiQ5ygpAE1DAB
-         HB2INCXgzRNZhzMb0uTXRNmdg2/yPZNTrqwM3hOENtrzI93XVP8iZsoZ4wwU0ZwX75x8
-         MjUVL2bU2PJ7hZiTzUHIGtJenVAw6xUm58WGdC0sJLdvNiKBTMYZWilC+rEBwsxu4P6n
-         fpqvtz20Z4tqcs4PFTKm0kDopr+0nqB9u6BV/XDCFkyDAjkXJqgWtJ+nJrpsf1MFEAbd
-         dKtQ==
-X-Gm-Message-State: AJIora+6bKX8V74O/bmsHa/5xmxZS7SSrhvKTzF6eAFGlHyuRphFq19G
-        zCioKGoQqO9lZu6G/oOFkiAdgNSZbsTz3mKjfMXL5g==
-X-Google-Smtp-Source: AGRyM1sH61bNNTH4eUqt6H5fB2Y8L9uQgLWLJQfrWDVjSV32291aal/naK+DlItLTHlBuj+i021lzeJmSFz6v8bl+bE=
+        bh=zMVVNw/TspXkB20dcfkA7bJulFS5H5tiR5oe4QWMnRk=;
+        b=iwA39TDQIGeAfQuNEg9aWw+ztsBkevwztvNiei5+LwhWHAf9IKbUGXqS/WXipB2PkH
+         34l7PUjPuag38WmsZqkope8lhbJSbtxG9qw/ucCwvJNeNS0KuMLsarhWrx3mhsq5REJh
+         ZU/ErvPdehlEahjcpeAokrtKoa80yEVkth7C13Ac/bcPrHHG3CDkv2V4aQFHZ3FZs+pB
+         tDeiKd7Rr7+BBsDhHMwEctpnebRMsHELCInMosFY8Z9ywiONcle8xYrwjNYtjLN7jetO
+         luekHY3OywIRw6q/snFZBM+w9BtiFLj3jbhOwrD6Loj8u3ycC0Qb5+VaipDQlqmUzq+m
+         k4wQ==
+X-Gm-Message-State: AJIora9/EGPm/o7BzkbAVGArgw6A68DyGoh/F9NNHeRY0PLkuPS3rRqR
+        CKjjzN8weXOhH+/aD4ozlRC1s1BIizDZ8OgCDn0gyw==
+X-Google-Smtp-Source: AGRyM1uOJo6rBressjjFHOaRQyjnucznDSp/34HbzfZLcPA+9VX6yTguO55aaKzIkq0N7b83eJGgalRejb/jexIr1cU=
 X-Received: by 2002:a5d:5a15:0:b0:21d:630c:a609 with SMTP id
- bq21-20020a5d5a15000000b0021d630ca609mr6928728wrb.468.1656882871737; Sun, 03
- Jul 2022 14:14:31 -0700 (PDT)
+ bq21-20020a5d5a15000000b0021d630ca609mr6998929wrb.468.1656884565041; Sun, 03
+ Jul 2022 14:42:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220613195658.5607-1-brad@pensando.io> <20220613195658.5607-13-brad@pensando.io>
- <CAHp75Vex0VkECYd=kY0m6=jXBYSXg2UFu7vn271+Q49WZn22GA@mail.gmail.com>
-In-Reply-To: <CAHp75Vex0VkECYd=kY0m6=jXBYSXg2UFu7vn271+Q49WZn22GA@mail.gmail.com>
+References: <20220613195658.5607-1-brad@pensando.io> <20220613195658.5607-14-brad@pensando.io>
+ <CAHp75Vck4xNF=OOseMssF2R7TV2t+y0AQozRDFN2E6zQ51xR0g@mail.gmail.com>
+In-Reply-To: <CAHp75Vck4xNF=OOseMssF2R7TV2t+y0AQozRDFN2E6zQ51xR0g@mail.gmail.com>
 From:   Brad Larson <brad@pensando.io>
-Date:   Sun, 3 Jul 2022 14:14:21 -0700
-Message-ID: <CAK9rFnz=Rv3dGEtRAjknY49qe55MdfTsO8+TNegEOTduJZk6vg@mail.gmail.com>
-Subject: Re: [PATCH v5 12/15] spi: dw: Add support for AMD Pensando Elba SoC
+Date:   Sun, 3 Jul 2022 14:42:34 -0700
+Message-ID: <CAK9rFnxR=6G469YXtdEBpNLCHq-+_kQJg4UE+58_yhxwtfBdrA@mail.gmail.com>
+Subject: Re: [PATCH v5 13/15] mmc: sdhci-cadence: Add AMD Pensando Elba SoC support
 To:     Andy Shevchenko <andy.shevchenko@gmail.com>
 Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
@@ -87,48 +87,146 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Andy,
 
-On Tue, Jun 14, 2022 at 4:10 AM Andy Shevchenko
+On Tue, Jun 14, 2022 at 4:19 AM Andy Shevchenko
 <andy.shevchenko@gmail.com> wrote:
 >
 > On Mon, Jun 13, 2022 at 9:57 PM Brad Larson <brad@pensando.io> wrote:
+>
+> > Add support for AMD Pensando Elba SoC which explicitly controls
+> > byte-lane enables on writes.  Add priv_write_l() which is
+>
+> enabling ?
+
+Changed to enabling
+
 > ...
 >
-> > +/*
-> > + * Elba SoC does not use ssi, pin override is used for cs 0,1 and
-> > + * gpios for cs 2,3 as defined in the device tree.
-> > + *
-> > + * cs:  |       1               0
-> > + * bit: |---3-------2-------1-------0
-> > + *      |  cs1   cs1_ovr   cs0   cs0_ovr
-> > + */
+> > +       void (*priv_write_l)(struct sdhci_cdns_priv *priv, u32 val,
 >
-> > +#define ELBA_SPICS_SHIFT(cs)           (2 * (cs))
->
-> Useless.It takes much more than simply multiplying each time in two
-> macros. Also see below.
->
-> > +#define ELBA_SPICS_MASK(cs)            (0x3 << ELBA_SPICS_SHIFT(cs))
->
-> (GENMASK(1, 0) << ((cs) << 1))
->
-> Or ((cs) * 2) to show that it takes 2 bits and not two times of CS',
->
-> > +#define ELBA_SPICS_SET(cs, val)        \
-> > +                       ((((val) << 1) | 0x1) << ELBA_SPICS_SHIFT(cs))
->
-> BIT(0)
->
-> So the main point is to use GENMASK() and BIT() the rest is up to you.
+> priv_writel
 
-I think you're recommending this approach which I'll change to
+Changed to priv_writel
 
-static void dw_spi_elba_override_cs(struct dw_spi_elba *dwselba, int
-cs, int enable)
-{
-        regmap_update_bits(dwselba->syscon, ELBA_SPICS_REG,
-                           (GENMASK(1, 0) << ((cs) << 1)),
-                           ((enable) << 1 | BIT(0)) << ((cs) << 1));
-}
+>
+> > +                            void __iomem *reg);
+>
+> And perhaps leave it on one line.
+>
+> I also would swap parameters, so address goes first followed by value.
+
+Which is the reverse of writel() parameter ordering which is value,
+address.  Should I do this?
+
+> ...
+>
+> > +static inline void sdhci_cdns_priv_writel(struct sdhci_cdns_priv *priv,
+> > +                                         u32 val, void __iomem *reg)
+> > +{
+>
+> > +       if (unlikely(priv->priv_write_l))
+>
+> First of all, why if (unlikely())-else instead of if (likely())-else?
+>
+> > +               priv->priv_write_l(priv, val, reg);
+> > +       else
+> > +               writel(val, reg);
+> > +}
+
+It was existing code and never looked at it.  This construct looks to
+be widely used however this goes away with the two patch approach
+below.
+
+$ find . -name \*.c | xargs grep if | grep unlikely | wc
+  18640
+
+> Instead of branching each time you do I/O, make sure that callback is
+> always set and call it unconditionally. In this case you don't need to
+> have this callback, but maybe just a wrapper on `writel()`. As a
+> result you may split this to two patches in the first of which you
+> simply introduce a callback and a writel() wrapper which is assigned
+> unconditionally to all current chips. In the next you add a new chip
+> support.
+
+Next version will separate into two patches as described
+
+> ...
+>
+> > +       u32 m = (reg & 0x3);
+> > +       u32 msk = (0x3 << (m));
+> > +
+> > +       spin_lock_irqsave(&priv->wrlock, flags);
+> > +       writel(msk << 3, priv->ctl_addr);
+> > +       writew(val, host->ioaddr + reg);
+> > +       spin_unlock_irqrestore(&priv->wrlock, flags);
+>
+> Too many 3:s as magic. Is it GENMASK() or something else? Perhaps it
+> needs a definition.
+
+Definitely, changed this to be understandable by inspection.
+GENMASK() for word and BIT() for byte makes this more clear.  The 3's
+came from bits [6:3] are the byte-lane enables in the control reg
+where the lower two bits of the address specify the byte(s) to enable.
+
+/*  Elba control reg bits [6:3] are byte-lane enables */
+#define ELBA_BYTE_ENABLE_MASK(x)        ((x) << 3)
+
+elba_priv_write_l(...):
+        writel(ELBA_BYTE_ENABLE_MASK(0xf), priv->ctl_addr);
+        writel(val, reg);
+
+elba_write_w(...):
+        byte_enables = GENMASK(1, 0) << (reg & 0x3);
+        writel(ELBA_BYTE_ENABLE_MASK(byte_enables), priv->ctl_addr);
+        writew(val, host->ioaddr + reg);
+
+> ...
+>
+> > +       u32 m = (reg & 0x3);
+> > +       u32 msk = (0x1 << (m));
+> > +
+> > +       spin_lock_irqsave(&priv->wrlock, flags);
+> > +       writel(msk << 3, priv->ctl_addr);
+> > +       writeb(val, host->ioaddr + reg);
+> > +       spin_unlock_irqrestore(&priv->wrlock, flags);
+>
+> Ditto.
+
+elba_write_b(...):
+        byte_enables = BIT(0) << (reg & 0x3);
+        writel(ELBA_BYTE_ENABLE_MASK(byte_enables), priv->ctl_addr);
+        writeb(val, host->ioaddr + reg);
+
+> ...
+>
+> > +       writel(0x78, priv->ctl_addr);
+>
+> Magic.
+
+writel(ELBA_BYTE_ENABLE_MASK(0xf), priv->ctl_addr);
+
+> ...
+>
+> > +static const struct sdhci_cdns_drv_data sdhci_cdns_drv_data = {
+> > +       .pltfm_data = {
+> > +               .ops = &sdhci_cdns_ops,
+> > +       },
+> > +};
+> > +
+> > +
+>
+> One blank line is enough.
+
+Removed extra blank line
+
+> ...
+>
+> > +       {
+> > +               .compatible = "amd,pensando-elba-sd4hc",
+> > +               .data = &sdhci_elba_drv_data
+>
+> Leave a comma here.
+
+Added comma
 
 Regards,
 Brad
