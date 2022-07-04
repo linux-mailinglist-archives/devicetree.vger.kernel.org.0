@@ -2,69 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4A7565DEB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 21:20:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E742565E16
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 21:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233866AbiGDTUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 15:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36944 "EHLO
+        id S230311AbiGDTiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 15:38:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233675AbiGDTUb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 15:20:31 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDEBB60C2;
-        Mon,  4 Jul 2022 12:20:30 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id bs20so10960167qtb.11;
-        Mon, 04 Jul 2022 12:20:30 -0700 (PDT)
+        with ESMTP id S229892AbiGDTiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 15:38:09 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 637379FCB;
+        Mon,  4 Jul 2022 12:38:08 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-31bf3656517so89774407b3.12;
+        Mon, 04 Jul 2022 12:38:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=efBiIx6Z74wz+LEYNht2L8mOGHfZ2/nsYi3si0X8qUQ=;
-        b=oUIROjQTvBzdYVfmxDoO4IvUMCJsVN0ErIlpDYdemPxncSnGAikTY+jF7Lh5tmyceE
-         okQFItfBRzQ8oa4PwELKembxTH5KTsv4LnNPp+onGOKZo+EouITj75jQ19T2gzYEj3if
-         gPho36rodSAQtXRh6xFAi2/5C8dEEtl99A7tXaQsY7Tiq64S8Ed7HFpfLvW6u58AUK+M
-         DHtR/8pR/WoEBqi3926jPFDAI33/nHtbk1JwgsXyIlYaBg3smQKG1MUAQT+j+i1U5dCH
-         RdoJ4pzBpMhdv/BwK5wQ9Tv9K2UyKMEUnmwty4GwgQ2epoQhLrjDW2Ctz6aLeTW8yDyR
-         j9ew==
+         :cc:content-transfer-encoding;
+        bh=oszJ77F2FRLFZiRT4PLikjAIOd77jSDJ8S6luXx4hmo=;
+        b=dlEoiNMn5VqJxHvwRxY77Cpk71emtQfaetnUv5+QegcQtPAUlXH3Er1dbx7mzrzcv/
+         wQoF43D+Fc8iVhFxhm54vAv0Qan+VvZ7aMEOWWd8CDpjfTYXNb9iNU0xMUB9ODt/ezj0
+         E1OGGnbB5EQLtFWpRFacDzXWKFXZiBwZJgs24e73O/ywCk0S1KhZEPc4b9kOpRNDwGmX
+         OtVtVrw2//WfUDjF9iwY7JgjlzaxIr04VoG/V8yWf6RhbTR4MB7vU459Q0duEsoMuAWo
+         9RYUcrE+8d7US2zgl3TjY1Z65kNSmK280CTHOhEbpiBShGhUo20cd7LCsA9lo9MGijFq
+         WsYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=efBiIx6Z74wz+LEYNht2L8mOGHfZ2/nsYi3si0X8qUQ=;
-        b=0sBvTRcSn8eZUQsQ4YuK26IURh2FoqeuS4k9sqXV4Ks84/RGUEbc/hTN9e9YbIxZ9+
-         AIAOfskXBylVl2crIiGPEhD8qLTUctq4LZsqqmZwGlgwtPR8o4DtyfQfhPHAUjUcUkJV
-         z/wQYTDuOH0y0AQU8UocCuzDWblKt0CwvD9/OuP3LHvS2BG3QPTqRS1OBBhJgG0r4jzL
-         85ekiRbQ71ERzrX3tPpR55HkbJZzYIHJXsnrgeyElNjP5I1sBhoAva4HpnLfu8WCfr8b
-         ys4+qdC8jT6KZ6GWu+LcAb5taVaAPfvx8oylD1+P+iM+cN+NwsX78mVcCevp0Gdc5RxJ
-         O1FA==
-X-Gm-Message-State: AJIora8bJIaruBqXGRjQ3VstlgITJNQ9XpVcwhIufRYWa2SUCX6wgfVL
-        +mk8HiF3PWD6pipq2orMoULGFCWlltijKena0NU=
-X-Google-Smtp-Source: AGRyM1v9fjtjLV5IOZSPd2UXznyGsSvexOh1kKFoICuxe2R5nQ/R8J3odTQoWU/bbnb5YCO8GjE1rNVnoL12U5EFUto=
-X-Received: by 2002:ac8:59c9:0:b0:31c:22a5:9a5d with SMTP id
- f9-20020ac859c9000000b0031c22a59a5dmr25171871qtf.494.1656962429931; Mon, 04
- Jul 2022 12:20:29 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=oszJ77F2FRLFZiRT4PLikjAIOd77jSDJ8S6luXx4hmo=;
+        b=u7RulcDtFnf+mHNRKhcOc9H1aj4MkbtN+yqfSqUPRhrU8MfFtwX5Hr71hIxiCSsbWA
+         iwLrTbmQh95Osr9JRmQkodJmBMk6KWwLZCvgbNzD7WN2GJCeY9jYh3Uzc6C0NGcJpnZ7
+         /8Yq8N5JkB7CIol3iVxgLvebLWX0yy7frgaI3wHMhh+jSS72fPrt0ED4l2vOg/iSSkB/
+         GfYVgBbSwYdhDV7h9NHj7CRBCrPNjMU4q+Vsck53ne/ND5sx+k0biRgAdal7n58+W0+E
+         tNmAhpVW485s0vLMonoeMvmC2FW1w/cW1MYJYgpU0pMdKQU0T5XpkckSrfT1ts7hW7cF
+         FBWA==
+X-Gm-Message-State: AJIora9S4/BPT9yPf1kR6cvGh85crDXHfwhf+lBO1J3jB1N68vFonOdt
+        +zKjACoQe9f3jS10ctpvSVUUDJIfAzmSWqetnCg=
+X-Google-Smtp-Source: AGRyM1t2Z/Sss9bJC+w75RUZhUMQh0sX0Ici3Q4T3BXacm2+e94SGpCxT3mlrBHed6OSdfiPng27zOzhO4TqvHYpqDk=
+X-Received: by 2002:a81:3984:0:b0:31c:b59e:a899 with SMTP id
+ g126-20020a813984000000b0031cb59ea899mr2577964ywa.195.1656963487512; Mon, 04
+ Jul 2022 12:38:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220515204540.477711-1-robimarko@gmail.com> <20220515204540.477711-4-robimarko@gmail.com>
- <Yr4q0G1AT4YSOIU5@builder.lan>
-In-Reply-To: <Yr4q0G1AT4YSOIU5@builder.lan>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Mon, 4 Jul 2022 21:20:19 +0200
-Message-ID: <CAOX2RU6UFpZPN0EO+Jyg93x7audYPhq+yzPM2gURUmOBheTLeA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/6] mailbox: qcom-apcs-ipc: add IPQ8074 APSS clock
- controller support
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-clk@vger.kernel.org
+References: <cover.1656883851.git.jahau@rocketmail.com> <28a2a9ec27c6fb4073149b897415475a8f04e3f7.1656883851.git.jahau@rocketmail.com>
+In-Reply-To: <28a2a9ec27c6fb4073149b897415475a8f04e3f7.1656883851.git.jahau@rocketmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 4 Jul 2022 21:37:30 +0200
+Message-ID: <CAHp75VfGqk_q1iDyj06tEuTNoG35xjOL0_5HgokFauUz_aAwFQ@mail.gmail.com>
+Subject: Re: [PATCH v4 09/10] iio: magnetometer: yas530: Introduce "chip_info" structure
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -75,74 +71,187 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 1 Jul 2022 at 00:59, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+On Mon, Jul 4, 2022 at 12:04 AM Jakob Hauser <jahau@rocketmail.com> wrote:
 >
-> On Sun 15 May 15:45 CDT 2022, Robert Marko wrote:
+> This commit introduces the "chip_info" structure approach for better vari=
+ant
+> handling.
 >
-> > IPQ8074 has the APSS clock controller utilizing the same register space as
-> > the APCS, so provide access to the APSS utilizing a child device like
-> > IPQ6018 does as well, but just by utilizing the IPQ8074 specific APSS
-> > clock driver.
-> >
-> > Also, APCS register space in IPQ8074 is 0x6000 so max_register needs to be
-> > updated to 0x5FFC.
-> >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > ---
-> >  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 8 ++++++--
-> >  1 file changed, 6 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> > index 80a54d81412e..b3b9debf5673 100644
-> > --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> > +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> > @@ -33,6 +33,10 @@ static const struct qcom_apcs_ipc_data ipq6018_apcs_data = {
-> >       .offset = 8, .clk_name = "qcom,apss-ipq6018-clk"
-> >  };
-> >
-> > +static const struct qcom_apcs_ipc_data ipq8074_apcs_data = {
-> > +     .offset = 8, .clk_name = "qcom,apss-ipq8074-clk"
-> > +};
-> > +
-> >  static const struct qcom_apcs_ipc_data msm8916_apcs_data = {
-> >       .offset = 8, .clk_name = "qcom-apcs-msm8916-clk"
-> >  };
-> > @@ -57,7 +61,7 @@ static const struct regmap_config apcs_regmap_config = {
-> >       .reg_bits = 32,
-> >       .reg_stride = 4,
-> >       .val_bits = 32,
-> > -     .max_register = 0x1008,
-> > +     .max_register = 0x5FFC,
->
-> Please use lower case hex digits.
+> The variant to be used is now chosen by the devicetree (enum "chip_ids"),
 
-Hi,
-Will fix it in v5.
+Device Tree
 
->
-> And please send the mailbox patches separately, to make it clear for the
-> maintainers that this can be picked independently of others.
+> not by the chip ID in the register. However, there is a check to make sur=
+e
+> they match (using integer "id_check").
 
-Ok, will send patches 4-6 separately.
+...
 
-Regards,
-Robert
->
-> Regards,
-> Bjorn
->
-> >       .fast_io = true,
-> >  };
-> >
-> > @@ -142,7 +146,7 @@ static int qcom_apcs_ipc_remove(struct platform_device *pdev)
-> >  /* .data is the offset of the ipc register within the global block */
-> >  static const struct of_device_id qcom_apcs_ipc_of_match[] = {
-> >       { .compatible = "qcom,ipq6018-apcs-apps-global", .data = &ipq6018_apcs_data },
-> > -     { .compatible = "qcom,ipq8074-apcs-apps-global", .data = &msm8994_apcs_data },
-> > +     { .compatible = "qcom,ipq8074-apcs-apps-global", .data = &ipq8074_apcs_data },
-> >       { .compatible = "qcom,msm8916-apcs-kpss-global", .data = &msm8916_apcs_data },
-> >       { .compatible = "qcom,msm8939-apcs-kpss-global", .data = &msm8916_apcs_data },
-> >       { .compatible = "qcom,msm8953-apcs-kpss-global", .data = &msm8994_apcs_data },
-> > --
-> > 2.36.1
-> >
+Thanks for a new version, it's getting better. My comments below.
+
+But first of all, can you split this to at least two patches, i.e.
+1) split out functions without introducing chip->info yet;
+2) adding chip_info.
+
+Possible alternative would be more steps in 2), i.e. introducing
+chip_info for the callback only, then add field (or semantically
+unified fields) by field with corresponding changes in the code. In
+this case it would be easier to review.
+
+I leave this exercise to you if Jonathan thinks it worth it.
+
+...
+
+> -#define YAS530_20DEGREES               182 /* Counts starting at -62 =C2=
+=B0C */
+
+> -#define YAS532_20DEGREES               390 /* Counts starting at -50 =C2=
+=B0C */
+
+The comments suddenly disappear from the file. See below.
+
+...
+
+> +enum chip_ids {
+> +       yas530,
+> +       yas532,
+> +       yas533,
+> +};
+> +
+> +static const char yas5xx_product_name[][13] =3D {
+> +       "YAS530 MS-3E",
+> +       "YAS532 MS-3R",
+> +       "YAS533 MS-3F"
+> +};
+> +
+> +static const char yas5xx_version_name[][2][3] =3D {
+> +       { "A", "B" },
+> +       { "AB", "AC" },
+> +       { "AB", "AC" }
+
+Shan't we put indices here?
+Also, use * instead of one dimension of array.
+
+> +};
+
+...
+
+> +static const int yas530_volatile_reg[] =3D {
+> +       YAS530_ACTUATE_INIT_COIL,
+> +       YAS530_MEASURE
+
++ Comma.
+
+> +};
+
+...
+
+> +/* Number of counts between minimum and reference temperature */
+> +const u16 t_ref_counts[] =3D { 182, 390, 390 };
+> +
+> +/* Starting point of temperature counting in 1/10:s degrees Celsius */
+> +const s16 min_temp_celcius_x10[] =3D { -620, -500, -500 };
+
+See above.
+
+...
+
+> +struct yas5xx_chip_info {
+> +       unsigned int devid;
+
+> +       const int *volatile_reg;
+> +       const int volatile_reg_qty;
+> +       const u32 scaling_val2;
+
+Why const here?
+I assume entire structure is const, no?
+
+> +       int (*get_measure)(struct yas5xx *yas5xx, s32 *to, s32 *xo, s32 *=
+yo, s32 *zo);
+> +       int (*get_calibration_data)(struct yas5xx *yas5xx);
+> +       void (*dump_calibration)(struct yas5xx *yas5xx);
+> +       int (*measure_offsets)(struct yas5xx *yas5xx);
+> +       int (*power_on)(struct yas5xx *yas5xx);
+> +};
+
+...
+
+> +       int i, j;
+
+j can have a proper name.
+
+> +       j =3D yas5xx->chip_info->volatile_reg_qty;
+
+...
+
+> +static struct yas5xx_chip_info yas5xx_chip_info_tbl[] =3D {
+> +       [yas530] =3D {
+> +               .devid =3D YAS530_DEVICE_ID,
+> +               .volatile_reg =3D yas530_volatile_reg,
+> +               .volatile_reg_qty =3D ARRAY_SIZE(yas530_volatile_reg),
+> +               .scaling_val2 =3D 100000000, /* picotesla to Gauss */
+> +               .get_measure =3D yas530_get_measure,
+> +               .get_calibration_data =3D yas530_get_calibration_data,
+> +               .dump_calibration =3D yas530_dump_calibration,
+> +               .measure_offsets =3D yas530_measure_offsets,
+> +               .power_on =3D yas530_power_on,
+> +       },
+> +       [yas532] =3D {
+> +               .devid =3D YAS532_DEVICE_ID,
+> +               .volatile_reg =3D yas530_volatile_reg,
+> +               .volatile_reg_qty =3D ARRAY_SIZE(yas530_volatile_reg),
+> +               .scaling_val2 =3D 100000, /* nanotesla to Gauss */
+> +               .get_measure =3D yas530_get_measure,
+> +               .get_calibration_data =3D yas532_get_calibration_data,
+> +               .dump_calibration =3D yas530_dump_calibration,
+> +               .measure_offsets =3D yas530_measure_offsets,
+> +               .power_on =3D yas530_power_on,
+> +       },
+> +       [yas533] =3D {
+> +               .devid =3D YAS532_DEVICE_ID,
+> +               .volatile_reg =3D yas530_volatile_reg,
+> +               .volatile_reg_qty =3D ARRAY_SIZE(yas530_volatile_reg),
+> +               .scaling_val2 =3D 100000, /* nanotesla to Gauss */
+> +               .get_measure =3D yas530_get_measure,
+> +               .get_calibration_data =3D yas532_get_calibration_data,
+> +               .dump_calibration =3D yas530_dump_calibration,
+> +               .measure_offsets =3D yas530_measure_offsets,
+> +               .power_on =3D yas530_power_on,
+> +       }
+
+Keep comma here.
+
+> +};
+
+...
+
+> -       int ret;
+> +       int id_check, ret;
+
+Don't add variables with different semantics on the same line.
+
+...
+
+> +       if (id_check !=3D yas5xx->chip_info->devid) {
+>                 ret =3D -ENODEV;
+> -               dev_err(dev, "unhandled device ID %02x\n", yas5xx->devid)=
+;
+> +               dev_err(dev, "device ID %02x doesn't match %s\n",
+> +                       id_check, id->name);
+
+ret =3D dev_err_probe() ?
+
+>                 goto assert_reset;
+>         }
+
+...
+
+> +       dev_info(dev, "detected %s %s\n", yas5xx_product_name[yas5xx->chi=
+p],
+> +                yas5xx_version_name[yas5xx->chip][yas5xx->version]);
+
+I'm wondering if these arrays can be actually embedded into chip_info?
+
+--=20
+With Best Regards,
+Andy Shevchenko
