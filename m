@@ -2,155 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFB3556502B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C0056503A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:03:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229956AbiGDI7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 04:59:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59394 "EHLO
+        id S233239AbiGDJBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 05:01:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231274AbiGDI7n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 04:59:43 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9C0119;
-        Mon,  4 Jul 2022 01:59:42 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4F60B66015BA;
-        Mon,  4 Jul 2022 09:59:40 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656925181;
-        bh=vD4hvMa+D2Y960A8Jp1pvDzf4SloHgIl/k1DXoxXJyM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=XaReWsOoEXnyDB2hRvcDh0CZkYviM5JYojQpfFeQ9QLYduCj6NSMk+iMo4cvDz1DO
-         NN99bxfRRGMIIm5kW10CYIsE36Pkw3EGIf8w7WhnthC9e40e4pu3ZxGryAX9HDeL/K
-         2ePzLf3ATXDb+QPGpXHQM6Cj17trUxfiQ/iSSp6n57oc4diGQz25kKD0aSVGPyiiBE
-         bAfS4gCQnH0OkYmOApxca8A+3IwRsvIeCmqcI3/SBsCR3jqjRtDCh8q3lM1tGgbcnH
-         qa2zsdaTlCUaqISOh+0SNxJKgvHCyCQpIgKymkYHlYQNLfTwq0z7WuyQSAmAs/7EJ3
-         sEfyV4qfZh0fw==
-Message-ID: <91e60954-d44d-f99f-2b4f-c164fb33cc0e@collabora.com>
-Date:   Mon, 4 Jul 2022 10:59:37 +0200
+        with ESMTP id S233299AbiGDJBo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 05:01:44 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDABB10CB;
+        Mon,  4 Jul 2022 02:01:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1656925280;
+        bh=wunTrKVzz/kwW1pyTGsbdz6YZYVftor0tEd0kb7sjO0=;
+        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=SINC7RSlV4w99Cn6JlwtJRqAsE75zgeeyizf6OW6Gs1HO22tpejMX6cKxeN0Zws+u
+         Vu2NuhfZCGAWgx+cEsaa2x6ZwPBe82IOWb8v1zApH1K6+BMNKWNxzuxZEvdVWU9Ftg
+         dByJ/AghB9hVBd+cAz/l4M3kj1xUxtgWEFTynIe0=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.0.69] ([46.223.3.210]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MDQeU-1oHbLa2NzK-00AXhd; Mon, 04
+ Jul 2022 11:01:20 +0200
+Message-ID: <5f0d2112-ce82-e1b9-d421-de1f8067dbe8@gmx.de>
+Date:   Mon, 4 Jul 2022 11:01:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 02/11] arm64: dts: mediatek: Introduce MT8195 Cherry
- platform's Tomato
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 1/9] serial: core: only get RS485 termination GPIO if
+ supported
 Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, hsinyi@chromium.org,
-        allen-kh.cheng@mediatek.com, gtk3@inbox.ru, luca@z3ntu.xyz,
-        sam.shih@mediatek.com, sean.wang@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220630153316.308767-1-angelogioacchino.delregno@collabora.com>
- <20220630153316.308767-3-angelogioacchino.delregno@collabora.com>
- <20220701221158.iuw5fehgkjrqw6zh@notapiano>
- <CAGXv+5FwDuUjbP4THBsXorps12in-=JUtB-4VO5ygDBuQn1SeQ@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5FwDuUjbP4THBsXorps12in-=JUtB-4VO5ygDBuQn1SeQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Lukas Wunner <lukas@wunner.de>, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+References: <20220703170039.2058202-1-LinoSanfilippo@gmx.de>
+ <20220703170039.2058202-2-LinoSanfilippo@gmx.de>
+ <CAHp75VcU-gLQBvuesoYp-G91SjzeYB7PNCN17PGL7u139VZY2g@mail.gmail.com>
+From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
+In-Reply-To: <CAHp75VcU-gLQBvuesoYp-G91SjzeYB7PNCN17PGL7u139VZY2g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:MxMrBoebL/3ctFtCTUphQ8fbbzo0zgkURU2onWKweIoqv254Z0s
+ t868OlGvUc6fhbcP7VeAiIhLgqlDBHdwcEFAF4U1gK0liSvZKMc6B6Bka+z56N7zo6uI4rj
+ cRFVbR4YRXAce3cbcainF19L6917abn0iB2K4DjNy6K1jVnUyAqiGAWmbXtdNOSevkR6Hsh
+ d5p2iLrkCVLQMyB1ymF3g==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Q2fK6Uw51Ow=:1KxNQm6ApxAwqoouCLJ58d
+ ZRcld4NUe4iHIi6CcURdsrTh5F3eKNUURC7YiXTwFqkJUB/ci5cwSrjLrlyDkxxngPTVB4kol
+ 4PIt6BFXRli9wA7BYNEKfx1ICufVxXUl3/rdFll/Aqv92ff/aULjCiOyQrpjiCmfaSlgLBTZO
+ apqzmZJ72irdvnl0i1El72Ylir7x6VAB842gB4Tmpdk9jgzvxBvZ+4uG40Sx7Qv1Mb4764LT5
+ o/KIBuA2Rucw2eh4SXCTnwYEfC6RnFRmOq7OfW5/pjg+QZCJogkWx68aOnqM8CeIHP75yZmGt
+ 2cZmQR4NEh0Y3zSp0jM8+WCSB9uO2go/eKaAOlFI+YRx24zeRNyz1Q0qeRRt5sA8ec9WNgH6h
+ jRnOG42pGvw91Qdkt3BL5ndKCrmKhb0E3My/xw5zZDupb+TC+A1uGl4/xUQn6tgbnBTNgvqwr
+ q11Bokv4gM4L5pf/5Hg/EeUmvrf1a+F33qT/JuJUbXS718GrqQY7K5ZVJQj10n320jERzZ6mg
+ ZB0B2igMY1WEGCiATKuf34vSMkU46y7mHaq9WsBYNKMjRxdq+5kqnkR2BTfkoaFWMhmrMAymL
+ pABYWpIpjAHf9G8KZNHcZGCxQrCs3KJORKW37R/j57TUVdZjkIn5YU1vIcSQRePnB3eh9dpor
+ Wxz+F+9sEANPKFJvRqfQdqiP3JASn+LHGf4G1qpRzwy2BQrNrdkCEoN8XY/84zlNZL8g4EjF8
+ FJTdc4Qdi/KY+QM5vritDQEj29yVYxdcESqBkKapr6hqiujRE8A6ajXeMLspOTtqBucVXpnBu
+ ZQbNkmn0sLz5JkGj3rW3tMGV8XR1n1AHkxg0jbldVmu8sIHPPsONln+PKFcFzjglfUmu9ulNQ
+ gbdE9JLkXcg9Q8WOTUtbq5f9fEsG4jzY52gE3Wexr7TNhpoueDoWO+UQyah7Aiw0OvgAUAg3q
+ dKJAR3mGNcB2IjKxEQRQpWiAJsj+yzHVdqC3YZX1EQWzhUw0d9ZxYsclgfhOm39F7wuvlfVE+
+ A4xS2v8HDJ+pJUN21dITJzl/5XATzepCAjf9gnqGWszxyqb3WRKPwtIuT4Sa4QOc3z5eW9WQ0
+ 8EQoh0lkmEda8nAwjEV6IT3pdZbW5nO/0hclIII1LConYckA1KxbTGoAw==
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/07/22 06:17, Chen-Yu Tsai ha scritto:
-> On Sat, Jul 2, 2022 at 6:12 AM Nícolas F. R. A. Prado
-> <nfraprado@collabora.com> wrote:
->>
->> On Thu, Jun 30, 2022 at 05:33:07PM +0200, AngeloGioacchino Del Regno wrote:
->>> Introduce the MT8195 Cherry Chromebook platform, including three
->>> revisions of Cherry Tomato boards.
->>>
->>> This basic configuration allows to boot Linux on all board revisions
->>> and get a serial console from a ramdisk.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> ---
->>>   arch/arm64/boot/dts/mediatek/Makefile         |  3 +++
->>>   .../dts/mediatek/mt8195-cherry-tomato-r1.dts  | 11 ++++++++
->>>   .../dts/mediatek/mt8195-cherry-tomato-r2.dts  | 11 ++++++++
->>>   .../dts/mediatek/mt8195-cherry-tomato-r3.dts  | 12 +++++++++
->>>   .../boot/dts/mediatek/mt8195-cherry.dtsi      | 26 +++++++++++++++++++
->>>   5 files changed, 63 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
->>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
->>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
->>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
->> [..]
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
->>> new file mode 100644
->>> index 000000000000..17e9e4d6f6ab
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
->>> @@ -0,0 +1,11 @@
->>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>> +/*
->>> + * Copyright (C) 2021 MediaTek Inc.
->>> + */
->>> +/dts-v1/;
->>> +#include "mt8195-cherry.dtsi"
->>> +
->>> +/ {
->>> +     model = "MediaTek Tomato (rev1) board";
->>
->> Given that the compatible is "google," I believe we'll want to rename the model
->> to "Google Tomato", much like was commented on the Asurada series [1], but
->> better to have confirmation from someone from Google. Chen-Yu? :)
-> 
-> I asked for clarification internally and it turns out we didn't get the
-> Asurada series quite right either.
-> 
-> Google only owns the reference design, that is Asurada for MT8192 and
-> Cherry for MT8195. The vendor own the end product design that is based
-> off of Google's reference design.
-> 
-> So for Tomato, the vendor is Acer. Note that "Tomato" and the other
-> codenames seen in ChromeOS are public codenames that Google uses.
-> 
-> The compatible string will likely stay "google,XXX", since this is set
-> in firmware, and updating it after the product has shipped poses both
-> a significant hurdle and risk.
-> 
+Hi,
 
-Yeah, makes sense. Should we call this "Acer Tomato (revX) board" then?
-...if we do that, though, we need to know if the other revisions of Tomato
-are also from Acer, or we would be getting one right and all the others wrong.
+On 03.07.22 20:27, Andy Shevchenko wrote:
+> On Sun, Jul 3, 2022 at 7:02 PM Lino Sanfilippo <LinoSanfilippo@gmx.de> w=
+rote:
+>>
+>> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+>>
+>> In uart_get_rs485_mode() only try to get a termination GPIO if RS485 bu=
+s
+>> termination is supported by the driver. This prevents from allocating
+>> and holding a GPIO descriptor for the drivers lifetimg that will never =
+be
+>
+> lifetiming
+>
+>> used.
+>
+> ...
+>
+>>         port->rs485_term_gpio =3D devm_gpiod_get_optional(dev, "rs485-t=
+erm",
+>>                                                         GPIOD_OUT_LOW);
+>> +
+>> +       if (port->rs485_term_gpio &&
+>
+> This check is incorrect. Either you need to move that after error
+> checking (that's what I personally prefer), or use !IS_ERR_OR_NULL().
+>
 
-Cheers,
-Angelo
+Right, a stupid mistake. I will fix this, thanks!
 
-> 
-> Regards
-> ChenYu
-> 
->> Otherwise,
->>
->> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>
->> Thanks,
->> Nícolas
->>
->> [1] https://lore.kernel.org/all/CAGXv+5Gv2pjPXynz6HCdgux+giPDC5qRk+KW1aFduVz82rM=+g@mail.gmail.com/
->>
->>> +     compatible = "google,tomato-rev1", "google,tomato", "mediatek,mt8195";
->>> +};
->> [..]
->>> --
->>> 2.35.1
->>>
-
+Regards,
+Lino
