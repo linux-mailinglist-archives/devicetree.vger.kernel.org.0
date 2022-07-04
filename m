@@ -2,157 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E14E95651CD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 12:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C78B565208
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 12:21:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234211AbiGDKNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 06:13:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34956 "EHLO
+        id S234139AbiGDKUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 06:20:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233712AbiGDKNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 06:13:41 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93A9FD11F;
-        Mon,  4 Jul 2022 03:13:40 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8ACA2660198D;
-        Mon,  4 Jul 2022 11:13:38 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656929619;
-        bh=F4XTdpmeLLBzARBbsr/g15mmfE1S0Zdj681HWBdHZeQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BFRDuScIM3T486D9EEH82Z/qHJcrJPM/Lfi6d7nloU0tYn2zk67XnE6IGPu5Wc++1
-         dKHIgzZILXIhcrfwlpb/o8irqlQyCIzm4k0sx6XC+zZ/JHu1crgXt3lil6n8074sBB
-         /lDQU5u9uYrR9VzTZoUEuqS0yb3tm6Je5M6BDT9NoL7fd87XJTtFt/+Im/y/JMBbkT
-         FCTDpb8aCdpT/r0Gqqm2OVDokULmlZyOimXDL/i+eu+IrwJrjnrvSyOs3SSFiC8D6f
-         c4s2HFka0bjPcVZ9p9+pwkMaTP8/FJolTVH2io/ERk/0qVHf2Cjtlk3J9y3Ar8WwDf
-         IZstoYHSCp81w==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, hsinyi@chromium.org,
-        nfraprado@collabora.com, allen-kh.cheng@mediatek.com,
-        gtk3@inbox.ru, luca@z3ntu.xyz, sam.shih@mediatek.com,
-        sean.wang@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, wenst@chromium.org
-Subject: [PATCH v2 11/11] arm64: dts: mediatek: cherry: Add I2C-HID touchscreen on I2C4
-Date:   Mon,  4 Jul 2022 12:13:21 +0200
-Message-Id: <20220704101321.44835-12-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220704101321.44835-1-angelogioacchino.delregno@collabora.com>
-References: <20220704101321.44835-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S234374AbiGDKUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 06:20:07 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA0311460
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 03:18:31 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id z13so14908546lfj.13
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 03:18:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nK+dWoJDfR6ImhHlJu9yEcRBbILJCUUISJM4C5ncM4Y=;
+        b=QIlyZ45QnxRnU54KJSmyY8z0MglHKV/krHYsQGvCRk03H37aZasLp9FBRt0mIpaXNX
+         gUV3v5GBTd7Diq0kVsc1UwgF74Xb1ci3nCzmqZdiVUmFSUa/hVMi87Q4uqb+vme4hW52
+         RXBnzR0mIrVAXV/po11MnhrfjAgKLl8+EGn/0EdeVxAE326i5SVPjWyFNs0oZltypfPg
+         6Xf7JIiCtpo3p0wSrHTOkFTSVwa1I8P4uR/5lCdAxjCyvW4wNyEWkklZmmWq30KEYduG
+         fdy8Xj+D9MylDHpkpcM/qOxA8FfBE1CLLakSuYeHgIylZmiEpI4vf/zOvoNHW/CQRaOK
+         94EA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nK+dWoJDfR6ImhHlJu9yEcRBbILJCUUISJM4C5ncM4Y=;
+        b=GHMR4PZfo7HfgNO5Y/AVs+8Czm+RI7FKPWr0qqDpwmCmyeki9WzjPHrncvzHOVDYfa
+         ypQxHrbBsxkloVdWa2EU1R/+VmLCjbLXuJ7cLFlYorTQ6CGIOPaeJIB5bJ6JKx7iEjgr
+         29tZ/e0t4RpxBco/kFTUMBwK5WPP2swqhOPqhMsAEcJZ/H9VLknVcvHzgwMCwSjCLXuR
+         EUUsOcoSRsDEk0FGKAio05rcJgrIZTRW6Y9MiWKWz+VCHsrRkD3PcK5u5221nWysgC+e
+         IZrEAhyy9Hgp2RhoTmBDkVKXQe/jXESZAwJ86F2rPVQe9aDlsDEzGH2XqbULngbd3eYk
+         a71g==
+X-Gm-Message-State: AJIora9oyBwgE5nqUTUrr6E6cqoyqqkhvwAeTPQPoLP9EuGC4b/Gpqcm
+        FPBGyr1Hp+jlYEZIdhdXe6A1ew==
+X-Google-Smtp-Source: AGRyM1vk/DUUAlKArKx3qOlFGBDpgLEUpjxUfo/KdMVpcXc9wPxDTj1mRPaaYAHbj4VXJw62MRn+HQ==
+X-Received: by 2002:a05:6512:118f:b0:47f:6a1a:20d4 with SMTP id g15-20020a056512118f00b0047f6a1a20d4mr16952990lfr.428.1656929909557;
+        Mon, 04 Jul 2022 03:18:29 -0700 (PDT)
+Received: from krzk-bin.home ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id e12-20020ac24e0c000000b00478a311d399sm5072523lfr.0.2022.07.04.03.18.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jul 2022 03:18:29 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Subject: [PATCH v2] dt-bindings: qcom: document preferred compatible naming
+Date:   Mon,  4 Jul 2022 12:18:23 +0200
+Message-Id: <20220704101823.82122-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This platform carries a HID compatible I2C touchscreen on the i2c4 bus,
-but it may be at a different address, depending on the board model.
-Add the node for a touchscreen at 0x10, but enable it only in the
-final board dts.
+Compatibles can come in two formats.  Either "vendor,ip-soc" or
+"vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
+DT schema file documenting preferred policy and enforcing it for all new
+compatibles, except few existing patterns.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- .../dts/mediatek/mt8195-cherry-tomato-r1.dts  |  4 +++
- .../dts/mediatek/mt8195-cherry-tomato-r2.dts  |  4 +++
- .../dts/mediatek/mt8195-cherry-tomato-r3.dts  |  4 +++
- .../boot/dts/mediatek/mt8195-cherry.dtsi      | 28 +++++++++++++++++++
- 4 files changed, 40 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
-index 7ca344ccc225..3348ba69ff6c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
-@@ -9,3 +9,7 @@ / {
- 	model = "Acer Tomato (rev1) board";
- 	compatible = "google,tomato-rev1", "google,tomato", "mediatek,mt8195";
- };
+Changes since v1:
+1. Add schema instead of readme (Rob).
+
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: Alex Elder <elder@linaro.org>
+Cc: Robert Foss <robert.foss@linaro.org>
+Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ .../devicetree/bindings/arm/qcom-soc.yaml     | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom-soc.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+new file mode 100644
+index 000000000000..1af1f16c13ab
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+&ts_10 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
-index eb80f23273aa..4669e9d917f8 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
-@@ -29,3 +29,7 @@ pins-low-power-pcie0-disable {
- 		bias-pull-down;
- 	};
- };
++title: Qualcomm SoC compatibles naming convention
 +
-+&ts_10 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
-index f9cdda07da88..5021edd02f7c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
-@@ -30,3 +30,7 @@ pins-low-power-pcie0-disable {
- 		bias-pull-down;
- 	};
- };
++maintainers:
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
 +
-+&ts_10 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index 2c8b760d0da1..fcc600674339 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -145,6 +145,18 @@ &i2c4 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c4_pins>;
++description: |
++  Guidelines for new compatibles for SoC blocks/components.
++  When adding new compatibles in new bindings, use the format::
++    qcom,SoC-IP
 +
-+	ts_10: touchscreen@10 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x10>;
-+		hid-descr-addr = <0x0001>;
-+		interrupts-extended = <&pio 92 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touchscreen_pins>;
-+		post-power-on-delay-ms = <10>;
-+		vdd-supply = <&pp3300_s3>;
-+		status = "disabled";
-+	};
- };
- 
- &i2c5 {
-@@ -609,6 +621,22 @@ subpmic_pin_irq: pins-subpmic-int-n {
- 			bias-pull-up;
- 		};
- 	};
++  For example::
++   qcom,sdm845-llcc-bwmon
 +
-+	touchscreen_pins: touchscreen-default-pins {
-+		pins-int-n {
-+			pinmux = <PINMUX_GPIO92__FUNC_GPIO92>;
-+			input-enable;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-+		};
-+		pins-rst {
-+			pinmux = <PINMUX_GPIO56__FUNC_GPIO56>;
-+			output-high;
-+		};
-+		pins-report-sw {
-+			pinmux = <PINMUX_GPIO57__FUNC_GPIO57>;
-+			output-low;
-+		};
-+	};
- };
- 
- &pmic {
++  When adding new compatibles to existing bindings, use the format in the
++  existing binding, even if it contradicts the above.
++
++select:
++  properties:
++    compatible:
++      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
++  required:
++    - compatible
++
++properties:
++  compatible:
++    oneOf:
++      - description: Preferred naming style for compatibles of SoC components
++        pattern: "^qcom,(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
++
++      # Legacy namings - variations of existing patterns/compatibles are OK,
++      # but do not add completely new entries to these:
++      - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
++      - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
++      - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
++      - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
++      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
++      - enum:
++          - qcom,gpucc-sdm630
++          - qcom,gpucc-sdm660
++          - qcom,lcc-apq8064
++          - qcom,lcc-ipq8064
++          - qcom,lcc-mdm9615
++          - qcom,lcc-msm8960
++          - qcom,lpass-cpu-apq8016
++          - qcom,usb-ss-ipq4019-phy
++          - qcom,usb-hs-ipq4019-phy
++          - qcom,vqmmc-ipq4019-regulator
++
++additionalProperties: true
 -- 
-2.35.1
+2.34.1
 
