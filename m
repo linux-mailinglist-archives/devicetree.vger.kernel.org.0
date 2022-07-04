@@ -2,138 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB38565993
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 17:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0B025659A1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 17:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbiGDPOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 11:14:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41172 "EHLO
+        id S234043AbiGDPUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 11:20:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiGDPOO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 11:14:14 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37ADEBC83;
-        Mon,  4 Jul 2022 08:14:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1656947623;
-        bh=lw9l19cpkr4yCqcc6HT5BAREEapDuSh+BtMq4Z73ojA=;
-        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=joU5t0cevbn9FI0a3XUrCa89xeWo84Gyc3+bVds9L2qAWszvbCKziivpG4hR6r7oB
-         m0dNdOh+uhTlrn3MmgupsNYjZWUz9xS3REe5+Hy2d34gM7NSFCRv+OhaHNl6z5iMx+
-         wQeOcrfhPoI0h6AGR585T0/XEYi1H3MvdPBWcaBA=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.0.69] ([46.223.3.210]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mgeo8-1nh3Ep2wyy-00h9Fb; Mon, 04
- Jul 2022 17:13:43 +0200
-Message-ID: <576feae5-87f3-fbac-4349-126cf5244821@gmx.de>
-Date:   Mon, 4 Jul 2022 17:13:38 +0200
+        with ESMTP id S234177AbiGDPUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 11:20:34 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D7D910FE6;
+        Mon,  4 Jul 2022 08:20:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=GcBIE8F1Amhld86dWfigGM4Z1aJl6HhmPq0gymmt37g=; b=Y9uYw+EXJiWS8zl4Zcb6tlYkGl
+        d2PjqZGF64zWe7kTqQHg9Fzh1vuRY+Qsu6wLI21ezbQWf91+UTqUnV1E1/ZN9gz56acNlj0uMM++3
+        Az9GydpPSOv0hidBJnLbxULDj4ahiWUY+W8GXWYIINP67ue9B0uPRJwEf7L+II+9m1q2uc5QfdAsT
+        sB9vASPDwp6uX8bDAF5IK/AE6uhwyeTW6C2ReucCt5gCvMoeFwb02r6WeYbxAY2/ofQuzlWVh/elj
+        o8S9TIs9SbR8puNdkmYMNhmAO7tHw9iHduTFKxPEFVdvodJ10/lQS3Z2ucIYE1p3MYGTZZEXKwiZh
+        YzX+T9Sw==;
+Received: from [2601:1c0:6280:3f0::a6b3]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1o8NsB-009fdZ-CO; Mon, 04 Jul 2022 15:20:27 +0000
+Message-ID: <3770bc6d-b3cc-9e49-a832-4c15af0b5f1a@infradead.org>
+Date:   Mon, 4 Jul 2022 08:20:24 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 2/9] serial: core, 8250: set RS485 termination gpio in
- serial core
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v8 2/4] soc: qcom: icc-bwmon: Add bandwidth monitoring
+ driver
 Content-Language: en-US
-To:     =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        vz@mleia.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-serial <linux-serial@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Lukas Wunner <lukas@wunner.de>, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-References: <20220703170039.2058202-1-LinoSanfilippo@gmx.de>
- <20220703170039.2058202-3-LinoSanfilippo@gmx.de>
- <355354ef-61ff-692d-aad-3b5721db420@linux.intel.com>
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-In-Reply-To: <355354ef-61ff-692d-aad-3b5721db420@linux.intel.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Thara Gopinath <thara.gopinath@gmail.com>
+References: <20220704121730.127925-1-krzysztof.kozlowski@linaro.org>
+ <20220704121730.127925-3-krzysztof.kozlowski@linaro.org>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20220704121730.127925-3-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:7BLvkQ8Daoruut0OeY5prEW4I+47ILt1MxrQ+u1s/fM+oDJ3G5M
- bU/gqksPJ/AyAYj+2nJd1fnExnWNC9/G+8lOKaqIcdN0o5ssnKLE9PIjN0MUsjeb6+wdoXj
- TX+pNEdkIzjEUa2ZO21peLKT/Mf/pD3CXVPX7FxAXp2Blh7xic3KbOwVgyv2Sw3p9ydPqCG
- gj+B0zgEZm2dv1aMRZXlQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:VKzmQ5Nig5Y=:Hu9TT4m/x7bFkXRNGtkvXi
- VEQsvAW6y0StxIsUHP9ibrObGi7xmCvpqp7nptXo6k/eJ2n+cRX6BQRndmCpqx675G7a9oQg0
- hpZ6IuKw8b3x5RKOOXBOVNejCFekRl1pfqgxBNI4N8IGv5UiUXHnhSzeRtUND4dHYzCDq/+DO
- s2CEr3O5t4H0ajc5xgSY7xO+7A9pa9PTZeLtwm3V890C8cN/cEkh1KY3AMP4ibFoU54W/qm1A
- Ecw1Ih3SMJ30cg/UAYfNaZ2RpaPGP6wGiyk4wVZSyua3EXfObaiNVRiPuk53roIylG1I0OCzZ
- j2FhUAhG2DMvl2tq5M0WXw9TdSN1E9bV3vEnChf3vmQFtqeddwl3A+5Q7igmn4IFruaYgyB6+
- /zjGAdWpqEv/jFTCgCPS73PbnUYtPrTBFyb4i5xUD0x7Yc/SqXwFLOgmt3SsggF49L3IqOZxy
- hcsEk/zTIjeR6apEVO990gHnPZJ/Hsxschu/1Cr4RUPHn+TT4N8vBMG5JEesWaCvbTTeaHhF2
- 0fkXz+0FXVO777VmZHUxLIl1PKg8di9gBYXpLrVCtRJ9qK33KAcMxNCF1ChWNpt5O+qfldL9N
- YnLocx5qSCyie5iX1QtfPElnPTl9X683qFED+vLL5NzhyaSafgfGyttbdWg/3w0XjmkhlQ2VL
- WO2BaJtgQaIcPA8dg8CDRsTz4IW98RCwnc3X1LqpzfzFs8EoNNOJnEdxNUxjGVvvbWQ/mgHUU
- UV8LvkfbtDM724J8gJhheZEd6CTfUYt2EgU5Pa+G8T1atE5uK4RZkZuIWNVeowRHUgtUcAC3f
- l7AmwgUJJo9J/M5sNJeFg0vxO3Nv5nWQBbOmZcmwOlW0z9Onudj3JDs87ZoYBXXL0me7WVjPy
- npO1ARNdrYRHokIAVmoxBnyyw2u9yCXaqfomjutlCg1cZFGQFzDlqoLHYndVQJS2uRK0NQ/lZ
- vv//o4SAoXC//ux4t7fJC+NXcIRkdJI0G70VxQe1dZaArlXSONgr2tHPxd44tBSOKRYz17Gij
- VQ0EOFYHHgo0opMIy0ZEoNJxhzXkyZGg0da7GL5a1wSoHGrWqF7iusMTgycLowjmc+ZuHWL/b
- l+49bBwS5aShZ8fs31cPGs1dspSVcxR+K28Z9PlIVkh+3PAXR4eZ7TDLw==
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On 7/4/22 05:17, Krzysztof Kozlowski wrote:
+> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+> index e718b8735444..2c8091535bf7 100644
+> --- a/drivers/soc/qcom/Kconfig
+> +++ b/drivers/soc/qcom/Kconfig
+> @@ -228,4 +228,19 @@ config QCOM_APR
+>  	  application processor and QDSP6. APR is
+>  	  used by audio driver to configure QDSP6
+>  	  ASM, ADM and AFE modules.
+> +
+> +config QCOM_ICC_BWMON
+> +	tristate "QCOM Interconnect Bandwidth Monitor driver"
+> +	depends on ARCH_QCOM || COMPILE_TEST
+> +	select PM_OPP
+> +	help
+> +	  Sets up driver monitoring bandwidth on various interconnects and
 
-On 04.07.22 11:51, Ilpo J=C3=A4rvinen wrote:
-> On Sun, 3 Jul 2022, Lino Sanfilippo wrote:
->
->> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
->>
->> In serial8250_em485_config() the termination GPIO is set with the uart_=
-port
->> spinlock held. This is an issue if setting the GPIO line can sleep (e.g=
-.
->> since the concerning GPIO expander is connected via SPI or I2C).
->>
->> Fix this by setting the termination line outside of the uart_port spinl=
-ock
->> in the serial core and using gpiod_set_value_cansleep() which instead o=
-f
->> gpiod_set_value() allows to sleep.
->>
->> Beside fixing the termination GPIO line setting for the 8250 driver thi=
-s
->> change also makes setting the termination GPIO generic for all UART
->> drivers.
->>
->> Signed-off-by: Lino Sanfilippo <l.sanfilippo@kunbus.com>
->> ---
->>  drivers/tty/serial/8250/8250_port.c |  3 ---
->>  drivers/tty/serial/serial_core.c    | 12 ++++++++++++
->>  2 files changed, 12 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/tty/serial/8250/8250_port.c b/drivers/tty/serial/8=
-250/8250_port.c
->> index ed2a606f2da7..72252d956f17 100644
->> --- a/drivers/tty/serial/8250/8250_port.c
->> +++ b/drivers/tty/serial/8250/8250_port.c
->> @@ -676,9 +676,6 @@ int serial8250_em485_config(struct uart_port *port,=
- struct ktermios *termios,
->>  		rs485->flags &=3D ~SER_RS485_RTS_AFTER_SEND;
->>  	}
->>
->> -	gpiod_set_value(port->rs485_term_gpio,
->> -			rs485->flags & SER_RS485_TERMINATE_BUS);
->> -
->
-> I sent a series to make .rs485_supported per uart_port and properly set
-> SER_RS485_TERMINATE_BUS according to DT config. With that series added
-> first, SER_RS485_TERMINATE_BUS should also be removed from
-> serial8250_em485_supported so that serial core can properly manage
-> it all.
->
+	  Sets up driver bandwidth monitoring
 
-Ok, I will rebase the next version of my patches on your series then.
+would be better, I think.
 
-Regards,
-Lino
+> +	  based on that voting for interconnect bandwidth, adjusting their
+> +	  speed to current demand.
+> +	  Current implementation brings support for BWMON v4, used for example
+> +	  on SDM845 to measure bandwidth between CPU (gladiator_noc) and Last
+> +	  Level Cache (memnoc).  Usage of this BWMON allows to remove some of
+> +	  the fixed bandwidth votes from cpufreq (CPU nodes) thus achieve high
+> +	  memory throughput even with lower CPU frequencies.
+
+-- 
+~Randy
