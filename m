@@ -2,189 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55052565D56
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 20:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59E43565D61
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 20:10:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230340AbiGDSHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 14:07:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58380 "EHLO
+        id S232937AbiGDSKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 14:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbiGDSHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 14:07:52 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86FFBF5A5;
-        Mon,  4 Jul 2022 11:07:47 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id 76so2453033ybd.0;
-        Mon, 04 Jul 2022 11:07:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9y+OytD7xOGm1KNwwCKXCYZwJoK7r4QVWYYYwSDLSW8=;
-        b=NNvKQxzLB24ZF++XLEQ6f8amj8k2zBkFJSpExbFrPEB8u+cobXQGMrzu7C4jGoJeam
-         W31WiGaGs7/BkmsWFu4sB4E3+JNTIOF3xThLL9CZKRDxLMCMFVKW/UGQ1OfYvyTPiyZn
-         eDXPDw2i7hECNrdAAOisFIetFxmRw5jO5cubdSz3HsWjGk7TwAKhHDXBQdrG9vbBn7/F
-         TGFwoxWid3ENKq6OGoKWapzxeMqqNe2i0wASEgFJP9DMYIdL6iMEzUuTT7uOVswnGZqR
-         fDFINK4oitmn7PK8kwlk5X47zY//DjBQSV5gaTXh3N/DyInf5GyXYPu6eRRSO9drqQwN
-         9e7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9y+OytD7xOGm1KNwwCKXCYZwJoK7r4QVWYYYwSDLSW8=;
-        b=r4hI0Dmqo4F5d7nNzN8wBg6N+pZyPSm2mMva49tFDHCqI1Fxg2Q8LmgMzqQ2Pcs2s3
-         YSU0Alc+FZn8rvPbffOvYwTzOD7utgHE7CvVsa/ODROb0HJDKwzXh2Qo7RUHVM3J/mUS
-         emAYNy2te+Yt/8TGPN+ydDi+SDtt8ZwFhiPKwTX4JilFieotU1qhr0QFu+cPLnaTc11A
-         gQpnMMz7VVbmFTF74C3DXhTRhdZDXVGhAnBWyVT9FTS6rjfQvzOgyP4wdTNJe+MmLTQG
-         JAnRLtKFHImywYMFNomJ4YjVY2Kd57HwNPJkffVyXZ8PIMWmObimJCkQGUh3uyWlAjNm
-         y+kA==
-X-Gm-Message-State: AJIora9EchaZ3KtDfq3Qdm1GZQBoJCi/sH5gU2dkWFbfprYI+OFECmRe
-        +qTdEIBQe2dsbamhhtgyEw5TPafSv4wuNMl6hG0=
-X-Google-Smtp-Source: AGRyM1sNMKzyykPpig1ssm1tDe8CkrJ72BqA+1LY/UcjYCTbL+pIuhCnssCoN1Xgr/oWpOY+Xbe8HEQsKxaYVAhZZso=
-X-Received: by 2002:a05:6902:686:b0:66e:627f:4d29 with SMTP id
- i6-20020a056902068600b0066e627f4d29mr2670266ybt.385.1656958066348; Mon, 04
- Jul 2022 11:07:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1656883851.git.jahau@rocketmail.com> <8a1fb0faedc25aa2fbf9852cf4e1d9d085675ad6.1656883851.git.jahau@rocketmail.com>
-In-Reply-To: <8a1fb0faedc25aa2fbf9852cf4e1d9d085675ad6.1656883851.git.jahau@rocketmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 4 Jul 2022 20:07:08 +0200
-Message-ID: <CAHp75Vdb03oop0L_+52KbsGh2BHTwKyCW+8Uy=eD1phToE+5Qw@mail.gmail.com>
-Subject: Re: [PATCH v4 08/10] iio: magnetometer: yas530: Apply documentation
- and style fixes
-To:     Jakob Hauser <jahau@rocketmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229515AbiGDSKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 14:10:42 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5887C636A;
+        Mon,  4 Jul 2022 11:10:40 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C715EE000A;
+        Mon,  4 Jul 2022 18:10:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1656958234;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=bbTMYur9hGe+to/gtv00HbU/WaQ6VXCyohWjpUEuf0E=;
+        b=eyxcpojn5k/20aWTArkinYNnHoOORfNkzn+tGURVbE2BmPQ8FhFXfE3NbRa9CF1Pdate3e
+        52J3akmoXPD4S9uhzJb8PV6ZzGOK5pw9KLefDDwa5QSagsUjzHvBUheJMg+3uk4PItYtaJ
+        lsRujrtpvnARhqrh8tTcik9rTHEbj1VuG8jGvLRcaP4YL8OfuTopouHTblRrHI/92GERCB
+        1myPKjPf2gU2TjxW8diEIN/YKIiuNTHSUfK3dzJj8V7LErA3q1cNE/divpVopVx8qQp8VY
+        4dhQgBKBN//kXCCWTr8+QTQOwob06pEsMaJ0QR4m4OAW6IkbgDEB2y7zgQ5VOg==
+Date:   Mon, 4 Jul 2022 20:10:30 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Alessandro Zummo <a.zummo@towertech.it>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Viorel Suman <viorel.suman@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Liu Ying <victor.liu@nxp.com>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Ming Qian <ming.qian@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Abel Vesa <abel.vesa@nxp.com>
+Subject: Re: [PATCH v7 06/15] dt-bindings: rtc: Add fsl,scu-rtc yaml file
+Message-ID: <YsMtFhctM19giyAj@mail.local>
+References: <20220704161541.943696-1-viorel.suman@oss.nxp.com>
+ <20220704161541.943696-7-viorel.suman@oss.nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220704161541.943696-7-viorel.suman@oss.nxp.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 4, 2022 at 12:03 AM Jakob Hauser <jahau@rocketmail.com> wrote:
->
-> This commit gathers several minor changes.
->
-> In the device examples, "Xiaomi" is too generic, specific devices should =
-be
-> listed here. E.g. Xiaomi Redmi 2 seems to have YAS537 but it's not fully =
-clear
-> if this applies to all its variants. Samsung Galaxy S7 is often quoted in
-> conjunction with YAS537.
->
-> Removed defines for device IDs of YAS537 and YAS539, they are not needed =
-so far.
+On 04/07/2022 19:15:32+0300, Viorel Suman (OSS) wrote:
+> From: Abel Vesa <abel.vesa@nxp.com>
+> 
+> In order to replace the fsl,scu txt file from bindings/arm/freescale,
+> we need to split it between the right subsystems. This patch documents
+> separately the 'rtc' child node of the SCU main node.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
 
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+You had a reviewed-by, please add it in the subsequent series or it may
+be lost.
 
-> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
 > ---
->  drivers/iio/magnetometer/yamaha-yas530.c | 21 +++++++++++----------
->  1 file changed, 11 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/iio/magnetometer/yamaha-yas530.c b/drivers/iio/magne=
-tometer/yamaha-yas530.c
-> index 8358d4b3d1e2..4e2f460a4efd 100644
-> --- a/drivers/iio/magnetometer/yamaha-yas530.c
-> +++ b/drivers/iio/magnetometer/yamaha-yas530.c
-> @@ -10,7 +10,7 @@
->   * (YAS534 is a magnetic switch, not handled)
->   * YAS535 MS-6C
->   * YAS536 MS-3W
-> - * YAS537 MS-3T (2015 Samsung Galaxy S6, Note 5, Xiaomi)
-> + * YAS537 MS-3T (2015 Samsung Galaxy S6, Note 5, Galaxy S7)
->   * YAS539 MS-3S (2018 Samsung Galaxy A7 SM-A750FN)
->   *
->   * Code functions found in the MPU3050 YAS530 and YAS532 drivers
-> @@ -93,10 +93,6 @@
->  #define YAS532_DATA_OVERFLOW           (BIT(YAS532_DATA_BITS) - 1)
->  #define YAS532_20DEGREES               390 /* Counts starting at -50 =C2=
-=B0C */
->
-> -/* These variant IDs are known from code dumps */
-> -#define YAS537_DEVICE_ID               0x07 /* YAS537 (MS-3T) */
-> -#define YAS539_DEVICE_ID               0x08 /* YAS539 (MS-3S) */
+>  .../bindings/arm/freescale/fsl,scu.txt        | 10 ------
+>  .../devicetree/bindings/rtc/fsl,scu-rtc.yaml  | 31 +++++++++++++++++++
+>  2 files changed, 31 insertions(+), 10 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> index 1a06f627b125..6c0161fa4adf 100644
+> --- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> @@ -62,12 +62,6 @@ i.MX SCU Client Device Node:
+>  
+>  Client nodes are maintained as children of the relevant IMX-SCU device node.
+>  
+> -RTC bindings based on SCU Message Protocol
+> -------------------------------------------------------------
 > -
->  /* Turn off device regulators etc after 5 seconds of inactivity */
->  #define YAS5XX_AUTOSUSPEND_DELAY_MS    5000
->
-> @@ -323,7 +319,7 @@ static int yas530_get_measure(struct yas5xx *yas5xx, =
-s32 *to, s32 *xo, s32 *yo,
->  {
->         struct yas5xx_calibration *c =3D &yas5xx->calibration;
->         u16 t_ref, t, x, y1, y2;
-> -       /* These are "signed x, signed y1 etc */
-> +       /* These are signed x, signed y1 etc */
->         s32 sx, sy1, sy2, sy, sz;
->         int ret;
->
-> @@ -663,7 +659,10 @@ static int yas530_get_calibration_data(struct yas5xx=
- *yas5xx)
->                 return ret;
->         dev_dbg(yas5xx->dev, "calibration data: %16ph\n", data);
->
-> +       /* Contribute calibration data to the input pool for kernel entro=
-py */
->         add_device_randomness(data, sizeof(data));
+> -Required properties:
+> -- compatible: should be "fsl,imx8qxp-sc-rtc";
+> -
+>  Watchdog bindings based on SCU Message Protocol
+>  ------------------------------------------------------------
+>  
+> @@ -116,10 +110,6 @@ firmware {
+>  			  &lsio_mu1 1 3
+>  			  &lsio_mu1 3 3>;
+>  
+> -		rtc: rtc {
+> -			compatible = "fsl,imx8qxp-sc-rtc";
+> -		};
+> -
+>  		watchdog {
+>  			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
+>  			timeout-sec = <60>;
+> diff --git a/Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml b/Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
+> new file mode 100644
+> index 000000000000..8c102b70d735
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/fsl,scu-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +       /* Extract version */
->         yas5xx->version =3D data[15] & GENMASK(1, 0);
->
->         /* Extract the calibration from the bitfield */
-> @@ -690,6 +689,7 @@ static int yas530_get_calibration_data(struct yas5xx =
-*yas5xx)
->         c->r[0] =3D sign_extend32(FIELD_GET(GENMASK(28, 23), val), 5);
->         c->r[1] =3D sign_extend32(FIELD_GET(GENMASK(20, 15), val), 5);
->         c->r[2] =3D sign_extend32(FIELD_GET(GENMASK(12, 7), val), 5);
+> +title: i.MX SCU Client Device Node - RTC bindings based on SCU Message Protocol
 > +
->         return 0;
->  }
->
-> @@ -711,12 +711,12 @@ static int yas532_get_calibration_data(struct yas5x=
-x *yas5xx)
->         dev_dbg(yas5xx->dev, "calibration data: %14ph\n", data);
->
->         /* Sanity check, is this all zeroes? */
-> -       if (memchr_inv(data, 0x00, 13) =3D=3D NULL) {
-> -               if (!(data[13] & BIT(7)))
-> -                       dev_warn(yas5xx->dev, "calibration is blank!\n");
-> -       }
-> +       if (!memchr_inv(data, 0x00, 13) && !(data[13] & BIT(7)))
-> +               dev_warn(yas5xx->dev, "calibration is blank!\n");
->
-> +       /* Contribute calibration data to the input pool for kernel entro=
-py */
->         add_device_randomness(data, sizeof(data));
+> +maintainers:
+> +  - Dong Aisheng <aisheng.dong@nxp.com>
 > +
->         /* Only one bit of version info reserved here as far as we know *=
-/
->         yas5xx->version =3D data[13] & BIT(0);
->
-> @@ -725,6 +725,7 @@ static int yas532_get_calibration_data(struct yas5xx =
-*yas5xx)
->         c->Cy1 =3D data[1] * 10 - 1280;
->         c->Cy2 =3D data[2] * 10 - 1280;
->         yas530_extract_calibration(&data[3], c);
+> +description: i.MX SCU Client Device Node
+> +  Client nodes are maintained as children of the relevant IMX-SCU device node.
 > +
->         /*
->          * Extract linearization:
->          * Linearization layout in the 32 bits at byte 10:
-> --
-> 2.35.1
->
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx8qxp-sc-rtc
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    rtc {
+> +        compatible = "fsl,imx8qxp-sc-rtc";
+> +    };
+> -- 
+> 2.25.1
+> 
 
-
---=20
-With Best Regards,
-Andy Shevchenko
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
