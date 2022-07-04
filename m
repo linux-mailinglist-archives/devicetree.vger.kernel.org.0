@@ -2,315 +2,333 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8A5C564BBF
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 04:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C4EA564C02
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 05:17:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbiGDCdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jul 2022 22:33:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57540 "EHLO
+        id S230189AbiGDDRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jul 2022 23:17:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbiGDCdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 22:33:51 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 068D4638F;
-        Sun,  3 Jul 2022 19:33:47 -0700 (PDT)
-X-UUID: 1c3b8c12367841b8ae02986da5c98c8e-20220704
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.7,REQID:8b6b6084-27d5-4bb8-8d25-a02f97a42e01,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.7,REQID:8b6b6084-27d5-4bb8-8d25-a02f97a42e01,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:87442a2,CLOUDID:45a24d63-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:26c946f04d04,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 1c3b8c12367841b8ae02986da5c98c8e-20220704
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <axe.yang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 577633664; Mon, 04 Jul 2022 10:33:43 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 4 Jul 2022 10:33:42 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 4 Jul 2022 10:33:41 +0800
-Message-ID: <81a77333a0b2f9186ce6cb94e3b4e1c815b07843.camel@mediatek.com>
-Subject: Re: [PATCH v13 3/3] mmc: mediatek: add support for SDIO eint wakup
- IRQ
-From:   Axe Yang <axe.yang@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Yong Mao <yong.mao@mediatek.com>
-Date:   Mon, 4 Jul 2022 10:33:40 +0800
-In-Reply-To: <20220623090445.1401-4-axe.yang@mediatek.com>
-References: <20220623090445.1401-1-axe.yang@mediatek.com>
-         <20220623090445.1401-4-axe.yang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229613AbiGDDRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jul 2022 23:17:08 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F7A38AD;
+        Sun,  3 Jul 2022 20:17:06 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id c131-20020a1c3589000000b003a19b2bce36so1561798wma.4;
+        Sun, 03 Jul 2022 20:17:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=wuVILhOwhA4An73apQGG0DjzsaTl4gC5x8gIscEMkZ4=;
+        b=MM2kUO3Vn5IPL0jgkmAdIxcZE9sO/MfAjS+4YHUwyKZJp/pfqVhv7w41KXypyGFB3A
+         pZXZI3A7s8PvUb9q9eJAjC/3mPLx46snFc8htPoi00Bzt5+zS858J8de7gsnN/Nmql0m
+         kdjo0J0wmdEK9d8RKJROhsuDmJ96o0Ed/nMLfX46JShjPpxcMt5uKoDBBtiyPL2tVBei
+         kiFmFwNo9Misq1eSUm4/V5M1TDjA0cFpRHtvZHpoMmbR7hhKRZ8ZtokrRWh6aIKwAJ4v
+         dnOc8MME2eeG1yHN1doIVmksXoCVKSxU/XmtJGnZRWMTjxgsexQMiMa8h1gLDerIYcA1
+         xxrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=wuVILhOwhA4An73apQGG0DjzsaTl4gC5x8gIscEMkZ4=;
+        b=xDWmhta3BJcvP/uQUnB0oDhCmcrg/RdOAcGBHVTD2x9OfbH7XdEeuNohBtAK2Vr4ef
+         h9e6sYWdnNnSt8jJJmuLWogduRz6KlIRRjQREEycVThniD9ztn3e4uqiTfQA4+hNTpjZ
+         mMVhVZQFZzEdT5y6jYg52AyP8OQkDcP6o8YO+WuTmL6GdjoP/PBiGK51Kh60DvKJ2IC3
+         S5Ows2mQIVsI6JiGbEDKHuZoSOQeJGocRFR4cR6AnqGu87a6bZpn+MBve/tZyDpDaANM
+         tl95vj0GcoBp74mkyaNHHp53e4+kZ7pZc9Q/UmmLtASBSUhx+NYat/X9I4W51vXEHH9L
+         gqbg==
+X-Gm-Message-State: AJIora9Aoxr7k158Cay48SPh4Y0SJuGHjZ8Atggqn7VuwyPV1EkL6pnl
+        RfJRiaaNGipF3IX2kIOCw8Oh0ygnfpYMoDg3GG4=
+X-Google-Smtp-Source: AGRyM1uxJy01TwgIf7+7L5cZ3Sgg0CW1+x48xTiItbzIw/QVNyJBBIIcorUhtCmDJng9wxa/4aSSL9PAKdkXDMO+ykw=
+X-Received: by 2002:a05:600c:2182:b0:3a2:afc8:7098 with SMTP id
+ e2-20020a05600c218200b003a2afc87098mr1156891wme.92.1656904624765; Sun, 03 Jul
+ 2022 20:17:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <1656469212-12717-1-git-send-email-u0084500@gmail.com>
+ <1656469212-12717-3-git-send-email-u0084500@gmail.com> <CAHp75Vd2bxFA5PmjEtgAjJfCf9YZENq_fb9b2VHmMmmHdqGJSw@mail.gmail.com>
+In-Reply-To: <CAHp75Vd2bxFA5PmjEtgAjJfCf9YZENq_fb9b2VHmMmmHdqGJSw@mail.gmail.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Mon, 4 Jul 2022 11:16:53 +0800
+Message-ID: <CADiBU384ZwKL_+i1zRL9qfVt-NLo=pnf8zrGna4Sxt+toYZdWg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: Add rtq6056 support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        cy_huang <cy_huang@richtek.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=
+=881=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=886:05=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> On Wed, Jun 29, 2022 at 4:23 AM cy_huang <u0084500@gmail.com> wrote:
+>
+> > Add Richtek rtq6056 supporting.
+> >
+> > It can be used for the system to monitor load current and power with 16=
+-bit
+> > resolution.
+>
+> ...
+>
+> > +static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
+> > +                                   struct iio_chan_spec const *ch,
+> > +                                   int *val)
+> > +{
+> > +       struct device *dev =3D priv->dev;
+> > +       unsigned int addr =3D ch->address;
+> > +       unsigned int regval;
+> > +       int ret;
+> > +
+> > +       pm_runtime_get_sync(dev);
+> > +
+> > +       ret =3D regmap_read(priv->regmap, addr, &regval);
+> > +       if (ret) {
+> > +               pm_runtime_put(dev);
+> > +               return ret;
+> > +       }
+>
+> You can optimize this to
+>
+>        pm_runtime_get_sync(dev);
+>        ret =3D regmap_read(priv->regmap, addr, &regval);
+>        pm_runtime_mark_last_busy(dev);
+>        pm_runtime_put(dev);
+>        if (ret)
+>            return ret;
+>
+> > +       /* Power and VBUS is unsigned 16-bit, others are signed 16-bit =
+*/
+> > +       if (addr =3D=3D RTQ6056_REG_BUSVOLT || addr =3D=3D RTQ6056_REG_=
+POWER)
+> > +               *val =3D regval;
+> > +       else
+> > +               *val =3D sign_extend32(regval, 16);
+>
+> > +       pm_runtime_mark_last_busy(dev);
+> > +       pm_runtime_put(dev);
+>
+> ...and get rid of these.
+>
+> > +       return IIO_VAL_INT;
+> > +}
+>
+> ...
+>
+> > +               *val2 =3D 1000000000;
+>
+> NANO ?
+>
+Yes, unit is 2.5 microvolt. I have all listed all unit comments in the
+source code.
+> ...
+>
+> > +               *val2 =3D 1000;
+>
+> MILLI ?
+>
+Yes.
+> > +       *val =3D DIV_ROUND_UP(1000000, sample_time);
+>
+> USEC_PER_SEC ?
+>
+No, sample time is (vshunt convesion time + vbus conversion time) *
+average sample.
+And the sample freq returns the unit by HZ (sample frequency per second)
 
-Gentle ping for this patch.
-
-With Regards,
-Axe
-
-
-On Thu, 2022-06-23 at 17:04 +0800, Axe Yang wrote:
-> Add support for eint IRQ when MSDC is used as an SDIO host. This
-> feature requires SDIO device support async IRQ function. With this
-> feature, SDIO host can be awakened by SDIO card in suspend state,
-> without additional pin.
-> 
-> MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
-> turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
-> resume, switch GPIO function back to DAT1 mode then turn on clock.
-> 
-> Some device tree property should be added or modified in MSDC node
-> to support SDIO eint IRQ. Pinctrls "state_eint" is mandatory. Since
-> this feature depends on asynchronous interrupts, "wakeup-source",
-> "keep-power-in-suspend" and "cap-sdio-irq" flags are necessary, and
-> the interrupts list should be extended(the interrupt named with
-> sdio_wakeup):
->         &mmcX {
-> 		...
-> 		interrupt-names = "msdc", "sdio_wakeup";
-> 		interrupts-extended = <...>,
->                               	      <&pio xxx
-> IRQ_TYPE_LEVEL_LOW>;
->                 ...
->                 pinctrl-names = "default", "state_uhs", "state_eint";
->                 ...
->                 pinctrl-2 = <&mmc2_pins_eint>;
->                 ...
->                 cap-sdio-irq;
-> 		keep-power-in-suspend;
-> 		wakeup-source;
->                 ...
->         };
-> 
-> Co-developed-by: Yong Mao <yong.mao@mediatek.com>
-> Signed-off-by: Yong Mao <yong.mao@mediatek.com>
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> ---
->  drivers/mmc/host/mtk-sd.c | 84 ++++++++++++++++++++++++++++++++++++-
+> > +
+> > +       return IIO_VAL_INT;
+> > +}
+>
+> ...
+>
+> > +static int rtq6056_adc_read_label(struct iio_dev *indio_dev,
+> > +                                 struct iio_chan_spec const *chan,
+> > +                                 char *label)
+> > +{
+> > +       return sysfs_emit(label, "%s\n", rtq6056_channel_labels[chan->c=
+hannel]);
+> > +}
+>
+> ...
+>
+> > +       /* calibration =3D 5120000 / (Rshunt (uohm) * current lsb (1mA)=
+) */
+>
+> uOhm
+>
+> ...
+>
+> > +static ssize_t shunt_resistor_show(struct device *dev,
+> > +                                  struct device_attribute *attr, char =
+*buf)
+> > +{
+> > +       struct rtq6056_priv *priv =3D iio_priv(dev_to_iio_dev(dev));
+> > +       int vals[2] =3D { priv->shunt_resistor_uohm, 1000000 };
+>
+> MICRO ?
+>
+Yes, for this kind of sense resistor, it will choose 2 milli-Ohm, 1
+milli-Ohms,, 0.5 milli-Ohms, or less.
+> > +       return iio_format_value(buf, IIO_VAL_FRACTIONAL, 1, vals);
+> > +}
+>
+> ...
+>
+> > +       ret =3D rtq6056_set_shunt_resistor(priv, val * 1000000 + val_fr=
+act);
+>
+> MICRO ?
+>
+Yes
+> > +       if (ret)
+> > +               return ret;
+>
+> ...
+>
+> > +       struct {
+> > +               u16 vals[RTQ6056_MAX_CHANNEL];
+> > +               int64_t timestamp;
+> > +       } data __aligned(8);
+>
+> Hmm... alignment of this struct will be at least 4 bytes, but
+> shouldn't we rather be sure that the timestamp member is aligned
+> properly? Otherwise this seems fragile and dependent on
+> RTQ6056_MAX_CHANNEL % 4 =3D=3D 0.
+>
+Yap, from the 'max channel', it already guarantee this struct will be
+aligned at lease 4.
+Actually, It can be removed.
+> ...
+>
+> > +       pm_runtime_set_autosuspend_delay(dev, MSEC_PER_SEC);
+> > +       pm_runtime_use_autosuspend(dev);
+> > +       pm_runtime_set_active(dev);
+> > +       pm_runtime_mark_last_busy(dev);
+> > +       pm_runtime_enable(dev);
+> > +
+> > +       /* By default, use 2000 micro-ohm resistor */
+> > +       shunt_resistor_uohm =3D 2000;
+> > +       device_property_read_u32(dev, "shunt-resistor-micro-ohms",
+> > +                                &shunt_resistor_uohm);
+> > +
+> > +       ret =3D rtq6056_set_shunt_resistor(priv, shunt_resistor_uohm);
+> > +       if (ret) {
+> > +               dev_err(dev, "Failed to init shunt resistor\n");
+> > +               goto err_probe;
+>
+> return dev_err_probe();
+>
+> (see below how)
+>
+> > +       }
+> > +
+> > +       indio_dev->name =3D "rtq6056";
+> > +       indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > +       indio_dev->channels =3D rtq6056_channels;
+> > +       indio_dev->num_channels =3D ARRAY_SIZE(rtq6056_channels);
+> > +       indio_dev->info =3D &rtq6056_info;
+> > +
+> > +       ret =3D devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
+> > +                                             rtq6056_buffer_trigger_ha=
+ndler,
+> > +                                             NULL);
+> > +       if (ret) {
+> > +               dev_err(dev, "Failed to allocate iio trigger buffer\n")=
+;
+>
+> Ditto.
+>
+> > +               goto err_probe;
+>
+> It is a sign of wrong ordering, either do not use devm_ calls after
+> non-devm_ or make the latter wrapped into devm_add_action_or_reset().
+> See below for additional information.
+>
+I think the another way is to register all using devm_ and to call the
+pm_runtime at the last.
+> > +       }
+> > +
+> > +       ret =3D devm_iio_device_register(dev, indio_dev);
+> > +       if (ret) {
+> > +               dev_err(dev, "Failed to allocate iio device\n");
+> > +               goto err_probe;
+> > +       }
+> > +
+> > +       return 0;
+> > +
+> > +err_probe:
+> > +       pm_runtime_dont_use_autosuspend(dev);
+> > +       pm_runtime_disable(dev);
+> > +       pm_runtime_set_suspended(dev);
+> > +
+> > +       return ret;
+>
+> ...
+>
+> > +static int rtq6056_remove(struct i2c_client *i2c)
+> > +{
+> > +       struct device *dev =3D &i2c->dev;
+>
+> Another (but usually not good option) is to call devm_..._unregister() he=
+re.
+>
+> > +       pm_runtime_dont_use_autosuspend(dev);
+> > +       pm_runtime_disable(dev);
+> > +       pm_runtime_set_suspended(dev);
+> > +
+> > +       return 0;
+> > +}
+>
+> ...
+>
+> > +static const struct dev_pm_ops rtq6056_pm_ops =3D {
+> > +       SET_RUNTIME_PM_OPS(rtq6056_runtime_suspend, rtq6056_runtime_res=
+ume, NULL)
+>
+> RUNTIME_PM_OPS()
+>
+> > +};
+>
+> ...
+>
+> > +static const struct of_device_id rtq6056_device_match[] =3D {
+> > +       { .compatible =3D "richtek,rtq6056", },
+>
+> In this case the inner comma is not needed.
+>
+> > +       {}
+> > +};
+>
+> ...
+>
+> > +static struct i2c_driver rtq6056_driver =3D {
+> > +       .driver =3D {
+> > +               .name =3D "rtq6056",
+> > +               .of_match_table =3D rtq6056_device_match,
+>
+> > +               .pm =3D &rtq6056_pm_ops,
+>
+> pm_ptr()
+>
+> > +       },
+>
 > --
->  1 file changed, 78 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> index 195dc897188b..f907b96cfd87 100644
-> --- a/drivers/mmc/host/mtk-sd.c
-> +++ b/drivers/mmc/host/mtk-sd.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * Copyright (c) 2014-2015 MediaTek Inc.
-> + * Copyright (c) 2014-2015, 2022 MediaTek Inc.
->   * Author: Chaotian.Jing <chaotian.jing@mediatek.com>
->   */
->  
-> @@ -20,6 +20,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/pm.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/pm_wakeirq.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
->  #include <linux/spinlock.h>
-> @@ -440,8 +441,10 @@ struct msdc_host {
->  	struct pinctrl *pinctrl;
->  	struct pinctrl_state *pins_default;
->  	struct pinctrl_state *pins_uhs;
-> +	struct pinctrl_state *pins_eint;
->  	struct delayed_work req_timeout;
->  	int irq;		/* host interrupt */
-> +	int eint_irq;		/* interrupt from sdio device for
-> waking up system */
->  	struct reset_control *reset;
->  
->  	struct clk *src_clk;	/* msdc source clock */
-> @@ -1520,17 +1523,46 @@ static void __msdc_enable_sdio_irq(struct
-> msdc_host *host, int enb)
->  
->  static void msdc_enable_sdio_irq(struct mmc_host *mmc, int enb)
->  {
-> -	unsigned long flags;
->  	struct msdc_host *host = mmc_priv(mmc);
-> +	unsigned long flags;
-> +	int ret;
->  
->  	spin_lock_irqsave(&host->lock, flags);
->  	__msdc_enable_sdio_irq(host, enb);
->  	spin_unlock_irqrestore(&host->lock, flags);
->  
-> -	if (enb)
-> -		pm_runtime_get_noresume(host->dev);
-> -	else
-> -		pm_runtime_put_noidle(host->dev);
-> +	if (mmc_card_enable_async_irq(mmc->card) && host->pins_eint) {
-> +		if (enb) {
-> +			/*
-> +			 * In dev_pm_set_dedicated_wake_irq_reverse(),
-> eint pin will be set to
-> +			 * GPIO mode. We need to restore it to SDIO
-> DAT1 mode after that.
-> +			 * Since the current pinstate is pins_uhs, to
-> ensure pinctrl select take
-> +			 * affect successfully, we change the pinstate
-> to pins_eint firstly.
-> +			 */
-> +			pinctrl_select_state(host->pinctrl, host-
-> >pins_eint);
-> +			ret =
-> dev_pm_set_dedicated_wake_irq_reverse(host->dev, host->eint_irq);
-> +
-> +			if (ret) {
-> +				dev_err(host->dev, "Failed to register
-> SDIO wakeup irq!\n");
-> +				host->pins_eint = NULL;
-> +				pm_runtime_get_noresume(host->dev);
-> +			} else {
-> +				dev_dbg(host->dev, "SDIO eint irq:
-> %d!\n", host->eint_irq);
-> +			}
-> +
-> +			pinctrl_select_state(host->pinctrl, host-
-> >pins_uhs);
-> +		} else {
-> +			dev_pm_clear_wake_irq(host->dev);
-> +		}
-> +	} else {
-> +		if (enb) {
-> +			/* Ensure host->pins_eint is NULL */
-> +			host->pins_eint = NULL;
-> +			pm_runtime_get_noresume(host->dev);
-> +		} else {
-> +			pm_runtime_put_noidle(host->dev);
-> +		}
-> +	}
->  }
->  
->  static irqreturn_t msdc_cmdq_irq(struct msdc_host *host, u32 intsts)
-> @@ -2631,6 +2663,20 @@ static int msdc_drv_probe(struct
-> platform_device *pdev)
->  		goto host_free;
->  	}
->  
-> +	/* Support for SDIO eint irq ? */
-> +	if ((mmc->pm_caps & MMC_PM_WAKE_SDIO_IRQ) && (mmc->pm_caps &
-> MMC_PM_KEEP_POWER)) {
-> +		host->eint_irq = platform_get_irq_byname(pdev,
-> "sdio_wakeup");
-> +		if (host->eint_irq > 0) {
-> +			host->pins_eint = pinctrl_lookup_state(host-
-> >pinctrl, "state_eint");
-> +			if (IS_ERR(host->pins_eint)) {
-> +				dev_err(&pdev->dev, "Cannot find
-> pinctrl eint!\n");
-> +				host->pins_eint = NULL;
-> +			} else {
-> +				device_init_wakeup(&pdev->dev, true);
-> +			}
-> +		}
-> +	}
-> +
->  	msdc_of_property_parse(pdev, host);
->  
->  	host->dev = &pdev->dev;
-> @@ -2845,6 +2891,13 @@ static int __maybe_unused
-> msdc_runtime_suspend(struct device *dev)
->  	struct msdc_host *host = mmc_priv(mmc);
->  
->  	msdc_save_reg(host);
-> +
-> +	if (host->pins_eint) {
-> +		disable_irq(host->irq);
-> +		pinctrl_select_state(host->pinctrl, host->pins_eint);
-> +		if (sdio_irq_claimed(mmc))
-> +			__msdc_enable_sdio_irq(host, 0);
-> +	}
->  	msdc_gate_clock(host);
->  	return 0;
->  }
-> @@ -2860,12 +2913,18 @@ static int __maybe_unused
-> msdc_runtime_resume(struct device *dev)
->  		return ret;
->  
->  	msdc_restore_reg(host);
-> +
-> +	if (host->pins_eint) {
-> +		pinctrl_select_state(host->pinctrl, host->pins_uhs);
-> +		enable_irq(host->irq);
-> +	}
->  	return 0;
->  }
->  
->  static int __maybe_unused msdc_suspend(struct device *dev)
->  {
->  	struct mmc_host *mmc = dev_get_drvdata(dev);
-> +	struct msdc_host *host = mmc_priv(mmc);
->  	int ret;
->  
->  	if (mmc->caps2 & MMC_CAP2_CQE) {
-> @@ -2874,11 +2933,24 @@ static int __maybe_unused msdc_suspend(struct
-> device *dev)
->  			return ret;
->  	}
->  
-> +	/*
-> +	 * Bump up runtime PM usage counter otherwise dev-
-> >power.needs_force_resume will
-> +	 * not be marked as 1, pm_runtime_force_resume() will go out
-> directly.
-> +	 */
-> +	if (host->pins_eint)
-> +		pm_runtime_get_noresume(dev);
-> +
->  	return pm_runtime_force_suspend(dev);
->  }
->  
->  static int __maybe_unused msdc_resume(struct device *dev)
->  {
-> +	struct mmc_host *mmc = dev_get_drvdata(dev);
-> +	struct msdc_host *host = mmc_priv(mmc);
-> +
-> +	if (host->pins_eint)
-> +		pm_runtime_put_noidle(dev);
-> +
->  	return pm_runtime_force_resume(dev);
->  }
->  
-
+> With Best Regards,
+> Andy Shevchenko
