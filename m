@@ -2,95 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8440F565C6D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 18:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DD32565C7D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 18:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233626AbiGDQvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 12:51:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48076 "EHLO
+        id S230327AbiGDQ6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 12:58:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234651AbiGDQu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 12:50:59 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F54B91;
-        Mon,  4 Jul 2022 09:50:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1656953449;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=wQVtKPYuwCaa3kdZ17v1bdxFoy6uTm+y21q5yvZvN+U=;
-    b=ZQl/wzmRSNEcf/AzLuHJSGsl5vQn1L35jKYXO1A9sPiQtiUGXq1DCu0l4eILZq1cUA
-    3DWmOx0/c6j1yRLkrLlnEbycnxXzEhszVLSPsOBQ3H5qJ9zddCNGdHGGdw2ySQzSuNOB
-    1Cyc03UHxuLDV4f0fogSZVWQNLe2ugLlEvvbllAY/PbYVH6mx7Jff4Reg/A0n8YefbQK
-    upancp8aEM6AWuSYwJcKqrhy1CALdQA4UB2CE1M86QkgJQ2JWK0MTBsfyc6vsgoup/iO
-    ppzumFv/6LgrPy7RS3wcPTLFq53RuKkRf2usR0ZwP/I8qBicUtWbazK2Zb8ip8Y177LR
-    2AxA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw5+aY="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.46.1 SBL|AUTH)
-    with ESMTPSA id yfdd30y64GomFAU
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 4 Jul 2022 18:50:48 +0200 (CEST)
-Date:   Mon, 4 Jul 2022 18:50:35 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229611AbiGDQ6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 12:58:09 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8EE665D0;
+        Mon,  4 Jul 2022 09:58:07 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id fi2so17675127ejb.9;
+        Mon, 04 Jul 2022 09:58:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p2Q9FRLaZUKXMdeyBBzo8wh6+gFlGM+LoHpN9PIw1WA=;
+        b=QrBi+MNGnPDdmvRfPNSwtoDZm0dlusfdRMi7fljLaHI5Dvc1G5U5pm11u38QM1qmII
+         Q6eRtPj349iHGwc16bekIZLYyuKhOIXFyvshpycQxGDxv6KucPJEReTn+9OzYYomUwlM
+         hHkF49R3zsOdHmmrVZMJZKc7ww9R46/IyytJaq14ik2R81Q40Fzi/xR565qmh54kVGTH
+         jnbU/pdTnvexXHeo0TbsSzZhbjo8LZNyR2yNRueSzNIyDU4Lqnw+tPPYdjrXYIBJ8Rg5
+         Crd7pz6ou5XhJsVxNzwbcUlYxmKXae/eVmhlPsK5ph6C2eR/SDClTLPHVpydxQCoJurX
+         iHGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p2Q9FRLaZUKXMdeyBBzo8wh6+gFlGM+LoHpN9PIw1WA=;
+        b=osgg9GMiTNP2OESqD9wrEre4K3lmIoHOTRJkn8vqnhlJGcS9CtAyA01kvpLz+PjDJ5
+         xbJ1yxXR/YYFclrV+YSampXgjHLbV8/WsdXJIEalOqtgUjrO7+kbQezqzzJDDb+TiFFM
+         4Bi8DhzS02xoCGGc2WpZ67ORNQ7e+Ad0IV0t+hXFzzU9RNyDeTlCZ7okBTo2UXoaMdjZ
+         K2v4RmBZ/ueXx/P5LOFnF3F1EVt2E+HKBdpDzxtTiwucI10nXd1d6Uut2pEMKHSGkAfv
+         RS8I5hWiE7uH2ZobN/QrbrT/FwFS8QsRMOPXzUzEqh4GoLBfbqQMYKbq9vtIJH7emRy7
+         MmtQ==
+X-Gm-Message-State: AJIora8Xu7lf3Ddezc6xr86yeIzNIPmlEPxByGlA55aNHkhQJBddq1BF
+        vPOKCLt7TvDXgrnnzeY2BScVgZDVKg8=
+X-Google-Smtp-Source: AGRyM1uyUuLStaDKcy0XUJgIQi/tMB9+vnxla3vzwtYrCGaTWWGuShZIEYQc5NgWmxphKLDXXJcYig==
+X-Received: by 2002:a17:906:752:b0:726:a6c2:b242 with SMTP id z18-20020a170906075200b00726a6c2b242mr30265671ejb.33.1656953886366;
+        Mon, 04 Jul 2022 09:58:06 -0700 (PDT)
+Received: from localhost (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id c20-20020a056402101400b004358cec9ce1sm20880584edu.65.2022.07.04.09.58.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jul 2022 09:58:05 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: qcom,sdm845: convert to dtschema
-Message-ID: <YsMaW6cO2fEfTGPz@gerhold.net>
-References: <20220704153824.23226-1-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Prathamesh Shete <pshete@nvidia.com>,
+        Vidya Sagar <vidyas@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: [PATCH v2 0/4] pinctrl: tegra: Separate Tegra194 instances
+Date:   Mon,  4 Jul 2022 18:57:58 +0200
+Message-Id: <20220704165802.129717-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220704153824.23226-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 04, 2022 at 05:38:24PM +0200, Krzysztof Kozlowski wrote:
-> Convert the Samsung SDM845 sound card bindings to DT schema.
-> 
+From: Thierry Reding <treding@nvidia.com>
 
-Nitpick: s/Samsung/Qualcomm
+This patch series changes the pin controller DT description on Tegra194
+in order to properly describe how the hardware works. Currently a
+simplified description is used that merges two pin controller instances
+(called AON and main) into a single DT node. This has some disadvantages
+such as creating a complicated mapping between the pins in those pin
+controllers and the corresponding GPIO controllers (which are already
+separated).
 
-> Changes during conversion: do not require 'codec' under dai-links - not
-> present in all nodes of examples and DTS; not required by the driver.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/sound/qcom,sdm845.txt |  91 ----------
->  .../bindings/sound/qcom,sdm845.yaml           | 166 ++++++++++++++++++
->  2 files changed, 166 insertions(+), 91 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/qcom,sdm845.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,sdm845.yaml
-> 
+As a prerequisite, the first patch in this series converts the device
+tree bindings to json-schema. A second patch then adds an additional
+compatible string for the AON instance (along with more details about
+each controller's pins) and finally patch 3 converts the driver to
+cope with these changes. A fourth patch makes the corresponding
+changes in the Tegra194 DTS file.
 
-Can you check if you can just add the compatibles to the existing
-qcom,sm8250.yaml? It should be more or less identical given that the DT
-parsing code in the driver is shared between all these SoCs.
-I already added the MSM8916 compatibles there a while ago.
+Note that while this changes the DT node in an incompatible way, this
+doesn't have any practical implications for backwards-compatibility. The
+reason for this is that device trees have only reconfigured a very
+narrow subset of pins of the main controller, so the new driver will
+remain backwards-compatible with old device trees.
 
-It also documents some additional properties ("pin-switches", "widgets")
-that are supported for SDM845 through the common code but are missing
-in its binding documentation.
+Changes in v2:
+- address Rob's review comments on the DT bindings
 
-Thanks,
-Stephan
+Thierry
+
+Thierry Reding (4):
+  dt-bindings: pinctrl: tegra: Convert to json-schema
+  dt-bindings: pinctrl: tegra194: Separate instances
+  pinctrl: tegra: Separate Tegra194 instances
+  arm64: tegra: Separate AON pinmux from main pinmux on Tegra194
+
+ .../bindings/clock/nvidia,tegra124-dfll.yaml  |   2 +-
+ .../pinctrl/nvidia,tegra-pinmux-common.yaml   | 195 ++++++++++++
+ .../pinctrl/nvidia,tegra114-pinmux.txt        | 131 --------
+ .../pinctrl/nvidia,tegra114-pinmux.yaml       | 162 ++++++++++
+ .../pinctrl/nvidia,tegra124-pinmux.txt        | 153 ----------
+ .../pinctrl/nvidia,tegra124-pinmux.yaml       | 182 +++++++++++
+ .../pinctrl/nvidia,tegra194-pinmux.txt        | 107 -------
+ .../pinctrl/nvidia,tegra194-pinmux.yaml       | 285 +++++++++++++++++
+ .../pinctrl/nvidia,tegra20-pinmux.txt         | 143 ---------
+ .../pinctrl/nvidia,tegra20-pinmux.yaml        | 107 +++++++
+ .../pinctrl/nvidia,tegra210-pinmux.txt        | 166 ----------
+ .../pinctrl/nvidia,tegra210-pinmux.yaml       | 146 +++++++++
+ .../pinctrl/nvidia,tegra30-pinmux.txt         | 144 ---------
+ .../pinctrl/nvidia,tegra30-pinmux.yaml        | 176 +++++++++++
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  13 +-
+ drivers/pinctrl/tegra/pinctrl-tegra.c         |  33 +-
+ drivers/pinctrl/tegra/pinctrl-tegra.h         |   2 +
+ drivers/pinctrl/tegra/pinctrl-tegra194.c      | 286 ++++++++++--------
+ 18 files changed, 1437 insertions(+), 996 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra-pinmux-common.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra114-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra114-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra124-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra124-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra194-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra194-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra20-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra20-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra210-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra210-pinmux.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra30-pinmux.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra30-pinmux.yaml
+
+-- 
+2.36.1
+
