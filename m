@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D70E9564FAE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 10:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CED6564FB8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 10:27:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232034AbiGDIYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 04:24:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36004 "EHLO
+        id S233281AbiGDI1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 04:27:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232465AbiGDIYo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 04:24:44 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6697FA44B
-        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 01:24:43 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id u14so10176287ljh.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 01:24:43 -0700 (PDT)
+        with ESMTP id S233274AbiGDI1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 04:27:45 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5694958A
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 01:27:43 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id k15so14478321lfv.11
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 01:27:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=p+S7IEqIFlGrwa9ha1rZwMS5b6Ko76QLTxmtMVng+o0=;
-        b=ET+svROc0kRSBzsphN6lV+fiE99qUBRkFDTdfQO8popcIesv5Sg5ruBoiqhcu2K6x8
-         7RKPAfdKNDDR0QBG3UFkyYBFzGMR4gyYSBS8rLl8QSPKD6kwm4UrI59FRhshhrJWxmOC
-         Skajcl0T6FHCms5N0tWvuvOsaLt2g1W2cZfeW0wT6we3EZH7rdVD/rF0rQ2Y2Xkuuedo
-         lOcZECTBAqV5TmwjAFVll7F31xOIefzV1eauOHjAYIG30RcMTC+b94ibArX4H0OQD4Xa
-         VA7RPkaxttRDbYD7J4Gko17dOpW01h1mlXtLBzqrlETjHD+NrF1nyNIIM589QTqmTDPz
-         xLmA==
+        bh=QxkXeeXIDgCAJcCiLPbW+EshYmQoT7+KSy0IFBhHhnY=;
+        b=DDqSh3qtr335XHKRUnH4RUgMMkcM4+eXLjC0UKeobB5w8nfZRGTD+MfNmQvN3cFg4a
+         BcLJS2lyCqym+w8Bwzy/anWUht5NkBajMXYbofy0oN5kjYPJXL/862LHCJOY1eqeUpMT
+         z4648TtMdlU2NDyXjBkscBZR3PdVJ4xaH6U/h+g6z3cSkdgzUzsCd2vErziuxaa2wW/+
+         xf17J9GRTJj4CR6ksOEqCKtJ4jPJErCFIu7hQXqi92xIXMHTKjNv7ZWhzP72oBOFOm0S
+         9mJPRfMIlF9eA+l30/A522E2v19BabDkaDroeU2YORnYBV/BMd0pET+tEDMLYufB+P7b
+         StWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=p+S7IEqIFlGrwa9ha1rZwMS5b6Ko76QLTxmtMVng+o0=;
-        b=vdWcf/2zZM/aRhDdHxj5UX/rJhAWyu9SZOL3+/hUE51lerBb6Em7VnBUAB69MRF/Sg
-         pDThSApIdpEr6WNB9dJb/cfYjWffn0o5gGfi1zP9c9CMSvGPStHkz966fZVymlp9KmIr
-         CNb/ysDXK7YEBw4sigQZIzMDt/m3iz1c+1RkU0n8jCT0SWwalKhxXwcGYg3QFBbdcYOB
-         T+nr9/Ebx2N3mTvsVfk3wv5BIIgTlPCrrhU1SerKBWPcvQnlxKshwmF/2jqifnd9QoVr
-         9Um4mQW/TIZd8+CXtxd553Fe03gIdp7ID3aq1/up8lLssxrSn6oZkv6mnkwUeE58pVph
-         SWXQ==
-X-Gm-Message-State: AJIora+FXZLK3ru1MEb00emlU6N0PZOiiFebqr+x/Dnhxl0mW0Ag38t1
-        h7lwReBF9Fzc7CuC8YqdKxkbsA==
-X-Google-Smtp-Source: AGRyM1tyR7hKl8KZrPk+PELfyl2ZxvulEyV/1280+7zmPSsgQfJMHv8ixxyf6H9rdpKYCTQ+OoNo4w==
-X-Received: by 2002:a2e:8795:0:b0:25a:926c:e45a with SMTP id n21-20020a2e8795000000b0025a926ce45amr16058386lji.438.1656923081757;
-        Mon, 04 Jul 2022 01:24:41 -0700 (PDT)
+        bh=QxkXeeXIDgCAJcCiLPbW+EshYmQoT7+KSy0IFBhHhnY=;
+        b=lEAfJIwq8WYNPF7A9qwWrHyIMzAODvIPdaaCafTA7Yiu5H6Vce5pvsGg1p2HEUwqyy
+         9VAGHneMTs1b9v3lGgMrDthZqj/VdlMUWmj8m+hxYpicf2MhnmaIrzrzZRGZsTklnzil
+         sU3QcS79jVJ2rPX3ZKzTkwnxaQctM4szQ269/wFo3lvEaYoxnr9O5l5qs5sotr9FohyR
+         O+NmVX/Ykb6YXuKLN+fWux+yKiuFEDNG0QFG8rWPSmO/gwTW6gPthHcpgbwSTUVL/1Jv
+         TFhR4vnmtYV7yqrJFQ2OCPfDWDxQ6TYu1yWEB1ktpMxpz1HZ9piKpGhIRiLkUcZG8QPn
+         Efbg==
+X-Gm-Message-State: AJIora9szQvyLSNW7pwpN5uAiGoJVxhfm+goCm4NPuYo08ClhInC10vJ
+        Vo9Og2sKGX7SwDLnUDBOMYVsrQ==
+X-Google-Smtp-Source: AGRyM1tvKKdcqAXHO5VhMXu0iwj0PbF+/USazXfbbEoZGizh+75B2u/lIZYQWxC0TVNj1b1QBHz0sw==
+X-Received: by 2002:a05:6512:2314:b0:481:1694:f888 with SMTP id o20-20020a056512231400b004811694f888mr17103853lfu.562.1656923262041;
+        Mon, 04 Jul 2022 01:27:42 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id f4-20020a056512092400b0047fb0d5e049sm5038102lft.273.2022.07.04.01.24.40
+        by smtp.gmail.com with ESMTPSA id q185-20020a2e5cc2000000b0025a891f7b8dsm4839763ljb.32.2022.07.04.01.27.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Jul 2022 01:24:41 -0700 (PDT)
-Message-ID: <f7026a86-175f-67fd-2bae-2efaae966a13@linaro.org>
-Date:   Mon, 4 Jul 2022 10:24:39 +0200
+        Mon, 04 Jul 2022 01:27:41 -0700 (PDT)
+Message-ID: <9448e378-35cd-a39c-869c-845605cbee84@linaro.org>
+Date:   Mon, 4 Jul 2022 10:27:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc7280: Add missing aggre0,
- aggre1 clocks
+Subject: Re: [PATCH v4 1/4] arm64: dts: ls1028a: Update SFP binding to include
+ clock
 Content-Language: en-US
-To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        helgaas@kernel.org
-Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        quic_vbadigan@quicinc.com, quic_hemantk@quicinc.com,
-        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-        quic_ramkri@quicinc.com, manivannan.sadhasivam@linaro.org,
-        swboyd@chromium.org, dmitry.baryshkov@linaro.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Sean Anderson <sean.anderson@seco.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1656062391-14567-1-git-send-email-quic_krichai@quicinc.com>
- <1656691899-21315-1-git-send-email-quic_krichai@quicinc.com>
- <1656691899-21315-4-git-send-email-quic_krichai@quicinc.com>
+        Michael Walle <michael@walle.cc>
+References: <20220630223207.1687329-1-sean.anderson@seco.com>
+ <20220630223207.1687329-2-sean.anderson@seco.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1656691899-21315-4-git-send-email-quic_krichai@quicinc.com>
+In-Reply-To: <20220630223207.1687329-2-sean.anderson@seco.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,30 +80,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/07/2022 18:11, Krishna chaitanya chundru wrote:
-> Add missing aggre0, aggre1 clocks to pcie node.
+On 01/07/2022 00:32, Sean Anderson wrote:
+> The clocks property is now mandatory. Add it.
 > 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index e66fc67..a5ce095 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2043,6 +2043,8 @@
->  				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
->  				 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
->  				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
-> +				 <&gcc GCC_AGGRE_NOC_PCIE_CENTER_SF_AXI_CLK>,
-> +				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>,
->  				 <&gcc GCC_DDRSS_PCIE_SF_CLK>;
+> Fixes: eba5bea8f37f ("arm64: dts: ls1028a: add efuse node")
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> Reviewed-by: Michael Walle <michael@walle.cc>
 
-
-Still no.
-
-Please respond to comments first.
+The subjects of all these 4 patches are confusing - you did not
+update/add any binding here. These are not bindings.
 
 Best regards,
 Krzysztof
