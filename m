@@ -2,373 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEEB4565D15
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 19:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25058565D16
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 19:36:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234629AbiGDRgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S234459AbiGDRgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 4 Jul 2022 13:36:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43742 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233983AbiGDRf7 (ORCPT
+        with ESMTP id S234288AbiGDRf7 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 13:35:59 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B00B712AD5;
-        Mon,  4 Jul 2022 10:35:53 -0700 (PDT)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9A5E0C0013;
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8975212AB4;
+        Mon,  4 Jul 2022 10:35:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 277A961594;
+        Mon,  4 Jul 2022 17:35:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE5C0C341CE;
         Mon,  4 Jul 2022 17:35:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1656956152;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Ky1vcLMejhSRaqCZltQx4VBUKkCfIDNB3dkzM+sU0eI=;
-        b=EmyAASbFx3tO0zbZUQR9AGW7IZeIkW3BzSDFonGHXpJlaYVk28pbvL1AG4WB8KaWPiTj0x
-        L+YlxXbGR1OpL301OCZYFGikE1DBJhZBJPWC5Q77hzgRNggHsqbiPQJJ3CixlvXGIFZKWe
-        HwU+cDqciJsluBa58Vpm/QWljZLosRzB4xdnoEe9Ne8GS/F9YMx3h9JxnmyMiLReZAMLpg
-        cxg5zBjPs0IagPLjg5HkJgeZpPxGHbWh2MKWGSSP7Is7sTAXXwpdmNQEnXd9l/jqpIbTvN
-        lGoKndCoF7k8vw3N0xtiY82S1XQnTxJHyeC9J1YkXe7CxfB1LkijpQQxCkDorw==
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v5 6/6] media: sun6i-csi: Add support for hooking to the isp devices
-Date:   Mon,  4 Jul 2022 19:35:23 +0200
-Message-Id: <20220704173523.76729-7-paul.kocialkowski@bootlin.com>
-X-Mailer: git-send-email 2.37.0
-In-Reply-To: <20220704173523.76729-1-paul.kocialkowski@bootlin.com>
-References: <20220704173523.76729-1-paul.kocialkowski@bootlin.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656956153;
+        bh=YlxJxaybDGcBETe4bRsCXPACATkTBpIuUGJaDL2c1XY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YjIpkQJ5qvWiYXKcT4+q1AGPT2o/iIKF7mRYQZ+eqGIHF8AjDEq/g/NYhOxEYz32u
+         uJYq+j9cFozMkCNnIXRGBWvVaMUWE94j6k40axqUJj8HeUGZcYmxQUkgmQIkktc1q2
+         yBzih9nt4s+OluoODXxNJuOZNUVbCv0R5bd0zU8M1AWCe/+Uan2Yww/9iUw/RK2Tjb
+         j3IuBvgwcibR8HT+xeZQmvQH0buvZD2b3DbQLQQpVmtoFdtkqLrcGtUmCeqKruaUiZ
+         tEZBImgPclhAE8DWYnCoCTLUtNnTQ5cMcVDUJj49P40xN5KmTSIyRQYLxmjZ2/th0T
+         cXTF60NWrQMtQ==
+Message-ID: <457c9b4d-dba7-75c9-3772-006e58319286@kernel.org>
+Date:   Mon, 4 Jul 2022 20:35:44 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Subject: Re: [PATCH v4 3/7] clk: qcom: gcc-msm8916: use ARRAY_SIZE instead of
+ specifying num_parents
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>
+References: <20220704172453.838303-1-dmitry.baryshkov@linaro.org>
+ <20220704172453.838303-4-dmitry.baryshkov@linaro.org>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20220704172453.838303-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to use the isp and csi together, both devices need to be
-parented to the same v4l2 and media devices. We use the isp as
-top-level device and let the csi code hook to its v4l2 and media
-devices when async subdev registration takes place.
+On 4.07.22 20:24, Dmitry Baryshkov wrote:
+> Use ARRAY_SIZE() instead of manually specifying num_parents. This makes
+> adding/removing entries to/from parent_data easy and errorproof.
+> 
+> This conversion fixes an issue present since the first version of this
+> driver. For the gp1_clk_src, gp2_clk_src and gp3_clk_src it was
+> impossible to select sleep_clk as a prent of the clock, since
+> num_parents was limited to 3 rather than 4. Switching to use num_parents
+> automatically makes sleep_clk available for selection.
 
-As a result v4l2/media device setup is only called when the ISP
-is missing and the capture device is registered after the devices
-are hooked. The bridge subdev and its notifier are registered
-without any device when the ISP is available. Top-level pointers
-for the devices are introduced to either redirect to the hooked ones
-(isp available) or the registered ones (isp missing).
+Thanks for fixing it!
 
-Also keep track of whether the capture node was setup or not to
-avoid cleaning up resources when it wasn't.
+> Fixes: 3966fab8b6ab ("clk: qcom: Add MSM8916 Global Clock Controller support")
+> Cc: Georgi Djakov <djakov@kernel.org>
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
----
- .../platform/sunxi/sun6i-csi/sun6i_csi.c      | 45 +++++++++++++++----
- .../platform/sunxi/sun6i-csi/sun6i_csi.h      |  7 +++
- .../sunxi/sun6i-csi/sun6i_csi_bridge.c        | 32 +++++++++++--
- .../sunxi/sun6i-csi/sun6i_csi_capture.c       | 19 ++++++--
- .../sunxi/sun6i-csi/sun6i_csi_capture.h       |  1 +
- 5 files changed, 89 insertions(+), 15 deletions(-)
+Acked-by: Georgi Djakov <djakov@kernel.org>
 
-diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
-index b16166cba2ef..0bac89d8112f 100644
---- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
-+++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
-@@ -26,6 +26,18 @@
- 
- /* ISP */
- 
-+int sun6i_csi_isp_complete(struct sun6i_csi_device *csi_dev,
-+			   struct v4l2_device *v4l2_dev)
-+{
-+	if (csi_dev->v4l2_dev && csi_dev->v4l2_dev != v4l2_dev)
-+		return -EINVAL;
-+
-+	csi_dev->v4l2_dev = v4l2_dev;
-+	csi_dev->media_dev = v4l2_dev->mdev;
-+
-+	return sun6i_csi_capture_setup(csi_dev);
-+}
-+
- static bool sun6i_csi_isp_detect(struct sun6i_csi_device *csi_dev)
- {
- 	struct device *dev = csi_dev->dev;
-@@ -95,6 +107,9 @@ static int sun6i_csi_v4l2_setup(struct sun6i_csi_device *csi_dev)
- 		goto error_media;
- 	}
- 
-+	csi_dev->v4l2_dev = v4l2_dev;
-+	csi_dev->media_dev = media_dev;
-+
- 	return 0;
- 
- error_media:
-@@ -323,17 +338,27 @@ static int sun6i_csi_probe(struct platform_device *platform_dev)
- 	if (ret)
- 		goto error_resources;
- 
--	ret = sun6i_csi_v4l2_setup(csi_dev);
--	if (ret)
--		goto error_resources;
-+	/*
-+	 * Register our own v4l2 and media devices when there is no ISP around.
-+	 * Otherwise the ISP will use async subdev registration with our bridge,
-+	 * which will provide v4l2 and media devices that are used to register
-+	 * the video interface.
-+	 */
-+	if (!csi_dev->isp_available) {
-+		ret = sun6i_csi_v4l2_setup(csi_dev);
-+		if (ret)
-+			goto error_resources;
-+	}
- 
- 	ret = sun6i_csi_bridge_setup(csi_dev);
- 	if (ret)
- 		goto error_v4l2;
- 
--	ret = sun6i_csi_capture_setup(csi_dev);
--	if (ret)
--		goto error_bridge;
-+	if (!csi_dev->isp_available) {
-+		ret = sun6i_csi_capture_setup(csi_dev);
-+		if (ret)
-+			goto error_bridge;
-+	}
- 
- 	return 0;
- 
-@@ -341,7 +366,8 @@ static int sun6i_csi_probe(struct platform_device *platform_dev)
- 	sun6i_csi_bridge_cleanup(csi_dev);
- 
- error_v4l2:
--	sun6i_csi_v4l2_cleanup(csi_dev);
-+	if (!csi_dev->isp_available)
-+		sun6i_csi_v4l2_cleanup(csi_dev);
- 
- error_resources:
- 	sun6i_csi_resources_cleanup(csi_dev);
-@@ -355,7 +381,10 @@ static int sun6i_csi_remove(struct platform_device *pdev)
- 
- 	sun6i_csi_capture_cleanup(csi_dev);
- 	sun6i_csi_bridge_cleanup(csi_dev);
--	sun6i_csi_v4l2_cleanup(csi_dev);
-+
-+	if (!csi_dev->isp_available)
-+		sun6i_csi_v4l2_cleanup(csi_dev);
-+
- 	sun6i_csi_resources_cleanup(csi_dev);
- 
- 	return 0;
-diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
-index 8e232cd91ebe..bc3f0dae35df 100644
---- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
-+++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
-@@ -36,6 +36,8 @@ struct sun6i_csi_v4l2 {
- 
- struct sun6i_csi_device {
- 	struct device			*dev;
-+	struct v4l2_device		*v4l2_dev;
-+	struct media_device		*media_dev;
- 
- 	struct sun6i_csi_v4l2		v4l2;
- 	struct sun6i_csi_bridge		bridge;
-@@ -53,4 +55,9 @@ struct sun6i_csi_variant {
- 	unsigned long	clock_mod_rate;
- };
- 
-+/* ISP */
-+
-+int sun6i_csi_isp_complete(struct sun6i_csi_device *csi_dev,
-+			   struct v4l2_device *v4l2_dev);
-+
- #endif
-diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_bridge.c b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_bridge.c
-index 8e9eded0df28..9624c3f683ee 100644
---- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_bridge.c
-+++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_bridge.c
-@@ -654,6 +654,7 @@ sun6i_csi_bridge_notifier_bound(struct v4l2_async_notifier *notifier,
- 	struct sun6i_csi_bridge *bridge = &csi_dev->bridge;
- 	struct sun6i_csi_bridge_source *source = bridge_async_subdev->source;
- 	bool enabled;
-+	int ret;
- 
- 	switch (source->endpoint.base.port) {
- 	case SUN6I_CSI_PORT_PARALLEL:
-@@ -668,6 +669,16 @@ sun6i_csi_bridge_notifier_bound(struct v4l2_async_notifier *notifier,
- 
- 	source->subdev = remote_subdev;
- 
-+	if (csi_dev->isp_available) {
-+		/*
-+		 * Hook to the first available remote subdev to get v4l2 and
-+		 * media devices and register the capture device then.
-+		 */
-+		ret = sun6i_csi_isp_complete(csi_dev, remote_subdev->v4l2_dev);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return sun6i_csi_bridge_link(csi_dev, SUN6I_CSI_BRIDGE_PAD_SINK,
- 				     remote_subdev, enabled);
- }
-@@ -680,6 +691,9 @@ sun6i_csi_bridge_notifier_complete(struct v4l2_async_notifier *notifier)
- 			     bridge.notifier);
- 	struct v4l2_device *v4l2_dev = &csi_dev->v4l2.v4l2_dev;
- 
-+	if (csi_dev->isp_available)
-+		return 0;
-+
- 	return v4l2_device_register_subdev_nodes(v4l2_dev);
- }
- 
-@@ -753,7 +767,7 @@ int sun6i_csi_bridge_setup(struct sun6i_csi_device *csi_dev)
- {
- 	struct device *dev = csi_dev->dev;
- 	struct sun6i_csi_bridge *bridge = &csi_dev->bridge;
--	struct v4l2_device *v4l2_dev = &csi_dev->v4l2.v4l2_dev;
-+	struct v4l2_device *v4l2_dev = csi_dev->v4l2_dev;
- 	struct v4l2_subdev *subdev = &bridge->subdev;
- 	struct v4l2_async_notifier *notifier = &bridge->notifier;
- 	struct media_pad *pads = bridge->pads;
-@@ -794,7 +808,11 @@ int sun6i_csi_bridge_setup(struct sun6i_csi_device *csi_dev)
- 
- 	/* V4L2 Subdev */
- 
--	ret = v4l2_device_register_subdev(v4l2_dev, subdev);
-+	if (csi_dev->isp_available)
-+		ret = v4l2_async_register_subdev(subdev);
-+	else
-+		ret = v4l2_device_register_subdev(v4l2_dev, subdev);
-+
- 	if (ret) {
- 		dev_err(dev, "failed to register v4l2 subdev: %d\n", ret);
- 		goto error_media_entity;
-@@ -811,7 +829,10 @@ int sun6i_csi_bridge_setup(struct sun6i_csi_device *csi_dev)
- 	sun6i_csi_bridge_source_setup(csi_dev, &bridge->source_mipi_csi2,
- 				      SUN6I_CSI_PORT_MIPI_CSI2, NULL);
- 
--	ret = v4l2_async_nf_register(v4l2_dev, notifier);
-+	if (csi_dev->isp_available)
-+		ret = v4l2_async_subdev_nf_register(subdev, notifier);
-+	else
-+		ret = v4l2_async_nf_register(v4l2_dev, notifier);
- 	if (ret) {
- 		dev_err(dev, "failed to register v4l2 async notifier: %d\n",
- 			ret);
-@@ -823,7 +844,10 @@ int sun6i_csi_bridge_setup(struct sun6i_csi_device *csi_dev)
- error_v4l2_async_notifier:
- 	v4l2_async_nf_cleanup(notifier);
- 
--	v4l2_device_unregister_subdev(subdev);
-+	if (csi_dev->isp_available)
-+		v4l2_async_unregister_subdev(subdev);
-+	else
-+		v4l2_device_unregister_subdev(subdev);
- 
- error_media_entity:
- 	media_entity_cleanup(&subdev->entity);
-diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_capture.c b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_capture.c
-index c9e7526b84c4..69ea1cbaea0c 100644
---- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_capture.c
-+++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_capture.c
-@@ -570,7 +570,7 @@ static int sun6i_csi_capture_buffer_prepare(struct vb2_buffer *buffer)
- {
- 	struct sun6i_csi_device *csi_dev = vb2_get_drv_priv(buffer->vb2_queue);
- 	struct sun6i_csi_capture *capture = &csi_dev->capture;
--	struct v4l2_device *v4l2_dev = &csi_dev->v4l2.v4l2_dev;
-+	struct v4l2_device *v4l2_dev = csi_dev->v4l2_dev;
- 	struct vb2_v4l2_buffer *v4l2_buffer = to_vb2_v4l2_buffer(buffer);
- 	unsigned long size = capture->format.fmt.pix.sizeimage;
- 
-@@ -889,7 +889,7 @@ static int sun6i_csi_capture_link_validate(struct media_link *link)
- 	struct video_device *video_dev =
- 		media_entity_to_video_device(link->sink->entity);
- 	struct sun6i_csi_device *csi_dev = video_get_drvdata(video_dev);
--	struct v4l2_device *v4l2_dev = &csi_dev->v4l2.v4l2_dev;
-+	struct v4l2_device *v4l2_dev = csi_dev->v4l2_dev;
- 	const struct sun6i_csi_capture_format *capture_format;
- 	const struct sun6i_csi_bridge_format *bridge_format;
- 	unsigned int capture_width, capture_height;
-@@ -971,7 +971,7 @@ int sun6i_csi_capture_setup(struct sun6i_csi_device *csi_dev)
- {
- 	struct sun6i_csi_capture *capture = &csi_dev->capture;
- 	struct sun6i_csi_capture_state *state = &capture->state;
--	struct v4l2_device *v4l2_dev = &csi_dev->v4l2.v4l2_dev;
-+	struct v4l2_device *v4l2_dev = csi_dev->v4l2_dev;
- 	struct v4l2_subdev *bridge_subdev = &csi_dev->bridge.subdev;
- 	struct video_device *video_dev = &capture->video_dev;
- 	struct vb2_queue *queue = &capture->queue;
-@@ -980,6 +980,10 @@ int sun6i_csi_capture_setup(struct sun6i_csi_device *csi_dev)
- 	struct v4l2_pix_format *pix_format = &format->fmt.pix;
- 	int ret;
- 
-+	/* This may happen with multiple bridge notifier bound calls. */
-+	if (state->setup)
-+		return 0;
-+
- 	/* State */
- 
- 	INIT_LIST_HEAD(&state->queue);
-@@ -1055,6 +1059,7 @@ int sun6i_csi_capture_setup(struct sun6i_csi_device *csi_dev)
- 	ret = media_create_pad_link(&bridge_subdev->entity,
- 				    SUN6I_CSI_BRIDGE_PAD_SOURCE,
- 				    &video_dev->entity, 0,
-+				    csi_dev->isp_available ? 0 :
- 				    MEDIA_LNK_FL_ENABLED |
- 				    MEDIA_LNK_FL_IMMUTABLE);
- 	if (ret < 0) {
-@@ -1065,6 +1070,8 @@ int sun6i_csi_capture_setup(struct sun6i_csi_device *csi_dev)
- 		goto error_video_device;
- 	}
- 
-+	state->setup = true;
-+
- 	return 0;
- 
- error_video_device:
-@@ -1083,7 +1090,13 @@ void sun6i_csi_capture_cleanup(struct sun6i_csi_device *csi_dev)
- 	struct sun6i_csi_capture *capture = &csi_dev->capture;
- 	struct video_device *video_dev = &capture->video_dev;
- 
-+	/* This may happen if async registration failed to complete. */
-+	if (!capture->state.setup)
-+		return;
-+
- 	vb2_video_unregister_device(video_dev);
- 	media_entity_cleanup(&video_dev->entity);
- 	mutex_destroy(&capture->lock);
-+
-+	capture->state.setup = false;
- }
-diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_capture.h b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_capture.h
-index 29893cf96f6b..3ee5ccefbd10 100644
---- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_capture.h
-+++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi_capture.h
-@@ -45,6 +45,7 @@ struct sun6i_csi_capture_state {
- 
- 	unsigned int			sequence;
- 	bool				streaming;
-+	bool				setup;
- };
- 
- struct sun6i_csi_capture {
--- 
-2.37.0
+> ---
+>   drivers/clk/qcom/gcc-msm8916.c | 108 ++++++++++++++++-----------------
+>   1 file changed, 54 insertions(+), 54 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/gcc-msm8916.c b/drivers/clk/qcom/gcc-msm8916.c
+> index 9a46794f6eb8..265df21e24af 100644
+> --- a/drivers/clk/qcom/gcc-msm8916.c
+[..]
 
