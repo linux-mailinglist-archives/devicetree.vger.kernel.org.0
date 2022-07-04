@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 583C256583E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 16:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2D1565842
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 16:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233451AbiGDOGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 10:06:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43770 "EHLO
+        id S234499AbiGDOHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 10:07:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233329AbiGDOGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 10:06:30 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86042DECB
-        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 07:06:29 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id z13so15925449lfj.13
-        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 07:06:29 -0700 (PDT)
+        with ESMTP id S233278AbiGDOHh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 10:07:37 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F086DEA1
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 07:07:36 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id y16so15954163lfb.9
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 07:07:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mH0yxf4bTO4oPaEiMtqGSQ6H2I4aOYiJptIGj59+bEI=;
-        b=VH+YB8Xb0wtm9/FvzelBVX3e1RzSIHKaE0pzjtJvFh0d975VUUyIRd6opECzlc5ddv
-         U45blUucGBmRF0zISycId8WiJeB8dD3zgL/uDuHpe4MeHJJV7YQN2lfVc4ilqZeF6qkS
-         5iIoghEN3yPBwuKdF4F0aXa3TXao7eLwdIoinHzKuJTrpHRuKbTc+1R/CD0xa085rmF7
-         7EzS7Bs1UhPGoxkISp+EpNVVa9j0ThU1eZbAYeJhylcskxPKrw8jFSGdsXgMacmEUG0K
-         MM/I5/6X2KQPpKzTlBZ2d+Fx4V5yEQUVn+wI9SqtXPSmW/zHRl/tCHO3yLCI7EfXk2aj
-         sJ0Q==
+        bh=x4fKXTm7H0LeWSBK0nj/uO2XvJIMlgEnpVWVkiWm+7w=;
+        b=GbRuMuSJ9GTWtUf4nqT4JXj7wrkF+Vhm+VqqurDUtKNhM3Ccbv0Ezo0XanZgcb4cMK
+         qU/zySmgHxLSdPNkDoUcri67RKMzv/WoEnpUS5GbJsNjvT09cVwDYjfHoCB+ZjKwcQY3
+         q36QF5Zot58/zdSOK58R26RtUW3rRHTF5vi8xdj8ttZZBjU0McikfadM9oSPV9V3XNhH
+         EygGU9BwL3r6+uu5vQzr1nPvuLI7jgQ7mRen6sZlLs6z2kDhZvXCbb+hnnwct9JnqDQ5
+         ++IabQrvG1S3kTYiR1cxpPsqv+AojlqSJALdsM/jFixUTdx1eFr66FqgDsGRbW2Dj+Vz
+         n1jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=mH0yxf4bTO4oPaEiMtqGSQ6H2I4aOYiJptIGj59+bEI=;
-        b=voVGVH4bw9wMHD4CsmVosD6H0SVXl9ChwE8vOg9qZq41xxtUSUE34HymxV4nnXljF8
-         vDH8nx3jFi5ReeWSKDBdjxHFm+vbCDtaONxP6KjiwYsbBO8LfySh/tABkDMaDbndV1FE
-         C2TACuSByYQlZpz+wTNQj+ItwUO9vJ/qd1YrB4Ej4u90SZ/Ev1bfFd5EQ0GSwF0O0D6N
-         I76GZ/Zu1TnNLjV6hWgb30xmzOAEEMr8tmqtuc+GoDO5QyaWyetquvgOZCKNmyWKHHpO
-         vMYuNm9w9I2FOA5dDxoUXD4dVgWSrRoKebXYdfNiubI/Ur/keq6qql7Ax9siqIYCxv3R
-         nrjQ==
-X-Gm-Message-State: AJIora/3vUO4300B/yXUmkvRimBclEA/Sy99N43ANA/4SBP351qWs4a8
-        iqtx2ram36PZIvyiA2ZoyD8v+Q==
-X-Google-Smtp-Source: AGRyM1ufFaheGuK6pRwKUMNgzrKsIlfuTuiCOT9EW1N1qTshy2iz7cnZCHV6FzYxjS3hjuL8nYmGxg==
-X-Received: by 2002:a05:6512:c24:b0:47f:7351:379b with SMTP id z36-20020a0565120c2400b0047f7351379bmr20178011lfu.328.1656943587920;
-        Mon, 04 Jul 2022 07:06:27 -0700 (PDT)
+        bh=x4fKXTm7H0LeWSBK0nj/uO2XvJIMlgEnpVWVkiWm+7w=;
+        b=17guGwjUWcmKjMTwqz2jFi9pvjfsxKkKu0on1iUyak5WWvL/RP/0/OHW3zSWpmlWkC
+         ZuzGm9/Z6IwEI7g7Gn3cpMvSK+cC6Rl6PdSKM7AyG1aPpaFnruhV0QuTRIzgD4IR9zmK
+         gXvWgms531sIXq8L7QNBI/PuI3T6s7Z/a6Ozcw/V89vXVJ4wt3D05+dsMiCwWEcU0cTb
+         9HF7eQlD1uKS/9JvnKBRdtePyecI4DaEqrdpJ3VqPl7AV3CHrJmPsg3xTnJxLhlRC0bB
+         1FKRhEZm0XupInCp//Z0ONwSmXKsDoT9wXnTcJxIOLnhTR+zedxGaKVL0KsrWyL6R7MR
+         t8ag==
+X-Gm-Message-State: AJIora/ronBs2RbWvStJJoiDLgDaaOSDQv1+dIQolCKtpRqIupH6cFE8
+        9621mSYQxD/Xh5u0EVdnhe59Ng==
+X-Google-Smtp-Source: AGRyM1sU7LjfqvHxYkOgld70CF/x1KKbK35Tt6C+X+RDcyxYx5U/gIRal8Wpy+l72as84TR9MbTGiQ==
+X-Received: by 2002:a05:6512:1151:b0:481:1675:f343 with SMTP id m17-20020a056512115100b004811675f343mr18508507lfg.280.1656943654513;
+        Mon, 04 Jul 2022 07:07:34 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id n10-20020a2e82ca000000b0025c068f123dsm2025789ljh.30.2022.07.04.07.06.26
+        by smtp.gmail.com with ESMTPSA id c9-20020a056512324900b00477b11144e9sm5158243lfr.66.2022.07.04.07.07.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Jul 2022 07:06:27 -0700 (PDT)
-Message-ID: <ca1d2e8b-1942-727a-2549-9b02a616626e@linaro.org>
-Date:   Mon, 4 Jul 2022 16:06:26 +0200
+        Mon, 04 Jul 2022 07:07:34 -0700 (PDT)
+Message-ID: <4b1fe9dc-997f-32b1-6f32-3bc8333eb50f@linaro.org>
+Date:   Mon, 4 Jul 2022 16:07:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 5/6] dt-bindings: clock: qcom,rpmcc: Add MSM8909
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: Add rtq6056 adc support
 Content-Language: en-US
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Dominik Kobinski <dominikkobinski314@gmail.com>
-References: <20220704133000.2768380-1-stephan.gerhold@kernkonzept.com>
- <20220704133000.2768380-6-stephan.gerhold@kernkonzept.com>
+To:     cy_huang <u0084500@gmail.com>, jic23@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1656922179-21829-1-git-send-email-u0084500@gmail.com>
+ <1656922179-21829-2-git-send-email-u0084500@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220704133000.2768380-6-stephan.gerhold@kernkonzept.com>
+In-Reply-To: <1656922179-21829-2-git-send-email-u0084500@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,13 +75,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/07/2022 15:29, Stephan Gerhold wrote:
-> Document the "qcom,rpmcc-msm8909" compatible for the clocks available
-> via the RPM on the MSM8909 SoC.
+On 04/07/2022 10:09, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> Add the documentation for Richtek rtq6056.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+> Since v3
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
