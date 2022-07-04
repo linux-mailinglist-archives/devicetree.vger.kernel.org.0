@@ -2,75 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F4F7564DA9
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 08:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D812564DD1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 08:41:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230304AbiGDGZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 02:25:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42830 "EHLO
+        id S231544AbiGDGlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 02:41:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbiGDGZi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 02:25:38 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C921C62C7;
-        Sun,  3 Jul 2022 23:25:37 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 57A228061;
-        Mon,  4 Jul 2022 06:20:12 +0000 (UTC)
-Date:   Mon, 4 Jul 2022 09:25:35 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Yu-Tung Chang <mtwget@gmail.com>
-Cc:     Benoit Cousson <bcousson@baylibre.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] ARM: dts: am33xx: Fix MMCHS0 dma properties
-Message-ID: <YsKH3xLpWw4X1h2P@atomide.com>
-References: <20220620124146.5330-1-mtwget@gmail.com>
- <YrmMdcz9mJS1sXyS@atomide.com>
- <CAHRgzyOsxaC2HM=xAMxFUadTEdTBk-yiMjC=-Y=UynoiULSXDw@mail.gmail.com>
- <CAHRgzyOgmxTVV6sqSk_ZWYytergDj5haW=EdFCKCyTg+r6Zd-A@mail.gmail.com>
+        with ESMTP id S231730AbiGDGly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 02:41:54 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3EFB5FAA
+        for <devicetree@vger.kernel.org>; Sun,  3 Jul 2022 23:41:52 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id f39so14144726lfv.3
+        for <devicetree@vger.kernel.org>; Sun, 03 Jul 2022 23:41:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=/xTCR3bPZhCA5sareIciLVpBb/bwWDoIGGe6Kd1Xv+w=;
+        b=hgQHadGcMhoSH3Ca+juWM9mdx+9fCV75IphGlK+HJdtR/i4gx0B7DBiSaWAmruJgky
+         D5xJhDtEImx0KCaWYul6S2UI0l56gLyu/L2gfxXpYyyLViA0B+BzCqsOb5LdW7yYxgRY
+         zomyA/I6drlF9k3MnBfvnwDBxzhIVjqjRO/XpFuMZw3SfDzT/E9ae45pUSaVnnMeaQXX
+         h1608xxX8865Hs5cUomfWii/90I/TKFVtzHZ7K4NCjn2m0G/NSVvh5eqOAthC8KKoqCj
+         fAnkRgUlcScDN/VdI3HAbv8MD3ewJPL/5lcQOzqfbHsr/Xc36HS9JGw7ymJLRwY5TuKl
+         +/Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/xTCR3bPZhCA5sareIciLVpBb/bwWDoIGGe6Kd1Xv+w=;
+        b=D3fH0N6Vn6TDbAxDrxs/bq4mhVlHoxs4nC9ILIH/gptSts++w0DaGOlK6FNbC+Ei6E
+         CnFknn6a0XusKMfa0/Y6OXP2gvPECDfwiWlaDerBLtDwXZu2G0YRi7A6r4FBlf++Mtgd
+         TOdDCIiYyd7xrkYV/UYcRQxnINtNW3dPhJWSoIz/vZJGamDWM57WEKOmOScNQAj8nxzG
+         FaCGtmW4DfOc72CMExSb2rvV832EkhincLE3Ms7lGehDzp9Pn3iyNUy67RBk9gU9lpCb
+         cxIKsWDYNv/1uC4L3Dd9BlNjTHbOpB1K9PY+UNXm2xe4IxZDKTqiu/v4yp1mPESlJV1l
+         Izow==
+X-Gm-Message-State: AJIora8IAQHYL2g5hO/MCMYBQDkSI4AQFUCIMcVp3WkNt9etir33YU4C
+        /XG//kTKzpV0JU58zUPm6rrI9A==
+X-Google-Smtp-Source: AGRyM1sSTc5DqVbACUPJW4eop8W1a9JW3DaH/3CvqzBZHFAkvYeJJp4gMOetKPepfi26QwqTyXrr/g==
+X-Received: by 2002:a05:6512:3085:b0:481:182e:a06c with SMTP id z5-20020a056512308500b00481182ea06cmr17866385lfd.374.1656916910911;
+        Sun, 03 Jul 2022 23:41:50 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id k6-20020ac257c6000000b0047fa02cd96csm4994687lfo.162.2022.07.03.23.41.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Jul 2022 23:41:50 -0700 (PDT)
+Message-ID: <db82fe69-8caf-f142-0714-ff73ea6f65ec@linaro.org>
+Date:   Mon, 4 Jul 2022 08:41:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHRgzyOgmxTVV6sqSk_ZWYytergDj5haW=EdFCKCyTg+r6Zd-A@mail.gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v5 07/15] dt-bindings: reset: amd,pensando-elbasr-reset:
+ Add AMD Pensando SR Reset Controller bindings
+Content-Language: en-US
+To:     Brad Larson <brad@pensando.io>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>, blarson@amd.com,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Gabriel Somlo <gsomlo@gmail.com>, gerg@linux-m68k.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>, samuel@sholland.org,
+        Serge Semin <fancer.lancer@gmail.com>,
+        suravee.suthikulpanit@amd.com,
+        Tom Lendacky <thomas.lendacky@amd.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20220613195658.5607-1-brad@pensando.io>
+ <20220613195658.5607-8-brad@pensando.io>
+ <eac223c5-a3d4-65e5-3753-1bd4033513f2@linaro.org>
+ <CAK9rFnyRgj26MaurS_u83wnzgmq+18=UdZT_FLLZc3jnWD4uFQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAK9rFnyRgj26MaurS_u83wnzgmq+18=UdZT_FLLZc3jnWD4uFQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Yu-Tung Chang <mtwget@gmail.com> [220701 06:09]:
-> Yu-Tung Chang <mtwget@gmail.com> 于2022年7月1日周五 14:04写道：
-> >
-> > Tony Lindgren <tony@atomide.com> 于2022年6月27日周一 18:54写道：
-> >
-> > >
-> > > Hi,
-> > >
-> > > * YuTong Chang <mtwget@gmail.com> [220620 15:36]:
-> > > > According to technical manual(table 11-24), the DMA of MMCHS0 should be
-> > > > direct mapped.
-> > >
-> > > Could this be a bug in the manual assuming mmchs0 is working? Or does this
-> > > fix something for you?
-> > >
-> > It modified in commit b5e5090660742c838ddc0b5d1a001e6fe3d5bfd5,
-> > the dma of mmc1 was changed to edma_xbar and did not explain why it should
-> > not match the document.
-> > > Regards,
-> > >
-> > > Tony
-> No evidence of any official documentation error, before submitting
-> b5e5090660742c838ddc0b5d1a001e6fe3d5bfd5, the mmc1 dma properties
-> matches the official documentation.
+On 04/07/2022 01:50, Brad Larson wrote:
+>> Missing file:
+>> ls: cannot access 'include/dt-bindings/reset/amd,pensando-elba-reset.h':
+>> No such file or directory
+>>
+>>
+>> Send complete bindings, not parts of it. Did you test it? I am pretty
+>> sure that this did not happen. :(
+> 
+> Its in patch v5-0015 with the driver
 
-OK thanks for clarifying. will apply to fixes with a fixes tag.
+Header is part of bindings, not driver.
 
-Regards,
+>.  I'll check this, the correct
+> approach should be put all binding changes as individual patches up
+> front or there are exceptions for new driver.
+> 
+> $ cat v5-0015-reset-elbasr-Add-AMD-Pensando-Elba-SR-Reset-Contr.patch
+> | grep diff
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> diff --git a/drivers/reset/reset-elbasr.c b/drivers/reset/reset-elbasr.c
+> diff --git a/include/dt-bindings/reset/amd,pensando-elba-reset.h
+> b/include/dt-bindings/reset/amd,pensando-elba-reset.h
+> 
+> Yes, tested it with the following and no warnings or errors
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/amd,pensando.yaml
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/syscon.yaml
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/vendor-prefixes.yaml
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/reset/amd,pensando-elbasr-reset.yaml
+> 
+> make DT_CHECKER_FLAGS=-m dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/amd,pensando.yaml
+> make DT_CHECKER_FLAGS=-m dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/syscon.yaml
+> make DT_CHECKER_FLAGS=-m dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> make DT_CHECKER_FLAGS=-m dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> make DT_CHECKER_FLAGS=-m dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> make DT_CHECKER_FLAGS=-m dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/vendor-prefixes.yaml
+> make DT_CHECKER_FLAGS=-m dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+> make DT_CHECKER_FLAGS=-m dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/reset/amd,pensando-elbasr-reset.yaml
 
-Tony
+So how this test could pass if there is no header file included in the
+example here? Are you sure you tested each commit separately (like it
+will be included in the kernel)?
+
+Best regards,
+Krzysztof
