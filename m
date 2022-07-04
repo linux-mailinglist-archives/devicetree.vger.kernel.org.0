@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB113565597
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 14:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79EB75655A6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 14:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbiGDMjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 08:39:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49534 "EHLO
+        id S232464AbiGDMnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 08:43:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233101AbiGDMjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 08:39:51 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D080D10C
-        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 05:39:50 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id u14so10955739ljh.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 05:39:49 -0700 (PDT)
+        with ESMTP id S233826AbiGDMnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 08:43:45 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E35DF69
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 05:43:44 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id t25so15590485lfg.7
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 05:43:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=x880kuS6PNUF918Mktd1de/5BgyubBGYBWa3z9pZQa8=;
-        b=Q1X8I1wKoipJvnCB/pUw1wiyXOfTGXV/Nce3Mgckmw5ubtkVsRjwxbMsqpkJm3xiEv
-         +CvpKh3gKUq0c8sZYrc06FqHc7ANjERfslK4wf8ysBEN+unfPS0eA773kfKt4Af2FpaW
-         R7LjUDuBKj8FRN4n+KdITPsrCdWA25m+GGLpGzelaTKyLPFTxD08NdWl7/+f1g0Zn+kO
-         kRzfaeEbMcE8Ut6YeIYVUR0tSWxf6wzAR9qzveYFBRykOGJxwesuJsx/xyPMybmhfvj5
-         efN3SuCztUGrs4cxI/7g9tbEBiQo1p4AfDn2w7oOuFhtYOkf5n9LhBsdoPhlr9n+yTN6
-         XGEg==
+        bh=C5JrFNsrdURrynIRcNZ5G8lGyEvwaVaUcx1O/DPUMCE=;
+        b=JjPXbMtWA9vv8tvadTWpTLKLbjayx2W7t+ABNkO1YA/UxRrfamtA/YmMlUg/w2z2js
+         9udkArH5j8quI+j9Ql9xioaDARBfnPc0bEstZ2hMmTc2oviNnO5Soa1ce6lbmehPpKcV
+         t4WXObEOkimkLSUmqXqbmbyKyK6P2OZtEQOIgV6zzzvvPWBdDPv31Ntw7RKeklOIfsLm
+         Q6slfXgeFvKe6nV+Pnl1YdcRKqaI17NX3rM9akGSpDb4OIBJ8+9swkD2L5skjWRB8gfM
+         7t6Lyaq4VaKxmGciBoLo6Ih+p7rJ0zUG6vjTd6FF+NUc89vbXdbsqvg4fdnCXXwha4Sp
+         QuWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=x880kuS6PNUF918Mktd1de/5BgyubBGYBWa3z9pZQa8=;
-        b=R9A1ycMbKpo5DbF2M2i2Go5qJdsXy3VGapyP2yKn4Vm3Qf5v25Z/OUcD1k+cW9fkE/
-         SuSVmUyFXBWedar6j2Q9MaeT+HZZ2SacaQy9p+WiNWn5yb0Al+VDKWIFZ4hNVAg9Vnbj
-         5wIRzAR83Xqol7w8nW2W+/zOBR54R0xBsfmV4D5HLgSdHJMZHK+bidxR4WQX6LMosdgM
-         gE4hiTjL0lk7BidXawHcFMZMHbhKGyExRwslFqohUdP1YHJpAEPxjpepCDPXl+ypjq8/
-         OWZkAdBSs0E+B0XCgpDmZ4veZ0DkiZWTIMbgBMQY8iU6VVTle4LvpVJBDwK3CxBUV8Tr
-         zhnA==
-X-Gm-Message-State: AJIora8w0BvUeLj5lJynwnIjcN23+dl5QHgpKgif8d2y8UHUlaeoidhA
-        AUKPQytNVt07ZOtYo07TuHH1Wg==
-X-Google-Smtp-Source: AGRyM1vqUXvSAsn7AogRlPoSUu3j3CYCJPTYiSe4MRhkAljhqJZmpSrBqVZa8ahYb+Kd5xySXteurQ==
-X-Received: by 2002:a2e:730b:0:b0:25c:63cf:1ffd with SMTP id o11-20020a2e730b000000b0025c63cf1ffdmr8410032ljc.208.1656938388417;
-        Mon, 04 Jul 2022 05:39:48 -0700 (PDT)
+        bh=C5JrFNsrdURrynIRcNZ5G8lGyEvwaVaUcx1O/DPUMCE=;
+        b=OBZmmc86NdEyCBZlWRvSDnQ9a9BLBI2xZlDSGvNGN8B58SSV+3wjVed24RhEjHoQrU
+         gwbLQGkbF4ThZnZZixA99av73uykcqquS1E9hKMW33RVWoOgdMG3zFMQks5harx0NuB0
+         h5mi9DVwcfX7ejyirqwdbEXPxYBqMneaB7K0Y21CqmiUmUA2CP9bV3JCVTFF7UZcRIc3
+         2BvClVS5YR5OT+SmSqI03XbLEN5s1RfIxnJys3JP5ixbCeFthhCI+ToIDrsfv0ORbDrR
+         Wxs1hSNKe2hGAhWen84isWNw3pmutSSwg41ogoiC7JjKP+79mQb//dzIBZHJfLercWzc
+         ajOw==
+X-Gm-Message-State: AJIora+SrBo6UqgT5q4PGyjy0FDjYAYRCO5HlaxPvXhShAfZSd6pou9n
+        duFCA3CbAffDdaAkcn/8oFoZ4Q==
+X-Google-Smtp-Source: AGRyM1vteyLrUKmrJEdE96gqsOwiHpBoFFKT52joX+DoYuA8q+pmgAV06t9T0wuyGgrz7nqwUaAwiw==
+X-Received: by 2002:a19:4316:0:b0:481:484c:404c with SMTP id q22-20020a194316000000b00481484c404cmr16640237lfa.559.1656938622879;
+        Mon, 04 Jul 2022 05:43:42 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id p11-20020a056512234b00b0047f6b4a53cdsm5104577lfu.172.2022.07.04.05.39.47
+        by smtp.gmail.com with ESMTPSA id bj16-20020a2eaa90000000b0025d254180d7sm284672ljb.113.2022.07.04.05.43.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Jul 2022 05:39:47 -0700 (PDT)
-Message-ID: <27c8f7b1-c308-89c2-54be-2d6c1a5527b8@linaro.org>
-Date:   Mon, 4 Jul 2022 14:39:46 +0200
+        Mon, 04 Jul 2022 05:43:42 -0700 (PDT)
+Message-ID: <8c2e1b9e-9fbb-2593-912f-0893529748ed@linaro.org>
+Date:   Mon, 4 Jul 2022 14:43:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v1 16/16] arm64: dts: mt8195: Add display node for vdosys0
+Subject: Re: [PATCH v2 01/11] dt-bindings: arm: mediatek: Add MT8195 Cherry
+ Tomato Chromebooks
 Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-References: <20220704100028.19932-1-tinghan.shen@mediatek.com>
- <20220704100028.19932-17-tinghan.shen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        hsinyi@chromium.org, nfraprado@collabora.com,
+        allen-kh.cheng@mediatek.com, gtk3@inbox.ru, luca@z3ntu.xyz,
+        sam.shih@mediatek.com, sean.wang@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wenst@chromium.org
+References: <20220704101321.44835-1-angelogioacchino.delregno@collabora.com>
+ <20220704101321.44835-2-angelogioacchino.delregno@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220704100028.19932-17-tinghan.shen@mediatek.com>
+In-Reply-To: <20220704101321.44835-2-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,151 +81,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/07/2022 12:00, Tinghan Shen wrote:
-> From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+On 04/07/2022 12:13, AngeloGioacchino Del Regno wrote:
+> Document board compatibles for the MT8195 Cherry platform's
+> Tomato Chromebooks, at the time of writing composed of four
+> revisions (r1, r2, r3-r4).
 > 
-> Add display node for vdosys0 of mt8195.
-> 
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 109 +++++++++++++++++++++++
->  1 file changed, 109 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 724c6ca837b6..faea8ef33e5a 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -1961,6 +1961,7 @@
->  		vdosys0: syscon@1c01a000 {
->  			compatible = "mediatek,mt8195-mmsys", "syscon";
->  			reg = <0 0x1c01a000 0 0x1000>;
-> +			mboxes = <&gce0 0 CMDQ_THR_PRIO_4>;
->  			#clock-cells = <1>;
->  		};
->  
-> @@ -1976,6 +1977,114 @@
->  			power-domains = <&spm MT8195_POWER_DOMAIN_VENC_CORE1>;
->  		};
->  
-> +		ovl0: ovl@1c000000 {
-> +			compatible = "mediatek,mt8195-disp-ovl",
-> +				     "mediatek,mt8183-disp-ovl";
-> +			reg = <0 0x1c000000 0 0x1000>;
-> +			interrupts = <GIC_SPI 636 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_DISP_OVL0>;
-> +			iommus = <&iommu_vdo M4U_PORT_L0_DISP_OVL0_RDMA0>;
-> +			mediatek,gce-client-reg =
-> +				 <&gce0 SUBSYS_1c00XXXX 0x0000 0x1000>;
-> +		};
-> +
-> +		rdma0: rdma@1c002000 {
-> +			compatible = "mediatek,mt8195-disp-rdma";
-> +			reg = <0 0x1c002000 0 0x1000>;
-> +			interrupts = <GIC_SPI 638 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_DISP_RDMA0>;
-> +			iommus = <&iommu_vdo M4U_PORT_L0_DISP_RDMA0>;
-> +			mediatek,gce-client-reg =
-> +				 <&gce0 SUBSYS_1c00XXXX 0x2000 0x1000>;
-> +		};
-> +
-> +		color0: color@1c003000 {
-> +			compatible = "mediatek,mt8195-disp-color",
-> +				     "mediatek,mt8173-disp-color";
-> +			reg = <0 0x1c003000 0 0x1000>;
-> +			interrupts = <GIC_SPI 639 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_DISP_COLOR0>;
-> +			mediatek,gce-client-reg =
-> +				 <&gce0 SUBSYS_1c00XXXX 0x3000 0x1000>;
-> +		};
-> +
-> +		ccorr0: ccorr@1c004000 {
-> +			compatible = "mediatek,mt8195-disp-ccorr",
-> +				     "mediatek,mt8192-disp-ccorr";
-> +			reg = <0 0x1c004000 0 0x1000>;
-> +			interrupts = <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_DISP_CCORR0>;
-> +			mediatek,gce-client-reg =
-> +				 <&gce0 SUBSYS_1c00XXXX 0x4000 0x1000>;
-> +		};
-> +
-> +		aal0: aal@1c005000 {
-> +			compatible = "mediatek,mt8195-disp-aal",
-> +				     "mediatek,mt8183-disp-aal";
-> +			reg = <0 0x1c005000 0 0x1000>;
-> +			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_DISP_AAL0>;
-> +			mediatek,gce-client-reg =
-> +				 <&gce0 SUBSYS_1c00XXXX 0x5000 0x1000>;
-> +		};
-> +
-> +		gamma0: gamma@1c006000 {
-> +			compatible = "mediatek,mt8195-disp-gamma",
-> +				     "mediatek,mt8183-disp-gamma";
-> +			reg = <0 0x1c006000 0 0x1000>;
-> +			interrupts = <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_DISP_GAMMA0>;
-> +			mediatek,gce-client-reg =
-> +				 <&gce0 SUBSYS_1c00XXXX 0x6000 0x1000>;
-> +		};
-> +
-> +		dither0: dither@1c007000 {
-> +			compatible = "mediatek,mt8195-disp-dither",
-> +				     "mediatek,mt8183-disp-dither";
-> +			reg = <0 0x1c007000 0 0x1000>;
-> +			interrupts = <GIC_SPI 643 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_DISP_DITHER0>;
-> +			mediatek,gce-client-reg =
-> +				 <&gce0 SUBSYS_1c00XXXX 0x7000 0x1000>;
-> +		};
-> +
-> +		dsc0: dsc@1c009000 {
-> +			compatible = "mediatek,mt8195-disp-dsc";
-> +			reg = <0 0x1c009000 0 0x1000>;
-> +			interrupts = <GIC_SPI 645 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_DSC_WRAP0>;
-> +			mediatek,gce-client-reg =
-> +				 <&gce0 SUBSYS_1c00XXXX 0x9000 0x1000>;
-> +		};
-> +
-> +		merge0: merge0@1c014000 {
+> Note for Krzysztof:
+> 
+> I had to add the model number to the description in here, but I
+> wasn't sure whether I should've kept your Reviewed-by tag or not.
+> 
+> Since I was in doubt, I decided to not keep it just to be on the safe side.
 
-Generic node name.
+These were trivial changes, so keep the tag. Anyway no problem:
 
-> +			compatible = "mediatek,mt8195-disp-merge";
-> +			reg = <0 0x1c014000 0 0x1000>;
-> +			interrupts = <GIC_SPI 656 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_VPP_MERGE0>;
-> +			mediatek,gce-client-reg =
-> +				 <&gce0 SUBSYS_1c01XXXX 0x4000 0x1000>;
-> +		};
-> +
-> +		mutex: mutex0@1c016000 {
-
-Generic node name.
-
-> +			compatible = "mediatek,mt8195-disp-mutex";
-> +			reg = <0 0x1c016000 0 0x1000>;
-> +			interrupts = <GIC_SPI 658 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +			clocks = <&vdosys0 CLK_VDO0_DISP_MUTEX0>;
-> +			mediatek,gce-events =
-> +				 <CMDQ_EVENT_VDO0_DISP_STREAM_DONE_0>;
-> +		};
-> +
->  		larb0: larb@1c018000 {
->  			compatible = "mediatek,mt8195-smi-larb";
->  			reg = <0 0x1c018000 0 0x1000>;
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
