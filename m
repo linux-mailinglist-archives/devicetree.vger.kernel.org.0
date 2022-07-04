@@ -2,74 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3DF565C0A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 18:24:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08F1B565C2B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 18:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234154AbiGDQYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 12:24:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33720 "EHLO
+        id S233772AbiGDQdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 12:33:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233988AbiGDQYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 12:24:38 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5303B6166
-        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 09:24:36 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id bx13so11665189ljb.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 09:24:36 -0700 (PDT)
+        with ESMTP id S229812AbiGDQdj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 12:33:39 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C30246326
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 09:33:38 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id y18so804951ljj.6
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 09:33:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Sn8r/wCwINZRFzULmvAmngogVLhKxhw5hVjfEMjh1CI=;
-        b=wd/nXp18FtY7THmR0JieeF4k/kTzVljiwQfzEKZvnjBFqlfoj8Qpor3nHLR6jGrgiu
-         EuI+uThVDU/PDVw+uEc5ik935VT1CwO5YBqy5zDZBtxZK2+t4oo7eqfdD97sGk6UqXgB
-         KWVxyjNponQ3FOoghhBhjQhitsq6yghm9fC7U7jtzmKk0DlcjKVhdRW+sAyrKDLsV+Es
-         uGIL5cOO4g/AYZiD1aaHivjC++jUcjf27VjI9q0Ttm0QfmxfnSxYJ41GW9IpdTSWhMUI
-         Qj9hRZsUt6VzugaplHPVpuGdD/N99T9vNfACgYPacReUraFTB64h6zYkyQSogLimkOff
-         0E5A==
+        bh=A7qX2eyWUzHs7oEe1617ozyf3iq6Dmxh3c3+blIpj/Y=;
+        b=hmyhPddNs1Y3fALBRZR1UPt5vTfh2rDqvxe++kSyCDpOk+P6vcmlvVJXsSP7MRrKfq
+         b8cPR5AVcRt3B7hfFK6P/tnw0fwua6lX06IKpNca3NCwhDJgv3Yen1eW3TOr3yEjoC5z
+         97i/GFedR25XlxP02YSbg7cT1JAIZIkODwyzYp3rFLVQvlGSP4zrYSq3HDde4QLqHMD6
+         yC1qWpp77FbLakc1SMA5ODhIib+4vIKscK3a/VeSXh82VmJVi9x9Ken7k/mha+ElnJKM
+         GlpzM7VIi6G9SD1/axXGfVHFoLn+X5ipyPRNZxTyJPJgMlFhna3aIPygTCxnETMf+lZo
+         CKiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Sn8r/wCwINZRFzULmvAmngogVLhKxhw5hVjfEMjh1CI=;
-        b=JodN446os3G1fmaffSvYKyGz5Qc+07m5pfnIm1ApULxbjNbhz5VcrVKRph6nkctQ2x
-         nQ+1e62oGJxii8WOiaVU2zQoMkrATObGljJbw/KPa61SxQwNI3SUKubyUVtVDGRwm3kR
-         905gytSftqlvhH+a3llADBveN7ZTepr4+KfLM/2v9YJ+eROSNwQJ3E5jCKUc6J0JPUMC
-         jajusxcD+v1fcH/RJmyDA6LLq/+C5Scqn9ccB41wFipDbzyagMzC5w9LDOafD2r9WBsa
-         qy5jV9ZaR+cmuvltxcOHx8q1Ce3LvJbOn2vHW9uKiKcivG8AtH/XsqmRwEL2ZHnkKv88
-         Sz1g==
-X-Gm-Message-State: AJIora+RVcNWi5j78aM83/beWRVmgmjV3RLZv9DoBOR1UOXcxZeajXHx
-        5ZzyCmzItDee/yAXixgjC6cSwQ==
-X-Google-Smtp-Source: AGRyM1tbdsfuiNrfGGVut59sxgcRn+0ZzEgGSzB4dwTtug7V8FQj8oHdCsIfj7VmT6QhTQahTndnDA==
-X-Received: by 2002:a05:651c:154b:b0:25b:d2c4:8dd6 with SMTP id y11-20020a05651c154b00b0025bd2c48dd6mr17297808ljp.459.1656951874715;
-        Mon, 04 Jul 2022 09:24:34 -0700 (PDT)
+        bh=A7qX2eyWUzHs7oEe1617ozyf3iq6Dmxh3c3+blIpj/Y=;
+        b=IO//MGieUgkBVcjpNNAtyllILl3smlOANvOfwhrwl9XfiwmEK0lwG8G0+UmXTUlO4i
+         C7e3SXXayLr4H46kpAsBArupbVk4z4QL+FQYX9KbkJK6QUxfJ6Os2Y6lJXwIwF3EC1Df
+         WJgs6p6uQ6uM4GQhcXFHe+rLSsq9jouUUqAgHvrhWeI7KKww5cpuH46xXm/3fiGHtmvU
+         aWvNsRSHoltlyHEJUBDdtaIOSYIurPFmZ/iktulyo5lywRt9FTkbObsZ6XtoSPmeHYbM
+         NrOAXd/U+fO9iXBc9RIYTA/UM+KcDpIEty5PBzo/TAyHi/S1n33/jXFLNL5KOM9Vhfq2
+         rUsg==
+X-Gm-Message-State: AJIora8Ch/iLvoFfikXgglbJ1w5NYWqTUnYOs5ALI+gmNLukwyEENUNK
+        mX60lteA7hUnuyw1enk6EndJcg==
+X-Google-Smtp-Source: AGRyM1tQvO8sTfWF60/e4tD2C6Tl+WYLmbUZ+g6+Nalcyp3YQJSdUIoNwXaACrVpEAnHQ/ZE8chHPw==
+X-Received: by 2002:a05:651c:2317:b0:25b:fc32:906a with SMTP id bi23-20020a05651c231700b0025bfc32906amr12458628ljb.445.1656952417189;
+        Mon, 04 Jul 2022 09:33:37 -0700 (PDT)
 Received: from [192.168.1.212] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id k22-20020a05651c10b600b00253ceefb668sm4922401ljn.60.2022.07.04.09.24.33
+        by smtp.gmail.com with ESMTPSA id d10-20020a0565123d0a00b0048110fd06c4sm4234870lfv.53.2022.07.04.09.33.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Jul 2022 09:24:34 -0700 (PDT)
-Message-ID: <50529c07-d630-c8ec-0127-6919e27d4bd7@linaro.org>
-Date:   Mon, 4 Jul 2022 19:24:33 +0300
+        Mon, 04 Jul 2022 09:33:36 -0700 (PDT)
+Message-ID: <3a4ce2cc-5d2c-276c-1f60-be7cf686b8b9@linaro.org>
+Date:   Mon, 4 Jul 2022 19:33:36 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 0/7] clk: qcom: gcc-msm8916: modernize the driver
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: db820c: Add user LEDs
 Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20220619212735.1244953-1-dmitry.baryshkov@linaro.org>
- <cb15fe73-2805-7776-307d-02e1b175301c@somainline.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220505022706.1692554-1-bjorn.andersson@linaro.org>
+ <20220505022706.1692554-5-bjorn.andersson@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <cb15fe73-2805-7776-307d-02e1b175301c@somainline.org>
+In-Reply-To: <20220505022706.1692554-5-bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,65 +74,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2022 15:12, Konrad Dybcio wrote:
+On 05/05/2022 05:27, Bjorn Andersson wrote:
+> The db820c has 4 "user LEDs", all connected to the PMI8994. The first
+> three are connected to the three current sinks provided by the TRILED
+> and the fourth is connected to MPP2.
 > 
+> By utilizing the DTEST bus the MPP is fed the control signal from the
+> fourth LPG block, providing a consistent interface to the user.
 > 
-> On 19.06.2022 23:27, Dmitry Baryshkov wrote:
->> Please excuse me for the spam, I've erroneously sent v2 without the
->> requested change.
->>
-> Please excuse me, I didn't notice and gave you R-bs on v2 instead..
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-N/p, I'll pick them while sending v4.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
+> ---
+>   arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 56 +++++++++++++++++++++
+>   1 file changed, 56 insertions(+)
 > 
-> Konrad
->> Update gcc-msm8916 driver and bindings to use DT-specified clocks
->> rather than fetching the clocks from the global clocks list.
->>
->> Changes since v2:
->>   - Use xo-board for the XO rather than RPM clock. This will be sorted
->>     out separately (requested by Stephan Gerhold).
->>
->> Changes since v1:
->>   - None.
->>
->> Dmitry Baryshkov (7):
->>    dt-bindings: clk: qcom,gcc-*: use qcom,gcc.yaml
->>    dt-bindings: clock: separate bindings for MSM8916 GCC device
->>    clk: qcom: gcc-msm8916: use ARRAY_SIZE instead of specifying
->>      num_parents
->>    clk: qcom: gcc-msm8916: move clock parent tables down
->>    clk: qcom: gcc-msm8916: move gcc_mss_q6_bimc_axi_clk down
->>    clk: qcom: gcc-msm8916: use parent_hws/_data instead of parent_names
->>    arm64: dts: qcom: msm8916: add clocks to the GCC device node
->>
->>   .../bindings/clock/qcom,gcc-msm8916.yaml      |   61 +
->>   .../bindings/clock/qcom,gcc-msm8976.yaml      |   21 +-
->>   .../bindings/clock/qcom,gcc-msm8994.yaml      |   21 +-
->>   .../bindings/clock/qcom,gcc-msm8996.yaml      |   25 +-
->>   .../bindings/clock/qcom,gcc-msm8998.yaml      |   25 +-
->>   .../bindings/clock/qcom,gcc-other.yaml        |    1 -
->>   .../bindings/clock/qcom,gcc-qcm2290.yaml      |   25 +-
->>   .../bindings/clock/qcom,gcc-sc7180.yaml       |   25 +-
->>   .../bindings/clock/qcom,gcc-sc7280.yaml       |   21 +-
->>   .../bindings/clock/qcom,gcc-sc8180x.yaml      |   25 +-
->>   .../bindings/clock/qcom,gcc-sc8280xp.yaml     |   21 +-
->>   .../bindings/clock/qcom,gcc-sdm845.yaml       |   25 +-
->>   .../bindings/clock/qcom,gcc-sdx55.yaml        |   21 +-
->>   .../bindings/clock/qcom,gcc-sdx65.yaml        |   21 +-
->>   .../bindings/clock/qcom,gcc-sm6115.yaml       |   25 +-
->>   .../bindings/clock/qcom,gcc-sm6125.yaml       |   25 +-
->>   .../bindings/clock/qcom,gcc-sm6350.yaml       |   25 +-
->>   .../bindings/clock/qcom,gcc-sm8150.yaml       |   25 +-
->>   .../bindings/clock/qcom,gcc-sm8250.yaml       |   25 +-
->>   .../bindings/clock/qcom,gcc-sm8350.yaml       |   21 +-
->>   .../bindings/clock/qcom,gcc-sm8450.yaml       |   21 +-
->>   arch/arm64/boot/dts/qcom/msm8916.dtsi         |   14 +
->>   drivers/clk/qcom/gcc-msm8916.c                | 1020 +++++++++--------
->>   23 files changed, 669 insertions(+), 870 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
->>
+> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> index 56e54ce4d10e..e9039e68a095 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> @@ -10,6 +10,7 @@
+>   #include "pmi8994.dtsi"
+>   #include <dt-bindings/input/input.h>
+>   #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+>   #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>   #include <dt-bindings/sound/qcom,q6afe.h>
+>   #include <dt-bindings/sound/qcom,q6asm.h>
+> @@ -683,6 +684,61 @@ pinconf {
+>   	};
+>   };
+>   
+> +&pmi8994_lpg {
+> +	qcom,power-source = <1>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pmi8994_mpp2_userled4>;
+> +
+> +	qcom,dtest = <0 0>,
+> +		     <0 0>,
+> +		     <0 0>,
+> +		     <4 1>;
+> +
+> +	status = "okay";
+> +
+> +	led@1 {
+> +		reg = <1>;
+> +		color = <LED_COLOR_ID_GREEN>;
+> +		function = LED_FUNCTION_HEARTBEAT;
+> +		function-enumerator = <1>;
+> +
+> +		linux,default-trigger = "heartbeat";
+> +		default-state = "on";
+> +	};
+> +
+> +	led@2 {
+> +		reg = <2>;
+> +		color = <LED_COLOR_ID_GREEN>;
+> +		function = LED_FUNCTION_HEARTBEAT;
+> +		function-enumerator = <0>;
+> +	};
+> +
+> +	led@3 {
+> +		reg = <3>;
+> +		color = <LED_COLOR_ID_GREEN>;
+> +		function = LED_FUNCTION_HEARTBEAT;
+> +		function-enumerator = <2>;
+> +	};
+> +
+> +	led@4 {
+> +		reg = <4>;
+> +		color = <LED_COLOR_ID_GREEN>;
+> +		function = LED_FUNCTION_HEARTBEAT;
+> +		function-enumerator = <3>;
+> +	};
+> +};
+> +
+> +&pmi8994_mpps {
+> +	pmi8994_mpp2_userled4: mpp2-userled4-state {
+> +		pins = "mpp2";
+> +		function = "sink";
+> +
+> +		output-low;
+> +		qcom,dtest = <4>;
+> +	};
+> +};
+> +
+>   &pmi8994_spmi_regulators {
+>   	vdd_s2-supply = <&vph_pwr>;
+>   
 
 
 -- 
