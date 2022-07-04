@@ -2,87 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 035C8565FBD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 01:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E265565FC4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 01:53:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231582AbiGDXcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 19:32:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33410 "EHLO
+        id S229614AbiGDXxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 19:53:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbiGDXcB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 19:32:01 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C0621A5
-        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 16:32:00 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id 64so9755794ybt.12
-        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 16:32:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xtIULTBzZ5AvsWWUAGTHXrEyCrCUP/7oowoPHT7Dc2I=;
-        b=MNXFcXSP5ARtJU0V5U8ZLHdRZKk2BJhtC5f2yT/hO38cI98XRCd3e8aOyKqHNY8IV/
-         zAraJdDCzyaCPmYlNGGMvZ56ev896O31PBHlz9pOItK09YoVSuJWU6HG4M3kMjuk+5IP
-         xVpGXaFth8KDA2Of0R8nVVkFupYqyATwjchODHjKftWO89RqMibzh8zyS6JldWb42Iw0
-         ouRGs1MXYcJPZjffmPt6OMGo+7YVa68B4amIQhQl4qKd2/ZvtKCxt5wvnL7wSely7HsK
-         8sxL+Pj5xoHxOVYmAqNWOoDogPPcG9wFXh0iMx0G2C6ohwmwzrSr24j0Aw3w1Xcfwyqh
-         Vb6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xtIULTBzZ5AvsWWUAGTHXrEyCrCUP/7oowoPHT7Dc2I=;
-        b=zzNs8IpOAQ2EDsykXem39yQbXLfmDkCQKpw2v4ej4n1LyQLfrmLH6HKt37X0U6bU6b
-         U53x/LDiVbgz9HrFy1lPi9i5yw1GP9Qz4w6nVFB229T/qtjnoOkFfxnDePvrmfORNgjW
-         izQh6Y3aY+bzm7DTnXGCrlPeOIzMz/fJTWOoMhEeN8+pM7g2FEfdTpDx/H+izJB+rz0T
-         q0ckDC4b/HeB6/hkQZTqLECzaQZ8jMewFeRv0Z6rS8kPocw0hS4aLHOTUuDfiwo9XLUt
-         mqDnQGwnrc/mnjzy+Oy2R9XzJ9JLYP5hAA8fJne4stdVKpOL+cLF9RJqhg5BNmo47iBg
-         6I4g==
-X-Gm-Message-State: AJIora+XPdqBFMa7USLCDJ12/ndES3jOJYwxIJTzkDxs03y14mfS8Qc0
-        hV+aO17Uqp3qGSAgYm/Jzykw/i1zgNIBjY8NrjjHOTV8q9s=
-X-Google-Smtp-Source: AGRyM1vNW5FPZUQ0jx3hYodZo7j+rg304d3Fl4/H0TOPxN1p049XsZjmaD+ntntf7tErX296/i3EsI+j1UoMXK5Np0w=
-X-Received: by 2002:a05:6902:152:b0:66c:e116:6a7 with SMTP id
- p18-20020a056902015200b0066ce11606a7mr34029892ybh.533.1656977519747; Mon, 04
- Jul 2022 16:31:59 -0700 (PDT)
+        with ESMTP id S229456AbiGDXxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 19:53:21 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 031AFA19B;
+        Mon,  4 Jul 2022 16:53:18 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 8CF495C0058;
+        Mon,  4 Jul 2022 19:53:16 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Mon, 04 Jul 2022 19:53:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1656978796; x=
+        1657065196; bh=hRtV2tmxTGHWgaE1iVcT0zpQrqZDg6gyLKB2wVgW0vo=; b=T
+        vhe3/lISntp8F4XP10zGlS+kat7MmJH/hcrB1wPhiXE2yPbUq3AUBkplSOAAzYKu
+        OAKNvFBynSC0pnA1X4KBFVc/Q+g9SU80G+bolLDkBslrWSd/TkBiZMwedh/wiUMk
+        sYttwA3KodMA+mgu2GNkgvNPxyf5q9c7s2ufaT1uk4DtLREkxL/ZZ4DaOMT/Vkvz
+        frev+0D9JTxhhfL+towmLTOTQ2g2urWbTjtvgVU0RD43AW8shxIubjEy1zZbP6Ic
+        QFdGUTIaKejzyoUbwUAYDVbJXyiPg6zLhuSPEnarJK6D64CxR3zHDn9TEsECEJ87
+        gtAK2lYaAoJQlJcEnSjBg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1656978796; x=
+        1657065196; bh=hRtV2tmxTGHWgaE1iVcT0zpQrqZDg6gyLKB2wVgW0vo=; b=j
+        X610wJ0G2bO43nBljf1hmO06Mn4aR3fOwFPm99EJzjr34y8T4/S/YtIhvGFQxL/i
+        jP6i6EvYgwPL7Vl0LL4RkG2o7Ib6o412GO0ZidVeDu1rsDtOAu1tU/3bSsmcDYmC
+        C+mMW6I9hJVtJE52k1JXDEyjovJMKwdaaYME354ktbOvin0JF0B+vRqF5UN/6buN
+        pYCsyxlLbLqiLwSk/+2Eu+eEDHSErVwFw87qZ2LT7t/G7yTq3JAsA9F+zrDoSc8h
+        pNrUo3O4v6kkIzKy6y8fuMqnuCq0tWNRqBjHHMrll6s+CbCUqUZvN8zApXWQE8yY
+        4j1fvpowiL85gzAy3f89w==
+X-ME-Sender: <xms:bH3DYqD0bLia9ca-mTcv-wDabTy0hD7sTEWuqCtoQ77MG_03wU-Kkw>
+    <xme:bH3DYkgEovVE12p5tHBhDKhlPxERzkQg5zUymkaDQYrGjmS0RsLhMBUvJAya40XUn
+    rEbERk6hZtVoQctkw>
+X-ME-Received: <xmr:bH3DYtnalH8DVwiEKcU0jL_tnEA52T-1R17_NxQszlVPwem_8wIn3IJfZnC1y1dR2O_LWrQyqfVDbKumU_mW-GoRXvfkw-Nr6gkxlKxTIxrPkk1U8p6eXEFHTw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudeitddgvdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpefftdevkedvgeekueeutefgteffieelvedukeeuhfehledvhfei
+    tdehudfhudehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:bH3DYoyQ70HyDHpizunZF_V6yfKDZuOVes9evuJwjTuH6dLfY1u5ew>
+    <xmx:bH3DYvQXMjRtHUzHU_--LXfFvDRkqonl3FGFmnblCSXUgEu9KamYPQ>
+    <xmx:bH3DYjYHsGhSQLWcu9XUe0bmr5x1KbB7FZ-tyN42-jlNzHQTdl0k6g>
+    <xmx:bH3DYtC3M8W4qfl0raLoFOPsTYKch2tTcY4HA_op_db5-nWCMGFw8Q>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 4 Jul 2022 19:53:15 -0400 (EDT)
+Subject: Re: [PATCH v12 1/7] dt-bindings: arm: sunxi: Add H616 EMAC compatible
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org
+References: <20220701112453.2310722-1-andre.przywara@arm.com>
+ <20220701112453.2310722-2-andre.przywara@arm.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <b2661412-5fce-a20d-c7c4-6df58efdb930@sholland.org>
+Date:   Mon, 4 Jul 2022 18:53:14 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-References: <cover.1656883851.git.jahau.ref@rocketmail.com> <cover.1656883851.git.jahau@rocketmail.com>
-In-Reply-To: <cover.1656883851.git.jahau@rocketmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 5 Jul 2022 01:31:48 +0200
-Message-ID: <CACRpkdZSeX-TPk4+_EEdZFMDH4bmgSZcm7vyX_d4+K4hGSbWXA@mail.gmail.com>
-Subject: Re: [PATCH v4 00/10] Add support for magnetometer Yamaha YAS537
-To:     Jakob Hauser <jahau@rocketmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220701112453.2310722-2-andre.przywara@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 4, 2022 at 12:03 AM Jakob Hauser <jahau@rocketmail.com> wrote:
+On 7/1/22 6:24 AM, Andre Przywara wrote:
+> The Allwinner H616 contains an "EMAC" Ethernet MAC compatible to the A64
+> version.
+> 
+> Add it to the list of compatible strings.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> index 6a4831fd3616c..87f1306831cc9 100644
+> --- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> +++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> @@ -22,6 +22,7 @@ properties:
+>            - enum:
+>                - allwinner,sun20i-d1-emac
+>                - allwinner,sun50i-h6-emac
+> +              - allwinner,sun50i-h616-emac
 
-> This patchset adds YAS537 variant to the already existing driver for
-> Yamaha YAS magnetometers.
->
-> Patch 1 is a fix on the current driver.
-> Patches 2-9 are cleanups and refactoring.
-> Patch 10 finally adds the YAS537 variant.
+The H616 manual has register fields for an internal PHY, like H3. Are these not
+hooked up for either EMAC?
 
-This patch set is really nice and getting nicer.
+Regards,
+Samuel
 
-Maybe Jonathan could apply patches 1-5 so you don't have to
-resend so much code and get more focus on the top 5 patches?
-They are anyway nice in their own right.
+>            - const: allwinner,sun50i-a64-emac
+>  
+>    reg:
+> 
 
-Yours,
-Linus Walleij
