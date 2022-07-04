@@ -2,53 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA1E05652C2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 12:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E02175652CF
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 12:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231544AbiGDKxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 06:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44734 "EHLO
+        id S233199AbiGDK42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 06:56:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231418AbiGDKxL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 06:53:11 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAC5CBE2C;
-        Mon,  4 Jul 2022 03:53:10 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id u12-20020a05600c210c00b003a02b16d2b8so5420566wml.2;
-        Mon, 04 Jul 2022 03:53:10 -0700 (PDT)
+        with ESMTP id S233689AbiGDK4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 06:56:23 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3064DDA1;
+        Mon,  4 Jul 2022 03:56:21 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id e40so11231926eda.2;
+        Mon, 04 Jul 2022 03:56:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4weMpjvNiH7V9U3sbXbzJxXZClEc9I2GMKVTP6AA2c0=;
-        b=P/c9/IGQEPreCQ0nHotpRmWlzk39e7XMKW9T1rPAbMMpTnQ47CZMILeQACoGFMJqXj
-         XqtSTeHGSTDhG21kzL36QiDSkWLlqw0l3u/wHq535AB+7dEIByE6VaRgseGxScnqzu3a
-         AynlarYdZFNfiVu9g8fw1POFreKLUKD+tTkT+baijQlbwAMytXb8Ye7LUyNOchS4Yak7
-         l7Dwawiw/vOv0Cw+muKgJmPI2Wpx/MONt1B82xSSAXi7euyoPQwEfgHhRun+sLzMIZrJ
-         rbR/fcrwD1D+hmje51P59xSsw5xq/0AMNGa/4PlyV12zRbhTchJcOfYVxFgotRPgNINp
-         XX1A==
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yLNLTQJBz4K88aihRO/hyNY3I/0qFhkE7Lhod8FKE3c=;
+        b=XX9JttmfJ0/zIulSmshOxmiYWgz963+s6cj2I3vDXDUT9CcC2gZu5LK2P8F/KpTJMm
+         cIrCdbEKy+nFds6CN2c0mIGN7IKuZZEyVIPI2T8V8L+U3DLixL6l5zIKtIylXc9A2yVI
+         IEabH0KVA3GsVUNWzqex0dFzvpN1Spt3IISxDa482tRRd/NC1PFpvE2k+OF7zq5kkiMK
+         wbvFD4ZvpFY+4B+Sw73vGfy9Bls5+2QwkEWJRI79jl606fCfU1BgRaVEXZ973Ncy8MN4
+         lUjv4onkb0iGKNmyTduzvLTQesZXhvlFBgs2zA3tV1+hgKZ+qHujlcnzmsaNuBWWC54G
+         xgiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4weMpjvNiH7V9U3sbXbzJxXZClEc9I2GMKVTP6AA2c0=;
-        b=cNKhajcd5udmuBSv1g9UZgfznw79zqfwuBJiA3v3iTm50j9jJBH71LpBlWFdYz9Pjm
-         y1hxsfreMuT9MdS2pzkbbvcKhBasOiOCTcDNE0QGKf1BN/Xx4k6wiKe+CFUSnFxOk44t
-         bdxdXG2dcT52Pko8MW6hn2k2ZxDviXjFQduEKaQDqxeKB69hqfoz+ERfVgBmg51GiKB2
-         w1NYS8fgqFfdIv4TswLqsC5MMgS9cRqfvvdiOOqqI0kKPRmJFWgBDlraPcgkw2Vkgjh3
-         W/o1SMpNEOrBX2Pwdf+5n913eJt2qfPv2j2lRkgjFAqgtHdgyS9+VZ2A3H8F7UlaMA8C
-         9tBQ==
-X-Gm-Message-State: AJIora/H4hsrYhUYvjoXQrQKzOd560YGboJ2MCNb9XlumDtTjGEXafbe
-        FSmgoK2sxcTycCFCeCrNFv8vj7e9n8r1dk9x
-X-Google-Smtp-Source: AGRyM1v3rotBr0o2IFPa2Oszpyd49EUK6GjimhNUEb5xJaX04pIc3hhz3Bnr2maVLeqLXFi2YAsyXQ==
-X-Received: by 2002:a7b:c410:0:b0:3a0:2d7d:732a with SMTP id k16-20020a7bc410000000b003a02d7d732amr32454903wmi.113.1656931989088;
-        Mon, 04 Jul 2022 03:53:09 -0700 (PDT)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net. [80.193.200.194])
-        by smtp.gmail.com with ESMTPSA id j31-20020a05600c1c1f00b003a18d352893sm10907140wms.42.2022.07.04.03.53.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Jul 2022 03:53:08 -0700 (PDT)
-From:   Colin Ian King <colin.i.king@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yLNLTQJBz4K88aihRO/hyNY3I/0qFhkE7Lhod8FKE3c=;
+        b=Hc7FQY0bsVOjsOwOSlDMmBvaaubBD5pcTKSaMTyZNs3n4cgkXzyaHC/doi3k/Wg06v
+         Y0S0bCnGJLnhEHmbhBz36SuHH0A5RJu3pK04Qe8KeBa2WzbvpvsxWYMjvd1gt7CFDFyV
+         m52011S+9HFxlmpLZAw/iakdayqtokLlX3xsyB6EiuYA/PBLRyci+Q5IU7NnRektGqts
+         67Wfo7ue4Gv89UE9SBMwWvcmAxt5zArZNSDV3RUL/RPem6F6iwbaVnByatVZ3zH+3gKF
+         GFPXzspnLQYg9rsU7JwNVywrEOvPQ2Gebf9dwmIscuD0yLPnrfAk8k1wx0AZia16/UJh
+         wuIw==
+X-Gm-Message-State: AJIora+hb/VwUv+FQBE3PFcP9sgOs15m3+tJMjy9hdFP0/uTw6UwoQLl
+        ApC7Ql2F7getk1WDdKK6Ol8OB65Vw3iRr27Aiq0=
+X-Google-Smtp-Source: AGRyM1vLTWZbM65JclBW/D3ypExCkNB9vaIsK0IRrxdPcg72SmG7E09xNtFjfQQZKcQd68bq/rpP1K/5NiOlUjezuik=
+X-Received: by 2002:aa7:d685:0:b0:435:7910:f110 with SMTP id
+ d5-20020aa7d685000000b004357910f110mr37267629edr.247.1656932179663; Mon, 04
+ Jul 2022 03:56:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220704105307.552247-1-colin.i.king@gmail.com>
+In-Reply-To: <20220704105307.552247-1-colin.i.king@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 4 Jul 2022 12:56:08 +0200
+Message-ID: <CAFBinCB-dTQRMOQm1mac7gOaxj97FK-fAa-Lgz4i+erW0-PEtg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Fix spelling mistakes in documentation yaml
+ files "is is" -> "is"
+To:     Colin Ian King <colin.i.king@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Lee Jones <lee.jones@linaro.org>,
@@ -59,17 +64,10 @@ To:     Linus Walleij <linus.walleij@linaro.org>,
         Neil Armstrong <narmstrong@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
         netdev@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: [PATCH] dt-bindings: Fix spelling mistakes in documentation yaml files "is is" -> "is"
-Date:   Mon,  4 Jul 2022 11:53:07 +0100
-Message-Id: <20220704105307.552247-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.35.3
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -80,83 +78,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are several occurrances of duplicated words "is" on the documentation
-yaml files. Fix these.
+On Mon, Jul 4, 2022 at 12:53 PM Colin Ian King <colin.i.king@gmail.com> wrote:
+>
+> There are several occurrances of duplicated words "is" on the documentation
+I think there's a typo in "occurrences".
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml   | 2 +-
- Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml       | 2 +-
- Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml       | 2 +-
- Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml       | 2 +-
- Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
-index a4b4452afc1d..a04882e101f3 100644
---- a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
-@@ -139,7 +139,7 @@ patternProperties:
-       the connection between the motherboard and any tiles. Sometimes the
-       compatible is placed directly under this node, sometimes it is placed
-       in a subnode named "motherboard-bus". Sometimes the compatible includes
--      "arm,vexpress,v2?-p1" sometimes (on software models) is is just
-+      "arm,vexpress,v2?-p1" sometimes (on software models) is just
-       "simple-bus". If the compatible is placed in the "motherboard-bus" node,
-       it is stricter and always has two compatibles.
-     type: object
-diff --git a/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml b/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
-index f6cac4b1079c..3549a32452ec 100644
---- a/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
-@@ -26,7 +26,7 @@ properties:
-   '#gpio-cells':
-     description:
-       The first cell is the pin number.
--      The second cell is is used to specify flags.
-+      The second cell is used to specify flags.
-       See ../gpio/gpio.txt for more information.
-     const: 2
- 
-diff --git a/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml b/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml
-index dc5a29b5ef7d..43a3f7ccaf36 100644
---- a/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml
-@@ -26,7 +26,7 @@ properties:
-   '#gpio-cells':
-     description:
-       The first cell is the pin number.
--      The second cell is is used to specify flags.
-+      The second cell is used to specify flags.
-       See ../gpio/gpio.txt for more information.
-     const: 2
- 
-diff --git a/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml b/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml
-index 012d25111054..373c4f89c4ea 100644
---- a/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml
-@@ -28,7 +28,7 @@ properties:
-   '#gpio-cells':
-     description:
-       The first cell is the pin number.
--      The second cell is is used to specify flags.
-+      The second cell is used to specify flags.
-       See ../gpio/gpio.txt for more information.
-     const: 2
- 
-diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-index 608e1d62bed5..3eb0513d824c 100644
---- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-@@ -149,7 +149,7 @@ properties:
-       - description:
-           The first register range should be the one of the DWMAC controller
-       - description:
--          The second range is is for the Amlogic specific configuration
-+          The second range is for the Amlogic specific configuration
-           (for example the PRG_ETHERNET register range on Meson8b and newer)
- 
- required:
--- 
-2.35.3
-
+> yaml files. Fix these.
+>
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml   | 2 +-
+>  Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml       | 2 +-
+>  Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml       | 2 +-
+>  Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml       | 2 +-
+>  Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml | 2 +-
+For amlogic,meson-dwmac.yaml:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
