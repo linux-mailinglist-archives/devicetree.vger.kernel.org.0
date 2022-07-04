@@ -2,214 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91B7A56511E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64170565153
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:51:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231202AbiGDJmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 05:42:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38090 "EHLO
+        id S233320AbiGDJvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 05:51:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233921AbiGDJmX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 05:42:23 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 70AD0274;
-        Mon,  4 Jul 2022 02:42:21 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6255223A;
-        Mon,  4 Jul 2022 02:42:21 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 484563F792;
-        Mon,  4 Jul 2022 02:42:19 -0700 (PDT)
-Date:   Mon, 4 Jul 2022 10:42:14 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>, Ondrej Jirman <x@xff.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH 6/6] pinctrl: sunxi: Add driver for Allwinner D1/D1s
-Message-ID: <20220704104214.2d9cd1a0@donnerap.cambridge.arm.com>
-In-Reply-To: <ef4454cb-a387-7dda-67e3-7493a89be8e7@sholland.org>
-References: <20220626021148.56740-1-samuel@sholland.org>
-        <20220626021148.56740-7-samuel@sholland.org>
-        <20220702154647.53c6755a@slackpad.lan>
-        <ef4454cb-a387-7dda-67e3-7493a89be8e7@sholland.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S232403AbiGDJvh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 05:51:37 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6EAA63FE;
+        Mon,  4 Jul 2022 02:51:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656928296; x=1688464296;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=NHDN/2lSyCT1GEduT2MlDHQYpJlzlmnBsu/bQ+QOiwY=;
+  b=lmG9yypPkV9Lasrb+xCHrXH0BqKGcHC+tjAdjgmVyd3WUy+UZPOiKxi0
+   HDK2hTfwQebWnP3ZHc34U2DWSquqzZzKAjuSJJ1FZJ2O0WLggpCEAJIt7
+   9IonfVhbA1piln5ZICEnZ5YJhEYvccjctBQt5fsaGJRUdmzEADp02u9kj
+   v2jW+154Wmni5bzfIdFG0LQllOKcv8wjnMqUTx5LpE8d6KR8URzeqEoLl
+   2Dj5nbecpHPxXyh3gmkJuVCJhG8WVW+MriN8nLYZxWROSZNPzLVaeHtxZ
+   kVlk8Mim8cjmQgw+OTJa74qaopVuZ1Y0bMz50RsabaB31Mi8zm4Nd0nR8
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10397"; a="369413044"
+X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; 
+   d="scan'208";a="369413044"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2022 02:51:36 -0700
+X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; 
+   d="scan'208";a="649511538"
+Received: from bclindho-mobl.ger.corp.intel.com ([10.252.49.27])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2022 02:51:31 -0700
+Date:   Mon, 4 Jul 2022 12:51:28 +0300 (EEST)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
+cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        vz@mleia.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        linux-serial <linux-serial@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Lukas Wunner <lukas@wunner.de>, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: Re: [PATCH v2 2/9] serial: core, 8250: set RS485 termination gpio
+ in serial core
+In-Reply-To: <20220703170039.2058202-3-LinoSanfilippo@gmx.de>
+Message-ID: <355354ef-61ff-692d-aad-3b5721db420@linux.intel.com>
+References: <20220703170039.2058202-1-LinoSanfilippo@gmx.de> <20220703170039.2058202-3-LinoSanfilippo@gmx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2 Jul 2022 10:43:05 -0500
-Samuel Holland <samuel@sholland.org> wrote:
+On Sun, 3 Jul 2022, Lino Sanfilippo wrote:
 
-Hi Samuel,
-
-> On 7/2/22 9:47 AM, Andre Przywara wrote:
-> > On Sat, 25 Jun 2022 21:11:47 -0500
-> > Samuel Holland <samuel@sholland.org> wrote:
-> > 
-> > Hi Samuel,
-> >   
-> >> These SoCs contain a pinctrl with a new register layout. Use the variant
-> >> parameter to set the right register offsets. This pinctrl also increases
-> >> the number of functions per pin from 8 to 16, taking advantage of all 4
-> >> bits in the mux config field (so far, only functions 0-8 and 14-15 are
-> >> used). This increases the maximum possible number of functions.
-> >>
-> >> D1s is a low pin count version of the D1 SoC, with some pins omitted.
-> >> The remaining pins have the same function assignments as D1.  
-> > 
-> > So do we actually need this extra variant, if there are no conflicts?
-> > The D1s seems to be a simple subset of the D1. I think we followed the
-> > same approach for the H616 already, where there are more pins in the
-> > pinctrl driver than the manual describes, and which are used in other
-> > package variants, like the T507.
-> > In case of the H616, those pins are there, you can program them (which
-> > is not the case for not implemented pins otherwise), they are just not
-> > connected to the package.
-> > I would expect a DT to never reference them, and even if, it doesn't do
-> > any harm other than just not working.  
+> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
 > 
-> I am following the example of V3/V3s here, so it seems we are inconsistent on
-> this point. I needed to supply one variant for the register layout anyway, so I
-> though I might as well be "accurate".
+> In serial8250_em485_config() the termination GPIO is set with the uart_port
+> spinlock held. This is an issue if setting the GPIO line can sleep (e.g.
+> since the concerning GPIO expander is connected via SPI or I2C).
 > 
-> But with Allwinner releasing lots of packages per die, it is probably overkill
-> to have a separate compatible per packge. As you note, there is no harm in
-> configuring pins that do not map to any pad.
-
-Yes, thanks, that current inflation of SoC variants is what I was
-concerned about.
-
-> Some notes for completeness:
->  - D1 documents all three JTAG functions (ARM, RISC-V, and DSP), although the
-> ARM JTAG does not work.
->  - D1s/F133 only documents the RISC-V JTAG function.
->  - T113 only documents the ARM and DSP JTAG functions.
->  - T113 adds a CAN function on mux 8 of PB2-PB5. The CAN controller accidentally
-> made it in to one version of the D1 datasheet, so it may unofficially exist there.
-
-Have you checked whether the CAN peripheral registers are there, on the D1?
-
-One more thing below:
-
-> None of these variations are conflicting.
+> Fix this by setting the termination line outside of the uart_port spinlock
+> in the serial core and using gpiod_set_value_cansleep() which instead of
+> gpiod_set_value() allows to sleep.
 > 
-> > For the table below: I checked every pin against the D1 manual (yes,
-> > that took an hour), and found only one small issue and some nits in
-> > PortE, see inline.
-> >   
-> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> >> ---
-> >>
-> >>  drivers/pinctrl/sunxi/Kconfig             |   5 +
-> >>  drivers/pinctrl/sunxi/Makefile            |   1 +
-> >>  drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c | 860 ++++++++++++++++++++++
-> >>  drivers/pinctrl/sunxi/pinctrl-sunxi.c     |  16 +-
-> >>  drivers/pinctrl/sunxi/pinctrl-sunxi.h     |   7 +
-> >>  5 files changed, 884 insertions(+), 5 deletions(-)
-> >>  create mode 100644 drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c
-> >>
-> >> diff --git a/drivers/pinctrl/sunxi/Kconfig b/drivers/pinctrl/sunxi/Kconfig
-> >> index 33751a6a0757..a6ac1c1f2585 100644
-> >> --- a/drivers/pinctrl/sunxi/Kconfig
-> >> +++ b/drivers/pinctrl/sunxi/Kconfig
-> >> @@ -84,6 +84,11 @@ config PINCTRL_SUN9I_A80_R
-> >>  	depends on RESET_CONTROLLER
-> >>  	select PINCTRL_SUNXI
-> >>  
-> >> +config PINCTRL_SUN20I_D1
-> >> +	bool "Support for the Allwinner D1 PIO"
-> >> +	default RISCV && ARCH_SUNXI
+> Beside fixing the termination GPIO line setting for the 8250 driver this
+> change also makes setting the termination GPIO generic for all UART
+> drivers.
+> 
+> Signed-off-by: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+> ---
+>  drivers/tty/serial/8250/8250_port.c |  3 ---
+>  drivers/tty/serial/serial_core.c    | 12 ++++++++++++
+>  2 files changed, 12 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/tty/serial/8250/8250_port.c b/drivers/tty/serial/8250/8250_port.c
+> index ed2a606f2da7..72252d956f17 100644
+> --- a/drivers/tty/serial/8250/8250_port.c
+> +++ b/drivers/tty/serial/8250/8250_port.c
+> @@ -676,9 +676,6 @@ int serial8250_em485_config(struct uart_port *port, struct ktermios *termios,
+>  		rs485->flags &= ~SER_RS485_RTS_AFTER_SEND;
+>  	}
+>  
+> -	gpiod_set_value(port->rs485_term_gpio,
+> -			rs485->flags & SER_RS485_TERMINATE_BUS);
+> -
 
-Is there any chance you can add the "MACH_SUN8I || " already?
-Not that it is really surprising, but I explicitly compared the pin mux
-overview tables of the R528(ARMv7) and D1(RISC-V) manuals, and they are
-identical. So we just use the D1 compatible string as a fallback for the
-R528 and T113 parts, in which case the driver should be build for ARM, too.
+I sent a series to make .rs485_supported per uart_port and properly set 
+SER_RS485_TERMINATE_BUS according to DT config. With that series added 
+first, SER_RS485_TERMINATE_BUS should also be removed from 
+serial8250_em485_supported so that serial core can properly manage 
+it all.
 
-Cheers,
-Andre
-
-> >> +	select PINCTRL_SUNXI
-> >> +
-> >>  config PINCTRL_SUN50I_A64
-> >>  	bool "Support for the Allwinner A64 PIO"
-> >>  	default ARM64 && ARCH_SUNXI
-> >> diff --git a/drivers/pinctrl/sunxi/Makefile b/drivers/pinctrl/sunxi/Makefile
-> >> index d3440c42b9d6..2ff5a55927ad 100644
-> >> --- a/drivers/pinctrl/sunxi/Makefile
-> >> +++ b/drivers/pinctrl/sunxi/Makefile
-> >> @@ -20,6 +20,7 @@ obj-$(CONFIG_PINCTRL_SUN8I_A83T_R)	+= pinctrl-sun8i-a83t-r.o
-> >>  obj-$(CONFIG_PINCTRL_SUN8I_H3)		+= pinctrl-sun8i-h3.o
-> >>  obj-$(CONFIG_PINCTRL_SUN8I_H3_R)	+= pinctrl-sun8i-h3-r.o
-> >>  obj-$(CONFIG_PINCTRL_SUN8I_V3S)		+= pinctrl-sun8i-v3s.o
-> >> +obj-$(CONFIG_PINCTRL_SUN20I_D1)		+= pinctrl-sun20i-d1.o
-> >>  obj-$(CONFIG_PINCTRL_SUN50I_H5)		+= pinctrl-sun50i-h5.o
-> >>  obj-$(CONFIG_PINCTRL_SUN50I_H6)		+= pinctrl-sun50i-h6.o
-> >>  obj-$(CONFIG_PINCTRL_SUN50I_H6_R)	+= pinctrl-sun50i-h6-r.o
-> >> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c b/drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c
-> >> new file mode 100644
-> >> index 000000000000..7247c1f1d92c
-> >> --- /dev/null
-> >> +++ b/drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c
-> >> @@ -0,0 +1,860 @@
-> >> +// SPDX-License-Identifier: GPL-2.0
-> >> +/*
-> >> + * Allwinner D1 SoC pinctrl driver.
-> >> + *
-> >> + * Copyright (c) 2020 wuyan@allwinnertech.com
-> >> + * Copyright (c) 2021-2022 Samuel Holland <samuel@sholland.org>
-> >> + */
-> >> +
-> >> +#include <linux/module.h>
-> >> +#include <linux/platform_device.h>
-> >> +#include <linux/of.h>
-> >> +#include <linux/of_device.h>
-> >> +#include <linux/pinctrl/pinctrl.h>
-> >> +
-> >> +#include "pinctrl-sunxi.h"
-> >> +
-> >> +static const struct sunxi_desc_pin d1_pins[] = {
-> >> +	/* PB */
-> >> +	SUNXI_PIN_VARIANT(SUNXI_PINCTRL_PIN(B, 0),
-> >> +		PINCTRL_SUN20I_D1,
-> >> +		SUNXI_FUNCTION(0x0, "gpio_in"),
-> >> +		SUNXI_FUNCTION(0x1, "gpio_out"),
-> >> +		SUNXI_FUNCTION(0x2, "pwm"),  
-> > 
-> > The manual mentions the PWM channel number in the pin name, and it
-> > seems like in other pinctrl drivers we use the number either in the
-> > function name, or at least in the comment.
-> > Shall we do one of them here as well?  
-> 
-> I originally had the numbers in the function name, but then I realized that no
-> pin has multiple PWM muxes, so I removed them. As you mention, other drivers
-> have them, so I will add them back.
-> 
-> > And the mux numbers for pwm are all over the place, so lets hope we
-> > never need pwm in U-Boot ;-)  
-> 
-> PWM is used for the CPU voltage regulator on at least one board (Nezha), but I
-> think we can get away without U-Boot support for that. And including the PWM
-> number in the function name will improve things somewhat.
-> 
-> I will fix the typos you noted below.
-> 
-> Regards,
-> Samuel
-
+-- 
+ i.
