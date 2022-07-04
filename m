@@ -2,119 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1E20565009
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 10:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 605F6565010
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 10:53:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232898AbiGDIvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 04:51:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52774 "EHLO
+        id S232113AbiGDIxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 04:53:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231668AbiGDIvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 04:51:31 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDCD1145;
-        Mon,  4 Jul 2022 01:51:30 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5232E6601638;
-        Mon,  4 Jul 2022 09:51:28 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656924689;
-        bh=06W+b6RL3osPIk+iBasdY5Wk4bfRW2/i6Z/FRiPkz6w=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ZNwSe8DAIq9PDy8NpAkLp1m+dZI4MiloI3sMQiWFzvhu6wpBeSbiQUsNuQ2rHhp1B
-         DpQH311R7NfzbMDBmzJB5I24BebrerlG0NoP1y7bqbc3g6pprFizDvN2vOP2EuRZPl
-         TtaVAoKZc9aHynzqWFROX5El67b+I1Zh8+k0Zxz0ugXTR6hfeeYZv3MKrO1FFAwNcy
-         hsUuKf/yNMNmiWyC5h3V1bK8X9rjI7Gg1E/YBPBp8kuFbR6bmRza+ya6hW1ql10yif
-         jOANStZJGVVXHQ3FFkY5/DjCun0+n08JaI8S3QCM8w/4XMwArH6uziMX9pvM1aS/Jj
-         k/zS5NDy/salg==
-Message-ID: <515d5b84-e625-5908-aa00-b2f03e77fe3b@collabora.com>
-Date:   Mon, 4 Jul 2022 10:51:25 +0200
+        with ESMTP id S232258AbiGDIxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 04:53:33 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA95BC8F
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 01:53:30 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id e28so12484641wra.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 01:53:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=pIZhwpifJqOc8phnkh4a9ifyqfRsTCMKA0TsbzimolI=;
+        b=xuxMyqwGh9S6fUqGbF4kU7MvcPPyj3gr/NaY7QgTr9lULKX4OojlkL4VK6v8qFG1Lg
+         o4cb/1S6DdPn7uuQiqJafwZxA1iHLC5uSa4UKa23JRKgVt+BCzYHpFys3upJC0DfvpcM
+         Oi4ayQ0kV5c4vq7lpdcfq6362T3W0o/JSVKktLefLr7z9K3GSER9SmU+QcRuOhiPHzP9
+         ZfaN2xOBPLgbU9VjNrvZUnSvMEnab0SjnOYWZ/n12h9gN69dgwz9nL7vMt/gkFx6imKF
+         C4rZ5WEYHtij3ss22KjIFfBs8manc3BquB06crrwewtlrIkoG3CVuejF4LIlwTYcSUM9
+         YnlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=pIZhwpifJqOc8phnkh4a9ifyqfRsTCMKA0TsbzimolI=;
+        b=LSwIap4AJPDcUhBG+Jh25knTYYe1lpGZmCapbJQdNYVbZ8pCIh3BT8xSOxo/xKtYqb
+         xwiRbYk8LZShfG8Tt+3I23fwUnbhLHWLJdMrwQvRV9GBxEG5x/qYipNjUBQEtbXyjt+h
+         /kR0taHtvlI3V15l5/waumzJdaURtbfv2jLzwbgrELWum5H/yt5h/4G+fe5KHOH0uNrM
+         ZUIZmToQle3wrBS9s/ahGA34q178ahZn+kwJJ3GhAFpu81i8BTk6ZfGbWfTRfYFNldUh
+         U6+Dkla0dZzVA4k/PgLipdsfnLmmQ0VC1Im4oQBcfCbEe2VEg0zx/JJ8D2daedEJwnzt
+         QOQQ==
+X-Gm-Message-State: AJIora+DTVjNC9heuDdfi/bIgbt+TdZCKRnsn4tO6ovdmkR5I6jXk34n
+        r2h1nTaVvnGh4eheK+QBxzzTLQ==
+X-Google-Smtp-Source: AGRyM1tSHhOzmdD6Hr2s22fF4KammavgIRmSydrVMvER7ybYgJuqTt1fMOo3jf0dX7Ics7E3Fu2zyg==
+X-Received: by 2002:a5d:58cc:0:b0:21d:6919:7daf with SMTP id o12-20020a5d58cc000000b0021d69197dafmr5135376wrf.434.1656924808790;
+        Mon, 04 Jul 2022 01:53:28 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id g6-20020a5d5406000000b0021d6433a7c3sm5999367wrv.72.2022.07.04.01.53.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jul 2022 01:53:27 -0700 (PDT)
+Date:   Mon, 4 Jul 2022 09:53:25 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Saravanan Sekar <sravanhome@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," <andy.shevchenko@gmail.com>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v3 2/6] dt-bindings: mfd: Add mp2733 compatible
+Message-ID: <YsKqhaeMfPAb6Y+m@google.com>
+References: <20220615145357.2370044-1-sravanhome@gmail.com>
+ <20220615145357.2370044-3-sravanhome@gmail.com>
+ <YrnChlCiyzgcyyxl@google.com>
+ <CAL_Jsq++_+rPj94notsUp8SMPLFvq+QG4o_Bm6i2f2HSySDT2Q@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 01/11] dt-bindings: arm: mediatek: Add MT8195 Cherry
- Tomato Chromebooks
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, hsinyi@chromium.org,
-        allen-kh.cheng@mediatek.com, gtk3@inbox.ru, luca@z3ntu.xyz,
-        sam.shih@mediatek.com, sean.wang@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, wenst@chromium.org
-References: <20220630153316.308767-1-angelogioacchino.delregno@collabora.com>
- <20220630153316.308767-2-angelogioacchino.delregno@collabora.com>
- <20220701153111.glbd6gophzipwtjk@notapiano>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220701153111.glbd6gophzipwtjk@notapiano>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq++_+rPj94notsUp8SMPLFvq+QG4o_Bm6i2f2HSySDT2Q@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/07/22 17:31, Nícolas F. R. A. Prado ha scritto:
-> On Thu, Jun 30, 2022 at 05:33:06PM +0200, AngeloGioacchino Del Regno wrote:
->> Document board compatibles for the MT8195 Cherry platform's
->> Tomato Chromebooks, at the time of writing composed of four
->> revisions (r0, r1, r2, r3-r4).
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   Documentation/devicetree/bindings/arm/mediatek.yaml | 13 +++++++++++++
->>   1 file changed, 13 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
->> index dd6c6e8011f9..3e0afa17ed2e 100644
->> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
->> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
->> @@ -144,6 +144,19 @@ properties:
->>             - const: google,spherion-rev0
->>             - const: google,spherion
->>             - const: mediatek,mt8192
->> +      - description: Google Tomato (Acer Chromebook Spin 513)
-> 
-> Hi Angelo,
-> 
-> searching for "Acer Chromebook Spin 513" I found that there are two different
-> chromebooks:
-> 
-> https://www.acer.com/ac/en/US/content/series/acerchromebookspin513
-> https://www.acer.com/ac/en/GB/content/series/acerchromebookspin513cp5132h
-> 
-> The first one is a Qualcomm based one, while the second is mt8195-based, so I
-> assume that's Tomato.
-> 
-> They can be telled apart by the model name though: the Qualcomm one is
-> "CP513-1H", while Tomato is "CP513-2H". So I suggest to add the "CP513-2H" here
-> in the description, as well as in the cover letter, to avoid confusion between
-> the two.
-> 
+On Fri, 01 Jul 2022, Rob Herring wrote:
 
-Hey Nicolas,
-nice catch!
-
-Even though it would be odd for someone to think that we refer to a Qualcomm
-powered Chromebook while checking 'mediatek.yaml'... I agree with you, let's
-specify the model clearly as 'CP513-2H': it fits, so why not!
-
-I'll send a v2 soon.
-
-Cheers!
-
-> Thanks,
-> Nícolas
+> On Mon, Jun 27, 2022 at 8:45 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Wed, 15 Jun 2022, Saravanan Sekar wrote:
+> >
+> > > Add new compatible for mp2733 mfd driver.
+> > >
+> > > Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/mfd/mps,mp2629.yaml | 4 +++-
+> > >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > Applied in place of v1, thanks.
 > 
+> Still failing, pushed out?
+
+Of course not! :)
+
+Please try again tomorrow.
+
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
