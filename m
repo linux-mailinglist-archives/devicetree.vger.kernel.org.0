@@ -2,141 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FB09564F01
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 09:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8C41564F25
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 09:55:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232858AbiGDHu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 03:50:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38612 "EHLO
+        id S232457AbiGDHzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 03:55:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232847AbiGDHuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 03:50:52 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E1F4DA1B4;
-        Mon,  4 Jul 2022 00:50:50 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.92,243,1650898800"; 
-   d="scan'208";a="126598607"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 04 Jul 2022 16:50:50 +0900
-Received: from localhost.localdomain (unknown [10.226.92.214])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id A1EA5422FDEB;
-        Mon,  4 Jul 2022 16:50:45 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 2/6] dt-bindings: can: nxp,sja1000: Document RZ/N1{D,S} support
-Date:   Mon,  4 Jul 2022 08:50:28 +0100
-Message-Id: <20220704075032.383700-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220704075032.383700-1-biju.das.jz@bp.renesas.com>
-References: <20220704075032.383700-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S230470AbiGDHzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 03:55:37 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A36779FE2
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 00:55:36 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id s14so10090782ljs.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 00:55:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=B2nX36DhNE+YPsgSpf2ql/EZ3h6K1ZO8bpe3+8TnPfM=;
+        b=nXTYyZDPmlqhJVymYJBfa1NRZ+TXOznu+2u2I7s5wzLVRNeyF/LItXWtpSPcknsWaD
+         x80uDexpFmuNjZLMW3uB3s9YTUx2c1AZ+aVvWhnJoWGZtHy9WkvVzHOdU8Dp/3BmkdeU
+         ppmhxHLuQwXYwb3TpOARomA+VxzF4qRhB3V6K7XoXjRhcc2/C51NrsRUxPp89PXxdFw6
+         gjVKS2EEymm6a98HIRb/hpGaxs1VB0G5ReVZZZgblbywC53Z6gQrXXNGfXJ/xujsR/Er
+         GyE1u8ELyk4SMvohECidTKdnolWQzMwhKfDYpQfDTdxV45rWZHGdDcYGsHX1B1+yVrpy
+         rO6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=B2nX36DhNE+YPsgSpf2ql/EZ3h6K1ZO8bpe3+8TnPfM=;
+        b=F+wijz6on2ofN4pxKgqXb8hzwpnELZ5e68SXTpNRlMsVCsoARooIuazFqVKM80N1S9
+         QHQV2glZlZFelF/cOZQsK3T28ZpWBb9/qemrpu+U7qhe4XIcyHY3zj7GcM4ugWS5v3AJ
+         4EtNHwbQYlqrJfXYjHrORKsS7zb6HGdyCxpXhlAlR4H2EqE9TzmI2YdnWhEB3WiBJYzE
+         6c4SY8skAjhizwdIpR7/LUVlNZ+934HRZeTu0uWwMy3/Q1pFQtnJC9Wnf66QlobE6KYP
+         ZT3EOFBuK70ZaOlIySOXuJqvtu5BqsYoUFZRfKjHSLSxD9bewIsM4SlYFQlj4r4HOGx2
+         lifQ==
+X-Gm-Message-State: AJIora9qHwkLfF6MsOYXnpcsI+odNGt+raWyB6tcqZTjvjHuMEsoao2s
+        /Fy9lGRIE9roe0Ke6RRakVqM5g==
+X-Google-Smtp-Source: AGRyM1sU96AoUiSmtK7GcqHBoEun+kgEcDD3k31uifc31fPwq4I7gS9lnhrtoen40aoC/4x5NeFCmg==
+X-Received: by 2002:a2e:908d:0:b0:25b:cabc:31a1 with SMTP id l13-20020a2e908d000000b0025bcabc31a1mr15627633ljg.32.1656921335008;
+        Mon, 04 Jul 2022 00:55:35 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id a9-20020a19ca09000000b00477a6c86f17sm5017773lfg.8.2022.07.04.00.55.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Jul 2022 00:55:34 -0700 (PDT)
+Message-ID: <0821acfe-bcfe-b1d8-c1a9-81023f4ab6a0@linaro.org>
+Date:   Mon, 4 Jul 2022 09:55:33 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-bindings: usb: typec: add bindings for stm32g0
+ controller
+Content-Language: en-US
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com,
+        gregkh@linuxfoundation.org, heikki.krogerus@linux.intel.com
+References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
+ <20220624155413.399190-2-fabrice.gasnier@foss.st.com>
+ <ddb0e946-c955-1404-c1cd-c2548f34ec35@linaro.org>
+ <845d6817-d2e4-7925-f7f5-da1102514636@foss.st.com>
+ <286633b2-43d2-655e-b3f1-54bf5c7a4a21@linaro.org>
+ <6ef58f1f-ee8a-b060-6fda-d1388b3ede6d@foss.st.com>
+ <f86dd47c-0fc5-6c93-a49e-534610d10c49@linaro.org>
+ <dfad8fb5-6205-d620-81eb-5d44b9175e05@foss.st.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <dfad8fb5-6205-d620-81eb-5d44b9175e05@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CAN binding documentation for Renesas RZ/N1 SoC.
+On 01/07/2022 12:04, Fabrice Gasnier wrote:
+> 
+> Then I no longer get this warning upon build. But the dtbs_check complains:
+> ---
+> connector: ports: 'port@0' is a required property
+> 	From schema: ..
+> Documentation/devicetree/bindings/connector/usb-connector.yaml
+> 
+> So It looks like to me there's something missing to handle the single
+> port case in usb-connector.yaml, when using the "ports".
+> 
+> Maybe usb-connector could be updated to handle "port" (w/o unit-addr) ?
 
-The SJA1000 CAN controller on RZ/N1 SoC has some differences compared
-to others like it has no clock divider register (CDR) support and it has
-no HW loopback (HW doesn't see tx messages on rx), so introduced a new
-compatible 'renesas,rzn1-sja1000' to handle these differences.
+Not really, the dtc warning looks false-positive. Especially that you
+need port@1 for USB 3.0 (super speed), unless you do not support it?
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * Added reg-io-width is required property for renesas,rzn1-sja1000.
-v1->v2:
- * Updated commit description.
- * Added an example for RZ/N1D SJA1000 usage
----
- .../bindings/net/can/nxp,sja1000.yaml         | 35 +++++++++++++++++++
- 1 file changed, 35 insertions(+)
+> I'm talking about:
+>     required:
+>       - port@0
+> 
+> So, I came up with:
+> 
+> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> @@ -176,6 +176,9 @@ properties:
+>        port number as described below.
+> 
+>      properties:
+> +      port:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+>        port@0:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description: High Speed (HS), present in all connectors.
+> @@ -189,8 +192,11 @@ properties:
+>          description: Sideband Use (SBU), present in USB-C. This
+> describes the
+>            alternate mode connection of which SBU is a part.
+> 
+> -    required:
+> -      - port@0
+> +    oneOf:
+> +      - required:
+> +          - port
+> +      - required:
+> +          - port@0
+> 
+> 
+> Do you agree on this approach ? (I can add a pre-cursor patch to this
+> series, to handle the single port case)
 
-diff --git a/Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml b/Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml
-index d34060226e4e..16786475eae3 100644
---- a/Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml
-+++ b/Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml
-@@ -19,6 +19,16 @@ allOf:
-     then:
-       required:
-         - reg-io-width
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,rzn1-sja1000
-+    then:
-+      required:
-+        - clocks
-+        - clock-names
-+        - reg-io-width
- 
- properties:
-   compatible:
-@@ -27,6 +37,12 @@ properties:
-         const: nxp,sja1000
-       - description: Technologic Systems SJA1000 CAN Controller
-         const: technologic,sja1000
-+      - description: Renesas RZ/N1 SJA1000 CAN Controller
-+        items:
-+          - enum:
-+              - renesas,r9a06g032-sja1000 # RZ/N1D
-+              - renesas,r9a06g033-sja1000 # RZ/N1S
-+          - const: renesas,rzn1-sja1000 # RZ/N1
- 
-   reg:
-     maxItems: 1
-@@ -34,6 +50,12 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: can_clk
-+
-   reg-io-width:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: I/O register width (in bytes) implemented by this device
-@@ -101,3 +123,16 @@ examples:
-             nxp,tx-output-config = <0x06>;
-             nxp,external-clock-frequency = <24000000>;
-     };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
-+
-+    can@52104000 {
-+            compatible = "renesas,r9a06g032-sja1000","renesas,rzn1-sja1000";
-+            reg = <0x52104000 0x800>;
-+            reg-io-width = <4>;
-+            interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-+            clocks = <&sysctrl R9A06G032_HCLK_CAN0>;
-+            clock-names = "can_clk";
-+    };
--- 
-2.25.1
 
+
+Best regards,
+Krzysztof
