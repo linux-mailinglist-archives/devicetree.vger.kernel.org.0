@@ -2,60 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D2E5657D3
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 15:51:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26C095657ED
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 15:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233708AbiGDNvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 09:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57708 "EHLO
+        id S234827AbiGDN4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 09:56:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233529AbiGDNvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 09:51:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63611655D;
-        Mon,  4 Jul 2022 06:51:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D295961594;
-        Mon,  4 Jul 2022 13:51:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 085AAC341CB;
-        Mon,  4 Jul 2022 13:51:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656942668;
-        bh=KvKeOxcHnEj4x6o/YxW2xXiwJTOrRcOqrpTbLSJnsnE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Wz6FlkeDtwnaVwEIaprnDp7s9qkYvSJSJyt4eeUq8wXV1DjeGOF5l41B1wwIyV/V1
-         CK+6rNOInqhxM3DbXlCCyvgszai80R0X+IcfzTWrNjT2k74wO2OCZhaoCI8OTBk40A
-         44CZY03Ha0b4SlHnqYSxqoioZs12vagHUC6M82iJUnISi2Q3DNOnXhjfI6qQBKacqs
-         XX6asUZRfhJg6UBf9jIqq0A5teW0FrSUL8KtxxK2qtMNzKZgHnfMk6CbTUwkHizWav
-         hi5qGBb71JeIk992Nwi8KKL8IUZgUXDCOBkBP5qWmxNHTUPEMdJMuvkuYrtCfv6tV9
-         v0Wk+JRCLcUTw==
-Message-ID: <36d8fbe2-b64d-4997-5836-b2c32e4d987f@kernel.org>
-Date:   Mon, 4 Jul 2022 16:50:51 +0300
+        with ESMTP id S234529AbiGDN4Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 09:56:16 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09BD9D103
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 06:56:15 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id i18so15916231lfu.8
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 06:56:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Y8tf/kMFYwfWY6Q9DD4JUxR8ogCCSX7lOhzrzkly/+E=;
+        b=eraqwl5pKrfGcSwpyEi/PH7EnjWcsUGqNVP3O0kENPxHo/1vcWL1yR3Sxp6+Cu0KMC
+         +uxtZJMDv4f96ABwguszkQcf/nrrYRd/Yd4bdQrh/EcE8C6dqloVoNUWUfSDsJsoVeJb
+         fZE/ip1mj67Jn/El6hZg8aLa+QZfwWlDnVJFp6ZJh7lWng3HaN7pk4+G/JEl/tzRm30b
+         ToAgaSHsup6I+VLHElFl0k2l3IahkSUaosIDB9XLcrsJb5FhIbaGwJ+LdIEpvGaQkTv0
+         0NkymntNXi21OQZcFkymlOcDjVR2btGigsokpu1yZTF06g4klXaiISWcKN3OdhaRscZx
+         J40w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Y8tf/kMFYwfWY6Q9DD4JUxR8ogCCSX7lOhzrzkly/+E=;
+        b=mWoPx77AlP9MTIOxLFu8uZ/wMcjodFzl7Eo9yFihF9a+37bpub1q5LJdy6Km+pA4yi
+         AZWdaExJt2LvjrydKQj6PF/kH+OQp1s3Kz3nBYAB6R0xCnhn5tIEYHXTGKeSjIfwiL05
+         sl/wkKqZuH9OhdDAq8Et/HUo1HJfsW5t5rZvG8UhgEt3K1uUIQRihvfkibbTe8O3UqhY
+         eN5rZlYwyzihqMXEuZEg0WIkt1vYvE/PvPtvvdABlVWPNLG3bLJ9q1GCUaeOL2lKl6Qw
+         G3sHIC7gNSi4ksAR9v7m7NNRRVf6L+3HsR4m/ckaoAojg877urGK7fCQgh1RNVCiSZ2h
+         PMcA==
+X-Gm-Message-State: AJIora9BH5EKaWTqqrA+fXMe4z3lJ5uRDmLv0XgGzBXICR1t5RupzKyU
+        ktObLCSkX+p+r/sNouKl/2brzQ==
+X-Google-Smtp-Source: AGRyM1uiwmRvU31oLYiU1ECksd5NSlXwVDiXq8hQlLzcKKda91nB+pfaCbxy81niZoP6dlKPrekXPw==
+X-Received: by 2002:a05:6512:b1c:b0:481:618f:ec9 with SMTP id w28-20020a0565120b1c00b00481618f0ec9mr11690964lfu.217.1656942973396;
+        Mon, 04 Jul 2022 06:56:13 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id q17-20020ac246f1000000b00478ee191091sm5139288lfo.153.2022.07.04.06.56.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Jul 2022 06:56:12 -0700 (PDT)
+Message-ID: <181a5cc7-c274-06c0-908b-874d48e24913@linaro.org>
+Date:   Mon, 4 Jul 2022 15:56:11 +0200
 MIME-Version: 1.0
-Subject: Re: [PATCH V3 10/10] arm64: dts: imx8mp: add NoC node
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] arm64: dts: ipq8074: add reset to SDHCI
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, abel.vesa@nxp.com,
-        abailon@baylibre.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com, cw00.choi@samsung.com,
-        kyungmin.park@samsung.com, myungjoo.ham@samsung.com
-Cc:     kernel@pengutronix.de, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        abelvesa@kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20220703091132.1412063-1-peng.fan@oss.nxp.com>
- <20220703091132.1412063-11-peng.fan@oss.nxp.com>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20220703091132.1412063-11-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20220704114430.625365-1-robimarko@gmail.com>
+ <7cb6fd46-ac80-fbc5-67f7-920934bb801c@linaro.org>
+ <CAOX2RU5UeeAh0hzYjANd5w+Y4NfxWN0uVtbjQLGOcTzT7ZRkQA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAOX2RU5UeeAh0hzYjANd5w+Y4NfxWN0uVtbjQLGOcTzT7ZRkQA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,70 +81,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Peng,
-
-On 3.07.22 12:11, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 04/07/2022 14:34, Robert Marko wrote:
+> On Mon, 4 Jul 2022 at 14:29, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 04/07/2022 13:44, Robert Marko wrote:
+>>> Add reset to SDHCI controller so it can be reset to avoid timeout issues
+>>> after software reset due to bootloader set configuration.
+>>>
+>>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+>>> index ddafc7de6c5f..d685ca1969a3 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+>>> @@ -482,6 +482,7 @@ sdhc_1: mmc@7824900 {
+>>>                                <&gcc GCC_SDCC1_APPS_CLK>,
+>>>                                <&xo>;
+>>>                       clock-names = "iface", "core", "xo";
+>>> +                     resets = <&gcc GCC_SDCC1_BCR>;
+>>
+>> I looked at the bindings and they do not allow reset property, so does
+>> it depend on anything?
 > 
-> Add i.MX8MP NoC node to make the interconnect i.MX8MP driver could work.
-> Currently dynamic frequency scaling of the i.MX8MP NoC has not been
-> supported, only NoC initial settings are configured by interconnect
-> driver.
+> Hi Krzysztof,
+> It seems like the driver changes [1] were merged at the same time as
+> when bindings
+> were being converted and nobody ever follow up with documenting the property.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->   arch/arm64/boot/dts/freescale/imx8mp.dtsi | 22 ++++++++++++++++++++++
->   1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index eb2d516278eb..13a2ee77d3c6 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -4,6 +4,7 @@
->    */
->   
->   #include <dt-bindings/clock/imx8mp-clock.h>
-> +#include <dt-bindings/interconnect/fsl,imx8mp.h>
+> I can document the property and send a v2 if that's OK?
 
-It's also possible to drop this line for now and add it in the next patches when we add the 
-interconnect consumers. This will allow merging this DT patch independently. But it's up to Shawn.
+Yes, please. Otherwise DTS change will fail checks so basically should
+not be accepted.
 
->   #include <dt-bindings/power/imx8mp-power.h>
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/input/input.h>
-> @@ -1019,6 +1020,27 @@ eqos: ethernet@30bf0000 {
->   			};
->   		};
->   
-> +		noc: interconnect@32700000 {
-> +			compatible = "fsl,imx8mp-noc", "fsl,imx8m-noc", "syscon";
-
-I got the impression that we are dropping the syscon, or not?
-
-> +			reg = <0x32700000 0x100000>;
-> +			clocks = <&clk IMX8MP_CLK_NOC>;
-> +			#interconnect-cells = <1>;
-> +
-> +			operating-points-v2 = <&noc_opp_table>;
-> +
-> +			noc_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-200M {
-> +					opp-hz = /bits/ 64 <200000000>;
-> +				};
-> +
-> +				opp-1000M {
-> +					opp-hz = /bits/ 64 <1000000000>;
-> +				};
-> +			};
-> +		};
-> +
->   		aips4: bus@32c00000 {
->   			compatible = "fsl,aips-bus", "simple-bus";
->   			reg = <0x32c00000 0x400000>;
-Patches 1-9 look good and I am planning to merge them.
-
-Thanks,
-Georgi
+Best regards,
+Krzysztof
