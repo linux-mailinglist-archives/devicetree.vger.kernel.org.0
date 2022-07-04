@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C4A0565861
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 16:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50F77565880
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 16:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233102AbiGDOMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 10:12:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48366 "EHLO
+        id S231741AbiGDOVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 10:21:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233410AbiGDOMX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 10:12:23 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D39D865E3
-        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 07:12:22 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id d5so8641493plo.12
-        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 07:12:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XvMKNURBZmqHrxF8QJGS8F3eP/YEjEThVZ5YkAtR3LA=;
-        b=sHzLNS/B2So35b27QkvNaBk4Jn+rjZp+E9MQO9sYclG8QsVUCjcZggvFhjxs4l9+Uv
-         +dgwwcTeqveqTbqd/w0YIJDEAsIgl9IT/nkHo/LyDydGZ5mGUFOuOTCqZCL02qmOikis
-         +GghU0LJ2Z2kIILUoGxDWTRaD7r2uTxciVOj7jqmZkFA56W7GSl+dyHNHB5/I28UU0jt
-         BDeDsiRO8hXmiib8hguNzM/mqdBni/r/HxG2Qu+3F+MoLik/r7wIUNPmfi3bRmeFCIWu
-         gNTihADRcaaJsTmPagoDdrA+OtUVzOi6BpXzr2NfZ5pSaQweQtrnG/rWb634njxiCmVq
-         heuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XvMKNURBZmqHrxF8QJGS8F3eP/YEjEThVZ5YkAtR3LA=;
-        b=6Xj+5mZ5M4zd2E2W3eKbs4YI87bKfIibGJPBenyLkrdbaq16ymQfR6sYivPbZddCpB
-         cH+jvJh2pbd91tQwRb5DFSxDH1SelmXeuCQ3Wa5k+RAnSLAdSlghwLW5cccFYOrtvf4I
-         WH+yYUSN98MbNq1tYgdyje/CXCseAGKBQ1wjLab4LAN0W0EFgj9vOIhiRWh4N2VorG20
-         UX3nFQgX2VQmGqmu+t2A+OOrCCIQok3Qi4NyXWBYMTlxN84NPXXoGYCGeTK0e9P+QY1+
-         CUBrP8m61GOt1P4WuP27Dbp4Pk5RA1QSnMQJQjYstcigxLKhkEuh1Q/fjnBtJqjFDqce
-         aYzQ==
-X-Gm-Message-State: AJIora/JHhl/tJ4UPhhoaAYJrEDrOinQBEaJQd+fWmhnKJmp9njjUxQk
-        dNRBEIagt3nuWASjQxEg21Nygg==
-X-Google-Smtp-Source: AGRyM1sX+EQSZ3AJZh6255vGBLnZ8wef2aRbNcQk1qdilVus1vftYuMtYm1EkWpVflBclbuaDmSknA==
-X-Received: by 2002:a17:90b:1e42:b0:1ec:f362:8488 with SMTP id pi2-20020a17090b1e4200b001ecf3628488mr36066518pjb.32.1656943942253;
-        Mon, 04 Jul 2022 07:12:22 -0700 (PDT)
-Received: from leoy-ThinkPad-X240s ([154.3.32.171])
-        by smtp.gmail.com with ESMTPSA id n24-20020a170902969800b0016a034ae481sm21235779plp.176.2022.07.04.07.12.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Jul 2022 07:12:21 -0700 (PDT)
-Date:   Mon, 4 Jul 2022 22:12:17 +0800
-From:   Leo Yan <leo.yan@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229473AbiGDOVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 10:21:06 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D217B10B5;
+        Mon,  4 Jul 2022 07:21:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 96067B8104A;
+        Mon,  4 Jul 2022 14:21:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BDB7C3411E;
+        Mon,  4 Jul 2022 14:21:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656944463;
+        bh=12vzbNxNUnFOcp03yedceqZx1z1ZYE4M2dVAZ89UotM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S6p4JmIu5nOOrSEmp2cDT9G8ifOIRlFhh5ky5zveJCGFCzSWMu67zL9jSPMf1YxBY
+         3e63WXwyy+SH3Dair7MaPxlg4BGU5RJHDQELy18y0gTklCzsca/v9/EMU3OWW5Fxro
+         cdwitAqbl6u2dtoGJK523s718hsFw4ALC0tSxZ3Ak46CKMbovkg7vPOJq93N6wGLw5
+         7SJdisdSm8DFJ7KlTDOYx2AGv5nd0YWn0tV73PqwDvCWFr8Gb/EXl7hPYlcNtFgEt5
+         SJdj92agragpITx9sBYrdR19v+FW8SuKN9wyEYq4Y8ZMNcvwVE65lTou36rAZtoVCw
+         gHDIfK2m98gvQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o8Mwh-0006yf-0j; Mon, 04 Jul 2022 16:21:03 +0200
+Date:   Mon, 4 Jul 2022 16:21:03 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v3 1/5] dt-bindings: interconnect: Update property for
- icc-rpm path tag
-Message-ID: <20220704141217.GA961806@leoy-ThinkPad-X240s>
-References: <20220704093029.1126609-1-leo.yan@linaro.org>
- <20220704093029.1126609-2-leo.yan@linaro.org>
- <18f1ee4a-5787-40d7-2eb5-50a43298845d@linaro.org>
- <20220704130712.GD659023@leoy-ThinkPad-X240s>
- <5fa79e89-144c-7261-335a-8f509b182bba@linaro.org>
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/10] dt-bindings: PCI: qcom: Enumerate platforms with
+ single msi interrupt
+Message-ID: <YsL3T8GjDzuxfRtP@hovoldconsulting.com>
+References: <20220629141000.18111-1-johan+linaro@kernel.org>
+ <20220629141000.18111-4-johan+linaro@kernel.org>
+ <c20ba06c-b37a-e91c-84c6-6d2147bb2478@linaro.org>
+ <Yr6ykvru52aDZhFm@hovoldconsulting.com>
+ <20220701183819.GB1284915-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5fa79e89-144c-7261-335a-8f509b182bba@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220701183819.GB1284915-robh@kernel.org>
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,30 +71,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 04, 2022 at 03:50:41PM +0200, Krzysztof Kozlowski wrote:
-
-[...]
-
-> >>>    '#interconnect-cells':
-> >>> -    const: 1
-> >>> +    description: |
-> >>> +      Number of interconnect specifier. Value: <1> is one cell in a
-> >>> +      interconnect specifier for the interconnect node id, <2> requires
-> >>> +      the interconnect node id and an extra path tag.
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>
-> >> Ah, too fast.  No ack. This ref is also pointless and not explained in
-> >> commit msg.
+On Fri, Jul 01, 2022 at 12:38:19PM -0600, Rob Herring wrote:
+> On Fri, Jul 01, 2022 at 10:38:42AM +0200, Johan Hovold wrote:
+> > On Fri, Jul 01, 2022 at 10:33:35AM +0200, Krzysztof Kozlowski wrote:
+> > > On 29/06/2022 16:09, Johan Hovold wrote:
+> > > > Explicitly enumerate the older platforms that have a single msi host
+> > > > interrupt. This allows for adding further platforms without resorting
+> > > > to nested conditionals.
+> > > > 
+> > > > Drop the redundant comment about older chipsets instead of moving it.
+> > > > 
+> > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > > 
+> > > This does not exist in linux-next, so it should be squashed it with the
+> > > previous series.
 > > 
-> > I referred other DT binding file for adding $ref to specify property
-> > type [1], so it's confused why it's pointless, anyway, I can drop $ref
-> > in next spin.
+> > As mentioned in the cover letter this depends on the MSI series that has
+> > unfortunately not yet been merged.
 > > 
-> > Thanks a lot for the review!
+> > That series is self-contained and ready to be merged, so this follow-up
+> > does not need to be squashed in.
 > 
-> The "arm,prefetch-offset" is not a cells property.
+> I suspect that Bjorn would rather squash these in.
 
-Understand.  Will drop $ref for in new patch.
+Sure. Squashing in the compatible-conditional fix makes sense, but the
+motivation for this one is the SoC added by this series so I'd argue
+that it belongs here. But either way is fine with me.
 
-Thanks,
-Leo
+Johan
