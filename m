@@ -2,189 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 651F2565004
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 10:49:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1E20565009
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 10:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbiGDIsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 04:48:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50996 "EHLO
+        id S232898AbiGDIvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 04:51:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231871AbiGDIsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 04:48:15 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A57A1BC35
-        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 01:48:13 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id c15so10281006ljr.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 01:48:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=x6YrgXdgJuHk96zcSzLx5P4aQNGafp08HahAVfIDvNQ=;
-        b=U0FVCyUbDjv6hJgDnDNGA6Y7OeR1Js9TKaIMudF2r2B0L7NoaBcQP5uIp+Y06Sw6hp
-         Ej7EHr5wPEjxx3m8Pd9KFOrPDLo+8Des31+ApwZ5gjkfhTPCo2T31XXOeeXuWp2nf3Yj
-         ftaM62EC6xJN8UJffIfIFTvPTtsAU701ed6OeSU5tlgCYXys4GlQI2x0YgBhGQsd8lA4
-         kDgU8H+r4txu5xLAI7kRanu5ew4VNY3A38NkBiXr4+WTY4IfmIENVYD6kadQx2Z7gT9P
-         q3cyx/2V0n2dh/sqnxx1dOR8BG6TcWqf/9qAKcMPiSBFjgYXQAYPgCA5FUc7FN9BOTM5
-         8NJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=x6YrgXdgJuHk96zcSzLx5P4aQNGafp08HahAVfIDvNQ=;
-        b=GP5E/9i+IyJZwwtlkYvZAvCXxNwGSE+V30Q84edEpuHW1M0kaef/F8F/uEJJ+UC7cv
-         mEuuFbdT/j5HUagwUSW/eYDDD+8qtJB26ke1UhYQVjpZg7iQkBZGxlq1TNmibV0qjJyT
-         BXkikQvCwkZKCpToSJaPH49xiF9O1vEqdPiB89OSXjAymYjaucBaZg+N2a0Vc7Z7OQEh
-         om50nLTQIwXXYw4vQm4ljqfE17CHMTHw9MVkb6MBJZkvFS/TinrlB4aaZix7Hb1Ia3iD
-         18mncgroh4bU2l3WTTZJYBde22S94UcTjE5V05wFK8AKDKFhv17BZ5lgBVSBL1GLlZc9
-         iCdA==
-X-Gm-Message-State: AJIora9QskHwl2kXd+IJqou0C7ZwAtqR9sco7j/gldli67itSSluy/83
-        w5sDoPMxumvmLCssjfUOB5p+WA==
-X-Google-Smtp-Source: AGRyM1ugMP7vXlWpCyPYsCILvvEMOBppXRlOIsGBTBGpK5YsaS1Q7c7VXr62syPXM3cr/3QOlaCv/w==
-X-Received: by 2002:a2e:bd13:0:b0:244:da2f:ff4d with SMTP id n19-20020a2ebd13000000b00244da2fff4dmr15361779ljq.213.1656924492053;
-        Mon, 04 Jul 2022 01:48:12 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac25f08000000b00478f1bd611csm5027189lfq.284.2022.07.04.01.48.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Jul 2022 01:48:11 -0700 (PDT)
-Message-ID: <9124be7e-2512-da31-631f-e74ae8c3175c@linaro.org>
-Date:   Mon, 4 Jul 2022 10:48:10 +0200
+        with ESMTP id S231668AbiGDIvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 04:51:31 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDCD1145;
+        Mon,  4 Jul 2022 01:51:30 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5232E6601638;
+        Mon,  4 Jul 2022 09:51:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1656924689;
+        bh=06W+b6RL3osPIk+iBasdY5Wk4bfRW2/i6Z/FRiPkz6w=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZNwSe8DAIq9PDy8NpAkLp1m+dZI4MiloI3sMQiWFzvhu6wpBeSbiQUsNuQ2rHhp1B
+         DpQH311R7NfzbMDBmzJB5I24BebrerlG0NoP1y7bqbc3g6pprFizDvN2vOP2EuRZPl
+         TtaVAoKZc9aHynzqWFROX5El67b+I1Zh8+k0Zxz0ugXTR6hfeeYZv3MKrO1FFAwNcy
+         hsUuKf/yNMNmiWyC5h3V1bK8X9rjI7Gg1E/YBPBp8kuFbR6bmRza+ya6hW1ql10yif
+         jOANStZJGVVXHQ3FFkY5/DjCun0+n08JaI8S3QCM8w/4XMwArH6uziMX9pvM1aS/Jj
+         k/zS5NDy/salg==
+Message-ID: <515d5b84-e625-5908-aa00-b2f03e77fe3b@collabora.com>
+Date:   Mon, 4 Jul 2022 10:51:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 2/6] dt-bindings: can: nxp,sja1000: Document RZ/N1{D,S}
- support
+Subject: Re: [PATCH 01/11] dt-bindings: arm: mediatek: Add MT8195 Cherry
+ Tomato Chromebooks
 Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-References: <20220704075032.383700-1-biju.das.jz@bp.renesas.com>
- <20220704075032.383700-3-biju.das.jz@bp.renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220704075032.383700-3-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, hsinyi@chromium.org,
+        allen-kh.cheng@mediatek.com, gtk3@inbox.ru, luca@z3ntu.xyz,
+        sam.shih@mediatek.com, sean.wang@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wenst@chromium.org
+References: <20220630153316.308767-1-angelogioacchino.delregno@collabora.com>
+ <20220630153316.308767-2-angelogioacchino.delregno@collabora.com>
+ <20220701153111.glbd6gophzipwtjk@notapiano>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220701153111.glbd6gophzipwtjk@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/07/2022 09:50, Biju Das wrote:
-> Add CAN binding documentation for Renesas RZ/N1 SoC.
+Il 01/07/22 17:31, Nícolas F. R. A. Prado ha scritto:
+> On Thu, Jun 30, 2022 at 05:33:06PM +0200, AngeloGioacchino Del Regno wrote:
+>> Document board compatibles for the MT8195 Cherry platform's
+>> Tomato Chromebooks, at the time of writing composed of four
+>> revisions (r0, r1, r2, r3-r4).
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   Documentation/devicetree/bindings/arm/mediatek.yaml | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+>> index dd6c6e8011f9..3e0afa17ed2e 100644
+>> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+>> @@ -144,6 +144,19 @@ properties:
+>>             - const: google,spherion-rev0
+>>             - const: google,spherion
+>>             - const: mediatek,mt8192
+>> +      - description: Google Tomato (Acer Chromebook Spin 513)
 > 
-> The SJA1000 CAN controller on RZ/N1 SoC has some differences compared
-> to others like it has no clock divider register (CDR) support and it has
-> no HW loopback (HW doesn't see tx messages on rx), so introduced a new
-> compatible 'renesas,rzn1-sja1000' to handle these differences.
+> Hi Angelo,
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2->v3:
->  * Added reg-io-width is required property for renesas,rzn1-sja1000.
-> v1->v2:
->  * Updated commit description.
->  * Added an example for RZ/N1D SJA1000 usage
-> ---
->  .../bindings/net/can/nxp,sja1000.yaml         | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
+> searching for "Acer Chromebook Spin 513" I found that there are two different
+> chromebooks:
 > 
-> diff --git a/Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml b/Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml
-> index d34060226e4e..16786475eae3 100644
-> --- a/Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/nxp,sja1000.yaml
-> @@ -19,6 +19,16 @@ allOf:
->      then:
->        required:
->          - reg-io-width
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,rzn1-sja1000
-> +    then:
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +        - reg-io-width
->  
->  properties:
->    compatible:
-> @@ -27,6 +37,12 @@ properties:
->          const: nxp,sja1000
->        - description: Technologic Systems SJA1000 CAN Controller
->          const: technologic,sja1000
-> +      - description: Renesas RZ/N1 SJA1000 CAN Controller
-> +        items:
-> +          - enum:
-> +              - renesas,r9a06g032-sja1000 # RZ/N1D
-> +              - renesas,r9a06g033-sja1000 # RZ/N1S
-> +          - const: renesas,rzn1-sja1000 # RZ/N1
+> https://www.acer.com/ac/en/US/content/series/acerchromebookspin513
+> https://www.acer.com/ac/en/GB/content/series/acerchromebookspin513cp5132h
+> 
+> The first one is a Qualcomm based one, while the second is mt8195-based, so I
+> assume that's Tomato.
+> 
+> They can be telled apart by the model name though: the Qualcomm one is
+> "CP513-1H", while Tomato is "CP513-2H". So I suggest to add the "CP513-2H" here
+> in the description, as well as in the cover letter, to avoid confusion between
+> the two.
+> 
 
-This explains usage of oneOf, but still earlier entries should be just
-an enum.
+Hey Nicolas,
+nice catch!
 
->  
->    reg:
->      maxItems: 1
-> @@ -34,6 +50,12 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: can_clk
+Even though it would be odd for someone to think that we refer to a Qualcomm
+powered Chromebook while checking 'mediatek.yaml'... I agree with you, let's
+specify the model clearly as 'CP513-2H': it fits, so why not!
 
-Skip entire clock-names. Does not bring any information, especially that
-name is obvious.
+I'll send a v2 soon.
 
-> +
->    reg-io-width:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: I/O register width (in bytes) implemented by this device
-> @@ -101,3 +123,16 @@ examples:
->              nxp,tx-output-config = <0x06>;
->              nxp,external-clock-frequency = <24000000>;
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
-> +
-> +    can@52104000 {
-> +            compatible = "renesas,r9a06g032-sja1000","renesas,rzn1-sja1000";
+Cheers!
 
-Missing space after ,
-
-Wrong indentation.
-
-> +            reg = <0x52104000 0x800>;
-> +            reg-io-width = <4>;
-> +            interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&sysctrl R9A06G032_HCLK_CAN0>;
-> +            clock-names = "can_clk";
-> +    };
-
-
-Best regards,
-Krzysztof
+> Thanks,
+> Nícolas
+> 
