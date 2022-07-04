@@ -2,116 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3136456509E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:22:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2667F5650A9
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231544AbiGDJWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 05:22:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47938 "EHLO
+        id S233488AbiGDJYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 05:24:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230204AbiGDJWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 05:22:16 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF9201A8;
-        Mon,  4 Jul 2022 02:22:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1656926518;
-        bh=HMoS1mHTCb0aYIM2kEvkDESvBr9nhP5ZQSnCcrmAqkI=;
-        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=WM3DaYkAIQno5AiQpSFJZ/AhXVLC53+aKqhmQ7ph6FNDS7aSVSi9DGzhzWJ9MSEyP
-         6Gh35+TryZWkjGrvaaMdH61meuw4EgecIxAlQTa+99xqkMR4VXSEc96vQ+jrNTCFuj
-         81bquO/UGG8enqtTrcrChOaUvbSQ1XrMkDWKhqgo=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.0.69] ([46.223.3.210]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N17UQ-1nRr3s2qHC-012VwD; Mon, 04
- Jul 2022 11:21:58 +0200
-Message-ID: <e000058a-0f19-a598-9fba-b745a2f2bca5@gmx.de>
-Date:   Mon, 4 Jul 2022 11:21:56 +0200
+        with ESMTP id S233468AbiGDJX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 05:23:59 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE137BE28
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 02:23:56 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id a13so14711565lfr.10
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 02:23:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=gEkepMaBkHVC2/CE/jh1RZ/vr0fzI6HMSVlofQpVza4=;
+        b=L7K/Jvu8bcWoR9RIA7JJL0QEJ+w8IorauhV75Xun3Ik01Db8HJovAgOUWzTD1R0ri5
+         1P65gJDfs0pwBWaE4fl2obnU62qRxJNA9QgjtsBXMDoAM850EfZNIaMbJwTWwcKZoLi8
+         q/xevpms8EK+5B+w3oUS/lOO9SSl5PgzDQ7MhP+4OUsLUjzsDkTF7qKBlE3BV9xzkEYS
+         0Im+XFqHuhwCr6GEso3DPWKpTyHlcPNHY9PJecJHV9qFqBzR1kdy451ncPWPXldvjiNy
+         a8Gmjn+sCUe4G75b2dn4Nf9V3bWQMHQwZsUL4In4JOgxl1cgOfV8XDi+HRKcYIpRgCb2
+         xZrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=gEkepMaBkHVC2/CE/jh1RZ/vr0fzI6HMSVlofQpVza4=;
+        b=44toTjlauUagXBTs5jmbvToGsOHvkA+78wDfMCAnouhpDD/fs23iP4P7YJKqZTmMtV
+         VOWyUl6bhTxw4BBd5tHGNc50OMN0Dj28lei4mw6J2Kpu+j4AL74VGap0nQgDpeAHd5Xq
+         cIAXSk87lbTBPqH5FZMkQTNPdBKd49dyU8Tj6+I4Ygr98u47EMbd0o/5bQ5GK7SYeWWy
+         yLDamYVAwd0OEdBAqWgcEQ+3iHY6wkXOVouJrVffkiSWHUJpG2CdkBA0gvCM8LKM+NM4
+         jxNgCDxSyNtlJiefq5Cpwe/0J+ujPyOJj981BBtfBthDH2IZHDNS4JVx2n/91U/mL9fP
+         JwbA==
+X-Gm-Message-State: AJIora9ood2ZlyFAAg8/Xk/+45KM/m5bRDb6CHO44WkNV5GkNMiV1QZ1
+        /R8f/gmGpyD9NY/MYDHCcdOVfQsSF502cSUUZ14=
+X-Google-Smtp-Source: AGRyM1viicRg99hUZ/Eo0vTqxap/j+KXFJUHm3JG7B/GEfmaW8k7PL8GwsphIO/CJqkkdkiQFz33Xr+yH16zWd8gsFo=
+X-Received: by 2002:a05:6512:683:b0:481:6f0:8853 with SMTP id
+ t3-20020a056512068300b0048106f08853mr17491063lfe.365.1656926634791; Mon, 04
+ Jul 2022 02:23:54 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 7/9] serial: ar933x: Fix check for RS485 support
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lukas Wunner <lukas@wunner.de>, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-References: <20220703170039.2058202-1-LinoSanfilippo@gmx.de>
- <20220703170039.2058202-8-LinoSanfilippo@gmx.de>
- <CAHp75VfTYv51ZcBJHR3Ms9HQWjPccigrjUxHUq4NixKXdvm5Ew@mail.gmail.com>
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-In-Reply-To: <CAHp75VfTYv51ZcBJHR3Ms9HQWjPccigrjUxHUq4NixKXdvm5Ew@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Id1qi+1KGG9/mHMREikhKJXKJOm/mC299e/p+NZbAkVEh27OVQg
- zwdMhY2XvJFVbqed0wPJ7GZ3rSRxEL7YixQ6Lqxkq5CNBgaeh7uEvnapxfMag6aDy3USTBH
- qZLnCLJBVFZXfAGxTo0ncncejiGb35pPxBh69g483NaeibrfCX11vmTzTN7rkOuohhTWJJJ
- 9dJ/rmLbAYhhGt/q4yGCQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:acCP9qqwCv0=:ZPPf5ravFzQ+wjQizxVBmy
- jeewtXeAw2rGN3XPgRCtHqK3Cdr4FnkXsNI+nVeNWeroBol5I3I9kxz+IdTLNxZFSZQhBZGcP
- 50jop2Fyw78WHlhYJnO8lwDMFvBxgF4LGhyxNbwwWZSS05ZxSX9Qjvk3ACqdeLABFdhZg/jDu
- 5PVHPBEPpotDUbWi2rqzRkS8f2WssgMo4kw93/2z0nWqkooD16SVrQCsVAXP0LR+SsPG7lrqO
- zdOWFdbp5AjXSs1/DH41FGcNg4A5gGXn29lMzRZMUW+NeydKBswhqCeTa7VFj1qVc0q/hVM+A
- cUByeL6DaOKbba+tkbCoPBgP3FO66drIBwWJCMlOwCkp+/cvlgj6qIR0cKn6FLbVZ1l+Uqafh
- ueRDIOh0iMaJimfUZdZxmtDxCXEkKUofbyYaotRlZgdhQBVGgGETyyXA8TriqimsPmLrX3NFd
- Bovt7WEOqQ7M955ILMdbXkLtDH/DiaXKPzOcZFkwLy98ttlsNB0XTFHuN/FowwEy9KRpS8gvD
- Jpr+BgZfzRU4NfXM9jXQAv2jQEKmVURIwdTYs0gxJG9zSb9nh0izcKGs+Lfjqza8F0zjOAt8k
- Nms3urCYkFX96/OXMn/NM8219Y99qB6JKDraAy75JGXwGk5xFzvI5rySTKLzh64tZ6thVxUY9
- /DS+DQ94p8kI66NBmsSF1iDb7RRMEptjDj7qbzXCKpqCgzI+DIPQLxpR4bsguVpkUWXshniNN
- W3sgH48n+68R0GCIKWFiQfVxQtNZZojT2YA22ljlhCtQsbWoLRIW1QV8m0zHoU7EuYt7NDDT8
- gzvMZrFbv0IPza8pejF8pGZ/eDsmBvPRvj6LNySTmziC9HhH4DualX2/dOuE/3+11YHEHc9XT
- O/Qz9usxjs5iXHKf3q69hHBeBTTpmLoCSpx+hq5l0YaqGIdVAZjpPL1+sRNGz9VRSaUcKSYP0
- YgIrAPRVlUDFn9iqkTx7YTks35U2Ul8nWNHHR3kAfFyVYJ2K72c0WT8KmemfuQGT9bei6pyFh
- ep/8m9N0pDkRlPlRMh9NeOWZ2/TOT3gggN+zudv1gtxex+tikSYDRcIwWJ9BR0rJ7PI2xcbPa
- HA+5TG+MpXSR3HbAqNWxRCkuaLFKdvg+oiY/ze6rYCi8jgcHemGlknc9Q==
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:ab3:7855:0:0:0:0:0 with HTTP; Mon, 4 Jul 2022 02:23:54 -0700 (PDT)
+Reply-To: hj505432@gmail.com
+From:   "Barrister. Ben Waidhofer" <omaloabrahamosama@gmail.com>
+Date:   Mon, 4 Jul 2022 02:23:54 -0700
+Message-ID: <CAOexQHGkyj5PXLnuookGfETa6kg4GYpnHsH11UW++7G6B_YfLw@mail.gmail.com>
+Subject: Investment offer
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+                                         Barrister. Ben Waidhofer.
+                                              Chambers & Partners.
+                                                42 Parker Street
+                                                      London
+                                                    WC2B 5PQ.
 
 
-On 03.07.22 20:39, Andy Shevchenko wrote:
-> On Sun, Jul 3, 2022 at 7:02 PM Lino Sanfilippo <LinoSanfilippo@gmx.de> w=
-rote:
->>
->> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
->>
->> Without an RTS GPIO RS485 is not possible so disable the support
->> regardless of whether RS485 is enabled at boottime or not. Also remove =
-the
->
-> boot time
->
->> now superfluous check for the RTS GPIO in ar933x_config_rs485().
->>
->> Fixes: e849145e1fdd ("serial: ar933x: Fill in rs485_supported")
->
-> Is it an independent fix? If so, it should be the first patch in the
-> series, otherwise if it's dependent on something from previous patches
-> you need to mark all of them as a fix.
->
+..I am the above named person from the stated law firm in London. I act
+for Mr. Andrew Walker, a former loyalist and a personal Friend to the
+President of Russia Vladimir Putin presently in London; he flew into
+the UK months ago before the invasion of Ukraine by Russian government.
+The sum of $3.5b was deposited in a Private bank in Switzerland for
+the procurement of MIC war equipment from North Korea to fight the
+war, but he has decided to back out of the initial plan to divert part
+of the fund for investment in a viable venture.
 
-The fix is independent, patch 8 depends on the fix however. I was not
-aware of this fixes-first rule for series with patches that are independen=
-t
-from each other. I will change the order accordingly in the next version o=
-f the series.
+There is a need for a matured and trusted individual or corporate
+organization to receive part of the fund. All the needed documentation
+will be perfected here in London.
 
-Thanks,
-Lino
+You are at liberty to respond for more detail.
+
+Thanks.
+Regards,
+Barrister. Ben Waidhofer
