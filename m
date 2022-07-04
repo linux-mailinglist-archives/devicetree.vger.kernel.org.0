@@ -2,63 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E204565394
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 13:33:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 752035653B5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 13:36:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234077AbiGDLdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 07:33:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44392 "EHLO
+        id S234345AbiGDLgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 07:36:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233942AbiGDLdX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 07:33:23 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3F9E88;
-        Mon,  4 Jul 2022 04:33:21 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id r18so11301342edb.9;
-        Mon, 04 Jul 2022 04:33:21 -0700 (PDT)
+        with ESMTP id S233401AbiGDLgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 07:36:07 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2906AFD29;
+        Mon,  4 Jul 2022 04:36:01 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id lw20so16255499ejb.4;
+        Mon, 04 Jul 2022 04:36:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=uISEbHJkHg+LEqbPo3bae9ouqkQHAUMU2B39TEtx3IM=;
-        b=dzmj2xWm6eSskZQBMCsfD48QgA7TdfhmhaOVbRJ2tfU6HQHxuDV/dUl2WUcjhUxvrC
-         gr6yLEcqCxUN5UYBsH1YRtYj9HGJJmGEoqyD5O3tgUtTnNRirlzw4jFRmVX7sMu3T6aa
-         wKCcWkWJrefr9dFaJx4FZwGZh0wZ/kghKazaPv/ox/+P/6UGBX69ybkrgk+TZVpOCBXD
-         2foxv9e+zqVyMPCG38J0dpw2lrAW7h1BGvUBp7Ro5Wq4M3hDMXhT930wExbYZCTRoJNc
-         IczFduVUPZ+Akl3mTYUHDYSyw65k+8y6DNbJlEJvPO+0SBaN7JLo5D2WPWQJ+JVk0e8k
-         No1Q==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0aIGlqcgCn/YTg5HHzWZ8DwAqY9DnpV3nvPZa0+ECR8=;
+        b=jg/tik05NVZMTks/DSZe6tsevVMUxmFiVoIruozLWe2xuR1DzLM0w6wZSe6dTFefDm
+         QQdGb1Q0adnkGKtXgIOOxXYuGIEKQB5DOT588r1A8yd6zy+AtihpV7hWAuhLfnKKBrJL
+         bOh6cVlixBy/8yNwTUx9nHIvhyviRc8rPdl7NEigfk3ODnmIsrVSZu8PJcNtoTWP8ejU
+         ZDnWh8cP9liIFHAU08KkCw1WFv/UT8qPvBWZVcG15YvugvSVvNDjEETJY/dSnbHbm1wO
+         Dgel1Wjd219PzTlaePNQU/Z/wPHkr5GCTg6xsldWWpenFDMXKq89jMJycziiXsO1WxfM
+         Ubcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=uISEbHJkHg+LEqbPo3bae9ouqkQHAUMU2B39TEtx3IM=;
-        b=qVIutjStFs26khSW6kFloYSBdgEjrU34WNGzraFR3lC8v9LPJI147R61nHspspWtCd
-         ARyZMK59NEz8DnG8ko2+2hD+tYTT1RX3wzbz+HVsO0nMwmt7NX+XlHPTgVAKTHrTufbO
-         oW1iKC63ZoDSQXIeWA8KQ/dIeeBZzRVzTu9m/D3dVRgJHQufW66vV78vE/B0QVBAxZN9
-         SsRYuzSowkILcL537yzd+OeQ9LpNzx+BeBunhrRGC+FanyoyCfDuGuddPFZdNqWynPuD
-         E6p2Y6QyrLTsMBtDoi4Bm6vUwbVbNJfHkhFt/FZvLGOiR1aZ5oWUisAE5mBI4MmMNzmF
-         bXzg==
-X-Gm-Message-State: AJIora9fSOYIPSS3bcKPQPjABfYoTpR6UPD8SXL80zf+HfrU7uTAiN1G
-        0HbTv4xOvv/ojW91ZDfkAgw=
-X-Google-Smtp-Source: AGRyM1t+ayVebEnERBQsS76YfAYD0xB3AMp9xItFk+buPPIwHLF0IGQtmV0R6+WVPDpM3l6Pyd2vPw==
-X-Received: by 2002:a50:fc15:0:b0:435:7897:e8ab with SMTP id i21-20020a50fc15000000b004357897e8abmr38380577edr.17.1656934400109;
-        Mon, 04 Jul 2022 04:33:20 -0700 (PDT)
-Received: from fedora.robimarko.hr (dh207-99-90.xnet.hr. [88.207.99.90])
-        by smtp.googlemail.com with ESMTPSA id x21-20020aa7dad5000000b0043a2338ca10sm3065443eds.92.2022.07.04.04.33.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Jul 2022 04:33:19 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH] arm64: dts: ipq8074: move ARMv8 timer out of SoC node
-Date:   Mon,  4 Jul 2022 13:33:18 +0200
-Message-Id: <20220704113318.623102-1-robimarko@gmail.com>
-X-Mailer: git-send-email 2.36.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0aIGlqcgCn/YTg5HHzWZ8DwAqY9DnpV3nvPZa0+ECR8=;
+        b=IWjpLtgdmY7Qo7LCTfGBvyhakJui+Qdvs9hNgqBhGvjZyrKlT18l9orGLyf+7p22dA
+         RM8IleQtADmiUMkSxS8yy/nwKHdZJahK5I8p/plMXTzo4JQoTglibmTtlUi+Zy/Px0Rg
+         2rAJDjrA89eqvBZ3mOSM6Ai6+GsQ3NFZH0nFnTFh9j36Fij0VDxsk+uKDD5O7peYvnJP
+         VOUzNkm1HxH3irWmK3C+3SXM7bXw3z0yyURb7/H85DK8FR2pEbgiYVEiewnXEVux9uqU
+         x42ZMi9TtClSKu3adt8J/aQ+yHCz6IwvYN+52LKKosfGQA0ZU466njCBOsomID5W2PlZ
+         otzg==
+X-Gm-Message-State: AJIora9wBTfXAGqhzKwY20wTXd+WuvvsB7HTRvcA8KCL0/vwrgHsOsvX
+        HWiuVmDzxypc/WTfWy+nLre+d7XZbbIVwwIxPqM=
+X-Google-Smtp-Source: AGRyM1tl31k3c5SOlRTZWyreyxtcgBnhBMYbIvLrxaq0UnwsbYCEy4jAc6rcR42c2kvcYDzPa0qi6SDI9riI4+wygUs=
+X-Received: by 2002:a17:906:4985:b0:727:c6ac:5b31 with SMTP id
+ p5-20020a170906498500b00727c6ac5b31mr27940905eju.501.1656934559712; Mon, 04
+ Jul 2022 04:35:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220703194020.78701-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220703194020.78701-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWDQYp+ub+GW8mBb=fFz9KJH5ZwxKe28cDj_0O6E0FN+w@mail.gmail.com>
+In-Reply-To: <CAMuHMdWDQYp+ub+GW8mBb=fFz9KJH5ZwxKe28cDj_0O6E0FN+w@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 4 Jul 2022 12:35:32 +0100
+Message-ID: <CA+V-a8sa1Y8OnnauAB9E_F6SnG42TThd9=e=RmGwQoSq03Sd3g@mail.gmail.com>
+Subject: Re: [PATCH v7 1/5] dt-bindings: interrupt-controller: Add Renesas
+ RZ/G2L Interrupt Controller
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -69,51 +81,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ARM timer is usually considered not part of SoC node, just like
-other ARM designed blocks (PMU, PSCI).  This fixes dtbs_check warning:
+Hi Geert,
 
-arch/arm64/boot/dts/qcom/ipq8072-ax9000.dtb: soc: timer: {'compatible': ['arm,armv8-timer'], 'interrupts': [[1, 2, 3848], [1, 3, 3848], [1, 4, 3848], [1, 1, 3848]]} should not be valid under {'type': 'object'}
-	From schema: dtschema/schemas/simple-bus.yaml
+On Mon, Jul 4, 2022 at 9:44 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Sun, Jul 3, 2022 at 9:41 PM Lad Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > Add DT bindings for the Renesas RZ/G2L Interrupt Controller.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> checkpatch.pl:
+> WARNING: From:/Signed-off-by: email address mismatch: 'From: Lad
+> Prabhakar <prabhakar.csengg@gmail.com>' != 'Signed-off-by: Lad
+> Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>'
+>
+Ouch my bad, not sure why send-email didn't pick up the --from option.
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index e0bd202e4eae..9f5798f4825d 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -143,6 +143,14 @@ m3_dump_region: m3_dump@51000000 {
- 		};
- 	};
- 
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
- 	firmware {
- 		scm {
- 			compatible = "qcom,scm-ipq8074", "qcom,scm";
-@@ -852,14 +860,6 @@ gic_v2m0: v2m@0 {
- 			};
- 		};
- 
--		timer {
--			compatible = "arm,armv8-timer";
--			interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--				     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--				     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--				     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
--		};
--
- 		watchdog: watchdog@b017000 {
- 			compatible = "qcom,kpss-wdt";
- 			reg = <0xb017000 0x1000>;
--- 
-2.36.1
-
+Cheers,
+Prabhakar
