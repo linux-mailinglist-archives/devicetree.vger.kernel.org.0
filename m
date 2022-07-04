@@ -2,157 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3404656508A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81482565097
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232593AbiGDJO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 05:14:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44194 "EHLO
+        id S233657AbiGDJUI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 4 Jul 2022 05:20:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233281AbiGDJO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 05:14:58 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03770BC3E;
-        Mon,  4 Jul 2022 02:14:55 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id s1so12501804wra.9;
-        Mon, 04 Jul 2022 02:14:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Yc4lYWwzEOzXTvm8qWxOUdmsNeEUzr98rKILhdcSP3c=;
-        b=dADAT3F3oDXchB4cPDwVEhVt7H1zHQeWzAfcL5bsqsLXd3HMdhmFnAEoEuazs3GIel
-         puP2n4cAPXgfL2o0tRZKrrOl4sCUKYCcaD9P/ZYlCPg3hjgl1LUpy9YvB/LAnJjOfa7O
-         R5gVtbMFH4a0o1hdDmi4oGD+zlHrXz5tuQFaAcpzNp70PBXhrbv/QxjOAvk+a49tZxzC
-         8R1XI9ZqcfsFAn45/oNvC7mt+FiPrKkzulEyPIixkYX+Dx73udeAV1aARwYyuATbDjp0
-         POBaxrFiMzf+Llzy6/qayqbe5cj5ZeyiEiGzCzp8kxVUylAnG2IB7pQhy2p3iziec3YZ
-         +1Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Yc4lYWwzEOzXTvm8qWxOUdmsNeEUzr98rKILhdcSP3c=;
-        b=zzXkDRZj9HHfpDbEsjvtBw2oguiqlXsrOC/5Aq7yYfxizClbqIDUiB7S/mxO1Ar1wj
-         HOZ8nhFC/44NsgXnrbVOwQB3LM0k0JrsXhckpG2DGnsjw/ywHMWno/ki0OpJ333K2GJd
-         I4MR9AAxljIjiv+iY8MmvU0oIhJThKxsueckN4o3esifc3a2yCI9yS+skDyMU9RmigW4
-         ZRLQR5ed4TIpDO6KZWwtGyA1lPphGXIrRejJ8vHpEtqGFnpze3pxi+C3/4TVIZ4NEJDT
-         rl2qm8fCRUo24snqncbRMskWKIqq+RnJ2gyxbxSBdhfPQjQtLsKw9OFTw9pfHyZh7ru/
-         r9/Q==
-X-Gm-Message-State: AJIora9796VwwxjONgcyREo7UJmZh08WACHUf+CF64xPn646+BM21sOW
-        CkOrkrIb+2ceXcrkvuoXsmhDPb/YuvLNGrVB6hk=
-X-Google-Smtp-Source: AGRyM1vCPUyNA+nFhTXDc7wYqahvznxwTVhF4YLMHCSyKk2h1OxUqgzQyfDddA7JfsLDA7eO5RGZ9wqjioeMB2GTZJs=
-X-Received: by 2002:adf:f043:0:b0:21d:6a90:f3e6 with SMTP id
- t3-20020adff043000000b0021d6a90f3e6mr3711342wro.277.1656926093427; Mon, 04
- Jul 2022 02:14:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <1655892104-10874-1-git-send-email-u0084500@gmail.com>
- <1655892104-10874-3-git-send-email-u0084500@gmail.com> <Yrm9ObaltUiQUTqS@google.com>
- <CADiBU3802sLTPjrGiaQ-xw-2jep1UXo+t7pYc6bCC4MiJLhOyA@mail.gmail.com>
- <CADiBU3838Mgi3sqv+R_=8g-ROTrbN45AKPaTS_9GCWVDYASMyg@mail.gmail.com>
- <Yr6kVg2OlHkm6+bB@google.com> <CADiBU396poOuzdGABzTazouM5MX=auZ9OdyT_sqWrKnZk3tFRw@mail.gmail.com>
-In-Reply-To: <CADiBU396poOuzdGABzTazouM5MX=auZ9OdyT_sqWrKnZk3tFRw@mail.gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Mon, 4 Jul 2022 17:14:41 +0800
-Message-ID: <CADiBU3_7MmPkfV7-B8rhxFRtZcrJ6BPocXzT4bs3cu36UR5XGw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] mfd: rt5120: Add Richtek PMIC support
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233527AbiGDJUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 05:20:07 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CBC51A8
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 02:20:06 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o8IFJ-0006pD-Is; Mon, 04 Jul 2022 11:19:57 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o8IFD-004LI3-0I; Mon, 04 Jul 2022 11:19:54 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o8IFF-0004PA-Pd; Mon, 04 Jul 2022 11:19:53 +0200
+Message-ID: <36ebb15c321f33176ed8c064b4a58a739acb8727.camel@pengutronix.de>
+Subject: Re: [PATCH v7 2/5] irqchip: Add RZ/G2L IA55 Interrupt Controller
+ driver
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Lad Prabhakar <prabhakar.csengg@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>, dmitry.torokhov@gmail.com,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        cy_huang <cy_huang@richtek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        linux-input@vger.kernel.org
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Date:   Mon, 04 Jul 2022 11:19:53 +0200
+In-Reply-To: <20220703194020.78701-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220703194020.78701-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+         <20220703194020.78701-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Lee:
+Hi Prabhakar,
 
-ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=881=E6=97=
-=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=885:56=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Lee Jones <lee.jones@linaro.org> =E6=96=BC 2022=E5=B9=B47=E6=9C=881=E6=97=
-=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=883:38=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > On Fri, 01 Jul 2022, ChiYuan Huang wrote:
-> >
-> > > HI, Lee:
-> > >
-> > > ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B46=E6=9C=882=
-7=E6=97=A5 =E9=80=B1=E4=B8=80 =E6=99=9A=E4=B8=8A10:56=E5=AF=AB=E9=81=93=EF=
-=BC=9A
-> > > >
-> > > > Lee Jones <lee.jones@linaro.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=882=
-7=E6=97=A5 =E9=80=B1=E4=B8=80 =E6=99=9A=E4=B8=8A10:22=E5=AF=AB=E9=81=93=EF=
-=BC=9A
-> > > > >
-> > > > > On Wed, 22 Jun 2022, cy_huang wrote:
-> > > > >
-> > > > > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > > > > >
-> > > > > > Add Richtek RT5120 PMIC I2C driver.
-> > > > >
-> > > > > Why a whole new driver?
-> > > > >
-> > > > > How different is this to rt5033?
-> > > > >
-> > > > > Looks like this could easily be woven into this existing support?
-> > > > >
-> > > > It's different with the function domain.
-> > > > RT5033 is most like as the SubPMIC that includes PMU (battery
-> > > > charger/gauge/led/few buck and ldo)
-> > > > RT5120 is a main PMIC with default-on power that follows the boot o=
-n sequence.
-> > > > RT5120 only integrates regulator and power key report module.
-> > > >
-> > > Since I have explained the chip difference, do you still think it's
-> > > better to merge this code into rt5033 mfd?
-> >
-> > I think it's okay to group devices which are similar but not exactly
-> > the same, if they can be.  The integration of this device into the
-> > other looks trivial to my naive eyes.
-> >
-> > A PMIC is a PMIC, main or sub.
-> >
-> M.. ok. I will try to group all chip changes like as devices
-> list/regmap_irq/regmap_config ..., etc.
-> Treat it as one set of chip config and use 'of_device_get_match_data'
-> to get the chip config data.
->
-There's a question.
-As I know, it's not the same chip series.
-The rt5033 is submitted from Samsung at 2015.
-The driver data is also defined in header file.
+On So, 2022-07-03 at 20:40 +0100, Lad Prabhakar wrote:
+> Add a driver for the Renesas RZ/G2L Interrupt Controller.
+> 
+> This supports external pins being used as interrupts. It supports
+> one line for NMI, 8 external pins and 32 GPIO pins (out of 123)
+> to be used as IRQ lines.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  drivers/irqchip/Kconfig             |   8 +
+>  drivers/irqchip/Makefile            |   1 +
+>  drivers/irqchip/irq-renesas-rzg2l.c | 393 ++++++++++++++++++++++++++++
+>  3 files changed, 402 insertions(+)
+>  create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
+> 
+> diff --git a/drivers/irqchip/irq-renesas-rzg2l.c b/drivers/irqchip/irq-renesas-rzg2l.c
+> new file mode 100644
+> index 000000000000..4e977fa04bbe
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-renesas-rzg2l.c
+> @@ -0,0 +1,393 @@
+[...]
+> +static int rzg2l_irqc_init(struct device_node *node, struct device_node *parent)
+> +{
+[...]
+> +	resetn = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> +	if (IS_ERR(resetn))
+> +		return IS_ERR(resetn);
 
-Do you still suggest to do the merge?
-Even in our internal, it's difficult to find a rt5033 EVB for testing.
+		return PTR_ERR(resetn);
 
-And one more question is the binding. If yes, for the binding, I need to ad=
-d
-rt5033 related.....
 
-Actually, it's a tough work.
-> > > > > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > > > > > ---
-> > > > > >  drivers/mfd/Kconfig  |  12 +++++
-> > > > > >  drivers/mfd/Makefile |   1 +
-> > > > > >  drivers/mfd/rt5120.c | 125 +++++++++++++++++++++++++++++++++++=
-++++++++++++++++
-> > > > > >  3 files changed, 138 insertions(+)
-> > > > > >  create mode 100644 drivers/mfd/rt5120.c
-> >
-> > --
-> > Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> > Principal Technical Lead - Developer Services
-> > Linaro.org =E2=94=82 Open source software for Arm SoCs
-> > Follow Linaro: Facebook | Twitter | Blog
+regards
+Philipp
