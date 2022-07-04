@@ -2,127 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1AB4564F49
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 10:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98EF8564F57
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 10:10:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233062AbiGDIGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 04:06:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48476 "EHLO
+        id S233272AbiGDIJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 04:09:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232989AbiGDIGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 04:06:45 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29A9CAE6B
-        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 01:06:43 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id v9so10080053ljk.10
-        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 01:06:43 -0700 (PDT)
+        with ESMTP id S233204AbiGDIJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 04:09:48 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DE638A6;
+        Mon,  4 Jul 2022 01:09:47 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id g20-20020a17090a579400b001ed52939d72so8801616pji.4;
+        Mon, 04 Jul 2022 01:09:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=W9vEcsuPOmb6PFD1YP9Cd5t2i8+H7vKDdbGELGM7w6o=;
-        b=qIVH3JbKvPTI90pL62KYY0CE73JeN2SUYSrBybV8uswZCRUzC7TyQR8SVFp8MZtE+n
-         xr7tJOlv3L2n5ZyjubWWSM+HvxpWMMviQPJGc+z61rfEV7BG6cQlF6JShpAp0jtu8vVF
-         ceTB3j2pH2b/Yt1sE4BJDCgHdKQmyfJZMtTr8D5mHqeWpIZvfd9zndu2IJA4nuyF61qJ
-         PLuksfEnXLVGlUXKspIWeM/QLHcLr0LmFBlIvSpGCb9lgFdOCT5hGek9uM/lI/l3D+aq
-         iN+8aCJy4pGjNnJY/joNcWnXboVwrTUBBtxKGrp15wZVhuCWO0JNd1/VK0fRmlhAUyqW
-         ctvw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=KOcTHJ4ga+QAl3gF4ti051436C9mn58/FXpIHms/jTE=;
+        b=PZCmtibzFYQZVP6CXzU52p2HaKwNygHrUjI1x09JDxUpeFgDr3UM1SeEEkNlrmvzwa
+         dCD4YOuAX4IaDh8X/pJ8OLcXWyZHOScGDXviurfDnyVnWp1yTDxmW6JmKg6rZJ1iatot
+         q6IF3RY5PjAn04HuYGAWrozfDUZc+A5K9Q+V0M4R8O/3KRola53EruJIHBJMhB/CRAiH
+         xufjscQ8IGUKNXetddvR0d9ISISITFLtLkeTiBfmQ9bSCWWl1LTKf5i9cpCPBviWsRI9
+         XXPFmioqh/BS+DHTqs4Wvh0SdT5pvxN390r4nqW5pJVnqBPDiNlXFN4FyjPx6DBMDAWi
+         F1Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=W9vEcsuPOmb6PFD1YP9Cd5t2i8+H7vKDdbGELGM7w6o=;
-        b=G27bDfs8T5aDsqSGeAksNepMSADdbqXme3oXLC9AMOj+OzZA0+BTcpOPUmRCBKOC7G
-         8LzJXeakZQ978ReVqxXNkcwiS/F1JVcT0TkKPWrs32Y/lYTYUmQdpQfNkjwVsZKz7FU0
-         WqUoz896Y41E4IzIqVfyhn+U9FqFDIsyzJLQkNhmWtrVtIetIZDcR+qzJobQXP5VOb3U
-         V+mJpOKhoF7rToUQPfw2Si56LZcjhYVHg9fVhU6D0tz8FdO058C8hvZxzs+C03BdqJSX
-         /uOaBvNxLqZIQ5P7CCnp0R+2LJ9leEZCQDOkZVgoDwyl2FclRmh0is53CuOoseAmsCLG
-         OZMg==
-X-Gm-Message-State: AJIora9SrmuRlc4hzJa4CBUwQTLjhj+ObPbJojn88p5dWEX7RAEWo4WJ
-        r/RW3woQrfkidmVN8aeHrhFB5Q==
-X-Google-Smtp-Source: AGRyM1shyweS5X2mqdSfWYknlmTWWG1DGobjjvfheeS4TSNX76HtThJhWEt1hwbwlkge4YLK4Rb5CA==
-X-Received: by 2002:a2e:9097:0:b0:25a:6e3a:8b21 with SMTP id l23-20020a2e9097000000b0025a6e3a8b21mr15698533ljg.37.1656922001547;
-        Mon, 04 Jul 2022 01:06:41 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id b8-20020a056512218800b0047f7c897b61sm5018145lft.129.2022.07.04.01.06.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Jul 2022 01:06:40 -0700 (PDT)
-Message-ID: <2823c36d-efce-6c02-3b00-df1466c0d2bc@linaro.org>
-Date:   Mon, 4 Jul 2022 10:06:39 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v6 10/14] arm64: dts: freescale: imx8qxp: Remove
- unnecessary clock related entries
-Content-Language: en-US
-To:     Viorel Suman <viorel.suman@oss.nxp.com>
-Cc:     Viorel Suman <viorel.suman@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Liu Ying <victor.liu@nxp.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
- <20220629164414.301813-11-viorel.suman@oss.nxp.com>
- <483d5115-4027-e811-8bce-15da6c7c660f@linaro.org>
- <20220630083636.2c7mclmbq3tjma2j@fsr-ub1664-116>
- <5d8b2044-5ca6-c90c-57b4-afbb2ae20dde@linaro.org>
- <20220630194804.sa3mvokpv7iksgbx@fsr-ub1664-116>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220630194804.sa3mvokpv7iksgbx@fsr-ub1664-116>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=KOcTHJ4ga+QAl3gF4ti051436C9mn58/FXpIHms/jTE=;
+        b=Hm9UqaKbvzDSNHRZsGZW3YbyaVBRxjxmwt88ME9jTrLjQOaiDQZf6979y+3qxcC8Zm
+         04fGIUwq65wa9cELWyWhOA8bfaKG/ahFMzokq2xNcBtHhXjxJZpbK3n/U2B9V+5QyuKM
+         2FzNGwst+R9yDB1CNl4T1zts3GMv7NwyhdLheSnt7xG0QaztYhFt40eKRADEwRs01ND2
+         GeGWrQwa9T+/p5Q+yLh9B7Uuy0xG28RtlADE0p98jY1AqU5FAaSkvFdrJtDtZupcpbQc
+         Y70Ktnf4mb9spbjitRKUg79vpIjnRbLR/5zDihujIDg/6mWR44L7z1FK6ONxpqdqequG
+         BRBg==
+X-Gm-Message-State: AJIora+zvvIvCM/KER76fd33OPAOANgTqXpuULYde38WBfBa5Gx16obE
+        lxVk1UlwfUCL9KJzaehnq7U=
+X-Google-Smtp-Source: AGRyM1vTq8Gq0cMHvxWTYTIq2dTe97LVnVwGB/9dRhlWiypAZ2GkAMDx2Rqyqyjaf/HKhlCMXyqpMQ==
+X-Received: by 2002:a17:90a:cf90:b0:1ef:87d5:4798 with SMTP id i16-20020a17090acf9000b001ef87d54798mr4795711pju.140.1656922186354;
+        Mon, 04 Jul 2022 01:09:46 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:489:5fa0:f4ca:b72:ee4c:412c])
+        by smtp.gmail.com with ESMTPSA id bg14-20020a056a001f8e00b0051853e6617fsm17596248pfb.89.2022.07.04.01.09.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 04 Jul 2022 01:09:45 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     jic23@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/2] Add Richtek RTQ6056 support
+Date:   Mon,  4 Jul 2022 16:09:37 +0800
+Message-Id: <1656922179-21829-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 21:48, Viorel Suman wrote:
-> 
-> The question context looks a bit shifted. The "clocks" and "clock-names"
-> attributes are removed from a clock provider device.
-> 
-> The OS clock provider in this case is a client which uses some protocol
-> to communicate with SCU via a messaging unit. There is no
-> access to xtal clocks via the existing OS<->SCU communication protocol.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-SCU does not need to access them via communication protocol. It's enough
-that they are clock inputs, physical clocks being fed to your hardware
-which you describe in the DTS.
+This patch series is to enable Richtek RTQ6056 support.
 
+The RTQ6056 is a high accuracy current-sense monitor with I2C interface, and
+the device provides full information for system by reading out the load current
+and power.
 
-Best regards,
-Krzysztof
+Since v3
+- change the node name to be generic 'adc' in binding example.
+- Refine pm_runtime API calling order in 'read_channel' API.
+- Fix vshunt wrong scale for divider.
+- Refine the comment text.
+- Use 'devm_add_action_or_reset' to decrease the code usage in probe
+  function.
+- Use RUNTIME_PM_OPS to replace SET_RUNTIME_PM_OPS.
+- minor fix for the comma.
+- Use pm_ptr to replace the direct assigned pm_ops.
+
+Since v2
+- Change the resistor property name to be generic 'shunt-resistor-micro-ohms'.
+- Rename file from 'rtq6056-adc' to 'rtq6056'.
+- Refine the ABI, if generic already defined it, remove it and check the channel
+  report unit.
+- Add copyright text.
+- include the correct header.
+- change the property parsing name.
+- To use iio_chan_spec address field.
+- Refine each channel separate and shared_by_all.
+- Use pm_runtime and pm_runtime_autosuspend.
+- Remove the shutdown callback. From the HW suggestion, it's not recommended to
+  use battery as the power supply.
+- Check all scale unit (voltage->mV, current->mA, power->milliWatt).
+- Use the read_avail to provide the interface for attribute value list.
+- Add comma for the last element in the const integer array.
+- Refine each ADC label text.
+- In read_label callback, replace snprintf to sysfs_emit.
+
+ChiYuan Huang (2):
+  dt-bindings: iio: adc: Add rtq6056 adc support
+  iio: adc: Add rtq6056 support
+
+ .../ABI/testing/sysfs-bus-iio-adc-rtq6056          |   6 +
+ .../bindings/iio/adc/richtek,rtq6056.yaml          |  56 ++
+ drivers/iio/adc/Kconfig                            |  15 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/rtq6056.c                          | 651 +++++++++++++++++++++
+ 5 files changed, 729 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+ create mode 100644 drivers/iio/adc/rtq6056.c
+
+-- 
+2.7.4
+
