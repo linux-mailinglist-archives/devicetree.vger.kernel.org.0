@@ -2,116 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B945D565E28
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 21:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A14B565E48
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 22:14:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230057AbiGDTuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 15:50:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51254 "EHLO
+        id S229674AbiGDUOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 16:14:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbiGDTug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 15:50:36 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C0CE10A7;
-        Mon,  4 Jul 2022 12:50:36 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id l144so5899782ybl.5;
-        Mon, 04 Jul 2022 12:50:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eedd7IoRs6ZWphM8UV7NfXV4UZ/8z7psz/7E2jpJhws=;
-        b=FYTJRQYbcH+/3o3HfTjpBG2KrRahSdePIFoDiEHrMiL26sKyz/Yznk2JUYu5sXccfS
-         zBy/2Z6cDrfzz1Y3+1XUDOBvV/52cu/Z8VfNf7MCFbGF1xJGBfCDBebvvMkm++EoGYnl
-         FPPKxtNkHRMLOBs2WsNcEjE7p1F+a1j2xTPzNj0yKs03jbtxpCFEcMXZZnlj1+Bt4OkB
-         +y24b2V/3zAtHgfFp4LFazQ8eap2g7txt8fzf9OUDuZKd5Z5dZL33PAyu0hEdJlLp1ed
-         lQ8cys9N3o0IFWb2+M3yzHZud8di8buSkj8KUPK338w9TdMI8qNhyVXt5raI0w7xwsNK
-         F6dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eedd7IoRs6ZWphM8UV7NfXV4UZ/8z7psz/7E2jpJhws=;
-        b=y5v+FVQ5aP4GCK/alAbuP8ZzTDW/7rGLZGNDPB36IqzM2iOGuimCNkb4GTc4h+h6MY
-         WN741STm2Ku0cETeHxoajHzxeeIT+QbCCkmUHc9MP66cD3APNdN3YSlt5FPt+Ol/hKgr
-         34FXKmddA/okhfj2klE4nIBlyNvvh4OelavRN5FT0gelgArI4P8fRbtaRpkO27LWjOSz
-         0KiP1LbhSeHBv+kAFfnxQrRQI7S/TnOXqzhaVBpy1EE5ljZRGKBNd42i5idVeAc2q/+b
-         S2K/0KkNiZu7CXQqyYbD5ftnJsVa9CFWEYZYtDyJ5p71ZAdwyXgJ/UvPp4ZINKEdRl6r
-         8VAA==
-X-Gm-Message-State: AJIora8YF8kLjsSkzb46zI1OuJL5jHCU8zLcpfdUzvnlFMllkHPgFDUp
-        YsWAw71e7ajN8R0DaDlSEJFOHx3fsaxNJTvIFdE=
-X-Google-Smtp-Source: AGRyM1vmRz3epSVVkltVS0t6WZt747lUodP08EwhxWju7lyRYt7Cth1ug/nvvb80W0mOVFXOvewMPofxS7TDewp0p24=
-X-Received: by 2002:a05:6902:c4:b0:64b:4677:331b with SMTP id
- i4-20020a05690200c400b0064b4677331bmr33329236ybs.93.1656964235398; Mon, 04
- Jul 2022 12:50:35 -0700 (PDT)
+        with ESMTP id S229525AbiGDUOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 16:14:33 -0400
+Received: from ixit.cz (ip-94-112-206-30.bb.vodafone.cz [94.112.206.30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B3C6551;
+        Mon,  4 Jul 2022 13:14:28 -0700 (PDT)
+Received: from [10.0.0.163] (_gateway [10.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 010112007F;
+        Mon,  4 Jul 2022 22:14:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1656965666; h=from:from:reply-to:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=br9buy1jxDhCD9bYZEOYTu5MLdkaAvOs5IDAthaWcT0=;
+        b=VcXq/IdzfCBoKrKUmgYreop+xN+HX5vNtEGxtzCizkPvTYGL94kmAonth6a3BH6lNi12/7
+        oSkBXBgvSqfg/c40M+WwZXNJ3k4vaEMzuhRkjaTBQXQPYvxxzoV+wJlcEFvRbAdyLa0gdL
+        9wfGNcF6bnAKdL+CDxUmc0DwIe3z4Uw=
+Message-ID: <32dc6325-b133-176b-65f8-b9267b7aed40@ixit.cz>
+Date:   Mon, 4 Jul 2022 22:14:25 +0200
 MIME-Version: 1.0
-References: <YsGVa8KFmdvGY92e@debian.me> <20220704034041.15448-1-bagasdotme@gmail.com>
-In-Reply-To: <20220704034041.15448-1-bagasdotme@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 4 Jul 2022 21:49:58 +0200
-Message-ID: <CAHp75Vdg=NG9fnd0EQWg5D4WoW9hGJM+MMBRLSacgQUptuGe9Q@mail.gmail.com>
-Subject: Re: [PATCH v2] Documentation: bno055: separate SPDX identifier and
- page title
-To:     Bagas Sanjaya <bagasdotme@gmail.com>
-Cc:     Linux Documentation List <linux-doc@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Andrea Merello <andrea.merello@iit.it>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        jmondi <jacopo@jmondi.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+To:     dmitry.baryshkov@linaro.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, quic_tdas@quicinc.com, robh+dt@kernel.org,
+        swboyd@chromium.org
+References: <20220623120418.250589-1-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH 00/15] clk: qcom: use parent_hws/_data for APQ8064 clocks
+Content-Language: en-US
+Reply-To: 20220623120418.250589-1-dmitry.baryshkov@linaro.org
+From:   David Heidelberg <david@ixit.cz>
+In-Reply-To: <20220623120418.250589-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RDNS_DYNAMIC,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 4, 2022 at 5:41 AM Bagas Sanjaya <bagasdotme@gmail.com> wrote:
->
-> kernel test robot reported htmldocs warning:
->
-> Documentation/iio/bno055.rst:2: WARNING: Explicit markup ends without a blank line; unexpected unindent.
->
-> The warning above is caused by missing blank line separator between SPDX
-> identifier and page title.
->
-> Add the blank line to fix the warning.
->
-> Link: https://lore.kernel.org/lkml/202207031509.DlBrHyaw-lkp@intel.com/
-> Fixes: ec0c70cb45507d ("docs: iio: add documentation for BNO055 driver")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Cc: Andrea Merello <andrea.merello@iit.it>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Matt Ranostay <matt.ranostay@konsulko.com>
-> Cc: Alexandru Ardelean <ardeleanalex@gmail.com>
-> Cc: jacopo@jmondi.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org (open list)
-
-It's a very noisy Cc list which will go in the git history. Instead,
-use --to and --cc parameters of `git format-patch`. Maintainers
-usually use `b4` tool that adds a Link tag to the patch itself on the
-Lore archive which will keep track on the Cc list anyway.
+Tested-by: David Heidelberg <david@ixit.cz> # tested on Nexus 7 (2013)
 
 -- 
-With Best Regards,
-Andy Shevchenko
+David Heidelberg
+Consultant Software Engineer
+
+Matrix: @okias:matrix.org
+
