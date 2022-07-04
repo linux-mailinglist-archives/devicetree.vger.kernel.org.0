@@ -2,60 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F0035657FD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 15:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0696565838
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 16:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234251AbiGDN6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 09:58:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36926 "EHLO
+        id S233384AbiGDOEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 10:04:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232937AbiGDN6u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 09:58:50 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D4F10B3;
-        Mon,  4 Jul 2022 06:58:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1656943129; x=1688479129;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=8Rd2VhqWRy5Lh37VwtNPex5l+zsOkNuQYWDNY6kfDxM=;
-  b=zAlBH9GUnLBGAIgIwEWUACYbsgfWBHY/9eC+YFh//NUuHErKBVibRhEA
-   ymoV4lh3Y02wJee9n2ueFf/sYBiLIUzxO4afrnra10TIgE4BHTRDEtID0
-   ko443PnihKhjw9qamkwGwbK0RX9VGuVEB48lhMLVvIdzSBOPJADNWvKd2
-   zV9OtAnWFqQ+k//MUUB8fAeB7aqxodynpk6f6TknRIOEEVhFOoqdVwVLX
-   1hEu28kQ3IhAeY+ODM9ecEQAbHn+KeEyrqgk2qco6kJquodPSMZcPwEZ9
-   Fj6t3NkN21oOtITl4ZVxMCqpIX/qjGwXqtzwOI+20fVCGYdHQAA2tn61p
-   g==;
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; 
-   d="scan'208";a="102929581"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Jul 2022 06:58:48 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 4 Jul 2022 06:58:48 -0700
-Received: from kavya.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Mon, 4 Jul 2022 06:58:44 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <arnd@arndb.de>, <alexandre.belloni@bootlin.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <Nicolas.Ferre@microchip.com>,
-        <claudiu.beznea@microchip.com>
-CC:     <soc@kernel.org>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <UNGLinuxDriver@microchip.com>
-Subject: [PATCH v2] ARM: dts: lan966x: Cleanup flexcom3 usart pinctrl settings.
-Date:   Mon, 4 Jul 2022 11:58:09 -0200
-Message-ID: <20220704135809.6952-1-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S233028AbiGDOEw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 10:04:52 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B08D125FF
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 07:04:50 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id f39so16000848lfv.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 07:04:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=rsGLGImmqJHiDHb1+WwnYqEd/8jZefskys3h5JlVneg=;
+        b=iOEUfAkbgMlvzJV8wTbsTIYSWia2cd8h4wEbug5cjfJD+nWhZS9fr5o0n/WApn+7c/
+         jvvdlGxLrHBJejs8CGh0pJpPUpLABBgInxaNbHT8n/FjwdOcjFGRb9eqhNnEnfO0Wvca
+         Qk8kIqJKGuX6tEuo/1zkg3jwaoJDh/H5smM+TuP0cmMolyhxcwU9t8NYzyiq8DZfyjOL
+         fXA8sxWN/tSF5oKNq86Fz9w8C+nZ2ccYdbTZfQP1mWCnMimj5uM6YWZvRv81Pr2g6RxG
+         ksL4HO37Djdd7YeE9oF3a+EmPCAO0odkJEuWGgQg8HFvySVKVW52owvLd2AQjivOCwvC
+         qfiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=rsGLGImmqJHiDHb1+WwnYqEd/8jZefskys3h5JlVneg=;
+        b=orODL5yFx/Mk5CcxQIRq5UBAm02ekytnHT29I3ipOrWVfrp1aMEvGbB5J0Ulqz71OW
+         fU3SZK5asu+fpKv6+GOt6LezLM8HNpf4ng6qGEZye+/kmNEWw+m1/fyaJtT0mq2gAHlM
+         +2RPYyfO7KTgffpEKPZH0/97RlieehAF6nxJFHcS1oydu705foTvG8yGSL5KcrqIg8ne
+         UFvOQ37x+5DWsAYVCDBqo5zfawpmmFiFklZrhqdrQLFJSXkYoWwd7uOTLv/Dlj0iJZVf
+         1gwjwau/p4DyJaCFkjlStOjRHyg6iplS908N9lHaobYmZfe4iFBuj0/KUts71bCH8MqL
+         THXQ==
+X-Gm-Message-State: AJIora/8fYVcX0J41Ev+Yq9U6MRkM/0pu77zArEKGULxL6xr3yxcA+/R
+        e/gnUKAArlcMDMiCu5XklHAklQ==
+X-Google-Smtp-Source: AGRyM1v3grJoQs3DlcVNMtWXaPEn/5IF0uq3/rPHkUTzMzI1BGZwUeje6eJY93REVviH42628+Gjyw==
+X-Received: by 2002:a05:6512:398d:b0:482:d1b6:d7c2 with SMTP id j13-20020a056512398d00b00482d1b6d7c2mr531969lfu.628.1656943488771;
+        Mon, 04 Jul 2022 07:04:48 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id m10-20020a056512358a00b0047255d21129sm5163689lfr.88.2022.07.04.07.04.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Jul 2022 07:04:48 -0700 (PDT)
+Message-ID: <52af0501-d921-9ab3-6de8-c074a2d03885@linaro.org>
+Date:   Mon, 4 Jul 2022 16:04:47 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/6] dt-bindings: clock: Add schema for MSM8909 GCC
+Content-Language: en-US
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Dominik Kobinski <dominikkobinski314@gmail.com>
+References: <20220704133000.2768380-1-stephan.gerhold@kernkonzept.com>
+ <20220704133000.2768380-2-stephan.gerhold@kernkonzept.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220704133000.2768380-2-stephan.gerhold@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,53 +84,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On pcb8291, Flexcom3 usart has only tx and rx pins.
-Cleaningup usart3 pinctrl settings.
+On 04/07/2022 15:29, Stephan Gerhold wrote:
+> The Global Clock Controller (GCC) in the MSM8909 SoC provides clocks,
+> resets and power domains for the various hardware blocks in the SoC.
+> Add a DT schema to describe it, similar to other Qualcomm SoCs.
+> 
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> ---
+>  .../bindings/clock/qcom,gcc-msm8909.yaml      |  56 +++++
+>  include/dt-bindings/clock/qcom,gcc-msm8909.h  | 218 ++++++++++++++++++
+>  2 files changed, 274 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8909.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,gcc-msm8909.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8909.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8909.yaml
+> new file mode 100644
+> index 000000000000..79b50405864b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8909.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,gcc-msm8909.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Global Clock & Reset Controller Binding for MSM8909
+> +
+> +maintainers:
+> +  - Stephan Gerhold <stephan@gerhold.net>
+> +
+> +description: |
+> +  Qualcomm global clock control module which supports the clocks, resets and
+> +  power domains on MSM8909.
+> +
+> +  See also:
+> +  - dt-bindings/clock/qcom,gcc-msm8909.h
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,gcc-msm8909
+> +
+> +  clocks:
+> +    items:
+> +      - description: XO source
+> +      - description: Sleep clock source
+> +      - description: DSI phy instance 0 dsi clock
+> +      - description: DSI phy instance 0 byte clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: xo
+> +      - const: sleep_clk
+> +      - const: dsi0pll
+> +      - const: dsi0pllbyte
+> +
+> +required:
+> +  - compatible
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
----
-v1 -> v2:
-- Keep both tx and rx pins into one node.
+Aren't clocks also required? I would assume at least XO is necessary as
+input.
 
- arch/arm/boot/dts/lan966x-pcb8291.dts | 18 ++++--------------
- 1 file changed, 4 insertions(+), 14 deletions(-)
+> +
+> +allOf:
+> +  - $ref: qcom,gcc.yaml#
+> +
+> +unevaluatedProperties: false
 
-diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts b/arch/arm/boot/dts/lan966x-pcb8291.dts
-index 3c7e3a7d6f14..d56d2054c38d 100644
---- a/arch/arm/boot/dts/lan966x-pcb8291.dts
-+++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
-@@ -19,19 +19,9 @@ aliases {
- };
- 
- &gpio {
--	fc_shrd7_pins: fc_shrd7-pins {
--		pins = "GPIO_49";
--		function = "fc_shrd7";
--	};
--
--	fc_shrd8_pins: fc_shrd8-pins {
--		pins = "GPIO_54";
--		function = "fc_shrd8";
--	};
--
--	fc3_b_pins: fcb3-spi-pins {
--		/* SCK, RXD, TXD */
--		pins = "GPIO_51", "GPIO_52", "GPIO_53";
-+	fc3_b_pins: fc3-b-pins {
-+		/* RX, TX */
-+		pins = "GPIO_52", "GPIO_53";
- 		function = "fc3_b";
- 	};
- 
-@@ -53,7 +43,7 @@ &flx3 {
- 	status = "okay";
- 
- 	usart3: serial@200 {
--		pinctrl-0 = <&fc3_b_pins>, <&fc_shrd7_pins>, <&fc_shrd8_pins>;
-+		pinctrl-0 = <&fc3_b_pins>;
- 		pinctrl-names = "default";
- 		status = "okay";
- 	};
--- 
-2.25.1
 
+
+Best regards,
+Krzysztof
