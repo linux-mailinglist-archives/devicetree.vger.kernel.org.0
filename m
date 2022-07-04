@@ -2,100 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50F77565880
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 16:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 274D05658BE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 16:36:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbiGDOVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 10:21:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54244 "EHLO
+        id S233903AbiGDOgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 10:36:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbiGDOVG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 10:21:06 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D217B10B5;
-        Mon,  4 Jul 2022 07:21:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 96067B8104A;
-        Mon,  4 Jul 2022 14:21:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BDB7C3411E;
-        Mon,  4 Jul 2022 14:21:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656944463;
-        bh=12vzbNxNUnFOcp03yedceqZx1z1ZYE4M2dVAZ89UotM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S6p4JmIu5nOOrSEmp2cDT9G8ifOIRlFhh5ky5zveJCGFCzSWMu67zL9jSPMf1YxBY
-         3e63WXwyy+SH3Dair7MaPxlg4BGU5RJHDQELy18y0gTklCzsca/v9/EMU3OWW5Fxro
-         cdwitAqbl6u2dtoGJK523s718hsFw4ALC0tSxZ3Ak46CKMbovkg7vPOJq93N6wGLw5
-         7SJdisdSm8DFJ7KlTDOYx2AGv5nd0YWn0tV73PqwDvCWFr8Gb/EXl7hPYlcNtFgEt5
-         SJdj92agragpITx9sBYrdR19v+FW8SuKN9wyEYq4Y8ZMNcvwVE65lTou36rAZtoVCw
-         gHDIfK2m98gvQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1o8Mwh-0006yf-0j; Mon, 04 Jul 2022 16:21:03 +0200
-Date:   Mon, 4 Jul 2022 16:21:03 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 03/10] dt-bindings: PCI: qcom: Enumerate platforms with
- single msi interrupt
-Message-ID: <YsL3T8GjDzuxfRtP@hovoldconsulting.com>
-References: <20220629141000.18111-1-johan+linaro@kernel.org>
- <20220629141000.18111-4-johan+linaro@kernel.org>
- <c20ba06c-b37a-e91c-84c6-6d2147bb2478@linaro.org>
- <Yr6ykvru52aDZhFm@hovoldconsulting.com>
- <20220701183819.GB1284915-robh@kernel.org>
+        with ESMTP id S234291AbiGDOgA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 10:36:00 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79D2F5F70;
+        Mon,  4 Jul 2022 07:35:58 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id q6so17021455eji.13;
+        Mon, 04 Jul 2022 07:35:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Qug+tGd/uv8M8y6IpXu01dxX5KR8Rz6tR9sYA3ZUCL0=;
+        b=DxTAQz5O4CB1luNJIU1Up1n07gzJgXRIAnqXDgfOk5MQntouP1Y3dj6uC/gnuw5jZb
+         TnCqelpJRaytapG2iG9OKN3RyZOYfVN4oMeaj646i+e3YXPnUbeGHAavTgvd3xKEx8+4
+         1M1yS4FHQZ42jvzNMjXXzIYSAlcCrzsakzh/rws3fPP3KoYJhI/F9e6jMqNhypJdjigl
+         9po7hoYnJkdD5j7AhrFb50kb501gZTkq1Fv3QL2tbLysbjNgvSCrIoGULUgJIYxV6UkX
+         R2DSCGT5++IE6Y5owgAC9tRLJDeU3POgihCPWr2WQQ96hyrbHgpJAXl+wQWANrrHsVXS
+         XTKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Qug+tGd/uv8M8y6IpXu01dxX5KR8Rz6tR9sYA3ZUCL0=;
+        b=vOzzs3S6MYxdX0dcJdSgwpDk99R/XsrVo1oz20btf2uF2LMg2zmECuXJ/pa0amSGIh
+         +19zdqprowXxinnxSpf68ub4WN0avSoNSVyR4s6SJV/P7B8Q1P09x80nWAo/Mk/VuTSC
+         3MTFhEQr0ok9dTSYaeBXHbh7KJg/clFV/s6BnzvDxafJh99O+Ge7z/EvIJsPldFM9KtE
+         hpXlY740jMULC4M38LiEAlBNR7nsN/HFlIjuHDWuUeNjgDHceLro6kH4ovLWQpkryAu1
+         IvKDPPSxYthmK+SbhP1rVgYgbgmT3j97dhnbGlH9c8jAyseZKXyy36ADKtCS5ceqc3Zb
+         thmQ==
+X-Gm-Message-State: AJIora9CtnVhHOHMPEWGaAoeUbBCcveb1+6BBSPIvKZZBRT+Jsr5SGk0
+        V3wc0kE8kGuFalMyMtttDKg=
+X-Google-Smtp-Source: AGRyM1tkJnoELPZu2D35fsKBW/RVVFQHEATKOWvCaFZ9C9MpViczl3+svf0dmtNZ+x2KJOM1LC/RPg==
+X-Received: by 2002:a17:906:938a:b0:726:942a:54e8 with SMTP id l10-20020a170906938a00b00726942a54e8mr29194260ejx.225.1656945356894;
+        Mon, 04 Jul 2022 07:35:56 -0700 (PDT)
+Received: from fedora.robimarko.hr (dh207-99-90.xnet.hr. [88.207.99.90])
+        by smtp.googlemail.com with ESMTPSA id k10-20020a170906970a00b006fea59ef3a5sm14286020ejx.32.2022.07.04.07.35.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jul 2022 07:35:56 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        bhupesh.sharma@linaro.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: mmc: sdhci-msm: document resets
+Date:   Mon,  4 Jul 2022 16:35:53 +0200
+Message-Id: <20220704143554.1180927-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220701183819.GB1284915-robh@kernel.org>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 01, 2022 at 12:38:19PM -0600, Rob Herring wrote:
-> On Fri, Jul 01, 2022 at 10:38:42AM +0200, Johan Hovold wrote:
-> > On Fri, Jul 01, 2022 at 10:33:35AM +0200, Krzysztof Kozlowski wrote:
-> > > On 29/06/2022 16:09, Johan Hovold wrote:
-> > > > Explicitly enumerate the older platforms that have a single msi host
-> > > > interrupt. This allows for adding further platforms without resorting
-> > > > to nested conditionals.
-> > > > 
-> > > > Drop the redundant comment about older chipsets instead of moving it.
-> > > > 
-> > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > > 
-> > > This does not exist in linux-next, so it should be squashed it with the
-> > > previous series.
-> > 
-> > As mentioned in the cover letter this depends on the MSI series that has
-> > unfortunately not yet been merged.
-> > 
-> > That series is self-contained and ready to be merged, so this follow-up
-> > does not need to be squashed in.
-> 
-> I suspect that Bjorn would rather squash these in.
+Commit "mmc: sdhci-msm: Reset GCC_SDCC_BCR register for SDHC" added
+support for utilizing a hardware reset and parsing it from DT, however
+the bindings were not updated along with it.
 
-Sure. Squashing in the compatible-conditional fix makes sense, but the
-motivation for this one is the SoC added by this series so I'd argue
-that it belongs here. But either way is fine with me.
+So, document the usage of "resets" property with the limit of only one
+item.
 
-Johan
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+index 31a3ce208e1a..ca8814a80443 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
++++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+@@ -116,6 +116,9 @@ properties:
+     description:
+       Should specify pin control groups used for this controller.
+ 
++  resets:
++    maxItems: 1
++
+   qcom,ddr-config:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: platform specific settings for DDR_CONFIG reg.
+-- 
+2.36.1
+
