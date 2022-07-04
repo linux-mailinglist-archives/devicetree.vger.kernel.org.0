@@ -2,101 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B15356515F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE26C56516A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 11:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232935AbiGDJyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 05:54:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47120 "EHLO
+        id S233729AbiGDJyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 05:54:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229961AbiGDJyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 05:54:08 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411ABD12F;
-        Mon,  4 Jul 2022 02:54:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656928447; x=1688464447;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=lSh2EbbxhUgUat8Nrxc/d9fNoMjhwQg9R6qR3jGL+Ug=;
-  b=etdLVxMjDFb/UKPjtQGcTIFJFAjSwOPkNzXL8uLd++krQc0HvSKUpAVL
-   WaSf//U9/U223LyZcJ0gMTpv6au4MAdy2wgxb0SQbya7bKqrNR9l82DKO
-   Ae5ZyD02T1Bq6IOXT7C5ZLND3zBgs6bxnu/WOkHad1Gh6ltRnx59I8xHt
-   eSFb1XwNwW0YGJtqHRof36MocKARPSJcoLsIbzg1mCIQWh4PpUSW9NPTW
-   rjS3+So51Dv+0UUT0OKKboYPO0CCSY7kajBmoJQJfQE0WKD+DLleUHSqY
-   dgYc0c9hh+h/NjVr1+MBPDIzZKHy3EeX+pNHj7fxnyf/fsKxNjDB1LXw4
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10397"; a="263511023"
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; 
-   d="scan'208";a="263511023"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2022 02:54:07 -0700
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; 
-   d="scan'208";a="649512912"
-Received: from bclindho-mobl.ger.corp.intel.com ([10.252.49.27])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2022 02:54:01 -0700
-Date:   Mon, 4 Jul 2022 12:53:58 +0300 (EEST)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
-cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233130AbiGDJyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 05:54:46 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF9CBDE90
+        for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 02:54:44 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id m184so5080388wme.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 02:54:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=5OEPF06YG+R+5ZW0yjo5uKv8/e38xtFyRSfd8rSL5/U=;
+        b=iWnJOtER2NaaLsbBoB0+Px3zo6/Ay8a1Tx7Tpv0T77HJg7B6MTzuireRG0B9U+fuAJ
+         9UbuJNDuIh6p/REByNa+ODA5uMyc6Z63A+AwMzxBUb7wQDsfgW4ovI9iOEmEtOgoib2D
+         is4YPKL7me/MkEd38NaByuGbU2cubsRzIWe5So5A4CYnP6FjgSYE2tBg31ZzhvYU5BR1
+         Ylf1IWBeh40N7No/NiV2hAAYbAu1xe9+unEdAvOAof48LUiH6w/j8YMMxhwUshyabtfI
+         WLzI930mHrjXWi3NaMDxptGBkhSJCZmUUrjxhkbrrFA7thG42Q9wnTTV13m/pXU+O217
+         ANAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=5OEPF06YG+R+5ZW0yjo5uKv8/e38xtFyRSfd8rSL5/U=;
+        b=CAjG7jQFocGgKtPaxeYHtYPT1kfcsEpwyCrKIWvS4MajLlkJ6UZx/Nqui9xzjY54gB
+         0sc7tXHKtfJaLEVfa4MpNr2375DLXSHHXvhvRrxEClLAGcqd3XQ89wHOJyYl4XO1INtL
+         pmJ9qcRsc1JRtkn8AbRyCHO2NbWrqvBdaWA0/L4ZXK4aeB95YgaGv8lxsUHNprr4lBu3
+         8dKE2nKKl07GaJWgds7g2F2DFpDTjlnpEXOROyMuOUf5A/6lAeXQ3WUGRHp4wE8Wzdmt
+         MmrAYr7M9KEzeRfZ+bf6XIJEcs5GeLJ60PWxnJ1tBvybEVA62J0RdxFVkqNmvfRkFNja
+         LR/Q==
+X-Gm-Message-State: AJIora+lCs5DKIrtIR5GdtRGJQWTL10qlwCkSpLIwWO+Pcl6oeQP3RSm
+        DUPwNm3avuAODN7AVWq5769s2kwvhO5iRg==
+X-Google-Smtp-Source: AGRyM1svy/vCXA649RppIhdoxQ//h/2ofd0wM3BTvLiHTMabydo4tf4xJZ3LiMzhyn9E3gWku6ATSg==
+X-Received: by 2002:a05:600c:2298:b0:3a0:31a9:710b with SMTP id 24-20020a05600c229800b003a031a9710bmr30056672wmf.115.1656928483406;
+        Mon, 04 Jul 2022 02:54:43 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id n5-20020a1ca405000000b0039c587342d8sm15023400wme.3.2022.07.04.02.54.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jul 2022 02:54:42 -0700 (PDT)
+Date:   Mon, 4 Jul 2022 10:54:40 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lukas Wunner <lukas@wunner.de>, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Subject: Re: [PATCH v2 7/9] serial: ar933x: Fix check for RS485 support
-In-Reply-To: <e000058a-0f19-a598-9fba-b745a2f2bca5@gmx.de>
-Message-ID: <f7c9acb6-ce8c-bd3-df12-f240115c6dbb@linux.intel.com>
-References: <20220703170039.2058202-1-LinoSanfilippo@gmx.de> <20220703170039.2058202-8-LinoSanfilippo@gmx.de> <CAHp75VfTYv51ZcBJHR3Ms9HQWjPccigrjUxHUq4NixKXdvm5Ew@mail.gmail.com> <e000058a-0f19-a598-9fba-b745a2f2bca5@gmx.de>
+        Mark Brown <broonie@kernel.org>, dmitry.torokhov@gmail.com,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] mfd: rt5120: Add Richtek PMIC support
+Message-ID: <YsK44Dp3yZwqPi0H@google.com>
+References: <1655892104-10874-1-git-send-email-u0084500@gmail.com>
+ <1655892104-10874-3-git-send-email-u0084500@gmail.com>
+ <Yrm9ObaltUiQUTqS@google.com>
+ <CADiBU3802sLTPjrGiaQ-xw-2jep1UXo+t7pYc6bCC4MiJLhOyA@mail.gmail.com>
+ <CADiBU3838Mgi3sqv+R_=8g-ROTrbN45AKPaTS_9GCWVDYASMyg@mail.gmail.com>
+ <Yr6kVg2OlHkm6+bB@google.com>
+ <CADiBU396poOuzdGABzTazouM5MX=auZ9OdyT_sqWrKnZk3tFRw@mail.gmail.com>
+ <CADiBU3_7MmPkfV7-B8rhxFRtZcrJ6BPocXzT4bs3cu36UR5XGw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CADiBU3_7MmPkfV7-B8rhxFRtZcrJ6BPocXzT4bs3cu36UR5XGw@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 4 Jul 2022, Lino Sanfilippo wrote:
-> On 03.07.22 20:39, Andy Shevchenko wrote:
-> > On Sun, Jul 3, 2022 at 7:02 PM Lino Sanfilippo <LinoSanfilippo@gmx.de> wrote:
-> >>
-> >> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
-> >>
-> >> Without an RTS GPIO RS485 is not possible so disable the support
-> >> regardless of whether RS485 is enabled at boottime or not. Also remove the
-> >
-> > boot time
-> >
-> >> now superfluous check for the RTS GPIO in ar933x_config_rs485().
-> >>
-> >> Fixes: e849145e1fdd ("serial: ar933x: Fill in rs485_supported")
-> >
-> > Is it an independent fix? If so, it should be the first patch in the
-> > series, otherwise if it's dependent on something from previous patches
-> > you need to mark all of them as a fix.
-> >
+On Mon, 04 Jul 2022, ChiYuan Huang wrote:
+
+> Hi, Lee:
 > 
-> The fix is independent, patch 8 depends on the fix however. I was not
-> aware of this fixes-first rule for series with patches that are independent
-> from each other. I will change the order accordingly in the next version of the series.
+> ChiYuan Huang <u0084500@gmail.com> 於 2022年7月1日 週五 下午5:56寫道：
+> >
+> > Lee Jones <lee.jones@linaro.org> 於 2022年7月1日 週五 下午3:38寫道：
+> > >
+> > > On Fri, 01 Jul 2022, ChiYuan Huang wrote:
+> > >
+> > > > HI, Lee:
+> > > >
+> > > > ChiYuan Huang <u0084500@gmail.com> 於 2022年6月27日 週一 晚上10:56寫道：
+> > > > >
+> > > > > Lee Jones <lee.jones@linaro.org> 於 2022年6月27日 週一 晚上10:22寫道：
+> > > > > >
+> > > > > > On Wed, 22 Jun 2022, cy_huang wrote:
+> > > > > >
+> > > > > > > From: ChiYuan Huang <cy_huang@richtek.com>
+> > > > > > >
+> > > > > > > Add Richtek RT5120 PMIC I2C driver.
+> > > > > >
+> > > > > > Why a whole new driver?
+> > > > > >
+> > > > > > How different is this to rt5033?
+> > > > > >
+> > > > > > Looks like this could easily be woven into this existing support?
+> > > > > >
+> > > > > It's different with the function domain.
+> > > > > RT5033 is most like as the SubPMIC that includes PMU (battery
+> > > > > charger/gauge/led/few buck and ldo)
+> > > > > RT5120 is a main PMIC with default-on power that follows the boot on sequence.
+> > > > > RT5120 only integrates regulator and power key report module.
+> > > > >
+> > > > Since I have explained the chip difference, do you still think it's
+> > > > better to merge this code into rt5033 mfd?
+> > >
+> > > I think it's okay to group devices which are similar but not exactly
+> > > the same, if they can be.  The integration of this device into the
+> > > other looks trivial to my naive eyes.
+> > >
+> > > A PMIC is a PMIC, main or sub.
+> > >
+> > M.. ok. I will try to group all chip changes like as devices
+> > list/regmap_irq/regmap_config ..., etc.
+> > Treat it as one set of chip config and use 'of_device_get_match_data'
+> > to get the chip config data.
+> >
+> There's a question.
+> As I know, it's not the same chip series.
+> The rt5033 is submitted from Samsung at 2015.
+> The driver data is also defined in header file.
+> 
+> Do you still suggest to do the merge?
+> Even in our internal, it's difficult to find a rt5033 EVB for testing.
+> 
+> And one more question is the binding. If yes, for the binding, I need to add
+> rt5033 related.....
+> 
+> Actually, it's a tough work.
 
-While at it, you could separate just the fix to own patch and the 
-->rs485_config() cleanup to own patch (or move it all to patch 8).
-
-Not that this fix is expected to go anywhere else besides tty-next.
+If it's genuinely difficult to integrate, you can keep them separate.
 
 -- 
- i.
-
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
