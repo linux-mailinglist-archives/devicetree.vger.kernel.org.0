@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5349D565CED
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 19:25:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54ED0565CE5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 19:25:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233637AbiGDRZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 13:25:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38350 "EHLO
+        id S234188AbiGDRZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 13:25:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231392AbiGDRZB (ORCPT
+        with ESMTP id S230034AbiGDRZB (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 13:25:01 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 245C8101F7
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E62120BD
         for <devicetree@vger.kernel.org>; Mon,  4 Jul 2022 10:25:00 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id z21so16736073lfb.12
+Received: by mail-lf1-x136.google.com with SMTP id t19so16148725lfl.5
         for <devicetree@vger.kernel.org>; Mon, 04 Jul 2022 10:25:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=W71Rw1ZmqAFIneN7w4qflBK6DSmjEO9By1YZo2D9i1I=;
-        b=CCLNpg9CV5pGAnTMJTVYfqYGZapq51U2StX2LH/NNWAtd3jJxDG3PESdBPkGFG7zDM
-         2SVBqvNow70CGew3ka4cNSnChzfrtYy6zKo+Cc1wxX+kYQQbZC2Yn63QN6IBc2KPrYmG
-         1qIMYj5LW01NtwOEd7Cro5HBgJuEI41GbVqwk6MJKdNXI9e1pC5na5AwUnY17lColDAs
-         YkR6BALii8vg/9UC06jylQ/UwCaOOEmS1SCTemVYwcOJNq1cf6WKbBitrG1Y1MUK2buy
-         2fH6VcX5dW2eTCAOm9gOSoj4yacMma/cT/7xJokAX/39EsL/klVlq1JJAcV2CvpkLVvQ
-         SYRA==
+        bh=hizAoMjwKxJKREAmN4CL7akEtHddW9X6jcla5HNJl0s=;
+        b=gyzhlqznJoMN1vPAAdlPAEmzfvj3Y/pSf7vtC/sdrIQrDTRxiir44wCrXoUDoJbwGC
+         Wyhp1sSr/iU0GIrCMtLev09V6I0SUw9TM68HXppGsluMRwII8Qb2SsmVF4vCZO43eVKF
+         1U6nW4O+OBINxj/vIsKDjlkYCHm/wY8KifJVu5FfJR96hl5CwqmHsXCjoY4PpDXIowbh
+         MOqlyBwfAwGpgAJzi83cewG71HIT0YVyoMSu/66Cjxh3X7nobqs8o4wQ1YygKlQocnmh
+         M8d++l//LvByhr+rWzARWkC5O9JyEJ5NzmaOeAQuYf0nvc7r8cyMqoaNDaCm40vWuZ5P
+         xbAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=W71Rw1ZmqAFIneN7w4qflBK6DSmjEO9By1YZo2D9i1I=;
-        b=D1rS405lIZgSpDECnLC7m9Oktf4QAZRfyi7X2p8ACTRc500mQc8jIvIKajfm26oIZM
-         lDaCss3BU/x1r1TfEgYY+ElTUhSB8s2ASQsrXGU8VXTPWnGSZBPOCD1pJdBtAvY7uCO7
-         d8Dlsp1vclCdAd0ZAp+aMbjqqFU19ZUCergZJqEOAh1StoQOfiwDls2rSN9C45VCtklW
-         I79FMHrrgvroYP1Wkv6/c3o35SC5fizWK4zmclae7I6ft3x8K5zx6L+yyIrMiNBvGNkk
-         JYJABjGOFI8so2mpAz2n8W7v/plyYCU5Rw/hH1D0d7OS4AZgbqxGQAajPGgvF/g5bfy2
-         sfeg==
-X-Gm-Message-State: AJIora+G7oYNLExtRQ81VPeCcp326v71u3Aew0QV69QZB+XRWx/Csa5e
-        MdDpWWSx/+U82Vi7mJcrGngS6w==
-X-Google-Smtp-Source: AGRyM1txRStIsg6e0mOD82TdwUV54QnIvioa2LK5X6kMmMUsGLUvlirspGSwqLG/RZn47TBkZ4s35Q==
-X-Received: by 2002:a05:6512:3d89:b0:47f:c089:1c7f with SMTP id k9-20020a0565123d8900b0047fc0891c7fmr20304929lfv.72.1656955498510;
-        Mon, 04 Jul 2022 10:24:58 -0700 (PDT)
+        bh=hizAoMjwKxJKREAmN4CL7akEtHddW9X6jcla5HNJl0s=;
+        b=1c/SjHBeQSpGDez8qK55iGeLXm2nk4q+YmJJpUXdYVKb+Ffh7CpaqCl2lV3szDocLq
+         giRJOG7Z+3KeSEK4XKEHuOKWTPzBWZfH9NTFsVnET6F+/KYAAxeO5PQqtXKklMmYAi7S
+         j2alrYJxjJ/7aDAKolI63u3Kvs7YzCAcSjpTSDWoZaoMxnCSn3acv1LZHMQoA7EsPYO3
+         Pzv98e+ZneDgJs1kFtjlQ7frai7qguYjTJBQpMrxbLg/KRY6pk9BJRZTTgnPYSeR7NZ5
+         PhAF99oQ/9LK2Z9/vBQgHoi1LnCumJ4NuKBKWHSSMZU+vzhHTBcPmJQj84u0cP8BtaWw
+         JciA==
+X-Gm-Message-State: AJIora+CuSe91EtjPFbC8XXOvLFSR1JxpK0ssPjugsYmtRsxLs7BJUFZ
+        FWeewvrfJBUT2edQmseO4zwUoQ==
+X-Google-Smtp-Source: AGRyM1vporwwD6A3vZPQhxry7XRIQaWOKALiJxwsWu49JojQtA7QeY7T+oEy9wZAqzIFR9IOG4KOig==
+X-Received: by 2002:a05:6512:30d:b0:47f:699c:ec51 with SMTP id t13-20020a056512030d00b0047f699cec51mr20743468lfp.391.1656955499722;
+        Mon, 04 Jul 2022 10:24:59 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id u15-20020ac2518f000000b0048152c51812sm2339596lfi.154.2022.07.04.10.24.57
+        by smtp.gmail.com with ESMTPSA id u15-20020ac2518f000000b0048152c51812sm2339596lfi.154.2022.07.04.10.24.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Jul 2022 10:24:57 -0700 (PDT)
+        Mon, 04 Jul 2022 10:24:59 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org,
         Marijn Suijten <marijn.suijten@somainline.org>
-Subject: [PATCH v4 4/7] clk: qcom: gcc-msm8916: move GPLL definitions up
-Date:   Mon,  4 Jul 2022 20:24:50 +0300
-Message-Id: <20220704172453.838303-5-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v4 5/7] clk: qcom: gcc-msm8916: move gcc_mss_q6_bimc_axi_clk down
+Date:   Mon,  4 Jul 2022 20:24:51 +0300
+Message-Id: <20220704172453.838303-6-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220704172453.838303-1-dmitry.baryshkov@linaro.org>
 References: <20220704172453.838303-1-dmitry.baryshkov@linaro.org>
@@ -77,250 +77,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move GPLL definitions up, before the clock parent tables, so that we can
-use gpll hw clock fields in the parent_data/parent_hws tables.
+The gcc_mss_q6_bimc_axi_clk clock depends on the bimc_ddr_clk_src clock.
+Move it down in the file to come after the source clock.
 
 Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/gcc-msm8916.c | 216 ++++++++++++++++-----------------
- 1 file changed, 108 insertions(+), 108 deletions(-)
+ drivers/clk/qcom/gcc-msm8916.c | 34 +++++++++++++++++-----------------
+ 1 file changed, 17 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/clk/qcom/gcc-msm8916.c b/drivers/clk/qcom/gcc-msm8916.c
-index 265df21e24af..1a6f5eb09d06 100644
+index 1a6f5eb09d06..f965cde0e8d5 100644
 --- a/drivers/clk/qcom/gcc-msm8916.c
 +++ b/drivers/clk/qcom/gcc-msm8916.c
-@@ -42,6 +42,114 @@ enum {
- 	P_EXT_MCLK,
+@@ -2629,23 +2629,6 @@ static struct clk_branch gcc_mss_cfg_ahb_clk = {
+ 	},
  };
  
-+static struct clk_pll gpll0 = {
-+	.l_reg = 0x21004,
-+	.m_reg = 0x21008,
-+	.n_reg = 0x2100c,
-+	.config_reg = 0x21010,
-+	.mode_reg = 0x21000,
-+	.status_reg = 0x2101c,
-+	.status_bit = 17,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "gpll0",
-+		.parent_names = (const char *[]){ "xo" },
-+		.num_parents = 1,
-+		.ops = &clk_pll_ops,
-+	},
-+};
-+
-+static struct clk_regmap gpll0_vote = {
-+	.enable_reg = 0x45000,
-+	.enable_mask = BIT(0),
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gpll0_vote",
-+		.parent_names = (const char *[]){ "gpll0" },
-+		.num_parents = 1,
-+		.ops = &clk_pll_vote_ops,
-+	},
-+};
-+
-+static struct clk_pll gpll1 = {
-+	.l_reg = 0x20004,
-+	.m_reg = 0x20008,
-+	.n_reg = 0x2000c,
-+	.config_reg = 0x20010,
-+	.mode_reg = 0x20000,
-+	.status_reg = 0x2001c,
-+	.status_bit = 17,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "gpll1",
-+		.parent_names = (const char *[]){ "xo" },
-+		.num_parents = 1,
-+		.ops = &clk_pll_ops,
-+	},
-+};
-+
-+static struct clk_regmap gpll1_vote = {
-+	.enable_reg = 0x45000,
-+	.enable_mask = BIT(1),
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gpll1_vote",
-+		.parent_names = (const char *[]){ "gpll1" },
-+		.num_parents = 1,
-+		.ops = &clk_pll_vote_ops,
-+	},
-+};
-+
-+static struct clk_pll gpll2 = {
-+	.l_reg = 0x4a004,
-+	.m_reg = 0x4a008,
-+	.n_reg = 0x4a00c,
-+	.config_reg = 0x4a010,
-+	.mode_reg = 0x4a000,
-+	.status_reg = 0x4a01c,
-+	.status_bit = 17,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "gpll2",
-+		.parent_names = (const char *[]){ "xo" },
-+		.num_parents = 1,
-+		.ops = &clk_pll_ops,
-+	},
-+};
-+
-+static struct clk_regmap gpll2_vote = {
-+	.enable_reg = 0x45000,
-+	.enable_mask = BIT(2),
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gpll2_vote",
-+		.parent_names = (const char *[]){ "gpll2" },
-+		.num_parents = 1,
-+		.ops = &clk_pll_vote_ops,
-+	},
-+};
-+
-+static struct clk_pll bimc_pll = {
-+	.l_reg = 0x23004,
-+	.m_reg = 0x23008,
-+	.n_reg = 0x2300c,
-+	.config_reg = 0x23010,
-+	.mode_reg = 0x23000,
-+	.status_reg = 0x2301c,
-+	.status_bit = 17,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "bimc_pll",
-+		.parent_names = (const char *[]){ "xo" },
-+		.num_parents = 1,
-+		.ops = &clk_pll_ops,
-+	},
-+};
-+
-+static struct clk_regmap bimc_pll_vote = {
-+	.enable_reg = 0x45000,
-+	.enable_mask = BIT(3),
-+	.hw.init = &(struct clk_init_data){
-+		.name = "bimc_pll_vote",
-+		.parent_names = (const char *[]){ "bimc_pll" },
-+		.num_parents = 1,
-+		.ops = &clk_pll_vote_ops,
-+	},
-+};
-+
- static const struct parent_map gcc_xo_gpll0_map[] = {
- 	{ P_XO, 0 },
- 	{ P_GPLL0, 1 },
-@@ -256,114 +364,6 @@ static const char * const gcc_xo_gpll1_emclk_sleep[] = {
- 	"sleep_clk",
+-static struct clk_branch gcc_mss_q6_bimc_axi_clk = {
+-	.halt_reg = 0x49004,
+-	.clkr = {
+-		.enable_reg = 0x49004,
+-		.enable_mask = BIT(0),
+-		.hw.init = &(struct clk_init_data){
+-			.name = "gcc_mss_q6_bimc_axi_clk",
+-			.parent_names = (const char *[]){
+-				"bimc_ddr_clk_src",
+-			},
+-			.num_parents = 1,
+-			.flags = CLK_SET_RATE_PARENT,
+-			.ops = &clk_branch2_ops,
+-		},
+-	},
+-};
+-
+ static struct clk_branch gcc_oxili_ahb_clk = {
+ 	.halt_reg = 0x59028,
+ 	.clkr = {
+@@ -2812,6 +2795,23 @@ static struct clk_rcg2 bimc_ddr_clk_src = {
+ 	},
  };
  
--static struct clk_pll gpll0 = {
--	.l_reg = 0x21004,
--	.m_reg = 0x21008,
--	.n_reg = 0x2100c,
--	.config_reg = 0x21010,
--	.mode_reg = 0x21000,
--	.status_reg = 0x2101c,
--	.status_bit = 17,
--	.clkr.hw.init = &(struct clk_init_data){
--		.name = "gpll0",
--		.parent_names = (const char *[]){ "xo" },
--		.num_parents = 1,
--		.ops = &clk_pll_ops,
--	},
--};
--
--static struct clk_regmap gpll0_vote = {
--	.enable_reg = 0x45000,
--	.enable_mask = BIT(0),
--	.hw.init = &(struct clk_init_data){
--		.name = "gpll0_vote",
--		.parent_names = (const char *[]){ "gpll0" },
--		.num_parents = 1,
--		.ops = &clk_pll_vote_ops,
--	},
--};
--
--static struct clk_pll gpll1 = {
--	.l_reg = 0x20004,
--	.m_reg = 0x20008,
--	.n_reg = 0x2000c,
--	.config_reg = 0x20010,
--	.mode_reg = 0x20000,
--	.status_reg = 0x2001c,
--	.status_bit = 17,
--	.clkr.hw.init = &(struct clk_init_data){
--		.name = "gpll1",
--		.parent_names = (const char *[]){ "xo" },
--		.num_parents = 1,
--		.ops = &clk_pll_ops,
--	},
--};
--
--static struct clk_regmap gpll1_vote = {
--	.enable_reg = 0x45000,
--	.enable_mask = BIT(1),
--	.hw.init = &(struct clk_init_data){
--		.name = "gpll1_vote",
--		.parent_names = (const char *[]){ "gpll1" },
--		.num_parents = 1,
--		.ops = &clk_pll_vote_ops,
--	},
--};
--
--static struct clk_pll gpll2 = {
--	.l_reg = 0x4a004,
--	.m_reg = 0x4a008,
--	.n_reg = 0x4a00c,
--	.config_reg = 0x4a010,
--	.mode_reg = 0x4a000,
--	.status_reg = 0x4a01c,
--	.status_bit = 17,
--	.clkr.hw.init = &(struct clk_init_data){
--		.name = "gpll2",
--		.parent_names = (const char *[]){ "xo" },
--		.num_parents = 1,
--		.ops = &clk_pll_ops,
--	},
--};
--
--static struct clk_regmap gpll2_vote = {
--	.enable_reg = 0x45000,
--	.enable_mask = BIT(2),
--	.hw.init = &(struct clk_init_data){
--		.name = "gpll2_vote",
--		.parent_names = (const char *[]){ "gpll2" },
--		.num_parents = 1,
--		.ops = &clk_pll_vote_ops,
--	},
--};
--
--static struct clk_pll bimc_pll = {
--	.l_reg = 0x23004,
--	.m_reg = 0x23008,
--	.n_reg = 0x2300c,
--	.config_reg = 0x23010,
--	.mode_reg = 0x23000,
--	.status_reg = 0x2301c,
--	.status_bit = 17,
--	.clkr.hw.init = &(struct clk_init_data){
--		.name = "bimc_pll",
--		.parent_names = (const char *[]){ "xo" },
--		.num_parents = 1,
--		.ops = &clk_pll_ops,
--	},
--};
--
--static struct clk_regmap bimc_pll_vote = {
--	.enable_reg = 0x45000,
--	.enable_mask = BIT(3),
--	.hw.init = &(struct clk_init_data){
--		.name = "bimc_pll_vote",
--		.parent_names = (const char *[]){ "bimc_pll" },
--		.num_parents = 1,
--		.ops = &clk_pll_vote_ops,
--	},
--};
--
- static struct clk_rcg2 pcnoc_bfdcd_clk_src = {
- 	.cmd_rcgr = 0x27000,
- 	.hid_width = 5,
++static struct clk_branch gcc_mss_q6_bimc_axi_clk = {
++	.halt_reg = 0x49004,
++	.clkr = {
++		.enable_reg = 0x49004,
++		.enable_mask = BIT(0),
++		.hw.init = &(struct clk_init_data){
++			.name = "gcc_mss_q6_bimc_axi_clk",
++			.parent_names = (const char *[]){
++				"bimc_ddr_clk_src",
++			},
++			.num_parents = 1,
++			.flags = CLK_SET_RATE_PARENT,
++			.ops = &clk_branch2_ops,
++		},
++	},
++};
++
+ static struct clk_branch gcc_apss_tcu_clk = {
+ 	.halt_reg = 0x12018,
+ 	.clkr = {
 -- 
 2.35.1
 
