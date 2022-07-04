@@ -2,141 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40349565764
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 15:33:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AD73565749
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jul 2022 15:33:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232622AbiGDNdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 09:33:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39434 "EHLO
+        id S234923AbiGDNc6 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 4 Jul 2022 09:32:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234918AbiGDNcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 09:32:25 -0400
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A43D112AC2;
-        Mon,  4 Jul 2022 06:30:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:References
-        :In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=JAH+8uIyGXaoyytv44HR9oezm9e5Wx1rOVY/LK5cjIk=; b=LkXgyh05OjnzRAO38Lde+9E5IH
-        ajV21EtMP3XVOuq5qyYmklRSaaKpDTBAZgQuESNI0ujkz7KE+QHzOgP9AvnTSAVPbpsMSmcXqo7gL
-        PMS+HxFTI58eoXO68eOlaoAN11AXsEj1F+Uh0CjHU1eS0BYIVfDhW87lg0rSwnMUTq9VdLo1qk7ue
-        LQYgZ1pCL48kLTg5OXtAOrnWmA8CkLKgovabNsadiFd5X4kLnobpcrj23pd9+Y+5hWoOfbElZRGif
-        4FpntrYqIS8QFGxkvK+uaf4zYmfvBAjkaS8sDHCbJYcjHIEi35yudooTrWR+kueSw3l64dfIvGES5
-        hcot6S/w==;
-Received: from [10.22.3.24] (helo=kernkonzept.com)
-        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
-        id 1o8M9m-0074oF-Nv; Mon, 04 Jul 2022 15:30:30 +0200
-From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235007AbiGDNcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 09:32:32 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8D0F12AD1;
+        Mon,  4 Jul 2022 06:31:11 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9625F23A;
+        Mon,  4 Jul 2022 06:31:11 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ED6363F66F;
+        Mon,  4 Jul 2022 06:31:09 -0700 (PDT)
+Date:   Mon, 4 Jul 2022 14:30:57 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Dominik Kobinski <dominikkobinski314@gmail.com>,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Subject: [PATCH 6/6] clk: qcom: smd-rpm: Add clocks for MSM8909
-Date:   Mon,  4 Jul 2022 15:30:00 +0200
-Message-Id: <20220704133000.2768380-7-stephan.gerhold@kernkonzept.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220704133000.2768380-1-stephan.gerhold@kernkonzept.com>
-References: <20220704133000.2768380-1-stephan.gerhold@kernkonzept.com>
+        Icenowy Zheng <icenowy@aosc.io>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 3/6] arm64: dts: allwinner: Add Allwinner H616 .dtsi
+ file
+Message-ID: <20220704143057.76163208@donnerap.cambridge.arm.com>
+In-Reply-To: <2985997.CbtlEUcBR6@jernej-laptop>
+References: <20220428230933.15262-1-andre.przywara@arm.com>
+        <3165164.aeNJFYEL58@kista>
+        <20220630010410.38fc117f@slackpad.lan>
+        <2985997.CbtlEUcBR6@jernej-laptop>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8909 has mostly the same as clocks in RPM as MSM8916,
-but additionally the QPIC clock for the NAND flash controller.
+On Sat, 02 Jul 2022 23:16:53 +0200
+Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
 
-Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
----
- drivers/clk/qcom/clk-smd-rpm.c | 37 +++++++++++++++++++++++++++++++++-
- 1 file changed, 36 insertions(+), 1 deletion(-)
+Hi Jernej,
 
-diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
-index 10b4e6d8d10f..56096123081c 100644
---- a/drivers/clk/qcom/clk-smd-rpm.c
-+++ b/drivers/clk/qcom/clk-smd-rpm.c
-@@ -417,6 +417,7 @@ DEFINE_CLK_SMD_RPM_BRANCH(sdm660, bi_tcxo, bi_tcxo_a, QCOM_SMD_RPM_MISC_CLK, 0,
- DEFINE_CLK_SMD_RPM(msm8916, pcnoc_clk, pcnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 0);
- DEFINE_CLK_SMD_RPM(msm8916, snoc_clk, snoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 1);
- DEFINE_CLK_SMD_RPM(msm8916, bimc_clk, bimc_a_clk, QCOM_SMD_RPM_MEM_CLK, 0);
-+DEFINE_CLK_SMD_RPM(qcs404, qpic_clk, qpic_a_clk, QCOM_SMD_RPM_QPIC_CLK, 0);
- DEFINE_CLK_SMD_RPM_QDSS(msm8916, qdss_clk, qdss_a_clk, QCOM_SMD_RPM_MISC_CLK, 1);
- DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8916, bb_clk1, bb_clk1_a, 1, 19200000);
- DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8916, bb_clk2, bb_clk2_a, 2, 19200000);
-@@ -427,6 +428,40 @@ DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8916, bb_clk2_pin, bb_clk2_a_pin, 2, 192
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8916, rf_clk1_pin, rf_clk1_a_pin, 4, 19200000);
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8916, rf_clk2_pin, rf_clk2_a_pin, 5, 19200000);
- 
-+static struct clk_smd_rpm *msm8909_clks[] = {
-+	[RPM_SMD_PCNOC_CLK]		= &msm8916_pcnoc_clk,
-+	[RPM_SMD_PCNOC_A_CLK]		= &msm8916_pcnoc_a_clk,
-+	[RPM_SMD_SNOC_CLK]		= &msm8916_snoc_clk,
-+	[RPM_SMD_SNOC_A_CLK]		= &msm8916_snoc_a_clk,
-+	[RPM_SMD_BIMC_CLK]		= &msm8916_bimc_clk,
-+	[RPM_SMD_BIMC_A_CLK]		= &msm8916_bimc_a_clk,
-+	[RPM_SMD_QPIC_CLK]		= &qcs404_qpic_clk,
-+	[RPM_SMD_QPIC_CLK_A]		= &qcs404_qpic_a_clk,
-+	[RPM_SMD_QDSS_CLK]		= &msm8916_qdss_clk,
-+	[RPM_SMD_QDSS_A_CLK]		= &msm8916_qdss_a_clk,
-+	[RPM_SMD_BB_CLK1]		= &msm8916_bb_clk1,
-+	[RPM_SMD_BB_CLK1_A]		= &msm8916_bb_clk1_a,
-+	[RPM_SMD_BB_CLK2]		= &msm8916_bb_clk2,
-+	[RPM_SMD_BB_CLK2_A]		= &msm8916_bb_clk2_a,
-+	[RPM_SMD_RF_CLK1]		= &msm8916_rf_clk1,
-+	[RPM_SMD_RF_CLK1_A]		= &msm8916_rf_clk1_a,
-+	[RPM_SMD_RF_CLK2]		= &msm8916_rf_clk2,
-+	[RPM_SMD_RF_CLK2_A]		= &msm8916_rf_clk2_a,
-+	[RPM_SMD_BB_CLK1_PIN]		= &msm8916_bb_clk1_pin,
-+	[RPM_SMD_BB_CLK1_A_PIN]		= &msm8916_bb_clk1_a_pin,
-+	[RPM_SMD_BB_CLK2_PIN]		= &msm8916_bb_clk2_pin,
-+	[RPM_SMD_BB_CLK2_A_PIN]		= &msm8916_bb_clk2_a_pin,
-+	[RPM_SMD_RF_CLK1_PIN]		= &msm8916_rf_clk1_pin,
-+	[RPM_SMD_RF_CLK1_A_PIN]		= &msm8916_rf_clk1_a_pin,
-+	[RPM_SMD_RF_CLK2_PIN]		= &msm8916_rf_clk2_pin,
-+	[RPM_SMD_RF_CLK2_A_PIN]		= &msm8916_rf_clk2_a_pin,
-+};
-+
-+static const struct rpm_smd_clk_desc rpm_clk_msm8909 = {
-+	.clks = msm8909_clks,
-+	.num_clks = ARRAY_SIZE(msm8909_clks),
-+};
-+
- static struct clk_smd_rpm *msm8916_clks[] = {
- 	[RPM_SMD_PCNOC_CLK]		= &msm8916_pcnoc_clk,
- 	[RPM_SMD_PCNOC_A_CLK]		= &msm8916_pcnoc_a_clk,
-@@ -787,7 +822,6 @@ static const struct rpm_smd_clk_desc rpm_clk_msm8996 = {
- };
- 
- DEFINE_CLK_SMD_RPM(qcs404, bimc_gpu_clk, bimc_gpu_a_clk, QCOM_SMD_RPM_MEM_CLK, 2);
--DEFINE_CLK_SMD_RPM(qcs404, qpic_clk, qpic_a_clk, QCOM_SMD_RPM_QPIC_CLK, 0);
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(qcs404, ln_bb_clk_pin, ln_bb_clk_a_pin, 8, 19200000);
- 
- static struct clk_smd_rpm *qcs404_clks[] = {
-@@ -1146,6 +1180,7 @@ static const struct rpm_smd_clk_desc rpm_clk_qcm2290 = {
- static const struct of_device_id rpm_smd_clk_match_table[] = {
- 	{ .compatible = "qcom,rpmcc-mdm9607", .data = &rpm_clk_mdm9607 },
- 	{ .compatible = "qcom,rpmcc-msm8226", .data = &rpm_clk_msm8974 },
-+	{ .compatible = "qcom,rpmcc-msm8909", .data = &rpm_clk_msm8909 },
- 	{ .compatible = "qcom,rpmcc-msm8916", .data = &rpm_clk_msm8916 },
- 	{ .compatible = "qcom,rpmcc-msm8936", .data = &rpm_clk_msm8936 },
- 	{ .compatible = "qcom,rpmcc-msm8953", .data = &rpm_clk_msm8953 },
--- 
-2.30.2
+> Dne četrtek, 30. junij 2022 ob 02:04:10 CEST je Andre Przywara napisal(a):
+> > On Tue, 03 May 2022 21:05:11 +0200
+> > Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
+> > 
+> > Hi Jernej,
+> > 
+> > many thanks for taking the time to wade through this file!
+> >   
+> > > Dne petek, 29. april 2022 ob 01:09:30 CEST je Andre Przywara napisal(a):  
+> > > > This (relatively) new SoC is similar to the H6, but drops the (broken)
+> > > > PCIe support and the USB 3.0 controller. It also gets the management
+> > > > controller removed, which in turn removes *some*, but not all of the
+> > > > devices formerly dedicated to the ARISC (CPUS).
+> > > > And while there is still the extra sunxi interrupt controller, the
+> > > > package lacks the corresponding NMI pin, so no interrupts for the PMIC.
+> > > > 
+> > > > The reserved memory node is actually handled by Trusted Firmware now,
+> > > > but U-Boot fails to propagate this to a separately loaded DTB, so we
+> > > > keep it in here for now, until U-Boot learns to do this properly.
+> > > > 
+> > > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > > > ---
+> > > > 
+> > > >  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 574 ++++++++++++++++++
+> > > >  1 file changed, 574 insertions(+)
+> > > >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > > > b/arch/arm64/  
+> > > 
+> > > boot/dts/allwinner/sun50i-h616.dtsi
+> > >   
+> > > > new file mode 100644
+> > > > index 000000000000..cc06cdd15ba5
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > > > @@ -0,0 +1,574 @@
+> > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > +// Copyright (C) 2020 Arm Ltd.
+> > > > +// based on the H6 dtsi, which is:
+> > > > +//   Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
+> > > > +
+> > > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > +#include <dt-bindings/clock/sun50i-h616-ccu.h>
+> > > > +#include <dt-bindings/clock/sun50i-h6-r-ccu.h>
+> > > > +#include <dt-bindings/reset/sun50i-h616-ccu.h>
+> > > > +#include <dt-bindings/reset/sun50i-h6-r-ccu.h>
+> > > > +
+> > > > +/ {
+> > > > +	interrupt-parent = <&gic>;
+> > > > +	#address-cells = <2>;
+> > > > +	#size-cells = <2>;
+> > > > +
+> > > > +	cpus {
+> > > > +		#address-cells = <1>;
+> > > > +		#size-cells = <0>;
+> > > > +
+> > > > +		cpu0: cpu@0 {
+> > > > +			compatible = "arm,cortex-a53";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <0>;
+> > > > +			enable-method = "psci";
+> > > > +			clocks = <&ccu CLK_CPUX>;
+> > > > +		};
+> > > > +
+> > > > +		cpu1: cpu@1 {
+> > > > +			compatible = "arm,cortex-a53";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <1>;
+> > > > +			enable-method = "psci";
+> > > > +			clocks = <&ccu CLK_CPUX>;
+> > > > +		};
+> > > > +
+> > > > +		cpu2: cpu@2 {
+> > > > +			compatible = "arm,cortex-a53";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <2>;
+> > > > +			enable-method = "psci";
+> > > > +			clocks = <&ccu CLK_CPUX>;
+> > > > +		};
+> > > > +
+> > > > +		cpu3: cpu@3 {
+> > > > +			compatible = "arm,cortex-a53";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <3>;
+> > > > +			enable-method = "psci";
+> > > > +			clocks = <&ccu CLK_CPUX>;
+> > > > +		};
+> > > > +	};
+> > > > +
+> > > > +	reserved-memory {
+> > > > +		#address-cells = <2>;
+> > > > +		#size-cells = <2>;
+> > > > +		ranges;
+> > > > +
+> > > > +		/* 512KiB reserved for ARM Trusted Firmware (BL31) */
+> > > > +		secmon_reserved: secmon@40000000 {
+> > > > +			reg = <0x0 0x40000000 0x0 0x80000>;
+> > > > +			no-map;
+> > > > +		};
+> > > > +	};  
+> > > 
+> > > I'm not a fan of above. If anything changes in future in BL31, U-Boot
+> > > would
+> > > need to reconfigure it anyway. Can we just skip it?  
+> > 
+> > I am not a fan neither, but last time I checked this is needed to boot.
+> > Indeed TF-A inserts this node, with the right values, into U-Boot's DT.
+> > And that's nicely preserved if you use that DT ($fdtcontroladdr) for
+> > the kernel as well.
+> > But if someone *loads* a DTB into U-Boot (to $fdt_addr_r), then
+> > U-Boot fails to propagate the /reserved-memory node into that copy.
+> > There does not seem to be a global notion of reserved memory in U-Boot.
+> > Some commands (like tftp) explicitly parse the control DT to find and
+> > respect reserved memory regions. bootm does that also, but only to
+> > avoid placing the ramdisk or DTB into reserved memory. The information
+> > ends up in images->lmb, but is not used to generate or amend nodes in
+> > the target DT.
+> > So the bits and pieces are there, but it will require some code to be
+> > added to the generic U-Boot code.
+> > 
+> > So what do you think? Leaving this out will prevent loading DTBs into
+> > U-Boot, at the moment, which sounds bad. I suggest we keep it in, for
+> > now, it should not really hurt. U-Boot will hopefully start to do the
+> > right thing soon, then we can either phase it out here (maybe when we
+> > actually change something in TF-A), or let U-Boot fix it.  
+> 
+> TBH, if "soon" is really soon, I would rather wait with H616 DT until U-Boot 
+> supports carrying over reserved memory nodes.
 
+But this also carries compatibility issues. U-Boot support the H616 for
+more than a year now, and the earliest possible U-Boot release having that
+propagation code would be the one released in October. And then people
+would still need to update first, so that's quite some months out.
+And I was actually hoping to get at least the H616 DT patches off my
+plate, and get them into the tree to have a stable and agreed upon base
+(before this series turns into a teenager ;-)
+Then we could for instance update the U-Boot H616 support.
+
+> Whatever we do now, it will have 
+> compatibility issues. If we introduce reserved memory node now, we can't 
+> easily drop it later. Bootloaders are not very often updated, but kernels and 
+> DTB files are, at least in my experience. So when we decide to drop the node?
+
+I think of the three possibilities:
+- Drop the node now, and ask people to not load DTBs explicitly
+- Drop the node when U-Boot learned to propagate the reservation
+- Keep the node
+the last one is the least painful: having this node in does not really
+hurt, so we can be very relaxed with this removal decision:
+- If U-Boot does not add the reserved node, we are covered.
+- If U-Boot adds the node, it will do so in a way where it deals with
+existing reservations. So either it doesn't actually change anything, or
+it extends the reservation.
+- Should the TF-A location actually move (and we have no plans or needs to
+do that), people would only get this by updating the firmware, at which
+point the U-Boot part would surely be in place already. We don't really
+support updating just BL31 in an existing binary firmware image, so you
+would get an updated U-Boot as well.
+
+I think the worst case scenario is that users end up with an unneeded 512K
+reservation. If they care, a firmware update should solve this problem.
+
+As for the time to remove that node: we could do that at the time when
+(or rather: if) we actually change the TF-A reservation. At the moment
+there are no plans to do this, and the size reservation is more than
+generous (the current debug build is actually 77 KB or so only). If there
+is no change, and the node stays in the .dtsi, it doesn't really hurt, see
+above.
+
+> After 10 years? Alternatively, reserved memory node can be just dropped and 
+> anyone loading DTB file from outside would need to make sure it's patched. But 
+> that's unexpected from user perspective, although patching DT files is done by 
+> some distros.
+
+Yeah, let's not go there. As you know, I already dislike the idea of
+explicitly loading DTBs at all, but I understand this is what people, and
+distributions, do, so I'd rather have them covered. Hence the node to
+work with existing firmware.
+
+Does that make sense?
+
+Cheers,
+Andre
