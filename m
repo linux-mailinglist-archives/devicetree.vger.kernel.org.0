@@ -2,123 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 656885679FA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 00:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7276567A09
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 00:20:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbiGEWLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 18:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54150 "EHLO
+        id S231169AbiGEWUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 18:20:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbiGEWLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 18:11:18 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98FE1AF1A;
-        Tue,  5 Jul 2022 15:11:16 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id z25so5323596lfr.2;
-        Tue, 05 Jul 2022 15:11:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=t+jlLw01pbpeg71grsXyKUoNlpwX1KBSX1qcVAQ75OQ=;
-        b=ZmQmwj/cA1F89iA8lWCQfeLozBC9O+yyrAfvoG5YPUJxWXCt56NGUp7y82DkB7wD/E
-         A47s9jrnp63SiFOYfQJwzl8d2kZUob+rIHpe4Jfnsj8fF4b41PAeBMcUBAjl9pjCnuH3
-         OwYubVhxTL5hTR254x3YfywmA3HRmoRTADRIgywSULXB23lk/LriTI4iAtT3ciHqSKva
-         7wIohbHbVipx8AAZ1/LO+cGKDqPa0suGwP6eILg6mXAUkI8b5MIn2KcSgHIOKTH1F1bn
-         PpaH7EXKVWeT2zoDB5SSVtyPlHfiSNw9pr151+97+JvXMnbfvxPZevVoM2dtR2VPZ97N
-         +plA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=t+jlLw01pbpeg71grsXyKUoNlpwX1KBSX1qcVAQ75OQ=;
-        b=QoZpAzXHaLzg5mE247BDjDsaiz5aCwqM7HbyGUJvyOQQ6Ubc3/r2lXdfB6nxdMyAhk
-         599dYMOlGhIzJ6qia21jCJHF7POspyj7FRpMYzlHXehStQ7yuDcA2+jKq6GZUgdL/cxI
-         7175c4RyBnVXhCdjpOlbxs82TkRKyr+j5RCkyBOZgspP5SgqultBC3gkwvNsZNgqP3yJ
-         Q7YhngVPhO2d+TJG45V4HCEFJTR4QKhFrHzGV5ZJC0RENXEG95O7jL0/bP86oraKi0IE
-         nhEcsstFl6AoItzeyTUKnap/NfnJX7z9sliDkK09gwrbvKZHa5cki+0Iiamt2OFQ6Ok8
-         VGAw==
-X-Gm-Message-State: AJIora/WmYvVQj+sGyr4amw4kAVLZ9WgNHq5Px9mPPlb59kX4O+uX30l
-        n0yV0670KeneAURD4U3H1iMf0UJIoI73fQ==
-X-Google-Smtp-Source: AGRyM1suGhKtFclh9YZZKDm+F08jWGn3b6RjEdBC2jEsPiguREv7fbkCoJ7tJNZb6L+KKgs5fAh/8g==
-X-Received: by 2002:ac2:5603:0:b0:484:3be8:c063 with SMTP id v3-20020ac25603000000b004843be8c063mr2555307lfd.263.1657059075373;
-        Tue, 05 Jul 2022 15:11:15 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id q15-20020a19f20f000000b0047f6b8c2127sm5890369lfh.186.2022.07.05.15.11.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 15:11:14 -0700 (PDT)
-Date:   Wed, 6 Jul 2022 01:11:12 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v5 7/8] clk: baikal-t1: Add DDR/PCIe directly
- controlled resets support
-Message-ID: <20220705221112.vix772dpl2ql2ibq@mobilestation>
-References: <20220624141853.7417-1-Sergey.Semin@baikalelectronics.ru>
- <20220624141853.7417-8-Sergey.Semin@baikalelectronics.ru>
- <094a0d4e1c1b40f51ce7bec42e410500265d7a6d.camel@pengutronix.de>
+        with ESMTP id S230001AbiGEWUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 18:20:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D953186F8;
+        Tue,  5 Jul 2022 15:20:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CFA4461D3A;
+        Tue,  5 Jul 2022 22:20:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 34CBFC341C8;
+        Tue,  5 Jul 2022 22:20:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657059613;
+        bh=hO8W+SqlzzWY0MFtfKjDaAWoxPd/3Fuy/QNL1MwRuIE=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=JCf3iPcDRemhVC3u0Q27/2BNmFjpu9gOf0/gcmnejIZw2xdL6dx2bDX6QO8TiUnaC
+         O55QGvx0NxQFrbFyZbsIPalOrABMufYV+zG6040DspJ20CyRavsAOtnYRQ+FbgR5EA
+         O7K0S6iqBq/syZByyHy2ePJSlephfbStUWzw/DWmI93naV88L8DXpXnpjQT+9ydAQI
+         HFNkFVzlp6GTVc2kgrz+dUWG+eKz0uwQ/kY6QPvHrKQHocL8TEJ7NSgmzenBVILa8u
+         BsUT8bNRKuD/0kz8GSbaZn7/2+NZqylKQ5x2DGddKFDPVUneVQtkrbW2oH0VHibgxu
+         oESy+gYD/nC5A==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 16F3BE45BDB;
+        Tue,  5 Jul 2022 22:20:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <094a0d4e1c1b40f51ce7bec42e410500265d7a6d.camel@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: Add missing 'reg'
+ property
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165705961309.16452.8847094115538179465.git-patchwork-notify@kernel.org>
+Date:   Tue, 05 Jul 2022 22:20:13 +0000
+References: <20220701222240.1706272-1-robh@kernel.org>
+In-Reply-To: <20220701222240.1706272-1-robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        sean.wang@mediatek.com, Landen.Chao@mediatek.com, dqfext@gmail.com,
+        frank-w@public-files.de, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philipp
+Hello:
 
-On Wed, Jun 29, 2022 at 05:16:56PM +0200, Philipp Zabel wrote:
-> Hi Serge,
+This patch was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Fri,  1 Jul 2022 16:22:40 -0600 you wrote:
+> The 'reg' property is missing from the mediatek,mt7530 schema which
+> results in the following warning once 'unevaluatedProperties' is fixed:
 > 
-> On Fr, 2022-06-24 at 17:18 +0300, Serge Semin wrote:
-> > Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
-> > additional blocks with directly controlled reset signals. In particular it
-> > concerns DDR full and initial resets and various PCIe sub-domains resets.
-> > Let's add the direct reset assertion/de-assertion of the corresponding
-> > flags support into the Baikal-T1 CCU driver then. It will be required at
-> > least for the PCIe platform driver. Obviously the DDR controller isn't
-> > supposed to be fully reset in the kernel, so the corresponding controls
-> > are added just for the sake of the interface implementation completeness.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.example.dtb: switch@0: Unevaluated properties are not allowed ('reg' was unexpected)
 > 
-
-> This looks good to me, the issues with the previous patch still apply.
-
-I see. Let's settle the main question there first then. Further
-actions in this patch framework depend on your answer there.
-
--Sergey
-
+> Fixes: e0dda3119741 ("dt-bindings: net: dsa: convert binding for mediatek switches")
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > 
 > [...]
-> > +static int ccu_rst_set(struct reset_controller_dev *rcdev,
-> > +		       unsigned long idx, bool high)
-> > +{
-> > +	struct ccu_rst *rst;
-> > +
-> > +	rst = ccu_rst_get_desc(rcdev, idx);
-> > +	if (IS_ERR(rst)) {
-> > +		pr_err("Invalid reset index %lu specified\n", idx);
-> > +		return PTR_ERR(rst);
-> > +	}
-> 
-> e.g. this should not be necessary.
-> 
-> regards
-> Philipp
+
+Here is the summary with links:
+  - dt-bindings: net: dsa: mediatek,mt7530: Add missing 'reg' property
+    https://git.kernel.org/netdev/net-next/c/3359619a6ea5
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
