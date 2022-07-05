@@ -2,91 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B8865660B0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 03:29:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2B885660BC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 03:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231664AbiGEB3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 21:29:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53090 "EHLO
+        id S231664AbiGEBly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 21:41:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231609AbiGEB3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 21:29:48 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6A6ABE0;
-        Mon,  4 Jul 2022 18:29:47 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 146E65C0114;
-        Mon,  4 Jul 2022 21:29:47 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 04 Jul 2022 21:29:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1656984587; x=
-        1657070987; bh=uvC4YU6+mtd4YBT4Ou6ubQeGMQvVq+lOXjHFVHvybSk=; b=E
-        dRFuECHgqHX36E+J8o2kpDdnYrBbpRvi9JfLF8XZjvezcHf+b4NTcQx3gVG6A39q
-        8RWrE3DNhTxfNL02yM6ODywvz+0INxokkKGXHAPGJvjKObIuMS5gJX9pqLLArrt+
-        r+dCetRK88TmaW6Cd2ALbGkhJSVSx9oGbU8bMxaYUphjMfOBUcCVgV1jNM2590vu
-        nR2qbhxBvMuFaerkp7OBoG9t+zu0n1Jev8qtgmxR1i7cYWSLy0NhaUckZa96K5cl
-        snUzIMj1DtAblnMVsJApq16mJOxWPr53MNNQpjM3GxWa6FUGFJZ3ID4tYNTCoZ0l
-        yvo8eEeFC/Dky7Pu+qSZg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1656984587; x=
-        1657070987; bh=uvC4YU6+mtd4YBT4Ou6ubQeGMQvVq+lOXjHFVHvybSk=; b=v
-        kP9dOxGVcxIrsLXkmJcyef4s3h4IH2ecLX2FdlzeoWLrWn2RMYTP3yEEC/WuyOrm
-        0Gb/OJZx3MaPSNSiVIqIlQyPqY4NE6rvGqacQSBX6pLxq4jhA3E49brYbxTNQMK4
-        wUbdhCRNqthTzez1uOEGqGZnEgDUgW+6u1t7ngSlxQvdCgKCMOyehYq1/sOQ/AZZ
-        Zx2SXIH528Gv2qMZPZLhCJCevpw91sCpI6TFBEx1bAGZ7lkXZxfdvcIOXTI2KNqT
-        lLfb5040PFfl2ldKy7Q+NyWtg7eqYFPl3UiOulnfYuWo5evRqkc7PSg5c/prIMZa
-        O1rYpLBR13MIW+uyVAR8A==
-X-ME-Sender: <xms:CpTDYi7enNUoYIB0uXIoCnLFzLzocjf7-I_XNL1GBampN4l-XU9QlQ>
-    <xme:CpTDYr4JxuFUu9-p8bIPV-uEkpDqlqzW00MoL6voKnVYeBmDoAZoX8bjqTlvDXddS
-    cID2Z8BCMtJIqSzOg>
-X-ME-Received: <xmr:CpTDYhcym8Qw0P5vwBM86PMaUjhX4zvr-txy3mPLHq_EItjWHSoJJtFOC54_XGHZl9rMCSXbAlgTIdao_eWbIK0oBokHqlSkI1l3RGdAkpA0DX4nbxBVq6Jh3Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudeitddggeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpefftdevkedvgeekueeutefgteffieelvedukeeuhfehledvhfei
-    tdehudfhudehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:CpTDYvJpLIlX6jKA5mqn8TTsocfJLaa8uXPgw3NX0WsIAZCpDuEbfw>
-    <xmx:CpTDYmJMdBIbhOtgt2sdYEHeNqlRZXlV-kQq_zL7XAk6QBbV0kxlyQ>
-    <xmx:CpTDYgwuYz8sfzMcw7R-Hu-XpUDYkI-GpLO778OClqdXV-uMj9rgcA>
-    <xmx:C5TDYl_O5qucGj5w6O78Ymyd6Rzl8W6JLQaph3ez1tMidh6By2j87g>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 4 Jul 2022 21:29:45 -0400 (EDT)
-Subject: Re: [PATCH v12 7/7] arm64: dts: allwinner: h616: Add X96 Mate TV box
- support
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        with ESMTP id S229865AbiGEBlx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 21:41:53 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C950EDF09;
+        Mon,  4 Jul 2022 18:41:52 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id q9so15431563wrd.8;
+        Mon, 04 Jul 2022 18:41:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=3mXXLJT3pzHfY2MP3/D0o2S28/BVSfmZhtJ9riIPTYk=;
+        b=BOJBA7mleKywdRuyqtpjDV4i2xNN8cmg0F5cRn4q88lQ1pAwfmyWik2giLT5N20921
+         NJU5t1mMU07Bzu+XlV+gQqNisf82bGhM2WpQdyhg8wD3NiZwOUY2qPwiLTWRFb4H9Uo3
+         g5/RwjcSMRF5YkBkGJMrHckZciYeiPcWSxw7YDm7NavMDagqWVP8mDdFmkKVooHCgwEi
+         am5SYzeLOtid4PoPlIrQiYdudZ+aPdJDbyuyswZC2UXMArFFVoJ/Dnk5uvQf21hI9oPX
+         hFtSD/dYkt70aTjKYZGKa4fJKWSm7s0DvERiF4DVn/CuKNOk8uhyA8jZ2SDYuiJUDQQi
+         dYng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=3mXXLJT3pzHfY2MP3/D0o2S28/BVSfmZhtJ9riIPTYk=;
+        b=GxKP30WmrdL0lwMNz1EdfAbDKJB62vgqbL2mBwut7P1wHJcsdjT8oxzsNSVx3bRzcg
+         UYTUV00fXH4kkXqNDUAm7g3UlbfRrTqo2DOJapJi8wBpSzVpSb6EG24P52ABSc4G04WM
+         fIpuhTtIBd7ppZ2OflPyaPmm56CiT7YVGlrwmJOJfvs5ytlPDLAjm6qA1pD1YZng9Guu
+         ScMk406m2L74iBSuPzqzCGsgahhao37bI1bxvD/K99SVUF6a+kMGfYlUf4VlXoOdgQzv
+         ldMCHz+tLeK+hkl8qYOOv3E96HJ/SUkbi3tba7XOaFmanqtQYz2SBq1ZARTF2OcQbQGq
+         0RIA==
+X-Gm-Message-State: AJIora+9007brdJ0asrk3DWlZgX/o735xFa8FTVizlPT/lzMlRQ5XpRn
+        yLV9kNnaW9ddGLnAVAeAh9tRv7EYGRhJvYSF+vE=
+X-Google-Smtp-Source: AGRyM1thvmcTH3k8A1sXDOs2Gcf1kS8jALhWsjz7+83QLg81nbpKv3n2CrxTaDkOx1K4MTBmM9J3tyriWKZXLEbU9zw=
+X-Received: by 2002:adf:f043:0:b0:21d:6a90:f3e6 with SMTP id
+ t3-20020adff043000000b0021d6a90f3e6mr7291898wro.277.1656985311154; Mon, 04
+ Jul 2022 18:41:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <1656469212-12717-1-git-send-email-u0084500@gmail.com>
+ <1656469212-12717-3-git-send-email-u0084500@gmail.com> <CAHp75Vd2bxFA5PmjEtgAjJfCf9YZENq_fb9b2VHmMmmHdqGJSw@mail.gmail.com>
+ <CADiBU384ZwKL_+i1zRL9qfVt-NLo=pnf8zrGna4Sxt+toYZdWg@mail.gmail.com>
+ <CADiBU3_sU8bj29x2Qs9y9fM2YDYcKvNBkBuzfpzuCkAjSeTu+Q@mail.gmail.com> <CAHp75VeiuJjiPFFh0pEGGH4+UEn0g5902UhAJL93Ho2WvH0_gg@mail.gmail.com>
+In-Reply-To: <CAHp75VeiuJjiPFFh0pEGGH4+UEn0g5902UhAJL93Ho2WvH0_gg@mail.gmail.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Tue, 5 Jul 2022 09:41:39 +0800
+Message-ID: <CADiBU38FbZ87EHn_UDy-rS6V2bGDdLZJOcqNZsS03MzbNaVaKA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: Add rtq6056 support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20220701112453.2310722-1-andre.przywara@arm.com>
- <20220701112453.2310722-8-andre.przywara@arm.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <22aa3412-2dc2-4d7e-1c61-c5d35b25fe6d@sholland.org>
-Date:   Mon, 4 Jul 2022 20:29:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-MIME-Version: 1.0
-In-Reply-To: <20220701112453.2310722-8-andre.przywara@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        cy_huang <cy_huang@richtek.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,234 +75,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/1/22 6:24 AM, Andre Przywara wrote:
-> The X96 Mate is an Allwinner H616 based TV box, featuring:
->   - Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
->   - 2GiB/4GiB RAM (fully usable!)
->   - 16/32/64GiB eMMC
->   - 100Mbps Ethernet (via embedded AC200 EPHY, not yet supported)
->   - Unsupported Allwinner WiFi chip
->   - 2 x USB 2.0 host ports
->   - HDMI port
->   - IR receiver
->   - 5V/2A DC power supply via barrel plug
-> 
-> Add a basic devicetree for it, with SD card and eMMC working, as
-> well as serial and the essential peripherals, like the AXP PMIC.
-> 
-> This DT is somewhat minimal, and should work on many other similar TV
-> boxes with the Allwinner H616 chip.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=
+=885=E6=97=A5 =E9=80=B1=E4=BA=8C =E6=B8=85=E6=99=A85:52=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> On Mon, Jul 4, 2022 at 9:27 AM ChiYuan Huang <u0084500@gmail.com> wrote:
+> > ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=884=
+=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8811:16=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > > Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=
+=E6=9C=881=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=886:05=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+> > > > On Wed, Jun 29, 2022 at 4:23 AM cy_huang <u0084500@gmail.com> wrote=
+:
+>
+> ...
+>
+> > > > > +       *val =3D DIV_ROUND_UP(1000000, sample_time);
+> > > >
+> > > > USEC_PER_SEC ?
+> > > >
+> > > No, sample time is (vshunt convesion time + vbus conversion time) *
+> > > average sample.
+> > > And the sample freq returns the unit by HZ (sample frequency per seco=
+nd)
+> > >
+> > The 'sample time' is unit by micro-second like as you mentioned.
+>
+> Ah, then it should be MICRO, so we will get Hz.
+>
+> > > > > +       return IIO_VAL_INT;
+> > > > > +}
+>
+> ...
+>
+> > > > > +       struct {
+> > > > > +               u16 vals[RTQ6056_MAX_CHANNEL];
+> > > > > +               int64_t timestamp;
+> > > > > +       } data __aligned(8);
+> > > >
+> > > > Hmm... alignment of this struct will be at least 4 bytes, but
+> > > > shouldn't we rather be sure that the timestamp member is aligned
+> > > > properly? Otherwise this seems fragile and dependent on
+> > > > RTQ6056_MAX_CHANNEL % 4 =3D=3D 0.
+> > > >
+> > > Yap, from the 'max channel', it already guarantee this struct will be
+> > > aligned at lease 4.
+> > > Actually, It can be removed.
+>
+> I think for the safest side it should be given to the timestamp member. N=
+o?
+>
+Sorry, following your comment, Why to use 'align' for the timestamp member?
+the data member already guarantee 2 * 4 =3D 8 byte, then timestamp will
+be 8 byte aligned, right?
 
-Looks good to me, with one question below.
+what you mentioned is to put __aligned(8) only for timestamp.
 
-Reviewed-by: Samuel Holland <samuel@sholland.org>
-
-> ---
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../dts/allwinner/sun50i-h616-x96-mate.dts    | 177 ++++++++++++++++++
->  2 files changed, 178 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> index df2214e6d946a..6a96494a2e0a3 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -39,3 +39,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> new file mode 100644
-> index 0000000000000..30b76140b9c8a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> @@ -0,0 +1,177 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2021 Arm Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sun50i-h616.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	model = "X96 Mate";
-> +	compatible = "hechuang,x96-mate", "allwinner,sun50i-h616";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	reg_vcc5v: vcc5v {
-> +		/* board wide 5V supply directly from the DC input */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +};
-> +
-> +&ir {
-> +	status = "okay";
-> +};
-> +
-> +&mmc0 {
-> +	vmmc-supply = <&reg_dcdce>;
-> +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&mmc2 {
-> +	vmmc-supply = <&reg_dcdce>;
-> +	vqmmc-supply = <&reg_bldo1>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	cap-mmc-hw-reset;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	status = "okay";
-> +};
-> +
-> +&r_rsb {
-> +	status = "okay";
-> +
-> +	axp305: pmic@745 {
-> +		compatible = "x-powers,axp305", "x-powers,axp805",
-> +			     "x-powers,axp806";
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +		reg = <0x745>;
-> +
-> +		x-powers,self-working-mode;
-> +		vina-supply = <&reg_vcc5v>;
-> +		vinb-supply = <&reg_vcc5v>;
-> +		vinc-supply = <&reg_vcc5v>;
-> +		vind-supply = <&reg_vcc5v>;
-> +		vine-supply = <&reg_vcc5v>;
-> +		aldoin-supply = <&reg_vcc5v>;
-> +		bldoin-supply = <&reg_vcc5v>;
-> +		cldoin-supply = <&reg_vcc5v>;
-> +
-> +		regulators {
-> +			reg_aldo1: aldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc-sys";
-> +			};
-> +
-> +			/* Enabled by the Android BSP */
-> +			reg_aldo2: aldo2 {
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc3v3-ext";
-> +				status = "disabled";
-
-If you disable these nodes, the regulator core will ignore them and not apply
-the voltages. Is that what you want?
-
-Regards,
-Samuel
-
-> +			};
-> +
-> +			/* Enabled by the Android BSP */
-> +			reg_aldo3: aldo3 {
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc3v3-ext2";
-> +				status = "disabled";
-> +			};
-> +
-> +			reg_bldo1: bldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc1v8";
-> +			};
-> +
-> +			/* Enabled by the Android BSP */
-> +			reg_bldo2: bldo2 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc1v8-2";
-> +				status = "disabled";
-> +			};
-> +
-> +			bldo3 {
-> +				/* unused */
-> +			};
-> +
-> +			bldo4 {
-> +				/* unused */
-> +			};
-> +
-> +			cldo1 {
-> +				regulator-min-microvolt = <2500000>;
-> +				regulator-max-microvolt = <2500000>;
-> +				regulator-name = "vcc2v5";
-> +			};
-> +
-> +			cldo2 {
-> +				/* unused */
-> +			};
-> +
-> +			cldo3 {
-> +				/* unused */
-> +			};
-> +
-> +			reg_dcdca: dcdca {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <810000>;
-> +				regulator-max-microvolt = <1080000>;
-> +				regulator-name = "vdd-cpu";
-> +			};
-> +
-> +			reg_dcdcc: dcdcc {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <810000>;
-> +				regulator-max-microvolt = <1080000>;
-> +				regulator-name = "vdd-gpu-sys";
-> +			};
-> +
-> +			reg_dcdcd: dcdcd {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1360000>;
-> +				regulator-max-microvolt = <1360000>;
-> +				regulator-name = "vdd-dram";
-> +			};
-> +
-> +			reg_dcdce: dcdce {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc-eth-mmc";
-> +			};
-> +
-> +			sw {
-> +				/* unused */
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_ph_pins>;
-> +	status = "okay";
-> +};
-> 
-
+I try to put aligned in two ways ( one is only for timestamp, another
+is the whole struct). the result is the same.
+From my thinking, in this case, the struct is already 8 byte aligned
+for timestamp member. don't you think to put 'aligned' is redundant?
+> --
+> With Best Regards,
+> Andy Shevchenko
