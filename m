@@ -2,101 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BBC856772E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A036C567722
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbiGETEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 15:04:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36606 "EHLO
+        id S233180AbiGETEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 15:04:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232156AbiGETEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:04:09 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3525E1F2FA;
-        Tue,  5 Jul 2022 12:04:06 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id k15so12033052iok.5;
-        Tue, 05 Jul 2022 12:04:06 -0700 (PDT)
+        with ESMTP id S233161AbiGETEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:04:04 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C1BE13D02
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 12:04:02 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id t19so21508341lfl.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 12:04:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=5mR8xFqGjjP4W/nW8ZmW82KHWo8ArnxMdtQdz/0Xv58=;
-        b=Akho+oNYYzMJsQJYNCLDZUNWuBvocCA1oS7XupTuS1pc35+87NcySHqmXO9+XNxTX6
-         oz/RWdwuOY38bAeOjJvDMrPLA6ipJzoSzd4ol0fZCY6uOhhuDCOwuVaUIwmTD+/Nnej2
-         x73aq3HFAY0SnHG5s5FIQ44uBBy5o1v/1ipf/+Z6wuLTsRUMjLGSi3WvyRhB4Nu+1nBt
-         xItD7w/rlj/2+uV5Zql99j6ENcL7FjswUujGHHW5hNLsRS9wccwY/FzUZan7wRYZJn3I
-         e8lBFosav1lDhynlwfnRsjqgcKd78H+m2WRrDqUhPgg78W6pnbHi5tctDaD+wV1/ZVep
-         inVw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=imjS4QUgcg1C7mxw8dCBqY4kJvs6MaFMcV0Y0kq1AcE=;
+        b=KM+OirbQib6vRRFbA1OkOtQZGofZIiEwU0xUW+eoj0/Zcl7IEgCI01Od12lua39zr0
+         CZLu8XI3K2b73F0yFGijV+YORnNpqY0XI0kwnl3siIwAVSGf54R9ZT6wae1D4+DglA8X
+         SCHzz7edIFyWzIqT8toqlatQgLOn/j3E98FAziVAz71E1ZlAhIKyDnnawKsaiPHbtT58
+         WdOcHcZaEM8FWwViG/bnQDhvr82l3JbtDi5c3VyZS84la6LT4eG+LwLQd5abbGSQxcBm
+         haT+V8EiOFOWuNk3X+iWfEkC14sdwWpRVtpAAAUL5q6Q2/OT1WS5N9OcrUuxk7p7MUUZ
+         CaOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=5mR8xFqGjjP4W/nW8ZmW82KHWo8ArnxMdtQdz/0Xv58=;
-        b=VcOzQFRSoJXJO2Yj+F5ooSZAUefdkxjHdmU3BHHhHWZO9n+HreMIJ+9G/WfvsA7foJ
-         ygfQBgQx4sOt15Pu3seepN2A88kePJWRTjo7Y2BUCsvREdUlpV+8kZO2BtdrIvrjRtAm
-         Fj7wv0l8sjBbsTkIcWHtFPWdevt+iWhZRLFUXt4E/UlrnyJQkf4sx8MGGcd79vg2wcXc
-         nz5b4v8XDzn7pq3R/ziEoYs6iR2ribtY7AzpdupUbEzZBbjsVALokXbmFIf49Xh7eaxo
-         xAo+1Co9caSDgPGK+VzZpe/q6ePGVi6I47QnMDbEj+AJI92oovzd0oIJHYsRj6fiVBav
-         wvXA==
-X-Gm-Message-State: AJIora/ODfyFHpcKG2i7QzjJpkBLitFP0G9D6SZeXV3oyhKeaPrAHNfx
-        mcdnTPMuuDhPaJWTXxs7LB0BGR7Ki64=
-X-Google-Smtp-Source: AGRyM1tdnWKKjsE+zYzNvWtHrhePWJ7yVdxYfibU12etrCbr8d/XSsRDrfFr3f0GBMQITni6Dx9B2Q==
-X-Received: by 2002:a02:caa9:0:b0:339:e1a6:387e with SMTP id e9-20020a02caa9000000b00339e1a6387emr23086464jap.97.1657047845295;
-        Tue, 05 Jul 2022 12:04:05 -0700 (PDT)
-Received: from Dixie.. ([2604:2d80:a188:fd00:a8dc:16da:96d1:2d19])
-        by smtp.gmail.com with ESMTPSA id d93-20020a0285e6000000b0033efe01c20esm397762jai.42.2022.07.05.12.04.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 12:04:04 -0700 (PDT)
-From:   Chris Morgan <macroalpha82@gmail.com>
-X-Google-Original-From: Chris Morgan <macromorgan@hotmail.com>
-To:     linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, contact@artur-rojek.eu,
-        maccraft123mc@gmail.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        dmitry.torokhov@gmail.com, paul@crapouillou.net, jic23@kernel.org,
-        linux-iio@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v7 3/3] arm64: dts: rockchip: Update joystick to polled for OG2
-Date:   Tue,  5 Jul 2022 14:03:54 -0500
-Message-Id: <20220705190354.69263-4-macromorgan@hotmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220705190354.69263-1-macromorgan@hotmail.com>
-References: <20220705190354.69263-1-macromorgan@hotmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=imjS4QUgcg1C7mxw8dCBqY4kJvs6MaFMcV0Y0kq1AcE=;
+        b=iFhBmcXKGEQhy26rbDuqHhUlBiup94Ngw0KdRKt4rnVIHzjCbUjwyAT/sUrCDQVmCW
+         XryUIdyNIZ5vyHXRsaWWqNv9bS/wNvNa7HluZbFjCd1VX89IJGnKRXGyINNAOMdshC3s
+         NM5H7j2+TU3wyHTp57RFYK0+XPFf4ubqbMJpiXgXRHRGt4WIDk6xBUXbT87PEnDwQX6u
+         X3aK71LYL10L3bjfVfwaGgraNfMPjs0VeXYAPV2eQO3efDO67wgDwRqSGa8Nt1oz+LgL
+         4odJ6DVM/F7E3y38rL3Fmt+ng6d4Xh1Rfh9zdpfBv8UdAeMokcrxiGd3bvxoXXFWrZFn
+         G8Fw==
+X-Gm-Message-State: AJIora+3yXOxL5C7nw7LsGrDQL5uTK5Nl3/ZQ2/UdPjTIdwczbmu3SRH
+        fpUjbR66zlP/POhMy7RZZa5DNA==
+X-Google-Smtp-Source: AGRyM1trbAKxG3+y4uZWEyK6u63pcSViIAGhEvfmkm3bF+nIaskdDzcRsMKMX/hYa8ZLzvfu/OpT8g==
+X-Received: by 2002:a05:6512:1192:b0:481:4ba:f14d with SMTP id g18-20020a056512119200b0048104baf14dmr23498243lfr.662.1657047840478;
+        Tue, 05 Jul 2022 12:04:00 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id q17-20020a056512211100b00482ae30fcc5sm1457244lfr.189.2022.07.05.12.03.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 12:03:59 -0700 (PDT)
+Message-ID: <5d469759-0619-eece-902d-df8ac6583f22@linaro.org>
+Date:   Tue, 5 Jul 2022 22:03:58 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 1/7] drm/msm/disp/dpu1: clear dpu_assign_crtc and get
+ crtc from drm_enc instead of dpu_enc
+Content-Language: en-GB
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
+        quic_vproddut@quicinc.com, bjorn.andersson@linaro.org,
+        quic_aravindh@quicinc.com, quic_abhinavk@quicinc.com,
+        quic_sbillaka@quicinc.com
+References: <1657040445-13067-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1657040445-13067-2-git-send-email-quic_vpolimer@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1657040445-13067-2-git-send-email-quic_vpolimer@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macroalpha82@gmail.com>
+On 05/07/2022 20:00, Vinod Polimera wrote:
+> Update crtc retrieval from dpu_enc to drm_enc, since new links get set
+> as part of the update legacy mode set. The dpu_enc->crtc cache is no
+> more needed, hence cleaning it as part of this change.
 
-Update the Odroid Go Advance to use "poll-interval" from the
-adc-joystick driver.
+NAK. Quoting the documentation:
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 1 +
- 1 file changed, 1 insertion(+)
+only really meaningful for non-atomic drivers. Atomic drivers should 
+instead check &drm_connector_state.crtc.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index ea0695b51ecd..61583c3f24e6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -26,6 +26,7 @@ adc-joystick {
- 		compatible = "adc-joystick";
- 		io-channels = <&saradc 1>,
- 			      <&saradc 2>;
-+		poll-interval = <60>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
+Please adjust according to the documentation.
+
+> 
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    |  4 ----
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 18 +++---------------
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  8 --------
+>   3 files changed, 3 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> index b56f777..f91e3d1 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> @@ -972,7 +972,6 @@ static void dpu_crtc_disable(struct drm_crtc *crtc,
+>   		 */
+>   		if (dpu_encoder_get_intf_mode(encoder) == INTF_MODE_VIDEO)
+>   			release_bandwidth = true;
+> -		dpu_encoder_assign_crtc(encoder, NULL);
+>   	}
+>   
+>   	/* wait for frame_event_done completion */
+> @@ -1042,9 +1041,6 @@ static void dpu_crtc_enable(struct drm_crtc *crtc,
+>   	trace_dpu_crtc_enable(DRMID(crtc), true, dpu_crtc);
+>   	dpu_crtc->enabled = true;
+>   
+> -	drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask)
+> -		dpu_encoder_assign_crtc(encoder, crtc);
+> -
+>   	/* Enable/restore vblank irq handling */
+>   	drm_crtc_vblank_on(crtc);
+>   }
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> index 52516eb..5629c0b 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> @@ -1254,8 +1254,8 @@ static void dpu_encoder_vblank_callback(struct drm_encoder *drm_enc,
+>   	dpu_enc = to_dpu_encoder_virt(drm_enc);
+>   
+>   	spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
+> -	if (dpu_enc->crtc)
+> -		dpu_crtc_vblank_callback(dpu_enc->crtc);
+> +	if (drm_enc->crtc)
+> +		dpu_crtc_vblank_callback(drm_enc->crtc);
+>   	spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
+>   
+>   	atomic_inc(&phy_enc->vsync_cnt);
+> @@ -1280,18 +1280,6 @@ static void dpu_encoder_underrun_callback(struct drm_encoder *drm_enc,
+>   	DPU_ATRACE_END("encoder_underrun_callback");
+>   }
+>   
+> -void dpu_encoder_assign_crtc(struct drm_encoder *drm_enc, struct drm_crtc *crtc)
+> -{
+> -	struct dpu_encoder_virt *dpu_enc = to_dpu_encoder_virt(drm_enc);
+> -	unsigned long lock_flags;
+> -
+> -	spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
+> -	/* crtc should always be cleared before re-assigning */
+> -	WARN_ON(crtc && dpu_enc->crtc);
+> -	dpu_enc->crtc = crtc;
+> -	spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
+> -}
+> -
+>   void dpu_encoder_toggle_vblank_for_crtc(struct drm_encoder *drm_enc,
+>   					struct drm_crtc *crtc, bool enable)
+>   {
+> @@ -1302,7 +1290,7 @@ void dpu_encoder_toggle_vblank_for_crtc(struct drm_encoder *drm_enc,
+>   	trace_dpu_enc_vblank_cb(DRMID(drm_enc), enable);
+>   
+>   	spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
+> -	if (dpu_enc->crtc != crtc) {
+> +	if (drm_enc->crtc != crtc) {
+>   		spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
+>   		return;
+>   	}
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+> index 781d41c..edba815 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+> @@ -39,14 +39,6 @@ struct msm_display_info {
+>   };
+>   
+>   /**
+> - * dpu_encoder_assign_crtc - Link the encoder to the crtc it's assigned to
+> - * @encoder:	encoder pointer
+> - * @crtc:	crtc pointer
+> - */
+> -void dpu_encoder_assign_crtc(struct drm_encoder *encoder,
+> -			     struct drm_crtc *crtc);
+> -
+> -/**
+>    * dpu_encoder_toggle_vblank_for_crtc - Toggles vblank interrupts on or off if
+>    *	the encoder is assigned to the given crtc
+>    * @encoder:	encoder pointer
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
