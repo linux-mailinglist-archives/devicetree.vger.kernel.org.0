@@ -2,193 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF195566F97
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:43:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D4B566FA7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:44:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230143AbiGENnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 09:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55746 "EHLO
+        id S233203AbiGENnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 09:43:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230429AbiGENmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:42:46 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56F7E2C127;
-        Tue,  5 Jul 2022 06:06:57 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id lw20so21553153ejb.4;
-        Tue, 05 Jul 2022 06:06:57 -0700 (PDT)
+        with ESMTP id S232661AbiGENn0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:43:26 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1A61EC69
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 06:07:34 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id m18so1988662lfg.10
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 06:07:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=E5lZCn36K7elVbgWUPtU4nIkD2xVpncEAsbxyPDLzyQ=;
-        b=lm8H8F5nhMgMkfJktmNYWnUwAHoU2kzLD1lTjvkXjHVFIckKFJIfzndHBmtswfGRg/
-         MXRKwWqk9GdDKkkUqoELU2G0JpTQkS+85q5nInih4KHrdwlCb32ArHDlZxJXLb14yZ2w
-         +l97eRTC0Rv6D+/OJhsjiyFiepR7ozNkzifW+JtqVkW88Hmw1G+yqTqvB+NTaPXM9WNH
-         edYyvQDB+kYK94PH8/ZDymKjKKoIAPrxwfLE5D+AGN3jfz0NNxFdNDR7eibxSRGx574F
-         7II+SvPVgYI9g9ZmxZYYaN8b0zAdF+EOcBR05XoLHJcl8DPdXwsm9HsEhM3ikdSOVCIO
-         JIfQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zbkJQitCCB4JIY77EtUWLU2dvmK4r/1hyyXKadOjVuk=;
+        b=Y5fC7OWZuDKf24I0MV+8pbvacfRq5CpAm7myf5QLNeQ+ruoEM4xzzTMzeWHqAU4rDl
+         meIsa1R/5ZXa6+KXMiGEznU0U6Cx1zVGVsplX31icjx1gfbVm7VPKwsvg++vCIQCfgLh
+         nnJWoZ0vsZWqDkWMLyR3ynZ15eJsd51irIIwFC+OcgSkVmrK2xYypXRlXe+xBXy1ATyj
+         d+HleFZ95SL53prO/dlNuzAKmSzabgXGJmbOb3nwtULUNmsvREbe3gJ+gBwOg4ieICBw
+         G4uLvh4pSWuLay39UzOaB+OvYTJm6QMjxK+wYM30JTtzG7pugXDtnIHQ3QuR/Cd7V9VI
+         uoJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=E5lZCn36K7elVbgWUPtU4nIkD2xVpncEAsbxyPDLzyQ=;
-        b=Yk9fE5bisvaWw+KfjubwIb6bt24NmUpDP8UW56kUhbT4EMPFOQKFU+wPt7W9M8i9z/
-         oskLb9sWPs/QxDJLRngTWZmYmSL4W4fccvGEfPUp3ESqymfve9j4Oc+A2gC1aKNcz0Va
-         sL7bzDWS84Ev9abuRz9n5WPOjnP8QCh/qE9lZVvtNGbVUSu54s/BqTuR0fqNip2hIn4P
-         YFbMEYMpBNz5/8RYtBRoyWQGkRmoqKFVwDt670IUFRjplGyd9W9g39w9N0mfTdQaotZC
-         qccwKv/RwCb3UcTXtR5FoG7I640yA5qLEHwXG20kVCJ3rQpu1qWYPAomTvDJxiX96U+n
-         qovA==
-X-Gm-Message-State: AJIora8kU77esFjHC4Fogznn74tOMicZYD7Oemq4x/gEQZB6IZ22BQ1p
-        WPsgIAP6S2vbqC8zrV1bWn6PYy056GM=
-X-Google-Smtp-Source: AGRyM1vD8mMwCrBI8neyCmTlP1RSBwb6Rp+y6x2OGJiIuDCQ/Ljz4kwRfPcQ5Ky4BFx6E/eSBIIMrw==
-X-Received: by 2002:a17:907:1dc6:b0:72a:5e9a:91be with SMTP id og6-20020a1709071dc600b0072a5e9a91bemr28945775ejc.730.1657026415675;
-        Tue, 05 Jul 2022 06:06:55 -0700 (PDT)
-Received: from localhost (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id d8-20020a056402000800b0043a71c376a2sm2744485edu.33.2022.07.05.06.06.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 06:06:53 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
-Subject: [PATCH v7] dt-bindings: reserved-memory: Document iommu-addresses
-Date:   Tue,  5 Jul 2022 15:06:52 +0200
-Message-Id: <20220705130652.433496-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220705125834.431711-2-thierry.reding@gmail.com>
-References: <20220705125834.431711-2-thierry.reding@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=zbkJQitCCB4JIY77EtUWLU2dvmK4r/1hyyXKadOjVuk=;
+        b=Z18KXHCMFvbDtilJ37ETjGPymWumDeuBG7qWHjqH33tsdXJI5fuxeto4hf9+9Auz61
+         9Rs9Pc/xIjB3tVQ74nuh5+4H3KJIlzG3/CmEczRLHZdtPD8fVf0Hs5ULVA/1ut+VKhg2
+         1iQS+O6TLdlxmMb+TUk1/HUsd9k8FthYDvg0l9qWEwIWW3pQVj5Nrt6KL+Yui2Td9cQX
+         IfCdidwmnXsjwfnk6BPmQAIGhKiR1u3sUIKW3ki/1HenFPKTu/4L84aivHLwaKRGSuIi
+         2gMe89hXQE/j55HNShKWkIV9Tg9pqtAdrtP9tPfhzn42iYH/+ZbeOi9+45M8bRZtj6kx
+         JXtg==
+X-Gm-Message-State: AJIora8lCNR0uX5waxI36E9gogvGnnsEMHNRIEO6+2CFDfObDibaWvAt
+        XbJJcDC+SCRe5QvgLgZ2TM9NOQ==
+X-Google-Smtp-Source: AGRyM1unrH7/KXqgrUw0VN4FOA+NEao2KQ6Mp/vj2A5DmtcTSTdiZPVwcD0NO8/kYjMYNCgLInjTKA==
+X-Received: by 2002:a05:6512:2346:b0:484:4837:eba9 with SMTP id p6-20020a056512234600b004844837eba9mr1186235lfu.37.1657026452443;
+        Tue, 05 Jul 2022 06:07:32 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id dt7-20020a0565122a8700b0047f674838a5sm5680112lfb.231.2022.07.05.06.07.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 06:07:31 -0700 (PDT)
+Message-ID: <3897aace-bce5-cad4-d92f-40cef4d0e207@linaro.org>
+Date:   Tue, 5 Jul 2022 15:07:30 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Add cznic,turris1x-leds.yaml
+ binding
+Content-Language: en-US
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220705000448.14337-1-pali@kernel.org>
+ <42d837dd-fbd1-6294-2fa0-8a07ae0f8d44@linaro.org>
+ <20220705114238.xwgexavgozqskwbw@pali>
+ <90fd55cb-13f4-eac2-2b1a-85ae628ecc89@linaro.org>
+ <20220705121541.t7jjcjp4hkqprsdo@pali>
+ <3358f88c-5c58-ae0d-2c26-7ba9a954b491@linaro.org>
+ <20220705130550.uu6ix7tdtswn7vaf@pali>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220705130550.uu6ix7tdtswn7vaf@pali>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On 05/07/2022 15:05, Pali Rohár wrote:
+> 
+> This was the first thing which I did when I read email. No usable
+> result. So the next thing was that I started git grep on the linux tree.
+> Again no result. So at the end I come to the conclusion that you forgot
+> to copy+paste whole quote or something like that.
+> 
+> Now I started searching a bit more and found it in following documentation:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> Original link to the quote would be useful (but now I have it).
 
-This adds the "iommu-addresses" property to reserved-memory nodes, which
-allow describing the interaction of memory regions with IOMMUs. Two use-
-cases are supported:
+Good point, thanks for the link. I forgot that devicetree spec is also
+available as webpage.
 
-  1. Static mappings can be described by pairing the "iommu-addresses"
-     property with a "reg" property. This is mostly useful for adopting
-     firmware-allocated buffers via identity mappings. One common use-
-     case where this is required is if early firmware or bootloaders
-     have set up a bootsplash framebuffer that a display controller is
-     actively scanning out from during the operating system boot
-     process.
-
-  2. If an "iommu-addresses" property exists without a "reg" property,
-     the reserved-memory node describes an IOVA reservation. Such memory
-     regions are excluded from the IOVA space available to operating
-     system drivers and can be used for regions that must not be used to
-     map arbitrary buffers.
-
-Each mapping or reservation is tied to a specific device via a phandle
-to the device's device tree node. This allows a reserved-memory region
-to be reused across multiple devices.
-
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Changes in v7:
-- keep reserved-memory.txt to avoid broken references
-
-Changes in v6:
-- add device phandle to iommu-addresses property in examples
-- remove now unused dt-bindings/reserved-memory.h header
----
- .../reserved-memory/reserved-memory.yaml      | 62 +++++++++++++++++++
- 1 file changed, 62 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-index 7a0744052ff6..8b885ee82ff4 100644
---- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-+++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-@@ -52,6 +52,30 @@ properties:
-       Address and Length pairs. Specifies regions of memory that are
-       acceptable to allocate from.
- 
-+  iommu-addresses:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: >
-+      A list of phandle and specifier pairs that describe static IO virtual
-+      address space mappings and carveouts associated with a given reserved
-+      memory region. The phandle in the first cell refers to the device for
-+      which the mapping or carveout is to be created.
-+
-+      The specifier consists of an address/size pair and denotes the IO
-+      virtual address range of the region for the given device. The exact
-+      format depends on the values of the "#address-cells" and "#size-cells"
-+      properties of the device referenced via the phandle.
-+
-+      When used in combination with a "reg" property, an IOVA mapping is to
-+      be established for this memory region. One example where this can be
-+      useful is to create an identity mapping for physical memory that the
-+      firmware has configured some hardware to access (such as a bootsplash
-+      framebuffer).
-+
-+      If no "reg" property is specified, the "iommu-addresses" property
-+      defines carveout regions in the IOVA space for the given device. This
-+      can be useful if a certain memory region should not be mapped through
-+      the IOMMU.
-+
-   no-map:
-     type: boolean
-     description: >
-@@ -97,4 +121,42 @@ oneOf:
- 
- additionalProperties: true
- 
-+examples:
-+  - |
-+    / {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      reserved-memory {
-+        ranges;
-+
-+        adsp_resv: reservation-adsp {
-+          /*
-+           * Restrict IOVA mappings for ADSP buffers to the 512 MiB region
-+           * from 0x40000000 - 0x5fffffff. Anything outside is reserved by
-+           * the ADSP for I/O memory and private memory allocations.
-+           */
-+          iommu-addresses = <&adsp 0x0 0x00000000 0x00 0x40000000>,
-+                            <&adsp 0x0 0x60000000 0xff 0xa0000000>;
-+        };
-+
-+        fb: framebuffer@90000000 {
-+          reg = <0x0 0x90000000 0x0 0x00800000>;
-+          iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00800000>;
-+        };
-+      };
-+
-+      bus@0 {
-+        adsp: adsp@2990000 {
-+          reg = <0x0 0x2990000 0x0 0x2000>;
-+          memory-region = <&adsp_resv>;
-+        };
-+
-+        dc0: display@15200000 {
-+          reg = <0x0 0x15200000 0x0 0x10000>;
-+          memory-region = <&fb>;
-+        };
-+      };
-+    };
-+
- ...
--- 
-2.36.1
-
+Best regards,
+Krzysztof
