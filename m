@@ -2,204 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 413855671BA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 17:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24E23567225
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 17:10:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbiGEPBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 11:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52688 "EHLO
+        id S231913AbiGEPKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 11:10:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbiGEPBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 11:01:48 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54081140F8;
-        Tue,  5 Jul 2022 08:01:46 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S229542AbiGEPJy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 11:09:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325D7FC9;
+        Tue,  5 Jul 2022 08:07:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 75E7C6601942;
-        Tue,  5 Jul 2022 16:01:43 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657033304;
-        bh=7dtkO8dKzSBEwSst0VDFjIf/IrxOZjXKOGrdhYNUMhs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=fa8YbXeEA22ARE8Gt66rR7VDYWziyJUa0DuNZEFX+8Z0Kfw3T3xNWcoRwKjia/3Vk
-         VFa556wih1Hwvt9Mw5U3v4HIUITRHJbLEDK/04ybrSeAJbaqa5VNXRiHzPcQZrYXkx
-         +OM/edmkCMiGvH4vvCFDW5NflyCnwlcR+PNjM7UBmkwLGUer3ExlES6MhD5/6Icmyj
-         Yn7FcBN0nJE85U+9IuErpPjFQBVv9Ag6ij2btLkcUhFIR4RJLXeUdjl9Sof2+bNBvy
-         dDg4rp8fbpum/S6brzpPGBUuz3ihDwq9mmGmHWQAqKEx7w3xJcmgtrTu9+Q1BI07Ju
-         FOJwyiVZHkUMg==
-Message-ID: <bffad9a5-6154-3b9a-c39c-680ed3350a5f@collabora.com>
-Date:   Tue, 5 Jul 2022 17:01:41 +0200
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CBA6D61A94;
+        Tue,  5 Jul 2022 15:07:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FA99C341C7;
+        Tue,  5 Jul 2022 15:07:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657033656;
+        bh=vsE2Uo6WfEyXctqBCJ3lS6iBB4TAXOeD1CiiDdYC5Kc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sv1aNTYToTaYYK64bJcX+bhHxp+ZmLhKQ+DsPfrwouhpB/xkDb6NtLWHOPzCjEXDj
+         b0ZWn9nIPtls6tcJnCspdnuymjGd4UzXFZoXXlW9Wlftu9P+1hD589f00LttgabmW6
+         DYQjrJd/wDGv6qzN7B9TMnOJdC6CWCr2St68/hiNhUcWlPBHTLerK7z+4sQYQOPpZz
+         qKjEQSaS2UWCSg48bBLczGgmP4OcWF0oRL8U77C1QMwAzC7gSJ5KgCsy58Z4CNlp0X
+         UmXVCXOiDnezTzfPS1BmeY3Veyn4KHQ1VY2/l358QC5lm3BCceGiBt52xLpbz+2RR2
+         n4fH0jZjM365Q==
+Date:   Tue, 5 Jul 2022 16:07:27 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Han Xu <han.xu@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bough Chen <haibo.chen@nxp.com>, ashish.kumar@nxp.com,
+        yogeshgaur.83@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, singh.kuldeep87k@gmail.com,
+        tudor.ambarus@microchip.com, p.yadav@ti.com,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        festevam@gmail.com, dl-linux-imx <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, zhengxunli@mxic.com.tw
+Subject: Re: [PATCH 07/11] dt-bindings: spi: spi-nxp-fspi: add a new property
+ nxp,fspi-dll-slvdly
+Message-ID: <YsRTryAlyJjm9A9+@sirena.org.uk>
+References: <ef676df1-77e0-b8ee-3950-97eade8ddd5b@linaro.org>
+ <VI1PR04MB40167A70FBE772DF91047A4190819@VI1PR04MB4016.eurprd04.prod.outlook.com>
+ <59d360ef-5374-c7a7-2995-854ab3715b25@linaro.org>
+ <DU2PR04MB87747C9A8F18D8300461D6B197819@DU2PR04MB8774.eurprd04.prod.outlook.com>
+ <f33ad190-f5c7-d9fa-088b-5538ab1f4d59@linaro.org>
+ <DU2PR04MB877492F346BAA10B2AA7428497819@DU2PR04MB8774.eurprd04.prod.outlook.com>
+ <62f113a0cdb0d58bf04ab0b274912eb7@walle.cc>
+ <be521f90-97ce-c61d-d7d6-8f2bde24d824@linaro.org>
+ <20220705145226.tarpvub6bh67tj63@umbrella>
+ <d4a69511eea5195b2ee7726bda5a8a33@walle.cc>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v4 00/19] Introduce support for MediaTek MT8192 Google
- Chromebooks
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>, kernel@collabora.com,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>, Maxim Kutnij <gtk3@inbox.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220629155956.1138955-1-nfraprado@collabora.com>
- <CAGXv+5Epmo1=DZvoFkqj57hiO8nim=cuP1v3i9b2diZwqBe3Mw@mail.gmail.com>
- <20220701150145.2myyk2o3vxydyhql@notapiano>
- <CAGXv+5FsTNKgWG75eSKt4ngnhmSekWNT+oS1ke+P4tazHDdnzQ@mail.gmail.com>
- <20220705135611.jlfltaormhcpuutc@notapiano>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220705135611.jlfltaormhcpuutc@notapiano>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4udQM6FbAizsjM/e"
+Content-Disposition: inline
+In-Reply-To: <d4a69511eea5195b2ee7726bda5a8a33@walle.cc>
+X-Cookie: Only God can make random selections.
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/07/22 15:56, Nícolas F. R. A. Prado ha scritto:
-> On Tue, Jul 05, 2022 at 12:03:08PM +0800, Chen-Yu Tsai wrote:
->> On Fri, Jul 1, 2022 at 11:01 PM Nícolas F. R. A. Prado
->> <nfraprado@collabora.com> wrote:
->>>
->>> On Fri, Jul 01, 2022 at 08:44:53PM +0800, Chen-Yu Tsai wrote:
->>>> On Thu, Jun 30, 2022 at 12:00 AM Nícolas F. R. A. Prado
->>>> <nfraprado@collabora.com> wrote:
->>>>>
->>>>>
->>>>> This series introduces Devicetrees for the MT8192-based Asurada platform
->>>>> as well as Asurada Spherion and Asurada Hayato boards.
->>>>>
->>>>> Support for the boards is added to the extent that is currently enabled
->>>>> in the mt8192.dtsi, and using only properties already merged in the
->>>>> dt-bindings, as to not add any dependencies to this series.
->>>>>
->>>>> This series was peer-reviewed internally before submission.
->>>>>
->>>>> Series tested on next-20220629.
->>>>
->>>> Just FYI I also got the internal display to work after some fixes to
->>>> the dtsi [1] and copying the stuff over from the ChromeOS kernel tree.
->>>>
->>>> It might be harder to enable the external display, given that we don't
->>>> have a good way of describing the weird design of using the DP bridge
->>>> also as a mux. See [2] for ongoing discussion.
->>>
->>> Hi ChenYu,
->>>
->>> I actually have both the internal and external display working on my local
->>> branch [1], but the commits there aren't final, and I'm also following the
->>> Type-C switch discussion to update my commits whenever the binding is settled
->>> on.
->>
->> I see. I think the internal display part is more or less final. It should
->> be worth including it, as it is a fairly visible indication that things
->> are working.
-> 
-> Yeah, it is final, but not all of the display-related nodes in mt8192.dtsi have
-> been merged yet [1] and I didn't want to introduce dependencies to the series.
-> 
-> If that series gets merged before this one, I could add the display to this
-> series as well, but I'm just worried that by introducing new commits with almost
-> every new series version, this series might never get reviewed and merged, and
-> this series is pretty big already. So I'd prefer to leave the display for a
-> following series.
-> 
-> Thanks,
-> Nícolas
-> 
-> [1] https://lore.kernel.org/all/20220701090547.21429-1-allen-kh.cheng@mediatek.com
-> 
 
-Matthias, can you please give an advice on that?
+--4udQM6FbAizsjM/e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thank you,
-Angelo
+On Tue, Jul 05, 2022 at 04:58:40PM +0200, Michael Walle wrote:
+> Am 2022-07-05 16:52, schrieb Han Xu:
 
+> > IMO, use the unit "-degrees" makes it more complicate. Personaly I would
+> > calculate how many clock cycle delay needed, such as 1/4 clock cycle or
+> > half
+> > clock cycle. Using degree brings extra calculation.
 
->>
->> ChenYu
->>
->>> I noticed the lack of the mandatory display aliases in the mt8192 series but
->>> somehow missed mentioning that in the review, so thanks for adding that.
->>>
->>> Thanks,
->>> Nícolas
->>>
->>> [1] https://gitlab.collabora.com/nfraprado/linux/-/commits/mt8192-asurada
->>>
->>>>
->>>> ChenYu
->>>>
->>>> [1] https://lore.kernel.org/linux-mediatek/CAGXv+5F_Gi_=vV1NSk0AGRVYCa3Q8+gBaE+nv3OJ1AKe2voOwg@mail.gmail.com/
->>>> [2] https://lore.kernel.org/dri-devel/20220622173605.1168416-1-pmalani@chromium.org/
->>>>
->>>>> v3: https://lore.kernel.org/all/20220512205602.158273-1-nfraprado@collabora.com/
->>>>> v2: https://lore.kernel.org/all/20220505194550.3094656-1-nfraprado@collabora.com/
->>>>> v1: https://lore.kernel.org/all/20220316151327.564214-1-nfraprado@collabora.com/
->>>>>
->>>>> Changes in v4:
->>>>> - Added patches 17-19 enabling MMC, SCP and SPI NOR flash
->>>>> - Switched mediatek,drive-strength-adv for drive-strength-microamp
->>>>> - Switched mediatek,pull-up-adv for bias-pull-up
->>>>> - Updated Vgpu minimum voltage to appropriate value
->>>>>
->>>>> Changes in v3:
->>>>> - Renamed regulator nodes to be generic
->>>>> - Fixed keyboard layout for Hayato
->>>>>
->>>>> Changes in v2:
->>>>> - Added patches 1-2 for Mediatek board dt-bindings
->>>>> - Added patches 13-16 enabling hardware for Asurada that has since been
->>>>>    enabled on mt8192.dtsi
->>>>>
->>>>> Nícolas F. R. A. Prado (19):
->>>>>    dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-spherion
->>>>>    dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-hayato
->>>>>    arm64: dts: mediatek: Introduce MT8192-based Asurada board family
->>>>>    arm64: dts: mediatek: asurada: Document GPIO names
->>>>>    arm64: dts: mediatek: asurada: Add system-wide power supplies
->>>>>    arm64: dts: mediatek: asurada: Enable and configure I2C and SPI busses
->>>>>    arm64: dts: mediatek: asurada: Add ChromeOS EC
->>>>>    arm64: dts: mediatek: asurada: Add keyboard mapping for the top row
->>>>>    arm64: dts: mediatek: asurada: Add Cr50 TPM
->>>>>    arm64: dts: mediatek: asurada: Add Elan eKTH3000 I2C trackpad
->>>>>    arm64: dts: mediatek: asurada: Add I2C touchscreen
->>>>>    arm64: dts: mediatek: spherion: Add keyboard backlight
->>>>>    arm64: dts: mediatek: asurada: Enable XHCI
->>>>>    arm64: dts: mediatek: asurada: Enable PCIe and add WiFi
->>>>>    arm64: dts: mediatek: asurada: Add MT6359 PMIC
->>>>>    arm64: dts: mediatek: asurada: Add SPMI regulators
->>>>>    arm64: dts: mediatek: asurada: Enable MMC
->>>>>    arm64: dts: mediatek: asurada: Enable SCP
->>>>>    arm64: dts: mediatek: asurada: Add SPI NOR flash memory
->>>>>
->>>>>   .../devicetree/bindings/arm/mediatek.yaml     |  13 +
->>>>>   arch/arm64/boot/dts/mediatek/Makefile         |   2 +
->>>>>   .../dts/mediatek/mt8192-asurada-hayato-r1.dts |  47 +
->>>>>   .../mediatek/mt8192-asurada-spherion-r0.dts   |  62 ++
->>>>>   .../boot/dts/mediatek/mt8192-asurada.dtsi     | 959 ++++++++++++++++++
->>>>>   5 files changed, 1083 insertions(+)
->>>>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
->>>>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
->>>>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>>>>
->>>>> --
->>>>> 2.36.1
->>>>>
+> What is the extra calculation here? For hardware engineer who has to
+> specify this, it is easier to give the delay in clock phase (in degrees)
+> rather than reading the documentation and transform that into a value
+> given in 1/32 part of a clock, that should be part of the driver.
 
+IME if it's a hardware engineer specifying things by the time they get
+as far as a software engineer they'll often have been turned into "write
+these values to these registers".
+
+--4udQM6FbAizsjM/e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLEU68ACgkQJNaLcl1U
+h9Bu8Af9EyBCmFmk3mzR3XypchGxUzMgpzu2lp5Y+4noP+jzxwkCC3HmaqS24VvW
+ft41g07lerfiYg2kCb86XMAlb5nXgdc1gaEAYS8tSRgiurRz/h1k1hq7sq2TGVr3
+AfWFGc5K/k3oPRjMEfgrC+ozTPuEV6UNC4nOANcB7S6fXNT4IHIw2K/gN6iNcoZW
+iaygnVrlyXUCEOiR+vy+lBZU3xKJkw0zblwhobVpxJC3PhDIybaJPSB2i/BHJgQM
+BpcI3Axig8k6h15SZQzbO7KkHzRtw0SdAEUyDNsmqkhN4Hrm3oHZj27LIV4BFl80
+YmBtn2mAnbCpa1u65sUZvTfFHSzMAQ==
+=DJMN
+-----END PGP SIGNATURE-----
+
+--4udQM6FbAizsjM/e--
