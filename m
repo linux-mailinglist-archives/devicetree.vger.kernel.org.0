@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E8285667D6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 12:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A99875667DA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 12:25:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231338AbiGEKZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 06:25:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49100 "EHLO
+        id S231639AbiGEKZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 06:25:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbiGEKZp (ORCPT
+        with ESMTP id S231305AbiGEKZp (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 06:25:45 -0400
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E74AE6C;
-        Tue,  5 Jul 2022 03:25:39 -0700 (PDT)
-X-UUID: 7188962c75d04bd6af6038151b670d1a-20220705
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FE3ADA9;
+        Tue,  5 Jul 2022 03:25:38 -0700 (PDT)
+X-UUID: 8c24fe79ded24773b19b27d97bb6c30b-20220705
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:50bc81cf-2c11-48c2-8199-6e93489a7070,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:-5
-X-CID-META: VersionHash:0f94e32,CLOUDID:bd3d9886-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+X-CID-O-INFO: VERSION:1.1.8,REQID:876d2e1e-016d-408d-8dd4-52a68c40fee2,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:5
+X-CID-META: VersionHash:0f94e32,CLOUDID:9fa47563-0b3f-4b2c-b3a6-ed5c044366a0,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
         ,QS:nil,BEC:nil,COL:0
-X-UUID: 7188962c75d04bd6af6038151b670d1a-20220705
+X-UUID: 8c24fe79ded24773b19b27d97bb6c30b-20220705
 Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
         (envelope-from <rex-bc.chen@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1962218896; Tue, 05 Jul 2022 18:25:34 +0800
+        with ESMTP id 555438540; Tue, 05 Jul 2022 18:25:34 +0800
 Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
  mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
@@ -49,9 +49,9 @@ CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>,
         Bo-Chen Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v16 1/5] drm/mediatek: dpi: Add YUV422 output support
-Date:   Tue, 5 Jul 2022 18:25:26 +0800
-Message-ID: <20220705102530.1344-2-rex-bc.chen@mediatek.com>
+Subject: [PATCH v16 2/5] drm/mediatek: dpi: add config to support direct connection to dpi panels
+Date:   Tue, 5 Jul 2022 18:25:27 +0800
+Message-ID: <20220705102530.1344-3-rex-bc.chen@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 In-Reply-To: <20220705102530.1344-1-rex-bc.chen@mediatek.com>
 References: <20220705102530.1344-1-rex-bc.chen@mediatek.com>
@@ -67,98 +67,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dp_intf supports YUV422 as output format. In MT8195 Chrome project,
-YUV422 output format is used for 4K resolution.
+MediaTek dpi supports direct connection to dpi panels while dp_intf does
+not support. Therefore, add a config "support_direct_pin" to control this.
 
-To support this, it is also needed to support color format transfer.
-Color format transfer is a new feature for both dpi and dpintf of MT8195.
-
-The input format could be RGB888 and output format for dp_intf should be
-YUV422. Therefore, we add a mtk_dpi_matrix_sel() helper to update the
-DPI_MATRIX_SET register depending on the color format.
-
-Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Reviewed-by: CK Hu <ck.hu@mediatek.com>
 ---
- drivers/gpu/drm/mediatek/mtk_dpi.c      | 34 +++++++++++++++++++------
- drivers/gpu/drm/mediatek/mtk_dpi_regs.h |  6 +++++
- 2 files changed, 32 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_dpi.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index ea8d866e67bc..79060f272e4a 100644
+index 79060f272e4a..da7b2c72881b 100644
 --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
 +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -54,7 +54,8 @@ enum mtk_dpi_out_channel_swap {
- };
- 
- enum mtk_dpi_out_color_format {
--	MTK_DPI_COLOR_FORMAT_RGB
-+	MTK_DPI_COLOR_FORMAT_RGB,
-+	MTK_DPI_COLOR_FORMAT_YCBCR_422
- };
- 
- struct mtk_dpi {
-@@ -409,12 +410,26 @@ static void mtk_dpi_config_disable_edge(struct mtk_dpi *dpi)
- static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
- 					enum mtk_dpi_out_color_format format)
- {
--	/* only support RGB888 */
--	mtk_dpi_config_yuv422_enable(dpi, false);
--	mtk_dpi_config_csc_enable(dpi, false);
--	if (dpi->conf->swap_input_support)
--		mtk_dpi_config_swap_input(dpi, false);
--	mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_RGB);
-+	if (format == MTK_DPI_COLOR_FORMAT_YCBCR_422) {
-+		mtk_dpi_config_yuv422_enable(dpi, true);
-+		mtk_dpi_config_csc_enable(dpi, true);
-+
-+		/*
-+		 * If height is smaller than 720, we need to use RGB_TO_BT601
-+		 * to transfer to yuv422. Otherwise, we use RGB_TO_JPEG.
-+		 */
-+		mtk_dpi_mask(dpi, DPI_MATRIX_SET, dpi->mode.hdisplay <= 720 ?
-+			     MATRIX_SEL_RGB_TO_BT601 : MATRIX_SEL_RGB_TO_JPEG,
-+			     INT_MATRIX_SEL_MASK);
-+
-+		mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_RGB);
-+	} else {
-+		mtk_dpi_config_yuv422_enable(dpi, false);
-+		mtk_dpi_config_csc_enable(dpi, false);
-+		if (dpi->conf->swap_input_support)
-+			mtk_dpi_config_swap_input(dpi, false);
-+		mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_RGB);
+@@ -123,6 +123,7 @@ struct mtk_dpi_yc_limit {
+  * @num_output_fmts: Quantity of supported output formats.
+  * @is_ck_de_pol: Support CK/DE polarity.
+  * @swap_input_support: Support input swap function.
++ * @support_direct_pin: IP supports direct connection to dpi panels.
+  * @dimension_mask: Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and VSYNC_PORCH
+  *		    (no shift).
+  * @hvsize_mask: Mask of HSIZE and VSIZE mask (no shift).
+@@ -139,6 +140,7 @@ struct mtk_dpi_conf {
+ 	u32 num_output_fmts;
+ 	bool is_ck_de_pol;
+ 	bool swap_input_support;
++	bool support_direct_pin;
+ 	u32 dimension_mask;
+ 	u32 hvsize_mask;
+ 	u32 channel_swap_shift;
+@@ -580,11 +582,13 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi,
+ 	mtk_dpi_config_channel_limit(dpi);
+ 	mtk_dpi_config_bit_num(dpi, dpi->bit_num);
+ 	mtk_dpi_config_channel_swap(dpi, dpi->channel_swap);
+-	mtk_dpi_config_yc_map(dpi, dpi->yc_map);
+ 	mtk_dpi_config_color_format(dpi, dpi->color_format);
+-	mtk_dpi_config_2n_h_fre(dpi);
+-	mtk_dpi_dual_edge(dpi);
+-	mtk_dpi_config_disable_edge(dpi);
++	if (dpi->conf->support_direct_pin) {
++		mtk_dpi_config_yc_map(dpi, dpi->yc_map);
++		mtk_dpi_config_2n_h_fre(dpi);
++		mtk_dpi_dual_edge(dpi);
++		mtk_dpi_config_disable_edge(dpi);
 +	}
- }
- 
- static void mtk_dpi_dual_edge(struct mtk_dpi *dpi)
-@@ -648,7 +663,10 @@ static int mtk_dpi_bridge_atomic_check(struct drm_bridge *bridge,
- 	dpi->bit_num = MTK_DPI_OUT_BIT_NUM_8BITS;
- 	dpi->channel_swap = MTK_DPI_OUT_CHANNEL_SWAP_RGB;
- 	dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
--	dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
-+	if (out_bus_format == MEDIA_BUS_FMT_YUYV8_1X16)
-+		dpi->color_format = MTK_DPI_COLOR_FORMAT_YCBCR_422;
-+	else
-+		dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+ 	mtk_dpi_sw_reset(dpi, false);
  
  	return 0;
- }
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-index 3a02fabe1662..9ce300313f3e 100644
---- a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-@@ -217,4 +217,10 @@
- 
- #define EDGE_SEL_EN			BIT(5)
- #define H_FRE_2N			BIT(25)
-+
-+#define DPI_MATRIX_SET		0xB4
-+#define INT_MATRIX_SEL_MASK		GENMASK(4, 0)
-+#define MATRIX_SEL_RGB_TO_JPEG		0
-+#define MATRIX_SEL_RGB_TO_BT601		2
-+
- #endif /* __MTK_DPI_REGS_H */
+@@ -843,6 +847,7 @@ static const struct mtk_dpi_conf mt8173_conf = {
+ 	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+ 	.is_ck_de_pol = true,
+ 	.swap_input_support = true,
++	.support_direct_pin = true,
+ 	.dimension_mask = HPW_MASK,
+ 	.hvsize_mask = HSIZE_MASK,
+ 	.channel_swap_shift = CH_SWAP,
+@@ -859,6 +864,7 @@ static const struct mtk_dpi_conf mt2701_conf = {
+ 	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+ 	.is_ck_de_pol = true,
+ 	.swap_input_support = true,
++	.support_direct_pin = true,
+ 	.dimension_mask = HPW_MASK,
+ 	.hvsize_mask = HSIZE_MASK,
+ 	.channel_swap_shift = CH_SWAP,
+@@ -874,6 +880,7 @@ static const struct mtk_dpi_conf mt8183_conf = {
+ 	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
+ 	.is_ck_de_pol = true,
+ 	.swap_input_support = true,
++	.support_direct_pin = true,
+ 	.dimension_mask = HPW_MASK,
+ 	.hvsize_mask = HSIZE_MASK,
+ 	.channel_swap_shift = CH_SWAP,
+@@ -889,6 +896,7 @@ static const struct mtk_dpi_conf mt8192_conf = {
+ 	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
+ 	.is_ck_de_pol = true,
+ 	.swap_input_support = true,
++	.support_direct_pin = true,
+ 	.dimension_mask = HPW_MASK,
+ 	.hvsize_mask = HSIZE_MASK,
+ 	.channel_swap_shift = CH_SWAP,
 -- 
 2.18.0
 
