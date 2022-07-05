@@ -2,60 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97679566F2E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D778A566F47
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:34:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbiGEN3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 09:29:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47286 "EHLO
+        id S232024AbiGENd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 09:33:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231969AbiGEN31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:29:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAC923897;
-        Tue,  5 Jul 2022 05:51:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C51D760C38;
-        Tue,  5 Jul 2022 12:51:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CEADC341C7;
-        Tue,  5 Jul 2022 12:51:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657025461;
-        bh=/wZNkLMQ8f+ZI2REJC8guWCA/5+Cuw84Q5nJ99AIcHw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dltjLfCNk82lbByxTujjWM7+9d44kyeRnLamAQVgTy3q5zVutAq9ESsCPfXPdl25N
-         YEYgDMfLzUQ5ugYwr2AFh2AuRQqKI5luhJ6xrgXA8rUApup0KivbD1wvLoaY2/GdW9
-         IHOBoCeRcE7IcNy59A1+Qf/Oc2eM+4ToUk6f+NRhG/d5H3H8K+XDJOA7y3P+vcap0a
-         4E20zmfdnEjP4pvxm7FSPIIHqMj4h0bPZL8nBoYiBMRoRRJq+ccNgBR15GqNeQVFtJ
-         HgkA3vba3QG1bQPHaAo0x3QT3Wj8E+1UPggDjcv0+EIpdzh9yYWMeqZVFAQzFhCLZt
-         u/+18q8MD/TlQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1o8i18-0006yd-1j; Tue, 05 Jul 2022 14:51:02 +0200
-Date:   Tue, 5 Jul 2022 14:51:02 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/14] arm64: dts: qcom: sc7280: drop PCIe PHY clock index
-Message-ID: <YsQztl9KHS5csu4A@hovoldconsulting.com>
-References: <20220705114032.22787-1-johan+linaro@kernel.org>
- <20220705114032.22787-2-johan+linaro@kernel.org>
- <e3b344e7-4100-e0d4-0dcd-aeef4893ad43@linaro.org>
+        with ESMTP id S232533AbiGENdg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:33:36 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A24628E15
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 05:55:14 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id y18so3529722ljj.6
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 05:55:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=W1cGgApTbKJWLFEV91Nplq6woKey3TRAhy9Am/ClrW4=;
+        b=jPvGH+kdVD6Q/3Ol/HMko/03+o/UKAOFK9C23heMweX++XoZmFROm6jci5QHMpRE36
+         3gQCaz4SlBirqZ6zRyTqI2Ku8znOuUSx1PnPCp2G5bWDmfkCqsxlGygbzN3Xq7K5J1Vg
+         w9eJXusFlTjMLMY2dm583K8lvPRCi7gYRBEUeO6Xr/yTzIO34rcHN1aiUZPdLRFoNG+E
+         y0/0GOPVZYpKbfasLgHjgH0SHnSU+rb3063siGQpK9t6INtYCZMf9mkg6cY3XiqfYd9P
+         DWUqqg788SqI7Kom7m2XG+hnzonknCsaE/xNYG68tnVCTksRsx+VvdDAHp1lC6V1vocD
+         6Q2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=W1cGgApTbKJWLFEV91Nplq6woKey3TRAhy9Am/ClrW4=;
+        b=DzRgOGqiiNjIpSGvDmLE+gJOfFgH/NiO8M6LkFBKGP8MFg+3bV4LPCKy2ZruLqKcVd
+         B+3aOdon+UJtxe6w4IerDxPb60lFBj9gpkEs7possBECaGrL6qm86JM3InLaej8IL1kM
+         9C+XAvMxzN8Yx4L5hwg4tz31w7mfKP87nQzTfAGfZQOPddjsKO7ilZ7MhWapz3h/GoWk
+         36745oRJOkEj/ASmMrV51pWrmr/6gWsAAlzwXxauvsjsGPtbTxAjZ/TJf3a+iqcpwpca
+         zICcXLnPmEd/YiC4XHqLqKtvKaOlPS1G6GhpEfpqaa6nqXUI6pHamAbG6AFT5T0Y+BSs
+         oUNw==
+X-Gm-Message-State: AJIora8w8Kv3cEYJdat7f+d2E1sJmenYWxTeC8zHtrLrzkOFX2BOPZAj
+        OA3HakDWvcLye4KbaMG5tlCJuQ==
+X-Google-Smtp-Source: AGRyM1s3xnM62iOhzwwEsUJLvlYd4iPyPQs8nvpycCl9q1NqfYqmBypbvl1w9wTag2K2lwq1B+TZNA==
+X-Received: by 2002:a2e:a484:0:b0:25a:8c94:3763 with SMTP id h4-20020a2ea484000000b0025a8c943763mr19292175lji.64.1657025712278;
+        Tue, 05 Jul 2022 05:55:12 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id l8-20020ac25548000000b0047255d21107sm5674891lfk.54.2022.07.05.05.55.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 05:55:11 -0700 (PDT)
+Message-ID: <3358f88c-5c58-ae0d-2c26-7ba9a954b491@linaro.org>
+Date:   Tue, 5 Jul 2022 14:55:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e3b344e7-4100-e0d4-0dcd-aeef4893ad43@linaro.org>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Add cznic,turris1x-leds.yaml
+ binding
+Content-Language: en-US
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220705000448.14337-1-pali@kernel.org>
+ <42d837dd-fbd1-6294-2fa0-8a07ae0f8d44@linaro.org>
+ <20220705114238.xwgexavgozqskwbw@pali>
+ <90fd55cb-13f4-eac2-2b1a-85ae628ecc89@linaro.org>
+ <20220705121541.t7jjcjp4hkqprsdo@pali>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220705121541.t7jjcjp4hkqprsdo@pali>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,52 +81,158 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 05, 2022 at 03:42:08PM +0300, Dmitry Baryshkov wrote:
-> On 05/07/2022 14:40, Johan Hovold wrote:
-> > The QMP PCIe PHY provides a single clock so drop the redundant clock
-> > index.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+On 05/07/2022 14:15, Pali Rohár wrote:
+>>>> You need to describe the items, if it is really two items. However your
+>>>> example has only one item, so this was not tested and won't work.
+>>>
+>>> Ehm? Example has two items in the reg.
+>>
+>> No, you have exactly one item.
+>> <0x13 0x1d>
+>>
+>> Two items are for example:
+>> <0x13 0x1d>, <0x23 0x1d>
 > 
-> Hmm. After checking the source code, the clocks entry of the phy@1c0e000 
-> node also needs to be fixed.
+> Ok. So I should change maxItems to 1 in this case?
 
-I assume you meant pci@1c08000 here? Thanks for catching that!
+Yes
 
-> And also maybe:
 > 
-> Fixes: bd7d507935ca ("arm64: dts: qcom: sc7280: Add pcie clock support")
-> Fixes: 92e0ee9f83b3 ("arm64: dts: qcom: sc7280: Add PCIe and PHY related 
-> nodes")
+> And how you want to describe those items?
 
-Maybe, I'm a bit reluctant to add a Fixes tags for these even if they do
-violate the binding. But sure, why not.
+In that case, no need to describe.
 
-> > ---
-> >   arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++--
-> >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > index e66fc67de206..b0ae2dbba50f 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > @@ -818,7 +818,7 @@ gcc: clock-controller@100000 {
-> >   			reg = <0 0x00100000 0 0x1f0000>;
-> >   			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> >   				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
-> > -				 <0>, <&pcie1_lane 0>,
-> > +				 <0>, <&pcie1_lane>,
-> >   				 <0>, <0>, <0>, <0>;
-> >   			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
-> >   				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
-> > @@ -2110,7 +2110,7 @@ pcie1_lane: phy@1c0e200 {
-> >   				clock-names = "pipe0";
-> >   
-> >   				#phy-cells = <0>;
-> > -				#clock-cells = <1>;
-> > +				#clock-cells = <0>;
-> >   				clock-output-names = "pcie_1_pipe_clk";
-> >   			};
-> >   		};
+> 
+>>>
+>>>> You'll get warning from Rob's robot soon... but you should test the
+>>>> bindings instead.
+>>>
+>>> I have tested bindings on the real hardware and it is working fine
+>>> together with the driver from patch 2/2.
+>>
+>> Bindings cannot be tested on real hardware. Bindings are tested with
+>> dt_binding_check, as explained in writing-schema.rst
+> 
+> Ou... this is something which I was not able to run, it just does not
+> work, throws lot of python dependency hell errors and it spend more than
+> hour with it. So sorry, I really cannot run it. Maybe it would be a wise
+> to provide web service for these checks for those who cannot run them
+> locally?
 
-Johan
+It's one pip command to install and one make command to run... I would
+say easy to start using, unless of course you use some unusual distro
+without Python 3 (cannot believe nowadays...) or without pip.
+
+Rob's bot will test it for you.
+
+Anyway, in such case please mark your bindings always as RFT, so we will
+not waste time on reviewing obvious stuff which is found by automated
+tools. I think we both agree that reviewers time should not be used for
+trivial stuff already pointed out by compiler/linter/automation.
+
+> 
+>>>
+>>>>> +
+>>>>> +  "#address-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  "#size-cells":
+>>>>> +    const: 0
+>>>>> +
+>>>>> +patternProperties:
+>>>>> +  "^multi-led@[0-7]$":
+>>>>> +    type: object
+>>>>> +    $ref: leds-class-multicolor.yaml#
+>>>>
+>>>> This looks incorrect, unless you rebased on my patchset?
+>>>
+>>> So what is the correct? (I used inspiration from
+>>> cznic,turris-omnia-leds.yaml file)
+>>
+>> Which according to current multicolor bindings is not correct. Correct
+>> is pwm-multicolor. However if you rebase on [1], it looks fine, except
+>> missing unevaluatedProperties.
+> 
+> Ok. So does it mean that I should just add
+> "unevaluatedProperties: false"?
+
+Yes, on that level of indentation, so:
+    $ref: leds-class-multicolor.yaml#
+    unevaluatedProperties: false
+
+
+> 
+>> [1]
+>> https://lore.kernel.org/all/20220624112106.111351-1-krzysztof.kozlowski@linaro.org/
+>>
+>>>
+>>>>> +
+>>>>> +    properties:
+>>>>> +      reg:
+>>>>> +        minimum: 0
+>>>>> +        maximum: 7
+>>>>> +
+>>>>> +    required:
+>>>>> +      - reg
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +
+>>>>
+>>>> No blank line.
+>>>
+>>> Ok.
+>>>
+>>>>> +    #include <dt-bindings/leds/common.h>
+>>>>> +
+>>>>> +    cpld@3,0 {
+>>>>
+>>>> Generic node name.
+>>>
+>>> Is not cpld name generic enough?
+>>
+>> No, it means nothing to me. Just like "a", "ashjd" or "wrls".
+> 
+> If you never heard about it, I would suggest to read something about
+> Programmable logic devices. It is interesting category of hardware with
+> which you can play. CPLD and FPGA are very often used in lot of products
+> and FPGA is very easy for playing and programming custom logic.
+
+The are many different acronyms in the language so without context might
+be tricky to connect the dots.
+
+> 
+> For example on wikipedia is list of different technologies of
+> programmable logic devices:
+> https://en.wikipedia.org/wiki/Programmable_logic_device
+> 
+> So if you want more generic name, just name it "pld"? 
+
+That one would be fine.
+
+> But as it is CPLD
+> device I would suggest to name it really as "cpld". It does not matter
+> from which manufactor you have CPLD, just like it does not matter from
+> which manufactor you have NAND.
+
+Then cpld is fine as well.
+
+> 
+> From bus point of view, cpld is like nand or nor nodes in DTS. All of
+> them refers to specific memory map of chip selects on the local bus.
+> 
+>> "The name of a node should be somewhat generic, reflecting the function
+>> of the device and not its precise programming
+>>  model. If appropriate, the name should be one of the following choices:"
+> 
+> Hm... You forgot to send what are those "choices:"?
+
+I didn't, I just assumed you will Google it (or use other web-search
+engine of your choice) to get the spec. As this is a quote, Google
+results should be very accurate. No need to duplicate entire pages of
+publicly available specification.
+
+Best regards,
+Krzysztof
