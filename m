@@ -2,129 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C345C5665BB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 11:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 905C15665C2
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 11:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231472AbiGEJAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 05:00:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59626 "EHLO
+        id S230037AbiGEJDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 05:03:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231491AbiGEI75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 04:59:57 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4629913EA5;
-        Tue,  5 Jul 2022 01:58:54 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id q9so16534844wrd.8;
-        Tue, 05 Jul 2022 01:58:54 -0700 (PDT)
+        with ESMTP id S230123AbiGEJDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 05:03:10 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42AFEEB9;
+        Tue,  5 Jul 2022 02:03:09 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-31caffa4a45so30551557b3.3;
+        Tue, 05 Jul 2022 02:03:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vk3XdzmxOZuQX0X0Z6lMmqAn6GT0lpJyIL575BVtaGI=;
-        b=VJvXZ3rpFPUdQyfNiF+cSDsuTwRaAPFg6qME/h+d2kQWm9kQVVolCtWpzxbLaHzPrX
-         SidADnmqdwAYM6NlDYHb3DAgG2NveV8a2uMnO716wlBymk+LUkzXts/6/13OPuknpXCa
-         acsDveGGuEevSLsJGA+x3ft0HcIx9W5akWGkWVsfrCRWZ3YQXc80W8YKjVRzJ6Cv0ITQ
-         55zu7IwjZMp2+AeBTTbPITXRBhfQDkf7W7WK7CtJM9RTRrU2T9oXiMj74bWWp/Q/sGZd
-         UpcmmQCvJ4XKlj+mBTTdHtnsyUMr+DE1IfXcrer3qbJwiPvoxsHvX8BKteCAqwh8Nnxu
-         /1/w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W8Wm30eRqjZo2DvnTiNrnXX7il5/XiX6XVUun1Gx7QM=;
+        b=JWKcgYFNvzSnmT5hJZ53dIu3SLHoGOnTs2pSxOBhvcg73/bdybJ+exxxs/G5YeTNXK
+         XxSuSK6MTE4C839oVxctGcLCddtTpqdLJrN5Bmx/VFX8xvsgvtLoDR3ctPPEPKs7//li
+         nJQ0SyyITr+PlaUqPXy1c+8oGs1uQtb2QongaSGfxDMnl5qqWCncSGwtbro5YaaceLI1
+         qtEHf4/NJSDlHw33R/zGvvPrP0I/t50HqjM8uq/8ruTWHPKxd/xyKiS7a3ZpuEo1/i5K
+         6DFTDS6XjwXmRybKb4kDwNClXZhtyNCFMSvPsoZFL8SA6RgWGdK7avVznlbzq2GSLX93
+         CG2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vk3XdzmxOZuQX0X0Z6lMmqAn6GT0lpJyIL575BVtaGI=;
-        b=Z6VRLrCqE6jQgtei0Q2AkHzkCBz851oI8kVG1E+NB++9R6ozDUIR1oAnRBio889JjB
-         jqpI/tpN+7pIZJhWBjAFMczCUJciekvdKg+2Nt/JE+aOgvcQOMKWg4vvPrr4dMO5DMzr
-         7+gFf76nmB1E7F+oSmkKX25+wSdgr1R03baOe2wl9G/afkHi48vjHaNIs7wW7Y7dgfFz
-         ftv9Mlpc3VRE/t1yXN/x5SZ1FsMYAbhjt7xl+TKsWBqzO5isizUBFY3+TKO1u8TGcUs2
-         Vl83seN3zXJHTaqE975F2uvXb62L7yQyhRmr6sgsgt4T96SWvOU/Ty2L+zzDxuIQGmx1
-         g82Q==
-X-Gm-Message-State: AJIora+7cmReidf6oSSPVZ+ZK0jsYdZoVu9Cdiq/SoRIUPmbEriCI5oh
-        lIP9+R9sdwT2whqJQuic1QSBAAB0rSU=
-X-Google-Smtp-Source: AGRyM1uFtZJgxb7pIDxo5NVWNteuQ5ccm6KEylFZ2mugvloXx5fSiP0U7ovYfO99/NaN3pBx6LmwTA==
-X-Received: by 2002:adf:d1c2:0:b0:21b:e465:1e36 with SMTP id b2-20020adfd1c2000000b0021be4651e36mr32397699wrd.271.1657011520750;
-        Tue, 05 Jul 2022 01:58:40 -0700 (PDT)
-Received: from linuxdev2.toradex.int (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id x11-20020adff0cb000000b0021b92171d28sm39924763wro.54.2022.07.05.01.58.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 01:58:40 -0700 (PDT)
-From:   Max Krummenacher <max.oss.09@gmail.com>
-To:     max.krummenacher@toradex.com
-Cc:     Denys Drozdov <denys.drozdov@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: colibri-imx6ull: fix snvs pinmux group
-Date:   Tue,  5 Jul 2022 10:58:24 +0200
-Message-Id: <20220705085825.21255-1-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W8Wm30eRqjZo2DvnTiNrnXX7il5/XiX6XVUun1Gx7QM=;
+        b=R3pP0ns4Pe/q7HIob1OHpjDQ0RIeg75y3yiTUK2kjIXvr7f0TAlFIIo7zVitlJkvaP
+         JpyJJJH0fJf1cLdzjr0/Z0rdHulss821Ja9FF8M2hwt6xVi6hsN8bWoD1n0SoozZT2xD
+         Baio57Cjzlhk7kbKfrFBVmZ988gjkQa5ZWa0B3zaV1N85hCJlWRBMhdEYWgB2yirPYkU
+         8JxUUy6AEDfCK9COtuHIHw1nGFKJjk3Q/RDiuVuhlG+v0UBCqlBPtrqyNhzl63+sX+nQ
+         gAKYRA89XXD7UWhzRwCzryOKm1cXk80pLygML/79GMh22CfCT82B0a0aiyzPI83tiOqB
+         8gQw==
+X-Gm-Message-State: AJIora9l/ZPF/6bMN6jLW/ZXKex2m5MUmtfCxjOpOMyv7GeeunRO7oxx
+        zJVMc25RpIlfXgl1wTnFpj02xbON1wfPcC4WjFc=
+X-Google-Smtp-Source: AGRyM1v2CRG+DKXHIE5wryGPKVWEqDbJO+C7vYv5XEX7bEg0r5zo5hw9c4p4l7Taip7CR4eGcodROUoYssgTudunweE=
+X-Received: by 2002:a81:8397:0:b0:31c:8a02:3f6d with SMTP id
+ t145-20020a818397000000b0031c8a023f6dmr13860042ywf.486.1657011788255; Tue, 05
+ Jul 2022 02:03:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <YsGVa8KFmdvGY92e@debian.me> <20220704034041.15448-1-bagasdotme@gmail.com>
+ <CAHp75Vdg=NG9fnd0EQWg5D4WoW9hGJM+MMBRLSacgQUptuGe9Q@mail.gmail.com> <5418fb0b-47e2-d251-a6c7-a9bacbaf3dc1@gmail.com>
+In-Reply-To: <5418fb0b-47e2-d251-a6c7-a9bacbaf3dc1@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 5 Jul 2022 11:02:32 +0200
+Message-ID: <CAHp75VfEzNJSAJrjcY_cUj7=k4fNL+TcpEWc9k=wSWB5qb8wJg@mail.gmail.com>
+Subject: Re: [PATCH v2] Documentation: bno055: separate SPDX identifier and
+ page title
+To:     Bagas Sanjaya <bagasdotme@gmail.com>
+Cc:     Linux Documentation List <linux-doc@vger.kernel.org>,
+        kernel test robot <lkp@intel.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Andrea Merello <andrea.merello@iit.it>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        jmondi <jacopo@jmondi.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+On Tue, Jul 5, 2022 at 3:13 AM Bagas Sanjaya <bagasdotme@gmail.com> wrote:
+> On 7/5/22 02:49, Andy Shevchenko wrote:
 
-A pin controlled by the iomuxc-snvs pin controller must be
-specified under the dtb's iomuxc-snvs node.
+...
 
-Move the one and only pin of that category from the iomuxc node
-and set the pinctrl-0 using it accordingly.
+> >> Cc: Jonathan Corbet <corbet@lwn.net>
+> >> Cc: Andrea Merello <andrea.merello@iit.it>
+> >> Cc: Jonathan Cameron <jic23@kernel.org>
+> >> Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> >> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> >> Cc: Rob Herring <robh+dt@kernel.org>
+> >> Cc: Matt Ranostay <matt.ranostay@konsulko.com>
+> >> Cc: Alexandru Ardelean <ardeleanalex@gmail.com>
+> >> Cc: jacopo@jmondi.org
+> >> Cc: linux-iio@vger.kernel.org
+> >> Cc: devicetree@vger.kernel.org
+> >> Cc: linux-kernel@vger.kernel.org (open list)
+> >
+> > It's a very noisy Cc list which will go in the git history. Instead,
+> > use --to and --cc parameters of `git format-patch`. Maintainers
+> > usually use `b4` tool that adds a Link tag to the patch itself on the
+> > Lore archive which will keep track on the Cc list anyway.
 
-Fixes: 2aa9d6201949 ("ARM: dts: imx6ull-colibri: add touchscreen device nodes")
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+> Thanks for reminding me.
+>
+> I think something like `b4 am -l`, right?
+>
+> Anyway, should I resend (reroll)?
 
----
+Depends on the maintainer's wishes. Maybe they can drop them when
+applying, I dunno.
 
- arch/arm/boot/dts/imx6ull-colibri.dtsi | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-index 623bb7585ad1..577a424b0e1d 100644
---- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-@@ -165,7 +165,7 @@
- 	atmel_mxt_ts: touchscreen@4a {
- 		compatible = "atmel,maxtouch";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_atmel_conn>;
-+		pinctrl-0 = <&pinctrl_atmel_conn &pinctrl_atmel_snvs_conn>;
- 		reg = <0x4a>;
- 		interrupt-parent = <&gpio5>;
- 		interrupts = <4 IRQ_TYPE_EDGE_FALLING>;       /* SODIMM 107 / INT */
-@@ -330,7 +330,6 @@
- 	pinctrl_atmel_conn: atmelconngrp {
- 		fsl,pins = <
- 			MX6UL_PAD_JTAG_MOD__GPIO1_IO10          0xb0a0  /* SODIMM 106 */
--			MX6ULL_PAD_SNVS_TAMPER4__GPIO5_IO04     0xb0a0	/* SODIMM 107 */
- 		>;
- 	};
- 
-@@ -683,6 +682,12 @@
- };
- 
- &iomuxc_snvs {
-+	pinctrl_atmel_snvs_conn: atmelsnvsconngrp {
-+		fsl,pins = <
-+			MX6ULL_PAD_SNVS_TAMPER4__GPIO5_IO04     0xb0a0	/* SODIMM 107 */
-+		>;
-+	};
-+
- 	pinctrl_snvs_gpio1: snvsgpio1grp {
- 		fsl,pins = <
- 			MX6ULL_PAD_SNVS_TAMPER6__GPIO5_IO06	0x110a0	/* SODIMM 93 */
 -- 
-2.20.1
-
+With Best Regards,
+Andy Shevchenko
