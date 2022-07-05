@@ -2,99 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F49567558
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 19:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 001FE56756F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 19:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230135AbiGERLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 13:11:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60854 "EHLO
+        id S231150AbiGERUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 13:20:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233390AbiGERLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 13:11:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 260491EEDB;
-        Tue,  5 Jul 2022 10:10:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B48E26160B;
-        Tue,  5 Jul 2022 17:10:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29F66C341C7;
-        Tue,  5 Jul 2022 17:10:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657041054;
-        bh=GdGjLgP2hej3ldK4b9osehRvOxBgWOs0Sc84SjxL3+I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SvzZbxsBDIl4Sg4BusQpWxsWDdR+TfhHde+9hiBq7eA+t/BUmC7YH8qssPIi6HYvV
-         b/ajSpUlbeKGlokMFHnY+X+wUB5+kalNj7Ikm1+UNB4xYqJ1w/nvxVCjokO/YhvdYR
-         hIp4Yx0Qal358q2+2zIGLpxv9tLS25BMku40lqe1rqzxcBLy0zGbgd/ZSl3MfTRqFd
-         3UG4dKngZ7zxExdtauPX+bGOhRHXeUD+Wbsdv2Ooo8GaThLJbrxDTDG+bcrQYVBYa7
-         wN2TWgk+6FYIh3Ci0Fj69xYO95i0QFTffUsxBL3HZala87CmNgxsnMPyTSLsejWZYv
-         /1K7AM+LgN5PQ==
-Date:   Tue, 5 Jul 2022 18:10:48 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Ryan.Wanner@microchip.com
-Cc:     Claudiu.Beznea@microchip.com, nicolas.ferre@microchip.com,
-        alexandre.berna@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-binding: sound: Convert atmel pdmic to json-schema
-Message-ID: <YsRwmEZBJZRJuqSt@sirena.org.uk>
-References: <20220705162142.17558-1-Ryan.Wanner@microchip.com>
+        with ESMTP id S229807AbiGERT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 13:19:59 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E30DE12770;
+        Tue,  5 Jul 2022 10:19:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1657041595;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=DWdmOEUN7mDmynzMuz93XOiDV62jdDAWm6NP6/a8yDU=;
+    b=fo4p/8OeYNNYHAfBih3AVtm9kQM2E9Vn4jDnT56W8ubhGSFSA+megqLSF/OqhQe80C
+    T+ywhLJSgBZWATxBixehCo4sd9iteUFbCE5ZLNPkzY4gLibAopKav2GsevOyupyLugkd
+    cQr0p/eOzjhcO8DvUerdp7dHjpuIxrWcRt1h0lX7OzFhuJuZtaGIoFAGNSDJypTz+w04
+    +4VfWEajNMb3FvNDohNtvH9pKhG1xcfSUDh4CXoi6vd7ZBJ1UYNvzp11nGF6xM/zTU+v
+    GH7c4CliPhqflh6tcj5rO87PPGgE2gUYHHXafC36t+xGkRriBI2E7XrINehmzGqy7/qm
+    M25w==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK85/aY="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.46.1 AUTH)
+    with ESMTPSA id yfdd30y65HJtJ4o
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 5 Jul 2022 19:19:55 +0200 (CEST)
+Date:   Tue, 5 Jul 2022 19:19:46 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Subject: Re: [PATCH v4] dt-bindings: qcom: document preferred compatible
+ naming
+Message-ID: <YsRysg0Wm97iOgWo@gerhold.net>
+References: <20220705161301.493364-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2q7rNxc8LUBNXqkk"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220705162142.17558-1-Ryan.Wanner@microchip.com>
-X-Cookie: Avoid contact with skin.
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220705161301.493364-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jul 05, 2022 at 06:13:01PM +0200, Krzysztof Kozlowski wrote:
+> Compatibles can come in two formats.  Either "vendor,ip-soc" or
+> "vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
+> DT schema file documenting preferred policy and enforcing it for all new
+> compatibles, except few existing patterns.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[...]
+> diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+> new file mode 100644
+> index 000000000000..0be18c1d2961
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+[...]
+> +      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
 
---2q7rNxc8LUBNXqkk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+FWIW: There is also the "qcm" prefix, used e.g. in "qcom,qcm2290-tlmm".
 
-On Tue, Jul 05, 2022 at 09:21:42AM -0700, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
->=20
-> Convert Atmel PDMIC devicetree binding to json-schema.
-> Change file naming to match json-schema naming.
+Also, the APQ equivalent of "sdm" would be "sda", e.g. SDA845 which is
+used in the DB845c. (Not sure if someone will ever use the SDA variant
+in a compatible though.)
 
-As documented in submitting-patches.rst please send patches to the=20
-maintainers for the code you would like to change.  The normal kernel
-workflow is that people apply patches from their inboxes, if they aren't
-copied they are likely to not see the patch at all and it is much more
-difficult to apply patches.
-
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
-
---2q7rNxc8LUBNXqkk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLEcJcACgkQJNaLcl1U
-h9BqRwf/ec39qezUmPHDc1zriQaDiK1SQf+WeiHqR/VlgQ8XqoPPQpTfh0AEKLlG
-WEiiTq+4AxBbd1wZZngJ/iWOXXK3tSVgcfYI3RBtCaPK346QyYqqt8uPj6ozz+++
-tuxmHAWreDlZ72snrrZhSJm+SelvFYLbIe9RQ37N/y2FCaY+FRLEnleuv1Ct5rfx
-5pKeqYpuqpZrATCsEubdAwLg4TiwYPgvweQufcGvUYYTSlICgYLIOuON6eXontQQ
-2K5iQFxXXYAJZhuAUBS2p679hyTmwUVRPUy/KlQbvLw9op+1g1JWxsvD1Ph6DKX8
-6T1zDLuzHG8nFoJK7bT4KZM6T1u3Ig==
-=3QL5
------END PGP SIGNATURE-----
-
---2q7rNxc8LUBNXqkk--
+Thanks,
+Stephan
