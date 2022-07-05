@@ -2,70 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57675566F76
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 737C1566F7C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:41:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbiGENkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 09:40:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54962 "EHLO
+        id S232756AbiGENla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 09:41:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230462AbiGENkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:40:06 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C85E99B186;
-        Tue,  5 Jul 2022 06:01:06 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 9E3252223E;
-        Tue,  5 Jul 2022 15:00:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1657026060;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=w5IGhtBFhLHpkdv9OtcqSGseM9bhkDJbnjN/ntQxlYs=;
-        b=t9nwjhY8s9jAk7CNa/duLCuzHRA/nhIPm9PvgFf+Rfgeu89yi17PrZhKOy0Q6zvXsbMyJA
-        Gagd32VpKHjt2gM4k+f7rQnCmCjv5nLZbDfz4BvYPv+n0rs24Bc7UjO7zNUzD1UX1OHwwz
-        gF5bhdg6Ga20DSC2S9XsQoHaRKVoWxM=
-From:   Michael Walle <michael@walle.cc>
-To:     herve.codina@bootlin.com
-Cc:     alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        horatiu.vultur@microchip.com, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        mturquette@baylibre.com, nicolas.ferre@microchip.com,
-        robh+dt@kernel.org, sboyd@kernel.org, thomas.petazzoni@bootlin.com,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH v5 1/3] clk: lan966x: Fix the lan966x clock gate register address
-Date:   Tue,  5 Jul 2022 15:00:36 +0200
-Message-Id: <20220705130036.1384656-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220704102845.168438-2-herve.codina@bootlin.com>
-References: <20220704102845.168438-2-herve.codina@bootlin.com>
+        with ESMTP id S230244AbiGENlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:41:19 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3351FCDC
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 06:03:06 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id a11so14421313ljb.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 06:03:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1Zu4/ayyyYQ5Ucz1AuuZ8IojHLuhbZJlEcfiqr7+SQ0=;
+        b=wNoxfu+ExvvLwYJTJNIghGlhtZlrwvY06hiC0aa7kNJ7cR6yKeM+1WIef95kOnvQuK
+         W8FajZD7wjcykRaCOcWbfOEI365sV5MkaqvH3b+utnn84GxqnjNXXRUy41NvXkW0YlPI
+         XoOaWaL2hD2Li5lPIrJHbfODP8eUr9AfHX9M4O32ZBYSzweiGHHR2cdWlyksuMW007Dx
+         u8vSwhwrBnuA1Hop33BOmWC2aIjqr+RVwOOT09oREw1uHNq/Vq3373Vb5SrmvDbLLBxz
+         4wGk4USnQZDvLlWOfFgMC6rMFLfk0Vk5rgxWoqWiJkMW4fpGwHhyoqH/ltQEJeEHN0WV
+         pjJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1Zu4/ayyyYQ5Ucz1AuuZ8IojHLuhbZJlEcfiqr7+SQ0=;
+        b=QqYoYfFn10EWKbWhsOMVOJrlnJlgo8eB5guT0Jpr5WIgncZzP6Ws5pQdlHkTO9VSRy
+         CiDSkAZYqCMDUR1/kJJFZPFTgxeKANflkQF+lD6tKueuKBdBHvsga4tw2yWONGHjexDu
+         m4ly9njXM4+UXafnoOdk7MBHRh9QmZJPUPc2aFPUlBVGqp8LfExCmQ1XRJ9Fg1ZVH/00
+         XpFSn3OQbdXnUxvyavRLBwupaE02N4QlvoCH3gOPVf0zLxLaAGhvjY/KgGPCrg/cuNYC
+         PzwClJKjcKZE2S/jogV3VbPuD06nQ8YBlKz9o30hkK5l1TKISePNIhCwgUK/nqUG//EH
+         bHaA==
+X-Gm-Message-State: AJIora+pdg9Zc1vkQQo0uY3eESxeLG1zIhFa+LIrzUdxsedtHCaEpRIw
+        kEwrYQePQpwp5khLfjd8onLU5w==
+X-Google-Smtp-Source: AGRyM1u2pcnfgNTF1NSnG5hsBRa5MsqQGmW51gDLlR1mvGCJj9IGauPJ7o0heWsUxkUG6iBLBB5pFA==
+X-Received: by 2002:a2e:8813:0:b0:25a:94e9:b2db with SMTP id x19-20020a2e8813000000b0025a94e9b2dbmr20018198ljh.9.1657026184897;
+        Tue, 05 Jul 2022 06:03:04 -0700 (PDT)
+Received: from krzk-bin.home ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id s14-20020a19770e000000b0047f68d77008sm5688086lfc.178.2022.07.05.06.03.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Jul 2022 06:03:04 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v6 0/3] dt-bindings: arm: qcom: qcom,board-id and qcom,msm-id
+Date:   Tue,  5 Jul 2022 15:02:57 +0200
+Message-Id: <20220705130300.100882-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> The register address used for the clock gate register is the base
-> register address coming from first reg map (ie. the generic
-> clock registers) instead of the second reg map defining the clock
-> gate register.
-> 
-> Use the correct clock gate register address.
-> 
-> Fixes: 5ad5915dea00 ("clk: lan966x: Extend lan966x clock driver for clock gating support")
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+Hi,
 
-Tested-by: Michael Walle <michael@walle.cc>
+Changes since v5
+================
+1. Dual-license qcom,ids.h (Rob).
+2. Minor corrections in comments.
+
+Changes since v4
+================
+1. Change the qcom,board-id oneOf (oneOf at higher level) so newer dtschema is happy.
+
+Changes since v3
+================
+1. Patch #1: Define all SoC IDs, based on Qualcomm socid driver (Konrad). Keep
+   Dmitry Rb tag, even though it is quite a change.
+2. New patch #2: use bindings in the socid driver.  The patch fails on checkpatch:
+   "Macros with complex values should be enclosed in parentheses"
+   but that's expected considering the macro contents.
+
+Changes since v2
+================
+1. Adjust description of new fields after review (Dmitry).
+2. Change name of msm8996 define (Dmitry).
+3. Add Rb tags.
+
+Changes since v1
+================
+1. Make the qcom,board-id and qcom,msm-id properties deprecated and limited to
+   certain SoCs (Rob).
+2. Extend the qcom,board-id schema to match OnePlus variant - four elements -
+   and drop DTS patches splitting four into two touples (Stephan).
+
+Description
+===========
+The discussion [1] brought several arguments for keeping the qcom,board-id and
+qcom,msm-id properties.  Keeping means we should document them, so the DT
+schema checks pass.
+
+I revived old patch [2] with several changes and improvements.  The commit msg
+hopefully collects feedback from the discussion.
+
+Best regards,
+Krzysztof
+
+[1] https://lore.kernel.org/r/a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org/
+[2] https://lore.kernel.org/all/1425503602-24916-1-git-send-email-galak@codeaurora.org/
+
+Krzysztof Kozlowski (3):
+  dt-bindings: arm: qcom: document qcom,msm-id and qcom,board-id
+  soc: qcom: socinfo: create soc_id table from bindings
+  arm64: dts: qcom: msm8992-xiaomi-libra: split qcom,msm-id into tuples
+
+ .../devicetree/bindings/arm/qcom.yaml         | 120 ++++++++
+ .../boot/dts/qcom/msm8992-xiaomi-libra.dts    |   2 +-
+ drivers/soc/qcom/socinfo.c                    | 259 +++++++++---------
+ include/dt-bindings/arm/qcom,ids.h            | 152 ++++++++++
+ 4 files changed, 406 insertions(+), 127 deletions(-)
+ create mode 100644 include/dt-bindings/arm/qcom,ids.h
+
+-- 
+2.34.1
+
