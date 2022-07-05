@@ -2,145 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B84D7566E27
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 14:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D31B5566E6C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 14:35:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237987AbiGEMbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 08:31:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36920 "EHLO
+        id S236703AbiGEMf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 08:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239442AbiGEMal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 08:30:41 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C0BC1F63B;
-        Tue,  5 Jul 2022 05:22:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 92BC7B816A4;
-        Tue,  5 Jul 2022 12:22:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03C6BC341C8;
-        Tue,  5 Jul 2022 12:22:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657023761;
-        bh=Hl6oQo9fBaw8lhEcoZN8z4oGgTIORkI///LPXaadh+8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SGQ+VMDCiVJPI4dlqjm6Uv2sKZm0+joTht54YfW3He8Z4TXCbeHtiJKZdcs1VujQB
-         XAA2SxR6GNjQtjJKLXg7y0JYM5Pz/vsfXtRkhyGy6LKLQqz3Np79+MNzF60ClPJoQ2
-         ooyBc3m5oTtSEMv4OJbpNAiQA7yu3QQxnc+nMB3uvPwmV563psN5lrHm3fRSrJPqe9
-         vWttuvEoEvZ8wLAsrNvAc7KAS4SfQC4GJa9ZKpY7Vcf86/dBvakGk9dyVc6ouR9k69
-         XLfGDOgNuwErrygPnknj+3tPXCpXiczR2VNMUTBkvimKnSi34NCzhkDHzteL5aOhsu
-         Z/fKTCx/OnzZg==
-Received: by pali.im (Postfix)
-        id 3564ACBF; Tue,  5 Jul 2022 14:22:38 +0200 (CEST)
-Date:   Tue, 5 Jul 2022 14:22:38 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] leds: Add support for Turris 1.x LEDs
-Message-ID: <20220705122238.ul3cctrxkkttge3m@pali>
-References: <20220705000448.14337-1-pali@kernel.org>
- <20220705000448.14337-2-pali@kernel.org>
- <20220705123705.0a9caead@thinkpad>
- <20220705105609.cpabhrwozyeejwqe@pali>
- <20220705135227.6380d6d5@thinkpad>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220705135227.6380d6d5@thinkpad>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S238666AbiGEMdU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 08:33:20 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92111EAD8;
+        Tue,  5 Jul 2022 05:24:06 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id g26so21328034ejb.5;
+        Tue, 05 Jul 2022 05:24:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=rKchyti3CNHmlNsUeUfWTOGTB3qG+Z5MF1w+7GPUMjU=;
+        b=YqW7Rt9C7Lbg2yHHCnnMqBMzjYQ8c9WZ0u04b7W2FdtdlP4DdrX+GRuqgh3dFY6Wkt
+         fiXTAwYFNwEEh9gH/SFeJ4WK5dJK2hDHDczbv7q9WjC424EycaD6quRWTFmzGyNLXT95
+         maN+GsXIUUqW+qMAePyvLIxFe49AdHsrjKxdamMxAtccREnJjSCn3fHi+AJKGFJtrbMB
+         ezZHkvEcLQldTi2GD3NtbTBIJtHuBZpEFWe960SCDOHgDsIwyzCmCqQ3qGDwytTk3hea
+         6YONL47VUDvg2Yw/r6G5r9g74iHTu2SjY0drA+OCoOlseVF5dcPllV8fA1Jjg3uDGDAP
+         BmnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=rKchyti3CNHmlNsUeUfWTOGTB3qG+Z5MF1w+7GPUMjU=;
+        b=oH29WisTtKREof0lImxuWlGBksXjRfqV4PL5gpbKkOYTtT+gqzGIwSL8EkEYVJCcB+
+         OchxTz7bOAiuem8gQ1IeMa1Mb6ZXiOv9izBV6lw+8fDQxQd9Jaq1pS5HBV7BIKtb6Mwg
+         6ELnFQWZTh2k1BrFCDWbnDOgsprEALhn03OqJy0tiFYc2KjyWWh7dOZYxENgvOWTNT54
+         TFXHWjL8afSSDn1TXM0KbNb5oZv+MhDfVSfQbFbeBCqq+Cg+BC/kbme0mCaeOPp/Fewi
+         gbVwhdVQtF3D/SW5IQVN9TUwof7MPr7wsI97NdKFjNwRD7Pv4V+dVqhLFHvaDm+GBtOQ
+         wklw==
+X-Gm-Message-State: AJIora8FO5woUHPPcPKEVKHO4c3L2TnkWyggcqoumOeKlCilhTK1RZg4
+        3QFeRYmyPqtMMLrtm1o38vbO4BXonAF0Rg==
+X-Google-Smtp-Source: AGRyM1tKL1YH/MeSytQXHPhC+33kwREENs1XwlCeymzKhwiseRyxIpDzHMUmgZKp00WIgQyVNZLYZg==
+X-Received: by 2002:a17:906:5d0b:b0:726:a043:fcb4 with SMTP id g11-20020a1709065d0b00b00726a043fcb4mr34305213ejt.508.1657023845235;
+        Tue, 05 Jul 2022 05:24:05 -0700 (PDT)
+Received: from development1.visionsystems.de (mail.visionsystems.de. [213.209.99.202])
+        by smtp.gmail.com with ESMTPSA id o19-20020a17090637d300b006ff0b457cdasm15861585ejc.53.2022.07.05.05.24.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 05 Jul 2022 05:24:04 -0700 (PDT)
+From:   yegorslists@googlemail.com
+To:     linux-omap@vger.kernel.org
+Cc:     rogerq@kernel.org, tony@atomide.com, devicetree@vger.kernel.org,
+        Yegor Yefremov <yegorslists@googlemail.com>
+Subject: [PATCH] ARM: dts: am335x-baltos: change nand-xfer-type
+Date:   Tue,  5 Jul 2022 14:23:55 +0200
+Message-Id: <20220705122355.14854-1-yegorslists@googlemail.com>
+X-Mailer: git-send-email 2.17.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 05 July 2022 13:52:27 Marek Behún wrote:
-> On Tue, 5 Jul 2022 12:56:09 +0200
-> Pali Rohár <pali@kernel.org> wrote:
-> 
-> > > 
-> > > I don't consider this a problem  
-> > 
-> > I think it is a problem, to ensure that 'cat multi_intensity' for every
-> 
-> Misunderstanding. I meant that I don't consider the eventual
-> inconsistency a problem, i.e. I agree with your code.
-> 
-> > > Or maybe just write the value?
-> > > Is the register write expensive on the CPLD or why are you trying to
-> > > avoid it if unnecessary?  
-> > 
-> > I just do not see any reason to do unnecessary writes.
-> 
-> But now you do an unnecessary check.
+From: Yegor Yefremov <yegorslists@googlemail.com>
 
-I think that testing if some bit is set in 32-bit general purpose
-processor register is something which really does not play role here.
+Use "prefetch-dma" instead of "polled".
 
-Note that readb() is always needed to do because it is required to
-modify just one bit and this cannot be done without read-modify-write
-operations.
+Signed-off-by: Yegor Yefremov <yegorslists@googlemail.com>
+---
+ arch/arm/boot/dts/am335x-baltos.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> Unless the writeb() is slower than
-> that check. Since this isn't i2c, I am wondering how fast that writeb()
-> is... But this is just me wondering, we can keep it the way you wrote
-> it...
-> 
-> > > 
-> > > Hmm. Wouldn't it make more sense to simply have the global brightness
-> > > accept values from 0 to 7, instead of mapping it to 256 values? And
-> > > call it something like selected_brightness_index?  
-> > 
-> > All other drivers have brightness entry which operates on monotone
-> > brightness property.
-> > Brightness levels do not have to be monotone and by default are
-> > decreasing: 0 = brightness with higher intensity; 7 = no intensity (off)
-> 
-> What do you mean all other drivers? AFAIK only one driver does this
-> global brightness thing, and that is Omnia. The global brightness is
-> something different from LED cdev brightness property, the same names
-> are just coincidental (in fact it caused confusion when Pavel was
-> first reviewing Turris Omnia driver). Maybe it should have been called
-> global_intensity, to avoid the confusion...
+diff --git a/arch/arm/boot/dts/am335x-baltos.dtsi b/arch/arm/boot/dts/am335x-baltos.dtsi
+index d3eafee79a23..6161c8929a78 100644
+--- a/arch/arm/boot/dts/am335x-baltos.dtsi
++++ b/arch/arm/boot/dts/am335x-baltos.dtsi
+@@ -197,7 +197,7 @@
+ 		rb-gpios = <&gpmc 0 GPIO_ACTIVE_HIGH>; /* gpmc_wait0 */
+ 		nand-bus-width = <8>;
+ 		ti,nand-ecc-opt = "bch8";
+-		ti,nand-xfer-type = "polled";
++		ti,nand-xfer-type = "prefetch-dma";
+ 
+ 		gpmc,device-nand = "true";
+ 		gpmc,device-width = <1>;
+-- 
+2.17.0
 
-Ok. I thought "brightness" == "brightness" too.
-
-Anyway, as Omnia has this API it makes sense to use same API for other
-devices, this allows userspace software to be compatible with more
-devices.
-
-> > I cannot image who would like or prefer usage of such API.
-> 
-> One file that represents the index of the selected global intensity (as
-> is stored internally in the CPLD) and another file that represents the
-> configured intensities between which the button switches makes sense,
-> IMO.
-
-And this is the issue. If you want to get current brightness, you need
-to read two files and then do non-trivial logic to derive current
-brightness.
-
-> > Just stick with existing APIs. "brightness" entry takes intensity value
-> > which is monotone, 0 the lowest, MAX (=255) the highest.
-> 
-> Again, the name "brightness" does not imply that it is the same thing
-> as "brightness" of a LED cdev. And since it even doesn't live in
-> /sys/class/<led>/ directory, we are proposing new API and can use
-> whatever makes sense.
-> 
-> I am not saying that the way you did it doesn't make sense. I am just
-> wondering if it wouldn't make more sense to be able to read the index
-> of what the user selected by button pressing.
-> 
-> Marek
-
-So what about exporting another sysfs file which controls current level (0-7)?
