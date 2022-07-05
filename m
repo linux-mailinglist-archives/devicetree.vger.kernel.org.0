@@ -2,54 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2978D56709C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73D5E567093
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:13:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233081AbiGEOL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 10:11:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59214 "EHLO
+        id S233300AbiGEOLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 10:11:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233212AbiGEOLJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:11:09 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960A21409E;
-        Tue,  5 Jul 2022 07:03:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 53BE8B817EF;
-        Tue,  5 Jul 2022 14:03:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31C71C341C7;
-        Tue,  5 Jul 2022 14:03:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657029806;
-        bh=GYVhNrAzmIxHsezMV+ux3SV0O8/R3WOk68YoxoVfFok=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=RKubGH28bIJYqp89/tMWym1veJIhmpb7As9MNjfegrRYrEA92Kd9EdDfN1UdWYR+9
-         MkUphZxXCYVt0KBDaRHs8J7A0Q7lurKvfBbH+cfkJxuNwX8RSktPmQwHop8aUUY/W7
-         joPUGgpHHcOitizXwyqxw/gTU7FXReQmWMMt4gXUeTbsugM5lU3+ULzeq9dOBw7iin
-         t3fo0q3BNDD3c3gJatsZ2/ydfz//npzSRVU6DfUwR3pzlNFymWK3cSZ5+rTjwOYis6
-         Id6QF4UnVhelJR59c1y1klr8tXNOQKojmjhhEh3EOKXRnsTIVIhnaSYKaPMy/LpYKh
-         t+kDupu7YH1hg==
-Message-ID: <a60b5954-c9ac-0f2b-aef4-ad34b8f3abe7@kernel.org>
-Date:   Tue, 5 Jul 2022 17:03:21 +0300
+        with ESMTP id S232956AbiGEOLS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:11:18 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C04E20BE2
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 07:03:39 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id e12so20722492lfr.6
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 07:03:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=FTByuoUDWjyR8an2g05CMGFWtHf96FEqLs3ngrwh6us=;
+        b=GBKk4fxRrkRm2c6psUm6D/w0N6n06/W6BtHOUvFHVMUiEdDkUP1q3E7Hz3nQoPPBR8
+         5UWPpfePuVzE2M3m9X6CPurk2EYEJIF/Xsx3X51ML0Oqn+H48opY24dyLGyRx8NWnSJh
+         eyBKLJTcWVBNh7YybUZ/q2k44/aNZmn7GyfZSJOPonRfHLLnopZ/Qu0w+4AI+sRHrgMB
+         vwdx1u/Il43czbMCaBdZ8xbPZRCEsoOMXvR6wuGUVRjbfO2Ntdo47Y5e7zgLNK5qglbQ
+         N44z5Esp4HfJ5zYyPBLLp4LQbUQVB+96Rg325ZjuoHsK4uWgnbMN7DG7I50n/ZM9MhBy
+         7ygg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=FTByuoUDWjyR8an2g05CMGFWtHf96FEqLs3ngrwh6us=;
+        b=kWrzAnOpBd90mVRFacZv6N9huP3qDmmXM+SokbHmsiMHewEuu8vdbdug6iCDrsUHZt
+         Ht/2h0q92mk0OK1wOFlXhlwVvMMHImJCMrOj5WLgyB33Cn/jh8ohFGFQ0cfKP3S7e3Xk
+         BZa/bXGytVOXKpFDp9i5kUvL5vmlbgxfwz33OSGw7r2rVCpaIoygau9DKPTL8gDDgpDF
+         yrBppu3Dg/HeTtFK5/dlzMhLEHi0FQm40V0ZmIqxvWhYOGV9VhQBPoh7ShZQ6mHf/v88
+         7reiQUVwSrLU91zXpBg8M2Txa06HF9KMXJesU3qgmXRqW9Gi8b6qJEFEwD/F5XrYLHrB
+         Ajhg==
+X-Gm-Message-State: AJIora/oZcpNNaqw0WKtC4uBXTH6vdQjBcNbPoee5SgA/FCneThf4Xpo
+        WqgdLNRlQQlYqMEnwcQOu1Hr0A==
+X-Google-Smtp-Source: AGRyM1uyOELuaksoAr9ygk7LHhzb3ah4SQdqixh/kdlutfggnui6spNPog9NnO2z+XbF/mcIT6CypA==
+X-Received: by 2002:ac2:4e10:0:b0:47f:9af2:9c64 with SMTP id e16-20020ac24e10000000b0047f9af29c64mr21115541lfr.109.1657029817605;
+        Tue, 05 Jul 2022 07:03:37 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id d13-20020a056512368d00b00480fdbc1b01sm5301077lfs.64.2022.07.05.07.03.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 07:03:37 -0700 (PDT)
+Message-ID: <777026d0-578c-500f-7da4-0e81fc211df2@linaro.org>
+Date:   Tue, 5 Jul 2022 16:03:35 +0200
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 0/5] interconnect: qcom: icc-rpm: Support bucket
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 07/11] dt-bindings: spi: spi-nxp-fspi: add a new property
+ nxp,fspi-dll-slvdly
 Content-Language: en-US
-To:     Leo Yan <leo.yan@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220705072336.742703-1-leo.yan@linaro.org>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20220705072336.742703-1-leo.yan@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Han Xu <han.xu@nxp.com>, Bough Chen <haibo.chen@nxp.com>,
+        "ashish.kumar@nxp.com" <ashish.kumar@nxp.com>,
+        "yogeshgaur.83@gmail.com" <yogeshgaur.83@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "singh.kuldeep87k@gmail.com" <singh.kuldeep87k@gmail.com>,
+        "tudor.ambarus@microchip.com" <tudor.ambarus@microchip.com>,
+        "p.yadav@ti.com" <p.yadav@ti.com>,
+        "michael@walle.cc" <michael@walle.cc>,
+        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
+        "richard@nod.at" <richard@nod.at>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "zhengxunli@mxic.com.tw" <zhengxunli@mxic.com.tw>
+References: <1657012303-6464-1-git-send-email-haibo.chen@nxp.com>
+ <1657012303-6464-7-git-send-email-haibo.chen@nxp.com>
+ <ef676df1-77e0-b8ee-3950-97eade8ddd5b@linaro.org>
+ <VI1PR04MB40167A70FBE772DF91047A4190819@VI1PR04MB4016.eurprd04.prod.outlook.com>
+ <59d360ef-5374-c7a7-2995-854ab3715b25@linaro.org>
+ <DU2PR04MB87747C9A8F18D8300461D6B197819@DU2PR04MB8774.eurprd04.prod.outlook.com>
+ <f33ad190-f5c7-d9fa-088b-5538ab1f4d59@linaro.org>
+ <DU2PR04MB877492F346BAA10B2AA7428497819@DU2PR04MB8774.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DU2PR04MB877492F346BAA10B2AA7428497819@DU2PR04MB8774.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,45 +104,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5.07.22 10:23, Leo Yan wrote:
-> This patch set is to support bucket in icc-rpm driver, so it implements
-> the similar mechanism in the icc-rpmh driver.
+On 05/07/2022 16:00, Han Xu wrote:
+>> So we probably misunderstood each other... looking at the driver it also explains
+>> the confusing. You encoded here register value which is pretty often wrong
+>> approach.
+>>
+>> This should be instead meaningful value for the user of the bindings, so usually
+>> using one of property units:
+>> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithub.com
+>> %2Fdevicetree-org%2Fdt-
+>> schema%2Fblob%2Fmain%2Fdtschema%2Fschemas%2Fproperty-
+>> units.yaml&amp;data=05%7C01%7Chan.xu%40nxp.com%7C0ffe3d706e064f14382
+>> 108da5e8a5add%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6379262
+>> 45564450475%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV
+>> 2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=Q4
+>> SfVnBN%2BQ0vYKJzRf%2FXZkCA1WGyPV9doFcb%2BLSKx4w%3D&amp;reserved=0
+>>
+>> I think you could use here clock cycles or clock phase, but then it has to be obvious
+>> it is that unit.
 > 
-> We can use interconnect path tag to indicate the bandwidth voting is for
-> which buckets, and there have three kinds of buckets: AWC, WAKE and
-> SLEEP, finally the wake and sleep bucket values are used to set the
-> corresponding clock (active and sleep clocks).  So far, we keep the AWC
-> bucket but doesn't really use it.
+> Hi Krzysztof, 
 > 
-> Patches 01, 02, 03 enable interconnect path tag and update the DT
-> binding document; patches 04 and 05 support bucket and use bucket values
-> to set the bandwidth and clock rates.
-> 
-> Changes from v3:
-> - Removed $ref and redundant sentence in DT binding document for
->    '#interconnect-cells' (Krzysztof Kozlowski).
-> 
-> Changes from v2:
-> - Fixed for DT checker error for command ''make DT_CHECKER_FLAGS=-m
->    dt_binding_check' (Rob Herring).
-> 
-> Changes from v1:
-> - Added description for property "#interconnect-cells" (Rob Herring);
-> - Added Dimtry's reviewed tags for patches 02 and 03 (Dmitry Baryshkov);
-> - Rebased on the latest mainline kernel and resolved conflict.
-> 
-> 
-> Leo Yan (5):
->    dt-bindings: interconnect: Update property for icc-rpm path tag
->    interconnect: qcom: Move qcom_icc_xlate_extended() to a common file
->    interconnect: qcom: icc-rpm: Change to use qcom_icc_xlate_extended()
->    interconnect: qcom: icc-rpm: Support multiple buckets
->    interconnect: qcom: icc-rpm: Set bandwidth and clock for bucket values
+> Let me clarify it, in the document a term "delay cell" was used to descript this register bit. 
 
-Hi Leo,
+Which document? The bindings (I cannot find it there)? Commit msg?
 
-Some patches do not apply clean on next. On which tree is this based? Do you have any additional 
-patches?
+> Each delay cell equals "1/32 clock phase", so the unit of delay cell is clock phase. The value user need set in DT just number to define how many delay cells needed.
 
-Thanks,
-Georgi
+Your bindings did not say this at all.
+
+Best regards,
+Krzysztof
