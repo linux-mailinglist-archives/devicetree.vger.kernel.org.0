@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB914566CB4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 14:20:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0865A566C7F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 14:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235578AbiGEMUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 08:20:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36058 "EHLO
+        id S235608AbiGEMP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 08:15:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236332AbiGEMRf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 08:17:35 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06EEE1C135;
-        Tue,  5 Jul 2022 05:12:21 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 265CBbkW126500;
-        Tue, 5 Jul 2022 07:11:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1657023097;
-        bh=5PS06OiuFOGV6B3a+bWMbXD/8Hz+t/MCO8edcDvjNyI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=CxOUax3cEDEL2+SP2KSIMmwxxFG6kGYujBKgY0SDxZwFRAVPVWXDtbdwExvFjEnDs
-         l+UEVgz6YcTLZPi4PXfWpXzhTsFUnGAOPBCAeAitfJJZv1fIIP61GKsMz20tfKHGYj
-         hKF6rNb23UKMqmoxNnbnQjQDKBAooM8zvzE0oo14=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 265CBbtu064210
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 5 Jul 2022 07:11:37 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 5
- Jul 2022 07:11:36 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 5 Jul 2022 07:11:36 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 265CBZrN099029;
-        Tue, 5 Jul 2022 07:11:36 -0500
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     <dri-devel@lists.freedesktop.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <andrzej.hajda@intel.com>, <narmstrong@baylibre.com>,
-        <robert.foss@linaro.org>, <jonas@kwiboo.se>,
-        <jernej.skrabec@gmail.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <p.zabel@pengutronix.de>, <tomi.valkeinen@ideasonboard.com>,
-        <laurent.pinchart@ideasonboard.com>,
-        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
-        <sjakhade@cadence.com>, <mparab@cadence.com>, <a-bhatia1@ti.com>,
-        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
-        <lee.jones@linaro.org>, Rahul T R <r-ravikumar@ti.com>
-Subject: [PATCH v4 5/5] drm/bridge: cdns-dsi: Add support for J721E wrapper
-Date:   Tue, 5 Jul 2022 17:41:16 +0530
-Message-ID: <20220705121116.24121-6-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220705121116.24121-1-r-ravikumar@ti.com>
-References: <20220705121116.24121-1-r-ravikumar@ti.com>
+        with ESMTP id S235598AbiGEMOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 08:14:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5651AF18;
+        Tue,  5 Jul 2022 05:11:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6F66C61988;
+        Tue,  5 Jul 2022 12:11:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDEA4C341C7;
+        Tue,  5 Jul 2022 12:11:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657023088;
+        bh=d4W1a6yKks27hWUFb8vUV+fbOsxCFXl1gXeGcs5UT+M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TLvfnIQt/Lo/RAV1zKTy+515zB/hDWMgWYocElE7E7mkxmfgUKCbDvEDxKMjGlDjZ
+         Hf3dGNS42Spuy7zq1ERPGdc0+Mp044ree/3q9wfloz3IjHa5jTASK0Rx39VQp71b30
+         XQz4/25knoQUYWV33tTZzWOLUownGgNcIhhjbZsPC/Vt3AYUnwUh0XuH93zOyy1VGE
+         y0m9MU0W3KVerrYOL1ptnsCI6+QODTyqnmzwUKiQwDfYWF8AWqrpp7r3zPyxUensr0
+         eLoDqH7yQjAyLer6NiO3OcpLwp9qJ/UGtptIdfzA0yOlcGO3INuJp2uCdZEKYZkGj9
+         fzGaDv7H+hWIg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o8hOq-0006C7-SU; Tue, 05 Jul 2022 14:11:29 +0200
+Date:   Tue, 5 Jul 2022 14:11:28 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 17/43] dt-bindings: phy: qcom,qmp-pcie: add missing child
+ node schema
+Message-ID: <YsQqcKZAs1xAB9+S@hovoldconsulting.com>
+References: <20220705094239.17174-1-johan+linaro@kernel.org>
+ <20220705094239.17174-18-johan+linaro@kernel.org>
+ <4bc79a1c-66b1-225d-5026-ddf3e6f7d22c@linaro.org>
+ <YsQlzr6nyvz761Kz@hovoldconsulting.com>
+ <963917cf-0f9d-600f-564e-9e687270b1af@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <963917cf-0f9d-600f-564e-9e687270b1af@linaro.org>
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,258 +68,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for wrapper settings for DSI bridge on
-j721e. Also set the DPI input to DPI0
+On Tue, Jul 05, 2022 at 01:56:32PM +0200, Krzysztof Kozlowski wrote:
+> On 05/07/2022 13:51, Johan Hovold wrote:
+> > On Tue, Jul 05, 2022 at 12:18:37PM +0200, Krzysztof Kozlowski wrote:
+> >> On 05/07/2022 11:42, Johan Hovold wrote:
+> >>> Add the missing the description of the PHY-provider child node which was
+> >>> ignored when converting to DT schema.
+> >>>
+> >>> Also fix up the incorrect description that claimed that one child node
+> >>> per lane was required.
+> >>>
+> >>> Fixes: ccf51c1cedfd ("dt-bindings: phy: qcom,qmp: Convert QMP PHY bindings to yaml")
+> >>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> >>> ---
+> >>>  .../bindings/phy/qcom,qmp-pcie-phy.yaml       | 88 ++++++++++++++++++-
+> >>>  1 file changed, 85 insertions(+), 3 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+> >>> index ff1577f68a00..5a1ebf874559 100644
+> >>> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+> >>> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+> >>> @@ -69,9 +69,37 @@ properties:
+> > 
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            enum:
+> >>> +              - qcom,sm8250-qmp-gen3x2-pcie-phy
+> >>> +              - qcom,sm8250-qmp-modem-pcie-phy
+> >>> +              - qcom,sm8450-qmp-gen4x2-pcie-phy
+> >>> +    then:
+> >>> +      patternProperties:
+> >>> +        "^phy@[0-9a-f]+$":
+> >>> +          properties:
+> >>> +            reg:
+> >>> +              items:
+> >>> +                - description: TX lane 1
+> >>> +                - description: RX lane 1
+> >>> +                - description: PCS
+> >>> +                - description: TX lane 2
+> >>> +                - description: RX lane 2
+> >>> +                - description: PCS_MISC
+> >>> +    else:
+> >>> +      patternProperties:
+> >>> +        "^phy@[0-9a-f]+$":
+> >>> +          properties:
+> >>> +            reg:
+> >>> +              minItems: 3
+> >>> +              maxItems: 4
+> >>> +              items:
+> >>> +                - description: TX
+> >>> +                - description: RX
+> >>> +                - description: PCS
+> >>> +                - description: PCS_MISC
+> >>> +      if:
+> >>
+> >> Do not include if within other if. Just split the entire section to its
+> >> own if:.
+> > 
+> > That sounds like it would just obfuscate the logic. The else clause
+> > specified 3-4 registers and the nested if determines which compatibles
+> > use which by further narrowing the range.
+> > 
+> > If you move it out to the else: this would be really hard understand and
+> > verify.
+> 
+> Every bindings are expected to do that way and most of them are doing
+> it: define broad constraints in properties:, then define strict
+> constraints per each variant. Easy to follow code. This binding is not
+> particularly special to make it different than other ones. Doing
+> semi-strict constraints in if: and then additional constrain in nested
+> if: is not easy to understand and verify.
 
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
----
- drivers/gpu/drm/bridge/cadence/Kconfig        |  9 ++++
- drivers/gpu/drm/bridge/cadence/Makefile       |  1 +
- .../gpu/drm/bridge/cadence/cdns-dsi-core.c    | 37 +++++++++++++-
- .../gpu/drm/bridge/cadence/cdns-dsi-core.h    | 13 +++++
- .../gpu/drm/bridge/cadence/cdns-dsi-j721e.c   | 51 +++++++++++++++++++
- .../gpu/drm/bridge/cadence/cdns-dsi-j721e.h   | 18 +++++++
- 6 files changed, 128 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
- create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
+Ok, so you want to flatten this by repeating also the register
+descriptions?
 
-diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig b/drivers/gpu/drm/bridge/cadence/Kconfig
-index e4d3415df2a0..663a02d96420 100644
---- a/drivers/gpu/drm/bridge/cadence/Kconfig
-+++ b/drivers/gpu/drm/bridge/cadence/Kconfig
-@@ -37,3 +37,12 @@ config DRM_CDNS_DSI
- 	  Support Cadence DPI to DSI bridge. This is an internal
- 	  bridge and is meant to be directly embedded in a SoC.
- 
-+if DRM_CDNS_DSI
-+
-+config DRM_CDNS_DSI_J721E
-+	bool "J721E Cadence DPI/DSI wrapper support"
-+	default y
-+	help
-+	  Support J721E Cadence DPI/DSI wrapper. This wrapper adds
-+	  support to select which DPI input to use for the bridge.
-+endif
-diff --git a/drivers/gpu/drm/bridge/cadence/Makefile b/drivers/gpu/drm/bridge/cadence/Makefile
-index e3d8e9a40784..4cffc8ff71c4 100644
---- a/drivers/gpu/drm/bridge/cadence/Makefile
-+++ b/drivers/gpu/drm/bridge/cadence/Makefile
-@@ -4,3 +4,4 @@ cdns-mhdp8546-y := cdns-mhdp8546-core.o cdns-mhdp8546-hdcp.o
- cdns-mhdp8546-$(CONFIG_DRM_CDNS_MHDP8546_J721E) += cdns-mhdp8546-j721e.o
- obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
- cdns-dsi-y := cdns-dsi-core.o
-+cdns-dsi-$(CONFIG_DRM_CDNS_DSI_J721E) += cdns-dsi-j721e.o
-diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
-index cba91247ab26..4b7de38ef1b0 100644
---- a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
-+++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
-@@ -15,12 +15,16 @@
- #include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/of_address.h>
-+#include <linux/of_device.h>
- #include <linux/of_graph.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/reset.h>
- 
- #include "cdns-dsi-core.h"
-+#ifdef CONFIG_DRM_CDNS_DSI_J721E
-+#include "cdns-dsi-j721e.h"
-+#endif
- 
- static inline struct cdns_dsi *input_to_dsi(struct cdns_dsi_input *input)
- {
-@@ -265,6 +269,10 @@ static void cdns_dsi_bridge_disable(struct drm_bridge *bridge)
- 
- 	val = readl(dsi->regs + MCTL_MAIN_EN) & ~IF_EN(input->id);
- 	writel(val, dsi->regs + MCTL_MAIN_EN);
-+
-+	if (dsi->platform_ops && dsi->platform_ops->disable)
-+		dsi->platform_ops->disable(dsi);
-+
- 	pm_runtime_put(dsi->base.dev);
- }
- 
-@@ -360,6 +368,9 @@ static void cdns_dsi_bridge_enable(struct drm_bridge *bridge)
- 	if (WARN_ON(pm_runtime_get_sync(dsi->base.dev) < 0))
- 		return;
- 
-+	if (dsi->platform_ops && dsi->platform_ops->enable)
-+		dsi->platform_ops->enable(dsi);
-+
- 	mode = &bridge->encoder->crtc->state->adjusted_mode;
- 	nlanes = output->dev->lanes;
- 
-@@ -800,6 +811,8 @@ static int cdns_dsi_drm_probe(struct platform_device *pdev)
- 		goto err_disable_pclk;
- 	}
- 
-+	dsi->platform_ops = of_device_get_match_data(&pdev->dev);
-+
- 	val = readl(dsi->regs + IP_CONF);
- 	dsi->direct_cmd_fifo_depth = 1 << (DIRCMD_FIFO_DEPTH(val) + 2);
- 	dsi->rx_fifo_depth = RX_FIFO_DEPTH(val);
-@@ -835,14 +848,27 @@ static int cdns_dsi_drm_probe(struct platform_device *pdev)
- 	dsi->base.dev = &pdev->dev;
- 	dsi->base.ops = &cdns_dsi_ops;
- 
-+	if (dsi->platform_ops && dsi->platform_ops->init) {
-+		ret = dsi->platform_ops->init(dsi);
-+		if (ret != 0) {
-+			dev_err(&pdev->dev, "platform initialization failed: %d\n",
-+				ret);
-+			goto err_disable_runtime_pm;
-+		}
-+	}
-+
- 	ret = mipi_dsi_host_register(&dsi->base);
- 	if (ret)
--		goto err_disable_runtime_pm;
-+		goto err_deinit_platform;
- 
- 	clk_disable_unprepare(dsi->dsi_p_clk);
- 
- 	return 0;
- 
-+err_deinit_platform:
-+	if (dsi->platform_ops && dsi->platform_ops->exit)
-+		dsi->platform_ops->exit(dsi);
-+
- err_disable_runtime_pm:
- 	pm_runtime_disable(&pdev->dev);
- 
-@@ -857,6 +883,10 @@ static int cdns_dsi_drm_remove(struct platform_device *pdev)
- 	struct cdns_dsi *dsi = platform_get_drvdata(pdev);
- 
- 	mipi_dsi_host_unregister(&dsi->base);
-+
-+	if (dsi->platform_ops && dsi->platform_ops->exit)
-+		dsi->platform_ops->exit(dsi);
-+
- 	pm_runtime_disable(&pdev->dev);
- 
- 	return 0;
-@@ -864,6 +894,11 @@ static int cdns_dsi_drm_remove(struct platform_device *pdev)
- 
- static const struct of_device_id cdns_dsi_of_match[] = {
- 	{ .compatible = "cdns,dsi" },
-+#ifdef CONFIG_DRM_CDNS_DSI_J721E
-+	{ .compatible = "ti,j721e-dsi",
-+	  .data = &dsi_ti_j721e_ops,
-+	},
-+#endif
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, cdns_dsi_of_match);
-diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
-index 65cc77f19b39..37568b547fbe 100644
---- a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
-+++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
-@@ -439,9 +439,22 @@ struct cdns_dsi_input {
- 	struct drm_bridge bridge;
- };
- 
-+struct cdns_dsi;
-+
-+struct dsi_platform_ops {
-+	int (*init)(struct cdns_dsi *dsi);
-+	void (*exit)(struct cdns_dsi *dsi);
-+	void (*enable)(struct cdns_dsi *dsi);
-+	void (*disable)(struct cdns_dsi *dsi);
-+};
-+
- struct cdns_dsi {
- 	struct mipi_dsi_host base;
- 	void __iomem *regs;
-+#ifdef CONFIG_DRM_CDNS_DSI_J721E
-+	void __iomem *j721e_regs;
-+#endif
-+	const struct dsi_platform_ops *platform_ops;
- 	struct cdns_dsi_input input;
- 	struct cdns_dsi_output output;
- 	unsigned int direct_cmd_fifo_depth;
-diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
-new file mode 100644
-index 000000000000..b5216acb333e
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * TI j721e Cadence DSI wrapper
-+ *
-+ * Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com/
-+ * Author: Rahul T R <r-ravikumar@ti.com>
-+ */
-+
-+#include <linux/io.h>
-+#include <linux/platform_device.h>
-+
-+#include "cdns-dsi-j721e.h"
-+
-+#define DSI_WRAP_REVISION		0x0
-+#define DSI_WRAP_DPI_CONTROL		0x4
-+#define DSI_WRAP_DSC_CONTROL		0x8
-+#define DSI_WRAP_DPI_SECURE		0xc
-+#define DSI_WRAP_DSI_0_ASF_STATUS	0x10
-+
-+#define DSI_WRAP_DPI_0_EN		BIT(0)
-+#define DSI_WRAP_DSI2_MUX_SEL		BIT(4)
-+
-+static int cdns_dsi_j721e_init(struct cdns_dsi *dsi)
-+{
-+	struct platform_device *pdev = to_platform_device(dsi->base.dev);
-+
-+	dsi->j721e_regs = devm_platform_ioremap_resource(pdev, 1);
-+	return PTR_ERR_OR_ZERO(dsi->j721e_regs);
-+}
-+
-+static void cdns_dsi_j721e_enable(struct cdns_dsi *dsi)
-+{
-+	/*
-+	 * Enable DPI0 as its input. DSS0 DPI2 is connected
-+	 * to DSI DPI0. This is the only supported configuration on
-+	 * J721E.
-+	 */
-+	writel(DSI_WRAP_DPI_0_EN, dsi->j721e_regs + DSI_WRAP_DPI_CONTROL);
-+}
-+
-+static void cdns_dsi_j721e_disable(struct cdns_dsi *dsi)
-+{
-+	/* Put everything to defaults  */
-+	writel(0, dsi->j721e_regs + DSI_WRAP_DPI_CONTROL);
-+}
-+
-+const struct dsi_platform_ops dsi_ti_j721e_ops = {
-+	.init = cdns_dsi_j721e_init,
-+	.enable = cdns_dsi_j721e_enable,
-+	.disable = cdns_dsi_j721e_disable,
-+};
-diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
-new file mode 100644
-index 000000000000..01f3dbd92db2
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * TI j721e Cadence DSI wrapper
-+ *
-+ * Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com/
-+ * Author: Rahul T R <r-ravikumar@ti.com>
-+ */
-+
-+#ifndef CDNS_DSI_J721E_H
-+#define CDNS_DSI_J721E_H
-+
-+#include "cdns-dsi-core.h"
-+
-+struct dsi_platform_ops;
-+
-+extern const struct dsi_platform_ops dsi_ti_j721e_ops;
-+
-+#endif /* !CDNS_DSI_J721E_H */
--- 
-2.36.1
+That wouldn't hurt readability as much, but doing so would be more error
+prone as it's easy to miss adding a new compatible in every group of
+conditionals and there's no else clause to catch the mistake.
 
+Right know the logic is
+
+	if dual-lane
+		items = 6
+	else
+		items = 3 or 4
+		if single-lane-exception
+			items = 3
+		else
+			items = 4
+
+Flattening this gives
+
+	if dual-lane
+		items = 6
+	if single-lane-normal
+		items = 4
+	if single-lane-exception
+		items = 3
+
+Which means that every compatible must now be listed in one of the
+conditionals.
+
+Fine with me, but please confirm that I understood you correctly.
+
+Johan
