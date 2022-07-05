@@ -2,83 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F042A56773C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:05:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB80B567757
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:08:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbiGETFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 15:05:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
+        id S233277AbiGETGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 15:06:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230313AbiGETFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:05:03 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48ED11F2F4;
-        Tue,  5 Jul 2022 12:05:01 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id r133so12034122iod.3;
-        Tue, 05 Jul 2022 12:05:01 -0700 (PDT)
+        with ESMTP id S232288AbiGETGG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:06:06 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C4920BDD
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 12:06:05 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id t19so21517070lfl.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 12:06:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xOhWnb540p1r36VjLLL8ynDSP8n2cvWSH5xUUPsNb0M=;
+        b=lm2URx2gBPg+e7VroVtwkgkusQ2E2ZSJiom5CZjR4M8O5n6lVaAq+I61NSMrLINxtM
+         cZfUeHCtDkFX+ch6acEweNswtrAYaAzNin4rTHPldBoZgJ6QsXvSbhKxEe1B1WF+2RCA
+         NmAJtjqhzptVu6Jo94qpW9zfG4Tyt210jTOlx5NEyzy5morfUcCvi7UoubjtrYo4F/0m
+         dY1P4lSCsbMNCgmeFI/VsmG0wnDx7qvsVhAJHaY5GHNrxbV98U8evB3bHT1qdogPSITI
+         /yPw4VTopbvhVeZCpgD47v9tS84boS2IHUtruz+4c4wzHwzT6JvKCYR5cN6HlF8Kxrhm
+         DaoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NYhNf6ucb9Y2EJr3g3GFcYGSI7hDN6hlWNBPyCne12o=;
-        b=Pe4g34VHQVxOjub77kD54vPBLa9W6BwrfRPXzWJT8DKVW40qLZtc7b9xi6pmb5OiKp
-         aAek+Nat5xaMFmXPogqshZ67PQHDEqBcUcz83gu6epw2qK3ZpKYSMVVc6Wddov4xbf0w
-         Uf96DPgwjgqxOintXvq2PHon3q0rx87pp5e9VJqTPIXRUYKHILqeGXGBT/G4Grkt8I0O
-         VwG/76oKc01OF28zlpvkP//IyPKRynlvez3zkWVKZSghD+cHRvx3I2BjwskSHVqtEjfO
-         ese3NuLHvd808R7QPh85/65OsfBGGdvvWm2am1LRqs2U2z4x+L82ow+DKJ5D0GQv//Dt
-         hD3A==
-X-Gm-Message-State: AJIora+IhlN2yVVTzqrsTzAVh4uWl+fSc+YDHQQITGFY/LKbYC7EeXPi
-        Rm1uI8fylUpmVN93IyNQHQ==
-X-Google-Smtp-Source: AGRyM1vbgvYpzb6OcGyK9lCHO48fmdYxy4SEAi8PzKsPwRclsAgNdeYXBff/q4XTwjXyQVl9lebl7A==
-X-Received: by 2002:a05:6638:2494:b0:33c:cfb8:1e3c with SMTP id x20-20020a056638249400b0033ccfb81e3cmr21373745jat.139.1657047900325;
-        Tue, 05 Jul 2022 12:05:00 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id x8-20020a056638026800b00339c46a5e95sm14948822jaq.89.2022.07.05.12.04.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 12:04:59 -0700 (PDT)
-Received: (nullmailer pid 2450909 invoked by uid 1000);
-        Tue, 05 Jul 2022 19:04:57 -0000
-Date:   Tue, 5 Jul 2022 13:04:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Niklas Cassel <niklas.cassel@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        alsa-devel@alsa-project.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        dri-devel@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        David Airlie <airlied@linux.ie>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 02/14] dt-bindings: display: ili9341: document canaan
- kd233's lcd
-Message-ID: <20220705190457.GA2450821-robh@kernel.org>
-References: <20220701192300.2293643-1-conor@kernel.org>
- <20220701192300.2293643-3-conor@kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xOhWnb540p1r36VjLLL8ynDSP8n2cvWSH5xUUPsNb0M=;
+        b=ZJWmBt78lcWutJWTIIpfI5bmowXFNBmE5zqOYUAn2EX354ZOw6eKlQr8E5EoygtKvr
+         ZJxOsjLQDS2R8GIXByM8wvP7YNry+uaCCpDVax0ghG9VP01pdiihsrBa/Bi19/XnJV0X
+         caRuIbFYVxeWFtOpMx5LMDqc5agOw1CiKibf3iegr2wemJ3aeSCtNUdEXpj9yC57bflT
+         g9z8q2QFKmVzKU0HN90KM6qXWzipmw3sTofXQhnR1N8d0xM4n7fhJT6U4FX+pMZmSUa1
+         2DLVr8PuGX7QHW0ZirYwPEnMLcyFazLEIfdvze0SKJMmrSXW/msPum6CSqQE1yV/E/VR
+         QsBA==
+X-Gm-Message-State: AJIora/fo4o2UBynn9PvKiQdd4edTjN8Kwir4fweLx9bz5BstAZCRdkN
+        Z3YJqnBhp+8lEDQJNTLsq1moyg==
+X-Google-Smtp-Source: AGRyM1uAV+E6puJrOXSAla6ccZGskpklniPb4N5wfYqqJeeFOoZDBigSJVJ8jjQIAMPwUcg8nbbJ3A==
+X-Received: by 2002:a05:6512:70c:b0:47f:8e9f:ac2 with SMTP id b12-20020a056512070c00b0047f8e9f0ac2mr24437278lfs.156.1657047963895;
+        Tue, 05 Jul 2022 12:06:03 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id u19-20020ac25193000000b0048326115186sm633670lfi.10.2022.07.05.12.06.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 12:06:03 -0700 (PDT)
+Message-ID: <6562f44a-dfd8-f8c4-0271-2cda6afd7c2a@linaro.org>
+Date:   Tue, 5 Jul 2022 22:06:02 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220701192300.2293643-3-conor@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 4/7] drm/bridge: use atomic enable/disable callbacks
+ for panel bridge
+Content-Language: en-GB
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
+        quic_vproddut@quicinc.com, bjorn.andersson@linaro.org,
+        quic_aravindh@quicinc.com, quic_abhinavk@quicinc.com,
+        quic_sbillaka@quicinc.com
+References: <1657040445-13067-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1657040445-13067-5-git-send-email-quic_vpolimer@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1657040445-13067-5-git-send-email-quic_vpolimer@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,16 +81,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Jul 2022 20:22:48 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 05/07/2022 20:00, Vinod Polimera wrote:
+> Use atomic variants for panel bridge callback functions such that
+> certain states like self-refresh can be accessed as part of
+> enable/disable sequence.
 > 
-> The Canaan KD233 development board has a built in LCD.
-> Add a specific compatible for it.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../devicetree/bindings/display/panel/ilitek,ili9341.yaml        | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+> ---
+>   drivers/gpu/drm/bridge/panel.c | 20 ++++++++++++--------
+>   1 file changed, 12 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
+> index 0ee563e..eeb9546 100644
+> --- a/drivers/gpu/drm/bridge/panel.c
+> +++ b/drivers/gpu/drm/bridge/panel.c
+> @@ -108,28 +108,32 @@ static void panel_bridge_detach(struct drm_bridge *bridge)
+>   		drm_connector_cleanup(connector);
+>   }
+>   
+> -static void panel_bridge_pre_enable(struct drm_bridge *bridge)
+> +static void panel_bridge_atomic_pre_enable(struct drm_bridge *bridge,
+> +				struct drm_bridge_state *old_bridge_state)
+>   {
+>   	struct panel_bridge *panel_bridge = drm_bridge_to_panel_bridge(bridge);
+>   
+>   	drm_panel_prepare(panel_bridge->panel);
+>   }
+>   
+> -static void panel_bridge_enable(struct drm_bridge *bridge)
+> +static void panel_bridge_atomic_enable(struct drm_bridge *bridge,
+> +				struct drm_bridge_state *old_bridge_state)
+>   {
+>   	struct panel_bridge *panel_bridge = drm_bridge_to_panel_bridge(bridge);
+>   
+>   	drm_panel_enable(panel_bridge->panel);
+>   }
+>   
+> -static void panel_bridge_disable(struct drm_bridge *bridge)
+> +static void panel_bridge_atomic_disable(struct drm_bridge *bridge,
+> +				struct drm_bridge_state *old_bridge_state)
+>   {
+>   	struct panel_bridge *panel_bridge = drm_bridge_to_panel_bridge(bridge);
+>   
+>   	drm_panel_disable(panel_bridge->panel);
+>   }
+>   
+> -static void panel_bridge_post_disable(struct drm_bridge *bridge)
+> +static void panel_bridge_atomic_post_disable(struct drm_bridge *bridge,
+> +				struct drm_bridge_state *old_bridge_state)
+>   {
+>   	struct panel_bridge *panel_bridge = drm_bridge_to_panel_bridge(bridge);
+>   
+> @@ -158,10 +162,10 @@ static void panel_bridge_debugfs_init(struct drm_bridge *bridge,
+>   static const struct drm_bridge_funcs panel_bridge_bridge_funcs = {
+>   	.attach = panel_bridge_attach,
+>   	.detach = panel_bridge_detach,
+> -	.pre_enable = panel_bridge_pre_enable,
+> -	.enable = panel_bridge_enable,
+> -	.disable = panel_bridge_disable,
+> -	.post_disable = panel_bridge_post_disable,
+> +	.atomic_pre_enable = panel_bridge_atomic_pre_enable,
+> +	.atomic_enable = panel_bridge_atomic_enable,
+> +	.atomic_disable = panel_bridge_atomic_disable,
+> +	.atomic_post_disable = panel_bridge_atomic_post_disable,
+>   	.get_modes = panel_bridge_get_modes,
+>   	.atomic_reset = drm_atomic_helper_bridge_reset,
+>   	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
+
+
+-- 
+With best wishes
+Dmitry
