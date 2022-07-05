@@ -2,87 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36ABE5670C3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:17:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 684625670D0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:19:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbiGEORv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 10:17:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43394 "EHLO
+        id S233385AbiGEOS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 10:18:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233025AbiGEORO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:17:14 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46A0BBD6
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 07:12:42 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id y16so20736422lfb.9
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 07:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=96uT2/xHI+gJvTeOzSVEvKEVuYL1WzZK+F5WRMOqgPU=;
-        b=EgHA5JrPLft/X3CFmcSgTwtTvECDveakN/2eQwLizukZ1zwsResj9IHMN3FSmmNZqH
-         5esk68KrdSVQGMTMFYDbvKW8hYaxKcvG0DBhIN+03JfXtTRd4Xb/Eg5EWC6cuHTq73rL
-         jjTDdg0IDX4s+Y2Cr8LRrseVutTmDARy/lobgDKmKk9vQanpAxXEuEzAQU/HEG/tw+J5
-         /6h5DDeXqawo434PwFTi9OcOBTEVHxswPjQEzOwB8CuCRE7eLhx9/NsJJ7d2maK9ekQ6
-         CjVey19X3C1BavDYQ8HPLTDw2tVIOKNNklPMaqfkKplUCccgSYePn/a0/JFdi5eQJjsr
-         Rjag==
+        with ESMTP id S233392AbiGEOSm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:18:42 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4826C222A7;
+        Tue,  5 Jul 2022 07:14:12 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id p128so11232297iof.1;
+        Tue, 05 Jul 2022 07:14:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=96uT2/xHI+gJvTeOzSVEvKEVuYL1WzZK+F5WRMOqgPU=;
-        b=z6bX1XzvJag6TpSS/51pl672AjCE85vHbuOIM9XlZYXJSZVc1DVVHtwZlGfwJxX8qq
-         MYmEMQXHymPy/XZhlLzJSf0UikFL/IjbtgeJR/BqMgKRI/UWZqSF4IWmbP88fdjYJWe3
-         xGLOUhH7mZw2aG/I1h/wEmG2g9YTQ8lpeLayRV8YRVB7RFw/OM9sHt9fm4I/fAP6kSL8
-         +1Mi3258+/AhiMxUs7xZI7c4yWsp1XIEC74avC7QDNhPdTs23GgassaJqCdoyBMajQoa
-         MkBe2JIBMA/0LawFHQ3XMzBZbuXcy987kXpvQlTO38wdbpfxdl4NAYd7DjKeLE0UuzKX
-         HUqw==
-X-Gm-Message-State: AJIora/q6Ln8oEc4X/IYEUjzSYo4RWb27oXHyDiqa1jH2N5AWGd/Nake
-        6wSrmZc/Dx95Za7aNiwOIzfc/Q==
-X-Google-Smtp-Source: AGRyM1ucI0R96J38sx4KrEcjCZdRo4b5u4rRdvgJC2EhgCpkX68hj/jPkm7aCy/l7c0q04uk3jbg7g==
-X-Received: by 2002:a05:6512:224d:b0:47f:7812:d135 with SMTP id i13-20020a056512224d00b0047f7812d135mr21506046lfu.29.1657030360658;
-        Tue, 05 Jul 2022 07:12:40 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id v6-20020a056512348600b00478f2f2f043sm5719610lfr.147.2022.07.05.07.12.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 07:12:39 -0700 (PDT)
-Message-ID: <be521f90-97ce-c61d-d7d6-8f2bde24d824@linaro.org>
-Date:   Tue, 5 Jul 2022 16:12:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 07/11] dt-bindings: spi: spi-nxp-fspi: add a new property
- nxp,fspi-dll-slvdly
-Content-Language: en-US
-To:     Michael Walle <michael@walle.cc>, Han Xu <han.xu@nxp.com>
-Cc:     Bough Chen <haibo.chen@nxp.com>, ashish.kumar@nxp.com,
-        yogeshgaur.83@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, singh.kuldeep87k@gmail.com,
-        tudor.ambarus@microchip.com, p.yadav@ti.com,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        festevam@gmail.com, dl-linux-imx <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, zhengxunli@mxic.com.tw
-References: <1657012303-6464-1-git-send-email-haibo.chen@nxp.com>
- <1657012303-6464-7-git-send-email-haibo.chen@nxp.com>
- <ef676df1-77e0-b8ee-3950-97eade8ddd5b@linaro.org>
- <VI1PR04MB40167A70FBE772DF91047A4190819@VI1PR04MB4016.eurprd04.prod.outlook.com>
- <59d360ef-5374-c7a7-2995-854ab3715b25@linaro.org>
- <DU2PR04MB87747C9A8F18D8300461D6B197819@DU2PR04MB8774.eurprd04.prod.outlook.com>
- <f33ad190-f5c7-d9fa-088b-5538ab1f4d59@linaro.org>
- <DU2PR04MB877492F346BAA10B2AA7428497819@DU2PR04MB8774.eurprd04.prod.outlook.com>
- <62f113a0cdb0d58bf04ab0b274912eb7@walle.cc>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <62f113a0cdb0d58bf04ab0b274912eb7@walle.cc>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=u3B52s9BVjfLE00xH/w1pvHP0oYdlCBCswFBMFKCN8E=;
+        b=l/86pVHRaLUp9Y9Sk7Wi99OycLbkwo/MqN1grV8pR54chBReyWyAPPGDWS39jYBSmF
+         5G0dsLI8WQ7xa2NSlR9zeFGqWKx+YV/l9kdper7Pv+iUaGdeKluanWh6zvShNNuJd45G
+         Orte0iff2fkkpq7sVVxPr0subbleMU75EHlggjxOn4u8hKku052wbADC8QBa4lNrq29h
+         uupbPRNNnO0wtqSUHjikZVwXxCRxYt4fDyAhPBm5/gRAvLTvx8au/MUhuzlwNnpbrM9q
+         JVMfRo3Uu4159Y0ID3C7g8OBGrNUbSRvyR5kgXVEBjLIKtoPf09U/qnyDLO+PQqex6vg
+         gNqw==
+X-Gm-Message-State: AJIora/a2xg4vUPYZD2a2mOy1ZkXKbVYvJhdgiO6HqHezuBJ5R5dWbDS
+        XsM1yPDUYiovn50cWoTU0w==
+X-Google-Smtp-Source: AGRyM1vGWd92SH01YtAp8IRPCxtyzYzM+kpesmmk5aJTp2tiuL15Lk6/prD5mFHrx1PIjHm6qkpuSA==
+X-Received: by 2002:a05:6638:f95:b0:314:58f9:5896 with SMTP id h21-20020a0566380f9500b0031458f95896mr21218247jal.228.1657030451057;
+        Tue, 05 Jul 2022 07:14:11 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id o4-20020a92d384000000b002dc0ccc4cafsm2777795ilo.49.2022.07.05.07.14.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Jul 2022 07:14:10 -0700 (PDT)
+Received: (nullmailer pid 2035858 invoked by uid 1000);
+        Tue, 05 Jul 2022 14:14:09 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220705094239.17174-18-johan+linaro@kernel.org>
+References: <20220705094239.17174-1-johan+linaro@kernel.org> <20220705094239.17174-18-johan+linaro@kernel.org>
+Subject: Re: [PATCH 17/43] dt-bindings: phy: qcom,qmp-pcie: add missing child node schema
+Date:   Tue, 05 Jul 2022 08:14:09 -0600
+Message-Id: <1657030449.193663.2035856.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,24 +63,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 16:06, Michael Walle wrote:
+On Tue, 05 Jul 2022 11:42:13 +0200, Johan Hovold wrote:
+> Add the missing the description of the PHY-provider child node which was
+> ignored when converting to DT schema.
 > 
->>>
->>> I think you could use here clock cycles or clock phase, but then it 
->>> has to be obvious
->>> it is that unit.
->>
->> Hi Krzysztof,
->>
->> Let me clarify it, in the document a term "delay cell" was used to
->> descript this register bit. Each delay cell equals "1/32 clock phase",
->> so the unit of delay cell is clock phase. The value user need set in
->> DT just number to define how many delay cells needed.
+> Also fix up the incorrect description that claimed that one child node
+> per lane was required.
 > 
-> Then should the unit be "-degrees" and the possible range 0-180?
+> Fixes: ccf51c1cedfd ("dt-bindings: phy: qcom,qmp: Convert QMP PHY bindings to yaml")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  .../bindings/phy/qcom,qmp-pcie-phy.yaml       | 88 ++++++++++++++++++-
+>  1 file changed, 85 insertions(+), 3 deletions(-)
+> 
 
-Thanks. We don't have it documented currently, but the unit seems
-reasonable.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml: allOf:3:else:patternProperties:^phy@[0-9a-f]+$:properties:reg: {'minItems': 3, 'maxItems': 4, 'items': [{'description': 'TX'}, {'description': 'RX'}, {'description': 'PCS'}, {'description': 'PCS_MISC'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml: ignoring, error in schema: allOf: 3: else: patternProperties: ^phy@[0-9a-f]+$: properties: reg
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
