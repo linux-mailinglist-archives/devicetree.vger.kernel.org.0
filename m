@@ -2,134 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 525FA566F53
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC2D9566F65
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:37:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbiGENg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 09:36:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53390 "EHLO
+        id S229501AbiGENhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 09:37:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230143AbiGENgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:36:17 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0529771261
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 05:58:05 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id x1so13459084qtv.8
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 05:58:05 -0700 (PDT)
+        with ESMTP id S232398AbiGENhM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:37:12 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4E4D7435C;
+        Tue,  5 Jul 2022 05:58:41 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id r6so3746728edd.7;
+        Tue, 05 Jul 2022 05:58:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qMiUEOKk9r77VMVVPa8z6NBhDHlBwjJXvsubB7Baxfc=;
-        b=XZkg/spioxcX8d4p0KVTXf2AzZ+QZdxO5jRoERcJDRn+wYuBLyyF0qXMrGurDsjXJ3
-         Cwxh7oa+Tg3jd9appJk2J5mgUwI0zYSI49nCEv9ZvJorCWddYfje/ZA46AwPmDriGZX2
-         SCFTLWTbDb0f6iVSgCfwSZ2JkcJGiG7ZudIIPn2Ky0Qvun2YS+6JteCNtOZVYabpn9AH
-         kDm7ecpxsQsEPXKSPEMdNm4mAznc8UDoepnUl+tPQEfsSTUZY/T6YUD0pUjhIeg/pAkU
-         TIHzzqROEXOCQy+qVc28s2NZDhufhVqxvag0R40IhJBS9NAd8QPr/V/Ps88g+ZHM3IeQ
-         KaBg==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ThRFRFG6dG3lyoRkGG2bLT7jC0J7ce9MxZGKEc+OGhY=;
+        b=d1HUG8b79zydnFytdZoLA6Fg2PL77XJOEn42q0DWcc/QO7tprXWkJ9NIMNHr0CUCjJ
+         r5/ce5Ar6MdbAz5VcH7McUweQgk6zYMTDJVNiMsacEVTwI1HXGPoklPCkctasJgKe+yY
+         EIazCPHMcc2mNNuEETADN6hupB3/9wPtw778kO4Wdf/07xLVGhWg581czgMfSeGot0WK
+         oT1pTQLXJvb/cklMhFDitswQ+BAekd1nyhENGHBH6ok0DxXLQ1eXE8Ad/TrmHNLVBvQr
+         kHvm2Rqzmgka7nirKvwEIx626ost0xLE+4NfUhSGiYmRrcdiNrzMgZ0hjptzk4TyWtVo
+         cPBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qMiUEOKk9r77VMVVPa8z6NBhDHlBwjJXvsubB7Baxfc=;
-        b=n9KmTOOYqoG4UJaPIwxSJtR5jzZMXBYmHu5et0AgZdGMCelliVdx7NsVbOfDiOrpA2
-         Vu6wroEiIcffrBqSofcRIcL6roBXqUUa25jJt6AUUYR4Kt2XXUSQDBocCuRDJNjPxbYB
-         ANujYYEIxX2zaSHnG+eCNxtnnvDuMk5d75TQebihCgt7ezEa9MhxPFkqC9PwevhNis78
-         CrVJXVRu7NWmKfw8fwdX6gfKETnVvhuDsLgIXdbn0eB7Thn08s/YJUgTCRScSVsE9RCh
-         eb4/9/QpPUwqDlNeC39rElPlGt8pYWT3Z+pSZCHxBJFv8BFtdEIXGQxwHsZNZjr7oqyO
-         CLgw==
-X-Gm-Message-State: AJIora8B3uLrpg+wD6fJH8ZgQfADqK4xqUdv7oHmkw+Vq/yqIzEl07Es
-        VysspE7uLtSl75vSpzZL8rI1CTOHKk0ge5wj9xHMEw==
-X-Google-Smtp-Source: AGRyM1ssdGXVsDEnncHVzsnICuUkRzm3oDpktel2aLTMIiD9A0pZ5wNtjnGOM8AVX4r9KvV3eFAob7pightug7CfKbo=
-X-Received: by 2002:ac8:5956:0:b0:31d:28dc:17c with SMTP id
- 22-20020ac85956000000b0031d28dc017cmr26185913qtz.295.1657025876136; Tue, 05
- Jul 2022 05:57:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ThRFRFG6dG3lyoRkGG2bLT7jC0J7ce9MxZGKEc+OGhY=;
+        b=mkAALbl+yj9QSI/6GCBaST0wgCe96z80e2/kpSDRGfVRtCYzaEGuxc5ZY5Y5FJd999
+         GWgYqPbD4NhOhjtP1XEYEdvY7qgEybOXLiu2MN44YoPmI3oDfJ+gwKH7ohR+v5qqUlMX
+         iNCqRepRevzn/+KAwVh82dlRj/M7/CkvyTnKcQ+b/HVvPhmq2gWtFF2+XKIe9ZMaUIfc
+         QLJ2G4GH+AZ+ESU2mYrNeo2V15iq5g2/6XBGezBxbGGCWAjMy1YNScGd3KdWDeKpYze4
+         eJhcr2QufhqyZwqgAPJ200Iwn3H3vFIEq3LuKrNemzXvMVlY2tVVVHiECrr4EPfmOmkV
+         +TBw==
+X-Gm-Message-State: AJIora/X7dbgCQdCLT2dP+HKu5dulF+K6Dlh/Byc5nMTVxE67DWsGfNp
+        p/29xlCzG+YT9GjhbYaiUZM=
+X-Google-Smtp-Source: AGRyM1uCPRUNy3Pz9Rug5PKlHut5lD1SCgKIZXG+KjGfjNf8Occi/0aEXuBzQyuExMRc1OA8B9eImg==
+X-Received: by 2002:a05:6402:b26:b0:43a:6c93:f4e3 with SMTP id bo6-20020a0564020b2600b0043a6c93f4e3mr11031442edb.327.1657025919660;
+        Tue, 05 Jul 2022 05:58:39 -0700 (PDT)
+Received: from localhost (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id p26-20020a17090635da00b007105a157706sm15809586ejb.82.2022.07.05.05.58.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Jul 2022 05:58:38 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+Subject: [PATCH v6 0/5] iommu: Support mappings/reservations in reserved-memory regions
+Date:   Tue,  5 Jul 2022 14:58:29 +0200
+Message-Id: <20220705125834.431711-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-References: <20220705114032.22787-1-johan+linaro@kernel.org>
- <20220705114032.22787-2-johan+linaro@kernel.org> <e3b344e7-4100-e0d4-0dcd-aeef4893ad43@linaro.org>
- <YsQztl9KHS5csu4A@hovoldconsulting.com>
-In-Reply-To: <YsQztl9KHS5csu4A@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 5 Jul 2022 15:57:45 +0300
-Message-ID: <CAA8EJppskvGeccyxAE7U3O+e_g4r-UhzwK=x1TSF-fZF-Yn67A@mail.gmail.com>
-Subject: Re: [PATCH 01/14] arm64: dts: qcom: sc7280: drop PCIe PHY clock index
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 Jul 2022 at 15:51, Johan Hovold <johan@kernel.org> wrote:
->
-> On Tue, Jul 05, 2022 at 03:42:08PM +0300, Dmitry Baryshkov wrote:
-> > On 05/07/2022 14:40, Johan Hovold wrote:
-> > > The QMP PCIe PHY provides a single clock so drop the redundant clock
-> > > index.
-> > >
-> > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> >
-> > Hmm. After checking the source code, the clocks entry of the phy@1c0e000
-> > node also needs to be fixed.
->
-> I assume you meant pci@1c08000 here? Thanks for catching that!
->
-> > And also maybe:
-> >
-> > Fixes: bd7d507935ca ("arm64: dts: qcom: sc7280: Add pcie clock support")
-> > Fixes: 92e0ee9f83b3 ("arm64: dts: qcom: sc7280: Add PCIe and PHY related
-> > nodes")
->
-> Maybe, I'm a bit reluctant to add a Fixes tags for these even if they do
-> violate the binding. But sure, why not.
+From: Thierry Reding <treding@nvidia.com>
 
-Yep, I'm also in doubt here. In this case this is more logical. I'd
-allow you to decide then.
+Hi,
 
->
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++--
-> > >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > index e66fc67de206..b0ae2dbba50f 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > @@ -818,7 +818,7 @@ gcc: clock-controller@100000 {
-> > >                     reg = <0 0x00100000 0 0x1f0000>;
-> > >                     clocks = <&rpmhcc RPMH_CXO_CLK>,
-> > >                              <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
-> > > -                            <0>, <&pcie1_lane 0>,
-> > > +                            <0>, <&pcie1_lane>,
-> > >                              <0>, <0>, <0>, <0>;
-> > >                     clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
-> > >                                   "pcie_0_pipe_clk", "pcie_1_pipe_clk",
-> > > @@ -2110,7 +2110,7 @@ pcie1_lane: phy@1c0e200 {
-> > >                             clock-names = "pipe0";
-> > >
-> > >                             #phy-cells = <0>;
-> > > -                           #clock-cells = <1>;
-> > > +                           #clock-cells = <0>;
-> > >                             clock-output-names = "pcie_1_pipe_clk";
-> > >                     };
-> > >             };
->
-> Johan
+This version has several fixes over the previous v5, which can be found
+here:
 
+  https://lore.kernel.org/all/20220512190052.1152377-1-thierry.reding@gmail.com/
 
+An example is included in the DT bindings, but here is an extract of
+what I've used to test this:
+
+        reserved-memory {
+                #address-cells = <2>;
+                #size-cells = <2>;
+                ranges;
+
+                /*
+                 * Creates an identity mapping for the framebuffer that
+                 * the firmware has setup to scan out a bootsplash from.
+                 */
+                fb: framebuffer@92cb2000 {
+                        reg = <0x0 0x92cb2000 0x0 0x00800000>;
+                        iommu-addresses = <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
+                };
+
+                /*
+                 * Creates a reservation in the IOVA space to prevent
+                 * any buffers from being mapped to that region. Note
+                 * that on Tegra the range is actually quite different
+                 * from this, but it would conflict with the display
+                 * driver that I tested this against, so this is just
+                 * a dummy region for testing.
+                 */
+                adsp: reservation-adsp {
+                        iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00010000>;
+                };
+        };
+
+        host1x@50000000 {
+                dc@54200000 {
+                        memory-region = <&fb>, <&adsp>;
+                };
+        };
+
+This is abbreviated a little to focus on the essentials. Note also that
+the ADSP reservation is not actually used on this device and the driver
+for this doesn't exist yet, but I wanted to include this variant for
+testing, because we'll want to use these bindings for the reservation
+use-case as well at some point.
+
+Adding Alyssa and Janne who have in the past tried to make these
+bindings work on Apple M1. Also adding Sameer from the Tegra audio team
+to look at the ADSP reservation and double-check that this is suitable
+for our needs.
+
+Thierry
+
+Navneet Kumar (1):
+  iommu/tegra-smmu: Support managed domains
+
+Thierry Reding (4):
+  dt-bindings: reserved-memory: Document iommu-addresses
+  iommu: Implement of_iommu_get_resv_regions()
+  iommu: dma: Use of_iommu_get_resv_regions()
+  iommu/tegra-smmu: Add support for reserved regions
+
+ .../reserved-memory/reserved-memory.txt       |  1 -
+ .../reserved-memory/reserved-memory.yaml      | 62 +++++++++++++
+ drivers/iommu/dma-iommu.c                     |  3 +
+ drivers/iommu/of_iommu.c                      | 88 +++++++++++++++++++
+ drivers/iommu/tegra-smmu.c                    | 82 +++++++++++++----
+ include/linux/of_iommu.h                      |  8 ++
+ 6 files changed, 225 insertions(+), 19 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
 
 -- 
-With best wishes
-Dmitry
+2.36.1
+
