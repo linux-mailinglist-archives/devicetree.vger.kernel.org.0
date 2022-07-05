@@ -2,179 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA095660D2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 03:57:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BBB9566103
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 04:12:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234174AbiGEBzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 21:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35934 "EHLO
+        id S234289AbiGECL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 22:11:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiGEBzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 21:55:40 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55DD6EE19;
-        Mon,  4 Jul 2022 18:55:39 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id B778A5C00B1;
-        Mon,  4 Jul 2022 21:55:38 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 04 Jul 2022 21:55:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1656986138; x=
-        1657072538; bh=YeDhRdYVIKJ6OOuJyZu0kh/FszUE3W6fa+XoxzjAbcg=; b=M
-        msPzvHQLmCpP8QJ5/vI3ru2izemjkZsgL0q37y+m4KPzLqxNRuzxCkRe99dn367z
-        Zzg/HO5pNJyIiHX+to0X47xZZog+x60myEmA9YpsrPk18uGTu6zEavun7JdjTnDp
-        jNkKJ2A+7x7kS9fmCjbPLxlI0IMuiDT8WEOes4+76gYkuM41JPR3uws5KQtrshoE
-        ImTwliCpDo638+OKtz4LH9cNUegYpsxURHry6BnJYbsZTyCttBO6dRABV70mWpft
-        ucCkqX9O6NAYb2V4oaIzOdTT1i2fYMk6UJmjJX4KTG/8/jmchnFT8z9kpV7tTyWq
-        XaAhJYPy9WnQRBwbfV4kg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1656986138; x=
-        1657072538; bh=YeDhRdYVIKJ6OOuJyZu0kh/FszUE3W6fa+XoxzjAbcg=; b=u
-        0NLBTV78FamWf4ecwocplUkQsnDA1KevzFeplWjUcpw66jD3Xbr4n/urMM/1KIjy
-        T14n/U/Ujt3zbwbwh6/zERPnTSbmTwAjJSf2iHJbrrYlKnPC7pHizFYNXgFSkAbk
-        muHc6TduT0Xi9iKYGR12Kcxqdq7lb0ikbCYZEYz2W4NJhaoy3O/9GCxptNhPgti7
-        5wpFQqDx9qh4mlDgDwpl/8oxXRIVff498JGgeXiBysg0/igaXNkuuAa8AyjF7n35
-        dUa5g/ijXvyC2Bk5sO3T8zfF1WdohReJTZE6b8UO481VbpKXxG/uOpPgpEdh7sYm
-        B6WRG1rOh8WnwgrUJB3Nw==
-X-ME-Sender: <xms:GZrDYuiacq_OiFy2cca7fAoe573r-feXJW6f4Www0Vo_T9gwUWA-Dg>
-    <xme:GZrDYvCAzvABelwSTc7FYwUxeRBWjJ4Ubks-BQSIpKLJ9NNU_QgLm1ZsCFbQqiIof
-    wc6UsWI8HnxVGXSyQ>
-X-ME-Received: <xmr:GZrDYmHeZAQIBSnjups0le9mSKH-i0AgYDa0JsXzD_6TWlNBWKefq3lls0M8KdfzSVOW1U4i-yWdOajvtqu03_AYeYRq1oS2BbmWk8eqMAX4C8VwwTKAQacQUA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudeitddghedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpefftdevkedvgeekueeutefgteffieelvedukeeuhfehledvhfei
-    tdehudfhudehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:GZrDYnRBDeNVRb_Pw1goG4x3khwqG7jnHud4UMvNNyMaKIq_sco11A>
-    <xmx:GZrDYrzapsA62s3vpEZbieUT_bxH9zGOims_BDT39Sa2ho0pcKsR9w>
-    <xmx:GZrDYl6mxh3JOSJGkOCkPdg5Zn9h8mRYc7a4VTaGD-9SND7kDSk7qA>
-    <xmx:GprDYjenhQa-K8uofVIHpXy5XqeW37mpY6sCLUfWMpCCVOU5TQODgQ>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 4 Jul 2022 21:55:37 -0400 (EDT)
-Subject: Re: [PATCH v4 1/2] ARM: dts: sun8i-r40: Add USB0_OTG/HOST support
-To:     qianfanguijin@163.com
-Cc:     linux-sunxi@lists.linux.dev,
-        Andre Przywara <andre.przywara@arm.com>,
-        Evgeny Boger <boger@wirenboard.com>,
+        with ESMTP id S232672AbiGECLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 22:11:25 -0400
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16FB511C04;
+        Mon,  4 Jul 2022 19:11:22 -0700 (PDT)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 2651rHMf023383;
+        Tue, 5 Jul 2022 09:53:17 +0800 (GMT-8)
+        (envelope-from neal_liu@aspeedtech.com)
+Received: from localhost.localdomain (192.168.10.10) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 5 Jul
+ 2022 10:09:40 +0800
+From:   Neal Liu <neal_liu@aspeedtech.com>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220518101706.26869-1-qianfanguijin@163.com>
- <20220518101706.26869-2-qianfanguijin@163.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <daf5c543-a1d1-04d2-6486-6cc9cd72d8e5@sholland.org>
-Date:   Mon, 4 Jul 2022 20:55:36 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        Joel Stanley <joel@jms.id.au>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        Dhananjay Phadke <dhphadke@microsoft.com>,
+        "Johnny Huang" <johnny_huang@aspeedtech.com>
+CC:     <linux-aspeed@lists.ozlabs.org>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <BMC-SW@aspeedtech.com>
+Subject: [PATCH v7 0/5] Add Aspeed crypto driver for hardware acceleration
+Date:   Tue, 5 Jul 2022 10:09:31 +0800
+Message-ID: <20220705020936.1751771-1-neal_liu@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20220518101706.26869-2-qianfanguijin@163.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.10.10]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 2651rHMf023383
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Qianfan,
+Aspeed Hash and Crypto Engine (HACE) is designed to accelerate the
+throughput of hash data digest, encryption and decryption.
 
-On 5/18/22 5:17 AM, qianfanguijin@163.com wrote:
-> From: qianfan Zhao <qianfanguijin@163.com>
-> 
-> The USB0 port of R40 is divided into two controllers, one is H3
-> compatibled MUSB device, another is OHCI/EHCI.
+These patches aim to add Aspeed hash & crypto driver support.
+The hash & crypto driver also pass the run-time self tests that
+take place at algorithm registration.
 
-typo: compatible
+The patch series are tested on both AST2500 & AST2600 evaluation boards.
 
-> 
-> Signed-off-by: qianfan Zhao <qianfanguijin@163.com>
-> ---
->  arch/arm/boot/dts/sun8i-r40.dtsi | 34 ++++++++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-> index 212e19183484..ae48474fdefa 100644
-> --- a/arch/arm/boot/dts/sun8i-r40.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-> @@ -401,6 +401,21 @@ mmc3: mmc@1c12000 {
->  			#size-cells = <0>;
->  		};
->  
-> +		usb_otg: usb@1c13000 {
-> +			compatible = "allwinner,sun8i-r40-musb",
+Tested-by below configs:
+- CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+- CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+- CONFIG_DMA_API_DEBUG=y
+- CONFIG_DMA_API_DEBUG_SG=y
+- CONFIG_CPU_BIG_ENDIAN=y
 
-This compatible string needs to be documented in the binding[0] before you can
-use it.
+Change since v6:
+- Refine debug print.
+- Change aspeed_sg_list struct memeber's type to __le32.
 
-[0]: Documentation/devicetree/bindings/usb/allwinner,sun4i-a10-musb.yaml
+Change since v5:
+- Re-define HACE clock define to fix breaking ABI.
 
-> +				     "allwinner,sun8i-h3-musb";
-> +			reg = <0x01c13000 0x0400>;
-> +			clocks = <&ccu CLK_BUS_OTG>;
-> +			resets = <&ccu RST_BUS_OTG>;
-> +			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "mc";
-> +			phys = <&usbphy 0>;
-> +			phy-names = "usb";
-> +			extcon = <&usbphy 0>;
-> +			dr_mode = "otg";
-> +			status = "disabled";
-> +		};
-> +
->  		usbphy: phy@1c13400 {
->  			compatible = "allwinner,sun8i-r40-usb-phy";
->  			reg = <0x01c13400 0x14>,
-> @@ -427,6 +442,25 @@ usbphy: phy@1c13400 {
->  			#phy-cells = <1>;
->  		};
->  
-> +		ehci0: usb@1c14000 {
-> +			compatible = "allwinner,sun8i-r40-ehci", "generic-ehci";
-> +			reg = <0x01c14000 0x100>;
-> +			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>;
-> +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		ohci0: usb@1c14400 {
-> +			compatible = "allwinner,sun8i-r40-ohci", "generic-ohci";
-> +			reg = <0x01c14400 0x100>;
-> +			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>,
-> +				 <&ccu CLK_USB_OHCI0>;
-> +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;
+Change since v4:
+- Add AST2500 clock definition & dts node.
+- Add software fallback for handling corner cases.
+- Fix copy wrong key length.
 
-Are you sure the OHCI device requires the EHCI clocks/resets? Usually it is only
-the other way around.
+Change since v3:
+- Use dmam_alloc_coherent() instead to manage dma_alloc_coherent().
+- Add more error handler of dma_prepare() & crypto_engine_start().
 
-Regards,
-Samuel
+Change since v2:
+- Fix endianness issue. Tested on both little endian & big endian
+  system.
+- Use common crypto hardware engine for enqueue & dequeue requests.
+- Use pre-defined IVs for SHA-family.
+- Revise error handler flow.
+- Fix sorts of coding style problems.
 
-> +			status = "disabled";
-> +		};
-> +
->  		crypto: crypto@1c15000 {
->  			compatible = "allwinner,sun8i-r40-crypto";
->  			reg = <0x01c15000 0x1000>;
-> 
+Change since v1:
+- Add more error handlers, including DMA memory allocate/free, DMA
+  map/unmap, clock enable/disable, etc.
+- Fix check dma_map error for config DMA_API_DEBUG.
+- Fix dt-binding doc & dts node naming.
+
+
+Neal Liu (5):
+  crypto: aspeed: Add HACE hash driver
+  dt-bindings: clock: Add AST2500/AST2600 HACE reset definition
+  ARM: dts: aspeed: Add HACE device controller node
+  dt-bindings: crypto: add documentation for aspeed hace
+  crypto: aspeed: add HACE crypto driver
+
+ .../bindings/crypto/aspeed,ast2500-hace.yaml  |   53 +
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/aspeed-g5.dtsi              |    8 +
+ arch/arm/boot/dts/aspeed-g6.dtsi              |    8 +
+ drivers/crypto/Kconfig                        |    1 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/aspeed/Kconfig                 |   40 +
+ drivers/crypto/aspeed/Makefile                |    9 +
+ drivers/crypto/aspeed/aspeed-hace-crypto.c    | 1121 +++++++++++++
+ drivers/crypto/aspeed/aspeed-hace-hash.c      | 1428 +++++++++++++++++
+ drivers/crypto/aspeed/aspeed-hace.c           |  302 ++++
+ drivers/crypto/aspeed/aspeed-hace.h           |  293 ++++
+ include/dt-bindings/clock/aspeed-clock.h      |    1 +
+ include/dt-bindings/clock/ast2600-clock.h     |    1 +
+ 14 files changed, 3273 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/aspeed,ast2500-hace.yaml
+ create mode 100644 drivers/crypto/aspeed/Kconfig
+ create mode 100644 drivers/crypto/aspeed/Makefile
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace-crypto.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace-hash.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace.h
+
+-- 
+2.25.1
 
