@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16FEB5679B2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 23:53:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 362255679C2
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 23:53:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232647AbiGEVwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 17:52:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39524 "EHLO
+        id S232718AbiGEVwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 17:52:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232617AbiGEVwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 17:52:36 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1590E15FD6
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 14:52:35 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id l68so7792085wml.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 14:52:35 -0700 (PDT)
+        with ESMTP id S232656AbiGEVws (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 17:52:48 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B691929A
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 14:52:36 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id f2so14015778wrr.6
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 14:52:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=M74NHYWFVlubiyzjgBD3mtVBmUu/qEzBrtkUN6AlacI=;
-        b=LbsmErJNj1SSPN0AV+Q9z9lT2N70/Up5BN2W8NH0wehmNKWQlNFrk5OqDzZYsXhdTQ
-         Hls2B8wQmS6GVJiUmKU+y+yaAJc7rgO6Ud5AhtZzvidys3JAlk3J/1edTCp+TvTD957T
-         42dzwHznCiQRrS/MgCgQeJ09qasxSpiV8miztZ7pEhH6qGce7h/pR1qJUNII4mzRjcPq
-         g8TwWvnNrgB//oOp/UvWsKxjTFwctFHKdUfT4ZpyIYsUSVZYSvwFretmizy5s1OLt8wb
-         YnUIbT3XDNd6vPA5xwOWmzcguEwV6zvMahHkg5IH0SkZmGb2HXJrkR3W9FnRywLNWmxh
-         bGtQ==
+        bh=16q/8fFGCPAcRAarL+3aLoNygoSrExqmYVpC1bRjl2o=;
+        b=YYFaUee7gy1W5prTWT0BCaYi4Agi4K/fZPz3HzSu/Bx3zMLRlN6iPr3QbkHb8nmHa1
+         OB4MbShSJ6pV3jSxnG3fgJKUgLhGQ98A6yUS6Hr1g5f9oo/CqzYerhyHeDMtY/8/V6h2
+         SNh8FrwHsBKxWQIetyAjLLN19P4VrMSyseVBVDmhxS7g75q2gULyOALP1sxruDhkHN2N
+         35BCcbcEZn0ZTeLrU+J2Zfur2nhAuZcdZvyFXbL1ZSzObDc51rZ3/tBedaYwAr+Csgr2
+         2BkluY0+l9Tx3ndW35NGgpStoxtOrR+02ao1YhadHBLpWQbGp6cMjwnv6DxdGW1rVIR0
+         V4Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=M74NHYWFVlubiyzjgBD3mtVBmUu/qEzBrtkUN6AlacI=;
-        b=nynN0q5+J3P5r/wdwavkfpnTz75fKhBYHBRI/ffXrExvqhke55rLan8uRRFWMENaDq
-         bRpfaOv/3CYtopiOGqATR38F+VmTCCxT9/NR9ABVXH/rnRC5xGOt1u6LMomkrSXKqixd
-         nI5VaDuaypPxxZapduG1gJCi4OAu6P6TxJdk/luEyrW8Ujhbm60ujWXXuHHhEPCxvdB0
-         usYCjnVPLtMXhMr5dbPw1YjuU7zxASfx1rAuHdv9A9SsXArdOO0sN3gegAR71zbaH+tS
-         9HrbjVeUnbk5foJ8lFHHiOABEWD1IC41QDOeARsNJs8pDShcgo+FFetIDxaXrcwg9NY1
-         rOTA==
-X-Gm-Message-State: AJIora+60nn/b3n/8gOrfhCnrfnPSWKyqmLRLpMUmc1x/IWnlvZqFxvV
-        oHgsmGDnGPjtvRXOi+JBBhe8QA==
-X-Google-Smtp-Source: AGRyM1uO7vMG/o91hp3+JmOnC/LWvd4jQWu7ahaOiYX0BCambKOIE9rOv6ReR4Y7BVC7IcBtd6QPxw==
-X-Received: by 2002:a05:600c:3788:b0:3a0:4279:5142 with SMTP id o8-20020a05600c378800b003a042795142mr36273470wmr.21.1657057953730;
-        Tue, 05 Jul 2022 14:52:33 -0700 (PDT)
+        bh=16q/8fFGCPAcRAarL+3aLoNygoSrExqmYVpC1bRjl2o=;
+        b=x+qdeo866W+rOAkSPSYII8XtgOssgORty13iSpMCnZgL1Zshli4Z+gjDx1QOdgh5ln
+         rHYuW2U0Rm9M9ddb9Apa4u59A7oFuFoS+IK9u+jQJjHLFOseMFLw9jOSo955m7TxUUTA
+         k4+bO+NhhohD2xLll2hYOsCdj0UsxPzn1aHf6TogDbpMS9XYpswsK2wQJpQL+oVWGbEs
+         Ysa5xc8q97cmjcb7AgHmJJCl7hbRRGQuestkDvNNilj7t608/ldIbjViPf/ZFMI3s2pc
+         itnfKT6bI6q/77p+blaJPr89oov0qDzbCitVQ2+nAed3mYA4rZaJ7wour8DK1Ft2awE3
+         8GvA==
+X-Gm-Message-State: AJIora+7HoyGIgJ6y9wn21d62dC7U0x3QhiHs3/8PuJosC5Ecgq0NFqJ
+        +k6eNvcBHNnUGzMbvgZtFkb+yA==
+X-Google-Smtp-Source: AGRyM1t6QNd/sm2WCxNG6Wr6I2YHwVTbjh9TXka92SSnVrAIhc+jsCS3/FhjvWlhLqMVSAqFGD6QKg==
+X-Received: by 2002:a05:6000:381:b0:21b:9a20:6543 with SMTP id u1-20020a056000038100b0021b9a206543mr32493151wrf.127.1657057955085;
+        Tue, 05 Jul 2022 14:52:35 -0700 (PDT)
 Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id g34-20020a05600c4ca200b0039c7dbafa7asm18353920wmp.19.2022.07.05.14.52.32
+        by smtp.gmail.com with ESMTPSA id g34-20020a05600c4ca200b0039c7dbafa7asm18353920wmp.19.2022.07.05.14.52.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 14:52:33 -0700 (PDT)
+        Tue, 05 Jul 2022 14:52:34 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
@@ -70,9 +70,9 @@ Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: [PATCH v5 07/13] riscv: dts: canaan: fix mmc node names
-Date:   Tue,  5 Jul 2022 22:52:08 +0100
-Message-Id: <20220705215213.1802496-8-mail@conchuod.ie>
+Subject: [PATCH v5 08/13] riscv: dts: canaan: fix kd233 display spi frequency
+Date:   Tue,  5 Jul 2022 22:52:09 +0100
+Message-Id: <20220705215213.1802496-9-mail@conchuod.ie>
 X-Mailer: git-send-email 2.37.0
 In-Reply-To: <20220705215213.1802496-1-mail@conchuod.ie>
 References: <20220705215213.1802496-1-mail@conchuod.ie>
@@ -80,7 +80,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,84 +90,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-The newly-converted-to-dt-schema binding expects the mmc node name to be
-'^mmc(@.*)?$' so align the devicetree with the schema.
+The binding for the ili9341 specifies a const spi-max-frequency of 10
+MHz but the kd233 devicetree entry has it listed at 15 Mhz.
+Align the devicetree with the value in the binding.
 
-Tested-by: Niklas Cassel <niklas.cassel@wdc.com>
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/riscv/boot/dts/canaan/canaan_kd233.dts     | 2 +-
- arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts  | 2 +-
- arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts | 2 +-
- arch/riscv/boot/dts/canaan/sipeed_maix_go.dts   | 2 +-
- arch/riscv/boot/dts/canaan/sipeed_maixduino.dts | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+ arch/riscv/boot/dts/canaan/canaan_kd233.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/canaan/canaan_kd233.dts b/arch/riscv/boot/dts/canaan/canaan_kd233.dts
-index 039b92abf046..40992d495aa8 100644
+index 40992d495aa8..4a540158f287 100644
 --- a/arch/riscv/boot/dts/canaan/canaan_kd233.dts
 +++ b/arch/riscv/boot/dts/canaan/canaan_kd233.dts
-@@ -142,7 +142,7 @@ &spi1 {
- 	cs-gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
--	slot@0 {
-+	mmc@0 {
- 		compatible = "mmc-spi-slot";
+@@ -130,7 +130,7 @@ panel@0 {
+ 		compatible = "ilitek,ili9341";
  		reg = <0>;
- 		voltage-ranges = <3300 3300>;
-diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
-index b9e30df127fe..5e809d0e11fb 100644
---- a/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
-+++ b/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
-@@ -189,7 +189,7 @@ &spi1 {
- 	cs-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
--	slot@0 {
-+	mmc@0 {
- 		compatible = "mmc-spi-slot";
- 		reg = <0>;
- 		voltage-ranges = <3300 3300>;
-diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
-index 8d23401b0bbb..4be5ffac6b4a 100644
---- a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
-+++ b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
-@@ -191,7 +191,7 @@ &spi1 {
- 	cs-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
--	slot@0 {
-+	mmc@0 {
- 		compatible = "mmc-spi-slot";
- 		reg = <0>;
- 		voltage-ranges = <3300 3300>;
-diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
-index 24fd83b43d9d..5c63f79b18ec 100644
---- a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
-+++ b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
-@@ -199,7 +199,7 @@ &spi1 {
- 	cs-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
--	slot@0 {
-+	mmc@0 {
- 		compatible = "mmc-spi-slot";
- 		reg = <0>;
- 		voltage-ranges = <3300 3300>;
-diff --git a/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts b/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
-index 25341f38292a..59f7eaf74655 100644
---- a/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
-+++ b/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
-@@ -164,7 +164,7 @@ &spi1 {
- 	cs-gpios = <&gpio1_0 2 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
--	slot@0 {
-+	mmc@0 {
- 		compatible = "mmc-spi-slot";
- 		reg = <0>;
- 		voltage-ranges = <3300 3300>;
+ 		dc-gpios = <&gpio0 21 GPIO_ACTIVE_HIGH>;
+-		spi-max-frequency = <15000000>;
++		spi-max-frequency = <10000000>;
+ 		status = "disabled";
+ 	};
+ };
 -- 
 2.37.0
 
