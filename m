@@ -2,67 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96BCA5673F7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 18:14:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 838A556741C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 18:23:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232026AbiGEQNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 12:13:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43350 "EHLO
+        id S229898AbiGEQXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 12:23:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229973AbiGEQNs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 12:13:48 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BBFD1582E
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 09:13:47 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id z21so21316967lfb.12
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 09:13:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nEMULX3caekxu6IpY9n8CKmBGs6wAVmggM/WX7upL/g=;
-        b=Rl/7x4CQYuJWvdvPRT/Fd12K+OtOYzZyehhYXXybqaX5Pi1Fm79tfO97h/nw4uRwTN
-         enn7gP8dyPyoOt3/06dnhdb+FAmJ3RVJediqdupFIuxalILZIU6vcCV5dANfG66eE4gs
-         Nz8L9XajeDNNTRI0LGqndecWA7pnAx57WTaYqmLbDFnT8vOhptPErY68v0Fx6WN75stX
-         XYf9RepWt5n5rR09DrFMwnzcgYdt+kmXdJ7yKmUX7Ev4nMFAxpKOWW0BHudnX0zNNTA7
-         01Pg7KWVUX4Z6gfIx+4QFkkMblccgNY8Bhs+ORw9n0V3W4aVbQYTzTV2KnxaH9zEp5ht
-         7B3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nEMULX3caekxu6IpY9n8CKmBGs6wAVmggM/WX7upL/g=;
-        b=UEYrHeB2Z/mR/yR+I/I/h4clS0I3fig06n6RfeBRvKCHX0YeaqJqDAQM8keAH+PKKK
-         bxMjtOlCzE5GoJA5md0gQk7XKmq9W0cgMPhcPA2Cj2gYf1BazjWH8fSXLbXWMDI0jzRe
-         hKkEC9BRLnmFzRtj5ZI6w1tzwcvXcOqvfKiN4tSfRm9bfTUm6/otJzHGGHelZ172A/VR
-         WUe6lt7DskWyGpVRgU/DZJg1rDmjgeK8qV2JjWT2mMMSx4v6XWym+3jbyDh7/uVq/CR7
-         7Y0oFLxsd2UPfG0AyidtVIu7d2GTqeOp3mMt44hjmqwQ2L1aKN3BJZZg5mW0awEenXTz
-         thRw==
-X-Gm-Message-State: AJIora/EuqYErJI4hS+ybg+ZZHlN8Ey2y0wUekFailvl6qlsZ++2A8AL
-        wK1WsLjdrJB04HIX0l+hLd4mng==
-X-Google-Smtp-Source: AGRyM1uXPNWr5J019pOwxyaVBGGm+iRfywVs4R8TnnmZUvoBDkzQOea44sJZsQ0iWjDVlozwoQVC6g==
-X-Received: by 2002:a05:6512:220c:b0:483:d9ad:b56c with SMTP id h12-20020a056512220c00b00483d9adb56cmr2240655lfu.150.1657037624199;
-        Tue, 05 Jul 2022 09:13:44 -0700 (PDT)
-Received: from krzk-bin.home ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id r25-20020a2e9959000000b0025a70f7ea3asm5638346ljj.138.2022.07.05.09.13.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 09:13:43 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: samsung: document preferred compatible naming
-Date:   Tue,  5 Jul 2022 18:13:40 +0200
-Message-Id: <20220705161340.493474-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229739AbiGEQXM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 12:23:12 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D43221ADB9;
+        Tue,  5 Jul 2022 09:23:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1657038190; x=1688574190;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=/QHjMYs0EiUiAP2vhF8+M6ohuoS7ottlSe6haN3fXeI=;
+  b=uGVFf+BzTTB9p1jTAM8H8ttpMj+ThIzBD6j+xzCaDt3bL3f5LFqGiP5k
+   Zn7gqSspoVqLkbgdHPnlEA9vOUPB5g15SKf6nFeaLyFsi/IvJSkq1INST
+   +9kBwhk8F8GQTrx6XzU8lbGX1QBO5Hmci2UYqRkxudFx2iy2l6VBoLcGM
+   TkIOkrsmbnjKKoql93dxFaoiFTTw2UKdpMbm1L6sxaXkxrgYfdCE1ahCb
+   vgOEczLMqHYL+8Z4eePOW3WjnoLfH0IW/IgtOXRKXcQKVuNsMJ9dhJDmI
+   3ReHlIsXzq48/4YL6qjhqhFW56PGiAPIHTlw/mw+ShppVzisCHz+fQner
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,247,1650956400"; 
+   d="scan'208";a="166456304"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Jul 2022 09:22:35 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 5 Jul 2022 09:22:27 -0700
+Received: from ryan-Precision-5560.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 5 Jul 2022 09:22:27 -0700
+From:   <Ryan.Wanner@microchip.com>
+To:     <Claudiu.Beznea@microchip.com>, <nicolas.ferre@microchip.com>,
+        <alexandre.berna@microchip.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Ryan Wanner <Ryan.Wanner@microchip.com>
+Subject: [PATCH] dt-binding: sound: Convert atmel pdmic to json-schema
+Date:   Tue, 5 Jul 2022 09:21:42 -0700
+Message-ID: <20220705162142.17558-1-Ryan.Wanner@microchip.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,68 +62,190 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Compatibles can come in two formats.  Either "vendor,ip-soc" or
-"vendor,soc-ip".  Add a DT schema documenting preferred policy and
-enforcing it for all new compatibles, except few existing patterns.  The
-schema also disallows wild-cards used in SoC compatibles.
+From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Convert Atmel PDMIC devicetree binding to json-schema.
+Change file naming to match json-schema naming.
 
+Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 ---
+ .../bindings/sound/atmel,sama5d2-pdmic.yaml   | 104 ++++++++++++++++++
+ .../devicetree/bindings/sound/atmel-pdmic.txt |  55 ---------
+ 2 files changed, 104 insertions(+), 55 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/atmel-pdmic.txt
 
-Changes since v1:
-1. Update comment.
----
- .../bindings/arm/samsung/samsung-soc.yaml     | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/samsung/samsung-soc.yaml
-
-diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-soc.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-soc.yaml
+diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
 new file mode 100644
-index 000000000000..653f85997643
+index 000000000000..cb34c0fc4fc8
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/samsung/samsung-soc.yaml
-@@ -0,0 +1,40 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
+@@ -0,0 +1,104 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/samsung/samsung-soc.yaml#
++$id: http://devicetree.org/schemas/sound/atmel,sama5d2-pdmic.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Samsung S3C, S5P and Exynos SoC compatibles naming convention
++title: Atmel PDMIC driver under ALSA SoC architecture
 +
 +maintainers:
-+  - Krzysztof Kozlowski <krzk@kernel.org>
++  - Claudiu Beznea <claudiu.beznea@microchip.com>
 +
-+description: |
-+  Guidelines for new compatibles for SoC blocks/components.
-+  When adding new compatibles in new bindings, use the format::
-+    samsung,SoC-IP
-+
-+  For example::
-+    samsung,exynos5433-cmu-isp
-+
-+select:
-+  properties:
-+    compatible:
-+      pattern: "^samsung,.*(s3c|s5pv|exynos)[0-9a-z]+.*$"
-+  required:
-+    - compatible
++description:
++  Atmel Pulse Density Modulation Interface Controller
++  (PDMIC) peripheral is a mono PDM decoder module
++  that decodes an incoming PDM sample stream.
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - description: Preferred naming style for compatibles of SoC components
-+        pattern: "^samsung,(s3c|s5pv|exynos|exynosautov)[0-9]+-.*$"
++    items:
++      - const: atmel,sama5d2-pdmic
 +
-+      # Legacy compatibles with wild-cards - list cannot grow with new bindings:
-+      - enum:
-+          - samsung,exynos4x12-pinctrl
-+          - samsung,exynos4x12-usb2-phy
-+          - samsung,s3c64xx-pinctrl
-+          - samsung,s3c64xx-wakeup-eint
++  reg:
++    description: Should contain PDMIC registers location and length.
++    maxItems: 1
 +
-+additionalProperties: true
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    description:
++      Must contain an entry for each required entry in clock-names.
++      Please refer to clock-bindings.txt.
++
++    items:
++      - description: peripheral clock.
++      - description: generated clock.
++
++  clock-names:
++    items:
++      - const: pclk
++      - const: gclk
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    const: rx
++
++  atmel,mic-min-freq:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The minimal frequency that the microphone supports.
++
++  atmel,mic-max-freq:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The maximal frequency that the microphone supports.
++
++  atmel,model:
++    description: The user-visible name of this sound card.
++    $ref: /schemas/types.yaml#/definitions/string
++    default: PDMIC
++
++  atmel,mic-offset:
++    $ref: /schemas/types.yaml#/definitions/int32
++    description: The offset that should be added.
++    default: 0
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - dmas
++  - dma-names
++  - clock-names
++  - clocks
++  - atmel,mic-min-freq
++  - atmel,mic-max-freq
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/dma/at91.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    pdmic: sound@f8018000 {
++              compatible = "atmel,sama5d2-pdmic";
++              reg = <0xf8018000 0x124>;
++              interrupts = <48 IRQ_TYPE_LEVEL_HIGH 7>;
++              dmas = <&dma0
++                      (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
++                      | AT91_XDMAC_DT_PERID(50))>;
++              dma-names = "rx";
++              clocks = <&pdmic_clk>, <&pdmic_gclk>;
++              clock-names = "pclk", "gclk";
++              pinctrl-names = "default";
++              pinctrl-0 = <&pinctrl_pdmic_default>;
++              atmel,model = "PDMIC@sama5d2_xplained";
++              atmel,mic-min-freq = <1000000>;
++              atmel,mic-max-freq = <3246000>;
++              atmel,mic-offset = <0x0>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/atmel-pdmic.txt b/Documentation/devicetree/bindings/sound/atmel-pdmic.txt
+deleted file mode 100644
+index e0875f17c229..000000000000
+--- a/Documentation/devicetree/bindings/sound/atmel-pdmic.txt
++++ /dev/null
+@@ -1,55 +0,0 @@
+-* Atmel PDMIC driver under ALSA SoC architecture
+-
+-Required properties:
+-- compatible
+-	Should be "atmel,sama5d2-pdmic".
+-- reg
+-	Should contain PDMIC registers location and length.
+-- interrupts
+-	Should contain the IRQ line for the PDMIC.
+-- dmas
+-	One DMA specifiers as described in atmel-dma.txt and dma.txt files.
+-- dma-names
+-	Must be "rx".
+-- clock-names
+-	Required elements:
+-	- "pclk"	peripheral clock
+-	- "gclk"	generated clock
+-- clocks
+-	Must contain an entry for each required entry in clock-names.
+-	Please refer to clock-bindings.txt.
+-- atmel,mic-min-freq
+-	The minimal frequency that the micphone supports.
+-- atmel,mic-max-freq
+-	The maximal frequency that the micphone supports.
+-
+-Optional properties:
+-- pinctrl-names, pinctrl-0
+-	Please refer to pinctrl-bindings.txt.
+-- atmel,model
+-	The user-visible name of this sound card.
+-	The default value is "PDMIC".
+-- atmel,mic-offset
+-	The offset that should be added.
+-	The range is from -32768 to 32767.
+-	The default value is 0.
+-
+-Example:
+-	pdmic@f8018000 {
+-				compatible = "atmel,sama5d2-pdmic";
+-				reg = <0xf8018000 0x124>;
+-				interrupts = <48 IRQ_TYPE_LEVEL_HIGH 7>;
+-				dmas = <&dma0
+-					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
+-					| AT91_XDMAC_DT_PERID(50))>;
+-				dma-names = "rx";
+-				clocks = <&pdmic_clk>, <&pdmic_gclk>;
+-				clock-names = "pclk", "gclk";
+-
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&pinctrl_pdmic_default>;
+-				atmel,model = "PDMIC @ sama5d2_xplained";
+-				atmel,mic-min-freq = <1000000>;
+-				atmel,mic-max-freq = <3246000>;
+-				atmel,mic-offset = <0x0>;
+-	};
 -- 
 2.34.1
 
