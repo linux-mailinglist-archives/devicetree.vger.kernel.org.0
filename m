@@ -2,83 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38096567030
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58D5456704E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232793AbiGEODu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 10:03:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52618 "EHLO
+        id S232591AbiGEOGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 10:06:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229974AbiGEODg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:03:36 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A34722A940;
-        Tue,  5 Jul 2022 06:50:07 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 13EB02223E;
-        Tue,  5 Jul 2022 15:50:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1657029005;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=GB9HU/M2Mnn421s3orIG2Ic3eQJpqeuHzFfYbqGQ4Sw=;
-        b=jqWm2euabGg75wqWBKK2DDHsz+WYLaebWUdzLXcIgT1kaJmaxy6YOX7zID2TnkI0lqcsJl
-        p+sYlNnbYudAFO39mqugj8HREtra9oKXnrcvW+ClZgqysquP6Gygnfy4MA5swhzumzmKmN
-        7etNfT9Ogav64i8NrW84cX97LOqKr24=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 05 Jul 2022 15:50:03 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     haibo.chen@nxp.com
-Cc:     ashish.kumar@nxp.com, yogeshgaur.83@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        han.xu@nxp.com, singh.kuldeep87k@gmail.com,
-        tudor.ambarus@microchip.com, p.yadav@ti.com,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, zhengxunli@mxic.com.tw
-Subject: Re: [PATCH 05/11] spi: spi-nxp-fspi: Add quirk to disable DTR support
-In-Reply-To: <1657012303-6464-5-git-send-email-haibo.chen@nxp.com>
-References: <1657012303-6464-1-git-send-email-haibo.chen@nxp.com>
- <1657012303-6464-5-git-send-email-haibo.chen@nxp.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <d1b27db8bb86762587bce829a4e39c56@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S232633AbiGEOGZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:06:25 -0400
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04139237EF;
+        Tue,  5 Jul 2022 06:54:40 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id p69so11132696iod.10;
+        Tue, 05 Jul 2022 06:54:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=C0Erhk9To/7rIjjiO+9MuSp924KsHFPnMjsP3V7msnQ=;
+        b=py5ruxiv5LHEpm1Oq3v+y+btfJf1wI/QCHFEMuaBei11VJeHNVXLeYgLMe8lRLCsYD
+         o9rLyIM0eldgC/K8uKW1jMuK8MjwFHdKGlAfy2jtTnomRlm7YYwyacLo+fDgxwwPkTCZ
+         ynmCh0LrNtAGmu91KNGDb3vHWssKegcNEVSdbN9SMi8VHu3dph8jDkcQ5azu/6xDearr
+         GDP94u0HMunH7MFDAQ3yBukxjjpN11RQdfi7hihAmiLA12+JrfBBlEbK4piykEjPAt00
+         AMg+d4xQJnqYgxmR4Y+IOY2rc5lO2DGMqaWjBGJVK4r73H4cd/HSPVoFLD+dzOu29to6
+         2rTQ==
+X-Gm-Message-State: AJIora/0qk6RKtP8JAq5n3qC3E1LM24Q5gM2OZyRcp4/tdR46xZ8Xq2u
+        huL65NPqrjh75gnkz9YLBQ==
+X-Google-Smtp-Source: AGRyM1seMsK4ptpqLHhWfEoLMLQgP0++6s7fhJZFk+zA/SDMjQenWTm0BiPdQRIK/XyX+gBz4/C5BA==
+X-Received: by 2002:a6b:fb05:0:b0:657:655e:a287 with SMTP id h5-20020a6bfb05000000b00657655ea287mr19384229iog.211.1657029279231;
+        Tue, 05 Jul 2022 06:54:39 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id o27-20020a02a1db000000b00339ef592279sm14613515jah.127.2022.07.05.06.54.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Jul 2022 06:54:38 -0700 (PDT)
+Received: (nullmailer pid 1999999 invoked by uid 1000);
+        Tue, 05 Jul 2022 13:54:31 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     linux-remoteproc@vger.kernel.org, konrad.dybcio@somainline.org,
+        mka@chromium.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, swboyd@chromium.org,
+        mathieu.poirier@linaro.org, agross@kernel.org
+In-Reply-To: <1657020721-24939-2-git-send-email-quic_sibis@quicinc.com>
+References: <1657020721-24939-1-git-send-email-quic_sibis@quicinc.com> <1657020721-24939-2-git-send-email-quic_sibis@quicinc.com>
+Subject: Re: [V5 1/2] dt-bindings: remoteproc: qcom: Convert SC7280 MSS bindings to YAML
+Date:   Tue, 05 Jul 2022 07:54:31 -0600
+Message-Id: <1657029271.238790.1999998.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-07-05 11:11, schrieb haibo.chen@nxp.com:
-> From: Haibo Chen <haibo.chen@nxp.com>
+On Tue, 05 Jul 2022 17:02:00 +0530, Sibi Sankar wrote:
+> Add a separate YAML binding to act as a superset of the PAS and non-PAS
+> compatible for SC7280 MSS PIL. This also serves as a way to increase
+> readability.
 > 
-> Not all platform currently supports octal DTR mode. lx2160a do not
-> implement DQS, this causes flash probe failure and therefore, provide
-> an option of quirk FSPI_QUIRK_DISABLE_DTR for platforms not support
-> DTR mode.
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+> 
+> Depends on Krzysztof's remoteproc cleanups and improvements:
+> https://patchwork.kernel.org/project/linux-arm-msm/cover/20220517070113.18023-1-krzysztof.kozlowski@linaro.org/
+> 
+> Previous discussions on PAS vs non-PAS bindings:
+> https://lore.kernel.org/lkml/YUps1JfGtf6JdbCx@ripper/ [Bjorn]
+> https://lore.kernel.org/lkml/CAE-0n51KBYjZvwGNy06_okmEWjEfRLQO54CYaY6-JnbBk6kOhA@mail.gmail.com/ [Stephen]
+> 
+> v5:
+>  * Improve phandle-array schemas [Stephen/Rob/Krzysztof]
+>  * Add more details to the firmware-name/memory region string array [Stephen/Rob]
+>  * Drop 'items' from label [Rob]
+> 
+> v4:
+>  * Remove older bindings [Matthias/Krzysztof]
+>  * Misc. Fixes [Krzysztof]
+>  * Rebased on v2 of Krzysztof's bindings cleanups
+> 
+> v3:
+>  * Re-ordered clock list, fixed pdc_sync typo [Rob/Matthias]
+> 
+>  .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |  31 +--
+>  .../bindings/remoteproc/qcom,sc7280-mss-pil.yaml   | 266 +++++++++++++++++++++
+>  2 files changed, 268 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+> 
 
-You write "DQS is not supported" but your quirk targets DTR. DTR works
-without DQS. DQS is needed for faster frequencies, no? So the quirk
-should be named accordingly.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Also, this compatible is (unfortunately!) also used on for the LS1028A
-SoC and as far as I know DQS is supported there. I'm not sure what to
-do here. Maybe add a new compatible "nxp,ls1028a-fspi" and change the
-device tree to
-compatible = "nxp,ls1028a-fspi", "nxp,lx2160a";
+yamllint warnings/errors:
 
--michael
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/remoteproc/qcom,glink-edge.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.example.dtb: remoteproc@4080000: glink-edge: False schema does not allow {'interrupts-extended': [[4294967295, 2, 0, 1]], 'mboxes': [[4294967295, 2, 0]], 'label': ['modem'], 'qcom,remote-pid': [[1]]}
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
