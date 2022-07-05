@@ -2,76 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C39B566B6A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 14:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEAAE566B93
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 14:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234078AbiGEMGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 08:06:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45964 "EHLO
+        id S234003AbiGEMJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 08:09:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234019AbiGEMFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 08:05:45 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1045C18E32
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 05:05:10 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id t25so20160086lfg.7
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 05:05:09 -0700 (PDT)
+        with ESMTP id S234410AbiGEMH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 08:07:29 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3379186E5
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 05:06:21 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id m18so1713124lfg.10
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 05:06:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VickWh1cciHPIgvqvAt4x2IayEAX7YeLzrBgX+n2il0=;
-        b=w5oW1MeCB6w7smJc1GcFK4l2AuBZtWiTIkGEVHAkGkj+NBlBkW2SScE5qHf2sdlunL
-         YqcuVQpY0MjoJ8x1HouWM5oy518UBivrmGVJmLBFas22qZHA/TEJD0HkauYLxFrO4Waa
-         KjnJVkQ5szr7cqaLubpRdKMAW2G/waXCFeVSncTDwHBgFvd15cQxEPQs5Biy/HDdbuZZ
-         nzzsuDgKewrKWQXxt6nNkPW0Csq6nZzpfAunHXui/J763oyTU+RW2+OfBOQ+aoXaG5x8
-         5UVQtbfmcfIXfXXn7Iesko+OaPS4VlGhN3FBW3FOhk4f3Ex/I+AarfCuKOGdwjoTu9e/
-         /57Q==
+        bh=gvtOfLV3w59vkjhPXB0CKmZQUz8ZCCnh+m5pi29Tltw=;
+        b=yFdGK76H7d4g5yVTH1z9XzJSMKrOBP5Ci49MiYAH0TuB7cE+gPlNguzCfd3wJ0pKLl
+         1K6PftX9gDQJIlSINsgzlhjDcgpaVukKG3BK62aU62hpfbCYDXxPekbgz6+Jv9YwnQmK
+         l8X9EVsPxj5hdCcjO1uHVz+Fohe1PopxxxDDhVIBQFlqaTNoMG8SW2EKYPp/vbe/ovqo
+         zYsJmRKbfH1+ktLNjiKQc12nvv/YzQigrSLWoF3NwsPV6u5NSEVz06YXhnmIjW4cOkCa
+         iRh3SYBE+FINTDQIHDYzN/sSC40SeXmLLy1ieg/joupZJsIPvmaZfMaEbn1ix66A8XO9
+         Km0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=VickWh1cciHPIgvqvAt4x2IayEAX7YeLzrBgX+n2il0=;
-        b=gfuM8tk+pqcPoAEGgulwofv+8mR3PEopwLRf4DwPNxBXMAZk2PrRHPQlJwYMpSjuqc
-         15EbPU8QtksCGxlSrt3lpGsoRXh24SvBPLnoJKMbI8knjd/Oyr9XjjdqXJhxsee6sJBS
-         zu/9QTETBtc6xXQTxoFJK5wCq4J0572A2lcomGQnXQbOzqFHIqVBCAqY1rbp8W54yuaM
-         vPKvTGqJUTZWPKTXkDsyVCfLGwLb3YVCNTmTDgXeSGhRQaWndAJjCyDryjDv5jnr+V5Z
-         0ELcMmz9FifzEZKmj2kGDp3jjTDfh7lYiepJ+SPsZJK8QhzrSZug4VtOv5jiVETmz+BE
-         yX9w==
-X-Gm-Message-State: AJIora/++XXdWxEysxciLwMNvwDDGuxH5RW2EL1MBqSZ7xaGDEJWMZIM
-        Yi0MQNg84oSxmcfy0G2UHh9xPA==
-X-Google-Smtp-Source: AGRyM1sAQIYKqMWupX3Qp3aT9V+SQ1IKpv7UJVrSB1OsCII6uoRjCqNDZCo9i12TloeAzzSHB7vQMw==
-X-Received: by 2002:ac2:51cc:0:b0:482:e88a:950b with SMTP id u12-20020ac251cc000000b00482e88a950bmr3776325lfm.270.1657022707913;
-        Tue, 05 Jul 2022 05:05:07 -0700 (PDT)
+        bh=gvtOfLV3w59vkjhPXB0CKmZQUz8ZCCnh+m5pi29Tltw=;
+        b=v7OErejg+I+wU0otr0bBWB7/3UMZDVORZ1UYV+aeQaLAToZI+wArhBlsovOfYh2iGd
+         qW6fINacZl0asfFzxTmyP4v43xyLK4VDGRP/FUFUNvS/YBcdMLjekVDfKXbkt0XTzhFK
+         8O0+jSxOt3J7Mp4alXmiSvTGNYml9APAh/T0I9Eqh9UqMRtFJl21op27c5CJYzzseblK
+         vifD1M4ksw5/7yJKpNhy8vwXQX5P3n71NljMWfNWfZUWk57Op+R2AOAOK52qgqPj7zU6
+         SyZwJilEq6H/uldZk01oQH7k7AEVdmWHBa+XUhlxE+MWDkPoo8Uw2tpD3pTMBNS4Zdgc
+         yenA==
+X-Gm-Message-State: AJIora8dSd14jkbOQLwKvtZVwadxQCF0osy6Gha7/3IfiIA3DhgJSeqM
+        hrMXyNc2N9Ou6UAdMJrDWQfowg==
+X-Google-Smtp-Source: AGRyM1tFtOB9fCIFQFFawJmwGngdoWCCZhwVtxeWNIqGg2x+SUbrZ0W7sfdj4st5IB40TYuKaFpRAA==
+X-Received: by 2002:a05:6512:21d2:b0:47f:9f53:f729 with SMTP id d18-20020a05651221d200b0047f9f53f729mr22789851lft.378.1657022780340;
+        Tue, 05 Jul 2022 05:06:20 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id e18-20020ac25472000000b0047f77cc3287sm5657335lfn.274.2022.07.05.05.05.05
+        by smtp.gmail.com with ESMTPSA id r25-20020ac25a59000000b0048355942defsm389424lfn.249.2022.07.05.05.06.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 05:05:06 -0700 (PDT)
-Message-ID: <d5e4350e-761d-e8e0-c84f-bb84c9aa9d8f@linaro.org>
-Date:   Tue, 5 Jul 2022 14:05:04 +0200
+        Tue, 05 Jul 2022 05:06:18 -0700 (PDT)
+Message-ID: <6907ac7d-4970-b287-1ac6-1e47dae52949@linaro.org>
+Date:   Tue, 5 Jul 2022 14:06:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v6 1/3] dt-bindings: mfd: atmel,flexcom: Convert to
- json-schema
+Subject: Re: [PATCH 38/43] phy: qcom-qmp-pcie: drop pipe clock lane suffix
 Content-Language: en-US
-To:     Kavyasree.Kotagiri@microchip.com, Claudiu.Beznea@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, UNGLinuxDriver@microchip.com
-References: <20220705065758.17051-1-kavyasree.kotagiri@microchip.com>
- <20220705065758.17051-2-kavyasree.kotagiri@microchip.com>
- <0ca30eca-5c12-4b58-ccbf-b008d3413d4f@microchip.com>
- <SA2PR11MB4874514AC2B74A46B4CA454192819@SA2PR11MB4874.namprd11.prod.outlook.com>
+To:     Johan Hovold <johan@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220705094239.17174-1-johan+linaro@kernel.org>
+ <20220705094239.17174-39-johan+linaro@kernel.org>
+ <dcff330c-92ec-2302-8e2a-4ac124e72942@linaro.org>
+ <76508b56-6733-b65c-d81c-31ac173780c0@linaro.org>
+ <YsQnW2o4eCU8PlWl@hovoldconsulting.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SA2PR11MB4874514AC2B74A46B4CA454192819@SA2PR11MB4874.namprd11.prod.outlook.com>
+In-Reply-To: <YsQnW2o4eCU8PlWl@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,45 +85,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 14:00, Kavyasree.Kotagiri@microchip.com wrote:
->>> Convert the Atmel flexcom device tree bindings to json schema.
+On 05/07/2022 13:58, Johan Hovold wrote:
+> On Tue, Jul 05, 2022 at 02:13:04PM +0300, Dmitry Baryshkov wrote:
+>> On 05/07/2022 13:20, Krzysztof Kozlowski wrote:
+>>> On 05/07/2022 11:42, Johan Hovold wrote:
+>>>> The pipe clock is defined in the "lane" node so there's no need to keep
+>>>> adding a redundant lane-number suffix to the clock name.
+>>>>
+>>>> Drop the lane suffix from the pipe clock name, but continue supporting
+>>>> the legacy name as a fall back.
+>>>>
+>>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>>>> ---
+>>>>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 8 ++++++--
+>>>>   1 file changed, 6 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+>>>> index 385ea3d8de08..254ad25591b9 100644
+>>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+>>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+>>>> @@ -2210,8 +2210,12 @@ int qcom_qmp_phy_pcie_create(struct device *dev, struct device_node *np, int id,
+>>>>   	if (!qphy->pcs_misc)
+>>>>   		dev_vdbg(dev, "PHY pcs_misc-reg not used\n");
+>>>>   
+>>>> -	snprintf(prop_name, sizeof(prop_name), "pipe%d", id);
+>>>> -	qphy->pipe_clk = devm_get_clk_from_child(dev, np, prop_name);
+>>>> +	qphy->pipe_clk = devm_get_clk_from_child(dev, np, "pipe");
 >>>
->>> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>> v5 -> v6:
->>>  - Removed spi node from example as suggested by Rob and
->>>    also pattern properties(spi dt-bindings conversion to yaml patch is under
->> review).
->>>    Once that is accepted, I will add back spi example through new patch.
->>>
->>> v4 -> v5:
->>>  - Fixed indentations.
->>>
->>> v3 -> v4:
->>>  - Corrected format of enum used for compatible string.
->>>
->>> v2 -> v3:
->>>  - used enum for compatible string.
->>>  - changed irq flag to IRQ_TYPE_LEVEL_HIGH in example.
->>>  - fixed dtschema errors.
->>>
->>> v1 -> v2:
->>>  - Fix title.
->>>
->>>  .../bindings/mfd/atmel,flexcom.yaml           | 72 +++++++++++++++++++
->>>  .../devicetree/bindings/mfd/atmel-flexcom.txt | 63 ----------------
->>>  2 files changed, 72 insertions(+), 63 deletions(-)
->>>  create mode 100644
->> Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->>
->> AFAICT it would be better to have it named atmel,sama5d2-flexcom.yaml.
->>
-> I see most of the yaml filenames have format of "vendor, function.yaml".For example: Documentation/devicetree/bindings/spi/atmel,quadspi.yaml
-> So, I think it is ok to use "atmel,flexcom.yaml".
+>>> Just get first clock and no need for handling any deprecation.
+> 
+> I still want to deprecate the current name as it makes no sense and
+> risks introducing inconsistencies when adding new resources (e.g. should
+> they also get a bogus suffix).
 
-Most files not correct. The recommended naming is based on first
-compatible, so as Claudiu suggested.
+And it was suggested to you to deprecate entire property... There is no
+need to handle anything in the driver.
+
+> 
+>> If I got it correctly, passing NULL instead of the name would do the trick.
+> 
+> Ah, thanks for spotting that. I feared this would require adding a host
+> of new devres wrappers otherwise.
+> 
+> Would still be needed for the upcoming second pipediv2 clock though...
 
 
 Best regards,
