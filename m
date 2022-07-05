@@ -2,172 +2,496 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 029F9567A80
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 01:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61BA6567AAD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 01:32:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbiGEXGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 19:06:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58212 "EHLO
+        id S229607AbiGEXca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 19:32:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbiGEXGn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 19:06:43 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2056.outbound.protection.outlook.com [40.107.20.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF6151BEA3;
-        Tue,  5 Jul 2022 16:06:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VfwLb9AS5IqePl8koDcyZ0fcGYpiP3VAZrMJNt+mPWZmvIwWfzfGBEnP/Q9XyA3lh4HviNG7DojV0iUWIrxpWsyvAQi1mTb8w6FgKwidFK6zaQPCTJXqxZe45NcpkdeHmwYMujAYAKb3kGoxshGQLVA+g7oo5hzqeMx/q3jhyXWrQCkyKATNy7kRQ3abk+S90mnF9V5c00tmNOX3kmCC1oAgE9WAZQfsF3ox/f3VJQCgtyrmKyXCITi06uqqdp1+nROBEojiyGvdlDiP93RaEaOjY5tn2cKhzwJEnbdaH6YhGYIDts1b1FLquGvoVlnzmS8JpJrcZDWuUBQ+dTx5AA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=99vo1FGUOy0ujbWNN9LFge38gzp6jEy0C8fqjerdyWE=;
- b=S4NQBDzPfzTYakeauyTWrCb+JbUCf+im3QAu5gkaMtoJAW5Ck3dVSIuvOS1sMT3z0eQEcWhfXBmUkdJdh++1jJpb2LyXdJyQvkfgWt5zau63SeVffRrUqHlnMvGznHPoYGuT+cCKNnQ1aH/XdfbR1giCgYA75g7vZBclsf6hAWLhTqPCG+9cmEMA2ikw077q9ZA2hqvkW0TD5g+Vkp9xILV0gxaZjnnODm/LWdt7XzXSKPgIqTTJ5Al+9Q5991lLEwR4CCXLyQx9GJOql0V+d07HXUPEfmIQlZTyzFyB/0yzCdJRhC1hLkKmYlbKYca8fidBMjdj6svUIzAx47rq5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=99vo1FGUOy0ujbWNN9LFge38gzp6jEy0C8fqjerdyWE=;
- b=OBxDW+mcFvZepeHqrECeTxV15y6ym5EptQmfQVIJQC60pbVqfQWpwxxUXCYYOw4/OeVDZHYWmmxZ+wbbVbN8NZu+TfDRV1cJDTkmSRSGqvB9KmX0M1K564SxKUvFYik/JaKf+UbSrmAhqy+yc8MGvdOWNWaxAYFs9fcDiteKQ1M=
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
- by HE1PR0401MB2507.eurprd04.prod.outlook.com (2603:10a6:3:7d::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.21; Tue, 5 Jul
- 2022 23:06:39 +0000
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::5c49:dd85:a8d0:2907]) by DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::5c49:dd85:a8d0:2907%3]) with mapi id 15.20.5395.021; Tue, 5 Jul 2022
- 23:06:38 +0000
-From:   Han Xu <han.xu@nxp.com>
-To:     Michael Walle <michael@walle.cc>, Bough Chen <haibo.chen@nxp.com>
-CC:     "ashish.kumar@nxp.com" <ashish.kumar@nxp.com>,
-        "yogeshgaur.83@gmail.com" <yogeshgaur.83@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "singh.kuldeep87k@gmail.com" <singh.kuldeep87k@gmail.com>,
-        "tudor.ambarus@microchip.com" <tudor.ambarus@microchip.com>,
-        "p.yadav@ti.com" <p.yadav@ti.com>,
-        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
-        "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "zhengxunli@mxic.com.tw" <zhengxunli@mxic.com.tw>
-Subject: RE: [PATCH 01/11] spi: spi-nxp-fspi: enable runtime pm for fspi
-Thread-Topic: [PATCH 01/11] spi: spi-nxp-fspi: enable runtime pm for fspi
-Thread-Index: AQHYkFFaXsuE3sXxZE+Y+3ew2lJKla1vzrsAgACYUAA=
-Date:   Tue, 5 Jul 2022 23:06:38 +0000
-Message-ID: <DU2PR04MB8774221296350C7E424DCA8197819@DU2PR04MB8774.eurprd04.prod.outlook.com>
-References: <1657012303-6464-1-git-send-email-haibo.chen@nxp.com>
- <fc7d7ffe775feb1d9fde19a5dadbca1f@walle.cc>
-In-Reply-To: <fc7d7ffe775feb1d9fde19a5dadbca1f@walle.cc>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 50e7e960-7a1f-45b9-a339-08da5edb0429
-x-ms-traffictypediagnostic: HE1PR0401MB2507:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5KdDRIjzf/EncSbLUNnfxsG6brmDqffxI8ZZg7jIUx9tiHs/eC4IWVIN8MQyYVqMOVShn45Uu/bQeTDXzVmiQdb1FMgXWWO9MFgjnlK5VYw5FtSdfcDjq50cDC3DM+OnjzvSUfGGo8geKiKtCBSw52jibLKMkfsUN42kf8MM3iVHe14NsYPaybAc4AmXp1EsxBgB9RFe2byVE4O7JeSUT7Y0E4q5y7s1+ffmyjaMoDjXM2fHVmvfOAXLH5GGJjQSg+aDhgAW2Oul0y6YN2J8rbgsVTFP7GtTxPGmouTXXGr+L2xuOQWuYgCtz/fyxG+zKrtbvR6lT5RPCxhG11W+EfrwW1f6hO3PANeniZh/tFZ6rRpVoEa7Hm1eJarIUqzUapz51ocAYtfRB9u6auZ87242d0WP141KPVDzVkviqSzxRQw8NQTz+ugzp7lcZBKNilUJWQlXRfWHA/9wy1KZwXKbNabZhphf5/yhl24gnIHQ8Nbkl864B01VXBIXT6tSKA0myp4CiX/lw8IxIMDErK024vrwck1aBXAoxhPup46IfOPj5eiDrAolMSgXQbtTYV+XdNedEUGFxGMPVfkCv4/0ne7jdyAr5w86r2Zl6YfgxHu18CyZFfNKlgXtnKpa3pqgQkpO5NFzCf5RzD4hcixge4WIujfpGgNwGtXxu9BK2brjYCV0ec93YlivUi2QT0UOX2r8ai8dWdoRTOlAMPYyRqDL05nbTTqinYF1OeDvrKN90MstA4zNlasCAE0IG1+tcS5+mb4apIUa25x1RQ8xL4qQ466pjBXFeXRnsjyGej7ovaesY62jIsg7Mqn8
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8774.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(366004)(396003)(136003)(39860400002)(346002)(8936002)(52536014)(38100700002)(86362001)(44832011)(33656002)(478600001)(122000001)(66946007)(76116006)(4326008)(8676002)(9686003)(64756008)(66446008)(66476007)(66556008)(5660300002)(71200400001)(26005)(55016003)(186003)(7416002)(55236004)(316002)(7696005)(6636002)(54906003)(2906002)(41300700001)(6506007)(83380400001)(110136005)(38070700005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lHyh3Z/vl8vCwUP1iivkQoQRQMTgm8BbXMsa3CT+FaI1LMbMZ3c4ESv3ojLf?=
- =?us-ascii?Q?kndWtCDtUVS56IuN06AQ2ajKYOMlQIoyqYCnogSbDhpzcy82XcxN9xROBYZf?=
- =?us-ascii?Q?7imV9XIEYLIzkxKq7ZpjhmnOjUvvwCI7R7l8LUJnyQw+4nHixGn+ZMJcUErt?=
- =?us-ascii?Q?z00gwv3w9dLocX1LtunGK9PwLY8FE5c0/z/sR+wGlWWLtVZUG9QlBtOVZu+5?=
- =?us-ascii?Q?zpJHzxnJcfUt9pb5lEZTjf6P6PQ9JKhpGEZTJj09FJC3Lxouwwx0atMYybP1?=
- =?us-ascii?Q?+pGWnuU5kfZobPn7nePryNA8Va3FT4uTcPgKoO/0DaPqKnjuPOdziUzyAUDA?=
- =?us-ascii?Q?7R2eInjg3pxv7dg9s3C/Uut3Y7CxzOoGRH4t8KqyKn5y+Lkwt+yVQm3bkzO+?=
- =?us-ascii?Q?K+LZhPx3G3XltUmXioPWvSfPw2hr8UX8qnRGKebb9/aGQbxyj4ywGJqoWsaH?=
- =?us-ascii?Q?iZnaAhgAepFndvlLCk6H0NQubA/ZBxcjtcqB8b4EKmyk3UF2uZKSaLkIR0bl?=
- =?us-ascii?Q?z1NEaRETEzwv4oV9RW7effwBfcr9iuijPPChKnvMZafVxYe1jtjIOML73BeQ?=
- =?us-ascii?Q?6+7RpIcjNCVDEfG+nO7ABgS6A5QtQ2+DyWk6tSvUYvWLRC6piULzgoKUPMgU?=
- =?us-ascii?Q?DzAYDRkUnJHwLzArVAVqw6Y7P85Zpkb8oAjD/KzXwuyMkbacv5WqhI5s/9kC?=
- =?us-ascii?Q?7s1vAWxP+cvLhQDMA+MXhSIFBT1i2SpdVAmKJI5lBASCffFjFR01P2y5nwpN?=
- =?us-ascii?Q?qYoPnEMgmLlOIGqohg0XBnd7X+DScFTiwW2gNPv2CxTOsYGX2eOfL7lpMFhF?=
- =?us-ascii?Q?ODUL9csZ37ZoGwRX1B6PVXNRNFRfnZMLmG+C6NE5ImT7ZBO1pbZfVI2OLP0C?=
- =?us-ascii?Q?waPPkNljKfEsKW21LBY+qRdfVXZlzYzFh2ajufp2a86+5wonu1fGmsw35epn?=
- =?us-ascii?Q?Nwwg2vGrmk9APcIWqiiXZeQ9T3RvnwH7H6kILIXZuh363eCKa4TDtuZbQKtr?=
- =?us-ascii?Q?oinyNj/eO7rKNVWl9s5A23HBphA0P3k82X9O4YM8FL1vEgwj3tWmNTrO0Uju?=
- =?us-ascii?Q?YbcIc4F2g7veXIVMc69ge+B4r/yjTQ6PRLzFSh1kYyr/s0FkgBGW7g0pA/wp?=
- =?us-ascii?Q?Ndag0M3WAKaYHn57JojXeoalB2mqtvZmxYmOhLETP94fT2qCJjOYnQddns59?=
- =?us-ascii?Q?n4NIqnZgIW4g6PeWgZjJPj1cmjjqb84WpTdhTIfvW/1D9d6b2S48drHSEgDw?=
- =?us-ascii?Q?JGFcpHQqBJIRmf/xH/cemnaKd6p9lLWdvNJORG+ibAM9Np47rDuxsvb6yV3C?=
- =?us-ascii?Q?ZT2h8piLBtwbBLvNLCI5cj1u2ZslIQFgpbmCii8h523THrUtX8YA++JFEhKE?=
- =?us-ascii?Q?dDxni0E0qeKdo29OqT6nrkop/4U85JDLzH/C23fWj0bQidzh6f9D5Rfrhr1l?=
- =?us-ascii?Q?yRApXlCGBV/vVYQrSapUKykar04CrjkQpept/7Ak3veg/0vwImDOoIXyi1kx?=
- =?us-ascii?Q?qeEcFcjP/95fpHWYcyVUZtyaEe3KuBF8jCSz6WHiGs/QOj4560n/hOQDM+68?=
- =?us-ascii?Q?jd5WaZ0lD9j0ibeq6d8=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229493AbiGEXc1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 19:32:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D4D17E29;
+        Tue,  5 Jul 2022 16:32:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 627016091D;
+        Tue,  5 Jul 2022 23:32:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B766EC341D2;
+        Tue,  5 Jul 2022 23:32:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657063944;
+        bh=69LhnJbPF3UkM8qwduSpXEpKK+CCDBNs6YbFJ3yhL5I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YcbQLHMHRNh3p2pIGE+H/wsLDW9a5yiLa084Nc6lmd132bwq925ecCsHvkMzSqZ2v
+         F5f1IMCJMIu2/Z40+2Xp6DrEfxhdynbXfO3VYo+j3UzudQsNNDXhFEju/mdpL/hWY8
+         cfeVbtWDt36u/Lc6UGYzhBUNr92X7Bt6Vi2W1WcJ3thFOGqUKaQEmvnPjmcxL0J+oP
+         2lw0RP+cSVxDQzRRJI0slZnhQCGoVfmZLciz98TzVHu/zS73VU/DfsgnQcrR/i4yg3
+         GdYNZd7zVHfTnkYfd+sJclqCGekDj2qIhf7fqW2zTjJpHnzcSJRkpzhHiQC1ILQEy5
+         YunA6mKRts4Og==
+Received: by mail-ua1-f42.google.com with SMTP id s4so5249759uad.0;
+        Tue, 05 Jul 2022 16:32:24 -0700 (PDT)
+X-Gm-Message-State: AJIora/OEro/qV+efNfnlV2mdQPnLbQh06HzJCDGslfW6JDOBvfYmsqL
+        ojEkTAQkG1MQYfqcWFE08nu4MpThKYGQkLJm1Z4=
+X-Google-Smtp-Source: AGRyM1sxcMMM/sBrmtKEpR30PI9/op1syuDWHtFf8/1jD0/eAUHnzu6str9N5qb3kyNyClCZmgf5m9K+W5z3GovInOI=
+X-Received: by 2002:ab0:4384:0:b0:37f:1bac:b425 with SMTP id
+ l4-20020ab04384000000b0037f1bacb425mr17765242ual.12.1657063943630; Tue, 05
+ Jul 2022 16:32:23 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8774.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50e7e960-7a1f-45b9-a339-08da5edb0429
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2022 23:06:38.6719
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TUyKB5YnmaCJXiP3liQkb6KkSN9CU8gSkLJkcNI8UctR/YnPFE3yRyGMytMUEo3I
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0401MB2507
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220705224703.1571895-1-heiko@sntech.de> <20220705224703.1571895-4-heiko@sntech.de>
+In-Reply-To: <20220705224703.1571895-4-heiko@sntech.de>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Wed, 6 Jul 2022 07:32:12 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTT6DzPihaP+BHLM6Wvn=Hba-jb-bhs96U3+ApdSmT593g@mail.gmail.com>
+Message-ID: <CAJF2gTT6DzPihaP+BHLM6Wvn=Hba-jb-bhs96U3+ApdSmT593g@mail.gmail.com>
+Subject: Re: [PATCH v6 3/4] riscv: Add support for non-coherent devices using
+ zicbom extension
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Wei Fu <wefu@redhat.com>,
+        Christoph Muellner <cmuellner@linux.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        Christoph Hellwig <hch@lst.de>,
+        Samuel Holland <samuel@sholland.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Anup Patel <anup@brainfault.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Atish Patra <atish.patra@wdc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
->-----Original Message-----
->From: Michael Walle <michael@walle.cc>
->Sent: Tuesday, July 5, 2022 9:01 AM
->To: Bough Chen <haibo.chen@nxp.com>
->Cc: ashish.kumar@nxp.com; yogeshgaur.83@gmail.com; broonie@kernel.org;
->robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; Han Xu
-><han.xu@nxp.com>; singh.kuldeep87k@gmail.com;
->tudor.ambarus@microchip.com; p.yadav@ti.com; miquel.raynal@bootlin.com;
->richard@nod.at; vigneshr@ti.com; shawnguo@kernel.org;
->s.hauer@pengutronix.de; kernel@pengutronix.de; linux-spi@vger.kernel.org;
->linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-
->mtd@lists.infradead.org; festevam@gmail.com; dl-linux-imx <linux-
->imx@nxp.com>; linux-arm-kernel@lists.infradead.org; zhengxunli@mxic.com.tw
->Subject: Re: [PATCH 01/11] spi: spi-nxp-fspi: enable runtime pm for fspi
+On Wed, Jul 6, 2022 at 6:47 AM Heiko Stuebner <heiko@sntech.de> wrote:
 >
->Am 2022-07-05 11:11, schrieb haibo.chen@nxp.com:
->> From: Haibo Chen <haibo.chen@nxp.com>
->>
->> Enable the runtime PM in fspi driver.
->> Also for system PM, On some board like i.MX8ULP-EVK board, after
->> system suspend, IOMUX module will lost power, so all the pinctrl
->> setting will lost when system resume back, need driver to save/restore
->> the pinctrl setting.
+> The Zicbom ISA-extension was ratified in november 2021
+> and introduces instructions for dcache invalidate, clean
+> and flush operations.
 >
->On a side note: The mails to Ashish Kumar bounces. He is currently listed =
-as the
->maintainer for the FlexSPI driver. Will someone from NXP take over?
-
-I will take it over.
-
+> Implement cache management operations for non-coherent devices
+> based on them.
 >
->-michael
+> Of course not all cores will support this, so implement an
+> alternative-based mechanism that replaces empty instructions
+> with ones done around Zicbom instructions.
+>
+> As discussed in previous versions, assume the platform
+> being coherent by default so that non-coherent devices need
+> to get marked accordingly by firmware.
+>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Cc: Christoph Hellwig <hch@lst.de>
+> Cc: Atish Patra <atish.patra@wdc.com>
+> Cc: Guo Ren <guoren@kernel.org>
+> Cc: Anup Patel <anup@brainfault.org>
+> ---
+>  arch/riscv/Kconfig                   |  31 ++++++++
+>  arch/riscv/Makefile                  |   4 +
+>  arch/riscv/include/asm/cache.h       |   4 +
+>  arch/riscv/include/asm/cacheflush.h  |  10 +++
+>  arch/riscv/include/asm/errata_list.h |  19 ++++-
+>  arch/riscv/include/asm/hwcap.h       |   1 +
+>  arch/riscv/kernel/cpu.c              |   1 +
+>  arch/riscv/kernel/cpufeature.c       |  24 ++++++
+>  arch/riscv/kernel/setup.c            |   2 +
+>  arch/riscv/mm/Makefile               |   1 +
+>  arch/riscv/mm/dma-noncoherent.c      | 112 +++++++++++++++++++++++++++
+>  11 files changed, 208 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/riscv/mm/dma-noncoherent.c
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 32ffef9f6e5b..f7b2b3a4b7f1 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -113,6 +113,7 @@ config RISCV
+>         select MODULES_USE_ELF_RELA if MODULES
+>         select MODULE_SECTIONS if MODULES
+>         select OF
+> +       select OF_DMA_DEFAULT_COHERENT
+>         select OF_EARLY_FLATTREE
+>         select OF_IRQ
+>         select PCI_DOMAINS_GENERIC if PCI
+> @@ -218,6 +219,14 @@ config PGTABLE_LEVELS
+>  config LOCKDEP_SUPPORT
+>         def_bool y
+>
+> +config RISCV_DMA_NONCOHERENT
+> +       bool
+> +       select ARCH_HAS_DMA_PREP_COHERENT
+> +       select ARCH_HAS_SYNC_DMA_FOR_DEVICE
+> +       select ARCH_HAS_SYNC_DMA_FOR_CPU
+> +       select ARCH_HAS_SETUP_DMA_OPS
+> +       select DMA_DIRECT_REMAP
+> +
+>  source "arch/riscv/Kconfig.socs"
+>  source "arch/riscv/Kconfig.erratas"
+>
+> @@ -376,6 +385,28 @@ config RISCV_ISA_SVPBMT
+>
+>            If you don't know what to do here, say Y.
+>
+> +config CC_HAS_ZICBOM
+> +       bool
+> +       default y if 64BIT && $(cc-option,-mabi=lp64 -march=rv64ima_zicbom)
+> +       default y if 32BIT && $(cc-option,-mabi=lp64 -march=rv32ima_zicbom)
+-mabi=lp64 for rv32?
+> +
+> +config RISCV_ISA_ZICBOM
+> +       bool "Zicbom extension support for non-coherent DMA operation"
+> +       depends on CC_HAS_ZICBOM
+> +       depends on !XIP_KERNEL
+> +       select RISCV_DMA_NONCOHERENT
+> +       select RISCV_ALTERNATIVE
+> +       default y
+> +       help
+> +          Adds support to dynamically detect the presence of the ZICBOM
+> +          extension (Cache Block Management Operations) and enable its
+> +          usage.
+> +
+> +          The Zicbom extension can be used to handle for example
+> +          non-coherent DMA support on devices that need it.
+> +
+> +          If you don't know what to do here, say Y.
+> +
+>  config FPU
+>         bool "FPU support"
+>         default y
+> diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
+> index 34cf8a598617..fbaabc98b3d2 100644
+> --- a/arch/riscv/Makefile
+> +++ b/arch/riscv/Makefile
+> @@ -56,6 +56,10 @@ riscv-march-$(CONFIG_RISCV_ISA_C)    := $(riscv-march-y)c
+>  toolchain-need-zicsr-zifencei := $(call cc-option-yn, -march=$(riscv-march-y)_zicsr_zifencei)
+>  riscv-march-$(toolchain-need-zicsr-zifencei) := $(riscv-march-y)_zicsr_zifencei
+>
+> +# Check if the toolchain supports Zicbom extension
+> +toolchain-supports-zicbom := $(call cc-option-yn, -march=$(riscv-march-y)_zicbom)
+> +riscv-march-$(toolchain-supports-zicbom) := $(riscv-march-y)_zicbom
+> +
+>  KBUILD_CFLAGS += -march=$(subst fd,,$(riscv-march-y))
+>  KBUILD_AFLAGS += -march=$(riscv-march-y)
+>
+> diff --git a/arch/riscv/include/asm/cache.h b/arch/riscv/include/asm/cache.h
+> index 9b58b104559e..d3036df23ccb 100644
+> --- a/arch/riscv/include/asm/cache.h
+> +++ b/arch/riscv/include/asm/cache.h
+> @@ -11,6 +11,10 @@
+>
+>  #define L1_CACHE_BYTES         (1 << L1_CACHE_SHIFT)
+>
+> +#ifdef CONFIG_RISCV_DMA_NONCOHERENT
+> +#define ARCH_DMA_MINALIGN L1_CACHE_BYTES
+> +#endif
+> +
+>  /*
+>   * RISC-V requires the stack pointer to be 16-byte aligned, so ensure that
+>   * the flat loader aligns it accordingly.
+> diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/asm/cacheflush.h
+> index 23ff70350992..a60acaecfeda 100644
+> --- a/arch/riscv/include/asm/cacheflush.h
+> +++ b/arch/riscv/include/asm/cacheflush.h
+> @@ -42,6 +42,16 @@ void flush_icache_mm(struct mm_struct *mm, bool local);
+>
+>  #endif /* CONFIG_SMP */
+>
+> +#ifdef CONFIG_RISCV_ISA_ZICBOM
+> +void riscv_init_cbom_blocksize(void);
+> +#else
+> +static inline void riscv_init_cbom_blocksize(void) { }
+> +#endif
+> +
+> +#ifdef CONFIG_RISCV_DMA_NONCOHERENT
+> +void riscv_noncoherent_supported(void);
+> +#endif
+> +
+>  /*
+>   * Bits in sys_riscv_flush_icache()'s flags argument.
+>   */
+> diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
+> index 398e351e7002..79d89aeeaa6c 100644
+> --- a/arch/riscv/include/asm/errata_list.h
+> +++ b/arch/riscv/include/asm/errata_list.h
+> @@ -20,7 +20,8 @@
+>  #endif
+>
+>  #define        CPUFEATURE_SVPBMT 0
+> -#define        CPUFEATURE_NUMBER 1
+> +#define        CPUFEATURE_ZICBOM 1
+> +#define        CPUFEATURE_NUMBER 2
+>
+>  #ifdef __ASSEMBLY__
+>
+> @@ -87,6 +88,22 @@ asm volatile(ALTERNATIVE(                                            \
+>  #define ALT_THEAD_PMA(_val)
+>  #endif
+>
+> +#define ALT_CMO_OP(_op, _start, _size, _cachesize)                     \
+> +asm volatile(ALTERNATIVE(                                              \
+> +       __nops(5),                                                      \
+> +       "mv a0, %1\n\t"                                                 \
+> +       "j 2f\n\t"                                                      \
+> +       "3:\n\t"                                                        \
+> +       "cbo." __stringify(_op) " (a0)\n\t"                             \
+> +       "add a0, a0, %0\n\t"                                            \
+> +       "2:\n\t"                                                        \
+> +       "bltu a0, %2, 3b\n\t", 0,                                       \
+> +               CPUFEATURE_ZICBOM, CONFIG_RISCV_ISA_ZICBOM)             \
+> +       : : "r"(_cachesize),                                            \
+> +           "r"((unsigned long)(_start) & ~((_cachesize) - 1UL)),       \
+> +           "r"((unsigned long)(_start) + (_size))                      \
+> +       : "a0")
+> +
+>  #endif /* __ASSEMBLY__ */
+>
+>  #endif
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> index 4e2486881840..6044e402003d 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -53,6 +53,7 @@ extern unsigned long elf_hwcap;
+>  enum riscv_isa_ext_id {
+>         RISCV_ISA_EXT_SSCOFPMF = RISCV_ISA_EXT_BASE,
+>         RISCV_ISA_EXT_SVPBMT,
+> +       RISCV_ISA_EXT_ZICBOM,
+>         RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
+>  };
+>
+> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> index fba9e9f46a8c..0365557f7122 100644
+> --- a/arch/riscv/kernel/cpu.c
+> +++ b/arch/riscv/kernel/cpu.c
+> @@ -89,6 +89,7 @@ int riscv_of_parent_hartid(struct device_node *node)
+>  static struct riscv_isa_ext_data isa_ext_arr[] = {
+>         __RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
+>         __RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
+> +       __RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
+>         __RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
+>  };
+>
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 6a40cb8134bd..d01a792a7201 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <asm/alternative.h>
+> +#include <asm/cacheflush.h>
+>  #include <asm/errata_list.h>
+>  #include <asm/hwcap.h>
+>  #include <asm/patch.h>
+> @@ -199,6 +200,7 @@ void __init riscv_fill_hwcap(void)
+>                         } else {
+>                                 SET_ISA_EXT_MAP("sscofpmf", RISCV_ISA_EXT_SSCOFPMF);
+>                                 SET_ISA_EXT_MAP("svpbmt", RISCV_ISA_EXT_SVPBMT);
+> +                               SET_ISA_EXT_MAP("zicbom", RISCV_ISA_EXT_ZICBOM);
+>                         }
+>  #undef SET_ISA_EXT_MAP
+>                 }
+> @@ -259,6 +261,25 @@ static bool __init_or_module cpufeature_probe_svpbmt(unsigned int stage)
+>         return false;
+>  }
+>
+> +static bool __init_or_module cpufeature_probe_zicbom(unsigned int stage)
+> +{
+> +#ifdef CONFIG_RISCV_ISA_ZICBOM
+> +       switch (stage) {
+> +       case RISCV_ALTERNATIVES_EARLY_BOOT:
+> +               return false;
+> +       default:
+> +               if (riscv_isa_extension_available(NULL, ZICBOM)) {
+> +                       riscv_noncoherent_supported();
+> +                       return true;
+> +               } else {
+> +                       return false;
+> +               }
+> +       }
+> +#endif
+> +
+> +       return false;
+> +}
+> +
+>  /*
+>   * Probe presence of individual extensions.
+>   *
+> @@ -273,6 +294,9 @@ static u32 __init_or_module cpufeature_probe(unsigned int stage)
+>         if (cpufeature_probe_svpbmt(stage))
+>                 cpu_req_feature |= (1U << CPUFEATURE_SVPBMT);
+>
+> +       if (cpufeature_probe_zicbom(stage))
+> +               cpu_req_feature |= (1U << CPUFEATURE_ZICBOM);
+> +
+>         return cpu_req_feature;
+>  }
+>
+> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+> index f0f36a4a0e9b..95ef6e2bf45c 100644
+> --- a/arch/riscv/kernel/setup.c
+> +++ b/arch/riscv/kernel/setup.c
+> @@ -22,6 +22,7 @@
+>  #include <linux/crash_dump.h>
+>
+>  #include <asm/alternative.h>
+> +#include <asm/cacheflush.h>
+>  #include <asm/cpu_ops.h>
+>  #include <asm/early_ioremap.h>
+>  #include <asm/pgtable.h>
+> @@ -296,6 +297,7 @@ void __init setup_arch(char **cmdline_p)
+>  #endif
+>
+>         riscv_fill_hwcap();
+> +       riscv_init_cbom_blocksize();
+>         apply_boot_alternatives();
+>  }
+>
+> diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
+> index ac7a25298a04..d76aabf4b94d 100644
+> --- a/arch/riscv/mm/Makefile
+> +++ b/arch/riscv/mm/Makefile
+> @@ -30,3 +30,4 @@ endif
+>  endif
+>
+>  obj-$(CONFIG_DEBUG_VIRTUAL) += physaddr.o
+> +obj-$(CONFIG_RISCV_DMA_NONCOHERENT) += dma-noncoherent.o
+> diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
+> new file mode 100644
+> index 000000000000..a8dc0bd9078d
+> --- /dev/null
+> +++ b/arch/riscv/mm/dma-noncoherent.c
+> @@ -0,0 +1,112 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * RISC-V specific functions to support DMA for non-coherent devices
+> + *
+> + * Copyright (c) 2021 Western Digital Corporation or its affiliates.
+> + */
+> +
+> +#include <linux/dma-direct.h>
+> +#include <linux/dma-map-ops.h>
+> +#include <linux/mm.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <asm/cacheflush.h>
+> +
+> +static unsigned int riscv_cbom_block_size = L1_CACHE_BYTES;
+> +static bool noncoherent_supported;
+> +
+> +void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
+> +                             enum dma_data_direction dir)
+> +{
+> +       void *vaddr = phys_to_virt(paddr);
+> +
+> +       switch (dir) {
+> +       case DMA_TO_DEVICE:
+> +               ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
+> +               break;
+> +       case DMA_FROM_DEVICE:
+> +               ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
+> +               break;
+> +       case DMA_BIDIRECTIONAL:
+> +               ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +}
+> +
+> +void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
+> +                          enum dma_data_direction dir)
+> +{
+> +       void *vaddr = phys_to_virt(paddr);
+> +
+> +       switch (dir) {
+> +       case DMA_TO_DEVICE:
+> +               break;
+> +       case DMA_FROM_DEVICE:
+> +       case DMA_BIDIRECTIONAL:
+> +               ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +}
+> +
+> +void arch_dma_prep_coherent(struct page *page, size_t size)
+> +{
+> +       void *flush_addr = page_address(page);
+> +
+> +       ALT_CMO_OP(flush, flush_addr, size, riscv_cbom_block_size);
+> +}
+> +
+> +void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> +               const struct iommu_ops *iommu, bool coherent)
+> +{
+> +       WARN_TAINT(!coherent && riscv_cbom_block_size > ARCH_DMA_MINALIGN,
+> +                  TAINT_CPU_OUT_OF_SPEC,
+> +                  "%s %s: ARCH_DMA_MINALIGN smaller than riscv,cbom-block-size (%d < %d)",
+> +                  dev_driver_string(dev), dev_name(dev),
+> +                  ARCH_DMA_MINALIGN, riscv_cbom_block_size);
+> +
+> +       WARN_TAINT(!coherent && !noncoherent_supported, TAINT_CPU_OUT_OF_SPEC,
+> +                  "%s %s: device non-coherent but no non-coherent operations supported",
+> +                  dev_driver_string(dev), dev_name(dev));
+> +
+> +       dev->dma_coherent = coherent;
+> +}
+> +
+> +#ifdef CONFIG_RISCV_ISA_ZICBOM
+> +void riscv_init_cbom_blocksize(void)
+> +{
+> +       struct device_node *node;
+> +       int ret;
+> +       u32 val;
+> +
+> +       for_each_of_cpu_node(node) {
+> +               int hartid = riscv_of_processor_hartid(node);
+> +               int cbom_hartid;
+> +
+> +               if (hartid < 0)
+> +                       continue;
+> +
+> +               /* set block-size for cbom extension if available */
+> +               ret = of_property_read_u32(node, "riscv,cbom-block-size", &val);
+> +               if (ret)
+> +                       continue;
+> +
+> +               if (!riscv_cbom_block_size) {
+> +                       riscv_cbom_block_size = val;
+> +                       cbom_hartid = hartid;
+> +               } else {
+> +                       if (riscv_cbom_block_size != val)
+> +                               pr_warn("cbom-block-size mismatched between harts %d and %d\n",
+> +                                       cbom_hartid, hartid);
+> +               }
+> +       }
+> +}
+> +#endif
+> +
+> +void riscv_noncoherent_supported(void)
+> +{
+> +       noncoherent_supported = true;
+> +}
+> --
+> 2.35.1
+>
+
+
+-- 
+Best Regards
+ Guo Ren
