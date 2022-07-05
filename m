@@ -2,76 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 054C7567392
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 17:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D9675673AD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 18:00:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229739AbiGEPzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 11:55:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52618 "EHLO
+        id S230123AbiGEQAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 12:00:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbiGEPzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 11:55:18 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233FCC1E
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 08:55:17 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id t25so21293047lfg.7
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 08:55:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=jGJB1YsgZctBf3FrtbK+9SX6QzCOA77MpJH1Oeer0Hk=;
-        b=ec37u0hO8yXaGrSBqn1FsCWv5cskb+zfx52OL/Gef1NLfc9cwYqlJbhO8GevcVNhHC
-         GEEvn4ZTuRUOCGpEYCXwKWuhvAEg38suZg/kggjV2CNffhIjwbmofjRiyUk3Wa73KrGY
-         HXxN/1G0KFsvHXjRS1WGeXtFjYegiOXzYxzPpJlEVBl2vNWZDT/xnW30G3+Vkk6Gk01x
-         FVGo1uIw1ZZ45aqWGlW1PdyYDKOVSLl/ojNIy8FMAzLvR5jIFd4UQVKJ0ql5AWXmH6AG
-         Oq63372Rsukxx5JdCQvqw6iiAN9jA+xD5lKyaMuo+c4Md79Yn5sufrCHGU8mB1QvSVFp
-         WBmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=jGJB1YsgZctBf3FrtbK+9SX6QzCOA77MpJH1Oeer0Hk=;
-        b=wvQo11z72eUYZXC2sRTRHV7aUTKiLFXYqjSXM/i9VYz1ptDlKKSF8gUjrASgyw306P
-         W4IwJ4E53B/QQ2owRAMQVROijXlP05OiedgsMXJURzI5iMufNa8bN8+ZtPhLBXieRF2I
-         yCiznl1qbGZN6jby69XHqAKZgAllav9sPt3zCDtIjoMQrJHVZOwT7irEDBof5KcRYlnK
-         cbSaKCmPW7dY7xSfbVW5Ef/lj6clbn3XJ8zaFIBqHWs9oT5qu5koQ+dUV0xihrG8VDmk
-         gkuK1RmaGzl8svvVbXFh+t661eUmCfSoabfsMx0rF2jeRumi/sPMIqg5vyajj5HYqTUQ
-         8EAA==
-X-Gm-Message-State: AJIora9KBGA7BKx2qqB/VYFZnk4720DBx9YaHMrQYG+IoHs3LJ7m1Oq5
-        /9zHmmf4IynwipXyJEeIdjuXzA==
-X-Google-Smtp-Source: AGRyM1seRurvdSHhFwj77zvAc1mw9Uk0rAAe6ziAgG5H8mpvklgg3S57vH5SfkUCu2rlPPV3WF4w8A==
-X-Received: by 2002:a05:6512:33d4:b0:481:63:69e8 with SMTP id d20-20020a05651233d400b00481006369e8mr22198970lfg.415.1657036515533;
-        Tue, 05 Jul 2022 08:55:15 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id c23-20020a056512325700b0047f70a0b8ffsm5757630lfr.20.2022.07.05.08.55.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 08:55:14 -0700 (PDT)
-Message-ID: <5625666e-a777-c4e6-ad91-5c27ebe3f3b5@linaro.org>
-Date:   Tue, 5 Jul 2022 17:55:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 00/13] Add ipq806x missing bindings
-Content-Language: en-US
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229520AbiGEQAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 12:00:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B87F13DCD;
+        Tue,  5 Jul 2022 09:00:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 35E8361B91;
+        Tue,  5 Jul 2022 16:00:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D4A4C341C7;
+        Tue,  5 Jul 2022 16:00:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657036807;
+        bh=iNFu+DCH3hapeUc3T/tivUxYXOlzMBlW6gIg/mWtii8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=gOPLhrbOO+fFuKTsxaoTB2TA6IUw0fPCOAYRWdnPC2QRQLkWaUQTpzWuTAzp0Gz0l
+         fxCu/kSIFRluRp6z/2snPVwgBYjWddbrv+VPY9+Om7nZIWrkU3D6NkLnBan1szM4Qy
+         KtP0+zsj2sNU/OM0BfxquL50JZD66nGVPwCVvGSXjZzNvTHQpTzLG9fw7nL6686PF+
+         Q3dmARH9e7mcRonE6HehLqTizR8UAfhuyCdv7L50v72IDbIFn0UukEgEMpUeJttcWL
+         lHHYlhPRN8kCLHtkmtFMRXCGRmuo53116NkNz/629rA6FZ8e9TX28OGywxfjCsrRIw
+         59AmdL6iNxAXw==
+Received: by pali.im (Postfix)
+        id D5003CBF; Tue,  5 Jul 2022 18:00:03 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220705133917.8405-1-ansuelsmth@gmail.com>
- <e84bb14b-a3a5-728d-e3a4-9d2e898a7aca@linaro.org>
- <62c44b32.1c69fb81.c87b7.72ac@mx.google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <62c44b32.1c69fb81.c87b7.72ac@mx.google.com>
+Subject: [PATCH v2 1/2] [RFT] dt-bindings: leds: Add cznic,turris1x-leds.yaml binding
+Date:   Tue,  5 Jul 2022 17:59:28 +0200
+Message-Id: <20220705155929.25565-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20220705000448.14337-1-pali@kernel.org>
+References: <20220705000448.14337-1-pali@kernel.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,25 +58,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 16:04, Christian Marangi wrote:
-> On Tue, Jul 05, 2022 at 04:28:47PM +0200, Krzysztof Kozlowski wrote:
->> On 05/07/2022 15:39, Christian Marangi wrote:
->>> This series try to add some of the missing bindings for ipq806x.
->>>
->>> This still lacks of the cpu bindings and all the bindings required
->>> to scale cpu clk or L2. These will come later as the driver and
->>> documentation require some changes.
->>>
->>> So for now we try to add bindings that can directly applied without
->>> making changes to any drivers.
->>
->> You mention here and in subject bindings, but your patchset does not
->> have any bindings.
->>
-> 
-> What would be correct word? Node? Compatible?
+Add device-tree bindings documentation for Turris 1.x RGB LEDs.
 
-"device node" or just "node"
+Signed-off-by: Pali Rohár <pali@kernel.org>
 
-Best regards,
-Krzysztof
+---
+Changes in v2:
+* Fix schema errors
+---
+ .../bindings/leds/cznic,turris1x-leds.yaml    | 118 ++++++++++++++++++
+ 1 file changed, 118 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
+
+diff --git a/Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
+new file mode 100644
+index 000000000000..bcaab5b03128
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
+@@ -0,0 +1,118 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/cznic,turris1x-leds.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: CZ.NIC's Turris 1.x LEDs driver
++
++maintainers:
++  - Pali Rohár <pali@kernel.org>
++
++description:
++  This module adds support for the RGB LEDs found on the front panel of the
++  Turris 1.x routers. There are 8 RGB LEDs that are controlled by CZ.NIC CPLD
++  firmware running on Lattice FPGA. Firmware is open source and available at
++  https://gitlab.nic.cz/turris/hw/turris_cpld/-/blob/master/CZ_NIC_Router_CPLD.v
++
++properties:
++  compatible:
++    const: cznic,turris1x-leds
++
++  reg:
++    description: CPLD address range where LED registers are mapped
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^multi-led@[0-7]$":
++    type: object
++    $ref: leds-class-multicolor.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        minimum: 0
++        maximum: 7
++
++    required:
++      - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++
++    cpld@3,0 {
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges = <0x0 0x3 0x0 0x00020000>;
++
++        led-controller@13 {
++            compatible = "cznic,turris1x-leds";
++            reg = <0x13 0x1d>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            multi-led@0 {
++                    reg = <0x0>;
++                    color = <LED_COLOR_ID_RGB>;
++                    function = LED_FUNCTION_WAN;
++            };
++
++            multi-led@1 {
++                    reg = <0x1>;
++                    color = <LED_COLOR_ID_RGB>;
++                    function = LED_FUNCTION_LAN;
++                    function-enumerator = <5>;
++            };
++
++            multi-led@2 {
++                    reg = <0x2>;
++                    color = <LED_COLOR_ID_RGB>;
++                    function = LED_FUNCTION_LAN;
++                    function-enumerator = <4>;
++            };
++
++            multi-led@3 {
++                    reg = <0x3>;
++                    color = <LED_COLOR_ID_RGB>;
++                    function = LED_FUNCTION_LAN;
++                    function-enumerator = <3>;
++            };
++
++            multi-led@4 {
++                    reg = <0x4>;
++                    color = <LED_COLOR_ID_RGB>;
++                    function = LED_FUNCTION_LAN;
++                    function-enumerator = <2>;
++            };
++
++            multi-led@5 {
++                    reg = <0x5>;
++                    color = <LED_COLOR_ID_RGB>;
++                    function = LED_FUNCTION_LAN;
++                    function-enumerator = <1>;
++            };
++
++            multi-led@6 {
++                    reg = <0x6>;
++                    color = <LED_COLOR_ID_RGB>;
++                    function = LED_FUNCTION_WLAN;
++            };
++
++            multi-led@7 {
++                    reg = <0x7>;
++                    color = <LED_COLOR_ID_RGB>;
++                    function = LED_FUNCTION_POWER;
++            };
++        };
++    };
++
++...
+-- 
+2.20.1
+
