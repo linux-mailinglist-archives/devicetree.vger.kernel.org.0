@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD4AB566F15
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EEDE566F1B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:22:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232384AbiGENU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 09:20:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41304 "EHLO
+        id S230244AbiGENWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 09:22:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232420AbiGENUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:20:43 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C843D3BBD3
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 05:42:11 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id f39so20347500lfv.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 05:42:11 -0700 (PDT)
+        with ESMTP id S232145AbiGENWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:22:09 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7C33DA5E
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 05:43:02 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id e12so20330880lfr.6
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 05:43:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ShCrJ4hyEx4vHUXU6iKjtj3Ok0nVe/BM9eUFlsSXi44=;
-        b=JzmVzJA4dIVMLfeMhkcD8TkJf4Dhaw5aFkZ/vxR42AzuPuMS65TpOHdxsK8diBpyOK
-         D7gjCqMOh+EDffLsnXSXNkTT4+4+8snyflCytiWIK7+84hhUoAjDqF7dDhE/ROkMjfB8
-         1TyLmD1qJNz6hF4zO8pF81pbqarxwFAVDVKIzCiA2LHWfykK4Z+XSY0Y8ts4EXAV1n0/
-         ArJJeaGDl/zfyADJSbqJSY9UxqG7GscZ70Z4YSfmL4PSkcdTlg+4t1q2LE0z08nv8xg9
-         2BcpwWulYhiRJ2hUnHkiiveVfFUulQPVYZtmq2IGwBexsH89zo5/sFu/p2wvGOhBGyIu
-         zrNg==
+        bh=LhRP3Fs8es0YSIO5OURsnRUsMb+iHyPX4K2ymrrkIcY=;
+        b=ympMdoL9ALTNzr927Sb6ZJpQBn1/XzX7lw2jckNZOQCx6b7BOW3EXmgotZo4oO3c2Q
+         LLh9EiG+BTlD3yuKpUJUNJCgpC6AQQk3G8AU/I0dok7F5DWqOYMrHLilaB4EjmqAdNzX
+         xL0XHKTIbb9ZB1dkq790GWmmihXJCV54gmrOHbOEx+mmt5AWZkOeQ5oeCgejCDjMs7nQ
+         5cWuB3BWYBDyu+1XcNrSR+BuF3Z2Z/vQqoiUf1GITrDg/9xO4yLPGpGEFUFY9jBDDbLg
+         mwE+VvMkgtGkabn3ldqLmIiQ3fXY2It375m0/t4+Lxy07eNFIQjG7Wv99Wdy3gBRqHxI
+         3/5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ShCrJ4hyEx4vHUXU6iKjtj3Ok0nVe/BM9eUFlsSXi44=;
-        b=f/ZOXTcsntPtHZIZ3XKyDNUtiAvwaFwZwP3tUD+QoaQ5AstRt1mm50PjX8XJpQz1Q7
-         tdJmbCsmbUdplBPH1v/5hcEFbFEdQHGgIbBT6DtHHRJyUC1QOyOy+PL53EWxHnRrssM4
-         DPyuOAdpaTCAbWcSeeu6mRN8EUnpd6CFI6zoG+ZjN0xkLGX5FYen7hTaXuXjbTcdDcDw
-         PaIKxe1n0zuwFYCNUUqim+Ra1D2lFJgif+n5fqpY4pG1fu5UcdgsRzvA8ss34sgeB/JH
-         H3DT4a47pTeFwZgXgxKaU06PwrRKrtT6COJcjmf+1q/CK+rW+SPc1gjGoMrSiJp8nkBX
-         OaRA==
-X-Gm-Message-State: AJIora8DeWV2i1NpGXPgqkV71XUoJE1VYHFi2B82yNOqY5G//Lx+LyOq
-        P8KEQhnY2LODEd8HSswPBoNyVA==
-X-Google-Smtp-Source: AGRyM1vdICLYmSOmQ9/Rc7nIkxH0E0qUR6oXT6Sir3njqmqkWHDhkB6/IPMiO7T1OLEE8aSUphi7Fw==
-X-Received: by 2002:a05:6512:3ca5:b0:481:3378:b9b7 with SMTP id h37-20020a0565123ca500b004813378b9b7mr22304277lfv.56.1657024929537;
-        Tue, 05 Jul 2022 05:42:09 -0700 (PDT)
+        bh=LhRP3Fs8es0YSIO5OURsnRUsMb+iHyPX4K2ymrrkIcY=;
+        b=Sl5Zub15DZGltZ6zkJAJ0T7P7d4tZt98W2cZDEUcmKTACIbWfGhTFCXSMBasKVxKna
+         eoL0LIm26VIVK+MLXD9r/dfMaAV2wjNSHqBRz+Pwrjdc0k6Ao/2SjoaCam4BDANpddOu
+         b1NbxruFErkaSGVljvaXrfqOG/fM7Y32tid8N5LCM2481EIkhCzKRo8Klm9IGA/XfnHZ
+         4ng5dkCTU0PzqfWIFxrSpzSe6CW/IbkrW/iUx+433YBn0rF/9rgzfcSlYgOE2I6fxdSi
+         nBiIeHRojcBVJoIpYoQiKFwA3R5zPVww6ynQTAIFSg+rWyPmKX01G+qzNSHOvM/YDnar
+         g9EA==
+X-Gm-Message-State: AJIora97VllDr8O3yq1dGAqzaPKLugcGpFqOvX7qOXUT6F9iUGc1VDVN
+        y6Hital55p4v6c2EJ6OQZP2aJA==
+X-Google-Smtp-Source: AGRyM1uc/CKohVgiEjxCCTModTLEDHqFjosQAOpUaERzggdyeboWzBSEXyVmRJeK2dFrGPobqKoTcA==
+X-Received: by 2002:a05:6512:2208:b0:480:ff57:ab31 with SMTP id h8-20020a056512220800b00480ff57ab31mr21792943lfu.144.1657024980446;
+        Tue, 05 Jul 2022 05:43:00 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id n10-20020a0565120aca00b0047f77c979f3sm5674924lfu.235.2022.07.05.05.42.08
+        by smtp.gmail.com with ESMTPSA id j13-20020ac253ad000000b0047f7f4cb583sm5659745lfh.288.2022.07.05.05.42.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 05:42:09 -0700 (PDT)
-Message-ID: <e3b344e7-4100-e0d4-0dcd-aeef4893ad43@linaro.org>
-Date:   Tue, 5 Jul 2022 15:42:08 +0300
+        Tue, 05 Jul 2022 05:43:00 -0700 (PDT)
+Message-ID: <cc41d10e-8c3d-7911-560e-88158c91f4fe@linaro.org>
+Date:   Tue, 5 Jul 2022 15:42:59 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 01/14] arm64: dts: qcom: sc7280: drop PCIe PHY clock index
+Subject: Re: [PATCH 02/14] arm64: dts: qcom: sm8250: add missing PCIe PHY
+ clock-cells
 Content-Language: en-GB
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>
@@ -62,9 +63,9 @@ Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220705114032.22787-1-johan+linaro@kernel.org>
- <20220705114032.22787-2-johan+linaro@kernel.org>
+ <20220705114032.22787-3-johan+linaro@kernel.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220705114032.22787-2-johan+linaro@kernel.org>
+In-Reply-To: <20220705114032.22787-3-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,45 +79,46 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05/07/2022 14:40, Johan Hovold wrote:
-> The QMP PCIe PHY provides a single clock so drop the redundant clock
-> index.
+> Add the missing '#clock-cells' properties to the PCIe QMP PHY nodes.
 > 
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-Hmm. After checking the source code, the clocks entry of the phy@1c0e000 
-node also needs to be fixed.
-
-And also maybe:
-
-Fixes: bd7d507935ca ("arm64: dts: qcom: sc7280: Add pcie clock support")
-Fixes: 92e0ee9f83b3 ("arm64: dts: qcom: sc7280: Add PCIe and PHY related 
-nodes")
+Fixes: e53bdfc00977 ("arm64: dts: qcom: sm8250: Add PCIe support")
 
 
 > ---
->   arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 6 ++++++
+>   1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index e66fc67de206..b0ae2dbba50f 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -818,7 +818,7 @@ gcc: clock-controller@100000 {
->   			reg = <0 0x00100000 0 0x1f0000>;
->   			clocks = <&rpmhcc RPMH_CXO_CLK>,
->   				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
-> -				 <0>, <&pcie1_lane 0>,
-> +				 <0>, <&pcie1_lane>,
->   				 <0>, <0>, <0>, <0>;
->   			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
->   				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
-> @@ -2110,7 +2110,7 @@ pcie1_lane: phy@1c0e200 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 53e0b57c13e4..f45a6cca397f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -1892,6 +1892,8 @@ pcie0_lane: phy@1c06200 {
 >   				clock-names = "pipe0";
 >   
 >   				#phy-cells = <0>;
-> -				#clock-cells = <1>;
+> +
+> +				#clock-cells = <0>;
+>   				clock-output-names = "pcie_0_pipe_clk";
+>   			};
+>   		};
+> @@ -1998,6 +2000,8 @@ pcie1_lane: phy@1c0e200 {
+>   				clock-names = "pipe0";
+>   
+>   				#phy-cells = <0>;
+> +
 > +				#clock-cells = <0>;
 >   				clock-output-names = "pcie_1_pipe_clk";
+>   			};
+>   		};
+> @@ -2104,6 +2108,8 @@ pcie2_lane: phy@1c16200 {
+>   				clock-names = "pipe0";
+>   
+>   				#phy-cells = <0>;
+> +
+> +				#clock-cells = <0>;
+>   				clock-output-names = "pcie_2_pipe_clk";
 >   			};
 >   		};
 
