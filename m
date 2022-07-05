@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEAAE566B93
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 14:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28469566B8F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 14:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234003AbiGEMJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233940AbiGEMJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 5 Jul 2022 08:09:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47640 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234410AbiGEMH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 08:07:29 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3379186E5
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 05:06:21 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id m18so1713124lfg.10
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 05:06:21 -0700 (PDT)
+        with ESMTP id S235314AbiGEMI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 08:08:58 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D00BA452
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 05:08:57 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id t25so20176620lfg.7
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 05:08:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gvtOfLV3w59vkjhPXB0CKmZQUz8ZCCnh+m5pi29Tltw=;
-        b=yFdGK76H7d4g5yVTH1z9XzJSMKrOBP5Ci49MiYAH0TuB7cE+gPlNguzCfd3wJ0pKLl
-         1K6PftX9gDQJIlSINsgzlhjDcgpaVukKG3BK62aU62hpfbCYDXxPekbgz6+Jv9YwnQmK
-         l8X9EVsPxj5hdCcjO1uHVz+Fohe1PopxxxDDhVIBQFlqaTNoMG8SW2EKYPp/vbe/ovqo
-         zYsJmRKbfH1+ktLNjiKQc12nvv/YzQigrSLWoF3NwsPV6u5NSEVz06YXhnmIjW4cOkCa
-         iRh3SYBE+FINTDQIHDYzN/sSC40SeXmLLy1ieg/joupZJsIPvmaZfMaEbn1ix66A8XO9
-         Km0A==
+        bh=ihhr+go3H6HNgFbSksIx63Cidh++W2IwUum3O7T/3gk=;
+        b=It5uTRFw2c8H1LR8TfaJKFKMA1hKtnruFe2SdrSsC7xUf8XjoruTXCJRNB5KxAm9+4
+         NzwTDfmPtbsDAdaji7gkFBjYYIqr+ylikcW6DqWjuAJWQQ64rXQ/aDymH4AQjE95w93A
+         edQjCBwR1LZwqfekoQ1N6cZzPcjs4j5LWOeaGfB71BdmcFZ0Cix+lMlIxlO6wzgm/fGA
+         Uek3CaYmRIHb+PYdESrgnFB3vZV5nMkB+E84xsOvEFD4YlyjWmuGswMcxYjxdtjWwxZu
+         3U6UIpQRd9sgdzyb4bPW3SWi3adHjSYjfpcWwONpKuKe7JblrGM/Y3Ommt6t5dYEeEck
+         zXXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=gvtOfLV3w59vkjhPXB0CKmZQUz8ZCCnh+m5pi29Tltw=;
-        b=v7OErejg+I+wU0otr0bBWB7/3UMZDVORZ1UYV+aeQaLAToZI+wArhBlsovOfYh2iGd
-         qW6fINacZl0asfFzxTmyP4v43xyLK4VDGRP/FUFUNvS/YBcdMLjekVDfKXbkt0XTzhFK
-         8O0+jSxOt3J7Mp4alXmiSvTGNYml9APAh/T0I9Eqh9UqMRtFJl21op27c5CJYzzseblK
-         vifD1M4ksw5/7yJKpNhy8vwXQX5P3n71NljMWfNWfZUWk57Op+R2AOAOK52qgqPj7zU6
-         SyZwJilEq6H/uldZk01oQH7k7AEVdmWHBa+XUhlxE+MWDkPoo8Uw2tpD3pTMBNS4Zdgc
-         yenA==
-X-Gm-Message-State: AJIora8dSd14jkbOQLwKvtZVwadxQCF0osy6Gha7/3IfiIA3DhgJSeqM
-        hrMXyNc2N9Ou6UAdMJrDWQfowg==
-X-Google-Smtp-Source: AGRyM1tFtOB9fCIFQFFawJmwGngdoWCCZhwVtxeWNIqGg2x+SUbrZ0W7sfdj4st5IB40TYuKaFpRAA==
-X-Received: by 2002:a05:6512:21d2:b0:47f:9f53:f729 with SMTP id d18-20020a05651221d200b0047f9f53f729mr22789851lft.378.1657022780340;
-        Tue, 05 Jul 2022 05:06:20 -0700 (PDT)
+        bh=ihhr+go3H6HNgFbSksIx63Cidh++W2IwUum3O7T/3gk=;
+        b=mF+R+Bb1yEYmmxsgv0tbrv4hzmUKXiQXclgelR+TUAilHU/4Bf6PKCuOdaP7gIVkTo
+         cnczB1RcorvV3Mldx3aQ0MJAsjgCnlnXAEU4Dnc1GaH9zHMtd0L5ujeTOibUqlisXlnQ
+         REFY3rW0txvYa6aOKiTFq4AHtkWcDQLhJrqoco4Kqi305ubqvS76EkaGIGLczerj89Ec
+         0+AYemDQSko5xf6qzot7FnNbfp4YpXWwkAbKme3N7cF7TVl3zwG8G4abS+H4lcQcCZ+D
+         mn3fpm/PysQmqpH31PESHcTOmJr5+vpWTIzRyKYvdJd/V+Qn/mN+rSTHOSnz18hI15JB
+         r9xw==
+X-Gm-Message-State: AJIora/U5vMYo5yrJkLUby2UuIDBFQEaPGvWsTEBWPIaahz8HCZrJpC2
+        jXE/EI36SuHtwIwvKWmOwqaEJw==
+X-Google-Smtp-Source: AGRyM1tFWsgMJ/MlaFpyOPsBIAszroay69w97JtxjVrtk8RsY2Y9SlOtd9egItDMdymBkfNWyLdwsg==
+X-Received: by 2002:a05:6512:2393:b0:47f:8f12:3a93 with SMTP id c19-20020a056512239300b0047f8f123a93mr21458936lfv.209.1657022935496;
+        Tue, 05 Jul 2022 05:08:55 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id r25-20020ac25a59000000b0048355942defsm389424lfn.249.2022.07.05.05.06.18
+        by smtp.gmail.com with ESMTPSA id s21-20020a056512315500b0047f6e91d4fesm3275915lfi.141.2022.07.05.05.08.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 05:06:18 -0700 (PDT)
-Message-ID: <6907ac7d-4970-b287-1ac6-1e47dae52949@linaro.org>
-Date:   Tue, 5 Jul 2022 14:06:17 +0200
+        Tue, 05 Jul 2022 05:08:54 -0700 (PDT)
+Message-ID: <97d9ccf9-71f8-c97d-ce56-8aeb1a3db194@linaro.org>
+Date:   Tue, 5 Jul 2022 14:08:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 38/43] phy: qcom-qmp-pcie: drop pipe clock lane suffix
+Subject: Re: [PATCH 02/20] dt-bindings: media: s5p-mfc: Convert s5p-mfc.txt to
+ new DT schema
 Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220705094239.17174-1-johan+linaro@kernel.org>
- <20220705094239.17174-39-johan+linaro@kernel.org>
- <dcff330c-92ec-2302-8e2a-4ac124e72942@linaro.org>
- <76508b56-6733-b65c-d81c-31ac173780c0@linaro.org>
- <YsQnW2o4eCU8PlWl@hovoldconsulting.com>
+To:     Smitha T Murthy <smitha.t@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
+        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
+        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
+        andi@etezian.org, alim.akhtar@samsung.com,
+        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+        linux-fsd@tesla.com
+References: <20220517125548.14746-1-smitha.t@samsung.com>
+ <CGME20220517125554epcas5p4e87a71471525056281f1578f4f80f760@epcas5p4.samsung.com>
+ <20220517125548.14746-3-smitha.t@samsung.com>
+ <6c2ea5f7-3cc0-d43c-c667-18c25b64ff72@linaro.org>
+ <01e601d89064$a212a590$e637f0b0$@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YsQnW2o4eCU8PlWl@hovoldconsulting.com>
+In-Reply-To: <01e601d89064$a212a590$e637f0b0$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,50 +87,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 13:58, Johan Hovold wrote:
-> On Tue, Jul 05, 2022 at 02:13:04PM +0300, Dmitry Baryshkov wrote:
->> On 05/07/2022 13:20, Krzysztof Kozlowski wrote:
->>> On 05/07/2022 11:42, Johan Hovold wrote:
->>>> The pipe clock is defined in the "lane" node so there's no need to keep
->>>> adding a redundant lane-number suffix to the clock name.
->>>>
->>>> Drop the lane suffix from the pipe clock name, but continue supporting
->>>> the legacy name as a fall back.
->>>>
->>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>>> ---
->>>>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 8 ++++++--
->>>>   1 file changed, 6 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>>> index 385ea3d8de08..254ad25591b9 100644
->>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>>> @@ -2210,8 +2210,12 @@ int qcom_qmp_phy_pcie_create(struct device *dev, struct device_node *np, int id,
->>>>   	if (!qphy->pcs_misc)
->>>>   		dev_vdbg(dev, "PHY pcs_misc-reg not used\n");
->>>>   
->>>> -	snprintf(prop_name, sizeof(prop_name), "pipe%d", id);
->>>> -	qphy->pipe_clk = devm_get_clk_from_child(dev, np, prop_name);
->>>> +	qphy->pipe_clk = devm_get_clk_from_child(dev, np, "pipe");
+On 05/07/2022 13:44, Smitha T Murthy wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+>> Sent: Tuesday, May 17, 2022 7:26 PM
+>> To: Smitha T Murthy <smitha.t@samsung.com>; linux-arm-
+>> kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; devicetree@vger.kernel.org
+>> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
+>> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
+>> ezequiel@vanguardiasur.com.ar; jernej.skrabec@gmail.com;
+>> benjamin.gaignard@collabora.com; stanimir.varbanov@linaro.org;
+>> dillon.minfei@gmail.com; david.plowman@raspberrypi.com;
+>> mark.rutland@arm.com; robh+dt@kernel.org; krzk+dt@kernel.org;
+>> andi@etezian.org; alim.akhtar@samsung.com; aswani.reddy@samsung.com;
+>> pankaj.dubey@samsung.com; linux-fsd@tesla.com
+>> Subject: Re: [PATCH 02/20] dt-bindings: media: s5p-mfc: Convert s5p-mfc.txt
+>> to new DT schema
+>>
+>> On 17/05/2022 14:55, Smitha T Murthy wrote:
+>>> Adds DT schema for s5p-mfc in yaml format.
 >>>
->>> Just get first clock and no need for handling any deprecation.
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
 > 
-> I still want to deprecate the current name as it makes no sense and
-> risks introducing inconsistencies when adding new resources (e.g. should
-> they also get a bogus suffix).
+> Thank you for the review. 
+> 
 
-And it was suggested to you to deprecate entire property... There is no
-need to handle anything in the driver.
+You responded after two months, I don't remember what I reviewed... Two
+months periods between resends do not really help to usptream.
 
 > 
->> If I got it correctly, passing NULL instead of the name would do the trick.
+>>> +                compatible = "samsung,mfc-v12";
+>>
+>> Does not look like you tested the bindings. Please run `make
+>> dt_binding_check` (see Documentation/devicetree/bindings/writing-
+>> schema.rst for instructions).
+>> Be sure to test your bindings before sending them.
+>>
 > 
-> Ah, thanks for spotting that. I feared this would require adding a host
-> of new devres wrappers otherwise.
+> I did do make dtbs and dt_binding_check using v2022.3, I will recheck post these changes.
 > 
-> Would still be needed for the upcoming second pipediv2 clock though...
+>>> +                reg = <0x12880000 0x10000>;
+>>> +                clock-names = "mfc";
+>>> +                interrupts = <0 137 4>;
+>>
+>> Use interrupt defines.
+>>
+> 
+> When I use interrupt defines I get errors as "1.	Syntax error: This was due to interrupts field has some macro reference and needed to give absolute value.", hence I gave absolute values.
 
+Look at other DT schema files...
 
 Best regards,
 Krzysztof
