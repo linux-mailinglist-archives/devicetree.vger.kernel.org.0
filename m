@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35DBB56795A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 23:30:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F9FB567967
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 23:34:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbiGEVaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 17:30:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56188 "EHLO
+        id S231264AbiGEVeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 17:34:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiGEVaE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 17:30:04 -0400
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D820B92;
-        Tue,  5 Jul 2022 14:30:03 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id z191so12381817iof.6;
-        Tue, 05 Jul 2022 14:30:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GG1TaxPEH084yANxHAVT8rDvfERSSgkpujDEy9BUhjg=;
-        b=eNG6kUDgC9YLxfgkYlYxEPIldIPMBVfJn8e7oZmuIDWi1X6T/vdYMiRoa6B9FZQa5g
-         qFFpJjjsw2mIklq1/7Fgca6CzdejU1evFDJOufyIM27yXWq5yE2GOPe70acbN1N2kOrE
-         rNcc9jtvG2+oAM/nep2ApP+PkZtbyoUsvNL6GtDLUaTWhv0Gt3jl3LrwMpQQ74z3SBWH
-         kUIvblQhaseuKglpP0pcHPe+RwthW8rA0Q/Fr2R689zBiS3jfY7rDP0b/D1C17kfyw/F
-         BL5JVhrBaV4wCNpxHs20RRvk8NFKYbttIr7FIN6GP+a0c7GJoAfYBSZqNpAgC/g3ZANr
-         41Ng==
-X-Gm-Message-State: AJIora+ignDDU5g4PUm0H+LvFOjKkzEmq3K1BQrMKQVGYW7Kkjn3G+sc
-        3j07aVFsYmxSJ254F/bQutgxEIsnhA==
-X-Google-Smtp-Source: AGRyM1sbx5XIOr7a8+UyrQtQEzd9v6gqI013zxRiYadBZ6rOvFNPa1+D6olRq1rRWA3KgAhoW6Dhug==
-X-Received: by 2002:a05:6638:3043:b0:314:7ce2:4a6e with SMTP id u3-20020a056638304300b003147ce24a6emr22641145jak.258.1657056602728;
-        Tue, 05 Jul 2022 14:30:02 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c35-20020a023b23000000b00339e158bd3esm15014511jaa.38.2022.07.05.14.30.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 14:30:02 -0700 (PDT)
-Received: (nullmailer pid 2674163 invoked by uid 1000);
-        Tue, 05 Jul 2022 21:30:01 -0000
-Date:   Tue, 5 Jul 2022 15:30:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc:     linux@armlinux.org.uk, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        edumazet@google.com, pabeni@redhat.com, robh+dt@kernel.org
-Subject: Re: [PATCH v2 net-next 2/4] dt-bindings: net: sff,sfp: rename
- example dt nodes to be more generic
-Message-ID: <20220705213001.GA2674108-robh@kernel.org>
+        with ESMTP id S229849AbiGEVep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 17:34:45 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3148E84;
+        Tue,  5 Jul 2022 14:34:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=kKAWByl3Wyi3A9Ef1Qy70BLTUzK6DPnPcCzJYHhgBdM=; b=cCfyKT79+wZT44GOrFEY1F5AWw
+        HukYgUDodaGrTIdLGXfCeUjLfPQALNGvYlfcaL10TAkLIrKpm31U9QdgjAe4psw80wzhrzwSUUyfD
+        i+u0ize98+wkYPFPypI2mxRdIrHUQ+iJ4o3UnYPmwgDBmW5N98sLtSooKfJfi8i7KZAukUYZljjH9
+        K2zZd+hCxjjGAIc38MTkaN3H7bSInMu9Q9wCVSoq5p4ceXywWEqeEQOUR3ja2rAkPZYNogol0QX34
+        w7gSNBwqskcschyVI8N4gNrp8pB1ExK2DbR0otIpMmT3pvXzzeTlfim2xJX/DGK61OPTiH3f9w13H
+        zRNOtiQA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33198)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1o8qBm-0001tb-CW; Tue, 05 Jul 2022 22:34:34 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1o8qBk-0003gK-3I; Tue, 05 Jul 2022 22:34:32 +0100
+Date:   Tue, 5 Jul 2022 22:34:32 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 1/4] dt-bindings: net: convert sff,sfp to
+ dtschema
+Message-ID: <YsSuaKA4rRkXbt2D@shell.armlinux.org.uk>
 References: <20220704134604.13626-1-ioana.ciornei@nxp.com>
- <20220704134604.13626-3-ioana.ciornei@nxp.com>
+ <20220704134604.13626-2-ioana.ciornei@nxp.com>
+ <20220705212903.GA2615438-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220704134604.13626-3-ioana.ciornei@nxp.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220705212903.GA2615438-robh@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 04 Jul 2022 16:46:02 +0300, Ioana Ciornei wrote:
-> Rename the dt nodes shown in the sff,sfp.yaml examples so that they are
-> generic and not really tied to a specific platform.
+On Tue, Jul 05, 2022 at 03:29:03PM -0600, Rob Herring wrote:
+> On Mon, Jul 04, 2022 at 04:46:01PM +0300, Ioana Ciornei wrote:
+> > +  maximum-power-milliwatt:
+> > +    maxItems: 1
+> > +    description:
+> > +      Maximum module power consumption Specifies the maximum power consumption
+> > +      allowable by a module in the slot, in milli-Watts. Presently, modules can
+> > +      be up to 1W, 1.5W or 2W.
 > 
-> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> ---
-> Changes in v2:
->  - new patch
+>        enum: [ 1000, 1500, 2000 ]
 > 
->  .../devicetree/bindings/net/sff,sfp.yaml       | 18 +++++++++---------
->  1 file changed, 9 insertions(+), 9 deletions(-)
-> 
+> Or is it not just those values? Maybe 'maximum: 2000' instead.
 
-Acked-by: Rob Herring <robh@kernel.org>
+There is no enforcing of the value, we just read the value from
+firmware and use it as a limit for the module (and the module can
+specify powers of 1.5W or 2W in its EEPROM, otherwise it defaults
+to 1W. Future standards may allow higher power consumptions.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
