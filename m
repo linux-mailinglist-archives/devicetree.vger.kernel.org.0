@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 836315670FD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:27:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C691956710B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231932AbiGEO1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 10:27:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52974 "EHLO
+        id S233121AbiGEO24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 10:28:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231382AbiGEO1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:27:34 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 298FCE3A
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 07:27:33 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id l7so13991177ljj.4
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 07:27:33 -0700 (PDT)
+        with ESMTP id S232932AbiGEO2v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:28:51 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3098B114E
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 07:28:50 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id c15so14801368ljr.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 07:28:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cq+rwG5GlUu183kF9O9RM161Z2xkyctrzWRCkzqLHRA=;
-        b=ETPZ2xI6tl+nu08jgqeul7MugHkuS70DC1p+sN8Nmnf0r8zuH//FUYkyGQUHTCy2uV
-         lT4uOu9IXXw4wm4vjo1+QfgNmXShQythbfbJEDAfeFDfu0LA/hpZu2VysB0/P3WFbhPp
-         Py0Iw0V3wRAxiaj7oyzDDGt+NnN011pt3eLODl89C66EGV4u5qRfNT0+777BkepB8h6t
-         sCIiTxtZD6RzAgk/+wni+ccIWlbOxgcM4/FDdllMhiUf3w9LD7kMlxz1fS5M36i00pmd
-         6apDoQCdciU/ZPUd218M20IWCO5xoQkH7pKzgZziDiN0EKyeFqG1JQ4n+HRBUx2Upubl
-         cRPw==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=zlsNRm2X6MLPImZjQVBD4LQfVI28AfW4RyaLrq540Ig=;
+        b=VyU9l7p3EytYWgY6C0c3ZWXTzJeb04M6alOtJc9BLR+BgTI27wjjOjjoKvBBLc/y5B
+         UzLmVKUHIoTbD+c1uvcpX7ZykpZEb2oriNmU0DG+o2Qm7E4tVHki18tF8cROHNBV5Bd1
+         UFhV3Lah4xrSyW2grgM4NoUA5+mR/1HKv7LoT/A1bQC/ew3yITwSPKpjHgKf6ArjqCUe
+         mowf23xRm5og0F2ET24nHuti+AMxyNtnPyNBYO705LDquYvz2d21G/TUV2yJcLLPu9Ti
+         HkmsEqagcQldEJozmHFYALyd11VAT/MSlnqLLqoYZSSA49fbPZMStx+uK4kAk0TG/2PH
+         h56A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=cq+rwG5GlUu183kF9O9RM161Z2xkyctrzWRCkzqLHRA=;
-        b=1TLsDptsDMYCh9AdqD+5dZ7A6pGZKBhiiaYpb9RaI2hdB05fJ3tKszA9O4jyJz4GqW
-         DvVNamfIZtS+4AM2JSqzpvscKGjp5URRJgEZYxpbdlE93VuiO6xO8WwGYjH0B9Qe0659
-         Pc74D0d+4Bg+8VntfSoS8EuR33fdq+NMq0OwvcL4YggpN+oZkhSmNZwdBGsJUTNOsHOC
-         4hW54AW3j5DzDpbAapWi7xIpyHlFu/x9WusVhYkVnNrnYQsDptZ1i72vq7WRTHvYvmYI
-         rShJLjeXp3PqOviQdW8DDsIBa6sEWb5TZdpxPJ+zpFd0uav3cgp77aITnk4Ho682VAbW
-         EljA==
-X-Gm-Message-State: AJIora9bTzs+3VleGyyaPJT5jJXY3f9zwki5LubFdTBmEZ7CmlfTfiGX
-        4O1rp43sxxwdSdQbz7uYq0sT6A==
-X-Google-Smtp-Source: AGRyM1tjXaQxw2mEkj/bUlJ/hl3fhMF5vUOSsIl5m3rHYUUrzbIO0Cvzt7BPdZh5Xh4tSW+wmYPvGQ==
-X-Received: by 2002:a2e:b94e:0:b0:25b:b99f:4f58 with SMTP id 14-20020a2eb94e000000b0025bb99f4f58mr19250754ljs.263.1657031250676;
-        Tue, 05 Jul 2022 07:27:30 -0700 (PDT)
+        bh=zlsNRm2X6MLPImZjQVBD4LQfVI28AfW4RyaLrq540Ig=;
+        b=DRifr/c5SAY8/Fn5z5ilLNsk260ogVcrL/p152E3bdlpbDbEu4LJee+xxy+R2tcU/f
+         SFaTYONRPMwO9W4lip9+XPN9eWFjW5/99PwTwc1ot4BEb/iqyGHrsFBV0kOxKvZkY9uG
+         krbmYWslH7dEb+AiO68qHr+u9AOqNU1parZOERDIv6pvFwlWbZhq3J+oVAYT7RaLB4Xq
+         fOcXnmu72Cg+Ip06nCup3V5iWdeS3kSm+4imxa4TdXX86nHhLzjXZi7K0vpDKw820vne
+         ILTWC1wNe2buQOcEdMss99n3HSCcrtF3KF5lnkTO/ml+MD5Th70gyinUSAYVooZdXL4p
+         PIhQ==
+X-Gm-Message-State: AJIora/gYPWhmmKtl+AlBoqC5VnYS6MANAW2VZL5tcL8fP/Nd2pLmXET
+        mMm4tfhkwv76rwDn8cJxTL6lRw==
+X-Google-Smtp-Source: AGRyM1tCyGcsny1RJepiIU6HQgUv3ZnyQnh+0PZjq3tARwJ642YpS3/ECcELuDy2rQjTlq5j4/L1Hg==
+X-Received: by 2002:a2e:594:0:b0:25d:30fa:eaa5 with SMTP id 142-20020a2e0594000000b0025d30faeaa5mr2392706ljf.86.1657031328532;
+        Tue, 05 Jul 2022 07:28:48 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id j11-20020a056512344b00b00484e9e254c4sm74818lfr.100.2022.07.05.07.27.29
+        by smtp.gmail.com with ESMTPSA id b21-20020ac247f5000000b0047f642dd78csm5726321lfp.17.2022.07.05.07.28.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 07:27:30 -0700 (PDT)
-Message-ID: <3e2c2b6b-713b-e613-9712-0b9c6d8ba8cc@linaro.org>
-Date:   Tue, 5 Jul 2022 16:27:28 +0200
+        Tue, 05 Jul 2022 07:28:48 -0700 (PDT)
+Message-ID: <e84bb14b-a3a5-728d-e3a4-9d2e898a7aca@linaro.org>
+Date:   Tue, 5 Jul 2022 16:28:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v13 2/3] dt-bindings: usb: Add analogix anx7411 PD binding
+Subject: Re: [PATCH 00/13] Add ipq806x missing bindings
 Content-Language: en-US
-To:     Xin Ji <xji@analogixsemi.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     bliang@analogixsemi.com, qwen@analogixsemi.com,
-        jli@analogixsemi.com, Rob Herring <robh@kernel.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220705053657.2340274-1-xji@analogixsemi.com>
- <20220705053657.2340274-2-xji@analogixsemi.com>
+References: <20220705133917.8405-1-ansuelsmth@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220705053657.2340274-2-xji@analogixsemi.com>
+In-Reply-To: <20220705133917.8405-1-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,116 +78,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 07:36, Xin Ji wrote:
-> Add analogix PD chip anx7411 device binding
+On 05/07/2022 15:39, Christian Marangi wrote:
+> This series try to add some of the missing bindings for ipq806x.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> This still lacks of the cpu bindings and all the bindings required
+> to scale cpu clk or L2. These will come later as the driver and
+> documentation require some changes.
 > 
-> ---
-> v12 -> v13 :
->     1. Drop the quotes for "$id" and "$schema"
->     2. Remove "allOf" label
->     3. Change node name from "i2c1" to "i2c"
->     4. Change node name from "typec" to "usb-typec"
-> ---
->  .../bindings/usb/analogix,anx7411.yaml        | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> new file mode 100644
-> index 000000000000..57429864d499
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/analogix,anx7411.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analogix ANX7411 Type-C controller bindings
-> +
-> +maintainers:
-> +  - Xin Ji <xji@analogixsemi.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - analogix,anx7411
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  connector:
-> +    type: object
-> +    $ref: ../connector/usb-connector.yaml
-> +    description:
-> +      Properties for usb c connector.
-> +
-> +    properties:
-> +      compatible:
-> +        const: usb-c-connector
-> +
-> +      power-role: true
-> +
-> +      data-role: true
-> +
-> +      try-power-role: true
-> +
-> +    required:
-> +      - compatible
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - connector
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        usb-typec: anx7411@2C {
+> So for now we try to add bindings that can directly applied without
+> making changes to any drivers.
 
-1. node name is still not correct.
-2. lowercase hex, so @2c.
-
-> +            compatible = "analogix,anx7411";
-> +            reg = <0x2C>;
-
-lowercase hex
-
-> +            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-> +            interrupt-parent = <&gpio0>;
-> +
-> +            typec_con: connector {
-> +                compatible = "usb-c-connector";
-> +                power-role = "dual";
-> +                data-role = "dual";
-> +                try-power-role = "source";
-
-The DT schema requires ports property and just "port" is not accepted.
-
-> +
-> +                port {
-> +                    typec_con_ep: endpoint {
-> +                        remote-endpoint = <&usbotg_hs_ep>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-
+You mention here and in subject bindings, but your patchset does not
+have any bindings.
 
 Best regards,
 Krzysztof
