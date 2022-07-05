@@ -2,91 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 079C65668BE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 12:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 204215668ED
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 13:10:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbiGEK57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 06:57:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47818 "EHLO
+        id S232450AbiGELKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 07:10:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231231AbiGEK5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 06:57:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53BC9167ED;
-        Tue,  5 Jul 2022 03:56:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E6DD760B83;
-        Tue,  5 Jul 2022 10:56:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4049AC341C7;
-        Tue,  5 Jul 2022 10:56:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657018579;
-        bh=j1oJZmU/BD2PKhSkrFTBAPRMJhqsYWZdc4xtZEXxOoI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=k7wWsL0POJ6OcEQ4FJaNLKW+MosT1/EAneUZUt1+Imn+qZyvAgpe0SSlQcB8ubSy+
-         5uOutuOtX9rHfApzLHlnXsCSc2/Pgyq4hEnZ0A33kKvTeImvyiVg/M9dBBK8OmPHEV
-         1VouRw8aUyUVoIZMxsfSpokyIgIZPWb+r3rAVfEzaEANNEjiYKECBxr0siTYEkdPTJ
-         uHi+Elt1P2Fajmhml2aZn+j/bYn0xnYZN1bj+4YoAN91llVeHik/Dqwpyyz6xj5BOx
-         LyDFddfoIEq2ZGOY5LwSsKO1/YL7Tdl/l0+Mda+yE+lOp3vGW6sTQkIk8B6Q6EmVzd
-         mi0RDe/cSVJXg==
-Message-ID: <43a075c6-ff48-acf2-0be7-634d292daf30@kernel.org>
-Date:   Tue, 5 Jul 2022 12:56:12 +0200
+        with ESMTP id S231473AbiGELKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 07:10:24 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13C0E15FD4
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 04:10:21 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id m18so1486504lfg.10
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 04:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=h1uZCYMbVcgEzBoqjPQ3Nkg77lCa4IHbIPp6s5QUAxk=;
+        b=Ehh/BzJe5exPVrWgyNZskrC1eqkCv+7MKwFdA6F57xtVvQhzKheZ2+EXnI+jfuBJLf
+         G3fFfBdy2CP2fCNGDEPsJHYMbJTf/SGV/pRm5cXtFnTCT7eDNoS75QqgrWc0g46BDWyn
+         k7evhXKds25YoXws1D06tIVAdEP7WTeSGdLr1RYAEU3Oiv1tQ44TNvbeW4lkgDL3kvtm
+         Q9ZnfSxBriT8pamQ0z9HqJzkkeqvGTsOKLshlSHlNbWYlNYjfbbo6XQH8H9QaLr/tA7R
+         4CIsV4QqFag4ZOrDh6PSII+OeVeUV553z7K9GEVjOwRM2Q8XboEzWGPU6Ch9MmRy8KH5
+         rmDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=h1uZCYMbVcgEzBoqjPQ3Nkg77lCa4IHbIPp6s5QUAxk=;
+        b=vZirylt5N8gjn0FAB88Li1VcNxInXV7sKf74n4VQ4AVigbnc0v7lXrPNQPA2jeT6JI
+         StnOy7BWxsSzaDDLUE7upWVoVZfN8ID2N1XB/wWgiYujJyZPNzIK0os99dAKEMcqzuiL
+         qtrp73pdhcmIJr2WBgLhBpG9s5YT1qCtiCbZuZIEtZ9Ypz1MK57PeruQokCCv29ruOrh
+         qubMtoVtsaZtJoKey9o86wihoBaBjdRvJaGGg58a79UwZq2V5pQXS1+KenPEW0rZ3gey
+         Ul1WO6jRsJuIaZD9Hh716SyjOH5QGMvj7P8J+uGYPhJCnp53Dn5afQ9fn64voaUCdpb9
+         xqPQ==
+X-Gm-Message-State: AJIora/4U3WpD/+3CF4cyMt5XuiQLNuOd5IgXx8ShnDKlIaZF3DeAkmu
+        +BWQxUP2cHONuyg9dFvNUmJcig==
+X-Google-Smtp-Source: AGRyM1vw/iQwvB+STxZCqb5GdkD8jTbNQfRMcjsuwyFqc1HexlQHKnSb4VMNtAeZR48M1e+DDe8iEg==
+X-Received: by 2002:a05:6512:1028:b0:47f:a07e:6e85 with SMTP id r8-20020a056512102800b0047fa07e6e85mr21982127lfr.294.1657019420284;
+        Tue, 05 Jul 2022 04:10:20 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id i16-20020a2ea370000000b0025d0fbe3e46sm2030251ljn.13.2022.07.05.04.10.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 04:10:19 -0700 (PDT)
+Message-ID: <6fb59f00-6c01-f0c3-9e2a-b088b97ae3da@linaro.org>
+Date:   Tue, 5 Jul 2022 14:10:19 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 2/5] dt-bindings: phy: Add ARTPEC-8 PCIe phy
-Content-Language: en-US
-To:     wangseok.lee@samsung.com,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>
-Cc:     Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>,
-        Yeeun Kim <yeeun119.kim@samsung.com>
-References: <20220620083821epcms2p57a65984523a0f2a3815e4873e8bfc6df@epcms2p5>
- <4b4b08af-887b-89e9-b4a5-93e7d8a03222@kernel.org>
- <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
- <20220614012916epcms2p5cf8d55e7420dea10bb4a05d91aaf99dd@epcms2p5>
- <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p6>
- <20220629071829epcms2p65eab75702495a939f3f6e4ea020181de@epcms2p6>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220629071829epcms2p65eab75702495a939f3f6e4ea020181de@epcms2p6>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 39/43] phy: qcom-qmp-combo: drop unused lane reset
+Content-Language: en-GB
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220705094239.17174-1-johan+linaro@kernel.org>
+ <20220705094239.17174-40-johan+linaro@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220705094239.17174-40-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 09:18, Wangseok Lee wrote:
-> Just a gentle ping for this patch, if any concern on this patch please let me know.
+On 05/07/2022 12:42, Johan Hovold wrote:
+> Drop the unused lane reset pointer which isn't used by any combo PHY.
 > 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-You received comments to fix in this patch. Exactly four. Four important
-points to fix. Therefore what is this ping about?
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Without fixing these items, your patch cannot be accepted. What is more
-to ping here?
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 2 --
+>   1 file changed, 2 deletions(-)
 
-Best regards,
-Krzysztof
+
+-- 
+With best wishes
+Dmitry
