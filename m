@@ -2,106 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E9245678CA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 22:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70FBA567903
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 22:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiGEUvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 16:51:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57222 "EHLO
+        id S231502AbiGEU5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 16:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232331AbiGEUvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 16:51:24 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA2F313E29
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 13:51:13 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id c137so9679983qkg.5
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 13:51:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=f58NyD3PocFs1QBvKBaKz+IIlqbXQEwSuCzNvcT64E4=;
-        b=lrUgQNmuU4a7PUShIpjV2QD1eYyPBTzVsXW6mIVhNWO+wYbMx1QBzZBZNne1GJ9x1f
-         OLOqFDCMBHKo7PrC59BbuO7iSW6B9qTml3mNvBeyJ1iO2EsR7Yb7wgLKGf6FNinKaqq2
-         LJaezoBZOgTHDECZwquKloomJ8badpRs5y9Qr0beoN+svNhtMkZXJSC11HR8kz6+K9ge
-         Bj+AnklyVPun1URmsBtwS2YoK1uD5S5E/O1BR2xqIBMyMI5KmtaZu8x3fKDqeVe0vmFb
-         FPcoEba6rjWRhhbXZpQdNab8Uiq2cAlBhxAZQoIq4yQnFtzl8jqnykr6VovA5zlfxlPz
-         PY3Q==
+        with ESMTP id S231789AbiGEU5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 16:57:43 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9748513FBB;
+        Tue,  5 Jul 2022 13:57:42 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id p128so12326835iof.1;
+        Tue, 05 Jul 2022 13:57:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=f58NyD3PocFs1QBvKBaKz+IIlqbXQEwSuCzNvcT64E4=;
-        b=WZrGB5ehGsWS5V64tK145XlELudJMemBPJtcVTqme8hJyPczMfUXBOkGqjjTOIPCor
-         bmX3Zwqv0JbnHeYBS/1PrASArOeH8m1OJrlcsnA6kJ+ed8idVQo1ERruAq5spmIUyQKq
-         FLfjBkcDsuhPeKRoU5T9dyDvPvvKSyKyb0zdAHwU9SuQw5zd6a13j/o5FIhnzxwgea8D
-         r6oBdUK0WWXUnAt0MMrR8MKJVFR0HbGZpUgtYYqOrt/7rdBwKnVAQU6yRIr8npQ0MscY
-         YEg8ZPr2ApdNQYJHOuBsOHdzWQ+mQotIP0ZC5y6j+YZusvBHXujCc05d1Qndp40QS+O8
-         GVmw==
-X-Gm-Message-State: AJIora/t6oTwpHwtHNn7wsuGulUkesxzuFNpmlXlBWJEPmriHD/DZ8P0
-        peZ4t7NRvx78yIWyr6k44p0=
-X-Google-Smtp-Source: AGRyM1u7tBniyIttpwvltyxPYAvp0da5vDJbPNxCGSdsDjsagtZqbejL2sHYWzRoFayLRoEt2ik8qg==
-X-Received: by 2002:a05:620a:1594:b0:6ae:f437:9fdb with SMTP id d20-20020a05620a159400b006aef4379fdbmr25232525qkk.183.1657054272923;
-        Tue, 05 Jul 2022 13:51:12 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id d14-20020a05620a240e00b006b117a5a98fsm17438889qkn.59.2022.07.05.13.51.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 13:51:12 -0700 (PDT)
-Message-ID: <e0c2098d-058b-90c8-2e16-6c069ac706d4@gmail.com>
-Date:   Tue, 5 Jul 2022 13:51:09 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VII4+LSw9T/gxl5+FohiuIGzGMIZ9dqiusLT8ztuOfQ=;
+        b=zxdHZhgiGHTN/xRdaNi3ku2UoDwol4iWHnlztu+yoW4yutkJVAdan7TSgDrplRrOPj
+         TzHgdVOtXbUvNQknNCAhSaJgUQQQ7Sg7suWUCR71MpYLWeQ7ro+PoexU16anzyw9SYBA
+         /Ml912ZpE7ska04lwBNxay6t3+jrHe4mSz0fotEwLrTojTykfvA/OzifK5WNfNDMOX2a
+         28QKs0llsKKJylaPlpoHUeo98M/o3LHgnP1MbPU5Zf2YJNFIFkIMavjH0xjM8cA787MT
+         HM9mLvAytEZJmuwRoDP6/EVmptTAeTSAJx1Uohc47U7t0LWBliZ+cval9t4Oahk6OFhB
+         cbbw==
+X-Gm-Message-State: AJIora9QuBMFw28Gk2NyPywdUV6WIQ3ZUwo/0lNwdsQnNfvow2IjHMT4
+        EyeBSGmQJqt3VzSkhT+CZg==
+X-Google-Smtp-Source: AGRyM1vfLcm6IZw7/86NYDIFZB44UKjPVyEO4I8oJE/Oz0DoqL8OE1ZY84lQlcCK/TDePXwnFj4m9w==
+X-Received: by 2002:a05:6602:1355:b0:669:40a5:9c26 with SMTP id i21-20020a056602135500b0066940a59c26mr20818102iov.105.1657054661830;
+        Tue, 05 Jul 2022 13:57:41 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id bo22-20020a056638439600b0033c8edf022bsm12230492jab.144.2022.07.05.13.57.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Jul 2022 13:57:41 -0700 (PDT)
+Received: (nullmailer pid 2609976 invoked by uid 1000);
+        Tue, 05 Jul 2022 20:57:39 -0000
+Date:   Tue, 5 Jul 2022 14:57:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v1 03/16] dt-bindings: power: mediatek: Refine multiple
+ level power domain nodes
+Message-ID: <20220705205739.GA2599256-robh@kernel.org>
+References: <20220704100028.19932-1-tinghan.shen@mediatek.com>
+ <20220704100028.19932-4-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH V4 06/11] mfd: bcm2835-pm: Use 'reg-names' to get
- resources
-Content-Language: en-US
-To:     Lee Jones <lee.jones@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Melissa Wen <melissa.srw@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-References: <20220625113619.15944-1-stefan.wahren@i2se.com>
- <20220625113619.15944-7-stefan.wahren@i2se.com> <YrnZUqQsKVVGHUGh@google.com>
- <7ef987c7-1d99-bd63-f7fa-66bd12811716@gmail.com>
- <4607b996-51ac-0b3f-e046-5611774362ca@gmail.com>
- <YrqxdAgCKRL3tCTg@google.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <YrqxdAgCKRL3tCTg@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220704100028.19932-4-tinghan.shen@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/28/22 00:44, Lee Jones wrote:
->>>> Anything preventing me from applying the two MFD patches?
->>>>
->>>
->>> They are self contained and cater to being backward/forward compatible
->>> with Device Tree changes, so not really no. If that is how you want it,
->>> please proceed in taking the 2 MFD patches and I will apply the rest.
->>
->> Actually there is a dependency between patch 10 which uses pm->rpivid_asb
->> and patch 7 which introduces it. I can give you my acked-by for patches 8-11
->> so you can take them via the MFD tree if you would like.
+On Mon, Jul 04, 2022 at 06:00:15PM +0800, Tinghan Shen wrote:
+> Extract duplicated properties and support more levels of power
+> domain nodes.
 > 
-> That works too.
+> This change fix following error when do dtbs_check,
+>     arch/arm64/boot/dts/mediatek/mt8195-evb.dtb: power-controller: power-domain@15:power-domain@16:power-domain@18: 'power-domain@19', 'power-domain@20', 'power-domain@21' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	 From schema: Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
 > 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  .../power/mediatek,power-controller.yaml      | 132 ++----------------
+>  1 file changed, 12 insertions(+), 120 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> index 135c6f722091..09a537a802b8 100644
+> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> @@ -39,8 +39,17 @@ properties:
+>    '#size-cells':
+>      const: 0
+>  
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+>  patternProperties:
+>    "^power-domain@[0-9a-f]+$":
+> +    $ref: "#/$defs/power-domain-node"
+> +
+> +$defs:
+> +  power-domain-node:
+>      type: object
+>      description: |
+>        Represents the power domains within the power controller node as documented
+> @@ -98,127 +107,10 @@ patternProperties:
+>          $ref: /schemas/types.yaml#/definitions/phandle
+>          description: phandle to the device containing the SMI register range.
+>  
+> -    patternProperties:
+> -      "^power-domain@[0-9a-f]+$":
+> -        type: object
+> -        description: |
+> -          Represents a power domain child within a power domain parent node.
+> -
+> -        properties:
+> -
+> -          '#power-domain-cells':
+> -            description:
+> -              Must be 0 for nodes representing a single PM domain and 1 for nodes
+> -              providing multiple PM domains.
+> -
+> -          '#address-cells':
+> -            const: 1
+> -
+> -          '#size-cells':
+> -            const: 0
+> -
+> -          reg:
+> -            maxItems: 1
+> -
+> -          clocks:
+> -            description: |
+> -              A number of phandles to clocks that need to be enabled during domain
+> -              power-up sequencing.
+> -
+> -          clock-names:
+> -            description: |
+> -              List of names of clocks, in order to match the power-up sequencing
+> -              for each power domain we need to group the clocks by name. BASIC
+> -              clocks need to be enabled before enabling the corresponding power
+> -              domain, and should not have a '-' in their name (i.e mm, mfg, venc).
+> -              SUSBYS clocks need to be enabled before releasing the bus protection,
+> -              and should contain a '-' in their name (i.e mm-0, isp-0, cam-0).
+> -
+> -              In order to follow properly the power-up sequencing, the clocks must
+> -              be specified by order, adding first the BASIC clocks followed by the
+> -              SUSBSYS clocks.
+> -
+> -          domain-supply:
+> -            description: domain regulator supply.
+> -
+> -          mediatek,infracfg:
+> -            $ref: /schemas/types.yaml#/definitions/phandle
+> -            description: phandle to the device containing the INFRACFG register range.
+> -
+> -          mediatek,smi:
+> -            $ref: /schemas/types.yaml#/definitions/phandle
+> -            description: phandle to the device containing the SMI register range.
+> -
+> -        patternProperties:
+> -          "^power-domain@[0-9a-f]+$":
+> -            type: object
+> -            description: |
+> -              Represents a power domain child within a power domain parent node.
+> -
+> -            properties:
+> +      required:
+> +        - reg
+>  
+> -              '#power-domain-cells':
+> -                description:
+> -                  Must be 0 for nodes representing a single PM domain and 1 for nodes
+> -                  providing multiple PM domains.
+> -
+> -              '#address-cells':
+> -                const: 1
+> -
+> -              '#size-cells':
+> -                const: 0
+> -
+> -              reg:
+> -                maxItems: 1
+> -
+> -              clocks:
+> -                description: |
+> -                  A number of phandles to clocks that need to be enabled during domain
+> -                  power-up sequencing.
+> -
+> -              clock-names:
+> -                description: |
+> -                  List of names of clocks, in order to match the power-up sequencing
+> -                  for each power domain we need to group the clocks by name. BASIC
+> -                  clocks need to be enabled before enabling the corresponding power
+> -                  domain, and should not have a '-' in their name (i.e mm, mfg, venc).
+> -                  SUSBYS clocks need to be enabled before releasing the bus protection,
+> -                  and should contain a '-' in their name (i.e mm-0, isp-0, cam-0).
+> -
+> -                  In order to follow properly the power-up sequencing, the clocks must
+> -                  be specified by order, adding first the BASIC clocks followed by the
+> -                  SUSBSYS clocks.
+> -
+> -              domain-supply:
+> -                description: domain regulator supply.
+> -
+> -              mediatek,infracfg:
+> -                $ref: /schemas/types.yaml#/definitions/phandle
+> -                description: phandle to the device containing the INFRACFG register range.
+> -
+> -              mediatek,smi:
+> -                $ref: /schemas/types.yaml#/definitions/phandle
+> -                description: phandle to the device containing the SMI register range.
+> -
+> -            required:
+> -              - reg
+> -
+> -            additionalProperties: false
+> -
+> -        required:
+> -          - reg
+> -
+> -        additionalProperties: false
+> -
+> -    required:
+> -      - reg
+> -
+> -    additionalProperties: false
+> -
+> -required:
+> -  - compatible
+> -
+> -additionalProperties: false
+> +      additionalProperties: false
 
-I took patches 1 through 5, can you apply 6 through 11? Thanks
--- 
-Florian
+You now aren't checking more than 1 level because you have defined 
+'additionalProperties' to be a DT property. Check the indentation.
+
+You need this in $defs/power-domain-node to recurse:
+
+    additionalProperties:
+      $ref: #/$defs/power-domain-node
+
+>  
+>  examples:
+>    - |
+> -- 
+> 2.18.0
+> 
+> 
