@@ -2,100 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E03856780F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B88A567819
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:54:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231162AbiGETvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 15:51:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48028 "EHLO
+        id S229537AbiGETyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 15:54:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbiGETvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:51:31 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 832F71D0E6;
-        Tue,  5 Jul 2022 12:51:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 18407B8197D;
-        Tue,  5 Jul 2022 19:51:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 728DCC341C7;
-        Tue,  5 Jul 2022 19:51:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657050687;
-        bh=FHSwCWE5Qqw8UZ5yAxfce6oaTgBWlJxEMNIl7ItdHGo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=hsNjREwz7ClHCyhPShCaTaluPcAsVCtc33dMkOpkJzU88Cd4hBjaXvmyTCeowsHgq
-         Y9ScpDC4v2WlVhwd2afC3lwmhAFyjd3/MwIZ2L9vxW04MAQuGo3Wzf1JLF+mAuxo8j
-         HcMx5IrHg5zq/Lb0r+pzaMcMPSgSF2NRKo0dxqEIlnJ2F/lwCkSub/7kAzspu18EtD
-         UHiu9f27bYpNPgpPUnQj/FJX235A26qsIO0+iABwpUzzCyBBR07MeVtRCP51YGw8xB
-         PQJYgD6/uru1DPq10JSJP47Mwk8FBO8jj2cH7chMvt/M70BzNVWNYVIf5+O3CZ1udO
-         JB56OWi/DQO6A==
-Date:   Tue, 5 Jul 2022 14:51:25 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: pci: toshiba,visconti-pcie: Update the
- common clock properties
-Message-ID: <20220705195125.GA78912@bhelgaas>
+        with ESMTP id S229617AbiGETyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:54:00 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5B265AB;
+        Tue,  5 Jul 2022 12:53:58 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id n8so16704953eda.0;
+        Tue, 05 Jul 2022 12:53:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=oXMuNwTXUvJo0+POZWc/5imaFRdw3zoRSiX+En9QOVw=;
+        b=aCAO7obABtqBdXKJyThLKOxRy3Gkos3sCS85KBPppcd5OtU6W0mAv8wa3910L4g+wv
+         fVzmu9c7Lx8j8FyLigZXQNdR2GQHgxpkhaEKzuYcF0X4V3PODju071tD4JP/R8cA5Rzx
+         1w1//jejTVMZPH0Tj8JKWbCQ79VtMdgFKuWY86K7kkCZC6/DZMdfPlz1/b8wzw+9I6gi
+         Wy8c9PFMCRb3qBkqpLtc/qt87+Sdz+eRCVxRqrDay6SUsCmLAPmMBtKGiMzFdl7COXLj
+         cFeEZpcOIyfO4THHHDc2kD1wA0y2IGoVRMAuFGiD2bTw9Evr8M9iSafyZJ4IDAimmgME
+         PAVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=oXMuNwTXUvJo0+POZWc/5imaFRdw3zoRSiX+En9QOVw=;
+        b=dFtGNWj4XAlXsFFyG08KlZp93KBXq3czoxM9fvTdzuF2tr2OLu6smawB45FQt+Xglq
+         H4ktEZEJeg8HHP0q5Q6klw3QS69xWeE2vjSCQzQvVs8qwMPjkDYxoZPKfSMG5rIXpcJi
+         R1q0+t2iSu3Z5rM+BTxploUze2aNLpJ/dE0G4HnT6qPgFSsPu0MyGMP31pJ5QawChRYQ
+         fku6kVV0OIZBq/ugCfvEIeHQf8QYHQ/L3foM9+2/1GYP3GTy3baAAmJZIZ2DnI2Hmi95
+         qDULC7Z2GvHLc94aVjRupD3QUchfv6FjTTq/0GokQeZQB659mZmHV2YLP5TvFkt2SlLF
+         VXZQ==
+X-Gm-Message-State: AJIora91QiMy4tm7wWcbs1H+pdR515YGleNe28Q1ARF/AC890Vnhq2wX
+        +SYn2CQ/29jkf64NWPVzjkA=
+X-Google-Smtp-Source: AGRyM1tkSzZ6D5ILvqab8zXo3yg+wHUqQ7K5bD/agyl++p9ronNEmGXjzgYTHCP0hrx20V7g2KJ6Cw==
+X-Received: by 2002:a05:6402:228f:b0:43a:896:e4f0 with SMTP id cw15-20020a056402228f00b0043a0896e4f0mr23879935edb.81.1657050837497;
+        Tue, 05 Jul 2022 12:53:57 -0700 (PDT)
+Received: from kista.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
+        by smtp.gmail.com with ESMTPSA id a18-20020a50ff12000000b0043789187c1esm18863714edu.80.2022.07.05.12.53.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Jul 2022 12:53:57 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-usb@vger.kernel.org
+Subject: Re: Re: [PATCH 0/3] dt-bindings: usb: Document Allwinner D1 compatibles
+Date:   Tue, 05 Jul 2022 21:53:55 +0200
+Message-ID: <1688790.QkHrqEjB74@kista>
+In-Reply-To: <44784082.fMDQidcC6G@kista>
+References: <20220702195249.54160-1-samuel@sholland.org> <44784082.fMDQidcC6G@kista>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220520085648.620703-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 20, 2022 at 05:56:48PM +0900, Nobuhiro Iwamatsu wrote:
-> The clock for this driver switched to the common clock controller driver.
-> Therefore, update common clock properties for PCIe controller in the binding
-> document.
-> 
-> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> Acked-by: Rob Herring <robh@kernel.org>
+Dne ponedeljek, 04. julij 2022 ob 22:35:24 CEST je Jernej =C5=A0krabec napi=
+sal(a):
+> Dne sobota, 02. julij 2022 ob 21:52:46 CEST je Samuel Holland napisal(a):
+> > These patches document the compatible strings for the USB controllers in
+> > the Allwinner D1 SoC, which require no special driver support.
+> >=20
+> > Samuel Holland (3):
+> >   dt-bindings: usb: sunxi-musb: Add Allwinner D1 compatible
+> >   dt-bindings: usb: generic-ehci: Add Allwinner D1 compatible
+> >   dt-bindings: usb: generic-ohci: Add Allwinner D1 compatible
+>=20
+> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Rob, does your ack mean you want me to pick this up?  It looks like
-you merged the original 17c1b16340f0 ("dt-bindings: pci: Add DT
-binding for Toshiba Visconti PCIe controller")?
+Applied all three, thanks!
+=20
+Best regards,
+Jernej
+=20
+> >  .../devicetree/bindings/usb/allwinner,sun4i-a10-musb.yaml        | 1 +
+> >  Documentation/devicetree/bindings/usb/generic-ehci.yaml          | 1 +
+> >  Documentation/devicetree/bindings/usb/generic-ohci.yaml          | 1 +
+> >  3 files changed, 3 insertions(+)
+> >=20
+> > --
+> > 2.35.1
 
-> ---
->  .../devicetree/bindings/pci/toshiba,visconti-pcie.yaml         | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml b/Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
-> index 30b6396d83c8..b9d0484606cc 100644
-> --- a/Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
-> @@ -69,6 +69,7 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> +    #include <dt-bindings/clock/toshiba,tmpv770x.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->  
-> @@ -102,7 +103,7 @@ examples:
->                   0 0 0 2 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH
->                   0 0 0 3 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH
->                   0 0 0 4 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>;
-> -            clocks = <&extclk100mhz>, <&clk600mhz>, <&clk25mhz>;
-> +            clocks = <&extclk100mhz>, <&pismu TMPV770X_CLK_PCIE_MSTR>, <&pismu TMPV770X_CLK_PCIE_AUX>;
->              clock-names = "ref", "core", "aux";
->              max-link-speed = <2>;
->          };
-> -- 
-> 2.36.0
-> 
-> 
+
