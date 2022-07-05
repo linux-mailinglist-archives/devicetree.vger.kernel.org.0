@@ -2,297 +2,584 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83865566573
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 10:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 915BF5665A9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 10:55:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230123AbiGEIwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 04:52:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53528 "EHLO
+        id S231398AbiGEIzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 04:55:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbiGEIwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 04:52:07 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3CDADF3F;
-        Tue,  5 Jul 2022 01:52:04 -0700 (PDT)
-X-UUID: 25e961374bce4800ba6a263bd4190ad6-20220705
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:f93ca49e-8fbc-4189-a4e7-435f3ef8f554,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.8,REQID:f93ca49e-8fbc-4189-a4e7-435f3ef8f554,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:0f94e32,CLOUDID:81e79586-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:d9a8f54ecc47,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 25e961374bce4800ba6a263bd4190ad6-20220705
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 407191062; Tue, 05 Jul 2022 16:52:00 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 5 Jul 2022 16:51:58 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 5 Jul 2022 16:51:57 +0800
-Message-ID: <6b472fa9e7ce6da775b222b0f9ee00b6d8552dd1.camel@mediatek.com>
-Subject: Re: [PATCH v15 13/16] drm/mediatek: dpi: Add YUV422 output support
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <xinlei.lee@mediatek.com>, <liangxu.xu@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 5 Jul 2022 16:51:57 +0800
-In-Reply-To: <807fa1a3e896eaaa02aec6166f5fb833d7917da7.camel@mediatek.com>
-References: <20220701035845.16458-1-rex-bc.chen@mediatek.com>
-         <20220701035845.16458-14-rex-bc.chen@mediatek.com>
-         <f834d5612bef6fa216602b3dcbed629f1b4c903b.camel@mediatek.com>
-         <807fa1a3e896eaaa02aec6166f5fb833d7917da7.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S231317AbiGEIzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 04:55:02 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9CF13E0B;
+        Tue,  5 Jul 2022 01:54:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CDAAFB81671;
+        Tue,  5 Jul 2022 08:54:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF8C6C385A2;
+        Tue,  5 Jul 2022 08:54:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657011283;
+        bh=BHuZkW0eJ+WX6mMKEaJB7fYlXXHAt/pr6+iBHt921tY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mfrlx/4Nq9+LTTHzBFOowlQG96GoPQaYW15MSV8nWWHWiu9ph7x2B4A9yit1gLLCY
+         pYd05Fd4c0Rcf3SGgVU1u7ajoHRy7Fq4NRdJJVKHmDMhostuRDDD7ECR04Q4XlbXjs
+         CL+I2efcR841Pnt6GV3/gZNh9mP5bpXbCnVNJo03TAdBhMzvE6IymP/LcnUAZ3f8x5
+         5fNpRMq1CQly6foSefLI+GlGuLRpV7wvmD8PXs+hJ9nmbmY3zfNxk0daIkBMJ8L9LO
+         XxgHBE5tlIx8lsMqu0z32ifDAc09G9FIQLkUWPWupI8yLEVXFveVtvE0cNAZ55l7iX
+         SJT/kQ6gdaU6w==
+Date:   Tue, 5 Jul 2022 14:24:37 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kishon@ti.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH v3 3/3] phy: freescale: Add i.MX8qm Mixel LVDS PHY support
+Message-ID: <YsP8TYgA7SU72/xE@matsya>
+References: <20220620123854.1138028-1-victor.liu@nxp.com>
+ <20220620123854.1138028-4-victor.liu@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220620123854.1138028-4-victor.liu@nxp.com>
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-07-05 at 16:39 +0800, Rex-BC Chen wrote:
-> On Tue, 2022-07-05 at 13:21 +0800, CK Hu wrote:
-> > Hi, Bo-Chen:
-> > 
-> > On Fri, 2022-07-01 at 11:58 +0800, Bo-Chen Chen wrote:
-> > > Dp_intf supports YUV422 as output format. In MT8195 Chrome
-> > > project,
-> > > YUV422 output format is used for 4K resolution.
-> > > 
-> > > To support this, it is also needed to support color format
-> > > transfer.
-> > > Color format transfer is a new feature for both dpi and dpintf of
-> > > MT8195.
-> > > 
-> > > The input format could be RGB888 and output format for dp_intf
-> > > should
-> > > be
-> > > YUV422. Therefore, we add a mtk_dpi_matrix_sel() helper to update
-> > > the
-> > > DPI_MATRIX_SET register depending on the color format.
-> > > 
-> > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > > Reviewed-by: AngeloGioacchino Del Regno <
-> > > angelogioacchino.delregno@collabora.com>
-> > > ---
-> > >  drivers/gpu/drm/mediatek/mtk_dpi.c      | 61
-> > > +++++++++++++++++++++
-> > > ----
-> > >  drivers/gpu/drm/mediatek/mtk_dpi_regs.h |  6 +++
-> > >  2 files changed, 59 insertions(+), 8 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > index 3085033becbd..0a604bf68b1b 100644
-> > > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > @@ -54,7 +54,8 @@ enum mtk_dpi_out_channel_swap {
-> > >  };
-> > >  
-> > >  enum mtk_dpi_out_color_format {
-> > > -	MTK_DPI_COLOR_FORMAT_RGB
-> > > +	MTK_DPI_COLOR_FORMAT_RGB,
-> > > +	MTK_DPI_COLOR_FORMAT_YCBCR_422
-> > >  };
-> > >  
-> > >  struct mtk_dpi {
-> > > @@ -122,6 +123,7 @@ struct mtk_dpi_yc_limit {
-> > >   * @num_output_fmts: Quantity of supported output formats.
-> > >   * @is_ck_de_pol: Support CK/DE polarity.
-> > >   * @swap_input_support: Support input swap function.
-> > > + * @color_fmt_trans_support: Enable color format transfer.
-> > >   * @dimension_mask: Mask used for HWIDTH, HPORCH, VSYNC_WIDTH
-> > > and
-> > > VSYNC_PORCH
-> > >   *		    (no shift).
-> > >   * @hvsize_mask: Mask of HSIZE and VSIZE mask (no shift).
-> > > @@ -138,6 +140,7 @@ struct mtk_dpi_conf {
-> > >  	u32 num_output_fmts;
-> > >  	bool is_ck_de_pol;
-> > >  	bool swap_input_support;
-> > > +	bool color_fmt_trans_support;
-> > >  	u32 dimension_mask;
-> > >  	u32 hvsize_mask;
-> > >  	u32 channel_swap_shift;
-> > > @@ -406,15 +409,54 @@ static void
-> > > mtk_dpi_config_disable_edge(struct
-> > > mtk_dpi *dpi)
-> > >  		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0,
-> > > EDGE_SEL_EN);
-> > >  }
-> > >  
-> > > +static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi,
-> > > +			       enum mtk_dpi_out_color_format format)
-> > 
-> > The format would only be MTK_DPI_COLOR_FORMAT_YCBCR_422, so drop
-> > the
-> > parameter format.
-> > 
-> > > +{
-> > > +	u32 matrix_sel;
-> > > +
-> > > +	if (!dpi->conf->color_fmt_trans_support) {
-> > 
-> > Only YUV format would call this function, and I think YUV support
-> > would
-> > imply that color_fmt_trans_support is true. So drop
-> > color_fmt_trans_support.
-> > 
-> > > +		dev_info(dpi->dev, "matrix_sel is not supported.\n");
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	switch (format) {
-> > > +	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
-> > > +		/*
-> > > +		 * If height is smaller than 720, we need to use
-> > > RGB_TO_BT601
-> > > +		 * to transfer to yuv422. Otherwise, we use
-> > > RGB_TO_JPEG.
-> > > +		 */
-> > > +		if (dpi->mode.hdisplay <= 720)
-> > > +			matrix_sel = MATRIX_SEL_RGB_TO_BT601;
-> > > +		else
-> > > +			matrix_sel = MATRIX_SEL_RGB_TO_JPEG;
-> > > +		break;
-> > > +	default:
-> > > +		matrix_sel = MATRIX_SEL_RGB_TO_JPEG;
-> > > +		break;
-> > > +	}
-> > > +	mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel,
-> > > INT_MATRIX_SEL_MASK);
-> > 
-> > it seems that we could drop this function and write register as:
-> > 
-> > mtk_dpi_mask(dpi, DPI_MATRIX_SET, dpi->mode.hdisplay <= 720
-> > ? MATRIX_SEL_RGB_TO_BT601 : MATRIX_SEL_RGB_TO_JPEG,
-> > INT_MATRIX_SEL_MASK);
-> > 
+On 20-06-22, 20:38, Liu Ying wrote:
+> Add Freescale i.MX8qm LVDS PHY support.
+> The PHY IP is from Mixel, Inc.
 > 
-> Hello CK,
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v2->v3:
+> * No change.
 > 
-> ok, I will drop this function and config.
+> v1->v2:
+> * Drop 'This patch' from commit message. (Krzysztof)
+> * Make dev_err_probe() function calls as one-liners. (Krzysztof)
+> * Drop unnecessary debug messages. (Krzysztof)
+> * Get phy_ref_clk without name specified due to 'clock-names' dropped from
+>   dt-binding.
 > 
-> > > +}
-> > > +
-> > >  static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
-> > >  					enum mtk_dpi_out_color_format
-> > > format)
-> > >  {
-> > > -	/* only support RGB888 */
-> > > -	mtk_dpi_config_yuv422_enable(dpi, false);
-> > > -	mtk_dpi_config_csc_enable(dpi, false);
-> > > -	if (dpi->conf->swap_input_support)
-> > > -		mtk_dpi_config_swap_input(dpi, false);
-> > > -	mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_RGB);
-> > > +	if (format == MTK_DPI_COLOR_FORMAT_YCBCR_422) {
-> > > +		mtk_dpi_config_yuv422_enable(dpi, true);
-> > > +		mtk_dpi_config_csc_enable(dpi, true);
-> > > +		mtk_dpi_matrix_sel(dpi, format);
-> > > +		if (dpi->conf->swap_input_support)
-> > 
-> > This would never be true because only MT8195 support
-> > MTK_DPI_COLOR_FORMAT_YCBCR_422 and swap_input_support of MT8195 is
-> > false.
-> > 
+>  drivers/phy/freescale/Kconfig                 |   9 +
+>  drivers/phy/freescale/Makefile                |   1 +
+>  .../phy/freescale/phy-fsl-imx8qm-lvds-phy.c   | 440 ++++++++++++++++++
+>  3 files changed, 450 insertions(+)
+>  create mode 100644 drivers/phy/freescale/phy-fsl-imx8qm-lvds-phy.c
 > 
-> I think for mt8195, it should be support output format yuv422 and
-> rgb888.
-> 
-> please refer to [16/16]
-> 
-> +static const u32 mt8195_output_fmts[] = {
-> +	MEDIA_BUS_FMT_RGB888_1X24,
-> +	MEDIA_BUS_FMT_YUYV8_1X16,
+> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
+> index f9c54cd02036..853958fb2c06 100644
+> --- a/drivers/phy/freescale/Kconfig
+> +++ b/drivers/phy/freescale/Kconfig
+> @@ -8,6 +8,15 @@ config PHY_FSL_IMX8MQ_USB
+>  	select GENERIC_PHY
+>  	default ARCH_MXC && ARM64
+>  
+> +config PHY_MIXEL_LVDS_PHY
+> +	tristate "Mixel LVDS PHY support"
+> +	depends on OF
+> +	select GENERIC_PHY
+> +	select REGMAP_MMIO
+> +	help
+> +	  Enable this to add support for the Mixel LVDS PHY as found
+> +	  on NXP's i.MX8qm SoC.
+> +
+>  config PHY_MIXEL_MIPI_DPHY
+>  	tristate "Mixel MIPI DSI PHY support"
+>  	depends on OF && HAS_IOMEM
+> diff --git a/drivers/phy/freescale/Makefile b/drivers/phy/freescale/Makefile
+> index 3518d5dbe8a7..cedb328bc4d2 100644
+> --- a/drivers/phy/freescale/Makefile
+> +++ b/drivers/phy/freescale/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-$(CONFIG_PHY_FSL_IMX8MQ_USB)	+= phy-fsl-imx8mq-usb.o
+> +obj-$(CONFIG_PHY_MIXEL_LVDS_PHY)	+= phy-fsl-imx8qm-lvds-phy.o
+>  obj-$(CONFIG_PHY_MIXEL_MIPI_DPHY)	+= phy-fsl-imx8-mipi-dphy.o
+>  obj-$(CONFIG_PHY_FSL_IMX8M_PCIE)	+= phy-fsl-imx8m-pcie.o
+>  obj-$(CONFIG_PHY_FSL_LYNX_28G)		+= phy-fsl-lynx-28g.o
+> diff --git a/drivers/phy/freescale/phy-fsl-imx8qm-lvds-phy.c b/drivers/phy/freescale/phy-fsl-imx8qm-lvds-phy.c
+> new file mode 100644
+> index 000000000000..37f77115ddab
+> --- /dev/null
+> +++ b/drivers/phy/freescale/phy-fsl-imx8qm-lvds-phy.c
+> @@ -0,0 +1,440 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright 2017-2020,2022 NXP
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +
+> +#define REG_SET		0x4
+> +#define REG_CLR		0x8
+> +
+> +#define PHY_CTRL	0x0
+> +#define  M_MASK		GENMASK(18, 17)
+> +#define  M(n)		FIELD_PREP(M_MASK, (n))
+> +#define  CCM_MASK	GENMASK(16, 14)
+> +#define  CCM(n)		FIELD_PREP(CCM_MASK, (n))
+> +#define  CA_MASK	GENMASK(13, 11)
+> +#define  CA(n)		FIELD_PREP(CA_MASK, (n))
+> +#define  TST_MASK	GENMASK(10, 5)
+> +#define  TST(n)		FIELD_PREP(TST_MASK, (n))
+> +#define  CH_EN(id)	BIT(3 + (id))
+> +#define  NB		BIT(2)
+> +#define  RFB		BIT(1)
+> +#define  PD		BIT(0)
+> +
+> +/* Power On Reset(POR) value */
+> +#define  CTRL_RESET_VAL	(M(0x0) | CCM(0x4) | CA(0x4) | TST(0x25))
+> +
+> +/* PHY initialization value and mask */
+> +#define  CTRL_INIT_MASK	(M_MASK | CCM_MASK | CA_MASK | TST_MASK | NB | RFB)
+> +#define  CTRL_INIT_VAL	(M(0x0) | CCM(0x5) | CA(0x4) | TST(0x25) | RFB)
+> +
+> +#define PHY_STATUS	0x10
+> +#define  LOCK		BIT(0)
+> +
+> +#define PHY_NUM		2
+> +
+> +#define MIN_CLKIN_FREQ	25000000
+
+this is 25MHz, so lets write as 25 * MEGA (see units.h)
+
+> +#define MAX_CLKIN_FREQ	165000000
+
+here too
+
+> +
+> +#define PLL_LOCK_SLEEP		10
+> +#define PLL_LOCK_TIMEOUT	1000
+> +
+> +struct mixel_lvds_phy {
+> +	struct phy *phy;
+> +	struct phy_configure_opts_lvds cfg;
+> +	unsigned int id;
 > +};
-> 
-> BRs,
-> Bo-Chen
+> +
+> +struct mixel_lvds_phy_priv {
+> +	struct regmap *regmap;
+> +	struct mutex lock;	/* protect remap access and cfg of our own */
+> +	struct clk *phy_ref_clk;
+> +	struct mixel_lvds_phy *phys[PHY_NUM];
+> +};
+> +
+> +static int mixel_lvds_phy_init(struct phy *phy)
+> +{
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(phy->dev.parent);
+> +
+> +	mutex_lock(&priv->lock);
+> +	regmap_update_bits(priv->regmap,
+> +			   PHY_CTRL, CTRL_INIT_MASK, CTRL_INIT_VAL);
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mixel_lvds_phy_power_on(struct phy *phy)
+> +{
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(phy->dev.parent);
+> +	struct mixel_lvds_phy *lvds_phy = phy_get_drvdata(phy);
+> +	struct mixel_lvds_phy *companion = priv->phys[lvds_phy->id ^ 1];
+> +	struct phy_configure_opts_lvds *cfg = &lvds_phy->cfg;
+> +	u32 val = 0;
+> +	u32 locked;
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(priv->phy_ref_clk);
+> +	if (ret < 0) {
+> +		dev_err(&phy->dev,
+> +			"failed to enable PHY reference clock: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* The master PHY would power on the slave PHY. */
+> +	if (cfg->is_slave)
+> +		return 0;
+> +
+> +	mutex_lock(&priv->lock);
+> +	if (cfg->bits_per_lane_and_dclk_cycle == 7) {
+> +		if (cfg->differential_clk_rate < 44000000)
+> +			val |= M(0x2);
+> +		else if (cfg->differential_clk_rate < 90000000)
+> +			val |= M(0x1);
+> +		else
+> +			val |= M(0x0);
+> +	} else {
+> +		val = NB;
+> +
+> +		if (cfg->differential_clk_rate < 32000000)
+> +			val |= M(0x2);
+> +		else if (cfg->differential_clk_rate < 63000000)
+> +			val |= M(0x1);
+> +		else
+> +			val |= M(0x0);
+> +	}
+> +	regmap_update_bits(priv->regmap, PHY_CTRL, M_MASK | NB, val);
+> +
+> +	/*
+> +	 * Enable two channels synchronously,
+> +	 * if the companion PHY is a slave PHY.
+> +	 */
+> +	if (companion->cfg.is_slave)
+> +		val = CH_EN(0) | CH_EN(1);
+> +	else
+> +		val = CH_EN(lvds_phy->id);
+> +	regmap_write(priv->regmap, PHY_CTRL + REG_SET, val);
+> +
+> +	ret = regmap_read_poll_timeout(priv->regmap, PHY_STATUS, locked,
+> +				       locked, PLL_LOCK_SLEEP,
+> +				       PLL_LOCK_TIMEOUT);
+> +	if (ret < 0) {
+> +		dev_err(&phy->dev, "failed to get PHY lock: %d\n", ret);
+> +		clk_disable_unprepare(priv->phy_ref_clk);
+> +	}
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int mixel_lvds_phy_power_off(struct phy *phy)
+> +{
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(phy->dev.parent);
+> +	struct mixel_lvds_phy *lvds_phy = phy_get_drvdata(phy);
+> +
+> +	mutex_lock(&priv->lock);
+> +	regmap_write(priv->regmap, PHY_CTRL + REG_CLR, CH_EN(lvds_phy->id));
+> +	mutex_unlock(&priv->lock);
 
-Hello CK,
+No check for slave here?
 
-Sorry, I misunderstand your comments.
-ok, I will drop this.
+> +
+> +	clk_disable_unprepare(priv->phy_ref_clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mixel_lvds_phy_configure(struct phy *phy,
+> +				    union phy_configure_opts *opts)
+> +{
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(phy->dev.parent);
+> +	struct phy_configure_opts_lvds *cfg = &opts->lvds;
+> +	int ret;
+> +
+> +	ret = clk_set_rate(priv->phy_ref_clk, cfg->differential_clk_rate);
+> +	if (ret)
+> +		dev_err(&phy->dev,
+> +			"failed to set PHY reference clock rate(%lu): %d\n",
 
-BRs,
-Bo-Chen
-> > Regards,
-> > CK
-> > 
-> > > +			mtk_dpi_config_swap_input(dpi, true);
-> > > +		else
-> > > +			dev_warn(dpi->dev,
-> > > +				 "Failed to swap input, hw is not
-> > > supported.\n");
-> > > +		mtk_dpi_config_channel_swap(dpi,
-> > > MTK_DPI_OUT_CHANNEL_SWAP_RGB);
-> > > +	} else {
-> > > +		mtk_dpi_config_yuv422_enable(dpi, false);
-> > > +		mtk_dpi_config_csc_enable(dpi, false);
-> > > +		if (dpi->conf->swap_input_support)
-> > > +			mtk_dpi_config_swap_input(dpi, false);
-> > > +		mtk_dpi_config_channel_swap(dpi,
-> > > MTK_DPI_OUT_CHANNEL_SWAP_RGB);
-> > > +	}
-> > >  }
-> > >  
-> > >  static void mtk_dpi_dual_edge(struct mtk_dpi *dpi)
-> > > @@ -649,7 +691,10 @@ static int
-> > > mtk_dpi_bridge_atomic_check(struct
-> > > drm_bridge *bridge,
-> > >  	dpi->bit_num = MTK_DPI_OUT_BIT_NUM_8BITS;
-> > >  	dpi->channel_swap = MTK_DPI_OUT_CHANNEL_SWAP_RGB;
-> > >  	dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
-> > > -	dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
-> > > +	if (out_bus_format == MEDIA_BUS_FMT_YUYV8_1X16)
-> > > +		dpi->color_format = MTK_DPI_COLOR_FORMAT_YCBCR_422;
-> > > +	else
-> > > +		dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
-> > >  
-> > >  	return 0;
-> > >  }
-> > > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > > b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > > index 3a02fabe1662..9ce300313f3e 100644
-> > > --- a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > > +++ b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > > @@ -217,4 +217,10 @@
-> > >  
-> > >  #define EDGE_SEL_EN			BIT(5)
-> > >  #define H_FRE_2N			BIT(25)
-> > > +
-> > > +#define DPI_MATRIX_SET		0xB4
-> > > +#define INT_MATRIX_SEL_MASK		GENMASK(4, 0)
-> > > +#define MATRIX_SEL_RGB_TO_JPEG		0
-> > > +#define MATRIX_SEL_RGB_TO_BT601		2
-> > > +
-> > >  #endif /* __MTK_DPI_REGS_H */
-> > 
-> > 
-> 
-> 
+this can fit in a single line (100 chars is okay)
 
+> +			cfg->differential_clk_rate, ret);
+> +
+> +	return ret;
+> +}
+> +
+> +/* Assume the master PHY's configuration set is cached first. */
+> +static int mixel_lvds_phy_check_slave(struct phy *slave_phy)
+> +{
+> +	struct device *dev = &slave_phy->dev;
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(dev->parent);
+> +	struct mixel_lvds_phy *slv = phy_get_drvdata(slave_phy);
+> +	struct mixel_lvds_phy *mst = priv->phys[slv->id ^ 1];
+> +	struct phy_configure_opts_lvds *mst_cfg = &mst->cfg;
+> +	struct phy_configure_opts_lvds *slv_cfg = &slv->cfg;
+> +
+> +	if (mst_cfg->bits_per_lane_and_dclk_cycle !=
+> +	    slv_cfg->bits_per_lane_and_dclk_cycle) {
+> +		dev_err(dev, "number bits mismatch(mst: %u vs slv: %u)\n",
+> +			mst_cfg->bits_per_lane_and_dclk_cycle,
+> +			slv_cfg->bits_per_lane_and_dclk_cycle);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (mst_cfg->differential_clk_rate !=
+> +	    slv_cfg->differential_clk_rate) {
+> +		dev_err(dev, "dclk rate mismatch(mst: %lu vs slv: %lu)\n",
+> +			mst_cfg->differential_clk_rate,
+> +			slv_cfg->differential_clk_rate);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (mst_cfg->lanes != slv_cfg->lanes) {
+> +		dev_err(dev, "lanes mismatch(mst: %u vs slv: %u)\n",
+> +			mst_cfg->lanes, slv_cfg->lanes);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (mst_cfg->is_slave == slv_cfg->is_slave) {
+> +		dev_err(dev, "master PHY is not found\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int mixel_lvds_phy_validate(struct phy *phy, enum phy_mode mode,
+> +				   int submode, union phy_configure_opts *opts)
+> +{
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(phy->dev.parent);
+> +	struct mixel_lvds_phy *lvds_phy = phy_get_drvdata(phy);
+> +	struct phy_configure_opts_lvds *cfg = &opts->lvds;
+> +	int ret = 0;
+> +
+> +	if (mode != PHY_MODE_LVDS) {
+> +		dev_err(&phy->dev, "invalid PHY mode(%d)\n", mode);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (cfg->bits_per_lane_and_dclk_cycle != 7 &&
+> +	    cfg->bits_per_lane_and_dclk_cycle != 10) {
+> +		dev_err(&phy->dev, "invalid bits per data lane(%u)\n",
+> +			cfg->bits_per_lane_and_dclk_cycle);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (cfg->lanes != 4 && cfg->lanes != 3) {
+> +		dev_err(&phy->dev, "invalid data lanes(%u)\n", cfg->lanes);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (cfg->differential_clk_rate < MIN_CLKIN_FREQ ||
+> +	    cfg->differential_clk_rate > MAX_CLKIN_FREQ) {
+> +		dev_err(&phy->dev, "invalid differential clock rate(%lu)\n",
+> +			cfg->differential_clk_rate);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&priv->lock);
+> +	/* cache configuration set of our own for check */
+> +	memcpy(&lvds_phy->cfg, cfg, sizeof(*cfg));
+> +
+> +	if (cfg->is_slave) {
+> +		ret = mixel_lvds_phy_check_slave(phy);
+> +		if (ret)
+> +			dev_err(&phy->dev,
+> +				"failed to check slave PHY: %d\n", ret);
+
+very ugly, single line pls
+
+> +	}
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct phy_ops mixel_lvds_phy_ops = {
+> +	.init = mixel_lvds_phy_init,
+> +	.power_on = mixel_lvds_phy_power_on,
+> +	.power_off = mixel_lvds_phy_power_off,
+> +	.configure = mixel_lvds_phy_configure,
+> +	.validate = mixel_lvds_phy_validate,
+> +	.owner = THIS_MODULE,
+> +};
+> +
+> +static int mixel_lvds_phy_reset(struct device *dev)
+> +{
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = pm_runtime_get_sync(dev);
+
+pm_runtime_resume_and_get() pls
+
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to get PM runtime: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	regmap_write(priv->regmap, PHY_CTRL, CTRL_RESET_VAL);
+> +
+> +	ret = pm_runtime_put(dev);
+
+this seems to be done only around reset, why not in on/off method?
+
+> +	if (ret < 0)
+> +		dev_err(dev, "failed to put PM runtime: %d\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static struct phy *mixel_lvds_phy_xlate(struct device *dev,
+> +					struct of_phandle_args *args)
+> +{
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(dev);
+> +	unsigned int phy_id;
+> +
+> +	if (args->args_count != 1) {
+> +		dev_err(dev,
+> +			"invalid argument number(%d) for 'phys' property\n",
+> +			args->args_count);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	phy_id = args->args[0];
+> +
+> +	if (phy_id >= PHY_NUM) {
+> +		dev_err(dev, "invalid PHY index(%d)\n", phy_id);
+> +		return ERR_PTR(-ENODEV);
+> +	}
+> +
+> +	return priv->phys[phy_id]->phy;
+> +}
+> +
+> +static int mixel_lvds_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct phy_provider *phy_provider;
+> +	struct mixel_lvds_phy_priv *priv;
+> +	struct mixel_lvds_phy *lvds_phy;
+> +	struct phy *phy;
+> +	int i;
+> +	int ret;
+> +
+> +	if (!dev->of_node)
+> +		return -ENODEV;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->regmap = syscon_node_to_regmap(dev->of_node->parent);
+> +	if (IS_ERR(priv->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
+> +				     "failed to get regmap\n");
+> +
+> +	priv->phy_ref_clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(priv->phy_ref_clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->phy_ref_clk),
+> +				     "failed to get PHY reference clock\n");
+> +
+> +	mutex_init(&priv->lock);
+> +
+> +	dev_set_drvdata(dev, priv);
+> +
+> +	pm_runtime_enable(dev);
+> +
+> +	ret = mixel_lvds_phy_reset(dev);
+> +	if (ret) {
+> +		dev_err(dev, "failed to do POR reset: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	for (i = 0; i < PHY_NUM; i++) {
+> +		lvds_phy = devm_kzalloc(dev, sizeof(*lvds_phy), GFP_KERNEL);
+> +		if (!lvds_phy) {
+> +			ret = -ENOMEM;
+> +			goto err;
+> +		}
+> +
+> +		phy = devm_phy_create(dev, NULL, &mixel_lvds_phy_ops);
+> +		if (IS_ERR(phy)) {
+> +			ret = PTR_ERR(phy);
+> +			dev_err(dev, "failed to create PHY for channel%d: %d\n",
+> +				i, ret);
+> +			goto err;
+> +		}
+> +
+> +		lvds_phy->phy = phy;
+> +		lvds_phy->id = i;
+> +		priv->phys[i] = lvds_phy;
+> +
+> +		phy_set_drvdata(phy, lvds_phy);
+> +	}
+> +
+> +	phy_provider = devm_of_phy_provider_register(dev, mixel_lvds_phy_xlate);
+> +	if (IS_ERR(phy_provider)) {
+> +		ret = PTR_ERR(phy_provider);
+> +		dev_err(dev, "failed to register PHY provider: %d\n", ret);
+> +		goto err;
+> +	}
+> +
+> +	return 0;
+> +err:
+> +	pm_runtime_disable(dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int mixel_lvds_phy_remove(struct platform_device *pdev)
+> +{
+> +	pm_runtime_disable(&pdev->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused mixel_lvds_phy_runtime_suspend(struct device *dev)
+> +{
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(dev);
+> +
+> +	/* power down */
+> +	mutex_lock(&priv->lock);
+> +	regmap_write(priv->regmap, PHY_CTRL + REG_SET, PD);
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused mixel_lvds_phy_runtime_resume(struct device *dev)
+> +{
+> +	struct mixel_lvds_phy_priv *priv = dev_get_drvdata(dev);
+> +
+> +	/* power up + control initialization */
+> +	mutex_lock(&priv->lock);
+> +	regmap_update_bits(priv->regmap, PHY_CTRL,
+> +			   CTRL_INIT_MASK | PD, CTRL_INIT_VAL);
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops mixel_lvds_phy_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(mixel_lvds_phy_runtime_suspend,
+> +			   mixel_lvds_phy_runtime_resume, NULL)
+> +};
+> +
+> +static const struct of_device_id mixel_lvds_phy_of_match[] = {
+> +	{ .compatible = "fsl,imx8qm-lvds-phy" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mixel_lvds_phy_of_match);
+> +
+> +static struct platform_driver mixel_lvds_phy_driver = {
+> +	.probe	= mixel_lvds_phy_probe,
+> +	.remove	= mixel_lvds_phy_remove,
+> +	.driver = {
+> +		.pm = &mixel_lvds_phy_pm_ops,
+> +		.name = "mixel-lvds-phy",
+> +		.of_match_table	= mixel_lvds_phy_of_match,
+> +	}
+> +};
+> +module_platform_driver(mixel_lvds_phy_driver);
+> +
+> +MODULE_DESCRIPTION("Mixel LVDS PHY driver");
+> +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.25.1
+
+-- 
+~Vinod
