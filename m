@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20D4B566FA7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE2A9566FB5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:46:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233203AbiGENnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 09:43:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57416 "EHLO
+        id S231811AbiGENoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 09:44:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232661AbiGENn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:43:26 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1A61EC69
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 06:07:34 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id m18so1988662lfg.10
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 06:07:34 -0700 (PDT)
+        with ESMTP id S232681AbiGENn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:43:59 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3165F2CCA6
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 06:08:02 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id g11so5211492lfb.11
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 06:08:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zbkJQitCCB4JIY77EtUWLU2dvmK4r/1hyyXKadOjVuk=;
-        b=Y5fC7OWZuDKf24I0MV+8pbvacfRq5CpAm7myf5QLNeQ+ruoEM4xzzTMzeWHqAU4rDl
-         meIsa1R/5ZXa6+KXMiGEznU0U6Cx1zVGVsplX31icjx1gfbVm7VPKwsvg++vCIQCfgLh
-         nnJWoZ0vsZWqDkWMLyR3ynZ15eJsd51irIIwFC+OcgSkVmrK2xYypXRlXe+xBXy1ATyj
-         d+HleFZ95SL53prO/dlNuzAKmSzabgXGJmbOb3nwtULUNmsvREbe3gJ+gBwOg4ieICBw
-         G4uLvh4pSWuLay39UzOaB+OvYTJm6QMjxK+wYM30JTtzG7pugXDtnIHQ3QuR/Cd7V9VI
-         uoJg==
+        bh=1ALZ4/PqL8MWshKy7QXRBD1PzrOacYbyo6I8jS34n90=;
+        b=EVtUUR0AHgY14YanyVUhvle7uBzof+Adsv/0J0NucfyhCyS5eICnnMraWU+ql6U+UK
+         DKxalum8br916UMLFqqaB+5Qh+EvjQQlo6+6BMNjFRWoAzTK3HLhM+K7VCeQueFbV2hm
+         C/Tc+Ne/mRsY11VK/HeBQ9CAn49gRMwCM1BG4r72DFhwUyIZ2a6l/o4tPKhIbM4FZOGR
+         cFCxyK7wnC3a5vcpY3qUDo7PNieobZRR1oLRxTrZ+88coUUiQqJkO7jmN5dEUlo2eECc
+         AJdzHZI7HF5A2c749BvTBQcXp++FnmzNVHQVAphWd2Fp9tBWxahmo+grC7/QyqirJzLU
+         RSNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=zbkJQitCCB4JIY77EtUWLU2dvmK4r/1hyyXKadOjVuk=;
-        b=Z18KXHCMFvbDtilJ37ETjGPymWumDeuBG7qWHjqH33tsdXJI5fuxeto4hf9+9Auz61
-         9Rs9Pc/xIjB3tVQ74nuh5+4H3KJIlzG3/CmEczRLHZdtPD8fVf0Hs5ULVA/1ut+VKhg2
-         1iQS+O6TLdlxmMb+TUk1/HUsd9k8FthYDvg0l9qWEwIWW3pQVj5Nrt6KL+Yui2Td9cQX
-         IfCdidwmnXsjwfnk6BPmQAIGhKiR1u3sUIKW3ki/1HenFPKTu/4L84aivHLwaKRGSuIi
-         2gMe89hXQE/j55HNShKWkIV9Tg9pqtAdrtP9tPfhzn42iYH/+ZbeOi9+45M8bRZtj6kx
-         JXtg==
-X-Gm-Message-State: AJIora8lCNR0uX5waxI36E9gogvGnnsEMHNRIEO6+2CFDfObDibaWvAt
-        XbJJcDC+SCRe5QvgLgZ2TM9NOQ==
-X-Google-Smtp-Source: AGRyM1unrH7/KXqgrUw0VN4FOA+NEao2KQ6Mp/vj2A5DmtcTSTdiZPVwcD0NO8/kYjMYNCgLInjTKA==
-X-Received: by 2002:a05:6512:2346:b0:484:4837:eba9 with SMTP id p6-20020a056512234600b004844837eba9mr1186235lfu.37.1657026452443;
-        Tue, 05 Jul 2022 06:07:32 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id dt7-20020a0565122a8700b0047f674838a5sm5680112lfb.231.2022.07.05.06.07.31
+        bh=1ALZ4/PqL8MWshKy7QXRBD1PzrOacYbyo6I8jS34n90=;
+        b=tv7kT+3QAg3n/zDtesGFg1Jzb1ESGL/OsaIv7Cevv/FPuqCb5zBnSTVAM5StLaPtJY
+         fipUWPjVdBINmBGq1xVJxpYfT9Nd+kucJs6m19tB+ngI0J5MvHxGKIbsJBzEavfikG8P
+         AXJMifGU4xT047rhSSCXoNRLot61IE67W/C9tM9mwHkuVR5BBeTOAXAowmEhJu4Y62y5
+         EiBEWr6U3v/p3JH8es+jhnOz0s2WiHX+/TZnijHYxEZwA/yU+ysIhvyf062mKEUZof7M
+         nbfee03A5AhHUAgIKoQ8zLzgnoXkzCxklD9o8tH66JJqLB6DLdq53HWkLWOnUI1n4QO8
+         mZSg==
+X-Gm-Message-State: AJIora/XD6E3Z9JzIGMfP1LaWc+LRoO7w+rdoKxUOVmKjl+jcnjiFzXf
+        RB9NkISXBKHAmIbVcFsJdQxsOQ==
+X-Google-Smtp-Source: AGRyM1skhDvMDz6fWBLBnkSwusjLrg0TYBCJGScxZZHrVbyU8OhICtUWbwPS5bDSGltSAVSbEB6m5w==
+X-Received: by 2002:ac2:4f02:0:b0:481:43a8:e368 with SMTP id k2-20020ac24f02000000b0048143a8e368mr20983909lfr.65.1657026480496;
+        Tue, 05 Jul 2022 06:08:00 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id a8-20020ac25208000000b0047f74ee6a1fsm5688589lfl.63.2022.07.05.06.07.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 06:07:31 -0700 (PDT)
-Message-ID: <3897aace-bce5-cad4-d92f-40cef4d0e207@linaro.org>
-Date:   Tue, 5 Jul 2022 15:07:30 +0200
+        Tue, 05 Jul 2022 06:08:00 -0700 (PDT)
+Message-ID: <8a423377-a181-2f41-6c11-a0e2b0d46c92@linaro.org>
+Date:   Tue, 5 Jul 2022 16:07:59 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: leds: Add cznic,turris1x-leds.yaml
- binding
-Content-Language: en-US
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 13/14] arm64: dts: qcom: msm8996: use non-empty ranges for
+ PCIe PHYs
+Content-Language: en-GB
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220705000448.14337-1-pali@kernel.org>
- <42d837dd-fbd1-6294-2fa0-8a07ae0f8d44@linaro.org>
- <20220705114238.xwgexavgozqskwbw@pali>
- <90fd55cb-13f4-eac2-2b1a-85ae628ecc89@linaro.org>
- <20220705121541.t7jjcjp4hkqprsdo@pali>
- <3358f88c-5c58-ae0d-2c26-7ba9a954b491@linaro.org>
- <20220705130550.uu6ix7tdtswn7vaf@pali>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220705130550.uu6ix7tdtswn7vaf@pali>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20220705114032.22787-1-johan+linaro@kernel.org>
+ <20220705114032.22787-14-johan+linaro@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220705114032.22787-14-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -83,20 +78,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 15:05, Pali Rohár wrote:
-> 
-> This was the first thing which I did when I read email. No usable
-> result. So the next thing was that I started git grep on the linux tree.
-> Again no result. So at the end I come to the conclusion that you forgot
-> to copy+paste whole quote or something like that.
-> 
-> Now I started searching a bit more and found it in following documentation:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> Original link to the quote would be useful (but now I have it).
+On 05/07/2022 14:40, Johan Hovold wrote:
+> Clean up the PCIe PHY nodes by using a non-empty ranges property.
 
-Good point, thanks for the link. I forgot that devicetree spec is also
-available as webpage.
+A matter of taste, but nevertheless:
 
-Best regards,
-Krzysztof
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   arch/arm64/boot/dts/qcom/msm8996.dtsi | 26 +++++++++++++-------------
+>   1 file changed, 13 insertions(+), 13 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index b670d0412760..16869bb7d625 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -590,7 +590,7 @@ pcie_phy: phy@34000 {
+>   			reg = <0x00034000 0x488>;
+>   			#address-cells = <1>;
+>   			#size-cells = <1>;
+> -			ranges;
+> +			ranges = <0x0 0x00034000 0x4000>;
+>   
+>   			clocks = <&gcc GCC_PCIE_PHY_AUX_CLK>,
+>   				<&gcc GCC_PCIE_PHY_CFG_AHB_CLK>,
+> @@ -603,10 +603,10 @@ pcie_phy: phy@34000 {
+>   			reset-names = "phy", "common", "cfg";
+>   			status = "disabled";
+>   
+> -			pciephy_0: phy@35000 {
+> -				reg = <0x00035000 0x130>,
+> -				      <0x00035200 0x200>,
+> -				      <0x00035400 0x1dc>;
+> +			pciephy_0: phy@1000 {
+> +				reg = <0x1000 0x130>,
+> +				      <0x1200 0x200>,
+> +				      <0x1400 0x1dc>;
+>   				#phy-cells = <0>;
+>   
+>   				#clock-cells = <0>;
+> @@ -617,10 +617,10 @@ pciephy_0: phy@35000 {
+>   				reset-names = "lane0";
+>   			};
+>   
+> -			pciephy_1: phy@36000 {
+> -				reg = <0x00036000 0x130>,
+> -				      <0x00036200 0x200>,
+> -				      <0x00036400 0x1dc>;
+> +			pciephy_1: phy@2000 {
+> +				reg = <0x2000 0x130>,
+> +				      <0x2200 0x200>,
+> +				      <0x2400 0x1dc>;
+>   				#phy-cells = <0>;
+>   
+>   				#clock-cells = <0>;
+> @@ -631,10 +631,10 @@ pciephy_1: phy@36000 {
+>   				reset-names = "lane1";
+>   			};
+>   
+> -			pciephy_2: phy@37000 {
+> -				reg = <0x00037000 0x130>,
+> -				      <0x00037200 0x200>,
+> -				      <0x00037400 0x1dc>;
+> +			pciephy_2: phy@3000 {
+> +				reg = <0x3000 0x130>,
+> +				      <0x3200 0x200>,
+> +				      <0x3400 0x1dc>;
+>   				#phy-cells = <0>;
+>   
+>   				#clock-cells = <0>;
+
+
+-- 
+With best wishes
+Dmitry
