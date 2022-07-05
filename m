@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 917AC5675F6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 19:47:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E58585675FD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 19:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233425AbiGERrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 13:47:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36720 "EHLO
+        id S233141AbiGERvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 13:51:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233141AbiGERrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 13:47:23 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5528F1D321
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 10:47:22 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id y16so21782890lfb.9
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 10:47:22 -0700 (PDT)
+        with ESMTP id S231346AbiGERvm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 13:51:42 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B7F1B794
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 10:51:40 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id t25so21840047lfg.7
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 10:51:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dyLUPLJN1u9FNXgGeiKc1oirfk0kExq8JKvDebi7B0o=;
-        b=kA0owFX4H1CXq5w2ZmCHtgZkGCj6mxiaALH75Ugwnd+9XYYDgw45wefTL6cfQ9T1Uj
-         mKkMjmzHT5aqjmBpaazGBFimYWNkLJDNqq9MwVU0QBOmY3Z7LCLpDLo1jCMnrALhhXwu
-         p4xNYCR6vhUXBoQCFn1DO40XXSsRLZz7uGD7odR7X99PFUbZKr+9UBCWIa/7MLFTfGr/
-         Ltbd9bGvA1jb60DUolfxQ1na5GKS/gkMz/whn+9KMwTD+HBksWnc8yZaYb11aiSNj02R
-         4HzTqxUSxy64sEj1FXLv6eUWPL6PLj4UlGO6k1pERWwNF0pjxxDIe7tAcD9GMqh7bvZG
-         DWLQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=iKfmYqFl8eXZRKHVQFMy0ij+1ahWYflV52//TH7IUPA=;
+        b=lBt5qQV75xYWQrQSgYHwKy3sRqadvbYfSXLv0NCKs6FjpPeEJHKSkHNAyCzDQtK4v3
+         +OA96M3OAtGz/CFEjQdyFdh0WrNk7RrDySPWzqdKM9HWkiMuB50R7NcXM0syHQ0bbUKw
+         gK09ZCXz2Hce/Br/O3hKNAYRVRuDvRbT4DD13IncTeHeGbvpGFLVHVXyCiCSGRhyRH8P
+         30yQbOxHN8jZbDG9Ipas1WRDLAomQdCv6jjk6DvjcjdFB6lAkOjNTlrgQ65RZmFRt2b5
+         jP8pLBvsG68bWhqhpynIZCaOKbCkCDPLelKGuZ5vcExlJhSuJQ5m5Y27soEDxdU2xdix
+         RPjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=dyLUPLJN1u9FNXgGeiKc1oirfk0kExq8JKvDebi7B0o=;
-        b=EMh385l/OfQ/TwSwyr92KcpnIt6nvBVxPRnsKtQfDkN1uLDBylYAP0K22tKNstpoSA
-         zK0Ue6bOkByDnulStdkxyAjI4CtWeaAJwGzw8QE4tRl0JUnomzWNU4C1wjtVi8bVyQby
-         VImNxr2ptMC/e1R6vzAt4BMh9YPvQ9AIrqZm0/kKUSk2ZG/zB2GOL71mydvjaeP30LvQ
-         MrRbYIKpXTtV2ZgKlMwp0Bqb1jedbLrY8wyBlFniU75cVVwQJeG7gbehXqhSeCBK9cGV
-         J/Jq0Qo9QOeK/CcMyKT6vchP6EnHj2lEe+M2I+zL/PtbkK3MsZ6KIcODVn6UAwSlAaS8
-         Vj7g==
-X-Gm-Message-State: AJIora9TAkQNiakqD84isGM9dn8gh1wk2YquhbiTs4zvNavX2bdYAu5u
-        xq0gSQXMCk3PvQz7wmWKD/us+Xcj1vyIog==
-X-Google-Smtp-Source: AGRyM1tOs0j44NmjYZgJ6nDoHfOI+ayF9n+MMgK5oRPKWVyJUKLDx1/FaPDxkVeknuOnWQMgzv8RCg==
-X-Received: by 2002:ac2:5d66:0:b0:481:55cb:9b8b with SMTP id h6-20020ac25d66000000b0048155cb9b8bmr17860281lft.546.1657043240687;
-        Tue, 05 Jul 2022 10:47:20 -0700 (PDT)
-Received: from krzk-bin.home ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id y22-20020a05651c107600b0025d38eb7390sm315371ljm.43.2022.07.05.10.47.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 10:47:19 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v2] ASoC: dt-bindings: qcom,sm8250: add SDM845 sound
-Date:   Tue,  5 Jul 2022 19:47:02 +0200
-Message-Id: <20220705174702.763247-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        bh=iKfmYqFl8eXZRKHVQFMy0ij+1ahWYflV52//TH7IUPA=;
+        b=Ll/GfPW6aIo4TqMH+Thcx/zXxBnwfTw+GQ0QYChUGlcGvOLR9qSe4pkg/trM14SYlA
+         HFeWBA1PduGVSoix/rN6k33CXUItrSDlCUAPc0IDVDcwKnRbDajjWZjUFd2tBz7r5qMU
+         hXTMZdaTLxXBAzIKN/l2MECET9QLlov+5FfSH1wf8ejULa5lIIs8BGk20+cbx2kmYxb3
+         d0I5oH0oVgPFXy7Omb0BYszfDoHMihyb4vm/n4S4IDAskuU/dquz1EomOwgmfNVQK+uR
+         KN+NGGcAh7g+f+CpF9Z3gybfRYCfzax9s/DnaabczBD/WahSVDLh8F5Hmyc+zhjyUXIA
+         FH/w==
+X-Gm-Message-State: AJIora8i4DRa0jvd+kvMiqtS8qdMQODsClMOdSuepnhprrNUBYhrVj9R
+        nnS9ZZRASKOkBGj1MTA1VuZZTw==
+X-Google-Smtp-Source: AGRyM1uXuX6zwfwoFhhbvBNBZAlJkQSisF7fAqgBYTrNnpqUXMVJoy+6qqRBQ3DpNgbqSX3UW+RrvQ==
+X-Received: by 2002:a05:6512:3c86:b0:47f:afe3:f26e with SMTP id h6-20020a0565123c8600b0047fafe3f26emr22622739lfv.173.1657043499223;
+        Tue, 05 Jul 2022 10:51:39 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id m10-20020a19710a000000b0047f68b11329sm5783160lfc.266.2022.07.05.10.51.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 10:51:38 -0700 (PDT)
+Message-ID: <ebf5029e-83fd-e50d-b7cb-eae1b64f7145@linaro.org>
+Date:   Tue, 5 Jul 2022 19:51:37 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/2] [RFT] dt-bindings: leds: Add
+ cznic,turris1x-leds.yaml binding
+Content-Language: en-US
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220705000448.14337-1-pali@kernel.org>
+ <20220705155929.25565-1-pali@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220705155929.25565-1-pali@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,133 +78,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm SDM845 sound card bindings are almost the same as SM8250,
-except "pin-switches" and "widgets" properties.  These were not
-documented in SDM845 text bindings but are actually valid for SDM845.
+On 05/07/2022 17:59, Pali Rohár wrote:
+> Add device-tree bindings documentation for Turris 1.x RGB LEDs.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The patchset is difficult to find because you attached it to some older
+thread. Don't.
 
----
+> 
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> 
+> ---
+> Changes in v2:
+> * Fix schema errors
+> ---
+>  .../bindings/leds/cznic,turris1x-leds.yaml    | 118 ++++++++++++++++++
+>  1 file changed, 118 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
+> new file mode 100644
+> index 000000000000..bcaab5b03128
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
+> @@ -0,0 +1,118 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/cznic,turris1x-leds.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CZ.NIC's Turris 1.x LEDs driver
+> +
+> +maintainers:
+> +  - Pali Rohár <pali@kernel.org>
+> +
+> +description:
+> +  This module adds support for the RGB LEDs found on the front panel of the
+> +  Turris 1.x routers. There are 8 RGB LEDs that are controlled by CZ.NIC CPLD
+> +  firmware running on Lattice FPGA. Firmware is open source and available at
+> +  https://gitlab.nic.cz/turris/hw/turris_cpld/-/blob/master/CZ_NIC_Router_CPLD.v
+> +
+> +properties:
+> +  compatible:
+> +    const: cznic,turris1x-leds
+> +
+> +  reg:
+> +    description: CPLD address range where LED registers are mapped
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^multi-led@[0-7]$":
+> +    type: object
+> +    $ref: leds-class-multicolor.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 7
+> +
+> +    required:
+> +      - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    cpld@3,0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0x0 0x3 0x0 0x00020000>;
+> +
+> +        led-controller@13 {
+> +            compatible = "cznic,turris1x-leds";
+> +            reg = <0x13 0x1d>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            multi-led@0 {
+> +                    reg = <0x0>;
+You have some weird indentation here. In other places of DTS example it
+is correct four spaces, so here should be four spaces as well.
 
-Changes since v1:
-1. Integrate into SM8250 instead of creating new file (Stephan).
-
-Cc: Stephan Gerhold <stephan@gerhold.net>
----
- .../devicetree/bindings/sound/qcom,sdm845.txt | 91 -------------------
- .../bindings/sound/qcom,sm8250.yaml           |  1 +
- 2 files changed, 1 insertion(+), 91 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/qcom,sdm845.txt
-
-diff --git a/Documentation/devicetree/bindings/sound/qcom,sdm845.txt b/Documentation/devicetree/bindings/sound/qcom,sdm845.txt
-deleted file mode 100644
-index de4c604641da..000000000000
---- a/Documentation/devicetree/bindings/sound/qcom,sdm845.txt
-+++ /dev/null
-@@ -1,91 +0,0 @@
--* Qualcomm Technologies Inc. SDM845 ASoC sound card driver
--
--This binding describes the SDM845 sound card, which uses qdsp for audio.
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be one of this
--			"qcom,sdm845-sndcard"
--			"qcom,db845c-sndcard"
--			"lenovo,yoga-c630-sndcard"
--
--- audio-routing:
--	Usage: Optional
--	Value type: <stringlist>
--	Definition:  A list of the connections between audio components.
--		  Each entry is a pair of strings, the first being the
--		  connection's sink, the second being the connection's
--		  source. Valid names could be power supplies, MicBias
--		  of codec and the jacks on the board.
--
--- model:
--	Usage: required
--	Value type: <stringlist>
--	Definition: The user-visible name of this sound card.
--
--- aux-devs
--	Usage: optional
--	Value type: <array of phandles>
--	Definition: A list of phandles for auxiliary devices (e.g. analog
--		    amplifiers) that do not appear directly within the DAI
--		    links. Should be connected to another audio component
--		    using "audio-routing".
--
--= dailinks
--Each subnode of sndcard represents either a dailink, and subnodes of each
--dailinks would be cpu/codec/platform dais.
--
--- link-name:
--	Usage: required
--	Value type: <string>
--	Definition: User friendly name for dai link
--
--= CPU, PLATFORM, CODEC dais subnodes
--- cpu:
--	Usage: required
--	Value type: <subnode>
--	Definition: cpu dai sub-node
--
--- codec:
--	Usage: required
--	Value type: <subnode>
--	Definition: codec dai sub-node
--
--- platform:
--	Usage: Optional
--	Value type: <subnode>
--	Definition: platform dai sub-node
--
--- sound-dai:
--	Usage: required
--	Value type: <phandle>
--	Definition: dai phandle/s and port of CPU/CODEC/PLATFORM node.
--
--Example:
--
--audio {
--	compatible = "qcom,sdm845-sndcard";
--	model = "sdm845-snd-card";
--	pinctrl-names = "default", "sleep";
--	pinctrl-0 = <&pri_mi2s_active &pri_mi2s_ws_active>;
--	pinctrl-1 = <&pri_mi2s_sleep &pri_mi2s_ws_sleep>;
--
--	mm1-dai-link {
--		link-name = "MultiMedia1";
--		cpu {
--			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
--		};
--	};
--
--	pri-mi2s-dai-link {
--		link-name = "PRI MI2S Playback";
--		cpu {
--			sound-dai = <&q6afedai PRIMARY_MI2S_RX>;
--		};
--
--		platform {
--			sound-dai = <&q6routing>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-index 4ecd4080bb96..7cdf9e9f4dd3 100644
---- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-@@ -18,6 +18,7 @@ properties:
-     enum:
-       - qcom,apq8016-sbc-sndcard
-       - qcom,msm8916-qdsp6-sndcard
-+      - qcom,sdm845-sndcard
-       - qcom,sm8250-sndcard
-       - qcom,qrb5165-rb5-sndcard
- 
--- 
-2.34.1
-
+Best regards,
+Krzysztof
