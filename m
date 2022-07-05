@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00CB2567998
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 23:52:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 094F1567996
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 23:52:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232588AbiGEVwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 17:52:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39304 "EHLO
+        id S232073AbiGEVwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 17:52:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232073AbiGEVw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 17:52:29 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 123175FC4
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 14:52:28 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id bk26so4314248wrb.11
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 14:52:27 -0700 (PDT)
+        with ESMTP id S232525AbiGEVwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 17:52:30 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3B8314D03
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 14:52:29 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id r14so13594215wrg.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 14:52:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=8/fojUw0EeEcK+rqcJSp3I2q4GoLWZt/YWa+Regpf2w=;
-        b=Jr18FWZSzSRSneVObsSjnVJxBEUXAHsbqU/4W10bboXeXN2L2pGC6VHQ4lgo/UBYrp
-         J0CMP0GRKp8dUKbMzK9I1qdn1rq3wK26lnd4XTIQ0sX7h71LptFUbULc6iaAnW6WGhm/
-         okjirNplhv/WA9IcoywKUcGHw+BXG46zwI2GDKyZOkmqjyOn04Z5BJhC7yJplgdtIB49
-         wuTwK1SUud924+xRGcyrhru3Yn2If8/5ynnTC895rXmhv7F9KKS2ySwpJDiF/o/a0tk6
-         AVZPaubBcC4eXqg35e2ngXfchcbpzRQnzCgaBYEME++JqIp0fl9txiaPCPAGuTEtjsUi
-         YJFg==
+        bh=bn7NMU6i2JipaHjilcDVj2dVJzF0Mozbq5+lea1OdzA=;
+        b=Slkpsl7r9Kp451ZNey0oEZzxjuQF0suIIjxL9cZ2NQwn/t1lFAU9Tnh+suky4eMS1h
+         YUmFPg8cYA3FAofnfJJV8ocNpuN2u1BAa+fQ35PTOkwttnxQ1zDR1Qc8de64sYsXnBUH
+         ajLI4JkOsiOJ4FmFcWefB6nrvs/7GyrBRKYz+6/eOYVP/BE+xSu4DAnMoA7m08+pWwaW
+         ELJHDcXeFjTZU4OrOCwONiswxxTNfceAQzWy+UcN47rs6g67curC4Asuc1MmU70KlF/V
+         nasOCrdsJTNHCfg3y67UHtpYybbM7aKBZTTjA/5NNdVuWhbOCRNbKDRc0WOCbLp1OcZd
+         jA6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=8/fojUw0EeEcK+rqcJSp3I2q4GoLWZt/YWa+Regpf2w=;
-        b=HcnSnEvcuRogNa+ikEcCUxrT/8QysGFRz72CHQK6wMWw0Ys9p+eSkQLVrPisGGeqki
-         0ubirlIhS2uDOAD2kFkHZEgYOu9tzYoUW0hn9cbfEx67J0FQMYC6ekJSubCKK9vDlHMQ
-         8KSsqLAL8DxrP5CqLV3CUz+QL7LCUp5ylay8pUgpI7vu8OzBq9EYqSzHm7S3uf5k5wG8
-         2zsBTpxM7un5ux9R9dTujS/RRgJDz26we7UeYBIq2fsmyvonQ3ToSQAde+p0QuMKfSLE
-         RxGsnmYSN3laDc2cUUJ7oijouK+9KUObxp4mjCdKNFLhS+fk66p2WJxAgkyRr75uyrfn
-         J0ig==
-X-Gm-Message-State: AJIora9U7nvLoRP8HrWJDSfYrvvk5ShMfUohprG7iW3cTXD0+hV6hpLp
-        Z87DhVE2tTFYKGwK/5o4jMhd/A==
-X-Google-Smtp-Source: AGRyM1tX5bERlh6TaveO6GrgyXdZI+WLqirgKBhUqp4y28CVn8caA9+OntupBTJIPlHx+MDpz9T9Gg==
-X-Received: by 2002:a5d:5985:0:b0:21b:c74b:5a7 with SMTP id n5-20020a5d5985000000b0021bc74b05a7mr31952683wri.242.1657057946655;
-        Tue, 05 Jul 2022 14:52:26 -0700 (PDT)
+        bh=bn7NMU6i2JipaHjilcDVj2dVJzF0Mozbq5+lea1OdzA=;
+        b=P2BamfnDaPHHERs45+u1DtOh232ib+fIbqpZpkXPHYS2HfWs2j6bWBq3CMVnwEDNKg
+         z9WZkVFjL9DXa9E5OUxg2HvWoCSwSd8Iue22GUZ5bMHT9cGB01WBLae1AHuXYW3CDZDb
+         agaU98If/NZG9bFqphTnkP219xp9ce9P/olV/wvcfiNs2NhpwRy20u8UvEArRkg8XSye
+         OtmFeaVfwvKVvxX6dZNRsIw4OmxIkHRAroIzocbEhnPCTLyn8o3r5i2+RY+CsdL2jBID
+         FmnO7XLSTB13mNPFanbQ0CTLB5RHR3UogBBDWYJEkWKnaM0QUbKHE7Fty1led2OaDc2h
+         a4IQ==
+X-Gm-Message-State: AJIora/2+p0yi8rJWzN7u3NVZXFV4ABIFOPU/QrtwQFiFYFN4SOJTJqm
+        j+KV2GGAlOl87K0buysAG6TGaw==
+X-Google-Smtp-Source: AGRyM1uDlF2/DUTmOv95q9ml3VpkOLRHZuDe6OmNqYM6t+SWDXd/DCAq3Jod5QPF4ItOmxcBKE2/jA==
+X-Received: by 2002:a05:6000:1888:b0:21c:9a16:5cdd with SMTP id a8-20020a056000188800b0021c9a165cddmr34342146wri.562.1657057948113;
+        Tue, 05 Jul 2022 14:52:28 -0700 (PDT)
 Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id g34-20020a05600c4ca200b0039c7dbafa7asm18353920wmp.19.2022.07.05.14.52.25
+        by smtp.gmail.com with ESMTPSA id g34-20020a05600c4ca200b0039c7dbafa7asm18353920wmp.19.2022.07.05.14.52.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 14:52:26 -0700 (PDT)
+        Tue, 05 Jul 2022 14:52:27 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
@@ -70,9 +70,9 @@ Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
         linux-riscv@lists.infradead.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 02/13] dt-bindings: display: ili9341: document canaan kd233's lcd
-Date:   Tue,  5 Jul 2022 22:52:03 +0100
-Message-Id: <20220705215213.1802496-3-mail@conchuod.ie>
+Subject: [PATCH v5 03/13] dt-bindings: dma: dw-axi-dmac: extend the number of interrupts
+Date:   Tue,  5 Jul 2022 22:52:04 +0100
+Message-Id: <20220705215213.1802496-4-mail@conchuod.ie>
 X-Mailer: git-send-email 2.37.0
 In-Reply-To: <20220705215213.1802496-1-mail@conchuod.ie>
 References: <20220705215213.1802496-1-mail@conchuod.ie>
@@ -80,7 +80,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,27 +90,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-The Canaan KD233 development board has a built in LCD.
-Add a specific compatible for it.
+The Canaan k210 apparently has a Sysnopsys Designware AXI DMA
+controller, but according to the documentation & devicetree it has 6
+interrupts rather than the standard one. Support the 6 interrupt
+configuration by unconditionally extending the binding to a maximum of
+8 per-channel interrupts thereby matching the number of possible
+channels.
 
+Link: https://canaan-creative.com/wp-content/uploads/2020/03/kendryte_standalone_programming_guide_20190311144158_en.pdf #Page 51
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../devicetree/bindings/display/panel/ilitek,ili9341.yaml        | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/dma/snps,dw-axi-dmac.yaml          | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-index c5571391ca28..99e0cb9440cf 100644
---- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-@@ -24,6 +24,7 @@ properties:
-           - adafruit,yx240qv29
-           # ili9341 240*320 Color on stm32f429-disco board
-           - st,sf-tc240t-9370-t
-+          - canaan,kd233-tft
-       - const: ilitek,ili9341
+diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+index 4324a94b26b2..67aa7bb6d36a 100644
+--- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
++++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+@@ -34,7 +34,12 @@ properties:
+       - const: axidma_apb_regs
  
-   reg: true
+   interrupts:
+-    maxItems: 1
++    description:
++      If the IP-core synthesis parameter DMAX_INTR_IO_TYPE is set to 1, this
++      will be per-channel interrupts. Otherwise, this is a single combined IRQ
++      for all channels.
++    minItems: 1
++    maxItems: 8
+ 
+   clocks:
+     items:
 -- 
 2.37.0
 
