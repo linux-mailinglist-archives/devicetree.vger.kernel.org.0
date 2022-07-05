@@ -2,117 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C845678C2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 22:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E9245678CA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 22:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232336AbiGEUuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 16:50:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55892 "EHLO
+        id S229682AbiGEUvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 16:51:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231171AbiGEUuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 16:50:11 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4DD720BDC;
-        Tue,  5 Jul 2022 13:49:05 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id m13so12342587ioj.0;
-        Tue, 05 Jul 2022 13:49:05 -0700 (PDT)
+        with ESMTP id S232331AbiGEUvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 16:51:24 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA2F313E29
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 13:51:13 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id c137so9679983qkg.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 13:51:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=f58NyD3PocFs1QBvKBaKz+IIlqbXQEwSuCzNvcT64E4=;
+        b=lrUgQNmuU4a7PUShIpjV2QD1eYyPBTzVsXW6mIVhNWO+wYbMx1QBzZBZNne1GJ9x1f
+         OLOqFDCMBHKo7PrC59BbuO7iSW6B9qTml3mNvBeyJ1iO2EsR7Yb7wgLKGf6FNinKaqq2
+         LJaezoBZOgTHDECZwquKloomJ8badpRs5y9Qr0beoN+svNhtMkZXJSC11HR8kz6+K9ge
+         Bj+AnklyVPun1URmsBtwS2YoK1uD5S5E/O1BR2xqIBMyMI5KmtaZu8x3fKDqeVe0vmFb
+         FPcoEba6rjWRhhbXZpQdNab8Uiq2cAlBhxAZQoIq4yQnFtzl8jqnykr6VovA5zlfxlPz
+         PY3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mzARt3SUylprTdvbWfGQj5lJEtQuB8YwyDUa4X1Y/TQ=;
-        b=YwzAylPYHe2q835HmyhBdJA4eZ5VAi3duzajM32bPJ0/iJztJ6uRnFEduxLMhR1ZHq
-         nbu+5W6hcuZAG2oZPj3G/Wq6cCzBDgJ9xBsnt9oZi1QCKsfgR2UvhA4z54lC6YucKn7L
-         sYVw2TBmEImfnZh6c7UM173HjTDUY6oBokUAWKRfF2rJ+CF71K1aWpnZmTEZuEHgwesz
-         ONsZGYBP/aXc06MWbs9BL5U5UGWbnjvD1SyKKes7LvOSqfCDB9eA64XlR7gwqMnKdXu0
-         4DqGVglizdnBtzOuM42gS8tYJf/y4zygPlPp2E1Spx7W/NopQuaNhZ4nqrYZSDTco53T
-         hxFg==
-X-Gm-Message-State: AJIora8b2Yx/JTlS0GCbz7JCpMyJa1zpqcLLHTNl6nf6+Q6DG547mvww
-        8kAi2q8dc2Zv9OJ1RCPzVA==
-X-Google-Smtp-Source: AGRyM1t3Q/lWtfZuyq003ElF5s7OUqIiDA2Wq5dxaxnoKjRtLzsbmHFJ7CK7VeOkWtDkrsMgCyJuvQ==
-X-Received: by 2002:a6b:f718:0:b0:675:54cb:dda with SMTP id k24-20020a6bf718000000b0067554cb0ddamr20639324iog.114.1657054144601;
-        Tue, 05 Jul 2022 13:49:04 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id a9-20020a92c709000000b002dc133c9468sm2578869ilp.6.2022.07.05.13.49.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 13:49:04 -0700 (PDT)
-Received: (nullmailer pid 2598242 invoked by uid 1000);
-        Tue, 05 Jul 2022 20:49:02 -0000
-Date:   Tue, 5 Jul 2022 14:49:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v1 01/16] dt-bindings: iommu: mediatek: Increase max
- interrupt number
-Message-ID: <20220705204902.GA2596733-robh@kernel.org>
-References: <20220704100028.19932-1-tinghan.shen@mediatek.com>
- <20220704100028.19932-2-tinghan.shen@mediatek.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=f58NyD3PocFs1QBvKBaKz+IIlqbXQEwSuCzNvcT64E4=;
+        b=WZrGB5ehGsWS5V64tK145XlELudJMemBPJtcVTqme8hJyPczMfUXBOkGqjjTOIPCor
+         bmX3Zwqv0JbnHeYBS/1PrASArOeH8m1OJrlcsnA6kJ+ed8idVQo1ERruAq5spmIUyQKq
+         FLfjBkcDsuhPeKRoU5T9dyDvPvvKSyKyb0zdAHwU9SuQw5zd6a13j/o5FIhnzxwgea8D
+         r6oBdUK0WWXUnAt0MMrR8MKJVFR0HbGZpUgtYYqOrt/7rdBwKnVAQU6yRIr8npQ0MscY
+         YEg8ZPr2ApdNQYJHOuBsOHdzWQ+mQotIP0ZC5y6j+YZusvBHXujCc05d1Qndp40QS+O8
+         GVmw==
+X-Gm-Message-State: AJIora/t6oTwpHwtHNn7wsuGulUkesxzuFNpmlXlBWJEPmriHD/DZ8P0
+        peZ4t7NRvx78yIWyr6k44p0=
+X-Google-Smtp-Source: AGRyM1u7tBniyIttpwvltyxPYAvp0da5vDJbPNxCGSdsDjsagtZqbejL2sHYWzRoFayLRoEt2ik8qg==
+X-Received: by 2002:a05:620a:1594:b0:6ae:f437:9fdb with SMTP id d20-20020a05620a159400b006aef4379fdbmr25232525qkk.183.1657054272923;
+        Tue, 05 Jul 2022 13:51:12 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id d14-20020a05620a240e00b006b117a5a98fsm17438889qkn.59.2022.07.05.13.51.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 13:51:12 -0700 (PDT)
+Message-ID: <e0c2098d-058b-90c8-2e16-6c069ac706d4@gmail.com>
+Date:   Tue, 5 Jul 2022 13:51:09 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220704100028.19932-2-tinghan.shen@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH V4 06/11] mfd: bcm2835-pm: Use 'reg-names' to get
+ resources
+Content-Language: en-US
+To:     Lee Jones <lee.jones@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+References: <20220625113619.15944-1-stefan.wahren@i2se.com>
+ <20220625113619.15944-7-stefan.wahren@i2se.com> <YrnZUqQsKVVGHUGh@google.com>
+ <7ef987c7-1d99-bd63-f7fa-66bd12811716@gmail.com>
+ <4607b996-51ac-0b3f-e046-5611774362ca@gmail.com>
+ <YrqxdAgCKRL3tCTg@google.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <YrqxdAgCKRL3tCTg@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 04, 2022 at 06:00:13PM +0800, Tinghan Shen wrote:
-> mt8195 infra iommu has max 5 interrupts.
+On 6/28/22 00:44, Lee Jones wrote:
+>>>> Anything preventing me from applying the two MFD patches?
+>>>>
+>>>
+>>> They are self contained and cater to being backward/forward compatible
+>>> with Device Tree changes, so not really no. If that is how you want it,
+>>> please proceed in taking the 2 MFD patches and I will apply the rest.
+>>
+>> Actually there is a dependency between patch 10 which uses pm->rpivid_asb
+>> and patch 7 which introduces it. I can give you my acked-by for patches 8-11
+>> so you can take them via the MFD tree if you would like.
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  .../devicetree/bindings/iommu/mediatek,iommu.yaml    | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+> That works too.
 > 
-> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> index 2ae3bbad7f1a..27eb9f6aa3ce 100644
-> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> @@ -91,7 +91,8 @@ properties:
->      maxItems: 1
->  
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 5
->  
->    clocks:
->      items:
-> @@ -175,9 +176,18 @@ allOf:
->                const: mediatek,mt8195-iommu-infra
->  
->      then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +
->        required:
->          - mediatek,larbs
->  
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 5
 
-5 is already the max.
-
-minItems: 5
-
+I took patches 1 through 5, can you apply 6 through 11? Thanks
+-- 
+Florian
