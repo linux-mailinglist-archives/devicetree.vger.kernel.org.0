@@ -2,1595 +2,908 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0517E56610D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 04:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0AC4566118
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 04:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234405AbiGECLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jul 2022 22:11:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43308 "EHLO
+        id S231597AbiGECRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jul 2022 22:17:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234327AbiGECL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 22:11:27 -0400
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5DD11C27;
-        Mon,  4 Jul 2022 19:11:22 -0700 (PDT)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 2651rIXt023384;
-        Tue, 5 Jul 2022 09:53:19 +0800 (GMT-8)
-        (envelope-from neal_liu@aspeedtech.com)
-Received: from localhost.localdomain (192.168.10.10) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 5 Jul
- 2022 10:09:41 +0800
-From:   Neal Liu <neal_liu@aspeedtech.com>
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
+        with ESMTP id S230364AbiGECRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jul 2022 22:17:10 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AB6812620;
+        Mon,  4 Jul 2022 19:17:08 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id v14so15504198wra.5;
+        Mon, 04 Jul 2022 19:17:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=USLBRDgjjGpwBOE7iDfzFNMh1XIhqjXCH2Gcj+hw374=;
+        b=f+D2okbIJlZJ6a//IZ59upbe4WGjm5WJs7LGgdOhGK194orIugBjeCQHYCNUJ+UStA
+         Cla3U8RREX+rQjkx+u9e18UrQIy0STjHHhc3l1aLVFrVBRCkaH2/0SckmzmKBAuJ/3Hp
+         waBD1pgpvT4WQzhmeh/h0p1glhyAXX7gsyLx16RMeaBGWHdN4NJpVBwDWWFUdXF+0nh4
+         6lqPqIUDwF1JZZ9LXauW64A27tHHKuRegM0y5+foXQM3DIKjcfJpJjOtAsVs/t7j52aV
+         mP22I/N3Wc1wCvsHiHgPqTVJqKpNpXSj9GV1n6fJ0L8GOi9Pbuih+GzcgHJ/8cLXWce7
+         xAJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=USLBRDgjjGpwBOE7iDfzFNMh1XIhqjXCH2Gcj+hw374=;
+        b=MSlwkIbgqpjEGh6MQoKR9mATgHy5+ST+D0e+tVECoKoLadZqM4iLT8rtCyf/Z4mvIc
+         PTTkc9QPjysumU9yt/z7ilfQamuEOnebSkmurbVtaiA/PCiqOBlG95f1wPn61fCe6P7R
+         Td8JVblQWF6hOrC/2/71Pv7NBA7T2qGMtSicEK/dusCU2YMz0hXkvwdJI7MgnSRXizSb
+         J/15g438UncI4xT2XuBzx/oqQWIBRqyl2m0MKCTMWBwqXOng6LlJZ9L7+zinEGTKrpb9
+         uTlm6rAQK7z3gkmNP2VxBPcVs6wB0C6XbEgM446LK2RRtsBJUCwXxqWdolBvbhamyOSq
+         dqYw==
+X-Gm-Message-State: AJIora+UgmwlvEHlbkn93AY1jXvI21HllxUAtfqsQorgn9rD4ZaxUDGl
+        9aHCrj7ryvOKrDCKMiw54bwLBv/Hl7kEW4A8k/o=
+X-Google-Smtp-Source: AGRyM1vWuRXFKfMOWMTpXPmGCwNiBWmchdLZ+JRKqYEhKZJCTuFgxis8hZ1y6wUmwGTwSyUcXQMqy1+hnRw/qRvduds=
+X-Received: by 2002:adf:f90c:0:b0:21a:3dcb:d106 with SMTP id
+ b12-20020adff90c000000b0021a3dcbd106mr28703077wrr.448.1656987426468; Mon, 04
+ Jul 2022 19:17:06 -0700 (PDT)
+MIME-Version: 1.0
+References: <1656922179-21829-1-git-send-email-u0084500@gmail.com>
+ <1656922179-21829-3-git-send-email-u0084500@gmail.com> <CAHp75VeNDnq+jszSZeU=Gx9cYzbrEo880QaBUOzSkoHDu5qKZw@mail.gmail.com>
+In-Reply-To: <CAHp75VeNDnq+jszSZeU=Gx9cYzbrEo880QaBUOzSkoHDu5qKZw@mail.gmail.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Tue, 5 Jul 2022 10:16:54 +0800
+Message-ID: <CADiBU3-mJeVyFT=RaXYbg+rX96nV6viC-zuL=ch1zeiOeUtPnA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: adc: Add rtq6056 support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "Andrew Jeffery" <andrew@aj.id.au>,
-        Dhananjay Phadke <dhphadke@microsoft.com>,
-        "Johnny Huang" <johnny_huang@aspeedtech.com>
-CC:     <linux-aspeed@lists.ozlabs.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <BMC-SW@aspeedtech.com>
-Subject: [PATCH v7 5/5] crypto: aspeed: add HACE crypto driver
-Date:   Tue, 5 Jul 2022 10:09:36 +0800
-Message-ID: <20220705020936.1751771-6-neal_liu@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220705020936.1751771-1-neal_liu@aspeedtech.com>
-References: <20220705020936.1751771-1-neal_liu@aspeedtech.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.10.10]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 2651rIXt023384
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Lars-Peter Clausen <lars@metafoo.de>,
+        cy_huang <cy_huang@richtek.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add HACE crypto driver to support symmetric-key
-encryption and decryption with multiple modes of
-operation.
+Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=
+=885=E6=97=A5 =E9=80=B1=E4=BA=8C =E6=B8=85=E6=99=A85:18=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> On Mon, Jul 4, 2022 at 10:11 AM cy_huang <u0084500@gmail.com> wrote:
+> >
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > Add Richtek rtq6056 supporting.
+> >
+> > It can be used for the system to monitor load current and power with 16=
+-bit
+> > resolution.
+>
+> With a fixed kernel version (it may not be a stable version, we are
+> now at v5.19 cycle, and it can't be either this cycle),
+Do I need to submit  v4 with the latest kernel?
+Any misunderstanding?
 
-Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
-Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
----
- drivers/crypto/aspeed/Kconfig              |   17 +
- drivers/crypto/aspeed/Makefile             |    7 +-
- drivers/crypto/aspeed/aspeed-hace-crypto.c | 1121 ++++++++++++++++++++
- drivers/crypto/aspeed/aspeed-hace.c        |   91 +-
- drivers/crypto/aspeed/aspeed-hace.h        |  112 ++
- 5 files changed, 1345 insertions(+), 3 deletions(-)
- create mode 100644 drivers/crypto/aspeed/aspeed-hace-crypto.c
-
-diff --git a/drivers/crypto/aspeed/Kconfig b/drivers/crypto/aspeed/Kconfig
-index 7c741695e9b1..d1bca9f7e9c7 100644
---- a/drivers/crypto/aspeed/Kconfig
-+++ b/drivers/crypto/aspeed/Kconfig
-@@ -21,3 +21,20 @@ config CRYPTO_DEV_ASPEED_HACE_HASH
- 	  hash driver.
- 	  Supports multiple message digest standards, including
- 	  SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, and so on.
-+
-+config CRYPTO_DEV_ASPEED_HACE_CRYPTO
-+	bool "Enable Aspeed Hash & Crypto Engine (HACE) crypto"
-+	depends on CRYPTO_DEV_ASPEED
-+	select CRYPTO_ENGINE
-+	select CRYPTO_AES
-+	select CRYPTO_DES
-+	select CRYPTO_ECB
-+	select CRYPTO_CBC
-+	select CRYPTO_CFB
-+	select CRYPTO_OFB
-+	select CRYPTO_CTR
-+	help
-+	  Select here to enable Aspeed Hash & Crypto Engine (HACE)
-+	  crypto driver.
-+	  Supports AES/DES symmetric-key encryption and decryption
-+	  with ECB/CBC/CFB/OFB/CTR options.
-diff --git a/drivers/crypto/aspeed/Makefile b/drivers/crypto/aspeed/Makefile
-index 8bc8d4fed5a9..421e2ca9c53e 100644
---- a/drivers/crypto/aspeed/Makefile
-+++ b/drivers/crypto/aspeed/Makefile
-@@ -1,6 +1,9 @@
- obj-$(CONFIG_CRYPTO_DEV_ASPEED) += aspeed_crypto.o
--aspeed_crypto-objs := aspeed-hace.o \
--		      $(hace-hash-y)
-+aspeed_crypto-objs := aspeed-hace.o	\
-+		      $(hace-hash-y)	\
-+		      $(hace-crypto-y)
- 
- obj-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_HASH) += aspeed-hace-hash.o
- hace-hash-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_HASH) := aspeed-hace-hash.o
-+obj-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_CRYPTO) += aspeed-hace-crypto.o
-+hace-crypto-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_CRYPTO) := aspeed-hace-crypto.o
-diff --git a/drivers/crypto/aspeed/aspeed-hace-crypto.c b/drivers/crypto/aspeed/aspeed-hace-crypto.c
-new file mode 100644
-index 000000000000..61d15cae515e
---- /dev/null
-+++ b/drivers/crypto/aspeed/aspeed-hace-crypto.c
-@@ -0,0 +1,1121 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (c) 2021 Aspeed Technology Inc.
-+ */
-+
-+#include "aspeed-hace.h"
-+
-+#ifdef ASPEED_CIPHER_DEBUG
-+#define CIPHER_DBG(h, fmt, ...)	\
-+	dev_info((h)->dev, "%s() " fmt, __func__, ##__VA_ARGS__)
-+#else
-+#define CIPHER_DBG(h, fmt, ...)	\
-+	dev_dbg((h)->dev, "%s() " fmt, __func__, ##__VA_ARGS__)
-+#endif
-+
-+static int aspeed_crypto_do_fallback(struct skcipher_request *areq)
-+{
-+	struct aspeed_cipher_reqctx *rctx = skcipher_request_ctx(areq);
-+	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
-+	struct aspeed_cipher_ctx *ctx = crypto_skcipher_ctx(tfm);
-+	int err;
-+
-+	skcipher_request_set_tfm(&rctx->fallback_req, ctx->fallback_tfm);
-+	skcipher_request_set_callback(&rctx->fallback_req, areq->base.flags,
-+				      areq->base.complete, areq->base.data);
-+	skcipher_request_set_crypt(&rctx->fallback_req, areq->src, areq->dst,
-+				   areq->cryptlen, areq->iv);
-+
-+	if (rctx->enc_cmd & HACE_CMD_ENCRYPT)
-+		err = crypto_skcipher_encrypt(&rctx->fallback_req);
-+	else
-+		err = crypto_skcipher_decrypt(&rctx->fallback_req);
-+
-+	return err;
-+}
-+
-+static bool aspeed_crypto_need_fallback(struct skcipher_request *areq)
-+{
-+	struct aspeed_cipher_reqctx *rctx = skcipher_request_ctx(areq);
-+
-+	if (areq->cryptlen == 0)
-+		return true;
-+
-+	if ((rctx->enc_cmd & HACE_CMD_DES_SELECT) &&
-+	    !IS_ALIGNED(areq->cryptlen, DES_BLOCK_SIZE))
-+		return true;
-+
-+	if ((!(rctx->enc_cmd & HACE_CMD_DES_SELECT)) &&
-+	    !IS_ALIGNED(areq->cryptlen, AES_BLOCK_SIZE))
-+		return true;
-+
-+	return false;
-+}
-+
-+static int aspeed_hace_crypto_handle_queue(struct aspeed_hace_dev *hace_dev,
-+					   struct skcipher_request *req)
-+{
-+	if (hace_dev->version == AST2500_VERSION &&
-+	    aspeed_crypto_need_fallback(req)) {
-+		CIPHER_DBG(hace_dev, "SW fallback\n");
-+		return aspeed_crypto_do_fallback(req);
-+	}
-+
-+	return crypto_transfer_skcipher_request_to_engine(
-+			hace_dev->crypt_engine_crypto, req);
-+}
-+
-+static int aspeed_crypto_do_request(struct crypto_engine *engine, void *areq)
-+{
-+	struct skcipher_request *req = skcipher_request_cast(areq);
-+	struct crypto_skcipher *cipher = crypto_skcipher_reqtfm(req);
-+	struct aspeed_cipher_ctx *ctx = crypto_skcipher_ctx(cipher);
-+	struct aspeed_hace_dev *hace_dev = ctx->hace_dev;
-+	struct aspeed_engine_crypto *crypto_engine;
-+	int rc;
-+
-+	crypto_engine = &hace_dev->crypto_engine;
-+	crypto_engine->req = req;
-+	crypto_engine->flags |= CRYPTO_FLAGS_BUSY;
-+
-+	rc = ctx->start(hace_dev);
-+
-+	if (rc != -EINPROGRESS)
-+		return -EIO;
-+
-+	return 0;
-+}
-+
-+static int aspeed_sk_complete(struct aspeed_hace_dev *hace_dev, int err)
-+{
-+	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
-+	struct aspeed_cipher_reqctx *rctx;
-+	struct skcipher_request *req;
-+
-+	CIPHER_DBG(hace_dev, "\n");
-+
-+	req = crypto_engine->req;
-+	rctx = skcipher_request_ctx(req);
-+
-+	if (rctx->enc_cmd & HACE_CMD_IV_REQUIRE) {
-+		if (rctx->enc_cmd & HACE_CMD_DES_SELECT)
-+			memcpy(req->iv, crypto_engine->cipher_ctx +
-+			       DES_KEY_SIZE, DES_KEY_SIZE);
-+		else
-+			memcpy(req->iv, crypto_engine->cipher_ctx,
-+			       AES_BLOCK_SIZE);
-+	}
-+
-+	crypto_engine->flags &= ~CRYPTO_FLAGS_BUSY;
-+
-+	crypto_finalize_skcipher_request(hace_dev->crypt_engine_crypto, req,
-+					 err);
-+
-+	return err;
-+}
-+
-+static int aspeed_sk_transfer_sg(struct aspeed_hace_dev *hace_dev)
-+{
-+	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
-+	struct device *dev = hace_dev->dev;
-+	struct aspeed_cipher_reqctx *rctx;
-+	struct skcipher_request *req;
-+
-+	CIPHER_DBG(hace_dev, "\n");
-+
-+	req = crypto_engine->req;
-+	rctx = skcipher_request_ctx(req);
-+
-+	if (req->src == req->dst) {
-+		dma_unmap_sg(dev, req->src, rctx->src_nents, DMA_BIDIRECTIONAL);
-+	} else {
-+		dma_unmap_sg(dev, req->src, rctx->src_nents, DMA_TO_DEVICE);
-+		dma_unmap_sg(dev, req->dst, rctx->dst_nents, DMA_FROM_DEVICE);
-+	}
-+
-+	return aspeed_sk_complete(hace_dev, 0);
-+}
-+
-+static int aspeed_sk_transfer(struct aspeed_hace_dev *hace_dev)
-+{
-+	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
-+	struct aspeed_cipher_reqctx *rctx;
-+	struct skcipher_request *req;
-+	struct scatterlist *out_sg;
-+	int nbytes = 0;
-+	int rc = 0;
-+
-+	req = crypto_engine->req;
-+	rctx = skcipher_request_ctx(req);
-+	out_sg = req->dst;
-+
-+	/* Copy output buffer to dst scatter-gather lists */
-+	nbytes = sg_copy_from_buffer(out_sg, rctx->dst_nents,
-+				     crypto_engine->cipher_addr, req->cryptlen);
-+	if (!nbytes) {
-+		dev_warn(hace_dev->dev, "invalid sg copy, %s:0x%x, %s:0x%x\n",
-+			 "nbytes", nbytes, "cryptlen", req->cryptlen);
-+		rc = -EINVAL;
-+	}
-+
-+	CIPHER_DBG(hace_dev, "%s:%d, %s:%d, %s:%d, %s:%p\n",
-+		   "nbytes", nbytes, "req->cryptlen", req->cryptlen,
-+		   "nb_out_sg", rctx->dst_nents,
-+		   "cipher addr", crypto_engine->cipher_addr);
-+
-+	return aspeed_sk_complete(hace_dev, rc);
-+}
-+
-+static int aspeed_sk_start(struct aspeed_hace_dev *hace_dev)
-+{
-+	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
-+	struct aspeed_cipher_reqctx *rctx;
-+	struct skcipher_request *req;
-+	struct scatterlist *in_sg;
-+	int nbytes;
-+
-+	req = crypto_engine->req;
-+	rctx = skcipher_request_ctx(req);
-+	in_sg = req->src;
-+
-+	nbytes = sg_copy_to_buffer(in_sg, rctx->src_nents,
-+				   crypto_engine->cipher_addr, req->cryptlen);
-+
-+	CIPHER_DBG(hace_dev, "%s:%d, %s:%d, %s:%d, %s:%p\n",
-+		   "nbytes", nbytes, "req->cryptlen", req->cryptlen,
-+		   "nb_in_sg", rctx->src_nents,
-+		   "cipher addr", crypto_engine->cipher_addr);
-+
-+	if (!nbytes) {
-+		dev_warn(hace_dev->dev, "invalid sg copy, %s:0x%x, %s:0x%x\n",
-+			 "nbytes", nbytes, "cryptlen", req->cryptlen);
-+		return -EINVAL;
-+	}
-+
-+	crypto_engine->resume = aspeed_sk_transfer;
-+
-+	/* Trigger engines */
-+	ast_hace_write(hace_dev, crypto_engine->cipher_dma_addr,
-+		       ASPEED_HACE_SRC);
-+	ast_hace_write(hace_dev, crypto_engine->cipher_dma_addr,
-+		       ASPEED_HACE_DEST);
-+	ast_hace_write(hace_dev, req->cryptlen, ASPEED_HACE_DATA_LEN);
-+	ast_hace_write(hace_dev, rctx->enc_cmd, ASPEED_HACE_CMD);
-+
-+	return -EINPROGRESS;
-+}
-+
-+static int aspeed_sk_start_sg(struct aspeed_hace_dev *hace_dev)
-+{
-+	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
-+	struct aspeed_sg_list *src_list, *dst_list;
-+	dma_addr_t src_dma_addr, dst_dma_addr;
-+	struct aspeed_cipher_reqctx *rctx;
-+	struct skcipher_request *req;
-+	struct scatterlist *s;
-+	int src_sg_len;
-+	int dst_sg_len;
-+	int total, i;
-+	int rc;
-+
-+	CIPHER_DBG(hace_dev, "\n");
-+
-+	req = crypto_engine->req;
-+	rctx = skcipher_request_ctx(req);
-+
-+	rctx->enc_cmd |= HACE_CMD_DES_SG_CTRL | HACE_CMD_SRC_SG_CTRL |
-+			 HACE_CMD_AES_KEY_HW_EXP | HACE_CMD_MBUS_REQ_SYNC_EN;
-+
-+	/* BIDIRECTIONAL */
-+	if (req->dst == req->src) {
-+		src_sg_len = dma_map_sg(hace_dev->dev, req->src,
-+					rctx->src_nents, DMA_BIDIRECTIONAL);
-+		dst_sg_len = src_sg_len;
-+		if (!src_sg_len) {
-+			dev_warn(hace_dev->dev, "dma_map_sg() src error\n");
-+			return -EINVAL;
-+		}
-+
-+	} else {
-+		src_sg_len = dma_map_sg(hace_dev->dev, req->src,
-+					rctx->src_nents, DMA_TO_DEVICE);
-+		if (!src_sg_len) {
-+			dev_warn(hace_dev->dev, "dma_map_sg() src error\n");
-+			return -EINVAL;
-+		}
-+
-+		dst_sg_len = dma_map_sg(hace_dev->dev, req->dst,
-+					rctx->dst_nents, DMA_FROM_DEVICE);
-+		if (!dst_sg_len) {
-+			dev_warn(hace_dev->dev, "dma_map_sg() dst error\n");
-+			rc = -EINVAL;
-+			goto free_req_src;
-+		}
-+	}
-+
-+	src_list = (struct aspeed_sg_list *)crypto_engine->cipher_addr;
-+	src_dma_addr = crypto_engine->cipher_dma_addr;
-+	total = req->cryptlen;
-+
-+	for_each_sg(req->src, s, src_sg_len, i) {
-+		src_list[i].phy_addr = sg_dma_address(s);
-+
-+		if (total > sg_dma_len(s)) {
-+			src_list[i].len = sg_dma_len(s);
-+			total -= src_list[i].len;
-+
-+		} else {
-+			/* last sg list */
-+			src_list[i].len = total;
-+			src_list[i].len |= BIT(31);
-+			total = 0;
-+		}
-+
-+		src_list[i].phy_addr = cpu_to_le32(src_list[i].phy_addr);
-+		src_list[i].len = cpu_to_le32(src_list[i].len);
-+	}
-+
-+	if (total != 0) {
-+		rc = -EINVAL;
-+		goto free_req;
-+	}
-+
-+	if (req->dst == req->src) {
-+		dst_list = src_list;
-+		dst_dma_addr = src_dma_addr;
-+
-+	} else {
-+		dst_list = (struct aspeed_sg_list *)crypto_engine->dst_sg_addr;
-+		dst_dma_addr = crypto_engine->dst_sg_dma_addr;
-+		total = req->cryptlen;
-+
-+		for_each_sg(req->dst, s, dst_sg_len, i) {
-+			dst_list[i].phy_addr = sg_dma_address(s);
-+
-+			if (total > sg_dma_len(s)) {
-+				dst_list[i].len = sg_dma_len(s);
-+				total -= dst_list[i].len;
-+
-+			} else {
-+				/* last sg list */
-+				dst_list[i].len = total;
-+				dst_list[i].len |= BIT(31);
-+				total = 0;
-+			}
-+
-+			dst_list[i].phy_addr = cpu_to_le32(dst_list[i].phy_addr);
-+			dst_list[i].len = cpu_to_le32(dst_list[i].len);
-+
-+		}
-+
-+		dst_list[dst_sg_len].phy_addr = 0;
-+		dst_list[dst_sg_len].len = 0;
-+	}
-+
-+	if (total != 0) {
-+		rc = -EINVAL;
-+		goto free_req;
-+	}
-+
-+	crypto_engine->resume = aspeed_sk_transfer_sg;
-+
-+	/* Memory barrier to ensure all data setup before engine starts */
-+	mb();
-+
-+	/* Trigger engines */
-+	ast_hace_write(hace_dev, src_dma_addr, ASPEED_HACE_SRC);
-+	ast_hace_write(hace_dev, dst_dma_addr, ASPEED_HACE_DEST);
-+	ast_hace_write(hace_dev, req->cryptlen, ASPEED_HACE_DATA_LEN);
-+	ast_hace_write(hace_dev, rctx->enc_cmd, ASPEED_HACE_CMD);
-+
-+	return -EINPROGRESS;
-+
-+free_req:
-+	if (req->dst == req->src) {
-+		dma_unmap_sg(hace_dev->dev, req->src, rctx->src_nents,
-+			     DMA_BIDIRECTIONAL);
-+
-+	} else {
-+		dma_unmap_sg(hace_dev->dev, req->dst, rctx->dst_nents,
-+			     DMA_TO_DEVICE);
-+		dma_unmap_sg(hace_dev->dev, req->src, rctx->src_nents,
-+			     DMA_TO_DEVICE);
-+	}
-+
-+	return rc;
-+
-+free_req_src:
-+	dma_unmap_sg(hace_dev->dev, req->src, rctx->src_nents, DMA_TO_DEVICE);
-+
-+	return rc;
-+}
-+
-+static int aspeed_hace_skcipher_trigger(struct aspeed_hace_dev *hace_dev)
-+{
-+	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
-+	struct aspeed_cipher_reqctx *rctx;
-+	struct crypto_skcipher *cipher;
-+	struct aspeed_cipher_ctx *ctx;
-+	struct skcipher_request *req;
-+
-+	CIPHER_DBG(hace_dev, "\n");
-+
-+	req = crypto_engine->req;
-+	rctx = skcipher_request_ctx(req);
-+	cipher = crypto_skcipher_reqtfm(req);
-+	ctx = crypto_skcipher_ctx(cipher);
-+
-+	/* enable interrupt */
-+	rctx->enc_cmd |= HACE_CMD_ISR_EN;
-+
-+	rctx->dst_nents = sg_nents(req->dst);
-+	rctx->src_nents = sg_nents(req->src);
-+
-+	ast_hace_write(hace_dev, crypto_engine->cipher_ctx_dma,
-+		       ASPEED_HACE_CONTEXT);
-+
-+	if (rctx->enc_cmd & HACE_CMD_IV_REQUIRE) {
-+		if (rctx->enc_cmd & HACE_CMD_DES_SELECT)
-+			memcpy(crypto_engine->cipher_ctx + DES_BLOCK_SIZE,
-+			       req->iv, DES_BLOCK_SIZE);
-+		else
-+			memcpy(crypto_engine->cipher_ctx, req->iv,
-+			       AES_BLOCK_SIZE);
-+	}
-+
-+	if (hace_dev->version == AST2600_VERSION) {
-+		memcpy(crypto_engine->cipher_ctx + 16, ctx->key, ctx->key_len);
-+
-+		return aspeed_sk_start_sg(hace_dev);
-+	}
-+
-+	memcpy(crypto_engine->cipher_ctx + 16, ctx->key, AES_MAX_KEYLENGTH);
-+
-+	return aspeed_sk_start(hace_dev);
-+}
-+
-+static int aspeed_des_crypt(struct skcipher_request *req, u32 cmd)
-+{
-+	struct aspeed_cipher_reqctx *rctx = skcipher_request_ctx(req);
-+	struct crypto_skcipher *cipher = crypto_skcipher_reqtfm(req);
-+	struct aspeed_cipher_ctx *ctx = crypto_skcipher_ctx(cipher);
-+	struct aspeed_hace_dev *hace_dev = ctx->hace_dev;
-+	u32 crypto_alg = cmd & HACE_CMD_OP_MODE_MASK;
-+
-+	CIPHER_DBG(hace_dev, "\n");
-+
-+	if (crypto_alg == HACE_CMD_CBC || crypto_alg == HACE_CMD_ECB) {
-+		if (!IS_ALIGNED(req->cryptlen, DES_BLOCK_SIZE))
-+			return -EINVAL;
-+	}
-+
-+	rctx->enc_cmd = cmd | HACE_CMD_DES_SELECT | HACE_CMD_RI_WO_DATA_ENABLE |
-+			HACE_CMD_DES | HACE_CMD_CONTEXT_LOAD_ENABLE |
-+			HACE_CMD_CONTEXT_SAVE_ENABLE;
-+
-+	return aspeed_hace_crypto_handle_queue(hace_dev, req);
-+}
-+
-+static int aspeed_des_setkey(struct crypto_skcipher *cipher, const u8 *key,
-+			     unsigned int keylen)
-+{
-+	struct aspeed_cipher_ctx *ctx = crypto_skcipher_ctx(cipher);
-+	struct crypto_tfm *tfm = crypto_skcipher_tfm(cipher);
-+	struct aspeed_hace_dev *hace_dev = ctx->hace_dev;
-+	int rc;
-+
-+	CIPHER_DBG(hace_dev, "keylen: %d bits\n", keylen);
-+
-+	if (keylen != DES_KEY_SIZE && keylen != DES3_EDE_KEY_SIZE) {
-+		dev_warn(hace_dev->dev, "invalid keylen: %d bits\n", keylen);
-+		return -EINVAL;
-+	}
-+
-+	if (keylen == DES_KEY_SIZE) {
-+		rc = crypto_des_verify_key(tfm, key);
-+		if (rc)
-+			return rc;
-+
-+	} else if (keylen == DES3_EDE_KEY_SIZE) {
-+		rc = crypto_des3_ede_verify_key(tfm, key);
-+		if (rc)
-+			return rc;
-+	}
-+
-+	memcpy(ctx->key, key, keylen);
-+	ctx->key_len = keylen;
-+
-+	crypto_skcipher_clear_flags(ctx->fallback_tfm, CRYPTO_TFM_REQ_MASK);
-+	crypto_skcipher_set_flags(ctx->fallback_tfm, cipher->base.crt_flags &
-+				  CRYPTO_TFM_REQ_MASK);
-+
-+	return crypto_skcipher_setkey(ctx->fallback_tfm, key, keylen);
-+}
-+
-+static int aspeed_tdes_ctr_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_CTR |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_tdes_ctr_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_CTR |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_tdes_ofb_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_OFB |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_tdes_ofb_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_OFB |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_tdes_cfb_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_CFB |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_tdes_cfb_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_CFB |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_tdes_cbc_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_CBC |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_tdes_cbc_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_CBC |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_tdes_ecb_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_ECB |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_tdes_ecb_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_ECB |
-+				HACE_CMD_TRIPLE_DES);
-+}
-+
-+static int aspeed_des_ctr_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_CTR |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_des_ctr_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_CTR |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_des_ofb_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_OFB |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_des_ofb_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_OFB |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_des_cfb_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_CFB |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_des_cfb_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_CFB |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_des_cbc_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_CBC |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_des_cbc_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_CBC |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_des_ecb_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_ECB |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_des_ecb_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_des_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_ECB |
-+				HACE_CMD_SINGLE_DES);
-+}
-+
-+static int aspeed_aes_crypt(struct skcipher_request *req, u32 cmd)
-+{
-+	struct aspeed_cipher_reqctx *rctx = skcipher_request_ctx(req);
-+	struct crypto_skcipher *cipher = crypto_skcipher_reqtfm(req);
-+	struct aspeed_cipher_ctx *ctx = crypto_skcipher_ctx(cipher);
-+	struct aspeed_hace_dev *hace_dev = ctx->hace_dev;
-+	u32 crypto_alg = cmd & HACE_CMD_OP_MODE_MASK;
-+
-+	if (crypto_alg == HACE_CMD_CBC || crypto_alg == HACE_CMD_ECB) {
-+		if (!IS_ALIGNED(req->cryptlen, AES_BLOCK_SIZE))
-+			return -EINVAL;
-+	}
-+
-+	CIPHER_DBG(hace_dev, "%s\n",
-+		   (cmd & HACE_CMD_ENCRYPT) ? "encrypt" : "decrypt");
-+
-+	cmd |= HACE_CMD_AES_SELECT | HACE_CMD_RI_WO_DATA_ENABLE |
-+	       HACE_CMD_CONTEXT_LOAD_ENABLE | HACE_CMD_CONTEXT_SAVE_ENABLE;
-+
-+	switch (ctx->key_len) {
-+	case AES_KEYSIZE_128:
-+		cmd |= HACE_CMD_AES128;
-+		break;
-+	case AES_KEYSIZE_192:
-+		cmd |= HACE_CMD_AES192;
-+		break;
-+	case AES_KEYSIZE_256:
-+		cmd |= HACE_CMD_AES256;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	rctx->enc_cmd = cmd;
-+
-+	return aspeed_hace_crypto_handle_queue(hace_dev, req);
-+}
-+
-+static int aspeed_aes_setkey(struct crypto_skcipher *cipher, const u8 *key,
-+			     unsigned int keylen)
-+{
-+	struct aspeed_cipher_ctx *ctx = crypto_skcipher_ctx(cipher);
-+	struct aspeed_hace_dev *hace_dev = ctx->hace_dev;
-+	struct crypto_aes_ctx gen_aes_key;
-+
-+	CIPHER_DBG(hace_dev, "keylen: %d bits\n", (keylen * 8));
-+
-+	if (keylen != AES_KEYSIZE_128 && keylen != AES_KEYSIZE_192 &&
-+	    keylen != AES_KEYSIZE_256)
-+		return -EINVAL;
-+
-+	if (ctx->hace_dev->version == AST2500_VERSION) {
-+		aes_expandkey(&gen_aes_key, key, keylen);
-+		memcpy(ctx->key, gen_aes_key.key_enc, AES_MAX_KEYLENGTH);
-+
-+	} else {
-+		memcpy(ctx->key, key, keylen);
-+	}
-+
-+	ctx->key_len = keylen;
-+
-+	crypto_skcipher_clear_flags(ctx->fallback_tfm, CRYPTO_TFM_REQ_MASK);
-+	crypto_skcipher_set_flags(ctx->fallback_tfm, cipher->base.crt_flags &
-+				  CRYPTO_TFM_REQ_MASK);
-+
-+	return crypto_skcipher_setkey(ctx->fallback_tfm, key, keylen);
-+}
-+
-+static int aspeed_aes_ctr_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_CTR);
-+}
-+
-+static int aspeed_aes_ctr_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_CTR);
-+}
-+
-+static int aspeed_aes_ofb_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_OFB);
-+}
-+
-+static int aspeed_aes_ofb_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_OFB);
-+}
-+
-+static int aspeed_aes_cfb_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_CFB);
-+}
-+
-+static int aspeed_aes_cfb_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_CFB);
-+}
-+
-+static int aspeed_aes_cbc_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_CBC);
-+}
-+
-+static int aspeed_aes_cbc_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_CBC);
-+}
-+
-+static int aspeed_aes_ecb_decrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_DECRYPT | HACE_CMD_ECB);
-+}
-+
-+static int aspeed_aes_ecb_encrypt(struct skcipher_request *req)
-+{
-+	return aspeed_aes_crypt(req, HACE_CMD_ENCRYPT | HACE_CMD_ECB);
-+}
-+
-+static int aspeed_crypto_cra_init(struct crypto_skcipher *tfm)
-+{
-+	struct aspeed_cipher_ctx *ctx = crypto_skcipher_ctx(tfm);
-+	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
-+	const char *name = crypto_tfm_alg_name(&tfm->base);
-+	struct aspeed_hace_alg *crypto_alg;
-+
-+
-+	crypto_alg = container_of(alg, struct aspeed_hace_alg, alg.skcipher);
-+	ctx->hace_dev = crypto_alg->hace_dev;
-+	ctx->start = aspeed_hace_skcipher_trigger;
-+
-+	CIPHER_DBG(ctx->hace_dev, "%s\n", name);
-+
-+	ctx->fallback_tfm = crypto_alloc_skcipher(name, 0, CRYPTO_ALG_ASYNC |
-+						  CRYPTO_ALG_NEED_FALLBACK);
-+	if (IS_ERR(ctx->fallback_tfm)) {
-+		dev_err(ctx->hace_dev->dev, "ERROR: Cannot allocate fallback for %s %ld\n",
-+			name, PTR_ERR(ctx->fallback_tfm));
-+		return PTR_ERR(ctx->fallback_tfm);
-+	}
-+
-+	crypto_skcipher_set_reqsize(tfm, sizeof(struct aspeed_cipher_reqctx) +
-+			 crypto_skcipher_reqsize(ctx->fallback_tfm));
-+
-+	ctx->enginectx.op.do_one_request = aspeed_crypto_do_request;
-+	ctx->enginectx.op.prepare_request = NULL;
-+	ctx->enginectx.op.unprepare_request = NULL;
-+
-+	return 0;
-+}
-+
-+static void aspeed_crypto_cra_exit(struct crypto_skcipher *tfm)
-+{
-+	struct aspeed_cipher_ctx *ctx = crypto_skcipher_ctx(tfm);
-+	struct aspeed_hace_dev *hace_dev = ctx->hace_dev;
-+
-+	CIPHER_DBG(hace_dev, "%s\n", crypto_tfm_alg_name(&tfm->base));
-+	crypto_free_skcipher(ctx->fallback_tfm);
-+}
-+
-+struct aspeed_hace_alg aspeed_crypto_algs[] = {
-+	{
-+		.alg.skcipher = {
-+			.min_keysize	= AES_MIN_KEY_SIZE,
-+			.max_keysize	= AES_MAX_KEY_SIZE,
-+			.setkey		= aspeed_aes_setkey,
-+			.encrypt	= aspeed_aes_ecb_encrypt,
-+			.decrypt	= aspeed_aes_ecb_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "ecb(aes)",
-+				.cra_driver_name	= "aspeed-ecb-aes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= AES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= AES_BLOCK_SIZE,
-+			.min_keysize	= AES_MIN_KEY_SIZE,
-+			.max_keysize	= AES_MAX_KEY_SIZE,
-+			.setkey		= aspeed_aes_setkey,
-+			.encrypt	= aspeed_aes_cbc_encrypt,
-+			.decrypt	= aspeed_aes_cbc_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "cbc(aes)",
-+				.cra_driver_name	= "aspeed-cbc-aes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= AES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= AES_BLOCK_SIZE,
-+			.min_keysize	= AES_MIN_KEY_SIZE,
-+			.max_keysize	= AES_MAX_KEY_SIZE,
-+			.setkey		= aspeed_aes_setkey,
-+			.encrypt	= aspeed_aes_cfb_encrypt,
-+			.decrypt	= aspeed_aes_cfb_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "cfb(aes)",
-+				.cra_driver_name	= "aspeed-cfb-aes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= 1,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= AES_BLOCK_SIZE,
-+			.min_keysize	= AES_MIN_KEY_SIZE,
-+			.max_keysize	= AES_MAX_KEY_SIZE,
-+			.setkey		= aspeed_aes_setkey,
-+			.encrypt	= aspeed_aes_ofb_encrypt,
-+			.decrypt	= aspeed_aes_ofb_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "ofb(aes)",
-+				.cra_driver_name	= "aspeed-ofb-aes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= 1,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.min_keysize	= DES_KEY_SIZE,
-+			.max_keysize	= DES_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_des_ecb_encrypt,
-+			.decrypt	= aspeed_des_ecb_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "ecb(des)",
-+				.cra_driver_name	= "aspeed-ecb-des",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= DES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= DES_BLOCK_SIZE,
-+			.min_keysize	= DES_KEY_SIZE,
-+			.max_keysize	= DES_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_des_cbc_encrypt,
-+			.decrypt	= aspeed_des_cbc_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "cbc(des)",
-+				.cra_driver_name	= "aspeed-cbc-des",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= DES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= DES_BLOCK_SIZE,
-+			.min_keysize	= DES_KEY_SIZE,
-+			.max_keysize	= DES_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_des_cfb_encrypt,
-+			.decrypt	= aspeed_des_cfb_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "cfb(des)",
-+				.cra_driver_name	= "aspeed-cfb-des",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= DES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= DES_BLOCK_SIZE,
-+			.min_keysize	= DES_KEY_SIZE,
-+			.max_keysize	= DES_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_des_ofb_encrypt,
-+			.decrypt	= aspeed_des_ofb_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "ofb(des)",
-+				.cra_driver_name	= "aspeed-ofb-des",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= DES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.min_keysize	= DES3_EDE_KEY_SIZE,
-+			.max_keysize	= DES3_EDE_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_tdes_ecb_encrypt,
-+			.decrypt	= aspeed_tdes_ecb_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "ecb(des3_ede)",
-+				.cra_driver_name	= "aspeed-ecb-tdes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= DES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= DES_BLOCK_SIZE,
-+			.min_keysize	= DES3_EDE_KEY_SIZE,
-+			.max_keysize	= DES3_EDE_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_tdes_cbc_encrypt,
-+			.decrypt	= aspeed_tdes_cbc_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "cbc(des3_ede)",
-+				.cra_driver_name	= "aspeed-cbc-tdes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= DES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= DES_BLOCK_SIZE,
-+			.min_keysize	= DES3_EDE_KEY_SIZE,
-+			.max_keysize	= DES3_EDE_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_tdes_cfb_encrypt,
-+			.decrypt	= aspeed_tdes_cfb_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "cfb(des3_ede)",
-+				.cra_driver_name	= "aspeed-cfb-tdes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= DES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= DES_BLOCK_SIZE,
-+			.min_keysize	= DES3_EDE_KEY_SIZE,
-+			.max_keysize	= DES3_EDE_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_tdes_ofb_encrypt,
-+			.decrypt	= aspeed_tdes_ofb_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "ofb(des3_ede)",
-+				.cra_driver_name	= "aspeed-ofb-tdes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC |
-+							  CRYPTO_ALG_NEED_FALLBACK,
-+				.cra_blocksize		= DES_BLOCK_SIZE,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+};
-+
-+struct aspeed_hace_alg aspeed_crypto_algs_g6[] = {
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= AES_BLOCK_SIZE,
-+			.min_keysize	= AES_MIN_KEY_SIZE,
-+			.max_keysize	= AES_MAX_KEY_SIZE,
-+			.setkey		= aspeed_aes_setkey,
-+			.encrypt	= aspeed_aes_ctr_encrypt,
-+			.decrypt	= aspeed_aes_ctr_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "ctr(aes)",
-+				.cra_driver_name	= "aspeed-ctr-aes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC,
-+				.cra_blocksize		= 1,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= DES_BLOCK_SIZE,
-+			.min_keysize	= DES_KEY_SIZE,
-+			.max_keysize	= DES_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_des_ctr_encrypt,
-+			.decrypt	= aspeed_des_ctr_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "ctr(des)",
-+				.cra_driver_name	= "aspeed-ctr-des",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC,
-+				.cra_blocksize		= 1,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+	{
-+		.alg.skcipher = {
-+			.ivsize		= DES_BLOCK_SIZE,
-+			.min_keysize	= DES3_EDE_KEY_SIZE,
-+			.max_keysize	= DES3_EDE_KEY_SIZE,
-+			.setkey		= aspeed_des_setkey,
-+			.encrypt	= aspeed_tdes_ctr_encrypt,
-+			.decrypt	= aspeed_tdes_ctr_decrypt,
-+			.init		= aspeed_crypto_cra_init,
-+			.exit		= aspeed_crypto_cra_exit,
-+			.base = {
-+				.cra_name		= "ctr(des3_ede)",
-+				.cra_driver_name	= "aspeed-ctr-tdes",
-+				.cra_priority		= 300,
-+				.cra_flags		= CRYPTO_ALG_KERN_DRIVER_ONLY |
-+							  CRYPTO_ALG_ASYNC,
-+				.cra_blocksize		= 1,
-+				.cra_ctxsize		= sizeof(struct aspeed_cipher_ctx),
-+				.cra_alignmask		= 0x0f,
-+				.cra_module		= THIS_MODULE,
-+			}
-+		}
-+	},
-+
-+};
-+
-+void aspeed_register_hace_crypto_algs(struct aspeed_hace_dev *hace_dev)
-+{
-+	int rc, i;
-+
-+	CIPHER_DBG(hace_dev, "\n");
-+
-+	for (i = 0; i < ARRAY_SIZE(aspeed_crypto_algs); i++) {
-+		aspeed_crypto_algs[i].hace_dev = hace_dev;
-+		rc = crypto_register_skcipher(&aspeed_crypto_algs[i].alg.skcipher);
-+		if (rc) {
-+			CIPHER_DBG(hace_dev, "Failed to register %s\n",
-+				   aspeed_crypto_algs[i].alg.skcipher.base.cra_name);
-+		}
-+	}
-+
-+	if (hace_dev->version != AST2600_VERSION)
-+		return;
-+
-+	for (i = 0; i < ARRAY_SIZE(aspeed_crypto_algs_g6); i++) {
-+		aspeed_crypto_algs_g6[i].hace_dev = hace_dev;
-+		rc = crypto_register_skcipher(&aspeed_crypto_algs_g6[i].alg.skcipher);
-+		if (rc) {
-+			CIPHER_DBG(hace_dev, "Failed to register %s\n",
-+				   aspeed_crypto_algs_g6[i].alg.skcipher.base.cra_name);
-+		}
-+	}
-+}
-diff --git a/drivers/crypto/aspeed/aspeed-hace.c b/drivers/crypto/aspeed/aspeed-hace.c
-index 22af7ab28b0c..39aeaefc5fde 100644
---- a/drivers/crypto/aspeed/aspeed-hace.c
-+++ b/drivers/crypto/aspeed/aspeed-hace.c
-@@ -32,10 +32,22 @@ void __weak aspeed_unregister_hace_hash_algs(struct aspeed_hace_dev *hace_dev)
- 	dev_warn(hace_dev->dev, "%s: Not supported yet\n", __func__);
- }
- 
-+/* Weak function for HACE crypto */
-+void __weak aspeed_register_hace_crypto_algs(struct aspeed_hace_dev *hace_dev)
-+{
-+	dev_warn(hace_dev->dev, "%s: Not supported yet\n", __func__);
-+}
-+
-+void __weak aspeed_unregister_hace_crypto_algs(struct aspeed_hace_dev *hace_dev)
-+{
-+	dev_warn(hace_dev->dev, "%s: Not supported yet\n", __func__);
-+}
-+
- /* HACE interrupt service routine */
- static irqreturn_t aspeed_hace_irq(int irq, void *dev)
- {
- 	struct aspeed_hace_dev *hace_dev = (struct aspeed_hace_dev *)dev;
-+	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
- 	struct aspeed_engine_hash *hash_engine = &hace_dev->hash_engine;
- 	u32 sts;
- 
-@@ -51,9 +63,24 @@ static irqreturn_t aspeed_hace_irq(int irq, void *dev)
- 			dev_warn(hace_dev->dev, "HASH no active requests.\n");
- 	}
- 
-+	if (sts & HACE_CRYPTO_ISR) {
-+		if (crypto_engine->flags & CRYPTO_FLAGS_BUSY)
-+			tasklet_schedule(&crypto_engine->done_task);
-+		else
-+			dev_warn(hace_dev->dev, "CRYPTO no active requests.\n");
-+	}
-+
- 	return IRQ_HANDLED;
- }
- 
-+static void aspeed_hace_crypto_done_task(unsigned long data)
-+{
-+	struct aspeed_hace_dev *hace_dev = (struct aspeed_hace_dev *)data;
-+	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
-+
-+	crypto_engine->resume(hace_dev);
-+}
-+
- static void aspeed_hace_hash_done_task(unsigned long data)
- {
- 	struct aspeed_hace_dev *hace_dev = (struct aspeed_hace_dev *)data;
-@@ -65,11 +92,13 @@ static void aspeed_hace_hash_done_task(unsigned long data)
- static void aspeed_hace_register(struct aspeed_hace_dev *hace_dev)
- {
- 	aspeed_register_hace_hash_algs(hace_dev);
-+	aspeed_register_hace_crypto_algs(hace_dev);
- }
- 
- static void aspeed_hace_unregister(struct aspeed_hace_dev *hace_dev)
- {
- 	aspeed_unregister_hace_hash_algs(hace_dev);
-+	aspeed_unregister_hace_crypto_algs(hace_dev);
- }
- 
- static const struct of_device_id aspeed_hace_of_matches[] = {
-@@ -80,6 +109,7 @@ static const struct of_device_id aspeed_hace_of_matches[] = {
- 
- static int aspeed_hace_probe(struct platform_device *pdev)
- {
-+	struct aspeed_engine_crypto *crypto_engine;
- 	const struct of_device_id *hace_dev_id;
- 	struct aspeed_engine_hash *hash_engine;
- 	struct aspeed_hace_dev *hace_dev;
-@@ -100,6 +130,7 @@ static int aspeed_hace_probe(struct platform_device *pdev)
- 	hace_dev->dev = &pdev->dev;
- 	hace_dev->version = (unsigned long)hace_dev_id->data;
- 	hash_engine = &hace_dev->hash_engine;
-+	crypto_engine = &hace_dev->crypto_engine;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 
-@@ -153,6 +184,21 @@ static int aspeed_hace_probe(struct platform_device *pdev)
- 	tasklet_init(&hash_engine->done_task, aspeed_hace_hash_done_task,
- 		     (unsigned long)hace_dev);
- 
-+	/* Initialize crypto hardware engine structure for crypto */
-+	hace_dev->crypt_engine_crypto = crypto_engine_alloc_init(hace_dev->dev,
-+								 true);
-+	if (!hace_dev->crypt_engine_crypto) {
-+		rc = -ENOMEM;
-+		goto err_engine_hash_start;
-+	}
-+
-+	rc = crypto_engine_start(hace_dev->crypt_engine_crypto);
-+	if (rc)
-+		goto err_engine_crypto_start;
-+
-+	tasklet_init(&crypto_engine->done_task, aspeed_hace_crypto_done_task,
-+		     (unsigned long)hace_dev);
-+
- 	/* Allocate DMA buffer for hash engine input used */
- 	hash_engine->ahash_src_addr =
- 		dmam_alloc_coherent(&pdev->dev,
-@@ -162,7 +208,45 @@ static int aspeed_hace_probe(struct platform_device *pdev)
- 	if (!hash_engine->ahash_src_addr) {
- 		dev_err(&pdev->dev, "Failed to allocate dma buffer\n");
- 		rc = -ENOMEM;
--		goto err_engine_hash_start;
-+		goto err_engine_crypto_start;
-+	}
-+
-+	/* Allocate DMA buffer for crypto engine context used */
-+	crypto_engine->cipher_ctx =
-+		dmam_alloc_coherent(&pdev->dev,
-+				    PAGE_SIZE,
-+				    &crypto_engine->cipher_ctx_dma,
-+				    GFP_KERNEL);
-+	if (!crypto_engine->cipher_ctx) {
-+		dev_err(&pdev->dev, "Failed to allocate cipher ctx dma\n");
-+		rc = -ENOMEM;
-+		goto err_engine_crypto_start;
-+	}
-+
-+	/* Allocate DMA buffer for crypto engine input used */
-+	crypto_engine->cipher_addr =
-+		dmam_alloc_coherent(&pdev->dev,
-+				    ASPEED_CRYPTO_SRC_DMA_BUF_LEN,
-+				    &crypto_engine->cipher_dma_addr,
-+				    GFP_KERNEL);
-+	if (!crypto_engine->cipher_addr) {
-+		dev_err(&pdev->dev, "Failed to allocate cipher addr dma\n");
-+		rc = -ENOMEM;
-+		goto err_engine_crypto_start;
-+	}
-+
-+	/* Allocate DMA buffer for crypto engine output used */
-+	if (hace_dev->version == AST2600_VERSION) {
-+		crypto_engine->dst_sg_addr =
-+			dmam_alloc_coherent(&pdev->dev,
-+					    ASPEED_CRYPTO_DST_DMA_BUF_LEN,
-+					    &crypto_engine->dst_sg_dma_addr,
-+					    GFP_KERNEL);
-+		if (!crypto_engine->dst_sg_addr) {
-+			dev_err(&pdev->dev, "Failed to allocate dst_sg dma\n");
-+			rc = -ENOMEM;
-+			goto err_engine_crypto_start;
-+		}
- 	}
- 
- 	aspeed_hace_register(hace_dev);
-@@ -171,6 +255,8 @@ static int aspeed_hace_probe(struct platform_device *pdev)
- 
- 	return 0;
- 
-+err_engine_crypto_start:
-+	crypto_engine_exit(hace_dev->crypt_engine_crypto);
- err_engine_hash_start:
- 	crypto_engine_exit(hace_dev->crypt_engine_hash);
- clk_exit:
-@@ -182,13 +268,16 @@ static int aspeed_hace_probe(struct platform_device *pdev)
- static int aspeed_hace_remove(struct platform_device *pdev)
- {
- 	struct aspeed_hace_dev *hace_dev = platform_get_drvdata(pdev);
-+	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
- 	struct aspeed_engine_hash *hash_engine = &hace_dev->hash_engine;
- 
- 	aspeed_hace_unregister(hace_dev);
- 
- 	crypto_engine_exit(hace_dev->crypt_engine_hash);
-+	crypto_engine_exit(hace_dev->crypt_engine_crypto);
- 
- 	tasklet_kill(&hash_engine->done_task);
-+	tasklet_kill(&crypto_engine->done_task);
- 
- 	clk_disable_unprepare(hace_dev->clk);
- 
-diff --git a/drivers/crypto/aspeed/aspeed-hace.h b/drivers/crypto/aspeed/aspeed-hace.h
-index de7c6ea75b2c..e52c4e245fbb 100644
---- a/drivers/crypto/aspeed/aspeed-hace.h
-+++ b/drivers/crypto/aspeed/aspeed-hace.h
-@@ -7,9 +7,12 @@
- #include <linux/err.h>
- #include <linux/fips.h>
- #include <linux/dma-mapping.h>
-+#include <crypto/aes.h>
-+#include <crypto/des.h>
- #include <crypto/scatterwalk.h>
- #include <crypto/internal/aead.h>
- #include <crypto/internal/akcipher.h>
-+#include <crypto/internal/des.h>
- #include <crypto/internal/hash.h>
- #include <crypto/internal/kpp.h>
- #include <crypto/internal/skcipher.h>
-@@ -24,15 +27,75 @@
-  * HACE register definitions *
-  *                           *
-  * ***************************/
-+#define ASPEED_HACE_SRC			0x00	/* Crypto Data Source Base Address Register */
-+#define ASPEED_HACE_DEST		0x04	/* Crypto Data Destination Base Address Register */
-+#define ASPEED_HACE_CONTEXT		0x08	/* Crypto Context Buffer Base Address Register */
-+#define ASPEED_HACE_DATA_LEN		0x0C	/* Crypto Data Length Register */
-+#define ASPEED_HACE_CMD			0x10	/* Crypto Engine Command Register */
-+
-+/* G5 */
-+#define ASPEED_HACE_TAG			0x18	/* HACE Tag Register */
-+/* G6 */
-+#define ASPEED_HACE_GCM_ADD_LEN		0x14	/* Crypto AES-GCM Additional Data Length Register */
-+#define ASPEED_HACE_GCM_TAG_BASE_ADDR	0x18	/* Crypto AES-GCM Tag Write Buff Base Address Reg */
- 
- #define ASPEED_HACE_STS			0x1C	/* HACE Status Register */
-+
- #define ASPEED_HACE_HASH_SRC		0x20	/* Hash Data Source Base Address Register */
- #define ASPEED_HACE_HASH_DIGEST_BUFF	0x24	/* Hash Digest Write Buffer Base Address Register */
- #define ASPEED_HACE_HASH_KEY_BUFF	0x28	/* Hash HMAC Key Buffer Base Address Register */
- #define ASPEED_HACE_HASH_DATA_LEN	0x2C	/* Hash Data Length Register */
- #define ASPEED_HACE_HASH_CMD		0x30	/* Hash Engine Command Register */
- 
-+/* crypto cmd */
-+#define  HACE_CMD_SINGLE_DES		0
-+#define  HACE_CMD_TRIPLE_DES		BIT(17)
-+#define  HACE_CMD_AES_SELECT		0
-+#define  HACE_CMD_DES_SELECT		BIT(16)
-+#define  HACE_CMD_ISR_EN		BIT(12)
-+#define  HACE_CMD_CONTEXT_SAVE_ENABLE	(0)
-+#define  HACE_CMD_CONTEXT_SAVE_DISABLE	BIT(9)
-+#define  HACE_CMD_AES			(0)
-+#define  HACE_CMD_DES			(0)
-+#define  HACE_CMD_RC4			BIT(8)
-+#define  HACE_CMD_DECRYPT		(0)
-+#define  HACE_CMD_ENCRYPT		BIT(7)
-+
-+#define  HACE_CMD_ECB			(0x0 << 4)
-+#define  HACE_CMD_CBC			(0x1 << 4)
-+#define  HACE_CMD_CFB			(0x2 << 4)
-+#define  HACE_CMD_OFB			(0x3 << 4)
-+#define  HACE_CMD_CTR			(0x4 << 4)
-+#define  HACE_CMD_OP_MODE_MASK		(0x7 << 4)
-+
-+#define  HACE_CMD_AES128		(0x0 << 2)
-+#define  HACE_CMD_AES192		(0x1 << 2)
-+#define  HACE_CMD_AES256		(0x2 << 2)
-+#define  HACE_CMD_OP_CASCADE		(0x3)
-+#define  HACE_CMD_OP_INDEPENDENT	(0x1)
-+
-+/* G5 */
-+#define  HACE_CMD_RI_WO_DATA_ENABLE	(0)
-+#define  HACE_CMD_RI_WO_DATA_DISABLE	BIT(11)
-+#define  HACE_CMD_CONTEXT_LOAD_ENABLE	(0)
-+#define  HACE_CMD_CONTEXT_LOAD_DISABLE	BIT(10)
-+/* G6 */
-+#define  HACE_CMD_AES_KEY_FROM_OTP	BIT(24)
-+#define  HACE_CMD_GHASH_TAG_XOR_EN	BIT(23)
-+#define  HACE_CMD_GHASH_PAD_LEN_INV	BIT(22)
-+#define  HACE_CMD_GCM_TAG_ADDR_SEL	BIT(21)
-+#define  HACE_CMD_MBUS_REQ_SYNC_EN	BIT(20)
-+#define  HACE_CMD_DES_SG_CTRL		BIT(19)
-+#define  HACE_CMD_SRC_SG_CTRL		BIT(18)
-+#define  HACE_CMD_CTR_IV_AES_96		(0x1 << 14)
-+#define  HACE_CMD_CTR_IV_DES_32		(0x1 << 14)
-+#define  HACE_CMD_CTR_IV_AES_64		(0x2 << 14)
-+#define  HACE_CMD_CTR_IV_AES_32		(0x3 << 14)
-+#define  HACE_CMD_AES_KEY_HW_EXP	BIT(13)
-+#define  HACE_CMD_GCM			(0x5 << 4)
-+
- /* interrupt status reg */
-+#define  HACE_CRYPTO_ISR		BIT(12)
- #define  HACE_HASH_ISR			BIT(9)
- #define  HACE_HASH_BUSY			BIT(0)
- 
-@@ -77,6 +140,9 @@
- #define ASPEED_HASH_SRC_DMA_BUF_LEN	0xa000
- #define ASPEED_HASH_QUEUE_LENGTH	50
- 
-+#define HACE_CMD_IV_REQUIRE		(HACE_CMD_CBC | HACE_CMD_CFB | \
-+					 HACE_CMD_OFB | HACE_CMD_CTR)
-+
- struct aspeed_hace_dev;
- 
- typedef int (*aspeed_hace_fn_t)(struct aspeed_hace_dev *);
-@@ -145,6 +211,48 @@ struct aspeed_sham_reqctx {
- 	u64			digcnt[2];
- };
- 
-+struct aspeed_engine_crypto {
-+	struct tasklet_struct		done_task;
-+	unsigned long			flags;
-+	struct skcipher_request		*req;
-+
-+	/* context buffer */
-+	void				*cipher_ctx;
-+	dma_addr_t			cipher_ctx_dma;
-+
-+	/* input buffer, could be single/scatter-gather lists */
-+	void				*cipher_addr;
-+	dma_addr_t			cipher_dma_addr;
-+
-+	/* output buffer, only used in scatter-gather lists */
-+	void				*dst_sg_addr;
-+	dma_addr_t			dst_sg_dma_addr;
-+
-+	/* callback func */
-+	aspeed_hace_fn_t		resume;
-+};
-+
-+struct aspeed_cipher_ctx {
-+	struct crypto_engine_ctx	enginectx;
-+
-+	struct aspeed_hace_dev		*hace_dev;
-+	int				key_len;
-+	u8				key[AES_MAX_KEYLENGTH];
-+
-+	/* callback func */
-+	aspeed_hace_fn_t		start;
-+
-+	struct crypto_skcipher          *fallback_tfm;
-+};
-+
-+struct aspeed_cipher_reqctx {
-+	int enc_cmd;
-+	int src_nents;
-+	int dst_nents;
-+
-+	struct skcipher_request         fallback_req;   /* keep at the end */
-+};
-+
- struct aspeed_hace_dev {
- 	void __iomem			*regs;
- 	struct device			*dev;
-@@ -153,8 +261,10 @@ struct aspeed_hace_dev {
- 	unsigned long			version;
- 
- 	struct crypto_engine		*crypt_engine_hash;
-+	struct crypto_engine		*crypt_engine_crypto;
- 
- 	struct aspeed_engine_hash	hash_engine;
-+	struct aspeed_engine_crypto	crypto_engine;
- };
- 
- struct aspeed_hace_alg {
-@@ -177,5 +287,7 @@ enum aspeed_version {
- 
- void aspeed_register_hace_hash_algs(struct aspeed_hace_dev *hace_dev);
- void aspeed_unregister_hace_hash_algs(struct aspeed_hace_dev *hace_dev);
-+void aspeed_register_hace_crypto_algs(struct aspeed_hace_dev *hace_dev);
-+void aspeed_unregister_hace_crypto_algs(struct aspeed_hace_dev *hace_dev);
- 
- #endif
--- 
-2.25.1
-
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+>
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> > Since v3
+> > - Refine pm_runtime API calling order in 'read_channel' API.
+> > - Fix vshunt wrong scale for divider.
+> > - Refine the comment text.
+> > - Use 'devm_add_action_or_reset' to decrease the code usage in probe
+> >   function.
+> > - Use RUNTIME_PM_OPS to replace SET_RUNTIME_PM_OPS.
+> > - minor fix for the comma.
+> > - Use pm_ptr to replace the direct assigned pm_ops.
+> >
+> > Since v2
+> > - Rename file from 'rtq6056-adc' to 'rtq6056'.
+> > - Refine the ABI, if generic already defined it, remove it and check th=
+e channel
+> >   report unit.
+> > - Add copyright text.
+> > - include the correct header.
+> > - change the property parsing name.
+> > - To use iio_chan_spec address field.
+> > - Refine each channel separate and shared_by_all.
+> > - Use pm_runtime and pm_runtime_autosuspend.
+> > - Remove the shutdown callback. From the HW suggestion, it's not recomm=
+ended to
+> >   use battery as the power supply.
+> > - Check all scale unit (voltage->mV, current->mA, power->milliWatt).
+> > - Use the read_avail to provide the interface for attribute value list.
+> > - Add comma for the last element in the const integer array.
+> > - Refine each ADC label text.
+> > - In read_label callback, replace snprintf to sysfs_emit.
+> >
+> > ---
+> >  .../ABI/testing/sysfs-bus-iio-adc-rtq6056          |   6 +
+> >  drivers/iio/adc/Kconfig                            |  15 +
+> >  drivers/iio/adc/Makefile                           |   1 +
+> >  drivers/iio/adc/rtq6056.c                          | 651 +++++++++++++=
+++++++++
+> >  4 files changed, 673 insertions(+)
+> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+> >  create mode 100644 drivers/iio/adc/rtq6056.c
+> >
+> > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056 b/Docu=
+mentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+> > new file mode 100644
+> > index 00000000..db54343
+> > --- /dev/null
+> > +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+> > @@ -0,0 +1,6 @@
+> > +What:          /sys/bus/iio/devices/iio:deviceX/in_voltage0_integratio=
+n_time
+> > +What:          /sys/bus/iio/devices/iio:deviceX/in_voltage1_integratio=
+n_time
+> > +KernelVersion: 5.15.31
+> > +Contact:       cy_huang@richtek.com
+> > +Description:
+> > +               Each voltage conversion time in uS
+> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> > index 48ace74..caebd1a 100644
+> > --- a/drivers/iio/adc/Kconfig
+> > +++ b/drivers/iio/adc/Kconfig
+> > @@ -908,6 +908,21 @@ config ROCKCHIP_SARADC
+> >           To compile this driver as a module, choose M here: the
+> >           module will be called rockchip_saradc.
+> >
+> > +config RICHTEK_RTQ6056
+> > +       tristate "Richtek RTQ6056 Current and Power Monitor ADC"
+> > +       depends on I2C
+> > +       select REGMAP_I2C
+> > +       select IIO_BUFFER
+> > +       select IIO_TRIGGERED_BUFFER
+> > +       help
+> > +         Say yes here to enable RQT6056 ADC support.
+> > +         RTQ6056 is a high accuracy current-sense monitor with I2C and=
+ SMBus
+> > +         compatible interface, and the device provides full informatio=
+n for
+> > +         system by reading out the load current and power.
+> > +
+> > +         This driver can also be built as a module. If so, the module =
+will be
+> > +         called rtq6056.
+> > +
+> >  config RZG2L_ADC
+> >         tristate "Renesas RZ/G2L ADC driver"
+> >         depends on ARCH_RZG2L || COMPILE_TEST
+> > diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> > index 39d806f..cda7580 100644
+> > --- a/drivers/iio/adc/Makefile
+> > +++ b/drivers/iio/adc/Makefile
+> > @@ -84,6 +84,7 @@ obj-$(CONFIG_QCOM_PM8XXX_XOADC) +=3D qcom-pm8xxx-xoad=
+c.o
+> >  obj-$(CONFIG_RCAR_GYRO_ADC) +=3D rcar-gyroadc.o
+> >  obj-$(CONFIG_RN5T618_ADC) +=3D rn5t618-adc.o
+> >  obj-$(CONFIG_ROCKCHIP_SARADC) +=3D rockchip_saradc.o
+> > +obj-$(CONFIG_RICHTEK_RTQ6056) +=3D rtq6056.o
+> >  obj-$(CONFIG_RZG2L_ADC) +=3D rzg2l_adc.o
+> >  obj-$(CONFIG_SC27XX_ADC) +=3D sc27xx_adc.o
+> >  obj-$(CONFIG_SPEAR_ADC) +=3D spear_adc.o
+> > diff --git a/drivers/iio/adc/rtq6056.c b/drivers/iio/adc/rtq6056.c
+> > new file mode 100644
+> > index 00000000..c97c8af
+> > --- /dev/null
+> > +++ b/drivers/iio/adc/rtq6056.c
+> > @@ -0,0 +1,651 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2022 Richtek Technology Corp.
+> > + *
+> > + * ChiYuan Huang <cy_huang@richtek.com>
+> > + */
+> > +
+> > +#include <linux/bitops.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/property.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/sysfs.h>
+> > +#include <linux/types.h>
+> > +#include <linux/util_macros.h>
+> > +
+> > +#include <linux/iio/buffer.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/iio/sysfs.h>
+> > +#include <linux/iio/trigger_consumer.h>
+> > +#include <linux/iio/triggered_buffer.h>
+> > +
+> > +#define RTQ6056_REG_CONFIG     0x00
+> > +#define RTQ6056_REG_SHUNTVOLT  0x01
+> > +#define RTQ6056_REG_BUSVOLT    0x02
+> > +#define RTQ6056_REG_POWER      0x03
+> > +#define RTQ6056_REG_CURRENT    0x04
+> > +#define RTQ6056_REG_CALIBRATION        0x05
+> > +#define RTQ6056_REG_MASKENABLE 0x06
+> > +#define RTQ6056_REG_ALERTLIMIT 0x07
+> > +#define RTQ6056_REG_MANUFACTID 0xFE
+> > +#define RTQ6056_REG_DIEID      0xFF
+> > +
+> > +#define RTQ6056_VENDOR_ID      0x1214
+> > +#define RTQ6056_DEFAULT_CONFIG 0x4127
+> > +#define RTQ6056_CONT_ALLON     7
+> > +
+> > +enum {
+> > +       RTQ6056_CH_VSHUNT =3D 0,
+> > +       RTQ6056_CH_VBUS,
+> > +       RTQ6056_CH_POWER,
+> > +       RTQ6056_CH_CURRENT,
+> > +       RTQ6056_MAX_CHANNEL
+> > +};
+> > +
+> > +enum {
+> > +       F_OPMODE =3D 0,
+> > +       F_VSHUNTCT,
+> > +       F_VBUSCT,
+> > +       F_AVG,
+> > +       F_RESET,
+> > +       F_MAX_FIELDS
+> > +};
+> > +
+> > +struct rtq6056_priv {
+> > +       struct device *dev;
+> > +       struct regmap *regmap;
+> > +       struct regmap_field *rm_fields[F_MAX_FIELDS];
+> > +       u32 shunt_resistor_uohm;
+> > +       int vshuntct_us;
+> > +       int vbusct_us;
+> > +       int avg_sample;
+> > +};
+> > +
+> > +static const struct reg_field rtq6056_reg_fields[F_MAX_FIELDS] =3D {
+> > +       [F_OPMODE] =3D REG_FIELD(RTQ6056_REG_CONFIG, 0, 2),
+> > +       [F_VSHUNTCT] =3D REG_FIELD(RTQ6056_REG_CONFIG, 3, 5),
+> > +       [F_VBUSCT] =3D REG_FIELD(RTQ6056_REG_CONFIG, 6, 8),
+> > +       [F_AVG] =3D REG_FIELD(RTQ6056_REG_CONFIG, 9, 11),
+> > +       [F_RESET] =3D REG_FIELD(RTQ6056_REG_CONFIG, 15, 15),
+> > +};
+> > +
+> > +static const struct iio_chan_spec rtq6056_channels[RTQ6056_MAX_CHANNEL=
+ + 1] =3D {
+> > +       {
+> > +               .type =3D IIO_VOLTAGE,
+> > +               .indexed =3D 1,
+> > +               .channel =3D 0,
+> > +               .address =3D RTQ6056_REG_SHUNTVOLT,
+> > +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > +                                     BIT(IIO_CHAN_INFO_SCALE) |
+> > +                                     BIT(IIO_CHAN_INFO_INT_TIME),
+> > +               .info_mask_separate_available =3D BIT(IIO_CHAN_INFO_INT=
+_TIME),
+> > +               .info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_SAMP_FRE=
+Q) |
+> > +                                          BIT(IIO_CHAN_INFO_OVERSAMPLI=
+NG_RATIO),
+> > +               .info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INF=
+O_OVERSAMPLING_RATIO),
+> > +               .scan_index =3D 0,
+> > +               .scan_type =3D {
+> > +                       .sign =3D 's',
+> > +                       .realbits =3D 16,
+> > +                       .storagebits =3D 16,
+> > +                       .endianness =3D IIO_CPU,
+> > +               },
+> > +       },
+> > +       {
+> > +               .type =3D IIO_VOLTAGE,
+> > +               .indexed =3D 1,
+> > +               .channel =3D 1,
+> > +               .address =3D RTQ6056_REG_BUSVOLT,
+> > +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > +                                     BIT(IIO_CHAN_INFO_SCALE) |
+> > +                                     BIT(IIO_CHAN_INFO_INT_TIME),
+> > +               .info_mask_separate_available =3D BIT(IIO_CHAN_INFO_INT=
+_TIME),
+> > +               .info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_SAMP_FRE=
+Q) |
+> > +                                          BIT(IIO_CHAN_INFO_OVERSAMPLI=
+NG_RATIO),
+> > +               .info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INF=
+O_OVERSAMPLING_RATIO),
+> > +               .scan_index =3D 1,
+> > +               .scan_type =3D {
+> > +                       .sign =3D 'u',
+> > +                       .realbits =3D 16,
+> > +                       .storagebits =3D 16,
+> > +                       .endianness =3D IIO_CPU,
+> > +               },
+> > +       },
+> > +       {
+> > +               .type =3D IIO_POWER,
+> > +               .indexed =3D 1,
+> > +               .channel =3D 2,
+> > +               .address =3D RTQ6056_REG_POWER,
+> > +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > +                                     BIT(IIO_CHAN_INFO_SCALE),
+> > +               .info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_SAMP_FRE=
+Q) |
+> > +                                          BIT(IIO_CHAN_INFO_OVERSAMPLI=
+NG_RATIO),
+> > +               .info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INF=
+O_OVERSAMPLING_RATIO),
+> > +               .scan_index =3D 2,
+> > +               .scan_type =3D {
+> > +                       .sign =3D 'u',
+> > +                       .realbits =3D 16,
+> > +                       .storagebits =3D 16,
+> > +                       .endianness =3D IIO_CPU,
+> > +               },
+> > +       },
+> > +       {
+> > +               .type =3D IIO_CURRENT,
+> > +               .indexed =3D 1,
+> > +               .channel =3D 3,
+> > +               .address =3D RTQ6056_REG_CURRENT,
+> > +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),
+> > +               .info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_SAMP_FRE=
+Q) |
+> > +                                          BIT(IIO_CHAN_INFO_OVERSAMPLI=
+NG_RATIO),
+> > +               .info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INF=
+O_OVERSAMPLING_RATIO),
+> > +               .scan_index =3D 3,
+> > +               .scan_type =3D {
+> > +                       .sign =3D 's',
+> > +                       .realbits =3D 16,
+> > +                       .storagebits =3D 16,
+> > +                       .endianness =3D IIO_CPU,
+> > +               },
+> > +       },
+> > +       IIO_CHAN_SOFT_TIMESTAMP(RTQ6056_MAX_CHANNEL),
+> > +};
+> > +
+> > +static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
+> > +                                   struct iio_chan_spec const *ch,
+> > +                                   int *val)
+> > +{
+> > +       struct device *dev =3D priv->dev;
+> > +       unsigned int addr =3D ch->address;
+> > +       unsigned int regval;
+> > +       int ret;
+> > +
+> > +       pm_runtime_get_sync(dev);
+> > +       ret =3D regmap_read(priv->regmap, addr, &regval);
+> > +       pm_runtime_mark_last_busy(dev);
+> > +       pm_runtime_put(dev);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       /* Power and VBUS is unsigned 16-bit, others are signed 16-bit =
+*/
+> > +       if (addr =3D=3D RTQ6056_REG_BUSVOLT || addr =3D=3D RTQ6056_REG_=
+POWER)
+> > +               *val =3D regval;
+> > +       else
+> > +               *val =3D sign_extend32(regval, 16);
+> > +
+> > +
+> > +       return IIO_VAL_INT;
+> > +}
+> > +
+> > +static int rtq6056_adc_read_scale(struct iio_chan_spec const *ch, int =
+*val,
+> > +                                 int *val2)
+> > +{
+> > +       switch (ch->address) {
+> > +       case RTQ6056_REG_SHUNTVOLT:
+> > +               /* VSHUNT lsb  2.5uV */
+> > +               *val =3D 2500;
+> > +               *val2 =3D 1000000;
+> > +               return IIO_VAL_FRACTIONAL;
+> > +       case RTQ6056_REG_BUSVOLT:
+> > +               /* VBUS lsb 1.25mV */
+> > +               *val =3D 1250;
+> > +               *val2 =3D 1000;
+> > +               return IIO_VAL_FRACTIONAL;
+> > +       case RTQ6056_REG_POWER:
+> > +               /* Power lsb 25mW */
+> > +               *val =3D 25;
+> > +               return IIO_VAL_INT;
+> > +       default:
+> > +               return -EINVAL;
+> > +       }
+> > +}
+> > +
+> > +/*
+> > + * Conversion time in uS for channel VSHUNT and VBUS. The indices corr=
+espond
+> > + * with the bit value expected by the chip. And it can be found at
+> > + * https://www.richtek.com/assets/product_file/RTQ6056/DSQ6056-00.pdf
+> > + */
+> > +static const int rtq6056_conv_time_list[] =3D {
+> > +       139, 203, 269, 525, 1037, 2061, 4109, 8205,
+> > +};
+> > +
+> > +static int rtq6056_adc_set_conv_time(struct rtq6056_priv *priv,
+> > +                                    struct iio_chan_spec const *ch,
+> > +                                    int val)
+> > +{
+> > +       struct regmap_field *rm_field;
+> > +       unsigned int selector;
+> > +       int *ct, ret;
+> > +
+> > +       if (val > 8205 || val < 139)
+> > +               return -EINVAL;
+> > +
+> > +       if (ch->address =3D=3D RTQ6056_REG_SHUNTVOLT) {
+> > +               rm_field =3D priv->rm_fields[F_VSHUNTCT];
+> > +               ct =3D &priv->vshuntct_us;
+> > +       } else {
+> > +               rm_field =3D priv->rm_fields[F_VBUSCT];
+> > +               ct =3D &priv->vbusct_us;
+> > +       }
+> > +
+> > +       selector =3D find_closest(val, rtq6056_conv_time_list,
+> > +                               ARRAY_SIZE(rtq6056_conv_time_list));
+> > +
+> > +       ret =3D regmap_field_write(rm_field, selector);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       *ct =3D rtq6056_conv_time_list[selector];
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +/*
+> > + * Available averaging rate for rtq6056. The indices correspond with t=
+he bit
+> > + * value expected by the chip. And it can be found at
+> > + * https://www.richtek.com/assets/product_file/RTQ6056/DSQ6056-00.pdf
+> > + */
+> > +static const int rtq6056_avg_sample_list[] =3D {
+> > +       1, 4, 16, 64, 128, 256, 512, 1024,
+> > +};
+> > +
+> > +static int rtq6056_adc_set_average(struct rtq6056_priv *priv, int val)
+> > +{
+> > +       unsigned int selector;
+> > +       int ret;
+> > +
+> > +       if (val > 1024 || val < 1)
+> > +               return -EINVAL;
+> > +
+> > +       selector =3D find_closest(val, rtq6056_avg_sample_list,
+> > +                               ARRAY_SIZE(rtq6056_avg_sample_list));
+> > +
+> > +       ret =3D regmap_field_write(priv->rm_fields[F_AVG], selector);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       priv->avg_sample =3D rtq6056_avg_sample_list[selector];
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int rtq6056_adc_get_sample_freq(struct rtq6056_priv *priv, int =
+*val)
+> > +{
+> > +       int sample_time;
+> > +
+> > +       sample_time =3D priv->vshuntct_us + priv->vbusct_us;
+> > +       sample_time *=3D priv->avg_sample;
+> > +
+> > +       *val =3D DIV_ROUND_UP(1000000, sample_time);
+> > +
+> > +       return IIO_VAL_INT;
+> > +}
+> > +
+> > +static int rtq6056_adc_read_raw(struct iio_dev *indio_dev,
+> > +                               struct iio_chan_spec const *chan, int *=
+val,
+> > +                               int *val2, long mask)
+> > +{
+> > +       struct rtq6056_priv *priv =3D iio_priv(indio_dev);
+> > +
+> > +       switch (mask) {
+> > +       case IIO_CHAN_INFO_RAW:
+> > +               return rtq6056_adc_read_channel(priv, chan, val);
+> > +       case IIO_CHAN_INFO_SCALE:
+> > +               return rtq6056_adc_read_scale(chan, val, val2);
+> > +       case IIO_CHAN_INFO_INT_TIME:
+> > +               if (chan->address =3D=3D RTQ6056_REG_SHUNTVOLT)
+> > +                       *val =3D priv->vshuntct_us;
+> > +               else
+> > +                       *val =3D priv->vbusct_us;
+> > +
+> > +               return IIO_VAL_INT;
+> > +       case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> > +               *val =3D priv->avg_sample;
+> > +               return IIO_VAL_INT;
+> > +       case IIO_CHAN_INFO_SAMP_FREQ:
+> > +               return rtq6056_adc_get_sample_freq(priv, val);
+> > +       default:
+> > +               return -EINVAL;
+> > +       }
+> > +}
+> > +
+> > +static int rtq6056_adc_read_avail(struct iio_dev *indio_dev,
+> > +                                 struct iio_chan_spec const *chan,
+> > +                                 const int **vals, int *type, int *len=
+gth,
+> > +                                 long mask)
+> > +{
+> > +       switch (mask) {
+> > +       case IIO_CHAN_INFO_INT_TIME:
+> > +               *vals =3D rtq6056_conv_time_list;
+> > +               *type =3D IIO_VAL_INT;
+> > +               *length =3D ARRAY_SIZE(rtq6056_conv_time_list);
+> > +               return IIO_AVAIL_LIST;
+> > +       case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> > +               *vals =3D rtq6056_avg_sample_list;
+> > +               *type =3D IIO_VAL_INT;
+> > +               *length =3D ARRAY_SIZE(rtq6056_avg_sample_list);
+> > +               return IIO_AVAIL_LIST;
+> > +       default:
+> > +               return -EINVAL;
+> > +       }
+> > +}
+> > +
+> > +static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
+> > +                                struct iio_chan_spec const *chan, int =
+val,
+> > +                                int val2, long mask)
+> > +{
+> > +       struct rtq6056_priv *priv =3D iio_priv(indio_dev);
+> > +
+> > +       if (iio_buffer_enabled(indio_dev))
+> > +               return -EBUSY;
+> > +
+> > +       switch (mask) {
+> > +       case IIO_CHAN_INFO_INT_TIME:
+> > +               return rtq6056_adc_set_conv_time(priv, chan, val);
+> > +       case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> > +               return rtq6056_adc_set_average(priv, val);
+> > +       default:
+> > +               return -EINVAL;
+> > +       }
+> > +}
+> > +
+> > +static const char *rtq6056_channel_labels[RTQ6056_MAX_CHANNEL] =3D {
+> > +       [RTQ6056_CH_VSHUNT] =3D "Vshunt",
+> > +       [RTQ6056_CH_VBUS] =3D "Vbus",
+> > +       [RTQ6056_CH_POWER] =3D "Power",
+> > +       [RTQ6056_CH_CURRENT] =3D "Current",
+> > +};
+> > +
+> > +static int rtq6056_adc_read_label(struct iio_dev *indio_dev,
+> > +                                 struct iio_chan_spec const *chan,
+> > +                                 char *label)
+> > +{
+> > +       return sysfs_emit(label, "%s\n", rtq6056_channel_labels[chan->c=
+hannel]);
+> > +}
+> > +
+> > +static int rtq6056_set_shunt_resistor(struct rtq6056_priv *priv,
+> > +                                     int resistor_uohm)
+> > +{
+> > +       unsigned int calib_val;
+> > +       int ret;
+> > +
+> > +       if (resistor_uohm <=3D 0) {
+> > +               dev_err(priv->dev, "Invalid resistor [%d]\n", resistor_=
+uohm);
+> > +               return -EINVAL;
+> > +       }
+> > +
+> > +       /* calibration =3D 5120000 / (Rshunt (uOhm) * current lsb (1mA)=
+) */
+> > +       calib_val =3D 5120000 / resistor_uohm;
+> > +       ret =3D regmap_write(priv->regmap, RTQ6056_REG_CALIBRATION, cal=
+ib_val);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       priv->shunt_resistor_uohm =3D resistor_uohm;
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static ssize_t shunt_resistor_show(struct device *dev,
+> > +                                  struct device_attribute *attr, char =
+*buf)
+> > +{
+> > +       struct rtq6056_priv *priv =3D iio_priv(dev_to_iio_dev(dev));
+> > +       int vals[2] =3D { priv->shunt_resistor_uohm, 1000000 };
+> > +
+> > +       return iio_format_value(buf, IIO_VAL_FRACTIONAL, 1, vals);
+> > +}
+> > +
+> > +static ssize_t shunt_resistor_store(struct device *dev,
+> > +                                   struct device_attribute *attr,
+> > +                                   const char *buf, size_t len)
+> > +{
+> > +       struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
+> > +       struct rtq6056_priv *priv =3D iio_priv(indio_dev);
+> > +       int val, val_fract, ret;
+> > +
+> > +       if (iio_buffer_enabled(indio_dev))
+> > +               return -EBUSY;
+> > +
+> > +       ret =3D iio_str_to_fixpoint(buf, 100000, &val, &val_fract);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       ret =3D rtq6056_set_shunt_resistor(priv, val * 1000000 + val_fr=
+act);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       return len;
+> > +}
+> > +
+> > +static IIO_DEVICE_ATTR_RW(shunt_resistor, 0);
+> > +
+> > +static struct attribute *rtq6056_attributes[] =3D {
+> > +       &iio_dev_attr_shunt_resistor.dev_attr.attr,
+> > +       NULL
+> > +};
+> > +
+> > +static const struct attribute_group rtq6056_attribute_group =3D {
+> > +       .attrs =3D rtq6056_attributes,
+> > +};
+> > +
+> > +static const struct iio_info rtq6056_info =3D {
+> > +       .attrs =3D &rtq6056_attribute_group,
+> > +       .read_raw =3D rtq6056_adc_read_raw,
+> > +       .read_avail =3D rtq6056_adc_read_avail,
+> > +       .write_raw =3D rtq6056_adc_write_raw,
+> > +       .read_label =3D rtq6056_adc_read_label,
+> > +};
+> > +
+> > +static irqreturn_t rtq6056_buffer_trigger_handler(int irq, void *p)
+> > +{
+> > +       struct iio_poll_func *pf =3D p;
+> > +       struct iio_dev *indio_dev =3D pf->indio_dev;
+> > +       struct rtq6056_priv *priv =3D iio_priv(indio_dev);
+> > +       struct device *dev =3D priv->dev;
+> > +       struct {
+> > +               u16 vals[RTQ6056_MAX_CHANNEL];
+> > +               int64_t timestamp;
+> > +       } data;
+> > +       unsigned int raw;
+> > +       int i =3D 0, bit, ret;
+> > +
+> > +       memset(&data, 0, sizeof(data));
+> > +
+> > +       pm_runtime_get_sync(dev);
+> > +
+> > +       for_each_set_bit(bit, indio_dev->active_scan_mask, indio_dev->m=
+asklength) {
+> > +               unsigned int addr =3D rtq6056_channels[bit].address;
+> > +
+> > +               ret =3D regmap_read(priv->regmap, addr, &raw);
+> > +               if (ret)
+> > +                       goto out;
+> > +
+> > +               data.vals[i++] =3D raw;
+> > +       }
+> > +
+> > +       iio_push_to_buffers_with_timestamp(indio_dev, &data, iio_get_ti=
+me_ns(indio_dev));
+> > +
+> > +out:
+> > +       pm_runtime_mark_last_busy(dev);
+> > +       pm_runtime_put(dev);
+> > +
+> > +       iio_trigger_notify_done(indio_dev->trig);
+> > +
+> > +       return IRQ_HANDLED;
+> > +}
+> > +
+> > +static void rtq6056_remove(void *dev)
+> > +{
+> > +       pm_runtime_dont_use_autosuspend(dev);
+> > +       pm_runtime_disable(dev);
+> > +       pm_runtime_set_suspended(dev);
+> > +}
+> > +
+> > +static bool rtq6056_is_readable_reg(struct device *dev, unsigned int r=
+eg)
+> > +{
+> > +       switch (reg) {
+> > +       case RTQ6056_REG_CONFIG ... RTQ6056_REG_ALERTLIMIT:
+> > +       case RTQ6056_REG_MANUFACTID ... RTQ6056_REG_DIEID:
+> > +               return true;
+> > +       default:
+> > +               return false;
+> > +       }
+> > +}
+> > +
+> > +static bool rtq6056_is_writeable_reg(struct device *dev, unsigned int =
+reg)
+> > +{
+> > +       switch (reg) {
+> > +       case RTQ6056_REG_CONFIG:
+> > +       case RTQ6056_REG_CALIBRATION ... RTQ6056_REG_ALERTLIMIT:
+> > +               return true;
+> > +       default:
+> > +               return false;
+> > +       }
+> > +}
+> > +
+> > +static const struct regmap_config rtq6056_regmap_config =3D {
+> > +       .reg_bits =3D 8,
+> > +       .val_bits =3D 16,
+> > +       .val_format_endian =3D REGMAP_ENDIAN_BIG,
+> > +       .max_register =3D RTQ6056_REG_DIEID,
+> > +       .readable_reg =3D rtq6056_is_readable_reg,
+> > +       .writeable_reg =3D rtq6056_is_writeable_reg,
+> > +};
+> > +
+> > +static int rtq6056_probe(struct i2c_client *i2c)
+> > +{
+> > +       struct iio_dev *indio_dev;
+> > +       struct rtq6056_priv *priv;
+> > +       struct device *dev =3D &i2c->dev;
+> > +       struct regmap *regmap;
+> > +       unsigned int vendor_id, shunt_resistor_uohm;
+> > +       int ret;
+> > +
+> > +       if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_SMBUS_WORD_=
+DATA))
+> > +               return -EOPNOTSUPP;
+> > +
+> > +       indio_dev =3D devm_iio_device_alloc(dev, sizeof(*priv));
+> > +       if (!indio_dev)
+> > +               return -ENOMEM;
+> > +
+> > +       priv =3D iio_priv(indio_dev);
+> > +       priv->dev =3D dev;
+> > +       priv->vshuntct_us =3D priv->vbusct_us =3D 1037;
+> > +       priv->avg_sample =3D 1;
+> > +       i2c_set_clientdata(i2c, priv);
+> > +
+> > +       regmap =3D devm_regmap_init_i2c(i2c, &rtq6056_regmap_config);
+> > +       if (IS_ERR(regmap))
+> > +               return dev_err_probe(dev, PTR_ERR(regmap),
+> > +                                    "Failed to init regmap\n");
+> > +
+> > +       priv->regmap =3D regmap;
+> > +
+> > +       ret =3D regmap_read(regmap, RTQ6056_REG_MANUFACTID, &vendor_id)=
+;
+> > +       if (ret)
+> > +               return dev_err_probe(dev, ret,
+> > +                                    "Failed to get manufacturer info\n=
+");
+> > +
+> > +       if (vendor_id !=3D RTQ6056_VENDOR_ID)
+> > +               return dev_err_probe(dev, -ENODEV,
+> > +                                    "Invalid vendor id 0x%04x\n", vend=
+or_id);
+> > +
+> > +       ret =3D devm_regmap_field_bulk_alloc(dev, regmap, priv->rm_fiel=
+ds,
+> > +                                          rtq6056_reg_fields, F_MAX_FI=
+ELDS);
+> > +       if (ret)
+> > +               return dev_err_probe(dev, ret, "Failed to init regmap f=
+ield\n");
+> > +
+> > +       /*
+> > +        * By default, configure average sample as 1, bus and shunt con=
+version
+> > +        * timea as 1037 microsecond, and operating mode to all on.
+> > +        */
+> > +       ret =3D regmap_write(regmap, RTQ6056_REG_CONFIG, RTQ6056_DEFAUL=
+T_CONFIG);
+> > +       if (ret)
+> > +               return dev_err_probe(dev, ret,
+> > +                                    "Failed to enable continuous sensi=
+ng\n");
+> > +
+> > +       pm_runtime_set_autosuspend_delay(dev, MSEC_PER_SEC);
+> > +       pm_runtime_use_autosuspend(dev);
+> > +       pm_runtime_set_active(dev);
+> > +       pm_runtime_mark_last_busy(dev);
+> > +       pm_runtime_enable(dev);
+> > +
+> > +       ret =3D devm_add_action_or_reset(dev, rtq6056_remove, dev);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       /* By default, use 2000 micro-ohm resistor */
+> > +       shunt_resistor_uohm =3D 2000;
+> > +       device_property_read_u32(dev, "shunt-resistor-micro-ohms",
+> > +                                &shunt_resistor_uohm);
+> > +
+> > +       ret =3D rtq6056_set_shunt_resistor(priv, shunt_resistor_uohm);
+> > +       if (ret)
+> > +               return dev_err_probe(dev, ret,
+> > +                                    "Failed to init shunt resistor\n")=
+;
+> > +
+> > +       indio_dev->name =3D "rtq6056";
+> > +       indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > +       indio_dev->channels =3D rtq6056_channels;
+> > +       indio_dev->num_channels =3D ARRAY_SIZE(rtq6056_channels);
+> > +       indio_dev->info =3D &rtq6056_info;
+> > +
+> > +       ret =3D devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
+> > +                                             rtq6056_buffer_trigger_ha=
+ndler,
+> > +                                             NULL);
+> > +       if (ret)
+> > +               return dev_err_probe(dev, ret,
+> > +                                    "Failed to allocate iio trigger bu=
+ffer\n");
+> > +
+> > +       return devm_iio_device_register(dev, indio_dev);
+> > +}
+> > +
+> > +static int rtq6056_runtime_suspend(struct device *dev)
+> > +{
+> > +       struct rtq6056_priv *priv =3D dev_get_drvdata(dev);
+> > +
+> > +       /* Configure to shutdown mode */
+> > +       return regmap_field_write(priv->rm_fields[F_OPMODE], 0);
+> > +}
+> > +
+> > +static int rtq6056_runtime_resume(struct device *dev)
+> > +{
+> > +       struct rtq6056_priv *priv =3D dev_get_drvdata(dev);
+> > +       int sample_rdy_time_us, ret;
+> > +
+> > +       ret =3D regmap_field_write(priv->rm_fields[F_OPMODE], RTQ6056_C=
+ONT_ALLON);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       sample_rdy_time_us =3D priv->vbusct_us + priv->vshuntct_us;
+> > +       sample_rdy_time_us *=3D priv->avg_sample;
+> > +
+> > +       usleep_range(sample_rdy_time_us, sample_rdy_time_us + 100);
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static const struct dev_pm_ops rtq6056_pm_ops =3D {
+> > +       RUNTIME_PM_OPS(rtq6056_runtime_suspend, rtq6056_runtime_resume,=
+ NULL)
+> > +};
+> > +
+> > +static const struct of_device_id rtq6056_device_match[] =3D {
+> > +       { .compatible =3D "richtek,rtq6056" },
+> > +       {}
+> > +};
+> > +MODULE_DEVICE_TABLE(of, rtq6056_device_match);
+> > +
+> > +static struct i2c_driver rtq6056_driver =3D {
+> > +       .driver =3D {
+> > +               .name =3D "rtq6056",
+> > +               .of_match_table =3D rtq6056_device_match,
+> > +               .pm =3D pm_ptr(&rtq6056_pm_ops),
+> > +       },
+> > +       .probe_new =3D rtq6056_probe,
+> > +};
+> > +module_i2c_driver(rtq6056_driver);
+> > +
+> > +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
+> > +MODULE_DESCRIPTION("Richtek RTQ6056 Driver");
+> > +MODULE_LICENSE("GPL v2");
+> > --
+> > 2.7.4
+> >
+>
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
