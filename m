@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD1BB5667AF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 12:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F2615667B4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 12:20:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231871AbiGEKTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 06:19:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42506 "EHLO
+        id S229457AbiGEKUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 06:20:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229833AbiGEKTi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 06:19:38 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0161913FB9
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 03:19:37 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id z21so19683332lfb.12
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 03:19:36 -0700 (PDT)
+        with ESMTP id S229626AbiGEKUk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 06:20:40 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24753140A5
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 03:20:39 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id f39so19768653lfv.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 03:20:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7ltLTaBEV4Dndg/PZxmASrNkQw7/tHT8uBCcJkojjNo=;
-        b=sshcdqW44eA9XhkENF4BsPVKcelBUpolYOWfgzC458pv/AsvxQSgJYyMapsgffJtas
-         VutA2/jow5ZMwCG/WJX22xI+iaJOamCPkthvcHYRzzFxS7w3OVnLGSu4BJ7adk9QHIpO
-         YYWiUI85XJyCdpwE7ytHyXrLT6DrS4+IkG8/0czlhbyy98KlZVSKMkoTbT2IsErFfnrW
-         lDfF6ks7GaIQGmmb+/O5C/fqHBTZd2iDq/pUGJ+I04zgRpnV1czETUBhbleR0nJjkvky
-         m13j2Zw+glqkyLvmuYtBni7C52LLIfBzG8o7gISUjCagIKzWRRjO7cPgYM/cGbaA5ULh
-         rq5w==
+        bh=T2FSykbTV2E4OHdBjXQOKH96xW/Wt4fBDyh12Wd4k0U=;
+        b=wriOUSl810ShuxxSrmpXg72RcW7CIYjuLYB0dvgRwI+U69FYJmuMslaW4rYL3GHg4Z
+         J3zs9cDmjFc9/2FQZ0BU54XJebEjC84K99kAmuZr7EbEBtysf0K4D3ZtHjg80VhwLx6H
+         okKUK0/FI6+s8VSRnxsJmGvWBY2RLGCtWBofMEnzjGyjz2vYmoL36Nb8heAkjiDApg+u
+         T/rcc1sTBs/Dpd7HW54gl52ciTbrxsw5IfH6GeDfDAJ6sVo6H1aK3qt/gm7mfYn5NMf8
+         FGvLDkg7/tMlmIdAzJnlTtWeIxZxCuqlHqgVLhugVIRBqh8nyzNLk3sGdLNuS2cwzbn9
+         eJ9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=7ltLTaBEV4Dndg/PZxmASrNkQw7/tHT8uBCcJkojjNo=;
-        b=NmzOLE8QKwhpSMgB9Xi6BIqW9x7xPcmCjho8Fl01o8JriK/ZdSR0S573/QLGPgWShT
-         d4EyZ2xTsVrvjBEXy+IuOCvUF1zJbpy9RImDM6IduU2UsYNXbcPxX0mG8Rel+Dspmtpw
-         n8UEjf3yIDG7D7BXrFjOhFrOcriyYWpBHH/0BxpQ4oefBX/Qk4lhnYfhavitXEZ3E7j5
-         6S3AiqAiSF+/N3uLPFjYbJv2mHQiBETCgsu+eeNLADYvE0zNHIOzb/1pU7nzA/ezpE9K
-         MGjz81h4Vjw/MwX0vb+IAx0WEsDlrfK5fnxLZq4LLABXAD+YQ2raiuzQBP5aYT3NeOCY
-         l7rw==
-X-Gm-Message-State: AJIora/myz3MFnxVbllJIW/tr10cSNhjmNvj782DmOhSBQEg36HY1ktL
-        XES32At45AaZ1FKsCJOwke06BA==
-X-Google-Smtp-Source: AGRyM1ubhhSgV3Tz/xKqrayJWFA5svm/yrJxl4CpDllXR/27n6qEPxHLci9PU+ox5DFVjkhsy7Jycw==
-X-Received: by 2002:a05:6512:2207:b0:47f:70b3:52d with SMTP id h7-20020a056512220700b0047f70b3052dmr21424409lfu.174.1657016375352;
-        Tue, 05 Jul 2022 03:19:35 -0700 (PDT)
+        bh=T2FSykbTV2E4OHdBjXQOKH96xW/Wt4fBDyh12Wd4k0U=;
+        b=pJvfOK3R0QjzVMWBP5dAQn5ffM8Bt1wUU5IqQZr/wLzpC3QH3CHb+pS/WUErPurJvx
+         xOEyQMCfBSRW+z1FzFBhoBLyQTi3Z/2Jp5TvH2e03M3Gphe7+L7zaVbBxsOO5XXl+omF
+         qM/gmmJhJt4LK3q8qudxFIy+HNrMIBFikK8zuyMVcZNgbC16Y87Nji/m7x5CIZhwJ4Iw
+         7JwFdVHzjUEBR0eZyTOyAhcKS9dUMvfD2X4HTn/tnG7Mzk4e9L604phYKJp8tSK3zlUB
+         hXVm+RQEEUtL8EIgyfe0MQ9GWcRtCv3Q6jOn9K24yA//eNoVr3T+xzeZq+SPdN3wb83J
+         YNLA==
+X-Gm-Message-State: AJIora80ur8qfM4ty9wU4ytKrZtMDmv4s0JtiCt4HJl6e5+U1wWAIH7b
+        cWCSINvn3rzIcOiHFDAYrHpyXH8Ozw6dHw==
+X-Google-Smtp-Source: AGRyM1uAPURNjrcuseQ0j/CUQyF5c4qfoAV1p4sqrmYV21cGEiBcc1Zm6ftiO1WnF/1n6HZsiau38A==
+X-Received: by 2002:ac2:5dfb:0:b0:47f:9dac:3bd7 with SMTP id z27-20020ac25dfb000000b0047f9dac3bd7mr21230732lfq.501.1657016437533;
+        Tue, 05 Jul 2022 03:20:37 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id 17-20020a2eb951000000b00253bc47c202sm5528776ljs.59.2022.07.05.03.19.34
+        by smtp.gmail.com with ESMTPSA id v9-20020a05651203a900b0047f74e4ade2sm5640015lfp.21.2022.07.05.03.20.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 03:19:34 -0700 (PDT)
-Message-ID: <f6e9bba4-6ffc-7df9-152d-caae0c90f1b2@linaro.org>
-Date:   Tue, 5 Jul 2022 12:19:33 +0200
+        Tue, 05 Jul 2022 03:20:36 -0700 (PDT)
+Message-ID: <dcff330c-92ec-2302-8e2a-4ac124e72942@linaro.org>
+Date:   Tue, 5 Jul 2022 12:20:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 20/43] dt-bindings: phy: qcom,qmp: split out UFS PHY
- binding
+Subject: Re: [PATCH 38/43] phy: qcom-qmp-pcie: drop pipe clock lane suffix
 Content-Language: en-US
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Vinod Koul <vkoul@kernel.org>,
@@ -66,14 +65,14 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20220705094239.17174-1-johan+linaro@kernel.org>
- <20220705094239.17174-21-johan+linaro@kernel.org>
+ <20220705094239.17174-39-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220705094239.17174-21-johan+linaro@kernel.org>
+In-Reply-To: <20220705094239.17174-39-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,130 +81,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05/07/2022 11:42, Johan Hovold wrote:
-> The QMP PHY DT schema is getting unwieldy. Break out the UFS PHY
-> binding in a separate file.
+> The pipe clock is defined in the "lane" node so there's no need to keep
+> adding a redundant lane-number suffix to the clock name.
+> 
+> Drop the lane suffix from the pipe clock name, but continue supporting
+> the legacy name as a fall back.
 > 
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->  .../devicetree/bindings/phy/qcom,qmp-phy.yaml |  65 --------
->  .../bindings/phy/qcom,qmp-ufs-phy.yaml        | 149 ++++++++++++++++++
->  2 files changed, 149 insertions(+), 65 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,qmp-ufs-phy.yaml
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> index f416a1a53a3f..04c24f8e4526 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> @@ -19,32 +19,21 @@ properties:
->      enum:
->        - qcom,ipq6018-qmp-usb3-phy
->        - qcom,ipq8074-qmp-usb3-phy
-> -      - qcom,msm8996-qmp-ufs-phy
->        - qcom,msm8996-qmp-usb3-phy
-> -      - qcom,msm8998-qmp-ufs-phy
->        - qcom,msm8998-qmp-usb3-phy
->        - qcom,qcm2290-qmp-usb3-phy
->        - qcom,sc7180-qmp-usb3-phy
-> -      - qcom,sc8180x-qmp-ufs-phy
->        - qcom,sc8180x-qmp-usb3-phy
-> -      - qcom,sc8280xp-qmp-ufs-phy
-> -      - qcom,sdm845-qmp-ufs-phy
->        - qcom,sdm845-qmp-usb3-phy
->        - qcom,sdm845-qmp-usb3-uni-phy
->        - qcom,sdx55-qmp-usb3-uni-phy
->        - qcom,sdx65-qmp-usb3-uni-phy
-> -      - qcom,sm6115-qmp-ufs-phy
-> -      - qcom,sm6350-qmp-ufs-phy
-> -      - qcom,sm8150-qmp-ufs-phy
->        - qcom,sm8150-qmp-usb3-phy
->        - qcom,sm8150-qmp-usb3-uni-phy
-> -      - qcom,sm8250-qmp-ufs-phy
->        - qcom,sm8250-qmp-usb3-phy
->        - qcom,sm8250-qmp-usb3-uni-phy
-> -      - qcom,sm8350-qmp-ufs-phy
->        - qcom,sm8350-qmp-usb3-phy
->        - qcom,sm8350-qmp-usb3-uni-phy
-> -      - qcom,sm8450-qmp-ufs-phy
->        - qcom,sm8450-qmp-usb3-phy
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index 385ea3d8de08..254ad25591b9 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> @@ -2210,8 +2210,12 @@ int qcom_qmp_phy_pcie_create(struct device *dev, struct device_node *np, int id,
+>  	if (!qphy->pcs_misc)
+>  		dev_vdbg(dev, "PHY pcs_misc-reg not used\n");
 >  
->    reg:
-> @@ -202,60 +191,6 @@ allOf:
->        required:
->          - vdda-phy-supply
->          - vdda-pll-supply
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - qcom,msm8996-qmp-ufs-phy
-> -    then:
-> -      properties:
-> -        clocks:
-> -          items:
-> -            - description: 19.2 MHz ref clock.
-> -        clock-names:
-> -          items:
-> -            - const: ref
-> -        resets:
-> -          items:
-> -            - description: PHY reset in the UFS controller.
-> -        reset-names:
-> -          items:
-> -            - const: ufsphy
-> -      required:
-> -        - vdda-phy-supply
-> -        - vdda-pll-supply
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - qcom,msm8998-qmp-ufs-phy
-> -              - qcom,sc8180x-qmp-ufs-phy
-> -              - qcom,sc8280xp-qmp-ufs-phy
-> -              - qcom,sdm845-qmp-ufs-phy
-> -              - qcom,sm6350-qmp-ufs-phy
-> -              - qcom,sm8150-qmp-ufs-phy
-> -              - qcom,sm8250-qmp-ufs-phy
-> -    then:
-> -      properties:
-> -        clocks:
-> -          items:
-> -            - description: 19.2 MHz ref clock.
-> -            - description: PHY reference aux clock.
-> -        clock-names:
-> -          items:
-> -            - const: ref
-> -            - const: ref_aux
-> -        resets:
-> -          items:
-> -            - description: PHY reset in the UFS controller.
-> -        reset-names:
-> -          items:
-> -            - const: ufsphy
-> -      required:
-> -        - vdda-phy-supply
-> -        - vdda-pll-supply
->    - if:
->        properties:
->          compatible:
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-ufs-phy.yaml
-> new file mode 100644
-> index 000000000000..4471f1b4fb7a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-ufs-phy.yaml
-> @@ -0,0 +1,149 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/phy/qcom,qmp-ufs-phy.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
+> -	snprintf(prop_name, sizeof(prop_name), "pipe%d", id);
+> -	qphy->pipe_clk = devm_get_clk_from_child(dev, np, prop_name);
+> +	qphy->pipe_clk = devm_get_clk_from_child(dev, np, "pipe");
 
-All previous comments apply.
-
+Just get first clock and no need for handling any deprecation.
 
 Best regards,
 Krzysztof
