@@ -2,217 +2,387 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5049E566FCC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:49:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95F18566FE9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:53:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232660AbiGENtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 09:49:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38104 "EHLO
+        id S229658AbiGENwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 09:52:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232661AbiGENss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:48:48 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2043.outbound.protection.outlook.com [40.107.22.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7B7A20F41;
-        Tue,  5 Jul 2022 06:20:00 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KtslqcbqGHQglcejAiA59NSCcsroLSF5mZ+Zuex7NSnZRuiruKdW7NHu1yFe1YBEn2AM83VR09mdFkLREV+wLs5zNtzFO5/YCZIurH0UoT1R862kLqJY+eRfEE3cvs6wP1USfFtEmlbPgrC4m/TkgQ4wHA02y2YFnH09rT4oGpqjQsjYXA5DOFwPGFxXwNk5ol6kDSy+iiZbHtbVtucLo47e04h3otnBq+pAd+MQ5LswrkjiOs2Q8QTnS0P4/x5X2pW2eJxy7Qo2Qa7+2N/Uor9aopFyr4vTt7xWVjdwyCMJU+kBT01FnlFMxoKHfHeB614O58+Cfl96kdF+5fGIUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=djszGhgmEGTOjGiHwqjgYU0W3s5z2S/6KEqIalhNKOo=;
- b=bj6KYyg3meeS/m80Fz1Mg5K/pShIeCEcPKPeisVANgFypYR80d8AQtDXGoB1xAlNGmv63gj0lDNR8Zn7FI06D9vH925KVWFgpML/NoN1fKG1s+P2HbTfbCl45YOsakKTX+xYmD+llBIfS3rOSKWh0bN+QjOsCHe5ZYcibKWRHpMT+At8Wzzn/CqNDi1mPP1q3VwW0Nv17PuN8wUw5ZhNZUwW43YBHOMXMWTzBSxJA54UGPLWT0EUsCjPZkMt02tYO5iWnJLAw0eKvrwGkL1o5PdTBI8nouK61GEZjwkIWj+fTTM2aWQvLkFhkBRCDsxKfI+jFtf2cwWEqdhpnKAhpw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=djszGhgmEGTOjGiHwqjgYU0W3s5z2S/6KEqIalhNKOo=;
- b=hcu/kjVo8rJq9rC1uPtN4n66D5KDLza+jGLhYj9dH4mAtZPq2JHHbPgnkOX3TDRnkMoss60B/jZzdI+7U5fipXu8OUoULrTcxOdyx/EQ9f3S7bhnhSL+BAAUBSquomycJY02UNbKoHwxm10a1Gnbgm/u7PULEJ0f4GSgV6oBtYw=
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
- by VI1PR04MB7103.eurprd04.prod.outlook.com (2603:10a6:800:123::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.20; Tue, 5 Jul
- 2022 13:19:57 +0000
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::5c49:dd85:a8d0:2907]) by DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::5c49:dd85:a8d0:2907%3]) with mapi id 15.20.5395.021; Tue, 5 Jul 2022
- 13:19:56 +0000
-From:   Han Xu <han.xu@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bough Chen <haibo.chen@nxp.com>,
-        "ashish.kumar@nxp.com" <ashish.kumar@nxp.com>,
-        "yogeshgaur.83@gmail.com" <yogeshgaur.83@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "singh.kuldeep87k@gmail.com" <singh.kuldeep87k@gmail.com>,
-        "tudor.ambarus@microchip.com" <tudor.ambarus@microchip.com>,
-        "p.yadav@ti.com" <p.yadav@ti.com>,
-        "michael@walle.cc" <michael@walle.cc>,
-        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
-        "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-CC:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "zhengxunli@mxic.com.tw" <zhengxunli@mxic.com.tw>
-Subject: RE: [PATCH 07/11] dt-bindings: spi: spi-nxp-fspi: add a new property
- nxp,fspi-dll-slvdly
-Thread-Topic: [PATCH 07/11] dt-bindings: spi: spi-nxp-fspi: add a new property
- nxp,fspi-dll-slvdly
-Thread-Index: AQHYkFF0qJujufsOTUOD0eIhHoBTUq1viBIAgAALOQCAAAJgAIAAKZ1g
-Date:   Tue, 5 Jul 2022 13:19:56 +0000
-Message-ID: <DU2PR04MB87747C9A8F18D8300461D6B197819@DU2PR04MB8774.eurprd04.prod.outlook.com>
-References: <1657012303-6464-1-git-send-email-haibo.chen@nxp.com>
- <1657012303-6464-7-git-send-email-haibo.chen@nxp.com>
- <ef676df1-77e0-b8ee-3950-97eade8ddd5b@linaro.org>
- <VI1PR04MB40167A70FBE772DF91047A4190819@VI1PR04MB4016.eurprd04.prod.outlook.com>
- <59d360ef-5374-c7a7-2995-854ab3715b25@linaro.org>
-In-Reply-To: <59d360ef-5374-c7a7-2995-854ab3715b25@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6623e09c-720e-4804-7986-08da5e890e1f
-x-ms-traffictypediagnostic: VI1PR04MB7103:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MmbikJxpBorj/zrXfLTmYbO3xhZPmsKk4BIQaN4uTA/5l2RNIJKq/oQxrZvNbxPCcsBJWD6i1jVMCAESsdDYKJqGCmGxEwNe0ZDtbkjmgGyoX4cZ8ozlkfbVkWpNK3fsOYFSBmtSmnwBi/amcSnST/YqAoisoQ8n5mije7GG2/g81l5ABjXdCPXqVu5A3E5QoQcos9ul7iZPBpVo98heTcdgtCn/1geYimt1viEwBGOH/ddqVe1TwRP1KIdBD96xdvU8N7H2at1RoCNwTWmSD/3RX77nsoRw84s1SeRxFnpDTvPvfbvjqTiIUHGRvgfl5rhJYMEyfjvu/a0YGbPw/rJGf6EGSex1xN0ROSkGflNcP3H3wIfMEJDkNOjEkn0eeIGMZ01CHkDaAy/Nu+WJm2wZyQMwtA/YAuV/rcxFuGjYNy3fPJ6V4LhBHS/mM0UmMd01f4LtmacsK+0kpWtVtcTvPQwskq/YC46JBUMrSQoaQ2QYANqJKqchzoF/0ZupJ3Wl7ckSqJ9JRODVAxxDvTu9lsKVFPQLuUNddGlaFjEHaHtP6ETABxIY7Au180x6y+Rk5s+e7C1B7FfgZHX1Q470GTmuaJ/zqOJQ+V8Y5eB8wDoCuAqQF4t9CtGDCRlrkI0OtZ2sxos8FUHfBYo7TgGNmhP0r93ePtU6qW6KxFhWJdCil3QQxYWtJ5+sqM6HgkSpee6CObU+UJdwBnvoYhmfRooZoEtmn9oxyjvTMbtqqS+sRUx2vFIGBXL+BZEKgaYlIj1JuJzqwaZrGh6PV6mHXgy7qN7JhGML/SsTqnlZWzSR/VoLjDpRvTAyAl5Tr0qvYJOeEO9zUKVya9TCDw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8774.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(366004)(376002)(396003)(346002)(39860400002)(66476007)(64756008)(8676002)(4326008)(66556008)(66446008)(5660300002)(7416002)(52536014)(8936002)(76116006)(2906002)(66946007)(44832011)(55016003)(86362001)(33656002)(38100700002)(921005)(122000001)(38070700005)(71200400001)(83380400001)(41300700001)(478600001)(9686003)(54906003)(110136005)(316002)(186003)(55236004)(26005)(7696005)(6506007)(53546011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bldoTGx2eWRFZG93MmFncnYzREIyWStDdDc0WHo3RmZEYUU4Rll0V0hHRUFM?=
- =?utf-8?B?dDlKcHdnNFluOTZVdlY5cUQvR0tKbEE0YzZaaWJPeG02QzBpUUgrdlBvR2sv?=
- =?utf-8?B?S1dKQ0lRYXVDWktOMjY5dDV1aVArK2hYV00zTm8rSTVJcGlVUERtWWx0aC9Z?=
- =?utf-8?B?NU56eDVseXpRa3MxZWxNcC81ZThyRU9ORTNBMjBxajdBVEF3aW5FWVZkQ0NO?=
- =?utf-8?B?Q2JxM2srTEFKY0pUUWN2c0FmSzI3Z292NFZOY0IyTmVjaEJSK2JLQllsNHdz?=
- =?utf-8?B?MjcyMFlLMFVrOHM0NVhmOFdYRHpJOWVieG5nNkJ0RFpjY3hLTUx0OHV1allp?=
- =?utf-8?B?b2IwZkt5OWExV2tEb1JCRWczUExocHlOTk14YnlDUFY4dFR2MzQrSy9nYkFW?=
- =?utf-8?B?OWFnMTlnY0UxYkZxRUZUZ2prTGVENEp5WGRDMnBnTHhvM2hYbUJKNll1U3A3?=
- =?utf-8?B?YXlRaVJRU293bm5DYmFPZVJRalRRT2FmdlZCNXE0WDErbTMwd2lKRnY3S1hW?=
- =?utf-8?B?alJTYVFIcGFDazVEeWNwcnBmZjF5bDJIZC9nWkxRWHBmUmNrQXl5TVZFQkRL?=
- =?utf-8?B?OWlVazVOc3Ayd0d5dWtNMDFqOGU5eXc5K2Fwem9oN0s5azBNQk9EL0R4VitH?=
- =?utf-8?B?dzgxMVNmMlRpQ2JkVHNqZktjcnJqdWVPZDZCT2EyU01CZG1odGpOQTVyYXpE?=
- =?utf-8?B?VlEyaHl3SU9qaTczTndrcVhQUlZ4RWRWT2VMRGI0UEFYSHdUdTJIWUlMUkI1?=
- =?utf-8?B?cVZrazVBZWxscnBGM3VxbDRBQU9GSlVsQjN4aW01M2IwcHRIMHVKaE95bjgy?=
- =?utf-8?B?MlVUWFF2RStlWjBvcytLbm43ZzBrMUZ2dUVWbjA4c1FiL2FYU3JKdXc4QWNX?=
- =?utf-8?B?bzE3NXpxSTRPWW5SVWhZOVpvUmVYeldicnJvdStUUHFsOXVFV1MrdzVabER0?=
- =?utf-8?B?bmQvUHJqOGgyMUFsNERiTjJSOXQyWkluTURybmlxT1FrN1c5U3V6d1JYVXlD?=
- =?utf-8?B?V0JtVWRCQTVwMEsvR084VDFqd09jRzdEWmNxREQwQVFKdWN5TlpZTTl5MlIz?=
- =?utf-8?B?SkM2bmRraG9LWEhEYVZpbDBZMnc0VEhLc25HbWJENzZQVTMweWNHQURaMFZO?=
- =?utf-8?B?YklUY0VpaW92RG9aa0ZtWGhEMUEwekNzdDJLQjV6aU5LQS9FRmtlNDlna1Rs?=
- =?utf-8?B?MC80OVVwVzdQZjdJYkZsaXROMWppM09MZjNVbks4Mk16QTNxc3VLZTBMbUVm?=
- =?utf-8?B?bFpNMkg0Q3V4a09sWkg4SzFvdldQTXNYQ1QzVlh1RUlEMmFiWjlIZnBhZWhM?=
- =?utf-8?B?cFVzTFpqQzExSDdzb2d5WnE2TTJUZ01UbFZhQ2VZckJYTHQ0UGQweFI1UGpL?=
- =?utf-8?B?V0ZiZlRyUlM4azA3MWtVbDdQK2xOWXRmbERPMExWUHdtSXRMOWQ4dFVtbDgr?=
- =?utf-8?B?cXBGZlVqMysyT1AyNW53K0lGaFo4SVAxQmh3Y1J1MjU3cVhWNW5UN1FBSWZq?=
- =?utf-8?B?UWhldWJZREczTmRmYXZmRXFmN3VDSmRPeEhKWnVUdS9ndHpmNS9QN3lzTElZ?=
- =?utf-8?B?VitJT2hTWWlrVGVaUFJhK1h0TU5lK1RlZHVDelhwdkk1NjBnNTVZaHY1T3pC?=
- =?utf-8?B?VFBuUStqbk5IYTRrWkFkcTNqRWNJdEdSTXh2SGZ6RWV3R0pTWGgxMkFBQmJh?=
- =?utf-8?B?OXlWKzFjTEZTTktkYzNQaWZmR2NTenF6VkM1ZnlkTzBIVlBiMjl6SEJUNXVO?=
- =?utf-8?B?b1NiejJNdjhHbnRDd1FmOGZ6YXlVTGZ2eGM4TkszSW9oUUlNOEpKSzFZOXp6?=
- =?utf-8?B?QjJ5UHZqUHlnMUZSNkJlZnpCQUxIc0RyZGRranl6ZXZiRmE5REptY1VvWSs2?=
- =?utf-8?B?alZTWFV2VWtwUllVdU9HTWdaMXU1UW42amNGVDNSN3A4RUV2Y2ZWOGtTb1JB?=
- =?utf-8?B?aUU0OXU5RGtIYWlYT3dLb3BVQjFRclBxS3dicENzYzY5QUcwN2VKbzFmU25z?=
- =?utf-8?B?OVRMWHB4STV6S1YrQ3ZLMnlrWUs4U2pIdVlpU1EvN1YxcmJ3RjVlaVlLUTlj?=
- =?utf-8?B?U2FlQTg3RXEvSlIzUGwzemxVK2tad1F3Vm5HOFpvNGRuZkxLakZFTUZMWFox?=
- =?utf-8?Q?sIbs=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S231137AbiGENvx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:51:53 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C68D62409E;
+        Tue,  5 Jul 2022 06:27:33 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8170666017ED;
+        Tue,  5 Jul 2022 14:27:31 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657027652;
+        bh=vDhEJ8ApSm2fbd/zRQ38k05MovsI47d+ny5h9+TH8ps=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=A1wVu48M22VMXZ5wrcOcSBZFhen6vYOFqleTeCKMzxm3eDX+k0xZRLP24SQl1lfZ5
+         zrPs/66k3vM2pV3UShJ5vUjcOb+mIfQY+bf1Mqobk9KGmyBM/LvBU+vDeVuZU9kc4Y
+         ND2GIWLZyqNgwOovrHvmOZXKsNZTeR8naYrkROy2zAQLVVBelr6pitLTPWYENsrFRg
+         t5uPvAo6PupyxqZoRwt6CA+jBbTpvPXkU9YAYt+WxVErhYzrbXbSkjXvoqCd+gfp/U
+         BboDegFpIVEV5GuKIkFgMeZV7FvZgx0EC94HfmSFZT5q4nfUc9q1Uf9q3YZlFdesPz
+         KM5pwp+asJFMA==
+Message-ID: <46eaafc0-478e-8a74-cf8b-dd1f236df035@collabora.com>
+Date:   Tue, 5 Jul 2022 15:27:28 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8774.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6623e09c-720e-4804-7986-08da5e890e1f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2022 13:19:56.6507
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IUIAx7jW4DSxWFI12A0N6V7//15VRHcqa82giLfS6nyb20XSd2KQLRT4YBd++N/o
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7103
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [V10,5/7] mtk-jpegenc: add jpeg encode worker interface
+Content-Language: en-US
+To:     Irui Wang <irui.wang@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        nicolas.dufresne@collabora.com, wenst@chromium.org
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, kyrie wu <kyrie.wu@mediatek.com>,
+        srv_heupstream@mediatek.com
+References: <20220627025625.8956-1-irui.wang@mediatek.com>
+ <20220627025625.8956-6-irui.wang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220627025625.8956-6-irui.wang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IEtyenlzenRvZiBLb3psb3dz
-a2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj5TZW50OiBUdWVzZGF5LCBKdWx5
-IDUsIDIwMjIgNTozNyBBTQ0KPlRvOiBCb3VnaCBDaGVuIDxoYWliby5jaGVuQG54cC5jb20+OyBh
-c2hpc2gua3VtYXJAbnhwLmNvbTsNCj55b2dlc2hnYXVyLjgzQGdtYWlsLmNvbTsgYnJvb25pZUBr
-ZXJuZWwub3JnOyByb2JoK2R0QGtlcm5lbC5vcmc7DQo+a3J6eXN6dG9mLmtvemxvd3NraStkdEBs
-aW5hcm8ub3JnOyBIYW4gWHUgPGhhbi54dUBueHAuY29tPjsNCj5zaW5naC5rdWxkZWVwODdrQGdt
-YWlsLmNvbTsgdHVkb3IuYW1iYXJ1c0BtaWNyb2NoaXAuY29tOyBwLnlhZGF2QHRpLmNvbTsNCj5t
-aWNoYWVsQHdhbGxlLmNjOyBtaXF1ZWwucmF5bmFsQGJvb3RsaW4uY29tOyByaWNoYXJkQG5vZC5h
-dDsgdmlnbmVzaHJAdGkuY29tOw0KPnNoYXduZ3VvQGtlcm5lbC5vcmc7IHMuaGF1ZXJAcGVuZ3V0
-cm9uaXguZGU7IGtlcm5lbEBwZW5ndXRyb25peC5kZQ0KPkNjOiBsaW51eC1zcGlAdmdlci5rZXJu
-ZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPmRldmljZXRyZWVAdmdlci5r
-ZXJuZWwub3JnOyBsaW51eC1tdGRAbGlzdHMuaW5mcmFkZWFkLm9yZzsgZmVzdGV2YW1AZ21haWwu
-Y29tOw0KPmRsLWxpbnV4LWlteCA8bGludXgtaW14QG54cC5jb20+OyBsaW51eC1hcm0ta2VybmVs
-QGxpc3RzLmluZnJhZGVhZC5vcmc7DQo+emhlbmd4dW5saUBteGljLmNvbS50dw0KPlN1YmplY3Q6
-IFJlOiBbUEFUQ0ggMDcvMTFdIGR0LWJpbmRpbmdzOiBzcGk6IHNwaS1ueHAtZnNwaTogYWRkIGEg
-bmV3IHByb3BlcnR5DQo+bnhwLGZzcGktZGxsLXNsdmRseQ0KPg0KPk9uIDA1LzA3LzIwMjIgMTI6
-MjgsIEJvdWdoIENoZW4gd3JvdGU6DQo+Pj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+
-PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5v
-cmc+DQo+Pj4gU2VudDogMjAyMuW5tDfmnIg15pelIDE3OjQ4DQo+Pj4gVG86IEJvdWdoIENoZW4g
-PGhhaWJvLmNoZW5AbnhwLmNvbT47IGFzaGlzaC5rdW1hckBueHAuY29tOw0KPj4+IHlvZ2VzaGdh
-dXIuODNAZ21haWwuY29tOyBicm9vbmllQGtlcm5lbC5vcmc7IHJvYmgrZHRAa2VybmVsLm9yZzsN
-Cj4+PiBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7IEhhbiBYdSA8aGFuLnh1QG54
-cC5jb20+Ow0KPj4+IHNpbmdoLmt1bGRlZXA4N2tAZ21haWwuY29tOyB0dWRvci5hbWJhcnVzQG1p
-Y3JvY2hpcC5jb207DQo+Pj4gcC55YWRhdkB0aS5jb207IG1pY2hhZWxAd2FsbGUuY2M7IG1pcXVl
-bC5yYXluYWxAYm9vdGxpbi5jb207DQo+Pj4gcmljaGFyZEBub2QuYXQ7IHZpZ25lc2hyQHRpLmNv
-bTsgc2hhd25ndW9Aa2VybmVsLm9yZzsNCj4+PiBzLmhhdWVyQHBlbmd1dHJvbml4LmRlOyBrZXJu
-ZWxAcGVuZ3V0cm9uaXguZGUNCj4+PiBDYzogbGludXgtc3BpQHZnZXIua2VybmVsLm9yZzsgbGlu
-dXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsNCj4+PiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
-ZzsgbGludXgtbXRkQGxpc3RzLmluZnJhZGVhZC5vcmc7DQo+Pj4gZmVzdGV2YW1AZ21haWwuY29t
-OyBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPjsNCj4+PiBsaW51eC1hcm0ta2VybmVs
-QGxpc3RzLmluZnJhZGVhZC5vcmc7IHpoZW5neHVubGlAbXhpYy5jb20udHcNCj4+PiBTdWJqZWN0
-OiBSZTogW1BBVENIIDA3LzExXSBkdC1iaW5kaW5nczogc3BpOiBzcGktbnhwLWZzcGk6IGFkZCBh
-IG5ldw0KPj4+IHByb3BlcnR5IG54cCxmc3BpLWRsbC1zbHZkbHkNCj4+Pg0KPj4+IE9uIDA1LzA3
-LzIwMjIgMTE6MTEsIGhhaWJvLmNoZW5AbnhwLmNvbSB3cm90ZToNCj4+Pj4gRnJvbTogSGFpYm8g
-Q2hlbiA8aGFpYm8uY2hlbkBueHAuY29tPg0KPj4+Pg0KPj4+PiBBZGQgb25lIG9wdGlvbmFsIHBy
-b3BlcnR5IG54cCxmc3BpLWRsbC1zbHZkbHkNCj4+Pj4NCj4+Pj4gU2lnbmVkLW9mZi1ieTogSGFp
-Ym8gQ2hlbiA8aGFpYm8uY2hlbkBueHAuY29tPg0KPj4+PiAtLS0NCj4+Pj4gIERvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy9zcGkvc3BpLW54cC1mc3BpLnlhbWwgfCA2ICsrKysrKw0K
-Pj4+PiAgMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKQ0KPj4+Pg0KPj4+PiBkaWZmIC0t
-Z2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9zcGktbnhwLWZzcGku
-eWFtbA0KPj4+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9zcGktbnhw
-LWZzcGkueWFtbA0KPj4+PiBpbmRleCAxYjU1MmMyOTgyNzcuLjZiZDYxNTY1Njg2YSAxMDA2NDQN
-Cj4+Pj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9zcGktbnhw
-LWZzcGkueWFtbA0KPj4+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-c3BpL3NwaS1ueHAtZnNwaS55YW1sDQo+Pj4+IEBAIC00NSw2ICs0NSwxMiBAQCBwcm9wZXJ0aWVz
-Og0KPj4+PiAgICAgICAgLSBjb25zdDogZnNwaV9lbg0KPj4+PiAgICAgICAgLSBjb25zdDogZnNw
-aQ0KPj4+Pg0KPj4+PiArICBueHAsZnNwaS1kbGwtc2x2ZGx5Og0KPj4+PiArICAgICRyZWY6IC9z
-Y2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPj4+PiArICAgIGRlc2NyaXB0
-aW9uOiB8DQo+Pj4+ICsgICAgICBTcGVjaWZ5IHRoZSBETEwgc2xhdmUgbGluZSBkZWxheSB2YWx1
-ZS4NCj4+Pg0KPj4+IFdoYXQgYXJlIHRoZSB1bml0cz8NCj4+DQo+PiBEbyB5b3UgbWVhbiBoZXJl
-IG5lZWQgdG8gZ2l2ZSBtb3JlIGRldGFpbCBleHBsYWluIGFib3V0IHRoaXMgcHJvcGVyaXR5Pw0K
-Pj4NCj4+IEhvdyBhYm91dCBjaGFuZ2UgbGlrZSB0aGlzPw0KPj4gICAgU3BlY2lmeSB0aGUgRExM
-IHNsYXZlIGxpbmUgZGVsYXkgdmFsdWUuIFRoZSBkZWxheSB0YXJnZXQgZm9yIHNsYXZlIGRlbGF5
-IGxpbmUgaXM6DQo+KChueHAsZnNwaS1kbGwtc2x2ZGx5KzEpICogMS8zMiAqIGNsb2NrIGN5Y2xl
-IG9mIHJlZmVyZW5jZSBjbG9jayAoc2VyaWFsIHJvb3QgY2xvY2spLg0KPg0KPlRoaXMgd291bGQg
-YmUgZ29vZC4NCj4NCj4+IFRoZSByYW5nZSBvZiB0aGlzIHZhbHVlIGlzIDB+MTYuDQo+DQo+VGhp
-cyBuZWVkcyB0byBnbyB0byBzY2hlbWEgaW5zdGVhZCBhcyAibWF4aW11bTogMTYiLg0KPg0KPkJ1
-dCBzdGlsbCB0aGUgcXVlc3Rpb24gaXMgLSB3aGF0IGFyZSB0aGUgdW5pdHMgdXNlZCBpbiB0aGlz
-ICJkZWxheSI/IG1zPyB1cz8NCg0KSEkgS3J6eXN6dG9mLA0KDQpBY2NvcmRpbmcgdG8gdGhlIGZv
-cm11bGEsIHRoZSByYW5nZSBzaG91bGQgYmUgMH4xNSwgMTYgc2hvdWxkIGRvIG5vdGhpbmcgb3Ig
-bm8gZGVsYXkuDQoNClRoZSB1bml0IHNob3VsZCBiZSBjbG9jayBwaGFzZS4gSW4gb3RoZXIgd29y
-ZHMsIHRoZSBkZWxheSBjYW4gYmUgaW4gcmFuZ2Ugb2YgMS8zMn4xLzIgY2xvY2sgY3ljbGUuDQoN
-Cg0KPg0KPkJlc3QgcmVnYXJkcywNCj5Lcnp5c3p0b2YNCg==
+Il 27/06/22 04:56, Irui Wang ha scritto:
+> From: kyrie wu <kyrie.wu@mediatek.com>
+> 
+> Add jpeg encoding worker to ensure that two HWs
+> run in parallel in MT8195.
+> 
+> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> ---
+>   .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 208 ++++++++++++++++--
+>   .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  30 ++-
+>   .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  |  39 +++-
+>   3 files changed, 240 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> index 0c5c85a112ca..544673a527a0 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+
+..snip..
+
+> @@ -946,9 +1050,58 @@ static void mtk_jpeg_enc_device_run(void *priv)
+>   	v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
+>   	v4l2_m2m_buf_done(src_buf, buf_state);
+>   	v4l2_m2m_buf_done(dst_buf, buf_state);
+> +getbuf_fail:
+> +	atomic_inc(&jpeg->enchw_rdy);
+> +	mtk_jpegenc_put_hw(jpeg, hw_id);
+>   	v4l2_m2m_job_finish(jpeg->m2m_dev, ctx->fh.m2m_ctx);
+>   }
+>   
+> +static void mtk_jpeg_enc_device_run(void *priv)
+> +{
+
+That's not really the best thing to do here... if we're managing multi-core
+hardware, this function would be a one-liner and we would never see variable
+jpeg->is_jpgenc_multihw changing during runtime.
+
+At this point, we can reduce checks and improve human readability by simply
+having two separated functions for single-core vs multi-core...
+
+static void mtk_jpeg_singlecore_enc_dev_run(void *priv) { .... blah .... }
+
+and
+
+static void mtk_jpeg_multicore_enc_dev_run(void *priv)
+{
+	struct mtk_jpeg_ctx *ctx = priv;
+
+	queue_work(ctx->jpeg->workqueue, &ctx->jpeg_work);
+}
+
+Also because we're defining `.m2m_ops` into mt8195_jpegenc_drvdata, so it's
+going to be as trivial as defining a new m2m_ops for it:
+
+static const struct v4l2_m2m_ops mtk_jpeg_multicore_enc_m2m_ops = {
+
+	.device_run = mtk_jpeg_multicore_enc_dev_run,
+
+};
+
+Please fix that :-)
+
+> +	struct mtk_jpeg_ctx *ctx = priv;
+> +	struct mtk_jpeg_dev *jpeg = ctx->jpeg;
+> +	struct vb2_v4l2_buffer *src_buf, *dst_buf;
+> +	enum vb2_buffer_state buf_state = VB2_BUF_STATE_ERROR;
+> +	unsigned long flags;
+> +	int ret;
+> +
+> +	if (!jpeg->is_jpgenc_multihw) {
+> +		src_buf = v4l2_m2m_next_src_buf(ctx->fh.m2m_ctx);
+> +		dst_buf = v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
+> +
+> +		ret = pm_runtime_resume_and_get(jpeg->dev);
+> +		if (ret < 0)
+> +			goto enc_end;
+> +
+> +		schedule_delayed_work(&jpeg->job_timeout_work,
+> +				      msecs_to_jiffies(MTK_JPEG_HW_TIMEOUT_MSEC));
+> +
+> +		spin_lock_irqsave(&jpeg->hw_lock, flags);
+> +
+> +		/*
+> +		 * Resetting the hardware every frame is to ensure that all the
+> +		 * registers are cleared. This is a hardware requirement.
+> +		 */
+> +		mtk_jpeg_enc_reset(jpeg->reg_base);
+> +
+> +		mtk_jpeg_set_enc_src(ctx, jpeg->reg_base, &src_buf->vb2_buf);
+> +		mtk_jpeg_set_enc_dst(ctx, jpeg->reg_base, &dst_buf->vb2_buf);
+> +		mtk_jpeg_set_enc_params(ctx, jpeg->reg_base);
+> +		mtk_jpeg_enc_start(jpeg->reg_base);
+> +		spin_unlock_irqrestore(&jpeg->hw_lock, flags);
+> +		return;
+> +
+> +enc_end:
+> +		v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
+> +		v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
+> +		v4l2_m2m_buf_done(src_buf, buf_state);
+> +		v4l2_m2m_buf_done(dst_buf, buf_state);
+> +		v4l2_m2m_job_finish(jpeg->m2m_dev, ctx->fh.m2m_ctx);
+> +	} else {
+> +		queue_work(jpeg->workqueue, &ctx->jpeg_work);
+> +	}
+> +}
+> +
+>   static void mtk_jpeg_dec_device_run(void *priv)
+>   {
+>   	struct mtk_jpeg_ctx *ctx = priv;
+> @@ -1211,6 +1364,9 @@ static int mtk_jpeg_open(struct file *file)
+>   		goto free;
+>   	}
+>   
+> +	if (jpeg->is_jpgenc_multihw)
+> +		INIT_WORK(&ctx->jpeg_work, mtk_jpegenc_worker);
+> +
+>   	v4l2_fh_init(&ctx->fh, vfd);
+>   	file->private_data = &ctx->fh;
+>   	v4l2_fh_add(&ctx->fh);
+> @@ -1355,6 +1511,18 @@ static int mtk_jpeg_probe(struct platform_device *pdev)
+>   			dev_err(&pdev->dev, "Failed to init clk\n");
+>   			goto err_clk_init;
+>   		}
+> +	} else {
+> +		if (of_property_read_bool(pdev->dev.of_node,
+> +					  "mediatek,jpegenc-multi-core")) {
+
+This check is redundant (and will be wrong in the jpegdec series): you're entering
+this branch only `if (jpeg->is_jpgenc_multihw)`, and this is initialized a little
+earlier when reading the very same devicetree property.
+
+So, for this series, remove the redundant check; for the jpegdec series, don't
+recheck with of_property_read_bool, but check for `if (jpeg->is_jpgenc_multihw)`
+and then theck for `if (jpeg->is_jpgdec_multihw)`.
+
+> +			init_waitqueue_head(&jpeg->enc_hw_wq);
+> +			jpeg->workqueue = alloc_ordered_workqueue(MTK_JPEG_NAME,
+> +								  WQ_MEM_RECLAIM
+> +								  | WQ_FREEZABLE);
+> +			if (!jpeg->workqueue) {
+> +				ret = -EINVAL;
+> +				goto err_alloc_workqueue;
+> +			}
+> +		}
+>   	}
+>   
+>   	ret = v4l2_device_register(&pdev->dev, &jpeg->v4l2_dev);
+> @@ -1423,6 +1591,8 @@ static int mtk_jpeg_probe(struct platform_device *pdev)
+>   
+>   err_clk_init:
+>   
+> +err_alloc_workqueue:
+> +
+
+You aren't doing anything at all here, so this label is not required. Remove it.
+
+>   err_req_irq:
+>   
+>   	return ret;
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> index 55719bd1b0fb..2fc20c6e06f4 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> @@ -75,6 +75,11 @@ struct mtk_jpeg_variant {
+>   	u32 cap_q_default_fourcc;
+>   };
+>   
+> +enum mtk_jpeg_hw_state {
+> +	MTK_JPEG_HW_IDLE = 0,
+> +	MTK_JPEG_HW_BUSY = 1,
+> +};
+> +
+>   struct mtk_jpeg_hw_param {
+>   	struct vb2_v4l2_buffer *src_buffer;
+>   	struct vb2_v4l2_buffer *dst_buffer;
+> @@ -97,12 +102,17 @@ struct mtk_jpegenc_clk {
+>   
+>   /**
+>    * struct mtk_jpegenc_comp_dev - JPEG COREX abstraction
+> - * @dev:		        JPEG device
+> - * @plat_dev:		    platform device data
+> - * @reg_base:		    JPEG registers mapping
+> - * @master_dev:		    mtk_jpeg_dev device
+> - * @pm:	                mtk_jpegenc_pm
+> - * @jpegenc_irq:	    jpeg encode irq num
+> + * @dev:		JPEG device
+> + * @plat_dev:		platform device data
+> + * @reg_base:		JPEG registers mapping
+> + * @master_dev:		mtk_jpeg_dev device
+> + * @venc_clk:	        mtk_jpegenc_clk
+> + * @jpegenc_irq:	jpeg encode irq num
+> + * @job_timeout_work:	handle jpeg encode work
+> + * @hw_param:		record hw param
+> + * @hw_rdy:		record hw ready
+> + * @hw_state:		record hw state
+> + * @hw_lock:		spinlock protecting the hw device resource
+>    */
+>   struct mtk_jpegenc_comp_dev {
+>   	struct device *dev;
+> @@ -114,6 +124,9 @@ struct mtk_jpegenc_comp_dev {
+>   	int hw_id;
+>   	struct delayed_work job_timeout_work;
+>   	struct mtk_jpeg_hw_param hw_param;
+> +	enum mtk_jpeg_hw_state hw_state;
+> +	//spinlock protecting the hw device resource
+> +	spinlock_t hw_lock;
+>   };
+>   
+>   /**
+> @@ -146,6 +159,8 @@ struct mtk_jpeg_dev {
+>   	void __iomem *reg_encbase[MTK_JPEGENC_HW_MAX];
+>   	struct mtk_jpegenc_comp_dev *enc_hw_dev[MTK_JPEGENC_HW_MAX];
+>   	bool is_jpgenc_multihw;
+> +	wait_queue_head_t enc_hw_wq;
+> +	atomic_t enchw_rdy;
+>   };
+>   
+>   /**
+> @@ -204,6 +219,9 @@ struct mtk_jpeg_ctx {
+>   	u8 enc_quality;
+>   	u8 restart_interval;
+>   	struct v4l2_ctrl_handler ctrl_hdl;
+> +
+> +	struct work_struct jpeg_work;
+> +	u32 total_frame_num;
+>   };
+>   
+>   #endif /* _MTK_JPEG_CORE_H */
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
+> index bea62013ce7d..8e1840137c34 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
+> @@ -192,6 +192,7 @@ static void mtk_jpegenc_timeout_work(struct work_struct *work)
+>   		container_of(dly_work,
+>   			     struct mtk_jpegenc_comp_dev,
+>   			     job_timeout_work);
+> +	struct mtk_jpeg_dev *master_jpeg = cjpeg->master_dev;
+>   	enum vb2_buffer_state buf_state = VB2_BUF_STATE_ERROR;
+>   	struct vb2_v4l2_buffer *src_buf, *dst_buf;
+>   
+> @@ -202,6 +203,9 @@ static void mtk_jpegenc_timeout_work(struct work_struct *work)
+>   	mtk_jpeg_enc_reset(cjpeg->reg_base);
+>   	clk_disable_unprepare(cjpeg->venc_clk.clks->clk);
+>   	pm_runtime_put(cjpeg->dev);
+> +	cjpeg->hw_state = MTK_JPEG_HW_IDLE;
+> +	atomic_inc(&master_jpeg->enchw_rdy);
+> +	wake_up(&master_jpeg->enc_hw_wq);
+>   	v4l2_m2m_buf_done(src_buf, buf_state);
+>   }
+>   
+> @@ -218,30 +222,37 @@ static irqreturn_t mtk_jpegenc_hw_irq_handler(int irq, void *priv)
+>   
+>   	cancel_delayed_work(&jpeg->job_timeout_work);
+>   
+> +	ctx = jpeg->hw_param.curr_ctx;
+> +	src_buf = jpeg->hw_param.src_buffer;
+> +	dst_buf = jpeg->hw_param.dst_buffer;
+> +	v4l2_m2m_buf_copy_metadata(src_buf, dst_buf, true);
+> +
+>   	irq_status = readl(jpeg->reg_base + JPEG_ENC_INT_STS) &
+>   		JPEG_ENC_INT_STATUS_MASK_ALLIRQ;
+>   	if (irq_status)
+>   		writel(0, jpeg->reg_base + JPEG_ENC_INT_STS);
+> -	if (!(irq_status & JPEG_ENC_INT_STATUS_DONE))
+> -		return IRQ_NONE;
+> -
+> -	ctx = v4l2_m2m_get_curr_priv(master_jpeg->m2m_dev);
+> -	if (!ctx) {
+> -		v4l2_err(&master_jpeg->v4l2_dev, "Context is NULL\n");
+> -		return IRQ_HANDLED;
+> +	if (!(irq_status & JPEG_ENC_INT_STATUS_DONE)) {
+> +		dev_err(jpeg->dev, " Not JPEG_ENC_INT_STATUS_DONE\n");
+
+Please be more descriptive in error messages. Also, should this really be
+a dev_err?!?
+
+> +		goto irq_handled;
+>   	}
+>   
+> -	src_buf = v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
+> -	dst_buf = v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
+> -	v4l2_m2m_buf_copy_metadata(src_buf, dst_buf, true);
+> -
+>   	result_size = mtk_jpeg_enc_get_file_size(jpeg->reg_base);
+>   	vb2_set_plane_payload(&dst_buf->vb2_buf, 0, result_size);
+> +
+> +irq_handled:
+>   	buf_state = VB2_BUF_STATE_DONE;
+>   	v4l2_m2m_buf_done(src_buf, buf_state);
+>   	v4l2_m2m_buf_done(dst_buf, buf_state);
+> -	v4l2_m2m_job_finish(master_jpeg->m2m_dev, ctx->fh.m2m_ctx);
+>   	pm_runtime_put(ctx->jpeg->dev);
+> +	clk_disable_unprepare(jpeg->venc_clk.clks->clk);
+> +	if (!list_empty(&ctx->fh.m2m_ctx->out_q_ctx.rdy_queue) ||
+> +	    !list_empty(&ctx->fh.m2m_ctx->cap_q_ctx.rdy_queue)) {
+> +		queue_work(master_jpeg->workqueue, &ctx->jpeg_work);
+> +	}
+> +
+> +	jpeg->hw_state = MTK_JPEG_HW_IDLE;
+> +	wake_up(&master_jpeg->enc_hw_wq);
+> +	atomic_inc(&master_jpeg->enchw_rdy);
+>   
+>   	return IRQ_HANDLED;
+>   }
+> @@ -294,6 +305,10 @@ static int mtk_jpegenc_hw_probe(struct platform_device *pdev)
+>   	dev->plat_dev = pdev;
+>   	dev->dev = &pdev->dev;
+>   
+> +	atomic_set(&master_dev->enchw_rdy, MTK_JPEGENC_HW_MAX);
+> +	spin_lock_init(&dev->hw_lock);
+> +	dev->hw_state = MTK_JPEG_HW_IDLE;
+> +
+>   	INIT_DELAYED_WORK(&dev->job_timeout_work,
+>   			  mtk_jpegenc_timeout_work);
+>   
+
+
