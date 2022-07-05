@@ -2,70 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE167566A6F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 13:59:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78984566A81
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 14:00:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231590AbiGEL7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 07:59:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40990 "EHLO
+        id S232203AbiGEL7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 07:59:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231657AbiGEL7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 07:59:01 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9889FC5F
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 04:59:00 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id s14so14227366ljs.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 04:59:00 -0700 (PDT)
+        with ESMTP id S232279AbiGEL7b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 07:59:31 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B00E1E0CA
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 04:59:29 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id t19so19499565lfl.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 04:59:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pJ7EuHzT7tGyPRYJa/JXc5Wvnw7Fpu6vsSqUw7XjkiA=;
-        b=is66VQF0SAirKrEP3O7KWpr8p1KpL/fm9JRmaXj2pUgKwJ031nC9ut0lrdjc4iP5gO
-         vyZaAUmkU4nZkKjxYLMtRb4iLIMu/UmNrvrN8UySsDxSW0/dFODy0uYE8rp8TaaPbQls
-         +20tK4JgrEAjhh8cArQ34/sSMUwGiWVBDgEReEepFdScrOK0a4pH6aCPVKByVO8y5IO7
-         sJLnqXLva1onz6vJRQfXSoLCZqdWwD5EE/gnBMRsk4aWx1pack62Q8zlS62n0iBpeeiT
-         tUv5lF1XzdkLhLmmRNScw37ke6MOr6NXEbw4ieUczAzBNTkRJy/Xwfr4cbHOaI+oqfZW
-         QMlQ==
+        bh=6siEFuHTvz2wiZjNJS/sIJYuAAMQPwq2R44ZfoCD8LA=;
+        b=mmuxC3elnOWnJdm5y+8IWI+4z7RlV9dmMTlrS0adveVMqJh+LSw26uvhbaVdv3c0CR
+         NuJPlLuAdBIbFCS8Te4/RIxJlEHrQ+Mfl4I+o+zr9pfU5pybB+ywLTau2DRz7+Yelc9A
+         t1ruCo+VQ8Z311ZLnL1XtCmnyFDo5l0GHoMqa/GtSS4ME67YqQ4KHuqUIwhJStxL6Hc8
+         hOqbk1OsLDWWeFyOsua8Z5S37UULokgit4LFactvNLRewEMNpDFL1w02H1/bugsbRKAK
+         9HUhrnzcXHcqNC24WU73b86l1LSlG8DSw4Ht/K6yOaCliDS7nSC1M4ySSZA/PxTI7x3o
+         HAXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=pJ7EuHzT7tGyPRYJa/JXc5Wvnw7Fpu6vsSqUw7XjkiA=;
-        b=pI2mqPSxPxVMuST+PvHZfyZogDcWBWX10Pmhf9H9HLS56koqawjxNhjhEzTf0QZ0MQ
-         R1u2nJW1F1IeM97RJdfvLncFe7G1o98PjIdBBg4fQ3UrJDavPVUQol8GS1DDfWPdfcPM
-         iLuqGuSTCHt/vCd/tP3LWoqHjtJ/Dq9/l6CfZv5iIpXFwd790MsGoSOoDWccMVkvDnGD
-         WVdayInNq23za0/RTzgAQhEWZu8PUaRKUkrYL1OCz68B94Tn4jnvZHHRlajX7ZWFfkYM
-         A/j9ruLZkOz5qYdsRmCOW+4AaNV5+zngf7jrvhQPizPKpuAeYfRrlobO98LxCir8fyYC
-         FJKw==
-X-Gm-Message-State: AJIora/DvSeHWW4RP1Byed85pQ39OddclIwVpRXRcD0C5/yApiQy2VXa
-        paz43XTuZ7HsnjG36FOVDZvaFA==
-X-Google-Smtp-Source: AGRyM1uWLI/JRV4d0wbhewqt2FTO8w/7lgoffpvuPqNLIj8dqWaQ0fJmfG6BBgn2wuAW+CudwGhXHA==
-X-Received: by 2002:a2e:7012:0:b0:25b:e535:51ed with SMTP id l18-20020a2e7012000000b0025be53551edmr19277289ljc.282.1657022338989;
-        Tue, 05 Jul 2022 04:58:58 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id bj11-20020a2eaa8b000000b0025a72db0cf1sm5528243ljb.118.2022.07.05.04.58.58
+        bh=6siEFuHTvz2wiZjNJS/sIJYuAAMQPwq2R44ZfoCD8LA=;
+        b=wjmXH2bhr2dcODkEGqDNWDfAwoJ/2YlITzQWT6iG8iExItUjDAaiR262zRi/6L7+Ce
+         nxRITlDJBhtCI+6U3dH1W4sMIHAO/NCJokKtgwt6XSaVY4NwCdJC1Kfb5M1bjrILt/+7
+         ywu6LUIoopOxhrUPnknFF8tVnbcxihjj4n+nKaXs3CXEnyq8tfqw3xwmISDsjz/VfllF
+         iY0beugiankXKJxYcfJYUPVUXuIGXUEDV5Pzt8yhqdXltcQuliXKRvJ6s0SBtU8tfmSn
+         KkjXNk3Qw+5rIMIKNck+2XxUjKBSKpNXCC8VhRRvqGGfZ/sUZR/cYaDuF0sI/UpxOPQH
+         LfDA==
+X-Gm-Message-State: AJIora+ppDm4fS0r5DUP5lFp4ATKfge3RXnFtCbR1GbzNu1pkRdYKyJZ
+        b7hjh9jshm0wWLHDic0gF7MSeQ==
+X-Google-Smtp-Source: AGRyM1tZ8htjZWP+QnN9dvmr8bSoCF+K5t1fwgkt71yBEOScwK7N7obCz+hU0Pi1vOMOFazWj0isCg==
+X-Received: by 2002:a05:6512:b23:b0:481:3e76:4942 with SMTP id w35-20020a0565120b2300b004813e764942mr21872103lfu.384.1657022368111;
+        Tue, 05 Jul 2022 04:59:28 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id o4-20020a05651205c400b0047f8990e8c2sm5683389lfo.140.2022.07.05.04.59.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 04:58:58 -0700 (PDT)
-Message-ID: <0a94cb9a-822f-e726-6ceb-e6e638f8982c@linaro.org>
-Date:   Tue, 5 Jul 2022 14:58:57 +0300
+        Tue, 05 Jul 2022 04:59:27 -0700 (PDT)
+Message-ID: <8d739c84-ba61-a030-ea8a-63a3f45c642c@linaro.org>
+Date:   Tue, 5 Jul 2022 13:59:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 04/14] arm64: dts: qcom: ipq8074: drop USB PHY clock index
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 16/43] dt-bindings: phy: qcom,qmp-pcie: drop unused
+ vddp-ref-clk supply
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220705114032.22787-1-johan+linaro@kernel.org>
- <20220705114032.22787-5-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220705114032.22787-5-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220705094239.17174-1-johan+linaro@kernel.org>
+ <20220705094239.17174-17-johan+linaro@kernel.org>
+ <d3a49c05-0fd0-920e-bd0a-f821e8e27b8b@linaro.org>
+ <YsQkmUVla9+CDYly@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YsQkmUVla9+CDYly@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -77,18 +84,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 14:40, Johan Hovold wrote:
-> The QMP USB PHY provides a single clock so drop the redundant clock
-> index.
+On 05/07/2022 13:46, Johan Hovold wrote:
+>> It's okay to copy existing bindings which are applicable and then in
+>> separate patch deprecate things or remove pieces which are not correct.
+>> But all this in assumption that the first copy already selected only
+>> applicable parts.
 > 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> But how would you be able to tell what parts I left out from the
+> original copy 
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+They are obvious and immediately visible. I see old bindings and new
+bindings - no troubles to compare. I review new bindings - everything in
+place.
 
-> ---
->   arch/arm64/boot/dts/qcom/ipq8074.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+I don't want to review old code, inapplicable code. The patch I am
+reviewing (the one doing the split) must bring correct bindings, except
+these few differences like deprecated stuff.
 
--- 
-With best wishes
-Dmitry
+> unless I first do the split and then explicitly remove
+> things that were presumably *never* applicable and just happened to be
+> added because all bindings where combined in one large mess of a schema?
+
+Best regards,
+Krzysztof
