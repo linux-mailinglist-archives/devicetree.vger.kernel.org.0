@@ -2,54 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C0B4566372
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 08:55:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ADCE5663AA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 09:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230025AbiGEGyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 02:54:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59222 "EHLO
+        id S229965AbiGEG6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 02:58:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbiGEGyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 02:54:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1862641;
-        Mon,  4 Jul 2022 23:54:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3A7EA6152E;
-        Tue,  5 Jul 2022 06:54:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFA9FC341C7;
-        Tue,  5 Jul 2022 06:54:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657004043;
-        bh=JISMrbSooutQHHPel6SKTiSLk/ck/ahoUWiu77t4xOw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aRQers6pzUQIRSG8RxhhL7YMxGADSuj1B2qkc15e6JmpTOS/SvODcjkt/0h+UJosM
-         SK1rIpB+X6HSug3AWwxXjdahAKSuPOHxTw3MHpgE6SxErFKIvBwrk/NJUA24dZme1G
-         02vGHXkk18v27FdNXVi324bkJwdcTjdlf7Kq+Ok+QwKcqUm3fAaMbhve7i+A5Prqoy
-         UZrclcfw/b+ZMsGpkTlKAEpFs+jz0YpELtT39eeuYoySY42hbtEEyJo8YYfpboPa/F
-         4l6yqphnBpca4EFo0149HHXJo7DiTpsjdU3VvttvZg0jym0A8luKg48YATdKlQilns
-         HlDb7J6m9ZDVw==
-Date:   Tue, 5 Jul 2022 12:23:58 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Rahul T R <r-ravikumar@ti.com>
-Cc:     linux-phy@lists.infradead.org, kishon@ti.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, p.yadav@ti.com,
-        tomi.valkeinen@ideasonboard.com, laurent.pinchart@ideasonboard.com,
-        linux-kernel@vger.kernel.org, jpawar@cadence.com,
-        sjakhade@cadence.com, mparab@cadence.com,
-        devicetree@vger.kernel.org, vigneshr@ti.com, lee.jones@linaro.org
-Subject: Re: [PATCH v4 0/3] Add support for dphy tx on j721e
-Message-ID: <YsPgBteeGNFJSrKv@matsya>
-References: <20220623125433.18467-1-r-ravikumar@ti.com>
+        with ESMTP id S229892AbiGEG6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 02:58:08 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1732665A8;
+        Mon,  4 Jul 2022 23:58:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1657004286; x=1688540286;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=GiqVGAWe0ed2Ac11tE3p4Hn6irDT3qOXxWkw28tVY/s=;
+  b=hL42Gfjt8bIqmhibcypEatY4yi2tlujTI9W7vpmsggXL18z1oS+y91Fr
+   qytgLuIlMS4I8uzEK43g4jzKjtwcfY1g2PYHwYlY9PiIY2JPf93WxEAwO
+   pi1Pb1BAPZI2Ke17HtCKxwLo4ZWzi9J6ctBQhMsAHHcSjm6A82URKkb8m
+   wYqvsF9yIRG4+p8t6J1e3Y5WbNllNvctm3VVSQmKe0GW3aF2fiSgPoFrV
+   BcSoXzNxXn2A9qmTMJorcNXAnPJtNSwAnDvgyEBQ9zgbTYLkMHrak0w/c
+   m0GVb3Qi9PB+mseDR071pGaAxnV+tFpyhmRlFb9UjDm39B6axdHTdFb9+
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,245,1650956400"; 
+   d="scan'208";a="180749500"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Jul 2022 23:58:06 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 4 Jul 2022 23:58:05 -0700
+Received: from kavya.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Mon, 4 Jul 2022 23:58:01 -0700
+From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <claudiu.beznea@microchip.com>, <UNGLinuxDriver@microchip.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Kavyasree.Kotagiri@microchip.com>
+Subject: [PATCH v6 0/3] Add support for lan966x flexcom chip-select configuration
+Date:   Tue, 5 Jul 2022 04:57:55 -0200
+Message-ID: <20220705065758.17051-1-kavyasree.kotagiri@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220623125433.18467-1-r-ravikumar@ti.com>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,12 +62,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-06-22, 18:24, Rahul T R wrote:
-> Following series of patches adds support for dphy tx on ti's j721e
-> soc. new compatible is added and required cdns dphy ops are implemented.
-> the series also adds band ctrl configuration required for dphy tx
+This patch series converts atmel-flexcom bindings into json-schema format.
+Adds support for lan966x flexcom chip-select configurations and its
+DT bindings.
 
-Applied, thanks
+v5 -> v6:
+ - Removed spi node from example as suggested by Rob and
+   also pattern properties(spi dt-bindings conversion to yaml patch is under review).
+   https://patchwork.kernel.org/project/linux-arm-kernel/patch/20220629125804.137099-1-sergiu.moga@microchip.com/
+   Once this is accepted, I will add back spi example through new patch. 
+
+v4 -> v5:
+ - Fix indentations of DT example.
+ - Fix dt-schema errors - removed minItems, maxItems for allOf:if:then
+   "reg" property as it is not required.
+
+v3 -> v4:
+ - Fix dtschema errors.
+ - Add a condition to flexcom chip-selects configuration as chip-select
+   lines are optional.
+
+v2 -> v3:
+ - changed IRQ flag in dt-bindings example.
+ - added reg property specific to lan66x which is missed in v2.
+ - used goto label for clk_disable in error cases.
+
+v1 -> v2:
+ - minor fix in title of dt-bindings.
+ - Modified new dt properties usage in atmel,flexcom.yaml.
+ - Used GENMASK and macros for maximum allowed values.
+ - Use u32 values for flexcom chipselects instead of strings.
+ - disable clock in case of errors.
+
+Kavyasree Kotagiri (3):
+  dt-bindings: mfd: atmel,flexcom: Convert to json-schema
+  dt-bindings: mfd: atmel,flexcom: Add new compatible string for lan966x
+  mfd: atmel-flexcom: Add support for lan966x flexcom chip-select
+    configuration
+
+ .../bindings/mfd/atmel,flexcom.yaml           | 133 ++++++++++++++++++
+ .../devicetree/bindings/mfd/atmel-flexcom.txt |  63 ---------
+ drivers/mfd/atmel-flexcom.c                   |  94 ++++++++++++-
+ 3 files changed, 226 insertions(+), 64 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-flexcom.txt
 
 -- 
-~Vinod
+2.25.1
+
