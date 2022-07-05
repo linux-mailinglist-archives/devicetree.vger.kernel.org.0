@@ -2,76 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A8B1566A21
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 13:51:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7ED5566A29
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 13:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230220AbiGELvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 07:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60758 "EHLO
+        id S230217AbiGELvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 07:51:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229922AbiGELvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 07:51:17 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EDE5175AB
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 04:51:16 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id i18so20084813lfu.8
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 04:51:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/UGo3h1lFotrXUyVOn1vvOw10sA63ae5wh+VH5tG39s=;
-        b=c3j2jGXVqGFeYL75sECqGf7InKbQhuBnnqkj1UqNiL/+dGSczDyMQcf9Atm1oKsz3d
-         HsYqcKbvtKchDYMu6q2wripBe4bD5G3oo9GqFuvCXUMQViG23oVoqFbR9pPq4POpg+q3
-         CPTPYo0qtLsCba7MDASbJOliZCmGTPnmIXv+wgyG8h6Qy3bG+XdE1/ZcABa84jmGVEni
-         DegY99VzxiaRDQ8BsRvthhlBO8Bcio7T46lRE6T16uEE3R7AVCQCZLd1TCc68zTqutFo
-         e6xJIYJXzMR7CUK7NtYL+Dkbe33MssoJHi1PLUy/jdGbn5KmjBIbSh2Z1preu8ZIF2uK
-         mCGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/UGo3h1lFotrXUyVOn1vvOw10sA63ae5wh+VH5tG39s=;
-        b=YXwHDgnwetPaUVLyMZXxbnQxEw0o7X6RCqCiukB4vfNaaUuUZ9r7h4I7Ejrz+qr/bh
-         kl8nM4+rNEZ7OCSeUEWviEz7egx5kLHDkdrgiZ9AANol0BoFm3OGZ9QpTtAe/GUn2Wh2
-         Z5/77mAeSZC0iwVeCoBAfAfwZ30UHQvHZ3T3bvtPK5SlYvP66xQvagLgY5vES10ELy2f
-         9kRlaDLtJyonx08hlPC8yrVNQ08u+TsxUPIZb/vtBKPIdqVHOhE60lbFKm4HXrWdagip
-         U0zESHbjqb9ZLT7xGIqTqFaY+6Em27m+J6ivR2utuQDWs8FC6FNKkfx+mh8qbgRxhnEe
-         +nIA==
-X-Gm-Message-State: AJIora/fm7qXVgV1yojicR9GdOytAQDO/Yc2HvQi6Jp/3Cpb6r8d0P64
-        YI9qqF8AwqG2e36AFEz3RuwkJA==
-X-Google-Smtp-Source: AGRyM1vw6cA8apgUVB4nud8nMwX7wEE8bQbgw7xac6nBHVQglGxItugzYlWcsshQ3UiivXanpk/r6Q==
-X-Received: by 2002:a05:6512:2a8d:b0:47f:b3ba:4922 with SMTP id dt13-20020a0565122a8d00b0047fb3ba4922mr23997604lfb.38.1657021874399;
-        Tue, 05 Jul 2022 04:51:14 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id s14-20020a19770e000000b0047faab456cesm5659965lfc.237.2022.07.05.04.51.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 04:51:13 -0700 (PDT)
-Message-ID: <90fd55cb-13f4-eac2-2b1a-85ae628ecc89@linaro.org>
-Date:   Tue, 5 Jul 2022 13:51:12 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: leds: Add cznic,turris1x-leds.yaml
- binding
-Content-Language: en-US
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231634AbiGELvp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 07:51:45 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A87F4175AB;
+        Tue,  5 Jul 2022 04:51:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 48099B817CB;
+        Tue,  5 Jul 2022 11:51:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ADEFC341CB;
+        Tue,  5 Jul 2022 11:51:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657021902;
+        bh=37ErEos1glNflV0Z8TycaNQrb1sNVtveZKaWkyeGY4Y=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=X15yTqoh73uHtWmXjsLZ5BSqB88XR8KYXv2Gj3ZpGsVXg3vZ7aPkzd2B1F1UvFr3h
+         1zHdVE5NdYIqqHDgj44DLHqQSUMFZ6etSPHY1GCMi5Vel2BBFzvHM9JWa5urz7vvIj
+         lw5de7cWFSlg3Fa0x/ocKJj0x25dJyq+uIcFIyC0Fzd/Cq9KI2/4KGuN2PMcC+8vZX
+         rK+Rhaw/aDtcH8gc4OMd/nxdT5JpOuRFZOM6IEjEK6BecLI+GS64HF9kxnjlRdLh2D
+         cnnHef330954A4i4mkFnyjBV18vnfc60zMB/p8YlVu22fdPKe+FShIrNJsLskqdn85
+         4+nTGKUOHi5vA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o8h5i-00064X-Oq; Tue, 05 Jul 2022 13:51:42 +0200
+Date:   Tue, 5 Jul 2022 13:51:42 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220705000448.14337-1-pali@kernel.org>
- <42d837dd-fbd1-6294-2fa0-8a07ae0f8d44@linaro.org>
- <20220705114238.xwgexavgozqskwbw@pali>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220705114238.xwgexavgozqskwbw@pali>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 17/43] dt-bindings: phy: qcom,qmp-pcie: add missing child
+ node schema
+Message-ID: <YsQlzr6nyvz761Kz@hovoldconsulting.com>
+References: <20220705094239.17174-1-johan+linaro@kernel.org>
+ <20220705094239.17174-18-johan+linaro@kernel.org>
+ <4bc79a1c-66b1-225d-5026-ddf3e6f7d22c@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4bc79a1c-66b1-225d-5026-ddf3e6f7d22c@linaro.org>
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,126 +66,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 13:42, Pali Rohár wrote:
-> On Tuesday 05 July 2022 13:36:54 Krzysztof Kozlowski wrote:
->> On 05/07/2022 02:04, Pali Rohár wrote:
->>> Add device-tree bindings documentation for Turris 1.x RGB LEDs.
->>>
->>> Signed-off-by: Pali Rohár <pali@kernel.org>
->>> ---
->>>  .../bindings/leds/cznic,turris1x-leds.yaml    | 116 ++++++++++++++++++
->>>  1 file changed, 116 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
->>> new file mode 100644
->>> index 000000000000..fd09613c8d2d
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
->>> @@ -0,0 +1,116 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/leds/cznic,turris1x-leds.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: CZ.NIC's Turris 1.x LEDs driver
->>> +
->>> +maintainers:
->>> +  - Pali Rohár <pali@kernel.org>
->>> +
->>> +description:
->>> +  This module adds support for the RGB LEDs found on the front panel of the
->>> +  Turris 1.x routers. There are 8 RGB LEDs that are controlled by CZ.NIC CPLD
->>> +  firmware running on Lattice FPGA. Firmware is open source and available at
->>> +  https://gitlab.nic.cz/turris/hw/turris_cpld/-/blob/master/CZ_NIC_Router_CPLD.v
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: cznic,turris1x-leds
->>> +
->>> +  reg:
->>> +    maxItems: 2
->>
->> You need to describe the items, if it is really two items. However your
->> example has only one item, so this was not tested and won't work.
+On Tue, Jul 05, 2022 at 12:18:37PM +0200, Krzysztof Kozlowski wrote:
+> On 05/07/2022 11:42, Johan Hovold wrote:
+> > Add the missing the description of the PHY-provider child node which was
+> > ignored when converting to DT schema.
+> > 
+> > Also fix up the incorrect description that claimed that one child node
+> > per lane was required.
+> > 
+> > Fixes: ccf51c1cedfd ("dt-bindings: phy: qcom,qmp: Convert QMP PHY bindings to yaml")
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > ---
+> >  .../bindings/phy/qcom,qmp-pcie-phy.yaml       | 88 ++++++++++++++++++-
+> >  1 file changed, 85 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+> > index ff1577f68a00..5a1ebf874559 100644
+> > --- a/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+> > @@ -69,9 +69,37 @@ properties:
+
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,sm8250-qmp-gen3x2-pcie-phy
+> > +              - qcom,sm8250-qmp-modem-pcie-phy
+> > +              - qcom,sm8450-qmp-gen4x2-pcie-phy
+> > +    then:
+> > +      patternProperties:
+> > +        "^phy@[0-9a-f]+$":
+> > +          properties:
+> > +            reg:
+> > +              items:
+> > +                - description: TX lane 1
+> > +                - description: RX lane 1
+> > +                - description: PCS
+> > +                - description: TX lane 2
+> > +                - description: RX lane 2
+> > +                - description: PCS_MISC
+> > +    else:
+> > +      patternProperties:
+> > +        "^phy@[0-9a-f]+$":
+> > +          properties:
+> > +            reg:
+> > +              minItems: 3
+> > +              maxItems: 4
+> > +              items:
+> > +                - description: TX
+> > +                - description: RX
+> > +                - description: PCS
+> > +                - description: PCS_MISC
+> > +      if:
 > 
-> Ehm? Example has two items in the reg.
+> Do not include if within other if. Just split the entire section to its
+> own if:.
 
-No, you have exactly one item.
-<0x13 0x1d>
+That sounds like it would just obfuscate the logic. The else clause
+specified 3-4 registers and the nested if determines which compatibles
+use which by further narrowing the range.
 
-Two items are for example:
-<0x13 0x1d>, <0x23 0x1d>
+If you move it out to the else: this would be really hard understand and
+verify.
 
-> 
->> You'll get warning from Rob's robot soon... but you should test the
->> bindings instead.
-> 
-> I have tested bindings on the real hardware and it is working fine
-> together with the driver from patch 2/2.
+> > +        properties:
+> > +          compatible:
+> > +            contains:
+> > +              enum:
+> > +                - qcom,ipq6018-qmp-pcie-phy
+> > +                - qcom,ipq8074-qmp-pcie-phy
+> > +                - qcom,msm8998-qmp-pcie-phy
+> > +                - qcom,sdm845-qhp-pcie-phy
+> > +      then:
+> > +        patternProperties:
+> > +          "^phy@[0-9a-f]+$":
+> > +            properties:
+> > +              reg:
+> > +                maxItems: 3
+> > +      else:
+> > +        patternProperties:
+> > +          "^phy@[0-9a-f]+$":
+> > +            properties:
+> > +              reg:
+> > +                minItems: 4
 
-Bindings cannot be tested on real hardware. Bindings are tested with
-dt_binding_check, as explained in writing-schema.rst
-
-> 
->>> +
->>> +  "#address-cells":
->>> +    const: 1
->>> +
->>> +  "#size-cells":
->>> +    const: 0
->>> +
->>> +patternProperties:
->>> +  "^multi-led@[0-7]$":
->>> +    type: object
->>> +    $ref: leds-class-multicolor.yaml#
->>
->> This looks incorrect, unless you rebased on my patchset?
-> 
-> So what is the correct? (I used inspiration from
-> cznic,turris-omnia-leds.yaml file)
-
-Which according to current multicolor bindings is not correct. Correct
-is pwm-multicolor. However if you rebase on [1], it looks fine, except
-missing unevaluatedProperties.
-
-[1]
-https://lore.kernel.org/all/20220624112106.111351-1-krzysztof.kozlowski@linaro.org/
-
-> 
->>> +
->>> +    properties:
->>> +      reg:
->>> +        minimum: 0
->>> +        maximum: 7
->>> +
->>> +    required:
->>> +      - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +
->>
->> No blank line.
-> 
-> Ok.
-> 
->>> +    #include <dt-bindings/leds/common.h>
->>> +
->>> +    cpld@3,0 {
->>
->> Generic node name.
-> 
-> Is not cpld name generic enough?
-
-No, it means nothing to me. Just like "a", "ashjd" or "wrls".
-
-"The name of a node should be somewhat generic, reflecting the function
-of the device and not its precise programming
- model. If appropriate, the name should be one of the following choices:"
-
-Best regards,
-Krzysztof
+Johan
