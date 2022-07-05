@@ -2,68 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72A69567387
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 17:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 054C7567392
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 17:55:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230432AbiGEPwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 11:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44252 "EHLO
+        id S229739AbiGEPzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 11:55:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231165AbiGEPwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 11:52:10 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6561EEFF
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 08:50:53 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id g11so6031834lfb.11
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 08:50:53 -0700 (PDT)
+        with ESMTP id S229853AbiGEPzS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 11:55:18 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233FCC1E
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 08:55:17 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id t25so21293047lfg.7
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 08:55:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CcjULYMpr+QHdI3JsNhjzwImTiYpQuBvwJ8lHs69eYs=;
-        b=IpCNknScKIJXSEUwWGsF+SrFTJNmtDNa372+AiVdo/2fZ5eA1uMADg419eOcaIk4SE
-         C37tZ2Oz9Gesq1pYOAzUQjBu3a3mUFNE9BlufU/QaiUcOlZCCw8WPBpUW44PDJaSqcx6
-         cL3XI/vWE8FeIWUneTrmuZ0YBs9w8P87e7hcx30SInjkkCCGZBpyZE6ho0Q0YX44M+rc
-         EvUH6kIlydrPhHlj15TIAUKgekCxn2GV+BTl+tanDK8fXAzSN+B4p8bY8OukaXZNnITn
-         OKeTK9f8En+YmG5P4Xoa14yL0fskYwg2cvuYTlrBSBLFlGDt5QVI073k5EkRlii3TzK5
-         V38w==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=jGJB1YsgZctBf3FrtbK+9SX6QzCOA77MpJH1Oeer0Hk=;
+        b=ec37u0hO8yXaGrSBqn1FsCWv5cskb+zfx52OL/Gef1NLfc9cwYqlJbhO8GevcVNhHC
+         GEEvn4ZTuRUOCGpEYCXwKWuhvAEg38suZg/kggjV2CNffhIjwbmofjRiyUk3Wa73KrGY
+         HXxN/1G0KFsvHXjRS1WGeXtFjYegiOXzYxzPpJlEVBl2vNWZDT/xnW30G3+Vkk6Gk01x
+         FVGo1uIw1ZZ45aqWGlW1PdyYDKOVSLl/ojNIy8FMAzLvR5jIFd4UQVKJ0ql5AWXmH6AG
+         Oq63372Rsukxx5JdCQvqw6iiAN9jA+xD5lKyaMuo+c4Md79Yn5sufrCHGU8mB1QvSVFp
+         WBmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=CcjULYMpr+QHdI3JsNhjzwImTiYpQuBvwJ8lHs69eYs=;
-        b=FLZjee5c+WXloFVvsH+GOgNlH56BDFlkrZSA17baoWuWbXL1mo6iGhO/Z0hYHPMD8H
-         wTa/jR+JqmPe8WzKt6naFr8eHhY6rZxXxgGLgzf9KcqPsBJwpSEs2IP9WEOv1BOWPMRQ
-         gIK8hS9RcFLIdtNilNFCTiH4noLITXmJxBHN7GTBK9oTQLjFtfLWrEaqFKr+6WXiVInF
-         LVlWwH0Vfx+MDpK6mnKWw8MHCx/2k/cp2X05zIlMfVTtLyf6uiY6A8a8hopyibqfDXUY
-         x60SQ8oeAUokV9u2BIT8KpbsZQrZjJWTCe0x6TnGAMRME98z5tQVzEBpr6VhTO/9ODgC
-         /0rA==
-X-Gm-Message-State: AJIora8gFv1N3zyMMKK0m9lIjU8t075WaZQHztHmNjrlZbR6QbYmxfVB
-        goYUZ9osAXtoNQw94XlYJujIkA==
-X-Google-Smtp-Source: AGRyM1veCggYbDR4uBoTxkp4gmYxE1f/2yXS96puPSrWecpOdrcqmdtbS/t46m6wVikXX5MKd1DN8w==
-X-Received: by 2002:a05:6512:2a91:b0:47f:6e1d:d22c with SMTP id dt17-20020a0565122a9100b0047f6e1dd22cmr24346725lfb.550.1657036252021;
-        Tue, 05 Jul 2022 08:50:52 -0700 (PDT)
-Received: from krzk-bin.home ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id b6-20020a056512070600b0047f6b4f82d1sm2347341lfs.250.2022.07.05.08.50.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 08:50:51 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        bh=jGJB1YsgZctBf3FrtbK+9SX6QzCOA77MpJH1Oeer0Hk=;
+        b=wvQo11z72eUYZXC2sRTRHV7aUTKiLFXYqjSXM/i9VYz1ptDlKKSF8gUjrASgyw306P
+         W4IwJ4E53B/QQ2owRAMQVROijXlP05OiedgsMXJURzI5iMufNa8bN8+ZtPhLBXieRF2I
+         yCiznl1qbGZN6jby69XHqAKZgAllav9sPt3zCDtIjoMQrJHVZOwT7irEDBof5KcRYlnK
+         cbSaKCmPW7dY7xSfbVW5Ef/lj6clbn3XJ8zaFIBqHWs9oT5qu5koQ+dUV0xihrG8VDmk
+         gkuK1RmaGzl8svvVbXFh+t661eUmCfSoabfsMx0rF2jeRumi/sPMIqg5vyajj5HYqTUQ
+         8EAA==
+X-Gm-Message-State: AJIora9KBGA7BKx2qqB/VYFZnk4720DBx9YaHMrQYG+IoHs3LJ7m1Oq5
+        /9zHmmf4IynwipXyJEeIdjuXzA==
+X-Google-Smtp-Source: AGRyM1seRurvdSHhFwj77zvAc1mw9Uk0rAAe6ziAgG5H8mpvklgg3S57vH5SfkUCu2rlPPV3WF4w8A==
+X-Received: by 2002:a05:6512:33d4:b0:481:63:69e8 with SMTP id d20-20020a05651233d400b00481006369e8mr22198970lfg.415.1657036515533;
+        Tue, 05 Jul 2022 08:55:15 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id c23-20020a056512325700b0047f70a0b8ffsm5757630lfr.20.2022.07.05.08.55.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 08:55:14 -0700 (PDT)
+Message-ID: <5625666e-a777-c4e6-ad91-5c27ebe3f3b5@linaro.org>
+Date:   Tue, 5 Jul 2022 17:55:14 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 00/13] Add ipq806x missing bindings
+Content-Language: en-US
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: hwinfo: renesas,prr: move from soc directory
-Date:   Tue,  5 Jul 2022 17:50:38 +0200
-Message-Id: <20220705155038.454251-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220705133917.8405-1-ansuelsmth@gmail.com>
+ <e84bb14b-a3a5-728d-e3a4-9d2e898a7aca@linaro.org>
+ <62c44b32.1c69fb81.c87b7.72ac@mx.google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <62c44b32.1c69fb81.c87b7.72ac@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,50 +80,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Group devices like Chip ID or SoC information under "hwinfo" directory.
+On 05/07/2022 16:04, Christian Marangi wrote:
+> On Tue, Jul 05, 2022 at 04:28:47PM +0200, Krzysztof Kozlowski wrote:
+>> On 05/07/2022 15:39, Christian Marangi wrote:
+>>> This series try to add some of the missing bindings for ipq806x.
+>>>
+>>> This still lacks of the cpu bindings and all the bindings required
+>>> to scale cpu clk or L2. These will come later as the driver and
+>>> documentation require some changes.
+>>>
+>>> So for now we try to add bindings that can directly applied without
+>>> making changes to any drivers.
+>>
+>> You mention here and in subject bindings, but your patchset does not
+>> have any bindings.
+>>
+> 
+> What would be correct word? Node? Compatible?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+"device node" or just "node"
 
----
-
-This should go via Renesas tree because of changes around soc/renesas/renesas,prr.yaml.
-
-Changes since v1:
-1. Split from https://lore.kernel.org/all/20220705154613.453096-1-krzysztof.kozlowski@linaro.org/
----
- .../bindings/{soc/renesas => hwinfo}/renesas,prr.yaml           | 2 +-
- MAINTAINERS                                                     | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
- rename Documentation/devicetree/bindings/{soc/renesas => hwinfo}/renesas,prr.yaml (92%)
-
-diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas,prr.yaml b/Documentation/devicetree/bindings/hwinfo/renesas,prr.yaml
-similarity index 92%
-rename from Documentation/devicetree/bindings/soc/renesas/renesas,prr.yaml
-rename to Documentation/devicetree/bindings/hwinfo/renesas,prr.yaml
-index 654c96638e75..792f371cec03 100644
---- a/Documentation/devicetree/bindings/soc/renesas/renesas,prr.yaml
-+++ b/Documentation/devicetree/bindings/hwinfo/renesas,prr.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/soc/renesas/renesas,prr.yaml#
-+$id: http://devicetree.org/schemas/hwinfo/renesas,prr.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Renesas Product Register
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 392e59e9a03e..d32d724d33da 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2630,6 +2630,7 @@ Q:	http://patchwork.kernel.org/project/linux-renesas-soc/list/
- C:	irc://irc.libera.chat/renesas-soc
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
- F:	Documentation/devicetree/bindings/arm/renesas.yaml
-+F:	Documentation/devicetree/bindings/hwinfo/renesas,prr.yaml
- F:	Documentation/devicetree/bindings/soc/renesas/
- F:	arch/arm64/boot/dts/renesas/
- F:	drivers/soc/renesas/
--- 
-2.34.1
-
+Best regards,
+Krzysztof
