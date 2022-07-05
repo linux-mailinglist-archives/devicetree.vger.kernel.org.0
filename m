@@ -2,102 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49DCB567797
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C1A5677A5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233487AbiGETPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 15:15:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50752 "EHLO
+        id S232659AbiGETTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 15:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233539AbiGETPh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:15:37 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C17A21825;
-        Tue,  5 Jul 2022 12:15:36 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id h85so12071382iof.4;
-        Tue, 05 Jul 2022 12:15:36 -0700 (PDT)
+        with ESMTP id S232957AbiGETTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:19:04 -0400
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 715E421835
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 12:19:03 -0700 (PDT)
+Received: by mail-il1-f180.google.com with SMTP id p18so2799346ilm.4
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 12:19:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kxzYA6KZ8a4zIqx67GnwhuMBCfJafkrQxxi0Ms3fzsM=;
-        b=19wJThwslRmrqLixjdYxhVr10u/EPRHDPrWA+/GdhNTuO/njxXRqTXRmdp7BBih4Zx
-         ASAfGIm9PIdo0Tk4kMErzXmEtsz3dpnow57C7SXVLHvbla7VFAp1Lw5pFT2gizIggVNq
-         hsPmvElgf99SkI27fs9hSKbpmBiCxnx52GSf0zKxrFPM49mWSY2KloGzD6mYkPyQWUvY
-         4AfvBeESDjDnTA+t7XO1d2bv4TYFN+GyQlZ4gI4OF3mLx5IDuJ0XgtOxjCIWn4AxBDT+
-         Ce2/SOLE7S6CBbN5yfWPwi9BiZ0uISdD4vHk9X1o6lLG/m7YmxHX59ZC2K4kOje7ETwQ
-         IXMQ==
-X-Gm-Message-State: AJIora+5Ifn37+eR2Hy8jCBeER40wsy3qdazyvELiY5nqptLG82Sq66x
-        lO1W3iiMNAGTEhRzV9Tzig==
-X-Google-Smtp-Source: AGRyM1tJBq+vZqIhRnBSmnyhF2kTg4Ul3hctlrl7dB8AHGjpQQNhrPX0aVyHJ7t8yIxnOpQtEbE/4A==
-X-Received: by 2002:a05:6638:16cf:b0:33c:8c82:b460 with SMTP id g15-20020a05663816cf00b0033c8c82b460mr22231164jat.32.1657048535710;
-        Tue, 05 Jul 2022 12:15:35 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=8/rhBA+HafJmFNl0ZeFY2qz+zo9g7qqKGe3P7RbQoQM=;
+        b=ffOzT+BNpUMUD5HvUxF1a0anVbc0Oo0y4B5yeZq7ofuG5MMAszQVjfxl3dLR19zIU9
+         EtE5VrkWdkc23YlYyl3P2DrH/hlQH4RreGs8Rr0uX6plijwa2BHGYKywO5NTFkY4FHNH
+         0IKo9nFvE3JL91st+OADn00AkEtSguriU+H8zQibi6gT1mTpGqpeKHGKHnaBpDv3gJn1
+         H5To6h5lU+YIkFVF9efPGUMAGn04ZtI3sQTbjARIsU/dZm8a+8KwnHUZ7+YVDgXVCY5e
+         fnUN98ILXdfPEUBfqrze16VEEkxvBuT5s4p9hnvMXc262uK1PafXmZrJbFzJMTFBFqcz
+         5kMQ==
+X-Gm-Message-State: AJIora8VbJp6SgUxzJz1JVF+oBr84xxniAWWUvp6SGrauWjri1Ql9yq3
+        riRqU5Qoy0rF7AwtjVLJtKwk3Ekbbw==
+X-Google-Smtp-Source: AGRyM1sC7T1yNtb403vll18LU/NA2mNuE+J0r30cKhiCNpm578wmNJKP6xeerCMWXiBf9RJzX90MUg==
+X-Received: by 2002:a05:6e02:1a06:b0:2dc:314d:b163 with SMTP id s6-20020a056e021a0600b002dc314db163mr326374ild.75.1657048742698;
+        Tue, 05 Jul 2022 12:19:02 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id ck22-20020a0566383f1600b0033ef7f3c5f7sm679260jab.90.2022.07.05.12.15.34
+        by smtp.gmail.com with ESMTPSA id y10-20020a92090a000000b002dc11cf02e0sm2619266ilg.20.2022.07.05.12.19.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 12:15:35 -0700 (PDT)
-Received: (nullmailer pid 2465625 invoked by uid 1000);
-        Tue, 05 Jul 2022 19:15:33 -0000
-Date:   Tue, 5 Jul 2022 13:15:33 -0600
+        Tue, 05 Jul 2022 12:19:02 -0700 (PDT)
+Received: (nullmailer pid 2471237 invoked by uid 1000);
+        Tue, 05 Jul 2022 19:18:57 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, swboyd@chromium.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org, mka@chromium.org,
-        mathieu.poirier@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [V5 1/2] dt-bindings: remoteproc: qcom: Convert SC7280 MSS
- bindings to YAML
-Message-ID: <20220705191533.GA2465521-robh@kernel.org>
-References: <1657020721-24939-1-git-send-email-quic_sibis@quicinc.com>
- <1657020721-24939-2-git-send-email-quic_sibis@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1657020721-24939-2-git-send-email-quic_sibis@quicinc.com>
+To:     =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>
+Cc:     devicetree@vger.kernel.org, pali@kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220705175450.11886-1-kabel@kernel.org>
+References: <20220705175450.11886-1-kabel@kernel.org>
+Subject: Re: [PATCH] dt-bindings: bus: add device tree bindings for fsl,p1021rdb-pc-cpld
+Date:   Tue, 05 Jul 2022 13:18:57 -0600
+Message-Id: <1657048737.427000.2471236.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Jul 2022 17:02:00 +0530, Sibi Sankar wrote:
-> Add a separate YAML binding to act as a superset of the PAS and non-PAS
-> compatible for SC7280 MSS PIL. This also serves as a way to increase
-> readability.
+On Tue, 05 Jul 2022 19:54:50 +0200, Marek Behún wrote:
+> Add binding for CPLD bus interface of Freescale P1021RDB Combo Board
+> CPLD Design.
 > 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Marek Behún <kabel@kernel.org>
 > ---
-> 
-> Depends on Krzysztof's remoteproc cleanups and improvements:
-> https://patchwork.kernel.org/project/linux-arm-msm/cover/20220517070113.18023-1-krzysztof.kozlowski@linaro.org/
-> 
-> Previous discussions on PAS vs non-PAS bindings:
-> https://lore.kernel.org/lkml/YUps1JfGtf6JdbCx@ripper/ [Bjorn]
-> https://lore.kernel.org/lkml/CAE-0n51KBYjZvwGNy06_okmEWjEfRLQO54CYaY6-JnbBk6kOhA@mail.gmail.com/ [Stephen]
-> 
-> v5:
->  * Improve phandle-array schemas [Stephen/Rob/Krzysztof]
->  * Add more details to the firmware-name/memory region string array [Stephen/Rob]
->  * Drop 'items' from label [Rob]
-> 
-> v4:
->  * Remove older bindings [Matthias/Krzysztof]
->  * Misc. Fixes [Krzysztof]
->  * Rebased on v2 of Krzysztof's bindings cleanups
-> 
-> v3:
->  * Re-ordered clock list, fixed pdc_sync typo [Rob/Matthias]
-> 
->  .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |  31 +--
->  .../bindings/remoteproc/qcom,sc7280-mss-pil.yaml   | 266 +++++++++++++++++++++
->  2 files changed, 268 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+>  .../bindings/bus/fsl,p1021rdb-pc-cpld.yaml    | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.example.dtb: cpld@3,0: $nodename:0: 'cpld@3,0' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/simple-bus.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
