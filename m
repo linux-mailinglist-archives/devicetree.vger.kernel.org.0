@@ -2,102 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B88A567819
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED533567820
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbiGETyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 15:54:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50308 "EHLO
+        id S229617AbiGET4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 15:56:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbiGETyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:54:00 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5B265AB;
-        Tue,  5 Jul 2022 12:53:58 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id n8so16704953eda.0;
-        Tue, 05 Jul 2022 12:53:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oXMuNwTXUvJo0+POZWc/5imaFRdw3zoRSiX+En9QOVw=;
-        b=aCAO7obABtqBdXKJyThLKOxRy3Gkos3sCS85KBPppcd5OtU6W0mAv8wa3910L4g+wv
-         fVzmu9c7Lx8j8FyLigZXQNdR2GQHgxpkhaEKzuYcF0X4V3PODju071tD4JP/R8cA5Rzx
-         1w1//jejTVMZPH0Tj8JKWbCQ79VtMdgFKuWY86K7kkCZC6/DZMdfPlz1/b8wzw+9I6gi
-         Wy8c9PFMCRb3qBkqpLtc/qt87+Sdz+eRCVxRqrDay6SUsCmLAPmMBtKGiMzFdl7COXLj
-         cFeEZpcOIyfO4THHHDc2kD1wA0y2IGoVRMAuFGiD2bTw9Evr8M9iSafyZJ4IDAimmgME
-         PAVg==
+        with ESMTP id S230095AbiGET4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:56:18 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B44191261C;
+        Tue,  5 Jul 2022 12:56:17 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id p128so12176835iof.1;
+        Tue, 05 Jul 2022 12:56:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oXMuNwTXUvJo0+POZWc/5imaFRdw3zoRSiX+En9QOVw=;
-        b=dFtGNWj4XAlXsFFyG08KlZp93KBXq3czoxM9fvTdzuF2tr2OLu6smawB45FQt+Xglq
-         H4ktEZEJeg8HHP0q5Q6klw3QS69xWeE2vjSCQzQvVs8qwMPjkDYxoZPKfSMG5rIXpcJi
-         R1q0+t2iSu3Z5rM+BTxploUze2aNLpJ/dE0G4HnT6qPgFSsPu0MyGMP31pJ5QawChRYQ
-         fku6kVV0OIZBq/ugCfvEIeHQf8QYHQ/L3foM9+2/1GYP3GTy3baAAmJZIZ2DnI2Hmi95
-         qDULC7Z2GvHLc94aVjRupD3QUchfv6FjTTq/0GokQeZQB659mZmHV2YLP5TvFkt2SlLF
-         VXZQ==
-X-Gm-Message-State: AJIora91QiMy4tm7wWcbs1H+pdR515YGleNe28Q1ARF/AC890Vnhq2wX
-        +SYn2CQ/29jkf64NWPVzjkA=
-X-Google-Smtp-Source: AGRyM1tkSzZ6D5ILvqab8zXo3yg+wHUqQ7K5bD/agyl++p9ronNEmGXjzgYTHCP0hrx20V7g2KJ6Cw==
-X-Received: by 2002:a05:6402:228f:b0:43a:896:e4f0 with SMTP id cw15-20020a056402228f00b0043a0896e4f0mr23879935edb.81.1657050837497;
-        Tue, 05 Jul 2022 12:53:57 -0700 (PDT)
-Received: from kista.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
-        by smtp.gmail.com with ESMTPSA id a18-20020a50ff12000000b0043789187c1esm18863714edu.80.2022.07.05.12.53.56
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+aMFooU9xCxHHZrJKfw9pGmy9FIGPoeaxgRsrA1Zlmo=;
+        b=3oz5sr1VMvnqCLJxKsLPMUY1ppWfrt8BNZk8fub3Wg+XME99l3kkcASzLHtz7G4bxP
+         WFABPoQtJyiXs5+ojDkvG+YCRsrW3B3IxNzR06czNtDBsivaxz/ICt9U/N8G0/qhWiOd
+         WGABjTIaiQUhXRh1pOHJTSmZvmeSETpIDbil9maNznFTllcchKgDP7QxKkMLPvI9LmyH
+         5gVH5s65aLAe5GkpQvuXYM2r/AvpqtTkd6ajqpj++Y6gntq/FJALseOWPjqSOO1UQ62Y
+         pGEogGj8TPoO5tA0O9We0FCrbkGbhGdCrWIiMJpYlY3+D0jwY/NTOC6WDdSMhAiovmMT
+         FW0g==
+X-Gm-Message-State: AJIora+PcNSX6UY6xePmDB8MBuE5hGOuDr9ldEsO+IzrTHV9gEORYUqm
+        ULT+7Hc3Ektu2EHF6tY+TmoyQeZEfA==
+X-Google-Smtp-Source: AGRyM1smOYjSvNNRbRQ+Nx0BkkSK8fx9zwOREBJuUwxAQXwlvwpNOZy8pzc9WdT0YVAi1EBDTCjTGw==
+X-Received: by 2002:a05:6638:1347:b0:33e:9dd1:d3f6 with SMTP id u7-20020a056638134700b0033e9dd1d3f6mr16311464jad.131.1657050976931;
+        Tue, 05 Jul 2022 12:56:16 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id bw14-20020a056638460e00b0033ca26010besm11000638jab.148.2022.07.05.12.56.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 12:53:57 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-usb@vger.kernel.org
-Subject: Re: Re: [PATCH 0/3] dt-bindings: usb: Document Allwinner D1 compatibles
-Date:   Tue, 05 Jul 2022 21:53:55 +0200
-Message-ID: <1688790.QkHrqEjB74@kista>
-In-Reply-To: <44784082.fMDQidcC6G@kista>
-References: <20220702195249.54160-1-samuel@sholland.org> <44784082.fMDQidcC6G@kista>
+        Tue, 05 Jul 2022 12:56:16 -0700 (PDT)
+Received: (nullmailer pid 2526157 invoked by uid 1000);
+        Tue, 05 Jul 2022 19:56:14 -0000
+Date:   Tue, 5 Jul 2022 13:56:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Isaac True <isaac.true@canonical.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, wim@linux-watchdog.org
+Subject: Re: [PATCH 2/2] watchdog: gpio: add configurable minimum interval
+Message-ID: <20220705195614.GA2503171-robh@kernel.org>
+References: <20220629110626.2158127-1-isaac.true@canonical.com>
+ <20220629110626.2158127-2-isaac.true@canonical.com>
+ <20220701171829.GA1149706-robh@kernel.org>
+ <0d045bb8-a519-39d4-17fa-123f90969bd9@roeck-us.net>
+ <CALkPoPYKNxAeP6HM1cMh1zzW6jw4fktCp42b7+79Qf8DVJis-w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CALkPoPYKNxAeP6HM1cMh1zzW6jw4fktCp42b7+79Qf8DVJis-w@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 04. julij 2022 ob 22:35:24 CEST je Jernej =C5=A0krabec napi=
-sal(a):
-> Dne sobota, 02. julij 2022 ob 21:52:46 CEST je Samuel Holland napisal(a):
-> > These patches document the compatible strings for the USB controllers in
-> > the Allwinner D1 SoC, which require no special driver support.
-> >=20
-> > Samuel Holland (3):
-> >   dt-bindings: usb: sunxi-musb: Add Allwinner D1 compatible
-> >   dt-bindings: usb: generic-ehci: Add Allwinner D1 compatible
-> >   dt-bindings: usb: generic-ohci: Add Allwinner D1 compatible
->=20
-> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+On Mon, Jul 04, 2022 at 01:05:04PM +0200, Isaac True wrote:
+> On Fri, 1 Jul 2022 at 19:48, Guenter Roeck <linux@roeck-us.net> wrote:
+> >
+> > On 7/1/22 10:18, Rob Herring wrote:
+> > > On Wed, Jun 29, 2022 at 01:06:26PM +0200, Isaac True wrote:
+> > >> Add the "min_hw_margin_ms" parameter to gpio_wdt devices, allowing a
+> > >> minimum interval to be specified, stopping watchdog devices from being
+> > >> fed too quickly if they require a certain interval between feeds.
+> > >
+> > > I assume there is some real platform with a real problem you are trying
+> > > to solve? Details please.
+> > >
+> >
+> > Agreed, this should be explained in more detail.
+> 
+> Yes this is a real platform using a TI TPS3850 watchdog chip. With
+> this chip you can configure a "window" which can detect early faults
+> (i.e. too frequent) in addition to the standard watchdog features. I
+> needed to add this minimum timeout to avoid watchdog resets in
+> situations such as where first U-Boot and then the Linux kernel feed
+> the watchdog with too short of an interval between them, or when
+> systemd was configured to use the watchdog device and was feeding it
+> too soon after taking over from the kernel.
+> 
+> > > Can you just hardcode some min? Maybe 10% of the max or something. Is
+> > > there a downside to a larger than necessary min?
+> > >
+> >
+> > That would result in extra overhead in the watchdog core which would not
+> > be required for all other hardware using this driver. I'd rather avoid that.
+> >
+> 
+> In the case of the TI TPS3850, the minimum timeout is configurable, so
+> I didn't want to add a hard-coded value to the driver.
+> 
+> > > Wouldn't be better to fix this without requiring a DT change and that
+> > > could work on stable kernels if needed.
+> > >
+> >
+> > Presumably that is some new hardware. Most of the watchdog drivers
+> > needing this value can derive it from the compatible property. The
+> > gpio watchdog driver is a bit different since it is supposed to work
+> > on a variety of hardware using gpio pins for watchdog control.
+> >
+> 
+> Yes this is new hardware. This use case is also not very common as
+> most watchdog chips don't have this window function or a minimum
+> interval, at least in my experience, so I did not want to make it the
+> default for everything.
 
-Applied all three, thanks!
-=20
-Best regards,
-Jernej
-=20
-> >  .../devicetree/bindings/usb/allwinner,sun4i-a10-musb.yaml        | 1 +
-> >  Documentation/devicetree/bindings/usb/generic-ehci.yaml          | 1 +
-> >  Documentation/devicetree/bindings/usb/generic-ohci.yaml          | 1 +
-> >  3 files changed, 3 insertions(+)
-> >=20
-> > --
-> > 2.35.1
+Okay. However the existing property you copied has 2 problems. It uses 
+underscores rather than hypens and doesn't use a standard unit suffix. 
+So 'min-hw-margin-ms'.
 
+Though maybe a new property instead:
 
+timeout-range-ms = <min max>;
+
+That's somewhat aligned to 'timeout-sec', and IMO, clearer meaning than 
+'hw margin'.
+
+Rob
