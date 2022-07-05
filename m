@@ -2,61 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75AAA5677AC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 608095677B4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:23:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229880AbiGETTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 15:19:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53070 "EHLO
+        id S229754AbiGETXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 15:23:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233703AbiGETTD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:19:03 -0400
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32111EC47;
-        Tue,  5 Jul 2022 12:19:00 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id p13so7902817ilq.0;
-        Tue, 05 Jul 2022 12:19:00 -0700 (PDT)
+        with ESMTP id S229762AbiGETXM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:23:12 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5567D21835;
+        Tue,  5 Jul 2022 12:23:11 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id z191so12073155iof.6;
+        Tue, 05 Jul 2022 12:23:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=HkWyYi1Y3vFcT2PDs2Eyw+VTCUEaA7uXAXTuzJrLtsY=;
-        b=LJGGyeG0BxRmTDDsoiUfYnY3KhooIScF00dAShy/Henxzt+59Nep6K4n/Xg676OlD1
-         6/hKEN+bNHqygNEgoQ02iKL8ghU3K//HGGUOEc2BoBSqNAZ2efeqSonYB84EKZpew68S
-         JsgJcDkuzwmB/4/FrKfb/afO5fSuCw3fM/P7VYNzEJQkwTyMeiftCu6E4zyW5VU/J+r+
-         chGlWgaSG/g3ZdXchRzRSLjqg2kLLlcX5U5mo3DTCzxvWhSY7a1H8HvVP5qX31aQWPxx
-         UFilp7w3nEM1wuF+ffd/VcdoQNrwYgH4TE5BnUMElB31x76apUzDwDL+TaqR+fF9Z9EZ
-         vpbw==
-X-Gm-Message-State: AJIora/SGS4RcwjlX5wRhbzDl/tj8GcLs3YA7ucxWuc1qhxk+6Ze96Ud
-        JC7ewoOgkigh+rbXBGNqz46KcxPGOQ==
-X-Google-Smtp-Source: AGRyM1vdzd9ImcLTIEnKAzJRYqtQ2TsGIfLnVMJa6Wx/iz9Q52vAZPVFFCMS7A72EzjGf+XbRGSpwA==
-X-Received: by 2002:a05:6e02:18c9:b0:2da:da9d:2ab1 with SMTP id s9-20020a056e0218c900b002dada9d2ab1mr17158155ilu.90.1657048739720;
-        Tue, 05 Jul 2022 12:18:59 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=H5eyFsH62ZCOMR5j44c7qDXl+L0Xiqo5oRXL7/M/n9U=;
+        b=jqPCqs1xAayb9f2/qRAD01d6yorVOORpJVhGyri1td7hztkeRQRUEH+8wAS/k+iUQ8
+         eAUl9SA1ZIPJdNPasHM0apZkarLadz+MXU69Ufi80k9qZejAyqNBFXLG4ODoeKHLcL7t
+         EuNqJ6/xEVysv/amtKOal88TCHs3695ZZEEq2/tTxFpFYAgaIuWDxm7M+8oJwWk/lkwm
+         6GG2BgBbqBfyTUOwiRpyPvL335ap/IgGXIdQ7BWBxZkz2by2pK8OtmaX3Yd2RthNGLKF
+         3V7N8MONracVn1C0TQeEHlTOGO/u3Mu4agg7VzzuppY1UsBTMLZBS/TDDjK6oFHe91Zb
+         0Utw==
+X-Gm-Message-State: AJIora+pTVBPSepMtXrHTM9AMReHMEcQIV0rM3pObrbnl4XSBhwfwoML
+        cU/EGsN5L/g42G2iS1YeLA==
+X-Google-Smtp-Source: AGRyM1u0fHCnFee1kEPRUg0SqoCFPI8COBha8zPrSVGZ62b76/VvOoRH5cPG5r4Gv3xkb5zkrF1YIg==
+X-Received: by 2002:a05:6638:3014:b0:317:9daf:c42c with SMTP id r20-20020a056638301400b003179dafc42cmr22147925jak.10.1657048990513;
+        Tue, 05 Jul 2022 12:23:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id bm13-20020a05663842cd00b0032ead96ee5csm14880002jab.165.2022.07.05.12.18.58
+        by smtp.gmail.com with ESMTPSA id c1-20020a6bfd01000000b00675139dbff9sm14725537ioi.48.2022.07.05.12.23.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 12:18:59 -0700 (PDT)
-Received: (nullmailer pid 2471228 invoked by uid 1000);
-        Tue, 05 Jul 2022 19:18:57 -0000
+        Tue, 05 Jul 2022 12:23:10 -0700 (PDT)
+Received: (nullmailer pid 2477219 invoked by uid 1000);
+        Tue, 05 Jul 2022 19:23:07 -0000
+Date:   Tue, 5 Jul 2022 13:23:07 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>, asahi@lists.linux.dev,
-        Will Deacon <will@kernel.org>,
-        Sameer Pujar <spujar@nvidia.com>,
-        iommu@lists.linux-foundation.org,
-        Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220705130652.433496-1-thierry.reding@gmail.com>
-References: <20220705125834.431711-2-thierry.reding@gmail.com> <20220705130652.433496-1-thierry.reding@gmail.com>
-Subject: Re: [PATCH v7] dt-bindings: reserved-memory: Document iommu-addresses
-Date:   Tue, 05 Jul 2022 13:18:57 -0600
-Message-Id: <1657048737.387965.2471227.nullmailer@robh.at.kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 05/14] dt-bindings: memory-controllers: add canaan
+ k210 sram controller
+Message-ID: <20220705192307.GA2471961-robh@kernel.org>
+References: <20220701192300.2293643-1-conor@kernel.org>
+ <20220701192300.2293643-6-conor@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220701192300.2293643-6-conor@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,88 +85,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Jul 2022 15:06:52 +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Fri, Jul 01, 2022 at 08:22:51PM +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> This adds the "iommu-addresses" property to reserved-memory nodes, which
-> allow describing the interaction of memory regions with IOMMUs. Two use-
-> cases are supported:
+> The k210 U-Boot port has been using the clocks defined in the
+> devicetree to bring up the board's SRAM, but this violates the
+> dt-schema. As such, move the clocks to a dedicated node with
+> the same compatible string & document it.
 > 
->   1. Static mappings can be described by pairing the "iommu-addresses"
->      property with a "reg" property. This is mostly useful for adopting
->      firmware-allocated buffers via identity mappings. One common use-
->      case where this is required is if early firmware or bootloaders
->      have set up a bootsplash framebuffer that a display controller is
->      actively scanning out from during the operating system boot
->      process.
-> 
->   2. If an "iommu-addresses" property exists without a "reg" property,
->      the reserved-memory node describes an IOVA reservation. Such memory
->      regions are excluded from the IOVA space available to operating
->      system drivers and can be used for regions that must not be used to
->      map arbitrary buffers.
-> 
-> Each mapping or reservation is tied to a specific device via a phandle
-> to the device's device tree node. This allows a reserved-memory region
-> to be reused across multiple devices.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
-> Changes in v7:
-> - keep reserved-memory.txt to avoid broken references
+>  .../memory-controllers/canaan,k210-sram.yaml  | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml
 > 
-> Changes in v6:
-> - add device phandle to iommu-addresses property in examples
-> - remove now unused dt-bindings/reserved-memory.h header
-> ---
->  .../reserved-memory/reserved-memory.yaml      | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml b/Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml
+> new file mode 100644
+> index 000000000000..82be32757713
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-controllers/canaan,k210-sram.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Canaan K210 SRAM memory controller
+> +
+> +description: |
+
+Don't need '|'.
+
+> +  The Canaan K210 SRAM memory controller is initialised and programmed by
+> +  firmware, but an OS might want to read its registers for error reporting
+> +  purposes and to learn about the DRAM topology.
+
+How the OS going to do that? You don't have any way defined to access 
+the registers.
+
+Also, where is the SRAM address itself defined?
+
+> +
+> +maintainers:
+> +  - Conor Dooley <conor@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - canaan,k210-sram
+> +
+> +  clocks:
+> +    minItems: 1
+> +    items:
+> +      - description: sram0 clock
+> +      - description: sram1 clock
+> +      - description: aisram clock
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: sram0
+> +      - const: sram1
+> +      - const: aisram
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/k210-clk.h>
+> +    memory-controller {
+> +        compatible = "canaan,k210-sram";
+> +        clocks = <&sysclk K210_CLK_SRAM0>,
+> +                 <&sysclk K210_CLK_SRAM1>,
+> +                 <&sysclk K210_CLK_AI>;
+> +        clock-names = "sram0", "sram1", "aisram";
+> +    };
+> -- 
+> 2.37.0
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:22.7-45: Warning (reg_format): /reserved-memory/framebuffer@90000000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:29.7-40: Warning (reg_format): /bus@0/adsp@2990000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:34.7-42: Warning (reg_format): /bus@0/display@15200000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:9.5-12: Warning (ranges_format): /reserved-memory:ranges: empty "ranges" property but its #size-cells (1) differs from / (2)
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:27.9-37.5: Warning (unit_address_vs_reg): /bus@0: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:21.30-24.7: Warning (avoid_default_addr_size): /reserved-memory/framebuffer@90000000: Relying on default #address-cells value
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:21.30-24.7: Warning (avoid_default_addr_size): /reserved-memory/framebuffer@90000000: Relying on default #size-cells value
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:28.24-31.7: Warning (avoid_default_addr_size): /bus@0/adsp@2990000: Relying on default #address-cells value
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:28.24-31.7: Warning (avoid_default_addr_size): /bus@0/adsp@2990000: Relying on default #size-cells value
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:33.27-36.7: Warning (avoid_default_addr_size): /bus@0/display@15200000: Relying on default #address-cells value
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:33.27-36.7: Warning (avoid_default_addr_size): /bus@0/display@15200000: Relying on default #size-cells value
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: /: bus@0: 'anyOf' conditional failed, one must be fixed:
-	'reg' is a required property
-	'ranges' is a required property
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/root-node.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: /: 'compatible' is a required property
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/root-node.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: /: 'model' is a required property
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/root-node.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> 
