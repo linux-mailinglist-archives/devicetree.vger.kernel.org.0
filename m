@@ -2,102 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4755667CD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 12:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16DE65667D5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 12:25:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231736AbiGEKXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 06:23:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
+        id S231346AbiGEKZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 06:25:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231809AbiGEKXk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 06:23:40 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EA942AC6
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 03:23:35 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id t25so19758689lfg.7
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 03:23:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=D5siEQlI9XeniTKofv/2Ej6WMzqEAvwWpsCPDQ5Kx7k=;
-        b=RGrEAp7zvLo7CTBtpOOl5wiObpP8CTfkfXlUAXMlhsoqFhctrsSeGyQvtum9CIMClQ
-         T2ionu2utuPpEtPp8pEJ1SrdUwt2orU2kEVDrs+3cuzWyq/aWS8d8HJ1BODLE3gLG/HQ
-         RBUoCV972pvReTzlL93EsOl9qCj7Q0tfHPFaOGFNAc11JkQgLqlPVzTqZU0rPwrcPWPM
-         zqah7tRBSuz0NI3lQ0TFfXPoX1D5qN8bfxwKApd5EefSfCQaNvTQxv8fRbZDoiTJmfhX
-         MqhY2392OhqhTie0d3Dt2sfN2AmOf8QjBFhWFMU/jXuVt2SwDcxGluCbmyzT1H/m4MVZ
-         aNlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=D5siEQlI9XeniTKofv/2Ej6WMzqEAvwWpsCPDQ5Kx7k=;
-        b=HN7S8kMBPQTyfhdw0NKn9gN2bKq900xuC7PB1RH5Gwsu2LAIVeH2PYx/OUN8hY3RaV
-         uIscbrwooeMW1NE/EoxMenpnA7xgRQ6hspCrgUMPnYIcil8yUOIJzp7Z3/lRDqZqjLV7
-         fyLZOYXtTdWX5h0S1EJR53NFdsJwCfpssb7ezGRAzEJTH/3YSuiWMrUpod7nb7RKXiih
-         QzIsYrg8lgsRSS+qdGx5egjadWjvN7nRQf2EJS/nlPFNmpQmTmFSZ/VenHCqgsXgqwU0
-         s3rsvDbAgifYzL4aLZ/LVPZk96lhw980GpFXGGz2R+wM3tFnL68+eOa/91iGESb7mSl8
-         VusQ==
-X-Gm-Message-State: AJIora+Jank8CooKEvl7Sy2BxDuuEanPs2YjnKw8O07jy4Y7QWN/KG9g
-        EvElV5kVug0kkFea2F7ML3wLUg==
-X-Google-Smtp-Source: AGRyM1u/5ekv4E6MjvZ4URSOmp1X5JoJIqCjqdBiA5tEuuxuPaVwWaOw4MHCavNj71iNDl2hB3U8ng==
-X-Received: by 2002:a05:6512:260e:b0:47d:ae43:62b3 with SMTP id bt14-20020a056512260e00b0047dae4362b3mr23834973lfb.77.1657016613842;
-        Tue, 05 Jul 2022 03:23:33 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id s6-20020a056512214600b0047b0f2d7650sm5622474lfr.271.2022.07.05.03.23.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 03:23:33 -0700 (PDT)
-Message-ID: <b1a14a8d-489c-6871-332d-230811baace3@linaro.org>
-Date:   Tue, 5 Jul 2022 12:23:32 +0200
+        with ESMTP id S229457AbiGEKZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 06:25:44 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690F3DA3;
+        Tue,  5 Jul 2022 03:25:38 -0700 (PDT)
+X-UUID: 97de2dd08bf74424afe93a7b053a3fca-20220705
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:2767743d-9db3-4103-be55-2f0f30d08cb4,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:90
+X-CID-INFO: VERSION:1.1.8,REQID:2767743d-9db3-4103-be55-2f0f30d08cb4,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:90
+X-CID-META: VersionHash:0f94e32,CLOUDID:96a47563-0b3f-4b2c-b3a6-ed5c044366a0,C
+        OID:75d5afd46aa7,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 97de2dd08bf74424afe93a7b053a3fca-20220705
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 649888291; Tue, 05 Jul 2022 18:25:32 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 5 Jul 2022 18:25:31 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Tue, 5 Jul 2022 18:25:30 +0800
+From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
+        <xinlei.lee@mediatek.com>, <liangxu.xu@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Bo-Chen Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v16 0/5] drm/mediatek: Add MT8195 dp_intf driver
+Date:   Tue, 5 Jul 2022 18:25:25 +0800
+Message-ID: <20220705102530.1344-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 07/43] dt-bindings: phy: qcom,msm8996-qmp-pcie: clean up
- constraints
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220705094239.17174-1-johan+linaro@kernel.org>
- <20220705094239.17174-8-johan+linaro@kernel.org>
- <4b1a9ded-24b1-faf1-e105-f18afef57682@linaro.org>
- <YsQQnT5ixHtSo+vk@hovoldconsulting.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YsQQnT5ixHtSo+vk@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 12:21, Johan Hovold wrote:
-> On Tue, Jul 05, 2022 at 12:09:19PM +0200, Krzysztof Kozlowski wrote:
->> On 05/07/2022 11:42, Johan Hovold wrote:
->>> Drop the compatible conditional and tighten the property constraints.
->>>
->>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>
->> Squash it with previous patch. Does not make sense to add new file and a
->> patch later change it.
-> 
-> I beg to differ, for the reasons I just spelled out in my previous
-> reply.
+The dpi/dpintf driver and the added helper functions are required for
+the DisplayPort driver to work.
 
-So let's keep the discussion there.
+This series is separated from [1] which is original from Guillaume.
+The display port driver is [2].
 
-Best regards,
-Krzysztof
+Changes for v16:
+1. Separate input_2pixel and pixels_per_iter to other patches.
+2. Remove function "mtk_dpi_matrix_sel" and color_fmt_trans_support
+   in patch "Add YUV422 output support".
+3. Drop patches which are accepted.
+
+Changes for v15:
+1. Add a patch to remove support for output yuv422 for previous socs.
+2. Only remain output format of reg888/yuv422 support for mt8195.
+3. Adjust the order of patches.
+
+Changes for v14:
+1. Separate a new binding patch to modify mediatek string format.
+2. Use GENMASK(4, 0) for INT_MATRIX_SEL_MASK in patch
+   "Add YUV422 output support"
+3. Change kernel doc description of support_direct_pin.
+4. Change to use pixels_per_iter to control quantity of transferred
+   pixels per iterration.
+
+Changes for v13:
+1. Change mediatek,mt8195-dp_intf to mediatek,mt8195-dp-intf.
+2. Add kernel doc for mtk_dpi_conf.
+3. Drop patch of tvd_pll enable.
+4. Squash some color format transfer related patches.
+5. Add new patch to support setting of direct connection to pins.
+6. Change fix tag of "drm/mediatek: dpi: Only enable dpi after the bridge
+   is enabled".
+
+Changes for v12:
+1. Remove pll_gate.
+2. Add more detailed commit message.
+3. Separate tvd_clk patch and yuv422 output support from add dpintf
+   support patch
+4. Remove limit patch and use common driver codes to determine this.
+
+Changes for v11:
+1. Rename ck_cg to pll_gate.
+2. Add some commit message to clarify the modification reason.
+3. Fix some driver order and modify for reviewers' comments.
+
+[1]:https://lore.kernel.org/all/20220523104758.29531-1-granquet@baylibre.com/
+[2]:https://lore.kernel.org/all/20220610105522.13449-1-rex-bc.chen@mediatek.com/
+
+Bo-Chen Chen (4):
+  drm/mediatek: dpi: Add YUV422 output support
+  drm/mediatek: dpi: add config to support direct connection to dpi
+    panels
+  drm/mediatek: dpi: Add input_2pixel config support
+  drm/mediatek: dpi: Add pixels_per_iter config support
+
+Guillaume Ranquet (1):
+  drm/mediatek: dpi: Add dp_intf support
+
+ drivers/gpu/drm/mediatek/mtk_dpi.c          | 115 +++++++++++++++++---
+ drivers/gpu/drm/mediatek/mtk_dpi_regs.h     |  18 +++
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |   4 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   3 +
+ 5 files changed, 126 insertions(+), 15 deletions(-)
+
+-- 
+2.18.0
+
