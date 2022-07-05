@@ -2,95 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00BF55666DC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 11:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D570F566679
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 11:46:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231974AbiGEJth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 05:49:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39022 "EHLO
+        id S230470AbiGEJqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 05:46:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231682AbiGEJtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 05:49:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E547F585;
-        Tue,  5 Jul 2022 02:49:07 -0700 (PDT)
+        with ESMTP id S230463AbiGEJqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 05:46:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1DC4D6C;
+        Tue,  5 Jul 2022 02:46:52 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ACEE06191A;
-        Tue,  5 Jul 2022 09:49:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C8F6C341E6;
-        Tue,  5 Jul 2022 09:49:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7DAB66190D;
+        Tue,  5 Jul 2022 09:46:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D51D3C341CD;
+        Tue,  5 Jul 2022 09:46:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657014545;
-        bh=piYlAksvw7TqXfZQBtDopHCTzi1zuCK2raNHXyFhjds=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UvDyJrBDF+nnK4WRhAi9c7EzJ6yH+8+ULJkW6bBBSzWTT+IJQ6IXqSuZ3ysOWiSzi
-         sAqfFk5Se02vo1SZc3BhY3M3V8e1ZRBk5f4rVZ7UNk2P+/N97pgaCR3XJOiR4oH9F8
-         PqAEoDXY88IrHCAKxJGILlxuO36OAbvPI4j/Y2piIC8S+cKha+8GlgwMYMv40aeBm/
-         C3Px2/jUYm86vQ6aAB0hDrLOBNwW1QVyPYyMM29R757bav9OWA5ajasu4k9T1GU8am
-         eKnYdRVrBEDAj9PHwhQR+nSbrZl0dZNrHDwsQQHw/8QPBaxvLkzBpniHUsZgasZiUD
-         yXKIN1Y7XZv8A==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1o8fB4-0004bD-J5; Tue, 05 Jul 2022 11:49:06 +0200
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 43/43] phy: qcom-qmp-usb: drop pipe clock lane suffix
-Date:   Tue,  5 Jul 2022 11:42:39 +0200
-Message-Id: <20220705094239.17174-44-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220705094239.17174-1-johan+linaro@kernel.org>
-References: <20220705094239.17174-1-johan+linaro@kernel.org>
+        s=k20201202; t=1657014411;
+        bh=I3JxnK9mzNlfq3QSj73KfJmk+72j39RkmG1N22D+EEc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=svQLVRPiYTDWaDFlSeRSHAGkGSTlwdZ+RsJv8UOSSXAfcZWlnm2CgvYEplI1c+ULs
+         3abx6Rp+/Xs6TcwU72t2Pr+I5uqzF0GlAwCOYf9QddM0Z4PPaICLFgXExMj17T1Fax
+         anO3CU9s4PG7vcjthtJI26goDO2F18I4MAage4E6+9UbkES0xxJoLDMKhGLKwmAU4L
+         onViqlGL8k+yBIQ0unMeqmhMZcObPv5cMmQSKQBjK3W959v6TE5M7SPdbJhpG45Pbv
+         T61CFKM8fN213scnSncczoFOjk3XaJJ/oInMCuDkOKLRCe04NrlyQ3LDBNTieZZUW4
+         15hPCIgR+Q6Ww==
+Message-ID: <c945d724-bc18-071e-2c84-d3af39127fc0@kernel.org>
+Date:   Tue, 5 Jul 2022 11:46:43 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v5 06/15] dt-bindings: mfd: amd,pensando-elbasr: Add AMD
+ Pensando Elba System Resource chip
+Content-Language: en-US
+To:     Brad Larson <brad@pensando.io>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>, blarson@amd.com,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Gabriel Somlo <gsomlo@gmail.com>, gerg@linux-m68k.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>, samuel@sholland.org,
+        Serge Semin <fancer.lancer@gmail.com>,
+        suravee.suthikulpanit@amd.com,
+        Tom Lendacky <thomas.lendacky@amd.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20220613195658.5607-1-brad@pensando.io>
+ <20220613195658.5607-7-brad@pensando.io>
+ <b42b197f-2b11-cb6e-458a-ed12b2eb997d@linaro.org>
+ <CAK9rFnwj0c5fuWk8TxxX_RBXDCBpEa8f-rh3V13BN_j_U7Fo7w@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <CAK9rFnwj0c5fuWk8TxxX_RBXDCBpEa8f-rh3V13BN_j_U7Fo7w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pipe clock is defined in the "lane" node so there's no need to keep
-adding a redundant lane-number suffix to the clock name.
+On 04/07/2022 01:41, Brad Larson wrote:
+> Hi Krzysztof,
+> 
+> On Mon, Jun 20, 2022 at 5:56 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 13/06/2022 21:56, Brad Larson wrote:
+>>> From: Brad Larson <blarson@amd.com>
+>>>
+>>> Add support for the AMD Pensando Elba SoC System Resource chip
+>>> using the SPI interface.  The Elba SR is a Multi-function Device
+>>> supporting device register access using CS0, smbus interface for
+>>> FRU and board peripherals using CS1, dual Lattice I2C masters for
+>>> transceiver management using CS2, and CS3 for flash access.
+>>>
+>>> Signed-off-by: Brad Larson <blarson@amd.com>
+>>> ---
+>>>  .../bindings/mfd/amd,pensando-elbasr.yaml     | 93 +++++++++++++++++++
+>>>  1 file changed, 93 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+>> ...
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/reset/amd,pensando-elba-reset.h>
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +
+>>> +    spi0 {
+>>
+>> Just "spi"
+> 
+> Changed to spi
+> 
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +        num-cs = <4>;
+>>> +
+>>> +        spi@0 {
+>>
+>> "spi" is for SPI controllers. Use generic name matching the device.
+>> Usually this is "system-controller", however Rob pointed out your
+>> inaccurate bindings and example.
+> 
+> Proposed the below change node in the reply to Rob.  The model I
+> followed for this was the Altera mfd/altera-a10sr.c
 
-Drop the lane suffix from the pipe clock name, but continue supporting
-the legacy name as a fall back.
+You pointed driver, so how is it related to bindings? Do not mix Linux
+implementation with the bindings.
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> spi@0 {
+>         sr_regs@0 {
+>                 rstc: reset-controller@0 {
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-index 994a8232be7b..dfe7294a589f 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-@@ -2665,8 +2665,12 @@ int qcom_qmp_phy_usb_create(struct device *dev, struct device_node *np, int id,
- 	if (!qphy->pcs_misc)
- 		dev_vdbg(dev, "PHY pcs_misc-reg not used\n");
- 
--	snprintf(prop_name, sizeof(prop_name), "pipe%d", id);
--	qphy->pipe_clk = devm_get_clk_from_child(dev, np, prop_name);
-+	qphy->pipe_clk = devm_get_clk_from_child(dev, np, "pipe");
-+	if (IS_ERR(qphy->pipe_clk) && PTR_ERR(qphy->pipe_clk) != -EPROBE_DEFER) {
-+		/* Fall back to the legacy pipe clock name. */
-+		snprintf(prop_name, sizeof(prop_name), "pipe%d", id);
-+		qphy->pipe_clk = devm_get_clk_from_child(dev, np, prop_name);
-+	}
- 	if (IS_ERR(qphy->pipe_clk)) {
- 		return dev_err_probe(dev, PTR_ERR(qphy->pipe_clk),
- 				     "failed to get lane%d pipe clock\n", id);
--- 
-2.35.1
+No underscores in node names. sr_regs is not generic name.
 
+> 
+>         dw_i2c@1 {
+
+Again, not a generic name. If it is i2c controller, should be i2c. If it
+is i2c device/client, should be something generic matching class of the
+device.
+
+> 
+>         lattice_i2c@2 {
+> 
+>         flash@3 {
+
+This looks ok, depending on compatible.
+
+> 
+> Regards,
+> Brad
+
+
+Best regards,
+Krzysztof
