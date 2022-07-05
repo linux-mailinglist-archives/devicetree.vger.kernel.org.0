@@ -2,67 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13ADF567619
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 20:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E47D56762A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 20:08:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230398AbiGESBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 14:01:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46086 "EHLO
+        id S230381AbiGESIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 14:08:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbiGESBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 14:01:15 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E42619C14
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 11:01:13 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id z25so4313481lfr.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 11:01:13 -0700 (PDT)
+        with ESMTP id S229866AbiGESIF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 14:08:05 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98091DA60
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 11:08:04 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id a11so15518651ljb.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 11:08:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0079lLmav/VCCFzPGL1GXPUq4bAgsYoN8nrtlXETWH8=;
-        b=KYcHBYys3eLsXJLm/eYQ/ZNS+mx8xvwor3pYgFX5OQk5VLfScF2Zw6XEaC9gwWDo4j
-         mcLzHVi9MnfgJtP8ceZceddHpveWbfkaMLYpS4HC7fK/lKAwkrusIckPnJjWcYNzuRRH
-         MRLgEoedTLKgS96qcCc2SiauxBsXUtv77fmJ0D7AGCDvTsZkNBBUFJ88uAPlOSXspbxr
-         MP/0EmUiIv3PBWAqry8cZQgbCioCpcYbBEKfdmw2tpLp2z6rXdfhNXLHD1RYiTNW4qbq
-         7ZpIqoqifj2U6IYgwfFGInm4dTBoPEU4KLS2/tvgtuLy4Em14B3LHV5WWp0O02sKR4o8
-         d/pQ==
+        bh=924SP9sfvPU1dx8dGbTZTUGZTjhuN8RJUEbbG03QnDM=;
+        b=dqNap05fL763900ovU57l7XCQPqasl5Su2weztMWwQJiq8gVSeSqwD/YzZJmVVxVV8
+         uYgaT181twYvEn2pcqDnvrPPHrdmmWfS9bUDioxJ2BeeA+du6nn22VVdYchdaD8bx82j
+         cKMqFzjpkh28mG9X2h7F5NrPZpcRQjL4mR1HTbJjqzWpYbZPHpzj/LO5ahjy2ZXf2XLk
+         W+XdxkW3GB9hFTtQErBo24ecz5YRo3m8cxsYag9aMnmRx1sIzy8ddvMCMl63GBPo7XBe
+         rJUbgdYaOZNFbDUT+S+1z93YtpReo63hhjt6FuJ2h18rGkGL7WicNmwwa4Wm+MD6JCdo
+         YpgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=0079lLmav/VCCFzPGL1GXPUq4bAgsYoN8nrtlXETWH8=;
-        b=ldRaydVZVlUwDASJacHevd77bUNvMO4k/fDpVupwMBQTF4Bam78PjN2xVojdxRlUpt
-         NIf7PuEFQMli86fA9sZYoDzX8++3PgBwnLsZOgd8s1DHPf5Qto9qA82U2ePZgVIfxDQd
-         rcHYPPHaO7ShGwy5zQ53hjmnq9lUTGH0pO1jtlWwTdz/ZOFiS+yQ0yZTwGEq9LezNmNu
-         75WqN0FZS+W1DAknvM0P3lqdvXp5zebyxRaeH+fnPnngfnvEDCEpLhUKPuCADhkcDzCj
-         AygKRYyK4dwcnFRiD6wi+2ruhY/ekz4BQRLjLePLWdiBnmdjyiUOTJSFSqxf6ZMxT5Qj
-         At6w==
-X-Gm-Message-State: AJIora8kiLNqFX0g7bNstX873BY2HpYhLhKoSeTbVDdDzsi2Ul7T8pBO
-        xpuotx1resaYcAEqdVu3h5eUZw==
-X-Google-Smtp-Source: AGRyM1upKilZU4ZKNQrEZdcfM1s7N9ZuleYTw86ANBrPbDZ8QK/h77KQm2CPc3QLLwp33Gl5u1kdjQ==
-X-Received: by 2002:a05:6512:260a:b0:47f:ab30:d624 with SMTP id bt10-20020a056512260a00b0047fab30d624mr24227411lfb.326.1657044071745;
-        Tue, 05 Jul 2022 11:01:11 -0700 (PDT)
+        bh=924SP9sfvPU1dx8dGbTZTUGZTjhuN8RJUEbbG03QnDM=;
+        b=tZ5kK0KvZF83gysCy4+2YMv8/hGJIiCoO7ZAic7XQcUfhgp7GAlJnw/bECDTnjFnAs
+         0Fi/j/DvP+lQKEAZbZNaDoaoi98V5rx3EOIIKT9UOyjPcJ8MdPIpDp8bZKinNHOW4HeQ
+         MthDpljsk8BvowBuPc3ZWML9Cx+m0nYcr2WS+OeLvv4oAwMhS3wUmY0k2Q2EtAnWLZJX
+         XxbWBKx1RHigv+T5FZherd6vwroPleqFfkg8CCiC62HBwC+tXDsp3n3DpQKihzlmJh/j
+         2iZNv3r86I+gyR9boUuPDKH2GxzGZP34Vsy/FAZ8sdma0rQ9fYLcO6cep5JfS5dW/XsI
+         a8gQ==
+X-Gm-Message-State: AJIora9sKOqS+6cXFTNy9RziNt5TOVQ7qYYgWk7PHF9ZaRBFzKbT6vqH
+        LsIglpoNTP9gU0/gfDYpBqDs5w==
+X-Google-Smtp-Source: AGRyM1vB0wzDA/TQSLB2Up6+c+hgj08Fweiha6I0CS7jcy2C8AQxuiUia/XGhNE0VlhIhi24TwA0DQ==
+X-Received: by 2002:a05:651c:12c5:b0:255:767b:8b80 with SMTP id 5-20020a05651c12c500b00255767b8b80mr21636241lje.321.1657044483182;
+        Tue, 05 Jul 2022 11:08:03 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id bi37-20020a05651c232500b0025d3ba76992sm201662ljb.97.2022.07.05.11.01.10
+        by smtp.gmail.com with ESMTPSA id z9-20020a0565120c0900b004793240041esm5810802lfu.277.2022.07.05.11.08.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 11:01:10 -0700 (PDT)
-Message-ID: <919d53fc-b2c0-bd9e-09fe-d6402ad3af8b@linaro.org>
-Date:   Tue, 5 Jul 2022 20:01:09 +0200
+        Tue, 05 Jul 2022 11:08:02 -0700 (PDT)
+Message-ID: <a58ed7b1-f10f-3fb6-1d8c-bd525722164f@linaro.org>
+Date:   Tue, 5 Jul 2022 20:08:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: sound: Convert atmel CLASSD to json-schema
+Subject: Re: [PATCH 1/8] dt-bindings: soc: qcom: smd-rpm: Add MSM8909
 Content-Language: en-US
-To:     Ryan.Wanner@microchip.com, Claudiu.Beznea@microchip.com,
-        nicolas.ferre@microchip.com, alexandre.berna@microchip.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220705163046.18409-1-Ryan.Wanner@microchip.com>
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stephan Gerhold <stephan@gerhold.net>
+References: <20220705143523.3390944-1-stephan.gerhold@kernkonzept.com>
+ <20220705143523.3390944-2-stephan.gerhold@kernkonzept.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220705163046.18409-1-Ryan.Wanner@microchip.com>
+In-Reply-To: <20220705143523.3390944-2-stephan.gerhold@kernkonzept.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,23 +79,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 18:30, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On 05/07/2022 16:35, Stephan Gerhold wrote:
+> Document the "qcom,rpm-msm8909" compatible to describe the interface to
+> the Resource Power Manager (RPM) on the MSM8909 SoC.
 > 
-> Convert atmel CLASSD devicetree binding to json-schema.
-> Change file name to match json-scheme naming.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 > ---
->  .../bindings/sound/atmel,sama5d2-classd.yaml  | 111 ++++++++++++++++++
->  .../bindings/sound/atmel-classd.txt           |  55 ---------
->  2 files changed, 111 insertions(+), 55 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/atmel-classd.txt
-> 
+>  Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-All comments from your other patch apply here as well. It's easier to
-send them in a patchset...
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
