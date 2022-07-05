@@ -2,130 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A69705670B4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:15:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38096567030
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:03:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231968AbiGEONt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 10:13:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33000 "EHLO
+        id S232793AbiGEODu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 10:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231937AbiGEOM6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:12:58 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E74752642;
-        Tue,  5 Jul 2022 07:07:32 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id k30so7306263edk.8;
-        Tue, 05 Jul 2022 07:07:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0YFb5A6KdjvJhiop1gIwQqe0ydIC7Ymlf3Zqrt9/HXA=;
-        b=SU+LiU3NRZL+0sL2EGyf10/HJgsg5tvOe6O6SDA8Xo1ffDE8wBYTQAINXTnFNB0pYc
-         h/kUsE2obU4zwwQEv5H65vyvaGqxvGFkU5UGhqWPFTlbWC37/f6uXOHLq/rYDXHT3Pmi
-         f/bbJJNEiihVgi6NwvTe/BCfU9d1PFtpe701QZcnSBN84B0dfzdJGLnHuQjcFuQ1NXm6
-         EiVSqPkXvkdGjxyi6DSsQCmFcXyMla38+u/Xh2ku5+sxZBZ+bekgvnF10ar5zZjjFGRR
-         dPXdgWaa/ca4SxrB4ovBI0jQjla1CiA3w3Uby5X+K3GQlKN+EMWu0dlfMmxKMgMedsut
-         ey2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0YFb5A6KdjvJhiop1gIwQqe0ydIC7Ymlf3Zqrt9/HXA=;
-        b=ZVhYtX7UFUJw7PRfOL6P47LRmSbt+Ib2JndO9d++c2Pb+rx28dfl+WjEngkFnWuUim
-         8mOJRvyJ6MzAaLT4PX8C8l7+oXK0aT6VGQmVffJ7qNfzk8/P6Gt/s6Cj8yZjbGKFSWj5
-         jabuoQmhSTr32BRHBx/nDF8JNRoYeYGM9N8hlI00R5P0j7F8Jk+9YcOHQgkKDDXG6nVB
-         HhepK/c7EKG+taLhAUXepso40bfCUHp2iGqmBDxfjr+MOIGZ6tb3aEUJD4EqoUzdF4KO
-         o543tW+tri77fTbZVa1wU/Kxem0CJkgWOfH3qIMTR0rilu+ueVUpGBjvF7Oh3EzqQHOh
-         GRQQ==
-X-Gm-Message-State: AJIora/yxgbMjKaZ4Oub1C+fRUcAck3c5bwN0JdNjn5UIEMYEwMIhX7L
-        lcdSk0Qj0DnRK1snhs8Azmk=
-X-Google-Smtp-Source: AGRyM1tKmoWAWYt2kVH86I6/AKkp2X5hLoH+8fnhNUHsZ//MS7/G80GvkrJ1cxs2LmL1xDwu9fA7+A==
-X-Received: by 2002:a05:6402:2708:b0:435:da6f:3272 with SMTP id y8-20020a056402270800b00435da6f3272mr45458429edd.160.1657030003230;
-        Tue, 05 Jul 2022 07:06:43 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id ku5-20020a170907788500b0072aee605e0esm399709ejc.60.2022.07.05.07.06.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 07:06:42 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Jonathan McDowell <noodles@earth.li>
-Subject: [PATCH 13/13] ARM: dts: qcom: remove redundant binding from ipq8064 rb3011 dts
-Date:   Tue,  5 Jul 2022 15:39:17 +0200
-Message-Id: <20220705133917.8405-14-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220705133917.8405-1-ansuelsmth@gmail.com>
-References: <20220705133917.8405-1-ansuelsmth@gmail.com>
+        with ESMTP id S229974AbiGEODg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:03:36 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A34722A940;
+        Tue,  5 Jul 2022 06:50:07 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 13EB02223E;
+        Tue,  5 Jul 2022 15:50:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1657029005;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=GB9HU/M2Mnn421s3orIG2Ic3eQJpqeuHzFfYbqGQ4Sw=;
+        b=jqWm2euabGg75wqWBKK2DDHsz+WYLaebWUdzLXcIgT1kaJmaxy6YOX7zID2TnkI0lqcsJl
+        p+sYlNnbYudAFO39mqugj8HREtra9oKXnrcvW+ClZgqysquP6Gygnfy4MA5swhzumzmKmN
+        7etNfT9Ogav64i8NrW84cX97LOqKr24=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 05 Jul 2022 15:50:03 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     haibo.chen@nxp.com
+Cc:     ashish.kumar@nxp.com, yogeshgaur.83@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        han.xu@nxp.com, singh.kuldeep87k@gmail.com,
+        tudor.ambarus@microchip.com, p.yadav@ti.com,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, zhengxunli@mxic.com.tw
+Subject: Re: [PATCH 05/11] spi: spi-nxp-fspi: Add quirk to disable DTR support
+In-Reply-To: <1657012303-6464-5-git-send-email-haibo.chen@nxp.com>
+References: <1657012303-6464-1-git-send-email-haibo.chen@nxp.com>
+ <1657012303-6464-5-git-send-email-haibo.chen@nxp.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <d1b27db8bb86762587bce829a4e39c56@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mdio0_pins are now declared in ipq8064 dtsi. Usb phy are enabled by
-default.
+Am 2022-07-05 11:11, schrieb haibo.chen@nxp.com:
+> From: Haibo Chen <haibo.chen@nxp.com>
+> 
+> Not all platform currently supports octal DTR mode. lx2160a do not
+> implement DQS, this causes flash probe failure and therefore, provide
+> an option of quirk FSPI_QUIRK_DISABLE_DTR for platforms not support
+> DTR mode.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-Tested-by: Jonathan McDowell <noodles@earth.li>
----
- arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 17 -----------------
- 1 file changed, 17 deletions(-)
+You write "DQS is not supported" but your quirk targets DTR. DTR works
+without DQS. DQS is needed for faster frequencies, no? So the quirk
+should be named accordingly.
 
-diff --git a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-index f651e813d75a..58893cd2bb5d 100644
---- a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-+++ b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-@@ -261,10 +261,6 @@ &gsbi7_serial {
- 	status = "okay";
- };
- 
--&hs_phy_1 {
--	status = "okay";
--};
--
- &nand {
- 	status = "okay";
- 
-@@ -311,15 +307,6 @@ mux {
- 		};
- 	};
- 
--	mdio0_pins: mdio0_pins {
--		mux {
--			pins = "gpio0", "gpio1";
--			function = "gpio";
--			drive-strength = <8>;
--			bias-disable;
--		};
--	};
--
- 	mdio1_pins: mdio1_pins {
- 		mux {
- 			pins = "gpio10", "gpio11";
-@@ -360,10 +347,6 @@ mux {
- 	};
- };
- 
--&ss_phy_1 {
--	status = "okay";
--};
--
- &usb3_1 {
- 	pinctrl-0 = <&usb1_pwr_en_pins>;
- 	pinctrl-names = "default";
--- 
-2.36.1
+Also, this compatible is (unfortunately!) also used on for the LS1028A
+SoC and as far as I know DQS is supported there. I'm not sure what to
+do here. Maybe add a new compatible "nxp,ls1028a-fspi" and change the
+device tree to
+compatible = "nxp,ls1028a-fspi", "nxp,lx2160a";
 
+-michael
