@@ -2,122 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8591756703E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B0E256705D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 16:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232689AbiGEOGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 10:06:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55056 "EHLO
+        id S233013AbiGEOHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 10:07:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232495AbiGEOGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:06:21 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2100237E3;
-        Tue,  5 Jul 2022 06:54:35 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id z191so11148684iof.6;
-        Tue, 05 Jul 2022 06:54:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=lTyedAFkYCMRnxsVgj2lGtfLlmacjsmd+UHWQbblE0g=;
-        b=uhMclJKrlNfIbRhq3RkYg3fRrWAvbvjwPYds2Ugjam7jazAdoG/87IBqk/EERfLPBm
-         5A6UeZqbd7/wJHlMmxX7CCp0R/CdgNrqTgTFMiO1N4yZTHGGi+l5aVs8VSOcwyGTlMsP
-         pqIu2pGkh6QLzytnbHglrZnlpuvNjgBpyPjV0AJsz0E/2+a4qlX7agw2B+krG+T4HUFf
-         FhXiY5uNjCK6VROA4/HllWozPp5yY4xM149l2xpSkK3Fipw3aOyEf28H62qc65bezyQT
-         UytKUkLzCYQse8xbxLwt6w6EVteRxR+EH+rTy5nWrgxE0saYqk/qrqAPjYOhARF4oOwJ
-         umIw==
-X-Gm-Message-State: AJIora+YE5nSdPUJuLTkaZnocsnOp0otM4AV3gNbhBCz6OddlAfvDaFz
-        F6oVwmNgKWFx8f+tTJjRgQ==
-X-Google-Smtp-Source: AGRyM1tPDtMiMEWiV5K9UuTKrIsnPvaN6PBgV9T35MDcykItXZe8or12GzDVpnV+C0m1DaqWbVfOQQ==
-X-Received: by 2002:a05:6638:4806:b0:339:c232:928b with SMTP id cp6-20020a056638480600b00339c232928bmr20140250jab.213.1657029275232;
-        Tue, 05 Jul 2022 06:54:35 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f9-20020a056e0204c900b002dc0d2f7c7bsm2703020ils.4.2022.07.05.06.54.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 06:54:34 -0700 (PDT)
-Received: (nullmailer pid 1999991 invoked by uid 1000);
-        Tue, 05 Jul 2022 13:54:31 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Cc:     nicolas.ferre@microchip.com, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        krzysztof.kozlowski+dt@linaro.org, UNGLinuxDriver@microchip.com,
-        devicetree@vger.kernel.org, Kavyasree.Kotagiri@microchip.com,
-        claudiu.beznea@microchip.com, robh+dt@kernel.org,
-        alexandre.belloni@bootlin.com, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20220705065758.17051-2-kavyasree.kotagiri@microchip.com>
-References: <20220705065758.17051-1-kavyasree.kotagiri@microchip.com> <20220705065758.17051-2-kavyasree.kotagiri@microchip.com>
-Subject: Re: [PATCH v6 1/3] dt-bindings: mfd: atmel,flexcom: Convert to json-schema
-Date:   Tue, 05 Jul 2022 07:54:31 -0600
-Message-Id: <1657029271.199284.1999990.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233148AbiGEOHa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 10:07:30 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19992E81;
+        Tue,  5 Jul 2022 06:56:18 -0700 (PDT)
+Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AED8166017ED;
+        Tue,  5 Jul 2022 14:56:15 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657029377;
+        bh=TrAckFq//mcfArH9T4vThAxiQUoSnKs/JzP+6HRCZCo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cWRpW2IoEkwH4IM3aQhOMvzPgqiZk/635M4nKqLmQ1bDU4L/Q9sn8RDFJWYDW0FMY
+         Js0EzwlsM0laerEdKwDmOKkIDM/iEHW96bHQ8Mqg5xV07lUWLOqBLd36wHf7t4oXUD
+         irDRDjaBo3Vl00X6WZMOFcV9zHvya5NJgq2FiKFfExXv4TNL5QQyGahFi644Jv7W8n
+         3PBnpmoDr+aWvowlQvNb43tIPdS53p17Zpt4q8nyrzsUdPbkUapqHJaYTrwHNf4v3I
+         4iKibbgULKsZ7OB2XOosakrxlmQXmpx420097rKLDNfC4DlRB82s1s3MBnDnbmxGrh
+         Hwf9mubsPsFaw==
+Date:   Tue, 5 Jul 2022 09:56:11 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Luca Weiss <luca@z3ntu.xyz>, Maxim Kutnij <gtk3@inbox.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Shih <sam.shih@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 00/19] Introduce support for MediaTek MT8192 Google
+ Chromebooks
+Message-ID: <20220705135611.jlfltaormhcpuutc@notapiano>
+References: <20220629155956.1138955-1-nfraprado@collabora.com>
+ <CAGXv+5Epmo1=DZvoFkqj57hiO8nim=cuP1v3i9b2diZwqBe3Mw@mail.gmail.com>
+ <20220701150145.2myyk2o3vxydyhql@notapiano>
+ <CAGXv+5FsTNKgWG75eSKt4ngnhmSekWNT+oS1ke+P4tazHDdnzQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGXv+5FsTNKgWG75eSKt4ngnhmSekWNT+oS1ke+P4tazHDdnzQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Jul 2022 04:57:56 -0200, Kavyasree Kotagiri wrote:
-> Convert the Atmel flexcom device tree bindings to json schema.
+On Tue, Jul 05, 2022 at 12:03:08PM +0800, Chen-Yu Tsai wrote:
+> On Fri, Jul 1, 2022 at 11:01 PM Nícolas F. R. A. Prado
+> <nfraprado@collabora.com> wrote:
+> >
+> > On Fri, Jul 01, 2022 at 08:44:53PM +0800, Chen-Yu Tsai wrote:
+> > > On Thu, Jun 30, 2022 at 12:00 AM Nícolas F. R. A. Prado
+> > > <nfraprado@collabora.com> wrote:
+> > > >
+> > > >
+> > > > This series introduces Devicetrees for the MT8192-based Asurada platform
+> > > > as well as Asurada Spherion and Asurada Hayato boards.
+> > > >
+> > > > Support for the boards is added to the extent that is currently enabled
+> > > > in the mt8192.dtsi, and using only properties already merged in the
+> > > > dt-bindings, as to not add any dependencies to this series.
+> > > >
+> > > > This series was peer-reviewed internally before submission.
+> > > >
+> > > > Series tested on next-20220629.
+> > >
+> > > Just FYI I also got the internal display to work after some fixes to
+> > > the dtsi [1] and copying the stuff over from the ChromeOS kernel tree.
+> > >
+> > > It might be harder to enable the external display, given that we don't
+> > > have a good way of describing the weird design of using the DP bridge
+> > > also as a mux. See [2] for ongoing discussion.
+> >
+> > Hi ChenYu,
+> >
+> > I actually have both the internal and external display working on my local
+> > branch [1], but the commits there aren't final, and I'm also following the
+> > Type-C switch discussion to update my commits whenever the binding is settled
+> > on.
 > 
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> v5 -> v6:
->  - Removed spi node from example as suggested by Rob and
->    also pattern properties(spi dt-bindings conversion to yaml patch is under review).
->    Once that is accepted, I will add back spi example through new patch.
+> I see. I think the internal display part is more or less final. It should
+> be worth including it, as it is a fairly visible indication that things
+> are working.
+
+Yeah, it is final, but not all of the display-related nodes in mt8192.dtsi have
+been merged yet [1] and I didn't want to introduce dependencies to the series.
+
+If that series gets merged before this one, I could add the display to this
+series as well, but I'm just worried that by introducing new commits with almost
+every new series version, this series might never get reviewed and merged, and
+this series is pretty big already. So I'd prefer to leave the display for a
+following series.
+
+Thanks,
+Nícolas
+
+[1] https://lore.kernel.org/all/20220701090547.21429-1-allen-kh.cheng@mediatek.com
+
 > 
-> v4 -> v5:
->  - Fixed indentations.
+> ChenYu
 > 
-> v3 -> v4:
->  - Corrected format of enum used for compatible string.
-> 
-> v2 -> v3:
->  - used enum for compatible string.
->  - changed irq flag to IRQ_TYPE_LEVEL_HIGH in example.
->  - fixed dtschema errors.
-> 
-> v1 -> v2:
->  - Fix title.
-> 
->  .../bindings/mfd/atmel,flexcom.yaml           | 72 +++++++++++++++++++
->  .../devicetree/bindings/mfd/atmel-flexcom.txt | 63 ----------------
->  2 files changed, 72 insertions(+), 63 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-flexcom.txt
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/mfd/atmel,flexcom.example.dts:24.13-45: Warning (ranges_format): /example-0/flexcom@f8034000:ranges: "ranges" property has invalid length (12 bytes) (parent #address-cells == 1, child #address-cells == 2, #size-cells == 1)
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/atmel,flexcom.example.dtb: flexcom@f8034000: '#address-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/atmel,flexcom.example.dtb: flexcom@f8034000: '#size-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> > I noticed the lack of the mandatory display aliases in the mt8192 series but
+> > somehow missed mentioning that in the review, so thanks for adding that.
+> >
+> > Thanks,
+> > Nícolas
+> >
+> > [1] https://gitlab.collabora.com/nfraprado/linux/-/commits/mt8192-asurada
+> >
+> > >
+> > > ChenYu
+> > >
+> > > [1] https://lore.kernel.org/linux-mediatek/CAGXv+5F_Gi_=vV1NSk0AGRVYCa3Q8+gBaE+nv3OJ1AKe2voOwg@mail.gmail.com/
+> > > [2] https://lore.kernel.org/dri-devel/20220622173605.1168416-1-pmalani@chromium.org/
+> > >
+> > > > v3: https://lore.kernel.org/all/20220512205602.158273-1-nfraprado@collabora.com/
+> > > > v2: https://lore.kernel.org/all/20220505194550.3094656-1-nfraprado@collabora.com/
+> > > > v1: https://lore.kernel.org/all/20220316151327.564214-1-nfraprado@collabora.com/
+> > > >
+> > > > Changes in v4:
+> > > > - Added patches 17-19 enabling MMC, SCP and SPI NOR flash
+> > > > - Switched mediatek,drive-strength-adv for drive-strength-microamp
+> > > > - Switched mediatek,pull-up-adv for bias-pull-up
+> > > > - Updated Vgpu minimum voltage to appropriate value
+> > > >
+> > > > Changes in v3:
+> > > > - Renamed regulator nodes to be generic
+> > > > - Fixed keyboard layout for Hayato
+> > > >
+> > > > Changes in v2:
+> > > > - Added patches 1-2 for Mediatek board dt-bindings
+> > > > - Added patches 13-16 enabling hardware for Asurada that has since been
+> > > >   enabled on mt8192.dtsi
+> > > >
+> > > > Nícolas F. R. A. Prado (19):
+> > > >   dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-spherion
+> > > >   dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-hayato
+> > > >   arm64: dts: mediatek: Introduce MT8192-based Asurada board family
+> > > >   arm64: dts: mediatek: asurada: Document GPIO names
+> > > >   arm64: dts: mediatek: asurada: Add system-wide power supplies
+> > > >   arm64: dts: mediatek: asurada: Enable and configure I2C and SPI busses
+> > > >   arm64: dts: mediatek: asurada: Add ChromeOS EC
+> > > >   arm64: dts: mediatek: asurada: Add keyboard mapping for the top row
+> > > >   arm64: dts: mediatek: asurada: Add Cr50 TPM
+> > > >   arm64: dts: mediatek: asurada: Add Elan eKTH3000 I2C trackpad
+> > > >   arm64: dts: mediatek: asurada: Add I2C touchscreen
+> > > >   arm64: dts: mediatek: spherion: Add keyboard backlight
+> > > >   arm64: dts: mediatek: asurada: Enable XHCI
+> > > >   arm64: dts: mediatek: asurada: Enable PCIe and add WiFi
+> > > >   arm64: dts: mediatek: asurada: Add MT6359 PMIC
+> > > >   arm64: dts: mediatek: asurada: Add SPMI regulators
+> > > >   arm64: dts: mediatek: asurada: Enable MMC
+> > > >   arm64: dts: mediatek: asurada: Enable SCP
+> > > >   arm64: dts: mediatek: asurada: Add SPI NOR flash memory
+> > > >
+> > > >  .../devicetree/bindings/arm/mediatek.yaml     |  13 +
+> > > >  arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+> > > >  .../dts/mediatek/mt8192-asurada-hayato-r1.dts |  47 +
+> > > >  .../mediatek/mt8192-asurada-spherion-r0.dts   |  62 ++
+> > > >  .../boot/dts/mediatek/mt8192-asurada.dtsi     | 959 ++++++++++++++++++
+> > > >  5 files changed, 1083 insertions(+)
+> > > >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
+> > > >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
+> > > >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> > > >
+> > > > --
+> > > > 2.36.1
+> > > >
