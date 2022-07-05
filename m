@@ -2,59 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 597A4566F04
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:14:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD4AB566F15
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 15:20:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbiGENOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 09:14:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34014 "EHLO
+        id S232384AbiGENU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 09:20:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234886AbiGENNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:13:36 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2608833EA6;
-        Tue,  5 Jul 2022 05:38:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 91C5CB817D2;
-        Tue,  5 Jul 2022 12:38:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7028C341C7;
-        Tue,  5 Jul 2022 12:38:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657024697;
-        bh=ZLcEeZ+XHMclDymmtx7KObEo+kt/3lNRCCJxnaCxASI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=kRqYfTwXVHfu28r1rmhtBcZX8TBGiOJzfOV2QMT2vxK4dz6Rny3AEBvLLB6nH9IUk
-         qHUgTgz6XoePXlYPxx0ViYH+LGRqPhICeQKIykQdCogi7beb11NSvbkuuwZ9jI6hXN
-         674dighzjnjx3YtUC9lARtoB2KQbYRu6KgI/2aFRV9/UlP+5CJcNGd5ypHwOrPwf7B
-         gSygC7tK01W6tmJyM3m8yalpx4kPE8/5G5KBCO99cYdBpTRrvqvibDOqfZTvs2cpAp
-         a65PfNIqRn0NkR8WQm3VXM6KrwxOH5YlRLnkgayKvP5whabwSNgT4WwmZ5RK4VHs47
-         hTemFVqfRbiPQ==
-Date:   Tue, 5 Jul 2022 14:38:12 +0200
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] leds: Add support for Turris 1.x LEDs
-Message-ID: <20220705143812.35ac5f2d@thinkpad>
-In-Reply-To: <20220705123206.6umrjbj5g4o5n2mk@pali>
-References: <20220705000448.14337-1-pali@kernel.org>
-        <20220705000448.14337-2-pali@kernel.org>
-        <20220705123705.0a9caead@thinkpad>
-        <20220705105609.cpabhrwozyeejwqe@pali>
-        <20220705135227.6380d6d5@thinkpad>
-        <20220705122238.ul3cctrxkkttge3m@pali>
-        <20220705143001.7371a256@thinkpad>
-        <20220705123206.6umrjbj5g4o5n2mk@pali>
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S232420AbiGENUn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 09:20:43 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C843D3BBD3
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 05:42:11 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id f39so20347500lfv.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 05:42:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ShCrJ4hyEx4vHUXU6iKjtj3Ok0nVe/BM9eUFlsSXi44=;
+        b=JzmVzJA4dIVMLfeMhkcD8TkJf4Dhaw5aFkZ/vxR42AzuPuMS65TpOHdxsK8diBpyOK
+         D7gjCqMOh+EDffLsnXSXNkTT4+4+8snyflCytiWIK7+84hhUoAjDqF7dDhE/ROkMjfB8
+         1TyLmD1qJNz6hF4zO8pF81pbqarxwFAVDVKIzCiA2LHWfykK4Z+XSY0Y8ts4EXAV1n0/
+         ArJJeaGDl/zfyADJSbqJSY9UxqG7GscZ70Z4YSfmL4PSkcdTlg+4t1q2LE0z08nv8xg9
+         2BcpwWulYhiRJ2hUnHkiiveVfFUulQPVYZtmq2IGwBexsH89zo5/sFu/p2wvGOhBGyIu
+         zrNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ShCrJ4hyEx4vHUXU6iKjtj3Ok0nVe/BM9eUFlsSXi44=;
+        b=f/ZOXTcsntPtHZIZ3XKyDNUtiAvwaFwZwP3tUD+QoaQ5AstRt1mm50PjX8XJpQz1Q7
+         tdJmbCsmbUdplBPH1v/5hcEFbFEdQHGgIbBT6DtHHRJyUC1QOyOy+PL53EWxHnRrssM4
+         DPyuOAdpaTCAbWcSeeu6mRN8EUnpd6CFI6zoG+ZjN0xkLGX5FYen7hTaXuXjbTcdDcDw
+         PaIKxe1n0zuwFYCNUUqim+Ra1D2lFJgif+n5fqpY4pG1fu5UcdgsRzvA8ss34sgeB/JH
+         H3DT4a47pTeFwZgXgxKaU06PwrRKrtT6COJcjmf+1q/CK+rW+SPc1gjGoMrSiJp8nkBX
+         OaRA==
+X-Gm-Message-State: AJIora8DeWV2i1NpGXPgqkV71XUoJE1VYHFi2B82yNOqY5G//Lx+LyOq
+        P8KEQhnY2LODEd8HSswPBoNyVA==
+X-Google-Smtp-Source: AGRyM1vdICLYmSOmQ9/Rc7nIkxH0E0qUR6oXT6Sir3njqmqkWHDhkB6/IPMiO7T1OLEE8aSUphi7Fw==
+X-Received: by 2002:a05:6512:3ca5:b0:481:3378:b9b7 with SMTP id h37-20020a0565123ca500b004813378b9b7mr22304277lfv.56.1657024929537;
+        Tue, 05 Jul 2022 05:42:09 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id n10-20020a0565120aca00b0047f77c979f3sm5674924lfu.235.2022.07.05.05.42.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jul 2022 05:42:09 -0700 (PDT)
+Message-ID: <e3b344e7-4100-e0d4-0dcd-aeef4893ad43@linaro.org>
+Date:   Tue, 5 Jul 2022 15:42:08 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 01/14] arm64: dts: qcom: sc7280: drop PCIe PHY clock index
+Content-Language: en-GB
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220705114032.22787-1-johan+linaro@kernel.org>
+ <20220705114032.22787-2-johan+linaro@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220705114032.22787-2-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,19 +77,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 Jul 2022 14:32:06 +0200
-Pali Roh=C3=A1r <pali@kernel.org> wrote:
+On 05/07/2022 14:40, Johan Hovold wrote:
+> The QMP PCIe PHY provides a single clock so drop the redundant clock
+> index.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-> On Tuesday 05 July 2022 14:30:01 Marek Beh=C3=BAn wrote:
-> > On Tue, 5 Jul 2022 14:22:38 +0200
-> > Pali Roh=C3=A1r <pali@kernel.org> wrote: =20
-> > > So what about exporting another sysfs file which controls current lev=
-el (0-7)? =20
-> >=20
-> > OK, that would be satisfactory. Something like
-> > "selected_brightness_index". =20
->=20
-> Too long? What about just "brightness_level" and make it R/W?
-> We already call it level (not index).
+Hmm. After checking the source code, the clocks entry of the phy@1c0e000 
+node also needs to be fixed.
 
-ok
+And also maybe:
+
+Fixes: bd7d507935ca ("arm64: dts: qcom: sc7280: Add pcie clock support")
+Fixes: 92e0ee9f83b3 ("arm64: dts: qcom: sc7280: Add PCIe and PHY related 
+nodes")
+
+
+> ---
+>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index e66fc67de206..b0ae2dbba50f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -818,7 +818,7 @@ gcc: clock-controller@100000 {
+>   			reg = <0 0x00100000 0 0x1f0000>;
+>   			clocks = <&rpmhcc RPMH_CXO_CLK>,
+>   				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
+> -				 <0>, <&pcie1_lane 0>,
+> +				 <0>, <&pcie1_lane>,
+>   				 <0>, <0>, <0>, <0>;
+>   			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
+>   				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
+> @@ -2110,7 +2110,7 @@ pcie1_lane: phy@1c0e200 {
+>   				clock-names = "pipe0";
+>   
+>   				#phy-cells = <0>;
+> -				#clock-cells = <1>;
+> +				#clock-cells = <0>;
+>   				clock-output-names = "pcie_1_pipe_clk";
+>   			};
+>   		};
+
+
+-- 
+With best wishes
+Dmitry
