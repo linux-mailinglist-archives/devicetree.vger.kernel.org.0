@@ -2,77 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 753625677A9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75AAA5677AC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233593AbiGETTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 15:19:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53126 "EHLO
+        id S229880AbiGETTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 15:19:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232995AbiGETTF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:19:05 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294371EC47;
-        Tue,  5 Jul 2022 12:19:05 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id y18so12061590iof.2;
-        Tue, 05 Jul 2022 12:19:05 -0700 (PDT)
+        with ESMTP id S233703AbiGETTD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:19:03 -0400
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32111EC47;
+        Tue,  5 Jul 2022 12:19:00 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id p13so7902817ilq.0;
+        Tue, 05 Jul 2022 12:19:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=WPIEwkVrmxig66ialqAqq2owXYX1dmoA0wLUgk0+Jp8=;
-        b=lY5AA5tvC3H/ahvP8oWme5Q6YeaftNZPnDExCzAULgzVhvNikAWGQeqlmGWuGHxAtt
-         hsMyz+N2U+HsNiPNX3xuvxPlv8ThGOMKeMkq3Wjb7darkbKNcFVVbm89NPNPytCFBu9b
-         jiq6tfI1XhMb3cSTeds23PwBq90p4c7q+wUmGSOac4zBwYY4EF+IweMycz/r2tW2MRoR
-         EuuPyzTgB5Y8gSi30CLTbWNfmuUIFQ3Yu/1xsIFPhNDVsM9BSeid+ubzZ9e7okcQHLsK
-         Ga/PSF926VHbI3gACUZYNGmceepxeUtL1GQQ7Q/lLLbTxY/MuMNWpJA1zNI9e83Ccm8V
-         c6iQ==
-X-Gm-Message-State: AJIora8iFRqOZmauryWCb/8cAn8e0o9Gnk6vFi0jt6jLYLmZezCMvY1f
-        ln9xr+rRwIhS1lU7I4aaI9B+3m44bQ==
-X-Google-Smtp-Source: AGRyM1ukQp/CEyzQERolQoD4vyxGMs9HeuxGET5TIc4m7jyTwHuQfQWJXFF3lpftEUav3q1LgeVswg==
-X-Received: by 2002:a05:6602:164f:b0:678:9c7c:6701 with SMTP id y15-20020a056602164f00b006789c7c6701mr4168774iow.107.1657048744386;
-        Tue, 05 Jul 2022 12:19:04 -0700 (PDT)
+        bh=HkWyYi1Y3vFcT2PDs2Eyw+VTCUEaA7uXAXTuzJrLtsY=;
+        b=LJGGyeG0BxRmTDDsoiUfYnY3KhooIScF00dAShy/Henxzt+59Nep6K4n/Xg676OlD1
+         6/hKEN+bNHqygNEgoQ02iKL8ghU3K//HGGUOEc2BoBSqNAZ2efeqSonYB84EKZpew68S
+         JsgJcDkuzwmB/4/FrKfb/afO5fSuCw3fM/P7VYNzEJQkwTyMeiftCu6E4zyW5VU/J+r+
+         chGlWgaSG/g3ZdXchRzRSLjqg2kLLlcX5U5mo3DTCzxvWhSY7a1H8HvVP5qX31aQWPxx
+         UFilp7w3nEM1wuF+ffd/VcdoQNrwYgH4TE5BnUMElB31x76apUzDwDL+TaqR+fF9Z9EZ
+         vpbw==
+X-Gm-Message-State: AJIora/SGS4RcwjlX5wRhbzDl/tj8GcLs3YA7ucxWuc1qhxk+6Ze96Ud
+        JC7ewoOgkigh+rbXBGNqz46KcxPGOQ==
+X-Google-Smtp-Source: AGRyM1vdzd9ImcLTIEnKAzJRYqtQ2TsGIfLnVMJa6Wx/iz9Q52vAZPVFFCMS7A72EzjGf+XbRGSpwA==
+X-Received: by 2002:a05:6e02:18c9:b0:2da:da9d:2ab1 with SMTP id s9-20020a056e0218c900b002dada9d2ab1mr17158155ilu.90.1657048739720;
+        Tue, 05 Jul 2022 12:18:59 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f9-20020a02a109000000b00339e3a22dbbsm15216707jag.21.2022.07.05.12.19.03
+        by smtp.gmail.com with ESMTPSA id bm13-20020a05663842cd00b0032ead96ee5csm14880002jab.165.2022.07.05.12.18.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 12:19:04 -0700 (PDT)
-Received: (nullmailer pid 2471231 invoked by uid 1000);
+        Tue, 05 Jul 2022 12:18:59 -0700 (PDT)
+Received: (nullmailer pid 2471228 invoked by uid 1000);
         Tue, 05 Jul 2022 19:18:57 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        linux-kernel@vger.kernel.org,
-        =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20220705155929.25565-1-pali@kernel.org>
-References: <20220705000448.14337-1-pali@kernel.org> <20220705155929.25565-1-pali@kernel.org>
-Subject: Re: [PATCH v2 1/2] [RFT] dt-bindings: leds: Add cznic,turris1x-leds.yaml binding
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, asahi@lists.linux.dev,
+        Will Deacon <will@kernel.org>,
+        Sameer Pujar <spujar@nvidia.com>,
+        iommu@lists.linux-foundation.org,
+        Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220705130652.433496-1-thierry.reding@gmail.com>
+References: <20220705125834.431711-2-thierry.reding@gmail.com> <20220705130652.433496-1-thierry.reding@gmail.com>
+Subject: Re: [PATCH v7] dt-bindings: reserved-memory: Document iommu-addresses
 Date:   Tue, 05 Jul 2022 13:18:57 -0600
-Message-Id: <1657048737.399210.2471230.nullmailer@robh.at.kernel.org>
+Message-Id: <1657048737.387965.2471227.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Jul 2022 17:59:28 +0200, Pali Rohár wrote:
-> Add device-tree bindings documentation for Turris 1.x RGB LEDs.
+On Tue, 05 Jul 2022 15:06:52 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
+> This adds the "iommu-addresses" property to reserved-memory nodes, which
+> allow describing the interaction of memory regions with IOMMUs. Two use-
+> cases are supported:
 > 
+>   1. Static mappings can be described by pairing the "iommu-addresses"
+>      property with a "reg" property. This is mostly useful for adopting
+>      firmware-allocated buffers via identity mappings. One common use-
+>      case where this is required is if early firmware or bootloaders
+>      have set up a bootsplash framebuffer that a display controller is
+>      actively scanning out from during the operating system boot
+>      process.
+> 
+>   2. If an "iommu-addresses" property exists without a "reg" property,
+>      the reserved-memory node describes an IOVA reservation. Such memory
+>      regions are excluded from the IOVA space available to operating
+>      system drivers and can be used for regions that must not be used to
+>      map arbitrary buffers.
+> 
+> Each mapping or reservation is tied to a specific device via a phandle
+> to the device's device tree node. This allows a reserved-memory region
+> to be reused across multiple devices.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
-> Changes in v2:
-> * Fix schema errors
+> Changes in v7:
+> - keep reserved-memory.txt to avoid broken references
+> 
+> Changes in v6:
+> - add device phandle to iommu-addresses property in examples
+> - remove now unused dt-bindings/reserved-memory.h header
 > ---
->  .../bindings/leds/cznic,turris1x-leds.yaml    | 118 ++++++++++++++++++
->  1 file changed, 118 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/cznic,turris1x-leds.yaml
+>  .../reserved-memory/reserved-memory.yaml      | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -81,7 +112,31 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/leds/cznic,turris1x-leds.example.dts:23.13-47: Warning (ranges_format): /example-0/cpld@3,0:ranges: "ranges" property has invalid length (16 bytes) (parent #address-cells == 1, child #address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:22.7-45: Warning (reg_format): /reserved-memory/framebuffer@90000000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:29.7-40: Warning (reg_format): /bus@0/adsp@2990000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:34.7-42: Warning (reg_format): /bus@0/display@15200000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:9.5-12: Warning (ranges_format): /reserved-memory:ranges: empty "ranges" property but its #size-cells (1) differs from / (2)
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:27.9-37.5: Warning (unit_address_vs_reg): /bus@0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:21.30-24.7: Warning (avoid_default_addr_size): /reserved-memory/framebuffer@90000000: Relying on default #address-cells value
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:21.30-24.7: Warning (avoid_default_addr_size): /reserved-memory/framebuffer@90000000: Relying on default #size-cells value
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:28.24-31.7: Warning (avoid_default_addr_size): /bus@0/adsp@2990000: Relying on default #address-cells value
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:28.24-31.7: Warning (avoid_default_addr_size): /bus@0/adsp@2990000: Relying on default #size-cells value
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:33.27-36.7: Warning (avoid_default_addr_size): /bus@0/display@15200000: Relying on default #address-cells value
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dts:33.27-36.7: Warning (avoid_default_addr_size): /bus@0/display@15200000: Relying on default #size-cells value
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: /: bus@0: 'anyOf' conditional failed, one must be fixed:
+	'reg' is a required property
+	'ranges' is a required property
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/root-node.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: /: 'compatible' is a required property
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/root-node.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reserved-memory/reserved-memory.example.dtb: /: 'model' is a required property
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/root-node.yaml
 
 doc reference errors (make refcheckdocs):
 
