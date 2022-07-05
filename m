@@ -2,78 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE0B0567741
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:05:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F042A56773C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:05:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233245AbiGETFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 15:05:03 -0400
+        id S229771AbiGETFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 15:05:05 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231365AbiGETFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:05:01 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 025DD205DE
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 12:04:56 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id n185so7578881wmn.4
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 12:04:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=EAejLaRmDI7ahw+8pWedR3a7Dpv7oYIzED6NiiTc7a0=;
-        b=gH8Eh0uSyp1pd8lYOTghOMpllbsaSKtH0LZfoePu+NLFoGUnlrt/bMlxOQW8M9nYhm
-         2RcpqIr/5SHSJXL1yLCB6PqDhUDzggWiwdYDbx5v3OTdAqaVLNZekmK5HwJU8AM+QJrV
-         /T44OnuWF5AME4PsrRs8vhQbGU4Onl26sSNn1wqmfQ2bn6F3OggSTLoCL33SK/nWdIaP
-         7Z5v0Aza1Kf+VxyRjvGNLOltssWMr9PoSSvETyshYXAkAsZuPzMlFI9rZ7+27fy75akx
-         9uMzCdfvFIU+oAjoE3bdvC7hculNfq448yw1hlj7Rc0xgBHMq3tap751KKBP09thts6R
-         rdcQ==
+        with ESMTP id S230313AbiGETFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:05:03 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48ED11F2F4;
+        Tue,  5 Jul 2022 12:05:01 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id r133so12034122iod.3;
+        Tue, 05 Jul 2022 12:05:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=EAejLaRmDI7ahw+8pWedR3a7Dpv7oYIzED6NiiTc7a0=;
-        b=Ug7VqZYN+hxONmDb82jn4vrmaiNiDrmYFmJfML7FKlimv8VE4CiSwUt2eNnAE6e3+o
-         MFVerfLaPhP5Zri7shvpg7TASyF/ETezlA794TDcSv3L6SQFwYs3C5NioDKvUl0UpYkK
-         osv9gg1YmNxK/iLWNEjQJWGJncqP2V+mi6R9ZZ5BzMjjeYCgV6xGvozKCGbagYFr0Xn9
-         WVY55i0BO5m4fRL9zuNTawojVF5Hfxcgwm8Nxdxt1tSeWbusxA0tCwWShixUmWwZB7Tt
-         B1+aYX6W0P9nTYiaVO5cBpVN19YheM/rxlpJMFy+G0SuR4Ji1671vUzeUeu/KdfqwmgN
-         7hIg==
-X-Gm-Message-State: AJIora/vbhHyJM4KKMwOtan5yPI3W+s1QE9lOdzhZWkUn9xY8LRBVTCI
-        LVQ45mqiUT15hC5sHBAwtcDPjw==
-X-Google-Smtp-Source: AGRyM1v5EycBOklnarxa0uQO3GFtyp55frrKZpEg99ryhZLuRXj9VDMx0b33n8f0spv/5bGvXvOHyQ==
-X-Received: by 2002:a05:600c:2284:b0:3a2:b7d6:609b with SMTP id 4-20020a05600c228400b003a2b7d6609bmr5625866wmf.83.1657047894458;
-        Tue, 05 Jul 2022 12:04:54 -0700 (PDT)
-Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id d7-20020a5d5387000000b0021d5c52f4b4sm9912961wrv.34.2022.07.05.12.04.53
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NYhNf6ucb9Y2EJr3g3GFcYGSI7hDN6hlWNBPyCne12o=;
+        b=Pe4g34VHQVxOjub77kD54vPBLa9W6BwrfRPXzWJT8DKVW40qLZtc7b9xi6pmb5OiKp
+         aAek+Nat5xaMFmXPogqshZ67PQHDEqBcUcz83gu6epw2qK3ZpKYSMVVc6Wddov4xbf0w
+         Uf96DPgwjgqxOintXvq2PHon3q0rx87pp5e9VJqTPIXRUYKHILqeGXGBT/G4Grkt8I0O
+         VwG/76oKc01OF28zlpvkP//IyPKRynlvez3zkWVKZSghD+cHRvx3I2BjwskSHVqtEjfO
+         ese3NuLHvd808R7QPh85/65OsfBGGdvvWm2am1LRqs2U2z4x+L82ow+DKJ5D0GQv//Dt
+         hD3A==
+X-Gm-Message-State: AJIora+IhlN2yVVTzqrsTzAVh4uWl+fSc+YDHQQITGFY/LKbYC7EeXPi
+        Rm1uI8fylUpmVN93IyNQHQ==
+X-Google-Smtp-Source: AGRyM1vbgvYpzb6OcGyK9lCHO48fmdYxy4SEAi8PzKsPwRclsAgNdeYXBff/q4XTwjXyQVl9lebl7A==
+X-Received: by 2002:a05:6638:2494:b0:33c:cfb8:1e3c with SMTP id x20-20020a056638249400b0033ccfb81e3cmr21373745jat.139.1657047900325;
+        Tue, 05 Jul 2022 12:05:00 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id x8-20020a056638026800b00339c46a5e95sm14948822jaq.89.2022.07.05.12.04.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 12:04:54 -0700 (PDT)
-From:   Conor Dooley <mail@conchuod.ie>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
+        Tue, 05 Jul 2022 12:04:59 -0700 (PDT)
+Received: (nullmailer pid 2450909 invoked by uid 1000);
+        Tue, 05 Jul 2022 19:04:57 -0000
+Date:   Tue, 5 Jul 2022 13:04:57 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         Conor Dooley <conor.dooley@microchip.com>,
-        Niklas Cassel <niklas.cassel@wdc.com>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
         Geert Uytterhoeven <geert@linux-m68k.org>,
-        Zong Li <zong.li@sifive.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Jonas Hahnfeld <hahnjo@hahnjo.de>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Brice Goglin <Brice.Goglin@inria.fr>
-Subject: [PATCH 5/5] riscv: dts: canaan: Add k210 topology information
-Date:   Tue,  5 Jul 2022 20:04:36 +0100
-Message-Id: <20220705190435.1790466-6-mail@conchuod.ie>
-X-Mailer: git-send-email 2.37.0
-In-Reply-To: <20220705190435.1790466-1-mail@conchuod.ie>
-References: <20220705190435.1790466-1-mail@conchuod.ie>
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        alsa-devel@alsa-project.org, Albert Ou <aou@eecs.berkeley.edu>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        dri-devel@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        David Airlie <airlied@linux.ie>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 02/14] dt-bindings: display: ili9341: document canaan
+ kd233's lcd
+Message-ID: <20220705190457.GA2450821-robh@kernel.org>
+References: <20220701192300.2293643-1-conor@kernel.org>
+ <20220701192300.2293643-3-conor@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220701192300.2293643-3-conor@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,41 +86,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Fri, 01 Jul 2022 20:22:48 +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> The Canaan KD233 development board has a built in LCD.
+> Add a specific compatible for it.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../devicetree/bindings/display/panel/ilitek,ili9341.yaml        | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-The k210 has no cpu-map node, so tools like hwloc cannot correctly
-parse the topology. Add the node using the existing node labels.
-
-Reported-by: Brice Goglin <Brice.Goglin@inria.fr>
-Link: https://github.com/open-mpi/hwloc/issues/536
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/canaan/k210.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/canaan/k210.dtsi b/arch/riscv/boot/dts/canaan/k210.dtsi
-index 44d338514761..ec944d1537dc 100644
---- a/arch/riscv/boot/dts/canaan/k210.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k210.dtsi
-@@ -65,6 +65,18 @@ cpu1_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
- 			};
- 		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+			};
-+		};
- 	};
- 
- 	sram: memory@80000000 {
--- 
-2.37.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
