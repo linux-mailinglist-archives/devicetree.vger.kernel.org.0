@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90707566398
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 09:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4FB5663B3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 09:10:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230237AbiGEHAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 03:00:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34808 "EHLO
+        id S230342AbiGEHA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 03:00:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbiGEHAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 03:00:32 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A27E8E08F
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 00:00:31 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id 68so10612625pgb.10
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 00:00:31 -0700 (PDT)
+        with ESMTP id S230330AbiGEHAr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 03:00:47 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 157BB11149
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 00:00:46 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id o15so6795902pjh.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 00:00:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=qUBBq1ygcQTWcllnQnv9hUGFAmvHHVoH28qY+W8QnBE=;
-        b=Xomgl+tX+JuEgJb4L/ud2hR9WtEInetJEz6PnXqPOICEPrbom4zFBSBCMic5H7Kzz8
-         yVfeoaxvja7C8QLeqDYfMGx4BfgrNj6P8QjB1/kDYyV8zKDgIlUZw/RA4DjLmlirFnUR
-         tpQu5+HvrLVQJva7SHLONoU3657vCOXWCYqJpN/Vrw2VlERsiVXPTPmsmzwNaJTjisDP
-         8OUngSWWVvtze8rcVshJhbL+hc8yxO6uKHcI0KtjHy9f/wxJN2w99NVDg5KZ0XBW0jrF
-         DQsJ0wkEZCGsrxfH8kdxBUhQ22BrGgHkqNN/36ERzT137mJ2y6FKNc33qXyZlW0q0u8f
-         kVNQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=KsUvRKQT2AVjAK3kpk9fo+2UaVrAIK8kVr0Wn3bLJKA=;
+        b=MSmkFr2MbDp5neqjTTRVl9ePxtJmXZpJnGWXYkKRc5mtP/iOAQ5tO0q7/Synoc45Dm
+         OGa+ZL77JdySobbPneyI7oAkKi4SblebELgliQFm+fa7ZXrvKWhhJ1BwQdw9tKgT793E
+         RAhU16nhWeKY/11XlaCIWG35iV+ApkgmZYooSQPaQHGmyHj7z9kq2D4UjgBhCNW4FeAx
+         BRVSz02voZHE7yjzkzURmFxjZFq/nJyyLLFbH8+7Lna1AljiPOraWt7Z4QRqN4kCzI5F
+         INKOBi/OWJ2R26aI0viah49+w0fZWc02BADwVFPX+kvRoILNe6L0DIpdpVPaIaveZXSd
+         FV/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=qUBBq1ygcQTWcllnQnv9hUGFAmvHHVoH28qY+W8QnBE=;
-        b=YtDANyPHlnvqWruqOzwrIlOWNHnK5jFI6iry9nz227z0i+yit5RCA6Qpa5kREi9kCv
-         UEg+C9gAtM16z6K4jRg1BFIW2aL+tHawFJfmTgOahpQT0EdRb+pVV165XOIrtTIPm30z
-         kn0GKqZWYO22zGWugAKMJXyE9YBce3uD0tCmyTKe6tL8ybo0CYxWZxgvlcvbzj/vUR7i
-         91NdHr5U2JbcZEhz0ECsIYdZ3pHtnz7GCU38IaFlXcce9f0WhfTD2DYEyVXqjgUjwrX7
-         OAN+T8BfEqJabEL7nWLFlWO/3omuB1Awp/JysVe349L0yoiIvrDH+DZnY1WfXlHO5sds
-         /0+A==
-X-Gm-Message-State: AJIora9ZS7U9TJLM6ISBEPeI+C16YzRyWDTF/8rD62gm5vE3Oj9gvzGa
-        aUec9P6Z5eCx3qbtnZu7ZWfQfw==
-X-Google-Smtp-Source: AGRyM1sjM0w+mr8gF005E7+SGsLYRu1tV7qvuqbksNU8g/P0WYbFHA2AstWU3pTrsoJwZWT+SA/alQ==
-X-Received: by 2002:a05:6a00:ad0:b0:4f7:a357:6899 with SMTP id c16-20020a056a000ad000b004f7a3576899mr40383862pfl.80.1657004431077;
-        Tue, 05 Jul 2022 00:00:31 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=KsUvRKQT2AVjAK3kpk9fo+2UaVrAIK8kVr0Wn3bLJKA=;
+        b=6ZWZuIeAjv5s2+PMekgs+5O+IgvNCJyr+3aE209z7jAvDJuo9FnRS12apXCGbeQ+u4
+         w0LP19XCHeR6wiy3BEwu9EkV23IAj+qCggfXU8H0XyPOWwJ8DJ738metm6oSSv4j+srd
+         EilZU+Ay/bAZQt+wWePooy6HGBkScd8iESBSQU/JsMPqfezhchZ9vn/AO1vFmjuK8nBm
+         vPepxfPR3xgH0Jt4ZyyvCfhGD57FmJ4RwXYKrELWpH8rHtChr+SovTOlQbDLFYZPmFta
+         uRxoXuWNW4ofxPaCHvkppDSVv5VKKIDgUwm4zqItOaaV0WHFrFR9R1zqqyMkvMvrp0U/
+         bxhw==
+X-Gm-Message-State: AJIora/sI3/bPczW9rgQALRv16WP0YzEzrTOJ5X58UF8GDDsxa5FjQwY
+        6Fhn2rGQl8JUniDX+I1ylAoDCw==
+X-Google-Smtp-Source: AGRyM1sXUV1O5TyqgLSs2RioUpR9z6ZqQqQKW3igRtmNrUZJR6/fvyFJNMnCQGtfs/Dy65SZCRm0Kg==
+X-Received: by 2002:a17:90b:3802:b0:1ed:2434:eb44 with SMTP id mq2-20020a17090b380200b001ed2434eb44mr42223751pjb.85.1657004445571;
+        Tue, 05 Jul 2022 00:00:45 -0700 (PDT)
 Received: from localhost ([122.171.18.80])
-        by smtp.gmail.com with ESMTPSA id u13-20020a63454d000000b0040d2224ae04sm21522380pgk.76.2022.07.05.00.00.30
+        by smtp.gmail.com with ESMTPSA id s1-20020a170902988100b0016a4a57a25asm22412596plp.152.2022.07.05.00.00.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 00:00:30 -0700 (PDT)
+        Tue, 05 Jul 2022 00:00:45 -0700 (PDT)
 From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>
+To:     Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>
 Cc:     Viresh Kumar <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org,
         Vincent Guittot <vincent.guittot@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH V2 00/13] OPP: Add support for multiple clocks*
-Date:   Tue,  5 Jul 2022 12:30:03 +0530
-Message-Id: <cover.1657003420.git.viresh.kumar@linaro.org>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V2 05/13] dt-bindings: opp: accept array of frequencies
+Date:   Tue,  5 Jul 2022 12:30:08 +0530
+Message-Id: <1110ceeb20c2e50573b0e208f52238d280f10845.1657003420.git.viresh.kumar@linaro.org>
 X-Mailer: git-send-email 2.31.1.272.g89b43f80a514
+In-Reply-To: <cover.1657003420.git.viresh.kumar@linaro.org>
+References: <cover.1657003420.git.viresh.kumar@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,72 +76,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-This patchset adds support for devices with multiple clocks. None of the clocks
-is considered primary in this case and all are handled equally.
+Devices might need to control several clocks when scaling the frequency
+and voltage.  Allow passing array of clock frequencies, similarly to the
+voltages.
 
-The drivers, for multiple clock case, are expected to call dev_pm_opp_set_opp()
-to set the specific OPP. Though how they find the target OPP is left for the
-users to handle. For some, we may have another unique OPP property, like level,
-which can be used to find the OPP. While in case of others, we may want to
-implement freq-based OPP finder APIs for multiple clock rates. I have decided
-not to implement them in advance, and add them only someone wants to use them.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+---
+ Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-This is rebased over a lot of other OPP changes and is pushed here:
-
-git://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git opp/linux-next
-
-V1->V2:
-
-- Fix broken git bisect for:
-  OPP: Reuse _opp_compare_key() in _opp_add_static_v2()
-
-- Include binding changes written by Krzysztof earlier.
-
-- Check config_clks before calling it, it isn't always set.
-
-- Add config_clks for Tegra30's devfreq to handle its corner case.
-
-- _opp_compare_key() supports multi-clk case now, earlier it skipped freq
-  comparison for such a case.
-
-- New patch to compare all bandwidth values as well in _opp_compare_key().
-
-- New patch to remove *_noclk() interface.
-
-- Various other minor fixes.
-
---
-Viresh
-
-Krzysztof Kozlowski (1):
-  dt-bindings: opp: accept array of frequencies
-
-Viresh Kumar (12):
-  OPP: Use consistent names for OPP table instances
-  OPP: Remove rate_not_available parameter to _opp_add()
-  OPP: Reuse _opp_compare_key() in _opp_add_static_v2()
-  OPP: Make dev_pm_opp_set_opp() independent of frequency
-  OPP: Allow multiple clocks for a device
-  OPP: Compare bandwidths for all paths in _opp_compare_key()
-  OPP: Add key specific assert() method to key finding helpers
-  OPP: Assert clk_count == 1 for single clk helpers
-  OPP: Provide a simple implementation to configure multiple clocks
-  OPP: Allow config_clks helper for single clk case
-  PM / devfreq: tegra30: Register config_clks helper
-  OPP: Remove dev{m}_pm_opp_of_add_table_noclk()
-
- .../devicetree/bindings/opp/opp-v2-base.yaml  |  10 +
- drivers/devfreq/tegra30-devfreq.c             |  22 +-
- drivers/opp/core.c                            | 404 +++++++++++++-----
- drivers/opp/cpu.c                             |  12 +-
- drivers/opp/debugfs.c                         |  27 +-
- drivers/opp/of.c                              | 139 +++---
- drivers/opp/opp.h                             |  24 +-
- include/linux/pm_opp.h                        |  29 +-
- 8 files changed, 466 insertions(+), 201 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+index 76c8acd981b3..66d0ec763f0b 100644
+--- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
++++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+@@ -50,6 +50,16 @@ select: false
+           property to uniquely identify the OPP nodes exists. Devices like power
+           domains must have another (implementation dependent) property.
+ 
++          Entries for multiple clocks shall be provided in the same field, as
++          array of frequencies.  The OPP binding doesn't provide any provisions
++          to relate the values to their clocks or the order in which the clocks
++          need to be configured and that is left for the implementation
++          specific binding.
++        minItems: 1
++        maxItems: 16
++        items:
++          maxItems: 1
++
+       opp-microvolt:
+         description: |
+           Voltage for the OPP
 -- 
 2.31.1.272.g89b43f80a514
 
