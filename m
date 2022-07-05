@@ -2,78 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B421566A50
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 13:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02FF7566A45
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 13:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232038AbiGELyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 07:54:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33708 "EHLO
+        id S230403AbiGELyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 07:54:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232970AbiGELxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 07:53:04 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CED85175BE
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 04:53:02 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id a39so14171240ljq.11
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 04:53:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IbfaXjeOYPk8qrQ6FvKEJiDPLZqhzWiK2mEmdCgaVvk=;
-        b=B4DtRXPpYtc7Jys2RrKIjT7AKP3Cq2mEqDpEzOACwvCZDb77o2+T4h755u44lqfwgP
-         v4Li7tF6UwQtWQ0lA//rN/NYdtZNB0dTA+HcwQ3CRgQE5xx+N4nKDoqtN9y6iHkEeup/
-         YdkZNnjl5Z58di+2anNCAwRIwoLzrJNvq2Xb0c0Ru6dtLmH1QR2udERachuAu2MOXTJl
-         KWkvYf5EB+mX0k7axZ4FUwhcvlTAPffn3D72r33YlkHi/1SgzMQdEXVcmmYyOBtag99J
-         IrZirlPmqptkw8Y6vgrSxrtadQffV6EYlUsra222sQhNAGezLdeBVoHJ9FRGhQImzcgg
-         ewvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=IbfaXjeOYPk8qrQ6FvKEJiDPLZqhzWiK2mEmdCgaVvk=;
-        b=Pw3TRKpYEZKDCxKDsXu3nsxyg3kbm4P22h4zGIQbn7ofklUCT8lwWnINKesS67C+Bx
-         333tqAJtPqRFLAapKylHDQybxMx0F19yzLPV+pkFgz2IZNQjGBSriLd1hQgrJQVK7VJO
-         kYy7klnlfmRee9BQDe7p3B83MhH1mbNlZYu3UfGsdULtozTYMblXIpAGf75TolOPZM8q
-         LELN6jq3fnrhC6PIGCkNy6K8FCoXtEZ+AjH/fu7L8/qjUyqLpqMKYRKP8syHIFFvJRgZ
-         QNW7vfYJISmcF392jrVXJrdhZB0BQzeBRkdfVCv3mz/7NkoGiz+RPf0U6v4tPOk2K2Yg
-         R+KQ==
-X-Gm-Message-State: AJIora9xN44ueu9AGozJ3S6gGWbC/o6VyZhIQNshHmZUwpMiOmaNF3kM
-        z6hAjF/VkOqLvTazqjoIykOuUg==
-X-Google-Smtp-Source: AGRyM1uPETmr+vhZN8KGx7CQ/BROrtMw0EI5i1L+BOd8h4XD5hhpd2Juf1gemkduB7se6umPE1HwyQ==
-X-Received: by 2002:a2e:9547:0:b0:24f:2e31:6078 with SMTP id t7-20020a2e9547000000b0024f2e316078mr18478545ljh.102.1657021981247;
-        Tue, 05 Jul 2022 04:53:01 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id 9-20020a2e0509000000b0025538905298sm5487757ljf.123.2022.07.05.04.53.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 04:53:00 -0700 (PDT)
-Message-ID: <29d1f7a3-e141-270c-9e71-e052fd41dd48@linaro.org>
-Date:   Tue, 5 Jul 2022 13:52:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: leds: class-multicolor: reference class
- directly in multi-led node
-Content-Language: en-US
-To:     Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S231693AbiGELyE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 07:54:04 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93A3317069;
+        Tue,  5 Jul 2022 04:54:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 52A81B817CC;
+        Tue,  5 Jul 2022 11:54:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 104D8C341C7;
+        Tue,  5 Jul 2022 11:53:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657022041;
+        bh=xPWHUAWA1OzLNPdBjpQH6oZ2wBudhcnzPT27+wGyRK4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=oi2rW1/3wrIN8h/7P9KudZxtNEtk/aXqe3eatSV3nRHjBX+W4jmtl/22ARiYgljem
+         XeUnkjuk2vHmu4hQxXO+0Kkt1tss5db4wCvqKfMB28OqoOlEdUE0MUEYvFEMtDQQds
+         tu1mucnsITKA67vbw26cH0H5VjK8MoOdTnbw10Rltglp6pRhv9iyU8KwWedfCt3Llh
+         9GbbWsiAKDWylOubRzgA1OVJ/aZ8B898qt/dakvyUmAJS8sfiaXXTMGso+Lz0tb4ep
+         1rMRQolvlX1qXpfeJVllU4P2qYZXwHvdBJCjYkjoKhUQqe4yJ4jAeflWRVjAPUiSq+
+         RxlwzofXOLiGQ==
+Date:   Tue, 5 Jul 2022 13:53:55 +0200
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dan Murphy <dmurphy@ti.com>,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
-References: <20220624112106.111351-1-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220624112106.111351-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Add cznic,turris1x-leds.yaml
+ binding
+Message-ID: <20220705135355.008f6bec@thinkpad>
+In-Reply-To: <20220705114238.xwgexavgozqskwbw@pali>
+References: <20220705000448.14337-1-pali@kernel.org>
+        <42d837dd-fbd1-6294-2fa0-8a07ae0f8d44@linaro.org>
+        <20220705114238.xwgexavgozqskwbw@pali>
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,29 +60,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/06/2022 13:21, Krzysztof Kozlowski wrote:
-> The leds/common.yaml is referenced directly in each LED node, which
-> leads to people doing the same with leds/leds-class-multicolor.yaml.
-> This is not correct because leds-class-multicolor.yaml defined multi-led
-> property and its children.  Some schemas implemented this incorrect.
-> 
-> Rework this to match same behavior common.yaml, so expect the multi-led
-> node to reference the leds-class-multicolor.yaml.  Fixing allows to add
-> unevaluatedProperties:false.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> This will conflict with any new users of leds-class-multicolor, e.g.:
-> https://lore.kernel.org/all/20220623115631.22209-4-peterwu.pub@gmail.com/
-> 
-> The new users should be updated to match the usage introduced here.
+On Tue, 5 Jul 2022 13:42:38 +0200
+Pali Roh=C3=A1r <pali@kernel.org> wrote:
 
-Pavel,
+> I have tested bindings on the real hardware and it is working fine
+> together with the driver from patch 2/2.
 
-Any comments from your side? It's waiting for a bit and folks are
-sending more and more wrong multicolor bindings...
+I think Krzysztof meant testing with dtschema.
 
-Best regards,
-Krzysztof
+Marek
