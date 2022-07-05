@@ -2,173 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B189566626
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 11:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7667566635
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 11:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbiGEJ37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 05:29:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51586 "EHLO
+        id S230154AbiGEJc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 05:32:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231265AbiGEJ3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 05:29:25 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A9B101EA
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 02:28:52 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id bx13so13785465ljb.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 02:28:52 -0700 (PDT)
+        with ESMTP id S230493AbiGEJax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 05:30:53 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7012026C4;
+        Tue,  5 Jul 2022 02:30:52 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id q9so16658656wrd.8;
+        Tue, 05 Jul 2022 02:30:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6KsRcwBEuUzrOwyM/pW4cN1uOT0jToSb3abL+hcUjTA=;
-        b=L52O7ne+YsZHSQr4O9CTInvLdgqN2P1KiVwtPWECgESIE3KMCako5cycNBEW5CWuQ2
-         r8rc5ACELpd4JWR42AWIFqQt9BAjRgXE/DnF8YvRbq2mVFj7/CdYxiCYzXEaUqZXJfRZ
-         7UXCucsKNNNzXwkgIfQCoAxZiRI7zTxlwBfhJwp3i90i49s0Tt70GuYu4cNt5i9Ljsln
-         Er6qtba/oNMGza0F2vHvrVhTPeUv3Qboc9K1PaCzDQjXG53GHxV9fnB2NdRedqGQgMlP
-         Rr5fielx6JNFVKbZPDzupDmSCfL6KRLbf/1XWFHZ6kBBtgysX1S78vv11dDnih42Hc4x
-         vGRg==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=pqNWIMkJNYvA/PC47JUDwOP00hRjeIEHchew0U2843w=;
+        b=hWKb7nzY1odxTwb5B+tqx8kFvnCurCGajCsd+YSXTqu9Kh5ex9z5Fe3qMLd5kde8M7
+         WPyQdrWaxdYyYN+rWxsEvPLc8AppeTizL3NJLo5C1AgGEANiiKV2SSqbyFsSeMYcTNxY
+         8FKNIokGxQyz+HH+0ltunvS/RSiBSBWuq+fymdvN19yze7/vNFw5ioDtC4ptUfV8IkvT
+         wvBY/lBRSIw7qdNpflZCEU321su/N2y+XdEgNmWvpJJtWz7f5OkxIP7sv//vwn8xdd9C
+         hH79z0iDLJOLAPkN7uNi2tUD6300A8VY4QlYnM1OSy16rlyebC5u5T0+8wj5KfMCtdFS
+         1PHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6KsRcwBEuUzrOwyM/pW4cN1uOT0jToSb3abL+hcUjTA=;
-        b=P53p4ugF2Vuw8xxnG+65MvAfLLD36gyBcyGnJl0tQP1U84+5//Qnu936JzEBN2u+Vq
-         M7W8Ia7Ar1x9fEFV2CgVjGDRFwy4+6XewCcohuoK/Lp1OLoachY0c2VvuA8fWTRKsgwV
-         N/UyP4neF3Mt5EFosKQ9a4aEGorJTZv4UkrzInVc8lVEJWKzhzGVG2bCGonzTglN3dot
-         aImhnwgVCQdZYjMs0nQkJqEWUc1Gf7P3wDCksaBLO3wj+WunPB2YiVldaTRMpvD8vHjX
-         fKTVf5yvijnakCa9KNOHZJ+lrgyQbWEFzDh5vYPx2ps5Sgm71y6n0anoommnt/rooCk0
-         1gmQ==
-X-Gm-Message-State: AJIora/CS7uKX6Xndv1eJUnMs2VG9p9n/yrK7ig52A5wtibcWnE+2r7d
-        S+N1my7Ia4S86Wq5D4V6s6aUWQ==
-X-Google-Smtp-Source: AGRyM1usDWmVbxVfjlaZTBtWCtVGyX0HI5PkRhGau5FDtcBb/Xv5j4yVVZ7Qmirc3OWyh+8T802Ucw==
-X-Received: by 2002:a2e:9657:0:b0:25d:30c3:9ba with SMTP id z23-20020a2e9657000000b0025d30c309bamr1687782ljh.350.1657013330096;
-        Tue, 05 Jul 2022 02:28:50 -0700 (PDT)
-Received: from krzk-bin.home ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id v19-20020ac258f3000000b00483f8c40c14sm154249lfo.243.2022.07.05.02.28.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 02:28:49 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=pqNWIMkJNYvA/PC47JUDwOP00hRjeIEHchew0U2843w=;
+        b=4Quai0Xlkjte2BkN64u4M2OTFPfQSOfxCjdgWX2C8/Lx7i3GGMZVel4gNQ3Z0WokRz
+         zTTBjFOhdJsZDzy5/Rek61foFsN8sVjaAgGupdzt9a/LwVItny5LoR7b4C1fmw/Hs4eB
+         a3DBK9rbuhFcrideJX3ZN7YsARp28Y7RNyJMKXtD6LT3R5kYC9KjpVPjrwriImUuwLkY
+         2IBmYJOA+KT358hdmeKZBYiv+gKcximHLxbeuqvnJdb6aVhG8r8RMg41eiz8gBL/qyvo
+         TTVIzNyV0bugICOx6WvFXNqGGht0yQRfKeAnkFdLpU0QYvAKhZgihUMkJO3x08WSrYPR
+         xBhQ==
+X-Gm-Message-State: AJIora+9dfxGzgG1BfSU/N6i4mX+XbNLtZP3Mh/SRlgf9DMZc5Q8WmVL
+        OdQJRCIsVWC/4KfIX7tak5bug6mF1EfOqW4SK2o=
+X-Google-Smtp-Source: AGRyM1vjfo6ewz8a7C1z1FgnaLM7eptrOikYkhWProGUaTZ44xN7w/Kl7fw//m2WrPoXojCEf9C6mMWzFyegaLdvjlc=
+X-Received: by 2002:a05:6000:15c1:b0:21b:ad5e:2798 with SMTP id
+ y1-20020a05600015c100b0021bad5e2798mr31238285wry.237.1657013450868; Tue, 05
+ Jul 2022 02:30:50 -0700 (PDT)
+MIME-Version: 1.0
+References: <1656469212-12717-1-git-send-email-u0084500@gmail.com>
+ <1656469212-12717-3-git-send-email-u0084500@gmail.com> <CAHp75Vd2bxFA5PmjEtgAjJfCf9YZENq_fb9b2VHmMmmHdqGJSw@mail.gmail.com>
+ <CADiBU384ZwKL_+i1zRL9qfVt-NLo=pnf8zrGna4Sxt+toYZdWg@mail.gmail.com>
+ <CADiBU3_sU8bj29x2Qs9y9fM2YDYcKvNBkBuzfpzuCkAjSeTu+Q@mail.gmail.com>
+ <CAHp75VeiuJjiPFFh0pEGGH4+UEn0g5902UhAJL93Ho2WvH0_gg@mail.gmail.com>
+ <CADiBU38FbZ87EHn_UDy-rS6V2bGDdLZJOcqNZsS03MzbNaVaKA@mail.gmail.com> <CAHp75VfyKtFQbcJJxW8TNSHMZppM6Qgj4hxiUzLB1bSmeWBBAg@mail.gmail.com>
+In-Reply-To: <CAHp75VfyKtFQbcJJxW8TNSHMZppM6Qgj4hxiUzLB1bSmeWBBAg@mail.gmail.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Tue, 5 Jul 2022 17:30:39 +0800
+Message-ID: <CADiBU3_fZxCigiaa8mh9bHV565Bxiyux1a1zFWmi9v6xwdZzgQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: Add rtq6056 support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Subject: [PATCH v3] dt-bindings: qcom: document preferred compatible naming
-Date:   Tue,  5 Jul 2022 11:28:46 +0200
-Message-Id: <20220705092846.66731-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Lars-Peter Clausen <lars@metafoo.de>,
+        cy_huang <cy_huang@richtek.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Compatibles can come in two formats.  Either "vendor,ip-soc" or
-"vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
-DT schema file documenting preferred policy and enforcing it for all new
-compatibles, except few existing patterns.
+Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=
+=885=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=885:05=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> On Tue, Jul 5, 2022 at 3:41 AM ChiYuan Huang <u0084500@gmail.com> wrote:
+> > Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=
+=9C=885=E6=97=A5 =E9=80=B1=E4=BA=8C =E6=B8=85=E6=99=A85:52=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+> > > On Mon, Jul 4, 2022 at 9:27 AM ChiYuan Huang <u0084500@gmail.com> wro=
+te:
+> > > > ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=
+=884=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8811:16=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+> > > > > Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=
+=B47=E6=9C=881=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=886:05=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+> > > > > > On Wed, Jun 29, 2022 at 4:23 AM cy_huang <u0084500@gmail.com> w=
+rote:
+>
+> ...
+>
+> > > > > > > +       struct {
+> > > > > > > +               u16 vals[RTQ6056_MAX_CHANNEL];
+> > > > > > > +               int64_t timestamp;
+> > > > > > > +       } data __aligned(8);
+> > > > > >
+> > > > > > Hmm... alignment of this struct will be at least 4 bytes, but
+> > > > > > shouldn't we rather be sure that the timestamp member is aligne=
+d
+> > > > > > properly? Otherwise this seems fragile and dependent on
+> > > > > > RTQ6056_MAX_CHANNEL % 4 =3D=3D 0.
+> > > > > >
+> > > > > Yap, from the 'max channel', it already guarantee this struct wil=
+l be
+> > > > > aligned at lease 4.
+> > > > > Actually, It can be removed.
+> > >
+> > > I think for the safest side it should be given to the timestamp membe=
+r. No?
+> > >
+> > Sorry, following your comment, Why to use 'align' for the timestamp mem=
+ber?
+> > the data member already guarantee 2 * 4 =3D 8 byte, then timestamp will
+> > be 8 byte aligned, right?
+>
+> Today it's true, tomorrow it might be different. Imagine if this
+> driver will cover a new (version of) hardware and needs an additional
+> channel, how do you guarantee alignment in that case? So, current
+> approach is working, but fragile.
+>
+> > what you mentioned is to put __aligned(8) only for timestamp.
+>
+> Yes.
+>
+> > I try to put aligned in two ways ( one is only for timestamp, another
+> > is the whole struct). the result is the same.
+> > From my thinking, in this case, the struct is already 8 byte aligned
+> > for timestamp member. don't you think to put 'aligned' is redundant?
+>
+> No.
+>
+Thanks, I think I can get your point. if it need to be compatible with
+others, this part will be a trap.
+Then it's better to add the align for timestamp member.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I'll submit the v4 for this.
 
----
+And very sorry about another mail.
+I just confused about the text.
 
-Changes since v2:
-1. Narrow the expected pattern to be followed by dash '-' after model
-   number (msm8996-) or by two letters and a dash (sc8280xp-).
-2. Add qcom,apss-wdt-xxx to list of exceptions.
-3. Use comment instead of description in the oneOf list.
-
-Changes since v1:
-1. Add schema instead of readme (Rob).
-
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>
-Cc: Alex Elder <elder@linaro.org>
-Cc: Robert Foss <robert.foss@linaro.org>
-Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- .../devicetree/bindings/arm/qcom-soc.yaml     | 57 +++++++++++++++++++
- 1 file changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/qcom-soc.yaml
-
-diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
-new file mode 100644
-index 000000000000..6307c925335d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
-@@ -0,0 +1,57 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SoC compatibles naming convention
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+description: |
-+  Guidelines for new compatibles for SoC blocks/components.
-+  When adding new compatibles in new bindings, use the format::
-+    qcom,SoC-IP
-+
-+  For example::
-+   qcom,sdm845-llcc-bwmon
-+
-+  When adding new compatibles to existing bindings, use the format in the
-+  existing binding, even if it contradicts the above.
-+
-+select:
-+  properties:
-+    compatible:
-+      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      # Preferred naming style for compatibles of SoC components:
-+      - pattern: "^qcom,(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+-.*$"
-+      - pattern: "^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$"
-+
-+      # Legacy namings - variations of existing patterns/compatibles are OK,
-+      # but do not add completely new entries to these:
-+      - pattern: "^qcom,apss-wdt-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - enum:
-+          - qcom,gpucc-sdm630
-+          - qcom,gpucc-sdm660
-+          - qcom,lcc-apq8064
-+          - qcom,lcc-ipq8064
-+          - qcom,lcc-mdm9615
-+          - qcom,lcc-msm8960
-+          - qcom,lpass-cpu-apq8016
-+          - qcom,usb-ss-ipq4019-phy
-+          - qcom,usb-hs-ipq4019-phy
-+          - qcom,vqmmc-ipq4019-regulator
-+
-+additionalProperties: true
--- 
-2.34.1
-
+> --
+> With Best Regards,
+> Andy Shevchenko
