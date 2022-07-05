@@ -2,179 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D2F5664C1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 10:17:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 169C2566534
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 10:40:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbiGEIH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 04:07:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56502 "EHLO
+        id S230053AbiGEIkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 04:40:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiGEIH5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 04:07:57 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2046.outbound.protection.outlook.com [40.107.20.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA6613D70;
-        Tue,  5 Jul 2022 01:07:56 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZA5COdfMAO+eO5zz47yaBcw1mlV8QXf6tiew7ABTDXXInLoLZ5LwRYTkOjZtmEPIE4dCjdGLfyObuXO/oO2RHruCAo7HdrC1JDJhp2nZKlZB6d/nSNXBtHIt6rcOuFhnrJFpTLmjd/LvlFW2uVKywlex/TG6zUUsrIVqEFdhWek38elBdfIGF43c4PuFQf+Ewu605x0AKEpkP58xzBM8tdU8PC2OBlzzsp8fKCLqAevCcoqPS9az0L+zpD+sNQaRugQjKdC7b6u5p+nBfAwKlWIF7ESyNv7Yf2fGzWFeiTPPOYypNJW3UUa+6xAh1BNguVAQ4/uTxok/qJKZxnBp9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gxcXMgPNj1fBy2LmrTwfcVLkei09WGwkgWTzA2LhAZc=;
- b=QZjSANmdnpqAcOfanYIWMob5ji+UX1UeUj4OSXQySIXqHwBuIkTmwpY8avgmopruVD7XEbg/w0mjztb7JyspGguUWBjBpKjdawnxTxmpLAEES2/rOcvl9IoExyDkINYZ1JmDBJMTaw7Jn4y+xZlr8spbQTm8I5uxJyeIKKnNhRK3RwXmdX7zhcpUqlHd/CNZEzXZt7ft75I3SnevLyY/NBUEtWGv+5poKVpCml00ihGFJcF5YtABnYfGt0TfB6iuXkD9DC3l3bLb97sdEeVB1PKJMspP3+6X5KaHbsWL+E6aRVXVeTu86mfVUGzt5OkTgp8aKmipwDqXtRE/Ubu8Rg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gxcXMgPNj1fBy2LmrTwfcVLkei09WGwkgWTzA2LhAZc=;
- b=aGPWNcM41RcI6im/CY6JFUPJ+uBlceysyLPi1xfWiu5vOehZ7/g1ERRsZlVygxmUfulfqXS4WAmOyU35lKjvt4x+pivA9orr2GrXC2G61WsBJ9bdI55tWij4j5hlhSCYN+GMphB8oqDxSV3ldfw+nvKcIJ7H9YbuiFHVda4shiI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR04MB5005.eurprd04.prod.outlook.com (2603:10a6:803:57::30)
- by AM9PR04MB7508.eurprd04.prod.outlook.com (2603:10a6:20b:283::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.21; Tue, 5 Jul
- 2022 08:07:53 +0000
-Received: from VI1PR04MB5005.eurprd04.prod.outlook.com
- ([fe80::6546:3ee1:5e6c:278f]) by VI1PR04MB5005.eurprd04.prod.outlook.com
- ([fe80::6546:3ee1:5e6c:278f%5]) with mapi id 15.20.5395.021; Tue, 5 Jul 2022
- 08:07:53 +0000
-Date:   Tue, 5 Jul 2022 11:07:39 +0300
-From:   Viorel Suman <viorel.suman@oss.nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Liu Ying <victor.liu@nxp.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 00/14] dt-bindings: arm: freescale: Switch fsl,scu
- from txt to yaml
-Message-ID: <20220705080739.duoecsmajgslvjkf@fsr-ub1664-116>
-References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
- <0e515289-9d3c-9c61-950d-09c14b33c8c2@linaro.org>
- <20220705003955.GO819983@dragon>
- <4da347bb-4210-e9a5-1bf7-988b95b1db53@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4da347bb-4210-e9a5-1bf7-988b95b1db53@linaro.org>
-X-ClientProxiedBy: AS4PR09CA0006.eurprd09.prod.outlook.com
- (2603:10a6:20b:5e0::16) To VI1PR04MB5005.eurprd04.prod.outlook.com
- (2603:10a6:803:57::30)
+        with ESMTP id S229885AbiGEIkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 04:40:13 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 050AF63BE;
+        Tue,  5 Jul 2022 01:40:04 -0700 (PDT)
+X-UUID: 7d46a24791974c1e8e4667ef18ec91a0-20220705
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:e6562949-3de4-4beb-8bd8-491e86c3ebff,OB:10,L
+        OB:10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:45
+X-CID-INFO: VERSION:1.1.8,REQID:e6562949-3de4-4beb-8bd8-491e86c3ebff,OB:10,LOB
+        :10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-META: VersionHash:0f94e32,CLOUDID:8335a5d6-5d6d-4eaf-a635-828a3ee48b7c,C
+        OID:c605775d9f6f,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 7d46a24791974c1e8e4667ef18ec91a0-20220705
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1389409534; Tue, 05 Jul 2022 16:39:58 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 5 Jul 2022 16:39:57 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 5 Jul 2022 16:39:57 +0800
+Message-ID: <807fa1a3e896eaaa02aec6166f5fb833d7917da7.camel@mediatek.com>
+Subject: Re: [PATCH v15 13/16] drm/mediatek: dpi: Add YUV422 output support
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <xinlei.lee@mediatek.com>, <liangxu.xu@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 5 Jul 2022 16:39:56 +0800
+In-Reply-To: <f834d5612bef6fa216602b3dcbed629f1b4c903b.camel@mediatek.com>
+References: <20220701035845.16458-1-rex-bc.chen@mediatek.com>
+         <20220701035845.16458-14-rex-bc.chen@mediatek.com>
+         <f834d5612bef6fa216602b3dcbed629f1b4c903b.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f76a55e3-396e-42ed-d396-08da5e5d759d
-X-MS-TrafficTypeDiagnostic: AM9PR04MB7508:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wCATTUF8TIDrO5vgqXy77cYD92aEPUBGQeciWdZ0kzudOM88zDqjEtYgklBNb/tLHI2v/iaBnXNxS+J8S1uF+bNM5GDhS6Pq5TiXRZ2VvG/dBAw0UKP0RY/25jR42gNndSZgYwstlHgG+wYd+/kD2Yd+yV5n38BDX50AAk/yVV0Zu5OISG2UBIdXuLeu/GUbmSRvsPlrnDGKSiQYN4FsrpUXcYxP+PjhijmbGpLcRMuLEPdOCRjRY/AK7alMTqBCLQZj0I47Kw5ke9Pdgg6x27Pg3vuUdYsGv9WwmsKI7wBvfrF0mhwJAx+4iGNMKHWDYVchUYm4xarQnKWlIXPrBXxTrGFEHJHd+WdqB3zA0eQ9NlSigR+NzTB5ed1B1gj28zIhkm6VKXGdpYBMtk9a1YDXz5RUs9SaRYxXNDlD3p9k2y46gDxzsbJwPdgpLjjuI5KSas/AQxhRthQp/o0MLAio3nSHf68Cb6FghwyCPYr8o7p1G/EZD0B+1MzXDG2yMdlxHWNS8JxQfTP38WOJ19o/SjsqdT3X4G12WEMZkGLSwFtWWT3bSuaXKVxwk2GWB5uw8auwBV07IvGXElsdHQV5Xgy6JFYeKzr7HCpstJYuA1eJjqaxN1/+fMOMc8frog6H/ttSGvaJY4dZk5gdwFAVRKwcFK3Znvhe70tZdhhB4L6PVL1HG8bGI8rATye0+41FIEm+4L8eW6l+uzV90+Oa81vV4lFmcUWO7a0nookI9Lcm1mSktHfZN3onE278TS8Dq/6PUmslJCFUsg5MtwIdPtuyHjZwm/plrxEMWE+V2yOjro0Hsl9CczQkE8AOyA6OaMI0VDalwxxsswMbvg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5005.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(7916004)(376002)(396003)(366004)(39860400002)(136003)(346002)(8936002)(966005)(478600001)(86362001)(83380400001)(5660300002)(7416002)(7406005)(44832011)(6486002)(186003)(6916009)(316002)(54906003)(1076003)(9686003)(2906002)(33716001)(26005)(38350700002)(6506007)(6512007)(38100700002)(41300700001)(6666004)(53546011)(52116002)(66946007)(4326008)(8676002)(3716004)(66556008)(66476007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?H5WaZmAkxzqdKH58ARsezgPR2nqSNPoh7jz7H0yFwh/aj6oCInONB5eeXM0c?=
- =?us-ascii?Q?po3EycvUqAFTXTf8708PJ9oMJTKdo2XRkJg1AJPVoYwvWxUIHBmCigxmhGCh?=
- =?us-ascii?Q?IFu1IVESVPrJzZQUQcVO0jEmW905NUWz/Ca8AIE7EpkI+TsPL+NoDxjU2kvV?=
- =?us-ascii?Q?yWDKflxix8DkgV8L4/Qnbq3AScDMBIBm7BGExrEwc1wB3MGHJpM0aJZcbyuT?=
- =?us-ascii?Q?9LbgYBJsspvw0F0p1G96lK53KMbtQWHwBYjbfV6uzCcTNO9fbcXWJop8Iwel?=
- =?us-ascii?Q?iuVtupCV9o0QgpkMdbDpuS+QEY6MUhMOE+QwXHLt31cNrfkWIr1CgtBTYa22?=
- =?us-ascii?Q?mwqGs8PBHozBiNMlZ9ONrJd4BqzK3/bVpGez3zzutkOi/YKmf/uflkKmOjYA?=
- =?us-ascii?Q?F6SJ4HsgG0u1z/BGEiEi6zE/o/+aww4Dz+FHuH5dfI2NemP753g7RUHX5h0R?=
- =?us-ascii?Q?iG/jeuxK7vti/poTXr5/tzTc+2bO3ifthyAs1EjEKUxvo0nCcmFKE9Pk+Fbs?=
- =?us-ascii?Q?ldLHKXQ4nyKYvabSwYh6Y66i+bexTbCqMDsuixZ0B98UXP9a9LSzPpv2/vIn?=
- =?us-ascii?Q?K5irXbDBEkZKoyzYwz+TVJRgcD5vKf1//YoYfBSw86cvCPJZuV7YD8/CyMet?=
- =?us-ascii?Q?kZTMttnMqN4SPbdwh90gDRBLqOAPfKIVnTlMvlZ7nWQsXYdL0ttaxh4+4wcs?=
- =?us-ascii?Q?yXyyEtRh4qUASMgx/s/9AVKQWGsAUiZya7msK+RHE6gwJgHGvTc1SzSAZ5xB?=
- =?us-ascii?Q?+gcEvZCuRN7qadTI59auvJ578Fcb1DqCsBwYKDTaoEFwvrxcVuTaxTlK1tU8?=
- =?us-ascii?Q?xRvGWHYcClZQlxAskS2wVJVofmR9qNxwQC9RxFDNf7WZNB9L8Lyt97jys9jf?=
- =?us-ascii?Q?bO4x5a/B5za9UcjDvvfIHOjjD6qGhEcYqaywJtF/3HnynavHMIsPPdr1LjEv?=
- =?us-ascii?Q?Ozx9+Qop9kAA191Z6kkB+yXIDukhnuIdYJJhIUOoNKB3BVdI7GLRdWcEaz2F?=
- =?us-ascii?Q?Gw6NpkDLCUZSnPCrCDyU3/+sDrsd9ZguX3Nm1KYO5LQxznDjS0OZVobQhKnI?=
- =?us-ascii?Q?ep/m7KhfNAVP1JJg/qnoGRs4ocg3gVVtHfOCIf+O20PmxypLlREOwshq1bTH?=
- =?us-ascii?Q?/yDU3K5jPw4XUWT90f/+teWCeQr8z51DFJam3Ual/GvTPuwhYwyYccnd9vjZ?=
- =?us-ascii?Q?/yQOvSxQF8WszqXxUZlhzt0NmEJX4I8aqXstBhwheNCkG/xRh/m8qzPAcL2i?=
- =?us-ascii?Q?Y9LWe5TB0YnQoFlqmsmo512PLD9yrURrwb/cds3mLMGH4pfjmH+g3V0rd0aF?=
- =?us-ascii?Q?Ls8f1F1rsf+fOyDGrVolWAqWQ0oIozGel95tamQOfJkfndQPfh3EXego0l1l?=
- =?us-ascii?Q?WydwKxzJM0xbE0sxyzjFQH9YtHbN6yWpn4OhH2qVOdtX62/gfwK96LBVLZEm?=
- =?us-ascii?Q?VFIrkwXKgkzq8dhXqzsT0hsy73qTd4ic03rNfuxPaCwPmcs0itujIP4JIwlQ?=
- =?us-ascii?Q?heF2DsuASm1MnZ3Lc8GgEefyaF+6IWciG11fbIWiaquM+zNcjJ/oJS0FzxoZ?=
- =?us-ascii?Q?zZptY/ro5M+SvebMpLh1eMjFwCCki2uz0NxdLlIj?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f76a55e3-396e-42ed-d396-08da5e5d759d
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5005.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2022 08:07:52.9436
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pfAjc3GKCn5YF/NjN5ERPmmq1j7yuW+shaBAkKIKoruR+vH+aPIWGaw9ibkNsjiL/b0dpJ03Zfg1eiSamymkIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7508
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        RCVD_IN_MSPIKE_H2,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-07-05 09:28:24, Krzysztof Kozlowski wrote:
-> On 05/07/2022 02:39, Shawn Guo wrote:
-> > On Wed, Jun 29, 2022 at 07:51:06PM +0200, Krzysztof Kozlowski wrote:
-> >> On 29/06/2022 18:44, Viorel Suman (OSS) wrote:
-> >>> From: Viorel Suman <viorel.suman@nxp.com>
-> >>>
-> >>> Changes since v5: https://lore.kernel.org/lkml/20220616164303.790379-1-viorel.suman@nxp.com/
-> >>>   * Updated according to Krzysztof Kozlowski comments
-> >>>
-> >>
-> >> My comment a about removal of each part of TXT bindings in each patch,
-> >> was not addressed. Your approach makes it more difficult to read patches
-> >> and makes sense only if each subsystem maintainer will take the patches
-> >> (separately). If the patches are going through one tree, then better to
-> >> remove the TXT gradually.
-> >>
-> >> So the question - who is going to take each of the patches?
+On Tue, 2022-07-05 at 13:21 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
+> 
+> On Fri, 2022-07-01 at 11:58 +0800, Bo-Chen Chen wrote:
+> > Dp_intf supports YUV422 as output format. In MT8195 Chrome project,
+> > YUV422 output format is used for 4K resolution.
 > > 
-> > I can take the series through IMX tree if that makes the most sense.
+> > To support this, it is also needed to support color format
+> > transfer.
+> > Color format transfer is a new feature for both dpi and dpintf of
+> > MT8195.
+> > 
+> > The input format could be RGB888 and output format for dp_intf
+> > should
+> > be
+> > YUV422. Therefore, we add a mtk_dpi_matrix_sel() helper to update
+> > the
+> > DPI_MATRIX_SET register depending on the color format.
+> > 
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > ---
+> >  drivers/gpu/drm/mediatek/mtk_dpi.c      | 61 +++++++++++++++++++++
+> > ----
+> >  drivers/gpu/drm/mediatek/mtk_dpi_regs.h |  6 +++
+> >  2 files changed, 59 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > index 3085033becbd..0a604bf68b1b 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > @@ -54,7 +54,8 @@ enum mtk_dpi_out_channel_swap {
+> >  };
+> >  
+> >  enum mtk_dpi_out_color_format {
+> > -	MTK_DPI_COLOR_FORMAT_RGB
+> > +	MTK_DPI_COLOR_FORMAT_RGB,
+> > +	MTK_DPI_COLOR_FORMAT_YCBCR_422
+> >  };
+> >  
+> >  struct mtk_dpi {
+> > @@ -122,6 +123,7 @@ struct mtk_dpi_yc_limit {
+> >   * @num_output_fmts: Quantity of supported output formats.
+> >   * @is_ck_de_pol: Support CK/DE polarity.
+> >   * @swap_input_support: Support input swap function.
+> > + * @color_fmt_trans_support: Enable color format transfer.
+> >   * @dimension_mask: Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and
+> > VSYNC_PORCH
+> >   *		    (no shift).
+> >   * @hvsize_mask: Mask of HSIZE and VSIZE mask (no shift).
+> > @@ -138,6 +140,7 @@ struct mtk_dpi_conf {
+> >  	u32 num_output_fmts;
+> >  	bool is_ck_de_pol;
+> >  	bool swap_input_support;
+> > +	bool color_fmt_trans_support;
+> >  	u32 dimension_mask;
+> >  	u32 hvsize_mask;
+> >  	u32 channel_swap_shift;
+> > @@ -406,15 +409,54 @@ static void
+> > mtk_dpi_config_disable_edge(struct
+> > mtk_dpi *dpi)
+> >  		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0,
+> > EDGE_SEL_EN);
+> >  }
+> >  
+> > +static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi,
+> > +			       enum mtk_dpi_out_color_format format)
 > 
-> Sounds fine to me. Then however each piece of TXT file should be removed
-> in each commit doing that piece conversion.
+> The format would only be MTK_DPI_COLOR_FORMAT_YCBCR_422, so drop the
+> parameter format.
 > 
-> Best regards,
-> Krzysztof
+> > +{
+> > +	u32 matrix_sel;
+> > +
+> > +	if (!dpi->conf->color_fmt_trans_support) {
+> 
+> Only YUV format would call this function, and I think YUV support
+> would
+> imply that color_fmt_trans_support is true. So drop
+> color_fmt_trans_support.
+> 
+> > +		dev_info(dpi->dev, "matrix_sel is not supported.\n");
+> > +		return;
+> > +	}
+> > +
+> > +	switch (format) {
+> > +	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
+> > +		/*
+> > +		 * If height is smaller than 720, we need to use
+> > RGB_TO_BT601
+> > +		 * to transfer to yuv422. Otherwise, we use
+> > RGB_TO_JPEG.
+> > +		 */
+> > +		if (dpi->mode.hdisplay <= 720)
+> > +			matrix_sel = MATRIX_SEL_RGB_TO_BT601;
+> > +		else
+> > +			matrix_sel = MATRIX_SEL_RGB_TO_JPEG;
+> > +		break;
+> > +	default:
+> > +		matrix_sel = MATRIX_SEL_RGB_TO_JPEG;
+> > +		break;
+> > +	}
+> > +	mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel,
+> > INT_MATRIX_SEL_MASK);
+> 
+> it seems that we could drop this function and write register as:
+> 
+> mtk_dpi_mask(dpi, DPI_MATRIX_SET, dpi->mode.hdisplay <= 720
+> ? MATRIX_SEL_RGB_TO_BT601 : MATRIX_SEL_RGB_TO_JPEG,
+> INT_MATRIX_SEL_MASK);
+> 
 
-Just sent v7 which removes TXT in each commit which does the conversion.
+Hello CK,
 
-Regards,
-Viorel
+ok, I will drop this function and config.
+
+> > +}
+> > +
+> >  static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
+> >  					enum mtk_dpi_out_color_format
+> > format)
+> >  {
+> > -	/* only support RGB888 */
+> > -	mtk_dpi_config_yuv422_enable(dpi, false);
+> > -	mtk_dpi_config_csc_enable(dpi, false);
+> > -	if (dpi->conf->swap_input_support)
+> > -		mtk_dpi_config_swap_input(dpi, false);
+> > -	mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_RGB);
+> > +	if (format == MTK_DPI_COLOR_FORMAT_YCBCR_422) {
+> > +		mtk_dpi_config_yuv422_enable(dpi, true);
+> > +		mtk_dpi_config_csc_enable(dpi, true);
+> > +		mtk_dpi_matrix_sel(dpi, format);
+> > +		if (dpi->conf->swap_input_support)
+> 
+> This would never be true because only MT8195 support
+> MTK_DPI_COLOR_FORMAT_YCBCR_422 and swap_input_support of MT8195 is
+> false.
+> 
+
+I think for mt8195, it should be support output format yuv422 and
+rgb888.
+
+please refer to [16/16]
+
++static const u32 mt8195_output_fmts[] = {
++	MEDIA_BUS_FMT_RGB888_1X24,
++	MEDIA_BUS_FMT_YUYV8_1X16,
++};
+
+BRs,
+Bo-Chen
+> Regards,
+> CK
+> 
+> > +			mtk_dpi_config_swap_input(dpi, true);
+> > +		else
+> > +			dev_warn(dpi->dev,
+> > +				 "Failed to swap input, hw is not
+> > supported.\n");
+> > +		mtk_dpi_config_channel_swap(dpi,
+> > MTK_DPI_OUT_CHANNEL_SWAP_RGB);
+> > +	} else {
+> > +		mtk_dpi_config_yuv422_enable(dpi, false);
+> > +		mtk_dpi_config_csc_enable(dpi, false);
+> > +		if (dpi->conf->swap_input_support)
+> > +			mtk_dpi_config_swap_input(dpi, false);
+> > +		mtk_dpi_config_channel_swap(dpi,
+> > MTK_DPI_OUT_CHANNEL_SWAP_RGB);
+> > +	}
+> >  }
+> >  
+> >  static void mtk_dpi_dual_edge(struct mtk_dpi *dpi)
+> > @@ -649,7 +691,10 @@ static int mtk_dpi_bridge_atomic_check(struct
+> > drm_bridge *bridge,
+> >  	dpi->bit_num = MTK_DPI_OUT_BIT_NUM_8BITS;
+> >  	dpi->channel_swap = MTK_DPI_OUT_CHANNEL_SWAP_RGB;
+> >  	dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
+> > -	dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+> > +	if (out_bus_format == MEDIA_BUS_FMT_YUYV8_1X16)
+> > +		dpi->color_format = MTK_DPI_COLOR_FORMAT_YCBCR_422;
+> > +	else
+> > +		dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+> >  
+> >  	return 0;
+> >  }
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > index 3a02fabe1662..9ce300313f3e 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > @@ -217,4 +217,10 @@
+> >  
+> >  #define EDGE_SEL_EN			BIT(5)
+> >  #define H_FRE_2N			BIT(25)
+> > +
+> > +#define DPI_MATRIX_SET		0xB4
+> > +#define INT_MATRIX_SEL_MASK		GENMASK(4, 0)
+> > +#define MATRIX_SEL_RGB_TO_JPEG		0
+> > +#define MATRIX_SEL_RGB_TO_BT601		2
+> > +
+> >  #endif /* __MTK_DPI_REGS_H */
+> 
+> 
+
