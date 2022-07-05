@@ -2,256 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 233D05677BC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 050415677C4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 21:28:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231165AbiGET0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 15:26:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57792 "EHLO
+        id S231475AbiGET2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 15:28:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230301AbiGET0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:26:32 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F7B13E0B
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 12:26:30 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-31c9b70c382so56732307b3.6
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 12:26:30 -0700 (PDT)
+        with ESMTP id S231137AbiGET2L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 15:28:11 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 753781FCD9;
+        Tue,  5 Jul 2022 12:28:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1657049290; x=1688585290;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=eUTS73gge0teSJcOvcvBRalNCEsZt4ZRmdTswbOzRWQ=;
+  b=GswO8v45ry+tk1orT3n+b9OzfOqitRsRHJTEUKjCi5TOQ+9haajbiHIE
+   kA+b9vjIlcilmp/Hx7tRlHGSIcdt/ncCJEZ1zABVykRtIP8JMh4O9R8cC
+   B/T15R9cEBW8Dl8KY/7JWqYVS/qf+0afxNCoFITpVTkPkKl+XA/0tYvrh
+   ukTELnexCiGJ+E5da89Kxj769jW716Dh/C+FFiov+/dPiNvXQxyrX/03s
+   rk0EIYhqb6myO8DBsTglaKYqJf5+RGvMRtxG8g21DpIAxOqhmco0U7gf/
+   bXUCk6fZTRhz3yUpEEbasb/CXFSIxpiFWo3CZSqgYr2FzDZgq6XkBb4Nr
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,247,1650956400"; 
+   d="scan'208";a="171137359"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Jul 2022 12:28:09 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 5 Jul 2022 12:28:08 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17 via Frontend Transport; Tue, 5 Jul 2022 12:28:08 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iC4NqM2kwr9PV62WwIXRkyn2GlOn6uJhmI6pVhrtHkGxguw5zwxSykFB7/nT0Q7kFHK6qRwmQtsL2h+b2SlnOkw2d1Y8bjmtDCBZKmpt9jOuinzelTo4uugVhAQM73NypPj/KGfL7kvQ28Cnn1I+UtNCclxYrGZ2Pia/o7o/+HuZwVyepEqYIoVGXKetr4vpSRWyqfcUFn/pZB7RDJYH6F7zh/gxHIK5OojIhCo3KpllMY/YXJ4uZ2pIvWZbkgBVjac14WOuUKHE2Avc4mY+bPTwgquxmDktrrYlHsppWifS/8PqM5IN3go1v0yROfvIIt0N6rBH2yrU8xBkROCGeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eUTS73gge0teSJcOvcvBRalNCEsZt4ZRmdTswbOzRWQ=;
+ b=fHdI5mStJdt8XrW1QBVmQeAlSB7k2UNJzhLlbx8QeB/QZVcjd7GG7DBOosvSNywN41wG1chPzvNZ46QwpdRGTxpH/hxuTZJbJTSY5qRcrU5UpAYtuCf7osTinAdsr3DPyrFB3ksc6SFGWYjez4OhZm9pXBlHEeIK22JsDzGb68RrMukfDWtuCU9VVfcysNovTTsal68W3b0AqppAS4nPDcNuMc3NOxbasRNKi4gfu+W/TFNzwmq+lPm2fDXK+ix0h1SRr4+mhCHQEf98HIV1ssFrGqjxlBwYjZP4x3YeG2qzlCf8vks9KaPKrJOScODc/wtQC77ExDsZGtcnM/xmTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=qasJbjsil3SfPSrpp8oMoD7HRJs0mGWmTo3Qn/Rix6I=;
-        b=l5elTjLGYDFwhdz+4+uqzdVtiodh3UqE/ExNzEDkY78oUYjv4trjX6o53wp8TTCRsK
-         63aVg2o2tDPuFiGdfcNdLie1YXcxAb2LJ4txOF31n+t+isck9FTOas06SjXx4ZBVvyca
-         XKX/lZtLmPTd4RXJnuvDl3FzsS1MDG0723OwiS6/whS3xlHSjWiF6ZSUyP4tQcRICmJO
-         SX8py7cKAoDt6Ep88qu4vr5dWtg3UJLgj42gUm5YG8d3WZN8y5bGNhCWHMVZkB6W82et
-         +3UN2LHUrxJknGNULKP4CJzS5/h0ul/SESt5r+cNfwT102NZZENFwC5jgLKmCjOeGczF
-         bruw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=qasJbjsil3SfPSrpp8oMoD7HRJs0mGWmTo3Qn/Rix6I=;
-        b=qpGOh4naP3xpWcqoZRa9Rl0x2drZ3RVGFpoqOCgR70gmqd1xTiNmm/hhqcD0CKRq2Q
-         tlZKDAjsPH5IRzUWyIUfvGgHztP5KATqT1WQ8pnwu56y+vseGnxYFzkWOKx94m2KWwsm
-         OGAKgF0b6sjPgeWva4aq8WRfDTXSapyYQDjjrf8J7Na9+wf7QC1oCwPRwWhcs1b4d1iJ
-         QlxEvCts2QeDJCklNpGyL6VvC+afpc/rdWxNbfLchSwMLOxwjFCRHaqeVtPgVNWjGpVr
-         oe2PEu8gtlMktHEypeJ3NMCJAzfmr4xHZEhAXlde5ZokrWfGi/0R7Fu6SAzW4IbUCSit
-         7tgg==
-X-Gm-Message-State: AJIora+nsw1fNhL2lNk9K0Jy93NLTomCeuVes76qRJ9Wm2gl1/ilcUeR
-        6g0RdFOeYRwjRqJvro+DRs7rIHUbqDq9EaCVpDNVNA==
-X-Google-Smtp-Source: AGRyM1v4Xxvj7FnMm5g8tmelyuYI05FgiLmxoO5R3njqAIa0dg6TC4xl6ieJSodU5AwFPCihPh8gEUV6YkFw+yHvC+A=
-X-Received: by 2002:a81:34c:0:b0:31c:8b37:6595 with SMTP id
- 73-20020a81034c000000b0031c8b376595mr17023289ywd.126.1657049189636; Tue, 05
- Jul 2022 12:26:29 -0700 (PDT)
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eUTS73gge0teSJcOvcvBRalNCEsZt4ZRmdTswbOzRWQ=;
+ b=JYQ6BuX2oM35IwzyOyvRxuFUL4w/jrH0lAfCECkUJ+8Eu+Cs+kA9NIqZC1mT6rK2GUB22PV/liOSWcLm0DDSqCqvSijnjjav7EMTLGWwmofVEbVwXPy+0YN1EANuTNKOmrto+9R+zU3R6sj8D5j4kGcqqIZj8guCtuoHzl8F5ws=
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
+ by SN6PR11MB3472.namprd11.prod.outlook.com (2603:10b6:805:bd::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.17; Tue, 5 Jul
+ 2022 19:28:05 +0000
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::699b:5c23:de4f:2bfa]) by CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::699b:5c23:de4f:2bfa%4]) with mapi id 15.20.5395.021; Tue, 5 Jul 2022
+ 19:28:05 +0000
+From:   <Conor.Dooley@microchip.com>
+To:     <robh@kernel.org>
+CC:     <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <krzysztof.kozlowski+dt@linaro.org>, <thierry.reding@gmail.com>,
+        <sam@ravnborg.org>, <Eugeniy.Paltsev@synopsys.com>,
+        <vkoul@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <fancer.lancer@gmail.com>, <daniel.lezcano@linaro.org>,
+        <palmer@dabbelt.com>, <palmer@rivosinc.com>,
+        <paul.walmsley@sifive.com>, <aou@eecs.berkeley.edu>,
+        <Conor.Dooley@microchip.com>, <masahiroy@kernel.org>,
+        <damien.lemoal@opensource.wdc.com>, <geert@linux-m68k.org>,
+        <niklas.cassel@wdc.com>, <dillon.minfei@gmail.com>,
+        <joabreu@synopsys.com>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v4 05/14] dt-bindings: memory-controllers: add canaan k210
+ sram controller
+Thread-Topic: [PATCH v4 05/14] dt-bindings: memory-controllers: add canaan
+ k210 sram controller
+Thread-Index: AQHYjYAvHczrGH5faUaoq3axDB0JHK1wLk+AgAABY4A=
+Date:   Tue, 5 Jul 2022 19:28:05 +0000
+Message-ID: <d2369d3c-adfb-3158-2fa6-81c336502db9@microchip.com>
+References: <20220701192300.2293643-1-conor@kernel.org>
+ <20220701192300.2293643-6-conor@kernel.org>
+ <20220705192307.GA2471961-robh@kernel.org>
+In-Reply-To: <20220705192307.GA2471961-robh@kernel.org>
+Accept-Language: en-IE, en-US
+Content-Language: en-IE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2e076e0f-8623-4af3-8c1f-08da5ebc7c35
+x-ms-traffictypediagnostic: SN6PR11MB3472:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: =?utf-8?B?c3RPYWVMeS9NbVB1azlSQzRxRUJiL3dMVitWVmJINGlid05UMXJNWE1TTWdk?=
+ =?utf-8?B?WDN6Z2ZMN213Z21sNVlzeFFRZksrSEhqZm9ZWkVPbDJ6OTl6eS9CeGpMWTZs?=
+ =?utf-8?B?cmhqS09vekpGeDJPRXlPYlZIOG5RQ0Y1UFdCek53eWNkYUNHbkxUSk82cEtl?=
+ =?utf-8?B?RERtUnV5b1FabzNyMVRMUTBNKzNKdjUxSTNFUFNsemJDL1Q0Tm5aaVN0WStK?=
+ =?utf-8?B?Q1l1MGR0eHE5Ui96emZNY1QyL1VaMkJOSUpMa05EZFFTN1ZnejZKQjE0M3hr?=
+ =?utf-8?B?ZjUraFM0OW9XemE4alU1UHVPYTZrdDdzMk1rQjFhaFNMOVAvZ3NHMTVWVEhk?=
+ =?utf-8?B?N3ZLV2pReFhrSDUyK2thUEkzUnJsVXhnakZ5K0dlcmduOFJJaFpnY2Z1YTZH?=
+ =?utf-8?B?VU9jWE5iQnBBeGR3UW1JK2hGVyszdzUydG85c3BmR0haUnNLSmZSVmxZamFU?=
+ =?utf-8?B?WUJFL1d4Q1VkSUpZZnFPSis3aEd5dEVmR2lzM1JFQlJxeWVMTmZOUm1NY0xO?=
+ =?utf-8?B?ZXNqc2luSE91bVJmRXZKQ0hTZVg3WlY1Wkk5MWx1TG5RaGhNNUpQV3k1dDRU?=
+ =?utf-8?B?cUlBRS83UVB4N080Y0xtRkVScEh2NkxlS1Q0bjNkSFp3Rm1uL1NEMlRNT1RW?=
+ =?utf-8?B?d25vZ0UwNXRrSGNtUmtsbloxSm9SdkkxaGVIQng3WDc2THpPN0xZTzJsZ1Yy?=
+ =?utf-8?B?Z3lHamhwT1J6MnpDQkNsNi84M3k5d3FrZDgwVkhFa0ZxSDJEZFdBaEtTRFlW?=
+ =?utf-8?B?UVhlZmZNc0hkdFUyeHFoc1dUVVJqdk9XbGpLVWxLSFpFSkErWFk0VUlUVnlk?=
+ =?utf-8?B?TGFaOHNLcUhqZE1qbFB2c2VQMUVTSUo2MXpVVnBzTjVvWU02TXpzRWFnQ252?=
+ =?utf-8?B?SURvdjd0OElsMkpSS3YyRUlCa3hmeFYvNzcwbjEzTVZUWXJ5OTRIT1ltTlpw?=
+ =?utf-8?B?RFdYRmFZK3hJS0VXazZSbEFBR1llbDFIQlJwRVRGeUVqVjYrMjlwendYL01D?=
+ =?utf-8?B?UEpGdy8zdit5Q0twZEl4L3ZONmpMQXpua0V5UFRsL29VZjEvYVl4SG9lSjhp?=
+ =?utf-8?B?VjNVc3JCMkNUU2ZRdDBUTmhFVHoyMWsyenR5bDluSmhNRXc5ajlQTkEvUjJi?=
+ =?utf-8?B?MUdQaGdLVXNGQ2srV1NJeWRXT0RzTDNDcnR6MUo2QjhsMHpxbmZpdC9pWVY4?=
+ =?utf-8?B?UDg4cVBDVlV6MjhhNVRPckZLaUJFMi96M2pGckZDSzhWTTZZaWpMcWJWak85?=
+ =?utf-8?B?a2czbm0vNURCbGx0UHU5SFl2UUo2N2NiVUpOUVRoQlNsczhRQT09?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(346002)(376002)(396003)(136003)(39860400002)(366004)(7416002)(478600001)(966005)(5660300002)(8936002)(6486002)(53546011)(6506007)(31696002)(86362001)(26005)(6512007)(41300700001)(2906002)(38100700002)(122000001)(2616005)(186003)(38070700005)(83380400001)(71200400001)(66946007)(76116006)(66556008)(66476007)(64756008)(66446008)(54906003)(6916009)(91956017)(31686004)(36756003)(316002)(4326008)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZjJyNEZKUlp3OU1NdTJSWTZIWUd0QmJ6aVErOXVmVjd4S0cwNitjL2ZJbmsv?=
+ =?utf-8?B?ZzRtNDZDaWthMXdJRmZIT25JSmVrdjE3aHVQbHNTeWxSS1BFa3dqZ0lzRDBL?=
+ =?utf-8?B?RlIxTElWN3Z5SkxQazdSamNzMWhDWjkwTWd2RDQyN2VpTER6MDl4czBidjJK?=
+ =?utf-8?B?Y3RMcDQ3MUN3WU9PZ3VwWjBJSjNoNHR2QWRtVGJ0Tmd2TE5jYzBaQS94NlFm?=
+ =?utf-8?B?NTY3b2d1THdxVWZLVjhnYXhsSlcxcVYvZkhxTnFRZTRua3IzNXk3Z0ZtRFRU?=
+ =?utf-8?B?TjlTOUM0UFB0YW1Bb0trRG9LNTNjVHAxemZQWXlSUEI5SG5CK0UzMW1EZU1H?=
+ =?utf-8?B?eFh5bXZQMDRkeEd1RUExNXdUemF1Rmk5K1c4UHNWcVA0ZkQ2eGdXMTY3cGxZ?=
+ =?utf-8?B?VHFhRnJmREdHTUU1eFN2SDErYTROVXh6Q1FWM3JVSS8yYXNXNmdSRVhSUXBH?=
+ =?utf-8?B?ZzdxSkQyRDcwd1pzZnlVeGRlRXZhQllXVHBIMTZ5TXhJemROWnJaTHF4RXNl?=
+ =?utf-8?B?SDladnhkcmxzdVVSOHh6MWViTkRvdW5BQ3VFdFZqemRoMDFzY21qdG04WWZR?=
+ =?utf-8?B?S2E0c1d4UlJtTVlFbjhENUdRbDhQaGEzMktmSDhPbnBvN0tBRWhIdmRLWmpW?=
+ =?utf-8?B?NnBpWC9FUjdkYkRYSUtFZVFCQ01UdU95WTYrQWxrNGRwbHIyK2xsYWo5b1Ny?=
+ =?utf-8?B?N3l0ei9rQUwzOUJsYkd5aTdUYmU2bkxpTmMyN0RpSjRDOUU0bVYwUFZDdldL?=
+ =?utf-8?B?bTBOS3VDanFVNEpxTS9aVEEwcDdMQVdSeFYvRkE5TElIQ0pWUXlQN1ZzcEhP?=
+ =?utf-8?B?UEhKdUNhZEI1WStpUFJUaW9EQzM2R0dsVk1uOGNnV09RL3ArdmtGVzg1dmps?=
+ =?utf-8?B?Q05pTlpsRHRNMVNQL1hla0s2b3VKWFBaZDFoWHlQOEtDMjNXVFA2UllxRzdq?=
+ =?utf-8?B?bi9kNG5Qbk5lZWN6bEVXU3R0c2hoR2FZMlpPRlRYNzc3RTcwc3M1M0RBRk1E?=
+ =?utf-8?B?MDNvemkwK2lFSWlHSHhtclpSd25uMW5WR2hBZHYzc3RPZGpUaVBTOUNQdG5P?=
+ =?utf-8?B?T3E0dEJOR3l4RjBnbWZUTDJHdmtRbVpSMk1DbjViNjBsN1hvUDg0V0V0YzNS?=
+ =?utf-8?B?d0g5L0VZT2tJTWxmTWlGTWhORkdBcHpJbmNnM1I0OE83NWZ5T3kzQ211enZL?=
+ =?utf-8?B?Y2hOSkVVYXRWV0RjTjZJSkh0d3dyaWEvcHBzcmxTYkRZUDk1L1J5dVdWL0o5?=
+ =?utf-8?B?QWg4S01KdmdPcS8rZGJqZDdzbVJ5SVFCTTlQQWk5ZEhkQ2pHQkIxU0U2bEdM?=
+ =?utf-8?B?MHRzVE5xc0F6TzRPcHZwclB6OWRTZ1h1VWZ6T2RYK0RScFl3NElXZExJWFUy?=
+ =?utf-8?B?dE03ZVpHWlV5V0FieDNERENQaW14bU5wWnc2dnpTQkptRVl2Z3pTRnpVeVQw?=
+ =?utf-8?B?dytyYnpnWHhVeTZvMHpuam8vTTdaQ05WbE9XcXpoRlFkZ201WEVSQm1kY3Nz?=
+ =?utf-8?B?VjczWldoZzl6QWZERlJyNXE1RFhVdUEwczRvcTZsQU1FQzRWTVBET25ydnda?=
+ =?utf-8?B?RnJUTHY4V3VMZUZ0SjdwdXRTN2RoK2luUE9YMWxBY2RQQjg2aE1XZGN4SUZB?=
+ =?utf-8?B?VmhWaTBmWkNZWHlrakpQcjIveFlUNHhtRnBrZVZrdS90bjlWOXl6Y2xYTTRE?=
+ =?utf-8?B?YWtoRDlLMEhicThCdFpXK2hxeUVINC9LYUtRWE50NzhDV1prSyswQVppL0RL?=
+ =?utf-8?B?ZzBRek9sbmhramxGbUcyUWFRcFdKU1p3ZktHbTRyWDkzNTJUZ09RbEthZHh0?=
+ =?utf-8?B?L3h6RnBITlJ0ekNHVGtwZ1J2NlRYQ05BMi9UemxuMVJLWU82VGpMS2VhS0RQ?=
+ =?utf-8?B?cmdDSW93Y05kc3FIaC9hbW5Ea3JoWWlqV25MaXRwWGY5azN6SDhRaVlkbDZ2?=
+ =?utf-8?B?UjB1TEZjTkdNM2szeC9rV0s4ODZQZHZXZ0tTM2NDZlpxRUo1S09JTWIwNjk1?=
+ =?utf-8?B?eG5oYWZYRnEyWHJYcnhGZGdjRlVoVTBDUjQxSHhibXBvQVFmY3lUQkVHZHZC?=
+ =?utf-8?B?VkVkTEJDU21iRENORnZNWHBUemhmWjcxd0ZHeWduWUlMZDlaL2t6dG9MTUk1?=
+ =?utf-8?Q?juE8nIfDILiEhEqg8eiUX8Nd5?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A32B686B55314D488B3B6C946DC5779E@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
- <20210816074619.177383-4-wangkefeng.wang@huawei.com> <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
- <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
- <ee649111-dc07-d6db-8872-dcb692802236@huawei.com> <CAGETcx9drOdE_vfn-nhDZM9MbgxGxYJN6ydiAVxo_Ltqve9eTg@mail.gmail.com>
- <b5eb935f-26e1-6475-63af-e7f6101eb017@huawei.com> <CAGETcx9yaWZOzt=gcyNAshoHdPoYizhmrKS-kU9c2QM2+HqeEw@mail.gmail.com>
- <df8e7756-8b0d-d7de-a9ff-3f6eb0ffa8a5@huawei.com> <CAGETcx-47yRUcBjEdWFBtroSEkHXRNrJ4zaD8WpE0DPEPp9NxQ@mail.gmail.com>
- <85b28900-5f42-b997-2ded-0b952bc2a03e@huawei.com> <CAGETcx-N4+u0iw9n5ncx_9MNnTa3ViyesxsDD7xN3jtEPT-uBw@mail.gmail.com>
- <265bb783-10da-a7c1-2625-055dec5643a3@huawei.com> <CAGETcx9m4=7V25nvYa0030ChKeJw5bu3ogs6gjFpjNKdq+_B_Q@mail.gmail.com>
- <4a8b0a6d-b1d5-ffe9-8e31-61844cb9bd89@huawei.com>
-In-Reply-To: <4a8b0a6d-b1d5-ffe9-8e31-61844cb9bd89@huawei.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 5 Jul 2022 12:25:53 -0700
-Message-ID: <CAGETcx8RLor0JcboBuMrB96xUot14P1CAcqoen7ZHnYRi7KMEQ@mail.gmail.com>
-Subject: Re: [BUG] amba: Remove deferred device addition
-To:     Kefeng Wang <wangkefeng.wang@huawei.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e076e0f-8623-4af3-8c1f-08da5ebc7c35
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2022 19:28:05.6468
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HHWcDpMmuNknfJ5KYlGdG+yycygpbWtaxB8EYACVOv2+I2SotKO3Es84CXiz0ORnuAH9/RRCWI615R4GUSZYkqLc2KcQtA7YAlIbQiOjEXo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3472
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 10, 2021 at 12:59 AM Kefeng Wang <wangkefeng.wang@huawei.com> w=
-rote:
->
->
-> On 2021/9/9 11:30, Saravana Kannan wrote:
-> > On Fri, Aug 27, 2021 at 6:09 PM Kefeng Wang <wangkefeng.wang@huawei.com=
-> wrote:
-> >>
-> >> On 2021/8/28 3:09, Saravana Kannan wrote:
-> >>> On Fri, Aug 27, 2021 at 7:38 AM Kefeng Wang <wangkefeng.wang@huawei.c=
-om> wrote:
-> >>>> On 2021/8/27 8:04, Saravana Kannan wrote:
-> >>>>> On Thu, Aug 26, 2021 at 1:22 AM Kefeng Wang <wangkefeng.wang@huawei=
-.com> wrote:
-> >>>>>>>>> Btw, I've been working on [1] cleaning up the one-off deferred =
-probe
-> >>>>>>>>> solution that we have for amba devices. That causes a bunch of =
-other
-> >>>>>>>>> headaches. Your patch 3/3 takes us further in the wrong directi=
-on by
-> >>>>>>>>> adding more reasons for delaying the addition of the device.
-> >>>>>> Hi Saravana, I try the link[1], but with it, there is a crash when=
- boot
-> >>>>>> (qemu-system-arm -M vexpress-a15),
-> >>> I'm assuming it's this one?
-> >>> arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
-> >> I use arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts.
-> >>
-> >> qemu-system-arm -M vexpress-a15 -dtb vexpress-v2p-ca15-tc1.dtb -cpu
-> >> cortex-a15 -smp 2 -m size=3D3G -kernel zImage -rtc base=3Dlocaltime -i=
-nitrd
-> >> initrd-arm32 -append 'console=3DttyAMA0 cma=3D0 kfence.sample_interval=
-=3D0
-> >> earlyprintk debug ' -device virtio-net-device,netdev=3Dnet8 -netdev
-> >> type=3Dtap,id=3Dnet8,script=3D/etc/qemu-ifup,downscript=3D/etc/qemu-if=
-down
-> >> -nographic
-> >>
-> >>>>> Hi,
-> >>>>>
-> >>>>> It's hard to make sense of the logs. Looks like two different threa=
-ds
-> >>>>> might be printing to the log at the same time? Can you please enabl=
-e
-> >>>>> the config that prints the thread ID (forgot what it's called) and
-> >>>>> collect this again? With what I could tell the crash seems to be
-> >>>>> happening somewhere in platform_match(), but that's not related to
-> >>>>> this patch at all?
-> >>>> Can you reproduce it? it is very likely related(without your patch, =
-the
-> >>>> boot is fine),
-> >>> Sorry, I haven't ever setup qemu and booted vexpress. Thanks for your=
- help.
-> >>>
-> >>>> the NULL ptr is about serio, it is registed from amba driver.
-> >>>>
-> >>>> ambakmi_driver_init
-> >>>>
-> >>>>     -- amba_kmi_probe
-> >>>>
-> >>>>       -- __serio_register_port
-> >>> Thanks for the pointer. I took a look at the logs and the code. It's
-> >>> very strange. As you can see from the backtrace, platform_match() is
-> >>> being called for the device_add() from serio_handle_event(). But the
-> >>> device that gets added there is on the serio_bus which obviously
-> >>> should be using the serio_bus_match.
-> >> Yes, I am confused too.
-> >>>> +Dmitry and input maillist, is there some known issue about serio ?
-> >>>>
-> >>>> I add some debug, the full log is attached.
-> >>>>
-> >>>> [    2.958355][   T41] input: AT Raw Set 2 keyboard as
-> >>>> /devices/platform/bus@8000000/bus@8000000:motherboard-bus/bus@800000=
-0:motherboard-bus:iofpga-bus@300000000/1c060000.kmi/serio0/input/input0
-> >>>> [    2.977441][   T41] serio serio1: pdev c1e05508, pdev->name (null=
-),
-> >>>> drv c1090fc0, drv->name vexpress-reset
-> >>> Based on the logs you added, it's pretty clear we are getting to
-> >>> platform_match(). It's also strange that the drv->name is
-> >>> vexpress-reset
-> >> ...
-> >>>> [    3.003113][   T41] Backtrace:
-> >>>> [    3.003451][   T41] [<c0560bb4>] (strcmp) from [<c0646358>] (plat=
-form_match+0xdc/0xf0)
-> >>>> [    3.003963][   T41] [<c064627c>] (platform_match) from [<c06437d4=
->] (__device_attach_driver+0x3c/0xf4)
-> >>>> [    3.004769][   T41] [<c0643798>] (__device_attach_driver) from [<=
-c0641180>] (bus_for_each_drv+0x68/0xc8)
-> >>>> [    3.005481][   T41] [<c0641118>] (bus_for_each_drv) from [<c0642f=
-40>] (__device_attach+0xf0/0x16c)
-> >>>> [    3.006152][   T41] [<c0642e50>] (__device_attach) from [<c06439d=
-4>] (device_initial_probe+0x1c/0x20)
-> >>>> [    3.006853][   T41] [<c06439b8>] (device_initial_probe) from [<c0=
-642030>] (bus_probe_device+0x94/0x9c)
-> >>>> [    3.007259][   T41] [<c0641f9c>] (bus_probe_device) from [<c063f9=
-cc>] (device_add+0x408/0x8b8)
-> >>>> [    3.007900][   T41] [<c063f5c4>] (device_add) from [<c071c1cc>] (=
-serio_handle_event+0x1b8/0x234)
-> >>>> [    3.008824][   T41] [<c071c014>] (serio_handle_event) from [<c014=
-75a4>] (process_one_work+0x238/0x594)
-> >>>> [    3.009737][   T41] [<c014736c>] (process_one_work) from [<c01479=
-5c>] (worker_thread+0x5c/0x5f4)
-> >>>> [    3.010638][   T41] [<c0147900>] (worker_thread) from [<c014feb4>=
-] (kthread+0x178/0x194)
-> >>>> [    3.011496][   T41] [<c014fd3c>] (kthread) from [<c0100150>] (ret=
-_from_fork+0x14/0x24)
-> >>>> [    3.011860][   T41] Exception stack(0xc1675fb0 to 0xc1675ff8)
-> >>> But the platform_match() is happening for the device_add() from
-> >>> serio_event_handle() that's adding a device to the serio_bus and it
-> >>> should be using serio_bus_match().
-> >>>
-> >>> I haven't reached any conclusion yet, but my current thought process
-> >>> is that it's either:
-> >>> 1. My patch is somehow causing list corruption. But I don't directly
-> >>> touch any list in my change (other than deleting a list entirely), so
-> >>> it's not clear how that would be happening.
-> >> Maybe some concurrent driver load=EF=BC=9F
-> >>
-> >>> 2. Without my patch, these AMBA device's probe would be delayed at
-> >>> least until 5 seconds or possibly later. I'm wondering if my patch is
-> >>> catching some bad timing assumptions in other code.
-> >> After Rob's patch, It will retry soon.
-> >>
-> >> commit 039599c92d3b2e73689e8b6e519d653fd4770abb
-> >> Author: Rob Herring <robh@kernel.org>
-> >> Date:   Wed Apr 29 15:58:12 2020 -0500
-> >>
-> >>       amba: Retry adding deferred devices at late_initcall
-> >>
-> >>       If amba bus devices defer when adding, the amba bus code simply =
-retries
-> >>       adding the devices every 5 seconds. This doesn't work well as it
-> >>       completely unsynchronized with starting the init process which c=
-an
-> >>       happen in less than 5 secs. Add a retry during late_initcall. If=
- the
-> >>       amba devices are added, then deferred probe takes over. If the
-> >>       dependencies have not probed at this point, then there's no impr=
-ovement
-> >>       over previous behavior. To completely solve this, we'd need to r=
-etry
-> >>       after every successful probe as deferred probe does.
-> >>
-> >>       The list_empty() check now happens outside the mutex, but the mu=
-tex
-> >>       wasn't necessary in the first place.
-> >>
-> >>       This needed to use deferred probe instead of fragile initcall or=
-dering
-> >>       on 32-bit VExpress systems where the apb_pclk has a number of pr=
-obe
-> >>       dependencies (vexpress-sysregs, vexpress-config).
-> >>
-> >>
-> >>> You might be able to test out theory (2) by DEFERRED_DEVICE_TIMEOUT t=
-o
-> >>> a much smaller number. Say 500ms or 100ms. If it doesn't crash, it
-> >>> doesn't mean it's not (2), but if it does, then we know for sure it's
-> >>> (2).
-> >> ok, I will try this one, but due to above patch, it may not work.
-> > Were you able to find anything more?
-> I can't find any clue=EF=BC=8C and have no time to check this for now, is=
- there
-> any news from your side?
-
-To close out this thread, the issue was due to a UAF bug in driver
-core that was fixed by:
-https://lore.kernel.org/all/20220513112444.45112-1-schspa@gmail.com/
-
-With that fix, there wouldn't have been a crash, but amba driver
-registration would have failed (because match returned
-non-EPROBE_DEFER error).
-
--Saravana
+DQoNCk9uIDA1LzA3LzIwMjIgMjA6MjMsIFJvYiBIZXJyaW5nIHdyb3RlOg0KPiBPbiBGcmksIEp1
+bCAwMSwgMjAyMiBhdCAwODoyMjo1MVBNICswMTAwLCBDb25vciBEb29sZXkgd3JvdGU6DQo+PiBG
+cm9tOiBDb25vciBEb29sZXkgPGNvbm9yLmRvb2xleUBtaWNyb2NoaXAuY29tPg0KPj4NCj4+IFRo
+ZSBrMjEwIFUtQm9vdCBwb3J0IGhhcyBiZWVuIHVzaW5nIHRoZSBjbG9ja3MgZGVmaW5lZCBpbiB0
+aGUNCj4+IGRldmljZXRyZWUgdG8gYnJpbmcgdXAgdGhlIGJvYXJkJ3MgU1JBTSwgYnV0IHRoaXMg
+dmlvbGF0ZXMgdGhlDQo+PiBkdC1zY2hlbWEuIEFzIHN1Y2gsIG1vdmUgdGhlIGNsb2NrcyB0byBh
+IGRlZGljYXRlZCBub2RlIHdpdGgNCj4+IHRoZSBzYW1lIGNvbXBhdGlibGUgc3RyaW5nICYgZG9j
+dW1lbnQgaXQuDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogQ29ub3IgRG9vbGV5IDxjb25vci5kb29s
+ZXlAbWljcm9jaGlwLmNvbT4NCj4+IC0tLQ0KPj4gIC4uLi9tZW1vcnktY29udHJvbGxlcnMvY2Fu
+YWFuLGsyMTAtc3JhbS55YW1sICB8IDUyICsrKysrKysrKysrKysrKysrKysNCj4+ICAxIGZpbGUg
+Y2hhbmdlZCwgNTIgaW5zZXJ0aW9ucygrKQ0KPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL2NhbmFhbixrMjEw
+LXNyYW0ueWFtbA0KPj4NCj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL2NhbmFhbixrMjEwLXNyYW0ueWFtbCBiL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZW1vcnktY29udHJvbGxlcnMvY2FuYWFuLGsy
+MTAtc3JhbS55YW1sDQo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPj4gaW5kZXggMDAwMDAwMDAw
+MDAwLi44MmJlMzI3NTc3MTMNCj4+IC0tLSAvZGV2L251bGwNCj4+ICsrKyBiL0RvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZW1vcnktY29udHJvbGxlcnMvY2FuYWFuLGsyMTAtc3Jh
+bS55YW1sDQo+PiBAQCAtMCwwICsxLDUyIEBADQo+PiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
+cjogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpDQo+PiArJVlBTUwgMS4yDQo+PiArLS0t
+DQo+PiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9tZW1vcnktY29udHJvbGxl
+cnMvY2FuYWFuLGsyMTAtc3JhbS55YW1sIw0KPj4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVl
+Lm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPj4gKw0KPj4gK3RpdGxlOiBDYW5hYW4gSzIx
+MCBTUkFNIG1lbW9yeSBjb250cm9sbGVyDQo+PiArDQo+PiArZGVzY3JpcHRpb246IHwNCj4gDQo+
+IERvbid0IG5lZWQgJ3wnLg0KPiANCj4+ICsgIFRoZSBDYW5hYW4gSzIxMCBTUkFNIG1lbW9yeSBj
+b250cm9sbGVyIGlzIGluaXRpYWxpc2VkIGFuZCBwcm9ncmFtbWVkIGJ5DQo+PiArICBmaXJtd2Fy
+ZSwgYnV0IGFuIE9TIG1pZ2h0IHdhbnQgdG8gcmVhZCBpdHMgcmVnaXN0ZXJzIGZvciBlcnJvciBy
+ZXBvcnRpbmcNCj4+ICsgIHB1cnBvc2VzIGFuZCB0byBsZWFybiBhYm91dCB0aGUgRFJBTSB0b3Bv
+bG9neS4NCj4gDQo+IEhvdyB0aGUgT1MgZ29pbmcgdG8gZG8gdGhhdD8gWW91IGRvbid0IGhhdmUg
+YW55IHdheSBkZWZpbmVkIHRvIGFjY2VzcyANCj4gdGhlIHJlZ2lzdGVycy4NCg0KRXVnaCwgY29w
+eSBwYXN0ZS4gSSdsbCByZXBocmFzZSBpbiB0aGUgcmVzcGluLiBJdCBzaG91bGQgYmUgImluaXRp
+YWxpc2VkIGJ5DQpmaXJtd2FyZS4iIFRoZXJlIGFyZSBubyByZWdpc3RlcnMsIG9ubHkgY2xvY2tz
+Lg0KDQo+IA0KPiBBbHNvLCB3aGVyZSBpcyB0aGUgU1JBTSBhZGRyZXNzIGl0c2VsZiBkZWZpbmVk
+Pw0KDQpUaGUgYWN0dWFsIHNyYW0gaXMgaW4gdGhlIG1lbW9yeSBub2RlLg0KDQo+IA0KPj4gKw0K
+Pj4gK21haW50YWluZXJzOg0KPj4gKyAgLSBDb25vciBEb29sZXkgPGNvbm9yQGtlcm5lbC5vcmc+
+DQo+PiArDQo+PiArcHJvcGVydGllczoNCj4+ICsgIGNvbXBhdGlibGU6DQo+PiArICAgIGVudW06
+DQo+PiArICAgICAgLSBjYW5hYW4sazIxMC1zcmFtDQo+PiArDQo+PiArICBjbG9ja3M6DQo+PiAr
+ICAgIG1pbkl0ZW1zOiAxDQo+PiArICAgIGl0ZW1zOg0KPj4gKyAgICAgIC0gZGVzY3JpcHRpb246
+IHNyYW0wIGNsb2NrDQo+PiArICAgICAgLSBkZXNjcmlwdGlvbjogc3JhbTEgY2xvY2sNCj4+ICsg
+ICAgICAtIGRlc2NyaXB0aW9uOiBhaXNyYW0gY2xvY2sNCj4+ICsNCj4+ICsgIGNsb2NrLW5hbWVz
+Og0KPj4gKyAgICBtaW5JdGVtczogMQ0KPj4gKyAgICBpdGVtczoNCj4+ICsgICAgICAtIGNvbnN0
+OiBzcmFtMA0KPj4gKyAgICAgIC0gY29uc3Q6IHNyYW0xDQo+PiArICAgICAgLSBjb25zdDogYWlz
+cmFtDQo+PiArDQo+PiArcmVxdWlyZWQ6DQo+PiArICAtIGNvbXBhdGlibGUNCj4+ICsgIC0gY2xv
+Y2tzDQo+PiArICAtIGNsb2NrLW5hbWVzDQo+PiArDQo+PiArYWRkaXRpb25hbFByb3BlcnRpZXM6
+IGZhbHNlDQo+PiArDQo+PiArZXhhbXBsZXM6DQo+PiArICAtIHwNCj4+ICsgICAgI2luY2x1ZGUg
+PGR0LWJpbmRpbmdzL2Nsb2NrL2syMTAtY2xrLmg+DQo+PiArICAgIG1lbW9yeS1jb250cm9sbGVy
+IHsNCj4+ICsgICAgICAgIGNvbXBhdGlibGUgPSAiY2FuYWFuLGsyMTAtc3JhbSI7DQo+PiArICAg
+ICAgICBjbG9ja3MgPSA8JnN5c2NsayBLMjEwX0NMS19TUkFNMD4sDQo+PiArICAgICAgICAgICAg
+ICAgICA8JnN5c2NsayBLMjEwX0NMS19TUkFNMT4sDQo+PiArICAgICAgICAgICAgICAgICA8JnN5
+c2NsayBLMjEwX0NMS19BST47DQo+PiArICAgICAgICBjbG9jay1uYW1lcyA9ICJzcmFtMCIsICJz
+cmFtMSIsICJhaXNyYW0iOw0KPj4gKyAgICB9Ow0KPj4gLS0gDQo+PiAyLjM3LjANCj4+DQo+Pg0K
