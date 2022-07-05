@@ -2,82 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F9FB567967
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 23:34:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5F056798C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 23:52:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231264AbiGEVeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 17:34:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
+        id S231575AbiGEVw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 17:52:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229849AbiGEVep (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 17:34:45 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3148E84;
-        Tue,  5 Jul 2022 14:34:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=kKAWByl3Wyi3A9Ef1Qy70BLTUzK6DPnPcCzJYHhgBdM=; b=cCfyKT79+wZT44GOrFEY1F5AWw
-        HukYgUDodaGrTIdLGXfCeUjLfPQALNGvYlfcaL10TAkLIrKpm31U9QdgjAe4psw80wzhrzwSUUyfD
-        i+u0ize98+wkYPFPypI2mxRdIrHUQ+iJ4o3UnYPmwgDBmW5N98sLtSooKfJfi8i7KZAukUYZljjH9
-        K2zZd+hCxjjGAIc38MTkaN3H7bSInMu9Q9wCVSoq5p4ceXywWEqeEQOUR3ja2rAkPZYNogol0QX34
-        w7gSNBwqskcschyVI8N4gNrp8pB1ExK2DbR0otIpMmT3pvXzzeTlfim2xJX/DGK61OPTiH3f9w13H
-        zRNOtiQA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33198)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1o8qBm-0001tb-CW; Tue, 05 Jul 2022 22:34:34 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1o8qBk-0003gK-3I; Tue, 05 Jul 2022 22:34:32 +0100
-Date:   Tue, 5 Jul 2022 22:34:32 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 1/4] dt-bindings: net: convert sff,sfp to
- dtschema
-Message-ID: <YsSuaKA4rRkXbt2D@shell.armlinux.org.uk>
-References: <20220704134604.13626-1-ioana.ciornei@nxp.com>
- <20220704134604.13626-2-ioana.ciornei@nxp.com>
- <20220705212903.GA2615438-robh@kernel.org>
+        with ESMTP id S230296AbiGEVw0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 17:52:26 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA125FC4
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 14:52:25 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id z12so9786650wrq.7
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 14:52:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jToajnsA4DU5smbwrysnmFLqWjh8sTt0F9m0x429/q4=;
+        b=XmxSBKEpjSnQARyzuVYMJKjypQCp5lKnVdlxVzwpWMB1XPSS5Jnbf89SFyjabdDH/I
+         S5WYH7VXCVTuW5KVlHLalRqyOmGh7iwze5Q4WVyyREJjwcydIx7m9+tvt+KXpcXrQnSt
+         JjPnqwlaWCTT+BOzLzTFtUofPCiZ3EUYjGkURzUr+/XHlH0BrcvB5gX5/BP/l8ubykLq
+         U95Hj0mIPRMnGY1xr70iImh+U0NTZpK8XpOaT541iaSW41WZBQ8qzp4ArM2piFfOy0OV
+         HhSBRZt5V0kQNYvK2cUUXhwHfJTU0HUH1LFEZYKZBlNeD+MB4lI/FNyrn89QgIihkw6X
+         5QJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jToajnsA4DU5smbwrysnmFLqWjh8sTt0F9m0x429/q4=;
+        b=cX534T5tiLrNn8QPbdXTWcEMeRjo6UFX7mRySy8FWk8j7vcfN1jozRnFoaFeAbCiEF
+         hioWPs9jGTAPMgMO3FR/2GH33gKWVddVQQnz6cjWW27gs5n3izn3FnddvXbSv/xDmyTD
+         3e7etJUSUDqZ5Gh46AIocslXVosECc6Qo4wJwizSLnR9HeW60r0dB/HYuJQ/1dB8mhwX
+         Lnml/MyAWNPnRyvlfAvzr3zqAl8aR65rpjXKcYCJSIwgNlEw3vDUN15jDvVPv3swXUVs
+         jDWh7t+dCDHiACei33TdK0W5ysMw1/biynhGO3Mnw3SaFwg+ckClBGuZK5j6nvZEha2Z
+         ouUQ==
+X-Gm-Message-State: AJIora8f/Iy6nvuzWsfNzJWusG5ev10aoFoOmF7YjbjGgxe9xbBQGGNe
+        sEYcdIc02TNhTY+8QBMYGTzmwVBzUFd/S+vpzlc=
+X-Google-Smtp-Source: AGRyM1vyBLDyP4wKhE8IVBi2uODjJWvmtgPZ8crZRHD5rVX2f2UGPFzr5mMHIM4YLdqq6OGo2l9xyQ==
+X-Received: by 2002:adf:ef47:0:b0:21d:6a93:9de8 with SMTP id c7-20020adfef47000000b0021d6a939de8mr11946273wrp.326.1657057943782;
+        Tue, 05 Jul 2022 14:52:23 -0700 (PDT)
+Received: from henark71.. ([51.37.234.167])
+        by smtp.gmail.com with ESMTPSA id g34-20020a05600c4ca200b0039c7dbafa7asm18353920wmp.19.2022.07.05.14.52.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Jul 2022 14:52:23 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH v5 00/13] Canaan devicetree fixes
+Date:   Tue,  5 Jul 2022 22:52:01 +0100
+Message-Id: <20220705215213.1802496-1-mail@conchuod.ie>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220705212903.GA2615438-robh@kernel.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 05, 2022 at 03:29:03PM -0600, Rob Herring wrote:
-> On Mon, Jul 04, 2022 at 04:46:01PM +0300, Ioana Ciornei wrote:
-> > +  maximum-power-milliwatt:
-> > +    maxItems: 1
-> > +    description:
-> > +      Maximum module power consumption Specifies the maximum power consumption
-> > +      allowable by a module in the slot, in milli-Watts. Presently, modules can
-> > +      be up to 1W, 1.5W or 2W.
-> 
->        enum: [ 1000, 1500, 2000 ]
-> 
-> Or is it not just those values? Maybe 'maximum: 2000' instead.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-There is no enforcing of the value, we just read the value from
-firmware and use it as a limit for the module (and the module can
-specify powers of 1.5W or 2W in its EEPROM, otherwise it defaults
-to 1W. Future standards may allow higher power consumptions.
+Hey all,
+This series should rid us of dtbs_check errors for the RISC-V Canaan k210
+based boards. To make keeping it that way a little easier, I changed the
+Canaan devicetree Makefile so that it would build all of the devicetrees
+in the directory if SOC_CANAAN.
 
+I *DO NOT* have any Canaan hardware so I have not tested any of this in
+action. Since I sent v1, I tried to buy some since it's cheap - but could
+out of the limited stockists none seemed to want to deliver to Ireland :(
+I based the series on next-20220617.
+
+Thanks,
+Conor.
+
+Changes since v4:
+- add Rob's tags from v3
+- sram: rephrase the binding description
+- ASoC: dropped the applied binding
+
+Changes since v3:
+- dts: drop the bogus "regs" property pointed out by Niklas
+- dma/timer: add Serge's reviews (and expand on the dma interrupt
+  description)
+- dts: add Niklas' T-b where I felt it was suitable. lmk if you think it
+  applies more broadly
+- spi: drop the applied spi dt-binding change. Thanks Mark.
+
+Changes since v2:
+- i2s: added clocks maxItems
+- dma: unconditionally extended the interrupts & dropped canaan
+  compatible
+- timer: as per Sergey, split the timer dts nodes in 2 & drop the
+  binding patch
+- ili9341: add a canaan specific compatible to the binding and dts
+
+Changes since v1:
+- I added a new dt node & compatible for the SRAM memory controller due
+  Damien's wish to preserve the inter-op with U-Boot.
+- The dw-apb-ssi binding now uses the default rx/tx widths
+- A new patch fixes bus {ranges,reg} warnings
+- Rearranged the patches in a slightly more logical order
+
+Conor Dooley (13):
+  dt-bindings: display: convert ilitek,ili9341.txt to dt-schema
+  dt-bindings: display: ili9341: document canaan kd233's lcd
+  dt-bindings: dma: dw-axi-dmac: extend the number of interrupts
+  dt-bindings: memory-controllers: add canaan k210 sram controller
+  riscv: dts: canaan: fix the k210's memory node
+  riscv: dts: canaan: fix the k210's timer nodes
+  riscv: dts: canaan: fix mmc node names
+  riscv: dts: canaan: fix kd233 display spi frequency
+  riscv: dts: canaan: use custom compatible for k210 i2s
+  riscv: dts: canaan: remove spi-max-frequency from controllers
+  riscv: dts: canaan: fix bus {ranges,reg} warnings
+  riscv: dts: canaan: add specific compatible for kd233's LCD
+  riscv: dts: canaan: build all devicetress if SOC_CANAAN
+
+ .../bindings/display/ilitek,ili9341.txt       | 27 -------
+ .../display/panel/ilitek,ili9341.yaml         | 49 +++++++++----
+ .../bindings/dma/snps,dw-axi-dmac.yaml        |  7 +-
+ .../memory-controllers/canaan,k210-sram.yaml  | 52 +++++++++++++
+ arch/riscv/boot/dts/canaan/Makefile           | 10 ++-
+ arch/riscv/boot/dts/canaan/canaan_kd233.dts   |  6 +-
+ arch/riscv/boot/dts/canaan/k210.dtsi          | 73 +++++++++++++------
+ .../riscv/boot/dts/canaan/sipeed_maix_bit.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maix_dock.dts      |  2 +-
+ arch/riscv/boot/dts/canaan/sipeed_maix_go.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maixduino.dts      |  2 +-
+ 11 files changed, 159 insertions(+), 73 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml
+
+
+base-commit: b6f1f2fa2bddd69ff46a190b8120bd440fd50563
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.37.0
+
