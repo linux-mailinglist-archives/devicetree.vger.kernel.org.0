@@ -2,161 +2,480 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 223AB56768E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 20:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F435676B7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 20:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229880AbiGESeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 14:34:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40498 "EHLO
+        id S229849AbiGESlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 14:41:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbiGESeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 14:34:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AAC71ADB5;
-        Tue,  5 Jul 2022 11:34:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05C0FB818C2;
-        Tue,  5 Jul 2022 18:34:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7F60C341D1;
-        Tue,  5 Jul 2022 18:34:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657046049;
-        bh=kIyot3zMyMDO8B1YVidHQ7qgbvG3Xa6UO0gOQL2C6Jg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JsU79BmfynIReY3T89cOgEH/6tFNiBBDFqKBs8oXNQm6/+g5IkfnSz6lnxKwnFqNS
-         1j47RNad0YhesCc/SIiouNRpyt21tXxp+7UujB4zP8xtmbwRtNJauDkGspmgUyDhgl
-         fn9thf0FJV9aayLYjrKzsPTW4fWtqpM+dZ3RveMpUH7WbnRHfbzb18F0miRMtdvQQg
-         STNIB53IAwMygQuY6izE+2HL9mzZsy2/DnNlSXpayAhlmHiEb92zuAdqA/GH/jWeIU
-         Jv7618fva2U+QU/c6uDzeyF1fZYZvuxpgXK3qTZ+hcZqIl+t9mRe/sRlTrt7BFed4l
-         OpSgj1Sj26zAw==
-Received: by mail-vs1-f49.google.com with SMTP id h7so12788288vsr.11;
-        Tue, 05 Jul 2022 11:34:09 -0700 (PDT)
-X-Gm-Message-State: AJIora9OmprPX2zAR5He1YiIY879nxCd15nKzisOw36K+FdtQEVDd53T
-        u2U/rkYqhJcRMauGSRv2NZ54vf6RdkWSuCmyBQ==
-X-Google-Smtp-Source: AGRyM1uIXQO86wcgJn/AvE4+AWlqrvIba5lSJyE0SPqE7mHdOeHYb1wL3dEnTAICHhhvz3Q4xUajqxFIJ9dC4e0p4xY=
-X-Received: by 2002:a67:d194:0:b0:357:8ea:5554 with SMTP id
- w20-20020a67d194000000b0035708ea5554mr562557vsi.0.1657046048517; Tue, 05 Jul
- 2022 11:34:08 -0700 (PDT)
+        with ESMTP id S229554AbiGESlG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 14:41:06 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A98141EEF3;
+        Tue,  5 Jul 2022 11:41:04 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id l144so10906760ybl.5;
+        Tue, 05 Jul 2022 11:41:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=4u67+p/Nu3+Q0UJ56xQ5Fha52WVbpH8uRPOmpE02Jg0=;
+        b=ZomR1mTqsYAUCR+qm0cE91Ae68j3xBV+eRW9M0D2y9mEdgyewNovpbU6FESGzMYECM
+         NWoENR81zx5vVXPbCBCMvTJrXXQboogAs32sH1djQJ3SM6w8dkmJlSB9wZlmuo6cAiVk
+         oB0osK72kK6AxC2dXtC4GqZ4wfdHqNylIEfHQYAj9Plo4M+kSDDdGSe55rTnoL9kmL6e
+         QilFL0oLAtnSwEJcJQ9e8T1mbjNFY51zCxcdgPn78jemWH13q8w7IVQvtSKMzIzI1TsK
+         eI7wzomJwvVmewUrYvJT4a4LafGdrWT5DpYcTSR47MlUs/n7gtjaZpNM9Rpsxb743oF4
+         xtOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=4u67+p/Nu3+Q0UJ56xQ5Fha52WVbpH8uRPOmpE02Jg0=;
+        b=6kM+9tzGIAtyCYhn9TGZ7ie/tGM5hyWLZFVXlvSXG41h/Cencm8pdP43NQUVUpKbYo
+         G8y5BFm/hAl8/r+6YDnuKqCw/4A69AcQq3wFHmEI1MIcVnzFTj73QrmDLYU9BS2z0dph
+         2C6dSxsfLNHkp6EUZTQ7ThxJFQJGhx5qNzqvDSwDww+lNcpDdS1LC6UGemHYKhrnjM2y
+         +0qPhrbjWI66zfr/FG0x1XioF6oPH6QY/Z8bOOeJc+EadYzTronsRJSof36k2k/I+QED
+         pdZBvNED2ggUNxVj2iaOiPu1RnWG9NsK4t7zlzSVnMdj6qZPuuvLbt1NGrGmnKk5tpqv
+         Gk0g==
+X-Gm-Message-State: AJIora+blW6K0hCTku1SUmEi4WX/7L/v0cyg6RLrvDlW67QSsTE9/tsX
+        cImP2nBZ6xJVkYeAFixTD3YdfCUvd2mYcp9ifmQgTFbOaxJTLA==
+X-Google-Smtp-Source: AGRyM1vinUWGqY837l1rMGUYrfzYflSfCpVTv8YCPklCZHNtdQC9oPLLEhW3f3PeDr1Cv1aFhi/QyKxDNNxbbAhnL9s=
+X-Received: by 2002:a25:cbcf:0:b0:66e:8893:a02c with SMTP id
+ b198-20020a25cbcf000000b0066e8893a02cmr2692289ybg.460.1657046463689; Tue, 05
+ Jul 2022 11:41:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
- <20220629164414.301813-3-viorel.suman@oss.nxp.com> <f0634bf0-77e9-939e-693f-31d50af4768c@linaro.org>
- <20220630123754.esbuac4pfktlseh2@fsr-ub1664-116> <78faf75d-80b7-7a0e-e306-6351dbe5133c@linaro.org>
-In-Reply-To: <78faf75d-80b7-7a0e-e306-6351dbe5133c@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 5 Jul 2022 12:33:57 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+0GJBTVkS12XTvUKphMH4XuQ5AS1-QHMw6ULgpWbZBQQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+0GJBTVkS12XTvUKphMH4XuQ5AS1-QHMw6ULgpWbZBQQ@mail.gmail.com>
-Subject: Re: [PATCH v6 02/14] dt-bindings: pinctrl: imx: Add fsl,scu-iomux
- yaml file
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>,
+References: <20220705000448.14337-1-pali@kernel.org> <20220705155929.25565-1-pali@kernel.org>
+ <20220705155929.25565-2-pali@kernel.org>
+In-Reply-To: <20220705155929.25565-2-pali@kernel.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 5 Jul 2022 20:40:26 +0200
+Message-ID: <CAHp75Vcr6o2rm+T6Tr8sS4VXCLVHtmLPWy-njOKAvO4AcZoW=A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] leds: Add support for Turris 1.x LEDs
+To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Liu Ying <victor.liu@nxp.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 12:33 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Tue, Jul 5, 2022 at 6:11 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
 >
-> On 30/06/2022 14:37, Viorel Suman (OSS) wrote:
-> > On 22-06-29 19:53:51, Krzysztof Kozlowski wrote:
-> >> On 29/06/2022 18:44, Viorel Suman (OSS) wrote:
-> >>> From: Abel Vesa <abel.vesa@nxp.com>
-> >>>
-> >>> In order to replace the fsl,scu txt file from bindings/arm/freescale,
-> >>> we need to split it between the right subsystems. This patch documents
-> >>> separately the 'iomux/pinctrl' child node of the SCU main node.
-> >>>
-> >>> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> >>> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
-> >>> ---
-> >>>  .../bindings/pinctrl/fsl,scu-pinctrl.yaml     | 68 +++++++++++++++++++
-> >>>  1 file changed, 68 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..76a2e7b28172
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
-> > [...]
-> >>> +      fsl,pins:
-> >>> +        description:
-> >>> +          each entry consists of 3 integers and represents the pin ID, the mux value
-> >>> +          and config setting for the pin. The first 2 integers - pin_id and mux_val - are
-> >>> +          specified using a PIN_FUNC_ID macro, which can be found in
-> >>> +          <include/dt-bindings/pinctrl/pads-imx8qxp.h>. The last integer CONFIG is
-> >>> +          the pad setting value like pull-up on this pin. Please refer to the
-> >>> +          appropriate i.MX8 Reference Manual for detailed CONFIG settings.
-> >>> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> >>
-> >> Look at fsl,imx8mq-pinctrl.yaml. Each item is described (items under items).
-> >
-> > Added them initially, but later dropped because of some logs like
-> > "pinctrl@xxxxxxx: usdhc1grp:fsl,pins:0: [...] is too long" shown by
-> > "make dt_binding_check dtbs_check DT_SCHEMA_FILES=[...]/fsl,scu-pinctrl.yaml"
-> >
-> > Same logs are shown for "fsl,imx8mq-pinctrl.yaml". Will add the items description in the next
-> > version.
-> >
+> This adds support for the RGB LEDs found on the front panel of the
+> Turris 1.x routers. There are 8 RGB LEDs that are controlled by
+> CZ.NIC CPLD firmware running on Lattice FPGA.
 >
-> The fsl,imx8mq-pinctrl.yaml should be correct and I don't see the reason
-> why dtschema complains in some of the entries. It's like one define was
-> not correct... I'll take a look at this later, but anyway keep the same
-> as fsl,imx8mq-pinctrl.yaml even if it complains.
+> CPLD firmware provides HW triggering mode for all LEDs except WiFi LED
+> which is automatically enabled after power on reset. LAN LEDs share HW
+> registers for RGB colors settings, so it is not possible to set different
+> colors for individual LAN LEDs.
+>
+> CZ.NIC CPLD firmware is open source and available at:
+> https://gitlab.nic.cz/turris/hw/turris_cpld/-/blob/master/CZ_NIC_Router_C=
+PLD.v
+>
+> This driver uses the multicolor LED framework and HW led triggers.
 
-The issue is that 'fsl,pins' is problematic for the new dtb decoding
-because it has a variable definition in terms of matrix bounds as each
-i.MX platform has its own length (typ 5 or 6). The tools try to work
-around it by figuring out which size fits. That works until there are
-multiple answers which seems to be what's happening here.
+Pardon me, but this driver seems like 3 years old by the APIs it's
+using... I have to say this, because I was surprised a lot to see some
+calls.
 
-The easiest solution I think is to just strip the constraints in
-occurances of this property. I'll look into that.
+...
 
-Rob
+> +config LEDS_TURRIS_1X
+> +       tristate "LED support for CZ.NIC's Turris 1.x"
+> +       depends on LEDS_CLASS_MULTICOLOR
+
+> +       depends on OF
+
+Why?
+
+If it's a functional (not compile time) dependency, make it
+
+  depends on OF || COMPILE_TEST
+
+> +       select LEDS_TRIGGERS
+> +       help
+> +         This option enables support for LEDs found on the front side of
+> +         CZ.NIC's Turris 1.x routers.
+
+...
+
+> +#include <linux/i2c.h>
+> +#include <linux/led-class-multicolor.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+
+> +#include <linux/of.h>
+
+Rather property.h. See below how.
+
+...
+
+> +/* LEDs 1-5 share common register for setting brightness */
+> +#define TURRIS1X_LED_BRIGHTNESS_OFF(idx)       ({ const u8 _idx =3D (idx=
+) & 7; \
+
+Can you start with the GCC expression on a new line? I may give a much
+shorter next line and increase readability.
+
+> +                                                  (_idx =3D=3D 0) ? 0 : =
+\
+> +                                                  (_idx <=3D 5) ? 1 : \
+> +                                                  (_idx - 4); })
+> +
+> +#define TURRIS1X_LED_BRIGHTNESS_REG(idx, color)        TURRIS1X_LED_REG_=
+OFF(0x13 + \
+> +                                                 3 * TURRIS1X_LED_BRIGHT=
+NESS_OFF(idx) + \
+> +                                                 ((color) & 3))
+
+Ditto.
+
+...
+
+> +static enum led_brightness turris1x_led_brightness_get(struct led_classd=
+ev *cdev)
+> +{
+> +       struct led_classdev_mc *mc_cdev =3D lcdev_to_mccdev(cdev);
+> +       struct turris1x_leds *leds =3D dev_get_drvdata(cdev->dev->parent)=
+;
+> +       struct turris1x_led *led =3D to_turris1x_led(mc_cdev);
+> +
+> +       if (!(readb(leds->regs + TURRIS1X_LED_SW_OVERRIDE_REG) & BIT(led-=
+>reg)))
+> +               return 1;
+> +       else if (!(readb(leds->regs + TURRIS1X_LED_SW_DISABLE_REG) & BIT(=
+led->reg)))
+> +               return 1;
+> +       else
+
+Redundant 'else' in both cases.
+
+> +               return 0;
+> +}
+
+...
+
+> +               /*
+> +                * LEDs 1-5 (LAN) share common color settings in same set=
+s
+> +                * of HW registers and therefore it is not possible to se=
+t
+> +                * different colors. So when chaning color of one LED the=
+n
+
+chaining
+
+> +                * reflect color change for all of them.
+> +                */
+
+> +               if (led->reg >=3D 1 && led->reg <=3D 5) {
+
+Same is used in the macro above. Maybe you can provide a shortcut for
+this instead of duplicating?
+
+> +                       for (j =3D 0; j < ARRAY_SIZE(leds->leds); j++) {
+
+> +                               if (leds->leds[j].reg < 1 ||
+> +                                   leds->leds[j].reg > 5 ||
+
+Ditto.
+
+> +                                   leds->leds[j].reg =3D=3D led->reg)
+> +                                       continue;
+> +                               for (i =3D 0; i < ARRAY_SIZE(led->subled_=
+info); i++)
+> +                                       leds->leds[j].mc_cdev.subled_info=
+[i].intensity =3D
+> +                                               mc_cdev->subled_info[i].i=
+ntensity;
+> +                       }
+> +               }
+> +       }
+
+...
+
+> +       ret =3D of_property_read_u32(np, "reg", &reg);
+> +       if (ret || reg >=3D ARRAY_SIZE(leds->leds)) {
+> +               dev_err(dev,
+> +                       "Node %pOF: must contain 'reg' property with valu=
+es between 0 and %u\n",
+> +                       np, (unsigned int)ARRAY_SIZE(leds->leds) - 1);
+> +               return -EINVAL;
+> +       }
+> +
+> +       ret =3D of_property_read_u32(np, "color", &color);
+> +       if (ret || color !=3D LED_COLOR_ID_RGB) {
+> +               dev_err(dev,
+> +                       "Node %pOF: must contain 'color' property with va=
+lue LED_COLOR_ID_RGB\n",
+> +                       np);
+> +               return -EINVAL;
+> +       }
+> +
+> +       led =3D &leds->leds[reg];
+> +
+> +       if (led->registered) {
+> +               dev_err(dev, "Node %pOF: duplicate 'reg' property %u\n",
+> +                            np, reg);
+> +               return -EINVAL;
+> +       }
+
+> +       init_data.fwnode =3D &np->fwnode;
+
+Oh, no. We do not dereference fwnode, we have helpers for that.
+Moreover, why not use fwnode to begin with?
+
+> +       ret =3D devm_led_classdev_multicolor_register_ext(dev, &led->mc_c=
+dev,
+> +                                                       &init_data);
+> +       if (ret) {
+> +               dev_err(dev, "Cannot register LED %pOF: %i\n", np, ret);
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+
+...
+
+> +static ssize_t brightness_show(struct device *dev, struct device_attribu=
+te *a,
+> +                              char *buf)
+> +{
+> +       struct turris1x_leds *leds =3D dev_get_drvdata(dev);
+> +       unsigned int brightness;
+> +
+> +       /*
+> +        * Current brightness value is available in read-only register
+> +        * TURRIS1X_LED_GET_GLOBAL_BRIGHTNESS_REG. Equivalent code is:
+> +        * level =3D readb(leds->regs + TURRIS1X_LED_GLOBAL_LEVEL_REG) & =
+7;
+> +        * brightness =3D readb(leds->regs + TURRIS1X_LED_GLOBAL_BRIGHTNE=
+SS_REG(level));
+> +        */
+> +       brightness =3D readb(leds->regs + TURRIS1X_LED_GET_GLOBAL_BRIGHTN=
+ESS_REG);
+> +
+> +       return sprintf(buf, "%u\n", brightness);
+
+sysfs_emit()
+
+> +}
+
+...
+
+> +       if (kstrtoul(buf, 10, &brightness))
+> +               return -EINVAL;
+
+Why shadow the error code from kstrtoul()? Note it might return
+something different.
+
+Do you really need unsigned long? Can't you use u8 and kstrtou8() respectiv=
+ely?
+
+> +       if (brightness > 255)
+> +               return -EINVAL;
+
+Yeah, read above about u8.
+
+...
+
+> +       /*
+> +        * Brightness can be set only to one of 8 predefined value levels
+> +        * available in TURRIS1X_LED_GLOBAL_BRIGHTNESS_REG(level) registe=
+rs.
+> +        * Choose level which has nearest value to the specified brightne=
+ss.
+
+a level
+the nearest
+
+> +        */
+
+...
+
+> +               error =3D abs(value - (int)brightness);
+
+Why casting?!
+
+...
+
+> +static ssize_t brightness_level_show(struct device *dev,
+> +                                    struct device_attribute *a, char *bu=
+f)
+> +{
+> +       struct turris1x_leds *leds =3D dev_get_drvdata(dev);
+> +       unsigned int level;
+> +
+> +       level =3D readb(leds->regs + TURRIS1X_LED_GLOBAL_LEVEL_REG) & 7;
+> +
+> +       return sprintf(buf, "%u\n", level);
+
+sysfs_emit()
+
+> +}
+
+...
+
+> +       if (kstrtoul(buf, 10, &level))
+> +               return -EINVAL;
+
+As per above.
+
+...
+
+> +static ssize_t brightness_values_show(struct device *dev,
+> +                                     struct device_attribute *a, char *b=
+uf)
+> +{
+> +       struct turris1x_leds *leds =3D dev_get_drvdata(dev);
+> +       unsigned int vals[8];
+> +       int i;
+> +
+> +       for (i =3D 0; i < 8; i++)
+> +               vals[i] =3D readb(leds->regs +
+> +                               TURRIS1X_LED_GLOBAL_BRIGHTNESS_REG(i));
+> +
+> +       return sprintf(buf, "%u %u %u %u %u %u %u %u\n", vals[0], vals[1]=
+,
+> +                      vals[2], vals[3], vals[4], vals[5], vals[6], vals[=
+7]);
+
+sysfs_emit()
+Wouldn't it be better to have CSV instead? I think for such cases we
+usually have this kind of format.
+
+> +}
+
+...
+
+> +static struct attribute *turris1x_leds_controller_attrs[] =3D {
+> +       &dev_attr_brightness.attr,
+> +       &dev_attr_brightness_level.attr,
+> +       &dev_attr_brightness_values.attr,
+
+> +       NULL,
+
+No comma for terminator.
+
+> +};
+
+...
+
+> +static int turris1x_leds_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+
+> +       struct device_node *np =3D dev_of_node(dev);
+> +       struct device_node *child;
+
+Why not use fwnode to begin with?
+
+> +       res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+
+> +       if (!res)
+> +               return -ENODEV;
+
+Besides dup code, which actually does not print a message...
+
+> +       regs =3D devm_ioremap_resource(dev, res);
+
+...we have devm_platform_ioremap_resource() to combine two above into one.
+
+> +       if (IS_ERR(regs))
+> +               return PTR_ERR(regs);
+
+...
+
+> +       ret =3D devm_led_trigger_register(dev, &turris1x_hw_trigger);
+> +       if (ret) {
+> +               dev_err(dev, "Cannot register private LED trigger: %d\n",=
+ ret);
+> +               return ret;
+
+return dev_err_probe(...);
+
+> +       }
+
+...
+
+> +       for_each_available_child_of_node(np, child) {
+
+device_for_each_child_node()
+
+> +               ret =3D turris1x_led_register(dev, leds, child,
+> +                                           val_sw_override, val_sw_disab=
+le);
+> +               if (ret) {
+
+> +                       of_node_put(child);
+
+fwnode_handle_put()
+
+> +                       return ret;
+> +               }
+> +       }
+
+...
+
+> +       ret =3D devm_device_add_groups(dev, turris1x_leds_controller_grou=
+ps);
+> +       if (ret) {
+> +               dev_err(dev, "Could not add attribute group!\n");
+> +               return ret;
+
+return dev_err_probe(...);
+
+> +       }
+> +
+> +       return 0;
+> +}
+
+...
+
+> +       /*
+> +        * LED registers are persisent across board resets.
+
+persistent
+
+> +        * So reset LEDs to default state before kernel reboots.
+> +        */
+
+...
+
+> +                       writeb(0xff,
+
+GENMASK() ?
+
+> +                              leds->regs + TURRIS1X_LED_BRIGHTNESS_REG(i=
+, j));
+> +       }
+> +}
+
+...
+
+> +static const struct of_device_id of_turris1x_leds_match[] =3D {
+> +       { .compatible =3D "cznic,turris1x-leds" },
+> +       {},
+
+No comma for terminator.
+
+> +};
+
+--=20
+With Best Regards,
+Andy Shevchenko
