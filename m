@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9F05663FB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 09:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03EA15663FC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 09:26:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230226AbiGEHXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 03:23:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51992 "EHLO
+        id S230235AbiGEHXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 03:23:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230206AbiGEHXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 03:23:51 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 076D6656B
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 00:23:49 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id fz10so5236554pjb.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 00:23:49 -0700 (PDT)
+        with ESMTP id S230206AbiGEHXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 03:23:53 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08262615
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 00:23:51 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id 9so10663795pgd.7
+        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 00:23:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8rbEhw6j9pFcMzg6DlhT76WbqkNNFflGCPGuP0xsCvg=;
-        b=CRNz0GunVs1FoGBH1egrw9QzY53WtHgCknHKIf9Ij2oeHltlJ8saEDwEWShrWPhV+p
-         1+Ug/RUhOTGcEzLCEg6gb3RE4+ItgPm/qGEqkQ3ppGCjTk6efwWxMN2LqRr24dXXA/d6
-         KM9rfDkEHB251KclJQuJhmwp+qgcr099oiz9Yl77nwtkzcM/hxqx93rm13VPo+BsOEAN
-         0IwgAkLt3i5TMo4FkZ2rEktYVO+ao5mFqHjV3vfwXl5Y6SKzoTdz9Q4TTipfLpMEvVkx
-         pELjlBGPR+KfjThxzZw5qzVGd5dVZ6QtwEcpLTEHQ0uQoPnd172zG+WLUKBgqCXgrI8i
-         ycBQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=w8GOhMLFyDiMe/PWwqzfb33XEJXhUET7VHmLSmkqB8s=;
+        b=L1wjsa6UgH7zTZAojwegmxSgqCHiVWRWdgs3esbawqUkkfi4nWvwapbnjMjLJ1AICf
+         D+EwLLXJGUihQdkTr5mEwgJFcxeEEAiVJXU7CQ3g5aV97FbueIDyTLDTvr8yUYZKgcgf
+         Yl856J8yVy/Vp3GMDRvCnn7HmfieBKxZ4a3RaXu2wq8aeb+tTtb41IGe+0eXx+HqIu5J
+         DsmJUE/Oth+px6CzO27VdfHtqREHb+Plbyar6C71xuCIOflsK6aRfjyXke/QLTjwYkHB
+         aCzwyGIBb+GNwMi517V+EFqE4HO9M8FTRAKhAJCRIZtyJ8Vnf7YynMI+xSiPF2rGd6zf
+         86Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8rbEhw6j9pFcMzg6DlhT76WbqkNNFflGCPGuP0xsCvg=;
-        b=hUjd9VtEOLbK1+SRrbbOS5gfHAwkWMtXqE+/ZnIp5kmhxZ6a7Nt243dRNDg2bVgSdt
-         AEyNSQF0LNpJJ0SZQJO3mLs+e+3Bc17CVtQUBdpZgdpB4xSFu9evQ1qHB1QIDuXcXx1F
-         szWy3z9KmaY9yB6soOmf0Im9Um67BDT5QSknBgcN1mocxLa9zH2cymJHfodmkUuajQWW
-         1UmpDe/gEHP+LSj16tKOiOF4XywWiFhT/ltB6x+jO7VI6R/pOd5AY0SOyKCqplxZsUwD
-         amdBAlLTSTsFxwMFeSJy7lhL0C+xmwyVJU2TQgEe6n7WKoVhx2BsOa/XbVlxP8EuMvV3
-         tUug==
-X-Gm-Message-State: AJIora9fk65GmpE3JhhksTVwmsL9ZuL8xHmRbyaBOMJs1VIE49ssT/6N
-        IGAwVDvqoOsbc//QCnd2o0SZDw==
-X-Google-Smtp-Source: AGRyM1ujrD8pTQ5NVOgiq84qm4JbwiwkARGBkqLVU0itnVKShIBiN9vGOR8+cBcIJHPKHXlJ0eDzZw==
-X-Received: by 2002:a17:902:7c12:b0:16a:11b9:ae9f with SMTP id x18-20020a1709027c1200b0016a11b9ae9fmr39927775pll.82.1657005828364;
-        Tue, 05 Jul 2022 00:23:48 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=w8GOhMLFyDiMe/PWwqzfb33XEJXhUET7VHmLSmkqB8s=;
+        b=lLkXpc9yksoxFdDX/Kzr7hxZ2DEt4mPuUpr34pDFCqJ/yPViSK/rgOSDA2nwvSmiBX
+         eNz+P1IvcAC82orN2H3Bgzt13cIKJD10h02JgzEppGloxWPrEn8cEn63uyFzionXjJhu
+         CVsdBc5OI0Do4KPqbt7j9N01ftYF+MHlq0noEL2NthIHjICYabl0a7RJbJ6hXW34M5m/
+         ADrxbhD/OkoHfnc05hRAUDTbaJ9O6xUi9j6PicXUod5/4gqfSKKinldBuNrjqvX/3951
+         UnblDRz3hUEZgW0mq0gb202bGXQFLYTi2e+rCrtXDwQgA4C+VrOujUTxUjEsWoJO9nN0
+         21cA==
+X-Gm-Message-State: AJIora9KRjH90RaV+xTWvXRWihJi+0cOzO3Dgtxv1elbjMk5GHdxcERw
+        6HXUWchQK77FNAi84HTQC7szgw==
+X-Google-Smtp-Source: AGRyM1uAoO2xXA3Kt7V8isGhq6D7OZ7jqYR3fjLuhGjdPWtGMc9x6eP5EfumWorOyONQ21IXatfF2w==
+X-Received: by 2002:a05:6a00:1592:b0:525:52ca:bee6 with SMTP id u18-20020a056a00159200b0052552cabee6mr39579633pfk.38.1657005831329;
+        Tue, 05 Jul 2022 00:23:51 -0700 (PDT)
 Received: from leo-build-box.lan ([154.3.32.171])
-        by smtp.gmail.com with ESMTPSA id y6-20020a626406000000b0050dc76281f0sm22148016pfb.202.2022.07.05.00.23.45
+        by smtp.gmail.com with ESMTPSA id y6-20020a626406000000b0050dc76281f0sm22148016pfb.202.2022.07.05.00.23.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jul 2022 00:23:47 -0700 (PDT)
+        Tue, 05 Jul 2022 00:23:50 -0700 (PDT)
 From:   Leo Yan <leo.yan@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -56,15 +56,17 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Leo Yan <leo.yan@linaro.org>
-Subject: [PATCH v4 0/5] interconnect: qcom: icc-rpm: Support bucket
-Date:   Tue,  5 Jul 2022 15:23:31 +0800
-Message-Id: <20220705072336.742703-1-leo.yan@linaro.org>
+Subject: [PATCH v4 1/5] dt-bindings: interconnect: Update property for icc-rpm path tag
+Date:   Tue,  5 Jul 2022 15:23:32 +0800
+Message-Id: <20220705072336.742703-2-leo.yan@linaro.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220705072336.742703-1-leo.yan@linaro.org>
+References: <20220705072336.742703-1-leo.yan@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,53 +74,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch set is to support bucket in icc-rpm driver, so it implements
-the similar mechanism in the icc-rpmh driver.
+To support path tag in icc-rpm driver, the "#interconnect-cells"
+property is updated as enumerate values: 1 or 2.  Setting to 1 means
+it is compatible with old DT binding that interconnect path only
+contains node id; if set to 2 for "#interconnect-cells" property, then
+the second specifier is used as a tag (e.g. vote for which buckets).
 
-We can use interconnect path tag to indicate the bandwidth voting is for
-which buckets, and there have three kinds of buckets: AWC, WAKE and
-SLEEP, finally the wake and sleep bucket values are used to set the
-corresponding clock (active and sleep clocks).  So far, we keep the AWC
-bucket but doesn't really use it.
+Signed-off-by: Leo Yan <leo.yan@linaro.org>
+---
+ .../devicetree/bindings/interconnect/qcom,rpm.yaml          | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Patches 01, 02, 03 enable interconnect path tag and update the DT
-binding document; patches 04 and 05 support bucket and use bucket values
-to set the bandwidth and clock rates.
-
-Changes from v3:
-- Removed $ref and redundant sentence in DT binding document for
-  '#interconnect-cells' (Krzysztof Kozlowski).
-
-Changes from v2:
-- Fixed for DT checker error for command ''make DT_CHECKER_FLAGS=-m
-  dt_binding_check' (Rob Herring).
-
-Changes from v1:
-- Added description for property "#interconnect-cells" (Rob Herring);
-- Added Dimtry's reviewed tags for patches 02 and 03 (Dmitry Baryshkov);
-- Rebased on the latest mainline kernel and resolved conflict.
-
-
-Leo Yan (5):
-  dt-bindings: interconnect: Update property for icc-rpm path tag
-  interconnect: qcom: Move qcom_icc_xlate_extended() to a common file
-  interconnect: qcom: icc-rpm: Change to use qcom_icc_xlate_extended()
-  interconnect: qcom: icc-rpm: Support multiple buckets
-  interconnect: qcom: icc-rpm: Set bandwidth and clock for bucket values
-
- .../bindings/interconnect/qcom,rpm.yaml       |   6 +-
- drivers/interconnect/qcom/Makefile            |   3 +
- drivers/interconnect/qcom/icc-common.c        |  34 +++++
- drivers/interconnect/qcom/icc-common.h        |  13 ++
- drivers/interconnect/qcom/icc-rpm.c           | 134 ++++++++++++++++--
- drivers/interconnect/qcom/icc-rpm.h           |   6 +
- drivers/interconnect/qcom/icc-rpmh.c          |  26 +---
- drivers/interconnect/qcom/icc-rpmh.h          |   1 -
- drivers/interconnect/qcom/sm8450.c            |   1 +
- 9 files changed, 182 insertions(+), 42 deletions(-)
- create mode 100644 drivers/interconnect/qcom/icc-common.c
- create mode 100644 drivers/interconnect/qcom/icc-common.h
-
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
+index 8a676fef8c1d..4b37aa88a375 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
+@@ -45,7 +45,11 @@ properties:
+       - qcom,sdm660-snoc
+ 
+   '#interconnect-cells':
+-    const: 1
++    description: |
++      Value: <1> is one cell in an interconnect specifier for the
++      interconnect node id, <2> requires the interconnect node id and an
++      extra path tag.
++    enum: [ 1, 2 ]
+ 
+   clocks:
+     minItems: 2
 -- 
 2.25.1
 
