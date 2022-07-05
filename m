@@ -2,160 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 576445662C6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 07:29:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC33E5662D4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jul 2022 07:38:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbiGEF3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 01:29:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48036 "EHLO
+        id S229801AbiGEFhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 01:37:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbiGEF3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 01:29:48 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE63B12AE7;
-        Mon,  4 Jul 2022 22:29:46 -0700 (PDT)
-X-UUID: 551616c1e6934500ae8ad6638285b090-20220705
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:0931eb02-0cc3-4bb3-8f00-9e27de93aeca,OB:0,LO
-        B:10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:45
-X-CID-INFO: VERSION:1.1.8,REQID:0931eb02-0cc3-4bb3-8f00-9e27de93aeca,OB:0,LOB:
-        10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:45
-X-CID-META: VersionHash:0f94e32,CLOUDID:7cb09fd6-5d6d-4eaf-a635-828a3ee48b7c,C
-        OID:31d19f6e7bdc,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 551616c1e6934500ae8ad6638285b090-20220705
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1992025857; Tue, 05 Jul 2022 13:29:41 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 5 Jul 2022 13:29:39 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 5 Jul 2022 13:29:39 +0800
-Message-ID: <b126b455927dabad2e2f1dc07beefd4a44ce975f.camel@mediatek.com>
-Subject: Re: [PATCH v15 16/16] drm/mediatek: dpi: Add dp_intf support
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <xinlei.lee@mediatek.com>, <liangxu.xu@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 5 Jul 2022 13:29:39 +0800
-In-Reply-To: <20220701035845.16458-17-rex-bc.chen@mediatek.com>
-References: <20220701035845.16458-1-rex-bc.chen@mediatek.com>
-         <20220701035845.16458-17-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229829AbiGEFhc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 01:37:32 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2139.outbound.protection.outlook.com [40.107.243.139])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD28613CFD;
+        Mon,  4 Jul 2022 22:37:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VSMjV2z0S6Ogy6di27FBxj0d+y/f5BG6RXWIGNcDMYGwtkz0S4oySvOiqo4UC6eL60ek4YoHg8VAJYmMJZfHirmVkUd24QVlveyEvpgiq3mW3VnjLa6PdytJpqUMOGuOfpwVoI2xMwlRPSiymqto2kVD+j+qa5sm1jSKN1MJ0MSxwTkf+7avhtESct5fyBABgS+UJ9sFtpfXlFL29pw643hWfHHEgZMeiSjIQIOqzfUyou5sYvxlGzY3FllPXghhLZ0pEKrqFyZHcLf17ICUtw4gNblkv7+XByvPcm+biYkrBSDRxscoirIP+M5plu2+PqpGJzL8LRatOsrW+6jS7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zc3dkjkvC1nLp8F+VO+CWwprzynJuEy8TL6vgInL4V4=;
+ b=hNV6trMepPKDItP5OPbMwdEvBBL0zanCGtnzlH/7vn+5sifeOxSBTE9zCm9OvbH3NTM7GSLjAEX3zmfvw3tg+ft/A31IikHnrUpCUEU5YI8cqWr02+HhpKhhssZLCZ2gq3YWF/arb+kPS3w0RPl0BuOsAIss3CPXRTqHX2xow7mjMAVCCUzNSwcz4CJnzbvKjQ9VncAi3iZVGgA9VzT+ROXX2O3dn0eKmS7qqL0C0ihalc/AQ8PvDaQcTlUXN5lkM9cLQRXzRfZsirpm0oTqNJWSeYSXZi+5Wj/MYZuvAd85Uy832tE3T0SSqOkuwFyitu69IGypGhexdYSQoz8AHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zc3dkjkvC1nLp8F+VO+CWwprzynJuEy8TL6vgInL4V4=;
+ b=XHmjBr+enpEl+Wa0r7LgRamqQcRfhNFlqw3F0OnEVSVZJ2fOi9WkGZgA6LlWBvmFRboY9hDSaIX7e5Gp3cQVRova4/j6mkfCbWJeQInIHviq49QqAyhra7qDIdSnlMos1Acx/5AmFL6Qe9DvREMma77pxVPIYQ8AoCi9xwEfrxs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by DM5PR04MB0651.namprd04.prod.outlook.com (2603:10b6:3:f6::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.19; Tue, 5 Jul
+ 2022 05:37:29 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::ec96:5112:c2d5:9377]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::ec96:5112:c2d5:9377%8]) with mapi id 15.20.5395.021; Tue, 5 Jul 2022
+ 05:37:29 +0000
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Xin Ji <xji@analogixsemi.com>
+Cc:     bliang@analogixsemi.com, qwen@analogixsemi.com,
+        jli@analogixsemi.com, Rob Herring <robh@kernel.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v13 2/3] dt-bindings: usb: Add analogix anx7411 PD binding
+Date:   Tue,  5 Jul 2022 13:36:55 +0800
+Message-Id: <20220705053657.2340274-2-xji@analogixsemi.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220705053657.2340274-1-xji@analogixsemi.com>
+References: <20220705053657.2340274-1-xji@analogixsemi.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: TYCPR01CA0182.jpnprd01.prod.outlook.com
+ (2603:1096:400:2b0::6) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5fd3aef6-ecf1-4026-c451-08da5e487353
+X-MS-TrafficTypeDiagnostic: DM5PR04MB0651:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /jjyBBRH6VSohvgYY3URpaoL4fJdVRE951pIpIuEOZ3lAPMPYrwcJFEmmpXtliTUwVkMSRWxrLY7XnK6DOQuAouo9u8mM6OJI93plbLRi3AUgfeXlsoxfkoovDzB/y9a+D2fSUXSScMQfFDKstnAbbT4dbJ2q+tCAUPnfDf9IpePsnkhKF+4cDYiTQz0rT/mYoyJY53lfWNLhF3tklHPafBbDatZl8uMTJe1g8V5ge61ZPCAM6p1btwP0mix+8uovyx1Y31nZx3ArAzwsaDKq3uK5rAlLjuksyKAIwgeC5/+nv8jRrS2QamQkrea0VhUO1b7KM1zBvqFu1qm/2sUG2AUQ9uypYaTkh6Le2HjuqKBP9akeWxspLN+HwAA+mVQrLY7zPtFvqdxV61kVbXks0/MQlVJY+3kPa39xEBlqQzsBGEAwMKnYUWQgl2eZ+S2uwT77N7cTG4FKO4wuZbo3tO+Fg7/ZJkm3DbqumouXl6z1KRUBolBbwG/RKGn4Op1rE/nCl1XlDwIN40wP74+1yjwlc9L7um/U2woUfoweHEEF/oCFOK+4sGY/wUA3Keir00NjMtHKGIjwdiZTgfsyc3JkOrOKQ4NFjPmublhBtvyNCwhGDx3hVuV3/+epubyJ+G/wMFXCsxeJnSv0XGAVxwauAxIfYcDgxhIWcgJkGNLTeoqhNB3pcsIqeO/qV2bQr7GbAIPK+FvmbNvHS4JwHm7n/Mj1x1yEORw12AGyMhylkwNRvWQCA5IH/2FW2aXE3Xgl8ITnbTmnq7F1RY1DaSwCYzFjZT1HMgwy7ro+y5YvzA1zVo1lSF2bidFhWRWcMIt6ANdiAXSTMOnm/N8Kg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(376002)(396003)(136003)(366004)(346002)(39840400004)(6666004)(41300700001)(2616005)(1076003)(6512007)(38100700002)(38350700002)(110136005)(36756003)(316002)(52116002)(55236004)(6506007)(2906002)(8936002)(66946007)(66556008)(66476007)(8676002)(86362001)(478600001)(4326008)(186003)(26005)(6486002)(966005)(5660300002)(7049001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uWqEi34QL19C3rW9erwsg1O2/uYyfhwR8jZSyiNm015lZ52zbHeGQ9SgZWqt?=
+ =?us-ascii?Q?SmI6rLAUKWhjaPbX4337emtOCirYnx0xNRFhMY3P68Dk+s5sUBoNbjyJU4Jb?=
+ =?us-ascii?Q?/nj3wg+ydyNTtUVHE66IQGFOwWwpkn00REnZgwXRb3BfcbTPuukc6i7JahmO?=
+ =?us-ascii?Q?cPmG4epKBrHSWgyacpUYQbJBsz6sbrBV3IVudKgjT5uSza9DBW9Y0OaVJIl9?=
+ =?us-ascii?Q?y61vv4iAm3jgyjQziNM16cBv9TIs77atNecPdBRQVbRMl2MQKKDXHIZ2+J/T?=
+ =?us-ascii?Q?zfXavuFjBh7MbDUz56QlnNFELUoqvoTVy54qnyrAJ20X0+qeMRnSdV4W2oZl?=
+ =?us-ascii?Q?5+1WbBUTeDc/UZgPtJri7k9k2GAHSq8GL2Kd2Z3tMSYN7XnJ4IXx+Bi7rxF3?=
+ =?us-ascii?Q?/46ke9u1UJLJMx3OPIX15PRAWpFaSCD0wE/n5wuo9Ovb6CSpmJEC2nvJMp1E?=
+ =?us-ascii?Q?ft+r80O/XcA9yf2R+ag1xs8UjZB05Vgt0VFjFeeYnj1+acNkWg5ZJzLSH39w?=
+ =?us-ascii?Q?bLuAC/zibV54LHPeiTFWe4dHKhzjSlnozE2U07kCq0WyvOLAmIXBT0N3z4cX?=
+ =?us-ascii?Q?cT+P3YFjKxwBJW6sYfyQRiFDMUoixL0+unz3gZcbYME1oBYTxSjTobUUj8Qp?=
+ =?us-ascii?Q?l1LVbl7CXg2q8kqtkamb5gv82kj3pCTGhz7TED73hTiSFzxiOuaE5Q+EU0Qq?=
+ =?us-ascii?Q?RESo7ob28bqLj7KTHKcNxCqJXV3Ru/TEGpox8Ph0IKKIUYCALdw/ukP61rQY?=
+ =?us-ascii?Q?XuEjxhsbokgJBv690H2xmHdqwDI+hbeH8HWlHKJrYXBOB+FfFdXP/j91ViG+?=
+ =?us-ascii?Q?9YmVFPbsesQgpaEr0QvyE6X7EYsikghkwqlXRbwkHcbdfSzBfxrcUOHcvsVQ?=
+ =?us-ascii?Q?V0DxPLqCgF07MZhkr4NaMl3XrYOpMKzixtjrnYutIaa+2MH4CVDqAORWUyOl?=
+ =?us-ascii?Q?f78sXyAE9Fff+3Blg5SUjEDdPcpJl+LCm2Y0J2jZn4PkIDBkMGyIu4rzePNF?=
+ =?us-ascii?Q?eJShpMD/Mev+1W5/DNS0Lgh/NNJuvemmYrQ4K4+ioW3K9v1QVR5txWhtRbtS?=
+ =?us-ascii?Q?642Ku2UyEfSg9EWO9EY14HEkrY/OnAE/qrOQk0RjLNJghDPL6QThEEwdhSzx?=
+ =?us-ascii?Q?mHxirDjXAYCC6KKZasICUadUJXCkctP4rhYJOzws3HTORwB45RF+Gna2flkQ?=
+ =?us-ascii?Q?cq16SNAdgzyz22BRoon5R7EC2B64dMHT/dk7RAdmzvBSQZzWdC31c26/Yh+I?=
+ =?us-ascii?Q?28TkLpzccRw7rGQbrZZNUNCtRmX+x0nCg0sfex9KDrkyC538AZG9go2RUP2e?=
+ =?us-ascii?Q?VCPfIFiW0hytBa80GH9lFSI7KfrMz81m56USMd7lyEa99aNbzrgClC8iqQ1v?=
+ =?us-ascii?Q?a01ikQTJqiHONPAbkRRCqQo4moe6qQy3GUSIA3wIJpgdu0jyRrxcPh8km1cJ?=
+ =?us-ascii?Q?jEo0C379ULyC9o6lI8g5jL7S656PMdJMOV+zC06aTd6dUlgm0AK6lakXHNhK?=
+ =?us-ascii?Q?5jpTf3FBhnkXhW0fRBfabkksfGZehjc83Qv7YqXA1D7S4TNTgxFzLTtQizl7?=
+ =?us-ascii?Q?d5sV/qyS/goZiCv1mwzfOXlvtv1yIwRtGyGI1D5m?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fd3aef6-ecf1-4026-c451-08da5e487353
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2022 05:37:29.3579
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7QUDsk0mWIIMi9dzsaXu/RBq1U/nMdbK1aX0yW7dmuW6XYUBidmLcuCLxJLVF+Wjx0nOqWKViWmkRFCnUlWhUw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR04MB0651
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+Add analogix PD chip anx7411 device binding
 
-On Fri, 2022-07-01 at 11:58 +0800, Bo-Chen Chen wrote:
-> From: Guillaume Ranquet <granquet@baylibre.com>
-> 
-> Dpintf is the displayport interface hardware unit. This unit is
-> similar
-> to dpi and can reuse most of the code.
-> 
-> This patch adds support for mt8195-dpintf to this dpi driver. Main
-> differences are:
->  - 4 pixels for one iteration for dp_intf while dpi is 1 pixel for
-> one
->    iteration. Therefore, we add a new config "pixels_per_iter" to
-> control
->    quantity of transferred pixels per iteration.
->  - Input of dp_intf is two pixels per iteration, so we add a new
-> config
->    "input_2pixel" to control this.
->  - Some register contents differ slightly between the two components.
-> To
->    work around this I added register bits/masks with a DPINTF_ prefix
->    and use them where different.
-> 
-> Based on a separate driver for dpintf created by
-> Jitao shi <jitao.shi@mediatek.com>.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c          | 65
-> ++++++++++++++++++++-
->  drivers/gpu/drm/mediatek/mtk_dpi_regs.h     | 12 ++++
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |  4 ++
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |  1 +
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c      |  3 +
->  5 files changed, 82 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index be039474cf26..1072e94d2f2f 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -125,12 +125,15 @@ struct mtk_dpi_yc_limit {
->   * @swap_input_support: Support input swap function.
->   * @color_fmt_trans_support: Enable color format transfer.
->   * @support_direct_pin: IP supports direct connection to dpi panels.
-> + * @input_2pixel: Input pixel of dp_intf is 2 pixel per round, so
-> enable this
-> + *		  config to enable this feature.
->   * @dimension_mask: Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and
-> VSYNC_PORCH
->   *		    (no shift).
->   * @hvsize_mask: Mask of HSIZE and VSIZE mask (no shift).
->   * @channel_swap_shift: Shift value of channel swap.
->   * @yuv422_en_bit: Enable bit of yuv422.
->   * @csc_enable_bit: Enable bit of CSC.
-> + * @pixels_per_iter: Quantity of transferred pixels per iteration.
->   */
->  struct mtk_dpi_conf {
->  	unsigned int (*cal_factor)(int clock);
-> @@ -143,11 +146,13 @@ struct mtk_dpi_conf {
->  	bool swap_input_support;
->  	bool color_fmt_trans_support;
->  	bool support_direct_pin;
-> +	bool input_2pixel;
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
 
-Separate input_2pixel to an independent patch.
+---
+v12 -> v13 :
+    1. Drop the quotes for "$id" and "$schema"
+    2. Remove "allOf" label
+    3. Change node name from "i2c1" to "i2c"
+    4. Change node name from "typec" to "usb-typec"
+---
+ .../bindings/usb/analogix,anx7411.yaml        | 76 +++++++++++++++++++
+ 1 file changed, 76 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
 
->  	u32 dimension_mask;
->  	u32 hvsize_mask;
->  	u32 channel_swap_shift;
->  	u32 yuv422_en_bit;
->  	u32 csc_enable_bit;
-> +	u32 pixels_per_iter;
-
-Separate pixels_per_iter to an independent patch.
-
-Regards,
-CK
-
->  };
->  
-> 
+diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+new file mode 100644
+index 000000000000..57429864d499
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/analogix,anx7411.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analogix ANX7411 Type-C controller bindings
++
++maintainers:
++  - Xin Ji <xji@analogixsemi.com>
++
++properties:
++  compatible:
++    enum:
++      - analogix,anx7411
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  connector:
++    type: object
++    $ref: ../connector/usb-connector.yaml
++    description:
++      Properties for usb c connector.
++
++    properties:
++      compatible:
++        const: usb-c-connector
++
++      power-role: true
++
++      data-role: true
++
++      try-power-role: true
++
++    required:
++      - compatible
++
++required:
++  - compatible
++  - reg
++  - connector
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        usb-typec: anx7411@2C {
++            compatible = "analogix,anx7411";
++            reg = <0x2C>;
++            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
++            interrupt-parent = <&gpio0>;
++
++            typec_con: connector {
++                compatible = "usb-c-connector";
++                power-role = "dual";
++                data-role = "dual";
++                try-power-role = "source";
++
++                port {
++                    typec_con_ep: endpoint {
++                        remote-endpoint = <&usbotg_hs_ep>;
++                    };
++                };
++            };
++        };
++    };
++...
+-- 
+2.25.1
 
