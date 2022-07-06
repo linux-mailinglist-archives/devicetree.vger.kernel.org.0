@@ -2,73 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2B9B569376
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 22:40:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4D5F56937D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 22:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233173AbiGFUkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 16:40:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47480 "EHLO
+        id S234406AbiGFUnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 16:43:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232712AbiGFUkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 16:40:42 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA80124F05
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 13:40:41 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id b23-20020a9d7557000000b00616c7999865so12602762otl.12
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 13:40:41 -0700 (PDT)
+        with ESMTP id S234395AbiGFUnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 16:43:23 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370201F5
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 13:43:22 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id sb34so29000463ejc.11
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 13:43:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=jbu+Xolfw/UCGkWoc/N/K4GT7EYnQrpnk3gnXwJ0aDs=;
-        b=uE2rBU+ye6xoSUBC+1Xj831S1uRcJlkgDR1ThqSVS8k4uhsyh1wya8Knai7vTdCsWL
-         PLikT8TA1iuktX4z2LVa7ZNxSl/w58LNiisUyWC5ablf02Da3u+8shynD+jgifvnBh/l
-         7RwB3vHs+rJBYgJt5HMaP47DYx5Ygz8BPqVNc7WT7X9udadKvW7f3vaGijyBjm3Py2Bb
-         ygvPfb0HgfcRYGspJ7wyjgdXocbC4KccCtqf09ROP8FONKSz+5DifoMmXYOHNz8wsmSD
-         Wc1S1IzxbsWaFUEDXWJN5i+1Ctago0S+V1ZXtPjOyUECAeivezpBp+GMBUK2Zag0PJBf
-         kOJg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6IjbWUyuxXN/2Vz82xepsrw85CD/sF05r/fiHZLXM8k=;
+        b=YZrPYpJhxLWB5f/Qs9r/UOJZiV8QcW8RRvijsTzoLF7IgifrWe3N2+IaT06Gahwgjt
+         kVTdBtFGAEOD6g19KwTkjCXD/tb3cZRdzmMaw1ock7s6rpYZXFOCaewm6wJkIhTMKuto
+         1nFXBT47x7yT1UQv86cKBBJfUvAyy9S0/cY1M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jbu+Xolfw/UCGkWoc/N/K4GT7EYnQrpnk3gnXwJ0aDs=;
-        b=k/G3IL13pY5V9rLDNgCo99kswwFQWXsxpcpUvJov24DfR/dc8LOHZrgvmu+OdQCn5t
-         EGr1e1k18zyJOwGnvHsTKtBp+07c08uI7BjcDsm2emw5M7QUbyc7Czsbu77/Nptyf1MN
-         cWogIl+c8iwMvkYlvE9AW1uBahoi5fqcCyDKyF6xge9uxSuvZO8agh01Ws853wiTvYxO
-         kds8O7sxuJdJMoXU9UKByPGZrw8zTVceDu5BBSMs5MmwfJB2eQEQ8brxbUUKduzwDBd6
-         32qlOhpMWLCg4/cVjuBXi44ViwLVLyzpZa2mt8l6Seu2VsDeAmfM+p3N2QSipw2oI3ST
-         RRQg==
-X-Gm-Message-State: AJIora+FRarDKm+dinzh3ycBlP2vxVL6xvAsZgdlWABpmnZDCuY6ouMe
-        eGD+SMDWLZ5K5Pny4HIsZqSmcQ==
-X-Google-Smtp-Source: AGRyM1sNeHBBsJB/+2f9iqPz+44tu1Q+eJXIEssGpbPlgYCnk0Shf1qjLZP2HH2kuWCo6jiaotot+g==
-X-Received: by 2002:a9d:7154:0:b0:618:d838:3a07 with SMTP id y20-20020a9d7154000000b00618d8383a07mr12799746otj.158.1657140041071;
-        Wed, 06 Jul 2022 13:40:41 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id f21-20020a056830309500b00616a2aa298asm16415803ots.75.2022.07.06.13.40.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 13:40:40 -0700 (PDT)
-Date:   Wed, 6 Jul 2022 15:40:38 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] clk: qcom: Add support for Display Clock
- Controller on SM8450
-Message-ID: <YsXzRhcAKgsVts9M@builder.lan>
-References: <20220623114737.247703-1-dmitry.baryshkov@linaro.org>
- <20220623114737.247703-3-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6IjbWUyuxXN/2Vz82xepsrw85CD/sF05r/fiHZLXM8k=;
+        b=2fTgbzypnujshay8VV17znwHnF3Wjitz/nvzGdbNqu6i5MJf5TrC2pwXzVZiZMY1f3
+         Mwv70XyO5F8ykcRRz8MtiAnrH/oF5uXtMlEyXgiLSgSatbLqU264s1iW1lqNOIXOTMqE
+         SNzCgVMKq/ntqEa58TAOnV0HG4W434vso1huEOZiqnVNQukHkWCCQxLlafUW0BPPsozx
+         6ZvIfVejS16XHEz0bHCw7okZADfjq8RDriRrZMvtEAB6wRYRXhc7l2Ep6ezIH6xd02GS
+         aJjtb1i9CqEoKJ25hjJn5PnOEPVtq2dAFRwpFIqQc9cU7DyyLxdZ6vXc0uzlYK7Tjkq8
+         m7kg==
+X-Gm-Message-State: AJIora/7vIwfofafl4OoB9ZdbY33itMDpC/8giggMLvURqtcIvszVpo6
+        V1UtSY+8wJ4ByLp/dVLOQG5mr/HeXpap8qNF
+X-Google-Smtp-Source: AGRyM1u6sNqFlsj8wMon7U7iXQj1nlv27jtczd02agAffXDrRh2pSn3LpP3S75O53DSdsqXGR4eNmA==
+X-Received: by 2002:a17:906:98d4:b0:72a:f4b1:5115 with SMTP id zd20-20020a17090698d400b0072af4b15115mr6380484ejb.173.1657140200522;
+        Wed, 06 Jul 2022 13:43:20 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
+        by smtp.gmail.com with ESMTPSA id n22-20020a1709067b5600b00722ea7a7febsm17786940ejo.194.2022.07.06.13.43.17
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jul 2022 13:43:18 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id f2so18250799wrr.6
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 13:43:17 -0700 (PDT)
+X-Received: by 2002:adf:fb12:0:b0:20c:79b2:a200 with SMTP id
+ c18-20020adffb12000000b0020c79b2a200mr40248383wrr.617.1657140197404; Wed, 06
+ Jul 2022 13:43:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220623114737.247703-3-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <1657102611-20067-1-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1657102611-20067-1-git-send-email-quic_srivasam@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 6 Jul 2022 13:43:05 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UaUnZfWsXGQx6PoVQ5qqtsq10Dnui1v0Xn0S5Y-YgwRw@mail.gmail.com>
+Message-ID: <CAD=FV=UaUnZfWsXGQx6PoVQ5qqtsq10Dnui1v0Xn0S5Y-YgwRw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Move wcd specific pin conf to
+ common file
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        quic_rohkumar@quicinc.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,79 +82,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 23 Jun 06:47 CDT 2022, Dmitry Baryshkov wrote:
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index bc4dcf356d82..f409b891fce4 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -635,6 +635,15 @@ config SM_DISPCC_6350
->  	  Say Y if you want to support display devices and functionality such as
->  	  splash screen.
->  
-> +config SM_DISPCC_8450
-> +	tristate "SM8450 Display Clock Controller"
-> +	depends on SM_GCC_8450
-> +	help
-> +	  Support for the display clock controller on Qualcomm Technologies, Inc
-> +	  SM8250 devices.
+Hi,
 
-s/2/4/
+On Wed, Jul 6, 2022 at 3:17 AM Srinivasa Rao Mandadapu
+<quic_srivasam@quicinc.com> wrote:
+>
+> +/* PINCTRL - BOARD-SPECIFIC */
 
-> +	  Say Y if you want to support display devices and functionality such as
-> +	  splash screen.
-> +
-[..]
-> diff --git a/drivers/clk/qcom/dispcc-sm8450.c b/drivers/clk/qcom/dispcc-sm8450.c
-[..]
-> +static struct clk_alpha_pll disp_cc_pll0 = {
-> +	.offset = 0x0,
-> +	.vco_table = lucid_evo_vco,
-> +	.num_vco = ARRAY_SIZE(lucid_evo_vco),
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
-> +	.clkr = {
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "disp_cc_pll0",
-> +			.parent_data = &(const struct clk_parent_data){
-> +				.fw_name = "bi_tcxo",
+It's not really "board specific" since this is actually a file that's
+included by multiple boards.
 
-Can we please have this transitioned to using .index as in the other new
-clock drivers?
+Maybe just use the header "PINCTRL" for now. Everything here is just
+adding pull/drive strength/slew-rate info to existing pinctrl
+settings. If we ever have more than that and want to separate into
+different sections we can always adjust later.
 
-Also, you have a bi_tcxo clk_parent_data below, how about using that?
 
-And lastly, could I please have a space inbetween ) and {?
+> +/*
+> + * Methodology for gpio-line-names:
+> + * - If a pin goes to CRD board and is named it gets that name.
+> + * - If a pin goes to CRD board and is not named, it gets no name.
+> + * - If a pin is totally internal to Qcard then it gets Qcard name.
+> + * - If a pin is not hooked up on Qcard, it gets no name.
+> + */
 
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_reset_lucid_evo_ops,
-> +		},
-> +	},
-> +};
-> +
-[..]
-> +static int __init disp_cc_sm8450_init(void)
-> +{
-> +	return platform_driver_register(&disp_cc_sm8450_driver);
-> +}
-> +subsys_initcall(disp_cc_sm8450_init);
-> +
-> +static void __exit disp_cc_sm8450_exit(void)
-> +{
-> +	platform_driver_unregister(&disp_cc_sm8450_driver);
-> +}
-> +module_exit(disp_cc_sm8450_exit);
+This file doesn't include "gpio-line-names" so you don't need to
+include documentation about it.
 
-You should be able to module_platform_driver() this instead.
-
-> +
-> +MODULE_DESCRIPTION("QTI DISP_CC WAIPIO Driver");
-
-While not secret, please update this to use SM8450 and perhaps a more
-human readable form?
-
-> +MODULE_LICENSE("GPL v2");
-
-Please change this to MODULE_LICENSE("GPL")
-
-Regards,
-Bjorn
+-Doug
