@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DB8A567FEA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 09:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B539E567FF0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 09:35:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230178AbiGFHeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 03:34:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51656 "EHLO
+        id S230217AbiGFHf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 03:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229973AbiGFHeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 03:34:17 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21DED220CE
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 00:34:16 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id bs20so17121323qtb.11
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 00:34:16 -0700 (PDT)
+        with ESMTP id S230028AbiGFHf0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 03:35:26 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52DB522B06
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 00:35:25 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id l7so16612026ljj.4
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 00:35:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jb91iJljh1gjsRV/F8EkDiuQ28gmCvX0uXYmKspWwRE=;
-        b=bMPgHycDlJMX1A1+lC7ccpSRRCutkmKd1lfxz0jfsKB+wwUkeVlf9idf4sU3lLM3V1
-         eD5dW8Pareb+7KbpTisfMOy8n+BvWbdXC1wUAsuZDDEsjWhRcNc5abGrQIqkpwZz6iah
-         vH5sGtHIiEiYxVCcuKCoZMCCH2n2W5+93YhBlQMGOMHEa3EQ1dQgxptQYVru1P5zo/m0
-         oas9oeSdy5PwSwaMhMIFnHkljSzRPHCSPkvtZzvDTBeQJcA5c78CE8ju+ez1HDnuEOSV
-         sYNXB7f6I0wImGHRR6GDsuplDnN0vrMHg5/oXAqbd/76LX167WQiHmg1XjaKzLyhZFu+
-         HaXA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=a7SBBN/6Q+yYGFLJGBFyvXLFrv4d27155jl/U2Ur7OU=;
+        b=F1H6LB8Y6yov5/czicr7HsJnGPkDH06fqWNhCEVV7n84eMzbdFz4E1J+iwIlM54OGz
+         XYqaqAknMiiuAxR4G+1mTV95uJNT0lmYpXIY9bGcIC8oPAFNKuE+qkAZywYdW+bubuG2
+         ufH/miJCv7ZU668lxDjY3qFGpmcm4qLHutXldBciUO5W4CrLgTI9V04QbNlX1LvVbHpz
+         kwWKvGJnTCGzVj5Gb5/MbD7OWnikjIsZxmJkv9T1f/mEVdMUA4ZytftP6iGl1J05o+w/
+         D00o9VMooe1JwRbYenhN//RUBN12zaQXvtp9zaO4tUq3gvpmDg54E5j9IIvTCh5pf97C
+         pi4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jb91iJljh1gjsRV/F8EkDiuQ28gmCvX0uXYmKspWwRE=;
-        b=CJZDgx48DdibZoOTSDMMklIjIrDETOvtdCat4dgCj+4vrALMYgSf4h3gJKJsNrS2tF
-         DTlhk/6sUigdk+mIPt0SOml3aQTbwF9qXfBpQkR4lVUsMdtq6fd5v4UdgtINHTEfasld
-         MSIJ3J/1NXdNy5SG0ip0PDMpJGupLbCw22O9gLWkw4CRK3i8xuW/r66Pz+F1ileg7vkk
-         dS+zkEP1tkZiI/2EaV8qZtslYO/ElBjZvC1D/7lmY1ZdYHG6Xw6WT5t2eqPl2O1Yyn/j
-         fIkEbF4dTNZWJJzWBGlPK4hjsX+D4dcV8bf2WRvtpvsl7yMAS5RcyLvNI8BVItADhfKi
-         6kFQ==
-X-Gm-Message-State: AJIora+5X4olCkYgkctgIaIaHtpw6+eRIXWGUfwMJAMyqdrH2a/zY7XQ
-        Cn+Ke0Lyz89zKI61CR+gf9Nnlsov6XU23dbWMsdaug==
-X-Google-Smtp-Source: AGRyM1vNwsFSmtjVsNs+qS1DumMmT57Xa9JDFUpm++zhPJwW6GISNSgwHRNPzGaD2iP96DGuRfky182MTcA3jVELOak=
-X-Received: by 2002:a05:6214:2a88:b0:473:5aa:e927 with SMTP id
- jr8-20020a0562142a8800b0047305aae927mr5462068qvb.122.1657092855292; Wed, 06
- Jul 2022 00:34:15 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=a7SBBN/6Q+yYGFLJGBFyvXLFrv4d27155jl/U2Ur7OU=;
+        b=jXcTQV6t/s5pF5eOtFhBqd3XJ3xtpcexxxAx5o0Z9w99+P+7x3v5xprd24snJHXte5
+         UedOu0LVvk58U512T77tjNuHY807cRzA9C6sI6/vTOTheJUwfu/fb/dZjWYH3Ni3qPds
+         a17OSCgCSlsaB27GFgEAQ7ATrYNo0eWT2J4M+oBwYFBJHWVOlVDrbHRciJYTbriFYXnf
+         hr6eUox76vgMNG8KV+cJtj+S55OdrVBxu3MFvMIm6AuzZjBqjhh5xLdpogK+ea4xT8UK
+         dNeABVXVNn2JjlmgCEb3uBMQEQts5YZNMn31vKTvLciex2qKXMLaWzylMGyW4qeAFy4O
+         b8GQ==
+X-Gm-Message-State: AJIora9ybhSg6Glmc8ZkNzXrhI3SjEbjN21z7ekjijSvRRUKegqxKsvL
+        bhYfFZ5tAKZD4QXxKkgrZ4yB8g==
+X-Google-Smtp-Source: AGRyM1tIy92y3ezGklgrGYEunVuaUNyqnih+pWX3z3d8xNohinEwVOLDFyHAYMksSn+6bCvc1o481g==
+X-Received: by 2002:a05:651c:10b8:b0:25a:9bc0:2110 with SMTP id k24-20020a05651c10b800b0025a9bc02110mr22950012ljn.234.1657092923638;
+        Wed, 06 Jul 2022 00:35:23 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id o18-20020ac24bd2000000b004811dae391fsm4662801lfq.48.2022.07.06.00.35.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jul 2022 00:35:22 -0700 (PDT)
+Message-ID: <708c4a86-731a-c2a6-e3d3-df23ae7c35b1@linaro.org>
+Date:   Wed, 6 Jul 2022 09:35:20 +0200
 MIME-Version: 1.0
-References: <20220621163326.16858-1-ansuelsmth@gmail.com> <20220621163326.16858-3-ansuelsmth@gmail.com>
- <CAA8EJpqQTTevQa4pQg3E+x4_AOjYo8ajOqUrfwGsVtC8N=bpOw@mail.gmail.com>
- <62b228b6.1c69fb81.e4673.34a2@mx.google.com> <CAA8EJprb=xV9+gZMANAYrt_JnKAtC89h1RAosL+g517_-Ugd2g@mail.gmail.com>
- <62c4a38b.1c69fb81.4d58e.ce99@mx.google.com>
-In-Reply-To: <62c4a38b.1c69fb81.4d58e.ce99@mx.google.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 6 Jul 2022 10:34:04 +0300
-Message-ID: <CAA8EJprGf6V9K1gFDCE+bnKwhjVgLvruTRAZ-AOqfPsbmmYRLA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] clk: qcom: lcc-ipq806x: convert to parent data
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH net-next v2 1/9] dt-bindings: power: Add Tegra234 MGBE
+ power domains
+Content-Language: en-US
+To:     Bhadram Varka <vbhadram@nvidia.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, kuba@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, pabeni@redhat.com,
+        davem@davemloft.net, edumazet@google.com,
+        Thierry Reding <treding@nvidia.com>
+References: <20220706031259.53746-1-vbhadram@nvidia.com>
+ <20220706031259.53746-2-vbhadram@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220706031259.53746-2-vbhadram@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,69 +79,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 Jul 2022 at 23:48, Christian Marangi <ansuelsmth@gmail.com> wrote:
->
-> On Tue, Jun 21, 2022 at 11:43:10PM +0300, Dmitry Baryshkov wrote:
-> > On Tue, 21 Jun 2022 at 23:23, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > >
-> > > On Tue, Jun 21, 2022 at 08:15:57PM +0300, Dmitry Baryshkov wrote:
-> > > > On Tue, 21 Jun 2022 at 19:33, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > > > >
-> > > > > Convert lcc-ipq806x driver to parent_data API.
-> > > > >
-> > > > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > > > > ---
-> > > > > v2:
-> > > > > - Fix Sob tag
-> > > > >
-> > > > >  drivers/clk/qcom/lcc-ipq806x.c | 79 +++++++++++++++++++---------------
-> > > > >  1 file changed, 44 insertions(+), 35 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/clk/qcom/lcc-ipq806x.c b/drivers/clk/qcom/lcc-ipq806x.c
-> > > > > index ba90bebba597..c07ca8dc6e3a 100644
-> > > > > --- a/drivers/clk/qcom/lcc-ipq806x.c
-> > > > > +++ b/drivers/clk/qcom/lcc-ipq806x.c
-> > > > > @@ -24,6 +24,10 @@
-> > > > >  #include "clk-regmap-mux.h"
-> > > > >  #include "reset.h"
-> > > > >
-> > > > > +static const struct clk_parent_data gcc_pxo[] = {
-> > > > > +       { .fw_name = "pxo", .name = "pxo" },
-> > > >
-> > > > I think you'd use .name = "pxo_board" here. You don't need to use the
-> > > > interim clock.
-> > > >
-> > >
-> > > In gcc and in the rest of this driver we use pxo. Wonder what is right?
-> >
-> > I'd use .fw_name = "pxo", .name = "pxo_board", like the rest of drivers do.
-> >
->
-> Will do the change, but I need an explaination... Is the use of
-> pxo_board correct?
->
-> I'm sending a patch that sets the pxo_board fixed clock in dts to output
-> "pxo". The only clock that still use pxo_board is rpm, everything else
-> at least for ipq806x use pxo and i'm sending a patch to use pxo for rpm.
->
-> Considering pxo is always present and pxo_board should be dropped
-> because every ipq806x driver use "pxo".
->
-> What is correct naming pxo or pxo_board? I assume pxo right?
+On 06/07/2022 05:12, Bhadram Varka wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Add power domain IDs for the four MGBE power partitions found on
+> Tegra234.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
+> ---
 
-This might be not the case for the ipq806x, but here is the story for
-all other (old) platforms:
-- gcc driver manually registered pxo/cxo/xo fixed factor clocks.
-- Then we started adding *xo_board clocks to the DT, as they represent
-the external oscillators
--  PXO clock consumers receive a clocks entry with clock-names = "pxo"
-which points to the pxo_board
-- All clock drivers are now being switched to use .fw_name = "pxo",
-.name = "pxo_board" to use the DT-defined pxo_board clock.
 
-Hopefully at some point we can then drop the manually registered pxo
-clock and always use the DT-based one.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-With best wishes
-Dmitry
+
+Best regards,
+Krzysztof
