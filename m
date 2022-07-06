@@ -2,72 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 742E0568A51
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C6C2568A66
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 16:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232246AbiGFN72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 09:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56844 "EHLO
+        id S231561AbiGFOAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 10:00:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232095AbiGFN71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:59:27 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71A5E30;
-        Wed,  6 Jul 2022 06:59:24 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id k129so8915442wme.0;
-        Wed, 06 Jul 2022 06:59:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Ac9Gpr6U1DQvwMtz7WiTrdzZYCAj4x8uFrWYzzMTzb8=;
-        b=pm/F8oyh3Wv4oJ9F1yZbKbUSnHnhOZIG7VBPv3k+Z7WkXw0SsQxmdwDM7+3qljP4Pc
-         FNds8B23FRIZ+8RbnRrqwDxJ2j+G1MpLDsVuwZCTJmH6QLYPQSLF8rvGxjgNAkE16U/i
-         mr0lOTFAbCftbS7CfNw40jwkZ6vciJnjrnnYG23GFIT4457GFHTfSbUGQhrLpMr8rFw+
-         Y7Bk/NWbwNiwanYXlsSKfwv6iHYJSr+I8pKU/5DlNn/P54h+r1aVFdm5muGgkdQ8P+du
-         5aJZ9QNGS+VhLek63Fewf+0LqoK5PgnCi8GyHnopaQwyVQmwSp/zAEx4TZZM+QHHcd+2
-         4VUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Ac9Gpr6U1DQvwMtz7WiTrdzZYCAj4x8uFrWYzzMTzb8=;
-        b=LZ3DHr56mJXNgXnCQwuFvrqljxTFUyJyQ4t0crXvcYpxZHU4IiFcA6pHBnUsyjADe7
-         IdLmOYnCExy0nTEQzPwkRmCHWHkga2crRp2g6jSBTmO1FhaLxd1+Pmd5QCA6fXE++Jry
-         cb0kRNyBqzHAbKufDQv12OVMoy/7mxpqq56AY1QFqoFw+0REgPvnm9QNiA3DKoN8NmFm
-         2xkd1CuItglqXkL18d7l5ckMXFIestVF9LQwcII77Vc+mXdMIuHf6labanTEkFKn7fNo
-         kgNTrIcmIKDOPvDaJPox1YDLeYSuC/jG3/M46eQp0kgIyq8JKnk530YbS/yvalxH6yDC
-         syew==
-X-Gm-Message-State: AJIora8iEXLVZpZKQLtwR5UVu0HVro/60/OYP4ej7Ysum3rAKH+nSI6t
-        n5MTDUIG3dcE9SxCoDxOnSHoTjgTUvbIn4A9uZA=
-X-Google-Smtp-Source: AGRyM1vxO/5kBovUPHP5jdMNDZbte60s29qcNytejGZBFSQ9kKKWQS7qjr+Cj+lKU8LyomLxfNv0XjGHHRJeOkbw2WU=
-X-Received: by 2002:a05:600c:3505:b0:3a1:9fbb:4d59 with SMTP id
- h5-20020a05600c350500b003a19fbb4d59mr19296256wmq.165.1657115962761; Wed, 06
- Jul 2022 06:59:22 -0700 (PDT)
+        with ESMTP id S232733AbiGFOAM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 10:00:12 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0BB51F2D7;
+        Wed,  6 Jul 2022 06:59:59 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 090DC660186F;
+        Wed,  6 Jul 2022 14:59:57 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657115998;
+        bh=hlSoJlMQ1wNrpKuPTKn+3MdUzD6VbIFbGoYJHvb0jKU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=X9+ALsZmAkZHB57bQsEqs/yp/DtoHi+5edpM+LAwaBt2OVVBP/IlUYu+L52n3To7z
+         R3jSDTxLpQcdkUD/oM3E9Iqe12UPRPe8qdAiAqFDv0P+YEbsphVdVxhtMsfzMpL36u
+         Zli3i5AdW3v8EfJEckF5TQ4fi+lr9njpbTpjQ0M6ZzXhTDjBEAKQTwnB6aomuRjQNT
+         FoPAn52JK414APBY+eBHYAT/hjh1qJfNG22hkWRhU4ujNkeYo+WOnfL5qLPZldKL/I
+         blCDOZYR/NFIhT3uaIK4onFqjOdbDQ455gBYC8FOkWa3KJNMVO7jh68GeDWgB6oWCr
+         d0hUXXTkUbQbw==
+Message-ID: <a7c7e807-5489-c731-224f-a4b681952917@collabora.com>
+Date:   Wed, 6 Jul 2022 15:59:55 +0200
 MIME-Version: 1.0
-References: <1657038252-31360-1-git-send-email-u0084500@gmail.com>
- <1657038252-31360-3-git-send-email-u0084500@gmail.com> <CAHp75VeV6vByZXGLraLes+94Rfs23ZjPXGaXzUf-YY=sb_1=2Q@mail.gmail.com>
- <CADiBU38qzjECL9_8djx4Vna5PA=A2_jh7BFph1z2D_LOqTtZTQ@mail.gmail.com> <CAHp75Vct4YytjXmFVtqKEM6zK84=PsTDD7=y7mxjELjZMj845A@mail.gmail.com>
-In-Reply-To: <CAHp75Vct4YytjXmFVtqKEM6zK84=PsTDD7=y7mxjELjZMj845A@mail.gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Wed, 6 Jul 2022 21:59:11 +0800
-Message-ID: <CADiBU3-=gVqxLP2KP1Jm_ALU=LrCoJZ5e+VUFX_6Ow+cDqa9QQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] iio: adc: Add rtq6056 support
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        cy_huang <cy_huang@richtek.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SCC_BODY_URI_ONLY,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 RESEND 0/4] MediaTek Helio X10 MT6795 - MT6331/6332
+ Regulators
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, lee.jones@linaro.org
+References: <20220706100912.200698-1-angelogioacchino.delregno@collabora.com>
+ <YsV9IerWCoa/xtwM@sirena.org.uk>
+ <57367b11-f2d4-476b-b92d-16c1726316c0@collabora.com>
+ <YsWG0jfqAf4EqojE@sirena.org.uk>
+ <82736173-b3b8-1e1a-3e2e-25d9ca3287eb@collabora.com>
+ <YsWTt3YSHI9LLpnw@sirena.org.uk>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <YsWTt3YSHI9LLpnw@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,42 +66,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=
-=886=E6=97=A5 =E9=80=B1=E4=B8=89 =E6=99=9A=E4=B8=8A8:45=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> On Wed, Jul 6, 2022 at 3:08 AM ChiYuan Huang <u0084500@gmail.com> wrote:
-> > Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=
-=9C=886=E6=97=A5 =E9=80=B1=E4=B8=89 =E5=87=8C=E6=99=A83:09=E5=AF=AB=E9=81=
-=93=EF=BC=9A
-> > > On Tue, Jul 5, 2022 at 6:31 PM cy_huang <u0084500@gmail.com> wrote:
->
-> ...
->
-> > > > +KernelVersion: 5.15.31
-> > >
-> > > ^^^ Wrong
-> > >
-> > I really cannot understand what kernel version I need to specified.
-> > https://lore.kernel.org/lkml/CAHp75VeBdgbyDQXEYb9ZZdi3AU=3DvPw6aKGWbNLn=
-uA_QoN4LE4A@mail.gmail.com/
-> >
-> > Last time, my understanding is to use the realistic kernel version.
-> > Then from my  development environment, the kernel  I used is 5.15.31.
-> > That's why I changed it from '5.18.2' to '5.15.31'.
-> >
-> > Do you mind to tell me what kernel version I need to write for this
-> > ABI test document?
-> > I'm almost confused about 'realistic', 'non-stable', nor 'developing'.
-> >
-> > If to write '5.19' or the future version '5.20', is it ok?
->
-> It's as simple as "next version that most likely your patch will be
-> in", in 99.9% cases it's 'current-cycle-version + 1', i.e. 5.20.
->
-It really confuse me for days.
-Now, it's clear.
-Thanks.
-> --
-> With Best Regards,
-> Andy Shevchenko
+Il 06/07/22 15:52, Mark Brown ha scritto:
+> On Wed, Jul 06, 2022 at 03:38:34PM +0200, AngeloGioacchino Del Regno wrote:
+>> Il 06/07/22 14:57, Mark Brown ha scritto:
+>>> On Wed, Jul 06, 2022 at 02:49:56PM +0200, AngeloGioacchino Del Regno wrote:
+>>>> Il 06/07/22 14:16, Mark Brown ha scritto:
+>>>
+>>>>> This previously got 0day failures due to missing dependencies which
+>>>>> need would need a merge with IIRC MFD, I see no reference in the cover
+>>>>> letter to dependencies?
+>>>
+>>>> The only blocker for this series was the MFD patch, which got picked and
+>>>> it's present in next-20220706 (as you suggested me to resend when things
+>>>> were picked... I decided to wait until they actually landed on -next...)
+>>>
+>>> Right, I also said I'd need a pull request - if I apply the patches
+>>> without having the MFD bits they depend on in my tree then it will fail
+>>> to build.
+>>
+>> I remember writing that to Lee... how do we proceed in this case?
+>> Should we add him to the Cc's of this patch to notify him or..?
+> 
+> Lee, Angelo has sent me this series for Helio X10 which needs some MFD
+> bits (not 100% sure which, I guess Angelo can fill that in) - is there a
+> tagged branch available to pull in?
+
+
+(Thank you, Mark!)
+
+The required bits are all in just one commit:
+
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220627123954.64299-1-angelogioacchino.delregno@collabora.com/
+
+Landed on next-20220706 with ID ad7f984a6aa9722443c1db9e8f72609bf06a8910
+
+...which can be also found here:
+https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=for-mfd-next
