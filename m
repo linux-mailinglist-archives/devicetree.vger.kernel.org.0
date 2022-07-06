@@ -2,95 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 041A2568C17
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 17:01:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C2C7568C37
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 17:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233207AbiGFPBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 11:01:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48078 "EHLO
+        id S229654AbiGFPGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 11:06:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231690AbiGFPB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 11:01:29 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9F525582;
-        Wed,  6 Jul 2022 08:01:27 -0700 (PDT)
-Received: from mail-yb1-f171.google.com ([209.85.219.171]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MqqLB-1nmftE15hx-00muQM; Wed, 06 Jul 2022 17:01:25 +0200
-Received: by mail-yb1-f171.google.com with SMTP id l144so15276019ybl.5;
-        Wed, 06 Jul 2022 08:01:24 -0700 (PDT)
-X-Gm-Message-State: AJIora8bv1HbZ8dyLtCnB5cQEVfh/x9Co6yDXL9jB1rxVkCaM7AsJ5uV
-        8rTy6eIcZpJPt8PU+GSiuVKhrmsdWUmbb0tKb5M=
-X-Google-Smtp-Source: AGRyM1umUC3WLeZlmJt9WhhCXt632xH5c1TSYZPaema52uTt6F/+nW7yUSNfOjLzvYo07C+MTUQ72TTNkGVtiR4Edpk=
-X-Received: by 2002:a25:7c41:0:b0:66d:766a:4815 with SMTP id
- x62-20020a257c41000000b0066d766a4815mr41195052ybc.480.1657119683920; Wed, 06
- Jul 2022 08:01:23 -0700 (PDT)
+        with ESMTP id S232564AbiGFPGX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 11:06:23 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA0418390
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 08:06:21 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id j23so2104512lji.13
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 08:06:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=8AO+J2LE63gF/pEN0vFhWdC06z7hhSAJ2kzbzBHJQYc=;
+        b=Yu53js0MAGepvew3Gnozocl206vgIuj1V+C5/ECHoEY/DsvpqGEjcqt9GF843uMUbq
+         pQ+tva9G6ED+y3/e+AW1/Ps8GTtgDscD/JVWR9FPTXdrGy1qaglB5p2jZT/BklBtWKdB
+         b4f3q9wxnYksxsCI/Qh1Nc2PvsultWSf+E75bmnz+hFZoQCKo93Bp7HMq6ol62rfOzvf
+         Tny/uz1AzSMVNa5L5yvbYaLDLDKxZqQxJ6eRjmA45XDrLad4VXyCyv3ppg9S6vtL89UN
+         0XPd9vLhnjdD+fLgTl4RgVSv19MpSZqBHxwd291COOaZp5Hv4g1Rz9Db2zssJiWuYbVl
+         4XJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=8AO+J2LE63gF/pEN0vFhWdC06z7hhSAJ2kzbzBHJQYc=;
+        b=eoBHDJlNEAhSpHAkmKNNe8oW7V5o9gzwbvtQhONMRnfTJ8VbCVaoPa770mRnC4TD4Y
+         JsQCqUp+Z9XH7e9NwlDV8oA+UepcEZBbquqCCs4vG807pOoOkoNz5DeVIT3VRFZ7xR0J
+         fcY+sM8tcOw6caYD82Fj0egqFf3WCzCqYu24yETqqealJHkbTe7IOA3UUvMA9Gfsf9E2
+         VXDvOZrqCSJ4df+KtQfyglcq1laHCcFCfyGfNsxCMYtCAsQV7sgrpdH+TRXRNnqsdQBQ
+         ytmT5GBLn9Hr5uR7qz4GxIzupPl3i4YPnQa/gBS7jd8puJgAH/ccJRNT4Mcwggm/ZQp/
+         BCFA==
+X-Gm-Message-State: AJIora9sUr7WiWpTa99Z/SWIHf4jBNjypceD5xFgkOepkkoxRA5NbvOt
+        NPlxBuYbeXwQ98QUZJSVeIA52g==
+X-Google-Smtp-Source: AGRyM1vvRukpDW59hhuCkomJfS5xKDFgaLXYid6bqitubs0npzp+fQmvLDn1pZEU+L4JkcWZYMhIxA==
+X-Received: by 2002:a2e:a26c:0:b0:25a:6dad:8bf5 with SMTP id k12-20020a2ea26c000000b0025a6dad8bf5mr23877254ljm.136.1657119979530;
+        Wed, 06 Jul 2022 08:06:19 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id g1-20020a0565123b8100b0047f9d9a4186sm6330501lfv.165.2022.07.06.08.06.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jul 2022 08:06:18 -0700 (PDT)
+Message-ID: <bce8c598-9075-d643-59b5-c2397a55b52f@linaro.org>
+Date:   Wed, 6 Jul 2022 17:06:16 +0200
 MIME-Version: 1.0
-References: <cover.1656396767.git.qinjian@cqplus1.com>
-In-Reply-To: <cover.1656396767.git.qinjian@cqplus1.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 6 Jul 2022 17:01:07 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1HoB74TA9EKJFuPLuw_zJfy_p7fwkm0M45+jaGkK6ivA@mail.gmail.com>
-Message-ID: <CAK8P3a1HoB74TA9EKJFuPLuw_zJfy_p7fwkm0M45+jaGkK6ivA@mail.gmail.com>
-Subject: Re: [PATCH v20 00/11] Add Sunplus SP7021 SoC Support
-To:     Qin Jian <qinjian@cqplus1.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:ypLhKQ82qJ3Jd9Zbh42IHDFZcSYyv4W4wKiD68YVxyTDj+G2oWi
- WJtV/nmVTW7IyYj7YoHglN+HExwTyakY9j2ZqTDczyTDq9DafsFNneUneB2UjGRSG6HJbc8
- 8g9fLK+jM2OCRG6PzbG9jg4j7KJULMx6nbgEXow/hbe1KTfOU71gKZsiInn7x7MBb9HiB6n
- /PufdB4AOiABB6PsUkvjg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:ls0OqjUPHqA=:l6pWBF+wMOxDPjBsgu3WWM
- UEyCfQt6oNhqvlcalzWBhWkfT9sOtZDEYivnTmSurWI3cqeqUJuXaIgT7dfFb3Ew5l15M1Zr1
- BUHgWel4782FoIT9OzF5qGmUBmqEyXU1SHJ/C43h2J12mEA9xH1pw6cwl8dITSkeCKujkTEHz
- zB6fyfvhXRvbqEqji9xAlLemgboghmUFCPGENJ1bCQkE9ex1qaV/Ghe/dlO9EKGRfWIOqM39y
- HlktMQEjZR2JMFpyv//FROl5EMHJF1wTP1VNUPe/sWYd8LmC9IiumFU6vOvXBbka3WU9/H+hb
- xNULNefr9AhuFRkaDtk7Yy+2sKW+3ZiXtzLUJqre5AiQgDc9kUpnsixz8ynJR+5qOK2e9UfMi
- mPhPjOt2fweDF2Zb8roJRQRyjPvEkUJC8VLJBpKisyXnmuYsi7oFu2MYKMWw/lCjDXCteZMqb
- n1Xye85qrUMpxo7rBFhLtaTjVRWF4bl6AWaDVZD8BwaYm42K5bGvVHo9kFbGaQ+fNrLY0NCZj
- 5oTWn1JmiVgLpOOr8qspL8oX58yahYvr+jBGwDNw8UGr6WHNjz3arEaTP/g7kIuFdM2kiTwMn
- UtDzs8RBfyf8ib4HpD/r3UJZS+3j8r+VjzzJFcildIOt0+f0xAZNCOZVg6zgjnwLahabAEfqU
- ZGno9rXVsLAaq3Hhm7ayLoO09J4wRAXHjJ0yi/QuWSwhIdtgoJ2V1xk3a/8rXz4Qpgz7uS95H
- 6K9NG/xG2+Y9U7u+QJzkG5ClnLGFi6iKiCnguNQpk19YDHtNRZb2yq/nCQZmzdxkVdij6op1a
- GSDR0RJ2jbpxu/wmY304SbP/I8TRalG8Qz6z2vEvHe7GMy/xkUqqwmfltjrdGb2JudhxXfxBM
- 6l0OW4ZENsdSsX7lmykKuBNvO7ZxgOXfgBBOlGyXI=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH V3 02/11] dt-bindings: pci: tegra: Convert to json-schema
+Content-Language: en-US
+To:     Vidya Sagar <vidyas@nvidia.com>, Rob Herring <robh@kernel.org>
+Cc:     bhelgaas@google.com, lorenzo.pieralisi@arm.com,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
+        vkoul@kernel.org, kw@linux.com, p.zabel@pengutronix.de,
+        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com,
+        Thierry Reding <treding@nvidia.com>
+References: <20220629060435.25297-1-vidyas@nvidia.com>
+ <20220629060435.25297-3-vidyas@nvidia.com>
+ <20220630210449.GA3283899-robh@kernel.org>
+ <e971a557-3387-efcf-87ec-983b998c5e93@nvidia.com>
+ <2829e71b-1769-ce24-f810-d63e619aa5f0@linaro.org>
+ <398a9370-6c2d-319c-2e23-038588fbf004@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <398a9370-6c2d-319c-2e23-038588fbf004@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 8:26 AM Qin Jian <qinjian@cqplus1.com> wrote:
->
-> This patch series add Sunplus SP7021 SoC support.
->
-> Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates many
-> peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and etc.) into a
-> single chip. It is designed for industrial control.
->
-> SP7021 consists of two chips (dies) in a package. One is called C-chip
-> (computing chip). It is a 4-core ARM Cortex A7 CPU. It adopts high-level
-> process (22 nm) for high performance computing. The other is called P-
-> chip (peripheral chip). It has many peripherals and an ARM A926 added
-> especially for real-time control. P-chip is made for customers. It adopts
-> low-level process (ex: 0.11 um) to reduce cost.
->
+On 06/07/2022 12:46, Vidya Sagar wrote:
+> 
+> 
+> On 7/6/2022 3:36 PM, Krzysztof Kozlowski wrote:
+>> External email: Use caution opening links or attachments
+>>
+>>
+>> On 06/07/2022 11:53, Vidya Sagar wrote:
+>>>>> +  nvidia,bpmp:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>>> +    description: |
+>>>>> +      Must contain a pair of phandle to BPMP controller node followed by controller ID. Following
+>>>>> +      are the controller IDs for each controller:
+>>>>> +
+>>>>> +        0: C0
+>>>>> +        1: C1
+>>>>> +        2: C2
+>>>>> +        3: C3
+>>>>> +        4: C4
+>>>>> +        5: C5
+>>>>> +    items:
+>>>>> +      - items:
+>>>>> +          - minimum: 0
+>>>>> +            maximum: 0xffffffff
+>>>>
+>>>> That's already the limit. Just a description is fine.
+>>>>
+>>>>> +          - enum: [ 0, 1, 2, 3, 4, 5 ]
+>>>>
+>>>> maximum: 5
+>>>
+>>> Setting the maximum to '5' is resulting in the following error.
+>>>
+>>> pcie-ep@141a0000: nvidia,bpmp:0:0: 4294967295 is greater than the
+>>> maximum of 5
+>>>
+>>> Could you please help me understand why I'm seeing this error?
+>>
+>> Trim your replies.
+>>
+>> Why adding minimum:5 to the phandle? Rob said add a description. Nothing
+>> about minimum.
+> 
+> I'm sorry I didn't understand the review comment clearly.
+> There is one description added above already. Are you (and Rob) saying 
+> that one more description is needed?
 
-As far as I can tell, all review comments have been fully addressed,
-but I'm missing an Ack from Stephen Boyd so I can apply it through
-the SoC tree.
+You have description of entire property. The property consists of
+phandles ("items", with only one item) and each phandle of two items
+(second nested "items"). The first item in phandle is actual phandle, so
+it does not need any constraints/schema, just a description. This was
+missing.
 
-        Arnd
+Something like this:
+https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+
+except that in your case second item (in the nested items) have actual
+schema, not description, which is good.
+
+
+
+Best regards,
+Krzysztof
