@@ -2,107 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9989F569585
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 00:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEEF5569598
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 01:03:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234084AbiGFWyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 18:54:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47538 "EHLO
+        id S231197AbiGFXDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 19:03:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233881AbiGFWya (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 18:54:30 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB922A26C;
-        Wed,  6 Jul 2022 15:54:29 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id f23so5228057ejc.4;
-        Wed, 06 Jul 2022 15:54:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=kUlxRQ1of3eu4XW5c6JjZr01Kt72atQDrgao/HtGT8o=;
-        b=Co0ZfwzJmPPNkFd2X0BmEcNP//YqWh2YVZ82PyFVNjtMPNYgg9gFetMF4Eg472r+dp
-         JNAOiVvs2eRLbDSHhHp2ZUeREgSFQqR6nP51zMN5HBng7oH/H//HWfzvN0Fo1HiiWkeb
-         oHEFGfKrYv12/Ovf4uujxQp9ugT8t/t8G5hsqb/KZhquEp3eT2UPptV1F+JV70SUMHIB
-         3vwWflMGn2v4EiWOFoOH8xULKpt06+TCBpFrOc7kVHLE4B7s022Ek2NrjbRWu6vWiZiL
-         4SGBkSJ9Em4sgryn3VLqWBlY6/P5C1UUpI08Eir4w4Q3R91CnWPdr0g5AjLZC7SOg1WD
-         /DjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kUlxRQ1of3eu4XW5c6JjZr01Kt72atQDrgao/HtGT8o=;
-        b=oXkkQ6H8LaqVbwD1mTTYiV4uPpv/NFiwfoBD/DqXHW3YSnDUUXP8cUwYFbumwHSaeT
-         OMw6wB60NXaqYZAQpgQtuSVLJshA3Cms+FhCzug7VcOfdrHMmY85oUcOqwC1igatI/h6
-         XIAvnjJyKJnGZ/U9rRcC89pKdCZeQ4+h7gwoO+jN7wl2MpTcQpzPDpX4zJ4j90gGdaF6
-         KzsnCLkDRvI1eFFLcdw9Flv3j7BcTrIzuR+pjLDdwjpn2EiLjTqLeeL/N2VgRuMpsThK
-         yMzuKdlqC2U5m5bhvzAtNLyytD+MbI3CEtBoyVgEdBpRiKUpH95040HZhg0V2UTryXI1
-         7A6g==
-X-Gm-Message-State: AJIora82LrhmUKUWtQ8mEZ9sj00TwJnrqTXahPAmFhPn4+YE8ipXYDYX
-        egETQFxc8JkrpIvykvXgcEU=
-X-Google-Smtp-Source: AGRyM1sl3zn7M5HpfENfgEsJmy2imKNBcKqIyJc0owvAEo+ADQh0QqN5BKbz8QTeOfyfAhgLSgEeDA==
-X-Received: by 2002:a17:907:1608:b0:726:a7b7:cd7a with SMTP id hb8-20020a170907160800b00726a7b7cd7amr40018657ejc.682.1657148068906;
-        Wed, 06 Jul 2022 15:54:28 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id d7-20020a170906304700b006fe921fcb2dsm1767637ejd.49.2022.07.06.15.54.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 15:54:28 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v2 4/4] clk: qcom: gcc-ipq806x: remove cc_register_board for pxo and cxo
-Date:   Thu,  7 Jul 2022 00:53:21 +0200
-Message-Id: <20220706225321.26215-5-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220706225321.26215-1-ansuelsmth@gmail.com>
-References: <20220706225321.26215-1-ansuelsmth@gmail.com>
+        with ESMTP id S229768AbiGFXDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 19:03:00 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC7A41DA6A;
+        Wed,  6 Jul 2022 16:02:57 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1o9E2X-0002uT-8c; Thu, 07 Jul 2022 01:02:37 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Guo Ren <guoren@kernel.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Wei Fu <wefu@redhat.com>,
+        Christoph Muellner <cmuellner@linux.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        Christoph Hellwig <hch@lst.de>,
+        Samuel Holland <samuel@sholland.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Anup Patel <anup@brainfault.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Atish Patra <atish.patra@wdc.com>
+Subject: Re: [PATCH v6 3/4] riscv: Add support for non-coherent devices using zicbom extension
+Date:   Thu, 07 Jul 2022 01:02:36 +0200
+Message-ID: <3111003.5fSG56mABF@diego>
+In-Reply-To: <CAJF2gTT6DzPihaP+BHLM6Wvn=Hba-jb-bhs96U3+ApdSmT593g@mail.gmail.com>
+References: <20220705224703.1571895-1-heiko@sntech.de> <20220705224703.1571895-4-heiko@sntech.de> <CAJF2gTT6DzPihaP+BHLM6Wvn=Hba-jb-bhs96U3+ApdSmT593g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that these clock are defined as fixed clk in dts, we can drop the
-register_board_clk for cxo_board and pxo_board in gcc_ipq806x_probe.
+Hi Guo,
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/clk/qcom/gcc-ipq806x.c | 8 --------
- 1 file changed, 8 deletions(-)
+Am Mittwoch, 6. Juli 2022, 01:32:12 CEST schrieb Guo Ren:
+> On Wed, Jul 6, 2022 at 6:47 AM Heiko Stuebner <heiko@sntech.de> wrote:
+> >
+> > The Zicbom ISA-extension was ratified in november 2021
+> > and introduces instructions for dcache invalidate, clean
+> > and flush operations.
+> >
+> > Implement cache management operations for non-coherent devices
+> > based on them.
+> >
+> > Of course not all cores will support this, so implement an
+> > alternative-based mechanism that replaces empty instructions
+> > with ones done around Zicbom instructions.
+> >
+> > As discussed in previous versions, assume the platform
+> > being coherent by default so that non-coherent devices need
+> > to get marked accordingly by firmware.
+> >
+> > Reviewed-by: Christoph Hellwig <hch@lst.de>
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > Cc: Christoph Hellwig <hch@lst.de>
+> > Cc: Atish Patra <atish.patra@wdc.com>
+> > Cc: Guo Ren <guoren@kernel.org>
+> > Cc: Anup Patel <anup@brainfault.org>
+> > ---
+> >  arch/riscv/Kconfig                   |  31 ++++++++
+> >  arch/riscv/Makefile                  |   4 +
+> >  arch/riscv/include/asm/cache.h       |   4 +
+> >  arch/riscv/include/asm/cacheflush.h  |  10 +++
+> >  arch/riscv/include/asm/errata_list.h |  19 ++++-
+> >  arch/riscv/include/asm/hwcap.h       |   1 +
+> >  arch/riscv/kernel/cpu.c              |   1 +
+> >  arch/riscv/kernel/cpufeature.c       |  24 ++++++
+> >  arch/riscv/kernel/setup.c            |   2 +
+> >  arch/riscv/mm/Makefile               |   1 +
+> >  arch/riscv/mm/dma-noncoherent.c      | 112 +++++++++++++++++++++++++++
+> >  11 files changed, 208 insertions(+), 1 deletion(-)
+> >  create mode 100644 arch/riscv/mm/dma-noncoherent.c
+> >
+> > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> > index 32ffef9f6e5b..f7b2b3a4b7f1 100644
+> > --- a/arch/riscv/Kconfig
+> > +++ b/arch/riscv/Kconfig
+> > @@ -113,6 +113,7 @@ config RISCV
+> >         select MODULES_USE_ELF_RELA if MODULES
+> >         select MODULE_SECTIONS if MODULES
+> >         select OF
+> > +       select OF_DMA_DEFAULT_COHERENT
+> >         select OF_EARLY_FLATTREE
+> >         select OF_IRQ
+> >         select PCI_DOMAINS_GENERIC if PCI
+> > @@ -218,6 +219,14 @@ config PGTABLE_LEVELS
+> >  config LOCKDEP_SUPPORT
+> >         def_bool y
+> >
+> > +config RISCV_DMA_NONCOHERENT
+> > +       bool
+> > +       select ARCH_HAS_DMA_PREP_COHERENT
+> > +       select ARCH_HAS_SYNC_DMA_FOR_DEVICE
+> > +       select ARCH_HAS_SYNC_DMA_FOR_CPU
+> > +       select ARCH_HAS_SETUP_DMA_OPS
+> > +       select DMA_DIRECT_REMAP
+> > +
+> >  source "arch/riscv/Kconfig.socs"
+> >  source "arch/riscv/Kconfig.erratas"
+> >
+> > @@ -376,6 +385,28 @@ config RISCV_ISA_SVPBMT
+> >
+> >            If you don't know what to do here, say Y.
+> >
+> > +config CC_HAS_ZICBOM
+> > +       bool
+> > +       default y if 64BIT && $(cc-option,-mabi=lp64 -march=rv64ima_zicbom)
+> > +       default y if 32BIT && $(cc-option,-mabi=lp64 -march=rv32ima_zicbom)
+>
+> -mabi=lp64 for rv32?
 
-diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-ipq806x.c
-index 718de17a1e60..883629de2751 100644
---- a/drivers/clk/qcom/gcc-ipq806x.c
-+++ b/drivers/clk/qcom/gcc-ipq806x.c
-@@ -3384,14 +3384,6 @@ static int gcc_ipq806x_probe(struct platform_device *pdev)
- 	struct regmap *regmap;
- 	int ret;
- 
--	ret = qcom_cc_register_board_clk(dev, "cxo_board", "cxo", 25000000);
--	if (ret)
--		return ret;
--
--	ret = qcom_cc_register_board_clk(dev, "pxo_board", "pxo", 25000000);
--	if (ret)
--		return ret;
--
- 	if (of_machine_is_compatible("qcom,ipq8065")) {
- 		ubi32_core1_src_clk.freq_tbl = clk_tbl_nss_ipq8065;
- 		ubi32_core2_src_clk.freq_tbl = clk_tbl_nss_ipq8065;
--- 
-2.36.1
+Thanks for catching that! :-) 
+
+When I converted over to using the real instructions for Zicbom instead of
+pre-coded ones, I used a different format first for detecting the Zicbom
+existence and I guess when moving over to the above I made a mistake
+in the conversion.
+
+In any case, that should of course be ilp32, same as in the Makefile.
+With updated opensbi and Qemu I have now re-tested all possible
+combinations and am pretty hopefully that this should fit now.
+
+v7 following shortly.
+
+Thanks
+Heiko
+
 
