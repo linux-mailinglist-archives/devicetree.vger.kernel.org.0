@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0DE456916B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 20:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 035D156918A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 20:16:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233709AbiGFSLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 14:11:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54490 "EHLO
+        id S233505AbiGFSQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 14:16:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233692AbiGFSLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 14:11:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB4E29C92;
-        Wed,  6 Jul 2022 11:11:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7CAE561FE3;
-        Wed,  6 Jul 2022 18:11:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB382C3411C;
-        Wed,  6 Jul 2022 18:11:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657131103;
-        bh=c7Cx7lWTrDQaho+shcjrP2iASNe68MqPSBAKq2zNm4w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ooydOsgIWt4EHDZ2OXmRHLrdlmzSbtfypB3EJnw1yD0ZCs0+Glj/m6e+856RxARxQ
-         uy71BTVy45+LbMfmNx4Z1KuiuwwZrEBJIBa8jl1pAuhlCvxbNOWVhYNLY1JcvczHyM
-         CVOJhXLsXXKgsVVEYrsCXBLjDBE13H1m/q3ZxGPB2QWVXugNL/5Rc+evqtBvV7on2D
-         L6q5mrWTXqhop6F1z6VAU0lKaTQpSQSiV+Vj9Gp0XUuoSLY9MrZdEDBHzaZxOo980l
-         cap/p6ZApUL/aEGvQ0t5wib5RQ0rOvAPvh6OpRJGFN59lCkyPbafmyF8yJ4s3RSSK0
-         8c0my55tAfIyA==
-Received: by mail-vs1-f44.google.com with SMTP id a184so6816414vsa.1;
-        Wed, 06 Jul 2022 11:11:43 -0700 (PDT)
-X-Gm-Message-State: AJIora/kUx48csSvOyIDuh1Nhj0LbypuMOAogzLd+CSLL1heC+RJgDKw
-        2POs4RwgMF9wdpC8hG4OU7xqQgWP/GsJUSSOVg==
-X-Google-Smtp-Source: AGRyM1trwyvSUtHyHigzbb6dGeQLAewwyn/Ih2DDQyVDcW25FgSTk48k8uDxAPcTpwGjJUVaOHaJHNB/o6IeRy5qfXQ=
-X-Received: by 2002:a67:c187:0:b0:354:3ab2:ba65 with SMTP id
- h7-20020a67c187000000b003543ab2ba65mr23005594vsj.53.1657131102853; Wed, 06
- Jul 2022 11:11:42 -0700 (PDT)
+        with ESMTP id S231715AbiGFSQ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 14:16:57 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A330A63A3
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 11:16:55 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id t19so26637040lfl.5
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 11:16:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=OD75XxCwnED+FS5wDk/RwNU3mc/oEXTZU6iEW1jy/AA=;
+        b=enNCpRpLSPco3263TwwGPuW4YQAoukdfvw/6dI4TtK37J4vjsMgQ6a+FaWF+Mhkx7b
+         MHGt7Vtsu584ZOHcOR6sFOlvSm1O1ITZdbBV6KB+L5wUy/eSiYMVHdHz+o6gOI6io9NZ
+         fYWPuTdmOpRUbFI0Y8y2clDj9A96EKH0v0BEf5khCNOd+pLvDxOybz8VSMY/3obRIMvQ
+         B+BxoFvQINouX+nOwZ+SayABbwAONw9RmhLlZLbWDfFnyxP8lbKxinwgHIIl8YUSPA05
+         5DAZCqje0eNjwIK0ZdAJKHlBu++M7G+AIKo/n4d6ewKfygCI0p/Y4JtdNV1kqrHeGQId
+         /7tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=OD75XxCwnED+FS5wDk/RwNU3mc/oEXTZU6iEW1jy/AA=;
+        b=mUKHfYpGT84FrhZXgPzFjn2yJTIepI8pzTR4PGm/kFLlCo3Bsmom9RlDkWZXPYyJKY
+         eRLthbTptDiW/jpusDWT5tzO3L2PBnGTIL2+Pv2WI+/Xx8/qQQa3ohocsoNQNZtXmO/P
+         pOFjFVNtg31jJ91qf8H6QowKdjSqaTaDaB56VZKTWumHQZXSujfbV4EAfB5C9YbcmzKx
+         PcMTBLftTdw/hSiVX3ljkTeEeZdawH+uwCfobQIgRBArdLWJIOjOFxnTTg1c/KVc7kp9
+         xYXaITE+7yKmdBQ5WkQdJGW5nPEv3XbelB9pcQX3nq08gwZsz9U/xnWW8xsgrpcXTBpW
+         e6pA==
+X-Gm-Message-State: AJIora9StqDvOpdSeV+I5mfQuwOs2PqJ5IE8atXpAWpAsZWiF68y7U+d
+        Py9pdvJ/2fDvrcFcxJCRDjSRJg==
+X-Google-Smtp-Source: AGRyM1vlTSDepPmb4CPBwh36YAfQLpzXxUXnSgiBNoiUoqkpIvuHzue1UGpTOo0IR7n2mqEABuaTsA==
+X-Received: by 2002:a05:6512:118b:b0:46b:a9ae:3a3b with SMTP id g11-20020a056512118b00b0046ba9ae3a3bmr3697317lfr.188.1657131413946;
+        Wed, 06 Jul 2022 11:16:53 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id i17-20020a2ea231000000b002555d6ca497sm6343498ljm.115.2022.07.06.11.16.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jul 2022 11:16:53 -0700 (PDT)
+Message-ID: <c285332f-dde9-2e71-8637-0526c4baeb1e@linaro.org>
+Date:   Wed, 6 Jul 2022 20:16:52 +0200
 MIME-Version: 1.0
-References: <20220629060435.25297-1-vidyas@nvidia.com> <20220629060435.25297-3-vidyas@nvidia.com>
- <20220630210449.GA3283899-robh@kernel.org> <e971a557-3387-efcf-87ec-983b998c5e93@nvidia.com>
-In-Reply-To: <e971a557-3387-efcf-87ec-983b998c5e93@nvidia.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 6 Jul 2022 12:11:31 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJQVJerfojCku9tmSa1_b2EDkvVgCs+2SvCmjCMe+gfyA@mail.gmail.com>
-Message-ID: <CAL_JsqJQVJerfojCku9tmSa1_b2EDkvVgCs+2SvCmjCMe+gfyA@mail.gmail.com>
-Subject: Re: [PATCH V3 02/11] dt-bindings: pci: tegra: Convert to json-schema
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod <vkoul@kernel.org>, Krzysztof Wilczynski <kw@linux.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
-        Krishna Thota <kthota@nvidia.com>,
-        Manikanta Maddireddy <mmaddireddy@nvidia.com>,
-        sagar.tv@gmail.com, Thierry Reding <treding@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/2] [RFT] dt-bindings: leds: Add
+ cznic,turris1x-leds.yaml binding
+Content-Language: en-US
+To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
+Cc:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220705000448.14337-1-pali@kernel.org>
+ <20220705155929.25565-1-pali@kernel.org> <20220706131507.353f0bed@thinkpad>
+ <20220706111912.hz2mx4dc35lgq6l5@pali> <20220706172732.6228d180@thinkpad>
+ <25b43586-eeb3-4b7b-7362-2d599aa89cf0@linaro.org>
+ <20220706184301.3f42a692@thinkpad>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220706184301.3f42a692@thinkpad>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,58 +81,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 6, 2022 at 3:53 AM Vidya Sagar <vidyas@nvidia.com> wrote:
->
->
->
-> On 7/1/2022 2:34 AM, Rob Herring wrote:
-> > External email: Use caution opening links or attachments
-> >
-> >
-> > On Wed, Jun 29, 2022 at 11:34:26AM +0530, Vidya Sagar wrote:
-> >> From: Thierry Reding <treding@nvidia.com>
-> >>
-> >> Convert the Tegra194 PCIe bindings from the free-form text format to
-> >> json-schema.
-> >>
-> >> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> >> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> >> ---
+On 06/07/2022 18:43, Marek Behún wrote:
+> On Wed, 6 Jul 2022 17:36:43 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 06/07/2022 17:27, Marek Behún wrote:
+>>> On Wed, 6 Jul 2022 13:19:12 +0200
+>>> Pali Rohár <pali@kernel.org> wrote:
+>>>   
+>>>> On Wednesday 06 July 2022 13:15:07 Marek Behún wrote:  
+>>>>> On Tue,  5 Jul 2022 17:59:28 +0200
+>>>>> Pali Rohár <pali@kernel.org> wrote:
+>>>>>     
+>>>>>> +examples:
+>>>>>> +  - |
+>>>>>> +    #include <dt-bindings/leds/common.h>
+>>>>>> +
+>>>>>> +    cpld@3,0 {    
+>>>>>
+>>>>> The generic node name should be just "bus". That it is a CPLD
+>>>>> implementation should come from compatible string.    
+>>>>
+>>>> Sorry, I do not understand why "bus". Why other memory chips are named
+>>>> e.g. "nand" or "nor" and not "bus" too?  
+>>>
+>>> As far as I understand this is because that is the preferred name for
+>>> busses and this is a bus, since there is also the simple-bus compatible.
+>>>   
+>>>> By this logic should not be _every_ node called just "bus"? Hm... and 
+>>>> are names needed at all then?  
+>>>
+>>> :-)
+>>>
+>>> The schema
+>>>   https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/simple-bus.yaml
+>>> allows for different names (soc|axi|ahb|*-bus) to avoid warnings on
+>>> existing old dts files.
+>>>
+>>> The preferred way is to not have the implementation in nodename,
+>>> similar to how we use 'switch' instead of 'mv88e6xxx', or
+>>> 'ethernet-phy' instead of 'mv88e151x', or 'led-controller', ...  
+>>
+>> Thanks Marek for detailed explanation.
+>> The cases above rather trigger my comments and this one here, after
+>> Pali's explanation, do not fit them. pld is a generic class of a device,
+>> so it is okay here. cpld probably as well (although one could argue that
+>> it is a subset of pld, so the generic name is pld, but then one would
+>> say fpga also should be called pld). For me it does not have to be bus,
+>> just don't want mv88e6xxx or any other vendor/model names. Therefore
+>> cpld is fine.
+> 
+> What about cpld-bus? It is used as a bus (simple-bus compatible) and
+> would work with the *-bus pattern in dt-schema.
 
-> >> +  nvidia,bpmp:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> >> +    description: |
-> >> +      Must contain a pair of phandle to BPMP controller node followed by controller ID. Following
-> >> +      are the controller IDs for each controller:
-> >> +
-> >> +        0: C0
-> >> +        1: C1
-> >> +        2: C2
-> >> +        3: C3
-> >> +        4: C4
-> >> +        5: C5
-> >> +    items:
-> >> +      - items:
-> >> +          - minimum: 0
-> >> +            maximum: 0xffffffff
-> >
-> > That's already the limit. Just a description is fine.
-> >
-> >> +          - enum: [ 0, 1, 2, 3, 4, 5 ]
-> >
-> > maximum: 5
->
-> Setting the maximum to '5' is resulting in the following error.
->
-> pcie-ep@141a0000: nvidia,bpmp:0:0: 4294967295 is greater than the
-> maximum of 5
->
-> Could you please help me understand why I'm seeing this error?
+If we talk about the example - it does not use any compatible, so we are
+focusing on unimportant piece. Anyway using a simple-bus compatible does
+not necessarily mean it is a bus. "soc" nodes also use it, but these are
+not buses.
 
-This is what you need:
 
-items:
-  - items:
-      - description: phandle to BPMP controller node
-      - description: controller ID
-        maximum: 5
+Best regards,
+Krzysztof
