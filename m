@@ -2,168 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B88A2569226
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 20:50:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEDAE56925C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 21:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234609AbiGFSt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 14:49:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60480 "EHLO
+        id S231573AbiGFTIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 15:08:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234525AbiGFStz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 14:49:55 -0400
-Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419DF275E9;
-        Wed,  6 Jul 2022 11:49:54 -0700 (PDT)
-Date:   Wed, 06 Jul 2022 18:49:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1657133389; x=1657392589;
-        bh=FQD+MMDt/Q8SRTTAfcqxo1U1VL4S1CdzwRULBkrzEs8=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
-         Feedback-ID:Message-ID;
-        b=SSodwAqUa6IEewyZfhwUlzSIwB7mAi7o0Tc/QGeKhXjB2Akhlw2pRuB12+A7pixy6
-         xAsI5FDQK8WDXRaYkjfeSR3yyijiP9MY2yLgnEhiWWhoj9weJp+KZo9YZyShXlQPnC
-         B5DsoTiTV825+tQlgOXwfaaM+pjvSniQUo6uyQZo=
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Alexander Martinz <amartinz@shiftphones.com>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S230241AbiGFTIs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 15:08:48 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69DE121839;
+        Wed,  6 Jul 2022 12:08:47 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 266J8d5N067193;
+        Wed, 6 Jul 2022 14:08:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1657134519;
+        bh=TsZFw/Y128sot7WWm1RTTs/Yzv1yc19MRgmVdodbX1k=;
+        h=From:To:CC:Subject:Date;
+        b=sDblqCYTClf0IVTQl9SGmbAIO5nsO6GUqyOvFP/x666Fe5QtFQ8dQIETaEOt4aFgY
+         oK64vgqPG91sr2vPLAIyzGFuk1ZXjDXEsIFstIPsCMt90C9MXIr0UdnqWrqj67Rc6U
+         X/1sQqVupkIVdVdJ4YFoPNS5lAn7JX4pN7gY6fQk=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 266J8dgw030772
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 6 Jul 2022 14:08:39 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 6
+ Jul 2022 14:08:39 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 6 Jul 2022 14:08:39 -0500
+Received: from ula0226330.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 266J8c6v010468;
+        Wed, 6 Jul 2022 14:08:38 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dylan Van Assche <me@dylanvanassche.be>
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH 1/2] arch: arm64: qcom: sdm845-shift-axolotl: fix Bluetooth firmware loading
-Message-ID: <0488a37f-083c-6e8c-eff2-e204b242cbfb@connolly.tech>
-In-Reply-To: <CAA8EJpqz32_LxmBVbcLt0sV=e1JzGtWEmMsKsQNoZzuGgLWbBQ@mail.gmail.com>
-References: <20220609095412.211060-1-amartinz@shiftphones.com> <CAA8EJpqz32_LxmBVbcLt0sV=e1JzGtWEmMsKsQNoZzuGgLWbBQ@mail.gmail.com>
-Feedback-ID: 10753939:user:proton
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Andrew Davis <afd@ti.com>
+Subject: [PATCH v2 1/4] arm64: dts: ti: k3-am65-main: Disable RNG node
+Date:   Wed, 6 Jul 2022 14:08:35 -0500
+Message-ID: <20220706190838.26074-1-afd@ti.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The hardware random number generator is used by OP-TEE and is access is
+denied to other users with SoC level bus firewalls. Any access to this
+device from Linux will result in firewall errors. Disable this node.
 
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
 
-On 09/06/2022 13:47, Dmitry Baryshkov wrote:
-> On Thu, 9 Jun 2022 at 12:54, Alexander Martinz <amartinz@shiftphones.com>=
- wrote:
->>
->> From: Dylan Van Assche <me@dylanvanassche.be>
->>
->> Add hsuart0 alias, firmware name and prevent garbage data on Bluetooth U=
-ART lines
->
-> hsuart aliases are not standard. Please use serialN alias instead.
->
->> on the SHIFT 6mq based on the Qualcomm SDM845 chip.
->> I discovered that these were missing by comparing the DTS with similar
->> devices such as the Oneplus 6/6T and Dragonboard 845c.
->>
->> Signed-of-by: Dylan Van Assche <me@dylanvanassche.be>
->> Tested-by: Alexander Martinz <amartinz@shiftphones.com>
->> ---
->>   .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 33 +++++++++++++++++++
->>   1 file changed, 33 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/ar=
-m64/boot/dts/qcom/sdm845-shift-axolotl.dts
->> index 103cc40816fd..fa72f23ef0c2 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
->> @@ -20,6 +20,7 @@ / {
->>
->>          aliases {
->>                  display0 =3D &framebuffer0;
->> +               hsuart0 =3D &uart6;
->>                  serial0 =3D &uart9;
->>          };
->>
->> @@ -529,6 +530,32 @@ volume_down_resin: resin {
->>          };
->>   };
->>
->> +/*
->> + * Prevent garbage data on bluetooth UART lines
->> + */
->> +&qup_uart6_default {
->> +        pinmux {
->> +                pins =3D "gpio45", "gpio46", "gpio47", "gpio48";
->> +                function =3D "qup6";
->> +        };
->
-> This chunk should probably go into sdm845.dtsi. I'd suggest either
-> adding a separate qup_uart6_4pin or just making qup_uart6_default the
-> 4-pin UART.
-This sounds good
->
->> +
->> +        cts {
->> +                pins =3D "gpio45";
->
-> Then the label and 'pins' can go into the dtsi, while keeping just the
-> bias and drive-strength in the platform dtsi.
->
->> +                bias-pull-down;
->> +        };
->> +
->> +        rts-tx {
->> +                pins =3D "gpio46", "gpio47";
->> +                drive-strength =3D <2>;
->> +                bias-disable;
->> +        };
->> +
->> +        rx {
->> +                pins =3D "gpio48";
->> +                bias-pull-up;
->> +        };
->> +};
->> +
->>   &qup_uart9_default {
->>          pinconf-rx {
->>                  pins =3D "gpio5";
->> @@ -667,6 +694,12 @@ &uart6 {
->>          bluetooth {
->>                  compatible =3D "qcom,wcn3990-bt";
->>
->> +               /*
->> +                * This path is relative to the qca/
->> +                * subdir under lib/firmware.
->> +                */
->> +               firmware-name =3D "axolotl/crnv21.bin";
->
-> Do you know what is the difference between axolotl's bin and the regular =
-one?
-Just checked in a hex editor and there are some differences. This firmware =
-is
-signed on most devices but given the SHIFT6mq is secureboot off we could in
-theory use upstream firmware here - if it works. This particular device has=
- some
-very broken wifi firmware - we have to use the firmware from the OnePlus 6 =
-to
-get wifi to work at all...
->
->> +
->>                  vddio-supply =3D <&vreg_s4a_1p8>;
->>                  vddxo-supply =3D <&vreg_l7a_1p8>;
->>                  vddrf-supply =3D <&vreg_l17a_1p3>;
->
-> --
-> With best wishes
-> Dmitry
+Changes from v1:
+ - Added comment in dtsi file
 
---
-Kind Regards,
-Caleb
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index e749343accedd..9de5a8294acd6 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -127,6 +127,7 @@ rng: rng@4e10000 {
+ 			reg = <0x0 0x4e10000 0x0 0x7d>;
+ 			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&k3_clks 136 1>;
++			status = "disabled"; /* Used by OP-TEE */
+ 		};
+ 	};
+ 
+-- 
+2.36.1
 
