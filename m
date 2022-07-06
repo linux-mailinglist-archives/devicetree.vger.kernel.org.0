@@ -2,62 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BF635692A8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 21:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81F8F5692BB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 21:41:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232640AbiGFTeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 15:34:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60516 "EHLO
+        id S233818AbiGFTlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 15:41:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbiGFTeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 15:34:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93764275D2;
-        Wed,  6 Jul 2022 12:34:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4E055B81E82;
-        Wed,  6 Jul 2022 19:34:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40DF4C3411C;
-        Wed,  6 Jul 2022 19:34:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657136050;
-        bh=Lc9Jtxr6bDh1AkEa/bqDJMUiPw2aZdu0IbhKtcXXdI8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eaQDJmx6+VBKcGT5zmT9gIJqcW2st61A9wKBlljjA5HHKiVGhY/gZrrBz0HuYD4iQ
-         tdNXQMBHCWviExLbW2FNt0/FzHC9uyc/lF6baCDfK5YW+khJtxMW0IDGwVgHt4OB9i
-         7coiLW6xxxubluDE4WAa7LxJpwbW+bhuRJXF0fzdsFoBrgO2KGZSv0kwxFLsvnJbDK
-         W3sWLNmLueR9y1SFYj5qN+KrSpoxRjn8Y1bTCqRQXWAaxpwQJqjYlLhtHkgh5JYeIO
-         q3cXqp/YieNQH/YpDuuA2Q46ASuEGidnE5WNOC2amHQnKcPgobXhvaV6QjbamCwayV
-         Ssh0oPzQif2+A==
-Date:   Wed, 6 Jul 2022 21:34:05 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+        with ESMTP id S230029AbiGFTlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 15:41:42 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9772221245
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 12:41:40 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id h17so10296009wrx.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 12:41:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dqftkVeBULFujgeW5u4Q72fmCV3i4BBjke3zKWOEy1A=;
+        b=KcYSiIzyauYf2ZzkUlAvW4Roc8Wmt2dFij6im1jGYtHZTnB1gQJ9kLTN9uq2gU8k0W
+         c8Ug4bvmQnuATs0Pyd3YuNLkkYCGo9NOyDZmTd2TODbApNfFoVdJnWYIEQauviZkfj1W
+         aXwLKrSltHgl9GeHYJHjMzCezWfhq+U6+AwURORi8yrRX//1hQvzd1ZnWS70OzDJ9D0s
+         fszyGefSzCfnIwSPI4WbjjJ4PH3V2X1ew8Oma0/QmB7hgR1mVLkU4y1i8DacjfuMlxs6
+         OV4ARrk9xeF/jIG5r0vcL4QGXscG1QWOG9D7maiux8M51zF1fA7jbQTevAICTukeXrrB
+         ZPJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dqftkVeBULFujgeW5u4Q72fmCV3i4BBjke3zKWOEy1A=;
+        b=ejxK/JrZ2209kznEGORc3m2OlB9QcNFrYQNvvpJ43CQrCa0ZOsDaf1+OWN90j43MA7
+         +y5JXWozB4KI6r/lD19LH6GZNA6ZrP0GxVAPkD7ew4U1hhz6D/bqgu6NGTGNCYz6Guvv
+         fG0PozBfvJspJhaeoQ1DnGDFHgZjhuSJ8LguJWb4LFC7+QYPAPYvz8ZcWKIP7iNAS3tn
+         RfVxLO38aD5mjkqxBacz3dBoGQ6JQoc94/xH2KtmEGHHFT/UT0Dh/FDLXxPohNA+hddD
+         yGFjo8YjW0jyYuEz2p5C0zZ6ATj5jXra0+KLn4VfMplwPe2MaHTVgqPWRVmZcokXA8XR
+         gTyA==
+X-Gm-Message-State: AJIora+aRUWxE+2e7YFNrYQqOo9sWovN5h0nrZhnHctGhHOeH/NB12+F
+        /rCMnzgnwk0H+a2VD8Aw7W0iEA==
+X-Google-Smtp-Source: AGRyM1sOu1aQFKgXk7TMbVOZRLxFaQ8UCtknqdZPyDoTSVFsby64OJ1WDVQbiTCNnRRxKrtq1QoATw==
+X-Received: by 2002:adf:f705:0:b0:21d:74fa:c043 with SMTP id r5-20020adff705000000b0021d74fac043mr10132920wrp.77.1657136499186;
+        Wed, 06 Jul 2022 12:41:39 -0700 (PDT)
+Received: from localhost.localdomain (88-107-17-60.dynamic.dsl.as9105.com. [88.107.17.60])
+        by smtp.gmail.com with ESMTPSA id f190-20020a1c38c7000000b0039c5328ad92sm23387320wma.41.2022.07.06.12.41.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Jul 2022 12:41:38 -0700 (PDT)
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+To:     caleb.connolly@linaro.org, Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-i2c@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 1/1] dt-bindings: i2c: i2c-rk3x: add rk3588 compatible
-Message-ID: <YsXjrUVbGIObUroU@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-References: <20220623163136.246404-1-sebastian.reichel@collabora.com>
- <2664d6a7-ee4b-9cfa-800e-e97522e3986c@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Tom Rix <trix@redhat.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, llvm@lists.linux.dev,
+        phone-devel@vger.kernel.org
+Subject: [PATCH v4 0/2] power: supply: introduce support for the Qualcomm smb2 charger
+Date:   Wed,  6 Jul 2022 20:41:23 +0100
+Message-Id: <20220706194125.1861256-1-caleb.connolly@linaro.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yrcvWxnffJQLM1lM"
-Content-Disposition: inline
-In-Reply-To: <2664d6a7-ee4b-9cfa-800e-e97522e3986c@linaro.org>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,44 +75,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add a driver for the Qualcomm PMI8998/PM660 Switch-Mode Battery Charger.
+This is the second generation SMB charger, and replaces the previous
+SMBB hardware found in older PMICs.
 
---yrcvWxnffJQLM1lM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This driver provides basic support for initialising the hardware,
+configuring the USB input current limit and reporting information about
+the state of the charger. Features like type-c dual role support and OTG
+switching will be added in future patches.
 
-On Sun, Jun 26, 2022 at 10:22:09PM +0200, Krzysztof Kozlowski wrote:
-> On 23/06/2022 18:31, Sebastian Reichel wrote:
-> > Just like RK356x, RK3588 is compatible to the existing rk3399 binding.
-> >=20
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
->=20
-> That's still some old tree you are based on...
+This patch series depends on my previous series adding support for
+the Round Robin ADC which is used for reading the USB voltage and
+current, it is currently queued in linux-next, and can be found here:
+https://lore.kernel.org/linux-arm-msm/20220429220904.137297-1-caleb.connolly@linaro.org/
 
-What do you mean by that?
+Changes since v3:
+ * Drop DTS patches, to be sent in a future series
+ * Add POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT so that the charger will
+   be exposed as a cooling device,
+   see https://lore.kernel.org/linux-pm/164f2458-fb66-f238-7143-bdbe1e200870@linaro.org
+ * Run clang-format and prevent it from breaking the formatting of the
+   defines
+ * Apply Sebastian's suggested fixes
 
+Changes since v2:
+ * Use devm_delayed_work_autocancel
+ * Minor driver fixes
+ * Pick up Krzysztof's R-b on the DT patch
 
---yrcvWxnffJQLM1lM
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes since v1:
+ * Rename the driver to pmi8998_charger
+ * Drop unnecessary (and very broken) mutex
+ * Rework the driver based on feedback to v1
+ * Fix some minor bugs and improve Automatic Input Current Limit support
 
------BEGIN PGP SIGNATURE-----
+Caleb Connolly (2):
+  power: supply: add Qualcomm PMI8998 SMB2 Charger driver
+  dt-bindings: power: supply: qcom,pmi8998-charger: add bindings for
+    smb2 driver
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmLF460ACgkQFA3kzBSg
-KbacmQ/9F97K+u7lxzj+N15bKY8tT6XwlYdmyDUyAt7ZvamCPpmpGwf+r/mGi4DK
-OIptUkAkheShb2e8NH475CQM+og3EQXu8DWD2aq5bkVslmndWGmXXKfsFraA20Lv
-gKwQr/uWPWmv+1de/iOkTAnr83UmbSEFfBUjZhsKTBaH2ikp5cMC3ugGeA0WaULH
-49VveqT395CU+pgHsSEsdx1830GN3UaVpaEviHiEp1ofZJBZB8mz5XZeM1KNuee0
-d+JZY3sajEHA+XFWnDH9x88UuqG3PH9Qche8FxuyENgQUBjV+aPaJyCy4oFxkIEX
-NLwrRUjMaAG9g21x+bnDcvpgt5tIzpk/EYdN6C84lrj0H8Oe4GCqKxxB7qQAqDvw
-Z6lmioUC3Q28/MnbIQqkgLov53ECYp1wlDgLHoZrLKbcbBzfgDBeSSb8YNqtFHGo
-3rE5e0O8j4QITfo6CvLzSDy5dwfk+T1/duo2LGkonWFWNCXf2s4QUkmQVyKrtbPE
-d6tjj0rIR4/8B779a5MG8KtNWabAIYHCDAo2d2w12r5yQM0qmrKbKaXCxK5qka+Z
-WdwYJQbvXh0j9fN7/g1lViiWHL6JI6vyq6iGUByR/duUbrPME1tG9LyZ+0bq/vjU
-npSKQrGotMl2GVVpET1/3W9TcJG8cOYqcHJAMHKlFw+jDjikklU=
-=gEdT
------END PGP SIGNATURE-----
+ .../power/supply/qcom,pmi8998-charger.yaml    |   82 ++
+ drivers/power/supply/Kconfig                  |    9 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/qcom_pmi8998_charger.c   | 1044 +++++++++++++++++
+ 4 files changed, 1136 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
+ create mode 100644 drivers/power/supply/qcom_pmi8998_charger.c
 
---yrcvWxnffJQLM1lM--
+-- 
+2.36.1
+
