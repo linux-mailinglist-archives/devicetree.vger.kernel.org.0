@@ -2,56 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A45135690B7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 19:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F04756915C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 20:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232118AbiGFRf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 13:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54246 "EHLO
+        id S232890AbiGFSFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 14:05:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232032AbiGFRf6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 13:35:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D76EF1AF2C;
-        Wed,  6 Jul 2022 10:35:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 858F8B81E67;
-        Wed,  6 Jul 2022 17:35:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAE81C3411C;
-        Wed,  6 Jul 2022 17:35:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1657128955;
-        bh=6ynoMbQXFNIScYnjumKAJ6N545ZU828F4IhKiPE9fyA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YJSavBUJWDm153lqRDuFqJbuMvjNAnAhzS8vTOheHjx52BLYzvbbGNriDCgTCmpIp
-         YyJluBX5HXGN4F74l4jCFzPj1OjfhVy7EBWgtQ/H7mUQmnh+LiPZHen7XSRyVkkcGX
-         159t5DU5rqe0OFAHCZzn6knq4BhyMFcIEuPcVLns=
-Date:   Wed, 6 Jul 2022 19:35:52 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Will Deacon <will@kernel.org>
-Cc:     Sebastian Ene <sebastianene@google.com>,
+        with ESMTP id S234242AbiGFSE7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 14:04:59 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC5D1CFD7;
+        Wed,  6 Jul 2022 11:04:57 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 266I4lsW007844;
+        Wed, 6 Jul 2022 13:04:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1657130687;
+        bh=XpbkBEGGYKqTiMJ2YYdbdlpLwVJebHMbh9qvZvd6lWA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=q/KBKYvgy004QBAesCVKWEL+0AfDjCWlxp5DQmGoMdu2iYcfAViCyUHviNUjLcZSa
+         9CYov34FBmP2riDC1QvRC/tqitu2ox9Y+LfZXnSbqQst4uVlHlv6jXqxlgoRotNc8n
+         yoF6d61g0Gtvo6n+dbwA3F29cFl4G/i6VigIHKuk=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 266I4lUr014768
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 6 Jul 2022 13:04:47 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 6
+ Jul 2022 13:04:46 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 6 Jul 2022 13:04:46 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 266I4klu082914;
+        Wed, 6 Jul 2022 13:04:46 -0500
+Date:   Wed, 6 Jul 2022 13:04:46 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        maz@kernel.org, vdonnefort@google.com,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v9 2/2] misc: Add a mechanism to detect stalls on guest
- vCPUs
-Message-ID: <YsXH+BMwrdFqi2ml@kroah.com>
-References: <20220701144013.1085272-1-sebastianene@google.com>
- <20220701144013.1085272-3-sebastianene@google.com>
- <20220706152101.GA3003@willie-the-truck>
- <YsWvNsK/hTc4sxo4@kroah.com>
- <20220706161048.GA3204@willie-the-truck>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 6/6] arm64: dts: ti: k3-j7200-mcu-wakeup: Add SA2UL node
+Message-ID: <20220706180446.cyzujuasovjvsofk@lively>
+References: <20220705170340.26719-1-afd@ti.com>
+ <20220705170340.26719-6-afd@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20220706161048.GA3204@willie-the-truck>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20220705170340.26719-6-afd@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,18 +67,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 06, 2022 at 05:10:50PM +0100, Will Deacon wrote:
-> On Wed, Jul 06, 2022 at 05:50:14PM +0200, Greg Kroah-Hartman wrote:
-> > On Wed, Jul 06, 2022 at 04:21:01PM +0100, Will Deacon wrote:
-> > > > +MODULE_LICENSE("GPL");
-> > > 
-> > > This needs to be "GPL v2".
-> > 
-> > Nope, that is what this is saying, please see the huge comment in
-> > include/linux/module.h right above MODULE_LICENSE().  So all is good
-> > here.
+On 12:03-20220705, Andrew Davis wrote:
+> J7200 has an instance of SA2UL in the MCU domain.
+> Add DT node for the same.
 > 
-> Thanks, I stand corrected, although I personally still find it clearer to
-> spell it out!
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+>  .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 
-I totally agree, but there is no "you must do this" directive here :)
+Please split this series into what crypto maintainers need to pick up vs
+what I need to pick up for dts. patches for my tree need to have lakml
+in cc as a rule (see MAINTAINERS file).
+
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> index 1044ec6c4b0d4..ebad3642c8e30 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> @@ -375,4 +375,24 @@ mcu_r5fss0_core1: r5f@41400000 {
+>  			ti,loczrama = <1>;
+>  		};
+>  	};
+> +
+> +	mcu_crypto: crypto@40900000 {
+> +		compatible = "ti,j721e-sa2ul";
+> +		reg = <0x00 0x40900000 0x00 0x1200>;
+> +		power-domains = <&k3_pds 265 TI_SCI_PD_SHARED>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
+> +		dmas = <&mcu_udmap 0xf501>, <&mcu_udmap 0x7502>,
+> +		       <&mcu_udmap 0x7503>;
+> +		dma-names = "tx", "rx1", "rx2";
+> +		dma-coherent;
+> +
+> +		rng: rng@40910000 {
+> +			compatible = "inside-secure,safexcel-eip76";
+> +			reg = <0x00 0x40910000 0x00 0x7d>;
+> +			interrupts = <GIC_SPI 945 IRQ_TYPE_LEVEL_HIGH>;
+
+Please document why disabled.
+
+> +			status = "disabled";
+> +		};
+> +	};
+>  };
+> -- 
+> 2.36.1
+> 
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
