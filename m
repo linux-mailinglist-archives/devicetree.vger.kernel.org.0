@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F2C856929F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 21:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BF635692A8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 21:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234045AbiGFT2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 15:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57494 "EHLO
+        id S232640AbiGFTeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 15:34:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231397AbiGFT2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 15:28:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D637E1C926;
-        Wed,  6 Jul 2022 12:28:40 -0700 (PDT)
+        with ESMTP id S229854AbiGFTeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 15:34:13 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93764275D2;
+        Wed,  6 Jul 2022 12:34:12 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 72E3262095;
-        Wed,  6 Jul 2022 19:28:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11E76C3411C;
-        Wed,  6 Jul 2022 19:28:38 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4E055B81E82;
+        Wed,  6 Jul 2022 19:34:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40DF4C3411C;
+        Wed,  6 Jul 2022 19:34:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657135719;
-        bh=uwG+1CitE2piA97muv9vt6iTl0bsdOymgXHEbkJNXow=;
+        s=k20201202; t=1657136050;
+        bh=Lc9Jtxr6bDh1AkEa/bqDJMUiPw2aZdu0IbhKtcXXdI8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=R/K5znm4it0BtlyD7fV+8uAfk79vFS9nve2y21ZzBAysD/xiw5IsrMmqRTN/rSL4p
-         jAhsc0C8RzavTe4Rx5gxLvZSe1yX+K0roBUfalliLpLqeByxa5LGYc8U5YhzddaXQX
-         EThbaxpTgCv3+UCEQA9X0PzBW+FDMxZ9XiBpOage4luZ0i3TUilPSwDpsr60ua0KtU
-         fRCX94jEROBmV6AqoirjuPmJqQbVbAuAX9Sh/Jt8v22JgLWEi6fRNsPiPhwxnjv9Jp
-         aTNFdKYouR/ZMqEF+MHlJruNubIlfLmq9X0Kc+fix1UEPDjpi35R3drAMj/Iiy+LQy
-         5Dr6gS3+8sFzQ==
-Date:   Wed, 6 Jul 2022 21:28:35 +0200
+        b=eaQDJmx6+VBKcGT5zmT9gIJqcW2st61A9wKBlljjA5HHKiVGhY/gZrrBz0HuYD4iQ
+         tdNXQMBHCWviExLbW2FNt0/FzHC9uyc/lF6baCDfK5YW+khJtxMW0IDGwVgHt4OB9i
+         7coiLW6xxxubluDE4WAa7LxJpwbW+bhuRJXF0fzdsFoBrgO2KGZSv0kwxFLsvnJbDK
+         W3sWLNmLueR9y1SFYj5qN+KrSpoxRjn8Y1bTCqRQXWAaxpwQJqjYlLhtHkgh5JYeIO
+         q3cXqp/YieNQH/YpDuuA2Q46ASuEGidnE5WNOC2amHQnKcPgobXhvaV6QjbamCwayV
+         Ssh0oPzQif2+A==
+Date:   Wed, 6 Jul 2022 21:34:05 +0200
 From:   Wolfram Sang <wsa@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: mv64xxx: Add variants with offload
- support
-Message-ID: <YsXiY7aT4X/m2nWP@shikoro>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-i2c@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH 1/1] dt-bindings: i2c: i2c-rk3x: add rk3588 compatible
+Message-ID: <YsXjrUVbGIObUroU@shikoro>
 Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220702052544.31443-1-samuel@sholland.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+References: <20220623163136.246404-1-sebastian.reichel@collabora.com>
+ <2664d6a7-ee4b-9cfa-800e-e97522e3986c@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="W7otrsCSuiGI17/i"
+        protocol="application/pgp-signature"; boundary="yrcvWxnffJQLM1lM"
 Content-Disposition: inline
-In-Reply-To: <20220702052544.31443-1-samuel@sholland.org>
+In-Reply-To: <2664d6a7-ee4b-9cfa-800e-e97522e3986c@linaro.org>
 X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,43 +67,43 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---W7otrsCSuiGI17/i
+--yrcvWxnffJQLM1lM
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jul 02, 2022 at 12:25:42AM -0500, Samuel Holland wrote:
-> V536 and newer Allwinner SoCs contain an updated I2C controller which
-> includes an offload engine for master mode. The controller retains the
-> existing register interface, so the A31 compatible still applies.
+On Sun, Jun 26, 2022 at 10:22:09PM +0200, Krzysztof Kozlowski wrote:
+> On 23/06/2022 18:31, Sebastian Reichel wrote:
+> > Just like RK356x, RK3588 is compatible to the existing rk3399 binding.
+> >=20
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> >  Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
 >=20
-> Add the V536 compatible and use it as a fallback for other SoCs with the
-> updated hardware. This includes two SoCs that were already documented
-> (H616 and A100) and two new SoCs (R329 and D1).
->=20
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> That's still some old tree you are based on...
 
-Acked-by: Wolfram Sang <wsa@kernel.org>
+What do you mean by that?
 
 
---W7otrsCSuiGI17/i
+--yrcvWxnffJQLM1lM
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmLF4mMACgkQFA3kzBSg
-KbbL0w//VAuq1mehyF2EBqeOXhdhsb4yiKfwBRHPAq43PVdwECXbcDCBEo2XZT2T
-4BxhF7I7MJ/TIvau2shw3az7kBGac+ZweyxDFMrC/1NjJG0ytvmBHH2xZEZFDjCh
-S255kBLsnMNuq27+SHhO2qVGMHOKU/Qp311jd6zMK7twOFBmEZIuTDHOqS6fHQat
-uIiIrqcOb5bRrVGPzosql5DR+0KoJ1J9ses0AhK6UeKGSlqPz94GzeKFQn5k5S3L
-IA5E+q2J2K6IMq5sX+rEVBm+Tmojb17ZNhwY1yXpoJEBx1Gbo8fTZosUfeent3yW
-uvabaks07g2YBr0YiBC64XIWYs4OmH9spaSN1rUhh6IpUWgOA9j5ZlKVUqpUcIZB
-VG8RIzDpZnp7SSOVWKKvXCMTO6u6fEAlt31ly9U1T2BzXP4k28skd1W4YVKppLD/
-LeZX4NxDpN0mTNYBlUlEfXbWlo9iMRNMk94QGC6JRmVHEl6Lvo25jtwlk9i/o8n5
-hEMETlTL+wIKEdiES1U8fRkZjkOkBmCZl2xMEJXSlwmaxTyJgznSmNvca+HKU94C
-aAzAM0R5/VVuzGemtfHZpbfwtyUQ+eNosZp2EaOzeiaMYi1hS5VVIFcJx0zm1J8l
-lGuz+D7qx5FfNuoTUbGHGZfa4MlAFDklYmdDMzOUeGXpmwd4AC4=
-=y2UY
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmLF460ACgkQFA3kzBSg
+KbacmQ/9F97K+u7lxzj+N15bKY8tT6XwlYdmyDUyAt7ZvamCPpmpGwf+r/mGi4DK
+OIptUkAkheShb2e8NH475CQM+og3EQXu8DWD2aq5bkVslmndWGmXXKfsFraA20Lv
+gKwQr/uWPWmv+1de/iOkTAnr83UmbSEFfBUjZhsKTBaH2ikp5cMC3ugGeA0WaULH
+49VveqT395CU+pgHsSEsdx1830GN3UaVpaEviHiEp1ofZJBZB8mz5XZeM1KNuee0
+d+JZY3sajEHA+XFWnDH9x88UuqG3PH9Qche8FxuyENgQUBjV+aPaJyCy4oFxkIEX
+NLwrRUjMaAG9g21x+bnDcvpgt5tIzpk/EYdN6C84lrj0H8Oe4GCqKxxB7qQAqDvw
+Z6lmioUC3Q28/MnbIQqkgLov53ECYp1wlDgLHoZrLKbcbBzfgDBeSSb8YNqtFHGo
+3rE5e0O8j4QITfo6CvLzSDy5dwfk+T1/duo2LGkonWFWNCXf2s4QUkmQVyKrtbPE
+d6tjj0rIR4/8B779a5MG8KtNWabAIYHCDAo2d2w12r5yQM0qmrKbKaXCxK5qka+Z
+WdwYJQbvXh0j9fN7/g1lViiWHL6JI6vyq6iGUByR/duUbrPME1tG9LyZ+0bq/vjU
+npSKQrGotMl2GVVpET1/3W9TcJG8cOYqcHJAMHKlFw+jDjikklU=
+=gEdT
 -----END PGP SIGNATURE-----
 
---W7otrsCSuiGI17/i--
+--yrcvWxnffJQLM1lM--
