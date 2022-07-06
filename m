@@ -2,86 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80F635691AE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 20:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 579F15691DF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 20:34:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230431AbiGFS0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 14:26:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39090 "EHLO
+        id S233926AbiGFSeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 14:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229824AbiGFS0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 14:26:32 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF6DC45
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 11:26:30 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-317a66d62dfso148697477b3.7
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 11:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AKNzyuxVbT+auUhZLi3IyFDil3epaFKjcWDvpCGicX8=;
-        b=Uxpv0YELVEct5DKRBFz2Fhk7QOvnqJthA8Ckw5wBsDZGh8wJXJiOrindJG/RdyVU2K
-         5kOY4qIummQC7LrVENX11WZTxRSqjS7URB43qjRq8OGIZqeDgCN81GIPSiMWTmCOOup2
-         QQdGRwejIFzn0MvwrWJWBomzFz7wDHAU+ejoU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AKNzyuxVbT+auUhZLi3IyFDil3epaFKjcWDvpCGicX8=;
-        b=7tbtexjZT692WNVNcFe8jBJkkjp72ZjeQg0Ho/+R6c3HcLgPcgGAP0tZEZ0dY5mNAo
-         Sv7c9dzYbLtkuWnT9aU65tDEo2NnaBSfDfUyJxQp8msZjfxG990f/1Fquy5V515jB/L7
-         UMby6aUMt4P2kvOePhtcY8zwNR0+ZkAoMOhab3RBjV5RXziWz8WqhzxFLC303sv9jluw
-         gFYxJ1fbE5PdRalsO2fQRYFBrtssMVPHg591LnNlMRLUQI7GjPZliTotspDlq11luobd
-         hPlcI90cfejYOAvPfUcgXyCe9xUoDgw3xltmCpJS3o45L/MfN5QbpnJeQduifbL0L6jF
-         o3xg==
-X-Gm-Message-State: AJIora/6amG/hhBPnZ0eip8Wdg8JPCsK5fGzuS/Z/kZ9vyH+umXfcLs9
-        W52QLlnisuXPnS5TTgJ2oYn3blOn6wB1bBm2hxtf/w==
-X-Google-Smtp-Source: AGRyM1udr5yyAZaFO4FJIEc1fs4jCrlvFfgCL6OO6ePlgo7ORdpuX2cwPgLlDUrByF02oMjAX082RxZNAQZV1iQkw1A=
-X-Received: by 2002:a0d:c787:0:b0:31b:a963:e1de with SMTP id
- j129-20020a0dc787000000b0031ba963e1demr47186325ywd.283.1657131989488; Wed, 06
- Jul 2022 11:26:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220622173605.1168416-1-pmalani@chromium.org>
- <20220622173605.1168416-6-pmalani@chromium.org> <CAE-0n517BB8YbN5AZG6M3ZrZGOJDV=+t0R9d8wD+gVqO1aD1Xg@mail.gmail.com>
- <CACeCKafR8hFke_tc2=1VGDNF-CFrZoAG1aUKuxGJG-6pd37hbg@mail.gmail.com>
- <CAE-0n50XbO5Wu4-429Ao05A4QrbSXoi1wBjTpGFjKm3pZj1Ybg@mail.gmail.com>
- <CACeCKafzB0wW_B2TOEWywLMyB+UhYCpXYDVBV=UbyxBiGnv1Rw@mail.gmail.com>
- <CAE-0n50Akd8QikGhaAQgxLkJBhE-7KQf5aJ_P2ajOmCjLk555g@mail.gmail.com> <CACeCKafQT_RBrkHJNE2ezahSsHLPrbnS69QbfnjxBoUhi6hjwQ@mail.gmail.com>
-In-Reply-To: <CACeCKafQT_RBrkHJNE2ezahSsHLPrbnS69QbfnjxBoUhi6hjwQ@mail.gmail.com>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Wed, 6 Jul 2022 11:26:19 -0700
-Message-ID: <CACeCKafya_XA+C3eJUvT4vjQSgsjdewVkCb+Jr2tA1605jjfjg@mail.gmail.com>
-Subject: Re: [PATCH v5 5/9] drm/bridge: anx7625: Add typec_mux_set callback function
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        bleung@chromium.org, heikki.krogerus@linux.intel.com,
-        Pin-Yen Lin <treapking@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
+        with ESMTP id S233823AbiGFSeu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 14:34:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE28F186F1;
+        Wed,  6 Jul 2022 11:34:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 79AA262022;
+        Wed,  6 Jul 2022 18:34:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A65D3C3411C;
+        Wed,  6 Jul 2022 18:34:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657132488;
+        bh=tdhbHRpjTdh0jLJq87r0ykUnbSyUx7D2m6eJLr6vJG4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Xjg/qMVcpW7nAsDPPTnx9mX520shW0tsKY/G5PfEFxgKLu5Svhi+2uOl3uoA08/kg
+         96mYYvNNeYLW7CBPJcv9wOgSLz2G/XqhDO1GC1vbHatPB7C5vqQ00VAs2Rauxhk2vr
+         hl19gXfziF9DpHXIoppesGt8nfWDeVOo1fqsC6K1Ra3ao69LedrqC1Gi9N9P/GVIud
+         B46gVzXVJCQMaWZ0T4PUM5mvWRhL+dQ9DMBvm/jurQv/powltTfiCtHqq8UY/Jc8A2
+         hkeBV06xt3RJkPrC535UE5kCkXy3bUc6o3P4S0/sz97RZ7umTb6LTYD5DT8Mxv97C/
+         nrx2cqSIOKszQ==
+Received: by pali.im (Postfix)
+        id 748067BA; Wed,  6 Jul 2022 20:34:45 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 00/11] ARM: dts: mvebu: Add definitions for PCIe legacy INTx interrupts
+Date:   Wed,  6 Jul 2022 20:31:03 +0200
+Message-Id: <20220706183114.30783-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,63 +58,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 4:38 PM Prashant Malani <pmalani@chromium.org> wrote:
->
-> On Thu, Jun 30, 2022 at 4:21 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Prashant Malani (2022-06-28 13:56:22)
-> > > On Tue, Jun 28, 2022 at 1:40 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > > >
-> > > > I suppose none of those things matter though as long as there is some
-> > > > typec switch registered here so that the driver can be informed of the
-> > > > pin assignment. Is it right that the "mode-switch" property is only
-> > > > required in DT if this device is going to control the mode of the
-> > > > connector, i.e. USB+DP, or just DP? Where this device can't do that
-> > > > because it doesn't support only DP.
-> > >
-> > > If the anx7625 is used just to route all lanes from 1 usb-c-connector (i.e
-> > > the USB+DP case), a mode-switch wouldn't be of much use, since one
-> > > would also route the CC lines to the built-in PD controller; so it will
-> > > already have knowledge of what mode the switch is in.
-> > >
-> > > The mode-switch is likely only relevant for this hardware configuration(
-> > > it's "DP only" in the sense that the USB pins to the SoC never go anywhere).
-> > > One only has 2 SS lanes each (from each usb-c-connector).
-> > >
-> > > Since there is no CC-line, the anx7625 needs to know which one has DP
-> > > enabled on it.
-> >
-> > Can the CC line be "captured" and not actually sent to the anx7625?
->
-> That's what happens on Chrome OS. The cc line goes to the EC (and is "consumed"
-> by the TCPM (Type C Port Manager)) and signals are then sent to the AP
-> over the Host command interface to `cros-ec-typec`. The signals here being all
-> the PD messages communicated between the peripheral and the port.
->
-> > I imagine if that is possible, maybe the CC lines would go to some
-> > micro-controller or something that did more typec management things and
-> > then the anx7625 driver would need to do software control of the mode
-> > and orientation control.
->
-> I _guess_ that is possible (though it would seem odd to not use all the PD
-> control hardware in that configuration)? If an system implements it in
-> such a way
-> then:
-> 1. mode-switch: Can be updated to do something when num_typec_switches == 1 (
-> in the mux_set function imp.l I haven't looked into what registers
-> need to be configured, since we
-> don't have this hardware implementation.
-> 2. orientation-switch: This should be registered, and then flip the
-> lanes when the port
-> driver tells it the orientation is one way or another.
->
-> So, if someone uses it that way, I think the driver needs only minor
-> updates to support it.
+This patch series add definitions for PCIe legacy INTx interrupts into
+every DTS file used by the pci-mvebu.c controller driver.
 
-Stephen, any pending concerns?
-If not,I will post a v6 series with the suggested changes:
-- Drop typec-switch binding; instead add a new top-level port with
-end-points for each Type-C connector's switch.
-- Drop it6505 patches.
-- Squash anx7625 driver patches into one patch.
-- Add a comment mentioning that we aren't registering the orientation-switch.
+It was tested on 88F6820 (A385) and 88F6281 (Kirkwood) SoCs.
+
+Pali Rohár (11):
+  ARM: dts: kirkwood: Add definitions for PCIe legacy INTx interrupts
+  ARM: dts: dove: Add definitions for PCIe legacy INTx interrupts
+  ARM: dts: armada-370.dtsi: Add definitions for PCIe legacy INTx
+    interrupts
+  ARM: dts: armada-xp-98dx3236.dtsi: Add definitions for PCIe legacy
+    INTx interrupts
+  ARM: dts: armada-xp-mv78230.dtsi: Add definitions for PCIe legacy INTx
+    interrupts
+  ARM: dts: armada-xp-mv78260.dtsi: Add definitions for PCIe legacy INTx
+    interrupts
+  ARM: dts: armada-xp-mv78460.dtsi: Add definitions for PCIe legacy INTx
+    interrupts
+  ARM: dts: armada-375.dtsi: Add definitions for PCIe legacy INTx
+    interrupts
+  ARM: dts: armada-380.dtsi: Add definitions for PCIe legacy INTx
+    interrupts
+  ARM: dts: armada-385.dtsi: Add definitions for PCIe legacy INTx
+    interrupts
+  ARM: dts: armada-39x.dtsi: Add definitions for PCIe legacy INTx
+    interrupts
+
+ arch/arm/boot/dts/armada-370.dtsi         |  28 ++++-
+ arch/arm/boot/dts/armada-375.dtsi         |  28 ++++-
+ arch/arm/boot/dts/armada-380.dtsi         |  42 ++++++-
+ arch/arm/boot/dts/armada-385.dtsi         |  52 ++++++--
+ arch/arm/boot/dts/armada-39x.dtsi         |  56 +++++++--
+ arch/arm/boot/dts/armada-xp-98dx3236.dtsi |  14 ++-
+ arch/arm/boot/dts/armada-xp-mv78230.dtsi  |  70 +++++++++--
+ arch/arm/boot/dts/armada-xp-mv78260.dtsi  | 126 ++++++++++++++++---
+ arch/arm/boot/dts/armada-xp-mv78460.dtsi  | 140 ++++++++++++++++++----
+ arch/arm/boot/dts/dove.dtsi               |  28 ++++-
+ arch/arm/boot/dts/kirkwood-6192.dtsi      |  14 ++-
+ arch/arm/boot/dts/kirkwood-6281.dtsi      |  14 ++-
+ arch/arm/boot/dts/kirkwood-6282.dtsi      |  28 ++++-
+ arch/arm/boot/dts/kirkwood-98dx4122.dtsi  |  14 ++-
+ 14 files changed, 560 insertions(+), 94 deletions(-)
+
+-- 
+2.20.1
+
