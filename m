@@ -2,57 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ECDD568781
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 13:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4BED56877D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 13:59:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233393AbiGFL6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 07:58:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58112 "EHLO
+        id S233443AbiGFL7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 07:59:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233315AbiGFL6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 07:58:10 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091BE28E39;
-        Wed,  6 Jul 2022 04:58:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B8503B81ADA;
-        Wed,  6 Jul 2022 11:58:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB1D5C3411C;
-        Wed,  6 Jul 2022 11:58:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657108687;
-        bh=qLDZmf82pSEzijMgkJBI7W2YEoKytRATtV3eRCBECjQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ikQuvgzLpPlwXXbdW2AHtdb6Kvu5+y9zCjct172Q2Pb6jgezFI/YlONUznm56Isju
-         i1R+rkGSMks61MkaxnYL+taHyOZl7dEWfexYF2C2dgTjcGMYxa2WZgyE1LL7rc1GrW
-         N0JDtFJgTxAxs/UBOAYYQsYeFsums3+qzj37czpL+DmGq3EvYA5EFxTqCwkseUZh95
-         2lDZHswNDMZp8/Uy22zQfpx6UMGT/slwlZ494LaFatrfA87/LKtdbum0/nPi9K3no0
-         Dgtr4jhXgsKjLrfkZ7ee7mny6wOTMhsnD9xyejOjF+KICbGrsXl6vP0RlNcWBDEiMD
-         6SZs58wWw5rdw==
-Date:   Wed, 6 Jul 2022 12:58:01 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     nandhini.srikandan@intel.com
-Cc:     fancer.lancer@gmail.com, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mgross@linux.intel.com,
-        kris.pan@intel.com, kenchappa.demakkanavar@intel.com,
-        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com,
-        mahesh.r.vaidya@intel.com, rashmi.a@intel.com
-Subject: Re: [PATCH v5 1/4] spi: dw: Fix IP-core versions macro
-Message-ID: <YsV4yU42in8qqQrw@sirena.org.uk>
-References: <20220706042039.5763-1-nandhini.srikandan@intel.com>
- <20220706042039.5763-2-nandhini.srikandan@intel.com>
+        with ESMTP id S233405AbiGFL6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 07:58:53 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D65C2408E
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 04:58:49 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id l14so17817449qtx.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 04:58:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ybb7VuM+EyU7gq2LFgKPhLmRG/OyaMHbxC7umWksKZ8=;
+        b=rZHzmnQi3KfezNYiiRREFmx9m2Me6jF7bZpGa4gZqjCVViRAUtiS/mSJ1oIufaW90C
+         6x7xa0f/TQHDaiaOrcecdpfhsytEd6kL9jWggpW+VDtopIhdCaPCbvuEGFqcUDk3wMFy
+         jZTZ4gpubNGaq6voWJp1Lwjs/drK2JCgpB8QzA96psxbz3+ccMp25fLdBMW5/lIneZPD
+         PXM5XbW0nTBMl/93G1kCj40H7zoQ2b9FuyvTQCeMV3z34IFxcWgksS4RgK68IGfz5RAk
+         nHCHkUi3A6+b1wdySuOW1Y72jUE2sJ72vS1zgTafXBPk20yKltHrvtNsihsI76rrEhD5
+         VW2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ybb7VuM+EyU7gq2LFgKPhLmRG/OyaMHbxC7umWksKZ8=;
+        b=XcVbpC3QErzC3K/LMESCyI44au3nJej7g6ciopij5cp8uTenMOoO63paZ8jJT6nGQO
+         Lzw4oylGBuQR0C4hIqfZd8NdQaiVUYaYS7fRMjgHI9yciEiuVYZMZagSrh3CUHKXccj3
+         jAdfgZZlNCnFEjV8XQIR9woWIhGMnueObCU6Q2lR5LPU5cFNIuzmbKsWd8O+T+mkUhgb
+         c2pBU5QDbwhEAWZLMlsvai2MQcLaQv6UYBWfe/3UR2iEXKqGwfwsngZqdAy5WrDS+UCm
+         BP0Ak5JCNKFZe16I8gzOwkCtO9sarfIwmW/mdL2lozBcq0mHijEchuSSfVn6XL8ROUyI
+         HDrQ==
+X-Gm-Message-State: AJIora9uq022HD32zNZYveGITKBF9x1K7gKd0imP4PJZiCNSf4PCdAoD
+        i9gFGiv3IsSMqt4BiIzXuQn18b521FHavid6fQFqVQ==
+X-Google-Smtp-Source: AGRyM1tpqygoo95h06VZ6Q5wy3BGd11IKQKZZYSwcPEJHq3OsTNNYHtH3uXbhLxIK0RsDjRlLemPMxsVoifFDbJWXsg=
+X-Received: by 2002:a05:622a:1981:b0:31a:816f:9d48 with SMTP id
+ u1-20020a05622a198100b0031a816f9d48mr33430632qtc.629.1657108728501; Wed, 06
+ Jul 2022 04:58:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NS/SuwMhgyH5tobI"
-Content-Disposition: inline
-In-Reply-To: <20220706042039.5763-2-nandhini.srikandan@intel.com>
-X-Cookie: Only God can make random selections.
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220705202837.667-1-ansuelsmth@gmail.com> <20220705202837.667-2-ansuelsmth@gmail.com>
+ <CAA8EJpoXOwooUYic-_G6jG7MBiHo2mfoKfR0jBDmRy0DsmMNEw@mail.gmail.com> <62c5658d.1c69fb81.1dc23.6884@mx.google.com>
+In-Reply-To: <62c5658d.1c69fb81.1dc23.6884@mx.google.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 6 Jul 2022 14:58:37 +0300
+Message-ID: <CAA8EJpqAyZp8fNO1DOz4XRFvrhBMw0fJMO4cmmTr500CpPtBYA@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: fix wrong clock documentation for qcom,rpmcc
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,35 +73,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 6 Jul 2022 at 13:35, Christian Marangi <ansuelsmth@gmail.com> wrote:
+>
+> On Wed, Jul 06, 2022 at 11:23:46AM +0300, Dmitry Baryshkov wrote:
+> > On Tue, 5 Jul 2022 at 23:56, Christian Marangi <ansuelsmth@gmail.com> wrote:
+> > >
+> > > qcom,rpmcc describe 2 different kind of device.
+> > > Currently we have definition for rpm-smd based device but we lack
+> > > Documentation for simple rpm based device.
+> > >
+> > > Add the missing clk for ipq806x, apq8060, msm8660 and apq8064 and
+> > > provide and additional example.
+> > >
+> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/clock/qcom,rpmcc.yaml | 77 ++++++++++++++++++-
+> > >  1 file changed, 73 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> > > index 9d296b89a8d0..028eb0277495 100644
+> > > --- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> > > +++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> > [,,,,]
+> >
+> > > +
+> > > +then:
+> > > +  properties:
+> > > +    clocks:
+> > > +      description: pxo clock
+> > > +
+> > > +    clock-names:
+> > > +      const: pxo
+> > > +
+> > > +  required:
+> > > +    - clocks
+> > > +    - clock-names
+> >
+> > I don't think you can not mark these properties as required, older
+> > schemas do not have them.
+> >
+>
+> Well considering we changed rpmcc to parent_data and rpm clock require
+> pxo clock as parents it seems to be they should be required.
 
---NS/SuwMhgyH5tobI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+parent_data specifies both the normal flow (.fw_name) and the fallback
+(.name), so they are not required.
+I actually miss 'recommended: true' in YAML for such cases.
 
-On Wed, Jul 06, 2022 at 12:20:36PM +0800, nandhini.srikandan@intel.com wrot=
-e:
-> From: Nandhini Srikandan <nandhini.srikandan@intel.com>
->=20
-> Fixes: 2cc8d9227bbb ("spi: dw: Introduce Synopsys IP-core versions interf=
-ace")
-> Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
+> Actually no idea why this wasn't required before. Probably because this
+> schema described only rpm-smd and not old rpm?
+>
+> > > +
+> > > +else:
+> > > +  if:
+> > > +    properties:
+> > > +      compatible:
+> > > +        contains:
+> > > +          const: qcom,rpmcc-apq8064
+> > > +  then:
+> > > +    properties:
+> > > +      clocks:
+> > > +        items:
+> > > +          - description: pxo clock
+> > > +          - description: cxo clock
+> > [...]
 
-What is the problem and how does this patch fix it?
 
---NS/SuwMhgyH5tobI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLFeMgACgkQJNaLcl1U
-h9BpHAf9H+C6F2j6Q79hU8O50TRg5YaiK2g7Xd6QwXbY08B55VQqOGYQEqVEKHP6
-j9DhIr6glSpc9yD/idZyKWQdSYh9aD+/d2mS3FBF31h2aLC+XwsunKMvX8eUJX2h
-1rjsN5kL5X/rMdkxqHaFp8baHZ849tiiQNlxFoh/lzQX+1MsBhnD3IjD9oaOF4x3
-SstVjtZ+zlXncT+yTIrRaApHb9eb9EKIC5DI1s4plB2TTm5/FoMyjLZgfX2qVOcM
-gsKvi96pEUzU2++f7IkEv0/izlRTseVn4zvdORB6Pu4t/xhmpkwsfSYfVo9dAGTK
-YTSWCwwSro52sfNJ0KdDERTQLScvLA==
-=DvNR
------END PGP SIGNATURE-----
-
---NS/SuwMhgyH5tobI--
+-- 
+With best wishes
+Dmitry
