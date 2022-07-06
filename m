@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 890D156801C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 09:40:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FC6D56805B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 09:43:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbiGFHkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 03:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56702 "EHLO
+        id S231944AbiGFHn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 03:43:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbiGFHke (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 03:40:34 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B71B22BC7
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 00:40:33 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id bf9so1229900lfb.13
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 00:40:33 -0700 (PDT)
+        with ESMTP id S231811AbiGFHnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 03:43:18 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C1D022BF9
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 00:43:07 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id bf9so1238195lfb.13
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 00:43:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=tHC6g1e0eMvimI9KqKd/ut+Z55C7x7KvZC11uhVlLBQ=;
-        b=pMhY5I6oLgh6rf97jnoly2SY51aQrh/m0AW/L+woLnGunZh3dyg4KK3UqWPRnJbhvJ
-         iAHHyav7sIhYJeOPcE+M8r9s+6pZlFbXiN20t4LJQE8RJJvdQ4nFgNufDnL/JPasKTy+
-         W+PXTEzXClRqKAqtNZYqTd+CL5sACsTQ49C2Z3696xC7gzIIi/+xV9ufmjo/y1rxk2vm
-         kpqgltwz0V5cD/mnnshEd9lhqbRDfGOmRjS6N8oh2ryvA5zmKqJ9MjW/nvG+ASqR9Ixt
-         eU7JqcnYSEvcgcg/MS1sBTwd8TVOcQVZL9BL5XI90XGGTHUsrL2weMsH9KhllNdvmwt7
-         ddiA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=sCqxJgiHwg2gn7pT7SVBdgDBrSqiAbmxYrREjlIruR8=;
+        b=aNGpPmQd0+6iv/iwx3y7ULO+qF40M3E+ueIpvliy68l/U47nhXkpNbJ6+ZPruGhjTQ
+         SyE07lVmJ03sooTwtf1/DbJpY+FGo2t4dTsMX746HF/6n+gfEV/GLhDI/QfSrhgDjROJ
+         ZA7apXzDLxSfVR/bNfqoMIvQcREiah/UxUSVShVc5QnlGxzvNW+vi2Rl9BkPqcJemfd1
+         zySgBkwahWg4rdwMy0XtE2d0stoxbnJCE16KMvMCuVDRdOnD3NA0qvmOJWAlfPRnekb7
+         3YSpDxYOdMyqIyjdz4O1OLfFLI1IQEJV2251lggJ+fVcq7XvnCOF6LpfnXW1X+o4P81b
+         Xd3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=tHC6g1e0eMvimI9KqKd/ut+Z55C7x7KvZC11uhVlLBQ=;
-        b=qTM1g9kUC8FP/tb0IhB/UNjvG+OpFJxedOPgmbXbBqE7tY3wsJppME8dK2NXUdbRdJ
-         YaWW7bUPKuI4d1TzWN5/po1vAcHE4yH9epEG0PCrm9XtZZn/eeAHhE0HYaX7RUq8L0rt
-         813HyU9D4D3J1HcPqWPT8J6S9p0h8BeSg56bl2miefIuPYTxJkT77+v9DYY/VndT6avy
-         ng6/SmkdH/2UHs5pMws2aE5968PAPoA/MNIrFph93trzMyhalS+rbiN3LHhoINtMXo9V
-         cv9IXJX2FeR0eJkaazcBknAqaE1tOaf8qEUdPXGfcOk7haE2ugCaVgvWV69UVtUbRcPG
-         6HZg==
-X-Gm-Message-State: AJIora+n4lUiizMdpQX1jmza/b9XgiCw2XR070H7yHLewSfNEEpBFVGE
-        MHBPaBs9I8DSMElChU3c2GKLXw==
-X-Google-Smtp-Source: AGRyM1sUmxKidmtloQsmU6mxIVhwMR/efusfURXP9Md0qWiwboryqpDXm1jRxDwXDWbZpNhegi55Tg==
-X-Received: by 2002:a05:6512:3a95:b0:483:e38b:528b with SMTP id q21-20020a0565123a9500b00483e38b528bmr4274849lfu.227.1657093231756;
-        Wed, 06 Jul 2022 00:40:31 -0700 (PDT)
+        bh=sCqxJgiHwg2gn7pT7SVBdgDBrSqiAbmxYrREjlIruR8=;
+        b=mSkMGvbby8ayJEz2eZeiBxbxe8HUnk4qcfIe/73YJtVFhuK/2rVFfoUwRVROUCujgX
+         JLA1cFUgk/DFL5QUHh9Z46hF9j4juciZKbgAR8AAFQg3cxVxHgv+kpP1iAlP20KIms85
+         BmE6yPTCT7mOZCPGEHhi7qvOVtl2zBRDw7433nHF8EqMbCjFIrtwpuW0HI+8SuDieZpV
+         awWDJ2Sy/13tg5IABuPoRHxB1ASjyl16iAS+YZ9K6M+yr5ZzKbmKpliALJjg5a6xHXlc
+         TAkd9z04mX7XbyXOUWU0PziiqysK4ceMhviPP56ct8j0DBipruv1sny4Pokl1pjn6C+9
+         lT8w==
+X-Gm-Message-State: AJIora+PNYSnM6bmOYnafVeHQSmDTM5hDFWiGXOoJP4VzpeaE5OHEoJg
+        7GI18Tcmb1n26g2OamEuQzQB7g==
+X-Google-Smtp-Source: AGRyM1sqUFemROALwykBJdUtm50OkihXymMBaGRnFzA2ualCr1IFmLnVFvgfIx4qLAvo8icCfwzRxA==
+X-Received: by 2002:a05:6512:3048:b0:47f:c0e3:9ae8 with SMTP id b8-20020a056512304800b0047fc0e39ae8mr25777182lfb.640.1657093385239;
+        Wed, 06 Jul 2022 00:43:05 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id m18-20020a056512359200b00481348b1074sm4128441lfr.81.2022.07.06.00.40.30
+        by smtp.gmail.com with ESMTPSA id s4-20020a056512214400b0048109845ab8sm2733806lfr.50.2022.07.06.00.43.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 00:40:30 -0700 (PDT)
-Message-ID: <9513b46a-126f-667e-4ba1-a2a15d6d303e@linaro.org>
-Date:   Wed, 6 Jul 2022 09:40:29 +0200
+        Wed, 06 Jul 2022 00:43:04 -0700 (PDT)
+Message-ID: <fc6a3282-2186-c458-9c85-b0bd2e0fc624@linaro.org>
+Date:   Wed, 6 Jul 2022 09:43:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH net-next v2 1/9] dt-bindings: power: Add Tegra234 MGBE
- power domains
+Subject: Re: [PATCH 1/5] dt-bindings: clock: fix wrong clock documentation for
+ qcom,rpmcc
 Content-Language: en-US
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220705202837.667-1-ansuelsmth@gmail.com>
+ <20220705202837.667-2-ansuelsmth@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bhadram Varka <vbhadram@nvidia.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, kuba@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, pabeni@redhat.com,
-        davem@davemloft.net, edumazet@google.com,
-        Thierry Reding <treding@nvidia.com>
-References: <20220706031259.53746-1-vbhadram@nvidia.com>
- <20220706031259.53746-2-vbhadram@nvidia.com>
- <708c4a86-731a-c2a6-e3d3-df23ae7c35b1@linaro.org>
-In-Reply-To: <708c4a86-731a-c2a6-e3d3-df23ae7c35b1@linaro.org>
+In-Reply-To: <20220705202837.667-2-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,22 +82,130 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2022 09:35, Krzysztof Kozlowski wrote:
-> On 06/07/2022 05:12, Bhadram Varka wrote:
->> From: Thierry Reding <treding@nvidia.com>
->>
->> Add power domain IDs for the four MGBE power partitions found on
->> Tegra234.
->>
->> Signed-off-by: Thierry Reding <treding@nvidia.com>
->> Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
->> ---
+On 05/07/2022 22:28, Christian Marangi wrote:
+> qcom,rpmcc describe 2 different kind of device.
+> Currently we have definition for rpm-smd based device but we lack
+> Documentation for simple rpm based device.
 > 
+> Add the missing clk for ipq806x, apq8060, msm8660 and apq8064 and
+> provide and additional example.
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../devicetree/bindings/clock/qcom,rpmcc.yaml | 77 ++++++++++++++++++-
+>  1 file changed, 73 insertions(+), 4 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> index 9d296b89a8d0..028eb0277495 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> @@ -48,16 +48,65 @@ properties:
+>    '#clock-cells':
+>      const: 1
+>  
+> -  clocks:
+> -    maxItems: 1
+> +  clocks: true
+>  
+> -  clock-names:
+> -    const: xo
+> +  clock-names: true
 
-Wait, I already acked this. Why do I need to ack second time?
+That's not correct way to describe these. Check other files, we've
+already talked about this. You need min and maxItems here.
+
+>  
+>  required:
+>    - compatible
+>    - '#clock-cells'
+>  
+> +if:
+
+allOf
+
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - qcom,rpmcc-apq8060
+> +          - qcom,rpmcc-ipq806x
+> +          - qcom,rpmcc-msm8660
+> +
+> +then:
+> +  properties:
+> +    clocks:
+> +      description: pxo clock
+> +
+> +    clock-names:
+> +      const: pxo
+> +
+> +  required:
+> +    - clocks
+> +    - clock-names
+> +
+> +else:
+> +  if:
+
+No nested ifs.
+
+> +    properties:
+> +      compatible:
+> +        contains:
+> +          const: qcom,rpmcc-apq8064
+> +  then:
+> +    properties:
+> +      clocks:
+> +        items:
+> +          - description: pxo clock
+> +          - description: cxo clock
+> +
+> +      clock-names:
+> +        items:
+> +          - const: pxo
+> +          - const: cxo
+> +
+> +    required:
+> +      - clocks
+> +      - clock-names
+> +
+> +  else:
+> +    properties:
+> +      clocks:
+> +        description: xo clock
+> +
+> +      clock-names:
+> +        const: xo
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -73,3 +122,23 @@ examples:
+>              };
+>          };
+>      };
+> +
+> +  - |
+> +    rpm {
+> +        clock-controller {
+> +            compatible = "qcom,rpmcc-ipq806x", "qcom,rpmcc";
+> +            #clock-cells = <1>;
+> +            clocks = <&pxo_board>;
+> +            clock-names = "pxo";
+> +        };
+> +    };
+> +
+> +  - |
+> +    rpm {
+> +        clock-controller {
+> +            compatible = "qcom,rpmcc-apq8064", "qcom,rpmcc";
+> +            #clock-cells = <1>;
+> +            clocks = <&pxo_board>, <&cxo_board>;
+> +            clock-names = "pxo", "cxo";
+> +        };
+
+These are the same. Provide examples only for blocks which are
+significantly different.
+
 
 Best regards,
 Krzysztof
