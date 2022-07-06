@@ -2,165 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D480568FB8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5B49568FDB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233997AbiGFQvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 12:51:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45602 "EHLO
+        id S233254AbiGFQyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 12:54:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234092AbiGFQvr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:51:47 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DF152A42D;
-        Wed,  6 Jul 2022 09:51:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 181E9B81E32;
-        Wed,  6 Jul 2022 16:51:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 072EBC3411C;
-        Wed,  6 Jul 2022 16:51:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657126303;
-        bh=pIiWhmzedFgugbr07W1T7Td/EKYRbZ9ectUju0WGfCk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ge+fJ19MGAxwkfdGkPGAlffA869wkEJnIo+qBMcyxMktWwMme4Xr9KH58gLkM4hVP
-         RGn62if3hFffimiyBpH1AeFafkJ1iAPhLLfJYp/KmWyDpZZWH2igubVXIZhshv1Tai
-         oPzS9Iarw52/FXD+nX/hhgt2l5ZpJMz8YG0xJVLQ7z2QbWfXzj5p+/046/QrIwnmNr
-         Rg2w7Q6XXF3zI1vhEiVl8QCDJJ3aef2yQjxJtRxCMKJe4Zze1H2AGMCHrKiF777+I3
-         onCecIwtu022Fs04j2Tn8sGleZ/QyrSZy8gZpbOcAVpbfVpG2e6utJlxTnt7wdxtlH
-         SM49rT+6RZFvA==
-Date:   Wed, 6 Jul 2022 22:21:39 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Wangseok Lee <wangseok.lee@samsung.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>,
-        Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>,
-        Yeeun Kim <yeeun119.kim@samsung.com>
-Subject: Re: [PATCH v3 4/5] phy: Add ARTPEC-8 PCIe PHY driver
-Message-ID: <YsW9m6hotDKacXe3@matsya>
-References: <YsPYc3YPuG56yTYM@matsya>
- <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
- <20220614013446epcms2p8c88ea65da49447f72fef6536c7f73fb6@epcms2p8>
- <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p6>
- <20220706081036epcms2p6baf1d8afac994cd0d45c5e59029c8ce7@epcms2p6>
+        with ESMTP id S234148AbiGFQyX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:54:23 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1F43427145;
+        Wed,  6 Jul 2022 09:54:20 -0700 (PDT)
+Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 9CC3F1C8117F;
+        Thu,  7 Jul 2022 00:54:18 +0800 (CST)
+Received: from NTHCML01B.nuvoton.com (10.1.8.178) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Thu, 7 Jul 2022
+ 00:54:18 +0800
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCML01B.nuvoton.com
+ (10.1.8.178) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Thu, 7 Jul 2022
+ 00:54:18 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
+ Transport; Thu, 7 Jul 2022 00:54:17 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 15D6863A0A; Wed,  6 Jul 2022 19:54:17 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <p.zabel@pengutronix.de>,
+        <gregkh@linuxfoundation.org>, <daniel.lezcano@linaro.org>,
+        <tglx@linutronix.de>, <wim@linux-watchdog.org>,
+        <linux@roeck-us.net>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <arnd@arndb.de>, <olof@lixom.net>, <jirislaby@kernel.org>,
+        <shawnguo@kernel.org>, <bjorn.andersson@linaro.org>,
+        <geert+renesas@glider.be>, <marcel.ziswiler@toradex.com>,
+        <vkoul@kernel.org>, <biju.das.jz@bp.renesas.com>,
+        <nobuhiro1.iwamatsu@toshiba.co.jp>, <robert.hancock@calian.com>,
+        <j.neuschaefer@gmx.net>, <lkundrak@v3.sk>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v7 00/16] Introduce Nuvoton Arbel NPCM8XX BMC SoC
+Date:   Wed, 6 Jul 2022 19:53:50 +0300
+Message-ID: <20220706165406.117349-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220706081036epcms2p6baf1d8afac994cd0d45c5e59029c8ce7@epcms2p6>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06-07-22, 17:10, Wangseok Lee wrote:
-> On 05-07-22, 15:30, Vinod Koul wrote:
-> > On 14-06-22, 10:34, Wangseok Lee wrote:
-> >> Add support Axis, ARTPEC-8 SoC.
-> >> ARTPEC-8 is the SoC platform of Axis Communications.
-> >> This is based on arm64 and support GEN4 & 2lane.
-> >> This driver provides PHY interface for ARTPEC-8 SoC PCIe controller,
-> >> based on Samsung PCIe PHY IP.
-> >> 
-> >> Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
-> >> Signed-off-by: Jaeho Cho <jaeho79.cho@samsung.com>
-> >> ---
-> >> v2->v3 :
-> >> -remove unnecessary indentation
-> >> -redefine local struct to statis const
-> >> -add static const to struct that requires static const definition
-> >> -remove wrappers on writel and readl
-> >> 
-> >> v1->v2 :
-> >> -change folder name of phy driver to axis from artpec
-> >> ---
-> >>  drivers/phy/Kconfig                 |   1 +
-> >>  drivers/phy/Makefile                |   1 +
-> >>  drivers/phy/axis/Kconfig            |   9 +
-> >>  drivers/phy/axis/Makefile           |   2 +
-> >>  drivers/phy/axis/phy-artpec8-pcie.c | 776 ++++++++++++++++++++++++++++++++++++
-> >>  5 files changed, 789 insertions(+)
-> >>  create mode 100644 drivers/phy/axis/Kconfig
-> >>  create mode 100644 drivers/phy/axis/Makefile
-> >>  create mode 100644 drivers/phy/axis/phy-artpec8-pcie.c
-> >> 
-> >> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> >> index 300b0f2..92b8232 100644
-> >> --- a/drivers/phy/Kconfig
-> >> +++ b/drivers/phy/Kconfig
-> >> @@ -73,6 +73,7 @@ config PHY_CAN_TRANSCEIVER
-> >>  
-> >>  source "drivers/phy/allwinner/Kconfig"
-> >>  source "drivers/phy/amlogic/Kconfig"
-> >> +source "drivers/phy/axis/Kconfig"
-> >>  source "drivers/phy/broadcom/Kconfig"
-> >>  source "drivers/phy/cadence/Kconfig"
-> >>  source "drivers/phy/freescale/Kconfig"
-> >> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> >> index 01e9eff..808c055e 100644
-> >> --- a/drivers/phy/Makefile
-> >> +++ b/drivers/phy/Makefile
-> >> @@ -12,6 +12,7 @@ obj-$(CONFIG_PHY_PISTACHIO_USB)                += phy-pistachio-usb.o
-> >>  obj-$(CONFIG_USB_LGM_PHY)                += phy-lgm-usb.o
-> >>  obj-y                                        += allwinner/        \
-> >>                                             amlogic/        \
-> >> +                                           axis/                \
-> >>                                             broadcom/        \
-> >>                                             cadence/        \
-> >>                                             freescale/        \
-> >> diff --git a/drivers/phy/axis/Kconfig b/drivers/phy/axis/Kconfig
-> >> new file mode 100644
-> >> index 0000000..7198b93
-> >> --- /dev/null
-> >> +++ b/drivers/phy/axis/Kconfig
-> >> @@ -0,0 +1,9 @@
-> >> +config PHY_ARTPEC8_PCIE
-> >> +        bool "ARTPEC-8 PCIe PHY driver"
-> >> +        depends on OF && (ARCH_ARTPEC8 || COMPILE_TEST)
-> >> +        select GENERIC_PHY
-> >> +        help
-> >> +          Enable PCIe PHY support for ARTPEC-8 SoC.
-> >> +          This driver provides PHY interface for ARTPEC-8 SoC
-> >> +          PCIe controller.
-> >> +          This is based on Samsung PCIe PHY IP.
-> > 
-> > How different is it from SS IP and why should it not be under
-> > phy/samsung/ then?
-> > 
-> 
-> SoC platform is completely different from exynos platform and different 
-> from exynos PCIe PHY. So the overall sysreg configuration is different
-> and register map is also different. The reset method and type of PHY for
-> initialization are different. This is not a driver that supports Samsung
-> SoC platform, but this PHY driver that supports only Axis, Artpec-8
-> platforms, so it is not added to phy/samsung.
+This patchset  adds initial support for the Nuvoton 
+Arbel NPCM8XX Board Management controller (BMC) SoC family. 
 
-SoC is a moot point. If the IP block is same then we should try to reuse
-the existing phy driver, modifications to current driver to support your
-changes should be fine...
+The Nuvoton Arbel NPCM8XX SoC is a fourth-generation BMC.
+The NPCM8XX computing subsystem comprises a quadcore ARM 
+Cortex A35 ARM-V8 architecture.
 
-Is that feasible?
+This patchset adds minimal architecture and drivers such as:
+Clocksource, Clock, Reset, and WD.
+
+Some of the Arbel NPCM8XX peripherals are based on Poleg NPCM7XX.
+
+This patchset was tested on the Arbel NPCM8XX evaluation board.
+
+Addressed comments from:
+ - Philipp Zabel: https://www.spinics.net/lists/arm-kernel/msg993305.html
+
+Changes since version 6:
+ - NPCM reset driver
+	- Modify warning message.
+ - dt-bindings: serial: 8250: Add npcm845 compatible string patch accepted, due
+   to it the patch removed from the patchset.
+
+Changes since version 5:
+ - NPCM8XX clock driver
+	- Remove refclk if devm_of_clk_add_hw_provider function failed.
+ - NPCM8XX clock source driver
+	- Remove NPCM8XX TIMER_OF_DECLARE support, using the same as NPCM7XX.
+
+Changes since version 4:
+ - NPCM8XX clock driver
+	- Use the same quote in the dt-binding file.
+
+Changes since version 3:
+ - NPCM8XX clock driver
+	- Rename NPCM8xx clock dt-binding header file.
+	- Remove unused structures.
+	- Improve Handling the clocks registration.
+ - NPCM reset driver
+	- Add ref phandle to dt-binding.
+
+Changes since version 2:
+ - Remove NPCM8xx WDT compatible patch.
+ - Remove NPCM8xx UART compatible patch.
+ - NPCM8XX clock driver
+	- Add debug new line.
+	- Add 25M fixed rate clock.
+	- Remove unused clocks and clock name from dt-binding.
+ - NPCM reset driver
+	- Revert to npcm7xx dt-binding.
+	- Skip dt binding quotes.
+	- Adding DTS backward compatibility.
+	- Remove NPCM8xx binding include file.
+	- Warp commit message.
+- NPCM8XX device tree:
+	- Remove unused clock nodes (used in the clock driver)
+	- Modify gcr and rst node names.
+
+Changes since version 1:
+ - NPCM8XX clock driver
+	- Modify dt-binding.
+	- Remove unsed definition and include.
+	- Include alphabetically.
+	- Use clock devm.
+ - NPCM reset driver
+	- Modify dt-binding.
+	- Modify syscon name.
+	- Add syscon support to NPCM7XX dts reset node.
+	- use data structure.
+ - NPCM8XX device tree:
+	- Modify evb compatible name.
+	- Add NPCM7xx compatible.
+	- Remove disable nodes from the EVB DTS.
+
+Tomer Maimon (16):
+  dt-bindings: timer: npcm: Add npcm845 compatible string
+  dt-bindings: watchdog: npcm: Add npcm845 compatible string
+  dt-binding: clk: npcm845: Add binding for Nuvoton NPCM8XX Clock
+  clk: npcm8xx: add clock controller
+  dt-bindings: reset: npcm: add GCR syscon property
+  ARM: dts: nuvoton: add reset syscon property
+  reset: npcm: using syscon instead of device data
+  dt-bindings: reset: npcm: Add support for NPCM8XX
+  reset: npcm: Add NPCM8XX support
+  dt-bindings: arm: npcm: Add maintainer
+  dt-bindings: arm: npcm: Add nuvoton,npcm845 compatible string
+  dt-bindings: arm: npcm: Add nuvoton,npcm845 GCR compatible string
+  arm64: npcm: Add support for Nuvoton NPCM8XX BMC SoC
+  arm64: dts: nuvoton: Add initial NPCM8XX device tree
+  arm64: dts: nuvoton: Add initial NPCM845 EVB device tree
+  arm64: defconfig: Add Nuvoton NPCM family support
+
+ .../devicetree/bindings/arm/npcm/npcm.yaml    |   7 +
+ .../bindings/arm/npcm/nuvoton,gcr.yaml        |   2 +
+ .../bindings/clock/nuvoton,npcm845-clk.yaml   |  49 ++
+ .../bindings/reset/nuvoton,npcm750-reset.yaml |  10 +-
+ .../bindings/timer/nuvoton,npcm7xx-timer.yaml |   2 +
+ .../bindings/watchdog/nuvoton,npcm-wdt.txt    |   3 +-
+ MAINTAINERS                                   |   2 +
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi |   1 +
+ arch/arm64/Kconfig.platforms                  |  11 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/nuvoton/Makefile          |   2 +
+ .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 170 +++++
+ .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  |  30 +
+ .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |  76 +++
+ arch/arm64/configs/defconfig                  |   3 +
+ drivers/clk/Kconfig                           |   6 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-npcm8xx.c                     | 600 ++++++++++++++++++
+ drivers/reset/reset-npcm.c                    | 207 +++++-
+ .../dt-bindings/clock/nuvoton,npcm845-clk.h   |  49 ++
+ 20 files changed, 1196 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+ create mode 100644 arch/arm64/boot/dts/nuvoton/Makefile
+ create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+ create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+ create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
+ create mode 100644 drivers/clk/clk-npcm8xx.c
+ create mode 100644 include/dt-bindings/clock/nuvoton,npcm845-clk.h
 
 -- 
-~Vinod
+2.33.0
+
