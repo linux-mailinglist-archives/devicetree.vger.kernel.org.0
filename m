@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E639E568BE2
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 16:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B16FE568BE8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 16:54:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233207AbiGFOyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 10:54:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42736 "EHLO
+        id S231347AbiGFOyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 10:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232239AbiGFOyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 10:54:16 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2540CF3
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 07:54:15 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id l7so18028875ljj.4
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 07:54:15 -0700 (PDT)
+        with ESMTP id S233168AbiGFOyR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 10:54:17 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4E3D103D
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 07:54:16 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id f14so3637978lfl.11
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 07:54:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sSxyjPJtu0fKyMsv6IIihxMffbK12MXQCS93t6bK9ww=;
-        b=lFAbNGpf1OwKySjxwfgeYp7hJ9YZKX7H7yazd5KaviFoSvEWPvh6nuKqge8GUYLlu3
-         a5vP95C1mv+4tkRDT8dIRPHg1DtasnbfQutd5yavpFUiBh3VUNchNDjx+JTZoDZpyDxJ
-         QXMCyE5wyaxhboD7/yU8e7G6cAnf6uCKi6XD3HIzY27rIJBdZbpgOwxdRKvsJFYo4KRb
-         Bs1l8TW7gnsbSdpDPweDNa9OADC1JqSkf+J7FNS4f0NY8Ne4TVmeBNbMtLUzH9VOCSZq
-         mNbvwm8SqE2AJd5v/nUBB6oKOFr97RaKviWPG/81qN1zb5dbDRcd7Fh2glGQ7dfI7AMl
-         W9cg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=hYz/2ar4XaWyLjU/EN2u7W1gwGxP5zgcaoxekh4PU0k=;
+        b=luEcINPjMGndzgVE/7GsYD2UxUeYGGHYyrNSO+U28zgb4VTV8NlAWNvZwTds/11yKG
+         JZcD+SUG1xszxCwrExTUSAeIBLxlUQFI9aM7iTG9+q0077pYx2o0FtqlYydlmVgbS3DT
+         79ABFUeXPie2IFne8NctCAh7IOg+7KXhUU8o1lmsa4ngp8hu5GbGDAshYURacZ03DKYc
+         Xdgy9BOhCwWhc5Mux6RB687BQvoMMb+WwBDeHPw1ecCJ3ym6BvADBrpakvYixJJH3Gy7
+         aV33Mamy8L2HWmtPOLYgGUWU4aLhM9HwY0nOFYTG5vblJJIBz8UAPDMnZx5VnoE7J7j1
+         FjbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sSxyjPJtu0fKyMsv6IIihxMffbK12MXQCS93t6bK9ww=;
-        b=MI132VHQFgZFY0le68MQ18/J7jFFKZig5NLOXNyx0Zz3aAo8hjMX1i4cXupQhH5AqQ
-         BoH/8oV/8BE6n5CwWUYgDUTMAJ3wT2lRbPa36OArWs/ZuzTUGHvPseqMB7S3XurUuO6k
-         LB5jYtoSMz2EjtadecV6rcAB1xzVP+7Xdda8HB5eaKAYqybxCqWcYAJyEdY+L6LKGLyP
-         F+TjGs55y6fNJWY3EFgxwc21J+LaBGR2z2v2jSNBpg0TRNd+cEp49zHWxZATIUE8c9Cu
-         ttLkGFDywSDJvrdPrw737hCX58Vp7xalnbPJMP0rh2DK5B8tUX6DAFAx64+2I1PkDyvS
-         TpQA==
-X-Gm-Message-State: AJIora/UCQ36gNhvSYT+2bkGU6XWxrg0jWUpzqeeEYpv5hq7jxx4VjMr
-        BS18GgVHnoIc5YGHTatvyVS9HA==
-X-Google-Smtp-Source: AGRyM1sNShrAebQctdaGTtt3HEm+7qSPjendZctbMSvrRVRFegSG1uUF2U+zj33UvurD2cx1WaRFEQ==
-X-Received: by 2002:a05:651c:1a11:b0:25d:2e06:c35a with SMTP id by17-20020a05651c1a1100b0025d2e06c35amr6852772ljb.499.1657119254081;
-        Wed, 06 Jul 2022 07:54:14 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=hYz/2ar4XaWyLjU/EN2u7W1gwGxP5zgcaoxekh4PU0k=;
+        b=FfiiDxv6uKVqyBYScDDL8tLuOFzcJHrYBQBBCUv0ymi5TZduRRZBCvmSw1DRh2965W
+         cCZXJa+1NLrDxOvtLhiLp8zvF6RLtPUxnraARJIr9dkiRXz8L1AudQnjQa/pG4MRc6GB
+         YPqScbsJj87MDEJoFy5BCTnNx/9e9y3ZXa/mZFIJP0Q0IvyXc6pDbPyXbZco9OKvZfsB
+         zw4mGKsEPS4KZxfeU2sabcKAuClfN7t7f6EM/3So2/2rJwiKldJHmpTjjdCVeRIB/dGO
+         y/E4BBQOuW6JN0DxSRFTckH0+PNZWR8OkeDP/yaoNn990R5XhLkGTikD+kn9Izpu2crn
+         z/wA==
+X-Gm-Message-State: AJIora+gOXuOxZHpxzZR0TwdYDcCLnv1BLa/5JjOAaZ18IJnXnafLVvK
+        gVpACyk4bXsJSPEZQ1aICNNrlQ==
+X-Google-Smtp-Source: AGRyM1veRLphLktXO4fxaGaAsgmuhTcFF8hm8Imqpqqxz70Vv9BIHHGAyZC/mSiHa13ZLFwW4L0GYw==
+X-Received: by 2002:a05:6512:39ca:b0:47f:a9e1:e3b8 with SMTP id k10-20020a05651239ca00b0047fa9e1e3b8mr24810444lfu.564.1657119255107;
+        Wed, 06 Jul 2022 07:54:15 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id i28-20020a056512007c00b0048650aee2b2sm359374lfo.144.2022.07.06.07.54.13
+        by smtp.gmail.com with ESMTPSA id i28-20020a056512007c00b0048650aee2b2sm359374lfo.144.2022.07.06.07.54.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 07:54:13 -0700 (PDT)
+        Wed, 06 Jul 2022 07:54:14 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -54,10 +54,12 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 1/6] arm64: dts: qcom: msm8996: add missing DSI clock assignments
-Date:   Wed,  6 Jul 2022 17:54:07 +0300
-Message-Id: <20220706145412.1566011-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 2/6] arm64: dts: qcom: sc7280: use constants for gpucc clocks and power-domains
+Date:   Wed,  6 Jul 2022 17:54:08 +0300
+Message-Id: <20220706145412.1566011-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220706145412.1566011-1-dmitry.baryshkov@linaro.org>
+References: <20220706145412.1566011-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -70,36 +72,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing DSI clock assignments to properly use DSI PHY clocks as DSI
-byte and pixel clock parents.
+To ease merging of bindings and dts files, the constants were replaced
+with numeric values. Change them back to defined constants.
+While we are at it, fix the indentation of these clocks properties to
+follow established guidelines.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 32 ++++++++++++++--------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 25d6b26fab60..50f7f89655b3 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -880,6 +880,8 @@ dsi0: dsi@994000 {
- 					      "core_mmss",
- 					      "pixel",
- 					      "core";
-+				assigned-clocks = <&mmcc BYTE0_CLK_SRC>, <&mmcc PCLK0_CLK_SRC>;
-+				assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 40e700cebe56..a3def1022ea2 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2405,13 +2405,13 @@ gmu: gmu@3d6a000 {
+ 			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
+ 					<GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hfi", "gmu";
+-			clocks = <&gpucc 5>,
+-					<&gpucc 8>,
+-					<&gcc GCC_DDRSS_GPU_AXI_CLK>,
+-					<&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+-					<&gpucc 2>,
+-					<&gpucc 15>,
+-					<&gpucc 11>;
++			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
++				 <&gpucc GPU_CC_CXO_CLK>,
++				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
++				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
++				 <&gpucc GPU_CC_AHB_CLK>,
++				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
++				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
+ 			clock-names = "gmu",
+ 				      "cxo",
+ 				      "axi",
+@@ -2419,8 +2419,8 @@ gmu: gmu@3d6a000 {
+ 				      "ahb",
+ 				      "hub",
+ 				      "smmu_vote";
+-			power-domains = <&gpucc 0>,
+-					<&gpucc 1>;
++			power-domains = <&gpucc GPU_CC_CX_GDSC>,
++					<&gpucc GPU_CC_GX_GDSC>;
+ 			power-domain-names = "cx",
+ 					     "gx";
+ 			iommus = <&adreno_smmu 5 0x400>;
+@@ -2469,12 +2469,12 @@ adreno_smmu: iommu@3da0000 {
+ 					<GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
  
- 				phys = <&dsi0_phy>;
- 				phy-names = "dsi";
-@@ -946,6 +948,8 @@ dsi1: dsi@996000 {
- 					      "core_mmss",
- 					      "pixel",
- 					      "core";
-+				assigned-clocks = <&mmcc BYTE1_CLK_SRC>, <&mmcc PCLK1_CLK_SRC>;
-+				assigned-clock-parents = <&dsi1_phy 0>, <&dsi1_phy 1>;
+ 			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+-					<&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
+-					<&gpucc 2>,
+-					<&gpucc 11>,
+-					<&gpucc 5>,
+-					<&gpucc 15>,
+-					<&gpucc 13>;
++				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
++				 <&gpucc GPU_CC_AHB_CLK>,
++				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
++				 <&gpucc GPU_CC_CX_GMU_CLK>,
++				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
++				 <&gpucc GPU_CC_HUB_AON_CLK>;
+ 			clock-names = "gcc_gpu_memnoc_gfx_clk",
+ 					"gcc_gpu_snoc_dvm_gfx_clk",
+ 					"gpu_cc_ahb_clk",
+@@ -2483,7 +2483,7 @@ adreno_smmu: iommu@3da0000 {
+ 					"gpu_cc_hub_cx_int_clk",
+ 					"gpu_cc_hub_aon_clk";
  
- 				phys = <&dsi1_phy>;
- 				phy-names = "dsi";
+-			power-domains = <&gpucc 0>;
++			power-domains = <&gpucc GPU_CC_CX_GDSC>;
+ 		};
+ 
+ 		remoteproc_mpss: remoteproc@4080000 {
 -- 
 2.35.1
 
