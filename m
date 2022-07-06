@@ -2,58 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2482E568EB0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8F69568EC2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234257AbiGFQLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 12:11:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38680 "EHLO
+        id S233994AbiGFQN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 12:13:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234172AbiGFQLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:11:37 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4197826AE8;
-        Wed,  6 Jul 2022 09:11:36 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id p128so14455408iof.1;
-        Wed, 06 Jul 2022 09:11:36 -0700 (PDT)
+        with ESMTP id S233665AbiGFQN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:13:27 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A4153AF;
+        Wed,  6 Jul 2022 09:13:26 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id p128so14460184iof.1;
+        Wed, 06 Jul 2022 09:13:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=yn8tR4/75agkFJENZOIVD2SZjKFyA+a7PHsFMtDwO+Y=;
-        b=t9EcJXTL8xgt+krH71KFPcfQeQBs6vQjesu+nYe4QmxlWVhSHFQEip2ZGiWbD6uW6o
-         Cr3IG4BcKrDE+/YwaCB7/588c+af25G84SF3uUmtHP3Y8YQp5FK3GpCZFyu7TMDNRyJR
-         grEf4HCyCo6K/hIqdMNPrr2qaMRHRRfHLE3ric3iJPReGAQLChL/JMDesmPg/CqQlMmV
-         yH7ZlnViWB/safbl7V2/71dXDM56XeBAi31AftvwbgP8YVKn7rPy6K6xASln6MVVtaMo
-         rjQh8kbuaWnJk/oTZpKpt0YsYBdOteCk7XZReg8+7lr/VOws0WxmhjNdIqhsHBsf4fSs
-         +b6Q==
-X-Gm-Message-State: AJIora8PqllGTf+fIuxG6e+isMjVhv86QOVehEmwYqqSXdW9bxRnAVDD
-        j/hOmOeZqh7ob8mA8wh8s5nhpa0jRQ==
-X-Google-Smtp-Source: AGRyM1uwBDjxglmKGpZwt97wz+OegWG99R+2nYnYk0T8Ikwk585QkGnuzVr7ZeezMJ7kaTmArLk7DQ==
-X-Received: by 2002:a05:6638:40a4:b0:33e:2862:4ecf with SMTP id m36-20020a05663840a400b0033e28624ecfmr21115909jam.107.1657123895503;
-        Wed, 06 Jul 2022 09:11:35 -0700 (PDT)
+        bh=TvrtBUF3QCSk1zMA7Dk12dzB8jZO0FszbYgfQoyxdZg=;
+        b=zrPw+4sJvBBRMWD3HdCEUepvFdghbwxN8NZwamTQ5ylShVLNIAxrFLpo34eTXH8kwE
+         JnxAticURA5Mwq73usg92imGVd6mvNL4V11Q2yaR1WvlraxOBZ8d16Gls4QmbYgjpYXm
+         jikU9NxGY9QMDChfZL0tPStk1+wcX2msEn345UL3+dkIHWZz+zUz4kUUJJ9dj2Z8JI04
+         9rrL6pMOLFlr9drCChRvdyQaMI5hqN4JmuF5Vs6VNwZ5JlhwUR7mMiWf1JTbMsN6PRHr
+         TF9reTlp3RV8nWzDzn5z9S5GILuu/2o1RI7xW6yHp+pmVkUVZV/gU2mkslTvFsaatyb0
+         Ogdw==
+X-Gm-Message-State: AJIora+rj0YP+RFH4ihIE/3Z3BMraczFhfu5K5vW8A1UKmuub2UFsiEB
+        5lu9yJsK6Hr1/N+FK7SoQQ==
+X-Google-Smtp-Source: AGRyM1vBtpYxC3SUwaxTGvXOV5v1/bmL0O3/t3lMZhg+53gxeih+OnIt/Wdk0ksZ1XWBJ/178iMCow==
+X-Received: by 2002:a6b:7845:0:b0:64c:9acc:9f1a with SMTP id h5-20020a6b7845000000b0064c9acc9f1amr22309984iop.103.1657124005646;
+        Wed, 06 Jul 2022 09:13:25 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id n3-20020a056638120300b003317fc4aa87sm16010355jas.150.2022.07.06.09.11.34
+        by smtp.gmail.com with ESMTPSA id j25-20020a02a699000000b00339c33df66bsm16050036jam.118.2022.07.06.09.13.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 09:11:35 -0700 (PDT)
-Received: (nullmailer pid 137394 invoked by uid 1000);
-        Wed, 06 Jul 2022 16:11:33 -0000
-Date:   Wed, 6 Jul 2022 10:11:33 -0600
+        Wed, 06 Jul 2022 09:13:25 -0700 (PDT)
+Received: (nullmailer pid 140225 invoked by uid 1000);
+        Wed, 06 Jul 2022 16:13:23 -0000
+Date:   Wed, 6 Jul 2022 10:13:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Aurelien Jarno <aurelien@aurel32.net>,
         linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: hwinfo: renesas,prr: move from soc directory
-Message-ID: <20220706161133.GA137360-robh@kernel.org>
-References: <20220705155038.454251-1-krzysztof.kozlowski@linaro.org>
+        David Abdurachmanov <davidlt@rivosinc.com>,
+        Vincent Pelletier <plr.vincent@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen L Arnold <nerdboy@gentoo.org>,
+        Bin Meng <bin.meng@windriver.com>,
+        linux-riscv@lists.infradead.org, linux-leds@vger.kernel.org,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        devicetree@vger.kernel.org,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Ron Economos <w6rz@comcast.net>,
+        Paul Walmsley <paul.walmsley@sifive.com>
+Subject: Re: [PATCH v1 2/4] dt-bindings: leds: pwm-multicolor: Add active-low
+ property
+Message-ID: <20220706161323.GA140190-robh@kernel.org>
+References: <20220705210143.315151-1-emil.renner.berthing@canonical.com>
+ <20220705210143.315151-3-emil.renner.berthing@canonical.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220705155038.454251-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220705210143.315151-3-emil.renner.berthing@canonical.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -65,22 +80,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Jul 2022 17:50:38 +0200, Krzysztof Kozlowski wrote:
-> Group devices like Chip ID or SoC information under "hwinfo" directory.
+On Tue, 05 Jul 2022 23:01:41 +0200, Emil Renner Berthing wrote:
+> Add the active-low property to LEDs that are part of a multicolor LED
+> just like the regular PWM LEDs have.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 > ---
-> 
-> This should go via Renesas tree because of changes around soc/renesas/renesas,prr.yaml.
-> 
-> Changes since v1:
-> 1. Split from https://lore.kernel.org/all/20220705154613.453096-1-krzysztof.kozlowski@linaro.org/
-> ---
->  .../bindings/{soc/renesas => hwinfo}/renesas,prr.yaml           | 2 +-
->  MAINTAINERS                                                     | 1 +
->  2 files changed, 2 insertions(+), 1 deletion(-)
->  rename Documentation/devicetree/bindings/{soc/renesas => hwinfo}/renesas,prr.yaml (92%)
+>  .../devicetree/bindings/leds/leds-pwm-multicolor.yaml         | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
