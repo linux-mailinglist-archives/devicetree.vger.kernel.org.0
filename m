@@ -2,69 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 097885687A7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 14:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2999B568824
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 14:17:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232179AbiGFMCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 08:02:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34962 "EHLO
+        id S233601AbiGFMQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 08:16:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231246AbiGFMCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 08:02:05 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08EDF29C99
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 05:02:03 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id g14so17829800qto.9
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 05:02:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GS+uFCqn73s3FUnXQGK+mJpwi26ezGNzDSPMuucFva8=;
-        b=C1PEfoHu1JZutIhSBq7xyrTzSwdP6gfzqlbmYagZ6SO614AVCSvZuTG/YcopNih2u0
-         XXZH06tjN/7HwT05MgoOtpKdZc8oBLn7RLDLCt5cjTeM5lb6gpuKj+2d7uLQXMnuvX3i
-         wde7KD1Sv+YJl6PQ/byNoahvr0JX4PqEliAiGIwbso/soQMekhN0iDCes1q2wpwhil4A
-         qWK6iHx1rd7r15nqFvFUJSefPwMIOTum21ZrKCZ3TdAeKdX7xqfXghTIDvA9LHIf/Pur
-         HVAKjbv4je6GQwD13gprqb87kpQq8AjACvJVJSfZtJFwyb3sO7iaVNEoXXSOkX9z/ufc
-         /o4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GS+uFCqn73s3FUnXQGK+mJpwi26ezGNzDSPMuucFva8=;
-        b=xr4eozG1H842GQ/S/mRXxK6xwvUKjTC8+1Dr3fekMJ82BSnfBQgZ8AsXlh1rHwAk0r
-         NJHMCrzbTsjMaaupuDrjn+TD1EOXXG+IHW1kGb4rxbzaOUakOH+AIwbok6O/DXdQ5Xlz
-         b/rT1/EA/ASFfPg/ADmYTBl3A+U9/kaP+H2hYshBFYSlIs7lUBbSY4Et+2qCIaxYdt9H
-         gqnC+X6y3fo+MEgGu+UWbP8ps1lw5QF3MocLxqLYKzkP50gh/ixEXK+j8fMI3C3pdR91
-         Z4vpm4zWgO3na7rqZMqjUM1BbVHu10QSZFjRHeCusf+MTXR6UQKmrMh9oh66dlI6afsX
-         ILCg==
-X-Gm-Message-State: AJIora/Aoy6aw8hHdEcW9kmFVB5/rUmSJNlE0ZfKBKzgicZVz9JMzpOh
-        ewCu2X/rhVvIDCSlORZHvnt/UlE850qQzpGBH0uQlg==
-X-Google-Smtp-Source: AGRyM1tF1EnvSFKXQDug6KASOTgwF0P8AMmoLtvHbfrVH6CtHl3jRQNThamLYnI3w6qH79JwwlKN3CNfi8dZU5i5lMU=
-X-Received: by 2002:ad4:5f8a:0:b0:473:2108:7fe0 with SMTP id
- jp10-20020ad45f8a000000b0047321087fe0mr1081454qvb.115.1657108921700; Wed, 06
- Jul 2022 05:02:01 -0700 (PDT)
+        with ESMTP id S233587AbiGFMQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 08:16:42 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 693E624971;
+        Wed,  6 Jul 2022 05:16:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0C0BAB81CA8;
+        Wed,  6 Jul 2022 12:16:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADFCBC3411C;
+        Wed,  6 Jul 2022 12:16:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657109798;
+        bh=5fgKlm0G+8WGoMRZqsVbzcsJbuj3EfsJIbIyfKGJR6g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qGRvBzGpYTzumBNvTzv6Eue1beyF5ALxTKiqmKi/DznjkoUpbt73aXe9FSGRvoi2s
+         EaTDs0UoMLcClhosM5wHV2q9KRNY1sw217bBfg5Pb67fbeQPmxCmKw4G6dVXL50Y3B
+         7WimtQqEWjaNRg3m3vtJ9/n9tk7d84VNfQJmOJD/3Rnz/ucFoA3xd++wNKcFHZxk0w
+         YoZNNh7rSkXh+I8fRUcmhnT2IVIeHVCoHzjjusLyeU1pss+4rJUOQrkD25ROQ0D80U
+         6IWvIcVjhsxLJCOrexoqTMy0ewRYr5E3508D/Ueemaz9X019qy8guHvRoVjY8UiM9x
+         X4yhye68/zUCw==
+Date:   Wed, 6 Jul 2022 13:16:33 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 RESEND 0/4] MediaTek Helio X10 MT6795 - MT6331/6332
+ Regulators
+Message-ID: <YsV9IerWCoa/xtwM@sirena.org.uk>
+References: <20220706100912.200698-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-References: <20220705133917.8405-1-ansuelsmth@gmail.com> <20220705133917.8405-10-ansuelsmth@gmail.com>
- <c5bf6246-a350-8a87-71bc-bc13d502a8af@linaro.org> <62c56477.1c69fb81.8ec4c.f1ac@mx.google.com>
-In-Reply-To: <62c56477.1c69fb81.8ec4c.f1ac@mx.google.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 6 Jul 2022 15:01:50 +0300
-Message-ID: <CAA8EJpoUcSrOU=emcqanUd0PRuToZsSB1x=oGzcvjtMMVjhSvQ@mail.gmail.com>
-Subject: Re: [PATCH 09/13] ARM: dts: qcom: add smem node for ipq8064
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan McDowell <noodles@earth.li>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="u3plkxhfqWD9h66t"
+Content-Disposition: inline
+In-Reply-To: <20220706100912.200698-1-angelogioacchino.delregno@collabora.com>
+X-Cookie: Only God can make random selections.
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,40 +60,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Jul 2022 at 13:31, Christian Marangi <ansuelsmth@gmail.com> wrote:
->
-> On Wed, Jul 06, 2022 at 10:39:16AM +0200, Krzysztof Kozlowski wrote:
-> > On 05/07/2022 15:39, Christian Marangi wrote:
-> > > Add missing smem node for ipq8064.
-> > >
-> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > > Tested-by: Jonathan McDowell <noodles@earth.li>
-> > > ---
-> > >  arch/arm/boot/dts/qcom-ipq8064.dtsi | 18 ++++++++++++++++++
-> > >  1 file changed, 18 insertions(+)
-> > >
-> > > diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > > index b5aede3d7ccf..98527a7d885e 100644
-> > > --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > > +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > > @@ -908,6 +908,11 @@ lcc: clock-controller@28000000 {
-> > >                     #reset-cells = <1>;
-> > >             };
-> > >
-> > > +           sfpb_mutex_block: syscon@1200600 {
-> > > +                   compatible = "syscon";
-> >
-> > syscon alone is not allowed.
-> >
->
-> Mh... This is problematic. How this should be handled?
-> This should be put in sfpb_mutex and change the driver to use regs if
-> present instead of syscon?
 
-If nothing else works, you can add two compat strings, for example:
-"qcom,ipq8064-sfpb-mutex", "syscon";
-This way if we add an sfpb driver at some point, we can still use old dts files.
+--u3plkxhfqWD9h66t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
--- 
-With best wishes
-Dmitry
+On Wed, Jul 06, 2022 at 12:09:08PM +0200, AngeloGioacchino Del Regno wrote:
+> In an effort to give some love to the apparently forgotten MT6795 SoC,
+> I am upstreaming more components that are necessary to support platforms
+> powered by this one apart from a simple boot to serial console.
+
+This previously got 0day failures due to missing dependencies which
+need would need a merge with IIRC MFD, I see no reference in the cover
+letter to dependencies?
+
+--u3plkxhfqWD9h66t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLFfSAACgkQJNaLcl1U
+h9BLEQf/WbdGG7PHABzm2fm6ugNRQfoy3Fefmeh9klqvS9ZuEOev+7iE6O7PQDpK
+0v+Sap6zB7+L1A8+B4LVMgunnAVfmGClRhY8/FaJXjJ1dF14sOEvn7yW1GFMmqrH
+XisVnT2VK3CxZSDab9gfpt+rUqanrXLFhTTgEYzEek4S2mSP7wUt4MWgwNU+/8sY
+4BLly2rUWlwYVoiN+6IbM/bqHnFvipJdNKiaYGlu2iDk+taD47Yof/HIt+Zchh4s
+tTvWwbQLAIKXHoiQHPLmRyVpGiJqjZXRquzMMVM8nphi0LNsXKpMGq/8hPxe5I32
+VVvI0DvdrZ72C+eQhqIqTnJSDDzeIg==
+=P5FB
+-----END PGP SIGNATURE-----
+
+--u3plkxhfqWD9h66t--
