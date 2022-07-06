@@ -2,75 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE5BE5692C3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 21:41:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 973055692CC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 21:45:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234218AbiGFTlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 15:41:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35940 "EHLO
+        id S233259AbiGFTpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 15:45:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234219AbiGFTlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 15:41:47 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DC5C25C69
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 12:41:43 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 84-20020a1c0257000000b003a2ca59cce8so64476wmc.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 12:41:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tGS8MF/Xhbljo/V0X6FBR6Q+x7h80TWkximSoLlEBGs=;
-        b=bNBEpmvX2QfzrR6lILsXG6WHpLniE3Y+yH24C5dTXtslVhyxCu926tN5/DRb8rPaGW
-         Gzq58ib+Bqjegyt4Jg69dEzdSx0tofEdELldaitVi8RLhUWV4hd0MyjsSsX7SgVqQkjm
-         wsm6DyX8kBL0NEXR9roGh4FgWC4AucXmQnSaE0eep0TX2AV8nRsi8kt+Krc/jW0j/lQ7
-         H2/+7vcuOYmByBv55vH048IeakzS4eQiTfy0fXNYJ2bmaEl6gRJZ+YsJLqgOs4pnoCNb
-         Y71hA2m6JcYvenutz9ujtvSmqEhfg0JyhrouBg2Oaqaat/OlzGNKrsnzt+AIvHzZp9pF
-         BUyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tGS8MF/Xhbljo/V0X6FBR6Q+x7h80TWkximSoLlEBGs=;
-        b=R4/ZlD+hNVxB33+EVNNrgPbr0g/oEzPB3+mIQj1ZZQS48C0Oj236HosWzeLMkVAVJ2
-         VXdklrPAvGXeSnQaEdbL8NLRLFG6L114Y/NGM8/tWruxKQpIks/gzkkNSIkFvw9kNBMI
-         Z5tLZCwjmQnnSwOCUV859Gm20W21mNzz4ZFRqGC958ookzUIj/4tr7mncfqdlLrmKDDK
-         BkB5Zh+g7y+eBAfwBjtVFyYoWtrSOou8KELOnkZG4sKKWuPckRhWMdc3R/Ay7Rmkvnyq
-         2uUhASsFyzEYYhaQGVsWhWJkZHKlU9yPAc6JrYK8KJQq8IfxVDNwSN06XGxf7zA4QdS3
-         yIbg==
-X-Gm-Message-State: AJIora9Wj02pVJNgJ/Gab3CgqoDQlO4GLvnxB5oqttBi5gUmZ+eDGVoF
-        8M6ZaLf6JiGRYbtffoLjVNv9bg==
-X-Google-Smtp-Source: AGRyM1sNxd/8XhYC3F5aYfNgv+Nhpu3gpUZPoFmwCOrA8M7/vH3awkPM/0tATAQwTG+RQ1UYvfGdlA==
-X-Received: by 2002:a1c:44c3:0:b0:3a0:5f25:498f with SMTP id r186-20020a1c44c3000000b003a05f25498fmr248976wma.124.1657136501688;
-        Wed, 06 Jul 2022 12:41:41 -0700 (PDT)
-Received: from localhost.localdomain (88-107-17-60.dynamic.dsl.as9105.com. [88.107.17.60])
-        by smtp.gmail.com with ESMTPSA id f190-20020a1c38c7000000b0039c5328ad92sm23387320wma.41.2022.07.06.12.41.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 12:41:40 -0700 (PDT)
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-To:     caleb.connolly@linaro.org, Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Tom Rix <trix@redhat.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, llvm@lists.linux.dev,
-        phone-devel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 2/2] dt-bindings: power: supply: qcom,pmi8998-charger: add bindings for smb2 driver
-Date:   Wed,  6 Jul 2022 20:41:25 +0100
-Message-Id: <20220706194125.1861256-3-caleb.connolly@linaro.org>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220706194125.1861256-1-caleb.connolly@linaro.org>
-References: <20220706194125.1861256-1-caleb.connolly@linaro.org>
+        with ESMTP id S232499AbiGFTpd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 15:45:33 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB0615A04;
+        Wed,  6 Jul 2022 12:45:30 -0700 (PDT)
+Received: (Authenticated sender: contact@artur-rojek.eu)
+        by mail.gandi.net (Postfix) with ESMTPA id D77CA240006;
+        Wed,  6 Jul 2022 19:45:23 +0000 (UTC)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Date:   Wed, 06 Jul 2022 21:45:23 +0200
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        maccraft123mc@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        dmitry.torokhov@gmail.com, paul@crapouillou.net, jic23@kernel.org,
+        linux-iio@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v7 2/3] Input: adc-joystick - Add polled input device
+ support
+In-Reply-To: <20220705190354.69263-3-macromorgan@hotmail.com>
+References: <20220705190354.69263-1-macromorgan@hotmail.com>
+ <20220705190354.69263-3-macromorgan@hotmail.com>
+Message-ID: <d07ded414c1bbe58b2d1863fc790bd8a@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,104 +45,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings for the Qualcomm PMI8998/PM660 SMB2 charger
-driver.
+On 2022-07-05 21:03, Chris Morgan wrote:
+> From: Chris Morgan <macroalpha82@gmail.com>
+> 
+> Add polled input device support to the adc-joystick driver. This is
+> useful for devices which do not have hardware capable triggers on
+> their SARADC. Code modified from adc-joystick.c changes made by Maya
+> Matuszczyk.
+> 
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+Just copying my Acked-by from v6, as it seems to have been lost.
 
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../power/supply/qcom,pmi8998-charger.yaml    | 82 +++++++++++++++++++
- 1 file changed, 82 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
-
-diff --git a/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml b/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
-new file mode 100644
-index 000000000000..277c47e048b6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/supply/qcom,pmi8998-charger.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm PMI8998/PM660 Switch-Mode Battery Charger "2"
-+
-+maintainers:
-+  - Caleb Connolly <caleb.connolly@linaro.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,pmi8998-charger
-+      - qcom,pm660-charger
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 4
-+
-+  interrupt-names:
-+    items:
-+      - const: usb-plugin
-+      - const: bat-ov
-+      - const: wdog-bark
-+      - const: usbin-icl-change
-+
-+  io-channels:
-+    items:
-+      - description: USB in current in uA
-+      - description: USB in voltage in uV
-+
-+  io-channel-names:
-+    items:
-+      - const: usbin_i
-+      - const: usbin_v
-+
-+  monitored-battery:
-+    description: phandle to the simple-battery node
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - io-channels
-+  - io-channel-names
-+  - monitored-battery
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    pmic {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      #interrupt-cells = <4>;
-+
-+      charger@1000 {
-+        compatible = "qcom,pmi8998-charger";
-+        reg = <0x1000>;
-+
-+        interrupts = <0x2 0x12 0x2 IRQ_TYPE_EDGE_BOTH>,
-+                     <0x2 0x13 0x4 IRQ_TYPE_EDGE_BOTH>,
-+                     <0x2 0x13 0x6 IRQ_TYPE_EDGE_RISING>,
-+                     <0x2 0x16 0x1 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "usb-plugin", "bat-ov", "wdog-bark", "usbin-icl-change";
-+
-+        io-channels = <&pmi8998_rradc 3>,
-+                      <&pmi8998_rradc 4>;
-+        io-channel-names = "usbin_i",
-+                           "usbin_v";
-+
-+        monitored-battery = <&battery>;
-+      };
-+    };
--- 
-2.36.1
-
+Acked-by: Artur Rojek <contact@artur-rojek.eu>
+>  drivers/input/joystick/adc-joystick.c | 51 +++++++++++++++++++++------
+>  1 file changed, 40 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/input/joystick/adc-joystick.c
+> b/drivers/input/joystick/adc-joystick.c
+> index 78ebca7d400a..2f4bd12d6344 100644
+> --- a/drivers/input/joystick/adc-joystick.c
+> +++ b/drivers/input/joystick/adc-joystick.c
+> @@ -26,8 +26,23 @@ struct adc_joystick {
+>  	struct adc_joystick_axis *axes;
+>  	struct iio_channel *chans;
+>  	int num_chans;
+> +	bool polled;
+>  };
+> 
+> +static void adc_joystick_poll(struct input_dev *input)
+> +{
+> +	struct adc_joystick *joy = input_get_drvdata(input);
+> +	int i, val, ret;
+> +
+> +	for (i = 0; i < joy->num_chans; i++) {
+> +		ret = iio_read_channel_raw(&joy->chans[i], &val);
+> +		if (ret < 0)
+> +			return;
+> +		input_report_abs(input, joy->axes[i].code, val);
+> +	}
+> +	input_sync(input);
+> +}
+> +
+>  static int adc_joystick_handle(const void *data, void *private)
+>  {
+>  	struct adc_joystick *joy = private;
+> @@ -179,6 +194,7 @@ static int adc_joystick_probe(struct 
+> platform_device *pdev)
+>  	int error;
+>  	int bits;
+>  	int i;
+> +	unsigned int poll_interval;
+> 
+>  	joy = devm_kzalloc(dev, sizeof(*joy), GFP_KERNEL);
+>  	if (!joy)
+> @@ -215,8 +231,17 @@ static int adc_joystick_probe(struct 
+> platform_device *pdev)
+>  	joy->input = input;
+>  	input->name = pdev->name;
+>  	input->id.bustype = BUS_HOST;
+> -	input->open = adc_joystick_open;
+> -	input->close = adc_joystick_close;
+> +
+> +	joy->polled = !device_property_read_u32(dev, "poll-interval",
+> +						&poll_interval);
+> +
+> +	if (joy->polled) {
+> +		input_setup_polling(input, adc_joystick_poll);
+> +		input_set_poll_interval(input, poll_interval);
+> +	} else {
+> +		input->open = adc_joystick_open;
+> +		input->close = adc_joystick_close;
+> +	}
+> 
+>  	error = adc_joystick_set_axes(dev, joy);
+>  	if (error)
+> @@ -229,16 +254,20 @@ static int adc_joystick_probe(struct
+> platform_device *pdev)
+>  		return error;
+>  	}
+> 
+> -	joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+> -	if (IS_ERR(joy->buffer)) {
+> -		dev_err(dev, "Unable to allocate callback buffer\n");
+> -		return PTR_ERR(joy->buffer);
+> -	}
+> +	if (!joy->polled) {
+> +		joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle,
+> +						     joy);
+> +		if (IS_ERR(joy->buffer)) {
+> +			dev_err(dev, "Unable to allocate callback buffer\n");
+> +			return PTR_ERR(joy->buffer);
+> +		}
+> 
+> -	error = devm_add_action_or_reset(dev, adc_joystick_cleanup, 
+> joy->buffer);
+> -	if (error)  {
+> -		dev_err(dev, "Unable to add action\n");
+> -		return error;
+> +		error = devm_add_action_or_reset(dev, adc_joystick_cleanup,
+> +						 joy->buffer);
+> +		if (error)  {
+> +			dev_err(dev, "Unable to add action\n");
+> +			return error;
+> +		}
+>  	}
+> 
+>  	return 0;
