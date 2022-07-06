@@ -2,143 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1454F5689E1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A20125689BA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233159AbiGFNo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 09:44:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41746 "EHLO
+        id S232901AbiGFNlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 09:41:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233691AbiGFNmW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:42:22 -0400
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A618025E87;
-        Wed,  6 Jul 2022 06:42:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:References
-        :In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=6stHW9TL/iXHdZaZMZtPPBsaQ1TR80npiTIOckLw98M=; b=bcd5Sz/iw4ThlgZaR1wsxf0lF2
-        dJp/i7NmHeLWchADJdTti/WtvxPa+qhxc2UomNubxE6Eio+MxKmzuf4t9ECkIYJv/THVBK4QJoe5+
-        AAspaQsNT7YjEESxQaQwSt39qH0OVY8yJrGB0+FgL9+9LCiuatZBTrsncJb8cQh4WYSeXYTnHQzLH
-        UiAUYwIUiqpriwEkwfgZ3TjZFJGk2lN67aslNjYFzVMPew/TO4/bTORhEsxEZ596QMd5I5uQSBTbK
-        fFmi2bQ167PR/DT643rtOwqWvvYjkRjO7exMIL0ynkjjXXPTCG10I/QNAEfJ9VOQdRRQQ3e3ClaJs
-        ezvWrHgA==;
-Received: from [10.22.3.24] (helo=kernkonzept.com)
-        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
-        id 1o95IB-007M5K-9K; Wed, 06 Jul 2022 15:42:11 +0200
-From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S232712AbiGFNll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:41:41 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C3324BE4;
+        Wed,  6 Jul 2022 06:41:39 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id v67-20020a1cac46000000b003a1888b9d36so9197507wme.0;
+        Wed, 06 Jul 2022 06:41:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=J37bnxv35AKNMkkxULLkWayVHEaMjv0zIAo9khsK/xs=;
+        b=Jlle0rhzTTAnWZ/MNh25r/iMQIdPg+Nu4CyuUQnEB3+XRfZWe+9CZwdtvObPWmIv6g
+         d913Ju/S7mnMovkMbGewR/EJ+C5hKF2jryill+Reaw1pTWmgv8OAkwAghmrTDutguk4Q
+         SDRosAPaNN+hGVT71HuA/B9Esxx0cYVXiQjFvXDsdTGo7ASRZIONNC4+54ApG9tqpPi8
+         dAp/BlYJDauy6Cy12yvpidH/bodG8wQQhyC1J0YUuQOVTwNttLSB8AvN8+SX88WjcVbl
+         b+DKOSfFHI1jNA6LLUabbhounPawG5AlMa6HNpwSyCeqBqtN+6gRteWmi1fx+JReOXzf
+         dCzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=J37bnxv35AKNMkkxULLkWayVHEaMjv0zIAo9khsK/xs=;
+        b=uj5GSzqN3K6buano1Woj+R6wCARO1hqx5b2NyxD//ZyxP481bZRFakKDAHTAnQnmhb
+         6bBRnLhAmbBgeQ9Fa6nHk/clrQmugVgO8uf/MrwFfrjVGFKR3mN0GuxV56PvSGX8gPSw
+         BZNEdYpaPKFC+Mc/HxiYYkARltDdIbUBt9f9DETUGtcYXTDpoKqSKJxO+UiFwyG+papd
+         02yE337vg3EN9N1+MW7CWBWuAMyjpjqIHZzGs+rHWjGQj7p2PAbFLgONukIAe5kOWEMb
+         btwh8QYPx+hY1IJIfsnuINOyEtDfig7bgeb02MmhSV40EpDGjedVPoUnzyjWU7RcW17U
+         eFVg==
+X-Gm-Message-State: AJIora+zZ7whJxJuCHgN/ihCkdbbMe0li6h1aZCBlWf738jN9CUNsT/J
+        RFKu6zOZPaTXG9ZC3g76zxc=
+X-Google-Smtp-Source: AGRyM1uzrUL3jgHl7v16xkNIYUGr+iA0aegNeob2FrKF9QFhYl/5MRV7Rool8Fm50IsaKRG6foS/1A==
+X-Received: by 2002:a05:600c:274b:b0:3a0:47e8:ca85 with SMTP id 11-20020a05600c274b00b003a047e8ca85mr45800324wmw.156.1657114898287;
+        Wed, 06 Jul 2022 06:41:38 -0700 (PDT)
+Received: from [192.168.0.14] ([37.223.147.254])
+        by smtp.gmail.com with ESMTPSA id h16-20020a5d4310000000b0021d7b41255esm2225662wrq.98.2022.07.06.06.41.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jul 2022 06:41:37 -0700 (PDT)
+Message-ID: <17203a8a-407e-30cf-79de-352716c3ebce@gmail.com>
+Date:   Wed, 6 Jul 2022 15:41:36 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v1 08/16] arm64: dts: mt8195: Add power domains controller
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Dominik Kobinski <dominikkobinski314@gmail.com>,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Subject: [PATCH v2 6/6] clk: qcom: smd-rpm: Add clocks for MSM8909
-Date:   Wed,  6 Jul 2022 15:41:32 +0200
-Message-Id: <20220706134132.3623415-7-stephan.gerhold@kernkonzept.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220706134132.3623415-1-stephan.gerhold@kernkonzept.com>
-References: <20220706134132.3623415-1-stephan.gerhold@kernkonzept.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220704100028.19932-1-tinghan.shen@mediatek.com>
+ <20220704100028.19932-9-tinghan.shen@mediatek.com>
+ <3b65405d-167f-a0c7-d15e-5da6f08d99b3@linaro.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <3b65405d-167f-a0c7-d15e-5da6f08d99b3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8909 has mostly the same as clocks in RPM as MSM8916,
-but additionally the QPIC clock for the NAND flash controller.
 
-Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
----
-Changes in v2: None.
----
- drivers/clk/qcom/clk-smd-rpm.c | 37 +++++++++++++++++++++++++++++++++-
- 1 file changed, 36 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
-index 10b4e6d8d10f..56096123081c 100644
---- a/drivers/clk/qcom/clk-smd-rpm.c
-+++ b/drivers/clk/qcom/clk-smd-rpm.c
-@@ -417,6 +417,7 @@ DEFINE_CLK_SMD_RPM_BRANCH(sdm660, bi_tcxo, bi_tcxo_a, QCOM_SMD_RPM_MISC_CLK, 0,
- DEFINE_CLK_SMD_RPM(msm8916, pcnoc_clk, pcnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 0);
- DEFINE_CLK_SMD_RPM(msm8916, snoc_clk, snoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 1);
- DEFINE_CLK_SMD_RPM(msm8916, bimc_clk, bimc_a_clk, QCOM_SMD_RPM_MEM_CLK, 0);
-+DEFINE_CLK_SMD_RPM(qcs404, qpic_clk, qpic_a_clk, QCOM_SMD_RPM_QPIC_CLK, 0);
- DEFINE_CLK_SMD_RPM_QDSS(msm8916, qdss_clk, qdss_a_clk, QCOM_SMD_RPM_MISC_CLK, 1);
- DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8916, bb_clk1, bb_clk1_a, 1, 19200000);
- DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8916, bb_clk2, bb_clk2_a, 2, 19200000);
-@@ -427,6 +428,40 @@ DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8916, bb_clk2_pin, bb_clk2_a_pin, 2, 192
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8916, rf_clk1_pin, rf_clk1_a_pin, 4, 19200000);
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8916, rf_clk2_pin, rf_clk2_a_pin, 5, 19200000);
- 
-+static struct clk_smd_rpm *msm8909_clks[] = {
-+	[RPM_SMD_PCNOC_CLK]		= &msm8916_pcnoc_clk,
-+	[RPM_SMD_PCNOC_A_CLK]		= &msm8916_pcnoc_a_clk,
-+	[RPM_SMD_SNOC_CLK]		= &msm8916_snoc_clk,
-+	[RPM_SMD_SNOC_A_CLK]		= &msm8916_snoc_a_clk,
-+	[RPM_SMD_BIMC_CLK]		= &msm8916_bimc_clk,
-+	[RPM_SMD_BIMC_A_CLK]		= &msm8916_bimc_a_clk,
-+	[RPM_SMD_QPIC_CLK]		= &qcs404_qpic_clk,
-+	[RPM_SMD_QPIC_CLK_A]		= &qcs404_qpic_a_clk,
-+	[RPM_SMD_QDSS_CLK]		= &msm8916_qdss_clk,
-+	[RPM_SMD_QDSS_A_CLK]		= &msm8916_qdss_a_clk,
-+	[RPM_SMD_BB_CLK1]		= &msm8916_bb_clk1,
-+	[RPM_SMD_BB_CLK1_A]		= &msm8916_bb_clk1_a,
-+	[RPM_SMD_BB_CLK2]		= &msm8916_bb_clk2,
-+	[RPM_SMD_BB_CLK2_A]		= &msm8916_bb_clk2_a,
-+	[RPM_SMD_RF_CLK1]		= &msm8916_rf_clk1,
-+	[RPM_SMD_RF_CLK1_A]		= &msm8916_rf_clk1_a,
-+	[RPM_SMD_RF_CLK2]		= &msm8916_rf_clk2,
-+	[RPM_SMD_RF_CLK2_A]		= &msm8916_rf_clk2_a,
-+	[RPM_SMD_BB_CLK1_PIN]		= &msm8916_bb_clk1_pin,
-+	[RPM_SMD_BB_CLK1_A_PIN]		= &msm8916_bb_clk1_a_pin,
-+	[RPM_SMD_BB_CLK2_PIN]		= &msm8916_bb_clk2_pin,
-+	[RPM_SMD_BB_CLK2_A_PIN]		= &msm8916_bb_clk2_a_pin,
-+	[RPM_SMD_RF_CLK1_PIN]		= &msm8916_rf_clk1_pin,
-+	[RPM_SMD_RF_CLK1_A_PIN]		= &msm8916_rf_clk1_a_pin,
-+	[RPM_SMD_RF_CLK2_PIN]		= &msm8916_rf_clk2_pin,
-+	[RPM_SMD_RF_CLK2_A_PIN]		= &msm8916_rf_clk2_a_pin,
-+};
-+
-+static const struct rpm_smd_clk_desc rpm_clk_msm8909 = {
-+	.clks = msm8909_clks,
-+	.num_clks = ARRAY_SIZE(msm8909_clks),
-+};
-+
- static struct clk_smd_rpm *msm8916_clks[] = {
- 	[RPM_SMD_PCNOC_CLK]		= &msm8916_pcnoc_clk,
- 	[RPM_SMD_PCNOC_A_CLK]		= &msm8916_pcnoc_a_clk,
-@@ -787,7 +822,6 @@ static const struct rpm_smd_clk_desc rpm_clk_msm8996 = {
- };
- 
- DEFINE_CLK_SMD_RPM(qcs404, bimc_gpu_clk, bimc_gpu_a_clk, QCOM_SMD_RPM_MEM_CLK, 2);
--DEFINE_CLK_SMD_RPM(qcs404, qpic_clk, qpic_a_clk, QCOM_SMD_RPM_QPIC_CLK, 0);
- DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(qcs404, ln_bb_clk_pin, ln_bb_clk_a_pin, 8, 19200000);
- 
- static struct clk_smd_rpm *qcs404_clks[] = {
-@@ -1146,6 +1180,7 @@ static const struct rpm_smd_clk_desc rpm_clk_qcm2290 = {
- static const struct of_device_id rpm_smd_clk_match_table[] = {
- 	{ .compatible = "qcom,rpmcc-mdm9607", .data = &rpm_clk_mdm9607 },
- 	{ .compatible = "qcom,rpmcc-msm8226", .data = &rpm_clk_msm8974 },
-+	{ .compatible = "qcom,rpmcc-msm8909", .data = &rpm_clk_msm8909 },
- 	{ .compatible = "qcom,rpmcc-msm8916", .data = &rpm_clk_msm8916 },
- 	{ .compatible = "qcom,rpmcc-msm8936", .data = &rpm_clk_msm8936 },
- 	{ .compatible = "qcom,rpmcc-msm8953", .data = &rpm_clk_msm8953 },
--- 
-2.30.2
+On 04/07/2022 14:38, Krzysztof Kozlowski wrote:
+> On 04/07/2022 12:00, Tinghan Shen wrote:
+>> Add power domains controller node for mt8195.
+>>
+>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 327 +++++++++++++++++++++++
+>>   1 file changed, 327 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>> index 8d59a7da3271..d52e140d9271 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>> @@ -10,6 +10,7 @@
+>>   #include <dt-bindings/interrupt-controller/irq.h>
+>>   #include <dt-bindings/phy/phy.h>
+>>   #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
+>> +#include <dt-bindings/power/mt8195-power.h>
+>>   
+>>   / {
+>>   	compatible = "mediatek,mt8195";
+>> @@ -338,6 +339,332 @@
+>>   			#interrupt-cells = <2>;
+>>   		};
+>>   
+>> +		scpsys: syscon@10006000 {
+>> +			compatible = "syscon", "simple-mfd";
+> 
+> These compatibles cannot be alone.
+> 
 
+You mean we would need something like "mediatek,scpsys" as dummy compatible 
+that's not bound to any driver?
+
+>> +			reg = <0 0x10006000 0 0x1000>;
+>> +			#power-domain-cells = <1>;
+> 
+> If it is simple MFD, then probably it is not a power domain provider.
+> Decide.
+
+The SCPSYS IP block of MediaTek SoCs group several functionality, one is the 
+power domain controller. Others are not yet implemented, but defining the scpsys 
+as a MFD will give us the possibility to do so in the future.
+
+Regards,
+Matthias
+
+> 
+> Best regards,
+> Krzysztof
