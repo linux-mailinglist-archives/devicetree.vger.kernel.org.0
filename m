@@ -2,85 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65709568C7D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 17:19:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FCAB568C86
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 17:21:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232381AbiGFPSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 11:18:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33364 "EHLO
+        id S233081AbiGFPVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 11:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233040AbiGFPSr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 11:18:47 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B44B15FF1
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 08:18:44 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id t25so26475702lfg.7
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 08:18:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=o34sXf13gS9dNYvfC/d9+rktJGbU/41tC7AjUNaoSfE=;
-        b=tlOoP70fhClmeDGn6OyYtjbxbmb1OaS8KTC422YM24182veuP3d/kvBY7X+d7EJ367
-         LaLee21l5oFOZHt/LERQLQuMZzVzBH4W1Uh3S+LeoStH84qKP704G6G6+hDP8o5A8rdN
-         RIO7uSW8KL2kgCuCd+wAUF+QisuRSOwhJAxD/MU8ilFjcj1leWnB5Y4fXz7MuuNd0yek
-         7aW5PBGTVYZxViG2+A/e8POYcjpJoTfFaN2KaJxBMp/VxNjgGE6tr/PdyGWBzorB8GGv
-         Dz6um5/CIwWVK5q1quxiJt0dasAVA/TqoJB0lGiZBlLbTulmwkVUCyz4LAVmm6L2SDAa
-         wYOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=o34sXf13gS9dNYvfC/d9+rktJGbU/41tC7AjUNaoSfE=;
-        b=pup26mV3a4RHg3Hzs7szTEU2l+TGX+11tW6H0UdTghqVsV/P8QS5Wo9rVMraK4BvB+
-         JEgctd8AkppAZcV98u+sD3CrPlJK6YGF9r9azqzw0dYdy/cwmDBjUqE73+x19fX4GdPZ
-         4XLrlfM6dhiEfn/fobAxX1wStyqpLCljQobCxZUTSkSt0jczHGHNbnyM2FQnjZ0V7U/S
-         EFrL6SmZWDWNs+K4E5FDqpFelKagvcj32vDpg9QV9Y9uMfgctMrXuT85JO24T5oqG1b0
-         amR6V3lAhFgLHe73T7jP8D3lRhtLgDL7HZonCrpP11/Gs/QOF0OmEknPfSCvwpgt9I+Y
-         Wwww==
-X-Gm-Message-State: AJIora/5/wuyZR1DxX0YhAOgRedzeeoE81yM8Co9VSzN27DuzBg4OqhH
-        dAFCtl84YULYrFETC4YAd0UlWQ==
-X-Google-Smtp-Source: AGRyM1vdzcWdQzM1UmXWIIm9OeMBRjPNPblppO/1Nm2JRbLD3Lswd6x84BFNiMqKX8XEm3f7WV8inw==
-X-Received: by 2002:a05:6512:3fa7:b0:47f:7387:926c with SMTP id x39-20020a0565123fa700b0047f7387926cmr25769600lfa.98.1657120722496;
-        Wed, 06 Jul 2022 08:18:42 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id t10-20020a056512208a00b00486944fe8d5sm313121lfr.238.2022.07.06.08.18.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 08:18:41 -0700 (PDT)
-Message-ID: <0301ebc6-1222-e813-f237-f14ad8444940@linaro.org>
-Date:   Wed, 6 Jul 2022 17:18:40 +0200
+        with ESMTP id S233097AbiGFPVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 11:21:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 502DDE0B6;
+        Wed,  6 Jul 2022 08:21:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E39A961FBA;
+        Wed,  6 Jul 2022 15:21:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DADEC3411C;
+        Wed,  6 Jul 2022 15:21:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657120867;
+        bh=z71O/ITN488i5KX40dxQ6dsaUURgmwPe6NqAizltJYA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TU+H4NBV8ymbWcslJ98nVx2m9fcqFmzgvnQPaCNbbJuUiVRVK9l8hPaW/PB3R8pHW
+         xKY9kSRKrlR7rbGUOIciwg9P4c0NniB+uAZGyvH3r3m8OyqHqkqZ1D9vCHh1NoWmgy
+         9ptuo4f0xkjQprCBuYJZgRcSA3uwQ+LNBG5llHjSckmd1ossz9ZoTkPloOxRgfOG9b
+         zYI0mgyH5q8vLbqL5hEAutF26KvAt6idTnLiDTTmK0fDJxHczdOfW5j6wUDqn9kqXX
+         lv1OPRoVpaZ04n0fBxywjdBUD0qVE0Kwuzx8gpQAI1RElxRTM4UQocqyP9Mp6ew05P
+         5E2SfyVc/gWzQ==
+Date:   Wed, 6 Jul 2022 16:21:01 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Sebastian Ene <sebastianene@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, vdonnefort@google.com,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v9 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <20220706152101.GA3003@willie-the-truck>
+References: <20220701144013.1085272-1-sebastianene@google.com>
+ <20220701144013.1085272-3-sebastianene@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 08/16] arm64: dts: mt8195: Add power domains controller
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220704100028.19932-1-tinghan.shen@mediatek.com>
- <20220704100028.19932-9-tinghan.shen@mediatek.com>
- <3b65405d-167f-a0c7-d15e-5da6f08d99b3@linaro.org>
- <eec6aee5cd023fff6d986882db0330e1ab85a59d.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <eec6aee5cd023fff6d986882db0330e1ab85a59d.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220701144013.1085272-3-sebastianene@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,79 +61,366 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2022 14:00, Tinghan Shen wrote:
-> Hi Krzysztof,
+Hi Sebastian,
+
+Thanks for working on this and apologies it's taken so long for me to
+review your changes.
+
+On Fri, Jul 01, 2022 at 02:40:14PM +0000, Sebastian Ene wrote:
+> This driver creates per-cpu hrtimers which are required to do the
+> periodic 'pet' operation. On a conventional watchdog-core driver, the
+> userspace is responsible for delivering the 'pet' events by writing to
+> the particular /dev/watchdogN node. In this case we require a strong
+> thread affinity to be able to account for lost time on a per vCPU.
 > 
-> After discussing your message with our power team, 
-> we realized that we need your help to ensure we fully understand you.
+> This part of the driver is the 'frontend' which is reponsible for
+> delivering the periodic 'pet' events, configuring the virtual peripheral
+> and listening for cpu hotplug events. The other part of the driver is
+> an emulated MMIO device which is part of the KVM virtual machine
+> monitor and this part accounts for lost time by looking at the
+> /proc/{}/task/{}/stat entries.
 > 
-> On Mon, 2022-07-04 at 14:38 +0200, Krzysztof Kozlowski wrote:
->> On 04/07/2022 12:00, Tinghan Shen wrote:
->>> Add power domains controller node for mt8195.
->>>
->>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
->>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
->>> ---
->>>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 327 +++++++++++++++++++++++
->>>  1 file changed, 327 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>> index 8d59a7da3271..d52e140d9271 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->>> @@ -10,6 +10,7 @@
->>>  #include <dt-bindings/interrupt-controller/irq.h>
->>>  #include <dt-bindings/phy/phy.h>
->>>  #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
->>> +#include <dt-bindings/power/mt8195-power.h>
->>>  
->>>  / {
->>>  	compatible = "mediatek,mt8195";
->>> @@ -338,6 +339,332 @@
->>>  			#interrupt-cells = <2>;
->>>  		};
->>>  
->>> +		scpsys: syscon@10006000 {
->>> +			compatible = "syscon", "simple-mfd";
->>
->> These compatibles cannot be alone.
+> Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> ---
+>  drivers/misc/Kconfig               |  13 ++
+>  drivers/misc/Makefile              |   1 +
+>  drivers/misc/vcpu_stall_detector.c | 212 +++++++++++++++++++++++++++++
+>  3 files changed, 226 insertions(+)
+>  create mode 100644 drivers/misc/vcpu_stall_detector.c
 > 
-> the scpsys sub node has the compatible of the power domain driver.
-> do you suggest that the compatible in the sub node should move to here?
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 41d2bb0ae23a..83afb41a85cf 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -483,6 +483,19 @@ config OPEN_DICE
+>  
+>  	  If unsure, say N.
+>  
+> +config VCPU_STALL_DETECTOR
+> +	tristate "VCPU stall detector"
 
-Not necessarily, depends. You have here device node representing system
-registers. They need they own compatibles, just like everywhere in the
-kernel (except the broken cases...).
+I'd probably stick "Guest" in here somewhere, as this driver won't be
+useful on the host. So something like "Guest vCPU stall detector".
 
-Whether this should be compatible of power-domain driver, it depends
-what this device node is. I don't know, I don't have your datasheets or
-your architecture diagrams...
+> +	select LOCKUP_DETECTOR
+> +	depends on OF
+> +	help
+> +	  Detect CPU locks on a kvm virtual machine. This driver relies on
+> +	  the hrtimers which are CPU-binded to do the 'pet' operation. When a
+> +	  vCPU has to do a 'pet', it exits the guest through MMIO write and
+> +	  the backend driver takes into account the lost ticks for this
+> +	  particular CPU.
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called vcpu_stall_detector.
 
-> 
->>> +			reg = <0 0x10006000 0 0x1000>;
->>> +			#power-domain-cells = <1>;
->>
->> If it is simple MFD, then probably it is not a power domain provider.
->> Decide.
-> 
-> this MFD device is the power controller on mt8195. 
+I suggest rewording this along the lines of:
 
-Then it is not a simple MFD but a power controller. Do not use
-"simple-mfd" compatible.
+  When this driver is bound inside a KVM guest, it will periodically
+  "pet" an MMIO stall detector device from each vCPU and allow the host
+  to detect vCPU stalls.
 
-> Some features need 
-> to do some operations on registers in this node. We think that implement 
-> the operation of these registers as the MFD device can provide flexibility 
-> for future use. We want to clarify if you're saying that an MFD device 
-> cannot be a power domain provider.
+  To compile this driver as a module, choose M here: the module will
+  be called vcpu_stall_detector.
 
-MFD device is Linuxism, so it has nothing to do here. I am talking only
-about simple-mfd. simple-mfd is a simple device only instantiating
-children and not providing anything to anyone. Neither to children. This
- the most important part. The children do not depend on anything from
-simple-mfd device. For example simple-mfd device can be shut down
-(gated) and children should still operate. Being a power domain
-controller, contradicts this usually.
+  If you do not intend to run this kernel as a guest, say N.
 
-Best regards,
-Krzysztof
+but up to you.
+
+>  source "drivers/misc/c2port/Kconfig"
+>  source "drivers/misc/eeprom/Kconfig"
+>  source "drivers/misc/cb710/Kconfig"
+> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> index 70e800e9127f..2be8542616dd 100644
+> --- a/drivers/misc/Makefile
+> +++ b/drivers/misc/Makefile
+> @@ -60,3 +60,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
+>  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
+>  obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
+>  obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
+> +obj-$(CONFIG_VCPU_STALL_DETECTOR)	+= vcpu_stall_detector.o
+> \ No newline at end of file
+> diff --git a/drivers/misc/vcpu_stall_detector.c b/drivers/misc/vcpu_stall_detector.c
+> new file mode 100644
+> index 000000000000..039ac54564c1
+> --- /dev/null
+> +++ b/drivers/misc/vcpu_stall_detector.c
+> @@ -0,0 +1,212 @@
+> +// SPDX-License-Identifier: GPL-2.0
+
+This should probably be "GPL-2.0-only" for the avoidance of doubt.
+
+> +//
+> +// VCPU stall detector.
+> +//  Copyright (C) Google, 2022
+> +
+> +#include <linux/cpu.h>
+> +#include <linux/init.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +
+> +#include <linux/device.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/nmi.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/param.h>
+> +#include <linux/percpu.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +#define REG_STATUS		(0x00)
+> +#define REG_LOAD_CNT		(0x04)
+> +#define REG_CURRENT_CNT		(0x08)
+> +#define REG_CLOCK_FREQ_HZ	(0x0C)
+> +#define REG_LEN			(0x10)
+> +
+> +#define DEFAULT_CLOCK_HZ	(10)
+> +#define DEFAULT_TIMEOT_SEC	(8)
+
+TIMEOUT instead of TIMEOT?
+
+Generally, I'd probably also prefix these definitions with VCPU_STALL_
+or something to avoid the potential for conflicting with the headers.
+
+> +struct vm_stall_detect_s {
+> +	void __iomem *membase;
+> +	u32 clock_freq;
+> +	u32 expiration_sec;
+> +	u32 ping_timeout_ms;
+> +	struct hrtimer per_cpu_hrtimer;
+> +	struct platform_device *dev;
+> +};
+> +
+> +#define vcpu_stall_detect_reg_write(stall_detect, reg, value)	\
+> +	iowrite32((value), (stall_detect)->membase + (reg))
+
+You can use writel_relaxed() here as you don't require ordering guarantees
+against DMA.
+
+> +#define vcpu_stall_detect_reg_read(stall_detect, reg)		\
+> +	io32read((stall_detect)->membase + (reg))
+
+io32read() doesn't exist, but you also don't use this macro so just remove
+it :)
+
+> +
+> +static struct vm_stall_detect_s __percpu *vm_stall_detect;
+> +
+> +static enum hrtimer_restart
+> +vcpu_stall_detect_timer_fn(struct hrtimer *hrtimer)
+> +{
+> +	struct vm_stall_detect_s *cpu_stall_detect;
+> +	u32 ticks;
+> +
+> +	cpu_stall_detect = container_of(hrtimer, struct vm_stall_detect_s,
+> +					per_cpu_hrtimer);
+> +	ticks = cpu_stall_detect->clock_freq * cpu_stall_detect->expiration_sec;
+> +	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_LOAD_CNT, ticks);
+> +	hrtimer_forward_now(hrtimer,
+> +			    ms_to_ktime(cpu_stall_detect->ping_timeout_ms));
+> +
+> +	return HRTIMER_RESTART;
+> +}
+> +
+> +static void vcpu_stall_detect_start(void *arg)
+> +{
+> +	u32 ticks;
+> +	struct vm_stall_detect_s *cpu_stall_detect = arg;
+> +	struct hrtimer *hrtimer = &cpu_stall_detect->per_cpu_hrtimer;
+> +
+> +	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_CLOCK_FREQ_HZ,
+> +				    cpu_stall_detect->clock_freq);
+> +
+> +	/* Compute the number of ticks required for the stall detector counter
+> +	 * register based on the internal clock frequency and the timeout
+> +	 * value given from the device tree.
+> +	 */
+> +	ticks = cpu_stall_detect->clock_freq *
+> +		cpu_stall_detect->expiration_sec;
+> +	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_LOAD_CNT, ticks);
+> +
+> +	/* Enable the internal clock and start the stall detector */
+> +	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_STATUS, 1);
+> +
+> +	hrtimer_init(hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+> +	hrtimer->function = vcpu_stall_detect_timer_fn;
+> +	hrtimer_start(hrtimer, ms_to_ktime(cpu_stall_detect->ping_timeout_ms),
+> +		      HRTIMER_MODE_REL_PINNED);
+> +}
+> +
+> +static void vcpu_stall_detect_stop(void *arg)
+> +{
+> +	struct vm_stall_detect_s *cpu_stall_detect = arg;
+> +	struct hrtimer *hrtimer = &cpu_stall_detect->per_cpu_hrtimer;
+> +
+> +	hrtimer_cancel(hrtimer);
+> +
+> +	/* Disable the stall detector */
+> +	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_STATUS, 0);
+> +}
+> +
+> +static int start_stall_detector_on_cpu(unsigned int cpu)
+> +{
+> +	vcpu_stall_detect_start(this_cpu_ptr(vm_stall_detect));
+> +	return 0;
+> +}
+> +
+> +static int stop_stall_detector_on_cpu(unsigned int cpu)
+> +{
+> +	vcpu_stall_detect_stop(this_cpu_ptr(vm_stall_detect));
+> +	return 0;
+> +}
+> +
+> +static int vcpu_stall_detect_probe(struct platform_device *dev)
+> +{
+> +	int cpu, ret, err;
+> +	void __iomem *membase;
+> +	struct resource *r;
+> +	u32 stall_detect_clock, stall_detect_timeout_sec = 0;
+> +
+> +	r = platform_get_resource(dev, IORESOURCE_MEM, 0);
+> +	if (r == NULL)
+> +		return -ENODEV;
+> +
+> +	vm_stall_detect = alloc_percpu(typeof(struct vm_stall_detect_s));
+> +	if (!vm_stall_detect)
+> +		return -ENOMEM;
+> +
+> +	membase = ioremap(r->start, resource_size(r));
+> +	if (!membase) {
+> +		ret = -ENOMEM;
+> +		goto err_withmem;
+> +	}
+
+Can you use devm_platform_get_and_ioremap_resource() to avoid calling
+both platform_get_resource() and ioremap() explicitly? I think the devm_
+handling there also means you don't need to worry about the iounmap(),
+which seems to be missing here anyway.
+
+> +
+> +	if (of_property_read_u32(dev->dev.of_node, "clock-frequency",
+> +				 &stall_detect_clock))
+> +		stall_detect_clock = DEFAULT_CLOCK_HZ;
+> +
+> +	if (of_property_read_u32(dev->dev.of_node, "timeout-sec",
+> +				 &stall_detect_timeout_sec))
+> +		stall_detect_timeout_sec = DEFAULT_TIMEOT_SEC;
+> +
+> +	for_each_cpu_and(cpu, cpu_online_mask, &watchdog_cpumask) {
+
+What prevents CPUs from coming up and down during this loop?
+
+I also don't think we should be using 'watchdog_cpumask' here -- that's
+part of the watchdog core; instead we should either take the mask in the
+DT description or rely on the device exposing an interface for every CPU
+in the system.
+
+> +		struct vm_stall_detect_s *cpu_stall_detect;
+> +
+> +		cpu_stall_detect = per_cpu_ptr(vm_stall_detect, cpu);
+> +		cpu_stall_detect->membase = membase + cpu * REG_LEN;
+> +		cpu_stall_detect->clock_freq = stall_detect_clock;
+> +		cpu_stall_detect->expiration_sec = stall_detect_timeout_sec;
+> +
+> +		/* Pet the stall detector at half of its expiration timeout
+> +		 * to prevent spurios resets.
+
+typo: spurious
+
+> +		 */
+> +		cpu_stall_detect->ping_timeout_ms = stall_detect_timeout_sec *
+> +			MSEC_PER_SEC / 2;
+
+All of these fields are the same for each core apart from the membase,
+which a CPU can compute locally using its smp_processor_id() so I don't
+think you need to include these in the per-cpu structure. It would be
+simpler if you tracked these invariants in a separate structure (either
+a global static structure or indirected by a per-cpu pointer).
+
+Then the only thing left for the per-cpu structure would be the hrtimer.
+
+> +		smp_call_function_single(cpu, vcpu_stall_detect_start,
+> +					 cpu_stall_detect, true);
+> +	}
+> +
+> +	err = cpuhp_setup_state_nocalls(CPUHP_AP_ONLINE_DYN,
+> +					"virt/vcpu_stall_detector:online",
+> +					start_stall_detector_on_cpu,
+> +					stop_stall_detector_on_cpu);
+
+If you drop the "_nocalls" variant then I think you can avoid the explicit
+previous call to smp_call_function_single() entirely and just rely on the
+notifiers to do the right thing. That also solves the hotplug race I
+mentioned.
+
+> +	if (err < 0) {
+> +		dev_err(&dev->dev, "failed to install cpu hotplug");
+> +		ret = err;
+> +		goto err_withmem;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_withmem:
+> +	free_percpu(vm_stall_detect);
+
+Looks like there's a devm_alloc_percpu() which might make this a bit
+simpler.
+
+> +	return ret;
+> +}
+> +
+> +static int vcpu_stall_detect_remove(struct platform_device *dev)
+> +{
+> +	int cpu;
+> +
+> +	for_each_cpu_and(cpu, cpu_online_mask, &watchdog_cpumask) {
+> +		struct vm_stall_detect_s *cpu_stall_detect;
+> +
+> +		cpu_stall_detect = per_cpu_ptr(vm_stall_detect, cpu);
+> +		smp_call_function_single(cpu, vcpu_stall_detect_stop,
+> +					 cpu_stall_detect, true);
+> +	}
+
+I don't think you need to cross-call here, and it looks racy again with
+hotplug; you should be able to do something like:
+
+  1. Unregister the hotplug notifier (looks like you're missing this?)
+  2. Call hrtimer_cancel() for each percpu timer
+  3. Disable the watchdog for each CPU
+
+> +	free_percpu(vm_stall_detect);
+> +	vm_stall_detect = NULL;
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id vcpu_stall_detect_of_match[] = {
+> +	{ .compatible = "qemu,vcpu-stall-detector", },
+
+I'm not sure why we're mentioning qemu here; something as boring as "virt"
+(like you use for the cpuhp notifier) or "dummy" might be better, but given
+that Rob is happy with the binding then I won't complain further. We can
+always add extra strings later if we need to.
+
+> +	{}
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, vcpu_stall_detect_of_match);
+> +
+> +static struct platform_driver vcpu_stall_detect_driver = {
+> +	.probe  = vcpu_stall_detect_probe,
+> +	.remove = vcpu_stall_detect_remove,
+> +	.driver = {
+> +		.name           = KBUILD_MODNAME,
+> +		.of_match_table = vcpu_stall_detect_of_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(vcpu_stall_detect_driver);
+> +
+> +MODULE_LICENSE("GPL");
+
+This needs to be "GPL v2".
+
+Will
