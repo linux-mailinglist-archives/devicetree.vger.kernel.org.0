@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D4715680DD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 10:13:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6896B5680EA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 10:17:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230266AbiGFINe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 04:13:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54154 "EHLO
+        id S230269AbiGFIRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 04:17:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230469AbiGFINe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 04:13:34 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919926304
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 01:13:31 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id a39so17450020ljq.11
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 01:13:31 -0700 (PDT)
+        with ESMTP id S229592AbiGFIRq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 04:17:46 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C0021265
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 01:17:45 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id f39so24614187lfv.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 01:17:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=q5HVmA8sCnStfWK2o12uYQzpyK3n2MMa6yOBkWT5nc4=;
-        b=UJKrwkK63DRqwhebPcgtSGFbf7L+yQsuZmf9S5ZHrdlc6imWTd1nqHKtSlKQehwDPh
-         hQB+zUPmYC2sxSjkvPh3bWn9xlglh/esdgKNDgT9pC5KoS+/qCdZLsN69ezSikNawyqb
-         5D1sWBTiEVCKSbWnB4MYAoS4DxLz+fgDk0Wrh5Sfzz8SW4HpAi8ajwFmRDv8xxxgVvmg
-         3RJvE32/5ItiWrjQoo42fJFHMeh5TXzpK6l2UpD1tP+eww+YVfYmNIeiU5kBc8vao9Ez
-         rukvHk7q5byYRDYQX/CnjsKbIHzKPNNo/M4d/wFXiFTVLKeByVHAn2+kQUiEAvPYyzPL
-         S8bA==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zxEgUQKShb0lRQRTiY8pzzMuqPlmMV7N3JPs4Nr+3+4=;
+        b=CVGN96LaQ0iwJhHVVj9woXp+Ne8W8/vdvDhLGI2yNvMW6TRNcRRVCd+ku4LHWajtty
+         1s50NI3FLn/T4kHsHyk4gaLStGA+FBg0gKoFmiUqiFp8WQ80Y2JeuC1honizgMVVAZ5c
+         ww/rw/Lm09dffF4HBlw2q9EdJ2CPMma7QFBPC/sgFt/7rwR2+Lka5RICHyfv4rDTXN1f
+         ckgsadObgw05UV6ixaT418mLTDXyM9U2LZauU6NdCb9tgfbpM2u4MEeWgghGA8bzMhPG
+         EAGOGq7LOPkxYlX9kCtllE1rHiAye/Ad2aiNogRoV0jvnV/RMZ1OTVxXd0KqX5TF0oa+
+         GE9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=q5HVmA8sCnStfWK2o12uYQzpyK3n2MMa6yOBkWT5nc4=;
-        b=nhPHPF2c+dcfvnlTAYNWkeY7Qlunbf49KyJVWcS/pT7TSBFgr2Cp8LTCqcREJDDMh1
-         Q2jPKXOBa+j3G8lThDDcmW3ceIgBJHl1mD/DwXb6AJII0UBboyHvbbTc0v0xJ0NVNTy9
-         sXX+xajmMyEHWPfvRU5CPc66AijVEFaI8DHHRXxq2Qj0PoSnZVsY0nc0dMELjzfyUR3S
-         o7ufMX2C6INSJAc/U+ynx3NN48TopC4otFULqplJJV7hL5OwrMl+R4qB80o085BHfSuO
-         4cG3ZNqOKp/HrSwgnkZoVt5x+q5NhNajJwYeRGgaUl4Exs2po6Nf5x9NqN/mKDJgLIAz
-         fQzQ==
-X-Gm-Message-State: AJIora9FwUoN0j0bHUshg3YhS3/ijBkb/O62kRyrSrl6TuamUaYCkP1c
-        hTUgrHYzXsjIHGLdcJxY/4k0yA==
-X-Google-Smtp-Source: AGRyM1vHeSTTD8DYfDtNiJtCXkLRLR8Aas+YPJtmy/Ovp5zENmXzxSMK84WqWuvevJD+G+V8OJfG8g==
-X-Received: by 2002:a05:651c:623:b0:25d:30c0:22e9 with SMTP id k35-20020a05651c062300b0025d30c022e9mr5275970lje.290.1657095209978;
-        Wed, 06 Jul 2022 01:13:29 -0700 (PDT)
+        bh=zxEgUQKShb0lRQRTiY8pzzMuqPlmMV7N3JPs4Nr+3+4=;
+        b=qGGnp+BEyxfTuvmpeorMqmcWT0QS7I44rcsJhsfEBl4cfEcu9LsUmkVdEbhKoyulkv
+         +TjNgm9LwFvR1UvN62iehZTKwFTliWgWYh9BlPWLRbO4UJcvh3IF1uOistO96i1cAjp6
+         qMxob7MDzUecPizdMbaEYjo3C2maLrVguv7MlsSQMhDrTIzQ/KwRfIfeiccOOpvQjSqX
+         reIqP5qI23poVqWnX7wsrVXAGo0t94uPiq9pw10oSiph7vWhy/vO5rOURSSOzwsdDkFl
+         +uDD/dRCEkkssvNdUPkQy+5nIpewBrrYpG0A5hD7lUgLYgF7RZUCnYiYlDnidsTg03b1
+         0kzg==
+X-Gm-Message-State: AJIora9F0sJAUziXAF4jmddntXa9KlWkzcRtmvHEjjbK070k30Q2iyFn
+        lRBsAi4ruydeA6E8LISt+nWemg==
+X-Google-Smtp-Source: AGRyM1urd3EIKHZti9p5ALjQH1gHIijjenH6NzPZZaDzIclsoYWzXLldRVcoKJmrr5Ng/rstORLdyw==
+X-Received: by 2002:ac2:4bcb:0:b0:47f:87a0:b638 with SMTP id o11-20020ac24bcb000000b0047f87a0b638mr26011486lfq.313.1657095463934;
+        Wed, 06 Jul 2022 01:17:43 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id a19-20020a05651c031300b0025d4853f35dsm104129ljp.62.2022.07.06.01.13.28
+        by smtp.gmail.com with ESMTPSA id k10-20020a2ea26a000000b0025bbf597b8asm5199567ljm.71.2022.07.06.01.17.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 01:13:28 -0700 (PDT)
-Message-ID: <93926f8a-6c40-a953-0435-34fc1b9ae120@linaro.org>
-Date:   Wed, 6 Jul 2022 10:13:27 +0200
+        Wed, 06 Jul 2022 01:17:42 -0700 (PDT)
+Message-ID: <2f809ae4-a7cc-4210-b56f-bd09e3f2a599@linaro.org>
+Date:   Wed, 6 Jul 2022 10:17:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v6 11/12] arm64: dts: qcom: add PMP8074 DTSI
+Subject: Re: [PATCH v4 1/5] dt-bindings: display: bridge: Convert cdns,dsi.txt
+ to yaml
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
-        lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
-        lgirdwood@gmail.com, broonie@kernel.org, jic23@kernel.org,
-        lars@metafoo.de, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org
-References: <20220704212402.1715182-1-robimarko@gmail.com>
- <20220704212402.1715182-11-robimarko@gmail.com>
+To:     Rahul T R <r-ravikumar@ti.com>, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
+        robert.foss@linaro.org, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+        airlied@linux.ie, daniel@ffwll.ch, p.zabel@pengutronix.de,
+        tomi.valkeinen@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        linux-kernel@vger.kernel.org, jpawar@cadence.com,
+        sjakhade@cadence.com, mparab@cadence.com, a-bhatia1@ti.com,
+        devicetree@vger.kernel.org, vigneshr@ti.com, lee.jones@linaro.org
+References: <20220705121116.24121-1-r-ravikumar@ti.com>
+ <20220705121116.24121-2-r-ravikumar@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220704212402.1715182-11-robimarko@gmail.com>
+In-Reply-To: <20220705121116.24121-2-r-ravikumar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,59 +81,237 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/07/2022 23:24, Robert Marko wrote:
-> PMP8074 is a companion PMIC to the Qualcomm IPQ8074 series that is
-> controlled via SPMI.
+On 05/07/2022 14:11, Rahul T R wrote:
+> Convert cdns,dsi.txt binding to yaml format
 > 
-> Add DTSI for it providing GPIO, regulator and RTC support.
-> 
-> RTC is disabled by default as there is no built-in battery so it will
-> loose time unless board vendor added a battery, so make it optional.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
 > ---
-> Changes in v6:
-> * Add RTC and GPIO nodes
+>  .../bindings/display/bridge/cdns,dsi.txt      | 112 ----------
+>  .../bindings/display/bridge/cdns,dsi.yaml     | 198 ++++++++++++++++++
+>  2 files changed, 198 insertions(+), 112 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
 > 
-> Changes in v5:
-> * Remove #address-cells and #size-cells as they are not required for
-> regulator subnodes
-> ---
->  arch/arm64/boot/dts/qcom/pmp8074.dtsi | 125 ++++++++++++++++++++++++++
->  1 file changed, 125 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/pmp8074.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pmp8074.dtsi b/arch/arm64/boot/dts/qcom/pmp8074.dtsi
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+> deleted file mode 100644
+> index 525a4bfd8634..000000000000
+> --- a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+> +++ /dev/null
+> @@ -1,112 +0,0 @@
+> -Cadence DSI bridge
+> -==================
+> -
+> -The Cadence DSI bridge is a DPI to DSI bridge supporting up to 4 DSI lanes.
+> -
+> -Required properties:
+> -- compatible: should be set to "cdns,dsi".
+> -- reg: physical base address and length of the controller's registers.
+> -- interrupts: interrupt line connected to the DSI bridge.
+> -- clocks: DSI bridge clocks.
+> -- clock-names: must contain "dsi_p_clk" and "dsi_sys_clk".
+> -- phys: phandle link to the MIPI D-PHY controller.
+> -- phy-names: must contain "dphy".
+> -- #address-cells: must be set to 1.
+> -- #size-cells: must be set to 0.
+> -
+> -Optional properties:
+> -- resets: DSI reset lines.
+> -- reset-names: can contain "dsi_p_rst".
+> -
+> -Required subnodes:
+> -- ports: Ports as described in Documentation/devicetree/bindings/graph.txt.
+> -  2 ports are available:
+> -  * port 0: this port is only needed if some of your DSI devices are
+> -	    controlled through  an external bus like I2C or SPI. Can have at
+> -	    most 4 endpoints. The endpoint number is directly encoding the
+> -	    DSI virtual channel used by this device.
+> -  * port 1: represents the DPI input.
+> -  Other ports will be added later to support the new kind of inputs.
+> -
+> -- one subnode per DSI device connected on the DSI bus. Each DSI device should
+> -  contain a reg property encoding its virtual channel.
+> -
+> -Example:
+> -	dsi0: dsi@fd0c0000 {
+> -		compatible = "cdns,dsi";
+> -		reg = <0x0 0xfd0c0000 0x0 0x1000>;
+> -		clocks = <&pclk>, <&sysclk>;
+> -		clock-names = "dsi_p_clk", "dsi_sys_clk";
+> -		interrupts = <1>;
+> -		phys = <&dphy0>;
+> -		phy-names = "dphy";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		ports {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			port@1 {
+> -				reg = <1>;
+> -				dsi0_dpi_input: endpoint {
+> -					remote-endpoint = <&xxx_dpi_output>;
+> -				};
+> -			};
+> -		};
+> -
+> -		panel: dsi-dev@0 {
+> -			compatible = "<vendor,panel>";
+> -			reg = <0>;
+> -		};
+> -	};
+> -
+> -or
+> -
+> -	dsi0: dsi@fd0c0000 {
+> -		compatible = "cdns,dsi";
+> -		reg = <0x0 0xfd0c0000 0x0 0x1000>;
+> -		clocks = <&pclk>, <&sysclk>;
+> -		clock-names = "dsi_p_clk", "dsi_sys_clk";
+> -		interrupts = <1>;
+> -		phys = <&dphy1>;
+> -		phy-names = "dphy";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		ports {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			port@0 {
+> -				reg = <0>;
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				dsi0_output: endpoint@0 {
+> -					reg = <0>;
+> -					remote-endpoint = <&dsi_panel_input>;
+> -				};
+> -			};
+> -
+> -			port@1 {
+> -				reg = <1>;
+> -				dsi0_dpi_input: endpoint {
+> -					remote-endpoint = <&xxx_dpi_output>;
+> -				};
+> -			};
+> -		};
+> -	};
+> -
+> -	i2c@xxx {
+> -		panel: panel@59 {
+> -			compatible = "<vendor,panel>";
+> -			reg = <0x59>;
+> -
+> -			port {
+> -				dsi_panel_input: endpoint {
+> -					remote-endpoint = <&dsi0_output>;
+> -				};
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
 > new file mode 100644
-> index 000000000000..a3b395e4d78f
+> index 000000000000..ccedc73d8c18
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmp8074.dtsi
-> @@ -0,0 +1,125 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
+> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> @@ -0,0 +1,198 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/cdns,dsi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <dt-bindings/spmi/spmi.h>
-> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
+> +title: Cadence DSI bridge
 > +
-> +&spmi_bus {
-> +	pmic@0 {
-> +		compatible = "qcom,pmp8074", "qcom,spmi-pmic";
-> +		reg = <0x0 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
+> +maintainers:
+> +  - Boris Brezillon <boris.brezillon@bootlin.com>
 > +
-> +		pmp8074_adc: adc@3100 {
-> +			compatible = "qcom,spmi-adc-rev2";
-> +			reg = <0x3100>;
-> +			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#io-channel-cells = <1>;
+> +description: |
+> +   CDNS DSI is a bridge device which converts DPI to DSI
 > +
-> +			ref_gnd@0 {
+> +properties:
+> +  compatible:
+> +    items:
 
-Don't use underscores in node names, unless something depends on this.
+These are not items and it does not make any sense, because you remove
+it in second patch. Just make it an enum.
 
+> +      - const: cdns,dsi
+> +
+> +  reg:
+> +    items:
+> +      - description:
+> +          Register block for controller's registers.
+> +
+> +  clocks:
+> +    items:
+> +      - description: PSM clock, used by the IP
+> +      - description: sys clock, used by the IP
+> +
+> +  clock-names:
+> +    items:
+> +      - const: dsi_p_clk
+> +      - const: dsi_sys_clk
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: phandle link to the MIPI D-PHY controller.
+> +
+> +  phy-names:
+> +    const: dphy
+> +
+> +  power-domains:
+> +    maxItems: 1
 
+This was not present in old bindings and your commit msg says it is only
+a conversion.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +    description: PHY reset.
+> +
+> +  reset-names:
+> +    const: dsi_p_rst
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port representing the DSI output. It can have
+> +          most 4 endpoints. The endpoint number is directly encoding
+> +          the DSI virtual channel used by this device.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Input port representing the DP bridge input.
+> +
+> +    required:
+> +      - port@1
+> +
+> +allOf:
+> +  - $ref: ../dsi-controller.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - phys
+> +  - phy-names
+> +  - ports
+> +
+> +unevaluatedProperties: false
+> +
 
 Best regards,
 Krzysztof
