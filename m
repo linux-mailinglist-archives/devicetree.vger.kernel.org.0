@@ -2,73 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E18C45688FE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:08:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF165688DF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:03:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231715AbiGFNIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 09:08:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39256 "EHLO
+        id S229693AbiGFNCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 09:02:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230456AbiGFNIv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:08:51 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DEA81837D;
-        Wed,  6 Jul 2022 06:08:47 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id g26so27028796ejb.5;
-        Wed, 06 Jul 2022 06:08:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=wvfAFw0F06jGP7rqNj2HZP5B+fqDMdcDin2Uq+H2+jg=;
-        b=WPvO22ADXbyWJULpnsmdDHiBXNYyVpg1yuiDODPbGjTUllQgKvccbRsakgb7KjlSY+
-         9dileoPE9oubo77iJwEN8ipD3a/uWcIP9Hqrg8D4/L5aZhTVyryQnKDv/NfQqUnaxONk
-         /DiuGi2qNrSPe3/RrvaxXgi/YtAAVTO33LMDirj//Y97KCcuK4y13ioeMTCC5Zmq9EYs
-         OWTWDUpQl/gtyWR/ZxhUUUommCpI28vWuzTglTvDzoukARPDFaY7ObV95LszCaeyt6Sr
-         bngqjFCzkY6aE1+u0Wan/myxCxwK4HH2WJDHYo/FyoaUGBrO7dZpt6YNl/LUIJ+pi2L6
-         0eIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wvfAFw0F06jGP7rqNj2HZP5B+fqDMdcDin2Uq+H2+jg=;
-        b=oFWH7m16DRYoo25EmUKv5VG6HZZv91ua/413oma8n9G4hTAY9yNZ4R3+OGvMakdTA3
-         yb3iG1kSIghHbiq59so+VJSM27aRXxHd2mJNfDeYtRwfn5T0LRJ9NVV6UI8snDZR+2X+
-         b59L0zpP2mnkyre4UhgHGgpu62KGyS5Ma/xGSMyiP1NqOkuBhIgyeuxhvpJJSTrtG+Bl
-         VDO8fDIVA6izWF84iQZ7FdM6jc13sIjen3RplXdA9ZCxXUF1jfZ3zvV/9rYRcMM5vZ5y
-         eF626/3afZa7F+If1eXLDE1efffE8KcwxOgKu0Iy7dV1JZ2O171NtKgqMlC6GvjuI07T
-         2XYw==
-X-Gm-Message-State: AJIora82yJR22LdWFPWMcV/Q2iVY7Ccn7vK4rPc4jrafemAybaWea6iu
-        bDxPM+KalJtHk3Wxqe4XixyldxuafnE=
-X-Google-Smtp-Source: AGRyM1vU5shQz/Hz1NmeSJZJxO9vrhlXVr1NzBq82lxzA49nplcZBC9mTlaEJR/cta5p01g0Rxb5Lg==
-X-Received: by 2002:a17:907:2717:b0:72a:fbc7:fdbe with SMTP id w23-20020a170907271700b0072afbc7fdbemr2256750ejk.658.1657112925555;
-        Wed, 06 Jul 2022 06:08:45 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id kx12-20020a170907774c00b0072b02f99e55sm83910ejc.197.2022.07.06.06.08.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 06:08:45 -0700 (PDT)
-Message-ID: <62c5895d.1c69fb81.21090.02f1@mx.google.com>
-X-Google-Original-Message-ID: <YsWFeBtWJpge+bOd@Ansuel-xps.>
-Date:   Wed, 6 Jul 2022 14:52:08 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan McDowell <noodles@earth.li>
-Subject: Re: [PATCH 03/13] ARM: dts: qcom: add missing rpm regulators and
- cells for ipq8064
-References: <20220705133917.8405-1-ansuelsmth@gmail.com>
- <20220705133917.8405-4-ansuelsmth@gmail.com>
- <1e261828-6f87-8e02-e560-01a47758471e@somainline.org>
+        with ESMTP id S233494AbiGFNCg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:02:36 -0400
+X-Greylist: delayed 479 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 06 Jul 2022 06:02:30 PDT
+Received: from 8.mo576.mail-out.ovh.net (8.mo576.mail-out.ovh.net [46.105.56.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 437F614D17
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 06:02:30 -0700 (PDT)
+Received: from player759.ha.ovh.net (unknown [10.109.146.166])
+        by mo576.mail-out.ovh.net (Postfix) with ESMTP id C60C4237F7
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 12:54:29 +0000 (UTC)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player759.ha.ovh.net (Postfix) with ESMTPSA id 23AA82C62D3DC;
+        Wed,  6 Jul 2022 12:54:19 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-98R0021715cc91-ca2c-4e6d-985b-220cb5972dbf,
+                    9C20F4AFB6E1A5C03E66B265D4B61152F87D618A) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Message-ID: <361c9fc9-e982-55d3-f780-405505fd4389@milecki.pl>
+Date:   Wed, 6 Jul 2022 14:54:15 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1e261828-6f87-8e02-e560-01a47758471e@somainline.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH V3 1/2] dt-bindings: leds: add Broadcom's BCM63138
+ controller
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Rob Herring <robh@kernel.org>
+References: <20211227145905.2905-1-zajec5@gmail.com>
+ <1ca1d83d-9803-77a3-e5bb-2380a2dc03b0@gmail.com>
+ <223aabc8-7ec3-2719-866a-8f35ab97a11f@gmail.com>
+ <1273c272-b6fe-2980-ce66-582738722634@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+In-Reply-To: <1273c272-b6fe-2980-ce66-582738722634@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 9657124978954709818
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudeifedggeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeeuleetudfgkeevfffggeffveevleeutdekkeejueekveevtefhhfegveeggefhudenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehplhgrhigvrhejheelrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehjeei
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,97 +60,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 06, 2022 at 03:02:44PM +0200, Konrad Dybcio wrote:
+Hi Pavel,
+
+On 27.04.2022 22:47, Rafał Miłecki wrote:
+> On 27.03.2022 11:28, Rafał Miłecki wrote:
+>> On 7.03.2022 07:27, Rafał Miłecki wrote:
+>>> On 27.12.2021 15:59, Rafał Miłecki wrote:
+>>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>>
+>>>> Broadcom used 2 LEDs hardware blocks for their BCM63xx SoCs:
+>>>> 1. Older one (BCM6318, BCM6328, BCM6362, BCM63268, BCM6838)
+>>>> 2. Newer one (BCM6848, BCM6858, BCM63138, BCM63148, BCM63381, BCM68360)
+>>>>
+>>>> The newer one was also later also used on BCM4908 SoC.
+>>>>
+>>>> Old block is already documented in the leds-bcm6328.yaml. This binding
+>>>> documents the new one which uses different registers & programming. It's
+>>>> first used in BCM63138 thus the binding name.
+>>>>
+>>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>>> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+>>>
+>>> Pavel: can I get this patchset finally accepted, please?
+>>
+>> It has been 3 months now. I kindly pinged you in January, February and
+>> March. Please let me know how can I get those patches accepted.
 > 
-> 
-> On 5.07.2022 15:39, Christian Marangi wrote:
-> > Add cells definition for rpm node and add missing regulators for the 4
-> > regulator present on ipq8064. There regulators are controlled by rpm and
-> > to correctly works gsbi4_i2c require to be NEVER disabled or rpm will
-> > reject any regulator change request.
-> That sounds.. very weird for a RPM regulator..
-> 
->
+> did you maybe have a chance to look at my patches?
 
-I know but it's like that. In theory the smb208 can be controlled via
-the gsbi4_i2c and bypass rpm completely but we have no ducmentation of
-smb208 so rpm is the only way to scale voltage on this SoC.
-
-If gsbi4_i2c is disabled any RPM voltage request fails as RPM in it's
-firmware use the same line and assume it's always enabled.
-
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > Tested-by: Jonathan McDowell <noodles@earth.li>
-> > ---
-> >  arch/arm/boot/dts/qcom-ipq8064.dtsi | 36 +++++++++++++++++++++++++++++
-> >  1 file changed, 36 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > index 1b4b72723ead..c0b05d2a2d6d 100644
-> > --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > @@ -844,10 +844,46 @@ rpm: rpm@108000 {
-> >  			clocks = <&gcc RPM_MSG_RAM_H_CLK>;
-> >  			clock-names = "ram";
-> >  
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> >  			rpmcc: clock-controller {
-> >  				compatible = "qcom,rpmcc-ipq806x", "qcom,rpmcc";
-> >  				#clock-cells = <1>;
-> >  			};
-> > +
-> > +			smb208_regulators: regulators {
-> Are you sure it is used on all ipq8064 boards? And with the same
-> voltage settings?
-> 
-
-Out of 28 device we have on openwrt only the one present upstream
-doesn't use the smb208 regulator and use it's own way.
-
-The voltage are all the same, it does change with other revision of the
-SoC (ipq8065) but they will pushed in another series later.
-
-> > +				compatible = "qcom,rpm-smb208-regulators";
-> > +				status = "okay";
-> They are enabled by default, as you are defining them here and
-> the status property is not overwritten anywhere else.
-> 
-> Konrad
-> > +
-> > +				smb208_s1a: s1a {
-> > +					regulator-min-microvolt = <1050000>;
-> > +					regulator-max-microvolt = <1150000>;
-> > +
-> > +					qcom,switch-mode-frequency = <1200000>;
-> > +				};
-> > +
-> > +				smb208_s1b: s1b {
-> > +					regulator-min-microvolt = <1050000>;
-> > +					regulator-max-microvolt = <1150000>;
-> > +
-> > +					qcom,switch-mode-frequency = <1200000>;
-> > +				};
-> > +
-> > +				smb208_s2a: s2a {
-> > +					regulator-min-microvolt = < 800000>;
-> > +					regulator-max-microvolt = <1250000>;
-> > +
-> > +					qcom,switch-mode-frequency = <1200000>;
-> > +				};
-> > +
-> > +				smb208_s2b: s2b {
-> > +					regulator-min-microvolt = < 800000>;
-> > +					regulator-max-microvolt = <1250000>;
-> > +
-> > +					qcom,switch-mode-frequency = <1200000>;
-> > +				};
-> > +			};
-> >  		};
-> >  
-> >  		tcsr: syscon@1a400000 {
-
--- 
-	Ansuel
+I'm asking to get this reviewed / accepted for half a year.
