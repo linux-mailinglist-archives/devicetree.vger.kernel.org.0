@@ -2,135 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5356567D61
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 06:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5199B567DAC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 07:20:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbiGFEem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 00:34:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50980 "EHLO
+        id S230359AbiGFFU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 01:20:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiGFEel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 00:34:41 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2136.outbound.protection.outlook.com [40.107.93.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18B151C112;
-        Tue,  5 Jul 2022 21:34:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eX9w2ik9c9iNgTH6QkZUbW6IP76UxkeoMJuyxC8z3UTm3+jljLUk69KHSU5urDkGkY1isyJ7yRQq5b9BgFAm4VyaAqOMHXLQ0dN23M7AHYhMqNtq18dhcgY4CbNpf/WPX65jDJl/cV40gZGwLgebWjibx48dETXfDdQMl2iApF1ZesFeIDOYECPbQ9yR0sVtL834dYsM5fDYzZqQyKadkWfD3CHWmCLc7LXsQn0nzULaWp493QDarv73+nd/gr3wncH3BLnHuax1XXr4yUU1N+rvrekmcJa9+JY1E8M63gbmZOxUf0B+yGYLV2ZGn6Pj4JfT3zueaxoNiofxKSogcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uBsTuvUXx8JQySRs4ebHoLE4aTY/Juc9qHEWtoRGQm0=;
- b=ax4LvBe0nwjpWcMWvolrY8MMZpbjJFcL3DtiFCHnaBihm9CLpB0wOFpcOfsdupwyNmsagclOcyFcSwHwj00y379fpFaFYn2Ff7txeQ1J6jDHu55fxTeYYVFNPiYiKmIowcQXoMtcvWqOssYni3EaberuM5zmUm+rRz+ubeAmTvlHe0DiBGH8Q6h5Sw4xvR3K6MAujX5Ad0uGXf4Hf00eL6FnNB7yQw0GVWOUsgfvdq7W6o7763mUJC/iCsz6Vs8bhYj1UNUnh9LGPKPQg7Gp1jKjjwyP76UJKgLvX4xuHZA+LKjzaLr7FSVMm6R/LBnTgIMhe0/ADjPQBYlH38viUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uBsTuvUXx8JQySRs4ebHoLE4aTY/Juc9qHEWtoRGQm0=;
- b=k6q65hM+WfIVzn66GMaOeUMeLxCgqm1KHUEuTifHdgRCJb8Lf3d9Uy/0OWMhlRoYT4a1vXQQHKaBk1LelIyyoQQDOV2QpM5ZqDvWLbPo5N8oTklSCGB+upNzPFAKwLQlLcONwClZPkxMYk9FSsbMWMJaAMnYajgxCLbmKKhSUl4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by SA2PR10MB4428.namprd10.prod.outlook.com
- (2603:10b6:806:fa::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.15; Wed, 6 Jul
- 2022 04:34:36 +0000
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::712f:6916:3431:e74e]) by MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::712f:6916:3431:e74e%6]) with mapi id 15.20.5395.020; Wed, 6 Jul 2022
- 04:34:36 +0000
-Date:   Tue, 5 Jul 2022 21:34:33 -0700
-From:   Colin Foster <colin.foster@in-advantage.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        with ESMTP id S229522AbiGFFU1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 01:20:27 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D3DE1C93E
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 22:20:26 -0700 (PDT)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220706052024epoutp034f67b0f7c5f4998b995621e61d31a297~-Jd4rWN370256202562epoutp03i
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 05:20:24 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220706052024epoutp034f67b0f7c5f4998b995621e61d31a297~-Jd4rWN370256202562epoutp03i
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1657084824;
+        bh=f+ua8THa6FizjnAsXlAoxZZd0pO8JVwXvlSUl0eu28s=;
+        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
+        b=dE7VlihhkxqrhpMEpWxQ5DjU8wlwK57TYaIAeT9tYGYK1e8mNoPd58SeQpRqEU7Lr
+         lB84ovULeF9MZP0zf4jsZP1MVwYphriPh3mERbOXUnwqnj7DMcmfjvufvmVQ2XboZ2
+         MtZ3Jaw3IL8ZFq/atCWQrK4s0CB2TQJ2tLir7jgE=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20220706052023epcas2p42c3b36dc283a34e4155af641625a3b5d~-Jd3_gpvL1642816428epcas2p4h;
+        Wed,  6 Jul 2022 05:20:23 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.69]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4Ld7Cp5S6pz4x9Q2; Wed,  6 Jul
+        2022 05:20:22 +0000 (GMT)
+X-AuditID: b6c32a47-5e1ff700000025aa-9a-62c51b96a027
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1D.F3.09642.69B15C26; Wed,  6 Jul 2022 14:20:22 +0900 (KST)
+Mime-Version: 1.0
+Subject: Re: [PATCH v3 2/5] dt-bindings: phy: Add ARTPEC-8 PCIe phy
+Reply-To: wangseok.lee@samsung.com
+Sender: Wangseok Lee <wangseok.lee@samsung.com>
+From:   Wangseok Lee <wangseok.lee@samsung.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "katie.morris@in-advantage.com" <katie.morris@in-advantage.com>
-Subject: Re: [PATCH v12 net-next 0/9] add support for VSC7512 control over SPI
-Message-ID: <20220706043433.GB2830056@euler>
-References: <20220701192609.3970317-1-colin.foster@in-advantage.com>
- <20220705202422.GA2546662-robh@kernel.org>
- <20220705203015.GA2830056@euler>
- <20220705220432.4mgtqeuu3civvn5l@skbuf>
- <20220705225625.k42jjsdusf7ivaot@skbuf>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220705225625.k42jjsdusf7ivaot@skbuf>
-X-ClientProxiedBy: MW4PR03CA0305.namprd03.prod.outlook.com
- (2603:10b6:303:dd::10) To MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b59fca17-65dc-47a7-c47c-08da5f08d4ed
-X-MS-TrafficTypeDiagnostic: SA2PR10MB4428:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: T27NcY8WOKVJ9RLK8WJ0Mo2v32xL/hR7FKoe5u2ymrFGnlRJgeC23E7rD3nHGttn8FrjHyBRCZwdjxOChYZV9DMuPwWRMaqa3BE4FJRN0wTeS+rI7R/AzAdF1+keV6sBS1x6uTE2TX89iqM18D29sbSCI3qlaWhEec2rGdr8g9AqDgWN6a3ctA6b9OfgQVBe99Rhjf9XPYmcAChCprw7NlwLtCvX1yTKEYjY9RMlG2+sJJeYZj3WJzyXR0BkbNFIim/a5gkC+FtMHeTHoVwlG43d0svsOQPv0HIF6phfmNpNBg29g+EaxKR1uJE2HMwo5W0HRaQJiJ5SPg5ug5PwulKYTET2Co+MoTKD7pb0BoDsthiNURZlgm7l0LPeLQmVG1BanpL8hdBAMZGMHra8kmjt0DuWjt1vNJVVQX9jUazLk15DV1tPaxgxfAbFv7JFBWqbkhfDjTj90KiwIYj5nyfsftEZRX7irQZgildbhQz4pZ1sPIuhkRacpBGWCrGvFPxhuAvh2oTxTYRfVbAcXbx8lKo/EawUofLF00TZrc0DzVxryQ9XglgMbh9006BdJ8nLwGumIyUKrnxJWjT/jrOS6qCu26CQwhMIm2t9XrWGRjs0u1vEHAD5ovWqoRwoMOHCJl2ty9XrQ8miiMdoa7L3ZCTJx7Gb++wTg09vUmojO9orcjawS731aINm539nWFOyB6Mb7YyMJsRL1IFT23jpHgMnaBXgscGbhyltGUXW7nuZR21Cn+YnyP413KgbkxOfmD23ToEDaT+dTmL6u03Eeu9h4DUVSSmfc3GWv70Wk6n7otGvG0Sv5O4u1vvp
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(396003)(39840400004)(346002)(366004)(376002)(136003)(107886003)(186003)(1076003)(38350700002)(38100700002)(316002)(54906003)(6916009)(8676002)(4326008)(66476007)(66556008)(66946007)(6486002)(33656002)(5660300002)(8936002)(86362001)(6506007)(9686003)(7416002)(44832011)(52116002)(478600001)(33716001)(26005)(6512007)(41300700001)(2906002)(6666004);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yl0cNATp71EZ98jm6pjAYhgvNiM8cXv3flBDZM6NiiaYovA5GlIf6M/Rui+E?=
- =?us-ascii?Q?czzlJGYyPsg0iNdeiQR5F/mEzaBVDqQT/7INavMmeiVgmCipjSftMhrVdMKO?=
- =?us-ascii?Q?X3uQN4vn9iXz8UNvEldJhS8Tt079RrpweLrEM+H1YhirVikhMifl8ponGubL?=
- =?us-ascii?Q?aqrfAk0e6AEOGvirhk8ImbJRxE9oCi6Hp9catYr+QrjH/PnMUm1PDWUJ1DQn?=
- =?us-ascii?Q?5HzPsu0FrVLg9uzhB4ee96arhkJBq6UPWVCrDH9kEmJ6ILolrb6fj5hnQluK?=
- =?us-ascii?Q?GAhYnrnmPoLhIVn6BPnY2WtHrTIEhSOqinSHlZK+Xr2kcraTCyCAJL/XMQlg?=
- =?us-ascii?Q?2MExCkmSwTaq68nKC+39oDgUYaKOAWEmfFi84p8cc7Lpy6dbAkEd8XW8n+tC?=
- =?us-ascii?Q?ZyjpJala/ZUPRXgAVHM9/8yuQ2CVPVsjzG0y4vsMowmBTddBBufEyDl51SfJ?=
- =?us-ascii?Q?a15E8gHxJmgqrlbvWwXMh02hHa3VJK3hFoDi0DRgpSvqfVmCWfyKMlPyvdPV?=
- =?us-ascii?Q?RXM0zDhmQXM/M9LN3s0RkTrst4quBdQMmVIBMdCX6TJUOlWhjTx1KE6MwRw/?=
- =?us-ascii?Q?Pz0QKEpxUtLfSh1oiVkHXa+TFPfHOXwqFrRQ2Ysf+WL0GSr2Cq07ldNdGOSW?=
- =?us-ascii?Q?maUqn2zca1ybJunHGef/Qd5krFNRTDSk86klPHDR3qEYDRO47rsM83RP6WV1?=
- =?us-ascii?Q?CpcWRJf1AdcQATEk5DSaaKi8SPsGJ9MIN2/nGfD4jzHqEyNim6YOf2hb5Pt1?=
- =?us-ascii?Q?S5zILBp5p0D/mXug8G/aOOE7Vp7l38wdbRWMx1vxJv1E8nCNILwvr20e0Lfn?=
- =?us-ascii?Q?4Yz9tvjDO9buE9jqNdsYkTaMOwgJauNO+1JNMYtbFWtgbr0Bgm22OU/R/og4?=
- =?us-ascii?Q?NYIsQrMGc8uVZ67Z5pygYKb6vUtcXT/ImGRw4AUXAphqnvHHKNG3oBE4gPQP?=
- =?us-ascii?Q?XpNs0hzXyRwWjBM48kbAYmq+u8VRorOJkqxdF9UdizlaitZJXbIwPT1+f95h?=
- =?us-ascii?Q?0ZPZ0JbHhaUAMhGVXpjyJVQr1efZfBpjVt2WzdMcScoSIaidmHCQOmUhJU34?=
- =?us-ascii?Q?8KnFGvBot/Mt1DDL5AZIRg4hiK/eaoT1XYIDIaeoYn0qqvwZ23aesEHFLjyI?=
- =?us-ascii?Q?QDkSef8Fw5viCALIJzTiqh1NgvNQ6Mr+BTC8pKGQ+sKf/Y5UACL+ThJu9Osa?=
- =?us-ascii?Q?rQwTy5zWAJpon2/6GUxOZEDCluZ/ofV11inEqdECcsyI/+evh5C5qlhGuUkX?=
- =?us-ascii?Q?T61iT0N4KUV/DpyD8TTmI+6EYmNZXn5WZc4op8YGYQMtVbcy2N2MOrYON8CW?=
- =?us-ascii?Q?ra1i/chMXViHjbaPUTdXnqOFsJ23IHJNZw6GzA/H/69RsNznkXJYKDz4UhJd?=
- =?us-ascii?Q?9+dKgEsNjau/7xtQDJ8sVHXafCfmHpJrLIIPjbDUag4iiYQF6Sy5Y2g6YJ5F?=
- =?us-ascii?Q?pV2t+MV303RfHpsz21xvt/HzCfPGdRsw8RiGcveXcoGvP/jpScuD/SRG91mw?=
- =?us-ascii?Q?fkg1vqIhHnxThVaZ2oUWTFoqnimSinDLztksiq9R2HXNDXJxg6G5+8nNaRzR?=
- =?us-ascii?Q?5AAE8jpLp5gUZE+PNPBuLnRzK/gaVdWO0LLhtShO+f0NkERk+xRMmzUG8FB3?=
- =?us-ascii?Q?5mQ33vCV8hSd99OU5m5hbAc=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b59fca17-65dc-47a7-c47c-08da5f08d4ed
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2022 04:34:36.7137
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pZLvUiJpDauCpZloQj7p3YZbOpSWENjyOLyB29CpiXMLC5xocOLhQOehSh1AslRSaK0+tIXa8kOxDBVCZxkOkdiLILDfhxQUCIxp3O6W0es=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4428
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "kw@linux.com" <kw@linux.com>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+        "kernel@axis.com" <kernel@axis.com>
+CC:     Moon-Ki Jun <moonki.jun@samsung.com>,
+        Sang Min Kim <hypmean.kim@samsung.com>,
+        Dongjin Yang <dj76.yang@samsung.com>,
+        Yeeun Kim <yeeun119.kim@samsung.com>
+X-Priority: 3
+X-Content-Kind-Code: NORMAL
+In-Reply-To: <43a075c6-ff48-acf2-0be7-634d292daf30@kernel.org>
+X-CPGS-Detection: blocking_info_exchange
+X-Drm-Type: N,general
+X-Msg-Generator: Mail
+X-Msg-Type: PERSONAL
+X-Reply-Demand: N
+Message-ID: <20220706052021epcms2p700172d20dbc02303cf9c6f7e66cebfbd@epcms2p7>
+Date:   Wed, 06 Jul 2022 14:20:21 +0900
+X-CMS-MailID: 20220706052021epcms2p700172d20dbc02303cf9c6f7e66cebfbd
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+X-CPGSPASS: Y
+X-CPGSPASS: Y
+CMS-TYPE: 102P
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBJsWRmVeSWpSXmKPExsWy7bCmqe406aNJBs07tSyWNGVYvDykaTH/
+        yDlWi90zljNZzJx6htni+aFZzBafWlQtLjztYbN4Oesem8X58xvYLRp6frNaHHnzkdli//GV
+        TBaXd81hszg77zibxYRV31gs3vx+wW5xbnGmReveI+wWO++cYLb4tfUPk4Oox5p5axg9rq8L
+        8FiwqdRj06pONo8nV6YzeWxeUu/Rt2UVo8fxG9uZPD5vkgvgjMq2yUhNTEktUkjNS85PycxL
+        t1XyDo53jjc1MzDUNbS0MFdSyEvMTbVVcvEJ0HXLzAH6TEmhLDGnFCgUkFhcrKRvZ1OUX1qS
+        qpCRX1xiq5RakJJTYF6gV5yYW1yal66Xl1piZWhgYGQKVJiQnbGj+RtjQbdIRfu28gbG48Jd
+        jJwcEgImEpufdTJ3MXJxCAnsYJSYu+kpUxcjBwevgKDE3x1gNcICzhK7/m9iA7GFBJQkdqyZ
+        xwwR15e4vqKbFcRmE9CV+Lf4JRvIHBGBWWwSS74uZQJxmAUWMErs/72PEWIbr8SM9qcsELa0
+        xPblW8HinAJ2EnNPH2KGiGtI/FjWC2WLStxc/ZYdxn5/bD7UHBGJ1ntnoWoEJR783A0Vl5JY
+        8OQQK4RdLbH/728mCLuBUaL/firIYxJAV++4bgwS5hXwlZh4CeIxFgFViea9fWwQ5S4S594/
+        BFvLLKAtsWzha2aQVmYBTYn1u/QhpihLHLnFAvNUw8bf7OhsZgE+iY7Df+HiO+Y9gTpGTWLe
+        yp3MExiVZyECehaSXbMQdi1gZF7FKJZaUJybnlpsVGAMj9rk/NxNjOAkruW+g3HG2w96hxiZ
+        OBgPMUpwMCuJ8K6adDBJiDclsbIqtSg/vqg0J7X4EKMp0JcTmaVEk/OBeSSvJN7QxNLAxMzM
+        0NzI1MBcSZzXK2VDopBAemJJanZqakFqEUwfEwenVAOTTUNRsWXQ/AkiEo2H3HJ1Jv+8cci5
+        6PgRT+eeme1ctl6rntXcq7p76F+H0dkrRe+vmBcErI5TT278G/j5zJ8ri9z7HzzneSjEcbf8
+        jGijdu/fX9P9DW+1KQk2L+ufvNcyRk5Swdyx0vd8pu4mlt0B/Knz/G9XJ/6Vv7SolP1VbFr1
+        5knFLxr5O3n4Fv5V/7ic6/i5hG4pOU3fjn363BxmLs6ua0+eftHQaR1kd0Rausj4BZ+jn/n3
+        zrZnlYv0bH9o76r41T/PREnr9m7Jrrefd4cV7rg3xevY+mvP9c6qvwx43+Z0JKfXsmhxiYbC
+        7LqFBk9CZ0zi8uMPYAs4yXX40qGTy94E5jlJfeQ+81SJpTgj0VCLuag4EQCuPlWyawQAAA==
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7
+References: <43a075c6-ff48-acf2-0be7-634d292daf30@kernel.org>
+        <20220620083821epcms2p57a65984523a0f2a3815e4873e8bfc6df@epcms2p5>
+        <4b4b08af-887b-89e9-b4a5-93e7d8a03222@kernel.org>
+        <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
+        <20220614012916epcms2p5cf8d55e7420dea10bb4a05d91aaf99dd@epcms2p5>
+        <20220629071829epcms2p65eab75702495a939f3f6e4ea020181de@epcms2p6>
+        <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -138,43 +117,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 05, 2022 at 10:56:26PM +0000, Vladimir Oltean wrote:
-> On Wed, Jul 06, 2022 at 01:04:32AM +0300, Vladimir Oltean wrote:
-> > You got some feedback at v11 (I believe) from Jakub about reposting too
-> > soon. The phrasing was relatively rude and I'm not sure that you got the
-> > central idea right. Large patch sets are generally less welcome when
-> > submitted back to back compared to small ones, but they still need to be
-> > posted frequent enough to not lose reviewers' attention. And small
-> > fixups to fix a build as module are not going to make a huge difference
-> > when reviewing, so it's best not to dig your own grave by gratuitously
-> > bumping the version number just for a compilation fix. Again, replying
-> > to your own patch saying "X was supposed to be Y, otherwise please go on
-> > reviewing", may help.
-> 
-> I hope I'm not coming off as a know-it-all by saying this, and I didn't
-> intend to make you feel bad. Ask me how do I know, and the answer will
-> be by making the same mistakes, of course.
-
-No worries, but thanks for the concern. I understand the v10 fiasco
-was my fault - I'm alright with being put in my place. This is very much
-a learning experience for me, so all this feedback helps.
-
-And I also am recognizing a difference being past the RFC stage. The
-changes are becoming more subtle, while the initial RFCs had pretty
-significant rewrites / restructures. I'll be mindful of this going
-forward, and call out any changes I come across in self-review.
-
-> 
-> Not sure if he's already on your radar, but you can watch and analyze
-> the patches submitted by Russell King. For example the recent patch set
-> for making phylink accept DSA CPU port OF nodes with no fixed-link or
-> phy-handle. Perfect timing in resubmitting a new series when one was
-> due, even when the previous one got no feedback whatsoever (which seems
-> to be the hardest situation to deal with). You need to be able to take
-> decisions even when you're doing so on your own, and much of that comes
-> with experience.
-
-I see the cadence of every 5-7 days or so seems to be the sweet spot. I
-had thought this v13 would have been long enough since v12 (4 days) but
-that seems to have been incorrect (understanding it was over a weekend).
-I'll be more mindful of this in the future.
+On=C2=A005/07/2022=C2=A019:59,=C2=A0Krzysztof=20Kozlowski=C2=A0wrote:=0D=0A=
+>=20On=C2=A029/06/2022=C2=A009:18,=C2=A0Wangseok=C2=A0Lee=C2=A0wrote:=0D=0A=
+>>=C2=A0Just=C2=A0a=C2=A0gentle=C2=A0ping=C2=A0for=C2=A0this=C2=A0patch,=C2=
+=A0if=C2=A0any=C2=A0concern=C2=A0on=C2=A0this=C2=A0patch=C2=A0please=C2=A0l=
+et=C2=A0me=C2=A0know.=0D=0A>>=C2=A0=0D=0A>=20=0D=0A>=20You=C2=A0received=C2=
+=A0comments=C2=A0to=C2=A0fix=C2=A0in=C2=A0this=C2=A0patch.=C2=A0Exactly=C2=
+=A0four.=C2=A0Four=C2=A0important=0D=0A>=20points=C2=A0to=C2=A0fix.=C2=A0Th=
+erefore=C2=A0what=C2=A0is=C2=A0this=C2=A0ping=C2=A0about?=0D=0A>=20=0D=0A>=
+=20Without=C2=A0fixing=C2=A0these=C2=A0items,=C2=A0your=C2=A0patch=C2=A0can=
+not=C2=A0be=C2=A0accepted.=C2=A0What=C2=A0is=C2=A0more=0D=0A>=20to=C2=A0pin=
+g=C2=A0here?=0D=0A>=20=0D=0A>=20Best=C2=A0regards,=0D=0A>=20Krzysztof=0D=0A=
+=0D=0AI=20tried=20to=20receive=20your=20opinion=20about=20the=20fix=20point=
+=20.=0D=0AI=20will=20request=20a=20review=20again=20after=20modifying=20it=
+=20in=20the=20next=20patch.=0D=0A=0D=0AThank=20you.=0D=0A=0D=0A>>>=20+=0D=
+=0A>>>=20+=20=20clocks:=0D=0A>>>=20+=20=20=20=20items:=0D=0A>>>=20+=20=20=
+=20=20=20=20-=20description:=20PCIe=20PHY=20reference=20clock=0D=0A>=20=0D=
+=0A>=20refer=20to=20sample-schema.yaml,=20even=20if=20the=20clock=20item=20=
+is=20single,=0D=0A>=20it=20seems=20to=20be=20used=20as=20follows.=0D=0A>=20=
+=0D=0A>=20clocks:=0D=0A>=20=20=20maxItems:=201=0D=0A>=20=0D=0A>=20clock-nam=
+es:=0D=0A>=20=20=20items:=0D=0A>=20=20=20=20=20-=20const:=20ref=0D=0A>=20=
+=0D=0A>=20If=20only=20=22clocks:=22=20are=20define=20and=20clock-names=20ar=
+e=20not=20define,=0D=0A>=20the=20following=20warning=20occurs.=0D=0A>=20=22=
+'clock-names'=20does=20not=20match=20any=20of=20the=20regexes=22=0D=0A>=20=
+=0D=0A>>>=20+=0D=0A>>>=20+=20=20lcpll-ref-clk:=0D=0A>>>=20+=20=20=20=20cons=
+t:=201=0D=0A>>=20=0D=0A>>=20Unknown=20field...=20custom=20properties=20need=
+=20vendor=20(axis,),=20type=20(boolean)=0D=0A>>=20and=20description.=0D=0A>=
+>=20=0D=0A>=20=0D=0A>=20=22lcpl-ref-clk=22=20has=20an=20enum=20type=20value=
+,=20so=20i=20will=20modify=20it=20as=20below.=0D=0A>=20=0D=0A>=20=0D=0A>=20=
+axis,lcpll-ref-clk:=0D=0A>=20=20=20description:=0D=0A>=20=20=20=20=20select=
+=20the=20reference=20clock=20of=20phy=20and=20initialization=20is=20perform=
+ed=0D=0A>=20=20=20=20=20with=20the=20reference=20clock=20according=20to=20t=
+he=20selected=20value.=0D=0A>=20=20=20=24ref:=20/schemas/types.yaml=23/defi=
+nitions/uint32=0D=0A>=20=20=20enum:=20=5B=200,=201,=202,=203,=204=20=5D=0D=
+=0A>=20
