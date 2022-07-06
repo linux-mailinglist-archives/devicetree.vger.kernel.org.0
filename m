@@ -2,47 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34EE3568372
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 11:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51CFD568398
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 11:36:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbiGFJWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 05:22:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36982 "EHLO
+        id S232923AbiGFJcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 05:32:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233206AbiGFJWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 05:22:42 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE1E315805;
-        Wed,  6 Jul 2022 02:22:40 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C64E515A1;
-        Wed,  6 Jul 2022 02:22:40 -0700 (PDT)
-Received: from bogus (unknown [10.57.39.193])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 75A713F66F;
-        Wed,  6 Jul 2022 02:22:37 -0700 (PDT)
-Date:   Wed, 6 Jul 2022 10:21:26 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Conor.Dooley@microchip.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, Daire.McNamara@microchip.com,
-        niklas.cassel@wdc.com, damien.lemoal@opensource.wdc.com,
-        geert@linux-m68k.org, zong.li@sifive.com, kernel@esmil.dk,
-        hahnjo@hahnjo.de, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Brice.Goglin@inria.fr
-Subject: Re: [PATCH 0/5] RISC-V: Add cpu-map topology information nodes
-Message-ID: <20220706092126.k6zaknwcwzyg22ak@bogus>
-References: <20220705190435.1790466-1-mail@conchuod.ie>
- <20220705201931.nfwi5rlku7ykmydr@bogus>
- <8f07796a-d9a2-3301-aafb-7fbec4d5b1a2@microchip.com>
- <fb7be22c-cf19-0e06-f231-bb5b9167e179@microchip.com>
+        with ESMTP id S232619AbiGFJcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 05:32:25 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E30D1EC70
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 02:32:24 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o91Nj-0005lo-Ss; Wed, 06 Jul 2022 11:31:39 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o91Na-004jSK-Sg; Wed, 06 Jul 2022 11:31:34 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o91Nd-003KbY-Gm; Wed, 06 Jul 2022 11:31:33 +0200
+Date:   Wed, 6 Jul 2022 11:31:30 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Wolfram Sang <wsa@kernel.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-integrity@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-crypto@vger.kernel.org, linux-gpio@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, chrome-platform@lists.linux.dev,
+        linux-rpi-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        linux-omap@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        platform-driver-x86@vger.kernel.org,
+        acpi4asus-user@lists.sourceforge.net, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-serial@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, kasan-dev@googlegroups.com,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 6/6] i2c: Make remove callback return void
+Message-ID: <20220706093130.cet7y7upl76rp6ug@pengutronix.de>
+References: <20220628140313.74984-1-u.kleine-koenig@pengutronix.de>
+ <20220628140313.74984-7-u.kleine-koenig@pengutronix.de>
+ <20220706091315.p5k2jck3rmyjhvqw@skbuf>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yp3ilhvx53xygi7l"
 Content-Disposition: inline
-In-Reply-To: <fb7be22c-cf19-0e06-f231-bb5b9167e179@microchip.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220706091315.p5k2jck3rmyjhvqw@skbuf>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,158 +74,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 05, 2022 at 11:03:54PM +0000, Conor.Dooley@microchip.com wrote:
-> 
-> 
-> On 05/07/2022 21:33, Conor.Dooley@microchip.com wrote:
-> > 
-> > 
-> > On 05/07/2022 21:19, Sudeep Holla wrote:
-> >> On Tue, Jul 05, 2022 at 08:04:31PM +0100, Conor Dooley wrote:
-> >>> From: Conor Dooley <conor.dooley@microchip.com>
-> >>>
-> >>> It was reported to me that the Hive Unmatched incorrectly reports
-> >>> its topology to hwloc, but the StarFive VisionFive did in [0] &
-> >>> a subsequent off-list email from Brice (the hwloc maintainer).
-> >>> This turned out not to be entirely true, the /downstream/ version
-> >>> of the VisionFive does work correctly but not upstream, as the
-> >>> downstream devicetree has a cpu-map node that was added recently.
-> >>>
-> >>> This series adds a cpu-map node to all upstream devicetrees, which
-> >>> I have tested on mpfs & fu540. The first patch is lifted directly
-> >>> from the downstream StarFive devicetree.
-> >>>
-> >>
-> >> Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
-> >>
-> >> I would recommend to have sane defaults in core risc-v code in case of
-> >> absence of /cpu-map node as it is optional. The reason I mentioned is that
-> >> Conor mentioned how the default values in absence of the node looked quite
-> >> wrong. I don't know if it is possible on RISC-V but on ARM64 we do have
-> >> default values if arch_topology fails to set based on DT/ACPI.
-> >>
-> > 
-> > Yeah the defaults are all -1. I'll add some sane defaults for a v2.
-> > Thanks,
-> > Conor.
-> 
-> I shamelessly stole from arm64... Seems to work, but have done minimal
-> testing (only PolarFire SoC).
-> 
-> Author: Conor Dooley <conor.dooley@microchip.com>
-> Date:   Wed Jul 6 00:00:34 2022 +0100
-> 
->     riscv: arch-topology: add sane defaults
->     
->     RISC-V has no sane defaults to fall back on where there is no cpu-map
->     in the devicetree. Add sane defaults in ~the exact same way as ARM64.
->     
->     Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> diff --git a/arch/riscv/include/asm/topology.h b/arch/riscv/include/asm/topology.h
-> new file mode 100644
-> index 000000000000..71c80710f00e
-> --- /dev/null
-> +++ b/arch/riscv/include/asm/topology.h
-> @@ -0,0 +1,13 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022 Microchip Technology Inc. and its subsidiaries
-> + */
-> +
-> +#ifndef _ASM_RISCV_TOPOLOGY_H
-> +#define _ASM_RISCV_TOPOLOGY_H
-> +
-> +#include <asm-generic/topology.h>
-> +
-> +void store_cpu_topology(unsigned int cpuid);
-> +
-> +#endif /* _ASM_RISCV_TOPOLOGY_H */
-> \ No newline at end of file
-> diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
-> index c71d6591d539..9518882ba6f9 100644
-> --- a/arch/riscv/kernel/Makefile
-> +++ b/arch/riscv/kernel/Makefile
-> @@ -50,6 +50,7 @@ obj-y += riscv_ksyms.o
->  obj-y  += stacktrace.o
->  obj-y  += cacheinfo.o
->  obj-y  += patch.o
-> +obj-y  += topology.o
->  obj-y  += probes/
->  obj-$(CONFIG_MMU) += vdso.o vdso/
->  
-> diff --git a/arch/riscv/kernel/smpboot.c b/arch/riscv/kernel/smpboot.c
-> index f1e4948a4b52..d551c7f452d4 100644
-> --- a/arch/riscv/kernel/smpboot.c
-> +++ b/arch/riscv/kernel/smpboot.c
-> @@ -32,6 +32,7 @@
->  #include <asm/sections.h>
->  #include <asm/sbi.h>
->  #include <asm/smp.h>
-> +#include <asm/topology.h>
->  
->  #include "head.h"
->  
-> @@ -40,6 +41,8 @@ static DECLARE_COMPLETION(cpu_running);
->  void __init smp_prepare_boot_cpu(void)
->  {
->         init_cpu_topology();
-> +
-> +       store_cpu_topology(smp_processor_id());
->  }
->  
->  void __init smp_prepare_cpus(unsigned int max_cpus)
-> @@ -161,6 +164,7 @@ asmlinkage __visible void smp_callin(void)
->         mmgrab(mm);
->         current->active_mm = mm;
->  
-> +       store_cpu_topology(curr_cpuid);
->         notify_cpu_starting(curr_cpuid);
->         numa_add_cpu(curr_cpuid);
->         update_siblings_masks(curr_cpuid);
-> diff --git a/arch/riscv/kernel/topology.c b/arch/riscv/kernel/topology.c
-> new file mode 100644
-> index 000000000000..799b3423e0bc
-> --- /dev/null
-> +++ b/arch/riscv/kernel/topology.c
-> @@ -0,0 +1,30 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Based on the arm64 version, which was in turn based on arm32, which was
-> + * ultimately based on sh's.
-> + * The arm64 version was listed as:
-> + * Copyright (C) 2011,2013,2014 Linaro Limited.
-> + *
-> + */
-> +#include <linux/arch_topology.h>
-> +#include <linux/topology.h>
-> +#include <asm/topology.h>
-> +
-> +void store_cpu_topology(unsigned int cpuid)
-> +{
-> +       struct cpu_topology *cpuid_topo = &cpu_topology[cpuid];
-> +
-> +       if (cpuid_topo->package_id != -1)
-> +               goto topology_populated;
-> +
-> +       cpuid_topo->thread_id = -1;
-> +       cpuid_topo->core_id = cpuid;
-> +       cpuid_topo->package_id = cpu_to_node(cpuid);
-> +
-> +       pr_info("CPU%u: cluster %d core %d thread %d\n",
-> +                cpuid, cpuid_topo->package_id, cpuid_topo->core_id,
-> +                cpuid_topo->thread_id);
-> +
-> +topology_populated:
-> +       update_siblings_masks(cpuid);
-> +}
->
 
-Looks good. Again package id is not cluster. This is what my series is
-addressing. So update the log as Package instead of Cluster above. The
-cluster id will be -1 unless you can get that for DT.
+--yp3ilhvx53xygi7l
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jul 06, 2022 at 12:13:15PM +0300, Vladimir Oltean wrote:
+> On Tue, Jun 28, 2022 at 04:03:12PM +0200, Uwe Kleine-K=F6nig wrote:
+> > From: Uwe Kleine-K=F6nig <uwe@kleine-koenig.org>
+> >=20
+> > The value returned by an i2c driver's remove function is mostly ignored.
+> > (Only an error message is printed if the value is non-zero that the
+> > error is ignored.)
+> >=20
+> > So change the prototype of the remove function to return no value. This
+> > way driver authors are not tempted to assume that passing an error to
+> > the upper layer is a good idea. All drivers are adapted accordingly.
+> > There is no intended change of behaviour, all callbacks were prepared to
+> > return 0 before.
+> >=20
+> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > ---
+>=20
+> Assuming you remove the spurious kasan change:
 
--- 
-Regards,
-Sudeep
+It's already gone in my tree, see
+https://git.pengutronix.de/cgit/ukl/linux/commit/?h=3Di2c-remove-void
+
+> Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+
+Thanks
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--yp3ilhvx53xygi7l
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLFVmcACgkQwfwUeK3K
+7AkOwAgAkt7aZ38n1lpOoBzXslSDQyp/lKc47Ehs+a1LTESfOP6+4frSHSJhaIMw
+WX2bIAZO2kfHd2GJJ1+miP0YO3eys+YJus7vlVp9LsZCtTrR7uUlJ9PhG4eVmYxD
+ZPZMbP533Mkp9Tj201PJRSbnOlhRhKnwpl4kQfj9nXD478yP1zbT/7CDh4Im1isE
+dOUnNdPTAnT17u0fIRREu6TIC/hKy5Lh772ukCBsHwkBWQD4WTtLmdL1uZrspPa3
+fKxI4tIGoKufFCNMNNzK8li/dghhpkn4uy8iNwyjkkmjfCXAkNdwNJiCDlo6qPwb
+idJ3DvpJEEx44L8KdcjzBYUHdSNUkQ==
+=ZnQL
+-----END PGP SIGNATURE-----
+
+--yp3ilhvx53xygi7l--
