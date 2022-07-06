@@ -2,83 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08B7D567F03
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 08:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41AF5567F31
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 09:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230356AbiGFGzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 02:55:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48638 "EHLO
+        id S229797AbiGFHB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 03:01:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230318AbiGFGzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 02:55:23 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81EB21D0D5
-        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 23:55:21 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id y16so24261454lfb.9
-        for <devicetree@vger.kernel.org>; Tue, 05 Jul 2022 23:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Qi/HzfCRWKKbzy7uAxJ2wy7Sd2F4DwDWD93n1e7b+Tc=;
-        b=N4r+vDEttCJfEoxvR/u99LGStE2n////g6PJKpqQIKTaIwvLn8AXYs8hqZBlvYpkDl
-         eyOLQBzIW7O0B6T3kT5fKYR+Y8//FFHM/SMIShQqLOzZOPlrXupLlVYUn1VlnLYvmxFZ
-         iNerWocy49Jul7Dkzmj3EZYcRNXcZUWR9RoSmVLomGo+KBEQ/+IXUGbWacbzp4bjQcQA
-         2r+LvnWAUUYmkNj/mpLtvweY84+02vOCr+XbTU9YddzlYy8lpdHH3S6AtI8/vys34Jmi
-         txWa9n2NwOo0wxhrhr9XAERVDe8r6PpcqfiSSXe+H3by/LngaIh54sKx8hGS0l/ZzZ28
-         +tBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Qi/HzfCRWKKbzy7uAxJ2wy7Sd2F4DwDWD93n1e7b+Tc=;
-        b=L9eXgsDI2frLNoMMYvrEeT3kfrbqCvB7CJjRP0KHJfetUKO/mZGSZYacLUMTeLJEVb
-         SgMRU5niy4cwc5Z2HlgdyPcQETPiL6ppeAJVMgHubH+4EWt6F34hsJJ7CdBGllPS5Qxl
-         KBrM/sm/Eqq8A0ZrLJVU2kfMQaFIKWnwBKd/f6N63BKGFs/KCHgmAXRGwpgmXmbV0R4x
-         +Cls3dVoJWEDOrGhEeeSEiR1ib4PW+MAWa71cU+kDNbNkmPFZomhiVWukX+Is7t0CLgV
-         M4GgLW+KbCgS7xeyULxO7iRPj6cQGSEBXRY7FlDMwgt7NFdSN6Am9aixS0Wk0KKhXIwD
-         B0Tw==
-X-Gm-Message-State: AJIora//oL/W38VlFLwVqOX4UtfbpZWMaDssDySMSPfAzIj5pgmgs6rW
-        TL+b2b4MdJBh9zNsyrfUl8yGrA==
-X-Google-Smtp-Source: AGRyM1tVdXaVsQm7jLPm4SWsUXJ32TvoCX8tMg8AnAhTDvikIGvlqTGiIIAzYYTV6UyDSGye5umtjw==
-X-Received: by 2002:ac2:5a03:0:b0:47f:90ee:4c9 with SMTP id q3-20020ac25a03000000b0047f90ee04c9mr26352628lfn.319.1657090519863;
-        Tue, 05 Jul 2022 23:55:19 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512114400b00478772eb18esm6127941lfg.92.2022.07.05.23.55.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Jul 2022 23:55:19 -0700 (PDT)
-Message-ID: <3f4f62da-302f-c6cb-0c32-73f4e36e5022@linaro.org>
-Date:   Wed, 6 Jul 2022 08:55:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4] dt-bindings: qcom: document preferred compatible
- naming
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Robert Foss <robert.foss@linaro.org>,
+        with ESMTP id S229592AbiGFHBV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 03:01:21 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB3D1EAFC;
+        Wed,  6 Jul 2022 00:01:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9F093B81AE8;
+        Wed,  6 Jul 2022 07:01:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C463C3411C;
+        Wed,  6 Jul 2022 07:01:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657090878;
+        bh=+cM9fbXgghc45VgTmM6OgjrtFCbCpn//QrK67G8SxMw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=t+PGTy4NrxmmE4XEqgl/Ogpy+Cnfpimwnc0xiX8KVK0JUyww/ppKs89RePW/5uzsp
+         giOTLrbd8L++9gPSsDPtEC3M6tluCPSlyCCcLvjX8xqZfqVBXFA5RfkzQbMjiKRqUh
+         7vekQaK6qNdaFFVjg6KMbWlxXrAKjnEDv21PuY5E6IJ1B2aWdVIBcSBVuYpqcUosHp
+         n8brPLCgqQRjgE6Yrnb96dpnuWvmjYmtYrHMZYtaFlvgBdI2Wz8XlLb29Ccpgg13X/
+         w13ynAMiJofDLsjBj9ODtCoE+s5FPkKffWpzGYQ/fzzQlFmfN1cJIej0kyZIfPlf2L
+         g25PaWGEGZJqg==
+Received: from ip-185-104-136-29.ptr.icomera.net ([185.104.136.29] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1o8z2A-005YBP-E3;
+        Wed, 06 Jul 2022 08:01:16 +0100
+Date:   Wed, 06 Jul 2022 08:01:08 +0100
+Message-ID: <87iloan2rv.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alex Elder <elder@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20220705161301.493364-1-krzysztof.kozlowski@linaro.org>
- <1657048737.406960.2471232.nullmailer@robh.at.kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1657048737.406960.2471232.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v7 3/5] gpio: gpiolib: Allow free() callback to be overridden
+In-Reply-To: <CA+V-a8vua6t5wDNc2CT_XWhoy6OjmzCXyaJ1FtGaqeG5g-qS-w@mail.gmail.com>
+References: <20220703194020.78701-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220703194020.78701-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <CAHp75VfFZ146p1sZ2=Ec-F-9zYJZHPWyvgYQeVsG=2TzssaPmA@mail.gmail.com>
+        <CA+V-a8vua6t5wDNc2CT_XWhoy6OjmzCXyaJ1FtGaqeG5g-qS-w@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.104.136.29
+X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, andy.shevchenko@gmail.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be, linus.walleij@linaro.org, brgl@bgdev.pl, p.zabel@pengutronix.de, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,67 +80,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 21:18, Rob Herring wrote:
-> On Tue, 05 Jul 2022 18:13:01 +0200, Krzysztof Kozlowski wrote:
->> Compatibles can come in two formats.  Either "vendor,ip-soc" or
->> "vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
->> DT schema file documenting preferred policy and enforcing it for all new
->> compatibles, except few existing patterns.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Changes since v3:
->> 1. Add qcom,kpss-wdt-xxx to pattern for exceptions.
->> 2. Add ipq806x entries to list of exceptions.
->>
->> Changes since v2:
->> 1. Narrow the expected pattern to be followed by dash '-' after model
->>    number (msm8996-) or by two letters and a dash (sc8280xp-).
->> 2. Add qcom,apss-wdt-xxx to list of exceptions.
->> 3. Use comment instead of description in the oneOf list.
->>
->> Changes since v1:
->> 1. Add schema instead of readme (Rob).
->>
->> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Cc: Vinod Koul <vkoul@kernel.org>
->> Cc: Alex Elder <elder@linaro.org>
->> Cc: Robert Foss <robert.foss@linaro.org>
->> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->> ---
->>  .../devicetree/bindings/arm/qcom-soc.yaml     | 63 +++++++++++++++++++
->>  1 file changed, 63 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/arm/qcom-soc.yaml
->>
+On Tue, 05 Jul 2022 05:53:03 +0100,
+"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.example.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	'qcom,qcs404' does not match '^qcom,(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+-.*$'
-> 	'qcom,qcs404' does not match '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'
-> 	'qcom,qcs404' does not match '^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> 	'qcom,qcs404' does not match '^qcom,gcc-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> 	'qcom,qcs404' does not match '^qcom,mmcc-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> 	'qcom,qcs404' does not match '^qcom,pcie-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> 	'qcom,qcs404' does not match '^qcom,rpm-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> 	'qcom,qcs404' does not match '^qcom,scm-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> 	'qcom,qcs404' is not one of ['qcom,gpucc-sdm630', 'qcom,gpucc-sdm660', 'qcom,lcc-apq8064', 'qcom,lcc-ipq8064', 'qcom,lcc-mdm9615', 'qcom,lcc-msm8960', 'qcom,lpass-cpu-apq8016', 'qcom,usb-ss-ipq4019-phy', 'qcom,usb-hs-ipq4019-phy', 'qcom,vqmmc-ipq4019-regulator']
-> 	'qcom,qcs404' is not one of ['qcom,ipq806x-nand', 'qcom,ipq806x-usb-phy-ss', 'qcom,ipq806x-usb-phy-hs']
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/qcom-soc.yaml
-> 
+> On Mon, Jul 4, 2022 at 5:16 PM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> >
+> > On Sun, Jul 3, 2022 at 9:43 PM Lad Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > >
+> > > Allow free() callback to be overridden from irq_domain_ops for
+> > > hierarchical chips.
+> > >
+> > > This allows drivers to free up resources which are allocated during
+> > > child_to_parent_hwirq()/populate_parent_alloc_arg() callbacks.
+> > >
+> > > On Renesas RZ/G2L platform a bitmap is maintained for TINT slots, a slot
+> > > is allocated in child_to_parent_hwirq() callback which is freed up in free
+> > > callback hence this override.
+> >
+> > Hmm... To me this sounds asymmetrical. We alloc something in another
+> > callback, which is not what this free is for. Perhaps it should be an
+> > optional
+> >
+> > free_populated_parent_arg() or alike?
+> >
+> @Marc your thoughts?
 
-This is fixed by:
-https://lore.kernel.org/all/20220627143340.477120-1-krzysztof.kozlowski@linaro.org/
-https://lore.kernel.org/all/20220628092253.21905-1-krzysztof.kozlowski@linaro.org/
+I think there are enough optional callbacks, and we don't currently
+have a clear picture of how this may be used in the future, specially
+based on a sample of *one*.
 
+Let's get it in as is, and tweak things as we go, should another user
+require a slightly different behaviour. This also saves us the debate
+around the naming, which is always pretty useless.
 
+Thanks,
 
-Best regards,
-Krzysztof
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
