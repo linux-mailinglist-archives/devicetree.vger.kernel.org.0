@@ -2,55 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E93725686B2
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 13:29:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 511D75686DB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 13:42:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbiGFL3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 07:29:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33190 "EHLO
+        id S232554AbiGFLlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 07:41:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229984AbiGFL3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 07:29:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8FD25C49;
-        Wed,  6 Jul 2022 04:29:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2590561E72;
-        Wed,  6 Jul 2022 11:29:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C32EC341C0;
-        Wed,  6 Jul 2022 11:29:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657106950;
-        bh=4ASXZQVP9AzJtJ0hy++BPz1LtZi0DXsVgS0qlgbwSbA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZbCf7YAm60jIpENUSEoVes5cgy39ZTGG4d0Nlncn6DWpQHhL4pyJyJzhqiDW45j6v
-         W+dDhR1R5dKHCCugt0BGOYP29VX/ruqj3uiGC419sEYRLPAWyPmanSOrTmWl1g04Fn
-         d/SrR/g8458dK3JjC78mBMMCfFUt9wADGcXUGpcdNlGWEf8fVSjDbC6SNRbsUfJpPT
-         wR/Egc5HIgPhDlGKPg0/1B7qeyPhoZUwCeHRoTpF+jQhVZYJrc4XCGlpu0orv0j5OK
-         Va+5eXFgtNW0cQudJXHg5TXao3RtGIXOaIn9OZKeJr/bR+JenjDzrAaurMan82yp/F
-         NCoTRY3YQWsow==
-Received: by pali.im (Postfix)
-        id C51F87F1; Wed,  6 Jul 2022 13:29:07 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] leds: syscon: Implement support for value property
-Date:   Wed,  6 Jul 2022 13:28:28 +0200
-Message-Id: <20220706112828.27278-2-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220706112828.27278-1-pali@kernel.org>
-References: <20220706112828.27278-1-pali@kernel.org>
+        with ESMTP id S232713AbiGFLls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 07:41:48 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B00425EA9;
+        Wed,  6 Jul 2022 04:41:44 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 266Bf0fm096687;
+        Wed, 6 Jul 2022 06:41:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1657107660;
+        bh=JFzFsT4qq1uqWNvbURhU2TtddjUUlJ6nLvqes321WfA=;
+        h=From:To:CC:Subject:Date;
+        b=WyhNXUyxqPF272eLOBvmurD4/4mxNW7w09DuyueA0ayNUYJ+EmeIbuhrdcKuqMXhh
+         HHId0dawgWjOY0frrRENXhR4coLWVE3iAiO9eAMXbd8G3xVc5btmkg2pbDatdTxBo+
+         G0BcW3YXm/T8MKW3VshiwSVgbjlt/sRcvxPn6T9c=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 266Bf01A008129
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 6 Jul 2022 06:41:00 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 6
+ Jul 2022 06:40:59 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 6 Jul 2022 06:40:59 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 266Bew1c094008;
+        Wed, 6 Jul 2022 06:40:59 -0500
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <dri-devel@lists.freedesktop.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <andrzej.hajda@intel.com>, <narmstrong@baylibre.com>,
+        <robert.foss@linaro.org>, <jonas@kwiboo.se>,
+        <jernej.skrabec@gmail.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <p.zabel@pengutronix.de>, <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>,
+        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
+        <sjakhade@cadence.com>, <mparab@cadence.com>, <a-bhatia1@ti.com>,
+        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
+        <lee.jones@linaro.org>, Rahul T R <r-ravikumar@ti.com>
+Subject: [PATCH v5 0/5] Add support for CDNS DSI J721E wrapper
+Date:   Wed, 6 Jul 2022 17:10:48 +0530
+Message-ID: <20220706114053.3454-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,73 +69,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This new value property specify when is LED enabled. By default its value
-is from the mask and therefore LED is enabled when bit is set. This change
-allows to define inverted logic (0 - enable LED, 1 - disable LED) by
-setting value property to zero.
+Following series of patches adds supports for CDNS DSI
+bridge on j721e.
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
----
- drivers/leds/leds-syscon.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+v5:
+ - Remove power-domain property in the conversion commit
+ - Add power-domain only for j721e compatible
+ - Fix white space error in one of the commit
 
-diff --git a/drivers/leds/leds-syscon.c b/drivers/leds/leds-syscon.c
-index 7eddb8ecb44e..337a0bada967 100644
---- a/drivers/leds/leds-syscon.c
-+++ b/drivers/leds/leds-syscon.c
-@@ -29,6 +29,7 @@ struct syscon_led {
- 	struct regmap *map;
- 	u32 offset;
- 	u32 mask;
-+	u32 value;
- 	bool state;
- };
- 
-@@ -41,10 +42,10 @@ static void syscon_led_set(struct led_classdev *led_cdev,
- 	int ret;
- 
- 	if (value == LED_OFF) {
--		val = 0;
-+		val = ~sled->value;
- 		sled->state = false;
- 	} else {
--		val = sled->mask;
-+		val = sled->value;
- 		sled->state = true;
- 	}
- 
-@@ -85,6 +86,8 @@ static int syscon_led_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	if (of_property_read_u32(np, "mask", &sled->mask))
- 		return -EINVAL;
-+	if (of_property_read_u32(np, "value", &sled->value))
-+		sled->value = sled->mask;
- 
- 	state = of_get_property(np, "default-state", NULL);
- 	if (state) {
-@@ -94,18 +97,19 @@ static int syscon_led_probe(struct platform_device *pdev)
- 			ret = regmap_read(map, sled->offset, &val);
- 			if (ret < 0)
- 				return ret;
--			sled->state = !!(val & sled->mask);
-+			sled->state = (val & sled->mask) == sled->value;
- 		} else if (!strcmp(state, "on")) {
- 			sled->state = true;
- 			ret = regmap_update_bits(map, sled->offset,
- 						 sled->mask,
--						 sled->mask);
-+						 sled->value);
- 			if (ret < 0)
- 				return ret;
- 		} else {
- 			sled->state = false;
- 			ret = regmap_update_bits(map, sled->offset,
--						 sled->mask, 0);
-+						 sled->mask,
-+						 ~sled->value);
- 			if (ret < 0)
- 				return ret;
- 		}
+v4:
+ - split conversion txt to yaml
+ - seperate commit for addinig new compatible
+ - conditionally limit the items for reg property, based on the compatible
+
+v3:
+ - Convert cdns-dsi.txt binding to yaml
+ - Move the bridge under display/bridge/cadence
+ - Add new compatible to enable the wrapper module
+
+v2:
+ - Moved setting DPI0 to bridge_enable, since it
+   should be done after pm_runtime_get
+
+Rahul T R (5):
+  dt-bindings: display: bridge: Convert cdns,dsi.txt to yaml
+  dt-bindings: display: bridge: cdns,dsi: Add compatible for dsi on
+    j721e
+  drm/bridge: cdns-dsi: Move to drm/bridge/cadence
+  drm/bridge: cdns-dsi: Create a header file
+  drm/bridge: cdns-dsi: Add support for J721E wrapper
+
+ .../bindings/display/bridge/cdns,dsi.txt      | 112 ----
+ .../bindings/display/bridge/cdns,dsi.yaml     | 216 ++++++++
+ drivers/gpu/drm/bridge/Kconfig                |  11 -
+ drivers/gpu/drm/bridge/Makefile               |   1 -
+ drivers/gpu/drm/bridge/cadence/Kconfig        |  21 +
+ drivers/gpu/drm/bridge/cadence/Makefile       |   3 +
+ .../{cdns-dsi.c => cadence/cdns-dsi-core.c}   | 483 ++----------------
+ .../gpu/drm/bridge/cadence/cdns-dsi-core.h    | 471 +++++++++++++++++
+ .../gpu/drm/bridge/cadence/cdns-dsi-j721e.c   |  51 ++
+ .../gpu/drm/bridge/cadence/cdns-dsi-j721e.h   |  18 +
+ 10 files changed, 817 insertions(+), 570 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+ rename drivers/gpu/drm/bridge/{cdns-dsi.c => cadence/cdns-dsi-core.c} (65%)
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
+
 -- 
-2.20.1
+2.36.1
 
