@@ -2,81 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66ACE568C46
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 17:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 616DF568C43
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 17:08:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233364AbiGFPHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 11:07:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51520 "EHLO
+        id S232716AbiGFPHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 11:07:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232716AbiGFPHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 11:07:17 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0DCC26542
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 08:07:15 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id l7so18078480ljj.4
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 08:07:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zYC1cAZNMI4fPCA/JdppgAdHhnjAV/K9sV/UY3ZbdgY=;
-        b=rrSK0lSH6xcD+cXYKAeq6nq5btWfRc6kxx24RmPQUa7FpIkWJv+OHbTarF1Mpw3M36
-         k6np8o4mBd7/prlksYArETIApb7BXM/C3LZEWjwNt/+2kjIDjXiy+qT5J3YbN3iRKYP6
-         2v0MdtGlLkzWnddB0t5B7luXBgPJvAXUZlZWt8iuDoRhtBndyDpFpG7gNVBuDSNd0ktS
-         0+ohzgdG8BPVaEmPIYtXIejY7yEMovsaVH6F5bbtE7sDMCi9DrT5yW07qVqgzthOceou
-         iWLnil+/OvO7JqswmXcPelCFnHufYfEq+EZaKKPtM4d7gZivUxLbNXcM3taX6vEk2oIx
-         U55Q==
+        with ESMTP id S233748AbiGFPHa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 11:07:30 -0400
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6748418390;
+        Wed,  6 Jul 2022 08:07:29 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id z191so14254075iof.6;
+        Wed, 06 Jul 2022 08:07:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=zYC1cAZNMI4fPCA/JdppgAdHhnjAV/K9sV/UY3ZbdgY=;
-        b=6ZcmfJttw7uQIhL6S6smHQmpQXind2p9ciklBB4pc/jPK2Ur1aE6+J0ab1SWDCaHlr
-         CCU9lCDZrm4q7pqIrrMJW1gl05dBMnOUZxXrQFYUDnMd93wNlWfW8YfkumRmZMd/gEbI
-         YyquHAPzXOPGw1ErowawKF0DnDrKB6KlhBZij7kd39RZeXVaa3LKWwICaCAT/vBahUnw
-         QoOLSer83JtV8imJpH2/cDkLLdwLVz3OJzT444bSMyi2cwIV3vRJs2nLVocK7bJdp4/e
-         5M+Fab3OHA6mKwasdj+WGto/5DVyg/PVhTxYSWdAgQCqti/qPmsovvOqFX5/Hqru+9YX
-         dl7Q==
-X-Gm-Message-State: AJIora94SovtitYzKpqKmZAYZ+48ZVnc4CgpEZJv8OnbKuGGUWGlSSIZ
-        mLkJ97SlYr8Yhz0DntHjCbsV/Q==
-X-Google-Smtp-Source: AGRyM1vZFVDEcDCV3p5oTwQ75dQ6gh8Jm4BQFnEddiEH4wedRKJRyG0O43CyonUbxZkQzd52uJNZ1Q==
-X-Received: by 2002:a2e:87c7:0:b0:25a:9605:a2b8 with SMTP id v7-20020a2e87c7000000b0025a9605a2b8mr22670802ljj.148.1657120034049;
-        Wed, 06 Jul 2022 08:07:14 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id u16-20020ac258d0000000b0047f6f675ea1sm6317115lfo.161.2022.07.06.08.07.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 08:07:13 -0700 (PDT)
-Message-ID: <bcb64218-2d2b-2f6b-dc79-303bac8c3bd3@linaro.org>
-Date:   Wed, 6 Jul 2022 17:07:12 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=I+N5AebuQqH0jlQLRd239QoK9Ox33sEr2sOU9qmAdeI=;
+        b=XCnztQaDgc/sNAitwWmgRKjOmHoJ17a8DU7mosO8cYyuO5/yKDdIOzY80Tc45zxiZB
+         3eCFiP1CW8oeTSgYuJDxM3CqINWb9wA4kQUNPOu8jupxUpQjrW6O1AydeUfTmLcCvmUJ
+         BsTGIsqLt0raL05IUFiXNWLrVqBk3QlRd960EX4Ba2NCwSqQwYobILeaB5gJO2gflbqf
+         BkhsyymuRPI6ff8ol3wQpx8y8tM4BcG0seEtbQZd6AGJJppao0xxS5EYW8DGSyS+iJ8x
+         nW3QeSEF37MtTjWGU10jzUn8vWM7ckI7twku820jtbHEGvHFxNFmOjl2vPZKqAyp7mXV
+         vwXQ==
+X-Gm-Message-State: AJIora/Lbs5ZQ7qZ2YOHXdu+5B+l/NDhRpsj8YzdgmsKuXkmRQWcnGP/
+        VLIfqyznZrLDLNzpxJgffFL5mzPrWg==
+X-Google-Smtp-Source: AGRyM1u/v+SlHrKVZCbVrdRrUDL35cvfBUpgBdQqM1X6lZXvh4bPTZSzxIS4OlVZ6WnVzumcugqeVw==
+X-Received: by 2002:a02:aa1a:0:b0:331:9183:9136 with SMTP id r26-20020a02aa1a000000b0033191839136mr24435755jam.242.1657120048487;
+        Wed, 06 Jul 2022 08:07:28 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id k1-20020a926f01000000b002dbee570531sm5683827ilc.18.2022.07.06.08.07.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Jul 2022 08:07:28 -0700 (PDT)
+Received: (nullmailer pid 48246 invoked by uid 1000);
+        Wed, 06 Jul 2022 15:07:26 -0000
+Date:   Wed, 6 Jul 2022 09:07:26 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: watchdog: max63xx: Add GPIO binding
+Message-ID: <20220706150726.GA40600-robh@kernel.org>
+References: <20220705001023.14660-1-pali@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/5] ARM: DTS: qcom: fix dtbs_check warning with new rpmcc
- clocks
-Content-Language: en-US
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220705202837.667-1-ansuelsmth@gmail.com>
- <20220705202837.667-3-ansuelsmth@gmail.com>
- <18e40247-7151-b50a-97fe-00ee88f47d9b@linaro.org>
- <62c565dc.1c69fb81.a4566.e9b2@mx.google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <62c565dc.1c69fb81.a4566.e9b2@mx.google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220705001023.14660-1-pali@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,19 +65,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2022 12:20, Christian Marangi wrote:
-> On Wed, Jul 06, 2022 at 09:44:04AM +0200, Krzysztof Kozlowski wrote:
->> On 05/07/2022 22:28, Christian Marangi wrote:
->>> Fix dtbs_check warning for new rpmcc Documentation changes and add the
->>> required clocks.
->>
->> There is no warning in the kernel, right? So the commit is not correct.
->>
+On Tue, Jul 05, 2022 at 02:10:22AM +0200, Pali Rohár wrote:
+> GPIO is optional and used for WDI logic.
 > 
-> Oh ok, the warning is generated by the new Documentation.
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> ---
+> Changes in v3:
+> * Extend description
+> ---
+>  Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> index ab9641e845db..a0cf9e6c371d 100644
+> --- a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> @@ -27,6 +27,10 @@ properties:
+>      description: This is a 1-byte memory-mapped address
+>      maxItems: 1
+>  
+> +  gpios:
 
-Patches, especially DTS, might go via different trees, so the moment DTS
-is applied there might be no such warning.
+As I said before, add a name prefix: wdi-gpios
 
-Best regards,
-Krzysztof
+> +    description: Optional GPIO used for controlling WDI (watchdog input) when WDI bit is not mapped to memory
+
+Wrap lines at 80 unless wrapping at 100 provides some benefit.
+
+yamllint is set to 110 because I don't want to fix everyone's line wrap, 
+not because that's the standard.
+
+
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.20.1
+> 
+> 
