@@ -2,86 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47C255689F1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1FC1568A22
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:53:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233150AbiGFNsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 09:48:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46896 "EHLO
+        id S231561AbiGFNxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 09:53:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233133AbiGFNsL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:48:11 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CE6424F12;
-        Wed,  6 Jul 2022 06:48:10 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id a5so7470658wrx.12;
-        Wed, 06 Jul 2022 06:48:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Ys6nhaWDkYktLlUqq0SwlRalsF7YwG4ENbLhHnvqbhY=;
-        b=fV8aJ9j+yuHCeCJsnseihO3elQIXDVuluuk4eEAuWmKG+ZK7rCd24w3roTCv9M3cST
-         X5kMf3UXuNCGkNWELxZKURXY0ztY/VKtR6/sCuBqAOOoH759XuEGDMn/RcFj0qaYKaLe
-         kTRu9z4IqfmlqILQRbqADqlV2hrVFq77785WL1jQIwYmp+9cY0tfQOInOH7Enyih4OQy
-         6QzZVmfouiDIElYWsH34+xwHK6E3jiSnOTph+07cgrvKE00fQA4IeucMqhvFgxJVPpbh
-         Fjf7bydjRVlNfviN68vi9tA2pbet372RqOUYk7ePKh4exRP1IaJp4myFJmdOIavAtPu3
-         TN+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Ys6nhaWDkYktLlUqq0SwlRalsF7YwG4ENbLhHnvqbhY=;
-        b=HIRDzxkRCmlFy2evCMis/b7qaFCu8ZplTIUdsIK+8YxsdbHJAh2R6KXtwbqrONUblU
-         lJ2PoFXeci7aO4E76i+8Iqx0Bl1rebVLiZ7S+tIOkTmxYEYkz/Iii4D0yYpakVA0vIdt
-         E6Yue1qNWDZlfobW9UeXr9FEOuNeKn4IqfCRPsJbqn0TpOq3h7JpCYrQZmMzfKhmPK1F
-         nqw/UsvUHrqlI0b0Q+UJbzft1iJzXp2xguQJTfn3C7RENRwHDvtiocglA8iX9sf9t7Qk
-         qBkFph+bHzaWY+SMucuwGT555F1RySVnj49tH1QiIrSZG+zBHBzt+Lob7FQ6L55J2YLL
-         xf/w==
-X-Gm-Message-State: AJIora/MTWSMGqMM644hiP0gQGtR/R59W0need5K7YEm0d9kXNLorKzs
-        qaqzHI0EcbUQ0NYX/Hs8fBtQ1IGmngtt0A==
-X-Google-Smtp-Source: AGRyM1uKokpPXD3KIW+1SGhOJH0F4Ot+3fwFEVIyD8thjoxNU4UTGfcWYVexdf/YGnIyZIvbYxqHnQ==
-X-Received: by 2002:a5d:4201:0:b0:21d:7b63:1b43 with SMTP id n1-20020a5d4201000000b0021d7b631b43mr3917188wrq.225.1657115288718;
-        Wed, 06 Jul 2022 06:48:08 -0700 (PDT)
-Received: from [192.168.0.14] ([37.223.147.254])
-        by smtp.gmail.com with ESMTPSA id m1-20020a7bcb81000000b003a05621dc53sm25703913wmi.29.2022.07.06.06.48.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 06:48:07 -0700 (PDT)
-Message-ID: <9757b32c-c196-f7e0-3c61-1d4edae854dc@gmail.com>
-Date:   Wed, 6 Jul 2022 15:48:06 +0200
+        with ESMTP id S232554AbiGFNxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:53:04 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54361F638;
+        Wed,  6 Jul 2022 06:53:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4D99BB81CA6;
+        Wed,  6 Jul 2022 13:53:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A72A3C3411C;
+        Wed,  6 Jul 2022 13:52:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657115580;
+        bh=wj0NkPcbCotORQarBdiAbSyb16QUQjz/pSt7plsm12k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ujscI4t2rRUPtr7y8Anf64wPRLszGIv84LzoyP3wQScr6oE3TRorySkt6CJnlfDI3
+         nT/3GFuLRp8lokOcckMG/k8COVF2RSVgGeoBef6JqK0hgH0QJuQBLfrhuVa9/2H6mF
+         G7Q++OAelNQynATL61wo7/tTBzbwHpBengktpcmkjudFThcBtk6cNiGK5i/sy2zHeP
+         1BOxXsot8XtLyrlnhiDbxab9dx5irQvE9qoi5eJlalmSyzXI/W3HxYwoh5exGdSbT2
+         0HCo4KBHjvJtFwuLA2DEbhsMuRPzKvUzc4okW+wCEzVBUgM55wTNNWaweq+wOOwJw/
+         3UDlhNevAkc6w==
+Date:   Wed, 6 Jul 2022 14:52:55 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, lee.jones@linaro.org
+Subject: Re: [PATCH v3 RESEND 0/4] MediaTek Helio X10 MT6795 - MT6331/6332
+ Regulators
+Message-ID: <YsWTt3YSHI9LLpnw@sirena.org.uk>
+References: <20220706100912.200698-1-angelogioacchino.delregno@collabora.com>
+ <YsV9IerWCoa/xtwM@sirena.org.uk>
+ <57367b11-f2d4-476b-b92d-16c1726316c0@collabora.com>
+ <YsWG0jfqAf4EqojE@sirena.org.uk>
+ <82736173-b3b8-1e1a-3e2e-25d9ca3287eb@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 02/16] dt-bindings: memory: mediatek: Update condition
- for mt8195 smi node
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220704100028.19932-1-tinghan.shen@mediatek.com>
- <20220704100028.19932-3-tinghan.shen@mediatek.com>
- <119f2a98-ef56-7b99-631f-221b737939ae@linaro.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <119f2a98-ef56-7b99-631f-221b737939ae@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+0DViRXHLgzETHHF"
+Content-Disposition: inline
+In-Reply-To: <82736173-b3b8-1e1a-3e2e-25d9ca3287eb@collabora.com>
+X-Cookie: Only God can make random selections.
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -89,57 +65,53 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--+0DViRXHLgzETHHF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 04/07/2022 14:36, Krzysztof Kozlowski wrote:
-> On 04/07/2022 12:00, Tinghan Shen wrote:
->> The max clock items for the dts node with compatible
->> 'mediatek,mt8195-smi-sub-common' should be 3.
->>
->> However, the dtbs_check of such node will get following message,
->> arch/arm64/boot/dts/mediatek/mt8195-evb.dtb: smi@14010000: clock-names: ['apb', 'smi', 'gals0'] is too long
->>           From schema: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
->>
->> Remove the last 'else' checking to fix this error.
-> 
-> Missing fixes tag.
-> 
+On Wed, Jul 06, 2022 at 03:38:34PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 06/07/22 14:57, Mark Brown ha scritto:
+> > On Wed, Jul 06, 2022 at 02:49:56PM +0200, AngeloGioacchino Del Regno wr=
+ote:
+> > > Il 06/07/22 14:16, Mark Brown ha scritto:
+> >=20
+> > > > This previously got 0day failures due to missing dependencies which
+> > > > need would need a merge with IIRC MFD, I see no reference in the co=
+ver
+> > > > letter to dependencies?
+> >=20
+> > > The only blocker for this series was the MFD patch, which got picked =
+and
+> > > it's present in next-20220706 (as you suggested me to resend when thi=
+ngs
+> > > were picked... I decided to wait until they actually landed on -next.=
+=2E.)
+> >=20
+> > Right, I also said I'd need a pull request - if I apply the patches
+> > without having the MFD bits they depend on in my tree then it will fail
+> > to build.
+>=20
+> I remember writing that to Lee... how do we proceed in this case?
+> Should we add him to the Cc's of this patch to notify him or..?
 
- From my understanding, fixes tags are for patches that fix bugs (hw is not 
-working etc) and not a warning message from dtbs_check. So my point of view 
-would be to not add a fixes tag here.
+Lee, Angelo has sent me this series for Helio X10 which needs some MFD
+bits (not 100% sure which, I guess Angelo can fill that in) - is there a
+tagged branch available to pull in?
 
-Regards,
-Matthias
+--+0DViRXHLgzETHHF
+Content-Type: application/pgp-signature; name="signature.asc"
 
->>
->> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
->> ---
->>   .../memory-controllers/mediatek,smi-common.yaml        | 10 +++++++++-
->>   1 file changed, 9 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
->> index a98b359bf909..e5f553e2e12a 100644
->> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
->> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
->> @@ -143,7 +143,15 @@ allOf:
->>               - const: gals0
->>               - const: gals1
->>   
->> -    else:  # for gen2 HW that don't have gals
->> +  - if:  # for gen2 HW that don't have gals
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - mediatek,mt2712-smi-common
->> +            - mediatek,mt8167-smi-common
->> +            - mediatek,mt8173-smi-common
->> +
-> 
-> Without looking at the code, it's impossible to understand what you are
-> doing here. The commit msg says one, but you are doing something else.
-> 
-> Write commit msg explaining what you want to achieve and what you are doing.
-> 
-> 
-> Best regards,
-> Krzysztof
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLFk7YACgkQJNaLcl1U
+h9BVVgf/bVTIQ3LJY8DflcGkJacwVGb56elDn1Amq9pkxXbkJtQnWXq1DMcGQSKF
+LnkN4wFuVKAOvPId86+vggsnTiqYoXFIUge+e4O9q+dyMS4cTGSaeNgzJFz6Kp8e
+njWWIV9OfQsiIXJV+P+CBUrbKePomFwOgSiiOr1j240ou7TBYJc6uGOfMOC1A6Kw
+zJxkp6clmMWF1gGu/YaK0I4L+p4L3LoJCyXT491GxjpwIs2zzSa8jMMVCzfi81Ny
+V8n7BZCF4sVXQ/D6I9LL8iPUiR6JMtZppenkPYmqPSVbJihcmEC28sXODzvvpSMm
+tTfrpr8NVhtxJ2kdZT0OEcyqEoGI2Q==
+=2065
+-----END PGP SIGNATURE-----
+
+--+0DViRXHLgzETHHF--
