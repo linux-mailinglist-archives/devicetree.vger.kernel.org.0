@@ -2,99 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 127705693CD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 23:02:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA72E5693EC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 23:09:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234383AbiGFVCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 17:02:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33524 "EHLO
+        id S233839AbiGFVJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 17:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232062AbiGFVCW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 17:02:22 -0400
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C788237F2
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 14:02:21 -0700 (PDT)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-10bffc214ffso12196228fac.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 14:02:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=K94orOTf1bd5RyK7KjvNxWS9PtX/Y2Xk860it34DNAw=;
-        b=WsUTBbudtDtkr5NNz1el2KHueY2rUJRsGmc92WbgHUHfOJVU4aoKLzFGE/jKiXoXA7
-         SE/nygMX6b2mdDt9p40zM+l7ohjrknoxadbwAZ5jRnpAoIcZTgs+ENJl3X7y3+bDEO0F
-         m6GX6RFpt2lv7ESOtUmBy3VhtcU2cJh4OMZe9zBiycy3LTzpRisTo2wt/cK7CvWt7GGs
-         DeldDZ5oxpP5+B91h6xYnmjlxFtWaER2SC8VpjFAMOLk4aOFAftpqAV7smY+l7iraL8h
-         PEA55fTGmek0bSBqsWyYO4SQN22QabbxJJPfSO8b9ch6dpeP56ZC7i+nri+FaA80KqSw
-         YuQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=K94orOTf1bd5RyK7KjvNxWS9PtX/Y2Xk860it34DNAw=;
-        b=S1nNVVsDO8iB8bKeOY+HG9os9A49/zc6gNO8iRTgQLIk005ZJZ7/zr8wTDJbMAETA0
-         HZIGlYsgsaSf7mTdouUUJ1HTjb3oD+aLdrTiCn52BPB9cF7Hse02gZnmREb2ztID7BQy
-         +0uKL8Bp3e6p+NS4QcoX5OLvycuR4+FtCpAN4NHZRi4RarTBg1LrZztCswzDRoPdCpgS
-         0npYjAG5RsxQ4oNQkF3wj6Y4iXWTUbeC9W0vQrP80swnicQFlmbA3CG1Sailz6Jfg4ce
-         ljjJ0s1s7BYW6jNhrItD2ovSEowWtUu8SQHIh1ioQrk7qaY2yV/4p/o1zaaz4fr/WBrS
-         GGNQ==
-X-Gm-Message-State: AJIora+Y7YGjcbXl/FXv8KH/49BsAg0KgqtmCA96KtWSlIxwgtzh7NiA
-        Xusj559iljP/oBSaEZZR8Y7IWgShnOcN8A==
-X-Google-Smtp-Source: AGRyM1u8K4M3qtXswtrd3TkL6FhDRlbVax+yZRy0eZO/gGZwQWWi3wWzHGUmTQTsVzjpIiBlqDkUpQ==
-X-Received: by 2002:a05:6870:40c4:b0:10c:24dd:f24e with SMTP id l4-20020a05687040c400b0010c24ddf24emr397488oal.191.1657141340682;
-        Wed, 06 Jul 2022 14:02:20 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m28-20020a9d609c000000b0060c0b3c1b2asm17022444otj.33.2022.07.06.14.02.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 14:02:20 -0700 (PDT)
-Date:   Wed, 6 Jul 2022 16:02:18 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/6] arm64: dts: qcom: sc7280: use constants for gpucc
- clocks and power-domains
-Message-ID: <YsX4WnDgXSokH4Fk@builder.lan>
-References: <20220706145412.1566011-1-dmitry.baryshkov@linaro.org>
- <20220706145412.1566011-2-dmitry.baryshkov@linaro.org>
- <4e61ab03-6edf-c228-78c3-d250e36e8556@linaro.org>
+        with ESMTP id S233748AbiGFVJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 17:09:45 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12F7311446;
+        Wed,  6 Jul 2022 14:09:43 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: dmitry.osipenko)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D316B66019AA;
+        Wed,  6 Jul 2022 22:09:40 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657141781;
+        bh=zU7+vGNULbAoKugsQooNwRb5lIpQX1+E+hN6Rxf1NZ4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=l8hWnXn7GJlmYRkYtHUCZISwiiZBf3GyRtDfd8e9dD+UYgiW5v83DnfbdeubY5idQ
+         Fp39UW9NFi931zqyujyYmk5wL0j5tz/S9Q3L0yLwyXKR9kooNvmujpojwVRXtK9dwC
+         ly9loAn1xgY65t4LrrtmwJRVd/V82wW//88jtxVEigM35zUyBu+5xVfJwveVv+1GHx
+         YLTeqfAzcLNJQwmNL0MaUChUPj2oHpdaw3bhhW0NaKz99O0/2oZr7kQ2QV63IZwvD3
+         qVoRketyk3hYyIMeFMHyZSW8BNVPSCXkV2GVZ5S+ALEO3h2kMuekkvO8qfn81VXiQC
+         ZJLPZ8HpVWnog==
+Message-ID: <60b6965b-7a14-8b7c-c9b9-c463fc0ad88c@collabora.com>
+Date:   Thu, 7 Jul 2022 00:09:38 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4e61ab03-6edf-c228-78c3-d250e36e8556@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v6 2/2] iio: light: Add support for ltrf216a sensor
+Content-Language: en-US
+To:     Shreeya Patel <shreeya.patel@collabora.com>, jic23@kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org, Zhigang.Shi@liteon.com,
+        krisman@collabora.com
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        alvaro.soliverez@collabora.com, andy.shevchenko@gmail.com,
+        digetx@gmail.com, kernel test robot <lkp@intel.com>
+References: <20220615135130.227236-1-shreeya.patel@collabora.com>
+ <20220615135130.227236-3-shreeya.patel@collabora.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220615135130.227236-3-shreeya.patel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 06 Jul 10:43 CDT 2022, Krzysztof Kozlowski wrote:
+On 6/15/22 16:51, Shreeya Patel wrote:
+> +static int ltrf216a_probe(struct i2c_client *client)
+> +{
+> +	struct ltrf216a_data *data;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	data = iio_priv(indio_dev);
+> +	i2c_set_clientdata(client, indio_dev);
+> +	data->client = client;
+> +
+> +	mutex_init(&data->lock);
+> +
+> +	indio_dev->info = &ltrf216a_info;
+> +	indio_dev->name = LTRF216A_DRV_NAME;
+> +	indio_dev->channels = ltrf216a_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(ltrf216a_channels);
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	/* reset sensor, chip fails to respond to this, so ignore any errors */
+> +	ltrf216a_reset(indio_dev);
 
-> On 06/07/2022 16:54, Dmitry Baryshkov wrote:
-> > To ease merging of bindings and dts files, the constants were replaced
-> 
-> In the future I recommend just adding defines in top part of DTSI (under
-> ifdef not defined). Then when time comes, you drop this entire piece of
-> defines which makes it extra readable and easy to review. Nice clean
-> patchset.
-> 
+Shouldn't SW resetting be done after enabling sensor? Perhaps that's why
+it fails to respond?
 
-I worked out the underlying issue with the clock maintainer, so we
-should just use the dt-bindings defines directly from the beginning.
-
-Regards,
-Bjorn
-
-> To review this approach, I would need to check every define if it
-> matches the previous number.
-> 
-> Best regards,
-> Krzysztof
+-- 
+Best regards,
+Dmitry
