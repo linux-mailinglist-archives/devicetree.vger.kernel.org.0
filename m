@@ -2,76 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD1CB5688C8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 14:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E9D95688CD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 14:58:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232280AbiGFM5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 08:57:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57898 "EHLO
+        id S232213AbiGFM6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 08:58:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbiGFM5k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 08:57:40 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 064A81B9
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 05:57:40 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id l7so17607401ljj.4
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 05:57:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=q4qL646g+dPV/1dAguuPRJHbp+riKG5TWuUodAczhNs=;
-        b=bLFBOIfT+FRUTzf2Ks12yMYU4s5V4up/R+PtWt8nbikcgt9NCOKMfeLcdKDhkhwl0v
-         91rDCPlPZS7N9fZLgJSZrlP6l5RFxWukCoOwWF/sprACqs8TD/XVCx43j+jP8H3lLGTm
-         ZrK3B3B+TDwa/pOdvV2HLijpVWPoPaloRYZU8Fv9moyRt7Kle/xZ8fGEkqi1D4J246oi
-         MqyTtkToqlrktl174U3Gbevdic1nFeZ+s+tmH/PvEoNxP0TXIeQkz7lEdjwpa+eGifdX
-         0EuUbUfBlUiRf6dAUO9dmot/C/lRCBzbt1gylFiaKKRy/TWVps3SLOE0I7h2k71U94Qq
-         lWLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=q4qL646g+dPV/1dAguuPRJHbp+riKG5TWuUodAczhNs=;
-        b=ABPLlVyGL4oK5t5Vc93q/Tt6OvWYoAOIFOFGD0vyd02jrqj72Zk6X7f0b1dbwvAvmC
-         jaD7e2/4Nz5ZWmLJNc3RlE+Rymt7AeyxsL8jGp4X3jqcxCBNzHWXP5hb7tC8yF9hBKgW
-         hGmI122VIcD5KSupei5aoEKutof7GIxyBP18SOpdEooMnjFIIKj9azHvjR7DOx4SVDa2
-         N4NvGvxkR22GNQTdd3YzDScIfIY08Muy0sXWJTb9W0dAxI/pIC0K5L6iP7/hm93Z4Lx+
-         ZiyMoguUvFEAb3FglWRAR4TCwit+bMFeinK/Tt54uq/hj4SsnUADlKzngv4ZnWfPGtki
-         cnpQ==
-X-Gm-Message-State: AJIora/nOivKu5psVyc3dB5lDgkrMWO17AuJ7X3LuFjmQfEq55W76cOk
-        jBvNyI6SRxTiDhFmAG1LZZBqdg==
-X-Google-Smtp-Source: AGRyM1sxSzE4RVFE/z7AFhVcj2m8K5D5n91eVpcb8YK/KiiDH7f5ktCSCDvDHHo9EBFmBkwiBIRyzg==
-X-Received: by 2002:a2e:3215:0:b0:25a:93bb:f801 with SMTP id y21-20020a2e3215000000b0025a93bbf801mr23378514ljy.489.1657112258181;
-        Wed, 06 Jul 2022 05:57:38 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id c25-20020ac24159000000b00478f174c598sm6268148lfi.95.2022.07.06.05.57.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 05:57:37 -0700 (PDT)
-Message-ID: <6130f39d-21b6-145d-8e6b-26c2f4b89e88@linaro.org>
-Date:   Wed, 6 Jul 2022 15:57:36 +0300
+        with ESMTP id S231508AbiGFM6C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 08:58:02 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EC4122;
+        Wed,  6 Jul 2022 05:58:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 98ED4B81CE2;
+        Wed,  6 Jul 2022 12:58:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A908C3411C;
+        Wed,  6 Jul 2022 12:57:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657112279;
+        bh=QrNdip0xbegVVlOqR8agmJ+S77ZMuuDeifkGOEZ2+TI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h9Uig1t7Ar00l00Xt4taBoCN6h5RQu9EZAnamu3fXB/uTXiccnGvppLS0jB7hHFwT
+         R6EgCw1YnyZnV27o8IufOEasTu1V/4W0a2exQ0itloEXU/4Ls985hwAu0KFLeRe5X5
+         9E7J25N/jFGJXtz63JHueVtN/ibiJyPHbVTgYOwik9BJH++cP14ve0p09F/aYmTCr9
+         oV6LTQ3RSqgQ/tPvYNR2Iifqa8NqiLWDa7SqekSZkXXhfdYA6eHdurHqbCt/EuaVPK
+         Bm1NTBotjtAIxC2i6JL1/bZESfFwBOsYJOhoZe3cLB7mL9aOJ6ckd/LfC2nHgo7xWY
+         vaeeeYSWrKA1Q==
+Date:   Wed, 6 Jul 2022 13:57:54 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 RESEND 0/4] MediaTek Helio X10 MT6795 - MT6331/6332
+ Regulators
+Message-ID: <YsWG0jfqAf4EqojE@sirena.org.uk>
+References: <20220706100912.200698-1-angelogioacchino.delregno@collabora.com>
+ <YsV9IerWCoa/xtwM@sirena.org.uk>
+ <57367b11-f2d4-476b-b92d-16c1726316c0@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 6/7] dt-bindings: msm: dsi: Add missing clocks to 28nm DSI
- PHY YAML
-Content-Language: en-GB
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, sean@poorly.run, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     quic_mkrishn@quicinc.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20220630120845.3356144-1-bryan.odonoghue@linaro.org>
- <20220630120845.3356144-7-bryan.odonoghue@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220630120845.3356144-7-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="MIMUgHtOMspXsyrA"
+Content-Disposition: inline
+In-Reply-To: <57367b11-f2d4-476b-b92d-16c1726316c0@collabora.com>
+X-Cookie: Only God can make random selections.
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,58 +62,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2022 15:08, Bryan O'Donoghue wrote:
-> Add in missing clock and clock-names declarations to the 28nm DSI PHY.
-> When converting from .txt to .yaml we missed these.
-> 
-> Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-I checked the schema. I think you can drop this patch. The issue that 
-you probably saw with apq8064 should be solved in the dtsi, not in the 
-schema.
+--MIMUgHtOMspXsyrA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> ---
->   .../bindings/display/msm/dsi-phy-28nm.yaml      | 17 +++++++++++++++++
->   1 file changed, 17 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-> index 3d8540a06fe22..9ecd513d93661 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-> @@ -19,6 +19,21 @@ properties:
->         - qcom,dsi-phy-28nm-lp
->         - qcom,dsi-phy-28nm-8960
->   
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: iface
-> +        description: AHB clock
-> +      - const: iface_clk
-> +        description: AHB clock
-> +      - const: ref
-> +        description: Block reference clock
-> +    minItems: 1
-> +    maxItems: 2
-> +
->     reg:
->       items:
->         - description: dsi pll register set
-> @@ -36,6 +51,8 @@ properties:
->   
->   required:
->     - compatible
-> +  - clocks
-> +  - clock-names
->     - reg
->     - reg-names
->     - vddio-supply
+On Wed, Jul 06, 2022 at 02:49:56PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 06/07/22 14:16, Mark Brown ha scritto:
 
+> > This previously got 0day failures due to missing dependencies which
+> > need would need a merge with IIRC MFD, I see no reference in the cover
+> > letter to dependencies?
 
--- 
-With best wishes
-Dmitry
+> The only blocker for this series was the MFD patch, which got picked and
+> it's present in next-20220706 (as you suggested me to resend when things
+> were picked... I decided to wait until they actually landed on -next...)
+
+Right, I also said I'd need a pull request - if I apply the patches
+without having the MFD bits they depend on in my tree then it will fail
+to build.
+
+--MIMUgHtOMspXsyrA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLFhtEACgkQJNaLcl1U
+h9ALhwf+LcbvrKU5D7gTwFnixM5NNn/A9PB/fB/gEcbgteuZ6nZvu7YIWEjhmeik
+ZSY3RIskvA/4Ms51cN1SlkhylcUXcqeT5+/p5iI4Oaa6UEfvxtN1TE6rWwaLU/9/
+7DbQEJJdZvyEm5BEI51pGX8cYLlacS+izmLX28NNXB6gloekTUP7212Ip8x7FYas
+yTQueiiLvH1oUJfRRnqp80BoT12VnABkilqA7RLAVpn4ZlkmOqC9Fd6v4LVyBv0G
+QV7BPsE+qpR3K53VEGqCRhkmbf5elbDpf5FGy5FVsb3izC80yUT2RDY2FELtXwD3
+n4McJcj/rC50Pqj1PYrv7xOy4ErKsw==
+=BF98
+-----END PGP SIGNATURE-----
+
+--MIMUgHtOMspXsyrA--
