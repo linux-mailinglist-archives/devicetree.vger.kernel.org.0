@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62ADD56849D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 12:06:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 633A55684B2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 12:08:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232596AbiGFKFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 06:05:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43764 "EHLO
+        id S232736AbiGFKHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 06:07:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232591AbiGFKE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 06:04:58 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C3AB24F35
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 03:04:52 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id t19so24415980lfl.5
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 03:04:52 -0700 (PDT)
+        with ESMTP id S232593AbiGFKHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 06:07:00 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7332529D
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 03:06:58 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id bu42so5214300lfb.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 03:06:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=jOWI5FGVtw/ixLzBC8ndyrPyf2V1YZb2DgbRUAqX8k8=;
-        b=c5v/TLBpZif5jKoI+hkZ+17AFj26Gnn9DHyCs2jUB7uEFwBY32pqpr2yHfDBI7PGvN
-         3rlM+QhqvFMy+erwYAeEAYIi/keeK83s/fW4mZVW/AOCPBih7h9a8SgErfxQbakynLyV
-         qlQpGMiZQxBHKFe4GJZ0w2FR105vGMoa9Oy+XFqKN7ZQiNRQ1Vdhn6DUsBe8XUkDZV9h
-         vOgGb1n8TtDi8MQHh1Z95RdCUzbTNIv1mNoBPpbRTHKV/gTDVMokqznfZ77VJdj+zAF0
-         sQjDiibGF8E331zBoDc+kQVXZc+iZ3Lt6wSiDfjWe6WyMSlomBQnh7/7V1tOUkVEgZam
-         90sw==
+        bh=o/JI08us7vL24f4s2bZjdnzknLcJKDlQAeiE558KAis=;
+        b=KN0X8kX9WhJxJK4/kKMKHEZoc2zJhbOciZhqDlTpiqOahrwQy59NBTHG3BxxidxG7m
+         67bhQWO1Fs7NcpSyyBgrGPymXr5wZkwBcziPGklMAb5E3NBvx/p9g/iqCxn6x/VJkm1A
+         PmzjaLP3ZqbE1EVYUS8Lrv8UI1sopmhz7jP7IQxJBEaI2lleD6FRmwhphOaOICEJkKn2
+         7zNsDlY4gdRINoYkfsphM3/92q3sySrWB+Av6pPfwsAKt/pc5IEOttCtubLBfbg3wE0O
+         q1zWJU3oGo7cirC74MKe9oyKGNSnE4CmNIaHU+X4niYJ6RYwWySoawAQM2K9XMfWBAL8
+         N88A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=jOWI5FGVtw/ixLzBC8ndyrPyf2V1YZb2DgbRUAqX8k8=;
-        b=l39d1J3w4aRH/KZsNsClLKZIML2oJBcmYT70/WrWKYQ5mxTuDQYaIN2LXSjjra0Bu6
-         nhjQrzvwWoPO4GuTI0sjcOYcAlaWcFx5PeJvR98/AMIACSN3O446ifkGi2pD4W/dpflI
-         xpSGAe8ZzxWtEI31AWHuVvgvr2HaIaV/+yHnPUmmd1+uCwCT6sH7dDh/j5FQXo6uWR2R
-         JXAb44sT/KIrUgrU+wgjatigANkkQNoR8Lm3MTIjwXyx1aTZTnG9Mb1nuBeWFSJlT4e2
-         L10SpE5o13FrvVJqSzy4pbTuOybl1hlYNRkO+PD27C1fp/+9jZbL00Ow+5DPZrxdSsSP
-         HNyg==
-X-Gm-Message-State: AJIora/WKadj9qAvqxOtmEjslY67g2RQnj4W7ZZ17d8XtPL+q985B6TI
-        ELgyhkeK5Gzc8Z4r5s5Az5rRlA==
-X-Google-Smtp-Source: AGRyM1uNagtuURx0cGgzKp82vsGEFu/cEuG3G54Di0lBF8Z5m3UsWaeZWfJnTLwPuInoek5ZCpX7BQ==
-X-Received: by 2002:ac2:4bd5:0:b0:481:25b8:51af with SMTP id o21-20020ac24bd5000000b0048125b851afmr24554967lfq.686.1657101890693;
-        Wed, 06 Jul 2022 03:04:50 -0700 (PDT)
+        bh=o/JI08us7vL24f4s2bZjdnzknLcJKDlQAeiE558KAis=;
+        b=De4mYby0ROIR7Xqu4TLjEGk+DwRdiKbz4Ay/2pUNaeN0d/uefTq9U9Mcy6GH3hfHjr
+         JG4GVYGO+Hqjeo38o3sUgfUMBMtIi0SZUXR6/BDOz2pQWwrSbCvzjqGZZpleS1iL4lMK
+         nEUPb6wPdbAlEqxbov6pTMBE2NXjHab4rJl0rTdeZgwHFSkQNO7yzIxVnHlQlLxS6AZX
+         cfLMM85WZT50hIPoQrdNMpBcHJ40wTWdCtyunSgWSd8WrAy28Xq3HF/WVWJZhTQj7DnG
+         Zh8pvMjn+1bk06vYRYKwTn7WmhnMLDMzE9Xis+8aHUc9H9ZatIVXoUjkXzd8DJ1EmpU/
+         Z3fw==
+X-Gm-Message-State: AJIora+XJhLHNiht38ucNGJk5hNR26QTEREFtKTfd/wHb+s0yzWFoXt9
+        ATbKf+ds1mGduh0846dlAIukxQ==
+X-Google-Smtp-Source: AGRyM1uRSIf3VLsyNglEEsS5S8MByTBNN1VD5w4WP3bbUucHWwXC/emiIf6KMm+pT6aFgJzFoOJ9cw==
+X-Received: by 2002:a05:6512:31d1:b0:47f:5d39:1d9d with SMTP id j17-20020a05651231d100b0047f5d391d9dmr25517702lfe.140.1657102015414;
+        Wed, 06 Jul 2022 03:06:55 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id y9-20020ac24e69000000b0047f647414efsm6194258lfs.190.2022.07.06.03.04.49
+        by smtp.gmail.com with ESMTPSA id h4-20020ac250c4000000b00483e5f0192esm769001lfm.87.2022.07.06.03.06.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 03:04:50 -0700 (PDT)
-Message-ID: <8f9651b2-ca9a-413c-d94f-9ecf3717343c@linaro.org>
-Date:   Wed, 6 Jul 2022 12:04:49 +0200
+        Wed, 06 Jul 2022 03:06:54 -0700 (PDT)
+Message-ID: <2829e71b-1769-ce24-f810-d63e619aa5f0@linaro.org>
+Date:   Wed, 6 Jul 2022 12:06:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] [V1,1/2] arm64: dts: qcom: Add LTE SKUs for
- sc7280-villager family
+Subject: Re: [PATCH V3 02/11] dt-bindings: pci: tegra: Convert to json-schema
 Content-Language: en-US
-To:     Jimmy Chen <jinghung.chen3@hotmail.com>
-Cc:     agross@kernel.org, alan-huang@quanta.corp-partner.google.com,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        dianders@chromium.org, konrad.dybcio@somainline.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-References: <cfc2c27a-444d-8bd8-84a7-b6b1f99258f9@linaro.org>
- <SG2PR03MB5006AB4C7E356CE321F628D9CC809@SG2PR03MB5006.apcprd03.prod.outlook.com>
+To:     Vidya Sagar <vidyas@nvidia.com>, Rob Herring <robh@kernel.org>
+Cc:     bhelgaas@google.com, lorenzo.pieralisi@arm.com,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
+        vkoul@kernel.org, kw@linux.com, p.zabel@pengutronix.de,
+        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com,
+        Thierry Reding <treding@nvidia.com>
+References: <20220629060435.25297-1-vidyas@nvidia.com>
+ <20220629060435.25297-3-vidyas@nvidia.com>
+ <20220630210449.GA3283899-robh@kernel.org>
+ <e971a557-3387-efcf-87ec-983b998c5e93@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SG2PR03MB5006AB4C7E356CE321F628D9CC809@SG2PR03MB5006.apcprd03.prod.outlook.com>
+In-Reply-To: <e971a557-3387-efcf-87ec-983b998c5e93@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -78,27 +82,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2022 11:36, Jimmy Chen wrote:
-> To keep the consistency of the format for Chromebook items,
-> we basically add these items based on the rules discussed in the previous patch series here
-> https://lore.kernel.org/all/20220520143502.v4.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid/.
+On 06/07/2022 11:53, Vidya Sagar wrote:
+>>> +  nvidia,bpmp:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +    description: |
+>>> +      Must contain a pair of phandle to BPMP controller node followed by controller ID. Following
+>>> +      are the controller IDs for each controller:
+>>> +
+>>> +        0: C0
+>>> +        1: C1
+>>> +        2: C2
+>>> +        3: C3
+>>> +        4: C4
+>>> +        5: C5
+>>> +    items:
+>>> +      - items:
+>>> +          - minimum: 0
+>>> +            maximum: 0xffffffff
+>>
+>> That's already the limit. Just a description is fine.
+>>
+>>> +          - enum: [ 0, 1, 2, 3, 4, 5 ]
+>>
+>> maximum: 5
 > 
-> We are little configured with “one entry - one enum “. Do you mean something like below example?
-> We suggest keep items separated as it is more readable.
+> Setting the maximum to '5' is resulting in the following error.
 > 
->       - description: Google Villager
->         items:
->           - const: google,villager-rev0
->           - const: google,villager
->           - const: google,villager-rev0-sku0
->           - const: google,villager-sku0
->           - const: qcom,sc7280
+> pcie-ep@141a0000: nvidia,bpmp:0:0: 4294967295 is greater than the 
+> maximum of 5
 > 
+> Could you please help me understand why I'm seeing this error?
 
-Is this a reply to something we discussed? There is no quote here, but I
-remember pointing out some issues with one of Google patches recently.
-Unfortunately my mailbox receives like 300 mails per day, so this does
-not help...
+Trim your replies.
+
+Why adding minimum:5 to the phandle? Rob said add a description. Nothing
+about minimum.
 
 Best regards,
 Krzysztof
