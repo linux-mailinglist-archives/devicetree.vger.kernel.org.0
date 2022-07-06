@@ -2,70 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D3355686FA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 13:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 557D456871D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 13:46:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233034AbiGFLoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 07:44:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43564 "EHLO
+        id S233341AbiGFLqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 07:46:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232935AbiGFLoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 07:44:12 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 204A527FE2
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 04:44:11 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id f14so2738703lfl.11
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 04:44:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rHSpHOlY7myBgAHSZKFgDw9g1de3IWBqHh0r7R/pirQ=;
-        b=mA7nuNZdvT7CPN2iQuIt/bEU9qdmLkMx0CwfhwzSdLgU3jfcloEf897ZgHyT5aRG7+
-         nPGP36yJTW0GHcKr8yq4aGQKyF12AiSoQRRzp+sv+EM60GyIp9hOeVUZNIxPEnsmsAIY
-         oOYYgwsdponpzI6mZtKImM2dJUXAndJ+MzSaE9/OEzbMYV7Uk8QpdGZtCaO3DusNq3XV
-         V4uoHm6W95l0Dk36AZ7OBuOw6rgrIKPVeiHeotmOJ8zVtnRUqDGWI21pmosUTabWKYm2
-         TpZwrn2coSbsMp+cJVMfyeE79uvmKNKi+Mbeq2JpYevXskRX1uXXvM9UJAvhvLkVA5sP
-         MaTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rHSpHOlY7myBgAHSZKFgDw9g1de3IWBqHh0r7R/pirQ=;
-        b=WE8mAbV6fPFifjVmKhCxMV0UexBYEnsYRc1N3z+URFCD2OJNQbw1B2afgY8YprEHCs
-         KBa5R2HflAUMjHiJqhNwYpLmskN0mhey/5jN9VYCS1HfkkNDPCvyLHPfH1oCAheG/CFX
-         YQPMu4Bi5rwzmswci+XstBsrhbyg4OnhqZuUs6jfW5mttTngsN5Hjvej1UGEyFoVmeQh
-         BmrsNsTUo3G6W9JJ926qHv1oSEOV+1zagdWukhzFXY/1qsMoIn6EvCR5LC3G4B8Qf9zG
-         5CoXjVN9iVI4a4T3NpHGHF0B6J2Gp7+t0BAFM/pCO9u6yCmnAm2WoxVyDiiSk5BOHjUq
-         WXjg==
-X-Gm-Message-State: AJIora85qlhz4l2Z7y6E7F3pz7ow0ozqwyXM0ZjtvaShqp90xwiSDyzm
-        BC+Dqe/lietsq8/qd/gI+tCMcw==
-X-Google-Smtp-Source: AGRyM1tviyOitKgPBJbpzIyNFMsRmGD80UR044kxqGDAzuOaYFFiwsE3QHRZAt+uvLTk1ZjIS9YtCQ==
-X-Received: by 2002:a05:6512:b09:b0:481:5b19:3ae4 with SMTP id w9-20020a0565120b0900b004815b193ae4mr19994384lfu.293.1657107849487;
-        Wed, 06 Jul 2022 04:44:09 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s6-20020a056512214600b0047b0f2d7650sm6232883lfr.271.2022.07.06.04.44.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 04:44:08 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S233342AbiGFLqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 07:46:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E2328E1B;
+        Wed,  6 Jul 2022 04:45:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 499B261EEF;
+        Wed,  6 Jul 2022 11:45:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51827C3411C;
+        Wed,  6 Jul 2022 11:45:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657107943;
+        bh=aBdtVMhRidxJCeoJx5DEXlpzuQlURSLwQpWLFBNxTts=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KMVJJ+JukHbibk6ztwsiqZjPY7NNGnu5ye/kkkr65U8rnR50ws1YnUZgNFk5+4LZc
+         qrbPtRrZznfI6mp0+7/SBCTIuK0aG3D3ThJ7VLx2nNaiiNl9OpsfDK46GwzWVI7h2s
+         5Ddwh1l7nAR/g30vK7bn6t3ky+UZJFIeAD7s8RkA/GT1UGOlPd+fv2yaHwJZYA+LeP
+         oGdC0e0RO7pFN3Q/dmlVtqZVcVLeIuY7H1u1dOPKEtzBve5qL1g19QKv7seksr02zn
+         lbmy3N4magjeo+Y2st5Z7HoMGPOHMilLgnLHgoDR52kgWGTLrcjbXaeFhwRj7HJn5l
+         E+rKgbU5XqcVA==
+Date:   Wed, 6 Jul 2022 12:45:37 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Tom Rini <trini@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        linux-kbuild@vger.kernel.org
-Subject: [PATCH v2] kbuild: allow validating individual dtb files against schema
-Date:   Wed,  6 Jul 2022 14:44:07 +0300
-Message-Id: <20220706114407.1507412-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: qcom-iommu: Add Qualcomm MSM8953
+ compatible
+Message-ID: <20220706114536.GA2403@willie-the-truck>
+References: <20220612092218.424809-1-luca@z3ntu.xyz>
+ <20220612092218.424809-2-luca@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220612092218.424809-2-luca@z3ntu.xyz>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,80 +63,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While it is possible to validate all generated dtb files against the
-schema, it typically results in huge pile of warnings. While working on
-a platform it is quite useful to validate just a single file against
-schema.
+On Sun, Jun 12, 2022 at 11:22:13AM +0200, Luca Weiss wrote:
+> Document the compatible used for IOMMU on the msm8953 SoC.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+> Changes from v1:
+> - new patch
+> 
+>  Documentation/devicetree/bindings/iommu/qcom,iommu.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/qcom,iommu.txt b/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
+> index 059139abce35..e6cecfd360eb 100644
+> --- a/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
+> +++ b/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
+> @@ -10,6 +10,7 @@ to non-secure vs secure interrupt line.
+>  - compatible       : Should be one of:
+>  
+>                          "qcom,msm8916-iommu"
+> +                        "qcom,msm8953-iommu"
 
-Allow specifying CHECK_DTBS=1 on a make command line to enable
-validation while building dtb files. This reuses the infrastructure
-existing for `make dtbs_check`, making dtbs_check a shortcut for
-`make CHECK_DTBS=1 dt_binding_check dtbs`.
+I'm assuming Andy or Bjorn will pick this up.
 
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Tom Rini <trini@konsulko.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>
-Cc: linux-kbuild@vger.kernel.org
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
-
-Changes since v1:
-- Added dependency to rebuild schema if `make dtbs` was used.
-
----
- Makefile | 20 +++++++++++++++-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
-
-diff --git a/Makefile b/Makefile
-index 9aa7de1ca58f..5a9858aa4934 100644
---- a/Makefile
-+++ b/Makefile
-@@ -1464,14 +1464,18 @@ endif
- 
- ifneq ($(dtstree),)
- 
--%.dtb: include/config/kernel.release scripts_dtc
-+ifneq ($(CHECK_DTBS),)
-+DT_TMP_BINDING := dt_binding
-+endif
-+
-+%.dtb: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
- 	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
- 
--%.dtbo: include/config/kernel.release scripts_dtc
-+%.dtbo: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
- 	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
- 
- PHONY += dtbs dtbs_install dtbs_check
--dtbs: include/config/kernel.release scripts_dtc
-+dtbs: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
- 	$(Q)$(MAKE) $(build)=$(dtstree)
- 
- ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
-@@ -1498,8 +1502,10 @@ ifneq ($(filter dt_binding_check, $(MAKECMDGOALS)),)
- export CHECK_DT_BINDING=y
- endif
- 
--PHONY += dt_binding_check
--dt_binding_check: scripts_dtc
-+dt_binding_check: dt_binding
-+
-+PHONY += dt_binding
-+dt_binding: scripts_dtc
- 	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
- 
- # ---------------------------------------------------------------------------
-@@ -1774,6 +1780,10 @@ help:
- 	@echo  '		3: more obscure warnings, can most likely be ignored'
- 	@echo  '		e: warnings are being treated as errors'
- 	@echo  '		Multiple levels can be combined with W=12 or W=123'
-+	@$(if $(dtstree), \
-+		echo '  make CHECK_DTBS=1 [targets] Check all generated dtb files against schema'; \
-+		echo '         This can be applied both to "dtbs" and to individual "foo.dtb" targets' ; \
-+		)
- 	@echo  ''
- 	@echo  'Execute "make" or "make all" to build all targets marked with [*] '
- 	@echo  'For further info see the ./README file'
--- 
-2.35.1
-
+Will
