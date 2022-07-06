@@ -2,82 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E96E567FE9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 09:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB8A567FEA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 09:34:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229891AbiGFHdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 03:33:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51496 "EHLO
+        id S230178AbiGFHeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 03:34:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbiGFHdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 03:33:49 -0400
-Received: from m1564.mail.126.com (m1564.mail.126.com [220.181.15.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 28648E086
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 00:33:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-        s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=POupp
-        jC3cngqO9HTotETLeehLz+Z+UWNmayUoGXTbxI=; b=hSQT4ldrVL/tkXdGeoDEq
-        AnoRJg+sUK5nIwtSfwT348dYeVdd8DdoN1BFXyJ1qvliLo+/pQAZPO6NpIYdUqjO
-        h3YusLjbEwFCoGjRxT6pKkZD/gYcpaDvHGxPmUcP+Fr/yqeven6jXNuVn6+Otxhy
-        RTlkndwv7INAXscV/2Wny4=
-Received: from windhl$126.com ( [124.16.139.61] ) by ajax-webmail-wmsvr64
- (Coremail) ; Wed, 6 Jul 2022 15:33:36 +0800 (CST)
-X-Originating-IP: [124.16.139.61]
-Date:   Wed, 6 Jul 2022 15:33:36 +0800 (CST)
-From:   "Liang He" <windhl@126.com>
-To:     "Rob Herring" <robh@kernel.org>
-Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linmq006@gmail.com
-Subject: Re:Re: [PATCH] of: device: Fix missing of_node_put() in
- of_dma_set_restricted_buffer
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20220113(9671e152)
- Copyright (c) 2002-2022 www.mailtech.cn 126com
-In-Reply-To: <20220705144527.GA2048024-robh@kernel.org>
-References: <20220702014449.263772-1-windhl@126.com>
- <20220705144527.GA2048024-robh@kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=GBK
+        with ESMTP id S229973AbiGFHeR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 03:34:17 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21DED220CE
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 00:34:16 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id bs20so17121323qtb.11
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 00:34:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jb91iJljh1gjsRV/F8EkDiuQ28gmCvX0uXYmKspWwRE=;
+        b=bMPgHycDlJMX1A1+lC7ccpSRRCutkmKd1lfxz0jfsKB+wwUkeVlf9idf4sU3lLM3V1
+         eD5dW8Pareb+7KbpTisfMOy8n+BvWbdXC1wUAsuZDDEsjWhRcNc5abGrQIqkpwZz6iah
+         vH5sGtHIiEiYxVCcuKCoZMCCH2n2W5+93YhBlQMGOMHEa3EQ1dQgxptQYVru1P5zo/m0
+         oas9oeSdy5PwSwaMhMIFnHkljSzRPHCSPkvtZzvDTBeQJcA5c78CE8ju+ez1HDnuEOSV
+         sYNXB7f6I0wImGHRR6GDsuplDnN0vrMHg5/oXAqbd/76LX167WQiHmg1XjaKzLyhZFu+
+         HaXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jb91iJljh1gjsRV/F8EkDiuQ28gmCvX0uXYmKspWwRE=;
+        b=CJZDgx48DdibZoOTSDMMklIjIrDETOvtdCat4dgCj+4vrALMYgSf4h3gJKJsNrS2tF
+         DTlhk/6sUigdk+mIPt0SOml3aQTbwF9qXfBpQkR4lVUsMdtq6fd5v4UdgtINHTEfasld
+         MSIJ3J/1NXdNy5SG0ip0PDMpJGupLbCw22O9gLWkw4CRK3i8xuW/r66Pz+F1ileg7vkk
+         dS+zkEP1tkZiI/2EaV8qZtslYO/ElBjZvC1D/7lmY1ZdYHG6Xw6WT5t2eqPl2O1Yyn/j
+         fIkEbF4dTNZWJJzWBGlPK4hjsX+D4dcV8bf2WRvtpvsl7yMAS5RcyLvNI8BVItADhfKi
+         6kFQ==
+X-Gm-Message-State: AJIora+5X4olCkYgkctgIaIaHtpw6+eRIXWGUfwMJAMyqdrH2a/zY7XQ
+        Cn+Ke0Lyz89zKI61CR+gf9Nnlsov6XU23dbWMsdaug==
+X-Google-Smtp-Source: AGRyM1vNwsFSmtjVsNs+qS1DumMmT57Xa9JDFUpm++zhPJwW6GISNSgwHRNPzGaD2iP96DGuRfky182MTcA3jVELOak=
+X-Received: by 2002:a05:6214:2a88:b0:473:5aa:e927 with SMTP id
+ jr8-20020a0562142a8800b0047305aae927mr5462068qvb.122.1657092855292; Wed, 06
+ Jul 2022 00:34:15 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <4faba661.4c9a.181d26dbd0d.Coremail.windhl@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: QMqowAAnL3PROsVi04pGAA--.50116W
-X-CM-SenderInfo: hzlqvxbo6rjloofrz/1tbi2hA2F1uwMWkIEAACsC
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+References: <20220621163326.16858-1-ansuelsmth@gmail.com> <20220621163326.16858-3-ansuelsmth@gmail.com>
+ <CAA8EJpqQTTevQa4pQg3E+x4_AOjYo8ajOqUrfwGsVtC8N=bpOw@mail.gmail.com>
+ <62b228b6.1c69fb81.e4673.34a2@mx.google.com> <CAA8EJprb=xV9+gZMANAYrt_JnKAtC89h1RAosL+g517_-Ugd2g@mail.gmail.com>
+ <62c4a38b.1c69fb81.4d58e.ce99@mx.google.com>
+In-Reply-To: <62c4a38b.1c69fb81.4d58e.ce99@mx.google.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 6 Jul 2022 10:34:04 +0300
+Message-ID: <CAA8EJprGf6V9K1gFDCE+bnKwhjVgLvruTRAZ-AOqfPsbmmYRLA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] clk: qcom: lcc-ipq806x: convert to parent data
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CgpBdCAyMDIyLTA3LTA1IDIyOjQ1OjI3LCAiUm9iIEhlcnJpbmciIDxyb2JoQGtlcm5lbC5vcmc+
-IHdyb3RlOgo+T24gU2F0LCBKdWwgMDIsIDIwMjIgYXQgMDk6NDQ6NDlBTSArMDgwMCwgTGlhbmcg
-SGUgd3JvdGU6Cj4+IFdlIHNob3VsZCB1c2Ugb2Zfbm9kZV9wdXQoKSBmb3IgdGhlIHJlZmVyZW5j
-ZSAnbm9kZScgcmV0dXJuZWQgYnkKPj4gb2ZfcGFyc2VfcGhhbmRsZSgpIHdoaWNoIHdpbGwgaW5j
-cmVhc2UgdGhlIHJlZmNvdW50Lgo+PiAKPj4gRml4ZXM6IGZlYzliNjI1MDk1ZiAoIm9mOiBBZGQg
-cGx1bWJpbmcgZm9yIHJlc3RyaWN0ZWQgRE1BIHBvb2wiKQo+PiBDby1hdXRob3JlZC1ieTogTWlh
-b3FpYW4gTGluIDxsaW5tcTAwNkBnbWFpbC5jb20+Cj4+IFNpZ25lZC1vZmYtYnk6IExpYW5nIEhl
-IDx3aW5kaGxAMTI2LmNvbT4KPj4gLS0tCj4+ICBkcml2ZXJzL29mL2RldmljZS5jIHwgNSArKysr
-LQo+PiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+PiAK
-Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvb2YvZGV2aWNlLmMgYi9kcml2ZXJzL29mL2RldmljZS5j
-Cj4+IGluZGV4IDg3NGYwMzE0NDJkYy4uNzViNmNiZmZhNzU1IDEwMDY0NAo+PiAtLS0gYS9kcml2
-ZXJzL29mL2RldmljZS5jCj4+ICsrKyBiL2RyaXZlcnMvb2YvZGV2aWNlLmMKPj4gQEAgLTgxLDgg
-KzgxLDExIEBAIG9mX2RtYV9zZXRfcmVzdHJpY3RlZF9idWZmZXIoc3RydWN0IGRldmljZSAqZGV2
-LCBzdHJ1Y3QgZGV2aWNlX25vZGUgKm5wKQo+PiAgCQkgKiByZXN0cmljdGVkLWRtYS1wb29sIHJl
-Z2lvbiBpcyBhbGxvd2VkLgo+PiAgCQkgKi8KPj4gIAkJaWYgKG9mX2RldmljZV9pc19jb21wYXRp
-YmxlKG5vZGUsICJyZXN0cmljdGVkLWRtYS1wb29sIikgJiYKPj4gLQkJICAgIG9mX2RldmljZV9p
-c19hdmFpbGFibGUobm9kZSkpCj4+ICsJCSAgICBvZl9kZXZpY2VfaXNfYXZhaWxhYmxlKG5vZGUp
-KSB7Cj4+ICsJCQlvZl9ub2RlX3B1dChub2RlKTsKPj4gIAkJCWJyZWFrOwo+PiArCQl9Cj4+ICsJ
-CW9mX25vZGVfcHV0KG5vZGUpOwo+Cj5UaGlzIHNob3VsZCBiZSBjb252ZXJ0ZWQgdG8gdXNlIG9m
-X2Zvcl9lYWNoX3BoYW5kbGUoKSBpdGVyYXRvciBpbnN0ZWFkLiAKPlRoYXQgdGFrZXMgY2FyZSBv
-ZiB0aGUgcHV0IGhlcmUgKGJ1dCBub3QgaW4gdGhlIGJyZWFrKS4KPgo+Um9iCgpIaSwgUm9iLgoK
-QWZ0ZXIgSSBjYXJlZnVsbHkgcmVhZCB0aGUgaW1wbGVtZW50YXRpb24gb2Ygb2ZfZm9yX2VhY2hf
-cGhhbmRsZSgpIGFuZCBvZl9wYXJzZV9waGFuZGxlKCksCkkgdGhpbmsgaXQgaXMgYmV0dGVyIHRv
-IGtlZXAgY3VycmVudCBjb2Rpbmcgc3R5bGUgYXMgaXQgd2lsbCBjaGFuZ2UgYSBsb3Qgb2YgY3Vy
-cmVudCBjb2RlLgoKQmVzaWRlcywgdGhlIGxvb3AgaW5kZXggJ2knIHdpbGwgYmUgdXNlZCBpbiBm
-b2xsb3dpbmcgb2ZfcmVzZXJ2ZWRfbWVtX2RldmljZV9pbml0X2J5X2lkeCgpLCBzbwpJIGNhbm5v
-dCBnaXZlIGEgc2ltcGxlIGFuZCBjb3JyZWN0IHdheSB0byB1c2Ugb2ZfZm9yX2VhY2hfcGhhbmRs
-ZSgpLgoKVGhhbmtzLCAKCkxpYW5nCg==
+On Tue, 5 Jul 2022 at 23:48, Christian Marangi <ansuelsmth@gmail.com> wrote:
+>
+> On Tue, Jun 21, 2022 at 11:43:10PM +0300, Dmitry Baryshkov wrote:
+> > On Tue, 21 Jun 2022 at 23:23, Christian Marangi <ansuelsmth@gmail.com> wrote:
+> > >
+> > > On Tue, Jun 21, 2022 at 08:15:57PM +0300, Dmitry Baryshkov wrote:
+> > > > On Tue, 21 Jun 2022 at 19:33, Christian Marangi <ansuelsmth@gmail.com> wrote:
+> > > > >
+> > > > > Convert lcc-ipq806x driver to parent_data API.
+> > > > >
+> > > > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > > > ---
+> > > > > v2:
+> > > > > - Fix Sob tag
+> > > > >
+> > > > >  drivers/clk/qcom/lcc-ipq806x.c | 79 +++++++++++++++++++---------------
+> > > > >  1 file changed, 44 insertions(+), 35 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/clk/qcom/lcc-ipq806x.c b/drivers/clk/qcom/lcc-ipq806x.c
+> > > > > index ba90bebba597..c07ca8dc6e3a 100644
+> > > > > --- a/drivers/clk/qcom/lcc-ipq806x.c
+> > > > > +++ b/drivers/clk/qcom/lcc-ipq806x.c
+> > > > > @@ -24,6 +24,10 @@
+> > > > >  #include "clk-regmap-mux.h"
+> > > > >  #include "reset.h"
+> > > > >
+> > > > > +static const struct clk_parent_data gcc_pxo[] = {
+> > > > > +       { .fw_name = "pxo", .name = "pxo" },
+> > > >
+> > > > I think you'd use .name = "pxo_board" here. You don't need to use the
+> > > > interim clock.
+> > > >
+> > >
+> > > In gcc and in the rest of this driver we use pxo. Wonder what is right?
+> >
+> > I'd use .fw_name = "pxo", .name = "pxo_board", like the rest of drivers do.
+> >
+>
+> Will do the change, but I need an explaination... Is the use of
+> pxo_board correct?
+>
+> I'm sending a patch that sets the pxo_board fixed clock in dts to output
+> "pxo". The only clock that still use pxo_board is rpm, everything else
+> at least for ipq806x use pxo and i'm sending a patch to use pxo for rpm.
+>
+> Considering pxo is always present and pxo_board should be dropped
+> because every ipq806x driver use "pxo".
+>
+> What is correct naming pxo or pxo_board? I assume pxo right?
+
+This might be not the case for the ipq806x, but here is the story for
+all other (old) platforms:
+- gcc driver manually registered pxo/cxo/xo fixed factor clocks.
+- Then we started adding *xo_board clocks to the DT, as they represent
+the external oscillators
+-  PXO clock consumers receive a clocks entry with clock-names = "pxo"
+which points to the pxo_board
+- All clock drivers are now being switched to use .fw_name = "pxo",
+.name = "pxo_board" to use the DT-defined pxo_board clock.
+
+Hopefully at some point we can then drop the manually registered pxo
+clock and always use the DT-based one.
+
+-- 
+With best wishes
+Dmitry
