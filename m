@@ -2,99 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E9D95688CD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 14:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BB2956892E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:17:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232213AbiGFM6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 08:58:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58038 "EHLO
+        id S233670AbiGFNP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 09:15:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231508AbiGFM6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 08:58:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EC4122;
-        Wed,  6 Jul 2022 05:58:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 98ED4B81CE2;
-        Wed,  6 Jul 2022 12:58:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A908C3411C;
-        Wed,  6 Jul 2022 12:57:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657112279;
-        bh=QrNdip0xbegVVlOqR8agmJ+S77ZMuuDeifkGOEZ2+TI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h9Uig1t7Ar00l00Xt4taBoCN6h5RQu9EZAnamu3fXB/uTXiccnGvppLS0jB7hHFwT
-         R6EgCw1YnyZnV27o8IufOEasTu1V/4W0a2exQ0itloEXU/4Ls985hwAu0KFLeRe5X5
-         9E7J25N/jFGJXtz63JHueVtN/ibiJyPHbVTgYOwik9BJH++cP14ve0p09F/aYmTCr9
-         oV6LTQ3RSqgQ/tPvYNR2Iifqa8NqiLWDa7SqekSZkXXhfdYA6eHdurHqbCt/EuaVPK
-         Bm1NTBotjtAIxC2i6JL1/bZESfFwBOsYJOhoZe3cLB7mL9aOJ6ckd/LfC2nHgo7xWY
-         vaeeeYSWrKA1Q==
-Date:   Wed, 6 Jul 2022 13:57:54 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 RESEND 0/4] MediaTek Helio X10 MT6795 - MT6331/6332
- Regulators
-Message-ID: <YsWG0jfqAf4EqojE@sirena.org.uk>
-References: <20220706100912.200698-1-angelogioacchino.delregno@collabora.com>
- <YsV9IerWCoa/xtwM@sirena.org.uk>
- <57367b11-f2d4-476b-b92d-16c1726316c0@collabora.com>
+        with ESMTP id S233620AbiGFNPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:15:50 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CEF7193FA;
+        Wed,  6 Jul 2022 06:15:49 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id lg18so7262489ejb.0;
+        Wed, 06 Jul 2022 06:15:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:from:to:cc:subject:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YMLDVTvyR9wt+eqPK81VYvFaLzU3RcWbb4f8d1UYbe0=;
+        b=O7oIIbXjjWTNjkt5EfudQbxBsTYbqDCruMWFEeT6nHKIO0POe/a+KdpUphr1xzTG3L
+         3ZlVzrkX8RNNVIoDZj5yoduQVQE55KGiqJ92r9B9yyW6H5q+Cpg2bGJbzQWURCrpCvi1
+         ZkyIM9hKReEpHvkorY1RXdL3JtZTXX7DSpNyVWoHrWJiJHCF6ZZK5fJXFRj60M2MsgGm
+         EglaEiBlz4oxEOLRyxWelf31rWqK7oRplnfbLNAentKnCYasfi0oJz5Rm1psBphPiYkB
+         HfdIletDeaFJEs0+0JxdUp7EHeL1CqiWOqt1y0vH8yAITaMYh5yKOzLytBETYuI35rq0
+         BIow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YMLDVTvyR9wt+eqPK81VYvFaLzU3RcWbb4f8d1UYbe0=;
+        b=rH8OWdpHkG3vadB8CQf2Lvrps6LZOBSKcLzgNmVNbI/y94q8cqcYSdPkwUhikmALtI
+         tH/pQT7pGzduSmqJmx3uaQNF6eHJpIfwXLQyEDu8Pbj15nCcnIJQL6PS/5lYkEpJlYqe
+         WA6zjABVGj7Ax9Ob8/6+XKy7ueh42K6SX6zmXpcvjpcxmwAbQmBYZWzdec3V8n1M++ru
+         yPypVr9GheQD6++B4lYSZT5oBG5jT4CXCJIrQhrYHF/72xa1EqJQw+z+0FPJgcjjP2j/
+         A75umfHbdM4YuUSxVTVGm8fVwVZB6gghh4X5iFSSrsB8YMOzSHJV4O1xNoRhCjPahLPe
+         EbNg==
+X-Gm-Message-State: AJIora9jJpfdWlcIduvUavUCouIJNH3DoZzIJwbjqpAhlgHRiy2/0QGg
+        7VpBRjOhoaNJLwz+lQt9Oic=
+X-Google-Smtp-Source: AGRyM1sWdd5RhCFisyvcHYvpMka/7jI3qty/imuN5FuzgvtZXh/LrwdN+EtN4bg1i4WaM+cuJ4j/Sw==
+X-Received: by 2002:a17:907:a40a:b0:72a:a61d:9ac8 with SMTP id sg10-20020a170907a40a00b0072aa61d9ac8mr17698037ejc.43.1657113348120;
+        Wed, 06 Jul 2022 06:15:48 -0700 (PDT)
+Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.gmail.com with ESMTPSA id f22-20020a50ee96000000b0043a0da110e3sm9298427edr.43.2022.07.06.06.15.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Jul 2022 06:15:47 -0700 (PDT)
+Message-ID: <62c58b03.1c69fb81.527d5.ecc6@mx.google.com>
+X-Google-Original-Message-ID: <YsWHHj0bdrA+sjiI@Ansuel-xps.>
+Date:   Wed, 6 Jul 2022 14:59:10 +0200
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan McDowell <noodles@earth.li>
+Subject: Re: [PATCH 06/13] ARM: dts: qcom: enable usb phy by default for
+ ipq8064
+References: <20220705133917.8405-1-ansuelsmth@gmail.com>
+ <20220705133917.8405-7-ansuelsmth@gmail.com>
+ <eadf03c4-7e4c-e2a0-b20d-6e2dff3af1e3@somainline.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="MIMUgHtOMspXsyrA"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <57367b11-f2d4-476b-b92d-16c1726316c0@collabora.com>
-X-Cookie: Only God can make random selections.
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <eadf03c4-7e4c-e2a0-b20d-6e2dff3af1e3@somainline.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jul 06, 2022 at 03:04:44PM +0200, Konrad Dybcio wrote:
+> 
+> 
+> On 5.07.2022 15:39, Christian Marangi wrote:
+> > Enable usb phy by default. When the usb phy were pushed, half of them
+> > were flagged as disabled by mistake. Fix this to correctly init dwc3
+> > node on any ipq8064 based SoC.
+> Are you sure they are used on *all* devices? If not, you will
+> lose power by enabling unused hw..
+> 
+> Konrad
 
---MIMUgHtOMspXsyrA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Well there could be device that have no usb at all... so honestly
+enabling one of them is also wrong. Should I disable the other and
+enable it for the upstream device?
 
-On Wed, Jul 06, 2022 at 02:49:56PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 06/07/22 14:16, Mark Brown ha scritto:
+Also it's all handled by dummy vbus so i think we can ignore the losing
+power thing. (this thing is old)
 
-> > This previously got 0day failures due to missing dependencies which
-> > need would need a merge with IIRC MFD, I see no reference in the cover
-> > letter to dependencies?
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > Tested-by: Jonathan McDowell <noodles@earth.li>
+> > ---
+> >  arch/arm/boot/dts/qcom-ipq8064.dtsi | 4 ----
+> >  1 file changed, 4 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> > index b2faa4a067e9..9c32c637ea46 100644
+> > --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> > +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> > @@ -1177,8 +1177,6 @@ hs_phy_0: phy@100f8800 {
+> >  			clocks = <&gcc USB30_0_UTMI_CLK>;
+> >  			clock-names = "ref";
+> >  			#phy-cells = <0>;
+> > -
+> > -			status = "disabled";
+> >  		};
+> >  
+> >  		ss_phy_0: phy@100f8830 {
+> > @@ -1187,8 +1185,6 @@ ss_phy_0: phy@100f8830 {
+> >  			clocks = <&gcc USB30_0_MASTER_CLK>;
+> >  			clock-names = "ref";
+> >  			#phy-cells = <0>;
+> > -
+> > -			status = "disabled";
+> >  		};
+> >  
+> >  		usb3_0: usb3@100f8800 {
 
-> The only blocker for this series was the MFD patch, which got picked and
-> it's present in next-20220706 (as you suggested me to resend when things
-> were picked... I decided to wait until they actually landed on -next...)
-
-Right, I also said I'd need a pull request - if I apply the patches
-without having the MFD bits they depend on in my tree then it will fail
-to build.
-
---MIMUgHtOMspXsyrA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLFhtEACgkQJNaLcl1U
-h9ALhwf+LcbvrKU5D7gTwFnixM5NNn/A9PB/fB/gEcbgteuZ6nZvu7YIWEjhmeik
-ZSY3RIskvA/4Ms51cN1SlkhylcUXcqeT5+/p5iI4Oaa6UEfvxtN1TE6rWwaLU/9/
-7DbQEJJdZvyEm5BEI51pGX8cYLlacS+izmLX28NNXB6gloekTUP7212Ip8x7FYas
-yTQueiiLvH1oUJfRRnqp80BoT12VnABkilqA7RLAVpn4ZlkmOqC9Fd6v4LVyBv0G
-QV7BPsE+qpR3K53VEGqCRhkmbf5elbDpf5FGy5FVsb3izC80yUT2RDY2FELtXwD3
-n4McJcj/rC50Pqj1PYrv7xOy4ErKsw==
-=BF98
------END PGP SIGNATURE-----
-
---MIMUgHtOMspXsyrA--
+-- 
+	Ansuel
