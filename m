@@ -2,103 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6F885685B7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 12:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4E3D56855D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 12:22:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232429AbiGFKhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 06:37:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50748 "EHLO
+        id S230362AbiGFKV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 06:21:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229898AbiGFKhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 06:37:19 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFEF82717B;
-        Wed,  6 Jul 2022 03:37:18 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id sb34so26289953ejc.11;
-        Wed, 06 Jul 2022 03:37:18 -0700 (PDT)
+        with ESMTP id S233243AbiGFKVg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 06:21:36 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B237027B0C
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 03:20:57 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id r14so15582120wrg.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 03:20:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=MdRqT9TlKdwtrSOPprK+WxAXXd6G2UIUMtOdNMZWkdg=;
-        b=kUYGi0zyaBVHlWyW2J/RjJbjDeIvRLSOl1zOC96AGnE90aip4WIhWrH3IF+8Ngfa6s
-         m+hVdOWs3loi+YVcBnxcJsSddoM8Ad8FfSiJEjTT1j/LgZ62Syhtxx9GsGdSaSizpUmO
-         YQY1O1D386wLK3mgr7bqOGVABn6kvLYRsjbLk7am351BOTHd7k9wouiHeDZbIdx2aqYd
-         Q+1uPAnYne6cG9i0a6rdbjhK+pwadpBzYVWEkRKpG66NU3D72tCYbQCrLBI8+ju/m6ja
-         +mXn0Hid725+tgu6EG14lS1ThkbyxNckigH3OsStHi9Tyu8p1oYkIlixA5teJY6L1ksW
-         2z8g==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=c9Pbm/W8nF8nZPtj8UO3JkkVe9BS9XinY2CO9YPr+wQ=;
+        b=xxDxx/W+EufdzGtSD4vFx6bM4t7kylYudf27P2IdJd/rHIIkgMfFHsPuPGfBOYyj8F
+         6qn98CnRdFCsNYEaryC1zeUJ06kZaB2lwXK9bqRKHLvBPDjy4SouJBtIaRvavV10FB8x
+         EypFqEJS9sc5DQjNm9QpZ2j6owLp6QTmmt6m8Yn0DRpO+fOpPzPKQlrSmTfEJzbx8DN1
+         npuAgNxn2/OM+tpdJX9Vye+kITqd9btkF8HogS5+Us4thnFKvpCqISUAXu0OWirWuKLL
+         5rZDZkVx06BsiQ+WsLE7Vy5ureIIPIR+zCagIFvE13vtPRLIDKPFQG24AR3u9uQPcU1K
+         C0OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MdRqT9TlKdwtrSOPprK+WxAXXd6G2UIUMtOdNMZWkdg=;
-        b=m7tmm9p+hzgX0RGsgkmSWeLIM//B3mZuDSLmh2mevhXzjMvakFMAYZk5pmL8UybOnb
-         Y5wxEtP75Qy5gwnp3gioBWE7TqZZzcOUwKq8ej7H4h477joi/NFkxYod9ZbpPNk8SZYy
-         uKktt9PsZODz6wxBvIPRjcPxF6XWxpB0ys4WFBf8bJZukm8BeA4gdIZ1LEAoUWJXcWRV
-         k3uvhX375Tb4eKWhqXebJVBg5AmYj4ut6xYrQqYW9sUSAVhe/QZYGJxrrKji24DDrOYF
-         3stilLuB7+MwRH8gCG7bXPShAjROCYY/cPBn3XIl6Vmpb1wauadQpY/66aEwr4tAO/HX
-         zDTQ==
-X-Gm-Message-State: AJIora/wg2W5kspFVKBxpa/P8ppB/kQoPsHGgrjCQVCuT3bm/r2ZZqtQ
-        RCu4EnZKQOQ/2nfcVXW/6r8=
-X-Google-Smtp-Source: AGRyM1tAarnBTiCdC/ZPJSTY7R7C2gOasl5h7rc83XMHrb1C7HWHD3j5JXHa5OWdynIt1UhhJ6BSqA==
-X-Received: by 2002:a17:907:2d9e:b0:726:a03a:16c4 with SMTP id gt30-20020a1709072d9e00b00726a03a16c4mr36829048ejc.742.1657103837343;
-        Wed, 06 Jul 2022 03:37:17 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id o19-20020a17090637d300b006ff0b457cdasm17319454ejc.53.2022.07.06.03.37.16
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=c9Pbm/W8nF8nZPtj8UO3JkkVe9BS9XinY2CO9YPr+wQ=;
+        b=T1Iu2nPkj2HQsLNe0/aj7hidCZF0iU6JmqPlnB89g+tLv+2XNfeWXw9PahSdEdZKkL
+         rLtcbH60AupmoC2MJ+KRlV3nZKCvOwfkO1XRIPywcJhXZcDJbaJ/u46xV14QPBSc4qDj
+         iFGSEFSTFUSuy3LurDyhji0eSiCOlsGtilypg2i8J5z4VgQwy9qHuWcUs/lf/nYLeEem
+         +5j5475/RU6nMQU1ULa52FnmccRDMf/tNb10BDdJYycQSRBtK2VFdcfpoUKasJihMPeS
+         gwY6Ng2EGMVS+kolQMbW22qZfGL+ArqLWACTe+wo+bTkxtOb5aJhjdO14RY/uqZl9iDW
+         zXbA==
+X-Gm-Message-State: AJIora/e6L1NrzYzRHVsh4u+hxfMyyU+Z0n83diViaMzNVLIC34V5+ot
+        cIzda/zF5yVT4N+4MohZiPTIAw==
+X-Google-Smtp-Source: AGRyM1tpTcxx3jJOXqor5OLNHicM9nWBC9P1/zvkqobKe+qLg/UW3SQx9JV6zZVTiLfeZLSLnBz0Jg==
+X-Received: by 2002:a05:6000:901:b0:21a:a576:23cc with SMTP id bz1-20020a056000090100b0021aa57623ccmr36632466wrb.489.1657102856272;
+        Wed, 06 Jul 2022 03:20:56 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id f18-20020adff992000000b0021b9416fa13sm13387762wrr.90.2022.07.06.03.20.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 03:37:16 -0700 (PDT)
-Message-ID: <62c565dc.1c69fb81.a4566.e9b2@mx.google.com>
-X-Google-Original-Message-ID: <YsVh+AKZ/ZAshXzt@Ansuel-xps.>
-Date:   Wed, 6 Jul 2022 12:20:40 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] ARM: DTS: qcom: fix dtbs_check warning with new
- rpmcc clocks
-References: <20220705202837.667-1-ansuelsmth@gmail.com>
- <20220705202837.667-3-ansuelsmth@gmail.com>
- <18e40247-7151-b50a-97fe-00ee88f47d9b@linaro.org>
+        Wed, 06 Jul 2022 03:20:55 -0700 (PDT)
+Date:   Wed, 6 Jul 2022 11:20:53 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: Re: [PATCH V4 06/11] mfd: bcm2835-pm: Use 'reg-names' to get
+ resources
+Message-ID: <YsViBdDN0t3d9Ubk@google.com>
+References: <20220625113619.15944-1-stefan.wahren@i2se.com>
+ <20220625113619.15944-7-stefan.wahren@i2se.com>
+ <YrnZUqQsKVVGHUGh@google.com>
+ <7ef987c7-1d99-bd63-f7fa-66bd12811716@gmail.com>
+ <4607b996-51ac-0b3f-e046-5611774362ca@gmail.com>
+ <YrqxdAgCKRL3tCTg@google.com>
+ <e0c2098d-058b-90c8-2e16-6c069ac706d4@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <18e40247-7151-b50a-97fe-00ee88f47d9b@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e0c2098d-058b-90c8-2e16-6c069ac706d4@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 06, 2022 at 09:44:04AM +0200, Krzysztof Kozlowski wrote:
-> On 05/07/2022 22:28, Christian Marangi wrote:
-> > Fix dtbs_check warning for new rpmcc Documentation changes and add the
-> > required clocks.
-> 
-> There is no warning in the kernel, right? So the commit is not correct.
->
+On Tue, 05 Jul 2022, Florian Fainelli wrote:
 
-Oh ok, the warning is generated by the new Documentation.
-
-> Only the second part of your sentence applies, but you should extend it.
+> On 6/28/22 00:44, Lee Jones wrote:
+> > > > > Anything preventing me from applying the two MFD patches?
+> > > > > 
+> > > > 
+> > > > They are self contained and cater to being backward/forward compatible
+> > > > with Device Tree changes, so not really no. If that is how you want it,
+> > > > please proceed in taking the 2 MFD patches and I will apply the rest.
+> > > 
+> > > Actually there is a dependency between patch 10 which uses pm->rpivid_asb
+> > > and patch 7 which introduces it. I can give you my acked-by for patches 8-11
+> > > so you can take them via the MFD tree if you would like.
+> > 
+> > That works too.
+> > 
 > 
+> I took patches 1 through 5, can you apply 6 through 11? Thanks
 
-Ok will reword this.
-
-> 
-> 
-> Best regards,
-> Krzysztof
+I currently have them in soak.
 
 -- 
-	Ansuel
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
