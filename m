@@ -2,162 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D866B56856E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 12:24:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A23F5684CB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 12:11:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231906AbiGFKXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 06:23:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39064 "EHLO
+        id S231613AbiGFKKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 06:10:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231867AbiGFKXw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 06:23:52 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE26248E2;
-        Wed,  6 Jul 2022 03:23:51 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id lg18so6489634ejb.0;
-        Wed, 06 Jul 2022 03:23:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=A9xeNdZDUIjr4l2jLGqq1SJhUmTfqKYqMsJa/JfV6ag=;
-        b=MGaI+JsM9XJwL7VpB7yT/Oaz4A474xJtZQz5NEzLu+9WfWoK4TQlRBDHRfW8qbKSdc
-         GA7/T3yW7vazdXBIpLnKhiU0pLqxuWc8lpHotv9baCvj5Bgwt1WsU5jweCEm25CzchXl
-         2XE6d1IQsFAjT/8LuxxYSv8PrgMyAzlhBDiOPjsIeeegZfLwxBsvZ5DW2WY5on1snlSq
-         LxuSxGOA+TYtKNPD9Dt85W+gKmwIHQw7ct/NT769ISTPlqF6uNhD8M/DXujRgIABePDr
-         VFiq5fXuGBvud8h4T0442F3t94nsT5PcCZ/l0kObS9cNukhRS5yC4tsaft7aqTUg1j1k
-         CWqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=A9xeNdZDUIjr4l2jLGqq1SJhUmTfqKYqMsJa/JfV6ag=;
-        b=Ee5hj6VDaM0SOqExC6k7vcVSvgI8KQIwsqBbBM4CPXly9y/oCe6DDn2tLuFo2/cMpd
-         z9oUGkAmqEGTZbCEma+8/SqVZZ3vtJG8lUOaB0ZCnH6/arhtT+0gssAHhBE3d1gELBOp
-         PlHOSlR8NX9Jo3GvJXcErDQnKgI6CfHyZu7ioGo5dOvyJtMFPevMVXah8aXpG5BOIj8v
-         AryU/4VFlOQMyhqhI+eaMvctaPBIf4b0V5OwQfBeBPbKezJKBWzWHMrr5AkEaxifGz0r
-         JIIsAvHygMsi0NKtA0G9QzEIKg9/vqPXv1iho+YINEPwlhiYzErFPMxh8KDtlhrmhfF8
-         i5Ag==
-X-Gm-Message-State: AJIora+CnENvccohGFJTtwo1oQ6Nx5TI+9tGQCaOKDFoxRCH4cUHAEPl
-        RRZL36mm7Tzq4PC1OStUbGk=
-X-Google-Smtp-Source: AGRyM1vG14ChU514xvqFxRVaxYHsajgsNZGdG9Vwh2mJxfoeSO8ko8QGjp0eczHjU6mfpOj75LWtXg==
-X-Received: by 2002:a17:907:16a6:b0:726:574d:d31f with SMTP id hc38-20020a17090716a600b00726574dd31fmr37626967ejc.514.1657103029693;
-        Wed, 06 Jul 2022 03:23:49 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id p17-20020a056402501100b0043787ad7cfasm20919288eda.22.2022.07.06.03.23.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 03:23:49 -0700 (PDT)
-Message-ID: <62c562b5.1c69fb81.d69fc.4079@mx.google.com>
-X-Google-Original-Message-ID: <YsVe0Pu4FooN5XYt@Ansuel-xps.>
-Date:   Wed, 6 Jul 2022 12:07:12 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] clk: qcom: lcc-ipq806x: convert to parent data
-References: <20220621163326.16858-1-ansuelsmth@gmail.com>
- <20220621163326.16858-3-ansuelsmth@gmail.com>
- <CAA8EJpqQTTevQa4pQg3E+x4_AOjYo8ajOqUrfwGsVtC8N=bpOw@mail.gmail.com>
- <62b228b6.1c69fb81.e4673.34a2@mx.google.com>
- <CAA8EJprb=xV9+gZMANAYrt_JnKAtC89h1RAosL+g517_-Ugd2g@mail.gmail.com>
- <62c4a38b.1c69fb81.4d58e.ce99@mx.google.com>
- <CAA8EJprGf6V9K1gFDCE+bnKwhjVgLvruTRAZ-AOqfPsbmmYRLA@mail.gmail.com>
+        with ESMTP id S232600AbiGFKJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 06:09:48 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D365F65A1;
+        Wed,  6 Jul 2022 03:09:34 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id CE35C66019AA;
+        Wed,  6 Jul 2022 11:09:32 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657102173;
+        bh=BAxlR3/lkspMvovn7KbmzMLiXm5omRN205BI9gc6tfg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kGVpgnuUA/4JhkoGIJAnlmqe8l/+JjzD+3DnA/lwseolhlVGk0tVWP9IEmq/OF7bn
+         2tG4H1R2epzcQPgEpEw6MZKHjvJCXMdaVj0gLfWppmjpIgDyMan5HpcHgqap/1nvtz
+         RtzlQOFCR6RRflc/Pf/NIBDRcJI9X6KRGqYb44YkSSU44hmzdvuotW9PGiMYqqn6RN
+         Z7gNSUFkOHarmP4nIeaBF0iJM4PoLdCPHA+d9MVCK35+X4HexQn1Of3kTfx7o9717g
+         6UJswu4Scnx0Qxqq5lBWVd7TY6GtYnKUtVoOyWrDKdj6WbElcVUdW7cUDApASAiK09
+         af9yY9CmRviKg==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     lgirdwood@gmail.com
+Cc:     broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 RESEND 0/4] MediaTek Helio X10 MT6795 - MT6331/6332 Regulators
+Date:   Wed,  6 Jul 2022 12:09:08 +0200
+Message-Id: <20220706100912.200698-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJprGf6V9K1gFDCE+bnKwhjVgLvruTRAZ-AOqfPsbmmYRLA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 06, 2022 at 10:34:04AM +0300, Dmitry Baryshkov wrote:
-> On Tue, 5 Jul 2022 at 23:48, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> >
-> > On Tue, Jun 21, 2022 at 11:43:10PM +0300, Dmitry Baryshkov wrote:
-> > > On Tue, 21 Jun 2022 at 23:23, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > > >
-> > > > On Tue, Jun 21, 2022 at 08:15:57PM +0300, Dmitry Baryshkov wrote:
-> > > > > On Tue, 21 Jun 2022 at 19:33, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > > > > >
-> > > > > > Convert lcc-ipq806x driver to parent_data API.
-> > > > > >
-> > > > > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > > > > > ---
-> > > > > > v2:
-> > > > > > - Fix Sob tag
-> > > > > >
-> > > > > >  drivers/clk/qcom/lcc-ipq806x.c | 79 +++++++++++++++++++---------------
-> > > > > >  1 file changed, 44 insertions(+), 35 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/clk/qcom/lcc-ipq806x.c b/drivers/clk/qcom/lcc-ipq806x.c
-> > > > > > index ba90bebba597..c07ca8dc6e3a 100644
-> > > > > > --- a/drivers/clk/qcom/lcc-ipq806x.c
-> > > > > > +++ b/drivers/clk/qcom/lcc-ipq806x.c
-> > > > > > @@ -24,6 +24,10 @@
-> > > > > >  #include "clk-regmap-mux.h"
-> > > > > >  #include "reset.h"
-> > > > > >
-> > > > > > +static const struct clk_parent_data gcc_pxo[] = {
-> > > > > > +       { .fw_name = "pxo", .name = "pxo" },
-> > > > >
-> > > > > I think you'd use .name = "pxo_board" here. You don't need to use the
-> > > > > interim clock.
-> > > > >
-> > > >
-> > > > In gcc and in the rest of this driver we use pxo. Wonder what is right?
-> > >
-> > > I'd use .fw_name = "pxo", .name = "pxo_board", like the rest of drivers do.
-> > >
-> >
-> > Will do the change, but I need an explaination... Is the use of
-> > pxo_board correct?
-> >
-> > I'm sending a patch that sets the pxo_board fixed clock in dts to output
-> > "pxo". The only clock that still use pxo_board is rpm, everything else
-> > at least for ipq806x use pxo and i'm sending a patch to use pxo for rpm.
-> >
-> > Considering pxo is always present and pxo_board should be dropped
-> > because every ipq806x driver use "pxo".
-> >
-> > What is correct naming pxo or pxo_board? I assume pxo right?
-> 
-> This might be not the case for the ipq806x, but here is the story for
-> all other (old) platforms:
-> - gcc driver manually registered pxo/cxo/xo fixed factor clocks.
-> - Then we started adding *xo_board clocks to the DT, as they represent
-> the external oscillators
-> -  PXO clock consumers receive a clocks entry with clock-names = "pxo"
-> which points to the pxo_board
-> - All clock drivers are now being switched to use .fw_name = "pxo",
-> .name = "pxo_board" to use the DT-defined pxo_board clock.
-> 
-> Hopefully at some point we can then drop the manually registered pxo
-> clock and always use the DT-based one.
->
+In an effort to give some love to the apparently forgotten MT6795 SoC,
+I am upstreaming more components that are necessary to support platforms
+powered by this one apart from a simple boot to serial console.
 
-Okok. I got confused since looking at the code factor clock is really
-just a hack to handle both driver that use pxo_board and pxo cause from
-what I notice it's the same clock with different naming.
+This series adds support for the regulators found in MT6331 and MT6332
+main/companion PMICs.
 
-Sooo keep using pxo_board with the fact that pxo is always present seems
-to be redundant but if that's the pattern then I will just keep
-pxo_board in .name where it's used.
+Adding support to each driver in each subsystem is done in different
+patch series as to avoid spamming uninteresting patches to maintainers.
 
-> -- 
-> With best wishes
-> Dmitry
+Tested on a MT6795 Sony Xperia M5 (codename "Holly") smartphone.
+
+Changes in v3:
+ - Sorry, one of the commits picked both the pre-rename file and
+   the new one... the v3 fixes the mt6332 bindings commit.
+ - Changed comment style on top for mt633[12]-regulator.c as
+   suggested (missed that in v2)
+
+Changes in v2:
+ - Refactored description in dt-bindings
+ - Simplified get_status() function and removed callback
+   where not needed
+ - Simplified set_mode()/get_mode() functions and removed
+   callback where not needed
+ - Added new regulator_ops for no_qi (no .get_status) and
+   for no_ms (no .{get, set}_mode)
+ - Fixed vsel mask on some regulators and removed pattern of
+   repeated voltage entries present in some voltage tables,
+   avoiding to set higher bits for safety
+ - Reordered regulators (and some formatting fixes) in
+   mt6331-regulator.c in per-type alphabetic order
+
+AngeloGioacchino Del Regno (4):
+  dt-bindings: regulator: Add bindings for MT6331 regulator
+  regulator: Add driver for MT6331 PMIC regulators
+  dt-bindings: regulator: Add bindings for MT6332 regulator
+  regulator: Add driver for MT6332 PMIC regulators
+
+ .../regulator/mediatek,mt6331-regulator.yaml  | 273 ++++++++++
+ .../regulator/mediatek,mt6332-regulator.yaml  | 112 ++++
+ drivers/regulator/Kconfig                     |  18 +
+ drivers/regulator/Makefile                    |   2 +
+ drivers/regulator/mt6331-regulator.c          | 507 ++++++++++++++++++
+ drivers/regulator/mt6332-regulator.c          | 422 +++++++++++++++
+ include/linux/regulator/mt6331-regulator.h    |  46 ++
+ include/linux/regulator/mt6332-regulator.h    |  27 +
+ 8 files changed, 1407 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6331-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6332-regulator.yaml
+ create mode 100644 drivers/regulator/mt6331-regulator.c
+ create mode 100644 drivers/regulator/mt6332-regulator.c
+ create mode 100644 include/linux/regulator/mt6331-regulator.h
+ create mode 100644 include/linux/regulator/mt6332-regulator.h
 
 -- 
-	Ansuel
+2.35.1
+
