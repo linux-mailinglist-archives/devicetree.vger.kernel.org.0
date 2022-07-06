@@ -2,50 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C2D95693AA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 22:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C955D5693B5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 22:58:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233940AbiGFUyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 16:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56392 "EHLO
+        id S234295AbiGFU6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 16:58:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231529AbiGFUyH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 16:54:07 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ACFE20BD9;
-        Wed,  6 Jul 2022 13:54:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=Cn+qe4oiP2jeVARS3ZZalA1ZQM3ZcWF+3cLGOCQIW6g=; b=Fb
-        kv18Q9LyGiGlJS2oZq2dTmT5wMOfvxUSXNoM2SkooPf4owOi5EfMUEl+v6TzFPR4/Nc0nyUW7tgbT
-        Nf+L0kHfam4g8NF+2pU12gGEMlhAKpOtnZbhGc4/6ddSqeFJMGQEkxi0IprljX04RVheBFA/BxFk/
-        QOsAu7OdjH+dLHE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1o9C1q-009W8z-Qk; Wed, 06 Jul 2022 22:53:46 +0200
-Date:   Wed, 6 Jul 2022 22:53:46 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 00/11] ARM: dts: mvebu: Add definitions for PCIe legacy
- INTx interrupts
-Message-ID: <YsX2Wvtz7hEpJ6X+@lunn.ch>
-References: <20220706183114.30783-1-pali@kernel.org>
+        with ESMTP id S234159AbiGFU6H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 16:58:07 -0400
+X-Greylist: delayed 4358 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 06 Jul 2022 13:58:05 PDT
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D4961E3D3;
+        Wed,  6 Jul 2022 13:58:05 -0700 (PDT)
+Received: (Authenticated sender: contact@artur-rojek.eu)
+        by mail.gandi.net (Postfix) with ESMTPA id 6A7C2240007;
+        Wed,  6 Jul 2022 20:58:01 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220706183114.30783-1-pali@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+Date:   Wed, 06 Jul 2022 22:58:01 +0200
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, maccraft123mc@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>, paul@crapouillou.net,
+        jic23@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org,
+        dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v7 1/3] dt-bindings: adc-joystick: add poll-interval
+In-Reply-To: <20220706143744.GA6709-robh@kernel.org>
+References: <20220705190354.69263-1-macromorgan@hotmail.com>
+ <20220705190354.69263-2-macromorgan@hotmail.com>
+ <20220706143744.GA6709-robh@kernel.org>
+Message-ID: <79f571c76adc5e4c17857b6d4785d727@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,10 +47,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 06, 2022 at 08:31:03PM +0200, Pali Rohár wrote:
-> This patch series add definitions for PCIe legacy INTx interrupts into
-> every DTS file used by the pci-mvebu.c controller driver.
+On 2022-07-06 16:37, Rob Herring wrote:
+> On Tue, 05 Jul 2022 14:03:52 -0500, Chris Morgan wrote:
+>> From: Chris Morgan <macroalpha82@gmail.com>
+>> 
+>> Add poll-interval support for the adc-joystick documentation. This is
+>> an optional value and if not provided the adc-joystick works as it
+>> does today (with buffers). If this value is provided, the adc-joystick
+>> driver is polled at the specified interval. The existing attribute of
+>> "poll-interval" was used instead of complying with property-units.yaml
+>> after discussion of the issue on the mailing list.
+>> 
+>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/input/adc-joystick.yaml | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>> 
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-What you fail to explain in the commit message is Why?
-
-     Andrew
+Acked-by: Artur Rojek <contact@artur-rojek.eu>
