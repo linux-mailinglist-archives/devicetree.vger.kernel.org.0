@@ -2,253 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBF6A569388
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 22:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33AC9569393
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 22:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234371AbiGFUp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 16:45:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50702 "EHLO
+        id S233777AbiGFUtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 16:49:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234102AbiGFUp1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 16:45:27 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9600E28E18
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 13:45:25 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-10be0d7476aso15972544fac.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 13:45:25 -0700 (PDT)
+        with ESMTP id S233932AbiGFUtQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 16:49:16 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F44518E0C;
+        Wed,  6 Jul 2022 13:49:14 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id f190so9483242wma.5;
+        Wed, 06 Jul 2022 13:49:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YBriQrz91n0MgoyO0KTx3Kgs6h8dLEjEgXb98Yv9zJA=;
-        b=yioiZGV+ZVSvNLZdS1kwOHSEiyd4A4bK8QAwtQ5ouYhdsJ0lv9f9kc6Y+ZBI5Azaem
-         y7i56NAGmagDSFWbEGhE9YKwMfLLoo7diuG0tIfu4Mn/3CjHsS7LYNuU8pwkKpHYXnc+
-         Xiju0RL7OxOMgxopmZppJIdqRw8IKsc7Gg6qrS0rUZi6Ln75/aiJXCIeaU6D+Jt3tzTh
-         Cc/93gY0PgqOu8dUYJQT81YiNq/4QTA6oXd37vxaDlrcqOYJPRFrzjX1SnBWIQhYo4Yd
-         tuSr9eS/nhyUyTgV2REY++QF3puIhF73T+mbiNCMpJZ/mffv1hvPnjjLrbB1QeaU20nS
-         1J3Q==
+         :content-disposition:in-reply-to:user-agent;
+        bh=lYoHz1Fg/1584iuxLfGRJUV0pVNLLTo+tRGLocQgAic=;
+        b=qF8n+bThr2rOi+TwTlYMeusIZZd1KAnaLyxdzTUupEPeEY0phpAZ/8+ni3fZickV51
+         LTf7TRAoVFadi4at5hjXEczDzbM+ilUpJEc/ujyex1l/GE9LkBLHiEK5ZSLL1mOLJtTT
+         SLoXq020YES3i0PyUjWQaPfyF3ZvZgLWFfg8+bVPLWOvHNe0styrmiWMJ2fQSIrlOSNN
+         gq6NjEmDwIaT6jidSInI9WScXjtoEihruq6Ycmwr9OY4ryirsovUo0kMX6ZXiLceXqMU
+         7CIiPKqKJjALnFpvwQKI2bxsIl9b/KKPJTACdcuBWziomlX7p4+2y8zdQJKyVAZVU+cx
+         Sg1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YBriQrz91n0MgoyO0KTx3Kgs6h8dLEjEgXb98Yv9zJA=;
-        b=NaIR8hzWBqxTCMDPmGWXbkCiWEzhVngVfrxIlQpXhxJaxYK403pl+5TteNd422Qpfi
-         tKuR9aPS7Aw2ZR9uIsezQ03jWT52EZT7D4UjnxjvmuPNP2HfkQZDadLdNJCvDQ9ltc4F
-         uz5w76NfRBmppI2eWK6tV/13ZJEhAsBThvlvbMW0Xev6USbY2qFdFONGeEW0OrtIthMq
-         OQj6eziTflF6le72sLoVyjSFBC2xXLkOvI6BTpIDVU+gOtovNd6AFSVHkzuEQvwuh4sl
-         3cxBooghkY6r5vjq56WYBLo4Fxo3hFLFQ7Qdmc/ujcmjgsemILATjsM++zO46zUWV7uZ
-         8eZg==
-X-Gm-Message-State: AJIora82LZe1nQ2jW3kafVwEd9g8oFaQlhuABldOdpdM34AonAGNYjnv
-        6HQvDebK6xpxbO38Gd1tvE6pRQ==
-X-Google-Smtp-Source: AGRyM1vaciXsz9nBjLjWuFNLPsfamx0NtDp9xdeLPh/Pz9Rv4uQ7ZzXtd2FrFkZ7utztWilG2R9i5g==
-X-Received: by 2002:a05:6870:829e:b0:10c:240b:cbb9 with SMTP id q30-20020a056870829e00b0010c240bcbb9mr335659oae.115.1657140323479;
-        Wed, 06 Jul 2022 13:45:23 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r187-20020a4a4ec4000000b0041ba304546csm16855885ooa.1.2022.07.06.13.45.22
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=lYoHz1Fg/1584iuxLfGRJUV0pVNLLTo+tRGLocQgAic=;
+        b=43gMfI/aRd29lL+3KuE5Xvm1A+M+t8LNsG58hMXmm0aD7ZTJ7O69y/zPbiGWweILX2
+         vl5H03B8Ukd50I+GQG/IxU5hy7Y/qoFByf0dkqsGDBsk/5oirUJYVK5t0e63YjbX36Ll
+         Jpsu4kaFTSX1hN+Hh6OAFuRb/8IEnjpn4yra2HSLZUsH0sWzmj2QYIufeDaCw2Vwnx6I
+         /Q1ZgYMRuwgYAQ+kbREeFgEI1z8LXOKs7ozAsyKj70BkAvowQPGYSPnkIZBw9JDf0XQL
+         mBAH8TLOYBrWL3slc9Ckc2RSSwuzuT6jv2k8RdjD5rl8reJ4bHnBwTFbSdqXM/Dt0QPc
+         ifqw==
+X-Gm-Message-State: AJIora/3/YEYx8XO1tS9fvq8g5GP/fJ0dcv8v32FY73BN73GDZPPeQBX
+        d9s6xM0N2Fnqw33j15UmCMc=
+X-Google-Smtp-Source: AGRyM1sN2Gr9pnnf2B9ExEsmV7zQLd1jwNdznYyJukcOts3te12cLDDesVoK11ZQXS7PNS527AU84w==
+X-Received: by 2002:a05:600c:1986:b0:3a1:9936:67ff with SMTP id t6-20020a05600c198600b003a1993667ffmr476429wmq.47.1657140552710;
+        Wed, 06 Jul 2022 13:49:12 -0700 (PDT)
+Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id bi18-20020a05600c3d9200b0039c4506bd25sm26412408wmb.14.2022.07.06.13.49.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 13:45:22 -0700 (PDT)
-Date:   Wed, 6 Jul 2022 15:45:21 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/4] dt-bindings: clock: qcom: add bindings for dispcc
- on SM8450
-Message-ID: <YsX0YdV40Zp55wz8@builder.lan>
-References: <20220623114737.247703-1-dmitry.baryshkov@linaro.org>
- <20220623114737.247703-2-dmitry.baryshkov@linaro.org>
+        Wed, 06 Jul 2022 13:49:11 -0700 (PDT)
+Date:   Wed, 6 Jul 2022 22:49:10 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Bhadram Varka <vbhadram@nvidia.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
+        kuba@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+        pabeni@redhat.com, davem@davemloft.net, edumazet@google.com
+Subject: Re: [PATCH net-next v2 0/9] tegra: Add support for MGBE controller
+Message-ID: <YsX1OCJDqSzjf2lo@orome>
+References: <20220706031259.53746-1-vbhadram@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="FnJSvki1Pn59tmsf"
 Content-Disposition: inline
-In-Reply-To: <20220623114737.247703-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220706031259.53746-1-vbhadram@nvidia.com>
+User-Agent: Mutt/2.2.6 (2022-06-05)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 23 Jun 06:47 CDT 2022, Dmitry Baryshkov wrote:
 
-> Add device tree bindings for the display clock controller on Qualcomm
-> SM8450 platform.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../bindings/clock/qcom,dispcc-sm8450.yaml    | 132 ++++++++++++++++++
->  1 file changed, 132 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm8450.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8450.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8450.yaml
-> new file mode 100644
-> index 000000000000..953d20a25cfb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8450.yaml
-> @@ -0,0 +1,132 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8450.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display Clock & Reset Controller Binding for SM8450
-> +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> +
-> +description: |
-> +  Qualcomm display clock control module which supports the clocks, resets and
-> +  power domains on SM8450.
-> +
-> +  See also:
-> +    dt-bindings/clock/qcom,dispcc-sm8450.h
+--FnJSvki1Pn59tmsf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please prefix this with include/
+On Wed, Jul 06, 2022 at 08:42:50AM +0530, Bhadram Varka wrote:
+> This series adds the support for MGBE ethernet controller
+> which is part of Tegra234 SoC's.
+>=20
+> Bhadram Varka (3):
+>   dt-bindings: net: Add Tegra234 MGBE
+>   arm64: defconfig: Enable Tegra MGBE driver
+>   stmmac: tegra: Add MGBE support
+>=20
+> Thierry Reding (6):
+>   dt-bindings: power: Add Tegra234 MGBE power domains
+>   dt-bindings: Add Tegra234 MGBE clocks and resets
+>   dt-bindings: memory: Add Tegra234 MGBE memory clients
+>   memory: tegra: Add MGBE memory clients for Tegra234
+>   arm64: tegra: Add MGBE nodes on Tegra234
+>   arm64: tegra: Enable MGBE on Jetson AGX Orin Developer Kit
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sm8450-dispcc
-> +
-> +  clocks:
-> +    items:
+I've applied patches 1-3 as well as 4 to the Tegra tree with Krzysztof's
+Acked-by tags from v1. Bhadram's out sick, so I'm going to send out an
+updated (and hopefully final) version of the DT bindings and driver
+patches later on.
 
-I really think we should include a reference to GCC_DISP_AHB_CLK here.
+Thierry
 
-There are two cases here, either the implementation does what we do in
-Linux and just always-on the clock from gcc, in which case there's
-nothing in here to ensure probe order and that the clock is actually on
-before dispcc probes.
+--FnJSvki1Pn59tmsf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The other case would be that the implementation doesn't always-on the
-gcc clock, in which case we need the reference.
+-----BEGIN PGP SIGNATURE-----
 
-> +      - description: Board XO source
-> +      - description: Board Always On XO source
-> +      - description: Byte clock from DSI PHY0
-> +      - description: Pixel clock from DSI PHY0
-> +      - description: Byte clock from DSI PHY1
-> +      - description: Pixel clock from DSI PHY1
-> +      - description: Link clock from DP PHY0
-> +      - description: VCO DIV clock from DP PHY0
-> +      - description: Link clock from DP PHY1
-> +      - description: VCO DIV clock from DP PHY1
-> +      - description: Link clock from DP PHY2
-> +      - description: VCO DIV clock from DP PHY2
-> +      - description: Link clock from DP PHY3
-> +      - description: VCO DIV clock from DP PHY3
-> +      - description: sleep clock
-> +
-> +  clock-names:
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmLF9UYACgkQ3SOs138+
+s6H+XxAAjab/OuhiRzrvxRJDUm1gRGCWFt4UxtDBPOem1+/HX1o73rIWM/WTgUaI
+/APP+Meoc2YIqv5HOX+xvzs3Ybx9FVPfLcqoCLGOEJsRcr30cXXbPKovisW6mZgH
+TQmg0EqHfxqAZz2lRz5kGowPPH+AyG4WBTLTRYbuEnzeu5xZCXRwSkEKOIogq4pK
+KXxi8RuTMFWjbzFFi6tWUrphkXCYZHfWudlYYQWR/9PJop0GGx4FCNmrhZQ9M2AG
+voNgGw19IO5PkSidJx3Qlsa8futB3Nz09lXYvyNcOF6q6xCOHlcjaO0XhYvwlerN
+jXEKkDwaoee1zC2gbNiAoEP2Fn0jxGh+EJ0tCj+QyyR92tl1nq0LGqafKXyh/d90
+P1arMcYKoXU8IxcC5jndqho5Wr8wjecA0ekTRqKoi5QPQ7MBetodoBMr1A9AXIgT
+iKJTxDBteuOmL66KnCrR/3C7xi0GyAX2uZNaCNx2hIli5D+9gvs3u+YjqBSkMRdR
+f7pUI7O2kNh1P84efBWhANMPGzs3Ot531+rmwJRwLdTexyg9JCeKvdYFrei8jHSJ
+1jzkNrqIDgoxB9p5ZBqvalZhoRn3q+gEVvC5bABh/8fKO5vLgcPVEic0fHwTNAM/
+Ehhk9+R28zzcTIMqnAJbiaJMC+FnO8jAsFr6Upz5xV00ys7naXk=
+=ym3B
+-----END PGP SIGNATURE-----
 
-Please switch the implementation to index-based lookup and drop the
-clock-names.
-
-> +    items:
-> +      - const: bi_tcxo
-> +      - const: bi_tcxo_ao
-> +      - const: dsi0_phy_pll_out_byteclk
-> +      - const: dsi0_phy_pll_out_dsiclk
-> +      - const: dsi1_phy_pll_out_byteclk
-> +      - const: dsi1_phy_pll_out_dsiclk
-> +      - const: dp0_phy_pll_link_clk
-> +      - const: dp0_phy_pll_vco_div_clk
-> +      - const: dp1_phy_pll_link_clk
-> +      - const: dp1_phy_pll_vco_div_clk
-> +      - const: dp2_phy_pll_link_clk
-> +      - const: dp2_phy_pll_vco_div_clk
-> +      - const: dp3_phy_pll_link_clk
-> +      - const: dp3_phy_pll_vco_div_clk
-> +      - const: sleep_clk
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    description:
-> +      A phandle and PM domain specifier for the MMCX power domain.
-> +    maxItems: 1
-> +
-> +  required-opps:
-> +    description:
-> +      A phandle to an OPP node describing required MMCX performance point.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +  - '#reset-cells'
-> +  - '#power-domain-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +    clock-controller@af00000 {
-> +      compatible = "qcom,sm8450-dispcc";
-> +      reg = <0x0af00000 0x10000>;
-> +      clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +               <&rpmhcc RPMH_CXO_CLK_A>,
-> +               <&dsi0_phy 0>,
-> +               <&dsi0_phy 1>,
-> +               <&dsi1_phy 0>,
-> +               <&dsi1_phy 1>,
-> +               <0>, <0>,
-> +               <0>, <0>,
-> +               <0>, <0>,
-> +               <0>, <0>,
-
-One per line please.
-
-Thanks,
-Bjorn
-
-> +               <&sleep_clk>;
-> +      clock-names = "bi_tcxo",
-> +                    "bi_tcxo_ao",
-> +                    "dsi0_phy_pll_out_byteclk",
-> +                    "dsi0_phy_pll_out_dsiclk",
-> +                    "dsi1_phy_pll_out_byteclk",
-> +                    "dsi1_phy_pll_out_dsiclk",
-> +                    "dp0_phy_pll_link_clk",
-> +                    "dp0_phy_pll_vco_div_clk",
-> +                    "dp1_phy_pll_link_clk",
-> +                    "dp1_phy_pll_vco_div_clk",
-> +                    "dp2_phy_pll_link_clk",
-> +                    "dp2_phy_pll_vco_div_clk",
-> +                    "dp3_phy_pll_link_clk",
-> +                    "dp3_phy_pll_vco_div_clk",
-> +                    "sleep_clk";
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +      #power-domain-cells = <1>;
-> +      power-domains = <&rpmhpd SM8450_MMCX>;
-> +      required-opps = <&rpmhpd_opp_low_svs>;
-> +    };
-> +...
-> -- 
-> 2.35.1
-> 
+--FnJSvki1Pn59tmsf--
