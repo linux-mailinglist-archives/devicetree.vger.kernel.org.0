@@ -2,110 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4D3567B58
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 03:12:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12EB0567B5C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 03:14:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229878AbiGFBMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jul 2022 21:12:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55092 "EHLO
+        id S229648AbiGFBOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jul 2022 21:14:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiGFBME (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 21:12:04 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B449D17E3B;
-        Tue,  5 Jul 2022 18:12:03 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id h17so6662273wrx.0;
-        Tue, 05 Jul 2022 18:12:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=5aHvbPnFc3WrMNwBi3yAbFFZyJSqQyCqgLMTVPf4RLU=;
-        b=Kc8vqNE2IGoqlLDiZ+FSqlnPMExF5NIN1pe0GVo228I4/ps9+EPKOFtOoAjww6DkN7
-         D3wAOQREyUjj9xFZsxi/9P1VkL2umDintLoR3mqOCyarg6D+20MKs8DKKp8KyL91icZl
-         b8RWC2eyMAH+mRGKu/2v2Xic3pokUFFld53cdPko425fHnmg7xHTLhHz4IeV+g8UKzqW
-         2Od0FoVavukSxMtI94JeibQJyzqxJKzTeRC/x3z2dUz+BSB95FDZtUj8niJgYUYtqwgT
-         631dYIcVdX+TSm4Kcph3oa9DwpDRgTBOtz6nTmyJ9ahi7K+AcI3HoIIjyMNbM/E+K06m
-         ExQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=5aHvbPnFc3WrMNwBi3yAbFFZyJSqQyCqgLMTVPf4RLU=;
-        b=5hKaehKzFQIW6aQOP1eAA1zvEalobt5A2zNVFOycXrcAksn/8azX3SK/fqv9lNhuIU
-         IT7l+sKziOHHvHPEbwIL7eEWcJzZf9VNuivm1t9YtDjdi6A3wqLFlI7wlBRV3Z8Ae+Ww
-         T0bJ0j6psCvaue6h+vi3dIhsNAPc/pI7ZQIo8BEj6YFHx3a2IABPOguJpqka3jnySv4b
-         EjBgta0btZihh1y1cbUJ7LPAI5/++XBLaWgpGL32iMC4bV+O6bLakhSxjRMpYAY+fR+W
-         ODl/HDB/AzV8cirAcok9b5wDrXpQ89X7FVDfoxrpjiqgOSZrIdSkiY36ZtqbXsMF75R/
-         YLLg==
-X-Gm-Message-State: AJIora9FlqQYO91BI2nXRtFqWFZmCnskKxad6Iq/HZ0mKq7cUpG3phvy
-        8QalDMyDN7d2tZBKkAULNBV6eOgqbTD/MKCa3e8=
-X-Google-Smtp-Source: AGRyM1sdTmzdRD2GUYAi9SAT8RRwNuwCu1WxK/TW2ZV5+qb5KAVwcP2Y6E3q1zrMXKRo9/VS1fNTY93liJO4UFoMeTA=
-X-Received: by 2002:adf:f90c:0:b0:21a:3dcb:d106 with SMTP id
- b12-20020adff90c000000b0021a3dcbd106mr33713209wrr.448.1657069922265; Tue, 05
- Jul 2022 18:12:02 -0700 (PDT)
+        with ESMTP id S229562AbiGFBOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jul 2022 21:14:23 -0400
+Received: from m151.mail.126.com (m151.mail.126.com [220.181.15.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D52B3DEC2
+        for <devicetree@vger.kernel.org>; Tue,  5 Jul 2022 18:14:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+        s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=1jYni
+        OYbZCdhXrN7s/jpU+KHQzVsNjtIfanMZUPDbcM=; b=cQwt/IH1FQrgC6DGncqrU
+        LoHCTZaVBm6obKTxWEZRaUf6mXBKVKofohJGdmUtATDsrpk098Pp9/AyaepmHvhO
+        njiaU63FmWy8SW6VkfK6BNfRpYtxHEXGa1IwczcSqI1uuUFoI7kP8IovpctS6hss
+        eioJEhNtS1BPCEJ4ZLkh0g=
+Received: from windhl$126.com ( [124.16.139.61] ) by ajax-webmail-wmsvr1
+ (Coremail) ; Wed, 6 Jul 2022 09:14:13 +0800 (CST)
+X-Originating-IP: [124.16.139.61]
+Date:   Wed, 6 Jul 2022 09:14:13 +0800 (CST)
+From:   "Liang He" <windhl@126.com>
+To:     "Rob Herring" <robh@kernel.org>
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        linmq006@gmail.com
+Subject: Re:Re: [PATCH] of: device: Fix missing of_node_put() in
+ of_dma_set_restricted_buffer
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20220113(9671e152)
+ Copyright (c) 2002-2022 www.mailtech.cn 126com
+In-Reply-To: <20220705144527.GA2048024-robh@kernel.org>
+References: <20220702014449.263772-1-windhl@126.com>
+ <20220705144527.GA2048024-robh@kernel.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=GBK
 MIME-Version: 1.0
-References: <1657038252-31360-1-git-send-email-u0084500@gmail.com>
- <1657038252-31360-3-git-send-email-u0084500@gmail.com> <CAHp75VeV6vByZXGLraLes+94Rfs23ZjPXGaXzUf-YY=sb_1=2Q@mail.gmail.com>
-In-Reply-To: <CAHp75VeV6vByZXGLraLes+94Rfs23ZjPXGaXzUf-YY=sb_1=2Q@mail.gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Wed, 6 Jul 2022 09:11:50 +0800
-Message-ID: <CADiBU3_7hbwesbXTHBhqo7orQmYp=bY_8b7yhNDKB6m6-CCEtA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] iio: adc: Add rtq6056 support
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        cy_huang <cy_huang@richtek.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Message-ID: <636c1033.630.181d11266e0.Coremail.windhl@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: AcqowABXWbHl4cRiPmQfAA--.37726W
+X-CM-SenderInfo: hzlqvxbo6rjloofrz/xtbBGgE2F1-HZchpLwABsI
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=
-=886=E6=97=A5 =E9=80=B1=E4=B8=89 =E5=87=8C=E6=99=A83:09=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> On Tue, Jul 5, 2022 at 6:31 PM cy_huang <u0084500@gmail.com> wrote:
-> >
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > Add Richtek rtq6056 supporting.
-> >
-> > It can be used for the system to monitor load current and power with 16=
--bit
-> > resolution.
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
->
-> Since you sent a new version:
-> I said explicitly that the kernel version mustn't be not stable nor devel=
-oping.
->
-Sorry, and this.
-Are you saying that patch series need to depend on the stable kernel versio=
-n?
-I cannot always sync the latest one and have to use the tag to grab
-the stable one.
-Right?
-> ...
->
-> > +KernelVersion: 5.15.31
->
-> ^^^ Wrong
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+CgoKCkF0IDIwMjItMDctMDUgMjI6NDU6MjcsICJSb2IgSGVycmluZyIgPHJvYmhAa2VybmVsLm9y
+Zz4gd3JvdGU6Cj5PbiBTYXQsIEp1bCAwMiwgMjAyMiBhdCAwOTo0NDo0OUFNICswODAwLCBMaWFu
+ZyBIZSB3cm90ZToKPj4gV2Ugc2hvdWxkIHVzZSBvZl9ub2RlX3B1dCgpIGZvciB0aGUgcmVmZXJl
+bmNlICdub2RlJyByZXR1cm5lZCBieQo+PiBvZl9wYXJzZV9waGFuZGxlKCkgd2hpY2ggd2lsbCBp
+bmNyZWFzZSB0aGUgcmVmY291bnQuCj4+IAo+PiBGaXhlczogZmVjOWI2MjUwOTVmICgib2Y6IEFk
+ZCBwbHVtYmluZyBmb3IgcmVzdHJpY3RlZCBETUEgcG9vbCIpCj4+IENvLWF1dGhvcmVkLWJ5OiBN
+aWFvcWlhbiBMaW4gPGxpbm1xMDA2QGdtYWlsLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogTGlhbmcg
+SGUgPHdpbmRobEAxMjYuY29tPgo+PiAtLS0KPj4gIGRyaXZlcnMvb2YvZGV2aWNlLmMgfCA1ICsr
+KystCj4+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4+
+IAo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9vZi9kZXZpY2UuYyBiL2RyaXZlcnMvb2YvZGV2aWNl
+LmMKPj4gaW5kZXggODc0ZjAzMTQ0MmRjLi43NWI2Y2JmZmE3NTUgMTAwNjQ0Cj4+IC0tLSBhL2Ry
+aXZlcnMvb2YvZGV2aWNlLmMKPj4gKysrIGIvZHJpdmVycy9vZi9kZXZpY2UuYwo+PiBAQCAtODEs
+OCArODEsMTEgQEAgb2ZfZG1hX3NldF9yZXN0cmljdGVkX2J1ZmZlcihzdHJ1Y3QgZGV2aWNlICpk
+ZXYsIHN0cnVjdCBkZXZpY2Vfbm9kZSAqbnApCj4+ICAJCSAqIHJlc3RyaWN0ZWQtZG1hLXBvb2wg
+cmVnaW9uIGlzIGFsbG93ZWQuCj4+ICAJCSAqLwo+PiAgCQlpZiAob2ZfZGV2aWNlX2lzX2NvbXBh
+dGlibGUobm9kZSwgInJlc3RyaWN0ZWQtZG1hLXBvb2wiKSAmJgo+PiAtCQkgICAgb2ZfZGV2aWNl
+X2lzX2F2YWlsYWJsZShub2RlKSkKPj4gKwkJICAgIG9mX2RldmljZV9pc19hdmFpbGFibGUobm9k
+ZSkpIHsKPj4gKwkJCW9mX25vZGVfcHV0KG5vZGUpOwo+PiAgCQkJYnJlYWs7Cj4+ICsJCX0KPj4g
+KwkJb2Zfbm9kZV9wdXQobm9kZSk7Cj4KPlRoaXMgc2hvdWxkIGJlIGNvbnZlcnRlZCB0byB1c2Ug
+b2ZfZm9yX2VhY2hfcGhhbmRsZSgpIGl0ZXJhdG9yIGluc3RlYWQuIAo+VGhhdCB0YWtlcyBjYXJl
+IG9mIHRoZSBwdXQgaGVyZSAoYnV0IG5vdCBpbiB0aGUgYnJlYWspLgo+Cj5Sb2IKClRoYW5rcywg
+Um9iLgoKV2UgdHJ5IHRvIHJld29yayB0aGUgbG9vcCB1c2luZyBvZl9mb3JfZWFjaF9waGFuZGxl
+KCkuCgpUaGFua3MsCgpMaWFuZwo=
