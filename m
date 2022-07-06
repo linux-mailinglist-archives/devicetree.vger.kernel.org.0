@@ -2,288 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BE6D56951F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 00:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B58B3569590
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 01:01:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234324AbiGFWOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 18:14:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53606 "EHLO
+        id S233576AbiGFXBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 19:01:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234059AbiGFWOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 18:14:35 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E7B2AC61;
-        Wed,  6 Jul 2022 15:14:33 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id y8so15198353eda.3;
-        Wed, 06 Jul 2022 15:14:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1Ia2wIH1no59KtJ2reGsq0DQC1cw6bhWoil8Vrx3dno=;
-        b=bMmS736J08Rp4iZr7BTlobNhnnhL1yPZz4ZFiHYtJY43PQrGUvUpSfBdji0Dvi60zg
-         D07CJDm6NoBJuHyzYrhJFeaGxiKju6IWJUDUkJw++W1bTkKGY1iqNjBj5SFN8wpXBD8u
-         NwCLaCMhgYYUg3Lj7C1Egn4MZCwsaPtDUC0L7D9SqR3Bvuukc07MZTVZGjSL5P8GYegk
-         xQ8pARDhDyN7FLfhAOXU1EfQbunKeFwdGJgPuAyUIMwtaYk2bdJm7BIHCWBeN4Ol3ACS
-         AbyLA6iSuK6FEh4KSLcMrYOTBAhp29lkvlcASs7hXOy4EBxXeVbsAZETEU0ncGMIdUHL
-         LjpA==
+        with ESMTP id S229768AbiGFXBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 19:01:18 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE5611C12F;
+        Wed,  6 Jul 2022 16:01:17 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-1013ecaf7e0so23158082fac.13;
+        Wed, 06 Jul 2022 16:01:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1Ia2wIH1no59KtJ2reGsq0DQC1cw6bhWoil8Vrx3dno=;
-        b=fBYjpT4Va5XKpaU+Mr4Nk1wbhwPANZAmDmqIAo8Jb5R/OosCO5j3G8s16fv9U9tirE
-         mC9s5PcHFtiGC1KKKixQnZDRYFMwLlnz7cuIDMikGSGLS4Zukt+X+vXYqtgEFgQ3KdEJ
-         KL4xxMBrGHKFlaT/lEsUdiDkbOre8O5lwukKrvOpKEsYyJhLKjq6z26nii9mkXTXmC9/
-         TBmWnu7H6mRZTjz0PApc8eOwgrEJYTGsAt52Ymli4pGzkxYQ7HBfPDCyxx3AqrVWM5+O
-         w/HCoJJw/ACsiY2fbGEP8EWJxRBqCwyBPbWjKGvbyzTcfaBe+2JTXeu95HA5i0Ejm4+l
-         3eCg==
-X-Gm-Message-State: AJIora+nkMlfamYxaY7GnU0JyeM1dMXCFN+rCPznRSLw4fvHqTdyYUfT
-        qOc6B+i/wlUnpcmdUzY+Ezs=
-X-Google-Smtp-Source: AGRyM1tZrTLYZ/EmPXwyt1uAfsnFX/8nX9BGIrJN20jZJsf+x8uPv6sX52ZVxdy15BKOJvBRNf5OgA==
-X-Received: by 2002:a05:6402:43c4:b0:43a:6309:6c9b with SMTP id p4-20020a05640243c400b0043a63096c9bmr23530879edc.91.1657145672358;
-        Wed, 06 Jul 2022 15:14:32 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id h18-20020aa7c952000000b0043a6fde6e7bsm6509469edt.19.2022.07.06.15.14.31
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ftg3nkiw4YMCBhVm4GjYQbi4EAw65M6tPEzJj7RvX3Q=;
+        b=GanXydllfwsuwWs2wqfVjm1V7yclrBnEVLu3vo8lOT8FedPXQhHswVE78Z/fXP06yl
+         U8v2UYPfheWAyFC09z/Y7ph8N7UyD5DRH+Svdyeq8Df7gUOybyyThlljLexVdYnXQL9l
+         oHZTV3uTcPrKTAZfZFhDM2QWBi0QH+TbBkXvmN/K7eKFe43eAKK7rQ+edg5r6vQnIe0b
+         J0hsKC/wl6Pdw6AYU9CuCK6vDR7hJZ6zMmIngkAlZOFzizLxHZRtfGZAWuArfQ2y4Jnr
+         aVwQ4F+3hpMfbUbmr7dV49SViKz5ln74855YhOYotC5/wK7AaI52vUKjX5S/z4ppwXJN
+         GeDA==
+X-Gm-Message-State: AJIora8xF1xrcWsfTQic+rHFcL2SmGcfUHH/FvLjJgIt2mM/TDF11gzv
+        6gHzO049NZ/uskW26inoDw==
+X-Google-Smtp-Source: AGRyM1v1MWfpmm6E5fV9mEVufA395d+r9AZ9GUjfky5sGrak0Tl8WiMFGE2c/r0+HUr1dAdE29X2dw==
+X-Received: by 2002:a05:6871:1d0:b0:101:59af:c6b7 with SMTP id q16-20020a05687101d000b0010159afc6b7mr679263oad.89.1657148476851;
+        Wed, 06 Jul 2022 16:01:16 -0700 (PDT)
+Received: from robh.at.kernel.org ([2607:fb90:5fe0:199f:283a:d3be:fc5c:70cd])
+        by smtp.gmail.com with ESMTPSA id i21-20020a056808031500b00338869042fdsm468712oie.32.2022.07.06.16.01.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 15:14:31 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Wed, 06 Jul 2022 16:01:16 -0700 (PDT)
+Received: (nullmailer pid 660709 invoked by uid 1000);
+        Wed, 06 Jul 2022 22:36:42 -0000
+Date:   Wed, 6 Jul 2022 16:36:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v3 3/3] clk: qcom: lcc-ipq806x: convert to parent data
-Date:   Thu,  7 Jul 2022 00:13:27 +0200
-Message-Id: <20220706221327.14169-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220706221327.14169-1-ansuelsmth@gmail.com>
-References: <20220706221327.14169-1-ansuelsmth@gmail.com>
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 17/23] dt-bindings: ata: ahci: Add DWC AHCI SATA
+ controller DT schema
+Message-ID: <20220706223642.GC572635-robh@kernel.org>
+References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610081801.11854-18-Sergey.Semin@baikalelectronics.ru>
+ <20220614222754.GA2830345-robh@kernel.org>
+ <20220617193744.av27axznbogademt@mobilestation>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220617193744.av27axznbogademt@mobilestation>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert lcc-ipq806x driver to parent_data API.
+On Fri, Jun 17, 2022 at 10:37:44PM +0300, Serge Semin wrote:
+> On Tue, Jun 14, 2022 at 04:27:54PM -0600, Rob Herring wrote:
+> > On Fri, Jun 10, 2022 at 11:17:55AM +0300, Serge Semin wrote:
+> > > Synopsys AHCI SATA controller is mainly compatible with the generic AHCI
+> > > SATA controller except a few peculiarities and the platform environment
+> > > requirements. In particular it can have one or two reference clocks to
+> > > feed up its AXI/AHB interface and SATA PHYs domain and at least one reset
+> > > control for the application clock domain. In addition to that the DMA
+> > > interface of each port can be tuned up to work with the predefined maximum
+> > > data chunk size. Note unlike generic AHCI controller DWC AHCI can't have
+> > > more than 8 ports. All of that is reflected in the new DWC AHCI SATA
+> > > device DT binding.
+> > > 
+> > > Note the DWC AHCI SATA controller DT-schema has been created in a way so
+> > > to be reused for the vendor-specific DT-schemas (see for example the
+> > > "snps,dwc-ahci" compatible string binding). One of which we are about to
+> > > introduce.
+> > > 
+> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > 
+> > > ---
+> > > 
+> > > Changelog v2:
+> > > - Replace min/max constraints of the snps,{tx,rx}-ts-max property with
+> > >   enum [ 1, 2, 4, ..., 1024 ]. (@Rob)
+> > > 
+> > > Changelog v4:
+> > > - Decrease the "additionalProperties" property identation otherwise it's
+> > >   percieved as the node property instead of the key one. (@Rob)
+> > > - Use the ahci-port properties definition from the AHCI common schema
+> > >   in order to extend it with DWC AHCI SATA port properties. (@Rob)
+> > > - Remove the Hannes' rb tag since the patch content has changed.
+> > > ---
+> > >  .../bindings/ata/ahci-platform.yaml           |   8 --
+> > >  .../bindings/ata/snps,dwc-ahci.yaml           | 129 ++++++++++++++++++
+> > >  2 files changed, 129 insertions(+), 8 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> > > index e19cf9828e68..7dc2a2e8f598 100644
+> > > --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> > > +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> > > @@ -30,8 +30,6 @@ select:
+> > >            - marvell,armada-3700-ahci
+> > >            - marvell,armada-8k-ahci
+> > >            - marvell,berlin2q-ahci
+> > > -          - snps,dwc-ahci
+> > > -          - snps,spear-ahci
+> > >    required:
+> > >      - compatible
+> > >  
+> > > @@ -48,17 +46,11 @@ properties:
+> > >                - marvell,berlin2-ahci
+> > >                - marvell,berlin2q-ahci
+> > >            - const: generic-ahci
+> > > -      - items:
+> > > -          - enum:
+> > > -              - rockchip,rk3568-dwc-ahci
+> > > -          - const: snps,dwc-ahci
+> > >        - enum:
+> > >            - cavium,octeon-7130-ahci
+> > >            - hisilicon,hisi-ahci
+> > >            - ibm,476gtr-ahci
+> > >            - marvell,armada-3700-ahci
+> > > -          - snps,dwc-ahci
+> > > -          - snps,spear-ahci
+> > >  
+> > >    reg:
+> > >      minItems: 1
+> > > diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> > > new file mode 100644
+> > > index 000000000000..af78f6c9b857
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> > > @@ -0,0 +1,129 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/ata/snps,dwc-ahci.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Synopsys DWC AHCI SATA controller
+> > > +
+> > > +maintainers:
+> > > +  - Serge Semin <fancer.lancer@gmail.com>
+> > > +
+> > > +description:
+> > > +  This document defines device tree bindings for the Synopsys DWC
+> > > +  implementation of the AHCI SATA controller.
+> > > +
+> > > +allOf:
+> > > +  - $ref: ahci-common.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - description: Synopsys AHCI SATA-compatible devices
+> > > +        contains:
+> > > +          const: snps,dwc-ahci
+> > > +      - description: SPEAr1340 AHCI SATA device
+> > > +        const: snps,spear-ahci
+> > > +      - description: Rockhip RK3568 ahci controller
+> > > +        const: rockchip,rk3568-dwc-ahci
+> > 
+> 
+> > This is never true because there is a fallback. We should keep what we 
+> > had before.
+> 
+> Could you be more specific what you meant? I don't see
+> "snps,spear-ahci" and "rockchip,rk3568-dwc-ahci" used with the fallback
+> string so modification is correct in that case.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
-v3:
- - Inline pxo pll4 parent
- - Change .name from pxo to pxo_board
+Spear does not, just rockchip:
 
- drivers/clk/qcom/lcc-ipq806x.c | 77 ++++++++++++++++++----------------
- 1 file changed, 42 insertions(+), 35 deletions(-)
+arch/arm64/boot/dts/rockchip/rk3568.dtsi:               compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
+arch/arm64/boot/dts/rockchip/rk356x.dtsi:               compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
+arch/arm64/boot/dts/rockchip/rk356x.dtsi:               compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
 
-diff --git a/drivers/clk/qcom/lcc-ipq806x.c b/drivers/clk/qcom/lcc-ipq806x.c
-index ba90bebba597..66aaf0d0ef79 100644
---- a/drivers/clk/qcom/lcc-ipq806x.c
-+++ b/drivers/clk/qcom/lcc-ipq806x.c
-@@ -34,7 +34,9 @@ static struct clk_pll pll4 = {
- 	.status_bit = 16,
- 	.clkr.hw.init = &(struct clk_init_data){
- 		.name = "pll4",
--		.parent_names = (const char *[]){ "pxo" },
-+		.parent_data = (const struct clk_parent_data*[]){
-+			{ .fw_name = "pxo", .name = "pxo_board" },
-+		}
- 		.num_parents = 1,
- 		.ops = &clk_pll_ops,
- 	},
-@@ -64,9 +66,9 @@ static const struct parent_map lcc_pxo_pll4_map[] = {
- 	{ P_PLL4, 2 }
- };
- 
--static const char * const lcc_pxo_pll4[] = {
--	"pxo",
--	"pll4_vote",
-+static const struct clk_parent_data lcc_pxo_pll4[] = {
-+	{ .fw_name = "pxo", .name = "pxo" },
-+	{ .fw_name = "pll4_vote", .name = "pll4_vote" },
- };
- 
- static struct freq_tbl clk_tbl_aif_mi2s[] = {
-@@ -131,18 +133,14 @@ static struct clk_rcg mi2s_osr_src = {
- 		.enable_mask = BIT(9),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "mi2s_osr_src",
--			.parent_names = lcc_pxo_pll4,
--			.num_parents = 2,
-+			.parent_data = lcc_pxo_pll4,
-+			.num_parents = ARRAY_SIZE(lcc_pxo_pll4),
- 			.ops = &clk_rcg_ops,
- 			.flags = CLK_SET_RATE_GATE,
- 		},
- 	},
- };
- 
--static const char * const lcc_mi2s_parents[] = {
--	"mi2s_osr_src",
--};
--
- static struct clk_branch mi2s_osr_clk = {
- 	.halt_reg = 0x50,
- 	.halt_bit = 1,
-@@ -152,7 +150,9 @@ static struct clk_branch mi2s_osr_clk = {
- 		.enable_mask = BIT(17),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "mi2s_osr_clk",
--			.parent_names = lcc_mi2s_parents,
-+			.parent_hws = (const struct clk_hw*[]){
-+				&mi2s_osr_src.clkr.hw,
-+			},
- 			.num_parents = 1,
- 			.ops = &clk_branch_ops,
- 			.flags = CLK_SET_RATE_PARENT,
-@@ -167,7 +167,9 @@ static struct clk_regmap_div mi2s_div_clk = {
- 	.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "mi2s_div_clk",
--			.parent_names = lcc_mi2s_parents,
-+			.parent_hws = (const struct clk_hw*[]){
-+				&mi2s_osr_src.clkr.hw,
-+			},
- 			.num_parents = 1,
- 			.ops = &clk_regmap_div_ops,
- 		},
-@@ -183,7 +185,9 @@ static struct clk_branch mi2s_bit_div_clk = {
- 		.enable_mask = BIT(15),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "mi2s_bit_div_clk",
--			.parent_names = (const char *[]){ "mi2s_div_clk" },
-+			.parent_hws = (const struct clk_hw*[]){
-+				&mi2s_div_clk.clkr.hw,
-+			},
- 			.num_parents = 1,
- 			.ops = &clk_branch_ops,
- 			.flags = CLK_SET_RATE_PARENT,
-@@ -191,6 +195,10 @@ static struct clk_branch mi2s_bit_div_clk = {
- 	},
- };
- 
-+static const struct clk_parent_data lcc_mi2s_bit_div_codec_clk[] = {
-+	{ .hw = &mi2s_bit_div_clk.clkr.hw, },
-+	{ .fw_name = "mi2s_codec_clk", .name = "mi2s_codec_clk" },
-+};
- 
- static struct clk_regmap_mux mi2s_bit_clk = {
- 	.reg = 0x48,
-@@ -199,11 +207,8 @@ static struct clk_regmap_mux mi2s_bit_clk = {
- 	.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "mi2s_bit_clk",
--			.parent_names = (const char *[]){
--				"mi2s_bit_div_clk",
--				"mi2s_codec_clk",
--			},
--			.num_parents = 2,
-+			.parent_data = lcc_mi2s_bit_div_codec_clk,
-+			.num_parents = ARRAY_SIZE(lcc_mi2s_bit_div_codec_clk),
- 			.ops = &clk_regmap_mux_closest_ops,
- 			.flags = CLK_SET_RATE_PARENT,
- 		},
-@@ -245,8 +250,8 @@ static struct clk_rcg pcm_src = {
- 		.enable_mask = BIT(9),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "pcm_src",
--			.parent_names = lcc_pxo_pll4,
--			.num_parents = 2,
-+			.parent_data = lcc_pxo_pll4,
-+			.num_parents = ARRAY_SIZE(lcc_pxo_pll4),
- 			.ops = &clk_rcg_ops,
- 			.flags = CLK_SET_RATE_GATE,
- 		},
-@@ -262,7 +267,9 @@ static struct clk_branch pcm_clk_out = {
- 		.enable_mask = BIT(11),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "pcm_clk_out",
--			.parent_names = (const char *[]){ "pcm_src" },
-+			.parent_hws = (const struct clk_hw*[]){
-+				&pcm_src.clkr.hw,
-+			},
- 			.num_parents = 1,
- 			.ops = &clk_branch_ops,
- 			.flags = CLK_SET_RATE_PARENT,
-@@ -270,6 +277,11 @@ static struct clk_branch pcm_clk_out = {
- 	},
- };
- 
-+static const struct clk_parent_data lcc_pcm_clk_out_codec_clk[] = {
-+	{ .hw = &pcm_clk_out.clkr.hw, },
-+	{ .fw_name = "pcm_codec_clk", .name = "pcm_codec_clk" },
-+};
-+
- static struct clk_regmap_mux pcm_clk = {
- 	.reg = 0x54,
- 	.shift = 10,
-@@ -277,11 +289,8 @@ static struct clk_regmap_mux pcm_clk = {
- 	.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "pcm_clk",
--			.parent_names = (const char *[]){
--				"pcm_clk_out",
--				"pcm_codec_clk",
--			},
--			.num_parents = 2,
-+			.parent_data = lcc_pcm_clk_out_codec_clk,
-+			.num_parents = ARRAY_SIZE(lcc_pcm_clk_out_codec_clk),
- 			.ops = &clk_regmap_mux_closest_ops,
- 			.flags = CLK_SET_RATE_PARENT,
- 		},
-@@ -325,18 +334,14 @@ static struct clk_rcg spdif_src = {
- 		.enable_mask = BIT(9),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "spdif_src",
--			.parent_names = lcc_pxo_pll4,
--			.num_parents = 2,
-+			.parent_data = lcc_pxo_pll4,
-+			.num_parents = ARRAY_SIZE(lcc_pxo_pll4),
- 			.ops = &clk_rcg_ops,
- 			.flags = CLK_SET_RATE_GATE,
- 		},
- 	},
- };
- 
--static const char * const lcc_spdif_parents[] = {
--	"spdif_src",
--};
--
- static struct clk_branch spdif_clk = {
- 	.halt_reg = 0xd4,
- 	.halt_bit = 1,
-@@ -346,7 +351,9 @@ static struct clk_branch spdif_clk = {
- 		.enable_mask = BIT(12),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "spdif_clk",
--			.parent_names = lcc_spdif_parents,
-+			.parent_hws = (const struct clk_hw*[]){
-+				&spdif_src.clkr.hw,
-+			},
- 			.num_parents = 1,
- 			.ops = &clk_branch_ops,
- 			.flags = CLK_SET_RATE_PARENT,
-@@ -384,8 +391,8 @@ static struct clk_rcg ahbix_clk = {
- 		.enable_mask = BIT(11),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "ahbix",
--			.parent_names = lcc_pxo_pll4,
--			.num_parents = 2,
-+			.parent_data = lcc_pxo_pll4,
-+			.num_parents = ARRAY_SIZE(lcc_pxo_pll4),
- 			.ops = &clk_rcg_lcc_ops,
- 		},
- 	},
--- 
-2.36.1
+So the 3rd entry is never true.
 
+> My idea was to have the compatible strings with the required generic
+> fallback "snps,dwc-ahci" for all new devices thus identifying the
+> controller IP-core origin. But later you said "The generic IP block
+> fallbacks have proven to be useless." I do agree that functionally it
+> isn't that often used, but in some cases it can be handy for instance
+> to implement quirks in the generic code or use the fallback as an
+> additional info regarding the IP-core origin/version. So if I were you
+> I wouldn't be that strict about dropping the generic IP-core fallback
+> identifier. It's much easier to have it specified from the very
+> beginning than adding it after it has been declared as not required.
+
+I wish they were useful, but experience has shown they are not.
+
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    description:
+> > > +      Basic DWC AHCI SATA clock sources like application AXI/AHB BIU clock
+> > > +      and embedded PHYs reference clock together with vendor-specific set
+> > > +      of clocks.
+> > > +    minItems: 1
+> > > +    maxItems: 4
+> > > +
+> > > +  clock-names:
+> > > +    contains:
+> > > +      anyOf:
+> > > +        - description: Application AXI/AHB BIU clock source
+> > > +          enum:
+> > > +            - aclk
+> > > +            - sata
+> > > +        - description: SATA Ports reference clock
+> > > +          enum:
+> > > +            - ref
+> > > +            - sata_ref
+> > > +
+> > > +  resets:
+> > > +    description:
+> > > +      At least basic core and application clock domains reset is normally
+> > > +      supported by the DWC AHCI SATA controller. Some platform specific
+> > > +      clocks can be also specified though.
+> > 
+> 
+> > s/clocks/resets/ ?
+> 
+> Right, but only in the reference to "platform specific clocks" -> "... resets".
+> 
+> > 
+> > This allows any number of resets which isn't great. I think this schema 
+> > should just be the 'simple' cases where there's only 1 reset and 1 
+> > clock (or how many the DWC block actually has if you have that info). 
+> > More complicated cases get there own schema.
+> 
+> DWC SATA reference manual claims there can be resets implemented to
+> each clock domain.
+> 1) PM-clk <- PM-rst - PM keep-alive clock/reset.
+> 2) aclk/hclk <- aresetn/hresetn - AXI/AHB clock domain/reset.
+> 3) rbc*_clk <- rbc*_rst - PHY Receive Clock domain/reset. (Up to
+> number of ports <= 8.)
+> 4) asic*_clk <- asic*_rst - PHY Transmit Clock domain/reset. (Up to
+> number of ports <= 8.)
+> 5) rxoob*_clk <- rxoob*_rst - RxOOB Detection Clock domain/reset. (Up
+> to number of ports <= 8.)
+> 
+> So to speak the IP-core can be equipped with up to 26 clocks and
+> resets. Should we be more strict we would have needed to define the
+> properties with all the names above and permit up to 26 clocks/resets
+> items. (Do you want it to be done?). In our case for instance there
+> is "aclk" and a single common "ref" clock for all 3, 4 and 5 domain
+> (clock 1 is missing).
+
+I imagine most implementations just tie most clocks together.
+
+I guess there's not going to be much new SATA h/w, so perhaps fine 
+as-is.
+
+Rob
