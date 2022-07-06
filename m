@@ -2,60 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5DDF568F02
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63AB3568F0A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231990AbiGFQXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 12:23:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50828 "EHLO
+        id S233199AbiGFQZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 12:25:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229723AbiGFQXm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:23:42 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 507831D0D5;
-        Wed,  6 Jul 2022 09:23:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 042D4B81ADB;
-        Wed,  6 Jul 2022 16:23:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83B9CC3411C;
-        Wed,  6 Jul 2022 16:23:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657124618;
-        bh=E94CHoe4nJY8KaW5wk7Skqvv5P2Zf38aYdSKiyagHDg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lOyZD6X+mJZZAfd982nC3hM4EB71f6D3hD5QE5OXiAoCuBgb7nS+zDyCB/sWZgqda
-         MMGW6dJi9kHb/dB+3UXiSyW1dsWnzh42NIxyqxj7g3N4i9GjiC+F9R1Y/bixvs5F1b
-         6Un822/c6bbMg6wBtKyr13pjFFFFJuTnLvxIALTG+tiNh//43cq3wbb9uDA2/gytOb
-         63OgU72JIeJumm0pCRw9NyjGsCepgvsjkjgH6IXHSCq0YGnoEQ8BZ3DnvcvllkYHut
-         MHnsEhv32nUJMZR3z5iBKtWfRYB94ttiPmSAeXQjehBJG7Ac7TrkrwcDlfBplJjJAS
-         OjALc7l3wKnLg==
-Received: by pali.im (Postfix)
-        id 89B9A7BA; Wed,  6 Jul 2022 18:23:35 +0200 (CEST)
-Date:   Wed, 6 Jul 2022 18:23:35 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: leds: register-bit-led: Add value
- property
-Message-ID: <20220706162335.2eewgf7l3xghdjtr@pali>
-References: <20220706112828.27278-1-pali@kernel.org>
- <20220706162111.GA145516-robh@kernel.org>
+        with ESMTP id S232444AbiGFQZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:25:41 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F173D2558A
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 09:25:39 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id f39so26822279lfv.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 09:25:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=JIashhGYeFkYbR7kffcxLHDD+hAhV8QuuTTEgk9FK6w=;
+        b=SSDkiH9n4YUDAEgzeFf1wijKsdU1ygC2Uyrcwx3gg8zkLNpuo/dxGqL9ivnDrIvWyk
+         K7yIk7BMjOc6IC/9b4aQTUqXeBnTDeHPL2xwu4cOGWLdCvJ9GySyewAp8xjALGKyBPn4
+         wrsgaRflmgDS7gopEhVKYyjKWrASbY+yuOsZRblk4Dz4T/xpYr5ti5UqzEO+kUH0j0ev
+         EsvgVCkjESXJvQtWvCzUzKH6nhBTNYjyCqwaLce8Z/sswjrLjQA/pyjdGHbUo2hfwQJp
+         WmHOcsagFJ1ypodUlhsfFtJOhHYm0I4etlRQwLGimh/qRSggOHY1Q3wVmFvSc2m+5FKR
+         8Eow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=JIashhGYeFkYbR7kffcxLHDD+hAhV8QuuTTEgk9FK6w=;
+        b=bK235EDkjYDeBaBJpl+LMJX/fCVL4PcDdfKf51rffYqerqQ7QwkQ7MWHJvNern7efc
+         Pw2UzWJ7RR9+syj3xo3J83MiBIncFMhbSouuN0WW2BUPCc3fAYdjYmMAzaOPDZ3zvy2n
+         TICN4LEhGHwQ3wK+o3sCjefa9HMrCfx/5jQPs1w/gk6a7Ar6O9h3XmmewwP1wj9x/3B+
+         q5x/aEE3ews2rzYve1N1/KzaDXaC4+kGG2TS/ubWaSmDi45lAzTMhSCPIXkz/uOUSkhC
+         MFnEo/0eWmWf+DNw0gScS2zvo+JCaieT557x4p/VbSVjvr8LABiAq8d9YjxwFC6UJnN+
+         9n2w==
+X-Gm-Message-State: AJIora+eeymr8t20QSeh2YNqt1bcywAprBO4uLeD99Lz5Ad5Cd9bnjWG
+        WLgxwV8fTFhJPK8RKCLaAMmQ8g==
+X-Google-Smtp-Source: AGRyM1v3dY3SIkHzldafEjg4djIqTpd+Td8TJMqE++IEKyQClDARm8w1I4/mKmWXRyPnpi9Alj+NTQ==
+X-Received: by 2002:a05:6512:b8d:b0:47f:74f0:729b with SMTP id b13-20020a0565120b8d00b0047f74f0729bmr25713700lfv.403.1657124738237;
+        Wed, 06 Jul 2022 09:25:38 -0700 (PDT)
+Received: from krzk-bin.home ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id 14-20020a2e154e000000b0025bf58c5338sm4025232ljv.15.2022.07.06.09.25.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Jul 2022 09:25:37 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     krzysztof.kozlowski@linaro.org, linux-samsung-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, alim.akhtar@samsung.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: soc: samsung: exynos-pmu: cleanup assigned clocks
+Date:   Wed,  6 Jul 2022 18:25:35 +0200
+Message-Id: <165712469638.30806.13604483011536770069.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220706160257.27579-1-krzysztof.kozlowski@linaro.org>
+References: <20220706160257.27579-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220706162111.GA145516-robh@kernel.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,47 +71,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 06 July 2022 10:21:11 Rob Herring wrote:
-> On Wed, Jul 06, 2022 at 01:28:27PM +0200, Pali Rohár wrote:
-> > Allow to define inverted logic (0 - enable LED, 1 - disable LED) via value
-> > property. This property name is already used by other syscon drivers, e.g.
-> > syscon-reboot.
+On Wed, 6 Jul 2022 18:02:55 +0200, Krzysztof Kozlowski wrote:
+> "assigned-clocks" are not needed in the device schema as they come from
+> core schema.
 > 
-> Yes, but those are potentially multi-bit values. This is a single bit 
-> value, and the only value that's ever needed is 0. Why not just use 
-> 'active-low' here?
+> 
 
-Just because to have uniform definitions across more syscon nodes.
+Applied with Rob's tags carried over from v1.
 
-> > 
-> > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > ---
-> >  .../devicetree/bindings/leds/register-bit-led.yaml    | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/register-bit-led.yaml b/Documentation/devicetree/bindings/leds/register-bit-led.yaml
-> > index 79b8fc0f9d23..d6054a3f9087 100644
-> > --- a/Documentation/devicetree/bindings/leds/register-bit-led.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/register-bit-led.yaml
-> > @@ -43,6 +43,17 @@ properties:
-> >          0x100000, 0x200000, 0x400000, 0x800000, 0x1000000, 0x2000000, 0x4000000,
-> >          0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000 ]
-> >  
-> > +  value:
-> > +    description:
-> > +      bit value of ON state for the bit controlling this LED in the register
-> > +      when not specified it is same as the mask
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum:
-> > +      [ 0x0, 0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100, 0x200, 0x400, 0x800,
-> > +        0x1000, 0x2000, 0x4000, 0x8000, 0x10000, 0x20000, 0x40000, 0x80000,
-> > +        0x100000, 0x200000, 0x400000, 0x800000, 0x1000000, 0x2000000, 0x4000000,
-> > +        0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000 ]
-> > +
-> >    offset:
-> >      description:
-> >        register offset to the register controlling this LED
-> > -- 
-> > 2.20.1
-> > 
-> > 
+Applied, thanks!
+
+[1/3] dt-bindings: soc: samsung: exynos-pmu: cleanup assigned clocks
+      https://git.kernel.org/krzk/linux/c/38aed2e0aa406de6dda64515cc3937976a27038e
+[2/3] dt-bindings: soc: samsung: exynos-pmu: use abolute ref paths
+      https://git.kernel.org/krzk/linux/c/61bebc2902901cc2f1cac496dc81be38ca74d7d4
+[3/3] dt-bindings: soc: samsung: exynos-pmu: add reboot-mode
+      https://git.kernel.org/krzk/linux/c/3e27bf719303b1b19edd37bd04e9e586c73f6511
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
