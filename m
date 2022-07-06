@@ -2,108 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC9D9568B39
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 16:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C4A568B4F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 16:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233399AbiGFO3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 10:29:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52050 "EHLO
+        id S231875AbiGFOfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 10:35:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbiGFO3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 10:29:18 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C15902658
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 07:29:16 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id q8so6233757ljj.10
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 07:29:16 -0700 (PDT)
+        with ESMTP id S229767AbiGFOfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 10:35:22 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DBC17E1E
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 07:35:21 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id t24so26291352lfr.4
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 07:35:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=A5XEhFEI1sgOxZaIiNl90M23If361wx8ONPLgT7XGzI=;
-        b=TehnPfWsuMVsRwFU81r/h8zYcxQIpoObN9ie5xXroVxDcqpcJP061im2t2iUz+aIzy
-         TS4HZlmzQlGwdEim9PjrvSEA+yLT9OV4ePWfHLPHQpxbTJpcrFtk0jh5A1pShX7uo56v
-         MK9tmTwENiCQPlvHV6IiyWBI8tvVRp0XaMhmij/Xj/dii68gyW+3UWm49v3RuTPK00vs
-         ylAY1jIF6txWpDHiD3+FdU0+S1VJnFu/d5h0VqTDpPqKAeYB2Z5ExyiBmMSnwjk2K269
-         GMhg1BZr0QNa60yDX63rq58ZFGibbuM+JbTDRuZtATgw4eIse49PfDj/aDcwPZZiz3DD
-         2hsA==
+        bh=vHzDk8iDFWu26W/brex+TMJ8rS3+AlVCn+1TtO/d/+w=;
+        b=J6aEaA93f6HARN0t/xaA82XJaM88rLxgWepc8chGBv0nECRXeki8VoeFiLxbk0bD0W
+         NECJ1vNaouHr3IyfPJEcxgkOj5p/xbvUvyLBpytO37yN5u2UmbJsFcNzJcn8NDBHt48k
+         JOlyQBmcRJvvQf8MhHEF3PAlZN4cTRpAnGlU0PTzFmYT9irpHiG9yN6guR4setcg9okh
+         dl+iEju53llS49uZgo+DBoF4kdjp+Zf0F1AVuNlEU+e+xQx0H65pxWjQK3ephirk+aB7
+         y80eFot9nKxq9aXCX7zRAlAlSMsOjjstIDgHEv/NqvjjABvIw66RIQ3wHPtNeQ4dNH2w
+         yu+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=A5XEhFEI1sgOxZaIiNl90M23If361wx8ONPLgT7XGzI=;
-        b=mxHuBUDi2XKgbLlS4QYCLkax6NZqxE94DpeNOLxvoLDNXz5cKiVRDb954X5dTCmUcM
-         HoKvQmLRCuNjSLBpXESMXdO/uqKH7UWAJ7ShBLnLLKK/miax6f4Jhu2iLU/BJIeEo0Y2
-         mAfRBkD1WNBv5zRkY/AxgJotQbByWUTxUKN7cYT07NphzkC21TgKMliMdLXLGgSpOFOr
-         qMT1chUErHVTMqEj8/AdUgTfFQu9Zu6v6+cctp7L4thUEzPMfhTq3twNdbYPJVVLdIk/
-         p45QxgOPysx4TN1V+Ebk2GRHQQ9wUCFa8cN/RmMo4i/z8VCkMUySkRa3pGi5cm+JObk7
-         EFYw==
-X-Gm-Message-State: AJIora8XOM0B1myUCEDKHBcsLkarzc1U5SpOMPF+NVBrE6idhVPoApC8
-        qurKICTSHZm5mhOkvrNuztoOQQ==
-X-Google-Smtp-Source: AGRyM1sIkGqNfg4WOnb75LEjMGlLNjDJs3f3DtG0GuRhGMvhVYHisNiN2pWPdwfuUokq2/yMVyEnkg==
-X-Received: by 2002:a2e:6e14:0:b0:25a:8ca0:7efd with SMTP id j20-20020a2e6e14000000b0025a8ca07efdmr22921772ljc.56.1657117755139;
-        Wed, 06 Jul 2022 07:29:15 -0700 (PDT)
+        bh=vHzDk8iDFWu26W/brex+TMJ8rS3+AlVCn+1TtO/d/+w=;
+        b=KoPX85DNRpQ7XjNr/ELwD9h6w7PdQ+ZPMZxVgcWL8fw5gvKSd7QvW9WO+sXkG2Ic28
+         diVoXewj3U085HB3qPGY++YWhnYw3epzjfh8WcHzFnqUBLxYkG7RGK//9HsCk9FkpKk9
+         JtmyqbMGgr4Eqe64gHGUwq/tj4QcXbvHf6PAhfM3o276t7lqCOkOYrAQDeK+jEG89dPl
+         /hcgzV5BqLn+JSv/IfRNNKgz3LU1+Otw2Z3zwDxanGrkSSfcmfD+eJ9H+TnRkNq7PSMX
+         VvMVlt3bBW4MH3ckuN5fZyiqWoxRjpJQkWXIRyGLFpqD+K5N2RX6gB74ewsezaLiTJTu
+         iDwQ==
+X-Gm-Message-State: AJIora/Dkhqq0A9krJOhIyaUJ62fE+Ok7BLuzQIJ1jWfmpu3M3NVkXYs
+        9peZL4MtQWjtVvAJdi2AGJHgdw==
+X-Google-Smtp-Source: AGRyM1vZt21fHb4CPWwcERIsmHIfne9uEYyXkXvwQU6KzIQn9abhEBmceqxhXa74eYVxw2w3BF7y/Q==
+X-Received: by 2002:a05:6512:32c1:b0:47f:9d5b:d558 with SMTP id f1-20020a05651232c100b0047f9d5bd558mr27803365lfg.488.1657118119332;
+        Wed, 06 Jul 2022 07:35:19 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id 68-20020a2e0947000000b0025d375e8665sm971537ljj.99.2022.07.06.07.29.13
+        by smtp.gmail.com with ESMTPSA id v23-20020a056512349700b0048600adb5d9sm425876lfr.10.2022.07.06.07.35.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 07:29:14 -0700 (PDT)
-Message-ID: <8c395ba8-45f6-01ae-2fcf-24344cc89141@linaro.org>
-Date:   Wed, 6 Jul 2022 16:29:12 +0200
+        Wed, 06 Jul 2022 07:35:18 -0700 (PDT)
+Message-ID: <27c99ecf-75ab-1798-2b59-3be397d153d0@linaro.org>
+Date:   Wed, 6 Jul 2022 16:35:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v6 02/14] dt-bindings: pinctrl: imx: Add fsl,scu-iomux
- yaml file
+Subject: Re: [PATCH v1 08/16] arm64: dts: mt8195: Add power domains controller
 Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Liu Ying <victor.liu@nxp.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
- <20220629164414.301813-3-viorel.suman@oss.nxp.com>
- <f0634bf0-77e9-939e-693f-31d50af4768c@linaro.org>
- <20220630123754.esbuac4pfktlseh2@fsr-ub1664-116>
- <78faf75d-80b7-7a0e-e306-6351dbe5133c@linaro.org>
- <CAL_Jsq+0GJBTVkS12XTvUKphMH4XuQ5AS1-QHMw6ULgpWbZBQQ@mail.gmail.com>
- <CAL_Jsq++FqUn3u56boHcoZhskx-6uUiduhJbUyWXbOH6dzExJg@mail.gmail.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220704100028.19932-1-tinghan.shen@mediatek.com>
+ <20220704100028.19932-9-tinghan.shen@mediatek.com>
+ <3b65405d-167f-a0c7-d15e-5da6f08d99b3@linaro.org>
+ <17203a8a-407e-30cf-79de-352716c3ebce@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAL_Jsq++FqUn3u56boHcoZhskx-6uUiduhJbUyWXbOH6dzExJg@mail.gmail.com>
+In-Reply-To: <17203a8a-407e-30cf-79de-352716c3ebce@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -116,24 +88,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2022 16:11, Rob Herring wrote:
->>> The fsl,imx8mq-pinctrl.yaml should be correct and I don't see the reason
->>> why dtschema complains in some of the entries. It's like one define was
->>> not correct... I'll take a look at this later, but anyway keep the same
->>> as fsl,imx8mq-pinctrl.yaml even if it complains.
->>
->> The issue is that 'fsl,pins' is problematic for the new dtb decoding
->> because it has a variable definition in terms of matrix bounds as each
->> i.MX platform has its own length (typ 5 or 6). The tools try to work
->> around it by figuring out which size fits. That works until there are
->> multiple answers which seems to be what's happening here.
->>
->> The easiest solution I think is to just strip the constraints in
->> occurances of this property. I'll look into that.
+On 06/07/2022 15:41, Matthias Brugger wrote:
 > 
-> This is now fixed in the dt-schema main branch.
+> 
+> On 04/07/2022 14:38, Krzysztof Kozlowski wrote:
+>> On 04/07/2022 12:00, Tinghan Shen wrote:
+>>> Add power domains controller node for mt8195.
+>>>
+>>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+>>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+>>> ---
+>>>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 327 +++++++++++++++++++++++
+>>>   1 file changed, 327 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> index 8d59a7da3271..d52e140d9271 100644
+>>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> @@ -10,6 +10,7 @@
+>>>   #include <dt-bindings/interrupt-controller/irq.h>
+>>>   #include <dt-bindings/phy/phy.h>
+>>>   #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
+>>> +#include <dt-bindings/power/mt8195-power.h>
+>>>   
+>>>   / {
+>>>   	compatible = "mediatek,mt8195";
+>>> @@ -338,6 +339,332 @@
+>>>   			#interrupt-cells = <2>;
+>>>   		};
+>>>   
+>>> +		scpsys: syscon@10006000 {
+>>> +			compatible = "syscon", "simple-mfd";
+>>
+>> These compatibles cannot be alone.
+>>
+> 
+> You mean we would need something like "mediatek,scpsys" as dummy compatible 
+> that's not bound to any driver?
 
-Great, thanks!
+Yes. syscon (and simple-mfd) must always come with a specific compatible.
+
+> 
+>>> +			reg = <0 0x10006000 0 0x1000>;
+>>> +			#power-domain-cells = <1>;
+>>
+>> If it is simple MFD, then probably it is not a power domain provider.
+>> Decide.
+> 
+> The SCPSYS IP block of MediaTek SoCs group several functionality, one is the 
+> power domain controller. Others are not yet implemented, but defining the scpsys 
+> as a MFD will give us the possibility to do so in the future.
+
+No, quite the opposite. Having simple-mfd prevents you from implementing
+it correctly later as a driver, because you cannot remove it. It would
+be ABI break.
+
+It's fine to have one block being a simple MFD having several children,
+but then it's not a power controller. Children could be such power
+controller, but not simple-mfd. Rob explained this several times:
+https://lore.kernel.org/all/YXhINE00HG6hbQI4@robh.at.kernel.org/
+https://lore.kernel.org/all/20220701000959.GA3588170-robh@kernel.org/
 
 
 Best regards,
