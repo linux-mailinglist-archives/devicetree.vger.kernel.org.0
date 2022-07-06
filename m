@@ -2,175 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CD19567D0E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 06:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5356567D61
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 06:35:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231791AbiGFEVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 00:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43784 "EHLO
+        id S229534AbiGFEem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 00:34:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231454AbiGFEVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 00:21:46 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2100.outbound.protection.outlook.com [40.107.244.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE95F1838E;
-        Tue,  5 Jul 2022 21:21:45 -0700 (PDT)
+        with ESMTP id S229454AbiGFEel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 00:34:41 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2136.outbound.protection.outlook.com [40.107.93.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18B151C112;
+        Tue,  5 Jul 2022 21:34:40 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CnmjlRP2pL4W9uG20j/xN+41mTmq8K5SQqygueR60M3Myr+ar8qkUW4hMH6Q8w28aTCkDvEEaQxHeFxO4FdBtXbJyGejpN4GCEF8lRACCwPY26DDKbIn5W1SP9ixb/QM/btugc3XaXhgCgnYrbvbeZgWHa7WPWwSvdC8wgX1+THUWJH4WhIa4CXd4TH8nV5Xurk6X7h7gcuDRkwC0VtToSZKogB0h39D1roc6fbXsvgbLF/mnHZRSkrhWi1+zamz4eRA1RUGPAFPkpQBWmcVV+qcLuPEKDrwRC0uUe+Ele9lsSS2G+vFLHHFY91FKUW4ffIYyG6W5xRwnjkoLrDZRQ==
+ b=eX9w2ik9c9iNgTH6QkZUbW6IP76UxkeoMJuyxC8z3UTm3+jljLUk69KHSU5urDkGkY1isyJ7yRQq5b9BgFAm4VyaAqOMHXLQ0dN23M7AHYhMqNtq18dhcgY4CbNpf/WPX65jDJl/cV40gZGwLgebWjibx48dETXfDdQMl2iApF1ZesFeIDOYECPbQ9yR0sVtL834dYsM5fDYzZqQyKadkWfD3CHWmCLc7LXsQn0nzULaWp493QDarv73+nd/gr3wncH3BLnHuax1XXr4yUU1N+rvrekmcJa9+JY1E8M63gbmZOxUf0B+yGYLV2ZGn6Pj4JfT3zueaxoNiofxKSogcA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S7VL3IgyFLKTjem93FjW19WJUJFv3PTFAMzp2hIbEPo=;
- b=cr0AOnn7y7M9u6Pj5+wlLTUu8aVfU6ysL4ZV/KzYOwF+jEAQAb0XMX3JY7BsSSdeMPkx4FfuDr1NqFHF7lGmNmM+AffqpEr7f22mN8zjtLfPsrv8e+qbGhhMrE+/b9WPKqebuhn8tIm0/SZO1NLbpFKAyVXmwMIOgALHIPDpCCcXcivRFyGB1B2Hr3l40V6WbVvXGGZ3H7Zwa4uBB7KaADAi1+HiNTIGazMWtdjri0Q8BPFGm1MjFIynB1D9knVglDa5h8p8Bx3xu3nnZCc3LCIJXmlMCerBAmTR7a8DQ4basBoXoVDPf8F2Sn2c1jVfrYqubZLe74A++Z1SxJgnUw==
+ bh=uBsTuvUXx8JQySRs4ebHoLE4aTY/Juc9qHEWtoRGQm0=;
+ b=ax4LvBe0nwjpWcMWvolrY8MMZpbjJFcL3DtiFCHnaBihm9CLpB0wOFpcOfsdupwyNmsagclOcyFcSwHwj00y379fpFaFYn2Ff7txeQ1J6jDHu55fxTeYYVFNPiYiKmIowcQXoMtcvWqOssYni3EaberuM5zmUm+rRz+ubeAmTvlHe0DiBGH8Q6h5Sw4xvR3K6MAujX5Ad0uGXf4Hf00eL6FnNB7yQw0GVWOUsgfvdq7W6o7763mUJC/iCsz6Vs8bhYj1UNUnh9LGPKPQg7Gp1jKjjwyP76UJKgLvX4xuHZA+LKjzaLr7FSVMm6R/LBnTgIMhe0/ADjPQBYlH38viUw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S7VL3IgyFLKTjem93FjW19WJUJFv3PTFAMzp2hIbEPo=;
- b=Nw6JlShdtVrtuw1+QpdMJF+3AAi38h4sTdnH7dQ7RCEeVXYg5rVF2Yd4zHOFr7MciwUgls/TwLJlZqG292rwbbZSdbNUTMowmW/5S6drW98MbeAuLwiiIbE/t5j8iDIJTPoX2UomkGXqjT2Kqip8S8abugNcE38PgPSsHXY7CV8=
+ bh=uBsTuvUXx8JQySRs4ebHoLE4aTY/Juc9qHEWtoRGQm0=;
+ b=k6q65hM+WfIVzn66GMaOeUMeLxCgqm1KHUEuTifHdgRCJb8Lf3d9Uy/0OWMhlRoYT4a1vXQQHKaBk1LelIyyoQQDOV2QpM5ZqDvWLbPo5N8oTklSCGB+upNzPFAKwLQlLcONwClZPkxMYk9FSsbMWMJaAMnYajgxCLbmKKhSUl4=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
- BL0PR01MB5299.prod.exchangelabs.com (2603:10b6:208:31::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5395.17; Wed, 6 Jul 2022 04:21:41 +0000
-Received: from SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::7535:773:f979:893e]) by SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::7535:773:f979:893e%8]) with mapi id 15.20.5395.022; Wed, 6 Jul 2022
- 04:21:41 +0000
-Message-ID: <01bcd315-4d28-6854-3c6e-0a755b37824a@os.amperecomputing.com>
-Date:   Wed, 6 Jul 2022 11:21:28 +0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.0
-Subject: Re: [PATCH v1 0/5] Enable second flash, update gpios pin and merge
- adc channels
-Content-Language: en-CA
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-References: <20220228000242.1884-1-quan@os.amperecomputing.com>
- <CACPK8XfCskh7KPhXJqOR9ZLnoBdd64SL9D1z5HoDC+_VVs4LCg@mail.gmail.com>
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-In-Reply-To: <CACPK8XfCskh7KPhXJqOR9ZLnoBdd64SL9D1z5HoDC+_VVs4LCg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2PR02CA0059.apcprd02.prod.outlook.com
- (2603:1096:4:54::23) To SJ0PR01MB7282.prod.exchangelabs.com
- (2603:10b6:a03:3f2::24)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by SA2PR10MB4428.namprd10.prod.outlook.com
+ (2603:10b6:806:fa::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.15; Wed, 6 Jul
+ 2022 04:34:36 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::712f:6916:3431:e74e]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::712f:6916:3431:e74e%6]) with mapi id 15.20.5395.020; Wed, 6 Jul 2022
+ 04:34:36 +0000
+Date:   Tue, 5 Jul 2022 21:34:33 -0700
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "katie.morris@in-advantage.com" <katie.morris@in-advantage.com>
+Subject: Re: [PATCH v12 net-next 0/9] add support for VSC7512 control over SPI
+Message-ID: <20220706043433.GB2830056@euler>
+References: <20220701192609.3970317-1-colin.foster@in-advantage.com>
+ <20220705202422.GA2546662-robh@kernel.org>
+ <20220705203015.GA2830056@euler>
+ <20220705220432.4mgtqeuu3civvn5l@skbuf>
+ <20220705225625.k42jjsdusf7ivaot@skbuf>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220705225625.k42jjsdusf7ivaot@skbuf>
+X-ClientProxiedBy: MW4PR03CA0305.namprd03.prod.outlook.com
+ (2603:10b6:303:dd::10) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d764f443-6692-4d44-410d-08da5f0706ab
-X-MS-TrafficTypeDiagnostic: BL0PR01MB5299:EE_
+X-MS-Office365-Filtering-Correlation-Id: b59fca17-65dc-47a7-c47c-08da5f08d4ed
+X-MS-TrafficTypeDiagnostic: SA2PR10MB4428:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qviMmCATCwluuhgqp/IDuqbwvQmO0AhETKnsqlXOwCXMuDV0rtZdABpQ2rOrvqCBn/VW0wGU1erknZ8xm2iqAurcAYaedBnr78egwx0BSWDHG5zH0KhvYERAFIZeuYPAIihNNZuUR+NeyLKlzg0cPDqyVJCAnra78DnwDmOGpfU6bFuSfLAsqqLqmOaJW5YX1NjzNxWesshqOrfGXG2wATwqaDeOmBvOUrPpP45jFaEoGvnDxdDvHakrmlpx5JGjF3XcNPPeen3hWxLNk5PS+3kGnPsLec0qHITjwl69c2Isr5JqucUe5OLV9yDv9oAEaL7//J8y0ElniZSLGmja9T7peA3G/bpHfKFiFfuPV1nJ5aP0irENeRSMS2Zn/BcmlqyfD2vvOY4M5cBznZua5G7FpkyAfHx5ToWrO2vrzkeo4lqO550rtN+QbgpwozrYpI+0v7a/5bNMKCA8HQa4dt83IlBLcY6dAV1Cdu+6fZU2pGSyp+RsS3uEfTYNZ0RPnbkGVNKl44og0X1JBGMaDTEPkjJg7TJwAF0+HFjnd1K9lVH+eYbPDcrDb30GWg0eMxDPxtAJoLRXUix0s7LKl6wp2xwnpKSUbnFGnhpONwhLkqrboEzzak5twGxPbwseeZ6kTMAEt0XIspMLvMRUadm4G4S0cGoblsxku5BH1Tu+efTXRbaZP4zEMh91VtAm6yapCdZdzeZWZ2cb3UKjK8ENaXdbT8bt+6Zi0vZmnDm2yfdMS7GZfItpHKUYxWB5uvT/BjBzU7MoNk25UWS41ORQXZn8uW/nxJj0ArJeZKksHBz7Vt0eg4FHTjSeYJloVVFs909/VkLtp32O2ckW72bFbbCWLZ3U3PR3DcM5Z7iP18Nx56JHvwJtyqWMqnF3fCOE0W4t+8TfmD+HeMe33w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39850400004)(136003)(396003)(346002)(376002)(366004)(38350700002)(107886003)(38100700002)(66946007)(8676002)(4326008)(66556008)(66476007)(6506007)(5660300002)(2906002)(86362001)(31696002)(15650500001)(52116002)(53546011)(8936002)(2616005)(6486002)(6666004)(478600001)(41300700001)(83380400001)(54906003)(6916009)(316002)(186003)(6512007)(26005)(31686004)(449214003)(43740500002);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam-Message-Info: T27NcY8WOKVJ9RLK8WJ0Mo2v32xL/hR7FKoe5u2ymrFGnlRJgeC23E7rD3nHGttn8FrjHyBRCZwdjxOChYZV9DMuPwWRMaqa3BE4FJRN0wTeS+rI7R/AzAdF1+keV6sBS1x6uTE2TX89iqM18D29sbSCI3qlaWhEec2rGdr8g9AqDgWN6a3ctA6b9OfgQVBe99Rhjf9XPYmcAChCprw7NlwLtCvX1yTKEYjY9RMlG2+sJJeYZj3WJzyXR0BkbNFIim/a5gkC+FtMHeTHoVwlG43d0svsOQPv0HIF6phfmNpNBg29g+EaxKR1uJE2HMwo5W0HRaQJiJ5SPg5ug5PwulKYTET2Co+MoTKD7pb0BoDsthiNURZlgm7l0LPeLQmVG1BanpL8hdBAMZGMHra8kmjt0DuWjt1vNJVVQX9jUazLk15DV1tPaxgxfAbFv7JFBWqbkhfDjTj90KiwIYj5nyfsftEZRX7irQZgildbhQz4pZ1sPIuhkRacpBGWCrGvFPxhuAvh2oTxTYRfVbAcXbx8lKo/EawUofLF00TZrc0DzVxryQ9XglgMbh9006BdJ8nLwGumIyUKrnxJWjT/jrOS6qCu26CQwhMIm2t9XrWGRjs0u1vEHAD5ovWqoRwoMOHCJl2ty9XrQ8miiMdoa7L3ZCTJx7Gb++wTg09vUmojO9orcjawS731aINm539nWFOyB6Mb7YyMJsRL1IFT23jpHgMnaBXgscGbhyltGUXW7nuZR21Cn+YnyP413KgbkxOfmD23ToEDaT+dTmL6u03Eeu9h4DUVSSmfc3GWv70Wk6n7otGvG0Sv5O4u1vvp
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(396003)(39840400004)(346002)(366004)(376002)(136003)(107886003)(186003)(1076003)(38350700002)(38100700002)(316002)(54906003)(6916009)(8676002)(4326008)(66476007)(66556008)(66946007)(6486002)(33656002)(5660300002)(8936002)(86362001)(6506007)(9686003)(7416002)(44832011)(52116002)(478600001)(33716001)(26005)(6512007)(41300700001)(2906002)(6666004);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eXNCR0Njc3FhR2pEQktUZWtHRC85bDI4dkU3d0VFbkNpRk14STBVcXBVNUxp?=
- =?utf-8?B?aWdxcTVieTc4SG5XMFEraUlrS0tPRy9GNS9DOTVTKzNyZm5KTndxZm5rRTBy?=
- =?utf-8?B?SXJhcWxHVlJoRXBIQ01KRGd5a3hDbmtuN2JsZzllenFNWnlmRXg2S1ZiSTRX?=
- =?utf-8?B?WTlCUlcrdCtNYXc4YlpFb1lmR0Vqa21hUWZtK3JCZlFXcTZ1eWs1WWxWMkJP?=
- =?utf-8?B?bWRnZUVBSENUcjc1SjQydytYdlVGdzVPbW5GNURlSmFlOXhwbmljelVrNlVR?=
- =?utf-8?B?Z3NrNk82VitEWE5LYU5aR21NU2h0cDJQWER1QXNaZGFrYXFwbzlpOGJQNFUv?=
- =?utf-8?B?aENPY3hBUGZscmVYZy9OQjdBRUYrSTV0Zmg4NkhIaW9ENlVTL21PR1owK1dY?=
- =?utf-8?B?cnVmYlRqSnZzblI0ZkdNTFd5di9tQUpEM21Xc3hEOEZsSlRXWW1OWUJnK205?=
- =?utf-8?B?RVVOa0I1TE9CWTRKTlZZOWZWM2lLZGJ6YWZuRVVIOG9lZ3ZUa2FjTmFodDRL?=
- =?utf-8?B?WkJtbmhrUDk2UGdSVFNCaDFIUFB1dUhDUUNoRUxQR3VRMlFmMUh2RXFPT0li?=
- =?utf-8?B?TFptQWMvVGpGSVVQUTFSbWw0aHJXQVRwYTVVZHhnQ3F3ZTNQc0E2YXdEeGhY?=
- =?utf-8?B?NnFwNkhidlQ0SE13Um5rRFRXdDFJSStFeW1kZ0NPZzlkZm95TlVwK09xN3li?=
- =?utf-8?B?U3hnRWtNU1FDclBiLzRKSkFIWm51clpGSkk0YjJuOU9JS3JVVzhPRnppTHBF?=
- =?utf-8?B?cVdVQzN5V3VZS0pyOEl4TmtZMmZjK1VnVlV5Sm4rYmFHUmFQSjNBTllHSG80?=
- =?utf-8?B?QnhPWTQ2ekhCbzVSc200VzVSSGI4YWFRS1lKdlJ3UVFwY1lFNlo3aWtYUGY5?=
- =?utf-8?B?UXRwb3BmZkZ3aDZ4Z2EvdXpTTEU4czNxaEtCTDJIWXVJc1grNktaeDFzZkRT?=
- =?utf-8?B?TFd2ZGlFSGRPSkV1MmRRRWhaWnNTeWM2RnA0Ky8yaHN4OWEzVzRpN05zVDdW?=
- =?utf-8?B?SUY1dUxJNkdNSTk4NExNSjRSMVBlWkdGMit3MzJINC9PY0IzOWRROWgyVWZ4?=
- =?utf-8?B?RXJKbjg4VDVEdWNlU1FNdGRqR0MyZnRRWThTNEtWdmR2L2FWSkdZemxVQVRK?=
- =?utf-8?B?YkZwTWVPSmNHREwvR01XYTdCY0gxRXY4YnE1eWVaREttWWpueDJHVGlGK2x0?=
- =?utf-8?B?VWhNdjN0UStvSEJYNmxVVW1WZ3BWWHpidmQwa0g4cUZxZ2hCTkVrY0F2azRa?=
- =?utf-8?B?aldTRlZLSUtpUUFWMEI3TjVGelBmYUI5d2FlS3Z3WGRXb2FOOEtJSWU5S1Vu?=
- =?utf-8?B?NThlTUovYzhldllXVURTdDdlU2MwcnNlbzBLbkxva2pQRWRDVGxwVm5iMWoy?=
- =?utf-8?B?cmxlNHc1eVFLWG1ydnNZRVlObllDVm9DRlI4c3J5eDBmQ3l3VSs5RXdCekdM?=
- =?utf-8?B?OXozZEdwenRVRC9WRVhOcUxPWWozQ1BBL0FucFhTNGZhaURGcFVodldOZU0x?=
- =?utf-8?B?anc1ME1jcERScXYxdlYrRjB5WnEydlFnN1k3Q0p1ckg1b09KL084ZHF0ZXhi?=
- =?utf-8?B?aytIWjFXWFMzcklhclRxcmVud3IvaE9CK1dlZ3gvS0w0ay9WWjg0UzlDZy9L?=
- =?utf-8?B?ZWh4b0hmdkdzaC9LQVNzQVpmbkhrTmM3RU0zL3k2dlJlWkpwd090SHMvN0c2?=
- =?utf-8?B?S2c2UGpQdEZDcVRSdWx3SXpDbWtDV3hIZ3BNeHlNZHJhcVNTWnc2Q3JHK240?=
- =?utf-8?B?bFdNQTNWa1dTekJtdWlHMDcwNnlSWkQ3bUkyVURRT1cwelpZTzJ6VXg0YlpX?=
- =?utf-8?B?QS9qVGYvUWNZRjh1c2pqNnJWMzVqQzdYOUhvRmxpeGlQY0R4elR3RFAwbVZ6?=
- =?utf-8?B?Yk95YTNtbUdkNHRzVVlxa25sZmkrWkhlTEtkVFhLa2dCbGVOS0U1NldyanM0?=
- =?utf-8?B?OWllc2JFU01lVVBOTzdMN25DbWhWUUt6aXVyUmlidXFSaWRPdFFobEhTVXhP?=
- =?utf-8?B?NjM0TzVQZTNpZFdPeWZGVjlxRjZScWYzN3lWOEpsU2hxY0ZSWUJ3L0syZE5C?=
- =?utf-8?B?MVFGaHoyVFF3amxUZTZ5L2daWnJqTW9nTU1rM3dmOTFHN21HVGRHL2ZJM2Jz?=
- =?utf-8?B?TTh1SUtyaThIay9rbGtKL2tqVW1tRXRabnZFODRlZ2l2bUQ5U0k1WGdQc0Rw?=
- =?utf-8?Q?+2i03DJlbAGkDZWbk4R/two=3D?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d764f443-6692-4d44-410d-08da5f0706ab
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yl0cNATp71EZ98jm6pjAYhgvNiM8cXv3flBDZM6NiiaYovA5GlIf6M/Rui+E?=
+ =?us-ascii?Q?czzlJGYyPsg0iNdeiQR5F/mEzaBVDqQT/7INavMmeiVgmCipjSftMhrVdMKO?=
+ =?us-ascii?Q?X3uQN4vn9iXz8UNvEldJhS8Tt079RrpweLrEM+H1YhirVikhMifl8ponGubL?=
+ =?us-ascii?Q?aqrfAk0e6AEOGvirhk8ImbJRxE9oCi6Hp9catYr+QrjH/PnMUm1PDWUJ1DQn?=
+ =?us-ascii?Q?5HzPsu0FrVLg9uzhB4ee96arhkJBq6UPWVCrDH9kEmJ6ILolrb6fj5hnQluK?=
+ =?us-ascii?Q?GAhYnrnmPoLhIVn6BPnY2WtHrTIEhSOqinSHlZK+Xr2kcraTCyCAJL/XMQlg?=
+ =?us-ascii?Q?2MExCkmSwTaq68nKC+39oDgUYaKOAWEmfFi84p8cc7Lpy6dbAkEd8XW8n+tC?=
+ =?us-ascii?Q?ZyjpJala/ZUPRXgAVHM9/8yuQ2CVPVsjzG0y4vsMowmBTddBBufEyDl51SfJ?=
+ =?us-ascii?Q?a15E8gHxJmgqrlbvWwXMh02hHa3VJK3hFoDi0DRgpSvqfVmCWfyKMlPyvdPV?=
+ =?us-ascii?Q?RXM0zDhmQXM/M9LN3s0RkTrst4quBdQMmVIBMdCX6TJUOlWhjTx1KE6MwRw/?=
+ =?us-ascii?Q?Pz0QKEpxUtLfSh1oiVkHXa+TFPfHOXwqFrRQ2Ysf+WL0GSr2Cq07ldNdGOSW?=
+ =?us-ascii?Q?maUqn2zca1ybJunHGef/Qd5krFNRTDSk86klPHDR3qEYDRO47rsM83RP6WV1?=
+ =?us-ascii?Q?CpcWRJf1AdcQATEk5DSaaKi8SPsGJ9MIN2/nGfD4jzHqEyNim6YOf2hb5Pt1?=
+ =?us-ascii?Q?S5zILBp5p0D/mXug8G/aOOE7Vp7l38wdbRWMx1vxJv1E8nCNILwvr20e0Lfn?=
+ =?us-ascii?Q?4Yz9tvjDO9buE9jqNdsYkTaMOwgJauNO+1JNMYtbFWtgbr0Bgm22OU/R/og4?=
+ =?us-ascii?Q?NYIsQrMGc8uVZ67Z5pygYKb6vUtcXT/ImGRw4AUXAphqnvHHKNG3oBE4gPQP?=
+ =?us-ascii?Q?XpNs0hzXyRwWjBM48kbAYmq+u8VRorOJkqxdF9UdizlaitZJXbIwPT1+f95h?=
+ =?us-ascii?Q?0ZPZ0JbHhaUAMhGVXpjyJVQr1efZfBpjVt2WzdMcScoSIaidmHCQOmUhJU34?=
+ =?us-ascii?Q?8KnFGvBot/Mt1DDL5AZIRg4hiK/eaoT1XYIDIaeoYn0qqvwZ23aesEHFLjyI?=
+ =?us-ascii?Q?QDkSef8Fw5viCALIJzTiqh1NgvNQ6Mr+BTC8pKGQ+sKf/Y5UACL+ThJu9Osa?=
+ =?us-ascii?Q?rQwTy5zWAJpon2/6GUxOZEDCluZ/ofV11inEqdECcsyI/+evh5C5qlhGuUkX?=
+ =?us-ascii?Q?T61iT0N4KUV/DpyD8TTmI+6EYmNZXn5WZc4op8YGYQMtVbcy2N2MOrYON8CW?=
+ =?us-ascii?Q?ra1i/chMXViHjbaPUTdXnqOFsJ23IHJNZw6GzA/H/69RsNznkXJYKDz4UhJd?=
+ =?us-ascii?Q?9+dKgEsNjau/7xtQDJ8sVHXafCfmHpJrLIIPjbDUag4iiYQF6Sy5Y2g6YJ5F?=
+ =?us-ascii?Q?pV2t+MV303RfHpsz21xvt/HzCfPGdRsw8RiGcveXcoGvP/jpScuD/SRG91mw?=
+ =?us-ascii?Q?fkg1vqIhHnxThVaZ2oUWTFoqnimSinDLztksiq9R2HXNDXJxg6G5+8nNaRzR?=
+ =?us-ascii?Q?5AAE8jpLp5gUZE+PNPBuLnRzK/gaVdWO0LLhtShO+f0NkERk+xRMmzUG8FB3?=
+ =?us-ascii?Q?5mQ33vCV8hSd99OU5m5hbAc=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b59fca17-65dc-47a7-c47c-08da5f08d4ed
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2022 04:21:41.2967
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2022 04:34:36.7137
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: isFGHV1IoXiyijWCgDJWamFs2qKZ604DUU64M0PYF6sHzqCu6tmblIG7Nj7CAeiaSmN2acpgw+KKRaD4XN9FE4ByUfZwx9n+lXOJE6z3n0E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR01MB5299
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: pZLvUiJpDauCpZloQj7p3YZbOpSWENjyOLyB29CpiXMLC5xocOLhQOehSh1AslRSaK0+tIXa8kOxDBVCZxkOkdiLILDfhxQUCIxp3O6W0es=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4428
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Joel,
-
-Thanks for applying this patchset for v5.18.
-
-Would it be also possible to apply them to OpenBMC kernel dev-5.15 
-branch as well?
-
-Thanks,
-- Quan
-
-On 28/02/2022 11:21, Joel Stanley wrote:
-> On Mon, 28 Feb 2022 at 00:03, Quan Nguyen <quan@os.amperecomputing.com> wrote:
->>
->> This patchset adds the second flash support, merge all ADC channels to
->> single iio-hwmon node and update various gpios pin name.
->>
->> Link:https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
->>
->> Quan Nguyen (5):
->>    ARM: dts: aspeed: mtjade: Enable secondary flash
->>    ARM: dts: aspeed: mtjade: Update rtc-battery-voltage-read-enable pin
->>    ARM: dts: aspeed: mtjade: Update host0-ready pin
->>    ARM: dts: aspeed: mtjade: Rename GPIO hog nodes to match schema.
->>    ARM: dts: aspeed: mtjade: Move all adc sensors into iio-hwmon node
+On Tue, Jul 05, 2022 at 10:56:26PM +0000, Vladimir Oltean wrote:
+> On Wed, Jul 06, 2022 at 01:04:32AM +0300, Vladimir Oltean wrote:
+> > You got some feedback at v11 (I believe) from Jakub about reposting too
+> > soon. The phrasing was relatively rude and I'm not sure that you got the
+> > central idea right. Large patch sets are generally less welcome when
+> > submitted back to back compared to small ones, but they still need to be
+> > posted frequent enough to not lose reviewers' attention. And small
+> > fixups to fix a build as module are not going to make a huge difference
+> > when reviewing, so it's best not to dig your own grave by gratuitously
+> > bumping the version number just for a compilation fix. Again, replying
+> > to your own patch saying "X was supposed to be Y, otherwise please go on
+> > reviewing", may help.
 > 
-> These look good.
+> I hope I'm not coming off as a know-it-all by saying this, and I didn't
+> intend to make you feel bad. Ask me how do I know, and the answer will
+> be by making the same mistakes, of course.
+
+No worries, but thanks for the concern. I understand the v10 fiasco
+was my fault - I'm alright with being put in my place. This is very much
+a learning experience for me, so all this feedback helps.
+
+And I also am recognizing a difference being past the RFC stage. The
+changes are becoming more subtle, while the initial RFCs had pretty
+significant rewrites / restructures. I'll be mindful of this going
+forward, and call out any changes I come across in self-review.
+
 > 
-> Reviewed-by: Joel Stanley <joel@jms.id.au>
-> 
-> I'll apply them for v5.18.
-> 
->>
->>   .../arm/boot/dts/aspeed-bmc-ampere-mtjade.dts | 26 +++++++++----------
->>   1 file changed, 12 insertions(+), 14 deletions(-)
->>
->> --
->> 2.28.0
->>
+> Not sure if he's already on your radar, but you can watch and analyze
+> the patches submitted by Russell King. For example the recent patch set
+> for making phylink accept DSA CPU port OF nodes with no fixed-link or
+> phy-handle. Perfect timing in resubmitting a new series when one was
+> due, even when the previous one got no feedback whatsoever (which seems
+> to be the hardest situation to deal with). You need to be able to take
+> decisions even when you're doing so on your own, and much of that comes
+> with experience.
+
+I see the cadence of every 5-7 days or so seems to be the sweet spot. I
+had thought this v13 would have been long enough since v12 (4 days) but
+that seems to have been incorrect (understanding it was over a weekend).
+I'll be more mindful of this in the future.
