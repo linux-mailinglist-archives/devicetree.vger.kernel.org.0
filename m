@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A20125689BA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:41:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47C255689F1
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 15:48:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232901AbiGFNlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 09:41:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40972 "EHLO
+        id S233150AbiGFNsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 09:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232712AbiGFNll (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:41:41 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C3324BE4;
-        Wed,  6 Jul 2022 06:41:39 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id v67-20020a1cac46000000b003a1888b9d36so9197507wme.0;
-        Wed, 06 Jul 2022 06:41:39 -0700 (PDT)
+        with ESMTP id S233133AbiGFNsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 09:48:11 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CE6424F12;
+        Wed,  6 Jul 2022 06:48:10 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id a5so7470658wrx.12;
+        Wed, 06 Jul 2022 06:48:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=J37bnxv35AKNMkkxULLkWayVHEaMjv0zIAo9khsK/xs=;
-        b=Jlle0rhzTTAnWZ/MNh25r/iMQIdPg+Nu4CyuUQnEB3+XRfZWe+9CZwdtvObPWmIv6g
-         d913Ju/S7mnMovkMbGewR/EJ+C5hKF2jryill+Reaw1pTWmgv8OAkwAghmrTDutguk4Q
-         SDRosAPaNN+hGVT71HuA/B9Esxx0cYVXiQjFvXDsdTGo7ASRZIONNC4+54ApG9tqpPi8
-         dAp/BlYJDauy6Cy12yvpidH/bodG8wQQhyC1J0YUuQOVTwNttLSB8AvN8+SX88WjcVbl
-         b+DKOSfFHI1jNA6LLUabbhounPawG5AlMa6HNpwSyCeqBqtN+6gRteWmi1fx+JReOXzf
-         dCzg==
+        bh=Ys6nhaWDkYktLlUqq0SwlRalsF7YwG4ENbLhHnvqbhY=;
+        b=fV8aJ9j+yuHCeCJsnseihO3elQIXDVuluuk4eEAuWmKG+ZK7rCd24w3roTCv9M3cST
+         X5kMf3UXuNCGkNWELxZKURXY0ztY/VKtR6/sCuBqAOOoH759XuEGDMn/RcFj0qaYKaLe
+         kTRu9z4IqfmlqILQRbqADqlV2hrVFq77785WL1jQIwYmp+9cY0tfQOInOH7Enyih4OQy
+         6QzZVmfouiDIElYWsH34+xwHK6E3jiSnOTph+07cgrvKE00fQA4IeucMqhvFgxJVPpbh
+         Fjf7bydjRVlNfviN68vi9tA2pbet372RqOUYk7ePKh4exRP1IaJp4myFJmdOIavAtPu3
+         TN+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=J37bnxv35AKNMkkxULLkWayVHEaMjv0zIAo9khsK/xs=;
-        b=uj5GSzqN3K6buano1Woj+R6wCARO1hqx5b2NyxD//ZyxP481bZRFakKDAHTAnQnmhb
-         6bBRnLhAmbBgeQ9Fa6nHk/clrQmugVgO8uf/MrwFfrjVGFKR3mN0GuxV56PvSGX8gPSw
-         BZNEdYpaPKFC+Mc/HxiYYkARltDdIbUBt9f9DETUGtcYXTDpoKqSKJxO+UiFwyG+papd
-         02yE337vg3EN9N1+MW7CWBWuAMyjpjqIHZzGs+rHWjGQj7p2PAbFLgONukIAe5kOWEMb
-         btwh8QYPx+hY1IJIfsnuINOyEtDfig7bgeb02MmhSV40EpDGjedVPoUnzyjWU7RcW17U
-         eFVg==
-X-Gm-Message-State: AJIora+zZ7whJxJuCHgN/ihCkdbbMe0li6h1aZCBlWf738jN9CUNsT/J
-        RFKu6zOZPaTXG9ZC3g76zxc=
-X-Google-Smtp-Source: AGRyM1uzrUL3jgHl7v16xkNIYUGr+iA0aegNeob2FrKF9QFhYl/5MRV7Rool8Fm50IsaKRG6foS/1A==
-X-Received: by 2002:a05:600c:274b:b0:3a0:47e8:ca85 with SMTP id 11-20020a05600c274b00b003a047e8ca85mr45800324wmw.156.1657114898287;
-        Wed, 06 Jul 2022 06:41:38 -0700 (PDT)
+        bh=Ys6nhaWDkYktLlUqq0SwlRalsF7YwG4ENbLhHnvqbhY=;
+        b=HIRDzxkRCmlFy2evCMis/b7qaFCu8ZplTIUdsIK+8YxsdbHJAh2R6KXtwbqrONUblU
+         lJ2PoFXeci7aO4E76i+8Iqx0Bl1rebVLiZ7S+tIOkTmxYEYkz/Iii4D0yYpakVA0vIdt
+         E6Yue1qNWDZlfobW9UeXr9FEOuNeKn4IqfCRPsJbqn0TpOq3h7JpCYrQZmMzfKhmPK1F
+         nqw/UsvUHrqlI0b0Q+UJbzft1iJzXp2xguQJTfn3C7RENRwHDvtiocglA8iX9sf9t7Qk
+         qBkFph+bHzaWY+SMucuwGT555F1RySVnj49tH1QiIrSZG+zBHBzt+Lob7FQ6L55J2YLL
+         xf/w==
+X-Gm-Message-State: AJIora/MTWSMGqMM644hiP0gQGtR/R59W0need5K7YEm0d9kXNLorKzs
+        qaqzHI0EcbUQ0NYX/Hs8fBtQ1IGmngtt0A==
+X-Google-Smtp-Source: AGRyM1uKokpPXD3KIW+1SGhOJH0F4Ot+3fwFEVIyD8thjoxNU4UTGfcWYVexdf/YGnIyZIvbYxqHnQ==
+X-Received: by 2002:a5d:4201:0:b0:21d:7b63:1b43 with SMTP id n1-20020a5d4201000000b0021d7b631b43mr3917188wrq.225.1657115288718;
+        Wed, 06 Jul 2022 06:48:08 -0700 (PDT)
 Received: from [192.168.0.14] ([37.223.147.254])
-        by smtp.gmail.com with ESMTPSA id h16-20020a5d4310000000b0021d7b41255esm2225662wrq.98.2022.07.06.06.41.36
+        by smtp.gmail.com with ESMTPSA id m1-20020a7bcb81000000b003a05621dc53sm25703913wmi.29.2022.07.06.06.48.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 06:41:37 -0700 (PDT)
-Message-ID: <17203a8a-407e-30cf-79de-352716c3ebce@gmail.com>
-Date:   Wed, 6 Jul 2022 15:41:36 +0200
+        Wed, 06 Jul 2022 06:48:07 -0700 (PDT)
+Message-ID: <9757b32c-c196-f7e0-3c61-1d4edae854dc@gmail.com>
+Date:   Wed, 6 Jul 2022 15:48:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v1 08/16] arm64: dts: mt8195: Add power domains controller
+Subject: Re: [PATCH v1 02/16] dt-bindings: memory: mediatek: Update condition
+ for mt8195 smi node
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Tinghan Shen <tinghan.shen@mediatek.com>,
@@ -71,10 +72,10 @@ Cc:     iommu@lists.linux-foundation.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20220704100028.19932-1-tinghan.shen@mediatek.com>
- <20220704100028.19932-9-tinghan.shen@mediatek.com>
- <3b65405d-167f-a0c7-d15e-5da6f08d99b3@linaro.org>
+ <20220704100028.19932-3-tinghan.shen@mediatek.com>
+ <119f2a98-ef56-7b99-631f-221b737939ae@linaro.org>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <3b65405d-167f-a0c7-d15e-5da6f08d99b3@linaro.org>
+In-Reply-To: <119f2a98-ef56-7b99-631f-221b737939ae@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,54 +90,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 04/07/2022 14:38, Krzysztof Kozlowski wrote:
+On 04/07/2022 14:36, Krzysztof Kozlowski wrote:
 > On 04/07/2022 12:00, Tinghan Shen wrote:
->> Add power domains controller node for mt8195.
+>> The max clock items for the dts node with compatible
+>> 'mediatek,mt8195-smi-sub-common' should be 3.
 >>
->> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
->> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 327 +++++++++++++++++++++++
->>   1 file changed, 327 insertions(+)
+>> However, the dtbs_check of such node will get following message,
+>> arch/arm64/boot/dts/mediatek/mt8195-evb.dtb: smi@14010000: clock-names: ['apb', 'smi', 'gals0'] is too long
+>>           From schema: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
 >>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> index 8d59a7da3271..d52e140d9271 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> @@ -10,6 +10,7 @@
->>   #include <dt-bindings/interrupt-controller/irq.h>
->>   #include <dt-bindings/phy/phy.h>
->>   #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
->> +#include <dt-bindings/power/mt8195-power.h>
->>   
->>   / {
->>   	compatible = "mediatek,mt8195";
->> @@ -338,6 +339,332 @@
->>   			#interrupt-cells = <2>;
->>   		};
->>   
->> +		scpsys: syscon@10006000 {
->> +			compatible = "syscon", "simple-mfd";
+>> Remove the last 'else' checking to fix this error.
 > 
-> These compatibles cannot be alone.
+> Missing fixes tag.
 > 
 
-You mean we would need something like "mediatek,scpsys" as dummy compatible 
-that's not bound to any driver?
-
->> +			reg = <0 0x10006000 0 0x1000>;
->> +			#power-domain-cells = <1>;
-> 
-> If it is simple MFD, then probably it is not a power domain provider.
-> Decide.
-
-The SCPSYS IP block of MediaTek SoCs group several functionality, one is the 
-power domain controller. Others are not yet implemented, but defining the scpsys 
-as a MFD will give us the possibility to do so in the future.
+ From my understanding, fixes tags are for patches that fix bugs (hw is not 
+working etc) and not a warning message from dtbs_check. So my point of view 
+would be to not add a fixes tag here.
 
 Regards,
 Matthias
 
+>>
+>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+>> ---
+>>   .../memory-controllers/mediatek,smi-common.yaml        | 10 +++++++++-
+>>   1 file changed, 9 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+>> index a98b359bf909..e5f553e2e12a 100644
+>> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+>> @@ -143,7 +143,15 @@ allOf:
+>>               - const: gals0
+>>               - const: gals1
+>>   
+>> -    else:  # for gen2 HW that don't have gals
+>> +  - if:  # for gen2 HW that don't have gals
+>> +      properties:
+>> +        compatible:
+>> +          enum:
+>> +            - mediatek,mt2712-smi-common
+>> +            - mediatek,mt8167-smi-common
+>> +            - mediatek,mt8173-smi-common
+>> +
+> 
+> Without looking at the code, it's impossible to understand what you are
+> doing here. The commit msg says one, but you are doing something else.
+> 
+> Write commit msg explaining what you want to achieve and what you are doing.
+> 
 > 
 > Best regards,
 > Krzysztof
