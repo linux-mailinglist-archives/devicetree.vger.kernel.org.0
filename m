@@ -2,75 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 466DA5693A4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 22:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C2D95693AA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 22:54:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232890AbiGFUwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 16:52:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54668 "EHLO
+        id S233940AbiGFUyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 16:54:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232212AbiGFUwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 16:52:49 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF47A1CB1D;
-        Wed,  6 Jul 2022 13:52:46 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B5DFC66019A9;
-        Wed,  6 Jul 2022 21:52:44 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657140765;
-        bh=plFfInWaF2jQzdSTym9IBrTK4gHtJFiLIaSgAP0rW5M=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TSyP7iVStBzIx18dwKvtCyZtx9VysYN+PtKQAWJ4T6zlCCnSi5NjRZAw3znj/Yk+y
-         pt/mAjdcaKXdn9Rihd0+wsNOZLEGD8hln6wO6S7e3e/oi8WJkMCu5Dqg5MhD4EsXCz
-         dscnYA5fYBemHlVlLV5zqHUCo1zHNK5S5S7yxN//zdyfGCQj6P2Ymq6jxu4NbLoiph
-         8kk9JlmJDSPDmQguHoIywkOHtIOMM7aZUF/Q8Rel9tXv0V6QRKypBpPGBobBCXSZml
-         aG1K8OJ3iy/yQTxmcU7KAtrWZWampuIhHxDmkmpvvJTH+G/G9dDc1uXvphcJFqGzYN
-         o5ZbJ2RrG9MhQ==
-Message-ID: <d8dc8a62-93b8-618e-ff18-dd85c8e75464@collabora.com>
-Date:   Wed, 6 Jul 2022 23:52:42 +0300
+        with ESMTP id S231529AbiGFUyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 16:54:07 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ACFE20BD9;
+        Wed,  6 Jul 2022 13:54:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=Cn+qe4oiP2jeVARS3ZZalA1ZQM3ZcWF+3cLGOCQIW6g=; b=Fb
+        kv18Q9LyGiGlJS2oZq2dTmT5wMOfvxUSXNoM2SkooPf4owOi5EfMUEl+v6TzFPR4/Nc0nyUW7tgbT
+        Nf+L0kHfam4g8NF+2pU12gGEMlhAKpOtnZbhGc4/6ddSqeFJMGQEkxi0IprljX04RVheBFA/BxFk/
+        QOsAu7OdjH+dLHE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1o9C1q-009W8z-Qk; Wed, 06 Jul 2022 22:53:46 +0200
+Date:   Wed, 6 Jul 2022 22:53:46 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/11] ARM: dts: mvebu: Add definitions for PCIe legacy
+ INTx interrupts
+Message-ID: <YsX2Wvtz7hEpJ6X+@lunn.ch>
+References: <20220706183114.30783-1-pali@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v6 2/2] iio: light: Add support for ltrf216a sensor
-Content-Language: en-US
-To:     Shreeya Patel <shreeya.patel@collabora.com>, jic23@kernel.org,
-        lars@metafoo.de, robh+dt@kernel.org, Zhigang.Shi@liteon.com,
-        krisman@collabora.com
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        alvaro.soliverez@collabora.com, andy.shevchenko@gmail.com,
-        digetx@gmail.com, kernel test robot <lkp@intel.com>
-References: <20220615135130.227236-1-shreeya.patel@collabora.com>
- <20220615135130.227236-3-shreeya.patel@collabora.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220615135130.227236-3-shreeya.patel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220706183114.30783-1-pali@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/15/22 16:51, Shreeya Patel wrote:
-> +static int ltrf216a_get_lux(struct ltrf216a_data *data)
-> +{
-> +	int greendata;
-> +	u64 lux, div;
-> +
-> +	ltrf216a_set_power_state(data, true);
+On Wed, Jul 06, 2022 at 08:31:03PM +0200, Pali Rohár wrote:
+> This patch series add definitions for PCIe legacy INTx interrupts into
+> every DTS file used by the pci-mvebu.c controller driver.
 
-All the power-on errors should be handled.
+What you fail to explain in the commit message is Why?
 
--- 
-Best regards,
-Dmitry
+     Andrew
