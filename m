@@ -2,64 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75773568E34
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 17:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B0DB568E37
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 17:51:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234526AbiGFPpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 11:45:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41378 "EHLO
+        id S234651AbiGFPtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 11:49:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234529AbiGFPo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 11:44:59 -0400
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAAD624B;
-        Wed,  6 Jul 2022 08:38:26 -0700 (PDT)
-Received: by mail-il1-f171.google.com with SMTP id n9so5256008ilq.12;
-        Wed, 06 Jul 2022 08:38:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GuggSLar273DVppqlWh9H7nqMvNYN/Y0EXwfGbRrjSA=;
-        b=OH3odLmDOqBJ00trYzZe9M67wHr4rqgXFG+mCKNOwRliVu66u9wXp+MwMK82ZVm1az
-         mXN/5XK9AFxfN2WJW6hT6CxG+q8Fa8NZ30iEK1cEn/0oYQOOX47kEGFhM95haxI4cO0v
-         T9FMk7bVWftZEbX+x3wel7ePULGiiIERkneQj7x+zuaE7f3bAXEG2wWrA+4Ca/YNZf5r
-         1KMOlf6JvDpUsG9G8mzXmT3/npn1eqHSadCxbkzqVLx4CUDTJpAikxTkk7z8NmUmuMkc
-         cmPH2j/xYsLFMZ/ZbBSyYJOYFE+pl9jM2NhUd7IA6zLxQzWxoMonlvklWQBXG70dPpgn
-         Bp3g==
-X-Gm-Message-State: AJIora/50GMbtqK+GYwfrhDBkyOtcikHrukLwIkTV7vjM7p2NdvPU8Iy
-        xdkjuZFbq2Fw4H0mmab+DMJgafeovw==
-X-Google-Smtp-Source: AGRyM1sAOMSz5drQZLxQt4mlS3lrMLfHdRDzONfQoy20QivVCpYrHw6XcwQXynjLe61+HlB9ecIT6w==
-X-Received: by 2002:a92:d690:0:b0:2dc:13ca:4dfa with SMTP id p16-20020a92d690000000b002dc13ca4dfamr9551903iln.48.1657121905256;
-        Wed, 06 Jul 2022 08:38:25 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id k12-20020a6b7a4c000000b0067411d7f769sm16993818iop.5.2022.07.06.08.38.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 08:38:24 -0700 (PDT)
-Received: (nullmailer pid 91697 invoked by uid 1000);
-        Wed, 06 Jul 2022 15:38:22 -0000
-Date:   Wed, 6 Jul 2022 09:38:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        Vidya Sagar <vidyas@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: pinctrl: tegra: Convert to
- json-schema
-Message-ID: <20220706153822.GA54439-robh@kernel.org>
-References: <20220704165802.129717-1-thierry.reding@gmail.com>
- <20220704165802.129717-2-thierry.reding@gmail.com>
+        with ESMTP id S233522AbiGFPtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 11:49:03 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2054.outbound.protection.outlook.com [40.107.21.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41766206;
+        Wed,  6 Jul 2022 08:42:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aXbrbycBQtqXIB5inxUEGf1G6laJLSbqBzhthSArONvPY/TtcUkluya9w5LX1DZad0/oWSxz3/vt4Z+zKYvJ28lATlNbxEaGvVIQHdS6nUlK26fgm1ilAaWfTsf/omEbZ5o9utpTbcLwje9cFpvusWE4c+/+9/7vUgZOlDD1Up+FhFkdS0qQPnd3xx4QAMbEDpgISqPpFuwVl2RsmN4QQRApbhiu8pQlTcpxi+aYn8uvJckoGoLXS3dEweZ3aCtrH9rO/w6qTxebDsxHBPa5dA/9aDp7yBhn7+dadFY2SiPHLR/CXQW3VTvbQ/cBDoJ7kJaN8REFse1fr3ATGQ6OrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A/KP6WBbxZk7T2q4KhCof8ij7WCX+ughu7Jgun4py2I=;
+ b=JW7N227jS1pZpYVKOtIBg5HDqbpXJALewhtdtg/7bvIZnoUm321T8VdDA89ms90eKow/bYTD272xZ6ZK5Rq5hoYZ8pOFvENpMF+OCMiCbwug8WOWuX5vjOmq6CRXW9cT+KuCRa4qwm9wbi6xS2Tkh5sgGzBhCHV9VYgQzubAy1q0utk5En/hZfD1kCGLcm8FZi/l+qKEUQ2yaI5QLQbbwU4r/+whPA42z0Z7XgN4TJo+r99GJF+Cjkf3rt8Ye+57yLkylOdJcUujq8+0yXcYtesGQpbxzs47EvHue6QFSdunGgUBzlqEVAyJI9yJZruxt8DjPDyphlyIwae1CNIJxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A/KP6WBbxZk7T2q4KhCof8ij7WCX+ughu7Jgun4py2I=;
+ b=ZozFTwT10oPauIq9CR7WeKPcLO1VWX7VLukpq6PFZAkRjcAcO/e4FWqSm9dhnql3ismEi74tBWWQBJ3K9mTOtPmUpmBi/CJqF/xlmoX7Nk3vu6dvq59bpwGBSpzOSFIyZal9LgIQhsYGZKd92/uTITKQ7hXLcrToFqxR5FQWeok=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
+ by AM0PR04MB4292.eurprd04.prod.outlook.com (2603:10a6:208:67::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.21; Wed, 6 Jul
+ 2022 15:42:14 +0000
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::cc58:11a8:839f:895f]) by PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::cc58:11a8:839f:895f%7]) with mapi id 15.20.5395.017; Wed, 6 Jul 2022
+ 15:42:14 +0000
+Message-ID: <6f64e6c5-3562-4abd-2746-a9e4dd6ba16b@theobroma-systems.com>
+Date:   Wed, 6 Jul 2022 17:42:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v7 2/4] media: ov5675: add device-tree support and support
+ runtime PM
+Content-Language: en-US
+To:     Jacopo Mondi <jacopo@jmondi.org>,
+        Quentin Schulz <foss+kernel@0leil.net>
+Cc:     shawnx.tu@intel.com, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220608134420.1750530-1-foss+kernel@0leil.net>
+ <20220608134420.1750530-2-foss+kernel@0leil.net>
+ <20220706073022.3mk3i46y5msjn2xk@uno.localdomain>
+From:   Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: <20220706073022.3mk3i46y5msjn2xk@uno.localdomain>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0075.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1f::23) To PA4PR04MB9367.eurprd04.prod.outlook.com
+ (2603:10a6:102:2aa::7)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220704165802.129717-2-thierry.reding@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 94c90d5d-a18e-48f5-99b2-08da5f66190c
+X-MS-TrafficTypeDiagnostic: AM0PR04MB4292:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PfaAWahYjrg3ZVx4Ya/7sQPDrqIVKYnGR5u0Y/DmdmNXgvQev4fGuKpqWrdmWhuWbvT1VfXt4EBVO/qu3eciJLIELJ9+UQnrSt3pK4e4cnRzuTxFZmb2MtynJUnqxjcAEhYh0+UX+rsrDp96N92xZYovnocfdCSH3i7GPc3b5wzGmvRoswT2AqMkiUPMK8rWjuZEbHAhB61P1r66epaxMs0d7OmFttp1sAMnLLx7MsJ27FRlC3FHfgJE35tHnCY2CyK2lj8l9c1pf1AVEK5sYKDNJ5dZjkXLqjZEOKyCePcy/BTI4ajV/O9JsWKiZAEIFBMXXHngCxiapNbsR81szk/8Afwfirmd64gXwPpHzLp0XL8HriyZznwjrwwzsA3c1eR64i0vb+odjN/Lkj273zGePgijHjWClcwD7hpPkEDMPZmN2oROqotLf0c35g72MWpi3BHCwmI7YvEF4BAhpW+4niQEZrke776eG3avq+fEtRGWZL/DWUiruPXAvV1DxJGUbVNbd/VeAcet9xvBZF0ekCisNUCZxVEhtnqtoy5FUIsA+IK/2pMS50hGBPjEtJxiGPdCtPEAASuLhNJAKiSaDiIXRz+wDkDRMN7D8rTvce1bGiZHCXG8YZmWS9ZHOiWGTX/auhxzi1fLaiVgJgNzz60ZIJ18E2UwFmgyl6AqQaRQVF1nccM1vjLjZOF2a8FlJKvT17NfHKWSjGNMD3rq3gsA0fFFmKTrURDfHJ729xey9/osQoIhBB4vAIJ9SiuTpMEp/s7dsFP9bF1tmXqJkuC6saW8XeWrTTL8qlaE6/AaMTFoHC0GzhRnw+Rbx7CjXEEHdPl99tPRvagGMtFmpeKiXBCc5Mk2PloZ2o9jIVP52saIe8YfG/A2vWrr
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(346002)(136003)(376002)(366004)(39850400004)(6506007)(36756003)(31686004)(31696002)(53546011)(316002)(110136005)(86362001)(38100700002)(2906002)(8676002)(41300700001)(4326008)(44832011)(6486002)(966005)(5660300002)(66476007)(83380400001)(66556008)(6512007)(26005)(30864003)(66946007)(186003)(8936002)(2616005)(478600001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R0YxSFBZeU10MXhIeXpndUZQSVpQYStENVM5dW5QcmVvS21uaWZOQmpUUUVr?=
+ =?utf-8?B?WjY3ektpSkJxaTJlSlRaRjR6d0dzSlRiM0ErdURNQXFDR1Y0WTExUDg0bURQ?=
+ =?utf-8?B?YXp4R1VxS1JORDZNdzVuNDh6ZElkK0dKaS9RV0pxVVhhb3dVWUhkY0xmeUg3?=
+ =?utf-8?B?SFB5MGxvUWdMai9ndGdOSjJDdGk0YkhNZHh4RDRoWjdId3dtdmsvWG4reGwx?=
+ =?utf-8?B?NUZVZXdiUWoyclpDRzJlTkxTUlZPZGphRXVQaitLY0sxdnVlMkM5UXRQY3ZQ?=
+ =?utf-8?B?UXYzS2JzSHFVL3Rzb0RsNU5GWTFEMDdUZThqWHo5VExUa1hxQVFDc3VqdEZ6?=
+ =?utf-8?B?QUhlT1J2Qis4dzdIeFZHNkxhZGNjTDJwYkhMMS9ScGhaQkEwSXEwakRRY1JL?=
+ =?utf-8?B?OTM3bEhXODQvSjI5V0p6WFNxb0RvdWFQVTlTU3VBODVub3NCVjJHVTV2NFlY?=
+ =?utf-8?B?S0poaHJEeU1JRFdCdU1KWGQvVyttTUtBcTJsRndTNGprK3hVWkYzNFZSUmZI?=
+ =?utf-8?B?eDFIb1RWMjJydVdEM1kvNnNuM2VuVzEvSCtNWUdZWXpkbzFsZDVWUmx6SVV5?=
+ =?utf-8?B?L3ZBdFJRREdxV3dhOUNiQmRwMjlOYy9uaUJnVlZkN1JQWWtCTlNyWkloOE9L?=
+ =?utf-8?B?MXp0K2djOEZnTnAzdm45SlRNV2xEMzBHR1dwcEdBb3Iyb3JhcGtUVm1wZEEv?=
+ =?utf-8?B?bUk2S3ZPeTdOSlZQbUdLa1RmdG03eEExYThrWHpFNVE2UWw3N1ZENE5NeWNm?=
+ =?utf-8?B?SUltTVRIajF5UDhBbzRpVSswOHVKazUxTnROZlp5V013U1RLQXMwaGZJemVM?=
+ =?utf-8?B?OFV4T0padnZnTXZzQVBLK0I1b3E5ZUNCdFdmZml6ZzJ6djhhbGNGa1VaejZR?=
+ =?utf-8?B?ZGFLSzIrT2MwSGRia2N1S1pnU09NNGJIT3EyalVQcElLaEgzejhEODN6ZkNR?=
+ =?utf-8?B?dTdWSlQvc2FOMVlidjRnbmZHU2hJMWx5cml5WlB3dUhTWW96NGJzRFRZWHNr?=
+ =?utf-8?B?Ymsxd2J6OU5FcDFreENxR05VOW54RXVSakd5cWhKdUd3Zlg1VCtyb21uVE9W?=
+ =?utf-8?B?WFN5STVMcnNGVXROSHEyL1RlcGF1ZjJnSHVFYjZtcjBLY2FyM2wzNDM4Smts?=
+ =?utf-8?B?Y3ByMHowWHU2RDA0MXNjOFJDanlaZUFqVWFsaFpMbTdlN255OS9nWG9ua01p?=
+ =?utf-8?B?YUY4TmZBeUtuallyUDhpV1V0RER3aWcva0JrNU03cmxsM0NjeTR6R21VaXNu?=
+ =?utf-8?B?VjdjcnVYTU93Q2pNR3hCa0JCd0t1eFMxdnV0aWpnZFNuSHdWTHBWV0VIeDFv?=
+ =?utf-8?B?S0JGS1gwMlVMbnBpVDNHWlk1QjJwMFQzMm1tR2RnRENaUzAzcWFxbDlPbGVS?=
+ =?utf-8?B?bElENnR6ZjI4Y04vSnFFeEQrNEZIRUdjbmM4RDk5d0NzZEhKMjJYZmttRnk0?=
+ =?utf-8?B?dUZjVXBtS1J4QTlJSXU3ZjMrZ1pNWGptYUJxUUo4d3RUNUY0bG5HeWlreFNM?=
+ =?utf-8?B?N0U2OG5UbVpHWkkrN1h1V25aNWNNSEZ3VEpqaU9xWlRYeXVCaTRuZ1BhTVVT?=
+ =?utf-8?B?UVB3c2h1eTIrOWlNM1dKdW15TmZ3cTVCNXN3V3FTRWQ4cXNXall3a2VSaS9M?=
+ =?utf-8?B?dFNITTN1MmF4RFdDeHlyYnl3YkQ2akpvemdwZnNIOVFmRktnbUVVYUY5NWlk?=
+ =?utf-8?B?U21qNlh0SWZwLzRPc3pLNUVRRE5maHN4QlU3OGl3MXJsTG9IWWhsREFjdmdr?=
+ =?utf-8?B?UUxHT0JLZG9NTW9FMUQ4MHRYTDhsU1pMaGtqQlhHZDNqM2M0U0cwdjV3Q1JB?=
+ =?utf-8?B?WkE5N0J1eTVXTWVPSmI5UGgyY1dLZjJ2bkdpT0wxTXlnT3p6QnFNQm93aGNT?=
+ =?utf-8?B?YXpoOERGN2VySmw5aEJsblBEa2o0c21TMzVtUVE3L3VZSlBhQ0RFTnZyV21x?=
+ =?utf-8?B?dkFhUVFZVnhPSnhoS1NkcTRaNHp3ZXA3UkRhbXJJM3h3cCtadWdXZjZHVEFa?=
+ =?utf-8?B?RWY2WjBnVjhJM2pFZEYzWGFsaTRhUUtrUUVwUVJMZnp1ODEyNUxHWGd1VVpn?=
+ =?utf-8?B?NU1Rc0tDQUsvOHdXUkp1N3hnMHhNcGhzQ3VaKzBrYys0VVZPbmlyVnJoQmVW?=
+ =?utf-8?B?UzBnVXJWM0NFQjRVQ05qNzBER2tPSkk3bnJkOVZhOVJ4UUt6OFlEdHRDVUtG?=
+ =?utf-8?Q?FFFUhaUuB8g59vcbFWub80E=3D?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94c90d5d-a18e-48f5-99b2-08da5f66190c
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2022 15:42:14.4011
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8HuUQoUnuf7adgCK7Vl3nLCTFRALXmmTgVTuIdyiueuCIgoFGMAoMWzrL9MfdAqBg4fiVP5zYrVKn0ETmtQHRbJ8zoQ2nbb7sdMogreTB7Heoohz1UCiu8Mk6ydF6OwX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4292
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,441 +131,352 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 04, 2022 at 06:57:59PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+Hi Jacopo,
+
+On 7/6/22 09:30, Jacopo Mondi wrote:
+> Hi Quentin,
 > 
-> Convert the NVIDIA Tegra pinmux controller bindings from the free-form
-> text format to json-schema.
+> On Wed, Jun 08, 2022 at 03:44:18PM +0200, Quentin Schulz wrote:
+>> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>>
+>> Until now, this driver only supported ACPI. This adds support for
+>> Device Tree too while enabling clock and regulators in runtime PM.
+>>
+>> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>> ---
+>>
 > 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Changes in v2:
-> - wrap lines at 80 characters instead of the standard 100 characters in Linux
-> - use GPL-2.0-only instead of GPL-2.0+ license for DT bindings
-> - reorder additionalProperties for better readability
-> - move common definitions into a shared schema
-> - remove consumer snippets from examples
+> seems like my r-b tag has been dropped from v7.
 > 
->  .../bindings/clock/nvidia,tegra124-dfll.yaml  |   2 +-
->  .../pinctrl/nvidia,tegra-pinmux-common.yaml   | 195 ++++++++++++++++++
->  .../pinctrl/nvidia,tegra114-pinmux.txt        | 131 ------------
->  .../pinctrl/nvidia,tegra114-pinmux.yaml       | 162 +++++++++++++++
->  .../pinctrl/nvidia,tegra124-pinmux.txt        | 153 --------------
->  .../pinctrl/nvidia,tegra124-pinmux.yaml       | 182 ++++++++++++++++
->  .../pinctrl/nvidia,tegra194-pinmux.txt        | 107 ----------
->  .../pinctrl/nvidia,tegra194-pinmux.yaml       |  88 ++++++++
->  .../pinctrl/nvidia,tegra20-pinmux.txt         | 143 -------------
->  .../pinctrl/nvidia,tegra20-pinmux.yaml        | 107 ++++++++++
->  .../pinctrl/nvidia,tegra210-pinmux.txt        | 166 ---------------
->  .../pinctrl/nvidia,tegra210-pinmux.yaml       | 146 +++++++++++++
->  .../pinctrl/nvidia,tegra30-pinmux.txt         | 144 -------------
->  .../pinctrl/nvidia,tegra30-pinmux.yaml        | 176 ++++++++++++++++
->  14 files changed, 1057 insertions(+), 845 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra-pinmux-common.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra114-pinmux.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra114-pinmux.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra124-pinmux.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra124-pinmux.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra194-pinmux.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra194-pinmux.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra20-pinmux.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra20-pinmux.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra210-pinmux.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra210-pinmux.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra30-pinmux.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra30-pinmux.yaml
+> Any major change or it just slipped ?
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml b/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml
-> index 85234a48b590..96c54c215f77 100644
-> --- a/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml
-> +++ b/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml
-> @@ -219,7 +219,7 @@ examples:
->  
->      /*
->       * pinmux nodes added for completeness. Binding doc can be found in:
-> -     * Documentation/devicetree/bindings/pinctrl/nvidia,tegra210-pinmux.txt
-> +     * Documentation/devicetree/bindings/pinctrl/nvidia,tegra210-pinmux.yaml
->       */
->  
->      pinmux: pinmux@700008d4 {
-> diff --git a/Documentation/devicetree/bindings/pinctrl/nvidia,tegra-pinmux-common.yaml b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra-pinmux-common.yaml
-> new file mode 100644
-> index 000000000000..cb6b722b89af
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra-pinmux-common.yaml
-> @@ -0,0 +1,195 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/nvidia,tegra-pinmux-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra Pinmux Controller
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jonathan Hunter <jonathanh@nvidia.com>
-> +
-> +definitions:
 
-This likely doesn't work because 'definitions' doesn't get fixups 
-applied. '$defs' would, but in general I prefer avoiding this pattern 
-except when really needed. I don't think it helps here. More below.
+No change at all, should have been there. Sorry for the oversight.
 
-> +  pinconf-node:
-> +    type: object
-> +    description: |
-> +      Please refer to pinctrl-bindings.txt in this directory for details of the
-> +      common pinctrl bindings used by client devices, including the meaning of
-> +      the phrase "pin configuration node".
-> +
-> +      Tegra's pin configuration nodes act as a container for an arbitrary number
-> +      of subnodes. Each of these subnodes represents some desired configuration
-> +      for a pin, a group, or a list of pins or groups. This configuration can
-> +      include the mux function to select on those pin(s)/ group(s), and various
-> +      pin configuration parameters, such as pull-up, tristate, drive strength,
-> +      etc.
-> +
-> +      The name of each subnode is not important; all subnodes should be
-> +      enumerated and processed purely based on their content.
-> +
-> +      Each subnode only affects those parameters that are explicitly listed. In
-> +      other words, a subnode that lists a mux function but no pin configuration
-> +      parameters implies no information about any pin configuration parameters.
-> +
-> +      Similarly, a pin subnode that describes a pullup parameter implies no
-> +      information about e.g.  the mux function or tristate parameter. For this
-> +      reason, even seemingly boolean values are actually tristates in this
-> +      binding: unspecified, off, or on. Unspecified is represented as an absent
-> +      property, and off/on are represented as integer values 0 and 1.
-> +
-> +      Note that many of these properties are only valid for certain specific pins
-> +      or groups. See the Tegra TRM and various pinmux spreadsheets for complete
-> +      details regarding which groups support which functionality. The Linux
-> +      pinctrl driver may also be a useful reference, since it consolidates,
-> +      disambiguates, and corrects data from all those sources.
-> +
-> +    patternProperties:
-> +      "^pinmux(-[a-z0-9-_]+)?$":
+Cheers,
+Quentin
 
-Drop this and make all the below be at the top level (i.e. no indent).
-
-> +        type: object
-> +        properties:
-> +          nvidia,pins:
-> +            $ref: /schemas/types.yaml#/definitions/string-array
-> +            description: An array of strings. Each string contains the name of
-> +              a pin or group.  Valid values for these names are listed below.
-> +
-> +          nvidia,function:
-> +            $ref: /schemas/types.yaml#/definitions/string
-> +            description: A string containing the name of the function to mux to
-> +              the pin or group. Valid values for function names are listed
-> +              below. See the Tegra TRM to determine which are valid for each
-> +              pin or group.
-> +
-> +          nvidia,pull:
-> +            description: Pull-down/up setting to apply to the pin.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            oneOf:
-> +              - description: none
-> +                const: 0
-> +              - description: down
-> +                const: 1
-> +              - description: up
-> +                const: 2
-> +
-> +          nvidia,tristate:
-> +            description: Tristate setting to apply to the pin.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            oneOf:
-> +              - description: drive
-> +                const: 0
-> +              - description: tristate
-> +                const: 1
-> +
-> +          nvidia,schmitt:
-> +            description: Enable Schmitt trigger on the input.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            oneOf:
-> +              - description: disable Schmitt trigger on the input
-> +                const: 0
-> +              - description: enable Schmitt trigger on the input
-> +                const: 1
-> +
-> +          nvidia,pull-down-strength:
-> +            description: Controls drive strength. 0 is weakest. The range of
-> +              valid values depends on the pingroup. See "CAL_DRVDN" in the
-> +              Tegra TRM.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +          nvidia,pull-up-strength:
-> +            description: Controls drive strength. 0 is weakest. The range of
-> +              valid values depends on the pingroup. See "CAL_DRVUP" in the
-> +              Tegra TRM.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  high-speed-mode:
-
-Why do all these need to be definitions? They all have the same name and 
-apply to the pinmux nodes. Just move them there with the right name.
-
-> +    description: Enable high speed mode the pins.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    oneOf:
-> +      - description: normal speed mode
-> +        const: 0
-> +      - description: high speed mode
-> +        const: 1
-> +
-> +  low-power-mode:
-> +    description: Controls the drive power or current. Valid values are
-> +      from 0 through 3, where 0 specifies the least power and 3 specifies
-> +      the most power. See "Low Power Mode" or "LPMD1" and "LPMD0" in the
-> +      Tegra TRM.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1, 2, 3 ]
-> +
-> +  enable-input:
-> +    description: Enable the pin's input path.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    oneOf:
-> +      - description: disable input (i.e. output only)
-> +        const: 0
-> +      - description: enable input
-> +        const: 1
-> +
-> +  open-drain:
-> +    description: Open-drain configuration for the pin.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    oneOf:
-> +      - description: disable open-drain
-> +        const: 0
-> +      - description: enable open-drain
-> +        const: 1
-> +
-> +  lock:
-> +    description: Lock the pin configuration against further changes until
-> +      reset.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    oneOf:
-> +      - description: disable pin configuration lock
-> +        const: 0
-> +      - description: enable pin configuration lock
-> +        const: 1
-> +
-> +  io-reset:
-> +    description: reset the I/O path
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
-> +
-> +  rcv-sel:
-> +    description: select VIL/VIH receivers
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    oneOf:
-> +      - description: normal receivers
-> +        const: 0
-> +      - description: high-voltage receivers
-> +        const: 1
-> +
-> +  drive-type:
-> +    description: Drive type to configure for the pin.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1, 2, 3 ]
-> +
-> +  io-hv:
-> +    description: Select high-voltage receivers.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    oneOf:
-> +      - description: Use normal receivers.
-> +        const: 0
-> +      - description: Use high-voltage receivers.
-> +        const: 1
-> +
-> +  slew-rate-rising:
-> +    description: Controls rising signal slew rate. 0 is fastest. The
-> +      range of valid values depends on the pingroup. See "DRVDN_SLWR" in
-> +      the Tegra TRM.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  slew-rate-falling:
-> +    description: Controls falling signal slew rate. 0 is fastest. The
-> +      range of valid values depends on the pingroup. See "DRVUP_SLWF" in
-> +      the Tegra TRM.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +properties:
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 4
-
-This doesn't get used anywhere.
-
-> +
-> +additionalProperties: true
-> +...
-
-
-> diff --git a/Documentation/devicetree/bindings/pinctrl/nvidia,tegra114-pinmux.yaml b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra114-pinmux.yaml
-> new file mode 100644
-> index 000000000000..e0a3f58b5535
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra114-pinmux.yaml
-> @@ -0,0 +1,162 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/nvidia,tegra114-pinmux.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra114 pinmux Controller
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: nvidia,tegra114-pinmux
-> +
-> +  reg:
-> +    items:
-> +      - description: pad control registers
-> +      - description: mux registers
-> +
-> +additionalProperties:
-> +  $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/pinconf-node'
-> +  patternProperties:
-> +    "^pinmux(-[a-z0-9-_]+)?$":
-> +      additionalProperties: false
-
-The reference to the common schema should then be here.
-
-If you want to keep which properties apply, then keep 
-'additionalProperties' and just list them out:
-
-nvidia,enable-input: true
-
-> +      properties:
-> +        nvidia,pins:
-> +          items:
-> +            enum: [ ulpi_data0_po1, ulpi_data1_po2, ulpi_data2_po3,
-> +                    ulpi_data3_po4, ulpi_data4_po5, ulpi_data5_po6,
-> +                    ulpi_data6_po7, ulpi_data7_po0, ulpi_clk_py0, ulpi_dir_py1,
-> +                    ulpi_nxt_py2, ulpi_stp_py3, dap3_fs_pp0, dap3_din_pp1,
-> +                    dap3_dout_pp2, dap3_sclk_pp3, pv0, pv1, sdmmc1_clk_pz0,
-> +                    sdmmc1_cmd_pz1, sdmmc1_dat3_py4, sdmmc1_dat2_py5,
-> +                    sdmmc1_dat1_py6, sdmmc1_dat0_py7, clk2_out_pw5,
-> +                    clk2_req_pcc5, hdmi_int_pn7, ddc_scl_pv4, ddc_sda_pv5,
-> +                    uart2_rxd_pc3, uart2_txd_pc2, uart2_rts_n_pj6,
-> +                    uart2_cts_n_pj5, uart3_txd_pw6, uart3_rxd_pw7,
-> +                    uart3_cts_n_pa1, uart3_rts_n_pc0, pu0, pu1, pu2, pu3, pu4,
-> +                    pu5, pu6, gen1_i2c_sda_pc5, gen1_i2c_scl_pc4, dap4_fs_pp4,
-> +                    dap4_din_pp5, dap4_dout_pp6, dap4_sclk_pp7, clk3_out_pee0,
-> +                    clk3_req_pee1, gmi_wp_n_pc7, gmi_iordy_pi5, gmi_wait_pi7,
-> +                    gmi_adv_n_pk0, gmi_clk_pk1, gmi_cs0_n_pj0, gmi_cs1_n_pj2,
-> +                    gmi_cs2_n_pk3, gmi_cs3_n_pk4, gmi_cs4_n_pk2, gmi_cs6_n_pi3,
-> +                    gmi_cs7_n_pi6, gmi_ad0_pg0, gmi_ad1_pg1, gmi_ad2_pg2,
-> +                    gmi_ad3_pg3, gmi_ad4_pg4, gmi_ad5_pg5, gmi_ad6_pg6,
-> +                    gmi_ad7_pg7, gmi_ad8_ph0, gmi_ad9_ph1, gmi_ad10_ph2,
-> +                    gmi_ad11_ph3, gmi_ad12_ph4, gmi_ad13_ph5, gmi_ad14_ph6,
-> +                    gmi_ad15_ph7, gmi_a16_pj7, gmi_a17_pb0, gmi_a18_pb1,
-> +                    gmi_a19_pk7, gmi_wr_n_pi0, gmi_oe_n_pi1, gmi_dqs_p_pj3,
-> +                    gmi_rst_n_pi4, gen2_i2c_scl_pt5, gen2_i2c_sda_pt6,
-> +                    sdmmc4_clk_pcc4, sdmmc4_cmd_pt7, sdmmc4_dat0_paa0,
-> +                    sdmmc4_dat1_paa1, sdmmc4_dat2_paa2, sdmmc4_dat3_paa3,
-> +                    sdmmc4_dat4_paa4, sdmmc4_dat5_paa5, sdmmc4_dat6_paa6,
-> +                    sdmmc4_dat7_paa7, cam_mclk_pcc0, pcc1, pbb0,
-> +                    cam_i2c_scl_pbb1, cam_i2c_sda_pbb2, pbb3, pbb4, pbb5, pbb6,
-> +                    pbb7, pcc2, pwr_i2c_scl_pz6, pwr_i2c_sda_pz7, kb_row0_pr0,
-> +                    kb_row1_pr1, kb_row2_pr2, kb_row3_pr3, kb_row4_pr4,
-> +                    kb_row5_pr5, kb_row6_pr6, kb_row7_pr7, kb_row8_ps0,
-> +                    kb_row9_ps1, kb_row10_ps2, kb_col0_pq0, kb_col1_pq1,
-> +                    kb_col2_pq2, kb_col3_pq3, kb_col4_pq4, kb_col5_pq5,
-> +                    kb_col6_pq6, kb_col7_pq7, clk_32k_out_pa0, sys_clk_req_pz5,
-> +                    core_pwr_req, cpu_pwr_req, pwr_int_n, owr, dap1_fs_pn0,
-> +                    dap1_din_pn1, dap1_dout_pn2, dap1_sclk_pn3, clk1_req_pee2,
-> +                    clk1_out_pw4, spdif_in_pk6, spdif_out_pk5, dap2_fs_pa2,
-> +                    dap2_din_pa4, dap2_dout_pa5, dap2_sclk_pa3, dvfs_pwm_px0,
-> +                    gpio_x1_aud_px1, gpio_x3_aud_px3, dvfs_clk_px2,
-> +                    gpio_x4_aud_px4, gpio_x5_aud_px5, gpio_x6_aud_px6,
-> +                    gpio_x7_aud_px7, sdmmc3_clk_pa6, sdmmc3_cmd_pa7,
-> +                    sdmmc3_dat0_pb7, sdmmc3_dat1_pb6, sdmmc3_dat2_pb5,
-> +                    sdmmc3_dat3_pb4, hdmi_cec_pee3, sdmmc1_wp_n_pv3,
-> +                    sdmmc3_cd_n_pv2, gpio_w2_aud_pw2, gpio_w3_aud_pw3,
-> +                    usb_vbus_en0_pn4, usb_vbus_en1_pn5, sdmmc3_clk_lb_in_pee5,
-> +                    sdmmc3_clk_lb_out_pee4, reset_out_n,
-> +                    # drive groups
-> +                    drive_ao1, drive_ao2, drive_at1, drive_at2, drive_at3,
-> +                    drive_at4, drive_at5, drive_cdev1, drive_cdev2, drive_dap1,
-> +                    drive_dap2, drive_dap3, drive_dap4, drive_dbg, drive_sdio3,
-> +                    drive_spi, drive_uaa, drive_uab, drive_uart2, drive_uart3,
-> +                    drive_sdio1, drive_ddc, drive_gma, drive_gme, drive_gmf,
-> +                    drive_gmg, drive_gmh, drive_owr, drive_uda ]
-> +
-> +        nvidia,function:
-> +          enum: [ blink, cec, cldvfs, clk12, cpu, dap, dap1, dap2, dev3,
-> +                  displaya, displaya_alt, displayb, dtv, emc_dll, extperiph1,
-> +                  extperiph2, extperiph3, gmi, gmi_alt, hda, hsi, i2c1, i2c2,
-> +                  i2c3, i2c4, i2cpwr, i2s0, i2s1, i2s2, i2s3, i2s4, irda, kbc,
-> +                  nand, nand_alt, owr, pmi, pwm0, pwm1, pwm2, pwm3, pwron,
-> +                  reset_out_n, rsvd1, rsvd2, rsvd3, rsvd4, sdmmc1, sdmmc2,
-> +                  sdmmc3, sdmmc4, soc, spdif, spi1, spi2, spi3, spi4, spi5,
-> +                  spi6, sysclk, trace, uarta, uartb, uartc, uartd, ulpi, usb,
-> +                  vgp1, vgp2, vgp3, vgp4, vgp5, vgp6, vi, vi_alt1, vi_alt3 ]
-> +
-> +        nvidia,enable-input:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/enable-input'
-> +
-> +        nvidia,open-drain:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/open-drain'
-> +
-> +        nvidia,lock:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/lock'
-> +
-> +        nvidia,io-reset:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/io-reset'
-> +
-> +        nvidia,rcv-sel:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/rcv-sel'
-> +
-> +        nvidia,high-speed-mode:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/high-speed-mode'
-> +
-> +        nvidia,low-power-mode:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/low-power-mode'
-> +
-> +        nvidia,drive-type:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/drive-type'
-> +
-> +        nvidia,slew-rate-rising:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/slew-rate-rising'
-> +
-> +        nvidia,slew-rate-falling:
-> +          $ref: 'nvidia,tegra-pinmux-common.yaml#/definitions/slew-rate-falling'
-> +
-> +      required:
-> +        - nvidia,pins
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    pinmux@70000868 {
-> +      compatible = "nvidia,tegra114-pinmux";
-> +      reg = <0x70000868 0x148>, /* Pad control registers */
-> +            <0x70003000 0x40c>; /* PinMux registers */
-> +
-> +      pinmux {
-> +        sdmmc4_clk_pcc4 {
-
-Humm, this doesn't even match the schema. The child and grandchild are 
-swapped. It's saying any child node has only child nodes named 
-"^pinmux(-[a-z0-9-_]+)?$".
-
-Please test your patches. This didn't apply, so no automated checks ran. 
-But that's not a free testing service anyways. :(
-
-Rob
+> Thanks
+>     j
+> 
+>> v6:
+>>   - inverted-xmas-tree ordering,
+>>   - space alignment instead of tab after data type for clk and
+>>   reset_gpio,
+>>   - added pm_runtime_set_suspended to remove callback as suggested by
+>>   Tommaso (please cc the mailing list next time too so everyone can
+>>   benefit from your reviews :) ),
+>>   c.f. https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.linuxfoundation.org_pipermail_linux-2Dpm_2012-2DJuly_034705.html&d=DwIBaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=UUADoiN42MXp9pWA9wFQ7vAh8Y0-KlDmQVDA99hi5PBxa7lQPePNq2BuvpIeouvb&s=-NnrgHuWYBKbBeigK_pvYkeHUm1rGSe0l0Gb0HajSUc&e=
+>>   - added Reviewed-by,
+>>
+>> v5:
+>>   - fixed -Wdeclaration-after-statement for delay_us,
+>>
+>> v4:
+>>   - added delays based on clock cycles as specified in datasheet for
+>>   pre-power-off and post-power-on,
+>>   - re-arranged clk handling, shutdown toggling and regulator handling to
+>>   better match power up/down sequence defined in datasheet,
+>>   - added comment on need for regulator being stable before releasing
+>>   shutdown pin,
+>>
+>> v3:
+>>   - added linux/mod_devicetable.h include,
+>>   - moved delay for reset pulse right after the regulators are enabled,
+>>   - removed check on is_acpi_node in favor of checks on presence of OF
+>>   properties (e.g. devm_clk_get_optional returns NULL),
+>>   - moved power management out of system suspend/resume into runtime PM
+>>   callbacks,
+>>   - removed ACPI specific comment since it's not specific to this driver,
+>>   - changed devm_clk_get to devm_clk_get_optional,
+>>   - remove OF use of clock-frequency (handled by devm_clk_get_optional
+>>   directly),
+>>   - removed name of clock (only one, so no need for anything explicit)
+>>   when requesting a clock from OF,
+>>   - wrapped lines to 80 chars,
+>>
+>> v2:
+>>   - fixed unused-const-variable warning by removing of_match_ptr in
+>>   of_match_table, reported by kernel test robot,
+>>   drivers/media/i2c/ov5675.c | 150 +++++++++++++++++++++++++++++++------
+>>   1 file changed, 129 insertions(+), 21 deletions(-)
+>>
+>> diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
+>> index 82ba9f56baec..e671fb24ebb4 100644
+>> --- a/drivers/media/i2c/ov5675.c
+>> +++ b/drivers/media/i2c/ov5675.c
+>> @@ -3,10 +3,14 @@
+>>
+>>   #include <asm/unaligned.h>
+>>   #include <linux/acpi.h>
+>> +#include <linux/clk.h>
+>>   #include <linux/delay.h>
+>> +#include <linux/gpio/consumer.h>
+>>   #include <linux/i2c.h>
+>> +#include <linux/mod_devicetable.h>
+>>   #include <linux/module.h>
+>>   #include <linux/pm_runtime.h>
+>> +#include <linux/regulator/consumer.h>
+>>   #include <media/v4l2-ctrls.h>
+>>   #include <media/v4l2-device.h>
+>>   #include <media/v4l2-fwnode.h>
+>> @@ -17,7 +21,7 @@
+>>
+>>   #define OV5675_LINK_FREQ_450MHZ		450000000ULL
+>>   #define OV5675_SCLK			90000000LL
+>> -#define OV5675_MCLK			19200000
+>> +#define OV5675_XVCLK_19_2		19200000
+>>   #define OV5675_DATA_LANES		2
+>>   #define OV5675_RGB_DEPTH		10
+>>
+>> @@ -76,6 +80,14 @@
+>>
+>>   #define to_ov5675(_sd)			container_of(_sd, struct ov5675, sd)
+>>
+>> +static const char * const ov5675_supply_names[] = {
+>> +	"avdd",		/* Analog power */
+>> +	"dovdd",	/* Digital I/O power */
+>> +	"dvdd",		/* Digital core power */
+>> +};
+>> +
+>> +#define OV5675_NUM_SUPPLIES	ARRAY_SIZE(ov5675_supply_names)
+>> +
+>>   enum {
+>>   	OV5675_LINK_FREQ_900MBPS,
+>>   };
+>> @@ -484,6 +496,9 @@ struct ov5675 {
+>>   	struct v4l2_subdev sd;
+>>   	struct media_pad pad;
+>>   	struct v4l2_ctrl_handler ctrl_handler;
+>> +	struct clk *xvclk;
+>> +	struct gpio_desc *reset_gpio;
+>> +	struct regulator_bulk_data supplies[OV5675_NUM_SUPPLIES];
+>>
+>>   	/* V4L2 Controls */
+>>   	struct v4l2_ctrl *link_freq;
+>> @@ -944,6 +959,56 @@ static int ov5675_set_stream(struct v4l2_subdev *sd, int enable)
+>>   	return ret;
+>>   }
+>>
+>> +static int ov5675_power_off(struct device *dev)
+>> +{
+>> +	/* 512 xvclk cycles after the last SCCB transation or MIPI frame end */
+>> +	u32 delay_us = DIV_ROUND_UP(512, OV5675_XVCLK_19_2 / 1000 / 1000);
+>> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+>> +	struct ov5675 *ov5675 = to_ov5675(sd);
+>> +
+>> +	usleep_range(delay_us, delay_us * 2);
+>> +
+>> +	clk_disable_unprepare(ov5675->xvclk);
+>> +	gpiod_set_value_cansleep(ov5675->reset_gpio, 1);
+>> +	regulator_bulk_disable(OV5675_NUM_SUPPLIES, ov5675->supplies);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov5675_power_on(struct device *dev)
+>> +{
+>> +	u32 delay_us = DIV_ROUND_UP(8192, OV5675_XVCLK_19_2 / 1000 / 1000);
+>> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+>> +	struct ov5675 *ov5675 = to_ov5675(sd);
+>> +	int ret;
+>> +
+>> +	ret = clk_prepare_enable(ov5675->xvclk);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "failed to enable xvclk: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	gpiod_set_value_cansleep(ov5675->reset_gpio, 1);
+>> +
+>> +	ret = regulator_bulk_enable(OV5675_NUM_SUPPLIES, ov5675->supplies);
+>> +	if (ret) {
+>> +		clk_disable_unprepare(ov5675->xvclk);
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Reset pulse should be at least 2ms and reset gpio released only once
+>> +	 * regulators are stable.
+>> +	 */
+>> +	usleep_range(2000, 2200);
+>> +
+>> +	gpiod_set_value_cansleep(ov5675->reset_gpio, 0);
+>> +
+>> +	/* 8192 xvclk cycles prior to the first SCCB transation */
+>> +	usleep_range(delay_us, delay_us * 2);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static int __maybe_unused ov5675_suspend(struct device *dev)
+>>   {
+>>   	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+>> @@ -1106,32 +1171,60 @@ static const struct v4l2_subdev_internal_ops ov5675_internal_ops = {
+>>   	.open = ov5675_open,
+>>   };
+>>
+>> -static int ov5675_check_hwcfg(struct device *dev)
+>> +static int ov5675_get_hwcfg(struct ov5675 *ov5675, struct device *dev)
+>>   {
+>>   	struct fwnode_handle *ep;
+>>   	struct fwnode_handle *fwnode = dev_fwnode(dev);
+>>   	struct v4l2_fwnode_endpoint bus_cfg = {
+>>   		.bus_type = V4L2_MBUS_CSI2_DPHY
+>>   	};
+>> -	u32 mclk;
+>> +	u32 xvclk_rate;
+>>   	int ret;
+>>   	unsigned int i, j;
+>>
+>>   	if (!fwnode)
+>>   		return -ENXIO;
+>>
+>> -	ret = fwnode_property_read_u32(fwnode, "clock-frequency", &mclk);
+>> +	ov5675->xvclk = devm_clk_get_optional(dev, NULL);
+>> +	if (IS_ERR(ov5675->xvclk))
+>> +		return dev_err_probe(dev, PTR_ERR(ov5675->xvclk),
+>> +				     "failed to get xvclk: %ld\n",
+>> +				     PTR_ERR(ov5675->xvclk));
+>>
+>> -	if (ret) {
+>> -		dev_err(dev, "can't get clock frequency");
+>> -		return ret;
+>> +	if (ov5675->xvclk) {
+>> +		xvclk_rate = clk_get_rate(ov5675->xvclk);
+>> +	} else {
+>> +		ret = fwnode_property_read_u32(fwnode, "clock-frequency",
+>> +					       &xvclk_rate);
+>> +
+>> +		if (ret) {
+>> +			dev_err(dev, "can't get clock frequency");
+>> +			return ret;
+>> +		}
+>>   	}
+>>
+>> -	if (mclk != OV5675_MCLK) {
+>> -		dev_err(dev, "external clock %d is not supported", mclk);
+>> +	if (xvclk_rate != OV5675_XVCLK_19_2) {
+>> +		dev_err(dev, "external clock rate %u is unsupported",
+>> +			xvclk_rate);
+>>   		return -EINVAL;
+>>   	}
+>>
+>> +	ov5675->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+>> +						     GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(ov5675->reset_gpio)) {
+>> +		ret = PTR_ERR(ov5675->reset_gpio);
+>> +		dev_err(dev, "failed to get reset-gpios: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	for (i = 0; i < OV5675_NUM_SUPPLIES; i++)
+>> +		ov5675->supplies[i].supply = ov5675_supply_names[i];
+>> +
+>> +	ret = devm_regulator_bulk_get(dev, OV5675_NUM_SUPPLIES,
+>> +				      ov5675->supplies);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>>   	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
+>>   	if (!ep)
+>>   		return -ENXIO;
+>> @@ -1186,6 +1279,10 @@ static int ov5675_remove(struct i2c_client *client)
+>>   	pm_runtime_disable(&client->dev);
+>>   	mutex_destroy(&ov5675->mutex);
+>>
+>> +	if (!pm_runtime_status_suspended(&client->dev))
+>> +		ov5675_power_off(&client->dev);
+>> +	pm_runtime_set_suspended(&client->dev);
+>> +
+>>   	return 0;
+>>   }
+>>
+>> @@ -1195,25 +1292,31 @@ static int ov5675_probe(struct i2c_client *client)
+>>   	bool full_power;
+>>   	int ret;
+>>
+>> -	ret = ov5675_check_hwcfg(&client->dev);
+>> +	ov5675 = devm_kzalloc(&client->dev, sizeof(*ov5675), GFP_KERNEL);
+>> +	if (!ov5675)
+>> +		return -ENOMEM;
+>> +
+>> +	ret = ov5675_get_hwcfg(ov5675, &client->dev);
+>>   	if (ret) {
+>> -		dev_err(&client->dev, "failed to check HW configuration: %d",
+>> +		dev_err(&client->dev, "failed to get HW configuration: %d",
+>>   			ret);
+>>   		return ret;
+>>   	}
+>>
+>> -	ov5675 = devm_kzalloc(&client->dev, sizeof(*ov5675), GFP_KERNEL);
+>> -	if (!ov5675)
+>> -		return -ENOMEM;
+>> -
+>>   	v4l2_i2c_subdev_init(&ov5675->sd, client, &ov5675_subdev_ops);
+>>
+>> +	ret = ov5675_power_on(&client->dev);
+>> +	if (ret) {
+>> +		dev_err(&client->dev, "failed to power on: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>>   	full_power = acpi_dev_state_d0(&client->dev);
+>>   	if (full_power) {
+>>   		ret = ov5675_identify_module(ov5675);
+>>   		if (ret) {
+>>   			dev_err(&client->dev, "failed to find sensor: %d", ret);
+>> -			return ret;
+>> +			goto probe_power_off;
+>>   		}
+>>   	}
+>>
+>> @@ -1243,11 +1346,6 @@ static int ov5675_probe(struct i2c_client *client)
+>>   		goto probe_error_media_entity_cleanup;
+>>   	}
+>>
+>> -	/*
+>> -	 * Device is already turned on by i2c-core with ACPI domain PM.
+>> -	 * Enable runtime PM and turn off the device.
+>> -	 */
+>> -
+>>   	/* Set the device's state to active if it's in D0 state. */
+>>   	if (full_power)
+>>   		pm_runtime_set_active(&client->dev);
+>> @@ -1262,12 +1360,15 @@ static int ov5675_probe(struct i2c_client *client)
+>>   probe_error_v4l2_ctrl_handler_free:
+>>   	v4l2_ctrl_handler_free(ov5675->sd.ctrl_handler);
+>>   	mutex_destroy(&ov5675->mutex);
+>> +probe_power_off:
+>> +	ov5675_power_off(&client->dev);
+>>
+>>   	return ret;
+>>   }
+>>
+>>   static const struct dev_pm_ops ov5675_pm_ops = {
+>>   	SET_SYSTEM_SLEEP_PM_OPS(ov5675_suspend, ov5675_resume)
+>> +	SET_RUNTIME_PM_OPS(ov5675_power_off, ov5675_power_on, NULL)
+>>   };
+>>
+>>   #ifdef CONFIG_ACPI
+>> @@ -1279,11 +1380,18 @@ static const struct acpi_device_id ov5675_acpi_ids[] = {
+>>   MODULE_DEVICE_TABLE(acpi, ov5675_acpi_ids);
+>>   #endif
+>>
+>> +static const struct of_device_id ov5675_of_match[] = {
+>> +	{ .compatible = "ovti,ov5675", },
+>> +	{ /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, ov5675_of_match);
+>> +
+>>   static struct i2c_driver ov5675_i2c_driver = {
+>>   	.driver = {
+>>   		.name = "ov5675",
+>>   		.pm = &ov5675_pm_ops,
+>>   		.acpi_match_table = ACPI_PTR(ov5675_acpi_ids),
+>> +		.of_match_table = ov5675_of_match,
+>>   	},
+>>   	.probe_new = ov5675_probe,
+>>   	.remove = ov5675_remove,
+>> --
+>> 2.36.1
+>>
