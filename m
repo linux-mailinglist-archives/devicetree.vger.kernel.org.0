@@ -2,57 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB5E65693C3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 23:00:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 792115693CA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 23:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234134AbiGFVA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 17:00:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60254 "EHLO
+        id S233364AbiGFVCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 17:02:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233692AbiGFVA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 17:00:27 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E928F220F4;
-        Wed,  6 Jul 2022 14:00:26 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S233456AbiGFVCP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 17:02:15 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C926923146;
+        Wed,  6 Jul 2022 14:02:14 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B95B966019AA;
-        Wed,  6 Jul 2022 22:00:24 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657141225;
-        bh=1yqivW3OfQW/R38VjkAOcosydDNZlcJT15iHFWhhmwM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jOaBnOZwwv2lh36dnbUiozFSWdoPw3+RZGxBPiVOQ1MhQgbTOcp4JEYPxJsdg1R70
-         a58km2bWnVL0Yvgc4i6sTJim7mSqxkPEVEPgLWeToXVWLGUsXHkLP7ICfMGg0FrP7h
-         RVpf3u52olYo4k/PyU4yJx2tAGn5y0GNYh2Exo6N3sooiy8oa7u5KgNKlXLAqeOCLP
-         cwmNALFwRjq0UQTeVOJMPhEwmYh2Lx1boWzpoIUHwYCes9T1y+1CUEeeUsP5IhEy99
-         taZfyiZ2SlmkuPIG5eOoAqWdCpYDIP5PutzOHLs7U5mZC8opNZisAWTIISXCd17gLh
-         GzVRjg+LTa17w==
-Message-ID: <37527ba7-ae54-86a0-b0af-fe20d3a1e484@collabora.com>
-Date:   Thu, 7 Jul 2022 00:00:21 +0300
+        by ssl.serverraum.org (Postfix) with ESMTPSA id BABEB2223A;
+        Wed,  6 Jul 2022 23:02:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1657141332;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=l9BSZkguRrgG6EPhutYIDpmenXtzq7TNMD8r/kLbskc=;
+        b=WV6CXeZou7RvdPtdmr829rwyfN9tS5+35cTyMXOAxcqfznoaZT/8RuIdbp+P9ggkpqNWH+
+        La5o6Jh73TqZrLjKcdw7QVMk4YsHTqNT9+gN1Owvkuh6DIZuy8V4jy7xN4bymULQ73VoM6
+        FyvYVXrg8rAbo8PD3ftsNbU1LztRfbk=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v6 2/2] iio: light: Add support for ltrf216a sensor
-Content-Language: en-US
-To:     Shreeya Patel <shreeya.patel@collabora.com>, jic23@kernel.org,
-        lars@metafoo.de, robh+dt@kernel.org, Zhigang.Shi@liteon.com,
-        krisman@collabora.com
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        alvaro.soliverez@collabora.com, andy.shevchenko@gmail.com,
-        digetx@gmail.com, kernel test robot <lkp@intel.com>
-References: <20220615135130.227236-1-shreeya.patel@collabora.com>
- <20220615135130.227236-3-shreeya.patel@collabora.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220615135130.227236-3-shreeya.patel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+Date:   Wed, 06 Jul 2022 23:02:12 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     haibo.chen@nxp.com
+Cc:     ashish.kumar@nxp.com, yogeshgaur.83@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        han.xu@nxp.com, singh.kuldeep87k@gmail.com,
+        tudor.ambarus@microchip.com, p.yadav@ti.com,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, zhengxunli@mxic.com.tw
+Subject: Re: [PATCH 04/11] spi: spi-nxp-fspi: add function to select sample
+ clock source for flash reading
+In-Reply-To: <1657012303-6464-4-git-send-email-haibo.chen@nxp.com>
+References: <1657012303-6464-1-git-send-email-haibo.chen@nxp.com>
+ <1657012303-6464-4-git-send-email-haibo.chen@nxp.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <7a66e4fe8f7224ea272d68276c7b138b@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,27 +64,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/15/22 16:51, Shreeya Patel wrote:
-> +static int ltrf216a_remove(struct i2c_client *client)
+Am 2022-07-05 11:11, schrieb haibo.chen@nxp.com:
+> From: Haibo Chen <haibo.chen@nxp.com>
+> 
+> fspi define four mode for sample clock source selection.
+> 
+> Here is the list of modes:
+> mode 0: Dummy Read strobe generated by FlexSPI Controller and loopback
+> internally
+> mode 1: Dummy Read strobe generated by FlexSPI Controller and loopback
+> from DQS pad
+> mode 2: Reserved
+> mode 3: Flash provided Read strobe and input from DQS pad
+> 
+> In default, fspi use mode 0 after reset.
+> For 8-8-8-DTR mode, need to use mode 3, otherwise 8-8-8-DTR read always
+> get incorrect data.
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  drivers/spi/spi-nxp-fspi.c | 47 ++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+> 
+> diff --git a/drivers/spi/spi-nxp-fspi.c b/drivers/spi/spi-nxp-fspi.c
+> index c32a4f53fa2a..34679dc0e1ad 100644
+> --- a/drivers/spi/spi-nxp-fspi.c
+> +++ b/drivers/spi/spi-nxp-fspi.c
+> @@ -380,6 +380,7 @@ struct nxp_fspi {
+>  	struct pm_qos_request pm_qos_req;
+>  	int selected;
+>  #define FSPI_INITILIZED		(1 << 0)
+> +#define FSPI_RXCLKSRC_3		(1 << 1)
+>  	int flags;
+>  };
+> 
+> @@ -877,6 +878,50 @@ static int nxp_fspi_do_op(struct nxp_fspi *f,
+> const struct spi_mem_op *op)
+>  	return err;
+>  }
+> 
+> +/*
+> + * Sample Clock source selection for Flash Reading
+> + * Four modes defined by fspi:
+> + * mode 0: Dummy Read strobe generated by FlexSPI Controller
+> + *         and loopback internally
+> + * mode 1: Dummy Read strobe generated by FlexSPI Controller
+> + *         and loopback from DQS pad
+> + * mode 2: Reserved
+> + * mode 3: Flash provided Read strobe and input from DQS pad
+> + *
+> + * fspi default use mode 0 after reset
+> + */
+> +static void nxp_fspi_select_rx_sample_clk_source(struct nxp_fspi *f,
+> +						 const struct spi_mem_op *op)
 > +{
-> +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
+> +	u32 reg;
 > +
-> +	iio_device_unregister(indio_dev);
-> +	pm_runtime_disable(&client->dev);
-> +	pm_runtime_set_suspended(&client->dev);
-> +	ltrf216a_disable(indio_dev);
-> +
-> +	return 0;
-> +}
+> +	/*
+> +	 * For 8-8-8-DTR mode, need to use mode 3 (Flash provided Read
+> +	 * strobe and input from DQS pad), otherwise read operaton may
+> +	 * meet issue.
+> +	 * This mode require flash device connect the DQS pad on board.
+> +	 * For other modes, still use mode 0, keep align with before.
+> +	 * spi_nor_suspend will disable 8-8-8-DTR mode, also need to
+> +	 * change the mode back to mode 0.
+> +	 */
+> +	if (!(f->flags & FSPI_RXCLKSRC_3) &&
+> +			op->cmd.dtr && op->addr.dtr &&
+> +			op->dummy.dtr && op->data.dtr) {
+> +		reg = fspi_readl(f, f->iobase + FSPI_MCR0);
+> +		reg |= FSPI_MCR0_RXCLKSRC(3);
+> +		fspi_writel(f, reg, f->iobase + FSPI_MCR0);
+> +		f->flags |= FSPI_RXCLKSRC_3;
+> +	} else if ((f->flags & FSPI_RXCLKSRC_3) &&
+> +			!op->cmd.dtr && !op->addr.dtr &&
+> +			!op->dummy.dtr && !op->data.dtr) {
+> +		reg = fspi_readl(f, f->iobase + FSPI_MCR0);
+> +		reg &= ~FSPI_MCR0_RXCLKSRC(3);	/* select mode 0 */
+> +		fspi_writel(f, reg, f->iobase + FSPI_MCR0);
+> +		f->flags &= ~FSPI_RXCLKSRC_3;
+> +	}
 
-As Jonathan said, there is no need to disable sensor in the remove()
-since you're using devm_add_action_or_reset().
+How is this supposed to work? Are you unconditionally enable
+flash provided read strobes if DTR is used? What if the
+flash doesn't provide one or the board haven't DQS connected?
 
-If you're going to use devm_pm_runtime_enable(), then let's also use
-devm_iio_device_register() and in this case the ltrf216a_remove() is not
-needed anymore at all since the removal will be handled by the driver
-core entirely, i.e. you'll need to drop ltrf216a_remove().
-
--- 
-Best regards,
-Dmitry
+-michael
