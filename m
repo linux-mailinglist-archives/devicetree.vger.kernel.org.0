@@ -2,67 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A5175694AA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 23:47:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E624A5694D7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 23:58:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234644AbiGFVrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 17:47:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35806 "EHLO
+        id S234218AbiGFV6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 17:58:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233947AbiGFVrl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 17:47:41 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC64F28E24
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 14:47:40 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id l124so5120556pfl.8
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 14:47:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Z3+rDoUCYe8RPmhoz8u2hYqTYAf8ITefM+d2gAxFnNQ=;
-        b=FNSlrUv53kCFN0bEt0sjfXf4U7vixRGQfYV6M8pKQRGmbfLtd0r2mPn9Qxu56b0coM
-         GiakKYX+CsPjP5vBCsHL6xNarxueFBlu7KrsOXeuBwCnHwqLLgtGbGV4e8wV+fyFKkr6
-         egvF8X0n20EGcXBooEeLkTyKCaCsqOmHiwNXA=
+        with ESMTP id S233842AbiGFV6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 17:58:35 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C44D17A9B;
+        Wed,  6 Jul 2022 14:58:33 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id p128so15250093iof.1;
+        Wed, 06 Jul 2022 14:58:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Z3+rDoUCYe8RPmhoz8u2hYqTYAf8ITefM+d2gAxFnNQ=;
-        b=GzpZldzpcIBAi8OoXOKPZK4IC6uj2Z5PGD/sd1nXVudOLxglyNSft5EC9arr5e1eQa
-         ARiUE5tKMaHaso56mktRTKR4/oX/pEAQWSn36k8VPq1m0epDOILxPtPVCp2Vr9drq+IU
-         8a5W0T2MphkTn+ci0MmzqcAXUgocfVvq7dcNpOK+Ka24AyTvqhODBzjZX0E2qXMvoOUz
-         3G6KttfC56ZmRFMmhkl6J2VQM+JXmCVGUevHTjBPiGZb1BjIVJmMWTOjD1+wx1fASqJt
-         yr8S/Vd8x8vgSkKu0mqHAwWAq01P5vtwiZKDqjEfcpeHSXmFXqXfnkJrquoVePGfvsvy
-         DAFQ==
-X-Gm-Message-State: AJIora+HIG66NlExg8BXrF+6eNCUx6gw1RgYRW3mIfQBtxH+H6T+9Ben
-        qnZ9U14R4yLUaKK/741jr+BT8g==
-X-Google-Smtp-Source: AGRyM1v4DdP0bgdN+M2+/vmQSOBYu9OTCiY3gGS7tau41Tm51BpIRne1Egmhuz4VIo95Zya5vZw9+g==
-X-Received: by 2002:a05:6a00:174b:b0:525:4eea:8ff2 with SMTP id j11-20020a056a00174b00b005254eea8ff2mr48611592pfc.23.1657144060398;
-        Wed, 06 Jul 2022 14:47:40 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:db48:9018:c59f:cffd])
-        by smtp.gmail.com with ESMTPSA id u16-20020a170902e81000b0015e8d4eb2e3sm3348955plg.301.2022.07.06.14.47.39
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UYaDr7d26s8biv8YaCbEXuacx3Q+wp2527oG6nWNU9E=;
+        b=xLMfk7NwOlW4QyIRnoD9Lt2dbLyhXMhkJDYAw4Qrqo6c4pIJO2FpgthfO1qq9RTAgr
+         /fCUdtxt+19CmLDrnZgFtap9p4rdB2fT0UYxIaLUs1DPOmOU0ux/T2Vshhha74y0bEFw
+         /kA/uPrY7oZf/ZmvJDDTXRNPxdCIrx4yFWdrVOv/A2MAHa3GWH+rxLpdcO8g1HfpuxVK
+         JDuTCyrBSBBLdcJt7AvcB/oUw4mBPzkAt8ZIBu1uqfuN2KY+P+OY2LyQZKdU4B7x53ad
+         +j5SMlyJBSSZ0Ezxsj2j07JvwF37GTrE52VFdRsNl9NzCft3kO4WOD6/2RTL60kgVmbr
+         73DA==
+X-Gm-Message-State: AJIora/NETVJZOSHMr9JKYkHn5L7itgSthIN6VbIbwXokFwf+P0vHCdw
+        M9Ba00BfaRwyWkkyN0+DvnqlFmqF0w==
+X-Google-Smtp-Source: AGRyM1vUlh94A8twuxVlm4r5lh9uafeyxCm23L1h08nw+H2f7Mz48dXfQbrhuQSNCUD13+4OWEKeCA==
+X-Received: by 2002:a6b:6a07:0:b0:66a:2e5f:2058 with SMTP id x7-20020a6b6a07000000b0066a2e5f2058mr21955569iog.72.1657144712836;
+        Wed, 06 Jul 2022 14:58:32 -0700 (PDT)
+Received: from robh.at.kernel.org ([172.58.139.118])
+        by smtp.gmail.com with ESMTPSA id w6-20020a92d2c6000000b002dc377df3ecsm776355ilg.45.2022.07.06.14.58.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 14:47:40 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     swboyd@chromium.org, Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Wed, 06 Jul 2022 14:58:32 -0700 (PDT)
+Received: (nullmailer pid 607027 invoked by uid 1000);
+        Wed, 06 Jul 2022 21:58:27 -0000
+Date:   Wed, 6 Jul 2022 15:58:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] Revert "arm64: dts: qcom: Fix 'reg-names' for sdhci nodes"
-Date:   Wed,  6 Jul 2022 14:47:33 -0700
-Message-Id: <20220706144706.1.I48f35820bf3670d54940110462555c2d0a6d5eb2@changeid>
-X-Mailer: git-send-email 2.37.0.rc0.161.g10f37bed90-goog
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH RFC 1/2] dt-bindings: interrupt-controller: sifive,plic:
+ Document Renesas RZ/Five SoC
+Message-ID: <20220706215827.GA572635-robh@kernel.org>
+References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220524172214.5104-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220605142333.GA3439339-robh@kernel.org>
+ <CA+V-a8smk8TqyWpm1KXo-3dKnCAodKsiYsaqnK_3ubfXE9YauQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8smk8TqyWpm1KXo-3dKnCAodKsiYsaqnK_3ubfXE9YauQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,132 +78,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit afcbe252e9c19161e4d4c95f33faaf592f1de086.
+On Fri, Jun 24, 2022 at 10:59:40AM +0100, Lad, Prabhakar wrote:
+> Hi Rob,
+> 
+> Thank you for the review.
+> 
+> On Sun, Jun 5, 2022 at 3:23 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Tue, May 24, 2022 at 06:22:13PM +0100, Lad Prabhakar wrote:
+> > > Document Renesas RZ/Five (R9A07G043) SoC.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > >  .../sifive,plic-1.0.0.yaml                    | 38 +++++++++++++++++--
+> > >  1 file changed, 35 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > > index 27092c6a86c4..78ff31cb63e5 100644
+> > > --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > > @@ -28,7 +28,10 @@ description:
+> > >
+> > >    While the PLIC supports both edge-triggered and level-triggered interrupts,
+> > >    interrupt handlers are oblivious to this distinction and therefore it is not
+> > > -  specified in the PLIC device-tree binding.
+> > > +  specified in the PLIC device-tree binding for SiFive PLIC (and similar PLIC's),
+> > > +  but for the Renesas RZ/Five Soc (AX45MP AndesCore) which has NCEPLIC100 we need
+> > > +  to specify the interrupt type as the flow for EDGE interrupts is different
+> > > +  compared to LEVEL interrupts.
+> > >
+> > >    While the RISC-V ISA doesn't specify a memory layout for the PLIC, the
+> > >    "sifive,plic-1.0.0" device is a concrete implementation of the PLIC that
+> > > @@ -57,6 +60,7 @@ properties:
+> > >            - enum:
+> > >                - allwinner,sun20i-d1-plic
+> > >            - const: thead,c900-plic
+> > > +      - const: renesas-r9a07g043-plic
 
-The commit in question caused my sc7280-herobrine-herobrine-r1 board
-not to boot anymore. This shouldn't be too surprising since the driver
-is relying on the name "cqhci".
+Also, this should be 'renesas,r9...'
 
-The issue seems to be that someone decided to change the names of
-things when the binding moved from .txt to .yaml. We should go back to
-the names that the bindings have historically specified.
+> > >
+> > >    reg:
+> > >      maxItems: 1
+> > > @@ -64,8 +68,7 @@ properties:
+> > >    '#address-cells':
+> > >      const: 0
+> > >
+> > > -  '#interrupt-cells':
+> > > -    const: 1
+> > > +  '#interrupt-cells': true
+> > >
+> > >    interrupt-controller: true
+> > >
+> > > @@ -91,6 +94,35 @@ required:
+> > >    - interrupts-extended
+> > >    - riscv,ndev
+> > >
+> > > +if:
+> > > +  properties:
+> > > +    compatible:
+> > > +      contains:
+> > > +        const: renesas-r9a07g043-plic
+> > > +then:
+> > > +  properties:
+> > > +    clocks:
+> > > +      maxItems: 1
+> > > +
+> > > +    resets:
+> > > +      maxItems: 1
+> > > +
+> > > +    power-domains:
+> > > +      maxItems: 1
+> >
+> > Did you test this? The above properties won't be allowed because of
+> > additionalProperties below. You need to change it to
+> > 'unevaluatedProperties' or move these to the top level.
+> >
+> Yes I have run the dt_binding check.
+> 
+> So with the below diff it does complain about the missing properties.
+> 
+> prasmi@prasmi:~/work/renasas/renesas-drivers$ git diff
+> Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> index 20ded037d444..bb14a4b1ec0a 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> @@ -130,7 +130,7 @@ examples:
+>      plic: interrupt-controller@c000000 {
+>        #address-cells = <0>;
+>        #interrupt-cells = <1>;
+> -      compatible = "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
+> +      compatible = "renesas-r9a07g043-plic";
+>        interrupt-controller;
+>        interrupts-extended = <&cpu0_intc 11>,
+>                              <&cpu1_intc 11>, <&cpu1_intc 9>,
+> prasmi@prasmi:~/work/renasas/renesas-drivers$ make ARCH=riscv
+> CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check
+>   LINT    Documentation/devicetree/bindings
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   DTEX    Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dts
+>   DTC     Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb
+>   CHECK   Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb
+> /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
+> interrupt-controller@c000000: #interrupt-cells:0:0: 2 was expected
+>     From schema:
+> /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
+> interrupt-controller@c000000: 'clocks' is a required property
+>     From schema:
+> /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
+> interrupt-controller@c000000: 'resets' is a required property
+>     From schema:
+> /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
+> interrupt-controller@c000000: 'power-domains' is a required property
+>     From schema:
+> /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> prasmi@prasmi:~/work/renasas/renesas-drivers$
+> prasmi@prasmi:~/work/renasas/renesas-drivers$
+> 
+> Is there something I'm missing here?
 
-For some history, see commit d3392339cae9 ("mmc: cqhci: Update cqhci
-memory ioresource name") and commit d79100c91ae5 ("dt-bindings: mmc:
-sdhci-msm: Add CQE reg map").
+You've said these properties are required, but you didn't add them.
 
-Fixes: afcbe252e9c1 ("arm64: dts: qcom: Fix 'reg-names' for sdhci nodes")
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
-This is just a straight revert. That presumably means we'll get some
-"make dtbs_check" warnings that were fixed by the commit being
-reverted. I'll leave it to the authors of the original commit to
-adjust the bindings to fix those.
+If you don't have the above 3 properties, then it's not going to 
+complain that they are present. But it will when you do add them for the 
+reason I gave.
 
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/sm6125.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 2 +-
- 6 files changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index 1721c72d591a..19fd8a2b551e 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -809,7 +809,7 @@ pcie_phy: phy@7786000 {
- 		sdcc1: mmc@7804000 {
- 			compatible = "qcom,qcs404-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x07804000 0x1000>, <0x7805000 0x1000>;
--			reg-names = "hc_mem", "cqe_mem";
-+			reg-names = "hc", "cqhci";
- 
- 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 47ce5787ed5b..881e30953c0f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -697,7 +697,7 @@ sdhc_1: mmc@7c4000 {
- 			compatible = "qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0 0x7c4000 0 0x1000>,
- 				<0 0x07c5000 0 0x1000>;
--			reg-names = "hc_mem", "cqe_mem";
-+			reg-names = "hc", "cqhci";
- 
- 			iommus = <&apps_smmu 0x60 0x0>;
- 			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 40e700cebe56..c398485fec2d 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -866,7 +866,7 @@ sdhc_1: mmc@7c4000 {
- 
- 			reg = <0 0x007c4000 0 0x1000>,
- 			      <0 0x007c5000 0 0x1000>;
--			reg-names = "hc_mem", "cqe_mem";
-+			reg-names = "hc", "cqhci";
- 
- 			iommus = <&apps_smmu 0xc0 0x0>;
- 			interrupts = <GIC_SPI 652 IRQ_TYPE_LEVEL_HIGH>,
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 0f4c22be0224..1bc9091cad2a 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1280,7 +1280,7 @@ qusb2phy1: phy@c014000 {
- 		sdhc_2: mmc@c084000 {
- 			compatible = "qcom,sdm630-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x0c084000 0x1000>;
--			reg-names = "hc_mem";
-+			reg-names = "hc";
- 
- 			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
-@@ -1335,7 +1335,7 @@ sdhc_1: mmc@c0c4000 {
- 			reg = <0x0c0c4000 0x1000>,
- 			      <0x0c0c5000 0x1000>,
- 			      <0x0c0c8000 0x8000>;
--			reg-names = "hc_mem", "cqe_mem", "ice_mem";
-+			reg-names = "hc", "cqhci", "ice";
- 
- 			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-index 94e427abbfd2..77bff81af433 100644
---- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-@@ -438,7 +438,7 @@ rpm_msg_ram: sram@45f0000 {
- 		sdhc_1: mmc@4744000 {
- 			compatible = "qcom,sm6125-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x04744000 0x1000>, <0x04745000 0x1000>;
--			reg-names = "hc_mem", "core_mem";
-+			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
-@@ -459,7 +459,7 @@ sdhc_1: mmc@4744000 {
- 		sdhc_2: mmc@4784000 {
- 			compatible = "qcom,sm6125-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x04784000 0x1000>;
--			reg-names = "hc_mem";
-+			reg-names = "hc";
- 
- 			interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index c702235f0291..bb9349bc2d35 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -477,7 +477,7 @@ sdhc_1: mmc@7c4000 {
- 			reg = <0 0x007c4000 0 0x1000>,
- 				<0 0x007c5000 0 0x1000>,
- 				<0 0x007c8000 0 0x8000>;
--			reg-names = "hc_mem", "cqe_mem", "ice_mem";
-+			reg-names = "hc", "cqhci", "ice";
- 
- 			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 644 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.37.0.rc0.161.g10f37bed90-goog
-
+Rob
