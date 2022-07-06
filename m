@@ -2,73 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D9D56809A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 09:57:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 509125680B4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 10:03:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229929AbiGFH4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 03:56:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42704 "EHLO
+        id S231720AbiGFIDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 04:03:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbiGFH4b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 03:56:31 -0400
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CE3BC9E;
-        Wed,  6 Jul 2022 00:56:30 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id k20so10502239qkj.1;
-        Wed, 06 Jul 2022 00:56:30 -0700 (PDT)
+        with ESMTP id S231192AbiGFIDg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 04:03:36 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40607112D;
+        Wed,  6 Jul 2022 01:03:35 -0700 (PDT)
+Received: by mail-qk1-f182.google.com with SMTP id z12so10495320qki.3;
+        Wed, 06 Jul 2022 01:03:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=nFnExDmVG8iUyhRWe8k5w8cOxRLhlolbcIWrBxu+DeM=;
-        b=KN3V6kqJKP2UMm7lQMcZQ/+mqOmA7MxnFAAZuv1d3KNR2ef6BdVCBXzERn9Cg6IG0O
-         iXZVTjHl0YLyIohzIcmClmVVBQIEAZLBmcEcCkNIp47MIDS9ets1FhiiPFqty6Fp333s
-         O4RCr3aKgZtey2Scfb2ymZaTob927bsLP3Dkfn70dj7MLDIo3897IWBYgKwjrRefIMwX
-         KSc4G23L6AdX1t0FF+157ABgJNxpvs8GzaCvLw5OOnVrOg/5etiZyp/xmluuNNtUNA1v
-         WnFfd5i/Z5wrlf4GnMzED4T0OnQb3sQFXDPzwpK2q539soh/bLeGZqCJmZ6f3X2e+mZT
-         BIZQ==
-X-Gm-Message-State: AJIora8ZGko2K0eVye/BBxFiuDSQHJfjSz0TaR3p7VzE/tgIlpCCMpac
-        iFenS/X/M8JFCZHIAlJUqG2UE4hnp+fb9w==
-X-Google-Smtp-Source: AGRyM1tsmRxfo5BxvAG8cJRBJNXZVTFdS1KVS6l6lcFic8Ha3vr8i9VA71BY4BdAGuS+na0/R18sXQ==
-X-Received: by 2002:a05:620a:2296:b0:6af:46d:1671 with SMTP id o22-20020a05620a229600b006af046d1671mr26200088qkh.417.1657094189544;
-        Wed, 06 Jul 2022 00:56:29 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id l21-20020a37f915000000b006b470422c78sm5849140qkj.121.2022.07.06.00.56.28
+        bh=dm7RnST85MIDJNN+2iaSBOhoswr2qSrezycwHqjqOec=;
+        b=fcrhL3OiHlR9dOFNNY+eaTjH8iKVfWBno9MkBZa32r/KMZsXIDfKlP9boKY2jdi7Gv
+         Gil6sFKTWG1i8/lwgkkC2kHcEYeUoiuRwoS13+uEd0qskHPXPL0IjSSABGW8kdxUztkV
+         /WLqRGSS5IW57IKFgPQJhnh9SnWGS1Q21zLLP+9sa4zkxc3w4eX4YwKsMtheqVGHzHLe
+         eY+mK0bz6Gj3LnCWV4vpUk2cxiLF4kg7dz3/u+cigqRQZD7uRZQyq3KXRDnFRNSVnmpE
+         Jyb4OKsfHX0QaX0mBP8OGVE5aXeOAfwrFcqg1oofn2yUYziJS1xQ8xI3FWf8EhfQROW3
+         pA8g==
+X-Gm-Message-State: AJIora8t7vTkN4slON78vOIDYUjt591WypbA75zmMQjapQStxaiqvU3K
+        uSS1xqo3k7DFkFToZ2lYMlzL8yUvXDbYsQ==
+X-Google-Smtp-Source: AGRyM1sZUa78MrahEXAR7bJTtWbKG5S3y9s8JnJHXQzOQ5pzAu2NlZr/77IrtSVFVjytfLtRBQlgaQ==
+X-Received: by 2002:a05:620a:4055:b0:6b0:151f:7281 with SMTP id i21-20020a05620a405500b006b0151f7281mr25804652qko.601.1657094614268;
+        Wed, 06 Jul 2022 01:03:34 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id t17-20020a05620a005100b006af20edff0csm22694447qkt.58.2022.07.06.01.03.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 00:56:28 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id o2so20747130yba.7;
-        Wed, 06 Jul 2022 00:56:28 -0700 (PDT)
-X-Received: by 2002:a05:6902:a:b0:65c:b38e:6d9f with SMTP id
- l10-20020a056902000a00b0065cb38e6d9fmr44011964ybh.36.1657094187854; Wed, 06
- Jul 2022 00:56:27 -0700 (PDT)
+        Wed, 06 Jul 2022 01:03:33 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-31c86fe1dddso84448447b3.1;
+        Wed, 06 Jul 2022 01:03:33 -0700 (PDT)
+X-Received: by 2002:a81:5404:0:b0:31c:c24d:94b0 with SMTP id
+ i4-20020a815404000000b0031cc24d94b0mr9659273ywb.502.1657094613015; Wed, 06
+ Jul 2022 01:03:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220705210143.315151-1-emil.renner.berthing@canonical.com> <20220705210143.315151-5-emil.renner.berthing@canonical.com>
-In-Reply-To: <20220705210143.315151-5-emil.renner.berthing@canonical.com>
+References: <20220705215213.1802496-1-mail@conchuod.ie>
+In-Reply-To: <20220705215213.1802496-1-mail@conchuod.ie>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 6 Jul 2022 09:56:16 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV0VJh8Um2zM=kDTPPeLPci1OxU75mqkJgFSwhBZ1NR8w@mail.gmail.com>
-Message-ID: <CAMuHMdV0VJh8Um2zM=kDTPPeLPci1OxU75mqkJgFSwhBZ1NR8w@mail.gmail.com>
-Subject: Re: [PATCH v1 4/4] riscv: dts: sifive unmatched: Add PWM controlled LEDs
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+Date:   Wed, 6 Jul 2022 10:03:21 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVOK+iHeTfRLDeMF1mwZoeH1KH_GHuCY72YnhQibGqhwA@mail.gmail.com>
+Message-ID: <CAMuHMdVOK+iHeTfRLDeMF1mwZoeH1KH_GHuCY72YnhQibGqhwA@mail.gmail.com>
+Subject: Re: [PATCH v5 00/13] Canaan devicetree fixes
+To:     Conor Dooley <mail@conchuod.ie>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
         Palmer Dabbelt <palmer@dabbelt.com>,
-        Vincent Pelletier <plr.vincent@gmail.com>,
-        Bin Meng <bin.meng@windriver.com>,
-        Aurelien Jarno <aurelien@aurel32.net>,
-        Ron Economos <w6rz@comcast.net>,
-        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
-        Stephen L Arnold <nerdboy@gentoo.org>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        David Abdurachmanov <davidlt@rivosinc.com>,
-        linux-leds <linux-leds@vger.kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
         linux-riscv <linux-riscv@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
@@ -81,44 +85,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Emil,
+Hi Conor,
 
-On Tue, Jul 5, 2022 at 11:01 PM Emil Renner Berthing
-<emil.renner.berthing@canonical.com> wrote:
-> This adds the two PWM controlled LEDs to the HiFive Unmatched device
-> tree. D12 is just a regular green diode, but D2 is an RGB diode with 3
-> PWM inputs controlling the three different colours.
->
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+On Tue, Jul 5, 2022 at 11:52 PM Conor Dooley <mail@conchuod.ie> wrote:
+> I *DO NOT* have any Canaan hardware so I have not tested any of this in
+> action. Since I sent v1, I tried to buy some since it's cheap - but could
+> out of the limited stockists none seemed to want to deliver to Ireland :(
+> I based the series on next-20220617.
 
-Thanks for your patch!
-
-> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> @@ -44,6 +46,46 @@ gpio-poweroff {
->                 compatible = "gpio-poweroff";
->                 gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
->         };
-> +
-> +       led-controller-1 {
-> +               compatible = "pwm-leds";
-> +
-> +               led-d12 {
-> +                       pwms = <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
-> +                       active-low;
-
-The first thing that came into my mind was "why not drop the
-PWM_POLARITY_INVERTED flag instead?".
-
-But it turns out drivers/pwm/pwm-sifive.c does not support
-non-inverted PWMs, and returns -EINVAL if PWM_POLARITY_INVERSED
-(no typo) is not set.  I think it would be good if
-Documentation/devicetree/bindings/pwm/pwm-sifive.yaml would mention
-this limitation, and perhaps even enforce it, if possible?
-
-I didn't check this against the schematics, but the generic structure
-LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Digi-Key does not want to ship to IRL?
+The plain MAiX BiT is out-of-stock, but the kit incl. a display is
+available (97 in stock).
 
 Gr{oetje,eeting}s,
 
