@@ -2,66 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38EEA569025
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE27A56902B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:59:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232357AbiGFQ6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 12:58:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50682 "EHLO
+        id S233548AbiGFQ7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 12:59:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233758AbiGFQ6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:58:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31A3B2A728;
-        Wed,  6 Jul 2022 09:57:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BA35261DAD;
-        Wed,  6 Jul 2022 16:57:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 555C8C3411C;
-        Wed,  6 Jul 2022 16:57:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657126630;
-        bh=GF/aKIAzhOdpyO5Xdb1pXVqwDvZ44YUeDjQ86DdLEVU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=B7UfPWR6H7wHVWrVGgUXtsz5mVegP0uqNRm7Rl0GaG6lSk3/XF0bJ1dRDz910/nrw
-         ArJlrBbcmQVUkXNEozaNrykOgZ0XjbILwzH8Eig5ZPcPfEFKMTk1JzxGSdij9yq67/
-         xOtgyfqkH+q2ZHp2h9BXhpi1JfDk6uKgD51fVcSVBFpqrBwKzY7rLXfVsxlhUhgZM9
-         CMDchWma018hV0+3hZpxLL5P198TNxnQukwCj8zo74rOMxLjpft0GWboEFVGfNRYBH
-         dVp5s+/IxNrMQyMbS6/mLBlKrb3ESTrf8ZNrF6Lyz4CJD9yebEDJ5ftpznp9zNLEc9
-         NUsajuj6c/aKA==
-Date:   Wed, 6 Jul 2022 22:27:05 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Paolo Abeni <pabeni@redhat.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Eric Dumazet <edumazet@google.com>,
-        linux-kernel@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH net-next v2 04/35] [RFC] phy: fsl: Add Lynx 10G SerDes
- driver
-Message-ID: <YsW+4fm/613ByK09@matsya>
-References: <20220628221404.1444200-1-sean.anderson@seco.com>
- <20220628221404.1444200-5-sean.anderson@seco.com>
- <YsPWMYjyu2nyk+w8@matsya>
- <431a014a-3a8f-fdc7-319e-29df52832128@seco.com>
+        with ESMTP id S233679AbiGFQ6n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:58:43 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DCBC2A959
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 09:58:21 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id bf9so3710584lfb.13
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 09:58:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=WQOxSk1KXA2FtBdi1FmOsR3LGQGiLqiV1G5FGZ4b7/o=;
+        b=f/M72wViTAKDNjwFR+NQ9tO3LqWsoIJIEIkJ7q7xBILoL1gk34XR2hnt2HT8t66QTn
+         JaYaw6c79EhPjZ0/G957bYeSl7U6vYXXPKQDO+lQ8CEhc5fB8nDDvJ7+gNjfxw81uxml
+         K2mYmof4B8MKMX5Oz+Cad4jhD+fz/behN5g692OcMa0kBQUrEoReN3bHbKcSbViYvnBu
+         Xi5AXTzlKvoIlCWQ1JwgmbV4/UW0eE/ILgWb7ZqqcyjnJpSPCMcZR0loOhMdkrpD3WgX
+         PjxD2TRm0ZD5Qh6SvGRDl5lWnkDOqSNbDLh0U+Wlqb6AX5hIbvMppCLSHb7rVhHvLN5s
+         W2Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=WQOxSk1KXA2FtBdi1FmOsR3LGQGiLqiV1G5FGZ4b7/o=;
+        b=N9dCblC3GlPnpb/gpguZB3E9Q2NXZDuqWNT/I5eHdfG2LkU4BtU2Bq19SGW/YA9nyL
+         gSy8tgq/UZbXgFT/JurTpYzKiTSQ3ouLb6/LTWSTLc9A/zvfxZBAzLeSETM50YMQH37S
+         e+6frGwqgiogREfGQXM82CiEeihp9GVwNVjp4VGCq29Os3B/y9GbcP2BbcikxnjKjhUO
+         zfKRBE/0xHdQat2Qsr1rjCp7vifFNWRgHb6ekpM8rMeg7vEQKSM3JgSwx807mzQzlQhi
+         ndKO8VutWW7NWI3lVEQu1bGhkKxntPmCdrVr1uBXhTxJUC+MG6F46qHxGLwRRhpgurGD
+         M03A==
+X-Gm-Message-State: AJIora+k5M//u67tG0oSLWWspA1Ols5kSoXTY76NT/dRsyoRNtJ6KhPy
+        j9+keH82vkPlEL+kg9w9vg75GA==
+X-Google-Smtp-Source: AGRyM1s/g4VAYvdgBQIZA3q/yKl0xbgGt09KrBAqI396vECZOIwHBUCLENVGCkLA95jiOx5ps+7tpg==
+X-Received: by 2002:a05:6512:158d:b0:47f:718c:28b5 with SMTP id bp13-20020a056512158d00b0047f718c28b5mr27963507lfb.397.1657126699482;
+        Wed, 06 Jul 2022 09:58:19 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id n10-20020a0565120aca00b0047f77c979f3sm6354604lfu.235.2022.07.06.09.58.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jul 2022 09:58:19 -0700 (PDT)
+Message-ID: <3b3e0543-8802-469e-e0a9-61bbf26d58d7@linaro.org>
+Date:   Wed, 6 Jul 2022 19:58:18 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <431a014a-3a8f-fdc7-319e-29df52832128@seco.com>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 2/4] dt-bindings: display/msm/gpu: document using the
+ amd,imageon adreno too
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20220706145222.1565238-1-dmitry.baryshkov@linaro.org>
+ <20220706145222.1565238-3-dmitry.baryshkov@linaro.org>
+ <088c1863-ad44-61b6-8757-bc3097369335@linaro.org>
+ <c6c06a9e-8b06-cb15-ae81-07053bbf80a7@linaro.org>
+ <6c89ee27-43d1-b926-b061-c9f6c1085f24@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <6c89ee27-43d1-b926-b061-c9f6c1085f24@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,35 +88,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-07-22, 11:29, Sean Anderson wrote:
-
-> >> +	/* TODO: wait for the PLL to lock */
-> > 
-> > when will this be added?
+On 06/07/2022 19:19, Krzysztof Kozlowski wrote:
+> On 06/07/2022 18:00, Dmitry Baryshkov wrote:
+>> On 06/07/2022 18:50, Krzysztof Kozlowski wrote:
+>>> On 06/07/2022 16:52, Dmitry Baryshkov wrote:
+>>>> The DT binding desribes using amd,imageon only for Imageon 2xx GPUs. We
+>>>> have been using amd,imageon with newer (Adreno) GPUs to describe the
+>>>> headless setup, when the platform does not (yet) have the display DT
+>>>
+>>> Does not have "yet"? So later it will have and you drop a compatible?
+>>
+>> Yes. For example see the arch/arm64/boot/dts/qcom/8150.dtsi, which
+>> currently has only GPU node. Once we add MDSS/DPU/DSI/etc. nodes, we are
+>> going to drop the compat string.
+>>
+>>>
+>>>> nodes (and no display support). Document this trick in the schema.
+>>>>
+>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/display/msm/gpu.yaml | 6 ++++++
+>>>>    1 file changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+>>>> index 346aabdccf7b..e006da95462c 100644
+>>>> --- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
+>>>> +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+>>>> @@ -16,9 +16,13 @@ properties:
+>>>>          - description: |
+>>>>              The driver is parsing the compat string for Adreno to
+>>>>              figure out the gpu-id and patch level.
+>>>> +          Optional amd,imageon compatibility string enables using Adreno
+>>>> +          without the display node.
+>>>>            items:
+>>>>              - pattern: '^qcom,adreno-[3-6][0-9][0-9]\.[0-9]$'
+>>>>              - const: qcom,adreno
+>>>> +          - const: amd,imageon
+>>>> +        minItems: 2
+>>>
+>>> This is too unspecific. You allow any device to be and not to be
+>>> compatible with amd,imageon.
+>>
+>> Yes, this is expected (kind of). Would you have any
+>> alternatives/suggestions?
 > 
-> I'm not sure. I haven't had any issues with this, and waiting on the lock bit is
-> only mentioned in some datasheets for this SerDes. On the LS1046A for example,
-> there is no mention of waiting for lock.
-
-okay maybe remove the comment then?
-
-> >> +static const struct clk_ops lynx_pll_clk_ops = {
-> >> +	.enable = lynx_pll_enable,
-> >> +	.disable = lynx_pll_disable,
-> >> +	.is_enabled = lynx_pll_is_enabled,
-> >> +	.recalc_rate = lynx_pll_recalc_rate,
-> >> +	.round_rate = lynx_pll_round_rate,
-> >> +	.set_rate = lynx_pll_set_rate,
-> >> +};
-> > 
-> > right, this should be a clk driver
+> Using compatible for this kind of breaks the entire idea behind
+> compatibles, because the device does not stop being compatible with
+> amd,imageon. Either it is or it is not. I would understand that drop the
+> compatible per boards which physically do not have display, physically
+> are headless. But the comment in sm8250:
+> "make sure to remove it when display node is added"
+> is just confusing.
 > 
-> Well, it is a clock driver, effectively internal to the SerDes. There are a few
-> examples of this already (e.g. the qualcomm and cadence phys). It could of course
-> be split off, but I would prefer that they remained together.
+> The typical solution would be to just check the properties of the device
+> and choose different mode if display is missing (via port graph or some
+> other way how the gpu is actually linked to the display).
 
-I would prefer clk driver is split and we maintain clean split b/w phy
-and clk
+The problem is that the gpu doesn't get linked to the display per se.
+
+On imx5 platforms the GPU (compatible with amd,imageon) is a standalone 
+device. On qcom platforms the GPU (qcom,adreno) is used as a component 
+in multi-component device. By enlisting qmd,imageon for newer Adreno 
+devices we just enforce non-standard probing sequence, because all other 
+components just do not exist.
+
+So, yes, this is hack around compatibles. However probably the only 
+viable alternative around it would be to check in probe path if there is 
+any device node compatible with "qcom,foo-mdss".
 
 -- 
-~Vinod
+With best wishes
+Dmitry
