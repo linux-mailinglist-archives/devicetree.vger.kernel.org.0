@@ -2,78 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 035D156918A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 20:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80F635691AE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 20:26:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233505AbiGFSQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 14:16:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59466 "EHLO
+        id S230431AbiGFS0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 14:26:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231715AbiGFSQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 14:16:57 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A330A63A3
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 11:16:55 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id t19so26637040lfl.5
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 11:16:55 -0700 (PDT)
+        with ESMTP id S229824AbiGFS0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 14:26:32 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF6DC45
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 11:26:30 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-317a66d62dfso148697477b3.7
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 11:26:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=OD75XxCwnED+FS5wDk/RwNU3mc/oEXTZU6iEW1jy/AA=;
-        b=enNCpRpLSPco3263TwwGPuW4YQAoukdfvw/6dI4TtK37J4vjsMgQ6a+FaWF+Mhkx7b
-         MHGt7Vtsu584ZOHcOR6sFOlvSm1O1ITZdbBV6KB+L5wUy/eSiYMVHdHz+o6gOI6io9NZ
-         fYWPuTdmOpRUbFI0Y8y2clDj9A96EKH0v0BEf5khCNOd+pLvDxOybz8VSMY/3obRIMvQ
-         B+BxoFvQINouX+nOwZ+SayABbwAONw9RmhLlZLbWDfFnyxP8lbKxinwgHIIl8YUSPA05
-         5DAZCqje0eNjwIK0ZdAJKHlBu++M7G+AIKo/n4d6ewKfygCI0p/Y4JtdNV1kqrHeGQId
-         /7tw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AKNzyuxVbT+auUhZLi3IyFDil3epaFKjcWDvpCGicX8=;
+        b=Uxpv0YELVEct5DKRBFz2Fhk7QOvnqJthA8Ckw5wBsDZGh8wJXJiOrindJG/RdyVU2K
+         5kOY4qIummQC7LrVENX11WZTxRSqjS7URB43qjRq8OGIZqeDgCN81GIPSiMWTmCOOup2
+         QQdGRwejIFzn0MvwrWJWBomzFz7wDHAU+ejoU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=OD75XxCwnED+FS5wDk/RwNU3mc/oEXTZU6iEW1jy/AA=;
-        b=mUKHfYpGT84FrhZXgPzFjn2yJTIepI8pzTR4PGm/kFLlCo3Bsmom9RlDkWZXPYyJKY
-         eRLthbTptDiW/jpusDWT5tzO3L2PBnGTIL2+Pv2WI+/Xx8/qQQa3ohocsoNQNZtXmO/P
-         pOFjFVNtg31jJ91qf8H6QowKdjSqaTaDaB56VZKTWumHQZXSujfbV4EAfB5C9YbcmzKx
-         PcMTBLftTdw/hSiVX3ljkTeEeZdawH+uwCfobQIgRBArdLWJIOjOFxnTTg1c/KVc7kp9
-         xYXaITE+7yKmdBQ5WkQdJGW5nPEv3XbelB9pcQX3nq08gwZsz9U/xnWW8xsgrpcXTBpW
-         e6pA==
-X-Gm-Message-State: AJIora9StqDvOpdSeV+I5mfQuwOs2PqJ5IE8atXpAWpAsZWiF68y7U+d
-        Py9pdvJ/2fDvrcFcxJCRDjSRJg==
-X-Google-Smtp-Source: AGRyM1vlTSDepPmb4CPBwh36YAfQLpzXxUXnSgiBNoiUoqkpIvuHzue1UGpTOo0IR7n2mqEABuaTsA==
-X-Received: by 2002:a05:6512:118b:b0:46b:a9ae:3a3b with SMTP id g11-20020a056512118b00b0046ba9ae3a3bmr3697317lfr.188.1657131413946;
-        Wed, 06 Jul 2022 11:16:53 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id i17-20020a2ea231000000b002555d6ca497sm6343498ljm.115.2022.07.06.11.16.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 11:16:53 -0700 (PDT)
-Message-ID: <c285332f-dde9-2e71-8637-0526c4baeb1e@linaro.org>
-Date:   Wed, 6 Jul 2022 20:16:52 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AKNzyuxVbT+auUhZLi3IyFDil3epaFKjcWDvpCGicX8=;
+        b=7tbtexjZT692WNVNcFe8jBJkkjp72ZjeQg0Ho/+R6c3HcLgPcgGAP0tZEZ0dY5mNAo
+         Sv7c9dzYbLtkuWnT9aU65tDEo2NnaBSfDfUyJxQp8msZjfxG990f/1Fquy5V515jB/L7
+         UMby6aUMt4P2kvOePhtcY8zwNR0+ZkAoMOhab3RBjV5RXziWz8WqhzxFLC303sv9jluw
+         gFYxJ1fbE5PdRalsO2fQRYFBrtssMVPHg591LnNlMRLUQI7GjPZliTotspDlq11luobd
+         hPlcI90cfejYOAvPfUcgXyCe9xUoDgw3xltmCpJS3o45L/MfN5QbpnJeQduifbL0L6jF
+         o3xg==
+X-Gm-Message-State: AJIora/6amG/hhBPnZ0eip8Wdg8JPCsK5fGzuS/Z/kZ9vyH+umXfcLs9
+        W52QLlnisuXPnS5TTgJ2oYn3blOn6wB1bBm2hxtf/w==
+X-Google-Smtp-Source: AGRyM1udr5yyAZaFO4FJIEc1fs4jCrlvFfgCL6OO6ePlgo7ORdpuX2cwPgLlDUrByF02oMjAX082RxZNAQZV1iQkw1A=
+X-Received: by 2002:a0d:c787:0:b0:31b:a963:e1de with SMTP id
+ j129-20020a0dc787000000b0031ba963e1demr47186325ywd.283.1657131989488; Wed, 06
+ Jul 2022 11:26:29 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/2] [RFT] dt-bindings: leds: Add
- cznic,turris1x-leds.yaml binding
-Content-Language: en-US
-To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
-Cc:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+References: <20220622173605.1168416-1-pmalani@chromium.org>
+ <20220622173605.1168416-6-pmalani@chromium.org> <CAE-0n517BB8YbN5AZG6M3ZrZGOJDV=+t0R9d8wD+gVqO1aD1Xg@mail.gmail.com>
+ <CACeCKafR8hFke_tc2=1VGDNF-CFrZoAG1aUKuxGJG-6pd37hbg@mail.gmail.com>
+ <CAE-0n50XbO5Wu4-429Ao05A4QrbSXoi1wBjTpGFjKm3pZj1Ybg@mail.gmail.com>
+ <CACeCKafzB0wW_B2TOEWywLMyB+UhYCpXYDVBV=UbyxBiGnv1Rw@mail.gmail.com>
+ <CAE-0n50Akd8QikGhaAQgxLkJBhE-7KQf5aJ_P2ajOmCjLk555g@mail.gmail.com> <CACeCKafQT_RBrkHJNE2ezahSsHLPrbnS69QbfnjxBoUhi6hjwQ@mail.gmail.com>
+In-Reply-To: <CACeCKafQT_RBrkHJNE2ezahSsHLPrbnS69QbfnjxBoUhi6hjwQ@mail.gmail.com>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Wed, 6 Jul 2022 11:26:19 -0700
+Message-ID: <CACeCKafya_XA+C3eJUvT4vjQSgsjdewVkCb+Jr2tA1605jjfjg@mail.gmail.com>
+Subject: Re: [PATCH v5 5/9] drm/bridge: anx7625: Add typec_mux_set callback function
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        bleung@chromium.org, heikki.krogerus@linux.intel.com,
+        Pin-Yen Lin <treapking@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220705000448.14337-1-pali@kernel.org>
- <20220705155929.25565-1-pali@kernel.org> <20220706131507.353f0bed@thinkpad>
- <20220706111912.hz2mx4dc35lgq6l5@pali> <20220706172732.6228d180@thinkpad>
- <25b43586-eeb3-4b7b-7362-2d599aa89cf0@linaro.org>
- <20220706184301.3f42a692@thinkpad>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220706184301.3f42a692@thinkpad>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,64 +90,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2022 18:43, Marek Behún wrote:
-> On Wed, 6 Jul 2022 17:36:43 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 06/07/2022 17:27, Marek Behún wrote:
->>> On Wed, 6 Jul 2022 13:19:12 +0200
->>> Pali Rohár <pali@kernel.org> wrote:
->>>   
->>>> On Wednesday 06 July 2022 13:15:07 Marek Behún wrote:  
->>>>> On Tue,  5 Jul 2022 17:59:28 +0200
->>>>> Pali Rohár <pali@kernel.org> wrote:
->>>>>     
->>>>>> +examples:
->>>>>> +  - |
->>>>>> +    #include <dt-bindings/leds/common.h>
->>>>>> +
->>>>>> +    cpld@3,0 {    
->>>>>
->>>>> The generic node name should be just "bus". That it is a CPLD
->>>>> implementation should come from compatible string.    
->>>>
->>>> Sorry, I do not understand why "bus". Why other memory chips are named
->>>> e.g. "nand" or "nor" and not "bus" too?  
->>>
->>> As far as I understand this is because that is the preferred name for
->>> busses and this is a bus, since there is also the simple-bus compatible.
->>>   
->>>> By this logic should not be _every_ node called just "bus"? Hm... and 
->>>> are names needed at all then?  
->>>
->>> :-)
->>>
->>> The schema
->>>   https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/simple-bus.yaml
->>> allows for different names (soc|axi|ahb|*-bus) to avoid warnings on
->>> existing old dts files.
->>>
->>> The preferred way is to not have the implementation in nodename,
->>> similar to how we use 'switch' instead of 'mv88e6xxx', or
->>> 'ethernet-phy' instead of 'mv88e151x', or 'led-controller', ...  
->>
->> Thanks Marek for detailed explanation.
->> The cases above rather trigger my comments and this one here, after
->> Pali's explanation, do not fit them. pld is a generic class of a device,
->> so it is okay here. cpld probably as well (although one could argue that
->> it is a subset of pld, so the generic name is pld, but then one would
->> say fpga also should be called pld). For me it does not have to be bus,
->> just don't want mv88e6xxx or any other vendor/model names. Therefore
->> cpld is fine.
-> 
-> What about cpld-bus? It is used as a bus (simple-bus compatible) and
-> would work with the *-bus pattern in dt-schema.
+On Thu, Jun 30, 2022 at 4:38 PM Prashant Malani <pmalani@chromium.org> wrote:
+>
+> On Thu, Jun 30, 2022 at 4:21 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > Quoting Prashant Malani (2022-06-28 13:56:22)
+> > > On Tue, Jun 28, 2022 at 1:40 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> > > >
+> > > > I suppose none of those things matter though as long as there is some
+> > > > typec switch registered here so that the driver can be informed of the
+> > > > pin assignment. Is it right that the "mode-switch" property is only
+> > > > required in DT if this device is going to control the mode of the
+> > > > connector, i.e. USB+DP, or just DP? Where this device can't do that
+> > > > because it doesn't support only DP.
+> > >
+> > > If the anx7625 is used just to route all lanes from 1 usb-c-connector (i.e
+> > > the USB+DP case), a mode-switch wouldn't be of much use, since one
+> > > would also route the CC lines to the built-in PD controller; so it will
+> > > already have knowledge of what mode the switch is in.
+> > >
+> > > The mode-switch is likely only relevant for this hardware configuration(
+> > > it's "DP only" in the sense that the USB pins to the SoC never go anywhere).
+> > > One only has 2 SS lanes each (from each usb-c-connector).
+> > >
+> > > Since there is no CC-line, the anx7625 needs to know which one has DP
+> > > enabled on it.
+> >
+> > Can the CC line be "captured" and not actually sent to the anx7625?
+>
+> That's what happens on Chrome OS. The cc line goes to the EC (and is "consumed"
+> by the TCPM (Type C Port Manager)) and signals are then sent to the AP
+> over the Host command interface to `cros-ec-typec`. The signals here being all
+> the PD messages communicated between the peripheral and the port.
+>
+> > I imagine if that is possible, maybe the CC lines would go to some
+> > micro-controller or something that did more typec management things and
+> > then the anx7625 driver would need to do software control of the mode
+> > and orientation control.
+>
+> I _guess_ that is possible (though it would seem odd to not use all the PD
+> control hardware in that configuration)? If an system implements it in
+> such a way
+> then:
+> 1. mode-switch: Can be updated to do something when num_typec_switches == 1 (
+> in the mux_set function imp.l I haven't looked into what registers
+> need to be configured, since we
+> don't have this hardware implementation.
+> 2. orientation-switch: This should be registered, and then flip the
+> lanes when the port
+> driver tells it the orientation is one way or another.
+>
+> So, if someone uses it that way, I think the driver needs only minor
+> updates to support it.
 
-If we talk about the example - it does not use any compatible, so we are
-focusing on unimportant piece. Anyway using a simple-bus compatible does
-not necessarily mean it is a bus. "soc" nodes also use it, but these are
-not buses.
-
-
-Best regards,
-Krzysztof
+Stephen, any pending concerns?
+If not,I will post a v6 series with the suggested changes:
+- Drop typec-switch binding; instead add a new top-level port with
+end-points for each Type-C connector's switch.
+- Drop it6505 patches.
+- Squash anx7625 driver patches into one patch.
+- Add a comment mentioning that we aren't registering the orientation-switch.
