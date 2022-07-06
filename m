@@ -2,68 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DE34568EA2
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:06:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6D1568EAD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 18:11:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233593AbiGFQG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 12:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34228 "EHLO
+        id S233953AbiGFQLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 12:11:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232626AbiGFQG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:06:26 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B50124F3E
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 09:06:25 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id t25so26706586lfg.7
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 09:06:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=WjAXw5QzSpYw1w5FAPUrzObdHHdAgUzvP9IucosXiOs=;
-        b=fEozLruwmilAR5E0KmxFbpQpRJCAMD1GO3GGabPkkPtHbnsSu2JVi3Zk/j6f7FIbFa
-         Yyv1hv9QCFYKKEH5zUzs8GoVCjTIOh3Ck2SQzO/mU8Z9IJXZxM9kO/d84fz4kG0l5J9N
-         +BN57c8h9MCvPT04iUHVDw1kCkuY6RpsjiORqrbcW3XxMJcDnW5vNA4rSUoYvTXXdQ75
-         fVwMQpi+Fpye45BG+Fm+TWP6ZFjv5fSM00Hlh9Mp0zAbSwZde8cxWe/bvSVbol0DzR2t
-         7O+6KcYfwnm7YVBEsTBmZY4vasMDK+DvN8fnZ9FTypBxMiBQ1g++d+Jaiko+7/vUybDV
-         fLsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WjAXw5QzSpYw1w5FAPUrzObdHHdAgUzvP9IucosXiOs=;
-        b=QoCM1Boog635t1pD1p2nKWAgZ1Tla3NsuSZk7cG5MFLy/S5XyY6nJE3ipPva9lS15Q
-         linMDYfDJZRzRPuNfnEZYAV2hVw1b+/eHt7DGKzrCvHheroo+A789Vo8Xem4fOGOuVcS
-         FVKgGU/Oki3MUQXjsCS8+Psxh0w8K3Qe2JaG1fiZicYtFLrE7WJMGY3wYda6Bj5TUC0c
-         00SH41xlrX3F174wNGbRgjSxO4jVEzxUoqC4O3+3SvPjzt/9e6gZakoN0JqHlTF7CT5z
-         Dt4EDVqcAc70MMXuyeUvpAqZeiE1LAFqIO+AkGM6QAB3P5EkBId6xJlXG1f/JWM//LPe
-         7eiQ==
-X-Gm-Message-State: AJIora/TSKjlqd0x+vQrkhL+xRbWh91kFqNCQRDxczPHija4efyC12uE
-        +aObt2oi2AWjSwyM5zWO0Pyj/ZxJi5fdsssq
-X-Google-Smtp-Source: AGRyM1usW44CZYRSRD2ytCRxy+qUWmgNeaHnLzhd/O2UfjriItVc+v1D6IMcZJEjTcZMb8numWPMkg==
-X-Received: by 2002:a05:6512:3a8f:b0:486:6ccb:b36a with SMTP id q15-20020a0565123a8f00b004866ccbb36amr2224185lfu.327.1657123583543;
-        Wed, 06 Jul 2022 09:06:23 -0700 (PDT)
-Received: from krzk-bin.home ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id j16-20020a056512345000b0047255d21181sm6334630lfr.176.2022.07.06.09.06.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 09:06:23 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     devicetree@vger.kernel.org, alim.akhtar@samsung.com,
-        krzysztof.kozlowski@linaro.org, linux-samsung-soc@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: samsung: document preferred compatible naming
-Date:   Wed,  6 Jul 2022 18:06:20 +0200
-Message-Id: <165712357714.28180.6368854125955952977.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220705161340.493474-1-krzysztof.kozlowski@linaro.org>
-References: <20220705161340.493474-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S234002AbiGFQK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 12:10:59 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5FF1F626;
+        Wed,  6 Jul 2022 09:10:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5FE12B81DA5;
+        Wed,  6 Jul 2022 16:10:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1757DC341C8;
+        Wed,  6 Jul 2022 16:10:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657123856;
+        bh=RBP9aI9AIOYbwy74w1vs7z6dw7VqfGFJFry8/KWE/LE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lw1GA5OTfAm3jM8sFOu8TuMl7X6BtOsatGPobPce9Zy4yTFbiIx9eZjs1A9RFIyw/
+         wg3/BWjsHCVaFVqeIlZc8KFEokupOZfgbIJqOCkuj0RIPBi9+MZeqlG0kLD21xq6Er
+         MBpGbHP2PDco4O4xUWo6api14lmQ4jFHJ2c9W7H9Ve9V3o1DeYLvaERdU0hJHwtTf/
+         07v+RiYuYgLwPQUBi4rPPbDmqD2GIvnsSrAX6lbYfs2dHAzLZOva51qmXhnyzVj2M1
+         Kqw+khrx8w5FUQMu04hKZYjx5vQQ/w9YIufJBfEcJW2fUmI31wCeKwCe8H0KJUGNRB
+         TgUus5CbBq5JQ==
+Date:   Wed, 6 Jul 2022 17:10:50 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Sebastian Ene <sebastianene@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, vdonnefort@google.com,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v9 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <20220706161048.GA3204@willie-the-truck>
+References: <20220701144013.1085272-1-sebastianene@google.com>
+ <20220701144013.1085272-3-sebastianene@google.com>
+ <20220706152101.GA3003@willie-the-truck>
+ <YsWvNsK/hTc4sxo4@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YsWvNsK/hTc4sxo4@kroah.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,19 +63,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 Jul 2022 18:13:40 +0200, Krzysztof Kozlowski wrote:
-> Compatibles can come in two formats.  Either "vendor,ip-soc" or
-> "vendor,soc-ip".  Add a DT schema documenting preferred policy and
-> enforcing it for all new compatibles, except few existing patterns.  The
-> schema also disallows wild-cards used in SoC compatibles.
+On Wed, Jul 06, 2022 at 05:50:14PM +0200, Greg Kroah-Hartman wrote:
+> On Wed, Jul 06, 2022 at 04:21:01PM +0100, Will Deacon wrote:
+> > > +MODULE_LICENSE("GPL");
+> > 
+> > This needs to be "GPL v2".
 > 
-> 
+> Nope, that is what this is saying, please see the huge comment in
+> include/linux/module.h right above MODULE_LICENSE().  So all is good
+> here.
 
-Applied, thanks!
+Thanks, I stand corrected, although I personally still find it clearer to
+spell it out!
 
-[1/1] dt-bindings: samsung: document preferred compatible naming
-      https://git.kernel.org/krzk/linux/c/30e1f7bb96a918b6551ff5f97dd9f144aa04386d
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Will
