@@ -2,113 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E3D56855D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 12:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B5FE5685BE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jul 2022 12:38:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230362AbiGFKV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 06:21:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60330 "EHLO
+        id S230231AbiGFKig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 06:38:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233243AbiGFKVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 06:21:36 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B237027B0C
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 03:20:57 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id r14so15582120wrg.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 03:20:57 -0700 (PDT)
+        with ESMTP id S232644AbiGFKif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 06:38:35 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42952167E5;
+        Wed,  6 Jul 2022 03:38:34 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id h23so26294472ejj.12;
+        Wed, 06 Jul 2022 03:38:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=c9Pbm/W8nF8nZPtj8UO3JkkVe9BS9XinY2CO9YPr+wQ=;
-        b=xxDxx/W+EufdzGtSD4vFx6bM4t7kylYudf27P2IdJd/rHIIkgMfFHsPuPGfBOYyj8F
-         6qn98CnRdFCsNYEaryC1zeUJ06kZaB2lwXK9bqRKHLvBPDjy4SouJBtIaRvavV10FB8x
-         EypFqEJS9sc5DQjNm9QpZ2j6owLp6QTmmt6m8Yn0DRpO+fOpPzPKQlrSmTfEJzbx8DN1
-         npuAgNxn2/OM+tpdJX9Vye+kITqd9btkF8HogS5+Us4thnFKvpCqISUAXu0OWirWuKLL
-         5rZDZkVx06BsiQ+WsLE7Vy5ureIIPIR+zCagIFvE13vtPRLIDKPFQG24AR3u9uQPcU1K
-         C0OQ==
+        d=gmail.com; s=20210112;
+        h=message-id:date:from:to:cc:subject:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vUdjWGTHZmLYlGc/ZuMHohVJj+eoKfKT6JKGQ2BSBvM=;
+        b=UDpjwxUP24o4du4brC7VOF838ENnIC5nCFcdYz0tnMfu3RI9u+0R0GxkwTIByxmX/u
+         umt5Ckca4Rw+IovH0fAoPeWR3ddEL6ixo5zfdiN3bg68cJNOsY8kEd2RidCX4ZhQR1v0
+         RlX5tmx3jsu1NMwypYd0Z7AvCLHGgcqlo11IDr7GWz4v1ObgPS1T5T/XLpz3aGP/N7wE
+         XlI1+aOxqJz/JJvc1YgGpsM1u0mhdQz19k5pbbe1dAFyMpfl+BJPTxP5MiD5JNE3yzg2
+         x5rEXvSTOX60wiHz3JzJDsupDfuNFWa3IFLMraYRRqBxWRgzI2EkB9gXkQOQ+4bwHv2I
+         hLKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=c9Pbm/W8nF8nZPtj8UO3JkkVe9BS9XinY2CO9YPr+wQ=;
-        b=T1Iu2nPkj2HQsLNe0/aj7hidCZF0iU6JmqPlnB89g+tLv+2XNfeWXw9PahSdEdZKkL
-         rLtcbH60AupmoC2MJ+KRlV3nZKCvOwfkO1XRIPywcJhXZcDJbaJ/u46xV14QPBSc4qDj
-         iFGSEFSTFUSuy3LurDyhji0eSiCOlsGtilypg2i8J5z4VgQwy9qHuWcUs/lf/nYLeEem
-         +5j5475/RU6nMQU1ULa52FnmccRDMf/tNb10BDdJYycQSRBtK2VFdcfpoUKasJihMPeS
-         gwY6Ng2EGMVS+kolQMbW22qZfGL+ArqLWACTe+wo+bTkxtOb5aJhjdO14RY/uqZl9iDW
-         zXbA==
-X-Gm-Message-State: AJIora/e6L1NrzYzRHVsh4u+hxfMyyU+Z0n83diViaMzNVLIC34V5+ot
-        cIzda/zF5yVT4N+4MohZiPTIAw==
-X-Google-Smtp-Source: AGRyM1tpTcxx3jJOXqor5OLNHicM9nWBC9P1/zvkqobKe+qLg/UW3SQx9JV6zZVTiLfeZLSLnBz0Jg==
-X-Received: by 2002:a05:6000:901:b0:21a:a576:23cc with SMTP id bz1-20020a056000090100b0021aa57623ccmr36632466wrb.489.1657102856272;
-        Wed, 06 Jul 2022 03:20:56 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id f18-20020adff992000000b0021b9416fa13sm13387762wrr.90.2022.07.06.03.20.55
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vUdjWGTHZmLYlGc/ZuMHohVJj+eoKfKT6JKGQ2BSBvM=;
+        b=WALh0JhryMNLklhiTB59XM0WA0fC05HtCIeZQ56LL/mUz+m/K5tPqG8Au/J/bkpPBM
+         p8NYm3+em16FAb5C1G+LYhV6TN+OPl8BXXXbrYUjdXbbNLkW/Jfa+19pIPnRlUmqlQpD
+         eBU0LghJ1OKgAMCyCYaqIZ9zIn5f6Es4gzEQQXTP47d0TvXwHq55obx8Vc0ULOEsAmV+
+         rxpuMsAyfCNtluzMsEJV8l0yCfXLe1xnLL97O5mXHlO2rpCrRS/gDvk79Chz2N/TnBem
+         OMpbOXii7YTNMAWqWPz/qyM29omyBE7cS2YlgKSid0S1sw6P4gqfiE9U4k23AVFXc98J
+         nJTw==
+X-Gm-Message-State: AJIora9Zv49gKOZBVdW1b8B9CWNgo64U5BWHVOVDvA5fxMXR7j5txaIC
+        Nf/vhChLYxooz2dCqCy1aKA=
+X-Google-Smtp-Source: AGRyM1uJIm3IBu3JUOLVOZveOCHA6AFa86s/jejR2zWEUc0TFRUWLFhcJGuJd1QJBltIrqCSfKwuzg==
+X-Received: by 2002:a17:907:3e11:b0:726:372b:6c32 with SMTP id hp17-20020a1709073e1100b00726372b6c32mr39456512ejc.157.1657103912696;
+        Wed, 06 Jul 2022 03:38:32 -0700 (PDT)
+Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.gmail.com with ESMTPSA id m11-20020a50ef0b000000b0043a6c9e50f4sm6177406eds.29.2022.07.06.03.38.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 03:20:55 -0700 (PDT)
-Date:   Wed, 6 Jul 2022 11:20:53 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Melissa Wen <melissa.srw@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: Re: [PATCH V4 06/11] mfd: bcm2835-pm: Use 'reg-names' to get
- resources
-Message-ID: <YsViBdDN0t3d9Ubk@google.com>
-References: <20220625113619.15944-1-stefan.wahren@i2se.com>
- <20220625113619.15944-7-stefan.wahren@i2se.com>
- <YrnZUqQsKVVGHUGh@google.com>
- <7ef987c7-1d99-bd63-f7fa-66bd12811716@gmail.com>
- <4607b996-51ac-0b3f-e046-5611774362ca@gmail.com>
- <YrqxdAgCKRL3tCTg@google.com>
- <e0c2098d-058b-90c8-2e16-6c069ac706d4@gmail.com>
+        Wed, 06 Jul 2022 03:38:32 -0700 (PDT)
+Message-ID: <62c56628.1c69fb81.aea0.a137@mx.google.com>
+X-Google-Original-Message-ID: <YsViQy6l7TSB1AOI@Ansuel-xps.>
+Date:   Wed, 6 Jul 2022 12:21:55 +0200
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] clk: qcom: clk-rpm: convert to parent_data API
+References: <20220705202837.667-1-ansuelsmth@gmail.com>
+ <20220705202837.667-4-ansuelsmth@gmail.com>
+ <CAA8EJpry3pJxEVOL7P7gFL4M9yDktCuDE=2KOGfc6DeAUasYGw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e0c2098d-058b-90c8-2e16-6c069ac706d4@gmail.com>
+In-Reply-To: <CAA8EJpry3pJxEVOL7P7gFL4M9yDktCuDE=2KOGfc6DeAUasYGw@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Jul 2022, Florian Fainelli wrote:
-
-> On 6/28/22 00:44, Lee Jones wrote:
-> > > > > Anything preventing me from applying the two MFD patches?
-> > > > > 
-> > > > 
-> > > > They are self contained and cater to being backward/forward compatible
-> > > > with Device Tree changes, so not really no. If that is how you want it,
-> > > > please proceed in taking the 2 MFD patches and I will apply the rest.
-> > > 
-> > > Actually there is a dependency between patch 10 which uses pm->rpivid_asb
-> > > and patch 7 which introduces it. I can give you my acked-by for patches 8-11
-> > > so you can take them via the MFD tree if you would like.
-> > 
-> > That works too.
-> > 
+On Wed, Jul 06, 2022 at 11:27:34AM +0300, Dmitry Baryshkov wrote:
+> On Tue, 5 Jul 2022 at 23:56, Christian Marangi <ansuelsmth@gmail.com> wrote:
+> >
+> > Convert clk-rpm driver to parent_data API and change parent names to cxo
+> > and pxo instead of the board variant as pxo_board is an ancient name and
+> > pxo should be used instead.
+> >
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  drivers/clk/qcom/clk-rpm.c | 24 ++++++++++++++++--------
+> >  1 file changed, 16 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/clk/qcom/clk-rpm.c b/drivers/clk/qcom/clk-rpm.c
+> > index a18811c38018..d45a8b0fc97c 100644
+> > --- a/drivers/clk/qcom/clk-rpm.c
+> > +++ b/drivers/clk/qcom/clk-rpm.c
+> > @@ -23,6 +23,14 @@
+> >  #define QCOM_RPM_SCALING_ENABLE_ID                     0x2
+> >  #define QCOM_RPM_XO_MODE_ON                            0x2
+> >
+> > +static const struct clk_parent_data gcc_pxo[] = {
+> > +       { .fw_name = "pxo", .name = "pxo" },
 > 
-> I took patches 1 through 5, can you apply 6 through 11? Thanks
+> This means that the core clock would look for the DT clock named 'pxo'
+> with the fallback to the global clock named 'pxo'. Fallback is
+> required to keep compatibility with older DT files, not having the
+> clocks/clock-names properties.
+> For all other platforms we were using as a fallback  the 'pxo_board'
+> clock (defined in the DT) rather than the 'pxo' (hackily injected by
+> the gcc driver).
+> I'd suggest following this pattern and using .fw_name = "pxo', .name =
+> "pxo_board".
 
-I currently have them in soak.
+We were discussing this to the lcc driver. Problematic topic, yes will
+follow the pattern just to not change things.
+
+> 
+> Same applies to the CXO clock.
+> 
+> > +};
+> > +
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+	Ansuel
