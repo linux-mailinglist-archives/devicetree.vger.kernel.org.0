@@ -2,71 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8012556A35C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 15:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC94C56A362
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 15:22:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235064AbiGGNVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 09:21:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42900 "EHLO
+        id S235532AbiGGNW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 09:22:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234943AbiGGNVF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 09:21:05 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE9C13CD6;
-        Thu,  7 Jul 2022 06:21:03 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id w185so15616091pfb.4;
-        Thu, 07 Jul 2022 06:21:03 -0700 (PDT)
+        with ESMTP id S234399AbiGGNWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 09:22:55 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA5013D60;
+        Thu,  7 Jul 2022 06:22:53 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id t24so31127812lfr.4;
+        Thu, 07 Jul 2022 06:22:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:date:to:cc:subject:message-id:mime-version:content-disposition
-         :user-agent;
-        bh=+caqaU2jwST9KjN/1/t0QJXzQd9mk2HRl/4WLQkOIpE=;
-        b=qj1jUTa+a16S+5xt1vMAZXARDDSWN3npWT1MmERzCIpdpE0MhmAmf89PevNTj8wnPr
-         OTp0d19UaiaslgInZDHUP8H7KYzAd9fbJUM3xFvljQ3Iiolk9wq09ehO9PT6VAf+h1RD
-         6WSTOpO4u19LbmRxRK9x2P/j3v99EmAo9OtZqe+4oW05en50lj9tE8E88ieMZT++4eez
-         knS8pxOGzkol+8+/hBKQWHh4UevAPec8NCZzpy4992MU8naUC8KAY4bYRusf7lbCJmrY
-         eu8cpOWV9XpbJOwP6cfdtLVUWKZ5fwl3ySspU+V0zCIcjaCDLupOWuVg7dI1p4TGiLCL
-         P9eA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=XGx3WroSsu3NFcydbW98Okt5ftfv4JTgquEdA1fClxY=;
+        b=DFkLGgnRVxLZISCjcbWYQhw6EmadHY8hPzmwZX3M/1QxQ3rmvA9K1FHR+tpG2ZfSY5
+         ek76GH1xIAz1emj753ATo46VOs1ONBFcablBG6HMKrHigtB8kJ+fxDrO9GnqpctBlpVw
+         yDXCzM+ND4CT792jU1C8YV6+K3ugW3iiiWKV3qCojVeGMPjA3loou9IWfb+9gpFhsdHr
+         eyV2WzS1rx4/dgK8/e5uUb77rFJIDe7dDxcZZc5THJ+8Rc+N1w7cLmk4//pXuLpNjChy
+         MMSCOT8KSaqIy+7TBUGcyxSPURxBDHdrIKLx3yET6/ZutXExttLDz3RN7tMh3RfbbkIS
+         bx6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:date:to:cc:subject:message-id:mime-version
-         :content-disposition:user-agent;
-        bh=+caqaU2jwST9KjN/1/t0QJXzQd9mk2HRl/4WLQkOIpE=;
-        b=QXqERi/9u/KCdjwUS6dgzhQvjC80uxOSrIrd6p02oVDBgZh1F9mKJPcfYN/9qlkpH+
-         GugtumIoGG4e1ICVM+TQ1Qrs9ax3Nf7b0P5UH9NLs8Uvdf13jYjTV97n+HrRZCrSIvxK
-         c3yiYGLnJdsJ8d6PcKM3jTBeN3mJNGVTvTI260V8lYNJUZTu3t6dM8OfSkNIVpFEMRO4
-         0l5L2Vdi7CVYPqsgTt34Jb5LtZ6Qj381vXXfPiZ+f7TiCB4HpKLeJuaIbbEfOLXWimwq
-         sZhv+X3mVcM5uqT5nD4OwWD5yRTLTMvgLSaCfDIuyqFGlvqKyf87Xs5H3bSr8UXsqxbo
-         dQqw==
-X-Gm-Message-State: AJIora8i0F5hQBplReKbgD1UWxl6xUB9KfEzL1yrxEa8YbojBJdOgjpV
-        b6z55FeCFlSxnD7RkrnSwjpo8y4nOgC8Uw==
-X-Google-Smtp-Source: AGRyM1s3wvKu78PUF+WXF3NMQ9GECIokSiccqeMC9d7E21f6skakUIT71qtz1xi8mB6rHtSMVnrRVw==
-X-Received: by 2002:a05:6a00:240a:b0:528:5bbc:aa1b with SMTP id z10-20020a056a00240a00b005285bbcaa1bmr25954547pfh.70.1657200063324;
-        Thu, 07 Jul 2022 06:21:03 -0700 (PDT)
-Received: from logan-ThinkPad-T14-Gen-1 ([117.253.178.206])
-        by smtp.gmail.com with ESMTPSA id bk21-20020aa78315000000b005254e44b748sm26633625pfb.84.2022.07.07.06.20.57
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 07 Jul 2022 06:21:02 -0700 (PDT)
-From:   Logananth Sundararaj <logananth13.hcl@gmail.com>
-X-Google-Original-From: Logananth Sundararaj <logananth_s@hcl.com>
-Date:   Thu, 7 Jul 2022 18:50:54 +0530
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org
-Cc:     garnermic@gmail.com, thangavel.k@hcl.com, naveen.mosess@hcl.com,
-        patrick@stwcx.xyz, velumanit@hcl.com
-Subject: [PATCH v3] The Yosemite V3.5 is a facebook multi-node server
- platform that host four OCP server. The BMC in the Yosemite V3.5 platform
- based on AST2600 SoC.
-Message-ID: <20220707132054.GA10610@logan-ThinkPad-T14-Gen-1>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XGx3WroSsu3NFcydbW98Okt5ftfv4JTgquEdA1fClxY=;
+        b=sza0Lg7VW+iS19hVBLRaMJD4oOcJRr+6UTctDX+3y2S2pNxypLP5A/7EKHRQImsDrV
+         mrgFeF/oq2/kAJa0g+AeZoIIBECvUeeiLFXRyanoDdgwqurhFoRAZI858TqkWJ1Uxc0E
+         Z67V9L3YvwFNA2/ZEz4c+9YvvHJyOob+t4758yAmPPRMpLO6UYwYNsENg0/nSDFSCkX5
+         wYJ5BTnxOdJTS588hmQexeBqEYtzcLpCE9Kmhm02nDDCIl0QN2cXjU9U20q67N3I0AHd
+         CujWfNU44nS9p952SSO/scPaJmMKxBdEGzP7jTyH/JF41LUdA0vAgWCQezJrquIgEuyy
+         HGkQ==
+X-Gm-Message-State: AJIora9Tgg+ZaniqHdtxe04Ddbj9CwrJ6ETtohnUQiwNrTrImSu3I9oq
+        i2IhJdUiWw0oHKFksPbP8C8Y2XkGHit5Yg==
+X-Google-Smtp-Source: AGRyM1uONBzgIxWVwqFTuuL9VxeGrfVkpmlIKP1L9gOJjXl9o3ejdup+BqRk+Z1WhEOp8MwIqibqxQ==
+X-Received: by 2002:a05:6512:3b1e:b0:481:20ff:434a with SMTP id f30-20020a0565123b1e00b0048120ff434amr31566799lfv.111.1657200171737;
+        Thu, 07 Jul 2022 06:22:51 -0700 (PDT)
+Received: from mobilestation ([95.79.140.178])
+        by smtp.gmail.com with ESMTPSA id f5-20020a19ae05000000b004894b6df9e2sm9262lfc.114.2022.07.07.06.22.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 06:22:49 -0700 (PDT)
+Date:   Thu, 7 Jul 2022 16:22:45 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     nandhini.srikandan@intel.com
+Cc:     broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mgross@linux.intel.com, kris.pan@intel.com,
+        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
+        mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com,
+        rashmi.a@intel.com
+Subject: Re: [PATCH v5 2/4] dt-bindings: spi: Add bindings for Intel Thunder
+ Bay SoC
+Message-ID: <20220707132245.5b4xzvh4dy4cgwgi@mobilestation>
+References: <20220706042039.5763-1-nandhini.srikandan@intel.com>
+ <20220706042039.5763-3-nandhini.srikandan@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20220706042039.5763-3-nandhini.srikandan@intel.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -77,306 +75,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds linux device tree entry related to
-Yosemite V3.5 specific devices connected to BMC SoC.
+On Wed, Jul 06, 2022 at 12:20:37PM +0800, nandhini.srikandan@intel.com wrote:
+> From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+> 
+> Add documentation for SPI controller in Intel Thunder Bay SoC.
+> 
+> Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
+> ---
+>  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Signed-off-by: Logananth Sundararaj <logananth_s@hcl.com>
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
----
---- v3 - addressed v2 patch comments.
---- v2 - Enabled i2c drivers.
---- v1 - Initial draft.
----
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../boot/dts/aspeed-bmc-facebook-fby35.dts    | 266 ++++++++++++++++++
- 2 files changed, 267 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
+-Sergey
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7e0934180724..58add093e5fb 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1465,6 +1465,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-cloudripper.dtb \
- 	aspeed-bmc-facebook-cmm.dtb \
- 	aspeed-bmc-facebook-elbert.dtb \
-+	aspeed-bmc-facebook-fby35.dtb \
- 	aspeed-bmc-facebook-fuji.dtb \
- 	aspeed-bmc-facebook-galaxy100.dtb \
- 	aspeed-bmc-facebook-minipack.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
-new file mode 100644
-index 000000000000..32262cf1d9ea
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
-@@ -0,0 +1,266 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright (c) 2020 Facebook Inc.
-+
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "Facebook fby35";
-+	compatible = "facebook,fby35", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+		bootargs = "console=ttyS4,57600n8 root=/dev/ram rw vmalloc=384M";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+			<&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-+			<&adc1 4>, <&adc1 5>, <&adc1 6>;
-+	};
-+	spi_gpio: spi-gpio {
-+		status = "okay";
-+		compatible = "spi-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-sck = <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
-+		gpio-mosi = <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
-+		gpio-miso = <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
-+		num-chipselects = <1>;
-+		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
-+
-+		tpmdev@0 {
-+			compatible = "tcg,tpm_tis-spi";
-+			spi-max-frequency = <33000000>;
-+			reg = <0>;
-+		};
-+	};
-+
-+};
-+
-+&mac3 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+	no-hw-checksum;
-+	use-ncsi;
-+	mlx,multi-host;
-+	ncsi-ctrl,start-redo-probe;
-+	ncsi-ctrl,no-channel-monitor;
-+	ncsi-package = <1>;
-+	ncsi-channel = <1>;
-+	ncsi-rexmit = <1>;
-+	ncsi-timeout = <2>;
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	status = "okay";
-+	compatible = "snps,dw-apb-uart";
-+};
-+
-+&wdt1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst1_default>;
-+	aspeed,reset-type = "soc";
-+	aspeed,external-signal;
-+	aspeed,ext-push-pull;
-+	aspeed,ext-active-high;
-+	aspeed,ext-pulse-duration = <256>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "spi0.1";
-+		spi-max-frequency = <50000000>;
-+		#include "openbmc-flash-layout-128.dtsi"
-+	};
-+	flash@1 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "spi0.0";
-+		spi-max-frequency = <50000000>;
-+		#include "openbmc-flash-layout.dtsi"
-+	};
-+};
-+
-+&i2c0 {
-+	//Host1 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb0@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c1 {
-+	//Host2 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb1@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c2 {
-+	//Host3 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb2@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c3 {
-+	//Host1 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb3@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	//NIC SENSOR TEMP
-+	status = "okay";
-+	tmp421@1f {
-+		compatible = "ti,tmp421";
-+		reg = <0x1f>;
-+	};
-+};
-+
-+&i2c9 {
-+	// Debug-Card IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb9@30 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x30 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+	//FRU EEPROM
-+	eeprom@51 {
-+		compatible = "atmel,24c64";
-+		reg = <0x51>;
-+		pagesize = <32>;
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+	//INLET TEMP
-+	tmp75@4e {
-+		compatible = "ti,tmp75";
-+		reg = <0x4e>;
-+	};
-+	//OUTLET TEMP
-+	tmp75@4f {
-+		compatible = "ti,tmp75";
-+		reg = <0x4f>;
-+	};
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+};
-+
-+&adc0 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		&pinctrl_adc2_default &pinctrl_adc3_default
-+		&pinctrl_adc4_default &pinctrl_adc5_default
-+		&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-+		&pinctrl_adc10_default &pinctrl_adc11_default
-+		&pinctrl_adc12_default &pinctrl_adc13_default>;
-+};
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&uhci {
-+	status = "okay";
-+};
--- 
-2.17.1
-
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index d7e08b03e204..5ecd996ebf33 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -61,6 +61,8 @@ properties:
+>            - const: snps,dw-apb-ssi
+>        - description: Intel Keem Bay SPI Controller
+>          const: intel,keembay-ssi
+> +      - description: Intel Thunder Bay SPI Controller
+> +        const: intel,thunderbay-ssi
+>        - description: Baikal-T1 SPI Controller
+>          const: baikal,bt1-ssi
+>        - description: Baikal-T1 System Boot SPI Controller
+> -- 
+> 2.17.1
+> 
