@@ -2,92 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6276569A86
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:30:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F64D569A90
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:35:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233932AbiGGGak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 02:30:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33242 "EHLO
+        id S233819AbiGGGex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 02:34:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233584AbiGGGaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:30:39 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6708C10559;
-        Wed,  6 Jul 2022 23:30:38 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 590775C00EA;
-        Thu,  7 Jul 2022 02:30:34 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Thu, 07 Jul 2022 02:30:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1657175434; x=
-        1657261834; bh=TJIn1V9ic4c6ApTfvv5dVrRd3t/GgxV3Sqp0Eq+6r2g=; b=c
-        MS6GOy0bVkuopuTWs3E68kSB8PBsKg8ibPv3O84u5Sh0VeXirV2OjpPl55joEPVI
-        WE53kOXPflazVfEgd8BbKerHq4/KseZZOPO+VJfL+A3ob1MbA0I5w5MSqEXFeYrl
-        ydmcsZ2V7Scisq+aH2ZZ5f4mN2UiI0Ap5xnJxIud1qlN2gN4zan+fWkmLhPYctAE
-        32TJBqvLB6Ejx+L2DY27g9L85fPdoMa4v4MsNB2ojr+k6SBzvdZi3Qh0gU0WwasT
-        9FQcReC5HItTaEY9HczcXJI3AM1lfUM3n2EYaEwQFUyQAQC2z3LjsVzBjO8BQMQU
-        emOBVIIz5UiGcw1FIvspQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1657175434; x=
-        1657261834; bh=TJIn1V9ic4c6ApTfvv5dVrRd3t/GgxV3Sqp0Eq+6r2g=; b=H
-        jz8B7KLzbG2MiX/JJiPW0Ecv8YH9Fx+7bBEcpdtIFAJeOtRMStgSwhNJrJjeO7qA
-        4ZNu2CGNf150HlgJ0fEAd0vVV+4azEPquXHaokXrbttlRvKwxVvW4hIptjREGrFe
-        9kC+BdJ2bR4nfVI8mo4rQMlQk+ga4LGYGOxx9q0lb3XHdOXcjCXZqDCDjD47HKhL
-        6ZZDoTpvoJ9+MrP1wRoHIQD8TuUOG4WefSVt0M+Z4GmEJngBAIjuGyDKTCSg1xVA
-        DHE2q4h4zcGJXVCCAkCOEUSsquragbcZMm7pXCgrEQjmuYwBMbciYZhRXrTXOKWS
-        Gw/iDGGEdnEMjJcJYWluQ==
-X-ME-Sender: <xms:iX3GYtUbQ8sSCWKMsyk1ZiyCOdH1oc2iU4gzaybbpkZzD3j24n9QfA>
-    <xme:iX3GYtlT5nx4ARJxb2hJwi0SI5vB0jPfmRbWiWCXf_MOUfOWrnjX_c-9G0GYBI5au
-    RjPsb4OCEMYjgDEIQ>
-X-ME-Received: <xmr:iX3GYpYB044yJcwFqElkFhRn_E92_-h3lZntpCMcUOD4Prci6mcf1Z6Bt_p2favjuf5svEuQLlyf1QEU6dVY3xeKYbIOTMak7MnvYg4gmwNApGyzXqZImPx-4g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudeigedguddutdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefuvfevfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgr
-    mhhuvghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqne
-    cuggftrfgrthhtvghrnhepffdtveekvdegkeeuueetgfetffeileevudekuefhheelvdfh
-    iedtheduhfduhefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
-    hfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:iX3GYgXdbzLv5yFKKcNEbjuVMdxFf6HwoPgTbeokPRJV44xgHKq7ww>
-    <xmx:iX3GYnldE02U6d-KTR5G7LE5l8ADzjA0YNOgZKirRFT3A6FuOAbpMQ>
-    <xmx:iX3GYtcerNFQGAyI0Adpuo10lgp1O8s4iVjw-FnElFoLi_Ffn_NZFg>
-    <xmx:in3GYp57PRmOH0nBgDQTexj1gKo512VSuiQiX8DXDGGn4tqse8dA8A>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 7 Jul 2022 02:30:33 -0400 (EDT)
-Subject: Re: [PATCH v11 3/6] arm64: dts: allwinner: Add Allwinner H616 .dtsi
- file
-To:     Andre Przywara <andre.przywara@arm.com>,
-        =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220428230933.15262-1-andre.przywara@arm.com>
- <22699277.6Emhk5qWAg@kista> <20220704225534.3e1a901a@slackpad.lan>
- <5278570.Sb9uPGUboI@kista>
- <20220706141655.15d2dd0e@donnerap.cambridge.arm.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <39537f95-2ed4-f526-5912-364c1c1ed512@sholland.org>
-Date:   Thu, 7 Jul 2022 01:30:32 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S233320AbiGGGew (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:34:52 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CB8D26560
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 23:34:51 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id j21so29525478lfe.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 23:34:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Ysc87HWO1xUWXFPdwqw2dVcHrfoCXIGok2opDqUtzfw=;
+        b=OZML/7Kij+34LoFn4KZeoOsd6smLupYBJrkB9DKdoKig31Zyl+O07MqCh+uoV0CrKv
+         aWjlfN3fZthwDAo/Pk4pjmgQA+7EZR8fK5A20lnPzP4YzxGwVcT8mDemtJaXyN9Z3tUs
+         +oT2/IxmpHsYPdqQKqtQULYP9cueICA5nznTPKSij14LjAIFYY6uQ46MyR2sSULpUf0K
+         r1Fq/ZWLzbMqCcG8esvWpKa9AnFyFm+1ieSYchBo/yI/athdMHAnI38Zpu8q6rLCyrFa
+         7jcueUwDN+Atxv025fb4vllkbR0Rqh15Yp5wG79BOlhHNBJpAd/XotnfhF+D776RJvjF
+         jHbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Ysc87HWO1xUWXFPdwqw2dVcHrfoCXIGok2opDqUtzfw=;
+        b=VTCgsryA9aR/XUT9tjqeJRIYI4m5ZuvMRrcMSTqbHqpmxRTMZy7K8UIO076RTUl+1U
+         59f0b5q2/LklmrOIFKvFlg5wvoMS/Q2syRsQMp3BntRyQ7dTVZU6ySsKnWLxDfQlAXtB
+         EFP56cbylknIlsVUVJ5jAaLfDF9SQ4XQ/VA02lBqsK0TuRHvrSUIvKUs0EbfXXV8rjEE
+         FaCvdqPOC5GN+ajw43Y9Q/tH5o+UzKsAor9tJDJd9dtPwBRu49+rves1jr8cCGBQeLlp
+         ot/AHAKASLdgwd6lIkHYPkycwZkxUOK1jx405IAvNOzEr07j+JtMrvb0RxpcMfE2a03N
+         16Jg==
+X-Gm-Message-State: AJIora+IuOx+yI1qdN5cYLjew5lZwxDYSa/Cz81mYqzkrsxdBhCNB1YN
+        K/Vaw8/eS6zD9bLQ8z4NelHaLQ==
+X-Google-Smtp-Source: AGRyM1vNp38CehOe+BehnQZOQ5DRGhrTKJhX90Cyhwscys7T3R991jX0z8uhQGenGTnn7LvXI0Ay0Q==
+X-Received: by 2002:a05:6512:2381:b0:482:ba6e:4a08 with SMTP id c1-20020a056512238100b00482ba6e4a08mr10574066lfv.666.1657175689961;
+        Wed, 06 Jul 2022 23:34:49 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id k26-20020a05651c10ba00b0025a736f5a41sm6653583ljn.9.2022.07.06.23.34.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jul 2022 23:34:49 -0700 (PDT)
+Message-ID: <4e8a36de-a631-f6c9-44d7-7d873f775db2@linaro.org>
+Date:   Thu, 7 Jul 2022 08:34:48 +0200
 MIME-Version: 1.0
-In-Reply-To: <20220706141655.15d2dd0e@donnerap.cambridge.arm.com>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2] dt-bindings: phy: samsung,ufs-phy: match clock items
 Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <CGME20220707063058epcas2p19364a05a5b2fc8aad81fa390ac030f21@epcas2p1.samsung.com>
+ <20220707062807.135960-1-chanho61.park@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220707062807.135960-1-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,37 +77,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andre, Jernej,
-
-On 7/6/22 8:16 AM, Andre Przywara wrote:
-> so after seemingly having finished writing this email, I realised that
-> this won't really help, as I think this diverts the discussion. And the
-> problem has been around for a while, and won't probably be solved easily
-> or quickly. I think we agree to disagree here, or we should admit that
-> there are different approaches ("bundled firmware" vs. "UEFI"), so in the
-> interest of not blocking the H616 series:
+On 07/07/2022 08:28, Chanho Park wrote:
+> Below error is detected from dtbs_check. exynos7-ufs-phy is required
+> symbol clocks otherwise only PLL ref clock is required.
 > 
-> Shall I just keep the firmware node? This would work both ways, whereas
-> dropping the node would impede the "bundled firmware" approach?
+> clock-names: ['ref_clk'] is too short
+> 
+> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
 
-Let me try to sum up the relevant portion of my thoughts (and save the rest for
-elsewhere):
 
-The only reason to add the reserved-memory node is to support externally-loaded
-DTBs. By adding the node, we are committing to support externally-loaded DTBs on
-this SoC.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Upgrading the kernel is not allowed to break boot. If we support
-externally-loaded DTBs, that rule extends to DTBs shipped with the kernel.
 
-If we remove the reserved-memory node, the combination of old U-Boot + new
-externally-loaded DTB will stop booting (the kernel version is irrelevant).
-Therefore, if we add the node, we can never remove it, full stop.
-
-I will (begrudgingly) accept that, as long as the node matches what TF-A
-actually generates today. That means, please:
- - Drop the label and update the node name
- - Reduce the size to 256 KiB, matching (BL31_LIMIT - BL31_BASE)
-
-Regards,
-Samuel
+Best regards,
+Krzysztof
