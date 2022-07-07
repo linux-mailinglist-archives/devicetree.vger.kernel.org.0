@@ -2,74 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0343A569A60
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68000569A67
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:22:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbiGGGTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 02:19:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53944 "EHLO
+        id S232278AbiGGGWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 02:22:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233884AbiGGGTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:19:13 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 640B52613A
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 23:19:12 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id t24so29456568lfr.4
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 23:19:12 -0700 (PDT)
+        with ESMTP id S231939AbiGGGWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:22:06 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2042252C
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 23:22:03 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id z25so11867964lfr.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 23:22:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hu5UjHiJ+bwaBYMGAryVawqznhB30VuU79LnyvZFUMw=;
-        b=JNp0Rwnl+SSoqs6qNOAEWXREGt6UlkNQkuecqWBJLD9ZJR/ibvstoD0e45BHSrl+Xw
-         YM1HAqpYoC2lXg8QaXtGlNtCgTuiHomMfowFZF+3Tmos8azDdxrp0kyxJozCvDTzOrFs
-         m96/x6ff2el1Y57xpRLqrGnln1v+oercSODRBjeqpPQpIGkvoXvF0DzHL4UsvX5AB+6R
-         5e61fvxg5C0Unpt2AX1/9yD3UAJ3d+/xV3q06XPS0aXmz3eKzW+lhWrXtaAbZ7eS5BMa
-         /r7DPHTmt4MnHoDgf9PMRlkZO95RgxwijHedqmyDloO+D7D90qH8LQR8t6oVNGshqGf8
-         OVlg==
+        bh=K9tr6KcnhachYdviyEdzrx/B25kvNR6jdvTIxCztc+M=;
+        b=m8SLb0PXb3Vg2eJO8SbIvdWVK9IDAd+mBaFKyEB2VmiyRWoo7gJ4oK+6dub5rKs6Mc
+         SF8En/qWmU2nl4466IHgX+Hm3h6XYKVVhUvHVUkjDD1P2ongoVO0LON181kFQlEEBYVr
+         KU9HJhb68dRpCkBvjPz3+09CzLF9Dn2jgtIQ3SYv9tXuULNxFRbXKC9gSlvqnSsRXcom
+         KTN5jXMjhXrB61iL+tYx0o/BMkQ9U+4iYMrJB8dUpPV9ieLqt6n7IOqE99tvcKu0zo4X
+         wNXIPUNR6f683NkjFPNkFGEL1dZXuPcmvJ4r23lPd0ROyvgAJxXs9FcCwAzlfT32CUEV
+         fTAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=hu5UjHiJ+bwaBYMGAryVawqznhB30VuU79LnyvZFUMw=;
-        b=WQWT+p5Do6CWqC4WvdRQEa3NIBAXqdqR5Xo7d1OVUJXvCxUMdEUbnw52TuUsXHXHNI
-         DV/bd4xq5I2/zt9Q58w9euEfkOKBZsjxDxa1hBfNtUA8dVuv7kzoeBi7zeOWFxYG0iFC
-         bEE7aEiHjaihSX1FKHKufdq8a9rptJkMjOqYh+ym5MUNNiCv7CkHTgLLA89u5tEjAgPw
-         AMPUWqT9DQzE37tW/Z6bHpjMsElPLKSE9TI5gjPbz6cwe0rNAkzOwooP+EEqgxadEqcU
-         Rf8Ir7BLbX1YSf11SGNfLmCE8ekOoltZf3nWwEqF/Px3K/xTsRTefS3Cdr7AkCy7gLOc
-         5MOQ==
-X-Gm-Message-State: AJIora848VeMy/XrhB5FUUMT72YIvWh/kkoZqyU5gwT9+QzdE3hu4xJv
-        qGMIQKCutpMSY+w5+G5b4E56pg==
-X-Google-Smtp-Source: AGRyM1uviZn/Ui2JM9JTF4A7nVpBIeYAn+SP8Qcua3Czg37Jnoz7oFZB26ttHQaS+IPboCj+0LM5TA==
-X-Received: by 2002:ac2:4941:0:b0:485:da81:6c95 with SMTP id o1-20020ac24941000000b00485da816c95mr4851170lfi.368.1657174750665;
-        Wed, 06 Jul 2022 23:19:10 -0700 (PDT)
+        bh=K9tr6KcnhachYdviyEdzrx/B25kvNR6jdvTIxCztc+M=;
+        b=qfifnGPHxc7hOKKtCE9OWRYr0xZUfAeXsDUQbfR5iI9ddGI2puwGM8Ozts0UaHqSdW
+         UdrZ2A/FZgdEqm3p1pudpNBDX9l5xY31gfFA9QkUO3evqdh9JenPteYZ3vGCTB6gJJRw
+         XJ+KfYWUmLxXCVMSDt0ycvVj2OJ3RO/CyKrHwNLhuMp7zwJe8JUNPgfANq4KFZD7pFz7
+         yZYoToKspJpJ7+6gl69seLkLIZgmG9IUlXtllOlY/aDHDsvsWzMN0cmbFGtQ5AjnS/M3
+         fEtz5kWyJ/ExqxTGNCo4BfKwZxNvr7xMyrP1Kp0hqSwY2r/eavfQxCfxrP3sAL2HqYfe
+         M8ew==
+X-Gm-Message-State: AJIora8MCD2VGGIzo2GNACdeJp4DxcLqtU4XayHcDWBLw7D1AnY6cKL7
+        Ao4FOzW8U466yYoMODw7AZeEPA==
+X-Google-Smtp-Source: AGRyM1se1WO4CHVfBfT/K6BtyPtkWxpUzbgz0tpvSMviOF1zQkYsa6iAW47Mb577NI8daYMc821GdQ==
+X-Received: by 2002:a05:6512:b14:b0:482:a9b1:ea3 with SMTP id w20-20020a0565120b1400b00482a9b10ea3mr16254431lfu.353.1657174922060;
+        Wed, 06 Jul 2022 23:22:02 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id j2-20020a056512344200b0047255d21107sm171772lfr.54.2022.07.06.23.19.09
+        by smtp.gmail.com with ESMTPSA id j10-20020a056512344a00b0047f71771969sm6664533lfr.113.2022.07.06.23.22.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 23:19:10 -0700 (PDT)
-Message-ID: <f8107455-7bf0-2bc7-2fcd-4d0bb65ffd58@linaro.org>
-Date:   Thu, 7 Jul 2022 08:19:09 +0200
+        Wed, 06 Jul 2022 23:22:01 -0700 (PDT)
+Message-ID: <d3d4d90b-85b5-5ad9-78e6-5a074c21af4f@linaro.org>
+Date:   Thu, 7 Jul 2022 08:22:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: phy: samsung,ufs-phy: match clock items
+Subject: Re: [PATCH 1/2] [V1,1/2] arm64: dts: qcom: Add LTE SKUs for
+ sc7280-villager family
 Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Jimmy Chen <jinghung.chen3@hotmail.com>,
+        Andy Gross <agross@kernel.org>,
+        alan-huang@quanta.corp-partner.google.com,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <CGME20220707005844epcas2p474d0ac5ca2d11bb37bc6353b9e7d50bc@epcas2p4.samsung.com>
- <20220707005554.98268-1-chanho61.park@samsung.com>
+References: <cfc2c27a-444d-8bd8-84a7-b6b1f99258f9@linaro.org>
+ <SG2PR03MB5006AB4C7E356CE321F628D9CC809@SG2PR03MB5006.apcprd03.prod.outlook.com>
+ <8f9651b2-ca9a-413c-d94f-9ecf3717343c@linaro.org>
+ <CAD=FV=WtKRFQr5jSQvsr08x9dgHrvenUWWtX_SKuCLuSvSH7WQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220707005554.98268-1-chanho61.park@samsung.com>
+In-Reply-To: <CAD=FV=WtKRFQr5jSQvsr08x9dgHrvenUWWtX_SKuCLuSvSH7WQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,96 +86,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 02:55, Chanho Park wrote:
-> Below error is detected from dtbs_check. exynos7-ufs-phy is required
-> symbol clocks otherwise only PLL ref clock is required.
+On 07/07/2022 01:40, Doug Anderson wrote:
+> Relevant links:
 > 
-> clock-names: ['ref_clk'] is too short
+> * You saying you liked the enum [1].
+> * Me saying I liked them separate and that switching from a
+> "description" to a comment was opposite of what Stephen had previous
+> voted for [2], but could change if there was overwhelming need to make
+> them an enum.
+> * Rob saying he prefers an enum but lets sub-arch maintainers decide [3].
+> * Bjorn (the sub-arch maintainer) landing the patch without the enum [4].
 
-Thank you for your patch. There is something to discuss/improve.
-
-> 
-> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
->  .../bindings/phy/samsung,ufs-phy.yaml         | 47 +++++++++++++++----
->  1 file changed, 37 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-> index 8da99461e817..3b04f31d9f21 100644
-> --- a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-> @@ -27,18 +27,12 @@ properties:
->        - const: phy-pma
->  
->    clocks:
-> -    items:
-> -      - description: PLL reference clock
-> -      - description: symbol clock for input symbol ( rx0-ch0 symbol clock)
-> -      - description: symbol clock for input symbol ( rx1-ch1 symbol clock)
-> -      - description: symbol clock for output symbol ( tx0 symbol clock)
-> +    minItems: 1
-> +    maxItems: 4
->  
->    clock-names:
-> -    items:
-> -      - const: ref_clk
-> -      - const: rx1_symbol_clk
-> -      - const: rx0_symbol_clk
-> -      - const: tx0_symbol_clk
-> +    minItems: 1
-> +    maxItems: 4
->  
->    samsung,pmu-syscon:
->      $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> @@ -53,6 +47,39 @@ properties:
->        It can be phandle/offset pair. The second cell which can represent an
->        offset is optional.
->  
-> +allOf:
-
-The allOf block should go after "required" block.
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: samsung,exynos7-ufs-phy
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: PLL reference clock
-> +            - description: symbol clock for input symbol ( rx0-ch0 symbol clock)
-> +            - description: symbol clock for input symbol ( rx1-ch1 symbol clock)
-> +            - description: symbol clock for output symbol ( tx0 symbol clock)
-
-While moving drop space after '('.
-
-> +
-> +        clock-names:
-> +          items:
-> +            - const: ref_clk
-> +            - const: rx1_symbol_clk
-> +            - const: rx0_symbol_clk
-> +            - const: tx0_symbol_clk
-> +
-> +    else:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: PLL reference clock
-> +
-> +        clock-names:
-> +          items:
-> +            - const: ref_clk
-> +
->  required:
->    - "#phy-cells"
->    - compatible
+Ah, so the argument to my comment about using enum was that Bjorn
+apparently prefers such way. OK.
 
 
 Best regards,
