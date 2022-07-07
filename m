@@ -2,154 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD87E5699BA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 07:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCCE15699C4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 07:20:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbiGGFO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 01:14:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44850 "EHLO
+        id S234705AbiGGFT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 01:19:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbiGGFO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 01:14:56 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2DA031230;
-        Wed,  6 Jul 2022 22:14:54 -0700 (PDT)
-X-UUID: 58f5c9dbb434497d9b99c2d6b4dd5ce6-20220707
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:e290d56d-f96a-4348-b372-e63675557bda,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.8,REQID:e290d56d-f96a-4348-b372-e63675557bda,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:0f94e32,CLOUDID:85bfa363-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:687ad5be47b9,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 58f5c9dbb434497d9b99c2d6b4dd5ce6-20220707
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 435513236; Thu, 07 Jul 2022 13:14:44 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 7 Jul 2022 13:14:43 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 7 Jul 2022 13:14:43 +0800
-Message-ID: <6b4a4be9b5c93b1931cdbd5b009eac3bfa9badbe.camel@mediatek.com>
-Subject: Re: [PATCH v13 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 7 Jul 2022 13:14:43 +0800
-In-Reply-To: <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
-         <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229612AbiGGFT6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 01:19:58 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 431E13122B;
+        Wed,  6 Jul 2022 22:19:56 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2675Jqka065614;
+        Thu, 7 Jul 2022 00:19:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1657171192;
+        bh=neB5iajCmLQMPo7WImf2pu6sK0uT/3tlIZLXgS5GbKw=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=L3QALqSlzJoA+NNSiNKA28rA22umcYlLyt3RpIyP3O3Mdcu/UKdIMtQPrEso82e9D
+         F31xoak0Vkg+Xw7QpyQ59QLe16ltydn7X9GzFZGX9KxJcYB8cMZDUb0lyrJEoOANwV
+         76IufhzillesNLNYQOi0TRPwfdm1bCtF/cz80hDg=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2675Jqvo014130
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 7 Jul 2022 00:19:52 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 7
+ Jul 2022 00:19:52 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 7 Jul 2022 00:19:52 -0500
+Received: from [172.24.145.182] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2675Jnkj090190;
+        Thu, 7 Jul 2022 00:19:50 -0500
+Message-ID: <ddc2b24e-37a3-4751-80b9-84b13606a703@ti.com>
+Date:   Thu, 7 Jul 2022 10:49:49 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v5] dt-bindings: gpio: Convert TI TPIC2810 GPIO Controller
+ bindings to YAML
+Content-Language: en-US
+To:     "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+References: <20220223174215.17838-1-a-m1@ti.com>
+ <CACRpkdbj2B90-RE2XKQJ5qEj1hZQA-u=vUu2vpXwNqQLf_kaPg@mail.gmail.com>
+ <e682175fcfc54217a6ed006270877f4d@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <e682175fcfc54217a6ed006270877f4d@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        RDNS_NONE,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+Hi Bartosz,
 
-On Fri, 2022-07-01 at 14:28 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
+On 05/05/22 14:28, M, Aparna wrote:
+> +Vignesh
 > 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
+> Ping. Can this be picked up for next merge cycle?
 > 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+> On 15/03/22 06:31, Linus Walleij wrote:
+>> On Wed, Feb 23, 2022 at 6:42 PM Aparna M <a-m1@ti.com> wrote:
+>>
+>>> Convert gpio-tpic2810 bindings to yaml format and remove outdated
+>>> bindings in .txt format.
+>>>
+>>> Signed-off-by: Aparna M <a-m1@ti.com>
+>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>>
+>> Yours,
+>> Linus Walleij
+>>
 
-[snip]
+Sorry, this patch has been around for sometime w/o any comments and has
+relevant R-bys. Wondering if this fell off the radar
 
-> +
-> +static ssize_t mtk_dp_hpd_sink_event(struct mtk_dp *mtk_dp)
+I believe patch would go via GPIO tree?
 
-The caller never use the return value, so let this function to void.
-
-> +{
-> +	ssize_t ret;
-> +	u8 sink_count;
-> +	u8 link_status[DP_LINK_STATUS_SIZE] = {};
-> +	u32 sink_count_reg = DP_SINK_COUNT_ESI;
-> +	u32 link_status_reg = DP_LANE0_1_STATUS;
-> +
-> +	ret = drm_dp_dpcd_readb(&mtk_dp->aux, sink_count_reg,
-> &sink_count);
-
-You read sink_count but never use it, so this read is redundant. Remove
-it.
-
-> +	if (ret < 1) {
-> +		drm_err(mtk_dp->drm_dev, "Read sink count failed\n");
-> +		return ret == 0 ? -EIO : ret;
-> +	}
-> +
-> +	ret = drm_dp_dpcd_read(&mtk_dp->aux, link_status_reg,
-> link_status,
-> +			       sizeof(link_status));
-> +	if (!ret) {
-> +		drm_err(mtk_dp->drm_dev, "Read link status failed\n");
-> +		return ret;
-> +	}
-> +
-> +	drm_dp_channel_eq_ok(link_status, mtk_dp-
-> >train_info.lane_count);
-
-This function just return true or false, and you does not process the
-return value, so this is redundant. Remove it.
-
-Regard,
-CK
-
-> +
-> +	if (link_status[1] & DP_REMOTE_CONTROL_COMMAND_PENDING)
-> +		drm_dp_dpcd_writeb(&mtk_dp->aux,
-> DP_DEVICE_SERVICE_IRQ_VECTOR,
-> +				   DP_REMOTE_CONTROL_COMMAND_PENDING);
-> +
-> +	return 0;
-> +}
-
+-- 
+Regards
+Vignesh
