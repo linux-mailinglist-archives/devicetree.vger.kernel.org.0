@@ -2,109 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5D135696CB
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 02:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05C29569716
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 02:58:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234678AbiGGAR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 20:17:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50264 "EHLO
+        id S234161AbiGGA6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 20:58:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234613AbiGGAR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 20:17:56 -0400
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0C0F2DAA1
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 17:17:55 -0700 (PDT)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-10bd4812c29so17641096fac.11
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 17:17:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=A9KMWBQbXLx/bx1xZ0Ut5YH6Gehkg3o6EpAfQEv3oiQ=;
-        b=aFZdN/uwvv5by+9RhHiClMYZnVo6UGSzcXWWtCAt5r2fbdoUTBbHZ9NDK6Jj0z1pNd
-         T38kEws2G5cAXs85Wvufk9YgEiWLP8NOvEtr1Snrb9gDrm/lX9iG4ufe56aRHSMlmDW1
-         eNHW9MDnS+MOypb2lP2JCNoRd/AhNVVaO2PaE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=A9KMWBQbXLx/bx1xZ0Ut5YH6Gehkg3o6EpAfQEv3oiQ=;
-        b=1ao3RoGJPD3YZi18E1hP7WH0UXlME84i2c0qYDfLlGYETOLxrLcdUTCzrQZ/Fih5j7
-         vas+xVp8CgdsFMrhJBr2duGx41LChVFtU+P86hAJ4SDngm3utPRsVIc0XS1zG0OJRgIQ
-         2a335TKrTaA2biJ6brgmnNJ48xbPcVKw6aSYvrJz3lc2ZtnX3g1s8iU5UtfVtWIPgFn9
-         Z8ey3J6f71M5kts1AEvUlJoN0SoLy1CypLzml+lxeZXzQ3ifueopEl0L0Lubvk76elSH
-         wozHATjmPwzBvEtOePDlWnqg3PNO5vJ3oo2Ew/oBqhgQvWCBE+8VnRUcgZrRm+xpoPdC
-         LxoA==
-X-Gm-Message-State: AJIora/cER8uf5f0Almq1P7WsFlHB9rPU9xYKc7UH86R1Jpexsl49vXk
-        vMIJn2zn2uDBOZUdMaEafyWh/F4STQIvnTdsMaZQuw==
-X-Google-Smtp-Source: AGRyM1vRIZqEOwogKZJcIXv6VDYldqs4L085Qun9gEFdF2cBslF60GMIX99hLqqjzW1HACZsMRx+6b3IRlXWzJ9eHZs=
-X-Received: by 2002:a05:6870:b381:b0:fe:2004:b3b5 with SMTP id
- w1-20020a056870b38100b000fe2004b3b5mr961649oap.63.1657153075078; Wed, 06 Jul
- 2022 17:17:55 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 6 Jul 2022 20:17:54 -0400
+        with ESMTP id S229695AbiGGA6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 20:58:49 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCBD52CE1E
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 17:58:47 -0700 (PDT)
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220707005846epoutp04ab798d760725f18ed109b0d8e79fd65e~-ZivDj20D0147801478epoutp04b
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 00:58:46 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220707005846epoutp04ab798d760725f18ed109b0d8e79fd65e~-ZivDj20D0147801478epoutp04b
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1657155526;
+        bh=FjXUdABVx22HW08SvjEjJGy8FTKHZ2JybLp4lVPug5Y=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=VKqdDLHzOWMC9CSv3ZFXjoLoHsTAJbqDFcmdNUAhobbV93oGvV/VMPPrfz7mSnj2Q
+         DPmGHGHPm84Dy64kKkyepLwxVOzkNFHstVyjeTSuTYslCNQ9hjQuQSUlmBJ4eFG4np
+         /MC5ERjI0X/W184VcvU42CmluF50ZCl31j3Q00sI=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+        20220707005845epcas2p1a5ca3c6a81eebdd51e9da71770ab4804~-ZiumbUZ40551205512epcas2p1D;
+        Thu,  7 Jul 2022 00:58:45 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.99]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4LddMT1tCwz4x9Q7; Thu,  7 Jul
+        2022 00:58:45 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        4F.07.09642.5CF26C26; Thu,  7 Jul 2022 09:58:45 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220707005844epcas2p474d0ac5ca2d11bb37bc6353b9e7d50bc~-Zit_3seM0091600916epcas2p4M;
+        Thu,  7 Jul 2022 00:58:44 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220707005844epsmtrp1eb78ce2bdbb283ec19ce9b17c713f6c7~-Zit_BWki1544915449epsmtrp1M;
+        Thu,  7 Jul 2022 00:58:44 +0000 (GMT)
+X-AuditID: b6c32a47-5e1ff700000025aa-b7-62c62fc5b1ce
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        20.94.08802.4CF26C26; Thu,  7 Jul 2022 09:58:44 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220707005844epsmtip22ecb08fac2a97916418bd99d35a4c3aa~-Zit0Qfxo0185701857epsmtip2E;
+        Thu,  7 Jul 2022 00:58:44 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: phy: samsung,ufs-phy: match clock items
+Date:   Thu,  7 Jul 2022 09:55:54 +0900
+Message-Id: <20220707005554.98268-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-In-Reply-To: <CACeCKafya_XA+C3eJUvT4vjQSgsjdewVkCb+Jr2tA1605jjfjg@mail.gmail.com>
-References: <20220622173605.1168416-1-pmalani@chromium.org>
- <20220622173605.1168416-6-pmalani@chromium.org> <CAE-0n517BB8YbN5AZG6M3ZrZGOJDV=+t0R9d8wD+gVqO1aD1Xg@mail.gmail.com>
- <CACeCKafR8hFke_tc2=1VGDNF-CFrZoAG1aUKuxGJG-6pd37hbg@mail.gmail.com>
- <CAE-0n50XbO5Wu4-429Ao05A4QrbSXoi1wBjTpGFjKm3pZj1Ybg@mail.gmail.com>
- <CACeCKafzB0wW_B2TOEWywLMyB+UhYCpXYDVBV=UbyxBiGnv1Rw@mail.gmail.com>
- <CAE-0n50Akd8QikGhaAQgxLkJBhE-7KQf5aJ_P2ajOmCjLk555g@mail.gmail.com>
- <CACeCKafQT_RBrkHJNE2ezahSsHLPrbnS69QbfnjxBoUhi6hjwQ@mail.gmail.com> <CACeCKafya_XA+C3eJUvT4vjQSgsjdewVkCb+Jr2tA1605jjfjg@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 6 Jul 2022 20:17:54 -0400
-Message-ID: <CAE-0n53kujMrzFG++5kaS4QKj2YrzLJEu5R76W887rCW_S592g@mail.gmail.com>
-Subject: Re: [PATCH v5 5/9] drm/bridge: anx7625: Add typec_mux_set callback function
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        bleung@chromium.org, heikki.krogerus@linux.intel.com,
-        Pin-Yen Lin <treapking@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpkk+LIzCtJLcpLzFFi42LZdljTVPeo/rEkg7ldPBYP5m1js7i8X9ti
+        /pFzrBZ9Lx4yW+x9vZXdYtPja6wWM87vY7Jo3XuE3YHDY9OqTjaPO9f2sHlsXlLv0bdlFaPH
+        501yAaxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYGhrqGlhbmSgp5ibmptkouPgG6bpk5
+        QJcoKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtScgrMC/SKE3OLS/PS9fJSS6wMDQyM
+        TIEKE7Iz1q53KNgqUnHjwRq2BsZXfF2MnBwSAiYS/WsWsHUxcnEICexglNh2fxsjhPOJUeLL
+        sbnMEM5nRon7G96zwbT8bn7KCGILCexilHjxJhyi6COjxO+JF1lAEmwCuhJbnr8CKxIRiJd4
+        fuE9C0gRM8ik3nN3gSZxcAgLuErc2JkMUsMioCoxpXciWC+vgJ3Eurd97BDL5CU2HNwOFReU
+        ODnzCZjNDBRv3job7DoJgXPsEl2P10M1uEhc+PedGcIWlnh1fAtUXEriZX8blF0ssXTWJyaI
+        5gZGicvbfkG9Ziwx61k7I8hxzAKaEut36YOYEgLKEkduQe3lk+g4/JcdIswr0dEmBNGoLnFg
+        +3QWCFtWonvOZ1YI20PixtFv7JCwipV4t/Qu2wRG+VlIvpmF5JtZCHsXMDKvYhRLLSjOTU8t
+        Niowhsdpcn7uJkZwWtRy38E44+0HvUOMTByMhxglOJiVRHhz248mCfGmJFZWpRblxxeV5qQW
+        H2I0BYbvRGYp0eR8YGLOK4k3NLE0MDEzMzQ3MjUwVxLn9UrZkCgkkJ5YkpqdmlqQWgTTx8TB
+        KdXApOc9x/bZ5IldvJ9jJQuMFpXOsgoXDZXfoahyikf88s8VzYYGv03KZyUJXFkceWvJBl/f
+        S9Y77bZMXHE/b943XgNbXdHni5fN2CB6u2jn566/P3qije59jeoRTPmk567yVfvVJ+5lncnM
+        /w1fXeM0bjnoyHZTl3ev96xHxfLFCnvuiIbp70u05cqQq5Y6vDjU5lC5yk/eXXuLHjlJXAlz
+        +lgkdeZ72fevB5RfeG+Y/8b6a+/dY0Gd5id32s1asJazbF1msGldla2TaXacL8erDbyBvoen
+        rHCXZJcUXZThnHz8AkdRke7U810LPvF4LtMV3J/8OGrZmfKeiSnCn/NMnHndb6WEW7hf2lHc
+        yWCpxFKckWioxVxUnAgA8hVd7xQEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrILMWRmVeSWpSXmKPExsWy7bCSvO4R/WNJBh1vDS0ezNvGZnF5v7bF
+        /CPnWC36Xjxkttj7eiu7xabH11gtZpzfx2TRuvcIuwOHx6ZVnWwed67tYfPYvKTeo2/LKkaP
+        z5vkAlijuGxSUnMyy1KL9O0SuDLWrnco2CpScePBGrYGxld8XYycHBICJhK/m58ydjFycQgJ
+        7GCUWH39GztEQlbi2bsdULawxP2WI6wQRe8ZJeauPsICkmAT0JXY8vwVI4gtIhAvsfnLQhaQ
+        ImaB74wSlzpbmboYOTiEBVwlbuxMBqlhEVCVmNI7EayXV8BOYt3bPqgF8hIbDm6HigtKnJz5
+        BMxmBoo3b53NPIGRbxaS1CwkqQWMTKsYJVMLinPTc4sNC4zyUsv1ihNzi0vz0vWS83M3MYJD
+        VUtrB+OeVR/0DjEycTAeYpTgYFYS4c1tP5okxJuSWFmVWpQfX1Sak1p8iFGag0VJnPdC18l4
+        IYH0xJLU7NTUgtQimCwTB6dUAxOfQ7nhGsf48Njta6fwsby14nhz6lQCX3C42A7vv/Hvtyhp
+        TFJsljO4L3OftXaxiYfsI2Z5gfAt21xfnNac1D7zW+XqvhzZu6U+rjNrVmVdOrrp4Ik65wyP
+        xhnC+37POnfVR0wk48XNnepB5TcSS334w0z3TxDv9YkReFusq6T6uqxQdPOlY+opVhMETU4H
+        Lnpbw2CaPbuBS5rjc5yJuO6i3q25TaVfT6w5sJhj7Vt/9/Bru/5O3RFzR1Ug/kfFBCfRFddr
+        /LVsoj3+fzV7cjVbSKl60Ta2B98Ub5mI8+fPKDqvqXGmtvixZvjvi6tlq7ZLVnjU9z/7d7rn
+        3HP3Kw/eTa2uWZNX69N3cfHJvUosxRmJhlrMRcWJAFxU4yHEAgAA
+X-CMS-MailID: 20220707005844epcas2p474d0ac5ca2d11bb37bc6353b9e7d50bc
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220707005844epcas2p474d0ac5ca2d11bb37bc6353b9e7d50bc
+References: <CGME20220707005844epcas2p474d0ac5ca2d11bb37bc6353b9e7d50bc@epcas2p4.samsung.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prashant Malani (2022-07-06 11:26:19)
->
-> Stephen, any pending concerns?
+Below error is detected from dtbs_check. exynos7-ufs-phy is required
+symbol clocks otherwise only PLL ref clock is required.
 
-No more pending concerns.
+clock-names: ['ref_clk'] is too short
 
-> If not,I will post a v6 series with the suggested changes:
-> - Drop typec-switch binding; instead add a new top-level port with
-> end-points for each Type-C connector's switch.
-> - Drop it6505 patches.
-> - Squash anx7625 driver patches into one patch.
-> - Add a comment mentioning that we aren't registering the orientation-switch.
+Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
+Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+---
+ .../bindings/phy/samsung,ufs-phy.yaml         | 47 +++++++++++++++----
+ 1 file changed, 37 insertions(+), 10 deletions(-)
 
-Ok. I'll take a look on v6.
+diff --git a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+index 8da99461e817..3b04f31d9f21 100644
+--- a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+@@ -27,18 +27,12 @@ properties:
+       - const: phy-pma
+ 
+   clocks:
+-    items:
+-      - description: PLL reference clock
+-      - description: symbol clock for input symbol ( rx0-ch0 symbol clock)
+-      - description: symbol clock for input symbol ( rx1-ch1 symbol clock)
+-      - description: symbol clock for output symbol ( tx0 symbol clock)
++    minItems: 1
++    maxItems: 4
+ 
+   clock-names:
+-    items:
+-      - const: ref_clk
+-      - const: rx1_symbol_clk
+-      - const: rx0_symbol_clk
+-      - const: tx0_symbol_clk
++    minItems: 1
++    maxItems: 4
+ 
+   samsung,pmu-syscon:
+     $ref: '/schemas/types.yaml#/definitions/phandle-array'
+@@ -53,6 +47,39 @@ properties:
+       It can be phandle/offset pair. The second cell which can represent an
+       offset is optional.
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,exynos7-ufs-phy
++
++    then:
++      properties:
++        clocks:
++          items:
++            - description: PLL reference clock
++            - description: symbol clock for input symbol ( rx0-ch0 symbol clock)
++            - description: symbol clock for input symbol ( rx1-ch1 symbol clock)
++            - description: symbol clock for output symbol ( tx0 symbol clock)
++
++        clock-names:
++          items:
++            - const: ref_clk
++            - const: rx1_symbol_clk
++            - const: rx0_symbol_clk
++            - const: tx0_symbol_clk
++
++    else:
++      properties:
++        clocks:
++          items:
++            - description: PLL reference clock
++
++        clock-names:
++          items:
++            - const: ref_clk
++
+ required:
+   - "#phy-cells"
+   - compatible
+-- 
+2.37.0
+
