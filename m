@@ -2,74 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E281569AD1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF069569AE6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:58:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234218AbiGGG4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 02:56:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51460 "EHLO
+        id S230419AbiGGG54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 02:57:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233004AbiGGG4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:56:53 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C7B2DA90
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 23:56:52 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id n15so21063904ljg.8
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 23:56:52 -0700 (PDT)
+        with ESMTP id S233473AbiGGG5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:57:53 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85F892DA96
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 23:57:52 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id j23so4362659lji.13
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 23:57:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9wXlm4lPLW3CJ6vyNpa4ZS9pyU5VZ9VajYi0GJLaRq0=;
-        b=CukCozSBMD4d641X4DnmQFSVGgdyLaC4lf0G4XTKANN+rpW1wFUKoS2cFPr4oDrXBp
-         vJgmhofUYnIuK9EetgnecxbFdnLYDiyHxvrDZUS9uC86pTrJBzWKflSOVMZUgT19eMfS
-         rPEw4R0OnDTgCSNqdHYG1xKYN9+zfa/rmzeDc2GZlNbsD0ZMbbgXmDB6gHVonIomTrEW
-         ulOzK0l5d+0ZHoNPQpRvcgjCx4I8hDYANQdd/XG3M/vLM5nzE0+pZyxKG8LC9U4moPOB
-         lJSYxpBIXrwcilWUlvpRbeURfopWAM1ZUlsYpEnEz+21xO7D5mFBUzIbBs3tQqTqSSc5
-         BM7w==
+        bh=dLVc/y+TZpb35OvYPkixah5RQK18EK/PdsEEB601kEw=;
+        b=jlV6O1ySJQF0jT1QiGhPY8aljt/fnYk+/UZbgEn2NAtdvShcbS1x0fEd6aA4no1Xhj
+         Z200O0/x3gfVQMVlhofE+rbIwCnZDOcWdZQ0/Eu9yTsOwdmmQ3Wb4Uns8gv9ZRlD9EhX
+         +hQzzmgq/hN7rFGS9anbUfunmuiM5o4xW0TfbcTXbOZ/TWZRdh26paGJX6m53Tlkgir4
+         hG+M1mqWm3rVRgaeBicuHCTYQl15zdb5Ghw43SdkLZCiaWhpU5u+kvl8S+g6JVIr96qs
+         EWQOx3gNy7AXc8Rwhva2/cjtxKh9dLDv2lDyQa5W62Pd9G5dA0M8iAiYqdGIioV0TxrB
+         TO2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=9wXlm4lPLW3CJ6vyNpa4ZS9pyU5VZ9VajYi0GJLaRq0=;
-        b=bqcfrQ/xediSx51lH/4FkY65raHOllZ4dRJ9OPovTPnfBlGBnoa5RgrPdSlrdo/UhK
-         mWTJpENttYQwOWCnpkTEBLsZ9eUgE5rwQIlWweTx6nl847gnFyQNn2lLiIkTj3wztcHd
-         muTv0n2pRKDYElpxAX28x5u8JGfgE+ERoVxRygHHHEkkitb1YNb3Jw9ef+/aIVFNSoZ8
-         1xfGijXClj18TVzv/14jcxwssh4jOpieUGqwo2Zlbchg83OrWw0VdNc6GvnRaYo6R368
-         etQg5CwX89MNLaKMcWccz1a8s7z37aWkmjwJb+X/rZ2nK+BknkAEM0m1I82J9Jg1yWL7
-         64gg==
-X-Gm-Message-State: AJIora9/HsVxcUsa0wyJpL6McCrRUIA2srUpIL9j/ff6WKPTbrfChiG3
-        suc4NKoklbKCnmUpQptNC2zyZQ==
-X-Google-Smtp-Source: AGRyM1tO6tU6CDqHQwH/DJfuXG74dwHM+0w3s7XfbfoenJFE/rkjxYonxj6TEoWmqFHf4HIknfsYJA==
-X-Received: by 2002:a2e:8e8c:0:b0:25a:76d6:7580 with SMTP id z12-20020a2e8e8c000000b0025a76d67580mr24748693ljk.461.1657177010939;
-        Wed, 06 Jul 2022 23:56:50 -0700 (PDT)
+        bh=dLVc/y+TZpb35OvYPkixah5RQK18EK/PdsEEB601kEw=;
+        b=1mADiuTcN5AuRGexdCnh92lsNe8sJDtmFBLryON16BOledv/COiX3sZ8uY99iIxy5z
+         UNji0OYhH6yZcAVCImwOR4ZVdtFKjRVXTp14a8OcMq9578YVj73RFfNCJeiVI+5oIEJd
+         QaayXEUU6a6zJzWJagmOEyKXH2XAENfuRgr37lKX149mNtSMbnaJSwb1CyM0kKjJH44N
+         wFVCr35Ba8D+F5G4gKiUEQSmwEf6rNSXh/PSEYnbIFzq4IScJDAeW4MFxP6Ju/IaHYpp
+         vfoz2SZqMBZYUU8QPrAr6EUz3+2BHOy3QDyfIMGRtde9riiYYgjp5SGnbKSvWsUftbfd
+         Cncw==
+X-Gm-Message-State: AJIora8a05iHqzJ/PA4exsXNH8By0mA2o2ZBfLHR4YDTBiXXnTp/YT7c
+        o0W+gu2lY8ypeNUG91fStBgRaw==
+X-Google-Smtp-Source: AGRyM1v3FG4E8k8niB/k9KEIJZ79AwhdkauFvPD9fXIplu4BMioNH1xO5JqhmyjtVoVp5FbYuVZgDQ==
+X-Received: by 2002:a2e:bc20:0:b0:25a:8b8c:8f32 with SMTP id b32-20020a2ebc20000000b0025a8b8c8f32mr25736535ljf.114.1657177070963;
+        Wed, 06 Jul 2022 23:57:50 -0700 (PDT)
 Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id d6-20020a2e96c6000000b0025bdd6af056sm4993902ljj.45.2022.07.06.23.56.49
+        by smtp.gmail.com with ESMTPSA id 19-20020ac25f53000000b004795cda636asm6674195lfz.98.2022.07.06.23.57.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 23:56:50 -0700 (PDT)
-Message-ID: <f85d59ba-4f2c-130f-2455-bc28ac060f8c@linaro.org>
-Date:   Thu, 7 Jul 2022 08:56:49 +0200
+        Wed, 06 Jul 2022 23:57:50 -0700 (PDT)
+Message-ID: <e86663f1-032e-8839-b286-18d4b23c4879@linaro.org>
+Date:   Thu, 7 Jul 2022 08:57:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v3 5/9] dt-bindings: net: Add Tegra234 MGBE
+Subject: Re: [PATCH v7 1/3] dt-bindings: mfd: Convert atmel-flexcom to
+ json-schema
 Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Bhadram Varka <vbhadram@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20220706213255.1473069-1-thierry.reding@gmail.com>
- <20220706213255.1473069-6-thierry.reding@gmail.com>
+To:     Kavyasree.Kotagiri@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
+        UNGLinuxDriver@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220706110619.71729-1-kavyasree.kotagiri@microchip.com>
+ <20220706110619.71729-2-kavyasree.kotagiri@microchip.com>
+ <fca15370-f977-687a-ff62-22ae43046b58@linaro.org>
+ <PH0PR11MB487299A211568CC3614682BC92839@PH0PR11MB4872.namprd11.prod.outlook.com>
+ <PH0PR11MB4872FE079CBF99E39F894E9D92839@PH0PR11MB4872.namprd11.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220706213255.1473069-6-thierry.reding@gmail.com>
+In-Reply-To: <PH0PR11MB4872FE079CBF99E39F894E9D92839@PH0PR11MB4872.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,138 +81,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2022 23:32, Thierry Reding wrote:
-> From: Bhadram Varka <vbhadram@nvidia.com>
-> 
-> Add device-tree binding documentation for the Multi-Gigabit Ethernet
-> (MGBE) controller found on NVIDIA Tegra234 SoCs.
-> 
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Changes in v3:
-> - add macsec and macsec-ns interrupt names
-> - improve mdio bus node description
-> - drop power-domains description
-> - improve bindings title
-> 
-> Changes in v2:
-> - add supported PHY modes
-> - change to dual license
-> 
->  .../bindings/net/nvidia,tegra234-mgbe.yaml    | 169 ++++++++++++++++++
->  1 file changed, 169 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.yaml b/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.yaml
-> new file mode 100644
-> index 000000000000..3d242ef1ca57
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.yaml
-> @@ -0,0 +1,169 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On 07/07/2022 08:54, Kavyasree.Kotagiri@microchip.com wrote:
+> Could you please tell if child nodes can be added as below?
+> -----------
+> +patternProperties:
+> +  "^serial@[0-9a-f]+$":
+> +    description: See atmel-usart.txt for details of USART bindings.
+> +    type: object
 > +
-> +title: Tegra234 MGBE Multi-Gigabit Ethernet Controller
+> +  "^spi@[0-9a-f]+$":
+> +    description: See ../spi/spi_atmel.txt for details of SPI bindings.
+> +    type: object
 > +
-> +maintainers:
-> +  - Thierry Reding <treding@nvidia.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +properties:
-> +
+> +  "^i2c@[0-9a-f]+$":
+> +    description: See ../i2c/i2c-at91.txt for details of I2C bindings.
+> +    type: object
 
-Drop the blank line.
-
-> +  compatible:
-> +    const: nvidia,tegra234-mgbe
-> +
-> +  reg:
-> +    minItems: 3
-
-Drop minitems (equal to maxItems)
-
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    items:
-> +      - const: hypervisor
-> +      - const: mac
-> +      - const: xpcs
-> +
-> +  interrupts:
-> +    minItems: 1
-
-You need maxItems:3
-
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    items:
-> +      - const: common
-> +      - const: macsec-ns
-> +      - const: macsec
-> +
-> +  clocks:
-> +    minItems: 12
-
-Drop minItems
-
-> +    maxItems: 12
-> +
-> +  clock-names:
-> +    minItems: 12
-> +    maxItems: 12
-
-Drop min/max and instead list the clocks in fixed order.. The order is
-always fixed, so below enum is not correct.
-
-> +    contains:
-> +      enum:
-> +        - mgbe
-> +        - mac
-> +        - mac-divider
-> +        - ptp-ref
-> +        - rx-input-m
-> +        - rx-input
-> +        - tx
-> +        - eee-pcs
-> +        - rx-pcs-input
-> +        - rx-pcs-m
-> +        - rx-pcs
-> +        - tx-pcs
-> +
-> +  resets:
-> +    minItems: 2
-
-Drop minItems.
-
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    contains:
-> +      enum:
-
-Same problem.
-
-> +        - mac
-> +        - pcs
-> +
-> +  interconnects:
-> +    items:
-> +      - description: memory read client
-> +      - description: memory write client
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: dma-mem # read
-
-I propose to drop the comment - it is obvious from "interconnects" above.
-
+Yes, this is good.
 
 Best regards,
 Krzysztof
