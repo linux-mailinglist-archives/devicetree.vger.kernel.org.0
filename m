@@ -2,122 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB4156A688
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 17:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F283756A6A7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 17:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235817AbiGGPBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 11:01:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59556 "EHLO
+        id S235922AbiGGPJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 11:09:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236118AbiGGPBi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 11:01:38 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A665017068;
-        Thu,  7 Jul 2022 08:01:37 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 267F1V9o066777;
-        Thu, 7 Jul 2022 10:01:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1657206091;
-        bh=XOH9YNTfoGbrNEDgBlKe0BZK5m9Ciqon/unFihTQeyc=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=XSObTcqMqCA8aQ6Y4lTIxPb3yvtPGkbq78LY8lUiqK/K5FV0vt5dLtmjXwGYOT444
-         bghT9SwGBC3G9tX9m5J/J/FaY1GHvz9SKMzTIKVKeJI36PQgS2/92jGUQJUA11TmC5
-         u0purN4QsfoTTLLUko+/qDLsrfwE4hhk+XMO9YvI=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 267F1Vdr052741
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 7 Jul 2022 10:01:31 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 7
- Jul 2022 10:01:31 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 7 Jul 2022 10:01:31 -0500
-Received: from [10.250.33.129] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 267F1UX6061311;
-        Thu, 7 Jul 2022 10:01:30 -0500
-Message-ID: <cb353a3c-96e7-f770-c8bd-17b8a4b4b3e0@ti.com>
-Date:   Thu, 7 Jul 2022 10:01:30 -0500
+        with ESMTP id S235548AbiGGPJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 11:09:46 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5103024F25
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 08:09:44 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id h17so13606025wrx.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 08:09:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kGGmltJW/sQ4eUFteyt9f3ADjviTJxdFrDX8z7edsaw=;
+        b=C144MF1cyKAseejcrlTqZVSME+XszOw4BLo+VfoUUTa2epbsPpX33za8t878vbCT5U
+         N3XJph2WzX2IS0G7HWB5RQszBDwpB6BejkaIo+E5MmSx3fvdfoBakqhdVGGjHBBQKO8+
+         Jxra8lsaEnWP00w0s/LyNzmeM+iObPrIlW7VkJ4GP53aB2shwP3I33vQgT8R4BiG9Odv
+         goltMwOMs0qcUMGo7fxyXKHV6D7qXNn0Rc3AEDTnspQ53lmY+m9CHITr+YWNeI2nHB9P
+         3hV4Xaod1VIag6YWlSO8AAspynvLnPMuSb/yNcwn1nbVo6tITGw9IjLwqKCvv/TkfsGu
+         CSsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kGGmltJW/sQ4eUFteyt9f3ADjviTJxdFrDX8z7edsaw=;
+        b=HXngwSMiqrogbvrW8fazRw2L74YH1kq9VE65ZY/ku72dKM1ZHW5xYFM0r3+wgAXid2
+         6eo5ESbuOOJ6fdxtWSdxK4Qc67yryX5SDRNrb0FhDxQEa+2qgnPcuxyDUojG06UeOOvq
+         yEQJlJtian7u3aUkp3SutRius4ExaY4xDep5UR+RHANB6KVAEMf1eKvbtQIZjjo+IfKV
+         tUl/bnJyhf4Cz9Wc3eGyOLys9cHBMjVKks9FDNunDlSXrbBBvqOKrs1EW8wvV6muprw9
+         j6TSomQZ+sHGdlPw4hEem6OLQzVH10AhDuCVLR+Z7Ar6BxjNQn/Ruy871jQcRcOhwdCY
+         2oxw==
+X-Gm-Message-State: AJIora+h05sX58atdt5RCbeRrdURcPNcaDR8zgwVyXcM/4TSJJu8CLZI
+        bp/0+ofNdWnUhJJUZnqDMn5afw==
+X-Google-Smtp-Source: AGRyM1vBGHb6TDWlnZN00paH3aEYNpamhOzJr+iYZehmUuU6PAnp2nwIYdU1+oM/th0FhqDWpSed3w==
+X-Received: by 2002:a05:6000:1d97:b0:210:25d6:e125 with SMTP id bk23-20020a0560001d9700b0021025d6e125mr41868605wrb.464.1657206582866;
+        Thu, 07 Jul 2022 08:09:42 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id m1-20020a7bcb81000000b003a05621dc53sm29122235wmi.29.2022.07.07.08.09.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 08:09:42 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        konrad.dybcio@somainline.org, jassisinghbrar@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        shawn.guo@linaro.org, bryan.odonoghue@linaro.org
+Subject: [PATCH v2 0/2] Two apcs-kpss-global.yaml fixes
+Date:   Thu,  7 Jul 2022 16:09:31 +0100
+Message-Id: <20220707150933.1889371-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/4] arm64: dts: ti: k3-am65-main: Disable RNG node
-Content-Language: en-US
-To:     Bryan Brattlof <bb@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220706190838.26074-1-afd@ti.com>
- <20220707144400.tk3wmpeijdhuxpzv@bryanbrattlof.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20220707144400.tk3wmpeijdhuxpzv@bryanbrattlof.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/7/22 9:44 AM, Bryan Brattlof wrote:
-> Hi Andrew
-> 
-> On July  6, 2022 thus sayeth Andrew Davis:
->> The hardware random number generator is used by OP-TEE and is access is
->> denied to other users with SoC level bus firewalls. Any access to this
->> device from Linux will result in firewall errors. Disable this node.
->>
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->>
->> Changes from v1:
->>   - Added comment in dtsi file
->>
->>   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> index e749343accedd..9de5a8294acd6 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> @@ -127,6 +127,7 @@ rng: rng@4e10000 {
->>   			reg = <0x0 0x4e10000 0x0 0x7d>;
->>   			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->>   			clocks = <&k3_clks 136 1>;
->> +			status = "disabled"; /* Used by OP-TEE */
-> 
-> Just curious about how we should document disabling nodes. I was
-> assuming the reasoning should be described in the bindings?
-> 
-> I would like to start disabling nodes by default in our dtsi files and
-> enabling them in our top dts file, making it easier for others to use
-> our device tree for a more focused purpose than our dev boards. I just
-> didn't know where I should document why I disabled the nodes :)
-> 
+V2:
+- Fixes example which threw an error in v1 - Rob's bot
+- Updates the patch prefix - Krzysztof
+- Fixes broken non-DT schema syntax clock-output-name - Krzysztof
 
-This got push-back last time this was suggested, I'll have to lookup
-the history. IIRC we landed on the other way around, all things should
-be described by default, then the specific board can enable/disable
-what is not used as needed.
+V1:
+Adding in msm8939.dtsi and running the binding checks is throwing up two
+errors for me.
 
-I was worried this topic would come up with this patch series and was
-almost just going to delete the whole RNG node instead of disabling it
-to avoid that. My reasoning for disabling here anyway is that this device
-*cannot* be used by *any* board, it is not just a board level configuration
-decision like disabling I2C nodes by default or similar that was proposed
-last time we had the "nodes disabled by default" discussion.
+In the first instance we use syscon on the 8939 and should declare it in
+the compat list. Doing a quick grep it looks like that fix should be
+applied to a number of existing declarations too.
 
-Andrew
+In the second instance we just need to document clock-output-names for the
+a53 mux PLL.
 
-> ~Bryan
+Bryan O'Donoghue (2):
+  dt-bindings: mailbox: qcom,apcs-kpss-global: Add syscon const for
+    relevant entries
+  dt-bindings: mailbox: qcom,apcs-kpss-global: Add clock-output-names
+
+ .../mailbox/qcom,apcs-kpss-global.yaml        | 52 +++++++++++--------
+ 1 file changed, 31 insertions(+), 21 deletions(-)
+
+-- 
+2.36.1
+
