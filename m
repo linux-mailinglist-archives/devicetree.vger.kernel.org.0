@@ -2,105 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45F71569ED8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 11:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0480E569EEE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 11:56:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235041AbiGGJvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 05:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51386 "EHLO
+        id S235072AbiGGJ4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 05:56:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235013AbiGGJvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 05:51:40 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D9E4D4EF;
-        Thu,  7 Jul 2022 02:51:39 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9BC2666019AA;
-        Thu,  7 Jul 2022 10:51:37 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657187498;
-        bh=9cJkFbeGAUaiuZQ1tk/q71MLcCqv08gXnUsskyh+OSU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=iklc8JelOW6VhhEVCPvFwprlF/PtO1UiLbHjv1p8qAO+07GEsSfkqhh82UATV+2yR
-         vZ6W6oQ+tUvgQY5mdEh0FvE/gIPW94z2dcz9ukkiOyPbO7UmNnW3RgZgXkc6BCCo7r
-         s5tIDcPkIzF4nyW5SM19RQtEzF52PpcOe3U3gGmTLnmmF/hAxn3Lnt1FKMpfUWw3xq
-         tVS1FvQlWqcUFeyONlRidVYyQwfP524W2AFBQSBsbqimnIimNlTt4R0FVMdozDK3gL
-         SYDJjrJqH7NtrCgD/3Dru5zEKWXq67riOPJ1+ySr0EKY9dQQVnRtuFUb6PxCfMqIZy
-         Wil+TudE8xb+A==
-Message-ID: <e0452b8a-0544-5647-5d3c-ce6a208f2b69@collabora.com>
-Date:   Thu, 7 Jul 2022 11:51:34 +0200
+        with ESMTP id S232625AbiGGJ4l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 05:56:41 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 117A24D14B
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 02:56:41 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id s27so17514855pga.13
+        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 02:56:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=U351d5E2MpRFjyUSNEgNyALDATw3NXHvofLVg4W2Lw4=;
+        b=bZaKsQzuVZH+z6KPK70RdHoPL2FHeGS90NKF0V3v1TTfliL/DH0HYIPLMmlaSJfDkf
+         JVLrZt9l/aE/zXTgXEtp9D1TRCtXzA4QIplDRoYfDS/h34wCZTzi6vz83eaiLSwdjO2F
+         5Z0IKHEQzKHAbEzexcO+JHjtFAbdHHnEPsTzNKTBIGAopsb0XdjRUKE41RM8vc4h5M4h
+         GKRiF4GP8V+88Anxr96aK4OKhdGVx68sXsaINf9rai/HoruyVCYxvbGVngE+XGBD+wBo
+         TcFHdLVX2RGphlB6lhFmdZoCVkrrh9v4kVICOc29eOPlIcIuMBZ+zoh14eyRR0l8eff3
+         FGMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=U351d5E2MpRFjyUSNEgNyALDATw3NXHvofLVg4W2Lw4=;
+        b=4VIAaFwVKJvjMUdTzHzWfrYYjmpszbxjGiNtwJjzbIufkl4fpiK1coxjsW2fZmacwk
+         s7f1uzz7nFfkPx3JYKi4tkvOVvdB6jaN0+KXH64exE0yGmi96bvBR9aBpx/3kw20s0Dv
+         tvQWk5C7Yj6ysthq/UNbDRNyHR1964QJF4g2YpjDlxn17guoenpb7oJxyTLFUnyfAPzq
+         FANXHP8zbosIR+QNTY6A2OrH5r/JFwy0Phku/uItIiSIRtjX7BVcTAEfZ8xeujlEsHx5
+         TwYmJIX1LKUQensexfVwH1xAbowZ6SI9Re/A90C1WcZ9Y1330itnViVZbezL1KgQcUev
+         H86A==
+X-Gm-Message-State: AJIora+rBd8/jvJR4nYcjokfQbIyRh497ztg5+TuJ2TkA4wYYVQKNXVf
+        m/AGfm6GOLZWzc1QTJL87UaGqQ==
+X-Google-Smtp-Source: AGRyM1uIHrFoly14ncX+ozpfagiuGY6yYktV/BvSfwNLriG/ZIlVhBSGE9Lm2UKjF+YrvUZ96PU1TQ==
+X-Received: by 2002:a17:90b:1b10:b0:1ed:44:d00d with SMTP id nu16-20020a17090b1b1000b001ed0044d00dmr4226986pjb.234.1657187800379;
+        Thu, 07 Jul 2022 02:56:40 -0700 (PDT)
+Received: from leoy-ThinkPad-X240s (n058152077154.netvigator.com. [58.152.77.154])
+        by smtp.gmail.com with ESMTPSA id y62-20020a626441000000b0050dc76281d3sm138214pfb.173.2022.07.07.02.56.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 02:56:39 -0700 (PDT)
+Date:   Thu, 7 Jul 2022 17:56:35 +0800
+From:   Leo Yan <leo.yan@linaro.org>
+To:     Georgi Djakov <djakov@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/5] interconnect: qcom: icc-rpm: Support bucket
+Message-ID: <20220707095635.GD631004@leoy-ThinkPad-X240s>
+References: <20220705072336.742703-1-leo.yan@linaro.org>
+ <a60b5954-c9ac-0f2b-aef4-ad34b8f3abe7@kernel.org>
+ <20220707025233.GA631004@leoy-ThinkPad-X240s>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: mmc: Add compatible for MediaTek MT8188
-Content-Language: en-US
-To:     Johnson Wang <johnson.wang@mediatek.com>, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220707054710.1396-1-johnson.wang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220707054710.1396-1-johnson.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220707025233.GA631004@leoy-ThinkPad-X240s>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/07/22 07:47, Johnson Wang ha scritto:
-> This commit adds dt-binding documentation of mmc for MediaTek MT8188 SoC
-> platform.
+Hi Georgi,
+
+On Thu, Jul 07, 2022 at 10:52:33AM +0800, Leo Yan wrote:
+
+[...]
+
+> > Some patches do not apply clean on next. On which tree is this based? Do you
+> > have any additional patches?
 > 
-> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> ---
->   Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> index 2a2e9fa8c188..3fbf33ad4f7c 100644
-> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> @@ -32,6 +32,9 @@ properties:
->         - items:
->             - const: mediatek,mt8186-mmc
->             - const: mediatek,mt8183-mmc
-> +      - items:
-> +          - const: mediatek,mt8188-mmc
-> +          - const: mediatek,mt8183-mmc
->         - items:
->             - const: mediatek,mt8192-mmc
->             - const: mediatek,mt8183-mmc
-> 
+> When rebased I included an out of tree patch, let me check a bit and
+> resend the new patch set.  Sorry for inconvenience.
 
-Hello Johnson,
+Bryan has sent out the patch
+"interconnect: icc-rpm: Set destination bandwidth as well as source
+bandwidth" [1].  My patch series was based on Bryan's patch, you could
+apply them cleanly after applying Bryan's patch.
 
-if I'm not wrong, this should be...
-(check with dt_binding_check!)
+Please let us know what's your preference for picking patches order, if
+you prefer to apply my patch series before Bryan's fixing patch, I will
+rebase the patch set on the mainline kernel with dropping Bryan's patch
+(which means Bryan needs to rebase his patch).
 
-properties:
-   compatible:
-     oneOf:
-       - enum:
-         - mediatek,mt2701-mmc
-         - .... everything else ....
-       - items:
-         - enum:
-             - mediatek,mt8186-mmc
-             - ... the others ...
-         - const: mediatek.mt8183-mmc
+Thanks,
+Leo
 
-Cheers,
-Angelo
+[1] https://lore.kernel.org/linux-pm/20220707093823.1691870-1-bryan.odonoghue@linaro.org/T/#r304f7b103c806e1570d555a0f5aaf83ae3990ac0
