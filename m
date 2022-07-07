@@ -2,133 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF451569906
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 06:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 786A3569946
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 06:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231676AbiGGEMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 00:12:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39500 "EHLO
+        id S234494AbiGGE02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 00:26:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbiGGEML (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 00:12:11 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B04CC1D0CA;
-        Wed,  6 Jul 2022 21:12:05 -0700 (PDT)
-X-UUID: 9e664c8c274342e1a9d2ce4616027e2f-20220707
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:a5e76897-188b-4de8-a872-8f8b29e6c46f,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:ea45a263-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 9e664c8c274342e1a9d2ce4616027e2f-20220707
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 732966436; Thu, 07 Jul 2022 12:11:56 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 7 Jul 2022 12:11:55 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 7 Jul 2022 12:11:55 +0800
-Message-ID: <a9bba0b30073465dd85ca61220a0c476e8a33048.camel@mediatek.com>
-Subject: Re: [PATCH v13 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 7 Jul 2022 12:11:55 +0800
-In-Reply-To: <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
-         <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229681AbiGGE01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 00:26:27 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40AF92FFE5;
+        Wed,  6 Jul 2022 21:26:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657167986; x=1688703986;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0UKCDk+QO7Jju1w2FSJQYoZZKRQ/VlNP3afiUk2ofuU=;
+  b=CD8M3uAl1fpVW8/bflhhRH/9E4m7CiGbdZFwHkxeUDpoxy+4zU/uQOyn
+   f4YC1EzV9ztCCS9eZxXix4aOBJV34J+DuRu0Yb4UT0AT8U26RkS01pY+4
+   uHQLVDKo2O3HgChqYO9maD35/f6K0v24PkTCpG35PK2NPNv/wiV/+VFIY
+   2H1HHNDI3/G8lBnGh+IdtUNGRREs8GEX0Uyr7XCnHqrYXcr1niiGOXfDQ
+   Sri+wE90YHTRCFkWTjFS8/PWNV3ejoQJKeyHDVcfZWv+hx7QjNPpo3d3b
+   HG0g3wjp/j8H2CPz/sfvKP0QrunYiIzw0Ixd+iiezhdgIXIggBbR6Jpsh
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="264343142"
+X-IronPort-AV: E=Sophos;i="5.92,251,1650956400"; 
+   d="scan'208";a="264343142"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jul 2022 21:26:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,251,1650956400"; 
+   d="scan'208";a="683173227"
+Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 06 Jul 2022 21:26:22 -0700
+Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o9J5p-000LXY-Rr;
+        Thu, 07 Jul 2022 04:26:21 +0000
+Date:   Thu, 7 Jul 2022 12:25:53 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Stefan Berger <stefanb@linux.ibm.com>, kexec@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org, nayna@linux.ibm.com,
+        nasastry@in.ibm.com, mpe@ellerman.id.au,
+        Stefan Berger <stefanb@linux.ibm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Eric Biederman <ebiederm@xmission.com>
+Subject: Re: [PATCH v5 6/6] tpm/kexec: Duplicate TPM measurement log in
+ of-tree for kexec
+Message-ID: <202207071217.lAHS2W7R-lkp@intel.com>
+References: <20220706152329.665636-7-stefanb@linux.ibm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        RDNS_NONE,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220706152329.665636-7-stefanb@linux.ibm.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+Hi Stefan,
 
-On Fri, 2022-07-01 at 14:28 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
-> 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+Thank you for the patch! Yet something to improve:
 
-[snip]
+[auto build test ERROR on 03c765b0e3b4cb5063276b086c76f7a612856a9a]
 
-> +
-> +static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
-> +{
-> +	struct mtk_dp *mtk_dp = dev;
-> +	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
-> +
-> +	if (mtk_dp->train_info.cable_state_change) {
-> +		mtk_dp->train_info.cable_state_change = false;
-> +
-> +		mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> +				   DP_PWR_STATE_BANDGAP_TPLL_LANE,
-> +				   DP_PWR_STATE_MASK);
-> +		drm_dp_read_dpcd_caps(&mtk_dp->aux, buf);
+url:    https://github.com/intel-lab-lkp/linux/commits/Stefan-Berger/tpm-Preserve-TPM-measurement-log-across-kexec-ppc64/20220706-232658
+base:   03c765b0e3b4cb5063276b086c76f7a612856a9a
+config: s390-randconfig-r015-20220706 (https://download.01.org/0day-ci/archive/20220707/202207071217.lAHS2W7R-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project f553287b588916de09c66e3e32bf75e5060f967f)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install s390 cross compiling tool for clang build
+        # apt-get install binutils-s390x-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/d5d97eac90ae272727cc71409e88360b7024b343
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Stefan-Berger/tpm-Preserve-TPM-measurement-log-across-kexec-ppc64/20220706-232658
+        git checkout d5d97eac90ae272727cc71409e88360b7024b343
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash
 
-Why do you read dpcd caps into 'buf'. 'buf' is not used elsewhere.
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-Regards,
-CK
+All errors (new ones prefixed by >>):
 
-> +	}
-> +
-> +	if (mtk_dp->train_info.irq_sta.hpd_inerrupt) {
-> +		dev_dbg(mtk_dp->dev, "MTK_DP_HPD_INTERRUPT\n");
-> +		mtk_dp->train_info.irq_sta.hpd_inerrupt = false;
-> +		mtk_dp_hpd_sink_event(mtk_dp);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
+   /opt/cross/gcc-11.3.0-nolibc/s390x-linux/bin/s390x-linux-ld: kernel/kexec_file.o: in function `__se_sys_kexec_file_load':
+>> kexec_file.c:(.text+0xee2): undefined reference to `tpm_add_kexec_buffer'
+   /opt/cross/gcc-11.3.0-nolibc/s390x-linux/bin/s390x-linux-ld: drivers/dma/fsl-edma.o: in function `fsl_edma_probe':
+   fsl-edma.c:(.text+0x1e4): undefined reference to `devm_ioremap_resource'
+   /opt/cross/gcc-11.3.0-nolibc/s390x-linux/bin/s390x-linux-ld: fsl-edma.c:(.text+0x32a): undefined reference to `devm_ioremap_resource'
+   /opt/cross/gcc-11.3.0-nolibc/s390x-linux/bin/s390x-linux-ld: drivers/dma/idma64.o: in function `idma64_platform_probe':
+   idma64.c:(.text+0xbe): undefined reference to `devm_ioremap_resource'
+   /opt/cross/gcc-11.3.0-nolibc/s390x-linux/bin/s390x-linux-ld: drivers/crypto/ccree/cc_driver.o: in function `ccree_probe':
+   cc_driver.c:(.text+0xd4c): undefined reference to `devm_ioremap_resource'
+   /opt/cross/gcc-11.3.0-nolibc/s390x-linux/bin/s390x-linux-ld: drivers/crypto/ccree/cc_debugfs.o: in function `cc_debugfs_init':
+   cc_debugfs.c:(.text+0x1b0): undefined reference to `debugfs_create_regset32'
+   /opt/cross/gcc-11.3.0-nolibc/s390x-linux/bin/s390x-linux-ld: cc_debugfs.c:(.text+0x390): undefined reference to `debugfs_create_regset32'
 
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
