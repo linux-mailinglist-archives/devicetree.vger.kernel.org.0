@@ -2,493 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC9BC56A964
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 19:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ECBA56A94C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 19:20:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236472AbiGGRVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 13:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
+        id S236269AbiGGRUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 13:20:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236363AbiGGRU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 13:20:56 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B58C333376;
-        Thu,  7 Jul 2022 10:20:54 -0700 (PDT)
-Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 267GC08q017479;
-        Thu, 7 Jul 2022 17:20:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=0V3oyNUsStat6s14U+m0Zux2pehcHoAD4+wbYwBvJbk=;
- b=C5KJsH8e1F4BMwVf1mIiDlkTtZV9xJonfj5NWVS/hAjKzdRtbzuYEHtTIGoIztv0JJg5
- vlndRDU9bcFBjyfTz3XUiOh/4XmW/4l9Lt9pfwiL9Jrr6LMExXVuZQ5lFR5SNbk2Q0AE
- DPjRGqEbSrPSf4EL+edke7QbED5bq3WarFwRrvTs34rgQKfRiT18TvmtvhRUABBxAnjz
- B4d7m574bL4txdJH4nBq92d678PLQprwfp88CxJr1UDxIUTilQo5O729WRjDT8285jlM
- GjWBs/59eZQ0AHME0e8iJ/rin/dfTm1CL4fnYiaCrpBZ5uZg5lhZkjWbjxaFzsW+EVAp Yg== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3h62sy9yk7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 07 Jul 2022 17:20:45 +0000
-Received: from m0098410.ppops.net (m0098410.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 267HCb6h010432;
-        Thu, 7 Jul 2022 17:20:45 GMT
-Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3h62sy9yjj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 07 Jul 2022 17:20:45 +0000
-Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
-        by ppma02wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 267H59ti024629;
-        Thu, 7 Jul 2022 17:20:43 GMT
-Received: from b03cxnp07028.gho.boulder.ibm.com (b03cxnp07028.gho.boulder.ibm.com [9.17.130.15])
-        by ppma02wdc.us.ibm.com with ESMTP id 3h4ucxvue0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 07 Jul 2022 17:20:43 +0000
-Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-        by b03cxnp07028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 267HKgO815401240
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 7 Jul 2022 17:20:42 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id A4F3B78068;
-        Thu,  7 Jul 2022 17:20:42 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 0B7097805C;
-        Thu,  7 Jul 2022 17:20:42 +0000 (GMT)
-Received: from sbct-3.pok.ibm.com (unknown [9.47.158.153])
-        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Thu,  7 Jul 2022 17:20:41 +0000 (GMT)
-From:   Stefan Berger <stefanb@linux.ibm.com>
-To:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Cc:     nayna@linux.ibm.com, nasastry@in.ibm.com, mpe@ellerman.id.au,
-        Stefan Berger <stefanb@linux.ibm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Biederman <ebiederm@xmission.com>
-Subject: [PATCH v6 6/6] tpm/kexec: Duplicate TPM measurement log in of-tree for kexec
-Date:   Thu,  7 Jul 2022 13:20:26 -0400
-Message-Id: <20220707172026.831614-7-stefanb@linux.ibm.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220707172026.831614-1-stefanb@linux.ibm.com>
-References: <20220707172026.831614-1-stefanb@linux.ibm.com>
+        with ESMTP id S236241AbiGGRUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 13:20:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051153334E;
+        Thu,  7 Jul 2022 10:20:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7431061458;
+        Thu,  7 Jul 2022 17:20:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C93EC3411E;
+        Thu,  7 Jul 2022 17:20:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657214445;
+        bh=OFOndgeYOideWvY0bB0qskwVhKVefMybWvHyuOmdo6o=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=FzTBsiPIs7zWylT1DVO6ifAVTFrQWfKbz0J97fEtmlwHkK21FGmWBlQyfqHPbLINV
+         M9LD+yjGKhbT02lNPNmfLbqkeeZ33gxStDd/QMNWWrCHus2s/5QixKRl3yLvrfMX/8
+         BAPsexd4JqCNCtBAOpWbPLUVzkyQt7b6cR5TYhW2fGUwQW6V2mId9+6F5WTGDrz0hq
+         jdqUowHV4Az2Uf+8zoiD9R6wyhw0aPgCYEw30rnYnGBZqieUT/hzFQhEX35TpveOY4
+         FPvsCxKpPucNdkBhLTTNcpyck6w5gxagtwP2zY1HlznmY58WZvl7dPiG2TibCkrYsK
+         DvnE5UrwSxCpw==
+Date:   Thu, 7 Jul 2022 18:30:27 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] iio: adc: Add rtq6056 support
+Message-ID: <20220707183027.342f6c88@jic23-huawei>
+In-Reply-To: <1657116702-24161-3-git-send-email-u0084500@gmail.com>
+References: <1657116702-24161-1-git-send-email-u0084500@gmail.com>
+        <1657116702-24161-3-git-send-email-u0084500@gmail.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: GbG5FreqIhArZdVRHqqX3hsWo1NUVAn4
-X-Proofpoint-GUID: XCNzZhadcosAq5c79JknJuv9PzfV13Bt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-07_13,2022-06-28_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 malwarescore=0 bulkscore=0 phishscore=0 spamscore=0
- clxscore=1015 priorityscore=1501 impostorscore=0 adultscore=0 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2206140000 definitions=main-2207070068
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The memory area of the TPM measurement log is currently not properly
-duplicated for carrying it across kexec when an Open Firmware
-Devicetree is used. Therefore, the contents of the log get corrupted.
-Fix this for the kexec_file_load() syscall by allocating a buffer and
-copying the contents of the existing log into it. The new buffer is
-preserved across the kexec and a pointer to it is available when the new
-kernel is started. To achieve this, store the allocated buffer's address
-in the flattened device tree (fdt) under the name linux,tpm-kexec-buffer
-and search for this entry early in the kernel startup before the TPM
-subsystem starts up. Adjust the pointer in the of-tree stored under
-linux,sml-base to point to this buffer holding the preserved log. The TPM
-driver can then read the base address from this entry when making the log
-available. Invalidate the log by removing 'linux,sml-base' from the
-devicetree if anything goes wrong with updating the buffer.
+On Wed,  6 Jul 2022 22:11:42 +0800
+cy_huang <u0084500@gmail.com> wrote:
 
-Use subsys_initcall() to call the function to restore the buffer even if
-the TPM subsystem or driver are not used. This allows the buffer to be
-carried across the next kexec without involvement of the TPM subsystem
-and ensures a valid buffer pointed to by the of-tree.
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Add Richtek rtq6056 supporting.
+> 
+> It can be used for the system to monitor load current and power with 16-bit
+> resolution.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-Use the subsys_initcall(), rather than an ealier initcall, since
-page_is_ram() in get_kexec_buffer() only starts working at this stage.
+Various feedback inline.
 
-Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: Eric Biederman <ebiederm@xmission.com>
+Thanks,
 
----
-v6:
- - Define prototype for tpm_add_kexec_buffer under same config options
-   as drivers/of/kexec.c is compiled, provide inline function otherwise.
-   (kernel test robot)
+Jonathan
 
-v4:
- - Added #include <linux/vmalloc.h> due to parisc
- - Use phys_addr_t for physical address rather than void *
- - Remove linux,sml-base if the buffer cannot be updated after a kexec
- - Added __init to functions where possible
----
- drivers/of/kexec.c    | 216 +++++++++++++++++++++++++++++++++++++++++-
- include/linux/kexec.h |   6 ++
- include/linux/of.h    |   9 +-
- kernel/kexec_file.c   |   6 ++
- 4 files changed, 234 insertions(+), 3 deletions(-)
+> ---
+> Since v5
+> - Fix kernel version text for ABI.
+> 
+> Since v4
+> - Add '__aligned(8)' for timestamp member in buffer_trigger_handler function.
+> - Declare timestamp from 'int64_t' to more unified 's64'.
+> 
+> Since v3
+> - Refine pm_runtime API calling order in 'read_channel' API.
+> - Fix vshunt wrong scale for divider.
+> - Refine the comment text.
+> - Use 'devm_add_action_or_reset' to decrease the code usage in probe
+>   function.
+> - Use RUNTIME_PM_OPS to replace SET_RUNTIME_PM_OPS.
+> - minor fix for the comma.
+> - Use pm_ptr to replace the direct assigned pm_ops.
+> 
+> Since v2
+> - Rename file from 'rtq6056-adc' to 'rtq6056'.
+> - Refine the ABI, if generic already defined it, remove it and check the channel
+>   report unit.
+> - Add copyright text.
+> - include the correct header.
+> - change the property parsing name.
+> - To use iio_chan_spec address field.
+> - Refine each channel separate and shared_by_all.
+> - Use pm_runtime and pm_runtime_autosuspend.
+> - Remove the shutdown callback. From the HW suggestion, it's not recommended to
+>   use battery as the power supply.
+> - Check all scale unit (voltage->mV, current->mA, power->milliWatt).
+> - Use the read_avail to provide the interface for attribute value list.
+> - Add comma for the last element in the const integer array.
+> - Refine each ADC label text.
+> - In read_label callback, replace snprintf to sysfs_emit.
+> 
+> ---
+>  .../ABI/testing/sysfs-bus-iio-adc-rtq6056          |   6 +
+>  drivers/iio/adc/Kconfig                            |  15 +
+>  drivers/iio/adc/Makefile                           |   1 +
+>  drivers/iio/adc/rtq6056.c                          | 651 +++++++++++++++++++++
+>  4 files changed, 673 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+>  create mode 100644 drivers/iio/adc/rtq6056.c
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056 b/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+> new file mode 100644
+> index 00000000..e89d15b
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+> @@ -0,0 +1,6 @@
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltage0_integration_time
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltage1_integration_time
+> +KernelVersion:	5.20
+> +Contact:	cy_huang@richtek.com
+> +Description:
+> +		Each voltage conversion time in uS
 
-diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-index 15a82b574f36..dd926e057215 100644
---- a/drivers/of/kexec.c
-+++ b/drivers/of/kexec.c
-@@ -19,6 +19,8 @@
- #include <linux/random.h>
- #include <linux/slab.h>
- #include <linux/types.h>
-+#include <linux/tpm.h>
-+#include <linux/vmalloc.h>
- 
- #define RNG_SEED_SIZE		128
- 
-@@ -116,7 +118,6 @@ static int do_get_kexec_buffer(const void *prop, int len, unsigned long *addr,
- 	return 0;
- }
- 
--#ifdef CONFIG_HAVE_IMA_KEXEC
- static int __init get_kexec_buffer(const char *name, unsigned long *addr,
- 				   size_t *size)
- {
-@@ -151,6 +152,7 @@ static int __init get_kexec_buffer(const char *name, unsigned long *addr,
- 	return 0;
- }
- 
-+#ifdef CONFIG_HAVE_IMA_KEXEC
- /**
-  * ima_get_kexec_buffer - get IMA buffer from the previous kernel
-  * @addr:	On successful return, set to point to the buffer contents.
-@@ -239,7 +241,6 @@ static void remove_ima_buffer(void *fdt, int chosen_node)
- 	remove_buffer(fdt, chosen_node, "linux,ima-kexec-buffer");
- }
- 
--#ifdef CONFIG_IMA_KEXEC
- static int setup_buffer(void *fdt, int chosen_node, const char *name,
- 			phys_addr_t addr, size_t size)
- {
-@@ -263,6 +264,7 @@ static int setup_buffer(void *fdt, int chosen_node, const char *name,
- 
- }
- 
-+#ifdef CONFIG_IMA_KEXEC
- /**
-  * setup_ima_buffer - add IMA buffer information to the fdt
-  * @image:		kexec image being loaded.
-@@ -285,6 +287,213 @@ static inline int setup_ima_buffer(const struct kimage *image, void *fdt,
- }
- #endif /* CONFIG_IMA_KEXEC */
- 
-+/**
-+ * tpm_get_kexec_buffer - get TPM log buffer from the previous kernel
-+ * @phyaddr:	On successful return, set to physical address of buffer
-+ * @size:	On successful return, set to the buffer size.
-+ *
-+ * Return: 0 on success, negative errno on error.
-+ */
-+static int __init tpm_get_kexec_buffer(phys_addr_t *phyaddr, size_t *size)
-+{
-+	unsigned long tmp_addr;
-+	size_t tmp_size;
-+	int ret;
-+
-+	ret = get_kexec_buffer("linux,tpm-kexec-buffer", &tmp_addr, &tmp_size);
-+	if (ret)
-+		return ret;
-+
-+	*phyaddr = (phys_addr_t)tmp_addr;
-+	*size = tmp_size;
-+
-+	return 0;
-+}
-+
-+/**
-+ * tpm_of_remove_kexec_buffer - remove the linux,tpm-kexec-buffer node
-+ */
-+static int __init tpm_of_remove_kexec_buffer(void)
-+{
-+	struct property *prop;
-+
-+	prop = of_find_property(of_chosen, "linux,tpm-kexec-buffer", NULL);
-+	if (!prop)
-+		return -ENOENT;
-+
-+	return of_remove_property(of_chosen, prop);
-+}
-+
-+/**
-+ * remove_tpm_buffer - remove the TPM log buffer property and reservation from @fdt
-+ *
-+ * @fdt: Flattened Device Tree to update
-+ * @chosen_node: Offset to the chosen node in the device tree
-+ *
-+ * The TPM log measurement buffer is of no use to a subsequent kernel, so we always
-+ * remove it from the device tree.
-+ */
-+static void remove_tpm_buffer(void *fdt, int chosen_node)
-+{
-+	if (!IS_ENABLED(CONFIG_PPC64))
-+		return;
-+
-+	remove_buffer(fdt, chosen_node, "linux,tpm-kexec-buffer");
-+}
-+
-+/**
-+ * setup_tpm_buffer - add TPM measurement log buffer information to the fdt
-+ * @image:		kexec image being loaded.
-+ * @fdt:		Flattened device tree for the next kernel.
-+ * @chosen_node:	Offset to the chosen node.
-+ *
-+ * Return: 0 on success, or negative errno on error.
-+ */
-+static int setup_tpm_buffer(const struct kimage *image, void *fdt,
-+			    int chosen_node)
-+{
-+	if (!IS_ENABLED(CONFIG_PPC64))
-+		return 0;
-+
-+	return setup_buffer(fdt, chosen_node, "linux,tpm-kexec-buffer",
-+			    image->tpm_buffer_addr, image->tpm_buffer_size);
-+}
-+
-+void tpm_add_kexec_buffer(struct kimage *image)
-+{
-+	struct kexec_buf kbuf = { .image = image, .buf_align = 1,
-+				  .buf_min = 0, .buf_max = ULONG_MAX,
-+				  .top_down = true };
-+	struct device_node *np;
-+	void *buffer;
-+	u32 size;
-+	u64 base;
-+	int ret;
-+
-+	if (!IS_ENABLED(CONFIG_PPC64))
-+		return;
-+
-+	np = of_find_node_by_name(NULL, "vtpm");
-+	if (!np)
-+		return;
-+
-+	if (of_tpm_get_sml_parameters(np, &base, &size) < 0)
-+		return;
-+
-+	buffer = vmalloc(size);
-+	if (!buffer)
-+		return;
-+	memcpy(buffer, __va(base), size);
-+
-+	kbuf.buffer = buffer;
-+	kbuf.bufsz = size;
-+	kbuf.memsz = size;
-+	ret = kexec_add_buffer(&kbuf);
-+	if (ret) {
-+		pr_err("Error passing over kexec TPM measurement log buffer: %d\n",
-+		       ret);
-+		return;
-+	}
-+
-+	image->tpm_buffer = buffer;
-+	image->tpm_buffer_addr = kbuf.mem;
-+	image->tpm_buffer_size = size;
-+}
-+
-+/**
-+ * tpm_post_kexec - Make stored TPM log buffer available in of-tree
-+ */
-+static int __init tpm_post_kexec(void)
-+{
-+	struct property *newprop, *p;
-+	struct device_node *np;
-+	phys_addr_t phyaddr;
-+	u32 oflogsize;
-+	size_t size;
-+	u64 unused;
-+	int ret;
-+
-+	if (!IS_ENABLED(CONFIG_PPC64))
-+		return 0;
-+
-+	np = of_find_node_by_name(NULL, "vtpm");
-+	if (!np)
-+		return 0;
-+
-+	if (!of_get_property(of_chosen, "linux,tpm-kexec-buffer", NULL)) {
-+		/*
-+		 * linux,tpm-kexec-buffer may be missing on initial boot
-+		 * or if previous kernel didn't pass a buffer.
-+		 */
-+		if (of_get_property(of_chosen, "linux,booted-from-kexec", NULL)) {
-+			/* no buffer but kexec'd: remove 'linux,sml-base' */
-+			ret = -EINVAL;
-+			goto err_remove_sml_base;
-+		}
-+		return 0;
-+	}
-+
-+	/*
-+	 * If any one of the following steps fails we remove linux,sml-base
-+	 * to invalidate the TPM log.
-+	 */
-+	ret = tpm_get_kexec_buffer(&phyaddr, &size);
-+	if (ret)
-+		goto err_remove_kexec_buffer;
-+
-+	/* logsize must not have changed */
-+	ret = of_tpm_get_sml_parameters(np, &unused, &oflogsize);
-+	if (ret < 0)
-+		goto err_free_memblock;
-+	ret = -EINVAL;
-+	if (oflogsize != size)
-+		goto err_free_memblock;
-+
-+	/* replace linux,sml-base with new physical address of buffer */
-+	ret = -ENOMEM;
-+	newprop = kzalloc(sizeof(*newprop), GFP_KERNEL);
-+	if (!newprop)
-+		goto err_free_memblock;
-+
-+	newprop->name = kstrdup("linux,sml-base", GFP_KERNEL);
-+	newprop->length = sizeof(phyaddr);
-+	newprop->value = kmalloc(sizeof(phyaddr), GFP_KERNEL);
-+	if (!newprop->name || !newprop->value)
-+		goto err_free_newprop_struct;
-+
-+	if (of_property_match_string(np, "compatible", "IBM,vtpm") < 0 &&
-+	    of_property_match_string(np, "compatible", "IBM,vtpm20") < 0) {
-+		ret = -ENODEV;
-+		goto err_free_newprop_struct;
-+	} else {
-+		*(phys_addr_t *)newprop->value = phyaddr;
-+	}
-+
-+	ret = of_update_property(np, newprop);
-+	if (ret) {
-+		pr_err("Could not update linux,sml-base with new address");
-+		goto err_free_newprop_struct;
-+	}
-+
-+	return 0;
-+
-+err_free_newprop_struct:
-+	kfree(newprop->value);
-+	kfree(newprop->name);
-+	kfree(newprop);
-+err_free_memblock:
-+	memblock_phys_free((phys_addr_t)phyaddr, size);
-+err_remove_kexec_buffer:
-+	tpm_of_remove_kexec_buffer();
-+err_remove_sml_base:
-+	p = of_find_property(np, "linux,sml-base", NULL);
-+	if (p)
-+		of_remove_property(np, p);
-+
-+	return ret;
-+}
-+subsys_initcall(tpm_post_kexec);
-+
- /*
-  * of_kexec_alloc_and_setup_fdt - Alloc and setup a new Flattened Device Tree
-  *
-@@ -483,6 +692,9 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 	remove_ima_buffer(fdt, chosen_node);
- 	ret = setup_ima_buffer(image, fdt, fdt_path_offset(fdt, "/chosen"));
- 
-+	remove_tpm_buffer(fdt, chosen_node);
-+	ret = setup_tpm_buffer(image, fdt, fdt_path_offset(fdt, "/chosen"));
-+
- out:
- 	if (ret) {
- 		kvfree(fdt);
-diff --git a/include/linux/kexec.h b/include/linux/kexec.h
-index ce6536f1d269..f0940396c3d4 100644
---- a/include/linux/kexec.h
-+++ b/include/linux/kexec.h
-@@ -349,6 +349,12 @@ struct kimage {
- 	void *elf_headers;
- 	unsigned long elf_headers_sz;
- 	unsigned long elf_load_addr;
-+
-+	/* Virtual address of TPM log buffer for kexec syscall */
-+	void *tpm_buffer;
-+
-+	phys_addr_t tpm_buffer_addr;
-+	size_t tpm_buffer_size;
- };
- 
- /* kexec interface functions */
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 20a4e7cb7afe..03e0f0380b91 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -100,6 +100,8 @@ struct of_reconfig_data {
- 	struct property		*old_prop;
- };
- 
-+struct kimage;
-+
- /* initialize a node */
- extern struct kobj_type of_node_ktype;
- extern const struct fwnode_operations of_fwnode_ops;
-@@ -436,7 +438,6 @@ int of_map_id(struct device_node *np, u32 id,
- 
- phys_addr_t of_dma_get_max_cpu_address(struct device_node *np);
- 
--struct kimage;
- void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 				   unsigned long initrd_load_addr,
- 				   unsigned long initrd_len,
-@@ -1606,4 +1607,10 @@ static inline int of_overlay_notifier_unregister(struct notifier_block *nb)
- 
- #endif
- 
-+#if defined(CONFIG_KEXEC_FILE) && defined(CONFIG_OF_FLATTREE)
-+void tpm_add_kexec_buffer(struct kimage *image);
-+#else
-+static inline void tpm_add_kexec_buffer(struct kimage *image) { }
-+#endif
-+
- #endif /* _LINUX_OF_H */
-diff --git a/kernel/kexec_file.c b/kernel/kexec_file.c
-index 145321a5e798..d2e0751852dc 100644
---- a/kernel/kexec_file.c
-+++ b/kernel/kexec_file.c
-@@ -27,6 +27,7 @@
- #include <linux/kernel_read_file.h>
- #include <linux/syscalls.h>
- #include <linux/vmalloc.h>
-+#include <linux/of.h>
- #include "kexec_internal.h"
- 
- static int kexec_calculate_store_digests(struct kimage *image);
-@@ -137,6 +138,9 @@ void kimage_file_post_load_cleanup(struct kimage *image)
- 	image->ima_buffer = NULL;
- #endif /* CONFIG_IMA_KEXEC */
- 
-+	vfree(image->tpm_buffer);
-+	image->tpm_buffer = NULL;
-+
- 	/* See if architecture has anything to cleanup post load */
- 	arch_kimage_file_post_load_cleanup(image);
- 
-@@ -243,6 +247,8 @@ kimage_file_prepare_segments(struct kimage *image, int kernel_fd, int initrd_fd,
- 
- 	/* IMA needs to pass the measurement list to the next kernel. */
- 	ima_add_kexec_buffer(image);
-+	/* Pass the TPM measurement log to next kernel */
-+	tpm_add_kexec_buffer(image);
- 
- 	/* Call arch image load handlers */
- 	ldata = arch_kexec_kernel_image_load(image);
--- 
-2.35.1
+Please move this entry to sysfs-bus-iio
+
+It's a natural extension of existing standard ABI so doesn't need to be in
+a driver specific documentation file.
+
+However, way back in patch 1 I gave feedback on why we don't normally use integration time
+for voltage channels and I thought you were changing this...
+
+...
+
+> +static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
+> +				    struct iio_chan_spec const *ch,
+> +				    int *val)
+> +{
+> +	struct device *dev = priv->dev;
+> +	unsigned int addr = ch->address;
+> +	unsigned int regval;
+> +	int ret;
+> +
+> +	pm_runtime_get_sync(dev);
+> +	ret = regmap_read(priv->regmap, addr, &regval);
+> +	pm_runtime_mark_last_busy(dev);
+> +	pm_runtime_put(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Power and VBUS is unsigned 16-bit, others are signed 16-bit */
+> +	if (addr == RTQ6056_REG_BUSVOLT || addr == RTQ6056_REG_POWER)
+> +		*val = regval;
+> +	else
+> +		*val = sign_extend32(regval, 16);
+> +
+
+One blank line only.
+
+> +
+> +	return IIO_VAL_INT;
+> +}
+> +
+...
+
+
+> +
+> +static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
+> +				 struct iio_chan_spec const *chan, int val,
+> +				 int val2, long mask)
+> +{
+> +	struct rtq6056_priv *priv = iio_priv(indio_dev);
+> +
+> +	if (iio_buffer_enabled(indio_dev))
+
+This is racy as can enter buffered mode immediately after this check.
+Use iio_device_claim_direct_mode() to avoid any races around this.
+
+> +		return -EBUSY;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		return rtq6056_adc_set_conv_time(priv, chan, val);
+> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> +		return rtq6056_adc_set_average(priv, val);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+
+> +
+> +static void rtq6056_remove(void *dev)
+> +{
+> +	pm_runtime_dont_use_autosuspend(dev);
+> +	pm_runtime_disable(dev);
+> +	pm_runtime_set_suspended(dev);
+
+There isn't anything here to push the device into a suspend state, so why
+does calling pm_runtime_set_suspended() make sense?
+
+> +}
+> +
+>
+> +
+> +static int rtq6056_probe(struct i2c_client *i2c)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct rtq6056_priv *priv;
+> +	struct device *dev = &i2c->dev;
+> +	struct regmap *regmap;
+> +	unsigned int vendor_id, shunt_resistor_uohm;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_SMBUS_WORD_DATA))
+> +		return -EOPNOTSUPP;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*priv));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	priv = iio_priv(indio_dev);
+> +	priv->dev = dev;
+> +	priv->vshuntct_us = priv->vbusct_us = 1037;
+> +	priv->avg_sample = 1;
+> +	i2c_set_clientdata(i2c, priv);
+> +
+> +	regmap = devm_regmap_init_i2c(i2c, &rtq6056_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap),
+> +				     "Failed to init regmap\n");
+> +
+> +	priv->regmap = regmap;
+> +
+> +	ret = regmap_read(regmap, RTQ6056_REG_MANUFACTID, &vendor_id);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to get manufacturer info\n");
+> +
+> +	if (vendor_id != RTQ6056_VENDOR_ID)
+> +		return dev_err_probe(dev, -ENODEV,
+> +				     "Invalid vendor id 0x%04x\n", vendor_id);
+> +
+> +	ret = devm_regmap_field_bulk_alloc(dev, regmap, priv->rm_fields,
+> +					   rtq6056_reg_fields, F_MAX_FIELDS);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to init regmap field\n");
+> +
+> +	/*
+> +	 * By default, configure average sample as 1, bus and shunt conversion
+> +	 * timea as 1037 microsecond, and operating mode to all on.
+> +	 */
+> +	ret = regmap_write(regmap, RTQ6056_REG_CONFIG, RTQ6056_DEFAULT_CONFIG);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to enable continuous sensing\n");
+> +
+> +	pm_runtime_set_autosuspend_delay(dev, MSEC_PER_SEC);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_mark_last_busy(dev);
+> +	pm_runtime_enable(dev);
+
+Look at whether you can use devm_pm_runtime_enable()
+Note it handles disabling autosuspend for you.
+
+When using runtime_pm() you want to ensure that the device works without
+runtime pm support being enabled.  As such, you turn the device on before
+enabling runtime_pm() and (this is missing I think) turn it off after disabling
+runtime pm.  So I'd expect a devm_add_action_or_reset() call to unwind
+setting the device into continuous sending above.
+
+> +
+> +	ret = devm_add_action_or_reset(dev, rtq6056_remove, dev);
+
+The callback naming is too generic. It should give some indication
+of what it is undoing (much of probe is handled by other devm_ callbacks).
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* By default, use 2000 micro-ohm resistor */
+> +	shunt_resistor_uohm = 2000;
+> +	device_property_read_u32(dev, "shunt-resistor-micro-ohms",
+> +				 &shunt_resistor_uohm);
+> +
+> +	ret = rtq6056_set_shunt_resistor(priv, shunt_resistor_uohm);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to init shunt resistor\n");
+> +
+> +	indio_dev->name = "rtq6056";
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = rtq6056_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(rtq6056_channels);
+> +	indio_dev->info = &rtq6056_info;
+> +
+> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
+> +					      rtq6056_buffer_trigger_handler,
+> +					      NULL);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to allocate iio trigger buffer\n");
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+
+> +
+> +static const struct dev_pm_ops rtq6056_pm_ops = {
+> +	RUNTIME_PM_OPS(rtq6056_runtime_suspend, rtq6056_runtime_resume, NULL)
+
+Is there any reason we can't use these same ops to achieve at least some power
+saving in suspend?  i.e. use DEFINE_RUNTIME_PM_OPS()
+
+I have tidying this up in existing drivers on my todo list as I think it is almost
+always a good idea.  Note this is why there isn't a define to create the
+particular combination you have here.
+
+> +};
+> +
 
