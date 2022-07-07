@@ -2,331 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ECBA56A94C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 19:20:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C950056A9B8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 19:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236269AbiGGRUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 13:20:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58694 "EHLO
+        id S236269AbiGGRgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 13:36:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236241AbiGGRUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 13:20:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051153334E;
-        Thu,  7 Jul 2022 10:20:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7431061458;
-        Thu,  7 Jul 2022 17:20:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C93EC3411E;
-        Thu,  7 Jul 2022 17:20:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657214445;
-        bh=OFOndgeYOideWvY0bB0qskwVhKVefMybWvHyuOmdo6o=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=FzTBsiPIs7zWylT1DVO6ifAVTFrQWfKbz0J97fEtmlwHkK21FGmWBlQyfqHPbLINV
-         M9LD+yjGKhbT02lNPNmfLbqkeeZ33gxStDd/QMNWWrCHus2s/5QixKRl3yLvrfMX/8
-         BAPsexd4JqCNCtBAOpWbPLUVzkyQt7b6cR5TYhW2fGUwQW6V2mId9+6F5WTGDrz0hq
-         jdqUowHV4Az2Uf+8zoiD9R6wyhw0aPgCYEw30rnYnGBZqieUT/hzFQhEX35TpveOY4
-         FPvsCxKpPucNdkBhLTTNcpyck6w5gxagtwP2zY1HlznmY58WZvl7dPiG2TibCkrYsK
-         DvnE5UrwSxCpw==
-Date:   Thu, 7 Jul 2022 18:30:27 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
+        with ESMTP id S235347AbiGGRgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 13:36:12 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65333337C;
+        Thu,  7 Jul 2022 10:36:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657215371; x=1688751371;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zRlmYVn9zHQI1IKGlhE4MO06PH0yP+9P4EPGr4unR1E=;
+  b=a3tBzOjgoupnmiJo+uEcv8a5j7AXt5bUt4nS0yKA6WpWqhqRFMUmhyRi
+   DvxVoOjB62OnI6MvbieW28XCSdMT2/UzgPExOI712TlOacOfKkrB8VjC+
+   SjCUB6zeIXMJ7ujC/snX5QwckVB+LTjld/0YiKi+xuRwU0XgQ7Ickuz22
+   VE3w0CJhkG9SgN8Sc394cFLe0S0PEI1e5q7REN/W4sxCw41Clay9isnm8
+   rRYYgQ1Uc/5ZsTlHfdK+yC0HNpnYAjFuAcuqY59s7LRtl0/Aw/tDz7Y1e
+   CUkucHdwwWfk2dmquHCvWSxshmSobkxyEoiMWa1e9vPfyFrBbeEWqwnxR
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="267112800"
+X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; 
+   d="scan'208";a="267112800"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2022 10:35:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; 
+   d="scan'208";a="683384996"
+Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 07 Jul 2022 10:35:54 -0700
+Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o9VPu-000MGg-51;
+        Thu, 07 Jul 2022 17:35:54 +0000
+Date:   Fri, 8 Jul 2022 01:35:11 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] iio: adc: Add rtq6056 support
-Message-ID: <20220707183027.342f6c88@jic23-huawei>
-In-Reply-To: <1657116702-24161-3-git-send-email-u0084500@gmail.com>
-References: <1657116702-24161-1-git-send-email-u0084500@gmail.com>
-        <1657116702-24161-3-git-send-email-u0084500@gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+Cc:     kbuild-all@lists.01.org, Christian Marangi <ansuelsmth@gmail.com>
+Subject: Re: [PATCH v4 3/3] clk: qcom: lcc-ipq806x: convert to parent data
+Message-ID: <202207080145.UiRhIFg5-lkp@intel.com>
+References: <20220707101326.30880-3-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220707101326.30880-3-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  6 Jul 2022 22:11:42 +0800
-cy_huang <u0084500@gmail.com> wrote:
+Hi Christian,
 
-> From: ChiYuan Huang <cy_huang@richtek.com>
-> 
-> Add Richtek rtq6056 supporting.
-> 
-> It can be used for the system to monitor load current and power with 16-bit
-> resolution.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Thank you for the patch! Yet something to improve:
 
-Various feedback inline.
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on linus/master v5.19-rc5 next-20220707]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks,
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-clock-add-pcm-reset-for-ipq806x-lcc/20220707-181546
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+config: nios2-randconfig-r003-20220707 (https://download.01.org/0day-ci/archive/20220708/202207080145.UiRhIFg5-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/81953f04f08f730affa53b4637cc05f97da50a1d
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Christian-Marangi/dt-bindings-clock-add-pcm-reset-for-ipq806x-lcc/20220707-181546
+        git checkout 81953f04f08f730affa53b4637cc05f97da50a1d
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=nios2 SHELL=/bin/bash drivers/clk/qcom/
 
-Jonathan
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-> ---
-> Since v5
-> - Fix kernel version text for ABI.
-> 
-> Since v4
-> - Add '__aligned(8)' for timestamp member in buffer_trigger_handler function.
-> - Declare timestamp from 'int64_t' to more unified 's64'.
-> 
-> Since v3
-> - Refine pm_runtime API calling order in 'read_channel' API.
-> - Fix vshunt wrong scale for divider.
-> - Refine the comment text.
-> - Use 'devm_add_action_or_reset' to decrease the code usage in probe
->   function.
-> - Use RUNTIME_PM_OPS to replace SET_RUNTIME_PM_OPS.
-> - minor fix for the comma.
-> - Use pm_ptr to replace the direct assigned pm_ops.
-> 
-> Since v2
-> - Rename file from 'rtq6056-adc' to 'rtq6056'.
-> - Refine the ABI, if generic already defined it, remove it and check the channel
->   report unit.
-> - Add copyright text.
-> - include the correct header.
-> - change the property parsing name.
-> - To use iio_chan_spec address field.
-> - Refine each channel separate and shared_by_all.
-> - Use pm_runtime and pm_runtime_autosuspend.
-> - Remove the shutdown callback. From the HW suggestion, it's not recommended to
->   use battery as the power supply.
-> - Check all scale unit (voltage->mV, current->mA, power->milliWatt).
-> - Use the read_avail to provide the interface for attribute value list.
-> - Add comma for the last element in the const integer array.
-> - Refine each ADC label text.
-> - In read_label callback, replace snprintf to sysfs_emit.
-> 
-> ---
->  .../ABI/testing/sysfs-bus-iio-adc-rtq6056          |   6 +
->  drivers/iio/adc/Kconfig                            |  15 +
->  drivers/iio/adc/Makefile                           |   1 +
->  drivers/iio/adc/rtq6056.c                          | 651 +++++++++++++++++++++
->  4 files changed, 673 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
->  create mode 100644 drivers/iio/adc/rtq6056.c
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056 b/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
-> new file mode 100644
-> index 00000000..e89d15b
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
-> @@ -0,0 +1,6 @@
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltage0_integration_time
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltage1_integration_time
-> +KernelVersion:	5.20
-> +Contact:	cy_huang@richtek.com
-> +Description:
-> +		Each voltage conversion time in uS
+All errors (new ones prefixed by >>):
 
-Please move this entry to sysfs-bus-iio
-
-It's a natural extension of existing standard ABI so doesn't need to be in
-a driver specific documentation file.
-
-However, way back in patch 1 I gave feedback on why we don't normally use integration time
-for voltage channels and I thought you were changing this...
-
-...
-
-> +static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
-> +				    struct iio_chan_spec const *ch,
-> +				    int *val)
-> +{
-> +	struct device *dev = priv->dev;
-> +	unsigned int addr = ch->address;
-> +	unsigned int regval;
-> +	int ret;
-> +
-> +	pm_runtime_get_sync(dev);
-> +	ret = regmap_read(priv->regmap, addr, &regval);
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_put(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Power and VBUS is unsigned 16-bit, others are signed 16-bit */
-> +	if (addr == RTQ6056_REG_BUSVOLT || addr == RTQ6056_REG_POWER)
-> +		*val = regval;
-> +	else
-> +		*val = sign_extend32(regval, 16);
-> +
-
-One blank line only.
-
-> +
-> +	return IIO_VAL_INT;
-> +}
-> +
-...
+   drivers/clk/qcom/lcc-ipq806x.c:38:25: warning: braces around scalar initializer
+      38 |                         { .fw_name = "pxo", .name = "pxo_board" },
+         |                         ^
+   drivers/clk/qcom/lcc-ipq806x.c:38:25: note: (near initialization for '(anonymous)[0]')
+   drivers/clk/qcom/lcc-ipq806x.c:38:27: error: field name not in record or union initializer
+      38 |                         { .fw_name = "pxo", .name = "pxo_board" },
+         |                           ^
+   drivers/clk/qcom/lcc-ipq806x.c:38:27: note: (near initialization for '(anonymous)[0]')
+   drivers/clk/qcom/lcc-ipq806x.c:38:38: error: initialization of 'const struct clk_parent_data *' from incompatible pointer type 'char *' [-Werror=incompatible-pointer-types]
+      38 |                         { .fw_name = "pxo", .name = "pxo_board" },
+         |                                      ^~~~~
+   drivers/clk/qcom/lcc-ipq806x.c:38:38: note: (near initialization for '(anonymous)[0]')
+   drivers/clk/qcom/lcc-ipq806x.c:38:45: error: field name not in record or union initializer
+      38 |                         { .fw_name = "pxo", .name = "pxo_board" },
+         |                                             ^
+   drivers/clk/qcom/lcc-ipq806x.c:38:45: note: (near initialization for '(anonymous)[0]')
+   drivers/clk/qcom/lcc-ipq806x.c:38:53: warning: excess elements in scalar initializer
+      38 |                         { .fw_name = "pxo", .name = "pxo_board" },
+         |                                                     ^~~~~~~~~~~
+   drivers/clk/qcom/lcc-ipq806x.c:38:53: note: (near initialization for '(anonymous)[0]')
+>> drivers/clk/qcom/lcc-ipq806x.c:37:32: error: initialization of 'const struct clk_parent_data *' from incompatible pointer type 'const struct clk_parent_data **' [-Werror=incompatible-pointer-types]
+      37 |                 .parent_data = (const struct clk_parent_data*[]){
+         |                                ^
+   drivers/clk/qcom/lcc-ipq806x.c:37:32: note: (near initialization for '(anonymous).parent_data')
+   cc1: some warnings being treated as errors
 
 
-> +
-> +static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
-> +				 struct iio_chan_spec const *chan, int val,
-> +				 int val2, long mask)
-> +{
-> +	struct rtq6056_priv *priv = iio_priv(indio_dev);
-> +
-> +	if (iio_buffer_enabled(indio_dev))
+vim +37 drivers/clk/qcom/lcc-ipq806x.c
 
-This is racy as can enter buffered mode immediately after this check.
-Use iio_device_claim_direct_mode() to avoid any races around this.
+    26	
+    27	static struct clk_pll pll4 = {
+    28		.l_reg = 0x4,
+    29		.m_reg = 0x8,
+    30		.n_reg = 0xc,
+    31		.config_reg = 0x14,
+    32		.mode_reg = 0x0,
+    33		.status_reg = 0x18,
+    34		.status_bit = 16,
+    35		.clkr.hw.init = &(struct clk_init_data){
+    36			.name = "pll4",
+  > 37			.parent_data = (const struct clk_parent_data*[]){
+  > 38				{ .fw_name = "pxo", .name = "pxo_board" },
+    39			},
+    40			.num_parents = 1,
+    41			.ops = &clk_pll_ops,
+    42		},
+    43	};
+    44	
 
-> +		return -EBUSY;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_INT_TIME:
-> +		return rtq6056_adc_set_conv_time(priv, chan, val);
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		return rtq6056_adc_set_average(priv, val);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-
-> +
-> +static void rtq6056_remove(void *dev)
-> +{
-> +	pm_runtime_dont_use_autosuspend(dev);
-> +	pm_runtime_disable(dev);
-> +	pm_runtime_set_suspended(dev);
-
-There isn't anything here to push the device into a suspend state, so why
-does calling pm_runtime_set_suspended() make sense?
-
-> +}
-> +
->
-> +
-> +static int rtq6056_probe(struct i2c_client *i2c)
-> +{
-> +	struct iio_dev *indio_dev;
-> +	struct rtq6056_priv *priv;
-> +	struct device *dev = &i2c->dev;
-> +	struct regmap *regmap;
-> +	unsigned int vendor_id, shunt_resistor_uohm;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_SMBUS_WORD_DATA))
-> +		return -EOPNOTSUPP;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*priv));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	priv = iio_priv(indio_dev);
-> +	priv->dev = dev;
-> +	priv->vshuntct_us = priv->vbusct_us = 1037;
-> +	priv->avg_sample = 1;
-> +	i2c_set_clientdata(i2c, priv);
-> +
-> +	regmap = devm_regmap_init_i2c(i2c, &rtq6056_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap),
-> +				     "Failed to init regmap\n");
-> +
-> +	priv->regmap = regmap;
-> +
-> +	ret = regmap_read(regmap, RTQ6056_REG_MANUFACTID, &vendor_id);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to get manufacturer info\n");
-> +
-> +	if (vendor_id != RTQ6056_VENDOR_ID)
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "Invalid vendor id 0x%04x\n", vendor_id);
-> +
-> +	ret = devm_regmap_field_bulk_alloc(dev, regmap, priv->rm_fields,
-> +					   rtq6056_reg_fields, F_MAX_FIELDS);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to init regmap field\n");
-> +
-> +	/*
-> +	 * By default, configure average sample as 1, bus and shunt conversion
-> +	 * timea as 1037 microsecond, and operating mode to all on.
-> +	 */
-> +	ret = regmap_write(regmap, RTQ6056_REG_CONFIG, RTQ6056_DEFAULT_CONFIG);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to enable continuous sensing\n");
-> +
-> +	pm_runtime_set_autosuspend_delay(dev, MSEC_PER_SEC);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_enable(dev);
-
-Look at whether you can use devm_pm_runtime_enable()
-Note it handles disabling autosuspend for you.
-
-When using runtime_pm() you want to ensure that the device works without
-runtime pm support being enabled.  As such, you turn the device on before
-enabling runtime_pm() and (this is missing I think) turn it off after disabling
-runtime pm.  So I'd expect a devm_add_action_or_reset() call to unwind
-setting the device into continuous sending above.
-
-> +
-> +	ret = devm_add_action_or_reset(dev, rtq6056_remove, dev);
-
-The callback naming is too generic. It should give some indication
-of what it is undoing (much of probe is handled by other devm_ callbacks).
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* By default, use 2000 micro-ohm resistor */
-> +	shunt_resistor_uohm = 2000;
-> +	device_property_read_u32(dev, "shunt-resistor-micro-ohms",
-> +				 &shunt_resistor_uohm);
-> +
-> +	ret = rtq6056_set_shunt_resistor(priv, shunt_resistor_uohm);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to init shunt resistor\n");
-> +
-> +	indio_dev->name = "rtq6056";
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = rtq6056_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(rtq6056_channels);
-> +	indio_dev->info = &rtq6056_info;
-> +
-> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-> +					      rtq6056_buffer_trigger_handler,
-> +					      NULL);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to allocate iio trigger buffer\n");
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-
-> +
-> +static const struct dev_pm_ops rtq6056_pm_ops = {
-> +	RUNTIME_PM_OPS(rtq6056_runtime_suspend, rtq6056_runtime_resume, NULL)
-
-Is there any reason we can't use these same ops to achieve at least some power
-saving in suspend?  i.e. use DEFINE_RUNTIME_PM_OPS()
-
-I have tidying this up in existing drivers on my todo list as I think it is almost
-always a good idea.  Note this is why there isn't a define to create the
-particular combination you have here.
-
-> +};
-> +
-
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
