@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB3C9569837
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45618569827
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:33:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234207AbiGGCbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 22:31:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40078 "EHLO
+        id S234899AbiGGCbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 22:31:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234805AbiGGCbf (ORCPT
+        with ESMTP id S234896AbiGGCbf (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 22:31:35 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95DCF2F3AB
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 19:31:34 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id i3so21882931oif.13
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02D382F3B0
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 19:31:35 -0700 (PDT)
+Received: by mail-oo1-xc36.google.com with SMTP id y185-20020a4a45c2000000b0041c1e737283so2130419ooa.12
         for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 19:31:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=kYOkpM5mbqkB6w2x0txJabn++Zuea/JIjpE53NC7Ovs=;
-        b=O/OphLNHTV2yePG++ANiG2XlmcHB8S5c/24sNkjLMerXy5rbKaOIGR0LTF3mr9aFoM
-         Wt5op3owZiw2d3/jCHtOw4QllvcqJjlEoizzeqwPw63mX/ojOvEKPpP+lZODEyoCB1FO
-         hBNLQlvqixm2RPeJ+v0UF5zBrnbfW7w7Okn3HMTBNZbYH0IokQ/lwSGqOgQdla4DFy9V
-         PcTfRP0XzE5749OuSOlRoNsSaD4Irse+S4p202DlA9tkWZ3EssW9A0SKrrVzIP6PONiF
-         xz2h3SdfWkGN5zm8QnAIWvWhQOjxTP+yxYpVizQbYO+3B37sS3Qr24ltWsfF4ahiTMNI
-         n/8A==
+        bh=HmbEGlmgz9inbfRdXswr9utl0AqPzk/QhsgAgC2XwtI=;
+        b=YyOkcEg1nXPEDqSuGVhcQUNsQITymByi5yzjSWlSBOLOKxn3jtVcDA7Mf63TCJY4M9
+         GzIw1SPZvg/bVpWePYmPt2Q+m4Z1Cr/1119jMXw6Ox7x/Nc6CJjZY+moFhobFXpNwJwq
+         5/07tq+5L6LQMRa0wlUU43WSJUBnHwK0dPbkAgKY5go9qxbk2ENeLW4pVpAuji62cYN8
+         GYCIdi6CGEjxqWqxtEnQrlySvW57u5tTEtYBvz0VjoFea0f3Ik8+caczfrzS6NrT0rpG
+         Tfbt1VVLfBTqjuSO1V1kg2B4xQT17JnpVNOejc8E0YhhKK4VPGq58MgDDU63k/XBVjIg
+         xrbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=kYOkpM5mbqkB6w2x0txJabn++Zuea/JIjpE53NC7Ovs=;
-        b=o+nbDiHUSJuFrXCKWnGOePuf59aTZELDqa2gkp1Yu+f1/XUULNlmP5Nj9fVHJC7jqs
-         EcVC20Q1izGotr00deWVbWXwu5GlJliNqnxhkbtsfgg6nTQpqdcNO9A4kBKeNxdEMt+/
-         KI+YKdsHfOq4NOB0lS+8+LaMnUWyvvfgtR396/beGxSo0J5uRjbjdDu97bIkmWGDMh+J
-         jzm4ib4XkIYwFF850+A9x8UrAU4GUWd88psPUFXXfK7bSgxi6oefbaxjDsueEXu+bn5+
-         qqg20hXoLmTXtRYeKfG6QvFTME/xW8v6m7n5ybsvSlgQLvarpKH8on7sW6cSUkNr3TOu
-         GMMg==
-X-Gm-Message-State: AJIora+11bKdDsYrFcPcnv60X5PeDiOQ5HX4UA13Sbrua1/qJn3L7Qyn
-        AOfYiX/8NSOESSdU2u0GjUGfsA==
-X-Google-Smtp-Source: AGRyM1uZ1j3GL+HHiRiUjzP4ZuNVvEGnWjez1sGZv/1hQL7mFmHwohrXD6uOZp7rHHg3HTWQXn9V2A==
-X-Received: by 2002:a05:6808:1392:b0:335:a45d:81fe with SMTP id c18-20020a056808139200b00335a45d81femr1066080oiw.213.1657161093777;
-        Wed, 06 Jul 2022 19:31:33 -0700 (PDT)
+        bh=HmbEGlmgz9inbfRdXswr9utl0AqPzk/QhsgAgC2XwtI=;
+        b=kfRfJlgkH0psIO6b9YPo+eA5sXK7GIrsFfJxJJlNOMfKvxcHlqTIYXPWawLVHOW/Yg
+         Ks6p+aZ4LKMk4Eqw4X9g3uwS37czgI4lnSMn+GvZdHZopbtwWEvGekMrbECLzLhI80PA
+         RWdM/KmkXktwK8n1rRSRUihTQXJxhC540CKtGbxLfvFfxBb0MfmPxNqdKlplOskt16EP
+         vI2eRkYT9y77oxQ+32x8fXiFudLLsKHEkaoynE7TIk/YzeGqNNsaQDQ7LnuMCEjYMdvW
+         bJkQepDsU/C0A7aEmBCU3nSMHQHTNM2HIKsm95yU7cNmiapwZVJh5c0q81GOyotjH6Ns
+         dlmg==
+X-Gm-Message-State: AJIora8WDvPXenqvR0rIXYnbirQ0s9N0e7AyGV142id71zffxdmHOp61
+        Zr8TjZwpbL/4jvosWbcCThN9ow==
+X-Google-Smtp-Source: AGRyM1uOLxFCyR+T8i4wtTM/J6Zo80ApbrLtbf6uQPT2Q3Bx1WlzbF4CUac/xbzPFJxqb8NG09f/YQ==
+X-Received: by 2002:a4a:e9a7:0:b0:428:89cf:34d3 with SMTP id t7-20020a4ae9a7000000b0042889cf34d3mr6714117ood.41.1657161094760;
+        Wed, 06 Jul 2022 19:31:34 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id x48-20020a056830247000b006168c71ca4asm17024469otr.56.2022.07.06.19.31.32
+        by smtp.gmail.com with ESMTPSA id x48-20020a056830247000b006168c71ca4asm17024469otr.56.2022.07.06.19.31.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 19:31:33 -0700 (PDT)
+        Wed, 06 Jul 2022 19:31:34 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Catalin Marinas <catalin.marinas@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Georgi Djakov <djakov@kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: Re: (subset) [PATCH v8 0/4] soc/arm64: qcom: Add initial version of bwmon
-Date:   Wed,  6 Jul 2022 21:31:11 -0500
-Message-Id: <165716107315.864223.10956904970767999578.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH v8 3/4] arm64: defconfig: enable Qualcomm Bandwidth Monitor
+Date:   Wed,  6 Jul 2022 21:31:12 -0500
+Message-Id: <165716107315.864223.9487866032857198134.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220704121730.127925-1-krzysztof.kozlowski@linaro.org>
-References: <20220704121730.127925-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220704121730.127925-4-krzysztof.kozlowski@linaro.org>
+References: <20220704121730.127925-1-krzysztof.kozlowski@linaro.org> <20220704121730.127925-4-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,23 +75,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 4 Jul 2022 14:17:26 +0200, Krzysztof Kozlowski wrote:
-> Changes since v7
-> ================
-> 1. After discussions with Bjorn and Rajendra, go back to "SoC-bwmon"
->    compatible, so without "llcc".  The other bwmon instance - between
->    LLCC and DDR - should be called LLCC.
+On Mon, 4 Jul 2022 14:17:29 +0200, Krzysztof Kozlowski wrote:
+> Enable the Qualcomm Bandwidth Monitor to allow scaling interconnects
+> depending on bandwidth usage between CPU and memory.  This is used
+> already on Qualcomm SDM845 SoC.
 > 
-> Changes since v6
-> ================
-> 1. Patch #2 (driver): use MSM8998 compatible.
 > 
-> [...]
 
 Applied, thanks!
 
-[4/4] arm64: dts: qcom: sdm845: Add CPU BWMON
-      commit: d3ef125cf844ab2f6365d8645d7468cec709170a
+[3/4] arm64: defconfig: enable Qualcomm Bandwidth Monitor
+      commit: 76f11e77f919397f31198354cd0e0bd8e76f8748
 
 Best regards,
 -- 
