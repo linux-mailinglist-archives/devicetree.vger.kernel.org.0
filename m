@@ -2,262 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 436CD569BD3
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 09:43:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCC3C569BEE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 09:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232544AbiGGHkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 03:40:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58062 "EHLO
+        id S231393AbiGGHnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 03:43:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229792AbiGGHkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 03:40:14 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5D839E;
-        Thu,  7 Jul 2022 00:40:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1657179613; x=1688715613;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=5NO3y5patT1FEHE/7bEO11/EbpsuhnURFOyvCi2Gl5o=;
-  b=lorCI3PZdEqQXmZuMsCJ0brTPuLWCDjqTblhpgaS1SCNsNiiWg1U//PS
-   SqjCEiKkV94oTeVZK4usVIvEvGN/OJ44qO9zbWsHyKypwvjwzHVd5iF+H
-   YzLdJ2AHDFd+FAnsQ5x+l23T8DMOo0Q5xncNsS12bjsETjOfpM81nnwDE
-   4zRxXfltQq4G/O37d3C1qP9du2VSZ+wJyhNQhKWEzngZIXHn00ablkvhA
-   eBwQgojT09m6yNiclAQNcxfiaIICBffI6ViGqs2ILKwaqkDquKfwZvMMt
-   EhGbBWBG9lHBq/1ny7lxU+Yx+IQfM4EbEe0N7bzUuYmp/0vI8Um2fdpvG
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,252,1650956400"; 
-   d="scan'208";a="163703973"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Jul 2022 00:40:12 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 7 Jul 2022 00:40:10 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Thu, 7 Jul 2022 00:40:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CzGHRYkzaMjhdYRN0ZMpYm0K2VD/GLhSwVrjDMzRo0iA0Q+rHAGpJBnCKr4hheCWXCmxy/ELL8pdlnHfgfyuZjub09twKNr8NNyxW7N6K1DG49A6DY0E4xD7uFo3ewrHk0NYdMLkQ8+sj2xroixR5QuIwPrm5sqnIzz6qN+Cns4SZ+OK/svnD5+Lc+lkR8qNw1gcSHuHshcytJPqxe9ok2U7IKWWNQV+eJxWbxYVXF7XzFeXLEOrU6Adw3/0Xj0omSjuQoCvPCkqtKu2X8uQLEfeqA8bx8ioQIFx9JD2lehLrYz1v8VyAX3OdkJLonaH91tW+K/XV+pnx7Yz/ILMPA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+Q97bVObQZE6yyMFhd63kqDb0CyICs4xNynJYn+cMkA=;
- b=GumrSj35s3JzaZropr5hRIX/em/EuRc+XdxUxzIIluTKUa1m9MnJBFFL2RDtcFwk6SGXQnwm3Vi6D6DQxDl2JJesKwG/3LOyF3FZJKS6xYy4/ltuLBMeWSCTW6VqPaQQrwxmLmBfEBXVPOv5jbgidKpQyd9MFpB01HOnKXHvwuFrnf3VN8U0ShK8MbUp4taOvb1+ogGGsbbk7vRRKlenT/4iuIMyneGtzlShKprpdMjW9fKbRgB9PTplv8Uq7UeQhGypHAUIYic2fA9yoq3WScO79nd43kujyu3ulaIhw6bvKUb1C3RG0+IDOUL4TlyDBk+TgOin29RW54ykqvvpfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S234795AbiGGHnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 03:43:43 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEE1D32057;
+        Thu,  7 Jul 2022 00:43:42 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id z41so22094061ede.1;
+        Thu, 07 Jul 2022 00:43:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+Q97bVObQZE6yyMFhd63kqDb0CyICs4xNynJYn+cMkA=;
- b=OJNFXA+YxtauXIIWUsbWXbKPpSv7VC6ICt0g4bc+JQToiE2mW9QTKcooxIsihulzaJ+ldnLG7RTl7bAq69J5RH2PN/NA4GBpGEPx7RHb3h2pFyHjXQdk6R5MchDVb2/R90MP6SQOET5z0hOnrk7bth8d6GyX3ol66sfVYk5E4f8=
-Received: from PH0PR11MB4872.namprd11.prod.outlook.com (2603:10b6:510:32::18)
- by MN2PR11MB3648.namprd11.prod.outlook.com (2603:10b6:208:f0::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.18; Thu, 7 Jul
- 2022 07:40:05 +0000
-Received: from PH0PR11MB4872.namprd11.prod.outlook.com
- ([fe80::1884:3ecf:a6c7:c2cb]) by PH0PR11MB4872.namprd11.prod.outlook.com
- ([fe80::1884:3ecf:a6c7:c2cb%7]) with mapi id 15.20.5395.021; Thu, 7 Jul 2022
- 07:40:05 +0000
-From:   <Kavyasree.Kotagiri@microchip.com>
-To:     <robh@kernel.org>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <Claudiu.Beznea@microchip.com>,
-        <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v7 2/3] dt-bindings: mfd: atmel,sama5d2-flexcom: Add new
- compatible string for lan966x
-Thread-Topic: [PATCH v7 2/3] dt-bindings: mfd: atmel,sama5d2-flexcom: Add new
- compatible string for lan966x
-Thread-Index: AQHYkSi2d8vdUqQCqkCL84gayHBxnq1xaxKAgAEZa0A=
-Date:   Thu, 7 Jul 2022 07:40:05 +0000
-Message-ID: <PH0PR11MB4872E0DBEC7B10E550FC33AB92839@PH0PR11MB4872.namprd11.prod.outlook.com>
-References: <20220706110619.71729-1-kavyasree.kotagiri@microchip.com>
- <20220706110619.71729-3-kavyasree.kotagiri@microchip.com>
- <20220706144303.GA7885-robh@kernel.org>
-In-Reply-To: <20220706144303.GA7885-robh@kernel.org>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 670537ef-180c-46ca-47db-08da5febe8c0
-x-ms-traffictypediagnostic: MN2PR11MB3648:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: PM/rnzqF1zSdFEVghyqRYiCzLKQ1c3Qklz6PsnNs6uffcJPWv9fkxSkwTfzh9TxbBlSb4vmJaiFXj6xn/aDKAmxJoRB7Apx0UQymNgVMETGMh+C2nqyiBWVa4KyvF93+j27715iKPBkg8FBhodIs1GInCwacuFoiBgPBKs0JFH9nQNnLCATwLSGpd6TvRchbi4n8wQmfkY3+m3oYPVZIFX8wtkjkuBdj9s8bFYyB70IMpmW6Urjindgu8/nK7pGpCsZmutABRv3Tv3hIDVAMpMQt7KvEGZi7E4BbVBx2HhMiJxeGIgON3KcQcaQWidhXlm4Eaq9i2PHrDj8mz5aNNQiaI8ICqwdJX51S0/70A4Spyn/NFCrcKxBBS8OxXyDQHqAIa27XT2W9uWUFD90wMr0eDvFm2LxUWf0/ilvAt/Ir5O7TJMLgUtTdxU/CrTNrq8Vn+R97D8x9cA4eMnPCqWBJXHenN8m8WH6XAM0EfLSO0bWq3/CHfY7yiQzuhXACWqMi5mQEtUjhTemf/HDtWmwWb3zBd93JIOH5KiwZbNmVvN/AQxKLFMOUOMZxHG3hWYbIxGy65b8QmHqkNzrFIMSn3Xxe9EmfBNU2SMKfKGKLGuGxeKiweS2PAXLEXXd/ZyXHG5po9h7mo8fziQHS3F/R3F9Ct7UfyWPlw1gI+QE2uxkwy7n0kxh7R6riDu1eiN6e9PT1qDv+USoU5/k9LfbuDqAZn8kEOhey0JKjUmboLyX8vByRFlewfn4VY+1H8m2G033KUvsbNtpJKHj7PbAyGc4Old9mmkB64woG1DG/vsfGqZVLIBVhTF3K5Phg
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB4872.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(39860400002)(366004)(136003)(396003)(346002)(376002)(186003)(38070700005)(64756008)(54906003)(83380400001)(4326008)(6916009)(66946007)(71200400001)(8676002)(38100700002)(55016003)(122000001)(66556008)(66446008)(76116006)(66476007)(316002)(478600001)(33656002)(8936002)(5660300002)(6506007)(86362001)(52536014)(7696005)(9686003)(26005)(2906002)(41300700001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?BwZrILSjY2YHRDzVGXqFdrP4XqX2f6EW9KNXIAQiSJLT9VfUYi0QrofC4nYZ?=
- =?us-ascii?Q?6F0/NhtdT8MrieG3KJOGVHPrmXZ6ucXwz+NJftLvRiPh/YdBNUff5mP/FtKk?=
- =?us-ascii?Q?BScjlvtuc+zinsKOt2Xt1EbUrPnyQZXrydGctEgQhf6Clrc+4BHaiHKx+My5?=
- =?us-ascii?Q?NPslIlJuAjGN2gWweMwV8bPL2DmdZ4/HUNk+Fsd84P8r/UlPJJDKYecsdwau?=
- =?us-ascii?Q?9h0MgPQtJKLKySR4aL3aDOsuL0YpSGVXQDh1/X6ZTcg2hhtdg6qoRHocLjCV?=
- =?us-ascii?Q?+5vhtx6pZPpfD6y5W+CiQGldwbTJO47qUN9+4aXEblPAi+K7p/OLqe2xA4Ut?=
- =?us-ascii?Q?0tKLzom98m2CccLQ8B2i163as4BiGocdisuIcoz0ufHSEMWQyfAnWXLL6dhi?=
- =?us-ascii?Q?QalJfpqKRv/y05OSTnfCY5KJuTWplyivWPtXd4KXQZb9lRUN+BSlHwtU3HU5?=
- =?us-ascii?Q?dAB3VxYu/ejKTdc/OJ+/UiB0of2/vVql2VX19vbc9UtjMluEGCBqWrhrzw2Y?=
- =?us-ascii?Q?HaQeCCN8DEZT0/JOGooHm/tjNW3yOp0Gx3pjkmmrMcrf7Wyt25TR8g7Y6BaN?=
- =?us-ascii?Q?BVu8oWFFdgcraUm5G9N8u18MT/tBjLEQL9Cq/Q4+J3EnUwsH6pYNTdGNBGkr?=
- =?us-ascii?Q?BoAPkv7900TSARaqR94CZQt9eB/b5096+X6X2rOlElNQ2ddH8hAesA3HDNzm?=
- =?us-ascii?Q?3UBQC+ODpI0nZj3pSb16qsHKAD0LYdAtd3zll6dVtVoxGl0ZTuiKgO9BgK+x?=
- =?us-ascii?Q?DMaGjCBNNQzzifOZ0jSAvZGWUjc2Zwt+Fyfk2p69uqSkzyeJzrWr6w281Af1?=
- =?us-ascii?Q?KZly/l0Fe71JA1YIW06JTlWriqHQP+Ml2vGpNnb/YzXeUKo2pAtFU18/lbPW?=
- =?us-ascii?Q?IB3XaIFE7Po6XCN6EVbYsDz1BX/nbKYEeOVdBgLKV2Uy4hupd32cdOqwtvUC?=
- =?us-ascii?Q?PxmIWua66eqRixgy0mXMkdgCkIt2KeGW/YLbRbUl1HvSaYVVG6tAMFlxeCRT?=
- =?us-ascii?Q?151CRuRZISpJFE9+/JOwxFE9LW+iB5I4gHw6hgp97IpSHbEX+rDuX5QnHwri?=
- =?us-ascii?Q?6MX235N9IU51Fo2GiYnVKLsHWXc5XqBBjB8H5E+vipw87U7BlmuK4wnJWDyF?=
- =?us-ascii?Q?98LVsOgIQbpuCVUmhSJ/9WA5zHi/U16G4qc99mYozDMC/Ffd9fVa7yUns282?=
- =?us-ascii?Q?eTpt/Xbat/aXF9ElGNjork7B+NPr65wMbKAQ/UZfLER2zUmM1FVbS4EP2AqW?=
- =?us-ascii?Q?gPvnBLxL6yV7P1VSbSQWtKV+p74+Wey8SBsmny69mIXj7I/8cWzf1orE/VVj?=
- =?us-ascii?Q?uQWigs52wkWS9YI79IT7rAuz0gtrpot61KyhWxt89st2WviFtyDK2aUE2hi6?=
- =?us-ascii?Q?ixIpArgks4ZtExxobMZDQMv6bGK6RU5QFAp+/HC8fvjo3IAfL6We24tCZFRu?=
- =?us-ascii?Q?fjPo+Dbrr577yUzsVCKnKkxOa4/VQfZ0y9qTm0ejdTRIHL0yWxtbr06gHAIu?=
- =?us-ascii?Q?F4yBbo7lJ1vla6i7MEM9y5keSxfO73T3S0ytyL4sM97/Ejhz5e3oMf8Fl2Wg?=
- =?us-ascii?Q?tqUul6eecUJdNTLUjedEtS83C1l8TiYVvKJl3hAA6RnoBAZe1HCkMmEDuh86?=
- =?us-ascii?Q?bA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=rZhUFwwUcGSvBvAq/wrcD4Uta9N9rbopPYQWGF5hp1o=;
+        b=gHaUAtApfMG0IvE0cUroLhlUkukMdzTQff177ejaQV3M86xD07hqh6MP5288Eq+Jqs
+         JDqe9nImg8hc3UUkKGQB8Pjod4uictjopLiiVJarKHCA/+GWe6mXtjOsyzG8Y+EI8bU4
+         dII+BzQjdCLJOerEYbOnbBcXCznFOhgYWAfc9ZjmkQ5txk37672gVZpAkTZN1z5dI26o
+         ioltqdD1QuBBcsGPvMchBd0AHhyQDysLLkueP/sexpcKTgegqNPNLVD+XxcgZjmBGmjf
+         m0q0bFFZOaopdaJxLTq2Eklh9m++kS28ZMGgUscBJB3cGatJUjYfkDNCpQTfDxxrNSyl
+         Ei/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rZhUFwwUcGSvBvAq/wrcD4Uta9N9rbopPYQWGF5hp1o=;
+        b=O629Y0G1RH7Xvgz/xCal38LAFiWrJkw+76/sELFMka1n15hjWB170pqHSgiu42p+14
+         9EVZEvyINWXkHlR1vbtroPgDhjafOjQzmra/zSHyZqCPOjs1biq2JvZ9U4W5bs8abCpA
+         vkNoMnTp8qG67YTdjQWQOgf/tJ6eyc/a+Je2AN28mMISr1sX9OPJH2jIfugFcF6nm49r
+         D9PKRjqqcqdDJJCo3+/ZM6oJSRn6yPLKIwXD7yyxy5E1n2Fby4j2KpJg0pycQh9LQFVu
+         trfxijyGWVTUDF/OBGFao1DHt976F8gH8XyzaHN8B1RhnxuXsetEri+3Wea4kaB7hgxt
+         clYg==
+X-Gm-Message-State: AJIora+QPecsR/bItmG3qzMUySoHu8itEgejhiRW5kPdTQiocB8XjMxm
+        uIevi3s17anHbaTdcRYqURf6oiYzre0=
+X-Google-Smtp-Source: AGRyM1v5G4XnQlNmWTuUA9gsDiHTLwYwEbCQwBCtbMTmbgCQ21aY0puoMVOvpoGoGmc6DUo2L4z8qg==
+X-Received: by 2002:a05:6402:1e95:b0:437:ce7f:e17a with SMTP id f21-20020a0564021e9500b00437ce7fe17amr58884437edf.169.1657179821161;
+        Thu, 07 Jul 2022 00:43:41 -0700 (PDT)
+Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id a12-20020a170906670c00b006fe8c831632sm18472588ejp.73.2022.07.07.00.43.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 00:43:40 -0700 (PDT)
+Date:   Thu, 7 Jul 2022 09:43:38 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Bhadram Varka <vbhadram@nvidia.com>,
+        linux-tegra@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org
+Subject: Re: [PATCH v3 5/9] dt-bindings: net: Add Tegra234 MGBE
+Message-ID: <YsaOqgbMFf/RpjLv@orome>
+References: <20220706213255.1473069-1-thierry.reding@gmail.com>
+ <20220706213255.1473069-6-thierry.reding@gmail.com>
+ <1657169989.827036.709503.nullmailer@robh.at.kernel.org>
+ <YsZ6fus1yNcf/H/Q@orome>
+ <173a9087-6a55-13f8-3fc9-897c7f51a09e@linaro.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB4872.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 670537ef-180c-46ca-47db-08da5febe8c0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2022 07:40:05.3059
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /vyZQ8NEB9FDIS7/wPdszqZo74zRA/6fSJzaMiS/rp+ZjeqYHn/4AVEp6vkXJeDmJAjDJK1d47YLk+L9tNw7nEnjgeFbND7JkCmhQc5iKxkdAvPBjAaJWexOUHbthXSE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB3648
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qi4vcEsMPi9TNHn/"
+Content-Disposition: inline
+In-Reply-To: <173a9087-6a55-13f8-3fc9-897c7f51a09e@linaro.org>
+User-Agent: Mutt/2.2.6 (2022-06-05)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > @@ -18,9 +18,11 @@ properties:
-> >    compatible:
-> >      enum:
-> >        - atmel,sama5d2-flexcom
-> > +      - microchip,lan966x-flexcom
->=20
-> Don't use wildcards in compatible strings.
->=20
-Ok. I will change it.
-> >
-> >    reg:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 2
-> >
-> >    clocks:
-> >      maxItems: 1
-> > @@ -47,6 +49,27 @@ properties:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      enum: [1, 2, 3]
-> >
-> > +  microchip,flx-shrd-pins:
-> > +    description: Specify the Flexcom shared pins to be used for flexco=
-m
-> > +      chip-selects.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    items:
-> > +      minimum: 0
-> > +      maximum: 20
->=20
-> It's not clear how one uses this. It's selecting 2 pins, or a range of
-> pins, or ???
->=20
-I used minItems and maxItems to represent number of entries allowed. Either=
- one shared pin
-can be mapped or max of 2 based on pins mapped on board and 0-20 is allowed=
- shared pin numbers.
 
-> > +
-> > +  microchip,flx-cs:
-> > +    description: Flexcom chip selects. Here, value of '0' represents "=
-cts" line
-> > +      of flexcom USART or "cs0" line of flexcom SPI and value of '1'
-> represents
-> > +      "rts" line of flexcom USART or "cs1" line of flexcom SPI.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    items:
-> > +      minimum: 0
-> > +      maximum: 1
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -56,6 +79,31 @@ required:
-> >    - ranges
-> >    - atmel,flexcom-mode
-> >
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: microchip,lan966x-flexcom
-> > +
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          items:
-> > +            - description: Flexcom base registers map
-> > +            - description: Flexcom shared registers map
-> > +      required:
-> > +        - microchip,flx-shrd-pins
-> > +        - microchip,flx-cs
-> > +
-> > +    else:
-> > +      properties:
-> > +        reg:
-> > +          items:
-> > +            - description: Flexcom base registers map
-> > +        microchip,flx-shrd-pins: false
-> > +        microchip,flx-cs: false
-> > +
-> >  additionalProperties: false
-> >
-> >  examples:
-> > @@ -71,4 +119,19 @@ examples:
-> >          ranges =3D <0x0 0xf8034000 0x800>;
-> >          atmel,flexcom-mode =3D <2>;
-> >      };
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    flx3: flexcom@e0064000 {
-> > +        compatible =3D "microchip,lan966x-flexcom";
-> > +        reg =3D <0xe0064000 0x100>,
-> > +              <0xe2004180 0x8>;
-> > +        clocks =3D <&flx0_clk>;
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <1>;
-> > +        ranges =3D <0x0 0xe0040000 0x800>;
-> > +        atmel,flexcom-mode =3D <2>;
-> > +        microchip,flx-shrd-pins =3D <9>;
-> > +        microchip,flx-cs =3D <0>;
-> > +    };
-> >  ...
-> > --
-> > 2.25.1
-> >
-> >
+--qi4vcEsMPi9TNHn/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jul 07, 2022 at 08:53:32AM +0200, Krzysztof Kozlowski wrote:
+> On 07/07/2022 08:17, Thierry Reding wrote:
+> > On Wed, Jul 06, 2022 at 10:59:49PM -0600, Rob Herring wrote:
+> >> On Wed, 06 Jul 2022 23:32:51 +0200, Thierry Reding wrote:
+> >>> From: Bhadram Varka <vbhadram@nvidia.com>
+> >>>
+> >>> Add device-tree binding documentation for the Multi-Gigabit Ethernet
+> >>> (MGBE) controller found on NVIDIA Tegra234 SoCs.
+> >>>
+> >>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> >>> Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
+> >>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> >>> ---
+> >>> Changes in v3:
+> >>> - add macsec and macsec-ns interrupt names
+> >>> - improve mdio bus node description
+> >>> - drop power-domains description
+> >>> - improve bindings title
+> >>>
+> >>> Changes in v2:
+> >>> - add supported PHY modes
+> >>> - change to dual license
+> >>>
+> >>>  .../bindings/net/nvidia,tegra234-mgbe.yaml    | 169 ++++++++++++++++=
+++
+> >>>  1 file changed, 169 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/net/nvidia,tegr=
+a234-mgbe.yaml
+> >>>
+> >>
+> >> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_che=
+ck'
+> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >>
+> >> yamllint warnings/errors:
+> >>
+> >> dtschema/dtc warnings/errors:
+> >> Error: Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.exam=
+ple.dts:53.34-35 syntax error
+> >> FATAL ERROR: Unable to parse input tree
+> >=20
+> > This is an error that you'd get if patch 3 is not applied. Not sure if I
+> > managed to confuse the bot somehow, but I cannot reproduce this if I
+> > apply the series on top of v5.19-rc1 or linux-next.
+>=20
+> Patch number 3 does not apply on v5.19-rc1 or linux-next, so maybe the
+> bot (which applies on rc1) did not have it.
+
+Good point. I'll rebase v4 on top of v5.19-rc1 then. This shouldn't
+cause a problem for net-next because there's no conflict there for patch
+9.
+
+I did notice that the devicetree-bindings patchwork instance doesn't
+have all of the patches, so perhaps that tripped up the bot as well. Not
+sure what happened there, the linux-tegra instance has all 9 patches.
+
+Thierry
+
+--qi4vcEsMPi9TNHn/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmLGjqcACgkQ3SOs138+
+s6GG9BAApK9vwxL1fMefuwcIDBNUimcfLISswJTiN9OQg+V2NMrXytex2inKYDSv
+jBpo3fMWwF91U4lAVs01WF/CLRmmgJnawx9mF9ttz4CQfN78C4imdwsxj+sZ6sKV
+u/B+hMv4zP5/fJDGW3SH9lhog+s0FgQmvDFhRlYEHQ54KLYqCdyvIlwOyszruF+6
+8A9o8O08JJbAH3wWutGyKZwKyIF/kvwwKYO7W65BiRaVDkE2vnIkMlKtCcg1zIwv
+pwjV2i4VZFOg7u/EFMb0tf49GLmIMLD2FdQ1/ZPaaThBSaJFJvxFMz/dq4+K75YW
+f7uasJ65DTNJigM4FcHGgDfwyYH9QT9j19ZL/Yj3do8Rw0nIhDDD5VUeYpJKJ+xT
+iL7nsFvYl6+VHEQP5PXJjlXuzBFcKZjOwf9rFtKPWBtg/2KTSfSfC0J8Xkcidkql
+eJ/yfxUj24ZSvKP30L0EEN86fIa4HUXjluBUY18cd03XDDPXmKv6qflqAqHnriBm
+S6yXCnkUvJxeB2KmTeWYYr3DBg8ZorSJWewo7NcHqLAj1zfEBlVuKvccRxZm1vn+
+Po0YfwB7cxhCbXPiqgoIs3cQm6ggcT3vRiNUGZVt4Hoqyf6LiK2Gh5hGXYpmmD8u
+W75jc6rtplpQ8qrIPhD0ZAYJFCQCpRyD37A1Em3vy3pU3rft2U8=
+=XBl9
+-----END PGP SIGNATURE-----
+
+--qi4vcEsMPi9TNHn/--
