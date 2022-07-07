@@ -2,370 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD4E56ABD1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 21:26:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E7CA56AC03
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 21:44:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236578AbiGGTZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 15:25:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44416 "EHLO
+        id S236115AbiGGToJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 15:44:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236529AbiGGTZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 15:25:50 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AC617E2F;
-        Thu,  7 Jul 2022 12:25:49 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id d12so9478523lfq.12;
-        Thu, 07 Jul 2022 12:25:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bn2ko38Sm2cdbXvB1Bb2L53qXiUYxOL53jCizCZafgc=;
-        b=l00be4910K1/R1ROYSKRrGgeztBQZqzgKGj4PhxCjlXBMLOyuJ5FWDsWoBoZAgoinO
-         aMAQTxGwdZE98h1waVFPn+lHd1gQcuIBVVGUS6lZcwoNQVnZJgz74qYm5oQiebn21vmf
-         01cKcDaaaWp/gltRk/XGJxgv1vOGvFPxcFw4Fg845OUKhrp7lKsyHHlvEeuEcgNE26St
-         gKpecRLO34O++PoUErEKCcGOREsriTQEdBD4m+zhvxSmKjplDWQfWh0HRbM/zCRyqQCw
-         gIMVsFZpYRXVM6nJhz8gazqQw2jzcAQ8qSumqM6l2GTrY3KDj4ZM0nLESzZC7rgFfFvM
-         GWYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bn2ko38Sm2cdbXvB1Bb2L53qXiUYxOL53jCizCZafgc=;
-        b=Zv9CrKvukgRgYk0dRJTaPlGwWfUOHCR4vZb6SOMWuvuysc0+nzgjtnVI+uUuOtHfaV
-         f/nVdEijkaJtw2jcIUiBgOVNzh+0iV8VJDs3MhsPj1RZXKUmcr2Wyds3W63MO+tYFgH0
-         tfxNOYfigqz46qHw3z9/lnVfEtHdcLjCZJsprc9CuGjNbTKtRfGW8kRCOCZ1kaFAMw1h
-         Rb97rQnI7rxGXRxymk8uSW4mRMZ1fQYjcbvopBRJ7ffYzHubyc8wkWlPYwq27NRM/nAm
-         CxUTqgU9oV1NoZO4BAP2i7WsfTihAZe+Gc1XUn6Svl+l130k3QRnQcS6PHxG90YEGOAZ
-         S+Yw==
-X-Gm-Message-State: AJIora8NW1rHC6vNcYXRhSblbhcxnoQBOflhI5d4wSH7RffxFpl4wOzE
-        Ou1O2F8ZPGBxsgUa4bpOi5M=
-X-Google-Smtp-Source: AGRyM1vEd40ybANyU2A+lmLQ5HucaokHX6acry1wBBtRWYfvqH7FoSUpRJZ+qnM00Nfthi9ekeioCw==
-X-Received: by 2002:a05:6512:2811:b0:47f:6d20:6a71 with SMTP id cf17-20020a056512281100b0047f6d206a71mr29699429lfb.60.1657221947562;
-        Thu, 07 Jul 2022 12:25:47 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id s21-20020a056512315500b0047f6e91d4fesm4596000lfi.141.2022.07.07.12.25.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jul 2022 12:25:46 -0700 (PDT)
-Date:   Thu, 7 Jul 2022 22:25:44 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 07/17] dt-bindings: PCI: dwc: Add
- interrupts/interrupt-names common properties
-Message-ID: <20220707192544.qrxz2b7cbtqtfddw@mobilestation>
-References: <20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru>
- <20220610085706.15741-8-Sergey.Semin@baikalelectronics.ru>
- <20220615153201.GB1069883-robh@kernel.org>
- <20220619163727.xjdlx2jf565uhids@mobilestation>
+        with ESMTP id S232284AbiGGToH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 15:44:07 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D2742B61F;
+        Thu,  7 Jul 2022 12:44:05 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: dmitry.osipenko)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C8C8666019C3;
+        Thu,  7 Jul 2022 20:44:02 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657223044;
+        bh=s9q09bnLdROpMqyLMBUQhz0ijZlXdUM75kjg46rBmj0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=BAMNb3hntq6N1YVAjYdQILoHglcKsMGJ4YA0mWQQxERAplRBE0k4Vxl03rjeB8BJF
+         SG1siIM+tVhWqAkEMtG8/INZusv1xXwAHmcm1YueWr78NVCtv/GbKWC8BIUfVZ7w/g
+         rxhuHUTrNuOLIXzpd89kZyGwy9UbgCOERVk/rlD+Au7VOSIw+gFiXzA3wadr6/WI2t
+         enzYcVhkpnc7uRlUKvvB1xfGO/xyJeBmQWVGbFUrcUbJxj/KrCjoXnxaAmbXJ2EedE
+         P+P+apJpW9WIrNRSKJLkz8feDH/F9WuM5/wkVegaSeOhMYo1huyPHbjb2y6XTZJ68i
+         nz7CaB0OKpCuA==
+Message-ID: <d557bbd0-2afb-12dc-1287-1aeb44ef55f5@collabora.com>
+Date:   Thu, 7 Jul 2022 22:43:59 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220619163727.xjdlx2jf565uhids@mobilestation>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH V2 00/13] OPP: Add support for multiple clocks*
+Content-Language: en-US
+To:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Nishanth Menon <nm@ti.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>
+Cc:     linux-pm@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>
+References: <cover.1657003420.git.viresh.kumar@linaro.org>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <cover.1657003420.git.viresh.kumar@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
-You must have missed this email. I desperately need to get your
-opinion on the possible solution suggested below. It's the main issue
-regarding this series, which blocks me from going further with the
-patchset re-spin. Let's finally settle things down.
+On 7/5/22 10:00, Viresh Kumar wrote:
+> Hello,
+> 
+> This patchset adds support for devices with multiple clocks. None of the clocks
+> is considered primary in this case and all are handled equally.
+> 
+> The drivers, for multiple clock case, are expected to call dev_pm_opp_set_opp()
+> to set the specific OPP. Though how they find the target OPP is left for the
+> users to handle. For some, we may have another unique OPP property, like level,
+> which can be used to find the OPP. While in case of others, we may want to
+> implement freq-based OPP finder APIs for multiple clock rates. I have decided
+> not to implement them in advance, and add them only someone wants to use them.
+> 
+> This is rebased over a lot of other OPP changes and is pushed here:
+> 
+> git://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git opp/linux-next
+> 
+> V1->V2:
+> 
+> - Fix broken git bisect for:
+>   OPP: Reuse _opp_compare_key() in _opp_add_static_v2()
+> 
+> - Include binding changes written by Krzysztof earlier.
+> 
+> - Check config_clks before calling it, it isn't always set.
+> 
+> - Add config_clks for Tegra30's devfreq to handle its corner case.
+> 
+> - _opp_compare_key() supports multi-clk case now, earlier it skipped freq
+>   comparison for such a case.
+> 
+> - New patch to compare all bandwidth values as well in _opp_compare_key().
+> 
+> - New patch to remove *_noclk() interface.
+> 
+> - Various other minor fixes.
+> 
+> --
+> Viresh
+> 
+> Krzysztof Kozlowski (1):
+>   dt-bindings: opp: accept array of frequencies
+> 
+> Viresh Kumar (12):
+>   OPP: Use consistent names for OPP table instances
+>   OPP: Remove rate_not_available parameter to _opp_add()
+>   OPP: Reuse _opp_compare_key() in _opp_add_static_v2()
+>   OPP: Make dev_pm_opp_set_opp() independent of frequency
+>   OPP: Allow multiple clocks for a device
+>   OPP: Compare bandwidths for all paths in _opp_compare_key()
+>   OPP: Add key specific assert() method to key finding helpers
+>   OPP: Assert clk_count == 1 for single clk helpers
+>   OPP: Provide a simple implementation to configure multiple clocks
+>   OPP: Allow config_clks helper for single clk case
+>   PM / devfreq: tegra30: Register config_clks helper
 
--Sergey
+Hello Viresh,
 
-On Sun, Jun 19, 2022 at 07:37:27PM +0300, Serge Semin wrote:
-> On Wed, Jun 15, 2022 at 09:32:01AM -0600, Rob Herring wrote:
-> > On Fri, Jun 10, 2022 at 11:56:55AM +0300, Serge Semin wrote:
-> > > Currently the 'interrupts' and 'interrupt-names' are defined being too
-> > > generic to really describe any actual IRQ interface. Moreover the DW PCIe
-> > > End-point devices are left with no IRQ signals. All of that can be fixed
-> > > by adding the IRQ-related properties to the common DW PCIe DT-schema and
-> > > defining a common and device-specific set of the IRQ names in accordance
-> > > with the hardware reference manual. Seeing there are common and dedicated
-> > > IRQ signals for DW PCIe Root Port and End-point controllers we suggest to
-> > > split the IRQ names up into two sets: common definitions available in the
-> > > snps,dw-pcie-common.yaml schema and Root Port specific names defined in
-> > > the snps,dw-pcie.yaml schema. The former one will be applied to both DW
-> > > PCIe RP and EP controllers, while the later one - for the RP only.
-> > > 
-> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > 
-> > > ---
-> > > 
-> > > Changelog v3:
-> > > - This is a new patch unpinned from the next one:
-> > >   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
-> > >   by the Rob' request. (@Rob)
-> > > ---
-> > >  .../bindings/pci/snps,dw-pcie-common.yaml     | 51 +++++++++++++++
-> > >  .../bindings/pci/snps,dw-pcie-ep.yaml         | 17 +++++
-> > >  .../devicetree/bindings/pci/snps,dw-pcie.yaml | 63 ++++++++++++++++++-
-> > >  3 files changed, 128 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> > > index b2fbe886981b..0a524e916a9f 100644
-> > > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> > > @@ -17,6 +17,25 @@ description:
-> > >  select: false
-> > >  
-> > >  properties:
-> > > +  interrupts:
-> > > +    description:
-> > > +      There are two main sub-blocks which are normally capable of
-> > > +      generating interrupts. It's System Information Interface and MSI
-> > > +      interface. While the former one has some common for the Host and
-> > > +      Endpoint controllers IRQ-signals, the later interface is obviously
-> > > +      Root Complex specific since it's responsible for the incoming MSI
-> > > +      messages signalling. The System Information IRQ signals are mainly
-> > > +      responsible for reporting the generic PCIe hierarchy and Root
-> > > +      Complex events like VPD IO request, general AER, PME, Hot-plug, link
-> > > +      bandwidth change, link equalization request, INTx asserted/deasserted
-> > > +      Message detection, embedded DMA Tx/Rx/Error.
-> > > +    minItems: 1
-> > > +    maxItems: 26
-> > > +
-> > > +  interrupt-names:
-> > > +    minItems: 1
-> > > +    maxItems: 26
-> > > +
-> > >    phys:
-> > >      description:
-> > >        There can be up to the number of possible lanes PHYs specified.
-> > > @@ -91,4 +110,36 @@ properties:
-> > >  
-> > >  additionalProperties: true
-> > >  
-> > > +definitions:
-> > 
-> 
-> > $defs:
-> > 
-> > But I suppose this is the applying fixups or not issue. That's certainly 
-> > not behavior we should rely on. If we need a way to specify applying 
-> > fixups or not, we should do that. But really I'd prefer not to need 
-> > that.
-> 
-> $defs doesn't work in this case. Please see the patchlog to the v2
-> of this patch:
-> https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
-> 
-> Anyway see my next comment. Let's settle the next issue first, then
-> get back to the implementation details.
-> 
-> > 
-> > > +  interrupt-names:
-> > > +    description:
-> > > +      IRQ signal names common for the DWC PCIe Root Port and Endpoint
-> > > +      controllers.
-> > > +    oneOf:
-> > > +      - description:
-> > > +          Controller request to read or write virtual product data
-> > > +          from/to the VPD capability registers.
-> > > +        const: vpd
-> > > +      - description:
-> > > +          Link Equalization Request flag is set in the Link Status 2
-> > > +          register (applicable if the corresponding IRQ is enabled in
-> > > +          the Link Control 3 register).
-> > > +        const: l_eq
-> > > +      - description:
-> > > +          Indicates that the eDMA Tx/Rx transfer is complete or that an
-> > > +          error has occurred on the corresponding channel. eDMA can have
-> > > +          eight Tx (Write) and Rx (Read) eDMA channels thus supporting up
-> > > +          to 16 IRQ signals all together. Write eDMA channels shall go
-> > > +          first in the ordered row as per default edma_int[*] bus setup.
-> > > +        pattern: '^dma([0-9]|1[0-5])?$'
-> > > +      - description:
-> > > +          PCIe protocol correctable error or a Data Path protection
-> > > +          correctable error is detected by the automotive/safety
-> > > +          feature.
-> > > +        const: sft_ce
-> > > +      - description:
-> > > +          Indicates that the internal safety mechanism detected and
-> > > +          uncorrectable error.
-> > > +        const: sft_ue
-> > 
-> > I still don't really like this pattern. My first read of it makes me 
-> > think only 1 interrupt is supported, and I have to go look that this is 
-> > referenced from 'items'.
-> > 
-> > Could we do a lot more with json-schema like you have? Yes, but the 
-> > schemas are optimized for simplicity and a relatively fixed pattern of 
-> > what's allowed as json-schema is new to most folks. It's also easy to 
-> > create things that simply don't work (silently). Just reviewing this 
-> > series is hard.
-> > 
-> 
-> > This series is trying to do lots of things. Refactoring, adding 
-> > constraints, and adding a new binding. I would split it up if you want 
-> > to make progress.
-> 
-> This series has been refactored three times already! First I created
-> it as the legacy bindings conversion to the yaml schema. I missed just
-> a few weeks, but someone has already submitted the converted bindings.
-> So I had to rebase my work on top of the already performed conversion.
-> After that you asked me to split it up into the series of patches.
-> Now you want the patchset to be refactored again and to be split up
-> again. Each such action takes a lot of my time which I've already
-> spent too much on this update taking into account the time spent on
-> looking for a way to implement the extendable array property pattern.
-> And there is no guaranty you won't refuse the suggested update should
-> I re-submit the separate patchset. So please don't ask me to split it
-> up again especially seeing there are only eleven DT-related patches
-> here. I just can't afford it, but am still very much eager to get the
-> work merged in in a suitable for you and me form.
-> 
-> Let's finally settle the main issue here so I could re-submit the
-> series what you'd be ok with. On each iteration you said you didn't
-> like the pattern I've used here. It looks like this:
-> 
-> 1) The most common schema:
-> pci/snps,dw-pcie-common.yaml:
-> > definitions:
-> >   interrupt-names:
-> >     oneOf:
-> >       - const: i1
-> >       - const: i2
-> 
-> 2) Generic Dw PCIe Root Port schema:
-> pci/snps,dw-pcie.yaml:
-> > properties:
-> >   interrupt-names:
-> >     items:
-> >       anyOf:
-> >         - $ref: /schemas/pci/snps,dw-pcie-common.yaml#/definitions/interrupt-names
-> >         - $ref: '#/definitions/interrupt-names'
-> > definitions:
-> >   interrupt-names:
-> >     oneOf:
-> >       - const: i3
-> >       - const: i4
-> 
-> 3) Generic Dw PCIe Endpoint schema:
-> pci/snps,dw-pcie-ep.yaml:
-> > properties:
-> >   interrupt-names:
-> >     items:
-> >       anyOf:
-> >         - $ref: /schemas/pci/snps,dw-pcie-common.yaml#/definitions/interrupt-names
-> >         - $ref: '#/definitions/interrupt-names'
-> > definitions:
-> >   interrupt-names:
-> >     oneOf:
-> >       - const: i5
-> >       - const: i6
-> 
-> I am not that much happy with it either, but first I didn't find any
-> alternative, and second by using it I've solved several complex
-> problems persistent in the currently implemented DW PCIe bindings:
-> 1) Drop the duplicated properties defined in the Root Port and Endpoint
-> schemas and create a common DT bindings for both of these devices
-> seeing in accordance with the ref. manual they are very much alike.
-> 2) Create the generic DW PCIe Root Port and Endpoint DT-schemas with
-> more restrictive constraints so to stop the new drivers from creating
-> their own regs/clocks/resets/interrupts bindings implementation.
-> 3) Fix the already defined DW PCIe vendor-specific DT-bindings to use
-> either 1) or 2) schema depending on what is applicable for them.
-> 
-> So to speak I was willing to bring some order to the already
-> implemented DT-schemas and to make sure the new bindings wouldn't
-> define the new names to the already known resources. As a result the
-> next schemas hierarchy has been provided:
->                        1. Common DW PCIe schema
->                        snps,dw-pcie-common.yaml
->                                   |
->           +-----------------------+----------------------+
->           |                       |                      |
->           v                       v                      V
->  2.DW PCIe Root Port     3. DW PCIe Endpoint   4. DW PCIe Vendor-spec
->   snps,dw-pcie.yaml     snps,dw-pcie-ep.yaml             |
->           |                       |                      |
->           v                       v                      V
->  baikal,bt1-pcie.yaml                         hisilicon,kirin-pcie.yaml
->   intel-gw-pcie.yaml                            sifive,fu740-pcie.yaml
->                                               toshiba,visconti-pcie.yaml
->                                             socionext,uniphier-pcie-ep.yaml
->                                                  fsl,imx6q-pcie.yaml
-> 
-> As you can see the suggested in this patchset approach is very flexible
-> and permits using the common DW PCIe schema in the particular device
-> bindings while still have the vendor-specific constraints defined in
-> the particular schemas. So the new devices drivers are supposed to use
-> the schemas (2) and (3), while the already added drivers can
-> following the path (4), apply the schema (1), but still use the names
-> "definitions" added to (1), (2) and (3).
-> 
-> You keep saying that what I've done here is misleading since what was
-> created under the "definitions" property is perceived as the "only 1
-> interrupt/clock/reg/reset is supported, and you have to go look that
-> this is referenced from 'items'". If so then what alternative to this
-> solution can you suggest? Do you know a schema pattern which would be
-> more suitable? If there is none, then what? Do you suggest to drop
-> trying to solve the problems I've listed above? Please answer to these
-> questions (or go on on this comment for a possible but IMO less
-> suitable alternative solution).
-> 
-> Anyway in my opinion the currently implemented approach of the names
-> array properties:
-> >   reg-names:
-> >     items:
-> >       enum: [dbi, dbi2, config, atu, addr_space, link, atu_dma, appl]
-> isn't much more descriptive, since it doesn't provide much info
-> regarding the resources but just lists all the common and
-> vendor-specific names to the same resources.
-> 
-> As IMO a much less suitable, but "definitions"-less alternative to my
-> approach we can use the next pattern:
-> 
-> 1) The most common schema:
-> pci/snps,dw-pcie-common.yaml:
-> > properties:
-> >   interrupt-names:
-> >     anyOf:
-> >       - const: i1
-> >       - const: i2
-> >       - true
-> 
-> 2) Generic Dw PCIe Root Port schema:
-> pci/snps,dw-pcie.yaml:
-> > allOf:
-> >   - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
-> >
-> > properties:
-> >   interrupt-names:
-> >     items:
-> >       anyOf:
-> >         - const: i3
-> >         - const: i4
-> >         - true
-> 
-> 3) etc
-> 
-> It will give us a more generic and less restrictive bindings. Thus due
-> to using the "true" schema in there we won't be able to automatically
-> deny the new resource names adding. But it won't have any
-> "definitions" or "$defs" utilized as you seem do not like.
-> 
-> -Sergey
-> 
-> > 
-> > Rob
+This patch breaks Tegra again, please take a look:
+
+   OPP: Remove dev{m}_pm_opp_of_add_table_noclk()
+
+ 8<--- cut here ---
+ Unable to handle kernel paging request at virtual address ffffffff
+ [ffffffff] *pgd=9effd861, *pte=00000000, *ppte=00000000
+ Internal error: Oops: 37 [#1] PREEMPT SMP ARM
+ Modules linked in:
+ CPU: 3 PID: 8 Comm: kworker/u8:0 Not tainted
+5.19.0-rc1-00040-g30b62d123f4f #82
+ Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+ Workqueue: events_unbound deferred_probe_work_func
+ PC is at _opp_compare_key+0x40/0xc4
+ LR is at 0xfffffffb
+ pc : [<c0b91b54>]    lr : [<fffffffb>]    psr: 20000113
+ sp : df831b08  ip : c33cd4d0  fp : df831b24
+ r10: c2586078  r9 : c258606c  r8 : 00000000
+ r7 : 00000000  r6 : 00000001  r5 : c33cd480  r4 : c2586000
+ r3 : 00000000  r2 : c33cd480  r1 : c258606c  r0 : c2586000
+ Flags: nzCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
+ Control: 10c5387d  Table: 8000404a  DAC: 00000051
+...
+ Backtrace:
+  _opp_compare_key from _set_opp+0x80/0x408
+  r7:00000000 r6:c27c0010 r5:c33cd480 r4:c2586000
+  _set_opp from dev_pm_opp_set_opp+0x74/0xdc
+  r10:00000001 r9:000f4240 r8:c33b6840 r7:c33b6840 r6:c33cd480 r5:c27c0010
+  r4:c2586000
+  dev_pm_opp_set_opp from tegra_pmc_core_pd_set_performance_state+0x54/0xbc
+  r6:c33b6840 r5:c1a21760 r4:c33cd480
+  tegra_pmc_core_pd_set_performance_state from
+_genpd_set_performance_state+0x1f0/0x280
+  r6:c33b6b58 r5:c33b6b48 r4:000f4240
+  _genpd_set_performance_state from _genpd_set_performance_state+0xb4/0x280
+  r10:00000001 r9:000f4240 r8:c33b9800 r7:c33b6840 r6:c33b9b18 r5:c33d0040
+  r4:000f4240
+  _genpd_set_performance_state from genpd_set_performance_state+0xb8/0xd4
+  r10:c33b9a98 r9:c33d0400 r8:00000000 r7:00000000 r6:c33b9800 r5:00000000
+  r4:c33d0400
+  genpd_set_performance_state from genpd_runtime_resume+0x22c/0x240
+  r5:00000000 r4:c27c0810
+  genpd_runtime_resume from __rpm_callback+0x4c/0x1ac
+  r10:c27ba8bc r9:00000000 r8:c27c0960 r7:c27c08cc r6:c27ba800 r5:c09611b8
+  r4:c27c0810
+  __rpm_callback from rpm_callback+0x60/0x64
+  r9:df831ce4 r8:c27c0960 r7:00000004 r6:c27ba800 r5:c09611b8 r4:c27c0810
+  rpm_callback from rpm_resume+0x480/0x7e0
+  r7:00000004 r6:c27ba800 r5:c09611b8 r4:c27c0810
+  rpm_resume from __pm_runtime_resume+0x58/0xb0
+  r10:00000000 r9:c2587194 r8:c2587210 r7:c27c0810 r6:c27c08cc r5:60000113
+  r4:c27c0810
+  __pm_runtime_resume from host1x_probe+0x3d4/0x6d4
+  r7:c27c0810 r6:c27c0800 r5:00000000 r4:c2587040
+  host1x_probe from platform_probe+0x6c/0xc0
+  r10:c191438c r9:c1aa8e20 r8:0000000d r7:c27c0810 r6:c1a2d354 r5:c27c0810
+  r4:00000000
+  platform_probe from really_probe.part.0+0xac/0x2c0
+  r7:c27c0810 r6:c1a2d354 r5:c27c0810 r4:00000000
+  really_probe.part.0 from __driver_probe_device+0xb8/0x14c
+  r7:c27c0810 r6:c1a2d354 r5:00000000 r4:c27c0810
+  __driver_probe_device from driver_probe_device+0x44/0x11c
+  r7:c27c0810 r6:c27c0810 r5:c2137c58 r4:c2137c54
+  driver_probe_device from __device_attach_driver+0xc8/0x10c
+  r9:c1aa8e20 r8:c242c000 r7:00000000 r6:c27c0810 r5:df831e6c r4:c1a2d354
+  __device_attach_driver from bus_for_each_drv+0x90/0xdc
+  r7:00000000 r6:c09440f8 r5:df831e6c r4:00000000
+  bus_for_each_drv from __device_attach+0xbc/0x1d4
+  r6:c27c0854 r5:00000001 r4:c27c0810
+  __device_attach from device_initial_probe+0x1c/0x20
+  r6:c1a30df8 r5:c27c0810 r4:c27c0810
+  device_initial_probe from bus_probe_device+0x98/0xa0
+  bus_probe_device from deferred_probe_work_func+0x8c/0xbc
+  r7:00000000 r6:c1a309e8 r5:c1a3099c r4:c27c0810
+  deferred_probe_work_func from process_one_work+0x2b8/0x774
+  r7:c25c8000 r6:c2407000 r5:c2557480 r4:c1a309f8
+  process_one_work from worker_thread+0x17c/0x56c
+  r10:00000088 r9:c25c8000 r8:c1905d40 r7:c240703c r6:c2557498 r5:c2407000
+  r4:c2557480
+  worker_thread from kthread+0x108/0x13c
+  r10:00000000 r9:df815e2c r8:c2557500 r7:c2557480 r6:c0151924 r5:c25c8000
+  r4:c2554540
+  kthread from ret_from_fork+0x14/0x28
+ Exception stack(0xdf831fb0 to 0xdf831ff8)
+ 1fa0:                                     00000000 00000000 00000000
+00000000
+ 1fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+00000000
+ 1fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+  r9:00000000 r8:00000000 r7:00000000 r6:00000000 r5:c015ba68 r4:c2554540
+ Code: e24cc004 ea000001 e1530006 0a000007 (e5be5004)
+ ---[ end trace 0000000000000000 ]---
+
+
+-- 
+Best regards,
+Dmitry
