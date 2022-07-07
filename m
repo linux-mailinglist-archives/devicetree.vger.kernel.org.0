@@ -2,192 +2,370 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2F4956ABCC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 21:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CD4E56ABD1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 21:26:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236165AbiGGTZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 15:25:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43736 "EHLO
+        id S236578AbiGGTZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 15:25:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235526AbiGGTZE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 15:25:04 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5312717AB6;
-        Thu,  7 Jul 2022 12:25:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1657221903; x=1688757903;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=0dgxODwxyaQfuzHBDFLgAcvFl1H3kv6fNxfM+5/xsX0=;
-  b=U+klRY4bTQX8c9aq/jlolYBj3kPJ3/gcnMrhMMvGFXIfdNYvfwklzfIH
-   ELxHvTdmENiCQkExcXcX8R5OR3atLrBF134FRO7HE2knZLmDUC6AgYuf4
-   Y5ZcmHnNufVPrx0nU07QiJddADyOqiDdWxigg3AfAIxBP0gTTk4tPW2UL
-   jvzmTYd+1sznsbT+6d6cSObljtTaU8vdjZjHkTIxbwgYViIQY7Wsw0dr4
-   PMP6NdlDka4wIXBxdlEsHc2JcGnnnjpL7eQGWIH3h1eHn7mzKvQBloLPu
-   IMtNOtrxAKAWF8hxZqAz/fCig+LSFaIkAiEXwTQ3nP4qeCz4hjQfJ0C0C
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; 
-   d="scan'208";a="166891501"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Jul 2022 12:25:02 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 7 Jul 2022 12:25:00 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Thu, 7 Jul 2022 12:25:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KmD7WjBRLMwnbWymPmtqJXXSFhcFLqBV7JnuZjL/v2Qo3d/B5kN1yn9hnuQGe1mwbyyz+v0smDu04AS+UFwpYyXMp+hikeCVHG/fUt7TuHED5D6BIDrlZeBWyVYt1K9UuRv6OSqL6Jn7OyHazQotCg7va8fmlx3yM4pIcbx9QwkGbOrYENhm1IT7cdlH9XwsZCfOpVInqx8J5lqyfXf97Am1Z542KTsrs74Pp5mdLJCliyKmn73qcIh3sqRFiDN136Fv34Z+wsdxjuv6vcRS14PHxPTuZns49K6tMhbsHOFonK5Xui2zSHITth9pD1WN2UjAbqLxcgakYG7SmD770g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0dgxODwxyaQfuzHBDFLgAcvFl1H3kv6fNxfM+5/xsX0=;
- b=lqKviVi3dVcCmbl3h52Fi1xYWBF9shSWoCFoIhaXgg3RymtWGyN8jar4vS9+7rKMQ+ys3kSFiGjfks6Yx5d+7CtVsUGtDjh3kx9LBMx1bf/7y141RqPCdwLfwwmZg6mx4SoDxiP9qJAiCEpWwW5t4ZxM5M5fYiFXGzKrs+1qYXbL97a6w3ycEJAXThm7Ucm8/DLweYpffOcCTGoZM5FxZhUvUeCw6IC5eHkRbfNMOudY4AFWcpduzMWAU4gOTk6HDN+nPmV0nisX7SHXEsvNEpohh6SlsKdGQXUIrvVR1HNQDWL3oos8iYQN0hXCIc53ihIQAu9BmRqKeUlIerQzyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S236529AbiGGTZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 15:25:50 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AC617E2F;
+        Thu,  7 Jul 2022 12:25:49 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id d12so9478523lfq.12;
+        Thu, 07 Jul 2022 12:25:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0dgxODwxyaQfuzHBDFLgAcvFl1H3kv6fNxfM+5/xsX0=;
- b=cy+5jZcnbT9TiyOO89bde8O8evhkyascYZEGF2QlDtNTAqbJ8190LlzCgDIdhMcskj+KcaISkvS2w+M3sNtKbkYd0E4Rh08xjDCYGgcnAWhwLobBqw02lFHboOx8dPYOLYqTzn5QaVrCIbs+Cy2m0v04iniJ5aymkwcZUOTwX24=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
- by DM6PR11MB2794.namprd11.prod.outlook.com (2603:10b6:5:c5::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.15; Thu, 7 Jul
- 2022 19:24:52 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::8d4a:1681:398d:9714]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::8d4a:1681:398d:9714%5]) with mapi id 15.20.5417.016; Thu, 7 Jul 2022
- 19:24:51 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <kettenis@openbsd.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <paul.walmsley@sifive.com>,
-        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>, <kernel@esmil.dk>
-CC:     <palmer@rivosinc.com>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] riscv: dts: starfive: correct number of external
- interrupts
-Thread-Topic: [PATCH v2] riscv: dts: starfive: correct number of external
- interrupts
-Thread-Index: AQHYkjNVXPGYSaRh4Uqt8flC17YMhK1zSg6A
-Date:   Thu, 7 Jul 2022 19:24:51 +0000
-Message-ID: <27617ba6-addf-6f29-e1a8-2cb813dc303a@microchip.com>
-References: <20220707185529.19509-1-kettenis@openbsd.org>
-In-Reply-To: <20220707185529.19509-1-kettenis@openbsd.org>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e33fc0d6-b9a2-4348-f432-08da604e5d79
-x-ms-traffictypediagnostic: DM6PR11MB2794:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JDT2ODSXhEy8hVa6L8Zjk4+m7X2pxZB1Cuvs4/BG2/FluC/3V4iEEdWdpMjlxyhKv0AR2xeSMjyhbCt5pskyvZG+dVrnrL1gIhQoSWy/kihHBQKZ1iP6WxEDQ0bpfDQcLphSnNnGOxtjZr+dRrQMFi9p5oJZtYlSAARiNhndkgXVvu99w6J2h8prjUzGfUT8OZTRbP59ObigbQcQejxtFCv2waT0vhgtEmPaKdJZgVkuAzh2YtOxjIJhA0GeSTS3LY3gP1nBrP3LXPnSiFGiVgQ6uZXZbaW8haRGGbM+WKasItLz3zV8YN80oaxfQGNkn86oDuY++CuAxMuVF+IqX148yJrT1i9/zE06Xtcg9qSyLJIcTWRarkBsDtZl0ZV9SwOC31Kaus3bZniUxdZdL0MlVFTqr1xAWs7FFAQAWrAah/YLS5RE8khe4vliwktZ/bpFp0Tl9tsGFvxV5OS6Ht5FShXxeuupxBXc74Bo7j5fIeK+ZQLcerKruqCNB4sL483/P4y+JyMiVY3JGEiz7cEaxQLR5e8FhETBFBvFhqZsQVdBwSpA7WsvuugFToL4jTu0ypBvihc1R2tX8CdxqMtmos9vDo06OPrsgsOXxN7BevZOyBqUSmZN222qbF+NTvI/ec9VwLTJPd3OCAzrP0eL4BPKjLhpSBm8ISSAawfhiFGfGOzk33IltNDxC5LdHgaKhGO42J4wusirYu+asLzoG9nrz2kD9KMhu0FdyER/lpewtH9Hpl2dlLGgiKLo7fZJrwGjq2BERZlaCR7/MuJcYtSXkxPFCExVWKRNJzRmCrlIc8aYTN/cUff13R4VDd8Yk4YVzAiPHwn6Gwd4ae2CVCtA1N/ShV6O8Izrt3zMoVqSm2W1j9T+nFE2Rv2tet/VimmcZ4aCYu7XYeU9g3v1L/CCV2rg01jbD7dYQHc=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(346002)(396003)(366004)(39860400002)(136003)(376002)(316002)(26005)(54906003)(83380400001)(110136005)(122000001)(36756003)(31686004)(186003)(6512007)(66476007)(86362001)(2616005)(5660300002)(66446008)(7416002)(8676002)(6506007)(2906002)(4326008)(91956017)(76116006)(38070700005)(64756008)(66946007)(38100700002)(66556008)(71200400001)(478600001)(41300700001)(6486002)(966005)(53546011)(31696002)(8936002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TnRXb2hhNFFjNUlsYXNZRi90a0NzMEcyU284VjJYS3Q0UDhveGl4NDg2QWFK?=
- =?utf-8?B?VDJWcEZzN0IwdWY3T2RYOVAwM3pQZTI5ZlRvdGFoc1Q1NWE1MU14OFA1anFj?=
- =?utf-8?B?UTdMbm9LeFlTSzhJall4T2pFWmZoc1NoT21uVXdDUE1yL1JkSWJRSElyakRz?=
- =?utf-8?B?ZDZIVHdGNGJhZTBqZHl6ckk0ako0cUFLaXpsZk5nWTBNNlZnYm0rMHlzYk1i?=
- =?utf-8?B?SVNsNVBaR3BNMlFtZk1qOEFaaTVOTm50UkF2a2tWQU1MdjhjOEFvS2ovRTBX?=
- =?utf-8?B?dXp3ZmR5WUJjZFYzMXFKdmd2VW5EQk5pcWo1RFhkNU03bE12aHlIQ3ZmZG9G?=
- =?utf-8?B?cXhQTlNyYy9Od0ZOTTRjUDc4SUE3TzkzRlBNT25vbnYzc0tUdXR1TFMwckZS?=
- =?utf-8?B?V3UyNnFnM2Q4M0p4OWJSbFdVQTlLNWd6V1k0N0pwbUNyZzYzUWdMS0RBTjMx?=
- =?utf-8?B?WDVRN0VqbmJhb0luNnFjN25kUzY3U2psZGpWYVFqY2tLY0F4d1pIejA1Qnls?=
- =?utf-8?B?RU4xZTF5dnI2TnpkWENZdXFvZWh2OHVGMFFLaWpNcmJGRld2WWhDdDRiSXBh?=
- =?utf-8?B?SnIzWGprVEtlWTBXakpNNDZqKy9aQTlBV1J5THhMc2FsbXRzZ21kWFp1bEMv?=
- =?utf-8?B?N3ViVURaWlZGdlVLME1nbnhvOHdMaTdnVEU1dm1yQnY2RGhuQVgwY2ViODJV?=
- =?utf-8?B?TkJMbXYwdFJkM3Vucks2QmM1eUwyYzlXTXREdHBDdlZUSHZPMjFJeHRrSG41?=
- =?utf-8?B?SmNpWDBHR29JOVNhRHRpNnVXdkxqTU1vZWxJaWhSQ1NQeWhvaHBRYVNSUFFi?=
- =?utf-8?B?UnlHSmVvc2FkQVp0RlR6ZmdQU01VNm43UXhTUkhxUzBla1hQSkFEYjlqbXZ1?=
- =?utf-8?B?VDJoWHFtNC8yVVplSlFhcW9IbFVlZEZkd21xZXIvejJMdTh2L1l6YWx5aDA3?=
- =?utf-8?B?aUx5ZmozdDFOdkZ4M081QVJPSlhWSkI1WWZZeTN6dzVXY09wVUZaQVptV0pH?=
- =?utf-8?B?OE50Qy8rNDcxNlp3dVZKUkc4OTBndEg4MCtMWU5WWXF0bk9uTHJLZkRrdGFp?=
- =?utf-8?B?TlhjMHErRktyUTlwT3FUdk1PMHdpQVFvdWtNOWgrd052aDVuNXVxcjdGbjEz?=
- =?utf-8?B?aXJRMWY2NVJiOWZQNzBkT21iUlJoTElGQ0tlV3U4VW1zNFh6cWdmMzUyRzVG?=
- =?utf-8?B?ZnpESUxZR0M4bndwRitmUHlQWXdrT2ZWOUJ0aE5kZ1dXU2pkQjZVdlYralFt?=
- =?utf-8?B?WkJvcEhKbTFRSXg3aGs2ODl2cjcrM2tLVGhhS2hSVGlUMnZvYXpXdFd5V3NJ?=
- =?utf-8?B?b3lDSXJId0JJNUs4OGxNSjI5dGgzMkVyYTJoOSt3MVc2cEpiVDg2MU1KQVJj?=
- =?utf-8?B?SG8zcTRibkpjNk5NeDNSRllHWHJjcm42dkpETkZPc2dBbytwM0VqcURLeW1j?=
- =?utf-8?B?SllWRTNZb2hpV08zcWdtb2l1cU0rb0I3MnVqTEhzSHppS2ZkNWZyRUx4Y1Nx?=
- =?utf-8?B?alpNK1VIdnpRcjIzLzhFWmhWaUFaS0M0TTJWcUNIY21IeTR0aDNlQzJDaGVL?=
- =?utf-8?B?dG1PL2Z2SUdHdDdJQlh6WVlMeW1WUW5lQlJHdEZtZmdxKzNiZjBMbWVRdHlH?=
- =?utf-8?B?ZlB0TXJaL1ZkSGNtOHBBa2VDVXN0NGpQaTJKeFY3M2N5aHhLTytEYUozYUU0?=
- =?utf-8?B?THVEazNpZ2dXaHQ3US9iSSs4RzI2c1ZyK2EvNUNQcGxlMWtidnp4clhLNlcw?=
- =?utf-8?B?RU9JREJnS25FTVJ2blVqZGJNRHp0MHcrODI0bUFvNm5MWDR0NmhYaDBKb01w?=
- =?utf-8?B?NmNQWjUrQUlnemJlUmJ4OVBidDFwQjlWMDhyc3lzaGc1TFVmOC9NZ1NzSkw5?=
- =?utf-8?B?SFlRZ3dnMEdrT2R0L09VR1J2ZFFJeTd4NUg3ZjNITldQTC9UdlBscUU2RXVx?=
- =?utf-8?B?bkswU3lza3hBbklPZEY4Y2JpK0plODcvbCtrbXlndVIwUmtzTTZ2K1Njd1dw?=
- =?utf-8?B?Sm9YTjQwQklXVzhEMjBaUUhXUjVjeWV1M3FsNmlhN0hhdXRqYWY4VTU4QlVz?=
- =?utf-8?B?RjQwRDc5L1VrQ3hacWlnYTBsOHNSZVNVcllNblVSbzhkTm0wL0tDTkxMSm5o?=
- =?utf-8?B?U21wR2dzcjF5NCtzR3FITXFUOXVyT1B3VkNnMTJuaU1XNGFMZW82bk9ZWFZ3?=
- =?utf-8?B?dlE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B21DC5700E8ACB439618C4E5D5163E10@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=bn2ko38Sm2cdbXvB1Bb2L53qXiUYxOL53jCizCZafgc=;
+        b=l00be4910K1/R1ROYSKRrGgeztBQZqzgKGj4PhxCjlXBMLOyuJ5FWDsWoBoZAgoinO
+         aMAQTxGwdZE98h1waVFPn+lHd1gQcuIBVVGUS6lZcwoNQVnZJgz74qYm5oQiebn21vmf
+         01cKcDaaaWp/gltRk/XGJxgv1vOGvFPxcFw4Fg845OUKhrp7lKsyHHlvEeuEcgNE26St
+         gKpecRLO34O++PoUErEKCcGOREsriTQEdBD4m+zhvxSmKjplDWQfWh0HRbM/zCRyqQCw
+         gIMVsFZpYRXVM6nJhz8gazqQw2jzcAQ8qSumqM6l2GTrY3KDj4ZM0nLESzZC7rgFfFvM
+         GWYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bn2ko38Sm2cdbXvB1Bb2L53qXiUYxOL53jCizCZafgc=;
+        b=Zv9CrKvukgRgYk0dRJTaPlGwWfUOHCR4vZb6SOMWuvuysc0+nzgjtnVI+uUuOtHfaV
+         f/nVdEijkaJtw2jcIUiBgOVNzh+0iV8VJDs3MhsPj1RZXKUmcr2Wyds3W63MO+tYFgH0
+         tfxNOYfigqz46qHw3z9/lnVfEtHdcLjCZJsprc9CuGjNbTKtRfGW8kRCOCZ1kaFAMw1h
+         Rb97rQnI7rxGXRxymk8uSW4mRMZ1fQYjcbvopBRJ7ffYzHubyc8wkWlPYwq27NRM/nAm
+         CxUTqgU9oV1NoZO4BAP2i7WsfTihAZe+Gc1XUn6Svl+l130k3QRnQcS6PHxG90YEGOAZ
+         S+Yw==
+X-Gm-Message-State: AJIora8NW1rHC6vNcYXRhSblbhcxnoQBOflhI5d4wSH7RffxFpl4wOzE
+        Ou1O2F8ZPGBxsgUa4bpOi5M=
+X-Google-Smtp-Source: AGRyM1vEd40ybANyU2A+lmLQ5HucaokHX6acry1wBBtRWYfvqH7FoSUpRJZ+qnM00Nfthi9ekeioCw==
+X-Received: by 2002:a05:6512:2811:b0:47f:6d20:6a71 with SMTP id cf17-20020a056512281100b0047f6d206a71mr29699429lfb.60.1657221947562;
+        Thu, 07 Jul 2022 12:25:47 -0700 (PDT)
+Received: from mobilestation ([95.79.140.178])
+        by smtp.gmail.com with ESMTPSA id s21-20020a056512315500b0047f6e91d4fesm4596000lfi.141.2022.07.07.12.25.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 12:25:46 -0700 (PDT)
+Date:   Thu, 7 Jul 2022 22:25:44 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 07/17] dt-bindings: PCI: dwc: Add
+ interrupts/interrupt-names common properties
+Message-ID: <20220707192544.qrxz2b7cbtqtfddw@mobilestation>
+References: <20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610085706.15741-8-Sergey.Semin@baikalelectronics.ru>
+ <20220615153201.GB1069883-robh@kernel.org>
+ <20220619163727.xjdlx2jf565uhids@mobilestation>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e33fc0d6-b9a2-4348-f432-08da604e5d79
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2022 19:24:51.8023
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hy1fjpGmL8Nr2gGJVfLVsnGV4Kq2d7+7XDQAiCLJEU3coXeE320rkRvOmYurHqomUgyDr99F/RGbHi9QTw+jcQCn3qvoZtFXd6uav2jnBec=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2794
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220619163727.xjdlx2jf565uhids@mobilestation>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDcvMDcvMjAyMiAxOTo1NSwgTWFyayBLZXR0ZW5pcyB3cm90ZToNCj4gVGhlIFBMSUMgaW50
-ZWdyYXRlZCBvbiB0aGUgVmljX1U3X0NvcmUgaW50ZWdyYXRlZCBvbiB0aGUgU3RhckZpdmUNCj4g
-Skg3MTAwIFNvQyBhY3R1YWxseSBzdXBwb3J0cyAxMzMgZXh0ZXJuYWwgaW50ZXJydXB0cy4gIDEy
-NyBvZiB0aGVzZQ0KPiBhcmUgZXhwb3NlZCB0byB0aGUgb3V0c2lkZSB3b3JsZDsgdGhlIHJlbWFp
-bmRlciBhcmUgdXNlZCBieSBvdGhlcg0KPiBkZXZpY2VzIHRoYXQgYXJlIHBhcnQgb2YgdGhlIGNv
-cmUtY29tcGxleCBzdWNoIGFzIHRoZSBMMiBjYWNoZQ0KPiBjb250cm9sbGVyLiAgQnV0IGFsbCAx
-MzMgaW50ZXJydXB0cyBhcmUgZXh0ZXJuYWwgaW50ZXJydXB0cyBhcyBmYXINCj4gYXMgdGhlIFBM
-SUMgaXMgY29uY2VybmVkLiAgRml4IHRoZSBwcm9wZXJ0eSBzbyB0aGF0IHRoZSBkcml2ZXIgY2Fu
-DQo+IG1hbmFnZSB0aGVzZSBhZGRpdGlvbmFsIGludGVycnVwdHMsIHdoaWNoIGlzIGltcG9ydGFu
-dCBzaW5jZSB0aGUNCj4gaW50ZXJydXB0cyBmb3IgdGhlIEwyIGNhY2hlIGNvbnRyb2xsZXIgYXJl
-IGVuYWJsZWQgYnkgZGVmYXVsdC4NCg0KVGhlIG1pc3NpbmcgNCBmb3IgdGhlIGwyY2FjaGUgY29u
-dHJvbGxlciBjZXJ0YWlubHkgbWFrZSBzZW5zZSAmDQp0aGUgZG9jdW1lbnRhdGlvbiBkb2VzIG1l
-bnRpb24gdGhlcmUgYmVpbmcgaW50ZXJydXB0cyBhcyBmYXIgdXANCmFzIDEzMSBpbiBUYWJsZSAy
-OC4NClRhYmxlIDMzIGRpc2FncmVlcyBhbmQgaGFzIGFuIGludGVycnVwdCAxMzMuDQpHb2Qga25v
-d3Mgd2hhdCB0aG9zZSB0d28gYXJlIHVzZWQgZm9yLCBidXQgdGhlIGRvY3VtZW50YXRpb24NCmNl
-cnRhaW5seSBtYWtlcyBpdCBsb29rIGxpa2UgdGhleSBkbyBleGlzdC4NCg0KTGluazogaHR0cHM6
-Ly9naXRodWIuY29tL3N0YXJmaXZlLXRlY2gvSkg3MTAwX0RvY3MvYmxvYi9tYWluL3ZpY191N19t
-YW51YWxfd2l0aF9jcmVhdGl2ZWNvbW1vbnMucGRmICMgUGFnZSA0NCAmIDQ1DQpSZXZpZXdlZC1i
-eTogQ29ub3IgRG9vbGV5IDxjb25vci5kb29sZXlAbWljcm9jaGlwLmNvbT4NCg0KPiANCj4gRml4
-ZXM6IGVjODUzNjJmYjEyMSAoIlJJU0MtVjogQWRkIGluaXRpYWwgU3RhckZpdmUgSkg3MTAwIGRl
-dmljZSB0cmVlIikNCj4gU2lnbmVkLW9mZi1ieTogTWFyayBLZXR0ZW5pcyA8a2V0dGVuaXNAb3Bl
-bmJzZC5vcmc+DQo+IC0tLQ0KPiANCj4gQ2hhbmdlTG9nOg0KPiANCj4gdjI6IC0gRml4IGNvbW1p
-dCBtZXNzYWdlDQo+IA0KPiANCj4gIGFyY2gvcmlzY3YvYm9vdC9kdHMvc3RhcmZpdmUvamg3MTAw
-LmR0c2kgfCAyICstDQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRp
-b24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL3Jpc2N2L2Jvb3QvZHRzL3N0YXJmaXZlL2po
-NzEwMC5kdHNpIGIvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9qaDcxMDAuZHRzaQ0KPiBp
-bmRleCA2OWYyMmY5YWFkOWQuLmY0OGUyMzJhNzJhNyAxMDA2NDQNCj4gLS0tIGEvYXJjaC9yaXNj
-di9ib290L2R0cy9zdGFyZml2ZS9qaDcxMDAuZHRzaQ0KPiArKysgYi9hcmNoL3Jpc2N2L2Jvb3Qv
-ZHRzL3N0YXJmaXZlL2poNzEwMC5kdHNpDQo+IEBAIC0xMTgsNyArMTE4LDcgQEAgcGxpYzogaW50
-ZXJydXB0LWNvbnRyb2xsZXJAYzAwMDAwMCB7DQo+ICAJCQlpbnRlcnJ1cHQtY29udHJvbGxlcjsN
-Cj4gIAkJCSNhZGRyZXNzLWNlbGxzID0gPDA+Ow0KPiAgCQkJI2ludGVycnVwdC1jZWxscyA9IDwx
-PjsNCj4gLQkJCXJpc2N2LG5kZXYgPSA8MTI3PjsNCj4gKwkJCXJpc2N2LG5kZXYgPSA8MTMzPjsN
-Cj4gIAkJfTsNCj4gIA0KPiAgCQljbGtnZW46IGNsb2NrLWNvbnRyb2xsZXJAMTE4MDAwMDAgew0K
+Rob,
+You must have missed this email. I desperately need to get your
+opinion on the possible solution suggested below. It's the main issue
+regarding this series, which blocks me from going further with the
+patchset re-spin. Let's finally settle things down.
+
+-Sergey
+
+On Sun, Jun 19, 2022 at 07:37:27PM +0300, Serge Semin wrote:
+> On Wed, Jun 15, 2022 at 09:32:01AM -0600, Rob Herring wrote:
+> > On Fri, Jun 10, 2022 at 11:56:55AM +0300, Serge Semin wrote:
+> > > Currently the 'interrupts' and 'interrupt-names' are defined being too
+> > > generic to really describe any actual IRQ interface. Moreover the DW PCIe
+> > > End-point devices are left with no IRQ signals. All of that can be fixed
+> > > by adding the IRQ-related properties to the common DW PCIe DT-schema and
+> > > defining a common and device-specific set of the IRQ names in accordance
+> > > with the hardware reference manual. Seeing there are common and dedicated
+> > > IRQ signals for DW PCIe Root Port and End-point controllers we suggest to
+> > > split the IRQ names up into two sets: common definitions available in the
+> > > snps,dw-pcie-common.yaml schema and Root Port specific names defined in
+> > > the snps,dw-pcie.yaml schema. The former one will be applied to both DW
+> > > PCIe RP and EP controllers, while the later one - for the RP only.
+> > > 
+> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > 
+> > > ---
+> > > 
+> > > Changelog v3:
+> > > - This is a new patch unpinned from the next one:
+> > >   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
+> > >   by the Rob' request. (@Rob)
+> > > ---
+> > >  .../bindings/pci/snps,dw-pcie-common.yaml     | 51 +++++++++++++++
+> > >  .../bindings/pci/snps,dw-pcie-ep.yaml         | 17 +++++
+> > >  .../devicetree/bindings/pci/snps,dw-pcie.yaml | 63 ++++++++++++++++++-
+> > >  3 files changed, 128 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> > > index b2fbe886981b..0a524e916a9f 100644
+> > > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> > > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> > > @@ -17,6 +17,25 @@ description:
+> > >  select: false
+> > >  
+> > >  properties:
+> > > +  interrupts:
+> > > +    description:
+> > > +      There are two main sub-blocks which are normally capable of
+> > > +      generating interrupts. It's System Information Interface and MSI
+> > > +      interface. While the former one has some common for the Host and
+> > > +      Endpoint controllers IRQ-signals, the later interface is obviously
+> > > +      Root Complex specific since it's responsible for the incoming MSI
+> > > +      messages signalling. The System Information IRQ signals are mainly
+> > > +      responsible for reporting the generic PCIe hierarchy and Root
+> > > +      Complex events like VPD IO request, general AER, PME, Hot-plug, link
+> > > +      bandwidth change, link equalization request, INTx asserted/deasserted
+> > > +      Message detection, embedded DMA Tx/Rx/Error.
+> > > +    minItems: 1
+> > > +    maxItems: 26
+> > > +
+> > > +  interrupt-names:
+> > > +    minItems: 1
+> > > +    maxItems: 26
+> > > +
+> > >    phys:
+> > >      description:
+> > >        There can be up to the number of possible lanes PHYs specified.
+> > > @@ -91,4 +110,36 @@ properties:
+> > >  
+> > >  additionalProperties: true
+> > >  
+> > > +definitions:
+> > 
+> 
+> > $defs:
+> > 
+> > But I suppose this is the applying fixups or not issue. That's certainly 
+> > not behavior we should rely on. If we need a way to specify applying 
+> > fixups or not, we should do that. But really I'd prefer not to need 
+> > that.
+> 
+> $defs doesn't work in this case. Please see the patchlog to the v2
+> of this patch:
+> https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
+> 
+> Anyway see my next comment. Let's settle the next issue first, then
+> get back to the implementation details.
+> 
+> > 
+> > > +  interrupt-names:
+> > > +    description:
+> > > +      IRQ signal names common for the DWC PCIe Root Port and Endpoint
+> > > +      controllers.
+> > > +    oneOf:
+> > > +      - description:
+> > > +          Controller request to read or write virtual product data
+> > > +          from/to the VPD capability registers.
+> > > +        const: vpd
+> > > +      - description:
+> > > +          Link Equalization Request flag is set in the Link Status 2
+> > > +          register (applicable if the corresponding IRQ is enabled in
+> > > +          the Link Control 3 register).
+> > > +        const: l_eq
+> > > +      - description:
+> > > +          Indicates that the eDMA Tx/Rx transfer is complete or that an
+> > > +          error has occurred on the corresponding channel. eDMA can have
+> > > +          eight Tx (Write) and Rx (Read) eDMA channels thus supporting up
+> > > +          to 16 IRQ signals all together. Write eDMA channels shall go
+> > > +          first in the ordered row as per default edma_int[*] bus setup.
+> > > +        pattern: '^dma([0-9]|1[0-5])?$'
+> > > +      - description:
+> > > +          PCIe protocol correctable error or a Data Path protection
+> > > +          correctable error is detected by the automotive/safety
+> > > +          feature.
+> > > +        const: sft_ce
+> > > +      - description:
+> > > +          Indicates that the internal safety mechanism detected and
+> > > +          uncorrectable error.
+> > > +        const: sft_ue
+> > 
+> > I still don't really like this pattern. My first read of it makes me 
+> > think only 1 interrupt is supported, and I have to go look that this is 
+> > referenced from 'items'.
+> > 
+> > Could we do a lot more with json-schema like you have? Yes, but the 
+> > schemas are optimized for simplicity and a relatively fixed pattern of 
+> > what's allowed as json-schema is new to most folks. It's also easy to 
+> > create things that simply don't work (silently). Just reviewing this 
+> > series is hard.
+> > 
+> 
+> > This series is trying to do lots of things. Refactoring, adding 
+> > constraints, and adding a new binding. I would split it up if you want 
+> > to make progress.
+> 
+> This series has been refactored three times already! First I created
+> it as the legacy bindings conversion to the yaml schema. I missed just
+> a few weeks, but someone has already submitted the converted bindings.
+> So I had to rebase my work on top of the already performed conversion.
+> After that you asked me to split it up into the series of patches.
+> Now you want the patchset to be refactored again and to be split up
+> again. Each such action takes a lot of my time which I've already
+> spent too much on this update taking into account the time spent on
+> looking for a way to implement the extendable array property pattern.
+> And there is no guaranty you won't refuse the suggested update should
+> I re-submit the separate patchset. So please don't ask me to split it
+> up again especially seeing there are only eleven DT-related patches
+> here. I just can't afford it, but am still very much eager to get the
+> work merged in in a suitable for you and me form.
+> 
+> Let's finally settle the main issue here so I could re-submit the
+> series what you'd be ok with. On each iteration you said you didn't
+> like the pattern I've used here. It looks like this:
+> 
+> 1) The most common schema:
+> pci/snps,dw-pcie-common.yaml:
+> > definitions:
+> >   interrupt-names:
+> >     oneOf:
+> >       - const: i1
+> >       - const: i2
+> 
+> 2) Generic Dw PCIe Root Port schema:
+> pci/snps,dw-pcie.yaml:
+> > properties:
+> >   interrupt-names:
+> >     items:
+> >       anyOf:
+> >         - $ref: /schemas/pci/snps,dw-pcie-common.yaml#/definitions/interrupt-names
+> >         - $ref: '#/definitions/interrupt-names'
+> > definitions:
+> >   interrupt-names:
+> >     oneOf:
+> >       - const: i3
+> >       - const: i4
+> 
+> 3) Generic Dw PCIe Endpoint schema:
+> pci/snps,dw-pcie-ep.yaml:
+> > properties:
+> >   interrupt-names:
+> >     items:
+> >       anyOf:
+> >         - $ref: /schemas/pci/snps,dw-pcie-common.yaml#/definitions/interrupt-names
+> >         - $ref: '#/definitions/interrupt-names'
+> > definitions:
+> >   interrupt-names:
+> >     oneOf:
+> >       - const: i5
+> >       - const: i6
+> 
+> I am not that much happy with it either, but first I didn't find any
+> alternative, and second by using it I've solved several complex
+> problems persistent in the currently implemented DW PCIe bindings:
+> 1) Drop the duplicated properties defined in the Root Port and Endpoint
+> schemas and create a common DT bindings for both of these devices
+> seeing in accordance with the ref. manual they are very much alike.
+> 2) Create the generic DW PCIe Root Port and Endpoint DT-schemas with
+> more restrictive constraints so to stop the new drivers from creating
+> their own regs/clocks/resets/interrupts bindings implementation.
+> 3) Fix the already defined DW PCIe vendor-specific DT-bindings to use
+> either 1) or 2) schema depending on what is applicable for them.
+> 
+> So to speak I was willing to bring some order to the already
+> implemented DT-schemas and to make sure the new bindings wouldn't
+> define the new names to the already known resources. As a result the
+> next schemas hierarchy has been provided:
+>                        1. Common DW PCIe schema
+>                        snps,dw-pcie-common.yaml
+>                                   |
+>           +-----------------------+----------------------+
+>           |                       |                      |
+>           v                       v                      V
+>  2.DW PCIe Root Port     3. DW PCIe Endpoint   4. DW PCIe Vendor-spec
+>   snps,dw-pcie.yaml     snps,dw-pcie-ep.yaml             |
+>           |                       |                      |
+>           v                       v                      V
+>  baikal,bt1-pcie.yaml                         hisilicon,kirin-pcie.yaml
+>   intel-gw-pcie.yaml                            sifive,fu740-pcie.yaml
+>                                               toshiba,visconti-pcie.yaml
+>                                             socionext,uniphier-pcie-ep.yaml
+>                                                  fsl,imx6q-pcie.yaml
+> 
+> As you can see the suggested in this patchset approach is very flexible
+> and permits using the common DW PCIe schema in the particular device
+> bindings while still have the vendor-specific constraints defined in
+> the particular schemas. So the new devices drivers are supposed to use
+> the schemas (2) and (3), while the already added drivers can
+> following the path (4), apply the schema (1), but still use the names
+> "definitions" added to (1), (2) and (3).
+> 
+> You keep saying that what I've done here is misleading since what was
+> created under the "definitions" property is perceived as the "only 1
+> interrupt/clock/reg/reset is supported, and you have to go look that
+> this is referenced from 'items'". If so then what alternative to this
+> solution can you suggest? Do you know a schema pattern which would be
+> more suitable? If there is none, then what? Do you suggest to drop
+> trying to solve the problems I've listed above? Please answer to these
+> questions (or go on on this comment for a possible but IMO less
+> suitable alternative solution).
+> 
+> Anyway in my opinion the currently implemented approach of the names
+> array properties:
+> >   reg-names:
+> >     items:
+> >       enum: [dbi, dbi2, config, atu, addr_space, link, atu_dma, appl]
+> isn't much more descriptive, since it doesn't provide much info
+> regarding the resources but just lists all the common and
+> vendor-specific names to the same resources.
+> 
+> As IMO a much less suitable, but "definitions"-less alternative to my
+> approach we can use the next pattern:
+> 
+> 1) The most common schema:
+> pci/snps,dw-pcie-common.yaml:
+> > properties:
+> >   interrupt-names:
+> >     anyOf:
+> >       - const: i1
+> >       - const: i2
+> >       - true
+> 
+> 2) Generic Dw PCIe Root Port schema:
+> pci/snps,dw-pcie.yaml:
+> > allOf:
+> >   - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
+> >
+> > properties:
+> >   interrupt-names:
+> >     items:
+> >       anyOf:
+> >         - const: i3
+> >         - const: i4
+> >         - true
+> 
+> 3) etc
+> 
+> It will give us a more generic and less restrictive bindings. Thus due
+> to using the "true" schema in there we won't be able to automatically
+> deny the new resource names adding. But it won't have any
+> "definitions" or "$defs" utilized as you seem do not like.
+> 
+> -Sergey
+> 
+> > 
+> > Rob
