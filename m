@@ -2,173 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01B47569EB5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 11:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40119569EE2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 11:53:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235251AbiGGJkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 05:40:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44012 "EHLO
+        id S235072AbiGGJwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 05:52:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235143AbiGGJki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 05:40:38 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3AD31277C;
-        Thu,  7 Jul 2022 02:40:37 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id n10so183222wrc.4;
-        Thu, 07 Jul 2022 02:40:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=KzcoFhGBop3Dr3qrgA6FnfDOc9NV/gjra01y9OpQ03E=;
-        b=d4C8549OVT/OTfYI2dsl8Y3TYD1BSb9zXe1l4DYZ3uv6ATbmseapVMOFsMRQZVrpQI
-         DRYfZ4FQx0DrPKMqL+e29YpcSB1APqwPtOZ4QvVvAGP85zNjBVbxry4jWgE7cbIvE/Ob
-         hLlI9AypWPX8S5/ClEvxWwZZgQIethgKSRjwFoCYgpL39mwjbas4a3GGPstHsBYggdCy
-         25hCt+2fGMEg0pel3fMAgp1qlveIatuxMRbQ0Na0T5jS68EmMb8jFaHoYoyjK3+komvK
-         IC0yx5aZ1+B/DwBMKfJCFe7A6P7eIVA7NWP494X3rx5ZJYJGSLCllcVYHoBN6vaFQEsb
-         lVxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=KzcoFhGBop3Dr3qrgA6FnfDOc9NV/gjra01y9OpQ03E=;
-        b=UBecljXSqu3PlcyTjw1O5UtPpNUtYNyxe+whkTLK9ztqggihxqDQ5VO9cO/5/YwuA/
-         Q1uuv2vrw7G+mi3g3xCNlJUQnu3txkckncwObfjHRZCTt9/gKWb4znenlYzznuCdQ99g
-         9W2CYO6ws07RJC5ql6rHn0v1ONSkO0UWhCZk6p9fy8pwFusTftNvCkfS4r5RuFyFvPv9
-         PgzjJ5VXs9Faw5ezhxpyqW0Unrq8sMSlVvDwa8FkrsmU9cqt5RfeqOMOQxapby5eEQbq
-         c+C9qGKHRD1UJI3u+47P6gHTYuz6ECOwgTsEzoZJELfc+e0RfP9CxKZmvQd87MQVI/LL
-         wjMA==
-X-Gm-Message-State: AJIora/6B1LjnWC7BmtUZXZG+fbd+vJZu5GDvfjymqk2BsNUZJLkZ0e/
-        Zl2wqjIrGwHxmOO2npnWCZSZPjoIhygGEQ==
-X-Google-Smtp-Source: AGRyM1talsypiyhvDrz+cqTOcMGBF2fEVNMqtrU/unM4e6cE62b3PJIhpaTGU+Cj8oBlP8vh9KBoLA==
-X-Received: by 2002:adf:e112:0:b0:21d:7195:3a8d with SMTP id t18-20020adfe112000000b0021d71953a8dmr13968308wrz.371.1657186836348;
-        Thu, 07 Jul 2022 02:40:36 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id h4-20020a5d4304000000b0021b829d111csm38650085wrq.112.2022.07.07.02.40.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Jul 2022 02:40:35 -0700 (PDT)
-Message-ID: <0f758c3d-a1cd-5e28-d3bb-70833b53c14b@gmail.com>
-Date:   Thu, 7 Jul 2022 11:40:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v11 0/3] Add basic node support for MediaTek MT8186 SoC
-Content-Language: en-US
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>, hsinyi@chromium.org
-References: <20220520122217.30716-1-allen-kh.cheng@mediatek.com>
- <37fb545a-bc45-65b0-b67b-5ef1b0346777@gmail.com>
-In-Reply-To: <37fb545a-bc45-65b0-b67b-5ef1b0346777@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235129AbiGGJv6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 05:51:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE4214D4F3;
+        Thu,  7 Jul 2022 02:51:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 50F2162221;
+        Thu,  7 Jul 2022 09:51:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86F47C341C8;
+        Thu,  7 Jul 2022 09:51:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657187515;
+        bh=X9w7uVsbJ8D49JtdMTWnUpAeLaS1lt4n7lQokogX2X8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=VYhIUy8P5C0fo+IEGbD1P2twNLp/9Prh3hbA4Ac2TUtNf6wbiQW6v8U+NGUVOMovg
+         GoP/iCZm4XFmCW7IL54ueWlsfOWZ/ULGilnEKbEeeu8r0A+laqd2DMt/m/5gzrU6Lb
+         w3Yqm6UP/mHsRK05etjucasJv9hYUzuvO9m3DT+Ypj7oaiMki5MINfyhPxd2YZbhgU
+         4EU6I5t/ft9ygpj2JcSKHnraPG8oV0WsTyRxWdraQh88+k2x5xiAz62FJxDbnvCqvq
+         LEJNMtZQutndXtu0t8hOQKO7ECUOltn3sO7x/0t+nSk5GYOCqe56df3jNqNtwtxSRA
+         iqWUG3EoNBTdw==
+Received: from [185.201.63.253] (helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1o9OAq-005snH-U1;
+        Thu, 07 Jul 2022 10:51:53 +0100
+Date:   Thu, 07 Jul 2022 10:51:33 +0100
+Message-ID: <87a69lmesa.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH RFC 1/2] dt-bindings: interrupt-controller: sifive,plic: Document Renesas RZ/Five SoC
+In-Reply-To: <20220706215827.GA572635-robh@kernel.org>
+References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220524172214.5104-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220605142333.GA3439339-robh@kernel.org>
+        <CA+V-a8smk8TqyWpm1KXo-3dKnCAodKsiYsaqnK_3ubfXE9YauQ@mail.gmail.com>
+        <20220706215827.GA572635-robh@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.201.63.253
+X-SA-Exim-Rcpt-To: robh@kernel.org, prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, paul.walmsley@sifive.com, sagar.kadam@sifive.com, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, geert+renesas@glider.be, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, phil.edworthy@renesas.com, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 22/06/2022 17:40, Matthias Brugger wrote:
+On Wed, 06 Jul 2022 22:58:27 +0100,
+Rob Herring <robh@kernel.org> wrote:
 > 
+> On Fri, Jun 24, 2022 at 10:59:40AM +0100, Lad, Prabhakar wrote:
+> > Hi Rob,
+> > 
+> > Thank you for the review.
+> > 
+> > On Sun, Jun 5, 2022 at 3:23 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Tue, May 24, 2022 at 06:22:13PM +0100, Lad Prabhakar wrote:
+> > > > Document Renesas RZ/Five (R9A07G043) SoC.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > ---
+> > > >  .../sifive,plic-1.0.0.yaml                    | 38 +++++++++++++++++--
+> > > >  1 file changed, 35 insertions(+), 3 deletions(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > > > index 27092c6a86c4..78ff31cb63e5 100644
+> > > > --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > > > +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > > > @@ -28,7 +28,10 @@ description:
+> > > >
+> > > >    While the PLIC supports both edge-triggered and level-triggered interrupts,
+> > > >    interrupt handlers are oblivious to this distinction and therefore it is not
+> > > > -  specified in the PLIC device-tree binding.
+> > > > +  specified in the PLIC device-tree binding for SiFive PLIC (and similar PLIC's),
+> > > > +  but for the Renesas RZ/Five Soc (AX45MP AndesCore) which has NCEPLIC100 we need
+> > > > +  to specify the interrupt type as the flow for EDGE interrupts is different
+> > > > +  compared to LEVEL interrupts.
+> > > >
+> > > >    While the RISC-V ISA doesn't specify a memory layout for the PLIC, the
+> > > >    "sifive,plic-1.0.0" device is a concrete implementation of the PLIC that
+> > > > @@ -57,6 +60,7 @@ properties:
+> > > >            - enum:
+> > > >                - allwinner,sun20i-d1-plic
+> > > >            - const: thead,c900-plic
+> > > > +      - const: renesas-r9a07g043-plic
 > 
-> On 20/05/2022 14:22, Allen-KH Cheng wrote:
->> MT8186 is a SoC based on 64bit ARMv8 architecture.
->> It contains 6 CA55 and 2 CA76 cores.
->> MT8186 share many HW IP with MT65xx series.
->>
->> This patchset was tested on MT8186 evaluation board to shell.
->>
+> Also, this should be 'renesas,r9...'
 > 
-> Applied, thanks!
+> > > >
+> > > >    reg:
+> > > >      maxItems: 1
+> > > > @@ -64,8 +68,7 @@ properties:
+> > > >    '#address-cells':
+> > > >      const: 0
+> > > >
+> > > > -  '#interrupt-cells':
+> > > > -    const: 1
+> > > > +  '#interrupt-cells': true
+> > > >
+> > > >    interrupt-controller: true
+> > > >
+> > > > @@ -91,6 +94,35 @@ required:
+> > > >    - interrupts-extended
+> > > >    - riscv,ndev
+> > > >
+> > > > +if:
+> > > > +  properties:
+> > > > +    compatible:
+> > > > +      contains:
+> > > > +        const: renesas-r9a07g043-plic
+> > > > +then:
+> > > > +  properties:
+> > > > +    clocks:
+> > > > +      maxItems: 1
+> > > > +
+> > > > +    resets:
+> > > > +      maxItems: 1
+> > > > +
+> > > > +    power-domains:
+> > > > +      maxItems: 1
+> > >
+> > > Did you test this? The above properties won't be allowed because of
+> > > additionalProperties below. You need to change it to
+> > > 'unevaluatedProperties' or move these to the top level.
+> > >
+> > Yes I have run the dt_binding check.
+> > 
+> > So with the below diff it does complain about the missing properties.
+> > 
+> > prasmi@prasmi:~/work/renasas/renesas-drivers$ git diff
+> > Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > index 20ded037d444..bb14a4b1ec0a 100644
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > @@ -130,7 +130,7 @@ examples:
+> >      plic: interrupt-controller@c000000 {
+> >        #address-cells = <0>;
+> >        #interrupt-cells = <1>;
+> > -      compatible = "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
+> > +      compatible = "renesas-r9a07g043-plic";
+> >        interrupt-controller;
+> >        interrupts-extended = <&cpu0_intc 11>,
+> >                              <&cpu1_intc 11>, <&cpu1_intc 9>,
+> > prasmi@prasmi:~/work/renasas/renesas-drivers$ make ARCH=riscv
+> > CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check
+> >   LINT    Documentation/devicetree/bindings
+> >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> >   DTEX    Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dts
+> >   DTC     Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb
+> >   CHECK   Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb
+> > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
+> > interrupt-controller@c000000: #interrupt-cells:0:0: 2 was expected
+> >     From schema:
+> > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
+> > interrupt-controller@c000000: 'clocks' is a required property
+> >     From schema:
+> > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
+> > interrupt-controller@c000000: 'resets' is a required property
+> >     From schema:
+> > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
+> > interrupt-controller@c000000: 'power-domains' is a required property
+> >     From schema:
+> > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> > prasmi@prasmi:~/work/renasas/renesas-drivers$
+> > prasmi@prasmi:~/work/renasas/renesas-drivers$
+> > 
+> > Is there something I'm missing here?
 > 
+> You've said these properties are required, but you didn't add them.
+> 
+> If you don't have the above 3 properties, then it's not going to 
+> complain that they are present. But it will when you do add them for the 
+> reason I gave.
 
-Based on the review from Angelo I dropped patch 3 from the tree. Please address 
-the issues and submit again.
+Can you please have a look at the latest instance[1][2] of this
+series, as posted by Samuel? I've provisionally queued it, but only on
+the provision that you would eventually ack these patches.
 
-Regards,
-Matthias
+Thanks,
 
->> Based on next-20220519, linux-next/master
->>
->> changes since v9:
->>   - remove some merged PATCHs from series
->>   - reorder nodes in dts (cpu-map)
->>   - remove okay status in auxadc
->>   - remove unnecessary suffix node name for i2c
->>   - add pwm node
->>   - add dsi-phy node
->>   - add dpi node
->>
->> changes since v9:
->>   - add one space before equal sign of drive-strength-adv
->>   - corect compatible name for big cores (ca76)
->>   - use upper case of address in pinctrl
->>   - add pwrap node
->>   - add pwm node
->>
->> changes since v8:
->>   - change name from pins_bus to pins-sda-scl
->>   - correct email address
->>   - add capacity-dmips-mhz for each CPU
->>   - add ppi-partitions in gic node
->>   - change name to power-domain
->>   - remove status "okay" in scp node
->>   - update timer and pericfg compatible in series
->>
->> changes since v7:
->>   - add scp&auxadc node
->>
->> changes since v6:
->>   - remove unnecessary blank line
->>
->> changes since v5:
->>   - replace Mediatek a to MediaTek
->>   - use GPL-2.0-only OR BSD-2-Clause
->>
->> changes since v4:
->>   - correct driver clock of mt8186
->>   - add power domains controller and clock controllers
->>   - add pinctrl, usb host, spi and i2c nodes
->>   - add node status in mt8186-evb.dts
->>   - correct some dtbs_check warnings
->>
->> changes since v3:
->>   - remove serial, mmc and phy patch from series. (already merged)
->>   - remove mcusysoff node
->>   - move oscillator nodes at the head of dts
->>   - change name from usb-phy to t-phy
->>
->> changes since v2:
->>   - add soc {} in mt8186.dtsi
->>
->> changes since v1:
->>   - add dt-bindings: arm: Add compatible for MediaTek MT8186
->>
->> Allen-KH Cheng (3):
->>    dt-bindings: arm: mediatek: Add mt8186 pericfg compatible
->>    dt-bindings: arm: Add compatible for MediaTek MT8186
->>    arm64: dts: Add MediaTek SoC MT8186 dts and evaluation board and
->>      Makefile
->>
->>   .../devicetree/bindings/arm/mediatek.yaml     |    4 +
->>   .../arm/mediatek/mediatek,pericfg.yaml        |    1 +
->>   arch/arm64/boot/dts/mediatek/Makefile         |    1 +
->>   arch/arm64/boot/dts/mediatek/mt8186-evb.dts   |  232 ++++
->>   arch/arm64/boot/dts/mediatek/mt8186.dtsi      | 1016 +++++++++++++++++
->>   5 files changed, 1254 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
->>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
->>
+	M.
+
+[1] https://lore.kernel.org/r/20220630100241.35233-2-samuel@sholland.org
+[2] https://lore.kernel.org/r/20220630100241.35233-4-samuel@sholland.org
+
+-- 
+Without deviation from the norm, progress is not possible.
