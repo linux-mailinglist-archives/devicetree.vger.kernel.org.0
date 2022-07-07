@@ -2,67 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AC5456A181
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 13:59:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 288FF56A1E9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 14:27:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234797AbiGGL6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 07:58:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57456 "EHLO
+        id S235235AbiGGM1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 08:27:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235656AbiGGL5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 07:57:17 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47605599D5
-        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 04:55:11 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id j3so6240413pfb.6
-        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 04:55:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AfR9UZtpRGzhv3c4Zln6eGAdbeQgygF+9NKWBtburhs=;
-        b=dYUGx0RODM9RUBv9GQtsRp0MUbiQIBwZzXrjY3qMkDzehnjVBMkGMVf01Kiem1eUmH
-         7363oOVcdC9Rr9JcHhPHaBjAoGO1SyE2sq2QMayqrRnUma11AdTxRcGV8+vCIxKbSg6I
-         2clVMbCzUGt4dJTkVIzZcaNyeY2S85I8EeA+Gq25+C1NYBgBya/GY9IDDuXVV50ncbw7
-         u0jfL7zdVdS9Jvwfn5ON8M5fFBjhskqQ6fX+Kd7ZvwUXGhdhjkNuok8DV1rT31jAFSj3
-         nasAtlWyyArwNradHMhjMPtAA9ZRfLH2O6xJ/JreL+ORPxHbCsVc7JyqEVyY2GgJfTAH
-         Kffg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AfR9UZtpRGzhv3c4Zln6eGAdbeQgygF+9NKWBtburhs=;
-        b=3IMjWecr8QSbDoahrbXsfYYvKGLuFnkhhY+LGs8hHIZijmA3VJTuBboMAaaXRtybrz
-         pIFUzrjyy9kAvrwRnOEKXHvq85fTdldFcQEPBV25UdknTa6fWy/xPlfkwYw29AvXhpML
-         9xcMDg89SUOScE4w8Kk36yhtYlF4VgtSMcDzY25LcJonKmGSxkLYMfIn9iVr9KPGBzHq
-         2pCoXX+j+XcmVjXe5FxxnxkpvH+T3yxH6p9jVR0d7JChK28CczkNYipZiHGs+kMQM4+a
-         0DwTEiER+W7PwubigAU9PKfQ7S8+mD0sjTojnzRHZxHf0Lyr6uwmqE1kwSvFbFX1uWZR
-         SO2Q==
-X-Gm-Message-State: AJIora/9pC08zOogYPMeq1Dh5c96QN4a/utzExQIcJjJGr1l2tu+7Lc/
-        9rwy/BOXpsSMKjtUO/O8mqBDYw==
-X-Google-Smtp-Source: AGRyM1uDUmzYdJM5zUMETUsdm5U2WwLBDcjaEaHBiDhpvi9zzTtJzjyWyo/bWlneJdIZMYgFPvIQug==
-X-Received: by 2002:a17:902:b215:b0:168:da4b:c925 with SMTP id t21-20020a170902b21500b00168da4bc925mr50913137plr.155.1657194910692;
-        Thu, 07 Jul 2022 04:55:10 -0700 (PDT)
-Received: from localhost.localdomain ([182.77.21.191])
-        by smtp.gmail.com with ESMTPSA id r10-20020a17090a1bca00b001e2f892b352sm16503936pjr.45.2022.07.07.04.55.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jul 2022 04:55:10 -0700 (PDT)
-From:   Sumit Garg <sumit.garg@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        shawn.guo@linaro.org, bryan.odonoghue@linaro.org,
-        nicolas.dechesne@linaro.org, mworsfold@impinj.com,
-        daniel.thompson@linaro.org, andrey.konovalov@linaro.org,
-        Sumit Garg <sumit.garg@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: qcs404: Fix incorrect USB PHYs assignment
-Date:   Thu,  7 Jul 2022 17:24:44 +0530
-Message-Id: <20220707115444.1431367-1-sumit.garg@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232086AbiGGM1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 08:27:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7EF1220F0;
+        Thu,  7 Jul 2022 05:27:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 54D1962353;
+        Thu,  7 Jul 2022 12:27:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85928C3411E;
+        Thu,  7 Jul 2022 12:27:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657196853;
+        bh=UZItbwI5mnC5YfXqsXOrg8hDLSaCl6949bJX4LeLHM4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gt6PBEsdnmii/ibuuz55rvlno8I2Rd6JySORPbjGrn4wO28KnR7X3aCP3t5Ho5Pvk
+         HlV+A4QH4RZd1geKQZzSWJlwtmoxscPeTeM/TCJTuUkQxztIdtGbuHYMMcftuY7UJg
+         XKnwcbzQNf0Fgf4BghGTWkMZ9PZOzUsn5SUvKQIFiH11s9v+3QbrKTjifnoCt/Jbcj
+         sG76CCxHc0ccPdDy4gWni4AyD8gWnRq/7zb3qWtJktNLNDFxEqxNKgMQbO6yxaBoFV
+         Qrqpilzvx3PZINS+1iLHi165Gid7MhbvP7DgWUCO98arYUpk27zndfj6Rec9qb4G84
+         +PyPx81Vyk7+g==
+Received: by pali.im (Postfix)
+        id 96E3A7B1; Thu,  7 Jul 2022 14:27:30 +0200 (CEST)
+Date:   Thu, 7 Jul 2022 14:27:30 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kabel@kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: watchdog: max63xx: Add GPIO binding
+Message-ID: <20220707122730.45jtopop5cj7beni@pali>
+References: <20220705001023.14660-1-pali@kernel.org>
+ <20220706150726.GA40600-robh@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220706150726.GA40600-robh@kernel.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,47 +60,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This was a difficult inconsistency to be caught as both the USB PHYs were
-being enabled in the kernel and USB worked fine. But when I was trying to
-enable USB support in u-boot with all the required drivers ported, I
-couldn't get the same USB storage device enumerated in u-boot which was
-being enumerated fine by the kernel.
+On Wednesday 06 July 2022 09:07:26 Rob Herring wrote:
+> On Tue, Jul 05, 2022 at 02:10:22AM +0200, Pali Rohár wrote:
+> > GPIO is optional and used for WDI logic.
+> > 
+> > Signed-off-by: Pali Rohár <pali@kernel.org>
+> > ---
+> > Changes in v3:
+> > * Extend description
+> > ---
+> >  Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> > index ab9641e845db..a0cf9e6c371d 100644
+> > --- a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> > +++ b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> > @@ -27,6 +27,10 @@ properties:
+> >      description: This is a 1-byte memory-mapped address
+> >      maxItems: 1
+> >  
+> > +  gpios:
+> 
+> As I said before, add a name prefix: wdi-gpios
 
-The root cause of the problem came out that I wasn't enabling USB PHY:
-"usb2_phy_prim" in u-boot. Then I realised that via simply disabling the
-same USB PHY in the kernel disabled enumeration for USB3 host controller
-as well.
+So gpio with output direction should be really named that is input?
 
-So fix this inconsistency by correctly assigning USB PHYs.
+I really do not understand this kind of thinking and making every device
+tree description totally illogical and inconsistent with all other.
 
-Fixes: 9375e7d719b3 ("arm64: dts: qcom: qcs404: Add USB devices and PHYs")
-Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index 513bf7343b2c..50edc11a5bb5 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -557,7 +557,7 @@ usb3_dwc3: usb@7580000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x07580000 0xcd00>;
- 				interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
--				phys = <&usb2_phy_sec>, <&usb3_phy>;
-+				phys = <&usb2_phy_prim>, <&usb3_phy>;
- 				phy-names = "usb2-phy", "usb3-phy";
- 				snps,has-lpm-erratum;
- 				snps,hird-threshold = /bits/ 8 <0x10>;
-@@ -586,7 +586,7 @@ usb@78c0000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x078c0000 0xcc00>;
- 				interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
--				phys = <&usb2_phy_prim>;
-+				phys = <&usb2_phy_sec>;
- 				phy-names = "usb2-phy";
- 				snps,has-lpm-erratum;
- 				snps,hird-threshold = /bits/ 8 <0x10>;
--- 
-2.25.1
-
+> > +    description: Optional GPIO used for controlling WDI (watchdog input) when WDI bit is not mapped to memory
+> 
+> Wrap lines at 80 unless wrapping at 100 provides some benefit.
+> 
+> yamllint is set to 110 because I don't want to fix everyone's line wrap, 
+> not because that's the standard.
+> 
+> 
+> > +    maxItems: 1
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > -- 
+> > 2.20.1
+> > 
+> > 
