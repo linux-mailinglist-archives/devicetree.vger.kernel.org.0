@@ -2,79 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F5EB569D6E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 10:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D0B8569D89
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 10:38:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234249AbiGGI3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 04:29:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48962 "EHLO
+        id S234968AbiGGIh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 04:37:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230005AbiGGI3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 04:29:52 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82661C10C
-        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 01:29:51 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id y18so10470362ljj.6
-        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 01:29:51 -0700 (PDT)
+        with ESMTP id S234888AbiGGIh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 04:37:57 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B514F19F
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 01:37:55 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id s1so25255401wra.9
+        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 01:37:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=V9p+FIx/rJbjHA32nOSXBbV1kWpGn7lbxFVBNGnSdaM=;
-        b=i9WmzBF5OzZitq8rA2rOjoVkAA4IERyOzHyGOFPTZUqMvoU0FOFxAlAJEozdntQqGO
-         ghtwckmxtM4R8QZhU3aeCqsGFQT1rCw/xOSZ3ut1r2dQdAUvycB2F0s2BZy2dmkbK2H2
-         +Rl/uCBoZV//lmBj/A2R6cAoDy1uiQZUARJ40JjrtO8ZbIOYh1AdFhFy9j+Oad36jVub
-         Ihc6JS1kV2Uc7Vp9kfw3hw5By815qwhg5rd1FX9bICCoDZbKvfA2pSNW+oXNhAsfPIG+
-         bLPA1Gq+yocD21YXoHXp1XaqVKLB7mJv4TtBPUhBtM4HwQuRNSorQXKp2oNdhfpELyzu
-         Bmtw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=abVct3gFPTleVwlkxr292THL1sNRNK8PgBmO/9HJXCI=;
+        b=vn0flu9MW1pSkawzZyj52K6aja+bt23HA6wmB2x9Kkfdp7Xd2shvOgxcan20A/TmkC
+         mOX51GpNPNJILOSvgLZRkruKUnMe7fLjew3zsLQTN7MmTNcYWuK/EJbrt2wCBz6aW8AT
+         x73mEghaDHHkVRKYZQpYkFPaXxjUBz5GiOhW0VQD9i8jOKJhiM9d1vuaRlOSD53wLmBr
+         sJ8m8foHKMk3EcJN7gPwaP5BZzZvUyByrqAtkXxkuZfuLetTzq8Fp3lcyR4ay3SLNrH3
+         m+xQs3yJ1859YHOsJYkcEtHHZPg9vqDdo5v1MDZPVjQQDoslKtcS9jXhtJz1RbxcaDTo
+         Rr+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=V9p+FIx/rJbjHA32nOSXBbV1kWpGn7lbxFVBNGnSdaM=;
-        b=oc/ARQsgtKRbbmG4cjBeTcNhRzdYx2rPzvLg+NBt3tMjy/WB0J2o2gmfceje3ov2qV
-         6a5J+mwzH/FKVoFT+56Ok1HPYLa/Qu0Dgw+iIedt0Zv36SSFWd2dZD71Ki6/jcGcGGcI
-         yHb02WG8x3+McoyTBRA7WVKapdVLLLrokFpykuN7g0q6dyrtQKhq/yQOnFDy8U8j73th
-         Diejb6EgT6BeCsaCaVpTu3HRuczo8tiPJxHzGIIEjCUaSM6wXEQkBVuVIMzf9A9+Ky6h
-         EgPMJTdSSxZP09BLxYPluJOoX21le4kszGVsEVGg05lh2L3tn2HGfs3/+5AFqjs8AQ41
-         g2GA==
-X-Gm-Message-State: AJIora84Rzhe0NEvLqaYE/QdXeR4oYU2+f1RZBdOLqjFXk8ebdA7EpNO
-        PG4FSKw078aMtFNbnI9FB4LBGzhdVsl7liDkxRo=
-X-Google-Smtp-Source: AGRyM1s7yB3MBvG4V67Bf54hvhm3BD1logzmHyuzDceakBz9E9Vf56pE98RAgCEqGNCabhd+1Lo2CZs9aywLlE4bIl0=
-X-Received: by 2002:a05:651c:246:b0:25a:3420:735d with SMTP id
- x6-20020a05651c024600b0025a3420735dmr27010627ljn.515.1657182590010; Thu, 07
- Jul 2022 01:29:50 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=abVct3gFPTleVwlkxr292THL1sNRNK8PgBmO/9HJXCI=;
+        b=TiEhtQ9sb0fzjheitodyIcenKPw3FzjTh5I7ndyQLmcmeAYUZr+mSgtlbVtQO2xZTx
+         ZCj4qUvenhuSY/ZYT32DApG3EweSMHRXTeM+HJmu0Qci00lbSyduXBHkb1tQ3ni63Nuc
+         U5mmbwpt/byRMjpEJPZWJlDZY5fxkYHgGQKn4D3ztp6cPmGV49VhOgLxLKQQLhuSBhQk
+         5aKp4kZppR96MizyKyTxSHZ5Kczj18U3DnAvbMFUBFFSe9zT0OZ+YWfv51X9nQbbKrvd
+         +NqcRdPxDm6+m22j0hHKXFEg89n6l/yUF7/rAqnC6IFPo+EsOhFsGNCsS1xyZsZSkzGt
+         6H2Q==
+X-Gm-Message-State: AJIora8SHZO6Ke72QM7AqfR25Oz0Zw4nUEvPwzNX/sbhIPbBqOwYCUTg
+        FoqfDM4Y95EG9bim5fzw4GQuQQ==
+X-Google-Smtp-Source: AGRyM1shCU2H4w9v75oD2tgujLOfTjQOmrrVfjjs4CYHJNZDG8I5AOH/bGufuGGuNpZAVt0EjUjaVQ==
+X-Received: by 2002:a05:6000:15c6:b0:21d:17da:29ca with SMTP id y6-20020a05600015c600b0021d17da29camr41374738wry.94.1657183073842;
+        Thu, 07 Jul 2022 01:37:53 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id g10-20020a5d698a000000b0021d83eed0e9sm1479968wru.30.2022.07.07.01.37.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 01:37:53 -0700 (PDT)
+Date:   Thu, 7 Jul 2022 10:37:50 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, john@metanate.com, heiko@sntech.de,
+        p.zabel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        didi.debian@cknow.org, herbert@gondor.apana.org.au,
+        sboyd@kernel.org, mturquette@baylibre.com,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v8 25/33] dt-bindings: crypto: rockchip: convert to new
+ driver bindings
+Message-ID: <YsabXrOyAsCkUUVN@Red>
+References: <20220706090412.806101-1-clabbe@baylibre.com>
+ <20220706090412.806101-26-clabbe@baylibre.com>
+ <1657114144.957232.4099933.nullmailer@robh.at.kernel.org>
+ <YsWcGDwPCX+/95i3@Red>
+ <3e47b853-bb82-8766-8884-3da931c038a2@linaro.org>
 MIME-Version: 1.0
-Received: by 2002:ab2:4b:0:b0:149:898f:4a89 with HTTP; Thu, 7 Jul 2022
- 01:29:49 -0700 (PDT)
-Reply-To: olsonfinancial.de@gmail.com
-From:   OLSON FINANCIAL GROUP <salawuabdulwaseu@gmail.com>
-Date:   Thu, 7 Jul 2022 01:29:49 -0700
-Message-ID: <CAB-mX0-2jhP=LjBj7sPR=_dSRDkMYdTgy72Y=2W2j8jRSH5QDA@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=4.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3e47b853-bb82-8766-8884-3da931c038a2@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Hallo, guten Morgen,
-Ben=C3=B6tigen Sie einen Kredit, um ein Auto zu kaufen? oder Ben=C3=B6tigen=
- Sie
-ein Gesch=C3=A4fts- oder Privatdarlehen? Sie m=C3=B6chten Ihr Unternehmen
-refinanzieren? oder investieren? Ein neues Unternehmen gr=C3=BCnden,
-Rechnungen bezahlen? und uns auf Wunsch in Installationen
-zur=C3=BCckzahlen? Wir sind ein zertifiziertes Finanzunternehmen, das Fonds
-aller Art genehmigt. Wir vergeben Kredite an Einzelpersonen und
-Unternehmen. Wir bieten zuverl=C3=A4ssige Kredite zu einem sehr niedrigen
-Zinssatz von 2%. F=C3=BCr mehr Informationen
-mailen Sie uns an: olsonfinancial.de@gmail.com..
+Le Wed, Jul 06, 2022 at 05:25:21PM +0200, Krzysztof Kozlowski a écrit :
+> On 06/07/2022 16:28, LABBE Corentin wrote:
+> > Le Wed, Jul 06, 2022 at 07:29:04AM -0600, Rob Herring a écrit :
+> >> On Wed, 06 Jul 2022 09:04:04 +0000, Corentin Labbe wrote:
+> >>> The latest addition to the rockchip crypto driver need to update the
+> >>> driver bindings.
+> >>>
+> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> >>> ---
+> >>>  .../crypto/rockchip,rk3288-crypto.yaml        | 85 +++++++++++++++++--
+> >>>  1 file changed, 77 insertions(+), 8 deletions(-)
+> >>>
+> >>
+> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >>
+> >> yamllint warnings/errors:
+> >>
+> >> dtschema/dtc warnings/errors:
+> >> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml: allOf:0:then:properties:clock-names: 'oneOf' conditional failed, one must be fixed:
+> >> 	[{'const': 'aclk'}, {'const': 'hclk'}, {'const': 'sclk'}, {'const': 'apb_pclk'}] is too long
+> >> 	[{'const': 'aclk'}, {'const': 'hclk'}, {'const': 'sclk'}, {'const': 'apb_pclk'}] is too short
+> >> 	False schema does not allow 4
+> >> 	1 was expected
+> >> 	4 is greater than the maximum of 2
+> >> 	4 is greater than the maximum of 3
+> > 
+> > Hello
+> > 
+> > I upgraded to dt-schema 2022.07 and fail to reproduce all errors.
+> 
+> Visible on older dtschema (2022.6.dev10+gcd64f75fe091), visible on
+> newest (2022.7).
+> 
+> Exactly the same error.
+> 
+
+Hello
+
+I am sorry, I finally succesfully reproduced it.
+Just doing what the hints gives (removing max/min-items) from "static" list fix the issue.
+
+Does I need to remove your Reviewed-by ?
+
+Thanks
