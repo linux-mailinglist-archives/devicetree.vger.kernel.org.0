@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A79485697FF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB3C9569837
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:33:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234894AbiGGCbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 22:31:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40022 "EHLO
+        id S234207AbiGGCbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 22:31:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234869AbiGGCbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 22:31:32 -0400
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AAF82F3AB
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 19:31:32 -0700 (PDT)
-Received: by mail-oo1-xc2b.google.com with SMTP id n11-20020a4ad12b000000b00425b01c3326so3239841oor.8
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 19:31:32 -0700 (PDT)
+        with ESMTP id S234805AbiGGCbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 22:31:35 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95DCF2F3AB
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 19:31:34 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id i3so21882931oif.13
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 19:31:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=YYAWf1vDUfn+qhF4EbU0apynTp5YyOVUGPAAMYRF5Os=;
-        b=kFGTPVAiO7y8B9+gbjN1lQfUknQZKllmfvvOWGgHYm7mngU3npwDWZ3KxlxBHLRYL9
-         HDkOLjei4Y6PgWGX37FvRkAr7UBWOGCgR78M50tUejmny2TjpQdhG6yJkQYLTAeBKiek
-         2sHFoDgKkbxKBMQsaOj4QWCeGkLVYqOlDi0NBz5lJdFzZR7wwciEvSvjGCoPDV+pc03X
-         ETwcArNpP2IkxdgqivLXFt5OQHf+3vbv8tPCdmVFyNOGZLz1whdKSWp3Elm9ZAAzUkl7
-         1R26QzIQhvr5XK+aLoibMm8mnQ6RwxTr0NN4MTPPRkxso/uDxpf9wYDkDuPAww+pw6cT
-         Cfwg==
+        bh=kYOkpM5mbqkB6w2x0txJabn++Zuea/JIjpE53NC7Ovs=;
+        b=O/OphLNHTV2yePG++ANiG2XlmcHB8S5c/24sNkjLMerXy5rbKaOIGR0LTF3mr9aFoM
+         Wt5op3owZiw2d3/jCHtOw4QllvcqJjlEoizzeqwPw63mX/ojOvEKPpP+lZODEyoCB1FO
+         hBNLQlvqixm2RPeJ+v0UF5zBrnbfW7w7Okn3HMTBNZbYH0IokQ/lwSGqOgQdla4DFy9V
+         PcTfRP0XzE5749OuSOlRoNsSaD4Irse+S4p202DlA9tkWZ3EssW9A0SKrrVzIP6PONiF
+         xz2h3SdfWkGN5zm8QnAIWvWhQOjxTP+yxYpVizQbYO+3B37sS3Qr24ltWsfF4ahiTMNI
+         n/8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=YYAWf1vDUfn+qhF4EbU0apynTp5YyOVUGPAAMYRF5Os=;
-        b=Fb/mhyw4R1lh2bM6dok2dNQyfARDAQwqS3VzBmAXOQ19mQyzKUseAmC3/jNUO02exG
-         LLl03li0SFixW9h/N2R6C+YgmugZkFYpHnSGFVKa6cg3/bw4LmMlw/y38/ZQM+YUV+N0
-         KC4Pnypwyy/5zgBf7YX1WXnhb+b2JctmwIZyCrKa6MhN7opirUHV0HlNYlRlMy4avcZy
-         Gl6wahP9TLubFU9V+iOwImb+ZMvkOwYPiuFz7Ap1aSlhe+ZZUB2FUqsj5gd2gmHzqyoI
-         1mtzA+s0Zbzq7cnE0PD6vqWeKRlDsI1peeh4KiiluA0bErUE24zmpJ5D1K9xyd3iPgf9
-         Tm6A==
-X-Gm-Message-State: AJIora9R3+dj7aGQsu9rAraa6nAJiiaqPJVyppm6B/+tlm4VwLyy3Qwj
-        aPaKCDtgVt1vV3wRgMdrJU9MHA==
-X-Google-Smtp-Source: AGRyM1tJ3CfwvID4pMX3J0zja8xUa5LkjynezJaIPR7xGR5GVMJlEJala8g+oXwhZBT9s5yqi88i3w==
-X-Received: by 2002:a4a:b401:0:b0:35e:de93:43a9 with SMTP id y1-20020a4ab401000000b0035ede9343a9mr18013954oon.80.1657161091766;
-        Wed, 06 Jul 2022 19:31:31 -0700 (PDT)
+        bh=kYOkpM5mbqkB6w2x0txJabn++Zuea/JIjpE53NC7Ovs=;
+        b=o+nbDiHUSJuFrXCKWnGOePuf59aTZELDqa2gkp1Yu+f1/XUULNlmP5Nj9fVHJC7jqs
+         EcVC20Q1izGotr00deWVbWXwu5GlJliNqnxhkbtsfgg6nTQpqdcNO9A4kBKeNxdEMt+/
+         KI+YKdsHfOq4NOB0lS+8+LaMnUWyvvfgtR396/beGxSo0J5uRjbjdDu97bIkmWGDMh+J
+         jzm4ib4XkIYwFF850+A9x8UrAU4GUWd88psPUFXXfK7bSgxi6oefbaxjDsueEXu+bn5+
+         qqg20hXoLmTXtRYeKfG6QvFTME/xW8v6m7n5ybsvSlgQLvarpKH8on7sW6cSUkNr3TOu
+         GMMg==
+X-Gm-Message-State: AJIora+11bKdDsYrFcPcnv60X5PeDiOQ5HX4UA13Sbrua1/qJn3L7Qyn
+        AOfYiX/8NSOESSdU2u0GjUGfsA==
+X-Google-Smtp-Source: AGRyM1uZ1j3GL+HHiRiUjzP4ZuNVvEGnWjez1sGZv/1hQL7mFmHwohrXD6uOZp7rHHg3HTWQXn9V2A==
+X-Received: by 2002:a05:6808:1392:b0:335:a45d:81fe with SMTP id c18-20020a056808139200b00335a45d81femr1066080oiw.213.1657161093777;
+        Wed, 06 Jul 2022 19:31:33 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id x48-20020a056830247000b006168c71ca4asm17024469otr.56.2022.07.06.19.31.30
+        by smtp.gmail.com with ESMTPSA id x48-20020a056830247000b006168c71ca4asm17024469otr.56.2022.07.06.19.31.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 19:31:31 -0700 (PDT)
+        Wed, 06 Jul 2022 19:31:33 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: (subset) [PATCH v6 0/4] arm: qcom: qcom-apq8064: add separate device node for tsens
-Date:   Wed,  6 Jul 2022 21:31:09 -0500
-Message-Id: <165716107313.864223.16495504646338874492.b4-ty@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Georgi Djakov <djakov@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: Re: (subset) [PATCH v8 0/4] soc/arm64: qcom: Add initial version of bwmon
+Date:   Wed,  6 Jul 2022 21:31:11 -0500
+Message-Id: <165716107315.864223.10956904970767999578.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220521151437.1489111-1-dmitry.baryshkov@linaro.org>
-References: <20220521151437.1489111-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220704121730.127925-1-krzysztof.kozlowski@linaro.org>
+References: <20220704121730.127925-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -75,24 +75,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 21 May 2022 18:14:33 +0300, Dmitry Baryshkov wrote:
-> Currently gcc-msm8960 driver manually creates tsens device. Instantiate
-> the device using DT node instead. This makes the APQ8064 follow the
-> IPQ8064 device tree schema (which is also closer to the way tsens
-> devices are described on newer Qualcomm platforms).
+On Mon, 4 Jul 2022 14:17:26 +0200, Krzysztof Kozlowski wrote:
+> Changes since v7
+> ================
+> 1. After discussions with Bjorn and Rajendra, go back to "SoC-bwmon"
+>    compatible, so without "llcc".  The other bwmon instance - between
+>    LLCC and DDR - should be called LLCC.
 > 
-> Compatibility with the previous devices trees is kept intact.
+> Changes since v6
+> ================
+> 1. Patch #2 (driver): use MSM8998 compatible.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] dt-bindings: clock: qcom,gcc-apq8064: move msm8960 compat from gcc-other.yaml
-      commit: 91a4cbf93326f2d27dda7361c43a5bb24cfd93c3
-[2/4] dt-bindings: clock: qcom,gcc-apq8064: split tsens to the child node
-      commit: 621f984840928f0bd14b20c86b70a15590ed2d3e
-[3/4] clk: qcom: gcc-msm8960: create tsens device if there are no child nodes
-      commit: 93b793d88da8b2c7afd63c64772666ec4274efad
+[4/4] arm64: dts: qcom: sdm845: Add CPU BWMON
+      commit: d3ef125cf844ab2f6365d8645d7468cec709170a
 
 Best regards,
 -- 
