@@ -2,128 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D0B8569D89
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 10:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89774569D9C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 10:41:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234968AbiGGIh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 04:37:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53022 "EHLO
+        id S232893AbiGGIlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 04:41:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234888AbiGGIh5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 04:37:57 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B514F19F
-        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 01:37:55 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id s1so25255401wra.9
-        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 01:37:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=abVct3gFPTleVwlkxr292THL1sNRNK8PgBmO/9HJXCI=;
-        b=vn0flu9MW1pSkawzZyj52K6aja+bt23HA6wmB2x9Kkfdp7Xd2shvOgxcan20A/TmkC
-         mOX51GpNPNJILOSvgLZRkruKUnMe7fLjew3zsLQTN7MmTNcYWuK/EJbrt2wCBz6aW8AT
-         x73mEghaDHHkVRKYZQpYkFPaXxjUBz5GiOhW0VQD9i8jOKJhiM9d1vuaRlOSD53wLmBr
-         sJ8m8foHKMk3EcJN7gPwaP5BZzZvUyByrqAtkXxkuZfuLetTzq8Fp3lcyR4ay3SLNrH3
-         m+xQs3yJ1859YHOsJYkcEtHHZPg9vqDdo5v1MDZPVjQQDoslKtcS9jXhtJz1RbxcaDTo
-         Rr+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=abVct3gFPTleVwlkxr292THL1sNRNK8PgBmO/9HJXCI=;
-        b=TiEhtQ9sb0fzjheitodyIcenKPw3FzjTh5I7ndyQLmcmeAYUZr+mSgtlbVtQO2xZTx
-         ZCj4qUvenhuSY/ZYT32DApG3EweSMHRXTeM+HJmu0Qci00lbSyduXBHkb1tQ3ni63Nuc
-         U5mmbwpt/byRMjpEJPZWJlDZY5fxkYHgGQKn4D3ztp6cPmGV49VhOgLxLKQQLhuSBhQk
-         5aKp4kZppR96MizyKyTxSHZ5Kczj18U3DnAvbMFUBFFSe9zT0OZ+YWfv51X9nQbbKrvd
-         +NqcRdPxDm6+m22j0hHKXFEg89n6l/yUF7/rAqnC6IFPo+EsOhFsGNCsS1xyZsZSkzGt
-         6H2Q==
-X-Gm-Message-State: AJIora8SHZO6Ke72QM7AqfR25Oz0Zw4nUEvPwzNX/sbhIPbBqOwYCUTg
-        FoqfDM4Y95EG9bim5fzw4GQuQQ==
-X-Google-Smtp-Source: AGRyM1shCU2H4w9v75oD2tgujLOfTjQOmrrVfjjs4CYHJNZDG8I5AOH/bGufuGGuNpZAVt0EjUjaVQ==
-X-Received: by 2002:a05:6000:15c6:b0:21d:17da:29ca with SMTP id y6-20020a05600015c600b0021d17da29camr41374738wry.94.1657183073842;
-        Thu, 07 Jul 2022 01:37:53 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id g10-20020a5d698a000000b0021d83eed0e9sm1479968wru.30.2022.07.07.01.37.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jul 2022 01:37:53 -0700 (PDT)
-Date:   Thu, 7 Jul 2022 10:37:50 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, john@metanate.com, heiko@sntech.de,
-        p.zabel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        didi.debian@cknow.org, herbert@gondor.apana.org.au,
-        sboyd@kernel.org, mturquette@baylibre.com,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v8 25/33] dt-bindings: crypto: rockchip: convert to new
- driver bindings
-Message-ID: <YsabXrOyAsCkUUVN@Red>
-References: <20220706090412.806101-1-clabbe@baylibre.com>
- <20220706090412.806101-26-clabbe@baylibre.com>
- <1657114144.957232.4099933.nullmailer@robh.at.kernel.org>
- <YsWcGDwPCX+/95i3@Red>
- <3e47b853-bb82-8766-8884-3da931c038a2@linaro.org>
+        with ESMTP id S229827AbiGGIlQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 04:41:16 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF913F30;
+        Thu,  7 Jul 2022 01:41:13 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1o9N4E-0005a2-Jj; Thu, 07 Jul 2022 10:40:58 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     palmer@dabbelt.com, paul.walmsley@sifive.com
+Cc:     linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        wefu@redhat.com, guoren@kernel.org, cmuellner@linux.com,
+        philipp.tomsich@vrull.eu, hch@lst.de, samuel@sholland.org,
+        atishp@atishpatra.org, anup@brainfault.org, mick@ics.forth.gr,
+        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        drew@beagleboard.org, rdunlap@infradead.org,
+        Atish Patra <atish.patra@wdc.com>
+Subject: Re: [PATCH v7 3/4] riscv: Add support for non-coherent devices using zicbom extension
+Date:   Thu, 07 Jul 2022 10:40:57 +0200
+Message-ID: <1729939.VLH7GnMWUR@diego>
+In-Reply-To: <20220706231536.2041855-4-heiko@sntech.de>
+References: <20220706231536.2041855-1-heiko@sntech.de> <20220706231536.2041855-4-heiko@sntech.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3e47b853-bb82-8766-8884-3da931c038a2@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Wed, Jul 06, 2022 at 05:25:21PM +0200, Krzysztof Kozlowski a écrit :
-> On 06/07/2022 16:28, LABBE Corentin wrote:
-> > Le Wed, Jul 06, 2022 at 07:29:04AM -0600, Rob Herring a écrit :
-> >> On Wed, 06 Jul 2022 09:04:04 +0000, Corentin Labbe wrote:
-> >>> The latest addition to the rockchip crypto driver need to update the
-> >>> driver bindings.
-> >>>
-> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> >>> ---
-> >>>  .../crypto/rockchip,rk3288-crypto.yaml        | 85 +++++++++++++++++--
-> >>>  1 file changed, 77 insertions(+), 8 deletions(-)
-> >>>
-> >>
-> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >>
-> >> yamllint warnings/errors:
-> >>
-> >> dtschema/dtc warnings/errors:
-> >> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml: allOf:0:then:properties:clock-names: 'oneOf' conditional failed, one must be fixed:
-> >> 	[{'const': 'aclk'}, {'const': 'hclk'}, {'const': 'sclk'}, {'const': 'apb_pclk'}] is too long
-> >> 	[{'const': 'aclk'}, {'const': 'hclk'}, {'const': 'sclk'}, {'const': 'apb_pclk'}] is too short
-> >> 	False schema does not allow 4
-> >> 	1 was expected
-> >> 	4 is greater than the maximum of 2
-> >> 	4 is greater than the maximum of 3
-> > 
-> > Hello
-> > 
-> > I upgraded to dt-schema 2022.07 and fail to reproduce all errors.
+Am Donnerstag, 7. Juli 2022, 01:15:35 CEST schrieb Heiko Stuebner:
+> The Zicbom ISA-extension was ratified in november 2021
+> and introduces instructions for dcache invalidate, clean
+> and flush operations.
 > 
-> Visible on older dtschema (2022.6.dev10+gcd64f75fe091), visible on
-> newest (2022.7).
+> Implement cache management operations for non-coherent devices
+> based on them.
 > 
-> Exactly the same error.
+> Of course not all cores will support this, so implement an
+> alternative-based mechanism that replaces empty instructions
+> with ones done around Zicbom instructions.
 > 
+> As discussed in previous versions, assume the platform
+> being coherent by default so that non-coherent devices need
+> to get marked accordingly by firmware.
+> 
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Cc: Christoph Hellwig <hch@lst.de>
+> Cc: Atish Patra <atish.patra@wdc.com>
+> Cc: Guo Ren <guoren@kernel.org>
+> Cc: Anup Patel <anup@brainfault.org>
 
-Hello
+Over in v6 Guo provided [0] a
 
-I am sorry, I finally succesfully reproduced it.
-Just doing what the hints gives (removing max/min-items) from "static" list fix the issue.
+Reviewed-by: Guo Ren <guoren@kernel.org>
 
-Does I need to remove your Reviewed-by ?
 
-Thanks
+
+[0] https://lore.kernel.org/r/CAJF2gTRN1J3edjbt5L9ELLtMzXKWUABQb=QxDA90uY7mj=O0rw@mail.gmail.com
+
+
