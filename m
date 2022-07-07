@@ -2,116 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0C315696BF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 02:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5D135696CB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 02:17:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234550AbiGGALO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 20:11:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46854 "EHLO
+        id S234678AbiGGAR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 20:17:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234251AbiGGALN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 20:11:13 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8CAA1E3F8;
-        Wed,  6 Jul 2022 17:11:12 -0700 (PDT)
-Received: from mercury (unknown [185.209.196.172])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 807CF660195F;
-        Thu,  7 Jul 2022 01:11:10 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657152670;
-        bh=xe2QQQvpUl1Yjfdt6nmwK81IMCIblWCHN82b7IvdQ7c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jh0zfztGXTR3/xe4d0d15Y1k+0S9O2tRQMs/I8M0LxTMYhMw86aNOZlD6eAVdrsGP
-         SsqbbRmi6WZQ6R/zixuJpO+E/M9+7amlxXaPystowObEZ4c5qRstBynEw8A6eQ77zW
-         NgoNMiTrOIKO5uF1zF8bkY1d+GK2t9ho86mb3FJa9jkMjNrxccPQ0bIMSLUkTBNyyU
-         VCmP/5WihONUqbVsTgHYx8GFrMDY6CjdT9Kvq4iSze09dtcnMatH1N4JiIUqD6FLIp
-         23W958j6IIEqnaxO79ikhAEYsLQIByAxn6r8lrXVsXR1wQaTJeBcme+1C1zvMUdIsA
-         l9Nw/ta5J3Taw==
-Received: by mercury (Postfix, from userid 1000)
-        id 9F0F7106069E; Thu,  7 Jul 2022 02:11:07 +0200 (CEST)
-Date:   Thu, 7 Jul 2022 02:11:07 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Wolfram Sang <wsa@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-i2c@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 1/1] dt-bindings: i2c: i2c-rk3x: add rk3588 compatible
-Message-ID: <20220707001107.bfdd4jefwzqrrugq@mercury.elektranox.org>
-References: <20220623163136.246404-1-sebastian.reichel@collabora.com>
- <2664d6a7-ee4b-9cfa-800e-e97522e3986c@linaro.org>
- <YsXjrUVbGIObUroU@shikoro>
- <a965913e-39ba-640a-0d36-2bf7ecc10e94@linaro.org>
+        with ESMTP id S234613AbiGGAR4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 20:17:56 -0400
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0C0F2DAA1
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 17:17:55 -0700 (PDT)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-10bd4812c29so17641096fac.11
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 17:17:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=A9KMWBQbXLx/bx1xZ0Ut5YH6Gehkg3o6EpAfQEv3oiQ=;
+        b=aFZdN/uwvv5by+9RhHiClMYZnVo6UGSzcXWWtCAt5r2fbdoUTBbHZ9NDK6Jj0z1pNd
+         T38kEws2G5cAXs85Wvufk9YgEiWLP8NOvEtr1Snrb9gDrm/lX9iG4ufe56aRHSMlmDW1
+         eNHW9MDnS+MOypb2lP2JCNoRd/AhNVVaO2PaE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=A9KMWBQbXLx/bx1xZ0Ut5YH6Gehkg3o6EpAfQEv3oiQ=;
+        b=1ao3RoGJPD3YZi18E1hP7WH0UXlME84i2c0qYDfLlGYETOLxrLcdUTCzrQZ/Fih5j7
+         vas+xVp8CgdsFMrhJBr2duGx41LChVFtU+P86hAJ4SDngm3utPRsVIc0XS1zG0OJRgIQ
+         2a335TKrTaA2biJ6brgmnNJ48xbPcVKw6aSYvrJz3lc2ZtnX3g1s8iU5UtfVtWIPgFn9
+         Z8ey3J6f71M5kts1AEvUlJoN0SoLy1CypLzml+lxeZXzQ3ifueopEl0L0Lubvk76elSH
+         wozHATjmPwzBvEtOePDlWnqg3PNO5vJ3oo2Ew/oBqhgQvWCBE+8VnRUcgZrRm+xpoPdC
+         LxoA==
+X-Gm-Message-State: AJIora/cER8uf5f0Almq1P7WsFlHB9rPU9xYKc7UH86R1Jpexsl49vXk
+        vMIJn2zn2uDBOZUdMaEafyWh/F4STQIvnTdsMaZQuw==
+X-Google-Smtp-Source: AGRyM1vRIZqEOwogKZJcIXv6VDYldqs4L085Qun9gEFdF2cBslF60GMIX99hLqqjzW1HACZsMRx+6b3IRlXWzJ9eHZs=
+X-Received: by 2002:a05:6870:b381:b0:fe:2004:b3b5 with SMTP id
+ w1-20020a056870b38100b000fe2004b3b5mr961649oap.63.1657153075078; Wed, 06 Jul
+ 2022 17:17:55 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 6 Jul 2022 20:17:54 -0400
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3cpbanhashaymclp"
-Content-Disposition: inline
-In-Reply-To: <a965913e-39ba-640a-0d36-2bf7ecc10e94@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CACeCKafya_XA+C3eJUvT4vjQSgsjdewVkCb+Jr2tA1605jjfjg@mail.gmail.com>
+References: <20220622173605.1168416-1-pmalani@chromium.org>
+ <20220622173605.1168416-6-pmalani@chromium.org> <CAE-0n517BB8YbN5AZG6M3ZrZGOJDV=+t0R9d8wD+gVqO1aD1Xg@mail.gmail.com>
+ <CACeCKafR8hFke_tc2=1VGDNF-CFrZoAG1aUKuxGJG-6pd37hbg@mail.gmail.com>
+ <CAE-0n50XbO5Wu4-429Ao05A4QrbSXoi1wBjTpGFjKm3pZj1Ybg@mail.gmail.com>
+ <CACeCKafzB0wW_B2TOEWywLMyB+UhYCpXYDVBV=UbyxBiGnv1Rw@mail.gmail.com>
+ <CAE-0n50Akd8QikGhaAQgxLkJBhE-7KQf5aJ_P2ajOmCjLk555g@mail.gmail.com>
+ <CACeCKafQT_RBrkHJNE2ezahSsHLPrbnS69QbfnjxBoUhi6hjwQ@mail.gmail.com> <CACeCKafya_XA+C3eJUvT4vjQSgsjdewVkCb+Jr2tA1605jjfjg@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 6 Jul 2022 20:17:54 -0400
+Message-ID: <CAE-0n53kujMrzFG++5kaS4QKj2YrzLJEu5R76W887rCW_S592g@mail.gmail.com>
+Subject: Re: [PATCH v5 5/9] drm/bridge: anx7625: Add typec_mux_set callback function
+To:     Prashant Malani <pmalani@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        bleung@chromium.org, heikki.krogerus@linux.intel.com,
+        Pin-Yen Lin <treapking@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Prashant Malani (2022-07-06 11:26:19)
+>
+> Stephen, any pending concerns?
 
---3cpbanhashaymclp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+No more pending concerns.
 
-Hi,
+> If not,I will post a v6 series with the suggested changes:
+> - Drop typec-switch binding; instead add a new top-level port with
+> end-points for each Type-C connector's switch.
+> - Drop it6505 patches.
+> - Squash anx7625 driver patches into one patch.
+> - Add a comment mentioning that we aren't registering the orientation-switch.
 
-On Wed, Jul 06, 2022 at 09:55:27PM +0200, Krzysztof Kozlowski wrote:
-> On 06/07/2022 21:34, Wolfram Sang wrote:
-> > On Sun, Jun 26, 2022 at 10:22:09PM +0200, Krzysztof Kozlowski wrote:
-> >> On 23/06/2022 18:31, Sebastian Reichel wrote:
-> >>> Just like RK356x, RK3588 is compatible to the existing rk3399 binding.
-> >>>
-> >>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> >>> ---
-> >>>  Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml | 1 +
-> >>>  1 file changed, 1 insertion(+)
-> >>
-> >> That's still some old tree you are based on...
-> >=20
-> > What do you mean by that?
->=20
-> The patch was sent to not updated email, so I assume it was based on
-> something before v5.18. Could be relevant, could be not, but it raises a
-> question what was a base this (and other Rockchip) series. :)
-
-The last round of rk3588 patches (incl. this one) are based on
-v5.19-rc1, but mail destinations are not (I do not generate the
-mail destinations fully automatic).
-
--- Sebastian
-
---3cpbanhashaymclp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmLGJJgACgkQ2O7X88g7
-+prl1A//YrykhjxrG0HEDx+TLLA0SwDdxCSG6YY1iGcJMxRU9tkVV3ibRr99xXrb
-7m0kP5okAn4hfNkEhy4/p0Bc7CDo1IYrk7TWcUM2MvrhqSg9ee7h/pfAOn2DzbEa
-XuSPUgMaYuZPkrtR4vYzJVctcDixqsVQ+HqKQsHbqVXtNtIiybou5DrSPOxvZ7ye
-umXeqS70Ku1DEIA4oexJtFVuV2SB+7S2bhNSgy1SEtlmxbXarSq4cED5FudXnc9s
-Tw06dBYH7HInuatwxZFCmaaTGbzjSzhIxPhb/Ufbzr5HpsHaLUBUIKucPPCHh0XO
-Yr2ta7ORl+nE8Jd7bFrhYXev9jmbGKYVCGNlDsW0bIaC7D2+saDgDmMXJui1+jd2
-K+8fbJf6pnKkfaO/HtUBiJ+kxBC25WBGXA75rUMNEw+ZQFDoBoWF1DR3SRWqoS5N
-DyXkafXpBLhA9mg+KaROKpE+qsMG7FCvFbSsnI2/AcvNbu0LRJVhMnyXald/sNTZ
-lx83sZf//01jITF+XRnyEJvybsAEQscQ7WbbSNLkwVT+tghWkP4WIdjj0icU33JG
-EBfISd+pH0C0IP9zfiXKHyRJA2t/8a7Pv4R57PKxCB+Wkunt4EwlWYyCAyfuKt9Z
-kglZijIXe2sh07i/HElia2WSWYmpAYOpF/LlbHZDrtju727BZyg=
-=5RhB
------END PGP SIGNATURE-----
-
---3cpbanhashaymclp--
+Ok. I'll take a look on v6.
