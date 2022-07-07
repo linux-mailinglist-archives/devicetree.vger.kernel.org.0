@@ -2,446 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9CEC569E95
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 11:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2630569E9D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 11:36:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231831AbiGGJbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 05:31:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38224 "EHLO
+        id S235019AbiGGJgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 05:36:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229951AbiGGJbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 05:31:38 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA15633E05;
-        Thu,  7 Jul 2022 02:31:36 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 28BF66601978;
-        Thu,  7 Jul 2022 10:31:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657186295;
-        bh=Ath3rq3p03H6MtSS6xBSdyqJicwlhpDEfZjXuEK6owM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=gc+OBbTWuskc8471X915+qFwxJBafpGBa11wxtFgGBIYZWkvX/vj5OH6RYobXXc+W
-         Z3tMlf8Tb3/OPLHaxEh4Dj6J6gfHCFfiHtKLBAj4NAh98Wfh/Pcg3FL+/rDKchUdnl
-         ZTBbZTSIeRogDNhL2Wg/78lvx6B0yjYur/AdtszkHvB496RYqc8bj066knggGRbMmc
-         fuOCV9Em3Rbrx9CxJZE9ahczAy4RshJSoCrqSk+wI0K/f4AFKZLCwyccBk1rk4ziCt
-         ozt1pM4ZSye+gAOvAQH2ISxUgxrfCzNF+YaQNOEYmhu0nZkXeqsey56+YszWpjT37t
-         bsml5VhahXBcg==
-Message-ID: <ca179698-d79d-f643-95a8-a27d51efddef@collabora.com>
-Date:   Thu, 7 Jul 2022 11:31:32 +0200
+        with ESMTP id S229951AbiGGJgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 05:36:41 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55DE933E3D;
+        Thu,  7 Jul 2022 02:36:40 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id f39so30140942lfv.3;
+        Thu, 07 Jul 2022 02:36:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=uk6eRcniuhN5P9bQg4gHK3VjMm5IPigYNw1THcOSKvQ=;
+        b=FyW9C9qfEZR7mIZPF8S5ycmEPLrPFTBUXsb+qNIX6ciPJNlJ5nK62YzBOuRXszQ5qS
+         ly6Kg2bk4jh0p4SYd83cpL8Xi7/FgvBXqHjjCwMdawTMnRoHjXIZOtkcLU6vcnW8IKex
+         TyttroUtcTPW6/lNBnrgkX44TNj4pc0mOud8iCQEDrcKAVaAVikMuym8H4OZ9L02bXxf
+         lSF/zq4wUUjdloN5t7rje790Ofi7sIHes0cLDnYZ0avFnmwUBkjMP7vY8hdmuvyJN752
+         DzHCyWeGBxXRNNRH/sAhIBDfV8iRhR7hG0QwMSSP/RWspZsu3IpF/f07KyCfN8/mgrN9
+         gDWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=uk6eRcniuhN5P9bQg4gHK3VjMm5IPigYNw1THcOSKvQ=;
+        b=WtDiXkJX0mW9fdrZPMpI7HEnpdU6fKSNfPp/5L49XRmErcv8Zp9QWZgyCSk9VOv9cQ
+         SWgMnzoADv6bAsYYBDnIt+qZW0U3FwLzSbpHBv28gO3qcylJJdGnUHfot4CK3FrWuHRM
+         ltQIPh5NGNlBdYOoDB4CLIPYgELwjVnm1PZUqorJDBq2ZhaLYfvzlPecVRCykiQ3m4sD
+         J7kf18H7qeFSUVAh39L43wGJ+dLVb9BIrKd04RxBxA2MPNIu1xvGfNAbdcQcCbPdKfc8
+         Rl/YCRdnG+gqNPltMZUWgJoNjOWk/F2vj77vaL51JM7MQBe0cehvS4sOEsUx6rRFXEPt
+         kRGg==
+X-Gm-Message-State: AJIora9A3Xy14oLlI62bRb6QvhlNlNkjeoXIIQu/UraO12te7llobJXx
+        AUuBJ3EyLNxj68pDzHQ1E6Vq3o02KB1vC5EiMpw=
+X-Google-Smtp-Source: AGRyM1s/3fGanv457EEA0rSnHymLVsgKvtRdCMQ/zbb9LZ8KzRNHq3RmIRwPJjpEQWKBjKorkI/YCRyBMceDO+VGtDE=
+X-Received: by 2002:a05:6512:31d5:b0:47f:718a:3459 with SMTP id
+ j21-20020a05651231d500b0047f718a3459mr30234854lfe.480.1657186598284; Thu, 07
+ Jul 2022 02:36:38 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v11 3/3] arm64: dts: Add MediaTek SoC MT8186 dts and
- evaluation board and Makefile
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>, hsinyi@chromium.org
-References: <20220520122217.30716-1-allen-kh.cheng@mediatek.com>
- <20220520122217.30716-4-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220520122217.30716-4-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220527084647.30835-1-ctcchien@nuvoton.com> <20220527084647.30835-4-ctcchien@nuvoton.com>
+ <YrYd+FkiFPz84twJ@mail.local> <CAHpyw9cdmCSZEE4ZbpnehpyvFhpPWA+_E5zXzJerNX9xqYet5Q@mail.gmail.com>
+ <CAL3ZnpzSm7f1L2MMuDr9_vg3TQuk3PSr46fwmJTMz4sA2sdCJg@mail.gmail.com> <YsaQrksj8jBhJYGP@mail.local>
+In-Reply-To: <YsaQrksj8jBhJYGP@mail.local>
+From:   Mining Lin <mimi05633@gmail.com>
+Date:   Thu, 7 Jul 2022 17:36:26 +0800
+Message-ID: <CAL3ZnpxwEhH4bu8pmCCCkVG=bUHGvoTKSa1NgVJaEeEtcbGCBQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] RTC: nuvoton: Add NCT3018Y real time clock driver
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, a.zummo@towertech.it,
+        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
+        KFTING <KFTING@nuvoton.com>, ctcchien@nuvoton.com,
+        Medad Young <medadyoung@gmail.com>,
+        CS20 MYLin1 <mylin1@nuvoton.com>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 20/05/22 14:22, Allen-KH Cheng ha scritto:
-> Add basic chip support for MediaTek MT8186.
-> 
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile       |    1 +
->   arch/arm64/boot/dts/mediatek/mt8186-evb.dts |  232 +++++
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi    | 1016 +++++++++++++++++++
->   3 files changed, 1249 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index c7d4636a2cb7..50a2c58c5f56 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -37,6 +37,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
-> new file mode 100644
-> index 000000000000..3e8018c1e802
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
-> @@ -0,0 +1,232 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright (C) 2022 MediaTek Inc.
-> + */
-> +/dts-v1/;
-> +#include "mt8186.dtsi"
-> +
-> +/ {
-> +	model = "MediaTek MT8186 evaluation board";
-> +	compatible = "mediatek,mt8186-evb", "mediatek,mt8186";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:921600n8";
-> +	};
-> +
-> +	memory {
-> +		device_type = "memory";
-> +		reg = <0 0x40000000 0 0x80000000>;
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0_pins>;
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	i2c-scl-internal-delay-ns = <8000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_pins>;
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	status = "okay";
-> +};
-> +
+Dear Alexandre,
 
-Can you please reorder like:
+Thank you for your comment and response.
+I will refine again and reply below.
 
-&i2c1 {
-	status = "okay";
+Thanks.
+Best Regards,
+Mia
 
-	clock-frequency = <400000>;
-	i2c-scl-internal-delay-ns = <12500>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&i2c1_pins>;
-};
+Alexandre Belloni <alexandre.belloni@bootlin.com> =E6=96=BC 2022=E5=B9=B47=
+=E6=9C=887=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=883:52=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+>
+> On 07/07/2022 15:17:28+0800, Mining Lin wrote:
+> > Dear Alexandre,
+> >
+> > Thank you for your comments.
+> > I will refine and reply below.
+> >
+> > Thanks.
+> > Best Regards,
+> > Mia
+> >
+> > Medad Young <medadyoung@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=887=
+=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=881:31=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+> > >
+> > > Hello Alexandre,
+> > >
+> > > Thanks for your comments.
+> > > I add Mining Lin <mimi05633@gmail.com> into this mail thread,
+> > > and she is going to follow up this RTC driver.
+> > > She will be in charge of maintaining this driver.
+> > >
+> > > Alexandre Belloni <alexandre.belloni@bootlin.com> =E6=96=BC 2022=E5=
+=B9=B46=E6=9C=8825=E6=97=A5 =E9=80=B1=E5=85=AD =E5=87=8C=E6=99=A84:26=E5=AF=
+=AB=E9=81=93=EF=BC=9A
+> > > >
+> > > > Hello,
+> > > >
+> > > > Please run ./scripts/checkpatch.pl --strict on your patch, there ar=
+e a
+> > > > bunch of issues.
+> > > >
+> > [Mia] I will run ./scripts/checkpatch.pl --strict on my patch to fix is=
+sues.
+> >
+> > > > On 27/05/2022 16:46:47+0800, medadyoung@gmail.com wrote:
+> > > > > +static int nct3018y_set_alarm_mode(struct i2c_client *client, bo=
+ol on)
+> > > > > +{
+> > > > > +     int err, flags;
+> > > > > +
+> > > > > +     dev_dbg(&client->dev, "%s:on:%d\n", __func__, on);
+> > > > > +
+> > > > > +     flags =3D  i2c_smbus_read_byte_data(client, NCT3018Y_REG_CT=
+RL);
+> > > > > +     if (flags < 0) {
+> > > > > +             dev_err(&client->dev,
+> > > > > +                     "Failed to read NCT3018Y_REG_CTRL\n");
+> > > >
+> > > > You should cut down on the number of error messages, they are usual=
+ly
+> > > > not useful as the user doesn't have any specific action after getti=
+ng
+> > > > one of them apart from trying the action once again. Also, this wil=
+l
+> > > > make your code shorter. dev_dbg is fine.
+> > > >
+> > [Mia] I will modify dev_err to dev_dbg if there is an error and nothing=
+ to do.
+> >
+> > > > > +/*
+> > > > > + * In the routines that deal directly with the nct3018y hardware=
+, we use
+> > > > > + * rtc_time -- month 0-11, hour 0-23, yr =3D calendar year-epoch=
+.
+> > > > > + */
+> > > > > +static int nct3018y_rtc_read_time(struct device *dev, struct rtc=
+_time *tm)
+> > > > > +{
+> > > > > +     struct i2c_client *client =3D to_i2c_client(dev);
+> > > > > +     unsigned char buf[10];
+> > > > > +     int err;
+> > > > > +
+> > > >
+> > > > You should still return an error if the time is invalid there but w=
+ithout
+> > > > an error message.
+> > > >
+> > [Mia] I will verify the time by rtc_valid_tm(tm).
+> >
+>
+> No, I meant checking NCT3018Y_REG_ST as was done in the previous
+> revisions of the series
+>
+[Mia] I will check NCT3018Y_REG_ST as was done in the previous revisions.
 
-Also, address and size cells are common properties and will not change
-on a per-board basis: please define them in mt8186.dtsi instead.
+> > > > > +static struct clk *nct3018y_clkout_register_clk(struct nct3018y =
+*nct3018y)
+> > > > > +{
+> > > > > +     struct i2c_client *client =3D nct3018y->client;
+> > > > > +     struct device_node *node =3D client->dev.of_node;
+> > > > > +     struct clk *clk;
+> > > > > +     struct clk_init_data init;
+> > > > > +     int flags, err;
+> > > > > +
+> > > > > +     /* disable the clkout output */
+> > > > > +     flags =3D 0;
+> > > > > +     err =3D i2c_smbus_write_byte_data(client, NCT3018Y_REG_CLKO=
+, flags);
+> > > >
+> > > > BTW, this introduces a glitch in the clock output if the clock is
+> > > > actually used. Maybe you could just rely on the CCF core to disable=
+ this
+> > > > clock when there are no users.
+> > > >
+> > [Mia] Do you mean there is no need to disable the clock output here?
+> >
+>
+> The CCF will disable the clock at boot time if there are no users
+>
+[Mia] I will remove disable clock output. Thank you so much for your reply.
 
-Same for the other nodes.
-
-
-> +&i2c2 {
-
-..snip..
-
-> +
-> +&pio {
-> +	i2c0_pins: i2c0{
-
-Please perform a dtbs_check before pushing devicetrees upstream:
-this node will give you a warning, bindings related warnings are
-considered like code warnings and they shall not happen.
-
-pinctrl-mt8186.yaml defines patternProperties as '-pins$'
-so this should be:
-
-	i2c0_pins: i2c0-pins {
-
-Please fix.
-
-
-> +		pins-sda-scl {
-> +			pinmux = <PINMUX_GPIO128__FUNC_SDA0>,
-> +				 <PINMUX_GPIO127__FUNC_SCL0>;
-> +			bias-disable;
-> +			mediatek,drive-strength-adv = <0>;
-
-Do not use mediatek,drive-strength-adv: it's not right in principle
-to have this property, as it can be expressed with the standard
-drive-strength-microamp property instead.
-
-Check pinctrl-mt8192.yaml (or my commits to pinctrl-mt8195.yaml) for
-more information.
-
-> +			drive-strength = <MTK_DRIVE_4mA>;
-
-MTK_DRIVE_(x)mA maps to the actual value in mA: please stop using this
-definition and simply define this as
-
-			drive-strength = <4>;
-
-
-> +			input-enable;
-> +		};
-> +	};
-> +
-
-..snip..
-
-> +
-> +&u3phy0 {
-> +	status="okay";
-
-This should be
-
-	status = "okay";
-
-> +};
-> +
-> +&u3phy1 {
-> +	status="okay";
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&xhci0 {
-> +	status = "okay";
-> +};
-> +
-> +&xhci1 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> new file mode 100644
-> index 000000000000..35281db2e2b9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -0,0 +1,1016 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright (C) 2022 MediaTek Inc.
-> + * Author: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> + */
-> +/dts-v1/;
-> +#include <dt-bindings/clock/mt8186-clk.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/pinctrl/mt8186-pinfunc.h>
-> +#include <dt-bindings/power/mt8186-power.h>
-> +#include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/reset/mt8186-resets.h>
-> +
-> +/ {
-> +	compatible = "mediatek,mt8186";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-
-..snip..
-
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x000>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			capacity-dmips-mhz = <382>;
-> +			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
-> +			next-level-cache = <&l2_0>;
-
-No cooling cells?
-
-> +		};
-> +
-
-..snip..
-
-
-> +
-> +	soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		compatible = "simple-bus";
-> +		ranges;
-> +
-> +		gic: interrupt-controller@c000000 {
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <3>;
-
-You're describing PPI partitions below... even if you're not currently
-planning to define PPI affinity just yet, interrupt cells should be 4
-so that defining affinity will be pretty straightforward in the future.
-
-Please change interrupt-cells to 4.
-
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			#redistributor-regions = <1>;
-> +			interrupt-parent = <&gic>;
-> +			interrupt-controller;
-> +			reg = <0 0x0c000000 0 0x40000>,
-> +			      <0 0x0c040000 0 0x200000>;
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			ppi-partitions {
-> +				ppi_cluster0: interrupt-partition-0 {
-> +					affinity = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
-> +				};
-> +
-> +				ppi_cluster1: interrupt-partition-1 {
-> +					affinity = <&cpu6 &cpu7>;
-> +				};
-> +			};
-> +		};
-> +
-> +		mcusys: syscon@c53a000 {
-> +			compatible = "mediatek,mt8186-mcusys", "syscon";
-> +			reg = <0 0xc53a000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		topckgen: syscon@10000000 {
-> +			compatible = "mediatek,mt8186-topckgen", "syscon";
-> +			reg = <0 0x10000000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		infracfg_ao: syscon@10001000 {
-> +			compatible = "mediatek,mt8186-infracfg_ao", "syscon";
-> +			reg = <0 0x10001000 0 0x1000>;
-> +			#clock-cells = <1>;
-
-You missed reset-cells here. This driver is also defining a reset controller.
-
-> +		};
-> +
-> +		pericfg: syscon@10003000 {
-> +			compatible = "mediatek,mt8186-pericfg", "syscon";
-> +			reg = <0 0x10003000 0 0x1000>;
-> +		};
-> +
-> +		pio: pinctrl@10005000 {
-> +			compatible = "mediatek,mt8186-pinctrl";
-> +			reg = <0 0x10005000 0 0x1000>,
-> +			      <0 0x10002000 0 0x0200>,
-> +			      <0 0x10002200 0 0x0200>,
-> +			      <0 0x10002400 0 0x0200>,
-> +			      <0 0x10002600 0 0x0200>,
-> +			      <0 0x10002A00 0 0x0200>,
-> +			      <0 0x10002C00 0 0x0200>,
-> +			      <0 0x1000B000 0 0x1000>;
-> +			reg-names = "iocfg0", "iocfg_lt", "iocfg_lm", "iocfg_lb",
-> +				    "iocfg_bl", "iocfg_rb", "iocfg_rt", "eint";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&pio 0 0 185>;
-> +			interrupt-controller;
-> +			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		scpsys: syscon@10006000 {
-> +			compatible = "syscon", "simple-mfd";
-> +			reg = <0 0x10006000 0 0x1000>;
-> +			#power-domain-cells = <1>;
-> +
-> +			/* System Power Manager */
-> +			spm: power-controller {
-> +				compatible = "mediatek,mt8186-power-controller";
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				#power-domain-cells = <1>;
-> +
-> +				/* power domain of the SoC */
-> +				mfg0: power-domain@MT8186_POWER_DOMAIN_MFG0 {
-> +					reg = <MT8186_POWER_DOMAIN_MFG0>;
-> +					clocks = <&topckgen CLK_TOP_MFG>;
-> +					clock-names= "mfg00";
-
-Missing space: `clock-names = "mfg00";`
-
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +					#power-domain-cells = <1>;
-> +
-> +					power-domain@MT8186_POWER_DOMAIN_MFG1 {
-> +						reg = <MT8186_POWER_DOMAIN_MFG1>;
-> +						mediatek,infracfg = <&infracfg_ao>;
-> +						#address-cells = <1>;
-> +						#size-cells = <0>;
-> +						#power-domain-cells = <1>;
-> +
-> +						power-domain@MT8186_POWER_DOMAIN_MFG2 {
-> +							reg = <MT8186_POWER_DOMAIN_MFG2>;
-> +							#power-domain-cells = <0>;
-> +						};
-> +
-> +						power-domain@MT8186_POWER_DOMAIN_MFG3 {
-> +							reg = <MT8186_POWER_DOMAIN_MFG3>;
-> +							#power-domain-cells = <0>;
-> +						};
-> +					};
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_CSIRX_TOP {
-> +					reg = <MT8186_POWER_DOMAIN_CSIRX_TOP>;
-> +					clocks = <&topckgen CLK_TOP_SENINF>,
-> +						 <&topckgen CLK_TOP_SENINF1>;
-> +					clock-names= "csirx_top0", "csirx_top1";
-
-Same here.
-
-> +					#power-domain-cells = <0>;
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_SSUSB {
-> +					reg = <MT8186_POWER_DOMAIN_SSUSB>;
-> +					#power-domain-cells = <0>;
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_SSUSB_P1 {
-> +					reg = <MT8186_POWER_DOMAIN_SSUSB_P1>;
-> +					#power-domain-cells = <0>;
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_ADSP_AO {
-> +					reg = <MT8186_POWER_DOMAIN_ADSP_AO>;
-> +					clocks = <&topckgen CLK_TOP_AUDIODSP>,
-> +						 <&topckgen CLK_TOP_ADSP_BUS>;
-> +					clock-names= "adsp_ao0", "adsp_ao1";
-
-...and here, and everywhere else, please fix.
-
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +					#power-domain-cells = <1>;
-> +
-
-Regards,
-Angelo
-
-
+> --
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
