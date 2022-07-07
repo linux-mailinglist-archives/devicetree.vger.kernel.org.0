@@ -2,111 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8EF8569BF8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 09:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A7AA569BF0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 09:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235036AbiGGHo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 03:44:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60396 "EHLO
+        id S235079AbiGGHqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 03:46:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235026AbiGGHoZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 03:44:25 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886253205B;
-        Thu,  7 Jul 2022 00:44:24 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2675mDVw030880;
-        Thu, 7 Jul 2022 09:44:07 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=KGECI26kQYwVXazLZQENvXzgMLdMJaLCna55/BysDPI=;
- b=PZJq7kr4OpLhM4IEufrAJMgW7gk3qZXDpM71gBbqRCIRbprLYSQfmTwhyvgOlMeYU0SK
- 1D6iC+b6MAVhCeL2vByUVaST/QgoDL7Mv6Fyhzy1+a/zCwOEAPotR50eRFLlhTs8Fxjy
- 4VYU0VgZ3nKVuV8A14SaFJkjWMnrTY5/Q/wmvkFMRCshsCU95bqgqdr5TG+R1PNgf0EE
- vyBZ7YIwhglvB16coLkMtzZMXx5wOsYbyr8ipRVE11MzxRSqDSgP+h1nG5n5gpmIu1LO
- QWU3gmbbprxuyD1vdz48BKzcXBQrPx/r9Au6rttpbDFyJdCS2QybZkEgm5KUGOwGCx24 Ag== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3h4uadk010-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 07 Jul 2022 09:44:07 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B21FB100038;
-        Thu,  7 Jul 2022 09:44:06 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AC9FF211F07;
-        Thu,  7 Jul 2022 09:44:06 +0200 (CEST)
-Received: from localhost (10.75.127.50) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Thu, 7 Jul
- 2022 09:44:06 +0200
-From:   Alain Volmat <alain.volmat@foss.st.com>
-To:     <wsa@kernel.org>, <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@foss.st.com>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>,
-        <amelie.delaunay@foss.st.com>, <alain.volmat@foss.st.com>
-Subject: [PATCH v2 2/2] i2c: stm32: add support for the STM32MP13 soc
-Date:   Thu, 7 Jul 2022 09:44:02 +0200
-Message-ID: <20220707074402.2429786-3-alain.volmat@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220707074402.2429786-1-alain.volmat@foss.st.com>
-References: <20220707074402.2429786-1-alain.volmat@foss.st.com>
+        with ESMTP id S234756AbiGGHqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 03:46:01 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD65B32EE0;
+        Thu,  7 Jul 2022 00:46:00 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id v16so13632529wrd.13;
+        Thu, 07 Jul 2022 00:46:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=LKzuTu76HYq009jrFW4ITnArK6nwSQEv+W7XUzoR33w=;
+        b=YgLS/IVL8oJWf9znw9oBwb5dk75wPgcOWZKPGd8C7nYr/y9V3x0Ntie2J/s+1Eqyyi
+         qQpcUAA/lpMg2ASeAPMN1qOUEsr7hZlW/HzPSIF4MvumFnjFJ+HGDfJSXwLeXNYj0ZXF
+         9FhIpkpwDIokwLnR8GNvrdDT1C/hTm9FldOHRT3uOqw5MmcKd82DAV8igV4Iro6cR3fJ
+         wkzYxYFhlb7dZPDlPLq1twTHw4Jq/+bprDDv8Hs55Oi8IPiaHV/XZxfVrvq+RaHpGbfF
+         QPUvpZoL+DFH9R+TXgyh7ppWyvulqYCXS5+4bVN/OfAFBzO+A+HkN78xXlTvDZj97+HZ
+         Wn8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=LKzuTu76HYq009jrFW4ITnArK6nwSQEv+W7XUzoR33w=;
+        b=2TByTxhh72/GMtlhH3bzMLYoAuGTGxrHYyfs7qwH0mjLjxRwchZPqnyT+7rv+FUmL8
+         FnioyiwztcqfmgpRKag/CAOd65cKIlwvkisd/sX5n7MnAJkXlKm349Gjb0Tz+bAE7MyZ
+         D+gefPadrdNHIQFLNMfflzz7VbhOoaeYrn4y0XdA9B3kS1r3WUHOvejZV0Ti2/BWSB29
+         Oc0Pl1C7mu1fQMY+5p3stjirZAvJ6rPfwC5pzJexxr6ZQlcU2beJijl/3YTbZnh5bR17
+         h9CBdvD/5yIdQmOTiWF0MfUD4wyv9rmJy9w0PDnIeQP4k+uUjRkDO5l0IVLp0zUPWKoO
+         XiXg==
+X-Gm-Message-State: AJIora+zIed5NFd4J7S04ZiLFQBN5dyJpyJxRPIAbKp8L/1TwxqxTlAC
+        4FYu0dZjuZV0+u29uq+Xjv4=
+X-Google-Smtp-Source: AGRyM1uhNJyllReG0ZArRd/Db+rq+lfBdkqIvwYsQC/sf+JccUaUBgU538nikPnfBjvsYoPAzW47Nw==
+X-Received: by 2002:a5d:5505:0:b0:21d:6549:70bd with SMTP id b5-20020a5d5505000000b0021d654970bdmr23439119wrv.612.1657179959185;
+        Thu, 07 Jul 2022 00:45:59 -0700 (PDT)
+Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id n15-20020a05600c4f8f00b003a1980d55c4sm16955077wmq.47.2022.07.07.00.45.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 00:45:58 -0700 (PDT)
+Date:   Thu, 7 Jul 2022 09:45:56 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Bhadram Varka <vbhadram@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v3 5/9] dt-bindings: net: Add Tegra234 MGBE
+Message-ID: <YsaPNKSeQcfYw0FK@orome>
+References: <20220706213255.1473069-1-thierry.reding@gmail.com>
+ <20220706213255.1473069-6-thierry.reding@gmail.com>
+ <f85d59ba-4f2c-130f-2455-bc28ac060f8c@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-07_06,2022-06-28_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="X8MNCt9n/wN8o+J9"
+Content-Disposition: inline
+In-Reply-To: <f85d59ba-4f2c-130f-2455-bc28ac060f8c@linaro.org>
+User-Agent: Mutt/2.2.6 (2022-06-05)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new compatible for the stm32mp13.  Fast Mode Plus control
-register address differ from the one for STM32MP15.
 
-Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-Reviewed-by: Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
----
- drivers/i2c/busses/i2c-stm32f7.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+--X8MNCt9n/wN8o+J9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/i2c/busses/i2c-stm32f7.c b/drivers/i2c/busses/i2c-stm32f7.c
-index 6d4aa64b195d..d1c59d83a65b 100644
---- a/drivers/i2c/busses/i2c-stm32f7.c
-+++ b/drivers/i2c/busses/i2c-stm32f7.c
-@@ -410,6 +410,12 @@ static const struct stm32f7_i2c_setup stm32mp15_setup = {
- 	.fmp_clr_offset = 0x40,
- };
- 
-+static const struct stm32f7_i2c_setup stm32mp13_setup = {
-+	.rise_time = STM32F7_I2C_RISE_TIME_DEFAULT,
-+	.fall_time = STM32F7_I2C_FALL_TIME_DEFAULT,
-+	.fmp_clr_offset = 0x4,
-+};
-+
- static inline void stm32f7_i2c_set_bits(void __iomem *reg, u32 mask)
- {
- 	writel_relaxed(readl_relaxed(reg) | mask, reg);
-@@ -2468,6 +2474,7 @@ static const struct dev_pm_ops stm32f7_i2c_pm_ops = {
- static const struct of_device_id stm32f7_i2c_match[] = {
- 	{ .compatible = "st,stm32f7-i2c", .data = &stm32f7_setup},
- 	{ .compatible = "st,stm32mp15-i2c", .data = &stm32mp15_setup},
-+	{ .compatible = "st,stm32mp13-i2c", .data = &stm32mp13_setup},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, stm32f7_i2c_match);
--- 
-2.25.1
+On Thu, Jul 07, 2022 at 08:56:49AM +0200, Krzysztof Kozlowski wrote:
+> On 06/07/2022 23:32, Thierry Reding wrote:
+[...]
+> > +        - mac
+> > +        - pcs
+> > +
+> > +  interconnects:
+> > +    items:
+> > +      - description: memory read client
+> > +      - description: memory write client
+> > +
+> > +  interconnect-names:
+> > +    items:
+> > +      - const: dma-mem # read
+>=20
+> I propose to drop the comment - it is obvious from "interconnects" above.
 
+Yeah, fair enough. I've addressed all of the other comments in v4 as
+well.
+
+Thanks for the review!
+Thierry
+
+--X8MNCt9n/wN8o+J9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmLGjzQACgkQ3SOs138+
+s6Gv4Q//bbgi+ifGsHmooNRh+8eZisJE63igGhF8VcPWQfg5KVsHp9t29GRGjYDZ
+kEJNUNfwY+MNRthNCkSZ4TELThrtWfkQ9JczYVL77zvs4emll0uPKnLvInBq4yBl
+JtOPBsfBJ6smp7q+24r2MxFk/8UqkWWHquGfxsD4Y9o22LpTRtVoqlxpjwQlcKDm
+FRIwsNJVnR3E7LJvJgiBud11nNDJSFChWsx/Fs8lQUGbtw4/gVqvBDWajaQG936z
+ondimFfrYTlKcPZ17taf9Ye/hkuK4HqxqT6V/kZ37iavFePjyE4N353UiZmDP7wx
+jbwwH/ughM5r3/9uyouSHcUOEsksnZjwVz7AeeWl18DvzXsFRhuVjji2gbA8MkY5
+PKmBndRUIkAXror5j/GI5J1JwGhbPF1Zj8StlD743wkWj3N7E6QOrrQsU2Xuzoez
+KoADKZQ12dkbnbUOAmM6OHL9xVQ0rk82xEKKZS9a64IK5jsOxhnvqJuozZEnwUeG
+esyoDtOz65fuNrqwYmdDDUPcRB75CEB7nclBzigpqCL3sukRVttqQRKGgtjU1rt2
+5V/wk7us2EgtcxiBxXgz59ugg8Bp7K1GzLCBqrpVNbkqklfezUkQz+od/+5vbgxA
+sZpFqmOrq8Ta3Cq95u2z2tDvI+4vYjLPLG0r2ZFojct/Ale/V4E=
+=f3wq
+-----END PGP SIGNATURE-----
+
+--X8MNCt9n/wN8o+J9--
