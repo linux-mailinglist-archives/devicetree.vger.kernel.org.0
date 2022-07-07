@@ -2,72 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BDE569828
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1430D569818
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:33:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234895AbiGGCb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 22:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39974 "EHLO
+        id S234776AbiGGCb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 22:31:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234923AbiGGCbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 22:31:43 -0400
-Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B0F62F3AE
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 19:31:41 -0700 (PDT)
-Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-10bf634bc50so14601009fac.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 19:31:41 -0700 (PDT)
+        with ESMTP id S234895AbiGGCbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 22:31:45 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B0D2F64D
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 19:31:42 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-10c0430e27dso12150042fac.4
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 19:31:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=lMUJhKO89u0bEYdwv708x6FRjBuFDPClx2vt9C6ftyQ=;
-        b=AXdnyDKRdWBJ8HLmERnGQQcAuvWwNkuFpLIRyW9jdHiqXs2F3R22dB7sGRl3Oj7ZXF
-         b/PSwtiEIR3T+eCJxQY0G2C6ENd6x/vJzmIo6Z8QORyJNsB9tNxz5U3wYg67B4hYeeWz
-         t43j7bcp7d5N4WNwQUtkHX3HYnOGaoykIhjesi7BHnhFB/ULDsBMR0mNI4uG6QQxOuzL
-         /ZMkscV5RG3MsG6gLiEljhI6TyrRAnYDjmF8Ju5IG0oJVS7Cz7v1jmxw2lCKo0jZISTr
-         CfT/oI1IHtdG/400aeHNwYDPrOdLmR4ubFSxzGWjCvU8i8i2TPRNF9FhO7JyMa/HSUMI
-         KA0A==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=FlZVePS47CQB2fLrsuYTYo7nXV1SeCYN43u6BIIpwag=;
+        b=oWobDK4AJxR+fAUpb514GKNzQ2EGoC120X4ExMjisgW+rdPTqRp+tHdpNYt07KYNv4
+         WxNap85AWfiQ2rxKfJbRhcGCFYlENtQVh1bUCXQjdPuGgG790gOtLP1mYa6+h3AeAxS/
+         vVLA02wuK11K3ZpAwwnGgkr8/CkRJ0AUmKznTsss2RDL2g07dntfrVaX7IQYSmb6iS5D
+         BGRKSCPaiJj/uBRIDphrNPMSIvm+On1QvWiGlmxxuzYV1hL8aPrxzccKjm4RQH7poKuC
+         gDqpIwVavwMNAwAc/2czK5lr1fChsLQ6/kP3q+ouwoMCylM2uOfJW/4iEa4a5GumNUjx
+         UCjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=lMUJhKO89u0bEYdwv708x6FRjBuFDPClx2vt9C6ftyQ=;
-        b=pzUklIRtkDeTKftAaTcmvEHeqxGpK5PhuBKi7FuNnl91SgBqjzuIn5Nb0hTxdZxL6s
-         EX3LcXshAJnFBFjq4dVSeh07O0ot8HecWDOT3QHUPc8SSnrQEFhrsnc52A7zFyroUCQk
-         9Q39tc1r0hbH1vJqfvnvwhBsdETJ9Lmce2qRQAggjelPTFmA72o5HRItwqOZ96UfwV8Y
-         wIuM0c0eLx+z5YS56AFtuYva/zE9lgM3feCHq8RmeEaKl2DpAkcUI6aIddKaefI4/WCX
-         EdJfHy9jvjTdBCMnk7MQ+z+OzTC0VJ8PGgUIgTYgRfPkswOtNqi9N+GdhUvDeC17H4g9
-         1bQQ==
-X-Gm-Message-State: AJIora8BQ1ZQDZ35vaWVGTetFwAi0ZDxYy9lMPBcSbQh7FE9B+nYPkep
-        DLBkuuC7BfX+AIyLr6Um/DYzYw==
-X-Google-Smtp-Source: AGRyM1t2/ufCsHlIzpPLiSl6dF9mKf9yxlJaTNfwUeqjfBG61nASkF/gwlTEXKt4KqtzGYNu5YxiUA==
-X-Received: by 2002:a05:6870:2490:b0:101:d94b:c9fd with SMTP id s16-20020a056870249000b00101d94bc9fdmr1168616oaq.73.1657161101255;
-        Wed, 06 Jul 2022 19:31:41 -0700 (PDT)
+        bh=FlZVePS47CQB2fLrsuYTYo7nXV1SeCYN43u6BIIpwag=;
+        b=jN7fSOrYMLirpIqlBPwQeM/HM/dYcCnaiGapiKBvYzFeXz7EJkleSqMXnR2UeM/52L
+         uaGWkTDrIdgOICio2aBbkCaN5kt+zfagTpSWNiyrxUuvGM2EM2/viykejo4ISdHRA2f2
+         dpYWZ9B/3FMrvHs9kKhPKa1/q5Y00baVfmmpmtHyCDQqomzI4EUSKZGnmCdcVCd/0jJp
+         no7B1ucvh6H3Iem4+Vk9OXsgAOK/xpRU2FN6HdU9kfoqXm7+T/lv6cRj/tnaSFbU12WE
+         GOaut0RqzgbV9b0zJDdfAuL6L2rVNfcje+0swU/BOz1cPSysm3Qen9Tkf+MU1w10w8S/
+         ECDQ==
+X-Gm-Message-State: AJIora9h4uj03KYzYbByQGIJz9rcB0d8ReAGKY8sFtZ+8Z6ZIBUMZdRp
+        ahwsriDkycAPQq5GgygBKD6zig==
+X-Google-Smtp-Source: AGRyM1vd4NmRpUxaeieBA7/sWpTryt5OaUYEpF1qRSyIkhZ0rJiOsWdZMKsB6MkPUBrC/6cotMeapA==
+X-Received: by 2002:a05:6870:4344:b0:10b:8499:395d with SMTP id x4-20020a056870434400b0010b8499395dmr1245950oah.214.1657161102210;
+        Wed, 06 Jul 2022 19:31:42 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id x48-20020a056830247000b006168c71ca4asm17024469otr.56.2022.07.06.19.31.40
+        by smtp.gmail.com with ESMTPSA id x48-20020a056830247000b006168c71ca4asm17024469otr.56.2022.07.06.19.31.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jul 2022 19:31:40 -0700 (PDT)
+        Wed, 06 Jul 2022 19:31:41 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        konrad.dybcio@somainline.org, jonathan@marek.ca,
-        mturquette@baylibre.com,
+        konrad.dybcio@somainline.org,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        robh+dt@kernel.org, linux-clk@vger.kernel.org, sboyd@kernel.org,
-        agross@kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
         Robert Foss <robert.foss@linaro.org>,
-        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
-Subject: Re: (subset) [PATCH v8 5/5] arm64: dts: qcom: sm8350: Add DISPCC node
-Date:   Wed,  6 Jul 2022 21:31:18 -0500
-Message-Id: <165716107314.864223.14143394880939195764.b4-ty@linaro.org>
+        linux-kernel@vger.kernel.org
+Cc:     Vinod Koul <vkoul@kernel.org>
+Subject: Re: (subset) [PATCH v8] arm64: dts: qcom: sm8350: Replace integers with rpmpd defines
+Date:   Wed,  6 Jul 2022 21:31:19 -0500
+Message-Id: <165716107314.864223.15017336421009703415.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220706154337.2026269-6-robert.foss@linaro.org>
-References: <20220706154337.2026269-1-robert.foss@linaro.org> <20220706154337.2026269-6-robert.foss@linaro.org>
+In-Reply-To: <20220706152830.2021197-1-robert.foss@linaro.org>
+References: <20220706152830.2021197-1-robert.foss@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,15 +74,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Jul 2022 17:43:37 +0200, Robert Foss wrote:
-> Add the dispcc clock-controller DT node for sm8350.
+On Wed, 6 Jul 2022 17:28:30 +0200, Robert Foss wrote:
+> Replace &rpmhpd power domain integers with their respective defines
+> in order to improve legibility.
 > 
 > 
 
 Applied, thanks!
 
-[5/5] arm64: dts: qcom: sm8350: Add DISPCC node
-      commit: 9fd4887cdec6395a4ff447af8988bce61b707fb0
+[1/1] arm64: dts: qcom: sm8350: Replace integers with rpmpd defines
+      commit: d0e285c3d8d3b9c0a103760668f481a28aa16dd0
 
 Best regards,
 -- 
