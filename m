@@ -2,123 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9319569B73
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 09:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3F6569B9A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 09:30:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232550AbiGGHWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 03:22:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43030 "EHLO
+        id S231284AbiGGHak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 03:30:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234888AbiGGHWg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 03:22:36 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E60730F43;
-        Thu,  7 Jul 2022 00:22:35 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a9so1125221ejf.6;
-        Thu, 07 Jul 2022 00:22:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=cDHDGLtxSydqFYBhl3txfOkIWwp8IL1b5jBeLJZfgD8=;
-        b=iMa8MwC7X5c+xv+LkBDIRr2ifkNStpYQGwx8kN5YESP/5lZej2GkPyii4mlnl/p1oS
-         eOgpiJGNZB6iyk7XGu3upbLG2ywKGQyqvW7qXjx9CeLrTQn6qJor4lwHISDN0uDAumJP
-         Brg9IzfPr/KCXuD5RB3EtLf3DQoNPruLomjmhy/77EseuQcTlk0SSSNdM3rJKtN+c4v3
-         grPr5r3HZbLsJta7gRQSEvN2j6S6gov/8/y4x24+DsUdST8//q7I4UbsGctmctv6uhhC
-         f9RvJor3q1b/39dN9/mfe4+/JL0vo4G5xsQNTjIIJvwTuqqRfI7AeEwtddLVbtamMFQD
-         1gSw==
+        with ESMTP id S232893AbiGGHai (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 03:30:38 -0400
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 303412A719;
+        Thu,  7 Jul 2022 00:30:37 -0700 (PDT)
+Received: by mail-qk1-f181.google.com with SMTP id z12so12765084qki.3;
+        Thu, 07 Jul 2022 00:30:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=cDHDGLtxSydqFYBhl3txfOkIWwp8IL1b5jBeLJZfgD8=;
-        b=fSvLO9pKP+qtqB2OMzcxKBgBOaW9JHNyYXgeVyslBGq1bh/nt/wOy4upSTwkFLiZLS
-         15GDjjVlsSdcSDon0RAvVX+BOqZmlIwdZg2YZ6uC5FM15DzbzplYYdx2mUjSDw5fKNgC
-         0rz7BXHhTupRP+aM2jNIyN4rCCTC+F8A0HV75fP+weJ5aY4VPeCfXImd7VVQHkcS6/Il
-         iaysaK2YVP5U9Aya4+v/Z/LRs8Smip+kk5ZZe9oiJsLP7aky4j23gFBU7oWKzevB1+lo
-         ZRD1lRY/+zWpnXevMLEao4EO6IRDTVCi5Hp8EziYs10WMtYUM2zDGeBlsydrZaDZTtYB
-         8RhQ==
-X-Gm-Message-State: AJIora9tHKlfnle2pU5fSeJ6ts+OpgdHv7Tm3ku1HmC8C6O7galwkihC
-        fk9pugyWW0QKnuJ0pKgoR+8=
-X-Google-Smtp-Source: AGRyM1v55kd1wD2qY05YZpI7eIrBTQA6vTsDxTmOi3o5zGBQ0oygj0wFrHlVmWGUSqBlqQ0RtQrqhQ==
-X-Received: by 2002:a17:906:9b94:b0:722:f2a1:efb9 with SMTP id dd20-20020a1709069b9400b00722f2a1efb9mr43561275ejc.42.1657178553645;
-        Thu, 07 Jul 2022 00:22:33 -0700 (PDT)
-Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id k9-20020a17090646c900b00711d546f8a8sm18233348ejs.139.2022.07.07.00.22.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jul 2022 00:22:32 -0700 (PDT)
-Date:   Thu, 7 Jul 2022 09:22:31 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: nvidia,tegra20-pmc: Move fixed string
- property names under 'properties'
-Message-ID: <YsaJtzvG7V1bfjGB@orome>
-References: <20220706212034.568861-1-robh@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JplrbVebgFPii06YqftrBSRlrrDSQoyq4BqrLGpK9P4=;
+        b=r9aPMX1fIMXcEimy+O5JDZ8Hi3RgkZVTDXXNy4Sm3vwHZu+k2elsLSutjuCj1XLwwP
+         rHhChRVkCMAOnkHFIdM38Rsnxr2cHu5G42uiX5Y5iTJ7bJfDM15g0TnTFHgC4ANeq6SE
+         4dpgsTOy8hgF6uPQz2PRRb2vo6+uriq+Lzn1RfrxnA+WfCgYTyVkglcpwVp8aDufQIYE
+         Rsv4H2yyrgfvkS6gwZ2gHFMxF1tzp63U71+4jAxFKOPn+qLIsrUzCr/HvRK5pcq1CDYR
+         dNlrZxuobTQwjlqoXKW+1uIidymXg1JdayIG1yHNv2EBez3Ht1DI4e1aX6dDy7B7PBV+
+         DtbQ==
+X-Gm-Message-State: AJIora/kskZHfSUUnTtf4QrYfwp4Y94o3Fl2AJb3519Rm/1RPRjtQKDV
+        w26sB1of7IlfA7ngNMHxXyRgMODKU3dj9X/x
+X-Google-Smtp-Source: AGRyM1seTh8gLk7Q7Ahw3wzs/xrjf0Swb1WDHbblB+NkwwYVZXwr8ZeoxgKu3drf+Hvuv6IaBEWQSA==
+X-Received: by 2002:a05:620a:46aa:b0:6af:225e:5c7d with SMTP id bq42-20020a05620a46aa00b006af225e5c7dmr30542642qkb.621.1657179035971;
+        Thu, 07 Jul 2022 00:30:35 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id b3-20020ac812c3000000b0031bf647b115sm17031065qtj.35.2022.07.07.00.30.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Jul 2022 00:30:35 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id l144so18595049ybl.5;
+        Thu, 07 Jul 2022 00:30:35 -0700 (PDT)
+X-Received: by 2002:a05:6902:a:b0:65c:b38e:6d9f with SMTP id
+ l10-20020a056902000a00b0065cb38e6d9fmr49905625ybh.36.1657179035303; Thu, 07
+ Jul 2022 00:30:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="yI+MNUdNl4WtNBvo"
-Content-Disposition: inline
-In-Reply-To: <20220706212034.568861-1-robh@kernel.org>
-User-Agent: Mutt/2.2.6 (2022-06-05)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20211229193135.28767-2-laurent.pinchart+renesas@ideasonboard.com>
+ <CAMuHMdWWRLdm+dAmso0dgf5QPqqV=txH-4Tryfm0USp7jZdbkw@mail.gmail.com>
+ <YfGZx9qHQdF8TzcT@pendragon.ideasonboard.com> <CAMuHMdW1DwsMTVog4oBa_=ozH=aEeAdK+wS1SbwbZYz22JAL=w@mail.gmail.com>
+ <YfHf0ZNt8GV0gHaF@pendragon.ideasonboard.com> <YsZEEHbLxQgszvyq@pendragon.ideasonboard.com>
+In-Reply-To: <YsZEEHbLxQgszvyq@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 7 Jul 2022 09:30:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXWE5eQF7FB52gWQhtMOsMSyK9wwS0O3xSWzD+GLKO93w@mail.gmail.com>
+Message-ID: <CAMuHMdXWE5eQF7FB52gWQhtMOsMSyK9wwS0O3xSWzD+GLKO93w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: renesas: Prepare AA1024XD12 panel
+ .dtsi for overlay support
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
 
---yI+MNUdNl4WtNBvo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Jul 7, 2022 at 4:25 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Thu, Jan 27, 2022 at 01:57:05AM +0200, Laurent Pinchart wrote:
+> > On Wed, Jan 26, 2022 at 08:15:26PM +0100, Geert Uytterhoeven wrote:
+> > > On Wed, Jan 26, 2022 at 7:58 PM Laurent Pinchart wrote:
+> > > > On Wed, Jan 26, 2022 at 01:18:56PM +0100, Geert Uytterhoeven wrote:
+> > > > > On Wed, Dec 29, 2021 at 8:31 PM Laurent Pinchart wrote:
+> > > > > > The Mitsubishi AA1024XD12 panel can be used for R-Car Gen2 and Gen3
+> > > > > > boards as an optional external panel. It is described in the
+> > > > > > arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi file as a direct child of the
+> > > > > > DT root node. This allows including r8a77xx-aa104xd12-panel.dtsi in
+> > > > > > board device trees, with other minor modifications, to enable the panel.
+> > > > > >
+> > > > > > This is however not how external components should be modelled. Instead
+> > > > > > of modifying the board device tree to enable the panel, it should be
+> > > > > > compiled as a DT overlay, to be loaded by the boot loader.
+> > > > > >
+> > > > > > Prepare the r8a77xx-aa104xd12-panel.dtsi file for this usage by
+> > > > > > declaring a panel node only, without hardcoding its path. Overlay
+> > > > > > sources can then include r8a77xx-aa104xd12-panel.dtsi where appropriate.
+> > > > > >
+> > > > > > This change doesn't cause any regression as r8a77xx-aa104xd12-panel.dtsi
+> > > > > > is currently unused. As overlay support for this panel has only been
+> > > > > > tested with Gen3 hardware, and Gen2 support will require more
+> > > > > > development, move the file to arch/arm64/boot/dts/renesas/.
+> > > > > >
+> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > >
+> > > > I see you've reviewed the whole series. Can you pick it up ?
+> > >
+> > > I believe it depends on the removal of the empty endpoints, for which
+> > > we're waiting for feedback from Rob, IIRC?
+> >
+> > You're right. Let's wait some more time then.
+>
+> How should we proceed with this ?
 
-On Wed, Jul 06, 2022 at 03:20:34PM -0600, Rob Herring wrote:
-> Fixed string property names should be under 'properties' rather than
-> 'patternProperties'. Additionally, without beginning and end of line
-> anchors, any prefix or suffix is allowed on the specified property names.
->=20
-> As all the nvidia,tegra20-pmc powergates child node properties are fixed
-> strings, change 'patternProperties' to 'properties'.
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml       | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+That dependency is commit 747bbcd3aacd95fe ("arm64: dts: renesas:
+Remove empty rgb output endpoints") in v5.19-rc1, right?
+So I can take this for v5.20, or are any other changes needed?
 
-This is part of a local patch that I have that cleans up other aspects
-of this schema as well.
+Please confirm.
+Thanks!
 
-However, I don't know when I'll get around to send that out, so if you
-want to apply this in the meantime:
+Gr{oetje,eeting}s,
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+                        Geert
 
---yI+MNUdNl4WtNBvo
-Content-Type: application/pgp-signature; name="signature.asc"
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmLGibQACgkQ3SOs138+
-s6Fbdw/9F4whzx83xa3hxtsudWImR4P7iwas/9BwVlgDa4f3X4l6EyKPQNE5u1O9
-f1TZNHDZhc1rnkPc4yL0Jl9AgTKMlvCUbYlvkVWMLZy2/PFg4Xw+PVwhJLzC+aNv
-ls29839FcVtpmrwFdoWY/XQwxZAKKGVVuh8Ora/Is+6fLSyAfoRhZ4T5CwmvdVm6
-JUE4ugTcq9W26NXF/mso2nJYJfWicuMt6xnspgvpoI6gBX2v2cMQ6iu+GPEOmfFN
-vgh5vDF0kXpCAIvCU89r1jVoSaInkM/gxQWISdNhOCMQAKiNKI1tkrG+NPu8tkxd
-rR4yKelMrJ/TvmXNFIEYJ3Q9CnYtmuYAkdX6zkob5Ulb1BAeosAq5oLDx3k9VpFg
-JQyQ4/vx4mq2JvW7ocVSeJo6gM48CKu14ug4nlePzmXR3gNLAJJOOmNbknRC6lpz
-x1iExu639LKJ2svMnGT//n1ppyk71DBM3dbqDwPa4iiwrb+2xevzgttE4XF8E1xs
-3+DKNDqAfh5NNa7vOlh9QfyHy8vtqecVSdTwPhnVV+B+JTbjVeJf7kz/0Ghq/FDU
-EhYZk2L3MFoZJ9Oal4q+z9MjcZBoeF9hsmPgGU7CmGw9YVApjmIPbOLRyCYt+SfC
-j9AM+PrsXi0eSggalGpE6C893Ry53/DN2NWKYY5kcuDPNG6gy8g=
-=2t8O
------END PGP SIGNATURE-----
-
---yI+MNUdNl4WtNBvo--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
