@@ -2,181 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CE4D569F4C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 12:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95931569F5F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 12:18:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235252AbiGGKOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 06:14:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42326 "EHLO
+        id S235050AbiGGKQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 06:16:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234961AbiGGKOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 06:14:51 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1BB4F650;
-        Thu,  7 Jul 2022 03:14:50 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id n4so12284534ejz.10;
-        Thu, 07 Jul 2022 03:14:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YpAR7TmXPCDhHigczovOhgl9/VH0Cnby1owEkNjCg9I=;
-        b=SwvhaF5LOCH8M0F2PMGiwu2lf/lSfdGEm1pFHoE8QbLM2ms/52S2A8YQ0yC5qu3v8U
-         nfqWs+mCJkU+jOvy8hzDpB8viqqG6MXQainY48bLZbvdpsq7mzfkUjfuCCFAXoot27gM
-         SO2VKA7HeVJOqm4raBG2dzBeN4rUlOoNwvVNc0BqGHsVnQm8OUVudk3xI102JEHa5Vx3
-         Sc3coFKCDUOEW/uZ+DkVMsEzAnc3hA8GKDzTD2vbTS251e9SrIT2EYFOGKKiLJkNucI2
-         FC4dwdz7NS04TL+qclbbSLjriqiiNsp4P9K1gmeplIcIo8nB2qsI4jobN4xUC5Z88hQS
-         XYnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YpAR7TmXPCDhHigczovOhgl9/VH0Cnby1owEkNjCg9I=;
-        b=s23dG3cZtEMIbGtT0t/KJs1BOBuJUoh0XY36zwI5fMbMgKBIXXCosDodVE4VvW5NWs
-         ZBxfDpipyQOixmcJgxcS79rcukUNru8RRWd9T+x8eMZrk7oUIJ1ChO5IflocUxT16Vtk
-         Bm4Auhn2fZ552pJy3Oi2Iv71WsG/T9L96R5yY+yEk8dTTrdnyAXe8qLTlH47/JepbK1S
-         IRu1K/DiRly2Xa2VI84Sds2AbFilXpPvF2C07LFqG1cJxmhZVGlwcScBZCuZDvGFaD5F
-         2ywpmCNYgPq8FMBBU3MvcKEIXYfsDtaX992BTjX2a3kPaR/vVY+rYoaB6FEo7HgVggat
-         7XmQ==
-X-Gm-Message-State: AJIora8XGZobklKDdYhPrAGU/oz351qbpK+icEsHUtkoLcEC/Otbv3hD
-        T9C3zNYDW35LB78R8TtGZBY=
-X-Google-Smtp-Source: AGRyM1v5Hrf3EpHZJdxZHIVTnsQVb10GKT40NRFtbM2eeJFI5601I9sLz3UPjwqi0yjaQPB8t46MZQ==
-X-Received: by 2002:a17:906:9b93:b0:722:f3e8:3f5e with SMTP id dd19-20020a1709069b9300b00722f3e83f5emr44295102ejc.65.1657188889096;
-        Thu, 07 Jul 2022 03:14:49 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id k5-20020a1709067ac500b006fee526ed72sm18711502ejo.217.2022.07.07.03.14.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jul 2022 03:14:48 -0700 (PDT)
-Message-ID: <62c6b218.1c69fb81.e948d.0de6@mx.google.com>
-X-Google-Original-Message-ID: <YsayF4iu5PtG5bh1@Ansuel-xps.>
-Date:   Thu, 7 Jul 2022 12:14:47 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 1/3] hwspinlock: qcom: Add support for mmio usage to
- sfpb-mutex
-References: <20220707013017.26654-1-ansuelsmth@gmail.com>
- <YsZKuUAc2iHWg9kN@builder.lan>
+        with ESMTP id S235280AbiGGKQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 06:16:32 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4850E4F673;
+        Thu,  7 Jul 2022 03:16:31 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 267AG4OB082090;
+        Thu, 7 Jul 2022 05:16:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1657188964;
+        bh=sW5gI6HYnTdz5TO9TTaO/3u/2ZnabasMP4Tl8TiyKVY=;
+        h=From:To:CC:Subject:Date;
+        b=Kw76MCeerkplZkTKHq5TQna2G4UbXOTlgmP2GTBr60Nc8NbCcY46mTPEGS8HOmSv7
+         HpS84garLjILYMGyaly5ajcf2NbHWB7zhfj2HkbLUO9SLDXAgwbhLY4RBfzhGkhDP8
+         flNBCcGvVTj2koM44VCVrkq8sPZGaBYU1Qewob8s=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 267AG4SU012976
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 7 Jul 2022 05:16:04 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 7
+ Jul 2022 05:16:04 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 7 Jul 2022 05:16:04 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 267AG3mM126559;
+        Thu, 7 Jul 2022 05:16:04 -0500
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <dri-devel@lists.freedesktop.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <andrzej.hajda@intel.com>, <narmstrong@baylibre.com>,
+        <robert.foss@linaro.org>, <jonas@kwiboo.se>,
+        <jernej.skrabec@gmail.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <p.zabel@pengutronix.de>, <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>,
+        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
+        <sjakhade@cadence.com>, <mparab@cadence.com>, <a-bhatia1@ti.com>,
+        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
+        <lee.jones@linaro.org>, Rahul T R <r-ravikumar@ti.com>
+Subject: [PATCH v6 0/5] Add support for CDNS DSI J721E wrapper
+Date:   Thu, 7 Jul 2022 15:45:56 +0530
+Message-ID: <20220707101601.7081-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YsZKuUAc2iHWg9kN@builder.lan>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 06, 2022 at 09:53:45PM -0500, Bjorn Andersson wrote:
-> On Wed 06 Jul 20:30 CDT 2022, Christian Marangi wrote:
-> 
-> > Allow sfpb-mutex to use mmio in addition to syscon.
-> > 
-> 
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  drivers/hwspinlock/qcom_hwspinlock.c | 32 ++++++++++++++++++++++------
-> >  1 file changed, 25 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/hwspinlock/qcom_hwspinlock.c b/drivers/hwspinlock/qcom_hwspinlock.c
-> > index 364710966665..23c913095bd0 100644
-> > --- a/drivers/hwspinlock/qcom_hwspinlock.c
-> > +++ b/drivers/hwspinlock/qcom_hwspinlock.c
-> > @@ -19,6 +19,11 @@
-> >  #define QCOM_MUTEX_APPS_PROC_ID	1
-> >  #define QCOM_MUTEX_NUM_LOCKS	32
-> >  
-> > +struct qcom_hwspinlock_of_data {
-> > +	u32 offset;
-> > +	u32 stride;
-> > +};
-> > +
-> >  static int qcom_hwspinlock_trylock(struct hwspinlock *lock)
-> >  {
-> >  	struct regmap_field *field = lock->priv;
-> > @@ -63,9 +68,20 @@ static const struct hwspinlock_ops qcom_hwspinlock_ops = {
-> >  	.unlock		= qcom_hwspinlock_unlock,
-> >  };
-> >  
-> > +static const struct qcom_hwspinlock_of_data of_sfpb_mutex = {
-> > +	.offset = 0x4,
-> > +	.stride = 0x4,
-> > +};
-> > +
-> > +/* All modern platform has offset 0 and stride of 4k */
-> > +static const struct qcom_hwspinlock_of_data of_tcsr_mutex = {
-> > +	.offset = 0,
-> > +	.stride = 0x1000,
-> > +};
-> > +
-> >  static const struct of_device_id qcom_hwspinlock_of_match[] = {
-> > -	{ .compatible = "qcom,sfpb-mutex" },
-> > -	{ .compatible = "qcom,tcsr-mutex" },
-> > +	{ .compatible = "qcom,sfpb-mutex", .data = &of_sfpb_mutex },
-> > +	{ .compatible = "qcom,tcsr-mutex", .data = &of_tcsr_mutex },
-> >  	{ }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, qcom_hwspinlock_of_match);
-> > @@ -101,7 +117,7 @@ static struct regmap *qcom_hwspinlock_probe_syscon(struct platform_device *pdev,
-> >  	return regmap;
-> >  }
-> >  
-> > -static const struct regmap_config tcsr_mutex_config = {
-> > +static const struct regmap_config qcom_hwspinlock_mmio_config = {
-> 
-> Any objections against me skipping this rename when applying the patch?
-> Just to keep the patch to the point?
-> 
-> Regards,
-> Bjorn
->
+Following series of patches adds supports for CDNS DSI
+bridge on j721e.
 
-I will send v2 with the name reverted and another fix. 
+v6:
+ - Dropped generic definations for properties like reg, resets etc..
+ - Fixed the defination for port@0 and port@1
+ - removed the ti,sn65dsi86 node from the example, which is not related
 
-> >  	.reg_bits		= 32,
-> >  	.reg_stride		= 4,
-> >  	.val_bits		= 32,
-> > @@ -112,18 +128,20 @@ static const struct regmap_config tcsr_mutex_config = {
-> >  static struct regmap *qcom_hwspinlock_probe_mmio(struct platform_device *pdev,
-> >  						 u32 *offset, u32 *stride)
-> >  {
-> > +	const struct qcom_hwspinlock_of_data *data;
-> >  	struct device *dev = &pdev->dev;
-> >  	void __iomem *base;
-> >  
-> > -	/* All modern platform has offset 0 and stride of 4k */
-> > -	*offset = 0;
-> > -	*stride = 0x1000;
-> > +	data = of_device_get_match_data(dev);
-> > +
-> > +	*offset = data->offset;
-> > +	*stride = data->stride;
-> >  
-> >  	base = devm_platform_ioremap_resource(pdev, 0);
-> >  	if (IS_ERR(base))
-> >  		return ERR_CAST(base);
-> >  
-> > -	return devm_regmap_init_mmio(dev, base, &tcsr_mutex_config);
-> > +	return devm_regmap_init_mmio(dev, base, &qcom_hwspinlock_mmio_config);
-> >  }
-> >  
-> >  static int qcom_hwspinlock_probe(struct platform_device *pdev)
-> > -- 
-> > 2.36.1
-> > 
+v5:
+ - Remove power-domain property in the conversion commit
+ - Add power-domain only for j721e compatible
+ - Fix white space error in one of the commit
+
+v4:
+ - split conversion txt to yaml
+ - seperate commit for addinig new compatible
+ - conditionally limit the items for reg property, based on the compatible
+
+v3:
+ - Convert cdns-dsi.txt binding to yaml
+ - Move the bridge under display/bridge/cadence
+ - Add new compatible to enable the wrapper module
+
+v2:
+ - Moved setting DPI0 to bridge_enable, since it
+   should be done after pm_runtime_get
+
+Rahul T R (5):
+  dt-bindings: display: bridge: Convert cdns,dsi.txt to yaml
+  dt-bindings: display: bridge: cdns,dsi: Add compatible for dsi on
+    j721e
+  drm/bridge: cdns-dsi: Move to drm/bridge/cadence
+  drm/bridge: cdns-dsi: Create a header file
+  drm/bridge: cdns-dsi: Add support for J721E wrapper
+
+ .../bindings/display/bridge/cdns,dsi.txt      | 112 ----
+ .../bindings/display/bridge/cdns,dsi.yaml     | 180 +++++++
+ drivers/gpu/drm/bridge/Kconfig                |  11 -
+ drivers/gpu/drm/bridge/Makefile               |   1 -
+ drivers/gpu/drm/bridge/cadence/Kconfig        |  21 +
+ drivers/gpu/drm/bridge/cadence/Makefile       |   3 +
+ .../{cdns-dsi.c => cadence/cdns-dsi-core.c}   | 483 ++----------------
+ .../gpu/drm/bridge/cadence/cdns-dsi-core.h    | 471 +++++++++++++++++
+ .../gpu/drm/bridge/cadence/cdns-dsi-j721e.c   |  51 ++
+ .../gpu/drm/bridge/cadence/cdns-dsi-j721e.h   |  18 +
+ 10 files changed, 781 insertions(+), 570 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+ rename drivers/gpu/drm/bridge/{cdns-dsi.c => cadence/cdns-dsi-core.c} (65%)
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
 
 -- 
-	Ansuel
+2.37.0
+
