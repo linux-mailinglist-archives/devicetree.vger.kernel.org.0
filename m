@@ -2,54 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D9DB56A123
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 13:39:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AC5456A181
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 13:59:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234701AbiGGLjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 07:39:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47188 "EHLO
+        id S234797AbiGGL6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 07:58:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233305AbiGGLjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 07:39:06 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873724D4CF
-        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 04:39:04 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o9PqP-0007JK-BQ; Thu, 07 Jul 2022 13:38:53 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o9PqN-0003dw-Uq; Thu, 07 Jul 2022 13:38:51 +0200
-Date:   Thu, 7 Jul 2022 13:38:51 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     djakov@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, abelvesa@kernel.org,
-        abailon@baylibre.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com, devicetree@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V3 6/7] arm64: dts: imx8mp: add interconnects for media
- blk ctrl
-Message-ID: <20220707113851.khi42m7pgx23d26u@pengutronix.de>
-References: <20220703091451.1416264-1-peng.fan@oss.nxp.com>
- <20220703091451.1416264-7-peng.fan@oss.nxp.com>
+        with ESMTP id S235656AbiGGL5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 07:57:17 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47605599D5
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 04:55:11 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id j3so6240413pfb.6
+        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 04:55:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AfR9UZtpRGzhv3c4Zln6eGAdbeQgygF+9NKWBtburhs=;
+        b=dYUGx0RODM9RUBv9GQtsRp0MUbiQIBwZzXrjY3qMkDzehnjVBMkGMVf01Kiem1eUmH
+         7363oOVcdC9Rr9JcHhPHaBjAoGO1SyE2sq2QMayqrRnUma11AdTxRcGV8+vCIxKbSg6I
+         2clVMbCzUGt4dJTkVIzZcaNyeY2S85I8EeA+Gq25+C1NYBgBya/GY9IDDuXVV50ncbw7
+         u0jfL7zdVdS9Jvwfn5ON8M5fFBjhskqQ6fX+Kd7ZvwUXGhdhjkNuok8DV1rT31jAFSj3
+         nasAtlWyyArwNradHMhjMPtAA9ZRfLH2O6xJ/JreL+ORPxHbCsVc7JyqEVyY2GgJfTAH
+         Kffg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AfR9UZtpRGzhv3c4Zln6eGAdbeQgygF+9NKWBtburhs=;
+        b=3IMjWecr8QSbDoahrbXsfYYvKGLuFnkhhY+LGs8hHIZijmA3VJTuBboMAaaXRtybrz
+         pIFUzrjyy9kAvrwRnOEKXHvq85fTdldFcQEPBV25UdknTa6fWy/xPlfkwYw29AvXhpML
+         9xcMDg89SUOScE4w8Kk36yhtYlF4VgtSMcDzY25LcJonKmGSxkLYMfIn9iVr9KPGBzHq
+         2pCoXX+j+XcmVjXe5FxxnxkpvH+T3yxH6p9jVR0d7JChK28CczkNYipZiHGs+kMQM4+a
+         0DwTEiER+W7PwubigAU9PKfQ7S8+mD0sjTojnzRHZxHf0Lyr6uwmqE1kwSvFbFX1uWZR
+         SO2Q==
+X-Gm-Message-State: AJIora/9pC08zOogYPMeq1Dh5c96QN4a/utzExQIcJjJGr1l2tu+7Lc/
+        9rwy/BOXpsSMKjtUO/O8mqBDYw==
+X-Google-Smtp-Source: AGRyM1uDUmzYdJM5zUMETUsdm5U2WwLBDcjaEaHBiDhpvi9zzTtJzjyWyo/bWlneJdIZMYgFPvIQug==
+X-Received: by 2002:a17:902:b215:b0:168:da4b:c925 with SMTP id t21-20020a170902b21500b00168da4bc925mr50913137plr.155.1657194910692;
+        Thu, 07 Jul 2022 04:55:10 -0700 (PDT)
+Received: from localhost.localdomain ([182.77.21.191])
+        by smtp.gmail.com with ESMTPSA id r10-20020a17090a1bca00b001e2f892b352sm16503936pjr.45.2022.07.07.04.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 04:55:10 -0700 (PDT)
+From:   Sumit Garg <sumit.garg@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        shawn.guo@linaro.org, bryan.odonoghue@linaro.org,
+        nicolas.dechesne@linaro.org, mworsfold@impinj.com,
+        daniel.thompson@linaro.org, andrey.konovalov@linaro.org,
+        Sumit Garg <sumit.garg@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: qcs404: Fix incorrect USB PHYs assignment
+Date:   Thu,  7 Jul 2022 17:24:44 +0530
+Message-Id: <20220707115444.1431367-1-sumit.garg@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220703091451.1416264-7-peng.fan@oss.nxp.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -58,55 +71,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This was a difficult inconsistency to be caught as both the USB PHYs were
+being enabled in the kernel and USB worked fine. But when I was trying to
+enable USB support in u-boot with all the required drivers ported, I
+couldn't get the same USB storage device enumerated in u-boot which was
+being enumerated fine by the kernel.
 
-thanks for your patch and the work on this.
+The root cause of the problem came out that I wasn't enabling USB PHY:
+"usb2_phy_prim" in u-boot. Then I realised that via simply disabling the
+same USB PHY in the kernel disabled enumeration for USB3 host controller
+as well.
 
-On 22-07-03, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add interconnect property for media blk ctrl
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 13a2ee77d3c6..08bd57742294 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+So fix this inconsistency by correctly assigning USB PHYs.
 
-Can you please add:
+Fixes: 9375e7d719b3 ("arm64: dts: qcom: qcs404: Add USB devices and PHYs")
+Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-#include <dt-bindings/interconnect/fsl,imx8mp.h>
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index 513bf7343b2c..50edc11a5bb5 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -557,7 +557,7 @@ usb3_dwc3: usb@7580000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0x07580000 0xcd00>;
+ 				interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+-				phys = <&usb2_phy_sec>, <&usb3_phy>;
++				phys = <&usb2_phy_prim>, <&usb3_phy>;
+ 				phy-names = "usb2-phy", "usb3-phy";
+ 				snps,has-lpm-erratum;
+ 				snps,hird-threshold = /bits/ 8 <0x10>;
+@@ -586,7 +586,7 @@ usb@78c0000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0x078c0000 0xcc00>;
+ 				interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+-				phys = <&usb2_phy_prim>;
++				phys = <&usb2_phy_sec>;
+ 				phy-names = "usb2-phy";
+ 				snps,has-lpm-erratum;
+ 				snps,hird-threshold = /bits/ 8 <0x10>;
+-- 
+2.25.1
 
-else this won't compile.
-
-Regards,
-  Marco
-
-> @@ -1066,6 +1066,18 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
->  						     "lcdif1", "isi", "mipi-csi2",
->  						     "lcdif2", "isp", "dwe",
->  						     "mipi-dsi2";
-> +				interconnects =
-> +					<&noc IMX8MP_ICM_LCDIF_RD &noc IMX8MP_ICN_MEDIA>,
-> +					<&noc IMX8MP_ICM_LCDIF_WR &noc IMX8MP_ICN_MEDIA>,
-> +					<&noc IMX8MP_ICM_ISI0 &noc IMX8MP_ICN_MEDIA>,
-> +					<&noc IMX8MP_ICM_ISI1 &noc IMX8MP_ICN_MEDIA>,
-> +					<&noc IMX8MP_ICM_ISI2 &noc IMX8MP_ICN_MEDIA>,
-> +					<&noc IMX8MP_ICM_ISP0 &noc IMX8MP_ICN_MEDIA>,
-> +					<&noc IMX8MP_ICM_ISP1 &noc IMX8MP_ICN_MEDIA>,
-> +					<&noc IMX8MP_ICM_DWE &noc IMX8MP_ICN_MEDIA>;
-> +				interconnect-names = "lcdif-rd", "lcdif-wr", "isi0",
-> +						     "isi1", "isi2", "isp0", "isp1",
-> +						     "dwe";
->  				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
->  					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
->  					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
-> -- 
-> 2.25.1
-> 
-> 
-> 
