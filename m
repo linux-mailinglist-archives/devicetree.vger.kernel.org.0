@@ -2,85 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA27D569A01
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 07:48:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D12AA569A1F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 07:58:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbiGGFrT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 01:47:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34234 "EHLO
+        id S233819AbiGGF6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 01:58:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231829AbiGGFrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 01:47:19 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDEA3138F;
-        Wed,  6 Jul 2022 22:47:17 -0700 (PDT)
-X-UUID: a194472b477941c39999f1ef9db2b8c7-20220707
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:b0217c3c-8222-403d-a6a4-4de3ac0ba2bd,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:b389a463-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: a194472b477941c39999f1ef9db2b8c7-20220707
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1452492003; Thu, 07 Jul 2022 13:47:13 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 7 Jul 2022 13:47:12 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Thu, 7 Jul 2022 13:47:12 +0800
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     <ulf.hansson@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>
-Subject: [PATCH] dt-bindings: mmc: Add compatible for MediaTek MT8188
-Date:   Thu, 7 Jul 2022 13:47:10 +0800
-Message-ID: <20220707054710.1396-1-johnson.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        with ESMTP id S233652AbiGGF6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 01:58:30 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03BB9624B;
+        Wed,  6 Jul 2022 22:58:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657173508; x=1688709508;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1mcSycqF0G5MTVNt6gTs3pvaqAtfai1uUIeXSb6aiy0=;
+  b=QVsfqVSWEBVXtAOABtDxkmwihRsrYQ/JO/Hv3R+CM6Tu6tqR7BIpVvK4
+   qvTpS8LRp9UYdnXw9QYT605YBCZVm+bfBlL+fskviJCED8JxW+eZ2G8t/
+   vtjTPjv5vsDaMKckW5BhauCG+UdHeX0ojOnJhytWYf8aCnRj604UIm7L9
+   lVXpmh2B38C8Cj3hYKH/1iY2EB15iszADOzpWjw5UgRkVE2QpmnNX7TsU
+   ubw+LBq4Xgp7J1w9532rrzCllhIShq5MveYk7wprTbV9q7k5tgfxsgQxn
+   ZHz4Hn3Ve+HavAXEaiZlcbHxi3fEedxcxpyMeA8iwiKHvqq5cavGShuNP
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="283963220"
+X-IronPort-AV: E=Sophos;i="5.92,252,1650956400"; 
+   d="scan'208";a="283963220"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jul 2022 22:58:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,252,1650956400"; 
+   d="scan'208";a="735843781"
+Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 06 Jul 2022 22:58:25 -0700
+Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o9KWu-000LcW-Ty;
+        Thu, 07 Jul 2022 05:58:24 +0000
+Date:   Thu, 7 Jul 2022 13:57:48 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Christian Marangi <ansuelsmth@gmail.com>
+Subject: Re: [PATCH v3 3/3] clk: qcom: lcc-ipq806x: convert to parent data
+Message-ID: <202207071312.S69DPP30-lkp@intel.com>
+References: <20220706221327.14169-3-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220706221327.14169-3-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds dt-binding documentation of mmc for MediaTek MT8188 SoC
-platform.
+Hi Christian,
 
-Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
----
- Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Thank you for the patch! Yet something to improve:
 
-diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-index 2a2e9fa8c188..3fbf33ad4f7c 100644
---- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-@@ -32,6 +32,9 @@ properties:
-       - items:
-           - const: mediatek,mt8186-mmc
-           - const: mediatek,mt8183-mmc
-+      - items:
-+          - const: mediatek,mt8188-mmc
-+          - const: mediatek,mt8183-mmc
-       - items:
-           - const: mediatek,mt8192-mmc
-           - const: mediatek,mt8183-mmc
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on linus/master v5.19-rc5 next-20220706]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-clock-add-pcm-reset-for-ipq806x-lcc/20220707-061833
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+config: riscv-randconfig-r022-20220706 (https://download.01.org/0day-ci/archive/20220707/202207071312.S69DPP30-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 66ae1d60bb278793fd651cece264699d522bab84)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install riscv cross compiling tool for clang build
+        # apt-get install binutils-riscv-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/c0d7cedbc9ad0201d611bbb386c4fda498e5449d
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Christian-Marangi/dt-bindings-clock-add-pcm-reset-for-ipq806x-lcc/20220707-061833
+        git checkout c0d7cedbc9ad0201d611bbb386c4fda498e5449d
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/clk/qcom/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/qcom/lcc-ipq806x.c:38:6: error: designator in initializer for scalar type 'const struct clk_parent_data *'
+                           { .fw_name = "pxo", .name = "pxo_board" },
+                             ^~~~~~~~~~~~~~~~
+   1 error generated.
+
+
+vim +38 drivers/clk/qcom/lcc-ipq806x.c
+
+    26	
+    27	static struct clk_pll pll4 = {
+    28		.l_reg = 0x4,
+    29		.m_reg = 0x8,
+    30		.n_reg = 0xc,
+    31		.config_reg = 0x14,
+    32		.mode_reg = 0x0,
+    33		.status_reg = 0x18,
+    34		.status_bit = 16,
+    35		.clkr.hw.init = &(struct clk_init_data){
+    36			.name = "pll4",
+    37			.parent_data = (const struct clk_parent_data*[]){
+  > 38				{ .fw_name = "pxo", .name = "pxo_board" },
+    39			}
+    40			.num_parents = 1,
+    41			.ops = &clk_pll_ops,
+    42		},
+    43	};
+    44	
+
 -- 
-2.18.0
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
