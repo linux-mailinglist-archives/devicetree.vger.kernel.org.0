@@ -2,235 +2,338 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D9F569AC8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41806569AE1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:58:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230148AbiGGGyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 02:54:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50208 "EHLO
+        id S234256AbiGGG55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 02:57:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229803AbiGGGym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:54:42 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 384B32CDCB;
-        Wed,  6 Jul 2022 23:54:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1657176877; x=1688712877;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=zWlPko9JunG//ZOuFL/Svy0Pa8LsPyzKJYl1S+sAKRQ=;
-  b=Dbt3Xjj5I0OBzQs9TtTmJKmGYi07MJGFzGmfh9IE9Debn9GbMcBNkylK
-   NbFrhhbtxMM8wvD1OaVYdR8X52qMglYC1lryKlgUd7zrI1TWqwb117bVe
-   oMSKwyPODZ+v28ndvBfBya/VJMk8/0ZofV6Q9ZOLuiNo3Z2CWKqx/14aS
-   qvL2Lyqw8kqxImObd0LgEljQi/8at1VI0n4wcIP73kaMfxydP2ElvJNiO
-   5Q/mhps5sELlx5GMDZLKtMrpj34NThDuUfBNlIIG4sjTn4UqQ+fbwEGuP
-   g//SGo9xlRyHYDK8KOzFVC8HGsW1xHV6N6dWkUk4tpk6trjylqFmrAd1W
-   w==;
+        with ESMTP id S233366AbiGGG5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:57:53 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89AEA2CDFF;
+        Wed,  6 Jul 2022 23:57:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657177070; x=1688713070;
+  h=date:from:to:cc:subject:message-id:mime-version:
+   content-transfer-encoding;
+  bh=hUaxS4FbU98cO1hd7qPjY6PMv7SAZrQrjnJcWkGCO9c=;
+  b=BJx3Ce5sJvWSeURQApb4aBJaKqQCevfAKIpd7wuJqkTIWiTvR5jzxuLi
+   Ji8JqnCzRA89jV8XM69YqgAEgmX+cl8FnUqh6NHLm7+08eIh1r34BOiVK
+   o3MMVUl3ZJY62N1T9uaS5v4NZTkcoe9BXs26agl02FavUpClfhVGSIMvQ
+   gP/sCdh0dD17hv72p/gZWgU9TBYX9RQbaL6mguKqsI9t9jr6em0RCp2lf
+   s6K9KC9hb/8GCXMNYdRKe6ZKzTKTGHxBr1FA4HAQZqwCl6eSn/mmVKsYr
+   DiR0O6wHLr6bKqQno7Wn1i6jbqzc5O5y1B4QUXN0fAHH04MS2ZT8s+dDr
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="347932686"
 X-IronPort-AV: E=Sophos;i="5.92,252,1650956400"; 
-   d="scan'208";a="171389837"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Jul 2022 23:54:37 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 6 Jul 2022 23:54:37 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Wed, 6 Jul 2022 23:54:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NB6gGpISuwoIPs5MfazelbgSo/1/XI8LSiinP4V1JgxP1a7AS+wGPEC/OfvYEhaQHyCypQUEIjSENslnqRzJk3A1IiVONmt5j4cUICLg1JIxcChOj3kIAMEg+hRxJzuUMpXn0fU4GLh6JAhdL4ZPW4qyfvFr4/RS2LECO5GKW2szg47WrYeOOAf5w0h+D0yFJX7+TNDevaoifhLDnV/LeteuqHORREa04F2nWTZPquZwLWC/ZlmS3XHZxx02YpIIVEP8joIU50gAA8uMCcNlzerTUt5XgoLMNTKJX4byHyIEN1t9Pi2bbopwCmA90wMrO5qNLwdN9wwEQqsOPZc3aQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zWlPko9JunG//ZOuFL/Svy0Pa8LsPyzKJYl1S+sAKRQ=;
- b=Mrrsk9W5oppslzF92v8nOzvNqqHsh4oRNV9LwDlK65UFeU5N+Sr9m5Efx0fhyh43L2VWobtaJFMFUca3U3M15GCaspU+E0qFmJCV/hb2fNykysWckiTAK+Ie0jx/bI3D0ifOoWTSLsPRNWca9qycb4dJ/dLzQdS7uK2pzKUPRDYwduA0kJ3INQ1kg3qEKujK54/Ou2LDKN3vrJ0OFU7AzSN7K2q1I0PpOvIw0AmEi1buniRooaVY9qWqQXnjgQ+DeDJoxw4SiXdvJZAlXAP/IyCjg8rwSg8+K4oP4PD49fey1/a2KkL1aX4V5xJiOlPuBXA/YX+elPpy6DAxH0P4Tw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zWlPko9JunG//ZOuFL/Svy0Pa8LsPyzKJYl1S+sAKRQ=;
- b=LEQdqfQJ9Uc3bIVkThQ7n1YFvZRTkLlsIryPIJDKiuRsMGxGX4mWAhVQVD8d3wk1LhhY2QtX8wQQS8W4PbExTK284AgOvtksfeagYi9y/Jg6nmZXIqRaHbV9ntvpiJB73T6n0axo1n7FjVtfYTEl5DECzoh7zkphDt5kYNujZks=
-Received: from PH0PR11MB4872.namprd11.prod.outlook.com (2603:10b6:510:32::18)
- by SA0PR11MB4704.namprd11.prod.outlook.com (2603:10b6:806:9b::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Thu, 7 Jul
- 2022 06:54:32 +0000
-Received: from PH0PR11MB4872.namprd11.prod.outlook.com
- ([fe80::1884:3ecf:a6c7:c2cb]) by PH0PR11MB4872.namprd11.prod.outlook.com
- ([fe80::1884:3ecf:a6c7:c2cb%7]) with mapi id 15.20.5395.021; Thu, 7 Jul 2022
- 06:54:32 +0000
-From:   <Kavyasree.Kotagiri@microchip.com>
-To:     <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <Claudiu.Beznea@microchip.com>,
-        <UNGLinuxDriver@microchip.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v7 1/3] dt-bindings: mfd: Convert atmel-flexcom to
- json-schema
-Thread-Topic: [PATCH v7 1/3] dt-bindings: mfd: Convert atmel-flexcom to
- json-schema
-Thread-Index: AQHYkSiOZg1vfaNbnEm+LtjpZR1JIa1xdhQAgADqqBCAAAZ9oA==
-Date:   Thu, 7 Jul 2022 06:54:32 +0000
-Message-ID: <PH0PR11MB4872FE079CBF99E39F894E9D92839@PH0PR11MB4872.namprd11.prod.outlook.com>
-References: <20220706110619.71729-1-kavyasree.kotagiri@microchip.com>
- <20220706110619.71729-2-kavyasree.kotagiri@microchip.com>
- <fca15370-f977-687a-ff62-22ae43046b58@linaro.org>
- <PH0PR11MB487299A211568CC3614682BC92839@PH0PR11MB4872.namprd11.prod.outlook.com>
-In-Reply-To: <PH0PR11MB487299A211568CC3614682BC92839@PH0PR11MB4872.namprd11.prod.outlook.com>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 87fff70b-c732-4358-aa21-08da5fe58be6
-x-ms-traffictypediagnostic: SA0PR11MB4704:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KadAhFbc8JgDv/BV19ngPV5vglgktAFzyW4Av/FThkZG3/vlwDxTIcGTrJEeF/aMVGdNUfMwFPzbPZgyip3eLBNqk6nyHNUdi+dULMbAM7Ig6Pm1abKVYd5pbZvoazpuh07drmkPPJBIgbOQKy4UnCujbdzchOXauP6+qSN/qEngTCAJDB+zgoo+DjHnhJxqsFBKZjaZ3IHnlc6ztnuU5+fraaCvNKlhNcgmykFRxCkdSCb2dQRvcVA6tP2/idmDBzFCp2SAlxNfpcmKNOAX6xVFxWb4grSDKYJuSn29bHt9BV/FBPG2TOJv3BNK7zLvIdj+fCQsy1eGA6PH3ey/WviCKJKG2Wr4ab3g6CTR84E5Ebnqnwq1HBdSC2VXNQJF6vRtYWJNGxrkiXNuFtVx5ZyG0oh+5N9rF0OnM8qsKrtONX4HlfgXUaDeq5qJMc2V9eZ9PziOuHsPErSE6hsH/XQNWIPs3CXKd5sgVCZn0dTtlWnRnl3rfVZdJ5Z1LRXdQi8L3iMyWEicsmzFEFJh8JBueaexptnQSwQ5NgKHepztDhKG4RR1fcCUYNpejArqOmSVC75V0xOhbxRY1+WsflFfp0v8qRvijPCYu3DUgzyXvBc58cgE7OZDvo5+S6f2PCq+3uNO9xLhgqmJk8Ev1B5LN4r4h6nP0xFuRz2wMdgB8qbWXZBjViX/e5DFujUty4MpyKPL+GtYP9zku7D/sPRYM98OzS2XwL7QmhBqwsKsnOS6Phhel+2kqVsPWuIrjelEMgra4bLwB8skNpVCAOanHca56QEYV5ia4SLmzCvUCOK6yyU2tQZwTeI56HpZ2qJ8zHkYfq7HV1rRY6jKKqs8m7DFIPXOY7v43f/WCbHtIdazdoL5u8U55OdW+kpghgPEUNmpSJg2AtwXSFWGwg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB4872.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(136003)(376002)(366004)(396003)(346002)(39860400002)(38070700005)(33656002)(41300700001)(186003)(122000001)(66556008)(7696005)(6506007)(9686003)(2906002)(2940100002)(83380400001)(26005)(6636002)(110136005)(54906003)(478600001)(38100700002)(52536014)(966005)(8936002)(64756008)(4326008)(55016003)(66446008)(66476007)(66946007)(86362001)(8676002)(71200400001)(5660300002)(76116006)(316002)(491001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dFFWWTZTMnJSYUdwM0tiQ3BFY0RvNkRqdWQ3RzZCREx4SGROMTlVUkxkbzd4?=
- =?utf-8?B?dnRyTXg1TWtQZ2N5Rzl6Y3Q2NXZGNEdsSlB4dkl2UmZMWnpjS0NDbDRBSllQ?=
- =?utf-8?B?NHlHNHBFaUEyaEN2Ly9XK0Zac2xmczZ6QW5VR3pSeWJpd0VkbEpnTFRxSlU2?=
- =?utf-8?B?ZC91Z21GaFpzWStqditWWWNWZm5kZUJvV3FuQis2U2hTN29KZ0ZYTjM1NGk1?=
- =?utf-8?B?cTlseHJmSXQ3UDUzc2VEaVBYNTJhOTZ1czY4WXMwN25XejdKd0hpaFd3U2gy?=
- =?utf-8?B?d3NZU3dhTjJGcEZCalRxaG5yZVhsU1hqSVZHb0I4OS8xa2VKRUhFU1AzWmNQ?=
- =?utf-8?B?US9OS05yVnZyRDUzTFFuTHZJK2swamtXVmhiTlcyb3o1Rm1Ob1h6OGFEOW5w?=
- =?utf-8?B?NzNtTGkzQkwyVmNuaCtuKzdxcGV0WmVxdUhtWjhnSzZqOHJwSk85V3EzQTBY?=
- =?utf-8?B?aStQQitiWEJ6d1VJSXBPd1BjQjlxWkxPMWN5VlRpUlhWdjcxaEJmbjZiU3Iw?=
- =?utf-8?B?UlllbmdlUzAwaHlLNGF6b1JDUTNHSWNSUGE4ZmxkMjNjZ3pMSEw3SklEZU5S?=
- =?utf-8?B?M3c3ekQxcmk1NDVzRy9KVlZKZm9lWUk4NFpWRFF5SFdRZCtBbVpETUFjMk8w?=
- =?utf-8?B?TUR2WmlURVl6cFVlNnlWUFYzR2FUd2pXMS9lQVoxOFdCWjF6UmJXUnF4Uk0z?=
- =?utf-8?B?MndSY1RaZTVQWFZiNWJZcFVOZyttWllpbmJIVFJlckFjOXNrL245a1BrRDJ0?=
- =?utf-8?B?N2kvR2k0eXZYL1YwVFpXWXZKcW9pN0lFRExkb0NlTDU5aTFiMGxEVEFYdUNp?=
- =?utf-8?B?Z28vMTlIZjhWQmNFbjlEbWJ5WGRCc1R1aVUrc2FNWFpjdWJZaXU5aGNUUDQ4?=
- =?utf-8?B?cHZCQk03ejNhNUNuZURpdFU5TDdUQTFucjZCbVdHRlZUUnRhQTJGSC9XT1Yv?=
- =?utf-8?B?Y05zblZEbXlSSFlOMjVTMjc2bzMzREtFcTF6ZGJqTGtqOXducW5DNTNZOTBF?=
- =?utf-8?B?WGdlODB0NGpIVjljUkFONTl5ZURlQ1VkNnRLTVdLa2NkbUprZFRCaUxSOVVl?=
- =?utf-8?B?YWhzM2hkVnRKZnZDVlg0K3F0OXl2UDJ5UmowTjc3MkdncEFLSUVYUVErQmNW?=
- =?utf-8?B?UFBhTFBqdDAxOWFpMy9WcjZ1REszMDEwR2k5UnNBL1Q4WHdYYkxpVTQ5Q3Zm?=
- =?utf-8?B?NkR5eTNyRi9ING5hdHR1VmpPTHRnWWluVUJacVNIOEhlTVZqSlJHU1JtYzNI?=
- =?utf-8?B?V25oendRam5NdzQ2RVIxU3lCeDk1bGpyWTJVaEVrcUxZamJ0WTBnZlBBZ1Z6?=
- =?utf-8?B?N1FlcENZUUR5SHFvRjJDTHQrWWNHV0o2bXVTc3BJZHBhcDd3SzNwUDNsNlZ1?=
- =?utf-8?B?MHpLQW55djhJMHhKaTdKMlFQR2MwbWdneVRzT2I4aWpPVC8rTkxTeENSSmc3?=
- =?utf-8?B?S1ZYbUVXNlhrVmZuV3p1RldXa3lYVUlnRUpqM1lEQnNVUS9HQmxxQmpHcyt0?=
- =?utf-8?B?OC8wM1BvclVRbEZEM0dBNHNJSFg1QUN4R21Sb3ZZS25sSlJXaE9LUjg2K0lB?=
- =?utf-8?B?Y1BWaUc1dkxsN2I3S3lrOFprQnE0bHVENmlRZ1NwSHV3S1N6dTlPSHlNLzF4?=
- =?utf-8?B?cklmRkJVdldtS3hEOGt4SmkvUW5DVkJ4bG1kVE1WSWN5QmFMdHRoYStMUyt5?=
- =?utf-8?B?QVViZkFxRlExZWt2T3NFMGJSa090Z1JuSDZCUlAwMGpDdnFTR2dKY0VZZ1cw?=
- =?utf-8?B?U0YvNWFHS2pGL0pxYmNjaXF2WFkvUDNzaVhmSG11KzV2UGYyVldvMlkzdk5W?=
- =?utf-8?B?R3dhTjJrSkZIUUFEZFl4UkxHSDdVM3I4KzhnSlAxYWZka3NreXpXRGRnaDJP?=
- =?utf-8?B?Rld3MklkLytrc2hYN0p6UmQxSi9GRWo0YjU2UkVBVVBucGY5UUZWMDYxbWVa?=
- =?utf-8?B?U2tvNjFEdG9vS1Btc1NzdWpmMWlRRVBQN25ocG02UlQ5U29nZ1M3Z3FXVThq?=
- =?utf-8?B?TjZyM29aZ200bC8veGM3TDNLcjNYTWViZjVUZzZCd3Y2Wkk5eGgzb0VwbFly?=
- =?utf-8?B?bW5UYS9MMVhjcDFBKzBNS1EyeWQzdFV6K3pFNExvazlYc3dmOG9XSVlJYWwx?=
- =?utf-8?B?M0tYR0hHaHhQWVNxVFplOTJ4eHRMS1dKSmRwQjVnZ0F3NmtsQ3dGekVmbURu?=
- =?utf-8?B?N0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+   d="scan'208";a="347932686"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jul 2022 23:57:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,252,1650956400"; 
+   d="scan'208";a="651007648"
+Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 06 Jul 2022 23:57:29 -0700
+Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o9LS4-000LgU-Lh;
+        Thu, 07 Jul 2022 06:57:28 +0000
+Date:   Thu, 07 Jul 2022 14:56:34 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Andrew Morton <akpm@linux-foundation.org>
+Cc:     virtualization@lists.linux-foundation.org,
+        usbb2k-api-dev@nongnu.org, tipc-discussion@lists.sourceforge.net,
+        target-devel@vger.kernel.org, sound-open-firmware@alsa-project.org,
+        samba-technical@lists.samba.org, rds-devel@oss.oracle.com,
+        patches@opensource.cirrus.com, osmocom-net-gprs@lists.osmocom.org,
+        openipmi-developer@lists.sourceforge.net, nvdimm@lists.linux.dev,
+        ntb@lists.linux.dev, netfilter-devel@vger.kernel.org,
+        netdev@vger.kernel.org, mjpeg-users@lists.sourceforge.net,
+        megaraidlinux.pdl@broadcom.com, linuxppc-dev@lists.ozlabs.org,
+        linux1394-devel@lists.sourceforge.net, linux-x25@vger.kernel.org,
+        linux-wpan@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-unionfs@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-staging@lists.linux.dev, linux-serial@vger.kernel.org,
+        linux-sctp@vger.kernel.org, linux-scsi@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-rdma@vger.kernel.org,
+        linux-raid@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-perf-users@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-parport@lists.infradead.org,
+        linux-parisc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-nfc@lists.01.org, linux-mtd@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-ide@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-fpga@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, linux-ext4@vger.kernel.org,
+        linux-efi@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-cxl@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-cifs@vger.kernel.org,
+        linux-btrfs@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-bcache@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linaro-mm-sig@lists.linaro.org,
+        legousb-devel@lists.sourceforge.net, kvm@vger.kernel.org,
+        keyrings@vger.kernel.org, isdn4linux@listserv.isdn4linux.de,
+        iommu@lists.linux.dev, iommu@lists.linux-foundation.org,
+        intel-wired-lan@lists.osuosl.org, greybus-dev@lists.linaro.org,
+        dri-devel@lists.freedesktop.org, dm-devel@redhat.com,
+        devicetree@vger.kernel.org, dev@openvswitch.org,
+        dccp@vger.kernel.org, damon@lists.linux.dev,
+        coreteam@netfilter.org, cgroups@vger.kernel.org,
+        ceph-devel@vger.kernel.org, ath11k@lists.infradead.org,
+        apparmor@lists.ubuntu.com, amd-gfx@lists.freedesktop.org,
+        alsa-devel@alsa-project.org,
+        accessrunner-general@lists.sourceforge.net,
+        Linux Memory Management List <linux-mm@kvack.org>
+Subject: [linux-next:master] BUILD REGRESSION
+ 088b9c375534d905a4d337c78db3b3bfbb52c4a0
+Message-ID: <62c683a2.g1VSVt6BrQC6ZzOz%lkp@intel.com>
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB4872.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87fff70b-c732-4358-aa21-08da5fe58be6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2022 06:54:32.5020
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hmu7or4jxY7FnqSp/BjdZAUj5gmn7FG8Lol3BXFXBgXKpzntgtaCIZG3L5CKO9FNIHX40iEqMKU/ZJhWMSDGrdw2JBaUpBM6z89oH4z14IqQBIcNIyRvJYBNCXxfJJEX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4704
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+ID4gQ29udmVydCB0aGUgQXRtZWwgZmxleGNvbSBkZXZpY2UgdHJlZSBiaW5kaW5ncyB0byBq
-c29uIHNjaGVtYS4NCj4gPiA+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBLYXZ5YXNyZWUgS290YWdp
-cmkgPGthdnlhc3JlZS5rb3RhZ2lyaUBtaWNyb2NoaXAuY29tPg0KPiA+ID4gLS0tDQo+ID4gPiB2
-NiAtPiB2NzoNCj4gPiA+ICAtIENoYW5nZSBmaWxlbmFtZSB0byBhdG1lbCxzYW1hNWQyLWZsZXhj
-b20ueWFtbA0KPiA+ID4gIC0gQWRkICNhZGRyZXNzLWNlbGxzLCAjc2l6ZS1jZWxscyB0byBmbGV4
-Y29tIG5vZGUgLSBGaXhlZCB3YXJuaW5ncy4NCj4gPiA+DQo+ID4gPiB2NSAtPiB2NjoNCj4gPiA+
-ICAtIFJlbW92ZWQgc3BpIG5vZGUgZnJvbSBleGFtcGxlIGFzIHN1Z2dlc3RlZCBieSBSb2IgYW5k
-DQo+ID4gPiAgICBhbHNvIHBhdHRlcm4gcHJvcGVydGllcyhzcGkgZHQtYmluZGluZ3MgY29udmVy
-c2lvbiB0byB5YW1sIHBhdGNoIGlzDQo+IHVuZGVyDQo+ID4gcmV2aWV3KS4NCj4gPiA+ICAgIE9u
-Y2UgdGhhdCBpcyBhY2NlcHRlZCwgSSB3aWxsIGFkZCBiYWNrIHNwaSBleGFtcGxlIHRocm91Z2gg
-bmV3IHBhdGNoLg0KPiA+ID4NCj4gPiA+IHY0IC0+IHY1Og0KPiA+ID4gIC0gRml4ZWQgaW5kZW50
-YXRpb25zLg0KPiA+ID4NCj4gPiA+IHYzIC0+IHY0Og0KPiA+ID4gIC0gQ29ycmVjdGVkIGZvcm1h
-dCBvZiBlbnVtIHVzZWQgZm9yIGNvbXBhdGlibGUgc3RyaW5nLg0KPiA+ID4NCj4gPiA+IHYyIC0+
-IHYzOg0KPiA+ID4gIC0gdXNlZCBlbnVtIGZvciBjb21wYXRpYmxlIHN0cmluZy4NCj4gPiA+ICAt
-IGNoYW5nZWQgaXJxIGZsYWcgdG8gSVJRX1RZUEVfTEVWRUxfSElHSCBpbiBleGFtcGxlLg0KPiA+
-ID4gIC0gZml4ZWQgZHRzY2hlbWEgZXJyb3JzLg0KPiA+ID4NCj4gPiA+IHYxIC0+IHYyOg0KPiA+
-ID4gIC0gRml4IHRpdGxlLg0KPiA+ID4NCj4gPiA+ICAuLi4vYmluZGluZ3MvbWZkL2F0bWVsLHNh
-bWE1ZDItZmxleGNvbS55YW1sICAgfCA3NA0KPiA+ICsrKysrKysrKysrKysrKysrKysNCj4gPiA+
-ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvYXRtZWwtZmxleGNvbS50eHQgfCA2MyAtLS0t
-LS0tLS0tLS0tLS0tDQo+ID4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA3NCBpbnNlcnRpb25zKCspLCA2
-MyBkZWxldGlvbnMoLSkNCj4gPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4gPiBEb2N1bWVudGF0
-aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL2F0bWVsLHNhbWE1ZDItZmxleGNvbS55YW1sDQo+
-ID4gPiAgZGVsZXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9tZmQvYXRtZWwtDQo+ID4gZmxleGNvbS50eHQNCj4gPiA+DQo+ID4gPiBkaWZmIC0tZ2l0IGEv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9hdG1lbCxzYW1hNWQyLQ0KPiA+
-IGZsZXhjb20ueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvYXRt
-ZWwsc2FtYTVkMi0NCj4gPiBmbGV4Y29tLnlhbWwNCj4gPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0
-DQo+ID4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLjg2NGY0OTBmZmI4Mw0KPiA+ID4gLS0tIC9kZXYv
-bnVsbA0KPiA+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9h
-dG1lbCxzYW1hNWQyLQ0KPiA+IGZsZXhjb20ueWFtbA0KPiA+ID4gQEAgLTAsMCArMSw3NCBAQA0K
-PiA+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTIt
-Q2xhdXNlKQ0KPiA+ID4gKyVZQU1MIDEuMg0KPiA+ID4gKy0tLQ0KPiA+ID4gKyRpZDogaHR0cDov
-L2RldmljZXRyZWUub3JnL3NjaGVtYXMvbWZkL2F0bWVsLHNhbWE1ZDItZmxleGNvbS55YW1sIw0K
-PiA+ID4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55
-YW1sIw0KPiA+ID4gKw0KPiA+ID4gK3RpdGxlOiBBdG1lbCBGbGV4Y29tIChGbGV4aWJsZSBTZXJp
-YWwgQ29tbXVuaWNhdGlvbiBVbml0KQ0KPiA+ID4gKw0KPiA+ID4gK21haW50YWluZXJzOg0KPiA+
-ID4gKyAgLSBLYXZ5YXNyZWUgS290YWdpcmkgPGthdnlhc3JlZS5rb3RhZ2lyaUBtaWNyb2NoaXAu
-Y29tPg0KPiA+ID4gKw0KPiA+ID4gK2Rlc2NyaXB0aW9uOg0KPiA+ID4gKyAgVGhlIEF0bWVsIEZs
-ZXhjb20gaXMganVzdCBhIHdyYXBwZXIgd2hpY2ggZW1iZWRzIGEgU1BJIGNvbnRyb2xsZXIsDQo+
-ID4gPiArICBhbiBJMkMgY29udHJvbGxlciBhbmQgYW4gVVNBUlQuIE9ubHkgb25lIGZ1bmN0aW9u
-IGNhbiBiZSB1c2VkIGF0IGENCj4gPiA+ICsgIHRpbWUgYW5kIGlzIGNob3NlbiBhdCBib290IHRp
-bWUgYWNjb3JkaW5nIHRvIHRoZSBkZXZpY2UgdHJlZS4NCj4gPiA+ICsNCj4gPiA+ICtwcm9wZXJ0
-aWVzOg0KPiA+ID4gKyAgY29tcGF0aWJsZToNCj4gPiA+ICsgICAgZW51bToNCj4gPiA+ICsgICAg
-ICAtIGF0bWVsLHNhbWE1ZDItZmxleGNvbQ0KPiA+ID4gKw0KPiA+ID4gKyAgcmVnOg0KPiA+ID4g
-KyAgICBtYXhJdGVtczogMQ0KPiA+ID4gKw0KPiA+ID4gKyAgY2xvY2tzOg0KPiA+ID4gKyAgICBt
-YXhJdGVtczogMQ0KPiA+ID4gKw0KPiA+ID4gKyAgIiNhZGRyZXNzLWNlbGxzIjoNCj4gPiA+ICsg
-ICAgY29uc3Q6IDENCj4gPiA+ICsNCj4gPiA+ICsgICIjc2l6ZS1jZWxscyI6DQo+ID4gPiArICAg
-IGNvbnN0OiAxDQo+ID4gPiArDQo+ID4gPiArICByYW5nZXM6DQo+ID4gPiArICAgIGRlc2NyaXB0
-aW9uOg0KPiA+ID4gKyAgICAgIE9uZSByYW5nZSBmb3IgdGhlIGZ1bGwgSS9PIHJlZ2lzdGVyIHJl
-Z2lvbi4gKGluY2x1ZGluZyBVU0FSVCwNCj4gPiA+ICsgICAgICBUV0kgYW5kIFNQSSByZWdpc3Rl
-cnMpLg0KPiA+ID4gKyAgICBpdGVtczoNCj4gPiA+ICsgICAgICBtYXhJdGVtczogMw0KPiA+ID4g
-Kw0KPiA+ID4gKyAgYXRtZWwsZmxleGNvbS1tb2RlOg0KPiA+ID4gKyAgICBkZXNjcmlwdGlvbjog
-fA0KPiA+ID4gKyAgICAgIFNwZWNpZmllcyB0aGUgZmxleGNvbSBtb2RlIGFzIGZvbGxvd3M6DQo+
-ID4gPiArICAgICAgMTogVVNBUlQNCj4gPiA+ICsgICAgICAyOiBTUEkNCj4gPiA+ICsgICAgICAz
-OiBJMkMuDQo+ID4gPiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25z
-L3VpbnQzMg0KPiA+ID4gKyAgICBlbnVtOiBbMSwgMiwgM10NCj4gPiA+ICsNCj4gPg0KPiA+IEFz
-IHBvaW50ZWQgb3V0IGJ5IFJvYidzIGJvdCAtIHdoeSBkbyB5b3Ugbm90IGFsbG93IHRoZSBwcm90
-b2NvbC1zcGVjaWZpYw0KPiA+IGNoaWxkcmVuIGhlcmU/IHNwaSwgc2VyaWFsIGV0Yz8NCj4gPg0K
-PiB1c2FydC9zZXJpYWwsIHNwaSBhbmQgaTJjIGR0LWJpbmRpbmdzIGFyZSBpbiAudHh0IGZvcm1h
-dC4gU28sIEkgY2Fubm90IHJlZmVyIHRoZW0NCj4gaGVyZS4gTGlrZSBJIG1lbnRpb25lZCBpbiB2
-NSAtPiB2NiBjaGFuZ2VzIGRlc2NyaXB0aW9uLCBzcGkgZHQtYmluZGluZ3MNCj4gY29udmVyc2lv
-biBpcyB1bmRlciBkaXNjdXNzaW9uLiBGb3Igbm93LCBJIGFtIHJlbW92aW5nIGNoaWxkIG5vZGVz
-IGZyb20NCj4gZXhhbXBsZS4gSSB3aWxsIGFkZCBpdCB0aHJvdWdoIG5ldyBwYXRjaCBvbmNlIGJl
-bG93IGJpbmRpbmdzIGFyZSBhY2NlcHRlZDoNCj4gaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9y
-Zy9wcm9qZWN0L2xpbnV4LWFybS0NCj4ga2VybmVsL3BhdGNoLzIwMjIwNjI5MTI1ODA0LjEzNzA5
-OS0xLXNlcmdpdS5tb2dhQG1pY3JvY2hpcC5jb20vDQo+IA0KQ291bGQgeW91IHBsZWFzZSB0ZWxs
-IGlmIGNoaWxkIG5vZGVzIGNhbiBiZSBhZGRlZCBhcyBiZWxvdz8NCi0tLS0tLS0tLS0tDQorcGF0
-dGVyblByb3BlcnRpZXM6DQorICAiXnNlcmlhbEBbMC05YS1mXSskIjoNCisgICAgZGVzY3JpcHRp
-b246IFNlZSBhdG1lbC11c2FydC50eHQgZm9yIGRldGFpbHMgb2YgVVNBUlQgYmluZGluZ3MuDQor
-ICAgIHR5cGU6IG9iamVjdA0KKw0KKyAgIl5zcGlAWzAtOWEtZl0rJCI6DQorICAgIGRlc2NyaXB0
-aW9uOiBTZWUgLi4vc3BpL3NwaV9hdG1lbC50eHQgZm9yIGRldGFpbHMgb2YgU1BJIGJpbmRpbmdz
-Lg0KKyAgICB0eXBlOiBvYmplY3QNCisNCisgICJeaTJjQFswLTlhLWZdKyQiOg0KKyAgICBkZXNj
-cmlwdGlvbjogU2VlIC4uL2kyYy9pMmMtYXQ5MS50eHQgZm9yIGRldGFpbHMgb2YgSTJDIGJpbmRp
-bmdzLg0KKyAgICB0eXBlOiBvYmplY3QNCi0tLS0tLS0tLS0tLS0NCg0KPiA+DQo+ID4gQmVzdCBy
-ZWdhcmRzLA0KPiA+IEtyenlzenRvZg0K
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 088b9c375534d905a4d337c78db3b3bfbb52c4a0  Add linux-next specific files for 20220706
+
+Error/Warning reports:
+
+https://lore.kernel.org/linux-doc/202207070644.x48XOOvs-lkp@intel.com
+
+Error/Warning: (recently discovered and may have been fixed)
+
+Documentation/arm/google/chromebook-boot-flow.rst: WARNING: document isn't included in any toctree
+arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1108): undefined reference to `__aeabi_ddiv'
+arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1124): undefined reference to `__aeabi_ui2d'
+arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1164): undefined reference to `__aeabi_dmul'
+arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1170): undefined reference to `__aeabi_dadd'
+arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1180): undefined reference to `__aeabi_dsub'
+arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1190): undefined reference to `__aeabi_d2uiz'
+arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x162c): undefined reference to `__aeabi_d2iz'
+arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x16b0): undefined reference to `__aeabi_i2d'
+dc_dmub_srv.c:(.text+0x10f8): undefined reference to `__aeabi_ui2d'
+dc_dmub_srv.c:(.text+0x464): undefined reference to `__floatunsidf'
+dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x33c): undefined reference to `__floatunsidf'
+drivers/pci/endpoint/functions/pci-epf-vntb.c:975:5: warning: no previous prototype for 'pci_read' [-Wmissing-prototypes]
+drivers/pci/endpoint/functions/pci-epf-vntb.c:984:5: warning: no previous prototype for 'pci_write' [-Wmissing-prototypes]
+drivers/vfio/vfio_iommu_type1.c:2141:35: warning: cast to smaller integer type 'enum iommu_cap' from 'void *' [-Wvoid-pointer-to-enum-cast]
+mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x34c): undefined reference to `__floatunsidf'
+mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x378): undefined reference to `__divdf3'
+mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x38c): undefined reference to `__muldf3'
+mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3a0): undefined reference to `__adddf3'
+mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3b4): undefined reference to `__subdf3'
+mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3d4): undefined reference to `__fixunsdfsi'
+mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x750): undefined reference to `__fixdfsi'
+mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x7c0): undefined reference to `__floatsidf'
+powerpc-linux-ld: drivers/pci/endpoint/functions/pci-epf-vntb.c:174: undefined reference to `ntb_link_event'
+xtensa-linux-ld: dc_dmub_srv.c:(.text+0x468): undefined reference to `__divdf3'
+xtensa-linux-ld: dc_dmub_srv.c:(.text+0x46c): undefined reference to `__muldf3'
+xtensa-linux-ld: dc_dmub_srv.c:(.text+0x470): undefined reference to `__adddf3'
+xtensa-linux-ld: dc_dmub_srv.c:(.text+0x474): undefined reference to `__subdf3'
+xtensa-linux-ld: dc_dmub_srv.c:(.text+0x478): undefined reference to `__fixunsdfsi'
+xtensa-linux-ld: dc_dmub_srv.c:(.text+0x47c): undefined reference to `__fixdfsi'
+xtensa-linux-ld: dc_dmub_srv.c:(.text+0x480): undefined reference to `__floatsidf'
+xtensa-linux-ld: dc_dmub_srv.c:(.text+0x60c): undefined reference to `__floatunsidf'
+
+Unverified Error/Warning (likely false positive, please contact us if interested):
+
+arch/x86/events/core.c:2114 init_hw_perf_events() warn: missing error code 'err'
+drivers/android/binder.c:1481:19-23: ERROR: from is NULL but dereferenced.
+drivers/android/binder.c:2920:29-33: ERROR: target_thread is NULL but dereferenced.
+drivers/android/binder.c:353:25-35: ERROR: node -> proc is NULL but dereferenced.
+drivers/android/binder.c:4888:16-20: ERROR: t is NULL but dereferenced.
+drivers/base/regmap/regmap.c:1996:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/char/random.c:869:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/firmware/arm_scmi/clock.c:394:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/firmware/arm_scmi/powercap.c:376:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_powertune.c:1214:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/gpu/drm/amd/display/dc/os_types.h: drm/drm_print.h is included more than once.
+drivers/gpu/drm/bridge/ite-it66121.c:1398:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/greybus/operation.c:617:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/infiniband/hw/irdma/hw.c:1484:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/md/dm-mpath.c:1681:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/media/dvb-frontends/mxl692.c:49:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/media/i2c/ov5647.c:636:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/media/i2c/st-mipid02.c:271:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/media/platform/qcom/venus/vdec.c:1505:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/media/platform/st/sti/delta/delta-v4l2.c:719:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/media/tuners/msi001.c:81:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/mfd/sec-core.c:429:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/mmc/core/core.c:471:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/mmc/host/sh_mmcif.c:1318:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/bonding/bond_main.c:4647:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/chelsio/cxgb3/cxgb3_main.c:1388:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/faraday/ftgmac100.c:854:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/hisilicon/hns/hnae.c:436:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/intel/i40e/i40e_main.c:9347:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/intel/ice/ice_base.c:1003:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/intel/ice/ice_dcb_lib.c:520:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/intel/ice/ice_vlan_mode.c:379:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/intel/igb/e1000_phy.c:1185:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/microchip/encx24j600.c:827:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/microchip/lan743x_main.c:1238:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/smsc/smsc9420.c:451:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/ethernet/vertexcom/mse102x.c:422:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/phy/dp83640.c:890:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/usb/cdc_ncm.c:195:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/usb/rtl8150.c:176:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/wireless/ath/ath11k/dp.c:334:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/wireless/ath/ath11k/mac.c:6142:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/wireless/ath/ath11k/qmi.c:2271:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/net/wireless/ath/ath11k/reg.c:226:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/parport/ieee1284_ops.c:615:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/scsi/elx/efct/efct_unsol.c:297:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/scsi/elx/libefc/efc_domain.c:692:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/scsi/megaraid/megaraid_sas_fp.c:297:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/soc/mediatek/mtk-mutex.c:799:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/staging/media/zoran/zr36016.c:430:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/staging/media/zoran/zr36050.c:829:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/staging/media/zoran/zr36060.c:869:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/target/iscsi/iscsi_target.c:2348:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/thunderbolt/tmu.c:758:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/thunderbolt/tunnel.c:1264:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/tty/serial/atmel_serial.c:1442:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/usb/host/uhci-q.c:1367:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/usb/serial/digi_acceleport.c:1167:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+drivers/video/backlight/qcom-wled.c:871:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+fs/ext4/mballoc.c:3612:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+fs/kernel_read_file.c:61 kernel_read_file() warn: impossible condition '(i_size > (((~0) >> 1))) => (s64min-s64max > s64max)'
+fs/ubifs/recovery.c:1062:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+kernel/cgroup/cgroup-v1.c:150:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+kernel/cgroup/cgroup.c:2813:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+kernel/sched/core.c:2076:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+mm/filemap.c:1354:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+mm/memory.c:5157:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+mm/page_alloc.c:3813 rmqueue_pcplist() warn: inconsistent returns 'flags'.
+mm/page_alloc.c:7692:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+mm/slub.c:5434:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+net/bluetooth/hci_event.c:5926:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+net/qrtr/mhi.c:102:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+net/wireless/reg.c:205:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+net/wireless/scan.c:1470:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+sound/pci/lola/lola.c:178:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+sound/pci/pcxhr/pcxhr_core.c:134:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+sound/pci/rme9652/hdsp.c:666:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+sound/soc/fsl/fsl_spdif.c:1467:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+sound/soc/sh/rcar/core.c:1602:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+sound/soc/sof/intel/mtl.c:547:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+{standard input}:2311: Error: expecting )
+
+Error/Warning ids grouped by kconfigs:
+
+gcc_recent_errors
+|-- alpha-allyesconfig
+|   |-- drivers-pci-endpoint-functions-pci-epf-vntb.c:warning:no-previous-prototype-for-pci_read
+|   `-- drivers-pci-endpoint-functions-pci-epf-vntb.c:warning:no-previous-prototype-for-pci_write
+|-- arc-allyesconfig
+|   |-- block-partitions-efi.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- block-sed-opal.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- crypto-asymmetric_keys-pkcs7_verify.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-ata-libata-core.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-ata-libata-eh.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-ata-sata_dwc_460ex.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-base-power-runtime.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-block-rbd.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-bluetooth-hci_ll.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-bluetooth-hci_qca.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-cdrom-cdrom.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-char-ipmi-ipmi_ssif.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-char-pcmcia-cm4000_cs.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-char-random.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-char-tpm-tpm_tis_core.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-clk-bcm-clk-iproc-armpll.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-clk-clk-bd718x7.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-clk-clk-lochnagar.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-crypto-ccree-cc_request_mgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-crypto-qce-sha.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-crypto-qce-skcipher.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-cxl-core-hdm.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-cxl-core-pci.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-dma-buf-dma-buf.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-firmware-arm_scmi-bus.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-firmware-arm_scmi-clock.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-firmware-arm_scmi-powercap.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-firmware-arm_scmi-sensors.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-firmware-arm_scmi-voltage.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-fpga-dfl-fme-mgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gnss-usb.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_debug.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_resource.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce112-dce112_resource.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-powerplay-hwmgr-smu7_hwmgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-powerplay-hwmgr-smu8_hwmgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-powerplay-hwmgr-vega10_powertune.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-powerplay-smumgr-smu7_smumgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-swsmu-smu13-smu_v13_0.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ttm.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-bridge-cadence-cdns-mhdp8546-hdcp.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-bridge-ite-it66121.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-bridge-lontium-lt9211.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-bridge-sii902x.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+|   |-- drivers-gpu-drm-mcde-mcde_dsi.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
+clang_recent_errors
+|-- arm64-randconfig-r023-20220706
+|   `-- drivers-vfio-vfio_iommu_type1.c:warning:cast-to-smaller-integer-type-enum-iommu_cap-from-void
+|-- arm64-randconfig-r025-20220706
+|   `-- drivers-vfio-vfio_iommu_type1.c:warning:cast-to-smaller-integer-type-enum-iommu_cap-from-void
+`-- s390-randconfig-r044-20220706
+    `-- drivers-vfio-vfio_iommu_type1.c:warning:cast-to-smaller-integer-type-enum-iommu_cap-from-void
+
+elapsed time: 1179m
+
+configs tested: 25
+configs skipped: 3
+
+gcc tested configs:
+arm                                 defconfig
+arm                              allyesconfig
+arm64                            allyesconfig
+powerpc                           allnoconfig
+mips                             allyesconfig
+powerpc                          allmodconfig
+sh                               allmodconfig
+alpha                            allyesconfig
+m68k                             allmodconfig
+arc                              allyesconfig
+m68k                             allyesconfig
+x86_64                        randconfig-a015
+i386                          randconfig-a016
+arc                  randconfig-r043-20220706
+um                             i386_defconfig
+um                           x86_64_defconfig
+x86_64                              defconfig
+x86_64                               rhel-8.3
+x86_64                           allyesconfig
+
+clang tested configs:
+x86_64                        randconfig-a016
+i386                          randconfig-a015
+hexagon              randconfig-r041-20220706
+hexagon              randconfig-r045-20220706
+riscv                randconfig-r042-20220706
+s390                 randconfig-r044-20220706
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
