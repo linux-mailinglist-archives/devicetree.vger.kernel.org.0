@@ -2,126 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72F5F569841
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:35:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41B26569851
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:46:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234716AbiGGCfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 22:35:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45748 "EHLO
+        id S234667AbiGGCqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 22:46:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230308AbiGGCfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 22:35:23 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97CE5D6A;
-        Wed,  6 Jul 2022 19:35:21 -0700 (PDT)
-X-UUID: aea485e3a2284a3e9e63ebfef824fbd7-20220707
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:f012d853-75bc-4ace-afd1-96143a306e21,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:9504c286-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: aea485e3a2284a3e9e63ebfef824fbd7-20220707
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 327723911; Thu, 07 Jul 2022 10:35:14 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 7 Jul 2022 10:35:13 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 7 Jul 2022 10:35:13 +0800
-Message-ID: <ee075f26d133342e0ef386d4afc6173e420e30c5.camel@mediatek.com>
-Subject: Re: [PATCH v13 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 7 Jul 2022 10:35:13 +0800
-In-Reply-To: <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
-         <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234632AbiGGCqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 22:46:07 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 654C22E6AA
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 19:46:06 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id i3so21908536oif.13
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 19:46:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=4qjFAcplDcRzaa7vJN9whYnjs2tJsJNKANPDFAyYaEs=;
+        b=mMMhwZDFTY+3DxkcS0R/YCHlkrht8zPICIofshm7hvjHRFbnb6r23mMel+DKaUR9pc
+         PPyFPL0L4HtmipThte3LCOzU35DUCYLnsdS8Nf0tOSu/jEdVmmbnMFtqnuW9wn6WH+i5
+         F0nFyxOygItkx36wpyIR55BFR71fLxuhJR7/DWMultyGBY/UM8l7koHKw4zo+PxtAS8x
+         eOEt+YSLAdCK8VTBYqF7to/pUxfnGAvDBT99YS4NVSKoCdEQoCmBCrJ7vNWMVEa1lI4M
+         QHt9p0unAnG4fB04U6u+zgkoj1dKwxhgKpFQzBgzTVsaX56l274PaBAF3v5C5RQZRZMV
+         ZCTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=4qjFAcplDcRzaa7vJN9whYnjs2tJsJNKANPDFAyYaEs=;
+        b=KyhfiXqNDyEzzxVu0T10wxfKwlKYNHjJXYKBXgD77Xs+P8jR/iFCs5e7ylvAyOSBcv
+         rJsmZ9s42/uUFotdH625PQN5Izf/wGgS7jkDFpV9sqnQmSsnIKts+GNz8S6bxQQkPz2t
+         cueTHu2gLxDNjGoFsgLliBao2SyTNa2l8PDu8b6lQD4xMvanVSCJv+f1dfxoWRtvGhee
+         4ugaSDFZKVZPEsJ7c/XEVN0hCSIq/KI35DTmCP2d4R/XT7HADjHTAojCxvxb82+nHRfm
+         f9OUhTCPR5cwjqOTF7Lbo99xNRHfeTcrEfVUnxXTF3ZcLo22iBpK83SirxhytJQg3ULC
+         aw9g==
+X-Gm-Message-State: AJIora94a/9s4qtyV4Ps1X21icMGRq12OaYLMnIwakCaMb00K4+NW1bN
+        FJogS3bV3NxSesTONOxmUZrysA==
+X-Google-Smtp-Source: AGRyM1s24yL2hO/WFK+l/XqF3QQOrWXELrYqGXqtlUnFQvUq5NfNLy2D/i3vE87t6icTfaR82jpIrQ==
+X-Received: by 2002:a05:6808:23c4:b0:337:d77d:de75 with SMTP id bq4-20020a05680823c400b00337d77dde75mr1081032oib.133.1657161965795;
+        Wed, 06 Jul 2022 19:46:05 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id r6-20020a056870580600b001089aef1815sm16450814oap.20.2022.07.06.19.46.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Jul 2022 19:46:05 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>, swboyd@chromium.org,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] Revert "arm64: dts: qcom: Fix 'reg-names' for sdhci nodes"
+Date:   Wed,  6 Jul 2022 21:46:03 -0500
+Message-Id: <165716195971.869883.14805700295899187397.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220706144706.1.I48f35820bf3670d54940110462555c2d0a6d5eb2@changeid>
+References: <20220706144706.1.I48f35820bf3670d54940110462555c2d0a6d5eb2@changeid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
-
-On Fri, 2022-07-01 at 14:28 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
+On Wed, 6 Jul 2022 14:47:33 -0700, Douglas Anderson wrote:
+> This reverts commit afcbe252e9c19161e4d4c95f33faaf592f1de086.
 > 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
+> The commit in question caused my sc7280-herobrine-herobrine-r1 board
+> not to boot anymore. This shouldn't be too surprising since the driver
+> is relying on the name "cqhci".
 > 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
+> The issue seems to be that someone decided to change the names of
+> things when the binding moved from .txt to .yaml. We should go back to
+> the names that the bindings have historically specified.
 > 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
-> +
-> +static void mtk_dp_power_enable(struct mtk_dp *mtk_dp)
-> +{
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_RESET_AND_PROBE,
-> +			   0, SW_RST_B_PHYD);
-> +
-> +	/* Wait for power enable */
-> +	usleep_range(10, 200);
-> +
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_RESET_AND_PROBE,
-> +			   SW_RST_B_PHYD, SW_RST_B_PHYD);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> +			   DP_PWR_STATE_BANDGAP_TPLL,
-> DP_PWR_STATE_MASK);
-> +	mtk_dp_write(mtk_dp, MTK_DP_1040, 0x7);
+> [...]
 
-You have define the bit definition. Use the bit definition instead of a
-magic number.
+Applied, thanks!
 
-+#define MTK_DP_1040			0x1040
-+#define RG_DPAUX_RX_VALID_DEGLITCH_EN	BIT(2)
-+#define RG_XTP_GLB_CKDET_EN		BIT(1)
-+#define RG_DPAUX_RX_EN			BIT(0)
+[1/1] Revert "arm64: dts: qcom: Fix 'reg-names' for sdhci nodes"
+      commit: 21857088fa274750608e25b44ededa6199fac4a5
 
-> +}
-> +
-
+Best regards,
+-- 
+Bjorn Andersson <bjorn.andersson@linaro.org>
