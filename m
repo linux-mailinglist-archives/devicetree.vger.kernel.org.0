@@ -2,121 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA1F1569A81
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC769569A8A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234879AbiGGG0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 02:26:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58142 "EHLO
+        id S234861AbiGGGbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 02:31:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234120AbiGGG0I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:26:08 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0608726ACC;
-        Wed,  6 Jul 2022 23:26:06 -0700 (PDT)
-X-UUID: 32387981d5ee4f7dbd5a8f18bdead6cd-20220707
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:9adf498b-6916-4522-b531-8c71f165c085,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:dc3fc886-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 32387981d5ee4f7dbd5a8f18bdead6cd-20220707
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 99316468; Thu, 07 Jul 2022 14:26:03 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 7 Jul 2022 14:26:02 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 7 Jul 2022 14:26:02 +0800
-Message-ID: <4a4f26bf8d0b0da7e442ea799250e31860b28ed1.camel@mediatek.com>
-Subject: Re: [PATCH v13 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 7 Jul 2022 14:26:02 +0800
-In-Reply-To: <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
-         <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234925AbiGGGbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:31:04 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C024D13EA7
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 23:31:01 -0700 (PDT)
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220707063059epoutp03b7b2ad2a433a8aed574e8004cec5bf7a~-eEz3CeBE1033710337epoutp03D
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 06:30:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220707063059epoutp03b7b2ad2a433a8aed574e8004cec5bf7a~-eEz3CeBE1033710337epoutp03D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1657175459;
+        bh=1rFhsgea4SwwjFHuvdOIzGo0T883vMe19Ph3xA35004=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=AVDLsML4CI+VOztYrh4XmUfEbtum8rtccnLut+PVTsYRb80p1+hzwL4sY3sMxH9qc
+         CNSOUy7RwZ4mUcVjD4hdgxklcbcQ9H9bpeAH8393aDNu8Cv3ppuWVUPKItKJulvv8N
+         ScUycp8lp1O/uhAJa0mNO+w95/iBAsX73Jljh4XE=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20220707063059epcas2p4be266599bf46e185fe0fb75d67293869~-eEzV0e2n0700507005epcas2p4p;
+        Thu,  7 Jul 2022 06:30:59 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.97]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4Ldmkp6wXwz4x9QH; Thu,  7 Jul
+        2022 06:30:58 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        56.3B.09666.2AD76C26; Thu,  7 Jul 2022 15:30:58 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220707063058epcas2p19364a05a5b2fc8aad81fa390ac030f21~-eEyrexgV2376423764epcas2p1-;
+        Thu,  7 Jul 2022 06:30:58 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220707063058epsmtrp1479537ea6d7d1a5398db55b35ef20c61~-eEyqwP561862418624epsmtrp1e;
+        Thu,  7 Jul 2022 06:30:58 +0000 (GMT)
+X-AuditID: b6c32a45-45bff700000025c2-67-62c67da2dd68
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        0D.2F.08905.2AD76C26; Thu,  7 Jul 2022 15:30:58 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220707063058epsmtip280f1ce294355aa720bb70f5577558534~-eEygpBMb1013210132epsmtip2e;
+        Thu,  7 Jul 2022 06:30:58 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: phy: samsung,ufs-phy: match clock items
+Date:   Thu,  7 Jul 2022 15:28:07 +0900
+Message-Id: <20220707062807.135960-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmk+LIzCtJLcpLzFFi42LZdljTTHdR7bEkg1WHzS0ezNvGZnF5v7bF
+        /CPnWC36Xjxkttj7eiu7xabH11gtZpzfx2TRuvcIuwOHx6ZVnWwed67tYfPYvKTeo2/LKkaP
+        z5vkAlijsm0yUhNTUosUUvOS81My89JtlbyD453jTc0MDHUNLS3MlRTyEnNTbZVcfAJ03TJz
+        gC5RUihLzCkFCgUkFhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYF+gVJ+YWl+al6+WlllgZGhgY
+        mQIVJmRnnOp6wVjwRKSiv+sWcwPjPP4uRk4OCQETife3tzF3MXJxCAnsYJQ4c6+XFcL5xCix
+        uGcBC4TzjVFi1coVzDAtO2d+Y4JI7GWUePF2G1TVR0aJ6QuPMoFUsQnoSmx5/ooRxBYRiJd4
+        fuE9WBGzwGdGid5zd9lAEsICHhLzJ10BGsvBwSKgKnH8qzdImFfAXmLd2vvsENvkJTYc3M4C
+        EReUODnzCZjNDBRv3job7HAJgUvsEm+m9bBANLhIHFi2C6pZWOLV8S1QtpTEy/42KLtYYums
+        T0wQzQ2MEpe3/WKDSBhLzHrWzghyELOApsT6XfogpoSAssSRW1B7+SQ6Dv9lhwjzSnS0CUE0
+        qksc2D4d6gJZie45n1khbA+J/Xt7wQEnJBArceHIRbYJjPKzkHwzC8k3sxD2LmBkXsUollpQ
+        nJueWmxUYAiP1eT83E2M4NSo5bqDcfLbD3qHGJk4GA8xSnAwK4nw5rYfTRLiTUmsrEotyo8v
+        Ks1JLT7EaAoM3onMUqLJ+cDknFcSb2hiaWBiZmZobmRqYK4kzuuVsiFRSCA9sSQ1OzW1ILUI
+        po+Jg1OqgcmFd8mcoJOWqjeeHpte0ZfzSEC0qeWk3v1l6ttnKgd+DpPnu59oNjnu08LKLuXa
+        gI/T15rdfzTx3Cx99q9RM7rvun3+1/Np+7lVL9K26l/6d/wvl2Z8allqVkJYifraONET0sqf
+        rxR5BCr5HTf8xxF+9dSUoisL18WoON5SV9nq+kqxanmwcf01Q6Z4brYNGUZzUtPmBKVyeR85
+        cneJyFSBm/yXhJ7/1Zw/48b+3xYb0r6xTvEokNjM/L7g4etb9Rc0980t+fZy550dX/Yu3/fq
+        xabuZRJK93r0NywpvZaYs3nCq3ui/fOEtT6/YPvjcT1n45TlMzwa1tSzLDp5ftF6g45k0UwJ
+        O1E9Dy7djaKKSizFGYmGWsxFxYkABUlLOBYEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrILMWRmVeSWpSXmKPExsWy7bCSvO6i2mNJBmdWK1g8mLeNzeLyfm2L
+        +UfOsVr0vXjIbLH39VZ2i02Pr7FazDi/j8mide8RdgcOj02rOtk87lzbw+axeUm9R9+WVYwe
+        nzfJBbBGcdmkpOZklqUW6dslcGWc6nrBWPBEpKK/6xZzA+M8/i5GTg4JAROJnTO/MYHYQgK7
+        GSX2T8+CiMtKPHu3gx3CFpa433KEtYuRC6jmPaPEjGnTwBrYBHQltjx/xQhiiwjES2z+spAF
+        pIhZ4DujxKXOVrAiYQEPifmTrjB3MXJwsAioShz/6g0S5hWwl1i39j7UAnmJDQe3s0DEBSVO
+        znwCZjMDxZu3zmaewMg3C0lqFpLUAkamVYySqQXFuem5xYYFhnmp5XrFibnFpXnpesn5uZsY
+        waGqpbmDcfuqD3qHGJk4GA8xSnAwK4nw5rYfTRLiTUmsrEotyo8vKs1JLT7EKM3BoiTOe6Hr
+        ZLyQQHpiSWp2ampBahFMlomDU6qB6doand1XF2lf7pDc++WVkmn3scf9pk3zn2tnex/MTjMy
+        8deMn/pBdIeW/j+xTTNert1jcvT6iicd5l9Zr5zNeOHzvuz8jZcr/Qz2fpLaLVXUJXBugaU1
+        Q4vlfq7jT2QUym3FBXQPmzNv5VBo2Wy0Zvp7YwPuw0/msWnqWVs6mQr9+pB7sSft9PLfDQaM
+        3/TkTWcr1tusrz5qc6nmhofbXkOj3mcr15a8uD87UFdtexKvmrme6O83O96Vi3+ILdpRcujd
+        6tWu/u/rtGPWK55V1tnd26l9/+i+7VdzF51f+2XS5m8PnvHw8iv6743Jb6r0vrpMPYLh/g6e
+        KC7rzZqK8Z/DdVaEeIj7NK7ZtFV1mxJLcUaioRZzUXEiAMvLPzzEAgAA
+X-CMS-MailID: 20220707063058epcas2p19364a05a5b2fc8aad81fa390ac030f21
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220707063058epcas2p19364a05a5b2fc8aad81fa390ac030f21
+References: <CGME20220707063058epcas2p19364a05a5b2fc8aad81fa390ac030f21@epcas2p1.samsung.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+Below error is detected from dtbs_check. exynos7-ufs-phy is required
+symbol clocks otherwise only PLL ref clock is required.
 
-On Fri, 2022-07-01 at 14:28 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
-> 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+clock-names: ['ref_clk'] is too short
 
-[snip]
+Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
+Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+---
+Changes since v1:
+- Move allOf: block location after required:
+- Remove unnecessary spaces of clock descriptions
 
-> +
-> +static void mtk_dp_video_enable(struct mtk_dp *mtk_dp, bool enable)
-> +{
-> +	if (enable) {
-> +		mtk_dp_set_tx_out(mtk_dp);
-> +		mtk_dp_video_mute(mtk_dp, false);
-> +	} else {
-> +		mtk_dp_video_mute(mtk_dp, true);
+ .../bindings/phy/samsung,ufs-phy.yaml         | 47 +++++++++++++++----
+ 1 file changed, 37 insertions(+), 10 deletions(-)
 
-In mtk_dp_set_tx_out(), disable some function. Why not enable that
-function here?
-
-Regards,
-CK
-
-> +	}
-> +}
-> +
+diff --git a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+index 8da99461e817..346eb7cf29a5 100644
+--- a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+@@ -27,18 +27,12 @@ properties:
+       - const: phy-pma
+ 
+   clocks:
+-    items:
+-      - description: PLL reference clock
+-      - description: symbol clock for input symbol ( rx0-ch0 symbol clock)
+-      - description: symbol clock for input symbol ( rx1-ch1 symbol clock)
+-      - description: symbol clock for output symbol ( tx0 symbol clock)
++    minItems: 1
++    maxItems: 4
+ 
+   clock-names:
+-    items:
+-      - const: ref_clk
+-      - const: rx1_symbol_clk
+-      - const: rx0_symbol_clk
+-      - const: tx0_symbol_clk
++    minItems: 1
++    maxItems: 4
+ 
+   samsung,pmu-syscon:
+     $ref: '/schemas/types.yaml#/definitions/phandle-array'
+@@ -62,6 +56,39 @@ required:
+   - clock-names
+   - samsung,pmu-syscon
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,exynos7-ufs-phy
++
++    then:
++      properties:
++        clocks:
++          items:
++            - description: PLL reference clock
++            - description: symbol clock for input symbol (rx0-ch0 symbol clock)
++            - description: symbol clock for input symbol (rx1-ch1 symbol clock)
++            - description: symbol clock for output symbol (tx0 symbol clock)
++
++        clock-names:
++          items:
++            - const: ref_clk
++            - const: rx1_symbol_clk
++            - const: rx0_symbol_clk
++            - const: tx0_symbol_clk
++
++    else:
++      properties:
++        clocks:
++          items:
++            - description: PLL reference clock
++
++        clock-names:
++          items:
++            - const: ref_clk
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.37.0
 
