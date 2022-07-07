@@ -2,104 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68000569A67
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88509569A6A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:23:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232278AbiGGGWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 02:22:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55152 "EHLO
+        id S231600AbiGGGXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 02:23:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231939AbiGGGWG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:22:06 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2042252C
-        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 23:22:03 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id z25so11867964lfr.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 23:22:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=K9tr6KcnhachYdviyEdzrx/B25kvNR6jdvTIxCztc+M=;
-        b=m8SLb0PXb3Vg2eJO8SbIvdWVK9IDAd+mBaFKyEB2VmiyRWoo7gJ4oK+6dub5rKs6Mc
-         SF8En/qWmU2nl4466IHgX+Hm3h6XYKVVhUvHVUkjDD1P2ongoVO0LON181kFQlEEBYVr
-         KU9HJhb68dRpCkBvjPz3+09CzLF9Dn2jgtIQ3SYv9tXuULNxFRbXKC9gSlvqnSsRXcom
-         KTN5jXMjhXrB61iL+tYx0o/BMkQ9U+4iYMrJB8dUpPV9ieLqt6n7IOqE99tvcKu0zo4X
-         wNXIPUNR6f683NkjFPNkFGEL1dZXuPcmvJ4r23lPd0ROyvgAJxXs9FcCwAzlfT32CUEV
-         fTAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=K9tr6KcnhachYdviyEdzrx/B25kvNR6jdvTIxCztc+M=;
-        b=qfifnGPHxc7hOKKtCE9OWRYr0xZUfAeXsDUQbfR5iI9ddGI2puwGM8Ozts0UaHqSdW
-         UdrZ2A/FZgdEqm3p1pudpNBDX9l5xY31gfFA9QkUO3evqdh9JenPteYZ3vGCTB6gJJRw
-         XJ+KfYWUmLxXCVMSDt0ycvVj2OJ3RO/CyKrHwNLhuMp7zwJe8JUNPgfANq4KFZD7pFz7
-         yZYoToKspJpJ7+6gl69seLkLIZgmG9IUlXtllOlY/aDHDsvsWzMN0cmbFGtQ5AjnS/M3
-         fEtz5kWyJ/ExqxTGNCo4BfKwZxNvr7xMyrP1Kp0hqSwY2r/eavfQxCfxrP3sAL2HqYfe
-         M8ew==
-X-Gm-Message-State: AJIora8MCD2VGGIzo2GNACdeJp4DxcLqtU4XayHcDWBLw7D1AnY6cKL7
-        Ao4FOzW8U466yYoMODw7AZeEPA==
-X-Google-Smtp-Source: AGRyM1se1WO4CHVfBfT/K6BtyPtkWxpUzbgz0tpvSMviOF1zQkYsa6iAW47Mb577NI8daYMc821GdQ==
-X-Received: by 2002:a05:6512:b14:b0:482:a9b1:ea3 with SMTP id w20-20020a0565120b1400b00482a9b10ea3mr16254431lfu.353.1657174922060;
-        Wed, 06 Jul 2022 23:22:02 -0700 (PDT)
-Received: from [192.168.1.52] ([84.20.121.239])
-        by smtp.gmail.com with ESMTPSA id j10-20020a056512344a00b0047f71771969sm6664533lfr.113.2022.07.06.23.22.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jul 2022 23:22:01 -0700 (PDT)
-Message-ID: <d3d4d90b-85b5-5ad9-78e6-5a074c21af4f@linaro.org>
-Date:   Thu, 7 Jul 2022 08:22:00 +0200
+        with ESMTP id S231939AbiGGGXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:23:41 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E6E427B01
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 23:23:39 -0700 (PDT)
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220707062336epoutp0119f3b1634e524a9a121526ed869d74e3~-d_W4LkDs2200422004epoutp01s
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 06:23:36 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220707062336epoutp0119f3b1634e524a9a121526ed869d74e3~-d_W4LkDs2200422004epoutp01s
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1657175016;
+        bh=7f5L4DjEO+aLa77Hxcn9O/EuxcRk5cu7K0kzE1Vb0ec=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=ux4LbWA/7ER97nECaaLuE7PbK24+X5uCPRC4nrHxvmvUCvtMSPf8cCUa9ZG6EJLCE
+         jtvjH87tkOQSv5bqQNL+DAFs1010DlaGTaGdT9STM5ToMlNHuEwBlsEx5mZmIltZm7
+         ERaVubCJW+4uMq8Dku/PHpt2E8MklEXO0xZJsk2Y=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20220707062335epcas2p3f8348c61754f3b0c13371b3410ea7294~-d_WeVOM12269922699epcas2p3s;
+        Thu,  7 Jul 2022 06:23:35 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.100]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4LdmZH2kRmz4x9Q4; Thu,  7 Jul
+        2022 06:23:35 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        19.05.09666.7EB76C26; Thu,  7 Jul 2022 15:23:35 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220707062334epcas2p1c84d526f35b01cf659563aadbc6ace88~-d_VXd4go2180621806epcas2p1Z;
+        Thu,  7 Jul 2022 06:23:34 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220707062334epsmtrp1a609aeb173d4d701b5554ccb2dd887b5~-d_VWsO5m1292212922epsmtrp1V;
+        Thu,  7 Jul 2022 06:23:34 +0000 (GMT)
+X-AuditID: b6c32a45-45bff700000025c2-1f-62c67be7b457
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        06.8B.08802.6EB76C26; Thu,  7 Jul 2022 15:23:34 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220707062334epsmtip1bd1edf21f1f3959623fdef8026858f35~-d_VNJnCJ1715817158epsmtip1h;
+        Thu,  7 Jul 2022 06:23:34 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>
+Cc:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        <devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <f8107455-7bf0-2bc7-2fcd-4d0bb65ffd58@linaro.org>
+Subject: RE: [PATCH] dt-bindings: phy: samsung,ufs-phy: match clock items
+Date:   Thu, 7 Jul 2022 15:23:34 +0900
+Message-ID: <013601d891ca$160b4bd0$4221e370$@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] [V1,1/2] arm64: dts: qcom: Add LTE SKUs for
- sc7280-villager family
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Jimmy Chen <jinghung.chen3@hotmail.com>,
-        Andy Gross <agross@kernel.org>,
-        alan-huang@quanta.corp-partner.google.com,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <cfc2c27a-444d-8bd8-84a7-b6b1f99258f9@linaro.org>
- <SG2PR03MB5006AB4C7E356CE321F628D9CC809@SG2PR03MB5006.apcprd03.prod.outlook.com>
- <8f9651b2-ca9a-413c-d94f-9ecf3717343c@linaro.org>
- <CAD=FV=WtKRFQr5jSQvsr08x9dgHrvenUWWtX_SKuCLuSvSH7WQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=WtKRFQr5jSQvsr08x9dgHrvenUWWtX_SKuCLuSvSH7WQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHzy3gpe7LD6AksYEbZ6FU5PMJ83gJaHwwMAiFmYmGtGCBWwA==
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprGJsWRmVeSWpSXmKPExsWy7bCmqe7z6mNJBk1fBCwezNvGZjH/yDlW
+        i74XD5kt9r7eym6x6fE1VosZ5/cxWbTuPcLuwO6xaVUnm8eda3vYPDYvqffo27KK0ePzJrkA
+        1qhsm4zUxJTUIoXUvOT8lMy8dFsl7+B453hTMwNDXUNLC3MlhbzE3FRbJRefAF23zBygK5QU
+        yhJzSoFCAYnFxUr6djZF+aUlqQoZ+cUltkqpBSk5BeYFesWJucWleel6eaklVoYGBkamQIUJ
+        2Rl7Vh5gL1glXnGubQZjA+NxwS5GTg4JAROJBc/vMHcxcnEICexglFh2vx3K+cQoMaHxCCuE
+        85lR4uaON0AOB1jL3n4biPguRolZW5rYIJwXjBIvZx9iB5nLJqAv8bJjG1i3iMBiRom+yx/B
+        qpgFZjFK3HrTClbFKWAncWvxQqYuRnYOYQFPiQd8IFEWARWJOecegFXwClhKHDi6EMoWlDg5
+        8wkLiM0soC2xbOFrZogfFCR+Pl3GCmKLCDhJPP7awQhRIyIxu7MN7B0JgakcEl3Tf7JBNLhI
+        PL48gRXCFpZ4dXwLO4QtJfGyvw3KLpZYOusTE0RzA6PE5W2/oJqNJWY9a2cEBQWzgKbE+l36
+        kFBRljhyC+o2PomOw3/ZIcK8Eh1tQhCN6hIHtk9ngbBlJbrnfGadwKg0C8lns5B8NgvJB7MQ
+        di1gZFnFKJZaUJybnlpsVGAIj+zk/NxNjOAEquW6g3Hy2w96hxiZOBgPMUpwMCuJ8Oa2H00S
+        4k1JrKxKLcqPLyrNSS0+xGgKDOuJzFKiyfnAFJ5XEm9oYmlgYmZmaG5kamCuJM7rlbIhUUgg
+        PbEkNTs1tSC1CKaPiYNTqoFJ8XVFiAqbyAy7r5eKonj/n82ef8l0uezWRw8P2nwX7Jge3rfv
+        mr+ab/+VjOcM+5/Y2/vOPHR52eLW5cIeO9Jsyu0vSwqFVPG9vcLbZFLD1WJ586rcpMfy34P5
+        gmyTA6bHPfDML5nz+1BF+RvDsytM9hvPMpt91/1l034f/tXnOyVydpx0tag6YphYnzJNlaFW
+        geXm4oT22FsCnQcXqIV8f9dmurs2+4ftilOfHaWuvdSRvR/GEf8mZSPf1YsPnqT9X6FT0XuO
+        58/lYMZmM54fAW2vs87u2Ht++ozmaWxvtaJmMYUuKzdz+6by1Wqb+aLX6YtmT4io6z5+f/Pb
+        /tdfuOQ91qjZfI6RmMur0bVKiaU4I9FQi7moOBEA6mzNfykEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpikeLIzCtJLcpLzFFi42LZdlhJTvdZ9bEkgy1XtS0ezNvGZjH/yDlW
+        i74XD5kt9r7eym6x6fE1VosZ5/cxWbTuPcLuwO6xaVUnm8eda3vYPDYvqffo27KK0ePzJrkA
+        1igum5TUnMyy1CJ9uwSujF+/rjMVtIpXbPnxj6mBcYFgFyMHh4SAicTefpsuRi4OIYEdjBLT
+        9k1l7mLkBIrLSjx7t4MdwhaWuN9yhBWi6BmjROu7iWAJNgF9iZcd28ASIgKLGSUObp/HBOIw
+        C8xjlDjds58NouUQo8Sh6w8ZQVo4Bewkbi1eCFTFziEs4CnxgA8kyiKgIjHn3AOwobwClhIH
+        ji6EsgUlTs58wgJiMwtoSzy9+RTOXrbwNdSlChI/ny5jBbFFBJwkHn/tYISoEZGY3dnGPIFR
+        eBaSUbOQjJqFZNQsJC0LGFlWMUqmFhTnpucWGxYY5aWW6xUn5haX5qXrJefnbmIER5OW1g7G
+        Pas+6B1iZOJgBHqRg1lJhDe3/WiSEG9KYmVValF+fFFpTmrxIUZpDhYlcd4LXSfjhQTSE0tS
+        s1NTC1KLYLJMHJxSDUwCTW0T/7sJl0effOXG/piFc0Xf1P41SVV5a+earBFXvS1y5HD4h7xH
+        Oz81TJ7rbxe1xjqKt3WRjYaS99NvOWnpj5fNY2ftuy0SdurnwYoLhgJC+1bus81vWJf2M25j
+        +tJgzVnbc7OsL+cbXheP53Y677o7ekvvj1/fhU/MOPRtxkrNdBm2W/0H847PWxbLuf/BQY2G
+        eyZt/0oTn/55eyb4Y7sEowz7xUuat1rfiv3XmfHL7HHn5fjL0mVHV/S+l4qfkcmwfOOe0gzG
+        OaqpnExCdX0OsuEcDVzH5Tw6+ys4c3tDFW8yl8+d371E/T8nb8sVYy7haw/m3J68a5LpqaYP
+        F1dG6tpJ1lx32Zg25bISS3FGoqEWc1FxIgD6U/7eFQMAAA==
+X-CMS-MailID: 20220707062334epcas2p1c84d526f35b01cf659563aadbc6ace88
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220707005844epcas2p474d0ac5ca2d11bb37bc6353b9e7d50bc
+References: <CGME20220707005844epcas2p474d0ac5ca2d11bb37bc6353b9e7d50bc@epcas2p4.samsung.com>
+        <20220707005554.98268-1-chanho61.park@samsung.com>
+        <f8107455-7bf0-2bc7-2fcd-4d0bb65ffd58@linaro.org>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 01:40, Doug Anderson wrote:
-> Relevant links:
-> 
-> * You saying you liked the enum [1].
-> * Me saying I liked them separate and that switching from a
-> "description" to a comment was opposite of what Stephen had previous
-> voted for [2], but could change if there was overwhelming need to make
-> them an enum.
-> * Rob saying he prefers an enum but lets sub-arch maintainers decide [3].
-> * Bjorn (the sub-arch maintainer) landing the patch without the enum [4].
+> > Below error is detected from dtbs_check. exynos7-ufs-phy is required
+> > symbol clocks otherwise only PLL ref clock is required.
+> >
+> > clock-names: =5B'ref_clk'=5D is too short
+>=20
+> Thank you for your patch. There is something to discuss/improve.
 
-Ah, so the argument to my comment about using enum was that Bjorn
-apparently prefers such way. OK.
+Thanks for your review :)=20
 
+>=20
+> >
+> > Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
+> > Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
+> > Suggested-by: Alim Akhtar <alim.akhtar=40samsung.com>
+> > Signed-off-by: Chanho Park <chanho61.park=40samsung.com>
+> > ---
+> >  .../bindings/phy/samsung,ufs-phy.yaml         =7C 47 +++++++++++++++--=
+--
+> >  1 file changed, 37 insertions(+), 10 deletions(-)
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+> > b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+> > index 8da99461e817..3b04f31d9f21 100644
+> > --- a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+> > =40=40 -27,18 +27,12 =40=40 properties:
+> >        - const: phy-pma
+> >
+> >    clocks:
+> > -    items:
+> > -      - description: PLL reference clock
+> > -      - description: symbol clock for input symbol ( rx0-ch0 symbol
+> clock)
+> > -      - description: symbol clock for input symbol ( rx1-ch1 symbol
+> clock)
+> > -      - description: symbol clock for output symbol ( tx0 symbol clock=
+)
+> > +    minItems: 1
+> > +    maxItems: 4
+> >
+> >    clock-names:
+> > -    items:
+> > -      - const: ref_clk
+> > -      - const: rx1_symbol_clk
+> > -      - const: rx0_symbol_clk
+> > -      - const: tx0_symbol_clk
+> > +    minItems: 1
+> > +    maxItems: 4
+> >
+> >    samsung,pmu-syscon:
+> >      =24ref: '/schemas/types.yaml=23/definitions/phandle-array'
+> > =40=40 -53,6 +47,39 =40=40 properties:
+> >        It can be phandle/offset pair. The second cell which can represe=
+nt
+> an
+> >        offset is optional.
+> >
+> > +allOf:
+>=20
+> The allOf block should go after =22required=22 block.
 
-Best regards,
-Krzysztof
+I wrote the block after required block but I changed the order by referring
+https://elixir.bootlin.com/linux/v5.18-rc2/source/Documentation/devicetree/=
+bindings/clock/samsung,exynos7885-clock.yaml=23L53
+I'll correct the order.
+
+>=20
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: samsung,exynos7-ufs-phy
+> > +
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: PLL reference clock
+> > +            - description: symbol clock for input symbol ( rx0-ch0 sym=
+bol
+> clock)
+> > +            - description: symbol clock for input symbol ( rx1-ch1 sym=
+bol
+> clock)
+> > +            - description: symbol clock for output symbol ( tx0
+> > + symbol clock)
+>=20
+> While moving drop space after '('.
+
+I'll drop the spaces.
+
+Best Regards,
+Chanho Park
+
