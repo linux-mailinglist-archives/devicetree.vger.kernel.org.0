@@ -2,81 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8582956A9F9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 19:48:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3FCD56AA69
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 20:24:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235943AbiGGRrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 13:47:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53516 "EHLO
+        id S236168AbiGGSYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 14:24:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233757AbiGGRrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 13:47:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02EE55C97D;
-        Thu,  7 Jul 2022 10:47:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 47E32620A6;
-        Thu,  7 Jul 2022 17:47:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56393C3411E;
-        Thu,  7 Jul 2022 17:47:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657216041;
-        bh=Om5lyrI/FUfOSiu1TyYTkifd9deSCv6M320djg1nrZM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=UG3QjZNLJDSaydTOuou9yLJk6u83CwpZbBj5O+2xK1GfiiaPV42R0bXH1JtEnday0
-         VD8rGxK/iCJnQiv8eJhawEFOgxSSlbP+IMuWmfz05KTZ70HwZ1bZInOG0kRjWwB4oz
-         /rYHtW+c6EhbNGb8LoEYFGQ+qQQsFvoepBMdDdBZx2Y9wKK5ika0GmVDbUGqaysUns
-         Ymmd/E5JeU7n1pm72iF1aMQRgTHulPBLzXEIqitMDXSW6+Pkak3P9AvRCRbbF9xdlD
-         sTw1r+Th1KduLILQQctDHy+F9Mo8g5U4kU8vZGJLN5zDSh/26hWksF8pEhMWFRGMxb
-         AxpQbzIyw3J1Q==
-Date:   Thu, 7 Jul 2022 18:57:03 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kent Gustavsson <kent@minoris.se>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S235637AbiGGSYA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 14:24:00 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5648D205F3;
+        Thu,  7 Jul 2022 11:23:59 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id j3so8398331pfb.6;
+        Thu, 07 Jul 2022 11:23:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hQHooeYpBPLqhLw4iyaicqWZ8U8iT/gDaXg8Zs9aODs=;
+        b=Sx5FRvZ7QwI1k5mlx5HVc8zV8L6yX8BkzuLV6xWaMYwxoV9IEmxav452EFSv1yaRTg
+         6M1f/Zr4ijUYy3UQeqKtjrfc41NnV117hgRxVDKfruhh6G1V0nGzk2OQVqmrQikUniul
+         AkJD85s/nJQVbExGSDJK3Wy+q93j1ASFedP+Ck4MiZL6OOllxLimyBmeGFwyxngUvHJh
+         4NQiYwY1QTsPZhlKYVmVZOb4FacQZ/3GTthgegHvJIdrVQPHZShTniSSvPO+Y0Iq+gM/
+         8Xv6RNkMduZJ7MY5fQ1BisYQTMmlmYlcyil4ysUeNllSstSSfGJ9BA8R6W8F07krorZM
+         6rMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hQHooeYpBPLqhLw4iyaicqWZ8U8iT/gDaXg8Zs9aODs=;
+        b=4I7WjUhhVVxftbZHkqf819lHlZ6PmxG9VhDM2tjS/tGVmyuT9ECBQ+i7gnw8edmCxo
+         kdAqJZRmPwqscvuI4BlLHv5Z6g6623GxWdwkTNn4JuO4jif4rUbwxRqndVbd05U//DSX
+         EqqNKYRKGaR9HJIqGt+2EjfSy/nCDN1Xrseu3Rm4AHFvx8awlXokZ/i/tqN65ODpkt05
+         DMZuml6tF7vdm2pXoC22ZKxNecMnDTUUltW53LhQV5NuVJOlGXz7EymoqI31m7gcFgIr
+         SZzKcUSknChK/LOL+hQrXB4YDYkpKormnZD5zJHUJup2M05p6uYghJlNm2260u9NvQqB
+         XyPQ==
+X-Gm-Message-State: AJIora8ISDASUxODQ7NQQuBOyP/9mKqU7KuDtIRE75PU/sMO2DrRRMlL
+        G9KuTxVPX2DJ6oibSnt54JIo+PzrD+8=
+X-Google-Smtp-Source: AGRyM1uU7YSCIUD0jrjk1cuFuvNKKMo0gPiJm0l1nzNXzfY/UMVr9kZrx4Ww+2U3XI1Kk8Pv4SIWNQ==
+X-Received: by 2002:a17:90b:4f48:b0:1ed:45e5:dc8c with SMTP id pj8-20020a17090b4f4800b001ed45e5dc8cmr6732899pjb.131.1657218238815;
+        Thu, 07 Jul 2022 11:23:58 -0700 (PDT)
+Received: from prasmi.domain.name ([103.219.60.85])
+        by smtp.gmail.com with ESMTPSA id o12-20020a170902d4cc00b0016a3f9e4865sm28589279plg.148.2022.07.07.11.23.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jul 2022 11:23:58 -0700 (PDT)
+From:   prabhakar.csengg@gmail.com
+X-Google-Original-From: prabhakar.mahadev-lad.rj@bp.renesas.com
+To:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 03/10] iio: adc: mcp3911: add support for buffers
-Message-ID: <20220707185703.4a5a3a30@jic23-huawei>
-In-Reply-To: <Yr1fqi/49l1nWYtt@gmail.com>
-References: <20220625103853.2470346-1-marcus.folkesson@gmail.com>
-        <20220625103853.2470346-3-marcus.folkesson@gmail.com>
-        <20220625124537.163bf426@jic23-huawei>
-        <Yr1fqi/49l1nWYtt@gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v8 0/6] Renesas RZ/G2L IRQC support
+Date:   Thu,  7 Jul 2022 19:23:08 +0100
+Message-Id: <20220707182314.66610-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> > >  static const struct iio_info mcp3911_info = {
-> > >  	.read_raw = mcp3911_read_raw,
-> > >  	.write_raw = mcp3911_write_raw,
-> > > @@ -303,7 +353,7 @@ static int mcp3911_probe(struct spi_device *spi)
-> > >  		goto clk_disable;
-> > >  
-> > >  	indio_dev->name = spi_get_device_id(spi)->name;
-> > > -	indio_dev->modes = INDIO_DIRECT_MODE;
-> > > +	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_TRIGGERED;  
-> > 
-> > The core sets INDIO_BUFFER_TRIGGERED as part of devm_iio_triggered_buffer_setup()
-> > so you need to set DIRECT_MODE here (that one isn't visible to the core)  
-> 
-> Ok, thank you. I sent patches that fixes this in two other ADC-drivers
-> as well to avoid more people following the same thing.
+Hi All,
 
-Thanks. Much appreciated!
+The RZ/G2L Interrupt Controller is a front-end for the GIC found on
+Renesas RZ/G2L SoC's with below pins:
+- IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI
+  interrupts
+- GPIO pins used as external interrupt input pins out of GPIOINT0-122 a
+  maximum of only 32 can be mapped to 32 GIC SPI interrupts,
+- NMI edge select.
+
+                                                             _____________
+                                                             |    GIC     |
+                                                             |  ________  |
+                                      ____________           | |        | |
+NMI --------------------------------->|          |  SPI0-479 | | GIC-600| |
+             _______                  |          |------------>|        | |
+             |      |                 |          |  PPI16-31 | |        | |
+             |      | IRQ0-IRQ7       |   IRQC   |------------>|        | |
+P0_P48_4 --->| GPIO |---------------->|          |           | |________| |
+             |      |GPIOINT0-122     |          |           |            |
+             |      |---------------->| TINT0-31 |           |            |
+             |______|                 |__________|           |____________|
+
+The proposed patches add hierarchical IRQ domain, one in IRQC driver and
+another in pinctrl driver. Upon interrupt requests map the interrupt to
+GIC. Out of GPIOINT0-122 only 32 can be mapped to GIC SPI, this mapping is
+handled by the pinctrl and IRQC driver.
+
+Cheers,
+Prabhakar
+
+v7->v8
+* Fixed return value in case of devm_reset_control_get_exclusive() failure.
+* Included patch [0] from Marc ([0] https://git.kernel.org/pub/scm/linux/kernel/
+  git/maz/arm-platforms.git/patch/?id=178b7e21459e9a7e2a2c369711ef0cc9b1cfbcd7)
+
+v6->v7:
+* Used devm_reset_control_get_exclusive() instead of
+  devm_reset_control_get_exclusive_by_index()
+* Included RB tag from Linus for patch 5/5
+* Switched to newer version of populate_parent_alloc_arg() (patch depends
+  on https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms.git/
+  patch/?id=178b7e21459e9a7e2a2c369711ef0cc9b1cfbcd7)
+
+v5->v6:
+* Fixed review comments pointed by Marc
+* Included Ack from Rob
+
+v4->v5:
+* Updated commit message for patch 3/5
+* Dropped interrupt-parent from and included RB tag from Geert
+  for patch 4/5
+* Implemented init_valid_mask() callback
+* Dropped ngirq patch from previous series
+* Dropped patches 4/7 and 5/7 from previous patch series will handle
+  it separately.
+
+v3->v4:
+* Updated description for interrupts-cells property in patch #1
+* Dropped the patch which overriding free callback in gpiolib
+* Used devm helpers in patch#2
+* Patch #4, #5 and #6 are newly added
+* In patch #7 dropped using gpio offset as hwirq
+* Implemented immutable GPIO in patch #7
+* Implemented child_offset_to_irq() callback in patch #7
+
+v2->v3:
+* Updated description for interrupts-cells property in patch #1
+* Included RB tag from Geert for binding patch
+* Fixed review comments pointed by Geert, Biju and Sergei.
+
+v1->v2:
+* Included RB tag from Rob
+* Fixed review comments pointed by Geert
+* included GPIO driver changes
+
+RFCV4 -> V1:
+* Used unevaluatedProperties.
+* Altered the sequence of reg property
+* Set the parent type
+* Used raw_spin_lock() instead of raw_spin_lock_irqsave()
+* Simplified parsing IRQ map.
+* Will send the GPIO and pinctrl changes as part of separate series
+
+RFC v4:
+* Used locking while RMW
+* Now using interrupts property instead of interrupt-map
+* Patch series depends on [0]
+* Updated binding doc
+* Fixed comments pointed by Andy
+
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+20220316200633.28974-1-prabhakar.mahadev-lad.rj@xxxxxxxxxxxxxx/
+
+RFC v3:
+-> Re-structured the driver as a hierarchical irq domain instead of chained
+-> made use of IRQCHIP_* macros
+-> dropped locking
+-> Added support for IRQ0-7 interrupts
+-> Introduced 2 new patches for GPIOLIB
+-> Switched to using GPIOLIB for irqdomains in pinctrl
+
+RFC v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+20210921193028.13099-1-prabhakar.mahadev-lad.rj@xxxxxxxxxxxxxx/
+
+RFC v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+20210803175109.1729-1-prabhakar.mahadev-lad.rj@xxxxxxxxxxxxxx/
+
+Lad Prabhakar (5):
+  dt-bindings: interrupt-controller: Add Renesas RZ/G2L Interrupt
+    Controller
+  irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+  gpio: gpiolib: Allow free() callback to be overridden
+  dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Document the properties
+    to handle GPIO IRQ
+  pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to handle GPIO
+    interrupt
+
+Marc Zyngier (1):
+  gpio: Remove dynamic allocation from populate_parent_alloc_arg()
+
+ .../renesas,rzg2l-irqc.yaml                   | 133 ++++++
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  15 +
+ drivers/gpio/gpio-msc313.c                    |  15 +-
+ drivers/gpio/gpio-tegra.c                     |  15 +-
+ drivers/gpio/gpio-tegra186.c                  |  15 +-
+ drivers/gpio/gpio-thunderx.c                  |  15 +-
+ drivers/gpio/gpio-visconti.c                  |  15 +-
+ drivers/gpio/gpiolib.c                        |  51 ++-
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-renesas-rzg2l.c           | 393 ++++++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |  15 +-
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 233 +++++++++++
+ include/linux/gpio/driver.h                   |  42 +-
+ 14 files changed, 862 insertions(+), 104 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+ create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
+
+-- 
+2.25.1
 
