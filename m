@@ -2,132 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5681D56A3B5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 15:33:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F08E756A3BC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 15:34:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235453AbiGGNdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 09:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55182 "EHLO
+        id S235431AbiGGNeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 09:34:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235639AbiGGNc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 09:32:58 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 484D83193C;
-        Thu,  7 Jul 2022 06:32:57 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id t19so30512900lfl.5;
-        Thu, 07 Jul 2022 06:32:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=TtuCctLiUBsDg/El2R/LFu8UcsQyJ3QYHLK3i09xrZo=;
-        b=TgK5U6kdSEmWxBs+Qle+io/mX+szrObSFd6XeExsi/+ahqjy/S3i0GPj0KiFyyE+kg
-         oXrHAjM+d9nTaBLC2rIsFvLMH3mWvn5+kxo2MyWwK8Mqy4UWkUCCaUe06jfpRj98eoIy
-         6jaHQOZ7U8AuVqO/MuVJzWwwKBrBVdzNNf3SJIljeiJs+1tN4DDxyC/GG5QXNMo7QY9X
-         Jp2/fB3dJYA+9bDmU/UW/6FGZMnpCQT0KX7/zBwyP8ieGeiJ+U6HtG4cvMwvKCUPrbdF
-         oxSCZX05CLayqk92AjCSt3Jgj1ZxKmGCVy1g7jqhLOdE0ZltDFFc17FWOL2g0NPR5Vl9
-         mLSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TtuCctLiUBsDg/El2R/LFu8UcsQyJ3QYHLK3i09xrZo=;
-        b=BSvD8NzsNQB0N94iuLh98GwI5p4uU81l1KVoKBqOsaZcrtL9k2ThMs88LdTNfuqgYQ
-         kUkF1FZKLcMK3/DZwVV7a4I6ca265uJMy5ODXZsSBXiH+PXF+3bavZZOdbXvZ9XtT1Qw
-         I7I7LYpRtbs/kjsgEzbgB65H8z+PS87sjDgZO1Dx6oRCOAqslz1dkyo75TA5ntxoUuXT
-         sIqax2pwN/2BeD+HjlVfIinD2IfJFMLqr3wVnkdThHIMj3X4IJyM/hrEofhXVq9fn7Us
-         YxpQnwl2akOyl8bjR2BPA5pEYxJ9NTgKGeVzygWsEzXkLYX9Ui0wfoZ19illuAs8sj0I
-         4jxQ==
-X-Gm-Message-State: AJIora/wZUad9oUKGQgLTvCDWQrm24qpjQ7p09UxSS2ZklnTuO3lSTBl
-        nd2jMIHblfipga9D+H22VtzkEtReyZA72A==
-X-Google-Smtp-Source: AGRyM1vV9Ll9A0NQJjqT0fJm6rV5zJcuTNNNvEOpNpoodgBpp9bqjiPCRzKfak0FwdzMVEcFACvi+w==
-X-Received: by 2002:a05:6512:3d86:b0:47f:9adc:cc27 with SMTP id k6-20020a0565123d8600b0047f9adccc27mr29274359lfv.608.1657200774963;
-        Thu, 07 Jul 2022 06:32:54 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id f19-20020a2eb5b3000000b0025d4866b2c7sm867045ljn.4.2022.07.07.06.32.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jul 2022 06:32:53 -0700 (PDT)
-Date:   Thu, 7 Jul 2022 16:32:51 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     nandhini.srikandan@intel.com
-Cc:     broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mgross@linux.intel.com, kris.pan@intel.com,
-        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
-        mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com,
-        rashmi.a@intel.com
-Subject: Re: [PATCH v5 3/4] spi: dw: Add support for master mode selection
- for DWC SSI controller
-Message-ID: <20220707133251.36gb5cgqygz22jl3@mobilestation>
-References: <20220706042039.5763-1-nandhini.srikandan@intel.com>
- <20220706042039.5763-4-nandhini.srikandan@intel.com>
+        with ESMTP id S235291AbiGGNeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 09:34:09 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0FDE1CFC4;
+        Thu,  7 Jul 2022 06:34:08 -0700 (PDT)
+Received: from mail-yb1-f171.google.com ([209.85.219.171]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1McpS0-1nZYrM3AEE-00Zzku; Thu, 07 Jul 2022 15:34:06 +0200
+Received: by mail-yb1-f171.google.com with SMTP id i7so32518489ybe.11;
+        Thu, 07 Jul 2022 06:34:06 -0700 (PDT)
+X-Gm-Message-State: AJIora+EskzTZXtVd0fRmEneRTGVHGos1q2KEFvCT/HqBOu0hC4JaL1i
+        tzELlgr6qEEpZNgv5IdlkJR6srMP5aUP7OEk9ig=
+X-Google-Smtp-Source: AGRyM1uVpCRoROO6rAh+vA5ak8N4SGshcVRH0JW9GvyB4UqceUAu6tZ1eCC16Bwe+GMTjR8QSqM1egSeZk3ZR5FMhlQ=
+X-Received: by 2002:a25:7c41:0:b0:66d:766a:4815 with SMTP id
+ x62-20020a257c41000000b0066d766a4815mr46624953ybc.480.1657200845543; Thu, 07
+ Jul 2022 06:34:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220706042039.5763-4-nandhini.srikandan@intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220707132054.GA10610@logan-ThinkPad-T14-Gen-1>
+In-Reply-To: <20220707132054.GA10610@logan-ThinkPad-T14-Gen-1>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 7 Jul 2022 15:33:48 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0P2u+LdXcU7As=dfNbg_J2eWfhgB9TT1-xVyH0v6OM5Q@mail.gmail.com>
+Message-ID: <CAK8P3a0P2u+LdXcU7As=dfNbg_J2eWfhgB9TT1-xVyH0v6OM5Q@mail.gmail.com>
+Subject: Re: [PATCH v3] The Yosemite V3.5 is a facebook multi-node server
+ platform that host four OCP server. The BMC in the Yosemite V3.5 platform
+ based on AST2600 SoC.
+To:     Logananth Sundararaj <logananth13.hcl@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        garnermic@gmail.com, thangavel.k@hcl.com, naveen.mosess@hcl.com,
+        patrick@stwcx.xyz, velumanit@hcl.com
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:Ff4asemPkgpc3YgLJGPo+gGxHZPG4OGQORdlP3XswYqIxQVv9m5
+ 0JTGQNJ2vXX18oqbh1UGTJpZNS7riFtZ2v+dLDNrH1XkSXIkkrZfjaXSef5SWwU4FmY51zc
+ 3GCxzBjcuJHUr9Shbf0pQzQX42Ifs9oflNzlQicmSPfeJl0s+0C+B7Cw45CwTP6Q/orK5WH
+ lw0Jab6s3K9H4OLj3s/XA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:/KuZVDTAKcg=:/JVMEnND1FLr9TIGB4Cros
+ rvifjyuwXtp+vn/NIRnsBFxErQaE/gdqgeUqJSKBUlpjuRgY205s+U1Hb815t2Q0o4/nTqmiT
+ NZV+yPoYTEMlNXe9o15lXVqvOjs5a2uv+qrnsweH4OFa2P0FUiNerE7HsWR6y+X4tUyu6w9eW
+ IKsyrTwGAI/iW6KXNnqaxUSd9Aa5dHRAyAeAbbs+jhgwWAF6W4/gz528mXzPYgyjkB7VBvI1o
+ yq0O10e7rhwfG+MxVUsNKggEHsAWE5nXLuncz25b23iWAm383L8XHVQJ4YzPtiksHBLolmu03
+ ENr+paIkXos+N6FmJTrlxeiR3AGC1+cTTvEq2VklwwzcePw0hzneP+ulg0PmFUvkmzb70DvUb
+ MPrbiH6xStbVRtaDmz+u3KFCfYXlhuqyMirFPwxmXDJIleBJkKhlrxVI5V6Id57XAyD3tW2AG
+ aXMxBdY1lygzt+1y0guRKqntUyWvXEuD8YCxqVhplKoING+4UR+aNg+kzIR85/6TqRbNvYpre
+ IcdSN3bTLUU9v3GqvolDwpuipiunR065ZKDjGrbBYb0nzpkmuL7xCwt3cvkohECbryGInELLm
+ BFKk7ayfQjuEuhQEVlWTC1lRdtkkCZpadJlrB4Bx9z+i17xICwtntFN7no0mJ3KpzehhzbS02
+ GLAFnRUwxDcSsblsXBn6g5ZKF7WcbKVVGPdw4VE2owZ0pwRLz2q/MCO3y8JDSkcjgtSVsf/wC
+ qzPQ8/zIUpYqx4fBy69xYbbUuON4toLMywzKXs3PkjWjXEj3Qs60MFmvfKqUTPaPO1XJyI1gj
+ NvM019vy+aEtKT4oC2kvE5C6fSV0g7673HlDqWW5W4G3EjwxFN/jtetVMknU9bHD0SRIt8Vzw
+ 0IHdQdM8x0+V0nouyjQ5R+UgyavmiupxWwt78PqdQ=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 06, 2022 at 12:20:38PM +0800, nandhini.srikandan@intel.com wrote:
-> From: Nandhini Srikandan <nandhini.srikandan@intel.com>
-> 
-> Add support to select the controller mode as master mode by setting
-> Bit 31 of CTRLR0 register. This feature is supported for controller
-> versions above v1.02.
-> 
-> Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
+On Thu, Jul 7, 2022 at 3:20 PM Logananth Sundararaj
+<logananth13.hcl@gmail.com> wrote:
+>
+> This patch adds linux device tree entry related to
+> Yosemite V3.5 specific devices connected to BMC SoC.
+>
+> Signed-off-by: Logananth Sundararaj <logananth_s@hcl.com>
 
-Acked-by: Serge Semin <fancer.lancer@gmail.com>
 
--Sergey
+Something went wrong with the patch description, it looks like you dropped
+the subject and sent the first paragraph as the subject instead.
 
-> ---
->  drivers/spi/spi-dw-core.c | 5 +++--
->  drivers/spi/spi-dw.h      | 8 +-------
->  2 files changed, 4 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-> index ecea471ff42c..41ae21e1b879 100644
-> --- a/drivers/spi/spi-dw-core.c
-> +++ b/drivers/spi/spi-dw-core.c
-> @@ -307,8 +307,9 @@ static u32 dw_spi_prepare_cr0(struct dw_spi *dws, struct spi_device *spi)
->  		if (spi->mode & SPI_LOOP)
->  			cr0 |= DW_HSSI_CTRLR0_SRL;
->  
-> -		if (dws->caps & DW_SPI_CAP_KEEMBAY_MST)
-> -			cr0 |= DW_HSSI_CTRLR0_KEEMBAY_MST;
-> +		/* CTRLR0[31] MST */
-> +		if (dw_spi_ver_is_ge(dws, HSSI, 102A))
-> +			cr0 |= DW_HSSI_CTRLR0_MST;
->  	}
->  
->  	return cr0;
-> diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
-> index 79d853f6d192..8b8f924ac410 100644
-> --- a/drivers/spi/spi-dw.h
-> +++ b/drivers/spi/spi-dw.h
-> @@ -94,13 +94,7 @@
->  #define DW_HSSI_CTRLR0_SCPOL			BIT(9)
->  #define DW_HSSI_CTRLR0_TMOD_MASK		GENMASK(11, 10)
->  #define DW_HSSI_CTRLR0_SRL			BIT(13)
-> -
-> -/*
-> - * For Keem Bay, CTRLR0[31] is used to select controller mode.
-> - * 0: SSI is slave
-> - * 1: SSI is master
-> - */
-> -#define DW_HSSI_CTRLR0_KEEMBAY_MST		BIT(31)
-> +#define DW_HSSI_CTRLR0_MST			BIT(31)
->  
->  /* Bit fields in CTRLR1 */
->  #define DW_SPI_NDF_MASK				GENMASK(15, 0)
-> -- 
-> 2.17.1
-> 
+> +/ {
+> +       model = "Facebook fby35";
+> +       compatible = "facebook,fby35", "aspeed,ast2600";
+> +
+> +       aliases {
+> +               serial4 = &uart5;
+> +       };
+
+Why not start at serial0 here?
+
+> +       chosen {
+> +               stdout-path = &uart5;
+> +               bootargs = "console=ttyS4,57600n8 root=/dev/ram rw vmalloc=384M";
+> +       };
+
+The bootargs should really come from the boot loader.
+
+Why do you need the vmalloc=384M? That seems excessive.
+
+> +
+> +       memory@80000000 {
+> +               device_type = "memory";
+> +               reg = <0x80000000 0x80000000>;
+> +       };
+
+The memory location and size is usually also set by the boot loader
+
+        Arnd
