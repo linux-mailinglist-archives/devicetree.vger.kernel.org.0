@@ -2,132 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E67F6569A47
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAB04569A56
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:19:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231322AbiGGGOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 02:14:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50860 "EHLO
+        id S234426AbiGGGRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 02:17:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231305AbiGGGOw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:14:52 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECCDD21809;
-        Wed,  6 Jul 2022 23:14:46 -0700 (PDT)
-X-UUID: 9d9dbcd51b28492cb7540ac37f5c7395-20220707
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:15c04ce5-02fe-4f07-9be3-b30b7420f285,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:ee4fa563-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 9d9dbcd51b28492cb7540ac37f5c7395-20220707
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1889397465; Thu, 07 Jul 2022 14:14:40 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 7 Jul 2022 14:14:39 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 7 Jul 2022 14:14:39 +0800
-Message-ID: <d8c634d099e988c2cf8903613352f7334d94d148.camel@mediatek.com>
-Subject: Re: [PATCH v13 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 7 Jul 2022 14:14:39 +0800
-In-Reply-To: <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
-         <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229538AbiGGGRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:17:39 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52A9325C73;
+        Wed,  6 Jul 2022 23:17:38 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id ez10so468257ejc.13;
+        Wed, 06 Jul 2022 23:17:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=W0DdNh2Nlih+PoWEnsFjxq96C2oblcrA+vaEVvT2h5A=;
+        b=bq98yiS9d0TV4gBJFSzDNv9oiDpdXizSc6mRL7nniI3Git3V9BkZmwqtyvxqWlLTqz
+         ha/YVJO4CI7ujkrWLrWmcjulxCMBe5v7i9saTV2n0zS4AsIocOGmMUOkYLcD/UcmczpS
+         28yTpD43+oL2cZU5ifhhnW8rRIqCxfDW+XOIPIehWWrYVI9jhYrAXA+zkuggEOJmkNkn
+         lUNHSb39yfRgiL4IB77Euy/3+jEvCdEjUCywLai5pRVCPZDyvqBSwYq1fvnqF++ZbA9O
+         bpiivI9QEU21f4v/PHFdgMJR4p6V2zBNvW9DCjUPxMbmQYpmoBtsL9UiynopjbRoI26T
+         ckrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=W0DdNh2Nlih+PoWEnsFjxq96C2oblcrA+vaEVvT2h5A=;
+        b=Y0iq58MAK63RMtSnBRHQuz/ALNs+kFtJ5MZmUc6LIrgMiwuMeIwuu0Ydx8ofweEAvj
+         6B0r9IsYEQ5V6KY3cWOV87kYTdHLp96ttk8rMQ29todoKBaMABIritGhUpQLkeHiL5oj
+         78/KoZBA5bdtx7FiFbCh5OfX05AztOwV5snn7CSEWzWv8A1wrHqYgWiQcekXXaA32lGU
+         +3ggnnCEP5QoEiIEIj+umSbN4jjoHEQ3DCsDrGtnTX17EaStCGt3SmWjqysr67P6tcZO
+         M9iCreF1oWHw6NdtQaeR/Gi/DE8Lp4UW7Of4uWaNmiw0rye8UGeuF3CxvcVD9q8ob0i/
+         NqcA==
+X-Gm-Message-State: AJIora+xWVcTA1RLTr909f+IBgE6hvuXLICIgy8fnrMG1+v3QC72R0Vz
+        EY7dbkjhCvo6nDXHLf3TCGU=
+X-Google-Smtp-Source: AGRyM1uADo3+/TYlJy8uiHXMh+Q0C1jg74w9AB5BBSNjZSlH98pTuc+y5w/kwGDMFI5aghCDichuvw==
+X-Received: by 2002:a17:907:1dea:b0:72a:6012:7bbc with SMTP id og42-20020a1709071dea00b0072a60127bbcmr36752207ejc.258.1657174656841;
+        Wed, 06 Jul 2022 23:17:36 -0700 (PDT)
+Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id v9-20020a170906292900b00722e50dab2csm1679540ejd.109.2022.07.06.23.17.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Jul 2022 23:17:35 -0700 (PDT)
+Date:   Thu, 7 Jul 2022 08:17:34 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Bhadram Varka <vbhadram@nvidia.com>,
+        linux-tegra@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org
+Subject: Re: [PATCH v3 5/9] dt-bindings: net: Add Tegra234 MGBE
+Message-ID: <YsZ6fus1yNcf/H/Q@orome>
+References: <20220706213255.1473069-1-thierry.reding@gmail.com>
+ <20220706213255.1473069-6-thierry.reding@gmail.com>
+ <1657169989.827036.709503.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="IH1QUGKz42DBXVA0"
+Content-Disposition: inline
+In-Reply-To: <1657169989.827036.709503.nullmailer@robh.at.kernel.org>
+User-Agent: Mutt/2.2.6 (2022-06-05)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
 
-On Fri, 2022-07-01 at 14:28 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
-> 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+--IH1QUGKz42DBXVA0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[snip]
+On Wed, Jul 06, 2022 at 10:59:49PM -0600, Rob Herring wrote:
+> On Wed, 06 Jul 2022 23:32:51 +0200, Thierry Reding wrote:
+> > From: Bhadram Varka <vbhadram@nvidia.com>
+> >=20
+> > Add device-tree binding documentation for the Multi-Gigabit Ethernet
+> > (MGBE) controller found on NVIDIA Tegra234 SoCs.
+> >=20
+> > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> > Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> > Changes in v3:
+> > - add macsec and macsec-ns interrupt names
+> > - improve mdio bus node description
+> > - drop power-domains description
+> > - improve bindings title
+> >=20
+> > Changes in v2:
+> > - add supported PHY modes
+> > - change to dual license
+> >=20
+> >  .../bindings/net/nvidia,tegra234-mgbe.yaml    | 169 ++++++++++++++++++
+> >  1 file changed, 169 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/nvidia,tegra2=
+34-mgbe.yaml
+> >=20
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.example=
+=2Edts:53.34-35 syntax error
+> FATAL ERROR: Unable to parse input tree
 
-> +
-> +static int mtk_dp_bulk_16bit_write(struct mtk_dp *mtk_dp, u32
-> offset, u8 *buf,
-> +				   size_t length)
+This is an error that you'd get if patch 3 is not applied. Not sure if I
+managed to confuse the bot somehow, but I cannot reproduce this if I
+apply the series on top of v5.19-rc1 or linux-next.
 
-The caller does not process the return value, so let this function to
-be void.
+Thierry
 
-Regards,
-CK
+--IH1QUGKz42DBXVA0
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +{
-> +	int i, ret;
-> +	int num_regs = (length + 1) / 2;
-> +
-> +	/* 2 bytes per register */
-> +	for (i = 0; i < num_regs; i++) {
-> +		u32 val = buf[i * 2] |
-> +			  (i * 2 + 1 < length ? buf[i * 2 + 1] << 8 :
-> 0);
-> +
-> +		ret = mtk_dp_write(mtk_dp, offset + i * 4, val);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmLGen4ACgkQ3SOs138+
+s6FYxBAAmOYj/ns1ubKnCj7pVeO/iwdfR+znP55JlzlOfwEeSZBl9aSkFBBj2TPR
+aQufVYo3CsZHD0gXb2zK9xnsDEabMhTvl1c5sKiLzqz2FDAMS/RAHWaQ4GKPRcVb
+MhjL35JzprD7yGEYhRNUELKyDYasBEpr9e0gb3qUsT2DWWspmKWXi/nmwJbGkyOj
+aiXtulSG+IN72L6HDbjaYNQrf9GBo2aYlnFLjfrRMLgISpazBiLu9ChFV5xnv0Uj
+/X4GA0G33ubimhkPocEKy/Ufn5oQ7NNmDmCOr5fAbcUYM9HGZLX0WSKZxIv485yP
+MjM6jZIhCdKipYuc4coKrjUxlEDDl9MhyHB6K400e9TWSyInuKmztZS7Z/p1Cd3A
+hHZx23tB/2H6velKnHn7jM65E8isNdOtXw3eNks72tpFdMev0V4WZiPCfySN+HHc
+TpEsyKzwzWMhwlbWr8FzO7bFkRVpxvmWny6lXGUefK1MVgpW2nXcfKxz7c1K6Vf6
+EsygIByNj0iX7quwJRr/BYrvjLFhtKIOTBOlvsL4WXWs/h6FQx2SF7cV6SbclnvC
+5+92+exaYU5WhwmTFf0DTwsWOJFTMUfLltwC/r4ImSb0Bwvg65HumzdrT8Mp3LVi
+iZ1UnhmUmis95ObzYZWdOFIXpIyebQdCSUg0hQ29VmFacBv328U=
+=6hTZ
+-----END PGP SIGNATURE-----
+
+--IH1QUGKz42DBXVA0--
