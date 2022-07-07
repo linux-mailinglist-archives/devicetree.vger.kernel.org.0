@@ -2,178 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCB5256ACA3
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 22:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41F4356ACF9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 22:52:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236261AbiGGUVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 16:21:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56442 "EHLO
+        id S236555AbiGGUvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 16:51:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236501AbiGGUVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 16:21:12 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [5.144.164.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0C323BF6
-        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 13:21:10 -0700 (PDT)
-Received: from [192.168.1.101] (abxi46.neoplus.adsl.tpnet.pl [83.9.2.46])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 276D93F6A7;
-        Thu,  7 Jul 2022 22:21:07 +0200 (CEST)
-Message-ID: <d294becf-920b-34ee-8ac9-eebd1ea3f1f2@somainline.org>
-Date:   Thu, 7 Jul 2022 22:21:06 +0200
+        with ESMTP id S236533AbiGGUvg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 16:51:36 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA652CE06;
+        Thu,  7 Jul 2022 13:51:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=TTdDoMIncBueyDVjmYEyIZn/enGMqk78p+ra2MsjS+w=; b=sE7/kRbdlSv7EDNBiYq9turMip
+        Y8jFHim2VJqGyNd6kV+yyl+ghqx0wWjY1oAiKWWvg1OEtRazc2fwps6uBk2W/rAY6QjFvLj3AdcQK
+        NjzHVTWhmxPc8gfHjR0GL/zj+HVMZ1CmupVS4UZZqcjbz8BNmmW8+/IvXVqDA36+u3l3XcpEFhFSQ
+        TWPZ0amSSofhK9YDY4uV5jWZHbMQjPj+zWVwcLWCoEupQm21QzaYFo6WKR5PF7M4AdVOVKeBkAytS
+        btzrXPQ2hDd3Km43Qd42cgGLAXZBmv2WuEUPASG78hGx1ea8ym3uKyTgvrtiaQEfTl5URkscMo0KZ
+        Pud0lScw==;
+Received: from [2601:1c0:6280:3f0::a6b3]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1o9YSz-000B7y-VT; Thu, 07 Jul 2022 20:51:18 +0000
+Message-ID: <a2984435-6c8f-aee2-1e42-efc0b7cc4078@infradead.org>
+Date:   Thu, 7 Jul 2022 13:51:15 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/2] [PATCH v2 2/2] arm64: dts: qcom: Add LTE SKUs for
- sc7280-villager family
+Subject: Re: [PATCH v5 5/6] HID: add spi-hid, transport driver for HID over
+ SPI bus
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Jimmy Chen <jinghung.chen3@hotmail.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+To:     Jarrett Schultz <jaschultzms@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Alan Huang <alan-huang@quanta.corp-partner.google.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <SG2PR03MB500697A11DA5D0B45DE41B0ECC819@SG2PR03MB5006.apcprd03.prod.outlook.com>
- <3bf68892-9a55-1d6e-fb43-346d9378a866@somainline.org>
- <CAD=FV=VaCbb1xksYTL=dgDtZOD59nD=dx5hgYY-RFWkRVVo-7Q@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <CAD=FV=VaCbb1xksYTL=dgDtZOD59nD=dx5hgYY-RFWkRVVo-7Q@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Dmitry Antipov <dmanti@microsoft.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Jarrett Schultz <jaschultz@microsoft.com>
+References: <20220707165902.3184-1-jaschultzMS@gmail.com>
+ <20220707165902.3184-6-jaschultzMS@gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20220707165902.3184-6-jaschultzMS@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi--
 
-
-On 7.07.2022 01:51, Doug Anderson wrote:
-> Hi,
+On 7/7/22 09:59, Jarrett Schultz wrote:
+> From: Jarrett Schultz <jaschultz@microsoft.com>
 > 
-> On Wed, Jul 6, 2022 at 5:31 AM Konrad Dybcio
-> <konrad.dybcio@somainline.org> wrote:
->>
->>
->>
->> On 5.07.2022 04:22, Jimmy Chen wrote:
->>> This adds LTE skus for villager device tree files.
->>>
->>> Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
->>> ---
->>>
->>>  arch/arm64/boot/dts/qcom/Makefile                 |  2 ++
->>>  .../arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 11 -----------
->>>  arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts |  1 +
->>>  .../dts/qcom/sc7280-herobrine-herobrine-r1.dts    |  1 +
->>>  .../boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi   | 15 +++++++++++++++
->>>  .../dts/qcom/sc7280-herobrine-villager-r0-lte.dts | 14 ++++++++++++++
->>>  .../dts/qcom/sc7280-herobrine-villager-r1-lte.dts | 14 ++++++++++++++
->>>  arch/arm64/boot/dts/qcom/sc7280-idp.dts           |  1 +
->>>  8 files changed, 48 insertions(+), 11 deletions(-)
->>>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
->>>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
->>>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->>> index bb9f4eb3e65a0..6d81ff12f5af2 100644
->>> --- a/arch/arm64/boot/dts/qcom/Makefile
->>> +++ b/arch/arm64/boot/dts/qcom/Makefile
->>> @@ -103,6 +103,8 @@ dtb-$(CONFIG_ARCH_QCOM)   += sc7180-trogdor-r1-lte.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)      += sc7280-herobrine-crd.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)      += sc7280-herobrine-herobrine-r1.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)      += sc7280-herobrine-villager-r0.dtb
->>> +dtb-$(CONFIG_ARCH_QCOM)      += sc7280-herobrine-villager-r0-lte.dtb
->>> +dtb-$(CONFIG_ARCH_QCOM)      += sc7280-herobrine-villager-r1-lte.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)      += sc7280-idp.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)      += sc7280-idp2.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)      += sc7280-crd-r3.dtb
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
->>> index cfe2741456a1a..25f31c81b2b74 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
->>> @@ -83,17 +83,6 @@ spi_flash: flash@0 {
->>>       };
->>>  };
->>>
->>> -/* Modem setup is different on Chrome setups than typical Qualcomm setup */
->>> -&remoteproc_mpss {
->>> -     status = "okay";
->>> -     compatible = "qcom,sc7280-mss-pil";
->>> -     iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
->>> -     interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
->>> -     memory-region = <&mba_mem>, <&mpss_mem>;
->>> -     firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
->>> -                     "qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
->>> -};
->>> -
->>>  &remoteproc_wpss {
->>>       status = "okay";
->>>       firmware-name = "ath11k/WCN6750/hw1.0/wpss.mdt";
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
->>> index e9ca6c5d24a16..921eccfec39ae 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
->>> @@ -9,6 +9,7 @@
->>>
->>>  #include "sc7280-herobrine.dtsi"
->>>  #include "sc7280-herobrine-audio-wcd9385.dtsi"
->>> +#include "sc7280-herobrine-lte-sku.dtsi"
->>>
->>>  / {
->>>       model = "Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+)";
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
->>> index c1647a85a371a..c1a6719687252 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
->>> @@ -8,6 +8,7 @@
->>>  /dts-v1/;
->>>
->>>  #include "sc7280-herobrine.dtsi"
->>> +#include "sc7280-herobrine-lte-sku.dtsi"
->>>
->>>  / {
->>>       model = "Google Herobrine (rev1+)";
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
->>> new file mode 100644
->>> index 0000000000000..a4809dd2f4e8a
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
->>> @@ -0,0 +1,15 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>> +/*
->>> + * Google Herobrine dts fragment for LTE SKUs
->>> + *
->>> + * Copyright 2022 Google LLC.
->>> + */
->>> +/* Modem setup is different on Chrome setups than typical Qualcomm setup */
->>> +&remoteproc_mpss {
->> Hi, just a minor nit.
->>
->> It was recently agreed upon that the status property should go last to
->> make things consistent with other DTs (qcom is - as usual - a special
->> snowflake :D). Could you please fix that up? The rest looks good.
->>
->> Konrad
+> This driver follows HID Over SPI Protocol Specification 1.0 available at
+> https://www.microsoft.com/en-us/download/details.aspx?id=103325. The
+> initial version of the driver does not support: 1) multi-fragment input
+> reports, 2) sending GET_INPUT and COMMAND output report types and
+> processing their respective acknowledge input reports, and 3) device
+> sleep power state.
 > 
-> I'm not aware of this new convention. Can you please provide a link?
-We've discussed it here [1], plus seemingly all other DTs (though I
-did not in fact check *all* other DTs, just a few from different vendors'
-subdirectories) seem to put it last, so I think we concluded that not
-standing out makes sense.. The DT spec itself does not specify where
-it should go, but this could possibly be a good addition to it..
+> Signed-off-by: Dmitry Antipov <dmanti@microsoft.com>
 
-Konrad
+Missing your (Jarrett's) Signed-off-by: here.
 
-[1] https://www.spinics.net/lists/linux-arm-msm/msg115444.html
+More below...
+
+> ---
+>  drivers/hid/Kconfig                 |    2 +
+>  drivers/hid/Makefile                |    1 +
+>  drivers/hid/spi-hid/Kconfig         |   25 +
+>  drivers/hid/spi-hid/Makefile        |   12 +
+>  drivers/hid/spi-hid/spi-hid-core.c  | 1326 +++++++++++++++++++++++++++
+>  drivers/hid/spi-hid/spi-hid-core.h  |  188 ++++
+>  drivers/hid/spi-hid/spi-hid-of.c    |  141 +++
+>  drivers/hid/spi-hid/spi-hid-of.h    |   30 +
+>  drivers/hid/spi-hid/spi-hid_trace.h |  194 ++++
+>  drivers/hid/spi-hid/trace.c         |    9 +
+>  10 files changed, 1928 insertions(+)
+>  create mode 100644 drivers/hid/spi-hid/Kconfig
+>  create mode 100644 drivers/hid/spi-hid/Makefile
+>  create mode 100644 drivers/hid/spi-hid/spi-hid-core.c
+>  create mode 100644 drivers/hid/spi-hid/spi-hid-core.h
+>  create mode 100644 drivers/hid/spi-hid/spi-hid-of.c
+>  create mode 100644 drivers/hid/spi-hid/spi-hid-of.h
+>  create mode 100644 drivers/hid/spi-hid/spi-hid_trace.h
+>  create mode 100644 drivers/hid/spi-hid/trace.c
 > 
-> -Doug
+
+> diff --git a/drivers/hid/spi-hid/Kconfig b/drivers/hid/spi-hid/Kconfig
+> new file mode 100644
+> index 000000000000..37302d658162
+> --- /dev/null
+> +++ b/drivers/hid/spi-hid/Kconfig
+> @@ -0,0 +1,25 @@
+> +#
+> +# Copyright (c) 2021 Microsoft Corporation
+> +#
+> +# This program is free software; you can redistribute it and/or modify it
+> +# under the terms of the GNU General Public License version 2 as published by
+> +# the Free Software Foundation.
+> +#
+
+Please just use SPDX tags instead of all of that.
+See other hid/Kconfig files for examples.
+
+> +menu "SPI HID support"
+> +	depends on SPI
+> +
+> +config SPI_HID
+> +	tristate "HID over SPI transport layer"
+> +	default n
+> +	depends on SPI && INPUT && OF
+> +	select HID
+> +	help
+> +	  Say Y here if you use a keyboard, a touchpad, a touchscreen, or any
+> +	  other HID based devices which is connected to your computer via SPI.
+
+	        HID-based devices which are connected
+(or)
+	        HID-based device which is connected
+
+> +
+> +	  If unsure, say N.
+> +
+> +	  This support is also available as a module.  If so, the module
+> +	  will be called spi-hid.
+> +
+> +endmenu
+
+-- 
+~Randy
