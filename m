@@ -2,104 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D8E256A5B9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 16:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EA3556A5C0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 16:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235297AbiGGOoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 10:44:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37936 "EHLO
+        id S235768AbiGGOpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 10:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231753AbiGGOoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 10:44:10 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C45431A80E;
-        Thu,  7 Jul 2022 07:44:09 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 267Ei1PI062809;
-        Thu, 7 Jul 2022 09:44:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1657205041;
-        bh=ABTgJp8tO2KpPdtj4JUN1lMd40vTDK073OIeD9rsd0w=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=y8DjTDhUlMpIkN+GCnusjFwbQhN5dK9d5RFqEs0FzLvzGC1TpjtbWmvMJdPNODfXZ
-         TFLoRI6PokmLxb+6TA43CBMD6c7MnYDq3qWsIFWmcNbCweZRLQE/XGJcAAUJtoJ7ja
-         uPzg/v0Jag/vbmXsp67HwpKLKD8gCxImraJG+2BU=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 267Ei1eh042654
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 7 Jul 2022 09:44:01 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 7
- Jul 2022 09:44:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 7 Jul 2022 09:44:00 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 267Ei0xf028702;
-        Thu, 7 Jul 2022 09:44:00 -0500
-Date:   Thu, 7 Jul 2022 09:44:00 -0500
-From:   Bryan Brattlof <bb@ti.com>
-To:     Andrew Davis <afd@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S230209AbiGGOpb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 10:45:31 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFA62656C;
+        Thu,  7 Jul 2022 07:45:30 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id r14so20875084wrg.1;
+        Thu, 07 Jul 2022 07:45:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0vvOcF04of4eueNy3j0/G+PNUIgeaFTAvFOiC1ayUAM=;
+        b=YoegBB6KD2BGYIwIFRuRldiaXMtgQZEaon/lxSPUd/NBq5ujfuIiFdwN/Kk9CF9tdK
+         m+6sCUv0gqnFnqu1i4kEiFHay3+ZgSbUYH0IYJipabvCJ44Sp+uN70qHfJu5fLygqBPa
+         RtMkk5Ds78rZTaUGBBpLJpWrCGF8x5kF+uXNKwMO2PWTawaAacXeEytSLMnJhtR/gxi9
+         JJbw9w1+8kwfDx8c7MaYBsGSME72NkmqggVbbgq/+NLCfOjNrTAEbUMcRunSdX+kzWhN
+         KBdcIAGmcDoC7+3rGU+TOcT8NGPMjoU1GQkBes2xKamQp69VvQO7yGZvMHVtH7HDFoi6
+         uhKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0vvOcF04of4eueNy3j0/G+PNUIgeaFTAvFOiC1ayUAM=;
+        b=B+xY3EEGh4DAuSnsdUm8GU7EdXQUM+lYz89INk4KDPJCD9s8lHQunWGrnxoRyTJo45
+         76drmDvfvBiG5Q9TV7+c9JYMcFzbtvc5N6zXsZA5CSbihcvv7EoP7CWd/zrCINHTJImU
+         jHazvF9Jts/Qsw2qvwiHJQlrCkk/qyhMF2+So9e1BmQm/ZIBHTV3l98whUnNOSr2oTUW
+         OsDp/PDWxH7oIBIPFcI0OSU5ljBntvDKOQh1QAqGXOh5PxduTIx304/mDl9aHuSWmf5J
+         L8852YK+AfaTTkDcP/E3Q7IY68v0NTnVRbhzHp3WUiBMx+O+3hxasReMUtPHicQ6beuI
+         z5/A==
+X-Gm-Message-State: AJIora/QNgo15qnVGC4ThiOtF6pejgLHvSxuJgErpdGNx4FN6ueDkMqN
+        6KSIdUI6aAuoIuM6ykQLv1+t/ryBnBPLtQ==
+X-Google-Smtp-Source: AGRyM1tfcd/EN9bNHOdB0lihfDHNkoRbGPVjLa6AfF628mIVWi+vg43I+Azq7HsKQTP5OitdCjQiuA==
+X-Received: by 2002:a05:6000:1ac7:b0:21d:134e:5d74 with SMTP id i7-20020a0560001ac700b0021d134e5d74mr44844340wry.78.1657205128650;
+        Thu, 07 Jul 2022 07:45:28 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id g3-20020a05600c140300b0039c96b97359sm29684100wmi.37.2022.07.07.07.45.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Jul 2022 07:45:27 -0700 (PDT)
+Message-ID: <4447e5dc-8c79-7260-2d65-d86b5416d9a2@gmail.com>
+Date:   Thu, 7 Jul 2022 16:45:26 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] arm64: dts: mt7622: fix BPI-R64 WPS button
+Content-Language: en-US
+To:     Nick Hainke <vincent@systemli.org>,
+        linux-mediatek@lists.infradead.org
+Cc:     INAGAKI Hiroshi <musashino.open@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/4] arm64: dts: ti: k3-am65-main: Disable RNG node
-Message-ID: <20220707144400.tk3wmpeijdhuxpzv@bryanbrattlof.com>
-References: <20220706190838.26074-1-afd@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20220706190838.26074-1-afd@ti.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Ryder Lee <ryder.lee@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220630111746.4098-1-vincent@systemli.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220630111746.4098-1-vincent@systemli.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew
 
-On July  6, 2022 thus sayeth Andrew Davis:
-> The hardware random number generator is used by OP-TEE and is access is
-> denied to other users with SoC level bus firewalls. Any access to this
-> device from Linux will result in firewall errors. Disable this node.
+
+On 30/06/2022 13:16, Nick Hainke wrote:
+> The bananapi R64 (BPI-R64) experiences wrong WPS button signals.
+> In OpenWrt pushing the WPS button while powering on the device will set
+> it to recovery mode. Currently, this also happens without any user
+> interaction. In particular, the wrong signals appear while booting the
+> device or restarting it, e.g. after doing a system upgrade. If the
+> device is in recovery mode the user needs to manually power cycle or
+> restart it.
 > 
-> Signed-off-by: Andrew Davis <afd@ti.com>
+> The official BPI-R64 sources set the WPS button to GPIO_ACTIVE_LOW in
+> the device tree. This setting seems to suppress the unwanted WPS button
+> press signals. So this commit changes the button from GPIO_ACTIVE_HIGH to
+> GPIO_ACTIVE_LOW.
+> 
+> The official BPI-R64 sources can be found on
+> https://github.com/BPI-SINOVOIP/BPI-R64-openwrt
+> 
+> Fixes: 0b6286dd96c0 ("arm64: dts: mt7622: add bananapi BPI-R64 board")
+> 
+> Suggested-by: INAGAKI Hiroshi <musashino.open@gmail.com>
+> Signed-off-by: Nick Hainke <vincent@systemli.org>
+
+Applied, thanks!
+
 > ---
+>   arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Changes from v1:
->  - Added comment in dtsi file
-> 
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index e749343accedd..9de5a8294acd6 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -127,6 +127,7 @@ rng: rng@4e10000 {
->  			reg = <0x0 0x4e10000 0x0 0x7d>;
->  			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&k3_clks 136 1>;
-> +			status = "disabled"; /* Used by OP-TEE */
-
-Just curious about how we should document disabling nodes. I was 
-assuming the reasoning should be described in the bindings?
-
-I would like to start disabling nodes by default in our dtsi files and 
-enabling them in our top dts file, making it easier for others to use 
-our device tree for a more focused purpose than our dev boards. I just 
-didn't know where I should document why I disabled the nodes :)
-
-~Bryan
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> index 2b9bf8dd14ec..7538918c7a82 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> @@ -49,7 +49,7 @@ factory {
+>   		wps {
+>   			label = "wps";
+>   			linux,code = <KEY_WPS_BUTTON>;
+> -			gpios = <&pio 102 GPIO_ACTIVE_HIGH>;
+> +			gpios = <&pio 102 GPIO_ACTIVE_LOW>;
+>   		};
+>   	};
+>   
