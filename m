@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD4B056A578
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 16:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCBDF56A57C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 16:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235185AbiGGOdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 10:33:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54354 "EHLO
+        id S235768AbiGGOd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 10:33:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235576AbiGGOdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 10:33:19 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B54352F653
-        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 07:33:17 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id r6so11972345edd.7
-        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 07:33:17 -0700 (PDT)
+        with ESMTP id S235395AbiGGOd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 10:33:57 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CF2C248C4
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 07:33:54 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id k30so15275693edk.8
+        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 07:33:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=EoyTQr6cMk+DYKdiMg3NC5XJCceUe1dyjyTAOmKK+S0=;
-        b=lroVGXv6SSW4e0FiWRd/MeL568MO0S+YQA+5UXYvLt0cA7bV5CNRO2Vu4OlmIKq1DE
-         StvwBV4/hBbWlM69Ll0CA5hEfffF8nojIZ1YTZDOCYGfu8poE/e9HCaQjPz9cb/b1OCA
-         H0iQiOnI53icrgv0o5MjZQZTuGu8PZlghwbAM=
+        bh=4Qaml/77EQfjVhTCPwJZGqOZHtYBkRsro8IPW1LDth0=;
+        b=nGfPTVAksZnzIOYm3NKGz8gMMXNR8VQHECNNmE3N0p4ZtbshAnhr3JQ4+Fisy6PmVw
+         DRHRkgubLyYcUlKfxZq/e8nSnXjAtIKNR3YM3AT3ODuVedDkx5EZ0mPt9QtVzWFQFaSO
+         y1eXzyiTvypdbAAfNwawa+5t2TnhAqO0Z6WLc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=EoyTQr6cMk+DYKdiMg3NC5XJCceUe1dyjyTAOmKK+S0=;
-        b=uqB9ozhRGd4B9gtuTVs0/v04NujMEqrO+HhnqZyGyJbT1dnqpQgZiIzpRVHdE+2g/M
-         TB1ex0+ATbFaBXNXu+MY+cDJYtvus3QVEulGVjxAw9GVf7MWZuwVvf7UOMcp+zGTxNOw
-         d5ETdIIYhlipxrHx11uXpRB3Qb7c6M1fQWer3moMWwqeTpkZ1HZGzWc+Ryu7P/hQ8K78
-         aHL/g5v/NyaLbTvYhn92N3ZJyx4hIvIqJK+ElKmuEocsRNPPJDqgOxDeHbgJ4A0nS58F
-         RX11etHq1TcAa5lsCxVpCsqERo5nguReX9kSZPGLLsmZv768pUEKu9wVlhwiURb7bSjG
-         1rTQ==
-X-Gm-Message-State: AJIora96AMApOSSbvHzOHOUf4M+VyACFCCcAFQ0TROA8DIYAp9qkKem9
-        UhEajRC7sZCCgD7qWIxxy8Zmea7xZ898kuZbdyA=
-X-Google-Smtp-Source: AGRyM1ubZTjtzLEXx85bufYtbdYSzn1uTL6duezovAEmpxF8P+DXT9LYa2P82dohmAbGqAEzonn4mA==
-X-Received: by 2002:a05:6402:35c3:b0:43a:9d33:4084 with SMTP id z3-20020a05640235c300b0043a9d334084mr3730131edc.80.1657204396063;
-        Thu, 07 Jul 2022 07:33:16 -0700 (PDT)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
-        by smtp.gmail.com with ESMTPSA id cx19-20020a05640222b300b0043a7cdfac46sm5792350edb.23.2022.07.07.07.33.14
+        bh=4Qaml/77EQfjVhTCPwJZGqOZHtYBkRsro8IPW1LDth0=;
+        b=o1e1/JwVBNy1+YM/5r8FWLs3jWhqxHhlVzhmr6CF7OVAeck5o5p7a+ZBhYMBPQXvv9
+         e4F07iQ9BYlqu5bMpMS0m2sJ8PN3JzUJ5p7o7f0gxqEX7PruFQU+i+PnQMEFQwm3Rimq
+         GtptbiBgTMEgTTGUNsoeRHmcRWIRFDwhA9cx22l0jY/rSRBYC/0BON3R4D1TyISggH5X
+         yo+H6fYXGFityr1f8kSlfv7UzXWPupnTVZ8uMcPVrwXIYeNk76hbzr3l1LE45J8bHBUg
+         y70ImqG65eD9rmgKme5A6OVeU+3ymGYS6j22TKPoJd/eS4Jnqyt/GiyTaHByYNquuQ3T
+         h/1g==
+X-Gm-Message-State: AJIora9PW0eu7uJAQ7sbIkoc/JOE+YzoIf8cVuEwsF8wpmbatmO8g+dE
+        rVD1eECLgClnWYImo69YdFvo2ux2c8POGxCqmh4=
+X-Google-Smtp-Source: AGRyM1vBres3acbJvl4dKGCw9d+poHq1ECp64Je+FTuTTTKaRdFo9goOci1L9YjVsw32eLMeSCjh8g==
+X-Received: by 2002:a05:6402:5256:b0:435:9017:e5d3 with SMTP id t22-20020a056402525600b004359017e5d3mr62626325edd.258.1657204433042;
+        Thu, 07 Jul 2022 07:33:53 -0700 (PDT)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com. [209.85.128.43])
+        by smtp.gmail.com with ESMTPSA id s2-20020a170906454200b006fe9ec4ba9esm19071486ejq.52.2022.07.07.07.33.52
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Jul 2022 07:33:15 -0700 (PDT)
-Received: by mail-wm1-f53.google.com with SMTP id bi22-20020a05600c3d9600b003a04de22ab6so10838779wmb.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 07:33:14 -0700 (PDT)
-X-Received: by 2002:a05:600c:3ace:b0:3a0:4ea4:5f77 with SMTP id
- d14-20020a05600c3ace00b003a04ea45f77mr4905076wms.57.1657204394580; Thu, 07
- Jul 2022 07:33:14 -0700 (PDT)
+        Thu, 07 Jul 2022 07:33:52 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id l42so1077943wms.5
+        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 07:33:52 -0700 (PDT)
+X-Received: by 2002:a05:600c:2049:b0:3a0:536b:c01b with SMTP id
+ p9-20020a05600c204900b003a0536bc01bmr4978327wmg.151.1657204431600; Thu, 07
+ Jul 2022 07:33:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220707075151.67335-1-krzysztof.kozlowski@linaro.org> <20220707075151.67335-4-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220707075151.67335-4-krzysztof.kozlowski@linaro.org>
+References: <20220707075151.67335-1-krzysztof.kozlowski@linaro.org> <20220707075151.67335-5-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220707075151.67335-5-krzysztof.kozlowski@linaro.org>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 7 Jul 2022 07:33:02 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=W8mDtb0Bg4oAFdzn5m+XeXc_aiCrWVMPAz-ZhO1errPw@mail.gmail.com>
-Message-ID: <CAD=FV=W8mDtb0Bg4oAFdzn5m+XeXc_aiCrWVMPAz-ZhO1errPw@mail.gmail.com>
-Subject: Re: [PATCH 3/5] ARM: dts: qcom: align SDHCI reg-names with DT schema
+Date:   Thu, 7 Jul 2022 07:33:39 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W2d_TCqr+YHV0ep=4o9eqLY7YvF8Khxm2Vsi3uG11nPg@mail.gmail.com>
+Message-ID: <CAD=FV=W2d_TCqr+YHV0ep=4o9eqLY7YvF8Khxm2Vsi3uG11nPg@mail.gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: align SDHCI reg-names with DT schema
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -91,11 +91,12 @@ On Thu, Jul 7, 2022 at 1:04 AM Krzysztof Kozlowski
 >
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  arch/arm/boot/dts/qcom-apq8084.dtsi | 4 ++--
->  arch/arm/boot/dts/qcom-ipq4019.dtsi | 1 +
->  arch/arm/boot/dts/qcom-msm8226.dtsi | 6 +++---
->  arch/arm/boot/dts/qcom-msm8974.dtsi | 6 +++---
->  arch/arm/boot/dts/qcom-sdx65.dtsi   | 2 +-
->  5 files changed, 10 insertions(+), 9 deletions(-)
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8953.dtsi | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8994.dtsi | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
+>  6 files changed, 10 insertions(+), 10 deletions(-)
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
