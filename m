@@ -2,75 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEC5A56ADA0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 23:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CD8856AE07
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 23:58:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236797AbiGGVcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 17:32:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42610 "EHLO
+        id S236218AbiGGV6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 17:58:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236800AbiGGVcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 17:32:17 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB8194D4C6
-        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 14:32:14 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id bf9so10065947lfb.13
-        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 14:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=LmG27VAvPqwLokCgRV28hmE5ll7C/l8IW7AnNAbPsYQ=;
-        b=jDaLV0ZBuyPjn14Y17cRatbbTN/Tkwejw4WZCqmEGWAVvzFp01TyY1lb64FKqPlpYy
-         eiLpoye+eG9hRhG2corcbLnLmL06G3Wqmp0K8G+bh4rBR9T8hX5Rji1Eaq+Fm+JCK5Tw
-         vsUAMAY+2SS0uWh+gmcBL9AatnNo/C3ffGAnS6eAhcW5qOdILnjx6kkxPdVsxCgCPS84
-         md7dr7V/DVs2gt0zvyoB8+7rJ25h082E8Ju/0CGiSExSSk/y7QvDUOqRs8QadyMjyw7n
-         F7vrk3O66oVEGvZUCZ2hUdvkkVNaUL0A8ADnCYayOxEupDTsERiQioKlE/p40Uw8vFR8
-         KUpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LmG27VAvPqwLokCgRV28hmE5ll7C/l8IW7AnNAbPsYQ=;
-        b=TuqhfzaJAhJtr+zaLz6Sd58Me/m0px8+3NfYWAVVycp1z05BgsP8giQN2a4VMqnbr9
-         Gca0xGYrmK59lS16bROQkn/Km+XJvvexCi2jC759TrDCFeuof32IP2IlGcmmqHXBvR4Y
-         Pu+KPROOrPSCk6Tw+9/cYcRQMtsHv3+CGb9Qd5jDJtSyMi7vUmOrSPQvlY5W4q87Cobl
-         AeYq6icfaIkzu2/mccIsjio02y9MqnR8+GMZe5vNSyVKpIogNq47EXn4dshh0pyAawki
-         zMXvaq1ZvM54O8DsTtMNGQF/gh5vG9XCUqpLK9gKcfa8HP0L4eDyGes89F2ITAe3DNsg
-         s4AQ==
-X-Gm-Message-State: AJIora/xY7PtfrK8Sayc1zskL5hHEWMrFk2Cor+9imou0qNHnEInc4Sx
-        FH+cTgkLvPoUHJBFRW0Iz+KYTA==
-X-Google-Smtp-Source: AGRyM1smbr0/8AujEHBcLyNC+lvRU2ijM+Qi7JuhUY4++YSEHvrLz3qMQdbflIiMW/6j79iVTBfIag==
-X-Received: by 2002:ac2:53b6:0:b0:486:3357:c67d with SMTP id j22-20020ac253b6000000b004863357c67dmr128289lfh.433.1657229534248;
-        Thu, 07 Jul 2022 14:32:14 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id o19-20020ac24e93000000b0047f8cb94004sm7046709lfr.35.2022.07.07.14.32.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jul 2022 14:32:13 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: [PATCH 9/9] arm64: dts: qcom: sc7280: drop address/size-cells from eDP node
-Date:   Fri,  8 Jul 2022 00:32:04 +0300
-Message-Id: <20220707213204.2605816-10-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org>
-References: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S236233AbiGGV6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 17:58:22 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB7F5A47D;
+        Thu,  7 Jul 2022 14:58:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1657231101; x=1688767101;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=5/T7qOJPEL0MkmUxuGXLljoqiSl5+J7fMt/QUylbKvY=;
+  b=fjckSr78XiFRo5QSjL6t3Ht8AK+LAwQ1kViul7l5bWfBHOhVtVwfSFAR
+   fpAxInOt3p8kHWkCRaBZ4wVLIhCxLrXsR0A4rqefScUUKaAxDFJajhaUQ
+   iXttc8vHOKOmR4KVwR/Xic+4Tjxi7B9gsVvxumraYE6p/CpiGmfnV55bY
+   o/biSeRrELs8cpw8qe+XrkIgQK+bX+A1Kblt6Vr8e/CMXkZTc8FfI7OCd
+   KV0qOQgOa7YE2kVCwE6eBW0HZv0Tq+7KmpLNy80jerh3fgQnwpcO4woVh
+   EpadxnhzJkYUV+9AiiRUtbXVPlZgjps2mbJl2tvrT/j/KSpb6fRHYsbnG
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; 
+   d="scan'208";a="103554639"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Jul 2022 14:58:20 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 7 Jul 2022 14:58:19 -0700
+Received: from ryan-Precision-5560.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Thu, 7 Jul 2022 14:58:19 -0700
+From:   <Ryan.Wanner@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <claudiu.beznea@microchip.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ryan Wanner <Ryan.Wanner@microchip.com>
+Subject: [PATCH v3] ARM: dts: at91: sama5d2: Fix typo in i2s1 node
+Date:   Thu, 7 Jul 2022 14:58:12 -0700
+Message-ID: <20220707215812.193008-1-Ryan.Wanner@microchip.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,30 +62,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop #address/#size-cells from eDP device node. For eDP the panels are
-not described directly under the controller node. They are either
-present under aux-bus child node, or they are declared separately (e.g.
-in a /soc node).
+From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Typo in i2s1 causing errors in dt binding validation.
+Changed assigned-parens to assigned-clock-parents and
+to match i2s0 node formatting.
+
+Fixes: 1ca81883c557 ("ARM: dts: at91: sama5d2: add nodes for I2S controllers")
+
+Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 ---
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+changes in v2:
+-corrected subject and tags
+changes in v1:
+-corrected formatting issues
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 21ab986968e2..004cbbb084a2 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -3740,9 +3740,6 @@ mdss_edp: edp@aea0000 {
- 				operating-points-v2 = <&edp_opp_table>;
- 				power-domains = <&rpmhpd SC7280_CX>;
- 
--				#address-cells = <1>;
--				#size-cells = <0>;
--
+ arch/arm/boot/dts/sama5d2.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
+index 89c71d419f82..659a17fc755c 100644
+--- a/arch/arm/boot/dts/sama5d2.dtsi
++++ b/arch/arm/boot/dts/sama5d2.dtsi
+@@ -1124,7 +1124,7 @@ AT91_XDMAC_DT_PERID(33))>,
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 55>, <&pmc PMC_TYPE_GCK 55>;
+ 				clock-names = "pclk", "gclk";
+ 				assigned-clocks = <&pmc PMC_TYPE_CORE PMC_I2S1_MUX>;
+-				assigned-parrents = <&pmc PMC_TYPE_GCK 55>;
++				assigned-clock-parents = <&pmc PMC_TYPE_GCK 55>;
  				status = "disabled";
+ 			};
  
- 				ports {
 -- 
-2.35.1
+2.34.1
 
