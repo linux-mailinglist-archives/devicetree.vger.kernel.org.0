@@ -2,127 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AF36569A98
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE8E569A9F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 08:42:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230419AbiGGGil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 02:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38174 "EHLO
+        id S229803AbiGGGmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 02:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230124AbiGGGij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:38:39 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31AA227FF4;
-        Wed,  6 Jul 2022 23:38:38 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26715pJ4025688;
-        Thu, 7 Jul 2022 08:38:20 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=selector1; bh=zVSoqRqzuyLq0LopHTrb8YdEclj7FIl5rpVJUrthI2k=;
- b=w+uiFBF0FBVSp44RBV9b1Kcfs3BdqUZ74D9ShD5VGMkXXK0mYTb9Arap/KCgCGIifmWI
- rtdiT0iWPg8Vyyh4Nqo9U29dp9QAyeIzaTSI+DqR2Fb2jm7ykJgjknkPN4voXBu9PkG+
- FDOzzLYb2JDKTg+t2meV++Sg1eUAQ4Ea7Gj9mGEPFs9NC3RwXkUMIIh04LuGNbAKy5jV
- X1NbnD2ju33Gx4yMCguebN2TgG/M+zmKeEIziaciSOOcmIztE8XraC8AZsrGQ99QN7T+
- YH9a4vBLKTDi+cwFJE3xmNb5fe9asU7Chmc1uW9mLV+hs2uYcoR/IMG5Mp+jUEDOPxGa rg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3h58bp6h7c-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 07 Jul 2022 08:38:20 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D979810002A;
-        Thu,  7 Jul 2022 08:38:18 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B5B6420F570;
-        Thu,  7 Jul 2022 08:38:18 +0200 (CEST)
-Received: from gnbcxd0016.gnb.st.com (10.75.127.49) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Thu, 7 Jul
- 2022 08:38:18 +0200
-Date:   Thu, 7 Jul 2022 08:38:13 +0200
-From:   Alain Volmat <alain.volmat@foss.st.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <wsa@kernel.org>, <mark.rutland@arm.com>,
-        <pierre-yves.mordret@foss.st.com>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@foss.st.com>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>,
-        <amelie.delaunay@foss.st.com>
-Subject: Re: [PATCH 1/4] dt-bindings: i2c: st,stm32-i2c: don't mandate a
- reset line
-Message-ID: <20220707063813.GA2428347@gnbcxd0016.gnb.st.com>
-Mail-Followup-To: Rob Herring <robh@kernel.org>, wsa@kernel.org,
-        mark.rutland@arm.com, pierre-yves.mordret@foss.st.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@foss.st.com, amelie.delaunay@foss.st.com
-References: <20220620105405.145959-1-alain.volmat@foss.st.com>
- <20220620105405.145959-2-alain.volmat@foss.st.com>
- <20220628134115.GA345270-robh@kernel.org>
+        with ESMTP id S229779AbiGGGmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 02:42:20 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525F32A241
+        for <devicetree@vger.kernel.org>; Wed,  6 Jul 2022 23:42:19 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id n15so21029624ljg.8
+        for <devicetree@vger.kernel.org>; Wed, 06 Jul 2022 23:42:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=hnjLXi2LmIH+UgfU8ixxSLckYEWNRqYn9cqFQwLWQeE=;
+        b=toYNMIhjw3zUKrvNpHagoGcH5EtKQz4DGr2meqexVDX6IzpASPVmaA9hb/FPlHmm5c
+         bhxOBegO/QSUri9ZpZxGXnCF+Pr3j2by7xFPCDMlixXs3pI0K605Ik5jWv9EZuQ8hmFe
+         PRF+C9x3npyTVL/6pVpnQNVI/mYDFFmgHaGcKjsIFd3ta7fp4s9OpyWQ54Cxm9gwfRsH
+         txmp4WFaKf37H4dS10OmzLPLHF7YAQqIK0RkFJoHGj4IB4I/VDzJVmweG5lB7TcwOCMB
+         nrpr3W8IHE0owATfnb7aOBEuJZ1g99CKYJayxFFo41Mj52TFIixz+dtOJxfI2cP+D8Hu
+         BFcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=hnjLXi2LmIH+UgfU8ixxSLckYEWNRqYn9cqFQwLWQeE=;
+        b=D9Kzpfwik7ZviuOORNbRfos+Jx/2Vl4Kmf2dpeIU4SXWOLvjutG/ugOdI+fbJEYvF6
+         Xnk1xsFJ1/d5zcT2+KnUK5Vd/Ci+VuM7p216B7Koh1AwOHGN38pJSTFP0XkheapcfjvS
+         FBYlycGRyd2YNlckHnU4sZy5P+1soUYnPAzicQtEjlexxdaYU8S0OjW4M/Guk7mM1KGB
+         9VWHRjlPq+RlVrY5yxEoUODYLPMhh3Lto4g98/L9/hpuYqkIW0O/yeVvslW3TaIaLRdk
+         Cj1w/XPxXITzGDaL2976oCFrULa8OKvTkXHvMeF98lEfzPJVcvfuhbpEK3yoiuZZwxd1
+         iw8g==
+X-Gm-Message-State: AJIora+fWfUD3Wi7NthaMtU3yVGiJOTvXTZxRMB21ORZDPEgmnSsO5tS
+        55QoztzGsQYKBCOfd7Eix1WHAPRXr8WzJUYi
+X-Google-Smtp-Source: AGRyM1uDdSjYPsmbKdg3GRGvmgEpINkxNaKizM6XnuV48C+ytoXH4X21JeE7++9G2phIVJaKly/nXA==
+X-Received: by 2002:a2e:3a05:0:b0:25d:3be2:afcb with SMTP id h5-20020a2e3a05000000b0025d3be2afcbmr5687106lja.188.1657176137674;
+        Wed, 06 Jul 2022 23:42:17 -0700 (PDT)
+Received: from [192.168.1.52] ([84.20.121.239])
+        by smtp.gmail.com with ESMTPSA id v12-20020a2e87cc000000b00258e91823f3sm6654704ljj.31.2022.07.06.23.42.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jul 2022 23:42:17 -0700 (PDT)
+Message-ID: <1a180643-e688-f577-7313-a59b944f9466@linaro.org>
+Date:   Thu, 7 Jul 2022 08:42:15 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220628134115.GA345270-robh@kernel.org>
-X-Disclaimer: ce message est personnel / this message is private
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-07_04,2022-06-28_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v7 1/3] dt-bindings: mfd: Convert atmel-flexcom to
+ json-schema
+Content-Language: en-US
+To:     Kavyasree.Kotagiri@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
+        UNGLinuxDriver@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220706110619.71729-1-kavyasree.kotagiri@microchip.com>
+ <20220706110619.71729-2-kavyasree.kotagiri@microchip.com>
+ <fca15370-f977-687a-ff62-22ae43046b58@linaro.org>
+ <PH0PR11MB487299A211568CC3614682BC92839@PH0PR11MB4872.namprd11.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <PH0PR11MB487299A211568CC3614682BC92839@PH0PR11MB4872.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 07/07/2022 07:29, Kavyasree.Kotagiri@microchip.com wrote:
+>>> Convert the Atmel flexcom device tree bindings to json schema.
+>>>
+>>> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+>>> ---
+>>> v6 -> v7:
+>>>  - Change filename to atmel,sama5d2-flexcom.yaml
+>>>  - Add #address-cells, #size-cells to flexcom node - Fixed warnings.
+>>>
+>>> v5 -> v6:
+>>>  - Removed spi node from example as suggested by Rob and
+>>>    also pattern properties(spi dt-bindings conversion to yaml patch is under
+>> review).
+>>>    Once that is accepted, I will add back spi example through new patch.
+>>>
+>>> v4 -> v5:
+>>>  - Fixed indentations.
+>>>
+>>> v3 -> v4:
+>>>  - Corrected format of enum used for compatible string.
+>>>
+>>> v2 -> v3:
+>>>  - used enum for compatible string.
+>>>  - changed irq flag to IRQ_TYPE_LEVEL_HIGH in example.
+>>>  - fixed dtschema errors.
+>>>
+>>> v1 -> v2:
+>>>  - Fix title.
+>>>
+>>>  .../bindings/mfd/atmel,sama5d2-flexcom.yaml   | 74
+>> +++++++++++++++++++
+>>>  .../devicetree/bindings/mfd/atmel-flexcom.txt | 63 ----------------
+>>>  2 files changed, 74 insertions(+), 63 deletions(-)
+>>>  create mode 100644
+>> Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
+>>>  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-
+>> flexcom.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,sama5d2-
+>> flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-
+>> flexcom.yaml
+>>> new file mode 100644
+>>> index 000000000000..864f490ffb83
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-
+>> flexcom.yaml
+>>> @@ -0,0 +1,74 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mfd/atmel,sama5d2-flexcom.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Atmel Flexcom (Flexible Serial Communication Unit)
+>>> +
+>>> +maintainers:
+>>> +  - Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+>>> +
+>>> +description:
+>>> +  The Atmel Flexcom is just a wrapper which embeds a SPI controller,
+>>> +  an I2C controller and an USART. Only one function can be used at a
+>>> +  time and is chosen at boot time according to the device tree.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - atmel,sama5d2-flexcom
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 1
+>>> +
+>>> +  ranges:
+>>> +    description:
+>>> +      One range for the full I/O register region. (including USART,
+>>> +      TWI and SPI registers).
+>>> +    items:
+>>> +      maxItems: 3
+>>> +
+>>> +  atmel,flexcom-mode:
+>>> +    description: |
+>>> +      Specifies the flexcom mode as follows:
+>>> +      1: USART
+>>> +      2: SPI
+>>> +      3: I2C.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [1, 2, 3]
+>>> +
+>>
+>> As pointed out by Rob's bot - why do you not allow the protocol-specific
+>> children here? spi, serial etc?
+>>
+> usart/serial, spi and i2c dt-bindings are in .txt format. So, I cannot refer them here. Like I mentioned in v5 -> v6 changes description, spi dt-bindings conversion is under discussion. For now, I am removing child nodes from example. I will add it through new patch once below bindings are accepted:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20220629125804.137099-1-sergiu.moga@microchip.com/
 
-On Tue, Jun 28, 2022 at 07:41:15AM -0600, Rob Herring wrote:
-> On Mon, Jun 20, 2022 at 12:54:02PM +0200, Alain Volmat wrote:
-> > Update the dt-bindings of the i2c-stm32 drivers to avoid the
-> > needs for a reset property in the device-tree.
-> 
-> That is clear from the diff, but why. Some chips don't have a reset? 
-> If so, this should be combined with patch 2 as part of changes needed 
-> for a new version.
+No one talks about example. Your schema does not allow any child nodes
+now, which is not correct. You must describe these children - even if
+their schema is not ready. In such case just type:object, description
+and maybe compatibles.
 
-Alexandre has just pushed a pull-request enabling support for the
-clock/reset [1] so I will shortly push a v2 of the serie dropping the
-first 2 patches.
+I don't understand why you cannot refer to them here.
 
-Thanks
-Alain
-
-[1] https://lore.kernel.org/all/a250f32b-f67c-2922-0748-e39dc791e95c@foss.st.com/
-
-> 
-> > 
-> > Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> > ---
-> >  Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml | 1 -
-> >  1 file changed, 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
-> > index dccbb18b6dc0..8879144fbbfb 100644
-> > --- a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
-> > +++ b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
-> > @@ -94,7 +94,6 @@ required:
-> >    - compatible
-> >    - reg
-> >    - interrupts
-> > -  - resets
-> >    - clocks
-> >  
-> >  unevaluatedProperties: false
-> > -- 
-> > 2.25.1
-> > 
-> > 
+Best regards,
+Krzysztof
