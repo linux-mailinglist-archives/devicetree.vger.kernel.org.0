@@ -2,134 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79DD45697E5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FAD55697F1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jul 2022 04:25:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230124AbiGGCVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jul 2022 22:21:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34930 "EHLO
+        id S234755AbiGGCZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jul 2022 22:25:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230246AbiGGCVZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 22:21:25 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96A3A2F38F;
-        Wed,  6 Jul 2022 19:21:22 -0700 (PDT)
-X-UUID: a8b65f57d9c7452ea3d31c2f3ba2130f-20220707
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:a1fe7f03-1c77-497f-9cdb-1226900a02a7,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:ea26d1d6-5d6d-4eaf-a635-828a3ee48b7c,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: a8b65f57d9c7452ea3d31c2f3ba2130f-20220707
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 984772394; Thu, 07 Jul 2022 10:21:18 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 7 Jul 2022 10:21:16 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 7 Jul 2022 10:21:16 +0800
-Message-ID: <fde545ed10e3baa1a375eead29dd2d12d95b7cb2.camel@mediatek.com>
-Subject: Re: [PATCH v13 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 7 Jul 2022 10:21:16 +0800
-In-Reply-To: <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
-         <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234687AbiGGCZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jul 2022 22:25:50 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 504031CFC8;
+        Wed,  6 Jul 2022 19:25:48 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B8EAA526;
+        Thu,  7 Jul 2022 04:25:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1657160745;
+        bh=bQ+ijTONN42940AiCE855Ru1tmEGl/zsUVa5c+ElyhU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SyPfh6h1coZxVxJkAqPW+xwhbssRTxJqllgPw448Q7Q9MVkd1JPPP2IukiCiqgsil
+         BeXfLVslrffR7kS88QFTWuq07BV4Ew3zMl+2MZHAE4ppH/3DRlNWfN9PzhXOerp5w3
+         yIW9zpXzp9eVWUyOhsl17BiGuUcxmMw50jL9R4eI=
+Date:   Thu, 7 Jul 2022 05:25:20 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: renesas: Prepare AA1024XD12 panel
+ .dtsi for overlay support
+Message-ID: <YsZEEHbLxQgszvyq@pendragon.ideasonboard.com>
+References: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20211229193135.28767-2-laurent.pinchart+renesas@ideasonboard.com>
+ <CAMuHMdWWRLdm+dAmso0dgf5QPqqV=txH-4Tryfm0USp7jZdbkw@mail.gmail.com>
+ <YfGZx9qHQdF8TzcT@pendragon.ideasonboard.com>
+ <CAMuHMdW1DwsMTVog4oBa_=ozH=aEeAdK+wS1SbwbZYz22JAL=w@mail.gmail.com>
+ <YfHf0ZNt8GV0gHaF@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YfHf0ZNt8GV0gHaF@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
-
-On Fri, 2022-07-01 at 14:28 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
+On Thu, Jan 27, 2022 at 01:57:05AM +0200, Laurent Pinchart wrote:
+> On Wed, Jan 26, 2022 at 08:15:26PM +0100, Geert Uytterhoeven wrote:
+> > On Wed, Jan 26, 2022 at 7:58 PM Laurent Pinchart wrote:
+> > > On Wed, Jan 26, 2022 at 01:18:56PM +0100, Geert Uytterhoeven wrote:
+> > > > On Wed, Dec 29, 2021 at 8:31 PM Laurent Pinchart wrote:
+> > > > > The Mitsubishi AA1024XD12 panel can be used for R-Car Gen2 and Gen3
+> > > > > boards as an optional external panel. It is described in the
+> > > > > arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi file as a direct child of the
+> > > > > DT root node. This allows including r8a77xx-aa104xd12-panel.dtsi in
+> > > > > board device trees, with other minor modifications, to enable the panel.
+> > > > >
+> > > > > This is however not how external components should be modelled. Instead
+> > > > > of modifying the board device tree to enable the panel, it should be
+> > > > > compiled as a DT overlay, to be loaded by the boot loader.
+> > > > >
+> > > > > Prepare the r8a77xx-aa104xd12-panel.dtsi file for this usage by
+> > > > > declaring a panel node only, without hardcoding its path. Overlay
+> > > > > sources can then include r8a77xx-aa104xd12-panel.dtsi where appropriate.
+> > > > >
+> > > > > This change doesn't cause any regression as r8a77xx-aa104xd12-panel.dtsi
+> > > > > is currently unused. As overlay support for this panel has only been
+> > > > > tested with Gen3 hardware, and Gen2 support will require more
+> > > > > development, move the file to arch/arm64/boot/dts/renesas/.
+> > > > >
+> > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > 
+> > > I see you've reviewed the whole series. Can you pick it up ?
+> > 
+> > I believe it depends on the removal of the empty endpoints, for which
+> > we're waiting for feedback from Rob, IIRC?
 > 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
-> 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
-> +
-> +static void mtk_dp_power_disable(struct mtk_dp *mtk_dp)
-> +{
-> +	mtk_dp_write(mtk_dp, MTK_DP_TOP_PWR_STATE, 0);
-> +
-> +	mtk_dp_write(mtk_dp, MTK_DP_0034,
-> +		     DA_CKM_CKTX0_EN_FORCE_EN |
-> +		     DA_CKM_BIAS_LPF_EN_FORCE_VAL |
-> +		     DA_CKM_BIAS_EN_FORCE_VAL |
-> +		     DA_XTP_GLB_LDO_EN_FORCE_VAL |
-> +		     DA_XTP_GLB_AVD10_ON_FORCE_VAL);
+> You're right. Let's wait some more time then.
 
-clk-mt8195-vdo0 driver [1] is part of mtk-mmsys driver [2] and it is
-still separated out to ccf driver. In addition, you does not manage the
-parent clock. If the parent clock is not enable, these leaf clock would
-not work.
+How should we proceed with this ?
 
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/mediatek/clk-mt8195-vdo0.c?h=v5.19-rc5#n138
-
-[2] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/soc/mediatek/mtk-mmsys.c?h=v5.19-rc5#n140
-
+-- 
 Regards,
-CK
 
-> +
-> +	/* Disable RX */
-> +	mtk_dp_write(mtk_dp, MTK_DP_1040, 0);
-> +	mtk_dp_write(mtk_dp, MTK_DP_TOP_MEM_PD,
-> +		     0x550 | BIT(FUSE_SEL_SHIFT) |
-> BIT(MEM_ISO_EN_SHIFT));
-> +}
-> +
-
+Laurent Pinchart
