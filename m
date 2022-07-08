@@ -2,61 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 997C556C384
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:14:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 591AE56C46D
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:15:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238649AbiGHVtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 17:49:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56112 "EHLO
+        id S239219AbiGHWFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 18:05:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239971AbiGHVtS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:49:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E077F9B1AF;
-        Fri,  8 Jul 2022 14:49:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 57649615F1;
-        Fri,  8 Jul 2022 21:49:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A55BCC341C7;
-        Fri,  8 Jul 2022 21:49:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657316956;
-        bh=qwoHft6J7YF3D/O6Rf3RXkjJ9VReVvmsa+QIcOA1fLs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kcodp16Edx1u8nlbErKaVGsHMvdxsifaar78IjBZvPTbB1mc4m9Q2vA0dgKt3kGQH
-         19c5AsLzHLpatC9RmCJvkkt6TCluslWS12A1p07Cz7Rf0ZIwLVRDySnJTbCHW+GjWn
-         Y1NZ1bJpNsRBi8/V51Cr2KBhiMe7qaKb/51Meq1anbJRCgUYyADs2qkc/CvnJBxjjj
-         6KqkrwjCOVjO9MwIQ5leOgSquOHXk6iXrn0gIXRQqX2hnQfO8q/UMlrsItUqPhaQw+
-         XTXAGQLjmDM0Y9A4x21x1YGb9f8R6leYzDfItlBgFnr04tdv42Ax/ICoGBUuhfcKhm
-         hk3JEsGWMRSuw==
-Received: by mail-vk1-f176.google.com with SMTP id u204so37948vkb.7;
-        Fri, 08 Jul 2022 14:49:16 -0700 (PDT)
-X-Gm-Message-State: AJIora+b/8RW+89grl147NsLxOhdRPTCJdbA9IopmH9DWxJ+gkAicHKx
-        mm1Zhn0REGSY6oZ0lpvx2YGqO2viw8S9nrw4ZA==
-X-Google-Smtp-Source: AGRyM1u17X2pv7TEGdk37nw9uxpDz0qNObsUa18T3drP30RZT5i4eIxnhV0/CJfBgdEfulEEw/XHnFmvcHdWz6nY3wU=
-X-Received: by 2002:a1f:2a86:0:b0:370:8ff3:d5f with SMTP id
- q128-20020a1f2a86000000b003708ff30d5fmr2506541vkq.35.1657316955600; Fri, 08
- Jul 2022 14:49:15 -0700 (PDT)
+        with ESMTP id S239136AbiGHWFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:05:10 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96B4B9CE33;
+        Fri,  8 Jul 2022 15:05:09 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id y3so229884iof.4;
+        Fri, 08 Jul 2022 15:05:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5Rz9ss1apWYLiwK2Swa5YhYzk+HeapOWk50LvWWFvLY=;
+        b=eqZSvOuf8pQGxI674QU5CmgZd8PamzInBwIb2Ir68fvYfQPAEJctlm+qW3RNbEqpLM
+         ejh2OlL6zPGnfAwW0eLDwhwF5zxvZKrHeJIaxJjwU35dYDUOwr2z57OnnMF7Jzxuk2Or
+         eKeCgkDjfY+9GrqES51HRJYUgs9nDa9zpgk1YL/try90vjYlikRZldjc8R69NhQPfFZ5
+         Y1DYsIvF71JCfMO4OHm10dtp7nTmOnlrTTqcImu5EoseE+zc5ekVmXmW8jZseO9x7R+0
+         qJN/cSXVy+cbWyLsfim1ezOtkJVr2oW3vx86OKxf8+eMLakXwaqH/xifz7YcICMq1Cx3
+         ApsA==
+X-Gm-Message-State: AJIora/O1kwARttdsdYUL3X4Gk9Up7nYadhlww9c9FdXtP/SvA5v/DlC
+        Hkkvr2/GQD4n+gmYfMgNFg==
+X-Google-Smtp-Source: AGRyM1uCZTA/9fsWbCIhKWnORtZ6n3s0D9rWOa74eKN2C621mxgYBaFokyWV+HmhbQVEXje2TLOw4g==
+X-Received: by 2002:a5d:83c7:0:b0:66c:cc68:2f2d with SMTP id u7-20020a5d83c7000000b0066ccc682f2dmr3070624ior.74.1657317908824;
+        Fri, 08 Jul 2022 15:05:08 -0700 (PDT)
+Received: from robh.at.kernel.org ([98.38.210.73])
+        by smtp.gmail.com with ESMTPSA id y22-20020a056638229600b00339e2f0a9bfsm2012983jas.13.2022.07.08.15.05.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Jul 2022 15:05:08 -0700 (PDT)
+Received: (nullmailer pid 1560089 invoked by uid 1000);
+        Fri, 08 Jul 2022 22:05:07 -0000
+Date:   Fri, 8 Jul 2022 16:05:07 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux Input <linux-input@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RESEND PATCH v3 0/3] dt-bindings: input: gpio-keys: apply via
+ DT tree
+Message-ID: <20220708220507.GA1557227-robh@kernel.org>
+References: <20220705120356.94876-1-krzysztof.kozlowski@linaro.org>
+ <CAL_Jsq+LepF_67SJUqQ5mUO-TZAd-46LB+aYE5rZmnmmwMg=bw@mail.gmail.com>
+ <352f27e7-0da1-4a4a-83a4-ded370dfbd7f@linaro.org>
+ <YsiVH41gCLeIMyd6@google.com>
 MIME-Version: 1.0
-References: <20220708165225.269192-1-ben.dooks@sifive.com>
-In-Reply-To: <20220708165225.269192-1-ben.dooks@sifive.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 8 Jul 2022 15:49:03 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+TZpAK-X02ANoYBMfUKkwPh3Z-gjGjim6WwFwsMa7zSA@mail.gmail.com>
-Message-ID: <CAL_Jsq+TZpAK-X02ANoYBMfUKkwPh3Z-gjGjim6WwFwsMa7zSA@mail.gmail.com>
-Subject: Re: [PATCH] of/irq: parse interrupts-extended during irq init
- heirarchy calculation
-To:     Ben Dooks <ben.dooks@sifive.com>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YsiVH41gCLeIMyd6@google.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,24 +68,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 8, 2022 at 10:52 AM Ben Dooks <ben.dooks@sifive.com> wrote:
->
-> When the irq controler code works out the heirarchy for initialialisation
-> it only looks at interrupt-parent properties, but controllers such as the
-> RISC-V PLIC use a extended-interrupt property and therefore do not get
-> properly considered during initialisation.
->
-> This means that if anything changes in the driver initialisation order
-> then the PLIC can get called before the CLINT nodes, and thus interrupts
-> do not get configured properly and the init continues without noticing
-> the error until drivers fail due to having no interrupts delivered.
->
-> Add code to the of_irq_init that checks for the extended-interrupt
-> property and adds these parent nodes so that they can be considered
-> during the calculations of whether an irq controller node can be
-> initialised.
+On Fri, Jul 08, 2022 at 01:35:43PM -0700, Dmitry Torokhov wrote:
+> Hi,
+> 
+> On Wed, Jul 06, 2022 at 08:30:54AM +0200, Krzysztof Kozlowski wrote:
+> > On 05/07/2022 21:11, Rob Herring wrote:
+> > > On Tue, Jul 5, 2022 at 6:04 AM Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >>
+> > >> Hi Rob,
+> > >>
+> > >> Can you apply these directly? You already reviewed them, but I dropped
+> > >> the tag so you will see them in Patchwork. It seems these won't go in
+> > >> through input [1].
+> > >>
+> > >> [1] https://lore.kernel.org/all/c2c1cf0c-9462-9ba5-a297-70d13a063de1@linaro.org/
+> > > 
+> > > Will give Dmitry a few more days first before I take both series.
+> > 
+> > Then let's keep your Rb for entire patchset:
+> > 
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> I am sorry but what series/branch this series is based on? I tried
+> applying but there are conflicts. The latest I have that is touching
+> gpio-keys.yaml is:
+> 
+> 4fda8a2df83a dt-bindings: input: use generic node names
 
-Isn't this already fixed by commit e91033621d56 ("of/irq: Use
-interrupts-extended to find parent")?
+This one from me:
 
-Rob
+https://lore.kernel.org/all/20220608211207.2058487-1-robh@kernel.org/
