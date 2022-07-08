@@ -2,90 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC94756B3A9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 09:36:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F04E56B403
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 10:03:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237350AbiGHHgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 03:36:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46992 "EHLO
+        id S237466AbiGHIBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 04:01:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237293AbiGHHge (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 03:36:34 -0400
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E987C1B9;
-        Fri,  8 Jul 2022 00:36:32 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id E0FD5320090D;
-        Fri,  8 Jul 2022 03:36:28 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Fri, 08 Jul 2022 03:36:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1657265788; x=
-        1657352188; bh=z0PrsiMp/J8Gv6mQx5qf+wqbiMQmbkqPC6B/AdbiIY8=; b=i
-        w0jSHokLG+MkpRk/awanv/tvrseU28ynMDacGvU2JXIj0msMzSMttrU4Je8qj5i2
-        BP7Gn1VQkRIRgejxhiPF1AF1uz2IbGSDVmPHywdeu1+2p8rl6SzHXKxzIvx8T6yr
-        9BnT/IKOao7fHi7e8KPvp6SGHTz9TIeLyMxl7m0g+eQ8PAR3ZxSxKcFdWtipxp9D
-        gnnEL9TSH3ioqM0uRmpR+2y8ThZDULP8/4JrBM3BwfYFh2uhHSJp8xec1NeCxJA6
-        xsDO7gGaSlPL0FYeur3F0lmZ4x79b0V+4yoYpDl39RSNKoKKqWQjVQX9mCbp50BN
-        rHCeHgd6QTZ18HA1mTNBA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1657265788; x=
-        1657352188; bh=z0PrsiMp/J8Gv6mQx5qf+wqbiMQmbkqPC6B/AdbiIY8=; b=U
-        xIbHS17H7qUB8ks06rKakXd2A/yS6I3aYCJel7XDIvMIvpbngXwBxoE1OkmsEyqk
-        JW05vxcNb2o/ewrZFznQZr/631B/2g3heSchiBsdu1mKmWO5BMA//zq8SkuHPDh2
-        e70sD24hcFxWordsX5EJyatva1Yx2XBo88NnDINA+IIyDBCxlXPTrDDswQVcs4lj
-        qMbNtCLmmpt1r0+rN2NJcGjTZy2Vw7/pbpNt1y8mn2pVxO/r4GJwteTTshXW8eju
-        hO2x2qDKGTAoXJPt+NYn5BamnEJmNnrM8ww36HetwJ7RBls4AkVbjZBoI+auoFnM
-        grWAPt8/R0IjXJ4BgzB9Q==
-X-ME-Sender: <xms:e97HYuu_jaLYqWX--4K4uzOGZoq8Fw5AybMHYgKebeo-WWmqE9z9iw>
-    <xme:e97HYjf1YY__iVsJngVIDlYxNskiXLndNyPjs1rI5t7yPQZ2X5KgCUfZc_elslC9j
-    y14m5pbhAmM-NUGQQ>
-X-ME-Received: <xmr:e97HYpwqGccGGZiackWtnGkcSU03h619n4WZ4Jfht6ntpwmol3Dof8CIj39887Xyx2WIiUlRcC-uE_Ch0KjdEVZSlOVR0bCjH_ATJzalrF0yNu-WiKHkakAEfA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudeiiedguddvtdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefuvfevfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgr
-    mhhuvghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqne
-    cuggftrfgrthhtvghrnhepffdtveekvdegkeeuueetgfetffeileevudekuefhheelvdfh
-    iedtheduhfduhefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
-    hfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:e97HYpO4sjaSEfnKMi7ydtt-Y8nmnYXX-1AcCD52yBdL1aKjztctdw>
-    <xmx:e97HYu9stLmJetYfleSpZLK2-iCAvThtQTXKVuPXLQwjaHcgyJw5nA>
-    <xmx:e97HYhW461qiSC8m3kjb-CPQsjnpJi0jJN59qV2dIjYQYHzJau7W9Q>
-    <xmx:fN7HYhYkgyi9bcjSTXduyjWlKt0SJgCzgNy8Js4Bv-hAatlzIGSvww>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 8 Jul 2022 03:36:27 -0400 (EDT)
-Subject: Re: [PATCH v2] sunxi: dts: Fix SPI NOR campatible on Orange Pi Zero
-To:     Michal Suchanek <msuchanek@suse.de>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     linux-sunxi@lists.linux.dev, Icenowy Zheng <icenowy@aosc.xyz>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220707174801.36e010da@donnerap.cambridge.arm.com>
- <20220707170721.20225-1-msuchanek@suse.de>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <0c575068-abd7-c69a-e59c-3140f8cb7813@sholland.org>
-Date:   Fri, 8 Jul 2022 02:36:26 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-MIME-Version: 1.0
-In-Reply-To: <20220707170721.20225-1-msuchanek@suse.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S237491AbiGHIBb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:01:31 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A0717E01F;
+        Fri,  8 Jul 2022 01:01:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A80C7B824C3;
+        Fri,  8 Jul 2022 08:01:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F63DC341C8;
+        Fri,  8 Jul 2022 08:01:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657267287;
+        bh=A/e4amBcKWeEZysL+s9cf7FK4eenhjcZ/1xT4QWPuqI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=T4zwtyGcDb0Ny/O6g2O72Ub/1M4Rr7wdb6dY8isykavoXUliaMnhW03+lDuxCFDA7
+         8NAlBOAfFoPjev5Sk/nM4EWh/dLSOkvNrBPjYA2blrJbiGky2yJdIbECI0Alz4ZL9o
+         lxYQBS70343LhpueOZdptjUbQ9vecBfCLddat5dN3TLmhh2ZtGuiRenygQ7IFaqYEZ
+         /TCoMTEsP6KzhH70bp6An2DWGL37oefWXwW36Y8gXMyvLuo54tjX3Mmplnu9LdMkbf
+         cRvG6h1MlkJunsXS4yW+9o5XOHwSl4wetbb71/7A+OBeMw8BGP7S566TuEsNM0Yqe9
+         CTVpoINKGU7zw==
+Received: from [213.208.244.172] (helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1o9ivV-0065vk-1t;
+        Fri, 08 Jul 2022 09:01:25 +0100
+Date:   Fri, 08 Jul 2022 09:01:23 +0100
+Message-ID: <87tu7skp7w.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
+Subject: Re: [PATCH 1/3] irqchip: imx mu worked as msi controller
+In-Reply-To: <20220707210238.917477-1-Frank.Li@nxp.com>
+References: <20220707210238.917477-1-Frank.Li@nxp.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 213.208.244.172
+X-SA-Exim-Rcpt-To: Frank.Li@nxp.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,40 +71,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michal,
-
-The subject prefix should start with "ARM: dts:" (e.g. "ARM: dts: sunxi:").
-Generally it is a good idea to look at the log of the file and follow the
-pattern you see there.
-
-On 7/7/22 12:07 PM, Michal Suchanek wrote:
-> Without "jedec,spi-nor" compatible the flash memory cannot be probed by
-> u-boot. The macronix part is what is shipped on the boards that come
-> with a flash chip.
+On Thu, 07 Jul 2022 22:02:36 +0100,
+Frank Li <Frank.Li@nxp.com> wrote:
 > 
-
-Fixes: 45857ae95478 ("ARM: dts: orange-pi-zero: add node for SPI NOR")
-
-Regards,
-Samuel
-
-> Signed-off-by: Michal Suchanek <msuchanek@suse.de>
-> ---
->  arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> MU support generate irq by write data to a register.
+> This patch make mu worked as msi controller.
+> So MU can do doorbell by using standard msi api.
 > 
-> diff --git a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-> index f19ed981da9d..3706216ffb40 100644
-> --- a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-> +++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-> @@ -169,7 +169,7 @@ &spi0 {
->  	flash@0 {
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> -		compatible = "mxicy,mx25l1606e", "winbond,w25q128";
-> +		compatible = "mxicy,mx25l1606e", "jedec,spi-nor";
->  		reg = <0>;
->  		spi-max-frequency = <40000000>;
->  	};
-> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
+Where is the cover letter for this? How am I supposed to guess what
+this series is about? The rule is simple: you send a series with two
+patches or more, you include a cover letter describing your changes,
+what they provide, and how they interact with each other. Here, all I
+see is a bunch of seemingly unrelated changes.
+
+I could spend the next 2 hours trying to reverse engineer it, but it
+is probably a lot quicker for you to write an actual cover letter and
+send it for everyone's benefit.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
