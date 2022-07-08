@@ -2,129 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7413D56B459
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 10:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6023356B46B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 10:25:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237596AbiGHIVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 04:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54306 "EHLO
+        id S237763AbiGHIW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 04:22:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237526AbiGHIVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:21:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9412581481;
-        Fri,  8 Jul 2022 01:21:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2E6346265A;
-        Fri,  8 Jul 2022 08:21:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C207DC341C0;
-        Fri,  8 Jul 2022 08:21:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657268494;
-        bh=0P+Bw50YUG6gsh5d/rl9KKhBtbeIacVhb0MvSLpQpMI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TGPw2cfD4MS3EL7p7NX5Rn9mAT0NayS3u1VZafvtf1gyzVJaGFqy0MDQDfPXaMFnx
-         CVUSatxfYnzPugmMEqXWaSePAa5vzsgcwb14V/2xBEOCMeQIwYmPTC1BmMAcXjQnST
-         wAIMwOmZ20w0t5cDhiAtdB8O83+FW+gWpYsJEz0/6Busq247W4SkI+BAuIbSowGSe0
-         8w25cxsT4Ssf2dLDNOWAvz1v5L0DFTLn2sHygDBzZIWmddSI6ihl115YmWHJueB9G+
-         Wge4Lv7nd26WSK228x+ste+Pwd5LaZyLRMTgJVzvhzKQeHkbKxFdyvdqXNOhQPftjS
-         0qPGwK5/36UBw==
-Date:   Fri, 8 Jul 2022 16:21:26 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     djakov@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        abel.vesa@nxp.com, abailon@baylibre.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com, kernel@pengutronix.de,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, abelvesa@kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V4] arm64: dts: imx8mp: add NoC node
-Message-ID: <20220708082126.GU819983@dragon>
-References: <20220706234757.3162307-1-peng.fan@oss.nxp.com>
+        with ESMTP id S237766AbiGHIW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:22:57 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2D1B81497;
+        Fri,  8 Jul 2022 01:22:55 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id d3so19046375ioi.9;
+        Fri, 08 Jul 2022 01:22:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Akov7SZtUyEX9D0+3zzLnuIGNu/dLwAPRoI7n7xKXwA=;
+        b=TRV50Pwd5sFVo2E1gPlLsmgMiLSKMpheIV4nJ2xcXHBx97J8Am/NdIsQmb5jiSueRF
+         khKbAvo7q6avJHCZi7XdEzpRx9PIwpak6EdVOisplHkLfW6Vsbsr7bljDySt/V/2BEbJ
+         q1gMNptzMFfKjBChwI0lnmtdrb+RPDAPzhWyYuoqe10Lo71y9vleLsbPmakin0OmMVKL
+         uWXfsHI9iEjKUEe6mpVLpjQo1HRjDLZFP499HogUkQ598g5o9PWJ4CrLEXomSYOP9vGh
+         mMPyIME28eRynOIhLPAsTuFMOwg5M8CMFxst36RJIp/b74fT0wj00cAxc8zxkpGNp29I
+         YsKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Akov7SZtUyEX9D0+3zzLnuIGNu/dLwAPRoI7n7xKXwA=;
+        b=tTPYXQkv0ROfMo+ok243qqWc8gBm5ES2KZlT2BKz2/aRgcD7SDYtgjn4vom7I96+zJ
+         5enrAM9XtQLXwZEmldPOhRiFWekmkbgk/aT0vbGKnHBwvzkFhwEvvj04D7b2gIQb7vsN
+         Wc3a9jUNof7cbmiw+0mdO/Hoym9yX8QmkhshbfElwHTD/Sp0WMCSTh4teA8xDgmufW+u
+         DBhhG2oCuc0lgR3Ea5vb5Z0nMlzB9daWDvaYkp/uSbkJgzH6iGW0LonvSorekWIMMBqK
+         Eksi4yX4RW+c+wAl2fVQpcMMawNhEw13p/J8aFJfoyfj5pEL5CVuJzGv5FcoJXcG32+T
+         4+ug==
+X-Gm-Message-State: AJIora8HfHYp/jRhBjNg42ktSF+v99mqCkHTrQhzK49CQH4BNOqXnqUs
+        CXKtyUDNCvOa9BSDV945oJoXXP8MyCRjnTFB
+X-Google-Smtp-Source: AGRyM1tfdSkTBt7EaCr+m3mYoeilSPCzVf9/PiNlHAX15oqMZh5CVi/9v4QlhKpiOcCqveypnOPygw==
+X-Received: by 2002:a02:a70f:0:b0:339:de0d:4ed6 with SMTP id k15-20020a02a70f000000b00339de0d4ed6mr1413393jam.292.1657268575018;
+        Fri, 08 Jul 2022 01:22:55 -0700 (PDT)
+Received: from [192.168.1.145] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id r3-20020a02aa03000000b0033cd78a3612sm10838734jam.18.2022.07.08.01.22.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Jul 2022 01:22:53 -0700 (PDT)
+Message-ID: <184ce9e3-6031-98ab-cae6-a4aa2015b5c4@gmail.com>
+Date:   Fri, 8 Jul 2022 10:22:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220706234757.3162307-1-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/2] arm64: dts: mt8173: Fix nor_flash node
+Content-Language: en-US
+To:     "xiangsheng.hou" <xiangsheng.hou@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, bin.zhang@mediatek.com,
+        benliang.zhao@mediatek.com, linux-mediatek@lists.infradead.org
+References: <20220630090157.29486-1-xiangsheng.hou@mediatek.com>
+ <20220630090157.29486-2-xiangsheng.hou@mediatek.com>
+ <24bf3c0f-7070-0bcd-2fae-9fe086d146b2@gmail.com>
+ <e4a50d4e165887ac4741c0b8d68470dc2f060655.camel@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <e4a50d4e165887ac4741c0b8d68470dc2f060655.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 07, 2022 at 07:47:57AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX8MP NoC node to make the interconnect i.MX8MP driver could work.
-> Currently dynamic frequency scaling of the i.MX8MP NoC has not been
-> supported, only NoC initial settings are configured by interconnect
-> driver.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
-> 
-> V4:
->  Georgi has merged the V3 driver and bindings patches. So only resend
->  this patch. Per Georgi's comments:
->   - Drop syscon from compatbile
->   - Drop the header inclusion
-> 
->  Seems I not see this patch in patchwork or mailist, maybe sent failed.
->  So gave a resend of V4.
-> 
->  V3:
->   https://lore.kernel.org/linux-arm-kernel/20220703091132.1412063-1-peng.fan@oss.nxp.com/
-> 
->  I not list the full change log, since this is only a minor patch
-> 
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index eb2d516278eb..42ed8ee08548 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1019,6 +1019,27 @@ eqos: ethernet@30bf0000 {
->  			};
->  		};
->  
-> +		noc: interconnect@32700000 {
-> +			compatible = "fsl,imx8mp-noc", "fsl,imx8m-noc";
-> +			reg = <0x32700000 0x100000>;
-> +			clocks = <&clk IMX8MP_CLK_NOC>;
-> +			#interconnect-cells = <1>;
-> +
 
-This newline is not really necessary.  Dropped it and applied patch.
 
-Shawn
-
-> +			operating-points-v2 = <&noc_opp_table>;
-> +
-> +			noc_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-200M {
-> +					opp-hz = /bits/ 64 <200000000>;
-> +				};
-> +
-> +				opp-1000M {
-> +					opp-hz = /bits/ 64 <1000000000>;
-> +				};
-> +			};
-> +		};
-> +
->  		aips4: bus@32c00000 {
->  			compatible = "fsl,aips-bus", "simple-bus";
->  			reg = <0x32c00000 0x400000>;
-> -- 
-> 2.25.1
+On 08/07/2022 03:40, xiangsheng.hou wrote:
+> Hi Matthias,
 > 
+> On Thu, 2022-07-07 at 16:43 +0200, Matthias Brugger wrote:
+>>
+>> On 30/06/2022 11:01, Xiangsheng Hou wrote:
+>>> Add axi clock since the driver change to DMA mode which need
+>>> to enable axi clock. And change spi clock to 26MHz as default.
+>>>
+>>> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+>>
+>> Applied, thanks!
+>>
+> I will send a new patch v3 since there need a change in [PATCH v2 2/2]
+> by review.
+> 
+
+Thanks from letting me know. From what I can see, 1/2 in v3 did not change, so 
+as I already applied it, you could have dropped it from the series.
+
+Please correct me if I'm wrong.
+
+Best regards,
+Matthias
