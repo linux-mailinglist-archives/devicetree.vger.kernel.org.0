@@ -2,123 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86F3E56BF29
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 20:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FF3F56BFE9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 20:36:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238431AbiGHREI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 13:04:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47774 "EHLO
+        id S238523AbiGHRpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 13:45:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238171AbiGHREI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 13:04:08 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F6795A2E4
-        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 10:04:07 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id g39-20020a05600c4ca700b003a03ac7d540so1497584wmp.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 10:04:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2HBuSahyHNMvF03MJu9v5fOOMawQITXHXQRHirstyvY=;
-        b=hwRE+J5UtH0ki5YLkiBGNPWWtNX6TKj+8IzXvu9zCaoC38fW/DT1+lJjWiUx5eizKv
-         lwVmTj4/uY/I29LhR/3am0qkIuhVmwqyP/4ThIAPNCnxkZExoeTZd+UEVv3xrk/Sh9OV
-         pVCdBxBtg2YGIY10+bv3d6/45j4y+vph7QUSMTgLtJFv8z+BbgJ0KfqfmXeIBNKs8AoI
-         UJIFR3kVYfV3fuAKjXZmgJ2lem3n/KVNK6okvnt0B+/vigYBFAHLrdDKa/xqkf+7+gDR
-         eM9JgP1KkOJcVcKdmHHLNO9Gl6T4kjanccRrUUgcYYrnv/ej4xrPKUiryeuUXAxmQ0ee
-         yauA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2HBuSahyHNMvF03MJu9v5fOOMawQITXHXQRHirstyvY=;
-        b=wXZbphroVkQAjmR905rRORYpwZIcxF9mIZW5cTxYu66RGXdc0tbGrItu1qwiaI5PYl
-         Zgr8zWBb/kxZaEahc44PDuNbu69Q5bzjIFiY3rIPgliwSPw8jwGwB8h/SroYHbxAtNqF
-         B2/GfK3cUKWnmOzXXa13n5kAd6tqSmmkiU0Y2Xv1dilgCaMA+eiZPXjaSBoXwdzDszDx
-         +lsGZYuVfdhd/ytfhImX00l47hC1FAfpkqF51OS2Sw1GAtvoxxk4TwGt+8WtJJWGLjj0
-         rtgZvu6r2BkSoXGRC32JY6Jk4nqVFU0ytLt2ckR+dmFPUCjrnSnevZj7KcptEQQ0YqZ0
-         uyIA==
-X-Gm-Message-State: AJIora8zt4cZ9IP3DsKexTAa4RlMH4AkQsu9m8PW860wcsre3HcCtgTq
-        TNVay/wMRbdglMGzJAAKfLpITEmdLkz4zsdd
-X-Google-Smtp-Source: AGRyM1tZHhb1bv2++7AldaFjeq33dj7xyQovjRq+kPMM1e1IW3RGohQXv0i8r9DL4q+4dHdDx2coPA==
-X-Received: by 2002:a05:600c:1f19:b0:3a1:8fbf:f75c with SMTP id bd25-20020a05600c1f1900b003a18fbff75cmr819680wmb.47.1657299845949;
-        Fri, 08 Jul 2022 10:04:05 -0700 (PDT)
-Received: from rainbowdash.office.codethink.co.uk ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id n35-20020a05600c502300b003a2d0f0ccaesm2804821wmr.34.2022.07.08.10.04.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 10:04:05 -0700 (PDT)
-From:   Ben Dooks <ben.dooks@sifive.com>
-To:     devicetree@vger.kernel.org, frowand.list@gmail.com
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        Ben Dooks <ben.dooks@sifive.com>
-Subject: [PATCH] scripts/dtc: dma-ranges is a multiple of 3 cells
-Date:   Fri,  8 Jul 2022 18:03:59 +0100
-Message-Id: <20220708170359.270226-1-ben.dooks@sifive.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S238171AbiGHRpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 13:45:35 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E18636D560;
+        Fri,  8 Jul 2022 10:45:34 -0700 (PDT)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out2.suse.de (Postfix) with ESMTP id 900EF1FD67;
+        Fri,  8 Jul 2022 17:45:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1657302333; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=WTlnG+uuiCfvqn7xrHsgAyoZbypsgvBz1wNoT15Hvoo=;
+        b=UA2amvDCQQTEMgc+oMAIWAnW9q6WVAwIa/58NrUhwHFQiUdZ2luhs3NootKMBQGixPTVF7
+        JYttU9E5El22ptX+Zp2b5bkCYDiFbH2tZRODI2Pcam6rj1OVXYiuf7vydlAcOTOkVV0Ghr
+        M7RKsq80AZmG76a/d0tmGsUehzywJuo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1657302333;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=WTlnG+uuiCfvqn7xrHsgAyoZbypsgvBz1wNoT15Hvoo=;
+        b=vFAcpZMRjCSWaOrATDI77+P4vwFu5reaOBcx1bD9RQrcv7W4ttE3p6ZLJ4044r1wbkYvwN
+        qpOGccqeB4O7c0Bw==
+Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
+        by relay2.suse.de (Postfix) with ESMTP id BEE682C141;
+        Fri,  8 Jul 2022 17:45:32 +0000 (UTC)
+From:   Michal Suchanek <msuchanek@suse.de>
+To:     linux-sunxi@lists.linux.dev
+Cc:     Michal Suchanek <msuchanek@suse.de>,
+        Icenowy Zheng <icenowy@aosc.xyz>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: sunxi: Fix SPI NOR campatible on Orange Pi Zero
+Date:   Fri,  8 Jul 2022 19:45:29 +0200
+Message-Id: <20220708174529.3360-1-msuchanek@suse.de>
+X-Mailer: git-send-email 2.35.3
+In-Reply-To: <10106175.nUPlyArG6x@jernej-laptop>
+References: <10106175.nUPlyArG6x@jernej-laptop>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dma-ranges property is a set 3 cells of #address-size, so don't treat
-it like the ranges property when generating warnings.
+The device tree should include generic "jedec,spi-nor" compatible, and a
+manufacturer-specific one.
+The macronix part is what is shipped on the boards that come with a
+flash chip.
 
-Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+Fixes: 45857ae95478 ("ARM: dts: orange-pi-zero: add node for SPI NOR")
+Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- scripts/dtc/checks.c | 31 ++++++++++++++++++++++++++++++-
- 1 file changed, 30 insertions(+), 1 deletion(-)
+v2: drop winbond compatible
+v3: reword commit message
+---
+ arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
-index 781ba1129a8e..791b93e8e02a 100644
---- a/scripts/dtc/checks.c
-+++ b/scripts/dtc/checks.c
-@@ -823,7 +823,36 @@ static void check_ranges_format(struct check *c, struct dt_info *dti,
- 	}
- }
- WARNING(ranges_format, check_ranges_format, "ranges", &addr_size_cells);
--WARNING(dma_ranges_format, check_ranges_format, "dma-ranges", &addr_size_cells);
-+
-+static void check_dma_ranges_format(struct check *c, struct dt_info *dti,
-+				struct node *node)
-+{
-+	struct property *prop;
-+	int c_size_cells, p_size_cells, entrylen;
-+	const char *ranges = c->data;
-+
-+	prop = get_property(node, ranges);
-+	if (!prop)
-+		return;
-+
-+	if (!node->parent) {
-+		FAIL_PROP(c, dti, node, prop, "Root node has a \"%s\" property",
-+			  ranges);
-+		return;
-+	}
-+
-+	c_size_cells = node_size_cells(node);
-+	p_size_cells = node_size_cells(node->parent);
-+	entrylen = (p_size_cells + 2 * c_size_cells) * sizeof(cell_t);
-+
-+	if (!is_multiple_of(prop->val.len, entrylen)) {
-+		FAIL_PROP(c, dti, node, prop, "\"%s\" property has invalid length (%d bytes) "
-+			  "(parent #address-cells == %d, "
-+			  "child #address-cells == %d)", ranges, prop->val.len,
-+			  p_size_cells, c_size_cells);
-+	}
-+}
-+WARNING(dma_ranges_format, check_dma_ranges_format, "dma-ranges", &addr_size_cells);
- 
- static const struct bus_type pci_bus = {
- 	.name = "PCI",
+diff --git a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
+index f19ed981da9d..3706216ffb40 100644
+--- a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
++++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
+@@ -169,7 +169,7 @@ &spi0 {
+ 	flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "mxicy,mx25l1606e", "winbond,w25q128";
++		compatible = "mxicy,mx25l1606e", "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <40000000>;
+ 	};
 -- 
-2.35.1
+2.35.3
 
