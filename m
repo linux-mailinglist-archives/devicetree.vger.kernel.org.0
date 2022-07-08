@@ -2,362 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6EA656B85D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 13:24:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39DDD56B86C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 13:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237982AbiGHLYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 07:24:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50614 "EHLO
+        id S237684AbiGHLZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 07:25:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237946AbiGHLYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 07:24:02 -0400
-Received: from mail-wm1-x34a.google.com (mail-wm1-x34a.google.com [IPv6:2a00:1450:4864:20::34a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19CF188F3C
-        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 04:24:01 -0700 (PDT)
-Received: by mail-wm1-x34a.google.com with SMTP id j19-20020a05600c191300b003a048196712so888967wmq.4
-        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 04:24:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=vULi/Z0Raq6CmQ5DV7fb3R+XxQv6oacTTtTkJRaLLY0=;
-        b=IXCJiA4CAL8UXPwHsdbTy/RAGhchxyI62Iama/mMIEfh8iNDh0sqlYjAYdC5B9cOso
-         YXXChsVh77Ip2UFjJFEUIO/Knrku6U+Od+qEtmp/Lp3sPKL2EAWBDJ4IDaUXlUzwXxYX
-         b6SIliM2ZXZPXp2zeuZtBmIDX+mEnBh+D+jQwHtp8YsSdKAaTALkJHBXoHhCVogZEeDm
-         JQHQOmftiuvk0vVGXIVsS4hGXvM96Q9ms6jeRymho3sciIPq47J+HfqwQ5gcq1CO6Uno
-         GwrxkYQfJm1j7TuX8/lNr0cvNKnxWMigaZIoqywiOvslxLyAWpzr+yVwKE22qed03Psf
-         39xQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=vULi/Z0Raq6CmQ5DV7fb3R+XxQv6oacTTtTkJRaLLY0=;
-        b=AQZzMR8AEN6nnS3aegGGGkS7Kk2NJIamApTCnnNMp5vmw6uJ/vjoi5Ag2vJw3vSKXH
-         /KNrlsgzsStCsHDFTDLKrLcZ7ZDoUSklAVtYR21ssmRpfckIE9PKx03nn6tK4mdFatHH
-         DfORtVxfJG/5SSQPArExVAjoXyKEexIF/wiZq3b8jnQSbQxE063QGno1IFgVof8DwHK/
-         pEsIY35coh496YY2g189Wa6ZIa+yrGyCOrwNoQvR4WRuZpNRWERYQ7gTU+UQcccwiA0s
-         12HKQXLR2ilP5xbT+9x2dAO5d6JU2UsqnuZL5uHMHtVIjcMsxLaLG7GUF39bZhhV+tm8
-         XzTg==
-X-Gm-Message-State: AJIora9/3qdz0Jxk2VuRaRf43qfl+MFcKlQcxmOKFwtn2tpF7yoTviQP
-        HniLAPm14kYTlc37xcYi9OJ+ktU+etSWDSsUqQE=
-X-Google-Smtp-Source: AGRyM1tuD2f0UT6zZsCCLrKeXZTPR4mLVBxWlljC0nnkXU35pflEc9MFPHcigV251GXKaih213rwEq2HtrepNeXya+k=
-X-Received: from seb.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:31bd])
- (user=sebastianene job=sendgmr) by 2002:a1c:6a07:0:b0:3a1:6e8f:f198 with SMTP
- id f7-20020a1c6a07000000b003a16e8ff198mr3047423wmc.102.1657279439745; Fri, 08
- Jul 2022 04:23:59 -0700 (PDT)
-Date:   Fri,  8 Jul 2022 11:23:45 +0000
-In-Reply-To: <20220708112344.1965947-1-sebastianene@google.com>
-Message-Id: <20220708112344.1965947-3-sebastianene@google.com>
-Mime-Version: 1.0
-References: <20220708112344.1965947-1-sebastianene@google.com>
-X-Mailer: git-send-email 2.37.0.rc0.161.g10f37bed90-goog
-Subject: [PATCH v11 2/2] misc: Add a mechanism to detect stalls on guest vCPUs
-From:   Sebastian Ene <sebastianene@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sebastian Ene <sebastianene@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S237594AbiGHLZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 07:25:26 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2093.outbound.protection.outlook.com [40.107.114.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90EEB88F38;
+        Fri,  8 Jul 2022 04:25:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l724cl/pWIFt2HQUDD0TDHUp6kyuyn5FQv/0cbBqFFSvHCIdVMNGixJN7+O1IHvs0Mw/2BzyZ80+dl6odgL4Sct2P9saOPQx1eQ3um99wP68AEKtF89oVZNkfG6Fdoau+On7pPQpQRYBNlw4F5AXGw8ggzVeaKq8IFpbxJhcBlfgOxd1zecnAMJtSny7Wx1tc91D/3S1SsgqUGbdRPBbTZ993a0t7m2uT8FKblzac3nfKNv0EZH1t3bRKp2cN8VYUQOnlHUAuimIV9abfpjOM+9rOUFphy7BdxpFGmU67cRRxsrgxv6o12rwXE4J6ul5Y2mmWDoliLi6geyoxyc8fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T059K0wYXKaVCCQb/4MRrB7MhJJLQfNLD1nydIB1cNA=;
+ b=MS5E03KFkKVUj60sE2VlEuCGZACsHeq1Gp+mcAaVIEy8et9eZPF291GvQ69Y2YAGBtHvypUlPWh9MJrJme4eGxCe8XGvTm1FKRUCRuiBT6FNDESSjebiUpCmfDCOhNRiZsCb9uODKdKPRfiBWNzURkYoNKq6aZBQew8St7lgpcDfrUavRptGfe7qriLUiO/Rb0Xl+HhcCxtOUztRG29vrDP7JhfIVHdWwJAt4UXj8jraEtQlGAdaE3+JNCEiiGf1ruGNOrNiC0PPB2SEcscu4OjCNgUVoorSs2FqZyLPYe3xXcU6ZU3jk3TM7Q1Ld8SXReDLbGsOgxMSHyZirH3RAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T059K0wYXKaVCCQb/4MRrB7MhJJLQfNLD1nydIB1cNA=;
+ b=iUyHgGTvCbwEma0BJKW7FDZRXH5EnRLc/VRu4iJJiuEPL1WVOmou+Ta1QqqH1/gpM+RGVy0EgrQuPqfhOU87sdH4c+RQD0ROmskdr6YVECdzrKvWD/pAzbIddR9NkVjWFpXEmy+tcX2eotprn8W1VSfTuybzlzSubDR+6dM84sE=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYCPR01MB9432.jpnprd01.prod.outlook.com
+ (2603:1096:400:198::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.17; Fri, 8 Jul
+ 2022 11:25:22 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::b596:754d:e595:bb2d]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::b596:754d:e595:bb2d%6]) with mapi id 15.20.5417.016; Fri, 8 Jul 2022
+ 11:25:22 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?B?S3J6eXN6dG9mIFdpbGN6ecWEc2tp?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v3 09/13] PCI: renesas: Add R-Car Gen4 PCIe Host support
+Thread-Topic: [PATCH v3 09/13] PCI: renesas: Add R-Car Gen4 PCIe Host support
+Thread-Index: AQHYjShAgQj55T6hG0WCdmXoYXKRcq1pm4MAgArExsA=
+Date:   Fri, 8 Jul 2022 11:25:22 +0000
+Message-ID: <TYBPR01MB534151AE3E0C042CC7C67793D8829@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20220701085420.870306-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220701085420.870306-10-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdVsOuLDbhBGrSO8r5i1WF+8scoLRNReyUW-tg4TQQL3gg@mail.gmail.com>
+In-Reply-To: <CAMuHMdVsOuLDbhBGrSO8r5i1WF+8scoLRNReyUW-tg4TQQL3gg@mail.gmail.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5cdd0f8f-245e-45c9-7bc9-08da60d48bf8
+x-ms-traffictypediagnostic: TYCPR01MB9432:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: RuH29TeP8W9NHkvx+XDrNp2CHMo1Z3PIT5ZV/erZGRJ9wGMvYy73ksB1QF2uQ7FmZGzyYSYgNoTBd0+XTNgiuV7sKv5S54mfDYdYK56ELvU1lCdP6QbIe55RwLH2NzQG4B74hNxWtnS+yG/jWAC8J80mu7/nkL4ubyXk/O7heKgapl1/1bv7VNAKyRIf813PYd+llRES/r2rip5mfZXERqgRniox79jx4YVfNsCSRX3Mccr9C5/jjS6CEFAJKx9khqP1KIBxv4VEP4Kwlin5R8lScSwL6/0Dp4dkXhfgVmWJkEq2l84J80u/gR8uw2Lf6/kX93HWxBmvtmAEJ9sd0SY9puWT36Sr2EyfEwsymnM60VJiDl90RO78En0e0moacNG6tlRX6SZ0EFvBhyHcrnZ8k2T22Cu915yLRkyU+fVYsPAy+ovdWuGEjzOANCfW4eow/+y3frY+Pl2FNWQxK6DkKHIsm+DJJQaqsDiL3yr7ebPckcYTLn/ks1MlgdZfz43CsnSBojbjgqDWu3ZK1VzVey4D0e7uW4BQQJedhYxPO/Y+TQgS+lfRxWUc9A+ktnKrDHJoHHLu7mZMrTryNwGc9J8cxHk3pUFxOtUGMcaIWT1fRcKyFfNKJxSMY9vuhXQFAdg9XxwIAF9y6agJY2ocg5GkTqoqOax7kKkT38N5Rl6O1/Jj7QLKSbpRdlvHsK7MuOSTVhzz3Ooyr4Xn11bwkFr0bKJruPNkuKNFGc0EUpPLYpywqjfv1z6ENvY1zoD8hZEod1iQR4cNSm5rpMuqjmRby/2viZcThp46Q4epQvMV/lp75NCI3Pw1tIfh
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(346002)(136003)(366004)(39860400002)(396003)(66946007)(66476007)(64756008)(55016003)(41300700001)(66446008)(76116006)(66556008)(478600001)(316002)(71200400001)(4326008)(8676002)(7696005)(6506007)(53546011)(38100700002)(186003)(6916009)(54906003)(8936002)(4744005)(38070700005)(5660300002)(33656002)(7416002)(86362001)(2906002)(52536014)(122000001)(9686003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NG50ZGwyUnpjNFNkWFFyZnY2alJGNkNWT3ZlVWFwVXZIZVZGV2hlTkNpc2Ur?=
+ =?utf-8?B?UGh4VjZJWXVubGltWjRsOEpDOS9rRXlvRFhFR0RtRDBGbmFGSmd1a0s4UVRO?=
+ =?utf-8?B?NHl0eVk3LytYTnhua3ZFbVZkT3h6Q2VnajhTVDhZRmZWRDNnQiswSEV0STNE?=
+ =?utf-8?B?WmNCN0g5Y1dFWkFPdmQ1clh2aWY0ZG45NDFEWHJkNldsWXVpQmdpaGlGVFVu?=
+ =?utf-8?B?WGtHTVJpM2dtK0owR0RpaVkxd0U5Z2lKbU1tNDhFQ05mUVFxS2hMb090RGxL?=
+ =?utf-8?B?QlUwTmRQeTVTaHBIZUQxNG8rNWJjTnEzUE90Rk90M2o2RWR1bWM3WmFPNSta?=
+ =?utf-8?B?TXgzSFY2VnRCNGl1ci9BaU9aT1NXNmhrenJpMFZhQ2t0RU9waVNvMFQ4UklV?=
+ =?utf-8?B?YXpPM0NFMUlLR2R2T0JuY0ZEb3h4YmxkOE9ZQTZzUm5mMXBPNFAwZzZoK2NX?=
+ =?utf-8?B?NlpOWC9jQTNVb3NwSERvY0hOdklVcFJucFRRRzV6bzhnb0h3c1JGcnd2eWtE?=
+ =?utf-8?B?eDFWbGRsTXZsdENLQjJ3Z3NCbHNwNExBZ1lTc3FzRHFRanVlaXBTNkduL0Zp?=
+ =?utf-8?B?dUpqRGthRUxlaVkraGJFelNCYVVTYkNiNmZTRGFONXNtb0Z4Nm1DQys5RzRU?=
+ =?utf-8?B?ZDRPR2hzQTlHbFA4M0xpRDZyOFpVV2FEdnNycEkxd0Uxb3NuTFdMR0xBV2Yx?=
+ =?utf-8?B?NnVtdjdmVHBFT2xiLzlvQXJJSjYzTTk4bCtJTVZnR3FFU2VpYzFpdW82NHdv?=
+ =?utf-8?B?MW81Qkhwb3B4R21VUUwzU0tpL2FBOUxubzlGN0dyWnhiajBYOUl0ZEMyS3c5?=
+ =?utf-8?B?cmJyTnh6V1J1UVRwS3BiR3lrOHhqTFRiM2RvMXZhU0RJWUNNajhrUDhiVC9o?=
+ =?utf-8?B?YXhmWkN5L1U5Q0xCQmU0RWs4aGR4V3ovaHpVOCs2SkF6WWs1MDJ2anc2b3Iv?=
+ =?utf-8?B?RVBFL2k3NWNpTEtsZWMwM2dEVmFOaWJBREJDMmF0c3lLdmsySlFGaHFSYnJm?=
+ =?utf-8?B?bGxlbTc5VkNUd3YxaGlTa3NsZEpYa3dmZ3hRUUJHVmZWUGpKaVVORmhpanB0?=
+ =?utf-8?B?ZGhPbndJWDJJdHVkM2Mwajh6cXVGUUZ6ZVpSa1dDZ3ZEMVpia2E0ZWVMNGpY?=
+ =?utf-8?B?SnJxUDczeGxJeXhKSDJmbzVQcDROV255WGpvSk51MHM0czdiR3VRekhDcDFs?=
+ =?utf-8?B?WnBYQmJtVXVjbUYyc00vVHlhV2NwNDJyUjF6Qkx2TFkxc2MrdmVwVlozSGJ3?=
+ =?utf-8?B?RkU1VTlHc0VnMmpnbWhSSTQ3bU9QVXQrTlVBWWl5WkRwS1pvUlpOUzFKTm93?=
+ =?utf-8?B?RE5DY2ZtK1MyNHE3ci9UOHFmVEJCRkcxSis1Vk0yQ2dFdkJDRWVSUDNBa214?=
+ =?utf-8?B?ZS9BakNhWlNhWTdWWFM2eTU2UXBYMU9tRnFieWN2TTI1NXhqUkg3amtuOTFW?=
+ =?utf-8?B?V2hzMnEzTnZ5UHRCRnVvSThSNGdmLzk4cEx2LzB2TVNpNUhvU0JOSEFqN29E?=
+ =?utf-8?B?dytlTUJWMitLclQzdkhrd0N1WDhkWjdBcDJiNWNEV2M1b1g4OEVta2xPVldK?=
+ =?utf-8?B?TzVMcWlWTHViY1VOU20zdWxPUE5abnhTSkkrK09OR25EZFIzQjBvL0luQkJz?=
+ =?utf-8?B?L211aGJHdlZxWDZuaDdBWjNaTmtYY0wrcDNpeU1JVWN3OCtsUnRXUlBlYnVv?=
+ =?utf-8?B?Q1QzMWNRcUNjSW5iMW9FMGtsc0N4RkhxaHgzb1krY1V4TWM4T2dsYnh6WEc3?=
+ =?utf-8?B?Q09IU29QQ1AxY0RNQ1dGM2dXK09zTDRPVXJyZHE1Rm9VM1VOV0Fic0o5MDFP?=
+ =?utf-8?B?NFFZK3pseTdKL3BaaDlmRW03T29SZGRaWnQyaVE2UGgyOE1zdzBwQjFOU3dN?=
+ =?utf-8?B?UzVtMnBuOEp0NExlLzhlM1EvSS9QOWNaeFZ1MTA5Ny9aVGR4Y2dLMDg3dDNo?=
+ =?utf-8?B?R0E0Z0NIOVdCT0MrbzdZTVAvZEVtd1pQZE5Oc2hITUxwNHAxNGRQMEk0bnZY?=
+ =?utf-8?B?d3Fwczl6b3gwVHRENCtWU2lPRm93dnk3TmJhdTZNVlphbDBiSWswa1pvbDFL?=
+ =?utf-8?B?MkQvd1YwVmFyaERRTWRZOFduZXNiYjAvUVFlWEJ2SG15OTNMSGgwUVAyak9G?=
+ =?utf-8?B?ZVlFaFdXelF6RkxGNGU2cjdHd1BBNzZQU0hORUNwdStsY254b1pLdzVRaC9M?=
+ =?utf-8?B?LzJTd2dodjVaVExla3pMUDZjd1FVa29KQXFENkFJR05KMS9DYVpHRnJvVXdU?=
+ =?utf-8?B?VHZjSVU4dmU1QmVvQmRKL2N5cWh3PT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5cdd0f8f-245e-45c9-7bc9-08da60d48bf8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2022 11:25:22.3684
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VHAcqbgZOcmkBu1qHNTxwi0at+45heUKTobJrWtwrK8WNjtklbKBvve8kkPrsTzB+CbapEuej4Hrw+SdQIrJvag2VCfLCCt5XkJFkxLNTsaZJY+sl7WO9GdtNhTXh9KY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB9432
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver creates per-cpu hrtimers which are required to do the
-periodic 'pet' operation. On a conventional watchdog-core driver, the
-userspace is responsible for delivering the 'pet' events by writing to
-the particular /dev/watchdogN node. In this case we require a strong
-thread affinity to be able to account for lost time on a per vCPU.
-
-This part of the driver is the 'frontend' which is reponsible for
-delivering the periodic 'pet' events, configuring the virtual peripheral
-and listening for cpu hotplug events. The other part of the driver is
-an emulated MMIO device which is part of the KVM virtual machine
-monitor and this part accounts for lost time by looking at the
-/proc/{}/task/{}/stat entries.
-
-Reviewed-by: Will Deacon <will@kernel.org>
-Signed-off-by: Sebastian Ene <sebastianene@google.com>
----
- drivers/misc/Kconfig               |  14 ++
- drivers/misc/Makefile              |   1 +
- drivers/misc/vcpu_stall_detector.c | 223 +++++++++++++++++++++++++++++
- 3 files changed, 238 insertions(+)
- create mode 100644 drivers/misc/vcpu_stall_detector.c
-
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 41d2bb0ae23a..d5b7610459f7 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -483,6 +483,20 @@ config OPEN_DICE
- 
- 	  If unsure, say N.
- 
-+config VCPU_STALL_DETECTOR
-+	tristate "Guest vCPU stall detector"
-+	select LOCKUP_DETECTOR
-+	depends on OF && HAS_IOMEM
-+	help
-+	  When this driver is bound inside a KVM guest, it will
-+	  periodically "pet" an MMIO stall detector device from each vCPU
-+	  and allow the host to detect vCPU stalls.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called vcpu_stall_detector.
-+
-+	  If you do not intend to run this kernel as a guest, say N.
-+
- source "drivers/misc/c2port/Kconfig"
- source "drivers/misc/eeprom/Kconfig"
- source "drivers/misc/cb710/Kconfig"
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 70e800e9127f..2be8542616dd 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -60,3 +60,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
- obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
- obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
- obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
-+obj-$(CONFIG_VCPU_STALL_DETECTOR)	+= vcpu_stall_detector.o
-\ No newline at end of file
-diff --git a/drivers/misc/vcpu_stall_detector.c b/drivers/misc/vcpu_stall_detector.c
-new file mode 100644
-index 000000000000..53b5506080e1
---- /dev/null
-+++ b/drivers/misc/vcpu_stall_detector.c
-@@ -0,0 +1,223 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// VCPU stall detector.
-+//  Copyright (C) Google, 2022
-+
-+#include <linux/cpu.h>
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+
-+#include <linux/device.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/nmi.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/param.h>
-+#include <linux/percpu.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#define VCPU_STALL_REG_STATUS		(0x00)
-+#define VCPU_STALL_REG_LOAD_CNT		(0x04)
-+#define VCPU_STALL_REG_CURRENT_CNT	(0x08)
-+#define VCPU_STALL_REG_CLOCK_FREQ_HZ	(0x0C)
-+#define VCPU_STALL_REG_LEN		(0x10)
-+
-+#define VCPU_STALL_DEFAULT_CLOCK_HZ	(10)
-+#define VCPU_STALL_MAX_CLOCK_HZ		(100)
-+#define VCPU_STALL_DEFAULT_TIMEOUT_SEC	(8)
-+#define VCPU_STALL_MAX_TIMEOUT_SEC	(600)
-+
-+struct vcpu_stall_detect_config {
-+	u32 clock_freq_hz;
-+	u32 stall_timeout_sec;
-+
-+	void __iomem *membase;
-+	struct platform_device *dev;
-+	enum cpuhp_state hp_online;
-+};
-+
-+struct vcpu_stall_priv {
-+	struct hrtimer vcpu_hrtimer;
-+	bool is_initialized;
-+};
-+
-+/* The vcpu stall configuration structure which applies to all the CPUs */
-+static struct vcpu_stall_detect_config vcpu_stall_config;
-+
-+#define vcpu_stall_reg_write(vcpu, reg, value)				\
-+	writel_relaxed((value),						\
-+		       (void __iomem *)(vcpu_stall_config.membase +	\
-+		       (vcpu) * VCPU_STALL_REG_LEN + (reg)))
-+
-+
-+static struct vcpu_stall_priv __percpu *vcpu_stall_detectors;
-+
-+static enum hrtimer_restart
-+vcpu_stall_detect_timer_fn(struct hrtimer *hrtimer)
-+{
-+	u32 ticks, ping_timeout_ms;
-+
-+	/* Reload the stall detector counter register every
-+	 * `ping_timeout_ms` to prevent the virtual device
-+	 * from decrementing it to 0. The virtual device decrements this
-+	 * register at 'clock_freq_hz' frequency.
-+	 */
-+	ticks = vcpu_stall_config.clock_freq_hz *
-+		vcpu_stall_config.stall_timeout_sec;
-+	vcpu_stall_reg_write(smp_processor_id(),
-+			     VCPU_STALL_REG_LOAD_CNT, ticks);
-+
-+	ping_timeout_ms = vcpu_stall_config.stall_timeout_sec *
-+			  MSEC_PER_SEC / 2;
-+	hrtimer_forward_now(hrtimer,
-+			    ms_to_ktime(ping_timeout_ms));
-+
-+	return HRTIMER_RESTART;
-+}
-+
-+static int start_stall_detector_cpu(unsigned int cpu)
-+{
-+	u32 ticks, ping_timeout_ms;
-+	struct vcpu_stall_priv *vcpu_stall_detector =
-+		this_cpu_ptr(vcpu_stall_detectors);
-+	struct hrtimer *vcpu_hrtimer = &vcpu_stall_detector->vcpu_hrtimer;
-+
-+	vcpu_stall_reg_write(cpu, VCPU_STALL_REG_CLOCK_FREQ_HZ,
-+			     vcpu_stall_config.clock_freq_hz);
-+
-+	/* Compute the number of ticks required for the stall detector
-+	 * counter register based on the internal clock frequency and the
-+	 * timeout value given from the device tree.
-+	 */
-+	ticks = vcpu_stall_config.clock_freq_hz *
-+		vcpu_stall_config.stall_timeout_sec;
-+	vcpu_stall_reg_write(cpu, VCPU_STALL_REG_LOAD_CNT, ticks);
-+
-+	/* Enable the internal clock and start the stall detector */
-+	vcpu_stall_reg_write(cpu, VCPU_STALL_REG_STATUS, 1);
-+
-+	/* Pet the stall detector at half of its expiration timeout
-+	 * to prevent spurious resets.
-+	 */
-+	ping_timeout_ms = vcpu_stall_config.stall_timeout_sec *
-+			  MSEC_PER_SEC / 2;
-+
-+	hrtimer_init(vcpu_hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-+	vcpu_hrtimer->function = vcpu_stall_detect_timer_fn;
-+	vcpu_stall_detector->is_initialized = true;
-+
-+	hrtimer_start(vcpu_hrtimer, ms_to_ktime(ping_timeout_ms),
-+		      HRTIMER_MODE_REL_PINNED);
-+
-+	return 0;
-+}
-+
-+static int stop_stall_detector_cpu(unsigned int cpu)
-+{
-+	struct vcpu_stall_priv *vcpu_stall_detector =
-+		per_cpu_ptr(vcpu_stall_detectors, cpu);
-+
-+	if (!vcpu_stall_detector->is_initialized)
-+		return 0;
-+
-+	/* Disable the stall detector for the current CPU */
-+	hrtimer_cancel(&vcpu_stall_detector->vcpu_hrtimer);
-+	vcpu_stall_reg_write(cpu, VCPU_STALL_REG_STATUS, 0);
-+	vcpu_stall_detector->is_initialized = false;
-+
-+	return 0;
-+}
-+
-+static int vcpu_stall_detect_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+	struct resource *r;
-+	void __iomem *membase;
-+	u32 clock_freq_hz = VCPU_STALL_DEFAULT_CLOCK_HZ;
-+	u32 stall_timeout_sec = VCPU_STALL_DEFAULT_TIMEOUT_SEC;
-+	struct device_node *np = pdev->dev.of_node;
-+
-+	vcpu_stall_detectors = devm_alloc_percpu(&pdev->dev,
-+						 typeof(struct vcpu_stall_priv));
-+	if (!vcpu_stall_detectors)
-+		return -ENOMEM;
-+
-+	membase = devm_platform_get_and_ioremap_resource(pdev, 0, &r);
-+	if (IS_ERR(membase)) {
-+		dev_err(&pdev->dev, "Failed to get memory resource\n");
-+		return PTR_ERR(membase);
-+	}
-+
-+	if (!of_property_read_u32(np, "clock-frequency", &clock_freq_hz)) {
-+		if (!(clock_freq_hz > 0 &&
-+		      clock_freq_hz < VCPU_STALL_MAX_CLOCK_HZ)) {
-+			dev_warn(&pdev->dev, "clk out of range\n");
-+			clock_freq_hz = VCPU_STALL_DEFAULT_CLOCK_HZ;
-+		}
-+	}
-+
-+	if (!of_property_read_u32(np, "timeout-sec", &stall_timeout_sec)) {
-+		if (!(stall_timeout_sec > 0 &&
-+		      stall_timeout_sec < VCPU_STALL_MAX_TIMEOUT_SEC)) {
-+			dev_warn(&pdev->dev, "stall timeout out of range\n");
-+			stall_timeout_sec = VCPU_STALL_DEFAULT_TIMEOUT_SEC;
-+		}
-+	}
-+
-+	vcpu_stall_config = (struct vcpu_stall_detect_config) {
-+		.membase		= membase,
-+		.clock_freq_hz		= clock_freq_hz,
-+		.stall_timeout_sec	= stall_timeout_sec
-+	};
-+
-+	ret = cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
-+				"virt/vcpu_stall_detector:online",
-+				start_stall_detector_cpu,
-+				stop_stall_detector_cpu);
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "failed to install cpu hotplug");
-+		goto err;
-+	}
-+
-+	vcpu_stall_config.hp_online = ret;
-+	return 0;
-+err:
-+	return ret;
-+}
-+
-+static int vcpu_stall_detect_remove(struct platform_device *pdev)
-+{
-+	int cpu;
-+
-+	cpuhp_remove_state(vcpu_stall_config.hp_online);
-+
-+	for_each_possible_cpu(cpu)
-+		stop_stall_detector_cpu(cpu);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id vcpu_stall_detect_of_match[] = {
-+	{ .compatible = "qemu,vcpu-stall-detector", },
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(of, vcpu_stall_detect_of_match);
-+
-+static struct platform_driver vcpu_stall_detect_driver = {
-+	.probe  = vcpu_stall_detect_probe,
-+	.remove = vcpu_stall_detect_remove,
-+	.driver = {
-+		.name           = KBUILD_MODNAME,
-+		.of_match_table = vcpu_stall_detect_of_match,
-+	},
-+};
-+
-+module_platform_driver(vcpu_stall_detect_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Sebastian Ene <sebastianene@google.com>");
-+MODULE_DESCRIPTION("VCPU stall detector");
--- 
-2.37.0.rc0.161.g10f37bed90-goog
-
+SGkgR2VlcnQtc2FuLA0KDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogRnJpZGF5
+LCBKdWx5IDEsIDIwMjIgMTE6NTggUE0NCj4gDQo+IEhpIFNoaW1vZGEtc2FuLA0KPiANCj4gT24g
+RnJpLCBKdWwgMSwgMjAyMiBhdCAxMDo1NSBBTSBZb3NoaWhpcm8gU2hpbW9kYQ0KPiA8eW9zaGlo
+aXJvLnNoaW1vZGEudWhAcmVuZXNhcy5jb20+IHdyb3RlOg0KPiA+IEFkZCBSLUNhciBHZW40IFBD
+SWUgSG9zdCBzdXBwb3J0LiBUaGlzIGNvbnRyb2xsZXIgaXMgYmFzZWQgb24NCj4gPiBTeW5vcHN5
+cyBEZXNpZ25XYXJlIFBDSWUuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBZb3NoaWhpcm8gU2hp
+bW9kYSA8eW9zaGloaXJvLnNoaW1vZGEudWhAcmVuZXNhcy5jb20+DQo+IA0KPiBUaGFua3MgZm9y
+IHlvdXIgcGF0Y2ghDQo+IA0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9kcml2ZXJzL3Bj
+aS9jb250cm9sbGVyL2R3Yy9wY2llLXJjYXItZ2VuNC1ob3N0LmMNCj4gDQo+ID4gK3N0YXRpYyBj
+b25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIHJjYXJfZ2VuNF9wY2llX29mX21hdGNoW10gPSB7DQo+
+ID4gKyAgICAgICB7IC5jb21wYXRpYmxlID0gInJlbmVzYXMscmNhci1nZW40LXBjaWUiLCB9LA0K
+PiA+ICsgICAgICAge30sDQo+IA0KPiBQbGVhc2UgZHJvcCB0aGUgY29tbWEsIGFzIG5vIG5ldyBl
+bnRyaWVzIG11c3QgYmUgYWRkZWQgYWZ0ZXIgdGhlDQo+IHNlbnRpbmVsLg0KDQpJJ2xsIGRyb3Ag
+aXQgYW5kIHBhdGNoIDEwLzEzLg0KDQpCZXN0IHJlZ2FyZHMsDQpZb3NoaWhpcm8gU2hpbW9kYQ0K
+DQo+ID4gK307DQo+IA0KPiBHcntvZXRqZSxlZXRpbmd9cywNCj4gDQo+ICAgICAgICAgICAgICAg
+ICAgICAgICAgIEdlZXJ0DQo+IA0KPiAtLQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUn
+cyBsb3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3JnDQo+IA0K
+PiBJbiBwZXJzb25hbCBjb252ZXJzYXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwgSSBjYWxs
+IG15c2VsZiBhIGhhY2tlci4gQnV0DQo+IHdoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5hbGlzdHMg
+SSBqdXN0IHNheSAicHJvZ3JhbW1lciIgb3Igc29tZXRoaW5nIGxpa2UgdGhhdC4NCj4gICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAtLSBMaW51cyBUb3J2YWxkcw0K
