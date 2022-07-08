@@ -2,155 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1734056B89C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 13:35:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CE3956B8C4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 13:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231533AbiGHLe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 07:34:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32772 "EHLO
+        id S237243AbiGHLob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 07:44:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238060AbiGHLeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 07:34:19 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2137.outbound.protection.outlook.com [40.107.113.137])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 652F8904E2;
-        Fri,  8 Jul 2022 04:34:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JA+uLvelUygy/vQUME1NapjDJ+AJsetqS/EmE9R8VDKFZv7iiyGY5f2UsljqdrrOBFjCQHZbZWT+sMFLmOv3R8GeyZnsZSsKr8m0Gp0KLDUldB8HrPGEdBlSPJOjQf9yZSommky+l8ZyvuY60k4/+xRszm5+Nhtjn5NOd7087ktFfpMNvvMPtmPgSwvmOVIlZskM+4CyQb94eWwUA/sB33bejSaBeZrENp9wn5RcUv89vXPJEytAg42/K7Uu4818XZc57H3ey8bfNSVad+wCeDGozbPQnMjhfZUEiCN3MuF7QUUDGNq2EdXRuNqH/+dcW95YLrE6bOjWl0eTlMTQWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=53ho6A6hHU9EwbaBnTLWI8JEsFTVR/d3YJg7OyH4wzE=;
- b=epmWlVKKg9xUow+upHJnWMFSuMfG85XW8zCjgl6cnKRIRlOblrt9U94ls3oyRklVmG7NuXQgRikY+WMwGjKdOpxB/qCZTuSakc3PmbzstHLE1Z5fcCRJ2PCYRM5b8kdYevKNccF3MmKCOUdKmS4Nt1PvNH4v6W0qR8dQUSwYU2R6iAkVQikISjeX5UCte4LfzVOWtnz6r15XNOCanbKN4NxcUVcvoaateTKkhdoi6XA1cPxcx56Gzic0gtV5tCtaU47W6+v1ymPKQzXHM92mhDR2mSTas9qKcUxAXQXsCvT0pnL6gcfAvjik95T0w1olCnRF8+pdYx3V/NQoojDBHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=53ho6A6hHU9EwbaBnTLWI8JEsFTVR/d3YJg7OyH4wzE=;
- b=dVMgWUdpvgO/jv5L/V3h1wvkSXMIUKB63SZHf43XFtpeXVrXIcmRF9uMVf1mxrGpCJ8pZAT/BaVeU4PwVdz/k/LRBT5A1dHd2sZ5SJTP0z73e3BFNgUjLfWW63XlutGq8kZTC6iCUh6sdkkcwIpyjh0LsKAQGzWbUXhiPJ0YFfI=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OSAPR01MB4772.jpnprd01.prod.outlook.com
- (2603:1096:604:65::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Fri, 8 Jul
- 2022 11:34:14 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::b596:754d:e595:bb2d]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::b596:754d:e595:bb2d%6]) with mapi id 15.20.5417.016; Fri, 8 Jul 2022
- 11:34:14 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-CC:     "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "magnus.damm@gmail.com" <magnus.damm@gmail.com>
-Subject: RE: [PATCH v3 00/13] treewide: PCI: renesas: Add R-Car Gen4 PCIe
- support
-Thread-Topic: [PATCH v3 00/13] treewide: PCI: renesas: Add R-Car Gen4 PCIe
- support
-Thread-Index: AQHYjSg/rpLWI1DEsEaZsQajRSMLyK10YIvQ
-Date:   Fri, 8 Jul 2022 11:34:14 +0000
-Message-ID: <TYBPR01MB53417EFE0A6DC5AF3D54A0F3D8829@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20220701085420.870306-1-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20220701085420.870306-1-yoshihiro.shimoda.uh@renesas.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 50cdd548-196a-4bbf-0719-08da60d5c933
-x-ms-traffictypediagnostic: OSAPR01MB4772:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: AZzEv+T7X/n3u1+bpmppn5n3ZNSjNZB2KFoJgRCa7pq4TzfUdjBQOs9PD+dEDE+ceTEy69XPnU7EGSb5mcSIh31n/jZM9S4Pr4DK3tPiz3vKoRchhEfO3FckyZ7poSl+HfRsaLio8JHYKP6SNf6VJBaps0OCOxJ0GAK8nQgExLhfgM2IYXKlfhY0KtSNwfNxNIhS1UNy9YGypx3Bl7mH/AgaJh37bZpXJz0DviIM/zmxcj5wergdd+Ke30BkcqEh029fBTghn9EZUMs8TvKjLEqdUXw0gISLZEIDjEFqg5kTs2DN1sFhX8xDdXzLRsjLXedtV8/rgfz496THztGZHMs2fuzoj0wt4TZmKMOUg4czBN9o8PIBble5Dm2aCdhkulNFwIG9NlEOjzYNZV6KoPSUO6ZqkwXbW1uHAgsMAUUi188yYx+vfDKC2J2gDJZuZQ9X2PvwfiT+OBrgqYbVt4xhDj8D/YSB57LKh3g6MNTP4/Op4VGcSD60xFYAGgK6qfV22omLil0uaUSA7Ja0fXf87tcnm82TBszmQLw2bt6HJGF3eycLaDKAMs9xCkZoguYj1eN16n9XWtfiUR4grDc8vSgzkVxNscJIlzsvlmOKh3oAuHBFSaEJPgDaCptwGbG4z+zB6sZPFKBQUahCZCcB3fS6njVd6cjh61HXGFxwJ95Wc6EcGAvX/hOev4iVyZ/uJP/a1oYGlZ3q4MCemYZ1CFeoLa5siQkmXBBebQKM0U7Wtq4e3McM66lWhJfjqk7foDY/T10b5p/G/E1ScPwlhSmWf1I1rDONF4flMYckJQNGvDo/Wa455vJqv3ek+NUml0tvvIFtOSVqqKe/0q+PkhriyUhncB7syZhVVM56zz5Yf/0zcpk299Mpv+tI7NhfBVRBjV+6fIQCSpZ7PQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(376002)(366004)(396003)(136003)(39860400002)(66476007)(76116006)(316002)(66946007)(66556008)(8676002)(4326008)(66446008)(64756008)(8936002)(5660300002)(6862004)(52536014)(478600001)(38070700005)(86362001)(9686003)(966005)(122000001)(6506007)(7696005)(186003)(71200400001)(41300700001)(2906002)(38100700002)(4744005)(55016003)(7416002)(6200100001)(54906003)(33656002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?WnajW5zQSjH29JPgbCR0MWPlHzF4FfsTVVoIGGbdRg5g+8ABANysNOWeeiz2?=
- =?us-ascii?Q?JXRHaZaHY/TWGVNGKkDBS4cpdZTINezt0qwoa2TvDFBRKigh4uAGn6ItJIe/?=
- =?us-ascii?Q?o5l1Ss9PGoE5LwG5B4J9OoB/UxhWlCquTwtuzeK9K7x6Jb0TvtS500KI3GF/?=
- =?us-ascii?Q?RoJ/b7WwIRS9sPL1mnF2cf83Q6shcJIGXGF3j7+pOm5VCsth/BTEmPtG5v7C?=
- =?us-ascii?Q?RZpy6Fwp4Dk01h0Wu3ozheBHVlej8t05IRZo6OSe1ldstRgk+dKqV15GRcYs?=
- =?us-ascii?Q?w9AHm2Zks05on15kRvWRmdY2iOaWPCvSJM4jWVwobP9jI0FkSoRJkva9q3s7?=
- =?us-ascii?Q?iSk8rnPixxVLX0+SNBhu0Lhg8mYwlD2HzOgaBbsmhYNZENo6shmaMZ1V65C9?=
- =?us-ascii?Q?u1UbFg1Gn4PRJBVPfG1aK+aqMxW0PsDfgg1M5gt1BUQfisGgWpjy0BJf7V2G?=
- =?us-ascii?Q?XEmF8p0N+dX3br7i2cVdwERrCBRrHF3CXxw5nRAPEGfKx9xDUlTzxxdkj0pi?=
- =?us-ascii?Q?WnJJnK2TAm5jJSfQgVC4/hz/Qe4NN8qEeQGNDWlmAPAbQXpJLE9cAUVKqPJZ?=
- =?us-ascii?Q?I8kW+fkf604AOW6lSP5HoRkR1+Mh4BGXQxm+73BeXOPEq53avcRmWEdzETV1?=
- =?us-ascii?Q?3UboxSFF5fJGGu2AL9OnDNJcA4xCmOf2f2frZ7n2OAl7pch0dubv6bIks1/w?=
- =?us-ascii?Q?bXVdbs+r9ldZ+9hVMtfmM6V0vswxnrDbRtn4+5UgfIDIEdADvn7Wy9DXaQmO?=
- =?us-ascii?Q?QLI8m7juGYvuhBqzV+p604fJ90vv+J5aJuMGNvgQHtdTvmFXTK9D3gCH39Vy?=
- =?us-ascii?Q?NDq5e3xkRzQ8cAlhwwoK/P2yepXBoxiW6NLfIWOcDAnxMWjitKcJrwgk3yPs?=
- =?us-ascii?Q?w4n4tLIGdUD9ZKPwQfy501BCsW1jxo0qYpwvYkw3V2a/4czCoXAdw9SwCEVl?=
- =?us-ascii?Q?YeoMklyHNTGOoKSYlYgvBQjpNidXK3Ch6gRmagTnLFmd91N1Ct9GsX9w0B6I?=
- =?us-ascii?Q?jNuPRsgaX93NH+iFX7HAwOo0Vo/SfH4VzPF5N26k3MmWWJ8cqia5gfOCFSXx?=
- =?us-ascii?Q?+cl/LUGymqiFIFHwqxnrXMGEuByfl0+5KZTGrHPvzg/GF56tkpB9Zu8mp9px?=
- =?us-ascii?Q?QYK0ERxkz8HmkvD9iTm2ckVKB4xkH//ZyZuR2WiKmJzRXlIVv7zQYILQ1Qex?=
- =?us-ascii?Q?9JFYilU8BdkA43ZNKWnasVQXDmS0gFTwJl7GujejV6JPmgsrIbwJ6Vthtv+A?=
- =?us-ascii?Q?2fOmAyFXV0hgCSZhTBAoeWtw35KQzyxrTw2r8ef/3mafuquII7SA49/BSlKm?=
- =?us-ascii?Q?fj+bP429846KiMHL714wEym+PjlmtHc376HnTt69rW7RrHKPvfpkGSAnOGIH?=
- =?us-ascii?Q?YbHx6IbYacyvCAlywKixT5kPGihrG2SUJuvZKVRGFBwovP4eahGWpSVvcXqx?=
- =?us-ascii?Q?UTdUZVlygYbZg9k/OLE2zkQ69eu0TeOJtbaVSLGr3I3NOkVqIVChjU3XzkR6?=
- =?us-ascii?Q?7GStSixJRDJGPo3HpfwZrsTri7xJwoIB7TTMcYODyTecTdZjX7NCfuby1+ZE?=
- =?us-ascii?Q?XJd9ZYYxXEqmFkoPWGouiB9Rwgf1oV9azJLYomFiB+i++vLLe1woCrFH/Vkw?=
- =?us-ascii?Q?acDfP5030Ty3pC9twt7o51d+wdmaqQqd1e8sR35Vf/QFJJi2E30KlmDbl0HM?=
- =?us-ascii?Q?2PD9og=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S237210AbiGHLoa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 07:44:30 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4E727D1EF;
+        Fri,  8 Jul 2022 04:44:28 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id a15so23294194pfv.13;
+        Fri, 08 Jul 2022 04:44:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VPrRxa68FujbOyWIy+nbWKmDhFvpvdqmf349Td24hyY=;
+        b=WEsYsejYv/eOe/XvAvjN743Nd3qsu0ZtlRGueCuwPM/IygoqTI12LrJvxy4zO9lL3u
+         OloQijFEx9EjQM4oFd3xPNLYSlON3ytbLgnWMosygC6Ek8Szia4W8QX/ZkqDt9/zcXzU
+         Z3kqPx7nF4zIUlRBQsncXvdxx1OTlf2BMbxd5wFfRB70Xj99V9xV2dY2tB3/27DNAna5
+         IhrqAvKGOWPteVDBCv+vvYC9Fh/xVZhsSbV0hHZmXy3hPYRrJc+Vokt0GtTYTYn8Cwm/
+         X8OH+l8NhyuhydJSDkkvf1PSK9sWy+Dx7/sIxyx4DmR/Gs9w7AuWUrtYkIb+p0Ek2FJQ
+         KMZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=VPrRxa68FujbOyWIy+nbWKmDhFvpvdqmf349Td24hyY=;
+        b=BUXn2Lt0eTRKb+zchw0dsWVsrU+oZfYymXPPsbQUZ4PxKYjgXo08NTS+9MWRh7Im3y
+         qtHT3Qjll8kYaHw5fhGOWEWpaTR6oHy6ttbKEH+R9Z0D7JLV+F9ib9oMea9WjkYa69RZ
+         zboMBX7hcWiK7RPRMa3/PMPvkAJdiGI8fMxlvrEtDSQaTvmTelsGYlRkDlN/yEfHQi3W
+         GTGdcezPrSH8IUZfjO2wqH+O2hoc+V1QcqoWypLC/Z7GteMIQPoHcreh5Ng744FSg3xm
+         K9q5FAoyahuOiG8Mq63h3z42IoSh1sMaq70jBwZk+M9QOBoqHFJSoks5E2tY8NdM8gwQ
+         Ck2A==
+X-Gm-Message-State: AJIora/WkTmG2MO3ma6MsDSzMEUUjxr3Ld5rt+5qpy6x1GrYYx2k9mhy
+        6vZIs1MG476Xfy5TmpJhy1s=
+X-Google-Smtp-Source: AGRyM1tf3kmLSQJLfrcJN4WDoHVHwhoH/ShT7xyCk2GLhMD7iDPqJtdeLKao2b3TuvTuWxnDCm0peQ==
+X-Received: by 2002:a63:1a26:0:b0:412:434a:48fc with SMTP id a38-20020a631a26000000b00412434a48fcmr2915090pga.623.1657280668060;
+        Fri, 08 Jul 2022 04:44:28 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x3-20020aa78f03000000b005289de8abe2sm2503646pfr.85.2022.07.08.04.44.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Jul 2022 04:44:27 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 8 Jul 2022 04:44:25 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Isaac True <isaac.true@canonical.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, wim@linux-watchdog.org
+Subject: Re: [PATCH 2/2] watchdog: gpio: add configurable minimum interval
+Message-ID: <20220708114425.GA2164221@roeck-us.net>
+References: <20220629110626.2158127-1-isaac.true@canonical.com>
+ <20220629110626.2158127-2-isaac.true@canonical.com>
+ <20220701171829.GA1149706-robh@kernel.org>
+ <0d045bb8-a519-39d4-17fa-123f90969bd9@roeck-us.net>
+ <CALkPoPYKNxAeP6HM1cMh1zzW6jw4fktCp42b7+79Qf8DVJis-w@mail.gmail.com>
+ <20220705195614.GA2503171-robh@kernel.org>
+ <CALkPoPY49PGNk84spUF3BesdZoUFpq++D1NYd_1ouT2Cv4wDYQ@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50cdd548-196a-4bbf-0719-08da60d5c933
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2022 11:34:14.5742
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3iZ/ImaikXLgAr/BwwtTyH3U+nqJKaIwYyWDZZid1c4Zp8AJC1tQ3AQbFBCDij21lmGLu1iJIXs39MjbNO21WipIIg/MNLVq/MYw0ED9KhMFKbXbeGPL9sAoRe846IpK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB4772
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CALkPoPY49PGNk84spUF3BesdZoUFpq++D1NYd_1ouT2Cv4wDYQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Jul 07, 2022 at 11:00:45AM +0200, Isaac True wrote:
+> On Tue, 5 Jul 2022 at 21:56, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, Jul 04, 2022 at 01:05:04PM +0200, Isaac True wrote:
+> > > On Fri, 1 Jul 2022 at 19:48, Guenter Roeck <linux@roeck-us.net> wrote:
+> > > >
+> > > > On 7/1/22 10:18, Rob Herring wrote:
+> > > > > On Wed, Jun 29, 2022 at 01:06:26PM +0200, Isaac True wrote:
+> > > > >> Add the "min_hw_margin_ms" parameter to gpio_wdt devices, allowing a
+> > > > >> minimum interval to be specified, stopping watchdog devices from being
+> > > > >> fed too quickly if they require a certain interval between feeds.
+> > > > >
+> > > > > I assume there is some real platform with a real problem you are trying
+> > > > > to solve? Details please.
+> > > > >
+> > > >
+> > > > Agreed, this should be explained in more detail.
+> > >
+> > > Yes this is a real platform using a TI TPS3850 watchdog chip. With
+> > > this chip you can configure a "window" which can detect early faults
+> > > (i.e. too frequent) in addition to the standard watchdog features. I
+> > > needed to add this minimum timeout to avoid watchdog resets in
+> > > situations such as where first U-Boot and then the Linux kernel feed
+> > > the watchdog with too short of an interval between them, or when
+> > > systemd was configured to use the watchdog device and was feeding it
+> > > too soon after taking over from the kernel.
+> > >
+> > > > > Can you just hardcode some min? Maybe 10% of the max or something. Is
+> > > > > there a downside to a larger than necessary min?
+> > > > >
+> > > >
+> > > > That would result in extra overhead in the watchdog core which would not
+> > > > be required for all other hardware using this driver. I'd rather avoid that.
+> > > >
+> > >
+> > > In the case of the TI TPS3850, the minimum timeout is configurable, so
+> > > I didn't want to add a hard-coded value to the driver.
+> > >
+> > > > > Wouldn't be better to fix this without requiring a DT change and that
+> > > > > could work on stable kernels if needed.
+> > > > >
+> > > >
+> > > > Presumably that is some new hardware. Most of the watchdog drivers
+> > > > needing this value can derive it from the compatible property. The
+> > > > gpio watchdog driver is a bit different since it is supposed to work
+> > > > on a variety of hardware using gpio pins for watchdog control.
+> > > >
+> > >
+> > > Yes this is new hardware. This use case is also not very common as
+> > > most watchdog chips don't have this window function or a minimum
+> > > interval, at least in my experience, so I did not want to make it the
+> > > default for everything.
+> >
+> > Okay. However the existing property you copied has 2 problems. It uses
+> > underscores rather than hypens and doesn't use a standard unit suffix.
+> > So 'min-hw-margin-ms'.
+> >
+> > Though maybe a new property instead:
+> >
+> > timeout-range-ms = <min max>;
+> >
+> > That's somewhat aligned to 'timeout-sec', and IMO, clearer meaning than
+> > 'hw margin'.
+> >
+> > Rob
+> 
+> I agree that both the original property name and the new one aren't
+> great, but I didn't want to go changing the existing property for
+> everyone.  I could definitely add a new "timeout-range-ms" property -
+> should that be added in parallel to the original hw_margin_ms (i.e.
+> you can use one or the other), or completely replace the original?
 
-> From: Yoshihiro Shimoda, Sent: Friday, July 1, 2022 5:54 PM
->=20
-> Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
-> To support them, modify PCIe DesignWare common codes.
+I wonder how that made it in in the first place. Embarrassed ...
+of course it wasn't reviewed by a DT maintainer. I'd suggest to mark
+the old property as deprecated (if that is possible) and define
+the new one.
 
-I realized that Linux-next has some patches for dwc common code.
-Also, in-the-middle patches for dec common codes exist on the Linux-pci ML:
-
-[RESEND,v4,00/15] PCI: dwc: Add hw version and dma-ranges support
-https://patchwork.kernel.org/project/linux-pci/list/?series=3D653624
-
-[v3,00/17] PCI: dwc: Add generic resources and Baikal-T1 support
-https://patchwork.kernel.org/project/linux-pci/list/?series=3D649194&state=
-=3D*
-
-[v3,00/24] dmaengine: dw-edma: Add RP/EP local DMA controllers support
-https://patchwork.kernel.org/project/linux-dmaengine/list/?series=3D649204
-
-So, I'll rebase this patch series on them.
-
-Best regards,
-Yoshihiro Shimoda
-
+Guenter
