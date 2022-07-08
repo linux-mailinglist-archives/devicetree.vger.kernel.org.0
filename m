@@ -2,114 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7893756B841
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 13:17:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C9FB56B858
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 13:24:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237748AbiGHLQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 07:16:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46618 "EHLO
+        id S237965AbiGHLX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 07:23:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237372AbiGHLQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 07:16:30 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 963E188F39
-        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 04:16:29 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id o15so13293079pjh.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 04:16:29 -0700 (PDT)
+        with ESMTP id S237843AbiGHLX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 07:23:57 -0400
+Received: from mail-wr1-x449.google.com (mail-wr1-x449.google.com [IPv6:2a00:1450:4864:20::449])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 658598737B
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 04:23:56 -0700 (PDT)
+Received: by mail-wr1-x449.google.com with SMTP id m7-20020adfa3c7000000b0021d7ae39d1dso1696993wrb.12
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 04:23:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9pxRzC16JvI6XrHETjpEsWuC7ZOkDrDDxpQzeVesUkw=;
-        b=eC4c/Yv+vfc5m2n7yrsPt5XRidoT4flrlzisDPBjQ8IkCO0DNvX0S9OEoSIuuF9TEW
-         gAwRA5Rf/QMORx9k0v95txkHD1q6P5ctf5uzWp7Kt3obN85JTqGaN67tKx34gT4/dry/
-         Y7dhtGkw0j3hL/Ja+7jGu9o2fxengVmknMR4DD6lnzCEcqiagmRK/WHeApCXcfBbgKeI
-         xAOyUu2VbIKIVYq941ooyswxj5dcVh+W8cFD9Ocq+JrPB+PHVDFJw9FhgZBtBf5zxBoI
-         CrE0fYsII1Xag7Wu/MFA3BY+UklmhQKOD2ZTihXpytZkhzfNdNefOiP/qFjy+gh96Ztq
-         IlBQ==
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=mnKejCdshNN0Dmo2YAvyT6ckd8FDauFN2fL/+9frCl8=;
+        b=pekMrts+wxArWkuFEhjVDCEEOdk4vNDgqo9QHF6jbPYoSC5M8/7R8GrquZehUGjL0B
+         MNZApvAsBXa0QtmW7m9cHpWpKem4rQo2MOHSZlmI9ftd7QrGMuih4VedwtgUskAgF2xL
+         3NWeFpNzci3LS8GpH6gLtz0dtcAbgXGhOFZXNH6rFsvGTtY6K3HYWmCDJKGP9uX7iiAo
+         Z5JsANO8GE5BDfXL5CBP4/Q0I8oUQJT2IZgCWjGovadNSyDnFbnQtT9bBrMmzrqHd0o3
+         wp0N+SUcU2bXyi0TEdijdTd0ELqgZ8AXIGTWaRPIZt5m8AKcKNSVO0GIWFgofzR58zCW
+         KPdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9pxRzC16JvI6XrHETjpEsWuC7ZOkDrDDxpQzeVesUkw=;
-        b=mby5fozawCqxugMqcql9/lX9l8erVpxCkoWAtzAnnGTu6yXz0nLGu95/HKT+BbI9b4
-         7ClX/buFsEoAcKj/YtUnT32GMv2+xd2QsFbW6u+tNy5zPJt1T9f9q0pmT/oIVnExP9Ck
-         vvNiFKlEjAjxP6z+TqOGYe19IERF1M8rNXiFW1g1EtQlBcgF56wGSaKbsul3mX4mJ/Kn
-         h5ZqO8DR17gQEtmEEGrohBDA0olzH1FA26VDH0eTwAhkU0IcCpHA804at+MKFQbAowHy
-         YbglX5CK6ft3/72b4ChCM2h6+VVhoW6i9n4gDfhiKlqEuAFV5SNCGxkQ1XrQGaOI6Lom
-         XwLg==
-X-Gm-Message-State: AJIora+SZR2Z2t2jYJxrUaGzTSQsqHqPcz1bldaDcHvNgsmCzIPZEGP+
-        f8Dh5NB99ZNDRWc7oPutLajNwlXWVmPlWm5eSkf8ww==
-X-Google-Smtp-Source: AGRyM1tzpo2mOeF7iKxzvg+zpehl5CoBucS0kIZROW5vNZFZzjO+eWpTiehdFwSn/COt6UL7voTQBULfb/VRjzS3qz4=
-X-Received: by 2002:a17:903:185:b0:16a:6113:c01 with SMTP id
- z5-20020a170903018500b0016a61130c01mr3229508plg.113.1657278989095; Fri, 08
- Jul 2022 04:16:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220707115444.1431367-1-sumit.garg@linaro.org> <20220707142259.7rqbiuk2yztdt2ox@maple.lan>
-In-Reply-To: <20220707142259.7rqbiuk2yztdt2ox@maple.lan>
-From:   Sumit Garg <sumit.garg@linaro.org>
-Date:   Fri, 8 Jul 2022 16:46:18 +0530
-Message-ID: <CAFA6WYOME6zwDpDuZx1mjkn98K+RoMmKOPo+D8on3jxdr+7M6g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: qcs404: Fix incorrect USB PHYs assignment
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        shawn.guo@linaro.org, bryan.odonoghue@linaro.org,
-        nicolas.dechesne@linaro.org, mworsfold@impinj.com,
-        andrey.konovalov@linaro.org
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=mnKejCdshNN0Dmo2YAvyT6ckd8FDauFN2fL/+9frCl8=;
+        b=cPIDLt7tTVl/zc7nEDwsk+swZNbdofEN+1wfQypTY7XyGTmffT4ldsjUM5SaojbHIL
+         /osHpQ3gE9eED0aPxjzj/DklvHa47TclhZvHVO+s98YYdt8DN66pBqvNCM6zP3NbOStf
+         KH6M3VK5MIhmf5aJU3YfDTRYH+hidreJTAOkICyOXqwlEHW3AZncLqE1zPDcp+GHqxML
+         BqPFhlQHzydyCRDjyjmzxLOyBJJ7avsAbLPNMH5D4NmoeAd9nGGBWTjnJZYC5JMf+CD6
+         0w8hlUrzmqBVJBloqM1qMqufoyyF+vZulrO6eZApORtTnH9YhVRguizIAVHDL0Upf/F6
+         WgzA==
+X-Gm-Message-State: AJIora/CGGdw30hWiLl2ofwx+MaB8odaT6RlDZ3anPYvxDWFYqLcX03C
+        9WIAs0Yhyhx0kH0OL7R7RbPlgPgFkdZ34ys70Bg=
+X-Google-Smtp-Source: AGRyM1s/RnDXpum5oZRKKJm7fZvKMQqsLhRlQ8Xqp0r/cLrSv28xBMnvn1W9wG9KVTJI+iRVHLSHRi+gxLnvCZ92cjw=
+X-Received: from seb.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:31bd])
+ (user=sebastianene job=sendgmr) by 2002:a05:600c:3ac6:b0:3a1:95b6:3fc3 with
+ SMTP id d6-20020a05600c3ac600b003a195b63fc3mr10249273wms.57.1657279434940;
+ Fri, 08 Jul 2022 04:23:54 -0700 (PDT)
+Date:   Fri,  8 Jul 2022 11:23:43 +0000
+Message-Id: <20220708112344.1965947-1-sebastianene@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.37.0.rc0.161.g10f37bed90-goog
+Subject: [PATCH v11 0/2] Detect stalls on guest vCPUS
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sebastian Ene <sebastianene@google.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+Minor changes from v10 with some cosmetic fixes and DT values
+validation.
 
-On Thu, 7 Jul 2022 at 19:53, Daniel Thompson <daniel.thompson@linaro.org> wrote:
->
-> On Thu, Jul 07, 2022 at 05:24:44PM +0530, Sumit Garg wrote:
-> > This was a difficult inconsistency to be caught as both the USB PHYs were
-> > being enabled in the kernel and USB worked fine. But when I was trying to
-> > enable USB support in u-boot with all the required drivers ported, I
-> > couldn't get the same USB storage device enumerated in u-boot which was
-> > being enumerated fine by the kernel.
->
-> This is not really a description of the change. It is more like a
-> narrative about how you discovered and tested the problem (making it
-> hard work to read). If I understand correctly the current DT has the
-> PHYs setup backwards. This works but only by luck: as each USB HCI
-> comes up it configures the *other* controllers PHY which is enough
-> to make them happy. If, for any reason, we were disable one of the
-> controllers then both would stop working.
->
-> Perhaps kick off this description using something like the following
-> pattern[1].
->
->   Current code does (A), this has a problem when (B).
->   We can improve this doing (C), because (D).
->
+This adds a mechanism to detect stalls on the guest vCPUS by creating a
+per CPU hrtimer which periodically 'pets' the host backend driver.
+On a conventional watchdog-core driver, the userspace is responsible for
+delivering the 'pet' events by writing to the particular /dev/watchdogN node.
+In this case we require a strong thread affinity to be able to
+account for lost time on a per vCPU basis.
 
-Thanks for the reminder.
+This device driver acts as a soft lockup detector by relying on the host
+backend driver to measure the elapesed time between subsequent 'pet' events.
+If the elapsed time doesn't match an expected value, the backend driver
+decides that the guest vCPU is locked and resets the guest. The host
+backend driver takes into account the time that the guest is not
+running. The communication with the backend driver is done through MMIO
+and the register layout of the virtual watchdog is described as part of
+the backend driver changes.
 
-> I think everything in the paragraph above belongs in (D) (e.g. how you
-> know your patch is correct).
->
+The host backend driver is implemented as part of:
+https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
 
-I thought that was the most interesting bit while writing patch
-description but I agree with you that adding other bits will make the
-patch description complete.
+Changelog v11:
+ - verify the values from DT if they are in an expected range and
+   fallback to default values in case they are not.
+ - added Will's review-by tag
 
--Sumit
+Changelog v10:
+ - keep only the hrtimer and a flag in the per_cpu structure and move
+   the other fields in a separate config structure
+ - fix a potential race condition as pointed out by Will: the
+   driver remove(..) can race with the hotplug cpu notifiers
+ - replace alloc_percpu with devm_alloc_percpu and remove the free_percpu
+ - unregister the hotplug notifiers
+ - improve the Kconfig description and fix the license in the header
+   file
+ - add the review-by tag from Rob as the DT has not changed since v9
+ 
+Changelog v9:
+ - make the driver depend on CONFIG_OF
+ - remove the platform_(set|get)_drvdata calls and keep a per-cpu static
+   variable `vm_stall_detect` as suggested by Guenter on the (v8) series
+ - improve commit description and fix styling
 
->
-> Daniel.
->
->
-> [1] For the record, I didn't write this formulation... I stole it:
->     https://lore.kernel.org/all/20131111113218.GF15810@gmail.com/
+Sebastian Ene (2):
+  dt-bindings: vcpu_stall_detector: Add qemu,vcpu-stall-detector
+    compatible
+  misc: Add a mechanism to detect stalls on guest vCPUs
+
+ .../misc/qemu,vcpu-stall-detector.yaml        |  51 ++++
+ drivers/misc/Kconfig                          |  14 ++
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/vcpu_stall_detector.c            | 223 ++++++++++++++++++
+ 4 files changed, 289 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/qemu,vcpu-stall-detector.yaml
+ create mode 100644 drivers/misc/vcpu_stall_detector.c
+
+-- 
+2.37.0.rc0.161.g10f37bed90-goog
+
