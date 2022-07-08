@@ -2,116 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FFAD56C453
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38C1156C300
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238763AbiGHWXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 18:23:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47204 "EHLO
+        id S239872AbiGHWcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 18:32:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238190AbiGHWXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:23:06 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 497EDA2E75;
-        Fri,  8 Jul 2022 15:23:05 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id a15so187374pfv.13;
-        Fri, 08 Jul 2022 15:23:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=awbCX6D8TgaWVx4PaHvXISepNRKwfSLcno0uruq5CMU=;
-        b=Y8CUlZJ8uGgqajYbhGJtxEivYuxYsKb1Nj281kx9qT1nJmU8DzYGUmM+zXemnfOkL+
-         XickPc13iKeqjkDpzqC16OUWhXELLUqqaZoSujZfd0GGWBChnkX6Bkg6Xjo6TEuIYjpb
-         bPZ+GbqF16Zq5Xt8+ofsYrX6dYqD0wCK3JRvy9+bSSpZ4RWAeMrL/a3b8EphT+ksNKP2
-         TAAK3k2eQWC3ix0Sje6Hw3Dxin2bY2x86pe7pJzHEq9smxnMTPFC5PMhnKH4Amkp5Hn5
-         O0WRdYBIWjJ4MP2iqNMDVtJKbxVQgyxOQy/LbROys0upoP4SQNkHosHcq12tGGB9/PQl
-         iCtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=awbCX6D8TgaWVx4PaHvXISepNRKwfSLcno0uruq5CMU=;
-        b=1Hwd9daKeTSS4CInLBFTdqn5rciu9F0AMR8696unWwGZn1L4AEh0QVeqHnr2TDpcQu
-         e8CN5GgTR20PI/vNDwOU+0Gi7cSmbCmH7qBD3HClCIFXYWQnuVK20TkppkWUcx8+Rj+m
-         mwhtJjt0c2pa1sO6CM/rDYvR8Xn2pvG3A75x//qEnbKe0ehEyLGJQ8Lmhdz/D7RcCeQ0
-         6pnRE2DhYS0pBVyb5oPRVZFR4jCNrVvRVIbeh4Eort6hi8Y2b6IppN2qt3oITJXUvAVC
-         5K799LnKhV8LPkcqyw739EetU1ldO2uCMElwquKBmK+IMyoMH5ILUQq+clCQghN7tGgY
-         S7Kg==
-X-Gm-Message-State: AJIora+27mU1jbKVBSRU/IUr3XVvsB/2syZSMZRgSKeS1TrH1bk7X2qB
-        Xw3Y6RPsy3zaHyBEdvJguj7MTsM4UwQ=
-X-Google-Smtp-Source: AGRyM1siGJ1E9EAcQp1E2pold0DZlvsAKWPVZoikBzkCUpfVLjSu2NIH2s73fV+oSiW7yuDW/gsXYQ==
-X-Received: by 2002:a05:6a02:18b:b0:415:c9d:4e3c with SMTP id bj11-20020a056a02018b00b004150c9d4e3cmr5000142pgb.580.1657318984741;
-        Fri, 08 Jul 2022 15:23:04 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:9707:b37:49b0:77c2])
-        by smtp.gmail.com with ESMTPSA id l7-20020a170903244700b0016a33177d3csm21891pls.160.2022.07.08.15.23.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 15:23:03 -0700 (PDT)
-Date:   Fri, 8 Jul 2022 15:23:01 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RESEND PATCH v3 0/3] dt-bindings: input: gpio-keys: apply via
- DT tree
-Message-ID: <YsiuRbaFMa683H1Z@google.com>
-References: <20220705120356.94876-1-krzysztof.kozlowski@linaro.org>
- <CAL_Jsq+LepF_67SJUqQ5mUO-TZAd-46LB+aYE5rZmnmmwMg=bw@mail.gmail.com>
- <352f27e7-0da1-4a4a-83a4-ded370dfbd7f@linaro.org>
- <YsiVH41gCLeIMyd6@google.com>
- <20220708220507.GA1557227-robh@kernel.org>
+        with ESMTP id S239581AbiGHWcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:32:17 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8C213B458;
+        Fri,  8 Jul 2022 15:32:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657319537; x=1688855537;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pYUR5n3zSWGMe79Vz7YJD1vt8XQmHwETPJxWhHm8Fzs=;
+  b=TjoquACbpslTbS1yj2yyeior5vpHP5uG124AWyqVdFGE+TtcRKjCugUW
+   lGVGCfSjNYiLFwxgX3hSt46D1QhTLMegA/WOTqYnUgyBZFIEhBYDIXE9B
+   0OWdSUzGxJMXdogpJM/PP3AAJ3LJCuPvqwGNVtEOlxjJivs/eoDoIhD0u
+   WZgFZzpUJg+ob0mq7nRAV4Ue4Gl6le59sAMYRlEQtwxNtmSPb1h18UwYL
+   f7S5ofXpXTG5Uh7RXC8txm6UEZ7MOj+L7SiIy9Ox9LW2BfqtgAetooHTt
+   LYU+KP2o9+TAP4qDbomxs22ZVfU+w1l224+9O6mrTlahFf9blwCy0uYJJ
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10402"; a="346064522"
+X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; 
+   d="scan'208";a="346064522"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2022 15:32:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; 
+   d="scan'208";a="770919860"
+Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 08 Jul 2022 15:32:11 -0700
+Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o9wWA-000O0k-Oy;
+        Fri, 08 Jul 2022 22:32:10 +0000
+Date:   Sat, 9 Jul 2022 06:31:37 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Mia Lin <mimi05633@gmail.com>, avifishman70@gmail.com,
+        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, ctcchien@nuvoton.com,
+        KWLIU@nuvoton.com, YSCHU@nuvoton.com, KFTING@nuvoton.com,
+        JJLIU0@nuvoton.com, mylin1@nuvoton.com
+Cc:     kbuild-all@lists.01.org, openbmc@lists.ozlabs.org,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] RTC: nuvoton: Add NCT3018Y real time clock driver
+Message-ID: <202207090650.qVcM1Juo-lkp@intel.com>
+References: <20220707073054.3954-4-mimi05633@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220708220507.GA1557227-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220707073054.3954-4-mimi05633@gmail.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 08, 2022 at 04:05:07PM -0600, Rob Herring wrote:
-> On Fri, Jul 08, 2022 at 01:35:43PM -0700, Dmitry Torokhov wrote:
-> > Hi,
-> > 
-> > On Wed, Jul 06, 2022 at 08:30:54AM +0200, Krzysztof Kozlowski wrote:
-> > > On 05/07/2022 21:11, Rob Herring wrote:
-> > > > On Tue, Jul 5, 2022 at 6:04 AM Krzysztof Kozlowski
-> > > > <krzysztof.kozlowski@linaro.org> wrote:
-> > > >>
-> > > >> Hi Rob,
-> > > >>
-> > > >> Can you apply these directly? You already reviewed them, but I dropped
-> > > >> the tag so you will see them in Patchwork. It seems these won't go in
-> > > >> through input [1].
-> > > >>
-> > > >> [1] https://lore.kernel.org/all/c2c1cf0c-9462-9ba5-a297-70d13a063de1@linaro.org/
-> > > > 
-> > > > Will give Dmitry a few more days first before I take both series.
-> > > 
-> > > Then let's keep your Rb for entire patchset:
-> > > 
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > 
-> > I am sorry but what series/branch this series is based on? I tried
-> > applying but there are conflicts. The latest I have that is touching
-> > gpio-keys.yaml is:
-> > 
-> > 4fda8a2df83a dt-bindings: input: use generic node names
-> 
-> This one from me:
-> 
-> https://lore.kernel.org/all/20220608211207.2058487-1-robh@kernel.org/
+Hi Mia,
 
-Ah, I see, thank you. Applied the lot.
+Thank you for the patch! Yet something to improve:
 
+[auto build test ERROR on abelloni/rtc-next]
+[also build test ERROR on robh/for-next linus/master v5.19-rc5 next-20220708]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Mia-Lin/RTC-nuvoton-Add-nuvoton-real-time-clock-driver/20220707-153317
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20220709/202207090650.qVcM1Juo-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-3) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/028783fef7713ddc9f2d14a39f09741370f42e3c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Mia-Lin/RTC-nuvoton-Add-nuvoton-real-time-clock-driver/20220707-153317
+        git checkout 028783fef7713ddc9f2d14a39f09741370f42e3c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/rtc/rtc-nct3018y.c:553:23: error: unterminated argument list invoking macro "MODULE_AUTHOR"
+     553 | MODULE_LICENSE("GPL");
+         |                       ^
+>> drivers/rtc/rtc-nct3018y.c:551:1: error: expected '=', ',', ';', 'asm' or '__attribute__' at end of input
+     551 | MODULE_AUTHOR(("Mia Lin <mimi05633@gmail.com>");
+         | ^~~~~~~~~~~~~
+
+
+vim +/MODULE_AUTHOR +553 drivers/rtc/rtc-nct3018y.c
+
+   549	
+   550	MODULE_AUTHOR("Medad CChien <ctcchien@nuvoton.com>");
+ > 551	MODULE_AUTHOR(("Mia Lin <mimi05633@gmail.com>");
+   552	MODULE_DESCRIPTION("Nuvoton NCT3018Y RTC driver");
+ > 553	MODULE_LICENSE("GPL");
 
 -- 
-Dmitry
+0-DAY CI Kernel Test Service
+https://01.org/lkp
