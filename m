@@ -2,87 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6921756C282
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E2B956C205
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237414AbiGHWTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 18:19:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44408 "EHLO
+        id S237765AbiGHWUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 18:20:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237131AbiGHWTJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:19:09 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C24FA2E57
-        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 15:19:08 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id w83so356797oiw.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 15:19:08 -0700 (PDT)
+        with ESMTP id S237215AbiGHWUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:20:09 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55680A2E5B;
+        Fri,  8 Jul 2022 15:20:09 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id 23so95959pgc.8;
+        Fri, 08 Jul 2022 15:20:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9I0SFAT4qZWBXThBg4GWRJ3eliYr1SjPFU1PmBCQKjY=;
-        b=VT5J0T7E4pFKIRAbym9NqBOwcsZ9faKKxl5ZGxvq5TGos2qyJk3LYjB2971J4CVa7q
-         bLPNudve2kGhTXpCa75rp7oBZX35RA8MEt0gya95I2iP05ugUogw4lAvCB4mE1a3NLVP
-         WswMBJFw/By37sp4bLo3fDpEN9PLn7Otw8xGgqRwHs84DrAUVLORg3wNg+jnGhSsUVKc
-         BxXKgLq6zI4HEGoz98/5/3wRkIb7bCTV7DxooKoEeWVwbsDFRp+bw4yxSf5TIw+lsDiO
-         jpew4/bPbnk0SstHbXONoBvkEg6bQpFT/pA5pcNlOOhXHAhOifLyStFbUW7wStyZfjoB
-         Jqpg==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=0EIlqNvLm4emyzZjhw+3K6rBKNh5VIFKb+1G7bffK9I=;
+        b=ebV3ddL3/SV0MqeBPND0Kto4HpBVx99pC3mmEZrjds67/5dQoyBcw+H0ck+L4EARCg
+         BtmKz3vgExddcwFO41RAyetDosfU/bKQYwYBTmP00gpj8AyGMAFZgXrvB6+Gw3k051gN
+         YmXLfRPuUzxuyfLRjmVq4u6HsXSMoL3uu86F3I8zSYtVrNjiV5BKNww0PLMLn3Fc68L1
+         QdXfzC4mJ251GB0VXclaG5SbRAXsFq25wx04GZyE6VMS4G+sQmVDsgK9im3DKiGaE7Ar
+         gODnpTnHxdXd/crxRq2U0KdtUBJD9C73rCt36DI2iU/aOl5i/gj04fiZCvG4JGlgPr94
+         PghQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9I0SFAT4qZWBXThBg4GWRJ3eliYr1SjPFU1PmBCQKjY=;
-        b=6YkG4TOcl4YrzyktpvlF5ctw5/kjvM19+2c6qalTgtWYenTQ8k+6ZJ4qO0tPhqB3q8
-         WH+QUijpSu+xdPkJN4NH+YrGqxoPUI5H30NdKz5d2nE9oaUkIGvLgOjJZmeBhp+eDrnQ
-         ppWauYoCtL/lJ6WpCbRZjg87J0nLUqtt3Y7oKHt0UzC6YniZpv1PRtricPoQqiGNhorA
-         aQDw38Hgl4O54XOuz7AZgMT/SNQXy0SruqpEbMl+QVDZjqooY1xJHoclwkZAsQVSb9LP
-         MdVeO9KZhugVjt/QQgA5TEzVuT7Tv3bB2AIn8Nl7EG13W2cVtYny5O0IFmaC76SaN+m4
-         Gw5Q==
-X-Gm-Message-State: AJIora8NWsdxZzgfbPcDbj52T98cLyRKf3HyuPknYJ3kQkNg9yfeRYZr
-        PvlmH8isexiTTXDFgjEG4irrVQ==
-X-Google-Smtp-Source: AGRyM1vY05jMLlDztoin5TcFW2xwx7InCI2TyZLrvhdC2twO+c8imYn4lby5wgw/K6LsnUrNcZ6WIA==
-X-Received: by 2002:a05:6808:16a7:b0:2f9:39c4:c597 with SMTP id bb39-20020a05680816a700b002f939c4c597mr1144426oib.101.1657318747922;
-        Fri, 08 Jul 2022 15:19:07 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id y10-20020a9d518a000000b00616a2aa298asm48907otg.75.2022.07.08.15.19.06
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0EIlqNvLm4emyzZjhw+3K6rBKNh5VIFKb+1G7bffK9I=;
+        b=wBstAevSxQovs8AbcMl9sUpR/vDdfa57mrRGvZJ2Ks+/eYmiLHIgcTMVBvl63PV72C
+         d90HY25+jFCnkgWISxV0wJ9Q5c6xY2cGIYhxg9f1O8RY/tNMxi8FGHoAhPsOnAl+kkUV
+         JNkxZN7r0QJxSW9xHqXo5Qw322qaeNrnR2JwofoM8HUAlLep3REWxqTKM0Amx7+lR5if
+         lszcim7AJqR+cI+hMt1t8To7v7wf2y0yx45T+quSPc1qtInxT1AG8ZIr+fKL6JULw0VO
+         9FTVl5YbQytfwnkaIq+8Qx8xium/UFUcH04OKH9mTE0sW2G0+B7Lg0erSGF7wD8fQuS6
+         El5Q==
+X-Gm-Message-State: AJIora/LK9+2zC9xlqc+HrPoczTJPZC6K38Lzq+0yF39TAsEpSiPyY+c
+        gasZun29Ck1iklmX4HeGr94vbVcoFZ8=
+X-Google-Smtp-Source: AGRyM1v3G4TToMoO3KJm7CpBaZGZmipI+kGIQYaNAfaVb+AzOSrXF9HTDyi6eDJaXOJLHYWm5HhneA==
+X-Received: by 2002:a63:4042:0:b0:411:bbfe:e736 with SMTP id n63-20020a634042000000b00411bbfee736mr5121801pga.1.1657318808763;
+        Fri, 08 Jul 2022 15:20:08 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:9707:b37:49b0:77c2])
+        by smtp.gmail.com with ESMTPSA id t20-20020a62d154000000b0052850947cf8sm68358pfl.171.2022.07.08.15.20.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 15:19:07 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix usb_0 HS PHY ref clock
-Date:   Fri,  8 Jul 2022 17:19:03 -0500
-Message-Id: <165731872887.1018153.11340490580715781531.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220708072358.4583-1-johan+linaro@kernel.org>
-References: <20220708072358.4583-1-johan+linaro@kernel.org>
+        Fri, 08 Jul 2022 15:20:07 -0700 (PDT)
+Date:   Fri, 8 Jul 2022 15:20:04 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] dt-bindings: input: Common property clean-ups and
+ adc-keys conversion
+Message-ID: <YsitlMhIl/xHuiS+@google.com>
+References: <20220608211207.2058487-1-robh@kernel.org>
+ <20220628175137.GA694214-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220628175137.GA694214-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Jul 2022 09:23:58 +0200, Johan Hovold wrote:
-> Fix the usb_0 HS PHY reference clock which was mistakingly replaced with
-> the first usb_2 PHY clock.
+On Tue, Jun 28, 2022 at 11:51:37AM -0600, Rob Herring wrote:
+> On Wed, Jun 08, 2022 at 03:12:02PM -0600, Rob Herring wrote:
+> > This series refactors the common 'linux,code', 'linux,keycodes', and
+> > 'linux,input-type' properties defined in various binding schemas. As the
+> > properties are common, they should only have a single common schema type
+> > definition. Note that 'linux,input-value' was not included here as it is
+> > only used in 1 binding (gpio-keys).
+> > 
+> > The clean-ups are are result of the discussion on v1 of the adc-keys
+> > binding conversion[1].
+> > 
+> > Rob
+> > 
+> > [1] https://lore.kernel.org/all/20220606184243.1057145-1-robh@kernel.org/
+> > 
+> > 
+> > Rob Herring (5):
+> >   dt-bindings: input: Increase maximum keycode value to 0x2ff
+> >   dt-bindings: input: Centralize 'linux,code' definition
+> >   dt-bindings: input: Use common 'linux,keycodes' definition
+> >   dt-bindings: input: Centralize 'linux,input-type' definition
+> >   dt-bindings: input: Convert adc-keys to DT schema
 > 
-> 
+> Dmitry, Any comments on this?
 
-Applied, thanks!
+Sorry, applied the lot, thank you.
 
-[1/1] arm64: dts: qcom: sc8280xp: fix usb_0 HS PHY ref clock
-      commit: 43883cee061f46f47ccfd251a28c879f84832a7c
-
-Best regards,
 -- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+Dmitry
