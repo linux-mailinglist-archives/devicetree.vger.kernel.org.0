@@ -2,86 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3986E56C30D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA2D56C1D6
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:12:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238131AbiGHVAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 17:00:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52720 "EHLO
+        id S238368AbiGHVcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 17:32:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238305AbiGHVAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:00:51 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 595951128;
-        Fri,  8 Jul 2022 14:00:50 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id bh13so17359183pgb.4;
-        Fri, 08 Jul 2022 14:00:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=eiJSmomcbHamte6wVYKlfnPmeVECX+cd/OIOwALCfbs=;
-        b=Y7JXD9tKxLp/rIH8LwnmsaWTmblzBxuRwjNJQU9DzsYTLZXwkE9MkgSDH+BC66EzrE
-         92CJRClPfy1c0dgMzisTNKV3g1wf/wCzQ7rmtQE2es+Nxg1OiU9D9rOkeUulCL8qSe84
-         DE9AzAHPjmNc7jAjK94mUht/3RQMOI/vGe9/stlA3pFsDArGxByAo8FwYt59wRtSdTqe
-         B/oYaoQtHfgz01k3bd8QKmyhd3yFAAnEEK0QQPg5+TL7AP53RHCCa8OvzAqbybR7pnFK
-         OQ3KlVLIzRDRREDZ01js7iwI/yrThtOxacRJkw6N9meMRMB7WeRpNQ/wkK1KmkePaD3L
-         iNPA==
+        with ESMTP id S240479AbiGHVcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:32:07 -0400
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 375D7A0266;
+        Fri,  8 Jul 2022 14:32:06 -0700 (PDT)
+Received: by mail-il1-f174.google.com with SMTP id v2so4528845ilo.7;
+        Fri, 08 Jul 2022 14:32:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eiJSmomcbHamte6wVYKlfnPmeVECX+cd/OIOwALCfbs=;
-        b=tVj5dV5LqBmkYlAfVcAi/OXBadhieWEiJBPyYiX/xAW/FiX28tH+UhFHpO3qWp9z1u
-         n8WlZggMqQORrF3YW7d0Jr9BloRzlf5UauekolnMGQKCNIJzdl0qY01vK3vbh14JmJc9
-         sm6QXsxr0sbacJFvIuJWWlIG79ZIxPe0FOooppzmQBTDPgDAct8/ndfEUW6qL2F6R3W5
-         VclsSLk1EN5uE50LiFRr64zSpCLQdHgcKdJXMwfCaQoXyiKDfF15afxzskm12ldUTv3K
-         TANTIdM5jFSN5tdKavmCl5Ev2KGpzxkyTAWBrY+LMvyjfsKRfIJ3Kq1eTtJcdzxtyT3g
-         LaAw==
-X-Gm-Message-State: AJIora8QD5wkrJRob9SY13p4JBkYA1oaBL5f6rVh78qMxKAMByv6UfSw
-        QW67i7r11LEfqOsaoZQnZFM=
-X-Google-Smtp-Source: AGRyM1sDEsLmN38LuJJdCcccO2oNjMj/Z40bKcO+y3pr98pU2dKeP6r07wU+lEsPu7l1hAqbvzljmw==
-X-Received: by 2002:a63:258:0:b0:40d:3156:6d61 with SMTP id 85-20020a630258000000b0040d31566d61mr4903970pgc.190.1657314049823;
-        Fri, 08 Jul 2022 14:00:49 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id h23-20020a632117000000b0041245ccb6b1sm9576927pgh.62.2022.07.08.14.00.48
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=h/KThnF0Zvpky0IHZNl9qc+VZZheZmG8gyVJvHSVNhQ=;
+        b=pDApoo1JabrmAym7aUKn8T5focOWIruGrKSCpQmFvoo85lROFnI0ZPkauiK1SU1DxL
+         fBe6n2sxqLRqhVgjTbtSV4UWOgtoJpSqc5uYUwO7Rfy4rNXaJB37cy1qF2SPL3aG/NQU
+         uPe+ge1s0Zxx0KDgQK5tlaFehRpyMqfsGwuOTgK3Xg1kP+95H9zvG/8VeRY2EQihOGk3
+         GD3uLxxeBWP7IZxDenR8rQT4eAYp3yqj2uoRbsBINdPjs+8GghGtT2V1wMSeuWpLOJC2
+         9L4Dq/6s8VuBsWi2y29hI7P9c86fmkdimDFp6eiYEl7EF3mlFrwmlsIAHSHGNeLZS1Jw
+         KC+w==
+X-Gm-Message-State: AJIora8n9WraeuYY8rT0IC4c54gvesJLCixpKt+NHKxO5ktLeFbn9GV6
+        l1PnqNK36H43J2PPyvLwSQ==
+X-Google-Smtp-Source: AGRyM1t7s/dUjWvFjoRJV3IxWtwgWoFoImaYteUvAgrnXfPfUcdPn31tu04YpAfBM1+rNoSePV6BDw==
+X-Received: by 2002:a92:c26e:0:b0:2da:be5e:69d9 with SMTP id h14-20020a92c26e000000b002dabe5e69d9mr3235847ild.42.1657315925469;
+        Fri, 08 Jul 2022 14:32:05 -0700 (PDT)
+Received: from robh.at.kernel.org ([98.38.210.73])
+        by smtp.gmail.com with ESMTPSA id s19-20020a02cf33000000b00332044db2aasm18862854jar.95.2022.07.08.14.32.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 14:00:49 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
-        kursad.oney@broadcom.com, anand.gore@broadcom.com,
-        Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org
-Subject: Re: [PATCH v2 4/8] ARM: dts: Add BCM63138 generic board dts
-Date:   Fri,  8 Jul 2022 14:00:47 -0700
-Message-Id: <20220708210047.2477279-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220707070037.261532-5-william.zhang@broadcom.com>
-References: <20220707070037.261532-1-william.zhang@broadcom.com> <20220707070037.261532-5-william.zhang@broadcom.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Fri, 08 Jul 2022 14:32:04 -0700 (PDT)
+Received: (nullmailer pid 1508203 invoked by uid 1000);
+        Fri, 08 Jul 2022 21:32:02 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Cc:     git@xilinx.com, git@amd.com, michal.simek@xilinx.com,
+        shubhrajyoti.datta@amd.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <1cbbf50917ef9d2e2bc2c8862cb8425d54959049.1657276107.git.shubhrajyoti.datta@xilinx.com>
+References: <1cbbf50917ef9d2e2bc2c8862cb8425d54959049.1657276107.git.shubhrajyoti.datta@xilinx.com>
+Subject: Re: [LINUX PATCH] dt-bindings: clock: versal: Remove alt_ref_clk from clock source
+Date:   Fri, 08 Jul 2022 15:32:02 -0600
+Message-Id: <1657315922.459530.1508202.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  7 Jul 2022 00:00:34 -0700, William Zhang <william.zhang@broadcom.com> wrote:
-> Add generic bcm963138.dts file.
+On Fri, 08 Jul 2022 16:11:12 +0530, Shubhrajyoti Datta wrote:
+> alt_ref_clk is applicable only for PS extended version.
+> For PS base version there is no separate alt_ref_clk.
+> It is tied with ref_clk. The commit
+> 2b2012d1c1d8 (clk: versal: Remove alt_ref_clk from clock sources)
+> removes the alt_ref_clk from the u-boot code but not the yaml.
+> Remove it from yaml as well.
 > 
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> Fixes: 026049cf37f2 ("clk: versal: Remove alt_ref_clk from clock sources")
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 > ---
+> u-boot commit refered
+> https://source.denx.de/u-boot/u-boot/-/commit/2b2012d1c1d8515417ba139339d0aa9b47789dca
+> 
+>  .../devicetree/bindings/clock/xlnx,versal-clk.yaml          | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+> 
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: clock-controller:clocks: [[4294967295], [4294967295], [4294967295]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: clock-controller:clock-names:1: 'pl_alt_ref' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: clock-controller:clock-names: ['ref', 'alt_ref', 'pl_alt_ref'] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
