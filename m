@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC2D56BDE7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 18:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5961656BDBA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 18:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238896AbiGHP6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 11:58:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
+        id S238157AbiGHQFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 12:05:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238893AbiGHP6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 11:58:46 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07A8545066;
-        Fri,  8 Jul 2022 08:58:42 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 268FwSAP089860;
-        Fri, 8 Jul 2022 10:58:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1657295908;
-        bh=bbfEE7t6ty3Uw+yroVSM9f1oWuAgijX5go8kEgIrGCU=;
-        h=From:To:CC:Subject:Date;
-        b=ljN4MlvFABM8dxEXlAS+n+d1imGUtx+0c9r+x8cxyzeS3N1FBt8jA6vYsaaiTZ8/z
-         k7H6FrG6tbG78t9kAR8qKPwbhFxUFUWOCj1VJWGKZ3lxZszUEqpC2nxk+YwZ2QdCFI
-         Vo0jPH1jVsOAtQs4r60O+PLVdI/38ubf+L1zQ9J4=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 268FwS52016574
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 8 Jul 2022 10:58:28 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 8
- Jul 2022 10:58:28 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 8 Jul 2022 10:58:28 -0500
-Received: from uda0132425.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 268FwP5j105927;
-        Fri, 8 Jul 2022 10:58:26 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Subject: [RESEND][PATCH v5] dt-bindings: gpio: Convert TI TPIC2810 GPIO Controller bindings to YAML
-Date:   Fri, 8 Jul 2022 21:28:19 +0530
-Message-ID: <20220708155819.3096903-1-vigneshr@ti.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S238368AbiGHQFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 12:05:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2833376E92;
+        Fri,  8 Jul 2022 09:05:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BCE5E61E0C;
+        Fri,  8 Jul 2022 16:05:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF4C1C341C0;
+        Fri,  8 Jul 2022 16:05:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657296332;
+        bh=JefiE6hn4GGAi5d/hMAhgEIxdj1+a6Tc7d5lQkIB1vk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cDM+Z62uOBHFET6KSRrG+a7pXjeS0FU+vp9Sd9y/be8mn5cZNNIDk6TsKQifMxRyM
+         gO99IUkzAJWGYKnCBeYzLP4pwRk+iO3p7aBDJhHV+wYsV0/+ZRU81g1wtvEMo1LYuO
+         ZWzrGzG/B8ze1OEhnuAJw8BroTajJHyXuCSJe/YUsmuQnNysXiV+/UEyHPrvL5RtJx
+         9MWj4YcI5zS2+8cE3fVJwv22n1ApOYkKFdtyKvlHrAzbxuxNT6Bso+PwsuDbxcDPF9
+         RCmw5fEjTnuQRUdWdaA7cwFpwbC+TNfL55ykF1+wiN+VVIvwOMWdUHDY1BVGOXXyDH
+         dVnnmyak4BujQ==
+Received: by pali.im (Postfix)
+        id C3DB57D1; Fri,  8 Jul 2022 18:05:28 +0200 (CEST)
+Date:   Fri, 8 Jul 2022 18:05:28 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] [RFT] dt-bindings: leds: Add
+ cznic,turris1x-leds.yaml binding
+Message-ID: <20220708160528.ysy4lzxfpwobfiwr@pali>
+References: <20220705000448.14337-1-pali@kernel.org>
+ <20220705155929.25565-1-pali@kernel.org>
+ <20220706131507.353f0bed@thinkpad>
+ <20220706111912.hz2mx4dc35lgq6l5@pali>
+ <20220706172732.6228d180@thinkpad>
+ <25b43586-eeb3-4b7b-7362-2d599aa89cf0@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <25b43586-eeb3-4b7b-7362-2d599aa89cf0@linaro.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,107 +66,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aparna M <a-m1@ti.com>
+On Wednesday 06 July 2022 17:36:43 Krzysztof Kozlowski wrote:
+> On 06/07/2022 17:27, Marek Behún wrote:
+> > On Wed, 6 Jul 2022 13:19:12 +0200
+> > Pali Rohár <pali@kernel.org> wrote:
+> > 
+> >> On Wednesday 06 July 2022 13:15:07 Marek Behún wrote:
+> >>> On Tue,  5 Jul 2022 17:59:28 +0200
+> >>> Pali Rohár <pali@kernel.org> wrote:
+> >>>   
+> >>>> +examples:
+> >>>> +  - |
+> >>>> +    #include <dt-bindings/leds/common.h>
+> >>>> +
+> >>>> +    cpld@3,0 {  
+> >>>
+> >>> The generic node name should be just "bus". That it is a CPLD
+> >>> implementation should come from compatible string.  
+> >>
+> >> Sorry, I do not understand why "bus". Why other memory chips are named
+> >> e.g. "nand" or "nor" and not "bus" too?
+> > 
+> > As far as I understand this is because that is the preferred name for
+> > busses and this is a bus, since there is also the simple-bus compatible.
+> > 
+> >> By this logic should not be _every_ node called just "bus"? Hm... and 
+> >> are names needed at all then?
+> > 
+> > :-)
+> > 
+> > The schema
+> >   https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/simple-bus.yaml
+> > allows for different names (soc|axi|ahb|*-bus) to avoid warnings on
+> > existing old dts files.
+> > 
+> > The preferred way is to not have the implementation in nodename,
+> > similar to how we use 'switch' instead of 'mv88e6xxx', or
+> > 'ethernet-phy' instead of 'mv88e151x', or 'led-controller', ...
+> 
+> Thanks Marek for detailed explanation.
+> The cases above rather trigger my comments and this one here, after
+> Pali's explanation, do not fit them. pld is a generic class of a device,
+> so it is okay here. cpld probably as well (although one could argue that
+> it is a subset of pld, so the generic name is pld, but then one would
+> say fpga also should be called pld). For me it does not have to be bus,
+> just don't want mv88e6xxx or any other vendor/model names. Therefore
+> cpld is fine.
 
-Convert gpio-tpic2810 bindings to yaml format and remove outdated
-bindings in .txt format.
+Exactly. cpld, fpga, nor, nand, soc... all of them are not real buses.
 
-Signed-off-by: Aparna M <a-m1@ti.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
-v5 -> Resend v5: Collect R-bys
-v4 -> v5: Fix indentation issues
-v3 -> v4: Add gpio-line-names property
-v2 -> v3: Remove redundant descriptions and make minor change in example
-v1 -> v2: Fix identation issues and update commit message
+simple-bus here is just name invented by device tree and without which
+existing kernel drivers refuse to work.
 
- .../bindings/gpio/gpio-tpic2810.txt           | 16 ------
- .../bindings/gpio/gpio-tpic2810.yaml          | 51 +++++++++++++++++++
- 2 files changed, 51 insertions(+), 16 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
-deleted file mode 100644
-index 1afc2de7a537..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--TPIC2810 GPIO controller bindings
--
--Required properties:
-- - compatible		: Should be "ti,tpic2810".
-- - reg			: The I2C address of the device
-- - gpio-controller	: Marks the device node as a GPIO controller.
-- - #gpio-cells		: Should be two. For consumer use see gpio.txt.
--
--Example:
--
--	gpio@60 {
--		compatible = "ti,tpic2810";
--		reg = <0x60>;
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-new file mode 100644
-index 000000000000..cb8a5c376e1e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/gpio-tpic2810.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TPIC2810 GPIO controller bindings
-+
-+maintainers:
-+  - Aswath Govindraju <a-govindraju@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tpic2810
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-line-names:
-+    minItems: 1
-+    maxItems: 32
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - "#gpio-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        gpio@60 {
-+            compatible = "ti,tpic2810";
-+            reg = <0x60>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+            gpio-line-names = "LED A", "LED B", "LED C";
-+        };
-+    };
--- 
-2.25.1
-
+> > 
+> > I wasn't there when people started requesting for this to be that way,
+> > but I guess it makes some sense to make it more readable and less
+> > redundant (the generic name in nodename and the implementation in
+> > compatible string...).
+> 
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
