@@ -2,128 +2,395 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 657C156C048
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 20:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4882556BF01
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 20:35:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239189AbiGHQaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 12:30:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43354 "EHLO
+        id S238210AbiGHQpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 12:45:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239341AbiGHQ3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 12:29:48 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083AF208;
-        Fri,  8 Jul 2022 09:29:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AEDEDB828A6;
-        Fri,  8 Jul 2022 16:29:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFBF9C341C6;
-        Fri,  8 Jul 2022 16:29:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657297764;
-        bh=bnYt7XSKQbcRefHIMdh+InQ9CqN2VQX7nimG9Okphro=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=WomL5vW9a8IMxo80M+xawgDmjrK4aQEofHM5wARWcZI3nmY8mvW+pUSgA3j4jvMHx
-         3uDUpjNmfWdXC7CoDq9d3/M1Do/B+1JNrk+f5IQyv031tmQBWDJeuvfssvcLwthm/y
-         Ym9oHPbagYNWXUvK7MRD2FSKo/DdGTxPBSHNOEi6uoqqbTT2QwhaJ5cryZiC7nrqd/
-         Dqt/kFUzUAGEg4QrbVNJq/+/pbJeEiOMlf3TFPbhJ7KIPM6LvZpI9sEUCfChmsMBvR
-         UYt0F33WWEfHs8UYvp6diua1X/c7m26CKRgEPSJiJeDpfSdKOjeOlKuSg3YGmCSoL+
-         oF1qDHA092R6g==
-Date:   Fri, 8 Jul 2022 18:29:19 +0200
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] [RFT] dt-bindings: leds: Add
- cznic,turris1x-leds.yaml binding
-Message-ID: <20220708182919.2a1e4a52@thinkpad>
-In-Reply-To: <20220708160528.ysy4lzxfpwobfiwr@pali>
-References: <20220705000448.14337-1-pali@kernel.org>
-        <20220705155929.25565-1-pali@kernel.org>
-        <20220706131507.353f0bed@thinkpad>
-        <20220706111912.hz2mx4dc35lgq6l5@pali>
-        <20220706172732.6228d180@thinkpad>
-        <25b43586-eeb3-4b7b-7362-2d599aa89cf0@linaro.org>
-        <20220708160528.ysy4lzxfpwobfiwr@pali>
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S238234AbiGHQpK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 12:45:10 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94BB52DA88;
+        Fri,  8 Jul 2022 09:45:09 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id x11so787788qki.1;
+        Fri, 08 Jul 2022 09:45:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZThGptq7h5vtkvYTEqQOjJHDp96c1xA4HJ53tM0Cq7I=;
+        b=XfbYr7nYKQzSjNbhfWTRJv4r2l3M96KbNuUKVdTITaSXakF2uXSfLLyAHUjEKNLcZg
+         6HedJYW9nb9YX7Griof39wAY+Opz+imI7/uR2YytrMGrYJYHWrZ9luLTkRceUfs2c0E5
+         erarSiAZTvw5g+0CrBaDCDe3yPR8R0CFqg7kv35qN/XoYBzyp2or9chTxzbz8J098/pD
+         W1DsFVOO+mowngJfWU8O+z09DCIW6TupjE2HZakzxRhmquD0PXFeLhTo4qGsS7zVAzyA
+         4onzI1AgOPAq5GU5dtqeIfOTsIDmd8iP9AChovXrqY3rHqIiH32Sg/fTqgDW+KcgCY2u
+         GaAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZThGptq7h5vtkvYTEqQOjJHDp96c1xA4HJ53tM0Cq7I=;
+        b=rTtzQ8FvbUxDTfgAf7kZ3iz5WFKKZE91/aGNdgv7FV7zOpjaThzZNPODB/P8NC+DGO
+         9pElq0taddWHl40+yFLzpakG3YjdnNL6Xt9R2AkhAF3ghJ96Rws+I001UjGknKJv1tqy
+         CoAy8ZQ3IAFGZMjsHTpIVgtRSSOJ5AZq/M/wVoWukLIFoEepxk+27qPZ+TC4Y7zcm69h
+         H60gBcI5nmXmukMDf2U3GC3nqWdiTbKNFwGnuzV4VQ+1WPnQIxlMUgKVOWTFQbsYOMD4
+         1al9y0ewHSnWQaBzqTnjNwU/0zvxpVaON46BM5cYloJSsMsGyapOfJ8N6utha+SCgx+U
+         94lg==
+X-Gm-Message-State: AJIora8RgCafCIkk3m3upwSzh/FWS3x8tTPV8a63BM5a6yv6++nRGDLG
+        sN0MSMGJrES8owU+JRhidkgYdkFdIlOv1z6hkVM=
+X-Google-Smtp-Source: AGRyM1vm3Sz06iZw23zFJKL4aCV6vtw06v1+bIfXshboOMlt0Qh4zT50XgACo4dXGHfx7M8PQpyxfX8oFEFDnpvpgCk=
+X-Received: by 2002:a05:620a:1a23:b0:6af:6ceb:2ed with SMTP id
+ bk35-20020a05620a1a2300b006af6ceb02edmr3109700qkb.42.1657298708601; Fri, 08
+ Jul 2022 09:45:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220705191017.1683716-1-robimarko@gmail.com> <20220705191017.1683716-3-robimarko@gmail.com>
+ <bab08104-8474-0247-6d64-d6335535c37c@somainline.org>
+In-Reply-To: <bab08104-8474-0247-6d64-d6335535c37c@somainline.org>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Fri, 8 Jul 2022 18:44:57 +0200
+Message-ID: <CAOX2RU6gmz6AHS2NzaX-duXPW_1U4QsqMH4LeCU-PFLLpVFc9g@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] clk: qcom: Add IPQ8074 APSS clock controller
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-clk@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Christian Marangi <ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Jul 2022 18:05:28 +0200
-Pali Roh=C3=A1r <pali@kernel.org> wrote:
+On Wed, 6 Jul 2022 at 15:21, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
+>
+>
+>
+> On 5.07.2022 21:10, Robert Marko wrote:
+> > IPQ8074 APSS clock controller provides the clock for the IPQ8074 CPU
+> > cores, thus also providing support for CPU frequency scaling.
+> >
+> > It looks like they are clocked by the XO and a custom APSS type PLL.
+> >
+> > Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > ---
+> > Changes in v5:
+> > * Drop F define as its already defined in clk-rgc.h
+> > * Correct the driver name to not include commas
+> > * Correct Christian-s SoB
+> > * Add MODULE_ALIAS so it gets loaded if built as a module
+> >
+> > Changes in v2:
+> > * Convert to using parent-data instead of parent-names
+> > ---
+> >  drivers/clk/qcom/Kconfig        |  11 +++
+> >  drivers/clk/qcom/Makefile       |   1 +
+> >  drivers/clk/qcom/apss-ipq8074.c | 169 ++++++++++++++++++++++++++++++++
+> >  3 files changed, 181 insertions(+)
+> >  create mode 100644 drivers/clk/qcom/apss-ipq8074.c
+> >
+> > diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> > index fc45d00eec42..a3ba541a9dee 100644
+> > --- a/drivers/clk/qcom/Kconfig
+> > +++ b/drivers/clk/qcom/Kconfig
+> > @@ -134,6 +134,17 @@ config IPQ_APSS_6018
+> >         Say Y if you want to support CPU frequency scaling on
+> >         ipq based devices.
+> >
+> > +config IPQ_APSS_8074
+> > +     tristate "IPQ8074 APSS Clock Controller"
+> > +     select IPQ_GCC_8074
+> > +     depends on QCOM_APCS_IPC || COMPILE_TEST
+> > +     help
+> > +       Support for APSS clock controller on IPQ8074 platforms. The
+> > +       APSS clock controller manages the Mux and enable block that feeds the
+> > +       CPUs.
+> > +       Say Y if you want to support CPU frequency scaling on
+> > +       IPQ8074 based devices.
+> > +
+> >  config IPQ_GCC_4019
+> >       tristate "IPQ4019 Global Clock Controller"
+> >       help
+> > diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> > index 08594230c1c1..226f3b5cefde 100644
+> > --- a/drivers/clk/qcom/Makefile
+> > +++ b/drivers/clk/qcom/Makefile
+> > @@ -23,6 +23,7 @@ obj-$(CONFIG_APQ_MMCC_8084) += mmcc-apq8084.o
+> >  obj-$(CONFIG_CLK_GFM_LPASS_SM8250) += lpass-gfm-sm8250.o
+> >  obj-$(CONFIG_IPQ_APSS_PLL) += apss-ipq-pll.o
+> >  obj-$(CONFIG_IPQ_APSS_6018) += apss-ipq6018.o
+> > +obj-$(CONFIG_IPQ_APSS_8074) += apss-ipq8074.o
+> >  obj-$(CONFIG_IPQ_GCC_4019) += gcc-ipq4019.o
+> >  obj-$(CONFIG_IPQ_GCC_6018) += gcc-ipq6018.o
+> >  obj-$(CONFIG_IPQ_GCC_806X) += gcc-ipq806x.o
+> > diff --git a/drivers/clk/qcom/apss-ipq8074.c b/drivers/clk/qcom/apss-ipq8074.c
+> > new file mode 100644
+> > index 000000000000..36fafa71c4ea
+> > --- /dev/null
+> > +++ b/drivers/clk/qcom/apss-ipq8074.c
+> > @@ -0,0 +1,169 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
+> > + */
+> > +
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/err.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#include <dt-bindings/clock/qcom,apss-ipq8074.h>
+> > +
+> > +#include "common.h"
+> > +#include "clk-regmap.h"
+> > +#include "clk-pll.h"
+> > +#include "clk-rcg.h"
+> > +#include "clk-branch.h"
+> > +#include "clk-alpha-pll.h"
+> > +#include "clk-regmap-divider.h"
+> > +#include "clk-regmap-mux.h"
+> > +
+> > +enum {
+> > +     P_XO,
+> > +     P_GPLL0,
+> > +     P_GPLL2,
+> > +     P_GPLL4,
+> > +     P_APSS_PLL_EARLY,
+> > +     P_APSS_PLL
+> > +};
+> > +
+> > +static struct clk_alpha_pll apss_pll_early = {
+> > +     .offset = 0x5000,
+> > +     .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_APSS],
+> > +     .clkr = {
+> > +             .enable_reg = 0x5000,
+> > +             .enable_mask = BIT(0),
+> > +             .hw.init = &(struct clk_init_data){
+> > +                     .name = "apss_pll_early",
+> > +                     .parent_data = &(const struct clk_parent_data) {
+> > +                             .fw_name = "xo", .name = "xo"
+> Since you're only adding this driver now, no DT uses it an you
+> should drop the .name lookup.
 
-> On Wednesday 06 July 2022 17:36:43 Krzysztof Kozlowski wrote:
-> > On 06/07/2022 17:27, Marek Beh=C3=BAn wrote: =20
-> > > On Wed, 6 Jul 2022 13:19:12 +0200
-> > > Pali Roh=C3=A1r <pali@kernel.org> wrote:
-> > >  =20
-> > >> On Wednesday 06 July 2022 13:15:07 Marek Beh=C3=BAn wrote: =20
-> > >>> On Tue,  5 Jul 2022 17:59:28 +0200
-> > >>> Pali Roh=C3=A1r <pali@kernel.org> wrote:
-> > >>>    =20
-> > >>>> +examples:
-> > >>>> +  - |
-> > >>>> +    #include <dt-bindings/leds/common.h>
-> > >>>> +
-> > >>>> +    cpld@3,0 {   =20
-> > >>>
-> > >>> The generic node name should be just "bus". That it is a CPLD
-> > >>> implementation should come from compatible string.   =20
-> > >>
-> > >> Sorry, I do not understand why "bus". Why other memory chips are nam=
-ed
-> > >> e.g. "nand" or "nor" and not "bus" too? =20
-> > >=20
-> > > As far as I understand this is because that is the preferred name for
-> > > busses and this is a bus, since there is also the simple-bus compatib=
-le.
-> > >  =20
-> > >> By this logic should not be _every_ node called just "bus"? Hm... an=
-d=20
-> > >> are names needed at all then? =20
-> > >=20
-> > > :-)
-> > >=20
-> > > The schema
-> > >   https://github.com/devicetree-org/dt-schema/blob/main/dtschema/sche=
-mas/simple-bus.yaml
-> > > allows for different names (soc|axi|ahb|*-bus) to avoid warnings on
-> > > existing old dts files.
-> > >=20
-> > > The preferred way is to not have the implementation in nodename,
-> > > similar to how we use 'switch' instead of 'mv88e6xxx', or
-> > > 'ethernet-phy' instead of 'mv88e151x', or 'led-controller', ... =20
-> >=20
-> > Thanks Marek for detailed explanation.
-> > The cases above rather trigger my comments and this one here, after
-> > Pali's explanation, do not fit them. pld is a generic class of a device,
-> > so it is okay here. cpld probably as well (although one could argue that
-> > it is a subset of pld, so the generic name is pld, but then one would
-> > say fpga also should be called pld). For me it does not have to be bus,
-> > just don't want mv88e6xxx or any other vendor/model names. Therefore
-> > cpld is fine. =20
->=20
-> Exactly. cpld, fpga, nor, nand, soc... all of them are not real buses.
->=20
-> simple-bus here is just name invented by device tree and without which
-> existing kernel drivers refuse to work.
+Hi Konrad,
+I will fix it up, also need to update the dtschema and DT node patch for APCS
+node as "xo" is not a valid clock currently for it.
+>
+>
+> > +                     },
+> > +                     .num_parents = 1,
+> > +                     .ops = &clk_alpha_pll_huayra_ops,
+> > +             },
+> > +     },
+> > +};
+> > +
+> > +static struct clk_alpha_pll_postdiv apss_pll = {
+> > +     .offset = 0x5000,
+> > +     .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_APSS],
+> > +     .width = 2,
+> > +     .clkr.hw.init = &(struct clk_init_data){
+> > +             .name = "apss_pll",
+> > +             .parent_hws = (const struct clk_hw *[]){
+> > +                     &apss_pll_early.clkr.hw },
+> > +             .num_parents = 1,
+> > +             .ops = &clk_alpha_pll_postdiv_ro_ops,
+> > +     },
+> > +};
+> > +
+> > +static const struct clk_parent_data parents_apcs_alias0_clk_src[] = {
+> > +     { .fw_name = "xo", .name = "xo" },
+> > +     { .fw_name = "gpll0", .name = "gpll0" },
+> > +     { .fw_name = "gpll2", .name = "gpll2" },
+> > +     { .fw_name = "gpll4", .name = "gpll4" },
+> > +     { .hw = &apss_pll.clkr.hw },
+> > +     { .hw = &apss_pll_early.clkr.hw },
+> > +};
+> > +
+> > +static const struct parent_map parents_apcs_alias0_clk_src_map[] = {
+> > +     { P_XO, 0 },
+> > +     { P_GPLL0, 4 },
+> > +     { P_GPLL2, 2 },
+> > +     { P_GPLL4, 1 },
+> > +     { P_APSS_PLL, 3 },
+> > +     { P_APSS_PLL_EARLY, 5 },
+> Looks like it only supports frequencies with APSS_PLL_EARLY and XO
+> as parents? Are all of these other PLLs necessary here?
 
-OK, then cpld seems correct. I thought it was considered a bus in a way,
-since "simple-bus" is used in compatible.
+Unfortunately, I dont have any docs on this, this is based on the downstream 5.4
+driver.
 
-Marek
+I got rid of GPLL-s as parents and it seems to still be able to set
+the correct frequency
+, however, initially the frequency that is read during boot then
+matches the XO frequency
+of 19.2 MHz which is obviously incorrect:
+[    1.632308] cpufreq: cpufreq_online: CPU0: Running at unlisted
+initial frequency: 19200 KHz, changing to: 1017600 KHz
+
+I can then use the userspace governor and go through all OPP points
+without an issue and
+using the mhz [1] tool I can confirm that frequency matches the requested one.
+
+[1] https://github.com/wtarreau/mhz
+>
+> > +};
+> > +
+> > +struct freq_tbl ftbl_apcs_alias0_clk_src[] = {
+> > +     F(19200000, P_XO, 1, 0, 0),
+> > +     F(403200000, P_APSS_PLL_EARLY, 1, 0, 0),
+> > +     F(806400000, P_APSS_PLL_EARLY, 1, 0, 0),
+> > +     F(1017600000, P_APSS_PLL_EARLY, 1, 0, 0),
+> > +     F(1382400000, P_APSS_PLL_EARLY, 1, 0, 0),
+> > +     F(1651200000, P_APSS_PLL_EARLY, 1, 0, 0),
+> > +     F(1843200000, P_APSS_PLL_EARLY, 1, 0, 0),
+> > +     F(1920000000, P_APSS_PLL_EARLY, 1, 0, 0),
+> > +     F(2208000000UL, P_APSS_PLL_EARLY, 1, 0, 0),
+> Every frequency is a div1 and comes from a single clock..
+> is this correct? This sounds like a simple mux that only
+> switches between XO and APSS_PLL_EARLY..
+
+I tested this using the IPQ6018 clk_regmap_mux apcs_alias0_clk_src
+and it appears to work, I am able to switch through all of the OPP-s:
+# cat scaling_available_frequencies
+1017600 1382400 1651200 1843200 1920000 2208000
+# echo 1017600 > scaling_setspeed
+# mhz
+count=413212 us50=20314 us250=101571 diff=81257 cpu_MHz=1017.050
+# echo 1382400 > scaling_setspeed
+# mhz
+count=645643 us50=23381 us250=116811 diff=93430 cpu_MHz=1382.089
+# echo 1651200 > scaling_setspeed
+# mhz
+count=807053 us50=24452 us250=122238 diff=97786 cpu_MHz=1650.651
+# echo 1843200 > scaling_setspeed
+# mhz
+count=807053 us50=21901 us250=109503 diff=87602 cpu_MHz=1842.545
+# echo 1920000 > scaling_setspeed
+# mhz
+count=807053 us50=21023 us250=105125 diff=84102 cpu_MHz=1919.224
+# echo 2208000 > scaling_setspeed
+# mhz
+count=1008816 us50=22857 us250=114255 diff=91398 cpu_MHz=2207.523
+
+Seems like IPQ6018 and IPQ8074 use the same mux, though PLL is different.
+
+>
+> > +     { }
+> > +};
+> > +
+> > +struct clk_rcg2 apcs_alias0_clk_src = {
+> > +     .cmd_rcgr = 0x0050,
+> > +     .freq_tbl = ftbl_apcs_alias0_clk_src,
+> > +     .hid_width = 5,
+> > +     .parent_map = parents_apcs_alias0_clk_src_map,
+> > +     .clkr.hw.init = &(struct clk_init_data){
+> > +             .name = "apcs_alias0_clk_src",
+> > +             .parent_data = parents_apcs_alias0_clk_src,
+> > +             .num_parents = ARRAY_SIZE(parents_apcs_alias0_clk_src),
+> > +             .ops = &clk_rcg2_ops,
+> > +             .flags = CLK_SET_RATE_PARENT,
+> > +     },
+> > +};
+> > +
+> > +static struct clk_branch apcs_alias0_core_clk = {
+> > +     .halt_reg = 0x0058,
+> > +     .halt_bit = 31,
+> > +     .clkr = {
+> > +             .enable_reg = 0x0058,
+> > +             .enable_mask = BIT(0),
+> > +             .hw.init = &(struct clk_init_data){
+> > +                     .name = "apcs_alias0_core_clk",
+> > +                     .parent_hws = (const struct clk_hw *[]){
+> > +                             &apcs_alias0_clk_src.clkr.hw },
+> > +                     .num_parents = 1,
+> > +                     .flags = CLK_SET_RATE_PARENT |
+> > +                             CLK_IS_CRITICAL,
+> This can fit in a single line.
+
+I will fix it in v6.
+>
+> > +                     .ops = &clk_branch2_ops,
+> > +             },
+> > +     },
+> > +};
+> > +
+> > +static struct clk_regmap *apss_ipq8074_clks[] = {
+> > +     [APSS_PLL_EARLY] = &apss_pll_early.clkr,
+> > +     [APSS_PLL] = &apss_pll.clkr,
+> > +     [APCS_ALIAS0_CLK_SRC] = &apcs_alias0_clk_src.clkr,
+> > +     [APCS_ALIAS0_CORE_CLK] = &apcs_alias0_core_clk.clkr,
+> > +};
+> > +
+> > +static const struct regmap_config apss_ipq8074_regmap_config = {
+> > +     .reg_bits       = 32,
+> > +     .reg_stride     = 4,
+> > +     .val_bits       = 32,
+> > +     .max_register   = 0x5ffc,
+> > +     .fast_io        = true,
+> > +};
+> > +
+> > +static const struct qcom_cc_desc apss_ipq8074_desc = {
+> > +     .config = &apss_ipq8074_regmap_config,
+> > +     .clks = apss_ipq8074_clks,
+> > +     .num_clks = ARRAY_SIZE(apss_ipq8074_clks),
+> > +};
+> > +
+> > +static int apss_ipq8074_probe(struct platform_device *pdev)
+> > +{
+> > +     struct regmap *regmap;
+> > +
+> > +     regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> > +     if (!regmap)
+> > +             return -ENODEV;
+> > +
+> > +     return qcom_cc_really_probe(pdev, &apss_ipq8074_desc, regmap);
+> qcom_cc_probe?
+
+qcom_cc_probe would not work as it calls qcom_cc_map which works only on the
+device MMIO resource, and we have to get the regmap from the parent which is
+APCS as they share the same register space.
+
+>
+> > +}
+> > +
+> > +static struct platform_driver apss_ipq8074_driver = {
+> > +     .probe = apss_ipq8074_probe,
+> > +     .driver = {
+> > +             .name   = "qcom-apss-ipq8074-clk",
+> > +     },
+> > +};
+> > +
+> > +module_platform_driver(apss_ipq8074_driver);
+> > +
+> > +MODULE_ALIAS("platform:qcom-apss-ipq8074-clk");
+> > +MODULE_DESCRIPTION("Qualcomm IPQ8074 APSS clock driver");
+> > +MODULE_LICENSE("GPL");
+> "GPL v2"?
+
+Checkpatch now warns on GPL v2 and other variants that GPL is
+preferred since 5.18:
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/scripts/checkpatch.pl?h=v5.18.10&id=6e8f42dc9c8548c6b37566f3b8bda1873700c4a6
+
+Originally had "GPL v2" and then checkpatch pointed this out.
+
+Regards,
+Robert
+>
+> Konrad
