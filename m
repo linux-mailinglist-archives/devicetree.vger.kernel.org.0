@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2286356C1F1
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 997C556C384
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:14:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239283AbiGHVrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 17:47:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54544 "EHLO
+        id S238649AbiGHVtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 17:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238649AbiGHVrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:47:07 -0400
+        with ESMTP id S239971AbiGHVtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:49:18 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5EB532EE2;
-        Fri,  8 Jul 2022 14:47:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E077F9B1AF;
+        Fri,  8 Jul 2022 14:49:17 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5057D61511;
-        Fri,  8 Jul 2022 21:47:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE275C341C0;
-        Fri,  8 Jul 2022 21:47:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 57649615F1;
+        Fri,  8 Jul 2022 21:49:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A55BCC341C7;
+        Fri,  8 Jul 2022 21:49:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657316825;
-        bh=oGe9mSKsZTpDJys53ZbJDTf1BlmyWm4UKF++hMlMXfQ=;
+        s=k20201202; t=1657316956;
+        bh=qwoHft6J7YF3D/O6Rf3RXkjJ9VReVvmsa+QIcOA1fLs=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pKBVxy8KwZDOmG0FJH6dUdb7/xBcN2F/bb+JqvAFAaIpmMQQXfHeicecRhliDy6za
-         wZd6pML+HL/pJ5FIfmqvP85ML41OeBsd9DW6y7VqXoXnJKx9UJEc0c/yNJiSPo0ykW
-         s+PDenFc7EIqUtuWQ8sWMXONmyDzhLnHwwy8pHo654tnLi3IiavoSSXY96NdmF4al9
-         TzHvY7cR9/fg8nMvssIMBhzcNluEAzbAhrCUPXgW1kfLmylu7Lbt4OmI64tXrbn/to
-         vtkQ70hoCb0ePpygYgPBUdURPoSNjrTwg96cKgHaVSghrXg+3AriYj6Yw1nSyx9sC2
-         4YwYp1EZ9mqIw==
-Received: by mail-vs1-f41.google.com with SMTP id 189so22457938vsh.2;
-        Fri, 08 Jul 2022 14:47:05 -0700 (PDT)
-X-Gm-Message-State: AJIora+0HgmyLUxRL1LnqxrmcstVDvr9VHg8GKS9eDcUyydXzrbuoGTJ
-        +VX+/Kg7LPz4Bx7eWTGV28UC2/xjs9ZLrQtbiQ==
-X-Google-Smtp-Source: AGRyM1uWQCkd/PLMcPq5fEvA3rLv74ggDKeFx5f6qza9FRq6C/PwPfeI1THWRIbZf7Gy773kQ1oCxZYz4JOzmv4VLmc=
-X-Received: by 2002:a67:d194:0:b0:357:8ea:5554 with SMTP id
- w20-20020a67d194000000b0035708ea5554mr2552488vsi.0.1657316824671; Fri, 08 Jul
- 2022 14:47:04 -0700 (PDT)
+        b=kcodp16Edx1u8nlbErKaVGsHMvdxsifaar78IjBZvPTbB1mc4m9Q2vA0dgKt3kGQH
+         19c5AsLzHLpatC9RmCJvkkt6TCluslWS12A1p07Cz7Rf0ZIwLVRDySnJTbCHW+GjWn
+         Y1NZ1bJpNsRBi8/V51Cr2KBhiMe7qaKb/51Meq1anbJRCgUYyADs2qkc/CvnJBxjjj
+         6KqkrwjCOVjO9MwIQ5leOgSquOHXk6iXrn0gIXRQqX2hnQfO8q/UMlrsItUqPhaQw+
+         XTXAGQLjmDM0Y9A4x21x1YGb9f8R6leYzDfItlBgFnr04tdv42Ax/ICoGBUuhfcKhm
+         hk3JEsGWMRSuw==
+Received: by mail-vk1-f176.google.com with SMTP id u204so37948vkb.7;
+        Fri, 08 Jul 2022 14:49:16 -0700 (PDT)
+X-Gm-Message-State: AJIora+b/8RW+89grl147NsLxOhdRPTCJdbA9IopmH9DWxJ+gkAicHKx
+        mm1Zhn0REGSY6oZ0lpvx2YGqO2viw8S9nrw4ZA==
+X-Google-Smtp-Source: AGRyM1u17X2pv7TEGdk37nw9uxpDz0qNObsUa18T3drP30RZT5i4eIxnhV0/CJfBgdEfulEEw/XHnFmvcHdWz6nY3wU=
+X-Received: by 2002:a1f:2a86:0:b0:370:8ff3:d5f with SMTP id
+ q128-20020a1f2a86000000b003708ff30d5fmr2506541vkq.35.1657316955600; Fri, 08
+ Jul 2022 14:49:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220708170359.270226-1-ben.dooks@sifive.com>
-In-Reply-To: <20220708170359.270226-1-ben.dooks@sifive.com>
+References: <20220708165225.269192-1-ben.dooks@sifive.com>
+In-Reply-To: <20220708165225.269192-1-ben.dooks@sifive.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 8 Jul 2022 15:46:52 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ7VUxcVdDhrVhix9ucR=rhb+418cwP-0_brL_a3Y2UcQ@mail.gmail.com>
-Message-ID: <CAL_JsqJ7VUxcVdDhrVhix9ucR=rhb+418cwP-0_brL_a3Y2UcQ@mail.gmail.com>
-Subject: Re: [PATCH] scripts/dtc: dma-ranges is a multiple of 3 cells
+Date:   Fri, 8 Jul 2022 15:49:03 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+TZpAK-X02ANoYBMfUKkwPh3Z-gjGjim6WwFwsMa7zSA@mail.gmail.com>
+Message-ID: <CAL_Jsq+TZpAK-X02ANoYBMfUKkwPh3Z-gjGjim6WwFwsMa7zSA@mail.gmail.com>
+Subject: Re: [PATCH] of/irq: parse interrupts-extended during irq init
+ heirarchy calculation
 To:     Ben Dooks <ben.dooks@sifive.com>
 Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
@@ -63,67 +64,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 8, 2022 at 11:04 AM Ben Dooks <ben.dooks@sifive.com> wrote:
+On Fri, Jul 8, 2022 at 10:52 AM Ben Dooks <ben.dooks@sifive.com> wrote:
 >
-> The dma-ranges property is a set 3 cells of #address-size, so don't treat
-> it like the ranges property when generating warnings.
+> When the irq controler code works out the heirarchy for initialialisation
+> it only looks at interrupt-parent properties, but controllers such as the
+> RISC-V PLIC use a extended-interrupt property and therefore do not get
+> properly considered during initialisation.
+>
+> This means that if anything changes in the driver initialisation order
+> then the PLIC can get called before the CLINT nodes, and thus interrupts
+> do not get configured properly and the init continues without noticing
+> the error until drivers fail due to having no interrupts delivered.
+>
+> Add code to the of_irq_init that checks for the extended-interrupt
+> property and adds these parent nodes so that they can be considered
+> during the calculations of whether an irq controller node can be
+> initialised.
 
-Uhh, no it is not. It's the same as 'ranges'.
-
-Also, we don't take patches against the copy of dtc in the kernel.
-Submit them to upstream dtc.
+Isn't this already fixed by commit e91033621d56 ("of/irq: Use
+interrupts-extended to find parent")?
 
 Rob
-
-
->
-> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
-> ---
->  scripts/dtc/checks.c | 31 ++++++++++++++++++++++++++++++-
->  1 file changed, 30 insertions(+), 1 deletion(-)
->
-> diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
-> index 781ba1129a8e..791b93e8e02a 100644
-> --- a/scripts/dtc/checks.c
-> +++ b/scripts/dtc/checks.c
-> @@ -823,7 +823,36 @@ static void check_ranges_format(struct check *c, struct dt_info *dti,
->         }
->  }
->  WARNING(ranges_format, check_ranges_format, "ranges", &addr_size_cells);
-> -WARNING(dma_ranges_format, check_ranges_format, "dma-ranges", &addr_size_cells);
-> +
-> +static void check_dma_ranges_format(struct check *c, struct dt_info *dti,
-> +                               struct node *node)
-> +{
-> +       struct property *prop;
-> +       int c_size_cells, p_size_cells, entrylen;
-> +       const char *ranges = c->data;
-> +
-> +       prop = get_property(node, ranges);
-> +       if (!prop)
-> +               return;
-> +
-> +       if (!node->parent) {
-> +               FAIL_PROP(c, dti, node, prop, "Root node has a \"%s\" property",
-> +                         ranges);
-> +               return;
-> +       }
-> +
-> +       c_size_cells = node_size_cells(node);
-> +       p_size_cells = node_size_cells(node->parent);
-> +       entrylen = (p_size_cells + 2 * c_size_cells) * sizeof(cell_t);
-> +
-> +       if (!is_multiple_of(prop->val.len, entrylen)) {
-> +               FAIL_PROP(c, dti, node, prop, "\"%s\" property has invalid length (%d bytes) "
-> +                         "(parent #address-cells == %d, "
-> +                         "child #address-cells == %d)", ranges, prop->val.len,
-> +                         p_size_cells, c_size_cells);
-> +       }
-> +}
-> +WARNING(dma_ranges_format, check_dma_ranges_format, "dma-ranges", &addr_size_cells);
->
->  static const struct bus_type pci_bus = {
->         .name = "PCI",
-> --
-> 2.35.1
->
