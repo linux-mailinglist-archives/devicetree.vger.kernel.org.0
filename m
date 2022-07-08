@@ -2,110 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE19056C316
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D6D356C39D
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239565AbiGHTYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 15:24:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36288 "EHLO
+        id S239571AbiGHT0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 15:26:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238768AbiGHTYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 15:24:31 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3686C24941
-        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 12:24:31 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id v63so11535oie.9
-        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 12:24:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=WEH0jKAhMg/R/ZAtXcmhJHyQlTHAR3FwpDaho4cHgOY=;
-        b=InH2K7dH2NjuGoaeuhMHZJKkEoIt8KoqlBs0E+Q3TTBS5RZRETLKTZRZT3Y0z2Gv/r
-         2khUzoWLTbkefDeaKsc6pHYPsvYpONGBlM58vaEqm98vTDeKmrMelIOsi+LNxKzJ++6F
-         HaSvWuREHYxyFwh4AjtzoLhPQruLwmmGLLxKw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=WEH0jKAhMg/R/ZAtXcmhJHyQlTHAR3FwpDaho4cHgOY=;
-        b=oSxLpZWNa6RyPwyUNexwFXG4wGKM1smkIucFca3yyfXEKkfH8iGdOjkLYGLtmAtAOO
-         P9uChxWTJRqlxwr05OyA7Z0cniueYL/Pw2gi2QBMgLqRPlTcgucKgNj8tFXvCZkhbfCC
-         VwQaqGI1ixiQNqtqMSeaekpK6HdXwH56K+h4Q57DNlMA1zoz0JrIb+5fMJ3TqpbGvnKs
-         5SBuv5Rhmcri+o+ArMNcrTd03VdU2ydrdsEbcDsX4rxo72mSzXP9cEsNNwQq2x+KkTST
-         Q5IeX6j5kbMfdDSpD5J965zY0GWUdPoOIJOtX35nboBZe4/f1heeFmGQkpac9T9oe1ug
-         5UWA==
-X-Gm-Message-State: AJIora/yZlcemrqisOTDzpR+bkJ3kq5KojFC8qqVr4hzAEUsIO970IgL
-        iiMIzUtFCihG6P3YX3B7yxQOQ5fAJh2wVx9OB5KK8VQa06Y=
-X-Google-Smtp-Source: AGRyM1ux2p5+c4xtdy4iOeVBnPoqwt4uYj+n6OsML6osTpvAhyLCATU4q8jvRdoE/W3LIwJY4+8mxYJs/1atXzH8xbs=
-X-Received: by 2002:a05:6808:171c:b0:334:9342:63ef with SMTP id
- bc28-20020a056808171c00b00334934263efmr831806oib.63.1657308270538; Fri, 08
- Jul 2022 12:24:30 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 8 Jul 2022 12:24:29 -0700
-MIME-Version: 1.0
-In-Reply-To: <36a3490f-5c94-0c54-caa4-1b381dae7745@linaro.org>
-References: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org>
- <20220707213204.2605816-6-dmitry.baryshkov@linaro.org> <CAE-0n53An_S5H-jj7GPorLg0Q4jW=KqEn5CCrfqs6fn6LBtGNA@mail.gmail.com>
- <36a3490f-5c94-0c54-caa4-1b381dae7745@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 8 Jul 2022 12:24:29 -0700
-Message-ID: <CAE-0n53GJANJT5uXzffPqFZuKu4YkzfrhyaCL15vq1VQrDzSag@mail.gmail.com>
-Subject: Re: [PATCH 5/9] dt-bindings: msm/dp: account for clocks specific for qcom,sc7280-edp
-To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S238768AbiGHT0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 15:26:14 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A8E20189;
+        Fri,  8 Jul 2022 12:26:13 -0700 (PDT)
+Received: from notapiano.myfiosgateway.com (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 52D5866019F2;
+        Fri,  8 Jul 2022 20:26:10 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657308371;
+        bh=XB+Q5+iW9bzcYdl1fBbqu9s42fjAPkdcGjUotn5OaPM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aAjTkJkxs/dZshN+srt3jMFNrbpIL9P4Xd9CTTckQX5iZDBqf1Ce/WjXCA+ekWoUE
+         qBLcmyhpoR/8rczvCLZwMVOp4tKqKTs9Y/nUzg+TSzbowItA6xb/GoxwjnEV2pUDgB
+         wAF0Qq97/uPv3kXY8F5kdsfP3OrqUMLHDBulNZ1JJlqSACpP5Cx6vCW2rhmXt36eWf
+         DXne89DgjSxE1AZWLja3vqAJiinx/G7Y1bTSjNcL07NZ5rg8zj9cC05qP4uLgFIEhT
+         Jv5DHCY/Re4aRnglvJYWNVPjGBV75pGJDCmpGMO7p7OQDDQqqorNEs+XcEcptx5D8J
+         UNHbLJPMIl2hA==
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: [PATCH] Revert "dt-bindings: usb: mtk-xhci: Make all clocks required"
+Date:   Fri,  8 Jul 2022 15:26:05 -0400
+Message-Id: <20220708192605.43351-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.37.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Baryshkov (2022-07-07 20:59:02)
-> On 08/07/2022 04:32, Stephen Boyd wrote:
-> > Quoting Dmitry Baryshkov (2022-07-07 14:32:00)
-> >> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> >> index f00eae66196f..1ef845005b14 100644
-> >> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> >> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> >> @@ -119,6 +111,50 @@ required:
-> >>     - power-domains
-> >>     - ports
-> >>
-> >> +allOf:
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            enum:
-> >> +              - qcom,sc7280-edp
-> >> +    then:
-> >> +      properties:
-> >> +        clocks:
-> >> +          items:
-> >> +            - description: XO clock
-> >
-> > What is this for? I would guess it's for the eDP phy, but that isn't
-> > part of the eDP controller, so probably it can be removed.
->
-> Good question. I was documenting what is present in the sc7280-edp
-> controller DT entry. Could you please check if we can drop them? I don't
-> have the hardware at hand.
->
+This reverts commit ebc4969ae125e65fdb563f66f4bfa7aec95f7eb4. That
+commit was supposed to make the binding better reflect the MediaTek XHCI
+hardware block by requiring all clocks to be present. But doing that
+also causes too much noise in the devicetrees, since it requires
+updating old MediaTek DTs to add clock handles for the fixed clocks, and
+going forward every new clock added to the binding would require even
+more updates.
 
-eDP works fine without those two clks on CRD (hoglin). They can be
-dropped from the dtsi file.
+The commit also didn't update the example to match the changes, causing
+additional warnings.
+
+Instead let's keep the clocks optional so that old devicetrees can keep
+omitting the fixed clocks, and we'll just add the clocks as required on
+new DTs.
+
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
+---
+
+ Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+index 1444d18ef9bc..63cbc2b62d18 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+@@ -67,6 +67,7 @@ properties:
+     maxItems: 1
+ 
+   clocks:
++    minItems: 1
+     items:
+       - description: Controller clock used by normal mode
+       - description: Reference clock used by low power mode etc
+@@ -75,8 +76,9 @@ properties:
+       - description: controller clock
+ 
+   clock-names:
++    minItems: 1
+     items:
+-      - const: sys_ck
++      - const: sys_ck  # required, the following ones are optional
+       - const: ref_ck
+       - const: mcu_ck
+       - const: dma_ck
+-- 
+2.37.0
+
