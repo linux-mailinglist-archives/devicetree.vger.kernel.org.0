@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEE8456C305
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2385656C20A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:12:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240068AbiGHWOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 18:14:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40950 "EHLO
+        id S238524AbiGHWP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 18:15:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240060AbiGHWOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:14:20 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55CA62A707;
-        Fri,  8 Jul 2022 15:14:20 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id z81so284306iof.0;
-        Fri, 08 Jul 2022 15:14:20 -0700 (PDT)
+        with ESMTP id S229749AbiGHWP4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:15:56 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3845F76EA1;
+        Fri,  8 Jul 2022 15:15:56 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id a20so19837ilk.9;
+        Fri, 08 Jul 2022 15:15:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qizlKD9bE5dN8tJcWqnW6FaDP0qSa79ZfPV40HiDdGQ=;
-        b=Yiu1EWliG8RLFfRL/e3eAzDNbrkLPyf+vzABOthH0KsHQ/X9K0O9HkrwSedV5c5C3H
-         bAm8pLNlNJx7+3vo6yHhEggx879Bk782o5qFCQ72Bljrud9REIxrTbEQZ5e2ov5JVQ9U
-         EwDtpSlRn5r3OKh1o9o0asnbd1QQ78+dsVCQbd1u5DrNo/ZI0zC+ywc6Cfq03fzCgmNA
-         GlG9oiBOTNfw6cd7tWmEWLY+fifqnTxzb7dgXFdNgifPMqVtDrlx1o8aTl4jAa8YWUjC
-         7HkOtmXZW83AmvwAfnTwxaxwY8zFAxO+9r0ORM2U60kOzrEdRcnCaEByg/L/zP4oCbth
-         BNLg==
-X-Gm-Message-State: AJIora/79bt9+kiZRi6/LrVQTowdNGHjwc5S+LE8qhf7g1aaaKkA/nEj
-        /ZpILCjeya8DnRQ7gAOMvQ==
-X-Google-Smtp-Source: AGRyM1t4peia84G04eriBOduqU7X4VUiKCFhcEgAmMHSCwj5GjAENVk5PMLOfC7mJNOQOcZb13sK1g==
-X-Received: by 2002:a05:6602:2e8e:b0:669:d5b1:3fc9 with SMTP id m14-20020a0566022e8e00b00669d5b13fc9mr3158325iow.210.1657318459564;
-        Fri, 08 Jul 2022 15:14:19 -0700 (PDT)
+        bh=sNAXLwnHlgZL+RRPcwyuf08NpY2oRUI/xPRVTLc8Kv4=;
+        b=LLvIxWbV4Ebtjp66YiQmkCQ5WnPAUM8WBSMItGOreaFVwEi1lh+SQR1EEV0NwLbNS/
+         DnuPFG2IbBuZShAWesYWXCKJxHu01YYH/yG/7WqGR62dKQwPNI3zUDzDI7hBCeCP05bb
+         cpTkBCYX35MzlNu+ZKwgQjrzSgSrJ8vTWbPN3UdoN6WamRHiHOVdiZpVXaq9IBmfUT5/
+         FzXaiBZj9+Toi+uhxjJ20Rj9QICYLg7aEYUkTHvjjcg+OTIMxrlCItpHyLEaCH0f6OPZ
+         CB+Gvhi8qkcaWWB/W7+ekphYHSV8xfqYd4o7Kf4ijZUWel0j2LWkBTNW9WFhKPJpsY7/
+         A3gQ==
+X-Gm-Message-State: AJIora+A2h8/og/0BsvzIzdgWhhjreWPdYe3HxFgU0wnIlrAIrewPfNk
+        3+DRlzSdjKbLetJGKlShZg==
+X-Google-Smtp-Source: AGRyM1sTh/9Jg+iKmfYd7WSDHoFeviiLxTHvbNq5LkBdkESc3E6BkRI9GjzwzexP1vAAvU154ityyQ==
+X-Received: by 2002:a92:d705:0:b0:2dc:583:f588 with SMTP id m5-20020a92d705000000b002dc0583f588mr3459501iln.158.1657318555415;
+        Fri, 08 Jul 2022 15:15:55 -0700 (PDT)
 Received: from robh.at.kernel.org ([98.38.210.73])
-        by smtp.gmail.com with ESMTPSA id w10-20020a92db4a000000b002dad39ff841sm10133296ilq.19.2022.07.08.15.14.17
+        by smtp.gmail.com with ESMTPSA id e39-20020a022127000000b0032e49fcc241sm18560635jaa.176.2022.07.08.15.15.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 15:14:19 -0700 (PDT)
-Received: (nullmailer pid 1573273 invoked by uid 1000);
-        Fri, 08 Jul 2022 22:14:17 -0000
-Date:   Fri, 8 Jul 2022 16:14:17 -0600
+        Fri, 08 Jul 2022 15:15:55 -0700 (PDT)
+Received: (nullmailer pid 1575582 invoked by uid 1000);
+        Fri, 08 Jul 2022 22:15:54 -0000
+Date:   Fri, 8 Jul 2022 16:15:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Mia Lin <mimi05633@gmail.com>
-Cc:     avifishman70@gmail.com, devicetree@vger.kernel.org,
-        tmaimon77@gmail.com, alexandre.belloni@bootlin.com,
-        yuenn@google.com, KFTING@nuvoton.com, venture@google.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, YSCHU@nuvoton.com,
-        tali.perry1@gmail.com, ctcchien@nuvoton.com,
-        benjaminfair@google.com, mylin1@nuvoton.com,
-        openbmc@lists.ozlabs.org, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        a.zummo@towertech.it, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: rtc: nuvoton: add NCT3018Y Real Time
- Clock
-Message-ID: <20220708221417.GA1573219-robh@kernel.org>
-References: <20220707073054.3954-1-mimi05633@gmail.com>
- <20220707073054.3954-2-mimi05633@gmail.com>
+To:     Alain Volmat <alain.volmat@foss.st.com>
+Cc:     mcoquelin.stm32@gmail.com,
+        linux-stm32@st-md-mailman.stormreply.com,
+        pierre-yves.mordret@foss.st.com, wsa@kernel.org,
+        fabrice.gasnier@foss.st.com, amelie.delaunay@foss.st.com,
+        devicetree@vger.kernel.org, alexandre.torgue@foss.st.com,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        mark.rutland@arm.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: st,stm32-i2c: add entry for
+ stm32mp13
+Message-ID: <20220708221554.GA1575535-robh@kernel.org>
+References: <20220707074402.2429786-1-alain.volmat@foss.st.com>
+ <20220707074402.2429786-2-alain.volmat@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220707073054.3954-2-mimi05633@gmail.com>
+In-Reply-To: <20220707074402.2429786-2-alain.volmat@foss.st.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -70,15 +69,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Jul 2022 15:30:52 +0800, Mia Lin wrote:
-> Document devicetree bindings for the Nuvoton NCT3018Y Real Time Clock.
+On Thu, 07 Jul 2022 09:44:01 +0200, Alain Volmat wrote:
+> Add the new compatible for the stm32mp13.
 > 
-> Signed-off-by: Mia Lin <mimi05633@gmail.com>
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
 > ---
->  .../bindings/rtc/nuvoton,nct3018y.yaml        | 45 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
+>  Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
