@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E002456BB8A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 16:14:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FEEE56BB9F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 16:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238160AbiGHOOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 10:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
+        id S236791AbiGHOTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 10:19:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237980AbiGHOOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 10:14:37 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C4E18E13;
-        Fri,  8 Jul 2022 07:14:35 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id os14so7705410ejb.4;
-        Fri, 08 Jul 2022 07:14:35 -0700 (PDT)
+        with ESMTP id S236547AbiGHOTB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 10:19:01 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC4E222A6;
+        Fri,  8 Jul 2022 07:19:00 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id g4so38049243ybg.9;
+        Fri, 08 Jul 2022 07:19:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Z0XOec91623/KuMv+Ej/7gZUuHsCJ62v6usunFr5b6A=;
-        b=f6IhZTBULbQ7llaZot4o9crrDH/bVkSBG4cnMtEpeURfPACgFjn6vJq/r5K9ktnt1p
-         LERVggmRob4jL/GCkTX2w7v74r1KkY3FTdHWj4yihWbrOZUOANV5aUCghGUOwU0dnxko
-         /PZTw+0EqCC4O3OgTunDclurFhOm+fOeM7DwyLzfawWZNxV75iEId53Bz12llAwF3zZA
-         CxlP1Y+szHux5dgocUVRRMZVsnAep+OILxAx64nCQmbv+MyobgioKifPwL4r/ZjZE8Ln
-         pQduBNe9DY1hriNkcdpRfW0SVuCcc5CUW3dFFnTn/mtPcA5nKFiMo8hNefUcad7CmpbW
-         7uVQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=uZeUkOUfjwvKba9A+T76G5aOzlLwQACY9yD56IUeySA=;
+        b=Xi6DLedoGGbKoSmL8unEscC2KuLaZnV93ZuueMyQHxaaWdLxXOHfx+QQy9ls/VaB+/
+         8qnfQKIV6hPBmm7FwyXfkEWiOxYvCqG72sx7ABOR1l+aHIxb463xt954ydUlVsUVuify
+         o7ZGtNW3KaeBfd5oZIWuVotqfmS7quwu5NZiMz37YDgvr38NDWhf52OxhuXOJqPWnuld
+         yFHF7Mv7AmN5sn86Q2EdDuTBXELpWjkonVhXmZQMGevMvhRf86dBtPW/D4hqC0Ynyste
+         AGmCMxC6jf8VTX1y7OADGcfaHyYGz5OJlPuaccBiXiC5eR6+w1qR7pkz0Ns4ETZpgG/e
+         msVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Z0XOec91623/KuMv+Ej/7gZUuHsCJ62v6usunFr5b6A=;
-        b=2bWVjD2wcED/t2bvI5RGppREQfkPw4wTAXMUCnW6e6uKbn6zzHGRCfYX+To6B0C1S6
-         YGpBR6DJm0bY1LyiWYAOHeyKQhAABYymNo3ZThriLX5FVmC3eE37KOhemlsukErUvEsx
-         m+sWUibOqGpY1aJ1yY1cvsENyKaI5V+Y5igUu1LUph13AFiUIRFyrH+U0iNVi0KKXHiF
-         S45LL6AFqS9TNYpUIhQiLlMUCKAIKoBgeJ4o2Vr/E0nH4au2YSKzvA1I2XymCvHYKRph
-         lEbztsK18olCmJxRTmkvbC5Ac34VXu7YOAanT7V0zDaQWLBzOQmoYkXw7Eimj9EQucew
-         oSkQ==
-X-Gm-Message-State: AJIora84G1DHCGO4O8hZ6eG2JSY+njMaVQetFkngqFhV9jw2jQxOSt1/
-        gkYf7aeINhrLLkdrk3Wkd4ZBHLPOwNBTmA==
-X-Google-Smtp-Source: AGRyM1v6rPWBPZilFN90Jv15KQMt+j6kMHP6jk8djEs05COCTktH+9O11oNXRuqjRUVfaq+6AN/t3g==
-X-Received: by 2002:a17:907:3dac:b0:722:e6ab:8d9 with SMTP id he44-20020a1709073dac00b00722e6ab08d9mr4190126ejc.20.1657289674494;
-        Fri, 08 Jul 2022 07:14:34 -0700 (PDT)
-Received: from jernej-laptop.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
-        by smtp.gmail.com with ESMTPSA id q2-20020a170906a08200b006fed93bf71fsm20603401ejy.18.2022.07.08.07.14.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 07:14:34 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Michal Suchanek <msuchanek@suse.de>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     linux-sunxi@lists.linux.dev, Icenowy Zheng <icenowy@aosc.xyz>,
-        Andre Przywara <andre.przywara@arm.com>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=uZeUkOUfjwvKba9A+T76G5aOzlLwQACY9yD56IUeySA=;
+        b=zoGhEh+WPKCC0EZHqNcnwizyOdIEfR6i6/7izA+3sXKBdljJGzMmvAQvejuB0qoAsM
+         Tf/DcrAK2tDNjrClBd9F9agaFlrvgu3N0vk01NkW51O29n3hbRSYqJk7ytzXLSwor1Fy
+         IX+YMH3318pMWEgXkIEKEYGZrMZHsW0uQuaw6ycfS+oTlCJQlNgz8+C79KVnaQCLxtC1
+         YiSBFgCy6uUXOxUQzrvdUjuA/srHhfmhthzMdunYM4Q4W32KZ/ZJQgiHFFvkQ48UrrQ8
+         TPquEWaCkJ2H9pILkVdC7HzQj+2gVbiqNYBsagdv6XiBA9x52OsoAgito8yOH6429Fsv
+         qtwQ==
+X-Gm-Message-State: AJIora9zLfzNQiTxN+yG4fzbGCPjzZnCqeNmvwr7xzfPrfw5JcR9QpfB
+        WYQQkULs0Hqu/axU0aE5HnApyU6TMzTEgAwpPuA=
+X-Google-Smtp-Source: AGRyM1uanGfioDlH+joftvHrYTRttD4wwNoaCHWFVXjMBQCJPHRyYXU+RZvwMbJBDv3vnRfmdjS+uVSQaZmRk2AH+5U=
+X-Received: by 2002:a05:6902:c4:b0:64b:4677:331b with SMTP id
+ i4-20020a05690200c400b0064b4677331bmr3764863ybs.93.1657289939122; Fri, 08 Jul
+ 2022 07:18:59 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220708093448.42617-1-nuno.sa@analog.com> <20220708093448.42617-2-nuno.sa@analog.com>
+In-Reply-To: <20220708093448.42617-2-nuno.sa@analog.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 8 Jul 2022 16:18:22 +0200
+Message-ID: <CAHp75VcJErVteT0P7=HhHB+c0UWFP8R5rc6u==Zf4p5JS4c=6A@mail.gmail.com>
+Subject: Re: [PATCH 01/10] input: keyboard: adp5588-keys: support gpi key
+ events as 'gpio keys'
+To:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-input <linux-input@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Michael Hennerich <michael.hennerich@analog.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] sunxi: dts: Fix SPI NOR campatible on Orange Pi Zero
-Date:   Fri, 08 Jul 2022 16:13:11 +0200
-Message-ID: <10106175.nUPlyArG6x@jernej-laptop>
-In-Reply-To: <0c575068-abd7-c69a-e59c-3140f8cb7813@sholland.org>
-References: <20220707174801.36e010da@donnerap.cambridge.arm.com> <20220707170721.20225-1-msuchanek@suse.de> <0c575068-abd7-c69a-e59c-3140f8cb7813@sholland.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -74,65 +74,169 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michal,
+On Fri, Jul 8, 2022 at 11:36 AM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
+>
+> This change replaces the support for GPIs as key event generators.
+> Instead of reporting the events directly, we add a gpio based irqchip
+> so that these events can be consumed by keys defined in the gpio-keys
+> driver (as it's goal is indeed for keys on GPIOs capable of generating
+> interrupts). With this, the gpio-adp5588 driver can also be dropped.
+>
+> The basic idea is that all the pins that are not being used as part of
+> the keymap matrix can be possibly requested as GPIOs by gpio-keys
+> (it's also fine to use these pins as plain interrupts though that's not
+> really the point).
+>
+> Since the gpiochip now also has irqchip capabilities, we should only
+> remove it after we free the device interrupt (otherwise we could, in
+> theory, be handling GPIs interrupts while the gpiochip is concurrently
+> removed). Thus the call 'adp5588_gpio_add()' is moved and since the
+> setup phase also needs to come before making the gpios visible, we also
+> need to move 'adp5588_setup()'.
+>
+> While at it, always select GPIOLIB so that we don't need to use #ifdef
+> guards.
 
-sorry, but I was a bit too quick with giving r-b line. See comments below.
+...
 
-Dne petek, 08. julij 2022 ob 09:36:26 CEST je Samuel Holland napisal(a):
-> Hi Michal,
-> 
-> The subject prefix should start with "ARM: dts:" (e.g. "ARM: dts: sunxi:").
-> Generally it is a good idea to look at the log of the file and follow the
-> pattern you see there.
-> 
-> On 7/7/22 12:07 PM, Michal Suchanek wrote:
-> > Without "jedec,spi-nor" compatible the flash memory cannot be probed by
-> > u-boot. The macronix part is what is shipped on the boards that come
-> > with a flash chip.
+>         u8 dat_out[3];
+>         u8 dir[3];
 
-Please reword this a bit. DT isn't user specific, so U-Boot should not be 
-mentioned. But you can write about compatible being wrong. According to DT 
-bindings, it should be manufacturer specific compatible, followed by 
-"jedec,spi-nor".
+> +       u8 int_en[3];
+> +       u8 irq_mask[3];
 
-Once both issues are addressed, you can keep my r-b tag and include fixes tag 
-posted by Sameul.
+Wondering why these can't be converted to natural bitmaps. (See
+gpio-pca953x as an example).
 
-Best regards,
-Jernej
+...
 
-> 
-> Fixes: 45857ae95478 ("ARM: dts: orange-pi-zero: add node for SPI NOR")
-> 
-> Regards,
-> Samuel
-> 
-> > Signed-off-by: Michal Suchanek <msuchanek@suse.de>
-> > ---
-> > 
-> >  arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-> > b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts index
-> > f19ed981da9d..3706216ffb40 100644
-> > --- a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-> > +++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-> > @@ -169,7 +169,7 @@ &spi0 {
-> > 
-> >  	flash@0 {
-> >  	
-> >  		#address-cells = <1>;
-> >  		#size-cells = <1>;
-> > 
-> > -		compatible = "mxicy,mx25l1606e", "winbond,w25q128";
-> > +		compatible = "mxicy,mx25l1606e", "jedec,spi-nor";
-> > 
-> >  		reg = <0>;
-> >  		spi-max-frequency = <40000000>;
-> >  	
-> >  	};
+> +static void adp5588_irq_mask(struct irq_data *d)
+> +{
+> +       struct gpio_chip *gc =3D irq_data_get_irq_chip_data(d);
+> +       struct adp5588_kpad *kpad =3D gpiochip_get_data(gc);
+> +       unsigned long real_irq =3D kpad->gpiomap[d->hwirq];
+> +
+> +       kpad->irq_mask[ADP5588_BANK(real_irq)] &=3D ~ADP5588_BIT(real_irq=
+);
+> +}
+> +
+> +static void adp5588_irq_unmask(struct irq_data *d)
+> +{
+> +       struct gpio_chip *gc =3D irq_data_get_irq_chip_data(d);
+> +       struct adp5588_kpad *kpad =3D gpiochip_get_data(gc);
+> +       unsigned long real_irq =3D kpad->gpiomap[d->hwirq];
+> +
+> +       kpad->irq_mask[ADP5588_BANK(real_irq)] |=3D ADP5588_BIT(real_irq)=
+;
+> +}
 
+Please follow the suitable example from here:
+https://www.kernel.org/doc/html/latest/driver-api/gpio/driver.html#infrastr=
+ucture-helpers-for-gpio-irqchips
 
+...
 
+> +       kpad->gc.parent =3D &kpad->client->dev;
 
+> +       kpad->gc.of_node =3D kpad->client->dev.of_node;
+
+We are going to remove of_node from GPIO. Moreover the parent device
+and its node is a duplication, just drop the latter and GPIO library
+will take care of it.
+
+...
+
+> +       irq_chip->name =3D "adp5588";
+> +       irq_chip->irq_mask =3D adp5588_irq_mask;
+> +       irq_chip->irq_unmask =3D adp5588_irq_unmask;
+> +       irq_chip->irq_bus_lock =3D adp5588_irq_bus_lock;
+> +       irq_chip->irq_bus_sync_unlock =3D adp5588_irq_bus_sync_unlock;
+> +       irq_chip->irq_set_type =3D adp5588_irq_set_type;
+> +       irq_chip->flags =3D IRQCHIP_SKIP_SET_WAKE;
+> +       girq =3D &kpad->gc.irq;
+> +       girq->chip =3D irq_chip;
+
+> +       girq->handler =3D handle_simple_irq;
+
+By default it should be handle_bad_irq() and locked in the ->irq_set_type()=
+.
+
+> +       girq->threaded =3D true;
+
+See documentation above.
+
+...
+
+> +static int adp5588_gpiomap_get_hwirq(const u8 *map, unsigned int gpio,
+> +                                    unsigned int ngpios)
+>  {
+> -       return 0;
+> +       unsigned int hwirq;
+> +
+> +       for (hwirq =3D 0; hwirq < ngpios; hwirq++)
+> +               if (map[hwirq] =3D=3D gpio)
+> +                       return hwirq;
+
+> +       /* should never happen */
+
+Then why it's here?
+
+> +       WARN_ON_ONCE(hwirq =3D=3D ngpios);
+> +
+> +       return -ENOENT;
+> +}
+
+I don't know this code, can you summarize why this additional mapping is ne=
+eded?
+
+...
+
+> +static void adp5588_gpio_irq_handle(struct adp5588_kpad *kpad, int key_v=
+al,
+> +                                   int key_press)
+> +{
+> +       unsigned int irq, gpio =3D key_val - GPI_PIN_BASE, irq_type, hwir=
+q;
+> +       struct i2c_client *client =3D kpad->client;
+> +       struct irq_data *desc;
+> +
+> +       hwirq =3D adp5588_gpiomap_get_hwirq(kpad->gpiomap, gpio, kpad->gc=
+.ngpio);
+> +       if (hwirq < 0) {
+> +               dev_err(&client->dev, "Could not get hwirq for key(%u)\n"=
+, key_val);
+> +               return;
+> +       }
+> +
+> +       irq =3D irq_find_mapping(kpad->gc.irq.domain, hwirq);
+> +       if (irq <=3D 0)
+> +               return;
+> +
+> +       desc =3D irq_get_irq_data(irq);
+> +       if (!desc) {
+> +               dev_err(&client->dev, "Could not get irq(%u) data\n", irq=
+);
+> +               return;
+> +       }
+> +
+> +       irq_type =3D irqd_get_trigger_type(desc);
+> +
+> +       /*
+> +        * Default is active low which means key_press is asserted on
+> +        * the falling edge.
+> +        */
+> +       if ((irq_type & IRQ_TYPE_EDGE_RISING && !key_press) ||
+> +           (irq_type & IRQ_TYPE_EDGE_FALLING && key_press))
+
+This is dup from ->irq_set_type(). Or how this can be not like this?
+
+> +               handle_nested_irq(irq);
+
+There is new helpers I believe for getting domain and handle an IRQ.
+Grep for the recent (one-two last cycles) changes in the GPIO drivers.
+
+>  }
+
+--=20
+With Best Regards,
+Andy Shevchenko
