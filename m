@@ -2,91 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9547856BCAF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 17:09:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AADFA56BC4C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 17:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238252AbiGHOji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 10:39:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58438 "EHLO
+        id S238268AbiGHOjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 10:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238245AbiGHOjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 10:39:36 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E0427CEC;
-        Fri,  8 Jul 2022 07:39:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1657291175; x=1688827175;
+        with ESMTP id S238263AbiGHOjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 10:39:39 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 221A813F0D
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 07:39:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657291178; x=1688827178;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=fnl5CGvXmbwoIcy91psfgiwxnD3o6LZLHepJqwb/OE0=;
-  b=hamohxFVG8Q5km82YgwjCPMOexmesrWusbDnawCTRcDXFZ/4ndJ0XjN+
-   tAZltiVvkXbsgtkhqy5kXcCBt3gR9UI1WJ2w2cpDzP8n74PCcSb1xq54b
-   BdNy7ikCmUA/bIYCChvgHX/RSXPLRtlRhgZmE0OBpYD2EcV3Z+9diU1r0
-   UJnbiiFRImkelU56fA0A9NpNwIi4cuFHySoA0/TSxQ2HSJfBA0M6/+Tvc
-   vGeayOznobifO8OEvvFQLAB+NlK99Xez0LJkegbto1h24BpgsXdFAcJKV
-   ONjx3fA3iq62C2ne9bU1GcjL/5uWblYFAMD9pgiuw4jIge4DZscsBCjoh
+  bh=sbD4RT0bKV1jTxftgVyRoCoVpvDUnrS8ZKB1y15p02c=;
+  b=AWsNoi1uOgLsTBzHfgd2y24c3Rf7oGYqfTdAhWqsCtbYVLEEyr/Eb4vi
+   uHrsz5DYPXWPovYTOaOm81HXgEMaLEyfbHCPskT82QzFBWgFHh7IMP9U6
+   jw+NwJ/fKJbwqepf7KQP74rd2mPusybjSq5WBrJadFsvdtPrvlbnbelOJ
+   UuRrtylnPxZBVCSZ+/hKlYvKJV3O7PKp074rEoGf84jooff/fsqteFQKr
+   jNxCWAd2s6J7ci/u2wPiMWwpW2kOnzkeYcHEGbaTIGykBZaZqhCnRVnjY
+   GITGJ+VodNmtqIo37Pw8Zl0xjQKzByloJmauOCaLrX9L56wVg8zjuk9rN
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,255,1650924000"; 
+   d="scan'208";a="24946279"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 08 Jul 2022 16:39:36 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 08 Jul 2022 16:39:36 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 08 Jul 2022 16:39:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657291176; x=1688827176;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=sbD4RT0bKV1jTxftgVyRoCoVpvDUnrS8ZKB1y15p02c=;
+  b=kZljQoUEVBL+W4Tj18/jotebHjLvuxKOJbQxoBRb5lmqz6JmqviR60gy
+   kQNoj3KaiyAIzgUkhgBH7DOYoZQYk8VRVh6oDGlT5UmZtmsg3eTKDc0PY
+   hWDfes40hYw4FhGSchI3qe9ZNHjdTwFUifncPJsE00SG8nMfmh6BMhtDS
+   OESSr+H+F5iR43sa3oGw2BA4rtnoVQ3413ohMSuJrGD9F+zYsNavEsuEl
+   ZQQbpc5Ga3gkCTVBs7x+0p46K2pVgdoHGCyWap5BC1i6BEe0ID0h4sqxF
+   uPddDxnAXlopEWjqwStmNJ9eHTyxdMJGixnJNFkvwRuDwHTrYna3T3FXV
    w==;
-X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; 
-   d="scan'208";a="167013024"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Jul 2022 07:39:34 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 8 Jul 2022 07:39:33 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Fri, 8 Jul 2022 07:39:31 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        "Lee Jones" <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-CC:     Daire McNamara <daire.mcnamara@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v5 4/4] MAINTAINERS: add pwm to PolarFire SoC entry
-Date:   Fri, 8 Jul 2022 15:39:23 +0100
-Message-ID: <20220708143923.1129928-5-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220708143923.1129928-1-conor.dooley@microchip.com>
-References: <20220708143923.1129928-1-conor.dooley@microchip.com>
+X-IronPort-AV: E=Sophos;i="5.92,255,1650924000"; 
+   d="scan'208";a="24946278"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 08 Jul 2022 16:39:35 +0200
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C8421280075;
+        Fri,  8 Jul 2022 16:39:35 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Markus Niebel <Markus.Niebel@tq-group.com>
+Subject: Re: [PATCH v2 0/3] TQMa8MPxL + MBa8MPxL support
+Date:   Fri, 08 Jul 2022 16:39:33 +0200
+Message-ID: <15466736.O9o76ZdvQC@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220622114949.889274-1-alexander.stein@ew.tq-group.com>
+References: <20220622114949.889274-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the newly introduced pwm driver to the existing PolarFire SoC entry.
+Ping,
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+I would like to get patch 1 & 2 into v5.20.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d64d79eb36a2..f023ae8442ab 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17429,6 +17429,7 @@ L:	linux-riscv@lists.infradead.org
- S:	Supported
- F:	arch/riscv/boot/dts/microchip/
- F:	drivers/mailbox/mailbox-mpfs.c
-+F:	drivers/pwm/pwm-microchip-core.c
- F:	drivers/rtc/rtc-mpfs.c
- F:	drivers/soc/microchip/
- F:	drivers/spi/spi-microchip-core.c
--- 
-2.36.1
+Regards,
+Alexander
+
+Am Mittwoch, 22. Juni 2022, 13:49:46 CEST schrieb Alexander Stein:
+> Hello,
+> 
+> this patch set adds support for TQMa8MPxL on mainboard MBa8MPxL. This
+> already includes some pinctrl and/or peripheral configurations which are
+> not yet in use, e.g. PWM for PWM fan, backlight for LVDS panel, etc.
+> Also note. this only supports MBa8MPxL Rev.2xx, Revision 1xx is
+> not supported!
+> 
+> Changes in v2:
+> * Added a-b in patch1
+> * Changed LED label to function + color
+> * Renamed some nodes
+> * Added more pwm-backlight properties
+> * Added comment about missing display compatible
+> * Added display power-supply regulator
+> * Fixed pinctl settings for HDMI mux
+> * Added patch3 as WIP to show the LVDS overlay
+> 
+> Best regards,
+> Alexander
+> 
+> Alexander Stein (2):
+>   arm64: dts: freescale: add initial device tree for TQMa8MPQL with
+>     i.MX8MP
+>   [DNI/WIP] arm64: dts: freescale: Add LVDS overlay for TQMa8MPxL
+> 
+> Markus Niebel (1):
+>   dt-bindings: arm: add TQMa8MPxL board
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          |  12 +
+>  arch/arm64/boot/dts/freescale/Makefile        |   3 +
+>  .../imx8mp-tqma8mpql-mba8mpxl-lvds.dts        |  44 ++
+>  .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 708 ++++++++++++++++++
+>  .../boot/dts/freescale/imx8mp-tqma8mpql.dtsi  | 284 +++++++
+>  5 files changed, 1051 insertions(+)
+>  create mode 100644
+> arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.dts create
+> mode 100644 arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+
+
+
 
