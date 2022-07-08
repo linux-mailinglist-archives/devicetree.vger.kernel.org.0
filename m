@@ -2,60 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF38E56C2DC
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE8456C305
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239136AbiGHWKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 18:10:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38652 "EHLO
+        id S240068AbiGHWOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 18:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbiGHWKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:10:34 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900899FE06;
-        Fri,  8 Jul 2022 15:10:32 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id u6so54327iop.5;
-        Fri, 08 Jul 2022 15:10:32 -0700 (PDT)
+        with ESMTP id S240060AbiGHWOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:14:20 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55CA62A707;
+        Fri,  8 Jul 2022 15:14:20 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id z81so284306iof.0;
+        Fri, 08 Jul 2022 15:14:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=oN8Bupin0hE35LPgYOevBJqhqJt/5KoteoM0acQHYOI=;
-        b=ouxvrYtNy128Cq/HU+Yk6pxMDlRkBIcfzN+meSU03e98GKJREdLA+Cb+fO4pmaBTsA
-         GjuOhxpBp9zlJSdpdmE66rJszpMa6rXo51b6WlMjO+hMcdvVFSeRaTmSSkXc3SEY7dOS
-         THMKCamGjGLMs7x+Oi8l29n/H9W2BuWYFtOxuILLR8jGPL4wscPBSJndAvKUAs5f6mGA
-         sh/F979dqCipM5dCqDhDnb/vdRaO5wiromGyXEiqJczmhidYvnbi8atgyeZhF4jwV3WD
-         Jokpno7JsC4K1ueWTUG360xm8JvwEb7FVvd669B39EHQHpxKCAfMF13rD+dIZ02CQdBP
-         GrSg==
-X-Gm-Message-State: AJIora/d9GLObBqpIIJ6G9OHvESnrQYxT8Rm1cdKoGDAHXWt6bkf9zCb
-        HGuIuMeNl7jzU2rZqHnzAQ==
-X-Google-Smtp-Source: AGRyM1vgvzoqD/VrjwnV1hgMdhHsLV/WW3CpbxY6wr8BZDe4k4zakYv2tFXWrRfkjJtuZF95e+K6UA==
-X-Received: by 2002:a05:6638:3d83:b0:33c:805a:77eb with SMTP id ci3-20020a0566383d8300b0033c805a77ebmr3525050jab.237.1657318231891;
-        Fri, 08 Jul 2022 15:10:31 -0700 (PDT)
+        bh=qizlKD9bE5dN8tJcWqnW6FaDP0qSa79ZfPV40HiDdGQ=;
+        b=Yiu1EWliG8RLFfRL/e3eAzDNbrkLPyf+vzABOthH0KsHQ/X9K0O9HkrwSedV5c5C3H
+         bAm8pLNlNJx7+3vo6yHhEggx879Bk782o5qFCQ72Bljrud9REIxrTbEQZ5e2ov5JVQ9U
+         EwDtpSlRn5r3OKh1o9o0asnbd1QQ78+dsVCQbd1u5DrNo/ZI0zC+ywc6Cfq03fzCgmNA
+         GlG9oiBOTNfw6cd7tWmEWLY+fifqnTxzb7dgXFdNgifPMqVtDrlx1o8aTl4jAa8YWUjC
+         7HkOtmXZW83AmvwAfnTwxaxwY8zFAxO+9r0ORM2U60kOzrEdRcnCaEByg/L/zP4oCbth
+         BNLg==
+X-Gm-Message-State: AJIora/79bt9+kiZRi6/LrVQTowdNGHjwc5S+LE8qhf7g1aaaKkA/nEj
+        /ZpILCjeya8DnRQ7gAOMvQ==
+X-Google-Smtp-Source: AGRyM1t4peia84G04eriBOduqU7X4VUiKCFhcEgAmMHSCwj5GjAENVk5PMLOfC7mJNOQOcZb13sK1g==
+X-Received: by 2002:a05:6602:2e8e:b0:669:d5b1:3fc9 with SMTP id m14-20020a0566022e8e00b00669d5b13fc9mr3158325iow.210.1657318459564;
+        Fri, 08 Jul 2022 15:14:19 -0700 (PDT)
 Received: from robh.at.kernel.org ([98.38.210.73])
-        by smtp.gmail.com with ESMTPSA id n28-20020a056602341c00b0067b7841c09asm14656ioz.15.2022.07.08.15.10.31
+        by smtp.gmail.com with ESMTPSA id w10-20020a92db4a000000b002dad39ff841sm10133296ilq.19.2022.07.08.15.14.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 15:10:31 -0700 (PDT)
-Received: (nullmailer pid 1567732 invoked by uid 1000);
-        Fri, 08 Jul 2022 22:10:30 -0000
-Date:   Fri, 8 Jul 2022 16:10:30 -0600
+        Fri, 08 Jul 2022 15:14:19 -0700 (PDT)
+Received: (nullmailer pid 1573273 invoked by uid 1000);
+        Fri, 08 Jul 2022 22:14:17 -0000
+Date:   Fri, 8 Jul 2022 16:14:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: usb: mtk-xhci: add compatible for mt8188
-Message-ID: <20220708221030.GA1567681-robh@kernel.org>
-References: <20220707015041.12264-1-chunfeng.yun@mediatek.com>
+To:     Mia Lin <mimi05633@gmail.com>
+Cc:     avifishman70@gmail.com, devicetree@vger.kernel.org,
+        tmaimon77@gmail.com, alexandre.belloni@bootlin.com,
+        yuenn@google.com, KFTING@nuvoton.com, venture@google.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, YSCHU@nuvoton.com,
+        tali.perry1@gmail.com, ctcchien@nuvoton.com,
+        benjaminfair@google.com, mylin1@nuvoton.com,
+        openbmc@lists.ozlabs.org, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        a.zummo@towertech.it, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: rtc: nuvoton: add NCT3018Y Real Time
+ Clock
+Message-ID: <20220708221417.GA1573219-robh@kernel.org>
+References: <20220707073054.3954-1-mimi05633@gmail.com>
+ <20220707073054.3954-2-mimi05633@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220707015041.12264-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20220707073054.3954-2-mimi05633@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,13 +70,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Jul 2022 09:50:41 +0800, Chunfeng Yun wrote:
-> Add compatible for mt8188
+On Thu, 07 Jul 2022 15:30:52 +0800, Mia Lin wrote:
+> Document devicetree bindings for the Nuvoton NCT3018Y Real Time Clock.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Signed-off-by: Mia Lin <mimi05633@gmail.com>
 > ---
->  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/rtc/nuvoton,nct3018y.yaml        | 45 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
