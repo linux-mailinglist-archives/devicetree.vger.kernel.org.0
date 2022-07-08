@@ -2,94 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C433E56C3E6
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A945B56C271
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238652AbiGHUoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 16:44:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38578 "EHLO
+        id S239839AbiGHUtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 16:49:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238369AbiGHUoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 16:44:03 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 445CB9CE3F;
-        Fri,  8 Jul 2022 13:44:01 -0700 (PDT)
-Received: from [192.168.1.101] (abxi46.neoplus.adsl.tpnet.pl [83.9.2.46])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 373731F6C6;
-        Fri,  8 Jul 2022 22:43:57 +0200 (CEST)
-Message-ID: <bb78f8fb-d6ea-5c37-0531-8d7584bc897b@somainline.org>
-Date:   Fri, 8 Jul 2022 22:43:56 +0200
+        with ESMTP id S238976AbiGHUtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 16:49:02 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1714784EF3
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 13:48:57 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id f62-20020a9d03c4000000b0061c2c94ab8dso1744348otf.10
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 13:48:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=oTRkIHkkNvP0E53VWhSF2X9Yi/sOj2WBCOpKZoAXIu4=;
+        b=MigDeIBYToCrLnSVXo5wEsyN9vgrb0Ai7tzQl4JjezdR+NsMxylX2bslPxBhO0L7Et
+         xCQgyTmwveugyEZZjMmKFU8pf/H24ibg8B+tLycbqfl9QO9ThpmxTN2evdRLrl56SbYk
+         olrNkSc8UA/V+PnmX2eZNcnBPx+qYIs+ldTW0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=oTRkIHkkNvP0E53VWhSF2X9Yi/sOj2WBCOpKZoAXIu4=;
+        b=x5aZk7K5u6HJ0sK1ZNug4Jflij5qRzRCfs6+4XXfj3gpeIdi3l7O7e9idfHUWdvbmp
+         AVPn2D6773r/VNLGh0+e38YK98J9L32pZMWYovkm4Mb6W14SAPkiZPBrvTBczc+K7sl0
+         pG7NP6EY9SAT2e1LVuPZZlcA4uSqMmDDwi+PIHcBDTdFPWpoEbbuhb+fXeFaZk1NHHkF
+         sxs+AO3x+kxZX99W1V12WxB37nEkRxISObb30zf48LmKttnkNE2kHHYGJc770NFplI2t
+         h6NE5wT1LmDGwoKPfi4K9WZLTAulpaNPw1Cql9EfRFMUSV6UInCnmkHVsZHGI2TSysHK
+         P2CQ==
+X-Gm-Message-State: AJIora86KKI1tE2H8qsDABY6kz9CUeZrgferboomZTBuq1GWRak5YAiO
+        DP8H4fh0nmvCI8wkcsJwp0jPJKLa8n+Va2YkNl7kRQ==
+X-Google-Smtp-Source: AGRyM1taOliA1drxAbyZku2NYLmp4/EsK31dn6TQJuxKde3Uv1L7lNEiCnBSek/bIMbxUbcnOmOzWSA8kvZdIxxCJv4=
+X-Received: by 2002:a05:6830:d81:b0:616:c424:6f22 with SMTP id
+ bv1-20020a0568300d8100b00616c4246f22mr2394204otb.77.1657313336409; Fri, 08
+ Jul 2022 13:48:56 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 8 Jul 2022 13:48:55 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 0/5] Add support for Xiaomi Poco F1 EBBG variant
-Content-Language: en-US
-To:     Joel Selvaraj <jo@jsfamily.in>, Andy Gross <agross@kernel.org>,
+In-Reply-To: <ac679a45-9574-7978-860f-1a1bcefb53ec@quicinc.com>
+References: <20220614161118.12458-1-quic_tdas@quicinc.com> <Yqi8rcs95CEEjGY4@google.com>
+ <CAE-0n50cqBWpDKsiyDNMZ8GnNtj7xJn930S1hucdAGn7tGXewA@mail.gmail.com> <ac679a45-9574-7978-860f-1a1bcefb53ec@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 8 Jul 2022 13:48:55 -0700
+Message-ID: <CAE-0n51vx8X3+WiOSMx9LnO17uu+5XapYjSG8ybKOS_F_CYAhQ@mail.gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Update lpassaudio clock
+ controller for resets
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <MN2PR02MB702415D7BF12B7B7A41B2D38D9829@MN2PR02MB7024.namprd02.prod.outlook.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <MN2PR02MB702415D7BF12B7B7A41B2D38D9829@MN2PR02MB7024.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Taniya Das (2022-07-07 00:06:59)
+>
+> Hi Stephen,
+>
+> On 6/15/2022 2:08 AM, Stephen Boyd wrote:
+> > Quoting Matthias Kaehlcke (2022-06-14 09:51:57)
+> >> On Tue, Jun 14, 2022 at 09:41:18PM +0530, Taniya Das wrote:
+> >>> The lpass audio supports TX/RX/WSA block resets. The LPASS PIL clock
+> >>> driver is not supported and mark it disabled. Also to keep consistency
+> >>> update lpasscore to lpass_core.
+> >>
+> >> There is a driver for "qcom,sc7280-lpasscc", what does it mean that is
+> >> isn't supported?
+> >>
+> >> IIUC one problem is that 'lpasscc@3000000' and 'lpass_aon / clock-controller@3380000'
+> >> have overlapping register ranges, so they can't be used together.
+> >>
+> >> You could just say 'Disable the LPASS PIL clock by default, boards
+> >> can enable it if needed'.
+> >
+> > For the pinctrl driver we added a "qcom,adsp-bypass-mode" property[1] to
+> > indicate that the ADSP was being bypassed or not. Can we do the same
+> > here and combine the device nodes that have overlapping reg properties?
+> >
+> > [1] https://lore.kernel.org/r/1654921357-16400-2-git-send-email-quic_srivasam@quicinc.com
+>
+> Could we take up as a cleanup and take it forward:
+> https://lore.kernel.org/lkml/20220614153306.29339-1-quic_tdas@quicinc.com/T/#t
+>
 
-
-On 8.07.2022 13:12, Joel Selvaraj wrote:
-> There are two variants of Xiaomi Poco F1.
-> - Tianma variant with NOVATEK NT36672A panel + touchscreen manufactured
->   by Tianma
-> - EBBG variant with Focaltech FT8719 panel + touchscreen manufactured
->   by EBBG
-> 
-> The current sdm845-xiaomi-beryllium.dts represents tianma panel variant.
-> 
-> To add support for the EBBG variant, let's split this into 3 files,
-> - sdm845-xiaomi-beryllium-common.dtsi which contains all the common nodes
-> - sdm845-xiaomi-beryllium-tianma.dts for the tianma variant
-> - sdm845-xiaomi-beryllium-ebbg.dts for the ebbg variant
-> 
-> Note:
-> -----
-> Both the panels are already upstreamed and the split is based on them.
-> There were patches earlier for both the touchscreens, but they are not
-> accepted upstream yet. Once they are accepted, we will add them to
-> respective variants.
-Hi,
-
-I believe this is not the correct approach. This may work short-term, but
-you will have to prepare 2 separate images for the device and mistaking them
-may cause irreversible hw damage at worst, or lots of user complaining at best.
-Instead, I think it's about time we should look into implementing dynamic panel
-detection.
-
-Qualcomm devices do this by parsing the command line [1], as LK/XBL
-gives you a nice-ish string to work with that you can simply match
-against a label. Other vendors may use custom mechanisms, such as
-a resistor / GPIO to determine which panel (or generally hw config),
-but implementing this mechanism would make upstreaming of lots of other
-devices easier..
-
-This issue concerns many phones (and well, devices in general), as
-they are seldom made with only one configuration due to supply chain
-strategies.
-
-
-Konrad
-
-[1] https://github.com/LineageOS/android_kernel_xiaomi_sdm845/blob/lineage-19.1/drivers/gpu/drm/msm/dsi-staging/dsi_display.c
+I don't think so. The binding would need to change.
