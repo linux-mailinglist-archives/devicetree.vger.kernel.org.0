@@ -2,110 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 010B356C354
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F0D356C2E7
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238854AbiGHTjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 15:39:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45956 "EHLO
+        id S239401AbiGHTnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 15:43:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238693AbiGHTjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 15:39:15 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA63264;
-        Fri,  8 Jul 2022 12:39:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1657309154; x=1688845154;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=LpoDI14rXdWMtl4+x5dyiQKRVxSqj32tjZgTDJN6bu8=;
-  b=PN4bpZJykrRj/+kj2wkTatzHsV8bA8ENTbOJZoV6ABCVdAYZsXe4fFpi
-   3nxUds9T/ClYX+R31NFxU16D82LUc9g2hbWr9LTKwxtIOWCp10fjdwBuJ
-   miN0lErIqxTF55Pg4MDBtGFrc47i1TpzxhVMxF0Dv1T/yNK6iTchQY4Vp
-   c5PudI22vUN9JHHIB4WX47wtB2kCbcq75D/47BgW6BUc1uWbSZ9192Kvs
-   sFSn7mRHSMF0cQJwq57vKbta6bxrHAfjARjAeQJDtmCWDJJ/cR1YXP5WZ
-   Q9uI/5gYbvtGJ3RUjDg2F1xH7VFKfInM0e4mXGSJM5G+cgtKBkejBImFy
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10402"; a="264764071"
-X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; 
-   d="scan'208";a="264764071"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2022 12:39:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; 
-   d="scan'208";a="661876727"
-Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 08 Jul 2022 12:39:09 -0700
-Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1o9toe-000Nqg-0N;
-        Fri, 08 Jul 2022 19:39:04 +0000
-Date:   Sat, 9 Jul 2022 03:38:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Tanmay Shah <tanmay.shah@amd.com>, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
-        ben.levinsky@xilinx.com, tanmay.shah@xilinx.com,
-        michal.simek@amd.com
-Cc:     Paul Gazzillo <paul@pgazz.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        kbuild-all@lists.01.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Tanmay Shah <tanmay.shah@amd.com>
-Subject: Re: [PATCH v9 6/6] drivers: remoteproc: Add Xilinx r5 remoteproc
- driver
-Message-ID: <202207090358.SyMJbHIZ-lkp@intel.com>
-References: <20220708013955.2340449-7-tanmay.shah@amd.com>
+        with ESMTP id S239729AbiGHTnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 15:43:22 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D795387372;
+        Fri,  8 Jul 2022 12:43:20 -0700 (PDT)
+Received: from notapiano.myfiosgateway.com (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D32E566019F4;
+        Fri,  8 Jul 2022 20:43:17 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657309399;
+        bh=HsUUHgmSxVGoE99t9D33ofg+0MT1fLdgE9yRIXfbc5k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NFlrFAEcQLDYh2KzyNiBIAanYfG78/212pnVJp/Ef9PyFL98XpD1yTDF3og3uAbrk
+         EK6tDvCNILxi2YjDcfGAbaK0fZLkjNNCAf7d0988Ad3c9W+FsFHULfFHrDz+IpvGCA
+         oW4cfvzaJwE7TixCDvINh/sW/E9hhV1HhCqALfU/Gh83Gl6PE2DChRkJy9188zWfGh
+         EvlF6ZqzEBXFBUkaWpKfkFLmQSTgTGP04x5xwNGQj+SjacFzoRTpDwEyHGDYacmLG1
+         viBzuZNL395uGOq30CNCOkJ9qT9hkC+nNcYyt9fVqr/mDQpRWV0jIcLr8tDyEQRZuB
+         j8b0Xz41iaDdg==
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH] arm64: dts: mediatek: Add missing xHCI clocks for mt8192 and mt8195
+Date:   Fri,  8 Jul 2022 15:43:14 -0400
+Message-Id: <20220708194314.56922-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220708013955.2340449-7-tanmay.shah@amd.com>
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tanmay,
+The MediaTek xHCI dt-binding expects a specific order for the clocks,
+but the mt8192 and mt8195 devicetrees were skipping some of the middle
+clocks. These clocks are wired to the controller hardware but aren't
+controllable.
 
-Thank you for the patch! Perhaps something to improve:
+Add the missing clocks as handles to fixed clocks, so that the clock
+order is respected and the dtbs_check warnings are gone.
 
-[auto build test WARNING on c6a669485125145afd22230df6e0e6c37f19ad41]
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tanmay-Shah/Add-Xilinx-RPU-subsystem-support/20220708-094221
-base:   c6a669485125145afd22230df6e0e6c37f19ad41
-config: (https://download.01.org/0day-ci/archive/20220709/202207090358.SyMJbHIZ-lkp@intel.com/config)
-reproduce:
-        # https://github.com/intel-lab-lkp/linux/commit/77a934574239ba990778a8007045b8c43955d9f5
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Tanmay-Shah/Add-Xilinx-RPU-subsystem-support/20220708-094221
-        git checkout 77a934574239ba990778a8007045b8c43955d9f5
-        # 1. reproduce by kismet
-           # install kmax per https://github.com/paulgazz/kmax/blob/master/README.md
-           kismet --linux-ksrc=linux --selectees CONFIG_ZYNQMP_IPI_MBOX --selectors CONFIG_XLNX_R5_REMOTEPROC -a=arm64
-        # 2. reproduce by make
-           # save the config file to linux source tree
-           cd linux
-           make ARCH=arm64 olddefconfig
+---
+A previous attempt to solve this also made all clocks required and
+updated all MediaTek DTs using the xhci binding [1].
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+To avoid the DT change noise, the binding change is now being reverted
+[2] and only mt8192 and mt8195 DTs are updated in this commit to get rid
+of the warnings.
 
+[1] https://lore.kernel.org/all/20220623193702.817996-4-nfraprado@collabora.com/
+[2] https://lore.kernel.org/all/20220708192605.43351-1-nfraprado@collabora.com
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for ZYNQMP_IPI_MBOX when selected by XLNX_R5_REMOTEPROC
-   
-   WARNING: unmet direct dependencies detected for ZYNQMP_IPI_MBOX
-     Depends on [n]: MAILBOX [=n] && ARCH_ZYNQMP [=y] && OF [=y]
-     Selected by [y]:
-     - XLNX_R5_REMOTEPROC [=y] && REMOTEPROC [=y] && PM [=y] && ARCH_ZYNQMP [=y] && ZYNQMP_FIRMWARE [=y]
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi |  9 ++++++---
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 18 ++++++++++++++----
+ 2 files changed, 20 insertions(+), 7 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index cbae5a5ee4a0..869958fd420c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -724,9 +724,12 @@ xhci: usb@11200000 {
+ 			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+ 						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+ 			clocks = <&infracfg CLK_INFRA_SSUSB>,
+-				 <&infracfg CLK_INFRA_SSUSB_XHCI>,
+-				 <&apmixedsys CLK_APMIXED_USBPLL>;
+-			clock-names = "sys_ck", "xhci_ck", "ref_ck";
++				 <&apmixedsys CLK_APMIXED_USBPLL>,
++				 <&clk26m>,
++				 <&clk26m>,
++				 <&infracfg CLK_INFRA_SSUSB_XHCI>;
++			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
++				      "xhci_ck";
+ 			wakeup-source;
+ 			mediatek,syscon-wakeup = <&pericfg 0x420 102>;
+ 			status = "disabled";
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index 066c14989708..725985e599be 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -560,8 +560,10 @@ xhci0: usb@11200000 {
+ 			clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
+ 				 <&topckgen CLK_TOP_SSUSB_REF>,
+ 				 <&apmixedsys CLK_APMIXED_USB1PLL>,
++				 <&clk26m>,
+ 				 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
+-			clock-names = "sys_ck", "ref_ck", "mcu_ck", "xhci_ck";
++			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
++				      "xhci_ck";
+ 			mediatek,syscon-wakeup = <&pericfg 0x400 103>;
+ 			wakeup-source;
+ 			status = "disabled";
+@@ -625,8 +627,10 @@ xhci1: usb@11290000 {
+ 			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_1P_BUS>,
+ 				 <&topckgen CLK_TOP_SSUSB_P1_REF>,
+ 				 <&apmixedsys CLK_APMIXED_USB1PLL>,
++				 <&clk26m>,
+ 				 <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>;
+-			clock-names = "sys_ck", "ref_ck", "mcu_ck","xhci_ck";
++			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
++				      "xhci_ck";
+ 			mediatek,syscon-wakeup = <&pericfg 0x400 104>;
+ 			wakeup-source;
+ 			status = "disabled";
+@@ -646,8 +650,11 @@ xhci2: usb@112a0000 {
+ 						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+ 			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_2P_BUS>,
+ 				 <&topckgen CLK_TOP_SSUSB_P2_REF>,
++				 <&clk26m>,
++				 <&clk26m>,
+ 				 <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
+-			clock-names = "sys_ck", "ref_ck", "xhci_ck";
++			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
++				      "xhci_ck";
+ 			mediatek,syscon-wakeup = <&pericfg 0x400 105>;
+ 			wakeup-source;
+ 			status = "disabled";
+@@ -667,8 +674,11 @@ xhci3: usb@112b0000 {
+ 						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+ 			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_3P_BUS>,
+ 				 <&topckgen CLK_TOP_SSUSB_P3_REF>,
++				 <&clk26m>,
++				 <&clk26m>,
+ 				 <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>;
+-			clock-names = "sys_ck", "ref_ck", "xhci_ck";
++			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
++				      "xhci_ck";
+ 			mediatek,syscon-wakeup = <&pericfg 0x400 106>;
+ 			wakeup-source;
+ 			status = "disabled";
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.37.0
+
