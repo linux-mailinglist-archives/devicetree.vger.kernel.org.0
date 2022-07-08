@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB14C56BB70
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 16:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E002456BB8A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 16:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238356AbiGHOBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 10:01:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32934 "EHLO
+        id S238160AbiGHOOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 10:14:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237944AbiGHOBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 10:01:50 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C733717586
-        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 07:01:49 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id d13-20020a05600c34cd00b003a2dc1cf0b4so705530wmq.4
-        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 07:01:49 -0700 (PDT)
+        with ESMTP id S237980AbiGHOOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 10:14:37 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C4E18E13;
+        Fri,  8 Jul 2022 07:14:35 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id os14so7705410ejb.4;
+        Fri, 08 Jul 2022 07:14:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=sQeYOB1ojPLloG2yUNPgzIcTyy1DnXOTtgypeXwq+gY=;
-        b=IZzeUSCueAHAz6a15+CqVSw+a5LNSOnfHLCejApOWnmeWNfoomRfySA9+XUsYrjVn4
-         A85BgVGBsqfODidj7unlzA55BA5sl0QRsOwqQlpQ4Qfd9cIK98RrcP2mm/gYuxkk2ivs
-         +bc/4s1T8KYhc5hOM18d00Xns+1SAc6gnN0SWYON1ekZ77xIjsJwt5hlhWVWTFkZYPQJ
-         vW0/fwNElPPn2gmQbjRw9V76qlMxtx02Q3YNI9CHM1ng/a890yxUfA8HMyg9YswATI6v
-         kIaitNr12Y8n1Q0L8LLyB0dD3fub35zp2CFFTYBUeQy/T3itUSzzu47+JHkQ2gIDaVOH
-         m3MQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Z0XOec91623/KuMv+Ej/7gZUuHsCJ62v6usunFr5b6A=;
+        b=f6IhZTBULbQ7llaZot4o9crrDH/bVkSBG4cnMtEpeURfPACgFjn6vJq/r5K9ktnt1p
+         LERVggmRob4jL/GCkTX2w7v74r1KkY3FTdHWj4yihWbrOZUOANV5aUCghGUOwU0dnxko
+         /PZTw+0EqCC4O3OgTunDclurFhOm+fOeM7DwyLzfawWZNxV75iEId53Bz12llAwF3zZA
+         CxlP1Y+szHux5dgocUVRRMZVsnAep+OILxAx64nCQmbv+MyobgioKifPwL4r/ZjZE8Ln
+         pQduBNe9DY1hriNkcdpRfW0SVuCcc5CUW3dFFnTn/mtPcA5nKFiMo8hNefUcad7CmpbW
+         7uVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sQeYOB1ojPLloG2yUNPgzIcTyy1DnXOTtgypeXwq+gY=;
-        b=uOC1UarmiZDmjw/m+oWJtvDIU4K335/Y87EZ98uYRZzWkz6QyCaqacRHNaXPkGOikm
-         DpDk9XnKCKUx/LUAcG4zrwqJy25NCQrVPc42BylJVTwjEAPZKrHlQ3yIXQVVjmlRW+zZ
-         cDv00051nR5+t1wfedtPQZFW6j2ytgC0H2ZrjOgLVRlE9dHAVj0c5Dski2gl5OWT+YkR
-         wCH2OSgUT+gT/RNW93XqBHI19EQRAdqwywP8jnexoV+fXNbor1S5hoseWYtNnbphD00E
-         9JxI04ORbuFB3OilepdAJrfpK8MJ3jPMPaHEzXvjPBRlgTIPd3LEFCBvlQN1eo4SbhCc
-         /m6w==
-X-Gm-Message-State: AJIora8jSaECwqfVX75S3a+V25rbfwS7ExP7Pe1s4gYYxOO9EeVQsTk/
-        p+UTOGlm5ppKwHADNLeTCaNLuQ==
-X-Google-Smtp-Source: AGRyM1tVT2Lp3bxp/fPMlGxWzal1VMrwHpSWDBq35jltBIxUVl0tmy7YX6v0aUz2rlHqFFI+3mUhfQ==
-X-Received: by 2002:a05:600c:58d:b0:3a0:4547:43a6 with SMTP id o13-20020a05600c058d00b003a0454743a6mr4039844wmd.146.1657288908247;
-        Fri, 08 Jul 2022 07:01:48 -0700 (PDT)
-Received: from google.com (88.140.78.34.bc.googleusercontent.com. [34.78.140.88])
-        by smtp.gmail.com with ESMTPSA id n20-20020a05600c4f9400b0039c5ab7167dsm2146210wmq.48.2022.07.08.07.01.47
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Z0XOec91623/KuMv+Ej/7gZUuHsCJ62v6usunFr5b6A=;
+        b=2bWVjD2wcED/t2bvI5RGppREQfkPw4wTAXMUCnW6e6uKbn6zzHGRCfYX+To6B0C1S6
+         YGpBR6DJm0bY1LyiWYAOHeyKQhAABYymNo3ZThriLX5FVmC3eE37KOhemlsukErUvEsx
+         m+sWUibOqGpY1aJ1yY1cvsENyKaI5V+Y5igUu1LUph13AFiUIRFyrH+U0iNVi0KKXHiF
+         S45LL6AFqS9TNYpUIhQiLlMUCKAIKoBgeJ4o2Vr/E0nH4au2YSKzvA1I2XymCvHYKRph
+         lEbztsK18olCmJxRTmkvbC5Ac34VXu7YOAanT7V0zDaQWLBzOQmoYkXw7Eimj9EQucew
+         oSkQ==
+X-Gm-Message-State: AJIora84G1DHCGO4O8hZ6eG2JSY+njMaVQetFkngqFhV9jw2jQxOSt1/
+        gkYf7aeINhrLLkdrk3Wkd4ZBHLPOwNBTmA==
+X-Google-Smtp-Source: AGRyM1v6rPWBPZilFN90Jv15KQMt+j6kMHP6jk8djEs05COCTktH+9O11oNXRuqjRUVfaq+6AN/t3g==
+X-Received: by 2002:a17:907:3dac:b0:722:e6ab:8d9 with SMTP id he44-20020a1709073dac00b00722e6ab08d9mr4190126ejc.20.1657289674494;
+        Fri, 08 Jul 2022 07:14:34 -0700 (PDT)
+Received: from jernej-laptop.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
+        by smtp.gmail.com with ESMTPSA id q2-20020a170906a08200b006fed93bf71fsm20603401ejy.18.2022.07.08.07.14.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 07:01:47 -0700 (PDT)
-Date:   Fri, 8 Jul 2022 14:01:46 +0000
-From:   Sebastian Ene <sebastianene@google.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v11 2/2] misc: Add a mechanism to detect stalls on guest
- vCPUs
-Message-ID: <Ysg4ynnMN+izdXkN@google.com>
-References: <20220708112344.1965947-1-sebastianene@google.com>
- <20220708112344.1965947-3-sebastianene@google.com>
- <Ysg1axKEaLgG+uQa@kroah.com>
+        Fri, 08 Jul 2022 07:14:34 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Michal Suchanek <msuchanek@suse.de>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     linux-sunxi@lists.linux.dev, Icenowy Zheng <icenowy@aosc.xyz>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] sunxi: dts: Fix SPI NOR campatible on Orange Pi Zero
+Date:   Fri, 08 Jul 2022 16:13:11 +0200
+Message-ID: <10106175.nUPlyArG6x@jernej-laptop>
+In-Reply-To: <0c575068-abd7-c69a-e59c-3140f8cb7813@sholland.org>
+References: <20220707174801.36e010da@donnerap.cambridge.arm.com> <20220707170721.20225-1-msuchanek@suse.de> <0c575068-abd7-c69a-e59c-3140f8cb7813@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ysg1axKEaLgG+uQa@kroah.com>
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,57 +74,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 08, 2022 at 03:47:23PM +0200, Greg Kroah-Hartman wrote:
-> On Fri, Jul 08, 2022 at 11:23:45AM +0000, Sebastian Ene wrote:
-> > This driver creates per-cpu hrtimers which are required to do the
-> > periodic 'pet' operation. On a conventional watchdog-core driver, the
-> > userspace is responsible for delivering the 'pet' events by writing to
-> > the particular /dev/watchdogN node. In this case we require a strong
-> > thread affinity to be able to account for lost time on a per vCPU.
-> > 
-> > This part of the driver is the 'frontend' which is reponsible for
-> > delivering the periodic 'pet' events, configuring the virtual peripheral
-> > and listening for cpu hotplug events. The other part of the driver is
-> > an emulated MMIO device which is part of the KVM virtual machine
-> > monitor and this part accounts for lost time by looking at the
-> > /proc/{}/task/{}/stat entries.
-> > 
-> > Reviewed-by: Will Deacon <will@kernel.org>
-> > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+Hi Michal,
+
+sorry, but I was a bit too quick with giving r-b line. See comments below.
+
+Dne petek, 08. julij 2022 ob 09:36:26 CEST je Samuel Holland napisal(a):
+> Hi Michal,
+> 
+> The subject prefix should start with "ARM: dts:" (e.g. "ARM: dts: sunxi:").
+> Generally it is a good idea to look at the log of the file and follow the
+> pattern you see there.
+> 
+> On 7/7/22 12:07 PM, Michal Suchanek wrote:
+> > Without "jedec,spi-nor" compatible the flash memory cannot be probed by
+> > u-boot. The macronix part is what is shipped on the boards that come
+> > with a flash chip.
+
+Please reword this a bit. DT isn't user specific, so U-Boot should not be 
+mentioned. But you can write about compatible being wrong. According to DT 
+bindings, it should be manufacturer specific compatible, followed by 
+"jedec,spi-nor".
+
+Once both issues are addressed, you can keep my r-b tag and include fixes tag 
+posted by Sameul.
+
+Best regards,
+Jernej
+
+> 
+> Fixes: 45857ae95478 ("ARM: dts: orange-pi-zero: add node for SPI NOR")
+> 
+> Regards,
+> Samuel
+> 
+> > Signed-off-by: Michal Suchanek <msuchanek@suse.de>
 > > ---
-> >  drivers/misc/Kconfig               |  14 ++
-> >  drivers/misc/Makefile              |   1 +
-> >  drivers/misc/vcpu_stall_detector.c | 223 +++++++++++++++++++++++++++++
-> >  3 files changed, 238 insertions(+)
-> >  create mode 100644 drivers/misc/vcpu_stall_detector.c
 > > 
-> > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> > index 41d2bb0ae23a..d5b7610459f7 100644
-> > --- a/drivers/misc/Kconfig
-> > +++ b/drivers/misc/Kconfig
-> > @@ -483,6 +483,20 @@ config OPEN_DICE
-> >  
-> >  	  If unsure, say N.
-> >  
-> > +config VCPU_STALL_DETECTOR
-> > +	tristate "Guest vCPU stall detector"
-> > +	select LOCKUP_DETECTOR
+> >  arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
+> > b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts index
+> > f19ed981da9d..3706216ffb40 100644
+> > --- a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
+> > +++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
+> > @@ -169,7 +169,7 @@ &spi0 {
+> > 
+> >  	flash@0 {
+> >  	
+> >  		#address-cells = <1>;
+> >  		#size-cells = <1>;
+> > 
+> > -		compatible = "mxicy,mx25l1606e", "winbond,w25q128";
+> > +		compatible = "mxicy,mx25l1606e", "jedec,spi-nor";
+> > 
+> >  		reg = <0>;
+> >  		spi-max-frequency = <40000000>;
+> >  	
+> >  	};
 
-Hi Greh,
 
-> 
-> This should be a "depends on", not a select, right?  This got enabled on
-> my build when I didn't want it to, and trying to track down why it was
-> enabled would be a pain for people.
 
-Thanks for noticing it ! I think we can completely remove this
-because it was needed in (v9) for the `watchdog_cpumask` and currently
-we are not using it anymore.
 
-> 
-> thanks,
-> 
-> greg k-h
-
-Thanks,
-Seb
