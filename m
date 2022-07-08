@@ -2,58 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5749A56B5DC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 11:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD3E456B5DA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 11:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237626AbiGHJoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 05:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33892 "EHLO
+        id S237806AbiGHJr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 05:47:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237206AbiGHJoG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 05:44:06 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDEF276EB7;
-        Fri,  8 Jul 2022 02:44:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1657273441;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=D2FVSvuS6dyJ9GV0Ydxqjb+gSLYsXaIVuegs6SgQcDQ=;
-    b=YanyJmF5pSsskp4apspShVQXE4v0aHKTBIYaCARPwpTUlCiTIRCPBkX4CWUByvtIHt
-    2RNMhCF9Ofs4831ZE78Ya1lXZb/9JXsSSnn2ZPLU+4L95+RWDnhUxLdqmhviMnsS6SgH
-    Zra58x876ZcBX+TqkChFKBa/pxHCDbPgF8hIYjrg5eKb0HP5bieCThIUfCuBWk4km/+j
-    MvtCpRqOQBnmwuP37WwENp7B1roS5rgaf8r/DhILCguWMpqxdHjqJzQ9a1m8uXLZZ+51
-    WH78rnw+51szchM6ukcgVr6c79KtGkuEUMsytGR+bOMBRowJ48dftx0yAgdTE0bEfvuJ
-    1ekA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw8+6Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.46.1 AUTH)
-    with ESMTPSA id yfdd30y689i1S9R
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 8 Jul 2022 11:44:01 +0200 (CEST)
-Date:   Fri, 8 Jul 2022 11:43:49 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     ilia.lin@kernel.org, agross@kernel.org, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] cpufreq: blocklist Qualcomm msm8939 in
- cpufreq-dt-platdev
-Message-ID: <Ysf8VRaXdGg+8Ev3@gerhold.net>
-References: <20220708014419.2009018-1-bryan.odonoghue@linaro.org>
- <20220708014419.2009018-5-bryan.odonoghue@linaro.org>
+        with ESMTP id S237803AbiGHJry (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 05:47:54 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 33CF17E03B;
+        Fri,  8 Jul 2022 02:47:52 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 32615D6E;
+        Fri,  8 Jul 2022 02:47:52 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 863B93F66F;
+        Fri,  8 Jul 2022 02:47:50 -0700 (PDT)
+Date:   Fri, 8 Jul 2022 10:47:46 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 3/6] arm64: dts: allwinner: Add Allwinner H616 .dtsi
+ file
+Message-ID: <20220708104746.6623e239@donnerap.cambridge.arm.com>
+In-Reply-To: <39537f95-2ed4-f526-5912-364c1c1ed512@sholland.org>
+References: <20220428230933.15262-1-andre.przywara@arm.com>
+        <22699277.6Emhk5qWAg@kista>
+        <20220704225534.3e1a901a@slackpad.lan>
+        <5278570.Sb9uPGUboI@kista>
+        <20220706141655.15d2dd0e@donnerap.cambridge.arm.com>
+        <39537f95-2ed4-f526-5912-364c1c1ed512@sholland.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220708014419.2009018-5-bryan.odonoghue@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,34 +53,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 08, 2022 at 02:44:19AM +0100, Bryan O'Donoghue wrote:
-> msm8939 will use qcom-cpufreq-nvmem. Block it on the generic cpufreq-dt
-> list.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+On Thu, 7 Jul 2022 01:30:32 -0500
+Samuel Holland <samuel@sholland.org> wrote:
 
-Personally I would defer this patch as well until cpufreq is properly
-enabled on msm8939 together with the qcom-cpufreq-nvmem changes and CPR.
+Hi Samuel,
 
-I'm not strictly opposed to get this in now, but it also does not really
-make any functional difference, or does it?
+> Hi Andre, Jernej,
+> 
+> On 7/6/22 8:16 AM, Andre Przywara wrote:
+> > so after seemingly having finished writing this email, I realised that
+> > this won't really help, as I think this diverts the discussion. And the
+> > problem has been around for a while, and won't probably be solved easily
+> > or quickly. I think we agree to disagree here, or we should admit that
+> > there are different approaches ("bundled firmware" vs. "UEFI"), so in the
+> > interest of not blocking the H616 series:
+> > 
+> > Shall I just keep the firmware node? This would work both ways, whereas
+> > dropping the node would impede the "bundled firmware" approach?  
+> 
+> Let me try to sum up the relevant portion of my thoughts (and save the rest for
+> elsewhere):
+> 
+> The only reason to add the reserved-memory node is to support externally-loaded
+> DTBs. By adding the node, we are committing to support externally-loaded DTBs on
+> this SoC.
+> 
+> Upgrading the kernel is not allowed to break boot. If we support
+> externally-loaded DTBs, that rule extends to DTBs shipped with the kernel.
+> 
+> If we remove the reserved-memory node, the combination of old U-Boot + new
+> externally-loaded DTB will stop booting (the kernel version is irrelevant).
+> Therefore, if we add the node, we can never remove it, full stop.
 
-> ---
->  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-> index 2c96de3f2d83c..26c97ab778974 100644
-> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
-> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-> @@ -137,6 +137,7 @@ static const struct of_device_id blocklist[] __initconst = {
->  	{ .compatible = "nvidia,tegra210", },
->  
->  	{ .compatible = "qcom,apq8096", },
-> +	{ .compatible = "qcom,msm8939", },
->  	{ .compatible = "qcom,msm8996", },
->  	{ .compatible = "qcom,qcs404", },
->  	{ .compatible = "qcom,sa8155p" },
-> -- 
-> 2.36.1
-> 
+Well, this all depends on the initial commitment to support
+externally-loaded DTBs. I don't think we need to make this promise, I'd
+rather see this as a concession to people doing so *right now*, and for
+the sheer practicality of using this DT until we merge it into U-Boot.
+
+> I will (begrudgingly) accept that, as long as the node matches what TF-A
+> actually generates today. That means, please:
+>  - Drop the label and update the node name
+
+I will drop the label. For the node name: the binding does not enforce it,
+but asks that "node names should reflect the purpose", so I went with
+"secmon", as used by other platforms. I will send a patch to TF-A to fix
+it there instead.
+If you disagree, feel free to fix this up before committing.
+
+>  - Reduce the size to 256 KiB, matching (BL31_LIMIT - BL31_BASE)
+
+Verified in TF-A and changed.
+I also added a short comment explaining the situation. Feel free to amend
+this if needed.
+
+
+Many thanks for the discussion and for resolving this. I much appreciate
+your flexibility and pragmatism in this matter!
+
+Cheers,
+Andre
