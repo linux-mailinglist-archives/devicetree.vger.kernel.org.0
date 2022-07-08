@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C2756B02B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 03:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A18D856AFF5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 03:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236971AbiGHBae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 21:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46810 "EHLO
+        id S237006AbiGHBcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 21:32:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236970AbiGHBad (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 21:30:33 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A821572EEB
-        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 18:30:32 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id l81so25421732oif.9
-        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 18:30:32 -0700 (PDT)
+        with ESMTP id S236988AbiGHBcu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 21:32:50 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7023572EE5
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 18:32:49 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id y10-20020a9d634a000000b006167f7ce0c5so15302335otk.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 18:32:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=mGR8qW/qcR3tV8N518zXTOtY5AVTv6L2Gv4vwTMvX2c=;
-        b=Ue0qNkMJastmFq+YudyeYt2KIe+niHTqyrivhnn+9BmvMSOmjJzkOt/UBQWfBf2b53
-         cC1+vGvZvdYF516WCMQwCHxWN3Q/j7JhyJOecljID8oFeNWFvSQkgWYcRvUfp8fhypoT
-         fqeCky+as3DBGScPTDOT6uHMYWv6Qge4d41+Y=
+        bh=NZJnks1XrICiLmh83N/nfcU+CsA4QrBVqgFUGpAdW4k=;
+        b=HPhW9RBebWqkQ9PrCQBGni3TYxxHU0PMMIzS+aI8g7tdTc/ktP9jChMXoLxyZLZzok
+         6jJbBqFyVY98ivY+HhPAl1eSH/pKrNe+5DUTFW4SQ2V5tO+sIDjoHSgR24wBj+m1u0lf
+         WaYaF42SUgX3aZq6FtJWxMtiennDcPDH2n2vE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=mGR8qW/qcR3tV8N518zXTOtY5AVTv6L2Gv4vwTMvX2c=;
-        b=1iUebL6kKD0EglwKt+EPwpKBW2BeMfwqm59bN+oQuI60v8zjE5vMElkX+a0J2NPcVJ
-         EpcXHktjMnFqarZyu5IHFU4RWDZSyIyW+Hl1YQtrdsJuaN8+4qv1BPDP4gZPb8KIX3tz
-         2q3R7MiEhvdWuKxIByjBc1ATl+DPTHwUdwyBoJlkBjmcQ7mJQH3rq+GgAzquw3YzpP6h
-         CfW1C++XCfFVXARcna7FHZ/eEQ+ZBxXLRh9HLBMGANa8c39kdt2tH3dzKgUWRoliStpB
-         Z0fOD2G7sg/R0gQdJDR4mTkEvypoOavFioBmSQ74+ggktsV7fIdIRSCRzUVEEuKJOCFq
-         x4Dw==
-X-Gm-Message-State: AJIora9rLLo0Hb00OjnDL8CwKi98944ocPmHa5ahL8c9s0Ary9ko8Nyd
-        R83zIoGPzydyXm6wHg4iIi76vHuuFudOZZ+p4Ud0+Q==
-X-Google-Smtp-Source: AGRyM1seFnmCmW9IUueoNP90VpqA1jwKAoGBliX7GDJogEyAv6R8J1FU+8CcIIRVxUr4LlXHPKu47wp3cT8ZmPpjRSE=
-X-Received: by 2002:a05:6808:171c:b0:334:9342:63ef with SMTP id
- bc28-20020a056808171c00b00334934263efmr498377oib.63.1657243832038; Thu, 07
- Jul 2022 18:30:32 -0700 (PDT)
+        bh=NZJnks1XrICiLmh83N/nfcU+CsA4QrBVqgFUGpAdW4k=;
+        b=eglE1DxLkEaWgxsjTGQslAGdxM6/OcqQUw0Nu1T71bQ53LTJ6IpL/tS8nZpRlIUJve
+         m1HNXdt9GeMagzJYNP9lGJ5CLOeApRUqGfUmVmUw2ZTmPwKrDfH6syc5rkrg7e1cWEc+
+         lWoR/qT3kQQYfF99dWyBXiq+VdMHTnXdrqZmPEsWr8DLDPrnVQNlLTkNan6ddc7K3ejS
+         u1TVoEgg/nh87ooHh+YwhOcQ4gcSwJaFTMRR2pcK0g3z4PsBj0+P9J0u1YiMb7rESZ/u
+         CE828tufvBT1yGIr60xPtN2gxHoxGqjrKiGIjnxPj/d9tSDfaPXL1Q1sF4oFzRn/1AMe
+         g7Ow==
+X-Gm-Message-State: AJIora/0/lE4yg6BrSEg4Kcr6ExTRkik6rjBCa3TpOj4EKRqykMMZSI1
+        f3Xw6oCwv2+ic7DGtPX6gR8U+c/B0vb4lmWEUYlOjA==
+X-Google-Smtp-Source: AGRyM1uyEcjzTSo/c6W2hKlHGeOkhVQpn/Aafq4q9l5KVnaNd85lX4vrq2pZIBrYfA8oXbPHME/u1frODdIdXteTN/I=
+X-Received: by 2002:a9d:6484:0:b0:60b:eb0b:4054 with SMTP id
+ g4-20020a9d6484000000b0060beb0b4054mr474851otl.159.1657243968788; Thu, 07 Jul
+ 2022 18:32:48 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 7 Jul 2022 18:30:31 -0700
+ HTTPREST; Thu, 7 Jul 2022 18:32:48 -0700
 MIME-Version: 1.0
-In-Reply-To: <20220707213204.2605816-5-dmitry.baryshkov@linaro.org>
-References: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org> <20220707213204.2605816-5-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220707213204.2605816-6-dmitry.baryshkov@linaro.org>
+References: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org> <20220707213204.2605816-6-dmitry.baryshkov@linaro.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Thu, 7 Jul 2022 18:30:31 -0700
-Message-ID: <CAE-0n53ES+cLCWpd_T1bohybNrw4V7ntj87AbsesQJcmFedcgw@mail.gmail.com>
-Subject: Re: [PATCH 4/9] dt-bindings: msm/dp: add missing properties
+Date:   Thu, 7 Jul 2022 18:32:48 -0700
+Message-ID: <CAE-0n53An_S5H-jj7GPorLg0Q4jW=KqEn5CCrfqs6fn6LBtGNA@mail.gmail.com>
+Subject: Re: [PATCH 5/9] dt-bindings: msm/dp: account for clocks specific for qcom,sc7280-edp
 To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -73,11 +73,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Baryshkov (2022-07-07 14:31:59)
-> Document missing definitions for opp-table (DP controller OPPs), aux-bus
-> (eDP AUX BUS) and data-lanes (DP/eDP lanes mapping) properties.
+Quoting Dmitry Baryshkov (2022-07-07 14:32:00)
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index f00eae66196f..1ef845005b14 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -119,6 +111,50 @@ required:
+>    - power-domains
+>    - ports
 >
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sc7280-edp
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: XO clock
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+What is this for? I would guess it's for the eDP phy, but that isn't
+part of the eDP controller, so probably it can be removed.
+
+> +            - description: eDP reference clock
+
+Same for this one, looking at the binding for qcom,sc7280-edp-phy. Can
+we simply remove these two clks from sc7280? I think it will be fine.
