@@ -2,109 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAB4B56C06D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 20:37:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE78C56C05B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 20:37:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238018AbiGHQPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 12:15:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
+        id S237918AbiGHQSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 12:18:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237995AbiGHQPR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 12:15:17 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9073A76E93;
-        Fri,  8 Jul 2022 09:15:14 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id F188A66019F2;
-        Fri,  8 Jul 2022 17:15:11 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657296913;
-        bh=cGD7Qcg1KyeXM3eFu7vGytfwcnRw+Ni4gAxVLw/K5uw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=JdJ2cmzgPNWEff1eeEeMOJK8q5x/fvBRgdyO8Pn0/GpKdljlmuCUtWGuRuJAJIyiS
-         70VrdfsMqYts3bUsvhlybiotdexYCkhIQDYn4NA2uVF0G3ifWgiRIEYzLMjuwr6pat
-         VhqNojOxiUcS9QRMUKkjaN0i9qmFd1eRwJD2Da+8+7+J/6MW0IiSkWoPd3E5w9j2Im
-         IbUCi0kf/A5kHgQz1AzptkYvOTkfdmjs354a2/jYRPRV9WYVJJKaKjGeSCIlTKsMn6
-         fNMKdXOhTlDL+ff7g7hyld+JUV1r2EqxkPanCMcz7kVpyOsPPNwccG6EUQFEUYnEZp
-         dhiLDlM7pOkcg==
-Message-ID: <a56a5acd-9b17-9d58-565c-2ac11efb17e9@collabora.com>
-Date:   Fri, 8 Jul 2022 19:15:09 +0300
+        with ESMTP id S236500AbiGHQSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 12:18:24 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 22D76796BA;
+        Fri,  8 Jul 2022 09:18:23 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1FDB7106F;
+        Fri,  8 Jul 2022 09:18:23 -0700 (PDT)
+Received: from [10.57.86.102] (unknown [10.57.86.102])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C2FDB3F66F;
+        Fri,  8 Jul 2022 09:18:20 -0700 (PDT)
+Message-ID: <5611d1c5-44db-4144-3c46-256323d39fe3@arm.com>
+Date:   Fri, 8 Jul 2022 17:17:22 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH V2 00/13] OPP: Add support for multiple clocks*
-Content-Language: en-US
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>, linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>
-References: <cover.1657003420.git.viresh.kumar@linaro.org>
- <d557bbd0-2afb-12dc-1287-1aeb44ef55f5@collabora.com>
- <20220708071926.zehurtbcf35s5tv6@vireshk-i7>
- <8c52e1d2-6c6d-9a09-e426-e5292f68a3f0@collabora.com>
- <20220708081233.pncnill6dqe4ghko@vireshk-i7>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220708081233.pncnill6dqe4ghko@vireshk-i7>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] rtc: hym8563: try multiple times to init device
+Content-Language: en-GB
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20220608161150.58919-1-linux@fw-web.de>
+ <20220608161150.58919-2-linux@fw-web.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220608161150.58919-2-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/8/22 11:12, Viresh Kumar wrote:
-> On 08-07-22, 10:26, Dmitry Osipenko wrote:
->> On 7/8/22 10:19, Viresh Kumar wrote:
->>> On 07-07-22, 22:43, Dmitry Osipenko wrote:
->>>> This patch breaks Tegra again, please take a look:
->>>
->>> Damn, not again :(
->>>
->>>>    OPP: Remove dev{m}_pm_opp_of_add_table_noclk()
->>>
->>> Why did you mention this patch ? This just removed an unused API,
->>> Tegra should have broke because of something else, isn't it ?
->>
->> This patch is the cause.
+On 2022-06-08 17:11, Frank Wunderlich wrote:
+> From: Peter Geis <pgwipeout@gmail.com>
 > 
-> I was tracking the crash too closely it seems. :(
+> RTC sometimes does not respond the first time in init.
+> Try multiple times to get a response.
+
+FWIW, given that HYM8563 is fairly common on RK3288 boards - I can't say 
+I've ever noticed an issue with mine, for instance - it seems dubious 
+that this would be a general issue of the chip itself. Are you sure it's 
+not a SoC or board-level issue with the I2C bus being in a funny initial 
+state, timings being marginal, or suchlike?
+
+Robin.
+
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>   drivers/rtc/rtc-hym8563.c | 11 +++++++++--
+>   1 file changed, 9 insertions(+), 2 deletions(-)
 > 
->> I see that previously dev_pm_opp_set_config() had "_add_opp_table(dev,
->> false)", now it's "_add_opp_table(dev, true)".
-> 
-> That's definitely a mistake, I still don't understand though how it
-> can lead to the crash we got.
-
-I'll investigate it.
-
-> I have fixed this in my tree now, can you check again please.
-> 
-
-Yours tree works, thank you.
-
--- 
-Best regards,
-Dmitry
+> diff --git a/drivers/rtc/rtc-hym8563.c b/drivers/rtc/rtc-hym8563.c
+> index 90e602e99d03..9adcedaa4613 100644
+> --- a/drivers/rtc/rtc-hym8563.c
+> +++ b/drivers/rtc/rtc-hym8563.c
+> @@ -13,6 +13,7 @@
+>   #include <linux/clk-provider.h>
+>   #include <linux/i2c.h>
+>   #include <linux/bcd.h>
+> +#include <linux/delay.h>
+>   #include <linux/rtc.h>
+>   
+>   #define HYM8563_CTL1		0x00
+> @@ -438,10 +439,16 @@ static irqreturn_t hym8563_irq(int irq, void *dev_id)
+>   
+>   static int hym8563_init_device(struct i2c_client *client)
+>   {
+> -	int ret;
+> +	int ret, i;
+>   
+>   	/* Clear stop flag if present */
+> -	ret = i2c_smbus_write_byte_data(client, HYM8563_CTL1, 0);
+> +	for (i = 0; i < 3; i++) {
+> +		ret = i2c_smbus_write_byte_data(client, HYM8563_CTL1, 0);
+> +		if (ret == 0)
+> +			break;
+> +		msleep(20);
+> +	}
+> +
+>   	if (ret < 0)
+>   		return ret;
+>   
