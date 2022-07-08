@@ -2,76 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6714056B443
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 10:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 843BF56B453
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 10:19:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237239AbiGHIQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 04:16:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50138 "EHLO
+        id S237699AbiGHITF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 04:19:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237157AbiGHIQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:16:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EFBD7392C;
-        Fri,  8 Jul 2022 01:16:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C1EBE62462;
-        Fri,  8 Jul 2022 08:16:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB080C341C0;
-        Fri,  8 Jul 2022 08:15:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657268160;
-        bh=JEz9DFkfYpjH2VbktvdAda0D97Ly8+Ea+npuRhSdmdw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=K4+vhU1a37n2zp6a4oK8p0GF9WbyzpbefqfCg/ZXbt+d82EIlBUdhm3UH2X2ywIlT
-         g9FvuwWiJ4vp6mFmGW4xM8F+u0h5QrJvWD38IgANR7WB+hCMaJqOe6n6zHp/dWKVT/
-         DRKeckJEpT4aQ4KqgTl0K34P7Xw8ATTA9eFyQYmBmRtW0thxgw+k4DAUXN+oJ/8cHN
-         5KIZctdxgcji5XOaSJiGQdOI3mtCbaey2Vi5Tk6hRt3SkCHQiOJ/5LsIDhhga45i4g
-         HBjFhbr0I5uDCeE9gXaziJRGdmw6XSbfLi/s/tNxyUsGwwJZMkrXoTTE/l81cmHHwU
-         4ZrZKLICpOViw==
-Date:   Fri, 8 Jul 2022 16:15:53 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Max Krummenacher <max.oss.09@gmail.com>
-Cc:     max.krummenacher@toradex.com,
-        Denys Drozdov <denys.drozdov@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: colibri-imx6ull: fix snvs pinmux group
-Message-ID: <20220708081553.GT819983@dragon>
-References: <20220705085825.21255-1-max.oss.09@gmail.com>
+        with ESMTP id S237549AbiGHITE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:19:04 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C0D07478C
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 01:19:03 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id i128-20020a1c3b86000000b003a2ce31b4f8so700285wma.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 01:19:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=IRHop/Q9bOB6K90zq0W59vf8hzLmWFwLAu49XupFkZI=;
+        b=ZfOQnNvZS+61ImvjHbFW0xLS5SfVP8CadQnWvtcAsmAABylUG+xbGiQ5m1tcni58U6
+         nBIp4TUTKnfuNCIaQsY+QVe8g+HsiPEXrUU0RvmeKumauzen1XdEjGJiRjoKFGLfyx83
+         usrAYBqO3MqPk43/Gg8gRB54oJHwMgPyop6Ab1fIqaCz1LwWtcxk2myQhwsLrsEAcGY8
+         JiSN/NMNyVzDWNMnG2D5qJTLqWkciVZioZ8I35e7cogwcIXJy7bvWZykwL1Iw3AMu6Af
+         KZqVKSrXlG1FKOPCaBGV96FdGar0toonEvyP9ljsbg2SmtCw3RMCs8RdzfVyuy5usE1H
+         OV3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IRHop/Q9bOB6K90zq0W59vf8hzLmWFwLAu49XupFkZI=;
+        b=5OUWVVVnuxgGTvUkP0gR/ocujOfK6VC4NvukFlEQlHYcw2PFApitaSWD8BDPXY65hA
+         Vcv2mhRp3BzjXfVNB/gYnDmtLq4ok8G+kVQcjKpMLqX+BVZ4YedtZfYGspJVpvtcF9Er
+         up/1+UP6iR3cyRKHnG1dOfljlgQKPgl4v3Rsl8ph4EYBCHm/B7zqKbSE3EGZ5F5WJxOB
+         cEWt8Q15QMkSRYD1uSxsAx0ZHJaVBUqW5npMh/wNBwqm4w87JYnRfKTeMKm1SKT9Y/Vx
+         g9M3mtyrIkQVNic4Gd74mFZCSrC1ybwNjB0RHM6KwKak8FVY8H7wvIQkxEblLmi3ql9t
+         OUIA==
+X-Gm-Message-State: AJIora8qHXtKf2EhgFKlV9Q1v2Xh+zhOHcR+Vdfi0LCzihEksU9cnkQv
+        CoYjtPLSDsT+hBM86x+kHIGJbw==
+X-Google-Smtp-Source: AGRyM1tR49BJcx8MfGtbkNemgsXk1vcZaxMude2C65rkYmp+isYP0s1nW+BkZEC/7D+0xnFtQ03P8g==
+X-Received: by 2002:a05:600c:3491:b0:3a1:8609:ba7e with SMTP id a17-20020a05600c349100b003a18609ba7emr2284834wmq.79.1657268341602;
+        Fri, 08 Jul 2022 01:19:01 -0700 (PDT)
+Received: from google.com (88.140.78.34.bc.googleusercontent.com. [34.78.140.88])
+        by smtp.gmail.com with ESMTPSA id o11-20020a5d684b000000b0021badf3cb26sm5436574wrw.63.2022.07.08.01.19.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Jul 2022 01:19:00 -0700 (PDT)
+Date:   Fri, 8 Jul 2022 08:18:59 +0000
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Will Deacon <will@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, vdonnefort@google.com,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v10 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <Ysfoc2YhQCLge1iY@google.com>
+References: <20220707154226.1478674-1-sebastianene@google.com>
+ <20220707154226.1478674-3-sebastianene@google.com>
+ <20220707182737.GE4852@willie-the-truck>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220705085825.21255-1-max.oss.09@gmail.com>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220707182737.GE4852@willie-the-truck>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 05, 2022 at 10:58:24AM +0200, Max Krummenacher wrote:
-> From: Max Krummenacher <max.krummenacher@toradex.com>
+On Thu, Jul 07, 2022 at 07:27:38PM +0100, Will Deacon wrote:
+> Hi Sebastian,
 > 
-> A pin controlled by the iomuxc-snvs pin controller must be
-> specified under the dtb's iomuxc-snvs node.
-> 
-> Move the one and only pin of that category from the iomuxc node
-> and set the pinctrl-0 using it accordingly.
-> 
-> Fixes: 2aa9d6201949 ("ARM: dts: imx6ull-colibri: add touchscreen device nodes")
-> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+> On Thu, Jul 07, 2022 at 03:42:27PM +0000, Sebastian Ene wrote:
 
-Applied, thanks!
+Hi Will,
+
+> > This driver creates per-cpu hrtimers which are required to do the
+> > periodic 'pet' operation. On a conventional watchdog-core driver, the
+> > userspace is responsible for delivering the 'pet' events by writing to
+> > the particular /dev/watchdogN node. In this case we require a strong
+> > thread affinity to be able to account for lost time on a per vCPU.
+> > 
+> > This part of the driver is the 'frontend' which is reponsible for
+> > delivering the periodic 'pet' events, configuring the virtual peripheral
+> > and listening for cpu hotplug events. The other part of the driver is
+> > an emulated MMIO device which is part of the KVM virtual machine
+> > monitor and this part accounts for lost time by looking at the
+> > /proc/{}/task/{}/stat entries.
+> > 
+> > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> > ---
+> >  drivers/misc/Kconfig               |  14 ++
+> >  drivers/misc/Makefile              |   1 +
+> >  drivers/misc/vcpu_stall_detector.c | 209 +++++++++++++++++++++++++++++
+> >  3 files changed, 224 insertions(+)
+> >  create mode 100644 drivers/misc/vcpu_stall_detector.c
+> 
+> Thanks for addressing all of my feedback on v9 so promptly:
+> 
+> Reviewed-by: Will Deacon <will@kernel.org>
+> 
+> Just one question on this part:
+> 
+> > +static enum hrtimer_restart
+> > +vcpu_stall_detect_timer_fn(struct hrtimer *hrtimer)
+> > +{
+> > +	u32 ticks, ping_timeout_ms;
+> > +
+> > +	/* Reload the stall detector counter register every
+> > +	 * `ping_timeout_ms` to prevent the virtual device
+> > +	 * from decrementing it to 0. The virtual device decrements this
+> > +	 * register at 'clock_freq_hz' frequency.
+> > +	 */
+> > +	ticks = vcpu_stall_config.clock_freq_hz *
+> > +		vcpu_stall_config.stall_timeout_sec;
+> 
+> It would be quite easy for this to overflow 32 bits, so perhaps it would
+> be best to check the values from the DT during probe and fallback to the
+> defaults (with a warning) if the result of the multiplication is out
+> of range for the 32-bit register.
+> 
+> What do you think? My review stands in any case, as this shouldn't happen
+> in practice with sensible values.
+> 
+
+Good point ! I think falling back to defaults in case the values from the
+DT exceed a limit is a good approach. I will do that in the next
+version.
+
+> Will
+
+Thanks,
+Seb
