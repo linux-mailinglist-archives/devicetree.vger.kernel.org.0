@@ -2,75 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B21856C28F
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 010B356C354
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:14:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238460AbiGHTiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 15:38:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45568 "EHLO
+        id S238854AbiGHTjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 15:39:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238176AbiGHTiR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 15:38:17 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D0270E4D;
-        Fri,  8 Jul 2022 12:38:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1657309096; x=1688845096;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=tRTAvQvXyCx+iHi+vFlwJ3NFM7bf+wS8w/ZhSeqFyeI=;
-  b=SX0EFPit6yEOnBtg/0/82v6lCEfPJWFDh8IAfyOrYdxbEJFn2xnDFAe1
-   OBLumRaBp3LVoC7xLmQzsN1frrhwwJ7twEZgBzTpJyzQnkumJ+h7o9WsB
-   DKpua/NH9AJfzq66XLCTGs/guDMmJVbUpQRUVmXQpiDaNlSVuvOexnm9s
-   8=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 08 Jul 2022 12:38:16 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2022 12:38:15 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 8 Jul 2022 12:38:15 -0700
-Received: from [10.111.160.191] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 8 Jul 2022
- 12:38:11 -0700
-Message-ID: <eb22ae44-b347-1566-939a-4ca840688f07@quicinc.com>
-Date:   Fri, 8 Jul 2022 12:38:09 -0700
+        with ESMTP id S238693AbiGHTjP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 15:39:15 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA63264;
+        Fri,  8 Jul 2022 12:39:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657309154; x=1688845154;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LpoDI14rXdWMtl4+x5dyiQKRVxSqj32tjZgTDJN6bu8=;
+  b=PN4bpZJykrRj/+kj2wkTatzHsV8bA8ENTbOJZoV6ABCVdAYZsXe4fFpi
+   3nxUds9T/ClYX+R31NFxU16D82LUc9g2hbWr9LTKwxtIOWCp10fjdwBuJ
+   miN0lErIqxTF55Pg4MDBtGFrc47i1TpzxhVMxF0Dv1T/yNK6iTchQY4Vp
+   c5PudI22vUN9JHHIB4WX47wtB2kCbcq75D/47BgW6BUc1uWbSZ9192Kvs
+   sFSn7mRHSMF0cQJwq57vKbta6bxrHAfjARjAeQJDtmCWDJJ/cR1YXP5WZ
+   Q9uI/5gYbvtGJ3RUjDg2F1xH7VFKfInM0e4mXGSJM5G+cgtKBkejBImFy
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10402"; a="264764071"
+X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; 
+   d="scan'208";a="264764071"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2022 12:39:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; 
+   d="scan'208";a="661876727"
+Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 08 Jul 2022 12:39:09 -0700
+Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o9toe-000Nqg-0N;
+        Fri, 08 Jul 2022 19:39:04 +0000
+Date:   Sat, 9 Jul 2022 03:38:35 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Tanmay Shah <tanmay.shah@amd.com>, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
+        ben.levinsky@xilinx.com, tanmay.shah@xilinx.com,
+        michal.simek@amd.com
+Cc:     Paul Gazzillo <paul@pgazz.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        kbuild-all@lists.01.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Tanmay Shah <tanmay.shah@amd.com>
+Subject: Re: [PATCH v9 6/6] drivers: remoteproc: Add Xilinx r5 remoteproc
+ driver
+Message-ID: <202207090358.SyMJbHIZ-lkp@intel.com>
+References: <20220708013955.2340449-7-tanmay.shah@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH 1/9] dt-bindings: msm/dp: drop extra p1 region
-Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>
-CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>
-References: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org>
- <20220707213204.2605816-2-dmitry.baryshkov@linaro.org>
- <CAE-0n53zV2OjXxjJ_AwCDcAZvOY+BU0-xipxQkup3muHMRCPXA@mail.gmail.com>
- <b8ee5a03-1168-d5ca-97fe-f82a9d7e453e@linaro.org>
- <CAE-0n52YGDOSZpL+3d=_APsOwVvrJG7uR-x1AcsBej5KrDct5w@mail.gmail.com>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <CAE-0n52YGDOSZpL+3d=_APsOwVvrJG7uR-x1AcsBej5KrDct5w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220708013955.2340449-7-tanmay.shah@amd.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,59 +72,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ kuogee
+Hi Tanmay,
 
-On 7/8/2022 12:27 PM, Stephen Boyd wrote:
-> Quoting Dmitry Baryshkov (2022-07-07 20:46:43)
->> On 08/07/2022 04:28, Stephen Boyd wrote:
->>> Quoting Dmitry Baryshkov (2022-07-07 14:31:56)
->>>> The p1 region was probably added by mistake, none of the DTS files
->>>> provides one (and the driver source code also doesn't use one). Drop it
->>>> now.
->>>
->>> Yes, looks like the driver doesn't use it.
->>>
->>>>
->>>> Fixes: 687825c402f1 ("dt-bindings: msm/dp: Change reg definition")
->>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>>    Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 1 -
->>>>    1 file changed, 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>> index 94bc6e1b6451..d6bbe58ef9e8 100644
->>>> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>> @@ -29,7 +29,6 @@ properties:
->>>>          - description: aux register block
->>>>          - description: link register block
->>>>          - description: p0 register block
->>>> -      - description: p1 register block
->>>
->>> The p1 registers exist on sc7180. They start where the example starts,
->>> at 0xae91400.
->>
->> Do they exist on e.g. sc7280? In other words, should we add the region
->> to the DTS? For now I'm going to mark it as optional.
->>
-> 
-> Yes I see the same address for P1 on sc7280. Maybe it's a typo? Abhinav,
-> can you confirm?
+Thank you for the patch! Perhaps something to improve:
 
-P1 block does exist on sc7280 and yes its address is same as the address 
-mentioned in sc7180. So its not a typo.
+[auto build test WARNING on c6a669485125145afd22230df6e0e6c37f19ad41]
 
-Yes, we are not programming this today but I would prefer to keep this 
-as optional.
+url:    https://github.com/intel-lab-lkp/linux/commits/Tanmay-Shah/Add-Xilinx-RPU-subsystem-support/20220708-094221
+base:   c6a669485125145afd22230df6e0e6c37f19ad41
+config: (https://download.01.org/0day-ci/archive/20220709/202207090358.SyMJbHIZ-lkp@intel.com/config)
+reproduce:
+        # https://github.com/intel-lab-lkp/linux/commit/77a934574239ba990778a8007045b8c43955d9f5
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Tanmay-Shah/Add-Xilinx-RPU-subsystem-support/20220708-094221
+        git checkout 77a934574239ba990778a8007045b8c43955d9f5
+        # 1. reproduce by kismet
+           # install kmax per https://github.com/paulgazz/kmax/blob/master/README.md
+           kismet --linux-ksrc=linux --selectees CONFIG_ZYNQMP_IPI_MBOX --selectors CONFIG_XLNX_R5_REMOTEPROC -a=arm64
+        # 2. reproduce by make
+           # save the config file to linux source tree
+           cd linux
+           make ARCH=arm64 olddefconfig
 
-I did sync up with Kuogee on this change this morning, we will check a 
-few things internally on the P1 block's usage as to which use-cases we 
-need to program it for and update here.
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-The idea behind having this register space listed in the yaml is thats 
-how the software documents have the blocks listed so dropping P1 block 
-just because its unused seemed wrong to me. Optional seems more appropriate.
 
-Thanks
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for ZYNQMP_IPI_MBOX when selected by XLNX_R5_REMOTEPROC
+   
+   WARNING: unmet direct dependencies detected for ZYNQMP_IPI_MBOX
+     Depends on [n]: MAILBOX [=n] && ARCH_ZYNQMP [=y] && OF [=y]
+     Selected by [y]:
+     - XLNX_R5_REMOTEPROC [=y] && REMOTEPROC [=y] && PM [=y] && ARCH_ZYNQMP [=y] && ZYNQMP_FIRMWARE [=y]
 
-Abhinav
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
