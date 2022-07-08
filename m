@@ -2,114 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFCF556B42F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 10:13:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C47DB56B43B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 10:16:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237651AbiGHIMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 04:12:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46546 "EHLO
+        id S237724AbiGHINj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 04:13:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237457AbiGHIMh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:12:37 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412D1804B6
-        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 01:12:36 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id s21so12880596pjq.4
-        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 01:12:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Vc+eezlfPnzWYHGSMVP9Zv55im3/1gxewNG9+41SKHQ=;
-        b=GEuY25tkvfR+qMvbD0fCszzdfYTU4NF5Ad0EdTtSbTbd5b4ECbjymsy5SjPeuDYENL
-         PKHzDRk1W56+xDKWluThcfnIudP5kv7vhviC78tW9yJONmwWlQYDhdK4NBCehRygfd9H
-         DX7CiJv2JVaT4Vb2Y9mnpNlF5TrSRUUSoqt65o8gukiEqQ/Gi82UzaIuapKefZ6XrMem
-         T6ljE7wt0qZ7c9fiG22d+N1VoY+HGdDNglqniIlbjYr6yXbDq5DSojuosLT4gSK7O7V1
-         APYsyiGYQg2RAhndyVGT/aJD1S+HVPtNnXA+SngnAjbMSfuCRvU3uCH/IuswwT9T24Xj
-         wzwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Vc+eezlfPnzWYHGSMVP9Zv55im3/1gxewNG9+41SKHQ=;
-        b=uHget4EGEHGlBiCzvIP+4TmHYaFmJY8T9fl2yXvyXBDGDSnTACNrYjKNhtY1GXzBNi
-         ov6d+TpjJKglsn2hsNjeO1HJzCKbUGHIZO+wGJFrIwFJl7ZkoTuaVxwZPYFlGNKqzDT0
-         7nX5dbbpNiMdiS1GjtoOWhImSYtny9TB4Liu7wnh1T/bcDvvBlVv/BUENg4lMdOFOdiD
-         R70gvRJj8c4PVza3BQphLYBXAD3h9y54tWhFqdg8kzLIf2QnXM7Zc5eCDrJ0EjQAaG6m
-         cFz6BrchH+f6+xTzBLG9nEex3LZsQVgKGj6UqxXHolu9kFB0CnigFYWxhOwxvZhc3qjZ
-         8Fyw==
-X-Gm-Message-State: AJIora/7Y4ZtB6d3s+bbSM5PRPmAvSPcf//+6f4/NcStj7QPFwlQrvit
-        N0H/DawxB5VZsG6OjOAI9hoZkw==
-X-Google-Smtp-Source: AGRyM1tB6s3CEGsSYt8UjK8u2lu2OyolxM22P8Pu7PnItHcD07cQTGZypwxfxyU28F9ynAVDHrwFTA==
-X-Received: by 2002:a17:902:b198:b0:16c:1c13:cd8d with SMTP id s24-20020a170902b19800b0016c1c13cd8dmr2566479plr.92.1657267955732;
-        Fri, 08 Jul 2022 01:12:35 -0700 (PDT)
-Received: from localhost ([122.171.18.80])
-        by smtp.gmail.com with ESMTPSA id j14-20020a170902da8e00b0016bd67bc868sm2679388plx.210.2022.07.08.01.12.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 01:12:35 -0700 (PDT)
-Date:   Fri, 8 Jul 2022 13:42:33 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>, linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V2 00/13] OPP: Add support for multiple clocks*
-Message-ID: <20220708081233.pncnill6dqe4ghko@vireshk-i7>
-References: <cover.1657003420.git.viresh.kumar@linaro.org>
- <d557bbd0-2afb-12dc-1287-1aeb44ef55f5@collabora.com>
- <20220708071926.zehurtbcf35s5tv6@vireshk-i7>
- <8c52e1d2-6c6d-9a09-e426-e5292f68a3f0@collabora.com>
+        with ESMTP id S237722AbiGHINi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:13:38 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25712DF00;
+        Fri,  8 Jul 2022 01:13:33 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9740266019D1;
+        Fri,  8 Jul 2022 09:13:31 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657268012;
+        bh=HhAChS+K51bNxk2DP8DUaQ+Ar93nqS3yFt69vVEpOAs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=gddanjJlgH7sblqg1l5mhtUMLcnLujTx9cXAHJQt/10tGHweIpsrFhN6Ejrlh/hG9
+         qtDuSgSt3Phf/lLKcMlXPPQJt58QfRq4y82tAgGWwDEF8KxT4fooZ4OkmZcE+jvKsn
+         /Awe+K6tRYxnKH09anJIqduc0qmX/r3ykRHfIXWk/5JBZFyoFdSRO5UCr4z0dRkSC/
+         J4tVZuS6m0FY7ILMjHZqvqA1XBFOd/MqGag1zyTGT1zg1SH0In1A9wZXhdT9G0WihD
+         ATyL7xODW1vGgZastds30am/aqvaUKXmndDvNNAfgbsBvUpYwdNs+vu8ZcQDfGwL52
+         J5mMHHw2WiKqg==
+Message-ID: <4ee027c3-fbfb-52dd-fa38-74dcff526bf5@collabora.com>
+Date:   Fri, 8 Jul 2022 10:13:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8c52e1d2-6c6d-9a09-e426-e5292f68a3f0@collabora.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [RESEND v4 2/2] i2c: mediatek: Add i2c compatible for Mediatek
+ MT8188
+Content-Language: en-US
+To:     kewei.xu@mediatek.com, wsa@the-dreams.de
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, leilk.liu@mediatek.com,
+        qii.wang@mediatek.com, liguo.zhang@mediatek.com,
+        caiyu.chen@mediatek.com, housong.zhang@mediatek.com,
+        yuhan.wei@mediatek.com, david-yh.chiu@mediatek.com,
+        liju-clr.chen@mediatek.com
+References: <20220708034758.22747-1-kewei.xu@mediatek.com>
+ <20220708034758.22747-2-kewei.xu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220708034758.22747-2-kewei.xu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-07-22, 10:26, Dmitry Osipenko wrote:
-> On 7/8/22 10:19, Viresh Kumar wrote:
-> > On 07-07-22, 22:43, Dmitry Osipenko wrote:
-> >> This patch breaks Tegra again, please take a look:
-> > 
-> > Damn, not again :(
-> > 
-> >>    OPP: Remove dev{m}_pm_opp_of_add_table_noclk()
-> > 
-> > Why did you mention this patch ? This just removed an unused API,
-> > Tegra should have broke because of something else, isn't it ?
+Il 08/07/22 05:47, kewei.xu@mediatek.com ha scritto:
+> From: Kewei Xu <kewei.xu@mediatek.com>
 > 
-> This patch is the cause.
+> Add i2c compatible for MT8188. Compare to MT8192 i2c controller,
+> The MT8188 i2c OFFSET_SLAVE_ADDR register changed from 0x04 to 0x94.
+> 
+> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
+> ---
+> v4: no changes
+> V3: no changes
+> V2: added mt_i2c_regs_v3[] to replace slave_addr_version.
+> ---
+>   drivers/i2c/busses/i2c-mt65xx.c | 43 +++++++++++++++++++++++++++++++++
+>   1 file changed, 43 insertions(+)
+> 
+> diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
+> index 8e6985354fd5..70aff42adf5d 100644
+> --- a/drivers/i2c/busses/i2c-mt65xx.c
+> +++ b/drivers/i2c/busses/i2c-mt65xx.c
+> @@ -229,6 +229,35 @@ static const u16 mt_i2c_regs_v2[] = {
+>   	[OFFSET_DCM_EN] = 0xf88,
+>   };
+>   
+> +static const u16 mt_i2c_regs_v3[] = {
+> +	[OFFSET_DATA_PORT] = 0x0,
 
-I was tracking the crash too closely it seems. :(
+> +	[OFFSET_SLAVE_ADDR] = 0x94,
 
-> I see that previously dev_pm_opp_set_config() had "_add_opp_table(dev,
-> false)", now it's "_add_opp_table(dev, true)".
+Please keep this list ordered by register offset.
 
-That's definitely a mistake, I still don't understand though how it
-can lead to the crash we got.
+> +	[OFFSET_INTR_MASK] = 0x8,
+> +	[OFFSET_INTR_STAT] = 0xc,
+> +	[OFFSET_CONTROL] = 0x10,
+> +	[OFFSET_TRANSFER_LEN] = 0x14,
+> +	[OFFSET_TRANSAC_LEN] = 0x18,
+> +	[OFFSET_DELAY_LEN] = 0x1c,
+> +	[OFFSET_TIMING] = 0x20,
+> +	[OFFSET_START] = 0x24,
+> +	[OFFSET_EXT_CONF] = 0x28,
+> +	[OFFSET_LTIMING] = 0x2c,
+> +	[OFFSET_HS] = 0x30,
+> +	[OFFSET_IO_CONFIG] = 0x34,
+> +	[OFFSET_FIFO_ADDR_CLR] = 0x38,
+> +	[OFFSET_SDA_TIMING] = 0x3c,
+> +	[OFFSET_TRANSFER_LEN_AUX] = 0x44,
+> +	[OFFSET_CLOCK_DIV] = 0x48,
+> +	[OFFSET_SOFTRESET] = 0x50,
+> +	[OFFSET_MULTI_DMA] = 0x8c,
+> +	[OFFSET_SCL_MIS_COMP_POINT] = 0x90,
 
-I have fixed this in my tree now, can you check again please.
+[OFFSET_SLAVE_ADDR] = 0x94   goes here,
 
--- 
-viresh
+after which:
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
