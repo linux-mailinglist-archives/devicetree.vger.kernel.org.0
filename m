@@ -2,60 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CC1256C35E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14B5156C3FA
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:15:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240149AbiGHVcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 17:32:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46132 "EHLO
+        id S240479AbiGHVcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 17:32:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240487AbiGHVcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:32:10 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F2AA026E;
-        Fri,  8 Jul 2022 14:32:09 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id h200so149838iof.9;
-        Fri, 08 Jul 2022 14:32:09 -0700 (PDT)
+        with ESMTP id S240483AbiGHVcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:32:08 -0400
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49BAEA0266;
+        Fri,  8 Jul 2022 14:32:08 -0700 (PDT)
+Received: by mail-il1-f171.google.com with SMTP id h16so5603208ila.2;
+        Fri, 08 Jul 2022 14:32:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=vVYCFAFM3u7M5ctS+8Pi5ElwP8UGTsNsPbFnqh+Srfk=;
-        b=jULTtRkEhcTqAWWr376PtJLwAIaD4d7zDPD/BgEd/WrpOYc9igAW2AW8ftgqhhvwxI
-         xK8jYnzVxvbnwj2D++QpnA4i2IdvrKrBnjMn0DErjNdhc/QiHTRW/GhALuVgUxEq+f8+
-         dA2hmyymB9FHW7d52vxJ+AnRbFkI9d3hLCWam4MGehZINjvV6kymaMFFgMsOjbMnBB6V
-         ZFKRxUrv6wsGdosYmdkEHsAOKFY+bMD8dN8HMTIt8Z0o5oeHEoSCS0QlP3xri/DrBV7P
-         sLgOemAH/ZoptZaDMA89PG5wsM6aziqCusqDz8RAmvv9cXogW0vi2pQmnivxB9tOS/yK
-         ebCA==
-X-Gm-Message-State: AJIora/AyEDJavoTYLNo+5aYqmj9ozVZ0vthz0PH5BbcJx2Z/UqfWmGn
-        y50ihBpC7QFzRKQ+G0O2Ag==
-X-Google-Smtp-Source: AGRyM1sumiMM0+0KfOQZuDKX7asNwIIbBAJhw4KV3PPTXCSZPJWI1RTnSfkQKj91GRcwWUfAc6DP+A==
-X-Received: by 2002:a05:6638:d51:b0:33c:b03e:8035 with SMTP id d17-20020a0566380d5100b0033cb03e8035mr3433812jak.251.1657315928727;
-        Fri, 08 Jul 2022 14:32:08 -0700 (PDT)
+        bh=2c8hNn/HcSsNuhk2VZkSz28XgxLYEcL3R/BmDHkTe1Y=;
+        b=NJ5MpovZ0YAnHZEbkxcI73+hIPzRTbPnlDSz7Iyvc4XWI2lVURuwoBR84ItHNaYN43
+         ME15zYAt+Kx8bWQFd1ooaVyp6XLVKd7cPVAVmXb0j8z3phY8AMcYJyLqnPobXIophfTC
+         lqwqTfKpLu3NLF7T6Q9eaogO0jQjhEtGSbJPN9362JfBM0ILiVTRCx9fbaWxs+k2dRMs
+         pSaFgkl8Ldq5Rn/WHMkJsi/4lJlYwrbeoIY0L1mZndrScK1uEOx1mKjbyJLZk4WtBwnW
+         c3XBllnA4MbDv31U9kclGf9EVCV/yhggF20zb3Bdq16FUMx0OkSr8Yy6JM2IfxUHGEwu
+         bVCQ==
+X-Gm-Message-State: AJIora8PxFmLLjNPkshyFF2crCVis2TrC3DyO0x+3PsW3kWNN2G5Vi2z
+        IqBapw1pU/48I5el9VnXZw==
+X-Google-Smtp-Source: AGRyM1vPbXrieqMHwm2ebeU3CsWBQ7/Skb1GSUm9tzvGAV+/lPgBdXG9me75jXQNeSTpNLyUbB8o8Q==
+X-Received: by 2002:a92:6c05:0:b0:2da:b9e8:24df with SMTP id h5-20020a926c05000000b002dab9e824dfmr3316030ilc.99.1657315927467;
+        Fri, 08 Jul 2022 14:32:07 -0700 (PDT)
 Received: from robh.at.kernel.org ([98.38.210.73])
-        by smtp.gmail.com with ESMTPSA id e24-20020a022118000000b00331d764e5b5sm18707972jaa.97.2022.07.08.14.32.07
+        by smtp.gmail.com with ESMTPSA id a17-20020a027a11000000b0033f2f249a69sm1086501jac.129.2022.07.08.14.32.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 14:32:08 -0700 (PDT)
-Received: (nullmailer pid 1508201 invoked by uid 1000);
+        Fri, 08 Jul 2022 14:32:07 -0700 (PDT)
+Received: (nullmailer pid 1508206 invoked by uid 1000);
         Fri, 08 Jul 2022 21:32:02 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        freedreno@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, dri-devel@lists.freedesktop.org
-In-Reply-To: <20220707213204.2605816-2-dmitry.baryshkov@linaro.org>
-References: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org> <20220707213204.2605816-2-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH 1/9] dt-bindings: msm/dp: drop extra p1 region
+To:     Jayesh Choudhary <j-choudhary@ti.com>
+Cc:     linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        vigneshr@ti.com, davem@davemloft.net, robh+dt@kernel.org,
+        herbert@gondor.apana.org.au, j-keerthy@ti.com
+In-Reply-To: <20220707110756.16169-1-j-choudhary@ti.com>
+References: <20220707110756.16169-1-j-choudhary@ti.com>
+Subject: Re: [PATCH] dt-bindings: crypto: ti,sa2ul: drop dma-coherent property
 Date:   Fri, 08 Jul 2022 15:32:02 -0600
-Message-Id: <1657315922.448144.1508200.nullmailer@robh.at.kernel.org>
+Message-Id: <1657315922.470955.1508205.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,39 +60,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Jul 2022 00:31:56 +0300, Dmitry Baryshkov wrote:
-> The p1 region was probably added by mistake, none of the DTS files
-> provides one (and the driver source code also doesn't use one). Drop it
-> now.
+On Thu, 07 Jul 2022 16:37:56 +0530, Jayesh Choudhary wrote:
+> crypto driver itself is not dma-coherent. It is the dmaengine
+> that moves data and the buffers are to be mapped to the
+> dmaengine provider. So this property should be dropped.
 > 
-> Fixes: 687825c402f1 ("dt-bindings: msm/dp: Change reg definition")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Fixes: 2ce9a7299bf6 ('dt-bindings: crypto: Add TI SA2UL crypto accelerator documentation')
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 > ---
->  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 1 -
->  1 file changed, 1 deletion(-)
+>  .../devicetree/bindings/crypto/ti,sa2ul.yaml        | 13 -------------
+>  1 file changed, 13 deletions(-)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.example.dtb: displayport-controller@ae90000: reg: [[183042048, 512], [183042560, 512], [183043072, 3072], [183046144, 1024], [183047168, 1024]] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+Full log is available here: https://patchwork.ozlabs.org/patch/
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+crypto@4e00000: 'dma-coherent' does not match any of the regexes: '^rng@[a-f0-9]+$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dtb
+	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dtb
+	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dtb
+	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dtb
+	arch/arm64/boot/dts/ti/k3-am654-base-board.dtb
+	arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb
+	arch/arm64/boot/dts/ti/k3-j721e-sk.dtb
 
