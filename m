@@ -2,267 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D479656B7CE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 12:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D686856B82E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 13:14:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238110AbiGHKxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 06:53:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56542 "EHLO
+        id S237682AbiGHLMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 07:12:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238108AbiGHKw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 06:52:58 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3156884EF3;
-        Fri,  8 Jul 2022 03:52:57 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A5CF106F;
-        Fri,  8 Jul 2022 03:52:57 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 824413F70D;
-        Fri,  8 Jul 2022 03:52:55 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
+        with ESMTP id S237157AbiGHLMb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 07:12:31 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2010.outbound.protection.outlook.com [40.92.20.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E347A81490;
+        Fri,  8 Jul 2022 04:12:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O4sx+AKml8XuvlIAnhPO//+Ra/Cn5jb87snrutr0u6FnOZlAX1ACSdFzCiAw/6OvlLxfM4qE1NSyseQpKcE7SmCy1HppG3WGoWIXr9X22eXUGcYgafw8MhfalRvky/BX9onsmIYqdkJes2A8Cu/Kps5r79u6d/59h4PZe+NgZfQLGHonTQzzpL5KETpLkk+fLruLczjQDh/RIbRJjCDhh/L6I2AKHa4xIK2NNmcWlZxNzdpzJtCphb+WmGbNwjyex23WxgXH9f/ayFj0GSXMobrkoINCEEjqx4F1E+HOW+WVDE9pUy08TFaH/rT5yvXoWDFk/TAM18e2wHd74fJEjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=26v5y3Qipq5N1HBy2yjP0zBQQBTEIIrvKisDK1XzNgQ=;
+ b=lKfMN9lm8HeWHUp0GGKC7uwgpJLL0q50p29c1NrT6otuq0zxjESGcv/54BblCDunygzjkP8dmj+VuTGjD8jbFI1VWM0Z6vIXaQE1/L4dnOsHX1SYe8fENY2QUkiE6IXYRNXukRkzarw+3TejNiNj9Yjcn5lMoTih6FO5Y4ItqXTCVIWkzlgYWu1iftsoNWtuT0I3tldHa8bpyhWzPIfoffgSUHnzLK2rwIGw5XXwWivj+zZvnksKop5SGF+C748c7gKQ2QKGZMun+43NALCqiIH5xZNQQkg7PJQRVMlSUJ3MWOgJ3nlvHU7L6k0CrHiZljgACL+ogZ8g5/DtUtaNXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from MN2PR02MB7024.namprd02.prod.outlook.com (2603:10b6:208:205::23)
+ by DM5PR02MB3879.namprd02.prod.outlook.com (2603:10b6:4:ba::35) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.20; Fri, 8 Jul
+ 2022 11:12:28 +0000
+Received: from MN2PR02MB7024.namprd02.prod.outlook.com
+ ([fe80::6c6e:45bb:b4cd:6d63]) by MN2PR02MB7024.namprd02.prod.outlook.com
+ ([fe80::6c6e:45bb:b4cd:6d63%6]) with mapi id 15.20.5417.016; Fri, 8 Jul 2022
+ 11:12:28 +0000
+From:   Joel Selvaraj <jo@jsfamily.in>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH v13 7/7] arm64: dts: allwinner: h616: Add X96 Mate TV box support
-Date:   Fri,  8 Jul 2022 11:52:35 +0100
-Message-Id: <20220708105235.3983266-8-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220708105235.3983266-1-andre.przywara@arm.com>
-References: <20220708105235.3983266-1-andre.przywara@arm.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Joel Selvaraj <jo@jsfamily.in>
+Subject: [PATCH 0/5] Add support for Xiaomi Poco F1 EBBG variant
+Date:   Fri,  8 Jul 2022 16:42:02 +0530
+Message-ID: <MN2PR02MB702415D7BF12B7B7A41B2D38D9829@MN2PR02MB7024.namprd02.prod.outlook.com>
+X-Mailer: git-send-email 2.36.1
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-TMN:  [f5ZlqpMiNBqLf4yC7ptIf04HUKvUWTcjeFbOy+1owsIT0nz9kkVrTHQ7Lg8RGSwG]
+X-ClientProxiedBy: PN2PR01CA0236.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:eb::20) To MN2PR02MB7024.namprd02.prod.outlook.com
+ (2603:10b6:208:205::23)
+X-Microsoft-Original-Message-ID: <20220708111207.85249-1-jo@jsfamily.in>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1a3e509a-ee20-4ce0-a520-08da60d2bdd9
+X-MS-TrafficTypeDiagnostic: DM5PR02MB3879:EE_
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7rZYYPfS7BoQ5WDlfsYv1IlLaTd92ryuOUFvunmJodmu60/ZuuGAET7deWDypZ/at47HLqGmFoAiR0cGQWWAMEP9SSgI7Irei9X6clNaUgigfULNkKz/VtKhyxmHPq/BNnweEUbYlhwVly/K0h8KCpDn8tQbAXggsmXuwPQnlSi8ys6sCXS9/MQT48dJROacVA1HiAOvDJisZDjddMbg9rV0mrCGRdDYTxFqKhCzq56hL6dplijWi3sqalo91NGQtxB1hzhL1WVm0iObGtVqWyqZHP0L7tPdSQmW8gk0/jeYQZ0443Dcsb2Ao4r8/P57rY46DWK1Wt8jXSIP33duklYWQYGOhBgndw7omNqw5hecaoXFOEjbo9fbhVynTaMD6NeEVWAt6Y/fpMwRTMnvEs5pIs9eSmKac4KkYspfpio8czuComqM6T8Zxna38R6WuVVgKHMXi+SSkdAhtFBrN0p6+Ude/bXaWCtGgSCRDnyYLg+5uoT7NSFXsgNLaZKJW8bxVPJC5loOj+Spq6R7ssRwWAdGD1UM1lqAhca6iBnR/3UVZCwFiLDyFFyRqitUx843iESCTwSi2pIMUiT3Y6nvaZS24vMa1RPvbNdQNIqMpjItk1LDQcFu26paR8LBhmGAYTI12VxurYzsqJHGeBVgARPqteL9Sl/sZTO0tqgu3hyHFOQYWCLvGWJNyr8m5R0WskfeYCl4obHxX5roMA==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bOWQbASxt8JRCSDbWEvXwtwpNLqgNDfJIivpG/RB8LbgxHteB4NpREadf65Z?=
+ =?us-ascii?Q?FMuXjSsEk3U4wHXETFKyM/KSbMxNK0G9iCjOVMpqKzObb8n2C4WzcxEzE3VG?=
+ =?us-ascii?Q?C/h4xYo4ev0koKlY2aaXTTpbZx4b917Q2UJHEJ+qD2GLEcIETtkcTBB05vSK?=
+ =?us-ascii?Q?nZk9k7KtoXjvgonildacnhh+7Omo3azOnxQ83fZ17Lw6kad/MhBsHa54OG6+?=
+ =?us-ascii?Q?ld46ABl7eUxaAArte5aUAD3sz7z4OjCpnJ2cgr8zNRA7o6mRsioZIyw9voAg?=
+ =?us-ascii?Q?sXffJianEwxiPGwb/V2LB5BjwBRSdHcm8hd+RC62Hr7AZbGKq06qDbBJlGcY?=
+ =?us-ascii?Q?zZr54cdlrBgBl9OlAznXnh4FnrKs1U2HxWmpTERhUYWHEyQv0FTF3oxfP8gg?=
+ =?us-ascii?Q?+poddFYUR4hjfpca82qAl71S5oUwDONPWTWW1QyY/FG10BDfV+CiJAecvoTU?=
+ =?us-ascii?Q?/jYFgOEgTPo2hHRS//a3lfNPLgtTDqsGYyd0swRQ58cQaiJLwsFN0i1FWgZD?=
+ =?us-ascii?Q?W22oLJ02bzr09WXQeBssSumn8MatX6cTuBDzcg7TmpP6VSNjqFzyJeUxMjqh?=
+ =?us-ascii?Q?+xvIF7HQ1983OwLcwYnYTIVr2UUa113qwACDxmxRIaaGCBACOMNyAjbj1z8S?=
+ =?us-ascii?Q?qEZiGPKS+TMcMXVKcA5kzyhmNL0p2XVMG4CX81d7xml5Fr22qUaK4WH4Qop1?=
+ =?us-ascii?Q?WEb4jnIrI+UfCBuI27uefIqfYoccqOV7n8RseYJ4ksa001+1GspSWR+BkIDb?=
+ =?us-ascii?Q?PtjCS0HotZlJTKG6LVBiYCaGoRiFyW/p5ZLDcqHaPUZacslBrZuuHXLcbOrS?=
+ =?us-ascii?Q?TKhgv/iBc59Kbu1bcNVwQTW1HFjWYt8QlMtjonQxoxXSs+c7KGlHDDbX/tzz?=
+ =?us-ascii?Q?G4s1Txr0Qu88oEFqIpg9pEb+Z82Acrq1mnfifjnm0liUOXa6FbuAKmGC/zl2?=
+ =?us-ascii?Q?SOH4E5mSjciCT6yVkvT4/hM8mlbMkdl4JVcAVD+FI+3UXfJ/Os49P4dtfysB?=
+ =?us-ascii?Q?rLtS4h2TxDgmWyMHxKS0XfYru52bJjvLMhD3kM1C+Ibx5ia2I/hjOr0dCqHV?=
+ =?us-ascii?Q?SY+mK3vffs5VrbX5Y2qiScZIwnAXpVFFek51a3IX5VoQJgYR4N7Sb1uygPpm?=
+ =?us-ascii?Q?63cdauKTJF32ZIJpQZmyjUbxHCiw/QlqOQUY/j5wUs74ngH91so9ofzxNvL7?=
+ =?us-ascii?Q?qGizcMtjx/lXJjdrRvGMsryFM0AuXiJ3w/d6B4ocqxU0HjfFWgrMa7LkU1w0?=
+ =?us-ascii?Q?a5zkBOz2jdLnZ1V7MjOntkV71aRDHyHT6dBIdGXPFBvYDm1k3CfRYG8GXZkF?=
+ =?us-ascii?Q?0BPeP1d7VlGKpHtDdKVfGwLK?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-99c3d.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a3e509a-ee20-4ce0-a520-08da60d2bdd9
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR02MB7024.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2022 11:12:27.9834
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR02MB3879
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The X96 Mate is an Allwinner H616 based TV box, featuring:
-  - Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
-  - 2GiB/4GiB RAM (fully usable!)
-  - 16/32/64GiB eMMC
-  - 100Mbps Ethernet (via embedded AC200 EPHY, not yet supported)
-  - Unsupported Allwinner WiFi chip
-  - 2 x USB 2.0 host ports
-  - HDMI port
-  - IR receiver
-  - 5V/2A DC power supply via barrel plug
+There are two variants of Xiaomi Poco F1.
+- Tianma variant with NOVATEK NT36672A panel + touchscreen manufactured
+  by Tianma
+- EBBG variant with Focaltech FT8719 panel + touchscreen manufactured
+  by EBBG
 
-Add a basic devicetree for it, with SD card and eMMC working, as
-well as serial and the essential peripherals, like the AXP PMIC.
+The current sdm845-xiaomi-beryllium.dts represents tianma panel variant.
 
-This DT is somewhat minimal, and should work on many other similar TV
-boxes with the Allwinner H616 chip.
+To add support for the EBBG variant, let's split this into 3 files,
+- sdm845-xiaomi-beryllium-common.dtsi which contains all the common nodes
+- sdm845-xiaomi-beryllium-tianma.dts for the tianma variant
+- sdm845-xiaomi-beryllium-ebbg.dts for the ebbg variant
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-Reviewed-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../dts/allwinner/sun50i-h616-x96-mate.dts    | 177 ++++++++++++++++++
- 2 files changed, 178 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
+Note:
+-----
+Both the panels are already upstreamed and the split is based on them.
+There were patches earlier for both the touchscreens, but they are not
+accepted upstream yet. Once they are accepted, we will add them to
+respective variants.
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index df2214e6d946a..6a96494a2e0a3 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -39,3 +39,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-new file mode 100644
-index 0000000000000..6619db34714a4
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-@@ -0,0 +1,177 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2021 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	model = "X96 Mate";
-+	compatible = "hechuang,x96-mate", "allwinner,sun50i-h616";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the DC input */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&ir {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_dcdce>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&mmc2 {
-+	vmmc-supply = <&reg_dcdce>;
-+	vqmmc-supply = <&reg_bldo1>;
-+	bus-width = <8>;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	status = "okay";
-+};
-+
-+&r_rsb {
-+	status = "okay";
-+
-+	axp305: pmic@745 {
-+		compatible = "x-powers,axp305", "x-powers,axp805",
-+			     "x-powers,axp806";
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+		reg = <0x745>;
-+
-+		x-powers,self-working-mode;
-+		vina-supply = <&reg_vcc5v>;
-+		vinb-supply = <&reg_vcc5v>;
-+		vinc-supply = <&reg_vcc5v>;
-+		vind-supply = <&reg_vcc5v>;
-+		vine-supply = <&reg_vcc5v>;
-+		aldoin-supply = <&reg_vcc5v>;
-+		bldoin-supply = <&reg_vcc5v>;
-+		cldoin-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-sys";
-+			};
-+
-+			/* Enabled by the Android BSP */
-+			reg_aldo2: aldo2 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3-ext";
-+				status = "disabled";
-+			};
-+
-+			/* Enabled by the Android BSP */
-+			reg_aldo3: aldo3 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3-ext2";
-+				status = "disabled";
-+			};
-+
-+			reg_bldo1: bldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8";
-+			};
-+
-+			/* Enabled by the Android BSP */
-+			reg_bldo2: bldo2 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8-2";
-+				status = "disabled";
-+			};
-+
-+			bldo3 {
-+				/* unused */
-+			};
-+
-+			bldo4 {
-+				/* unused */
-+			};
-+
-+			cldo1 {
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <2500000>;
-+				regulator-name = "vcc2v5";
-+			};
-+
-+			cldo2 {
-+				/* unused */
-+			};
-+
-+			cldo3 {
-+				/* unused */
-+			};
-+
-+			reg_dcdca: dcdca {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdcc: dcdcc {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <990000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdcd: dcdcd {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1360000>;
-+				regulator-max-microvolt = <1360000>;
-+				regulator-name = "vdd-dram";
-+			};
-+
-+			reg_dcdce: dcdce {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-eth-mmc";
-+			};
-+
-+			sw {
-+				/* unused */
-+			};
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
+Joel Selvaraj (5):
+  arm64: dts: sdm845-xiaomi-beryllium: rename beryllium.dts into
+    beryllium-common.dtsi
+  arm64: dts: qcom: sdm845-xiaomi-beryllium-common: generalize the
+    display panel node
+  arm64: dts: qcom: sdm845-xiaomi-beryllium: introduce tianma variant
+  arm64: dts: qcom: sdm845-xiaomi-beryllium: introduce ebbg variant
+  arm64: dts: qcom: Makefile: split beryllium into tianma and ebbg
+    variant
+
+ arch/arm64/boot/dts/qcom/Makefile                      |  3 ++-
+ ...ryllium.dts => sdm845-xiaomi-beryllium-common.dtsi} |  8 ++++----
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts     | 10 ++++++++++
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts   | 10 ++++++++++
+ 4 files changed, 26 insertions(+), 5 deletions(-)
+ rename arch/arm64/boot/dts/qcom/{sdm845-xiaomi-beryllium.dts => sdm845-xiaomi-beryllium-common.dtsi} (98%)
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+
 -- 
-2.25.1
+2.36.1
 
