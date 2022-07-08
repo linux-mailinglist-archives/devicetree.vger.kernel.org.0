@@ -2,82 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7334756B351
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 09:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 233A856B36F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 09:25:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237508AbiGHHTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 03:19:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60274 "EHLO
+        id S237080AbiGHHYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 03:24:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237298AbiGHHTk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 03:19:40 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E6F27B352
-        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 00:19:29 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id y14-20020a17090a644e00b001ef775f7118so1091057pjm.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 00:19:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EgcXrxFHPmhqBnO22Uw6rifkBWhXEzlsDV2ZenDVWU8=;
-        b=vU39rQY3c+OTwi/QX2HZiMp2QYsUfvKVx2zn6usRNfHNsEfY+XQm1hgSEt4DdABj+R
-         BNsKnJ7MNpcIJ3+RU9Xqpq2+vUIjMIbjPjfiW/L0ullDWw21nN4N7vhcmv9SwjIm/reZ
-         0D6JU2d9CJ09Uy6StGdnWRtxkxuDmur0f0cmeLDZfwiqOQe8OWeEPFtx8+yMSWPwbqDh
-         mHd9z+NvBtNPrG9qafH6kWzHyUnKF204fzpR+3+mmVpqMb44pI7uLQ2v1zNL8yHKQflj
-         tBOuwVHw7jOuNuV7I1YgF9/MVnEm1wR5ZcB7JzrDsprZEO05MU8Y+95LmzCspoQJTJ7A
-         Cu4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EgcXrxFHPmhqBnO22Uw6rifkBWhXEzlsDV2ZenDVWU8=;
-        b=QjILR8C0ng8aNd+fausS1dhp1f+lIcEf8WZ/MLMuip0lX4qCvVmga6Ml11SrEx99n6
-         ApmMfzep3Fk9QtSXSgqDSdDNXqLaJJDAbXgv26N6+fZAnNCkl1BGzz+oNynJHMB0b4By
-         0kPTC/zAoGjZdugEm2Jpt7UrlZrl52P7vFt1nwHda66nV+AUQAazCpx0GJSv780V0DIl
-         qRhz8bB0LdRBznZcyQYhAa4NrtWkBGXheY9uVnJv5B92fbv/bJy4Gqrq6wviK6Vn1fDR
-         M3G4ZZIvU//Uko1NiFbOUEeF5sE7sqZAF67svByLvmIe7gMGMYC4XpG19vjS98J2A2Z3
-         /IVQ==
-X-Gm-Message-State: AJIora9FyoAm3rKmOIxvijhHVUgcIN+n98H4hR4wJKzcJrbzi3+Ut1RA
-        GJKbvxv5rQZz3pHKggIFOhAwXg==
-X-Google-Smtp-Source: AGRyM1vZo8QUsmyZeVSd3mpHaBtw97+PUE+4i7ZXdQ6ibzdXhyINZfsmvaA1cspDz6ZTmsUrV7/sBw==
-X-Received: by 2002:a17:90b:1807:b0:1ef:8aa5:1158 with SMTP id lw7-20020a17090b180700b001ef8aa51158mr10339270pjb.163.1657264768818;
-        Fri, 08 Jul 2022 00:19:28 -0700 (PDT)
-Received: from localhost ([122.171.18.80])
-        by smtp.gmail.com with ESMTPSA id j17-20020a170902da9100b0016be7a89ac9sm9777958plx.94.2022.07.08.00.19.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 00:19:28 -0700 (PDT)
-Date:   Fri, 8 Jul 2022 12:49:26 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>, linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V2 00/13] OPP: Add support for multiple clocks*
-Message-ID: <20220708071926.zehurtbcf35s5tv6@vireshk-i7>
-References: <cover.1657003420.git.viresh.kumar@linaro.org>
- <d557bbd0-2afb-12dc-1287-1aeb44ef55f5@collabora.com>
+        with ESMTP id S236998AbiGHHYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 03:24:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90DE81837B;
+        Fri,  8 Jul 2022 00:24:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 11946621CD;
+        Fri,  8 Jul 2022 07:24:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66F50C341C0;
+        Fri,  8 Jul 2022 07:24:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657265091;
+        bh=DUtyY1YHWoJv3J3dWpcYBPdrvr1+jh1mszXtpz/A4VE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gMr1FArgGErDRnJxe78qkxJm8lOIfcWLxd1aS15NsHN1GAmWE8E0UuEyhUnBV4b/m
+         QQeGdfrJiloWfwrormxh/Xhsw3JQcNfpk+rjBj06HIBIybkVBJk1D78uCPvkA4BNOE
+         u4WFiQqwqviByQQHYQmbnjKzbMB23vmM9J5YammkSwsZXmTA+d50LIUocRsB75c7H1
+         ybKgm3EDMFZVLQ2TTBseP0nGGAEKUzuv3kLM61qoYKknDYNJ1AijjImVGtsj8Qlx9P
+         yu7Q7PU0M7Uu6NBTjggwRczLzMgb1G5zEkj/wsFW5HL0tgegOMBGDTZIzkdVvGbnbX
+         BQ1OTEEOYwABQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1o9iM9-0001Ce-BA; Fri, 08 Jul 2022 09:24:54 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sc8280xp: fix usb_0 HS PHY ref clock
+Date:   Fri,  8 Jul 2022 09:23:58 +0200
+Message-Id: <20220708072358.4583-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d557bbd0-2afb-12dc-1287-1aeb44ef55f5@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,58 +57,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-07-22, 22:43, Dmitry Osipenko wrote:
-> This patch breaks Tegra again, please take a look:
+Fix the usb_0 HS PHY reference clock which was mistakingly replaced with
+the first usb_2 PHY clock.
 
-Damn, not again :(
+Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->    OPP: Remove dev{m}_pm_opp_of_add_table_noclk()
-
-Why did you mention this patch ? This just removed an unused API,
-Tegra should have broke because of something else, isn't it ?
-
->  8<--- cut here ---
->  Unable to handle kernel paging request at virtual address ffffffff
->  [ffffffff] *pgd=9effd861, *pte=00000000, *ppte=00000000
->  Internal error: Oops: 37 [#1] PREEMPT SMP ARM
->  Modules linked in:
->  CPU: 3 PID: 8 Comm: kworker/u8:0 Not tainted
-> 5.19.0-rc1-00040-g30b62d123f4f #82
->  Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
->  Workqueue: events_unbound deferred_probe_work_func
->  PC is at _opp_compare_key+0x40/0xc4
->  LR is at 0xfffffffb
-
-How is LR set to such an address ?
-
->  pc : [<c0b91b54>]    lr : [<fffffffb>]    psr: 20000113
->  sp : df831b08  ip : c33cd4d0  fp : df831b24
->  r10: c2586078  r9 : c258606c  r8 : 00000000
->  r7 : 00000000  r6 : 00000001  r5 : c33cd480  r4 : c2586000
->  r3 : 00000000  r2 : c33cd480  r1 : c258606c  r0 : c2586000
->  Flags: nzCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
->  Control: 10c5387d  Table: 8000404a  DAC: 00000051
-> ...
->  Backtrace:
->   _opp_compare_key from _set_opp+0x80/0x408
-
-Whatever happened, happened from _opp_compare_key() and I tried to
-look at it many times, couldn't figure out what's wrong there.
-
-For the device in question, pmc I think, we don't have any "opp-hz"
-property in the DT, but still the OPP core will fetch its clock and
-set clk_count to 1. But this was working earlier too, we were
-comparing the rate anyways. I think one of _opp_compare_rate() or
-_opp_compare_bw() is broken here, but I just couldn't figure out. The
-rate one should run one loop and bw one should just return. I don't
-see why a crash should come out eventually.
-
-Can you help debug this a bit ? Also see what are the values of
-opp_table->path_count and opp_table->clk_count, should be 0 and 1
-AFAICT.
-
-Sorry about this Dmitry, I think we are all settled and again went
-into crap.
-
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index d0fabbf99ec5..9de6dedb102f 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -985,7 +985,7 @@ usb_0_hsphy: phy@88e5000 {
+ 			compatible = "qcom,sc8280xp-usb-hs-phy",
+ 				     "qcom,usb-snps-hs-5nm-phy";
+ 			reg = <0 0x088e5000 0 0x400>;
+-			clocks = <&gcc GCC_USB2_HS0_CLKREF_CLK>;
++			clocks = <&rpmhcc RPMH_CXO_CLK>;
+ 			clock-names = "ref";
+ 			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+ 
 -- 
-viresh
+2.35.1
+
