@@ -2,96 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30BB656BF11
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 20:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86F3E56BF29
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 20:35:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239405AbiGHQwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 12:52:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36816 "EHLO
+        id S238431AbiGHREI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 13:04:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239477AbiGHQwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 12:52:35 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CDB96EE81;
-        Fri,  8 Jul 2022 09:52:34 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id u12so38618428eja.8;
-        Fri, 08 Jul 2022 09:52:34 -0700 (PDT)
+        with ESMTP id S238171AbiGHREI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 13:04:08 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F6795A2E4
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 10:04:07 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id g39-20020a05600c4ca700b003a03ac7d540so1497584wmp.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 10:04:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=8K5Ogw41nMH5eAaVwuRakPZpwEVH+oq2WUfL0plnyXc=;
-        b=dWLlQ1yydSoGV/onW98bsgX35+vMSlNMsket/8Fyvc8SrE6hn740hXzGV95JLJA6tA
-         k8yWVE+6rzac12IUsPfv6jg2UnIPG9ImaPqwihUwRrqGoGOccgYaYL7evSXCwGlHbdoc
-         ObNLwhypzlNCHvPLRgcgcjphwCMjF65xIr9MmeLnTwnbjHLSTohwXEB585pdbdImVOye
-         RUU3W+1ZZJjdT1AtHq3SiI2+Zn/QYSqdbElsYsy5VkT4I9wwvz9eLevZsMJkBDAT7FUC
-         4sRjWcyJZQl8y2sNT8aeJx5Ql4FKsU9soxSehP5YrCxca/3ymAlRd3CEddmUEXV/6cU1
-         Fs4g==
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2HBuSahyHNMvF03MJu9v5fOOMawQITXHXQRHirstyvY=;
+        b=hwRE+J5UtH0ki5YLkiBGNPWWtNX6TKj+8IzXvu9zCaoC38fW/DT1+lJjWiUx5eizKv
+         lwVmTj4/uY/I29LhR/3am0qkIuhVmwqyP/4ThIAPNCnxkZExoeTZd+UEVv3xrk/Sh9OV
+         pVCdBxBtg2YGIY10+bv3d6/45j4y+vph7QUSMTgLtJFv8z+BbgJ0KfqfmXeIBNKs8AoI
+         UJIFR3kVYfV3fuAKjXZmgJ2lem3n/KVNK6okvnt0B+/vigYBFAHLrdDKa/xqkf+7+gDR
+         eM9JgP1KkOJcVcKdmHHLNO9Gl6T4kjanccRrUUgcYYrnv/ej4xrPKUiryeuUXAxmQ0ee
+         yauA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=8K5Ogw41nMH5eAaVwuRakPZpwEVH+oq2WUfL0plnyXc=;
-        b=PAZ03XwqUeBdpTXjSqPngF1I0jDIGuv9snpORNQ3jTWrm4ANd6/sF1d8sklMFjxYmY
-         tqX7Zmx9jwve8vsnqXv5Jrm0Rzt9BTSFWggX5QPLWBHyls4i6AkkOWB8YD6P+UKZn3iw
-         TOK2mW4FOoSm4jCl+K/mMvekuu/hNmb+dfofwV3hiJ2LU+W1WOe4SwCIaENz2FZdENNs
-         M//k3No19ZBtFTatJ/vRReRYcBkpOaAMdL1sesGOWc2QTtCTfVI4IwDfSQP8Wmf7bSo0
-         ic5JbxvzHAk92Mh3+qV0yK4vFV4rVrXJC2jC49fUeTb9LgJ1Tp9nEt53JkKdsA37iOVV
-         VhLA==
-X-Gm-Message-State: AJIora8iGbNJ3cZXUhaWLs54yHT5WDW27fQNot34tqxQcVsgm8tKQQrK
-        k3PuqhdcUWymoCzz0CIzcwU=
-X-Google-Smtp-Source: AGRyM1teGdrjWgVIBtYPOIVjKMgc0MrMFUoul1cut9eS4Urax2mFKBTuoI3djwJtCIBUSKRFquznxw==
-X-Received: by 2002:a17:907:16a2:b0:726:abbc:69bf with SMTP id hc34-20020a17090716a200b00726abbc69bfmr4341349ejc.363.1657299153059;
-        Fri, 08 Jul 2022 09:52:33 -0700 (PDT)
-Received: from kista.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
-        by smtp.gmail.com with ESMTPSA id y20-20020a170906559400b00722dcb4629bsm20667163ejp.14.2022.07.08.09.52.31
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2HBuSahyHNMvF03MJu9v5fOOMawQITXHXQRHirstyvY=;
+        b=wXZbphroVkQAjmR905rRORYpwZIcxF9mIZW5cTxYu66RGXdc0tbGrItu1qwiaI5PYl
+         Zgr8zWBb/kxZaEahc44PDuNbu69Q5bzjIFiY3rIPgliwSPw8jwGwB8h/SroYHbxAtNqF
+         B2/GfK3cUKWnmOzXXa13n5kAd6tqSmmkiU0Y2Xv1dilgCaMA+eiZPXjaSBoXwdzDszDx
+         +lsGZYuVfdhd/ytfhImX00l47hC1FAfpkqF51OS2Sw1GAtvoxxk4TwGt+8WtJJWGLjj0
+         rtgZvu6r2BkSoXGRC32JY6Jk4nqVFU0ytLt2ckR+dmFPUCjrnSnevZj7KcptEQQ0YqZ0
+         uyIA==
+X-Gm-Message-State: AJIora8zt4cZ9IP3DsKexTAa4RlMH4AkQsu9m8PW860wcsre3HcCtgTq
+        TNVay/wMRbdglMGzJAAKfLpITEmdLkz4zsdd
+X-Google-Smtp-Source: AGRyM1tZHhb1bv2++7AldaFjeq33dj7xyQovjRq+kPMM1e1IW3RGohQXv0i8r9DL4q+4dHdDx2coPA==
+X-Received: by 2002:a05:600c:1f19:b0:3a1:8fbf:f75c with SMTP id bd25-20020a05600c1f1900b003a18fbff75cmr819680wmb.47.1657299845949;
+        Fri, 08 Jul 2022 10:04:05 -0700 (PDT)
+Received: from rainbowdash.office.codethink.co.uk ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id n35-20020a05600c502300b003a2d0f0ccaesm2804821wmr.34.2022.07.08.10.04.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 09:52:32 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Arnaud Ferraris <arnaud.ferraris@collabora.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: Re: [PATCH v2 3/3] arm64: dts: allwinner: pinephone: Enable internal HMIC bias
-Date:   Fri, 08 Jul 2022 18:52:31 +0200
-Message-ID: <2758935.Y6S9NjorxK@kista>
-In-Reply-To: <13043007.uLZWGnKmhe@jernej-laptop>
-References: <20220621035452.60272-1-samuel@sholland.org> <20220621035452.60272-4-samuel@sholland.org> <13043007.uLZWGnKmhe@jernej-laptop>
+        Fri, 08 Jul 2022 10:04:05 -0700 (PDT)
+From:   Ben Dooks <ben.dooks@sifive.com>
+To:     devicetree@vger.kernel.org, frowand.list@gmail.com
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>
+Subject: [PATCH] scripts/dtc: dma-ranges is a multiple of 3 cells
+Date:   Fri,  8 Jul 2022 18:03:59 +0100
+Message-Id: <20220708170359.270226-1-ben.dooks@sifive.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 27. junij 2022 ob 22:53:05 CEST je Jernej =C5=A0krabec napi=
-sal(a):
-> Dne torek, 21. junij 2022 ob 05:54:52 CEST je Samuel Holland napisal(a):
-> > Revisions 1.0 and 1.1 of the PinePhone mainboard do not have an external
-> > resistor connecting HBIAS to MIC2P. Enable the internal resistor to
-> > provide the necessary headeset microphone bias.
-> >=20
-> > Signed-off-by: Samuel Holland <samuel@sholland.org>
->=20
-> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+The dma-ranges property is a set 3 cells of #address-size, so don't treat
+it like the ranges property when generating warnings.
 
-Applied, thanks!
-=20
-Best regards,
- Jernej
+Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+---
+ scripts/dtc/checks.c | 31 ++++++++++++++++++++++++++++++-
+ 1 file changed, 30 insertions(+), 1 deletion(-)
 
+diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
+index 781ba1129a8e..791b93e8e02a 100644
+--- a/scripts/dtc/checks.c
++++ b/scripts/dtc/checks.c
+@@ -823,7 +823,36 @@ static void check_ranges_format(struct check *c, struct dt_info *dti,
+ 	}
+ }
+ WARNING(ranges_format, check_ranges_format, "ranges", &addr_size_cells);
+-WARNING(dma_ranges_format, check_ranges_format, "dma-ranges", &addr_size_cells);
++
++static void check_dma_ranges_format(struct check *c, struct dt_info *dti,
++				struct node *node)
++{
++	struct property *prop;
++	int c_size_cells, p_size_cells, entrylen;
++	const char *ranges = c->data;
++
++	prop = get_property(node, ranges);
++	if (!prop)
++		return;
++
++	if (!node->parent) {
++		FAIL_PROP(c, dti, node, prop, "Root node has a \"%s\" property",
++			  ranges);
++		return;
++	}
++
++	c_size_cells = node_size_cells(node);
++	p_size_cells = node_size_cells(node->parent);
++	entrylen = (p_size_cells + 2 * c_size_cells) * sizeof(cell_t);
++
++	if (!is_multiple_of(prop->val.len, entrylen)) {
++		FAIL_PROP(c, dti, node, prop, "\"%s\" property has invalid length (%d bytes) "
++			  "(parent #address-cells == %d, "
++			  "child #address-cells == %d)", ranges, prop->val.len,
++			  p_size_cells, c_size_cells);
++	}
++}
++WARNING(dma_ranges_format, check_dma_ranges_format, "dma-ranges", &addr_size_cells);
+ 
+ static const struct bus_type pci_bus = {
+ 	.name = "PCI",
+-- 
+2.35.1
 
