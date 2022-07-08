@@ -2,137 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B57256BA89
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 15:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6637B56BAA5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 15:28:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237880AbiGHNTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 09:19:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57428 "EHLO
+        id S237440AbiGHN1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 09:27:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231287AbiGHNTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 09:19:32 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B7F275D7;
-        Fri,  8 Jul 2022 06:19:31 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id e7so1620707qts.1;
-        Fri, 08 Jul 2022 06:19:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JtDIuSDJgMHOnSZ7PDsNMgEqGS4IDU10U0hH9sHl3tg=;
-        b=F1TT9/4N2rf2mudIbCeIRjEmhB/dOOSNMlAnJije4cTLlMr+FJ96dYAM3lSjRN82Fn
-         5phQrraQEKfjUbDlb2u08NXgt4TDCjj9vbuvnJ2SyivezzJxr3FYhYouCxzVqIWPYfYW
-         kI8p2+w2VA1XVe0uwwkP2s4Q1+KKicxu7LYfQymp7H4TTECwVWMWpj9lEhEZwX6StSYO
-         0T1M9bS9eY27tmsDZKaHxYY592yn5PkQ57uyQ8Nt0K9DjpU9ZgJDvZ7IsNkafjWiFqf9
-         u/BOHf3LNPoqR548ZyHd3pk9jyMgHaPHVj2fJbw3ZXFJ3BKJqb6dNlng4aH/ZckF+8+b
-         2DZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JtDIuSDJgMHOnSZ7PDsNMgEqGS4IDU10U0hH9sHl3tg=;
-        b=XPzMYq3XMRr7QOlMLgNhJysAsm4Pr6ccg50dw0j0eofSAkOCFUqqPjK/1m7bAucdAd
-         i/uyRgrSQiwtNZQdPFetp7TuGh84ZwlU9LycfW8qD/UbpOkFui3LuidjwgRgwIzshylD
-         KWHWvU2ma5dzYOaQGTQeBsRj9hoXr+3EiFuev2lYQbHbzoLpz+7amGWgcYFI0XI0eJQY
-         vz3954YMGUCm7uDV+O2XTh8Ghn19V3OlIhQyKQWpzzMZDTJR63OCJaSF9/vxEc4c7V9o
-         Ndh/0p6neOabYG8v7zwb3C3LG55mEB/hUN5yJHzBdprtRG8jNgC3cM+9dKuVx1xPNTfc
-         f3gg==
-X-Gm-Message-State: AJIora8LJmBdq3bfpmdZxVP39FtudiUnSAkUs31XRrhgYFnVAQLhV6Qz
-        IdyAM5+EuftdhhfME3w6x5fodCVohzucJbD4y7ewy0gGe0E=
-X-Google-Smtp-Source: AGRyM1tOJmb8x3r+oLBvKHiggRAd8q9ZzGU7GGBH5P9GK5C4c87aPPF8+j7O07cl13llleHzkRCaPLfYivNLIdaYh0M=
-X-Received: by 2002:ac8:5dcb:0:b0:31d:42c8:95d7 with SMTP id
- e11-20020ac85dcb000000b0031d42c895d7mr2859884qtx.546.1657286370465; Fri, 08
- Jul 2022 06:19:30 -0700 (PDT)
+        with ESMTP id S231287AbiGHN1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 09:27:43 -0400
+Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FD082CC86;
+        Fri,  8 Jul 2022 06:27:41 -0700 (PDT)
+Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
+        by mxout4.routing.net (Postfix) with ESMTP id 1379A100463;
+        Fri,  8 Jul 2022 13:27:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1657286859;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=fR7O+l5or7VHcLvd1mcGAyTpT5RtG0rRA1NvN2Fb1Zo=;
+        b=qnxo+P6VXmEXFjzvIT0zNhzr/LOw53Z8vsAFhQcyxpkgXl6JvRueF63cVywimnh48DjzI3
+        CNHaMB2QfxXjDorcOroL7wVhwqssxPDys++4p268BZz5LbAee4Yo318h4lJiTOrXDezYpU
+        unFpu5JudGO8z4HgfpEhS8wGeHsn4bk=
+Received: from frank-G5.. (fttx-pool-157.180.225.69.bambit.de [157.180.225.69])
+        by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 5199580798;
+        Fri,  8 Jul 2022 13:27:38 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>
+Subject: [PATCH] arm64: dts: rk356x: fix upper usb port on BPI-R2-Pro
+Date:   Fri,  8 Jul 2022 15:27:06 +0200
+Message-Id: <20220708132706.81450-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220705191017.1683716-1-robimarko@gmail.com> <fa748405-ca38-8ec8-0e8d-83a99a0c9c57@somainline.org>
-In-Reply-To: <fa748405-ca38-8ec8-0e8d-83a99a0c9c57@somainline.org>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Fri, 8 Jul 2022 15:19:19 +0200
-Message-ID: <CAOX2RU4bpd5xAMA-2wFWW9iypbqijkhnwkLZ_gqBorCkyuKegQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] clk: qcom: clk-alpha-pll: add support for APSS PLL
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        open list <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-clk@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: b312386b-2fd2-4af4-91ee-331822f9d4ad
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Jul 2022 at 15:14, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
->
->
->
-> On 5.07.2022 21:10, Robert Marko wrote:
-> > APSS PLL type will be used by the IPQ8074 APSS driver for providing the
-> > CPU core clocks and enabling CPU Frequency scaling.
-> >
-> > This is ported from the downstream 5.4 kernel.
-> >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > ---
-> >  drivers/clk/qcom/clk-alpha-pll.c | 12 ++++++++++++
-> >  drivers/clk/qcom/clk-alpha-pll.h |  1 +
-> >  2 files changed, 13 insertions(+)
-> >
-> > diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> > index 4406cf609aae..8270363ff98e 100644
-> > --- a/drivers/clk/qcom/clk-alpha-pll.c
-> > +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> > @@ -154,6 +154,18 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
-> >               [PLL_OFF_TEST_CTL_U] = 0x30,
-> >               [PLL_OFF_TEST_CTL_U1] = 0x34,
-> >       },
-> > +     [CLK_ALPHA_PLL_TYPE_APSS] = {
-> The name is surely not correct, can somebody from qcom chime in
-> and suggest what it should be?
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Hi Konrad,
-That is how Qualcomm refers to the type in the downstream 4.4 and 5.4 kernels.
-I dont have any other reference to the name unless somebody from
-Qualcomm can chime in.
+- extcon is no more needed in 5.19 - so drop it
+  commit 51a9b2c03dd3 ("phy: rockchip-inno-usb2: Handle ID IRQ")
+- dr_mode was changed from host to otg in rk356x.dtsi
+  commit bc405bb3eeee ("arm64: dts: rockchip: enable otg/drd
+    operation of usb_host0_xhci in rk356x")
+  change it back on board level as id-pin on r2pro is not connected
 
-Regards,
-Robert
->
-> Konrad
-> > +             [PLL_OFF_L_VAL] = 0x08,
-> > +             [PLL_OFF_ALPHA_VAL] = 0x10,
-> > +             [PLL_OFF_ALPHA_VAL_U] = 0xff,
-> > +             [PLL_OFF_USER_CTL] = 0x18,
-> > +             [PLL_OFF_USER_CTL_U] = 0xff,
-> > +             [PLL_OFF_CONFIG_CTL] = 0x20,
-> > +             [PLL_OFF_CONFIG_CTL_U] = 0x24,
-> > +             [PLL_OFF_TEST_CTL] = 0x30,
-> > +             [PLL_OFF_TEST_CTL_U] = 0x34,
-> > +             [PLL_OFF_STATUS] = 0x28,
-> > +     },
-> >  };
-> >  EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
-> >
-> > diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
-> > index 6e9907deaf30..626fdf80336d 100644
-> > --- a/drivers/clk/qcom/clk-alpha-pll.h
-> > +++ b/drivers/clk/qcom/clk-alpha-pll.h
-> > @@ -18,6 +18,7 @@ enum {
-> >       CLK_ALPHA_PLL_TYPE_AGERA,
-> >       CLK_ALPHA_PLL_TYPE_ZONDA,
-> >       CLK_ALPHA_PLL_TYPE_LUCID_EVO,
-> > +     CLK_ALPHA_PLL_TYPE_APSS,
-> >       CLK_ALPHA_PLL_TYPE_MAX,
-> >  };
-> >
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+for hostmode to work this fix is needed:
+https://patchwork.kernel.org/project/linux-rockchip/patch/20220708061434.38115-1-samuel@sholland.org/
+---
+ arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+index acc6b3a98415..02bafb938fb6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+@@ -678,7 +678,7 @@ &usb_host0_ohci {
+ };
+ 
+ &usb_host0_xhci {
+-	extcon = <&usb2phy0>;
++	dr_mode = "host";
+ 	status = "okay";
+ };
+ 
+-- 
+2.34.1
+
