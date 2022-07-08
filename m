@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F5B856BB65
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 16:01:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB14C56BB70
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 16:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238213AbiGHOAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 10:00:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60288 "EHLO
+        id S238356AbiGHOBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 10:01:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231905AbiGHOAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 10:00:23 -0400
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD2315819;
-        Fri,  8 Jul 2022 07:00:22 -0700 (PDT)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-31c86fe1dddso151735237b3.1;
-        Fri, 08 Jul 2022 07:00:22 -0700 (PDT)
+        with ESMTP id S237944AbiGHOBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 10:01:50 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C733717586
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 07:01:49 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id d13-20020a05600c34cd00b003a2dc1cf0b4so705530wmq.4
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 07:01:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=BfjSNVqEOwnxfaGfNNXI9zb5JlYvwedHY1tJwv0387s=;
-        b=KNE+EAvQXH8SpwABTIRkS7TzxcG8lp4KduMUp6MfzybCxQKoaYuqVnSM7QAyM+oF3v
-         Y11JYItd3MVAK3lTuGlQf/T9vMrybnRbka/9SrsVMEKWBnvdOihtLP76wMONUf6nMUMV
-         9tkB6m+txvoTnZcw+mGW06SKsrzQrNRSwJhwzpdH+ljVoyXfjpn3HwoX0RWiQq7K5aki
-         9IJVlRWIsVB9wTj+eoKsxmGLJ9l23Fn6CHYRLS0epxmtgZpnUHaxHcx6Vq9tqVZ3P8L1
-         X6oCmJeWrEfXMWAxnpI4fTWQCOiiAHJz/cObT/PYRzXEKFfeChpXdYcy4cDIdJOV7pVc
-         sm1Q==
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=sQeYOB1ojPLloG2yUNPgzIcTyy1DnXOTtgypeXwq+gY=;
+        b=IZzeUSCueAHAz6a15+CqVSw+a5LNSOnfHLCejApOWnmeWNfoomRfySA9+XUsYrjVn4
+         A85BgVGBsqfODidj7unlzA55BA5sl0QRsOwqQlpQ4Qfd9cIK98RrcP2mm/gYuxkk2ivs
+         +bc/4s1T8KYhc5hOM18d00Xns+1SAc6gnN0SWYON1ekZ77xIjsJwt5hlhWVWTFkZYPQJ
+         vW0/fwNElPPn2gmQbjRw9V76qlMxtx02Q3YNI9CHM1ng/a890yxUfA8HMyg9YswATI6v
+         kIaitNr12Y8n1Q0L8LLyB0dD3fub35zp2CFFTYBUeQy/T3itUSzzu47+JHkQ2gIDaVOH
+         m3MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=BfjSNVqEOwnxfaGfNNXI9zb5JlYvwedHY1tJwv0387s=;
-        b=vgzFf+nN1hbH5nXpQKy3YBJh7DLn360mp354fy2/ybRewiNCQZw0VwvsLiLu6Qp1eH
-         e2OfZjZQKOhzSKxKxIzBQRhgvsO9Bcn09yAoo1WR8U0JOLATGqYiC0UKnPQF9Cpn9COY
-         hQRlcBNseL4mJw1FEtTDr4SEmzmoo2RXWALhV3yp68ngLhHdpP4osLL6rOF+5HNly/pQ
-         p53Wsvr4jGt2fyQAzEa6KtXFcj5e8oP6ddhJ75JiNsK1f8ki5E2D0y4a0rmKVmcwwZYB
-         toUY/Sjm09GzGlcXIcVm8qyyqzqQ+6/QwBk/YFk2X61HC/VuY7TphBvL4Jg/Kw0rhmvR
-         XNCQ==
-X-Gm-Message-State: AJIora9gCxrj8tjZwlXTGmHjqO1OpuK5e53V9leMf9bZBfWximaI5apk
-        mp0bxHSjUATxIei3UhJ9OaDcbm1kKn3UdCakBfQ=
-X-Google-Smtp-Source: AGRyM1uChV+08AKmeNTw5HjedSQflibghpvrWC1upoLdO0RZ1Ca3vAGX2Ol84yB3zw32neKQj9h72PiwNiW3AiHaKOk=
-X-Received: by 2002:a81:108f:0:b0:31c:d7ae:9ff1 with SMTP id
- 137-20020a81108f000000b0031cd7ae9ff1mr4068408ywq.18.1657288821898; Fri, 08
- Jul 2022 07:00:21 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sQeYOB1ojPLloG2yUNPgzIcTyy1DnXOTtgypeXwq+gY=;
+        b=uOC1UarmiZDmjw/m+oWJtvDIU4K335/Y87EZ98uYRZzWkz6QyCaqacRHNaXPkGOikm
+         DpDk9XnKCKUx/LUAcG4zrwqJy25NCQrVPc42BylJVTwjEAPZKrHlQ3yIXQVVjmlRW+zZ
+         cDv00051nR5+t1wfedtPQZFW6j2ytgC0H2ZrjOgLVRlE9dHAVj0c5Dski2gl5OWT+YkR
+         wCH2OSgUT+gT/RNW93XqBHI19EQRAdqwywP8jnexoV+fXNbor1S5hoseWYtNnbphD00E
+         9JxI04ORbuFB3OilepdAJrfpK8MJ3jPMPaHEzXvjPBRlgTIPd3LEFCBvlQN1eo4SbhCc
+         /m6w==
+X-Gm-Message-State: AJIora8jSaECwqfVX75S3a+V25rbfwS7ExP7Pe1s4gYYxOO9EeVQsTk/
+        p+UTOGlm5ppKwHADNLeTCaNLuQ==
+X-Google-Smtp-Source: AGRyM1tVT2Lp3bxp/fPMlGxWzal1VMrwHpSWDBq35jltBIxUVl0tmy7YX6v0aUz2rlHqFFI+3mUhfQ==
+X-Received: by 2002:a05:600c:58d:b0:3a0:4547:43a6 with SMTP id o13-20020a05600c058d00b003a0454743a6mr4039844wmd.146.1657288908247;
+        Fri, 08 Jul 2022 07:01:48 -0700 (PDT)
+Received: from google.com (88.140.78.34.bc.googleusercontent.com. [34.78.140.88])
+        by smtp.gmail.com with ESMTPSA id n20-20020a05600c4f9400b0039c5ab7167dsm2146210wmq.48.2022.07.08.07.01.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Jul 2022 07:01:47 -0700 (PDT)
+Date:   Fri, 8 Jul 2022 14:01:46 +0000
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v11 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <Ysg4ynnMN+izdXkN@google.com>
+References: <20220708112344.1965947-1-sebastianene@google.com>
+ <20220708112344.1965947-3-sebastianene@google.com>
+ <Ysg1axKEaLgG+uQa@kroah.com>
 MIME-Version: 1.0
-References: <20220708093448.42617-1-nuno.sa@analog.com>
-In-Reply-To: <20220708093448.42617-1-nuno.sa@analog.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 8 Jul 2022 15:59:40 +0200
-Message-ID: <CAHp75VfGvAR1+uPL3T96eGDCOeXrc7MTdzwPZ8GV6h61Oq=XPA@mail.gmail.com>
-Subject: Re: [PATCH 00/10] adp5588-keys refactor and fw properties support
-To:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ysg1axKEaLgG+uQa@kroah.com>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,59 +76,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 8, 2022 at 11:36 AM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
->
-> The main goal of this patchset is to remove platform data and replace it =
-by
->
-> firmware properties. Original discussion in [1].
->
->
->
-> While in here, some refactor was done to the driver. The most noticeable =
-one
->
-> is to replace the GPIs events handling by irqchip support so that this gp=
-i
->
-> keys can be "consumed" by the gpio-keys driver (also as suggested in [1])=
-.
->
-> With this, the gpio-adp5588 can be removed. This change comes first so th=
-at
->
-> we can already remove some platform data variables making it easier to
->
-> completly replace it by firmware properties further down in the series.
->
->
->
-> As there's no users of the platform data, I just replace it in a single
->
-> patch as there's no point in having support for both (even though it migh=
-t
->
-> be harder to review the patch as-is).
->
->
->
-> Special note to the gpio-adp5588 driver removal. I'm aware of some change=
-s
->
-> to the driver in [2]. These changes are in the gpio tree and this patchse=
-t
->
-> is naturally based on the input tree which means that patch 2 will
->
-> not apply. So, I'm not really sure how to handle this. I guess in this
->
-> case the conflict is easy to handle :) but just let me know on how to
->
-> proceed in here if there's anything for me to do.
+On Fri, Jul 08, 2022 at 03:47:23PM +0200, Greg Kroah-Hartman wrote:
+> On Fri, Jul 08, 2022 at 11:23:45AM +0000, Sebastian Ene wrote:
+> > This driver creates per-cpu hrtimers which are required to do the
+> > periodic 'pet' operation. On a conventional watchdog-core driver, the
+> > userspace is responsible for delivering the 'pet' events by writing to
+> > the particular /dev/watchdogN node. In this case we require a strong
+> > thread affinity to be able to account for lost time on a per vCPU.
+> > 
+> > This part of the driver is the 'frontend' which is reponsible for
+> > delivering the periodic 'pet' events, configuring the virtual peripheral
+> > and listening for cpu hotplug events. The other part of the driver is
+> > an emulated MMIO device which is part of the KVM virtual machine
+> > monitor and this part accounts for lost time by looking at the
+> > /proc/{}/task/{}/stat entries.
+> > 
+> > Reviewed-by: Will Deacon <will@kernel.org>
+> > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> > ---
+> >  drivers/misc/Kconfig               |  14 ++
+> >  drivers/misc/Makefile              |   1 +
+> >  drivers/misc/vcpu_stall_detector.c | 223 +++++++++++++++++++++++++++++
+> >  3 files changed, 238 insertions(+)
+> >  create mode 100644 drivers/misc/vcpu_stall_detector.c
+> > 
+> > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> > index 41d2bb0ae23a..d5b7610459f7 100644
+> > --- a/drivers/misc/Kconfig
+> > +++ b/drivers/misc/Kconfig
+> > @@ -483,6 +483,20 @@ config OPEN_DICE
+> >  
+> >  	  If unsure, say N.
+> >  
+> > +config VCPU_STALL_DETECTOR
+> > +	tristate "Guest vCPU stall detector"
+> > +	select LOCKUP_DETECTOR
 
-Resolving conflict like this is easy, just input subsys maintainer
-needs to tell Linus about it to Linus in PR.
+Hi Greh,
 
---=20
-With Best Regards,
-Andy Shevchenko
+> 
+> This should be a "depends on", not a select, right?  This got enabled on
+> my build when I didn't want it to, and trying to track down why it was
+> enabled would be a pain for people.
+
+Thanks for noticing it ! I think we can completely remove this
+because it was needed in (v9) for the `watchdog_cpumask` and currently
+we are not using it anymore.
+
+> 
+> thanks,
+> 
+> greg k-h
+
+Thanks,
+Seb
