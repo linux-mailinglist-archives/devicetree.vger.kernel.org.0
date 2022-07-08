@@ -2,58 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F96256C218
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CC1256C35E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:14:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240286AbiGHVcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 17:32:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46078 "EHLO
+        id S240149AbiGHVcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 17:32:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238368AbiGHVcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:32:06 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F07D9FE30;
-        Fri,  8 Jul 2022 14:32:05 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id b12so904946ilh.4;
-        Fri, 08 Jul 2022 14:32:05 -0700 (PDT)
+        with ESMTP id S240487AbiGHVcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:32:10 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F2AA026E;
+        Fri,  8 Jul 2022 14:32:09 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id h200so149838iof.9;
+        Fri, 08 Jul 2022 14:32:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=mPK7JqtCJf89laULVPANQB+hprBgnI5b+pSKYiY3/w8=;
-        b=8ACxCXkywtP4blRLHr4+X1xls1PN631DIDPOcXsZM7tYI5oOqdxPet2yfggkjdU6oe
-         R5RSQW2OdJdvDiOPcv932cyOgnslnbeqookhLU4rYKe8uJduQruwtLwnQVXG7ZSGom7m
-         tPExlk6FOgIJqkogoXcMbFq0GPfwFRQcWTVnI2PgneJ7OqX7uo40lkEixBuuIDWQpKhT
-         GAOyER2jJ4LQHg8LQYZlNByD+AnpSBVTvKAjLuUh51e5Lr2PWHJ7pbSfYsAmCPRqa2i/
-         vp4nCGt+jDefhXHx2Ouub2VTKAgF4gO/EX16DE6Bvvw/G0IfW1GdEysM5aCZQXUhubvU
-         bGmQ==
-X-Gm-Message-State: AJIora+XBKirke44SSl9F7O/tChhH77kZ6gyW09QvrsNNzK43ZXoxr2/
-        N6rp4sAty6NAZVTM5PkEdQ==
-X-Google-Smtp-Source: AGRyM1tCjV1LWB4OVa94Ub7ppM+PyrcTgBMr3Gdo0En5H45DKfvVy4UHV6k2oZR63GxcoKo/GZSd4A==
-X-Received: by 2002:a92:c811:0:b0:2dc:14bf:e15d with SMTP id v17-20020a92c811000000b002dc14bfe15dmr3121986iln.305.1657315924369;
-        Fri, 08 Jul 2022 14:32:04 -0700 (PDT)
+        bh=vVYCFAFM3u7M5ctS+8Pi5ElwP8UGTsNsPbFnqh+Srfk=;
+        b=jULTtRkEhcTqAWWr376PtJLwAIaD4d7zDPD/BgEd/WrpOYc9igAW2AW8ftgqhhvwxI
+         xK8jYnzVxvbnwj2D++QpnA4i2IdvrKrBnjMn0DErjNdhc/QiHTRW/GhALuVgUxEq+f8+
+         dA2hmyymB9FHW7d52vxJ+AnRbFkI9d3hLCWam4MGehZINjvV6kymaMFFgMsOjbMnBB6V
+         ZFKRxUrv6wsGdosYmdkEHsAOKFY+bMD8dN8HMTIt8Z0o5oeHEoSCS0QlP3xri/DrBV7P
+         sLgOemAH/ZoptZaDMA89PG5wsM6aziqCusqDz8RAmvv9cXogW0vi2pQmnivxB9tOS/yK
+         ebCA==
+X-Gm-Message-State: AJIora/AyEDJavoTYLNo+5aYqmj9ozVZ0vthz0PH5BbcJx2Z/UqfWmGn
+        y50ihBpC7QFzRKQ+G0O2Ag==
+X-Google-Smtp-Source: AGRyM1sumiMM0+0KfOQZuDKX7asNwIIbBAJhw4KV3PPTXCSZPJWI1RTnSfkQKj91GRcwWUfAc6DP+A==
+X-Received: by 2002:a05:6638:d51:b0:33c:b03e:8035 with SMTP id d17-20020a0566380d5100b0033cb03e8035mr3433812jak.251.1657315928727;
+        Fri, 08 Jul 2022 14:32:08 -0700 (PDT)
 Received: from robh.at.kernel.org ([98.38.210.73])
-        by smtp.gmail.com with ESMTPSA id a11-20020a02734b000000b0033ebd47834fsm1530397jae.128.2022.07.08.14.32.03
+        by smtp.gmail.com with ESMTPSA id e24-20020a022118000000b00331d764e5b5sm18707972jaa.97.2022.07.08.14.32.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 14:32:03 -0700 (PDT)
-Received: (nullmailer pid 1508198 invoked by uid 1000);
+        Fri, 08 Jul 2022 14:32:08 -0700 (PDT)
+Received: (nullmailer pid 1508201 invoked by uid 1000);
         Fri, 08 Jul 2022 21:32:02 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     shawnguo@kernel.org, aisheng.dong@nxp.com, kw@linux.com,
-        tglx@linutronix.de, peng.fan@nxp.com, linux-kernel@vger.kernel.org,
-        kishon@ti.com, linux-imx@nxp.com,
-        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, jdmason@kudzu.us, lorenzo.pieralisi@arm.com,
-        devicetree@vger.kernel.org, festevam@gmail.com,
-        ntb@lists.linux.dev, maz@kernel.org, bhelgaas@google.com,
-        linux-pci@vger.kernel.org
-In-Reply-To: <20220707210238.917477-2-Frank.Li@nxp.com>
-References: <20220707210238.917477-1-Frank.Li@nxp.com> <20220707210238.917477-2-Frank.Li@nxp.com>
-Subject: Re: [PATCH 2/3] dt-bindings: irqchip: imx mu work as msi controller
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        freedreno@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, dri-devel@lists.freedesktop.org
+In-Reply-To: <20220707213204.2605816-2-dmitry.baryshkov@linaro.org>
+References: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org> <20220707213204.2605816-2-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH 1/9] dt-bindings: msm/dp: drop extra p1 region
 Date:   Fri, 08 Jul 2022 15:32:02 -0600
-Message-Id: <1657315922.435976.1508197.nullmailer@robh.at.kernel.org>
+Message-Id: <1657315922.448144.1508200.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -65,16 +67,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Jul 2022 16:02:37 -0500, Frank Li wrote:
-> imx mu support generate irq by write a register.
-> provide msi controller support so other driver
-> can use it by standard msi interface.
+On Fri, 08 Jul 2022 00:31:56 +0300, Dmitry Baryshkov wrote:
+> The p1 region was probably added by mistake, none of the DTS files
+> provides one (and the driver source code also doesn't use one). Drop it
+> now.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Fixes: 687825c402f1 ("dt-bindings: msm/dp: Change reg definition")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../interrupt-controller/fsl,mu-msi.yaml      | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
+>  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -83,11 +85,8 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dts:31.41-42 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:383: Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1404: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.example.dtb: displayport-controller@ae90000: reg: [[183042048, 512], [183042560, 512], [183043072, 3072], [183046144, 1024], [183047168, 1024]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
 
 doc reference errors (make refcheckdocs):
 
