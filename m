@@ -2,71 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6340956C37D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:14:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C433E56C3E6
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:15:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240052AbiGHUf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 16:35:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55550 "EHLO
+        id S238652AbiGHUoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 16:44:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbiGHUfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 16:35:48 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABD10951D8;
-        Fri,  8 Jul 2022 13:35:47 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id z1so11448388plb.1;
-        Fri, 08 Jul 2022 13:35:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=9oMtVsB8lUT0YbjzM/SHMVvQBD98dTyWbO9nAQuZgA0=;
-        b=oAhL1PVddOW35+VqF0q2kcCzrIQMhIk/9V1Hs3Wjk7AZ69oLC3UYGCfMxAwX1VNO9/
-         OAiwIhewtH2cyu8iBmEm1+ZrawFB36pda1nUkPUj6UQmMDUKgo57Gf1dk7AGB6ADxpwN
-         cjZf2DTqU8hg7ne7JcO/lwc1ffqfkD9QzjIwwrVs035Dc25ikEmc6i8wrCEVbDJN+cNy
-         iCVdHDCnNKNjIrkyf9KgK3WTkLFWfhr/1s5XmxhgrQK8202qYTp60jigyEQ/X0frYZwT
-         V1DfNAptEDQ7jxTbmpR8fjSwNyB2GHV4PLIQNGVXX7iHdBb5ygUwLDWI9B7h9AFyISdR
-         XdEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9oMtVsB8lUT0YbjzM/SHMVvQBD98dTyWbO9nAQuZgA0=;
-        b=cOQMEZJH1gnAy7cUgw59w5e+TYYaJaqOEQN55pxRxKkvytS3D/OhUhBWHuIoWpCY4M
-         18J8dLo7WsCppu3hBJhZmJGPbanihKUuy4mjBDuFWdfTn3IH7an+s334rzWUmtEvnrYf
-         3uu5BXKk0Jons7bTQtXJpeKMc2atnR/dSHGDLgajFQXNdiKvJPXsGGsJglTp7DkUxpn8
-         32iqqJTMItjso4/A2HhaMFbBc0WZZaJjzjAdwf6WU7ZPoSIjWCrZUTfmHLQ9fPYFDpRG
-         yzzz8HDriSoLUPYWCjwl+FUdKCHIcwtnrp+2sVokQzI+GtQv2Lj4szEhaBsV7iRlfJWo
-         47dw==
-X-Gm-Message-State: AJIora8FhHjFfs3kch7BjEL8WV3uKvcSuCHBzFsYpBnDVjRy+h0yCpMi
-        F+mWofGJKjNKkVi8BEHrDxWK+dE5wNM=
-X-Google-Smtp-Source: AGRyM1vuk03P3xEgwbXTqUA32Dzpm3OhR0Da79S4GIwaJD3FcSH411NXstDx24be9lBdua5dOJaJbQ==
-X-Received: by 2002:a17:90a:f686:b0:1ef:831d:fd48 with SMTP id cl6-20020a17090af68600b001ef831dfd48mr1833333pjb.183.1657312547119;
-        Fri, 08 Jul 2022 13:35:47 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:9707:b37:49b0:77c2])
-        by smtp.gmail.com with ESMTPSA id n10-20020a170902e54a00b0016191b843e2sm30505009plf.235.2022.07.08.13.35.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 13:35:46 -0700 (PDT)
-Date:   Fri, 8 Jul 2022 13:35:43 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RESEND PATCH v3 0/3] dt-bindings: input: gpio-keys: apply via
- DT tree
-Message-ID: <YsiVH41gCLeIMyd6@google.com>
-References: <20220705120356.94876-1-krzysztof.kozlowski@linaro.org>
- <CAL_Jsq+LepF_67SJUqQ5mUO-TZAd-46LB+aYE5rZmnmmwMg=bw@mail.gmail.com>
- <352f27e7-0da1-4a4a-83a4-ded370dfbd7f@linaro.org>
+        with ESMTP id S238369AbiGHUoD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 16:44:03 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 445CB9CE3F;
+        Fri,  8 Jul 2022 13:44:01 -0700 (PDT)
+Received: from [192.168.1.101] (abxi46.neoplus.adsl.tpnet.pl [83.9.2.46])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 373731F6C6;
+        Fri,  8 Jul 2022 22:43:57 +0200 (CEST)
+Message-ID: <bb78f8fb-d6ea-5c37-0531-8d7584bc897b@somainline.org>
+Date:   Fri, 8 Jul 2022 22:43:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <352f27e7-0da1-4a4a-83a4-ded370dfbd7f@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 0/5] Add support for Xiaomi Poco F1 EBBG variant
+Content-Language: en-US
+To:     Joel Selvaraj <jo@jsfamily.in>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <MN2PR02MB702415D7BF12B7B7A41B2D38D9829@MN2PR02MB7024.namprd02.prod.outlook.com>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <MN2PR02MB702415D7BF12B7B7A41B2D38D9829@MN2PR02MB7024.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,34 +48,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+
+
+On 8.07.2022 13:12, Joel Selvaraj wrote:
+> There are two variants of Xiaomi Poco F1.
+> - Tianma variant with NOVATEK NT36672A panel + touchscreen manufactured
+>   by Tianma
+> - EBBG variant with Focaltech FT8719 panel + touchscreen manufactured
+>   by EBBG
+> 
+> The current sdm845-xiaomi-beryllium.dts represents tianma panel variant.
+> 
+> To add support for the EBBG variant, let's split this into 3 files,
+> - sdm845-xiaomi-beryllium-common.dtsi which contains all the common nodes
+> - sdm845-xiaomi-beryllium-tianma.dts for the tianma variant
+> - sdm845-xiaomi-beryllium-ebbg.dts for the ebbg variant
+> 
+> Note:
+> -----
+> Both the panels are already upstreamed and the split is based on them.
+> There were patches earlier for both the touchscreens, but they are not
+> accepted upstream yet. Once they are accepted, we will add them to
+> respective variants.
 Hi,
 
-On Wed, Jul 06, 2022 at 08:30:54AM +0200, Krzysztof Kozlowski wrote:
-> On 05/07/2022 21:11, Rob Herring wrote:
-> > On Tue, Jul 5, 2022 at 6:04 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> Hi Rob,
-> >>
-> >> Can you apply these directly? You already reviewed them, but I dropped
-> >> the tag so you will see them in Patchwork. It seems these won't go in
-> >> through input [1].
-> >>
-> >> [1] https://lore.kernel.org/all/c2c1cf0c-9462-9ba5-a297-70d13a063de1@linaro.org/
-> > 
-> > Will give Dmitry a few more days first before I take both series.
-> 
-> Then let's keep your Rb for entire patchset:
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+I believe this is not the correct approach. This may work short-term, but
+you will have to prepare 2 separate images for the device and mistaking them
+may cause irreversible hw damage at worst, or lots of user complaining at best.
+Instead, I think it's about time we should look into implementing dynamic panel
+detection.
 
-I am sorry but what series/branch this series is based on? I tried
-applying but there are conflicts. The latest I have that is touching
-gpio-keys.yaml is:
+Qualcomm devices do this by parsing the command line [1], as LK/XBL
+gives you a nice-ish string to work with that you can simply match
+against a label. Other vendors may use custom mechanisms, such as
+a resistor / GPIO to determine which panel (or generally hw config),
+but implementing this mechanism would make upstreaming of lots of other
+devices easier..
 
-4fda8a2df83a dt-bindings: input: use generic node names
+This issue concerns many phones (and well, devices in general), as
+they are seldom made with only one configuration due to supply chain
+strategies.
 
-Thanks.
 
--- 
-Dmitry
+Konrad
+
+[1] https://github.com/LineageOS/android_kernel_xiaomi_sdm845/blob/lineage-19.1/drivers/gpu/drm/msm/dsi-staging/dsi_display.c
