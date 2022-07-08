@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4320856C28E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6921756C282
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237062AbiGHWTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 18:19:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44384 "EHLO
+        id S237414AbiGHWTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 18:19:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232561AbiGHWTI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:19:08 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64659A2E5B
-        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 15:19:07 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id q18-20020a9d7c92000000b00616b27cda7cso133522otn.9
-        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 15:19:07 -0700 (PDT)
+        with ESMTP id S237131AbiGHWTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 18:19:09 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C24FA2E57
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 15:19:08 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id w83so356797oiw.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 15:19:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=z9Ki8kH0MaYR9B1B1eMqo83Dvn85AY+LXjVhqfA7f38=;
-        b=ppPb4iwjhfCxSN2JWaotYlMM/YX2VYZjwuZc0J32CxvKPZ+JXtj9b7dD0r63W/lOEf
-         v5o6TtM0p98iXy0EIn5pAWeXj1K1WK4IssePEqm6UKgQ4z49BYvqHksZODT+f/7JPjtu
-         r9llW19+QcCouSM9Hoqi6tPNGNB6mUxyI2EQC1LFBxvhPrE0BuMfEwiiYrkWj7emTJoH
-         pU5e6Lv3tu/2tEL3O0fdtr2PrVYcvfhPBZfJBj9jXLkpYYjbp6Pn356G8Btj6pChEPS3
-         VZKAs4wWNPSKxo44bioACn8inEgOWxQBlf0f+dVvRt1est5BVkcSKpxakSAoHWg7HKOh
-         AimA==
+        bh=9I0SFAT4qZWBXThBg4GWRJ3eliYr1SjPFU1PmBCQKjY=;
+        b=VT5J0T7E4pFKIRAbym9NqBOwcsZ9faKKxl5ZGxvq5TGos2qyJk3LYjB2971J4CVa7q
+         bLPNudve2kGhTXpCa75rp7oBZX35RA8MEt0gya95I2iP05ugUogw4lAvCB4mE1a3NLVP
+         WswMBJFw/By37sp4bLo3fDpEN9PLn7Otw8xGgqRwHs84DrAUVLORg3wNg+jnGhSsUVKc
+         BxXKgLq6zI4HEGoz98/5/3wRkIb7bCTV7DxooKoEeWVwbsDFRp+bw4yxSf5TIw+lsDiO
+         jpew4/bPbnk0SstHbXONoBvkEg6bQpFT/pA5pcNlOOhXHAhOifLyStFbUW7wStyZfjoB
+         Jqpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=z9Ki8kH0MaYR9B1B1eMqo83Dvn85AY+LXjVhqfA7f38=;
-        b=I3hvX9pPh3clLkpFN/7XOwr5GSV7xriWIdfy+7Lco7ZIrjuTR4GruadWtFHzp7eDen
-         Uw5oabD8gi7jooo46U58iaO9ldGSo69gvVFaXJljTg6el6mxxb9YbxNhXwnWn51c21zK
-         gSYliG6WxzdsNO4L8YVQ2PnwPnQEsrDvLf5WsIJtL/4/nD0OPZJF0nETFTIi9BcPoifX
-         BHlgC1fGcCXZLbqAuT0pN3qIWGtuNr2XqHBL1sUBaFK5jtulV4D1CJOhyqyDNPtWSDsS
-         0YxAVS3l+cZ3YB8nAxYzQ3XpyaL5Oa7b9c17s17zNigvr5/P5Yqw9eUuJc+GYROlhYpV
-         GM+g==
-X-Gm-Message-State: AJIora8u1G38+eHEzqzQGnfqTPIOS5pFjxVBc+MBTzoiyL/1mF8lROHn
-        vnx3Vi7EuTWr8D9AnvQoGKHPyg==
-X-Google-Smtp-Source: AGRyM1t1/ItNQs24IPO08P8hmqBmPlF4m4Zyt/BXKl/SABvTzA4DKCiwaciFdavT7sFFme8fr/F6dA==
-X-Received: by 2002:a05:6830:40c5:b0:60b:39c0:750b with SMTP id h5-20020a05683040c500b0060b39c0750bmr2500196otu.97.1657318746789;
-        Fri, 08 Jul 2022 15:19:06 -0700 (PDT)
+        bh=9I0SFAT4qZWBXThBg4GWRJ3eliYr1SjPFU1PmBCQKjY=;
+        b=6YkG4TOcl4YrzyktpvlF5ctw5/kjvM19+2c6qalTgtWYenTQ8k+6ZJ4qO0tPhqB3q8
+         WH+QUijpSu+xdPkJN4NH+YrGqxoPUI5H30NdKz5d2nE9oaUkIGvLgOjJZmeBhp+eDrnQ
+         ppWauYoCtL/lJ6WpCbRZjg87J0nLUqtt3Y7oKHt0UzC6YniZpv1PRtricPoQqiGNhorA
+         aQDw38Hgl4O54XOuz7AZgMT/SNQXy0SruqpEbMl+QVDZjqooY1xJHoclwkZAsQVSb9LP
+         MdVeO9KZhugVjt/QQgA5TEzVuT7Tv3bB2AIn8Nl7EG13W2cVtYny5O0IFmaC76SaN+m4
+         Gw5Q==
+X-Gm-Message-State: AJIora8NWsdxZzgfbPcDbj52T98cLyRKf3HyuPknYJ3kQkNg9yfeRYZr
+        PvlmH8isexiTTXDFgjEG4irrVQ==
+X-Google-Smtp-Source: AGRyM1vY05jMLlDztoin5TcFW2xwx7InCI2TyZLrvhdC2twO+c8imYn4lby5wgw/K6LsnUrNcZ6WIA==
+X-Received: by 2002:a05:6808:16a7:b0:2f9:39c4:c597 with SMTP id bb39-20020a05680816a700b002f939c4c597mr1144426oib.101.1657318747922;
+        Fri, 08 Jul 2022 15:19:07 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id y10-20020a9d518a000000b00616a2aa298asm48907otg.75.2022.07.08.15.19.05
+        by smtp.gmail.com with ESMTPSA id y10-20020a9d518a000000b00616a2aa298asm48907otg.75.2022.07.08.15.19.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jul 2022 15:19:06 -0700 (PDT)
+        Fri, 08 Jul 2022 15:19:07 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Johan Hovold <johan+linaro@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix DP PHY node unit addresses
-Date:   Fri,  8 Jul 2022 17:19:02 -0500
-Message-Id: <165731872888.1018153.17061250329124504141.b4-ty@linaro.org>
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix usb_0 HS PHY ref clock
+Date:   Fri,  8 Jul 2022 17:19:03 -0500
+Message-Id: <165731872887.1018153.11340490580715781531.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220708072556.4687-1-johan+linaro@kernel.org>
-References: <20220708072556.4687-1-johan+linaro@kernel.org>
+In-Reply-To: <20220708072358.4583-1-johan+linaro@kernel.org>
+References: <20220708072358.4583-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -72,15 +72,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Jul 2022 09:25:56 +0200, Johan Hovold wrote:
-> Fix up the DP PHY node which had the wrong unit address.
+On Fri, 8 Jul 2022 09:23:58 +0200, Johan Hovold wrote:
+> Fix the usb_0 HS PHY reference clock which was mistakingly replaced with
+> the first usb_2 PHY clock.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc8280xp: fix DP PHY node unit addresses
-      commit: abf61f7e66c15e00f40ca7e10367f4149639bc57
+[1/1] arm64: dts: qcom: sc8280xp: fix usb_0 HS PHY ref clock
+      commit: 43883cee061f46f47ccfd251a28c879f84832a7c
 
 Best regards,
 -- 
