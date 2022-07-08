@@ -2,101 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CDFD56B076
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 04:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 748ED56B080
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 04:16:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236921AbiGHCJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 22:09:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44324 "EHLO
+        id S236923AbiGHCQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 22:16:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236804AbiGHCJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 22:09:49 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBA5B2B619;
-        Thu,  7 Jul 2022 19:09:47 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id x18-20020a17090a8a9200b001ef83b332f5so563370pjn.0;
-        Thu, 07 Jul 2022 19:09:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=o6qXHBRggPv7WVxROCph+0wgkDdSGgA4sRqXZcZDbr8=;
-        b=NPeIP2pUu2aHBT+CLpSNLeqNdc5JldNLrRPAL4jkiLioBWxBIwNWfLxp1AKnyuW4mr
-         OSJNeVHwM+uF0+c+iiePEi7rrzH6vRB2KjndUyK8BgUiXqQLY3lkDQNlXE8oE70haxyH
-         yhBi0qCyrWzeE1dJVcBKMPcqhd2o72NC5ag3QR+YEtx31XBnyhVd0Q6Qtyc4cizgmjkq
-         vd31p+dnk9tv5vXmq0OAFo8hSyavsz1BTC6cmmyUpOKQ54uB5xN8FDmoni6EwAbwsNvE
-         1gy4dr6axmnXbG5Jzd/+TgMVIOf/kq3kl7VTHserPoNLFFPSAEQJQ8UCRtp6Zq2Fgs3i
-         dyuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=o6qXHBRggPv7WVxROCph+0wgkDdSGgA4sRqXZcZDbr8=;
-        b=w8RQKgFSi8AkhtkEXbG9itjjtB/snF00UwUiPeFaaBEOVdInoWI5YVtnbBZSJqIk/N
-         1v2cGH8sTH8l/KjceqwhdnYviLKjD8vTKhkIJVBNYpz3PyQsPAxM7FZF2Ek0og93q6Jt
-         nUUYHg1/uxWrkEcqwm5kBzhRrSjf8T4fIsDrGxstyt45g3SSizjwpsA0UENMVWTNQeZv
-         BvSozWANPw+t66PshfZnEmnifDKbDmKmJ5vFVLkDiIUxQV7c5mEqztqNt4AG1cYkLydz
-         EKSmLyVng4bhWQqg9u3VAnkirLViYLfZuhuIKsZ14wRQEHaqcjopI1ViCT52Bk17XhYr
-         4f2A==
-X-Gm-Message-State: AJIora9qM+DwdtjE/qvEmkZQLjGpnE5bG+Lh1cQDwdnceYWZ2IrqkaQA
-        6uy4P7+y4w8Rbu3pOVFfD9A=
-X-Google-Smtp-Source: AGRyM1s9ycy3rrW+XaoYrzIvl3zHURJKJZxnIgd1Sooyr/upEx5lrbNVXmbXq0raFijKmwKlkf0lcQ==
-X-Received: by 2002:a17:903:18f:b0:16a:5c43:9a85 with SMTP id z15-20020a170903018f00b0016a5c439a85mr1052850plg.122.1657246187246;
-        Thu, 07 Jul 2022 19:09:47 -0700 (PDT)
-Received: from localhost.localdomain ([112.0.189.16])
-        by smtp.gmail.com with ESMTPSA id jb14-20020a170903258e00b0016bf10203fbsm6832259plb.12.2022.07.07.19.09.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jul 2022 19:09:46 -0700 (PDT)
-From:   MollySophia <mollysophia379@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        MollySophia <mollysophia379@gmail.com>
-Subject: [PATCH v4 2/2] dt-bindings: arm: qcom: Add Xiaomi Mi Mix2s bindings
-Date:   Fri,  8 Jul 2022 10:09:30 +0800
-Message-Id: <20220708020930.7183-2-mollysophia379@gmail.com>
-X-Mailer: git-send-email 2.37.0
-In-Reply-To: <20220708020930.7183-1-mollysophia379@gmail.com>
-References: <20220708020930.7183-1-mollysophia379@gmail.com>
+        with ESMTP id S229882AbiGHCQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 22:16:12 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC627390B;
+        Thu,  7 Jul 2022 19:16:09 -0700 (PDT)
+X-UUID: 4b5c6b0d1828476c9f122c7c04ab4503-20220708
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:cf60c3dd-b883-45f9-9ba7-8844576a3ab6,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:0f94e32,CLOUDID:f7b2ebd6-5d6d-4eaf-a635-828a3ee48b7c,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 4b5c6b0d1828476c9f122c7c04ab4503-20220708
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <xiangsheng.hou@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1888232169; Fri, 08 Jul 2022 10:16:03 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 8 Jul 2022 10:16:02 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 8 Jul 2022 10:16:01 +0800
+From:   Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <bin.zhang@mediatek.com>,
+        <benliang.zhao@mediatek.com>, <linux-mediatek@lists.infradead.org>,
+        Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+Subject: [PATCH V3 0/2] arm64: dts: mt8173: Fix nor flash node
+Date:   Fri, 8 Jul 2022 10:15:46 +0800
+Message-ID: <20220708021548.21453-1-xiangsheng.hou@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for "xiaomi,polaris" device.
+Add axi clock since the driver change to DMA mode which need
+to enable axi clock in dtsi and dt-binding example for mt8173.
+And change spi clock to 26MHz as default.
 
-Signed-off-by: MollySophia <mollysophia379@gmail.com>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+Changes from v2:
+- remove assigned clocks and parents in binding file
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 129cdd246223..80dff09bdc83 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -235,6 +235,11 @@ properties:
-               - xiaomi,lavender
-           - const: qcom,sdm660
- 
-+      - items:
-+          - enum:
-+              - xiaomi,polaris
-+          - const: qcom,sdm845
-+
-       - items:
-           - enum:
-               - qcom,sdx55-mtp
+Changes from v1:
+- Modify nor binding file
+
+Xiangsheng Hou (2):
+  arm64: dts: mt8173: Fix nor_flash node
+  dt-bindings: mediatek: Add axi clock in mt8173 dts example
+
+ .../devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml      | 4 ++--
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi                   | 7 +++++--
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
 -- 
-2.37.0
+2.25.1
 
