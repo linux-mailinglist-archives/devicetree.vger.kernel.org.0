@@ -2,111 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A5756B42C
+	by mail.lfdr.de (Postfix) with ESMTP id EFCF556B42F
 	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 10:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237570AbiGHIJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 04:09:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43904 "EHLO
+        id S237651AbiGHIMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 04:12:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237318AbiGHIJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:09:05 -0400
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1B108048F;
-        Fri,  8 Jul 2022 01:09:04 -0700 (PDT)
-Received: by mail-io1-xd2c.google.com with SMTP id y2so19030433ior.12;
-        Fri, 08 Jul 2022 01:09:04 -0700 (PDT)
+        with ESMTP id S237457AbiGHIMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:12:37 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412D1804B6
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 01:12:36 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id s21so12880596pjq.4
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 01:12:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kYY4oyP2yJ05X0fyoFzWVBZP+Opu7IULHq7eoqZi9XU=;
-        b=kovIpw8pBU9WmGuOEzzXwc4hO2pgx3qRf1Q8w0Rflrd7EwpDimHkEscQeEcy2aHMbX
-         ZZVR8F3jfmZRlN80QxInOSUHs3Q9ibjScjiYGRwfoltLK8eXhhmhyqKClro6v1tPgDSI
-         0cRnCKtV39qwvb7Qu9pnra56Z8+LSrz33R+hLMlxB5zKDjsUOgtHfBcCPUnxtxmOmCtR
-         bki0aO9PcNmkQp864ekmiyWGGwxRJUgxoAUwRNobPbB0+1oo7VJoJEYmuFXyD+vLQq+d
-         QQOOcvrXMBnmHbF4jxlZjS8RfKDE6MfSKoSt/fPznvnZJaCdrVmew60mVL+TlQ4ptZkX
-         BqxA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Vc+eezlfPnzWYHGSMVP9Zv55im3/1gxewNG9+41SKHQ=;
+        b=GEuY25tkvfR+qMvbD0fCszzdfYTU4NF5Ad0EdTtSbTbd5b4ECbjymsy5SjPeuDYENL
+         PKHzDRk1W56+xDKWluThcfnIudP5kv7vhviC78tW9yJONmwWlQYDhdK4NBCehRygfd9H
+         DX7CiJv2JVaT4Vb2Y9mnpNlF5TrSRUUSoqt65o8gukiEqQ/Gi82UzaIuapKefZ6XrMem
+         T6ljE7wt0qZ7c9fiG22d+N1VoY+HGdDNglqniIlbjYr6yXbDq5DSojuosLT4gSK7O7V1
+         APYsyiGYQg2RAhndyVGT/aJD1S+HVPtNnXA+SngnAjbMSfuCRvU3uCH/IuswwT9T24Xj
+         wzwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kYY4oyP2yJ05X0fyoFzWVBZP+Opu7IULHq7eoqZi9XU=;
-        b=lWhvvXDLTLiQfKcg6WfwpuSkDz53jomBFpMucpvXhiyBMZAJx1eQ+Jx8dhgYt+6HhT
-         no3uJmy4OGnChpF6gmlw5FC95MFq7vqNVVGiQzvc1MehkmcumgdNW/a7bZQnUaQ/cYDq
-         a4SVh86ukztchINPHJtJW/xy+QkrAvyMEcvgBYqFXHNqVwE/kmwJ9YcLEN8SNgJPsTcf
-         Q0NZz56w6vMaSXa02jBTLPQISYRhx92jFuS5SublhGO0q9aDIlgpdyGaBJSacd/F08Kr
-         s+TzgjhXqG3eDQcjW5OZI8tpZHbeKzNCunLbFNGIoigAbTTujc0pr8TaR/KLrqK2oe5E
-         BJaw==
-X-Gm-Message-State: AJIora8mpu3IftVdvRhXt/RxCOz54NZt1E9JtMLE45pYHcvlFm2Bxmm4
-        SABMuHU6XL+IIq11ufHOsCRNnwn2AFqiww==
-X-Google-Smtp-Source: AGRyM1sgdwuKRZltbNBJhP7k91fifj8h8gY8hnSNgkvQJlmUw0qOjSn8aiLgQ0VhOIQtUUxL3gWggg==
-X-Received: by 2002:a05:6638:24c9:b0:33c:b7e8:4a14 with SMTP id y9-20020a05663824c900b0033cb7e84a14mr1349840jat.293.1657267744672;
-        Fri, 08 Jul 2022 01:09:04 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id y2-20020a056602178200b00665770bcec5sm349652iox.49.2022.07.08.01.09.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Jul 2022 01:09:03 -0700 (PDT)
-Message-ID: <2fa2ee1a-6336-b8a9-89eb-2c7b7bfd02a5@gmail.com>
-Date:   Fri, 8 Jul 2022 10:09:00 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Vc+eezlfPnzWYHGSMVP9Zv55im3/1gxewNG9+41SKHQ=;
+        b=uHget4EGEHGlBiCzvIP+4TmHYaFmJY8T9fl2yXvyXBDGDSnTACNrYjKNhtY1GXzBNi
+         ov6d+TpjJKglsn2hsNjeO1HJzCKbUGHIZO+wGJFrIwFJl7ZkoTuaVxwZPYFlGNKqzDT0
+         7nX5dbbpNiMdiS1GjtoOWhImSYtny9TB4Liu7wnh1T/bcDvvBlVv/BUENg4lMdOFOdiD
+         R70gvRJj8c4PVza3BQphLYBXAD3h9y54tWhFqdg8kzLIf2QnXM7Zc5eCDrJ0EjQAaG6m
+         cFz6BrchH+f6+xTzBLG9nEex3LZsQVgKGj6UqxXHolu9kFB0CnigFYWxhOwxvZhc3qjZ
+         8Fyw==
+X-Gm-Message-State: AJIora/7Y4ZtB6d3s+bbSM5PRPmAvSPcf//+6f4/NcStj7QPFwlQrvit
+        N0H/DawxB5VZsG6OjOAI9hoZkw==
+X-Google-Smtp-Source: AGRyM1tB6s3CEGsSYt8UjK8u2lu2OyolxM22P8Pu7PnItHcD07cQTGZypwxfxyU28F9ynAVDHrwFTA==
+X-Received: by 2002:a17:902:b198:b0:16c:1c13:cd8d with SMTP id s24-20020a170902b19800b0016c1c13cd8dmr2566479plr.92.1657267955732;
+        Fri, 08 Jul 2022 01:12:35 -0700 (PDT)
+Received: from localhost ([122.171.18.80])
+        by smtp.gmail.com with ESMTPSA id j14-20020a170902da8e00b0016bd67bc868sm2679388plx.210.2022.07.08.01.12.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Jul 2022 01:12:35 -0700 (PDT)
+Date:   Fri, 8 Jul 2022 13:42:33 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Nishanth Menon <nm@ti.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>, linux-pm@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH V2 00/13] OPP: Add support for multiple clocks*
+Message-ID: <20220708081233.pncnill6dqe4ghko@vireshk-i7>
+References: <cover.1657003420.git.viresh.kumar@linaro.org>
+ <d557bbd0-2afb-12dc-1287-1aeb44ef55f5@collabora.com>
+ <20220708071926.zehurtbcf35s5tv6@vireshk-i7>
+ <8c52e1d2-6c6d-9a09-e426-e5292f68a3f0@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [RESEND v4 1/2] dt-bindings: i2c: update bindings for MT8188 SoC
-Content-Language: en-US
-To:     kewei.xu@mediatek.com, wsa@the-dreams.de
-Cc:     robh+dt@kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        leilk.liu@mediatek.com, qii.wang@mediatek.com,
-        liguo.zhang@mediatek.com, caiyu.chen@mediatek.com,
-        housong.zhang@mediatek.com, yuhan.wei@mediatek.com,
-        david-yh.chiu@mediatek.com, liju-clr.chen@mediatek.com
-References: <20220708034758.22747-1-kewei.xu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220708034758.22747-1-kewei.xu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8c52e1d2-6c6d-9a09-e426-e5292f68a3f0@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 08/07/2022 05:47, kewei.xu@mediatek.com wrote:
-> From: Kewei Xu <kewei.xu@mediatek.com>
+On 08-07-22, 10:26, Dmitry Osipenko wrote:
+> On 7/8/22 10:19, Viresh Kumar wrote:
+> > On 07-07-22, 22:43, Dmitry Osipenko wrote:
+> >> This patch breaks Tegra again, please take a look:
+> > 
+> > Damn, not again :(
+> > 
+> >>    OPP: Remove dev{m}_pm_opp_of_add_table_noclk()
+> > 
+> > Why did you mention this patch ? This just removed an unused API,
+> > Tegra should have broke because of something else, isn't it ?
 > 
-> Add a DT binding documentation for the MT8188 soc.
-> 
-> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> This patch is the cause.
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+I was tracking the crash too closely it seems. :(
 
-> ---
-> v4: resend patch
-> v3: add reviewed-by owner
-> v2: no changes
-> ---
->   Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> index 16a1a3118204..4e730fb7be56 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> @@ -27,6 +27,7 @@ properties:
->         - const: mediatek,mt8173-i2c
->         - const: mediatek,mt8183-i2c
->         - const: mediatek,mt8186-i2c
-> +      - const: mediatek,mt8188-i2c
->         - const: mediatek,mt8192-i2c
->         - items:
->             - enum:
+> I see that previously dev_pm_opp_set_config() had "_add_opp_table(dev,
+> false)", now it's "_add_opp_table(dev, true)".
+
+That's definitely a mistake, I still don't understand though how it
+can lead to the crash we got.
+
+I have fixed this in my tree now, can you check again please.
+
+-- 
+viresh
