@@ -2,52 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA2D56C1D6
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F96256C218
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:12:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238368AbiGHVcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 17:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46084 "EHLO
+        id S240286AbiGHVcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 17:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240479AbiGHVcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:32:07 -0400
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 375D7A0266;
-        Fri,  8 Jul 2022 14:32:06 -0700 (PDT)
-Received: by mail-il1-f174.google.com with SMTP id v2so4528845ilo.7;
-        Fri, 08 Jul 2022 14:32:06 -0700 (PDT)
+        with ESMTP id S238368AbiGHVcG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 17:32:06 -0400
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F07D9FE30;
+        Fri,  8 Jul 2022 14:32:05 -0700 (PDT)
+Received: by mail-il1-f180.google.com with SMTP id b12so904946ilh.4;
+        Fri, 08 Jul 2022 14:32:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=h/KThnF0Zvpky0IHZNl9qc+VZZheZmG8gyVJvHSVNhQ=;
-        b=pDApoo1JabrmAym7aUKn8T5focOWIruGrKSCpQmFvoo85lROFnI0ZPkauiK1SU1DxL
-         fBe6n2sxqLRqhVgjTbtSV4UWOgtoJpSqc5uYUwO7Rfy4rNXaJB37cy1qF2SPL3aG/NQU
-         uPe+ge1s0Zxx0KDgQK5tlaFehRpyMqfsGwuOTgK3Xg1kP+95H9zvG/8VeRY2EQihOGk3
-         GD3uLxxeBWP7IZxDenR8rQT4eAYp3yqj2uoRbsBINdPjs+8GghGtT2V1wMSeuWpLOJC2
-         9L4Dq/6s8VuBsWi2y29hI7P9c86fmkdimDFp6eiYEl7EF3mlFrwmlsIAHSHGNeLZS1Jw
-         KC+w==
-X-Gm-Message-State: AJIora8n9WraeuYY8rT0IC4c54gvesJLCixpKt+NHKxO5ktLeFbn9GV6
-        l1PnqNK36H43J2PPyvLwSQ==
-X-Google-Smtp-Source: AGRyM1t7s/dUjWvFjoRJV3IxWtwgWoFoImaYteUvAgrnXfPfUcdPn31tu04YpAfBM1+rNoSePV6BDw==
-X-Received: by 2002:a92:c26e:0:b0:2da:be5e:69d9 with SMTP id h14-20020a92c26e000000b002dabe5e69d9mr3235847ild.42.1657315925469;
-        Fri, 08 Jul 2022 14:32:05 -0700 (PDT)
-Received: from robh.at.kernel.org ([98.38.210.73])
-        by smtp.gmail.com with ESMTPSA id s19-20020a02cf33000000b00332044db2aasm18862854jar.95.2022.07.08.14.32.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        bh=mPK7JqtCJf89laULVPANQB+hprBgnI5b+pSKYiY3/w8=;
+        b=8ACxCXkywtP4blRLHr4+X1xls1PN631DIDPOcXsZM7tYI5oOqdxPet2yfggkjdU6oe
+         R5RSQW2OdJdvDiOPcv932cyOgnslnbeqookhLU4rYKe8uJduQruwtLwnQVXG7ZSGom7m
+         tPExlk6FOgIJqkogoXcMbFq0GPfwFRQcWTVnI2PgneJ7OqX7uo40lkEixBuuIDWQpKhT
+         GAOyER2jJ4LQHg8LQYZlNByD+AnpSBVTvKAjLuUh51e5Lr2PWHJ7pbSfYsAmCPRqa2i/
+         vp4nCGt+jDefhXHx2Ouub2VTKAgF4gO/EX16DE6Bvvw/G0IfW1GdEysM5aCZQXUhubvU
+         bGmQ==
+X-Gm-Message-State: AJIora+XBKirke44SSl9F7O/tChhH77kZ6gyW09QvrsNNzK43ZXoxr2/
+        N6rp4sAty6NAZVTM5PkEdQ==
+X-Google-Smtp-Source: AGRyM1tCjV1LWB4OVa94Ub7ppM+PyrcTgBMr3Gdo0En5H45DKfvVy4UHV6k2oZR63GxcoKo/GZSd4A==
+X-Received: by 2002:a92:c811:0:b0:2dc:14bf:e15d with SMTP id v17-20020a92c811000000b002dc14bfe15dmr3121986iln.305.1657315924369;
         Fri, 08 Jul 2022 14:32:04 -0700 (PDT)
-Received: (nullmailer pid 1508203 invoked by uid 1000);
+Received: from robh.at.kernel.org ([98.38.210.73])
+        by smtp.gmail.com with ESMTPSA id a11-20020a02734b000000b0033ebd47834fsm1530397jae.128.2022.07.08.14.32.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Jul 2022 14:32:03 -0700 (PDT)
+Received: (nullmailer pid 1508198 invoked by uid 1000);
         Fri, 08 Jul 2022 21:32:02 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     git@xilinx.com, git@amd.com, michal.simek@xilinx.com,
-        shubhrajyoti.datta@amd.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <1cbbf50917ef9d2e2bc2c8862cb8425d54959049.1657276107.git.shubhrajyoti.datta@xilinx.com>
-References: <1cbbf50917ef9d2e2bc2c8862cb8425d54959049.1657276107.git.shubhrajyoti.datta@xilinx.com>
-Subject: Re: [LINUX PATCH] dt-bindings: clock: versal: Remove alt_ref_clk from clock source
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     shawnguo@kernel.org, aisheng.dong@nxp.com, kw@linux.com,
+        tglx@linutronix.de, peng.fan@nxp.com, linux-kernel@vger.kernel.org,
+        kishon@ti.com, linux-imx@nxp.com,
+        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, jdmason@kudzu.us, lorenzo.pieralisi@arm.com,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        ntb@lists.linux.dev, maz@kernel.org, bhelgaas@google.com,
+        linux-pci@vger.kernel.org
+In-Reply-To: <20220707210238.917477-2-Frank.Li@nxp.com>
+References: <20220707210238.917477-1-Frank.Li@nxp.com> <20220707210238.917477-2-Frank.Li@nxp.com>
+Subject: Re: [PATCH 2/3] dt-bindings: irqchip: imx mu work as msi controller
 Date:   Fri, 08 Jul 2022 15:32:02 -0600
-Message-Id: <1657315922.459530.1508202.nullmailer@robh.at.kernel.org>
+Message-Id: <1657315922.435976.1508197.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -59,22 +65,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Jul 2022 16:11:12 +0530, Shubhrajyoti Datta wrote:
-> alt_ref_clk is applicable only for PS extended version.
-> For PS base version there is no separate alt_ref_clk.
-> It is tied with ref_clk. The commit
-> 2b2012d1c1d8 (clk: versal: Remove alt_ref_clk from clock sources)
-> removes the alt_ref_clk from the u-boot code but not the yaml.
-> Remove it from yaml as well.
+On Thu, 07 Jul 2022 16:02:37 -0500, Frank Li wrote:
+> imx mu support generate irq by write a register.
+> provide msi controller support so other driver
+> can use it by standard msi interface.
 > 
-> Fixes: 026049cf37f2 ("clk: versal: Remove alt_ref_clk from clock sources")
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> u-boot commit refered
-> https://source.denx.de/u-boot/u-boot/-/commit/2b2012d1c1d8515417ba139339d0aa9b47789dca
-> 
->  .../devicetree/bindings/clock/xlnx,versal-clk.yaml          | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+>  .../interrupt-controller/fsl,mu-msi.yaml      | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -83,12 +83,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: clock-controller:clocks: [[4294967295], [4294967295], [4294967295]] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: clock-controller:clock-names:1: 'pl_alt_ref' was expected
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: clock-controller:clock-names: ['ref', 'alt_ref', 'pl_alt_ref'] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+Error: Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dts:31.41-42 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:383: Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1404: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
