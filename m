@@ -2,140 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32AB456C317
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:14:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE19056C316
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 01:13:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238897AbiGHSls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 14:41:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33414 "EHLO
+        id S239565AbiGHTYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 15:24:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236808AbiGHSlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 14:41:47 -0400
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C95F1A827;
-        Fri,  8 Jul 2022 11:41:47 -0700 (PDT)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-f2a4c51c45so30268794fac.9;
-        Fri, 08 Jul 2022 11:41:47 -0700 (PDT)
+        with ESMTP id S238768AbiGHTYb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 15:24:31 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3686C24941
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 12:24:31 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id v63so11535oie.9
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 12:24:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=E0+g3v6pC8RZHHJAWVXJd2G4KVUBkvrj09rmmxGrR+E=;
-        b=kSYmvN1LCA3HQHM673GLcBGagoKwVuIV8NANpt2rxPMcLLWoBx+CfJY8ie9CG4TGzW
-         ugF84N5L5QD3G75H5LrXyrM8YkCRQMnK+iZ1dI4DI2zTyth8s05//EGrQJvdGqb9yi4S
-         B/tjHLAOt5UvECMIo6t8OqiACR6SiWt3V+3dF6sUQfeq7kyW6jlLw8j1l2035R9lcPch
-         UcUr8O7CrHvwRQ5lzMep3rsle82S1UVvgN2dAsAoTVQ/xJgiAO/JI8phqK4EF8y6kmpS
-         s0J76+Tjs1AkkNP5UpMf4RoGm4qheTfRTJS/0uObwUMh44154LXbdFg062bUyBbKKDhI
-         FLew==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=WEH0jKAhMg/R/ZAtXcmhJHyQlTHAR3FwpDaho4cHgOY=;
+        b=InH2K7dH2NjuGoaeuhMHZJKkEoIt8KoqlBs0E+Q3TTBS5RZRETLKTZRZT3Y0z2Gv/r
+         2khUzoWLTbkefDeaKsc6pHYPsvYpONGBlM58vaEqm98vTDeKmrMelIOsi+LNxKzJ++6F
+         HaSvWuREHYxyFwh4AjtzoLhPQruLwmmGLLxKw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=E0+g3v6pC8RZHHJAWVXJd2G4KVUBkvrj09rmmxGrR+E=;
-        b=atIxdAkwCQK2dtTUogb/H8IcAGoCR5yCOQeOL2c97cOK54rstCmv0GQXO22b1uRxrH
-         cDnw7irOWvkEtoyghsqBgGgPtqe8rQ8be/kLNq+7dsZg02XMvjZfCPmM+mn2TtccZkQn
-         EX/5zBpvdkqAjf1HRMjParC55s7hmC2RQXwr+HixpzWjMWMfP0srMlgnBG2PRoFxhNn+
-         0MEWDRRHyYqJ19aaapyt4UNdqX9cvl43hNU+J248n1oF6l+TKbhDG+UQtpWtjAsBsXqV
-         nDIBTWxsXrh5Z7UiUST0kD5mQESHH7cBxN/yXwFNnrFeL34HonczNuZlPs6uWPdWuMeH
-         Zn0A==
-X-Gm-Message-State: AJIora8ywGuPxXS3I1MV37Vz/GiYCpGbys4h72bbZgnJc4BdeNjUwNCj
-        2JOM5Dp1Iwq8EbAxEV3btU2pA+NgRAwQH7KXBERWhW60zxX+5A==
-X-Google-Smtp-Source: AGRyM1tJ/cjliLSb05PEgv9ikZiVR60MsFIKWxl5kdrWfbZDUl5sqhyFFPR61swqCmtESYW1a7F/DCBBVWpAqv0OAXU=
-X-Received: by 2002:a05:6870:88a8:b0:101:6409:ae26 with SMTP id
- m40-20020a05687088a800b001016409ae26mr736747oam.160.1657305706145; Fri, 08
- Jul 2022 11:41:46 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=WEH0jKAhMg/R/ZAtXcmhJHyQlTHAR3FwpDaho4cHgOY=;
+        b=oSxLpZWNa6RyPwyUNexwFXG4wGKM1smkIucFca3yyfXEKkfH8iGdOjkLYGLtmAtAOO
+         P9uChxWTJRqlxwr05OyA7Z0cniueYL/Pw2gi2QBMgLqRPlTcgucKgNj8tFXvCZkhbfCC
+         VwQaqGI1ixiQNqtqMSeaekpK6HdXwH56K+h4Q57DNlMA1zoz0JrIb+5fMJ3TqpbGvnKs
+         5SBuv5Rhmcri+o+ArMNcrTd03VdU2ydrdsEbcDsX4rxo72mSzXP9cEsNNwQq2x+KkTST
+         Q5IeX6j5kbMfdDSpD5J965zY0GWUdPoOIJOtX35nboBZe4/f1heeFmGQkpac9T9oe1ug
+         5UWA==
+X-Gm-Message-State: AJIora/yZlcemrqisOTDzpR+bkJ3kq5KojFC8qqVr4hzAEUsIO970IgL
+        iiMIzUtFCihG6P3YX3B7yxQOQ5fAJh2wVx9OB5KK8VQa06Y=
+X-Google-Smtp-Source: AGRyM1ux2p5+c4xtdy4iOeVBnPoqwt4uYj+n6OsML6osTpvAhyLCATU4q8jvRdoE/W3LIwJY4+8mxYJs/1atXzH8xbs=
+X-Received: by 2002:a05:6808:171c:b0:334:9342:63ef with SMTP id
+ bc28-20020a056808171c00b00334934263efmr831806oib.63.1657308270538; Fri, 08
+ Jul 2022 12:24:30 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 8 Jul 2022 12:24:29 -0700
 MIME-Version: 1.0
-References: <20220608161150.58919-1-linux@fw-web.de> <20220608161150.58919-2-linux@fw-web.de>
- <5611d1c5-44db-4144-3c46-256323d39fe3@arm.com>
-In-Reply-To: <5611d1c5-44db-4144-3c46-256323d39fe3@arm.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Fri, 8 Jul 2022 14:41:35 -0400
-Message-ID: <CAMdYzYo=Wft93OEKapVFx-oxe8ocU7OuhU+MOdqUw8-QjqzDGg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] rtc: hym8563: try multiple times to init device
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
+In-Reply-To: <36a3490f-5c94-0c54-caa4-1b381dae7745@linaro.org>
+References: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org>
+ <20220707213204.2605816-6-dmitry.baryshkov@linaro.org> <CAE-0n53An_S5H-jj7GPorLg0Q4jW=KqEn5CCrfqs6fn6LBtGNA@mail.gmail.com>
+ <36a3490f-5c94-0c54-caa4-1b381dae7745@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 8 Jul 2022 12:24:29 -0700
+Message-ID: <CAE-0n53GJANJT5uXzffPqFZuKu4YkzfrhyaCL15vq1VQrDzSag@mail.gmail.com>
+Subject: Re: [PATCH 5/9] dt-bindings: msm/dp: account for clocks specific for qcom,sc7280-edp
+To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-rtc@vger.kernel.org
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 8, 2022 at 12:18 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2022-06-08 17:11, Frank Wunderlich wrote:
-> > From: Peter Geis <pgwipeout@gmail.com>
+Quoting Dmitry Baryshkov (2022-07-07 20:59:02)
+> On 08/07/2022 04:32, Stephen Boyd wrote:
+> > Quoting Dmitry Baryshkov (2022-07-07 14:32:00)
+> >> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> >> index f00eae66196f..1ef845005b14 100644
+> >> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> >> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> >> @@ -119,6 +111,50 @@ required:
+> >>     - power-domains
+> >>     - ports
+> >>
+> >> +allOf:
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            enum:
+> >> +              - qcom,sc7280-edp
+> >> +    then:
+> >> +      properties:
+> >> +        clocks:
+> >> +          items:
+> >> +            - description: XO clock
 > >
-> > RTC sometimes does not respond the first time in init.
-> > Try multiple times to get a response.
+> > What is this for? I would guess it's for the eDP phy, but that isn't
+> > part of the eDP controller, so probably it can be removed.
 >
-> FWIW, given that HYM8563 is fairly common on RK3288 boards - I can't say
-> I've ever noticed an issue with mine, for instance - it seems dubious
-> that this would be a general issue of the chip itself. Are you sure it's
-> not a SoC or board-level issue with the I2C bus being in a funny initial
-> state, timings being marginal, or suchlike?
+> Good question. I was documenting what is present in the sc7280-edp
+> controller DT entry. Could you please check if we can drop them? I don't
+> have the hardware at hand.
+>
 
-I don't think this is an SoC issue since this is the first instance
-I've encountered it. Mind you we don't have the reset lines hooked up
-at all for the Rockchip i2c driver, so it's possible that's the case,
-but I'd imagine it would be observed more broadly if that was the
-case. I've tried pushing the timings out pretty far as well as bumping
-up the drive strength to no change. It seems to occur only with the
-hym rtc used on this board. I suspect it's a new variant of the hym
-that has slightly different behavior.
-
->
-> Robin.
->
-> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> > ---
-> >   drivers/rtc/rtc-hym8563.c | 11 +++++++++--
-> >   1 file changed, 9 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/rtc/rtc-hym8563.c b/drivers/rtc/rtc-hym8563.c
-> > index 90e602e99d03..9adcedaa4613 100644
-> > --- a/drivers/rtc/rtc-hym8563.c
-> > +++ b/drivers/rtc/rtc-hym8563.c
-> > @@ -13,6 +13,7 @@
-> >   #include <linux/clk-provider.h>
-> >   #include <linux/i2c.h>
-> >   #include <linux/bcd.h>
-> > +#include <linux/delay.h>
-> >   #include <linux/rtc.h>
-> >
-> >   #define HYM8563_CTL1                0x00
-> > @@ -438,10 +439,16 @@ static irqreturn_t hym8563_irq(int irq, void *dev_id)
-> >
-> >   static int hym8563_init_device(struct i2c_client *client)
-> >   {
-> > -     int ret;
-> > +     int ret, i;
-> >
-> >       /* Clear stop flag if present */
-> > -     ret = i2c_smbus_write_byte_data(client, HYM8563_CTL1, 0);
-> > +     for (i = 0; i < 3; i++) {
-> > +             ret = i2c_smbus_write_byte_data(client, HYM8563_CTL1, 0);
-> > +             if (ret == 0)
-> > +                     break;
-> > +             msleep(20);
-> > +     }
-> > +
-> >       if (ret < 0)
-> >               return ret;
-> >
+eDP works fine without those two clks on CRD (hoglin). They can be
+dropped from the dtsi file.
