@@ -2,104 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03EEC56B40E
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB0B56B40F
 	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 10:08:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237582AbiGHIE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jul 2022 04:04:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37212 "EHLO
+        id S237224AbiGHIHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jul 2022 04:07:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237580AbiGHICa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:02:30 -0400
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10247E035;
-        Fri,  8 Jul 2022 01:02:29 -0700 (PDT)
-Received: by mail-io1-xd2b.google.com with SMTP id k15so19060500iok.5;
-        Fri, 08 Jul 2022 01:02:29 -0700 (PDT)
+        with ESMTP id S237712AbiGHIHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jul 2022 04:07:36 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162B38049B
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 01:07:35 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id z1so9955644plb.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 01:07:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hODnMtf+5EqhbkNx2oX7wxZqY8zZUB9OLPetFR2uH7A=;
-        b=I1oaVBalKTFKJVlbbTyhQWS1ol5E6FcVkwflucZasxRgPj/Kt3Y/wo+VsrsGKPfEK9
-         WbRFB7uTsXHD1sjwAiU4jzq7HjI3kqUC7ZIGCdt1Ya2aFhyZdhd9sJamF8KF8keifkrl
-         gjSzpl8EDPbvrNYPZM1PmW41ZfqJHD71UYrK0topX6tbCbA5um5EP9691DUMHpPE7M3O
-         s1SXAw+K7y3GUQxpfyElP0H7NiPCm3RMMX7KsqRYaSl7LXLYfpmznJ4DsY+xY8hmHuPm
-         QbciU7n6qBFcQnzz8dl6yyf1U2Gy+R2xx/5kJpMUPZza2PgUBSjN0FsMro5mt+B8eVzx
-         0bcw==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yrPt4qD/JmjcNFx3ynJ+Aoh0y9NjRgnFT1MYYJEO1pc=;
+        b=mnyrqzCNMNXcxFBg5hrXHpQH3kGkG/YYp+PL4YagspWeH9/PEgNNP4xYt964mJgvFL
+         St8C+KafMB99DqcLeNo9lris91DOLgaX0IefvtgFOvOvW7zJMWZDWOuHPlQFFmiU1y0y
+         nqDq1qZQYeYkTcwpNz+odJMVYR0Ar8HsUJenw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=hODnMtf+5EqhbkNx2oX7wxZqY8zZUB9OLPetFR2uH7A=;
-        b=0F8L+ddVWNByMv/RBYgKhV0dc+zLTWUscdPuw7M9QW21L6YbaK4uNm2+xwvI/zaxWC
-         7pfevjAZbcE4Cm+xxolPk6YGqjyvDIHugaIxgPqFDT6JOsj5CpaCGEdm9FtoHeNshJJH
-         jHQEzTeccypJ7pKqgqxUO0N1TbpLipushvicyTG71sBEiZkxT6ODUDaZIpRAAiAua9oh
-         bUVViXRKw9z9H/ev9TA5PAJoKHPzFz5KX3gVa9RJdpxbMF+9Ne5gaiqWVY86/MIZPb66
-         Fo2lSQ4Ovf8GUgtRiJWS/Cp0TL1ipYAngGxy9gufpHlGTuCRdR0fAtlfAZJwg9MUHHBp
-         32zg==
-X-Gm-Message-State: AJIora+U023aLzNg8f7XhrSd4va93CBwOMCcxejiB5MLXhVgti5yfDtE
-        QIhEpBHPWL40s6EllFxQTXHO1lSKvdK86Q==
-X-Google-Smtp-Source: AGRyM1vbUvAEnsSVMwsqK+d3yPV/Acfg2dPnTr9AEZlB91dT5n/m3+vacP7LrXDKsxdL1C5fh2Ls6g==
-X-Received: by 2002:a05:6638:dcb:b0:33e:bd5c:2195 with SMTP id m11-20020a0566380dcb00b0033ebd5c2195mr1321012jaj.312.1657267349186;
-        Fri, 08 Jul 2022 01:02:29 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id w13-20020a927b0d000000b002dc33dbed87sm2642328ilc.39.2022.07.08.01.02.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Jul 2022 01:02:28 -0700 (PDT)
-Message-ID: <d2872f3e-1dc0-01ea-9385-29c089bc10b8@gmail.com>
-Date:   Fri, 8 Jul 2022 10:02:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: phy: mediatek: tphy: add compatible for
- mt8188
-Content-Language: en-US
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        bh=yrPt4qD/JmjcNFx3ynJ+Aoh0y9NjRgnFT1MYYJEO1pc=;
+        b=SOkgNP8tvjc0gOoIN5gs6jqYcL2Ky35JCvq+lghr5OVxUn2PIhFs6xvvxMp7p4VS3H
+         FhNTQ6eeqhSCzPTo5oXYysESaeJMNY5KekJApAhPpqHyQv/8HfpwR0CtscNDu0W6OwxR
+         QWKY7/atUG3uApLkwXcaxDD3qC3qKtZYlaAY0aONeCbRmxtEWJdHs0KbpaQ4XD5fDVJE
+         fY+v3cWedmqqJqHSmTO4xIlodnOnH78XtIsbaXBBth5QYv68vsvUHM75ZkrpW64INX9B
+         kvbUOUWCh1gDg4GG611+YZLhBwpyQkTx5SzNumSobN/Q7si4/XiZy9apqtEa5HPrQQJn
+         Q1Qg==
+X-Gm-Message-State: AJIora+mVVBLgszLC1MKdd8bE/OsGsLQ2D5lF0OA6udYeTk8YF1Cen4X
+        5whm50F1fU8fe2+EQST1rQYfEg==
+X-Google-Smtp-Source: AGRyM1uamhzBFa5P+oq1pLu4V7IRdmSNjDjcV0bjdqsDBeS2d4DcCPkRKdaPuq5KRhwCbR/6CkH+rA==
+X-Received: by 2002:a17:90b:4a03:b0:1ed:2071:e8c with SMTP id kk3-20020a17090b4a0300b001ed20710e8cmr10559037pjb.216.1657267654589;
+        Fri, 08 Jul 2022 01:07:34 -0700 (PDT)
+Received: from judyhsiao0523.c.googlers.com.com (0.223.81.34.bc.googleusercontent.com. [34.81.223.0])
+        by smtp.gmail.com with ESMTPSA id a11-20020a170902b58b00b0015e8d4eb26esm29137786pls.184.2022.07.08.01.07.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Jul 2022 01:07:33 -0700 (PDT)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, Lin Huang <hl@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Brian Norris <briannorris@chromium.org>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220708065834.25424-1-chunfeng.yun@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220708065834.25424-1-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Judy Hsiao <judyhsiao@chromium.org>
+Subject: [PATCH v1] arm64: dts: rk3399: i2s: switch BCLK to GPIO
+Date:   Fri,  8 Jul 2022 08:07:26 +0000
+Message-Id: <20220708080726.4170711-1-judyhsiao@chromium.org>
+X-Mailer: git-send-email 2.37.0.rc0.161.g10f37bed90-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+We discoverd that the state of BCLK on, LRCLK off and SD_MODE on
+may cause the speaker melting issue. Removing LRCLK while BCLK
+is present can cause unexpected output behavior including a large
+DC output voltage as described in the Max98357a datasheet.
 
+In order to:
+  1. prevent BCLK from turning on by other component.
+  2. keep BCLK and LRCLK being present at the same time
 
-On 08/07/2022 08:58, Chunfeng Yun wrote:
-> Add compatible for mt8188
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+This patch adjusts the device tree to allow BCLK to switch
+to GPIO func before LRCLK output, and switch back during
+LRCLK is output.
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+---
+ .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi | 10 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      | 25 ++++++++++++++++++-
+ 2 files changed, 34 insertions(+), 1 deletion(-)
 
-> ---
->   Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> index 7b2e1bc119be..9fd27d64aca0 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> @@ -85,6 +85,7 @@ properties:
->             - const: mediatek,generic-tphy-v2
->         - items:
->             - enum:
-> +              - mediatek,mt8188-tphy
->                 - mediatek,mt8195-tphy
->             - const: mediatek,generic-tphy-v3
->         - const: mediatek,mt2701-u3phy
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+index 913d845eb51a..df1647e9d487 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+@@ -766,6 +766,16 @@ &i2s0_8ch_bus {
+ 		<4 RK_PA0 1 &pcfg_pull_none_6ma>;
+ };
+ 
++&i2s0_8ch_bus_bclk_off {
++	rockchip,pins =
++		<3 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none_6ma>,
++		<3 RK_PD1 1 &pcfg_pull_none_6ma>,
++		<3 RK_PD2 1 &pcfg_pull_none_6ma>,
++		<3 RK_PD3 1 &pcfg_pull_none_6ma>,
++		<3 RK_PD7 1 &pcfg_pull_none_6ma>,
++		<4 RK_PA0 1 &pcfg_pull_none_6ma>;
++};
++
+ /* there is no external pull up, so need to set this pin pull up */
+ &sdmmc_cd_pin {
+ 	rockchip,pins = <1 RK_PB3 RK_FUNC_GPIO &pcfg_pull_up>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index fbd0346624e6..311c8394cc84 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -1662,8 +1662,9 @@ i2s0: i2s@ff880000 {
+ 		dma-names = "tx", "rx";
+ 		clock-names = "i2s_clk", "i2s_hclk";
+ 		clocks = <&cru SCLK_I2S0_8CH>, <&cru HCLK_I2S0_8CH>;
+-		pinctrl-names = "default";
++		pinctrl-names = "bclk_on", "bclk_off";
+ 		pinctrl-0 = <&i2s0_8ch_bus>;
++		pinctrl-1 = <&i2s0_8ch_bus_bclk_off>;
+ 		power-domains = <&power RK3399_PD_SDIOAUDIO>;
+ 		#sound-dai-cells = <0>;
+ 		status = "disabled";
+@@ -2407,6 +2408,19 @@ i2s0_8ch_bus: i2s0-8ch-bus {
+ 					<3 RK_PD7 1 &pcfg_pull_none>,
+ 					<4 RK_PA0 1 &pcfg_pull_none>;
+ 			};
++
++			i2s0_8ch_bus_bclk_off: i2s0-8ch-bus-bclk-off {
++				rockchip,pins =
++					<3 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>,
++					<3 RK_PD1 1 &pcfg_pull_none>,
++					<3 RK_PD2 1 &pcfg_pull_none>,
++					<3 RK_PD3 1 &pcfg_pull_none>,
++					<3 RK_PD4 1 &pcfg_pull_none>,
++					<3 RK_PD5 1 &pcfg_pull_none>,
++					<3 RK_PD6 1 &pcfg_pull_none>,
++					<3 RK_PD7 1 &pcfg_pull_none>,
++					<4 RK_PA0 1 &pcfg_pull_none>;
++			};
+ 		};
+ 
+ 		i2s1 {
+@@ -2418,6 +2432,15 @@ i2s1_2ch_bus: i2s1-2ch-bus {
+ 					<4 RK_PA6 1 &pcfg_pull_none>,
+ 					<4 RK_PA7 1 &pcfg_pull_none>;
+ 			};
++
++			i2s1_2ch_bus_bclk_off: i2s1-2ch-bus-bclk-off {
++				rockchip,pins =
++					<4 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>,
++					<4 RK_PA4 1 &pcfg_pull_none>,
++					<4 RK_PA5 1 &pcfg_pull_none>,
++					<4 RK_PA6 1 &pcfg_pull_none>,
++					<4 RK_PA7 1 &pcfg_pull_none>;
++			};
+ 		};
+ 
+ 		sdio0 {
+-- 
+2.37.0.rc0.161.g10f37bed90-goog
+
