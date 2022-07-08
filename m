@@ -2,63 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7844756B0FA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 05:42:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8394956B10D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 05:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236973AbiGHDPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 23:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50752 "EHLO
+        id S236842AbiGHDpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 23:45:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236938AbiGHDPh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 23:15:37 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFEA7479E;
-        Thu,  7 Jul 2022 20:15:33 -0700 (PDT)
-X-UUID: d42387bcdea04c3ab6294f5196600505-20220708
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:1bd74901-39be-40ef-b84b-64815b715f7b,OB:0,LO
-        B:10,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,
-        ACTION:release,TS:95
-X-CID-INFO: VERSION:1.1.8,REQID:1bd74901-39be-40ef-b84b-64815b715f7b,OB:0,LOB:
-        10,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,
-        ACTION:quarantine,TS:95
-X-CID-META: VersionHash:0f94e32,CLOUDID:278aedd6-5d6d-4eaf-a635-828a3ee48b7c,C
-        OID:2513592131b9,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: d42387bcdea04c3ab6294f5196600505-20220708
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2025295690; Fri, 08 Jul 2022 11:15:27 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 8 Jul 2022 11:15:26 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 8 Jul 2022 11:15:25 +0800
-From:   <kewei.xu@mediatek.com>
-To:     <wsa@the-dreams.de>
-CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
-        <caiyu.chen@mediatek.com>, <housong.zhang@mediatek.com>,
-        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>,
-        <david-yh.chiu@mediatek.com>, <liju-clr.chen@mediatek.com>
-Subject: [PATCH 2/2] i2c: mediatek: Add i2c compatible for Mediatek MT8188
-Date:   Fri, 8 Jul 2022 11:15:19 +0800
-Message-ID: <20220708031520.22053-2-kewei.xu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220708031520.22053-1-kewei.xu@mediatek.com>
-References: <20220708031520.22053-1-kewei.xu@mediatek.com>
+        with ESMTP id S230230AbiGHDph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 23:45:37 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 313B55A2C4;
+        Thu,  7 Jul 2022 20:45:37 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id z14so21382256pgh.0;
+        Thu, 07 Jul 2022 20:45:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=WEeOn4jKdlkOGkxP6pdkaQvICDgDChhavL9CTQCdf3M=;
+        b=BsoeAyJwtli9BgZoiMSiHq+LwjP3foVMbmGbU09qD5Gh79WUwwEqyU7YnypYgx5mg3
+         s53U+PGGI0nb6UWnpgYa0fmUBVf+zJSoSzqp+FbK9O2qm2+qPbUZfaspFjxpuxUOwGSQ
+         +fkY6AQ5OJEuCzEnw2NGIeNQGQVOOvTy79hLV4MVTAYiUFmQxAodlbJ7TjSkA6OEhKjV
+         XBvbTBHOmqpbll+qFxsYmtqkF43tHfVXYw12hjv7iPrhXtXTZWNwQ245wKRtIvRidpMk
+         OgCyAbxIg24TyMe4iLEqqTRqIXjokwl8DQBRG7WFwDk0fvySD16JoaKW3ayifaA1NDT2
+         arGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=WEeOn4jKdlkOGkxP6pdkaQvICDgDChhavL9CTQCdf3M=;
+        b=CyxXHJUIWTIpjh8/JrfPAvKqUHWO14JcTrY4qg56z6jc8l0LkGTGvWjwIgd0AjaPFd
+         bI0v6HS0caeyN6JBZPV2Xk1JLYJt36oiv0TAuKNOdaiffNdf16GUU32DG7MiK007Fp4i
+         aBjLI5l058Wts++hsX6Jpe+JtTDQtzV/ZKTq6GOV6K0haYIkm+yjvCkI0u37tMfTIl3o
+         20GHVnT9BXR57mKlHFXE3Bo6EnjL++aHzs26oPM7Jndg1XSz2S2oS3g+DsDHyBJvPwe1
+         3E5qdcmK2nOh+VQvbZwlMa5tYyMl4+ecg5T7eZwewFFIqlrz3w3DowQNzBvnw76+Ne+O
+         ZsRg==
+X-Gm-Message-State: AJIora+jL13gqPntfbEekOmrj34FGEtTm+xVywlXWhIDEXve2zzKzLWt
+        pvLYcGOJhsbxu6RCXQMtT4c=
+X-Google-Smtp-Source: AGRyM1sdFbu0T9QzLqppBCoXhq8AdtL++0DjtWTi1pZ0Y0i0R2Zp+HBm78JDkXmR3STioxMWqpjSdw==
+X-Received: by 2002:a63:df49:0:b0:412:58fe:2332 with SMTP id h9-20020a63df49000000b0041258fe2332mr1292927pgj.505.1657251936525;
+        Thu, 07 Jul 2022 20:45:36 -0700 (PDT)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id o20-20020a17090aac1400b001efa332d365sm372271pjq.33.2022.07.07.20.45.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Jul 2022 20:45:36 -0700 (PDT)
+Message-ID: <5f013801-1f58-dc55-e2f1-2c068166eca3@gmail.com>
+Date:   Thu, 7 Jul 2022 20:45:34 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0.1
+Subject: Re: [PATCH] arm64: dts: broadcom: bcm4908: Fix cpu and timer node
+Content-Language: en-US
+To:     William Zhang <william.zhang@broadcom.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220708021807.19080-1-william.zhang@broadcom.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220708021807.19080-1-william.zhang@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,85 +77,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kewei Xu <kewei.xu@mediatek.com>
 
-Add i2c compatible for MT8188. Compare to MT8192 i2c controller,
-The MT8188 i2c OFFSET_SLAVE_ADDR register changed from 0x04 to 0x94.
 
-Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-Change-Id: Ibcfa101061f058508eb1ae2cc07af5a3e7e3bf4f
----
- drivers/i2c/busses/i2c-mt65xx.c | 43 +++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+On 7/7/2022 7:18 PM, William Zhang wrote:
+> Add spin-table enable-method and cpu-release-addr properties for
+> cpu0 node. This is required by all ARMv8 SoC. Otherwise some
+> bootloader like u-boot can not update cpu-release-addr and linux
+> fails to start up secondary cpus.
+> 
+> Also fix the cpu mask in the interrupts property of the timer node
+> for dual core bcm4906 SoC.
+> 
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
 
-diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-index 8e6985354fd5..70aff42adf5d 100644
---- a/drivers/i2c/busses/i2c-mt65xx.c
-+++ b/drivers/i2c/busses/i2c-mt65xx.c
-@@ -229,6 +229,35 @@ static const u16 mt_i2c_regs_v2[] = {
- 	[OFFSET_DCM_EN] = 0xf88,
- };
- 
-+static const u16 mt_i2c_regs_v3[] = {
-+	[OFFSET_DATA_PORT] = 0x0,
-+	[OFFSET_SLAVE_ADDR] = 0x94,
-+	[OFFSET_INTR_MASK] = 0x8,
-+	[OFFSET_INTR_STAT] = 0xc,
-+	[OFFSET_CONTROL] = 0x10,
-+	[OFFSET_TRANSFER_LEN] = 0x14,
-+	[OFFSET_TRANSAC_LEN] = 0x18,
-+	[OFFSET_DELAY_LEN] = 0x1c,
-+	[OFFSET_TIMING] = 0x20,
-+	[OFFSET_START] = 0x24,
-+	[OFFSET_EXT_CONF] = 0x28,
-+	[OFFSET_LTIMING] = 0x2c,
-+	[OFFSET_HS] = 0x30,
-+	[OFFSET_IO_CONFIG] = 0x34,
-+	[OFFSET_FIFO_ADDR_CLR] = 0x38,
-+	[OFFSET_SDA_TIMING] = 0x3c,
-+	[OFFSET_TRANSFER_LEN_AUX] = 0x44,
-+	[OFFSET_CLOCK_DIV] = 0x48,
-+	[OFFSET_SOFTRESET] = 0x50,
-+	[OFFSET_MULTI_DMA] = 0x8c,
-+	[OFFSET_SCL_MIS_COMP_POINT] = 0x90,
-+	[OFFSET_DEBUGSTAT] = 0xe4,
-+	[OFFSET_DEBUGCTRL] = 0xe8,
-+	[OFFSET_FIFO_STAT] = 0xf4,
-+	[OFFSET_FIFO_THRESH] = 0xf8,
-+	[OFFSET_DCM_EN] = 0xf88,
-+};
-+
- struct mtk_i2c_compatible {
- 	const struct i2c_adapter_quirks *quirks;
- 	const u16 *regs;
-@@ -442,6 +471,19 @@ static const struct mtk_i2c_compatible mt8186_compat = {
- 	.max_dma_support = 36,
- };
- 
-+static const struct mtk_i2c_compatible mt8188_compat = {
-+	.regs = mt_i2c_regs_v3,
-+	.pmic_i2c = 0,
-+	.dcm = 0,
-+	.auto_restart = 1,
-+	.aux_len_reg = 1,
-+	.timing_adjust = 1,
-+	.dma_sync = 0,
-+	.ltiming_adjust = 1,
-+	.apdma_sync = 1,
-+	.max_dma_support = 36,
-+};
-+
- static const struct mtk_i2c_compatible mt8192_compat = {
- 	.quirks = &mt8183_i2c_quirks,
- 	.regs = mt_i2c_regs_v2,
-@@ -465,6 +507,7 @@ static const struct of_device_id mtk_i2c_of_match[] = {
- 	{ .compatible = "mediatek,mt8173-i2c", .data = &mt8173_compat },
- 	{ .compatible = "mediatek,mt8183-i2c", .data = &mt8183_compat },
- 	{ .compatible = "mediatek,mt8186-i2c", .data = &mt8186_compat },
-+	{ .compatible = "mediatek,mt8188-i2c", .data = &mt8188_compat },
- 	{ .compatible = "mediatek,mt8192-i2c", .data = &mt8192_compat },
- 	{}
- };
+This looks good, however can you split this into 2 different patches and 
+add for the first hunk:
+
+Fixes: c8b404fb05dc ("arm64: dts: broadcom: bcm4908: add BCM4906 Netgear 
+R8000P DTS files")
+
+and:
+
+Fixes: 2961f69f151c ("arm64: dts: broadcom: add BCM4908 and Asus 
+GT-AC5300 early DTS files")
+
+for the second hunk to the commit message?
+
+Thanks!
+
+> 
+> ---
+> 
+>   arch/arm64/boot/dts/broadcom/bcm4908/bcm4906.dtsi | 8 ++++++++
+>   arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 2 ++
+>   2 files changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906.dtsi
+> index 66023d553524..d084c33d5ca8 100644
+> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906.dtsi
+> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906.dtsi
+> @@ -9,6 +9,14 @@ cpus {
+>   		/delete-node/ cpu@3;
+>   	};
+>   
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
+> +	};
+> +
+>   	pmu {
+>   		compatible = "arm,cortex-a53-pmu";
+>   		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> index a4be040a00c0..967d2cd3c3ce 100644
+> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> @@ -29,6 +29,8 @@ cpu0: cpu@0 {
+>   			device_type = "cpu";
+>   			compatible = "brcm,brahma-b53";
+>   			reg = <0x0>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0x0 0xfff8>;
+>   			next-level-cache = <&l2>;
+>   		};
+>   
+
 -- 
-2.18.0
-
+Florian
