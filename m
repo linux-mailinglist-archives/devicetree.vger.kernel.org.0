@@ -2,129 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA5456B020
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 03:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6364156AFEE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jul 2022 03:52:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236925AbiGHBYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jul 2022 21:24:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43856 "EHLO
+        id S236569AbiGHB2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jul 2022 21:28:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235434AbiGHBYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 21:24:54 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C14867588;
-        Thu,  7 Jul 2022 18:24:46 -0700 (PDT)
-X-UUID: 4232bf5c397840e4820673a0f342afdf-20220708
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:06b3f4c4-c987-498f-84ea-64fa7a0b7927,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:9d7dda86-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 4232bf5c397840e4820673a0f342afdf-20220708
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2034212625; Fri, 08 Jul 2022 09:24:40 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 8 Jul 2022 09:24:39 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 8 Jul 2022 09:24:38 +0800
-Message-ID: <0fba8d4ecf11a471da9e3eadb8ce3b2029261c2c.camel@mediatek.com>
-Subject: Re: [PATCH 2/2] i2c: mediatek: Add i2c compatible for Mediatek
- MT8188
-From:   Kewei Xu <kewei.xu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <wsa@the-dreams.de>
-CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
-        <caiyu.chen@mediatek.com>, <housong.zhang@mediatek.com>,
-        <yuhan.wei@mediatek.com>, <david-yh.chiu@mediatek.com>,
-        <liju-clr.chen@mediatek.com>
-Date:   Fri, 8 Jul 2022 09:24:38 +0800
-In-Reply-To: <fae6c582-ec65-47d8-548f-934e8e829daf@collabora.com>
-References: <20220707054617.13583-1-kewei.xu@mediatek.com>
-         <20220707054617.13583-3-kewei.xu@mediatek.com>
-         <fae6c582-ec65-47d8-548f-934e8e829daf@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S235434AbiGHB2v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jul 2022 21:28:51 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D9067583
+        for <devicetree@vger.kernel.org>; Thu,  7 Jul 2022 18:28:51 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id s204so3950201oif.5
+        for <devicetree@vger.kernel.org>; Thu, 07 Jul 2022 18:28:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=HQoQSqm1Y6gc3vLd2/YcryN+qPwBTmG72+1Cc+N5QmA=;
+        b=CykAEtsvYnPfrFIuJwuOCf0sw8z7xciHsnHSMcRh16QnXk6QlIvfrYCuLdkrEmDw8Y
+         xUg/8KmL2U/g8kmyvsdHQy7ZmsMN3fBtiainjMMGzfllqj0dlPHpKGRfFA4CTnWyv2mx
+         SaD57uEHfP6TCBWZoutJutR3hP34XDXxaOhfM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=HQoQSqm1Y6gc3vLd2/YcryN+qPwBTmG72+1Cc+N5QmA=;
+        b=q9OA7kITYkrXVv+nDdyIRmLJ+GyI7ZBj+WwerwvHN7az3X2jycUOthnp53vwYg8eOU
+         8bp3sM0QyeFXOqJ+hqoEWCeuCyv7B0Gr4fUikX5p12ppebPXpk9wmiD5BFWEaQSC8Cqd
+         SnKlrFDvCN1RRyNpP93KGjRQel/+abIW5WVevDTtkvRFUMjAF1kDw/x6u1QcpU9w7EYA
+         Ayi6CZqv6g+tZLRNxKKoxYZCYwAl4PkJ93a52ub0aIe7dvCCbUhPuAEnWpcHZPNL1lv8
+         8EzvRZU/jvHDOY7wVRJqu68UR776N6FxadFXgwKxlCF10hjgbI/oxsymtsId/N0tawc0
+         hXXQ==
+X-Gm-Message-State: AJIora89D1Yh4qgeqJc7em8u/Tyo/8qciYIjGgLa8QH7XGijSVytOU+k
+        D+FldT1ril9TOY06Qha3O1EGKzX//4j2HdCbWG10pTDqSKA=
+X-Google-Smtp-Source: AGRyM1uJ8/E8SerdAnJl3f3McgySgrfAOxikx5UkGEHyUZlQA3GOjpCjdWqPyZoanxplGHhTQrvxDsHhBt2MrfSEudI=
+X-Received: by 2002:a05:6808:e87:b0:32e:4789:d2c with SMTP id
+ k7-20020a0568080e8700b0032e47890d2cmr457469oil.193.1657243730587; Thu, 07 Jul
+ 2022 18:28:50 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 7 Jul 2022 18:28:50 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220707213204.2605816-2-dmitry.baryshkov@linaro.org>
+References: <20220707213204.2605816-1-dmitry.baryshkov@linaro.org> <20220707213204.2605816-2-dmitry.baryshkov@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 7 Jul 2022 18:28:50 -0700
+Message-ID: <CAE-0n53zV2OjXxjJ_AwCDcAZvOY+BU0-xipxQkup3muHMRCPXA@mail.gmail.com>
+Subject: Re: [PATCH 1/9] dt-bindings: msm/dp: drop extra p1 region
+To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-07-07 at 10:43 +0200, AngeloGioacchino Del Regno wrote:
-> Il 07/07/22 07:46, Kewei Xu ha scritto:
-> > Add i2c compatible for MT8188. Compare to MT8192 i2c controller,
-> > The MT8188 i2c OFFSET_SLAVE_ADDR register changed from 0x04 to
-> > 0x94.
-> > 
-> > Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-> > ---
-> >   drivers/i2c/busses/i2c-mt65xx.c | 41
-> > +++++++++++++++++++++++++++++++--
-> >   1 file changed, 39 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/i2c/busses/i2c-mt65xx.c
-> > b/drivers/i2c/busses/i2c-mt65xx.c
-> > index 8e6985354fd5..aa2e1cb87420 100644
-> > --- a/drivers/i2c/busses/i2c-mt65xx.c
-> > +++ b/drivers/i2c/busses/i2c-mt65xx.c
-> > @@ -135,6 +135,7 @@ enum mtk_trans_op {
-> >   enum I2C_REGS_OFFSET {
-> >   	OFFSET_DATA_PORT,
-> >   	OFFSET_SLAVE_ADDR,
-> > +	OFFSET_SLAVE_ADDR1,
-> >   	OFFSET_INTR_MASK,
-> >   	OFFSET_INTR_STAT,
-> >   	OFFSET_CONTROL,
-> > @@ -203,6 +204,7 @@ static const u16 mt_i2c_regs_v1[] = {
-> >   static const u16 mt_i2c_regs_v2[] = {
-> >   	[OFFSET_DATA_PORT] = 0x0,
-> >   	[OFFSET_SLAVE_ADDR] = 0x4,
-> > +	[OFFSET_SLAVE_ADDR1] = 0x94,
-> 
-> Instead of adding a "slave addr version" entry... you can as well
-> just define
-> a new array here with an appropriate name.
-> 
-> static const u16 mt_i2c_regs_v3[] = {
-> 
-> .......
-> 
-> }
-> 
-> This way, you don't have to change all of the platform data entries
-> and you
-> also won't have to add checks in the do_transfer function, as that's
-> one of
-> the actual points of having these arrays of register offsets in here.
-> 
-> Regards,
-> Angelo
-> 
+Quoting Dmitry Baryshkov (2022-07-07 14:31:56)
+> The p1 region was probably added by mistake, none of the DTS files
+> provides one (and the driver source code also doesn't use one). Drop it
+> now.
 
-Hi Angelo,
+Yes, looks like the driver doesn't use it.
 
-Thank you very much for your suggestion, I will update the patch as
-soon as possible.
+>
+> Fixes: 687825c402f1 ("dt-bindings: msm/dp: Change reg definition")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index 94bc6e1b6451..d6bbe58ef9e8 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -29,7 +29,6 @@ properties:
+>        - description: aux register block
+>        - description: link register block
+>        - description: p0 register block
+> -      - description: p1 register block
 
-Regards,
-Kewei
-
+The p1 registers exist on sc7180. They start where the example starts,
+at 0xae91400.
