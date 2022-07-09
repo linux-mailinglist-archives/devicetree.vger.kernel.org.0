@@ -2,105 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE1AD56C76E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 08:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0360A56C79D
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jul 2022 08:59:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbiGIGAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jul 2022 02:00:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48096 "EHLO
+        id S229530AbiGIG70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jul 2022 02:59:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbiGIGAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jul 2022 02:00:33 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF728AEF6;
-        Fri,  8 Jul 2022 23:00:30 -0700 (PDT)
+        with ESMTP id S229463AbiGIG7Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jul 2022 02:59:25 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14321581B
+        for <devicetree@vger.kernel.org>; Fri,  8 Jul 2022 23:59:23 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id z12-20020a17090a7b8c00b001ef84000b8bso3869991pjc.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Jul 2022 23:59:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1657346431; x=1688882431;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=nt30bBXYQxj3wIUD5YWrfgOK4r6dcgXbMH9U/4HHkbM=;
-  b=ottRu/Pg7HU9ugdNWN9bIAT2KmcuCbzufXuvsu5bCZCAcSfHB/+PJE7a
-   JOmn/fqSYavffc9B+L323G8Yv2/GFKw1qLjIWSyPNf0kUJ3WTcf4mgPMc
-   QRZeJgXMSF0p87bmNNXJJ0kh9/mhzwbohkfuUlvVwERs7w3ZFR2gJbaHb
-   s=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 08 Jul 2022 23:00:30 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2022 23:00:29 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 8 Jul 2022 23:00:29 -0700
-Received: from hyd-lnxbld559.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 8 Jul 2022 23:00:24 -0700
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     freedreno <freedreno@lists.freedesktop.org>,
-        <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Douglas Anderson" <dianders@chromium.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=v2JtDqU7PzAyB2SSDlLfePiEtPKLL9f+/HdXEE+Jwoo=;
+        b=exz45rNdN6OGsIeYw85nm4PUWJ3RzLAhWcJz1lkU2TlSIt2GFs6MvmPle+u80bkDav
+         H7JmME98HTU4A9Td8f+mGEBCo9NgOTLbSzjJmppPNixIIx0JCZvOTLQCIZikIWKqrJm5
+         tasXrwzVNig2au5F4phDfFlYP8+v1b7YDCF1gf+LEG27Hq92HwlfxHoAxWxzeY9N2Eb3
+         K6YPTm+KDvPgbYZucjPLF+Rfu585a9pHkqXnMY6yUmOgzm5k00juWlD2pXJpUFE49Id6
+         S9PC+wfkAdxDI2hLWxY1UxTI5eeGOxTBwiy8uLZJYzL8AG35bQA3Ghe2xXOTehSVkzot
+         m6OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=v2JtDqU7PzAyB2SSDlLfePiEtPKLL9f+/HdXEE+Jwoo=;
+        b=RCvxW+PCW0QDOrK0MBkmM/8rZzhcxrViEsjG46zg/NxIupB5ka1anM8CkHdCnq2v3R
+         TQU3lj2Jcc8sjPJO2uqtyAFHfvqhIsuMx9fULfxKQL8TzA18PIVnm841wf6jXmPZtbTW
+         wyAxspCiDERQZgFbY6DeAlnBJyJInTB6D+7sjNGFYkJGPG2oiu8qUMKU5DffR04mLYH3
+         bQbz2+/Z9O92bsfgYxvB90F2FQOLXQevfr0LwrFQRM/83fBcwKAApt5dKt1wgsULF7/t
+         czkTg06DqVIBMXSxFRCH5P6yzT8kOJjTr7v4eq8jnuW4PgxmXSy9YOwmLXgSHohWW/i5
+         rAnw==
+X-Gm-Message-State: AJIora/gtuN9DGEhS63s3tYQstkUnzhAU11oI33pwvQm94dVZAf+OdFR
+        STYnFuH0Jsi2vUILi2PsG9mF
+X-Google-Smtp-Source: AGRyM1sKrq68wBrf9KtKf3ais8QIG3+D1Tgd3uJYC49Y5GDpBr58MdEbeGU/o3gzIOnNa/Wuo4ioVA==
+X-Received: by 2002:a17:902:c992:b0:16b:d8b9:1c5f with SMTP id g18-20020a170902c99200b0016bd8b91c5fmr7440408plc.93.1657349963239;
+        Fri, 08 Jul 2022 23:59:23 -0700 (PDT)
+Received: from thinkpad ([117.207.26.140])
+        by smtp.gmail.com with ESMTPSA id t123-20020a625f81000000b0052842527052sm711612pfb.189.2022.07.08.23.59.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Jul 2022 23:59:22 -0700 (PDT)
+Date:   Sat, 9 Jul 2022 12:29:15 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 5/7] arm64: dts: qcom: sc7280: Update gpu register list
-Date:   Sat, 9 Jul 2022 11:29:33 +0530
-Message-ID: <20220709112837.v2.5.I7291c830ace04fce07e6bd95a11de4ba91410f7b@changeid>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1657346375-1461-1-git-send-email-quic_akhilpo@quicinc.com>
-References: <1657346375-1461-1-git-send-email-quic_akhilpo@quicinc.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Add lost ranges for timer
+Message-ID: <20220709065915.GG5063@thinkpad>
+References: <20220707160858.3178771-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220707160858.3178771-1-bjorn.andersson@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update gpu register array with gpucc memory region.
+On Thu, Jul 07, 2022 at 09:08:58AM -0700, Bjorn Andersson wrote:
+> The timer node needs ranges specified to map the 1-cell children to the
+> 2-cell address range used in /soc. This addition never made it into the
+> patch that was posted and merged, so add it now.
+> 
+> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 2bdb42c88311..37a4cd6f85b6 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -1667,6 +1667,7 @@ timer@17c20000 {
+>  			reg = <0x0 0x17c20000 0x0 0x1000>;
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> +			ranges = <0 0 0 0x20000000>;
 
-Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
----
+Even though this looks correct, I'm wondering why other SoCs are defining the
+child addresses in 2 cells. I don't think the timer frames can go beyond 32bit
+address space. Should we fix them too?
 
-(no changes since v1)
+But for this patch,
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index e66fc67..defdb25 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2228,10 +2228,12 @@
- 			compatible = "qcom,adreno-635.0", "qcom,adreno";
- 			reg = <0 0x03d00000 0 0x40000>,
- 			      <0 0x03d9e000 0 0x1000>,
--			      <0 0x03d61000 0 0x800>;
-+			      <0 0x03d61000 0 0x800>,
-+			      <0 0x03d90000 0 0x2000>;
- 			reg-names = "kgsl_3d0_reg_memory",
- 				    "cx_mem",
--				    "cx_dbgc";
-+				    "cx_dbgc",
-+				    "gpucc";
- 			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
- 			iommus = <&adreno_smmu 0 0x401>;
- 			operating-points-v2 = <&gpu_opp_table>;
+Thanks,
+Mani
+
+>  
+>  			frame@17c21000 {
+>  				frame-number = <0>;
+> -- 
+> 2.35.1
+> 
+
 -- 
-2.7.4
-
+மணிவண்ணன் சதாசிவம்
