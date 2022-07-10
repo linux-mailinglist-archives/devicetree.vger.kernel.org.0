@@ -2,48 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E9456CC3C
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 04:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B948956CC46
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 04:11:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229599AbiGJCK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jul 2022 22:10:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52014 "EHLO
+        id S229652AbiGJCLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jul 2022 22:11:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiGJCKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jul 2022 22:10:55 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70DA1183E;
-        Sat,  9 Jul 2022 19:10:54 -0700 (PDT)
+        with ESMTP id S229640AbiGJCLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jul 2022 22:11:07 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBB224BCB;
+        Sat,  9 Jul 2022 19:11:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1657419054; x=1688955054;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=uW1jS+BRiXZVZbi8yQzbARgtbNZKh0+8LZgKUM2kDGE=;
-  b=cczqFFDOIHbq6s4+0QGFmnkapv+uneIIQuuU6KyCPgCS+WCI/4rPjt6U
-   cbexJKOvkk+y6nfNlgxb6ndk5QwVM1KjyzfpkQKFWvrz0xDVbr0f3VrJ/
-   7NnZijLzbGGLMhTKDM20QjiaAVpyDznTl7IOn0MFfM4sg5ToM/pBGo9vu
-   4=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 09 Jul 2022 19:10:54 -0700
+  t=1657419065; x=1688955065;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version;
+  bh=I5Y6EMVxCmQ/ALz9qfTIK1V6M44BTG87gCsPOKgJ5Jk=;
+  b=CaoPLKeE8ODNYDbG9r8SfTNd5Kx9GUd5TUWs/qLKskUyCmdnzxKxamhD
+   c+Qs77tvdUg8zf2n02YSd0pQQoMz/wCTLsjbPA4WulNVOrVxxbShs6QnK
+   t+YkzbPyioCgacDzAZyvGYoB6PO6xjMi/sK+kblgqZsDg3soZmqR5cPDt
+   k=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 09 Jul 2022 19:11:05 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jul 2022 19:10:52 -0700
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jul 2022 19:11:04 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sat, 9 Jul 2022 19:10:51 -0700
+ 15.2.986.22; Sat, 9 Jul 2022 19:11:03 -0700
 Received: from jinlmao-gv.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sat, 9 Jul 2022 19:10:46 -0700
+ 15.2.986.22; Sat, 9 Jul 2022 19:10:59 -0700
 From:   Mao Jinlong <quic_jinlmao@quicinc.com>
 To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
         Suzuki K Poulose <suzuki.poulose@arm.com>,
         Alexander Shishkin <alexander.shishkin@linux.intel.com>,
         Konrad Dybcio <konradybcio@gmail.com>,
         Mike Leach <mike.leach@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 CC:     Mao Jinlong <quic_jinlmao@quicinc.com>,
@@ -57,11 +56,14 @@ CC:     Mao Jinlong <quic_jinlmao@quicinc.com>,
         "Tao Zhang" <quic_taozha@quicinc.com>,
         Trilok Soni <quic_tsoni@quicinc.com>,
         "Hao Zhang" <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>
-Subject: [PATCH v12 0/9] Coresight: Add support for TPDM and TPDA
-Date:   Sun, 10 Jul 2022 10:10:23 +0800
-Message-ID: <20220710021032.27455-1-quic_jinlmao@quicinc.com>
+        <linux-arm-msm@vger.kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>
+Subject: [PATCH v12 3/9] dt-bindings: arm: Adds CoreSight TPDM hardware definitions
+Date:   Sun, 10 Jul 2022 10:10:26 +0800
+Message-ID: <20220710021032.27455-4-quic_jinlmao@quicinc.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220710021032.27455-1-quic_jinlmao@quicinc.com>
+References: <20220710021032.27455-1-quic_jinlmao@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
@@ -77,136 +79,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds support for the trace performance monitoring and
-diagnostics hardware (TPDM and TPDA). It is composed of two major
-elements.
-a) Changes for original coresight framework to support for TPDM and TPDA.
-b) Add driver code for TPDM and TPDA.
+Adds new coresight-tpdm.yaml file describing the bindings required
+to define tpdm in the device trees.
 
-Introduction of changes for original coresight framework
-Support TPDM as new coresight source.
-Since only STM and ETM are supported as coresight source originally.
-TPDM is a newly added coresight source. We need to change
-the original way of saving coresight path to support more types source
-for coresight driver.
-The following patch is to add support more coresight sources.
-    coresight: core: Use IDR for non-cpu bound sources' paths.
-
-Introduction of TPDM and TPDA
-TPDM - The trace performance monitoring and diagnostics monitor or TPDM in
-short serves as data collection component for various dataset types
-specified in the QPMDA(Qualcomm performance monitoring and diagnostics
-architecture) spec. The primary use case of the TPDM is to collect data
-from different data sources and send it to a TPDA for packetization,
-timestamping and funneling.
-     Coresight: Add coresight TPDM source driver
-     dt-bindings: arm: Adds CoreSight TPDM hardware definitions
-     coresight-tpdm: Add DSB dataset support
-     coresight-tpdm: Add integration test support
-     docs: sysfs: coresight: Add sysfs ABI documentation for TPDM
-
-TPDA - The trace performance monitoring and diagnostics aggregator or
-TPDA in short serves as an arbitration and packetization engine for the
-performance monitoring and diagnostics network as specified in the QPMDA
-(Qualcomm performance monitoring and diagnostics architecture)
-specification. The primary use case of the TPDA is to provide
-packetization, funneling and timestamping of Monitor data as specified
-in the QPMDA specification.
-The following patch is to add driver for TPDA.
-     Coresight: Add TPDA link driver
-     dt-bindings: arm: Adds CoreSight TPDA hardware definitions
-
-The last patch of this series is a device tree modification, which add
-the TPDM and TPDA configuration to device tree for validating.
-    ARM: dts: msm: Add coresight components for SM8250
-    ARM: dts: msm: Add tpdm mm/prng for sm8250
-
-Once this series patches are applied properly, the tpdm and tpda nodes
-should be observed at the coresight path /sys/bus/coresight/devices
-e.g.
-/sys/bus/coresight/devices # ls -l | grep tpd
-tpda0 -> ../../../devices/platform/soc@0/6004000.tpda/tpda0
-tpdm0 -> ../../../devices/platform/soc@0/6c08000.mm.tpdm/tpdm0
-
-We can use the commands are similar to the below to validate TPDMs.
-Enable coresight sink first.
-
-echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
-echo 1 > /sys/bus/coresight/devices/tpdm0/enable_source
-echo 1 > /sys/bus/coresight/devices/tpdm0/integration_test
-echo 2 > /sys/bus/coresight/devices/tpdm0/integration_test
-The test data will be collected in the coresight sink which is enabled.
-If rwp register of the sink is keeping updating when do
-integration_test (by cat tmc_etf0/mgmt/rwp), it means there is data
-generated from TPDM to sink.
-
-There must be a tpda between tpdm and the sink. When there are some
-other trace event hw components in the same HW block with tpdm, tpdm
-and these hw components will connect to the coresight funnel. When
-there is only tpdm trace hw in the HW block, tpdm will connect to
-tpda directly.
-  
-    +---------------+                +-------------+
-    |  tpdm@6c08000 |                |tpdm@684C000 |
-    +-------|-------+                +------|------+
-            |                               |
-    +-------|-------+                       |
-    | funnel@6c0b000|                       |
-    +-------|-------+                       |
-            |                               |
-    +-------|-------+                       |
-    |funnel@6c2d000 |                       |
-    +-------|-------+                       |
-            |                               |
-            |    +---------------+          |
-            +----- tpda@6004000  -----------+
-                 +-------|-------+
-                         |
-                 +-------|-------+
-                 |funnel@6005000 |
-                 +---------------+
-
-This patch series depends on patch series:
-"[v2,00/13] coresight: Add new API to allocate trace source ID values"
-https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220704081149.16797-1-mike.leach@linaro.org/
-
-Changes from V11:
-1. Clear bits for atid before setting them and relese atid when tpda
-remove. -- Suzuki K Poulose <suzuki.poulose@arm.com>
-
-Mao Jinlong (9):
-  coresight: core: Use IDR for non-cpu bound sources' paths.
-  Coresight: Add coresight TPDM source driver
-  dt-bindings: arm: Adds CoreSight TPDM hardware definitions
-  coresight-tpdm: Add DSB dataset support
-  coresight-tpdm: Add integration test support
-  Coresight: Add TPDA link driver
-  dt-bindings: arm: Adds CoreSight TPDA hardware definitions
-  arm64: dts: qcom: sm8250: Add coresight components
-  arm64: dts: qcom: sm8250: Add tpdm mm/prng
-
- .../testing/sysfs-bus-coresight-devices-tpdm  |  13 +
- .../bindings/arm/qcom,coresight-tpda.yaml     | 111 +++
- .../bindings/arm/qcom,coresight-tpdm.yaml     |  93 +++
- MAINTAINERS                                   |   2 +
- arch/arm64/boot/dts/qcom/sm8250.dtsi          | 671 ++++++++++++++++++
- drivers/hwtracing/coresight/Kconfig           |  23 +
- drivers/hwtracing/coresight/Makefile          |   2 +
- drivers/hwtracing/coresight/coresight-core.c  |  42 +-
- drivers/hwtracing/coresight/coresight-tpda.c  | 208 ++++++
- drivers/hwtracing/coresight/coresight-tpda.h  |  35 +
- drivers/hwtracing/coresight/coresight-tpdm.c  | 259 +++++++
- drivers/hwtracing/coresight/coresight-tpdm.h  |  62 ++
- include/linux/coresight.h                     |   1 +
- 13 files changed, 1510 insertions(+), 12 deletions(-)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
- create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+Reviewed-by: Mike Leach <mike.leach@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+---
+ .../bindings/arm/qcom,coresight-tpdm.yaml     | 93 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 94 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
- create mode 100644 drivers/hwtracing/coresight/coresight-tpda.c
- create mode 100644 drivers/hwtracing/coresight/coresight-tpda.h
- create mode 100644 drivers/hwtracing/coresight/coresight-tpdm.c
- create mode 100644 drivers/hwtracing/coresight/coresight-tpdm.h
 
+diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+new file mode 100644
+index 000000000000..5881cb41da70
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/qcom,coresight-tpdm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Trace, Profiling and Diagnostics Monitor - TPDM
++
++description: |
++  The TPDM or Monitor serves as data collection component for various dataset
++  types specified in the QPMDA spec. It covers Implementation defined ((ImplDef),
++  Basic Counts (BC), Tenure Counts (TC), Continuous Multi-Bit (CMB), and Discrete
++  Single Bit (DSB). It performs data collection in the data producing clock
++  domain and transfers it to the data collection time domain, generally ATB
++  clock domain.
++
++  The primary use case of the TPDM is to collect data from different data
++  sources and send it to a TPDA for packetization, timestamping, and funneling.
++
++maintainers:
++  - Mao Jinlong <quic_jinlmao@quicinc.com>
++  - Tao Zhang <quic_taozha@quicinc.com>
++
++# Need a custom select here or 'arm,primecell' will match on lots of nodes
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - qcom,coresight-tpdm
++  required:
++    - compatible
++
++properties:
++  $nodename:
++    pattern: "^tpdm(@[0-9a-f]+)$"
++  compatible:
++    items:
++      - const: qcom,coresight-tpdm
++      - const: arm,primecell
++
++  reg:
++    minItems: 1
++    maxItems: 2
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: apb_pclk
++
++  out-ports:
++    description: |
++      Output connections from the TPDM to coresight funnel/TPDA.
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port:
++        description: Output connection from the TPDM to coresight
++            funnel/TPDA.
++        $ref: /schemas/graph.yaml#/properties/port
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  # minimum TPDM definition. TPDM connect to coresight TPDA.
++  - |
++    tpdm@684c000 {
++      compatible = "qcom,coresight-tpdm", "arm,primecell";
++      reg = <0x0684c000 0x1000>;
++
++      clocks = <&aoss_qmp>;
++      clock-names = "apb_pclk";
++
++      out-ports {
++        port {
++          tpdm_prng_out_tpda_qdss: endpoint {
++            remote-endpoint =
++              <&tpda_qdss_in_tpdm_prng>;
++          };
++        };
++      };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 926bdf8ac096..db7f70be6850 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1985,6 +1985,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/coresight/linux.git
+ F:	Documentation/ABI/testing/sysfs-bus-coresight-devices-*
+ F:	Documentation/devicetree/bindings/arm/coresight-cpu-debug.txt
+ F:	Documentation/devicetree/bindings/arm/coresight-cti.yaml
++F:	Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+ F:	Documentation/devicetree/bindings/arm/coresight.txt
+ F:	Documentation/devicetree/bindings/arm/ete.yaml
+ F:	Documentation/devicetree/bindings/arm/trbe.yaml
 -- 
 2.17.1
 
