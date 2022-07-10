@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF33656CDEE
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 10:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 614B356CE0B
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 10:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbiGJIlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 04:41:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53640 "EHLO
+        id S229571AbiGJIwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 04:52:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbiGJIlq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 04:41:46 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F9D18E1E
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 01:41:45 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id e12so4237349lfr.6
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 01:41:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=N4gY91CPZ/PGGuxbinA0CxZ2MaeVa3+8PjzZmiOKRO8=;
-        b=jYr6pCfUPS/qJhudBzz24iWmIWajwKLSIUSXcwgZoSAgfH3r89LPoQ3BwV4cMMyBYj
-         3rh2nBvU7quqA+uvde8cqW54OV9G3ZjbXeVkwGoPCsAN80wX7DwZcE5XCb5oR08KJhxx
-         wEI6TLGhZr+VghQ4UzcTizoOH4JIdRLq69gJm52Mqbxlz36nwklgM32iDeWHsElcYEqR
-         17ceEjhAPVcwlMMyvluN6OqWx8ga7An6zrYNsgQb6SrX5LyMpwjWJTu5dtpXKprRwZi0
-         Ne0iYsKkitKHCaMf7nyjC8h8/iyDLCE1hYKLfmOPoZyLnffxrinIzPB8X147915GZ5dE
-         93HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=N4gY91CPZ/PGGuxbinA0CxZ2MaeVa3+8PjzZmiOKRO8=;
-        b=Iwhwi+qWOE3z18hceKiZyQk3ZxrVJNbqeN9Buaqoyia/nHUCviVhtu9f0ESRnkUbkH
-         N1aCyKZPqOlbLSLAFvU1jsmlYsIX7ez1X7dXieleulprSnXAwnVdcV55ZLvuuGTx4DZr
-         NAH/GaSUDPDjXRwgC1tmjfnXD/26BTr9AtvHNqJM9zwvQBWgoj4c+qaJspnrCDbmUrVt
-         qzj3l9dOyL1kNBtfpJ7GxYbzE/lcj2i5xq5kUJbrwWZGVpIVHg2JJO638IFaL4o/qmn+
-         lYqyOQJ1ZGwltNmI7pMk3b2WeNd9KqxgXibPGu4ZEA5VXwHSzaqgo48HzzY6xiX3Z7Fp
-         qsOw==
-X-Gm-Message-State: AJIora9Dti/8sX9GjNYss26OabxdAmjVdcQ6G/Ku2rN9hvSYHskAivlM
-        uCHpGDZcyeLL3WwkACJ6gp/IGA==
-X-Google-Smtp-Source: AGRyM1vKaySEQME7bXBJfZqWkklO83eim1cErMgSEEh2MVcu134scwwIFDyR7zNIYHpefhUh8tmmnQ==
-X-Received: by 2002:a05:6512:398b:b0:489:d94b:f56 with SMTP id j11-20020a056512398b00b00489d94b0f56mr1468043lfu.199.1657442504882;
-        Sun, 10 Jul 2022 01:41:44 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id i21-20020a2ea235000000b0025d4addbad4sm912536ljm.91.2022.07.10.01.41.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Jul 2022 01:41:44 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        with ESMTP id S229450AbiGJIwn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 04:52:43 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40A7913E33;
+        Sun, 10 Jul 2022 01:52:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DCDACB8068F;
+        Sun, 10 Jul 2022 08:52:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 676E7C3411E;
+        Sun, 10 Jul 2022 08:52:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657443159;
+        bh=1EGLFs5068J3AvAww5yO3QnC+XHUfwkOCvD6Fp6aLrk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=jyhNIKUsHwDrtkxy8zObw3u1fDFPvNx56sEuGC2qvhYXGzhMsV/uG8CRtRSxdEpC+
+         F7eyGOu9sSkklxjnBi42t6J+aet3bUKC37hZpSb8oymnofyBD1WqBP58GNIMnZxtcW
+         2td8i/+mOWwjyGPYl9yXdos8/1CqzN0nChWLkYeG/2rJmo7Ptt796cTBoximyUHCgu
+         CueZzblhXPKn7Q3ijymjDfoz8N8SP2FfHzIsnPLnK7HD191Bmq4o2HE2PbAngRXvp2
+         LGnCEtAdhOLfQJL6AAIaRxd23UmoOI/foOVaDCX2e3dv9X+kn5QUDTqFXtIRJ+ZaGd
+         u7fL1kCcnjpXw==
+Received: from [213.208.244.172] (helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oASg9-006SB8-8o;
+        Sun, 10 Jul 2022 09:52:37 +0100
+Date:   Sun, 10 Jul 2022 09:52:36 +0100
+Message-ID: <87pmidl57v.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>
-Subject: [PATCH v2 9/9] dt-bindings: msm/dp: handle DP vs eDP difference
-Date:   Sun, 10 Jul 2022 11:41:33 +0300
-Message-Id: <20220710084133.30976-10-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
-References: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v8 4/6] gpio: gpiolib: Allow free() callback to be overridden
+In-Reply-To: <CAMRc=MdJDwMSHjWd1dUjVp72fRU+_MGKcr=F-HCOzr8KaUoWDw@mail.gmail.com>
+References: <20220707182314.66610-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220707182314.66610-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <CAMRc=MdJDwMSHjWd1dUjVp72fRU+_MGKcr=F-HCOzr8KaUoWDw@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 213.208.244.172
+X-SA-Exim-Rcpt-To: brgl@bgdev.pl, prabhakar.csengg@gmail.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be, linus.walleij@linaro.org, p.zabel@pengutronix.de, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,65 +78,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The #sound-dai-cells property should be used only for DP controllers. It
-doesn't make sense for eDP, there is no support for audio output. The
-aux-bus should not be used for DP controllers. Also p1 MMIO region
-should be used only for DP controllers.
+On Fri, 08 Jul 2022 16:52:21 +0100,
+Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> 
+> On Thu, Jul 7, 2022 at 8:24 PM <prabhakar.csengg@gmail.com> wrote:
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Allow free() callback to be overridden from irq_domain_ops for
+> > hierarchical chips.
+> >
+> > This allows drivers to free up resources which are allocated during
+> > child_to_parent_hwirq()/populate_parent_alloc_arg() callbacks.
+> >
+> > On Renesas RZ/G2L platform a bitmap is maintained for TINT slots, a slot
+> > is allocated in child_to_parent_hwirq() callback which is freed up in free
+> > callback hence this override.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> >  drivers/gpio/gpiolib.c | 9 ++++++---
+> >  1 file changed, 6 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+> > index bfde94243752..68d9f95d7799 100644
+> > --- a/drivers/gpio/gpiolib.c
+> > +++ b/drivers/gpio/gpiolib.c
+> > @@ -1181,15 +1181,18 @@ static void gpiochip_hierarchy_setup_domain_ops(struct irq_domain_ops *ops)
+> >         ops->activate = gpiochip_irq_domain_activate;
+> >         ops->deactivate = gpiochip_irq_domain_deactivate;
+> >         ops->alloc = gpiochip_hierarchy_irq_domain_alloc;
+> > -       ops->free = irq_domain_free_irqs_common;
+> >
+> >         /*
+> > -        * We only allow overriding the translate() function for
+> > +        * We only allow overriding the translate() and free() functions for
+> >          * hierarchical chips, and this should only be done if the user
+> > -        * really need something other than 1:1 translation.
+> > +        * really need something other than 1:1 translation for translate()
+> > +        * callback and free if user wants to free up any resources which
+> > +        * were allocated during callbacks, for example populate_parent_alloc_arg.
+> >          */
+> >         if (!ops->translate)
+> >                 ops->translate = gpiochip_hierarchy_irq_domain_translate;
+> > +       if (!ops->free)
+> > +               ops->free = irq_domain_free_irqs_common;
+> >  }
+> >
+> >  static int gpiochip_hierarchy_add_domain(struct gpio_chip *gc)
+> > --
+> > 2.25.1
+> >
+> 
+> Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+> 
+> Which tree is this targetting?
+> 
 
-Take care of these differences.
+Given the various dependencies, I've created a stable branch[1] on top
+of -rc3, and merged the whole thing into irq/irqchip-next.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../bindings/display/msm/dp-controller.yaml   | 26 ++++++++++++++++++-
- 1 file changed, 25 insertions(+), 1 deletion(-)
+Feel free to pull the branch in the GPIO tree as well.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-index 52cbf00df0ba..f2515af8256f 100644
---- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-@@ -24,6 +24,7 @@ properties:
-       - qcom,sm8350-dp
- 
-   reg:
-+    minItems: 4
-     items:
-       - description: ahb register block
-       - description: aux register block
-@@ -112,10 +113,33 @@ required:
-   - clock-names
-   - phys
-   - phy-names
--  - "#sound-dai-cells"
-   - power-domains
-   - ports
- 
-+allOf:
-+  # AUX BUS does not exist on DP controllers
-+  # Audio output also is present only on DP output
-+  # p1 regions is present on DP, but not on eDP
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sc7280-edp
-+              - qcom,sc8180x-edp
-+    then:
-+      properties:
-+        "#sound-dai-cells": false
-+        reg:
-+          maxItems: 4
-+    else:
-+      properties:
-+        aux-bus: false
-+        reg:
-+          minItems: 5
-+      required:
-+        - "#sound-dai-cells"
-+
- additionalProperties: false
- 
- examples:
+Thanks,
+
+	M.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms.git/log/?h=irq/renesas-irqc
+
 -- 
-2.35.1
-
+Without deviation from the norm, progress is not possible.
