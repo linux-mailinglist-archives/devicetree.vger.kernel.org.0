@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A71756CDDD
+	by mail.lfdr.de (Postfix) with ESMTP id DC32B56CDDF
 	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 10:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229594AbiGJIll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 04:41:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53412 "EHLO
+        id S229547AbiGJIlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 04:41:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbiGJIlj (ORCPT
+        with ESMTP id S229595AbiGJIlj (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 04:41:39 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E63018E1E
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD11D18B0A
         for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 01:41:38 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id e12so4237093lfr.6
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 01:41:37 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id u14so3032100ljh.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 01:41:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=0RS04L3t2B9fDxy6bqcgfJbhi5mc1B07nUo3XEHnZLI=;
-        b=eT0dBRFTsi6+MKJcfryHjQtRpNGIuEQUaOdgTzTP4lSTRfBNsed2GY+0l7K92llRQT
-         t70V5Dt8wZI2B4I+yjnOy+HMoHYAp60aySfT49Z3rx4JqutUW2xx3PsIw2hvAvgn5b/L
-         sKrsEmc5tFoXgbHdsupyVJuxcdjJi8nuYqGeZ04rsOqMi+xoqqn9E9XrrC0Alq4O6l0L
-         /ve16DHUDmC5TTDH8tyWRseIFO0wwH6nWF2bhoQ5v3vqXpLOEYqoovMGEEvmqJbx7sP7
-         teQu1ZeiEtprQfnEgyLuvDoZN1BhvA9CDcuQX95OMynxlCE24DXk5uucv/p9bDefTwRh
-         4Vkg==
+        bh=7M3y/J4ATzgpaOrUJ14mMptYBHdlqkPMj1D3F6zPoH4=;
+        b=cH002AB92AASL9wrQ5HxkfCa6l25MS5KotB317WZgLYyFbYY7PtrWaswbjbokpxtE0
+         SlR3+x8WxzRH0oTX1am2pz/YVj2TJyRIntMHEVJP08zV7/BcsLa44o43EPN+vdXqgR64
+         pxOZH2IcIW2KaAOM9Xlfpmi3DG3E/DMGYM/zhIxJmb8zOMLDO9ymiEqKBSBi9y8TkeZA
+         8yYOCWdFhb0wBUTu8gan61Ib1Uy+oNnhlzxZPaUaofkWQj7akL/0zFkq35pUCm170g3L
+         JhTOjDJuX2EDADtrNiLbajb1Sa2VQo61pCmJGKN3SIjq+jiIRcJ9RjlamPXho0fO9R/G
+         OZ1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=0RS04L3t2B9fDxy6bqcgfJbhi5mc1B07nUo3XEHnZLI=;
-        b=2wlaHrPw178wQMfWkVchrrtzVRdOChs6qYS7ODgMz+s6RiXeRzevLzZq95DhqXJScG
-         8EdGxNnUR9M6ktjUmZASACt1Y0y9Vpe79+V+eNZoTTOHf2SRgi8c7RSvuxuXHkliRVVu
-         2HDwEptdWqSAjNi3cfZ7k+p0sKVJwD5ZsS6rJ6jvVOaV6A623I/no37gf4vOc0io43Z2
-         Fuglnhkp1flgQxV5Y0xTG587bmouJyN73Nv3YpdesgA17e+JE1A7hYzgzhTxR9B1Hft9
-         m/S48ChDyrRht+wTfeIAlcxKHbgMZZ12xqQGG2M2HiIlpkd+DD3Jpua2HUnWzP3JmJIR
-         i4Xw==
-X-Gm-Message-State: AJIora+ojxLFB/reTfPlzQFsA76D87ecASZVsO0i7dlACTgHLvU3VfOX
-        8oTCCfWNzg+DIJA+snc2e2OZtbHdG8t52w==
-X-Google-Smtp-Source: AGRyM1t+2cUnkeU4pfWfOR5f6jc/0AReGSLWhak70YmTyaCnmL/bCnDil/M3r1cKsxc4M8oiMsuvNA==
-X-Received: by 2002:a05:6512:3995:b0:489:d974:33d3 with SMTP id j21-20020a056512399500b00489d97433d3mr1302885lfu.458.1657442496336;
-        Sun, 10 Jul 2022 01:41:36 -0700 (PDT)
+        bh=7M3y/J4ATzgpaOrUJ14mMptYBHdlqkPMj1D3F6zPoH4=;
+        b=6uWWQu8KabPjwQvX7OdwD5HGPupZVhsMrHkJd20Gy+u2llHMja81aQCNZFqozyUV02
+         WEAaf1nuu5RNHBPO5WImSMG24loERypthxUBCpQ03JcSLGB5D6XYcr6XSlLz8XpXjSZ3
+         cDvLU1D2qcPaEqMgpoitgSggfMhpB0bnR94amEmUNkdw+zF/GlVN9gdTjkhUp7X+uDVE
+         I/byXt+TZqleAnkO1mQohrN1k5Z4w6u9Tw/A12fTLF3jUI/bomGT+PU6EDVqb91KNQUV
+         om+ssoxRvsaSGCFYeSCMGX+E4IX1jKQ+w0Kz7dFjZrVHXg3gIhpgwSm336lclnZCcMgk
+         lMNg==
+X-Gm-Message-State: AJIora82Njohfn2v9mP8F/JsaPEL306u6Vbb7GKjTPRixDL5HzDt6rrY
+        lauzT8sRwrqzSPHyPYNTg4Wvuw==
+X-Google-Smtp-Source: AGRyM1sl9NGcTZmyumXtmZ2RVVLDVy2Mq/fdERhaARyqxx6aJwhnlr2/a6sqie0ewZ8peKHzAcxh0w==
+X-Received: by 2002:a05:651c:248:b0:25d:4f99:683d with SMTP id x8-20020a05651c024800b0025d4f99683dmr7040851ljn.366.1657442497254;
+        Sun, 10 Jul 2022 01:41:37 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id i21-20020a2ea235000000b0025d4addbad4sm912536ljm.91.2022.07.10.01.41.35
+        by smtp.gmail.com with ESMTPSA id i21-20020a2ea235000000b0025d4addbad4sm912536ljm.91.2022.07.10.01.41.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Jul 2022 01:41:35 -0700 (PDT)
+        Sun, 10 Jul 2022 01:41:36 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -61,9 +61,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org,
         Kuogee Hsieh <quic_khsieh@quicinc.com>
-Subject: [PATCH v2 1/9] arm64: dts: qcom: sc7180: split register block for DP controller
-Date:   Sun, 10 Jul 2022 11:41:25 +0300
-Message-Id: <20220710084133.30976-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 2/9] arm64: dts: qcom: sc7180: drop #clock-cells from displayport-controller
+Date:   Sun, 10 Jul 2022 11:41:26 +0300
+Message-Id: <20220710084133.30976-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
 References: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
@@ -71,7 +71,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,33 +79,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Follow the schema for the DP controller and declare 5 register regions
-instead of using a single region for all the registers. Note, this
-extends the dts by adding p1 region to the DP node (to be used for DP
-MST).
+Drop #clock-cells from DP device node. It is a leftover from the times
+before splitting the device into controller and PHY devices. Now the
+clocks are provided by the PHY, while the controller doesn't provide any
+clocks.
 
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 47ce5787ed5b..875808cf0614 100644
+index 875808cf0614..72994f599825 100644
 --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3080,7 +3080,11 @@ mdss_dp: displayport-controller@ae90000 {
- 				compatible = "qcom,sc7180-dp";
- 				status = "disabled";
- 
--				reg = <0 0x0ae90000 0 0x1400>;
-+				reg = <0 0xae90000 0 0x200>,
-+				      <0 0xae90200 0 0x200>,
-+				      <0 0xae90400 0 0xc00>,
-+				      <0 0xae91000 0 0x400>,
-+				      <0 0xae91400 0 0x400>;
- 
- 				interrupt-parent = <&mdss>;
- 				interrupts = <12>;
+@@ -3096,7 +3096,6 @@ mdss_dp: displayport-controller@ae90000 {
+ 					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
+ 				clock-names = "core_iface", "core_aux", "ctrl_link",
+ 					      "ctrl_link_iface", "stream_pixel";
+-				#clock-cells = <1>;
+ 				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+ 						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+ 				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
 -- 
 2.35.1
 
