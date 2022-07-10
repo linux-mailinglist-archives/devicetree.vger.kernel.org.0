@@ -2,121 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EC8156CE81
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 12:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CA8556CE89
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 12:21:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbiGJKNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 06:13:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33412 "EHLO
+        id S229515AbiGJKVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 06:21:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbiGJKNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 06:13:37 -0400
-Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com (mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1EAB25E7
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 03:13:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
-         message-id:subject:cc:to:from:date:from;
-        bh=rEJybCJet2Hivh6qA8E5QBR15vMK+Pp+penGzDCE/gA=;
-        b=b0/nmvN7DqiX0kkiYxY04bD70tMgShZfdVC9ZJajky7kFm6oMYGrw9ktIezVyQs2+8E4/UZfrKTZY
-         EgAn0iCUHct+pl3z5C8FcUpzhgINhlhnEb0lf20zi9BLshv9OYSLNtm3XVvBe7zNHQ4G1KmOAIi1LS
-         NwnSWdozaKCagsnN85fpy4NWwNyJWxz01jdMaHPDzUm6pvUQ2+58/pmRZVqZ/1Uy3JHjUBZQ43LNMm
-         rxOxzHa6Q1U5odiIYxfS8LvBnVyo+NDQvj8q1PpF6/sXWvy1+e2/9ftqQzVTsUxzDx6rWccZ0wiOlH
-         JCHtPfotFyQzC7EL/6WtRy1uhTRFulg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
-         message-id:subject:cc:to:from:date:from;
-        bh=rEJybCJet2Hivh6qA8E5QBR15vMK+Pp+penGzDCE/gA=;
-        b=zhj7p1kncuTVyhNq25SboIi49TZRRb2yMqScN0famvosUjKTzDGPhMgzllTAHyuGU0B6+UIUM/zKT
-         Z/HbU6wBA==
-X-HalOne-Cookie: c2ff1fd2e92b6addf632218b96cffdd31ae2ce00
-X-HalOne-ID: f17ef01f-0038-11ed-823d-d0431ea8bb10
-Received: from mailproxy4.cst.dirpod3-cph3.one.com (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-        id f17ef01f-0038-11ed-823d-d0431ea8bb10;
-        Sun, 10 Jul 2022 10:13:29 +0000 (UTC)
-Date:   Sun, 10 Jul 2022 12:13:27 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Molly Sophia <mollysophia379@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Add Novatek NT35596S
- panel bindings
-Message-ID: <YsqmRzxlvdoK8iK8@ravnborg.org>
-References: <20220709141136.58298-1-mollysophia379@gmail.com>
- <YsnpXU2w1wsXiGrs@ravnborg.org>
- <CAK0UmJBL9tj+XLa3GQHqk_gMHz9tZRoWEj=3G9zjNaPkZw9+5A@mail.gmail.com>
+        with ESMTP id S229476AbiGJKVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 06:21:24 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2F015DFA7;
+        Sun, 10 Jul 2022 03:21:23 -0700 (PDT)
+Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 3690C1C80FA8;
+        Sun, 10 Jul 2022 18:21:21 +0800 (CST)
+Received: from NTHCML01A.nuvoton.com (10.1.8.177) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Sun, 10 Jul
+ 2022 18:21:21 +0800
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCML01A.nuvoton.com
+ (10.1.8.177) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Sun, 10 Jul
+ 2022 18:21:20 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Sun, 10 Jul 2022 18:21:20 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id C799E63A20; Sun, 10 Jul 2022 13:21:19 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <linus.walleij@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <j.neuschaefer@gmx.net>, <zhengbin13@huawei.com>
+CC:     <openbmc@lists.ozlabs.org>, <linux-gpio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v1 0/2] pinctrl: nuvoton: add pinmux and GPIO driver for NPCM8XX
+Date:   Sun, 10 Jul 2022 13:21:08 +0300
+Message-ID: <20220710102110.39748-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAK0UmJBL9tj+XLa3GQHqk_gMHz9tZRoWEj=3G9zjNaPkZw9+5A@mail.gmail.com>
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Molly,
+This patch set adds pinmux and GPIO controller for the Arbel NPCM8XX 
+Baseboard Management Controller (BMC).
 
-On Sun, Jul 10, 2022 at 02:19:41PM +0800, Molly Sophia wrote:
-> Hi Sam,
-> 
-> Thanks for your suggestions.
-> 
-> Sam Ravnborg <sam@ravnborg.org> 于 2022年7月10日周日 上午4:47写道：
-> 
-> > Hi Molly,
-> >
-> > thanks for the quick response to the review comments.
-> >
-> > On Sat, Jul 09, 2022 at 10:11:35PM +0800, MollySophia wrote:
-> > > Add documentation for "novatek,nt35596s" panel.
-> > >
-> > > Signed-off-by: MollySophia <mollysophia379@gmail.com>
-> > The s-o-b needs your real name - guess the above is a concatenation of
-> > first name and surname.
-> >
-> > The binding included in this patch fails the check:
-> > $ make DT_CHECKER_FLAGS=-m dt_binding_check
-> >
-> > You may need to run:
-> > $ pip3 install dtschema --upgrade
-> >
-> > Or you may have to install some dependencies first.
-> > The problem is that the patch is missing a "reset-gpios: true"
-> >
-> > On top of this I looked at the binding - and the description
-> > this is copied from is almost identical.
-> > So another approach would be to extend the existing binding like
-> > in the following.
-> >
-> > And this also gives a good hint that maybe this can be embedded in
-> > the existing driver - and there is no need for a new driver.
-> > Could you try to give this a spin and get back on this.
-> >
-> 
-> That's reasonable. Actually, this driver was modified from
-> novatek,nt35596s, with different panel initialization commands, and it
-> seems easy to be embedded in
-> the existing driver. However, I wonder what the driver file name would
-> be...? "panel-novatek-nt35596s-nt36672a.c" or something else?
+Arbel BMC NPCM8XX pinctrl driver based on Poleg NPCM7XX, except the
+pin mux mapping difference the NPCM8XX GPIO supports adjust debounce
+period time.
 
-Just keep the current driver name - we cannot embed all the supported HW
-in one driver name anyway. And then you do not break currents users in
-case they have hardwired the current driver name.
+Arbel BMC NPCM8XX Pinmux functions accessible only for pin groups 
+and pin configuration parameters available only for individual pins.
 
-	Sam
+Arbel BMC NPCM8XX has eight identical GPIO modules,
+each module has 32 GPIO ports.
+
+Most of the GPIO ports are multiplexed with other system functions.
+
+The NPCM8XX pinctrl and GPIO driver were tested on NPCM845 evaluation board.
+
+Tomer Maimon (2):
+  dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO documentation
+  pinctrl: nuvoton: add NPCM8XX pinctrl and GPIO driver
+
+ .../pinctrl/nuvoton,npcm845-pinctrl.yaml      |  205 ++
+ drivers/pinctrl/nuvoton/Kconfig               |   13 +
+ drivers/pinctrl/nuvoton/Makefile              |    1 +
+ drivers/pinctrl/nuvoton/pinctrl-npcm8xx.c     | 2634 +++++++++++++++++
+ 4 files changed, 2853 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/nuvoton/pinctrl-npcm8xx.c
+
+-- 
+2.33.0
+
