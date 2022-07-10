@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12BF156CDD9
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 10:41:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A71756CDDD
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 10:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbiGJIlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 04:41:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53370 "EHLO
+        id S229594AbiGJIll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 04:41:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiGJIlj (ORCPT
+        with ESMTP id S229535AbiGJIlj (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 04:41:39 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1408B18E28
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 01:41:36 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id w17so1469949ljh.6
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 01:41:36 -0700 (PDT)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E63018E1E
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 01:41:38 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id e12so4237093lfr.6
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 01:41:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Ng9sE96WrnIx3xQqutYhfh5XLKWJitjlsYB4zzGeV8U=;
-        b=Qsn4LaHSwTMU51F04OesvPJNbPxXD4oMQFLWl/7JxiEGaAJEzqpHUT5+EnoOOlvzMf
-         HREx4aWfGryUUkow99r0JpcNX68syExzCcnhjj2pjpA6h7O4J0tfGX6+DF0Axs4xaW24
-         FxOCj6FxUww5Ya4dk9IyY+qjhItSIoZgeUnCBKFjSu8Qe9PwOFXTjWGbupmsXfXz+MTL
-         9J15KATd74EpxXmcmb/iS5ucRzjm7Fta7y9nGJVkKYz19rtzHMP/HkiIABQSS6g+JAGE
-         tQmsgqku0gZk4r8lScKAKNv8pClXqNxccvr80e9QE6CEevcKCXIrSCeHHzlzLq1mIBHR
-         /BJg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=0RS04L3t2B9fDxy6bqcgfJbhi5mc1B07nUo3XEHnZLI=;
+        b=eT0dBRFTsi6+MKJcfryHjQtRpNGIuEQUaOdgTzTP4lSTRfBNsed2GY+0l7K92llRQT
+         t70V5Dt8wZI2B4I+yjnOy+HMoHYAp60aySfT49Z3rx4JqutUW2xx3PsIw2hvAvgn5b/L
+         sKrsEmc5tFoXgbHdsupyVJuxcdjJi8nuYqGeZ04rsOqMi+xoqqn9E9XrrC0Alq4O6l0L
+         /ve16DHUDmC5TTDH8tyWRseIFO0wwH6nWF2bhoQ5v3vqXpLOEYqoovMGEEvmqJbx7sP7
+         teQu1ZeiEtprQfnEgyLuvDoZN1BhvA9CDcuQX95OMynxlCE24DXk5uucv/p9bDefTwRh
+         4Vkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Ng9sE96WrnIx3xQqutYhfh5XLKWJitjlsYB4zzGeV8U=;
-        b=Ulgs5sT68OILkCVp3OHSimS5vSHAG12QJZqSDcmfgehkFkkTSHqqVg301hpeYDqIu4
-         SbasPkI+ZE5NdWPRf3YwvpLtIZPNpeWtcv++dfyw86q6WiZuGJaTYUPo8B8rspWSgLkG
-         lzBWUElDJzsONOILM1GicATEUfI+yUzbHWbxuKUp2FpoF4upgiXag5iVeufmXIiSVXhZ
-         ZDtleoLM3FK5V+WL6iEaDlJTd0I1gnMsjUlKYBiXCurc1JcjbKKZin+kkeA/8tRzgAIG
-         UW+TkkSxPc3XawBxLEWiquw58rFVocSp6xH8LTirf77ZwajuzmppY6tBWjT0izSEtkQ2
-         ol0g==
-X-Gm-Message-State: AJIora948a7dGa15gx8vv49bO6I2mt4sQfO40QbRrAxKRpqexpVSVZGC
-        fMAHnM1TCrSsfzkVAXBq3PrpjQ==
-X-Google-Smtp-Source: AGRyM1v08aU8P5seYjw/3JLFPxv2a3nAdhwSLebTrqOgrKbenfnMH+mgaHO46Ye5C47bl9zpxFySzQ==
-X-Received: by 2002:a2e:b0d3:0:b0:25d:6888:7c70 with SMTP id g19-20020a2eb0d3000000b0025d68887c70mr913658ljl.244.1657442495285;
-        Sun, 10 Jul 2022 01:41:35 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=0RS04L3t2B9fDxy6bqcgfJbhi5mc1B07nUo3XEHnZLI=;
+        b=2wlaHrPw178wQMfWkVchrrtzVRdOChs6qYS7ODgMz+s6RiXeRzevLzZq95DhqXJScG
+         8EdGxNnUR9M6ktjUmZASACt1Y0y9Vpe79+V+eNZoTTOHf2SRgi8c7RSvuxuXHkliRVVu
+         2HDwEptdWqSAjNi3cfZ7k+p0sKVJwD5ZsS6rJ6jvVOaV6A623I/no37gf4vOc0io43Z2
+         Fuglnhkp1flgQxV5Y0xTG587bmouJyN73Nv3YpdesgA17e+JE1A7hYzgzhTxR9B1Hft9
+         m/S48ChDyrRht+wTfeIAlcxKHbgMZZ12xqQGG2M2HiIlpkd+DD3Jpua2HUnWzP3JmJIR
+         i4Xw==
+X-Gm-Message-State: AJIora+ojxLFB/reTfPlzQFsA76D87ecASZVsO0i7dlACTgHLvU3VfOX
+        8oTCCfWNzg+DIJA+snc2e2OZtbHdG8t52w==
+X-Google-Smtp-Source: AGRyM1t+2cUnkeU4pfWfOR5f6jc/0AReGSLWhak70YmTyaCnmL/bCnDil/M3r1cKsxc4M8oiMsuvNA==
+X-Received: by 2002:a05:6512:3995:b0:489:d974:33d3 with SMTP id j21-20020a056512399500b00489d97433d3mr1302885lfu.458.1657442496336;
+        Sun, 10 Jul 2022 01:41:36 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id i21-20020a2ea235000000b0025d4addbad4sm912536ljm.91.2022.07.10.01.41.34
+        by smtp.gmail.com with ESMTPSA id i21-20020a2ea235000000b0025d4addbad4sm912536ljm.91.2022.07.10.01.41.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Jul 2022 01:41:34 -0700 (PDT)
+        Sun, 10 Jul 2022 01:41:35 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -61,15 +61,17 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org,
         Kuogee Hsieh <quic_khsieh@quicinc.com>
-Subject: [PATCH v2 0/9] dt-bindings: msm/dp: cleanup Qualcomm DP and eDP bidndings
-Date:   Sun, 10 Jul 2022 11:41:24 +0300
-Message-Id: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 1/9] arm64: dts: qcom: sc7180: split register block for DP controller
+Date:   Sun, 10 Jul 2022 11:41:25 +0300
+Message-Id: <20220710084133.30976-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
+References: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,37 +79,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix several issues with the DP and eDP bindings on the Qualcomm
-platforms. While we are at it, fix several small issues with platform
-files declaring these controllers.
+Follow the schema for the DP controller and declare 5 register regions
+instead of using a single region for all the registers. Note, this
+extends the dts by adding p1 region to the DP node (to be used for DP
+MST).
 
-Changes since v1:
- - Reordered patches to cleanup dts first, to remove warnings from DP
-   schema
- - Split DP register blocks in sc7180.dtsi and sc7280.dtsi
- - Cleaned up the p1 register block handling: marked it as required for DP
-   and absent for eDP controllers
- - Dropped unused xo and ref clocks from sc7280-edp node, they belong to
-   eDP PHY.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Dmitry Baryshkov (9):
-  arm64: dts: qcom: sc7180: split register block for DP controller
-  arm64: dts: qcom: sc7180: drop #clock-cells from
-    displayport-controller
-  arm64: dts: qcom: sc7280: split register block for DP controller
-  arm64: dts: qcom: sc7280: drop #clock-cells from
-    displayport-controller
-  arm64: dts: qcom: sc7280: drop address/size-cells from eDP node
-  arm64: dts: qcom: sc7280: drop unused clocks from eDP node
-  dt-bindings: msm/dp: mark vdda supplies as deprecated
-  dt-bindings: msm/dp: add missing properties
-  dt-bindings: msm/dp: handle DP vs eDP difference
-
- .../bindings/display/msm/dp-controller.yaml   | 47 ++++++++++++++++---
- arch/arm64/boot/dts/qcom/sc7180.dtsi          |  7 ++-
- arch/arm64/boot/dts/qcom/sc7280.dtsi          | 19 +++-----
- 3 files changed, 53 insertions(+), 20 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 47ce5787ed5b..875808cf0614 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3080,7 +3080,11 @@ mdss_dp: displayport-controller@ae90000 {
+ 				compatible = "qcom,sc7180-dp";
+ 				status = "disabled";
+ 
+-				reg = <0 0x0ae90000 0 0x1400>;
++				reg = <0 0xae90000 0 0x200>,
++				      <0 0xae90200 0 0x200>,
++				      <0 0xae90400 0 0xc00>,
++				      <0 0xae91000 0 0x400>,
++				      <0 0xae91400 0 0x400>;
+ 
+ 				interrupt-parent = <&mdss>;
+ 				interrupts = <12>;
 -- 
 2.35.1
 
