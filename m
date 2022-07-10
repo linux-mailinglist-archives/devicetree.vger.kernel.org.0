@@ -2,86 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 314CC56CD94
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 08:54:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4EDF56CDB2
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 10:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbiGJGyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 02:54:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43274 "EHLO
+        id S229515AbiGJIUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 04:20:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiGJGyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 02:54:45 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274BD11A1A;
-        Sat,  9 Jul 2022 23:54:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5930FB802C6;
-        Sun, 10 Jul 2022 06:54:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABECCC3411E;
-        Sun, 10 Jul 2022 06:54:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657436082;
-        bh=dIgWepevShkbAZ0ybK1gU7n6t8V0g0Hx8KnDqNkGoW0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=cIQFgZ1AKkjr1HO54I80NKIHxlLrqNHVr7hZnKAmQNb9L9Kvww9TRdhNdx7XhXEi7
-         fMKwm2rLYZ4IDoeAFWxzuJRO4L9DGkd4Ti3GFVeAd3nmuFth7Q58RPT1Dq5VjLAJxl
-         hviBCubVw4RfMqm06gGZqBmAL1LpQ3gjMFZIoVdRhxVeoqUJ1HcBwVeP+4+zYMCNYy
-         guTghwOal0sRX5rsWT+Jq8If1PPFBtmWpDuZOWNjHxgJ81RrVazYvUIMj5C/47cvgC
-         YmRH9/C7DJyth85hJfmDn6+NoxqQMPMoHl/+j/H2VckV6WcPDEqnqNXDWURlqylRPL
-         tansrzKfIdk0w==
-Message-ID: <c12d9017-41bf-ce13-b0f9-93c608c8c67c@kernel.org>
-Date:   Sun, 10 Jul 2022 12:24:37 +0530
+        with ESMTP id S229450AbiGJITm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 04:19:42 -0400
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C4A2BC0E;
+        Sun, 10 Jul 2022 01:19:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1657441146; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=G//ruNJWtc5KB4iy5vkg+oDxYaTZAblTm7aNahnX1lAklnS8eGAkKjdLZpOcPt3N8csTyyHBIGjL5OSxpoArIpLJuzvm8p2Gy9vKFPKmBzu2m5+wfkvXTMFXb0ua+DLOubhyfFL6HzF9+rZedqDPZP5TjEi3vAXfc66HFnhkCLw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1657441146; h=Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=NFS2/32BxwaD6fahAeZc1AfhBJU6/YF1+CjbT7OS85w=; 
+        b=TQfGNYjIhWbat5WkxjQhtlgP4nkoe+soWGB9Tqh6zRPSp9UHKEpScFi66wvqXY55zM37TPJAaLb7UfjyJSWAOGtIcKY1d9Flpa2d+lzxDEpplxXr3zz4uEKEPzGYH8TlvvC8M8gEdotiaM2RVhHQQq2Mt8wX2rrKUIwWp3czFWc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1657441146;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Transfer-Encoding:Reply-To;
+        bh=NFS2/32BxwaD6fahAeZc1AfhBJU6/YF1+CjbT7OS85w=;
+        b=KvRP9GWRsA+WTCougZocM3zTL73ekzM8w95wlu3fxEmAwg4qIRZq4zFRvkHiT1B6
+        wFhaoG/Gr6UUMTxVtU0roRy5Tiu5zaxgpe7gDLfXNepk/+ylWBDPP2x89RjoRI7H7T1
+        iIhPWCegA5wX36tB2Hsxmzq8Myv0Tkx1hyOV10Ns=
+Received: from edelgard.icenowy.me (59.41.163.237 [59.41.163.237]) by mx.zohomail.com
+        with SMTPS id 1657441143425993.9029258752463; Sun, 10 Jul 2022 01:19:03 -0700 (PDT)
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH v2 0/3] Allwinner R329 {R-,}PIO pinctrl support
+Date:   Sun, 10 Jul 2022 16:18:50 +0800
+Message-Id: <20220710081853.1699028-1-uwu@icenowy.me>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] ARM: dts: am335x-baltos: change nand-xfer-type
-Content-Language: en-US
-To:     yegorslists@googlemail.com, linux-omap@vger.kernel.org
-Cc:     tony@atomide.com, devicetree@vger.kernel.org
-References: <20220705122355.14854-1-yegorslists@googlemail.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20220705122355.14854-1-yegorslists@googlemail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yegor,
+This patchset contains support for two pin controllers on Allwinner R329
+one, a CPUX one and a CPUS one (the standby processor on R329 is, in
+fact, a Xtensa DSP), in addition to their bindings.
 
-On 05/07/2022 17:53, yegorslists@googlemail.com wrote:
-> From: Yegor Yefremov <yegorslists@googlemail.com>
-> 
-> Use "prefetch-dma" instead of "polled".
-Does using "polled" still cause the issue while Erasing NAND?
+Icenowy Zheng (3):
+  dt-bindings: pinctrl: document Allwinner R329 PIO and R-PIO
+  pinctrl: sunxi: add support for R329 CPUX pin controller
+  pinctrl: sunxi: add support for R329 R-PIO pin controller
 
-> 
-> Signed-off-by: Yegor Yefremov <yegorslists@googlemail.com>
+ .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml  |   4 +
+ drivers/pinctrl/sunxi/Kconfig                 |  10 +
+ drivers/pinctrl/sunxi/Makefile                |   2 +
+ drivers/pinctrl/sunxi/pinctrl-sun50i-r329-r.c | 293 +++++++++++++
+ drivers/pinctrl/sunxi/pinctrl-sun50i-r329.c   | 412 ++++++++++++++++++
+ 5 files changed, 721 insertions(+)
+ create mode 100644 drivers/pinctrl/sunxi/pinctrl-sun50i-r329-r.c
+ create mode 100644 drivers/pinctrl/sunxi/pinctrl-sun50i-r329.c
 
-Acked-by: Roger Quadros <rogerq@kernel.org>
+-- 
+2.36.0
 
-> ---
->  arch/arm/boot/dts/am335x-baltos.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/am335x-baltos.dtsi b/arch/arm/boot/dts/am335x-baltos.dtsi
-> index d3eafee79a23..6161c8929a78 100644
-> --- a/arch/arm/boot/dts/am335x-baltos.dtsi
-> +++ b/arch/arm/boot/dts/am335x-baltos.dtsi
-> @@ -197,7 +197,7 @@
->  		rb-gpios = <&gpmc 0 GPIO_ACTIVE_HIGH>; /* gpmc_wait0 */
->  		nand-bus-width = <8>;
->  		ti,nand-ecc-opt = "bch8";
-> -		ti,nand-xfer-type = "polled";
-> +		ti,nand-xfer-type = "prefetch-dma";
->  
->  		gpmc,device-nand = "true";
->  		gpmc,device-width = <1>;
