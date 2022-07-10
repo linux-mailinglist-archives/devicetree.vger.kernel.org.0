@@ -2,81 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC4A56CFAC
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 17:12:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 399AF56CFF4
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 18:08:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbiGJPMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 11:12:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35934 "EHLO
+        id S229497AbiGJQIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 12:08:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiGJPMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 11:12:52 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE9BBE28
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 08:12:51 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id w17so2073768ljh.6
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 08:12:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NrSFqXui8IuFWW18AV7BX9JJnZg6RCMbeeOF3ySerrE=;
-        b=QMoJgDgrWpoHgt8V935Yj0tZ7gW3LZdDygouB/iufA4mk/EYDXJyLplXfyn9C8aN3A
-         uIDA0Tu/wnZF2BfBFlpKqh4VyroAYuQZqBcdpiZdNqmtc1Z5K0m7VaZCj9hr+NPEj35l
-         BPUIU1LpogI7MI0Z2g9xvpzLPWDCfvUhqRZswOndvhygeYTuQ8N329fsjMyYoMlPMYqw
-         F5KZ/a6Qya+85rPNA5stUj9xKIurX7xzNqVFP9yMbwrQYxAP3NoSkTUTKHqlfCKkzx6r
-         PnWE30Qp6vO43T+WD+r3zVXt+y24fZZfpGbNtPSRRMTbGF8XcgFbk+cwU5SF+8I8uRG7
-         8q0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=NrSFqXui8IuFWW18AV7BX9JJnZg6RCMbeeOF3ySerrE=;
-        b=R+1NsekHcyEDXLSHrvJrQ9JzlW43gsTOxN9FrcE5T8nV/xCsT0MHIMOiwl/jU1KZnc
-         XNJUgEtv5TF+VpvcHUdype+vnrfuYy0PArdzlTLXEl3gSgaBvJCs/Ozv6SVjO1qO2Yth
-         BUDEegfRn9juvPg6ozMrQFie8TiOZkh9NhdGkidVONCAwUaZPWrrQFocpkL/EYeywrF0
-         pR7qJhruBZdKT6effS2db1prW1kmhTJQ+ogAiqdRoAJiKNyvNQsBBXXsz9NKz0W2V9oH
-         Vy271H895M87Fw4ZPbGJ3WbkpWFx2MSfK4tpOQsAmfNGcMx2iR/5gy9wqxuR8qofAmxq
-         hyRg==
-X-Gm-Message-State: AJIora9ztekfV2qdwFPK8ottdBqp/4BrCp+sOvMXIVSNlr+JJXGDvhGA
-        mRQFu7m8csFBjH/rz6GczxMCGA==
-X-Google-Smtp-Source: AGRyM1u4TGEfXbOJWoo2B3uuptUDQWrvhmxrihGijpLpTSzFLDT2nPpmDzKjXMxyCnypzScxX8fVbA==
-X-Received: by 2002:a2e:83c7:0:b0:25b:c007:29e0 with SMTP id s7-20020a2e83c7000000b0025bc00729e0mr7525140ljh.378.1657465969512;
-        Sun, 10 Jul 2022 08:12:49 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cac-200.bb.online.no. [88.92.172.200])
-        by smtp.gmail.com with ESMTPSA id y18-20020a199152000000b00486d8a63c07sm976213lfj.121.2022.07.10.08.12.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Jul 2022 08:12:49 -0700 (PDT)
-Message-ID: <f6ab024a-582f-45b0-7d26-94a85858c761@linaro.org>
-Date:   Sun, 10 Jul 2022 17:12:46 +0200
+        with ESMTP id S229469AbiGJQIX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 12:08:23 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7902A5F7D;
+        Sun, 10 Jul 2022 09:08:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657469302; x=1689005302;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=u2rFHyjk0IO1Axsj1F5yVAJwDZ/wJ5mGUuZgurI+KIg=;
+  b=buQ8/caL7jTGu4FjzP0NkIza9BlrMtN0FJWhqCASxD+RVGChK40/u48x
+   5qC9WxLasQQngqea7CuqRy6wpd5bKmG3mJOyAW5BsJ0khfHKGORhqUDhY
+   rCPQqdw45UieT2dAOEHHsFIwTtJ+9iCA0dHD3s2xsDHsINRp99ND3FM2i
+   rH7GHyp6MHedaLrZNlN+oOm0WuVppf/Dy8rYSsewXRfN7BDA3PXAs166N
+   cywqFAexndrKjse6Cdm1KQbD/I97Sih3JsMsdZoDZlIkHOrQQMSOjEQNz
+   bFShTJyaZqHtzW/t06G+xPlT7qsLqYe9KVU89OaYCVyl9Y50vIBztAkMg
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10404"; a="282073003"
+X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; 
+   d="scan'208";a="282073003"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2022 09:08:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; 
+   d="scan'208";a="662291019"
+Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 10 Jul 2022 09:08:18 -0700
+Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1oAZTl-000Pzi-Cs;
+        Sun, 10 Jul 2022 16:08:17 +0000
+Date:   Mon, 11 Jul 2022 00:07:51 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, vz@mleia.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lukas@wunner.de, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: Re: [PATCH v3 3/8] serial: core, 8250: set RS485 termination gpio in
+ serial core
+Message-ID: <202207102355.Y27cvu6y-lkp@intel.com>
+References: <20220710150322.2846170-4-LinoSanfilippo@gmx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v8 25/33] dt-bindings: crypto: rockchip: convert to new
- driver bindings
-Content-Language: en-US
-To:     LABBE Corentin <clabbe@baylibre.com>
-Cc:     Rob Herring <robh@kernel.org>, john@metanate.com, heiko@sntech.de,
-        p.zabel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        didi.debian@cknow.org, herbert@gondor.apana.org.au,
-        sboyd@kernel.org, mturquette@baylibre.com,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20220706090412.806101-1-clabbe@baylibre.com>
- <20220706090412.806101-26-clabbe@baylibre.com>
- <1657114144.957232.4099933.nullmailer@robh.at.kernel.org>
- <YsWcGDwPCX+/95i3@Red> <3e47b853-bb82-8766-8884-3da931c038a2@linaro.org>
- <YsabXrOyAsCkUUVN@Red>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YsabXrOyAsCkUUVN@Red>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220710150322.2846170-4-LinoSanfilippo@gmx.de>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,56 +71,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 10:37, LABBE Corentin wrote:
-> Le Wed, Jul 06, 2022 at 05:25:21PM +0200, Krzysztof Kozlowski a écrit :
->> On 06/07/2022 16:28, LABBE Corentin wrote:
->>> Le Wed, Jul 06, 2022 at 07:29:04AM -0600, Rob Herring a écrit :
->>>> On Wed, 06 Jul 2022 09:04:04 +0000, Corentin Labbe wrote:
->>>>> The latest addition to the rockchip crypto driver need to update the
->>>>> driver bindings.
->>>>>
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
->>>>> ---
->>>>>  .../crypto/rockchip,rk3288-crypto.yaml        | 85 +++++++++++++++++--
->>>>>  1 file changed, 77 insertions(+), 8 deletions(-)
->>>>>
->>>>
->>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>>>
->>>> yamllint warnings/errors:
->>>>
->>>> dtschema/dtc warnings/errors:
->>>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml: allOf:0:then:properties:clock-names: 'oneOf' conditional failed, one must be fixed:
->>>> 	[{'const': 'aclk'}, {'const': 'hclk'}, {'const': 'sclk'}, {'const': 'apb_pclk'}] is too long
->>>> 	[{'const': 'aclk'}, {'const': 'hclk'}, {'const': 'sclk'}, {'const': 'apb_pclk'}] is too short
->>>> 	False schema does not allow 4
->>>> 	1 was expected
->>>> 	4 is greater than the maximum of 2
->>>> 	4 is greater than the maximum of 3
->>>
->>> Hello
->>>
->>> I upgraded to dt-schema 2022.07 and fail to reproduce all errors.
->>
->> Visible on older dtschema (2022.6.dev10+gcd64f75fe091), visible on
->> newest (2022.7).
->>
->> Exactly the same error.
->>
-> 
-> Hello
-> 
-> I am sorry, I finally succesfully reproduced it.
-> Just doing what the hints gives (removing max/min-items) from "static" list fix the issue.
+Hi Lino,
 
-Not sure what do you mean by "static list". I think you should drop
-min/maxItems from clock-names/reset-names in allOf:if:then sections.
+I love your patch! Perhaps something to improve:
 
-> Does I need to remove your Reviewed-by ?
+[auto build test WARNING on 7e5b4322cde067e1d0f1bf8f490e93f664a7c843]
 
-Let's drop, so it will be back to my to-review queue.
+url:    https://github.com/intel-lab-lkp/linux/commits/Lino-Sanfilippo/Fixes-and-cleanup-for-RS485/20220710-230624
+base:   7e5b4322cde067e1d0f1bf8f490e93f664a7c843
+config: hexagon-randconfig-r041-20220710 (https://download.01.org/0day-ci/archive/20220710/202207102355.Y27cvu6y-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 6ce63e267aab79ca87bf63453d34dd3909ab978d)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/846f02e6da9692810ed632dd72f45af667c3cc67
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Lino-Sanfilippo/Fixes-and-cleanup-for-RS485/20220710-230624
+        git checkout 846f02e6da9692810ed632dd72f45af667c3cc67
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/tty/serial/
 
-Best regards,
-Krzysztof
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/tty/serial/serial_core.c:1364:6: warning: logical not is only applied to the left hand side of this bitwise operator [-Wlogical-not-parentheses]
+           if (!rs485->flags & SER_RS485_ENABLED)
+               ^             ~
+   drivers/tty/serial/serial_core.c:1364:6: note: add parentheses after the '!' to evaluate the bitwise operator first
+           if (!rs485->flags & SER_RS485_ENABLED)
+               ^
+                (                               )
+   drivers/tty/serial/serial_core.c:1364:6: note: add parentheses around left hand side expression to silence this warning
+           if (!rs485->flags & SER_RS485_ENABLED)
+               ^
+               (            )
+   1 warning generated.
+
+
+vim +1364 drivers/tty/serial/serial_core.c
+
+  1360	
+  1361	static void uart_set_rs485_termination(struct uart_port *port,
+  1362					       const struct serial_rs485 *rs485)
+  1363	{
+> 1364		if (!rs485->flags & SER_RS485_ENABLED)
+  1365			return;
+  1366	
+  1367		gpiod_set_value_cansleep(port->rs485_term_gpio,
+  1368					 !!(rs485->flags & SER_RS485_TERMINATE_BUS));
+  1369	}
+  1370	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
