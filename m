@@ -2,97 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00D5A56D0F9
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 21:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0681056D10C
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 21:26:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbiGJTJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 15:09:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53482 "EHLO
+        id S229482AbiGJT0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 15:26:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiGJTJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 15:09:03 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB51411C3E;
-        Sun, 10 Jul 2022 12:09:02 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-31c9b70c382so30626777b3.6;
-        Sun, 10 Jul 2022 12:09:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g8uBrLbWc94Zt3/5+ItReRZraOQhpXiAxYkcJ2+dIok=;
-        b=YvHdS0dcpg797mdkhiGVt5EYXBki+VqxBmuaZtbSw/FuLBBGfXBkeEFpMyGUeCoeOZ
-         tkN4QAWerGT9YiJHy9rhnaldPXCG1SAmfWff89/ppYzAKuvVpWFLjzvYudlRJvBkcgq3
-         29kKJgs7KrfCsqID+Oap4Xo7rbUTL1JG7rqcyCKolRHR/tpmysEwCwwMuRysEksm6ODA
-         FkQjCGhKS+j4Xv6uaQM5cF/dnqrveBhpH7vwfdmZu6WHTLH///Yj+F0iAr1qaauC5IHH
-         OzWOkmx465cLskT5lAxwt+Y8vjb6ugJV95myiv6v7NWz6rpuoo+oD5rxEZQYVQbEZA8e
-         3QbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g8uBrLbWc94Zt3/5+ItReRZraOQhpXiAxYkcJ2+dIok=;
-        b=ccAZDwKLkeXx7aEDAiXgCTlajVs3rnP/JurrKs6FhJHMp4ajLqNZD6dCs2D6Tlzm33
-         3VxuDDs4jR0TuY5y0E9PaJZUi5bsxPzAPWggriFIuPsP73BEoQo+FnkETUzNFLnggWxJ
-         Clx2Ou2zg5hbKZNKUeby7Euyd6RuDr3N2MOt8adsM+YPrzr7zneAnQKOCvWvA9lC9W8c
-         xrfSq5GZ/qnJMkKtIYkGR3xyeDqErq2sQhcrOQw3gwf03S84ntY0dfqFDC03G9NGM1Fu
-         spNT85I1iabwnCcoJBx2LpzSeSs/PfkurXlZ8ILwFKqaolusS9dxU0LwxZVAL8XOs/X2
-         D/HA==
-X-Gm-Message-State: AJIora/M1+tBEOnIjOCS+7h9Li1bZ5z7q6XvLwr3pogz2GrxNeGnjGS2
-        YoXL7+AY9U5AS+EIXOTpdJfpnERyWPVCazoGid0=
-X-Google-Smtp-Source: AGRyM1uQhf5F8te2uFSd0prGAFf6uTxYdIFIrz6w9GanRjKRI0AwDZInMAcv9znJU/AI6ZDy3jbdkzHSycFBE5OPSlE=
-X-Received: by 2002:a81:468b:0:b0:318:4cac:6576 with SMTP id
- t133-20020a81468b000000b003184cac6576mr15721393ywa.277.1657480141962; Sun, 10
- Jul 2022 12:09:01 -0700 (PDT)
+        with ESMTP id S229456AbiGJT0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 15:26:07 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97E9FA460
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 12:26:03 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1oAcYp-0004Aj-Hj; Sun, 10 Jul 2022 21:25:43 +0200
+Received: from pengutronix.de (2a03-f580-87bc-d400-14f9-9001-5433-5e4f.ip6.dokom21.de [IPv6:2a03:f580:87bc:d400:14f9:9001:5433:5e4f])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 4A9BCACF60;
+        Sun, 10 Jul 2022 19:25:18 +0000 (UTC)
+Date:   Sun, 10 Jul 2022 21:25:17 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Subject: Re: [PATCH v1 2/2] arm64: dts: imx8mm-verdin: use level interrupt
+ for mcp251xfd
+Message-ID: <20220710192517.cbky3cl7j325j3xq@pengutronix.de>
+References: <20220708124205.59564-1-andrejs.cainikovs@toradex.com>
+ <20220708124205.59564-3-andrejs.cainikovs@toradex.com>
 MIME-Version: 1.0
-References: <20220710081853.1699028-1-uwu@icenowy.me> <20220710081853.1699028-4-uwu@icenowy.me>
-In-Reply-To: <20220710081853.1699028-4-uwu@icenowy.me>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 10 Jul 2022 21:08:24 +0200
-Message-ID: <CAHp75VcK4nF6TxE2e3s-qTE5RKLuAeKykoKN3usXe+NiJX4Eng@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] pinctrl: sunxi: add support for R329 R-PIO pin controller
-To:     Icenowy Zheng <uwu@icenowy.me>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rkuzb2y3zhcm35uy"
+Content-Disposition: inline
+In-Reply-To: <20220708124205.59564-3-andrejs.cainikovs@toradex.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 10, 2022 at 10:28 AM Icenowy Zheng <uwu@icenowy.me> wrote:
->
-> Allwinner R320 SoC has a pin controller in the CPUS power domain.
->
-> Add support for it.
 
-> +#include <linux/init.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pinctrl/pinctrl.h>
-> +#include <linux/reset.h>
+--rkuzb2y3zhcm35uy
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Same comment as per previous patch.
-Also I forgot to mention kernel.h from which ARRAY_SIZE() is currently
-available.
+On 08.07.2022 14:42:05, Andrejs Cainikovs wrote:
+> Switch to level interrupt for mcp251xfd. This will make sure no
+> interrupts are lost.
+>=20
+> Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
 
-> +#include "pinctrl-sunxi.h"
+Reported-by: Marc Kleine-Budde <mkl@pengutronix.de>
 
--- 
-With Best Regards,
-Andy Shevchenko
+as per https://lore.kernel.org/linux-arm-kernel/20220621195046.rnv66d2333wj=
+mtow@pengutronix.de
+
+Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--rkuzb2y3zhcm35uy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmLLJ5sACgkQrX5LkNig
+010vEgf9He+HpOSbzMgfnzg5Zeg9AyQEquAJ6PcdNByV35te24a1nBeBcVLk5anP
+TzPBkeh14mkwkabUyUNk2u6/Qj1+XWvgZcDbZvggryvVlVJmJRkcvnAg3SB8OGUE
+0/bY1yI2dKC6kNHwxPfXyXiVkHK7DFvM4rQ00uYH5bp3j2od+Irq6xaV/8Ee7B4l
+2W1vm1+FF6pvI+7uWynyHI8MJs7p+NaQrPv+L9l9Dh3BsAj0tWcMUKxus4kuF6Er
+H5+hcheuh6XU3Z2byiFYz9QbQCEEm9/RiSmJEly+J9670UI1L/Xf6QcmikJFvB8V
+8p/UjpeIj+8Rz60xvFt9zvxVTDf4PA==
+=hEQH
+-----END PGP SIGNATURE-----
+
+--rkuzb2y3zhcm35uy--
