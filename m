@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F9B56D0EB
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 21:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E0B456D0F6
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 21:07:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbiGJTBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 15:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49794 "EHLO
+        id S229530AbiGJTHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 15:07:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiGJTA7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 15:00:59 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCB1F1209F;
-        Sun, 10 Jul 2022 12:00:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1657479632;
-        bh=sCSJ/3wMz9Ep+Xj8Zv8+zmOj46t7Ut4p8C/KOgxn8Lw=;
-        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=iiLODPJBMSk7T1waGk9XUerCKe4Q5K57VDASXRxJuP+vVVDW3MusQT/aSHOFEjCPZ
-         3FRr88EYWHvSv3b0AFznmyamti/NCiIyvsXhDYfdoBT3LEwWIsgQKBfWafE5meo/AH
-         h5i2kOVXtoXd0SIieJn5ALuUa6yLOhiqOXH0h4HY=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.0.69] ([46.223.3.243]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MHXFx-1oNWL32qtV-00DVZJ; Sun, 10
- Jul 2022 21:00:32 +0200
-Message-ID: <af8bf241-68c3-02fc-b2f2-6eba20c01b9a@gmx.de>
-Date:   Sun, 10 Jul 2022 21:00:30 +0200
+        with ESMTP id S229463AbiGJTHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 15:07:19 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A2A11C07;
+        Sun, 10 Jul 2022 12:07:18 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id p129so5642863yba.7;
+        Sun, 10 Jul 2022 12:07:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5pJ2mY4u3LGxMAcCpcPEWdZJC2DKdA33cpYfSaprjpk=;
+        b=b6kLel3P40kfn9mtHJmNm3A1puIDxVDvFW+w5n8REW2Qr+jWiPzYUowghbkcalrq+u
+         33xJ4rXHnbR1pUhKTvdompZTuFumz9ZG1Qtg9PkbxxzQyvFpmFBGU5a+ZlbpzrlBTP4O
+         IQHGa00tcG5NDbi47W1nGe+3g6hNLh9EKDZrJYOcZr1Ma/QPqWhfinJATrT8mdWLWovO
+         4atAiGuKR290iDhuftFvqzF7T6FOE9IXZpIg4l/zBFrP4D8a0mepbDWg6V2xikT6ya/K
+         hq0aL93vMlXZeV6rukAJ93G609V73mJrSeH+JvTjQ4+PCbEhlBOst81Hi9Z9XLA4/zto
+         +qVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5pJ2mY4u3LGxMAcCpcPEWdZJC2DKdA33cpYfSaprjpk=;
+        b=sUOnD3UzejfLrVsYHNyVy2XlsNcv4MndUnyV/GMj1meDzodsS9k7xO5zPU944y9BXZ
+         bdK1PnqQrOA2i4qXGkIPYB4td8xXEjCr+3juMIKynDOzJrzmNzQ9pi+MbSO1wuP8L7bz
+         bDSibDDmiVUpLXBrMRBuXb0gsTQw4lmvYezY2JInCZDk2FykN8id9pBSNKLqfTP2w1xW
+         wKO9ohURImRYG8KBrjDeKzZ7hQYQsvu8HWIDRIQZ/9/hzRajf2lWl0UI8it3hIevxvqw
+         l+L1OHTqOy/vHhFRfUa9kgZKy5PiyjBEESVuF8FSOS6r6I2Q5pSVWU7tEAj7hy8oF0T1
+         XWgw==
+X-Gm-Message-State: AJIora8HJgHQCf84tlX8hOsKG6tOsFfhfxPKl0XJa3xUCoL/+UJYM6WR
+        TodEpXXrIZgy1HJtn0wA/nYOSgPlB9yTCcKrmRs=
+X-Google-Smtp-Source: AGRyM1usMvKd9f2/H5alDs+qjUrsqY+va9QV6ErxeZWmxYWH5zM60anQcdnlEiOVWdGy8L9IlScLjQt6eOQ+XffYNqY=
+X-Received: by 2002:a25:cbcf:0:b0:66e:8893:a02c with SMTP id
+ b198-20020a25cbcf000000b0066e8893a02cmr14363105ybg.460.1657480037999; Sun, 10
+ Jul 2022 12:07:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v4 0/8] Fixes and cleanup for RS485
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vz@mleia.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lukas@wunner.de, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-References: <20220710164442.2958979-1-LinoSanfilippo@gmx.de>
- <YssdxGoKAt5Rx2DK@smile.fi.intel.com>
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-In-Reply-To: <YssdxGoKAt5Rx2DK@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Rhow1ZI4HAGg0yjWz4+Yj+2OdGHERP8XRPn6pA9qX0TY1msUymX
- NHQDwK1kFqDQ8KktsBSzgTIxYsMdjLxx+/yW6tmPJUWyG5aKI1YTKFmxCrDnqAmrIk89ai1
- tDo4ck0qW41vG+oT1zxpfDQCuTh0NwOEBMbDUeUiWzGaXZRGJSEAnofMbnh1tqUeHPQXcAR
- YvVim4ZcHNkeP8HvNOrHQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:z7qMOxIUZko=:aDp/fR3ni8Y4/P9UB0ZdcO
- qZ2mBdamnTOe9fWJoSj8srdeKCST+QBYohPPXPpDUcLB3I7YyVd1RwUrz/o8MRvak7ogf5t8G
- ICOtHyRn3yLDQ2HJHb8Ft0zQ7fwbgtI8r9WXUHNJnILhJ/TZO5frRYuzSryvYOiAdav3TOPds
- 1rG4feXlkUM1OWDbRVt8HO5OdP33p24Xm3HvaXQgd0ezUR4O6FNySLprl4l2iWKB7/qHkV7cK
- /BA7CLqxmsX/aHuuU134sPVg6EWoP9tOwUntTzu7dUXaElfq05K+aMACDPz4ZBZu27sjjRfGq
- /5w+4aULq+bJbhLh7sdpdCCXDQ/VFaloyzhlckooDehXybm9hyEv8Zizsesrx0Whf1jKWXypj
- YzGUvqx78JUU5tbfAZ6B8WepTENBLMt/Rrgd3BwXiG5Cq1EM4auJBoHl1RDM7/i7Uasa+joIx
- VvbA/h08n5kCFR5dBJgwiIbjmquo1CHmUhvlN3d6+lxC61gA85hrjfaqEU83wLk2QVvrhYeum
- 3X7D6ZLb+Htj6f0iz25XSzgIQf7wW1k6EwspdzCDjQu8bcVr+eYInk8iT7+jpJf6fl6RwivoL
- XuP73IMUa/+GFS9hay8/iMpEuamNJpPld5EL3iDdi5d9P4/bMRILqL0b2PyxKn2JiavfvAOg+
- 3wxlA37y3uzbPK5QEnb2KDrm1yoKC4fQeZlgX5tAoB6PzhYJUR7FIAj+8qww5feLUdy2+WAHg
- b32oIcv2QEePA6dy1pbuo6tf8sedYPr7ZDaI3nSmK8M1/xv+3mt55F61iwSHluerxj+1p6EyY
- 87AM3h1zN/Aqu4nqKm+rxaB1k9rV54LED3WFkDmNN4At3Kmw9M3LVNcojZfBjNVTJFjrC5c7J
- d19y//bxvxyFCuDzRK7sRLe0rGtC69xyh/vECVLM4Fzc8AL4kwxCzheLYkGv4maDpBVEIS27M
- Jd9gzMviqIwm4ZIkNUw4kLtgaeSm9ns6iAyo/qyBGY1wkF6tsnSkpXRUSnE4OomGdADBhuu4Z
- 5xLCicZItpeHF7twMIM8ezm0gB2W+8OLvbQTdVQPJqRYThhyFQhL9UddX1GF4x35z5tM1T7q7
- z0kY5zpAj4PYtP9GNbcbkvvvaKfhbuD5vt3nZyNXMlMa6q/qdW3o4Ns7C3k6aw2pL3KHDSuWZ
- AB01MQP1eAhQhQj96jL9bhK+TW+3xbiW51JUeXAOrtAYye6heKzbVQWF18exAmlfwc8oGTKhy
- Ov50isTYNpQEbZvQyQI0MX/DNw+r3MPx9D8EomfK9VYeTU2hkvNy5xYbzO4T8E8PcdYy01Npr
- Gk0oKlAIavHKlU+houKiaNHdUjclfw==
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <20220710081853.1699028-1-uwu@icenowy.me> <20220710081853.1699028-3-uwu@icenowy.me>
+In-Reply-To: <20220710081853.1699028-3-uwu@icenowy.me>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sun, 10 Jul 2022 21:06:41 +0200
+Message-ID: <CAHp75Vdso_PGUomjmKaF1ytdUe4qLeAbpwkNmcRng9aNHs7g8w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] pinctrl: sunxi: add support for R329 CPUX pin controller
+To:     Icenowy Zheng <uwu@icenowy.me>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,45 +74,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 10.07.22 20:43, Andy Shevchenko wrote:
-> On Sun, Jul 10, 2022 at 06:44:34PM +0200, Lino Sanfilippo wrote:
->> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
->>
->> The following series includes cleanup and fixes around RS485 in the ser=
-ial
->> core and uart drivers:
->>
->> Patch 1: ar933x: Fix check for RS485 support
->> Patch 2: Remove superfluous code in ar933x.
->> Patch 3: Set the rs485 termination GPIO in the serial core. This is nee=
-ded
->> 	 since if the gpio is only accessible in sleepable context. It also
->> 	 is a further step to make the RS485 handling more generic.
->> Patch 4: Move sanitizing of RS485 delays into an own function. This is =
-in
->> 	 preparation of patch 4.
->> Patch 5: Sanitize RS485 delays read from device tree.
->> Patch 6: Correct RS485 delays in binding documentation.
->> Patch 7: Remove redundant code in 8250_dwlib.
->> Patch 8: Remove redundant code in 8250-lpc18xx.
+On Sun, Jul 10, 2022 at 10:22 AM Icenowy Zheng <uwu@icenowy.me> wrote:
 >
->> Changes in v4:
->> - fixed logical error found by
->> - capitalize "uart" and "gpio" in commit messages
+> Allwinner R329 SoC has two pin controllers similar to ones on previous
+> SoCs, one in CPUX power domain and another in CPUS.
 >
-> Please, avoid sending sequential version of the series more often than o=
-nce per
-> a few days, recommended interval is one week.
->
+> This patch adds support for the CPUX domain pin controller.
 
-sorry, this was due to the error found by the kernel test robot. I was not=
- sure
-if to wait, resend with the same version number or send the next version.
-I guess waiting a few days would have been the best option. Will do so nex=
-t
-time.
+...
 
-Regards,
-Lino
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+
+No use of these.
+
+> +#include <linux/pinctrl/pinctrl.h>
+
+Missed headers:
+mod_devicetable.h
+
+> +#include "pinctrl-sunxi.h"
+
+-- 
+With Best Regards,
+Andy Shevchenko
