@@ -2,52 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59F0356D1D3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 00:51:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E8A56D201
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 01:21:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbiGJWvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 18:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55476 "EHLO
+        id S229512AbiGJXVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 19:21:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiGJWvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 18:51:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D88E0CC;
-        Sun, 10 Jul 2022 15:51:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5ACEC60F79;
-        Sun, 10 Jul 2022 22:51:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D24EC3411E;
-        Sun, 10 Jul 2022 22:51:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657493474;
-        bh=lW+Od0IjKFZ8vso8MyN8Tg1qsg/N0ER08j48rNcviNw=;
-        h=Date:From:To:Subject:From;
-        b=O+EWni3wKw21DnJTOczm7QKBy+6qdyULLW//goDSEctXTOZ6ix0PfuK9gypMWNw5q
-         UPxtwBgov+CmZI4NAYLwytHKAn2RK5nnVgUfklccJiAbVlr007FSHOHJoBksgCOWYW
-         q2yrki6Seksa0x4smyzE+NQmoyAhyNoZIRQepY2ocm7Jt2cCXWZSyoG5NvVFNMwHPA
-         FNoJjTx34mTI+YHAt3o3fvdC+hfBlp6DBkNnArRtmmEI9Or17IEQMzSBdu5hcu7f6S
-         8WTQK3yQaSbxyZCbegoY7vYYh2zGbp8l+xu3a/GWAS2HqcGw4KWpT6ZYc474DjGgNd
-         FzNXQqQaOwIag==
-Received: by pali.im (Postfix)
-        id A865379D; Mon, 11 Jul 2022 00:51:11 +0200 (CEST)
-Date:   Mon, 11 Jul 2022 00:51:08 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauri Sandberg <maukka@ext.kapsi.fi>,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: How to correctly define memory range of PCIe config space
-Message-ID: <20220710225108.bgedria6igtqpz5l@pali>
+        with ESMTP id S229456AbiGJXVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 19:21:20 -0400
+Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9672013DDF
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 16:21:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1657495279; x=1689031279;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=2bOuAF8hy4hQXexxGrNRideeT3L1vDk2fxucN4Onkrw=;
+  b=J0Ix4y7nPfwEbfpJBcPHVcFH1dRL8op8ZKJyOHi/GXhiRUvbDRztXOZ8
+   00+y9GbAZzzoFUUSz//4oudp39RHX/moFgI16JKdDcm/ETbPiYl/Hz/u3
+   gs58p1dIVTrBuQ1QylrMIexdeaEEAggRKeIgQn1Z+/NRCmzkZA4QY2kgW
+   RPSpLnzOk8C6UNeqQpXhvH5i1QI8fh7J2FJhPVOeqZt792R/yejvGX5CP
+   c1l1whsOZK6r4Y6rXe5vfcmlXCbH+5ITjqCximxkTNugawUjagxyGjNBV
+   co3MrM/OuuzeD4m3hDcs7YizV83CVaExHNAPQqlCoQErhhCv80E3hj7aZ
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,261,1650902400"; 
+   d="scan'208";a="203957768"
+Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 11 Jul 2022 07:21:18 +0800
+IronPort-SDR: e4/oocBBaS2xC0MXbwQuS2PucC08CjcdeymSiqRTOgeBqEnRAFFyAHNBT9CHCKQWjGd85ORCMA
+ UJiakjG25YfoqWhor8UzKxy+A4z/IsU3fp+snnkNRsbtKHLzkiNzpdAhdu2d7nfIkmS3kWbL8a
+ NGFxa8c4ca+mpI1XOQnswsLMM+aO9Q0G7DKvjNJ7VhmHu0M1k10+R4x4NpUVCH0HLlbnLIAysJ
+ 5Wu6PH3Y6Zv4gj7L6zGIIY+/rqEb2MaQQ8LViAC3oQTfQdRt80z6oUJSSMD2QfIwYuryE7P2La
+ C1IDMfyKB9+wviwkDWB/UZoo
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Jul 2022 15:42:56 -0700
+IronPort-SDR: bPYCubOm9Az718mll43jnrvV0nDfrOg4PZdTmEnzwFyoLLd/q2rH3IK3txFAya8j9anv0j8A9V
+ 7OOMMvq72MBw8ET5v4+qlvaI64+C/06C4+51HwIax9+ELv3cQQMJoy2SJgFT1rk8/+Xq9LG5wg
+ 5V2yMF2vCXuUAmHxwvmevXzg+69Npydm+bQAG54pB0dsK4MlHQx0lrT1fVWPrY1BZzeR8C3hOG
+ 17KFMxgXdG9ivgbZAzKfDSZ/jklUKx7uvUJejfOKiG63ktIsJZ87sslvMfgVb9ckZ0IUCIRZTg
+ 7EA=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Jul 2022 16:21:18 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4Lh31971SFz1Rwqy
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 16:21:17 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1657495276; x=1660087277; bh=2bOuAF8hy4hQXexxGrNRideeT3L1vDk2fxu
+        cN4Onkrw=; b=iY63mouJ51j7XgRwIzOQn2aNTZVGHkHmYlbv3oLuDn/RDNSJ7js
+        fnWlCx5bkYECfSDwfPKXZH28vOy4xBFbYfUEkxA1Bk0W2tEB7xhgqTeJ+Ap/DWQg
+        hnU2JJ6onNNBChD6gz9Kl/vSpx1TSHHOgot2/Uqfdxc4DnIvZSx6VX+6PdzkD70r
+        YVqYdcosyHDk94OS6MzUxZOSvEXaAvw/o45nGZ12hsI/wy+QaFd1V1Sg5eJIOY1P
+        zhOxlrFrGxL9GVwUBo0k2YY10LMCSiITH68OuumTq2EHMgRnenXg9PofTScTe5mF
+        NsDo8QkwxLeJkbWK48XERzZy97CMD3y6pOA==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id SAZMR3E9O9cG for <devicetree@vger.kernel.org>;
+        Sun, 10 Jul 2022 16:21:16 -0700 (PDT)
+Received: from [10.225.163.114] (unknown [10.225.163.114])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4Lh31457fMz1RtVk;
+        Sun, 10 Jul 2022 16:21:12 -0700 (PDT)
+Message-ID: <b8b015f0-d16f-8528-719a-1a3f74d9f176@opensource.wdc.com>
+Date:   Mon, 11 Jul 2022 08:21:11 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v5 04/13] dt-bindings: memory-controllers: add canaan k210
+ sram controller
+Content-Language: en-US
+To:     Conor.Dooley@microchip.com, krzysztof.kozlowski+dt@linaro.org
+Cc:     daniel.lezcano@linaro.org, Eugeniy.Paltsev@synopsys.com,
+        sam@ravnborg.org, daniel@ffwll.ch, paul.walmsley@sifive.com,
+        vkoul@kernel.org, palmer@rivosinc.com, airlied@linux.ie,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, robh+dt@kernel.org,
+        masahiroy@kernel.org, geert@linux-m68k.org, niklas.cassel@wdc.com,
+        dillon.minfei@gmail.com, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-riscv@lists.infradead.org,
+        fancer.lancer@gmail.com, thierry.reding@gmail.com, mail@conchuod.ie
+References: <20220705215213.1802496-1-mail@conchuod.ie>
+ <20220705215213.1802496-5-mail@conchuod.ie>
+ <a516943f-3dac-70a0-3ebd-9f53fd307f25@microchip.com>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <a516943f-3dac-70a0-3ebd-9f53fd307f25@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,25 +107,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+On 7/11/22 04:39, Conor.Dooley@microchip.com wrote:
+> Damien, Krzysztof,
+> 
+> I know this particular version has not been posted for all that
+> long, but this binding is (functionally) unchanged for a few
+> versions now. Are you happy with this approach Damien?
+> U-Boot only cares about the compatible & the clocks property,
+> not the regs etc.
+> 
+> I (lazily) tested it in U-Boot with the following diff:
 
-Together with Mauri we are working on extending pci-mvebu.c driver to
-support Orion PCIe controllers as these controllers are same as mvebu
-controller.
+If both the kernel and u-boot still work as expected with this change, I
+am OK with it.
 
-There is just one big difference: Config space access on Orion is
-different. mvebu uses classic Intel CFC/CF8 registers for indirect
-config space access but Orion has direct memory mapped config space.
-So Orion DTS files need to have this memory range for config space and
-pci-mvebu.c driver have to read this range from DTS and properly map it.
+> 
+> diff --git a/arch/riscv/dts/k210.dtsi b/arch/riscv/dts/k210.dtsi
+> index 3cc8379133..314db88340 100644
+> --- a/arch/riscv/dts/k210.dtsi
+> +++ b/arch/riscv/dts/k210.dtsi
+> @@ -82,11 +82,14 @@
+>  
+>         sram: memory@80000000 {
+>                 device_type = "memory";
+> +               reg = <0x80000000 0x400000>, /* sram0 4 MiB */
+> +                     <0x80400000 0x200000>, /* sram1 2 MiB */
+> +                     <0x80600000 0x200000>; /* aisram 2 MiB */
+> +               u-boot,dm-pre-reloc;
+> +       };
+> +
+> +       sram_controller: memory-controller {
+>                 compatible = "canaan,k210-sram";
+> -               reg = <0x80000000 0x400000>,
+> -                     <0x80400000 0x200000>,
+> -                     <0x80600000 0x200000>;
+> -               reg-names = "sram0", "sram1", "aisram";
+>                 clocks = <&sysclk K210_CLK_SRAM0>,
+>                          <&sysclk K210_CLK_SRAM1>,
+>                          <&sysclk K210_CLK_AI>;
+> 
+> If so, could you queue this for 5.20 please Krzysztof, unless
+> you've got concerns about it?
+> 
+> Thanks,
+> Conor.
+> 
+> On 05/07/2022 22:52, Conor Dooley wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> From: Conor Dooley <conor.dooley@microchip.com>
+>>
+>> The k210 U-Boot port has been using the clocks defined in the
+>> devicetree to bring up the board's SRAM, but this violates the
+>> dt-schema. As such, move the clocks to a dedicated node with
+>> the same compatible string & document it.
+>>
+>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>  .../memory-controllers/canaan,k210-sram.yaml  | 52 +++++++++++++++++++
+>>  1 file changed, 52 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml b/Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml
+>> new file mode 100644
+>> index 000000000000..f81fb866e319
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/canaan,k210-sram.yaml
+>> @@ -0,0 +1,52 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/memory-controllers/canaan,k210-sram.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Canaan K210 SRAM memory controller
+>> +
+>> +description:
+>> +  The Canaan K210 SRAM memory controller is responsible for the system's 8 MiB
+>> +  of SRAM. The controller is initialised by the bootloader, which configures
+>> +  its clocks, before OS bringup.
+>> +
+>> +maintainers:
+>> +  - Conor Dooley <conor@kernel.org>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - canaan,k210-sram
+>> +
+>> +  clocks:
+>> +    minItems: 1
+>> +    items:
+>> +      - description: sram0 clock
+>> +      - description: sram1 clock
+>> +      - description: aisram clock
+>> +
+>> +  clock-names:
+>> +    minItems: 1
+>> +    items:
+>> +      - const: sram0
+>> +      - const: sram1
+>> +      - const: aisram
+>> +
+>> +required:
+>> +  - compatible
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/k210-clk.h>
+>> +    memory-controller {
+>> +        compatible = "canaan,k210-sram";
+>> +        clocks = <&sysclk K210_CLK_SRAM0>,
+>> +                 <&sysclk K210_CLK_SRAM1>,
+>> +                 <&sysclk K210_CLK_AI>;
+>> +        clock-names = "sram0", "sram1", "aisram";
+>> +    };
+>> --
+>> 2.37.0
+>>
+> 
 
-So my question is: How to properly define config space range in device
-tree file? In which device tree property and in which format? Please
-note that this memory range of config space is PCIe root port specific
-and it requires its own MBUS_ID() like memory range of PCIe MEM and PCIe
-IO mapping. Please look e.g. at armada-385.dtsi how are MBUS_ID() used:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/armada-385.dtsi
 
-Krzysztof, would you be able to help with proper definition of this
-property, so it would be fine also for schema checkers or other
-automatic testing tools?
+-- 
+Damien Le Moal
+Western Digital Research
