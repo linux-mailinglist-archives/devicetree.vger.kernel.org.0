@@ -2,82 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 821C956CFA1
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 17:07:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CC4A56CFAC
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 17:12:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbiGJPHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 11:07:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
+        id S229607AbiGJPMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 11:12:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiGJPHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 11:07:03 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF3364DB
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 08:07:01 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id a9so5001061lfk.11
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 08:07:00 -0700 (PDT)
+        with ESMTP id S229492AbiGJPMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 11:12:52 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE9BBE28
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 08:12:51 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id w17so2073768ljh.6
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 08:12:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=vGEjMzeV4rTjdQROSqSy+BxXp6ecV7Lq7pIOwPsbuAE=;
-        b=s6BThfFG4EarVDkAudG5X1ZYaeWgrZtXddhCPSddcKAWl3WKXtDLI9eXl6KE20VvMd
-         t/oGvsaAJZWZYCiO3bT9P1UCDWBfwNs5XcVcnoiHBF/BbtCBL/Idttd2ihyJQ19h/BoU
-         ktb7lHfVkwj0/gzQuxVagEn6nN0p5nGsQCvR3UXlsQdnwyJCP6F2OG8M3IiwwW/k85F1
-         IKOlRQv9xnYEh32kHH5aquQCmkNVrGKrZdxbcKNk2b8+5W/e47baqTzISIfUdIvevKsa
-         W8YOKzY/PIq4wIniikImWReEBiDm+kKu5q2vQv7elmorYYab2D8rI1qpXl9C7Td4ZCoW
-         zdoQ==
+        bh=NrSFqXui8IuFWW18AV7BX9JJnZg6RCMbeeOF3ySerrE=;
+        b=QMoJgDgrWpoHgt8V935Yj0tZ7gW3LZdDygouB/iufA4mk/EYDXJyLplXfyn9C8aN3A
+         uIDA0Tu/wnZF2BfBFlpKqh4VyroAYuQZqBcdpiZdNqmtc1Z5K0m7VaZCj9hr+NPEj35l
+         BPUIU1LpogI7MI0Z2g9xvpzLPWDCfvUhqRZswOndvhygeYTuQ8N329fsjMyYoMlPMYqw
+         F5KZ/a6Qya+85rPNA5stUj9xKIurX7xzNqVFP9yMbwrQYxAP3NoSkTUTKHqlfCKkzx6r
+         PnWE30Qp6vO43T+WD+r3zVXt+y24fZZfpGbNtPSRRMTbGF8XcgFbk+cwU5SF+8I8uRG7
+         8q0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=vGEjMzeV4rTjdQROSqSy+BxXp6ecV7Lq7pIOwPsbuAE=;
-        b=LEKbyOLF43boXSdlI/BS6ivgQZyvdr6S6lAxHBcNezi6QTo47CbWqZ+Hl1ZhuQf2Gm
-         fAgP7pFngRBUUmeNAcSXTQ0M1ZEz6l1GKb1Tm8H1/DQkPe6P8AJYkHQb4oEGNvi0+5OR
-         2ZiLLk9FEHhcqIxslmh3DTyRJ6/20RUsu9RvJ261uZkkfgwKk05YWqdo9ypPSgsdDnBK
-         D1izUGIwlpdOiMkDgW4/H2LWODAnTjCDUUOHo+fudcFR22UW6B00Lj23HsXUaaZPD8Ew
-         R6xVOBCImxZDRvxbOgQxxnCQAX9C/9NoPJdqVgYd3SY/nOp3uvkOs1R1frtnFm4pZVZp
-         +JZA==
-X-Gm-Message-State: AJIora8e1ax8eTMKdMO2IGl0GBmW0DR+ji/4Z+8pHfpoeszDnrXGtcTS
-        TNJzwv67DGjxIkRVOXGAo7juzw==
-X-Google-Smtp-Source: AGRyM1vLwUbT2fb18HuVdKAPiyMGsyAUDEdTOU9pfeGW5RW3V3XRBkBfjuEgnFng75vcKN/rWNUzYw==
-X-Received: by 2002:a05:6512:3188:b0:489:de7c:101e with SMTP id i8-20020a056512318800b00489de7c101emr130634lfe.595.1657465619290;
-        Sun, 10 Jul 2022 08:06:59 -0700 (PDT)
+        bh=NrSFqXui8IuFWW18AV7BX9JJnZg6RCMbeeOF3ySerrE=;
+        b=R+1NsekHcyEDXLSHrvJrQ9JzlW43gsTOxN9FrcE5T8nV/xCsT0MHIMOiwl/jU1KZnc
+         XNJUgEtv5TF+VpvcHUdype+vnrfuYy0PArdzlTLXEl3gSgaBvJCs/Ozv6SVjO1qO2Yth
+         BUDEegfRn9juvPg6ozMrQFie8TiOZkh9NhdGkidVONCAwUaZPWrrQFocpkL/EYeywrF0
+         pR7qJhruBZdKT6effS2db1prW1kmhTJQ+ogAiqdRoAJiKNyvNQsBBXXsz9NKz0W2V9oH
+         Vy271H895M87Fw4ZPbGJ3WbkpWFx2MSfK4tpOQsAmfNGcMx2iR/5gy9wqxuR8qofAmxq
+         hyRg==
+X-Gm-Message-State: AJIora9ztekfV2qdwFPK8ottdBqp/4BrCp+sOvMXIVSNlr+JJXGDvhGA
+        mRQFu7m8csFBjH/rz6GczxMCGA==
+X-Google-Smtp-Source: AGRyM1u4TGEfXbOJWoo2B3uuptUDQWrvhmxrihGijpLpTSzFLDT2nPpmDzKjXMxyCnypzScxX8fVbA==
+X-Received: by 2002:a2e:83c7:0:b0:25b:c007:29e0 with SMTP id s7-20020a2e83c7000000b0025bc00729e0mr7525140ljh.378.1657465969512;
+        Sun, 10 Jul 2022 08:12:49 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cac-200.bb.online.no. [88.92.172.200])
-        by smtp.gmail.com with ESMTPSA id bg33-20020a05651c0ba100b0025a91928236sm1122078ljb.90.2022.07.10.08.06.57
+        by smtp.gmail.com with ESMTPSA id y18-20020a199152000000b00486d8a63c07sm976213lfj.121.2022.07.10.08.12.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Jul 2022 08:06:58 -0700 (PDT)
-Message-ID: <1f3189ef-7d3f-27b3-a691-b9649090b650@linaro.org>
-Date:   Sun, 10 Jul 2022 17:06:56 +0200
+        Sun, 10 Jul 2022 08:12:49 -0700 (PDT)
+Message-ID: <f6ab024a-582f-45b0-7d26-94a85858c761@linaro.org>
+Date:   Sun, 10 Jul 2022 17:12:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [RFC] Correct memory layout reporting for "jedec,lpddr2" and
- related bindings
+Subject: Re: [PATCH v8 25/33] dt-bindings: crypto: rockchip: convert to new
+ driver bindings
 Content-Language: en-US
-To:     Julius Werner <jwerner@chromium.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jian-Jia Su <jjsu@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Nikola Milosavljevic <mnidza@outlook.com>
-References: <CAODwPW9E8wWwxbYKyf4_-JFb4F-JSmLR3qOF_iudjX0f9ndF0A@mail.gmail.com>
- <CAODwPW8fiFSNehZbZDdR9kjHxohLGiyE7edU=Opy0xV_P8JbEQ@mail.gmail.com>
- <3bb0ffa0-8091-0848-66af-180a41a68bf7@linaro.org>
- <CAODwPW89xZQZiZdQNt6+CcRjz=nbEAAFH0h_dBFSE5v3aFU4rQ@mail.gmail.com>
- <8f51aed8-956b-ac09-3baf-2b4572db1352@linaro.org>
- <CAODwPW9MvYJo8QbKOoVcUAKJ8Hxon2MCv_H5qpv=yaSTLLc+ug@mail.gmail.com>
- <628a7302-1409-81f7-f72b-6b1645df9225@linaro.org>
- <CAODwPW-4i+idH8Nz6=EmNUXYWgWkoOHs3wOZ7BbrH5GwGDZ1Ww@mail.gmail.com>
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     Rob Herring <robh@kernel.org>, john@metanate.com, heiko@sntech.de,
+        p.zabel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        didi.debian@cknow.org, herbert@gondor.apana.org.au,
+        sboyd@kernel.org, mturquette@baylibre.com,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20220706090412.806101-1-clabbe@baylibre.com>
+ <20220706090412.806101-26-clabbe@baylibre.com>
+ <1657114144.957232.4099933.nullmailer@robh.at.kernel.org>
+ <YsWcGDwPCX+/95i3@Red> <3e47b853-bb82-8766-8884-3da931c038a2@linaro.org>
+ <YsabXrOyAsCkUUVN@Red>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAODwPW-4i+idH8Nz6=EmNUXYWgWkoOHs3wOZ7BbrH5GwGDZ1Ww@mail.gmail.com>
+In-Reply-To: <YsabXrOyAsCkUUVN@Red>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -88,118 +84,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2022 03:20, Julius Werner wrote:
->> Then I would assume that all lpddr properties can differ between ranks,
->> including the timings. But probably some SDRAM memory expert should
->> clarify that.
-> 
-> Right, so that's what my proposal does -- separate timings nodes per
-> rank (and channel).
-> 
->>> That really doesn't work for our use case, we can't generate a
->>> specific compatible string for each part number. This may work when
->>> your board is only using a single memory part and you can hardcode
->>> that in the DTB blob bundled with the kernel, but we are trying to do
->>> runtime identification between dozens of different parts on our
->>> boards. The whole point of us wanting to add these bindings is that we
->>> want to have the firmware inject the raw values it can read from mode
->>> registers into the device tree (with just the compatible string
->>> "jedec,lpddr3"),
+On 07/07/2022 10:37, LABBE Corentin wrote:
+> Le Wed, Jul 06, 2022 at 05:25:21PM +0200, Krzysztof Kozlowski a écrit :
+>> On 06/07/2022 16:28, LABBE Corentin wrote:
+>>> Le Wed, Jul 06, 2022 at 07:29:04AM -0600, Rob Herring a écrit :
+>>>> On Wed, 06 Jul 2022 09:04:04 +0000, Corentin Labbe wrote:
+>>>>> The latest addition to the rockchip crypto driver need to update the
+>>>>> driver bindings.
+>>>>>
+>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+>>>>> ---
+>>>>>  .../crypto/rockchip,rk3288-crypto.yaml        | 85 +++++++++++++++++--
+>>>>>  1 file changed, 77 insertions(+), 8 deletions(-)
+>>>>>
+>>>>
+>>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>>>
+>>>> yamllint warnings/errors:
+>>>>
+>>>> dtschema/dtc warnings/errors:
+>>>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml: allOf:0:then:properties:clock-names: 'oneOf' conditional failed, one must be fixed:
+>>>> 	[{'const': 'aclk'}, {'const': 'hclk'}, {'const': 'sclk'}, {'const': 'apb_pclk'}] is too long
+>>>> 	[{'const': 'aclk'}, {'const': 'hclk'}, {'const': 'sclk'}, {'const': 'apb_pclk'}] is too short
+>>>> 	False schema does not allow 4
+>>>> 	1 was expected
+>>>> 	4 is greater than the maximum of 2
+>>>> 	4 is greater than the maximum of 3
+>>>
+>>> Hello
+>>>
+>>> I upgraded to dt-schema 2022.07 and fail to reproduce all errors.
 >>
->> You cannot have jedec,lpddr3 alone. You need specific compatible.
-> 
-> Sorry, what do you mean we cannot? Why not? 
-
-Currently bindings do not allow it.
-
-Whether this can be changed, I responded in last paragraph of my
-previous email.
-
-> That's the way we need to
-> do it for our use case. Why shouldn't it work that way? As far as I
-> understand the binding definition, this is one of the legal compatible
-> strings for it. (I'm not saying other platforms can't register and
-> provide specific compatible strings if they want to, of course, but
-> for our situation that really doesn't work.)
-
-Not for LPDDR3 bindings, yes for LPDDR2. Inconsistency is actually a bit
-confusing.
-
-> 
->>> so that we can then delegate the task of matching
->>> those values to part numbers to a userspace process.
+>> Visible on older dtschema (2022.6.dev10+gcd64f75fe091), visible on
+>> newest (2022.7).
 >>
->> Constructing a vendor from mode registers is like 10 lines of C code, so
->> this is not a problem. Trouble would be with device part of compatible.
-> 
-> There's potentially 255 different manufacturer codes, and the
-> assignments may be different for different LPDDR versions. That's a
-> big string table that we don't want to have to fit in our firmware
-> flash. Besides, as you said, that still only gives you the vendor...
-> so then should we use "micron,lpddr3" or "elpida,lpddr3" instead of
-> "jedec,lpddr3"? Where's the advantage in that?
-> 
->>> Can we please revert that deprecation and at least keep the property
->>> around as optional?
+>> Exactly the same error.
 >>
->> Yes, we can. You still would need to generate the compatible according
->> to the current bindings. Whether we can change it I am not sure. I think
->> it depends how much customization is possible per vendor, according to
->> JEDEC spec. If we never ever have to identify specific part, because
->> JEDEC spec and registers tell us everything, then we could skip it,
->> similarly to lpddr2 and jedec,spi-nor.
 > 
-> Shouldn't that be decided per use case? In general LPDDR is a pretty
-> rigid set of standards and memory controllers are generally compatible
-> with any vendor without hardcoding vendor-specific behavior, so I
-> don't anticipate that this would be likely (particularly since there
-> is no "real" kernel device driver that needs to initialize the full
-> memory controller, after all, these bindings are mostly
-> informational). 
-
-If decided per use case understood as "decided depending how to use the
-bindings" then answer is rather not. For example Linux implementation is
-usually not the best argument to shape the bindings and usually to such
-arguments answer is: "implementation does not matter".
-
-If by "use case" you mean actual hardware or specification
-characteristics, then yes, of course. This is why I wrote "it depends".
-
-> Of course there may always be mistakes and broken
-> devices that need custom handling, and if someone has a platform with
-> such a case I of course don't want to preclude them from tying special
-> behavior to a custom compatible string. But why would that mean we
-> need to make this mandatory for all platforms even if it's not
-> relevant (and not practically feasible) for them? Why not allow both?
-
-Depends. If generic compatible is not enough (works only for your case)
-then it should have never been added alone.
-
+> Hello
 > 
->>> We need to be able to report the information that's currently encoded
->>> in the "jedec,lpddr2" binding separately for each channel+rank
->>> combination, and we need to be able to tell how many LPDDR chips are
->>> combined under a single memory channel.
->>
->> Who and why needs that information?
->>
->> To me it's not a very useful information without knowing how memory
->> ranges are mapped to the chips and then only kernel drivers should be
->> able to utilize that info in a meaningful way. What driver are we
->> talking about?
-> 
-> We're using this for diagnostic purposes, to be able to accurately
-> report the installed memory configuration to the user or in automated
-> error reporting. We're planning to just read it from userspace (via
-> /proc/device-tree) and not actually add a kernel driver for it, but
-> since it needs to come from the firmware through the device tree it
-> should have a standardized binding all the same.
+> I am sorry, I finally succesfully reproduced it.
+> Just doing what the hints gives (removing max/min-items) from "static" list fix the issue.
 
-Sorry, I don't understand to whom you reply. It's a reply to me but you
-quoted here few pieces of emails which were not from me. If you
-argue/comment/discuss with any of my statements, please write your reply
-under my quote. This allows me easily to find the relevant point of
-discussion.
+Not sure what do you mean by "static list". I think you should drop
+min/maxItems from clock-names/reset-names in allOf:if:then sections.
+
+> Does I need to remove your Reviewed-by ?
+
+Let's drop, so it will be back to my to-review queue.
 
 Best regards,
 Krzysztof
