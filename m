@@ -2,75 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19EDD56CF82
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 16:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0C7956CF99
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jul 2022 17:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbiGJOuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 10:50:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52606 "EHLO
+        id S229590AbiGJPEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 11:04:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiGJOuB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 10:50:01 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5916AE0D2
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 07:50:00 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id r9so3572050ljp.9
-        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 07:50:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NMAfcM1gX7YiSJ3enV+dwGTwAWUSd+ilkuNszoR7SL4=;
-        b=fvVUybs0iW+ZMZZfS9j6vR+hsqU/CCWb9ftbXppRIjzihX+kkOKcEcZZHOcj96ygTc
-         /OYkvrNmjRxLAGksi0+jYFYs1uZTkmHF1gBr70ySkh7y3QOEXtHOKkBxnxx0OSRKYwEr
-         PDSDEXATHDOobf582NsqTFozpyv9J8bVRbdqIgIhpJuJ98f+BNbboKD4Ses29g0GbZN9
-         P8RdfgJcVb67VO4ctTu6DXI1HCPYIN6kjHbphe8afuVVBsfomFOaH40CWKltYzBFu19o
-         JWRCYU6ubwFhC2YeUnf0+mRnAi27iimsBBv7GDpC2SurGU3/CWDxuF/pcLW0oVgYelqT
-         O8yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=NMAfcM1gX7YiSJ3enV+dwGTwAWUSd+ilkuNszoR7SL4=;
-        b=y5nd4OUUG1F9LEuJZXzjUVG77B3CPUvaHbGb2RKbVToIJnLl5n1fR/4MDnYEgumiXx
-         dUuFy2zZyFfpEL0d/dBWvO/+ZcF5n+lSOOfeYjeyBxPM/SqMp03BV5+T+CCeQ7yuPANO
-         YeNz2D8Y5vob4DIuZWPMe2f8DXD2567hetlyDgqjJiY5SoemySOcGs65ekk0Un9qPWlV
-         qL2h5kbEeiEBHo1jJ7oBK3m4vGG7iJLMGOK03LOVKZVO5h1DaSst7DOAotyLsx2roc1k
-         yNuoctwwC8aQ3M8mz7zdjiP0OGxC+VoFWXbFbawJZtZjIUugYheIUdbO+6nD0QWNODSX
-         z3ww==
-X-Gm-Message-State: AJIora/SwXreJBbu0f8+Aryj8nYlPl5SpMoWjUBTT4UEZgDPjjVHJIgq
-        eeIzi/L5gkCR+AxKx5rs3fSvqQ==
-X-Google-Smtp-Source: AGRyM1u/BuRLNXN7RP+94POtu9v8eagdThkz3BovPgek7GViREFgrLJo2MkjaMg7wo4A0WsVoqKJog==
-X-Received: by 2002:a2e:bf18:0:b0:25d:6852:c949 with SMTP id c24-20020a2ebf18000000b0025d6852c949mr1662848ljr.85.1657464598770;
-        Sun, 10 Jul 2022 07:49:58 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cac-200.bb.online.no. [88.92.172.200])
-        by smtp.gmail.com with ESMTPSA id v8-20020ac258e8000000b004888c459954sm952132lfo.256.2022.07.10.07.49.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Jul 2022 07:49:58 -0700 (PDT)
-Message-ID: <420f9ff1-da37-3d1d-d913-29888ade21bb@linaro.org>
-Date:   Sun, 10 Jul 2022 16:49:56 +0200
+        with ESMTP id S229570AbiGJPEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 11:04:04 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDECF64C9;
+        Sun, 10 Jul 2022 08:03:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1657465409;
+        bh=bCCo/6Am2R09b4nHHeMnoc0FW6xyrYI6zkvE1m2Jm4A=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=Y/FtNncUF0YYrHQPa7Evn+Mb1X+P6w+n53UBeJWw/TLxD9fLIWe4cYb5JVkpuh/LY
+         J6yKdBT8hBDADzp61Bd9gjm761JMMmgW8xDryyqHOI6RZZc37HF/F0KR3woiBY3qma
+         a5S8c5/uYkYaBixTKAKVLnWbJMTt8MipDb/cI4CY=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from localhost.localdomain ([46.223.3.243]) by mail.gmx.net
+ (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
+ 1MTzay-1o16Gp0pN4-00R1T5; Sun, 10 Jul 2022 17:03:29 +0200
+From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
+To:     gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, vz@mleia.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lukas@wunner.de, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: [PATCH v3 0/8] Fixes and cleanup for RS485
+Date:   Sun, 10 Jul 2022 17:03:14 +0200
+Message-Id: <20220710150322.2846170-1-LinoSanfilippo@gmx.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 0/3] TQMa8MPxL + MBa8MPxL support
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Markus Niebel <Markus.Niebel@tq-group.com>
-References: <20220622114949.889274-1-alexander.stein@ew.tq-group.com>
- <15466736.O9o76ZdvQC@steina-w>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <15466736.O9o76ZdvQC@steina-w>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: base64
+X-Provags-ID: V03:K1:AQK75PXDxb8ruYEg4RoE/3q8W5jyQVLOL7VSy14r6hTADfPrxRR
+ 2EbnzXFyawPbUTdYZQ/ykqJKFLSyDxYcCc08iF0u2+el+0T+7zW5bDItAYoYWxe3511SRjH
+ zp/O8BrHcMqU/cDJZgQ4MVXQTW6Et4MLmXF3DcBOFk/Wuhs8hS2Fr2VtDYI57ufmxEJqifA
+ IPJjiw/8Pc0Dd34+hAq9Q==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:iEbjkL/2hfg=:niaR/DQ/WNAO6Mr0TXesA4
+ 7gn2DKaXLYCgjGJL2cwr1hYeBSQlm6MDWRht1KOpSsbmy84kuixgGaBBnTit/j1M+oBo+7zWJ
+ vfuJvSxvNdbAoMEtkuorCq3NiLx//sSXBICZtJl1r7xqWTFCJh/bdcBLGkwomox8iiZ7aXVap
+ Phg62UdCotuVHHhhurjq3Vuuk0djKShT9X/eaoBahL+Hv1EN/wKxLTAXbXozbiDUbXl1rZloD
+ dq9LKR8SEtyoaQGOD3iXvdQUMMGp7xl/DS7zzfRZHdwrZtQsUKJTfaFFxOBnslYgFrRyhAnFL
+ VNCWK8rZ2Xn20f+b7IwUlvO+LFwJNhY0Htlh+sflUYcMCEqKCW+mvewG9r9+WX/QvdHVs0jrQ
+ jkZfDYVdALp3UAF6MYceVzVzEqyZm6aRgEZcRXb0w24Y2InldZzLlzbSTWvkgnu0kW9w6jSuQ
+ 4emzhGykA3e54lc6Q1PDKrG7/jHDGfZJvHfgPW7D1/VW4GxANbWwDMUhbaKhhAJ+nDqS8EEqI
+ 32Q9bWREoZernoY7W1FZp3PomWZCPaRVYbIJNMVQ+IL8lgBlqI/UeX8VrP8jQIxrIVuieG2mI
+ pbAJ3ikBRKTX9N03+1P5Cbq4dbBK9ZbjJxHpo+Lx5wf8gsbLjtwY5m9y1fNczx7H7H0JwL11x
+ +jHaPn9IFqmnkZG/gXFCqx6ndTC9iwT+A0jEt+29vSt5BZcrRFsSO7Jt6D+xb5yY+2LsQyKC1
+ 4qWJqPmL4fJecPQdo1D1YAOEjjd3zdX0fJDY7OBQDgIAmwgH1hf5+7E6ZagYAmMHyKTZzTGLA
+ b//NE1vryMacSFEGt4EkZHg1akzOtylW79Fxl3WsVUNsO2lmivS35ZFGneE8Azqtih4zUmRT7
+ ShJ44SyU5NSFj0kCy1cPTNVQ1JYVQL7dod037n/c9d7V+71dOSMBJRyedPiqid0xEssXHpJzu
+ B/bBcL3c9S240qIDXh9PcCSAl6RYvwH88PeIV4UEIXgrCt2yF0x9gn9CtkEhdJqOU49bVXnmk
+ 2XCJ4Wtp/5dihsnOrvhBsmfURyI7qp77S+rUTuceEwJjmEOiRjuqBprf4F5RCzGIL48zGYhrF
+ W4Lz0XotMr7jvXfdNwrZsLz+FJct55QDAupfTMGhtfrPJkcXiC8DfoH3w==
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,13 +72,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2022 16:39, Alexander Stein wrote:
-> Ping,
-> 
-> I would like to get patch 1 & 2 into v5.20.
-
-Sure, happy to help but whom are you exactly pinging? What do you need
-from me or Rob?
-
-Best regards,
-Krzysztof
+RnJvbTogTGlubyBTYW5maWxpcHBvIDxsLnNhbmZpbGlwcG9Aa3VuYnVzLmNvbT4KClRoZSBmb2xs
+b3dpbmcgc2VyaWVzIGluY2x1ZGVzIGNsZWFudXAgYW5kIGZpeGVzIGFyb3VuZCBSUzQ4NSBpbiB0
+aGUgc2VyaWFsCmNvcmUgYW5kIHVhcnQgZHJpdmVyczoKClBhdGNoIDE6IGFyOTMzeDogRml4IGNo
+ZWNrIGZvciBSUzQ4NSBzdXBwb3J0ClBhdGNoIDI6IFJlbW92ZSBzdXBlcmZsdW91cyBjb2RlIGlu
+IGFyOTMzeC4KUGF0Y2ggMzogU2V0IHRoZSByczQ4NSB0ZXJtaW5hdGlvbiBHUElPIGluIHRoZSBz
+ZXJpYWwgY29yZS4gVGhpcyBpcyBuZWVkZWQKCSBzaW5jZSBpZiB0aGUgZ3BpbyBpcyBvbmx5IGFj
+Y2Vzc2libGUgaW4gc2xlZXBhYmxlIGNvbnRleHQuIEl0IGFsc28KCSBpcyBhIGZ1cnRoZXIgc3Rl
+cCB0byBtYWtlIHRoZSBSUzQ4NSBoYW5kbGluZyBtb3JlIGdlbmVyaWMuClBhdGNoIDQ6IE1vdmUg
+c2FuaXRpemluZyBvZiBSUzQ4NSBkZWxheXMgaW50byBhbiBvd24gZnVuY3Rpb24uIFRoaXMgaXMg
+aW4gCgkgcHJlcGFyYXRpb24gb2YgcGF0Y2ggNC4KUGF0Y2ggNTogU2FuaXRpemUgUlM0ODUgZGVs
+YXlzIHJlYWQgZnJvbSBkZXZpY2UgdHJlZS4KUGF0Y2ggNjogQ29ycmVjdCBSUzQ4NSBkZWxheXMg
+aW4gYmluZGluZyBkb2N1bWVudGF0aW9uLgpQYXRjaCA3OiBSZW1vdmUgcmVkdW5kYW50IGNvZGUg
+aW4gODI1MF9kd2xpYi4KUGF0Y2ggODogUmVtb3ZlIHJlZHVuZGFudCBjb2RlIGluIDgyNTAtbHBj
+MTh4eC4KCkNoYW5nZXMgaW4gdjM6Ci0gcmVtb3ZlIG9ic29sZXRlIHBhdGNoIChkdWUgdG8gY2hh
+bmdlcyBieSBJbHBvKQotIGNvcnJlY3RlZCBhbmQgcmVwaHJhc2UgY29tbWl0IG1lc3NhZ2VzIChw
+b2ludGVkIG91dCBieSBBbmR5KQotIHJlbW92ZSBzdXBlcmZsdW91cyBjaGVjayAocG9pbnRlZCBv
+dXQgYnkgQW5keSkKLSBzZXBhcmF0ZSBhcjkzM3ggVUFSVCBidWdmaXggYW5kIGNsZWFudXAgaW50
+byBkaWZmZXJlbnQgcGF0Y2hlcyAoYXMKICBzdWdnZXN0ZWQgYnkgSWxwbykKLSBwdXQgdGhlIGFy
+OTMzeCBmaXggYXQgdGhlIGJlZ2lubmluZyBvZiB0aGUgc2VyaWVzIChhcyBzdWdnZXN0ZWQgYnkg
+QW5keSkKCkNoYW5nZXMgaW4gdjI6Ci0gcHJpbnQgYSB3YXJuaW5nIGlmIHRlcm1pbmF0aW9uIEdQ
+SU8gaXMgc3BlY2lmaWVkIGluIERUL0FDUEkgYnV0IGlzIG5vdAogIHN1cHBvcnRlZCBieSBkcml2
+ZXIgCi0gZml4ZWQgY29tbWl0IG1lc3NhZ2UgZm9yIGRldnRyZWUgZG9jdW1lbnRhdGlvbiAoYXMg
+c3VnZ2VzdGVkIGJ5IEFuZHkpCi0gZml4ZWQgY29kZSBjb21tZW50Ci0gYWRkZWQgcGF0Y2ggNwoK
+Ckxpbm8gU2FuZmlsaXBwbyAoOCk6CiAgc2VyaWFsOiBhcjkzM3g6IEZpeCBjaGVjayBmb3IgUlM0
+ODUgc3VwcG9ydAogIHNlcmlhbDogYXI5MzN4OiBSZW1vdmUgc3VwZXJmbHVvdXMgY29kZSBpbiBh
+cjkzM3hfY29uZmlnX3JzNDg1KCkKICBzZXJpYWw6IGNvcmUsIDgyNTA6IHNldCBSUzQ4NSB0ZXJt
+aW5hdGlvbiBncGlvIGluIHNlcmlhbCBjb3JlCiAgc2VyaWFsOiBjb3JlOiBtb3ZlIHNhbml0aXpp
+bmcgb2YgUlM0ODUgZGVsYXlzIGludG8gb3duIGZ1bmN0aW9uCiAgc2VyaWFsOiBjb3JlOiBzYW5p
+dGl6ZSBSUzQ4NSBkZWxheXMgcmVhZCBmcm9tIGRldmljZSB0cmVlCiAgZHRfYmluZGluZ3M6IHJz
+NDg1OiBDb3JyZWN0IGRlbGF5IHZhbHVlcwogIHNlcmlhbDogODI1MF9kd2xpYjogcmVtb3ZlIHJl
+ZHVuZGFudCBzYW5pdHkgY2hlY2sgZm9yIFJTNDg1IGZsYWdzCiAgc2VyaWFsOiA4MjUwOiBscGMx
+OHh4OiBSZW1vdmUgcmVkdW5kYW50IHNhbml0eSBjaGVjayBmb3IgUlM0ODUgZmxhZ3MKCiAuLi4v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9zZXJpYWwvcnM0ODUueWFtbCAgICAgfCAgNCArLQogZHJpdmVy
+cy90dHkvc2VyaWFsLzgyNTAvODI1MF9kd2xpYi5jICAgICAgICAgIHwgMTAgKy0tLQogZHJpdmVy
+cy90dHkvc2VyaWFsLzgyNTAvODI1MF9scGMxOHh4LmMgICAgICAgIHwgIDYgKy0KIGRyaXZlcnMv
+dHR5L3NlcmlhbC84MjUwLzgyNTBfcG9ydC5jICAgICAgICAgICB8ICAzIC0KIGRyaXZlcnMvdHR5
+L3NlcmlhbC9hcjkzM3hfdWFydC5jICAgICAgICAgICAgICB8IDE4ICsrLS0tLQogZHJpdmVycy90
+dHkvc2VyaWFsL3NlcmlhbF9jb3JlLmMgICAgICAgICAgICAgIHwgNjAgKysrKysrKysrKysrLS0t
+LS0tLQogNiBmaWxlcyBjaGFuZ2VkLCA1MCBpbnNlcnRpb25zKCspLCA1MSBkZWxldGlvbnMoLSkK
+CgpiYXNlLWNvbW1pdDogN2U1YjQzMjJjZGUwNjdlMWQwZjFiZjhmNDkwZTkzZjY2NGE3Yzg0Mwot
+LSAKMi4yNS4xCgo=
