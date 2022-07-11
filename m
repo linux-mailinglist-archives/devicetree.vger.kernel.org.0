@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C94E570A50
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 21:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23899570A54
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 21:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbiGKTGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 15:06:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47544 "EHLO
+        id S229796AbiGKTG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 15:06:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbiGKTGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 15:06:31 -0400
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E113AB15;
-        Mon, 11 Jul 2022 12:06:30 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id n68so5830561iod.3;
-        Mon, 11 Jul 2022 12:06:30 -0700 (PDT)
+        with ESMTP id S229518AbiGKTG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 15:06:57 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D481D37FBA;
+        Mon, 11 Jul 2022 12:06:56 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id n68so5831803iod.3;
+        Mon, 11 Jul 2022 12:06:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wX41LN3dh2u+0svUHznNTjjMf2ePSwJL9NLtwCrMQKk=;
-        b=iOaxbZ9QrsrVa8N2i0VlcHDpkj68RooUqnlVqK6lIr+uhD9mqrEWm8LbExG/BbuK5T
-         A3lEPwXggrzdqsfJx3EFAqe38cb30I0/QtnQfrI5ty+ofDDtyx0DnrerRoVHyvBM40o0
-         /KKccfZiClDW9hMcbV3TuK/Kk1q8Xxrwde/yZQTuWDlmakla6BnTN9g/2UoCVwOl+RWN
-         FH3pcu+bDD5H7cRHjaGt/fU+lMKqgFHU2zA4MdFUZHI/7bPlajnA7t0EHTxiwGQN2Wy/
-         2LcTnthDjaykAB6g4z9PE5DOIyhVj86M2i6c98GfK7hehJEbptDaq+lyDQj4phhx6jX2
-         8o9A==
-X-Gm-Message-State: AJIora/iDXRrZK1dL75J+zHuO066c1De0TY+twzxD3s95H8P+uwbheUx
-        uEgvBLRDsPtY5o0FVkkrqw==
-X-Google-Smtp-Source: AGRyM1sITpaBuLTT490LtsBJlqETbA4AxHOpMxSRW3v9+E50WM+H560Ga9sgY9mPYWD3uIA5/cpgaA==
-X-Received: by 2002:a5d:9919:0:b0:675:48c7:d959 with SMTP id x25-20020a5d9919000000b0067548c7d959mr10346592iol.27.1657566389975;
-        Mon, 11 Jul 2022 12:06:29 -0700 (PDT)
+        bh=kSf41vMgFvCmlzJmWGYyXM6OwfPGih2l3PKdkftneNk=;
+        b=k/0LjLwqTVgnmXaC9q6FErj0ez3uXXb6TP1nfOUpHbC1W7r/KzolNMm9lqXwEqwFcP
+         69293f8GtUiOdVbh26feYAWHNFW5eLGzsUxE7Zz8JChTUXkZwfvS/GTno/yI2Me9JXL9
+         xzXKwWff6YES51uXxGX2/FCFyZ2V6jxmGPDSUj6NU+oWrxDinG9QhQc8IeT1EkU1O9av
+         2r7bJ1BIIJ3dQc9wQp/7UOA7vQ1VaTFrlQon1ZAZ9KjmaiG08sR+8kc558UgVoPW9M2s
+         B7pW+jJ6ZpOL4bb1UHuPM86G/g5V8oqS9vIOcyvWDQ51wYkiGFr5BIsFtboeuXGF2ZXa
+         mLHQ==
+X-Gm-Message-State: AJIora85wmSO6F5VZLXI24N853u1kl7EvTU1KJQJR3ZzpcBcXC6LNelw
+        Jweec0hPY1RROkYVs/zy4Q==
+X-Google-Smtp-Source: AGRyM1sbJWo+xNkDLZFUGospNLVIv5q0BrKxEblZDv7XeUe19bxqXsziHG6X8+boIY9VSbM1va/LeQ==
+X-Received: by 2002:a05:6638:4683:b0:33e:e4e3:d76 with SMTP id bq3-20020a056638468300b0033ee4e30d76mr11599077jab.110.1657566416107;
+        Mon, 11 Jul 2022 12:06:56 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r1-20020a02aa01000000b0033cd78a3612sm3200699jam.18.2022.07.11.12.06.28
+        by smtp.gmail.com with ESMTPSA id t11-20020a5edd0b000000b0067b7805d27fsm3871214iop.33.2022.07.11.12.06.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 12:06:29 -0700 (PDT)
-Received: (nullmailer pid 103083 invoked by uid 1000);
-        Mon, 11 Jul 2022 19:06:28 -0000
-Date:   Mon, 11 Jul 2022 13:06:28 -0600
+        Mon, 11 Jul 2022 12:06:55 -0700 (PDT)
+Received: (nullmailer pid 104028 invoked by uid 1000);
+        Mon, 11 Jul 2022 19:06:54 -0000
+Date:   Mon, 11 Jul 2022 13:06:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, geert+renesas@glider.be,
-        lpieralisi@kernel.org, kw@linux.com, magnus.damm@gmail.com,
-        devicetree@vger.kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        bhelgaas@google.com
-Subject: Re: [PATCH v3 08/13] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe
- Endpoint
-Message-ID: <20220711190628.GA103026-robh@kernel.org>
-References: <20220701085420.870306-1-yoshihiro.shimoda.uh@renesas.com>
- <20220701085420.870306-9-yoshihiro.shimoda.uh@renesas.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: nvidia,tegra20-pmc: Move fixed string
+ property names under 'properties'
+Message-ID: <20220711190654.GA103893-robh@kernel.org>
+References: <20220706212034.568861-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220701085420.870306-9-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220706212034.568861-1-robh@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,15 +65,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Jul 2022 17:54:15 +0900, Yoshihiro Shimoda wrote:
-> Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
-> PCIe endpoint module.
+On Wed, 06 Jul 2022 15:20:34 -0600, Rob Herring wrote:
+> Fixed string property names should be under 'properties' rather than
+> 'patternProperties'. Additionally, without beginning and end of line
+> anchors, any prefix or suffix is allowed on the specified property names.
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> As all the nvidia,tegra20-pmc powergates child node properties are fixed
+> strings, change 'patternProperties' to 'properties'.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/pci/rcar-gen4-pci-ep.yaml        | 99 +++++++++++++++++++
->  1 file changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+>  .../devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml       | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
