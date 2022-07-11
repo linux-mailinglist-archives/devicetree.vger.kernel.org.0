@@ -2,93 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4335700AB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:30:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28EBB5700DD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:41:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbiGKLaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 07:30:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43288 "EHLO
+        id S230044AbiGKLlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:41:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231472AbiGKL3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:29:44 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70120B86A
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:11:44 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id o7so8077620lfq.9
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:11:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=RnEewUaxRYksbEJpKUrJ+8MTrfw80zwbt+04yRkIeOI=;
-        b=Tai63LA9Z7OY2hr8ohiG7R5RP52XjdEe0kZjlHFzSD76t0YVAn4dMjXP97k6L+aXq9
-         AKZFoUNDqtPZ6sL40IpHJ0AK0k/1ZhjWznZ8b+cYTfiMB1E+5ogbAs4teyu+pkz5Ktx8
-         AWDeMaIhtOnpD6x9/C/HJ0PEqUcalB+xPJsBEFaTMRLHkjO3AGW4pVnjtwTPiTuItQgS
-         j+UQoVtiYN+fCe8+CZE7XpmkijLS8tXhOzxXDAnqNsL5FK9MpPc6ACeD6lSUhyDo/7zC
-         AQNK1iTdVyPx0cyp6nR0nTsCM3MUGhiJTr4JoRmTM/884OWawV0fHRF9NiKMgeb+k9Jq
-         0d6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=RnEewUaxRYksbEJpKUrJ+8MTrfw80zwbt+04yRkIeOI=;
-        b=Z4RpsAnxauy+uH+rB20vm2G6bL9omE/KwVCjYmJTTEyAv7SVzogiHEeL7521ItkDwK
-         CTSEYBp4DHL+q9kBsDYUyHF3GVhy8ei/XCtjGfPguYQ+8aRuld+yH6/sG6JFmy3zR28B
-         xRQGJdwd+DAqePnSwoLdSkfx5w0j9bJgerJZY/306SFjoLBgN1Dc19G7wL2UuPAzSVmY
-         X2vVj3E5JwAwmg/ttEWUZt5PDSRDO3+GG5lB8H07omaUZnaRkx0l1dQ3KLsQTruY90G5
-         XMS6CUB/Arux1XRR3POKL1J3rTgYomNGWI/wPE+X39YXcWW9/tdAs5Iiy8lh2ekQB2sX
-         955Q==
-X-Gm-Message-State: AJIora9dcqPMG599CZ30Ze3slUeL078qgMHvi+GLrPgu77H8H4JIFbIk
-        sIK9H31/SUd56S7PG/dVsclrfg==
-X-Google-Smtp-Source: AGRyM1vojcBdnwd/PHuInjbxCSSbuLABYZcGtOcCqkTMMNYAOtMUkfpuEnPNrUgh59axSJw/oAuqVQ==
-X-Received: by 2002:a05:6512:b07:b0:489:da1c:901e with SMTP id w7-20020a0565120b0700b00489da1c901emr4161326lfu.528.1657537902852;
-        Mon, 11 Jul 2022 04:11:42 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id q26-20020ac2515a000000b004797b92f4cdsm1484070lfd.91.2022.07.11.04.11.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 04:11:42 -0700 (PDT)
-Message-ID: <2935fd8e-ceda-fec9-db47-65d3ec142e32@linaro.org>
-Date:   Mon, 11 Jul 2022 13:11:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: crypto: ti,sa2ul: drop dma-coherent property
-Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>, herbert@gondor.apana.org.au,
-        davem@davemloft.net
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        j-keerthy@ti.com, linux-crypto@vger.kernel.org,
+        with ESMTP id S230103AbiGKLl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:41:27 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 530C5A2E42;
+        Mon, 11 Jul 2022 04:29:57 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2405:201:10:3153:7fbd:8a7b:29b6:89fb])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: shreeya)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2F44E66019F3;
+        Mon, 11 Jul 2022 12:29:42 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657538995;
+        bh=oEA9geemM6d6f1WCayauCfA/4E7qiOfsIP9LiuJPjkE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=G+o6Ga7ydXDvGIzs2n4XgIiQFyxdYYS15dk7VFPkACY00VdUwTpv88oLiHY6DKiqN
+         x+rii6auyDvaXm/MgnOjC0JG66eSM4j5WxikJNKgR6Cni/1Li9tE9mX4DY9vSZVpQo
+         Y2n2Um4taoFwiNY9TZYvGS4E7iAu70T/VXeT33uhNHoUJNvQDqBWzZPcsCIqraCu8m
+         CPzeQzYP0fq45yA31YHvZD+LRyaUItEFal9C9y5KEvoIcXywSi70f4xQXZBYG1crgG
+         b5hcXX40wxXWfap8MLf1psVsAhCfcg9ihqOHlnSzsvboo7jjWc+wF3+YftuuphxmUM
+         panu4EZOFgsXQ==
+From:   Shreeya Patel <shreeya.patel@collabora.com>
+To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        Zhigang.Shi@liteon.com
+Cc:     krisman@collabora.com, linux-iio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        vigneshr@ti.com
-References: <20220707110756.16169-1-j-choudhary@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220707110756.16169-1-j-choudhary@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        kernel@collabora.com, alvaro.soliverez@collabora.com,
+        dmitry.osipenko@collabora.com, andy.shevchenko@gmail.com,
+        Shreeya Patel <shreeya.patel@collabora.com>
+Subject: [PATCH v7 0/2] Add LTRF216A Driver
+Date:   Mon, 11 Jul 2022 16:58:58 +0530
+Message-Id: <20220711112900.61363-1-shreeya.patel@collabora.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 13:07, Jayesh Choudhary wrote:
-> crypto driver itself is not dma-coherent. It is the dmaengine
-> that moves data and the buffers are to be mapped to the
-> dmaengine provider. So this property should be dropped.
-> 
-> Fixes: 2ce9a7299bf6 ('dt-bindings: crypto: Add TI SA2UL crypto accelerator documentation')
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
->  .../devicetree/bindings/crypto/ti,sa2ul.yaml        | 13 -------------
+This patchset adds support for ltrf216a Ambient Light Sensor
+and documents the DT bindings for the same.
 
+Changes in v7
+  - Add regmap support.
+  - Fix runtime power management implementation.
+  - Fix the ordering of devm and non-devm functions.
+  - Use DEFINE_RUNTIME_DEV_PM_OPS macro
+  - Fix the error reported by kernel test robot for bindings.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes in v6
+  - Fix some errors reported by kernel test robot.
+  - Add protocol details for the datasheet link.
+  - Remove useless assignments.
+  - Add unit details for read data delay macro.
+  - Use pm_sleep_ptr().
 
+Changes in v5
+  - Add power management support.
+  - Add reset functionality.
+  - Use readx_poll_timeout() to get data.
+  - Cleanup some of the redundant code.
+  - Update int_time_fac after I2C write is successful.
+  - Rename mutex to lock.
+  - Use Reverse Xmas tree pattern for all variable definitions.
+  - Improve error handling messages and add error codes.
+  - Add one more MODULE_AUTHOR.
+  - Remove cleardata which was reading data for infrared light.
+  - Remove patch for deprecated vendor prefix [PATCH v4 3/3].
+  - Remove deprecated string from DT binding document.
 
-Best regards,
-Krzysztof
+Changes in v4
+  - Add more descriptive comment for mutex lock
+  - Fix mutex locking in read_raw()
+  - Use i2c_smbus_read_i2c_block_data()
+
+Changes in v3
+  - Use u16 instead of u8 for int_time_fac
+  - Reorder headers in ltrf216a.c file
+  - Remove int_time_mapping table and use int_time_available
+  - Fix indentation in the bindings file.
+
+Changes in v2
+  - Add support for 25ms and 50ms integration time.
+  - Rename some of the macros as per names given in datasheet
+  - Add a comment for the mutex lock
+  - Use read_avail callback instead of attributes and set the
+    appropriate _available bit.
+  - Use FIELD_PREP() at appropriate places.
+  - Add a constant lookup table for integration time and reg val
+  - Use BIT() macro for magic numbers.
+  - Improve error handling at few places.
+  - Use get_unaligned_le24() and div_u64()
+  - Use probe_new() callback and devm functions
+  - Return errors in probe using dev_err_probe()
+  - Use DEFINE_SIMPLE_DEV_PM_OPS()
+  - Correct the formula for lux to use 0.45 instead of 0.8
+  - Add interrupt and power supply property in DT bindings
+  - Add vendor prefix name as per the alphabetical order.
+
+Shreeya Patel (2):
+  dt-bindings: Document ltrf216a light sensor bindings
+  iio: light: Add support for ltrf216a sensor
+
+ .../bindings/iio/light/liteon,ltrf216a.yaml   |  49 ++
+ drivers/iio/light/Kconfig                     |  11 +
+ drivers/iio/light/Makefile                    |   1 +
+ drivers/iio/light/ltrf216a.c                  | 423 ++++++++++++++++++
+ 4 files changed, 484 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/liteon,ltrf216a.yaml
+ create mode 100644 drivers/iio/light/ltrf216a.c
+
+-- 
+2.30.2
+
