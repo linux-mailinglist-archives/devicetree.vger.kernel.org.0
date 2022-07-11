@@ -2,109 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1FC257018E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:02:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35A78570187
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:02:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231271AbiGKMCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 08:02:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56216 "EHLO
+        id S231218AbiGKMCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 08:02:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230286AbiGKMCs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:02:48 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D967137FAF;
-        Mon, 11 Jul 2022 05:02:47 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26B8N677001288;
-        Mon, 11 Jul 2022 14:01:38 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=IBdPZD/lgcjOqxf5WRf16r/XmqP10xUsJSLa25j+xfA=;
- b=sug/jlaKi7GXltDcvf9j/ft4Y91YwbYlgTiJHwiGXAkuSPiygAFxynDNrfy4HSYGJ/R5
- lTwwSIzOCbpv8KuCRWMAAXD4gQcpibOXocZiPY94wciD8gQI4CtWtCbFf2+NmsvGNdmT
- XdIbyY5uH94OCec0CEirxjEYBq3IT8013fAm+iHyAVe5jaa36efQqTV4CffXmB2KrMfU
- D317cTdjF05B0G5q29iuR0LGnur/wQVJNWE90y5CRQ2G+h0bHQ6mWlhSrGMxqJuApQ7l
- 86+azoo/O8CKkjKZ7LN5VEX8IqKttWadO6koCgrtI5snh662hw3zsqxXPH2RYic9LM9L Vg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3h6xtak5vc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 11 Jul 2022 14:01:38 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0A24D100034;
-        Mon, 11 Jul 2022 14:01:38 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 031B321ED2C;
-        Mon, 11 Jul 2022 14:01:38 +0200 (CEST)
-Received: from localhost (10.75.127.50) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 11 Jul
- 2022 14:01:37 +0200
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-To:     <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <heikki.krogerus@linux.intel.com>, <gregkh@linuxfoundation.org>
-CC:     <christophe.jaillet@wanadoo.fr>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <amelie.delaunay@foss.st.com>, <alexandre.torgue@foss.st.com>,
-        <fabrice.gasnier@foss.st.com>
-Subject: [PATCH v2 0/4] usb: typec: ucsi: add support for stm32g0
-Date:   Mon, 11 Jul 2022 14:01:18 +0200
-Message-ID: <20220711120122.25804-1-fabrice.gasnier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231202AbiGKMCO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:02:14 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8523C158
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:02:06 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id t25so8287527lfg.7
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:02:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=QVqxg0dp3wEYOZpL9v9ilM2FSVRUoonO6i41pxiTzI8=;
+        b=hFlw6gC8Q7phUNCtcoZ+mnhDG3DT2Icr9ctPW9MH8XjMtD29CbFUV/+EqObdE85V3+
+         84TFY8D/cPCLDmxM+Yjze8C5OqepE/+Jks3xTPjY8bvxWBK6PIcNzNssTM1CFhs9LtEk
+         jwd7bOEnaXnycO0NG4YXMJQxd0/Iydvchv52ywJ4QVSlfLFKenAy31lHszz6+D8Fiwtu
+         0PxvFQZMrFg2Ig2iOO7St7bU6PIywmAR7oIdOA8wSFtGZNMLW2Wx+fOS0U4T/Sc9xrDA
+         yiqr7V7dxkxre7p2jDbyB8gkHTM4L7MGLh1bGnShicdj+usImIZHWFNsR4CLEWZT0lgl
+         /CIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QVqxg0dp3wEYOZpL9v9ilM2FSVRUoonO6i41pxiTzI8=;
+        b=c56zh2nIEyHd6XxMF/jCVQlsU/ZHsz3nKhFV4MX99oHCWnppG9PsOxkSWy/w93Y9JZ
+         gKbwkrghUPFLtHE4smx/S0dbOd9vQ6hIV0It7ly9LG5kTbbQcZA6AavHCXJQDEaalozM
+         y3kDfkYyEmCRtL9+xDGMle2bdEZJut2x/zk8uUV6eQZw056VqYEd4UgJeeqm3JdT2Y8m
+         rQ52yToxWzbaeQTiaBvz3vzoiDhtE75Yrvxgjy6dh406n9sx4OPVAD8gsXgWybGOh7iO
+         xMxgOvX/9DeFvmmPCGzR7VIyhE5fKZml22rzOYmA2cIlJXI6TXo72ueiRp5OKWQtXoRg
+         7ZNw==
+X-Gm-Message-State: AJIora8sh7kOh7GxNG+RDtCTUtI4o+Satv9VfpfJ9CLsvVSFhE7aTopE
+        p5mtCiidzW1zZYLfmImVpeVi1A==
+X-Google-Smtp-Source: AGRyM1tPFsxY/xB1ICxsLpx4b0d9lJislbMty935ePwpSxLaNm08XHOXHHUPjHR/WWsfjwVIeBOlQg==
+X-Received: by 2002:a05:6512:398c:b0:488:f524:b7e9 with SMTP id j12-20020a056512398c00b00488f524b7e9mr10868068lfu.259.1657540924386;
+        Mon, 11 Jul 2022 05:02:04 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
+        by smtp.gmail.com with ESMTPSA id d28-20020ac25edc000000b00489c719b809sm1492196lfq.284.2022.07.11.05.02.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jul 2022 05:02:03 -0700 (PDT)
+Message-ID: <9e1ff864-3952-6442-13db-a3d8e18f86c3@linaro.org>
+Date:   Mon, 11 Jul 2022 14:02:01 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-11_17,2022-07-08_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 4/6] clk: qcom: apss-ipq6018: add MODULE_ALIAS
+Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, sivaprak@codeaurora.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-clk@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20220711104719.40939-1-robimarko@gmail.com>
+ <20220711104719.40939-4-robimarko@gmail.com>
+ <4de38d90-0020-c2db-b283-319b4a0e2ce5@linaro.org>
+ <CAOX2RU6X=JiV1As+_N6c_=VaHfVYpke_deQmmNPMMDxfnz5i8g@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAOX2RU6X=JiV1As+_N6c_=VaHfVYpke_deQmmNPMMDxfnz5i8g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-STM32G0 provides an integrated USB Type-C and power delivery interface [1].
-It can be programmed with a firmware [2] to act as a PPM. Currently it
-implements UCSI protocol over I2C interface. A GPIO is used as an interrupt
-line.
+On 11/07/2022 13:46, Robert Marko wrote:
+> On Mon, 11 Jul 2022 at 13:05, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 11/07/2022 12:47, Robert Marko wrote:
+>>> Add MODULE_ALIAS so that driver will be autoloaded if built as a module.
+>>>
+>>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+>>> ---
+>>>  drivers/clk/qcom/apss-ipq6018.c | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
+>>> index f2f502e2d5a4..963c69f2c0c2 100644
+>>> --- a/drivers/clk/qcom/apss-ipq6018.c
+>>> +++ b/drivers/clk/qcom/apss-ipq6018.c
+>>> @@ -101,5 +101,6 @@ static struct platform_driver apss_ipq6018_driver = {
+>>>
+>>>  module_platform_driver(apss_ipq6018_driver);
+>>>
+>>> +MODULE_ALIAS("platform:qcom,apss-ipq6018-clk");
+>>
+>> That's not correct alias (no commas) and usually alias is not needed at
+>> all. If you need one, please explain why it is needed. Module
+>> autoloading works fine without aliases...
+> 
+> Hi Krzysztof,
+> alias is required here as the driver does not use a DT compatible but
+> is registered
+> by the APCS driver, if built as a module, it won't get autoloaded
+> without an alias.
 
-This series adds a driver to support it, including:
-- dt-bindings documentation
-- optional STM32G0 firmware control and update, over a secondary I2C address
-- power management
+Instead you need device ID table. Aliases are not a workaround for
+missing core driver elements.
 
-[1] https://wiki.st.com/stm32mcu/wiki/Introduction_to_USB_Power_Delivery_with_STM32
-[2] https://github.com/STMicroelectronics/x-cube-ucsi
+> 
+> I can only fix up the driver name here and in APCS first to have an
+> alias without commas.
 
-Changes in v2:
-- Krzysztof's review comments on dt-bindings: update commit message, use ports,
-  use unevaluatedProperties: false for usb-connector schema, define maxItems
-  for power-domains, adopt generic node names, remove quotes.
-- Christophe's comments on driver:
-  use kmalloc instead of kzalloc
-  Use-after-free of buf: directly print the offset
+I see that the comma is used in driver name, so this is an independent
+issue. Maybe change it to '-' in separate commit?
 
-Fabrice Gasnier (4):
-  dt-bindings: usb: typec: add bindings for stm32g0 controller
-  usb: typec: ucsi: stm32g0: add support for stm32g0 i2c controller
-  usb: typec: ucsi: stm32g0: add bootloader support
-  usb: typec: ucsi: stm32g0: add support for power management
 
- .../bindings/usb/st,typec-stm32g0.yaml        |  90 ++
- drivers/usb/typec/ucsi/Kconfig                |  10 +
- drivers/usb/typec/ucsi/Makefile               |   1 +
- drivers/usb/typec/ucsi/ucsi_stm32g0.c         | 777 ++++++++++++++++++
- 4 files changed, 878 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
- create mode 100644 drivers/usb/typec/ucsi/ucsi_stm32g0.c
-
--- 
-2.25.1
-
+Best regards,
+Krzysztof
