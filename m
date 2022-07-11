@@ -2,56 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39BA7570DF5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 01:09:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E176570E04
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 01:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231611AbiGKXJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 19:09:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34602 "EHLO
+        id S229873AbiGKXNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 19:13:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232020AbiGKXJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 19:09:03 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 635DD23172;
-        Mon, 11 Jul 2022 16:09:03 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id a20so3897514ilk.9;
-        Mon, 11 Jul 2022 16:09:03 -0700 (PDT)
+        with ESMTP id S229754AbiGKXNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 19:13:21 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0830509EB;
+        Mon, 11 Jul 2022 16:13:20 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id n68so6372897iod.3;
+        Mon, 11 Jul 2022 16:13:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Esny3LkF85JNW9zTHN7u+n4M88LU/ALgn7WC/LhVj9E=;
-        b=jbTIh6i+o9J6W4rDgPYft+DGbrSuA2VFmxSB3Vcc59AvLnVXfOM8vOgIcOg0WTW0wF
-         P1zpBiMqhTO0GEU6oCIZvCuWD4NQIYmap20u66WmVXWAa6S6QbaCahBZK6JmBkiXFrvy
-         cx79TWcZ7oYwSDFcFLJ/6/4C15wsHjqGSx28prE6DPdg2OIQ6cHd5QdfcjOqsz8GpHD0
-         f72CBxC3Q7RuLGdwjtknvoiI6YSAd5A5aJJc6kIyH6fE40bRud+kjeFSuXTwErLT37SS
-         ySTjA7p0V1HvFGI8uWjy593cq7QEs6cEXR5/o6F6IcMMcwdIs1G/Y+3cBQwyADFcbmtf
-         B98Q==
-X-Gm-Message-State: AJIora9CHjkkc42JHxdVxm/jW1Xc8gUAZj0yT72cG5BR9FWtrz+iAxPK
-        Oo9WnnKNuVjl4GtV9Jh0Mw==
-X-Google-Smtp-Source: AGRyM1s5y8ZgGxtrbdQ/DZFSTnnUHa2DE04OhdsqCIX+T7smvOnyEr5stdEJB8VfnL77vsXLAT0y6w==
-X-Received: by 2002:a05:6e02:1b01:b0:2dc:7472:a5d1 with SMTP id i1-20020a056e021b0100b002dc7472a5d1mr5462931ilv.62.1657580942544;
-        Mon, 11 Jul 2022 16:09:02 -0700 (PDT)
+        bh=s+xsXrHKbwgwRMOBC5ueCPd6m6uJqEs8A2pHdJgDMG0=;
+        b=Ou78mne9/ZXnw7A7sdH8KFsgtz2KpZKR5AohaLJRS0JYYu3PCiyt1e5TdJ7TpN8Go2
+         S46bT9htu3xANMrVzxPdO69UV0JORnKerFr1GwoYKfmuw77ItHCSpHeCwZP9AgKtaqWy
+         E8sOv0bTmrKEq/a27pmRUQuMD9ytch/WeXapK3HmF/eLlMBhPvgvygAzt3N/I1+FpIZp
+         ZlrtRNNRm6HCYKowYpags/U/QTtUOLlM8VinZEueJ0pGp8EDBiPKc6r1IHiX1g96tq4N
+         Zc+qQKnW+tvUUz49xusjVobnaToo6yF/MJ0tUhMDQjcOMQG66qBOkWfbuI6qdopLD/al
+         8F9Q==
+X-Gm-Message-State: AJIora+riZ49mGas9fHpO6Jx/Rdnlt1aGd7JSjPHGA/KNKx+FOTMHFBk
+        6skZnvOMHU1I0qVlsP3ocw==
+X-Google-Smtp-Source: AGRyM1smXQuLdxE0NR8tRcT+paGMEY5ZJBKF79o1+ztxVmzVmSeS4W5jT4PHCTvnuAeWHdotl+T2LQ==
+X-Received: by 2002:a05:6638:4511:b0:33f:4ccb:3139 with SMTP id bs17-20020a056638451100b0033f4ccb3139mr5647828jab.20.1657581199999;
+        Mon, 11 Jul 2022 16:13:19 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t2-20020a92c902000000b002cc20b48163sm3191864ilp.3.2022.07.11.16.09.01
+        by smtp.gmail.com with ESMTPSA id a26-20020a029f9a000000b00331a3909e46sm3504613jam.68.2022.07.11.16.13.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 16:09:02 -0700 (PDT)
-Received: (nullmailer pid 442504 invoked by uid 1000);
-        Mon, 11 Jul 2022 23:09:01 -0000
-Date:   Mon, 11 Jul 2022 17:09:01 -0600
+        Mon, 11 Jul 2022 16:13:19 -0700 (PDT)
+Received: (nullmailer pid 448337 invoked by uid 1000);
+        Mon, 11 Jul 2022 23:13:18 -0000
+Date:   Mon, 11 Jul 2022 17:13:18 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Andy Yan <andyshrk@163.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: rockchip: Add EAIDK-610
-Message-ID: <20220711230901.GA442449-robh@kernel.org>
-References: <20220709102902.2753851-1-andyshrk@163.com>
- <20220709103001.2753992-1-andyshrk@163.com>
+To:     MollySophia <mollysophia379@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] dt-bindings: arm: qcom: Add Xiaomi Mi Mix2s
+ bindings
+Message-ID: <20220711231318.GA442599-robh@kernel.org>
+References: <20220709131935.50708-1-mollysophia379@gmail.com>
+ <20220709131935.50708-2-mollysophia379@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220709103001.2753992-1-andyshrk@163.com>
+In-Reply-To: <20220709131935.50708-2-mollysophia379@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,31 +67,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 09 Jul 2022 18:30:01 +0800, Andy Yan wrote:
-> EAIDK-610 is a rk3399 based board from OPEN AI LAB
-> and popularly used by university students.
+On Sat, Jul 09, 2022 at 09:19:35PM +0800, MollySophia wrote:
+> Add documentation for "xiaomi,polaris" device.
 > 
-> Specification:
-> - Rockchip RK3399
-> - LPDDR3 4GB
-> - TF sd scard slot
-> - eMMC
-> - AP6255 for WiFi + BT
-> - Gigabit ethernet
-> - HDMI out
-> - 40 pin header
-> - USB 2.0 x 2
-> - USB 3.0 x 1
-> - USB 3.0 Type-C x 1
-> - 12V DC Power supply
-> 
-> Signed-off-by: Andy Yan <andyshrk@163.com>
+> Signed-off-by: MollySophia <mollysophia379@gmail.com>
 > ---
-> 
-> (no changes since v1)
-> 
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
 >  1 file changed, 5 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 129cdd246223..80dff09bdc83 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -235,6 +235,11 @@ properties:
+>                - xiaomi,lavender
+>            - const: qcom,sdm660
+>  
+> +      - items:
+> +          - enum:
+> +              - xiaomi,polaris
+> +          - const: qcom,sdm845
 
-Acked-by: Rob Herring <robh@kernel.org>
+I think there is now an entry for this as a bunch of missing 
+compatibles have been added, so you will need to rebase on the qcom 
+tree.
+
+Rob
