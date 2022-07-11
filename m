@@ -2,130 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6510B56FFFC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:17:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1F2757000C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:19:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbiGKLQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 07:16:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58104 "EHLO
+        id S229685AbiGKLT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:19:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230222AbiGKLQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:16:28 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A415642E
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 03:38:33 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id a9so7952234lfk.11
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 03:38:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NQoLzRBeO+sL0DWQtHTbM5QZDiRRY6R4q4RQs20xXvA=;
-        b=VuG4aVjx+zQiHH6/kPNj8R2eOimlBGti8XEdbUYQ2Vzl8PAd+e6IKmdsu/22AD/P9J
-         GBLC8aPdQl4arslGU3tOOFwPWIDP2UMS/J8MIRBRf4cndEtQQkmEmPGM7T0hqSHMpkrF
-         tAtnCKNGdc6oKwIdwA36bJn4wyo5/LkekRWOLymdOn1fWMrn2XtvywH5xvHp1TrP/avW
-         iX6YLCwq8rCRB9v8xv2rY6x8nhXIQGklitoDpL3NYTrSeVbbkvGJDJJoKWomVVeE5Mvl
-         AiUG7/szAUZVaOF6hGneN2SDoMLOqoB9Dx+8uw4kNZge2pcZ2lc5Knd6JVVSpI+bj4Yy
-         +aFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=NQoLzRBeO+sL0DWQtHTbM5QZDiRRY6R4q4RQs20xXvA=;
-        b=5UjM/JaU05/POzycNyiIDX+2RZEf40eAUQVV4h32YL8MWp6C5J6qJ+gY1PBm60n158
-         sKDwtSLKuMuYQ4I/RSvwhbXK9jGrI6/wN4JHfwbzkLOQRK6WpbnLdA+weM2GifUMl573
-         hsLbAPDzbHd7po6aXO7+I/9KYpdYVuMaVt3bAsdsTefz1DIXHw5Ooo1u+ivwlS7hEvxk
-         qJneFo4FSf0WjoblsO4HrK1JkS+y+bjUsKmH2M9dbxrY6MJJso0+I6zx812BgrDmW1l5
-         xJZ8C/PuFPF/qFJtK5Kb8O3WkAbEU0Q0PTnLbZ7nchZ7q+sSkX9FjTBSV6azcfiywjry
-         JFmQ==
-X-Gm-Message-State: AJIora9+n9mLcSRBT3iKwoHbr3541y5xlnVDGjEzpz1R1Fb6SmdzRlaW
-        NajcxPzNI0Haz+qjDfPvGcZmMg==
-X-Google-Smtp-Source: AGRyM1tquCCB6Z0O+3aVgYSykP26Ez+/mnUfsPpGejuwSkfD9boKKoCZ6uAeHfwKQYC2bBpSQDcrLQ==
-X-Received: by 2002:a05:6512:1151:b0:481:1675:f343 with SMTP id m17-20020a056512115100b004811675f343mr10988046lfg.280.1657535911823;
-        Mon, 11 Jul 2022 03:38:31 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id p13-20020a2e804d000000b0025a885a135csm1665054ljg.119.2022.07.11.03.38.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 03:38:31 -0700 (PDT)
-Message-ID: <c68e4ae9-c435-c74e-91cd-b153be6de92f@linaro.org>
-Date:   Mon, 11 Jul 2022 12:38:28 +0200
+        with ESMTP id S230296AbiGKLSl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:18:41 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CCEB041D05
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 03:41:43 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DC13616A3;
+        Mon, 11 Jul 2022 03:41:43 -0700 (PDT)
+Received: from [10.57.85.194] (unknown [10.57.85.194])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 076BA3F792;
+        Mon, 11 Jul 2022 03:41:40 -0700 (PDT)
+Message-ID: <15846ffa-f68a-2f88-55a3-40a633132c28@arm.com>
+Date:   Mon, 11 Jul 2022 11:41:35 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v1 2/3] dt-binding: power: power-domain: add
- power-supply-needs-irq
-Content-Language: en-US
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>, rafael@kernel.org,
-        khilman@kernel.org, ulf.hansson@linaro.org, robh@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        pavel@ucw.cz
-Cc:     kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
-        l.stach@pengutronix.de, aford173@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220711094549.3445566-1-martin.kepplinger@puri.sm>
- <20220711094549.3445566-2-martin.kepplinger@puri.sm>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711094549.3445566-2-martin.kepplinger@puri.sm>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
+ on rock-3a
+Content-Language: en-GB
+To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        kernel test robot <lkp@intel.com>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-21-s.hauer@pengutronix.de>
+ <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
+ <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
+ <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com>
+ <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
+ <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com>
+ <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
+ <9567EECF-A154-4FE1-A03C-5ED080409030@gmail.com>
+ <190C3FD3-0185-4A99-B10E-A5790047D993@gmail.com>
+ <CAMdYzYqGGfWDr11iyyfzigxsL7_N2szuag9P6TUZGuzGF4oB+A@mail.gmail.com>
+ <AF6176F5-995E-473B-B494-844ECC26BC03@gmail.com>
+ <CAMdYzYocZw1SNtgbfqn1VuvKTCiuMNTYRn2MydiGnL-UxtnYuA@mail.gmail.com>
+ <0D8B18A1-82FD-4902-A443-AD774DE43DAD@gmail.com>
+ <CAMdYzYpdo6Hb30y1oEya5GT1eXHJVTETq--HcmMjF40gvCUZ9A@mail.gmail.com>
+ <E9DC63DF-46A6-438E-A7F1-5F7A65F56DFC@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <E9DC63DF-46A6-438E-A7F1-5F7A65F56DFC@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 11:45, Martin Kepplinger wrote:
-> Add the power-supply-needs-irq board description property for power domains.
-
-Where is a board description here? I think you just meant
-"power-supply-needs-irq property"?
+On 2022-06-25 16:31, Piotr Oniszczuk wrote:
 > 
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  .../devicetree/bindings/power/power-domain.yaml        | 10 ++++++++++
->  1 file changed, 10 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/power-domain.yaml b/Documentation/devicetree/bindings/power/power-domain.yaml
-> index 889091b9814f..e82c2f7ccb97 100644
-> --- a/Documentation/devicetree/bindings/power/power-domain.yaml
-> +++ b/Documentation/devicetree/bindings/power/power-domain.yaml
-> @@ -70,6 +70,16 @@ properties:
->        by the given provider should be subdomains of the domain specified
->        by this binding.
->  
-> +  power-supply: true
+>> Wiadomość napisana przez Peter Geis <pgwipeout@gmail.com> w dniu 25.06.2022, o godz. 16:00:
+>>
+>>
+>> The first issue you have is the TV isn't responding until the absolute
+>> end.
+> 
+> I suspect this is because lack on idle gaps between cec commands sent from board to tv.
+> Maybe TV sw. can't deal with consecutive commands without any idle between them?
+> 
+> It is interesting that disconnecting TV - so CEC line is driven only by board - rock3a still don't have any idle gaps while rock3b (and radxa 4.19 bsp) has them (very similar between 5.18mailine and 4.19 bsp).
+> 
+> How this is possible that change I/O from m0->m1 impacts _timings_ on free hanging CEC line?
 
-This is a new property not described in the commit msg.
+Check all the pinctrl settings beyond just the function mux - pulls, 
+drive strength, output type, etc. - the defaults tend to be all over the 
+place, and rarely what you want.
 
-> +
-> +  power-supply-needs-irq:
-> +    type: boolean
-> +    description:
-> +      A power-supply can link for example to a regulator controlled via
-> +      i2c or otherwise needing interrupts enabled to be able to enable and
-> +      disable. 
+Robin.
 
-Not really a property of power domain. How the regulator supply works is
-entirely up to regulator. Otherwise such property should appear for
-every device.
-
-> This property makes various callbacks usually run in the
-> +      noirq phase, being run when interrupts are available.
-
-Last sentence does not fit - you embed Linux implementation into DT
-bindings. noirq phase is Linux specific.
-
-> +
->  required:
->    - "#power-domain-cells"
->  
-
-
-Best regards,
-Krzysztof
+>> This strikes me as a signal integrity issue. Do you have an
+>> oscilloscope (not a logic analyzer, you need voltages and ramp times)
+>> to compare the working vs non-working signals? Check both sides of the
+>> level shifter.
+> 
+> Indeed - i will verify this with digital oscilloscope.
+> Already ordered and must await week or 2 for delivery :-(
+> 
+> My analog oscilloscope shows correct levels and slopes "seems" to be the same like in working (no memory so i can compare only visually on fuzzy screen)
+> 
+> For me key is to understand why on rock3a there is no any idles between cec commands - even when nothing is connected to bard (so cec is only sending and nothing external impacts cec state machine)....
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
