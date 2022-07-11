@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA2A957034A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:49:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 049C757034D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231424AbiGKMtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 08:49:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52230 "EHLO
+        id S231975AbiGKMty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 08:49:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230200AbiGKMtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:49:23 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA1422B18
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:49:22 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id y22so2565958qki.7
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:49:22 -0700 (PDT)
+        with ESMTP id S230200AbiGKMtx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:49:53 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86D0255A0
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:49:52 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-31bf3656517so47300577b3.12
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:49:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=NO96Ekr9q06iu/5Pdmyxq/9esZoRehZSdWvbBWP49FM=;
-        b=kHpbFvw9oU2mnVOfQvL3NGsMKcJOd0ptf7M8NGSI5R0/m0QkXGd/YMnN5PPINWnHpy
-         bOrtDzygSvSg3cltELQqFXtcpZaqMFbGfaZnkIfHa3aaFEcZ5B62f6kcomrSSc46niJM
-         grHKOoTxL3NTSvsXKY3+jXrXC5BAgWDA48vYiTFgI63LonAw6c1hf9LHQBvLtb7w01gR
-         O9ZVk+A78gjRfzjlDnRsWnpiP+za3jebpbF4bHn+zNFVUjIgHoOW0RHOJdXoT1ZxKrU5
-         zESZZBVLacPte5b9hE5UiKVLjEysgo7EQ+Jn1+QUCmHRkUs1+cpasVuA2zMLzQoZXzDz
-         uOHQ==
+        bh=RmZJOM8I/E0C+p/YWjoZSCq2KbeCWroW5e0+cWDMQOo=;
+        b=Lti/mfxCybBcQcXabfUuPnnZIZuL3WNJAuZfx+OseZWYtwFyDR5ktrEIYmGIfLT2KD
+         Igw+OHKTXxxDccDOyyZv/uY5OWMDoNIdl+XyJN7PGI9OI1Vs62pZi6KBEhPdR/mRxJLQ
+         HV/DqcqqHxh/i/87uNPTkvQvEa1JskgsDHw2iovzklfJ0iOvErrBeZDYZtGk84ItM6Kg
+         sA5JJIlMPcyHyDGefMiUPt3Ux8ySUHNjPC78UjpL5xATlg2rH3lO3O/t2iIWxs3vQSZI
+         u+PbO6vvpqnKAxFGdiJelXVT0XAFF8jQWX9lfNdawXCTZuonFu1jWqVxEu/Wpj0/6+4Z
+         5Ikw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=NO96Ekr9q06iu/5Pdmyxq/9esZoRehZSdWvbBWP49FM=;
-        b=oJPPxqDZWkuaTDY14cRN5Vkg7UD+BGKCOf+0jldV/9aQUPjuiem1wh9lDtGLfnN2OK
-         qML1q3M+Bw48ij0hBhJPbm4qceiz2zVJNXqFP9w7TT64f6yoQBplVQ2wWjWBiaJtlbH1
-         GZMTWd5anHiwRvs1sP+00LCQn1sRfb6taY7EHRTEMZdepYQwe0lP+Dlu+Vze6f1gub7O
-         ANEAl8OSBGuaLe1Ev5Gz05BeevsjYbeZalkOLKjS1+XQPl8BpbjruKG4ZQ8URenZ0AqP
-         2TOBBulY2aoumZcYEeIHfD7Uthj47o1qxVl1iNd9zGJ6i8dddVOLwMi8pHw6bzvOk42n
-         KaMA==
-X-Gm-Message-State: AJIora+v+iI1DEXGsI0CmTU1eTngFX6iCNCrbs1bdriKI9BBV5Ww65WV
-        +3G8NGoCf2NufYTOGL/VCFSDOS5OwfzeQC38wgh6Ow==
-X-Google-Smtp-Source: AGRyM1shRp1jEA/2WOEywzBO5c50xpYOvrt9O9RsPxpUrSaIa+w8x+w8gXz3dEL9wRddkr7mnBCnC2kwQNwmF1K1yu8=
-X-Received: by 2002:a05:620a:4305:b0:6a9:3829:c03 with SMTP id
- u5-20020a05620a430500b006a938290c03mr10204665qko.363.1657543761561; Mon, 11
- Jul 2022 05:49:21 -0700 (PDT)
+        bh=RmZJOM8I/E0C+p/YWjoZSCq2KbeCWroW5e0+cWDMQOo=;
+        b=1EQj0+vwKOgroySNEh6tTP0dDEvEbGyuHsKZ754m1C0Ter6yIJz2G96e//U0kwBl3g
+         wA6QGFdqEPg5FQyfoYV8sZFJrflRJ3FQ5VQsKOwQX+xi3MRlZeVsj+VlFEePoy0Rhuhy
+         Ta0TM9jn2g0kc5SqSeJ872ObPB7atAw2JN9oxIktCbyU75hZ3RKd/LgQW2gyI/GIv2bb
+         p1hobhNR5BpbWsLBh8bVmmEQWzVYqhg5bSbngtVqRqDMiFDUEaFXvHQXH1UpTbvyoObD
+         Ai71TyD1jukSaMTHFTR4G/7XPVRzkyoKRynSOA4v7UGgVEULUfnIqoqlxFHZN0shJfma
+         8G6A==
+X-Gm-Message-State: AJIora/7dXcSU1O8IL33Rc6dv22ZPqhiViMZKxAZ1daMoB2YX+t7VPIn
+        6osS94gLLTRNv8u7S37gKufJ5kiVdntXj47tURsUFA==
+X-Google-Smtp-Source: AGRyM1tQ82Q5ZPnFh98WeMELImBDPK1tZfZ3ta+N6/zqrwtfGvr6JbnEqL0jaHjrnAbclfgna1DZsvLUblfLh3+cjbo=
+X-Received: by 2002:a81:6cf:0:b0:31c:913c:144c with SMTP id
+ 198-20020a8106cf000000b0031c913c144cmr19349785ywg.437.1657543792131; Mon, 11
+ Jul 2022 05:49:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220711105931.43164-1-robimarko@gmail.com> <20220711105931.43164-3-robimarko@gmail.com>
-In-Reply-To: <20220711105931.43164-3-robimarko@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 11 Jul 2022 15:49:10 +0300
-Message-ID: <CAA8EJprjFB6_1cSvBhERJg0uVEi6N-yaUSBLdEDEe15N+P1UKg@mail.gmail.com>
-Subject: Re: [PATCH v7 3/4] mailbox: qcom-apcs-ipc: add IPQ8074 APSS clock support
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, jassisinghbrar@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
+References: <cover.1657187536.git.oleksii_moisieiev@epam.com>
+In-Reply-To: <cover.1657187536.git.oleksii_moisieiev@epam.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 11 Jul 2022 14:49:41 +0200
+Message-ID: <CACRpkdaNfNcV-H5nCgQWQcJEg7=F-CNjB-m8RoGmC6_gdVEueQ@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] dt-bindings: Intorduce domain-controller
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+        "loic.pallardy@st.com" <loic.pallardy@st.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        "alexandre.torgue@st.com" <alexandre.torgue@st.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "tomase@xilinx.com" <tomase@xilinx.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -68,50 +80,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Jul 2022 at 14:26, Robert Marko <robimarko@gmail.com> wrote:
->
-> IPQ8074 has the APSS clock controller utilizing the same register space as
-> the APCS, so provide access to the APSS utilizing a child device like
-> IPQ6018.
->
-> IPQ6018 and IPQ8074 use the same controller and driver, so just utilize
-> IPQ6018 match data for IPQ8074.
->
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+On Thu, Jul 7, 2022 at 12:26 PM Oleksii Moisieiev
+<Oleksii_Moisieiev@epam.com> wrote:
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Looking forward for your thoughts and ideas.
 
-> ---
-> Changes in v7:
-> * Dont max_register modifications
-> * Drop custom IPQ8074 match data and use IPQ6018 one as they share the
-> controller and driver
->
-> Changes in v5:
-> * Use lower case hex for max_register
-> * Update the APSS clock name to match the new one without commas
-> ---
->  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> index 80a54d81412e..f1f0e87a79e6 100644
-> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> @@ -142,7 +142,7 @@ static int qcom_apcs_ipc_remove(struct platform_device *pdev)
->  /* .data is the offset of the ipc register within the global block */
->  static const struct of_device_id qcom_apcs_ipc_of_match[] = {
->         { .compatible = "qcom,ipq6018-apcs-apps-global", .data = &ipq6018_apcs_data },
-> -       { .compatible = "qcom,ipq8074-apcs-apps-global", .data = &msm8994_apcs_data },
-> +       { .compatible = "qcom,ipq8074-apcs-apps-global", .data = &ipq6018_apcs_data },
->         { .compatible = "qcom,msm8916-apcs-kpss-global", .data = &msm8916_apcs_data },
->         { .compatible = "qcom,msm8939-apcs-kpss-global", .data = &msm8916_apcs_data },
->         { .compatible = "qcom,msm8953-apcs-kpss-global", .data = &msm8994_apcs_data },
-> --
-> 2.36.1
->
+I think this looks good and is exactly what Benjamin's (stalled) patch
+set needs.
+We have two independent hardware pieces needing the same type
+of domain sectioning.
 
+I am just worried that no-one at ST is working on this anymore, Benjamin
+is not working at ST anymore, he's at Collabora. (Changed the CC.)
 
--- 
-With best wishes
-Dmitry
+Yours,
+Linus Walleij
