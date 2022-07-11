@@ -2,110 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 208DF570BF6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 22:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E2F570C44
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 22:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232143AbiGKUea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 16:34:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58650 "EHLO
+        id S231651AbiGKU7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 16:59:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232239AbiGKUeW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 16:34:22 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 767A83C8C4;
-        Mon, 11 Jul 2022 13:34:21 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id w12so6945638edd.13;
-        Mon, 11 Jul 2022 13:34:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=HDQxB7Fy3SfPJmcU/nMuUlTiaBaKupFDi/Um612kFO8=;
-        b=PGZ08dqQdqT0D7UjGQVD8rg1g2s0xhDZ5JiCghEqz36SC4vje7LlgpQW3RmW4aP/49
-         3NdmQ8ChR3iTUD+aG9DTwMchYlRnNDmZoq9I874gKq/KXoSe51StMYPIGHQfA+LKL3Y4
-         +UDwE8D0Y617g+teBdDNlMt261Inwqs8SrpyAvDiQmNgT3rmAzjtUqFGrymtIbixgLnj
-         GHPeaOnPYSOkg7u9QiUSmxY3SFDauY4GHh5pzpMiscPaeidPZm7SYZ7S4sRbGeAVRLz3
-         XreTwKBvVrsk826rIFdTaQmvt3++6YRXaU1xmOcD6aadTK7O4O2I848HZnWjBhps+lJz
-         H4Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=HDQxB7Fy3SfPJmcU/nMuUlTiaBaKupFDi/Um612kFO8=;
-        b=Hjo4UpP4udAoAxwf8Ks2leqU06pt7fZ0o5xQHSFMYrQM664pPmCiRAW5wjflz6tl92
-         9riIbPvOql0OrsG5szIrlc2AksD0jdPhyVZxbwu/kujCFnni0X5SL2JhukHQ/FMivg7I
-         ggK6aiCQFjH6mz/nDd+r1uxiH36bVLenLWjFgkOHCqHjaHhsWuDNm5k6SoJ1YkvAZKP1
-         wHjbf4sGh5FP0CQvzQ3tHriKuIHhd0400URgWhTflFXYLrEpQZeT/nr6Rl44GrWsqDX+
-         sTswko24QdsGdO+EZuQSJWJsPuSUOIPSXREXx+nuu5UNDuUPo0YCZrCrNxIJuW710fQS
-         ptZA==
-X-Gm-Message-State: AJIora8ikjUotQyuaIi0ImIEoeacff+yy9WHge76d6ro3jVs3MnalilF
-        yAFQSBX7dSZE9nlm7Zy6ViE=
-X-Google-Smtp-Source: AGRyM1vViudCrmCKrLpRhM+18/huarjlJ+ZDf97bk75H+R5h+jnSRW/RJv3vr94tkT2jdN+EWeBeSg==
-X-Received: by 2002:a05:6402:5418:b0:435:5a48:daa9 with SMTP id ev24-20020a056402541800b004355a48daa9mr27535122edb.304.1657571659967;
-        Mon, 11 Jul 2022 13:34:19 -0700 (PDT)
-Received: from fedora.robimarko.hr (cpe-94-253-165-104.zg.cable.xnet.hr. [94.253.165.104])
-        by smtp.googlemail.com with ESMTPSA id l11-20020a056402124b00b0043a422801f8sm4936264edw.87.2022.07.11.13.34.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 13:34:19 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, lee.jones@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, jic23@kernel.org, lars@metafoo.de,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH v7 7/7] arm64: dts: qcom: ipq8074-hk01: add VQMMC supply
-Date:   Mon, 11 Jul 2022 22:34:08 +0200
-Message-Id: <20220711203408.2949888-7-robimarko@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220711203408.2949888-1-robimarko@gmail.com>
-References: <20220711203408.2949888-1-robimarko@gmail.com>
+        with ESMTP id S229615AbiGKU7R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 16:59:17 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D292D5F6E;
+        Mon, 11 Jul 2022 13:59:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=2pS0dMuYYgeHNJqIl/bhPdJtlCRa5yVxxQQ48oLzz2A=; b=Waum5YhtqoS3xBHTC07cw9nhpR
+        Qk61iCzjsqffRwb4prDOOhd4ziN64ZzfEPEXbi+aRZG20qr2v1OOcMbkiV388ZeIpQXBYqfUA79ZS
+        aahz3fRfUzHVMwjFWVvrhtnfHNo116v/P0lw3kMDWOEMWC2IcbE475H+MMgseQbbuh/b6SGgTzv58
+        310H6CLYhKMl/4s9w68+igJ25NcXYkgkoMgchr1PT45aG8uv5Q5LbEqfIX+/hDgTPT/Wp2pcrPxZR
+        Wux7J+wt1SMSWOhoRPzzQIZsz7QK5vwy+/PxB6ox8anZPoHrD/TwjGWtpHedihfX4SdFNV7FStlz6
+        jEuzCh+w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33294)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oB0Ul-0001fu-TV; Mon, 11 Jul 2022 21:59:07 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oB0Ui-00043W-L9; Mon, 11 Jul 2022 21:59:04 +0100
+Date:   Mon, 11 Jul 2022 21:59:04 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH net-next 3/9] net: pcs: Add helpers for registering
+ and finding PCSs
+Message-ID: <YsyPGMOiIGktUlqD@shell.armlinux.org.uk>
+References: <20220711160519.741990-1-sean.anderson@seco.com>
+ <20220711160519.741990-4-sean.anderson@seco.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220711160519.741990-4-sean.anderson@seco.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since now we have control over the PMP8074 PMIC providing various system
-voltages including L11 which provides the SDIO/eMMC I/O voltage set it as
-the SDHCI VQMMC supply.
+Hi Sean,
 
-This allows SDHCI controller to switch to 1.8V I/O mode and support high
-speed modes like HS200 and HS400.
+It's a good attempt and may be nice to have, but I'm afraid the
+implementation has a flaw to do with the lifetime of data structures
+which always becomes a problem when we have multiple devices being
+used in aggregate.
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq8074-hk01.dts | 2 ++
- 1 file changed, 2 insertions(+)
+On Mon, Jul 11, 2022 at 12:05:13PM -0400, Sean Anderson wrote:
+> +/**
+> + * pcs_get_tail() - Finish getting a PCS
+> + * @pcs: The PCS to get, or %NULL if one could not be found
+> + *
+> + * This performs common operations necessary when getting a PCS (chiefly
+> + * incrementing reference counts)
+> + *
+> + * Return: @pcs, or an error pointer on failure
+> + */
+> +static struct phylink_pcs *pcs_get_tail(struct phylink_pcs *pcs)
+> +{
+> +	if (!pcs)
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +
+> +	if (!try_module_get(pcs->ops->owner))
+> +		return ERR_PTR(-ENODEV);
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-index de20cb98acd3..a73909a24935 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-@@ -3,6 +3,7 @@
- /* Copyright (c) 2017, The Linux Foundation. All rights reserved.
-  */
- #include "ipq8074.dtsi"
-+#include "pmp8074.dtsi"
- 
- / {
- 	#address-cells = <0x2>;
-@@ -87,6 +88,7 @@ nand@0 {
- 
- &sdhc_1 {
- 	status = "okay";
-+	vqmmc-supply = <&l11>;
- };
- 
- &qusb_phy_0 {
+What you're trying to prevent here is the PCS going away - but holding a
+reference to the module doesn't prevent that with the driver model. The
+driver model design is such that a device can be unbound from its driver
+at any moment. Taking a reference to the module doesn't prevent that,
+all it does is ensure that the user can't remove the module. It doesn't
+mean that the "pcs" structure will remain allocated.
+
+The second issue that this creates is if a MAC driver creates the PCS
+and then "gets" it through this interface, then the MAC driver module
+ends up being locked in until the MAC driver devices are all unbound,
+which isn't friendly at all.
+
+So, anything that proposes to create a new subsystem where we have
+multiple devices that make up an aggregate device needs to nicely cope
+with any of those devices going away. For that to happen in this
+instance, phylink would need to know that its in-use PCS for a
+particular MAC is going away, then it could force the link down before
+removing all references to the PCS device.
+
+Another solution would be devlinks, but I am really not a fan of that
+when there may be a single struct device backing multiple network
+interfaces, where some of them may require PCS and others do not. One
+wouldn't want the network interface with nfs-root to suddenly go away
+because a PCS was unbound from its driver!
+
+> +	get_device(pcs->dev);
+
+This helps, but not enough. All it means is the struct device won't
+go away, the "pcs" can still go away if the device is unbound from the
+driver.
+
 -- 
-2.36.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
