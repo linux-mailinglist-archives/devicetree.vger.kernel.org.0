@@ -2,69 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BDFA570BC8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 22:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71FF9570BE1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 22:34:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231920AbiGKUax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 16:30:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45854 "EHLO
+        id S231300AbiGKUeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 16:34:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiGKUab (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 16:30:31 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560B180517;
-        Mon, 11 Jul 2022 13:28:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230440AbiGKUd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 16:33:57 -0400
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39CC94E84C;
+        Mon, 11 Jul 2022 13:33:56 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 67E15B810AB;
-        Mon, 11 Jul 2022 20:27:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1599DC34115;
-        Mon, 11 Jul 2022 20:27:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657571274;
-        bh=KFfgfdwRrL4GHtkmhwSXYDkk8SgLMJGPbwToeltW0lA=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=I/fngGt1+pWcPHOtUDae+NDCx2d6oqdGupTpVb8kqKvQD9kzsP4vCcDEjhjGn/9im
-         TugGlIbGKrrfrROgzQ92WA6m6vVsNSlb1UpxOCCvX7zkPCKzfu1Nu5KcXswpmUmd/C
-         WlKjj0JFudPtGUP3+3Yi3Tg3OY7PTFJ+X+KCMvBPXXBYOyIVD+rrIbAlQRqNhLG+MB
-         rtLsee/bsMoen5gLe5fv8ePQDOIFCX0bVnSxIj8//f525g9+AXdtbpe/mglEBXeVDj
-         eLAolm5+aVxNb0umyFaKCxbx7e82kho9uOG/zQibvxuR/t0GZr+NpXjnDBV6C/Dhc2
-         4/6MTha2ixu+A==
-Content-Type: text/plain; charset="utf-8"
+        by box.trvn.ru (Postfix) with ESMTPSA id 61DA040151;
+        Tue, 12 Jul 2022 01:33:48 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1657571630; bh=on71Fn6PJmPzhtPge1o/S9PoCOQqQHfSiY+DRr0U3Mc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Asgocgy5VCeyyV3unXB41fx422WbhirjUjfTmAz4gLdvATaazpBbym+tplMZVMmrN
+         70SRVHH7opuT8nyoTdoC2b0FxFENX3wBkad3eZQVThIcXxCl4pTZTRFLyBHIrTtdt6
+         oxg7V7XWAhVWuzsfBH4L8e4IbiKisRv9+mdF2lBEkyTQoDKKu1tRLmgB9RhgtbEend
+         gCgEGGDgn7pweaYacbHiauLHT5EQhzl2HSk8p7C9df6eKiU3ibK+PwkggmkQQJNxDS
+         zIME6sofpI/OlG/6V1uwibABcQTSEi96PDnuejrcv7zVCpxztvrlhh+YsNPhr9VuJ7
+         EHE62NcKd/Pyw==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     thierry.reding@gmail.com, lee.jones@linaro.org
+Cc:     u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
+        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
+        masneyb@onstation.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v9 0/2] Clock based PWM output driver
+Date:   Tue, 12 Jul 2022 01:33:38 +0500
+Message-Id: <20220711203340.648007-1-nikita@trvn.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220505101433.1575096-4-gengcixi@gmail.com>
-References: <20220505101433.1575096-1-gengcixi@gmail.com> <20220505101433.1575096-4-gengcixi@gmail.com>
-Subject: Re: [PATCH v5 3/4] clk: sprd: Add dt-bindings include file for UMS512
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-To:     Cixi Geng <gengcixi@gmail.com>, baolin.wang7@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
-        mturquette@baylibre.com, orsonzhai@gmail.com, robh+dt@kernel.org,
-        zhang.lyra@gmail.com
-Date:   Mon, 11 Jul 2022 13:27:52 -0700
-User-Agent: alot/0.10
-Message-Id: <20220711202754.1599DC34115@smtp.kernel.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Cixi Geng (2022-05-05 03:14:32)
-> From: Cixi Geng <cixi.geng1@unisoc.com>
->=20
-> This file defines all UMS512 clock indexes, it should be included in the
-> device tree in which there's device using the clocks.
->=20
-> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+This series introduces an "adapter" driver that allows PWM consumers
+to control clock outputs with duty-cycle control.
 
-Applied to clk-next
+Some platforms (e.g. some Qualcomm chipsets) have "General Purpose"
+clocks that can be muxed to GPIO outputs and used as PWM outputs.
+Those outputs may be connected to various peripherals such as
+leds in display backlight or haptic feedback motor driver.
+
+To avoid re-implementing every single PWM consumer driver with clk
+support (like in [1]) and don't put the burden of providing the PWM
+sources on the clock drivers (as was proposed in [2]), clk based
+pwm controller driver is introduced.
+
+There is an existing driver that provides the opposite function
+in drivers/clk/clk-pwm.c with a compatible "pwm-clock" so the new
+driver uses the opposite naming scheme: drivers/pwm/pwm-clk.c
+and compatible "clk-pwm".
+
+Changes in v2:
+ - Fix filename in the DT schema.
+ - Address Uwe's review comments.
+Changes in v3:
+ - Fix node pattern in the core pwm schema.
+ - Address Uwe's review comments.
+Changes in v4:
+ - Drop the (incorrect) pwm schema change.
+ - Use generic node name in the dt bindings example.
+Changes in v5:
+ - Correct required properties.
+ - add missed returns.
+Changes in v6:
+ - Add missed error cleanup
+ - Adjust limitations comment
+Changes in v7:
+ - Rename some variables to be in line with common naming
+Changes in v8:
+ - Document the glitch that happens inbetween multiple clock operations
+Changes in v9:
+ - Fix incorrect patch message separators ('---')
+
+Nikita Travkin (2):
+  dt-bindings: pwm: Document clk based PWM controller
+  pwm: Add clock based PWM output driver
+
+ .../devicetree/bindings/pwm/clk-pwm.yaml      |  46 ++++++
+ drivers/pwm/Kconfig                           |  10 ++
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-clk.c                         | 148 ++++++++++++++++++
+ 4 files changed, 205 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/clk-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-clk.c
+
+-- 
+2.35.3
+
