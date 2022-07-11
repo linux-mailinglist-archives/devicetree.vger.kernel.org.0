@@ -2,122 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07DEC570735
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 17:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FCB457075E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 17:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbiGKPgx convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 11 Jul 2022 11:36:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60180 "EHLO
+        id S231542AbiGKPpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 11:45:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiGKPgw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 11:36:52 -0400
-Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 413F761D91
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 08:36:51 -0700 (PDT)
-Received: from CHE01-ZR0-obe.outbound.protection.outlook.com
- (mail-zr0che01lp2113.outbound.protection.outlook.com [104.47.22.113]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-2-vYrKE5AhONKr8MP4wL5PEQ-1; Mon, 11 Jul 2022 17:36:46 +0200
-X-MC-Unique: vYrKE5AhONKr8MP4wL5PEQ-1
-Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8) by
- GVAP278MB0262.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:37::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5417.17; Mon, 11 Jul 2022 15:36:45 +0000
-Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- ([fe80::3d:ca30:8c24:1a95]) by ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- ([fe80::3d:ca30:8c24:1a95%7]) with mapi id 15.20.5417.026; Mon, 11 Jul 2022
- 15:36:45 +0000
-Date:   Mon, 11 Jul 2022 17:36:43 +0200
-From:   Francesco Dolcini <francesco.dolcini@toradex.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 5/5] dt-bindings: arm: tegra: Add missing compatible
- strings
-Message-ID: <20220711153643.GA212710@francesco-nb.int.toradex.com>
-References: <20220711152020.688461-1-thierry.reding@gmail.com>
- <20220711152020.688461-5-thierry.reding@gmail.com>
-In-Reply-To: <20220711152020.688461-5-thierry.reding@gmail.com>
-X-ClientProxiedBy: MR2P264CA0183.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501::22)
- To ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8)
+        with ESMTP id S231362AbiGKPpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 11:45:03 -0400
+Received: from mail.baikalelectronics.com (mail.baikalelectronics.com [87.245.175.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 010EA52466;
+        Mon, 11 Jul 2022 08:45:01 -0700 (PDT)
+Received: from mail (mail.baikal.int [192.168.51.25])
+        by mail.baikalelectronics.com (Postfix) with ESMTP id E626A16C2;
+        Mon, 11 Jul 2022 18:46:52 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.com E626A16C2
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baikalelectronics.ru; s=mail; t=1657554413;
+        bh=I3BqipZnlSoZ4zjQmP5m9pmq2YSrZyjEN8smWhboj70=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
+        b=SXFurVc5vFPlCqQQ1UBj8hrEjN0zwG+rZvArctujzfu+pN3SxD2evm0yqLKYcGsKU
+         tJcGZWvtV5ROaMKTVgiASISWA7mprL0mcKCjGxPWW4s5VbfiDAKKzt2NAOv1XVnfo4
+         dOVDiYx4OJ8CMYoxY3bIqdaYqRdOKmxwjx0JDoZU=
+Received: from localhost (192.168.53.207) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 11 Jul 2022 18:45:00 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        <linux-clk@vger.kernel.org>, <linux-mips@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v7 6/7] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
+Date:   Mon, 11 Jul 2022 18:44:32 +0300
+Message-ID: <20220711154433.15415-7-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20220711154433.15415-1-Sergey.Semin@baikalelectronics.ru>
+References: <20220711154433.15415-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a44b7948-7641-491b-7011-08da63532942
-X-MS-TrafficTypeDiagnostic: GVAP278MB0262:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0
-X-Microsoft-Antispam-Message-Info: avNG52FAFZppjq0zW0dI9HMyHO2q7xWAVxXmUZT8sqS+ZxRUixJiVS1A8M67obXg5vHNkPnVQfVSajTPumwplLv2EzD7/TE8SYPVHjV0lwuzLzVlcH0sYpL16IOy3nA+XX8e5vMg/A9eVfe0N+pCF8zrjv+BH44dcsaS+omWklgw52kCSQT9YkjXzdbYo8XIK5QuEKPsRNiSuNh16AxnpFmRB1VvtV6wXA230QAyObXUtzluF6NrB8WNNJFDqvykgTEgJziWj7qUmn+TPxmrrN71wapUHMB7KirPQgWd8n3HVcD15ZO5FCJpeTNkgx64M4NILQ0u6149F5wpgKc/d2kWGgHMpGOtE0lkhByjTA/Z1g5muyH5EejrjiDWbBAJyIELaA/D1R49uETf8o+tFCMCpK/E8A3EJ/q1tvZ8jUUzcnyEBua5NtoSGUvWnizW3H21Nv6SvWpjg8xluYjN6c316UdtoGZ2t1PdeQcMxYkS5qT1YKpUDmo4ROpwEdujU6cREbbCfpAtBItKW4iwyBCJ8d/61lcl+mEMClcFkmMJy+UC2H9rrq4Jd9WMpW0lAKfGqVoiI2hIZk4bE1dgHtTFnRgIWQhQUbghqZaF1DNKnsFXbefasp/9QsGOvx4yeEbTwcqZ504mg1ptP22IrT6JgSfjSyA3+PYa8I8/DhPa7i3aGoFJqFlUwb4MZcpldVZ7Tj3+6im3vDvIWqIP2N7+nYWpU7/TlaafJKG7eY2i1nlZxlSGLhKqsJCiUZapeDTArHd0W1A62l9oyvid7yfrDQXz4dKI1ZR4n7LA/vQQ4o85p1NvSfD1hEiRvXYP
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(39840400004)(376002)(136003)(366004)(396003)(66556008)(478600001)(2906002)(41300700001)(66476007)(4326008)(8676002)(54906003)(6486002)(186003)(6916009)(33656002)(86362001)(66946007)(6506007)(26005)(6512007)(52116002)(316002)(38100700002)(38350700002)(44832011)(4744005)(8936002)(5660300002)(1076003);DIR:OUT;SFP:1102
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jkxsbGrnQmZB5Oe5wqF1epiKjlnjQ7k/xDpsocs/uURM8uiWW3ew8gNFVBHN?=
- =?us-ascii?Q?PR2Q45GanL29JPQl4GqIpAfzIFWPy/5YyYyzeJ+YDa3dXLsE1ILXNVz+PHIP?=
- =?us-ascii?Q?a+nsHib3gT10+mNnwbE+t5upx+WgEdOKwKtS5VNp2gwCQJ5qaON+THv42qm8?=
- =?us-ascii?Q?2wlVFsJVvB4IgtRQuTZI3MZDpWS16ObmK3tdXmsUEf8vOPO8sZ7wdCHqcgxm?=
- =?us-ascii?Q?dU9wiEW4UaIBqHNaOApmaUd1dptGar1g7M7C/Ivg/gBJRx513DyEU4ntzYH1?=
- =?us-ascii?Q?dyVhoF3W60UqYS37zWundJUWzlk/kMrqT9GFhgzgr1uELk3n5iuPGVGrbghf?=
- =?us-ascii?Q?eU8b2YVV3IteLP3c8Pc6IpQCVHZ3CKcmAMh4PBD/gcOH6P7dZp3UDyX+vPcu?=
- =?us-ascii?Q?EQXs3DoWRqwJtwQIhNBA8B/ya3Ysjf+8Zbll+zorcASTe+y8VS34X5/Lguv8?=
- =?us-ascii?Q?tvQ182vqXhqIpdObWEN9vlahLGjJaI8A9sFJmMXULUNiBqSQ490JWPgv24CO?=
- =?us-ascii?Q?NSyctM05OfRVC+IrD6AM9JBnUi5jsvDN2X0oqRsEtMRy0LReJ3/pC3xjws/o?=
- =?us-ascii?Q?6Pdw/WY7fq9+OwGQUNqms+lBya2h1GmhgJjr1WBFnMY0b6IG8Goj/Kq0ulEu?=
- =?us-ascii?Q?EhbR24KNIfFUgT4zedfJAF6I44XFDyp/c/6ZGEgNRyMruPi9KNk9HPmEL7tp?=
- =?us-ascii?Q?7XDC1AQYg+lfWXcLFfQRxSnrzzP7RrDTcWOkDZMaoC/2OrV6gkT41gfYqnRM?=
- =?us-ascii?Q?8zmdbcfkgVHpFLv5PMk2qle9QjrwWMqSWxW2CMWBEwkssa783ouugRJKYHtL?=
- =?us-ascii?Q?xGOgzZ2nJjxAtZ2pdqN7U7d1AWz831+4M3yUDA5bBjYezes1TDurqjCZv0YH?=
- =?us-ascii?Q?BK8cW6Q7RXMfhzYlmOgVc8vGOtYWOrAYxUiEb5gmLRmAaGOtmJnYgmPLJRt4?=
- =?us-ascii?Q?OBz0scBNpbSlVXjneDCr8UI4W/vAK8dvEvcC6qYbZJn0MHSZ+5zbmuiwzva2?=
- =?us-ascii?Q?xzM8nAsu3rZ6krR5wcPmUe6xwdhQbBN4pNXhjAbElvuHZ46WZQ5dzoQ4YOUI?=
- =?us-ascii?Q?ocJYvjezBVSw1/ihNUBScVfWbhR/lEdMJkMTqil5OyvKePi8SPsK1eaN06OG?=
- =?us-ascii?Q?E4t7BdpLq9u/WJt+gHpQIz2tO0dKupIZa820U/PU7KfxpbJOzhdSEBnRgC+t?=
- =?us-ascii?Q?QnDOp70VopZQGc5dnFCpKzIbrP9Kc2fmEcb3te90uhxxCtETK2ni8DlycEUS?=
- =?us-ascii?Q?pqUoP91NpqOXKiPG1qghHJ7AwR6ONdpkUZ/UhuVyn15KkfYnkjEUl+PjBTox?=
- =?us-ascii?Q?LLQCvf3jYJgqGcrLeul2QGLxpcboWMTR3uNRoV/GUAxTGGQBSHSN4c/Fl6f7?=
- =?us-ascii?Q?lE75qP27ZjkX9kv7kAVjJf8Q0i4WZIJCaCV0GVjuyiJKRZ5h+ZCt2Xa7MTeK?=
- =?us-ascii?Q?d38lIAjqISMK3Yz1WzAqeO7suU2sb4oH97IByQYRyJvNKSy0SSjzKxveSssd?=
- =?us-ascii?Q?UvVgm33/31E0gO+pJnt3KOMxjaTCMLiVEVC1FJESaDAKc9N8ma8veZyNVnBj?=
- =?us-ascii?Q?7pLGRf/0j991QPhM5OBQls6QadRpk3pnPFl5yhBANTmSmJAyuvcEkY3TkFFv?=
- =?us-ascii?Q?Gw=3D=3D?=
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a44b7948-7641-491b-7011-08da63532942
-X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2022 15:36:45.4969
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ymdMPpyTrEd0aSmHXXNzPDWSq5bbBJ67cAeqw1x9GlOD3i4BOKknrzxiOP7m5Grgs43B6wGgCCwF/4Ld0fRNYvkKsRjOAdZTgj0XOtyn0DQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0262
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=CDE13A77 smtp.mailfrom=francesco.dolcini@toradex.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Thierry
+Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
+additional blocks with directly controlled reset signals. In particular it
+concerns DDR full and initial resets and various PCIe sub-domains resets.
+Let's add the direct reset assertion/de-assertion of the corresponding
+flags support into the Baikal-T1 CCU driver then. It will be required at
+least for the PCIe platform driver. Obviously the DDR controller isn't
+supposed to be fully reset in the kernel, so the corresponding controls
+are added just for the sake of the interface implementation completeness.
 
-On Mon, Jul 11, 2022 at 05:20:20PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> While at it, also fix a typo in the compatible string for Apalis Tegra30
-> v1.1 evaluation board.
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Appreciated! Maybe you can double check the Apalis change? I cannot see any
-related change in the patch.
+---
 
-Francesco
+Changelog v6:
+- Refactor the code to support the linear reset IDs only. (@Philipp)
+
+Changelog v7:
+- Drop empty line from the sys_rst_info structure initialization block.
+  (@Philipp)
+---
+ drivers/clk/baikal-t1/ccu-rst.c     | 66 +++++++++++++++++++++++++++++
+ drivers/clk/baikal-t1/ccu-rst.h     | 10 +++++
+ include/dt-bindings/reset/bt1-ccu.h |  9 ++++
+ 3 files changed, 85 insertions(+)
+
+diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
+index 7db52633270f..40023ea67463 100644
+--- a/drivers/clk/baikal-t1/ccu-rst.c
++++ b/drivers/clk/baikal-t1/ccu-rst.c
+@@ -35,18 +35,29 @@
+ #define CCU_AXI_HWA_BASE		0x054
+ #define CCU_AXI_SRAM_BASE		0x058
+ 
++#define CCU_SYS_DDR_BASE		0x02c
+ #define CCU_SYS_SATA_REF_BASE		0x060
+ #define CCU_SYS_APB_BASE		0x064
++#define CCU_SYS_PCIE_BASE		0x144
+ 
+ #define CCU_RST_DELAY_US		1
+ 
+ #define CCU_RST_TRIG(_base, _ofs)		\
+ 	{					\
++		.type = CCU_RST_TRIG,		\
++		.base = _base,			\
++		.mask = BIT(_ofs),		\
++	}
++
++#define CCU_RST_DIR(_base, _ofs)		\
++	{					\
++		.type = CCU_RST_DIR,		\
+ 		.base = _base,			\
+ 		.mask = BIT(_ofs),		\
+ 	}
+ 
+ struct ccu_rst_info {
++	enum ccu_rst_type type;
+ 	unsigned int base;
+ 	unsigned int mask;
+ };
+@@ -79,6 +90,15 @@ static const struct ccu_rst_info axi_rst_info[] = {
+ static const struct ccu_rst_info sys_rst_info[] = {
+ 	[CCU_SYS_SATA_REF_RST] = CCU_RST_TRIG(CCU_SYS_SATA_REF_BASE, 1),
+ 	[CCU_SYS_APB_RST] = CCU_RST_TRIG(CCU_SYS_APB_BASE, 1),
++	[CCU_SYS_DDR_FULL_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 1),
++	[CCU_SYS_DDR_INIT_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 2),
++	[CCU_SYS_PCIE_PCS_PHY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 0),
++	[CCU_SYS_PCIE_PIPE0_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 4),
++	[CCU_SYS_PCIE_CORE_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 8),
++	[CCU_SYS_PCIE_PWR_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 9),
++	[CCU_SYS_PCIE_STICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 10),
++	[CCU_SYS_PCIE_NSTICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 11),
++	[CCU_SYS_PCIE_HOT_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 12),
+ };
+ 
+ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
+@@ -86,6 +106,9 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
+ 	struct ccu_rst *rst = to_ccu_rst(rcdev);
+ 	const struct ccu_rst_info *info = &rst->rsts_info[idx];
+ 
++	if (info->type != CCU_RST_TRIG)
++		return -EOPNOTSUPP;
++
+ 	regmap_update_bits(rst->sys_regs, info->base, info->mask, info->mask);
+ 
+ 	/* The next delay must be enough to cover all the resets. */
+@@ -94,8 +117,51 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
+ 	return 0;
+ }
+ 
++static int ccu_rst_set(struct reset_controller_dev *rcdev,
++		       unsigned long idx, bool high)
++{
++	struct ccu_rst *rst = to_ccu_rst(rcdev);
++	const struct ccu_rst_info *info = &rst->rsts_info[idx];
++
++	if (info->type != CCU_RST_DIR)
++		return high ? -EOPNOTSUPP : 0;
++
++	return regmap_update_bits(rst->sys_regs, info->base,
++				  info->mask, high ? info->mask : 0);
++}
++
++static int ccu_rst_assert(struct reset_controller_dev *rcdev,
++			  unsigned long idx)
++{
++	return ccu_rst_set(rcdev, idx, true);
++}
++
++static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
++			    unsigned long idx)
++{
++	return ccu_rst_set(rcdev, idx, false);
++}
++
++static int ccu_rst_status(struct reset_controller_dev *rcdev,
++			  unsigned long idx)
++{
++	struct ccu_rst *rst = to_ccu_rst(rcdev);
++	const struct ccu_rst_info *info = &rst->rsts_info[idx];
++	u32 val;
++
++	if (info->type != CCU_RST_DIR)
++		return -EOPNOTSUPP;
++
++	regmap_read(rst->sys_regs, info->base, &val);
++
++	return !!(val & info->mask);
++}
++
+ static const struct reset_control_ops ccu_rst_ops = {
+ 	.reset = ccu_rst_reset,
++	.assert = ccu_rst_assert,
++	.deassert = ccu_rst_deassert,
++	.status = ccu_rst_status,
+ };
+ 
+ struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *rst_init)
+diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
+index 68214d777465..d6e8b2f671f4 100644
+--- a/drivers/clk/baikal-t1/ccu-rst.h
++++ b/drivers/clk/baikal-t1/ccu-rst.h
+@@ -13,6 +13,16 @@
+ 
+ struct ccu_rst_info;
+ 
++/*
++ * enum ccu_rst_type - CCU Reset types
++ * @CCU_RST_TRIG: Self-deasserted reset signal.
++ * @CCU_RST_DIR: Directly controlled reset signal.
++ */
++enum ccu_rst_type {
++	CCU_RST_TRIG,
++	CCU_RST_DIR,
++};
++
+ /*
+  * struct ccu_rst_init_data - CCU Resets initialization data
+  * @sys_regs: Baikal-T1 System Controller registers map.
+diff --git a/include/dt-bindings/reset/bt1-ccu.h b/include/dt-bindings/reset/bt1-ccu.h
+index 3578e83026bc..c691efaa678f 100644
+--- a/include/dt-bindings/reset/bt1-ccu.h
++++ b/include/dt-bindings/reset/bt1-ccu.h
+@@ -21,5 +21,14 @@
+ 
+ #define CCU_SYS_SATA_REF_RST		0
+ #define CCU_SYS_APB_RST			1
++#define CCU_SYS_DDR_FULL_RST		2
++#define CCU_SYS_DDR_INIT_RST		3
++#define CCU_SYS_PCIE_PCS_PHY_RST	4
++#define CCU_SYS_PCIE_PIPE0_RST		5
++#define CCU_SYS_PCIE_CORE_RST		6
++#define CCU_SYS_PCIE_PWR_RST		7
++#define CCU_SYS_PCIE_STICKY_RST		8
++#define CCU_SYS_PCIE_NSTICKY_RST	9
++#define CCU_SYS_PCIE_HOT_RST		10
+ 
+ #endif /* __DT_BINDINGS_RESET_BT1_CCU_H */
+-- 
+2.35.1
 
