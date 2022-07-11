@@ -2,92 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F02656FFB3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B41156FFC9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:12:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbiGKLJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 07:09:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50168 "EHLO
+        id S230030AbiGKLM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:12:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbiGKLJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:09:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E36F117EF6;
-        Mon, 11 Jul 2022 03:15:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230101AbiGKLMJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:12:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E3B4C63F;
+        Mon, 11 Jul 2022 03:22:18 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8C15B61375;
-        Mon, 11 Jul 2022 10:15:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1A32C34115;
-        Mon, 11 Jul 2022 10:15:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657534513;
-        bh=pxzN+McdN+vfqQipIPwRl+/XnStYB9GCRSqM+4ZhzQE=;
-        h=From:To:Cc:Subject:Date:From;
-        b=YxPiuHNFwTDMuoGrSdFnILd8Suzu9pfoJvKug9m54M6BPfXJjUdiFeeydIKnYt/hB
-         4m0qnw+NkhxpSVU1Bs3tWpoSmtoltoxJEacTl6i4cwfA4zI65s2iIuN4myBh7m/jwS
-         onBbBkS//842TuD/ddHEbAg1U/g52QMIOcOvrKsn5Ds+5UrrBHFDM5l+PoNCIdETIs
-         dGMR87n52Kdfn7TitGzb08e9o3SrENcZB9N7BOFTFBxsE6L4V4cYuFExVJSKjIpkQi
-         DZKc85QaLnJGWIfAz5vyV3DkA76F6l8/qVZ58h96/JKGhT6yxuVB3tZYzKJY6eu7u9
-         iMR0shjpnGAXw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1oAqRe-0001HU-Gx; Mon, 11 Jul 2022 12:15:14 +0200
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH] dt-bindings: ufs: qcom,ufs: add SC8280XP binding
-Date:   Mon, 11 Jul 2022 12:14:41 +0200
-Message-Id: <20220711101441.4896-1-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.35.1
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8B37F66016BD;
+        Mon, 11 Jul 2022 11:22:16 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657534937;
+        bh=bV1U1DKxcTKTqjYlyMTELSAITeuujTusjiLSnU/9yrk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=A3Ctq1Zv7iQhRS2oUxLijFF7IVoJOUbMbnxuZHcVXamHBLfWA5JfUvbCkS3uMeQ2F
+         WjopG6tuVqOuQ4uMP717PNpVIJfYhmGOMgvohPGXZNAwIdJO6j4mXfF1tmNoz2swe3
+         MKiBG1tn6+qIht/QdjN5UiSk8XOwC1ZLmFgnFa0wanPNy3RsdKYfazh8L+cafylqCV
+         BInt4sdtrFy0K8EmrMmwCo/NkZPNvo4uANvcAFUT38ApezenUQ1RkTWVFg6WUmbbpM
+         VkAsRiUguleEZqvQ57aLU8q4kJyT/rGuXwxJqedDYOFYBfBS/hBouoHEltUrhOj/aM
+         BoVke4fYmuKEA==
+Message-ID: <4f6fbc6e-fb9f-588a-41f9-30a0e0107526@collabora.com>
+Date:   Mon, 11 Jul 2022 12:22:13 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH V3 2/2] dt-bindings: mediatek: Add axi clock in mt8173 dts
+ example
+Content-Language: en-US
+To:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, bin.zhang@mediatek.com,
+        benliang.zhao@mediatek.com, linux-mediatek@lists.infradead.org
+References: <20220708021548.21453-1-xiangsheng.hou@mediatek.com>
+ <20220708021548.21453-3-xiangsheng.hou@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220708021548.21453-3-xiangsheng.hou@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SC8280XP to the DT schema.
+Il 08/07/22 04:15, Xiangsheng Hou ha scritto:
+> For mt8173, it is needed to add the axi clock for dma mode.
+> 
+> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+> ---
+>   .../devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml         | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+> index 41e60fe4b09f..413b907eecf5 100644
+> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+> @@ -82,8 +82,8 @@ examples:
+>           compatible = "mediatek,mt8173-nor";
+>           reg = <0 0x1100d000 0 0xe0>;
+>           interrupts = <1>;
+> -        clocks = <&pericfg CLK_PERI_SPI>, <&topckgen CLK_TOP_SPINFI_IFR_SEL>;
+> -        clock-names = "spi", "sf";
+> +        clocks = <&pericfg CLK_PERI_SPI>, <&topckgen CLK_TOP_SPINFI_IFR_SEL>, <&pericfg CLK_PERI_NFI>;
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+This is going over 100 columns, which is too many.
+Please fix.
 
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-index dcd32c10205a..f2d6298d926c 100644
---- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-@@ -26,6 +26,7 @@ properties:
-           - qcom,msm8994-ufshc
-           - qcom,msm8996-ufshc
-           - qcom,msm8998-ufshc
-+          - qcom,sc8280xp-ufshc
-           - qcom,sdm845-ufshc
-           - qcom,sm6350-ufshc
-           - qcom,sm8150-ufshc
-@@ -98,6 +99,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,msm8998-ufshc
-+              - qcom,sc8280xp-ufshc
-               - qcom,sm8250-ufshc
-               - qcom,sm8350-ufshc
-               - qcom,sm8450-ufshc
--- 
-2.35.1
+> +        clock-names = "spi", "sf", "axi";
+>           #address-cells = <1>;
+>           #size-cells = <0>;
+>   
+> 
 
