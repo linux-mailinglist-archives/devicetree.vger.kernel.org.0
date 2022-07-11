@@ -2,57 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E47F457038B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3E885703D3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 15:07:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232111AbiGKM5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 08:57:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59664 "EHLO
+        id S229899AbiGKNHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 09:07:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232187AbiGKM5i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:57:38 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6F5E5508E;
-        Mon, 11 Jul 2022 05:57:36 -0700 (PDT)
+        with ESMTP id S229561AbiGKNHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 09:07:21 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60AFA2E6AB;
+        Mon, 11 Jul 2022 06:07:20 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-31c89111f23so48489747b3.0;
+        Mon, 11 Jul 2022 06:07:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1657544257; x=1689080257;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references;
-  bh=eluVtVV6YxZiX9IA4reDOwHLCow6fgP8gJauEX5eTDs=;
-  b=aJt3Q60GorfD3CFTpNRXzxgbwczWhg0fcKklGoZjRQ9xQaaFmv28do/I
-   X0Vt4YNynQIZauviNxeZ62Lp8QSN/9EXAPH3fwLk44/TgspFGpLZvGZFy
-   4eScd5Tn7uPqRdnI3OmLJSF52gNeCCQ89Bsw+EfnyxofD6DzxdScXI6Uk
-   Y=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 11 Jul 2022 05:57:36 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 11 Jul 2022 05:57:35 -0700
-X-QCInternal: smtphost
-Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 11 Jul 2022 18:27:11 +0530
-Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
-        id 8E15A3E51; Mon, 11 Jul 2022 18:27:07 +0530 (IST)
-From:   Vinod Polimera <quic_vpolimer@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_khsieh@quicinc.com, quic_vproddut@quicinc.com,
-        bjorn.andersson@linaro.org, quic_aravindh@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
-Subject: [PATCH v6 10/10] drm/msm/disp/dpu: check for crtc enable rather than crtc active to release shared resources
-Date:   Mon, 11 Jul 2022 18:27:04 +0530
-Message-Id: <1657544224-10680-11-git-send-email-quic_vpolimer@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1657544224-10680-1-git-send-email-quic_vpolimer@quicinc.com>
-References: <1657544224-10680-1-git-send-email-quic_vpolimer@quicinc.com>
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BNM3kXV0AhjO7ZOLKGan+F0enyHnlLAuy8cjbGSut0s=;
+        b=EDountau261E7xzsz1ChRdtIc71Impr3p7bkOtYbBZ6t0z1yRxs9dA2G+OCWDXn8CB
+         gVX0Zpbba4P1uf0huN9Q/b4S/031ZmrxZxA6N4LSycaLuaUZ+T8j7qhx6d9WE6R8wRrb
+         o5sH0zfAPkUzG366bx0hNOLaRa553G+b4s0pjc+q9ds5SkFiHefrJYDpbu2RDqx9fJgs
+         tqHHupuVYZwzpU6D2ActxljwtHeFn7WkK97/6CwJepkrYhQ59HjYa/GNIMBc+FKkb5iS
+         yf3DBg8CBnf3IuE2Oz7BFKC6p224HiJT7XHoI86ujQjnHmyFH2HJCWc4OCZ3XwpLXFav
+         GOXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BNM3kXV0AhjO7ZOLKGan+F0enyHnlLAuy8cjbGSut0s=;
+        b=VGtn+7wl6aEzjbW8vhMTbr2sQIYOjmKAnZwFEa3sTR5RsnanTgqPuDFx1NaKmt70IW
+         SO7kFcJKLVrGuZxyoAjnK6VMBlEOrirjmzfT8SkQFc8zEKpzo8MPPHwzrQTRroE87kAd
+         sTGRpM3P0PbDeT8dePvWSdpJthL8hfZXwqKG1apxuRcL95W5IHuhKNE5+EVwILyuUSfK
+         K5TTlAqo42lzapHAaWF/uip3l43BPf/JBh8EO/aLm/BbJzw+fB2701YYc1nTBMAqsvAQ
+         DaW1OamEa9AS/n/OEdQAhEd7SE11I4pa8f4VunI4jXZ2V6HCZLolosbm3KWXmpVN98D/
+         7Onw==
+X-Gm-Message-State: AJIora8QgG312j8GDpuRr2/AoxmnwBzGFGkZ29M4zh2PZBYilTYtod2b
+        84c3mBcw/y275Ny/6icj+xVBewFOdNHXVQrOwxs=
+X-Google-Smtp-Source: AGRyM1tQShar12PLw4rye1Bt58JXUEhApqx2qQjKZjoLh/LoBLWeLqS7wREroNbGzIyfz7ZQyE1A/Ybr1d7l4V+VBv0=
+X-Received: by 2002:a81:4986:0:b0:31d:388b:d08d with SMTP id
+ w128-20020a814986000000b0031d388bd08dmr14422466ywa.185.1657544839207; Mon, 11
+ Jul 2022 06:07:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220711112900.61363-1-shreeya.patel@collabora.com> <20220711112900.61363-3-shreeya.patel@collabora.com>
+In-Reply-To: <20220711112900.61363-3-shreeya.patel@collabora.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 11 Jul 2022 15:06:42 +0200
+Message-ID: <CAHp75Vf3NDsep5_819=e8yrna_AGh5cew=fs+hHe1q8LCa-PyA@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] iio: light: Add support for ltrf216a sensor
+To:     Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, Zhigang.Shi@liteon.com,
+        krisman@collabora.com, linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        alvaro.soliverez@collabora.com, dmitry.osipenko@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,28 +71,149 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to KMS documentation, The driver must not release any shared
-resources if active is set to false but enable still true.
+On Mon, Jul 11, 2022 at 1:30 PM Shreeya Patel
+<shreeya.patel@collabora.com> wrote:
+>
+> From: Zhigang Shi <Zhigang.Shi@liteon.com>
+>
+> Add initial support for ltrf216a ambient light sensor.
+>
+> Datasheet: https://gitlab.steamos.cloud/shreeya/iio/-/blob/main/LTRF216A.pdf
+> Co-developed-by: Shreeya Patel <shreeya.patel@collabora.com>
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> Signed-off-by: Zhigang Shi <Zhigang.Shi@liteon.com>
 
-Fixes: ccc862b957c6 ("drm/msm/dpu: Fix reservation failures in modeset")
-Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Submitter's SoB always has to be last among SoBs in the proposed change.
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index 5dfb56a..02a71d1 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -592,7 +592,7 @@ static int dpu_encoder_virt_atomic_check(
- 		if (drm_atomic_crtc_needs_modeset(crtc_state)) {
- 			dpu_rm_release(global_state, drm_enc);
- 
--			if (!crtc_state->active_changed || crtc_state->active)
-+			if (!crtc_state->active_changed || crtc_state->enable)
- 				ret = dpu_rm_reserve(&dpu_kms->rm, global_state,
- 						drm_enc, crtc_state, topology);
- 		}
+...
+
+> +static int ltrf216a_set_power_state(struct ltrf216a_data *data, bool on)
+> +{
+> +       struct device *dev = &data->client->dev;
+> +       int ret;
+> +
+> +       if (on) {
+> +               ret = pm_runtime_resume_and_get(dev);
+> +               if (ret < 0) {
+> +                       dev_err(dev, "Failed to resume runtime PM: %d\n", ret);
+> +                       return ret;
+> +               }
+
+> +
+
+Unneeded blank line.
+
+> +       } else {
+> +               pm_runtime_mark_last_busy(dev);
+> +               ret = pm_runtime_put_autosuspend(dev);
+> +       }
+> +
+> +       return ret;
+> +}
+
+...
+
+> +       ret = regmap_read_poll_timeout(data->regmap, LTRF216A_MAIN_STATUS,
+> +                                      val, val & LTRF216A_ALS_DATA_STATUS,
+> +                                      LTRF216A_ALS_READ_DATA_DELAY_US,
+> +                                      LTRF216A_ALS_READ_DATA_DELAY_US * 50);
+> +       if (ret) {
+> +               dev_err(dev, "Timed out waiting for valid data from LTRF216A_MAIN_STATUS reg: %d\n",
+> +                       ret);
+
+THe message is a bit misleading. The loop might be broken by the I/O error.
+
+> +               return ret;
+> +       }
+> +
+> +       ret = regmap_bulk_read(data->regmap, addr, buf, sizeof(buf));
+> +       if (ret < 0) {
+> +               dev_err(dev, "Error reading measurement data: %d\n", ret);
+> +               return ret;
+> +       }
+
+...
+
+> +static const struct regmap_config ltrf216a_regmap_config = {
+> +       .name = LTRF216A_DRV_NAME,
+> +       .reg_bits = 8,
+> +       .val_bits = 8,
+> +       .max_register = LTRF216A_MAX_REG,
+
+Why do you use regmap locking? What for?
+
+> +};
+
+...
+
+> +       data->regmap = devm_regmap_init_i2c(client, &ltrf216a_regmap_config);
+> +       if (IS_ERR(data->regmap)) {
+> +               dev_err(&client->dev, "Regmap initialization failed.\n");
+> +               return PTR_ERR(data->regmap);
+
+return dev_err_probe(...);
+
+> +       }
+
+...
+
+> +       ret = devm_pm_runtime_enable(&client->dev);
+> +       if (ret < 0) {
+> +               dev_err_probe(&client->dev, ret, "Failed to enable runtime PM\n");
+> +               return ret;
+
+Ditto.
+
+> +       }
+
+...
+
+> +               ret = ltrf216a_init(indio_dev);
+> +               if (ret) {
+> +                       dev_err_probe(&client->dev, ret, "Failed to enable the sensor\n");
+> +                       return ret;
+
+Ditto.
+
+> +               }
+
+...
+
+> +       if (ret < 0)
+
+For all these  ' < 0', please explain what positive return value means
+there, if any, and why it's being ignored.
+
+...
+
+> +static const struct i2c_device_id ltrf216a_id[] = {
+> +       { LTRF216A_DRV_NAME, 0 },
+
+Please, use the string literal directly since it's kinda an ABI,
+defining above for potential changes is not a good idea. Also you may
+drop the ', 0' part.
+
+> +       {}
+> +};
+
+...
+
+> +static struct i2c_driver ltrf216a_driver = {
+> +       .driver = {
+
+> +               .name = LTRF216A_DRV_NAME,
+
+Ditto.
+
+> +               .pm = pm_ptr(&ltrf216a_pm_ops),
+> +               .of_match_table = ltrf216a_of_match,
+> +       },
+> +       .probe_new      = ltrf216a_probe,
+> +       .id_table       = ltrf216a_id,
+> +};
+
 -- 
-2.7.4
-
+With Best Regards,
+Andy Shevchenko
