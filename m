@@ -2,72 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D12A05700EA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 871055700F0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231239AbiGKLm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 07:42:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58248 "EHLO
+        id S229767AbiGKLnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:43:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230103AbiGKLmk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:42:40 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97425292
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:36:03 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-31d85f82f0bso9683887b3.7
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:36:03 -0700 (PDT)
+        with ESMTP id S230056AbiGKLmr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:42:47 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F693B86F
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:37:18 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id a9so8168129lfk.11
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:37:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JyotnNOLxu4d6Mvp/libEObY1gMazKn9YVoURGnCpNo=;
-        b=KNC/+Tniy2AR2/uiYxE6Q33lq0YDdyXqLR6dNJKbpYyua5ojQF1U8qHe6EDNX+Oht4
-         3tnnMrvFAVsRwllxT1esLoJqzvWzlbNFIOuWwAmssh9mBvg/bnhb9B+5uKIEGaKILTJp
-         8d06qOT/FEVPWInRSZUG1gPDdUmEnLL7aCmVssbE3ICO4NV0YNbJsBgyYc2Bb+uIR1CK
-         9fuHRkY50OORHNGwPdB9kABnd45TSGcNWvUYgg6RhfT9PKZs+TPFZS9Aa6Ea8dAk/oaE
-         1hfbQ17DnHsWUlEVgbmvIGTnTPIqqWuDES+06SSSlPXhhkfa/ebxCznnJpL5geyX77qN
-         Txgw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=dRCit7PDdPHjZBOwp4u9jORbpMarXZ1yRwqNnSgrgDo=;
+        b=ZMw7KZQ3z67YtPsjQBn2Ndo6Quz211hdWH+61kRV6pTN8Jb1Wjr0yQuQkRDk4S8Tsa
+         y6gkScoDmAu0WaLA6/lxe1dKYtywgB4mxbh5oDwYWASvma5bsJpi2pg7LIFco+Ek2tbM
+         9yXtNRhGeIVPsCE/WuiqPyCjWlvXxciMaX4f5FzFIUJ+a7qV5oc3h9pK9EppSLVQPtD1
+         gQHrJRis95eq0DYSilPMkb3/K0xM3FWU1+Lv5Hl6co6uxDD8E5okWczRwpwzYYDEPbzn
+         /21+P6KDY5OAQvFK0N4escrzif6ZMIs1gNXpLw889qpP6YtQXvUT1OdLvuBhv3to4V/I
+         7uzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JyotnNOLxu4d6Mvp/libEObY1gMazKn9YVoURGnCpNo=;
-        b=lF+aNtyn/bpqz+G1W7P2/EKylwfMGgvJ6aWQy0RWDjxc0/sdQTnWFzMgwmvatj5wPv
-         GLylFfB2MC7FMOEFky3LqIprVyM3s1y6vMfbEDU6n+HPMSi0Dv5YW6VlbMfZyjujQ6Tg
-         wWFWiNNgGQVL1i7pzH5fux5+GoLuJazH1ZmsT+MxIjHvZ3GaDLYLrScPrPYyAI+EJ9Ra
-         Hvw/u6/NNCy5OPDZ9p7D5bx+mKvCybi9Fly9X8UoX/eLVHdePWrPR7yC308yHfcPJECU
-         sB4Y93XySR5HYvxnCvbl6gAlHBqHXyqoBVpSnuPoNi6Ra5HTBET0viNvVgNuVVvGmKAx
-         UnVg==
-X-Gm-Message-State: AJIora+J9znOHRgUCDtTmSgWA1QYlcwJXAECT3mSQRNALkjHCGlWOMSA
-        u1eJorESuzbUh4NHyB4dKMeQAYASlrrG/urtU5Jkxw==
-X-Google-Smtp-Source: AGRyM1vR3CYsGSvN5IChbUxJnV1KcYa3r/2ea0mYxc5ursMO9ayhR76DO5Ujyz4RqWvJJ4MRsWxBCiEswq6ZbOyAcYQ=
-X-Received: by 2002:a0d:f801:0:b0:31d:851:96b8 with SMTP id
- i1-20020a0df801000000b0031d085196b8mr19000116ywf.448.1657539362896; Mon, 11
- Jul 2022 04:36:02 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=dRCit7PDdPHjZBOwp4u9jORbpMarXZ1yRwqNnSgrgDo=;
+        b=F0txtCMtyTi5P9m533uaeR5ADR4vKmPrmSSZvKq8OTPCsgzKkH+9BOxnyYhNuGsji1
+         9L7RKXPTkqwkpqOFVlXmiAerb6a0j9BxIX5c3GHByOthCxxEiV7Yq+141Xo6BfZKyPw8
+         uYQMf+VY3E8lWn1soeLQ5B3SlY+4XizkPEZzUja+VEn64zqiW+kWH3AGlwfxNEWTojXG
+         Ptx44nSLdZYdB3gtcDZssVuvOn+NH1kW58LKmuamRHsK3DI7HDUD95STuI/CzvBz9Wcx
+         qCSdtQNSAHyLRnvUP/zJB2UmNuBPp21ij10YMzRbzLTfMNxnpTk0JizWZZWqjGo0OIJG
+         p10Q==
+X-Gm-Message-State: AJIora+cM7IWIWajWiOfg4n6Rjb9e8bnO77EV2WBJmKAA6FhicTkYWxZ
+        BHE7uxSsdHu4zljPJ87MAnCkiQ==
+X-Google-Smtp-Source: AGRyM1u/zuOZEHQSioAp2lToRg2hUW+1+7Vg4tCi+2Nk5KkWA+Awxx0SdA1o6LpLrslnO04WuATicg==
+X-Received: by 2002:a05:6512:1111:b0:481:22b1:8db9 with SMTP id l17-20020a056512111100b0048122b18db9mr11247160lfg.333.1657539436440;
+        Mon, 11 Jul 2022 04:37:16 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
+        by smtp.gmail.com with ESMTPSA id e10-20020a05651236ca00b00489d7fec4f5sm937284lfs.122.2022.07.11.04.37.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jul 2022 04:37:15 -0700 (PDT)
+Message-ID: <677d6387-6225-29c2-3190-8f443222019f@linaro.org>
+Date:   Mon, 11 Jul 2022 13:37:08 +0200
 MIME-Version: 1.0
-References: <20220707182314.66610-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220707182314.66610-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220707182314.66610-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 11 Jul 2022 13:35:51 +0200
-Message-ID: <CACRpkdbhDJq9bJKHM=1pq5+HrVasrT_WuqtAxGWFfnAXMWSr8g@mail.gmail.com>
-Subject: Re: [PATCH v8 5/6] dt-bindings: pinctrl: renesas,rzg2l-pinctrl:
- Document the properties to handle GPIO IRQ
-To:     prabhakar.csengg@gmail.com
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 04/11] dt-bindings: display/msm: split qcom, mdss
+ bindings
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20220710090040.35193-1-dmitry.baryshkov@linaro.org>
+ <20220710090040.35193-5-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220710090040.35193-5-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,20 +85,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 7, 2022 at 8:25 PM <prabhakar.csengg@gmail.com> wrote:
+On 10/07/2022 11:00, Dmitry Baryshkov wrote:
 
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Document the required properties to handle GPIO IRQ.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Thank you for your patch. There is something to discuss/improve.
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +  - power-domains
+> +  - clocks
+> +  - clock-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +patternProperties:
+> +  "^mdp@(0|[1-9a-f][0-9a-f]*)$":
 
-Is this already queued in Marc's branch targeted for next
-so I don't need to do anything with the pinctrl patches?
+You used some unusual pattern. It's just "[0-9a-f]+" - the device
+schema's job is not to validate patterns in unit addresses.
 
-Yours,
-Linus Walleij
+Another question - why do you allow "@0" alone?
+
+> +    type: object
+> +    # TODO: add reference once the mdp5 is converted
+> +
+> +  "^dsi@(0|[1-9a-f][0-9a-f]*)$":
+> +    $ref: dsi-controller-main.yaml#
+
+
+Best regards,
+Krzysztof
