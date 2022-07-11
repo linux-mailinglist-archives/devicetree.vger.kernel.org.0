@@ -2,100 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A952C56D835
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF57656D862
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230336AbiGKIfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 04:35:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39820 "EHLO
+        id S230356AbiGKIky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 04:40:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230232AbiGKIfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:35:18 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934B3201B8
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:34:41 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-31c89111f23so41990427b3.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:34:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QdbaAV5FK76Uc2eirkQA2yHXVOboe6L8Bk5p4Quu1Fc=;
-        b=U1zIMqgVXWpxUf+MgxIN2kElsyLm53b1G9tMIQjlu27E0ToE7Dc6bZh/dd4NL18TEo
-         oOiOjkCkyA0+hJxX54Q3Yg15DnaPCWwjraCSy5EDkgrpXR4c5Ji8VaHJd9dbusCmIbwC
-         ixf/thwjLfiiFeVBLiJNfLlwTGjvfmHku6tw4/Jjy2D1Ku7l4yUGsSA/IwfcELTRhxqo
-         lwCqwtAtsiiLOOS31p69ViXQwR1ElWQIVyKWRxgrsElQcHvRdRaT5rAJuTA+SJt9lncR
-         WJbQKC7kZ4FkPZUFwHrdrML63FxfqlIE/gqiFFgcbt7PJP5JYUpaUyRi1ee3z8tcGbTg
-         T3KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QdbaAV5FK76Uc2eirkQA2yHXVOboe6L8Bk5p4Quu1Fc=;
-        b=Yu8srWOfQSIvgV5l/K2ThbQDh/INkbXkGZ5nyo6quTcc63JGQRZSJ0Za+H6ggJW+5R
-         Yj3+/w0GPjb83PRD7a1ffCNpGDc6fo47m07MxlU9rKaV5VksOAcM7enZ+9zpf4TmDhvG
-         5HxlXMmZPTZheaFqbBMz/I/9zqxyy7pgeB81bkyf87pZdyOfxGES/+aXVByi4Ksa3k9q
-         34Fqy3MPvY6v2e7QHnka4czT7nnUVoh29E5pz7Uy/9kjUdJKt9lHT0wRn3g+1H+WD5W5
-         jbFPWhIbFDq38NWasMeHfnWh+5UOl9ovlykG+enbY9jNbAmUgb50kZpge71yjFU+WBYN
-         2TQA==
-X-Gm-Message-State: AJIora+yqV5oKhqmuFua2E73iDm2h6ot2qXcST0Mv3Lldpkpk7Wuyt3y
-        P6j6/wMVknIEFGHy9HGXdZhPhPnG8BTVrQslHugIHg==
-X-Google-Smtp-Source: AGRyM1v2gWdKpSi1APBbZfuBwCnT5kbKZ3VCWH6h/oSBTVy+KlcaafOxwYR6NVtPsb8r6FrPyS9sUg76wAF1b27C3xY=
-X-Received: by 2002:a0d:f801:0:b0:31d:851:96b8 with SMTP id
- i1-20020a0df801000000b0031d085196b8mr18316942ywf.448.1657528480835; Mon, 11
- Jul 2022 01:34:40 -0700 (PDT)
+        with ESMTP id S229526AbiGKIkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:40:18 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B03E63
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:39:51 -0700 (PDT)
+Received: from [192.168.1.101] (abxi46.neoplus.adsl.tpnet.pl [83.9.2.46])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 174001F53E;
+        Mon, 11 Jul 2022 10:39:46 +0200 (CEST)
+Message-ID: <81d2e86e-ed60-293c-1157-e3f076f7e058@somainline.org>
+Date:   Mon, 11 Jul 2022 10:39:45 +0200
 MIME-Version: 1.0
-References: <cover.1656583541.git.hakan.jansson@infineon.com> <c0ac87d9f7072de6ad8ea7c9d306eacfbb4ef2c9.1656583541.git.hakan.jansson@infineon.com>
-In-Reply-To: <c0ac87d9f7072de6ad8ea7c9d306eacfbb4ef2c9.1656583541.git.hakan.jansson@infineon.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 11 Jul 2022 10:34:29 +0200
-Message-ID: <CACRpkdbOWdNyywooNdr-O-fpksVAwaxOn4Qr9c+oZp0Z8DqCwA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] Bluetooth: hci_bcm: Increase host baudrate for
- CYW55572 in autobaud mode
-To:     Hakan Jansson <hakan.jansson@infineon.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 02/11] arm64: dts: qcom: sc7180: rename DPU device node
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        linux-bluetooth@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20220710090040.35193-1-dmitry.baryshkov@linaro.org>
+ <20220710090040.35193-3-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20220710090040.35193-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 30, 2022 at 2:55 PM Hakan Jansson
-<hakan.jansson@infineon.com> wrote:
 
-> Add device specific data for max baudrate in autobaud mode. This allows the
-> host to use a baudrate higher than "init speed" when loading FW in autobaud
-> mode.
->
-> The device specific max baudrate in autobaud mode for CYW55572 is set to
-> 921600 bps. Devices without device specific max baudrate in autobaud mode
-> will use init speed as before. If no device specific init speed has been
-> specified, it will default to the bcm_proto default 115200 bps.
->
-> The increased baud rate improves FW load time. The exact load time will
-> depend on the specific system and FW being used. As a rough indication,
-> the FW load time dropped from ~9s @ 115.2kbps to ~1.7s @ 921.6kbps in one
-> test.
->
-> Signed-off-by: Hakan Jansson <hakan.jansson@infineon.com>
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+On 10.07.2022 11:00, Dmitry Baryshkov wrote:
+> Rename DPU device node to display-controller@ae01000 to follow the
+> DPU schema.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Yours,
-Linus Walleij
+Konrad
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 72994f599825..e63b4515453f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -2911,7 +2911,7 @@ mdss: mdss@ae00000 {
+>  
+>  			status = "disabled";
+>  
+> -			mdp: mdp@ae01000 {
+> +			mdp: display-controller@ae01000 {
+>  				compatible = "qcom,sc7180-dpu";
+>  				reg = <0 0x0ae01000 0 0x8f000>,
+>  				      <0 0x0aeb0000 0 0x2008>;
