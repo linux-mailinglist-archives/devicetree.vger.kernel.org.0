@@ -2,128 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2D956D4CE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 08:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43C8C56D517
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 09:02:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229746AbiGKGkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 02:40:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40466 "EHLO
+        id S229701AbiGKHCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 03:02:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbiGKGkv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 02:40:51 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05311167DE;
-        Sun, 10 Jul 2022 23:40:49 -0700 (PDT)
-X-UUID: 12fc66ca1e504f8bb75f55c037a26369-20220711
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:39bb711e-7a7c-4051-9e8e-abb8e04bc19e,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:5
-X-CID-META: VersionHash:0f94e32,CLOUDID:c4ffef63-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 12fc66ca1e504f8bb75f55c037a26369-20220711
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2104970069; Mon, 11 Jul 2022 14:40:45 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 11 Jul 2022 14:40:45 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 11 Jul 2022 14:40:45 +0800
-Message-ID: <a5d9c16254b155180ef7e45af69de44257593284.camel@mediatek.com>
-Subject: Re: [PATCH] Revert "dt-bindings: usb: mtk-xhci: Make all clocks
- required"
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     <kernel@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
-Date:   Mon, 11 Jul 2022 14:40:44 +0800
-In-Reply-To: <20220708192605.43351-1-nfraprado@collabora.com>
-References: <20220708192605.43351-1-nfraprado@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229463AbiGKHCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 03:02:35 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DAB8140C2;
+        Mon, 11 Jul 2022 00:02:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=e5DygZRkVsdgAVoVvUkLTk0a4j5tMEqZ72vV1XOoua4=; b=utA/8RhRmV4mRCGCKW1HNDroUa
+        u+TNvmexxd+4YbsUz4aSv0LNfg0B/Fpc0V7Vp3OnKoqEV+qZb/Yr1ujFl/mmmNFBD66gWXCBEPCyQ
+        QwkE9TVlZb1DjwZpqetPFEATyPP0U+uiG9tVhryUiV9KzO4gAqKlnh6Ox3eqJ+c5HTWk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oAnQt-009vSy-PO; Mon, 11 Jul 2022 09:02:15 +0200
+Date:   Mon, 11 Jul 2022 09:02:15 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Wei Fang <wei.fang@nxp.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        peng.fan@nxp.com, ping.bai@nxp.com, sudeep.holla@arm.com,
+        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com
+Subject: Re: [PATCH V2 3/3] arm64: dts: imx8ulp-evk: Add the fec support
+Message-ID: <YsvK99Gb0JL3YbQB@lunn.ch>
+References: <20220711094434.369377-1-wei.fang@nxp.com>
+ <20220711094434.369377-4-wei.fang@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220711094434.369377-4-wei.fang@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-07-08 at 15:26 -0400, Nícolas F. R. A. Prado wrote:
-> This reverts commit ebc4969ae125e65fdb563f66f4bfa7aec95f7eb4. That
-> commit was supposed to make the binding better reflect the MediaTek
-> XHCI
-> hardware block by requiring all clocks to be present. But doing that
-> also causes too much noise in the devicetrees, since it requires
-> updating old MediaTek DTs to add clock handles for the fixed clocks,
-> and
-> going forward every new clock added to the binding would require even
-> more updates.
+On Mon, Jul 11, 2022 at 07:44:34PM +1000, Wei Fang wrote:
+> Enable the fec on i.MX8ULP EVK board.
 > 
-> The commit also didn't update the example to match the changes,
-> causing
-> additional warnings.
-> 
-> Instead let's keep the clocks optional so that old devicetrees can
-> keep
-> omitting the fixed clocks, and we'll just add the clocks as required
-> on
-> new DTs.
-> 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> 
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
 > ---
+> V2 change:
+> Add clock_ext_rmii and clock_ext_ts. They are both related to EVK board.
+> ---
+>  arch/arm64/boot/dts/freescale/imx8ulp-evk.dts | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
 > 
->  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 4
-> +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> xhci.yaml
-> index 1444d18ef9bc..63cbc2b62d18 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> @@ -67,6 +67,7 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> +    minItems: 1
->      items:
->        - description: Controller clock used by normal mode
->        - description: Reference clock used by low power mode etc
-> @@ -75,8 +76,9 @@ properties:
->        - description: controller clock
->  
->    clock-names:
-> +    minItems: 1
->      items:
-> -      - const: sys_ck
-> +      - const: sys_ck  # required, the following ones are optional
->        - const: ref_ck
->        - const: mcu_ck
->        - const: dma_ck
+> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+> index 33e84c4e9ed8..ebce716b10e6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+> @@ -19,6 +19,21 @@ memory@80000000 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x80000000 0 0x80000000>;
+>  	};
+> +
+> +	clock_ext_rmii: clock-ext-rmii {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <50000000>;
+> +		clock-output-names = "ext_rmii_clk";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	clock_ext_ts: clock-ext-ts {
+> +		compatible = "fixed-clock";
+> +		/* External ts clock is 50MHZ from PHY on EVK board. */
+> +		clock-frequency = <50000000>;
+> +		clock-output-names = "ext_ts_clk";
+> +		#clock-cells = <0>;
+> +	};
 
-Reviewed-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Do you need any PHY properties to turn this clock on? Or is it
+strapped to be always on?
 
-Thanks a lot
+I'm surprised it is limited to Fast Ethernet. I know the Vybrid and
+some of the older SoCs are Fast Ethernet only, but i thought all the
+newer supported 1G?
 
-
+	 Andrew
 
