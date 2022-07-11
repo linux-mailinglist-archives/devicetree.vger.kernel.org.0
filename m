@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFF0E56FB8E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 11:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F54C56FB9F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 11:33:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232706AbiGKJcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 05:32:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40912 "EHLO
+        id S230114AbiGKJd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 05:33:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232674AbiGKJbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 05:31:34 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2820274DCE
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 02:17:13 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id t1so4121193lft.8
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 02:17:13 -0700 (PDT)
+        with ESMTP id S232694AbiGKJdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 05:33:03 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5CC78DF4
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 02:17:45 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id m18so7645398lfg.10
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 02:17:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uJtXuRvdgMPQ1UnDvhoOm/1EA7XoOpO+RRB/+tZI2oI=;
-        b=sDcaOypRR7yO+xtRmQGTq9WiuyfG8Ly2V27pjiKC3a0XERSnVVerKNe+E8fW9lDU7O
-         SQM5rV4qroLaUSTj5jbdR4HtD+QzUrvn5cjAYOHuLms9bCFzgcmEUYuSUtGh6N7OTVpF
-         +Z8ziEwxjKsBZ68xw3GkteRriytvhoyxOnbekvsu+mtrb0cNcVkuTWyQHQq69O+FHMBF
-         ir8a27N57e1Xkm/yoLKLQv8i9qkU+FCxiVgUVUKW05p0y38h7cYKy8UtoJccpv/XnUFw
-         tVQZIPTWEuxibT1uaziba9zUR1Ui26QnHL1lILjvGJhf8yDocE+cuUuzLDEauVlE1X9U
-         Jk6A==
+        bh=O9pA4QW8Wg4am71zXXwdIORxiysBsh5kiV0REk5bPqw=;
+        b=ncqWatVkrA0wTgIFctkGGEZNOqpRw8XQ/Nv46q2D1Y0Q3IOOos2jlCFkmWorauW2fr
+         y/tgjB3IjohMlUiQNkHKt5XBlQqSFHsjWwDQFb01lSJLpu30eq3cKScgeSwoCAapp25K
+         0PFOhUlObNx4nGel+WdFSyYpeu99xE8EJc5Kt5V8I75GtRsOOnmIvMTuRS8/Hmcb1mHY
+         CO4b2HqTED0Ei97ppL9GZsArc8MqwOOQK55n8LqKcYnYzn5cJ+3evLxOxlTlH6LV38/g
+         LjJK6MUBZ352ti9IN35s/oNl1EFKzPRsnFACK7OxHG1fkhRo/9F3H97LF8anSrVMblve
+         x69w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=uJtXuRvdgMPQ1UnDvhoOm/1EA7XoOpO+RRB/+tZI2oI=;
-        b=YVlqxVgN7qrEtncyTR/6qw7H/BMpviw6xKRS/qqBnyup4H4CJnRCMJwTZJ9xYD3Rrd
-         AU9JXHKYDo3tRd2DRMs55z79zVesnhCOHyGsGC2s7cdolDCiTG1WKrgCWKHuuH23NjQT
-         v/Ja7Do8Bdt0VGja7nqS0NdjezR1tieYgpt0WpM3a3sG4XwlwwOo8/PpNZ1YfMfRIcrX
-         byxcSulqHW0NWhUEXZMfDQFaBK/MfoCIlaR1ttZWrbdsKk20s0y+tPmOpRfuwzeRO9IF
-         xNuziS4wk0MGvmJeJvw6rsHogUVolXAgPw5xXE+RqxXPkoNQvD7Y96X81LtH//aNMF53
-         HVrg==
-X-Gm-Message-State: AJIora/PaqXqLA2WGRghwdXQJPdDcNUP0moHPVuKQdiA0ymmaMjfamLc
-        94j4XaQo5oX6taekWKP7Pf1h3w==
-X-Google-Smtp-Source: AGRyM1uoJemPp3B8wL5ggdfxU6hbjp4QvOS3TChZ6cMs9Ji5rhldcYajVkYUbMKg2XQROAz6HaT2Yg==
-X-Received: by 2002:a05:6512:3b06:b0:481:507e:e3a0 with SMTP id f6-20020a0565123b0600b00481507ee3a0mr11986657lfv.616.1657531030032;
-        Mon, 11 Jul 2022 02:17:10 -0700 (PDT)
+        bh=O9pA4QW8Wg4am71zXXwdIORxiysBsh5kiV0REk5bPqw=;
+        b=XSsIkTMXznKK0YXfAJkUpz30szP51LLhAxZtiXYwu78x1U+tVCLNgIUBq8h8wxtzmV
+         u4wcwh7gTq1aNTH/scZqQlhIy0HPpSPphuLdnJGW2bH21BOd41g4yd5Hc85nnbGWIz9+
+         P9CePbiFLknd5RL/XGN22qaHpfDPSFo75hYP/BN3lyYrBP7IrgeABFIHK0h0ZaoS9BKh
+         K8rbJTCle2RYG1x99XiliIxllNWfdajpx/KvDjaNFDHYCDUdWU3QsyuHpkwRoXBGHsiX
+         E2xSP2gSEZaDGeptFOrEC+ui1kkhzKq/KxNC8rEGYcMWyNidQfDki5vDslzs8bK3/S2o
+         EKcw==
+X-Gm-Message-State: AJIora/fek0Uc2ec7Y6LPyQQENSU3Ii+UihayA8+a4Cur0HTQY4lJ8Dm
+        iKW/NcSmso4y0NHxAEuK08dtkZ5oDQu3xxGs
+X-Google-Smtp-Source: AGRyM1uMswXCIxYDlP0xBp3vz08nPfOP54CpTs8PCepPdQ3GHZNuiHFY2K+e7LRxuVfS0cgSolO+2w==
+X-Received: by 2002:a05:6512:3d27:b0:489:e623:f244 with SMTP id d39-20020a0565123d2700b00489e623f244mr1029177lfv.236.1657531063764;
+        Mon, 11 Jul 2022 02:17:43 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id v16-20020a056512049000b00489c665af61sm1427018lfq.274.2022.07.11.02.17.08
+        by smtp.gmail.com with ESMTPSA id x5-20020a056512078500b0048159b43083sm1437030lfr.201.2022.07.11.02.17.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 02:17:09 -0700 (PDT)
-Message-ID: <5490fe33-2c0a-3af2-2b62-cce9f607003a@linaro.org>
-Date:   Mon, 11 Jul 2022 11:17:07 +0200
+        Mon, 11 Jul 2022 02:17:43 -0700 (PDT)
+Message-ID: <16dea5e3-0603-9cd7-11c8-15b3e4598fa8@linaro.org>
+Date:   Mon, 11 Jul 2022 11:17:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/6] media: dt-bindings: media: Add compatible for ov9281
+Subject: Re: [PATCH 4/6] media: dt-bindings: media: ov9282: Add power supply
+ properties
 Content-Language: en-US
 To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         "Paul J . Murphy" <paul.j.murphy@intel.com>,
@@ -63,14 +64,14 @@ To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220711081639.150153-1-alexander.stein@ew.tq-group.com>
- <20220711081639.150153-3-alexander.stein@ew.tq-group.com>
+ <20220711081639.150153-5-alexander.stein@ew.tq-group.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711081639.150153-3-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20220711081639.150153-5-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,12 +80,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 11/07/2022 10:16, Alexander Stein wrote:
-> This is a slightly different hardware with identical software interface.
+> Add regulators for each power domain.
 > 
 > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  .../devicetree/bindings/media/i2c/ovti,ov9282.yaml       | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+> index 285f8c85f253..9abfaabd373a 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+> @@ -39,6 +39,15 @@ properties:
+>      description: Reference to the GPIO connected to the XCLR pin, if any.
+>      maxItems: 1
+>  
+> +  avdd-supply:
+> +    description: Analog power supply
+> +
+> +  dovdd-supply:
+> +    description: Digital I/O power supply
+> +
+> +  dvdd-supply:
+> +    description: Digital core supply
+> +
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Are all these valid for both variants/devices?
 
 
 Best regards,
