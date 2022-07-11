@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35A78570187
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:02:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9BC157018B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:02:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231218AbiGKMCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 08:02:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56032 "EHLO
+        id S231442AbiGKMCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 08:02:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231202AbiGKMCO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:02:14 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8523C158
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:02:06 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id t25so8287527lfg.7
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:02:06 -0700 (PDT)
+        with ESMTP id S231154AbiGKMCg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:02:36 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4B3D3DF00
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:02:27 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id a9so8268468lfk.11
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:02:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QVqxg0dp3wEYOZpL9v9ilM2FSVRUoonO6i41pxiTzI8=;
-        b=hFlw6gC8Q7phUNCtcoZ+mnhDG3DT2Icr9ctPW9MH8XjMtD29CbFUV/+EqObdE85V3+
-         84TFY8D/cPCLDmxM+Yjze8C5OqepE/+Jks3xTPjY8bvxWBK6PIcNzNssTM1CFhs9LtEk
-         jwd7bOEnaXnycO0NG4YXMJQxd0/Iydvchv52ywJ4QVSlfLFKenAy31lHszz6+D8Fiwtu
-         0PxvFQZMrFg2Ig2iOO7St7bU6PIywmAR7oIdOA8wSFtGZNMLW2Wx+fOS0U4T/Sc9xrDA
-         yiqr7V7dxkxre7p2jDbyB8gkHTM4L7MGLh1bGnShicdj+usImIZHWFNsR4CLEWZT0lgl
-         /CIQ==
+        bh=/rappI+jRHTVuP1fFDqK1XDoQzLaLz1pV5QzHwd5BWU=;
+        b=RFj91ySRbmVSTF+rJP3CRaDqrgp10TZHGcD/+qhSmHOUVcUanncoh2s4CcmS7bDH/z
+         yP/3zeG9G4uCPEtTy+71krgWQZhpXOF779qcHGN05jac6oUtoZzDafh9KGd03IFn7pBv
+         hng/gZIUQvVDmcEBj4FKIq1YXVJVx3G8+xNHcsTmeWnlfqH+EUDSHwDGJOUJme+tqmpn
+         2XCT1gapQRhpyvn9pnPnxgiYGKeGQAoNF1bhLo4gdmQleJDD7JE7N/+o+9QPN+SXT0Ux
+         DyFnV8IX5VkEw60oiKOnk0B3EhT+ny1lj0+fB1K/HgybLX1UswmF6fl3RPs73xpL5Qm0
+         fLmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=QVqxg0dp3wEYOZpL9v9ilM2FSVRUoonO6i41pxiTzI8=;
-        b=c56zh2nIEyHd6XxMF/jCVQlsU/ZHsz3nKhFV4MX99oHCWnppG9PsOxkSWy/w93Y9JZ
-         gKbwkrghUPFLtHE4smx/S0dbOd9vQ6hIV0It7ly9LG5kTbbQcZA6AavHCXJQDEaalozM
-         y3kDfkYyEmCRtL9+xDGMle2bdEZJut2x/zk8uUV6eQZw056VqYEd4UgJeeqm3JdT2Y8m
-         rQ52yToxWzbaeQTiaBvz3vzoiDhtE75Yrvxgjy6dh406n9sx4OPVAD8gsXgWybGOh7iO
-         xMxgOvX/9DeFvmmPCGzR7VIyhE5fKZml22rzOYmA2cIlJXI6TXo72ueiRp5OKWQtXoRg
-         7ZNw==
-X-Gm-Message-State: AJIora8sh7kOh7GxNG+RDtCTUtI4o+Satv9VfpfJ9CLsvVSFhE7aTopE
-        p5mtCiidzW1zZYLfmImVpeVi1A==
-X-Google-Smtp-Source: AGRyM1tPFsxY/xB1ICxsLpx4b0d9lJislbMty935ePwpSxLaNm08XHOXHHUPjHR/WWsfjwVIeBOlQg==
-X-Received: by 2002:a05:6512:398c:b0:488:f524:b7e9 with SMTP id j12-20020a056512398c00b00488f524b7e9mr10868068lfu.259.1657540924386;
-        Mon, 11 Jul 2022 05:02:04 -0700 (PDT)
+        bh=/rappI+jRHTVuP1fFDqK1XDoQzLaLz1pV5QzHwd5BWU=;
+        b=q0PI+hpF4fIFkP3S+cAQHguEF9S/Pft02G+LbS6mvHCY1jyDipCoC+2bYHRXzwq26l
+         3+BcWJ7EaPEJSbBXdMdWneL4Vidzdz16Dmaj1DVbt7VQ/QQfqZSCXMGKEQIBoMBs3RJF
+         sN9ySJEfYD1QSSe9Nb8qnD/QTKfVmq3eF5WfNBr15EaS3nyyCbNmLhEKJXsGa93vsmR2
+         3tkVBFmy64p3ZkZBRmgNADCEcMojjWIqj4TGRp9GCsPFj7VgmFpizAwVltyk++12Wtqn
+         sy1xMwWpLLvGHuGSfru/Z9YxiEojku6yjAym+vYcfNulWqZ74uqOvpLsdGRfb1QMEKjA
+         SaTA==
+X-Gm-Message-State: AJIora81KlbPQoHr6nQT5xvMn8w9hu+MfHC9ZohQmwHHX2eDR+E/nItS
+        7pR+DAXH5O02vixNM2D178c6Fg==
+X-Google-Smtp-Source: AGRyM1tNgR5GmQvLjxWA47o0znprtxZrIDw74DDBkkFdC928TaPbMIJ9aiRutSUnODGG4SNWD8qxbw==
+X-Received: by 2002:a05:6512:1082:b0:489:cdfa:1fae with SMTP id j2-20020a056512108200b00489cdfa1faemr6926204lfg.251.1657540946182;
+        Mon, 11 Jul 2022 05:02:26 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id d28-20020ac25edc000000b00489c719b809sm1492196lfq.284.2022.07.11.05.02.02
+        by smtp.gmail.com with ESMTPSA id y16-20020a05651c107000b002554dce4048sm1729674ljm.53.2022.07.11.05.02.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 05:02:03 -0700 (PDT)
-Message-ID: <9e1ff864-3952-6442-13db-a3d8e18f86c3@linaro.org>
-Date:   Mon, 11 Jul 2022 14:02:01 +0200
+        Mon, 11 Jul 2022 05:02:25 -0700 (PDT)
+Message-ID: <3de9a73c-9dba-63d6-a890-64b861e2c6da@linaro.org>
+Date:   Mon, 11 Jul 2022 14:02:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 4/6] clk: qcom: apss-ipq6018: add MODULE_ALIAS
+Subject: Re: [PATCH 4/6] media: dt-bindings: media: ov9282: Add power supply
+ properties
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        "Paul J . Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, sivaprak@codeaurora.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-clk@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20220711104719.40939-1-robimarko@gmail.com>
- <20220711104719.40939-4-robimarko@gmail.com>
- <4de38d90-0020-c2db-b283-319b4a0e2ce5@linaro.org>
- <CAOX2RU6X=JiV1As+_N6c_=VaHfVYpke_deQmmNPMMDxfnz5i8g@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220711081639.150153-1-alexander.stein@ew.tq-group.com>
+ <20220711081639.150153-5-alexander.stein@ew.tq-group.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAOX2RU6X=JiV1As+_N6c_=VaHfVYpke_deQmmNPMMDxfnz5i8g@mail.gmail.com>
+In-Reply-To: <20220711081639.150153-5-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,47 +79,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 13:46, Robert Marko wrote:
-> On Mon, 11 Jul 2022 at 13:05, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 11/07/2022 12:47, Robert Marko wrote:
->>> Add MODULE_ALIAS so that driver will be autoloaded if built as a module.
->>>
->>> Signed-off-by: Robert Marko <robimarko@gmail.com>
->>> ---
->>>  drivers/clk/qcom/apss-ipq6018.c | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
->>> index f2f502e2d5a4..963c69f2c0c2 100644
->>> --- a/drivers/clk/qcom/apss-ipq6018.c
->>> +++ b/drivers/clk/qcom/apss-ipq6018.c
->>> @@ -101,5 +101,6 @@ static struct platform_driver apss_ipq6018_driver = {
->>>
->>>  module_platform_driver(apss_ipq6018_driver);
->>>
->>> +MODULE_ALIAS("platform:qcom,apss-ipq6018-clk");
->>
->> That's not correct alias (no commas) and usually alias is not needed at
->> all. If you need one, please explain why it is needed. Module
->> autoloading works fine without aliases...
+On 11/07/2022 10:16, Alexander Stein wrote:
+> Add regulators for each power domain.
 > 
-> Hi Krzysztof,
-> alias is required here as the driver does not use a DT compatible but
-> is registered
-> by the APCS driver, if built as a module, it won't get autoloaded
-> without an alias.
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Instead you need device ID table. Aliases are not a workaround for
-missing core driver elements.
 
-> 
-> I can only fix up the driver name here and in APCS first to have an
-> alias without commas.
-
-I see that the comma is used in driver name, so this is an independent
-issue. Maybe change it to '-' in separate commit?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
