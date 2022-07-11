@@ -2,75 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6432A5702FC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C7F1570338
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231889AbiGKMnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 08:43:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42224 "EHLO
+        id S231975AbiGKMqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 08:46:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231799AbiGKMnf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:43:35 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C520D1169;
-        Mon, 11 Jul 2022 05:43:32 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id sz17so8593527ejc.9;
-        Mon, 11 Jul 2022 05:43:32 -0700 (PDT)
+        with ESMTP id S232035AbiGKMqV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:46:21 -0400
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8BD621267;
+        Mon, 11 Jul 2022 05:45:57 -0700 (PDT)
+Received: by mail-qt1-x832.google.com with SMTP id cf13so5140219qtb.13;
+        Mon, 11 Jul 2022 05:45:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=MFIWdw+oH2e7ggqN762X73Uvj4NmyoOD6YcZjg1c9UE=;
-        b=Y0ay2MOCK5HvKYZEU/KH0y+by57+m6lDt3X9vbaUWzTUupLzLgNsBzuxtNNWYiVmwL
-         +3c2sJ2W9nvK+fWuldPx7ig1Mq9gmF2wqfO/1VioA5g0SuggM/VDsimHz8WUneyv1afP
-         ImN0cB8MOqzG49ddkDoH1AOGuRHvpXs4H2v9tH+u++JoSsGWnEZwFGDzOkcD5Y+xVWif
-         j6L3jgd5gTMpl7QpCmk4Lef50fXgM2ad7dBlQzVsm9HWNYTHj58+bbw9VziaS7dY9oEu
-         52NkdqX7Q6V8vpyoe+Xn884MIvtcqidhh9SfgJBjrXv8+3RorU/o1Qpnde6YyBzxP+bn
-         J1oA==
+        bh=EOHtYs+PqgFv2+4RKD8qT8cMKZM9sv42lV+Bo9Bs7bk=;
+        b=Q3KKt/Hjj7Ag3ycSs+G82xktAOKbdeZEzHkKvSjOCwY1Zi34CXGCQriRhbX7I39SSA
+         UvH2j2FFNiLOeqAJyAdosP/uFjiQq3aQ27NEeQGRj0zFEEwyPNKLJKIBD7HCUyTtrMY4
+         igCRf0KnapJff3dol3HMchhMF/7pi1I0LLUTAkmoniltoqcEjmHQNI2/9ttVnarwuEtp
+         m6Z2693Mp3QbVoCPBRup//P8hCM8uMHbGsc/pAqFr8SOdVqakXA/yxHgTBHWnEUmikH+
+         H+8pUy8AcCFAqznNhwbp9sj9vHSAP6HSI47Gj1Ym1DNa/i39wIqocswpa7YtQs2nKO77
+         j7zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=MFIWdw+oH2e7ggqN762X73Uvj4NmyoOD6YcZjg1c9UE=;
-        b=aJvmEkPYpZVfFG2/FLH9l0X7vElfO5sBcUj00KtLBVMESFTOYGl57IKBNmReC43f5F
-         Jlh/wLm1gO/i6VGq0CTkmM0tMj4kPCDPP5r3vkVoCECcBfzf0grsWIwp/GWnqPenO7Q4
-         0pbyVKNATlCjgMXeaWQXrdPueRlftejgYNyGjUspk8WsXTsQEpOPRaoZ2T/ao75NHabX
-         VmNFtCLNoaypj2RSGHaok0IKVXz+uHbe5Mmq8q+12+hKcTwG6oSiajcW2k5+/e/DgHhv
-         P6JIjBRmZ+NZGSs58EHMlWoUfw1W9gNtNJodT4xIFFuWMDglx0hMA0t8ld9Nu1panfZA
-         O6mQ==
-X-Gm-Message-State: AJIora/ltptnUUsl+lG/G5e/P0xLzxjPB96q2pjjkToOdFojj8x/eIcc
-        4FeEhZK3yzGPN424laC07IE6JJmMqDLYHjZqWUk=
-X-Google-Smtp-Source: AGRyM1tRZv+S21P2yqAIdHMiGuopXuLzlIjQD0sqQyr34rlVtpnGhej3WMjCMcZ3IOICdyo3IrAtOCYIKQR+x2RreIs=
-X-Received: by 2002:a17:907:6d86:b0:72b:5ad6:6df1 with SMTP id
- sb6-20020a1709076d8600b0072b5ad66df1mr3957100ejc.264.1657543411346; Mon, 11
- Jul 2022 05:43:31 -0700 (PDT)
+        bh=EOHtYs+PqgFv2+4RKD8qT8cMKZM9sv42lV+Bo9Bs7bk=;
+        b=BlE+ZyrxNXtfjBdNuYUP5lHILb3tP3pEjHxvhDRW8npVGpG3rvw5qcmYrZ3u04PQay
+         AMaK4ZpUTiSuggLBHP3sOZKHG35bp6njM6k3q/d4tGO6DkOFXfb6mb3rVN4/J1FvnK26
+         HTitdAW8CZqcePKl4ThvpJsyOZUR3RnHvypNv1TYQIza8/gRIwUpX6LlEA/P4ylk3xmM
+         27Du2u72CPv1LwPE05L+xNNFVvTL3vcZ+M7uZFPNpG9Y3kwWMyXEU1VbjELTtu2PpIq0
+         GPBmWWaga39xoAtzWSvpInDaB8qmFj7a66/aVzN5JLNq+4gAP/sZAGOyTUTN+fregu8+
+         WnxQ==
+X-Gm-Message-State: AJIora/jN5r0bBczwoKv0DI5/95XuT+IjIvAm7UBoLhMjO+kL+mvirR2
+        ITEUTClmNrZ6tUbj+R+oXzPk0gqPmTWTR8q7EyQ=
+X-Google-Smtp-Source: AGRyM1vl04Nhe0vqvpLu28eAB166+vwE6nGvpkxPI1PoNmo/h+9bcIRPtvXmTT74Kwnt7PFaz0cfPvho2f4YXNcsOas=
+X-Received: by 2002:a05:622a:1787:b0:31e:af75:edaa with SMTP id
+ s7-20020a05622a178700b0031eaf75edaamr7471795qtk.82.1657543556896; Mon, 11 Jul
+ 2022 05:45:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220707182314.66610-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220707182314.66610-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CACRpkdbhDJq9bJKHM=1pq5+HrVasrT_WuqtAxGWFfnAXMWSr8g@mail.gmail.com> <CAMuHMdXqK7Snk6=+VNhq59SLgv-zRCgwrkABMtC5JOpX02fuVg@mail.gmail.com>
-In-Reply-To: <CAMuHMdXqK7Snk6=+VNhq59SLgv-zRCgwrkABMtC5JOpX02fuVg@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 11 Jul 2022 13:43:04 +0100
-Message-ID: <CA+V-a8uBk9iB08v65CbDQKyKr1jmd1jgvCTP69raxntoNUoU2w@mail.gmail.com>
-Subject: Re: [PATCH v8 5/6] dt-bindings: pinctrl: renesas,rzg2l-pinctrl:
- Document the properties to handle GPIO IRQ
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+References: <20220711104719.40939-1-robimarko@gmail.com> <20220711104719.40939-4-robimarko@gmail.com>
+ <4de38d90-0020-c2db-b283-319b4a0e2ce5@linaro.org> <CAOX2RU6X=JiV1As+_N6c_=VaHfVYpke_deQmmNPMMDxfnz5i8g@mail.gmail.com>
+ <9e1ff864-3952-6442-13db-a3d8e18f86c3@linaro.org>
+In-Reply-To: <9e1ff864-3952-6442-13db-a3d8e18f86c3@linaro.org>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Mon, 11 Jul 2022 14:45:46 +0200
+Message-ID: <CAOX2RU6uQw15Xd5gox41ZxZqrcYQy5HcrAAnWQ=U0bNP-UB+kw@mail.gmail.com>
+Subject: Re: [PATCH 4/6] clk: qcom: apss-ipq6018: add MODULE_ALIAS
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
+        krzysztof.kozlowski+dt@linaro.org, sivaprak@codeaurora.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-clk@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
@@ -82,61 +76,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert, Linus,
-
-On Mon, Jul 11, 2022 at 12:51 PM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
+On Mon, 11 Jul 2022 at 14:02, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Hi Linus,
->
-> On Mon, Jul 11, 2022 at 1:36 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > On Thu, Jul 7, 2022 at 8:25 PM <prabhakar.csengg@gmail.com> wrote:
+> On 11/07/2022 13:46, Robert Marko wrote:
+> > On Mon, 11 Jul 2022 at 13:05, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 11/07/2022 12:47, Robert Marko wrote:
+> >>> Add MODULE_ALIAS so that driver will be autoloaded if built as a module.
+> >>>
+> >>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> >>> ---
+> >>>  drivers/clk/qcom/apss-ipq6018.c | 1 +
+> >>>  1 file changed, 1 insertion(+)
+> >>>
+> >>> diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
+> >>> index f2f502e2d5a4..963c69f2c0c2 100644
+> >>> --- a/drivers/clk/qcom/apss-ipq6018.c
+> >>> +++ b/drivers/clk/qcom/apss-ipq6018.c
+> >>> @@ -101,5 +101,6 @@ static struct platform_driver apss_ipq6018_driver = {
+> >>>
+> >>>  module_platform_driver(apss_ipq6018_driver);
+> >>>
+> >>> +MODULE_ALIAS("platform:qcom,apss-ipq6018-clk");
+> >>
+> >> That's not correct alias (no commas) and usually alias is not needed at
+> >> all. If you need one, please explain why it is needed. Module
+> >> autoloading works fine without aliases...
 > >
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Document the required properties to handle GPIO IRQ.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Hi Krzysztof,
+> > alias is required here as the driver does not use a DT compatible but
+> > is registered
+> > by the APCS driver, if built as a module, it won't get autoloaded
+> > without an alias.
+>
+> Instead you need device ID table. Aliases are not a workaround for
+> missing core driver elements.
+
+Thanks for pointing this out, it looks like a proper solution for this.
+I will drop this patch and fix up autoloading after this series gets merged
+as APCS also requires a fixup, especially since the name in the platform
+table is limited to 20 characters and the current name does not fit.
+>
 > >
-> > Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> >
-> > Is this already queued in Marc's branch targeted for next
-> > so I don't need to do anything with the pinctrl patches?
+> > I can only fix up the driver name here and in APCS first to have an
+> > alias without commas.
 >
-> I don't know; I was wondering the same thing ;-)
->
-> The gitweb link in the bot email does not work:
->
->     Commit-ID:     35c37efd12733d8ddbdc11ab9c8dbcee472a487f
->     Gitweb:
-> https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms/35c37efd12733d8ddbdc11ab9c8dbcee472a487f
->
-> The actual commit seems to exist in that repo, but using the web
-> interface, it is difficult to find out to which branch it belongs.
->
-This patch (and all the patches of this series) is part of
-irqchip-next branch [0].
+> I see that the comma is used in driver name, so this is an independent
+> issue. Maybe change it to '-' in separate commit?
 
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms.git/log/?h=irq/irqchip-next
+Like with the previous point, I will drop this patch and fix it after
+this series gets merged.
 
-Cheers,
-Prabhakar
-
-> It is also not part of next-20220711.
+Regards,
+Robert
 >
-> Anyway, it's too late for me to take the pinctrl parts for v5.20 (saw
-> no ack from Marc before the bot emails), so if it finds a different
-> path upstream, I'm happy ;-)
 >
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+> Best regards,
+> Krzysztof
