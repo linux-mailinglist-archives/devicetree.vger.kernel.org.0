@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3425C570D90
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 00:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF8C3570DB2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 00:57:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbiGKWwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 18:52:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46362 "EHLO
+        id S229667AbiGKW5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 18:57:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiGKWwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 18:52:13 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF7C5545DE;
-        Mon, 11 Jul 2022 15:52:12 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id y2so6300780ior.12;
-        Mon, 11 Jul 2022 15:52:12 -0700 (PDT)
+        with ESMTP id S229622AbiGKW5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 18:57:09 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A93D8252A4;
+        Mon, 11 Jul 2022 15:57:08 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id n68so6343086iod.3;
+        Mon, 11 Jul 2022 15:57:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JVsyVNeM7VExApQQm27V2U3K3Ew7O7BqPXEGzNor7JQ=;
-        b=D/JirY36DvMTmsWBC6DYkwuUdWtvWRMNlNAXXKDCeMX9zT5g31uJxyC9WfupciJKO5
-         QrKzHpPr6/Yy7Ur7JbYMamNYEP9KYMOO5nkSfJwdAtEkuTGSV/ZbUQrWLotqN8QLVufY
-         FUs6zUFZFe/Cy73gl0gbT4uFnfq6hc5kvYf2DkmwKThdejwmdHPcPYxL3wc5E7fQz62X
-         sD6mau+400OaoaNuUjp4qUFHgHo/VUpUFxezM9fvoyuObR88oYVMlnaptAUQzgEful7U
-         RnGNsMledSndykIlO4fszfK5VOXXzmQ4x/ye8PMPKe8QAKmhcYpDRmiEK2uJbppCTBFv
-         Vtaw==
-X-Gm-Message-State: AJIora/thZJqtLw2BD2Rme2KDqVOiBhOhgIEqrXrVcgMeI8herxuh23G
-        CnCqR1QbZ7qEL+fmhxuIHg==
-X-Google-Smtp-Source: AGRyM1tboW87HTQuEDF23kVnOyKb4dQSSMkiAiV0GeGCkS39NqiwWm05SeXFvwjvxMgWWBF0r8rcVQ==
-X-Received: by 2002:a02:9044:0:b0:33f:3845:3ea0 with SMTP id y4-20020a029044000000b0033f38453ea0mr9718285jaf.176.1657579932190;
-        Mon, 11 Jul 2022 15:52:12 -0700 (PDT)
+        bh=nkB1LobiQA6NccntvHF5Qv0wX7FCiVqXUkIF4H0VLgA=;
+        b=6WpHXJfHvRvNFBp5FTCa+WTfeAucfOHTl28bbx6FI0nQlaqGTGJ0g5aHUeNAyP/FJw
+         CwzmLo40XdnTlXxIDwpkkZmAC23eRxt586uB09P9GDAEmUWncxgdEgR3wat/pCU0Dncq
+         J5QBr5natNdVkVG59eM2pMneAMOY0gJwoXJsOqIl/1wAEG25J2TjqOw/HRYNohoPnb0c
+         Hw7/7S2Olsywo7iTqMEnBJ9tN9CalJzEHuPq06ZiW4x2hNXJMFkeKy9SyZ65fy3wduD8
+         rfNc5FY18F14qv2U3uq1PPLuGVT4jIgFKkVucaQCpu+vwW4TFcjvKq9zcD9zbgjg2Gf8
+         xY/A==
+X-Gm-Message-State: AJIora+1XXemFmyzAY+K8t5vP8Um6HIqs6ecDpgiN/8y6rVttv9Rx3R6
+        UEVvxWyFK5pjevqPhMeaDNq+xF093A==
+X-Google-Smtp-Source: AGRyM1vX/8+PDDhf0f+QHpvSfhNzgqMs8567A/5TH4WA3ncvtyaETEfARInjSczaw0kMVaD9wvB4IQ==
+X-Received: by 2002:a05:6602:2586:b0:675:9050:4651 with SMTP id p6-20020a056602258600b0067590504651mr11049758ioo.192.1657580227931;
+        Mon, 11 Jul 2022 15:57:07 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id d20-20020a0566022bf400b0067b78bcba0esm4183238ioy.43.2022.07.11.15.52.11
+        by smtp.gmail.com with ESMTPSA id q4-20020a02b044000000b00339c1f7130csm3452121jah.84.2022.07.11.15.57.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 15:52:11 -0700 (PDT)
-Received: (nullmailer pid 417587 invoked by uid 1000);
-        Mon, 11 Jul 2022 22:52:10 -0000
-Date:   Mon, 11 Jul 2022 16:52:10 -0600
+        Mon, 11 Jul 2022 15:57:07 -0700 (PDT)
+Received: (nullmailer pid 424684 invoked by uid 1000);
+        Mon, 11 Jul 2022 22:57:05 -0000
+Date:   Mon, 11 Jul 2022 16:57:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: phy: mediatek: tphy: add compatible for
- mt8188
-Message-ID: <20220711225210.GA417534-robh@kernel.org>
-References: <20220708065834.25424-1-chunfeng.yun@mediatek.com>
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5] dt-bindings: firmware: convert Qualcomm SCM binding
+ to the yaml
+Message-ID: <20220711225705.GA422079-robh@kernel.org>
+References: <20220708090431.30437-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220708065834.25424-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20220708090431.30437-1-david@ixit.cz>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,13 +68,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Jul 2022 14:58:34 +0800, Chunfeng Yun wrote:
-> Add compatible for mt8188
+On Fri, Jul 08, 2022 at 11:04:31AM +0200, David Heidelberg wrote:
+> Convert Qualcomm SCM firmware binding to the yaml format.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> This commit also:
+>  - adds qcom,scm-mdm9607 into list which has only core clock
+>  - adds qcom,scm-sm6125, qcom,scm-ipq6018
+>  - #reset-cells, because the property is already used
 > 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> --
 
-Acked-by: Rob Herring <robh@kernel.org>
+Should be '---' in order to be removed automatically when applying.
+
+> v5:
+>  - add qcom,scm-sdx65 from new commit to txt binding
+>  - add freshly merged qcom,scm-sc8280xp
+>  - add interconnects
+>  - add accidentally removed # from #include directive
+>  - move mdm9607 to 3 clocks (thx @Guru)
+>  - fix compatible string in example
+> v4:
+>  - added clocks minItems and maxItems
+>  - removed quotes from $id and $schema
+>  - adjusted description of TCSR HW block
+> v3:
+>  - add preceding patches for ARM and arm64 adding missing compatible strings
+>  - extended with missing compatible strings
+>  - added two additional maintainers, see https://lkml.org/lkml/2022/6/23/1969
+> v2:
+>  - changed maintainer to Bjorn
+>  - document #reset-cells
+> 
+>  .../devicetree/bindings/firmware/qcom,scm.txt |  61 --------
+>  .../bindings/firmware/qcom,scm.yaml           | 147 ++++++++++++++++++
+>  2 files changed, 147 insertions(+), 61 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.txt
+>  create mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+
+Doesn't apply for me, so I'm assuming this will go via QCom tree.
+
+Reviewed-by: Rob Herring <robh@kernel.org>
