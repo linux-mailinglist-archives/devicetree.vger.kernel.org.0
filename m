@@ -2,129 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96A8957062A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3F4C570630
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:51:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231794AbiGKOuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 10:50:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44444 "EHLO
+        id S231590AbiGKOvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 10:51:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbiGKOuN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:50:13 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED19B30F7E;
-        Mon, 11 Jul 2022 07:50:11 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 252C06601A00;
-        Mon, 11 Jul 2022 15:50:09 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657551009;
-        bh=1If1vEKZCWn1IW5+EMlV8S1ER1R5G9Y7ZejySPeDJtQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=gB9SwhdIyfSAtZBrxd1QlumEh8Pq7BGsPI6y1/TUNrn/Q7yG7NyBK4ox71KC5uhb3
-         HVITWyw/Rxf3cV6slLDffoc3/WqaqjnzlWVE/LJ9PnewlJ5JJ9C14s5HInvGkYClCB
-         /pXx11aFVHDq5OnsDvJgU219aj9jW/YCbly3w1OdRdyYjF3cIFMbRuJW72ypdrBran
-         WRJkmmgVMaHDWtPb0SfHzVRiqxKHgrRY5ivYpCFdZNdQk6kLWAAsB/196JSgXFgqG8
-         +4vFL2fXNhYDkraJu8zDojmTp3tIiPeEHwNFRiRXiy8DUjLfcjdFSr+jGbspi+e9BY
-         ipEKjlcalDCtA==
-Message-ID: <fcf8ee4b-a064-e2e3-d4db-53d36ba271db@collabora.com>
-Date:   Mon, 11 Jul 2022 17:50:07 +0300
+        with ESMTP id S229685AbiGKOvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:51:23 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81ADD6F7DE;
+        Mon, 11 Jul 2022 07:51:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1657551065; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=CtOhyY8tw1d/3sC1XUFXtOgWlKyvIdoW1+4kYxFZPBOS86WIwkQcL+bzHtrnflgoXijSfWoyhOadbn59TeSSBMwLyvuxBCSGSwAFwHp9JzDcQfmViYYIHcRo6JCzzlgVwXNsHXuqnUDCo5/Rybxlf1r8mOaRtmTVIkihCQQpuRg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1657551065; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=kHaUrv/fHFhGn0jk2BItTI4SaLYRb9P62fgiGu23lW0=; 
+        b=XvF4T6aLrwrrGsw5UP+RkcsfIulaHMaROi9VSSV1xMz1fQntieMfF3f+6Cll8Asqw+SULPG8ltc0ZSmYhsQ0Urj2efjRQZSptsHAZ5SHKIBAHfKYEY3lCQXpru9UdRqSfKsvy8eyxZG3TsTw9PeLiSgwDk3/SGvR1101tT7OmkQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=linux.beauty;
+        spf=pass  smtp.mailfrom=me@linux.beauty;
+        dmarc=pass header.from=<me@linux.beauty>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1657551065;
+        s=zmail; d=linux.beauty; i=me@linux.beauty;
+        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=kHaUrv/fHFhGn0jk2BItTI4SaLYRb9P62fgiGu23lW0=;
+        b=YHrBm/1VIbeMyvVrhtTMs7qWopIUA2LBW5p0ofgHxOThqYkebGQx02DCMLUTMCiJ
+        C1giCpknR4Ce+lUkw81ZNB/qD60wodwSRfFiuzbCRanHvglfyN/NrWuOjeAmZBZmYxh
+        2bwNNBgkDmKk5YSWzQSKmQ0F2mVpjjvXhOoVP+aw=
+Received: from mail.zoho.com by mx.zohomail.com
+        with SMTP id 1657551064920476.90017022843904; Mon, 11 Jul 2022 07:51:04 -0700 (PDT)
+Date:   Mon, 11 Jul 2022 22:51:04 +0800
+From:   Li Chen <me@linux.beauty>
+To:     "Arnd Bergmann" <arnd@arndb.de>
+Cc:     "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Frank Rowand" <frowand.list@gmail.com>,
+        "Andrew Morton" <akpm@linux-foundation.org>,
+        "Li Chen" <lchen@ambarella.com>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        "DTML" <devicetree@vger.kernel.org>,
+        "Linux-MM" <linux-mm@kvack.org>
+Message-ID: <181edbe0f3d.e1336ef3387914.4730240512950880256@linux.beauty>
+In-Reply-To: <CAK8P3a1WbJSWHsfegTtLhzSRwAoN8WfdezTTedRk9-FCiM8+GA@mail.gmail.com>
+References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-2-me@linux.beauty> <CAK8P3a1WbJSWHsfegTtLhzSRwAoN8WfdezTTedRk9-FCiM8+GA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] of: add struct page support to rmem
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v7 2/2] iio: light: Add support for ltrf216a sensor
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Shreeya Patel <shreeya.patel@collabora.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, Zhigang.Shi@liteon.com,
-        krisman@collabora.com, linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        alvaro.soliverez@collabora.com
-References: <20220711112900.61363-1-shreeya.patel@collabora.com>
- <20220711112900.61363-3-shreeya.patel@collabora.com>
- <CAHp75Vf3NDsep5_819=e8yrna_AGh5cew=fs+hHe1q8LCa-PyA@mail.gmail.com>
- <c90e7334-5921-886b-2f9c-869fb55216ca@collabora.com>
- <CAHp75Vf=FOt+N6azar5gifvig8FL4sS3LX1kO8CzNCh2yOk-DQ@mail.gmail.com>
- <68de450f-da22-02e3-e863-7e17582ee03f@collabora.com>
- <CAHp75VcMsa+s9Lrp6fF_nzJ9RgsVnbCCDjvLW=-hdFpAs69pgA@mail.gmail.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <CAHp75VcMsa+s9Lrp6fF_nzJ9RgsVnbCCDjvLW=-hdFpAs69pgA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_RED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/11/22 17:22, Andy Shevchenko wrote:
-> On Mon, Jul 11, 2022 at 4:04 PM Dmitry Osipenko
-> <dmitry.osipenko@collabora.com> wrote:
->> On 7/11/22 16:41, Andy Shevchenko wrote:
->>> On Mon, Jul 11, 2022 at 3:39 PM Shreeya Patel
->>> <shreeya.patel@collabora.com> wrote:
->>>> On 11/07/22 18:36, Andy Shevchenko wrote:
->>>>> On Mon, Jul 11, 2022 at 1:30 PM Shreeya Patel
-> 
-> ...
-> 
->>>>>> +static const struct regmap_config ltrf216a_regmap_config = {
->>>>>> +       .name = LTRF216A_DRV_NAME,
->>>>>> +       .reg_bits = 8,
->>>>>> +       .val_bits = 8,
->>>>>> +       .max_register = LTRF216A_MAX_REG,
->>>>> Why do you use regmap locking? What for?
->>>>
->>>> Why do we want to skip the internal locking if it doesn't bring any
->>>> benefits?
->>>
->>> Can you elaborate on the "no benefits" part, please?
->>
->> Since the regmap's lock will never be contended, thus it's free to keep
-> 
-> I'm skeptical about "free" here. My concerns are:
-> 1) grosser code base;
-> 2) slower code flow (even nop takes time to process).
-> 
->> using it. If later on we will need to change the driver's code such that
->> the lock will become needed, then we won't need to bother with
->> re-enabling it. The comment to the driver's mutex states clearly that
->> it's intended to protect the cached value.
->>
->> Hence what is point in disabling the regmap's lock? There are very few
->> drivers that disable the regmap's lock and most of them do that for the
->> good reason.
-> 
-> Most of the drivers that have its own lock _and_ regmap lock took the
-> locking scheme wrong. It is 101 when writing a driver to have a clear
-> picture of what lock protects what data (or I/O).
-> 
-> Even if lock is _almost_ free, it's still required to provide
-> understanding of how each of the locks is being used in the code.
-> 
-> That said, the main point of my review comment is to make the author
-> think about it, or just elaborate if it has been thought through
-> already.
+Hi Arnd,
 
-Alright, thank you for clarifying yours point! I helped Shreeya a tad
-with preparing the v7 and disabling the regmap's lock wasn't under
-question. Since this driver isn't about performance and a nanosecond
-improvement isn't worthwhile in comparison to the the I2C transfer time,
-should be cleaner to keep the regmap's lock in place, IMO. I'll let
-Shreeya to answer next time, sorry for jumping in.
+Thanks for your review!
+ ---- On Mon, 11 Jul 2022 21:36:12 +0800  Arnd Bergmann <arnd@arndb.de> wrote --- 
+ > On Mon, Jul 11, 2022 at 2:24 PM Li Chen <me@linux.beauty> wrote:
+ > 
+ > > +config OF_RESERVED_MEM_DIO_SUPPORT
+ > > +       bool "add Direct I/O support to reserved_mem"
+ > > +       depends on ZONE_DEVICE && ARCH_KEEP_MEMBLOCK
+ > > +       help
+ > > +          By default, reserved memory don't get struct page support, which
+ > > +                means you cannot do Direct I/O from this region. This config takes
+ > > +                uses of ZONE_DEVICE and treats rmem as hotplug mem to get struct
+ > > +                page and DIO support.
+ > 
+ > This probably does not need to be user visible, it's enough to select it from
+ > the drivers that need it.
 
--- 
-Best regards,
-Dmitry
+When you say "user visible", do you mean the config can be dropped or something else like Kconfig type other than bool?
+
+ > 
+ > > @@ -72,7 +72,6 @@ void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+ > >         rmem->size = size;
+ > >
+ > >         reserved_mem_count++;
+ > > -       return;
+ > >  }
+ > 
+ > This change is not wrong, but it does not belong into the same patch
+ > as the rest, just drop it.
+ > 
+ > > +/**
+ > > + * get_reserved_mem_from_dev() - get reserved_mem from a device node
+ > > + * @dev: device pointer
+ > > + *
+ > > + * This function look for reserved_mem from given device.
+ > > + *
+ > > + * Returns a reserved_mem pointer, or NULL on error.
+ > > + */
+ > > +struct reserved_mem *get_reserved_mem_from_dev(struct device *dev)
+ > > +{
+ > > +       struct device_node *np = dev_of_node(dev);
+ > > +       struct device_node *rmem_np;
+ > > +       struct reserved_mem *rmem = NULL;
+ > > +
+ > > +       rmem_np = of_parse_phandle(np, "memory-region", 0);
+ > > +       if (!rmem_np) {
+ > > +               dev_err(dev, "failed to get memory region node\n");
+ > > +               return ERR_PTR(-ENODEV);
+ > > +       }
+ > > +
+ > > +       rmem = of_reserved_mem_lookup(rmem_np);
+ > > +       if (!rmem) {
+ > > +               dev_err(dev, "Failed to lookup reserved memory\n");
+ > > +               return ERR_PTR(EINVAL);
+ > 
+ > This needs to be a negative error code rather than the positive EINVAL.
+ > No need to initialize rmem=NULL first if you override it here.
+ > 
+ > > +       if (likely(reserved_mem_dio_in_region(pfn << PAGE_SHIFT, PAGE_SIZE, rmem) <
+ > > +                  0))
+ > > +               goto out;
+ > 
+ > It's not performance critical, so just drop the 'likely()' and put the
+ > rest into one line.
+ > 
+ > 
+ > > +       if (page) {
+ > > +               *page = pfn_to_page(pfn);
+ > > +               get_page(*page);
+ > > +       }
+ > > +
+ > > +       ret = 0;
+ > > +
+ > > +out:
+ > > +       pte_unmap(pte);
+ > > +       return ret;
+ > > +}
+ > 
+ > Should you perhaps return an error when 'page' is NULL?
+ > 
+ > > +#ifdef CONFIG_OF_RESERVED_MEM_DIO_SUPPORT
+ > > +int reserved_mem_dio_mmap(struct file *file, struct vm_area_struct *vma, struct reserved_mem *rmem);
+ > > +void *reserved_mem_memremap_pages(struct device *dev, struct reserved_mem *rmem);
+ > > +#endif
+ > 
+ > The '#ifdef' check can be dropped here, declarations are normally
+ > not hidden like this.
+ > 
+ >          Arnd
+ > 
+
+These will be fixed in v2.
+
+Regards,
+Li
