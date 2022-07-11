@@ -2,53 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0330056D6CB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 09:29:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77AD656D702
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 09:45:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229966AbiGKH3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 03:29:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49702 "EHLO
+        id S230183AbiGKHph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 03:45:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbiGKH3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 03:29:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5251572D
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:29:11 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oAnqi-0006ib-SU; Mon, 11 Jul 2022 09:28:56 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oAnqh-000GRm-QP; Mon, 11 Jul 2022 09:28:55 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oAnqh-004TFL-4x; Mon, 11 Jul 2022 09:28:55 +0200
-Date:   Mon, 11 Jul 2022 09:28:41 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nikita Travkin <nikita@trvn.ru>
-Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
-        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
-        masneyb@onstation.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v8 2/2] pwm: Add clock based PWM output driver
-Message-ID: <20220711072841.vtdgjbtefzphhtb7@pengutronix.de>
-References: <20220711062330.4923-1-nikita@trvn.ru>
- <20220711062330.4923-3-nikita@trvn.ru>
+        with ESMTP id S230142AbiGKHpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 03:45:35 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD4AA1B8
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:45:33 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id f39so7341161lfv.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:45:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=wqIFBf3DN10dow3GoXse21GGYLCZcVsfvhzNfQvO+X4=;
+        b=bhLbh/jndXXNXiXMqF9n8seGfMnoBKK43GGudT+034/0ObNAvJXElA+PkDogw3+zvz
+         pyQjOWzfJ6nNk3z7KpVKqEVBeuQXMlUdEAkDg6rgTp8HbKllExHTod6aqZISDZZbg8Pj
+         w0Wi/owibTrxU/BgAaZ9wf1Ur5T18OlAvmcmAlOJUPdvIwvNivbKjeK4yQdy3UBuIdLZ
+         MKDR4DBhmYmyBL1nbxQAkYge1/TaXEDSe7ty71Ro6K6AwDeMIgejSTwkfxw1PLZgZRA9
+         8O/ba7KaeAKM2zfeq4AUdqc7jGptwKD6OHzc+FyI3VNINdcb6vv2Q6FItsCvH2uabyJ3
+         OryA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wqIFBf3DN10dow3GoXse21GGYLCZcVsfvhzNfQvO+X4=;
+        b=FhKJCYFsZeRdS4ZaflSdBbU91tyN7yz35QevfhZ4kELYQxmIcv5nuukVY9Oq+1xhdP
+         77bj3rFO3mcbk3lm+Wb2WGF0wVWFKWmXl+GW0VFavYQcXecSjWoXXESecbJDbOnOwT58
+         bjMnkr8R4aNU8j2MLKxTEaOZMqX8b5JWnFijJDXp5Rl6+PCk6XuvyR5xqjb+D581pinQ
+         9FaTTnDDhAZjdohxYIW4s1rFgJvvQccJ7UJ/DUOjtZc1+aKhmvVEl7yalZRJMVEb5qfm
+         gp6VEpLwn0VWmG/jzLrvzEucybZmd3+UzwnjIPCofQp/7Ub8K3NIMGMJJH7qWUdDzatp
+         pq2Q==
+X-Gm-Message-State: AJIora/jSPRSCS0v/eK6RasVw0wqYQbBe2CwJO296vXPwkeXFl0tlPX7
+        WhUYnZXJWfJg0p+ukB5cYQX+ow==
+X-Google-Smtp-Source: AGRyM1vPfEahu4HcbTv/71vdz7MtuUZ4XlDhRbns/Wsz9/D078JYEbthPyLCS1hxYMSuW+6bMIpmsg==
+X-Received: by 2002:a05:6512:31c9:b0:489:e037:31b9 with SMTP id j9-20020a05651231c900b00489e03731b9mr1802467lfe.178.1657525531668;
+        Mon, 11 Jul 2022 00:45:31 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
+        by smtp.gmail.com with ESMTPSA id r17-20020ac25f91000000b004867a427026sm1401483lfe.40.2022.07.11.00.45.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jul 2022 00:45:31 -0700 (PDT)
+Message-ID: <9fb4beb2-96c3-1bf6-9ee3-5b87b641c234@linaro.org>
+Date:   Mon, 11 Jul 2022 09:45:28 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ikxnmvrhzqbsjtde"
-Content-Disposition: inline
-In-Reply-To: <20220711062330.4923-3-nikita@trvn.ru>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/5] dt-bindings: mmc: sdhci-msm: constrain reg-names at
+ least for one variant
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20220707075151.67335-1-krzysztof.kozlowski@linaro.org>
+ <20220707075151.67335-3-krzysztof.kozlowski@linaro.org>
+ <CAD=FV=WFdtx_v3iPaNYDkhBw+fkSRriG0-w1R5vXRCugZPW6Vg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=WFdtx_v3iPaNYDkhBw+fkSRriG0-w1R5vXRCugZPW6Vg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,43 +85,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07/07/2022 16:31, Doug Anderson wrote:
+> Hi,
+> 
+> On Thu, Jul 7, 2022 at 1:04 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> The entries in arrays must have fixed order, so the bindings and Linux
+>> driver expecting various combinations of 'reg' addresses was never
+>> actually conforming to guidelines.
+>>
+>> Specifically Linux driver always expects 'core' reg entry as second
+>> item, but some DTSes are having there 'cqhci'.
+> 
+> This is a bit misleading and makes it sound like we've got a bug. In
+> truth the Linux driver looks at the compatible string. If it sees any
+> compatible listed as "v5" (or a slight variant of v5 to handle a
+> workaround for sc7180 / sdm845) then it _doesn't_ expect 'core' reg as
+> the second entry. See the variable `mci_removed`. The old bindings
+> ".txt" file also had this to say:
+> 
+>                 For SDCC version 5.0.0, MCI registers are removed from SDCC
+>                 interface and some registers are moved to HC. New compatible
+>                 string is added to support this change - "qcom,sdhci-msm-v5".
 
---ikxnmvrhzqbsjtde
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You're right, thanks, I missed that part.
 
-On Mon, Jul 11, 2022 at 11:23:30AM +0500, Nikita Travkin wrote:
-> Some systems have clocks exposed to external devices. If the clock
-> controller supports duty-cycle configuration, such clocks can be used as
-> pwm outputs. In fact PWM and CLK subsystems are interfaced with in a
-> similar way and an "opposite" driver already exists (clk-pwm). Add a
-> driver that would enable pwm devices to be used via clk subsystem.
->=20
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> 
+> So I guess that means this is the documentation for all of the
+> combinations you have listed:
+> 
+> * hc only - v5 controller w/out CQE / ICE
+> 
+> * hc + core - v4 controller w/out CQE / ICE
+> 
+> * hc + cqhci - v5 controller w/ CQE and w/out ICE
+> 
+> * hc + cqhci + ice - v5 controller w/ CQE / ICE
+> 
+> * hc + core + cqhci + ice - v4 controller w/ CQE / ICE
+> 
+> Said another way, before v5 the "core" range existed. After v5 it
+> apparently doesn't so there's no way we could have specified it.
+> 
+> You'll notice that one of the options above implies that a v4
+> controller (with "core" specified) can have CQE and ICE. Is this
+> actually true, or was it a misunderstanding in the .txt to .yaml
+> conversion?
+> 
+> If it's true that a v4 controller can have CQE and ICE then your patch
+> is wrong in asserting that v4 controllers have only "hc" and "core".
+> 
+> If a v4 controller _can't_ have CQE and ICE then your patch is right
+> but incomplete. It should also be removing the option:
+>           - const: hc
+>           - const: core
+>           - const: cqhci
+>           - const: ice
+> 
+> I am not intimately familiar with Qualcomm MMC controller history.
+> That being said, the old .txt file said:
+> 
+>         - CQE register map (Optional, CQE support is present on SDHC
+> instance meant
+>                             for eMMC and version v4.2 and above)
+> 
+> To me this implies that a v4 controller could _at least_ have "cqhci".
+> I dunno about "ice". I seem to recall that this was the argument for
+> why the driver had to use reg-names to begin with and why the driver
+> looks for "cqhci" by name.
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
 
-Thanks
-Uwe
+I checked manual and SDCC v4 already supports CQE. ICE appears at v4.1
+(MSM8996, MSM8953 and some more which do not have dedicated
+compatibles), so the compatibles seems inaccurate. ICE capability can be
+runtime detected, but we still need to provide ICE address space. Anyway
+I don't want to dig too much into SDCC versions, so I'll allow
+hc+core+cqhci+ice.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Thanks for the feedback, much appreciated!
 
---ikxnmvrhzqbsjtde
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLL0SEACgkQwfwUeK3K
-7AkFAQf7B2/hjKRRsYekNT1WInfl0CTPzvlXJpWLpi3R1D8Lh2O6Ks12TczXBfoA
-cykJs7PBZ5DzhGwGQSqSvVhaBEar5V8RVdeNLblYMXmMKTPRH3aHd7NieOfllQBd
-ApOisebie2PUTJBt0bWeobVuO02dQtfi66F34GuzoMj4j7qNG9MRbTgiIaw7dAqs
-bqFvdOKQEX+/voGjeRDwACPyqtUYyvcIyR1eCCOkyuIK87w0kNa0OPJc9Qxg280v
-4NhE4Vktqp+ZImRgL6Fy1JDIY5Z8XHTT9NkTqAzozyZC1Zp/R5Tls0NUbYh+QzRJ
-XqNihElDHcts0eX4GLqwITFr27+rFw==
-=Gkns
------END PGP SIGNATURE-----
-
---ikxnmvrhzqbsjtde--
+Best regards,
+Krzysztof
