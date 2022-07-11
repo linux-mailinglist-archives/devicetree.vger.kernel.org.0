@@ -2,125 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E801356D97F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33CCA56F964
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:56:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbiGKIyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 04:54:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36510 "EHLO
+        id S229991AbiGKI4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 04:56:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229526AbiGKIyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:54:06 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD827B1E1;
-        Mon, 11 Jul 2022 01:54:04 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 26B8rnFN012479;
-        Mon, 11 Jul 2022 03:53:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1657529629;
-        bh=Gf71kfs0ZGj50JnkmWY81zhi/XKMCfnOddDWZhEm994=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=pfSZmeoh+yKDgwWt+uh/mCpV8Oh7kfvTSBrgEqYlCk93mX2tNHVfmY/VKSokjGjE0
-         FfvJMDcmKM/WsnPb5fejimOOkQaoj28pwToBMVzNv3RGv2a8kBh2DhtMsXSZ+Jo9oH
-         sXTRCy2uKc/ZAYsEZZwzdHfRvVuBL65E/D3d/Upk=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 26B8rnk3066579
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 11 Jul 2022 03:53:49 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 11
- Jul 2022 03:53:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 11 Jul 2022 03:53:49 -0500
-Received: from [172.24.145.60] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 26B8rkgP119473;
-        Mon, 11 Jul 2022 03:53:46 -0500
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am64-main: Enable crypto
- accelerator
-To:     Nishanth Menon <nm@ti.com>
-CC:     <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220708112755.105642-1-j-choudhary@ti.com>
- <20220708112755.105642-3-j-choudhary@ti.com>
- <20220708220816.rwyr54ahzjvh7ad5@awhile>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-Message-ID: <8a3285cd-d057-eaa0-ebe3-3032abd64d49@ti.com>
-Date:   Mon, 11 Jul 2022 14:23:45 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        with ESMTP id S229526AbiGKI4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:56:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE54D12D06;
+        Mon, 11 Jul 2022 01:56:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 886CDB80E76;
+        Mon, 11 Jul 2022 08:56:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 347F0C34115;
+        Mon, 11 Jul 2022 08:56:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657529772;
+        bh=PpEE8mf3vOUTI7HZ52uDTZOLGpTTVD3SMaD4DBZ+kP4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iSNh0heq6z34LhARLgJLa9EHN+GWO1LwgtkBQj+4zD1t4Wd4LEUe1WlBQfiutwlY/
+         URg/uKFZPgKE1Hb9WV9PoRFKmzRwD5e+JSQdOCjM2kpoBGJ1meOtT9ksmcW5Ilf1U2
+         UoyPH+JcPNA9LJtcTk3cLhOgZ4V3PSs+6k9Tpy4z0HksOGJXlZGkrm1l22KuZgcHhZ
+         nHyAats6pfk/6wZ1KUroIYsxQT1fTvAinfT/ngj3DPSKIEFGfNfl9AaAplFJXL8h3o
+         NMmVMS7BclYWCoDjMvfwrSEUO60NZ0SeYNvU05/oI5R8jvTrL4B3tF0HAG7ZDi+SPh
+         KQfqfmEdx5+OA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oApD9-00069W-TU; Mon, 11 Jul 2022 10:56:12 +0200
+Date:   Mon, 11 Jul 2022 10:56:11 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Add lost ranges for timer
+Message-ID: <Ysvlqw/+eMk5XLRY@hovoldconsulting.com>
+References: <20220707160858.3178771-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20220708220816.rwyr54ahzjvh7ad5@awhile>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220707160858.3178771-1-bjorn.andersson@linaro.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 09/07/22 3:38 am, Nishanth Menon wrote:
-> On 16:57-20220708, Jayesh Choudhary wrote:
->> From: Peter Ujfalusi <peter.ujfalusi@ti.com>
->>
->> Add the node for SA2UL.
->>
->> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
->> [s-anna@ti.com: drop label, minor cleanups]
->> Signed-off-by: Suman Anna <s-anna@ti.com>
->> [j-choudhary@ti.com: drop rng-node, change flag to shared]
+On Thu, Jul 07, 2022 at 09:08:58AM -0700, Bjorn Andersson wrote:
+> The timer node needs ranges specified to map the 1-cell children to the
+> 2-cell address range used in /soc. This addition never made it into the
+> patch that was posted and merged, so add it now.
 > 
+> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> See thread: https://lore.kernel.org/all/1d6d171f-3c91-530a-27a5-c93153cb2378@ti.com/
-> 
-> lets be consistent as to having the RNG node with disable and logic for
-> doing the same.
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 2bdb42c88311..37a4cd6f85b6 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -1667,6 +1667,7 @@ timer@17c20000 {
+>  			reg = <0x0 0x17c20000 0x0 0x1000>;
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> +			ranges = <0 0 0 0x20000000>;
 
-Okay. Will send a v2 patch.
+While addressing the current issue, this looks odd to me. Why not use a
+non-zero parent bus address here instead?
 
+And please use hex notation consistently for the addresses.
 
-> 
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 12 ++++++++++++
->>  1 file changed, 12 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> index ada00575f0f2..dd2848cd0740 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> @@ -1308,4 +1308,16 @@
->>  		interrupt-names = "int0", "int1";
->>  		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
->>  	};
->> +
->> +	crypto: crypto@40900000 {
->> +		compatible = "ti,am64-sa2ul";
->> +		reg = <0x00 0x40900000 0x00 0x1200>;
->> +		power-domains = <&k3_pds 133 TI_SCI_PD_SHARED>;
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
->> +		dmas = <&main_pktdma 0xc001 0>, <&main_pktdma 0x4002 0>,
->> +		       <&main_pktdma 0x4003 0>;
->> +		dma-names = "tx", "rx1", "rx2";
->> +	};
->>  };
->> -- 
->> 2.17.1
->>
-> 
+>  
+>  			frame@17c21000 {
+>  				frame-number = <0>;
+
+Johan
