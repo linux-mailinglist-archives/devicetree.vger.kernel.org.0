@@ -2,149 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F9385704BB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 15:54:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E0AB5704F2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbiGKNyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 09:54:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50122 "EHLO
+        id S230238AbiGKOEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 10:04:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230213AbiGKNx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 09:53:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EC0F3C8F6;
-        Mon, 11 Jul 2022 06:53:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230084AbiGKOEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:04:10 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB34120A7;
+        Mon, 11 Jul 2022 07:04:09 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 29707614E4;
-        Mon, 11 Jul 2022 13:53:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26A85C34115;
-        Mon, 11 Jul 2022 13:53:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657547635;
-        bh=caL07f0ZrqZjLNrdweHxAxsixM8nX4rbPbMW6ZYxsV0=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=mjcLQAZ2hiumn0Rhx5n0oqEfEPs3iWu4Ef3cICqJ/e0aEdPsHK+6uTVnVmyI/PgOX
-         5/Q4FgJ8udz3ZHaCcNlWI3urxE+qi3N5a2Swl7WeGW3RTrBWmasCNF0rwMCQaG8fsI
-         MBT9yNmNhEbEviQ9WMswhT4q50Q8rOKFnUpCS/rSAH7Q6FxRRv8DUoYFPNkOV62rXT
-         6sR2OQp8GnuWL3INmgM2nagbgmYuhO74Y9r4t2sLAd9Gb0xo53JdQrsIlVn3SHiXpP
-         B9O8HDwxv1ejO3Koq5QhYyInUOXHK26f7kxqfPuB3UQovAzRfljun6+3GrOAF+qv0L
-         nh1CjE/CuubYg==
-Message-ID: <480d38db-3114-29d1-8b81-b35a07623060@kernel.org>
-Date:   Mon, 11 Jul 2022 16:53:47 +0300
+        (Authenticated sender: dmitry.osipenko)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B2FE066019FF;
+        Mon, 11 Jul 2022 15:04:07 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657548248;
+        bh=C0XN9RKnWDlXmYm+a6GfTq9/VWea2/+BxOU6oLr0iIA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=a4UBbmV2mSyXG2UjvRpgZls25hVIKUBcPmATMmR75GesQqwEutstb/m8oaJVAWcLz
+         3VXOto5qYeVOZXmP9jl8iIx0ZbfyiIVVU7ohty6MLy9P7G1CGjWKRWv9SVRooUz+mH
+         vWkItc9ycf4O5giNdhKzfXIr8eXQTbhYmpFRd9oR+h4qe8kJQLztHfjsPpkK9bN5d6
+         ZNTVS/33imlFuHGR0/O5V8O6SBPD64uYpWrannQ24htvd7YMomkP8dOaUAiTi2Oo36
+         G2nsAaeFG9E2UBXNCuwxvflnBkf9Z2mZtDIPY2HSHAzt4srrWTO8HPCGh/yHinyi96
+         d7ayb2gWNmqBw==
+Message-ID: <68de450f-da22-02e3-e863-7e17582ee03f@collabora.com>
+Date:   Mon, 11 Jul 2022 17:04:04 +0300
 MIME-Version: 1.0
-Subject: Re: [PATCH v5 5/5] interconnect: qcom: icc-rpm: Set bandwidth and
- clock for bucket values
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v7 2/2] iio: light: Add support for ltrf216a sensor
 Content-Language: en-US
-To:     Leo Yan <leo.yan@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220711115240.806236-1-leo.yan@linaro.org>
- <20220711115240.806236-6-leo.yan@linaro.org>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20220711115240.806236-6-leo.yan@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, Zhigang.Shi@liteon.com,
+        krisman@collabora.com, linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        alvaro.soliverez@collabora.com
+References: <20220711112900.61363-1-shreeya.patel@collabora.com>
+ <20220711112900.61363-3-shreeya.patel@collabora.com>
+ <CAHp75Vf3NDsep5_819=e8yrna_AGh5cew=fs+hHe1q8LCa-PyA@mail.gmail.com>
+ <c90e7334-5921-886b-2f9c-869fb55216ca@collabora.com>
+ <CAHp75Vf=FOt+N6azar5gifvig8FL4sS3LX1kO8CzNCh2yOk-DQ@mail.gmail.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <CAHp75Vf=FOt+N6azar5gifvig8FL4sS3LX1kO8CzNCh2yOk-DQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Leo,
-
-On 11.07.22 14:52, Leo Yan wrote:
-> This commit uses buckets for support bandwidth and clock rates.  It
-> introduces a new function qcom_icc_bus_aggregate() to calculate the
-> aggregate average and peak bandwidths for every bucket, and also it
-> calculates the maximum value of aggregated average bandwidth across all
-> buckets.
+On 7/11/22 16:41, Andy Shevchenko wrote:
+> On Mon, Jul 11, 2022 at 3:39 PM Shreeya Patel
+> <shreeya.patel@collabora.com> wrote:
+>> On 11/07/22 18:36, Andy Shevchenko wrote:
+>>> On Mon, Jul 11, 2022 at 1:30 PM Shreeya Patel
 > 
-> The maximum aggregated average is used to calculate the final bandwidth
-> requests.  And we can set the clock rate per bucket, we use SLEEP bucket
-> as default bucket if a platform doesn't enable the interconnect path
-> tags in DT binding; otherwise, we use WAKE bucket to set active clock
-> and use SLEEP bucket for other clocks.  So far we don't use AMC bucket.
+> Please, remove unneeded context when replying!
 > 
-> Signed-off-by: Leo Yan <leo.yan@linaro.org>
-> ---
->   drivers/interconnect/qcom/icc-rpm.c | 75 +++++++++++++++++++++++------
->   1 file changed, 61 insertions(+), 14 deletions(-)
+> ...
 > 
-> diff --git a/drivers/interconnect/qcom/icc-rpm.c b/drivers/interconnect/qcom/icc-rpm.c
-> index d27b1582521f..f15f5deee6ef 100644
-> --- a/drivers/interconnect/qcom/icc-rpm.c
-> +++ b/drivers/interconnect/qcom/icc-rpm.c
-> @@ -302,18 +302,57 @@ static int qcom_icc_bw_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
->   	return 0;
->   }
->   
-> +/**
-> + * qcom_icc_bus_aggregate - aggregate bandwidth by traversing all nodes
-> + * @provider: generic interconnect provider
-> + * @agg_avg: an array for aggregated average bandwidth of buckets
-> + * @agg_peak: an array for aggregated peak bandwidth of buckets
-> + * @max_agg_avg: pointer to max value of aggregated average bandwidth
-> + */
-> +static void qcom_icc_bus_aggregate(struct icc_provider *provider,
-> +				   u64 *agg_avg, u64 *agg_peak,
-> +				   u64 *max_agg_avg)
-> +{
-> +	struct icc_node *node;
-> +	struct qcom_icc_node *qn;
-> +	int i;
-> +
-> +	/* Initialise aggregate values */
-> +	for (i = 0; i < QCOM_ICC_NUM_BUCKETS; i++) {
-> +		agg_avg[i] = 0;
-> +		agg_peak[i] = 0;
-> +	}
-> +
-> +	*max_agg_avg = 0;
-> +
-> +	/*
-> +	 * Iterate nodes on the interconnect and aggregate bandwidth
-> +	 * requests for every bucket.
-> +	 */
-> +	list_for_each_entry(node, &provider->nodes, node_list) {
-> +		qn = node->data;
-> +		for (i = 0; i < QCOM_ICC_NUM_BUCKETS; i++) {
-> +			agg_avg[i] += qn->sum_avg[i];
-> +			agg_peak[i] = max_t(u64, agg_peak[i], qn->max_peak[i]);
-> +		}
-> +	}
-> +
-> +	/* Find maximum values across all buckets */
-> +	for (i = 0; i < QCOM_ICC_NUM_BUCKETS; i++)
-> +		*max_agg_avg = max_t(u64, *max_agg_avg, agg_avg[i]);
-> +}
-> +
->   static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
->   {
->   	struct qcom_icc_provider *qp;
->   	struct qcom_icc_node *src_qn = NULL, *dst_qn = NULL;
->   	struct icc_provider *provider;
-> -	struct icc_node *n;
->   	u64 sum_bw;
-> -	u64 max_peak_bw;
->   	u64 rate;
-> -	u32 agg_avg = 0;
-> -	u32 agg_peak = 0;
-> +	u64 agg_avg[QCOM_ICC_NUM_BUCKETS], agg_peak[QCOM_ICC_NUM_BUCKETS];
-> +	u64 max_agg_avg, max_agg_peak;
+>>>> +static const struct regmap_config ltrf216a_regmap_config = {
+>>>> +       .name = LTRF216A_DRV_NAME,
+>>>> +       .reg_bits = 8,
+>>>> +       .val_bits = 8,
+>>>> +       .max_register = LTRF216A_MAX_REG,
+>>> Why do you use regmap locking? What for?
+>>
+>> Why do we want to skip the internal locking if it doesn't bring any
+>> benefits?
+> 
+> Can you elaborate on the "no benefits" part, please?
 
-Now max_agg_peak is unused?
+Since the regmap's lock will never be contended, thus it's free to keep
+using it. If later on we will need to change the driver's code such that
+the lock will become needed, then we won't need to bother with
+re-enabling it. The comment to the driver's mutex states clearly that
+it's intended to protect the cached value.
 
-Thanks,
-Georgi
+Hence what is point in disabling the regmap's lock? There are very few
+drivers that disable the regmap's lock and most of them do that for the
+good reason.
+
+-- 
+Best regards,
+Dmitry
