@@ -2,109 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6549956D68C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 09:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27C2F56D6B6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 09:24:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbiGKHRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 03:17:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38394 "EHLO
+        id S230125AbiGKHYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 03:24:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229877AbiGKHRA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 03:17:00 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB6C7B2F
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:16:59 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id v16so5742893wrd.13
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:16:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=WMKXC/CrO8TFuSStLrqF4pYNeJ++sg15iQVdB0X3y2w=;
-        b=MAT3q+tvzelkP/ihsVVGZKRX6VylytNw69A/UVyxVokb+uWoYhXgxC7gId0gucGtbw
-         qXn6hTMac9HoQJAU1gSpvvoANI3ftpDGER+FnQtV5m6ZOqU2HTjN7s6UVExuSPtR3dlk
-         2K0D1XfOA5wCLsl/QkRCf7hcPEl88prSkHlJ7wXzpdsyIRuGS03idUXkhuvyaf/MG2dN
-         uwSAmnP/idrHvE6Yc1mce4eCPCZj0CSZF7VvYEHmFX8fMoMWF/g3fNVM53QoGU7Eo/XH
-         5vP39dBb0RLYablFPV6BChEHY/w4Px00r94MCG1cYyn+B7Bt1ks/Kg8VU2trrCKPp/pV
-         EKwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=WMKXC/CrO8TFuSStLrqF4pYNeJ++sg15iQVdB0X3y2w=;
-        b=Z5owSf6PUZLKGYDoT4xSevTKzPvDxFAlTAVF3fmli1NaCwILDf3OHFSuyl+juY6muo
-         Zo/8DT9g7tHk5ubhfuNRCCZYk/LIpl9s2g6GNiPaAVHm/aeKwbVYQ20piJZrCIMdnSs2
-         p7t8rJQWy4oUjsngF+9CJCJbvq3dD0G5mX4flaRGsPz8WHd7ry9Wia4ZNdy0Sbll4Ez1
-         mPNfLOrkK0xg5xj5XOyk3xq3viV6F3XBAyEAEnp3CxMJfKrHJT7iM0KpzZXYrNuA9njc
-         SbpYkYB7VgJZAZU7BoYG3tEQLgS9kwLpdc3IZQTvGX6fB4pY0xjlrfUTA5wFg3imojwb
-         JqOg==
-X-Gm-Message-State: AJIora9DP4lwAP9vXucRFfrgGR68chLRsBCKNwGfVQSz30V6JoiXaipx
-        BF3Oz8OOgzluIJMxQQCDl+l11e/gCXwRGcPD
-X-Google-Smtp-Source: AGRyM1vwpD/Paz66pDg0ey2IPGYpSQPw9+x6o2VbkWNUAV0qwxZCVsDvMOzyQGXAEgsmZhqeEiBbGQ==
-X-Received: by 2002:a5d:6489:0:b0:21d:a9a1:3511 with SMTP id o9-20020a5d6489000000b0021da9a13511mr1683287wri.626.1657523818555;
-        Mon, 11 Jul 2022 00:16:58 -0700 (PDT)
-Received: from [10.35.4.171] ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id i8-20020a1c3b08000000b003942a244f40sm9522298wma.25.2022.07.11.00.16.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 00:16:58 -0700 (PDT)
-Message-ID: <b9c97f5e-ca61-ee91-0cb7-a426a921474c@sifive.com>
-Date:   Mon, 11 Jul 2022 08:16:57 +0100
+        with ESMTP id S230105AbiGKHY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 03:24:28 -0400
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CBE013FB6;
+        Mon, 11 Jul 2022 00:24:26 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id BADC24015A;
+        Mon, 11 Jul 2022 12:24:21 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1657524262; bh=TM9PHjFhwqnCKFfKFeJ/O4AXSs6yiSWKFZdtW4tUdSI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=HleYzFOM5qHYA1KyvH8h3iXhrHKMkIrWWvwkKOj5EJ1hYE49Oq2CFe8t0FhtdT0ve
+         IzblL86zDpzuKrVnynCiidcH+PwpwlzNuHaDB7j1Xdjl+y0KEwTgwT/mZdRl512nyb
+         PTXhcShdrHOn85yBKqgX0mFAjrk7ztJ3dJsBmfRAfzlH3fIMwQeW3HTU8Ln/WCMbbL
+         8J1opkiS289BTmOB0uxZjj8q29mPyAh/x2rdT+yrHZ8CLpr88VWYnnF3baiq/H6xha
+         Uk2C5lvbycdnDU4YhCPBexo2yBrNCOCmhLcE0fzoUFSGMZVXBJTSyCpOXafJjTXHhJ
+         TWluiD7W6VuRg==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] of/irq: parse interrupts-extended during irq init
- heirarchy calculation
-Content-Language: en-GB
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-References: <20220708165225.269192-1-ben.dooks@sifive.com>
- <CAL_Jsq+TZpAK-X02ANoYBMfUKkwPh3Z-gjGjim6WwFwsMa7zSA@mail.gmail.com>
-From:   Ben Dooks <ben.dooks@sifive.com>
-In-Reply-To: <CAL_Jsq+TZpAK-X02ANoYBMfUKkwPh3Z-gjGjim6WwFwsMa7zSA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Date:   Mon, 11 Jul 2022 12:24:19 +0500
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
+        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
+        masneyb@onstation.org, sean.anderson@seco.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v7 2/2] pwm: Add clock based PWM output driver
+In-Reply-To: <20220711070349.udyej2qxj2hqyowz@pengutronix.de>
+References: <20220612132203.290726-1-nikita@trvn.ru>
+ <20220612132203.290726-3-nikita@trvn.ru>
+ <20220701075012.xpkcd5xk42frevyq@pengutronix.de>
+ <ef73636abfc6df26c249863e0288dc48@trvn.ru>
+ <20220711070349.udyej2qxj2hqyowz@pengutronix.de>
+Message-ID: <5b2c8ae074ede3263c67381758311398@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2022 22:49, Rob Herring wrote:
-> On Fri, Jul 8, 2022 at 10:52 AM Ben Dooks <ben.dooks@sifive.com> wrote:
->>
->> When the irq controler code works out the heirarchy for initialialisation
->> it only looks at interrupt-parent properties, but controllers such as the
->> RISC-V PLIC use a extended-interrupt property and therefore do not get
->> properly considered during initialisation.
->>
->> This means that if anything changes in the driver initialisation order
->> then the PLIC can get called before the CLINT nodes, and thus interrupts
->> do not get configured properly and the init continues without noticing
->> the error until drivers fail due to having no interrupts delivered.
->>
->> Add code to the of_irq_init that checks for the extended-interrupt
->> property and adds these parent nodes so that they can be considered
->> during the calculations of whether an irq controller node can be
->> initialised.
+Uwe Kleine-König писал(а) 11.07.2022 12:03:
+> On Mon, Jul 11, 2022 at 10:55:09AM +0500, Nikita Travkin wrote:
+>> Uwe Kleine-König писал(а) 01.07.2022 12:50:
+>> > On Sun, Jun 12, 2022 at 06:22:03PM +0500, Nikita Travkin wrote:
+>> >> Some systems have clocks exposed to external devices. If the clock
+>> >> controller supports duty-cycle configuration, such clocks can be used as
+>> >> pwm outputs. In fact PWM and CLK subsystems are interfaced with in a
+>> >> similar way and an "opposite" driver already exists (clk-pwm). Add a
+>> >> driver that would enable pwm devices to be used via clk subsystem.
+>> >>
+>> >> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>> >> --
+>> >>
+>> >> Changes in v2:
+>> >>  - Address Uwe's review comments:
+>> >>    - Round set clk rate up
+>> >>    - Add a description with limitations of the driver
+>> >>    - Disable and unprepare clock before removing pwmchip
+>> >> Changes in v3:
+>> >>  - Use 64bit version of div round up
+>> >>  - Address Uwe's review comments:
+>> >>    - Reword the limitations to avoid incorrect claims
+>> >>    - Move the clk_enabled flag assignment
+>> >>    - Drop unnecessary statements
+>> >> Changes in v5:
+>> >>  - add missed returns
+>> >> Changes in v6:
+>> >>  - Unprepare the clock on error
+>> >>  - Drop redundant limitations points
+>> >> Changes in v7:
+>> >>  - Rename some variables to be in line with common naming
+>> >>
+>> >> --
+>> >> It seems like my mailserver wasn't able to send the last review
+>> >> response to Uwe's so I'll repeat here that afaict clk.h has all the
+>> >> methods stubbed out so compiling without HAVE_CLK is possible.
+>> >> Sorry for a long delay with sending this since v6.
 > 
-> Isn't this already fixed by commit e91033621d56 ("of/irq: Use
-> interrupts-extended to find parent")?
+> FTR: The only problems I have with mail sending in this thread is to
+> "devicetree@vger.kernel.or", I added a 'g' for this mail to that address
+> :-) Otherwise if you diagnose to have problems with the pengutronix
+> server accepting your mail, I'd like to hear about that.
 
-I didn't notice that commit, have been holding onto some of these
-patches whilst sorting out permission to send.
+I think the problem for me was that my server, for some reason,
+insisted on using ipv6 which it has no access to. I think it might
+just be some (very) temporary problem on my end as now the mails go
+fine again.
 
-The only thing my version does better is that it checks all of the
-interrupt-extended contents so if there was a system with multiple
-parents then we wouldn't consider them.
+And the missing "g" is just the artifact of me preferring to manually
+build the git send-email command every time, then forgetting I made
+this typo when replying...
 
--- 
-Ben
+> 
+>> >> +	pcchip = devm_kzalloc(&pdev->dev, sizeof(*pcchip), GFP_KERNEL);
+>> >> +	if (!pcchip)
+>> >> +		return -ENOMEM;
+>> >> +
+>> >> +	pcchip->clk = devm_clk_get(&pdev->dev, NULL);
+>> >
+>> > You can use devm_clk_get_prepared() here and drop the clk_prepare()
+>> > below and the clk_unprepare in .remove().
+>>
+>> Here I spent a bit of time trying to remember why I thought
+>> I've already looked at this, but after figuring out that this
+>> devm helper didn't even exist earlier (I only see it in clk-next)
+>> I remembered considering a totally different thing (being
+>> clk_disable_unprepare in the _remove, which doesn't play well)
+>>
+>> Given that this seems to be absent from 5.19-rc6, I'm afraid adding
+>> it here will upset the 0day as well as possibly cause issues in case
+>> both are taken for the same merge window...
+> 
+> Pass --base with a sensible parameter to git-format-patch (or
+> git-send-email) to make the 0day bots happy.
 
+Thanks for the suggestion!
+
+> 
+>> On the other hand it takes me quite a while to provide replies for
+>> this series (the trend I'm not happy with) so maybe 3-4 weeks
+>> will indeed pass for 5.20-rc1 to have it...
+> 
+> It's not me who merges PWM patches but Thierry. I don't know his plans
+> and if he would be willing to pick up a new driver for the next cycle.
+> You might still get lucky with a fast next iteration.
+> 
+> If you want ignore the devm_clk_get_prepared() suggestion, we can still
+> convert to that once both patches hit Linus Torvald's tree.
+
+Yes, I decided to immediately send a v8 instead of giving a bit
+of time for the discussion to settle (which seem to often end up
+too long) as there was no functional change otherwise.
+
+Thanks,
+Nikita
+
+> 
+>> I think I will try to send a new version with just the comment
+>> added shortly in case it's still not too late for the next merge
+>> window and you can feel free to nack it if you think it already is :)
+> 
+> I think the driver looks good otherwise, so I don't expect to have more
+> feedback in the next round.
+> 
+> Best regards
+> Uwe
