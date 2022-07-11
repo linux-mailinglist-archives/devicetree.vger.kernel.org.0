@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4020F570A15
+	by mail.lfdr.de (Postfix) with ESMTP id 88312570A16
 	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 20:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231127AbiGKSoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230501AbiGKSoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 11 Jul 2022 14:44:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33132 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbiGKSoS (ORCPT
+        with ESMTP id S230458AbiGKSoS (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 14:44:18 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C5AB22BC7
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 11:44:11 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id f2so8158909wrr.6
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C884237D1
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 11:44:12 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id a5so8152519wrx.12
         for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 11:44:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=V2JL5BeTsm1LVU5sfoBIObfRgPh6LElCg+G5xm4swvo=;
-        b=H0r3Hxp2neTDv5jPln/vTpOMlYqL6h/423r3IpRFomDRFVkT+5eMLk9RHOKG1n2NHh
-         n23b0BXFwzHNaAr/yy3KGnEWhtevU42TfeXI/1MalTCyz7xTQ0DE9+nimMV+v+Q5wdDm
-         Kt0DC6Ng+8+c/9wH9JqSYjETUO6ZbSeUpiIFk3pBHRiMoF82muWlxGs/4Tc3jILmjNUZ
-         I4jB1JqUP1wvZuMG8sA9zOSCJgVCYlhhwDwU+WWfuIIvgGLPs8O58NLgjI77PbOpxJY4
-         tFML/qQM775/o5yBW9O5qhLhq3IsWJfTDzpvC8qJbSngIzi0CZEYxtjmKuaoDskJ1b1h
-         IR6A==
+        bh=W1IQZ5rMVEddPML6F8h702sg3EwlT7K9zE2hYh3JCeM=;
+        b=Jj+OLkUk2I13jTPtOe9Kyi7VcOuVAPM5BzlQNEypZZQp+NbKf9nMZCCFQ6hHqiqW86
+         tHABUXE/YfQlNFzH02VLigSQnRyMO6RX68IAt7jTy7bg8wqYs6Pi/wZmk6vanMypaWqE
+         yq3BDMUQEyhYOOs9qMBeoSGec3rKC/acJ0OJlRmVS0NOQz+eWaPudEhyXwtFRoV5VCrU
+         BR6v+4fB9VcyCy5FcimyhsXOn93hng3OBJ82uoQAUeaGQreemb48CXtrir8Vr/lMXfE6
+         SXvSBmpV63c4EogvWZImFBN6z5sb82Lk06Ak6eG+PCnnbtwgHAdd/ggGETj36Qx8m49v
+         y+lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=V2JL5BeTsm1LVU5sfoBIObfRgPh6LElCg+G5xm4swvo=;
-        b=bc3DoyEc6+/HF/u9Xs3K83UdO7hRrOECm4oPGsQUUnfZsLMjvk6qdo5+7DLNLZCItx
-         mPp7b/bF5PHLnQ/MSTsIG0vclfiLN0VCK8r8ThH+hX3W05bsaUXgjiCqjZrqoYqIUqaY
-         KfqwSljdAFv+KsrQ9dZdLR5jgiKoBWOVsgLC38q5/uAieQV2NWBvWoLysHZ/3PBM+xpk
-         97he1XsQ8JxJ3U1XYNAd6+rvYLzMpi+ql0yqsaeYl4wVSwVKU2jpWV6Q+Mvn9Mrj9G2L
-         kz4GSg8jO48lS+w3tFrHEs2ytWI0NmFBzfUQ7inqtDP1BtAHIom15RREW5ijfWKMG4Hk
-         QWvw==
-X-Gm-Message-State: AJIora86bTKxRkaRzfsAJuakkylWAXV28j8hDm8kOyAwo6ZdGGGyWQBb
-        4CFu3yI2QhYnOcZtM1oEwrtU0yBrKdwdTbs6
-X-Google-Smtp-Source: AGRyM1uuUcWNsE8syVVPrFhzpMcpyLLcS0n5o2c6m4kE2QklAam0XRkF04EnT7f7dj1PLfBVVaxsmA==
-X-Received: by 2002:a5d:5a1a:0:b0:21d:68ce:bc88 with SMTP id bq26-20020a5d5a1a000000b0021d68cebc88mr17745842wrb.527.1657565049608;
-        Mon, 11 Jul 2022 11:44:09 -0700 (PDT)
+        bh=W1IQZ5rMVEddPML6F8h702sg3EwlT7K9zE2hYh3JCeM=;
+        b=gKTC7kOCXRPhQJYEhswHRFQ7dB/kB/Ih/iFVjaO86ORZnKcovg96lYNHBe11OQexAs
+         IqmvD5hULnmPDPAcXMJfPbT7jTGt4NTFITbf4z66v36XfLcUHDDuWg0CzIS+IGeo5pRv
+         oMW38o8BoSoi6MaXp/VEjbm+F6QwykeRMD367G9sf6yN2T7uBMJc6H4eWMG5LakGJnSg
+         08fmFCaRDuvLbXHcMAvkNSGzXo8PJR3Pvllq3VatU2NHd5OwUsM/1esBiBjz+pvOQeXy
+         tANjcHabvMN99wbpIypbhzQtvlptu7NLF37lCHU+Iy5AX5TVTakGIsDjnhYmMIk23WxE
+         AskQ==
+X-Gm-Message-State: AJIora/i9PQxggv1KMytjXWoFwjIGB7/Izc9AHDrMMcudhpKYPeAPphh
+        lBFifEGzwO3CEifiGIqxU3BOlw==
+X-Google-Smtp-Source: AGRyM1uVjauKfuKiTPMOqOvAQPCUUKMYYNjIBIvYdkM4RZWSrJUmn+aRiqrXVxOF1fvtcHpC/7FBxA==
+X-Received: by 2002:a5d:4f90:0:b0:21d:a6da:eb6f with SMTP id d16-20020a5d4f90000000b0021da6daeb6fmr5729408wru.283.1657565050659;
+        Mon, 11 Jul 2022 11:44:10 -0700 (PDT)
 Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id j9-20020a05600c410900b003a02cbf862esm7330892wmi.13.2022.07.11.11.44.08
+        by smtp.gmail.com with ESMTPSA id j9-20020a05600c410900b003a02cbf862esm7330892wmi.13.2022.07.11.11.44.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 11:44:09 -0700 (PDT)
+        Mon, 11 Jul 2022 11:44:10 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
@@ -58,9 +58,9 @@ To:     Emil Renner Berthing <kernel@esmil.dk>,
         Conor Dooley <conor.dooley@microchip.com>
 Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/2] dt-bindings: riscv: document the sifive e24
-Date:   Mon, 11 Jul 2022 19:43:25 +0100
-Message-Id: <20220711184325.1367393-2-mail@conchuod.ie>
+Subject: [PATCH v1 2/2] riscv: dts: starfive: add the missing monitor core
+Date:   Mon, 11 Jul 2022 19:43:26 +0100
+Message-Id: <20220711184325.1367393-3-mail@conchuod.ie>
 X-Mailer: git-send-email 2.37.0
 In-Reply-To: <20220711184325.1367393-1-mail@conchuod.ie>
 References: <20220711184325.1367393-1-mail@conchuod.ie>
@@ -68,7 +68,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,33 +78,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-The SiFive E24 is a 32 bit monitor core present on the JH7100.
+The JH7100 has a 32 bit monitor core that is missing from the device
+tree. Add it (and its cpu-map entry) to more accurately reflect the
+actual topology of the SoC.
 
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- Documentation/devicetree/bindings/riscv/cpus.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/riscv/boot/dts/starfive/jh7100.dtsi | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index d632ac76532e..195e762094a8 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -29,6 +29,7 @@ properties:
-           - enum:
-               - sifive,rocket0
-               - sifive,bullet0
-+              - sifive,e24
-               - sifive,e5
-               - sifive,e7
-               - sifive,e71
-@@ -75,6 +76,7 @@ properties:
-       lowercase to simplify parsing.
-     $ref: "/schemas/types.yaml#/definitions/string"
-     enum:
-+      - rv32imafc
-       - rv64imac
-       - rv64imafdc
+diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+index c617a61e26e2..92fce5b66d3d 100644
+--- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+@@ -67,6 +67,23 @@ cpu1_intc: interrupt-controller {
+ 			};
+ 		};
  
++		E24: cpu@2 {
++			compatible = "sifive,e24", "riscv";
++			reg = <2>;
++			device_type = "cpu";
++			i-cache-block-size = <32>;
++			i-cache-sets = <256>;
++			i-cache-size = <16384>;
++			riscv,isa = "rv32imafc";
++			status = "disabled";
++
++			cpu2_intc: interrupt-controller {
++				compatible = "riscv,cpu-intc";
++				interrupt-controller;
++				#interrupt-cells = <1>;
++			};
++		};
++
+ 		cpu-map {
+ 			cluster0 {
+ 				core0 {
+@@ -76,6 +93,10 @@ core0 {
+ 				core1 {
+ 					cpu = <&U74_1>;
+ 				};
++
++				core2 {
++					cpu = <&E24>;
++				};
+ 			};
+ 		};
+ 	};
 -- 
 2.37.0
 
