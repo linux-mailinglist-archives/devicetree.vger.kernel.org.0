@@ -2,95 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25DEB570107
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:47:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3983257010E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:47:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231216AbiGKLrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 07:47:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36150 "EHLO
+        id S229908AbiGKLr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:47:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbiGKLqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:46:44 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529812718
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:44:09 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id bu42so8275611lfb.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:44:09 -0700 (PDT)
+        with ESMTP id S230451AbiGKLrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:47:12 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B940ACC1;
+        Mon, 11 Jul 2022 04:45:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8kbHaWOgwGZ87aOELCDzqAsSUAa/8f6yn0taHmP3zxI=;
-        b=AUEYlFC4TI5jDI3kIduulNZ04vzgkQbh+jz7GGLVxs8ReKM0ztlPdlyECtXIZUPZyk
-         Si3LAMbEfGu5s70hqKcXZCGlI/MQK8B2iscjHc7AA6U6WAraqd5pgszysr0O6yOFYIwV
-         Xeh3x/xRYDdI6+AfluUFVECTGLiOzyvFV55AFpsUCZ6mdklx++KXYeFbj5rRcPIRjoBy
-         ySQxOE4+TRBP6lqcm5VAfA51hzZjKPysXuo75aky9LnOtZrkXaHe7kspfRQKul81P+FT
-         0xoybe3CwssN0IR5UF04K7Dllkh35FQJL8wNHOyTCc4S88bOnmizZN970UALckPRqoEm
-         8jwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=8kbHaWOgwGZ87aOELCDzqAsSUAa/8f6yn0taHmP3zxI=;
-        b=kn6JC6IXpgtlPM3F3L1VXxsUY8sfXQrzpW+9Ka9+HnLTli8xBwo6vuX15fjubSBj7o
-         jdylWRr9YbELUu2IUd3GJ+k8rgEa3tEuDEwwY5NVByaBnfk/sBEBM+ZPzkLUhYpz3ATU
-         iAwNV6D/L0M+bMC+xlYveYA+VTbXxIJ7GLw4k5qZZJEtiZlDx7H8KffvEB0Tr0N5dY9N
-         c+4NUTDZFUOO7jcLzLqkm173IgJefLBtS0dTUo/ySsafR9d8TR6fFi+ZuV776QCynjl9
-         2ntPK7FuYuibo9G4nSMJzN4fzwR1Hv/px92qlwiZni5Q/pHRNyauPSfdeVRUAgrNtJXg
-         bbCA==
-X-Gm-Message-State: AJIora+pd8R8aHq+dDzQinckkhbBlMnd8HfLpX5RBLtzZEoGG45MOEpG
-        GE570zhLxCzer+40F1/hl/Ltyw==
-X-Google-Smtp-Source: AGRyM1sAtNG9Q4gvJx/XKH67qmjMODpoRG0NKU4WTIlmAxdT2Xsk7myk6V3u4yOHOvFUtg1A0FOFbQ==
-X-Received: by 2002:a05:6512:3083:b0:489:e0e1:6a3f with SMTP id z3-20020a056512308300b00489e0e16a3fmr2253906lfd.73.1657539847557;
-        Mon, 11 Jul 2022 04:44:07 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id u16-20020a056512095000b004896b58f2fasm1492648lft.270.2022.07.11.04.44.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 04:44:06 -0700 (PDT)
-Message-ID: <ceb5130e-a3e7-bfb2-a782-f6773a0af4f6@linaro.org>
-Date:   Mon, 11 Jul 2022 13:44:05 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657539945; x=1689075945;
+  h=subject:from:to:cc:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=fq+YH6cBFH047ZBN8sgv9uVcJRRU2CblBfRcJZPR8oc=;
+  b=GpNUhj3JFq9SSYP84JTZWwvD+3sfmqCI++Z/ggks3OnFk2lKI2cmjfho
+   8jNp5NHxSoZ46YmQLYX9VrQXAMZY9shLPNBc76LwnEoL6U5lSvYSt/+TS
+   694WaYZlfcFmTGJZTOsnVZYgGMIBHlKz8072+up/xL9ixZIpDv0yRB12y
+   RBGTQ3rV+uB28yMue41V4cEvsshemxfkLjbSIk9sipPxGKoeitUUqII6F
+   yXZNuNrJUhwWQcJkKlNMbvXA+D/VjA9m0sGbMDf6quW6UCqTBB7jr+bKf
+   y727ESPmkXJmgSB2Ra0hMFrMo7VUgRD9aGyXFwiGFmh6RuniDDeKsiKed
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,262,1650924000"; 
+   d="scan'208";a="24973078"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 11 Jul 2022 13:45:43 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 11 Jul 2022 13:45:43 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 11 Jul 2022 13:45:43 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657539943; x=1689075943;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=fq+YH6cBFH047ZBN8sgv9uVcJRRU2CblBfRcJZPR8oc=;
+  b=q61ok7o7vymUPbVsv/dULEYBmnh9dJGfK5lvd+KwzB/EV3aQq12LpKGx
+   LhEL4cRa92J5r7BUnuGa4bPNMEKDh52JEUWkjXxXNKGXcuRpZHsWnkHTZ
+   sici/saTXjJPREHiNfusIfI6iXFInJfMmZSEyZZN6MKE/MfuybEXEa7Pw
+   DEzuAD1yCf71hEgXnGB1HnkuyFVnXcMHAmHPJ8AeZRjzfrVsFpdu15zzt
+   2nATlEJvypjnLilNNeGTlyvIO2FeFzxi+DSbGnjaYe+kOcjezm550/UZs
+   DT5i4TsoHAX4NJ+5Jn2Jxj7wRMGg0BrDz8dZMWuTnELNYt1ynCWOyt340
+   w==;
+X-IronPort-AV: E=Sophos;i="5.92,262,1650924000"; 
+   d="scan'208";a="24973077"
+Subject: Re: Re: [PATCH 4/6] media: dt-bindings: media: ov9282: Add power supply
+ properties
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 11 Jul 2022 13:45:43 +0200
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id CAA6B280075;
+        Mon, 11 Jul 2022 13:45:42 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "Paul J . Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Date:   Mon, 11 Jul 2022 13:45:40 +0200
+Message-ID: <5842295.lOV4Wx5bFT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <16dea5e3-0603-9cd7-11c8-15b3e4598fa8@linaro.org>
+References: <20220711081639.150153-1-alexander.stein@ew.tq-group.com> <20220711081639.150153-5-alexander.stein@ew.tq-group.com> <16dea5e3-0603-9cd7-11c8-15b3e4598fa8@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: opp: opp-v2-kryo-cpu: Fix example
- binding checks
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, ilia.lin@kernel.org,
-        agross@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        stephan@gerhold.net
-Cc:     linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220708121156.2165250-1-bryan.odonoghue@linaro.org>
- <20220708121156.2165250-2-bryan.odonoghue@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220708121156.2165250-2-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2022 14:11, Bryan O'Donoghue wrote:
-> Adding missing compat entries to the cpufreq node
-> Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml shows up
-> a dt_binding_check in this file.
+Hello Krzysztof,
+
+Am Montag, 11. Juli 2022, 11:17:41 CEST schrieb Krzysztof Kozlowski:
+> On 11/07/2022 10:16, Alexander Stein wrote:
+> > Add regulators for each power domain.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > 
+> >  .../devicetree/bindings/media/i2c/ovti,ov9282.yaml       | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+> > b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml index
+> > 285f8c85f253..9abfaabd373a 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+> > 
+> > @@ -39,6 +39,15 @@ properties:
+> >      description: Reference to the GPIO connected to the XCLR pin, if any.
+> >      maxItems: 1
+> > 
+> > +  avdd-supply:
+> > +    description: Analog power supply
+> > +
+> > +  dovdd-supply:
+> > +    description: Digital I/O power supply
+> > +
+> > +  dvdd-supply:
+> > +    description: Digital core supply
+> > +
 > 
-> opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@0: 'power-domains' is a required property
-> opp-v2-kryo-cpu.example.dtb: /: cpus:cpu@0: 'power-domain-names' is a required property
-> opp-v2-kryo-cpu.example.dtb: /: opp-table-0:opp-307200000: 'required-opps' is a required property
-> 
+> Are all these valid for both variants/devices?
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+I cannot say for sure due to lack of datasheet, but given that other model 
+bindings like ov8865 [1] or ov5640 [2] have the same regulators, I think it is 
+safe to assume these are valid for ov9281 and ov9282 as well.
 
 Best regards,
-Krzysztof
+Alexander
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/
+Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml#n29
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/
+Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+
+
