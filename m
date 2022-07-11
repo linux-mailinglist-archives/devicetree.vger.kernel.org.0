@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED99E56D7D5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9750356D7D7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229937AbiGKI1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 04:27:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33262 "EHLO
+        id S229955AbiGKI1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 04:27:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbiGKI1S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:27:18 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6FF91BEBE
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:27:16 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id r9so5306132ljp.9
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:27:16 -0700 (PDT)
+        with ESMTP id S229944AbiGKI1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:27:20 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5AE81ADB6
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:27:18 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id m18so7457615lfg.10
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:27:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=j2+S7E+CabtwiK8hc0ACQPd7RS/hy1Qx0vqSDzlS7lY=;
-        b=Rx9zfM0IYWP0XUUuzPV+ffsO42Y3s+UyZXpxrI22V43s5jlc8K8dhOZU3cCuAAR3jT
-         P6j7ed1peYYwEBsfz67q51rNIjbqZr15TRO1avHWZddHpV/dBZ5tLjHS5PFFAcSnhObx
-         4mIAh+GVsYqLpZmnIIlZ1d0I5j4DTaZnCwvDkDFQFGvD93RNoPEv4/H+q0dCugGcOU70
-         07K93vjTayk5nQKtK2gtEpJm3Pk/OHNrDEbADwmEfkXB90PLpgWhcN+EXNdE4Vjv6F+4
-         Vg8XRolAcMGtc5zYm42OlCHkRWBOw6lfiCWHSqsT6cuXlXUvzdFrmxUzpAVCqgFR+upq
-         6jXQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=W8rUqsmVeNGPcv4uGkX2i/Ld5DwZ1wusiAJMmwbqUgk=;
+        b=v2CMObhrTOddgEjrr0+bghWnB4h/z22A5y7FKA2PHQR1eTlqRfnQRWtZZiwNjbBVLG
+         T/5C5IetoJPCKb9xzw9WRLuz0Cix163/qglucnl4FvGOjsl/YJV2txoeE323EnOSYCkN
+         17FsKOIJZvw2mZ9shGh/6MPZT9RmM0HvwJ4GP5wZO1Q4PYVywtkxJ/DMmxesQBcGNiKO
+         1DtC5FP24nr4vv0if2Kcw/mMbqRvZUf4bwa+5qyhe8LrxmfRLdN7PlaZke++P5pqeDGo
+         gU0ndEiibmDcEFKnZUg0FpMY/e4aPIchxRf276CJPyb7ZmlVTvuoyisevBpJQqs6iexj
+         PlGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=j2+S7E+CabtwiK8hc0ACQPd7RS/hy1Qx0vqSDzlS7lY=;
-        b=TXAZL+dEHXgIUuedn8QMGEqfZiP3+kKePxDfYxbw+NTOEU86vH6YkhUn7XwAMWfxwf
-         pj4ROQxSiwAJb0XsMGVJTPJCfVqQn6McW8wVmBLP6M40Bvo22oLu2sYE3kGkV5R5Wmdt
-         weSHgy2Dx5A1Z00puclOTDlU9wTHDToKdJ7bs1brNqZepWDRfbT27oFp5Xbz9LDTgbPm
-         WwMhnVe3md0LOHmYgM64JKQaT97H0P2QtURcNOJ+dlCa5WTNDBgE/Y+eWUe5nCaVUOde
-         BAhztJDhnvFx5PZk3/9ZpaN6m1iRjRDV9UaNdrb26o6sjm2iV51Vn5GW6N9J2Nnr/w+6
-         1T4A==
-X-Gm-Message-State: AJIora/pjYK+6hIcCgEc+P3D6vd4QEhmwyvWG8U/+JIfu7zuT98/nslw
-        LDtDa5K1YIUD6PgYAajyJYXj8w==
-X-Google-Smtp-Source: AGRyM1tAoSbEsl1IRZQMJqzFuW/8ocXXGszqpzEyAsJgpmHkH5GhSNfANnC71IPGslFuqZnWTE8fMQ==
-X-Received: by 2002:a2e:6e0c:0:b0:255:98fb:cb45 with SMTP id j12-20020a2e6e0c000000b0025598fbcb45mr9240302ljc.55.1657528035065;
-        Mon, 11 Jul 2022 01:27:15 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=W8rUqsmVeNGPcv4uGkX2i/Ld5DwZ1wusiAJMmwbqUgk=;
+        b=EkJy9I2qv/95Z51sla80Quf8Ev0DLZPcfxQGnxk9HFQ495lzi4ONsL/sFJJtI96YFt
+         nDS9RdQ6WKurcwb2h4rgI2gj39CTC0hVZGWom15vQzk9uB7+9XSuEQYjdePtLz5Hzkq8
+         SfJBe/6h9dWcIM+loN2K81yKrXZNe/OGF8HE0KKyES4Ihxmq/cK2VLkRZuuDeLeaFjTr
+         eOV2hZSykF1QPlzHYEwo5aD5r2Cel1Pg+6rBV4LhL1zUqPl7bRTQF/nuOjrh8rRi/ePA
+         2K/E8cqUoZFZDKk2ai5epUq3g5vNOIHShPHwK4aC1U6k1v+Vz14uLRJPG+Ccd88eoaTh
+         2Frw==
+X-Gm-Message-State: AJIora+4VEFuP/wjBY/V+YliSIhAN9aoFTGBXIEMspdkKOrjiTa3zmlM
+        8QLkDMadTB4bNBDKNZT9mG0NCw==
+X-Google-Smtp-Source: AGRyM1uzvQJsnfYcU0P4T0ZycZ562CsktrXMECFdRFCBWHAhJngSNbH4lXwGQ+5ZMFWxLetllQMKiQ==
+X-Received: by 2002:a05:6512:2305:b0:481:10db:46d2 with SMTP id o5-20020a056512230500b0048110db46d2mr11355012lfu.452.1657528037313;
+        Mon, 11 Jul 2022 01:27:17 -0700 (PDT)
 Received: from krzk-bin.. (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id c30-20020a05651200de00b00473c87152bcsm1408994lfp.127.2022.07.11.01.27.12
+        by smtp.gmail.com with ESMTPSA id c30-20020a05651200de00b00473c87152bcsm1408994lfp.127.2022.07.11.01.27.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 01:27:13 -0700 (PDT)
+        Mon, 11 Jul 2022 01:27:16 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -60,15 +60,17 @@ To:     Ulf Hansson <ulf.hansson@linaro.org>,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Cc:     Douglas Anderson <dianders@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/3] dt-bindings: mmc: sdhci-msm: add MSM8998
-Date:   Mon, 11 Jul 2022 10:27:07 +0200
-Message-Id: <20220711082709.39102-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/3] mmc: sdhci-msm: add MSM8998 SDCC specific compatible
+Date:   Mon, 11 Jul 2022 10:27:08 +0200
+Message-Id: <20220711082709.39102-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220711082709.39102-1-krzysztof.kozlowski@linaro.org>
+References: <20220711082709.39102-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,21 +83,21 @@ qcom,sdhci-msm-v4 fallback is deprecated.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
+ drivers/mmc/host/sdhci-msm.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-index 01a1f8b79e8e..2f0fdd65e908 100644
---- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-@@ -30,6 +30,7 @@ properties:
-               - qcom,msm8992-sdhci
-               - qcom,msm8994-sdhci
-               - qcom,msm8996-sdhci
-+              - qcom,msm8998-sdhci
-           - const: qcom,sdhci-msm-v4 # for sdcc versions less than 5.0
-       - items:
-           - enum:
+diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
+index e395411fb6fd..bb169c1c2b5e 100644
+--- a/drivers/mmc/host/sdhci-msm.c
++++ b/drivers/mmc/host/sdhci-msm.c
+@@ -2447,6 +2447,7 @@ static const struct of_device_id sdhci_msm_dt_match[] = {
+ 	{.compatible = "qcom,msm8992-sdhci", .data = &sdhci_msm_mci_var},
+ 	{.compatible = "qcom,msm8994-sdhci", .data = &sdhci_msm_mci_var},
+ 	{.compatible = "qcom,msm8996-sdhci", .data = &sdhci_msm_mci_var},
++	{.compatible = "qcom,msm8998-sdhci", .data = &sdhci_msm_mci_var},
+ 	/*
+ 	 * Add entries for sdcc version 5.0 here. For SDCC version 5.0.0,
+ 	 * MCI registers are removed from SDCC interface and some registers
 -- 
 2.34.1
 
