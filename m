@@ -2,85 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4B7756D714
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 09:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2888F56D729
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 09:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230058AbiGKHvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 03:51:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35280 "EHLO
+        id S229644AbiGKHyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 03:54:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbiGKHvl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 03:51:41 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34DDB1C905
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:51:40 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id bi22-20020a05600c3d9600b003a04de22ab6so2529036wmb.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:51:40 -0700 (PDT)
+        with ESMTP id S229552AbiGKHyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 03:54:19 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68AB511465;
+        Mon, 11 Jul 2022 00:54:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=ztvaz5BdnKGZMhPHdfgEZYHb0hAaDWz8do9AwzsiSBg=;
-        b=Hwn6nzpGX+T+LutaM8+KjYmqBSQV517VD113jCKqsTVABZpL3RajgVlzsBUtJOj6+w
-         4MEC0eMoLndBf/WUzEJ7yzPiCK1SWNCKgIu1M9hYuXO5BmJkIGbetDA8FrXCbRB72Iv8
-         cuGtRCIzhnji6qdtB8kjxdp0cHFvMmJ4n0mnOOT3LWt8AMxcvOZGxpsqvtuzWUCKuIMC
-         fFdzRXrnV0BOKOs3upAtIl7HIPMA9dScmdkiB7B+/S49RiMn5in2NNk8xfF7F3HOHyiq
-         5qfuoOVPIgj2+dKEiBbHEPrrp2a62s/B7gZFv9XINNIpZY787eCcGOnl4p2D5P4utq63
-         3Hng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=ztvaz5BdnKGZMhPHdfgEZYHb0hAaDWz8do9AwzsiSBg=;
-        b=fNIU+2GqRLXn07X8+KYOAmDG4GUr2reyJ3Npf3Yc2QNacAswKdSU3wYS1rixOHyFwS
-         9ng23H+ZF8jQYYBJcQexpE8NhdZjav2aF8oY7ivXe0p00Nl8gaxbaBzdVO6ait3zpgCX
-         ZX6Nk1TvSs28+A7oVwE7KSn0aDGhSH31pmnrcJJK269Hy/EDW+Q2es7lvwhZMLp8zDbG
-         LkkK8Op/uZDnG8KgUDdjwl6+3b35KqHpLkDoThr615WKt9/sqbYaiRwBcO37xJt2jNAe
-         z0ojDw/qPpVo/PJqfL6zEyIZuC5wSqIwIjRGNKnf1/7NeiUhAOx6UaztU/Vf/bJpyMo+
-         9eBg==
-X-Gm-Message-State: AJIora9MdTcYsSNoV5r9LptXcx9JOpo1rvfdoyMBhDM9y4VPTSvS2xw4
-        SXIve36asU2yx6HFclnndw5XMQ==
-X-Google-Smtp-Source: AGRyM1t2LVG3w5w5knczU+KZudV327hkRGwLX8FTdhh12km7FALGEq592+7HTWIKyz30zF/nq6jpkw==
-X-Received: by 2002:a05:600c:215a:b0:3a2:cf18:6dcc with SMTP id v26-20020a05600c215a00b003a2cf186dccmr14590732wml.53.1657525898761;
-        Mon, 11 Jul 2022 00:51:38 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id j5-20020adff545000000b0021d864d4461sm5112097wrp.83.2022.07.11.00.51.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 00:51:38 -0700 (PDT)
-Date:   Mon, 11 Jul 2022 08:51:35 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        UNGLinuxDriver@microchip.com, Wolfram Sang <wsa@kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        katie.morris@in-advantage.com
-Subject: Re: [PATCH v13 net-next 0/9] add support for VSC7512 control over SPI
-Message-ID: <YsvWh8YJGeJNbQFB@google.com>
-References: <20220705204743.3224692-1-colin.foster@in-advantage.com>
- <20220708200918.131c0950@kernel.org>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1657526058; x=1689062058;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=PNX5zeWScEfvXd7e/yKULO71QZJI9wmiUGZ4xVW8XFY=;
+  b=a5cUioC4tu9KRZW5+59ucgSukb/XWLqF7LLNgqzjsKLSF5lk9qNrG7j8
+   icyBWYgybmedYicsnmrIfdu0ghhdpw3Cwji6feG8Zf+h92hGu3H72qRQi
+   ++Cj9FbjSXqVjdNu7XSq/d6Q8biso/HG897l3mhwsRZHlOUVqN9wevyzR
+   I=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 11 Jul 2022 00:54:18 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2022 00:54:18 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 11 Jul 2022 00:54:17 -0700
+Received: from [10.216.8.232] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 11 Jul
+ 2022 00:54:13 -0700
+Message-ID: <32cffa34-1088-5e25-3051-192e3049908f@quicinc.com>
+Date:   Mon, 11 Jul 2022 13:24:10 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220708200918.131c0950@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Move wcd specific pin conf
+ to common file
+Content-Language: en-US
+To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <devicetree@vger.kernel.org>,
+        <dianders@chromium.org>, <judyhsiao@chromium.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <robh+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>
+References: <1657197381-1271-1-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n53X8yyWr+Q+3RpciCeZcW+t+jgZs3eqNF9O8hJcw0cq0Q@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <CAE-0n53X8yyWr+Q+3RpciCeZcW+t+jgZs3eqNF9O8hJcw0cq0Q@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,30 +71,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Jul 2022, Jakub Kicinski wrote:
 
-> On Tue,  5 Jul 2022 13:47:34 -0700 Colin Foster wrote:
-> > The patch set in general is to add support for the VSC7512, and
-> > eventually the VSC7511, VSC7513 and VSC7514 devices controlled over
-> > SPI. Specifically this patch set enables pinctrl, serial gpio expander
-> > access, and control of an internal and an external MDIO bus.
-> 
-> Can this go into net-next if there are no more complains over the
-> weekend? Anyone still planning to review?
+On 7/8/2022 11:29 PM, Stephen Boyd wrote:
+Thanks for your time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2022-07-07 05:36:21)
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi
+>> index 32a1e78..859faaa 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi
+>> @@ -5,6 +5,70 @@
+>>    * Copyright (c) 2022, The Linux Foundation. All rights reserved.
+>>    */
+>>
+>> +/* PINCTRL */
+>> +
+>> +&lpass_dmic01_clk {
+>> +       drive-strength = <8>;
+>> +       bias-disable;
+>> +};
+>> +
+>> +&lpass_dmic01_clk_sleep {
+>> +       drive-strength = <2>;
+>> +};
+>> +
+>> +&lpass_dmic01_data {
+>> +       bias-pull-down;
+>> +};
+>> +
+>> +&lpass_dmic23_clk {
+>> +       drive-strength = <8>;
+>> +       bias-disable;
+>> +};
+>> +
+>> +&lpass_dmic23_clk_sleep {
+>> +       drive-strength = <2>;
+>> +};
+>> +
+>> +&lpass_dmic23_data {
+>> +       bias-pull-down;
+>> +};
+>> +
+>> +&lpass_rx_swr_clk {
+>> +       drive-strength = <2>;
+>> +       slew-rate = <1>;
+>> +       bias-disable;
+>> +};
+>> +
+>> +&lpass_rx_swr_clk_sleep {
+>> +       bias-pull-down;
+>> +};
+>> +
+>> +&lpass_rx_swr_data {
+>> +       drive-strength = <2>;
+> I suspect this was discussed before, but why do we need to modify drive
+> strengths on pins that aren't in output mode? I assume either rx_swr or
+> tx_swr is unidirectional.
 
-As the subsystem with the fewest changes, I'm not sure why it would.
+Actually this patch is just reorganization only. didn't do any 
+modification of already reviewed patches.
 
-I'd planed to route this in via MFD and send out a pull-request for
-other sub-system maintainers to pull from.
+Will test without drive strength again and post a fix patch post this 
+patch accepted if required.
 
-If you would like to co-ordinate it instead, you'd be welcome to.
-However, I (and probably Linus) would need a succinct immutable branch
-to pull from.
-
-> Linus's ack on patch 6 and an MFD Ack from Lee would be great.
-
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>
+>> +       slew-rate = <1>;
+>> +       bias-bus-hold;
+>> +};
+>> +
+>> +&lpass_rx_swr_data_sleep {
+>> +       bias-pull-down;
+>> +};
+>> +
+>> +&lpass_tx_swr_clk {
+>> +       drive-strength = <2>;
+>> +       slew-rate = <1>;
+>> +       bias-disable;
+>> +};
+>> +
+>> +&lpass_tx_swr_clk_sleep {
+>> +       bias-pull-down;
+>> +};
+>> +
+>> +&lpass_tx_swr_data {
+>> +       drive-strength = <2>;
+>> +       slew-rate = <1>;
+>> +       bias-bus-hold;
+>> +};
+>> +
+>>   &mi2s1_data0 {
+>>          drive-strength = <6>;
+>>          bias-disable;
