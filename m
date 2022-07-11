@@ -2,133 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50283570645
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:53:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EF57570646
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:53:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230459AbiGKOxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 10:53:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48706 "EHLO
+        id S231843AbiGKOxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 10:53:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231187AbiGKOxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:53:46 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 54BBABCBC
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 07:53:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1657551220;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=WJKzatRpxuBvlw+y/WmRUjNpFDe0w/BjpatBDpchBJM=;
-        b=JfoC/2v0koMztXy7nlpLhI0AoMujYOKff3fWmuX6J8CEZPQS7isOwwXRRP50myoB/RkD3h
-        7xUr0M+b2kmSQf/fJXBIKsASnXitmIL4pmX0exPXDaVkUG8xgtaV3r2IOQMbUOOpxpvNHU
-        h7/Jq22YZ2jVxii4OLzsFeYkQvax53s=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-557-iloXWk2zMHuZ17IWWIregg-1; Mon, 11 Jul 2022 10:53:39 -0400
-X-MC-Unique: iloXWk2zMHuZ17IWWIregg-1
-Received: by mail-wr1-f71.google.com with SMTP id h6-20020adfa4c6000000b0021d6a5ac938so719987wrb.20
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 07:53:38 -0700 (PDT)
+        with ESMTP id S231837AbiGKOxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:53:47 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3BE821831
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 07:53:43 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id r9so6492731ljp.9
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 07:53:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=2xrfXrsfhBR+bokEXhKJoTSx+P/5u/go3fRYAk2iNd0=;
+        b=xp/1VM+YnovbgVqn0d8nA+COQSe++ltPEGJkXmkSv/oXaHpjZsbK+OaG97pNpYMpJG
+         jeDmUGabzohC8mT8pxMrCf7XGy8HYkMrLxFYEId98pU0Gs+R3c2UE0U7afcx0yPyWlRd
+         G7+Ivzh42hunlUfGSqrNJbTiYDKLwVBExHApSUiY0jp+khtLdxrNiWZ6yBRL9BvSVG9H
+         E8mRM6VUgJPG/KBg7iWjpKx5zXKDzx5KVBsiN+fw5Pa3fNBMgZtW5ZrnUUD4L1W2pPNl
+         +X4PPgMIMZoyESlrfgQIHm4L3WrMLr1swfIYT/HwmEv8efkdFRoFxSnU/bMM7Ad9xQJy
+         T0kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=WJKzatRpxuBvlw+y/WmRUjNpFDe0w/BjpatBDpchBJM=;
-        b=Iopuxquo1bBsdu/cJ/fuSkQK53+7c5It3t+nhH3X8p6qTEoeObSGXU/WOal7t46pBJ
-         ELKmAZlIDlG7KX0qQ14p/vRjBBmKSle18PgEZMxY944zPS9piTiy0svDtd1IX/7Kpz7V
-         tEuscwWoaixMyb0tqwS5kVSF1OC6GeTcYeNp85ZXLA4cuwFzhndAIUUglVHRzzQa+5rk
-         F6v6ENzqUBHVK0U5hDfESZv4nzZnNxSnuRdR5lCDflpwj8TL6HSueZXdY5BQggpaSTSf
-         BIT+LczhlSysKD2Oazt2GHSS+izTRu7tlZUlAr3ja0AHG8GjNiyZ7JQWlNcPTUa9Dhvv
-         V6SA==
-X-Gm-Message-State: AJIora8BYDSWiqOyiognaXHQz1RZbylGbsRSkX/QL7wnc7bBtzBqZ0Ni
-        +WKkEBnWdvM5INAMqJaLGRKy85z46hOewpbthZwGCyNOLhRwD3nvSaRxpOhHEcm4GOcRIUkaVb8
-        WsmATNGi+39myXvwceDi43g==
-X-Received: by 2002:a05:600c:3592:b0:3a1:9e9d:2595 with SMTP id p18-20020a05600c359200b003a19e9d2595mr16789387wmq.76.1657551217928;
-        Mon, 11 Jul 2022 07:53:37 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1uF7fVJz9gV/LGNy5ZuztDsIKohRmcbcs6QZEq6X8YOCi+3alMsLlZbv00GX9vpBHFadMKsmA==
-X-Received: by 2002:a05:600c:3592:b0:3a1:9e9d:2595 with SMTP id p18-20020a05600c359200b003a19e9d2595mr16789363wmq.76.1657551217690;
-        Mon, 11 Jul 2022 07:53:37 -0700 (PDT)
-Received: from ?IPV6:2003:cb:c702:1400:c3:4ae0:6d5c:1ab2? (p200300cbc702140000c34ae06d5c1ab2.dip0.t-ipconnect.de. [2003:cb:c702:1400:c3:4ae0:6d5c:1ab2])
-        by smtp.gmail.com with ESMTPSA id m8-20020a05600c3b0800b003a2ead2c884sm528930wms.13.2022.07.11.07.53.36
+        bh=2xrfXrsfhBR+bokEXhKJoTSx+P/5u/go3fRYAk2iNd0=;
+        b=PXuHk9H8Gb0LUHH0RIknIn+wI04gii7/wBkHo1caUG+0MfyPGwDGkzVBkrb8j4uelR
+         uVQwALXxREZWJH36VhVyeFlbU764Qk0tegsry38L57CmFrOPZDgNJqLMm0N3uamy3UCD
+         UwOTtO7/3WuLRY+M7ut6ypyzV+7vZPC6bUeTgd6QJoPvkQFGeskihYeDxb9WyEIuDET8
+         46wRG5i2O/AjKJVcsfGrn0kK9U9Hce0Op7ETMvBcl39KwvbmlPETCF8s0fIXxKgik0yk
+         Ivnl9Em2g3ZJEJtOpHHEyEFHYdpiBvrIPxWlJ/unSVHecxZp72i/oPdRHntKLVr2eSM/
+         S7Hg==
+X-Gm-Message-State: AJIora+Ju6K+3Pd2VTrv+c7o5Z4auUFGKpMGTxQUQJ4zSBuCNjYFP/5K
+        WJSt1Cp5ftMcqC8zJRdUY17dNA==
+X-Google-Smtp-Source: AGRyM1uoWBsGsB4gV4RsG3DmErdXvK4zRJnl8r/uOClUAsfgWjKuVbm+j0ZD4Qa4Xv5lXSuVCQO5wg==
+X-Received: by 2002:a05:651c:1207:b0:25d:4eba:e247 with SMTP id i7-20020a05651c120700b0025d4ebae247mr9773676lja.100.1657551221541;
+        Mon, 11 Jul 2022 07:53:41 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
+        by smtp.gmail.com with ESMTPSA id y17-20020ac255b1000000b00489c92779f8sm1569616lfg.184.2022.07.11.07.53.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 07:53:37 -0700 (PDT)
-Message-ID: <c2d4c6ac-fad7-d5b3-8cbf-f62a7db5b998@redhat.com>
-Date:   Mon, 11 Jul 2022 16:53:36 +0200
+        Mon, 11 Jul 2022 07:53:41 -0700 (PDT)
+Message-ID: <f8744ff8-15a0-bf31-c49f-b1bb35ba5cdd@linaro.org>
+Date:   Mon, 11 Jul 2022 16:53:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/4] mm/sparse: skip no-map memblock check when
- fill_subsection_map
+Subject: Re: [PATCH v2 2/5] dt-bindings: mmc: sdhci-msm: constrain reg-names
+ perp variants
 Content-Language: en-US
-To:     Li Chen <me@linux.beauty>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>
-Cc:     Li Chen <lchen@ambarella.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mm@kvack.org
-References: <20220711122459.13773-1-me@linux.beauty>
- <20220711122459.13773-3-me@linux.beauty>
-From:   David Hildenbrand <david@redhat.com>
-Organization: Red Hat
-In-Reply-To: <20220711122459.13773-3-me@linux.beauty>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20220711082940.39539-1-krzysztof.kozlowski@linaro.org>
+ <20220711082940.39539-3-krzysztof.kozlowski@linaro.org>
+ <CAD=FV=WUCPzzZHAPqoz-vhmcVxzYDxkKQs=+1tLZvsQjWe4q3Q@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=WUCPzzZHAPqoz-vhmcVxzYDxkKQs=+1tLZvsQjWe4q3Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.07.22 14:24, Li Chen wrote:
-> From: Li Chen <lchen@ambarella.com>
+On 11/07/2022 16:52, Doug Anderson wrote:
+> Hi
 > 
-> When mhp use sparse_add_section, don't check no-map region,
-> so that to allow no-map reserved memory to get struct page
-> support.
+> On Mon, Jul 11, 2022 at 1:29 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> The entries in arrays must have fixed order, so the bindings and Linux
+>> driver expecting various combinations of 'reg' addresses was never
+>> actually conforming to guidelines.
+>>
+>> The 'core' reg entry is valid only for SDCC v4 and lower, so disallow it
+>> in SDCC v5.  SDCC v4 supports CQE and ICE, so allow them, even though
+>> the qcom,sdhci-msm-v4 compatible is used also for earlier SoCs with SDCC
+>> v2 or v3, so it is not entirely accurate.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Changes since v1:
+>> 1. Rework the patch based on Doug's feedback.
+>> ---
+>>  .../devicetree/bindings/mmc/sdhci-msm.yaml    | 61 ++++++++++++-------
+>>  1 file changed, 38 insertions(+), 23 deletions(-)
 > 
-> Signed-off-by: Li Chen <lchen@ambarella.com>
-> Change-Id: I0d2673cec1b66adf695251037a00c240976b226f
-> ---
->  mm/sparse.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> In the ${SUBJECT} I'm not sure what a "perp variant" is. Is that a
+> typo or just a phrase I'm not aware of?
+
+Should be:
+"per variants"
+
 > 
-> diff --git a/mm/sparse.c b/mm/sparse.c
-> index 120bc8ea5293..a29cd1e7014f 100644
-> --- a/mm/sparse.c
-> +++ b/mm/sparse.c
-> @@ -690,7 +690,9 @@ static int fill_subsection_map(unsigned long pfn, unsigned long nr_pages)
->  
->  	if (bitmap_empty(map, SUBSECTIONS_PER_SECTION))
->  		rc = -EINVAL;
-> -	else if (bitmap_intersects(map, subsection_map, SUBSECTIONS_PER_SECTION))
-> +	else if (memblock_is_map_memory(PFN_PHYS(pfn)) &&
-> +		 bitmap_intersects(map, subsection_map,
-> +				   SUBSECTIONS_PER_SECTION))
->  		rc = -EEXIST;
->  	else
->  		bitmap_or(subsection_map, map, subsection_map,
+> 
+>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>> index fc6e5221985a..2f0fdd65e908 100644
+>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>> @@ -49,33 +49,11 @@ properties:
+>>
+>>    reg:
+>>      minItems: 1
+>> -    items:
+>> -      - description: Host controller register map
+>> -      - description: SD Core register map
+>> -      - description: CQE register map
+>> -      - description: Inline Crypto Engine register map
+>> +    maxItems: 4
+>>
+>>    reg-names:
+>>      minItems: 1
+>>      maxItems: 4
+>> -    oneOf:
+>> -      - items:
+>> -          - const: hc
+>> -      - items:
+>> -          - const: hc
+>> -          - const: core
+>> -      - items:
+>> -          - const: hc
+>> -          - const: cqhci
+>> -      - items:
+>> -          - const: hc
+>> -          - const: cqhci
+>> -          - const: ice
+>> -      - items:
+>> -          - const: hc
+>> -          - const: core
+>> -          - const: cqhci
+>> -          - const: ice
+>>
+>>    clocks:
+>>      minItems: 3
+>> @@ -177,6 +155,43 @@ required:
+>>  allOf:
+>>    - $ref: mmc-controller.yaml#
+>>
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,sdhci-msm-v4
+>> +    then:
+>> +      properties:
+>> +        reg:
+>> +          minItems: 2
+>> +          items:
+>> +            - description: Host controller register map
+>> +            - description: SD Core register map
+>> +            - description: CQE register map
+>> +            - description: Inline Crypto Engine register map
+>> +        reg-names:
+>> +          minItems: 2
+>> +          items:
+>> +            - const: hc
+>> +            - const: core
+>> +            - const: cqhci
+>> +            - const: ice
+>> +    else:
+>> +      properties:
+>> +        reg:
+>> +          minItems: 1
+>> +          items:
+>> +            - description: Host controller register map
+>> +            - description: CQE register map
+>> +            - description: Inline Crypto Engine register map
+>> +        reg-names:
+>> +          minItems: 1
+>> +          items:
+>> +            - const: hc
+>> +            - const: cqhci
+>> +            - const: ice
+> 
+> Do you need to set "maxItems" here? If you don't then will it inherit
+> the maxItems of 4 from above?
 
-I'm not sure I follow completely what you are trying to achieve. But if
-you have to add memblock hacks into mm/sparse.c you're most probably
-doing something wrong.
+No, items determine the size instead.
 
-Please explain why that change is necessary, and why it is safe.
 
-If the subsection map already spans memory (iow, subsection map is set)
-you intend to add, then something already added memory in that range?
-
--- 
-Thanks,
-
-David / dhildenb
-
+Best regards,
+Krzysztof
