@@ -2,131 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E36E57019D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:04:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A23BB5701A3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 14:07:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbiGKMEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 08:04:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57894 "EHLO
+        id S229685AbiGKMHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 08:07:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231390AbiGKMEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:04:00 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD02DAE47;
-        Mon, 11 Jul 2022 05:03:52 -0700 (PDT)
-X-UUID: 3c8c5df364dc4235a485009a948a9808-20220711
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:1200bcbc-04a8-40e6-a4a9-6eae801b09d6,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:5
-X-CID-META: VersionHash:0f94e32,CLOUDID:6c941a87-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 3c8c5df364dc4235a485009a948a9808-20220711
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 485703959; Mon, 11 Jul 2022 20:03:48 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 11 Jul 2022 20:03:46 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 11 Jul 2022 20:03:46 +0800
-Message-ID: <459bb032c68be7c5be682d90462becfbb17ccda8.camel@mediatek.com>
-Subject: Re: [PATCH] dt-bindings: mmc: Add compatible for MediaTek MT8188
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <ulf.hansson@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 11 Jul 2022 20:03:46 +0800
-In-Reply-To: <c8f8f5f4-173e-797d-e060-e5eaac7ca822@linaro.org>
-References: <20220707054710.1396-1-johnson.wang@mediatek.com>
-         <41e17a56-5cb0-8e90-c7ae-a7a56de986d0@linaro.org>
-         <3216ec92952c7d722feaeb76986e0a6a54340646.camel@mediatek.com>
-         <c8f8f5f4-173e-797d-e060-e5eaac7ca822@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229602AbiGKMHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 08:07:03 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D61941D3B
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:07:02 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id i14so8366407yba.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 05:07:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=9/TaxiyiKvNrui4l1nPGDIlfQKIWpJeKr/oIv6jY5g4=;
+        b=m6femu7CnL6m4go3tibwbbC1inwqYvHVSSn22DT/h7RKq6qF9EKmRH3DETlWmCPGn8
+         cn8pTHEsfxoOux1OYkYOedJGN8RbiteXRNrSBBG+M0no/fvhcRpAOX58wy+DsFdp0PJ3
+         JydDc7JRF9HfWUbDLiW8hzd1rLx62+9EoAc/1HID8ALGmq4I0k80JqmR4SJN6A//riV2
+         cXpA5Wh8/gmdBvUyKxJREn3/+JXdRMo04HxZk5bwgviKC9Idq4k9jErskkxL1GFH07/G
+         SMDrJN44yYGbg/h9Cwlfy7XLvyphnV4VcgNuN76TrfAkch23whM48DXkepHeDk+DH7Ik
+         eVtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9/TaxiyiKvNrui4l1nPGDIlfQKIWpJeKr/oIv6jY5g4=;
+        b=F0d083b5gdcgEPz30xrvafLo8gB210SDrxfPF2wEMySD/ovL1KtILODv10ex48U9tX
+         eSIqe2rOkpQqAJRNKGRD9yLHhCv0LF1xNKxlTHyMNs/zWHtouS63ERLH3Azsw7HgrR5F
+         66dbSewrTpenF3ivHcSONUL7KRXpvTrbeEUX0TgzkMQm1PCHDzAe/oC+7ConPBA1tbUB
+         4syVcn8j3N9SaCMlvmgPy/19Mhv/lOdhnHxtlnE3zhd+gV0BR650690ngCOUd5vS9BcA
+         YMZDDrl+uc7MSWEm4WC1hrgDD/ebRY99BTyrsfj/gFyT85kxcq4fAdqEi+KVGTaiLmf+
+         JPlA==
+X-Gm-Message-State: AJIora+HnkoA2Juu0aqecPu148XoWDg6BGH2N6T8iW9ZC4jMDjLTZLYi
+        5uBjYTbrtNtnlhazIutO8EYD1wZOcTBLJNPgnNCt2Q==
+X-Google-Smtp-Source: AGRyM1vFfv0mkpgaMja8fO3kFoTANu+4p4L9HHgPFinmmZ3C9VB377ZbCYhbLGX3ZsNYWMPb0RclxQjeUvT/PRO6GXI=
+X-Received: by 2002:a25:fe04:0:b0:66e:1f8a:8e89 with SMTP id
+ k4-20020a25fe04000000b0066e1f8a8e89mr17240379ybe.514.1657541221456; Mon, 11
+ Jul 2022 05:07:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220706112828.27278-1-pali@kernel.org> <20220706162111.GA145516-robh@kernel.org>
+ <20220706162335.2eewgf7l3xghdjtr@pali>
+In-Reply-To: <20220706162335.2eewgf7l3xghdjtr@pali>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 11 Jul 2022 14:06:50 +0200
+Message-ID: <CACRpkdYncdsVW8LysQ3--rOF-KUF6dkkPyX4tg4e10vn2K+8FQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: leds: register-bit-led: Add value property
+To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-07-11 at 13:02 +0200, Krzysztof Kozlowski wrote:
-> On 07/07/2022 09:30, Johnson Wang wrote:
-> > On Thu, 2022-07-07 at 08:46 +0200, Krzysztof Kozlowski wrote:
-> > > On 07/07/2022 07:47, Johnson Wang wrote:
-> > > > This commit adds dt-binding documentation of mmc for MediaTek
-> > > > MT8188 SoC
-> > > > platform.
-> > > > 
-> > > > Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 3 +++
-> > > >  1 file changed, 3 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > > > b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > > > index 2a2e9fa8c188..3fbf33ad4f7c 100644
-> > > > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > > > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > > > @@ -32,6 +32,9 @@ properties:
-> > > >        - items:
-> > > >            - const: mediatek,mt8186-mmc
-> > > >            - const: mediatek,mt8183-mmc
-> > > > +      - items:
-> > > > +          - const: mediatek,mt8188-mmc
-> > > 
-> > > You duplicate quite a lot. Use enum.
-> > > 
-> > > Best regards,
-> > > Krzysztof
-> > 
-> > Hi Krzysztof,
-> > 
-> > Thanks for you suggestion.
-> > 
-> > I will use 'enum' to place this compatible strings.
-> > 
-> > Just like this:
-> > - items:
-> >     - enum:
-> >         - mediatek,mt8186-mmc
-> >         - mediatek,mt8188-mmc
-> >         - mediatek,mt8192-mmc
-> >         - mediatek,mt8195-mmc
-> >     - const: mediatek,mt8183-mmc
-> > 
-> > Moreover, it seems that missing an "items:" between oneOf and enum
-> > in
-> > the compatible property.
-> > Is my understanding wrong?
-> 
-> I did not propose to remove items, so where are they missing? Not
-> sure
-> what you are asking about...
-> 
-> Best regards,
-> Krzysztof
+On Wed, Jul 6, 2022 at 6:23 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
+> On Wednesday 06 July 2022 10:21:11 Rob Herring wrote:
+> > On Wed, Jul 06, 2022 at 01:28:27PM +0200, Pali Roh=C3=A1r wrote:
+> > > Allow to define inverted logic (0 - enable LED, 1 - disable LED) via =
+value
+> > > property. This property name is already used by other syscon drivers,=
+ e.g.
+> > > syscon-reboot.
+> >
+> > Yes, but those are potentially multi-bit values. This is a single bit
+> > value, and the only value that's ever needed is 0. Why not just use
+> > 'active-low' here?
+>
+> Just because to have uniform definitions across more syscon nodes.
 
-Hi Krzysztof,
+But what happens if he mask and value don't line up?
 
-Sorry for the confusion.
-That was my misunderstanding. Please ignore it...
+mask =3D 0x10;
+value =3D 0x08;
 
-BRs,
-Johnson Wang
+If you just state active-low; this kind of mistake is not possible to make.
 
+So I'd rather go for active-low;
+
+Yours,
+Linus Walleij
