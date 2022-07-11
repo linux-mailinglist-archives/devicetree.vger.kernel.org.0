@@ -2,575 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE7CD570AF7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 21:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82F38570AFC
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 21:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230437AbiGKTxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 15:53:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53560 "EHLO
+        id S230316AbiGKTyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 15:54:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbiGKTxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 15:53:33 -0400
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com (mail-eopbgr00050.outbound.protection.outlook.com [40.107.0.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C49545C4;
-        Mon, 11 Jul 2022 12:53:28 -0700 (PDT)
+        with ESMTP id S229759AbiGKTyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 15:54:22 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB916413;
+        Mon, 11 Jul 2022 12:54:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657569261; x=1689105261;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=hGj/UVJnV1LQ4YeGPM8GzZx2HF+vUMD9n9FAyTAtipU=;
+  b=ggj4S0SWJ5L+tR/vw44aAcJaw3bsO9bA8BRlvLgIqxuarcZ0BsAxgYEg
+   Wmx/sDd91J+E9S/uWLL8ax73auvO49Tk4ffjEJHTHjF4XxshnDYfSOFsY
+   uWgJmJhuyQrGCba32hJp/iYz2mY8U0wBCQwwUGc8xlG8CGP7JGm47rjDw
+   JF0heH6oFZ39L4tqAsvYcFlqvQJENWdcRkmqP5eGCDTIWYj3zZEAdHxd8
+   e9IrNtk8fTSE3Mvht6CIlGhGvUwiayL894o1uxNpFUdbdRRdV6RaSRQ/g
+   aai7m6pwH6pdZqfhUx09gLf4BH8FZjnqbUvMQ/Wc53pfJo9kq6w77ow9T
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10405"; a="267795185"
+X-IronPort-AV: E=Sophos;i="5.92,263,1650956400"; 
+   d="scan'208";a="267795185"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2022 12:54:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,263,1650956400"; 
+   d="scan'208";a="622214541"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+  by orsmga008.jf.intel.com with ESMTP; 11 Jul 2022 12:54:21 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 11 Jul 2022 12:54:20 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 11 Jul 2022 12:54:19 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Mon, 11 Jul 2022 12:54:19 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Mon, 11 Jul 2022 12:54:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i9dscHx4mr6RKp1kA0uyZrvDPSHZixiQraGUFS+uGLy7ueAWzcfdR6HySci5cWOO5sYCvDicRFBk7TSfS6E5hAqGF7KMXb5PqdRbYEdA86kt3FVSgUQXkPYpUbKfHbkC0k85IEEjxZgAKToDdCIncYsnPmqNhM1MGat9a4yq+mwWEJQ1zKvxa4hL2YW3x9Rh0L6CE9GSLtuncRaBY66JqDX8twzz5R6qnK+STi+NTXegIT9x/8d8yZO/NRPWY7uZ10VfHgqiY/YqQ/5W6zZF/UB5xhA3HkJLSipdVeKHjVo72YUg6Nnxv+f9+yxUndQOqM4bpiRDKFiGu26w416ZOg==
+ b=avALXMeG96qPxkIgQpQvTkKXpZ9eDXiWagJUjYXsa3tNBZ47t0STY3Pj8EJvwoSmI2Lq43KbCOJxtWY386M3qb6qbjJO9aIqHWIcxsoOVZkBX5hOMG8GgntskjQgG6vcTmENp4kmqAQM7IVBMWoAFVZpZcoNxUeuFhOP+cTzUW+lwbNPNDlSLm3Soo3PKefv4ujiGXh+wBsq/Y0YerjZBpQosrZkYVxScrMyQNK/UtP0fD7kQR491qsCtZsJcZb0giB/OEs2u3bbg6TW5RFToSUXqpodEhMbhUBNwY4zgseBxrE0F1Yl7DJ7KSVtrOX0CPBuk0rzQKuRY9AvwLguHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ApMNWpJQBwxrV9K1dPC+TZeUJ9ZCcksuymjJSq3S4ws=;
- b=DBvrr61tUqXbeTpm5pZKzsZpqLwJ7LYJL0bSDbe7cJRF4HvOOYXYBKYnyPJsFfykuMqR5nmFuTpMZGYBaR3S7SnrGfYol8F2d9gBlQIvkFN4xC9sqj8y0L7037en7aBR1a+tih+pg1KNylcHLVwekJ52Jk2sUy9MQKaPvCIheUXW1zElDGm6iS9M6y7SZv6ViGH9fSPtDCuxuApMHIC080Pu++fA3PX5w+ZTn/wDxTlhDMcZj9ZpKJ85GFVcA3EQo5tbZ/puL2W5qNBk31awI9ZdYM4eI6F3xIqcp+QLe7j5Q+zhwSFtV+/TFLtsCNANY/XZAa/8s+kJMfdgn/By/A==
+ bh=hGj/UVJnV1LQ4YeGPM8GzZx2HF+vUMD9n9FAyTAtipU=;
+ b=TcZ2SZPh5KVpEOyf9OhWkE5YhIt2zyBjb4i6D7XwBFVh17I8iQfL+xG0zYCkPjCdOK7XG7P4b/CUzWpU18Q0p4WEA7XiNZfL/7R8WWHjc3WbLsQFAFic0iBZYxaj/mQxpPX2z28URrIR+6Icr9g53PlNnRG43oC1XRpePwfLFgAy4VQEe3gCCsMgltnQ/ks9EJfQDf0AAw7oGXDOkMykVdFiTbte2vIkdTOSONnwu6B3ItGdCbXP81iaK1XugtJ4yyHe23NYoU14BVd/RKt3Kv5gnWGpaQUp/PJdY4B17Z22SHiKBWG1522nd6OunXFuyLifF9ImJEKh8yXUUSFVGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ApMNWpJQBwxrV9K1dPC+TZeUJ9ZCcksuymjJSq3S4ws=;
- b=XdCW8FI4Pft5mr3AI/Z+cxvNeZOUZDWhgm1qLYvVuLK80Wn2ziGLNyc/Wio+KovoJMNZuXvtA6h9HIy2sBXO+SiDHvxuGnF/SH5Bv4HdqNpV5pcI5K76oy3kh+tDcfGixoQ8YhKZrAfAt+PiGWvXRjC9/d7QLXJmHponDf3Z6Av/Ntm/bqRW34WZ3PMN051YDuXDFgVXpcIZp4XqPBzvdS+a7FnnnzJXO9/UJ3FN/73zXFQ5VidAK4hCSJkLynritlFQZ9Hf/6kQrBKVklxwS7TTW8l3R1N0auKMrJc+CrDq6l2oPfJSzbC3EqnsRmFbfIiN9JbK19NKW0rle3bgIA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
- by DBBPR03MB5350.eurprd03.prod.outlook.com (2603:10a6:10:f4::17) with
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SN6PR11MB3055.namprd11.prod.outlook.com (2603:10b6:805:dc::18)
+ by BN6PR11MB3908.namprd11.prod.outlook.com (2603:10b6:405:7d::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26; Mon, 11 Jul
- 2022 19:53:26 +0000
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::757e:b75f:3449:45b1]) by DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::757e:b75f:3449:45b1%6]) with mapi id 15.20.5417.026; Mon, 11 Jul 2022
- 19:53:26 +0000
-Subject: Re: [RFC PATCH net-next 3/9] net: pcs: Add helpers for registering
- and finding PCSs
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20220711160519.741990-1-sean.anderson@seco.com>
- <20220711160519.741990-4-sean.anderson@seco.com>
- <CAGETcx97ijCpVyOqCfnrDuGh+SahQCC-3QrJta5HOscUkJQdEw@mail.gmail.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <b2d00d2f-712f-0051-4f30-367889a2e892@seco.com>
-Date:   Mon, 11 Jul 2022 15:53:20 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <CAGETcx97ijCpVyOqCfnrDuGh+SahQCC-3QrJta5HOscUkJQdEw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.21; Mon, 11 Jul
+ 2022 19:54:08 +0000
+Received: from SN6PR11MB3055.namprd11.prod.outlook.com
+ ([fe80::dd4e:b4a9:f7ca:1b5b]) by SN6PR11MB3055.namprd11.prod.outlook.com
+ ([fe80::dd4e:b4a9:f7ca:1b5b%7]) with mapi id 15.20.5417.026; Mon, 11 Jul 2022
+ 19:54:07 +0000
+From:   "Alessandrelli, Daniele" <daniele.alessandrelli@intel.com>
+To:     "Murphy, Paul J" <paul.j.murphy@intel.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 5/6] media: i2c: ov9282: Add regulator support
+Thread-Topic: [PATCH 5/6] media: i2c: ov9282: Add regulator support
+Thread-Index: AQHYlP6YoEYOWX4KyUiD6dSwfMY+wK15lfaA
+Date:   Mon, 11 Jul 2022 19:54:07 +0000
+Message-ID: <a52e4b5e6c83371b7ad41290566a632b87ebe34f.camel@intel.com>
+References: <20220711081639.150153-1-alexander.stein@ew.tq-group.com>
+         <20220711081639.150153-6-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20220711081639.150153-6-alexander.stein@ew.tq-group.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL0PR0102CA0034.prod.exchangelabs.com
- (2603:10b6:207:18::47) To DB7PR03MB4972.eurprd03.prod.outlook.com
- (2603:10a6:10:7d::22)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.44.3 (3.44.3-1.fc36) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 23d63283-b8c3-4cb1-b1e4-08da63771dd5
+x-ms-traffictypediagnostic: BN6PR11MB3908:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: r8meRPXUoBL0+7XfzqVbPKd6g1LIgfYtWth22QeXAPJBBuh0NCVKwaMQTRBzVhaqFsnqH7G2w+QHjLeOxIXzlPDNtpJXnWUuIdreqoHM8a2WiNEkeXImzcM4YSSGyqvBxExQlazGB3/62F1SEj2RJbVpSC9nPqzoHFHqSJYUhlHWRep6BSfEi9JuQgRbmvOfUT59lh/x/rSdjgr/rkfHwUwuEuHb4A6/PKbyxHyZLL49ymrMb1Zl1+bA5PZ279NePX1JN6a9KwhcHv54Os3Xl8UZXm7mvgWtURntrx3J52E7AsnVZ2k1p15JOexKpLd4WUUl0OgRtxSMp1Gmm7D1+qCMs1BpS4r8LOZQ5/79egOh5283F7WtaVLkV+pg17HEMsfdnAGA/Q6Zun24Ip5rCo13VsbYRWC/v+SiCoJY1SL7Upkyvdt6PBMBjlComUs5QyxSsqwJM6qz8C8yLiqkhnRNiVQ955thA/8hMfQmlLHp0MpGPsE82oLYPvkX+6bLCmmZpB6s1BgQG1zXuuZhkkPkeAPH9/TW6RI789K0I3Rjk3CqOJ39UsnAJKq5hza9eK4QNPDXI4RR5H2lSZUvX26Ccsoe5Ac/kRyEtgHDvqMkXHoxfwJhvF50cS/jQvqGuTBMYxJ7Mw25rj2HUUzMlwMEfPvznjgAaMAHy80RJoMhSs7yPaXNtppmfKlfUQ6xk1MFAioPiajYcSkuS9NCH7DtCHNFjSuL+HB2uHplc1DfV6tmN2TqkfpmRTBTGwaEZO0PUc4OQjlgvlrVhaHHt2NdMBtp9JivpPNFtHvrDTvA7nNaxgS3VQKj7ggRA0gW
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB3055.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(39860400002)(376002)(136003)(396003)(346002)(66946007)(4326008)(41300700001)(66446008)(66476007)(66556008)(8676002)(76116006)(91956017)(71200400001)(64756008)(110136005)(54906003)(6486002)(83380400001)(316002)(6506007)(2906002)(8936002)(5660300002)(478600001)(38070700005)(122000001)(82960400001)(86362001)(36756003)(38100700002)(6512007)(2616005)(26005)(186003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b3pGeEZKMjhIeEh1NkJEaWpIWTdsbEVtWExTODZBMVNxUE1zc1VJR1FoNE03?=
+ =?utf-8?B?NmwzZkRzdVlCK0g2aHZTdWUyalR6QnhZZ09rbklHTEk1TU5mYzBWOTJ5K2Jr?=
+ =?utf-8?B?NW9ZYnVGMS83V3hGQlVuak1TSUxhSjZUL3kvRjNSR2tJdWVIVjY2blZva1pk?=
+ =?utf-8?B?RmFQdyt6bkxQay9xZkZPRWNVZzlCNHlBcnFKbnNxNHpYUTNCYzBxTGE1UWdT?=
+ =?utf-8?B?WjJXU29YdWNSeWRBaEtFYTJmb21tdDFncGc2emw4QlhTbWdVdmFuNVlzTm93?=
+ =?utf-8?B?TTcxNWZ5TUpIZnUwMVR0anlCQUpBRDNKUVBLT2hBMm83QUxuak50RzMrdnhW?=
+ =?utf-8?B?cXV3cUtSWEp2VDZiM3NRVFZWeC9KTnkyaS8vb0tMdU92K1NpMkR3NTA4QjVK?=
+ =?utf-8?B?ajdTSmxlTnZPb0JKY0pEbXhmbXpwY256MTdZL2p2SXNFcWFtblp3ZXRpU2li?=
+ =?utf-8?B?RUVxVEhjNzZndlY5UEV2T3VTY1l3dzg4THY3UjRWWWdyNFAzNEc0RzBzNGpz?=
+ =?utf-8?B?QzRWbTRLY0FFYmxyYkVpdnh3aGZuUFk0Qkdyb01LVElxa212MEhUZGM5RUwz?=
+ =?utf-8?B?NWlKTzYzOTgzUTdoV3czNnJvajBMTmZKYVpCcHFMckxTNEx1Mk5xbjFuS0VY?=
+ =?utf-8?B?SjZGZlVaaEIzcTh6QW5sNlN0VnJ1SDZ4aERPelc2b1FzL01iRUM1UEFzRDhp?=
+ =?utf-8?B?TEdWTzZNeHIvQzU4U2dZV2lpVnhsZllkNDRpcFhXSCtzSjZmV2g3OXhVSzBO?=
+ =?utf-8?B?dDFnYmtKNUNvaTZQWG9saUNKRzdITS84bVkvRkpVcUExMTl0Z20xdVoxOTRn?=
+ =?utf-8?B?NFVSR1p6U0hvWndaTG1ldTlUMjZKNkdWRjVqU0w5Ykx6WFkvV2lWc3N5NDJl?=
+ =?utf-8?B?MnlxMUR3aVI3VTFkdGpMUTByQkZ3cGxyMlQ5UDlSbDBRclFvTTM4ZnRMSTlv?=
+ =?utf-8?B?WU8vRG5icnZiMlpmTklEUGZCc0t6YjN4U2J6MEFtdW1MM0luNWkrYlB1YWhl?=
+ =?utf-8?B?YWNKUWhQTlFuUEovTjJlZWdVZmYvN1FRSVFMRE4vN3VGb09CYXFSVEVqZE8v?=
+ =?utf-8?B?WjlPZ1JyL0NxVHVQN25QQ05OMHVEL1NaNW44NHRDMmh5Z0w0MjRFR3d6Z3FJ?=
+ =?utf-8?B?bFRlZjdlVTJyUVJuT0E4c2JSMXpRS3AzOGlDeEVyc1RrVkZhSERIM3BINTNX?=
+ =?utf-8?B?NE05bCtLNlN5S3JLOXNlOWI3TXlncExNQmdNSkp3MFRYUHJMcFNiUC9IT0RG?=
+ =?utf-8?B?ZmwrT20vQWwwRzBvY3FFUTk4TUM4MmxrL2pSNmxMN0ZDQXV6L2NtRVNMK1FK?=
+ =?utf-8?B?VTJHYUJRd0VOVFpER3ZjRFNmbGo4N2g5ZUlJNjBXUDJ3aEhLaTZwVTlsdzBX?=
+ =?utf-8?B?VWd6TFJJN2lwRXViNXVjdGZoZFNCaTY5ZUxZRlhsWjR4RHcxczUxYmpRakdm?=
+ =?utf-8?B?ZkFxSVlXbmtHMktodmhvVk8wZEl0VUdOaFBTQzhsZ3F0bExYc2M2TzhtRERh?=
+ =?utf-8?B?ZHBBY2J6SlFBQStHcFZFbWVDeU5iOWs0Ui94ZHRacG1NYWl4UU8xTGRrbVdI?=
+ =?utf-8?B?UExFSWZCQVVHdXRMK1ZNbjdIVDMvNDIyT2Jib1lTNHlxTHVVS2MrRVliMUVl?=
+ =?utf-8?B?WEs4WVpITXgzK3A2VG5HWmg4MDVjZkxlZnlHWVVuVElwVGZrWFlmOEE2ZjBM?=
+ =?utf-8?B?aXBMMk1jRHJFSWQxaFpnZHFiR3lreGs3dXNBSTNFaWs2Q0JiU2xYamV0cXNw?=
+ =?utf-8?B?Tyt1TUw3SXR1SW8zQ0NEZmwyQUJQTSs1TktwTlQ0VEdXZTBsZFhUMTcrTWtr?=
+ =?utf-8?B?ZWZiQmFLYVcvYldwK2RyNWYrazRxbEtiUU9zN1lIY09VSlllb3NhTjJhZ1B4?=
+ =?utf-8?B?VzNQVU9qa0tpQXJiVG5nSDErbkJIVnl0aHV3aU5tS0RKVi9jT3ZQS3Fua0Rs?=
+ =?utf-8?B?L0I1THZEb2tKRmVJRGFoRGQvWHVvZ1NkYWM2Ymt1eE84QWhHZzllWWxXYkR4?=
+ =?utf-8?B?a3JKSnNSQ1Z5S01TZVVwam9MSTZNMEsrbVFBOHB2UGZtNytSZzNqV0JTbUtU?=
+ =?utf-8?B?WnpxUkR2N0x5cmRJbVR1YmNjSm8vbFVRSDlGaU4rTWZmNDB4aDhGOU50Rk9M?=
+ =?utf-8?B?NGlhWnFzemFsNFBVNlZxQ1VPZVl0Q3AybDRkWjVkSDErOVNKa2MyaWJ2SnRU?=
+ =?utf-8?Q?RSWg2y9tzYsfmtyP5z7cOJQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <37D5CB1378B0324CB61BDC35F372702B@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c09166c5-c984-4b5a-726a-08da637704a9
-X-MS-TrafficTypeDiagnostic: DBBPR03MB5350:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7dtna9vZrSdWD0hJ8n11Kj94sV993n0p3euchZpl+H2Sso4GtncVX0nJkfRpvowPUZdQHzX3NLXua3hGT5lVd2J+mSP8WESZDEKgfGPafR4bq90RRpC3w70sQaQvhIAgGIiOJdgWh0T9C0uqVHlwXAPMbOUppN1oa3xwVghtRAruT8DPWEmIKvJpTdexAxOtjpdUrWv6W0lECyLLahscLEPU+9u9C1trJWDx3pSpTJdjVhn6Ysw3c1cb3Ylj28ZaIt0yNo6wszpYfljJFNi96TO5DjmeGan2HEYdfH/HDjyJ7og14/5W+AQAxYfLTJRUYF4EoMJSTKNIK4317QdRZ6yCTogOH0O8GpCYxNW02EYE+XAcd9dnfqfREyE4tkZCgdeKHxyVcanUMb3n8EKzwb9hFQzBYc2BbYM5o2RPvvBFj7Rrog6FIsLDPtAwKwt7bx5Aig8yZgMF9kFCmyVa89qVN6Bd1WqhJe04EPVZUKA3f3CiQ6CqOYTvTiwS9SPglDbwjSWtqTJyAmGc2B7KALmaaH4G0jYKO2hwG8KoStVU8vk8vnpwT4KEU/j/MD7yZaZ6qdCBCQJ91i5zoDdwIXabdGAOFVUKha5gbapwiN0XbsZBfbxiIq2be1ECujgdiE9OQfaHRuMSx63lsIFaSasvma0+fPproePaueT/EvOXPGRU9RNRH7+k0voSs8C9DxwDoAwwc0321BPWdCiyNgzOQrfvcMc2LPM1ELqtBGD3hGEkAcN3bAHWskaS/3pi4pOQ1H9Fi8RwcRvmmtJHYYG1zQiZx/bO74tygNtXTqnP2laNmnyCU6DsUxDAgei4jg7S70LE4lsZr/cDLvboc+mzfrOo6wzanPh7UHMDn5bH2FUFIjaRG2yF5Bhk9qR+F//lvk/SEdo8IxvWtzL+Wg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(136003)(376002)(366004)(346002)(39850400004)(396003)(478600001)(2906002)(83380400001)(31686004)(6486002)(966005)(30864003)(36756003)(44832011)(5660300002)(186003)(52116002)(26005)(316002)(2616005)(31696002)(4326008)(86362001)(6916009)(8936002)(54906003)(66476007)(8676002)(66556008)(38100700002)(6506007)(6512007)(6666004)(38350700002)(41300700001)(7416002)(53546011)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b2ZNemduRlJFekF1eDRva2ZnRzRYYnhOdVhqNzg5OERic3Z2NDhRRmFHVHUx?=
- =?utf-8?B?aEkyR0pQbzY1RC8wOEN2ZkxQSjBxb3VpM3lzTFY0ZXM2YmM3ZGFZc3pWL0hF?=
- =?utf-8?B?WmVvdVFCZURPZTFpbkFBcXdVNHVFQUNHRXBKdTlucitwejZRYUVlTThtSXhn?=
- =?utf-8?B?M0p3VzFsV2RsNnl6TjNmZVNnbUZqYlAvYnNnSXpYMmNOL2RVUk1NUXRnMnlG?=
- =?utf-8?B?TjdrVmFNUDVob2NvV2RETnBWMTNiWUk5OXFOTXJvR28yUGNWa2F6bElKRFdk?=
- =?utf-8?B?Z0hrNFcvWithRG1URitCcFd5NnByUnh3dkhSSzZDK1Y2ek15SWJQR2N3T2R5?=
- =?utf-8?B?SzNyaHYwQkd4R3ZPaGN3cGxLRWE0TW5MeVVtZkEwSWFDK2NobGdQMXBkb3BH?=
- =?utf-8?B?N1pLRlFQQVpOeTIvSVlyMW1MTTFRaGZkektSVGx0elVieTBUTzZQWEpLOGpB?=
- =?utf-8?B?MDAxaUNmV0htYnRNQ1I4NWlLSlA2TzJJUndVR21ka1k3V0cxRiszenhkN2tZ?=
- =?utf-8?B?aFd6ZDYzY0tkakZtb0tRMjBDTS83SVlFbU1md2dIbzU1c0QzQXVqVEJGVmI2?=
- =?utf-8?B?bU9GckpKcDVPNVhXL3VkVmdEa05PRGt4ZWtyeEhrS2poNjVMeGNYc0M4U0ti?=
- =?utf-8?B?Q3JlNTNad3R1clRmeUkvbVZaa3dhNDVBSGlxd3psSzYxMkpocWxZVUVxemFM?=
- =?utf-8?B?cXYvQThqRXhxUVJpK0pYZDJxMnRkZTFwamFrWGFXUmlUeEFuNjZzYWxvYXhY?=
- =?utf-8?B?T1FCbFk3Ny9NakpYUjQ1WlBRRm5nQXUwWmVFYjNkTmpTNjRFNnhkWUhCR3VZ?=
- =?utf-8?B?MGpVaGUwYVY4UlM2ZzBwbmx2ZUovYkdXUEFJWGlUUDJ1NWVNWVNzTExkd2NL?=
- =?utf-8?B?ZTNWK3dCQ2ZreCtsa1VMOVdkek9oVTlrbG5NYUhxOW5SMXB4WThmK3gwVnB6?=
- =?utf-8?B?MWw3d0l6dm90YlpvWTljWEJFSEVlMU9VbTJ1dm9Idk5La2tVVmVrSGhuWkdR?=
- =?utf-8?B?Qk5MZHB3SXdNTFhaMVJKc1pLbmViQjJDMTNwM29QZThxZEttMXp4SVlHcDNa?=
- =?utf-8?B?MXpSSHdkd1RNVkt2NHR1RmQzeHpwL3NDNDM5S1ZNakl3SERJRkRvUzhhK0Fx?=
- =?utf-8?B?LzVIOHNTanNDRm5EM096bUdocU8vcHZ0VTZ0Q29vdUwzVFgyd2VjKzc0M1Z4?=
- =?utf-8?B?bjJLMUpnQlFwdHV4TnpMWjNyVkNjUXAzTEt6U0Iza0tjRFJQby85VzJ0YkYz?=
- =?utf-8?B?M0I4aVovcGZJZTdobmdEc0JGUS9OVU9DbStubDRpeEJjbmNPRXg1Ymo1VUgz?=
- =?utf-8?B?S3ZtaHF0ajhMWXcwVTFPV0NOUFhXQzI2cnRkcXdDSXNjd3phUG5xTTlYL2Rj?=
- =?utf-8?B?d0J5OUEwNUxBV1V0S1RKczN1YU1NOFh4aVhKMi8zL3FQTnNHQmM2NmwwcVB0?=
- =?utf-8?B?MGQyQnRuL0NXMzI5ZzFEQ1B0S09uOHFlZWZyNnB4RUs5cXprdFVnK2ZzTEdV?=
- =?utf-8?B?RTgvRXo1K3BUd3BLSGhqZ2VPVS9OcU1XRjhHbDc5NTVuZVpab2NuaTVTMTJk?=
- =?utf-8?B?T1JabmYxWlhPdW5jZDg2THZ4QStQVHZOVWY5emFXY1J6MG9nRmVud3NqajJh?=
- =?utf-8?B?UFdlR05QajhPSzVxbi9aU1ZLZHFzK3kzM3FnaDU3MXRDdy85dHA3S0dFQzVI?=
- =?utf-8?B?MHVMRCtZRlQwcnVyWG5JcE4rMmdDZTgxcWlJdHhwdDNKWU9Gd0dzamU5cW5p?=
- =?utf-8?B?dVY4M2gyK1BTazZjbUJnZXFzN3puQWVrOUM5ZnprTGVMVGR3OW5UTmFiU3Nk?=
- =?utf-8?B?NGFFWWxJaHhVYWhtMXpnZGkvK01OUFlJMlZJVHdMZXl6Z2p3bldQa2NpWG80?=
- =?utf-8?B?eTgzd3EyREJPR1pqNUlTN3FTeE5hMFJRSkYzTlc1aEZWSjR2dzhTMzNTeE9J?=
- =?utf-8?B?cW1YMmw0YjluL0JsSVpzOE9LTDRKSW5pV0RqdS9YWXBPT2RWcHM1ZGl0NGY2?=
- =?utf-8?B?aFhxbUkxb2pMVXI2NG0xMnNNSmtPa1hRNTMxREtSakdKY2tPR3VFT1pHY3Bs?=
- =?utf-8?B?WXI1ek85cXpPZVArSWM5RVh1ODVpeUVTNkJ4dUZGZWRpSGRlTHNZRHJ3S25J?=
- =?utf-8?B?OXVWMlpJSTBwR3RJc1ZoMHl0OS85R3NwWEJGclN3ZlFzRFNhVCsvdFBMZEd3?=
- =?utf-8?B?R0E9PQ==?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c09166c5-c984-4b5a-726a-08da637704a9
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2022 19:53:25.9161
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB3055.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23d63283-b8c3-4cb1-b1e4-08da63771dd5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jul 2022 19:54:07.8679
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SW8+tbi89O9HACv0coImLvQ95Wap3ajRhNL7Al0gR2HfNdKrN30DO1rcVIsXypSdE3tcsdJZzZ/xninOu3+bKQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR03MB5350
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JYPI7KW4euO/MYC7si2YhLdjl+0TRibAoLLqMOwHVrpYlW8bISpN4v/HXayrlEg/HYbbXLw/1QmNoJiqR1YR5ghebj1o1bMnao2Z3tCGF3w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB3908
+X-OriginatorOrg: intel.com
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/11/22 3:42 PM, Saravana Kannan wrote:
-> On Mon, Jul 11, 2022 at 9:05 AM Sean Anderson <sean.anderson@seco.com> wrote:
->>
->> This adds support for getting PCS devices from the device tree. PCS
->> drivers must first register with phylink_register_pcs. After that, MAC
->> drivers may look up their PCS using phylink_get_pcs.
->>
->> To prevent the PCS driver from leaving suddenly, we use try_module_get. To
->> provide some ordering during probing/removal, we use device links managed
->> by of_fwnode_add_links. This will reduce the number of probe failures due
->> to deferral. It will not prevent this for non-standard properties (aka
->> pcsphy-handle), but the worst that happens is that we re-probe a few times.
->>
->> At the moment there is no support for specifying the interface used to
->> talk to the PCS. The MAC driver is expected to know how to talk to the
->> PCS. This is not a change, but it is perhaps an area for improvement.
->>
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->> ---
->> This is adapted from [1], primarily incorporating the changes discussed
->> there.
->>
->> [1] https://lore.kernel.org/netdev/9f73bc4f-5f99-95f5-78fa-dac96f9e0146@seco.com/
->>
->>  MAINTAINERS              |   1 +
->>  drivers/net/pcs/Kconfig  |  12 +++
->>  drivers/net/pcs/Makefile |   2 +
->>  drivers/net/pcs/core.c   | 226 +++++++++++++++++++++++++++++++++++++++
->>  drivers/of/property.c    |   2 +
->>  include/linux/pcs.h      |  33 ++++++
->>  include/linux/phylink.h  |   6 ++
->>  7 files changed, 282 insertions(+)
->>  create mode 100644 drivers/net/pcs/core.c
->>  create mode 100644 include/linux/pcs.h
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index ca95b1833b97..3965d49753d3 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -7450,6 +7450,7 @@ F:        include/linux/*mdio*.h
->>  F:     include/linux/mdio/*.h
->>  F:     include/linux/mii.h
->>  F:     include/linux/of_net.h
->> +F:     include/linux/pcs.h
->>  F:     include/linux/phy.h
->>  F:     include/linux/phy_fixed.h
->>  F:     include/linux/platform_data/mdio-bcm-unimac.h
->> diff --git a/drivers/net/pcs/Kconfig b/drivers/net/pcs/Kconfig
->> index 22ba7b0b476d..fed6264fdf33 100644
->> --- a/drivers/net/pcs/Kconfig
->> +++ b/drivers/net/pcs/Kconfig
->> @@ -5,6 +5,18 @@
->>
->>  menu "PCS device drivers"
->>
->> +config PCS
->> +       bool "PCS subsystem"
->> +       help
->> +         This provides common helper functions for registering and looking up
->> +         Physical Coding Sublayer (PCS) devices. PCS devices translate between
->> +         different interface types. In some use cases, they may either
->> +         translate between different types of Medium-Independent Interfaces
->> +         (MIIs), such as translating GMII to SGMII. This allows using a fast
->> +         serial interface to talk to the phy which translates the MII to the
->> +         Medium-Dependent Interface. Alternatively, they may translate a MII
->> +         directly to an MDI, such as translating GMII to 1000Base-X.
->> +
->>  config PCS_XPCS
->>         tristate "Synopsys DesignWare XPCS controller"
->>         depends on MDIO_DEVICE && MDIO_BUS
->> diff --git a/drivers/net/pcs/Makefile b/drivers/net/pcs/Makefile
->> index 0603d469bd57..1fd21a1619d4 100644
->> --- a/drivers/net/pcs/Makefile
->> +++ b/drivers/net/pcs/Makefile
->> @@ -1,6 +1,8 @@
->>  # SPDX-License-Identifier: GPL-2.0
->>  # Makefile for Linux PCS drivers
->>
->> +obj-$(CONFIG_PCS)              += core.o
->> +
->>  pcs_xpcs-$(CONFIG_PCS_XPCS)    := pcs-xpcs.o pcs-xpcs-nxp.o
->>
->>  obj-$(CONFIG_PCS_XPCS)         += pcs_xpcs.o
->> diff --git a/drivers/net/pcs/core.c b/drivers/net/pcs/core.c
->> new file mode 100644
->> index 000000000000..b39ff1ccdb34
->> --- /dev/null
->> +++ b/drivers/net/pcs/core.c
->> @@ -0,0 +1,226 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2022 Sean Anderson <sean.anderson@seco.com>
->> + */
->> +
->> +#include <linux/fwnode.h>
->> +#include <linux/list.h>
->> +#include <linux/mutex.h>
->> +#include <linux/pcs.h>
->> +#include <linux/phylink.h>
->> +#include <linux/property.h>
->> +
->> +static LIST_HEAD(pcs_devices);
->> +static DEFINE_MUTEX(pcs_mutex);
->> +
->> +/**
->> + * pcs_register() - register a new PCS
->> + * @pcs: the PCS to register
->> + *
->> + * Registers a new PCS which can be automatically attached to a phylink.
->> + *
->> + * Return: 0 on success, or -errno on error
->> + */
->> +int pcs_register(struct phylink_pcs *pcs)
->> +{
->> +       if (!pcs->dev || !pcs->ops)
->> +               return -EINVAL;
->> +       if (!pcs->ops->pcs_an_restart || !pcs->ops->pcs_config ||
->> +           !pcs->ops->pcs_get_state)
->> +               return -EINVAL;
->> +
->> +       INIT_LIST_HEAD(&pcs->list);
->> +       mutex_lock(&pcs_mutex);
->> +       list_add(&pcs->list, &pcs_devices);
->> +       mutex_unlock(&pcs_mutex);
->> +       return 0;
->> +}
->> +EXPORT_SYMBOL_GPL(pcs_register);
->> +
->> +/**
->> + * pcs_unregister() - unregister a PCS
->> + * @pcs: a PCS previously registered with pcs_register()
->> + */
->> +void pcs_unregister(struct phylink_pcs *pcs)
->> +{
->> +       mutex_lock(&pcs_mutex);
->> +       list_del(&pcs->list);
->> +       mutex_unlock(&pcs_mutex);
->> +}
->> +EXPORT_SYMBOL_GPL(pcs_unregister);
->> +
->> +static void devm_pcs_release(struct device *dev, void *res)
->> +{
->> +       pcs_unregister(*(struct phylink_pcs **)res);
->> +}
->> +
->> +/**
->> + * devm_pcs_register - resource managed pcs_register()
->> + * @dev: device that is registering this PCS
->> + * @pcs: the PCS to register
->> + *
->> + * Managed pcs_register(). For PCSs registered by this function,
->> + * pcs_unregister() is automatically called on driver detach. See
->> + * pcs_register() for more information.
->> + *
->> + * Return: 0 on success, or -errno on failure
->> + */
->> +int devm_pcs_register(struct device *dev, struct phylink_pcs *pcs)
->> +{
->> +       struct phylink_pcs **pcsp;
->> +       int ret;
->> +
->> +       pcsp = devres_alloc(devm_pcs_release, sizeof(*pcsp),
->> +                           GFP_KERNEL);
->> +       if (!pcsp)
->> +               return -ENOMEM;
->> +
->> +       ret = pcs_register(pcs);
->> +       if (ret) {
->> +               devres_free(pcsp);
->> +               return ret;
->> +       }
->> +
->> +       *pcsp = pcs;
->> +       devres_add(dev, pcsp);
->> +
->> +       return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(devm_pcs_register);
->> +
->> +/**
->> + * pcs_find() - Find the PCS associated with a fwnode or device
->> + * @fwnode: The PCS's fwnode
->> + * @dev: The PCS's device
->> + *
->> + * Search PCSs registered with pcs_register() for one with a matching
->> + * fwnode or device. Either @fwnode or @dev may be %NULL if matching against a
->> + * fwnode or device is not desired (respectively).
->> + *
->> + * Return: a matching PCS, or %NULL if not found
->> + */
->> +static struct phylink_pcs *pcs_find(const struct fwnode_handle *fwnode,
->> +                                   const struct device *dev)
->> +{
->> +       struct phylink_pcs *pcs;
->> +
->> +       mutex_lock(&pcs_mutex);
->> +       list_for_each_entry(pcs, &pcs_devices, list) {
->> +               if (dev && pcs->dev == dev)
->> +                       goto out;
->> +               if (fwnode && pcs->dev->fwnode == fwnode)
->> +                       goto out;
->> +       }
->> +       pcs = NULL;
->> +
->> +out:
->> +       mutex_unlock(&pcs_mutex);
->> +       pr_devel("%s: looking for %pfwf or %s %s...%s found\n", __func__,
->> +                fwnode, dev ? dev_driver_string(dev) : "(null)",
->> +                dev ? dev_name(dev) : "(null)", pcs ? " not" : "");
->> +       return pcs;
->> +}
->> +
->> +/**
->> + * pcs_get_tail() - Finish getting a PCS
->> + * @pcs: The PCS to get, or %NULL if one could not be found
->> + *
->> + * This performs common operations necessary when getting a PCS (chiefly
->> + * incrementing reference counts)
->> + *
->> + * Return: @pcs, or an error pointer on failure
->> + */
->> +static struct phylink_pcs *pcs_get_tail(struct phylink_pcs *pcs)
->> +{
->> +       if (!pcs)
->> +               return ERR_PTR(-EPROBE_DEFER);
->> +
->> +       if (!try_module_get(pcs->ops->owner))
->> +               return ERR_PTR(-ENODEV);
->> +       get_device(pcs->dev);
->> +
->> +       return pcs;
->> +}
->> +
->> +/**
->> + * _pcs_get_by_fwnode() - Get a PCS from a fwnode property
->> + * @fwnode: The fwnode to get an associated PCS of
->> + * @id: The name of the PCS to get. May be %NULL to get the first PCS.
->> + * @optional: Whether the PCS is optional or not
->> + *
->> + * Look up a PCS associated with @fwnode and return a reference to it. Every
->> + * call to pcs_get_by_fwnode() must be balanced with one to pcs_put().
->> + *
->> + * If @optional is true, and @id is non-%NULL, then if @id cannot be found in
->> + * pcs-names, %NULL is returned (instead of an error). If @optional is true and
->> + * @id is %NULL, then no error is returned if pcs-handle is absent.
->> + *
->> + * Return: a PCS if found, or an error pointer on failure
->> + */
->> +struct phylink_pcs *_pcs_get_by_fwnode(const struct fwnode_handle *fwnode,
->> +                                      const char *id, bool optional)
->> +{
->> +       int index;
->> +       struct phylink_pcs *pcs;
->> +       struct fwnode_handle *pcs_fwnode;
->> +
->> +       if (id)
->> +               index = fwnode_property_match_string(fwnode, "pcs-names", id);
->> +       else
->> +               index = 0;
->> +       if (index < 0) {
->> +               if (optional && (index == -EINVAL || index == -ENODATA))
->> +                       return NULL;
->> +               return ERR_PTR(index);
->> +       }
->> +
->> +       /* First try pcs-handle, and if that doesn't work fall back to the
->> +        * (legacy) pcsphy-handle.
->> +        */
->> +       pcs_fwnode = fwnode_find_reference(fwnode, "pcs-handle", index);
->> +       if (PTR_ERR(pcs_fwnode) == -ENOENT)
->> +               pcs_fwnode = fwnode_find_reference(fwnode, "pcsphy-handle",
->> +                                                  index);
->> +       if (optional && !id && PTR_ERR(pcs_fwnode) == -ENOENT)
->> +               return NULL;
->> +       else if (IS_ERR(pcs_fwnode))
->> +               return ERR_CAST(pcs_fwnode);
->> +
->> +       pcs = pcs_find(pcs_fwnode, NULL);
->> +       fwnode_handle_put(pcs_fwnode);
->> +       return pcs_get_tail(pcs);
->> +}
->> +EXPORT_SYMBOL_GPL(pcs_get_by_fwnode);
->> +
->> +/**
->> + * pcs_get_by_provider() - Get a PCS from an existing provider
->> + * @dev: The device providing the PCS
->> + *
->> + * This finds the first PCS registersed by @dev and returns a reference to it.
->> + * Every call to pcs_get_by_provider() must be balanced with one to
->> + * pcs_put().
->> + *
->> + * Return: a PCS if found, or an error pointer on failure
->> + */
->> +struct phylink_pcs *pcs_get_by_provider(const struct device *dev)
->> +{
->> +       return pcs_get_tail(pcs_find(NULL, dev));
->> +}
->> +EXPORT_SYMBOL_GPL(pcs_get_by_provider);
->> +
->> +/**
->> + * pcs_put() - Release a previously-acquired PCS
->> + * @pcs: The PCS to put
->> + *
->> + * This frees resources associated with the PCS which were acquired when it was
->> + * gotten.
->> + */
->> +void pcs_put(struct phylink_pcs *pcs)
->> +{
->> +       if (!pcs)
->> +               return;
->> +
->> +       put_device(pcs->dev);
->> +       module_put(pcs->ops->owner);
->> +}
->> +EXPORT_SYMBOL_GPL(pcs_put);
->> diff --git a/drivers/of/property.c b/drivers/of/property.c
->> index 967f79b59016..860d35bde5e9 100644
->> --- a/drivers/of/property.c
->> +++ b/drivers/of/property.c
->> @@ -1318,6 +1318,7 @@ DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
->>  DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
->>  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
->>  DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
->> +DEFINE_SIMPLE_PROP(pcs_handle, "pcs-handle", NULL)
->>  DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
->>  DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
->>  DEFINE_SIMPLE_PROP(leds, "leds", NULL)
->> @@ -1406,6 +1407,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
->>         { .parse_prop = parse_pinctrl7, },
->>         { .parse_prop = parse_pinctrl8, },
->>         { .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
->> +       { .parse_prop = parse_pcs_handle, },
->>         { .parse_prop = parse_pwms, },
->>         { .parse_prop = parse_resets, },
->>         { .parse_prop = parse_leds, },
-> 
-> Can you break the changes to this file into a separate patch please?
-> That'll clarify that this doesn't depend on any of the other changes
-> in this patch to work and it can stand on its own.
-
-OK
-
-> Also, I don't know how the pcs-handle is used, but it's likely that
-> this probe ordering enforcement could cause issues. So, if we need to
-> revert it, having it as a separate patch would help too.
-> 
-> And put this at the end of the series maybe?
-OK, I'll put it before patch 9/9 (which will likely need to be applied
-much after the rest of this series.
-
---Sean
-
-> Thanks,
-> Saravana
-> 
->>
->> diff --git a/include/linux/pcs.h b/include/linux/pcs.h
->> new file mode 100644
->> index 000000000000..00e76594e03c
->> --- /dev/null
->> +++ b/include/linux/pcs.h
->> @@ -0,0 +1,33 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * Copyright (C) 2022 Sean Anderson <sean.anderson@seco.com>
->> + */
->> +
->> +#ifndef _PCS_H
->> +#define _PCS_H
->> +
->> +struct phylink_pcs;
->> +struct fwnode;
->> +
->> +int pcs_register(struct phylink_pcs *pcs);
->> +void pcs_unregister(struct phylink_pcs *pcs);
->> +int devm_pcs_register(struct device *dev, struct phylink_pcs *pcs);
->> +struct phylink_pcs *_pcs_get_by_fwnode(const struct fwnode_handle *fwnode,
->> +                                      const char *id, bool optional);
->> +struct phylink_pcs *pcs_get_by_provider(const struct device *dev);
->> +void pcs_put(struct phylink_pcs *pcs);
->> +
->> +static inline struct phylink_pcs
->> +*pcs_get_by_fwnode(const struct fwnode_handle *fwnode,
->> +                  const char *id)
->> +{
->> +       return _pcs_get_by_fwnode(fwnode, id, false);
->> +}
->> +
->> +static inline struct phylink_pcs
->> +*pcs_get_by_fwnode_optional(const struct fwnode_handle *fwnode, const char *id)
->> +{
->> +       return _pcs_get_by_fwnode(fwnode, id, true);
->> +}
->> +
->> +#endif /* PCS_H */
->> diff --git a/include/linux/phylink.h b/include/linux/phylink.h
->> index 6d06896fc20d..a713e70108a1 100644
->> --- a/include/linux/phylink.h
->> +++ b/include/linux/phylink.h
->> @@ -396,19 +396,24 @@ struct phylink_pcs_ops;
->>
->>  /**
->>   * struct phylink_pcs - PHYLINK PCS instance
->> + * @dev: the device associated with this PCS
->>   * @ops: a pointer to the &struct phylink_pcs_ops structure
->> + * @list: internal list of PCS devices
->>   * @poll: poll the PCS for link changes
->>   *
->>   * This structure is designed to be embedded within the PCS private data,
->>   * and will be passed between phylink and the PCS.
->>   */
->>  struct phylink_pcs {
->> +       struct device *dev;
->>         const struct phylink_pcs_ops *ops;
->> +       struct list_head list;
->>         bool poll;
->>  };
->>
->>  /**
->>   * struct phylink_pcs_ops - MAC PCS operations structure.
->> + * @owner: the module which implements this PCS.
->>   * @pcs_validate: validate the link configuration.
->>   * @pcs_get_state: read the current MAC PCS link state from the hardware.
->>   * @pcs_config: configure the MAC PCS for the selected mode and state.
->> @@ -417,6 +422,7 @@ struct phylink_pcs {
->>   *               (where necessary).
->>   */
->>  struct phylink_pcs_ops {
->> +       struct module *owner;
->>         int (*pcs_validate)(struct phylink_pcs *pcs, unsigned long *supported,
->>                             const struct phylink_link_state *state);
->>         void (*pcs_get_state)(struct phylink_pcs *pcs,
->> --
->> 2.35.1.1320.gc452695387.dirty
->>
-> 
+T24gTW9uLCAyMDIyLTA3LTExIGF0IDEwOjE2ICswMjAwLCBBbGV4YW5kZXIgU3RlaW4gd3JvdGU6
+Cj4gTmVlZCBpbiBjYXNlIHRoZSBzZW5zb3JzIGlzIHN1cHBsaWVkIGJ5IGEgc3dpdGNoYWJsZSBy
+ZWd1bGF0b3IuCj4gCj4gU2lnbmVkLW9mZi1ieTogQWxleGFuZGVyIFN0ZWluIDxhbGV4YW5kZXIu
+c3RlaW5AZXcudHEtZ3JvdXAuY29tPgo+IC0tLQo+IMKgZHJpdmVycy9tZWRpYS9pMmMvb3Y5Mjgy
+LmMgfCA0MSArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+IMKgMSBmaWxl
+IGNoYW5nZWQsIDQxIGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRp
+YS9pMmMvb3Y5MjgyLmMgYi9kcml2ZXJzL21lZGlhL2kyYy9vdjkyODIuYwo+IGluZGV4IDA0ZmRh
+ODIyMmUwNy4uYzNmYWYxMWE5OWI1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvbWVkaWEvaTJjL292
+OTI4Mi5jCj4gKysrIGIvZHJpdmVycy9tZWRpYS9pMmMvb3Y5MjgyLmMKPiBAQCAtMTEsNiArMTEs
+NyBAQAo+IMKgI2luY2x1ZGUgPGxpbnV4L2kyYy5oPgo+IMKgI2luY2x1ZGUgPGxpbnV4L21vZHVs
+ZS5oPgo+IMKgI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4KPiArI2luY2x1ZGUgPGxpbnV4
+L3JlZ3VsYXRvci9jb25zdW1lci5oPgo+IMKgCj4gwqAjaW5jbHVkZSA8bWVkaWEvdjRsMi1jdHJs
+cy5oPgo+IMKgI2luY2x1ZGUgPG1lZGlhL3Y0bDItZndub2RlLmg+Cj4gQEAgLTU1LDYgKzU2LDE0
+IEBACj4gwqAjZGVmaW5lIE9WOTI4Ml9SRUdfTUlOwqDCoMKgwqDCoMKgwqDCoMKgMHgwMAo+IMKg
+I2RlZmluZSBPVjkyODJfUkVHX01BWMKgwqDCoMKgwqDCoMKgwqDCoDB4ZmZmZmYKPiDCoAo+ICtz
+dGF0aWMgY29uc3QgY2hhciAqIGNvbnN0IG92OTI4Ml9zdXBwbHlfbmFtZXNbXSA9IHsKPiArwqDC
+oMKgwqDCoMKgwqAiYXZkZCIswqDCoMKgwqDCoMKgwqDCoMKgLyogQW5hbG9nIHBvd2VyICovCj4g
+K8KgwqDCoMKgwqDCoMKgImRvdmRkIizCoMKgwqDCoMKgwqDCoMKgLyogRGlnaXRhbCBJL08gcG93
+ZXIgKi8KPiArwqDCoMKgwqDCoMKgwqAiZHZkZCIswqDCoMKgwqDCoMKgwqDCoMKgLyogRGlnaXRh
+bCBjb3JlIHBvd2VyICovCj4gK307Cj4gKwo+ICsjZGVmaW5lIE9WOTI4Ml9OVU1fU1VQUExJRVMg
+QVJSQVlfU0laRShvdjkyODJfc3VwcGx5X25hbWVzKQo+ICsKPiDCoC8qKgo+IMKgICogc3RydWN0
+IG92OTI4Ml9yZWcgLSBvdjkyODIgc2Vuc29yIHJlZ2lzdGVyCj4gwqAgKiBAYWRkcmVzczogUmVn
+aXN0ZXIgYWRkcmVzcwo+IEBAIC0xMjcsNiArMTM2LDcgQEAgc3RydWN0IG92OTI4MiB7Cj4gwqDC
+oMKgwqDCoMKgwqDCoHN0cnVjdCBtZWRpYV9wYWQgcGFkOwo+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1
+Y3QgZ3Bpb19kZXNjICpyZXNldF9ncGlvOwo+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgY2xrICpp
+bmNsazsKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgcmVndWxhdG9yX2J1bGtfZGF0YSBzdXBwbGll
+c1tPVjkyODJfTlVNX1NVUFBMSUVTXTsKPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHY0bDJfY3Ry
+bF9oYW5kbGVyIGN0cmxfaGFuZGxlcjsKPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHY0bDJfY3Ry
+bCAqbGlua19mcmVxX2N0cmw7Cj4gwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCB2NGwyX2N0cmwgKnBj
+bGtfY3RybDsKPiBAQCAtODgzLDEwICs4OTMsMTggQEAgc3RhdGljIGludCBvdjkyODJfcG93ZXJf
+b24oc3RydWN0IGRldmljZSAqZGV2KQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+Z290byBlcnJvcl9yZXNldDsKPiDCoMKgwqDCoMKgwqDCoMKgfQo+IMKgCj4gK8KgwqDCoMKgwqDC
+oMKgcmV0ID0gcmVndWxhdG9yX2J1bGtfZW5hYmxlKEFSUkFZX1NJWkUob3Y5MjgyLT5zdXBwbGll
+cyksIG92OTI4Mi0+c3VwcGxpZXMpOwo+ICvCoMKgwqDCoMKgwqDCoGlmIChyZXQpIHsKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZGV2X2VycihkZXYsICJGYWlsZWQgdG8gZW5hYmxl
+IHJlZ3VsYXRvcnNcbiIpOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBnb3RvIGRp
+c2FibGVfY2xrOwo+ICvCoMKgwqDCoMKgwqDCoH0KPiArCj4gwqDCoMKgwqDCoMKgwqDCoHVzbGVl
+cF9yYW5nZSg0MDAsIDYwMCk7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIDA7Cj4gwqAK
+PiArZGlzYWJsZV9jbGs6Cj4gK8KgwqDCoMKgwqDCoMKgY2xrX2Rpc2FibGVfdW5wcmVwYXJlKG92
+OTI4Mi0+aW5jbGspOwo+IMKgZXJyb3JfcmVzZXQ6Cj4gwqDCoMKgwqDCoMKgwqDCoGdwaW9kX3Nl
+dF92YWx1ZV9jYW5zbGVlcChvdjkyODItPnJlc2V0X2dwaW8sIDApOwo+IMKgCj4gQEAgLTkwMyw2
+ICs5MjEsMTEgQEAgc3RhdGljIGludCBvdjkyODJfcG93ZXJfb2ZmKHN0cnVjdCBkZXZpY2UgKmRl
+dikKPiDCoHsKPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHY0bDJfc3ViZGV2ICpzZCA9IGRldl9n
+ZXRfZHJ2ZGF0YShkZXYpOwo+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3Qgb3Y5MjgyICpvdjkyODIg
+PSB0b19vdjkyODIoc2QpOwo+ICvCoMKgwqDCoMKgwqDCoGludCByZXQ7Cj4gKwo+ICvCoMKgwqDC
+oMKgwqDCoHJldCA9IHJlZ3VsYXRvcl9idWxrX2Rpc2FibGUoQVJSQVlfU0laRShvdjkyODItPnN1
+cHBsaWVzKSwgb3Y5MjgyLT5zdXBwbGllcyk7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKHJldCkKPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZGV2X2VycihvdjkyODItPmRldiwgIkZhaWxl
+ZCB0byBkaXNhYmxlIHN1cHBsaWVzOiAlZFxuIiwgcmV0KTsKCkknbSBub3Qgc3VyZSB0aGF0IGNo
+ZWNraW5nIHRoZSByZXR1cm4gdmFsdWUgaXMgbmVlZGVkLgoncmVndWxhdG9yX2J1bGtfZGlzYWJs
+ZSgpJyBhbHJlYWR5IHByaW50cyBhbiBlcnJvciBtZXNzYWdlIGluIGNhc2Ugb2YKZmFpbHVyZS4K
+ClRoZSBtYWpvcml0eSBvZiB0aGUgZHJpdmVycyBpbiAiZHJpdmVycy9tZWRpYS9pMmMiIGRvbid0
+IHNlZW0gdG8gY2hlY2sKaXQuCgo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoGdwaW9kX3NldF92YWx1
+ZV9jYW5zbGVlcChvdjkyODItPnJlc2V0X2dwaW8sIDApOwo+IMKgCj4gQEAgLTk5Niw2ICsxMDE5
+LDE4IEBAIHN0YXRpYyBpbnQgb3Y5MjgyX2luaXRfY29udHJvbHMoc3RydWN0IG92OTI4MiAqb3Y5
+MjgyKQo+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPiDCoH0KPiDCoAo+ICtzdGF0aWMgaW50
+IG92OTI4Ml9jb25maWd1cmVfcmVndWxhdG9ycyhzdHJ1Y3Qgb3Y5MjgyICpvdjkyODIpCgpJIHdv
+dWxkIGNhbGwgdGhpcyBmdW5jdGlvbiBzb21ldGhpbmcgbGlrZSAnb3Y5MjgyX2dldF9yZWd1bGF0
+b3JzKCknLgoKPiArewo+ICvCoMKgwqDCoMKgwqDCoHVuc2lnbmVkIGludCBpOwo+ICsKPiArwqDC
+oMKgwqDCoMKgwqBmb3IgKGkgPSAwOyBpIDwgQVJSQVlfU0laRShvdjkyODItPnN1cHBsaWVzKTsg
+aSsrKQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBvdjkyODItPnN1cHBsaWVzW2ld
+LnN1cHBseSA9IG92OTI4Ml9zdXBwbHlfbmFtZXNbaV07Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoHJl
+dHVybiBkZXZtX3JlZ3VsYXRvcl9idWxrX2dldChvdjkyODItPmRldiwKPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgQVJSQVlfU0laRShvdjkyODItPnN1cHBsaWVzKSwKPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+b3Y5MjgyLT5zdXBwbGllcyk7Cj4gK30KPiArCj4gwqAvKioKPiDCoCAqIG92OTI4Ml9wcm9iZSgp
+IC0gSTJDIGNsaWVudCBkZXZpY2UgYmluZGluZwo+IMKgICogQGNsaWVudDogcG9pbnRlciB0byBp
+MmMgY2xpZW50IGRldmljZQo+IEBAIC0xMDIyLDYgKzEwNTcsMTIgQEAgc3RhdGljIGludCBvdjky
+ODJfcHJvYmUoc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCkKPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoHJldHVybiByZXQ7Cj4gwqDCoMKgwqDCoMKgwqDCoH0KPiDCoAo+ICvCoMKg
+wqDCoMKgwqDCoHJldCA9IG92OTI4Ml9jb25maWd1cmVfcmVndWxhdG9ycyhvdjkyODIpOwo+ICvC
+oMKgwqDCoMKgwqDCoGlmIChyZXQpIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+ZGV2X2VycigmY2xpZW50LT5kZXYsICJGYWlsZWQgdG8gZ2V0IHBvd2VyIHJlZ3VsYXRvcnNcbiIp
+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+ICvCoMKgwqDC
+oMKgwqDCoH0KPiArCj4gwqDCoMKgwqDCoMKgwqDCoG11dGV4X2luaXQoJm92OTI4Mi0+bXV0ZXgp
+Owo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoHJldCA9IG92OTI4Ml9wb3dlcl9vbihvdjkyODItPmRl
+dik7Cgo=
