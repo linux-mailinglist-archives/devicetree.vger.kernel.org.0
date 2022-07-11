@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 664C6570516
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB6B57052C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbiGKOJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 10:09:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32968 "EHLO
+        id S230054AbiGKOPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 10:15:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229654AbiGKOJI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:09:08 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 252B261B23;
-        Mon, 11 Jul 2022 07:09:07 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id r14so7201575wrg.1;
-        Mon, 11 Jul 2022 07:09:07 -0700 (PDT)
+        with ESMTP id S229536AbiGKOPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:15:35 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86B272E9C0;
+        Mon, 11 Jul 2022 07:15:34 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id 136so8931751ybl.5;
+        Mon, 11 Jul 2022 07:15:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:subject:to:cc:message-id:in-reply-to:references
-         :mime-version;
-        bh=x2FwgOdiviKc21na7ZeEL1STsNQh/sVL41XUf3gedcc=;
-        b=TPlU+M9oGx1mze+WdbVSqIDnwy5LAOrTd/lbEjl69f1UAbD0Lw9Z9veZYduWYlkmyM
-         dUfs2b6mm4OIW0Mzlu38PN0B7+P9jZMT9mtaUZoZn5q4ohIQLAvEapxKDLBkAYkH3cSz
-         6yrnWDpmDWhUeEY65i0qh1b9ZHh/eYEb5GWTc/9ySXeTivvBfXOLIyG8NmCNmU2rvuKF
-         2PH4oyawrJPOxlWB3osQ7Wqld83OepdKkSDAzq2x7GdjaRqhcCT/ZcNJjswxDJMv0Cbe
-         C/G2LtXF1lk2E6k6Uoluf+CailgftMMSYJJc7bDM55NoRrsx/DWO7wkabKLi8A5I7YvU
-         4N1w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ix4O2cAc2pqsm/yRTiT9kWoGMUxUU7qp/Fyo8plM1cA=;
+        b=cTTCfqGtaFGZ+SFT/jhxoT87e5ogtYhnJEcyTzj3Z5lfSxCtnwWBgcmbsRYIUbNXnf
+         xJCYCN/yUjcCOmncmokzesQ6DIG2UQSSPGSTxNuqb70SspNU4OpX1+z/OAq74TEH6C3x
+         GYmwKK2MYiIcaYOVbTatc0FOTr4ywxMf35H7adirzJ1xISOdUgaqJNermE0R49APbNxZ
+         Dn074Zw6NrFCx4tZhYuiBnD+KDbd0oQoVUb9kaeGGUbnsZqPjJOEvjVetObWrN24Va6M
+         0EDbTOd+7cASrit+fuTiz/trnizN5kCSn9KXUuEceU++n+lspHoZTrL9A/BgIgAv7iUd
+         v9Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
-         :references:mime-version;
-        bh=x2FwgOdiviKc21na7ZeEL1STsNQh/sVL41XUf3gedcc=;
-        b=ByBv9ZT01cvTLYduqa0L2gcS8i4YLfpdld15ByasT9JAUnPvs4mAWMApUigQ3zPrNS
-         tx5lU4kuaqDnZPmgV8MZhzWKDsn+gypBYoN+QtIi1Zc5AtfkI7qRjxnWev0Bq61EgiaA
-         h8HnL6iuXl54G52A77XOHHwV3kZQHwMbT1ZHVJtj4rG49V6ANOSJCMdVMMU/5BVZAiTV
-         Yi3ICW3lXhp9Fdk+TAaGcaAont5S69om87yagy1gRH9hvKfr8k+UmxgrERGLFDxtEamE
-         utGD/5kduovma5X2vEKFrViJzalQnRkPCdXa99CfMPZCiS/Sr9JPlWX3nsAgM9v/2UvK
-         yo/Q==
-X-Gm-Message-State: AJIora9ea15J6WHhPBlW7xZxmIcHuKS2VRPBTtcIT2BGEq8CBE8GQOU/
-        4N5D2EUW/M4cw+yxYj78sxk=
-X-Google-Smtp-Source: AGRyM1u+pldjsBeBkbIyiDwokUZeBqDMLwj4/xAyoxod+DcsL0JPXreH5nrQBG0R9+uySKQdULIVLA==
-X-Received: by 2002:adf:eb48:0:b0:21d:7ffc:4919 with SMTP id u8-20020adfeb48000000b0021d7ffc4919mr17595386wrn.537.1657548545552;
-        Mon, 11 Jul 2022 07:09:05 -0700 (PDT)
-Received: from [192.168.4.247] (89-39-107-113.hosted-by-worldstream.net. [89.39.107.113])
-        by smtp.gmail.com with ESMTPSA id h15-20020a1ccc0f000000b0039c54bb28f2sm7085334wmb.36.2022.07.11.07.09.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 07:09:05 -0700 (PDT)
-Date:   Mon, 11 Jul 2022 18:08:53 +0400
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH 3/3] media: i2c: ak7375: Add regulator management
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ix4O2cAc2pqsm/yRTiT9kWoGMUxUU7qp/Fyo8plM1cA=;
+        b=PKMM2d+kLHa8Z7BYy27KXrUiI5c1QkLmbNKPd91rZBsKtkSScfgbF9A4dtQx5u7Xjm
+         4zZMJqyQ8sRcqId3GyE5JvDtbX8NgDdGate7ZYMegTYVi8uOLUkWk1YAfWwpmK6/ylCp
+         lDPPI4g2uyaoReMKglvLpGn/47EQbfEx+AAdGKheZaXjLJ00O0nXIhwkrEEw7vP9cl2k
+         1X9NeFOwCgfI8Y5N0o7X0xJHf6IAWOv6vum2efR+m2e19KKLU/WDs5rtAXgQ7Mfy8szt
+         tXSqdTmgiloR0mylcdzZCPM0ZQaMURBys1/0cCAL3FE5b843nOYmGUXElfSoQUhaqqV4
+         oNYw==
+X-Gm-Message-State: AJIora9gFR0Amd9mtfkuaLE9DTIBlNyIabvUV30rjEfCjOng8+FFEGFC
+        ni+fOMRs2hJbZKQmzqkn7H7UcmA8K9ctu/xF3fk=
+X-Google-Smtp-Source: AGRyM1tf30frz7OHaxUhejV0ZdDHvoYvg/3SFqbAGPPfSS3AwqAvh6ZWqpx45V0zmE6drkU04Pn22xREojWPsQI7t/M=
+X-Received: by 2002:a05:6902:10c9:b0:668:e27c:8f7 with SMTP id
+ w9-20020a05690210c900b00668e27c08f7mr17313697ybu.128.1657548933686; Mon, 11
+ Jul 2022 07:15:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220711134312.234268-1-tmaimon77@gmail.com> <20220711134312.234268-3-tmaimon77@gmail.com>
+In-Reply-To: <20220711134312.234268-3-tmaimon77@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 11 Jul 2022 16:14:57 +0200
+Message-ID: <CAHp75VdXsiH9ityqopznRpjxvwOboS_Zbi9iO6nRZ03TuKxTtg@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: npcm: Add NPCM8XX support
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tianshu Qiu <tian.shu.qiu@intel.com>,
-        Bingbu Cao <bingbu.cao@intel.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Message-Id: <TM0VER.DLTH01AKOV622@gmail.com>
-In-Reply-To: <20220711133423.w6yzbcfqwv2muu34@uno.localdomain>
-References: <20220711042838.213351-1-y.oudjana@protonmail.com>
-        <20220711042838.213351-4-y.oudjana@protonmail.com>
-        <20220711133423.w6yzbcfqwv2muu34@uno.localdomain>
-X-Mailer: geary/40.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -77,181 +78,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 11, 2022 at 3:59 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+>
+> Adding ADC NPCM8XX support to NPCM ADC driver.
+> ADC NPCM8XX uses a different resolution and voltage reference.
+>
+> As part of adding NPCM8XX support:
+> - Add NPCM8XX specific compatible string.
+> - Add data to handle architecture-specific ADC parameters.
 
-On Mon, Jul 11 2022 at 15:34:23 +0200, Jacopo Mondi <jacopo@jmondi.org> 
-wrote:
-> Hello Yassine
-> 
-> On Mon, Jul 11, 2022 at 08:28:39AM +0400, Yassine Oudjana wrote:
->>  From: Yassine Oudjana <y.oudjana@protonmail.com>
->> 
->>  Make the driver get needed regulators on probe and enable/disable
->>  them on runtime PM callbacks.
->> 
->>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>  ---
->>   drivers/media/i2c/ak7375.c | 39 
->> ++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 39 insertions(+)
->> 
->>  diff --git a/drivers/media/i2c/ak7375.c b/drivers/media/i2c/ak7375.c
->>  index 40b1a4aa846c..59d5cb00e3ba 100644
->>  --- a/drivers/media/i2c/ak7375.c
->>  +++ b/drivers/media/i2c/ak7375.c
->>  @@ -6,6 +6,7 @@
->>   #include <linux/i2c.h>
->>   #include <linux/module.h>
->>   #include <linux/pm_runtime.h>
->>  +#include <linux/regulator/consumer.h>
->>   #include <media/v4l2-ctrls.h>
->>   #include <media/v4l2-device.h>
->> 
->>  @@ -23,17 +24,32 @@
->>    */
->>   #define AK7375_CTRL_STEPS	64
->>   #define AK7375_CTRL_DELAY_US	1000
->>  +/*
->>  + * The vcm takes around 3 ms to power on and start taking
->>  + * I2C messages. This value was found experimentally due to
->>  + * lack of documentation. 2 ms is added as a safety margin.
->>  + */
->>  +#define AK7375_POWER_DELAY_US	5000
->> 
->>   #define AK7375_REG_POSITION	0x0
->>   #define AK7375_REG_CONT		0x2
->>   #define AK7375_MODE_ACTIVE	0x0
->>   #define AK7375_MODE_STANDBY	0x40
->> 
->>  +static const char * const ak7375_supply_names[] = {
->>  +	"vdd",
->>  +	"vio",
->>  +};
->>  +
->>  +#define AK7375_NUM_SUPPLIES ARRAY_SIZE(ak7375_supply_names)
->>  +
->>   /* ak7375 device structure */
->>   struct ak7375_device {
->>   	struct v4l2_ctrl_handler ctrls_vcm;
->>   	struct v4l2_subdev sd;
->>   	struct v4l2_ctrl *focus;
->>  +	struct regulator_bulk_data supplies[AK7375_NUM_SUPPLIES];
->>  +
->>   	/* active or standby mode */
->>   	bool active;
->>   };
->>  @@ -132,6 +148,7 @@ static int ak7375_init_controls(struct 
->> ak7375_device *dev_vcm)
->>   static int ak7375_probe(struct i2c_client *client)
->>   {
->>   	struct ak7375_device *ak7375_dev;
->>  +	int i;
-> 
-> I would have moved this one down to maintain variable declaration
-> in the in-famous reverse-xmas-tree ordering. Up to you.
+Good patch, but one change can make it even better!
 
-I'm used to declaring variables in the order of first use,
-but I don't really mind it either way. I'll move it down.
+...
 
-> 
->>   	int ret;
->> 
->>   	ak7375_dev = devm_kzalloc(&client->dev, sizeof(*ak7375_dev),
->>  @@ -139,6 +156,17 @@ static int ak7375_probe(struct i2c_client 
->> *client)
->>   	if (!ak7375_dev)
->>   		return -ENOMEM;
->> 
->>  +	for (i = 0; i < AK7375_NUM_SUPPLIES; i++)
->>  +		ak7375_dev->supplies[i].supply = ak7375_supply_names[i];
->>  +
->>  +	ret = devm_regulator_bulk_get(&client->dev, AK7375_NUM_SUPPLIES,
->>  +				      ak7375_dev->supplies);
->>  +	if (ret) {
->>  +		dev_err(&client->dev, "Failed to get regulators: %pe",
->>  +			ERR_PTR(ret));
->>  +		return ret;
->>  +	}
->>  +
->>   	v4l2_i2c_subdev_init(&ak7375_dev->sd, client, &ak7375_ops);
->>   	ak7375_dev->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
->>   	ak7375_dev->sd.internal_ops = &ak7375_int_ops;
->>  @@ -210,6 +238,10 @@ static int __maybe_unused 
->> ak7375_vcm_suspend(struct device *dev)
->>   	if (ret)
->>   		dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
->> 
->>  +	ret = regulator_bulk_disable(AK7375_NUM_SUPPLIES, 
->> ak7375_dev->supplies);
->>  +	if (ret)
->>  +		return ret;
->>  +
->>   	ak7375_dev->active = false;
->> 
->>   	return 0;
->>  @@ -230,6 +262,13 @@ static int __maybe_unused 
->> ak7375_vcm_resume(struct device *dev)
->>   	if (ak7375_dev->active)
->>   		return 0;
->> 
->>  +	ret = regulator_bulk_enable(AK7375_NUM_SUPPLIES, 
->> ak7375_dev->supplies);
->>  +	if (ret)
->>  +		return ret;
->>  +
->>  +	/* Wait for vcm to become ready */
->>  +	usleep_range(AK7375_POWER_DELAY_US, AK7375_POWER_DELAY_US + 10);
->>  +
-> 
-> Isn't 10usec a very small delay to be given to usleep_range() for a
-> delay of at least 3msec ? Also assuming 5msec just to be safe seems a
-> little arbitrary. Adding 2 milliseconds in the wakeup path introduces
-> a non-negligible delay.
+>         struct device *dev = &pdev->dev;
+> +       const struct of_device_id *match;
+>
+>         indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*info));
+>         if (!indio_dev)
+>                 return -ENOMEM;
+>         info = iio_priv(indio_dev);
+>
+> -       mutex_init(&info->lock);
+> +       match = of_match_node(npcm_adc_match, pdev->dev.of_node);
+> +       if (!match || !match->data) {
+> +               dev_err(dev, "Failed getting npcm_adc_data\n");
+> +               return -ENODEV;
+> +       }
+>
+> +       info->data = (struct npcm_adc_info *)match->data;
 
-I must admit that I didn't give it too much thought. I just
-did it similar to the other delay used in this driver
-(AK7375_CTRL_DELAY_US). As for adding 2ms, I don't know what
-the worst case wake-up time is since I don't have a datasheet
-on hand, so I just wanted to stay safe. Also, this driver
-doesn't really recover if it fails to resume (which is what
-used to happen before adding a delay). Rounding up to 5ms
-felt good enough.
+Instead of above
 
-> 
-> It's likely a detail, but according to 
-> Documentation/timers/timers-howto.rst
-> 
->         Since usleep_range is built on top of hrtimers, the
->         wakeup will be very precise (ish), thus a simple
->         usleep function would likely introduce a large number
->         of undesired interrupts.
-> 
->         With the introduction of a range, the scheduler is
->         free to coalesce your wakeup with any other wakeup
->         that may have happened for other reasons, or at the
->         worst case, fire an interrupt for your upper bound.
-> 
->         The larger a range you supply, the greater a chance
->         that you will not trigger an interrupt; this should
->         be balanced with what is an acceptable upper bound on
->         delay / performance for your specific code path. Exact
->         tolerances here are very situation specific, thus it
->         is left to the caller to determine a reasonable range.
-> 
-> If you have a min of 3msec I would try with a range of (3000, 3500).
-> What do you think ?
+  info->data = device_get_match_data(dev);
+  if (!info->data)
+    return -ENODEV;
 
-Seems good. I haven't yet had it fail to power on within 3ms of
-turning on regulators so I guess there is no reason to worry about it.
-
->> 
->>   	ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_CONT,
->>   		AK7375_MODE_ACTIVE, 1);
->>   	if (ret) {
->>  --
->>  2.37.0
-> 
-
-Thanks for the review,
-Yassine
-
-
+-- 
+With Best Regards,
+Andy Shevchenko
