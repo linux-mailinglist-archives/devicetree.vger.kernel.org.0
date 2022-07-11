@@ -2,71 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE68556FF7F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 12:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A81A156FFA3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:02:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229679AbiGKKvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 06:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35098 "EHLO
+        id S230037AbiGKLCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:02:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbiGKKvV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 06:51:21 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A18ACB5223
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 02:57:47 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id b2so4002757plx.7
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 02:57:47 -0700 (PDT)
+        with ESMTP id S230020AbiGKLCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:02:23 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F698CC8D
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 03:07:17 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id n18so6148741lfq.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 03:07:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/dH5AuNv3/3xu+UZsaeD0vwZDTjCSjjCkh8LEd+YI1o=;
-        b=psYo5QDqDg0MR1r4CavqDmkceWxQGNJNibEvsvR5kJpqNj7b1teQL6n+IdxX3DBD6l
-         Zx9nIf22sHdpSiVjzCPW1IFm4M726NzNpzqFFdlKpIbP0aKOGZDpjv/DunvAJflSCoSr
-         YIgh0k8bCSYIVSLmTFds8IhI0cuzFqyu70I38=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=A+12PiH2LqD12N0givzbYnxs7pL3Ommy49WfEm1JYnE=;
+        b=u4u2wM60nmFPaBP48IHMmOf4RAZVAMPW1ftGly4/jaB2DyJOofAeu95LMFy+PBaWgc
+         EQgGhwi0FFG1df3Jdb2Lavml7SWfSsb5rbOZq0hJTf394fqrzbP8OOemUEFW00W833F6
+         4XMDF4XUsxnr2AKX6clAEdoAbJ2XO0oJ9ym/+FWSgmgOGV26lhQ9tahA6EKFUuDxvXp1
+         oxYfB1OOhcHPHDabMAW3zUNemaSUB3+QbGfM7OidbyoGNHu0z/H8BgYnccOPKBnv22oT
+         4Hr+KXpvhvg5jBVjQP7WWps0dgWz1P+MH/X256VDdJAy/6a+NB1HBOwPiW4aeyw3BOo6
+         KC6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/dH5AuNv3/3xu+UZsaeD0vwZDTjCSjjCkh8LEd+YI1o=;
-        b=k+37iYTNjbemYg+CLrvEYfhES/89bRgzY7e2OxTGS6X1s5MT8JCFCAKXzmt3lE0Bkc
-         JwhLeFMwlmMPcDVdon3rw3matjojfzHdD8OFDZmqeNUaaVTLL+2Ug0ojNCF3UuMBorxZ
-         dKk+TS6+U7/KkVBsTHmm/fg88D3r0Q2+ldrQfcgNZc70XkhGCWYR7BShMRUrK9UB7vxN
-         5K7XryaCBhZcYOalR9gtbUZurEkS4nYPW7SQvNeYDz3dB1baUpJUPwDPTtzIQjuBlur6
-         EkwH9IeLWCn73DOQ9uldvtuGF/JwuWaWCzPYjS593QhAxd/CpLeDX3CW5zZ0PPV96Y0D
-         Op1w==
-X-Gm-Message-State: AJIora+ZtQafcp2xiuJHFbXqptNaaOoulmFm8AJQ2VZSYbKSSnU+5F4I
-        jaFMKXAdvzvp8NS8NdfQFvgk4A==
-X-Google-Smtp-Source: AGRyM1u71WxKsvtMvsMoeCRY1aLWWAcnNsU10Js1zwhm6QaCtzgBnurLthcyu6WuASW8T98+0p74Gw==
-X-Received: by 2002:a17:902:cf03:b0:16b:a91d:aff4 with SMTP id i3-20020a170902cf0300b0016ba91daff4mr17868029plg.66.1657533466584;
-        Mon, 11 Jul 2022 02:57:46 -0700 (PDT)
-Received: from localhost.localdomain ([183.83.136.224])
-        by smtp.gmail.com with ESMTPSA id y3-20020a17090a390300b001ef81bac701sm6560814pjb.42.2022.07.11.02.57.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 02:57:45 -0700 (PDT)
-From:   Suniel Mahesh <sunil@amarulasolutions.com>
-To:     Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@free-electrons.com>,
-        Christopher Vollo <chris@renewoutreach.org>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
-        linux-amarula@amarulasolutions.com
-Subject: [PATCH v3 2/2] ARM: dts: sun8i: Add R16 Vista E board from RenewWorldOutreach
-Date:   Mon, 11 Jul 2022 15:27:21 +0530
-Message-Id: <20220711095721.1935377-3-sunil@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220711095721.1935377-1-sunil@amarulasolutions.com>
-References: <20220711095721.1935377-1-sunil@amarulasolutions.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=A+12PiH2LqD12N0givzbYnxs7pL3Ommy49WfEm1JYnE=;
+        b=aALLxVde4GCC0jpaHUBcwE52r5N/grWg2jqtjuWNg4HkQ5OynK/mbggbuxwcoTKRqY
+         O1mX6WAklXbWlIR1ZbhsyG6wMKYplHSYtq6Bv0XRVnNkAUjPR08p6D7Z/1ijuK6PoiYB
+         yFK+CsaE7QIjiUmBIMPddDbZEy2jlI5uRyEMHatHKjjv3RvpijcHUyYEZJmL3zu7M6HN
+         ypMXeu/egfJR67g+BHNtAae0uonUBzgfUniZuv8dhR/E93bCRaEudlUJSfaSsZDiFMrn
+         KKkamfvzFiF8HowjhA+ljEdn443LhosM4+WbU1ubG2Cx8ku9aVPqaiQ8oz2ogpOZEaVK
+         Rr6Q==
+X-Gm-Message-State: AJIora/ZBjUITK01b8HZr9WV0V7tZgpFQMfRwTQEP4pr1DY0L3FbAgBs
+        5JcdAjThe2yqy1thDB94XsUjqA==
+X-Google-Smtp-Source: AGRyM1tk4TMiXWJl6aRFHyOzmk4vE4/OL/FVkCrUJAh1h7Q05lZHaEHkJKgxW1odUY9+DupbYyWUWQ==
+X-Received: by 2002:a05:6512:b0d:b0:481:5cb4:cf1e with SMTP id w13-20020a0565120b0d00b004815cb4cf1emr10827054lfu.442.1657534036167;
+        Mon, 11 Jul 2022 03:07:16 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id b9-20020a056512070900b00489b1876923sm1446922lfs.298.2022.07.11.03.07.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jul 2022 03:07:15 -0700 (PDT)
+Message-ID: <77b0daf0-1467-b663-05e4-13130826c32e@linaro.org>
+Date:   Mon, 11 Jul 2022 13:07:15 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v5 01/10] drm/msm/disp/dpu1: clear dpu_assign_crtc and get
+ crtc from connector state instead of dpu_enc
+Content-Language: en-GB
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
+        quic_vproddut@quicinc.com, bjorn.andersson@linaro.org,
+        quic_aravindh@quicinc.com, quic_abhinavk@quicinc.com,
+        quic_sbillaka@quicinc.com
+References: <1657532880-12897-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1657532880-12897-2-git-send-email-quic_vpolimer@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1657532880-12897-2-git-send-email-quic_vpolimer@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,422 +81,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The R16-Vista-E board from RenewWorldOutreach based on allwinner
-R16(A33).
+On 11/07/2022 12:47, Vinod Polimera wrote:
+> Update crtc retrieval from dpu_enc to dpu_enc connector state,
+> since new links get set as part of the dpu enc virt mode set.
+> The dpu_enc->crtc cache is no more needed, hence cleaning it as
+> part of this change.
+> 
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    |  4 ----
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 29 ++++++++++++++---------------
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  8 --------
+>   3 files changed, 14 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> index b56f777..f91e3d1 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> @@ -972,7 +972,6 @@ static void dpu_crtc_disable(struct drm_crtc *crtc,
+>   		 */
+>   		if (dpu_encoder_get_intf_mode(encoder) == INTF_MODE_VIDEO)
+>   			release_bandwidth = true;
+> -		dpu_encoder_assign_crtc(encoder, NULL);
+>   	}
+>   
+>   	/* wait for frame_event_done completion */
+> @@ -1042,9 +1041,6 @@ static void dpu_crtc_enable(struct drm_crtc *crtc,
+>   	trace_dpu_crtc_enable(DRMID(crtc), true, dpu_crtc);
+>   	dpu_crtc->enabled = true;
+>   
+> -	drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask)
+> -		dpu_encoder_assign_crtc(encoder, crtc);
+> -
+>   	/* Enable/restore vblank irq handling */
+>   	drm_crtc_vblank_on(crtc);
+>   }
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> index 52516eb..8fb3e15 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> @@ -1245,6 +1245,7 @@ static void dpu_encoder_vblank_callback(struct drm_encoder *drm_enc,
+>   		struct dpu_encoder_phys *phy_enc)
+>   {
+>   	struct dpu_encoder_virt *dpu_enc = NULL;
+> +	struct drm_crtc *crtc;
+>   	unsigned long lock_flags;
+>   
+>   	if (!drm_enc || !phy_enc)
+> @@ -1253,9 +1254,14 @@ static void dpu_encoder_vblank_callback(struct drm_encoder *drm_enc,
+>   	DPU_ATRACE_BEGIN("encoder_vblank_callback");
+>   	dpu_enc = to_dpu_encoder_virt(drm_enc);
+>   
+> +	if (!dpu_enc->connector || !dpu_enc->connector->state)
+> +		return;
+> +
+> +	crtc = dpu_enc->connector->state->crtc;
+> +
+>   	spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
+> -	if (dpu_enc->crtc)
+> -		dpu_crtc_vblank_callback(dpu_enc->crtc);
+> +	if (crtc)
+> +		dpu_crtc_vblank_callback(crtc);
+>   	spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
+>   
+>   	atomic_inc(&phy_enc->vsync_cnt);
+> @@ -1280,29 +1286,22 @@ static void dpu_encoder_underrun_callback(struct drm_encoder *drm_enc,
+>   	DPU_ATRACE_END("encoder_underrun_callback");
+>   }
+>   
+> -void dpu_encoder_assign_crtc(struct drm_encoder *drm_enc, struct drm_crtc *crtc)
+> -{
+> -	struct dpu_encoder_virt *dpu_enc = to_dpu_encoder_virt(drm_enc);
+> -	unsigned long lock_flags;
+> -
+> -	spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
+> -	/* crtc should always be cleared before re-assigning */
+> -	WARN_ON(crtc && dpu_enc->crtc);
+> -	dpu_enc->crtc = crtc;
+> -	spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
+> -}
 
-General features:
-- 1GB RAM
-- microSD slot
-- Realtek Wifi
-- 1 x USB 2.0
-- HDMI IN
-- HDMI OUT
-- Audio out
-- MIPI DSI
-- TI DLPC3433
+Please also remove the dpu_encoder_virt::crtc pointer.
 
-It has also connectors to connect an external mini keypad.
+> -
+>   void dpu_encoder_toggle_vblank_for_crtc(struct drm_encoder *drm_enc,
+>   					struct drm_crtc *crtc, bool enable)
+>   {
+>   	struct dpu_encoder_virt *dpu_enc = to_dpu_encoder_virt(drm_enc);
+> +	struct drm_crtc *new_crtc;
+>   	unsigned long lock_flags;
+>   	int i;
+>   
+>   	trace_dpu_enc_vblank_cb(DRMID(drm_enc), enable);
+>   
+> +	if (!dpu_enc->connector || !dpu_enc->connector->state)
+> +		return;
+> +
+> +	new_crtc = dpu_enc->connector->state->crtc;
+>   	spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
+> -	if (dpu_enc->crtc != crtc) {
+> +	if (!new_crtc || crtc != crtc) {
 
-Signed-off-by: Suniel Mahesh <sunil@amarulasolutions.com>
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-Signed-off-by: Christopher Vollo <chris@renewoutreach.org>
- ---
-    Changes for v3:
-    - As suggested by Samuel Holland:
-    - changed binding to gpio-fan
-    - changed widgets to DACL and DACR to describe audio routing
-    - fixed indentation
-    - primary author of the commit should be the first signer
+Second condition is always false.
 
-    Changes for v2:
-    - Add missing compatible string
-    - insert missing signatures of contributors
----
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/sun8i-r16-renew-vista-e.dts | 362 ++++++++++++++++++
- 2 files changed, 363 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-r16-renew-vista-e.dts
+>   		spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
+>   		return;
+>   	}
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+> index 781d41c..edba815 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+> @@ -39,14 +39,6 @@ struct msm_display_info {
+>   };
+>   
+>   /**
+> - * dpu_encoder_assign_crtc - Link the encoder to the crtc it's assigned to
+> - * @encoder:	encoder pointer
+> - * @crtc:	crtc pointer
+> - */
+> -void dpu_encoder_assign_crtc(struct drm_encoder *encoder,
+> -			     struct drm_crtc *crtc);
+> -
+> -/**
+>    * dpu_encoder_toggle_vblank_for_crtc - Toggles vblank interrupts on or off if
+>    *	the encoder is assigned to the given crtc
+>    * @encoder:	encoder pointer
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 184899808ee7..b5966c0742e1 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1353,6 +1353,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-r16-nintendo-nes-classic.dtb \
- 	sun8i-r16-nintendo-super-nes-classic.dtb \
- 	sun8i-r16-parrot.dtb \
-+	sun8i-r16-renew-vista-e.dtb \
- 	sun8i-r40-bananapi-m2-ultra.dtb \
- 	sun8i-r40-oka40i-c.dtb \
- 	sun8i-s3-elimo-initium.dtb \
-diff --git a/arch/arm/boot/dts/sun8i-r16-renew-vista-e.dts b/arch/arm/boot/dts/sun8i-r16-renew-vista-e.dts
-new file mode 100644
-index 000000000000..ff72914eb110
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-r16-renew-vista-e.dts
-@@ -0,0 +1,362 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2022 RenewWorldOutreach
-+ * Copyright (C) 2022 Amarula Solutions(India)
-+ */
-+
-+/dts-v1/;
-+#include "sun8i-a33.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "RenewWorldOutreach R16-Vista-E";
-+	compatible = "renewworldoutreach,r16-vista-e", "allwinner,sun8i-r16", "allwinner,sun8i-a33";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		poll-interval = <100>;
-+
-+		ok {
-+			label = "ok";
-+			linux,code = <KEY_ENTER>;
-+			gpios = <&pio 4 0 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		left {
-+			label = "left";
-+			linux,code = <KEY_LEFT>;
-+			gpios = <&pio 4 1 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		right {
-+			label = "right";
-+			linux,code = <KEY_RIGHT>;
-+			gpios = <&pio 4 2 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		up {
-+			label = "up";
-+			linux,code = <KEY_UP>;
-+			gpios = <&pio 4 3 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		down {
-+			label = "down";
-+			linux,code = <KEY_DOWN>;
-+			gpios = <&pio 4 4 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		back {
-+			label = "back";
-+			linux,code = <KEY_BACK>;
-+			gpios = <&pio 4 5 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		power {
-+			label = "power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&pio 4 6 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		vol-down {
-+			label = "vol-down";
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			gpios = <&pio 7 3 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		vol-up {
-+			label = "vol-up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&pio 7 9 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		battery-led0 {
-+			label = "renew-e:battery-led0";
-+			gpios = <&r_pio 0 2 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		battery-led1 {
-+			label = "renew-e:battery-led1";
-+			gpios = <&r_pio 0 3 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		battery-led2 {
-+			label = "renew-e:battery-led2";
-+			gpios = <&r_pio 0 4 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		battery-led3 {
-+			label = "renew-e:battery-led3";
-+			gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		battery-led4 {
-+			label = "renew-e:battery-led4";
-+			gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		volume-led0 {
-+			label = "renew-e:volume-led0";
-+			gpios = <&pio 7 2 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		volume-led1 {
-+			label = "renew-e:volume-led1";
-+			gpios = <&pio 6 13 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		volume-led2 {
-+			label = "renew-e:volume-led2";
-+			gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		volume-led3 {
-+			label = "renew-e:volume-led3";
-+			gpios = <&pio 6 11 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		volume-led4 {
-+			label = "renew-e:volume-led4";
-+			gpios = <&pio 6 10 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-pad-intz {
-+			label = "renew-e:led-pad-intz";
-+			gpios = <&pio 4 16 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	gpio-fan {
-+		compatible = "gpio-fan";
-+		gpios = <&pio 4 14 GPIO_ACTIVE_HIGH>; /* FAN_ON/OFF: PE14 */
-+		gpio-fan,speed-map = <0 0 6000 1>;
-+	};
-+
-+	reg_vcc5v0: vcc5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+};
-+
-+&codec {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc3>;
-+};
-+
-+&cpu0_opp_table {
-+	opp-1104000000 {
-+		opp-hz = /bits/ 64 <1104000000>;
-+		opp-microvolt = <1320000>;
-+		clock-latency-ns = <244144>; /* 8 32k periods */
-+	};
-+
-+	opp-1200000000 {
-+		opp-hz = /bits/ 64 <1200000000>;
-+		opp-microvolt = <1320000>;
-+		clock-latency-ns = <244144>; /* 8 32k periods */
-+	};
-+};
-+
-+&dai {
-+	status = "okay";
-+};
-+
-+&de {
-+	status = "okay";
-+};
-+
-+&dphy {
-+	status = "okay";
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_dcdc1>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pg_pins>;
-+	vmmc-supply = <&reg_dcdc1>;
-+	bus-width = <4>;
-+	broken-cd;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&r_rsb {
-+	status = "okay";
-+
-+	axp22x: pmic@3a3 {
-+		compatible = "x-powers,axp223";
-+		reg = <0x3a3>;
-+		interrupt-parent = <&r_intc>;
-+		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
-+		eldoin-supply = <&reg_dcdc1>;
-+		x-powers,drive-vbus-en;
-+	};
-+};
-+
-+#include "axp223.dtsi"
-+
-+&ac_power_supply {
-+	status = "okay";
-+};
-+
-+&reg_aldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-name = "vcc-io";
-+};
-+
-+&reg_aldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <2500000>;
-+	regulator-max-microvolt = <2500000>;
-+	regulator-name = "vdd-dll";
-+};
-+
-+&reg_aldo3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-name = "avcc";
-+};
-+
-+&reg_dc1sw {
-+	regulator-name = "vcc-lcd";
-+};
-+
-+&reg_dc5ldo {
-+	regulator-always-on;
-+	regulator-min-microvolt = <900000>;
-+	regulator-max-microvolt = <1400000>;
-+	regulator-name = "vdd-cpus";
-+};
-+
-+&reg_dcdc1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-name = "vcc-3v0";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <900000>;
-+	regulator-max-microvolt = <1400000>;
-+	regulator-name = "vdd-sys";
-+};
-+
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <900000>;
-+	regulator-max-microvolt = <1400000>;
-+	regulator-name = "vdd-cpu";
-+};
-+
-+&reg_dcdc5 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1500000>;
-+	regulator-max-microvolt = <1500000>;
-+	regulator-name = "vcc-dram";
-+};
-+
-+&reg_dldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-3v3-main1";
-+};
-+
-+&reg_dldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-3v3-main2";
-+};
-+
-+&reg_dldo3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-3v3-main3";
-+};
-+
-+&reg_dldo4 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-3v3-main4";
-+};
-+
-+&reg_eldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1200000>;
-+	regulator-max-microvolt = <1200000>;
-+	regulator-name = "vcc-1v2-hdmi";
-+};
-+
-+&reg_drivevbus {
-+	regulator-name = "usb0-vbus";
-+	status = "okay";
-+};
-+
-+&reg_rtc_ldo {
-+	regulator-name = "vcc-rtc";
-+};
-+
-+&sound {
-+	status = "okay";
-+	simple-audio-card,routing =
-+		"Left DAC", "DACL",
-+		"Right DAC", "DACR";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	/* VBUS is always on because it is wired to the power supply */
-+	usb0_vbus-supply = <&reg_vcc5v0>;
-+	status = "okay";
-+};
+
 -- 
-2.25.1
-
+With best wishes
+Dmitry
