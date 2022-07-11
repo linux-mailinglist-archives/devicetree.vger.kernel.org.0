@@ -2,125 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A93257012C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19FA157013A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:53:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229751AbiGKLvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 07:51:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43034 "EHLO
+        id S230452AbiGKLxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:53:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbiGKLvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:51:06 -0400
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6107F11827;
-        Mon, 11 Jul 2022 04:51:01 -0700 (PDT)
-Received: by mail-qk1-f178.google.com with SMTP id g1so3576210qkl.9;
-        Mon, 11 Jul 2022 04:51:01 -0700 (PDT)
+        with ESMTP id S230335AbiGKLwy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:52:54 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C39826AEF
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:52:52 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id 73so4504433pgb.10
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:52:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IT6bnfMyBorw+49wZozfoU6MUehJRZf9hememagooxg=;
+        b=m9fKb8SOEPmRpvJUEaFB8Bp6mooUCxzh1kDecueyx/hGEXEMe4FQgGHJ/av4sCGRWk
+         hVGwapeMF3Ayxf1liMcuSiOOSf7VrCAnisII7KXiRdgOLbMW5KfWR6+uGqa7PqY0NLbt
+         PE3Obqve1rOR5CxZaQpaWYqZlaUK9FNO7D6+RCEIEEovHlKga84TgEF/4fE3/IYLYwwo
+         TK6Lngw/ujtxVxdALIwTWbCSbgRC5O7L1LzK/MQa9a0l+M0gO+RaD6MT7ji0axnNSoqY
+         tD5CZcHifnRbsKtWl/J2HVsVt85JTgQDtwXswXcVUYq6KfoB0ykdnCvJ0LykDmO4it7f
+         NH0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xTIxfzVYvQSQBWGEAyJsa64Sv2ORsLUEzdvEludKZ5E=;
-        b=cprsFO6vDQfY52CiDfK/TqMzlVFGbLMjQHi7YjqlLph3PoWIMHzI2PXHsKs/Wpxtn/
-         FXqjuG3M495bKLxYvfrqlI4suzaftrNZl4q2i8jNOw/JFE2PV2UMG/rvZ/y/zRUlN/Rw
-         Qmg2gnrctVdWAOSHh4G6rb6MS9+2qcSLOvnAF87vKMkR7iO9w/Jd9kUPRxg4c40jeVUg
-         jr66/ErdjVytiwJ6UzBPLHP4ebHksZJXMZS/ltfGF2Pz/ld1Og9nkdpdYY3vuOiy1uMH
-         s2PKlH05Odw1SlSDwkvvshFfod6VY46WcRCzbF5TVBME66PeLM1jj7qvkewmUl0ia0Ei
-         ps+w==
-X-Gm-Message-State: AJIora/9k7g1B4vUKuIWvG1z/s2EiuIKsHyT78iKu2egAWso29na05+j
-        KmI1eU4bUsklDoPjBQ9fCfGk/vaQM4G40w==
-X-Google-Smtp-Source: AGRyM1taGynhTBsH6+IpPqZOvYlFS2TuYzQRerkpADhMuw+62U55RHy4NnSYgafo5eiCtVoUumCl1w==
-X-Received: by 2002:ae9:e402:0:b0:6a7:86a3:752e with SMTP id q2-20020ae9e402000000b006a786a3752emr10940210qkc.300.1657540260104;
-        Mon, 11 Jul 2022 04:51:00 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id k18-20020a05620a415200b006b58fce19dasm1363678qko.20.2022.07.11.04.50.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 04:50:59 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id l11so8237896ybu.13;
-        Mon, 11 Jul 2022 04:50:59 -0700 (PDT)
-X-Received: by 2002:a25:2b48:0:b0:668:3b7d:326c with SMTP id
- r69-20020a252b48000000b006683b7d326cmr16333764ybr.380.1657540258983; Mon, 11
- Jul 2022 04:50:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220707182314.66610-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220707182314.66610-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <CACRpkdbhDJq9bJKHM=1pq5+HrVasrT_WuqtAxGWFfnAXMWSr8g@mail.gmail.com>
-In-Reply-To: <CACRpkdbhDJq9bJKHM=1pq5+HrVasrT_WuqtAxGWFfnAXMWSr8g@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 11 Jul 2022 13:50:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXqK7Snk6=+VNhq59SLgv-zRCgwrkABMtC5JOpX02fuVg@mail.gmail.com>
-Message-ID: <CAMuHMdXqK7Snk6=+VNhq59SLgv-zRCgwrkABMtC5JOpX02fuVg@mail.gmail.com>
-Subject: Re: [PATCH v8 5/6] dt-bindings: pinctrl: renesas,rzg2l-pinctrl:
- Document the properties to handle GPIO IRQ
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Prabhakar Lad <prabhakar.csengg@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IT6bnfMyBorw+49wZozfoU6MUehJRZf9hememagooxg=;
+        b=KRzErDOYtimRWxzO5nvcJb5SNwt/1oMmPyVxSMCqLQ3jQTQJQfoF1MUnQi45LbZciN
+         vLQ9XSo65r92jnB8ThZl1bul8Aa9JzvIFLRgnOgrEhZE5j2L51BXhaGUvKIPU2B5Wdjz
+         yPWa+DbRWKgjVyPRh0cRIJFnCkgVxrrA9b+sJPpo9iQdo1mo6EEfRpBKQkAKhwUTfuba
+         U9MuWR5jDmCVoBZiMz7brRr3eznLLbAU7PbyHyvAZ78nMubRqDON0x+8xt9bbUJhxIRe
+         dIX+3GanAXmYvqUT3ikhnALVXu/fCwvxXH5ZGxI0IVJUzJj9TFuZmBSqNPe2/6tyrkw/
+         jN1w==
+X-Gm-Message-State: AJIora/i/dPShLAFHxB2DtSDXRySTPMFwkubg2O7BV569g4Em8RNnjNn
+        e+ce/nWfk60+okbpmY3PUh+s1Q==
+X-Google-Smtp-Source: AGRyM1v1eihj78aPHcT9tIZ0bs0xq5JvJcgQfTJHIDOgqGyxrt23hFKUSIltMelH/gN9b7lieOudTQ==
+X-Received: by 2002:aa7:954a:0:b0:52a:bd44:d15a with SMTP id w10-20020aa7954a000000b0052abd44d15amr10936464pfq.35.1657540372026;
+        Mon, 11 Jul 2022 04:52:52 -0700 (PDT)
+Received: from leo-build-box.lan (n058152077182.netvigator.com. [58.152.77.182])
+        by smtp.gmail.com with ESMTPSA id h14-20020a17090a648e00b001eaec8cea55sm4586502pjj.57.2022.07.11.04.52.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jul 2022 04:52:51 -0700 (PDT)
+From:   Leo Yan <leo.yan@linaro.org>
+To:     Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Leo Yan <leo.yan@linaro.org>
+Subject: [PATCH v5 0/5] interconnect: qcom: icc-rpm: Support bucket
+Date:   Mon, 11 Jul 2022 19:52:35 +0800
+Message-Id: <20220711115240.806236-1-leo.yan@linaro.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+This patch set is to support bucket in icc-rpm driver, so it implements
+the similar mechanism in the icc-rpmh driver.
 
-On Mon, Jul 11, 2022 at 1:36 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Thu, Jul 7, 2022 at 8:25 PM <prabhakar.csengg@gmail.com> wrote:
->
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Document the required properties to handle GPIO IRQ.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
->
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
->
-> Is this already queued in Marc's branch targeted for next
-> so I don't need to do anything with the pinctrl patches?
+We can use interconnect path tag to indicate the bandwidth voting is for
+which buckets, and there have three kinds of buckets: AWC, WAKE and
+SLEEP, finally the wake and sleep bucket values are used to set the
+corresponding clock (active and sleep clocks).  So far, we keep the AWC
+bucket but doesn't really use it.
 
-I don't know; I was wondering the same thing ;-)
+Patches 01, 02, 03 enable interconnect path tag and update the DT
+binding document; patches 04 and 05 support bucket and use bucket values
+to set the bandwidth and clock rates.
 
-The gitweb link in the bot email does not work:
+Note, this patch set is dependent on an out of tree patch "interconnect:
+icc-rpm: Set destination bandwidth as well as source bandwidth" [1].
+With the dependent patch, this patch set can be cleanly applied on the
+Linux kernel master branch with the latest commit 32346491ddf2
+("Linux 5.19-rc6").
 
-    Commit-ID:     35c37efd12733d8ddbdc11ab9c8dbcee472a487f
-    Gitweb:
-https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms/35c37efd12733d8ddbdc11ab9c8dbcee472a487f
+[1] https://lore.kernel.org/linux-pm/20220707093823.1691870-1-bryan.odonoghue@linaro.org/T/#r304f7b103c806e1570d555a0f5aaf83ae3990ac0
 
-The actual commit seems to exist in that repo, but using the web
-interface, it is difficult to find out to which branch it belongs.
 
-It is also not part of next-20220711.
+Changes from v4:
+- Added Krzysztof's Acked tag for DT binding document patch;
+- Fixed the unalignment between function qcom_icc_pre_bw_aggregate() and
+  its comment (Georgi);
+- Simplified qcom_icc_bus_aggregate() with removing unused parameter
+  'max_agg_peak';
+- Removed unsed local variable 'max_peak_bw' in qcom_icc_set() (Georgi).
 
-Anyway, it's too late for me to take the pinctrl parts for v5.20 (saw
-no ack from Marc before the bot emails), so if it finds a different
-path upstream, I'm happy ;-)
+Changes from v3:
+- Removed $ref and redundant sentence in DT binding document for
+  '#interconnect-cells' (Krzysztof Kozlowski).
 
-Gr{oetje,eeting}s,
+Changes from v2:
+- Fixed for DT checker error for command ''make DT_CHECKER_FLAGS=-m
+  dt_binding_check' (Rob Herring).
 
-                        Geert
+Changes from v1:
+- Added description for property "#interconnect-cells" (Rob Herring);
+- Added Dimtry's reviewed tags for patches 02 and 03 (Dmitry Baryshkov);
+- Rebased on the latest mainline kernel and resolved conflict.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Leo Yan (5):
+  dt-bindings: interconnect: Update property for icc-rpm path tag
+  interconnect: qcom: Move qcom_icc_xlate_extended() to a common file
+  interconnect: qcom: icc-rpm: Change to use qcom_icc_xlate_extended()
+  interconnect: qcom: icc-rpm: Support multiple buckets
+  interconnect: qcom: icc-rpm: Set bandwidth and clock for bucket values
+
+ .../bindings/interconnect/qcom,rpm.yaml       |   6 +-
+ drivers/interconnect/qcom/Makefile            |   3 +
+ drivers/interconnect/qcom/icc-common.c        |  34 +++++
+ drivers/interconnect/qcom/icc-common.h        |  13 ++
+ drivers/interconnect/qcom/icc-rpm.c           | 129 +++++++++++++++---
+ drivers/interconnect/qcom/icc-rpm.h           |   6 +
+ drivers/interconnect/qcom/icc-rpmh.c          |  26 +---
+ drivers/interconnect/qcom/icc-rpmh.h          |   1 -
+ drivers/interconnect/qcom/sm8450.c            |   1 +
+ 9 files changed, 176 insertions(+), 43 deletions(-)
+ create mode 100644 drivers/interconnect/qcom/icc-common.c
+ create mode 100644 drivers/interconnect/qcom/icc-common.h
+
+-- 
+2.25.1
+
