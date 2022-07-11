@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1F2757000C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E44570030
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbiGKLT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 07:19:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33080 "EHLO
+        id S231211AbiGKLWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230296AbiGKLSl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:18:41 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CCEB041D05
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 03:41:43 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DC13616A3;
-        Mon, 11 Jul 2022 03:41:43 -0700 (PDT)
-Received: from [10.57.85.194] (unknown [10.57.85.194])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 076BA3F792;
-        Mon, 11 Jul 2022 03:41:40 -0700 (PDT)
-Message-ID: <15846ffa-f68a-2f88-55a3-40a633132c28@arm.com>
-Date:   Mon, 11 Jul 2022 11:41:35 +0100
+        with ESMTP id S231156AbiGKLWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:22:13 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77047292;
+        Mon, 11 Jul 2022 03:47:26 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id bi22-20020a05600c3d9600b003a04de22ab6so2781920wmb.1;
+        Mon, 11 Jul 2022 03:47:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+HVJW7F1K6wwajjNiFtroQgNImhSLi34xU+wa1Cgw+Q=;
+        b=Y9GEdopa3o8OdYGhlwPne4NRX97Pjgrb17XEryWJrkZrDb+1vrRA+lsV6YRdNPInRI
+         LSr/l2WKjp/vWEEB5MHPVMxOGRaAxMFA29T76iZYTJPftiVHQOcl5NrRIlwwRAmJCfUu
+         BclJZ9SuLD09Mv6Jv/EBFUOcZ7RJIGYyIHqN2s7uHvdA5V4pok1gCLEBSCe6VGo1tVgW
+         w3HNyBIHnFYiYtgLEyykkpmKsTYpSELhu/fegA2mROBoKjqFxL4+r6x72Kt1cJNJQScz
+         X08ZdIqxzob3KG9kGrGnEbUcacmbesYycFHgMsJQDY8Cc8jCSSEz5zTRHtyeDDgyOl50
+         qnQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+HVJW7F1K6wwajjNiFtroQgNImhSLi34xU+wa1Cgw+Q=;
+        b=Zeds8xhabg2RI/V7SpSSlRaOk0xUoQ1gHQbEdELFSvvdVLXeFUtJmR3ofZwbm/oOgx
+         s/dCqu6geCKsg7jOqDwsOuQuBb7iviyDzgsorgiN+AMYTx30xTKtjOU8WCX6BmugliYL
+         5rPiGQT10mnm3VZvlkxCTf+nAC0187d0bAdr6An6OvhJjes9wllFrGaQWuMTqoMj7ixS
+         ZHOWxk+EOvRW0+YYq/P3b/0EI2P06m15vYAijL9CJcXuVpTHXC6h3nZ8aX7VnT0vuFab
+         G441tXQqsWthgT5dUv2ljkVvEFBNz4Ogdwf5V3T5bcKIstmDDU0+km9P5p2tI462tfHh
+         jmZg==
+X-Gm-Message-State: AJIora/YFkU402Wqhtrc4x4L6iKjk9hiXM4UwxY9FfPnh+vY30hX2GA9
+        ACNFFqkKrKg5qal8Xdniyz8=
+X-Google-Smtp-Source: AGRyM1sLFtigAlMz6p6003Ctun0EzJ4efrh/28U35kZN9NLZUjilcNWAJOQpLy2KnVXLIhPc+xW1pQ==
+X-Received: by 2002:a05:600c:3594:b0:3a2:b918:fc99 with SMTP id p20-20020a05600c359400b003a2b918fc99mr15305330wmq.46.1657536444932;
+        Mon, 11 Jul 2022 03:47:24 -0700 (PDT)
+Received: from fedora.robimarko.hr (cpezg-94-253-144-242-cbl.xnet.hr. [94.253.144.242])
+        by smtp.googlemail.com with ESMTPSA id n3-20020a7bcbc3000000b003a05621dc53sm6338716wmi.29.2022.07.11.03.47.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jul 2022 03:47:24 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     bjorn.andersson@linaro.org, agross@kernel.org,
+        konrad.dybcio@somainline.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sivaprak@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/6] clk: qcom: clk-rcg2: add rcg2 mux ops
+Date:   Mon, 11 Jul 2022 12:47:14 +0200
+Message-Id: <20220711104719.40939-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
- on rock-3a
-Content-Language: en-GB
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        kernel test robot <lkp@intel.com>
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
- <20220422072841.2206452-21-s.hauer@pengutronix.de>
- <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
- <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
- <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com>
- <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
- <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com>
- <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
- <9567EECF-A154-4FE1-A03C-5ED080409030@gmail.com>
- <190C3FD3-0185-4A99-B10E-A5790047D993@gmail.com>
- <CAMdYzYqGGfWDr11iyyfzigxsL7_N2szuag9P6TUZGuzGF4oB+A@mail.gmail.com>
- <AF6176F5-995E-473B-B494-844ECC26BC03@gmail.com>
- <CAMdYzYocZw1SNtgbfqn1VuvKTCiuMNTYRn2MydiGnL-UxtnYuA@mail.gmail.com>
- <0D8B18A1-82FD-4902-A443-AD774DE43DAD@gmail.com>
- <CAMdYzYpdo6Hb30y1oEya5GT1eXHJVTETq--HcmMjF40gvCUZ9A@mail.gmail.com>
- <E9DC63DF-46A6-438E-A7F1-5F7A65F56DFC@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <E9DC63DF-46A6-438E-A7F1-5F7A65F56DFC@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,40 +72,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-06-25 16:31, Piotr Oniszczuk wrote:
-> 
-> 
->> Wiadomość napisana przez Peter Geis <pgwipeout@gmail.com> w dniu 25.06.2022, o godz. 16:00:
->>
->>
->> The first issue you have is the TV isn't responding until the absolute
->> end.
-> 
-> I suspect this is because lack on idle gaps between cec commands sent from board to tv.
-> Maybe TV sw. can't deal with consecutive commands without any idle between them?
-> 
-> It is interesting that disconnecting TV - so CEC line is driven only by board - rock3a still don't have any idle gaps while rock3b (and radxa 4.19 bsp) has them (very similar between 5.18mailine and 4.19 bsp).
-> 
-> How this is possible that change I/O from m0->m1 impacts _timings_ on free hanging CEC line?
+From: Christian Marangi <ansuelsmth@gmail.com>
 
-Check all the pinctrl settings beyond just the function mux - pulls, 
-drive strength, output type, etc. - the defaults tend to be all over the 
-place, and rarely what you want.
+An RCG may act as a mux that switch between 2 parents.
+This is the case on IPQ6018 and IPQ8074 where the APCS core clk that feeds
+the CPU cluster clock just switches between XO and the PLL that feeds it.
 
-Robin.
+Add the required ops to add support for this special configuration and use
+the generic mux function to determine the rate.
 
->> This strikes me as a signal integrity issue. Do you have an
->> oscilloscope (not a logic analyzer, you need voltages and ramp times)
->> to compare the working vs non-working signals? Check both sides of the
->> level shifter.
-> 
-> Indeed - i will verify this with digital oscilloscope.
-> Already ordered and must await week or 2 for delivery :-(
-> 
-> My analog oscilloscope shows correct levels and slopes "seems" to be the same like in working (no memory so i can compare only visually on fuzzy screen)
-> 
-> For me key is to understand why on rock3a there is no any idles between cec commands - even when nothing is connected to bard (so cec is only sending and nothing external impacts cec state machine)....
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+This way we dont have to keep a essentially dummy frequency table to use
+RCG2 as a mux.
+
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ drivers/clk/qcom/clk-rcg.h  | 1 +
+ drivers/clk/qcom/clk-rcg2.c | 7 +++++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/drivers/clk/qcom/clk-rcg.h b/drivers/clk/qcom/clk-rcg.h
+index 012e745794fd..01581f4d2c39 100644
+--- a/drivers/clk/qcom/clk-rcg.h
++++ b/drivers/clk/qcom/clk-rcg.h
+@@ -167,6 +167,7 @@ struct clk_rcg2_gfx3d {
+ 
+ extern const struct clk_ops clk_rcg2_ops;
+ extern const struct clk_ops clk_rcg2_floor_ops;
++extern const struct clk_ops clk_rcg2_mux_closest_ops;
+ extern const struct clk_ops clk_edp_pixel_ops;
+ extern const struct clk_ops clk_byte_ops;
+ extern const struct clk_ops clk_byte2_ops;
+diff --git a/drivers/clk/qcom/clk-rcg2.c b/drivers/clk/qcom/clk-rcg2.c
+index 28019edd2a50..609c10f8d0d9 100644
+--- a/drivers/clk/qcom/clk-rcg2.c
++++ b/drivers/clk/qcom/clk-rcg2.c
+@@ -509,6 +509,13 @@ const struct clk_ops clk_rcg2_floor_ops = {
+ };
+ EXPORT_SYMBOL_GPL(clk_rcg2_floor_ops);
+ 
++const struct clk_ops clk_rcg2_mux_closest_ops = {
++	.determine_rate = __clk_mux_determine_rate_closest,
++	.get_parent = clk_rcg2_get_parent,
++	.set_parent = clk_rcg2_set_parent,
++};
++EXPORT_SYMBOL_GPL(clk_rcg2_mux_closest_ops);
++
+ struct frac_entry {
+ 	int num;
+ 	int den;
+-- 
+2.36.1
+
