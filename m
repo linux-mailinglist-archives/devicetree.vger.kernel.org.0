@@ -2,97 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FA30570642
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50283570645
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:53:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229996AbiGKOxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 10:53:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47936 "EHLO
+        id S230459AbiGKOxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 10:53:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229868AbiGKOxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:53:32 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2439ABFC
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 07:53:30 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id u12so9251147eja.8
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 07:53:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=B+DfESfcXMEMmXuDDJXvPYmOkPUKFW71mpdMtJevL6Y=;
-        b=k7PwvkOX9vMswnngnpFJUR2Yim1tQzngfTgvN+kCBYpI1huL1ZQcx9t9kq1P/LJt/R
-         PF2+6hYpLabGkw3gMvvi/HqDFOnXjayJCtaIrlo9A4HZqGWfd5eA7Ox4gFkYsY5QY6+N
-         wIuDOcK8xlSMPM8Qu5fedhAMOfkNGz4Ew5pik=
+        with ESMTP id S231187AbiGKOxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:53:46 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 54BBABCBC
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 07:53:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1657551220;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=WJKzatRpxuBvlw+y/WmRUjNpFDe0w/BjpatBDpchBJM=;
+        b=JfoC/2v0koMztXy7nlpLhI0AoMujYOKff3fWmuX6J8CEZPQS7isOwwXRRP50myoB/RkD3h
+        7xUr0M+b2kmSQf/fJXBIKsASnXitmIL4pmX0exPXDaVkUG8xgtaV3r2IOQMbUOOpxpvNHU
+        h7/Jq22YZ2jVxii4OLzsFeYkQvax53s=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-557-iloXWk2zMHuZ17IWWIregg-1; Mon, 11 Jul 2022 10:53:39 -0400
+X-MC-Unique: iloXWk2zMHuZ17IWWIregg-1
+Received: by mail-wr1-f71.google.com with SMTP id h6-20020adfa4c6000000b0021d6a5ac938so719987wrb.20
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 07:53:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=B+DfESfcXMEMmXuDDJXvPYmOkPUKFW71mpdMtJevL6Y=;
-        b=4kELyOEmUNIVl9GpSiO2BrqyfbpJrHdODtuiYlWGUwbBeW+4NtgNQXyuXC7RffWWfy
-         DNXLiXyQhjLNzMtlzfN/yVGAWDA85phTybLR72d3Ck+qr1vICh+wLJCQYIAsjeOfEmQy
-         St+nzG4/AgCKUcmvoOmeMtIm7KvAJfd5C4ECKxjVeSl6OSbMXfUGP4R0YBmdXqfnwUQD
-         ncSj803l+jiCOH+x4NVMhY95ARj22mtBelZcUwffqCUMN19dDGb7Yw49Lt/Uy0o551UH
-         Z5/1lHSMwrgr6mbUpoWUaYLwN4BXe2jvixHFC9eIunMaSiAX4JH6/drV7HcwoECHrIuz
-         1QxQ==
-X-Gm-Message-State: AJIora9a9X6iH0K1ygzM8iq6AFEEvUINgGjfn65POH8LwRhVGFz/V8fO
-        m7nnf9Ruy3kYIGtkjruNzaTdeyPHorE+TmZ8
-X-Google-Smtp-Source: AGRyM1u0h4KUL6Dbe9P97tcBvRV4413u1olit5SpFASuffCBXOJgGjU4D4kjPA9VVDZhuBxTt2rBBA==
-X-Received: by 2002:a17:907:2cee:b0:72b:3b63:200 with SMTP id hz14-20020a1709072cee00b0072b3b630200mr12115308ejc.678.1657551208443;
-        Mon, 11 Jul 2022 07:53:28 -0700 (PDT)
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com. [209.85.221.43])
-        by smtp.gmail.com with ESMTPSA id s10-20020a170906960a00b006fec4ee28d0sm2719114ejx.189.2022.07.11.07.53.26
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=WJKzatRpxuBvlw+y/WmRUjNpFDe0w/BjpatBDpchBJM=;
+        b=Iopuxquo1bBsdu/cJ/fuSkQK53+7c5It3t+nhH3X8p6qTEoeObSGXU/WOal7t46pBJ
+         ELKmAZlIDlG7KX0qQ14p/vRjBBmKSle18PgEZMxY944zPS9piTiy0svDtd1IX/7Kpz7V
+         tEuscwWoaixMyb0tqwS5kVSF1OC6GeTcYeNp85ZXLA4cuwFzhndAIUUglVHRzzQa+5rk
+         F6v6ENzqUBHVK0U5hDfESZv4nzZnNxSnuRdR5lCDflpwj8TL6HSueZXdY5BQggpaSTSf
+         BIT+LczhlSysKD2Oazt2GHSS+izTRu7tlZUlAr3ja0AHG8GjNiyZ7JQWlNcPTUa9Dhvv
+         V6SA==
+X-Gm-Message-State: AJIora8BYDSWiqOyiognaXHQz1RZbylGbsRSkX/QL7wnc7bBtzBqZ0Ni
+        +WKkEBnWdvM5INAMqJaLGRKy85z46hOewpbthZwGCyNOLhRwD3nvSaRxpOhHEcm4GOcRIUkaVb8
+        WsmATNGi+39myXvwceDi43g==
+X-Received: by 2002:a05:600c:3592:b0:3a1:9e9d:2595 with SMTP id p18-20020a05600c359200b003a19e9d2595mr16789387wmq.76.1657551217928;
+        Mon, 11 Jul 2022 07:53:37 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1uF7fVJz9gV/LGNy5ZuztDsIKohRmcbcs6QZEq6X8YOCi+3alMsLlZbv00GX9vpBHFadMKsmA==
+X-Received: by 2002:a05:600c:3592:b0:3a1:9e9d:2595 with SMTP id p18-20020a05600c359200b003a19e9d2595mr16789363wmq.76.1657551217690;
+        Mon, 11 Jul 2022 07:53:37 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c702:1400:c3:4ae0:6d5c:1ab2? (p200300cbc702140000c34ae06d5c1ab2.dip0.t-ipconnect.de. [2003:cb:c702:1400:c3:4ae0:6d5c:1ab2])
+        by smtp.gmail.com with ESMTPSA id m8-20020a05600c3b0800b003a2ead2c884sm528930wms.13.2022.07.11.07.53.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 07:53:27 -0700 (PDT)
-Received: by mail-wr1-f43.google.com with SMTP id r14so7378337wrg.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 07:53:26 -0700 (PDT)
-X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id
- b13-20020adff90d000000b0020cde324d35mr16792836wrr.583.1657551206156; Mon, 11
- Jul 2022 07:53:26 -0700 (PDT)
+        Mon, 11 Jul 2022 07:53:37 -0700 (PDT)
+Message-ID: <c2d4c6ac-fad7-d5b3-8cbf-f62a7db5b998@redhat.com>
+Date:   Mon, 11 Jul 2022 16:53:36 +0200
 MIME-Version: 1.0
-References: <20220711082709.39102-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711082709.39102-1-krzysztof.kozlowski@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 11 Jul 2022 07:53:13 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Ue+LUHKmG_ceMO-qGqJXkmqMcvyjLFCGNK8s2VBDDd2A@mail.gmail.com>
-Message-ID: <CAD=FV=Ue+LUHKmG_ceMO-qGqJXkmqMcvyjLFCGNK8s2VBDDd2A@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: sdhci-msm: add MSM8998
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/4] mm/sparse: skip no-map memblock check when
+ fill_subsection_map
+Content-Language: en-US
+To:     Li Chen <me@linux.beauty>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     Li Chen <lchen@ambarella.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mm@kvack.org
+References: <20220711122459.13773-1-me@linux.beauty>
+ <20220711122459.13773-3-me@linux.beauty>
+From:   David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+In-Reply-To: <20220711122459.13773-3-me@linux.beauty>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, Jul 11, 2022 at 1:27 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Add a MSM8998-specific SDCC compatible, because using only a generic
-> qcom,sdhci-msm-v4 fallback is deprecated.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 11.07.22 14:24, Li Chen wrote:
+> From: Li Chen <lchen@ambarella.com>
+> 
+> When mhp use sparse_add_section, don't check no-map region,
+> so that to allow no-map reserved memory to get struct page
+> support.
+> 
+> Signed-off-by: Li Chen <lchen@ambarella.com>
+> Change-Id: I0d2673cec1b66adf695251037a00c240976b226f
 > ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  mm/sparse.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/mm/sparse.c b/mm/sparse.c
+> index 120bc8ea5293..a29cd1e7014f 100644
+> --- a/mm/sparse.c
+> +++ b/mm/sparse.c
+> @@ -690,7 +690,9 @@ static int fill_subsection_map(unsigned long pfn, unsigned long nr_pages)
+>  
+>  	if (bitmap_empty(map, SUBSECTIONS_PER_SECTION))
+>  		rc = -EINVAL;
+> -	else if (bitmap_intersects(map, subsection_map, SUBSECTIONS_PER_SECTION))
+> +	else if (memblock_is_map_memory(PFN_PHYS(pfn)) &&
+> +		 bitmap_intersects(map, subsection_map,
+> +				   SUBSECTIONS_PER_SECTION))
+>  		rc = -EEXIST;
+>  	else
+>  		bitmap_or(subsection_map, map, subsection_map,
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+I'm not sure I follow completely what you are trying to achieve. But if
+you have to add memblock hacks into mm/sparse.c you're most probably
+doing something wrong.
+
+Please explain why that change is necessary, and why it is safe.
+
+If the subsection map already spans memory (iow, subsection map is set)
+you intend to add, then something already added memory in that range?
+
+-- 
+Thanks,
+
+David / dhildenb
+
