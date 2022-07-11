@@ -2,69 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05223570E20
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 01:18:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8005C570E52
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 01:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229765AbiGKXSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 19:18:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40502 "EHLO
+        id S229477AbiGKXdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 19:33:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbiGKXSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 19:18:04 -0400
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D559C87F70;
-        Mon, 11 Jul 2022 16:18:03 -0700 (PDT)
-Received: by mail-il1-f174.google.com with SMTP id n9so3896121ilq.12;
-        Mon, 11 Jul 2022 16:18:03 -0700 (PDT)
+        with ESMTP id S229515AbiGKXdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 19:33:23 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04D2BBEB
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 16:33:23 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id bp15so1146738ejb.6
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 16:33:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tT3i3PdSWIbZI2/jQXTr2ht9FWXt0v5w3WnrwY7zOxE=;
+        b=Ldn5e/XdivqNGq4Wo2DSw9vOq5ICFZFMjEsGK5qXKUBqT+RZBBTBUQUrgowVxl9abf
+         IZvV6AFjiDL62G8G5+bfNOR9kg81XWRLWcfzrZg1n3q+TAcpqNtW0Qm6u4XsGNXO02KB
+         w0cKuHUwdeLDMcYS59ah5rxS1gcxsji/tG4DA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=f2XdMFBhc4NMn9EddNPRLfQF2c+R/KA29L/gSecYKXo=;
-        b=ZGyGY3u4Beo3KRbTRCSsdHwLay/usOU/flH4QuC40iYKXqFKWKjzjU1nnk62+4qf0S
-         e7ZiVe9UIOd3JLrX9Nh88+k/xMmk3bEwzBPzVh8hvL0TvtMn7KVri0L9V//Ciz3FbpeP
-         /E7o1QgV88HGaiXsVZ0inPaqqYGAWc5bgEgGk2IlK22YpjROJu3bt0PLLFCuYt7sih0i
-         fGgbD7qUh23XWXXH1G3J9QOM4Fj82E+EV1MRiVVXZ5Wa/kzGssSIYxZK3R4P0eojBeru
-         NQrE0L8jxSs026dURpwVzxtfe+4kVWIlaHvfTJpPyElxieRWZnvd00Bf+Df1/G/CmBvL
-         p0KQ==
-X-Gm-Message-State: AJIora/ccr2zaxaJ9w5fFarPAkCiIky55JtxADQcvjt+AMvbKQTi1uj3
-        oH3vvnf97NkBxdwu7+YFEA==
-X-Google-Smtp-Source: AGRyM1vyZvWaglhF2DL7o6k5C8/S6j/KTfpHBn+DP8hkEMeq6ZO4RWF3/NwePI2b96seJBq9DrQ2Gw==
-X-Received: by 2002:a05:6e02:188f:b0:2dc:7291:fd02 with SMTP id o15-20020a056e02188f00b002dc7291fd02mr6293244ilu.321.1657581483045;
-        Mon, 11 Jul 2022 16:18:03 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f12-20020a056638328c00b00339e6168237sm3344152jav.34.2022.07.11.16.18.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 16:18:02 -0700 (PDT)
-Received: (nullmailer pid 454950 invoked by uid 1000);
-        Mon, 11 Jul 2022 23:18:00 -0000
-Date:   Mon, 11 Jul 2022 17:18:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     devicetree@vger.kernel.org, Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        freedreno@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v2 9/9] dt-bindings: msm/dp: handle DP vs eDP difference
-Message-ID: <20220711231800.GA454897-robh@kernel.org>
-References: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
- <20220710084133.30976-10-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tT3i3PdSWIbZI2/jQXTr2ht9FWXt0v5w3WnrwY7zOxE=;
+        b=r75dhoVjSsSA7iXvgUjW/RTCOWbme7QhajD4ZMfdF7kdwiQNkXMcxYrBbDq7qzzWc1
+         E37mIWnGwQfbPsVCGAMF+F/VmrsOSpV1lHwVja+UUizTgDhhQjCianBkNuyGO2DTwB7n
+         MZuXsMAD1BrhUshRI+LjOBrolcCwJxnNb4m9MPYUqs7BEtAxr1zjB6Vk1VN1DOeLwgmt
+         ONMjEmy+OaKwh1ZfDIjI0fy6lduFEKodWGONHsJYvnOc0XAwTfHLznqVVtwC2OFZtgo8
+         3C7GGYxzbIWRuUeu1UPTigj5hq4RA7fKF0y29KMKF3eF6H1q9LP+X/ZyL3FYJYR4Xtgz
+         m1Tg==
+X-Gm-Message-State: AJIora+Z6fouyymGngjG6Wc2+QS4wvxgAGIxnpTfqFbAjZyojuKzt8/Q
+        /CdOrCwedAdgl2vRs+YgmH3aMiNV3weM4gKmadQ=
+X-Google-Smtp-Source: AGRyM1vzDQXfc2rhbWXh2y4MPdw7yb/m1S0z3CLNZ9VCTuYCAj8GpbeC5k3C9khV9OB8RhUWrknS2w==
+X-Received: by 2002:a17:906:7049:b0:70c:a5fe:d4f8 with SMTP id r9-20020a170906704900b0070ca5fed4f8mr20239129ejj.493.1657582401396;
+        Mon, 11 Jul 2022 16:33:21 -0700 (PDT)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com. [209.85.128.45])
+        by smtp.gmail.com with ESMTPSA id v13-20020a17090606cd00b0070f7d1c5a18sm3190451ejb.55.2022.07.11.16.33.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jul 2022 16:33:21 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id z23-20020a7bc7d7000000b003a2e00222acso215934wmk.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 16:33:21 -0700 (PDT)
+X-Received: by 2002:a05:600c:3d95:b0:3a2:e97b:f3ae with SMTP id
+ bi21-20020a05600c3d9500b003a2e97bf3aemr728744wmb.188.1657582077548; Mon, 11
+ Jul 2022 16:27:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220710084133.30976-10-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <1657346375-1461-1-git-send-email-quic_akhilpo@quicinc.com> <20220709112837.v2.5.I7291c830ace04fce07e6bd95a11de4ba91410f7b@changeid>
+In-Reply-To: <20220709112837.v2.5.I7291c830ace04fce07e6bd95a11de4ba91410f7b@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 11 Jul 2022 16:27:45 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XzvcjS51q78BZ=FPCEVUDMD+VKJ70ksCm5V4qwHN_wRg@mail.gmail.com>
+Message-ID: <CAD=FV=XzvcjS51q78BZ=FPCEVUDMD+VKJ70ksCm5V4qwHN_wRg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/7] arm64: dts: qcom: sc7280: Update gpu register list
+To:     Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc:     freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,18 +84,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 10 Jul 2022 11:41:33 +0300, Dmitry Baryshkov wrote:
-> The #sound-dai-cells property should be used only for DP controllers. It
-> doesn't make sense for eDP, there is no support for audio output. The
-> aux-bus should not be used for DP controllers. Also p1 MMIO region
-> should be used only for DP controllers.
-> 
-> Take care of these differences.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../bindings/display/msm/dp-controller.yaml   | 26 ++++++++++++++++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
-> 
+Hi,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Fri, Jul 8, 2022 at 11:00 PM Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
+>
+> Update gpu register array with gpucc memory region.
+>
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> ---
+>
+> (no changes since v1)
+>
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index e66fc67..defdb25 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -2228,10 +2228,12 @@
+>                         compatible = "qcom,adreno-635.0", "qcom,adreno";
+>                         reg = <0 0x03d00000 0 0x40000>,
+>                               <0 0x03d9e000 0 0x1000>,
+> -                             <0 0x03d61000 0 0x800>;
+> +                             <0 0x03d61000 0 0x800>,
+> +                             <0 0x03d90000 0 0x2000>;
+>                         reg-names = "kgsl_3d0_reg_memory",
+>                                     "cx_mem",
+> -                                   "cx_dbgc";
+> +                                   "cx_dbgc",
+> +                                   "gpucc";
+
+This doesn't seem right. Shouldn't you be coordinating with the
+existing gpucc instead of reaching into its registers?
+
+-Doug
