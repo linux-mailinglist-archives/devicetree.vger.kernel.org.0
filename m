@@ -2,229 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9013E56D894
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:44:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34BEF56D8D3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:51:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229740AbiGKIo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 04:44:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51128 "EHLO
+        id S230412AbiGKIvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 04:51:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbiGKInv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:43:51 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41641E5;
-        Mon, 11 Jul 2022 01:43:30 -0700 (PDT)
-Received: from [192.168.1.101] (abxi46.neoplus.adsl.tpnet.pl [83.9.2.46])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 107EA1F53F;
-        Mon, 11 Jul 2022 10:43:28 +0200 (CEST)
-Message-ID: <0004504d-d009-1eb7-d544-5f8a28aa565a@somainline.org>
-Date:   Mon, 11 Jul 2022 10:43:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 5/5] ARM: dts: qcom: align SDHCI clocks with DT schema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     Douglas Anderson <dianders@chromium.org>
-References: <20220711082940.39539-1-krzysztof.kozlowski@linaro.org>
- <20220711082940.39539-6-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220711082940.39539-6-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        with ESMTP id S230414AbiGKIu7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:50:59 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C03113CE5;
+        Mon, 11 Jul 2022 01:50:29 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id l124so4212810pfl.8;
+        Mon, 11 Jul 2022 01:50:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=5g/2NksbO4TUZ12uNSjT5a+ira1ltuOc9HP/0hIVc7w=;
+        b=KLLHc9drTZpul79nRihIyI5PAyxXRTmdJkXV8pzA8J0w53gdZiHv+aCEKAOoj5htXN
+         WukzwCYDOFLeN9WMRfuWgHNfFY3WTACBv3kpUvoltkku6OyB0kfynjWHVWqCWgGxymlO
+         eARtdYfOu6/d+ODhfp+g+RM5KlvTXdN6fQI5IhyYHO22XNZtH0s/N+G2KS2uTcRPl2/R
+         92Wq/IBaQjOpleIN3NsSVRoGqaYsFbLCogPpYOWc3A7G7eQgfVjOSFDzxZwKO2hwgmsy
+         n2AT2E+M/PFLrO0q9yRstAXHsI3rmIju8eUFoKv0mMzTEhMbUudGiOCOA7/qgfET06ZK
+         XkZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=5g/2NksbO4TUZ12uNSjT5a+ira1ltuOc9HP/0hIVc7w=;
+        b=z4pmQ+Exc/i1vwmLI0Iro4sGiSqyeXF0/7FQNV4OVvuR+TBd0Iy0Tkr+2305acc/XM
+         5+sy3HPNBrNb+JtY+tgRoaLie2lHspcEMNEKlL3cp7aJ6Dn6pM38wYn4pNiHL25uaBjN
+         +T1wQi1oMyUktIp0pTySK5GDQQH8uyGdeyuI6fldo9g1YUC85g2jxprvUckSzBagzQ+E
+         gefhleNPT3St7PkJn1SdVCZ1H5IUQeGEzYo3BK4HJCSQcMvm3Na++iYvx4Hf9tJto1qc
+         39JPzefIzzRp5WKRcVEpWcLdmXUKnae27+4bVvwUxvl9mwlseMoBRX8D6RgS3y4QazTS
+         qzAA==
+X-Gm-Message-State: AJIora9Y/3ynX9679eiQibiljo/eCLKYRHKiRXfj458UO8+sRQRZai60
+        QDMv8Upd1k2CJ7lgQXqfd/8=
+X-Google-Smtp-Source: AGRyM1skthwwca9xztYJduWQLAXrcwAXdYzCophm5dltSeq/9zR0kDVYVJguSnQHST3WWGzv/qygdw==
+X-Received: by 2002:a63:ff66:0:b0:412:6f4c:1e11 with SMTP id s38-20020a63ff66000000b004126f4c1e11mr15162809pgk.396.1657529428611;
+        Mon, 11 Jul 2022 01:50:28 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id b21-20020aa79515000000b0052ac5e304ccsm2489388pfp.194.2022.07.11.01.50.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 11 Jul 2022 01:50:28 -0700 (PDT)
+From:   Vincent Shih <vincent.sunplus@gmail.com>
+To:     kishon@ti.com, vkoul@kernel.org, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com
+Cc:     Vincent Shih <vincent.sunplus@gmail.com>
+Subject: [PATCH v3 0/2] Add USB2.0 phy driver for Sunplus SP7021
+Date:   Mon, 11 Jul 2022 16:50:01 +0800
+Message-Id: <1657529403-18084-1-git-send-email-vincent.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is a patch series for USB2.0 phy driver for Sunplus SP7021 SoC.
 
+Sunplus SP7021 is an ARM Coretex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD Card and
+etc.) into a single chip. It is designed for industrial control.
 
-On 11.07.2022 10:29, Krzysztof Kozlowski wrote:
-> The DT schema expects clocks iface-core order.  No functional change.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Konrad
->  arch/arm/boot/dts/qcom-apq8084.dtsi    | 12 ++++++------
->  arch/arm/boot/dts/qcom-ipq4019.dtsi    |  4 ++--
->  arch/arm/boot/dts/qcom-msm8226.dtsi    | 18 +++++++++---------
->  arch/arm/boot/dts/qcom-msm8974.dtsi    | 18 +++++++++---------
->  arch/arm/boot/dts/qcom-msm8974pro.dtsi |  6 +++---
->  5 files changed, 29 insertions(+), 29 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-apq8084.dtsi b/arch/arm/boot/dts/qcom-apq8084.dtsi
-> index 45f3cbcf6238..c887ac5cdd7d 100644
-> --- a/arch/arm/boot/dts/qcom-apq8084.dtsi
-> +++ b/arch/arm/boot/dts/qcom-apq8084.dtsi
-> @@ -425,10 +425,10 @@ mmc@f9824900 {
->  			reg-names = "hc", "core";
->  			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> -			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
-> -				 <&gcc GCC_SDCC1_AHB_CLK>,
-> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> +				 <&gcc GCC_SDCC1_APPS_CLK>,
->  				 <&xo_board>;
-> -			clock-names = "core", "iface", "xo";
-> +			clock-names = "iface", "core", "xo";
->  			status = "disabled";
->  		};
->  
-> @@ -438,10 +438,10 @@ mmc@f98a4900 {
->  			reg-names = "hc", "core";
->  			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> -			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
-> -				 <&gcc GCC_SDCC2_AHB_CLK>,
-> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
-> +				 <&gcc GCC_SDCC2_APPS_CLK>,
->  				 <&xo_board>;
-> -			clock-names = "core", "iface", "xo";
-> +			clock-names = "iface", "core", "xo";
->  			status = "disabled";
->  		};
->  
-> diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> index 1b98764bab7a..a8a32a5e7e5d 100644
-> --- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> +++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> @@ -228,9 +228,9 @@ sdhci: mmc@7824900 {
->  			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
->  			bus-width = <8>;
-> -			clocks = <&gcc GCC_SDCC1_APPS_CLK>, <&gcc GCC_SDCC1_AHB_CLK>,
-> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>, <&gcc GCC_SDCC1_APPS_CLK>,
->  				 <&gcc GCC_DCD_XO_CLK>;
-> -			clock-names = "core", "iface", "xo";
-> +			clock-names = "iface", "core", "xo";
->  			status = "disabled";
->  		};
->  
-> diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
-> index f711463d22dc..9d4223bf8fc1 100644
-> --- a/arch/arm/boot/dts/qcom-msm8226.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
-> @@ -141,10 +141,10 @@ sdhc_1: mmc@f9824900 {
->  			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> -			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
-> -				 <&gcc GCC_SDCC1_AHB_CLK>,
-> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> +				 <&gcc GCC_SDCC1_APPS_CLK>,
->  				 <&xo_board>;
-> -			clock-names = "core", "iface", "xo";
-> +			clock-names = "iface", "core", "xo";
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&sdhc1_default_state>;
->  			status = "disabled";
-> @@ -157,10 +157,10 @@ sdhc_2: mmc@f98a4900 {
->  			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> -			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
-> -				 <&gcc GCC_SDCC2_AHB_CLK>,
-> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
-> +				 <&gcc GCC_SDCC2_APPS_CLK>,
->  				 <&xo_board>;
-> -			clock-names = "core", "iface", "xo";
-> +			clock-names = "iface", "core", "xo";
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&sdhc2_default_state>;
->  			status = "disabled";
-> @@ -173,10 +173,10 @@ sdhc_3: mmc@f9864900 {
->  			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> -			clocks = <&gcc GCC_SDCC3_APPS_CLK>,
-> -				 <&gcc GCC_SDCC3_AHB_CLK>,
-> +			clocks = <&gcc GCC_SDCC3_AHB_CLK>,
-> +				 <&gcc GCC_SDCC3_APPS_CLK>,
->  				 <&xo_board>;
-> -			clock-names = "core", "iface", "xo";
-> +			clock-names = "iface", "core", "xo";
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&sdhc3_default_state>;
->  			status = "disabled";
-> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> index 971eceaef3d1..1f4baa6ac64d 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> @@ -443,10 +443,10 @@ sdhc_1: mmc@f9824900 {
->  			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> -			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
-> -				 <&gcc GCC_SDCC1_AHB_CLK>,
-> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> +				 <&gcc GCC_SDCC1_APPS_CLK>,
->  				 <&xo_board>;
-> -			clock-names = "core", "iface", "xo";
-> +			clock-names = "iface", "core", "xo";
->  			bus-width = <8>;
->  			non-removable;
->  
-> @@ -460,10 +460,10 @@ sdhc_3: mmc@f9864900 {
->  			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> -			clocks = <&gcc GCC_SDCC3_APPS_CLK>,
-> -				 <&gcc GCC_SDCC3_AHB_CLK>,
-> +			clocks = <&gcc GCC_SDCC3_AHB_CLK>,
-> +				 <&gcc GCC_SDCC3_APPS_CLK>,
->  				 <&xo_board>;
-> -			clock-names = "core", "iface", "xo";
-> +			clock-names = "iface", "core", "xo";
->  			bus-width = <4>;
->  
->  			#address-cells = <1>;
-> @@ -479,10 +479,10 @@ sdhc_2: mmc@f98a4900 {
->  			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> -			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
-> -				 <&gcc GCC_SDCC2_AHB_CLK>,
-> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
-> +				 <&gcc GCC_SDCC2_APPS_CLK>,
->  				 <&xo_board>;
-> -			clock-names = "core", "iface", "xo";
-> +			clock-names = "iface", "core", "xo";
->  			bus-width = <4>;
->  
->  			#address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/qcom-msm8974pro.dtsi b/arch/arm/boot/dts/qcom-msm8974pro.dtsi
-> index 1e882e16a221..58df6e75ab6d 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974pro.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8974pro.dtsi
-> @@ -10,10 +10,10 @@ &gpu {
->  };
->  
->  &sdhc_1 {
-> -	clocks = <&gcc GCC_SDCC1_APPS_CLK>,
-> -		 <&gcc GCC_SDCC1_AHB_CLK>,
-> +	clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> +		 <&gcc GCC_SDCC1_APPS_CLK>,
->  		 <&xo_board>,
->  		 <&gcc GCC_SDCC1_CDCCAL_FF_CLK>,
->  		 <&gcc GCC_SDCC1_CDCCAL_SLEEP_CLK>;
-> -	clock-names = "core", "iface", "xo", "cal", "sleep";
-> +	clock-names = "iface", "core", "xo", "cal", "sleep";
->  };
+Vincent Shih (2):
+  phy: usb: Add USB2.0 phy driver for Sunplus SP7021
+  dt-bindings: phy: Add bindings doc for Sunplus USB2 PHY driver
+
+ .../bindings/phy/sunplus,sp7021-usb2-phy.yaml      |  73 +++++
+ MAINTAINERS                                        |   9 +
+ drivers/phy/Kconfig                                |   1 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/sunplus/Kconfig                        |  13 +
+ drivers/phy/sunplus/Makefile                       |   2 +
+ drivers/phy/sunplus/phy-sunplus-usb2.c             | 297 +++++++++++++++++++++
+ 7 files changed, 396 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/sunplus,sp7021-usb2-phy.yaml
+ create mode 100644 drivers/phy/sunplus/Kconfig
+ create mode 100644 drivers/phy/sunplus/Makefile
+ create mode 100644 drivers/phy/sunplus/phy-sunplus-usb2.c
+
+-- 
+2.7.4
+
