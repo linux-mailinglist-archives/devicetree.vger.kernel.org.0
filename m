@@ -2,82 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77AD656D702
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 09:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B7756D714
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 09:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230183AbiGKHph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 03:45:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59316 "EHLO
+        id S230058AbiGKHvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 03:51:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbiGKHpf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 03:45:35 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD4AA1B8
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:45:33 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id f39so7341161lfv.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:45:33 -0700 (PDT)
+        with ESMTP id S229953AbiGKHvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 03:51:41 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34DDB1C905
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:51:40 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id bi22-20020a05600c3d9600b003a04de22ab6so2529036wmb.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 00:51:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wqIFBf3DN10dow3GoXse21GGYLCZcVsfvhzNfQvO+X4=;
-        b=bhLbh/jndXXNXiXMqF9n8seGfMnoBKK43GGudT+034/0ObNAvJXElA+PkDogw3+zvz
-         pyQjOWzfJ6nNk3z7KpVKqEVBeuQXMlUdEAkDg6rgTp8HbKllExHTod6aqZISDZZbg8Pj
-         w0Wi/owibTrxU/BgAaZ9wf1Ur5T18OlAvmcmAlOJUPdvIwvNivbKjeK4yQdy3UBuIdLZ
-         MKDR4DBhmYmyBL1nbxQAkYge1/TaXEDSe7ty71Ro6K6AwDeMIgejSTwkfxw1PLZgZRA9
-         8O/ba7KaeAKM2zfeq4AUdqc7jGptwKD6OHzc+FyI3VNINdcb6vv2Q6FItsCvH2uabyJ3
-         OryA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=ztvaz5BdnKGZMhPHdfgEZYHb0hAaDWz8do9AwzsiSBg=;
+        b=Hwn6nzpGX+T+LutaM8+KjYmqBSQV517VD113jCKqsTVABZpL3RajgVlzsBUtJOj6+w
+         4MEC0eMoLndBf/WUzEJ7yzPiCK1SWNCKgIu1M9hYuXO5BmJkIGbetDA8FrXCbRB72Iv8
+         cuGtRCIzhnji6qdtB8kjxdp0cHFvMmJ4n0mnOOT3LWt8AMxcvOZGxpsqvtuzWUCKuIMC
+         fFdzRXrnV0BOKOs3upAtIl7HIPMA9dScmdkiB7B+/S49RiMn5in2NNk8xfF7F3HOHyiq
+         5qfuoOVPIgj2+dKEiBbHEPrrp2a62s/B7gZFv9XINNIpZY787eCcGOnl4p2D5P4utq63
+         3Hng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wqIFBf3DN10dow3GoXse21GGYLCZcVsfvhzNfQvO+X4=;
-        b=FhKJCYFsZeRdS4ZaflSdBbU91tyN7yz35QevfhZ4kELYQxmIcv5nuukVY9Oq+1xhdP
-         77bj3rFO3mcbk3lm+Wb2WGF0wVWFKWmXl+GW0VFavYQcXecSjWoXXESecbJDbOnOwT58
-         bjMnkr8R4aNU8j2MLKxTEaOZMqX8b5JWnFijJDXp5Rl6+PCk6XuvyR5xqjb+D581pinQ
-         9FaTTnDDhAZjdohxYIW4s1rFgJvvQccJ7UJ/DUOjtZc1+aKhmvVEl7yalZRJMVEb5qfm
-         gp6VEpLwn0VWmG/jzLrvzEucybZmd3+UzwnjIPCofQp/7Ub8K3NIMGMJJH7qWUdDzatp
-         pq2Q==
-X-Gm-Message-State: AJIora/jSPRSCS0v/eK6RasVw0wqYQbBe2CwJO296vXPwkeXFl0tlPX7
-        WhUYnZXJWfJg0p+ukB5cYQX+ow==
-X-Google-Smtp-Source: AGRyM1vPfEahu4HcbTv/71vdz7MtuUZ4XlDhRbns/Wsz9/D078JYEbthPyLCS1hxYMSuW+6bMIpmsg==
-X-Received: by 2002:a05:6512:31c9:b0:489:e037:31b9 with SMTP id j9-20020a05651231c900b00489e03731b9mr1802467lfe.178.1657525531668;
-        Mon, 11 Jul 2022 00:45:31 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id r17-20020ac25f91000000b004867a427026sm1401483lfe.40.2022.07.11.00.45.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 00:45:31 -0700 (PDT)
-Message-ID: <9fb4beb2-96c3-1bf6-9ee3-5b87b641c234@linaro.org>
-Date:   Mon, 11 Jul 2022 09:45:28 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/5] dt-bindings: mmc: sdhci-msm: constrain reg-names at
- least for one variant
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ztvaz5BdnKGZMhPHdfgEZYHb0hAaDWz8do9AwzsiSBg=;
+        b=fNIU+2GqRLXn07X8+KYOAmDG4GUr2reyJ3Npf3Yc2QNacAswKdSU3wYS1rixOHyFwS
+         9ng23H+ZF8jQYYBJcQexpE8NhdZjav2aF8oY7ivXe0p00Nl8gaxbaBzdVO6ait3zpgCX
+         ZX6Nk1TvSs28+A7oVwE7KSn0aDGhSH31pmnrcJJK269Hy/EDW+Q2es7lvwhZMLp8zDbG
+         LkkK8Op/uZDnG8KgUDdjwl6+3b35KqHpLkDoThr615WKt9/sqbYaiRwBcO37xJt2jNAe
+         z0ojDw/qPpVo/PJqfL6zEyIZuC5wSqIwIjRGNKnf1/7NeiUhAOx6UaztU/Vf/bJpyMo+
+         9eBg==
+X-Gm-Message-State: AJIora9MdTcYsSNoV5r9LptXcx9JOpo1rvfdoyMBhDM9y4VPTSvS2xw4
+        SXIve36asU2yx6HFclnndw5XMQ==
+X-Google-Smtp-Source: AGRyM1t2LVG3w5w5knczU+KZudV327hkRGwLX8FTdhh12km7FALGEq592+7HTWIKyz30zF/nq6jpkw==
+X-Received: by 2002:a05:600c:215a:b0:3a2:cf18:6dcc with SMTP id v26-20020a05600c215a00b003a2cf186dccmr14590732wml.53.1657525898761;
+        Mon, 11 Jul 2022 00:51:38 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id j5-20020adff545000000b0021d864d4461sm5112097wrp.83.2022.07.11.00.51.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jul 2022 00:51:38 -0700 (PDT)
+Date:   Mon, 11 Jul 2022 08:51:35 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20220707075151.67335-1-krzysztof.kozlowski@linaro.org>
- <20220707075151.67335-3-krzysztof.kozlowski@linaro.org>
- <CAD=FV=WFdtx_v3iPaNYDkhBw+fkSRriG0-w1R5vXRCugZPW6Vg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=WFdtx_v3iPaNYDkhBw+fkSRriG0-w1R5vXRCugZPW6Vg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        UNGLinuxDriver@microchip.com, Wolfram Sang <wsa@kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        katie.morris@in-advantage.com
+Subject: Re: [PATCH v13 net-next 0/9] add support for VSC7512 control over SPI
+Message-ID: <YsvWh8YJGeJNbQFB@google.com>
+References: <20220705204743.3224692-1-colin.foster@in-advantage.com>
+ <20220708200918.131c0950@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220708200918.131c0950@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,86 +89,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 16:31, Doug Anderson wrote:
-> Hi,
-> 
-> On Thu, Jul 7, 2022 at 1:04 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> The entries in arrays must have fixed order, so the bindings and Linux
->> driver expecting various combinations of 'reg' addresses was never
->> actually conforming to guidelines.
->>
->> Specifically Linux driver always expects 'core' reg entry as second
->> item, but some DTSes are having there 'cqhci'.
-> 
-> This is a bit misleading and makes it sound like we've got a bug. In
-> truth the Linux driver looks at the compatible string. If it sees any
-> compatible listed as "v5" (or a slight variant of v5 to handle a
-> workaround for sc7180 / sdm845) then it _doesn't_ expect 'core' reg as
-> the second entry. See the variable `mci_removed`. The old bindings
-> ".txt" file also had this to say:
-> 
->                 For SDCC version 5.0.0, MCI registers are removed from SDCC
->                 interface and some registers are moved to HC. New compatible
->                 string is added to support this change - "qcom,sdhci-msm-v5".
+On Fri, 08 Jul 2022, Jakub Kicinski wrote:
 
-You're right, thanks, I missed that part.
+> On Tue,  5 Jul 2022 13:47:34 -0700 Colin Foster wrote:
+> > The patch set in general is to add support for the VSC7512, and
+> > eventually the VSC7511, VSC7513 and VSC7514 devices controlled over
+> > SPI. Specifically this patch set enables pinctrl, serial gpio expander
+> > access, and control of an internal and an external MDIO bus.
+> 
+> Can this go into net-next if there are no more complains over the
+> weekend? Anyone still planning to review?
 
-> 
-> So I guess that means this is the documentation for all of the
-> combinations you have listed:
-> 
-> * hc only - v5 controller w/out CQE / ICE
-> 
-> * hc + core - v4 controller w/out CQE / ICE
-> 
-> * hc + cqhci - v5 controller w/ CQE and w/out ICE
-> 
-> * hc + cqhci + ice - v5 controller w/ CQE / ICE
-> 
-> * hc + core + cqhci + ice - v4 controller w/ CQE / ICE
-> 
-> Said another way, before v5 the "core" range existed. After v5 it
-> apparently doesn't so there's no way we could have specified it.
-> 
-> You'll notice that one of the options above implies that a v4
-> controller (with "core" specified) can have CQE and ICE. Is this
-> actually true, or was it a misunderstanding in the .txt to .yaml
-> conversion?
-> 
-> If it's true that a v4 controller can have CQE and ICE then your patch
-> is wrong in asserting that v4 controllers have only "hc" and "core".
-> 
-> If a v4 controller _can't_ have CQE and ICE then your patch is right
-> but incomplete. It should also be removing the option:
->           - const: hc
->           - const: core
->           - const: cqhci
->           - const: ice
-> 
-> I am not intimately familiar with Qualcomm MMC controller history.
-> That being said, the old .txt file said:
-> 
->         - CQE register map (Optional, CQE support is present on SDHC
-> instance meant
->                             for eMMC and version v4.2 and above)
-> 
-> To me this implies that a v4 controller could _at least_ have "cqhci".
-> I dunno about "ice". I seem to recall that this was the argument for
-> why the driver had to use reg-names to begin with and why the driver
-> looks for "cqhci" by name.
+As the subsystem with the fewest changes, I'm not sure why it would.
 
+I'd planed to route this in via MFD and send out a pull-request for
+other sub-system maintainers to pull from.
 
-I checked manual and SDCC v4 already supports CQE. ICE appears at v4.1
-(MSM8996, MSM8953 and some more which do not have dedicated
-compatibles), so the compatibles seems inaccurate. ICE capability can be
-runtime detected, but we still need to provide ICE address space. Anyway
-I don't want to dig too much into SDCC versions, so I'll allow
-hc+core+cqhci+ice.
+If you would like to co-ordinate it instead, you'd be welcome to.
+However, I (and probably Linus) would need a succinct immutable branch
+to pull from.
 
-Thanks for the feedback, much appreciated!
+> Linus's ack on patch 6 and an MFD Ack from Lee would be great.
 
-
-Best regards,
-Krzysztof
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
