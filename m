@@ -2,241 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FCB457075E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 17:45:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8BFD57076B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 17:46:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231542AbiGKPpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 11:45:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38036 "EHLO
+        id S229581AbiGKPqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 11:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231362AbiGKPpD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 11:45:03 -0400
-Received: from mail.baikalelectronics.com (mail.baikalelectronics.com [87.245.175.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 010EA52466;
-        Mon, 11 Jul 2022 08:45:01 -0700 (PDT)
-Received: from mail (mail.baikal.int [192.168.51.25])
-        by mail.baikalelectronics.com (Postfix) with ESMTP id E626A16C2;
-        Mon, 11 Jul 2022 18:46:52 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.com E626A16C2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baikalelectronics.ru; s=mail; t=1657554413;
-        bh=I3BqipZnlSoZ4zjQmP5m9pmq2YSrZyjEN8smWhboj70=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
-        b=SXFurVc5vFPlCqQQ1UBj8hrEjN0zwG+rZvArctujzfu+pN3SxD2evm0yqLKYcGsKU
-         tJcGZWvtV5ROaMKTVgiASISWA7mprL0mcKCjGxPWW4s5VbfiDAKKzt2NAOv1XVnfo4
-         dOVDiYx4OJ8CMYoxY3bIqdaYqRdOKmxwjx0JDoZU=
-Received: from localhost (192.168.53.207) by mail (192.168.51.25) with
- Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 11 Jul 2022 18:45:00 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        <linux-clk@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v7 6/7] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
-Date:   Mon, 11 Jul 2022 18:44:32 +0300
-Message-ID: <20220711154433.15415-7-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20220711154433.15415-1-Sergey.Semin@baikalelectronics.ru>
-References: <20220711154433.15415-1-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S231800AbiGKPqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 11:46:16 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2073.outbound.protection.outlook.com [40.107.93.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 789747858D;
+        Mon, 11 Jul 2022 08:46:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PtR23iLhXlIZp4plIyfzjtpVURr4AqrEf1eTZbIlLX222TvbyLuUf3eVkYejTdaQBOOyineXDsfKgtBGs8OhQmGbDoEPlK922aMZSVdlwcx+6dyhxTjDbUEMGkVpjugki2HVjBwNXdwZXDZwVdafix85fH8Bhg0ftCX0/8xSQ/aWEkkax6MuZzuV8NEohhJzEcRg/VkoY1RVVlfVurvjawXQB1kb0sWCdV1phI/E818WR5LEU+yBqBY54Aet1AYaJTktKppvMjOLtfsxut6Po7NR1k2S2moAq8WYHj3CSKfI7c8RFYGUmHkXWEZdJhn0xOGDtlJTHtlhP28vAnS3ug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RG7HMcZZDVbEqneZkOj2QM3ZKxcPkRSqRmdfKPWuzyU=;
+ b=K7WYn2Ez5oR03v+t6Zz7SrC7NoscwPrt3j46ago6MP9tbfa2dvHx6GouJf59+1VX+aQn7fhvsy38OiCXXsQgGy4dxfZfr+gghCEpx9QKGPex+apqcr3vw0su6rX7zxa6oQeI3miItOaqElxkCn4wOS0k+XHwwrKa6ms9SbtAqN0/TBu9qJ3anCfueWhrF0GsddGPjHIq7NmPQFQx8P9mv/Nzhu5PKCjd6o4BDBKflJhcxzzLdX9S2fx4rqXSEzfOhlUfHm5ALW3BCk3zdo9WPRnLnjSVlxzZN+v7mFEjOYk49dK5e2MszTKKKPqCGYUpm5KnfkED+1gjuF3iJdVfQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.234) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RG7HMcZZDVbEqneZkOj2QM3ZKxcPkRSqRmdfKPWuzyU=;
+ b=lL/h1mVfzgyuGy+Th488ooMk+vRrhUT8fayxV46MrknEeDnhNILZMaKVq+eh5lzgzTjPpcOdN8FWCIqhsh/X24dCbHnavpqtSRUDomZjLy1I0anJ/czh6JGYrept5hZWfcQPNhMkf6V049sP2uBRmRA9NUg1U4vMMFVr8DUtPdKiD6nxt4yf52d8ucoN1PhaRNXPLMEmupsthBs5RNCR/lccdo4+f+ChzxnIM24QSxIDWGZqmxfzH2Tnk9dx4YiOxr+X+GKI6DWPijnwOSlJM7Kjw6MxlQeCI+GarxOAoWrkhHEoLVvJGg8oAS7auwuINCaoK/jXHHFocd5QJwSlBw==
+Received: from DS7PR03CA0264.namprd03.prod.outlook.com (2603:10b6:5:3b3::29)
+ by DM5PR12MB2421.namprd12.prod.outlook.com (2603:10b6:4:b4::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.24; Mon, 11 Jul
+ 2022 15:46:05 +0000
+Received: from DM6NAM11FT008.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b3:cafe::d9) by DS7PR03CA0264.outlook.office365.com
+ (2603:10b6:5:3b3::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26 via Frontend
+ Transport; Mon, 11 Jul 2022 15:46:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.234)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.234 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.234; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (12.22.5.234) by
+ DM6NAM11FT008.mail.protection.outlook.com (10.13.172.85) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5417.15 via Frontend Transport; Mon, 11 Jul 2022 15:46:05 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL101.nvidia.com
+ (10.27.9.10) with Microsoft SMTP Server (TLS) id 15.0.1497.32; Mon, 11 Jul
+ 2022 15:46:04 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Mon, 11 Jul
+ 2022 08:46:04 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.14) by mail.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server id 15.2.986.26 via Frontend
+ Transport; Mon, 11 Jul 2022 08:46:01 -0700
+From:   Akhil R <akhilrajeev@nvidia.com>
+To:     <dmaengine@vger.kernel.org>, <jonathanh@nvidia.com>,
+        <ldewangan@nvidia.com>, <linux-kernel@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <p.zabel@pengutronix.de>,
+        <thierry.reding@gmail.com>, <vkoul@kernel.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <akhilrajeev@nvidia.com>
+Subject: [PATCH v3 0/3] Add compatible for Tegra234 GPCDMA
+Date:   Mon, 11 Jul 2022 21:15:33 +0530
+Message-ID: <20220711154536.41736-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR autolearn=ham autolearn_force=no
-        version=3.4.6
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d637c450-64da-4ecd-4314-08da6354774a
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2421:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HIZur7rc73yX0DnlXcsmEURC6K4LYpY/+Gc5CnQtrUxMzHCaet0gpcAn84xWm01Bt6wMb+Ke0fzuBlPNd0IlkqJGRLXy4oZSl9MRZ8n5yfLFkHWxttPsIfKjJJqq+Gq+PDizNfAdSgIVfVOMCZR4djR4Dn+9rUNvG1aDDj1vCjKAfasdLVT1ZEoj2fElpAC1s0hCHJgOiKeEkHMgnAxHmWM7EWARgXKdY2wP2ou0yYmV0tMtIi0wDl/UG7ryFS6X/nZJlHRCR83ApKX1z9aHVSA1Ube8/do+r+wLVSZ2v5qNctpsyzVigbqX5ktbGqp3OhRYQh9kcGbznDrKxOLCZTWo3/espnytB0IIShJU/vlKEKabyZT1TzkHYLe6YrR5A4LgAYf6J7A/gmuC1d7jjH53A0uLqggxoo8FQogOJw2Y47w7b1loMMEW8DA9ubxfPfAuat9ggLVzNUwfLxTa5t1eoZb+7muplWbsQVYz9wAyJjdC5LkZoENeJmCRIBGB24d1L7FDkjgD/QrqS/n9DZKiUw1T8/So+BwMKn6430bknJ35Edy4pMJj+QFN+l3m5epNH8rCD6Hk7deqZOIHEPeNFoKgWhrKUloY7c73FvDpnCko2z0MJePwHpI+ge30WKYAuBQagpzRW2f0ezLAkxUUhktpx7IDNvNRowlqUWB0CHqvT5DX0a9bMeNGAbJnSRF/2PmNqjTDgOtwEqRnkl5og1BwPd3lQMY7gOKyHLtkvPYNNy77+qGxx+v2exzc4voGKWFWK3V8lKO3ZEKIlyCooOO2L0ENuO7U0ff0lTt6eUevITvbg1dQ6nXW7zPu9dlaPUzX65v4EbXrHSV1eMAThMGLZDKUQfO0E9nbdbxwZ0YpQ3Dv9udJmYq6N3q73k30YaNnQSNmQiYVXMO+Pk1eW0IkYjCpINAjzjZnBvc=
+X-Forefront-Antispam-Report: CIP:12.22.5.234;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230016)(4636009)(136003)(346002)(39860400002)(396003)(376002)(40470700004)(46966006)(36840700001)(2906002)(5660300002)(36756003)(4744005)(8936002)(36860700001)(40480700001)(4326008)(70586007)(8676002)(82310400005)(70206006)(316002)(110136005)(40460700003)(86362001)(82740400003)(1076003)(921005)(2616005)(107886003)(336012)(478600001)(356005)(6666004)(47076005)(41300700001)(7696005)(186003)(426003)(26005)(83380400001)(81166007)(83996005)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2022 15:46:05.4854
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d637c450-64da-4ecd-4314-08da6354774a
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.234];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT008.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2421
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
-additional blocks with directly controlled reset signals. In particular it
-concerns DDR full and initial resets and various PCIe sub-domains resets.
-Let's add the direct reset assertion/de-assertion of the corresponding
-flags support into the Baikal-T1 CCU driver then. It will be required at
-least for the PCIe platform driver. Obviously the DDR controller isn't
-supposed to be fully reset in the kernel, so the corresponding controls
-are added just for the sake of the interface implementation completeness.
+Tegra234 supports recovery of a channel hung in pause flush mode.
+This could happen when the client bus gets corrupted or if the end
+device ceases to send/receive data.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Add a separate compatible for Tegra234 so that this scenario can be
+handled in the driver.
 
----
+v2->v3:
+    * Updated binding docs and device tree compatible
 
-Changelog v6:
-- Refactor the code to support the linear reset IDs only. (@Philipp)
+v1->v2:
+    * split device tree change to a different patch.
+    * Update commit message
 
-Changelog v7:
-- Drop empty line from the sys_rst_info structure initialization block.
-  (@Philipp)
----
- drivers/clk/baikal-t1/ccu-rst.c     | 66 +++++++++++++++++++++++++++++
- drivers/clk/baikal-t1/ccu-rst.h     | 10 +++++
- include/dt-bindings/reset/bt1-ccu.h |  9 ++++
- 3 files changed, 85 insertions(+)
+Akhil R (3):
+  dt-bindings: dmaengine: Add compatible for Tegra234
+  dmaengine: tegra: Add terminate() for Tegra234
+  arm64: tegra: Update compatible for Tegra234 GPCDMA
 
-diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
-index 7db52633270f..40023ea67463 100644
---- a/drivers/clk/baikal-t1/ccu-rst.c
-+++ b/drivers/clk/baikal-t1/ccu-rst.c
-@@ -35,18 +35,29 @@
- #define CCU_AXI_HWA_BASE		0x054
- #define CCU_AXI_SRAM_BASE		0x058
- 
-+#define CCU_SYS_DDR_BASE		0x02c
- #define CCU_SYS_SATA_REF_BASE		0x060
- #define CCU_SYS_APB_BASE		0x064
-+#define CCU_SYS_PCIE_BASE		0x144
- 
- #define CCU_RST_DELAY_US		1
- 
- #define CCU_RST_TRIG(_base, _ofs)		\
- 	{					\
-+		.type = CCU_RST_TRIG,		\
-+		.base = _base,			\
-+		.mask = BIT(_ofs),		\
-+	}
-+
-+#define CCU_RST_DIR(_base, _ofs)		\
-+	{					\
-+		.type = CCU_RST_DIR,		\
- 		.base = _base,			\
- 		.mask = BIT(_ofs),		\
- 	}
- 
- struct ccu_rst_info {
-+	enum ccu_rst_type type;
- 	unsigned int base;
- 	unsigned int mask;
- };
-@@ -79,6 +90,15 @@ static const struct ccu_rst_info axi_rst_info[] = {
- static const struct ccu_rst_info sys_rst_info[] = {
- 	[CCU_SYS_SATA_REF_RST] = CCU_RST_TRIG(CCU_SYS_SATA_REF_BASE, 1),
- 	[CCU_SYS_APB_RST] = CCU_RST_TRIG(CCU_SYS_APB_BASE, 1),
-+	[CCU_SYS_DDR_FULL_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 1),
-+	[CCU_SYS_DDR_INIT_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 2),
-+	[CCU_SYS_PCIE_PCS_PHY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 0),
-+	[CCU_SYS_PCIE_PIPE0_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 4),
-+	[CCU_SYS_PCIE_CORE_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 8),
-+	[CCU_SYS_PCIE_PWR_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 9),
-+	[CCU_SYS_PCIE_STICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 10),
-+	[CCU_SYS_PCIE_NSTICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 11),
-+	[CCU_SYS_PCIE_HOT_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 12),
- };
- 
- static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
-@@ -86,6 +106,9 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
- 	struct ccu_rst *rst = to_ccu_rst(rcdev);
- 	const struct ccu_rst_info *info = &rst->rsts_info[idx];
- 
-+	if (info->type != CCU_RST_TRIG)
-+		return -EOPNOTSUPP;
-+
- 	regmap_update_bits(rst->sys_regs, info->base, info->mask, info->mask);
- 
- 	/* The next delay must be enough to cover all the resets. */
-@@ -94,8 +117,51 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
- 	return 0;
- }
- 
-+static int ccu_rst_set(struct reset_controller_dev *rcdev,
-+		       unsigned long idx, bool high)
-+{
-+	struct ccu_rst *rst = to_ccu_rst(rcdev);
-+	const struct ccu_rst_info *info = &rst->rsts_info[idx];
-+
-+	if (info->type != CCU_RST_DIR)
-+		return high ? -EOPNOTSUPP : 0;
-+
-+	return regmap_update_bits(rst->sys_regs, info->base,
-+				  info->mask, high ? info->mask : 0);
-+}
-+
-+static int ccu_rst_assert(struct reset_controller_dev *rcdev,
-+			  unsigned long idx)
-+{
-+	return ccu_rst_set(rcdev, idx, true);
-+}
-+
-+static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
-+			    unsigned long idx)
-+{
-+	return ccu_rst_set(rcdev, idx, false);
-+}
-+
-+static int ccu_rst_status(struct reset_controller_dev *rcdev,
-+			  unsigned long idx)
-+{
-+	struct ccu_rst *rst = to_ccu_rst(rcdev);
-+	const struct ccu_rst_info *info = &rst->rsts_info[idx];
-+	u32 val;
-+
-+	if (info->type != CCU_RST_DIR)
-+		return -EOPNOTSUPP;
-+
-+	regmap_read(rst->sys_regs, info->base, &val);
-+
-+	return !!(val & info->mask);
-+}
-+
- static const struct reset_control_ops ccu_rst_ops = {
- 	.reset = ccu_rst_reset,
-+	.assert = ccu_rst_assert,
-+	.deassert = ccu_rst_deassert,
-+	.status = ccu_rst_status,
- };
- 
- struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *rst_init)
-diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
-index 68214d777465..d6e8b2f671f4 100644
---- a/drivers/clk/baikal-t1/ccu-rst.h
-+++ b/drivers/clk/baikal-t1/ccu-rst.h
-@@ -13,6 +13,16 @@
- 
- struct ccu_rst_info;
- 
-+/*
-+ * enum ccu_rst_type - CCU Reset types
-+ * @CCU_RST_TRIG: Self-deasserted reset signal.
-+ * @CCU_RST_DIR: Directly controlled reset signal.
-+ */
-+enum ccu_rst_type {
-+	CCU_RST_TRIG,
-+	CCU_RST_DIR,
-+};
-+
- /*
-  * struct ccu_rst_init_data - CCU Resets initialization data
-  * @sys_regs: Baikal-T1 System Controller registers map.
-diff --git a/include/dt-bindings/reset/bt1-ccu.h b/include/dt-bindings/reset/bt1-ccu.h
-index 3578e83026bc..c691efaa678f 100644
---- a/include/dt-bindings/reset/bt1-ccu.h
-+++ b/include/dt-bindings/reset/bt1-ccu.h
-@@ -21,5 +21,14 @@
- 
- #define CCU_SYS_SATA_REF_RST		0
- #define CCU_SYS_APB_RST			1
-+#define CCU_SYS_DDR_FULL_RST		2
-+#define CCU_SYS_DDR_INIT_RST		3
-+#define CCU_SYS_PCIE_PCS_PHY_RST	4
-+#define CCU_SYS_PCIE_PIPE0_RST		5
-+#define CCU_SYS_PCIE_CORE_RST		6
-+#define CCU_SYS_PCIE_PWR_RST		7
-+#define CCU_SYS_PCIE_STICKY_RST		8
-+#define CCU_SYS_PCIE_NSTICKY_RST	9
-+#define CCU_SYS_PCIE_HOT_RST		10
- 
- #endif /* __DT_BINDINGS_RESET_BT1_CCU_H */
+ .../bindings/dma/nvidia,tegra186-gpc-dma.yaml |  4 +++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  4 +--
+ drivers/dma/tegra186-gpc-dma.c                | 26 +++++++++++++++++--
+ 3 files changed, 30 insertions(+), 4 deletions(-)
+
 -- 
-2.35.1
+2.17.1
 
