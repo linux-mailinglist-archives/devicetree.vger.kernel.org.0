@@ -2,103 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E0AB5704F2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:04:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 664C6570516
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 16:09:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230238AbiGKOEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 10:04:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57202 "EHLO
+        id S229694AbiGKOJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 10:09:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230084AbiGKOEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:04:10 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB34120A7;
-        Mon, 11 Jul 2022 07:04:09 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B2FE066019FF;
-        Mon, 11 Jul 2022 15:04:07 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657548248;
-        bh=C0XN9RKnWDlXmYm+a6GfTq9/VWea2/+BxOU6oLr0iIA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=a4UBbmV2mSyXG2UjvRpgZls25hVIKUBcPmATMmR75GesQqwEutstb/m8oaJVAWcLz
-         3VXOto5qYeVOZXmP9jl8iIx0ZbfyiIVVU7ohty6MLy9P7G1CGjWKRWv9SVRooUz+mH
-         vWkItc9ycf4O5giNdhKzfXIr8eXQTbhYmpFRd9oR+h4qe8kJQLztHfjsPpkK9bN5d6
-         ZNTVS/33imlFuHGR0/O5V8O6SBPD64uYpWrannQ24htvd7YMomkP8dOaUAiTi2Oo36
-         G2nsAaeFG9E2UBXNCuwxvflnBkf9Z2mZtDIPY2HSHAzt4srrWTO8HPCGh/yHinyi96
-         d7ayb2gWNmqBw==
-Message-ID: <68de450f-da22-02e3-e863-7e17582ee03f@collabora.com>
-Date:   Mon, 11 Jul 2022 17:04:04 +0300
+        with ESMTP id S229654AbiGKOJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 10:09:08 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 252B261B23;
+        Mon, 11 Jul 2022 07:09:07 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id r14so7201575wrg.1;
+        Mon, 11 Jul 2022 07:09:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:subject:to:cc:message-id:in-reply-to:references
+         :mime-version;
+        bh=x2FwgOdiviKc21na7ZeEL1STsNQh/sVL41XUf3gedcc=;
+        b=TPlU+M9oGx1mze+WdbVSqIDnwy5LAOrTd/lbEjl69f1UAbD0Lw9Z9veZYduWYlkmyM
+         dUfs2b6mm4OIW0Mzlu38PN0B7+P9jZMT9mtaUZoZn5q4ohIQLAvEapxKDLBkAYkH3cSz
+         6yrnWDpmDWhUeEY65i0qh1b9ZHh/eYEb5GWTc/9ySXeTivvBfXOLIyG8NmCNmU2rvuKF
+         2PH4oyawrJPOxlWB3osQ7Wqld83OepdKkSDAzq2x7GdjaRqhcCT/ZcNJjswxDJMv0Cbe
+         C/G2LtXF1lk2E6k6Uoluf+CailgftMMSYJJc7bDM55NoRrsx/DWO7wkabKLi8A5I7YvU
+         4N1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
+         :references:mime-version;
+        bh=x2FwgOdiviKc21na7ZeEL1STsNQh/sVL41XUf3gedcc=;
+        b=ByBv9ZT01cvTLYduqa0L2gcS8i4YLfpdld15ByasT9JAUnPvs4mAWMApUigQ3zPrNS
+         tx5lU4kuaqDnZPmgV8MZhzWKDsn+gypBYoN+QtIi1Zc5AtfkI7qRjxnWev0Bq61EgiaA
+         h8HnL6iuXl54G52A77XOHHwV3kZQHwMbT1ZHVJtj4rG49V6ANOSJCMdVMMU/5BVZAiTV
+         Yi3ICW3lXhp9Fdk+TAaGcaAont5S69om87yagy1gRH9hvKfr8k+UmxgrERGLFDxtEamE
+         utGD/5kduovma5X2vEKFrViJzalQnRkPCdXa99CfMPZCiS/Sr9JPlWX3nsAgM9v/2UvK
+         yo/Q==
+X-Gm-Message-State: AJIora9ea15J6WHhPBlW7xZxmIcHuKS2VRPBTtcIT2BGEq8CBE8GQOU/
+        4N5D2EUW/M4cw+yxYj78sxk=
+X-Google-Smtp-Source: AGRyM1u+pldjsBeBkbIyiDwokUZeBqDMLwj4/xAyoxod+DcsL0JPXreH5nrQBG0R9+uySKQdULIVLA==
+X-Received: by 2002:adf:eb48:0:b0:21d:7ffc:4919 with SMTP id u8-20020adfeb48000000b0021d7ffc4919mr17595386wrn.537.1657548545552;
+        Mon, 11 Jul 2022 07:09:05 -0700 (PDT)
+Received: from [192.168.4.247] (89-39-107-113.hosted-by-worldstream.net. [89.39.107.113])
+        by smtp.gmail.com with ESMTPSA id h15-20020a1ccc0f000000b0039c54bb28f2sm7085334wmb.36.2022.07.11.07.09.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jul 2022 07:09:05 -0700 (PDT)
+Date:   Mon, 11 Jul 2022 18:08:53 +0400
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+Subject: Re: [PATCH 3/3] media: i2c: ak7375: Add regulator management
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tianshu Qiu <tian.shu.qiu@intel.com>,
+        Bingbu Cao <bingbu.cao@intel.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <TM0VER.DLTH01AKOV622@gmail.com>
+In-Reply-To: <20220711133423.w6yzbcfqwv2muu34@uno.localdomain>
+References: <20220711042838.213351-1-y.oudjana@protonmail.com>
+        <20220711042838.213351-4-y.oudjana@protonmail.com>
+        <20220711133423.w6yzbcfqwv2muu34@uno.localdomain>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v7 2/2] iio: light: Add support for ltrf216a sensor
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, Zhigang.Shi@liteon.com,
-        krisman@collabora.com, linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        alvaro.soliverez@collabora.com
-References: <20220711112900.61363-1-shreeya.patel@collabora.com>
- <20220711112900.61363-3-shreeya.patel@collabora.com>
- <CAHp75Vf3NDsep5_819=e8yrna_AGh5cew=fs+hHe1q8LCa-PyA@mail.gmail.com>
- <c90e7334-5921-886b-2f9c-869fb55216ca@collabora.com>
- <CAHp75Vf=FOt+N6azar5gifvig8FL4sS3LX1kO8CzNCh2yOk-DQ@mail.gmail.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <CAHp75Vf=FOt+N6azar5gifvig8FL4sS3LX1kO8CzNCh2yOk-DQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/11/22 16:41, Andy Shevchenko wrote:
-> On Mon, Jul 11, 2022 at 3:39 PM Shreeya Patel
-> <shreeya.patel@collabora.com> wrote:
->> On 11/07/22 18:36, Andy Shevchenko wrote:
->>> On Mon, Jul 11, 2022 at 1:30 PM Shreeya Patel
-> 
-> Please, remove unneeded context when replying!
-> 
-> ...
-> 
->>>> +static const struct regmap_config ltrf216a_regmap_config = {
->>>> +       .name = LTRF216A_DRV_NAME,
->>>> +       .reg_bits = 8,
->>>> +       .val_bits = 8,
->>>> +       .max_register = LTRF216A_MAX_REG,
->>> Why do you use regmap locking? What for?
->>
->> Why do we want to skip the internal locking if it doesn't bring any
->> benefits?
-> 
-> Can you elaborate on the "no benefits" part, please?
 
-Since the regmap's lock will never be contended, thus it's free to keep
-using it. If later on we will need to change the driver's code such that
-the lock will become needed, then we won't need to bother with
-re-enabling it. The comment to the driver's mutex states clearly that
-it's intended to protect the cached value.
+On Mon, Jul 11 2022 at 15:34:23 +0200, Jacopo Mondi <jacopo@jmondi.org> 
+wrote:
+> Hello Yassine
+> 
+> On Mon, Jul 11, 2022 at 08:28:39AM +0400, Yassine Oudjana wrote:
+>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+>> 
+>>  Make the driver get needed regulators on probe and enable/disable
+>>  them on runtime PM callbacks.
+>> 
+>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>  ---
+>>   drivers/media/i2c/ak7375.c | 39 
+>> ++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>> 
+>>  diff --git a/drivers/media/i2c/ak7375.c b/drivers/media/i2c/ak7375.c
+>>  index 40b1a4aa846c..59d5cb00e3ba 100644
+>>  --- a/drivers/media/i2c/ak7375.c
+>>  +++ b/drivers/media/i2c/ak7375.c
+>>  @@ -6,6 +6,7 @@
+>>   #include <linux/i2c.h>
+>>   #include <linux/module.h>
+>>   #include <linux/pm_runtime.h>
+>>  +#include <linux/regulator/consumer.h>
+>>   #include <media/v4l2-ctrls.h>
+>>   #include <media/v4l2-device.h>
+>> 
+>>  @@ -23,17 +24,32 @@
+>>    */
+>>   #define AK7375_CTRL_STEPS	64
+>>   #define AK7375_CTRL_DELAY_US	1000
+>>  +/*
+>>  + * The vcm takes around 3 ms to power on and start taking
+>>  + * I2C messages. This value was found experimentally due to
+>>  + * lack of documentation. 2 ms is added as a safety margin.
+>>  + */
+>>  +#define AK7375_POWER_DELAY_US	5000
+>> 
+>>   #define AK7375_REG_POSITION	0x0
+>>   #define AK7375_REG_CONT		0x2
+>>   #define AK7375_MODE_ACTIVE	0x0
+>>   #define AK7375_MODE_STANDBY	0x40
+>> 
+>>  +static const char * const ak7375_supply_names[] = {
+>>  +	"vdd",
+>>  +	"vio",
+>>  +};
+>>  +
+>>  +#define AK7375_NUM_SUPPLIES ARRAY_SIZE(ak7375_supply_names)
+>>  +
+>>   /* ak7375 device structure */
+>>   struct ak7375_device {
+>>   	struct v4l2_ctrl_handler ctrls_vcm;
+>>   	struct v4l2_subdev sd;
+>>   	struct v4l2_ctrl *focus;
+>>  +	struct regulator_bulk_data supplies[AK7375_NUM_SUPPLIES];
+>>  +
+>>   	/* active or standby mode */
+>>   	bool active;
+>>   };
+>>  @@ -132,6 +148,7 @@ static int ak7375_init_controls(struct 
+>> ak7375_device *dev_vcm)
+>>   static int ak7375_probe(struct i2c_client *client)
+>>   {
+>>   	struct ak7375_device *ak7375_dev;
+>>  +	int i;
+> 
+> I would have moved this one down to maintain variable declaration
+> in the in-famous reverse-xmas-tree ordering. Up to you.
 
-Hence what is point in disabling the regmap's lock? There are very few
-drivers that disable the regmap's lock and most of them do that for the
-good reason.
+I'm used to declaring variables in the order of first use,
+but I don't really mind it either way. I'll move it down.
 
--- 
-Best regards,
-Dmitry
+> 
+>>   	int ret;
+>> 
+>>   	ak7375_dev = devm_kzalloc(&client->dev, sizeof(*ak7375_dev),
+>>  @@ -139,6 +156,17 @@ static int ak7375_probe(struct i2c_client 
+>> *client)
+>>   	if (!ak7375_dev)
+>>   		return -ENOMEM;
+>> 
+>>  +	for (i = 0; i < AK7375_NUM_SUPPLIES; i++)
+>>  +		ak7375_dev->supplies[i].supply = ak7375_supply_names[i];
+>>  +
+>>  +	ret = devm_regulator_bulk_get(&client->dev, AK7375_NUM_SUPPLIES,
+>>  +				      ak7375_dev->supplies);
+>>  +	if (ret) {
+>>  +		dev_err(&client->dev, "Failed to get regulators: %pe",
+>>  +			ERR_PTR(ret));
+>>  +		return ret;
+>>  +	}
+>>  +
+>>   	v4l2_i2c_subdev_init(&ak7375_dev->sd, client, &ak7375_ops);
+>>   	ak7375_dev->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+>>   	ak7375_dev->sd.internal_ops = &ak7375_int_ops;
+>>  @@ -210,6 +238,10 @@ static int __maybe_unused 
+>> ak7375_vcm_suspend(struct device *dev)
+>>   	if (ret)
+>>   		dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
+>> 
+>>  +	ret = regulator_bulk_disable(AK7375_NUM_SUPPLIES, 
+>> ak7375_dev->supplies);
+>>  +	if (ret)
+>>  +		return ret;
+>>  +
+>>   	ak7375_dev->active = false;
+>> 
+>>   	return 0;
+>>  @@ -230,6 +262,13 @@ static int __maybe_unused 
+>> ak7375_vcm_resume(struct device *dev)
+>>   	if (ak7375_dev->active)
+>>   		return 0;
+>> 
+>>  +	ret = regulator_bulk_enable(AK7375_NUM_SUPPLIES, 
+>> ak7375_dev->supplies);
+>>  +	if (ret)
+>>  +		return ret;
+>>  +
+>>  +	/* Wait for vcm to become ready */
+>>  +	usleep_range(AK7375_POWER_DELAY_US, AK7375_POWER_DELAY_US + 10);
+>>  +
+> 
+> Isn't 10usec a very small delay to be given to usleep_range() for a
+> delay of at least 3msec ? Also assuming 5msec just to be safe seems a
+> little arbitrary. Adding 2 milliseconds in the wakeup path introduces
+> a non-negligible delay.
+
+I must admit that I didn't give it too much thought. I just
+did it similar to the other delay used in this driver
+(AK7375_CTRL_DELAY_US). As for adding 2ms, I don't know what
+the worst case wake-up time is since I don't have a datasheet
+on hand, so I just wanted to stay safe. Also, this driver
+doesn't really recover if it fails to resume (which is what
+used to happen before adding a delay). Rounding up to 5ms
+felt good enough.
+
+> 
+> It's likely a detail, but according to 
+> Documentation/timers/timers-howto.rst
+> 
+>         Since usleep_range is built on top of hrtimers, the
+>         wakeup will be very precise (ish), thus a simple
+>         usleep function would likely introduce a large number
+>         of undesired interrupts.
+> 
+>         With the introduction of a range, the scheduler is
+>         free to coalesce your wakeup with any other wakeup
+>         that may have happened for other reasons, or at the
+>         worst case, fire an interrupt for your upper bound.
+> 
+>         The larger a range you supply, the greater a chance
+>         that you will not trigger an interrupt; this should
+>         be balanced with what is an acceptable upper bound on
+>         delay / performance for your specific code path. Exact
+>         tolerances here are very situation specific, thus it
+>         is left to the caller to determine a reasonable range.
+> 
+> If you have a min of 3msec I would try with a range of (3000, 3500).
+> What do you think ?
+
+Seems good. I haven't yet had it fail to power on within 3ms of
+turning on regulators so I guess there is no reason to worry about it.
+
+>> 
+>>   	ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_CONT,
+>>   		AK7375_MODE_ACTIVE, 1);
+>>   	if (ret) {
+>>  --
+>>  2.37.0
+> 
+
+Thanks for the review,
+Yassine
+
+
