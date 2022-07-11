@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB1FC570AB1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 21:26:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ED12570AB8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 21:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbiGKT0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 15:26:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36288 "EHLO
+        id S229895AbiGKT3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 15:29:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbiGKT0t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 15:26:49 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE20E6111C
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 12:26:48 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id b12so3597084ilh.4
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 12:26:48 -0700 (PDT)
+        with ESMTP id S229606AbiGKT3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 15:29:01 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 071C62A24C;
+        Mon, 11 Jul 2022 12:29:00 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id k1so3613035ilu.1;
+        Mon, 11 Jul 2022 12:28:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=cl5PURd5PvDBf61V/tZG+ohnOrCuiGlanXba6ZYmwVg=;
-        b=vCq6j0p/jxeN6bHA0jiDCJTQ4z92E4rrEjDshq7m5IxF4Bldv4txHRijKmL/7CY7OC
-         pwO+WSohHeKGccRiEB4YbwBtJYTNgYt7qxok2m46HisumRTbcGCc8stHAdwPLKqpUJNl
-         QNYuvOe9eW0C3SWfZsa7+im9d/Pm6znHHB0LglLwCH1DZMd3ucg9P4pWybEw+NG/kt8G
-         Ro+yqH3eIbNbfYbiHyy3o8yKFnE8/O8vlr3Fzmh0XC2OcZQ1THgZjw6LAAHpW25PtOIF
-         BcMp9KJfWSNgZhWmzxjCmPHy5r/6bfIiocntO2b59BoBmXOmAGqylyM8R9/CQJ4x00gf
-         yEsA==
-X-Gm-Message-State: AJIora/h+r4xaeA4BUYFaMSkHhuALfRIyToHwfjDV6RULGDZRT62t47C
-        0lIr4gc1ir91udSRe6UFjw==
-X-Google-Smtp-Source: AGRyM1sfha5Lt7uPRpezj/tbCHAwAeI6h1HN6zJEXptywmpTAeRrfMnkn7Vnko32K8M+/sdpIb5j2A==
-X-Received: by 2002:a92:ddd1:0:b0:2d5:4877:65c8 with SMTP id d17-20020a92ddd1000000b002d5487765c8mr10801958ilr.267.1657567608236;
-        Mon, 11 Jul 2022 12:26:48 -0700 (PDT)
+        bh=iZPISdQIEd50IPkyIIGorwgmFbhDgLSaiPphEdn18A0=;
+        b=3vdq7w2Xc9rEd6pqOBppT/f2oTokCWJfAAko3I9I1Fb7EOcPbUWuB+7hX6ffeh5++x
+         rxK0BKAxW8g2aiHDW7+AKG7db4S/3KEsG6djVYiOiacH/5yZvIzGxIVdl6K1y3BC64dB
+         dM4b0qXyUwfMYyy0VZJH/kL/9Z7AjffGZ8qSGNPSwo2bACy8pBvvWV+r3PJ47s0g/tsV
+         vpyjbao44UKxrFBbdwBGn7FVRVj8YfJwValvIn7Amq5oD81WcpqMCOWdQyKpmSJdfEXx
+         qYW1e7zSksQXM3o3Ei0Okp7Dq/yAX2qo1m++VEX/Bcyj6w43mBC/IVbyQRBGAV8Rsm5v
+         /RWg==
+X-Gm-Message-State: AJIora+RPoqO1FQDCu16c6wZ41GURRqbn96MNXUjKeukaVQg+WAfxUZc
+        yqUCVtYDvqlhBoqCiw/0jw==
+X-Google-Smtp-Source: AGRyM1uTmzKpa35PHa/VK8S85DfO/DfoqsviXp4pKUJJVOI+xGD20bTc1Z2f0gvCnH9LLnR54Y58dA==
+X-Received: by 2002:a92:6c05:0:b0:2da:b9e8:24df with SMTP id h5-20020a926c05000000b002dab9e824dfmr10494179ilc.99.1657567739216;
+        Mon, 11 Jul 2022 12:28:59 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h30-20020a056638339e00b0033f22c2e5b3sm3247671jav.98.2022.07.11.12.26.47
+        by smtp.gmail.com with ESMTPSA id m2-20020a056e020de200b002dc779f1708sm1894739ilj.51.2022.07.11.12.28.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 12:26:47 -0700 (PDT)
-Received: (nullmailer pid 134339 invoked by uid 1000);
-        Mon, 11 Jul 2022 19:26:46 -0000
-Date:   Mon, 11 Jul 2022 13:26:46 -0600
+        Mon, 11 Jul 2022 12:28:58 -0700 (PDT)
+Received: (nullmailer pid 137565 invoked by uid 1000);
+        Mon, 11 Jul 2022 19:28:55 -0000
+Date:   Mon, 11 Jul 2022 13:28:55 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: cpus: add cortex-a78ae compatible
-Message-ID: <20220711192646.GA134263-robh@kernel.org>
-References: <CGME20220707083044epcas2p2cb1dfda1d46fe70340b8ecf77b014511@epcas2p2.samsung.com>
- <20220707082753.28862-1-chanho61.park@samsung.com>
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, netdev@vger.kernel.org, linux@armlinux.org.uk,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/4] dt-bindings: net: convert sff,sfp to
+ dtschema
+Message-ID: <20220711192855.GA134503-robh@kernel.org>
+References: <20220707091437.446458-1-ioana.ciornei@nxp.com>
+ <20220707091437.446458-2-ioana.ciornei@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220707082753.28862-1-chanho61.park@samsung.com>
+In-Reply-To: <20220707091437.446458-2-ioana.ciornei@nxp.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,15 +64,284 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Jul 2022 17:27:53 +0900, Chanho Park wrote:
-> Cortex A78AE's MPIDR has been added since
-> commit 83bea32ac7ed ("arm64: Add part number for Arm Cortex-A78AE")
-> We also need to add the compatible.
+On Thu, Jul 07, 2022 at 12:14:34PM +0300, Ioana Ciornei wrote:
+> Convert the sff,sfp.txt bindings to the DT schema format.
+> Also add the new path to the list of maintained files.
 > 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 > ---
->  Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Changes in v2:
+>  - used the -gpios suffix
+>  - restricted the use of some gpios if the compatible is sff,sff
 > 
+> Changes in v3:
+>  - moved the -gpios properties to be under properties and not
+>    pattern properties.
+> 
+>  .../devicetree/bindings/net/sff,sfp.txt       |  85 -----------
+>  .../devicetree/bindings/net/sff,sfp.yaml      | 142 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 143 insertions(+), 85 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/sff,sfp.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/sff,sfp.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/sff,sfp.txt b/Documentation/devicetree/bindings/net/sff,sfp.txt
+> deleted file mode 100644
+> index 832139919f20..000000000000
+> --- a/Documentation/devicetree/bindings/net/sff,sfp.txt
+> +++ /dev/null
+> @@ -1,85 +0,0 @@
+> -Small Form Factor (SFF) Committee Small Form-factor Pluggable (SFP)
+> -Transceiver
+> -
+> -Required properties:
+> -
+> -- compatible : must be one of
+> -  "sff,sfp" for SFP modules
+> -  "sff,sff" for soldered down SFF modules
+> -
+> -- i2c-bus : phandle of an I2C bus controller for the SFP two wire serial
+> -  interface
+> -
+> -Optional Properties:
+> -
+> -- mod-def0-gpios : GPIO phandle and a specifier of the MOD-DEF0 (AKA Mod_ABS)
+> -  module presence input gpio signal, active (module absent) high. Must
+> -  not be present for SFF modules
+> -
+> -- los-gpios : GPIO phandle and a specifier of the Receiver Loss of Signal
+> -  Indication input gpio signal, active (signal lost) high
+> -
+> -- tx-fault-gpios : GPIO phandle and a specifier of the Module Transmitter
+> -  Fault input gpio signal, active (fault condition) high
+> -
+> -- tx-disable-gpios : GPIO phandle and a specifier of the Transmitter Disable
+> -  output gpio signal, active (Tx disable) high
+> -
+> -- rate-select0-gpios : GPIO phandle and a specifier of the Rx Signaling Rate
+> -  Select (AKA RS0) output gpio signal, low: low Rx rate, high: high Rx rate
+> -  Must not be present for SFF modules
+> -
+> -- rate-select1-gpios : GPIO phandle and a specifier of the Tx Signaling Rate
+> -  Select (AKA RS1) output gpio signal (SFP+ only), low: low Tx rate, high:
+> -  high Tx rate. Must not be present for SFF modules
+> -
+> -- maximum-power-milliwatt : Maximum module power consumption
+> -  Specifies the maximum power consumption allowable by a module in the
+> -  slot, in milli-Watts.  Presently, modules can be up to 1W, 1.5W or 2W.
+> -
+> -Example #1: Direct serdes to SFP connection
+> -
+> -sfp_eth3: sfp-eth3 {
+> -	compatible = "sff,sfp";
+> -	i2c-bus = <&sfp_1g_i2c>;
+> -	los-gpios = <&cpm_gpio2 22 GPIO_ACTIVE_HIGH>;
+> -	mod-def0-gpios = <&cpm_gpio2 21 GPIO_ACTIVE_LOW>;
+> -	maximum-power-milliwatt = <1000>;
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&cpm_sfp_1g_pins &cps_sfp_1g_pins>;
+> -	tx-disable-gpios = <&cps_gpio1 24 GPIO_ACTIVE_HIGH>;
+> -	tx-fault-gpios = <&cpm_gpio2 19 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -&cps_emac3 {
+> -	phy-names = "comphy";
+> -	phys = <&cps_comphy5 0>;
+> -	sfp = <&sfp_eth3>;
+> -};
+> -
+> -Example #2: Serdes to PHY to SFP connection
+> -
+> -sfp_eth0: sfp-eth0 {
+> -	compatible = "sff,sfp";
+> -	i2c-bus = <&sfpp0_i2c>;
+> -	los-gpios = <&cps_gpio1 28 GPIO_ACTIVE_HIGH>;
+> -	mod-def0-gpios = <&cps_gpio1 27 GPIO_ACTIVE_LOW>;
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&cps_sfpp0_pins>;
+> -	tx-disable-gpios = <&cps_gpio1 29 GPIO_ACTIVE_HIGH>;
+> -	tx-fault-gpios  = <&cps_gpio1 26 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -p0_phy: ethernet-phy@0 {
+> -	compatible = "ethernet-phy-ieee802.3-c45";
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&cpm_phy0_pins &cps_phy0_pins>;
+> -	reg = <0>;
+> -	interrupt = <&cpm_gpio2 18 IRQ_TYPE_EDGE_FALLING>;
+> -	sfp = <&sfp_eth0>;
+> -};
+> -
+> -&cpm_eth0 {
+> -	phy = <&p0_phy>;
+> -	phy-mode = "10gbase-kr";
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/sff,sfp.yaml b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+> new file mode 100644
+> index 000000000000..19cf88284295
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+> @@ -0,0 +1,142 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/net/sff,sfp.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Small Form Factor (SFF) Committee Small Form-factor Pluggable (SFP)
+> +  Transceiver
+> +
+> +maintainers:
+> +  - Russell King <linux@armlinux.org.uk>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sff,sfp  # for SFP modules
+> +      - sff,sff  # for soldered down SFF modules
+> +
+> +  i2c-bus:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle of an I2C bus controller for the SFP two wire serial
+> +
+> +  maximum-power-milliwatt:
+> +    maxItems: 1
+> +    description:
+> +      Maximum module power consumption Specifies the maximum power consumption
+> +      allowable by a module in the slot, in milli-Watts. Presently, modules can
+> +      be up to 1W, 1.5W or 2W.
+> +
+> +  "mod-def0-gpios":
 
-Applied, thanks!
+You don't need quotes on any of these. Otherwise,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the MOD-DEF0 (AKA Mod_ABS) module
+> +      presence input gpio signal, active (module absent) high. Must not be
+> +      present for SFF modules
+> +
+> +  "los-gpios":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Receiver Loss of Signal Indication
+> +      input gpio signal, active (signal lost) high
+> +
+> +  "tx-fault-gpios":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Module Transmitter Fault input gpio
+> +      signal, active (fault condition) high
+> +
+> +  "tx-disable-gpios":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Transmitter Disable output gpio
+> +      signal, active (Tx disable) high
+> +
+> +  "rate-select0-gpios":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Rx Signaling Rate Select (AKA RS0)
+> +      output gpio signal, low - low Rx rate, high - high Rx rate Must not be
+> +      present for SFF modules
+> +
+> +  "rate-select1-gpios":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Tx Signaling Rate Select (AKA RS1)
+> +      output gpio signal (SFP+ only), low - low Tx rate, high - high Tx rate. Must
+> +      not be present for SFF modules
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: sff,sff
+> +    then:
+> +      properties:
+> +        mod-def0-gpios: false
+> +        rate-select0-gpios: false
+> +        rate-select1-gpios: false
+> +
+> +required:
+> +  - compatible
+> +  - i2c-bus
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - | # Direct serdes to SFP connection
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    sfp_eth3: sfp-eth3 {
+> +      compatible = "sff,sfp";
+> +      i2c-bus = <&sfp_1g_i2c>;
+> +      los-gpios = <&cpm_gpio2 22 GPIO_ACTIVE_HIGH>;
+> +      mod-def0-gpios = <&cpm_gpio2 21 GPIO_ACTIVE_LOW>;
+> +      maximum-power-milliwatt = <1000>;
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&cpm_sfp_1g_pins &cps_sfp_1g_pins>;
+> +      tx-disable-gpios = <&cps_gpio1 24 GPIO_ACTIVE_HIGH>;
+> +      tx-fault-gpios = <&cpm_gpio2 19 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
+> +    cps_emac3 {
+> +      phy-names = "comphy";
+> +      phys = <&cps_comphy5 0>;
+> +      sfp = <&sfp_eth3>;
+> +    };
+> +
+> +  - | # Serdes to PHY to SFP connection
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    sfp_eth0: sfp-eth0 {
+> +      compatible = "sff,sfp";
+> +      i2c-bus = <&sfpp0_i2c>;
+> +      los-gpios = <&cps_gpio1 28 GPIO_ACTIVE_HIGH>;
+> +      mod-def0-gpios = <&cps_gpio1 27 GPIO_ACTIVE_LOW>;
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&cps_sfpp0_pins>;
+> +      tx-disable-gpios = <&cps_gpio1 29 GPIO_ACTIVE_HIGH>;
+> +      tx-fault-gpios  = <&cps_gpio1 26 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
+> +    mdio {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      p0_phy: ethernet-phy@0 {
+> +        compatible = "ethernet-phy-ieee802.3-c45";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&cpm_phy0_pins &cps_phy0_pins>;
+> +        reg = <0>;
+> +        interrupt = <&cpm_gpio2 18 IRQ_TYPE_EDGE_FALLING>;
+> +        sfp = <&sfp_eth0>;
+> +      };
+> +    };
+> +
+> +    cpm_eth0 {
+> +      phy = <&p0_phy>;
+> +      phy-mode = "10gbase-kr";
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 32c4708cdeb9..d495f6d7c2c8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18109,6 +18109,7 @@ SFF/SFP/SFP+ MODULE SUPPORT
+>  M:	Russell King <linux@armlinux.org.uk>
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/net/sff,sfp.yaml
+>  F:	drivers/net/phy/phylink.c
+>  F:	drivers/net/phy/sfp*
+>  F:	include/linux/mdio/mdio-i2c.h
+> -- 
+> 2.34.1
+> 
+> 
