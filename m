@@ -2,54 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B325656D21D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 02:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C430456D248
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 02:48:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbiGKARr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jul 2022 20:17:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58926 "EHLO
+        id S229699AbiGKAsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jul 2022 20:48:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiGKARq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 20:17:46 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9CFA8120B7;
-        Sun, 10 Jul 2022 17:17:45 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9CA9323A;
-        Sun, 10 Jul 2022 17:17:45 -0700 (PDT)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 79EB33F73D;
-        Sun, 10 Jul 2022 17:17:42 -0700 (PDT)
-Date:   Mon, 11 Jul 2022 01:16:36 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org
-Subject: Re: [PATCH v12 1/7] dt-bindings: arm: sunxi: Add H616 EMAC
- compatible
-Message-ID: <20220711011558.01a586d2@slackpad.lan>
-In-Reply-To: <b3149c47-7fbf-53b2-f0d7-a45942bb819c@sholland.org>
-References: <20220701112453.2310722-1-andre.przywara@arm.com>
-        <20220701112453.2310722-2-andre.przywara@arm.com>
-        <b2661412-5fce-a20d-c7c4-6df58efdb930@sholland.org>
-        <20220705111906.3c553f23@donnerap.cambridge.arm.com>
-        <b3149c47-7fbf-53b2-f0d7-a45942bb819c@sholland.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S229698AbiGKAsn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jul 2022 20:48:43 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D45F6141
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 17:48:42 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id 89-20020a17090a09e200b001ef7638e536so6845072pjo.3
+        for <devicetree@vger.kernel.org>; Sun, 10 Jul 2022 17:48:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YD6Q06B/SQAWNtwCMdABWQHoqLls9qjoeRujGGhLFGg=;
+        b=mpw5JrMx6CxTMug6v/6Ew71C+1TNw5Bz9zPZkIBFk+OzvkrY2HU9FHX1posEVnN42w
+         Oq5OuTK1eAJuuSySqoBDjxfrYNqzqy9zF0DKezy/LIrvK7vPuE5aZyeeSoH8tQ4cpe51
+         rTx/iN9ZUg2yT9SQlZdCCpKe0VRglILbzPILo/gWMLjrQfcj00LxZTwPgeoHPcgVPKLN
+         WlK8yFgdmlLd7U4fOTWcR4sKdgpwZCI4MSTHbw/vqJmqjPMy70wlTZsJz6Db12Aow/A1
+         VG3mhzBQC8+4GdlQmGCwfkqe69f4NzSIFaj+kdW3iPlxqpSFIXnUZHTZ/UXVCrjQjM/t
+         +23w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YD6Q06B/SQAWNtwCMdABWQHoqLls9qjoeRujGGhLFGg=;
+        b=tH0ecnkA7MPnpFhOJ1WcVnLysOqbvO6sbWgfcxDKr9DGXnkYaqFTeEYbqss7IJaB1i
+         +LlGldCM5MMJSNLhJP5E+s7xGCmVbUPUd8tMn3zwax6A/sqOLhzRuooos2yKdqEiaK+s
+         X3zFGRsulV7i0+qXBNkqDcb1oMadCem+lThBUmbphkkOkwmNVesNieOeHM6Eeiwg4J85
+         9XAw2sPGxhpItJI/pxdFLW7pwdEHT3yZdYSgU+WkrnobdyTiNk6pqRaWEzxKTe+7M+O8
+         9Ket4DLGH4C02O3uY6vADvjLhdJr4QoenX/dzeVtnDGrJblEUFlWX3MldTTDPsND1ccB
+         /6Xw==
+X-Gm-Message-State: AJIora9wf6ucPxBrRj8q0cU0jKwhU81+vZkRzqJKv+2vLKMm4YtUyGeS
+        xoBsBtT1I9him2+oASN5erUs9A==
+X-Google-Smtp-Source: AGRyM1v2crBlrnv/9ATiX4diY/lzqqj1Nu/uk7HmkUkg5S2ayhqMwUbLbUUFDjDAyX1nPtBhgC3gFg==
+X-Received: by 2002:a17:903:1105:b0:16c:32e4:6453 with SMTP id n5-20020a170903110500b0016c32e46453mr9695740plh.131.1657500521922;
+        Sun, 10 Jul 2022 17:48:41 -0700 (PDT)
+Received: from localhost ([122.171.18.80])
+        by smtp.gmail.com with ESMTPSA id j14-20020a170903024e00b0016bf10203d9sm3308502plh.144.2022.07.10.17.48.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Jul 2022 17:48:41 -0700 (PDT)
+Date:   Mon, 11 Jul 2022 06:18:32 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     ilia.lin@kernel.org, agross@kernel.org, rafael@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        stephan@gerhold.net, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] msm8939 cpufreq preparatory work
+Message-ID: <20220711004832.scmddlnl5nq4npxi@vireshk-i7>
+References: <20220708121156.2165250-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220708121156.2165250-1-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,127 +71,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 Jul 2022 22:55:54 -0500
-Samuel Holland <samuel@sholland.org> wrote:
-
-Hi Samuel,
-
-thanks for the answer! I think we settled this particular issue, just
-for clarification some comments/questions below.
-
-> On 7/5/22 5:19 AM, Andre Przywara wrote:
-> > On Mon, 4 Jul 2022 18:53:14 -0500
-> > Samuel Holland <samuel@sholland.org> wrote:  
-> >> On 7/1/22 6:24 AM, Andre Przywara wrote:  
-> >>> The Allwinner H616 contains an "EMAC" Ethernet MAC compatible to the A64
-> >>> version.
-> >>>
-> >>> Add it to the list of compatible strings.
-> >>>
-> >>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> >>> ---
-> >>>  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml       | 1 +
-> >>>  1 file changed, 1 insertion(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-> >>> index 6a4831fd3616c..87f1306831cc9 100644
-> >>> --- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-> >>> +++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-> >>> @@ -22,6 +22,7 @@ properties:
-> >>>            - enum:
-> >>>                - allwinner,sun20i-d1-emac
-> >>>                - allwinner,sun50i-h6-emac
-> >>> +              - allwinner,sun50i-h616-emac    
-> >>
-> >> The H616 manual has register fields for an internal PHY, like H3. Are these not
-> >> hooked up for either EMAC?  
-> > 
-> > Which register fields do you mean, exactly?  
+On 08-07-22, 13:11, Bryan O'Donoghue wrote:
+> V3:
+> - Drop the exclusion of msm8939 from cpufreq-dt-platdev.
+>   I'm happy enough to bundle this in with CPR. - Stephan
 > 
-> I mean bits 15-31 of EMAC_EPHY_CLK_REG0.
-
-Right, so those bits look the same as in the H6, and probably do the
-same "nothing" here as well, except for PHY_SELECT[15]?
-
-> > The H616 uses the same internal PHY solution as the H6: an AC200 die
-> > co-packaged on the carrier (or whatever integration solution they actually
-> > chose). The difference to the H6 is that EMAC0 is hardwired to the external
-> > RGMII pins, whereas EMAC1 is hardwired to the internal AC200 RMII pins.
-> > From all I could see that does not impact the actual MAC IP: both are the
-> > same as in the H6, or A64, for that matter.  
+> V2:
+> - Previous series title "qcom-cpufreq-nvmem: Add msm8939 with some fixups"
+>   https://www.spinics.net/lists/linux-arm-msm/msg116201.html
 > 
-> If those bits in EMAC_EPHY_CLK_REG0 have no effect, then I agree. But if
-> switching bit 15 to internal PHY causes Ethernet to stop working, then the mux
-> really does exist (even if one side is not connected to anything). In that case,
-> we need to make sure the mux is set to the external PHY, using the code from H3.
-
-I guess so, but this is what we do for the H6/A64 already, if I read the
-code correctly?
-
-        if (gmac->variant->soc_has_internal_phy) {
-		...
-        } else {
-                /* For SoCs without internal PHY the PHY selection bit should be
-                 * set to 0 (external PHY).
-                 */
-                reg &= ~H3_EPHY_SELECT;
-        }
-
-And since we set soc_has_internal_phy to false for the A64 (and H6)
-compatible, we should be good?
-
-> > There is one twist, though: the second EMAC uses a separate EMAC clock
-> > register in the syscon. I came up with this patch to support that:
-> > https://github.com/apritzel/linux/commit/078f591017794a0ec689345b0eeb7150908cf85a
-> > That extends the syscon to take an optional(!) index. So EMAC0 works
-> > exactly like before (both as "<&syscon>;", or "<&syscon 0>;", but for EMAC1
-> > we need the index: "<&syscon 4>;".
-> > But in my opinion this should not affect the MAC binding, at least not for
-> > MAC0.  
+> - Drops adding msm8939 to the cpufreq-nvmem layer at all.
+>   cpufreq and CPR go hand in hand so we need to do the addition to
+>   cpufreq-nvmem in tandem with the associated CPR driver update. - Stephan
 > 
-> It definitely affects the MAC binding, because we have to change the definition
-> of the syscon property. We should still get that reviewed before doing anything
-> that depends on it. (And I think EMAC0 support depends on it.)
-
-Technically I agree that it affects the current binding, at least for
-EMAC1. Though this looks like some shortcoming of our binding then, as
-the actual EMAC IP looks the same for both instances. It just seems
-to be the *connection* to the PHYs that differ, so it's a more PHY
-*setup* property than an EMAC configuration issue.
-But I guess this ship has sailed, and we have to stick with what we
-have right now, so would need a different compatible and some code
-additions for EMAC1. But since this relies on the AC200 support
-anyway (buggy RFC/WIP code here [1], btw), this doesn't look like a big
-problem for now.
-
-[1] https://github.com/apritzel/linux/commits/ac200-WIP)
-
-> > And I think we should get away without a different compatible string
-> > for EMAC1, since the MAC IP is technically the same, it's just the
-> > connection that is different.  
+>   We can still add in msm8939 to the cpufreq-dt-platdev block list and
+>   fixup the dt binding check errors found doing that.
 > 
-> If you claim that both EMACs are compatible with allwinner,sun50i-a64-emac, then
-> you are saying that any existing driver for allwinner,sun50i-a64-emac will also
-> work with both of the H616 EMACs. But this is not true. If I hook up both EMACs
-> in the DT per the binding, and use the driver in master, at best only EMAC0 will
-> work, and likely neither will work.
+> - Adds a patch to the error reported by Rob's bot.
+>   Rob said he thought Krzysztof had a patch for that but, I couldn't find it
+>   so I just added a fix as the first patch - bod
 > 
-> So at minimum you need a new compatible for the second EMAC, so it only binds to
-> drivers that know about the syscon offset specifier.
+> - Adds Acked-by Rob to second patch
+> - Adds Acked-by Krzysztof to third patch
 > 
-> > In any case I think this does not affect the level of support we promise
-> > today: EMAC0 with an external PHY only.  
+> V1:
+> Fix up some missing compat strings for the qcom-cpufreq-nvmem yaml.
+> Add in msm8939 as a compatible qcom-cpufreq-nvmem.
 > 
-> This can work if you introduce a second compatible for EMAC1. But at that point
-> you don't need the syscon offset specifier; it can be part of the driver data,
-> like for R40. (And any future EMAC1 could likely fall back to this compatible.)
+> 
+> Bryan O'Donoghue (3):
+>   dt-bindings: opp: opp-v2-kryo-cpu: Fix example binding checks
+>   dt-bindings: opp: Add missing compat devices
+>   dt-bindings: opp: Add msm8939 to the compatible list
+> 
+>  .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml      |  7 +++++++
+>  .../devicetree/bindings/opp/opp-v2-kryo-cpu.yaml  | 15 +++++++++++++++
+>  2 files changed, 22 insertions(+)
 
-Yeah, I agree. For robustness I would prefer having a specifier, so any
-future twisted EMAC could be covered without yet another compatible
-string. But this is a detail.
-Or we use the opportunity to design this differently, so that the PHY
-driver enables its PHY using this bit, maybe as part of this AC200 EPHY
-"control" driver?
+Applied. Thanks.
 
-Cheers,
-Andre
+-- 
+viresh
