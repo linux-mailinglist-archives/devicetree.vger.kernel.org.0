@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19AFC5709EF
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 20:30:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A52065709FA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 20:33:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230281AbiGKSaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 14:30:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52348 "EHLO
+        id S230477AbiGKSd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 14:33:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230271AbiGKSaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 14:30:11 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D34D54F6BB;
-        Mon, 11 Jul 2022 11:30:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1657564206; x=1689100206;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=1lCKq8upImpho0NoW6K8MyE7g9y8ny2vHADrYtxmYgo=;
-  b=ejOaXHyw9PNcn6KHLc+8C9ZTKfrPDL/lNavzX78ANUZi4CwsJ0tMPEK5
-   MoYODvsZkGiEfHTjXXK5mBH6ZqYsSZWBhO+xJMLZpDvgs1X+QUGKLZh6B
-   zn+1vHwDOuyTym908M/y1/9j9UfyWDojg4yuZsJyYn5O6BJHbSRckH97s
-   EwW1qhqvOygyvKkMVFzWEEXOQNGMMi6ESNxTNxp/v0HLgufTb2Ywz/WtB
-   upEJp7CLMDImELhUoElZdEgKNyDPgtryunEPY/cv/Bs9mXUD+3WDi5JXc
-   Rz7eG8CwYC4vJpVkaD6ZFjQOcFEuYgxLJ7aAVOgzdnQDtYcdDjjXIwgYw
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.92,263,1650956400"; 
-   d="scan'208";a="167331482"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Jul 2022 11:30:02 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 11 Jul 2022 11:30:01 -0700
-Received: from ryan-Precision-5560.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 11 Jul 2022 11:30:01 -0700
-From:   <Ryan.Wanner@microchip.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Ryan Wanner" <Ryan.Wanner@microchip.com>
-Subject: [PATCH v2 2/2] dt-binding: sound: atmel,pdmic: Convert to json-schema
-Date:   Mon, 11 Jul 2022 11:30:10 -0700
-Message-ID: <20220711183010.39123-3-Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220711183010.39123-1-Ryan.Wanner@microchip.com>
-References: <20220711183010.39123-1-Ryan.Wanner@microchip.com>
+        with ESMTP id S230156AbiGKSd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 14:33:56 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B29643F;
+        Mon, 11 Jul 2022 11:33:39 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id n7so5733722ioo.7;
+        Mon, 11 Jul 2022 11:33:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=a7SPj/JcwiIibv/j3Xnv5Pkj9mSSAfyBYGS0cNpMSHk=;
+        b=lSd/w448Y+T9TH1ASU7L2LFJH7EMkH8UMRSTX292IlCPiPvzs2TNFxr/enMZFGHchw
+         vt/o/m6w41Rz8So73Diz28//ZuuTTG+98Pzknx+WoKZdtFq2houJocpWWcOdV0NQmwPy
+         tI9uCBCIdpU7OlRa62y39TahBdIcDQ5l5fTkU7sfqGsPNW7FUcmNEgWwSKMRXE+QVstr
+         MH4BUK8NChauNNY9Ly/OB57ya83mDcFfs50QEJfYDVh7M+2x17+3Cq0lpT9+WVKUtgxl
+         uXbkPo4/yrhjejOvp1i8Rj1SGXPwoqM0E05r13lD7D/DdZLOrPGSAe5/6zNi3bPcZUQz
+         JG+w==
+X-Gm-Message-State: AJIora+jBSX9Y+dWh6ftGZUzucDTQ2B/7SDDMvYYqy3/eMHRWNOLyZgH
+        7kn1L7RGbWTaGby7cGfC/g==
+X-Google-Smtp-Source: AGRyM1tEMxhJw/w9P3ZNB04okY94YF2i/D+LdTVD/y9iPPFmUuC8Kj1e7N1ygZK07c1GV1OHRwCcQg==
+X-Received: by 2002:a05:6638:1686:b0:33e:9977:2e1f with SMTP id f6-20020a056638168600b0033e99772e1fmr10688635jat.7.1657564418924;
+        Mon, 11 Jul 2022 11:33:38 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id y24-20020a056602201800b0067b755b2546sm3887807iod.24.2022.07.11.11.33.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jul 2022 11:33:38 -0700 (PDT)
+Received: (nullmailer pid 47902 invoked by uid 1000);
+        Mon, 11 Jul 2022 18:33:36 -0000
+Date:   Mon, 11 Jul 2022 12:33:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+        krzk+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 06/13] PCI: dwc: host: Read num-lanes property before
+ host_init()
+Message-ID: <20220711183336.GA4189538-robh@kernel.org>
+References: <20220701085420.870306-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220701085420.870306-7-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220701085420.870306-7-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,189 +65,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On Fri, Jul 01, 2022 at 05:54:13PM +0900, Yoshihiro Shimoda wrote:
+> Vendor-specific initialization needs this information so that
+> read it before host_init(). And then, we can assume that
+> dw_pcie_{ep,host}_init() gets the property so that dw_pcie_setup()
+> doesn't need to get it again.
 
-Convert Atmel PDMIC devicetree binding to json-schema.
-Change file naming to match json-schema naming.
+Patches 5 and 6 should be combined.
 
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
----
-v1 -> v2:
-- Fix title.
-- Removed trivial descriptions.
-- Fix formatting.
+We already have 2 drivers (keystone and tegra) that need this earlier 
+still which this patch doesn't address. I think we need some sort of 
+function to initialize the dw_pcie struct with defaults to be called 
+after alloc or as part of alloc. To do the latter, there needs to be 
+more unification on whether dw_pcie is a pointer or struct in the 
+platform specific struct. That's a lot of churn though...
 
- .../bindings/sound/atmel,sama5d2-pdmic.yaml   | 98 +++++++++++++++++++
- .../devicetree/bindings/sound/atmel-pdmic.txt | 55 -----------
- 2 files changed, 98 insertions(+), 55 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/atmel-pdmic.txt
-
-diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
-new file mode 100644
-index 000000000000..88fa92a30147
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/atmel,sama5d2-pdmic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel PDMIC decoder
-+
-+maintainers:
-+  - Claudiu Beznea <claudiu.beznea@microchip.com>
-+
-+description:
-+  Atmel Pulse Density Modulation Interface Controller
-+  (PDMIC) peripheral is a mono PDM decoder module
-+  that decodes an incoming PDM sample stream.
-+
-+properties:
-+  compatible:
-+    const: atmel,sama5d2-pdmic
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: peripheral clock
-+      - description: generated clock
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: gclk
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    const: rx
-+
-+  atmel,mic-min-freq:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The minimal frequency that the microphone supports.
-+
-+  atmel,mic-max-freq:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The maximal frequency that the microphone supports.
-+
-+  atmel,model:
-+    description: The user-visible name of this sound card.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    default: PDMIC
-+
-+  atmel,mic-offset:
-+    $ref: /schemas/types.yaml#/definitions/int32
-+    description: The offset that should be added.
-+    default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - dmas
-+  - dma-names
-+  - clock-names
-+  - clocks
-+  - atmel,mic-min-freq
-+  - atmel,mic-max-freq
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/dma/at91.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    pdmic: sound@f8018000 {
-+    	compatible = "atmel,sama5d2-pdmic";
-+    	reg = <0xf8018000 0x124>;
-+    	interrupts = <48 IRQ_TYPE_LEVEL_HIGH 7>;
-+    	dmas = <&dma0
-+    		(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
-+    		| AT91_XDMAC_DT_PERID(50))>;
-+    	dma-names = "rx";
-+    	clocks = <&pdmic_clk>, <&pdmic_gclk>;
-+    	clock-names = "pclk", "gclk";
-+    	pinctrl-names = "default";
-+    	pinctrl-0 = <&pinctrl_pdmic_default>;
-+    	atmel,model = "PDMIC@sama5d2_xplained";
-+    	atmel,mic-min-freq = <1000000>;
-+    	atmel,mic-max-freq = <3246000>;
-+    	atmel,mic-offset = <0x0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/atmel-pdmic.txt b/Documentation/devicetree/bindings/sound/atmel-pdmic.txt
-deleted file mode 100644
-index e0875f17c229..000000000000
---- a/Documentation/devicetree/bindings/sound/atmel-pdmic.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--* Atmel PDMIC driver under ALSA SoC architecture
--
--Required properties:
--- compatible
--	Should be "atmel,sama5d2-pdmic".
--- reg
--	Should contain PDMIC registers location and length.
--- interrupts
--	Should contain the IRQ line for the PDMIC.
--- dmas
--	One DMA specifiers as described in atmel-dma.txt and dma.txt files.
--- dma-names
--	Must be "rx".
--- clock-names
--	Required elements:
--	- "pclk"	peripheral clock
--	- "gclk"	generated clock
--- clocks
--	Must contain an entry for each required entry in clock-names.
--	Please refer to clock-bindings.txt.
--- atmel,mic-min-freq
--	The minimal frequency that the micphone supports.
--- atmel,mic-max-freq
--	The maximal frequency that the micphone supports.
--
--Optional properties:
--- pinctrl-names, pinctrl-0
--	Please refer to pinctrl-bindings.txt.
--- atmel,model
--	The user-visible name of this sound card.
--	The default value is "PDMIC".
--- atmel,mic-offset
--	The offset that should be added.
--	The range is from -32768 to 32767.
--	The default value is 0.
--
--Example:
--	pdmic@f8018000 {
--				compatible = "atmel,sama5d2-pdmic";
--				reg = <0xf8018000 0x124>;
--				interrupts = <48 IRQ_TYPE_LEVEL_HIGH 7>;
--				dmas = <&dma0
--					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
--					| AT91_XDMAC_DT_PERID(50))>;
--				dma-names = "rx";
--				clocks = <&pdmic_clk>, <&pdmic_gclk>;
--				clock-names = "pclk", "gclk";
--
--				pinctrl-names = "default";
--				pinctrl-0 = <&pinctrl_pdmic_default>;
--				atmel,model = "PDMIC @ sama5d2_xplained";
--				atmel,mic-min-freq = <1000000>;
--				atmel,mic-max-freq = <3246000>;
--				atmel,mic-offset = <0x0>;
--	};
--- 
-2.34.1
-
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 2 ++
+>  drivers/pci/controller/dwc/pcie-designware.c      | 1 -
+>  2 files changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 1e3972c487b5..cf875bdcfabb 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -336,6 +336,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  	if (pci->link_gen < 1)
+>  		pci->link_gen = of_pci_get_max_link_speed(np);
+>  
+> +	of_property_read_u32(np, "num-lanes", &pci->num_lanes);
+> +
+>  	/* Set default bus ops */
+>  	bridge->ops = &dw_pcie_ops;
+>  	bridge->child_ops = &dw_child_pcie_ops;
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index d92c8a25094f..101e892e22e8 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -726,7 +726,6 @@ void dw_pcie_setup(struct dw_pcie *pci)
+>  	val |= PORT_LINK_DLL_LINK_EN;
+>  	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+>  
+> -	of_property_read_u32(np, "num-lanes", &pci->num_lanes);
+>  	if (!pci->num_lanes) {
+>  		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
+>  		return;
+> -- 
+> 2.25.1
+> 
+> 
