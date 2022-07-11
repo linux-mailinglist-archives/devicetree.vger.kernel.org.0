@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E03BA56D7F5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1246756D7FC
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 10:30:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230040AbiGKI34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 04:29:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36164 "EHLO
+        id S230097AbiGKIaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 04:30:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230049AbiGKI3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:29:55 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E54431EEC8
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:29:53 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id n18so5784985lfq.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:29:53 -0700 (PDT)
+        with ESMTP id S230083AbiGKIaK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 04:30:10 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC451F2CC
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:29:57 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id q7so5309842lji.12
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 01:29:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=2gVW47IgmRx1vKZS2dex1FR+qcYbiSpveO6smMK6miE=;
-        b=dmLmpu7odEiBNxCs/eu1tV0kV1400WpTN73alyX9IVIpe/umqwXuNUa8pyeaC0Eb4L
-         dKPfNMwG43WSUEc5xMMLbVTopEJ8Bz1FS3OWu5vpUL76lucr/DN5BfZ/Jo1d5XCTBcTc
-         sziQYL8JqSY7OS0/qvELTeMCqQGPmmViCRkDLtwjiKKYWlk8WdFiPJzjtaukaeJy5Wc1
-         gOk0Onjlt3AQb5nl4Vci3JOxmhkcAgw7FrAGszH0ofJF+bWiVCZsQg4wJpA/FT8Xd6Dh
-         BMxql0GRLAhr5Uhh2aBLhx4gNQ9+XLXig6kWZ+ElRIN1b7qQc06Lc2FSbNePKrZs7mJe
-         WlmA==
+        bh=dC6LNIuV4u3SkoGFdSK182o/o6Da8Zz3GIIdjx4l8L0=;
+        b=lzSyO4Ox0rVozeD1AtRgwVLBVTRwfCmvF0gjrNi5W87whAJGsO7EM7+7hp6EsDVlWb
+         RuIO3TGkcXGuTpIL06BY8G70JF/Vzz55tQ96qTO4I54X2dkfOFNmUw1UBQ60Xe6jb79q
+         rCySCVMos7qeBVmV8OI68pf1kNT0i2eSLxKMTqmIrDVjmX+X9fDd4ZTzCbA1vX6UjRin
+         GqE7Z+xQNaRDoVYIl2FrWz1SsbHLISwnxOCCQTBb2sb7U7W7NKtTX96cfOmzpRcMuieR
+         9L3Hady7EBgRXs9q9X5+JiVoz2GSmtE/0exEq0mkIdpMH5CptiA5nwDeRO+sl+1nVaVX
+         bFOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=2gVW47IgmRx1vKZS2dex1FR+qcYbiSpveO6smMK6miE=;
-        b=FPchNMXTDei5N5sDb7hUTQc+BINQD9+X7LmccenbwQ/0vjh6WqjqtUAfQrr1ZB1N2u
-         Ef4DPBws0ERnTSKfBkgCBmIbSBEqJtYbW7vZCvAjH3JTzZwmIDmJOeKCkfO5TQd5NoMB
-         5iN5yYUZgy8QPjNVZUC06mA6B0onDw2XlLL1m77BIknVXS9mS1Z0aCo6GTK9nIMXoO7f
-         Wetm58kJE/qUVgDW7mDf4upPp3Mskb6CX5yAb+Pwk6wQp2+yXIc+9HGPst/UdbyvNbEj
-         z0d+Vgi+BxG6dZDzznh/QgflH+kF4Jg6v/qvyZFJ5sxzQcvipxlBDpJ54rxka5XhJEGc
-         rHqw==
-X-Gm-Message-State: AJIora9r3/fVKNQWV4UVp03DHJqWYN7fKPVZN0RFzCzsfn/UYm69Klgr
-        pwrBwB22Ciu0Z6Aw4VCvAHnnUA==
-X-Google-Smtp-Source: AGRyM1ta6IBf43di382hxKPOQozp33nV8V5Y1+5U/Kvadh+V2iDRAxsP/Alc58GcbZNsQnbpmVl4Ow==
-X-Received: by 2002:a05:6512:e88:b0:489:d187:9b3c with SMTP id bi8-20020a0565120e8800b00489d1879b3cmr5147465lfb.669.1657528193463;
-        Mon, 11 Jul 2022 01:29:53 -0700 (PDT)
+        bh=dC6LNIuV4u3SkoGFdSK182o/o6Da8Zz3GIIdjx4l8L0=;
+        b=mEYDuuJBvCdd8dngrahN4jgU7CVeDYcuhCczTf5zmNcjikdYdlVLtjBa4AfmMK2vy5
+         wNQgwaXH1boyIvm0R2vzG6h2z5JJDy1n7oMPoaevy2ivn2fePHf6CmoCfPGSe5WuOJT3
+         hi580gNlozrhs7n43XAE337Y8lnpNf3/jSSND6IRCJPiEr2VT4WRvSgK2wsvJ6AHkP0K
+         2PwrvSv2OdeqqC2cLV0Z4IeZSSm90HWVRFC0IhsvYG4xmQvkUJ4T4go+IWnfuEGmo39Y
+         D1R64GJaCU2cTOSLwFHZl6kVUTN270sIxbOpXGfBxu8Y+Ic5YA6gg+1CIW1JAiwWXCWf
+         Y+OA==
+X-Gm-Message-State: AJIora/00SRst20Uqj2/xEslyRZccuSDzkff5BsZMhkT2iuDt3wg7P4i
+        F/Vmd7EXlMfNqIiNqeX1hcxzEA==
+X-Google-Smtp-Source: AGRyM1tdY2eyygsG2BT5OsoToJC2/vIqxkxEPyuz1dOZfZ8VA+OfdC49cPRm3S4cylCSw9AAlByAVQ==
+X-Received: by 2002:a2e:908e:0:b0:25d:53c2:5395 with SMTP id l14-20020a2e908e000000b0025d53c25395mr9280286ljg.120.1657528196136;
+        Mon, 11 Jul 2022 01:29:56 -0700 (PDT)
 Received: from krzk-bin.. (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id u2-20020a05651206c200b00488ab8914b5sm1401504lff.213.2022.07.11.01.29.50
+        by smtp.gmail.com with ESMTPSA id u2-20020a05651206c200b00488ab8914b5sm1401504lff.213.2022.07.11.01.29.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 01:29:52 -0700 (PDT)
+        Mon, 11 Jul 2022 01:29:55 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -59,9 +59,9 @@ To:     Ulf Hansson <ulf.hansson@linaro.org>,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Cc:     Douglas Anderson <dianders@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 3/5] arm64: dts: qcom: align SDHCI reg-names with DT schema
-Date:   Mon, 11 Jul 2022 10:29:38 +0200
-Message-Id: <20220711082940.39539-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 4/5] ARM: dts: qcom: align SDHCI reg-names with DT schema
+Date:   Mon, 11 Jul 2022 10:29:39 +0200
+Message-Id: <20220711082940.39539-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220711082940.39539-1-krzysztof.kozlowski@linaro.org>
 References: <20220711082940.39539-1-krzysztof.kozlowski@linaro.org>
@@ -83,128 +83,122 @@ just like TXT bindings were expecting before the conversion.
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
 ---
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/msm8953.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/msm8994.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
- 6 files changed, 10 insertions(+), 10 deletions(-)
+ arch/arm/boot/dts/qcom-apq8084.dtsi | 4 ++--
+ arch/arm/boot/dts/qcom-ipq4019.dtsi | 1 +
+ arch/arm/boot/dts/qcom-msm8226.dtsi | 6 +++---
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 6 +++---
+ arch/arm/boot/dts/qcom-sdx65.dtsi   | 2 +-
+ 5 files changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index a6cb0dafcc17..2b9374f61d5b 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -379,7 +379,7 @@ spmi_bus: spmi@200f000 {
- 		sdhc_1: mmc@7824900 {
- 			compatible = "qcom,sdhci-msm-v4";
- 			reg = <0x7824900 0x500>, <0x7824000 0x800>;
+diff --git a/arch/arm/boot/dts/qcom-apq8084.dtsi b/arch/arm/boot/dts/qcom-apq8084.dtsi
+index 3e8bded2b5c8..45f3cbcf6238 100644
+--- a/arch/arm/boot/dts/qcom-apq8084.dtsi
++++ b/arch/arm/boot/dts/qcom-apq8084.dtsi
+@@ -422,7 +422,7 @@ blsp2_uart2: serial@f995e000 {
+ 		mmc@f9824900 {
+ 			compatible = "qcom,apq8084-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0xf9824900 0x11c>, <0xf9824000 0x800>;
 -			reg-names = "hc_mem", "core_mem";
 +			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 48bc2e09128d..0bdf4d39f778 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1469,7 +1469,7 @@ lpass_codec: audio-codec@771c000 {
- 		sdhc_1: mmc@7824000 {
- 			compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0x07824900 0x11c>, <0x07824000 0x800>;
--			reg-names = "hc_mem", "core_mem";
-+			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-@@ -1487,7 +1487,7 @@ sdhc_1: mmc@7824000 {
- 		sdhc_2: mmc@7864000 {
- 			compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0x07864900 0x11c>, <0x07864000 0x800>;
--			reg-names = "hc_mem", "core_mem";
-+			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-index 1bc0ef476cdb..97dde1a429d9 100644
---- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-@@ -799,7 +799,7 @@ sdhc_1: mmc@7824900 {
- 			compatible = "qcom,msm8953-sdhci", "qcom,sdhci-msm-v4";
- 
- 			reg = <0x7824900 0x500>, <0x7824000 0x800>;
--			reg-names = "hc_mem", "core_mem";
-+			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-@@ -859,7 +859,7 @@ sdhc_2: mmc@7864900 {
- 			compatible = "qcom,msm8953-sdhci", "qcom,sdhci-msm-v4";
- 
- 			reg = <0x7864900 0x500>, <0x7864000 0x800>;
--			reg-names = "hc_mem", "core_mem";
-+			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-index 8bc6c070e306..35c1ca080684 100644
---- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-@@ -464,7 +464,7 @@ usb@f9200000 {
- 		sdhc1: mmc@f9824900 {
- 			compatible = "qcom,msm8994-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0xf9824900 0x1a0>, <0xf9824000 0x800>;
--			reg-names = "hc_mem", "core_mem";
-+			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-@@ -487,7 +487,7 @@ sdhc1: mmc@f9824900 {
- 		sdhc2: mmc@f98a4900 {
- 			compatible = "qcom,msm8994-sdhci", "qcom,sdhci-msm-v4";
+ 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+ 			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
+@@ -435,7 +435,7 @@ mmc@f9824900 {
+ 		mmc@f98a4900 {
+ 			compatible = "qcom,apq8084-sdhci", "qcom,sdhci-msm-v4";
  			reg = <0xf98a4900 0x11c>, <0xf98a4000 0x800>;
 -			reg-names = "hc_mem", "core_mem";
 +			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
- 				<GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 25d6b26fab60..9745df5dc007 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -2896,7 +2896,7 @@ hsusb_phy2: phy@7412000 {
- 		sdhc1: mmc@7464900 {
- 			compatible = "qcom,msm8996-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0x07464900 0x11c>, <0x07464000 0x800>;
+ 			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+ 			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
+diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+index a2632349cec4..1b98764bab7a 100644
+--- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+@@ -224,6 +224,7 @@ vqmmc: regulator@1948000 {
+ 		sdhci: mmc@7824900 {
+ 			compatible = "qcom,sdhci-msm-v4";
+ 			reg = <0x7824900 0x11c>, <0x7824000 0x800>;
++			reg-names = "hc", "core";
+ 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+ 			bus-width = <8>;
+diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
+index 0b5effdb269a..f711463d22dc 100644
+--- a/arch/arm/boot/dts/qcom-msm8226.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
+@@ -137,7 +137,7 @@ apcs: syscon@f9011000 {
+ 		sdhc_1: mmc@f9824900 {
+ 			compatible = "qcom,msm8226-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0xf9824900 0x11c>, <0xf9824000 0x800>;
 -			reg-names = "hc_mem", "core_mem";
 +			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
-@@ -2920,7 +2920,7 @@ sdhc1: mmc@7464900 {
- 		sdhc2: mmc@74a4900 {
- 			compatible = "qcom,msm8996-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0x074a4900 0x314>, <0x074a4000 0x800>;
+ 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+@@ -153,7 +153,7 @@ sdhc_1: mmc@f9824900 {
+ 		sdhc_2: mmc@f98a4900 {
+ 			compatible = "qcom,msm8226-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0xf98a4900 0x11c>, <0xf98a4000 0x800>;
 -			reg-names = "hc_mem", "core_mem";
 +			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
- 				      <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index e263a59d84b0..c98f36f95f3c 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -2078,7 +2078,7 @@ qusb2phy: phy@c012000 {
- 		sdhc2: mmc@c0a4900 {
- 			compatible = "qcom,msm8998-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0x0c0a4900 0x314>, <0x0c0a4000 0x800>;
--			reg-names = "hc_mem", "core_mem";
-+			reg-names = "hc", "core";
- 
  			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
  				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+@@ -169,7 +169,7 @@ sdhc_2: mmc@f98a4900 {
+ 		sdhc_3: mmc@f9864900 {
+ 			compatible = "qcom,msm8226-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0xf9864900 0x11c>, <0xf9864000 0x800>;
+-			reg-names = "hc_mem", "core_mem";
++			reg-names = "hc", "core";
+ 			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 11b4206036e6..971eceaef3d1 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -439,7 +439,7 @@ acc3: clock-controller@f90b8000 {
+ 		sdhc_1: mmc@f9824900 {
+ 			compatible = "qcom,msm8974-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0xf9824900 0x11c>, <0xf9824000 0x800>;
+-			reg-names = "hc_mem", "core_mem";
++			reg-names = "hc", "core";
+ 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+@@ -456,7 +456,7 @@ sdhc_1: mmc@f9824900 {
+ 		sdhc_3: mmc@f9864900 {
+ 			compatible = "qcom,msm8974-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0xf9864900 0x11c>, <0xf9864000 0x800>;
+-			reg-names = "hc_mem", "core_mem";
++			reg-names = "hc", "core";
+ 			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+@@ -475,7 +475,7 @@ sdhc_3: mmc@f9864900 {
+ 		sdhc_2: mmc@f98a4900 {
+ 			compatible = "qcom,msm8974-sdhci", "qcom,sdhci-msm-v4";
+ 			reg = <0xf98a4900 0x11c>, <0xf98a4000 0x800>;
+-			reg-names = "hc_mem", "core_mem";
++			reg-names = "hc", "core";
+ 			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
+index 7a193678b4f5..4f3389cb6300 100644
+--- a/arch/arm/boot/dts/qcom-sdx65.dtsi
++++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
+@@ -334,7 +334,7 @@ glink-edge {
+ 		sdhc_1: mmc@8804000 {
+ 			compatible = "qcom,sdx65-sdhci", "qcom,sdhci-msm-v5";
+ 			reg = <0x08804000 0x1000>;
+-			reg-names = "hc_mem";
++			reg-names = "hc";
+ 			interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
 -- 
 2.34.1
 
