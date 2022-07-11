@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C03A570085
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED1385700A7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231481AbiGKL2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 07:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47052 "EHLO
+        id S229802AbiGKL31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:29:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231309AbiGKL14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:27:56 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72344DF18
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:07:23 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id d12so8053102lfq.12
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:07:23 -0700 (PDT)
+        with ESMTP id S231497AbiGKL2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:28:46 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6104922B25
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:10:08 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id u14so5776295ljh.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:10:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=esWLLHFam/15zHB96iM4D3bq4no+BOJdxnjIb7Et4dM=;
-        b=Crc/1bAGZOpGOgG+jajMBcMUzo8vpCFAgCrlYjNT2J1FVc0gawgKITZ1tqCwrezR76
-         oS+4Oy6e/M5u2r42PtJsT6iBTUMQpElwDAQx1bFH6SBaW4gwLqRD5ccgeMMSioiYISzZ
-         ra3fk2YllmukAvOz5nF30sRHQosiFVK1vVjVF5+dGIJ8WzN5/JQL+GPNs/24SvPQTrSb
-         HPpLOxImQKMkP8+Lywm5Zut6txhbmSKQrPHWAK7lkwS4qEV6QuqQflK/0wVGb8JoKwuA
-         Jm9k1kRFbvC4V5w79IdtpIofS+hV0Ik6KF4XbBxoPmCsp00n6Ws9rMDexHls/4tuL4YJ
-         rZFA==
+        bh=CwMzSSLpH+aj90Dwdocvfg7IdUBiIvzvhVJGANi/6ko=;
+        b=udd0Bn6bYPki1268sfcfI92FafXnNcAe4yw+j/r8lCoL8KHHeD6RiFmJsUV8eQ7NMc
+         5b6OemntVQBazWP4i+GeRr6J9dxi6aUi9R6zFCT2rvsdNhW5xxT1N0KsOvJk5reIw9M/
+         jCC7TjrgC6YroHv1abHYGf7BESEg9dGT9sLDLyFK+avPDYJbsiQ4chaB+Y37ANvTD+S5
+         VRfsoDtXAZ6DrMehY9m5pigg761UIn9I6te07GkxVsP6ZifOUdgatADNlCytw5Dfmsou
+         /9+s/L2bX9/p020rQolwj990/4M/lvgc0nHhLQ1t3aw47vCsEpXnurwY73CXMeD9PSbv
+         w9hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=esWLLHFam/15zHB96iM4D3bq4no+BOJdxnjIb7Et4dM=;
-        b=vBBuWIf86QVfujkmBZaHa1eFtQI/y1FoEgFBcAACqF1CqlZxUuCpCBkgBt1iCx1daQ
-         VZh2ZBsxhP90BaSKEXwnYst+eWI+Dj++LCEzNHlXge2XTNJo9camkaCUb97zK653oRgC
-         LZ2bLd4Ee1VLPL06bETYOaP/VU7X+NAj4jpvEPoPqRsnDGEINOKeqr1RE/54wfzYnMp9
-         +06ntYTnB1A/cdA/UtAASeow3hzuXvQCo7C09k/zNis6Mbp2mlXeO8E5oSEya1UkBFV5
-         YJCL6DPxfs14kK5h2Zl16Hl+nVKb0l958otIxkgcCnSB0bx2/Ol7GoD0VvdT3WP4nsET
-         Qawg==
-X-Gm-Message-State: AJIora/bfrQ796dmCMiMK+xu9lQjtQJuDDfBrKldKC5KZP6VVPcGnru5
-        mjHSG+B+6y0F0UdndkDqSDVWaA==
-X-Google-Smtp-Source: AGRyM1tNeHMUJvVpip2GXgSQxTRj1bmz7Z/WsdSE95/Eb16GoRB8MpQzcpWWaGdYAfxNOiNUDDGI6Q==
-X-Received: by 2002:a05:6512:c21:b0:47f:6392:dcf5 with SMTP id z33-20020a0565120c2100b0047f6392dcf5mr12054254lfu.117.1657537641871;
-        Mon, 11 Jul 2022 04:07:21 -0700 (PDT)
+        bh=CwMzSSLpH+aj90Dwdocvfg7IdUBiIvzvhVJGANi/6ko=;
+        b=23EXOL1JzVIOwZueAqX4XdGc2p6adTJrXtCm5OvVTl6GLkesezYjno1WE45rZ4+ScA
+         Lc5+Z8SZZFKsV2nhIzJaxxx0VbOchYxknnBEWpHddNJ5uoDjFiRXPZZwdARuMPCarp+c
+         GpckkNQSHXWzKDd8oFJ7I/qSYhfOTGOZN5csEme0CS4oHkBFZIR8W+7KSFUDGPZwDXq8
+         aWspk16hqBov0CMP8o9z4H6qgAChTpYaBXaWm8UOpdx5k55OPzAEFtSPMQ/74Xf3Hjo8
+         UHoTu1oTtjh6F9WonK6gJeDu5TsXXbxAwfF5bDCw/pqMI/v/rSB5L+yChdeD42M3nuCX
+         w/SA==
+X-Gm-Message-State: AJIora+acXtmsPRmjWii1dLtCpkKp/E3jumoPy8NKz97UeHjeY04U7n1
+        zFStJ7wb3GNFh4V+aEqFksbu9w==
+X-Google-Smtp-Source: AGRyM1tUM4IBHR6wLqodtqPrZdRq4L3MNuGgWRZCbtt6l5ucx+jlCLUDkBS2b6cuADfWiiTtTIgG8g==
+X-Received: by 2002:a05:651c:19ac:b0:25b:db26:55c3 with SMTP id bx44-20020a05651c19ac00b0025bdb2655c3mr10176580ljb.457.1657537806762;
+        Mon, 11 Jul 2022 04:10:06 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id x2-20020a2e9c82000000b0025c04962b5dsm1685748lji.139.2022.07.11.04.07.20
+        by smtp.gmail.com with ESMTPSA id k16-20020a05651c10b000b0025d53872749sm1642690ljn.69.2022.07.11.04.10.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 04:07:21 -0700 (PDT)
-Message-ID: <f3bd6afb-b1f2-a5e0-de52-e6ecb2f53217@linaro.org>
-Date:   Mon, 11 Jul 2022 13:07:19 +0200
+        Mon, 11 Jul 2022 04:10:06 -0700 (PDT)
+Message-ID: <0558287a-1700-9d8a-c95c-9516ef86aa12@linaro.org>
+Date:   Mon, 11 Jul 2022 13:10:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: ufs: qcom,ufs: add SC8280XP binding
+Subject: Re: [PATCH V2 1/3] dt-bindings: net: fsl,fec: Add i.MX8ULP FEC items
 Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220711101441.4896-1-johan+linaro@kernel.org>
+To:     Wei Fang <wei.fang@nxp.com>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, peng.fan@nxp.com,
+        ping.bai@nxp.com, sudeep.holla@arm.com,
+        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com
+References: <20220711094434.369377-1-wei.fang@nxp.com>
+ <20220711094434.369377-2-wei.fang@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711101441.4896-1-johan+linaro@kernel.org>
+In-Reply-To: <20220711094434.369377-2-wei.fang@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,10 +80,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 12:14, Johan Hovold wrote:
-> Add SC8280XP to the DT schema.
+On 11/07/2022 11:44, Wei Fang wrote:
+> Add fsl,imx8ulp-fec for i.MX8ULP platform.
 > 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> ---
+> V2 change:
+> Add fsl,imx6q-fec
+> ---
+>  Documentation/devicetree/bindings/net/fsl,fec.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> index daa2f79a294f..4d2454ade3b6 100644
+> --- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> +++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> @@ -58,6 +58,11 @@ properties:
+>                - fsl,imx8qxp-fec
+>            - const: fsl,imx8qm-fec
+>            - const: fsl,imx6sx-fec
+> +      - items:
+> +          - enum:
+> +              - fsl,imx8ulp-fec
+> +          - const: fsl,imx6ul-fec
+> +          - const: fsl,imx6q-fec
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
