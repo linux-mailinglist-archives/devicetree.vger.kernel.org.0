@@ -2,124 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58A6F570061
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B259D57006E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jul 2022 13:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbiGKL0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 07:26:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43330 "EHLO
+        id S231433AbiGKL0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 07:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231348AbiGKLZ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:25:56 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081932DCB;
-        Mon, 11 Jul 2022 03:59:38 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id c131-20020a1c3589000000b003a2cc290135so3244161wma.2;
-        Mon, 11 Jul 2022 03:59:37 -0700 (PDT)
+        with ESMTP id S231277AbiGKL0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 07:26:12 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32B5C3DF04
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:02:35 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id e28so4470684lfj.4
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 04:02:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XbujW824CNr3VEPvbgVSYfLKtCakKHejuLWKhEvhbjo=;
-        b=Ro7RqaQin9erMkTrlFHkFXcSaUltN4ETlxyV4BqD/wNP25lWGF0IBaUYLkgB7BYNCa
-         e3LLKRpx7dZpRaX5VyTTGkBxu7sV0gabuv6VFisV8Ju30NdNcGhfNETkIv1UrDiq+Wh9
-         Wbskb4MIk9FyCEP4YSHcO5j+gkGWYxfqEm7WRlwi38kTKw8+H/BYFP1NvGsC0yLI7Mkl
-         tc/ZpPnrVqtSnT1D+dnMNEvbCR6FNDV6Kg6sWca5otq9qXAaQBCfxnjkhXhLpgr6fjDO
-         I4UsZ0K/XdIpBI3HicO0mxeBXlNQPFyDIhrQ/JLxOi5HwzHGmEppta9tuoPbb9Y1JgyP
-         p2tQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=MeyCZN/nvsiRNNCAAR15uWNXyKxL+fyysaeRMmXtoJA=;
+        b=D4OVU2SdZDl1a2Jmvol1Su2acwSKKhbqYZKZn6/Qc8eT2iND/KO9t9DapzIOJtxYXe
+         Me3ljHAhTzWcyA62SHeecPkZ9BDGif3nIQh/4L6wxXSsOfYRKcaerfZkctH+lPcPcaXR
+         9nwslGSNuJR55nrpcs0QsF89vgcW8SmISLwf7h2vLLq4lkAVjwTUIVYO0/uBy/LsND6c
+         fUnyCOa9fgewXhbnW8EdRaMnWofxJvAWbnpmaDz4VV5KTLCEbsVuj6MgdDHsj0ja4Cm4
+         7iMTtMjKPL9Xg15Ww0kzLHvpVQi9YC6P0O0itH4F7zJK4x/PaxvCYROPFLopO6UyHl1u
+         Htcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XbujW824CNr3VEPvbgVSYfLKtCakKHejuLWKhEvhbjo=;
-        b=FqWXDZxebu30vRhPKryoYouMx8wv4W/us6LqyxVqkE5K9VHlOiNzjW66y7COgueRmE
-         dk+2IzUUVSEAbeUNNmTytOQt8ub/wUdTC8OgWJEZnMWTmD5z1q+DgoXxvvrPZ4FBNUgm
-         rqkbPZCo0Bl6vC4sLHH/s3GzGpRjawoI8x3Ve9K10OFcoZEgiYh4LCLKSPLjUEspCzKc
-         Z+uoa02wqRt8RrOq/C9qY9ltpJI+ko9Htbp0iBnMdaQANAplMt7hCROURqFeDomhyMy0
-         1ZkmR1pokaTI07Q50NqDp4ID/YaHt0k59zHxhqJkWncmGwOi3N/AwQ8kxMZEldh/yHdB
-         jeRg==
-X-Gm-Message-State: AJIora9pI64emmCZIoTgEIAa3ZAXmw0VSero/YTdMpwEIBjqe2mUWq2x
-        gML8H325o6eh5NXiV+smrSY=
-X-Google-Smtp-Source: AGRyM1tqi7ZNUAz3GiW76AK0ZmwpLEYyrHT1GYYadfaK18P+/cwlZvRqhX15B9CUnjHxExHXhea2Kg==
-X-Received: by 2002:a05:600c:34d0:b0:3a1:a05c:b523 with SMTP id d16-20020a05600c34d000b003a1a05cb523mr14829216wmq.94.1657537176580;
-        Mon, 11 Jul 2022 03:59:36 -0700 (PDT)
-Received: from fedora.robimarko.hr (cpezg-94-253-144-242-cbl.xnet.hr. [94.253.144.242])
-        by smtp.googlemail.com with ESMTPSA id w15-20020a1cf60f000000b003a2c7bf0497sm6504617wmc.16.2022.07.11.03.59.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 03:59:36 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, jassisinghbrar@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH v7 4/4] arm64: dts: ipq8074: add APCS support
-Date:   Mon, 11 Jul 2022 12:59:31 +0200
-Message-Id: <20220711105931.43164-4-robimarko@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220711105931.43164-1-robimarko@gmail.com>
-References: <20220711105931.43164-1-robimarko@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=MeyCZN/nvsiRNNCAAR15uWNXyKxL+fyysaeRMmXtoJA=;
+        b=AXp8ey3ypKI3WFA0cF3kLsGZH5sTGqcw/ugs15MsnTFmFsePeZWoQ94ZWrzaKAWX6J
+         l7+w9mhIyID3gmqfHbWsGJ0xwEifymwIlZ5FkttCCfzbXzrboK83BoC7btph3wERraR/
+         tKnsmdoqWNYlJCcWNGLQ0XEFDZy+iaXQ48YOEZJhoAX6ctBGBBZZMQww+PDoAfiPDwZf
+         RdnBJ2zP6o13h4tz0gs9qZ/xCKy8MJkaNBxjrYLRFVAp9+BmEL34aMrugTFX1A5UNH6C
+         /i5+0iE1I5PPT+7hCnuzFAq9ZUX7XFAcmtJrThZedAvFJ2i+V3zX6qG2NwI9bchGfTgb
+         z8aQ==
+X-Gm-Message-State: AJIora+1/LdHNauauv3RsZAQ6o2i6SG0Ek3DqW56Avj3pBDTwHIL2wER
+        2UleDEQevcfvL9TiaX3hNDv78g==
+X-Google-Smtp-Source: AGRyM1vhnNj6aFdiTr/noru4YDiDuSvAcJcPUSJPfEwIMQ9AAASbaicPsvFT+S0lPieRGdaNAEiPLw==
+X-Received: by 2002:a05:6512:3b20:b0:47f:8ca1:bd7 with SMTP id f32-20020a0565123b2000b0047f8ca10bd7mr10686215lfv.105.1657537353492;
+        Mon, 11 Jul 2022 04:02:33 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
+        by smtp.gmail.com with ESMTPSA id u10-20020ac258ca000000b00478a311d399sm1489609lfo.0.2022.07.11.04.02.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jul 2022 04:02:32 -0700 (PDT)
+Message-ID: <c8f8f5f4-173e-797d-e060-e5eaac7ca822@linaro.org>
+Date:   Mon, 11 Jul 2022 13:02:30 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] dt-bindings: mmc: Add compatible for MediaTek MT8188
+Content-Language: en-US
+To:     Johnson Wang <johnson.wang@mediatek.com>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220707054710.1396-1-johnson.wang@mediatek.com>
+ <41e17a56-5cb0-8e90-c7ae-a7a56de986d0@linaro.org>
+ <3216ec92952c7d722feaeb76986e0a6a54340646.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3216ec92952c7d722feaeb76986e0a6a54340646.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-APCS now has support for providing the APSS clocks as the child device
-for IPQ8074.
+On 07/07/2022 09:30, Johnson Wang wrote:
+> On Thu, 2022-07-07 at 08:46 +0200, Krzysztof Kozlowski wrote:
+>> On 07/07/2022 07:47, Johnson Wang wrote:
+>>> This commit adds dt-binding documentation of mmc for MediaTek
+>>> MT8188 SoC
+>>> platform.
+>>>
+>>> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> index 2a2e9fa8c188..3fbf33ad4f7c 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> @@ -32,6 +32,9 @@ properties:
+>>>        - items:
+>>>            - const: mediatek,mt8186-mmc
+>>>            - const: mediatek,mt8183-mmc
+>>> +      - items:
+>>> +          - const: mediatek,mt8188-mmc
+>>
+>> You duplicate quite a lot. Use enum.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Hi Krzysztof,
+> 
+> Thanks for you suggestion.
+> 
+> I will use 'enum' to place this compatible strings.
+> 
+> Just like this:
+> - items:
+>     - enum:
+>         - mediatek,mt8186-mmc
+>         - mediatek,mt8188-mmc
+>         - mediatek,mt8192-mmc
+>         - mediatek,mt8195-mmc
+>     - const: mediatek,mt8183-mmc
+> 
+> Moreover, it seems that missing an "items:" between oneOf and enum in
+> the compatible property.
+> Is my understanding wrong?
 
-So, add the required DT node for APCS and A53PLL which feeds it the PLL
-clock for APSS, since APSS will be used for CPU frequency scaling.
+I did not propose to remove items, so where are they missing? Not sure
+what you are asking about...
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
-Changes in v7:
-* Drop review tag due to significant changes
-* Add A53PLL node
-* Add clocks to APCS node
-
-Changes in v3:
-* Node does not currently exist in the upstream kernel, so add it instead
-of modifying.
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 080796555809..6a13bd3ead55 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -879,6 +879,23 @@ IRQ_TYPE_LEVEL_HIGH>, /* int_c */
- 				      "axi_m_sticky";
- 			status = "disabled";
- 		};
-+
-+		apcs_glb: mailbox@b111000 {
-+			compatible = "qcom,ipq8074-apcs-apps-global";
-+			reg = <0x0b111000 0x1000>;
-+			#clock-cells = <1>;
-+			clocks = <&a53pll>, <&xo>;
-+			clock-names = "pll", "xo";
-+			#mbox-cells = <1>;
-+		};
-+
-+		a53pll: clock@b116000 {
-+			compatible = "qcom,ipq8074-a53pll";
-+			reg = <0x0b116000 0x40>;
-+			#clock-cells = <0>;
-+			clocks = <&xo>;
-+			clock-names = "xo";
-+		};
- 	};
- 
- 	timer {
--- 
-2.36.1
-
+Best regards,
+Krzysztof
