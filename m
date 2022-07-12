@@ -2,252 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3D9B571A5A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:46:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E1D2571A64
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbiGLMqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 08:46:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33526 "EHLO
+        id S229976AbiGLMrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 08:47:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233216AbiGLMqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:46:11 -0400
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3B99D516;
-        Tue, 12 Jul 2022 05:46:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:References
-        :In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=C7DbLRbpXMyCj1Q5o2dItOE2QtxA2TFViSasGpGNT8A=; b=noMebIsnOHWlnAj3FbV8akvwMT
-        g1cZJw8JwiG/Xa3vUZlAqzDO3Aph2IAeawfKPlgqM6YS8lMFtlBgqm5Z2A5cRmug9du7OOwGbqdE2
-        UDyQBhpe5rgxF98hyEgcUGcvs8NM0eA/R7dJupZzhzdC+36NOl3OArm7/03tGhXxS1pNwpeaz/0+F
-        cHyOW8flGwdgxbTBvYW5MJNMJnsa5DJLTnibbrRzHraBHG2dDujFx4CLA4Gs5wwIbevEF8nDRIqV+
-        1+2MxphWY4xU9SFYUPTcmBdjQagOqG7e0lTejGnSB4d355z3QBiX881Y4Q1vfzoBsNc3xBqnrP6fN
-        YEBz5ccQ==;
-Received: from [10.22.3.24] (helo=kernkonzept.com)
-        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
-        id 1oBFH8-0087Gb-6S; Tue, 12 Jul 2022 14:46:02 +0200
-From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S233233AbiGLMrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:47:40 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623C1B23D7;
+        Tue, 12 Jul 2022 05:47:39 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id g4so13717327ybg.9;
+        Tue, 12 Jul 2022 05:47:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nuKIucR4KkuGyNu77o8BMuklCnlGTYu08xOm0VTgdvk=;
+        b=GqU/u0UlCR6S91EqqKnO0JOpU9rLiT7tbPk0Wkx/SrM4UWJYrcl1e0tR//MWxWfhlO
+         c5Hz6NuofNkEIyx9vVL6U73Y2jdAV/me94++R4ZedtiPQor6j5LpefQEzpvSIHdLRfv9
+         yI8A9FKt5KfSokgAHN9ERtG963U/REg9j8H0IQxa00Kp4m2p4hBr0Q4TEEcTr+me6Hla
+         0zFQCD4vTCrO1FQGXUPOOkvnYDC64UVjPC7Vy+Cv0z05O7C6gX20yNfm0pResEKK7VjK
+         GpcsvaoBOZN80/En12Gy8gjmMifGwOnS1yYuKPZkOCaq0242959il3sgRns+h8Z8k3tY
+         aaSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nuKIucR4KkuGyNu77o8BMuklCnlGTYu08xOm0VTgdvk=;
+        b=DZJaeLyqQVDWCg7AP5rNl1hrMNSkSgQC+3VoNjXQjQiGIra17zBw19J9pVb8h4/ECL
+         YXn+llTV6aqVjqirACg3SgfA54xqmHexTo7eOBH9goiTf2AQ6vZ74LMAoAet+wLfNz4H
+         AOuuQrm0J9iVRbGR4WmLQDOAfjfvZROOJWf2PJ6dcPBkajQu7AuRx484IDipTx09wtE/
+         jrkr6mvbl+xbWy2D2N7yVg7t99o2FDZhWEjSC9uAR1xxrpO6Bkw90RV014LpZFBrIpT5
+         Q7m268nTV15LiYxMz2gb+P6v8kxjPRSlruWMp5b55d7KHSTnNHBth5uDI1cJJXnxcF4I
+         WDuA==
+X-Gm-Message-State: AJIora/dLVsMZOQScPRJr8Z6N/9XRzpyFdaJFGqYBIDHIbhKJhD/X8dE
+        SDkr/Llr65HOhdXJJN8W0VtSsaWe+wv0iFZW1uQ=
+X-Google-Smtp-Source: AGRyM1sKejbUO1HoZjE4lSyDoKO9Miu7goYifaotbPEm1foAGgKjrYVSe34gWUcQ2nkEyr2fAzNJ96SJe5dnVWQnEBE=
+X-Received: by 2002:a25:cbcf:0:b0:66e:8893:a02c with SMTP id
+ b198-20020a25cbcf000000b0066e8893a02cmr22814673ybg.460.1657630058486; Tue, 12
+ Jul 2022 05:47:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220710102110.39748-1-tmaimon77@gmail.com> <20220710102110.39748-3-tmaimon77@gmail.com>
+ <CAHp75VdaT8WjoHYgmUY+mKVaUivLGGeaRJAkwfRjHspPAmw_XQ@mail.gmail.com> <CAP6Zq1iQL2R67dbdQiXW_JUWrGne9xp-9yQ97vQOb4RveQE7Yw@mail.gmail.com>
+In-Reply-To: <CAP6Zq1iQL2R67dbdQiXW_JUWrGne9xp-9yQ97vQOb4RveQE7Yw@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 12 Jul 2022 14:47:01 +0200
+Message-ID: <CAHp75VfYbFYcp6eKQsSJ9-0Wz-9=UaM8ERWyOkcXfWvinZHB7w@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] pinctrl: nuvoton: add NPCM8XX pinctrl and GPIO driver
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sireesh Kodali <sireeshkodali1@gmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Subject: [PATCH 6/6] remoteproc: qcom_q6v5_mss: Add support for MSM8909
-Date:   Tue, 12 Jul 2022 14:44:21 +0200
-Message-Id: <20220712124421.3129206-7-stephan.gerhold@kernkonzept.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
-References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Port the initialization sequence necessary for booting the modem remote
-processor on the MSM8909 SoC from Qualcomm's msm-3.10 release [1].
-The sequence is actually similar to the existing one for MSM8996 and
-MSM8998 except that there is no separate QDSP6SS_MEM_PWR_CTL register
-and most of the "memories" are enabled at once instead of sequentially.
+On Tue, Jul 12, 2022 at 1:33 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+> On Sun, 10 Jul 2022 at 22:36, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > On Sun, Jul 10, 2022 at 12:44 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
 
-To reuse the existing code just insert some if statements where needed
-and add a configuration similar to the one from MSM8916.
+Please, remove unneeded context when replying!
 
-[1]: https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/commit/56dcedc8dac8abff6b007f76a29430b2d0a44704
+...
 
-Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
----
- drivers/remoteproc/qcom_q6v5_mss.c | 123 +++++++++++++++++++++--------
- 1 file changed, 90 insertions(+), 33 deletions(-)
+> > > +       if (pincfg[pin].flag & SLEWLPC) {
+> > > +               switch (arg) {
+> > > +               case 0:
+> > > +                       regmap_update_bits(gcr_regmap, NPCM8XX_GCR_SRCNT,
+> > > +                                          SRCNT_ESPI, 0);
+> > > +                       return 0;
+> > > +               case 1:
+> > > +                       regmap_update_bits(gcr_regmap, NPCM8XX_GCR_SRCNT,
+> > > +                                          SRCNT_ESPI, SRCNT_ESPI);
+> > > +                       return 0;
+> > > +               default:
+> > > +                       return -EINVAL;
+> > > +               }
+> > > +       }
+> > > +
+> > > +       return -EINVAL;
+> >
+> > Why not to use usual pattern, i.e.
+> >
+> >   if (error_condition)
+> >     return -EINVAL;
+> What do you mean? like if (arg>1) return -EINVAL? It just seems more readable.
 
-diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
-index af217de75e4d..31f561619b19 100644
---- a/drivers/remoteproc/qcom_q6v5_mss.c
-+++ b/drivers/remoteproc/qcom_q6v5_mss.c
-@@ -110,6 +110,9 @@
- #define QDSS_BHS_ON			BIT(21)
- #define QDSS_LDO_BYP			BIT(22)
- 
-+/* QDSP6v55 parameters */
-+#define QDSP6V55_MEM_BITS		GENMASK(16, 8)
-+
- /* QDSP6v56 parameters */
- #define QDSP6v56_LDO_BYP		BIT(25)
- #define QDSP6v56_BHS_ON		BIT(24)
-@@ -233,6 +236,7 @@ struct q6v5 {
- };
- 
- enum {
-+	MSS_MSM8909,
- 	MSS_MSM8916,
- 	MSS_MSM8974,
- 	MSS_MSM8996,
-@@ -686,13 +690,14 @@ static int q6v5proc_reset(struct q6v5 *qproc)
- 			return ret;
- 		}
- 		goto pbl_wait;
--	} else if (qproc->version == MSS_MSM8996 ||
-+	} else if (qproc->version == MSS_MSM8909 ||
-+		   qproc->version == MSS_MSM8996 ||
- 		   qproc->version == MSS_MSM8998) {
--		int mem_pwr_ctl;
- 
--		/* Override the ACC value if required */
--		writel(QDSP6SS_ACC_OVERRIDE_VAL,
--		       qproc->reg_base + QDSP6SS_STRAP_ACC);
-+		if (qproc->version != MSS_MSM8909)
-+			/* Override the ACC value if required */
-+			writel(QDSP6SS_ACC_OVERRIDE_VAL,
-+			       qproc->reg_base + QDSP6SS_STRAP_ACC);
- 
- 		/* Assert resets, stop core */
- 		val = readl(qproc->reg_base + QDSP6SS_RESET_REG);
-@@ -724,36 +729,53 @@ static int q6v5proc_reset(struct q6v5 *qproc)
- 		val |= QDSP6v56_LDO_BYP;
- 		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
- 
--		/* Deassert QDSP6 compiler memory clamp */
--		val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
--		val &= ~QDSP6v56_CLAMP_QMC_MEM;
--		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
--
--		/* Deassert memory peripheral sleep and L2 memory standby */
--		val |= Q6SS_L2DATA_STBY_N | Q6SS_SLP_RET_N;
--		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
--
--		/* Turn on L1, L2, ETB and JU memories 1 at a time */
--		if (qproc->version == MSS_MSM8996) {
--			mem_pwr_ctl = QDSP6SS_MEM_PWR_CTL;
--			i = 19;
-+		if (qproc->version != MSS_MSM8909) {
-+			int mem_pwr_ctl;
-+
-+			/* Deassert QDSP6 compiler memory clamp */
-+			val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+			val &= ~QDSP6v56_CLAMP_QMC_MEM;
-+			writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+
-+			/* Deassert memory peripheral sleep and L2 memory standby */
-+			val |= Q6SS_L2DATA_STBY_N | Q6SS_SLP_RET_N;
-+			writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+
-+			/* Turn on L1, L2, ETB and JU memories 1 at a time */
-+			if (qproc->version == MSS_MSM8996) {
-+				mem_pwr_ctl = QDSP6SS_MEM_PWR_CTL;
-+				i = 19;
-+			} else {
-+				/* MSS_MSM8998 */
-+				mem_pwr_ctl = QDSP6V6SS_MEM_PWR_CTL;
-+				i = 28;
-+			}
-+			val = readl(qproc->reg_base + mem_pwr_ctl);
-+			for (; i >= 0; i--) {
-+				val |= BIT(i);
-+				writel(val, qproc->reg_base + mem_pwr_ctl);
-+				/*
-+				 * Read back value to ensure the write is done then
-+				 * wait for 1us for both memory peripheral and data
-+				 * array to turn on.
-+				 */
-+				val |= readl(qproc->reg_base + mem_pwr_ctl);
-+				udelay(1);
-+			}
- 		} else {
--			/* MSS_MSM8998 */
--			mem_pwr_ctl = QDSP6V6SS_MEM_PWR_CTL;
--			i = 28;
--		}
--		val = readl(qproc->reg_base + mem_pwr_ctl);
--		for (; i >= 0; i--) {
--			val |= BIT(i);
--			writel(val, qproc->reg_base + mem_pwr_ctl);
--			/*
--			 * Read back value to ensure the write is done then
--			 * wait for 1us for both memory peripheral and data
--			 * array to turn on.
--			 */
--			val |= readl(qproc->reg_base + mem_pwr_ctl);
--			udelay(1);
-+			/* Turn on memories */
-+			val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+			val |= Q6SS_SLP_RET_N | Q6SS_L2DATA_STBY_N |
-+			       Q6SS_ETB_SLP_NRET_N | QDSP6V55_MEM_BITS;
-+			writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+
-+			/* Turn on L2 banks 1 at a time */
-+			for (i = 0; i <= 7; i++) {
-+				val |= BIT(i);
-+				writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+			}
- 		}
-+
- 		/* Remove word line clamp */
- 		val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
- 		val &= ~QDSP6v56_CLAMP_WL;
-@@ -2198,6 +2220,40 @@ static const struct rproc_hexagon_res msm8996_mss = {
- 	.version = MSS_MSM8996,
- };
- 
-+static const struct rproc_hexagon_res msm8909_mss = {
-+	.hexagon_mba_image = "mba.mbn",
-+	.proxy_supply = (struct qcom_mss_reg_res[]) {
-+		{
-+			.supply = "pll",
-+			.uA = 100000,
-+		},
-+		{}
-+	},
-+	.proxy_clk_names = (char*[]){
-+		"xo",
-+		NULL
-+	},
-+	.active_clk_names = (char*[]){
-+		"iface",
-+		"bus",
-+		"mem",
-+		NULL
-+	},
-+	.proxy_pd_names = (char*[]){
-+		"mx",
-+		"cx",
-+		NULL
-+	},
-+	.need_mem_protection = false,
-+	.has_alt_reset = false,
-+	.has_mba_logs = false,
-+	.has_spare_reg = false,
-+	.has_qaccept_regs = false,
-+	.has_ext_cntl_regs = false,
-+	.has_vq6 = false,
-+	.version = MSS_MSM8909,
-+};
-+
- static const struct rproc_hexagon_res msm8916_mss = {
- 	.hexagon_mba_image = "mba.mbn",
- 	.proxy_supply = (struct qcom_mss_reg_res[]) {
-@@ -2298,6 +2354,7 @@ static const struct rproc_hexagon_res msm8974_mss = {
- 
- static const struct of_device_id q6v5_of_match[] = {
- 	{ .compatible = "qcom,q6v5-pil", .data = &msm8916_mss},
-+	{ .compatible = "qcom,msm8909-mss-pil", .data = &msm8909_mss},
- 	{ .compatible = "qcom,msm8916-mss-pil", .data = &msm8916_mss},
- 	{ .compatible = "qcom,msm8974-mss-pil", .data = &msm8974_mss},
- 	{ .compatible = "qcom,msm8996-mss-pil", .data = &msm8996_mss},
+  if (!(pincfg[pin].flag & SLEWLPC))
+    return -EINVAL;
+
+  switch(...) {
+    ...
+  }
+
+> > here and everywhere in the similar cases?
+> can you point me to which more cases you mean?
+
+Any you find that follows this pattern. Actually the rule of thumb is
+to address all places in the code even if reviewer has given a comment
+against one occurrence of something.
+
+...
+
+> > > +               val = ioread32(bank->base + NPCM8XX_GP_N_ODSC)
+> > > +               & pinmask;
+> >
+> > What was happened to indentation? Check entire file for indentation to be okay.
+> Sorry, I didn't understand, could you explain the comment again?
+
+Indentation is a code formatting technique that allows the text to be
+more readable. In particular when lines are split they should
+logically follow what code does and point to the code relation. Here
+you have '&' on the next line with indentation starting at the 'val's
+column. This is not readable and confusing. In this case formatting on
+one line fixes all issues. Possible alternative is to clearly show how
+the 'val' is being modified:
+
+   val = ioread32(...);
+   val &= mask;
+
+But see above about the amount of LoCs.
+
+...
+
+> > > +                       } else if ((nanosecs > 3496) && (nanosecs <= 4136)) {
+> > > +                               iowrite32(0x60, bank->base + NPCM8XX_GP_N_DBNCP0 + (i * 4));
+> > > +                       } else if ((nanosecs > 4136) && (nanosecs <= 5025)) {
+> > > +                               iowrite32(0x70, bank->base + NPCM8XX_GP_N_DBNCP0 + (i * 4));
+> >
+> > With switch-case with ranges it will be much more visible what's going
+> > on. Also think about it, maybe you can use some formula instead? Or
+> > table (array of integers) approach where index will show the lowest
+> > range value.
+> There it can be described in a formula. Will be done with switch-case
+
+I'm not sure I follow. If you can use a formula, use it!
+
+...
+
+> > > +               if (ret) {
+> > > +                       dev_err(dev, "bgpio_init() failed\n");
+> > > +                       return ret;
+> > > +               }
+> >
+> > Use
+> >
+> >   return dev_err_probe(...)
+> Why it is better to use dev_err_probe?
+
+(beside deferred probe, which may be not the case here)
+- standardized format
+- less LoCs
+
+> I am not sure that the error will be EPROBE_DEFER, all the failure
+> cases the driver returned the
+> error in the code.
+
+...and it's fine to use dev_err_probe() as stated in its documentation.
+
+> > In ->probe() and satellite functions.
+
 -- 
-2.30.2
-
+With Best Regards,
+Andy Shevchenko
