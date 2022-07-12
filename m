@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A821571422
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1C07571427
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232590AbiGLIOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:14:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45720 "EHLO
+        id S232605AbiGLIOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:14:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231160AbiGLIOT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:14:19 -0400
+        with ESMTP id S230196AbiGLIOt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:14:49 -0400
 Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 315862616
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:14:18 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id t25so12659453lfg.7
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:14:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B769ADC1
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:14:48 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id z25so12681368lfr.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:14:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=piVMAlOpffJwid9tZ0g858Wy2lJidXX23spAtayy7OI=;
-        b=StLfu8nwjSGQBtoVu4xYBsPLaD86GA58kvcFstln0NzGJ/tDTYxbzgh3KFuopdgHNF
-         fK+aRHHn5QwzVLgwmscm7kPdZVWj+Lyj+G6BTDqzEVOJMulJ+zd4o8+JeCOdURYADhdN
-         dJCsIuavIfqIWAzB5j1VjwTnovlSzB+zyXJM5URY8uDY5idEMKcQGkhk7QT6ka1njyOs
-         gXDpjtdnsNFSHZQh59Az9HtdqoLcByUS4I9wjlO4d2zx4Q5iGdnSiL+FyuVfIbPlvJOO
-         oD26l4vQ80PEHbSKsVUliv8Ke8if2qF42yz+10hJLfWg54eG43XGUooXN25VQE3E2Fkd
-         ugfw==
+        bh=NaYE0YC5oBomgL0PmclsweYRAytccspL/sTByqhvc7I=;
+        b=XV6LgXVn8D1tK9kHTYiLURnyiM7aue61n6dT5mNZwp7VGrsl9wcAgZsiYjLgfVeYtY
+         AN9vERoMbcUyuYjcRZpPAJPBVrFArEvQt+qd3TDJYQUsDH/Sj5GvbJub9fEv0f1lqfwO
+         ogpEjwFHMT3pZlkjoanORhcX+rIHznRkm8Uf0V6plzlcV3t5mTF05LagSSv8Z3WSmI3h
+         JU/MUe29p5qYV1wj+6rrfy37pGqEHkd+XkLPWHYwM2bZKTnCR0crQCkbOZvBZ7L5O2JI
+         uNx1+XkNSrkXMtuBT3xD27F3T/qjIVbFwJXjeUYUPCI6q2OAu0DWZ7CJkwW0Bpt7rsN9
+         pWHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=piVMAlOpffJwid9tZ0g858Wy2lJidXX23spAtayy7OI=;
-        b=kLYJIGL3gPbBouAPOlrp0zNyuOLuztxVtnOHcqUs6OeB4Ro5Xer7bziShmwnG8dPos
-         +FHhYHFvpxqw3+cQpt3Co4mwbzbFINmLYQwFO6DEEY0NHN36+/P6Br8ZJULZZkjr8Cn1
-         rhn53nXeClVuJrYvobDCabFV2rka/phDTrOyoUCEMYFvvKTGoi24/VE5/0YYtFEvJt8p
-         rETtnpdysh6G/e7MqVColMnz/n8JpSedeURRXrucs/FLtFE6rONXhWD5iDYS3r/znKuT
-         5c0um8hwuIDSn9tUBOA55Iu0cnWxkrsgptJ+Z6qLTQe63VbuCHr5UTMuc1HVU+2q+dXQ
-         82SQ==
-X-Gm-Message-State: AJIora/g66j06cxeo86UgcIJhxK48WzZw86pOOFEmzR4NKqQS7OKzcOz
-        vDuzzC5R6CTa4Yab9lnAWsM+fA==
-X-Google-Smtp-Source: AGRyM1vqqp5s0BWN1F/7Lz3d6Rxo5GmlvLhM0XjExtACcM8zjS7RAxUFqyw3vof8bqYboTmuemBL4g==
-X-Received: by 2002:a05:6512:2345:b0:489:e76e:cc1a with SMTP id p5-20020a056512234500b00489e76ecc1amr3619483lfu.219.1657613656558;
-        Tue, 12 Jul 2022 01:14:16 -0700 (PDT)
+        bh=NaYE0YC5oBomgL0PmclsweYRAytccspL/sTByqhvc7I=;
+        b=3jxzgZr+MoDIX+Xd5TB6qfTc9eCM+Rc4vg4ivhG7DUkYO/devRUP8B9Q1qh1hosCpI
+         DZIsTfNqWsdbW+r5OoeL7JUvrusrZck1Zz0Qs11hCfSkpM67oVJhuDnsitRlE4MifrNQ
+         1ZFpW916ImtRTU5REyWRJiLraduzXE6d4LYtg6W47tLF+oWeMZ8LkywUZEUrV+axJV+x
+         MFL9k5oEPF+tUEQOqRo6Rr4JhV2Z2qyk5idk6vFVM3B6EoA0uQcGDoJzLVZ+9jO+08PJ
+         n8B5E98VxHGvtiTlKdFYT00CfMVjC2mSiFB9BT4MyecLUu+Q1UOJazfvgFnDVL46vZET
+         eb0w==
+X-Gm-Message-State: AJIora99e559bZaIYryHDztH+qaMAw+UaSIFqI8xXyID8ANft1rlAHKN
+        SVDwLjihzzT/8zJHPDEiTUvbfA==
+X-Google-Smtp-Source: AGRyM1uTRuXVxUGxHjUXtpenfQ8xEOSmzLpVZr/APJjFs1AGo/9O39jOrEr1RmWyohWhys6FfXZczw==
+X-Received: by 2002:a05:6512:c0f:b0:489:dc4c:55bd with SMTP id z15-20020a0565120c0f00b00489dc4c55bdmr6821749lfu.118.1657613687148;
+        Tue, 12 Jul 2022 01:14:47 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id f14-20020a05651c02ce00b0025d754ba5f4sm639397ljo.99.2022.07.12.01.14.14
+        by smtp.gmail.com with ESMTPSA id v9-20020a05651203a900b004790a4ce3e5sm2051670lfp.278.2022.07.12.01.14.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:14:16 -0700 (PDT)
-Message-ID: <1d048162-8051-f95b-c359-0ab59e32e507@linaro.org>
-Date:   Tue, 12 Jul 2022 10:14:14 +0200
+        Tue, 12 Jul 2022 01:14:46 -0700 (PDT)
+Message-ID: <18103915-6ab5-cf23-c5c5-707864b3e049@linaro.org>
+Date:   Tue, 12 Jul 2022 10:14:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/2] dt-binding: sound: atmel,pdmic: Convert to
+Subject: Re: [PATCH v2 1/2] dt-bindings: sound: atmel,classd: Convert to
  json-schema
 Content-Language: en-US
 To:     Ryan.Wanner@microchip.com, lgirdwood@gmail.com, broonie@kernel.org,
@@ -63,14 +63,14 @@ To:     Ryan.Wanner@microchip.com, lgirdwood@gmail.com, broonie@kernel.org,
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220711183010.39123-1-Ryan.Wanner@microchip.com>
- <20220711183010.39123-3-Ryan.Wanner@microchip.com>
+ <20220711183010.39123-2-Ryan.Wanner@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711183010.39123-3-Ryan.Wanner@microchip.com>
+In-Reply-To: <20220711183010.39123-2-Ryan.Wanner@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,119 +79,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 11/07/2022 20:30, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
-> 
-> Convert Atmel PDMIC devicetree binding to json-schema.
-> Change file naming to match json-schema naming.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-> ---
-> v1 -> v2:
-> - Fix title.
-> - Removed trivial descriptions.
-> - Fix formatting.
-> 
->  .../bindings/sound/atmel,sama5d2-pdmic.yaml   | 98 +++++++++++++++++++
->  .../devicetree/bindings/sound/atmel-pdmic.txt | 55 -----------
->  2 files changed, 98 insertions(+), 55 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/atmel-pdmic.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
-> new file mode 100644
-> index 000000000000..88fa92a30147
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/atmel,sama5d2-pdmic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Atmel PDMIC decoder
-> +
-> +maintainers:
-> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
-> +
-> +description:
-> +  Atmel Pulse Density Modulation Interface Controller
-> +  (PDMIC) peripheral is a mono PDM decoder module
-> +  that decodes an incoming PDM sample stream.
-> +
-> +properties:
-> +  compatible:
-> +    const: atmel,sama5d2-pdmic
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: peripheral clock
-> +      - description: generated clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: gclk
-> +
-> +  dmas:
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    const: rx
-> +
-> +  atmel,mic-min-freq:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The minimal frequency that the microphone supports.
-> +
-> +  atmel,mic-max-freq:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The maximal frequency that the microphone supports.
-> +
-> +  atmel,model:
-> +    description: The user-visible name of this sound card.
 
-In previous properties the description was the last one, so keep it
-consistent.
+One more:
 
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    default: PDMIC
-> +
-> +  atmel,mic-offset:
-> +    $ref: /schemas/types.yaml#/definitions/int32
-> +    description: The offset that should be added.
-> +    default: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - dmas
-> +  - dma-names
-> +  - clock-names
-> +  - clocks
-> +  - atmel,mic-min-freq
-> +  - atmel,mic-max-freq
-> +
-> +additionalProperties: false
 > +
 > +examples:
 > +  - |
 > +    #include <dt-bindings/dma/at91.h>
 > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
 > +
-> +    pdmic: sound@f8018000 {
-> +    	compatible = "atmel,sama5d2-pdmic";
+> +    classd: sound@fc048000 {
+> +    	compatible = "atmel,sama5d2-classd";
+> +    	reg = <0xfc048000 0x100>;
+> +        interrupts = <59 IRQ_TYPE_LEVEL_HIGH 7>;
 
-Wrong indentation. I already asked for this.
+Wrong indentation. I asked about this in v1.
 
 
 Best regards,
