@@ -2,178 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FDFF571277
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 08:49:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A997C57128D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 08:54:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232021AbiGLGts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 02:49:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34494 "EHLO
+        id S232100AbiGLGyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 02:54:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229709AbiGLGts (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 02:49:48 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC331EEFF;
-        Mon, 11 Jul 2022 23:49:40 -0700 (PDT)
-X-UUID: 2c5deefdde4d4c63a28299ad0b6e2f3a-20220712
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:88eb9b1a-e6b5-4e14-9a7a-0762369b27a7,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.8,REQID:88eb9b1a-e6b5-4e14-9a7a-0762369b27a7,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:0f94e32,CLOUDID:27f90b64-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:9a67550cb39b,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 2c5deefdde4d4c63a28299ad0b6e2f3a-20220712
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1513253721; Tue, 12 Jul 2022 14:49:37 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 12 Jul 2022 14:49:36 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 12 Jul 2022 14:49:35 +0800
-Message-ID: <e8c2a181926fcbd72ac7b625e2289d91132c37be.camel@mediatek.com>
-Subject: Re: [PATCH v13 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?= 
-        <LiangXu.Xu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 12 Jul 2022 14:49:35 +0800
-In-Reply-To: <7af5710c5a9c0c30e38ca81a72fe30c1c7749bbb.camel@mediatek.com>
-References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
-         <20220701062808.18596-6-rex-bc.chen@mediatek.com>
-         <7af5710c5a9c0c30e38ca81a72fe30c1c7749bbb.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229762AbiGLGyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 02:54:01 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FFC1193CC
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 23:54:00 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id e28so8770534lfj.4
+        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 23:54:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=NE5DifUufxxjJStpUUwi3w02nZ87Fe1eRpENnObacD4=;
+        b=ASwsWNviNK/+Vl2rC/IwRIMQt2142cJyJVBT+fQWpfzaTYP1RCZhbBWXVnnQWBQfFI
+         gkMzbHLCEFMaFR3RRjAELkNwo3sN40A1V3+KTWFrO6B8IBBJV5epmD79LqxH2hP00prG
+         nrG2SxcJCKWDdPtYhWIMIE3ax+bXVnv6RFAcvIBsG+TeAFv7WEOwBF9Pz57pFkba8xt7
+         mtvTkIBwy+Fni2JIBzDuYGXLjZf4p6wFfeeY1DfLA+eQTaILoQv0PZmk+aSaHBgLJK0X
+         oBSX688ZDSQNkYYB+ZTaXtLSb3/pElJfqHEl0ysUnZfMow3ACPjauO3WqAVMStCSJaWO
+         Dkxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=NE5DifUufxxjJStpUUwi3w02nZ87Fe1eRpENnObacD4=;
+        b=01bwXjv4+JLaxtjGcbbo64C4dPTdhOH1Osj403UHRqMFlujRHSTL89aLTdpZuHYkOB
+         8gQbKCmP3vH97uKao41B1aM6iZSs2a4vUpi/oJ8mzbM4wqmxBNzlABeV5i7VA3U5LYgW
+         /rJUlG6o7dhtkl3hdysOxTto0C1HWJBKWRZYAjE5JUYcwmjXJGwUn0/gfc7/i76M1Wmq
+         Pjt+5179yC3pzHlDaMcWlLE0aGojlcc1J0eqZ8pXJm/j5DYCesy4k9BEGEwcuFKRoESY
+         lGfRwcvRMo97rRac+CO9sEVyyAXITJuGpKoBF7J660gQ3qsyTb269CM5zANfZUkElEd6
+         E39g==
+X-Gm-Message-State: AJIora9tB9v7Lye02RT9IRDuwFaIsJSRb/GsLMZsbeUUpCW0Jqq28fiX
+        gL7YILr1eJP0QfzClluhuI0GoA==
+X-Google-Smtp-Source: AGRyM1sQCvT/DEL8W10OJPxgCdo4/+cU3BwL4V/dSUB1scb2vrHR6Uzbw7NKlIkMimSWjzFdZG2lmA==
+X-Received: by 2002:a05:6512:2803:b0:481:126b:7eaf with SMTP id cf3-20020a056512280300b00481126b7eafmr13385403lfb.286.1657608838444;
+        Mon, 11 Jul 2022 23:53:58 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
+        by smtp.gmail.com with ESMTPSA id bu19-20020a056512169300b004786eb19049sm2012711lfb.24.2022.07.11.23.53.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jul 2022 23:53:57 -0700 (PDT)
+Message-ID: <ab0e97a3-ec83-78f2-921a-813a647855f5@linaro.org>
+Date:   Tue, 12 Jul 2022 08:53:50 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH RFT] arm64: dts: qcom: sm6125: fix SDHCI CQE reg names
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+References: <20220711082648.38987-1-krzysztof.kozlowski@linaro.org>
+ <CAD=FV=WMJ1BX-uA4eavocbAGjpSsEYhoYGSha9gBYsqAXhHX-g@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=WMJ1BX-uA4eavocbAGjpSsEYhoYGSha9gBYsqAXhHX-g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-07-07 at 16:00 +0800, CK Hu wrote:
-> Hi, Bo-Chen:
+On 11/07/2022 16:57, Doug Anderson wrote:
+> Hi,
 > 
-> On Fri, 2022-07-01 at 14:28 +0800, Bo-Chen Chen wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > This patch adds a embedded displayport driver for the MediaTek
-> > mt8195
-> > SoC.
-> > 
-> > It supports the MT8195, the embedded DisplayPort units. It offers
-> > DisplayPort 1.4 with up to 4 lanes.
-> > 
-> > The driver creates a child device for the phy. The child device
-> > will
-> > never exist without the parent being active. As they are sharing a
-> > register range, the parent passes a regmap pointer to the child so
-> > that
-> > both can work with the same register range. The phy driver sets
-> > device
-> > data that is read by the parent to get the phy device that can be
-> > used
-> > to control the phy properties.
-> > 
-> > This driver is based on an initial version by
-> > Jitao shi <jitao.shi@mediatek.com>
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
+> On Mon, Jul 11, 2022 at 1:26 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> SM6125 comes with SDCC (SDHCI controller) v5, so the second range of
+>> registers is cqhci, not core.
+>>
+>> Fixes: cff4bbaf2a2d ("arm64: dts: qcom: Add support for SM6125")
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Not tested on hardware, but no practical impact is expected, because
+>> supports-cqe is not defined.
 > 
-> [snip]
-> 
-> > +
-> > +static int mtk_dp_set_color_format(struct mtk_dp *mtk_dp,
-> > +				   enum dp_pixelformat color_format)
-> > +{
-> > +	u32 val;
-> > +
-> > +	/* update MISC0 */
-> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3034,
-> > +			   color_format << DP_TEST_COLOR_FORMAT_SHIFT,
-> > +			   DP_TEST_COLOR_FORMAT_MASK);
-> > +
-> > +	switch (color_format) {
-> > +	case DP_PIXELFORMAT_YUV422:
-> > +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_YCBCR422;
-> > +		break;
-> > +	case DP_PIXELFORMAT_RGB:
-> > +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_RGB;
-> > +		break;
-> > +	default:
-> 
-> The default case would never happen, remove it.
-> 
-> Regards,
-> CK
-> 
+> Maybe the schema should enforce this? If "cqhci" is in reg-names then
+> you must have supports-cqe and vice versa?
 
-Hello CK,
-
-after removing default, it will build error because we do not handle
-other 5 enum in enum dp_pixelformat.
-
-"error: 5 enumeration values not handled in switch"
-
-Therefore, I will keep this.
-
-BRs,
-Bo-Chen
-
-> > +		drm_warn(mtk_dp->drm_dev, "Unsupported color format:
-> > %d\n",
-> > +			 color_format);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_303C,
-> > +			   val, PIXEL_ENCODE_FORMAT_DP_ENC0_P0_MASK);
-> > +	return 0;
-> > +}
-> > +
+I have mixed feelings about this. First, I don't know why support-cqe
+was not enabled on all devices but only in some DTS (this does not look
+like a property of a board but SoC). Second, cqhci address space might
+be present in all devices, even if they do not use CQE.
 > 
 > 
+>> ---
+>>  arch/arm64/boot/dts/qcom/sm6125.dtsi | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>> index 77bff81af433..7664ef7e4da9 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>> @@ -438,7 +438,7 @@ rpm_msg_ram: sram@45f0000 {
+>>                 sdhc_1: mmc@4744000 {
+>>                         compatible = "qcom,sm6125-sdhci", "qcom,sdhci-msm-v5";
+>>                         reg = <0x04744000 0x1000>, <0x04745000 0x1000>;
+>> -                       reg-names = "hc", "core";
+>> +                       reg-names = "hc", "cqhci";
+> 
+> Another possible fix would be to just delete the second register
+> range. Then it could be added back in once "supports-cqe" was added.
 
+True, but I assume that second address range is there for complete
+hardware description.
+
+
+Best regards,
+Krzysztof
