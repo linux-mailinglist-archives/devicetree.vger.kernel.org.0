@@ -2,77 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12832572258
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 20:19:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 056A5572270
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 20:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233176AbiGLSTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 14:19:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
+        id S229619AbiGLSUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 14:20:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232182AbiGLSTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 14:19:20 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B37F59B9D8;
-        Tue, 12 Jul 2022 11:19:19 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id p128so8697012iof.1;
-        Tue, 12 Jul 2022 11:19:19 -0700 (PDT)
+        with ESMTP id S230296AbiGLSUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 14:20:38 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABA7AC1FD0
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 11:20:37 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id y11so8803487lfs.6
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 11:20:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=1gzR+wNqtuyrFm1FNlb8hG1Ws+B4tsa2kbSPanKefOs=;
+        b=MdrqVdGHPFBC9uUzUWcPjdhJI4i9ybaD17Rg0ed5ztTaTJU0xfsWJLypKwrV3fEV6F
+         aM7QgXJnr+avFwhfNGHGsGoLiIycb7aF7eawv4qbSo0vZy6S2wZqkHWzf66F29z9Nn1n
+         Z4Wb2D6t3BbQxnVXcTv5JRMi1YzZ2sNhLkRXoleFt44jBS55WWgtWYlB7HoVC/0LCx2V
+         FdnvaVwggTcMoOVfi3M7BJflf0EdG6xTQ5rv/dI8pVft1Mh255g6DFc6/CROUiLNLCKH
+         lvvlD/wOCa569Jh+/06kHzoilhwxHI95TvwJYg0N472u1D3m1yTNOOnENnxhPPLtGsBE
+         s9ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Wcp64K5PVliSn3UzjvTNUpS1fkGlfk4O82lLCf8rw9U=;
-        b=PuXzbIHoS8ivIxGCe2nNxpH7Cb4hg8ZtVTdY5XUDcrTFHV0HAz2zI5Tw/Kq2E/x/na
-         UdiIVgloSPDeOlxYUgoCfrz0Uq9DBF3SI0p4GWOQdHQKF5sw5n/LJ2yKOODAi8A/lZxH
-         IHPWQDVzD3ZRecBaBuJtmXpmkHwFF+fMHq8JArmgtX4VgdNysgQ555j4S7nnqGJl9fqZ
-         clj/fLT3djgTtjuuTGaei9ETk2tVJOYgTmqSmY4AvtJp/mSri6YN/15MiQqhK6Ictt7L
-         yIc+LNfwgzTe5au2xatLh8oLJeIapFlqeHDdsxspz0asFfMaUihJY90Ujpalv0S+i11B
-         Y1YA==
-X-Gm-Message-State: AJIora+9tx+tSw+o4JMYwu+rfgPnNZxGY6BEkDQpyg7WmFOdkRNa9ppc
-        8xzkneXbqpRJND/HScnpEA==
-X-Google-Smtp-Source: AGRyM1ueRBOx0x21LlqhraF76MncQ1Zco5/yhr5wSySTaOk3txyA4FFBNJfRj9DjZGKcWXykYk4BUw==
-X-Received: by 2002:a05:6638:349e:b0:33f:4322:d9cd with SMTP id t30-20020a056638349e00b0033f4322d9cdmr10073664jal.296.1657649958940;
-        Tue, 12 Jul 2022 11:19:18 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id n8-20020a02a188000000b0033f51b3b0d9sm3098773jah.138.2022.07.12.11.19.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 11:19:18 -0700 (PDT)
-Received: (nullmailer pid 2130848 invoked by uid 1000);
-        Tue, 12 Jul 2022 18:19:16 -0000
-Date:   Tue, 12 Jul 2022 12:19:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH RFC 1/2] dt-bindings: interrupt-controller: sifive,plic:
- Document Renesas RZ/Five SoC
-Message-ID: <20220712181916.GI1823936-robh@kernel.org>
-References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220524172214.5104-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220605142333.GA3439339-robh@kernel.org>
- <CA+V-a8smk8TqyWpm1KXo-3dKnCAodKsiYsaqnK_3ubfXE9YauQ@mail.gmail.com>
- <20220706215827.GA572635-robh@kernel.org>
- <87a69lmesa.wl-maz@kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1gzR+wNqtuyrFm1FNlb8hG1Ws+B4tsa2kbSPanKefOs=;
+        b=V5YGNP7UPwG3a25sZdy1WC8LBVw54eR5x8EVtUzFUL8P8YUxuV9yZEZTRJiiOPTLwm
+         ZssPBhhEcm4DTdVH/IjjXtCsco2dP2uhHd81KuSDc4nHpRW+aIu8kZEMZOCaJLj4dbgb
+         BmlMSl7/UY5mgrAB65vjtGCawi/J51CssO6hvUa69d/U9GtjMoCnV9FjMa63TElwqH6U
+         UFNG2xp3v/XE4r6OM8eI0wq1ZSasfOy+oFCXkLk2/MmgJVkDGS3GULfkB4bxuF77nHEl
+         cI0uj+tP1wSWmfVnowDAVaBqjT8aQ2rT6p/w/GveMSITSb+HtNwxoGxTItCr+R1bssdX
+         gL3w==
+X-Gm-Message-State: AJIora9QF/zrY5H7VcjD69X0/txQDGtKCXKtVgdYUgiCizeR3uy5MgM9
+        x4oz+R02vEUFSsL9PYgfH2SOVQ==
+X-Google-Smtp-Source: AGRyM1vHeLvHwkweub6jEy2PrrfXVMh6MiTdXVhFvmcdwtG8Yv2b+E2aj/xsO+uWv9VWbmmSPmeBKg==
+X-Received: by 2002:a05:6512:39d5:b0:47f:6e9a:5bf with SMTP id k21-20020a05651239d500b0047f6e9a05bfmr15826527lfu.580.1657650035973;
+        Tue, 12 Jul 2022 11:20:35 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id b11-20020a056512070b00b0047a0300746fsm2299470lfs.304.2022.07.12.11.20.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 11:20:35 -0700 (PDT)
+Message-ID: <5c79330d-7786-61a8-b464-d7e7171a7aab@linaro.org>
+Date:   Tue, 12 Jul 2022 20:20:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87a69lmesa.wl-maz@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [RFC PATCH 3/3] arm64: dts: bcmbca: update bcm4808 board dts file
+Content-Language: en-US
+To:     William Zhang <william.zhang@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     kursad.oney@broadcom.com, anand.gore@broadcom.com,
+        dan.beygelman@broadcom.com,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        joel.peshkin@broadcom.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220712021144.7068-1-william.zhang@broadcom.com>
+ <20220712021144.7068-4-william.zhang@broadcom.com>
+ <d93e55fa-3359-2609-aad5-c80eca78f380@linaro.org>
+ <900ac3ed-a77c-3cc0-f5ab-c45267a1a4ba@gmail.com>
+ <6b7bab04-90ce-6111-35bd-42cb3a1f73f8@linaro.org>
+ <9bc3e0b6-833e-375e-70d6-1dbd036ef25a@broadcom.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9bc3e0b6-833e-375e-70d6-1dbd036ef25a@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,149 +86,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 07, 2022 at 10:51:33AM +0100, Marc Zyngier wrote:
-> On Wed, 06 Jul 2022 22:58:27 +0100,
-> Rob Herring <robh@kernel.org> wrote:
-> > 
-> > On Fri, Jun 24, 2022 at 10:59:40AM +0100, Lad, Prabhakar wrote:
-> > > Hi Rob,
-> > > 
-> > > Thank you for the review.
-> > > 
-> > > On Sun, Jun 5, 2022 at 3:23 PM Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Tue, May 24, 2022 at 06:22:13PM +0100, Lad Prabhakar wrote:
-> > > > > Document Renesas RZ/Five (R9A07G043) SoC.
-> > > > >
-> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > ---
-> > > > >  .../sifive,plic-1.0.0.yaml                    | 38 +++++++++++++++++--
-> > > > >  1 file changed, 35 insertions(+), 3 deletions(-)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > > > index 27092c6a86c4..78ff31cb63e5 100644
-> > > > > --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > > > @@ -28,7 +28,10 @@ description:
-> > > > >
-> > > > >    While the PLIC supports both edge-triggered and level-triggered interrupts,
-> > > > >    interrupt handlers are oblivious to this distinction and therefore it is not
-> > > > > -  specified in the PLIC device-tree binding.
-> > > > > +  specified in the PLIC device-tree binding for SiFive PLIC (and similar PLIC's),
-> > > > > +  but for the Renesas RZ/Five Soc (AX45MP AndesCore) which has NCEPLIC100 we need
-> > > > > +  to specify the interrupt type as the flow for EDGE interrupts is different
-> > > > > +  compared to LEVEL interrupts.
-> > > > >
-> > > > >    While the RISC-V ISA doesn't specify a memory layout for the PLIC, the
-> > > > >    "sifive,plic-1.0.0" device is a concrete implementation of the PLIC that
-> > > > > @@ -57,6 +60,7 @@ properties:
-> > > > >            - enum:
-> > > > >                - allwinner,sun20i-d1-plic
-> > > > >            - const: thead,c900-plic
-> > > > > +      - const: renesas-r9a07g043-plic
-> > 
-> > Also, this should be 'renesas,r9...'
-> > 
-> > > > >
-> > > > >    reg:
-> > > > >      maxItems: 1
-> > > > > @@ -64,8 +68,7 @@ properties:
-> > > > >    '#address-cells':
-> > > > >      const: 0
-> > > > >
-> > > > > -  '#interrupt-cells':
-> > > > > -    const: 1
-> > > > > +  '#interrupt-cells': true
-> > > > >
-> > > > >    interrupt-controller: true
-> > > > >
-> > > > > @@ -91,6 +94,35 @@ required:
-> > > > >    - interrupts-extended
-> > > > >    - riscv,ndev
-> > > > >
-> > > > > +if:
-> > > > > +  properties:
-> > > > > +    compatible:
-> > > > > +      contains:
-> > > > > +        const: renesas-r9a07g043-plic
-> > > > > +then:
-> > > > > +  properties:
-> > > > > +    clocks:
-> > > > > +      maxItems: 1
-> > > > > +
-> > > > > +    resets:
-> > > > > +      maxItems: 1
-> > > > > +
-> > > > > +    power-domains:
-> > > > > +      maxItems: 1
-> > > >
-> > > > Did you test this? The above properties won't be allowed because of
-> > > > additionalProperties below. You need to change it to
-> > > > 'unevaluatedProperties' or move these to the top level.
-> > > >
-> > > Yes I have run the dt_binding check.
-> > > 
-> > > So with the below diff it does complain about the missing properties.
-> > > 
-> > > prasmi@prasmi:~/work/renasas/renesas-drivers$ git diff
-> > > Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > index 20ded037d444..bb14a4b1ec0a 100644
-> > > --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > @@ -130,7 +130,7 @@ examples:
-> > >      plic: interrupt-controller@c000000 {
-> > >        #address-cells = <0>;
-> > >        #interrupt-cells = <1>;
-> > > -      compatible = "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
-> > > +      compatible = "renesas-r9a07g043-plic";
-> > >        interrupt-controller;
-> > >        interrupts-extended = <&cpu0_intc 11>,
-> > >                              <&cpu1_intc 11>, <&cpu1_intc 9>,
-> > > prasmi@prasmi:~/work/renasas/renesas-drivers$ make ARCH=riscv
-> > > CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check
-> > >   LINT    Documentation/devicetree/bindings
-> > >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> > >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > >   DTEX    Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dts
-> > >   DTC     Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb
-> > >   CHECK   Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb
-> > > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
-> > > interrupt-controller@c000000: #interrupt-cells:0:0: 2 was expected
-> > >     From schema:
-> > > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
-> > > interrupt-controller@c000000: 'clocks' is a required property
-> > >     From schema:
-> > > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
-> > > interrupt-controller@c000000: 'resets' is a required property
-> > >     From schema:
-> > > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.example.dtb:
-> > > interrupt-controller@c000000: 'power-domains' is a required property
-> > >     From schema:
-> > > /home/prasmi/work/renasas/renesas-drivers/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> > > prasmi@prasmi:~/work/renasas/renesas-drivers$
-> > > prasmi@prasmi:~/work/renasas/renesas-drivers$
-> > > 
-> > > Is there something I'm missing here?
-> > 
-> > You've said these properties are required, but you didn't add them.
-> > 
-> > If you don't have the above 3 properties, then it's not going to 
-> > complain that they are present. But it will when you do add them for the 
-> > reason I gave.
+On 12/07/2022 19:48, William Zhang wrote:
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Can you please have a look at the latest instance[1][2] of this
-> series, as posted by Samuel? I've provisionally queued it, but only on
-> the provision that you would eventually ack these patches.
+> The reason for this patch is to keep the bcmbca board dts in the same 
+> format and keep everything in the same yaml file. 
 
-I did already[1]. They passed checks, were already in linux-next, and I 
-didn't see anything major needing comments, so I marked it N/A (meaning 
-someone else applies it) without comment.
+Not a good reason to change compatibles. You can have the same format
+and keep everything in same YAML file without replacing compatibles.
 
-Rob
+> Understand 4908 was 
+> already upstream but luckily there is no driver in linux and u-boot that 
+> uses these 4908 compatible strings. They are only used in the board dts 
+> as far as I can see.  So it does not really break anything in the end, 
+> unless someone use them in any driver but never upstream their code...
 
-[1] https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220630100241.35233-2-samuel@sholland.org/
+So maybe just briefly mention it in the commit msg?
+
+Best regards,
+Krzysztof
