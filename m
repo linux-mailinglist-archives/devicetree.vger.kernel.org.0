@@ -2,219 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E75857136D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 09:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C200E571370
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 09:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232444AbiGLHtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 03:49:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51498 "EHLO
+        id S230502AbiGLHvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 03:51:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232452AbiGLHtv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 03:49:51 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D189CE04
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:49:49 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id r9so4553584lfp.10
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:49:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2nzDFbOQzhmz/22ypvi14S91HEzakYKEGdQDyNBSOY0=;
-        b=K30R07foS4PkukDYXfgfRdxcfQzZ64mmEDIA6OE83yNtpTLbK8Udhtk0b3VVYLuZS9
-         UiQkWpBULMSMpVR31zKATQCzrGu88YL3TrLc0mJcR+PbGfuZfeTHHs4QDC/QE637RGGt
-         WraEEELQODV/pnxsZnEYkD6IDistT9vRbgCdT8KvmfKAvsFqaZKYTZbupKb1Sp8zi5Sl
-         tRGbeYB0wb6WXZM6KBBFchFAfPNFB3hRgw6Ron2oAOBCfv/nbI2+tj6mnPq2FW9pdRE0
-         QQqe1L/r+Nc0dKqFilENciRUBIUElXWR8YvBqFmcuGv3SAo6cSnOC0HHw7jVjmscOWpg
-         arTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=2nzDFbOQzhmz/22ypvi14S91HEzakYKEGdQDyNBSOY0=;
-        b=qronk/INzzgPOy+xrj6mZPfbOniXz9yKyr++pjSQczWGUiAx9VHJNyCYpn4Rll/6qw
-         M3Tv4zhxaf5xs/OlfqeG0picvBDHs9YT1Gay4bcMAez3QH2O9eH/BWc468tFFJxI+z2r
-         6pcfpn1XGgg+VmKqyC469qN5Sqgw4WZJENA3Ut/9qeNWSzmZpOPpRAygHZ6qE6n+rEeM
-         yWpMmd27wgq/Q7i656seR1TGm1xpUAXrn/1AiPK20QIJ46rwOBNcnqLCRsm93B931mI7
-         9iyWMkLyzmBkG4Najdlf9iIDQNwrEbgjLiNG6YZ+6J5ooig34/a7qMAJQS1CYMmRfGw1
-         v5ZA==
-X-Gm-Message-State: AJIora8J+X2tV7+ohN3n+vr7+LQRxs4iAupFWjuPytwOag0F9Oa8jhUp
-        SY9871kDwR5n/nq11GG5uvMHtw==
-X-Google-Smtp-Source: AGRyM1s7uIrC/au+kDw8CXEA5rnjdHYxZZLGJ3RZwoUeDyjJUKUk9riccSMB5BuxMqz1v2e3X9Qz9A==
-X-Received: by 2002:a05:6512:2306:b0:485:8e08:5740 with SMTP id o6-20020a056512230600b004858e085740mr14669012lfu.354.1657612187373;
-        Tue, 12 Jul 2022 00:49:47 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id j6-20020a2e3c06000000b0025d5b505df1sm2268080lja.136.2022.07.12.00.49.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 00:49:46 -0700 (PDT)
-Message-ID: <d8b124f4-9ed7-7cc1-a978-60997696646f@linaro.org>
-Date:   Tue, 12 Jul 2022 09:49:45 +0200
+        with ESMTP id S229984AbiGLHvK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 03:51:10 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F21949A69E;
+        Tue, 12 Jul 2022 00:51:06 -0700 (PDT)
+Received: from mail-yw1-f174.google.com ([209.85.128.174]) by
+ mrelayeu.kundenserver.de (mreue009 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1M9Wqa-1oEU3x0SqC-005aPt; Tue, 12 Jul 2022 09:51:05 +0200
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-31cac89d8d6so72844987b3.2;
+        Tue, 12 Jul 2022 00:51:04 -0700 (PDT)
+X-Gm-Message-State: AJIora+lnbQj5ZbYTwSYbSk85goa1cAFM1nI3diUF5yCH0zl+VWAgJRD
+        7QWjtIx4M8EnOaRHYLKGVUD0cO5zfM/guUn7xHs=
+X-Google-Smtp-Source: AGRyM1ufca0XkARKSb1i/9Hgo/QC/CH6QUlrdoqUuF3Jwpyoc+XbP0yMd1avuvBxh4Bz5/H8vuI4X+XdchTTBll8UJg=
+X-Received: by 2002:a0d:df0f:0:b0:31b:e000:7942 with SMTP id
+ i15-20020a0ddf0f000000b0031be0007942mr23243135ywe.320.1657612263753; Tue, 12
+ Jul 2022 00:51:03 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 6/7] dt-bindings: media: Add i.MX8 ISI DT bindings
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20220712000251.13607-1-laurent.pinchart@ideasonboard.com>
- <20220712000251.13607-7-laurent.pinchart@ideasonboard.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220712000251.13607-7-laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
+ <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com> <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
+In-Reply-To: <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 12 Jul 2022 09:50:46 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
+Message-ID: <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
+ page and dio support to no-map rmem
+To:     Li Chen <me@linux.beauty>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Li Chen <lchen@ambarella.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, Linux-MM <linux-mm@kvack.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:8lGB+NJxQc33gsettBfh+xxQK2l7f7QQa6CRc7EbjKMRsczPJNE
+ RleVsYCFJ5qzVX75nxJDSfDnpieQHNQeE3BV8s1lu9tjZq66+IvwtIM6yWHc/DJwLGT/zOD
+ FmH8sAMgupnOzmmrDMMhxfMZgyvvtW1mNFDfrw4/ef4wGhw1QT6Ipu62I5rW0MpTj7fiT9c
+ 3kllEkLiMCE6U4R9V//vg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:5DhGn80DuMo=:D8xdg5OOtkkwpau06UnTPj
+ xH7LpWsAJK5ajA+jUCJ7aoIasKSlcDVvL31LgSuBxX+O+KgJnUnWF4oqC2DDtOGpLURLVOvtF
+ BYzdrRJTgyg0G/e2Erp0hhQOIbLyhcoOJ/sSASTCAqub1e3gnPFkfId6vYe8WCO76koaqPnDL
+ 1dAHFsNsthaoygdnWJHviHD8kPAs3ckQaK7a9LypXKSVeEYt2QlUoLLc2IjLXSp2wgzXzxjCr
+ uIsMbmtpynQ9S9RzaEGrNtUpt/mVX7Z3cKUQyzZ9GgSzy5eCyKrmjwCgaD8/1TTuG8GrXriU3
+ QiD2MSA7fL2RVwmFHJC1AOObN8092H7z/7EhB94Yj+04SVQ2rykAh1WD/NKhqWm7+1MDtbJuS
+ jBU8SwOIR/MKizBUmulpVKvoCERTsvIAIWRXwaT+S1Bx2mlwxjf9fzvq5hfAuYlZ1Su49MiLV
+ OHLmzVDR/huGzfqOGUpQnAIXULLGM7oTvWfTJV+b+GBdBGS2vBJnP18UchCBvbvrJfjK9CRCt
+ Mq0ynQyxq7aU6x8njaAKSQIrpPJsZWIY1iXOzSGesrouk+b2y5b0fUBRVVp8mEVJQuy2VWZjY
+ 13+yQ+9l9aIjvZiBe+kqXPNao2+/sp6qnhNEY6Fjv0G7UeO98zFYZKO81s2kFE+9WAa+Sv23V
+ HGRuj0dOTf4qLRBwfTIuYcc4qaf55NnZEHQoFvmWJ+roa/4IUNL42CI75zOGHOuyikFj7HBhD
+ IGFkvto9qtz6nok4nVFfqdYuuzw2drSfxmjbpgvEPZAcz4kVxrrdYx4xuDfz/BnyTXebJTXX2
+ jzvQgKFsWZjWtbV19912STsnqGGMyrbB/JVWMOJgaikiHin1bfqXjgVhHVBAg05mYs0AFgKzd
+ 8LJwiceZdLoUPsq9CtGcu8Bfd4/phgSBVo+2ryy8E=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2022 02:02, Laurent Pinchart wrote:
-> The Image Sensing Interface (ISI) combines image processing pipelines
-> with DMA engines to process and capture frames originating from a
-> variety of sources. The inputs to the ISI go through Pixel Link
-> interfaces, and their number and nature is SoC-dependent. They cover
-> both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
-> Changes since v1:
-> 
-> - Fix compatible string checks in conditional schema
-> - Fix interrupts property handling
-> ---
->  .../bindings/media/nxp,imx8-isi.yaml          | 148 ++++++++++++++++++
->  1 file changed, 148 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> new file mode 100644
-> index 000000000000..390dfa03026b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> @@ -0,0 +1,148 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: i.MX8 Image Sensing Interface
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +
-> +description: |
-> +  The Image Sensing Interface (ISI) combines image processing pipelines with
-> +  DMA engines to process and capture frames originating from a variety of
-> +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
-> +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
-> +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8mn-isi
-> +      - fsl,imx8mp-isi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: The AXI clock
-> +      - description: The APB clock
-> +      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
-> +      # as well, in case some SoCs have the ability to control them separately.
-> +      # This may be the case of the i.MX8[DQ]X(P)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: axi
-> +      - const: apb
-> +
-> +  fsl,blk-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      A phandle referencing the block control that contains the CSIS to ISI
-> +      gasket.
-> +
-> +  interrupts: true
+On Tue, Jul 12, 2022 at 2:26 AM Li Chen <me@linux.beauty> wrote:
+>  ---- On Mon, 11 Jul 2022 21:28:10 +0800  Arnd Bergmann <arnd@arndb.de> wrote ---
+>  > On Mon, Jul 11, 2022 at 2:24 PM Li Chen <me@linux.beauty> wrote:
+>  > >
+>  > > From: Li Chen <lchen@ambarella.com>
+>  > >
+>  > > This sample driver shows how to build struct pages support to no-map rmem.
+>  > >
+>  > > Signed-off-by: Li Chen <lchen@ambarella.com>
+>  >
+>  > Not sure what a sample driver helps here if there are no actual users in-tree.
+>  >
+>  > It would make more sense to merge the driver that wants to actually use this
+>  > first, and then add the additional feature.
+>
+> Totally agree, but we plan to start rewriting our video driver in a long time, it
+> has many legacy codes and I need to rewrite a lot of codes to migrate to v4l2.
+> That's why I also submit a sample driver here: to make the review progress
+> easier and don't need reviewers to read video driver codes.
 
-Need generic constraints - min/maxItems.
+The problem is that this patch may not be the right solution for your new
+driver either.  As Christoph also commented, what you do here is rather
+unusual, and without seeing the video driver first, we have no way of
+knowing whether there is something the driver should be doing
+differently to solve the original problem.
 
-> +
-> +  power-domains: true
+>  > > +/*
+>  > > + * dts example
+>  > > + * rmem: rmem@1 {
+>  > > + *                     compatible = "shared-dma-pool";
+>  > > + *                     no-map;
+>  > > + *                     size = <0x0 0x20000000>;
+>  > > + *             };
+>  > > + * perf {
+>  > > + *             compatible = "example,rmem";
+>  > > + *             memory-region = <&rmem>;
+>  > > + *     };
+>  >
+>  > The problem here is that the DT is meant to describe the platform in an OS
+>  > independent way, so having a binding that just corresponds to a user space
+>  > interface is not a good abstraction.
+>
+> Gotcha, but IMO dts + rmem is the only choice for our use case. In our real
+> case, we use reg instead of size to specify the physical address, so
+> memremap cannot be used.
 
-Ditto.
+Does your hardware require a fixed address for the buffer? If it can be
+anywhere in memory (or at least within a certain range) but just has to
+be physically contiguous, the normal way would be to use a CMA area
+to allocate from, which gives you 'struct page' backed pages.
 
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    description: |
-> +      Ports represent the Pixel Link inputs to the ISI. Their number and
-> +      assignment are model-dependent. Each port shall have a single endpoint.
-> +
-> +    patternProperties:
-> +      "^port@[0-9]$":
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        unevaluatedProperties: false
-> +
-> +    unevaluatedProperties: false
-
-At least one port is always required?
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - fsl,blk-ctrl
-> +  - ports
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx8mn-isi
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +        ports:
-> +          properties:
-> +            port@0:
-> +              description: MIPI CSI-2 RX
-> +          required:
-> +            - port@0
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx8mp-isi
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
-
-You need to describe the items.
-
-
-Best regards,
-Krzysztof
+         Arnd
