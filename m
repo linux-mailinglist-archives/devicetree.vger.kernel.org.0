@@ -2,105 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45F93571C6F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE1E3571C7C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:28:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232154AbiGLO0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:26:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43116 "EHLO
+        id S229683AbiGLO2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:28:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233577AbiGLO0Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:26:25 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7F6BB93C5;
-        Tue, 12 Jul 2022 07:26:16 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id p128so7985408iof.1;
-        Tue, 12 Jul 2022 07:26:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=2smug+m1Lke8wFpPEM5ppWOdoo/9ROT7QK4c9TYtB6U=;
-        b=0IF9BcxGXIoEh6yGwI13UQbu0z1sKuFoLkAjY7ezSfTk1Mh/6u2sCpNIBE8v/kv2WE
-         y6k2I74rZL6VShto6O0Gy5/drgvX8XVy7lujFYPE4x+pq80FM/hAV6HC5jojItRmmtmB
-         Lus3JKQVQUCu8RfphiCwBMAh5voOc2hRI4XEkdaKVnA+A9tUEV993NCB7S3gxpUdnDCF
-         N78UdUjSWEc+IV34r66OKumwkgVP5GO2/MWFDIfkKpGz8V7hbKrZJsgihosXyFR+pDSu
-         CBUtbgsSd6eB5mjeK+v7oGwsakp/phMxD3sQd5qBWGm6XNNRtPNQPO0sYCPNJSXT5m5g
-         lGxg==
-X-Gm-Message-State: AJIora8OnJpToZchLuM5l7sgDBfK8ppygZWQ9aF5p59vDJ2aC2NJ2Vvy
-        tRQAtEX57DPanUoQ4l+L1Q==
-X-Google-Smtp-Source: AGRyM1u9UVtNz1Lq5TBvtlHE6sfHP3e+TCv3kW8PIg+n1aqq/Z1DAjz9ef1ZYwzKBGpoy+zzrudY0Q==
-X-Received: by 2002:a05:6638:2688:b0:33e:abf9:908d with SMTP id o8-20020a056638268800b0033eabf9908dmr13403331jat.166.1657635975713;
-        Tue, 12 Jul 2022 07:26:15 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id ay2-20020a5d9d82000000b00678ea668a39sm5086524iob.36.2022.07.12.07.26.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 07:26:15 -0700 (PDT)
-Received: (nullmailer pid 1805850 invoked by uid 1000);
-        Tue, 12 Jul 2022 14:26:12 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Ben Dooks <ben.dooks@sifive.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Greentime Hu <greentime.hu@sifive.com>,
-        u.kleine-koenig@pengutronix.de,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Adnan Chowdhury <adnan.chowdhury@sifive.com>,
-        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
-        William Salmon <william.salmon@sifive.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-pwm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
-In-Reply-To: <20220712100113.569042-4-ben.dooks@sifive.com>
-References: <20220712100113.569042-1-ben.dooks@sifive.com> <20220712100113.569042-4-ben.dooks@sifive.com>
-Subject: Re: [PATCH 3/7] pwm: dwc: add of/platform support
-Date:   Tue, 12 Jul 2022 08:26:12 -0600
-Message-Id: <1657635972.108769.1805849.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233598AbiGLO2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:28:01 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1E6FB9695;
+        Tue, 12 Jul 2022 07:27:23 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9DB2225B;
+        Tue, 12 Jul 2022 16:27:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1657636041;
+        bh=I5T9PZSBGeN46b1/EaWw0e4Go6uK1CgXTNN/ntOPNMc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VN7cCKnK3YH6IuE+1i8wGWBe5mZXRyhFVLPD7YsQJSz/HJ73qO5inOpX72Kocj6Kr
+         g2dmHqWQTAhh3GVLB3DoBhnu0MngeKu73OKrhP/WJwFJEB23CIqZBJojBugYEY0KH/
+         svoun3XVjr68bUzloxdkQdsknQNM/0/sKEdFvtD8=
+Date:   Tue, 12 Jul 2022 17:26:52 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-media@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 6/7] dt-bindings: media: Add i.MX8 ISI DT bindings
+Message-ID: <Ys2ErJr3gymnw2Qx@pendragon.ideasonboard.com>
+References: <20220712000251.13607-1-laurent.pinchart@ideasonboard.com>
+ <20220712000251.13607-7-laurent.pinchart@ideasonboard.com>
+ <d8b124f4-9ed7-7cc1-a978-60997696646f@linaro.org>
+ <Ys1MKFknchDYKR/1@pendragon.ideasonboard.com>
+ <3359e1bc-54c4-0b10-af9f-05e9f2fb2162@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3359e1bc-54c4-0b10-af9f-05e9f2fb2162@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Jul 2022 11:01:09 +0100, Ben Dooks wrote:
-> The dwc pwm controller can be used in non-PCI systems, so allow
-> either platform or OF based probing.
+Hi Krzysztof,
+
+On Tue, Jul 12, 2022 at 02:49:06PM +0200, Krzysztof Kozlowski wrote:
+> On 12/07/2022 12:25, Laurent Pinchart wrote:
+> > On Tue, Jul 12, 2022 at 09:49:45AM +0200, Krzysztof Kozlowski wrote:
+> >> On 12/07/2022 02:02, Laurent Pinchart wrote:
+> >>> The Image Sensing Interface (ISI) combines image processing pipelines
+> >>> with DMA engines to process and capture frames originating from a
+> >>> variety of sources. The inputs to the ISI go through Pixel Link
+> >>> interfaces, and their number and nature is SoC-dependent. They cover
+> >>> both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
+> >>>
+> >>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >>> ---
+> >>> Changes since v1:
+> >>>
+> >>> - Fix compatible string checks in conditional schema
+> >>> - Fix interrupts property handling
+> >>> ---
+> >>>  .../bindings/media/nxp,imx8-isi.yaml          | 148 ++++++++++++++++++
+> >>>  1 file changed, 148 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..390dfa03026b
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> >>> @@ -0,0 +1,148 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: i.MX8 Image Sensing Interface
+> >>> +
+> >>> +maintainers:
+> >>> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >>> +
+> >>> +description: |
+> >>> +  The Image Sensing Interface (ISI) combines image processing pipelines with
+> >>> +  DMA engines to process and capture frames originating from a variety of
+> >>> +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
+> >>> +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
+> >>> +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    enum:
+> >>> +      - fsl,imx8mn-isi
+> >>> +      - fsl,imx8mp-isi
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clocks:
+> >>> +    items:
+> >>> +      - description: The AXI clock
+> >>> +      - description: The APB clock
+> >>> +      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
+> >>> +      # as well, in case some SoCs have the ability to control them separately.
+> >>> +      # This may be the case of the i.MX8[DQ]X(P)
+> >>> +
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: axi
+> >>> +      - const: apb
+> >>> +
+> >>> +  fsl,blk-ctrl:
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>> +    description:
+> >>> +      A phandle referencing the block control that contains the CSIS to ISI
+> >>> +      gasket.
+> >>> +
+> >>> +  interrupts: true
+> >>
+> >> Need generic constraints - min/maxItems.
+> > 
+> > I can't set maxItems here, as the value depends on the compatible
+> > string. It's set below as part of the "allOf". I could set minItems to
+> > 1, but I don't really see a point in doing so.
 > 
-> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
-> ---
->  .../devicetree/bindings/pwm/pwm-synposys.yaml | 40 ++++++++++++++
->  drivers/pwm/Kconfig                           |  5 +-
->  drivers/pwm/pwm-dwc.c                         | 53 +++++++++++++++++++
->  3 files changed, 96 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
+> Of course you can, just like all other files could.
 > 
+> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I meant I can't set a fixed maximum, other than the max of all max. Is
+there a point in doing do ?
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pwm/pwm-synposys.yaml:11:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
-./Documentation/devicetree/bindings/pwm/pwm-synposys.yaml:31:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> >>> +
+> >>> +  power-domains: true
+> >>
+> >> Ditto.
+> > 
+> > I'll fix this one.
+> > 
+> >>> +
+> >>> +  ports:
+> >>> +    $ref: /schemas/graph.yaml#/properties/ports
+> >>> +    description: |
+> >>> +      Ports represent the Pixel Link inputs to the ISI. Their number and
+> >>> +      assignment are model-dependent. Each port shall have a single endpoint.
+> >>> +
+> >>> +    patternProperties:
+> >>> +      "^port@[0-9]$":
+> >>> +        $ref: /schemas/graph.yaml#/properties/port
+> >>> +        unevaluatedProperties: false
+> >>> +
+> >>> +    unevaluatedProperties: false
+> >>
+> >> At least one port is always required?
+> > 
+> > That's a fair assumption I think. How would you express that ? There's
+> > no patternRequired as far as I know. Note that the device-dependent
+> > ports are described in the "allOf" section below, where "required" is
+> > set per device model.
+> 
+> required:
+>  - port@0
 
-dtschema/dtc warnings/errors:
+What if an SoC has port@1 only, or another port ? It's likely not a
+concern in this binding though, so I could add required: - port@0, but
+is there a point in doing so if the per-compatible constraints list the
+required ports ?
 
-doc reference errors (make refcheckdocs):
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - reg
+> >>> +  - interrupts
+> >>> +  - clocks
+> >>> +  - clock-names
+> >>> +  - fsl,blk-ctrl
+> >>> +  - ports
+> >>> +
+> >>> +allOf:
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            const: fsl,imx8mn-isi
+> >>> +    then:
+> >>> +      properties:
+> >>> +        interrupts:
+> >>> +          maxItems: 1
+> >>> +        ports:
+> >>> +          properties:
+> >>> +            port@0:
+> >>> +              description: MIPI CSI-2 RX
+> >>> +          required:
+> >>> +            - port@0
+> >>> +
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            const: fsl,imx8mp-isi
+> >>> +    then:
+> >>> +      properties:
+> >>> +        interrupts:
+> >>> +          maxItems: 2
+> >>
+> >> You need to describe the items.
+> > 
+> > It's one interrupt per pipeline. Can I add the description to the
+> > generic interrupts property instead of documenting each item
+> > individually ? Something along the lines of
+> > 
+> >   interrupts:
+> >     description: Processing pipeline interrupts, one per pipeline
+> 
+> This sounds good, thanks!
 
-See https://patchwork.ozlabs.org/patch/
+Thanks, I'll do that then.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+-- 
+Regards,
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Laurent Pinchart
