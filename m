@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7C25571D72
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5A6571DF5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232364AbiGLO5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:57:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50946 "EHLO
+        id S233412AbiGLPER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 11:04:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232586AbiGLO5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:57:51 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9387D4F1AE;
-        Tue, 12 Jul 2022 07:57:49 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id u13so4963304iln.6;
-        Tue, 12 Jul 2022 07:57:49 -0700 (PDT)
+        with ESMTP id S233603AbiGLPDR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:03:17 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE46E093;
+        Tue, 12 Jul 2022 08:00:02 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id u20so8050896iob.8;
+        Tue, 12 Jul 2022 08:00:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=D9CzwXKTA7gScMXDGBi3YiyfwBmHDS9K2YoQ8GfmJds=;
-        b=Xvc78D3dp/VDHudSaq7kcdgrwSpeCUQRp0gbjYQmw/VSi27O5iLEVO7eUJiCM63bdf
-         JKPaJTGKz5F5IdvH8nzD/SRLUEyChEcllb7EBkDxatAVO7IIFQFa2ZCyQJJTgGRGyvjx
-         uRnOWpD+KD5byDkOUlMg+DZ0dQn8H+EpqUpbpAZDunt7qfncraJPV7NLNcwpi+9+Gm9k
-         U3tw3vfS55kI66hcvfDa+4D9lP5MLklyHM6PboG71tio2UWxv1E2D3x/d/irBnLKmUD2
-         KUkvKBdepXoQCjmnrhnGFi4E/R5dHK8C9qD9Ru1zYyvSFrPAPYhfvBo6jIsRiWzKIOSa
-         teCQ==
-X-Gm-Message-State: AJIora+zBAq4vhJ5VAGTu8dmDwyebMdEZxDchuP08m0i9JIPLRFz++m8
-        NZVqI+MjaSievJ4g53Be5Q==
-X-Google-Smtp-Source: AGRyM1vh+aOogTSLhe8igwtKsd1CvRwky5ggWI6vrAvQdlfZY/BrJEMIos/2AOR9m0rpgyLP5fxlgw==
-X-Received: by 2002:a05:6e02:1445:b0:2da:ad32:8300 with SMTP id p5-20020a056e02144500b002daad328300mr12299828ilo.280.1657637868823;
-        Tue, 12 Jul 2022 07:57:48 -0700 (PDT)
+        bh=yEnL/KIgKCXSzN8Ltrj7vvOsqZOeF/KHqy5gLlC4xaE=;
+        b=FgkQqrjDC1D2wMLqVg7JUHwRcUrtQ6kSNR1EJ8aN7fmNa1o5ogpTTULlJE4iZK5zhj
+         5kQWhI3HA0Qm5uR3gtsVkR9ym6J4D2DLXdRCbVgt/uiTFnGfR2I519j8rSdzrYhnpaQ6
+         tPMLDpNF6qu9/6/iSl86bwvFeZyPhMaqSspU7sl/Jqz+XhlzWWXNlF4dqjTEcIULbtTf
+         lkQfAxlLE+P5c0JJLVCv9SXVtEFnSC5XAiJ7VoOJ8GZPXb7YCrLNnVWlSAYkE+ZSO1A3
+         7sXe4pRb/YlO1kkkgkjK0TfkJCJ29tzfGjIdi3k3AHY3SZRRX5dJZ9PWLuIH/hKIbgop
+         Bnyw==
+X-Gm-Message-State: AJIora/Dh7Hg6Hd37XTZcV+nbpE8m+EWx0iFDZAtdvDvNiqcXuytVuk7
+        td9qztT8PmYcrQvUDARed4Eym9kxBA==
+X-Google-Smtp-Source: AGRyM1srwAoh9+nd31Kl3lWr+FwP4VX3QljvAhk93cCuGk7a5QOtzDblJssDYK7XMfHSAc4aFnUi2Q==
+X-Received: by 2002:a6b:103:0:b0:67b:731c:86a5 with SMTP id 3-20020a6b0103000000b0067b731c86a5mr11644464iob.76.1657637998864;
+        Tue, 12 Jul 2022 07:59:58 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r25-20020a02b119000000b0032e271a558csm4168235jah.168.2022.07.12.07.57.47
+        by smtp.gmail.com with ESMTPSA id l19-20020a056e02067300b002dc0c1b8edbsm3820209ilt.83.2022.07.12.07.59.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 07:57:48 -0700 (PDT)
-Received: (nullmailer pid 1848087 invoked by uid 1000);
-        Tue, 12 Jul 2022 14:57:47 -0000
-Date:   Tue, 12 Jul 2022 08:57:47 -0600
+        Tue, 12 Jul 2022 07:59:58 -0700 (PDT)
+Received: (nullmailer pid 1851041 invoked by uid 1000);
+        Tue, 12 Jul 2022 14:59:57 -0000
+Date:   Tue, 12 Jul 2022 08:59:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     pavel@ucw.cz, sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
-        andy.shevchenko@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: leds: Add binding for a multicolor
- group of LEDs
-Message-ID: <20220712145747.GA1823936-robh@kernel.org>
-References: <20220615154918.521687-1-jjhiblot@traphandler.com>
- <20220615154918.521687-4-jjhiblot@traphandler.com>
- <20220627221257.GA3046298-robh@kernel.org>
- <c84d0513-b89b-0eea-eeaf-68dc634bd7b0@traphandler.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     bjorn.andersson@linaro.org, linus.walleij@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add sm8450 lpass lpi
+ pinctrl bindings
+Message-ID: <20220712145957.GB1823936-robh@kernel.org>
+References: <20220629091716.68771-1-srinivas.kandagatla@linaro.org>
+ <20220629091716.68771-2-srinivas.kandagatla@linaro.org>
+ <20220630210848.GA3295428-robh@kernel.org>
+ <864aac78-d3a4-0008-345f-d210582b100e@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c84d0513-b89b-0eea-eeaf-68dc634bd7b0@traphandler.com>
+In-Reply-To: <864aac78-d3a4-0008-345f-d210582b100e@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,89 +67,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 01, 2022 at 11:33:22AM +0200, Jean-Jacques Hiblot wrote:
+On Fri, Jul 01, 2022 at 11:06:18AM +0100, Srinivas Kandagatla wrote:
+> thanks Rob,
 > 
-> On 28/06/2022 00:12, Rob Herring wrote:
-> > On Wed, Jun 15, 2022 at 05:49:17PM +0200, Jean-Jacques Hiblot wrote:
-> > > This allows to group multiple monochromatic LEDs into a multicolor
-> > > LED, e.g. RGB LEDs.
+> On 30/06/2022 22:08, Rob Herring wrote:
+> > On Wed, Jun 29, 2022 at 10:17:15AM +0100, Srinivas Kandagatla wrote:
+> > > Add device tree binding Documentation details for Qualcomm SM8450
+> > > LPASS(Low Power Audio Sub System) LPI(Low Power Island) pinctrl driver.
 > > > 
-> > > Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> > > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > > > ---
-> > >   .../bindings/leds/leds-group-multicolor.yaml  | 94 +++++++++++++++++++
-> > >   1 file changed, 94 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> > >   .../qcom,sm8450-lpass-lpi-pinctrl.yaml        | 138 ++++++++++++++++++
+> > >   1 file changed, 138 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
 > > > 
-> > > diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> > > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
 > > > new file mode 100644
-> > > index 000000000000..30a67985ae33
+> > > index 000000000000..b49d70b9ba9a
 > > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> > > @@ -0,0 +1,94 @@
+> > > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
+> > > @@ -0,0 +1,138 @@
 > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > > > +%YAML 1.2
 > > > +---
-> > > +$id: http://devicetree.org/schemas/leds/leds-group-multicolor.yaml#
+> > > +$id: http://devicetree.org/schemas/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml#
 > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > > +
-> > > +title: Multi-color LED built with monochromatic LEDs
+> > > +title: Qualcomm Technologies, Inc. Low Power Audio SubSystem (LPASS)
+> > > +  Low Power Island (LPI) TLMM block
 > > > +
 > > > +maintainers:
-> > > +  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> > > +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > > > +
 > > > +description: |
-> > > +  This driver combines several monochromatic LEDs into one multi-color
-> > > +  LED using the multicolor LED class.
+> > > +  This binding describes the Top Level Mode Multiplexer block found in the
+> > > +  LPASS LPI IP on most Qualcomm SoCs
 > > > +
 > > > +properties:
 > > > +  compatible:
-> > > +    const: leds-group-multicolor
+> > > +    const: qcom,sm8450-lpass-lpi-pinctrl
 > > > +
-> > > +  multi-led:
-> > > +    type: object
-> > > +
-> > > +    patternProperties:
-> > > +      "^led-[0-9a-z]+$":
-> > > +        type: object
-> > > +        $ref: common.yaml#
-> > > +
-> > > +        additionalProperties: false
-> > > +
-> > > +        properties:
-> > > +          leds:
-> > Not a standard property. What is the type?
-> That would be a reference to the node of a LED
-> > Really, just do a GPIO multi-color LED binding similar to the PWM one
-> > rather than adding this layer. I suppose you could combine LEDs from all
-> > different controllers, but that seems somewhat unlikely to me.
+> > > +  reg:
+> > > +    minItems: 2
+> > > +    maxItems: 2
+> > 
+> > What is each entry?
 > 
-> I'm not using gpio leds, rather leds driven by two TLC5925.
+> These are tlmm and slew register base address.
 > 
-> I agree that combining from different model of controller is unlikely.
-> However from 2 separate chips of the same model is not (ex: driving 5 RGB
-> LEDs with two 8-output chips)
-> 
-> In the case of the TLC5925, that is not really a problem because as long as
-> the chips are on the same CS, they are considered as a single entity by the
-> driver. But for I2C chips at least that would be a problem.
+> This has been like this in previous bindings for sm8250 and sc7280 lpi
+> binding.
 
-Okay.
+There's always bad examples to follow.
+ 
+> Are you suggesting that we should add a description for reg for more
+> clarity?
 
-I think the binding can be simplified a bit to just this:
+Well, 2 descriptions:
 
-multi-led {
-    compatible = "leds-group-multicolor";
-    color = <LED_COLOR_ID_RGB>;
-    function = LED_FUNCTION_INDICATOR;
-    
-    leds = <&red_led>, <&green_led>, <&blue_led>;
-};
-
-The individual color should be defined in the parent LED node (e.g. 
-red_led). You can either look up the color or the index in 'leds' 
-defines the color.
-
-Also, I don't think 'max-brightness' here makes sense. That's a property 
-of the parent LED.
+items:
+  - description: ...
+  - description: ...
 
 Rob
