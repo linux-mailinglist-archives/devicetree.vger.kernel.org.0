@@ -2,75 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DFFD571C73
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA33B571C66
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:26:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233249AbiGLO0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:26:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43092 "EHLO
+        id S232830AbiGLO00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:26:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233569AbiGLO0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:26:24 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D61AEB8EB0
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:26:15 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id a39so10061564ljq.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:26:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rN4IXYR3m3yGnPFoHkgsKL/vRWpE1zFa3mY1W+QnYCk=;
-        b=fEWJrdSfB6fZLSudcIvYEMFlS/kq4HmisifJ55zu556EGfDE0nPdvRJSMRrvgPANV2
-         OZWWIC396ufPPN0Ory1ZvvDWakoqT4+YhbBRhgf0z4lHvriMz3l1JPgBmCo8xV5e4oy9
-         FCIPyL2drYa4VeFO0Tes0vGhlTZcdm4vAhL02n1cXTx7jLYa3Dn3cR3FobNTqU1JVByz
-         CjfGBXhtRlB6XdvV7d4baSvFNdoOpGRIoBih8N0XIE6qCd0iIQeU08398HSA+pmWw1a2
-         2HtJNTHMVUZcmZdbh3Pvzmpc8mIX1dxlp+dTa/4ZHoYd2p7GYUAx1p+hinh8Jj9vd49k
-         i5Jw==
+        with ESMTP id S233567AbiGLO0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:26:15 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9386B8EA1;
+        Tue, 12 Jul 2022 07:26:14 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id h200so7947510iof.9;
+        Tue, 12 Jul 2022 07:26:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=rN4IXYR3m3yGnPFoHkgsKL/vRWpE1zFa3mY1W+QnYCk=;
-        b=xsnPubpjcHaZCU2CqCaGCFyejswiCPFYerPOVIxPVLa5GdU1czpKXp9Qf/Fy0oCt/I
-         JetltuzEIOCk0DZQGUFHP4OEXNz1eiLqpLJYkL/X47J4U5Y7KCmcMMVj+jiWZmkB7p5v
-         x6AuJXbd4MJjMtYC4ir4sAnCHiF+wTFx+RwTZfjVmdwtDsTPYgMwYIQ3s34p8KYG8Xef
-         JnAg1ym0LYggXg5FWSl4PZByp8Z8jAyYvpRNLtI0rjB8MoRDIyaBTM964i2wm1Y1TK7S
-         CLrJ6KN3SLnMSetRgU2lhgF+npfUoE5f2osIhCYhAas8unsCLTrKy//MUXiFQj6qnMRV
-         cgYA==
-X-Gm-Message-State: AJIora+Rw9GwTcdQMUaQ60WC5ICHvAH8Hcyk/mlEcvm5RHTHPvvv0bo0
-        OLV/kLAdzZyEJ/hHPobI/nPPCw==
-X-Google-Smtp-Source: AGRyM1uNiFXa5cvCHVCaXsmLGYP8AmWO1cEYMhoZpcZXmOdyns7XEJwSPzvj2Yh2qxQqcA2KKpqYfw==
-X-Received: by 2002:a2e:964c:0:b0:25d:6910:134b with SMTP id z12-20020a2e964c000000b0025d6910134bmr7151351ljh.299.1657635973984;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Mwfd/m3zpk78sJK7nn2vE1VYk2hb35cFLS9pd42jCiI=;
+        b=sOLx8NOPqcbkhqqTQtOXlwj3BU4MfcAKBFdVlUpiB/pR09UKmkx+uY7hxCdgcAB3sS
+         SAn+vAEq0Jxlqh9mjdYSKLRa3Tkry2Ewo82T/KL0Rb9C+IhsXJdZzdWb0ZH1kV8tZQfU
+         nL0o6wcKGVQpqMRtWPKd2TmtpbYJ7ZVuWD5wQ10VhnNgMPrfWDgPT20Ha0GG8Ld34sx6
+         tkmfXkVUI5QP3CRxRur/a626v/GwqO94mz565Qyr9Hp/MX3vSOXAPsIbIgYOYk/vJujd
+         0EtkqR9MiC4vZH8iFiRoytHGbXpdjkBwCj0RCfZyOO2EhZncFyk7sjvWJICy1ugku/Wa
+         z/TQ==
+X-Gm-Message-State: AJIora+Nk4Vq7WICIZQIOlFgCbcNTfth8qK7/OMKbVrDcKcVFACeGdmU
+        GjQRzce8yVS0IJn/f3aLIg==
+X-Google-Smtp-Source: AGRyM1uQLAcirqFEfLkDKLsk9TU4a8owrMVfxUjgaeO2hrKaXbUywPSmFTal17hen3JlJmxPkXBYqQ==
+X-Received: by 2002:a05:6638:218c:b0:33c:9cae:166d with SMTP id s12-20020a056638218c00b0033c9cae166dmr13409432jaj.223.1657635973941;
         Tue, 12 Jul 2022 07:26:13 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id q3-20020a05651232a300b004875a37b7b7sm2197518lfe.159.2022.07.12.07.26.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id w8-20020a92d608000000b002dc0e7027edsm3799668ilm.32.2022.07.12.07.26.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 12 Jul 2022 07:26:13 -0700 (PDT)
-Message-ID: <c91dd953-5ef6-ca71-cdc0-30d6b3bc6a8e@linaro.org>
-Date:   Tue, 12 Jul 2022 16:26:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: Add support for Xiaomi Mi Mix2s
-Content-Language: en-US
-To:     MollySophia <mollysophia379@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Received: (nullmailer pid 1805847 invoked by uid 1000);
+        Tue, 12 Jul 2022 14:26:12 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Chris Healy <cphealy@gmail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20220708020648.6675-1-mollysophia379@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220708020648.6675-1-mollysophia379@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Mark Rutland <mark.rutland@arm.com>
+In-Reply-To: <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
+References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com> <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
+Subject: Re: [PATCH 4/4] dt-binding:perf: Add Amlogic DDR PMU
+Date:   Tue, 12 Jul 2022 08:26:12 -0600
+Message-Id: <1657635972.094089.1805846.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,29 +67,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2022 04:06, MollySophia wrote:
-> Add support for Xiaomi Mi Mix2s (polaris) handsets.
+On Tue, 12 Jul 2022 14:36:41 +0800, Jiucheng Xu wrote:
+> Add binding documentation for the Amlogic G12 series DDR
+> performance monitor unit.
 > 
-> Currently working features:
-> - UFS
-> - Touchscreen
-> - USB 2
-> - Bluetooth
-> - Wi-Fi
-> - GPU
-> - Venus
-> - Display (need jdi-fhd-nt35596s panel driver, which I have sent a
->   patch but it haven't been into upstream yet)
+> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> ---
+>  .../devicetree/bindings/perf/aml-ddr-pmu.yaml | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
 > 
-> Signed-off-by: MollySophia <mollysophia379@gmail.com>
 
-This is third version the same day and five in three days - too much.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-You miss changelog so seeing so many patchsets without changes (or
-unknown changes) is even more confusing.
+yamllint warnings/errors:
 
-https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/perf/aml-ddr-pmu.example.dts'
+Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml:51:5: did not find expected '-' indicator
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/perf/aml-ddr-pmu.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Traceback (most recent call last):
+  File "/usr/bin/yamllint", line 33, in <module>
+    sys.exit(load_entry_point('yamllint==1.26.3', 'console_scripts', 'yamllint')())
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 210, in run
+    prob_level = show_problems(problems, file, args_format=args.format,
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 106, in show_problems
+    for problem in problems:
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 203, in _run
+    for problem in get_cosmetic_problems(buffer, conf, filepath):
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 140, in get_cosmetic_problems
+    for problem in rule.check(rule_conf,
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 580, in check
+    for problem in _check(conf, token, prev, next, nextnext, context):
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 346, in _check
+    'wrong indentation: expected %d but found %d' %
+TypeError: %d format: a real number is required, not NoneType
+./Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml:51:5: did not find expected '-' indicator
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml: ignoring, error parsing file
+make: *** [Makefile:1404: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-Best regards,
-Krzysztof
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
