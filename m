@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F330571506
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B93F7571514
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232450AbiGLIrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:47:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48522 "EHLO
+        id S231126AbiGLIvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:51:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230294AbiGLIrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:47:51 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D887BA6F2E
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:47:49 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id r9so9066838ljp.9
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:47:49 -0700 (PDT)
+        with ESMTP id S229920AbiGLIvn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:51:43 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2728FA6F2D
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:51:42 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id t1so9261622lft.8
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:51:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=BoX+rp4PoiS5Atec4w7HqPMg4nXltL8P8j6D72BzscY=;
-        b=sMoxnxlbxggNYM8BAq2Lcy19LzB6d3G+PJ0RClZQVELEnW4CL9uBpEkIPB9Ijg0XTj
-         xrvFU4Fp+xf5KzAG5/YmhTAHbgd6nxxhaj7oY2XoAGi3zDqrolEC4MAjDU3hxPioaLlX
-         F7TE0AMpMwjTPwRXFlXuXuQFY524HfhbYHo+Vb4WeaptAATCfJFtr7ZA6xL+KLJKgJpH
-         JNcO9XyTNzXxf0LoF+6vvFgOyqqdLnamHLmLvfiBjgYHO4cLSTe9jVs5AA6pYPoAdoD/
-         plB2usym8nVYcM+zQoWxtpcSeWef7tI3LuMUDk4xKDqxLU3HBsq/LJEBepaaBXbrecF/
-         vscA==
+        bh=vjHu968868HtBRMF6NYSXXaRFX5EKeerKBprL50iI0E=;
+        b=B4Rg2xxpEzgxWoU2cgZY9zxkR+yH0vP0ittREWZnTv9ide6+6/h+OwcF7XZ/jPDUhD
+         luRNBUbEgsoVHTsEnUfK0nTgOwSsJ2eeFrw29LtOkTucVWf9TGLAam31/lfBzW3VYH4L
+         6HraAszhWXb6GKWkzgCvsisB0/qpjqzoTrmYCt5JqOI15cJUA+dj9pJaYYfGpbj+uUwR
+         lZz1IGbe6in9spUndTj/WnYzqEPpLt++nNLVYLJWoHvd9ugRfNUtfbO2wcnx0Rbjfdn2
+         5Jz8CVIa338s2zLcYWw9Fej9glRgLrn4qyjips9Nmo3WJB2YuyRfP+a5o9Xj1Af/0EKQ
+         es1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=BoX+rp4PoiS5Atec4w7HqPMg4nXltL8P8j6D72BzscY=;
-        b=AspJCnq9n5YlxS0InNAFUGUSuBj7QLH32F5E0w1Ni2zT8EYY3BJ+FGMnp7reuGQPfo
-         7PKd1gSQfH+FTMmS0ejeFFM1cxsI+bjS740IvxICeHO11tRQsrY3NWI75bzuxGd8PvTf
-         yIs1lJ9UZ2ddCtFVJt6pVJbvI1GrHsMM3pi2m/7qG2H389Ox/yVOL9b9vajXmuFutLUe
-         FB74ZmOXgilxmurna0bBORkixGwXzUTGRDHhb5sGkkYpuXAWsuGVppqt+eW2GcFi8aF6
-         VtcX3FurMQikArkXo0NQ9BMb9Hw0uMF6biZcL6vuaCKe0pgHuSYtCsKsgMkr5y/JcXS9
-         okxQ==
-X-Gm-Message-State: AJIora+c87vAGJ4rLKUBib+X74zgo/w0AcHHTypl7uZQXaD02z3CYGwA
-        LCJ53FjYkcz/AGQj7+D39vxxUg==
-X-Google-Smtp-Source: AGRyM1vNKk2hrAz+F5i8IgmeZ6aMdIA8yvFym7dtAAyKnTQEQaOnXisA+5/D71f6YI3DToiYzV6C8A==
-X-Received: by 2002:a2e:8303:0:b0:25b:d18a:75d9 with SMTP id a3-20020a2e8303000000b0025bd18a75d9mr11995412ljh.495.1657615668155;
-        Tue, 12 Jul 2022 01:47:48 -0700 (PDT)
+        bh=vjHu968868HtBRMF6NYSXXaRFX5EKeerKBprL50iI0E=;
+        b=6noTkHP1df62Gd6F3LSnoVbRf9SfAbYxBh5u98vWWDUC8Q/z9Ro7vRk4d8pUdQziiB
+         CTEZNtPWT6UgMO/TSOKVmyJipDLBa6ItPax77dZabIblXtQJfHsfLo0B7DK6T3p50cwW
+         RPubsX/zKFalOFRgWijqZ2+jaLICzjQShh6PzMw4mrDsAO0PmaTlVdnPBNV0YPLfchuV
+         fayOf4T1YTsXAwefhc4+X5pszT6BkbSevPntLR08kNJurtLLKYk9Yezrc+vL5HmEkt8F
+         mOE/M4tKT8F32MW/ArbKnQ67ti5auV3QYthJHeuiKSOPjcR5o+acSQRhV1GTWhYfVQVU
+         Mfow==
+X-Gm-Message-State: AJIora/w51qhn3wvHZOlVZD0aWrXHEFxfHtBmKWd3hFL6ts9AGd7nWKM
+        nOHI33XSObTmShercixaIjAqPw==
+X-Google-Smtp-Source: AGRyM1vsmzS4v4HFCqeaDGGnx1Zk47dL88gMC7MXgdrPxgTvK9Q4n1ARWFSGp3BEZ0ZjGbeNI7d8Bg==
+X-Received: by 2002:a05:6512:3da8:b0:489:e6df:3dd0 with SMTP id k40-20020a0565123da800b00489e6df3dd0mr3719758lfv.224.1657615900524;
+        Tue, 12 Jul 2022 01:51:40 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id b40-20020a0565120ba800b004785b66a9a4sm2063432lfv.126.2022.07.12.01.47.46
+        by smtp.gmail.com with ESMTPSA id o26-20020ac25e3a000000b004886508ca5csm2070843lfg.68.2022.07.12.01.51.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:47:47 -0700 (PDT)
-Message-ID: <4584120c-8e6f-6943-1bd3-aa6942525eda@linaro.org>
-Date:   Tue, 12 Jul 2022 10:47:40 +0200
+        Tue, 12 Jul 2022 01:51:39 -0700 (PDT)
+Message-ID: <ecaf9d0f-6ddb-5842-790e-3d5ee80e2a77@linaro.org>
+Date:   Tue, 12 Jul 2022 10:51:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [RFC PATCH net-next 1/9] dt-bindings: net: Add lynx PCS
+Subject: Re: [RFC PATCH net-next 2/9] dt-bindings: net: Expand pcs-handle to
+ an array
 Content-Language: en-US
 To:     Sean Anderson <sean.anderson@seco.com>,
         Heiner Kallweit <hkallweit1@gmail.com>,
@@ -68,9 +69,9 @@ Cc:     Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
 References: <20220711160519.741990-1-sean.anderson@seco.com>
- <20220711160519.741990-2-sean.anderson@seco.com>
+ <20220711160519.741990-3-sean.anderson@seco.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711160519.741990-2-sean.anderson@seco.com>
+In-Reply-To: <20220711160519.741990-3-sean.anderson@seco.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,26 +85,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 11/07/2022 18:05, Sean Anderson wrote:
-> This adds bindings for the PCS half of the Lynx 10g/28g SerDes drivers.
+> This allows multiple phandles to be specified for pcs-handle, such as
+> when multiple PCSs are present for a single MAC. To differentiate
+> between them, also add a pcs-names property.
 > 
 > Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
 > 
->  .../devicetree/bindings/net/fsl,lynx-pcs.yaml | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/fsl,lynx-pcs.yaml
+>  .../devicetree/bindings/net/ethernet-controller.yaml       | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/fsl,lynx-pcs.yaml b/Documentation/devicetree/bindings/net/fsl,lynx-pcs.yaml
-> new file mode 100644
-> index 000000000000..49dee66ab679
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/fsl,lynx-pcs.yaml
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> index 4f15463611f8..c033e536f869 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> @@ -107,11 +107,16 @@ properties:
+>      $ref: "#/properties/phy-connection-type"
+>  
+>    pcs-handle:
+> -    $ref: /schemas/types.yaml#/definitions/phandle
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>      description:
+>        Specifies a reference to a node representing a PCS PHY device on a MDIO
+>        bus to link with an external PHY (phy-handle) if exists.
 
-Shouldn't this be under net/pcs?
+You need to update all existing bindings and add maxItems:1.
 
-Rest looks good to me:
+>  
+> +  pcs-names:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To be consistent with other properties this should be "pcs-handle-names"
+and the other "pcs-handles"... and then actually drop the "handle".
+
+
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description:
+> +      The name of each PCS in pcs-handle.
+
+You also need:
+dependencies:
+  pcs-names: [ pcs-handle ]
+
+> +
+>    phy-handle:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
 
 
 Best regards,
