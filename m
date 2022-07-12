@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA6FB5712A5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 09:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E8EE5712AC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 09:03:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232187AbiGLHCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 03:02:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43994 "EHLO
+        id S232244AbiGLHDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 03:03:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231608AbiGLHCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 03:02:05 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD6748CC8C
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:02:03 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id t25so12395674lfg.7
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:02:03 -0700 (PDT)
+        with ESMTP id S231893AbiGLHDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 03:03:00 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBEAD97494
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:02:57 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id a9so12376382lfk.11
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:02:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rR4EvPz2QTL/uIlV/7u9u2k3BsIB6Cd/Y2fmLLbm+6Q=;
-        b=uv2LG7gzP10xj/mheaKVtOSrTN+X0UgE93fZG1uQNEpadxp50LH8Wy6Nb+ABdxSpFm
-         B4ik9P6lWDr3pkePBdZ5WVfIHNQJB1iZdsDBFbuKkGmwpvwVYB1mQ7TlzJreqpP/7y6q
-         Hpa3hqo05U29UPqt2oLIG4BsnlwCiJiPZtr/u1WI29lQpVbeGTgyyM5hVCiVpjX1yiZs
-         Q4NIrluD9usVxYsfHc9sGHN0SS1C7ElIyyy8ySmBekz5t4ckAnHO5F/8Nn3J06LO3FYz
-         ugCpqa4Ff8QbFTsnd1J0VBqMGRmvUbnYwJfz4hjJIstdQHANHF9OQPUcaRxCV7AWMPTc
-         eaKQ==
+        bh=h6vjT/+13UEo3taiLb0JZhbnEJD4OKWdgkoVYLaG7U4=;
+        b=AteyLzo/29Sra+G1JJSzU6YanwduZHPrxRI1IXt+jbIdDv+m7a5wxF/zLl91+FCjWc
+         tjnme78FxZIQ5y0qWauUXSXL8gk5dVZOqX/WLbCf5XyzA/CcXsPa0w+ERPju3jMjLMy2
+         z12f8KkWwJl1qY9oXVFyu/lFWu3ZAucF+1ZRiPXbsXMDTQVudCm9cxl6vELtfGAqM0WZ
+         /WYcftS0wmZR/doOtTFMUQdyGbzjJQVHWdp4Dk7dJVbCa7SdJFJmxCQXGjea8NNhh0nh
+         Mx/vU4aWZLUY58tuSpNBex4D8+llI9Y9YZBCA3z2+Q4nBgpZOekdJ2M+596M69fZbMOB
+         ZsPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=rR4EvPz2QTL/uIlV/7u9u2k3BsIB6Cd/Y2fmLLbm+6Q=;
-        b=N8oPBn/FbnkUlyM/2vhXb7WYGXChxdnnNEKRXUfpaBivxBc4CzV1IRsX7u04/+y5OJ
-         ARA1jx+D1XtAi0sZpOcrtw61Dz0Iia3YbQCTzgp7Hwuct+TcH62jUOUPLvbQ2f2B19qo
-         2t03iJUhnc0aHUjTDz+GWB8duj4KSm2p5EZpbdkyGqI34EJWuisnr/NAJi32H1cizp1P
-         wxn+4ywZASrWrfpkGqJh1IOteWOGy+qAaLshXidDQLZ4b8124u93glB8CDy2Q2rB1P9t
-         l545Fk/WRJarGSBx+XpXrY710NW9f/t6qMFX79XXVu0M74apeB6mP2dYOuD7ozXFpotk
-         tzGQ==
-X-Gm-Message-State: AJIora+za/FFX1RNAV0Kzc3ttnPn/A+Zd97jGPsUCw7D14IHuGUTLpJd
-        leQV/TI9woj8sq+dk8Bo4n8xAQ==
-X-Google-Smtp-Source: AGRyM1v8I7FEdMPilvPTeX/T5acQuHUvYJJlCGQqXlGNHZ8ieSAEOmPjfUgENxvwkU4d+kyg3znBVA==
-X-Received: by 2002:a19:520f:0:b0:489:dc56:df68 with SMTP id m15-20020a19520f000000b00489dc56df68mr6534018lfb.295.1657609322071;
-        Tue, 12 Jul 2022 00:02:02 -0700 (PDT)
+        bh=h6vjT/+13UEo3taiLb0JZhbnEJD4OKWdgkoVYLaG7U4=;
+        b=zorGTJpcUiM7dw+BpoH/jV2nyUP1gNC3Ik3gQEHZAXUoVjDpVENHs2uCFjr6hLyrLF
+         4kovVG9CY1QaUJteqpXUWTbUN3VILKydyBmd1XjdCwg6PRH+2cmHxi8De3tRKtcH/MCw
+         PX706Xxjd8iQRg9WN77zhYWKX2AFYuJ8ze7iOX4nZEfWKTj4HXHBYrxwgL6ioppBqOyH
+         rvK8Ptyp0ZbPzJ7mYldvbhhjohflA/QZxyKIpn5UhXVwyXcYTuESTNQrO30h4grbXs0h
+         DBAjPClDMM88Q/ZjKaV8GAUZtpQe7Wi7YNzcw1mo+stj7DJiAJM8h/pnwEUv7bb/t1sV
+         2k0g==
+X-Gm-Message-State: AJIora997pMoaZdrI8El67728VSQmvhV//XDBqvTevdhaJsHLqtuzS1q
+        YbJHFhsjjjmNdApCH/kUJYiBLg==
+X-Google-Smtp-Source: AGRyM1vkArgZCtCXerr2SI10QhpZQudBGhHUD/0jvs3TtC3hTTXrSQFgWaQhd2FYGnYc3OxFmZ+jpg==
+X-Received: by 2002:a05:6512:13a4:b0:479:3b9f:f13c with SMTP id p36-20020a05651213a400b004793b9ff13cmr13939823lfa.380.1657609376176;
+        Tue, 12 Jul 2022 00:02:56 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id u10-20020a05651220ca00b00489da32ec80sm1387629lfr.238.2022.07.12.00.01.59
+        by smtp.gmail.com with ESMTPSA id y14-20020a05651c154e00b0025d680fbd89sm1688767ljp.8.2022.07.12.00.02.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 00:02:01 -0700 (PDT)
-Message-ID: <69e8195e-8d2b-3df0-0783-269f9aef1a83@linaro.org>
-Date:   Tue, 12 Jul 2022 09:01:58 +0200
+        Tue, 12 Jul 2022 00:02:55 -0700 (PDT)
+Message-ID: <629ede41-326b-9c84-4bb8-2f7e695ca928@linaro.org>
+Date:   Tue, 12 Jul 2022 09:02:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v1 2/3] dt-binding: power: power-domain: add
- power-supply-needs-irq
+Subject: Re: [PATCH v2 2/5] dt-bindings: mmc: sdhci-msm: constrain reg-names
+ perp variants
 Content-Language: en-US
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>, rafael@kernel.org,
-        khilman@kernel.org, ulf.hansson@linaro.org, robh@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        pavel@ucw.cz
-Cc:     kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
-        l.stach@pengutronix.de, aford173@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220711094549.3445566-1-martin.kepplinger@puri.sm>
- <20220711094549.3445566-2-martin.kepplinger@puri.sm>
- <c68e4ae9-c435-c74e-91cd-b153be6de92f@linaro.org>
- <f2142a9816095eca504c464a6221a96a0cbd6b54.camel@puri.sm>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20220711082940.39539-1-krzysztof.kozlowski@linaro.org>
+ <20220711082940.39539-3-krzysztof.kozlowski@linaro.org>
+ <CAD=FV=WUCPzzZHAPqoz-vhmcVxzYDxkKQs=+1tLZvsQjWe4q3Q@mail.gmail.com>
+ <f8744ff8-15a0-bf31-c49f-b1bb35ba5cdd@linaro.org>
+ <CAD=FV=X2ZfwwDO_hSSN35ObfvBbBbPjMoSB4GvS7m0yJieNg3Q@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f2142a9816095eca504c464a6221a96a0cbd6b54.camel@puri.sm>
+In-Reply-To: <CAD=FV=X2ZfwwDO_hSSN35ObfvBbBbPjMoSB4GvS7m0yJieNg3Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -82,66 +87,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 15:17, Martin Kepplinger wrote:
-> Am Montag, dem 11.07.2022 um 12:38 +0200 schrieb Krzysztof Kozlowski:
->> On 11/07/2022 11:45, Martin Kepplinger wrote:
->>> Add the power-supply-needs-irq board description property for power
->>> domains.
+On 11/07/2022 17:11, Doug Anderson wrote:
+> Hi,
+> 
+> On Mon, Jul 11, 2022 at 7:53 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Where is a board description here? I think you just meant
->> "power-supply-needs-irq property"?
+>> On 11/07/2022 16:52, Doug Anderson wrote:
+>>> Hi
 >>>
->>> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
->>> ---
->>>  .../devicetree/bindings/power/power-domain.yaml        | 10
->>> ++++++++++
->>>  1 file changed, 10 insertions(+)
+>>> On Mon, Jul 11, 2022 at 1:29 AM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> The entries in arrays must have fixed order, so the bindings and Linux
+>>>> driver expecting various combinations of 'reg' addresses was never
+>>>> actually conforming to guidelines.
+>>>>
+>>>> The 'core' reg entry is valid only for SDCC v4 and lower, so disallow it
+>>>> in SDCC v5.  SDCC v4 supports CQE and ICE, so allow them, even though
+>>>> the qcom,sdhci-msm-v4 compatible is used also for earlier SoCs with SDCC
+>>>> v2 or v3, so it is not entirely accurate.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>
+>>>> ---
+>>>>
+>>>> Changes since v1:
+>>>> 1. Rework the patch based on Doug's feedback.
+>>>> ---
+>>>>  .../devicetree/bindings/mmc/sdhci-msm.yaml    | 61 ++++++++++++-------
+>>>>  1 file changed, 38 insertions(+), 23 deletions(-)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/power/power-
->>> domain.yaml b/Documentation/devicetree/bindings/power/power-
->>> domain.yaml
->>> index 889091b9814f..e82c2f7ccb97 100644
->>> --- a/Documentation/devicetree/bindings/power/power-domain.yaml
->>> +++ b/Documentation/devicetree/bindings/power/power-domain.yaml
->>> @@ -70,6 +70,16 @@ properties:
->>>        by the given provider should be subdomains of the domain
->>> specified
->>>        by this binding.
->>>  
->>> +  power-supply: true
+>>> In the ${SUBJECT} I'm not sure what a "perp variant" is. Is that a
+>>> typo or just a phrase I'm not aware of?
 >>
->> This is a new property not described in the commit msg.
-> 
-> true, I think it's missing and could be added as a separate patch.
-> 
+>> Should be:
+>> "per variants"
 >>
->>> +
->>> +  power-supply-needs-irq:
->>> +    type: boolean
->>> +    description:
->>> +      A power-supply can link for example to a regulator
->>> controlled via
->>> +      i2c or otherwise needing interrupts enabled to be able to
->>> enable and
->>> +      disable. 
+>>>
+>>>
+>>>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>> index fc6e5221985a..2f0fdd65e908 100644
+>>>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>> @@ -49,33 +49,11 @@ properties:
+>>>>
+>>>>    reg:
+>>>>      minItems: 1
+>>>> -    items:
+>>>> -      - description: Host controller register map
+>>>> -      - description: SD Core register map
+>>>> -      - description: CQE register map
+>>>> -      - description: Inline Crypto Engine register map
+>>>> +    maxItems: 4
+>>>>
+>>>>    reg-names:
+>>>>      minItems: 1
+>>>>      maxItems: 4
+>>>> -    oneOf:
+>>>> -      - items:
+>>>> -          - const: hc
+>>>> -      - items:
+>>>> -          - const: hc
+>>>> -          - const: core
+>>>> -      - items:
+>>>> -          - const: hc
+>>>> -          - const: cqhci
+>>>> -      - items:
+>>>> -          - const: hc
+>>>> -          - const: cqhci
+>>>> -          - const: ice
+>>>> -      - items:
+>>>> -          - const: hc
+>>>> -          - const: core
+>>>> -          - const: cqhci
+>>>> -          - const: ice
+>>>>
+>>>>    clocks:
+>>>>      minItems: 3
+>>>> @@ -177,6 +155,43 @@ required:
+>>>>  allOf:
+>>>>    - $ref: mmc-controller.yaml#
+>>>>
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            enum:
+>>>> +              - qcom,sdhci-msm-v4
+>>>> +    then:
+>>>> +      properties:
+>>>> +        reg:
+>>>> +          minItems: 2
+>>>> +          items:
+>>>> +            - description: Host controller register map
+>>>> +            - description: SD Core register map
+>>>> +            - description: CQE register map
+>>>> +            - description: Inline Crypto Engine register map
+>>>> +        reg-names:
+>>>> +          minItems: 2
+>>>> +          items:
+>>>> +            - const: hc
+>>>> +            - const: core
+>>>> +            - const: cqhci
+>>>> +            - const: ice
+>>>> +    else:
+>>>> +      properties:
+>>>> +        reg:
+>>>> +          minItems: 1
+>>>> +          items:
+>>>> +            - description: Host controller register map
+>>>> +            - description: CQE register map
+>>>> +            - description: Inline Crypto Engine register map
+>>>> +        reg-names:
+>>>> +          minItems: 1
+>>>> +          items:
+>>>> +            - const: hc
+>>>> +            - const: cqhci
+>>>> +            - const: ice
+>>>
+>>> Do you need to set "maxItems" here? If you don't then will it inherit
+>>> the maxItems of 4 from above?
 >>
->> Not really a property of power domain. How the regulator supply works
->> is
->> entirely up to regulator. Otherwise such property should appear for
->> every device.
+>> No, items determine the size instead.
 > 
-> you're right. The power-domain driver could read the power-supply
-> regulator node directly. Still, I think then a new regulator property
-> is needed instead, or is it?
+> Can you just remove the "maxItems" from above then? Does it buy us anything?
 
-In case of regulator, I am not so sure it needs a dedicated property of
-DT. If it is I2C regulator - the parent node is I2C bus and regulator
-device is some child of I2C controller (could be via a MFD device), so
-no need for dedicated property.
+There is no maxItems directly here...
 
-If it uses interrupts, then:
-1. The presence of interrupts is already known - "interrupts" property.
-2. The actual use of interrupts is DT independent and only driver knows it.
+> 
+> In any case, with the ${SUBJECT} fixed:
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
 
 Best regards,
 Krzysztof
