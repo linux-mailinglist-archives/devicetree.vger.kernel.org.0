@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41CE057288C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:25:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 632D057289D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbiGLVZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 17:25:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59690 "EHLO
+        id S231402AbiGLV21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 17:28:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230047AbiGLVZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:25:05 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5E6C48EE
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:25:03 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id y141so8544193pfb.7
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:25:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Y4UyLrACxlenLlhH0mDXEAxElGbIQd50zgnqB+nPHFw=;
-        b=GmANklKAqlYga+Up5mAaU9+fI6zf3sB//UrPU0s2zl+KVDKC0txFhJMrPSjbRtmVTy
-         vx5ecmLjUOydAneb9e/9/ULVEfBJsxSoFel3u7mGEbLqxvRw6IfWf+/IhFALTSnX6xVC
-         A5yfUoFJFRrJTlHEROTlRSkrpObqa65sR3rfM=
+        with ESMTP id S229697AbiGLV20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:28:26 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9FFFD0E2F;
+        Tue, 12 Jul 2022 14:28:25 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id e5so9176479iof.2;
+        Tue, 12 Jul 2022 14:28:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Y4UyLrACxlenLlhH0mDXEAxElGbIQd50zgnqB+nPHFw=;
-        b=lwnRaRbynkr/VN6+QAyhQ/QKb4e8qDShLsAFzVLrE7RCwHOb2qJ3WZkmzgnN4Nnxql
-         EMtdFujaUk2HuZBzLNV+sZQuilqc0R9BWINQWWCpv/7pShT6rPfzU//EZCV8dUWcDQKB
-         fQaKX6AAcyPDyi0m6BFh2IdsTKb7zwF1LWEoQzaTR6xAdHcb25FKexWpkjJ53DYU62QE
-         Ce3JPx5Gd0TWh1g0Uawxzf5udrFeYOFK5VnrN0UOGFu4eOgMlWJSSi5+i0kGveU6LNnd
-         ROOfOGmLdZhoZcktM4dnFSp6kvKvzjvXfUgWq7u7UnRErt3WNPenjnl8JWPCUpfHpg2s
-         Ibkg==
-X-Gm-Message-State: AJIora+5hJLDRNxIl9NQkB3Hp4Kb4k61ur5rSDO61/T2qnUyLw15Eupw
-        lgt09AzXhFN79iLz+8V8ZT6kmw==
-X-Google-Smtp-Source: AGRyM1uN2kL6DXJZ5Sw8PvGJUBvehogbzgcBO1icN//Q5p9KLYMdEMvwpffnJSXd4umWZtlRNNYERw==
-X-Received: by 2002:a62:15cd:0:b0:528:bf80:37c1 with SMTP id 196-20020a6215cd000000b00528bf8037c1mr154760pfv.22.1657661102575;
-        Tue, 12 Jul 2022 14:25:02 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:e036:8c0d:9cf:7a45])
-        by smtp.gmail.com with UTF8SMTPSA id w1-20020a1709026f0100b0016bd8fb1fafsm7220728plk.307.2022.07.12.14.25.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 14:25:02 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 14:25:00 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=6TLPAajBQT6bOULK9fb/tFfHBaPsFyW7O0ai+7s0acY=;
+        b=2ffeUMEThBHAn/wnhhVjbdDDoe1vU0yNen4aKvHUWZiOkbFDt948KryvCjNw6KAjE2
+         0HAo7AsvjszfCZK41TVRpJwtZMKA2zdJ2gFuyvAStMnN1kIviTipQobQC0bipv+oZjcb
+         n7fd3q3j3UEN34L7KR23wFctaK32ho732V0/5fEcy474ukkZJ3RkfYw0y3kUV/c0HKol
+         OJjj3tKXPnHpJ14ruoOevTFcG9spVuAukryzc4lu2ocBObdPphxAdRHtMOinOi6skUH6
+         JpkDFuUwsMs2CzahwerwMiriA+oCY8GQ1LjexpPqNc+3edHRq6jU0RQG/oRTqd1SAhPg
+         NEHg==
+X-Gm-Message-State: AJIora+2sH2oK9O6HPCvHSzujiz1f9dTkHJ4UpjX3741uIXuySiiBu1f
+        LFWHymBdtSuWVvN/0gx31g==
+X-Google-Smtp-Source: AGRyM1uSjAx2XnP+cp6DLP9rPk/b8JA0eEn3XWf/CdbWstFant9WzCWB22BaU4SzBJi67t3gJWDR9w==
+X-Received: by 2002:a02:84a7:0:b0:33f:4292:cf with SMTP id f36-20020a0284a7000000b0033f429200cfmr46679jai.319.1657661305105;
+        Tue, 12 Jul 2022 14:28:25 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id j12-20020a056e02014c00b002dc1b615588sm4186648ilr.36.2022.07.12.14.28.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 14:28:24 -0700 (PDT)
+Received: (nullmailer pid 2392608 invoked by uid 1000);
+        Tue, 12 Jul 2022 21:28:22 -0000
+Date:   Tue, 12 Jul 2022 15:28:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: usb: Add binding for TI USB8041 hub
- controller
-Message-ID: <Ys3mrAukkXXDHopg@google.com>
-References: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com>
- <Ys2uiei+ZOVYaOMy@google.com>
- <34e2a75a-b6dc-d5ae-4820-58cee2b0dd29@linaro.org>
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] [RFT] dt-bindings: leds: Add
+ cznic,turris1x-leds.yaml binding
+Message-ID: <20220712212822.GQ1823936-robh@kernel.org>
+References: <20220705000448.14337-1-pali@kernel.org>
+ <20220705155929.25565-1-pali@kernel.org>
+ <20220706131507.353f0bed@thinkpad>
+ <20220706111912.hz2mx4dc35lgq6l5@pali>
+ <20220706172732.6228d180@thinkpad>
+ <25b43586-eeb3-4b7b-7362-2d599aa89cf0@linaro.org>
+ <20220708160528.ysy4lzxfpwobfiwr@pali>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <34e2a75a-b6dc-d5ae-4820-58cee2b0dd29@linaro.org>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220708160528.ysy4lzxfpwobfiwr@pali>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,43 +74,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 11:12:06PM +0200, Krzysztof Kozlowski wrote:
-> On 12/07/2022 19:25, Matthias Kaehlcke wrote:
-> > Hi Alexander,
+On Fri, Jul 08, 2022 at 06:05:28PM +0200, Pali Rohár wrote:
+> On Wednesday 06 July 2022 17:36:43 Krzysztof Kozlowski wrote:
+> > On 06/07/2022 17:27, Marek Behún wrote:
+> > > On Wed, 6 Jul 2022 13:19:12 +0200
+> > > Pali Rohár <pali@kernel.org> wrote:
+> > > 
+> > >> On Wednesday 06 July 2022 13:15:07 Marek Behún wrote:
+> > >>> On Tue,  5 Jul 2022 17:59:28 +0200
+> > >>> Pali Rohár <pali@kernel.org> wrote:
+> > >>>   
+> > >>>> +examples:
+> > >>>> +  - |
+> > >>>> +    #include <dt-bindings/leds/common.h>
+> > >>>> +
+> > >>>> +    cpld@3,0 {  
+> > >>>
+> > >>> The generic node name should be just "bus". That it is a CPLD
+> > >>> implementation should come from compatible string.  
+> > >>
+> > >> Sorry, I do not understand why "bus". Why other memory chips are named
+> > >> e.g. "nand" or "nor" and not "bus" too?
+> > > 
+> > > As far as I understand this is because that is the preferred name for
+> > > busses and this is a bus, since there is also the simple-bus compatible.
+> > > 
+> > >> By this logic should not be _every_ node called just "bus"? Hm... and 
+> > >> are names needed at all then?
+> > > 
+> > > :-)
+> > > 
+> > > The schema
+> > >   https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/simple-bus.yaml
+> > > allows for different names (soc|axi|ahb|*-bus) to avoid warnings on
+> > > existing old dts files.
+> > > 
+> > > The preferred way is to not have the implementation in nodename,
+> > > similar to how we use 'switch' instead of 'mv88e6xxx', or
+> > > 'ethernet-phy' instead of 'mv88e151x', or 'led-controller', ...
 > > 
-> > On Tue, Jul 12, 2022 at 05:06:25PM +0200, Alexander Stein wrote:
-> >> The TI USB8041 is a USB 3.0 hub controller with 4 ports.
-> >>
-> >> This initial version of the binding only describes USB related aspects
-> >> of the USB8041, it does not cover the option of connecting the controller
-> >> as an i2c slave.
-> >>
-> >> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >> ---
-> >> Well, this is essentially a ripoff of
-> >> Documentation/devicetree/bindings/usb/realtek,rts5411.yaml with USB IDs
-> >> replaced, reset-gpio added and example adjusted.
-> >> IMHO this should be merged together with realtek,rts5411.yaml. Is it ok
-> >> to rename bindings files? I guess a common onboard-usb-hub.yaml matching
-> >> the driver seens reasonable. Any recommendations how to proceed?
-> > 
-> > It's a tradeoff between keeping the individual bindings simple and avoid
-> > unnecessary duplication. The current RTS5411 and TI USB8041 bindings are
-> > very similar, which suggests combining them. However over time hubs with
-> > diverging features could be added (e.g. with multiple regulators, a link
-> > to an I2C/SPI bus, a clock, ...). With that a common binding might become
-> > too messy.
-> > 
-> > From a quick look through Documentation/devicetree/bindings it doesn't
-> > seem common to have generic bindings that cover components from multiple
-> > vendors. In that sense I'm leaning towards separate bindings.
-> > 
-> > Rob, do you have any particular preference or suggestion?
+> > Thanks Marek for detailed explanation.
+> > The cases above rather trigger my comments and this one here, after
+> > Pali's explanation, do not fit them. pld is a generic class of a device,
+> > so it is okay here. cpld probably as well (although one could argue that
+> > it is a subset of pld, so the generic name is pld, but then one would
+> > say fpga also should be called pld). For me it does not have to be bus,
+> > just don't want mv88e6xxx or any other vendor/model names. Therefore
+> > cpld is fine.
 > 
-> Not Rob, but my suggestion is not to merge bindings of unrelated
-> devices, even if they are the same class. By unrelated I mean, made by
-> different companies, designed differently and having nothing in common
-> by design. Bindings can be still similar, but should not be merged just
-> because they are similar.
+> Exactly. cpld, fpga, nor, nand, soc... all of them are not real buses.
 
-Thanks for your advice, let's keep separate bindings then.
+I guess you could (and we do) have 'cpld' and 'fpga' as devices where 
+the OS can reprogram them and such. But if the implementation is fixed 
+with no implementation specific controls, I don't think naming how it's 
+implemented adds too much. If there's nothing else to identify the 
+device though, having 'cpld' in there does have some value I guess.
+
+Same could be argued for soc too perhaps, but that's in the list largely 
+to avoid a bunch of s/soc/bus/ on dts files.
+ 
+> simple-bus here is just name invented by device tree and without which
+> existing kernel drivers refuse to work.
+
+Everything is just names invented by DT.
+
+simple-bus means 'a bus containing MMIO devices without any bus 
+configuration'. You want to add a clock to it?, then no longer a 
+simple-bus. Based on that definition, the kernel can enumerate child 
+devices without platform specific help. 
+
+Just use 'cpld-bus' and lets move on with our lives.
+
+Rob
