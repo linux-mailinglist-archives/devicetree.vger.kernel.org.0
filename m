@@ -2,65 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 501CB570EEE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 02:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C744570F1F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 02:54:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbiGLA0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 20:26:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37094 "EHLO
+        id S231543AbiGLAy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 20:54:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbiGLA0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 20:26:30 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395F22DA85;
-        Mon, 11 Jul 2022 17:26:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1657585576; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=mtb8jFe3/4+KkVb5dM6qz1JRAB7qefaldXT89p6pXK6rdhAIRyC5ZqAWeOEKLZ1IWKCuEgkZi2zBDUe12Nhfr/JdzYaBcjAFKVPqdnTntFyAB6XUgp3BQxG8saRVwkU4Lih2mFTYKjRBmKYTu+dhShXWYpPOt2KUY3j8OHAdaWo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1657585576; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=jFBczO4Z9TfDcxdB0ArqJHoDxH8ici/TI/3XLJb7X3M=; 
-        b=cdZcTbIsOwFaXI2jkalL2uFsW/IBksDLq9RALhunhNE69mFkn9TliQ7HZ2QNcanWnH/JzCon1YZK5cvBziPhu5Cqn72ZPd7q4640LwIRQNaXeTbBXOII0RXZkOiRh3qoxftIyFp4r905dQntTSvMQEMi0gsD0kAz7sp9dJGUS/Q=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=linux.beauty;
-        spf=pass  smtp.mailfrom=me@linux.beauty;
-        dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1657585576;
-        s=zmail; d=linux.beauty; i=me@linux.beauty;
-        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=jFBczO4Z9TfDcxdB0ArqJHoDxH8ici/TI/3XLJb7X3M=;
-        b=Qxdai5D/7eund7w0ApVgHQPm3iT1PEKhQUQr/EKe6+bZWVe6dGmw46m7vQzLluIt
-        KqVJkuBBUm+pEf0bNY/sg1MtjYSuEEev22U45PkSvtEbg4YwgfUVkOrqR0rfLZFGusa
-        3/CwneaPhUp564pkpdxcZkMdvtNdwWP9q9ZmqKFI=
-Received: from mail.zoho.com by mx.zohomail.com
-        with SMTP id 1657585575627718.8384328597048; Mon, 11 Jul 2022 17:26:15 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 08:26:15 +0800
-From:   Li Chen <me@linux.beauty>
-To:     "Arnd Bergmann" <arnd@arndb.de>
-Cc:     "Catalin Marinas" <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Frank Rowand" <frowand.list@gmail.com>,
-        "Andrew Morton" <akpm@linux-foundation.org>,
-        "Li Chen" <lchen@ambarella.com>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "DTML" <devicetree@vger.kernel.org>,
-        "Linux-MM" <linux-mm@kvack.org>
-Message-ID: <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
-In-Reply-To: <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
-References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty> <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
- page and dio support to no-map rmem
+        with ESMTP id S229616AbiGLAyz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 20:54:55 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 307822A721;
+        Mon, 11 Jul 2022 17:54:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657587294; x=1689123294;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=V6w2sMs8zcctI71jT/jdZW5CM1h96l8zoH9VbyJnAnM=;
+  b=Ldv7tubNo0S98EJKfEhYV3eR54b6saKYfLHbV3vcAeS9oy3Qhgq2cfLm
+   8UeElwpqLa9TeD70uREOlWVLlzKi2p4LIJSyGbFuVvnRMCT//qjVMq4Gi
+   zFvpZBqBd9+E6gT/CR7vUWDSSCvmfQliyAl+TruCHjRbRLhNU4ZyepbQA
+   BmjnajTHw/2ERg3XllpYCHkx7Cq224BKiwCb5EZPzznHP8YbF9We9FNBL
+   pwJKUXC1wtdn09W2BKbHDRm/iYb557BCcDxmuj2BJiQK7iyx/ZRC8VU83
+   PBQvBI5sxqdNiNeBbrLueEDU9bsbnJXWnhkoRessmF85uy61tuaCevvYI
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10405"; a="265219256"
+X-IronPort-AV: E=Sophos;i="5.92,264,1650956400"; 
+   d="scan'208";a="265219256"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2022 17:54:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,264,1650956400"; 
+   d="scan'208";a="662759318"
+Received: from lkp-server02.sh.intel.com (HELO 8708c84be1ad) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 11 Jul 2022 17:54:48 -0700
+Received: from kbuild by 8708c84be1ad with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1oB4Aq-0001Rz-8h;
+        Tue, 12 Jul 2022 00:54:48 +0000
+Date:   Tue, 12 Jul 2022 08:54:25 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jarrett Schultz <jaschultzms@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Dmitry Antipov <dmanti@microsoft.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Jarrett Schultz <jaschultz@microsoft.com>
+Subject: Re: [PATCH v5 5/6] HID: add spi-hid, transport driver for HID over
+ SPI bus
+Message-ID: <202207120839.Ga8kjAG8-lkp@intel.com>
+References: <20220707165902.3184-6-jaschultzMS@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Importance: Medium
-User-Agent: Zoho Mail
-X-Mailer: Zoho Mail
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_RED autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220707165902.3184-6-jaschultzMS@gmail.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,54 +82,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
- ---- On Mon, 11 Jul 2022 21:28:10 +0800  Arnd Bergmann <arnd@arndb.de> wrote --- 
- > On Mon, Jul 11, 2022 at 2:24 PM Li Chen <me@linux.beauty> wrote:
- > >
- > > From: Li Chen <lchen@ambarella.com>
- > >
- > > This sample driver shows how to build struct pages support to no-map rmem.
- > >
- > > Signed-off-by: Li Chen <lchen@ambarella.com>
- > 
- > Not sure what a sample driver helps here if there are no actual users in-tree.
- > 
- > It would make more sense to merge the driver that wants to actually use this
- > first, and then add the additional feature.
+Hi Jarrett,
 
-Totally agree, but we plan to start rewriting our video driver in a long time, it has many legacy codes and I need to rewrite a lot of codes to migrate to v4l2.
-That's why I also submit a sample driver here: to make the review progress easier and don't need reviewers to read video driver codes.
+Thank you for the patch! Perhaps something to improve:
 
- > > +/*
- > > + * dts example
- > > + * rmem: rmem@1 {
- > > + *                     compatible = "shared-dma-pool";
- > > + *                     no-map;
- > > + *                     size = <0x0 0x20000000>;
- > > + *             };
- > > + * perf {
- > > + *             compatible = "example,rmem";
- > > + *             memory-region = <&rmem>;
- > > + *     };
- > 
- > The problem here is that the DT is meant to describe the platform in an OS
- > independent way, so having a binding that just corresponds to a user space
- > interface is not a good abstraction.
+[auto build test WARNING on hid/for-next]
+[also build test WARNING on dtor-input/next robh/for-next linus/master v5.19-rc6 next-20220711]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Gotcha, but IMO dts + rmem is the only choice for our use case. In our real case, we use reg instead of size to specify the physical address, so memremap cannot be used.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jarrett-Schultz/Add-spi-hid-transport-for-HID-over-SPI-bus/20220708-010203
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git for-next
+config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20220712/202207120839.Ga8kjAG8-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 77a38f6839980bfac61babb40d83772c51427011)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d0121c2f2d1bb21824555c34c233dd3fbc6aee96
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jarrett-Schultz/Add-spi-hid-transport-for-HID-over-SPI-bus/20220708-010203
+        git checkout d0121c2f2d1bb21824555c34c233dd3fbc6aee96
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/hid/spi-hid/ drivers/md/ drivers/net/ethernet/marvell/prestera/ drivers/vfio/pci/mlx5/
 
- > 
- > > +       vaddr = reserved_mem_memremap_pages(dev, rmem);
- > > +       if (IS_ERR_OR_NULL(vaddr))
- > > +               return PTR_ERR(vaddr);
- > 
- >  Using IS_ERR_OR_NULL() is usually an indication of a bad interface.
- > 
- > For the reserved_mem_memremap_pages(), you should decide whether to return
- > NULL on error or an error pointer, but not both.
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-Thanks, will fix in v2.
+All warnings (new ones prefixed by >>):
 
- > 
- >        Arnd
- > 
+>> drivers/hid/spi-hid/spi-hid-core.c:193:20: warning: 'const' type qualifier on return type has no effect [-Wignored-qualifiers]
+   static const char *const spi_hid_power_mode_string(u8 power_state)
+                      ^~~~~~
+>> drivers/hid/spi-hid/spi-hid-core.c:691:4: warning: format specifies type 'unsigned short' but the argument has type '__u32' (aka 'unsigned int') [-Wformat]
+                           hid->vendor, hid->product);
+                           ^~~~~~~~~~~
+   drivers/hid/spi-hid/spi-hid-core.c:691:17: warning: format specifies type 'unsigned short' but the argument has type '__u32' (aka 'unsigned int') [-Wformat]
+                           hid->vendor, hid->product);
+                                        ^~~~~~~~~~~~
+   drivers/hid/spi-hid/spi-hid-core.c:1318:13: error: incompatible function pointer types initializing 'void (*)(struct spi_device *)' with an expression of type 'int (struct spi_device *)' [-Werror,-Wincompatible-function-pointer-types]
+           .remove         = spi_hid_remove,
+                             ^~~~~~~~~~~~~~
+   3 warnings and 1 error generated.
+--
+   In file included from drivers/hid/spi-hid/trace.c:9:
+   In file included from drivers/hid/spi-hid/./spi-hid_trace.h:194:
+   In file included from include/trace/define_trace.h:102:
+   In file included from include/trace/trace_events.h:237:
+>> drivers/hid/spi-hid/./spi-hid_trace.h:140:92: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+           TP_printk("spi%d.%d: (%04x:%04x v%d) HID v%d.%d state i:%d p:%d len i:%d o:%d r:%d flags %c",
+                                                                                                    ~^
+   include/trace/stages/stage3_trace_output.h:9:33: note: expanded from macro 'TP_printk'
+   #define TP_printk(fmt, args...) fmt "\n", args
+                                   ^~~
+   include/trace/trace_events.h:203:27: note: expanded from macro 'DECLARE_EVENT_CLASS'
+           trace_event_printf(iter, print);                                \
+                                    ^~~~~
+   1 warning generated.
+
+
+vim +/const +193 drivers/hid/spi-hid/spi-hid-core.c
+
+   192	
+ > 193	static const char *const spi_hid_power_mode_string(u8 power_state)
+   194	{
+   195		switch (power_state) {
+   196		case SPI_HID_POWER_MODE_ON:
+   197			return "d0";
+   198		case SPI_HID_POWER_MODE_SLEEP:
+   199			return "d2";
+   200		case SPI_HID_POWER_MODE_OFF:
+   201			return "d3";
+   202		case SPI_HID_POWER_MODE_WAKING_SLEEP:
+   203			return "d3*";
+   204		default:
+   205			return "unknown";
+   206		}
+   207	}
+   208	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
