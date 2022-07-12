@@ -2,184 +2,799 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1D10571303
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 09:22:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0BB557131C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 09:28:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbiGLHWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 03:22:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59806 "EHLO
+        id S232130AbiGLH2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 03:28:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiGLHWW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 03:22:22 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B5D8AB21;
-        Tue, 12 Jul 2022 00:22:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1657610542; x=1689146542;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=Mi/tY38nBCPaOqccl66N9QuNZdJIy7PPiKjroOIme3o=;
-  b=Mt/YBpgIF2M7QX3clhvkCqJY6enKH/vZujy/nhLZm+y+zur67WFaavDz
-   zJVZvL2CdTf47jHqUvDVEQe/NoiOTwwIrhY+/cFLC7H7GCDVI87YB4Xgg
-   rUtlkt9mosHyo2JXe84uowj226tfckFTNSD4pyl9TSaT/NgqmyC9c3Jrr
-   7+nPOIWHF7PtD7eqJFt1airmNpKky7bXvUfsR17Y2wsWY4T4YHYil/Ipl
-   NW9V68Rv+nyNPfiFROJmtuHXx533n//pmj4qCA+yd7RMKzVAjThQJXh9A
-   PbDdcoLb+fOUp9ljrxADXNB4+Bzk/WKkogmQlKxy1UAJfDhuvdZcyYVxt
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.92,265,1650956400"; 
-   d="scan'208";a="171711756"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Jul 2022 00:22:21 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 12 Jul 2022 00:22:20 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Tue, 12 Jul 2022 00:22:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oJAQ3nqT/JCcM0FoaTLOc3cTdOO4E7O9oxzDgdpIVSCtOpRThVcFUJ/qoy2dP+/D7hJE+vlSluC3ZpeORbqhdnDuJJcOMFCBzFa+emNDtDxgTqyPkkWpAml/VzZkeyzVEYBGxhJAstW9KaYgtv4fisa1h5/2DkNx2xkHd8gmU6lGG4Nx19N9/Bcz2khew0eoREsjji9CZ2h3HIBGTS27Xf16UVo8Jki4v7TYeS1BjEsJXa7vQ1/NqSVDMppShLzJsWfwdJt+LiGKAaHFPAw9oJ10F5kA3r6mYF6R/f5tYDA3rKLIKNTJcplUVgdfsPXog39U0ElYO+ZpiSQLXgS/xQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mi/tY38nBCPaOqccl66N9QuNZdJIy7PPiKjroOIme3o=;
- b=ZBBYQIiGDJFo1nMV5k2Z02w8sPUmYp8G6Uz2fCKLuWljmWsKsQFDSwampTdpkrUzp/PdCGuNrqaLpta/sQRzpiach8l1l3VSYKeNiNuGRrYgW+pYGwTpLGMO8M1yIfDYncdypD+DRfoARLBDacyt+VTYrQmrojY9sIMf+yPuRPW0OeCgWwLaygm1VVcNvLmhiVgkfWkB2iDs8ZslDnx33Lppn0jBn3LWEg4q49nFBESDJ5KM2baEXYZVoF44pet2M5EcmuLBM1ZXM+74GCdmfduH3xtKCJY1Z2MSIogMsPZ/Zs78WIUZ5px9LtEVotOmuHz1Tl2gIii2LJq2l2ERhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S229670AbiGLH2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 03:28:47 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BF7DEA7;
+        Tue, 12 Jul 2022 00:28:44 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id m16so8867702ljh.10;
+        Tue, 12 Jul 2022 00:28:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mi/tY38nBCPaOqccl66N9QuNZdJIy7PPiKjroOIme3o=;
- b=BWl1iGM5TQ5ast/kCknJbwwou86UfNTRszP0vtnCFbh6EWQySzz/q10MkE3sHaPeIQ+28zVfurtw5v4mV+VBN9MGrctTGC/Eqqe/v/M0vrK2V3uB4tTgHaUq9ll+c1wDv2NqaS3TlVOxO/liQ36uA2C4lGEKlGinbZ2S+wD0Cyk=
-Received: from BN6PR11MB1953.namprd11.prod.outlook.com (2603:10b6:404:105::14)
- by CO1PR11MB5140.namprd11.prod.outlook.com (2603:10b6:303:9e::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Tue, 12 Jul
- 2022 07:22:15 +0000
-Received: from BN6PR11MB1953.namprd11.prod.outlook.com
- ([fe80::5c8c:c31f:454d:824c]) by BN6PR11MB1953.namprd11.prod.outlook.com
- ([fe80::5c8c:c31f:454d:824c%8]) with mapi id 15.20.5417.026; Tue, 12 Jul 2022
- 07:22:15 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <michael@walle.cc>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] ARM: dts: lan966x: add clock gating register
-Thread-Topic: [PATCH v2 1/2] ARM: dts: lan966x: add clock gating register
-Thread-Index: AQHYlPX1nrnmxLeOAUSFrDL+ar5dna16VksA
-Date:   Tue, 12 Jul 2022 07:22:15 +0000
-Message-ID: <07af76d1-3aa8-3067-f92d-120ad385b698@microchip.com>
-References: <20220707132500.1708020-1-michael@walle.cc>
- <7ee463db-3cb5-c340-ac1d-1dfcd2b87dcd@microchip.com>
-In-Reply-To: <7ee463db-3cb5-c340-ac1d-1dfcd2b87dcd@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ce19ef2e-136c-428e-2163-08da63d73f07
-x-ms-traffictypediagnostic: CO1PR11MB5140:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: hivP6pGd65kqML4DwheqQMwqX3JGlqUKDhigIJWZkVJPvETqcsCkk1QuPG5O2R2rf7tbqoLL3d4d2xH7Cu3aavW8DCm5yOCeZ54AgPgt9PSsB51HJJCUS1H2if5qANseQtJx8G+Dwl9Ndp0gJjcT5TskhyM5TQDWrs7kowzI0cAGBXkjwKffgwJmUS3ThhxOM/+0eqmrCP3OM2zFko6xnyeORIJENihSdtqvi/OoqrknvzS0a3dTRkiyy4Yr3MvhhRsQ2vRR21lyVSLxzkUGKQREUWgdL5Qem+BW2cK+acV8NE8FfZhXauzdE3zl7jZKkyEXMFZkCdr3QZ94rzWanrHodDceX3ulPxBJQBmDV9BQcg6xQ2EG/Y6HYxyv+IyNFPyxQi6e3dqVEos/yUKy/i/feandJ2AY50Vfthst7wxt3SIbPbk438viF06/xVg3H/b2SojExVYHKLy+ZO3R+g3FyUzQ0eaNnZ5bcJIi7PrE8HVfE8LzNaWdK7tZtB83H0Ql0CliV4JYwZPaH2E30UNvm4MeLnroPuhf8ghlABpO0ak3It4bBJMwmLUZSSSHE6DbJGKXbG0At4oBYf6VmW+xerzwlj7hu22OtnzNQSQnQxfBUZVGgr2hLK+Rqr0ERxKOBjX8nI4Ou0j61pQ6rejLvINfNiVpT92nS2T/FpkwJEyDxIZEacNhxLElQAyf59QYRTWERzTWUGiaZnyEHn6c9DZTIz1SZyr21AWy2udp5QAQByW2iRx0shZc4GicbtyhvSjRj4HqQg7s0eJniWhLkG3I+EBko7fTZJl2exmH5z8pDlfdCgxYQ6m+YC8jxOE0NCN5EUnbGm58WS0tTM7O9gHn+xoJrOWNpYzFbMY88T8Pf6+/E/3euPWIw9CpB0HVRx7pIgc2cF5GtYptHWmEysn+Ka8E9R+bevrLJpk=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR11MB1953.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(136003)(366004)(376002)(346002)(39860400002)(36756003)(478600001)(38100700002)(83380400001)(66946007)(8936002)(66446008)(31686004)(64756008)(76116006)(5660300002)(186003)(4326008)(38070700005)(2906002)(66556008)(26005)(31696002)(2616005)(8676002)(110136005)(966005)(86362001)(6486002)(53546011)(6512007)(54906003)(41300700001)(66476007)(122000001)(91956017)(6506007)(71200400001)(316002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ajljL2Q2dkpGRFpYbjBjakx1aWkrdWxrMjBQNU56RHhCTHFIaG5rTDNSamdW?=
- =?utf-8?B?WVJ0KzNBS1VNV25YMCtvWm1yblRaaDc5ckh0V1dzcGVxQkRPMjRmUGp0T2tq?=
- =?utf-8?B?b1pBYnNRVEhMUzZQM1JINGRUMHo2a1VWOWNnU2o5eUlmTVJaN05kcFg0eDIz?=
- =?utf-8?B?NmJnRERoUCs5THBhY3ZMc01OYmhQWHU3OERNejdQOVhNODB1S2Z6NnRjWWI5?=
- =?utf-8?B?d25LbERucXlwUlFEM0FSTWgxQlgyU0RReGVid3AzWklZZWxKZHpjWG5namNv?=
- =?utf-8?B?dkN4SkJjaVlsTGdGUUkzc0M4bkIycUhLVEQrdURvOVlXOXd1MHJaOGVGMTFP?=
- =?utf-8?B?RjNjajRlTDAxSTVKdmlZYkR6ejVTSUJDVThDQkMwcFJldk0wZkFIeVo5ZUlK?=
- =?utf-8?B?QVpTRStzOXlkSXFmRUY4SVcvcTZLL01jY3c4TUw1WXEzd29taFhsOGtPWStO?=
- =?utf-8?B?UDUvNHN0dHcvR0ZNVzRpMEdyeUU2VVlFdEhBdlpWdEd1d0xMNk9ZRXk3MHZM?=
- =?utf-8?B?U3MvSzlVb3UyZVJzUmNXc2p5SmloQzJrVkorYm1aRVlueEM5MTAxdVpmZ1VP?=
- =?utf-8?B?YWhvN2luZVpTeW1sRFVVQk9wV1UxRjBYNG9iOFpoZFE2bTh4QkdDYkxPa3RZ?=
- =?utf-8?B?ZEdmNytaakFBWjhhbmVFQTZETDJZWjlHQnBDVlpFaUVRaEZBd2gzd0k0U3dk?=
- =?utf-8?B?UW5oU2toVzdsTFY3QUg5Vnp0RDFRMEF1dG1JeU1rOS92WU82NmJRbVdKQzhH?=
- =?utf-8?B?UGhRRXkyWUpMSWYvSzFtT2JXaWpvZE5IeFBpMHVsN3NKS3EzaEdPZVFDNVhT?=
- =?utf-8?B?N1lLQmlma1NUTlVtYlhoTnR0dmtHQWU2bUdPSzlHNC9hNnd2TWRlOUdTUE5V?=
- =?utf-8?B?OUJXL1BvNWUvSnhMNVdJTjhYdzE1YVZTcXBLVlhZd0VLb1FSYzg3TWxiN0py?=
- =?utf-8?B?VEhpM0Vvb0JUek55WnR1VW00S2dLVE9CeTgwUmRmTGNnRFhXYWlnYWNTT0Fz?=
- =?utf-8?B?SUJGTjVaNmVmcXA1MHhrdFpVVTJyVEVmdE43YTlPM0FMTHIwMjFKN3luaG9v?=
- =?utf-8?B?eUZtU0RKWW1TV0hueEZORWRoeksreXlyZDFBSnRoTjY3a0IvVExXVkx4TVBW?=
- =?utf-8?B?Z1AxbEErbUl6TDRsQXFrVXBRZXJDMGwxZHpPTHB6Wjd3RCt0ZHovSjc1Ykwx?=
- =?utf-8?B?dUh6VzlWRTc2YmNiNVhRY3JHUExvUkdsT25VWFZQMzlTOXdabmxMam9Sa2NJ?=
- =?utf-8?B?elZaTEZuTnZvb3o0TytqVVpDa0EwU1h5UStaMk11eXdsdGRMNGt6UzlUZ0lr?=
- =?utf-8?B?NmZ2RDNleVJRbTZUUjdtZE16OVowRk03ZE1hQnRFcUc3dEUwUytoYjcrcnpp?=
- =?utf-8?B?VWtIZVBYK3lDOXROaVVuUVVPSGdIYVl3L0ZXYmtydlJOcE9ockJvUGJpbHRP?=
- =?utf-8?B?dEZpSHFyVmZLM0pkS0ZaRmNrWm5GbUZ6MVFwZDVxMS92VFdSai9jbVp2U2dI?=
- =?utf-8?B?VVFpOFFIRkJITnJlUmdsdFNaNUdBeWVQNmp3Y0VKZTNTaHg0Q0Y1eHdIQmJ2?=
- =?utf-8?B?SVI3ZzdFa1VIVmpZc3ozQ1k3dVNKNVhwc0lWb2NkbkhqelZNb1VmV3VjbmZr?=
- =?utf-8?B?RGljZEhYYlBFNXYwZkd4ekROMlBiN2w3b2lnQ2FGUmN3MERCaU85c01ZVkxZ?=
- =?utf-8?B?ck5WeXowbFd4RVBjYzNTU2d5bWpWMGhjWVRoZjhFMjFYdmY3ZW1KbDd2YjJZ?=
- =?utf-8?B?ODNJdSttd21WcGpUR2ZIbzIxNC9hOWE3ZTN3K3pRbUlOczRUa2djaTZuc3hO?=
- =?utf-8?B?T3lQaCtOYjkxVWdiakR4RGhGbnh6NGcwbG9GamRpTkhtSUJETVo1UXVwbzlV?=
- =?utf-8?B?RE8yN1RPeEF3RWFYTGpnOHhTbkpOL0ZpeUVrM0JuWS82d0lYZHZJQ0p4OE9H?=
- =?utf-8?B?ek1mNUZyUzZrWEZwSURBOWFUN0h4K2phM1NUK1hiSmF4bEFtc1VXOFlJVnpB?=
- =?utf-8?B?SU9ZQ3l0S1A1L1AwU0ZjdEVac2VjcWwxUGFTSlVKK0wyWVgwckdlejkzNjMw?=
- =?utf-8?B?V0lqWit6bDI2dml0YVkzR0JpM3dyWEp1L1lvaHZ2RkltaHQwcVI1N2NBRE5D?=
- =?utf-8?B?YldzenArMHg5dVdtb01WVjgyZ1ZLaEF0TW90eUVHQjY0SjBwOVJzTVdTdUpw?=
- =?utf-8?B?OWc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1BE76B8855A2DB45843918F26B43FE1E@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=z6jewPmR1a9HYNe6U6ksVBq5XtEeDE9lzGI+M9H2qQY=;
+        b=D5UwDJIakqZdSBxQ/0H4QBt9IAX6mP+yY59VTIF0Gz6y7NvJ/rB8RNxVuS5g6NW20q
+         /img4s9kv/K97/cfzW7V1+/yvYKfQKavHwKh1iOuLO4KmSSxH2U405S3/hkcIBe77Ot3
+         vnl1GW70PJiuXaBKmoXKjolf5kmETDWafEp38PDv2+wClFxFuvqsAcrx2zzc0lt8rrBC
+         hJElymifaFWTpvc2EvpixQPpQHMBybLpAo8w9wQhYzXmMMOCuzrQaeTxXO//McXO218y
+         hKsUIinjo4vlxGGtaFUU9N0pcdufQ8+PvMFZu9LWxCpgdnrbLGtbvTBiTvjQDv3h/XYq
+         V2ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=z6jewPmR1a9HYNe6U6ksVBq5XtEeDE9lzGI+M9H2qQY=;
+        b=dsyUzhBiVOfOh5CoOlA5lHQwsyj/QBMv+/WJ91NZj541nsihU+/ScEHMT/YwlJ/BHF
+         aMBZ6AYGkx8zQbWCcxZIQqvmWSb3GTOGimNyfsWyzenOPc3HPzhU14/ujhFyRlXri9h9
+         UdRUFxWRtkJgJJfR+mkBPOdeJaQli9SBaa+RAWPlj4crmBaRjZM2lJTwKUjEIW/PX16S
+         lfgNTirE06S2hnVdLZzb8GmP/asMqUIiFmW8ajpt754nlQ9LIZwZYBpZ4kj6wHev3O8R
+         d2ZPYZFk/Q1HXmOtBCpL29H+wySa79SVSHGL0KzKTs1Ky8tKFSnkiQprG8BsuN2sKn3p
+         Wa3A==
+X-Gm-Message-State: AJIora97t9tMlQHGEeZC07WvbmpufM47OnzQsUNPHgqyjMbn/kgYIlyq
+        kkUV8QTEW3znvOE57oK5klDr7s8tJHFDqGyzWkg=
+X-Google-Smtp-Source: AGRyM1vXvga9wvvYojPLNBMOcSQ62wD3k4YP6QJc/4PrFnzQNqXpcoxCD2m2VuNQOw6ParkOvfVeoD/8N/ncINPW6dY=
+X-Received: by 2002:a2e:a547:0:b0:25d:51a0:497a with SMTP id
+ e7-20020a2ea547000000b0025d51a0497amr12694380ljn.488.1657610922460; Tue, 12
+ Jul 2022 00:28:42 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB1953.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce19ef2e-136c-428e-2163-08da63d73f07
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jul 2022 07:22:15.2271
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3hsVtEWOJemHTRXeM1+WT9eLafGGFVoA4H7YuFWXb9CsowBCFghqBtbhNLFyU07SHvgLgnLM+29Cr8yWFIlodjh8PbdPnbPKgYtYTQUIueE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5140
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220711123519.217219-1-tmaimon77@gmail.com> <20220711123519.217219-5-tmaimon77@gmail.com>
+ <20220711195544.70A30C34115@smtp.kernel.org>
+In-Reply-To: <20220711195544.70A30C34115@smtp.kernel.org>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Tue, 12 Jul 2022 10:28:30 +0300
+Message-ID: <CAP6Zq1ie_RgJ_9S3ftoVJ=eJHX1xR4_O_czKZghNPKVEFOzC8Q@mail.gmail.com>
+Subject: Re: [PATCH v8 04/16] clk: npcm8xx: add clock controller
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Olof Johansson <olof@lixom.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Patrick Venture <venture@google.com>,
+        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Nancy Yuen <yuenn@google.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIE1pY2hhZWwsDQoNCk9uIDExLjA3LjIwMjIgMTA6MTUsIENsYXVkaXUgQmV6bmVhIC0gTTE4
-MDYzIHdyb3RlOg0KPiBPbiAwNy4wNy4yMDIyIDE2OjI0LCBNaWNoYWVsIFdhbGxlIHdyb3RlOg0K
-Pj4gRVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRz
-IHVubGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+Pg0KPj4gVGhlIGNsb2NrIGNv
-bnRyb2xsZXIgc3VwcG9ydHMgYW4gb3B0aW9uYWwgY2xvY2sgZ2F0aW5nIHJlZ2lzdGVyLiBUaGlz
-IGlzDQo+PiBuZWNlc3NhcnkgdG8gZXhwb3NlIHRoZSBVU0IgZGV2aWNlIGNsb2NrLCBmb3IgZXhh
-bXBsZS4gQWRkIGl0Lg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IE1pY2hhZWwgV2FsbGUgPG1pY2hh
-ZWxAd2FsbGUuY2M+DQo+IA0KPiBBcHBsaWVkIHRvIGF0OTEtZHQsIHRoYW5rcyENCg0KQWN0dWFs
-bHksIEkgd2lsbCBwb3N0cG9uZSB0aGlzIHVudGlsIFsxXSBpcyBhY2NlcHRlZCBhcyBjdXJyZW50
-IGRyaXZlciBtYXkNCmZhaWwgaWYgdGhpcyBwYXRjaCBpcyBhcHBsaWVkLg0KDQpUaGFuayB5b3Us
-DQpDbGF1ZGl1IEJlem5lYQ0KDQpbMV0NCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJv
-amVjdC9saW51eC11c2IvcGF0Y2gvMjAyMjA3MDQxMDI4NDUuMTY4NDM4LTItaGVydmUuY29kaW5h
-QGJvb3RsaW4uY29tDQoNCj4gDQo+PiAtLS0NCj4+IGNoYW5nZXMgc2luY2UgdjE6DQo+PiAgLSBu
-b25lDQo+Pg0KPj4gIGFyY2gvYXJtL2Jvb3QvZHRzL2xhbjk2NnguZHRzaSB8IDIgKy0NCj4+ICAx
-IGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4+DQo+PiBkaWZm
-IC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvbGFuOTY2eC5kdHNpIGIvYXJjaC9hcm0vYm9vdC9k
-dHMvbGFuOTY2eC5kdHNpDQo+PiBpbmRleCA1N2NiNjdhMTgwZWMuLmJjMTAyNjc3ZmY5MSAxMDA2
-NDQNCj4+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2xhbjk2NnguZHRzaQ0KPj4gKysrIGIvYXJj
-aC9hcm0vYm9vdC9kdHMvbGFuOTY2eC5kdHNpDQo+PiBAQCAtNjUsNyArNjUsNyBAQCBjbGtzOiBj
-bG9jay1jb250cm9sbGVyQGUwMGMwMGE4IHsNCj4+ICAgICAgICAgICAgICAgICAjY2xvY2stY2Vs
-bHMgPSA8MT47DQo+PiAgICAgICAgICAgICAgICAgY2xvY2tzID0gPCZjcHVfY2xrPiwgPCZkZHJf
-Y2xrPiwgPCZzeXNfY2xrPjsNCj4+ICAgICAgICAgICAgICAgICBjbG9jay1uYW1lcyA9ICJjcHUi
-LCAiZGRyIiwgInN5cyI7DQo+PiAtICAgICAgICAgICAgICAgcmVnID0gPDB4ZTAwYzAwYTggMHgz
-OD47DQo+PiArICAgICAgICAgICAgICAgcmVnID0gPDB4ZTAwYzAwYTggMHgzOD4sIDwweGUwMGMw
-MmNjIDB4ND47DQo+PiAgICAgICAgIH07DQo+Pg0KPj4gICAgICAgICB0aW1lciB7DQo+PiAtLQ0K
-Pj4gMi4zMC4yDQo+Pg0KPiANCg0K
+Hi Stephen,
+
+Thanks for your comments
+
+On Mon, 11 Jul 2022 at 22:55, Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Tomer Maimon (2022-07-11 05:35:07)
+> > Nuvoton Arbel BMC NPCM8XX contains an integrated clock controller which
+> > generates and supplies clocks to all modules within the BMC.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+> >  drivers/clk/Kconfig       |   6 +
+> >  drivers/clk/Makefile      |   1 +
+> >  drivers/clk/clk-npcm8xx.c | 610 ++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 617 insertions(+)
+> >  create mode 100644 drivers/clk/clk-npcm8xx.c
+> >
+> > diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> > index 48f8f4221e21..9aa915f6e233 100644
+> > --- a/drivers/clk/Kconfig
+> > +++ b/drivers/clk/Kconfig
+> > @@ -428,6 +428,12 @@ config COMMON_CLK_K210
+> >         help
+> >           Support for the Canaan Kendryte K210 RISC-V SoC clocks.
+> >
+> > +config COMMON_CLK_NPCM8XX
+> > +       tristate "Clock driver for the NPCM8XX SoC Family"
+> > +       depends on ARCH_NPCM || COMPILE_TEST
+> > +       help
+> > +          This driver supports the clocks on the Nuvoton BMC NPCM8XX SoC Family.
+>
+> Please put this next to COMMON_CLK_NXP so that it is sort of sorted
+> based on Kconfig symbol.
+Will do
+> > +
+> >  source "drivers/clk/actions/Kconfig"
+> >  source "drivers/clk/analogbits/Kconfig"
+> >  source "drivers/clk/baikal-t1/Kconfig"
+> > diff --git a/drivers/clk/clk-npcm8xx.c b/drivers/clk/clk-npcm8xx.c
+> > new file mode 100644
+> > index 000000000000..392f1fbba49b
+> > --- /dev/null
+> > +++ b/drivers/clk/clk-npcm8xx.c
+> > @@ -0,0 +1,610 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Nuvoton NPCM8xx Clock Generator
+> > + * All the clocks are initialized by the bootloader, so this driver allow only
+> > + * reading of current settings directly from the hardware.
+> > + *
+> > + * Copyright (C) 2020 Nuvoton Technologies
+> > + * Author: Tomer Maimon <tomer.maimon@nuvoton.com>
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/err.h>
+> > +#include <linux/io.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/slab.h>
+> > +
+> > +#include <dt-bindings/clock/nuvoton,npcm845-clk.h>
+> > +
+> > +#define NPCM8XX_REF_CLK                25000000
+> > +
+> > +struct npcm8xx_clk_pll {
+> > +       struct clk_hw   hw;
+> > +       void __iomem    *pllcon;
+> > +       u8              flags;
+> > +};
+> > +
+> > +#define to_npcm8xx_clk_pll(_hw) container_of(_hw, struct npcm8xx_clk_pll, hw)
+> > +
+> > +#define PLLCON_LOKI    BIT(31)
+> > +#define PLLCON_LOKS    BIT(30)
+> > +#define PLLCON_FBDV    GENMASK(27, 16)
+> > +#define PLLCON_OTDV2   GENMASK(15, 13)
+> > +#define PLLCON_PWDEN   BIT(12)
+> > +#define PLLCON_OTDV1   GENMASK(10, 8)
+> > +#define PLLCON_INDV    GENMASK(5, 0)
+> > +
+> > +static unsigned long npcm8xx_clk_pll_recalc_rate(struct clk_hw *hw,
+> > +                                                unsigned long parent_rate)
+> > +{
+> > +       struct npcm8xx_clk_pll *pll = to_npcm8xx_clk_pll(hw);
+> > +       unsigned long fbdv, indv, otdv1, otdv2;
+> > +       unsigned int val;
+> > +       u64 ret;
+> > +
+> > +       if (parent_rate == 0) {
+> > +               pr_debug("%s: parent rate is zero\n", __func__);
+> > +               return 0;
+> > +       }
+> > +
+> > +       val = readl_relaxed(pll->pllcon);
+> > +
+> > +       indv = FIELD_GET(PLLCON_INDV, val);
+> > +       fbdv = FIELD_GET(PLLCON_FBDV, val);
+> > +       otdv1 = FIELD_GET(PLLCON_OTDV1, val);
+> > +       otdv2 = FIELD_GET(PLLCON_OTDV2, val);
+> > +
+> > +       ret = (u64)parent_rate * fbdv;
+> > +       do_div(ret, indv * otdv1 * otdv2);
+> > +
+> > +       return ret;
+> > +}
+> > +
+> > +static const struct clk_ops npcm8xx_clk_pll_ops = {
+> > +       .recalc_rate = npcm8xx_clk_pll_recalc_rate,
+> > +};
+> > +
+> > +static struct clk_hw *
+> > +npcm8xx_clk_register_pll(struct device *dev, void __iomem *pllcon,
+> > +                        const char *name, const char *parent_name,
+> > +                        unsigned long flags)
+> > +{
+> > +       struct npcm8xx_clk_pll *pll;
+> > +       struct clk_init_data init;
+> > +       struct clk_hw *hw;
+> > +       int ret;
+> > +
+> > +       pll = devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
+> > +       if (!pll)
+> > +               return ERR_PTR(-ENOMEM);
+> > +
+> > +       pr_debug("%s reg, name=%s, p=%s\n", __func__, name, parent_name);
+> > +
+> > +       init.name = name;
+> > +       init.ops = &npcm8xx_clk_pll_ops;
+> > +       init.parent_names = &parent_name;
+> > +       init.num_parents = 1;
+> > +       init.flags = flags;
+> > +
+> > +       pll->pllcon = pllcon;
+> > +       pll->hw.init = &init;
+> > +
+> > +       hw = &pll->hw;
+> > +
+> > +       ret = devm_clk_hw_register(dev, hw);
+> > +       if (ret)
+> > +               return ERR_PTR(ret);
+> > +
+> > +       return hw;
+> > +}
+> > +
+> > +#define NPCM8XX_CLKEN1          (0x00)
+> > +#define NPCM8XX_CLKEN2          (0x28)
+> > +#define NPCM8XX_CLKEN3          (0x30)
+> > +#define NPCM8XX_CLKEN4          (0x70)
+> > +#define NPCM8XX_CLKSEL          (0x04)
+> > +#define NPCM8XX_CLKDIV1         (0x08)
+> > +#define NPCM8XX_CLKDIV2         (0x2C)
+> > +#define NPCM8XX_CLKDIV3         (0x58)
+> > +#define NPCM8XX_CLKDIV4         (0x7C)
+> > +#define NPCM8XX_PLLCON0         (0x0C)
+> > +#define NPCM8XX_PLLCON1         (0x10)
+> > +#define NPCM8XX_PLLCON2         (0x54)
+> > +#define NPCM8XX_SWRSTR          (0x14)
+> > +#define NPCM8XX_IRQWAKECON      (0x18)
+> > +#define NPCM8XX_IRQWAKEFLAG     (0x1C)
+> > +#define NPCM8XX_IPSRST1         (0x20)
+> > +#define NPCM8XX_IPSRST2         (0x24)
+> > +#define NPCM8XX_IPSRST3         (0x34)
+> > +#define NPCM8XX_WD0RCR          (0x38)
+> > +#define NPCM8XX_WD1RCR          (0x3C)
+> > +#define NPCM8XX_WD2RCR          (0x40)
+> > +#define NPCM8XX_SWRSTC1         (0x44)
+> > +#define NPCM8XX_SWRSTC2         (0x48)
+> > +#define NPCM8XX_SWRSTC3         (0x4C)
+> > +#define NPCM8XX_SWRSTC4         (0x50)
+> > +#define NPCM8XX_CORSTC          (0x5C)
+> > +#define NPCM8XX_PLLCONG         (0x60)
+> > +#define NPCM8XX_AHBCKFI         (0x64)
+> > +#define NPCM8XX_SECCNT          (0x68)
+> > +#define NPCM8XX_CNTR25M         (0x6C)
+> > +#define NPCM8XX_THRTL_CNT       (0xC0)
+> > +
+> > +struct npcm8xx_clk_mux_data {
+> > +       u8 shift;
+> > +       u8 mask;
+> > +       u32 *table;
+> > +       const char *name;
+> > +       const char * const *parent_names;
+> > +       u8 num_parents;
+> > +       unsigned long flags;
+> > +       /*
+> > +        * If this clock is exported via DT, set onecell_idx to constant
+> > +        * defined in include/dt-bindings/clock/nuvoton, NPCM8XX-clock.h for
+> > +        * this specific clock.  Otherwise, set to -1.
+> > +        */
+> > +       int onecell_idx;
+> > +};
+> > +
+> > +struct npcm8xx_clk_div_data {
+> > +       u32 reg;
+> > +       u8 shift;
+> > +       u8 width;
+> > +       const char *name;
+> > +       const char *parent_name;
+> > +       u8 clk_divider_flags;
+> > +       unsigned long flags;
+> > +       /*
+> > +        * If this clock is exported via DT, set onecell_idx to constant
+> > +        * defined in include/dt-bindings/clock/nuvoton, NPCM8XX-clock.h for
+> > +        * this specific clock.  Otherwise, set to -1.
+> > +        */
+> > +       int onecell_idx;
+> > +};
+> > +
+> > +struct npcm8xx_clk_pll_data {
+> > +       u32 reg;
+> > +       const char *name;
+> > +       const char *parent_name;
+>
+> Any reason why we're not using clk_parent_data or direct clk_hw
+> pointers?
+For more historical reasons, I did the same method as done in the
+NPCM7XX driver.
+The clk_init_data struct can use * const *parent_names,
+https://elixir.bootlin.com/linux/v5.19-rc6/source/include/linux/clk-provider.h#L289
+Is it problematic?
+>
+> > +       unsigned long flags;
+> > +       /*
+> > +        * If this clock is exported via DT, set onecell_idx to constant
+> > +        * defined in include/dt-bindings/clock/nuvoton, NPCM8XX-clock.h for
+> > +        * this specific clock.  Otherwise, set to -1.
+> > +        */
+> > +       int onecell_idx;
+> > +};
+> > +
+> > +/*
+> > + * Single copy of strings used to refer to clocks within this driver indexed by
+> > + * above enum.
+> > + */
+> > +#define NPCM8XX_CLK_S_REFCLK      "refclk"
+> > +#define NPCM8XX_CLK_S_SYSBYPCK    "sysbypck"
+> > +#define NPCM8XX_CLK_S_MCBYPCK     "mcbypck"
+> > +#define NPCM8XX_CLK_S_PLL0        "pll0"
+> > +#define NPCM8XX_CLK_S_PLL1        "pll1"
+> > +#define NPCM8XX_CLK_S_PLL1_DIV2   "pll1_div2"
+> > +#define NPCM8XX_CLK_S_PLL2        "pll2"
+> > +#define NPCM8XX_CLK_S_PLL_GFX     "pll_gfx"
+> > +#define NPCM8XX_CLK_S_PLL2_DIV2   "pll2_div2"
+> > +#define NPCM8XX_CLK_S_PIX_MUX     "gfx_pixel"
+> > +#define NPCM8XX_CLK_S_MC_MUX      "mc_phy"
+> > +#define NPCM8XX_CLK_S_CPU_MUX     "cpu"  /* AKA system clock */
+> > +#define NPCM8XX_CLK_S_MC          "mc"
+> > +#define NPCM8XX_CLK_S_AXI         "axi"  /* AKA CLK2 */
+> > +#define NPCM8XX_CLK_S_AHB         "ahb"  /* AKA CLK4 */
+> > +#define NPCM8XX_CLK_S_CLKOUT_MUX  "clkout_mux"
+> > +#define NPCM8XX_CLK_S_UART_MUX    "uart_mux"
+> > +#define NPCM8XX_CLK_S_SD_MUX      "sd_mux"
+> > +#define NPCM8XX_CLK_S_GFXM_MUX    "gfxm_mux"
+> > +#define NPCM8XX_CLK_S_SU_MUX      "serial_usb_mux"
+> > +#define NPCM8XX_CLK_S_DVC_MUX     "dvc_mux"
+> > +#define NPCM8XX_CLK_S_GFX_MUX     "gfx_mux"
+> > +#define NPCM8XX_CLK_S_ADC_MUX     "adc_mux"
+> > +#define NPCM8XX_CLK_S_SPI0        "spi0"
+> > +#define NPCM8XX_CLK_S_SPI1        "spi1"
+> > +#define NPCM8XX_CLK_S_SPI3        "spi3"
+> > +#define NPCM8XX_CLK_S_SPIX        "spix"
+> > +#define NPCM8XX_CLK_S_APB1        "apb1"
+> > +#define NPCM8XX_CLK_S_APB2        "apb2"
+> > +#define NPCM8XX_CLK_S_APB3        "apb3"
+> > +#define NPCM8XX_CLK_S_APB4        "apb4"
+> > +#define NPCM8XX_CLK_S_APB5        "apb5"
+> > +#define NPCM8XX_CLK_S_APB19       "apb19"
+> > +#define NPCM8XX_CLK_S_TOCK        "tock"
+> > +#define NPCM8XX_CLK_S_CLKOUT      "clkout"
+> > +#define NPCM8XX_CLK_S_PRE_ADC     "pre adc"
+> > +#define NPCM8XX_CLK_S_UART        "uart"
+> > +#define NPCM8XX_CLK_S_UART2       "uart2"
+> > +#define NPCM8XX_CLK_S_TIMER       "timer"
+> > +#define NPCM8XX_CLK_S_MMC         "mmc"
+> > +#define NPCM8XX_CLK_S_SDHC        "sdhc"
+> > +#define NPCM8XX_CLK_S_ADC         "adc"
+> > +#define NPCM8XX_CLK_S_GFX         "gfx0_gfx1_mem"
+> > +#define NPCM8XX_CLK_S_USBIF       "serial_usbif"
+> > +#define NPCM8XX_CLK_S_USB_HOST    "usb_host"
+> > +#define NPCM8XX_CLK_S_USB_BRIDGE  "usb_bridge"
+> > +#define NPCM8XX_CLK_S_PCI         "pci"
+> > +#define NPCM8XX_CLK_S_TH          "th"
+> > +#define NPCM8XX_CLK_S_ATB         "atb"
+> > +#define NPCM8XX_CLK_S_PRE_CLK     "pre_clk"
+> > +
+> > +#define NPCM8XX_CLK_S_RG_MUX     "rg_mux"
+> > +#define NPCM8XX_CLK_S_RCP_MUX    "rcp_mux"
+> > +#define NPCM8XX_CLK_S_RG         "rg"
+> > +#define NPCM8XX_CLK_S_RCP        "rcp"
+> > +
+> > +static u32 pll_mux_table[] = {0, 1, 2, 3};
+> > +static const char * const pll_mux_parents[] = {
+> > +       NPCM8XX_CLK_S_PLL0,
+> > +       NPCM8XX_CLK_S_PLL1,
+> > +       NPCM8XX_CLK_S_REFCLK,
+> > +       NPCM8XX_CLK_S_PLL2_DIV2,
+> > +};
+> > +
+> > +static u32 cpuck_mux_table[] = {0, 1, 2, 3, 7};
+> > +static const char * const cpuck_mux_parents[] = {
+> > +       NPCM8XX_CLK_S_PLL0,
+> > +       NPCM8XX_CLK_S_PLL1,
+> > +       NPCM8XX_CLK_S_REFCLK,
+> > +       NPCM8XX_CLK_S_SYSBYPCK,
+> > +       NPCM8XX_CLK_S_PLL2,
+> > +};
+> > +
+> > +static u32 pixcksel_mux_table[] = {0, 2};
+> > +static const char * const pixcksel_mux_parents[] = {
+> > +       NPCM8XX_CLK_S_PLL_GFX,
+> > +       NPCM8XX_CLK_S_REFCLK,
+> > +};
+> > +
+> > +static u32 sucksel_mux_table[] = {2, 3};
+> > +static const char * const sucksel_mux_parents[] = {
+> > +       NPCM8XX_CLK_S_REFCLK,
+> > +       NPCM8XX_CLK_S_PLL2_DIV2,
+> > +};
+> > +
+> > +static u32 mccksel_mux_table[] = {0, 2, 3};
+> > +static const char * const mccksel_mux_parents[] = {
+> > +       NPCM8XX_CLK_S_PLL1_DIV2,
+> > +       NPCM8XX_CLK_S_REFCLK,
+> > +       NPCM8XX_CLK_S_MCBYPCK,
+> > +};
+> > +
+> > +static u32 clkoutsel_mux_table[] = {0, 1, 2, 3, 4};
+> > +static const char * const clkoutsel_mux_parents[] = {
+> > +       NPCM8XX_CLK_S_PLL0,
+> > +       NPCM8XX_CLK_S_PLL1,
+> > +       NPCM8XX_CLK_S_REFCLK,
+> > +       NPCM8XX_CLK_S_PLL_GFX, // divided by 2
+> > +       NPCM8XX_CLK_S_PLL2_DIV2,
+> > +};
+> > +
+> > +static u32 gfxmsel_mux_table[] = {2, 3};
+> > +static const char * const gfxmsel_mux_parents[] = {
+> > +       NPCM8XX_CLK_S_REFCLK,
+> > +       NPCM8XX_CLK_S_PLL2_DIV2,
+> > +};
+> > +
+> > +static u32 dvcssel_mux_table[] = {2, 3};
+> > +static const char * const dvcssel_mux_parents[] = {
+> > +       NPCM8XX_CLK_S_REFCLK,
+> > +       NPCM8XX_CLK_S_PLL2,
+> > +};
+> > +
+> > +static const struct npcm8xx_clk_pll_data npcm8xx_plls[] = {
+> > +       {NPCM8XX_PLLCON0, NPCM8XX_CLK_S_PLL0, NPCM8XX_CLK_S_REFCLK, 0, -1},
+> > +       {NPCM8XX_PLLCON1, NPCM8XX_CLK_S_PLL1, NPCM8XX_CLK_S_REFCLK, 0, -1},
+> > +       {NPCM8XX_PLLCON2, NPCM8XX_CLK_S_PLL2, NPCM8XX_CLK_S_REFCLK, 0, -1},
+> > +       {NPCM8XX_PLLCONG, NPCM8XX_CLK_S_PLL_GFX, NPCM8XX_CLK_S_REFCLK, 0, -1},
+> > +};
+> > +
+> > +static const struct npcm8xx_clk_mux_data npcm8xx_muxes[] = {
+> > +       {0, GENMASK(1, 0), cpuck_mux_table, NPCM8XX_CLK_S_CPU_MUX,
+> > +       cpuck_mux_parents, ARRAY_SIZE(cpuck_mux_parents), CLK_IS_CRITICAL,
+> > +       NPCM8XX_CLK_CPU},
+> > +
+> > +       {4, GENMASK(1, 0), pixcksel_mux_table, NPCM8XX_CLK_S_PIX_MUX,
+> > +       pixcksel_mux_parents, ARRAY_SIZE(pixcksel_mux_parents), 0,
+> > +       NPCM8XX_CLK_GFX_PIXEL},
+> > +
+> > +       {6, GENMASK(1, 0), pll_mux_table, NPCM8XX_CLK_S_SD_MUX,
+> > +       pll_mux_parents, ARRAY_SIZE(pll_mux_parents), 0, -1},
+> > +
+> > +       {8, GENMASK(1, 0), pll_mux_table, NPCM8XX_CLK_S_UART_MUX,
+> > +       pll_mux_parents, ARRAY_SIZE(pll_mux_parents), 0, -1},
+> > +
+> > +       {10, GENMASK(1, 0), sucksel_mux_table, NPCM8XX_CLK_S_SU_MUX,
+> > +       sucksel_mux_parents, ARRAY_SIZE(sucksel_mux_parents), 0, -1},
+> > +
+> > +       {12, GENMASK(1, 0), mccksel_mux_table, NPCM8XX_CLK_S_MC_MUX,
+> > +       mccksel_mux_parents, ARRAY_SIZE(mccksel_mux_parents), 0, -1},
+> > +
+> > +       {14, GENMASK(1, 0), pll_mux_table, NPCM8XX_CLK_S_ADC_MUX,
+> > +       pll_mux_parents, ARRAY_SIZE(pll_mux_parents), 0, -1},
+> > +
+> > +       {16, GENMASK(1, 0), pll_mux_table, NPCM8XX_CLK_S_GFX_MUX,
+> > +       pll_mux_parents, ARRAY_SIZE(pll_mux_parents), 0, -1},
+> > +
+> > +       {18, GENMASK(2, 0), clkoutsel_mux_table, NPCM8XX_CLK_S_CLKOUT_MUX,
+> > +       clkoutsel_mux_parents, ARRAY_SIZE(clkoutsel_mux_parents), 0, -1},
+> > +
+> > +       {21, GENMASK(1, 0), gfxmsel_mux_table, NPCM8XX_CLK_S_GFXM_MUX,
+> > +       gfxmsel_mux_parents, ARRAY_SIZE(gfxmsel_mux_parents), 0, -1},
+> > +
+> > +       {23, GENMASK(1, 0), dvcssel_mux_table, NPCM8XX_CLK_S_DVC_MUX,
+> > +       dvcssel_mux_parents, ARRAY_SIZE(dvcssel_mux_parents), 0, -1},
+> > +
+> > +       {25, GENMASK(1, 0), pll_mux_table, NPCM8XX_CLK_S_RG_MUX,
+> > +       pll_mux_parents, ARRAY_SIZE(pll_mux_parents), 0, -1},
+> > +
+> > +       {27, GENMASK(1, 0), pll_mux_table, NPCM8XX_CLK_S_RCP_MUX,
+> > +       pll_mux_parents, ARRAY_SIZE(pll_mux_parents), 0, -1},
+> > +};
+> > +
+> > +/* configurable dividers: */
+> > +static const struct npcm8xx_clk_div_data npcm8xx_divs[] = {
+> > +       {NPCM8XX_CLKDIV1, 28, 3, NPCM8XX_CLK_S_ADC, NPCM8XX_CLK_S_PRE_ADC,
+> > +               CLK_DIVIDER_READ_ONLY | CLK_DIVIDER_POWER_OF_TWO, 0,
+> > +               NPCM8XX_CLK_ADC},
+> > +       /* bit 30-28 ADCCKDIV*/
+> > +       {NPCM8XX_CLKDIV1, 26, 2, NPCM8XX_CLK_S_AHB, NPCM8XX_CLK_S_PRE_CLK,
+> > +               CLK_DIVIDER_READ_ONLY, CLK_IS_CRITICAL, NPCM8XX_CLK_AHB},
+> > +       /* bit 28-26 CLK4DIV*/
+> > +       {NPCM8XX_CLKDIV1, 21, 5, NPCM8XX_CLK_S_PRE_ADC,
+> > +       NPCM8XX_CLK_S_ADC_MUX, CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_PRE_ADC},
+> > +       /* bit 25-21 PRE-ADCCKDIV*/
+> > +       {NPCM8XX_CLKDIV1, 16, 5, NPCM8XX_CLK_S_UART,
+> > +       NPCM8XX_CLK_S_UART_MUX, CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_UART},
+> > +       /* bit 20-16 UARTDIV*/
+> > +       {NPCM8XX_CLKDIV1, 11, 5, NPCM8XX_CLK_S_MMC,
+> > +       NPCM8XX_CLK_S_SD_MUX, CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_MMC},
+> > +       /* bit 15-11 MMCCKDIV*/
+> > +       {NPCM8XX_CLKDIV1, 6, 5, NPCM8XX_CLK_S_SPI3,
+> > +       NPCM8XX_CLK_S_AHB, 0, 0, NPCM8XX_CLK_SPI3},
+> > +       /* bit 10-6 AHB3CKDIV*/
+> > +       {NPCM8XX_CLKDIV1, 2, 4, NPCM8XX_CLK_S_PCI,
+> > +       NPCM8XX_CLK_S_GFX_MUX, CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_PCI},
+> > +       /* bit 5-2 PCICKDIV*/
+> > +
+> > +       {NPCM8XX_CLKDIV2, 30, 2, NPCM8XX_CLK_S_APB4, NPCM8XX_CLK_S_AHB,
+> > +               CLK_DIVIDER_READ_ONLY | CLK_DIVIDER_POWER_OF_TWO, 0,
+> > +               NPCM8XX_CLK_APB4},
+> > +       /* bit 31-30 APB4CKDIV*/
+> > +       {NPCM8XX_CLKDIV2, 28, 2, NPCM8XX_CLK_S_APB3, NPCM8XX_CLK_S_AHB,
+> > +               CLK_DIVIDER_READ_ONLY | CLK_DIVIDER_POWER_OF_TWO, 0,
+> > +               NPCM8XX_CLK_APB3},
+> > +       /* bit 29-28 APB3CKDIV*/
+> > +       {NPCM8XX_CLKDIV2, 26, 2, NPCM8XX_CLK_S_APB2, NPCM8XX_CLK_S_AHB,
+> > +               CLK_DIVIDER_READ_ONLY | CLK_DIVIDER_POWER_OF_TWO, 0,
+> > +               NPCM8XX_CLK_APB2},
+> > +       /* bit 28-26 APB2CKDIV*/
+> > +       {NPCM8XX_CLKDIV2, 24, 2, NPCM8XX_CLK_S_APB1, NPCM8XX_CLK_S_AHB,
+> > +               CLK_DIVIDER_READ_ONLY | CLK_DIVIDER_POWER_OF_TWO, 0,
+> > +               NPCM8XX_CLK_APB1},
+> > +       /* bit 25-24 APB1CKDIV*/
+> > +       {NPCM8XX_CLKDIV2, 22, 2, NPCM8XX_CLK_S_APB5, NPCM8XX_CLK_S_AHB,
+> > +               CLK_DIVIDER_READ_ONLY | CLK_DIVIDER_POWER_OF_TWO, 0,
+> > +               NPCM8XX_CLK_APB5},
+> > +       /* bit 23-22 APB5CKDIV*/
+> > +       {NPCM8XX_CLKDIV2, 16, 5, NPCM8XX_CLK_S_CLKOUT, NPCM8XX_CLK_S_CLKOUT_MUX,
+> > +                CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_CLKOUT},
+> > +       /* bit 20-16 CLKOUTDIV*/
+> > +       {NPCM8XX_CLKDIV2, 13, 3, NPCM8XX_CLK_S_GFX, NPCM8XX_CLK_S_GFX_MUX,
+> > +               CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_GFX},
+> > +       /* bit 15-13 GFXCKDIV*/
+> > +       {NPCM8XX_CLKDIV2, 8, 5, NPCM8XX_CLK_S_USB_BRIDGE, NPCM8XX_CLK_S_SU_MUX,
+> > +               CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_SU},
+> > +       /* bit 12-8 SUCKDIV*/
+> > +       {NPCM8XX_CLKDIV2, 4, 4, NPCM8XX_CLK_S_USB_HOST, NPCM8XX_CLK_S_SU_MUX,
+> > +               CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_SU48},
+> > +       /* bit 8-4 SU48CKDIV*/
+> > +       {NPCM8XX_CLKDIV2, 0, 4, NPCM8XX_CLK_S_SDHC,
+> > +       NPCM8XX_CLK_S_SD_MUX, CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_SDHC}
+> > +       ,/* bit 3-0 SD1CKDIV*/
+> > +
+> > +       {NPCM8XX_CLKDIV3, 16, 8, NPCM8XX_CLK_S_SPI1,
+> > +       NPCM8XX_CLK_S_AHB, CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_SPI1},
+> > +       /* bit 23-16 SPI1CKDV*/
+> > +       {NPCM8XX_CLKDIV3, 11, 5, NPCM8XX_CLK_S_UART2,
+> > +       NPCM8XX_CLK_S_UART_MUX, CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_UART2},
+> > +       /* bit 15-11 UARTDIV2*/
+> > +       {NPCM8XX_CLKDIV3, 6, 5, NPCM8XX_CLK_S_SPI0,
+>
+> Please run checkpatch, add a space after '{' and before '}'
+I did run checkpatch, it weird I didn't got a warning about it.
+will be fixed.
+>
+> > +       NPCM8XX_CLK_S_AHB, CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_SPI0},
+> > +       /* bit 10-6 SPI0CKDV*/
+> > +       {NPCM8XX_CLKDIV3, 1, 5, NPCM8XX_CLK_S_SPIX,
+> > +       NPCM8XX_CLK_S_AHB, CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_SPIX},
+> > +       /* bit 5-1 SPIXCKDV*/
+> > +
+> > +       {NPCM8XX_CLKDIV4, 28, 4, NPCM8XX_CLK_S_RG, NPCM8XX_CLK_S_RG_MUX,
+> > +       CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_RG},
+> > +       /* bit 31-28 RGREFDIV*/
+> > +       {NPCM8XX_CLKDIV4, 12, 4, NPCM8XX_CLK_S_RCP, NPCM8XX_CLK_S_RCP_MUX,
+> > +       CLK_DIVIDER_READ_ONLY, 0, NPCM8XX_CLK_RCP},
+> > +       /* bit 15-12 RCPREFDIV*/
+> > +       {NPCM8XX_THRTL_CNT, 0, 2, NPCM8XX_CLK_S_TH, NPCM8XX_CLK_S_CPU_MUX,
+> > +       CLK_DIVIDER_READ_ONLY | CLK_DIVIDER_POWER_OF_TWO, 0, NPCM8XX_CLK_TH},
+> > +       /* bit 1-0 TH_DIV*/
+> > +};
+> > +
+> > +static DEFINE_SPINLOCK(npcm8xx_clk_lock);
+> > +
+> > +static int npcm8xx_clk_probe(struct platform_device *pdev)
+> > +{
+> > +       struct clk_hw_onecell_data *npcm8xx_clk_data;
+> > +       struct device *dev = &pdev->dev;
+> > +       struct device_node *np = dev->of_node;
+> > +       void __iomem *clk_base;
+> > +       struct resource res;
+> > +       struct clk_hw *hw;
+> > +       int i, err;
+> > +
+> > +       npcm8xx_clk_data = devm_kzalloc(dev, struct_size(npcm8xx_clk_data, hws,
+> > +                                                        NPCM8XX_NUM_CLOCKS),
+> > +                                       GFP_KERNEL);
+> > +       if (!npcm8xx_clk_data)
+> > +               return -ENOMEM;
+> > +
+> > +       err = of_address_to_resource(np, 0, &res);
+>
+> Why can't we use platform_get_resource()?
+>
+> > +       if (err) {
+> > +               dev_err(dev, "Failed to get resource, ret %d\n", err);
+> > +               return err;
+> > +       }
+> > +
+> > +       clk_base = ioremap(res.start, resource_size(&res));
+>
+> And use devm_platform_ioremap_resource()?
+Clock and reset driver use the same memory register map 0xF0801000 - 0xF0801FFF.
+For historical reasons the registers of both modules are mixed in the
+memory range 0xF0801000 - 0xF0801FFF this is why we can't have a
+separate region for each module.
+In case I will use devm_platform_ioremap_resource function the reset
+ioremap will fail so the driver using the method above.
+>
+> > +       if (!clk_base) {
+> > +               dev_err(&pdev->dev, "Failed to remap I/O memory\n");
+> > +               return -ENOMEM;
+> > +       }
+> > +
+> > +       npcm8xx_clk_data->num = NPCM8XX_NUM_CLOCKS;
+> > +
+> > +       for (i = 0; i < NPCM8XX_NUM_CLOCKS; i++)
+> > +               npcm8xx_clk_data->hws[i] = ERR_PTR(-EPROBE_DEFER);
+> > +
+> > +       /* Reference 25MHz clock */
+>
+> Does this exist on the board? If so, I'd make a fixed rate clk in the
+> dts and have 'refclk' be an input in the binding for this clk controller.
+No, it is an internal clock in the SoC, this is why it is in the driver.
+>
+> > +       hw = clk_hw_register_fixed_rate(dev, "refclk", NULL, 0, NPCM8XX_REF_CLK);
+> > +       if (IS_ERR(hw))
+> > +               return PTR_ERR(hw);
+> > +       npcm8xx_clk_data->hws[NPCM8XX_CLK_REFCLK] = hw;
+> > +
+> > +       /* Register plls */
+> > +       for (i = 0; i < ARRAY_SIZE(npcm8xx_plls); i++) {
+> > +               const struct npcm8xx_clk_pll_data *pll_data = &npcm8xx_plls[i];
+> > +
+> > +               hw = npcm8xx_clk_register_pll(dev, clk_base + pll_data->reg,
+> > +                                             pll_data->name,
+> > +                                             pll_data->parent_name,
+> > +                                             pll_data->flags);
+> > +               if (IS_ERR(hw)) {
+> > +                       dev_err(dev, "npcm8xx_clk: Can't register pll\n");
+> > +                       goto unregister_refclk;
+> > +               }
+> > +
+> > +               if (pll_data->onecell_idx >= 0)
+> > +                       npcm8xx_clk_data->hws[pll_data->onecell_idx] = hw;
+> > +       }
+> > +
+> > +       /* Register fixed dividers */
+> > +       hw = devm_clk_hw_register_fixed_factor(dev, NPCM8XX_CLK_S_PLL1_DIV2,
+> > +                                              NPCM8XX_CLK_S_PLL1, 0, 1, 2);
+> > +       if (IS_ERR(hw)) {
+> > +               dev_err(dev, "npcm8xx_clk: Can't register fixed div\n");
+> > +               goto unregister_refclk;
+> > +       }
+> > +
+> > +       hw = devm_clk_hw_register_fixed_factor(dev, NPCM8XX_CLK_S_PLL2_DIV2,
+> > +                                              NPCM8XX_CLK_S_PLL2, 0, 1, 2);
+> > +       if (IS_ERR(hw)) {
+> > +               dev_err(dev, "npcm8xx_clk: Can't register pll div2\n");
+> > +               goto unregister_refclk;
+> > +       }
+> > +
+> > +       hw = devm_clk_hw_register_fixed_factor(dev, NPCM8XX_CLK_S_PRE_CLK,
+> > +                                              NPCM8XX_CLK_S_CPU_MUX, 0, 1, 2);
+> > +       if (IS_ERR(hw)) {
+> > +               dev_err(dev, "npcm8xx_clk: Can't register ckclk div2\n");
+> > +               goto unregister_refclk;
+> > +       }
+> > +
+> > +       hw = devm_clk_hw_register_fixed_factor(dev, NPCM8XX_CLK_S_AXI,
+> > +                                              NPCM8XX_CLK_S_TH, 0, 1, 2);
+> > +       if (IS_ERR(hw)) {
+> > +               dev_err(dev, "npcm8xx_clk: Can't register axi div2\n");
+> > +               goto unregister_refclk;
+> > +       }
+> > +
+> > +       hw = devm_clk_hw_register_fixed_factor(dev, NPCM8XX_CLK_S_ATB,
+> > +                                              NPCM8XX_CLK_S_AXI, 0, 1, 2);
+> > +       if (IS_ERR(hw)) {
+> > +               dev_err(dev, "npcm8xx_clk: Can't register atb div2\n");
+> > +               goto unregister_refclk;
+> > +       }
+> > +
+> > +       /* Register clock dividers specified in npcm8xx_divs */
+> > +       for (i = 0; i < ARRAY_SIZE(npcm8xx_divs); i++) {
+> > +               const struct npcm8xx_clk_div_data *div_data = &npcm8xx_divs[i];
+> > +
+> > +               hw = devm_clk_hw_register_divider(dev, div_data->name,
+> > +                                                 div_data->parent_name,
+> > +                                                 div_data->flags,
+> > +                                                 clk_base + div_data->reg,
+> > +                                                 div_data->shift,
+> > +                                                 div_data->width,
+> > +                                                 div_data->clk_divider_flags,
+> > +                                                 &npcm8xx_clk_lock);
+> > +               if (IS_ERR(hw)) {
+> > +                       dev_err(dev, "npcm8xx_clk: Can't register div table\n");
+> > +                       goto unregister_refclk;
+> > +               }
+> > +
+> > +               if (div_data->onecell_idx >= 0)
+> > +                       npcm8xx_clk_data->hws[div_data->onecell_idx] = hw;
+> > +       }
+> > +
+> > +       /* Register muxes */
+> > +       for (i = 0; i < ARRAY_SIZE(npcm8xx_muxes); i++) {
+> > +               const struct npcm8xx_clk_mux_data *mux_data = &npcm8xx_muxes[i];
+> > +
+> > +               hw = clk_hw_register_mux_table(dev, mux_data->name,
+> > +                                              mux_data->parent_names,
+> > +                                              mux_data->num_parents,
+> > +                                              mux_data->flags,
+> > +                                              clk_base + NPCM8XX_CLKSEL,
+> > +                                              mux_data->shift,
+> > +                                              mux_data->mask, 0,
+> > +                                              mux_data->table,
+> > +                                              &npcm8xx_clk_lock);
+> > +
+> > +               if (IS_ERR(hw)) {
+> > +                       dev_err(dev, "npcm8xx_clk: Can't register mux\n");
+> > +                       goto err_mux_clk;
+> > +               }
+> > +
+> > +               if (mux_data->onecell_idx >= 0)
+> > +                       npcm8xx_clk_data->hws[mux_data->onecell_idx] = hw;
+> > +       }
+> > +
+> > +       err = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> > +                                         npcm8xx_clk_data);
+> > +       if (err) {
+> > +               dev_err(dev, "unable to add clk provider\n");
+> > +               goto unregister_refclk;
+>
+> The 'hw' pointer doesn't contain 'err' here so probe will return some
+> positive number when this fails?
+Indeed, will be fixed.
+>
+> > +       }
+> > +
+> > +       return err;
+> > +
+> > +err_mux_clk:
+> > +       while (i--) {
+> > +               if (npcm8xx_muxes[i].onecell_idx >= 0)
+> > +                       clk_hw_unregister_mux(npcm8xx_clk_data->hws[npcm8xx_muxes[i].onecell_idx]);
+> > +       }
+> > +unregister_refclk:
+> > +       clk_hw_unregister(npcm8xx_clk_data->hws[NPCM8XX_CLK_REFCLK]);
+> > +       return PTR_ERR(hw);
+> > +}
+> > +
+> > +static const struct of_device_id npcm8xx_clk_dt_ids[] = {
+> > +       { .compatible = "nuvoton,npcm845-clk", },
+> > +       { }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, npcm8xx_clk_dt_ids);
+> > +
+> > +static struct platform_driver npcm8xx_clk_driver = {
+> > +       .probe  = npcm8xx_clk_probe,
+> > +       .driver = {
+> > +               .name = "npcm8xx_clk",
+> > +               .of_match_table = npcm8xx_clk_dt_ids,
+> > +       },
+> > +};
+> > +
+> > +static int __init npcm8xx_clk_driver_init(void)
+> > +{
+> > +       return platform_driver_register(&npcm8xx_clk_driver);
+> > +}
+> > +arch_initcall(npcm8xx_clk_driver_init);
+> > +
+>
+> If it can be a module it needs to unregister the driver on module exit.
+Will remove the MODULE_DEVICE_TABLE, the driver clock should be a
+built-in kernel driver.
+
+Thanks,
+
+Tomer
