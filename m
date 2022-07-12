@@ -2,132 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 236EF571035
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 04:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A555757109C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 05:05:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbiGLC3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 22:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35648 "EHLO
+        id S231514AbiGLDF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 23:05:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229896AbiGLC3b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 22:29:31 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7257F326DA
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 19:29:30 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id j15-20020a056830014f00b0061c4d8736b5so2918897otp.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 19:29:30 -0700 (PDT)
+        with ESMTP id S230336AbiGLDFV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 23:05:21 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A86D620F7C;
+        Mon, 11 Jul 2022 20:05:18 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id v7so4303557pfb.0;
+        Mon, 11 Jul 2022 20:05:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bVUeMOT6CxdYKQvRRpgploiMAFLvvgb73Ly7V1pXLtk=;
-        b=w5ImoHPEOa/orzfpbfnqn4nL6QRHkFGjjNQZYmkUBkWlQWVHk+DWOP6XqkSi6t1KB7
-         oV3KAKH8llKXrEeE02drFReEMOKZfAPbgdso7aLtE5CW6Tzeu+wJMs1QJMi4gpCRnk8Z
-         FmwYm1x8aNDd8Xa5JszYSJ5+ccl8QwZ5W/AEhQqCoJjAT1j+dMoU7ImlJyYR7b+ldiWn
-         S7GWPKzQN6Q3YHuKvGXFQ1RG7xy7EeZzXVgN7cwP6ou0DFjie/FVcgA4TV+JU/jKV2pC
-         LUC4uOKaiG5H40npL04prEQO0rx9gX0o/2LI+t1/0Hob/qmCb+in1KwYpwKp8M1yWs2d
-         8ljQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=QNJONW1dJfYdy41mOtesiq7l94Sojq7h/3wxZaevjsc=;
+        b=WbFqP4wE0zxJ4qCyKCovtaWp/jNzql7iwZWepAe4KxuNzKfpX+/hT/raFvJg1nbY7y
+         yTV/LaX8IBbXbPZLudGvCU+zNdDEvyKv9cDqYXWsPJYf1uRD7qfcpuiRQkvrQosTYhXV
+         atgUlBvp4rFF6i4EBFrZdcn5qHmVFOpSvUxqLozRj+tFbMKCvsEBX0C2GuKIODRxZCyb
+         HUC6m/i2Z3gH7JClRZ658wwBwqAYWTcAuCCEnM6VGn0BkO3Bc5+aaM3yzZjUHa+rpFLH
+         M6CIktF2fBerBFvDizkA/79oOu8GxAs0hiQhgKaGTijCgPkLjSuPgsfwob2Kp5N2OFMe
+         VDMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bVUeMOT6CxdYKQvRRpgploiMAFLvvgb73Ly7V1pXLtk=;
-        b=Ego4y4bOg/BshS+HNX4BG8URsryrl/4F7F6pT9TG6SS92c/Xrd6D+5daleM+eM10hY
-         czBceD1iZHRoLTg2tdC5+E34V2jtm8Fp1CNPadyTPcGHrNr4z3iYF6m4XTMcAV6PDBFu
-         OnCxba01eZi3fl7F4dJy2209FaObph4+E8cVH2bQJISGgRt9oiagzGTNnmyWoGlj7n/Z
-         HCOahNzA7IYpzAESYpwrii76n5SKJeBm4g52mo5U3gsXa5tWgq9mQy7HdZ81ScUwczrJ
-         lS8KJdoOPcyajUHR5yS4sxCCvNiNXHmdPA2xkxwerw5HUmt8IQtbchMhKU/h4MuurtVv
-         oMlg==
-X-Gm-Message-State: AJIora+L3j0qTcakGzm961FckcF85XzPBgR22gkKtaAEB8vcpWhRsDhj
-        2Eqa7kMCphQAGLQ5lwnbvJdExQ==
-X-Google-Smtp-Source: AGRyM1vYCldoBiX82cDLOxQEYA7mJU1VsMRs9GX5SixmhPO1n9olIa7E47iMVVuAsmvScqtcp0HjtQ==
-X-Received: by 2002:a05:6830:314b:b0:61c:148c:4f34 with SMTP id c11-20020a056830314b00b0061c148c4f34mr8352234ots.283.1657592969782;
-        Mon, 11 Jul 2022 19:29:29 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k18-20020a056870819200b0010c5005d427sm3998996oae.33.2022.07.11.19.29.28
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=QNJONW1dJfYdy41mOtesiq7l94Sojq7h/3wxZaevjsc=;
+        b=Cr9rmru8ZwZNYrkDamRATP5ztatxs5XztLJW3fRgfNZESSftWO2KK1G1nzup9zanzz
+         HW1awdR6LUVk4RrIpmrhXLb8VeY5BNoLGnSeM3vOzy9F//k7nFRNIv11o/VpHPKYwxIX
+         iIaSGByapKUoX3sR1FVAA68R3wSDFNQGyjZ6BrfvUJZuIF6enRrqcsK5l3mg1NWF9bW8
+         aYfWKaoWQh9dxdHLHKzhlTzAds1yhk7518QTCtG6Kg8akAzZmhtlImsksh5VQu8kqUkd
+         xwkokTfIUT80yjcsBaIWXKI/Y59juplMbWSvYUM+YhpCb6LWiOVbgiwBMpv4Sp5gbWZm
+         o4Bw==
+X-Gm-Message-State: AJIora+c650bg01eTHdnBpkscAxUMG5O2KUi9WH/BFMoqK2qasDGsyhI
+        9mJ+aeKs0KOpQr2dRUKxDoM=
+X-Google-Smtp-Source: AGRyM1sKMOL5HnqzgXK1DWMH89QptCFMewUC+deopOQ46YN9JPnsHeQq8abdRfvl4rlljTTZqmCHiQ==
+X-Received: by 2002:a05:6a00:24c1:b0:51c:784:cb59 with SMTP id d1-20020a056a0024c100b0051c0784cb59mr21614681pfv.57.1657595118049;
+        Mon, 11 Jul 2022 20:05:18 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id i68-20020a626d47000000b005255263a864sm5467642pfc.169.2022.07.11.20.05.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jul 2022 19:29:29 -0700 (PDT)
-Date:   Mon, 11 Jul 2022 19:31:56 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Add lost ranges for timer
-Message-ID: <YszdHHms/0yOzKCf@ripper>
-References: <20220707160858.3178771-1-bjorn.andersson@linaro.org>
- <20220709065915.GG5063@thinkpad>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220709065915.GG5063@thinkpad>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Mon, 11 Jul 2022 20:05:17 -0700 (PDT)
+From:   Mia Lin <mimi05633@gmail.com>
+To:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        ctcchien@nuvoton.com, medadyoung@gmail.com, mimi05633@gmail.com,
+        KWLIU@nuvoton.com, YSCHU@nuvoton.com, KFTING@nuvoton.com,
+        JJLIU0@nuvoton.com, mylin1@nuvoton.com
+Cc:     openbmc@lists.ozlabs.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/3] RTC: nuvoton: Add nuvoton real time clock driver
+Date:   Tue, 12 Jul 2022 11:05:06 +0800
+Message-Id: <20220712030509.23904-1-mimi05633@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 08 Jul 23:59 PDT 2022, Manivannan Sadhasivam wrote:
+Support Nuvoton NCT3018Y real time clock.
 
-> On Thu, Jul 07, 2022 at 09:08:58AM -0700, Bjorn Andersson wrote:
-> > The timer node needs ranges specified to map the 1-cell children to the
-> > 2-cell address range used in /soc. This addition never made it into the
-> > patch that was posted and merged, so add it now.
-> > 
-> > Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > index 2bdb42c88311..37a4cd6f85b6 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > @@ -1667,6 +1667,7 @@ timer@17c20000 {
-> >  			reg = <0x0 0x17c20000 0x0 0x1000>;
-> >  			#address-cells = <1>;
-> >  			#size-cells = <1>;
-> > +			ranges = <0 0 0 0x20000000>;
-> 
-> Even though this looks correct, I'm wondering why other SoCs are defining the
-> child addresses in 2 cells. I don't think the timer frames can go beyond 32bit
-> address space. Should we fix them too?
-> 
+Changes since version 5:
+ - Add battery voltage level check by NCT3018Y_REG_ST.
+ - Remove disable clock output.
+ - Fix errors in rtc-nct3018y.c.
 
-Neither addresses nor sizes used for mmio need more than 32 bits, but
-ranges and dma-ranges are expressed in #size-cells. So unless these
-cells are 2 there's no way for us to express the fact that (most of) our
-busses uses 36 address bits.
+Changes since version 4:
+ - Fix warnings in rtc-nct3018y.c.
+ - Reduce the number of error messages.
+ - Add time vaild check.
+ - Add functionality check.
+ - Add maintainer.
 
-And we need to be able to do this, because the SMMU on multiple
-platforms claims that the bus is 40 address bits, so we end up running
-into issues with the upper 4 bits of IOVAs being truncated.
+Changes since version 3:
+ - Add part number in Kconfig.
+ - Refactor rtc-nct3018y.c.
 
-Regards,
-Bjorn
+Changes since version 2:
+ - Fix errors in rtc-nct3018y.c.
+ - Fix warnings in rtc-nct3018y.c.
 
-> But for this patch,
-> 
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> 
-> Thanks,
-> Mani
-> 
-> >  
-> >  			frame@17c21000 {
-> >  				frame-number = <0>;
-> > -- 
-> > 2.35.1
-> > 
-> 
-> -- 
-> ??????????????????????????? ????????????????????????
+Changes since version 1:
+ - Add nuvoton,nct3018y property in NPCM devicetree.
+ - Add new property in rtc binding document.
+ - Add new driver for nuvoton real time clock driver.
+
+Mia Lin (3):
+  dt-bindings: rtc: nuvoton: add NCT3018Y Real Time Clock
+  ARM: dts: nuvoton: Add nuvoton RTC3018Y node
+  RTC: nuvoton: Add NCT3018Y real time clock driver
+
+ .../bindings/rtc/nuvoton,nct3018y.yaml        |  45 ++
+ MAINTAINERS                                   |   2 +
+ arch/arm/boot/dts/nuvoton-npcm750-evb.dts     |   4 +
+ drivers/rtc/Kconfig                           |  10 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-nct3018y.c                    | 553 ++++++++++++++++++
+ 6 files changed, 615 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
+ create mode 100644 drivers/rtc/rtc-nct3018y.c
+
+-- 
+2.17.1
+
