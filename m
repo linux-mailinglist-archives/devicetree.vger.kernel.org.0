@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD75857145A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A25C657145E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:21:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232758AbiGLIVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:21:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51120 "EHLO
+        id S232764AbiGLIVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:21:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232718AbiGLIU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:20:56 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A52CA2EF1
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:20:44 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id t1so9144558lft.8
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:20:44 -0700 (PDT)
+        with ESMTP id S232692AbiGLIVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:21:18 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E28AA2ECE
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:20:57 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id n18so10976029lfq.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:20:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=h4aoSDO5bFwFIGc5yk/ffF1XWd97QmPgg6WjKezh/Ng=;
-        b=GS82EHVtm5H+0gRrtDtWVBR/EKnfu6+LDtrIywgPwu5WwZHG3vpYKjBX2sqgEep8aF
-         VELpVzbx2O4Q/dKe2FWp0bivyGXSL0/zG3duGoYK04mVUsBBkPNV7xJUk9QidfCkXv4g
-         r9rCvEj2wTFsZsIs1wAp+shEyF70yp4pWacKA07FFgSXp1fZYvwa9fViUQx7Lnghj81s
-         G5FIi0ZdfPXy4Kbb6R39Py7ZT2Orn1uZUiiMMG6n34vjLU9txaz3GQl/NWm+N2h9Gvfb
-         OgbG2RetR6LLVxpp8WleyuM5/5TUsdiaoa8NDsWN7CF9eUfBRzofAfS7HsBJK4UIUGPF
-         18yQ==
+        bh=913ghu35Laczo+JrxB0PirlbXEfk8cikvvsX+cGOl20=;
+        b=Uu+8MplcTKsPmXiBZsJCJeAe3rhQTWN9tr4dnLBA3Ey1mOL6NHm0y4Av59rVGgnYAO
+         HyPslUoCMA5QDw+mrXvZFNVSayYAhhqHo6tzCdwzupSKLgDBQdL8kr2JsIERKvRAHPUp
+         6ZtAahhb0JHZfepONp/AmdGHEM8NXFN2nWnn56Gaphqh1nEAK2wRXoNnUzw6AQ6hKZkt
+         nx4ZpOKmCoH7XiDGV/5kNpLlPw/J0Wr2owOAOYMWpL9075h5yUvCgHwruZd7byxNj6vE
+         FSOXWrMkbNcL9raH6vnO/Lkg/7rGpGLyUTuHi7NHIJ98MSOuwm7cCJBWIw6oShpP774H
+         QgMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=h4aoSDO5bFwFIGc5yk/ffF1XWd97QmPgg6WjKezh/Ng=;
-        b=HKpqhoGtcWIptSkc1MzKkonZDfd+MgTtEw4l6q41LjLaK25McL/TRY2cVKfkY1uc11
-         s8BoLSHmoyJOOrksr3b3smeDaB3XQ542StB76CAKkEuANce3h26DPENrsXORKuz0ZDgK
-         Ol1FjPvQqbSdKIJ1qIHIRev/La9hILOCIvdAdPfwrQE39z04swIWaW3RP86dOTFrIrdK
-         MWyYa+uY9AA3m7Xf5wNmyLHo/LRHc2ITku8XBXEkFAgxnA9F0e79BRffpsJPQztl4ZFo
-         97R+q7hTdShGGHRKRxgflvFjFr0ov9aPOLLBoxXhLdlRkLuijjbDviBhS3LhVJphyves
-         UxRA==
-X-Gm-Message-State: AJIora9CUscFQRqsgcJLqKSyQkJMmlh0XIusNqcFMcjCl0XjMRSuu7vf
-        2hUExIw4Vxy2PZ02xPzxf2qSGQ==
-X-Google-Smtp-Source: AGRyM1vsiCwZZO6TZj24hweHxR/VY0TkHiqWbajg3NUeWQw7oUKgNegd0s+X440nXrXTNUWgawVFsg==
-X-Received: by 2002:a05:6512:3d1a:b0:47f:79df:2ea8 with SMTP id d26-20020a0565123d1a00b0047f79df2ea8mr15517770lfv.610.1657614042567;
-        Tue, 12 Jul 2022 01:20:42 -0700 (PDT)
+        bh=913ghu35Laczo+JrxB0PirlbXEfk8cikvvsX+cGOl20=;
+        b=54KYMbL+OkBBtNl7gUwGRUZQu3F/mbDua6E9M0wJMnnKk1sA8nWL5jOhbxdS/e0XKS
+         ZMNeGSEXh93htosYTFp2SPezn5/E9Ee07VwExztGi6KbkOh7XR1JJ5PsLvQdLbp6+NwW
+         45L/KgVbGTLp+um5VAMKiKMI7Ub7liPYKXV5qQCxiIsKkK/Z3a9VFx2gomk6ikon7Nns
+         2ZUXer7jauEiqZAS58bpaRLkAQsZPU0CiJjEoOU2r/GvlmOEIZrT7Z+UZgh3Wq7AWCc6
+         z+TpP3T/z5ScqmM0hZMK35AN5uh8GpPzw3gIAU6e+s1gsy9s8B3Ux/iuK7uUhKQHSE92
+         Kx6Q==
+X-Gm-Message-State: AJIora81j+Thr3BFGjgHbIQNr1+VL5n/V7KAz5gpZxPiFF79DVkZCKu/
+        T6XqYpj1MO9Hsul0ATe7kOq7Hg==
+X-Google-Smtp-Source: AGRyM1vtEIRmeGsa2FJ5a0dWsD+KRyH/CFlvj/xzlrTFc+cFfK2H18BxvF0gdjTl7ae6NS2/2rXlXA==
+X-Received: by 2002:ac2:48a5:0:b0:489:c854:efbc with SMTP id u5-20020ac248a5000000b00489c854efbcmr11699452lfg.646.1657614055419;
+        Tue, 12 Jul 2022 01:20:55 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id j9-20020ac253a9000000b0048374164e22sm2034666lfh.193.2022.07.12.01.20.41
+        by smtp.gmail.com with ESMTPSA id a22-20020a19ca16000000b0047f79487758sm2037848lfg.133.2022.07.12.01.20.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:20:41 -0700 (PDT)
-Message-ID: <4d5a2526-246c-8f62-5712-3f2dbd0eca4f@linaro.org>
-Date:   Tue, 12 Jul 2022 10:20:40 +0200
+        Tue, 12 Jul 2022 01:20:54 -0700 (PDT)
+Message-ID: <1bc9b42d-0fbb-f08b-4b37-a6be7c337199@linaro.org>
+Date:   Tue, 12 Jul 2022 10:20:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/5] dt-bindings: arm: tegra: ahb: Convert to json-schema
+Subject: Re: [PATCH 1/6] dt-bindings: power: imx8mp-power: add HDMI HDCP/HRV
 Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20220711152020.688461-1-thierry.reding@gmail.com>
- <20220711152020.688461-2-thierry.reding@gmail.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, l.stach@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        paul.elder@ideasonboard.com, aford173@gmail.com,
+        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+References: <20220712082146.1192215-1-peng.fan@oss.nxp.com>
+ <20220712082146.1192215-2-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711152020.688461-2-thierry.reding@gmail.com>
+In-Reply-To: <20220712082146.1192215-2-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,97 +81,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 17:20, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On 12/07/2022 10:21, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Convert the NVIDIA Tegra AHB bindings from the free-form text format to
-> json-schema.
+> Add i.MX8MP HDMI HDCP and HRV entries.
 > 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../bindings/arm/tegra/nvidia,tegra20-ahb.txt | 17 --------
->  .../arm/tegra/nvidia,tegra20-ahb.yaml         | 39 +++++++++++++++++++
->  2 files changed, 39 insertions(+), 17 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-ahb.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-ahb.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-ahb.txt b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-ahb.txt
-> deleted file mode 100644
-> index 9a4295b54539..000000000000
-> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-ahb.txt
-> +++ /dev/null
-> @@ -1,17 +0,0 @@
-> -NVIDIA Tegra AHB
-> -
-> -Required properties:
-> -- compatible : For Tegra20, must contain "nvidia,tegra20-ahb".  For
-> -  Tegra30, must contain "nvidia,tegra30-ahb".  Otherwise, must contain
-> -  '"nvidia,<chip>-ahb", "nvidia,tegra30-ahb"' where <chip> is tegra124,
-> -  tegra132, or tegra210.
-> -- reg : Should contain 1 register ranges(address and length).  For
-> -  Tegra20, Tegra30, and Tegra114 chips, the value must be <0x6000c004
-> -  0x10c>.  For Tegra124, Tegra132 and Tegra210 chips, the value should
-> -  be be <0x6000c000 0x150>.
-> -
-> -Example (for a Tegra20 chip):
-> -	ahb: ahb@6000c004 {
-> -		compatible = "nvidia,tegra20-ahb";
-> -		reg = <0x6000c004 0x10c>; /* AHB Arbitration + Gizmo Controller */
-> -	};
-> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-ahb.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-ahb.yaml
-> new file mode 100644
-> index 000000000000..6d9baab76258
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-ahb.yaml
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Same comment as for #1 - move to "soc", please.
 
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/tegra/nvidia,tegra20-ahb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +title: NVIDIA Tegra AHB
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: nvidia,tegra20-ahb
-> +      - const: nvidia,tegra30-ahb
-
-These two should be an enum.
-
-> +      - items:
-> +          - enum:
-> +              - nvidia,tegra114-ahb
-> +              - nvidia,tegra124-ahb
-> +              - nvidia,tegra210-ahb
-> +          - const: nvidia,tegra30-ahb
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    ahb@6000c004 {
-> +      compatible = "nvidia,tegra20-ahb";
-> +      reg = <0x6000c004 0x10c>; /* AHB Arbitration + Gizmo Controller */
-> +    };
-
-In your first patch, you used 4-spaces indentation (preferred) for DTS
-example. How about using 4-space also here?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
