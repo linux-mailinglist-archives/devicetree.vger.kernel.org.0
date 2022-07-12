@@ -2,235 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE1E3571C7C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A370A571C8D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbiGLO2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:28:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44784 "EHLO
+        id S232706AbiGLO3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:29:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233598AbiGLO2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:28:01 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1E6FB9695;
-        Tue, 12 Jul 2022 07:27:23 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9DB2225B;
-        Tue, 12 Jul 2022 16:27:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1657636041;
-        bh=I5T9PZSBGeN46b1/EaWw0e4Go6uK1CgXTNN/ntOPNMc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VN7cCKnK3YH6IuE+1i8wGWBe5mZXRyhFVLPD7YsQJSz/HJ73qO5inOpX72Kocj6Kr
-         g2dmHqWQTAhh3GVLB3DoBhnu0MngeKu73OKrhP/WJwFJEB23CIqZBJojBugYEY0KH/
-         svoun3XVjr68bUzloxdkQdsknQNM/0/sKEdFvtD8=
-Date:   Tue, 12 Jul 2022 17:26:52 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-media@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 6/7] dt-bindings: media: Add i.MX8 ISI DT bindings
-Message-ID: <Ys2ErJr3gymnw2Qx@pendragon.ideasonboard.com>
-References: <20220712000251.13607-1-laurent.pinchart@ideasonboard.com>
- <20220712000251.13607-7-laurent.pinchart@ideasonboard.com>
- <d8b124f4-9ed7-7cc1-a978-60997696646f@linaro.org>
- <Ys1MKFknchDYKR/1@pendragon.ideasonboard.com>
- <3359e1bc-54c4-0b10-af9f-05e9f2fb2162@linaro.org>
+        with ESMTP id S232987AbiGLO3X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:29:23 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4462021AA
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:29:22 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id ss3so8605115ejc.11
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:29:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UpQJKKbtg93cX86UuSBO9tVRJrPAdwmdctCEOdnSRnU=;
+        b=ijq11B8dVKWd4WwXQdLWGL47Ff65ZWhCh8I3SE5MaxMAad6+ff+0LigbAoCe2JY4iV
+         3LYhRmAzDWby1Q6v0gv1VaqErS7z7UeZOhoWW35oxwjCuJ3tvmQYNhvS3m9DSj3ZipSe
+         75C5HfTf7UALfjjpZlu/UxdxlwILLB1WhqUf4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UpQJKKbtg93cX86UuSBO9tVRJrPAdwmdctCEOdnSRnU=;
+        b=TUEslzQ+Y9jAgP1Ctz1p5+LabUKHG83onucAAtMWA6zm0y4vMvCma7VJ+Gm/smtXh+
+         4cSlOXzAHngjbONuNKXxrt4IJtJiLFUHFPXrgC/f8yHgPwIRwAC2my2vjuhs5LAEVECs
+         bH420MbRscUQjRhSilFWPCxy8BVgs3B2SVyFRE84Fj24j6fuY4zLTJMNYk3FSC04kdb6
+         nvEGxSKc6Sqfb5wDjzsuyHI/65ZZaUPlLTtrO9Ft8Xzinc3CCg4ijNZiQ710ksc0Cs2n
+         8efbcj8uxUtuAUls7R5zxaXBI++bfGaQfV/SBAHBJOmXoKhYj2gsWFPHy7NRErVkk3+w
+         T04w==
+X-Gm-Message-State: AJIora/Ogo3rjJHPXF1Qz7NEypKM0zwBw9H2XQDwRi4Ry72cGFcFi+aZ
+        r33yvPxjs0OGHAL3IfYwpa55v4wA2FZQDfF1Xz8=
+X-Google-Smtp-Source: AGRyM1uJfbzBdPYb2B3DXZ7tC493LwOOQ3Hxi7xfYkAp2VKdBE2gte8GU0iKtn3y5ERLIFaWtmPEyQ==
+X-Received: by 2002:a17:907:2c47:b0:6d7:31b0:e821 with SMTP id hf7-20020a1709072c4700b006d731b0e821mr23377909ejc.334.1657636160550;
+        Tue, 12 Jul 2022 07:29:20 -0700 (PDT)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com. [209.85.221.41])
+        by smtp.gmail.com with ESMTPSA id y26-20020a056402135a00b00435a742e350sm6146800edw.75.2022.07.12.07.29.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 07:29:19 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id bk26so11401930wrb.11
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:29:19 -0700 (PDT)
+X-Received: by 2002:adf:d1c1:0:b0:21b:a5e9:b7b2 with SMTP id
+ b1-20020adfd1c1000000b0021ba5e9b7b2mr22505619wrd.405.1657636159126; Tue, 12
+ Jul 2022 07:29:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <3359e1bc-54c4-0b10-af9f-05e9f2fb2162@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220711082940.39539-1-krzysztof.kozlowski@linaro.org>
+ <20220711082940.39539-3-krzysztof.kozlowski@linaro.org> <CAD=FV=WUCPzzZHAPqoz-vhmcVxzYDxkKQs=+1tLZvsQjWe4q3Q@mail.gmail.com>
+ <f8744ff8-15a0-bf31-c49f-b1bb35ba5cdd@linaro.org> <CAD=FV=X2ZfwwDO_hSSN35ObfvBbBbPjMoSB4GvS7m0yJieNg3Q@mail.gmail.com>
+ <629ede41-326b-9c84-4bb8-2f7e695ca928@linaro.org>
+In-Reply-To: <629ede41-326b-9c84-4bb8-2f7e695ca928@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 12 Jul 2022 07:29:06 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W7dypM9=uqaY650TGfiV4EaZR9EBH_3svQefyNv-oE7Q@mail.gmail.com>
+Message-ID: <CAD=FV=W7dypM9=uqaY650TGfiV4EaZR9EBH_3svQefyNv-oE7Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: mmc: sdhci-msm: constrain reg-names
+ perp variants
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi,
 
-On Tue, Jul 12, 2022 at 02:49:06PM +0200, Krzysztof Kozlowski wrote:
-> On 12/07/2022 12:25, Laurent Pinchart wrote:
-> > On Tue, Jul 12, 2022 at 09:49:45AM +0200, Krzysztof Kozlowski wrote:
-> >> On 12/07/2022 02:02, Laurent Pinchart wrote:
-> >>> The Image Sensing Interface (ISI) combines image processing pipelines
-> >>> with DMA engines to process and capture frames originating from a
-> >>> variety of sources. The inputs to the ISI go through Pixel Link
-> >>> interfaces, and their number and nature is SoC-dependent. They cover
-> >>> both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
+On Tue, Jul 12, 2022 at 12:02 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/07/2022 17:11, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Mon, Jul 11, 2022 at 7:53 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 11/07/2022 16:52, Doug Anderson wrote:
+> >>> Hi
 > >>>
-> >>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >>> ---
-> >>> Changes since v1:
+> >>> On Mon, Jul 11, 2022 at 1:29 AM Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> The entries in arrays must have fixed order, so the bindings and Linux
+> >>>> driver expecting various combinations of 'reg' addresses was never
+> >>>> actually conforming to guidelines.
+> >>>>
+> >>>> The 'core' reg entry is valid only for SDCC v4 and lower, so disallow it
+> >>>> in SDCC v5.  SDCC v4 supports CQE and ICE, so allow them, even though
+> >>>> the qcom,sdhci-msm-v4 compatible is used also for earlier SoCs with SDCC
+> >>>> v2 or v3, so it is not entirely accurate.
+> >>>>
+> >>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>>>
+> >>>> ---
+> >>>>
+> >>>> Changes since v1:
+> >>>> 1. Rework the patch based on Doug's feedback.
+> >>>> ---
+> >>>>  .../devicetree/bindings/mmc/sdhci-msm.yaml    | 61 ++++++++++++-------
+> >>>>  1 file changed, 38 insertions(+), 23 deletions(-)
 > >>>
-> >>> - Fix compatible string checks in conditional schema
-> >>> - Fix interrupts property handling
-> >>> ---
-> >>>  .../bindings/media/nxp,imx8-isi.yaml          | 148 ++++++++++++++++++
-> >>>  1 file changed, 148 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> >>> In the ${SUBJECT} I'm not sure what a "perp variant" is. Is that a
+> >>> typo or just a phrase I'm not aware of?
+> >>
+> >> Should be:
+> >> "per variants"
+> >>
 > >>>
-> >>> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..390dfa03026b
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> >>> @@ -0,0 +1,148 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: i.MX8 Image Sensing Interface
-> >>> +
-> >>> +maintainers:
-> >>> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >>> +
-> >>> +description: |
-> >>> +  The Image Sensing Interface (ISI) combines image processing pipelines with
-> >>> +  DMA engines to process and capture frames originating from a variety of
-> >>> +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
-> >>> +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
-> >>> +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    enum:
-> >>> +      - fsl,imx8mn-isi
-> >>> +      - fsl,imx8mp-isi
-> >>> +
-> >>> +  reg:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  clocks:
-> >>> +    items:
-> >>> +      - description: The AXI clock
-> >>> +      - description: The APB clock
-> >>> +      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
-> >>> +      # as well, in case some SoCs have the ability to control them separately.
-> >>> +      # This may be the case of the i.MX8[DQ]X(P)
-> >>> +
-> >>> +  clock-names:
-> >>> +    items:
-> >>> +      - const: axi
-> >>> +      - const: apb
-> >>> +
-> >>> +  fsl,blk-ctrl:
-> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >>> +    description:
-> >>> +      A phandle referencing the block control that contains the CSIS to ISI
-> >>> +      gasket.
-> >>> +
-> >>> +  interrupts: true
+> >>>
+> >>>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> >>>> index fc6e5221985a..2f0fdd65e908 100644
+> >>>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> >>>> @@ -49,33 +49,11 @@ properties:
+> >>>>
+> >>>>    reg:
+> >>>>      minItems: 1
+> >>>> -    items:
+> >>>> -      - description: Host controller register map
+> >>>> -      - description: SD Core register map
+> >>>> -      - description: CQE register map
+> >>>> -      - description: Inline Crypto Engine register map
+> >>>> +    maxItems: 4
+> >>>>
+> >>>>    reg-names:
+> >>>>      minItems: 1
+> >>>>      maxItems: 4
+> >>>> -    oneOf:
+> >>>> -      - items:
+> >>>> -          - const: hc
+> >>>> -      - items:
+> >>>> -          - const: hc
+> >>>> -          - const: core
+> >>>> -      - items:
+> >>>> -          - const: hc
+> >>>> -          - const: cqhci
+> >>>> -      - items:
+> >>>> -          - const: hc
+> >>>> -          - const: cqhci
+> >>>> -          - const: ice
+> >>>> -      - items:
+> >>>> -          - const: hc
+> >>>> -          - const: core
+> >>>> -          - const: cqhci
+> >>>> -          - const: ice
+> >>>>
+> >>>>    clocks:
+> >>>>      minItems: 3
+> >>>> @@ -177,6 +155,43 @@ required:
+> >>>>  allOf:
+> >>>>    - $ref: mmc-controller.yaml#
+> >>>>
+> >>>> +  - if:
+> >>>> +      properties:
+> >>>> +        compatible:
+> >>>> +          contains:
+> >>>> +            enum:
+> >>>> +              - qcom,sdhci-msm-v4
+> >>>> +    then:
+> >>>> +      properties:
+> >>>> +        reg:
+> >>>> +          minItems: 2
+> >>>> +          items:
+> >>>> +            - description: Host controller register map
+> >>>> +            - description: SD Core register map
+> >>>> +            - description: CQE register map
+> >>>> +            - description: Inline Crypto Engine register map
+> >>>> +        reg-names:
+> >>>> +          minItems: 2
+> >>>> +          items:
+> >>>> +            - const: hc
+> >>>> +            - const: core
+> >>>> +            - const: cqhci
+> >>>> +            - const: ice
+> >>>> +    else:
+> >>>> +      properties:
+> >>>> +        reg:
+> >>>> +          minItems: 1
+> >>>> +          items:
+> >>>> +            - description: Host controller register map
+> >>>> +            - description: CQE register map
+> >>>> +            - description: Inline Crypto Engine register map
+> >>>> +        reg-names:
+> >>>> +          minItems: 1
+> >>>> +          items:
+> >>>> +            - const: hc
+> >>>> +            - const: cqhci
+> >>>> +            - const: ice
+> >>>
+> >>> Do you need to set "maxItems" here? If you don't then will it inherit
+> >>> the maxItems of 4 from above?
 > >>
-> >> Need generic constraints - min/maxItems.
-> > 
-> > I can't set maxItems here, as the value depends on the compatible
-> > string. It's set below as part of the "allOf". I could set minItems to
-> > 1, but I don't really see a point in doing so.
-> 
-> Of course you can, just like all other files could.
-> 
-> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+> >> No, items determine the size instead.
+> >
+> > Can you just remove the "maxItems" from above then? Does it buy us anything?
+>
+> There is no maxItems directly here...
 
-I meant I can't set a fixed maximum, other than the max of all max. Is
-there a point in doing do ?
+Sorry, I mean above in the schema. After your patch the schema is effectively:
 
-> >>> +
-> >>> +  power-domains: true
-> >>
-> >> Ditto.
-> > 
-> > I'll fix this one.
-> > 
-> >>> +
-> >>> +  ports:
-> >>> +    $ref: /schemas/graph.yaml#/properties/ports
-> >>> +    description: |
-> >>> +      Ports represent the Pixel Link inputs to the ISI. Their number and
-> >>> +      assignment are model-dependent. Each port shall have a single endpoint.
-> >>> +
-> >>> +    patternProperties:
-> >>> +      "^port@[0-9]$":
-> >>> +        $ref: /schemas/graph.yaml#/properties/port
-> >>> +        unevaluatedProperties: false
-> >>> +
-> >>> +    unevaluatedProperties: false
-> >>
-> >> At least one port is always required?
-> > 
-> > That's a fair assumption I think. How would you express that ? There's
-> > no patternRequired as far as I know. Note that the device-dependent
-> > ports are described in the "allOf" section below, where "required" is
-> > set per device model.
-> 
-> required:
->  - port@0
+reg:
+  minItems: 1
+  maxItems: 4
+reg-names:
+  minItems: 1
+  maxItems: 4
 
-What if an SoC has port@1 only, or another port ? It's likely not a
-concern in this binding though, so I could add required: - port@0, but
-is there a point in doing so if the per-compatible constraints list the
-required ports ?
+...
 
-> >>> +
-> >>> +required:
-> >>> +  - compatible
-> >>> +  - reg
-> >>> +  - interrupts
-> >>> +  - clocks
-> >>> +  - clock-names
-> >>> +  - fsl,blk-ctrl
-> >>> +  - ports
-> >>> +
-> >>> +allOf:
-> >>> +  - if:
-> >>> +      properties:
-> >>> +        compatible:
-> >>> +          contains:
-> >>> +            const: fsl,imx8mn-isi
-> >>> +    then:
-> >>> +      properties:
-> >>> +        interrupts:
-> >>> +          maxItems: 1
-> >>> +        ports:
-> >>> +          properties:
-> >>> +            port@0:
-> >>> +              description: MIPI CSI-2 RX
-> >>> +          required:
-> >>> +            - port@0
-> >>> +
-> >>> +  - if:
-> >>> +      properties:
-> >>> +        compatible:
-> >>> +          contains:
-> >>> +            const: fsl,imx8mp-isi
-> >>> +    then:
-> >>> +      properties:
-> >>> +        interrupts:
-> >>> +          maxItems: 2
-> >>
-> >> You need to describe the items.
-> > 
-> > It's one interrupt per pipeline. Can I add the description to the
-> > generic interrupts property instead of documenting each item
-> > individually ? Something along the lines of
-> > 
-> >   interrupts:
-> >     description: Processing pipeline interrupts, one per pipeline
-> 
-> This sounds good, thanks!
+allOf:
+  - if:
+      blah-blah-blah
+    then:
+      properties:
+        reg:
+          minItems: 2
+          items:
+            - description: ...
+            - description: ...
+            - description: ...
+            - description: ...
+        reg-names:
+          blah-blah-blah
+    else:
+      blah-blah-blah
 
-Thanks, I'll do that then.
+I'm asking about the maxItems _above_, AKA in the section:
 
--- 
-Regards,
+reg:
+  minItems: 1
+  maxItems: 4
+reg-names:
+  minItems: 1
+  maxItems: 4
 
-Laurent Pinchart
+Can we remove the "maxItems: 4" from the above and have it just be:
+
+reg:
+  minItems: 1
+reg-names:
+  minItems: 1
+
+-Doug
