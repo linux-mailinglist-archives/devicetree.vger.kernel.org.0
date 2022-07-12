@@ -2,128 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEE9D571CA7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0914571CD0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:35:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230037AbiGLOa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:30:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
+        id S233594AbiGLOfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:35:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbiGLOax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:30:53 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D3523BE3;
-        Tue, 12 Jul 2022 07:30:52 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id v10-20020a05600c15ca00b003a2db8aa2c4so4919237wmf.2;
-        Tue, 12 Jul 2022 07:30:52 -0700 (PDT)
+        with ESMTP id S230255AbiGLOej (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:34:39 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218BABA382
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:34:12 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id u14so10111202ljh.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:34:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=bzwxy70TNOzVzbC2SQ6pvxX4LI9i4auhhVyInyenLbg=;
-        b=iiLNdHTC8ESUCoAHkM/+WlHCV0Sw8CzK1CV5E4nKh5s0HWbiBPfsQXDmKQCIQMvsO5
-         EBw+FZRQr/NfAxusxfMt9/y9ycRcOcthOKHMKJdpjTU4v+soZknV+8Vc+uDD9pAZ7xLR
-         2iHXxvLSi2yCxTeDI3P/2EURCcQuYlv4Fli9+fUqvpASymmcmC1+mdHrSMMUb1LS9Oxo
-         ZEBr888IZ2Mitnnnh6AUYHDXNT+P4sS6B/7tcvUmIqc/q9hEjs1rLKrlCMX6+CY9ifIo
-         MZ88IZHbppWvq7YbXZpanMSwMRZrM0zaKkWbTQfAL6aAhF/WHboXOLrNuT+exLr8xI4i
-         LB3Q==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ug/OF6J2oXwTqZVMBEkYn2BquejpyxOcMU6lCKPsOiw=;
+        b=l/y9HIzpyEkJOeqnG6u5B2HHMrIGXEcNsyB8eskGyasKU/f3L21SLG6HmNEUy0wHLF
+         kYE5zgsFF31VJeYe8XbZG61pgOrmUTPPiUO36m1e9Hybb9UninxpdfeT3qNOdEigweBR
+         ohb+lhYrX5ufcl/2+1suPCWYTvODB1W7ACt5qMjPBtI3JmKc8euTiO6vTt9c6tUOpXsb
+         Z/wZnaC6qFm/TmdroQpdAA7Lpk6monkx2z86miSlF8n0ZWekdXBC0h+Prt9QMCmvx2iQ
+         WUMuz+bcvViJDqAy3hlJhdtS/d+sDLqNI0DmAfyOQlOSgF1f3/gV8gj4HwWWChSOcwsh
+         JTqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=bzwxy70TNOzVzbC2SQ6pvxX4LI9i4auhhVyInyenLbg=;
-        b=73cHvYrhANK6Xs2yXj1J2N7uzQApTrffd27JNScQWpGAEbzhS0/rvWCDdIe5b+kDuU
-         219zHQzP2/En4g4RSxFhpJwbKqymfmxFJuvZNciV6Sg9rTcAiJHr5UtErqfiEp6oRlg4
-         4wjuub3iwyt6u94vXGjA2ihK0Ydie85b5kSyuJRaVCOGoxCpsJ7LBGNaTjjrqk/jcEhC
-         goFhJR4t5B9ePe/hjKE2aaAJHkW5fxBRexofp6+1xdxj0HM7KPwJPj/hNAuhhPTR/Lhr
-         9KOnWE9KTS1Fu8YpWovrQ0jzORw0tMI7uuPShvVLj7TnbevcPXWX3zd/ml/7i/Px9bp8
-         Mjsg==
-X-Gm-Message-State: AJIora/Xn8rYGTGGAQGAq3+bFDBCd89mvSJROJ0qIePPR7EDu2vDkG6a
-        qgQPWgqsrYQ+m6ByjyHLx/c=
-X-Google-Smtp-Source: AGRyM1tG2wW154+SibgSBju+PDxt2tIJ0H01DgYNd4GXlcgDCdTYxqt2DoAhWPKhuoYxERcQ7TwiHw==
-X-Received: by 2002:a05:600c:1f08:b0:3a2:e82f:7b49 with SMTP id bd8-20020a05600c1f0800b003a2e82f7b49mr4172537wmb.11.1657636250998;
-        Tue, 12 Jul 2022 07:30:50 -0700 (PDT)
-Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
-        by smtp.gmail.com with ESMTPSA id bd10-20020a05600c1f0a00b003a18de85a64sm1915169wmb.24.2022.07.12.07.30.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 07:30:50 -0700 (PDT)
-Message-ID: <cf0a46c499de1f97987b231a0b162d09f961b702.camel@gmail.com>
-Subject: Re: [PATCH 04/10] input: keyboard: adp5588-keys: add support for fw
- properties
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 12 Jul 2022 16:31:53 +0200
-In-Reply-To: <CAHp75VfqT7L7EkSt=6DTwYeK-Nz6pX9edhrfoAR9AUTz40pcMA@mail.gmail.com>
-References: <20220708093448.42617-1-nuno.sa@analog.com>
-         <20220708093448.42617-5-nuno.sa@analog.com>
-         <CAHp75Vcv8i-XXarjA=sE_gkG57ngADLrsG2=xA71zOfxtfEUCg@mail.gmail.com>
-         <PH0PR03MB67864AAC5B51C36E6FB202BF99829@PH0PR03MB6786.namprd03.prod.outlook.com>
-         <CAHp75VfqT7L7EkSt=6DTwYeK-Nz6pX9edhrfoAR9AUTz40pcMA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.3 
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ug/OF6J2oXwTqZVMBEkYn2BquejpyxOcMU6lCKPsOiw=;
+        b=uyqteuVFx19tCWY9W1UBxCVQjsC32HIHPMIqwRRH+HteogMxX+qqZkhJpmZh7uxepp
+         GUIbLS9y6pNuMYgBVrHIzumUWnZq02SuBwCbRYxypYIy6t44BD6AR9jGZxEEKBDg/HzJ
+         T1TKZENAHNLKc03U7fWyD0w8uJWMOo74nkhKyniJqxVdcw8DhFwP/hTj+kHKLovn6UuD
+         wpQy+AaqU5wg/FafL2sOUPx/qh785sbWQ8aawm0XQZ5qi6feNyYtmH/gSPFBWLE9cp8o
+         hGji3Xk58OX5v4WRRgVJ1oAz2MQRDHuVdoh0A4Ps6vxudn0GK2+/59W47ntd79u9D/lP
+         l3Ow==
+X-Gm-Message-State: AJIora/K7blqkuuXsu06TuO8f5VvzksAeB1/POzZ3Jn6yGAtwi5ugP/D
+        Yo2ROZ2uMg3u1OS2EN7+v9Sf6Q==
+X-Google-Smtp-Source: AGRyM1tF4EgaUr3sA6G6yymRmUIAQ0IBm7T/lXcufzfIe9MC02+34UA39zT3lg4zp2qYGCELaSfMTw==
+X-Received: by 2002:a2e:a789:0:b0:25d:7a05:d179 with SMTP id c9-20020a2ea789000000b0025d7a05d179mr1883429ljf.64.1657636450354;
+        Tue, 12 Jul 2022 07:34:10 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id f9-20020a056512360900b0047f8132d10bsm2200047lfs.281.2022.07.12.07.34.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 07:34:09 -0700 (PDT)
+Message-ID: <a09cedbb-0878-d5ad-f3d1-aedc712bdcc7@linaro.org>
+Date:   Tue, 12 Jul 2022 16:34:07 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 6/7] dt-bindings: media: Add i.MX8 ISI DT bindings
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220712000251.13607-1-laurent.pinchart@ideasonboard.com>
+ <20220712000251.13607-7-laurent.pinchart@ideasonboard.com>
+ <d8b124f4-9ed7-7cc1-a978-60997696646f@linaro.org>
+ <Ys1MKFknchDYKR/1@pendragon.ideasonboard.com>
+ <3359e1bc-54c4-0b10-af9f-05e9f2fb2162@linaro.org>
+ <Ys2ErJr3gymnw2Qx@pendragon.ideasonboard.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Ys2ErJr3gymnw2Qx@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-07-08 at 17:07 +0200, Andy Shevchenko wrote:
-> On Fri, Jul 8, 2022 at 5:04 PM Sa, Nuno <Nuno.Sa@analog.com> wrote:
-> > > From: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > > Sent: Friday, July 8, 2022 4:56 PM
-> > > On Fri, Jul 8, 2022 at 11:37 AM Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > wrote:
->=20
-> ...
->=20
-> > > Okay, you add something in the wrong form and then fix it in the
-> > > other
-> > > patch in the very same series? Please no ping-pong type of
-> > > changes.
-> > > Squash / rebase your series accordingly.
-> >=20
-> > Well, I thought to just copy it as it was on the platform file and
-> > then just fix
-> > it with the rest of the coding styles changes. But I'm fine in
-> > fixing it already
-> > in this patch. In fact, there's a lot of defines that are not used
-> > (it's just
-> > defining the complete register map) so I can as well get rid of all
-> > the stuff
-> > that is not used anywhere in the driver.
->=20
-> This needs to be split to:
->=20
-> 1) fix existing
-> 2) move data
-> 3) use that data
->=20
-> Or
->=20
-> 1) move data (no other changes, if possible)
-> 2) fix data
-> 3) use it
->=20
-> ...
+On 12/07/2022 16:26, Laurent Pinchart wrote:
+> Hi Krzysztof,
+> 
+> On Tue, Jul 12, 2022 at 02:49:06PM +0200, Krzysztof Kozlowski wrote:
+>> On 12/07/2022 12:25, Laurent Pinchart wrote:
+>>> On Tue, Jul 12, 2022 at 09:49:45AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 12/07/2022 02:02, Laurent Pinchart wrote:
+>>>>> The Image Sensing Interface (ISI) combines image processing pipelines
+>>>>> with DMA engines to process and capture frames originating from a
+>>>>> variety of sources. The inputs to the ISI go through Pixel Link
+>>>>> interfaces, and their number and nature is SoC-dependent. They cover
+>>>>> both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
+>>>>>
+>>>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>>>> ---
+>>>>> Changes since v1:
+>>>>>
+>>>>> - Fix compatible string checks in conditional schema
+>>>>> - Fix interrupts property handling
+>>>>> ---
+>>>>>  .../bindings/media/nxp,imx8-isi.yaml          | 148 ++++++++++++++++++
+>>>>>  1 file changed, 148 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..390dfa03026b
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+>>>>> @@ -0,0 +1,148 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: i.MX8 Image Sensing Interface
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  The Image Sensing Interface (ISI) combines image processing pipelines with
+>>>>> +  DMA engines to process and capture frames originating from a variety of
+>>>>> +  sources. The inputs to the ISI go through Pixel Link interfaces, and their
+>>>>> +  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
+>>>>> +  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - fsl,imx8mn-isi
+>>>>> +      - fsl,imx8mp-isi
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    items:
+>>>>> +      - description: The AXI clock
+>>>>> +      - description: The APB clock
+>>>>> +      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
+>>>>> +      # as well, in case some SoCs have the ability to control them separately.
+>>>>> +      # This may be the case of the i.MX8[DQ]X(P)
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    items:
+>>>>> +      - const: axi
+>>>>> +      - const: apb
+>>>>> +
+>>>>> +  fsl,blk-ctrl:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>> +    description:
+>>>>> +      A phandle referencing the block control that contains the CSIS to ISI
+>>>>> +      gasket.
+>>>>> +
+>>>>> +  interrupts: true
+>>>>
+>>>> Need generic constraints - min/maxItems.
+>>>
+>>> I can't set maxItems here, as the value depends on the compatible
+>>> string. It's set below as part of the "allOf". I could set minItems to
+>>> 1, but I don't really see a point in doing so.
+>>
+>> Of course you can, just like all other files could.
+>>
+>> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+> 
+> I meant I can't set a fixed maximum, other than the max of all max. Is
+> there a point in doing do ?
 
-Well, I think in the current form is already your option 2... And fix
-is a strong word in here, these are coding style changes :)
+Yes, that's the practice. makes code easier to read and notice all
+constraints.
 
-- Nuno S=C3=A1
 
+Best regards,
+Krzysztof
