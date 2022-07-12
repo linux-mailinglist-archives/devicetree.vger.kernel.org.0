@@ -2,103 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7314B571F85
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 746C4571FD6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233100AbiGLPg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 11:36:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45784 "EHLO
+        id S233122AbiGLPqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 11:46:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231190AbiGLPg5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:36:57 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F7CDBFAF4;
-        Tue, 12 Jul 2022 08:36:57 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id o18so7882595pgu.9;
-        Tue, 12 Jul 2022 08:36:57 -0700 (PDT)
+        with ESMTP id S231423AbiGLPqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:46:23 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F919C548B
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:46:22 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id e28so11043936lfj.4
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:46:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=D62EEaJdJ1cUDqfOx+/9az3sZV4zojbFZZeqG8QPACA=;
-        b=pPihGnCaQ8cg4w9ldLfV/i3WKugrLc0QWCh/PQl9YbPVFL3Lr2UWaZYamHmhOSy+z5
-         6kd/s6iACNpW3siXrot7bnlQbK1UEWaVvShA1bj88SSom3/SWCY2SWBAu4In9dDzJruR
-         7LpD+fCGACefbn/FGfiIwamPAESY6hD4RedrmqZ5NI9N0X2x1VEMZFHdi15rSu5pNuoe
-         +kDi11Xgmfzl5z/FPbx+DOAzN/QamSMltJOzXMBTP47kzvhHn8hn7MsYseXR/h1SoO6/
-         Npamb8b+ZWs+QsDJ+nEAAdmgBnE7dy7t1vYUqZap2QePe7H7cJjSlsCc4deJDZ5hO9q4
-         xfQg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d5pYk2bgENoJKmAgJjP5u55IOFZv0T0dQhNKXZeD8lc=;
+        b=M0hAkO/ALSrNhqkwUr/tsVDZsxYCiyAIDDaijWDF/AlvXiL+HHnJ5t0UlDpdX+DVui
+         fpE/bgj461v35xJXE/X/OGyNTzRHO0A5Xzp4NxbpNF7ToaLTQm5rzo17JjVyc1cC5RQc
+         1LqplN58movOWgeQdwxI5PqkvhLU3nr5qKvb5IKR8xjaUWl5nWVWiPis6Zjrjx/LiiQY
+         pQa5/An7MivsJ2Fzw5QhqcEZQrylU3HRJRoFk/plVSQX+Gj3z4mM+CwO9yruN/l8Qdm9
+         NAhyI1rJCJf+8dxsnOOEnFrBZE2lwR81m+hfLiDeF/9tFwHZ9L7xmWE65jtXW5YtEML8
+         ADLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=D62EEaJdJ1cUDqfOx+/9az3sZV4zojbFZZeqG8QPACA=;
-        b=olbpYgxyO4d6pCVaBr6zb0q14WKnDKLpyrXAaYAwTJr+Lzn5WEAoeN4pYUcSaPYzzh
-         zXh1KoiEqBTGTT53MJnMaH8sihezHM6yvCEzTko5TXlvXQMSdKby5eqoh21s6l8uNrAJ
-         1KhFt59dO/Wwy757Ck9RzL3d8/jneLx/iGHAty+ja/zz/qCk5x4r28dYFlKNMB2XtrNk
-         zpV2lPWwLKtl+NC+/QuKtK9dkaLAz8NK1cMOukeIUyfXCl3J1I+OKXYqcYIKZabPZuqq
-         5iSIHeEycuOfYjtGXnFa9RsuGgfUrcHJN5cKi8WeKcBC7XH8QvYoMsVmVX7hzUN8ZbiM
-         1qkQ==
-X-Gm-Message-State: AJIora+60EoH1eqXZ44CS/Jq39QEGHWmMZH9lkeL+/oV9SfgQKQ7Dam5
-        HGmjrIoEMnIgUwIW1EtwA5k=
-X-Google-Smtp-Source: AGRyM1tluCYwfEtElbpLtsdITpCG6+RpxuiTKPvI5GF5WI1YAPknTx8/9d7FprFKfKYM/f2ciRnDng==
-X-Received: by 2002:a63:4619:0:b0:419:83a8:bced with SMTP id t25-20020a634619000000b0041983a8bcedmr853782pga.319.1657640216474;
-        Tue, 12 Jul 2022 08:36:56 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id rm10-20020a17090b3eca00b001ed27d132c1sm3994068pjb.2.2022.07.12.08.36.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 08:36:55 -0700 (PDT)
-Message-ID: <900ac3ed-a77c-3cc0-f5ab-c45267a1a4ba@gmail.com>
-Date:   Tue, 12 Jul 2022 08:36:53 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [RFC PATCH 3/3] arm64: dts: bcmbca: update bcm4808 board dts file
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        William Zhang <william.zhang@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Cc:     kursad.oney@broadcom.com, anand.gore@broadcom.com,
-        dan.beygelman@broadcom.com, f.fainelli@gmail.com,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        joel.peshkin@broadcom.com,
+        bh=d5pYk2bgENoJKmAgJjP5u55IOFZv0T0dQhNKXZeD8lc=;
+        b=BDKH8hm4nuL6zXuNc9z6WzejCK55vESPjXPjj1eHq4SLT3UfXetWds2gl/9xnJUmlQ
+         PCSADT0/avLryXYPHU143jcKnh+3V7ZY7LNan1IYGfTHoVav/4RR0p32tjAEk3foFwCC
+         X0pvVuaKZGL39YOYfn65vNzhwXYfGaEDJMTtlbPK2jb6qeJJ6CitqqdTaMYFMSQFFsB0
+         lY/iQwP4NteUAT9Ykl1ewWH1qBDty9VUlEh0mif1Kin/ynwv+4d8vWnJEEo9DAM2LDBm
+         65p2xAVbTOO8osT9/6kpju9+ZgAz7gHuLuLtjVABDm+sqUMmohrMfKk19h1FhprfA68h
+         kHTA==
+X-Gm-Message-State: AJIora+/lQGLH9XZvBGRonGE1V7AFN3fPwhJkA03vfUWz/ppn15JNOjZ
+        qA4sgcq+4C6f3LuY1GDo24caJQ==
+X-Google-Smtp-Source: AGRyM1vv1jizlfHJgxqT0dOxee25WGxKd5vBg/s8PWXRo0/Bt2J1h5OGxf2AyNpVQfJjMnogy+hAdw==
+X-Received: by 2002:a05:6512:2290:b0:489:d433:605d with SMTP id f16-20020a056512229000b00489d433605dmr8806532lfu.629.1657640780501;
+        Tue, 12 Jul 2022 08:46:20 -0700 (PDT)
+Received: from krzk-bin.. (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id q5-20020a056512210500b00489ed49d243sm582396lfr.260.2022.07.12.08.46.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 08:46:19 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220712021144.7068-1-william.zhang@broadcom.com>
- <20220712021144.7068-4-william.zhang@broadcom.com>
- <d93e55fa-3359-2609-aad5-c80eca78f380@linaro.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <d93e55fa-3359-2609-aad5-c80eca78f380@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: bus: qcom,ssc-block-bus: rework arrays and drop redundant minItems
+Date:   Tue, 12 Jul 2022 17:46:02 +0200
+Message-Id: <20220712154602.26994-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/12/22 00:47, Krzysztof Kozlowski wrote:
-> On 12/07/2022 04:11, William Zhang wrote:
->> Update compatible string based on the new bcmbca binding rule
->> for BCM4908 famliy based boards
-> 
-> Typo - family
-> 
-> Please explain why breaking the ABI (and users of these DTS_ is acceptable.
+There is no need to specify "minItems" if it equals to "maxItems".  On the
+other hand number of items in an array can be specified via describing
+items, which might bring some additional information.  This simplifies a
+bit the binding.
 
-This will be largely targeted towards Rafal who supports these kinds of 
-devices with an upstream kernel. My understanding is that this is OK 
-because we will always ship a DTB matching the Linux kernel, and I 
-believe this is true for both the way that William and his group support 
-these devices, as well as how OpenWrt, buildroot or other build systems 
-envision to support these devices.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/bus/qcom,ssc-block-bus.yaml      | 25 ++++++++-----------
+ 1 file changed, 11 insertions(+), 14 deletions(-)
 
-Rafal, does that sound about right?
+diff --git a/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml b/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml
+index 5b9705079015..8e9e6ff35d7d 100644
+--- a/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml
++++ b/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml
+@@ -28,11 +28,9 @@ properties:
+       - const: qcom,ssc-block-bus
+ 
+   reg:
+-    description: |
+-      Shall contain the addresses of the SSCAON_CONFIG0 and SSCAON_CONFIG1
+-      registers
+-    minItems: 2
+-    maxItems: 2
++    items:
++      - description: SSCAON_CONFIG0 registers
++      - description: SSCAON_CONFIG1 registers
+ 
+   reg-names:
+     items:
+@@ -48,7 +46,6 @@ properties:
+   ranges: true
+ 
+   clocks:
+-    minItems: 6
+     maxItems: 6
+ 
+   clock-names:
+@@ -61,9 +58,9 @@ properties:
+       - const: ssc_ahbs
+ 
+   power-domains:
+-    description: Power domain phandles for the ssc_cx and ssc_mx power domains
+-    minItems: 2
+-    maxItems: 2
++    items:
++      - description: CX power domain
++      - description: MX power domain
+ 
+   power-domain-names:
+     items:
+@@ -71,11 +68,11 @@ properties:
+       - const: ssc_mx
+ 
+   resets:
+-    description: |
+-      Reset phandles for the ssc_reset and ssc_bcr resets (note: ssc_bcr is the
+-      branch control register associated with the ssc_xo and ssc_ahbs clocks)
+-    minItems: 2
+-    maxItems: 2
++    items:
++      - description: Main reset
++      - description:
++          SSC Branch Control Register reset (associated with the ssc_xo and
++          ssc_ahbs clocks)
+ 
+   reset-names:
+     items:
 -- 
-Florian
+2.34.1
+
