@@ -2,155 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B808571B57
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 15:32:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD385571B5C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 15:33:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233041AbiGLNcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 09:32:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46692 "EHLO
+        id S229537AbiGLNdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 09:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232387AbiGLNcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 09:32:22 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2073.outbound.protection.outlook.com [40.107.22.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26CB8B628B;
-        Tue, 12 Jul 2022 06:32:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GBs6FwBxQ/Tuno9CWMG2F/+KgQz4Wd4J6Z54LCt1oWbN2j8rmUvlzNTpT3Z9UqMgMTZYUZd/7xrXRoljoM/K/sGy5axahq3kLni3A72yWYkeIGyKHaTH3FyUWMVd4YsHyJiCYVKT5mOqM3ns8/AJS0QTEXmXUiy3Bu9JiC2UjLM3eTeicuweCUbOSnvk+wszlAKKQyczQ/3Dl3Z2zrOxNJRqqGX1sROyqsf/AsW+rD0FV38F0weHQvoPGod3mpQN3m2EdIQ1y9O8IYOxhEtuk1Ewq8/kpoi6ZOHCngV2WDp9SZjsfTWbYUk008jxxu2IUWcC07G1s0XgyOjatObAig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HwhKwuR2JjNuDNRDeUk61bc9qQUrfny4xTn78NY/rJY=;
- b=OUqby3kk4VNU0NiBDVHzXVXvayN3jj7t4v9q+wvOtjp6dIo/HDFtKC/s41sN9gXqoJDREFmhBILN2CK0ZbozFPMt+LBGmAtuw2XYZlGir1R2C8rZb3xtrlxl0IGiaczb9PZPRE8AxkXx2lNj7duXgz909axVhDKmF164c62kL+h1hk3eUaaQgCOOyHutxCCp1CLqucMCXSnaD66Ec2RV39xMvybZobDly1gaeIpLmideZc/MHivom7/qSgRgr7MyH3TwwNp0OM7y9AGj2+9ze5BkziHafMys4MIymWzMkLF0GCSpDrOHRTTYYTvWt2gQ6dBJ82LIQL7IeR6LD0o+KQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HwhKwuR2JjNuDNRDeUk61bc9qQUrfny4xTn78NY/rJY=;
- b=uZhi9JFDPOfL4X7tWhhAmEgODq+0rfEX9qUjNWIRGgkoa3NCEyKzjiycxeqFaa5Pr5F3rS6YvjIPwlZZDpqAi0H623F0BUUXvWtiY61Dh52qqyzWXiAgPbeCr0V5wOWv+8eMQGdLoYb0LbyZ3CTg7I9PjBa7NwCol58CJEZuD7w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from AM4PR0802MB2131.eurprd08.prod.outlook.com
- (2603:10a6:200:5c::22) by DBAPR08MB5608.eurprd08.prod.outlook.com
- (2603:10a6:10:1a5::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Tue, 12 Jul
- 2022 13:32:20 +0000
-Received: from AM4PR0802MB2131.eurprd08.prod.outlook.com
- ([fe80::dcaa:905c:ff8:1f5b]) by AM4PR0802MB2131.eurprd08.prod.outlook.com
- ([fe80::dcaa:905c:ff8:1f5b%9]) with mapi id 15.20.5417.026; Tue, 12 Jul 2022
- 13:32:20 +0000
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229918AbiGLNdS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 09:33:18 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D94CB6294
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 06:33:17 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id bk26so11172342wrb.11
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 06:33:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=1FNQrGGLfgdOgMRKiUwsbzE3SGEjtGBgzxsXljwQUHE=;
+        b=hTDsqLoXRixjt/Sxz4pnsbxPZ2ChVkl5G3Efink/BugEruXacu1c14dFTFwKa0c3gY
+         o/+eryoGjW9zyuyJ7wemDQirD4D04/nXfYPkHa1G3NtRldyCDQ/2zs/zyzMfMEI8HTWr
+         iYlsUd6VZ1BdSYB6OpRejTRfbS/3+NfNcv56pt8/W3na5GXCHJ5oq4VO25FksgV9cQFP
+         OOzwUmFoXuLhNwWST4eb5B14ImeEhE4+FdqOm1DF6nMbC5rCYGWDPXDwqd7SkScILR7N
+         gec2/C7+2gfE3s/eAraUC8ItcbP1D33rLOfkl66gtcp/BtJDaEyGPr/I+63MxweebsQZ
+         wKaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=1FNQrGGLfgdOgMRKiUwsbzE3SGEjtGBgzxsXljwQUHE=;
+        b=gptUD+4+xikpqffDIS8PXsiBFTvWab4wt/sUcOLpOw4Rcs4MuDTlH/KC6XewTERGgc
+         6mgvoFIZRB1exdFK11KJ3C2+4672MUMld2WK6VPpGskLxzCnRJ7ltFW/0FhMuvRfRlfb
+         RNrmXJ02tg9KoSSm6+G8higcIMFVHvqnuCCrlq0/SHEjHYz4Z2kx50PlqXzVrf2lA4s4
+         Sx/1JXjIYTXLCUdl4/3PWedRAviMmrj21oTqNOYvZuPdxuroqqU4glDq3Za8T8HmRyDb
+         Hqx48soxQ2Fs02+5c2nNksHYGez1PTOo7iM0ZxXnn9jX9maVK+Kh6e0xC4ibTwIRmABN
+         gjgQ==
+X-Gm-Message-State: AJIora/OK1lqB8IhkBsFnNomRSlU1EWoU7U5CL4KQ2CvCnpZsVhlz3kQ
+        QN97oaIK9r2we/VT3vTusrLL8g==
+X-Google-Smtp-Source: AGRyM1tDxqUM6cVCSs98mVzMblL7DYw1ebw4b5m50i0FuBi3jTzjyS1F+201+kxSFQ4/IZUzwFtrpw==
+X-Received: by 2002:a05:6000:178c:b0:21d:b6d0:11a8 with SMTP id e12-20020a056000178c00b0021db6d011a8mr1741057wrg.547.1657632795572;
+        Tue, 12 Jul 2022 06:33:15 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id g4-20020adff404000000b0021d87798237sm8320371wro.20.2022.07.12.06.33.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 06:33:14 -0700 (PDT)
+Date:   Tue, 12 Jul 2022 14:33:13 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Francesco Dolcini <francesco.dolcini@toradex.com>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: [PATCH 3/3] arm64: dts: rockchip: specify pinctrl for i2c adapters on rock-3a
-Date:   Tue, 12 Jul 2022 15:32:04 +0200
-Message-Id: <20220712133204.2524942-3-michael.riesch@wolfvision.net>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220712133204.2524942-1-michael.riesch@wolfvision.net>
-References: <20220712133204.2524942-1-michael.riesch@wolfvision.net>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR09CA0076.eurprd09.prod.outlook.com
- (2603:10a6:802:29::20) To AM4PR0802MB2131.eurprd08.prod.outlook.com
- (2603:10a6:200:5c::22)
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH v1 1/4] mfd: stmpe: Probe sub-function by compatible
+Message-ID: <Ys14GboRr4+GVMX1@google.com>
+References: <20220712110232.329164-1-francesco.dolcini@toradex.com>
+ <20220712110232.329164-2-francesco.dolcini@toradex.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2c9f07a0-d047-4118-7af2-08da640af263
-X-MS-TrafficTypeDiagnostic: DBAPR08MB5608:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FV4YEV/Ezo1yvLmS2gBIgv9zezUVTStHB/iBvMy3IvSwAnlP4cA35gNiiSMfE9zBEaBHACBnrmEBY+SAowOL6prSeMMFP+2puZOmySssNjyQxjz7q5tpGXLam4AVxv+hmtVB4Px/Zq2AnR+/gBbkC6TqzWxUFs4ixXB/LVDe+xABs5Wla69CBHrKJijGwyUBgrXjQBnxu07B+yPdh0b5U9YY5KY1dkHfFGSInDjO0m/w2IaXMd6q+umU73BZ0BLpdNO1E7IrwkrNDp5qmYbtyc4K29lA7bV2quDtCi52ZmlcQQf8H2ynHeptgW1IpCPPuSRJkt4mwFKKytgNX9In26BZjszCLRRLbgmySWCRBuUwLt+cgF4GQ4/0pdDWppZqWaeeooQrAtZhr5qaGil1/sq2yn/y3cnKNdOowW4GkDcIZLpCGaBEOr0kU8Kv6XADocNQSzweGL9h+6uREckEPCg6Jb9uxcRu5eVfzxzfs5NAHF1inPlfsj/YXsyWoEViRmV7FnzFbF3A5S8uty+wwhvpofEL+zsYleAFdWdY5bibW4XyG/eQR1xjMZOpHj3VUruRdI0d7NGewXrd3CVG09HCW7SDptYTcSyKoB2ug4gXzTdZ0Xlg1Jkst/G62Kd1v0eIKsxXIplXSrpYBNVT5pqC6TP7qdR9JFSm5a2EHH9TPAhBY+54Wrd9xRv1sGnCLsjwJ6bl67ODi1XLQvNpjjX+hapO++Dpw6XVuA720oiBbw9zDWmJABnn0bj6Bs2r+D9a9iA7N83pju53x6lNzBB5pHF8vIwSjzc6vR+MMLFDYs98x2d/kKzZmGz3+Xiu
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM4PR0802MB2131.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39840400004)(376002)(136003)(346002)(366004)(396003)(478600001)(41300700001)(6486002)(66946007)(38100700002)(2906002)(38350700002)(6506007)(52116002)(26005)(66476007)(86362001)(8676002)(4326008)(186003)(66556008)(316002)(107886003)(1076003)(54906003)(2616005)(36756003)(8936002)(5660300002)(6666004)(4744005)(44832011)(83380400001)(6512007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ymZO1TNWr5RyV9Ur2aocGcS5wVB97pbYDUOWKsyiPFXZ9/9XnZT4LPcm8ynd?=
- =?us-ascii?Q?0OYcvhCPjJQrt5AhHIwXDRDvYprTOVk9XwsBA0+s6LGbpRb5Sx77KHs8ZpER?=
- =?us-ascii?Q?TEyFu/eqKuoJGx+uKZv/JkDcQAmuLjIaZjVVwb6P9dUhxesb6FiADx3iv5KF?=
- =?us-ascii?Q?XlL5vI6tNBMiC2I8tUVuRxQ9zvVJpgKmWg+FkYn2Yvwyw1aePdRTV3hQAZTB?=
- =?us-ascii?Q?nbpoLYwnz7AE4+YO8kNvkn8UT2cGZfOcigP58ipV7c6cmKH9eAaKzlx0b5jk?=
- =?us-ascii?Q?v9gGjAxwtMfV0vMjB9tuYjkE9xalQuKCs65KELj8qhzzyE3QvA3eYTDt0Gf2?=
- =?us-ascii?Q?nuYh5YODM2XIcQFEVQdoJ7ExQiFc+MQPrBKYl+rHbrRJybT8gIxwF+AVeXS3?=
- =?us-ascii?Q?e4n7zabF/8ximYtVQvTlGFeyg2wth4iJt8iomYpRGUfx3ubwzT5Wi0Ew0KTr?=
- =?us-ascii?Q?KH9a3mic6KSg9Bc9Lw5Xxvus1X7nc6Xy+P+gy2t+zwYCwesfDPGdMW9Yho8r?=
- =?us-ascii?Q?TKA9n+CZEV+dxnIGWqUmYQdJadI4PhX7zQueSkba9XsFmRTKo3U3DgyKTpah?=
- =?us-ascii?Q?PzhEu0NBfTw32OTL1yV40FM1oJzyC5+hy5FX/IvI+6na+e9XJMf2pxSfeZT+?=
- =?us-ascii?Q?Um2daF2w+X+AAcY6Fjf7ijwd5o7fsKab9nNbhcOvpf+XuunlXge7Yceao1OA?=
- =?us-ascii?Q?1iFkwohOzlEwTQgyYELvgbFaf4J5FJtdJv31skD5DB8REuDMWVqSyXvaV53I?=
- =?us-ascii?Q?CUMQCGXrp2GuoXTQ3xTDvIrgIZJnjofP5WA6hw+O9ba+yKJHXjopRcJWu2Qa?=
- =?us-ascii?Q?xvchSTh29LELttTtwzx2nEpeOLu12ipDv58L5+puciEA0+eYDTMqPey0r1Q3?=
- =?us-ascii?Q?PBsI04p7jbbKMlH2Gqrra5RDDLynbzbOpbpGoDSmVBqFPgKN5MWG8vj+fzun?=
- =?us-ascii?Q?2ZCLw0qttxG6KcMuLjyE7GfFXJnLnQ4lro6mIa+IcuhkvwORUzikoRN4npRS?=
- =?us-ascii?Q?kg+Mv9rmHEK7gcpA7DrT9ji6Bo1qCd8I/90uhYRjqi6r/QCS96RgI7AapKWa?=
- =?us-ascii?Q?txFt7m/xoYYkr6grz4trwWrLAKjZod9E8zI3ty8lNAtSWGUm/Gz/0e4MgeA2?=
- =?us-ascii?Q?CNnTMe9ILrfobv94pLPd8nE86PCsRn6TppOKrNIZ8UsFfNoVJNQXtYlnCXBV?=
- =?us-ascii?Q?8EgCafOOc57r3FzvaSJgXlkcg7z7gzASRKt9qdY4ov+m+3lrC+VoepYS+Pz0?=
- =?us-ascii?Q?xkXkhRsd+Jjm/0fGziKIsF93gDjhgCMc/Uzz+gG9lMpBKw6lIAjUW8IQ2coS?=
- =?us-ascii?Q?m2A1F6qY7NDWiaeGdHESxbsYDky3gcNIH7k8n9l/n1jzq4copFF8K2qWA021?=
- =?us-ascii?Q?u71Cnd/joayEEka2vZygfyj6gzyC904mltbPyWqSopgFW5O4bP/BAlGTSvj1?=
- =?us-ascii?Q?F0qG7OfD3bZTM+WpquizDXtKWbGY46flIS6Ejc9otOMYa8C0NjL3GckfhJP+?=
- =?us-ascii?Q?w3KIW1C7oYCgFgvlmF4vHDoWv3PGpnJPSYh47ZfIB2LmDBR4yYoLPpKtFduc?=
- =?us-ascii?Q?g/SEA226H4iMyGBPnLIR43uconHMFySlVvZs9XdoCxxIapFU3tG2j7tixeKC?=
- =?us-ascii?Q?Xg=3D=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c9f07a0-d047-4118-7af2-08da640af263
-X-MS-Exchange-CrossTenant-AuthSource: AM4PR0802MB2131.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2022 13:32:20.7121
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4cNsar2VfCZCjbIQq3Yc+OrxV0egiF2vSnk9nlUXchJ4StpK/k0kXlA2gd5DAcEZquszMki9jUj6wPw/kCyOhF7Wl7kHEDED+eKQjmp/TqY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR08MB5608
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220712110232.329164-2-francesco.dolcini@toradex.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On the Radxa ROCK3 Model A the I2C adapters related to the MIPI DSI
-connector and the M.2/NGFF connector use the non-default pins.
-Specify the correct pinctrl but leave the adapters disabled (as
-they are supposed to be activated by overlays that describe the
-external hardware).
+On Tue, 12 Jul 2022, Francesco Dolcini wrote:
 
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
----
- arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> Use sub-function of_compatible during probe, instead of using the node
+> name. The code should not rely on the node names during probe, in
+> addition to that the previously hard-coded node names are not compliant
+> to the latest naming convention (they are not generic and they use
+> underscores), and it was broken by mistake already once [1].
+> 
+> While doing this change `rotator` entry was removed, it is not
+> used in any device tree file, there is no cell defined, it's just dead
+> non-working code with no of_compatible for it.
+> 
+> [1] commit 56086b5e804f ("ARM: dts: imx6qdl-apalis: Avoid underscore in node name")
+> 
+> Suggested-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> ---
+>  drivers/mfd/stmpe.c | 31 +++++++++++++++++--------------
+>  1 file changed, 17 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/mfd/stmpe.c b/drivers/mfd/stmpe.c
+> index aeb9ea55f97d..90a07a94455f 100644
+> --- a/drivers/mfd/stmpe.c
+> +++ b/drivers/mfd/stmpe.c
+> @@ -23,6 +23,12 @@
+>  #include <linux/regulator/consumer.h>
+>  #include "stmpe.h"
+>  
+> +#define STMPE_GPIO_COMPATIBLE   "st,stmpe-gpio"
+> +#define STMPE_KEYPAD_COMPATIBLE "st,stmpe-keypad"
+> +#define STMPE_PWM_COMPATIBLE    "st,stmpe-pwm"
+> +#define STMPE_TS_COMPATIBLE     "st,stmpe-ts"
+> +#define STMPE_ADC_COMPATIBLE    "st,stmpe-adc"
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-index 33581a36c9c3..8c533ee0c5c4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-@@ -468,6 +468,18 @@ codec {
- 	};
- };
- 
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c3m1_xfer>;
-+	status = "disabled";
-+};
-+
-+&i2c4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4m1_xfer>;
-+	status = "disabled";
-+};
-+
- &i2s1_8ch {
- 	rockchip,trcm-sync-tx-only;
- 	status = "okay";
+This is horrible.
+
+Please refrain from defining device/compatible strings.
+
+>  /**
+>   * struct stmpe_platform_data - STMPE platform data
+>   * @id: device id to distinguish between multiple STMPEs on the same board
+> @@ -321,14 +327,14 @@ static struct resource stmpe_gpio_resources[] = {
+>  
+>  static const struct mfd_cell stmpe_gpio_cell = {
+>  	.name		= "stmpe-gpio",
+> -	.of_compatible	= "st,stmpe-gpio",
+> +	.of_compatible	= STMPE_GPIO_COMPATIBLE,
+>  	.resources	= stmpe_gpio_resources,
+>  	.num_resources	= ARRAY_SIZE(stmpe_gpio_resources),
+>  };
+>  
+>  static const struct mfd_cell stmpe_gpio_cell_noirq = {
+>  	.name		= "stmpe-gpio",
+> -	.of_compatible	= "st,stmpe-gpio",
+> +	.of_compatible	= STMPE_GPIO_COMPATIBLE,
+>  	/* gpio cell resources consist of an irq only so no resources here */
+>  };
+>  
+> @@ -350,7 +356,7 @@ static struct resource stmpe_keypad_resources[] = {
+>  
+>  static const struct mfd_cell stmpe_keypad_cell = {
+>  	.name		= "stmpe-keypad",
+> -	.of_compatible  = "st,stmpe-keypad",
+> +	.of_compatible  = STMPE_KEYPAD_COMPATIBLE,
+>  	.resources	= stmpe_keypad_resources,
+>  	.num_resources	= ARRAY_SIZE(stmpe_keypad_resources),
+>  };
+> @@ -376,7 +382,7 @@ static struct resource stmpe_pwm_resources[] = {
+>  
+>  static const struct mfd_cell stmpe_pwm_cell = {
+>  	.name		= "stmpe-pwm",
+> -	.of_compatible  = "st,stmpe-pwm",
+> +	.of_compatible  = STMPE_PWM_COMPATIBLE,
+>  	.resources	= stmpe_pwm_resources,
+>  	.num_resources	= ARRAY_SIZE(stmpe_pwm_resources),
+>  };
+> @@ -461,7 +467,7 @@ static struct resource stmpe_ts_resources[] = {
+>  
+>  static const struct mfd_cell stmpe_ts_cell = {
+>  	.name		= "stmpe-ts",
+> -	.of_compatible	= "st,stmpe-ts",
+> +	.of_compatible	= STMPE_TS_COMPATIBLE,
+>  	.resources	= stmpe_ts_resources,
+>  	.num_resources	= ARRAY_SIZE(stmpe_ts_resources),
+>  };
+> @@ -484,7 +490,7 @@ static struct resource stmpe_adc_resources[] = {
+>  
+>  static const struct mfd_cell stmpe_adc_cell = {
+>  	.name		= "stmpe-adc",
+> -	.of_compatible	= "st,stmpe-adc",
+> +	.of_compatible	= STMPE_ADC_COMPATIBLE,
+>  	.resources	= stmpe_adc_resources,
+>  	.num_resources	= ARRAY_SIZE(stmpe_adc_resources),
+>  };
+> @@ -1362,19 +1368,16 @@ static void stmpe_of_probe(struct stmpe_platform_data *pdata,
+>  	pdata->autosleep = (pdata->autosleep_timeout) ? true : false;
+>  
+>  	for_each_available_child_of_node(np, child) {
+> -		if (of_node_name_eq(child, "stmpe_gpio")) {
+> +		if (of_device_is_compatible(child, STMPE_GPIO_COMPATIBLE))
+>  			pdata->blocks |= STMPE_BLOCK_GPIO;
+> -		} else if (of_node_name_eq(child, "stmpe_keypad")) {
+> +		else if (of_device_is_compatible(child, STMPE_KEYPAD_COMPATIBLE))
+>  			pdata->blocks |= STMPE_BLOCK_KEYPAD;
+> -		} else if (of_node_name_eq(child, "stmpe_touchscreen")) {
+> +		else if (of_device_is_compatible(child, STMPE_TS_COMPATIBLE))
+>  			pdata->blocks |= STMPE_BLOCK_TOUCHSCREEN;
+> -		} else if (of_node_name_eq(child, "stmpe_adc")) {
+> +		else if (of_device_is_compatible(child, STMPE_ADC_COMPATIBLE))
+>  			pdata->blocks |= STMPE_BLOCK_ADC;
+> -		} else if (of_node_name_eq(child, "stmpe_pwm")) {
+> +		else if (of_device_is_compatible(child, STMPE_PWM_COMPATIBLE))
+>  			pdata->blocks |= STMPE_BLOCK_PWM;
+> -		} else if (of_node_name_eq(child, "stmpe_rotator")) {
+> -			pdata->blocks |= STMPE_BLOCK_ROTATOR;
+> -		}
+
+This should be a separate patch.
+
+>  	}
+>  }
+>  
+
 -- 
-2.30.2
-
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
