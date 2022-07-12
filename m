@@ -2,67 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5DF257279C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 22:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DACEC5727A0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 22:48:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231750AbiGLUrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 16:47:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50474 "EHLO
+        id S231770AbiGLUsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 16:48:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229700AbiGLUrV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 16:47:21 -0400
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A30F1C902;
-        Tue, 12 Jul 2022 13:47:21 -0700 (PDT)
-Received: by mail-il1-f172.google.com with SMTP id a20so5578146ilk.9;
-        Tue, 12 Jul 2022 13:47:21 -0700 (PDT)
+        with ESMTP id S231437AbiGLUsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 16:48:04 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF9284D834
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 13:48:02 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id w17so9701141ljh.6
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 13:48:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=T3rJsbQfsC4pWsZ0OeZCZ/yUBmCsy051ZUHKGlMrphY=;
+        b=gpV3sjqDMu2bTNevWRp7/qYwFKCnI4WatOzRkblLbcMX8pl0rrbzSwmGVw6Wm65cFm
+         8LMvu9ZJleVcrmp1GK2glONYa8z0rJc1n+HG808Kv1derUqS4QQ2mWpqoBhNUVmFrk34
+         HT8x2S/i8oJpuVsjvmY3eSOJ1pIaXw/UtO+HK+XjASq6scIQq1pvI4v7jb0H11+QQb3B
+         gghLBYITq4QyZCMhRA7LHmWbw+nVDV3nQjyL1x1iJQNtsa8Y45UvDsCJXr/LH3VfYuTX
+         KETPUuj+miGHLk0UhAKpuCuh5kG5KAnpyQxeosj6M9E6gLsYaDszPwVeta6ObBLSiw9H
+         U9Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=m5+deZ9oGKStPdZ+5eXb53vocsz+Gl6wdIq+vUcKVZA=;
-        b=cWEedQGgNeShu0M1psdeVrZqv99MgdWH+1G4rwhhNO3f4UPxABQoYlKjWRlSfK/qWi
-         jdC8kwWOGaQ8R4t/PLOJvDv8hpHDE4F49VMlUnogGgLnnn50EwXNKS3zhndZ70KVv5qo
-         wVdeIdqCcSs7Emw652SSxm8tufi+nJe6CJGdeMN2SV3kHN+GG+9qyojd/XjRvZmjvVAD
-         S8ihryMKT3Y54QiqauinIE64kJXksLwn0phtuwZV7RPuteOl0xyotNm01i9QsBupBvBu
-         M485vt6wfdEuPIxTvDyhdrqlYA5PhDmipMkKvF4jvRzVmuzF6598CBIfyyD0zjHM5gs6
-         MbwA==
-X-Gm-Message-State: AJIora8vd/X08lOVt0DHqx2leoreIEqerlzbxYcUzspIuCt3r+viawuQ
-        9hsqFGo2kppM9H2bLBPPcg==
-X-Google-Smtp-Source: AGRyM1tUqLhW2MmKcSnnx3FJIFDeZgBr5SnD+zUi/RysVYAY4hbq4jsYCubHi5F9itYZweMAQBmeVw==
-X-Received: by 2002:a05:6e02:1ba4:b0:2dc:2b41:4052 with SMTP id n4-20020a056e021ba400b002dc2b414052mr22923ili.200.1657658840443;
-        Tue, 12 Jul 2022 13:47:20 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id y8-20020a056602178800b00665770bcec5sm5437937iox.49.2022.07.12.13.47.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 13:47:19 -0700 (PDT)
-Received: (nullmailer pid 2335525 invoked by uid 1000);
-        Tue, 12 Jul 2022 20:47:18 -0000
-Date:   Tue, 12 Jul 2022 14:47:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: Re: [PATCH 11/11] dt-bindings: display/msm: move common DPU
- properties to dpu-common.yaml
-Message-ID: <20220712204718.GO1823936-robh@kernel.org>
-References: <20220625232513.522599-1-dmitry.baryshkov@linaro.org>
- <20220625232513.522599-12-dmitry.baryshkov@linaro.org>
- <20220630231159.GA3497845-robh@kernel.org>
- <3cc60a06-6bdf-e9f4-ba8a-7aa83f57fd43@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=T3rJsbQfsC4pWsZ0OeZCZ/yUBmCsy051ZUHKGlMrphY=;
+        b=7Yn0djGA5tac7+LMI5oj9e1oRfdbjwVRWbcncw1RS7O4wskz+BF/j2br2YMHOpqEy8
+         pe9wmhf+ErouGP62QsKf78NExlR79dA7DlyD1vYE0jRdr07zrYJ/i553dShb58iyR0+G
+         zrdrQu2HHNr3iaNQGRNAZfj3xDVYITcoMQ9e7rVmcAzPuKhxf0UpYwJPvKGOdiXd0Beq
+         Fvzni+oLn+64hb/ithSuGrvmHlRViL7zZ/mPbgZz0mlae28q1jTGen6WxOKfw44Uao/4
+         QX0uFEHsGDW9SsUCB0t9qbsQLBB5zDZHg+8oUPqOhQw3fraeWWG0Fc0WABEorID1vrH5
+         t7zA==
+X-Gm-Message-State: AJIora+wPMKx8a/VdDX9NWjKC4LfM0uP0kDm9QsV9yHt/NbqLjmLlWlX
+        jejBE1M4O6qJRRaHYcyxI7htJw==
+X-Google-Smtp-Source: AGRyM1t5qMhpWpDxR+S01a3b5CFaHgIqWdr5TGwOhHmkVou4JLhSQxAM26Z1QE1BqKfH6t8kbBkK/w==
+X-Received: by 2002:a2e:a264:0:b0:25d:63ce:29ed with SMTP id k4-20020a2ea264000000b0025d63ce29edmr9891262ljm.32.1657658881171;
+        Tue, 12 Jul 2022 13:48:01 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id o23-20020a2e90d7000000b0025bf4eddbb6sm2673014ljg.133.2022.07.12.13.47.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 13:48:00 -0700 (PDT)
+Message-ID: <68b8da6a-03e2-9da7-795d-f028bc0ed05b@linaro.org>
+Date:   Tue, 12 Jul 2022 22:47:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3cc60a06-6bdf-e9f4-ba8a-7aa83f57fd43@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: display/panel: Add Sony Tama TD4353 JDI
+ display panel
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220712200244.960018-1-konrad.dybcio@somainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220712200244.960018-1-konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,74 +84,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 08, 2022 at 12:14:45PM +0300, Dmitry Baryshkov wrote:
-> On 01/07/2022 02:11, Rob Herring wrote:
-> > On Sun, Jun 26, 2022 at 02:25:13AM +0300, Dmitry Baryshkov wrote:
-> > > Move properties common to all DPU DT nodes to the dpu-common.yaml
-> > > 
-> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > ---
-> > >   .../bindings/display/msm/dpu-common.yaml      | 47 +++++++++++++++++++
-> > >   .../bindings/display/msm/dpu-msm8998.yaml     | 28 ++---------
-> > >   .../bindings/display/msm/dpu-qcm2290.yaml     | 29 ++----------
-> > >   .../bindings/display/msm/dpu-sc7180.yaml      | 32 ++-----------
-> > >   .../bindings/display/msm/dpu-sc7280.yaml      | 32 ++-----------
-> > >   .../bindings/display/msm/dpu-sdm845.yaml      | 32 ++-----------
-> > >   6 files changed, 67 insertions(+), 133 deletions(-)
-> > >   create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-common.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/display/msm/dpu-common.yaml b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
-> > > new file mode 100644
-> > > index 000000000000..f3465ee3a4ab
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
-> > > @@ -0,0 +1,47 @@
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/msm/dpu-common.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Qualcomm Display DPU dt properties (common properties)
-> > > +
-> > > +maintainers:
-> > > +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > +  - Krishna Manikandan <quic_mkrishn@quicinc.com>
-> > > +  - Rob Clark <robdclark@gmail.com>
-> > > +
-> > > +description: |
-> > > +  Device tree bindings for the DPU display controller, common properties.
-> > 
-> > Common properties for QCom DPU display controller
-> > 
-> > > +
-> > > +properties:
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  operating-points-v2: true
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > 
-> > Now this schema is applied twice.
-> > 
-> > > +    description: |
-> > > +      Contains the list of output ports from DPU device. These ports
-> > > +      connect to interfaces that are external to the DPU hardware,
-> > > +      such as DSI, DP etc. Each output port contains an endpoint that
-> > > +      describes how it is connected to an external interface.
-> > 
-> > This description is marginally useful. Each port will say it is an
-> > output to X. So you could just remove.
+On 12/07/2022 22:02, Konrad Dybcio wrote:
+> Add bindings for the display panel used on some Sony Xperia XZ2 and XZ2
+> Compact smartphones.
 > 
-> I think I will go the other way around. It is not really useful to describe
-> individual ports, so I will leave just this piece, slightly rephrased and
-> drop individual /ports, /ports/port@N from dpu-foo.yaml.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  .../display/panel/sony,td4353-jdi.yaml        | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
+> new file mode 100644
+> index 000000000000..d75abc72ad1b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/sony,td4353-jdi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony TD4353 JDI 5 / 5.7" 2160x1080 MIPI-DSI Panel
+> +
+> +maintainers:
+> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
+> +
+> +description: |
+> +  The Sony TD4353 JDI is a 5 (XZ2c) / 5.7 (XZ2) inch 2160x1080
+> +  MIPI-DSI panel, used in Xperia XZ2 and XZ2 Compact smartphones.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sony,td4353-jdi-akari
+> +      - sony,td4353-jdi-apollo
 
-How is describing individual port not useful? You must define what each 
-port is. Input or output. Type of data. Are they all the same?
+Shouldn't the properties of panel like width and height be specified by
+dedicated properties, instead of customizing compatible? The device is
+"td4353-jdi", the same in both cases, isn't it?
 
-Rob
+> +
+> +  reg: true
+> +
+> +  backlight: true
+> +
+> +  vddio-supply:
+> +    description: VDDIO 1.8V supply
+> +
+> +  vsp-supply:
+> +    description: Positive 5.5V supply
+> +
+> +  vsn-supply:
+> +    description: Negative 5.5V supply
+> +
+> +  preset-gpios:
+> +    description: Display panel reset pin
+> +
+> +  treset-gpios:
+> +    description: Touch panel reset pin
+> +
+> +  port: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vddio-supply
+> +  - vsp-supply
+> +  - vsn-supply
+> +  - preset-gpios
+> +  - treset-gpios
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        panel: panel@0 {
+> +            compatible = "sony,td4353-jdi-akari";
+> +            reg = <0>;
+> +
+> +            backlight = <&pmi8998_wled>;
+> +            vddio-supply = <&vreg_l14a_1p8>;
+> +            vsp-supply = <&lab>;
+> +            vsn-supply = <&ibb>;
+> +            preset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+> +            treset-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
+> +
+> +            port {
+> +                    panel_in: endpoint {
+
+Inconsistent indentation.
+
+> +                            remote-endpoint = <&dsi0_out>;
+> +                    };
+> +            };
+> +        };
+> +    };
+> +...
+
+
+Best regards,
+Krzysztof
