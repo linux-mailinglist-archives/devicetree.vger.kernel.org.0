@@ -2,85 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2B9571EAC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 320C1571EC2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:17:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233473AbiGLPQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 11:16:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49994 "EHLO
+        id S230491AbiGLPRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 11:17:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbiGLPQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:16:26 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ABB46552
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:10:49 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id w185so7724942pfb.4
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:10:49 -0700 (PDT)
+        with ESMTP id S233153AbiGLPRY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:17:24 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32DB9C1655
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:12:23 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id d12so14438110lfq.12
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:12:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=24GiY7xs/AOkZ2wDT+jq5qIaUGqPEUFDT83Dcdn41lc=;
-        b=AVewZ9GTLN8QUPIMpsumydhLhsrz+NGv835wkw3mm+S/6lHY4UmkHBvsMDSe0JlYj3
-         V1qjJgp280HVU6oPgPg0f0PUXQMNu4txo1kInSWDAtObw+rBlpfVRNPeiPN79aKkZrax
-         Fx8UIRGYezZYo8zxZOijVmX0NErwSDre/B7SlXbg76P31Yc+hxqrBnBdDhFY7jxzMyCE
-         qQ1P71xu2qxxhJyXlP7PXAmpPIqnLLl2vdk9IgL0D11dpPudP8+CnO5EE20062ZSrseK
-         Tb2gpymS1ha8RIG7wIkxZ/0/eRXiBPnHKISuAtL5KqxH1MfyOYOyUGsqqfof3Tv0Sy21
-         +uRQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=FiFkU4mtsNMfFIb99Kyl4YKF0xVr8LFESHMNv5yOiro=;
+        b=EQ/TF9qYYwlLAcO2ZviT1k6qc/VqInz5ERRkhyrsBi6dF+xJhJORcGJz7gMRx/PjKl
+         p/C+PwHpO3s1AbBKfptcD8VVn1ui73ew69bGaWVROOf2+pr97zI4T1BDm1VunZL8NJnk
+         f63yaybXdjvzlnkcmKhrRwuX3XiwqaFJ9DKzKKSZEdCCqNp9kuYS+/6QkM1ORYvsfqg2
+         g4BLvWwKZsWigB5JrPcBZ4bp5aOI1g7OViJTOxiv7JSOrlMGwsaEgckqEMKm+PVXregE
+         MgqoQVQMOZeexN3A/otCm4oZqyhluKsMbpqXBG7HfbH2+2qviyOfRa9MoQ1JYrT/WaIQ
+         sCTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=24GiY7xs/AOkZ2wDT+jq5qIaUGqPEUFDT83Dcdn41lc=;
-        b=wYhO7PFxlwaA1+1nUsxKNc+M39YyY/5+M8bs0lCm+LGT82D6tb7wB03rDR3hS9qHHs
-         ZM3tnBh6oG/1NJkV0EyyKvw9R+LEiw9DYRvRbGmA5MXGYwkvmFzqvyv0gVNsONbh0B9T
-         WgiPw8//zmcXe58h5TbZWzBkdrMw3bPRmuy2sc2QnadmQxe+ngi/l8iACGn8PYET7j1m
-         2LZoRSPQco8Mw+p83cl+I1Pn0ibtrgeUkfMTPhbcSxxegwmIPMj7RKYl8HubCi+FPNak
-         +UENmO/6OTyNbP6j5XyPsnnzrKKr2Wx3JgbzPOHoxeLvbObVjoBIiadwoTng6rmaAzxx
-         xiFQ==
-X-Gm-Message-State: AJIora+uzxbS2w1tkZUZgnZk704MNfkyfPqLXlFRQEQIKWopA8FrX0C3
-        g0OF5FmWp5rQ2B7U39bjaUU63g==
-X-Google-Smtp-Source: AGRyM1sTKabYGY8Tal+borECoY05ZOEAoZzgGr3flmGIjIegLuXUBFSTZFgOV0nRcYVZ5Ko1W5RjIw==
-X-Received: by 2002:a63:b50b:0:b0:412:b42c:6940 with SMTP id y11-20020a63b50b000000b00412b42c6940mr20638775pge.460.1657638648500;
-        Tue, 12 Jul 2022 08:10:48 -0700 (PDT)
-Received: from localhost ([122.171.18.80])
-        by smtp.gmail.com with ESMTPSA id o65-20020a625a44000000b0052ac99c2c1csm4888270pfb.83.2022.07.12.08.10.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 08:10:47 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 20:40:45 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>, linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V2 00/13] OPP: Add support for multiple clocks*
-Message-ID: <20220712151045.vn4tpat4c4cplndo@vireshk-i7>
-References: <cover.1657003420.git.viresh.kumar@linaro.org>
- <YsxSkswzsqgMOc0l@hovoldconsulting.com>
- <20220712075240.lsjd42yhcskqlzrh@vireshk-i7>
- <Ys2FZa6YDwt7d/Zc@hovoldconsulting.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=FiFkU4mtsNMfFIb99Kyl4YKF0xVr8LFESHMNv5yOiro=;
+        b=W4Ei3cPOaVlrpW38TlMjs6LaSq5BaoeB7gZ+MSjtwYdAn1ltSIE2QHxz85T88xHW+p
+         103AzkaJ8sWFgaeqjsN2IetD95louDvCYS30Do4WQZRS4G7U7mSBdEOS1bi+g23vUzUc
+         WojNA74Z/m+kGXq7+hMF09GMALkH/6IKcPaeob9ECR4fEGkcVzpk4U6IyplYzhHZ2OSF
+         WT3x/tigmyXCH41p/KFhzoCM/AW0RuC3J8bNoLonyU4LigdA1isBf8wFxxCKCPEqyrSc
+         SM5qxnRZNhw28IutGy2q3ZwzcHZXZVDKNBVtYtS2RszTIGWzahKTAA0C4ryFjQkgFqDP
+         gp7Q==
+X-Gm-Message-State: AJIora/NNcUQA27o8MQIw2KKrH3mo6L0kSk204eue584YFqBpu00W6iS
+        QfR4inQwHVvzaCv118Y80e4KYw==
+X-Google-Smtp-Source: AGRyM1t0l7x/rCjC6lSD6LEP8zBtApvjhPsSOa6RpcuLkpgzQsIqIo44tpbIn6jIqUtwKONToFV0JQ==
+X-Received: by 2002:a05:6512:2241:b0:479:6426:15af with SMTP id i1-20020a056512224100b00479642615afmr14829398lfu.631.1657638741569;
+        Tue, 12 Jul 2022 08:12:21 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id c5-20020ac25f65000000b00489dd78bdacsm1388358lfc.299.2022.07.12.08.12.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 08:12:20 -0700 (PDT)
+Message-ID: <82d4507a-d092-8cb0-2e88-4290661d114d@linaro.org>
+Date:   Tue, 12 Jul 2022 17:12:18 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ys2FZa6YDwt7d/Zc@hovoldconsulting.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] media: dt-bindings: media: i2c: document OV4689 DT
+ bindings
+Content-Language: en-US
+To:     Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220712141925.678595-1-mike.rudenko@gmail.com>
+ <20220712141925.678595-2-mike.rudenko@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220712141925.678595-2-mike.rudenko@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,122 +78,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-07-22, 16:29, Johan Hovold wrote:
-> On Tue, Jul 12, 2022 at 01:22:40PM +0530, Viresh Kumar wrote:
-> > diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> > index 666e1ebf91d1..4f4a285886fa 100644
-> > --- a/drivers/opp/core.c
-> > +++ b/drivers/opp/core.c
-> > @@ -1384,6 +1384,20 @@ static struct opp_table *_update_opp_table_clk(struct device *dev,
-> >         }
-> > 
-> >         if (ret == -ENOENT) {
-> > +               /*
-> > +                * There are few platforms which don't want the OPP core to
-> > +                * manage device's clock settings. In such cases neither the
-> > +                * platform provides the clks explicitly to us, nor the DT
-> > +                * contains a valid clk entry. The OPP nodes in DT may still
-> > +                * contain "opp-hz" property though, which we need to parse and
-> > +                * allow the platform to find an OPP based on freq later on.
-> > +                *
-> > +                * This is a simple solution to take care of such corner cases,
-> > +                * i.e. make the clk_count 1, which lets us allocate space for
-> > +                * frequency in opp->rates and also parse the entries in DT.
-> > +                */
-> > +               opp_table->clk_count = 1;
-> > +
-> >                 dev_dbg(dev, "%s: Couldn't find clock: %d\n", __func__, ret);
-> >                 return opp_table;
-> >         }
+On 12/07/2022 16:19, Mikhail Rudenko wrote:
+> Add device-tree binding documentation for OV4689 image sensor driver,
+> and the relevant MAINTAINERS entries.
 > 
-> This looks like a hack.
-
-Yeah, a bit. Initially I wanted to solve it in a cleaner way, like it
-is done for Tegra, where you will pass the right clock name to the OPP
-core, so it can verify that the clk is there and parse the table. And
-then tell the OPP core not to configure the clk from
-dev_pm_opp_set_opp(), which is possible now. This would have done the
-things in the right way.
-
-The problem with Qcom's DT is that the CPU node have the OPP table but
-doesn't contain the clocks, which are available with the
-qcom,cpufreq-hw node instead. Because of this, I couldn't pass the
-real clocks name to the OPP core, "xo", for the CPU device.
-
-I really tried to avoid adding the above code for Tegra and found a
-better and cleaner way out. But I couldn't do the same here and
-figured it may be more generic of a problem, which is fine as well.
-
-The OPP core does two things currently:
-
-1) Parse the DT and provide helpers to find the right OPP, etc.
-
-2) Provide generic helper to configure all resources related to the
-   OPP.
-
-It is fine if some platforms only want to have the first and not the
-second. To have the second though, you need to have the first as well.
-
-The clk is required only for the second case, and the OPP core should
-parse the DT anyways, irrespective of the availability of the clock.
-Because of this reason, making the above change looked reasonable
-(this is what was happening before my new patches came in anyway). The
-clock isn't there, but there is "opp-hz" present in the DT, which
-needs to be parsed.
-
-> And it also triggers a bunch of new warning when
-> opp is trying to create debugfs entries for an entirely different table
-> which now gets clk_count set to 1:
+> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
+> ---
+>  .../bindings/media/i2c/ovti,ov4689.yaml       | 122 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
 > 
-> [  +0.000979]  cx: _update_opp_table_clk: Couldn't find clock: -2
-> [  +0.000022] debugfs: Directory 'opp:0' with parent 'cx' already present!
-> [  +0.000004] debugfs: Directory 'opp:0' with parent 'cx' already present!
-> [  +0.000004] debugfs: Directory 'opp:0' with parent 'cx' already present!
-> [  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-> [  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-> [  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-> [  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-> [  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-> [  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-> 
-> This is for the rpmhpd whose opp table does not have either opp-hz or
-> clocks (just opp-level).
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> new file mode 100644
+> index 000000000000..6bdebe5862b4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> @@ -0,0 +1,122 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov4689.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Omnivision OV4689 CMOS Sensor Device Tree Bindings
 
-Ahh, I missed switching back to the earlier code here. i.e. not use
-the frequency for OPP directory's name, when it is 0.
+s/Device Tree Bindings//
 
-This will fix it.
+> +
+> +maintainers:
+> +  - Mikhail Rudenko <mike.rudenko@gmail.com>
+> +
+> +description: |-
 
-diff --git a/drivers/opp/debugfs.c b/drivers/opp/debugfs.c
-index 402c507edac7..96a30a032c5f 100644
---- a/drivers/opp/debugfs.c
-+++ b/drivers/opp/debugfs.c
-@@ -138,7 +138,7 @@ void opp_debug_create_one(struct dev_pm_opp *opp, struct opp_table *opp_table)
-         * - For some devices rate isn't available or there are multiple, use
-         *   index instead for them.
-         */
--       if (likely(opp_table->clk_count == 1))
-+       if (likely(opp_table->clk_count == 1 && opp->rates[0]))
-                id = opp->rates[0];
-        else
-                id = _get_opp_count(opp_table);
+No need for -
 
-I have merged this into:
+> +  The Omnivision OV4689 is a high performance, 1/3-inch, 4 megapixel
+> +  image sensor. Ihis chip supports high frame rate speeds up to 90 fps
+> +  at 2688x1520 resolution. It is programmable through an I2C
+> +  interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
+> +  connection.
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov4689
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description:
+> +      External clock for the sensor.
 
-commit 341df9889277 ("OPP: Allow multiple clocks for a device")
+This goes to clocks instead.
 
-and pushed out for linux-next.
+> +    items:
+> +      - const: xclk
 
+No need for clock-names for such case.
 
-Bjorn, Mani,
+> +
+> +  dovdd-supply:
+> +    description:
+> +      Definition of the regulator used as Digital I/O voltage supply.
 
-It would be really good if we can find a way to make following work on
-Qcom:
+s/Definition of the regulator used as //
 
-        clk_get(cpu_dev, NULL or "xo")
+It's redundant...
 
-If that happens, we can handle the special case just at the consumer
-driver (qcom-cpufreq-hw) and not in the core.
+> +
+> +  avdd-supply:
+> +    description:
+> +      Definition of the regulator used as Analog voltage supply.
 
--- 
-viresh
+Ditto
+
+> +
+> +  dvdd-supply:
+> +    description:
+> +      Definition of the regulator used as Digital core voltage supply.
+
+Ditto
+
+> +
+> +  powerdown-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Reference to the GPIO connected to the powerdown pin (active low).
+
+s/Reference to the//
+
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Reference to the GPIO connected to the reset pin (active low).
+
+The same.
+
+> +
+> +  orientation: true
+> +
+> +  rotation: true
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +    description:
+> +      Output port node, single endpoint describing the CSI-2 transmitter.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+
+Best regards,
+Krzysztof
