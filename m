@@ -2,107 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AB50571C7F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:28:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9866571C5D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbiGLO2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:28:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44610 "EHLO
+        id S233488AbiGLO0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:26:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232767AbiGLO2I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:28:08 -0400
-X-Greylist: delayed 389 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Jul 2022 07:27:59 PDT
-Received: from mta-01.yadro.com (mta-02.yadro.com [89.207.88.252])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42BEFB9D8C
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:27:59 -0700 (PDT)
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 7242241207;
-        Tue, 12 Jul 2022 14:21:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-type:content-type:content-transfer-encoding:mime-version
-        :x-mailer:message-id:date:date:subject:subject:from:from
-        :received:received:received:received; s=mta-01; t=1657635687; x=
-        1659450088; bh=AaOui02YEi9Ip9b2cycfHTnE1G+dZu4PYyIF31Vbb5A=; b=R
-        KFSZXqXSZEsbdWU2b8VjtMUNQWoisI4jpNNIdVUKssbvgYuSs80ZJHrYpE7UxvME
-        lV0hbge3sDEa48iO/ZbFVRsu9qivQpSwN9ZWsn488lwiYQNYvyRvHe+sOoSwxlH3
-        XPWJGLyNkI9tvFaK/g9bdZ+b9s+//NrZqFG5v2hZAQ=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Hjv7YybZuw8Q; Tue, 12 Jul 2022 17:21:27 +0300 (MSK)
-Received: from T-EXCH-01.corp.yadro.com (t-exch-01.corp.yadro.com [172.17.10.101])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id 6317941209;
-        Tue, 12 Jul 2022 17:21:24 +0300 (MSK)
-Received: from T-EXCH-06.corp.yadro.com (172.17.10.110) by
- T-EXCH-01.corp.yadro.com (172.17.10.101) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.669.32; Tue, 12 Jul 2022 17:21:24 +0300
-Received: from v.yadro.com (10.178.114.10) by T-EXCH-06.corp.yadro.com
- (172.17.10.110) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1118.9; Tue, 12 Jul
- 2022 17:21:23 +0300
-From:   Viacheslav Mitrofanov <v.v.mitrofanov@yadro.com>
-CC:     <linux@yadro.com>,
-        Viacheslav Mitrofanov <v.v.mitrofanov@yadro.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        "Stephen Boyd" <sboyd@kernel.org>, Zong Li <zong.li@sifive.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] riscv: dts: fu740: Add PDMA node
-Date:   Tue, 12 Jul 2022 17:20:38 +0300
-Message-ID: <20220712142040.12021-1-v.v.mitrofanov@yadro.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S233358AbiGLO0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:26:07 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E1CB5D1F;
+        Tue, 12 Jul 2022 07:26:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1657635966; x=1689171966;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=kfIGPvcZH8e51YL7+dp1o1wepCSIA0xgTOM+PfQaX7k=;
+  b=Qkh/Fdjdk3OZjrM4MsOi2uVXEOR8CR2hd9piOAlW1jzgVsfxirRw4Cfy
+   dzfstfGh7qG3GTWAKRjXDwBJq/QVtgqATrYF2J9s0bYDpSCUzfJlLqQu6
+   xgQqmNUBftgoQ3Xf+rViRMeI24crwO8fdngHWRHrQM4YGXecqqu//9LtA
+   UIJwwZ+zRRwfIWoYEGAXKmDCqKYNDfzONQDKQWLx0vfMe287xLBHufSHV
+   JiWnVH6HiqvzB6GvVCOSzPzRXmZsOzu2OOXPyycuZyKCeZOWUkeb8m97Q
+   dCE8CsMaUiYUsZ7t8utj6PlvSvJV2HvIcgmREOoPkytIFbBkAAnzGl5P0
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,265,1650956400"; 
+   d="scan'208";a="172054798"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Jul 2022 07:26:05 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 12 Jul 2022 07:26:05 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Tue, 12 Jul 2022 07:26:03 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "Lee Jones" <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     Daire McNamara <daire.mcnamara@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v6 0/4] Microchip soft ip corePWM driver
+Date:   Tue, 12 Jul 2022 15:25:53 +0100
+Message-ID: <20220712142557.1773075-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.178.114.10]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-06.corp.yadro.com (172.17.10.110)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HiFive unmatched supports PDMA but is not implemented in DT.
+Hey Uwe, all,
 
-Add the PDMA node in SiFive FU740 soc-specific DT file.
+Added some extra patches so I have a cover letter this time.
+You pointed out that I was overriding npwmcells in the driver and I 
+realised that the dt & binding were not correct so I have added two
+simple patches to deal with that. The dts patch I will take in my tree
+once the binding is applied.
 
-Signed-off-by: Viacheslav Mitrofanov <v.v.mitrofanov@yadro.com>
----
- arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+For the maintainers entry, I mentioned before that I have several
+changes in-flight for it. We are late(ish) in the cycle so I doubt
+you'll be applying this for v5.20, but in the off chance you do - I
+would be happy to send it (with your Ack) alongside an i2c addition
+that is "deferred". I rebased it today on top of an additional change
+so it may not apply for you.
 
-diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-index 7b77c13496d8..4bd670d8632f 100644
---- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-@@ -161,6 +161,14 @@ prci: clock-controller@10000000 {
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 		};
-+		dma: dma-controller@3000000 {
-+			compatible = "sifive,pdma0";
-+			reg = <0x0 0x3000000 0x0 0x8000>;
-+			interrupt-parent = <&plic0>;
-+			interrupts = <11 12 13 14 15 16 17 18>;
-+			dma-channels = <4>;
-+			#dma-cells = <1>;
-+		};
- 		uart0: serial@10010000 {
- 			compatible = "sifive,fu740-c000-uart", "sifive,uart0";
- 			reg = <0x0 0x10010000 0x0 0x1000>;
+In your review of v3, you had a lot of comments about the period and
+duty cycle calculations, so I have had another run at them. I converted
+the period calculation to "search" from the bottom up for the suitable
+prescale value. The duty cycle calculation has been fixed - the problem
+was exactly what I suspected in my replies to your review. I had to block
+the use of a 0xFF period_steps register value (which I think should be
+covered by the updated comment and limitation #2).
+
+Beyond that, I have rebased on -next and converted to the devm_ stuff
+in probe that was recently added & dropped remove() - as requested.
+I added locking to protect the period racing, changed the #defines and
+switched to returning -EINVAL when the period is locked to a value
+greater than that requested.
+
+Thanks,
+Conor.
+
+Changes from v5:
+- switched to a mutex b/c we must sleep with the lock taken
+- simplified the locking in apply() and added locking to get_state()
+- reworked apply() as requested
+- removed the loop in the period calculation (thanks Uwe!)
+- add a copy of the enable registers in the driver to save on reads.
+- remove the second (useless) write to sync_update
+- added some missing rounding in get_state()
+- couple other minor cleanups as requested in:
+https://lore.kernel.org/linux-riscv/20220709160206.cw5luo7kxdshoiua@pengutronix.de/
+
+Changes from v4:
+- dropped some accidentally added files
+
+Conor Dooley (4):
+  dt-bindings: pwm: fix microchip corePWM's pwm-cells
+  riscv: dts: fix the icicle's #pwm-cells
+  pwm: add microchip soft ip corePWM driver
+  MAINTAINERS: add pwm to PolarFire SoC entry
+
+ .../bindings/pwm/microchip,corepwm.yaml       |   4 +-
+ MAINTAINERS                                   |   1 +
+ .../dts/microchip/mpfs-icicle-kit-fabric.dtsi |   2 +-
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-microchip-core.c              | 370 ++++++++++++++++++
+ 6 files changed, 386 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/pwm/pwm-microchip-core.c
+
+
+base-commit: 734339e5c1c46e3af041b4c288c213e045e34354
 -- 
-2.25.1
+2.36.1
 
