@@ -2,67 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6F6E572174
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 18:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D795F57217A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 18:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231408AbiGLQ5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 12:57:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45048 "EHLO
+        id S233396AbiGLQ7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 12:59:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiGLQ5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 12:57:19 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1FA5BA3B7;
-        Tue, 12 Jul 2022 09:57:17 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id d4so3961276ilc.8;
-        Tue, 12 Jul 2022 09:57:17 -0700 (PDT)
+        with ESMTP id S229769AbiGLQ7D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 12:59:03 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6AE322292
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 09:59:01 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id y2so8412512ior.12
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 09:59:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=bO4cis7Fu6e3Sp6G9HzdVn/dbSUsSia8XAXEeOC2q4I=;
-        b=xbK8nX1ZdjvY7EExhvh3jXrfuUV+Kt2Y/qxtDFQiFk/P/k3oRfzKDu36G62pI0Jde8
-         HqSrFBeYHg4HEqBXw5RQ0lClSn5oE/RtlvowdKqdhYKMqxBKejrnjSuy4vqiwsY+nNEn
-         7nctk7xz/OCfXMmIgLfGq/RmvoIZZ0NKJ2qpL0wZ21hGrR9A6ZQ01+zQaKOFsyVQUnyp
-         EsM5m8DSn2g9Z+oEC2oA+o6ZFjZypM3Rmek9TPZ2QpFoOV7eOD91OdpuXDkKTmdBvV2d
-         p+m4QUEsxFHCLCToQtCcL3e0o1L8hhuc/KFSMrm6LZRkm05DVIuloqzCStA/I2gqB0zd
-         hgEA==
-X-Gm-Message-State: AJIora+wQ3AmdnC+mezDuzatOStj5lTvaBFtSPWjhl9pE/KPgd1XHVV7
-        iZhSP4G+/msJE/9XhsR9Zg==
-X-Google-Smtp-Source: AGRyM1udMn8pbyabNzTUkhKwpXdRhSD4MzQfo0is+Z0Sw1A4/pvUbtI9AS4iImStQlQEGGNVMit23A==
-X-Received: by 2002:a92:cda2:0:b0:2dc:7060:ef14 with SMTP id g2-20020a92cda2000000b002dc7060ef14mr8871282ild.56.1657645037165;
-        Tue, 12 Jul 2022 09:57:17 -0700 (PDT)
+        bh=ab3YykQtENNYR96P2deloUUA7ozL89etTbBGV9drVIg=;
+        b=T5any5UxhEiPvgdr1QMNPp4tjg1DTscJBFkNbuITRSFRJjy1Bh8UaYhpOIqb71DWUU
+         3iQKeZGAUoz7iPQMwnSqwgZisnnJBaT0YzfoIc0dmfvJV+q9p9gk3Ayk1sjcHhJhdUy9
+         s8vHPSrxj+3OE8cHtEl3kXZ8n9ZACKNPILnnZO78aats4Su1dwSFUqCXhS4dXVeHiFCl
+         WH+l3aEgjPtkvr/LY5J5afXvpisd9u3A2qGAKIcT1fkRvVfwmgPDn/X2CqKOA9Hg8CMD
+         m9b3u6Pquyxe1Gopr/we6doDOSlG6w1Hn0mGvl8QgdANkWezXj3OsZOCJGWkxTfuDzXO
+         5OFA==
+X-Gm-Message-State: AJIora/Wzg8ZtqCnlhrFWvY/ySnOamGLVPuuUwDZoPeZ+YRnkDAMRc4k
+        Urr3+rw2XWsLDwfpQzQifg==
+X-Google-Smtp-Source: AGRyM1sGCNnDya34fRk249CJ69juOy7ZBX23cVbQ1UiHqldyoOanwr/0IxGKIPC2yqJBD6ld+NaVNg==
+X-Received: by 2002:a05:6638:dd0:b0:33f:1886:4e5d with SMTP id m16-20020a0566380dd000b0033f18864e5dmr13861646jaj.245.1657645140867;
+        Tue, 12 Jul 2022 09:59:00 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id n9-20020a056e021ba900b002d3ad9791dcsm3880957ili.27.2022.07.12.09.57.15
+        by smtp.gmail.com with ESMTPSA id r2-20020a0566022b8200b0067b7966553fsm3153992iov.20.2022.07.12.09.59.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 09:57:16 -0700 (PDT)
-Received: (nullmailer pid 2015943 invoked by uid 1000);
-        Tue, 12 Jul 2022 16:57:15 -0000
-Date:   Tue, 12 Jul 2022 10:57:15 -0600
+        Tue, 12 Jul 2022 09:59:00 -0700 (PDT)
+Received: (nullmailer pid 2018335 invoked by uid 1000);
+        Tue, 12 Jul 2022 16:58:59 -0000
+Date:   Tue, 12 Jul 2022 10:58:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Robert Foss <robert.foss@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alex Elder <elder@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH v4] dt-bindings: qcom: document preferred compatible
- naming
-Message-ID: <20220712165715.GD1823936-robh@kernel.org>
-References: <20220705161301.493364-1-krzysztof.kozlowski@linaro.org>
- <1657048737.406960.2471232.nullmailer@robh.at.kernel.org>
- <3f4f62da-302f-c6cb-0c32-73f4e36e5022@linaro.org>
+To:     Liang He <windhl@126.com>
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        linmq006@gmail.com
+Subject: Re: Re: [PATCH] of: device: Fix missing of_node_put() in
+ of_dma_set_restricted_buffer
+Message-ID: <20220712165859.GE1823936-robh@kernel.org>
+References: <20220702014449.263772-1-windhl@126.com>
+ <20220705144527.GA2048024-robh@kernel.org>
+ <4faba661.4c9a.181d26dbd0d.Coremail.windhl@126.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3f4f62da-302f-c6cb-0c32-73f4e36e5022@linaro.org>
+In-Reply-To: <4faba661.4c9a.181d26dbd0d.Coremail.windhl@126.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -74,67 +64,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 06, 2022 at 08:55:18AM +0200, Krzysztof Kozlowski wrote:
-> On 05/07/2022 21:18, Rob Herring wrote:
-> > On Tue, 05 Jul 2022 18:13:01 +0200, Krzysztof Kozlowski wrote:
-> >> Compatibles can come in two formats.  Either "vendor,ip-soc" or
-> >> "vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
-> >> DT schema file documenting preferred policy and enforcing it for all new
-> >> compatibles, except few existing patterns.
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> ---
-> >>
-> >> Changes since v3:
-> >> 1. Add qcom,kpss-wdt-xxx to pattern for exceptions.
-> >> 2. Add ipq806x entries to list of exceptions.
-> >>
-> >> Changes since v2:
-> >> 1. Narrow the expected pattern to be followed by dash '-' after model
-> >>    number (msm8996-) or by two letters and a dash (sc8280xp-).
-> >> 2. Add qcom,apss-wdt-xxx to list of exceptions.
-> >> 3. Use comment instead of description in the oneOf list.
-> >>
-> >> Changes since v1:
-> >> 1. Add schema instead of readme (Rob).
-> >>
-> >> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> >> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >> Cc: Vinod Koul <vkoul@kernel.org>
-> >> Cc: Alex Elder <elder@linaro.org>
-> >> Cc: Robert Foss <robert.foss@linaro.org>
-> >> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> >> ---
-> >>  .../devicetree/bindings/arm/qcom-soc.yaml     | 63 +++++++++++++++++++
-> >>  1 file changed, 63 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/arm/qcom-soc.yaml
-> >>
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.example.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-> > 	'qcom,qcs404' does not match '^qcom,(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+-.*$'
-> > 	'qcom,qcs404' does not match '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'
-> > 	'qcom,qcs404' does not match '^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> > 	'qcom,qcs404' does not match '^qcom,gcc-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> > 	'qcom,qcs404' does not match '^qcom,mmcc-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> > 	'qcom,qcs404' does not match '^qcom,pcie-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> > 	'qcom,qcs404' does not match '^qcom,rpm-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> > 	'qcom,qcs404' does not match '^qcom,scm-(apq|ipq|mdm|msm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$'
-> > 	'qcom,qcs404' is not one of ['qcom,gpucc-sdm630', 'qcom,gpucc-sdm660', 'qcom,lcc-apq8064', 'qcom,lcc-ipq8064', 'qcom,lcc-mdm9615', 'qcom,lcc-msm8960', 'qcom,lpass-cpu-apq8016', 'qcom,usb-ss-ipq4019-phy', 'qcom,usb-hs-ipq4019-phy', 'qcom,vqmmc-ipq4019-regulator']
-> > 	'qcom,qcs404' is not one of ['qcom,ipq806x-nand', 'qcom,ipq806x-usb-phy-ss', 'qcom,ipq806x-usb-phy-hs']
-> > 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/qcom-soc.yaml
-> > 
+On Wed, Jul 06, 2022 at 03:33:36PM +0800, Liang He wrote:
 > 
-> This is fixed by:
-> https://lore.kernel.org/all/20220627143340.477120-1-krzysztof.kozlowski@linaro.org/
-> https://lore.kernel.org/all/20220628092253.21905-1-krzysztof.kozlowski@linaro.org/
+> 
+> At 2022-07-05 22:45:27, "Rob Herring" <robh@kernel.org> wrote:
+> >On Sat, Jul 02, 2022 at 09:44:49AM +0800, Liang He wrote:
+> >> We should use of_node_put() for the reference 'node' returned by
+> >> of_parse_phandle() which will increase the refcount.
+> >> 
+> >> Fixes: fec9b625095f ("of: Add plumbing for restricted DMA pool")
+> >> Co-authored-by: Miaoqian Lin <linmq006@gmail.com>
+> >> Signed-off-by: Liang He <windhl@126.com>
+> >> ---
+> >>  drivers/of/device.c | 5 ++++-
+> >>  1 file changed, 4 insertions(+), 1 deletion(-)
+> >> 
+> >> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> >> index 874f031442dc..75b6cbffa755 100644
+> >> --- a/drivers/of/device.c
+> >> +++ b/drivers/of/device.c
+> >> @@ -81,8 +81,11 @@ of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
+> >>  		 * restricted-dma-pool region is allowed.
+> >>  		 */
+> >>  		if (of_device_is_compatible(node, "restricted-dma-pool") &&
+> >> -		    of_device_is_available(node))
+> >> +		    of_device_is_available(node)) {
+> >> +			of_node_put(node);
+> >>  			break;
+> >> +		}
+> >> +		of_node_put(node);
+> >
+> >This should be converted to use of_for_each_phandle() iterator instead. 
+> >That takes care of the put here (but not in the break).
+> >
+> >Rob
+> 
+> Hi, Rob.
+> 
+> After I carefully read the implementation of of_for_each_phandle() and of_parse_phandle(),
+> I think it is better to keep current coding style as it will change a lot of current code.
+> 
+> Besides, the loop index 'i' will be used in following of_reserved_mem_device_init_by_idx(), so
+> I cannot give a simple and correct way to use of_for_each_phandle().
 
-Okay, as long as those are applied together:
+Ah, okay. I've applied this now. Thanks.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Rob
