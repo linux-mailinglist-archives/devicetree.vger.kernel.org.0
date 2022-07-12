@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A4F95712D0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 09:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EECF5712E5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 09:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230225AbiGLHLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 03:11:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50492 "EHLO
+        id S231256AbiGLHPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 03:15:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiGLHLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 03:11:08 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E590C275DE
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:11:03 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id w17so7274842ljh.6
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:11:03 -0700 (PDT)
+        with ESMTP id S229926AbiGLHPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 03:15:38 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4FD643EE
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:15:37 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id a9so12422412lfk.11
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 00:15:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QEUyx0E9n8vFcgYZZ5+oGz1HVwAvbqPb8QwcUhO4wh8=;
-        b=pblwCANp624g23t3MmHXm13+zksran9Vfismaduy4g67uAj8xvi/xaROG1iXc2qy9+
-         SJqD8n1mg0jTfBRdlTzlVe9/0ezZbtVDWWdjYZV74TMB9at7CyoSIxh5FBwdIeWypfy9
-         9nq/rWlA2/EmBgB0DKUdSB4J4MJBmuFYXpKHzNqDs0Dai6ThkkJIr4Jpg+5SxuP2MaiC
-         RN7gZRV0Pb1QP5EKvz9H0WMwdNiCMz6S+0rWji1VaqUvgn0zu36oMrPZMpDDTWbNHcrT
-         U/kn4UY9ZgQhjL8w7kZemkaXCpcqOvE9L4hspvcYI4Qh7iu220I9SIyg7d9D+StczKwG
-         gIRA==
+        bh=nsCsUCsLeks7gLQjyy032kLwCiyMm8kobhR40LxLfCE=;
+        b=fP1az/JP9d5e2iu960Ic2C2JTKpsqA318fncQOEWI9lQMTMo+xqjwtxRR9GzAJl9T1
+         waUAo5RWk2oP0WP1wxNQcNwoQoOTqyFpWexrqawczTQ88goI0jJ+pi5UkvaqFbe06xLo
+         4Zpu5I/bS5dsF/jj/997rgIvJlDmKF/Dc7mEpXgMnnlpf6oNR1Ty9VGOSLn87BcCFbfZ
+         3Ss5NS6m0EcKYvxggwyTvMWQIdvFJGS5SswRD0E/ErY4YjPP8gjp+H8+0q5uEa3ZSEHj
+         Aiw4zbELh/Bi1yjMrdRBMOBqEDgxfWUAvDTocnRPXWW/y6ZiM6KJ/CL8NYwcZ3iCF5Rv
+         JEuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=QEUyx0E9n8vFcgYZZ5+oGz1HVwAvbqPb8QwcUhO4wh8=;
-        b=SWzu7nK9cziN6stmrlLhsdTjXFKq7arXzNvGY0PES2et4pIBU8OaDQTw9yTByY/7Q1
-         tibxqHZcvTwOIxlvoXHaaYuXs4y0qOt2Yf0XPQ65Obtn6axZiK+uGwRK57U96GP3/uxQ
-         t5gk8caHkOzSotM8qwtMDb/bbZXbX3ONuBj84SY5uRhdLjPF34COwoVHvP+Nf7VkAxUd
-         ouJNS9yCPqr/UreJ00rZSetj+HAfHMTsBX6r1qChwpOjhryhEMRjGTYRyICNafm1EAQR
-         brTI3tgm9Zb4IcUHXrK4wWzjG3ElTwy1pyi0RvWavrDBL82ZFRcQ555UFr5hEtanYQln
-         HOxA==
-X-Gm-Message-State: AJIora8kFjnygv9WTIl0A69g5v/GkyaUoR/SyBueF7rdqbwzw7UAJDu+
-        IYV9sqtM0FaNZinQcqqpSsPMFg==
-X-Google-Smtp-Source: AGRyM1sZ2tKhjXGOykefiUQc+wQu3O3VZEElIodcEfttcGfucNFdJm4CvcLdTZAlaGm46CP46fxOJQ==
-X-Received: by 2002:a2e:96c1:0:b0:258:e8ec:3889 with SMTP id d1-20020a2e96c1000000b00258e8ec3889mr12162830ljj.6.1657609862335;
-        Tue, 12 Jul 2022 00:11:02 -0700 (PDT)
+        bh=nsCsUCsLeks7gLQjyy032kLwCiyMm8kobhR40LxLfCE=;
+        b=Vg0XXIBZWrV3q61oKtYUqD/bQbYVnZ6zotjVS94JTwDUWL9p2S14gVvYZOM63Y5QUX
+         4HmZvBnJgpaQK0YGGcMw/n9ii2EcLbHuJSDl0bI5EAITxGEwcqoJeTXlXpiLEaJlG12f
+         LCd1fVJwDK61PGrQdoYw1krWR1AR54lRa/QgiH7acNEJOW6BKxX5cNaRSl/4WyWYNTrJ
+         Qi3496I9jqeZ//VQMA4LdlcovmTB8DcU4lc0Oqn843J7TUw/s91jpiJngtUh7qILI5fv
+         6XeJEGzQNt/SRT96wS3AzrCbz13tpIINKueEmRyhKm2ZB3B8Cva6FmeOc6T149fPxkMN
+         ZaDw==
+X-Gm-Message-State: AJIora+b7kOmpuxNjWp2gSJ3pLMUckNORYr8cU3540ntckEol03kHJCP
+        y5R+iq0t9A8RvH2VCZh6j+zKVA==
+X-Google-Smtp-Source: AGRyM1spCUHNkLtF0Uo+VDAZEfXmPYq1704v0M4hpSxhTZ9ocQTZspqz/bbrl5COvtkZ1IRDf9Mtng==
+X-Received: by 2002:a05:6512:45b:b0:489:cf49:4623 with SMTP id y27-20020a056512045b00b00489cf494623mr8890654lfk.266.1657610135495;
+        Tue, 12 Jul 2022 00:15:35 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id t9-20020ac25489000000b0047f8cb94004sm2024781lfk.35.2022.07.12.00.11.00
+        by smtp.gmail.com with ESMTPSA id r6-20020ac25c06000000b00483f8c40c17sm2003762lfp.240.2022.07.12.00.15.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 00:11:01 -0700 (PDT)
-Message-ID: <09c11a48-fb3f-8fde-c530-dc13f5cf4bf6@linaro.org>
-Date:   Tue, 12 Jul 2022 09:11:00 +0200
+        Tue, 12 Jul 2022 00:15:34 -0700 (PDT)
+Message-ID: <1aa8e9aa-8cb3-8537-6d65-dd9441d5ee07@linaro.org>
+Date:   Tue, 12 Jul 2022 09:15:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [RESEND PATCH v3 0/3] dt-bindings: input: gpio-keys: apply via DT
- tree
+Subject: Re: [PATCH 4/4] dt-binding:perf: Add Amlogic DDR PMU
 Content-Language: en-US
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220705120356.94876-1-krzysztof.kozlowski@linaro.org>
- <CAL_Jsq+LepF_67SJUqQ5mUO-TZAd-46LB+aYE5rZmnmmwMg=bw@mail.gmail.com>
- <352f27e7-0da1-4a4a-83a4-ded370dfbd7f@linaro.org>
- <YsiVH41gCLeIMyd6@google.com> <20220708220507.GA1557227-robh@kernel.org>
- <YsiuRbaFMa683H1Z@google.com>
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chris Healy <cphealy@gmail.com>
+References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
+ <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YsiuRbaFMa683H1Z@google.com>
+In-Reply-To: <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,20 +83,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/07/2022 00:23, Dmitry Torokhov wrote:
->>> I am sorry but what series/branch this series is based on? I tried
->>> applying but there are conflicts. The latest I have that is touching
->>> gpio-keys.yaml is:
->>>
->>> 4fda8a2df83a dt-bindings: input: use generic node names
->>
->> This one from me:
->>
->> https://lore.kernel.org/all/20220608211207.2058487-1-robh@kernel.org/
-> 
-> Ah, I see, thank you. Applied the lot.
+On 12/07/2022 08:36, Jiucheng Xu wrote:
+> Add binding documentation for the Amlogic G12 series DDR
+> performance monitor unit.
 
-Great! Thank you.
+You need to fix subject - use a prefix matching subsystem. Space after
+each ':'.
+
+> 
+> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> ---
+>  .../devicetree/bindings/perf/aml-ddr-pmu.yaml | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
+> new file mode 100644
+> index 000000000000..c586b4ab4009
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
+
+Filename: aml,g12-ddr-pmu.yaml
+
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/aml-ddr-pmu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic G12 DDR performance monitor
+> +
+> +maintainers:
+> +  - Jiucheng Xu <jiucheng.xu@amlogic.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - aml,g12-ddr-pmu
+> +      - items:
+> +          - enum:
+> +              - aml,g12-ddr-pmu
+> +          - const: aml,g12-ddr-pmu
+
+This does not make any sense. Why do you use two compatibles
+"aml,g12-ddr-pmu", "aml,g12-ddr-pmu" after each other?
+
+> +
+> +  reg:
+> +    maxItems: 2
+
+You need to describe the items.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - model
+> +  - dmc_nr
+> +  - chann_nr
+
+How these ended up here?
+No underscores.
+
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+
+Also something new. No.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +          ddr_pmu: ddr_pmu {
+
+Wrong indentation. 4 spaces for DTS example.
+
+Generic node name, so "pmu", no underscores in node names.
+
+> +                  compatible = "amlogic,g12-ddr-pmu";
+> +                  model = "g12a";
+> +                  dmc_nr = <1>;
+> +                  chann_nr = <4>;
+
+This does not pass the test. Please do not send untested bindings.
+
 
 Best regards,
 Krzysztof
