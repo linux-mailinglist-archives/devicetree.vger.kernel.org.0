@@ -2,99 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91CD95713F9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:09:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CD4A571408
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232531AbiGLIJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:09:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40178 "EHLO
+        id S229739AbiGLILA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:11:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229783AbiGLIJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:09:05 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A006E28E1B
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:09:04 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id n18so10932509lfq.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:09:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7hymDGoXZOvT4wo4b8VCjcpQ+XRX3pT8aXtW5HqYY0g=;
-        b=OPdG2eSd1GwsQvVoZ0jTUrpcOgCQXXF6v27JsagiYHeJ6mvzzR+Vl2f5DWGBjL0oor
-         BzmxvVaVbkSaFHK7xobBT1bo0BsaPnUpw5Qgn0tPbnXqtVtmsvOgknBB1MpPys+RS4Bn
-         rfEtTi4GTZNaV/RnyYY+aaIRpyNRrYFu1veoiDQrMvRBmHvqwHy4ilNMbxKtX4JPW9Xk
-         A9skPZvL0WP/Ki5yau8/+5P9EUCltbpgLBVm3keFVQxCZ59e121jQM2wCideCjMCucWZ
-         spTAHTc6jEIGjfZ1HBwMvzH0MSplaC8m0ZRUeFXmQ7DEecAWRrQRPh7oxT3T1L2dE4mU
-         LF6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7hymDGoXZOvT4wo4b8VCjcpQ+XRX3pT8aXtW5HqYY0g=;
-        b=gV98F/twDihrlBtZSf6z1rATFEwnLj6NTSvBbw6nut/CbooURV+Kz0OCIaCf72aHaq
-         8VUb6D4N36kHP10eYeYrbtk1qVfe5OaAEGndgiLGA19ts5+cTXQ8G9DACbBzSllux6Oo
-         xtb2KerNXytGaxyMfSFtHW2uZlmb1MOJLDzU0/ZxjuQ2sIC9kS3/ouPblLfRNtnTNbAM
-         21Bf+iLiyghvelztr7JI0Crno9QMVWvk+3+l2IoXmLKaB85xjJQnoMbBg7/potzaEM6F
-         E2b39UiNjBjPmZUywpMyXH+N0qj2kcH+Kd+KEpZe/HqiHXr7Bl7NZBPaE+P3zo5Cvy4u
-         +E2w==
-X-Gm-Message-State: AJIora/BP1eu8BAd1dD60g4CTGrE/az5AoeO7zuvDNKJreH3/iamVoup
-        AkCis2Uf7Id6KTmxZYsSkCnK5Q==
-X-Google-Smtp-Source: AGRyM1usYq9Y2eMuGje+OHvls6QftNfcJPk9nwgSJbif9bEWrfHigs4mRwSaVpCHRiznM4HZVPSYkg==
-X-Received: by 2002:a05:6512:34cd:b0:488:aa53:c104 with SMTP id w13-20020a05651234cd00b00488aa53c104mr15231306lfr.517.1657613343057;
-        Tue, 12 Jul 2022 01:09:03 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id a12-20020a19ca0c000000b00488e50527e0sm2026877lfg.112.2022.07.12.01.09.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:09:02 -0700 (PDT)
-Message-ID: <b2934014-8048-6c17-e655-bd1be09794bc@linaro.org>
-Date:   Tue, 12 Jul 2022 10:09:00 +0200
+        with ESMTP id S232654AbiGLIKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:10:38 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 086A29E47C;
+        Tue, 12 Jul 2022 01:10:14 -0700 (PDT)
+X-UUID: cfffe12f99f9400e8664b26b50cd4cf4-20220712
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:bb70b979-a0bc-4ec1-8984-3e71cd97a885,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:0f94e32,CLOUDID:0328be32-b9e4-42b8-b28a-6364427c76bb,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: cfffe12f99f9400e8664b26b50cd4cf4-20220712
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 562334713; Tue, 12 Jul 2022 16:10:09 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 12 Jul 2022 16:10:07 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 12 Jul 2022 16:10:07 +0800
+Message-ID: <aa0b332468145634d6a9ef538da5c3eb26033de3.camel@mediatek.com>
+Subject: Re: [PATCH v13 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "deller@gmx.de" <deller@gmx.de>,
+        "airlied@linux.ie" <airlied@linux.ie>
+CC:     "msp@baylibre.com" <msp@baylibre.com>,
+        "granquet@baylibre.com" <granquet@baylibre.com>,
+        "Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?=" 
+        <jitao.shi@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?=" 
+        <LiangXu.Xu@mediatek.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 12 Jul 2022 16:10:07 +0800
+In-Reply-To: <fde545ed10e3baa1a375eead29dd2d12d95b7cb2.camel@mediatek.com>
+References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
+         <20220701062808.18596-6-rex-bc.chen@mediatek.com>
+         <fde545ed10e3baa1a375eead29dd2d12d95b7cb2.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 0/2] dt-bindings: sound: Convert to json-schema
-Content-Language: en-US
-To:     Ryan.Wanner@microchip.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220711183010.39123-1-Ryan.Wanner@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711183010.39123-1-Ryan.Wanner@microchip.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 20:30, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On Thu, 2022-07-07 at 10:21 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
 > 
-> This patch series converts atmel-classd and atmel-pdmic device tree
-> bindings to json-schema.
+> On Fri, 2022-07-01 at 14:28 +0800, Bo-Chen Chen wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > This patch adds a embedded displayport driver for the MediaTek
+> > mt8195
+> > SoC.
+> > 
+> > It supports the MT8195, the embedded DisplayPort units. It offers
+> > DisplayPort 1.4 with up to 4 lanes.
+> > 
+> > The driver creates a child device for the phy. The child device
+> > will
+> > never exist without the parent being active. As they are sharing a
+> > register range, the parent passes a regmap pointer to the child so
+> > that
+> > both can work with the same register range. The phy driver sets
+> > device
+> > data that is read by the parent to get the phy device that can be
+> > used
+> > to control the phy properties.
+> > 
+> > This driver is based on an initial version by
+> > Jitao shi <jitao.shi@mediatek.com>
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
+> > +
+> > +static void mtk_dp_power_disable(struct mtk_dp *mtk_dp)
+> > +{
+> > +	mtk_dp_write(mtk_dp, MTK_DP_TOP_PWR_STATE, 0);
+> > +
+> > +	mtk_dp_write(mtk_dp, MTK_DP_0034,
+> > +		     DA_CKM_CKTX0_EN_FORCE_EN |
+> > +		     DA_CKM_BIAS_LPF_EN_FORCE_VAL |
+> > +		     DA_CKM_BIAS_EN_FORCE_VAL |
+> > +		     DA_XTP_GLB_LDO_EN_FORCE_VAL |
+> > +		     DA_XTP_GLB_AVD10_ON_FORCE_VAL);
 > 
-> v1 -> v2:
-> - Fix commit formatting.
-> - Fix titles in yaml file
-> - Removed trivial descriptions
-> - Correct formatting errors 
+> clk-mt8195-vdo0 driver [1] is part of mtk-mmsys driver [2] and it is
+> still separated out to ccf driver. In addition, you does not manage
+> the
+> parent clock. If the parent clock is not enable, these leaf clock
+> would
+> not work.
 > 
-> Ryan Wanner (2):
->   dt-bindings: sound: atmel,classd: Convert to json-schema
->   dt-binding: sound: atmel,pdmic: Convert to json-schema
+> [1] 
+> 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/mediatek/clk-mt8195-vdo0.c?h=v5.19-rc5#n138
+> 
+> [2] 
+> 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/soc/mediatek/mtk-mmsys.c?h=v5.19-rc5#n140
+> 
+> Regards,
+> CK
+> 
 
-Use consistent and proper prefix. I think you got such comment before,
-right?
+Hello CK,
 
+MTK_DP_0034 is just a enable control for dp hardware, so I think we
+don't need to move it to ccf driver. it's not related to ccf.
 
-Best regards,
-Krzysztof
+After checking with Jitao, we only need to update
+DA_CKM_CKTX0_EN_FORCE_E. I will set this bit as 1 in
+mtk_dp_power_disable and 0 in mtk_dp_power_enable
+
+BRs,
+Bo-Chen
+
+> > +
+> > +	/* Disable RX */
+> > +	mtk_dp_write(mtk_dp, MTK_DP_1040, 0);
+> > +	mtk_dp_write(mtk_dp, MTK_DP_TOP_MEM_PD,
+> > +		     0x550 | BIT(FUSE_SEL_SHIFT) |
+> > BIT(MEM_ISO_EN_SHIFT));
+> > +}
+> > +
+> 
+> 
+
