@@ -2,75 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 358C157143B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A41A571441
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232636AbiGLIRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:17:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48288 "EHLO
+        id S231584AbiGLITY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:19:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232641AbiGLIRl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:17:41 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13FB2A2395;
-        Tue, 12 Jul 2022 01:17:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id ABBFDB8162F;
-        Tue, 12 Jul 2022 08:17:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDEFCC3411E;
-        Tue, 12 Jul 2022 08:17:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657613857;
-        bh=/4FpR0s9G33GoZT2vsR7l1yUnYnNtqmg8K7NSFJYFEM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=NJZpkIgZZm+Bq+pUoO4WkeuCZjQ1yVrcXTLoal5Gm7tEX7CyjIWajSdLj9FUx2JWj
-         nECsmKLOBwUwOOVXYFycPIZtJXjKcc3MQbwVVgWicegxWMJ/E8OrDO8FQms63NxXCG
-         5eS8bpOMZqhK/wL7L5Ab2BaLvem/AaNRgm+6/oDcfF/e87DBtGcmAoPmj4wVK1exfV
-         42z9p6ci0Qcp1WD4B50J/1U3dWAIqNAEigpRvb8r3oBnVL/+Km4rIVjwN2IiHH3cd4
-         cXo6/WxK+5dlLGnoAn1qAUOzZ7CtUVHw1awDk+n7gZiUhfant513F2OH9fPqNMTwoJ
-         oIHUQ+Y9VUvmw==
-Message-ID: <90c225d3-ed49-8399-770e-352c8f88001f@kernel.org>
-Date:   Tue, 12 Jul 2022 10:17:24 +0200
+        with ESMTP id S232314AbiGLITW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:19:22 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648C42CE11
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:19:21 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id p6so6202824ljc.8
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:19:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=mPwiUa/I/QF58z2fuTg90NSWV/C3Pn2OArh1aSAWDBY=;
+        b=jLek+wGEDNJr7KlZ2GnQ0XU5mNwTvxszDPPwOGmyicqVu+M1ttCGXYUxjaNlvJWjx2
+         ZXn8IakQMQ2Fi3eRnDTj/3Cc9YQluDxcoFFZd0umPFkD/tEFJ33rCGlkvB/PNGRbQnbH
+         VvZNbI0OPOlkGSUjHCH36jPbxKpFFHBgPOUHBcJDNcUKUvaDX5mIHojkV/qFPA3w8lWw
+         qeQAzVZjcLtLvobTRHJnddCRKeqNNSBlEIBs5ie5MOmkvAfgpPvOHHxI82UKh7KOt45N
+         7cmCnjOPWe5EligYe5MdZ8hfVVc3eYF1SNp4dx5N3LoZoPDp1dnzUSYtJX37Qy2mHIAw
+         sk/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=mPwiUa/I/QF58z2fuTg90NSWV/C3Pn2OArh1aSAWDBY=;
+        b=l6bBdckKdvAu76TuIFZrtBuNuVSQPBlXFsYHXOACR27SUNFVA4yQibpZGHZgsJctyt
+         jrXJKy28n4U9VV9O3ptCuRU2MZH1uC4OhwbxxDajtzFG38sxxxaS/7+QCkqXFiXjwlvw
+         nySrG74nCWIY0T8hb44OpoZaRLzdAwATuAUXVEPdSqFkQFeNe5uLJ0CUMc21LBkCzadH
+         JLnV2oqW6wlNx3PnAzY2MP8eLc0nH5hmHGIfNEn4spgUB6LmIzvzxIGEAvU7do/Jlyy8
+         XRBTPrenLiKrp6VbfvM55gITehDl754YCO46zyS/TqAzh/wjq9oweCr4r0XN+3Mnvvrm
+         /fag==
+X-Gm-Message-State: AJIora8kf1y40TLIva88uUY7qExnTZUEXB+Mkofyuees8AoQkfEfCZER
+        urZdENQaBmTP8FSYDiWghKALVMcSwqiKH7o6
+X-Google-Smtp-Source: AGRyM1u0bOgIZMac3Bmr5k6icpSTgbmhYm6M1PQ7kvFztaYK4kYaxEMiNHHj+r1fR6aBeaJ2BqISuQ==
+X-Received: by 2002:a05:651c:154a:b0:25d:7a5c:b854 with SMTP id y10-20020a05651c154a00b0025d7a5cb854mr968511ljp.193.1657613959768;
+        Tue, 12 Jul 2022 01:19:19 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
+        by smtp.gmail.com with ESMTPSA id s28-20020a05651c201c00b0025d547bf08asm2274689ljo.74.2022.07.12.01.19.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 01:19:19 -0700 (PDT)
+Message-ID: <600d7287-091c-48b3-9e43-fb2e6bd79042@linaro.org>
+Date:   Tue, 12 Jul 2022 10:19:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/3] media: dt-bindings: ak7375: Convert to DT schema
+Subject: Re: [PATCH 1/5] dt-bindings: arm: tegra: flowctrl: Convert to
+ json-schema
 Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+To:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tianshu Qiu <tian.shu.qiu@intel.com>,
-        Bingbu Cao <bingbu.cao@intel.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220711144039.232196-1-y.oudjana@protonmail.com>
- <20220711144039.232196-2-y.oudjana@protonmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220711144039.232196-2-y.oudjana@protonmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20220711152020.688461-1-thierry.reding@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220711152020.688461-1-thierry.reding@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 16:40, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+On 11/07/2022 17:20, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Convert DT bindings document for AKM AK7375 VCM to DT schema
-> format and add an example.
+> Convert the Tegra flow controller bindings from the free-form text
+> format to json-schema.
 > 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../arm/tegra/nvidia,tegra20-flowctrl.txt     | 18 --------
+>  .../arm/tegra/nvidia,tegra20-flowctrl.yaml    | 41 +++++++++++++++++++
 
+arm directory is for top-level stuff only. SoC components which do not
+fit any subsustem, should go to "soc". Can you move it here to "soc" or
+to respective subsystem (net?) if there is such?
+
+Rest looks good, so with different directory:
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
