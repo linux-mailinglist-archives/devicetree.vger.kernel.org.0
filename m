@@ -2,131 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79925571F3F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B99C571F57
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:33:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233290AbiGLPcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 11:32:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39862 "EHLO
+        id S233634AbiGLPdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 11:33:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbiGLPcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:32:14 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2090.outbound.protection.outlook.com [40.107.21.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73054974AC;
-        Tue, 12 Jul 2022 08:32:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WQxdd4IlUEAIRBKV7L/mvW75EbdM/Oo/MzzcHKYKdI85wSi8UldnYg9y96c3h7WN+iWiWwYqCM7a7Lr3xauAdFF3Q376WLpFFTnRNDkZogRXfjzXFhhKKrHQLymtaCaltDF/QH2viPv2u7oWQblCBhl21r2hLsZhHXj5AMtASNrxQ7tk9S6Lglm/EGB3a6LPutKQ+lG/6ZD5fieHR95uuICPOBDU8AAxRaYG95VBL7r48rPkko2vpl73SRZqdNTILNTlK9oGxsR+prsxq6MZrtdt1Jqe+Vg0ZuGsVNKt+yruRhITISS3QF9so4R+SWmq9L6FfmhOawuQh8HTqB2Y1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mPyhs6uZUMmpXIsYj9iey2CVNa4Wy4jYFYo0uNzYHdc=;
- b=CG36z/LdBrhlA0qw5M2g213eOxDDd+tTZ6Yif7WOilmXCry7H+cZWauxU7JU5A8c0y6PrKcuJZ17nDr4FuliAPKdwfqOOf5fKaRnvsConewc13SXjX4f/836Q8NjBuKWKvrjTb96DHz35iylV605pwBWQROjF48q2bKJ5PeAwLb9yIjFASr8hcV9/k/+bP+FhW/imKb4Ldqwh+mCLjShLa5PYWvzwZyRrzrRGdKwALwmw0NnJT/rmCWeN43wL8tu/bCna2PzlPOuQ5J8Ep+u0HzsQjew4WRQxS3isuC73Ek19dV7JKe5vKGGsW+v2R6SwOD5KmqUzRXCoztRz7eUgg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mPyhs6uZUMmpXIsYj9iey2CVNa4Wy4jYFYo0uNzYHdc=;
- b=n+ILLFYG4R3VjOAShCotLruHjTG2ekRt/GNUata4Lw05JaOO+dWhQ2fG1LslO3cs4wA2RxMwp+lv+JzgjP4WpctmZPm/nH7X+UmmegFaccu/5Uhea4Zhmit7aMGXYR58hM8bho2s4jdiAfBKHR0HSMKB3W9csK1Xz0SPEi85wQ0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
- by AM4PR1001MB1218.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:200:8f::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.15; Tue, 12 Jul
- 2022 15:32:09 +0000
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::35e3:b154:10cd:4ebd]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::35e3:b154:10cd:4ebd%7]) with mapi id 15.20.5417.026; Tue, 12 Jul 2022
- 15:32:09 +0000
-Message-ID: <f02a41c3-a31d-b669-c4c5-3ea161a00924@kontron.de>
-Date:   Tue, 12 Jul 2022 17:32:07 +0200
+        with ESMTP id S234033AbiGLPc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:32:56 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84283C08D8
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:32:50 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id o7so14545322lfq.9
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:32:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0q9Gvx7Z0ksjLoxHmNPJnvLZ0oMYX7lpjYwHt0sE3fY=;
+        b=w1mXmlabNp7dsC4bzvKsmcIcHQmEvT2/nTr4wV3astV6R7wsM/Y3KEWDhi8VGGY/4s
+         evwhRNKn/n0u+ioYAxtYWQSMyMQR2xMgDdKdgH+zyl4XHQQaYXUafRl/igGum8KnxsG5
+         Pt1Q4ShK3MiGycJtVvPYflF7Rag6Pz8XRrM0SZY7EWlZ7Ks7Zs1X1FLPrrGOtn6DwERU
+         XhxKezmuU0jd+dr+K12auSGEtfanVThQaTPMebB2f9cpXatHPG79i/5S4JNyZinVdfxU
+         DxYgKiFJ8vsP4q4Gutn5FkxUva0K9ImgORxRgBBvLTPxd8pYoaYw4zwVabVpbG+4Y7es
+         IxhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0q9Gvx7Z0ksjLoxHmNPJnvLZ0oMYX7lpjYwHt0sE3fY=;
+        b=dGrYGQeGqjsTJgLvu3ocNzIETyn3R34CMa1osv3IeOnuAFTSD9eCtMMwaE+BIZdI/f
+         uMJRGAjhG259b4Ogzt0xn8j+aXXn2FGRn8VWC8W8CpmF+IEhqGj2Fnv/l892KPjrt+C0
+         qJKjsPh8JIFiyoeijkiF0rtt88LQzF+ai73iAUchUTwFd3M9vvkdTnFFCRn7OAFhcPZ7
+         CO8DDm8+CSIKfiQ2+Aa8SyBVARz0ZGKDVsK2WsK2EaRWe5/DjRr7AwTYCUdpKLXAZ3wa
+         T1/vEvV7XsEdMGlZpbLNW0t6X0f+Bhatz1kHhDJ2l2LHaEsQJl7UMzJEPAC9OTGm7irp
+         21Cg==
+X-Gm-Message-State: AJIora+CAz0dCpgfEl2mrxyNWDqVaSacAKsqet33sKoa49TyfHp0BjAF
+        QnDm+rv3CZrIoYymC9Pj0yCwHQ==
+X-Google-Smtp-Source: AGRyM1u9OoXz2cnj7jxSe/4JrF0ANDFELXJh2uu8x0qBIeg/tFjLu0qZuQHQLJznN8oGVOZnqiE6QA==
+X-Received: by 2002:a19:6754:0:b0:489:c7ff:10e1 with SMTP id e20-20020a196754000000b00489c7ff10e1mr12485200lfj.585.1657639968769;
+        Tue, 12 Jul 2022 08:32:48 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id u10-20020ac258ca000000b00478a311d399sm2249135lfo.0.2022.07.12.08.32.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 08:32:48 -0700 (PDT)
+Message-ID: <47aa4fbc-9cf4-7ac3-2fb4-2135a7703212@linaro.org>
+Date:   Tue, 12 Jul 2022 17:32:45 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2] kbuild: allow validating individual dtb files against
- schema
+Subject: Re: [PATCH v5 5/6] media: dt-bindings: ov5693: document YAML binding
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Jacopo Mondi <jacopo@jmondi.org>,
+        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        quentin.schulz@theobroma-systems.com,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Tom Rini <trini@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        linux-kbuild@vger.kernel.org
-References: <20220706114407.1507412-1-dmitry.baryshkov@linaro.org>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20220706114407.1507412-1-dmitry.baryshkov@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220630134835.592521-1-tommaso.merciai@amarulasolutions.com>
+ <20220630134835.592521-6-tommaso.merciai@amarulasolutions.com>
+ <20220711093659.mf7i4uqtrejtfong@uno.localdomain>
+ <20220712152538.jh4ufxik7icllox6@uno.localdomain>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220712152538.jh4ufxik7icllox6@uno.localdomain>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0034.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1c::20) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:263::10)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9d10ab6c-eb51-4102-0a36-08da641baf3d
-X-MS-TrafficTypeDiagnostic: AM4PR1001MB1218:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: g2DAeSjzyMbMN1hLSwwV4IMwjZ59vxSc0x94eLd2CR4g1mZ+eyFg46kvVyl1g6Ii+X8phXnmTOVwUQ2MCIVUq7PFQEX2q2wqyxNbzwOHIWVqDsOkSxR2tSudh9LiRVAS+TSu7NtNxgP38cZ9t/vDKR7yXknebLVP3f0df68Z58mTx/sDKTWLiIsBrH/eEWigwgZrC0zW2gMC0wUhX+XGWICMHprKHlrZ6tENDxe2Q8YM6oiJo7+HNQL+ZhFumy1TtXwiQDvJa4NpCL3eASXxlVmGX1/mjQEAfdDHGnDM2jJYcujPgrwKM050JtHaM+0b6DDgFW964MWQEg8Mfn82oU6C+S6+OF147bZRF3peepqod84elf3TmgF1fl73tTzpmgBxUACGB+sJ5X3tjJPI2KUaF1YtESnZ8+UoJm84S6tAxpxAh/b/ch6/Cjd4Lfdrs2Kb5MPgrK3taJIEjOoNqimH+IZ+ktvVZu0LnBz2jtwNL745BLumf6LFGUNBIY1/UO98yQ+SDYHSLzw7ll1Tveh+KobzzJ3UQIDXx5e5r+e7Ca3AHsne+nX/ETQA7mNjOaJe2riNS+F8PASe/Vrv6OGdus9rQ1tznGxvsf19PwbYGhJzvlvQBOCDvPZWGHp+Ii7e3rfw8Yfen0QscpWmzeKBXvRzHDuxHNMFRog6YeQyFISXnRhek8Ev3LdqC3cb142R4yL53qbkXCP6Mlll14w5fyE0UjCkw8N+OwaGhGCZ+f8ij6znE6W9IJag+F+S2O0m+DH9MM0UZJe/jZo0dkG72D7vp24kKlpEkdory7jX/eizwfAKovYlRKsb/d+eqhe3lgEGaJ+DRmwRcriwHg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(396003)(376002)(136003)(346002)(366004)(2906002)(66946007)(478600001)(6486002)(83380400001)(186003)(36756003)(110136005)(44832011)(31686004)(38100700002)(31696002)(4326008)(8676002)(66556008)(8936002)(7416002)(5660300002)(66476007)(54906003)(6512007)(316002)(2616005)(86362001)(41300700001)(6506007)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bm4yajVRdGRzOGVqVENRRmtKRDlJckZBRnd3NXU2VmMxZU9SRzdzckJmRk1o?=
- =?utf-8?B?dXgxcDU4MGRGT0JGejFYRkVGRTVNeG5kYlFKYWprVTkyUjN4TVNDbnNkb1E0?=
- =?utf-8?B?OHY5emRvbU1jam51OEV6NHhHZmJmZDF4MTM4SUdWTzUvQnJjVGtmc1hSQjVh?=
- =?utf-8?B?VUZsRE5BWTNSNHZDM2ljTEQ4ZzgrZU1RVGdhenZTMXQvMDFjMFFGM3JqZnor?=
- =?utf-8?B?eHFDTC9INnY0aTJlSThnMHpBMW1YQlhZWHUxVTkvYWptYVJ2a1dsZmZzV0Yr?=
- =?utf-8?B?K1gxZU03YXFkRDBSMDFhb0ZkTlVGZlhPb1VabmcwWGxORXM1OUMzanVQR3FH?=
- =?utf-8?B?aGN1YTJ6SkVtVlZUSVdrdkFEWFQ0cm1sdGlFZE40MCsrUytWaktkTHJCdm1S?=
- =?utf-8?B?a2QydXZ5N2htTkJvUTdZNUdCTVU0b2tpcVAvQWpnQ0MwdnRqZGpBT1VEQ1E1?=
- =?utf-8?B?QjhLUURpWXpyamtiNGR0QUNVZjZOOWgxaFI5YTZjb2JheVZoVFN0NXNOL2hz?=
- =?utf-8?B?SlpnRXpUS2Y3SFFNQVRBak5tZ3ZCbGdvanlwckNRcjFMbXExbkxjYlhLOWQ5?=
- =?utf-8?B?TTUxNGpudEx0MGtKOFlEWEUzMlA3RnJybkFsSVpTL1F3aitVY1NEa1JwN0py?=
- =?utf-8?B?SXN5eHJ4TWE5RHd6Z2ZtUkNMWVpXOHQrUE4xK29BNTVYeVNNenVaMndlTlRv?=
- =?utf-8?B?N0ZOcjYva3NGQlpXUlViOWJab0JheEI3eEdIR2Y1V0lJajZRMDIwZjNGbm1O?=
- =?utf-8?B?S1phcWIxckpoaXkwVStNWGlxcmt6S09HM1Qwc3graTEwRjZzdjhySVNhNGg2?=
- =?utf-8?B?SVlSU0ZqdGNXNlNhUXJMV3hEVVdJQU1ldllrWkFlTU5SYXFkTldSTkg2aFFQ?=
- =?utf-8?B?N2tzT0N2Vy8zVWRpUEVoa3lnUDBrTnlVYXB0c3F3TWVPRlluSnZzUmxwUnRR?=
- =?utf-8?B?QmowTFQrT01YUVFNMzdNVFlPU0QyVGpUMzlVbGtqT0ZFcnYzUk9CaHozaW1X?=
- =?utf-8?B?YktNcGx1M3V6WWtkQ21PY2k0ek1aUU5laUpaRVZ6V09QbFJMZ2FDYzNHQ25X?=
- =?utf-8?B?TytnVVcvQVBOYTVKK3lCMnNQMzQwVUFmYmVON04yZlJsUEdqckFJKytNMFZ5?=
- =?utf-8?B?MjVDTWNESVlDUlhqMzFDOGlLazZZSWJudWs4Um9JRDVhVTRDUk1KZFBFL3Bs?=
- =?utf-8?B?amUvVlY5VTkyb0I0Rk0vQVh3L0pCdnhZRjhkUDB2SC9IUmhEMC9EdEFMdjg1?=
- =?utf-8?B?eTU1R3Z4SEJ0UjRzblRVaGdkRnRXRTAyVmt3L20xT053dTJoallHRHRmYVla?=
- =?utf-8?B?blM0TVYwK1VZdUIrcjVtM3ZOd3JJSnhab2tnZmZPS3dpYmFsdkhtZmpWNjZJ?=
- =?utf-8?B?QmpjczN2UzdRVjd1TFIyK1hrN0RUbW1oMlgvL0VVSlFMM2dMcmxpcWN5aktT?=
- =?utf-8?B?MEluL0J2bDZPOUlPZGNQTzZGcWVTQnZSSS9iZUZCTTJyTWVZL243c3R0YkpZ?=
- =?utf-8?B?eXNzYVlsRXpFVmFvdXRJNFNtWGNzVVlValNDNjhKdklHWkN5LzlVRFUvT1FI?=
- =?utf-8?B?Tis0L2l3YlpSd2FldUt3MEpKOTNLTHdQcklpaGZQQzhqOUg4cHJ2ckNxblZl?=
- =?utf-8?B?RmlUTVVuS2phYTFvSms5M0ZZNFQrZEhCTkpmeExFcHJhbWdSb1R4VFdrbHZm?=
- =?utf-8?B?UDJKSDVzaFp4akpPaWRrRUdlM3JLYVQrSDhVZ3dCRFhuN1EvVE9GYXh1Z1Nv?=
- =?utf-8?B?MUhZZmNlMTZpOVdpNzNZVnc4SVBkNnozNWVMTlU5cm84cTNmdVg0RGxVb2dY?=
- =?utf-8?B?YlBQUWM4bk1rNWl2OVNkQW5oZ3BhUGNhRGxUMGtKWW02cmVYV3FjaCtWZjIz?=
- =?utf-8?B?SVRSR1hWeUxxSDBYNmhQeFhPUVpxS0trVFlxTjg2NUY0UzVRVjFmcHlsMS9v?=
- =?utf-8?B?SUtKVTlqQndidUl6V1FlcUxxcmE1eHRQNDhLVGpEdU5jQ3U5dXpzUWtIRjh5?=
- =?utf-8?B?bWttZkFQY0ZuQzFXV2FpVlRiWTV1djJvMERUdkxrQ2I4K3cyY00vc2JMTjBj?=
- =?utf-8?B?K08rMGV2STdNZTJXN1hxNHVXc2JEcEdVc2NIUGFDaG5NZktuT0gxQ3BvT1E4?=
- =?utf-8?B?U1g4ajhHb24zQjBNanBNV3BFcWd1ZDI4T2oveEhlS0liQnN4YkpmSVBrYUNz?=
- =?utf-8?B?WlhLTCtVNGJ6SGdGNTBxWHJQSSttMmMwZEl4QitjTFQwaUlzZXo4S1k3Z1dR?=
- =?utf-8?B?QlZJZnhIZm1YVFBKeStmTzB1NE1RPT0=?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9d10ab6c-eb51-4102-0a36-08da641baf3d
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2022 15:32:09.4660
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jq1ZpbB6pjaPs2pa7yhjmLYGX8JBFyFm6A/Uvd70JrOGtf6DaooVNVQihjqQ71b5jyJyHpF9x5XZ7y2WyZ4ephe0ituzuzZ3JCqp2rsgdZg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM4PR1001MB1218
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -134,87 +83,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 06.07.22 um 13:44 schrieb Dmitry Baryshkov:
-> While it is possible to validate all generated dtb files against the
-> schema, it typically results in huge pile of warnings. While working on
-> a platform it is quite useful to validate just a single file against
-> schema.
-> 
-> Allow specifying CHECK_DTBS=1 on a make command line to enable
-> validation while building dtb files. This reuses the infrastructure
-> existing for `make dtbs_check`, making dtbs_check a shortcut for
-> `make CHECK_DTBS=1 dt_binding_check dtbs`.
-> 
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Tom Rini <trini@konsulko.com>
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> Cc: linux-kbuild@vger.kernel.org
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On 12/07/2022 17:25, Jacopo Mondi wrote:
+> Hi Krzysztof
+>    could you have a look at the below question ?
 
-This is really useful, thanks! Exactly what I was looking for.
+Sorry, there was a bunch of quoted text without end. When you reply
+under quote, please remove the rest of the quote. None of us have a lot
+of time to waste on scrolling emails...
 
-May I suggest to add a line about this new option to
-Documentation/devicetree/bindings/writing-schema.rst?
+> 
+> If no need to resend from Tommaso I think the series could be
+> collected for v5.20.
+> 
+> On Mon, Jul 11, 2022 at 11:37:05AM +0200, Jacopo Mondi wrote:
+>> Hi Tommaso, Krzysztof,
+>>
+>>    This has been reviewed by Krzysztof already, so I guess it's fine,
+>> but let me ask anyway
+>>
+>> On Thu, Jun 30, 2022 at 03:48:34PM +0200, Tommaso Merciai wrote:
+>>> Add documentation of device tree in YAML schema for the OV5693
+>>> CMOS image sensor from Omnivision
+>>>
+>>> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> ---
+>>> Changes since v1:
+>>>  - Fix allOf position as suggested by Krzysztof
+>>>  - Remove port description as suggested by Krzysztof
+>>>  - Fix EOF as suggested by Krzysztof
+>>>
+>>> Changes since v2:
+>>>  - Fix commit body as suggested by Krzysztof
+>>>
+>>> Changes since v3:
+>>>  - Add reviewed-by tags, suggested by Jacopo, Krzysztof
+>>>
+>>> Changes since v4:
+>>>  - Remove wrong Sakari reviewed-by tag, suggested by Krzysztof, Sakari
+>>>
+>>>  .../bindings/media/i2c/ovti,ov5693.yaml       | 106 ++++++++++++++++++
+>>>  MAINTAINERS                                   |   1 +
+>>>  2 files changed, 107 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+>>> new file mode 100644
+>>> index 000000000000..b83c9fc04023
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+>>> @@ -0,0 +1,106 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +# Copyright (c) 2022 Amarulasolutions
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5693.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Omnivision OV5693 CMOS Sensor
+>>> +
+>>> +maintainers:
+>>> +  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+>>> +
+>>> +description: |
+>>> +  The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
+>>> +  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
+>>> +  sub-sampled, and windowed 10-bit MIPI images in various formats via the
+>>> +  Serial Camera Control Bus (SCCB) interface.
+>>> +
+>>> +  OV5693 is controlled via I2C and two-wire Serial Camera Control Bus (SCCB).
+>>> +  The sensor output is available via CSI-2 serial data output (up to 2-lane).
+>>> +
+>>> +allOf:
+>>> +  - $ref: /schemas/media/video-interface-devices.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: ovti,ov5693
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    description:
+>>> +      System input clock (aka XVCLK). From 6 to 27 MHz.
+>>> +    maxItems: 1
+>>> +
+>>> +  dovdd-supply:
+>>> +    description:
+>>> +      Digital I/O voltage supply, 1.8V.
+>>> +
+>>> +  avdd-supply:
+>>> +    description:
+>>> +      Analog voltage supply, 2.8V.
+>>> +
+>>> +  dvdd-supply:
+>>> +    description:
+>>> +      Digital core voltage supply, 1.2V.
+>>> +
+>>> +  reset-gpios:
+>>> +    description:
+>>> +      The phandle and specifier for the GPIO that controls sensor reset.
+>>> +      This corresponds to the hardware pin XSHUTDN which is physically
+>>> +      active low.
+>>> +    maxItems: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - clocks
+>>> +  - dovdd-supply
+>>> +  - avdd-supply
+>>> +  - dvdd-supply
+>>
+>> Should supplies be made mandatory ? Sensors are often powered by fixed
+>> rails. Do we want DTS writers to create "fixed-regulators" for all of
+>> them ? The fact the regulator framework creates dummies if there's no
+>> entry in .dts for a regulator makes me think it's fine to have them
+>> optional, but I understand how Linux works should not be an indication
+>> of how a bindings should look like.
+>>
+> 
+> This question ^ :)
 
-Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+My generic answer for generic devices would be - if resource is
+physically required (one need to connect the wire), I would say it
+should be also required in the bindings. This also forces driver
+developer to think about these resources and might result on
+portable/better code.
 
-> ---
-> 
-> Changes since v1:
-> - Added dependency to rebuild schema if `make dtbs` was used.
-> 
-> ---
->  Makefile | 20 +++++++++++++++-----
->  1 file changed, 15 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Makefile b/Makefile
-> index 9aa7de1ca58f..5a9858aa4934 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1464,14 +1464,18 @@ endif
->  
->  ifneq ($(dtstree),)
->  
-> -%.dtb: include/config/kernel.release scripts_dtc
-> +ifneq ($(CHECK_DTBS),)
-> +DT_TMP_BINDING := dt_binding
-> +endif
-> +
-> +%.dtb: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
->  	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
->  
-> -%.dtbo: include/config/kernel.release scripts_dtc
-> +%.dtbo: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
->  	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
->  
->  PHONY += dtbs dtbs_install dtbs_check
-> -dtbs: include/config/kernel.release scripts_dtc
-> +dtbs: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
->  	$(Q)$(MAKE) $(build)=$(dtstree)
->  
->  ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
-> @@ -1498,8 +1502,10 @@ ifneq ($(filter dt_binding_check, $(MAKECMDGOALS)),)
->  export CHECK_DT_BINDING=y
->  endif
->  
-> -PHONY += dt_binding_check
-> -dt_binding_check: scripts_dtc
-> +dt_binding_check: dt_binding
-> +
-> +PHONY += dt_binding
-> +dt_binding: scripts_dtc
->  	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
->  
->  # ---------------------------------------------------------------------------
-> @@ -1774,6 +1780,10 @@ help:
->  	@echo  '		3: more obscure warnings, can most likely be ignored'
->  	@echo  '		e: warnings are being treated as errors'
->  	@echo  '		Multiple levels can be combined with W=12 or W=123'
-> +	@$(if $(dtstree), \
-> +		echo '  make CHECK_DTBS=1 [targets] Check all generated dtb files against schema'; \
-> +		echo '         This can be applied both to "dtbs" and to individual "foo.dtb" targets' ; \
-> +		)
->  	@echo  ''
->  	@echo  'Execute "make" or "make all" to build all targets marked with [*] '
->  	@echo  'For further info see the ./README file'
-> 
+However your point is correct that it might create many "fake"
+regulators, because pretty often these are fixed on the board and not
+controllable. Therefore I am fine with not requiring them - to adjust
+the bindings to real life cases.
+
+Best regards,
+Krzysztof
