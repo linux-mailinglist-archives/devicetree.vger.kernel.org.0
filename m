@@ -2,77 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DE4D572067
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 18:09:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43748572078
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 18:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234268AbiGLQJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 12:09:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52940 "EHLO
+        id S232400AbiGLQMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 12:12:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234238AbiGLQJi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 12:09:38 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D42C31DDD
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 09:09:35 -0700 (PDT)
-Received: from localhost.localdomain (abxj14.neoplus.adsl.tpnet.pl [83.9.3.14])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 93CCB1F5EA;
-        Tue, 12 Jul 2022 18:09:30 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S233077AbiGLQMt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 12:12:49 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1362BFAC6;
+        Tue, 12 Jul 2022 09:12:42 -0700 (PDT)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 50C4840011;
+        Tue, 12 Jul 2022 16:12:38 +0000 (UTC)
+Date:   Tue, 12 Jul 2022 18:12:36 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
+        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        quentin.schulz@theobroma-systems.com,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: apple,aic: Document A7-A11 compatibles
-Date:   Tue, 12 Jul 2022 18:09:18 +0200
-Message-Id: <20220712160919.740878-1-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.37.0
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 5/6] media: dt-bindings: ov5693: document YAML binding
+Message-ID: <20220712161236.le6wvdhdbleoxeyf@uno.localdomain>
+References: <20220630134835.592521-1-tommaso.merciai@amarulasolutions.com>
+ <20220630134835.592521-6-tommaso.merciai@amarulasolutions.com>
+ <20220711093659.mf7i4uqtrejtfong@uno.localdomain>
+ <20220712152538.jh4ufxik7icllox6@uno.localdomain>
+ <47aa4fbc-9cf4-7ac3-2fb4-2135a7703212@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <47aa4fbc-9cf4-7ac3-2fb4-2135a7703212@linaro.org>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the compatibles for Apple A7-A11 SoCs.
+Hi Krzysztof
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
- .../bindings/interrupt-controller/apple,aic.yaml          | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+On Tue, Jul 12, 2022 at 05:32:45PM +0200, Krzysztof Kozlowski wrote:
+> On 12/07/2022 17:25, Jacopo Mondi wrote:
+> > Hi Krzysztof
+> >    could you have a look at the below question ?
+>
+> Sorry, there was a bunch of quoted text without end. When you reply
+> under quote, please remove the rest of the quote. None of us have a lot
+> of time to waste on scrolling emails...
+>
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
-index 85c85b694217..1d754bc3e8ef 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
-@@ -37,7 +37,13 @@ allOf:
- properties:
-   compatible:
-     items:
--      - const: apple,t8103-aic
-+      - enum:
-+          - apple,s5l8960x-aic
-+          - apple,s8000-aic
-+          - apple,t7000-aic
-+          - apple,t8010-aic
-+          - apple,t8015-aic
-+          - apple,t8103-aic
-       - const: apple,aic
- 
-   interrupt-controller: true
--- 
-2.37.0
+I should have kept a counter of the times I've been told "please do
+not remove context, I'm so busy I do not have time to read the whole
+thread" and "please remove context, I'm so busy I cannot read the
+whole email".
 
+After 5 years of kernel development I would now know what to do.
+
+> >
+> > If no need to resend from Tommaso I think the series could be
+> > collected for v5.20.
+> >
+> > On Mon, Jul 11, 2022 at 11:37:05AM +0200, Jacopo Mondi wrote:
+> >> Hi Tommaso, Krzysztof,
+> >>
+> >>    This has been reviewed by Krzysztof already, so I guess it's fine,
+> >> but let me ask anyway
+> >>
+> >> On Thu, Jun 30, 2022 at 03:48:34PM +0200, Tommaso Merciai wrote:
+> >>> Add documentation of device tree in YAML schema for the OV5693
+> >>> CMOS image sensor from Omnivision
+> >>>
+> >>> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>> ---
+> >>> Changes since v1:
+> >>>  - Fix allOf position as suggested by Krzysztof
+> >>>  - Remove port description as suggested by Krzysztof
+> >>>  - Fix EOF as suggested by Krzysztof
+> >>>
+> >>> Changes since v2:
+> >>>  - Fix commit body as suggested by Krzysztof
+> >>>
+> >>> Changes since v3:
+> >>>  - Add reviewed-by tags, suggested by Jacopo, Krzysztof
+> >>>
+> >>> Changes since v4:
+> >>>  - Remove wrong Sakari reviewed-by tag, suggested by Krzysztof, Sakari
+> >>>
+> >>>  .../bindings/media/i2c/ovti,ov5693.yaml       | 106 ++++++++++++++++++
+> >>>  MAINTAINERS                                   |   1 +
+> >>>  2 files changed, 107 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..b83c9fc04023
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> >>> @@ -0,0 +1,106 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +# Copyright (c) 2022 Amarulasolutions
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5693.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Omnivision OV5693 CMOS Sensor
+> >>> +
+> >>> +maintainers:
+> >>> +  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> >>> +
+> >>> +description: |
+> >>> +  The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
+> >>> +  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
+> >>> +  sub-sampled, and windowed 10-bit MIPI images in various formats via the
+> >>> +  Serial Camera Control Bus (SCCB) interface.
+> >>> +
+> >>> +  OV5693 is controlled via I2C and two-wire Serial Camera Control Bus (SCCB).
+> >>> +  The sensor output is available via CSI-2 serial data output (up to 2-lane).
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: ovti,ov5693
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clocks:
+> >>> +    description:
+> >>> +      System input clock (aka XVCLK). From 6 to 27 MHz.
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  dovdd-supply:
+> >>> +    description:
+> >>> +      Digital I/O voltage supply, 1.8V.
+> >>> +
+> >>> +  avdd-supply:
+> >>> +    description:
+> >>> +      Analog voltage supply, 2.8V.
+> >>> +
+> >>> +  dvdd-supply:
+> >>> +    description:
+> >>> +      Digital core voltage supply, 1.2V.
+> >>> +
+> >>> +  reset-gpios:
+> >>> +    description:
+> >>> +      The phandle and specifier for the GPIO that controls sensor reset.
+> >>> +      This corresponds to the hardware pin XSHUTDN which is physically
+> >>> +      active low.
+> >>> +    maxItems: 1
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - reg
+> >>> +  - clocks
+> >>> +  - dovdd-supply
+> >>> +  - avdd-supply
+> >>> +  - dvdd-supply
+> >>
+> >> Should supplies be made mandatory ? Sensors are often powered by fixed
+> >> rails. Do we want DTS writers to create "fixed-regulators" for all of
+> >> them ? The fact the regulator framework creates dummies if there's no
+> >> entry in .dts for a regulator makes me think it's fine to have them
+> >> optional, but I understand how Linux works should not be an indication
+> >> of how a bindings should look like.
+> >>
+> >
+> > This question ^ :)
+>
+> My generic answer for generic devices would be - if resource is
+> physically required (one need to connect the wire), I would say it
+> should be also required in the bindings. This also forces driver
+> developer to think about these resources and might result on
+> portable/better code.
+>
+> However your point is correct that it might create many "fake"
+> regulators, because pretty often these are fixed on the board and not
+> controllable. Therefore I am fine with not requiring them - to adjust
+> the bindings to real life cases.
+
+Tommaso if you can re-send this one with the supplies dropped I think
+the series is still in time for being collected for this merge window
+(Sakari to confirm this).
+
+Thanks
+  j
+
+>
+> Best regards,
+> Krzysztof
