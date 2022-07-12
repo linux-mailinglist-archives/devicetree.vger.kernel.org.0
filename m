@@ -2,128 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB3A2571270
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 08:47:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FDFF571277
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 08:49:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbiGLGrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 02:47:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60668 "EHLO
+        id S232021AbiGLGts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 02:49:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231877AbiGLGrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 02:47:19 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB66265572
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 23:47:15 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id u13so12347923lfn.5
-        for <devicetree@vger.kernel.org>; Mon, 11 Jul 2022 23:47:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=jMuRcrjE7BdyitlsbzjBTLs0XHaQgX+9YW3636oyPpA=;
-        b=rGaxi11FZcV17/AmY/XXSQakC2aoNyn09A4wYTzxBLTuUk6SH4pZMO4LLGabGqoVxa
-         3SlJ8hsmjq+OoPUJAjPO6JjfoOrfsi79JwY2UcDs3q66EL/LH2EnRqgfn1Zg/jK1cB9i
-         ckRieC3iYDCruJaoCbuIw3bmoEIFDFa0G+Y6s5luIaB0mMHEPXr4KJd7Rcsagz+4LmEk
-         q/PeUa1vCV/uHj98uvIJCx2+t7FnkzXQdrzAZtJu1TQCODz4TlBshN5xUfHApQuG4o5f
-         UYuOFsFb/QqURLQpMP7sjKwA2ZFJFkC9WPyS5n/4QwblS5WfJV2FmUyAcVgE9vIM86fV
-         uR+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=jMuRcrjE7BdyitlsbzjBTLs0XHaQgX+9YW3636oyPpA=;
-        b=1MaEJgoYbMRyL89ItTq9VqInJIo7uB8f/IckbB7MAOMlhIwfZNEj2okTpcrmc8ds+r
-         aJaPFiVBMGTKIuxspUaUZQtI7IchyC2rh/Olo8ggj7mZOUS6GVyza3p4QPnOJ5xJtO4H
-         XPSS+bvS0+Tr8Z+Guv2IxRCZeQlllRcaTkBxAA0zWW+sF5q9vOwaAjRf/I7zRP/6y29m
-         GJFDmyyMCcQZ1rb+u3v9AdPSzcXt3ne+XSDuYxgdx1sYgSsOS0t7j1YNE4KMGlaR2TvR
-         3tPine3k83YDqd5PXJ8DGuyCMuXg0X5rvbjbGmYneiXjT/wjrne0O+pnuPX+U4yqCX5v
-         1AYQ==
-X-Gm-Message-State: AJIora9BIcvZtxE6Qr1GaokiiZqJjmrZsCBRiGbwjeFUlolk0TKiIzKV
-        5P5HBF+5iiRrFum2KJUci034Iw==
-X-Google-Smtp-Source: AGRyM1u/RLfflARYY940Xxjm3/t52ojyKVUi1YPU8bjt5W5WTYcRfzbQy2HB2eCLRiMk5r4kkF9oqw==
-X-Received: by 2002:a05:6512:3b0a:b0:489:da13:180a with SMTP id f10-20020a0565123b0a00b00489da13180amr7313675lfv.489.1657608433934;
-        Mon, 11 Jul 2022 23:47:13 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id l18-20020ac24312000000b004785b0dfba4sm1993959lfh.195.2022.07.11.23.47.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jul 2022 23:47:13 -0700 (PDT)
-Message-ID: <6ebdb95a-6458-b77e-e14c-e89539c51b3f@linaro.org>
-Date:   Tue, 12 Jul 2022 08:47:11 +0200
+        with ESMTP id S229709AbiGLGts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 02:49:48 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC331EEFF;
+        Mon, 11 Jul 2022 23:49:40 -0700 (PDT)
+X-UUID: 2c5deefdde4d4c63a28299ad0b6e2f3a-20220712
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:88eb9b1a-e6b5-4e14-9a7a-0762369b27a7,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.8,REQID:88eb9b1a-e6b5-4e14-9a7a-0762369b27a7,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:0f94e32,CLOUDID:27f90b64-0b3f-4b2c-b3a6-ed5c044366a0,C
+        OID:9a67550cb39b,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 2c5deefdde4d4c63a28299ad0b6e2f3a-20220712
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1513253721; Tue, 12 Jul 2022 14:49:37 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 12 Jul 2022 14:49:36 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 12 Jul 2022 14:49:35 +0800
+Message-ID: <e8c2a181926fcbd72ac7b625e2289d91132c37be.camel@mediatek.com>
+Subject: Re: [PATCH v13 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "deller@gmx.de" <deller@gmx.de>,
+        "airlied@linux.ie" <airlied@linux.ie>
+CC:     "msp@baylibre.com" <msp@baylibre.com>,
+        "granquet@baylibre.com" <granquet@baylibre.com>,
+        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
+        <jitao.shi@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?= 
+        <LiangXu.Xu@mediatek.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 12 Jul 2022 14:49:35 +0800
+In-Reply-To: <7af5710c5a9c0c30e38ca81a72fe30c1c7749bbb.camel@mediatek.com>
+References: <20220701062808.18596-1-rex-bc.chen@mediatek.com>
+         <20220701062808.18596-6-rex-bc.chen@mediatek.com>
+         <7af5710c5a9c0c30e38ca81a72fe30c1c7749bbb.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/3] mmc: sdhci-msm: add MSM8998 SDCC specific compatible
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20220711082709.39102-1-krzysztof.kozlowski@linaro.org>
- <20220711082709.39102-2-krzysztof.kozlowski@linaro.org>
- <CAD=FV=W7BCMTByC9xn2iRsxoB9RzRENz5zuTy1Sgmhjbw3aQMw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=W7BCMTByC9xn2iRsxoB9RzRENz5zuTy1Sgmhjbw3aQMw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 17:08, Doug Anderson wrote:
-> Hi,
+On Thu, 2022-07-07 at 16:00 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
 > 
-> On Mon, Jul 11, 2022 at 1:27 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> Add a MSM8998-specific SDCC compatible, because using only a generic
->> qcom,sdhci-msm-v4 fallback is deprecated.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  drivers/mmc/host/sdhci-msm.c | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
->> index e395411fb6fd..bb169c1c2b5e 100644
->> --- a/drivers/mmc/host/sdhci-msm.c
->> +++ b/drivers/mmc/host/sdhci-msm.c
->> @@ -2447,6 +2447,7 @@ static const struct of_device_id sdhci_msm_dt_match[] = {
->>         {.compatible = "qcom,msm8992-sdhci", .data = &sdhci_msm_mci_var},
->>         {.compatible = "qcom,msm8994-sdhci", .data = &sdhci_msm_mci_var},
->>         {.compatible = "qcom,msm8996-sdhci", .data = &sdhci_msm_mci_var},
->> +       {.compatible = "qcom,msm8998-sdhci", .data = &sdhci_msm_mci_var},
+> On Fri, 2022-07-01 at 14:28 +0800, Bo-Chen Chen wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > This patch adds a embedded displayport driver for the MediaTek
+> > mt8195
+> > SoC.
+> > 
+> > It supports the MT8195, the embedded DisplayPort units. It offers
+> > DisplayPort 1.4 with up to 4 lanes.
+> > 
+> > The driver creates a child device for the phy. The child device
+> > will
+> > never exist without the parent being active. As they are sharing a
+> > register range, the parent passes a regmap pointer to the child so
+> > that
+> > both can work with the same register range. The phy driver sets
+> > device
+> > data that is read by the parent to get the phy device that can be
+> > used
+> > to control the phy properties.
+> > 
+> > This driver is based on an initial version by
+> > Jitao shi <jitao.shi@mediatek.com>
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
 > 
-> FWIW I'm _against_ this change.
+> [snip]
 > 
-> In my mind while it is correct to specify both the specific and
-> generic compatible string in the device tree, the driver itself should
-> rely on just the generic compatible string until there is a reason to
-> use the specific one (like we needed to for sdm845 and sc7180).
+> > +
+> > +static int mtk_dp_set_color_format(struct mtk_dp *mtk_dp,
+> > +				   enum dp_pixelformat color_format)
+> > +{
+> > +	u32 val;
+> > +
+> > +	/* update MISC0 */
+> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3034,
+> > +			   color_format << DP_TEST_COLOR_FORMAT_SHIFT,
+> > +			   DP_TEST_COLOR_FORMAT_MASK);
+> > +
+> > +	switch (color_format) {
+> > +	case DP_PIXELFORMAT_YUV422:
+> > +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_YCBCR422;
+> > +		break;
+> > +	case DP_PIXELFORMAT_RGB:
+> > +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_RGB;
+> > +		break;
+> > +	default:
 > 
-> I think I pointed that out before, but somehow all of the specific
-> device tree strings have snuck their way into the driver without me
-> paying attention. :(
+> The default case would never happen, remove it.
+> 
+> Regards,
+> CK
+> 
 
-I thought it's existing practice for some time, but it's a fresh commit
-466614a9765c ("mmc: sdhci-msm: Add SoC specific compatibles"). I agree
-that it does not make much sense to add each compatible to the driver,
-so how about reverting 466614a9765c?
+Hello CK,
 
-Best regards,
-Krzysztof
+after removing default, it will build error because we do not handle
+other 5 enum in enum dp_pixelformat.
+
+"error: 5 enumeration values not handled in switch"
+
+Therefore, I will keep this.
+
+BRs,
+Bo-Chen
+
+> > +		drm_warn(mtk_dp->drm_dev, "Unsupported color format:
+> > %d\n",
+> > +			 color_format);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_303C,
+> > +			   val, PIXEL_ENCODE_FORMAT_DP_ENC0_P0_MASK);
+> > +	return 0;
+> > +}
+> > +
+> 
+> 
+
