@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8459C57166C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:01:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B15D571664
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:01:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232783AbiGLKBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 06:01:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49216 "EHLO
+        id S232683AbiGLKB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 06:01:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232624AbiGLKBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:01:23 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5430AAB1F
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 03:01:21 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id r14so10457979wrg.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 03:01:21 -0700 (PDT)
+        with ESMTP id S232636AbiGLKBZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:01:25 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FC13AA818
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 03:01:22 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id z12so10426309wrq.7
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 03:01:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=yZyJv2zFUmg4QquL9UqGaB1TK6MGzGz+Frm2iCfAVgA=;
-        b=WziFWnCRBPfyZ/tqPo+m7FiZ9a47XCjVsrsEUrDNxz/yQvcVeCD05OvbPwZYfAJEVx
-         i60KaTPD5SOEhQ3J8wCAzMcJ3HiOW+nvpUhqkFyAOEYRfiF6MMymR/ZiwjJJvQlk7x+j
-         dFQQdA631rvmACdDJZysY0ElKhHfu+Dt6aCwayb9mCBBFy2tQjnIlhUtzlTciL7/6f6S
-         17i3nhbfswF5P4hZfCdYPoFQuLubQ6a0GP3viwsieVlbphmZ6cunXCzFOoaQZ8gfOilB
-         j+1SDtaaqtu/7vogKheRhu98kYcN/m+IUbZ9ANkhQRN+uKxn3iy+2U1vmyAVJEk95dON
-         MdJw==
+        bh=IHCGiaNr3aif8aeEvr8zpBcHltb8NjCKc/JcHxgZJu4=;
+        b=IgHIXIjFgQgQSr38iFd2NoGvaTsv8OWBBcDc1sH7Yt2b1NuYSMQAyJbpTJC2s14o4L
+         Fqx98/EIwCObU8Bx6syIyhLUrlXgYCPfqtWeq4juQylZldpIVxurpNrvT5GyLoDNRFOd
+         ZNic2PKz0YaV/SJs4S7M/+N7FXsOzJDmeYvdYiIKGuJX/YmvZIyyXsCYM5fK1fxP6/ao
+         dATG/yeBF+02SlN/lDJVEd3UNTRO3q9IDsGzchl6vgqJfngTXCcl31t7H8LZcueM5pq6
+         bQru6KHHQ+C8mvYuC+W0qTbno/0hrdSDPbpcCYTvBuQ4H51zLt+UfezIlf+pXXuQNVXp
+         TJzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=yZyJv2zFUmg4QquL9UqGaB1TK6MGzGz+Frm2iCfAVgA=;
-        b=ym/GvZh9kGoHE+NcwBKZVVFpnkvKj0gAYpkFCb58RIfYK+rE8EcG83w7s+3kG9qyhD
-         SobH3Wk/eY4ZtvfBYz45XbOvqGWZ08GzTkoGRAu3pb7Mf80NCw7fuU8oU4A/iMXzBeXh
-         fEZWIA28iHKovueuumwsJqucu55wv39i6ZpZXOOJ4xSsLk0GyLcxHLiS8hafXjTg41lu
-         I8wqPY7BOA3UHk7s4wigFMWE5S53Z+gnMumiEhInN0Z/Y1jwq/QYWNyrFBiO7k7HFzDd
-         RUcXNjOHNtheubAZqsfsZGkSevA8+E/voNhE4+nm1UkAA2/2Vu4CaIFHKreRbGVKx3EL
-         Dj6A==
-X-Gm-Message-State: AJIora8OuFqZAExj68kGsghiIsC+Y+OPDOXIihzYrF/OnhntX0sweGBv
-        6Zq5kVwDJdI3lu1khZukJzBbCA==
-X-Google-Smtp-Source: AGRyM1vb9XGZw20RRG3ffTCm0hF13Hml13jWLnufuFljUi+alp3nE82x3/d9CwYKg/qcVhy+KcNTcg==
-X-Received: by 2002:a5d:4fd1:0:b0:21d:64c6:8b0f with SMTP id h17-20020a5d4fd1000000b0021d64c68b0fmr21583322wrw.250.1657620080164;
+        bh=IHCGiaNr3aif8aeEvr8zpBcHltb8NjCKc/JcHxgZJu4=;
+        b=hjy9HRH9DELM0dSgDdAOFhHlz5h1XwKxG4NZwY/A67ZHFLsjc1nOi5h5f7NmXJSeG5
+         dTUTjOSWMY4X2pexDZD6YKFeBRvT35oRzPshE7Uuqk+4Rk19uB8epsnU0z7MKWFt23Ai
+         LV8wAEqxyxwxf6qudBnav+KwIO4P2xamx7p6SkbuW6bGfx01BPdIlsHThPGvEwkj9V7M
+         Xpe8R1Kw1B5A+RrocQEoWVkI6px+6Av2wQuioljr3JaBcGlbNIUfchSpimh88DY50FvU
+         xyyyd8OqLWnIMJY+uhDDKIsWMG260jWGO42rWlCMyGpxubHrzOKYPhVd8ITwutXMZGw1
+         TrJw==
+X-Gm-Message-State: AJIora/bRrlgmwMWaHw0nNtXEfKact38px1qm3RuuVQPXWZ1gC7cjKTi
+        k2AEFnD9nZUwzXCUvDxL7zNAAA==
+X-Google-Smtp-Source: AGRyM1sd3/yMZeWKXTHC3/S81sz6aQwLxkVeorSU+2ptnUvfZ35T3sWpgQgcJOgbphAa08l7M8nAkA==
+X-Received: by 2002:adf:f345:0:b0:21d:6a26:6d8f with SMTP id e5-20020adff345000000b0021d6a266d8fmr21644792wrp.538.1657620080841;
         Tue, 12 Jul 2022 03:01:20 -0700 (PDT)
 Received: from rainbowdash.office.codethink.co.uk ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id u9-20020a7bc049000000b0039747cf8354sm8895314wmc.39.2022.07.12.03.01.19
+        by smtp.gmail.com with ESMTPSA id u9-20020a7bc049000000b0039747cf8354sm8895314wmc.39.2022.07.12.03.01.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 03:01:19 -0700 (PDT)
+        Tue, 12 Jul 2022 03:01:20 -0700 (PDT)
 From:   Ben Dooks <ben.dooks@sifive.com>
 To:     linux-pwm@vger.kernel.org
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -60,9 +60,9 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         William Salmon <william.salmon@sifive.com>,
         Adnan Chowdhury <adnan.chowdhury@sifive.com>,
         Ben Dooks <ben.dooks@sifive.com>
-Subject: [PATCH 5/7] pwm: dwc: add timer clock
-Date:   Tue, 12 Jul 2022 11:01:11 +0100
-Message-Id: <20220712100113.569042-6-ben.dooks@sifive.com>
+Subject: [PATCH 6/7] pwm: dwc: remove the CONFIG_OF in timer clock
+Date:   Tue, 12 Jul 2022 11:01:12 +0100
+Message-Id: <20220712100113.569042-7-ben.dooks@sifive.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220712100113.569042-1-ben.dooks@sifive.com>
 References: <20220712100113.569042-1-ben.dooks@sifive.com>
@@ -78,72 +78,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a configurable clock base rate for the pwm as when
-being built for non-PCI the block may be sourced from
-an internal clock.
+We should probably change from the #ifdef added earlier in
+49a0f4692a8752c7b03cb26d54282bee5c8c71bb ("wm: dwc: add timer clock")
+and just have it always in the dwc data so if we have a system with
+both PCI and OF probing it should work
 
-Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+-- consider merging with original patch
 ---
- drivers/pwm/pwm-dwc.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ drivers/pwm/pwm-dwc.c | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
-index 235cb730c888..aa0486b89bdd 100644
+index aa0486b89bdd..6a4364a5d137 100644
 --- a/drivers/pwm/pwm-dwc.c
 +++ b/drivers/pwm/pwm-dwc.c
-@@ -18,6 +18,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-+#include <linux/clk.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/pwm.h>
-@@ -35,7 +36,12 @@
- #define DWC_TIMERS_COMP_VERSION	0xac
+@@ -37,12 +37,6 @@
  
  #define DWC_TIMERS_TOTAL	8
-+
-+#ifndef CONFIG_OF
- #define DWC_CLK_PERIOD_NS	10
-+#else
-+#define DWC_CLK_PERIOD_NS	dwc->clk_ns
-+#endif
  
+-#ifndef CONFIG_OF
+-#define DWC_CLK_PERIOD_NS	10
+-#else
+-#define DWC_CLK_PERIOD_NS	dwc->clk_ns
+-#endif
+-
  /* Timer Control Register */
  #define DWC_TIM_CTRL_EN		BIT(0)
-@@ -54,6 +60,8 @@ struct dwc_pwm_ctx {
- struct dwc_pwm {
- 	struct pwm_chip chip;
- 	void __iomem *base;
-+	struct clk *clk;
-+	unsigned int clk_ns;
- 	struct dwc_pwm_ctx ctx[DWC_TIMERS_TOTAL];
- };
- #define to_dwc_pwm(p)	(container_of((p), struct dwc_pwm, chip))
-@@ -336,6 +344,14 @@ static int dwc_pwm_plat_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(dwc->base),
- 				     "failed to map IO\n");
+ #define DWC_TIM_CTRL_MODE	BIT(1)
+@@ -104,13 +98,13 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
+ 	 * periods and check are the result within HW limits between 1 and
+ 	 * 2^32 periods.
+ 	 */
+-	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, DWC_CLK_PERIOD_NS);
++	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
+ 	if (tmp < 1 || tmp > (1ULL << 32))
+ 		return -ERANGE;
+ 	low = tmp - 1;
  
-+	dwc->clk = devm_clk_get(dev, "timer");
-+	if (IS_ERR(dwc->clk))
-+		return dev_err_probe(dev, PTR_ERR(dwc->clk),
-+				     "failed to get timer clock\n");
-+
-+	clk_prepare_enable(dwc->clk);
-+	dwc->clk_ns = 1000000000 /clk_get_rate(dwc->clk);
-+
- 	ret = pwmchip_add(&dwc->chip);
- 	if (ret)
- 		return ret;
-@@ -347,6 +363,7 @@ static int dwc_pwm_plat_remove(struct platform_device *pdev)
- {
- 	struct dwc_pwm *dwc = platform_get_drvdata(pdev);
+ 	tmp = DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
+-				    DWC_CLK_PERIOD_NS);
++				    dwc->clk_ns);
+ 	if (tmp < 1 || tmp > (1ULL << 32))
+ 		return -ERANGE;
+ 	high = tmp - 1;
+@@ -185,12 +179,12 @@ static void dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
  
-+	clk_disable_unprepare(dwc->clk);
- 	pwmchip_remove(&dwc->chip);
- 	return 0;
- }
+ 	duty = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
+ 	duty += 1;
+-	duty *= DWC_CLK_PERIOD_NS;
++	duty *= dwc->clk_ns;
+ 	state->duty_cycle = duty;
+ 
+ 	period = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
+ 	period += 1;
+-	period *= DWC_CLK_PERIOD_NS;
++	period *= dwc->clk_ns;
+ 	period += duty;
+ 	state->period = period;
+ 
+@@ -213,6 +207,7 @@ static struct dwc_pwm *dwc_pwm_alloc(struct device *dev)
+ 	if (!dwc)
+ 		return NULL;
+ 
++	dwc->clk_ns = 10;
+ 	dwc->chip.dev = dev;
+ 	dwc->chip.ops = &dwc_pwm_ops;
+ 	dwc->chip.npwm = DWC_TIMERS_TOTAL;
 -- 
 2.35.1
 
