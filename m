@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 703BD5715DB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 11:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB1EA5715EB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 11:40:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiGLJi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 05:38:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60484 "EHLO
+        id S232378AbiGLJkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 05:40:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232428AbiGLJiy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 05:38:54 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF259C5B
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:38:52 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id c15so9259566ljr.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:38:52 -0700 (PDT)
+        with ESMTP id S232428AbiGLJkl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 05:40:41 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49BC988F31
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:40:38 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id q7so9199594lji.12
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:40:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=DPmmhi+2J1rxKC4UbiQ/cFtEMBdLVlyhY+s/IdsukL0=;
-        b=Gh3DmoyEfQ/kog6KzHV6sC/jLz88DNk+G8JpIZFTDJfrqZu2ZFpy8kJhfvW5pZDwNp
-         6pgPlBNjjCn/Tk+L35mpODgdbYUXDBm4W2UpqNRhfMuVXdEfHOQap2hyqnvgnPl9Rv59
-         xrcieOWOfa+DPq76bL5fE5+gX6dREG7jjJY/fwgl3yHr+G+/peSzHtXN7MJgAKaY1qv7
-         pXuHWua24lARqSOa6xuzXuPxPfeltvG6ji7abBeocfrdnkntNAa5Wdec1Bg08HFnm25K
-         3qfXsBfmQ+k/VJTcnbEtLrZRk8YGeZEqTDY3EY9UXLFnCdv82/gc2xxRS5IHLz/kN+Wu
-         DBrQ==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=+qkfPlCxqbG9qhgmJwcaiOZdFi09fLFwfAcMTyA0/dc=;
+        b=Cp5V6ic8+iXNW0gpQPXNWkZGKPNpR5qcuZWGSQTQpjHWgYR97zHZ4yVixyEO+8AqQY
+         BDRKCgnwhou+j14dllE0e8aTfqWfIMX3ByM/nPHClWbPuvEVBb+vvbf4bNN/WFVf9jgq
+         BfbkQCwUOQnSqoTOt7haVyJSIk7cmSeZ63IZ7mXWMLW3z25y16QmiSHuGLuUz+TNSWMb
+         KYNTr0AtYJFiH/kacbYcE4AUaFGedq/jnl6CQiXk5jMdoGHrSPOnBKj6q8Q+VcFjjTOZ
+         STQcWjh6ehL3VBN1Fp2Gi2eIBk8fHO2FVMvOLmmiuTMxir8Aotb8v1ki3073Imwk0V8+
+         ICaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=DPmmhi+2J1rxKC4UbiQ/cFtEMBdLVlyhY+s/IdsukL0=;
-        b=VHGbtzZ1GiO1UMroSoVs6L77JnZRSJWMWASNK/KvTTZ7OgPtOXqqDklQ8KjJRX+VZe
-         YloWW1yGp8qrkwjWOglC2sgMoAAnLa6Wq3N2ItPmfl/+VMxbfj4CCjyflqt6b7+JQxCl
-         I29YKxjDHIoX77vip5eOAZabPUnaGwoHb1GodKw3T3OJmgqDVynDQuyER5WF0b9a0Uif
-         YDfcLRaHZkHF+TMpKdoW1/n8ebajcKDtrSGUaXCWP8HFj/EuI2rsdxnrUDEPCfNiO4DY
-         BmhPs7m46fVBpEwQgWvllETseSrhNjmfrNKBqN07w5UxYQJFlxELd1Rizpd5USqeX+v/
-         rfVw==
-X-Gm-Message-State: AJIora9rL5Um7eNw4M2vv1k1RK8GxXOx82CmZ12JPZKMynwK3htAbxmf
-        H1LXGbH0tLttPfbAfWcrzJ9hEtjECDqcYiN/
-X-Google-Smtp-Source: AGRyM1tchxD7VKZTXRAYOEvY2VFhTArisZH6aNEblZI+hYGxn8HJ7tYZDZ9eGchgeZadyJEiJhI9HA==
-X-Received: by 2002:a2e:131a:0:b0:25d:68eb:cf6 with SMTP id 26-20020a2e131a000000b0025d68eb0cf6mr6071967ljt.267.1657618731025;
-        Tue, 12 Jul 2022 02:38:51 -0700 (PDT)
+        bh=+qkfPlCxqbG9qhgmJwcaiOZdFi09fLFwfAcMTyA0/dc=;
+        b=GJIIbydzJTf7WURMGaNIOvvuXH6+nObb7FFFMvzuUlOxnoFdbAE7+RHzLVoQTix0TS
+         YT0fSfag4g/BJDAVKwgV0/UmBN1FYzYsS8E0uIKENYCnmBxZYNebVnymSuR/1P+i0ZrE
+         4PcYyNfr8j67qwaZ681TyHjHm9TcwBNg6lhdSsqx3i8aDfieOu4tdoUxejA9xQO9U3gc
+         B87R2lHfmhvnSadNFMtFlN69S0H2NsdcZobHSlPitid0n1UpD8f9dX9LU/PhJDefZ4D3
+         t3pbGEUTtgbwDVtQuGPMQdlv/3wZlv0j0Ry5AqdFpgMSwwIgghQPVaeNJVm7q6v7KyUD
+         3wfA==
+X-Gm-Message-State: AJIora+qyDwa9/yN+3BT3vdZsDJ/J4MAsG+U5OOzdhP1hweyABXS8K/G
+        SbF/6o1JUvpcXnxkFM7Ku5gxTw==
+X-Google-Smtp-Source: AGRyM1vv/Ki6opySk8sYVUy+JwlZPDRRGxZPc2h0jjpQjs8Nsi3a3cth7n+hXa8lU5/cRpQhhKPg4A==
+X-Received: by 2002:a2e:aa8e:0:b0:25d:5ac8:854d with SMTP id bj14-20020a2eaa8e000000b0025d5ac8854dmr11740857ljb.324.1657618836591;
+        Tue, 12 Jul 2022 02:40:36 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id q18-20020a056512211200b00489db87cb7csm1362314lfr.280.2022.07.12.02.38.48
+        by smtp.gmail.com with ESMTPSA id v14-20020ac2560e000000b0047fae90bfb4sm2083581lfd.56.2022.07.12.02.40.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 02:38:50 -0700 (PDT)
-Message-ID: <a281de26-0900-94b1-c139-f7af27a57d42@linaro.org>
-Date:   Tue, 12 Jul 2022 11:38:47 +0200
+        Tue, 12 Jul 2022 02:40:36 -0700 (PDT)
+Message-ID: <b7a33482-9bce-7ab1-43cb-3c93a5282490@linaro.org>
+Date:   Tue, 12 Jul 2022 11:40:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v16 2/3] dt-bindings: usb: Add analogix anx7411 PD binding
+Subject: Re: [PATCH 1/3] dt-bindings: clk: meson: add S4 SoC clock controller
+ bindings
 Content-Language: en-US
-To:     Xin Ji <xji@analogixsemi.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     bliang@analogixsemi.com, qwen@analogixsemi.com,
-        jli@analogixsemi.com, Rob Herring <robh@kernel.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220712090534.2783494-1-xji@analogixsemi.com>
- <20220712090534.2783494-2-xji@analogixsemi.com>
+To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220708062757.3662-1-yu.tu@amlogic.com>
+ <20220708062757.3662-2-yu.tu@amlogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220712090534.2783494-2-xji@analogixsemi.com>
+In-Reply-To: <20220708062757.3662-2-yu.tu@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,123 +83,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2022 11:05, Xin Ji wrote:
-> Add analogix PD chip anx7411 device binding
+On 08/07/2022 08:27, Yu Tu wrote:
+> Add new clock controller compatible and dt-bindings header for the
+> Everything-Else domain of the S4 SoC.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> 
+> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 > ---
-> v13 -> v14 :
->     1. Fix Robot compile error. Fix node name not correct.
-
-Node name is still not correct.
-
->     2. Change HEX to lowercase.
->     3. Use "ports" property.
-> v12 -> v13 :
->     1. Drop the quotes for "$id" and "$schema"
->     2. Remove "allOf" label
->     3. Change node name from "i2c1" to "i2c"
->     4. Change node name from "typec" to "usb-typec"
+>  .../bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
+>  MAINTAINERS                                   |   1 +
+>  include/dt-bindings/clock/s4-clkc.h           | 354 ++++++++++++++++++
+>  3 files changed, 356 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/s4-clkc.h
 > 
-> Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> ---
->  .../bindings/usb/analogix,anx7411.yaml        | 81 +++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> index 7ccecd5c02c1..301b43dea912 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> @@ -12,6 +12,7 @@ Required Properties:
+>  		"amlogic,g12a-clkc" for G12A SoC.
+>  		"amlogic,g12b-clkc" for G12B SoC.
+>  		"amlogic,sm1-clkc" for SM1 SoC.
+> +		"amlogic,s4-clkc" for S4 SoC.
+>  - clocks : list of clock phandle, one for each entry clock-names.
+>  - clock-names : should contain the following:
+>    * "xtal": the platform xtal
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c1abc53f9e91..e4ca46c5c8a1 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1775,6 +1775,7 @@ F:	Documentation/devicetree/bindings/clock/amlogic*
+>  F:	drivers/clk/meson/
+>  F:	include/dt-bindings/clock/gxbb*
+>  F:	include/dt-bindings/clock/meson*
+> +F:	include/dt-bindings/clock/s*
+>  
+>  ARM/Amlogic Meson SoC Crypto Drivers
+>  M:	Corentin Labbe <clabbe@baylibre.com>
+> diff --git a/include/dt-bindings/clock/s4-clkc.h b/include/dt-bindings/clock/s4-clkc.h
 > new file mode 100644
-> index 000000000000..bbd071ba338f
+> index 000000000000..8b46d54d79fe
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/analogix,anx7411.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/include/dt-bindings/clock/s4-clkc.h
+> @@ -0,0 +1,354 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+> + * Author: Yu Tu <yu.tu@amlogic.com>
+> + */
 > +
-> +title: Analogix ANX7411 Type-C controller bindings
-> +
-> +maintainers:
-> +  - Xin Ji <xji@analogixsemi.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - analogix,anx7411
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  connector:
-> +    type: object
-> +    $ref: ../connector/usb-connector.yaml
-> +    description:
-> +      Properties for usb c connector.
-> +
-> +    properties:
-> +      compatible:
-> +        const: usb-c-connector
-> +
-> +      power-role: true
-> +
-> +      data-role: true
-> +
-> +      try-power-role: true
-> +
-> +    required:
-> +      - compatible
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - connector
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        anx7411@2c {
+> +#ifndef __S4_CLKC_H
+> +#define __S4_CLKC_H
 
-Use generic node name:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+Use header guards mathcing paths. See other files for examples.
 
-> +            compatible = "analogix,anx7411";
-> +            reg = <0x2c>;
-> +            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-> +            interrupt-parent = <&gpio0>;
 > +
-> +            typec_con: connector {
-> +                compatible = "usb-c-connector";
-> +                power-role = "dual";
-> +                data-role = "dual";
-> +                try-power-role = "source";
+> +/*
+> + * CLKID index values
+> + */
 > +
-> +                ports {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                    port@0 {
-> +                        reg = <0>;
-> +                        typec_con_ep: endpoint {
-> +                            remote-endpoint = <&usbotg_hs_ep>;
-> +                        };
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
+> +#define CLKID_PLL_BASE			0
+> +#define CLKID_FIXED_PLL_DCO		(CLKID_PLL_BASE + 0)
+
+Drop CLKID_PLL_BASE
+
+> +#define CLKID_FIXED_PLL			(CLKID_PLL_BASE + 1)
+
+ditto... and so on.
 
 
 Best regards,
