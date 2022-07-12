@@ -2,74 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16C88572858
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:16:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6789857286A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:20:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231283AbiGLVQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 17:16:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52574 "EHLO
+        id S231404AbiGLVUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 17:20:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230362AbiGLVQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:16:27 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2414BD697
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:16:25 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 19so11354697ljz.4
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:16:25 -0700 (PDT)
+        with ESMTP id S230470AbiGLVUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:20:21 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B407BD39A
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:20:20 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id p6so8554711ljc.8
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:20:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yNdXTNqSoBlf8fUHUAGckkR13j3v9qziPb7ne3GL+wM=;
-        b=gcYm0VSy3YrEltE79SSKm5Y5QOpFqR2X9KExOppyjqbTbYykTOfQQnS25KpzeycsTx
-         Xjrg6+75hjq/+UvIwBkox3Fzi7OCDfNH59ou2ge0uy1AHrtWFDgkUtRRFNaCSs6uO5te
-         zykDcrglFXs27Wepw+JG5MJhcfG1Ndm7Vgx4iTOk7VJIWUq97ktFjXn4eScmrNpZlZd2
-         Pkfl8JkR73CS00NdMg8fPUiCTwWnzSqRMOa0JcAm7gYZ2GZufaNbhdlPzIxzAmFBpX67
-         VHhQev/o9n9meAzid/L/kqqM/BUrci1DU6H5iFq6rmatZogYZjuzPlND8aDNmq08JhNq
-         mXMw==
+        bh=1mFxtDA9LSxUsU12njCqMZhvHHF7HJIJqn+iKNjF+Io=;
+        b=sZmYBSMyhXlRcTmJDw7l4ckT+sUzRBhSVeZNyarvb5fOLbVBcCia4fICSqvoAZzIuO
+         iDPbR++PVnLgjMJNL7fNtVKg72Uwde4p04nAV6qBLu3uYxLQHLB8is7o1MHx9qgIolmU
+         /NJa6Sp6KALuiZ/OHHTHKr41eCoPB3LQf0bhWLNtmOl/FgEzOvEbERV5DfYNFscxPMah
+         j7ipgsCO/ZxbZmS51OK1E/RQu2wAkSFDR2mtrKKisZkVl1EgaZWuc/I2Ks/1wEFQh3XK
+         xJ7DV7MLfYPjnLfotUeXd/7BICIHy2tWY/r2uYoKFQ4bXRIIR0zVPZLJTgdyxaTz6+mp
+         IjoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=yNdXTNqSoBlf8fUHUAGckkR13j3v9qziPb7ne3GL+wM=;
-        b=PFq377ltTiUJi2/EmKoVWmJoWtYZ8mobmuSNYcG9kyMRtsuBXU3+8f29bKbX1jUeZq
-         khnWD1gzjVs2rz+MzgWXHnUhlD01P91eOoyjE99ImeIvdYz+nH492NU6tCqJr2FK5OKn
-         V1x14ybUmWl6h8gDoM6JRI8l+CulCfv/ERGrnoyPwI60vswjArmW9WicgptacgSaE3ne
-         FNrjaFGQaTLjOtpmkgHDHCXwNqObzw8q0tgWL01Df7DjaH6DE9S0tRS/luaNLWO+809Y
-         hHaLp91M/Evn0aS6UMVouoA/sVFkJQT/AKIeyTWxc505vGO6GaChTlkEGQy7Do4a2m2q
-         +nsA==
-X-Gm-Message-State: AJIora/pJlCEmM1WtH8SmsY5ZpbbQYRiht6kSBN1Ymukr6EP7Uc672hs
-        chZOto2iBb6qqRQUtc21Yl/mdg==
-X-Google-Smtp-Source: AGRyM1tQuNo5xx8FI5K3taOjbf6GPHXx2mOkeQktt27dTnGsdtA+9D2+BZHIwHpDR3DyBY4CHXF5PQ==
-X-Received: by 2002:a05:651c:4cf:b0:25d:6b69:1b84 with SMTP id e15-20020a05651c04cf00b0025d6b691b84mr7234254lji.291.1657660584064;
-        Tue, 12 Jul 2022 14:16:24 -0700 (PDT)
+        bh=1mFxtDA9LSxUsU12njCqMZhvHHF7HJIJqn+iKNjF+Io=;
+        b=Jvxipkj1ncRauMNXu2V7v97xw/NjKOhhMRB+V14/V6BOA+7dBjEN7VP7oAlIco7ErK
+         9PHd2CZVa9aPvD0jPIs/AQYbvQ91EnHM3wa/yz66BlnF1N/y1saGiwsJkRj+D0AtKZuT
+         KVKdwyDXqRjcnZvpwdJR8cIs/JkaKclK9lwo80sQz4Slb51OV1enDqzeO4ZSSgZBjQHp
+         wL14nHGMJwe0Tiybb81RYoNP+yYNxT2Iy6udN9Mnjgb6lQoeOjfspIKUGSOUH58U1M2J
+         5kKtxXigi00SaIsTbr66AsCoeTeL7wEo1Ia4eK6Kx44XeWaivVRGbk0BMWWJ/wI6ZSVu
+         Ku4Q==
+X-Gm-Message-State: AJIora8Jbm6/81HQkaUUIUnuXLqsB+G+V8QGcohFx5tCdECEx1GG0EXA
+        lrKbE0SHFgL4gc2qBdEB6JjLlg==
+X-Google-Smtp-Source: AGRyM1tYwKqNBj4xqQgq80zrrG/ToMGgLkH8wj5OKXw8TC37pLSSQVnojnIDcTfjeXcOI2+pWG4pEg==
+X-Received: by 2002:a05:651c:1586:b0:25c:258:5837 with SMTP id h6-20020a05651c158600b0025c02585837mr1452ljq.260.1657660818354;
+        Tue, 12 Jul 2022 14:20:18 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id s21-20020a056512203500b00489e38c4fc4sm1274301lfs.276.2022.07.12.14.16.22
+        by smtp.gmail.com with ESMTPSA id o19-20020a05651205d300b0048910301774sm2375708lfo.307.2022.07.12.14.20.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 14:16:23 -0700 (PDT)
-Message-ID: <7c838790-1dd9-732a-e5cb-f2ea6454411a@linaro.org>
-Date:   Tue, 12 Jul 2022 23:16:21 +0200
+        Tue, 12 Jul 2022 14:20:17 -0700 (PDT)
+Message-ID: <0014fc7b-e6cd-a56b-0e3f-43660087bc2a@linaro.org>
+Date:   Tue, 12 Jul 2022 23:20:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/3] dt-bindings: usb: Add binding for TI USB8041 hub
- controller
+Subject: Re: [PATCH 1/2] dt-bindings: display/panel: Add Sony Tama TD4353 JDI
+ display panel
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com>
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220712200244.960018-1-konrad.dybcio@somainline.org>
+ <68b8da6a-03e2-9da7-795d-f028bc0ed05b@linaro.org>
+ <9b535332-838d-6662-d0eb-feab075b2915@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <9b535332-838d-6662-d0eb-feab075b2915@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,120 +86,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2022 17:06, Alexander Stein wrote:
-> The TI USB8041 is a USB 3.0 hub controller with 4 ports.
+On 12/07/2022 22:50, Konrad Dybcio wrote:
 > 
-> This initial version of the binding only describes USB related aspects
-> of the USB8041, it does not cover the option of connecting the controller
-> as an i2c slave.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> Well, this is essentially a ripoff of
-> Documentation/devicetree/bindings/usb/realtek,rts5411.yaml with USB IDs
-> replaced, reset-gpio added and example adjusted.
-> IMHO this should be merged together with realtek,rts5411.yaml. Is it ok
-> to rename bindings files? I guess a common onboard-usb-hub.yaml matching
-> the driver seens reasonable. Any recommendations how to proceed?
-> 
->  .../devicetree/bindings/usb/ti,usb8041.yaml   | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/ti,usb8041.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
-> new file mode 100644
-> index 000000000000..9a49d60527b1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/ti,usb8041.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Binding for the TI USB8041 USB 3.0 hub controller
-> +
-> +maintainers:
-> +  - Matthias Kaehlcke <mka@chromium.org>
-> +
-> +allOf:
-> +  - $ref: usb-device.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
+> On 12.07.2022 22:47, Krzysztof Kozlowski wrote:
+>> On 12/07/2022 22:02, Konrad Dybcio wrote:
+>>> Add bindings for the display panel used on some Sony Xperia XZ2 and XZ2
+>>> Compact smartphones.
+>>>
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>>> ---
+>>>  .../display/panel/sony,td4353-jdi.yaml        | 84 +++++++++++++++++++
+>>>  1 file changed, 84 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
+>>> new file mode 100644
+>>> index 000000000000..d75abc72ad1b
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
+>>> @@ -0,0 +1,84 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/display/panel/sony,td4353-jdi.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Sony TD4353 JDI 5 / 5.7" 2160x1080 MIPI-DSI Panel
+>>> +
+>>> +maintainers:
+>>> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
+>>> +
+>>> +description: |
+>>> +  The Sony TD4353 JDI is a 5 (XZ2c) / 5.7 (XZ2) inch 2160x1080
+>>> +  MIPI-DSI panel, used in Xperia XZ2 and XZ2 Compact smartphones.
+>>> +
+>>> +allOf:
+>>> +  - $ref: panel-common.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - sony,td4353-jdi-akari
+>>> +      - sony,td4353-jdi-apollo
+>>
+>> Shouldn't the properties of panel like width and height be specified by
+>> dedicated properties, instead of customizing compatible? The device is
+>> "td4353-jdi", the same in both cases, isn't it?
+> Not sure if it should, but in this case it probably could, the panels are
+> software-compatible, yes.
 
-No items. It's just one item.
+There is width/height-mm property in panel-common, so if this is the
+only difference - use them with only one compatible.
 
-> +      - enum:
-> +          - usb451,8140
-> +          - usb451,8142
-> +
-> +  reg: true
-> +
-> +  reset-gpio:
-
-reset-gpios
-
-> +    maxItems: 1
-> +    description:
-> +      GPIO specifier for GSRT# pin.
-
-Combine maxItems and above into:
-items:
- - description: GPIO specifier for GSRT# pin.
-
-> +
-> +  vdd-supply:
-> +    description:
-> +      phandle to the regulator that provides power to the hub.
-
-s/phandle to the regulator that provides//
-and create some nice sentence from left-over, like "VDD power supply to
-the hub"
-
-
-> +
-> +  peer-hub:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle'
-
-No quotes.
-
-> +    description:
-> +      phandle to the peer hub on the controller.
-> +
-> +required:
-> +  - peer-hub
-> +  - compatible
-> +  - reg
-
-Messed order. Use same as they appear in properties, so
-compatible+reg+peer-hub.
-
-But another question - why "peer-hub"? I remember some discussion about
-naming, so was peer preferred over companion?
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    usb {
-> +        dr_mode = "host";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        /* 2.0 hub on port 1 */
-> +        hub_2_0: hub@1 {
-> +          compatible = "usb451,8142";
-> +          reg = <1>;
-> +          peer-hub = <&hub_3_0>;
-> +          reset-gpio = <&gpio1 11 GPIO_ACTIVE_LOW>;
-
-reset-gpios
 
 
 Best regards,
