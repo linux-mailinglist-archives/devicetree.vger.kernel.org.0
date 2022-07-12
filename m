@@ -2,227 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E30C8570E8E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 02:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66C2A570EC4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 02:16:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbiGLADo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 20:03:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40056 "EHLO
+        id S230143AbiGLAQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 20:16:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231432AbiGLADm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 20:03:42 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F11A025E8;
-        Mon, 11 Jul 2022 17:03:36 -0700 (PDT)
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 212FD176F;
-        Tue, 12 Jul 2022 02:03:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1657584207;
-        bh=0knKqc06oNkI6P0abfLrv6NID0TqEcItjUUajrpzW0o=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dg2FsEJ+pk1rdbb9DDweK/6aBXkFWgsyVPMXE4G+zhpi81/WCafMOJXE+7bil4Le9
-         JubgyFcEn/prH5y0+/VSze4hOoYOFYppo2Y+3qP/zs7QSeqJTrQCyhTtjqNUrfgC7q
-         9baO3bDuhqgSvYuUtB7/5SxJYMShuhim8QlMkQRk=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     linux-media@vger.kernel.org
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v2 6/7] dt-bindings: media: Add i.MX8 ISI DT bindings
-Date:   Tue, 12 Jul 2022 03:02:50 +0300
-Message-Id: <20220712000251.13607-7-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220712000251.13607-1-laurent.pinchart@ideasonboard.com>
-References: <20220712000251.13607-1-laurent.pinchart@ideasonboard.com>
+        with ESMTP id S231794AbiGLAQX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 20:16:23 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C0A31352;
+        Mon, 11 Jul 2022 17:15:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1657584897; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=bJmObJhUXPfREMqCN/WvVFaSBUz3AzVlTwIJKfvLDHoe1aG6K7Iqc4ovk/XOOtlgXLTGsjOwF4JoS8ZWQfquvAZ+nspaUKHGAabfjufMaeksl3J0Wma8w3FrjHTrYGL/azYM2wZr1L7giIUz5mvI/OeW1d/maBtAD4yGIyjVZIk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1657584897; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=fhJVT85aTlBQWQb6yaeXraBInDSuiyuvEmq9JyUyXYE=; 
+        b=HJXLnQdePfBzYS5gYvF2NWYq6Ar0h+zlTQeWYGDsmpy47vOMKQ1cguN2NJ3nOFpcdqRWJEYd0V0ewebpw87dq4EmRKZC1Mt1eEv6zcO0Hj50baqOiLSxitRYwkUC33qqZQ05ygR7jv4iKMRhZ2KOt7bR4+5Xp7O8A08iD42DfB0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=linux.beauty;
+        spf=pass  smtp.mailfrom=me@linux.beauty;
+        dmarc=pass header.from=<me@linux.beauty>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1657584897;
+        s=zmail; d=linux.beauty; i=me@linux.beauty;
+        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=fhJVT85aTlBQWQb6yaeXraBInDSuiyuvEmq9JyUyXYE=;
+        b=ht469zLCvWSqlKO3GMKF5L1p8SJlW6uMKUtxZUtAmkO/WlFcm1aMBSqQvNJ/dgUN
+        vTxuNTnejwgRWnlF1T5TDGb3pDxejhjEgsaZYCNzMF3F/15bHdKcnGgUDFjdVU02U6D
+        TZdqG93CB0fZCtau2mX8Ml/V9B1YS81TCUVheAU8=
+Received: from mail.zoho.com by mx.zohomail.com
+        with SMTP id 1657584897026777.3647169706071; Mon, 11 Jul 2022 17:14:57 -0700 (PDT)
+Date:   Tue, 12 Jul 2022 08:14:56 +0800
+From:   Li Chen <me@linux.beauty>
+To:     "Christoph Hellwig" <hch@infradead.org>
+Cc:     "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Frank Rowand" <frowand.list@gmail.com>,
+        "Andrew Morton" <akpm@linux-foundation.org>,
+        "linux-arm-kernel" <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel" <linux-kernel@vger.kernel.org>,
+        "devicetree" <devicetree@vger.kernel.org>,
+        "linux-mm" <linux-mm@kvack.org>
+Message-ID: <181efc24bdd.108279419521615.7697137316951540027@linux.beauty>
+In-Reply-To: <YsxLU66tNvi10c82@infradead.org>
+References: <20220711122459.13773-1-me@linux.beauty>
+ <Ysw7TMFO8Mw0nq8x@infradead.org>
+ <181ee01d384.b809bd01412268.496620746959082770@linux.beauty> <YsxLU66tNvi10c82@infradead.org>
+Subject: Re: [PATCH 0/4] add struct page and Direct I/O support to reserved
+ memory
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_RED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Image Sensing Interface (ISI) combines image processing pipelines
-with DMA engines to process and capture frames originating from a
-variety of sources. The inputs to the ISI go through Pixel Link
-interfaces, and their number and nature is SoC-dependent. They cover
-both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
+Hi Christoph,
+ ---- On Tue, 12 Jul 2022 00:09:55 +0800  Christoph Hellwig <hch@infradead.org> wrote --- 
+ > On Tue, Jul 12, 2022 at 12:05:06AM +0800, Li Chen wrote:
+ > > My use case has been stated in the cover letter, but our driver is not ready for upstream yet.
+ > 
+ > Which means we can't review the use case.  I'd suggest you come back
+ > when you submit your driver.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
-Changes since v1:
+Totally agree, but we plan to start rewriting the code of our video driver in a long time, it has many legacy codes and I need to rewrite a lot of codes to migrate to v4l2.
+That's why I also submit a sample driver here: to make the review progress easier and don't need reviewers to read video driver codes.
 
-- Fix compatible string checks in conditional schema
-- Fix interrupts property handling
----
- .../bindings/media/nxp,imx8-isi.yaml          | 148 ++++++++++++++++++
- 1 file changed, 148 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+ > 
+ > > With DMA allocator, we can access buffer in kernel space, not userspace, however, this patch
+ > 
+ > Take a look at dma_mmap_* on how to map DMA coherent allocations to
+ > usersapce.  This is of course easily possible.
+ > 
 
-diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-new file mode 100644
-index 000000000000..390dfa03026b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-@@ -0,0 +1,148 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: i.MX8 Image Sensing Interface
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+description: |
-+  The Image Sensing Interface (ISI) combines image processing pipelines with
-+  DMA engines to process and capture frames originating from a variety of
-+  sources. The inputs to the ISI go through Pixel Link interfaces, and their
-+  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
-+  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx8mn-isi
-+      - fsl,imx8mp-isi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: The AXI clock
-+      - description: The APB clock
-+      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
-+      # as well, in case some SoCs have the ability to control them separately.
-+      # This may be the case of the i.MX8[DQ]X(P)
-+
-+  clock-names:
-+    items:
-+      - const: axi
-+      - const: apb
-+
-+  fsl,blk-ctrl:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      A phandle referencing the block control that contains the CSIS to ISI
-+      gasket.
-+
-+  interrupts: true
-+
-+  power-domains: true
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    description: |
-+      Ports represent the Pixel Link inputs to the ISI. Their number and
-+      assignment are model-dependent. Each port shall have a single endpoint.
-+
-+    patternProperties:
-+      "^port@[0-9]$":
-+        $ref: /schemas/graph.yaml#/properties/port
-+        unevaluatedProperties: false
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - fsl,blk-ctrl
-+  - ports
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,imx8mn-isi
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        ports:
-+          properties:
-+            port@0:
-+              description: MIPI CSI-2 RX
-+          required:
-+            - port@0
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,imx8mp-isi
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+        ports:
-+          properties:
-+            port@0:
-+              description: MIPI CSI-2 RX 0
-+            port@1:
-+              description: MIPI CSI-2 RX 1
-+          required:
-+            - port@0
-+            - port@1
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/imx8mp-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    isi@32e00000 {
-+        compatible = "fsl,imx8mp-isi";
-+        reg = <0x32e00000 0x4000>;
-+        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-+                 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-+        clock-names = "axi", "apb";
-+        fsl,blk-ctrl = <&media_blk_ctrl>;
-+        power-domains = <&mediamix_pd>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                isi_in_0: endpoint {
-+                    remote-endpoint = <&mipi_csi_0_out>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+                isi_in_1: endpoint {
-+                    remote-endpoint = <&mipi_csi_1_out>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
--- 
+Yes, I know them. They take use of remap_pfn_range, which set VM_IO and VM_PFNMAP on vma, so dio is not possible with them.
+IIUC, if you want to expose the kernel's reserved memory to userspace, it doesn't matter whether the memory came from dma allocator or something else.
+The point is if they want to get better throughput, they can consider replacing their dma_mmap_* with my reserved_mem_memremap_pages + reserved_mem_dio_mmap.
+
 Regards,
-
-Laurent Pinchart
-
+Li
