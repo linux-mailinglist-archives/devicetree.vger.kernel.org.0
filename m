@@ -2,185 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 699EB5721AF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 19:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 462B45721D7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 19:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbiGLRZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 13:25:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35196 "EHLO
+        id S231157AbiGLRhj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 13:37:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231354AbiGLRZd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 13:25:33 -0400
+        with ESMTP id S229901AbiGLRhi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 13:37:38 -0400
 Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F8EBF565
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 10:25:31 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id 73so8166902pgb.10
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 10:25:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A75C5945
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 10:37:37 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id g4so8257186pgc.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 10:37:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=E4jmP6FgBCuShM2yxd3P64q5em9gcVisC0GtASF23gY=;
-        b=FS9WBUbEEfYEED3QgznDAAd2QkvgwO8CwVKF/P6n1kM8GGIhSNb93+xyeUxDA1EDyQ
-         p2dM/Uq1070+OKhh6yFhYCGB8qK/JwLqc2DnZgMVTqNLjvIrHfVjC8guWPXBl387f72A
-         Irj7ZDgvmLZPt0Oav1k+pugcVsvw6PX4Y1riE=
+        d=broadcom.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to;
+        bh=s+whnr/r87Qq+/2UyytcELNJliodLzwKc7fQmH9G8ZI=;
+        b=GdCZwpIIwiqNCwUdGcb7IdY5BFOgRIH7QadtKDqA5a0gIeDN/9THrooSCIeHPaPPw2
+         YaV3fCgm3zVcnkg+jyWGqkla4qdoo96KrPUrAFqcWoqUDRIV32i3jpQvBoEgWFlkAMLD
+         7PVnc2ugm78/J6ERcmv4zYDjCTzdnF1qvcO+o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=E4jmP6FgBCuShM2yxd3P64q5em9gcVisC0GtASF23gY=;
-        b=cbggB2GM+JtfvYCViCOuWWgFNxv4d3X7C34H2Hz54H9bZJtwdtk4RRTlIBIAL70fNZ
-         xL1nq5wlkHu5ylFhpNXrfhX5/FZ/uY2PxVEIP+uz9fNd3EH7mYZ95UNJnd87hnIrKSr+
-         htoKq/YieacMABAW+VJs+PN1tQm4eC0pgOaUzq5uZkSsfnO5dBKhlwrkz0/y3mkn6Rz3
-         sIeDEsAS7hWf5mtK42Qx5m/cJn5ihko9tM5apVc4HWf5Gii6ZkKhzvmSiLe4pCYIPPQw
-         cGovbUbugHZJjs0Gq2a6u24Zst1JAEKGvw0ttPhZeCHRnqUvSl5mWGDGE/2lq/3E0bGD
-         La8w==
-X-Gm-Message-State: AJIora9Pj3Af+R6Y6eQeWl2UhsEwXDXp60TdCbkTzpnjnZsSiQz8WfT6
-        8VApMie/llLnyRkI0Qu8mDgQyg==
-X-Google-Smtp-Source: AGRyM1sWnN7nqx3ogAdQ99HHTgyORP8SiZVeXDB3osYj+OyDitCE/Klmi1y59hDRdQwCbKmsVzSQNg==
-X-Received: by 2002:a63:ef05:0:b0:416:306:db8d with SMTP id u5-20020a63ef05000000b004160306db8dmr9853565pgh.203.1657646731167;
-        Tue, 12 Jul 2022 10:25:31 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:e036:8c0d:9cf:7a45])
-        by smtp.gmail.com with UTF8SMTPSA id b15-20020a170902650f00b0016397da033csm7071064plk.62.2022.07.12.10.25.30
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to;
+        bh=s+whnr/r87Qq+/2UyytcELNJliodLzwKc7fQmH9G8ZI=;
+        b=v4dPl96BYh29U1nC6Z0fP7zw2NeL8x8TpPh0sWZmglo78rZX362cucg2dNzu3bLSD/
+         oNdTn2dN416lgFK+GCYRCHDDUwYvgGIHfmwdhHjo5HcSxVIv+a2gDEvCR5AtxG9/oxDo
+         FI9FbqkVCC6pCZPVE9VXZ+xIkH2TfSBlDAmNN6UP5gJcdr1emsK5ge1wj+n/iTOvVTqF
+         RawR/queJZZg8TvbB6iiV57f8l5KBq79zv/OxgU5EosPe56YID9LnO78MkDF2VqSsiZ5
+         WRutUYwShUMakZ7Eq+WNIx9dkG8eFArA27jRcAAHfNLZLQ+nvNznBHWv4gWvbslBYlJY
+         PkRw==
+X-Gm-Message-State: AJIora+sfU/uFA26rVTo99gm40iSbY6mc4RinEqzw0cm9Ngrwy8MqVY5
+        PliJVtVjfmwuLVeOP9QWBaY9XZ7SP/MFmg==
+X-Google-Smtp-Source: AGRyM1uilMCXo6A0D0zg/4NdIW2QL8Iz/Yi+LA30b1gOH4k5sv+WjkMLZN3rh2BaK7jCaPGWlhZBxQ==
+X-Received: by 2002:a63:fd0b:0:b0:415:f76b:a2cd with SMTP id d11-20020a63fd0b000000b00415f76ba2cdmr11088260pgh.440.1657647457181;
+        Tue, 12 Jul 2022 10:37:37 -0700 (PDT)
+Received: from [10.0.2.15] ([192.19.222.250])
+        by smtp.gmail.com with ESMTPSA id a125-20020a624d83000000b00528a4238eadsm7315751pfb.13.2022.07.12.10.37.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 10:25:30 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 10:25:29 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: usb: Add binding for TI USB8041 hub
- controller
-Message-ID: <Ys2uiei+ZOVYaOMy@google.com>
-References: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com>
+        Tue, 12 Jul 2022 10:37:36 -0700 (PDT)
+Message-ID: <94b0ab39-279d-d3c2-98a4-054c10ad041c@broadcom.com>
+Date:   Tue, 12 Jul 2022 10:37:34 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [RFC PATCH 1/3] dt-bindings: arm64: bcmbca: Merge BCM4908 into
+ BCMBCA
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     kursad.oney@broadcom.com, anand.gore@broadcom.com,
+        dan.beygelman@broadcom.com, f.fainelli@gmail.com,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        joel.peshkin@broadcom.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rafal@milecki.pl
+References: <20220712021144.7068-1-william.zhang@broadcom.com>
+ <20220712021144.7068-2-william.zhang@broadcom.com>
+ <ca8c3003-1bcb-6658-592c-566609fd7bd2@linaro.org>
+From:   William Zhang <william.zhang@broadcom.com>
+In-Reply-To: <ca8c3003-1bcb-6658-592c-566609fd7bd2@linaro.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="000000000000dee69a05e39f1f95"
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
+--000000000000dee69a05e39f1f95
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jul 12, 2022 at 05:06:25PM +0200, Alexander Stein wrote:
-> The TI USB8041 is a USB 3.0 hub controller with 4 ports.
+
+
+On 7/12/22 00:45, Krzysztof Kozlowski wrote:
+> On 12/07/2022 04:11, William Zhang wrote:
+>> Merge BCM4908 SoC device tree description into BCMBCA and combined
+>> all BCM4908 chip variants into the same BCM4908 chip family item.
 > 
-> This initial version of the binding only describes USB related aspects
-> of the USB8041, it does not cover the option of connecting the controller
-> as an i2c slave.
+> Merge means you combine some entries, so I would expect to see the
+> removal here as well.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> Well, this is essentially a ripoff of
-> Documentation/devicetree/bindings/usb/realtek,rts5411.yaml with USB IDs
-> replaced, reset-gpio added and example adjusted.
-> IMHO this should be merged together with realtek,rts5411.yaml. Is it ok
-> to rename bindings files? I guess a common onboard-usb-hub.yaml matching
-> the driver seens reasonable. Any recommendations how to proceed?
+Will combine with the removal patch as you pointed out
 
-It's a tradeoff between keeping the individual bindings simple and avoid
-unnecessary duplication. The current RTS5411 and TI USB8041 bindings are
-very similar, which suggests combining them. However over time hubs with
-diverging features could be added (e.g. with multiple regulators, a link
-to an I2C/SPI bus, a clock, ...). With that a common binding might become
-too messy.
-
-From a quick look through Documentation/devicetree/bindings it doesn't
-seem common to have generic bindings that cover components from multiple
-vendors. In that sense I'm leaning towards separate bindings.
-
-Rob, do you have any particular preference or suggestion?
-
-m.
-
->  .../devicetree/bindings/usb/ti,usb8041.yaml   | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+>>
+>> Each compatible string represent the whole chip family. The board
+>> variants and chip varints go into the first and second enum in the
+>> compatible string item list.
+>>
+>> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+>> ---
+>>
+>>   .../bindings/arm/bcm/brcm,bcmbca.yaml           | 17 +++++++++++++++++
+>>   1 file changed, 17 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
+>> index d9dc4f22f4a5..906c3e1de372 100644
+>> --- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
+>> @@ -28,6 +28,23 @@ properties:
+>>             - const: brcm,bcm47622
+>>             - const: brcm,bcmbca
+>>   
+>> +      - description: BCM4908 Family based boards
+>> +        items:
+>> +          - enum:
+>> +              # BCM4908 SoC based boards
+>> +              - brcm,bcm94908
+>> +              - asus,gt-ac5300
+>> +              - netgear,raxe500
+>> +              # BCM4906 SoC based boards
+>> +              - brcm,bcm94906
+>> +              - netgear,r8000p
+>> +              - tplink,archer-c2300-v1
+>> +          - enum:
+>> +              - brcm,bcm4908
+>> +              - brcm,bcm4906
+>> +              - brcm,bcm49408
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
-> new file mode 100644
-> index 000000000000..9a49d60527b1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/ti,usb8041.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Binding for the TI USB8041 USB 3.0 hub controller
-> +
-> +maintainers:
-> +  - Matthias Kaehlcke <mka@chromium.org>
-> +
-> +allOf:
-> +  - $ref: usb-device.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - usb451,8140
-> +          - usb451,8142
-> +
-> +  reg: true
-> +
-> +  reset-gpio:
-> +    maxItems: 1
-> +    description:
-> +      GPIO specifier for GSRT# pin.
-> +
-> +  vdd-supply:
-> +    description:
-> +      phandle to the regulator that provides power to the hub.
-> +
-> +  peer-hub:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> +    description:
-> +      phandle to the peer hub on the controller.
-> +
-> +required:
-> +  - peer-hub
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    usb {
-> +        dr_mode = "host";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        /* 2.0 hub on port 1 */
-> +        hub_2_0: hub@1 {
-> +          compatible = "usb451,8142";
-> +          reg = <1>;
-> +          peer-hub = <&hub_3_0>;
-> +          reset-gpio = <&gpio1 11 GPIO_ACTIVE_LOW>;
-> +        };
-> +
-> +        /* 3.0 hub on port 2 */
-> +        hub_3_0: hub@2 {
-> +          compatible = "usb451,8140";
-> +          reg = <2>;
-> +          peer-hub = <&hub_2_0>;
-> +          reset-gpio = <&gpio1 11 GPIO_ACTIVE_LOW>;
-> +        };
-> +    };
-> -- 
-> 2.25.1
+> This is wrong.  brcm,bcm94908 followed by brcm,bcm4906 does not look
+> like valid list of compatibles.
+>
+For 4908 board variant, it will need to be followed by 4908 chip. Sorry 
+for the basic question but is there any requirement to enforce this kind 
+of rule?  I would assume dts writer know what he/she is doing and select 
+the right combination.
+
+>> +          - const: brcm,bcmbca
+>> +
+>>         - description: BCM4912 based boards
+>>           items:
+>>             - enum:
 > 
+> 
+> Best regards,
+> Krzysztof
+
+--000000000000dee69a05e39f1f95
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICe2Ucs/UZeHnvSKQYIrsrpqNSbx
+G6N2lwXZRsKdi0SjMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDcxMjE3MzczN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCMm+bUEYtyq3cwtQobmYJf78ElUPIjlH4ZT4cFjOa+GmQE
+pdr05v66rjHUXHNms90vIl9t6k7B04k/J0JYgq56GXVyKoKkGhUIYDCvr6l2xblJJ62VEm6npr9u
+JdT0scKCqcwFimlo8WLuCimLoDelzwiYT0X0f4ID7JEyQ8zmnJJJB1GFcYs5w05H/AkjyNeM5YiR
+aH9jxaF6zdQAkDU0iELy0Oq7jPLetmza54l/f+JhaTSjCn1Zw/MP61Zk1eB9NqguVAo7zWe9nTji
+Ur8OVyZ1lf+8fXDo5GGm9J7X3C3ceK9NrJmGXsSUaq8ZnApItRUpbeuoJVMWFqNNoN0U
+--000000000000dee69a05e39f1f95--
