@@ -2,77 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7252A5714CA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F3895714CE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232519AbiGLIjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:39:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41120 "EHLO
+        id S231443AbiGLIjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:39:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231911AbiGLIjK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:39:10 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB8F201B4
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:39:08 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id d12so12727970lfq.12
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:39:08 -0700 (PDT)
+        with ESMTP id S232380AbiGLIjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:39:18 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2229E50726
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:39:17 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id l11so12731763ybu.13
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:39:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=omRgN0J5yZix+Z65ddu+tHeBZrf7vaMQw16XFNCfZoE=;
-        b=INPcpr5fSURpySLQoUpwTeVxIZyAJyPeGNY4vyVHDfDUyd4YJBsE29rkNEGaTW5Jlo
-         WMp7hGjWg3zfeVA/gKMm9wA/yDcljNnT8IFYWvtATc6ZVVPIJdfvvRsjmXgFh98QUxUJ
-         wP033DHPhOANHLEEWm77C0hbw13aVaSFBoIDuAqg4gDFYJyDygLNQks3S+dFt/he2Xye
-         zmk6fBDwNdUeB23cA12bPDpzpX2IadzAsruamoCpZdIai9PPiChTEkj8wAqe1ACQkIaI
-         cGPQN0ZU9U1RAei2xT/AX5otcYQDIX0goD+pIHTZjC6uqyvAEabpQMlNO4ZJSxRy8/Zc
-         0eRg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pwAwI6J0LVXbBRyICwheygsAIzKjS1y09V3wEsL9VGY=;
+        b=qJJY4LpTyW+n1zxGWTlKj49Onkt10Bvsx5WQ5rxR/co8RKeFA2L4JwpU5fNvCmqC4z
+         4mRSDO27d+D22MYXRKJ9IgnxDSKIEbOaFaANiFtdb4SooM34P/t3LZRS5IP419lPTzBq
+         7jsxbk4OKgzUR7beO2sLCYNv8u3GM2PGAVnB1309CjNs9iGzlLRwu/E6sYSJjaeKqPs4
+         HzMRnGZak4aGcDAG1gSkiwNQlPxLApY4qvI3nBI8UMCvE78dlNywcYaYSoCYXSltgQhd
+         gLAZCO7ohzu5yQflctZaGzHd3NOSX9sfq5R6DtvzsF83CPtkzruO2fdikFzuP7+/W88j
+         hpkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=omRgN0J5yZix+Z65ddu+tHeBZrf7vaMQw16XFNCfZoE=;
-        b=5QAtpxYGsT5e4eDJcLTKT93LpZVSiO5koqWG5Yvgkdtkve3A9vhnmY9pa8yYCefU4N
-         QJhaASg96M5tOSoA+N1++Rr1Kbe+HXBPnWcHMB7pF02+fRapRfYvfHQR8gSVwp9UupiD
-         3KzFaFwmOgiRBgW7J6uhEUhveucpDi3jzd6HGlqMlT4PDyYI84yQ3uy2hWJ4PVkTlQmk
-         Mfq1yBVH8LnTx9z+BMG2KQ1dl8qAEy+UYk+vp3ZhgfiFhLg5k5JszD8TdCkdk/40nUww
-         OLTB1otJhvV5OAanOWDGI0UpcJIuKXpjvO3GR+DzEK/OZkGIWG/s6DmrM4GIMJzEATgJ
-         sUHg==
-X-Gm-Message-State: AJIora+wuIctOac13N3Gi5dSTdQA6kvJO0MNJ/Tc0bdmGPkY4mqDF9IQ
-        FTZPWiLMagHhoFzBHvjNTDJ6+A==
-X-Google-Smtp-Source: AGRyM1vJWqunUMEEMc/jclwCCRXBmtDYhVAs6xxWGTzvIR3Ne3/Z6Gv3umiOi6ILzvstKeSp4knBrA==
-X-Received: by 2002:a05:6512:505:b0:489:c93d:a95c with SMTP id o5-20020a056512050500b00489c93da95cmr12270053lfb.115.1657615146468;
-        Tue, 12 Jul 2022 01:39:06 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id c19-20020ac25f73000000b0048759bc6c1asm2056194lfc.203.2022.07.12.01.39.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:39:05 -0700 (PDT)
-Message-ID: <0eff0dd7-2d77-5341-5079-09d4a9309b1e@linaro.org>
-Date:   Tue, 12 Jul 2022 10:39:03 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pwAwI6J0LVXbBRyICwheygsAIzKjS1y09V3wEsL9VGY=;
+        b=52LgdtRUGfaZSqo4Ds1ym8i5jzn6RuJVaFAhY+TTiQZCdN84/QtecuOQK7+ks+CVpI
+         GRSq7pIXtXKaJsA3/lgVQyXwKhm4kbZn+Z/K65W7X9mFyR8TucXTghHjto6Nd5OaLWhx
+         aD8SJetnqFDDw5nPub7wXxjtarXV76gT3+jUuMbcLl7TOHdT9YYXymveC5/UayIako/9
+         NMkr8WVRn2ABL01Bo/K1UAkzwRicGe9qhj21+mbYseirU+fOGYfD9RPPMYTKqTlcPsFD
+         Cq1NphQ/fyRMjw+aCGCWh7lc/6Ig+oHg4ZYD//cmautC50kOcUSx84FMNI7wHeN5x/4L
+         2u9g==
+X-Gm-Message-State: AJIora9czPib0zW/qtzw6wbLZOu9oUCPQ/FMd3Sc7/y2pqWRSYPCr3Gt
+        +41gaUhvSroVIbMyTgAeQ1YILuLUOrTMYjkHvAxbyA==
+X-Google-Smtp-Source: AGRyM1v1Oxa2Ei7Zc9A6vXkFvArZM8yXqdVl4lpmO0YzWay4WnBwmf6aRkFO4ZkQqiKVseOQXQDCn8ZveRR7m0/vNUQ=
+X-Received: by 2002:a05:6902:150a:b0:66f:8a6:be47 with SMTP id
+ q10-20020a056902150a00b0066f08a6be47mr13784846ybu.291.1657615156399; Tue, 12
+ Jul 2022 01:39:16 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 3/3] soc: mediatek: pm-domains: Grab SCPSYS registers from
- phandle to syscon
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        chun-jie.chen@mediatek.com, weiyi.lu@mediatek.com,
-        mbrugger@suse.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com,
-        nfraprado@collabora.com
-References: <20220711122503.286743-1-angelogioacchino.delregno@collabora.com>
- <20220711122503.286743-4-angelogioacchino.delregno@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711122503.286743-4-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220711203408.2949888-1-robimarko@gmail.com> <20220711203408.2949888-3-robimarko@gmail.com>
+In-Reply-To: <20220711203408.2949888-3-robimarko@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 12 Jul 2022 10:39:05 +0200
+Message-ID: <CACRpkdbLKXrVu9q3m1BRfRMT5q4gtrtuSNw0PmTsZBraeytVFw@mail.gmail.com>
+Subject: Re: [PATCH v7 3/7] dt-bindings: pinctrl: qcom,pmic-gpio: add PMP8074
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        konrad.dybcio@somainline.org, lee.jones@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jic23@kernel.org, lars@metafoo.de, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,54 +70,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 14:25, AngeloGioacchino Del Regno wrote:
-> Instead of requiring nesting of the power-controller inside of a
-> "syscon", "simple-mfd" node, look for a phandle to SCPSYS in the
-> "syscon" property of the power controller node.
-> 
-> Compatibility with older devicetrees is retained by falling back
-> to looking for a parent node if no syscon phandle is found.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/soc/mediatek/mtk-pm-domains.c | 16 +++++++++-------
->  1 file changed, 9 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-> index a3dae391a38a..c5a1c766cd50 100644
-> --- a/drivers/soc/mediatek/mtk-pm-domains.c
-> +++ b/drivers/soc/mediatek/mtk-pm-domains.c
-> @@ -590,8 +590,7 @@ static int scpsys_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct device_node *np = dev->of_node;
->  	const struct scpsys_soc_data *soc;
-> -	struct device_node *node;
-> -	struct device *parent;
-> +	struct device_node *node, *syscon;
->  	struct scpsys *scpsys;
->  	int ret;
->  
-> @@ -611,13 +610,16 @@ static int scpsys_probe(struct platform_device *pdev)
->  	scpsys->pd_data.domains = scpsys->domains;
->  	scpsys->pd_data.num_domains = soc->num_domains;
->  
-> -	parent = dev->parent;
-> -	if (!parent) {
-> -		dev_err(dev, "no parent for syscon devices\n");
-> -		return -ENODEV;
-> +	syscon = of_parse_phandle(dev->of_node, "syscon", 0);
-> +	if (!syscon) {
-> +		if (!dev->parent)
-> +			return -ENODEV;
-> +		scpsys->base = syscon_node_to_regmap(dev->parent->of_node);
-> +	} else {
-> +		scpsys->base = syscon_node_to_regmap(syscon);
-> +		of_node_put(syscon);
->  	}
+On Mon, Jul 11, 2022 at 10:34 PM Robert Marko <robimarko@gmail.com> wrote:
 
-I responded in previous DTS thread. Technically code looks ok, but it
-does not make really sense - either this is a child or a sibling. Not
-both for the same hardware!
+> Document the compatible for PMP8074 which has 12 GPIO-s with holes at
+> GPIO1 and GPIO12.
+>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Best regards,
-Krzysztof
+Patch applied to the pinctrl tree.
+
+Yours,
+Linus Walleij
