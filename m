@@ -2,159 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EA53571C9B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE9D571CA7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:31:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233061AbiGLOaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:30:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47910 "EHLO
+        id S230037AbiGLOa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:30:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229829AbiGLO36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:29:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018D22871F;
-        Tue, 12 Jul 2022 07:29:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 91A80618F8;
-        Tue, 12 Jul 2022 14:29:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB807C341C8;
-        Tue, 12 Jul 2022 14:29:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657636196;
-        bh=eD8CW9WNiJT8VXhu8zwAPpJ2nHI6u87NDwtq5Ro4Zkk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pT24m+7R6+CJHODdS4TaCZnUnta0iUdEIVJOWr7keb/BUm3h8P7woBbOS3bnGjyDG
-         H3mH8VlmYAOdfSrROvE1aHkFMIrbycy6ANEXqEhrJW/Ghrz44jlSwKPyBdILAs2wA5
-         dTcNFqENehXUrSK18juekpJWXSpPHviib7ngzjdlwddI71q7gznYGIbaAmWW+U2G8z
-         M5f1BeBaM1PtpaPkUS7tBWvBBD/0i7SHYyhqxoiuKn0pkMhz5sQ7X+GG/6nWvkREZi
-         JyK9eAkIQNR4bQKKM63DQCF2McAsV1jsJBarnKRktOrNLnYL0zGgJ7UELJG3t4trgV
-         Vs7l2LXgTXxcw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oBGth-0001zS-P1; Tue, 12 Jul 2022 16:29:57 +0200
-Date:   Tue, 12 Jul 2022 16:29:57 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>, linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V2 00/13] OPP: Add support for multiple clocks*
-Message-ID: <Ys2FZa6YDwt7d/Zc@hovoldconsulting.com>
-References: <cover.1657003420.git.viresh.kumar@linaro.org>
- <YsxSkswzsqgMOc0l@hovoldconsulting.com>
- <20220712075240.lsjd42yhcskqlzrh@vireshk-i7>
+        with ESMTP id S229924AbiGLOax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:30:53 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D3523BE3;
+        Tue, 12 Jul 2022 07:30:52 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id v10-20020a05600c15ca00b003a2db8aa2c4so4919237wmf.2;
+        Tue, 12 Jul 2022 07:30:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=bzwxy70TNOzVzbC2SQ6pvxX4LI9i4auhhVyInyenLbg=;
+        b=iiLNdHTC8ESUCoAHkM/+WlHCV0Sw8CzK1CV5E4nKh5s0HWbiBPfsQXDmKQCIQMvsO5
+         EBw+FZRQr/NfAxusxfMt9/y9ycRcOcthOKHMKJdpjTU4v+soZknV+8Vc+uDD9pAZ7xLR
+         2iHXxvLSi2yCxTeDI3P/2EURCcQuYlv4Fli9+fUqvpASymmcmC1+mdHrSMMUb1LS9Oxo
+         ZEBr888IZ2Mitnnnh6AUYHDXNT+P4sS6B/7tcvUmIqc/q9hEjs1rLKrlCMX6+CY9ifIo
+         MZ88IZHbppWvq7YbXZpanMSwMRZrM0zaKkWbTQfAL6aAhF/WHboXOLrNuT+exLr8xI4i
+         LB3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=bzwxy70TNOzVzbC2SQ6pvxX4LI9i4auhhVyInyenLbg=;
+        b=73cHvYrhANK6Xs2yXj1J2N7uzQApTrffd27JNScQWpGAEbzhS0/rvWCDdIe5b+kDuU
+         219zHQzP2/En4g4RSxFhpJwbKqymfmxFJuvZNciV6Sg9rTcAiJHr5UtErqfiEp6oRlg4
+         4wjuub3iwyt6u94vXGjA2ihK0Ydie85b5kSyuJRaVCOGoxCpsJ7LBGNaTjjrqk/jcEhC
+         goFhJR4t5B9ePe/hjKE2aaAJHkW5fxBRexofp6+1xdxj0HM7KPwJPj/hNAuhhPTR/Lhr
+         9KOnWE9KTS1Fu8YpWovrQ0jzORw0tMI7uuPShvVLj7TnbevcPXWX3zd/ml/7i/Px9bp8
+         Mjsg==
+X-Gm-Message-State: AJIora/Xn8rYGTGGAQGAq3+bFDBCd89mvSJROJ0qIePPR7EDu2vDkG6a
+        qgQPWgqsrYQ+m6ByjyHLx/c=
+X-Google-Smtp-Source: AGRyM1tG2wW154+SibgSBju+PDxt2tIJ0H01DgYNd4GXlcgDCdTYxqt2DoAhWPKhuoYxERcQ7TwiHw==
+X-Received: by 2002:a05:600c:1f08:b0:3a2:e82f:7b49 with SMTP id bd8-20020a05600c1f0800b003a2e82f7b49mr4172537wmb.11.1657636250998;
+        Tue, 12 Jul 2022 07:30:50 -0700 (PDT)
+Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
+        by smtp.gmail.com with ESMTPSA id bd10-20020a05600c1f0a00b003a18de85a64sm1915169wmb.24.2022.07.12.07.30.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 07:30:50 -0700 (PDT)
+Message-ID: <cf0a46c499de1f97987b231a0b162d09f961b702.camel@gmail.com>
+Subject: Re: [PATCH 04/10] input: keyboard: adp5588-keys: add support for fw
+ properties
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "Sa, Nuno" <Nuno.Sa@analog.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-input <linux-input@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 12 Jul 2022 16:31:53 +0200
+In-Reply-To: <CAHp75VfqT7L7EkSt=6DTwYeK-Nz6pX9edhrfoAR9AUTz40pcMA@mail.gmail.com>
+References: <20220708093448.42617-1-nuno.sa@analog.com>
+         <20220708093448.42617-5-nuno.sa@analog.com>
+         <CAHp75Vcv8i-XXarjA=sE_gkG57ngADLrsG2=xA71zOfxtfEUCg@mail.gmail.com>
+         <PH0PR03MB67864AAC5B51C36E6FB202BF99829@PH0PR03MB6786.namprd03.prod.outlook.com>
+         <CAHp75VfqT7L7EkSt=6DTwYeK-Nz6pX9edhrfoAR9AUTz40pcMA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.3 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220712075240.lsjd42yhcskqlzrh@vireshk-i7>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 01:22:40PM +0530, Viresh Kumar wrote:
-> On 11-07-22, 18:40, Johan Hovold wrote:
-> > This break OPP parsing on SC8280XP and hence cpufreq and other things:
-> > 
-> > [  +0.010890] cpu cpu0: _opp_add_static_v2: opp key field not found
-> > [  +0.000019] cpu cpu0: _of_add_opp_table_v2: Failed to add OPP, -19
-> > [  +0.000060] cpu cpu0: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 300000000, volt: 576000, enabled: 1. New: freq: 403200000, volt: 576000, enabled: 1
-> > [  +0.000030] cpu cpu0: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 300000000, volt: 576000, enabled: 1. New: freq: 499200000, volt: 576000, enabled: 1
-> > ...
-> > 
-> > I just did a rebase on next-20220708 and hit this.
-> > 
-> > I've narrowed it down to _read_rate() now returning -ENODEV since
-> > opp_table->clk_count is zero.
-> > 
-> > Similar to what was reported for tegra for v1:
-> > 
-> > 	https://lore.kernel.org/all/58cc8e3c-74d4-e432-8502-299312a1f15e@collabora.com/
-> > 
-> > I don't have time to look at this any more today, but it would we nice
-> > if you could unbreak linux-next.
-> > 
-> > Perhaps Bjorn or Mani can help with further details, but this doesn't
-> > look like something that is specific to SC8280XP.
-> 
-> It is actually. This is yet another corner case, Tegra had one as
-> well.
+On Fri, 2022-07-08 at 17:07 +0200, Andy Shevchenko wrote:
+> On Fri, Jul 8, 2022 at 5:04 PM Sa, Nuno <Nuno.Sa@analog.com> wrote:
+> > > From: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > > Sent: Friday, July 8, 2022 4:56 PM
+> > > On Fri, Jul 8, 2022 at 11:37 AM Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > wrote:
+>=20
+> ...
+>=20
+> > > Okay, you add something in the wrong form and then fix it in the
+> > > other
+> > > patch in the very same series? Please no ping-pong type of
+> > > changes.
+> > > Squash / rebase your series accordingly.
+> >=20
+> > Well, I thought to just copy it as it was on the platform file and
+> > then just fix
+> > it with the rest of the coding styles changes. But I'm fine in
+> > fixing it already
+> > in this patch. In fact, there's a lot of defines that are not used
+> > (it's just
+> > defining the complete register map) so I can as well get rid of all
+> > the stuff
+> > that is not used anywhere in the driver.
+>=20
+> This needs to be split to:
+>=20
+> 1) fix existing
+> 2) move data
+> 3) use that data
+>=20
+> Or
+>=20
+> 1) move data (no other changes, if possible)
+> 2) fix data
+> 3) use it
+>=20
+> ...
 
-I literally meant that it does not appear to be SC8280XP specific. Bjorn
-reported seeing similar problems on multiple Qualcomm SoCs.
+Well, I think in the current form is already your option 2... And fix
+is a strong word in here, these are coding style changes :)
 
-> I have tried to understand the Qcom code / setup to best of my
-> abilities, and the problem as per me is that qcom-cpufreq-hw doesn't
-> provide a clk to the OPP core, which breaks it after the new updates
-> to the OPP core. I believe following will solve it. Can someone please
-> try this ? I will then merge it with the right commit.
-> 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 666e1ebf91d1..4f4a285886fa 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -1384,6 +1384,20 @@ static struct opp_table *_update_opp_table_clk(struct device *dev,
->         }
-> 
->         if (ret == -ENOENT) {
-> +               /*
-> +                * There are few platforms which don't want the OPP core to
-> +                * manage device's clock settings. In such cases neither the
-> +                * platform provides the clks explicitly to us, nor the DT
-> +                * contains a valid clk entry. The OPP nodes in DT may still
-> +                * contain "opp-hz" property though, which we need to parse and
-> +                * allow the platform to find an OPP based on freq later on.
-> +                *
-> +                * This is a simple solution to take care of such corner cases,
-> +                * i.e. make the clk_count 1, which lets us allocate space for
-> +                * frequency in opp->rates and also parse the entries in DT.
-> +                */
-> +               opp_table->clk_count = 1;
-> +
->                 dev_dbg(dev, "%s: Couldn't find clock: %d\n", __func__, ret);
->                 return opp_table;
->         }
+- Nuno S=C3=A1
 
-This looks like a hack. And it also triggers a bunch of new warning when
-opp is trying to create debugfs entries for an entirely different table
-which now gets clk_count set to 1:
-
-[  +0.000979]  cx: _update_opp_table_clk: Couldn't find clock: -2
-[  +0.000022] debugfs: Directory 'opp:0' with parent 'cx' already present!
-[  +0.000004] debugfs: Directory 'opp:0' with parent 'cx' already present!
-[  +0.000004] debugfs: Directory 'opp:0' with parent 'cx' already present!
-[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
-
-This is for the rpmhpd whose opp table does not have either opp-hz or
-clocks (just opp-level).
-
-The above unbreaks cpufreq though.
-
-Johan
