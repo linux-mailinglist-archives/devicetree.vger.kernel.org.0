@@ -2,109 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB62A571794
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42B495717B7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:56:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230123AbiGLKvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 06:51:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37442 "EHLO
+        id S230122AbiGLK4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 06:56:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbiGLKvi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:51:38 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D7FAE384;
-        Tue, 12 Jul 2022 03:51:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1657623065;
-        bh=c/mYNYqyEwH1d8z86lve7tR3491KdxL9/uAjUeWIz4U=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=d1jbbaaqjQDgJv7yKK1aT4BYA6yXEAUnZmk8SnC1TSzFLla4gJ9XaB6aSFhIxrfDJ
-         kCWUwBx167M46fHzU7shs8dlHAl6Qmx5ucCtPk29xjM6Ou5BXoJ1iq5Se/BEd9qXwn
-         WCFtsjOCofVfxHjNF2qvjDeH0EakMzvY9zN7CvD4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.147.102] ([217.61.147.102]) by web-mail.gmx.net
- (3c-app-gmx-bs14.server.lan [172.19.170.66]) (via HTTP); Tue, 12 Jul 2022
- 12:51:04 +0200
+        with ESMTP id S232356AbiGLK4O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:56:14 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34EA9AE54E;
+        Tue, 12 Jul 2022 03:56:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1657623350; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=NesB+pgNfxQce8Q3B1kMWPE9IL4UaavFicShfBxDFet9aF74U8kRb82jonZ3bs+4FvuLgAKU9+8jejGXqQzpBHQcmaiEsLiwNMdBmqKiP3xvEIFygJ0UBJnoRhkcRiHE6oH7w4SSiq/M1XX0CoV6d6WeEiMAjxeKHgrQPupaI5I=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1657623350; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=tFSe8DXlfnP6rHVBGRr8qpDTToiIeu8mAIvR+SIfcvs=; 
+        b=WpIBPNEcOfsLcMZzFn2MWXCUqTxRahZaFWyPQd4agadCJQDTNS7wzR+DxgM/o/wcjEf6LPmFWqLgjWcUusfScsh/KM3YGc4VORFs0DrnA0v4ZEsdUDYk5UuvTHVDMRJ4+dAW/tli8Li1rlhAcjYYTvX3OWddcvD1o//zPVAtSbY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=linux.beauty;
+        spf=pass  smtp.mailfrom=me@linux.beauty;
+        dmarc=pass header.from=<me@linux.beauty>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1657623350;
+        s=zmail; d=linux.beauty; i=me@linux.beauty;
+        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=tFSe8DXlfnP6rHVBGRr8qpDTToiIeu8mAIvR+SIfcvs=;
+        b=K9L+GTzW7q5PPB0CK2GhHx8xFcFfkcRU2cAR9moGiynNvzWaw9rXMqet08cIl0FC
+        fuGdtYBHr9454wBiW7TdTYuNPdJ6pXlM/mcW6U9rkYt9qM/kV+ofw/8NgmtBgIeLhfj
+        /CmN+dKnhILe3EByBAGfdjGzWS2mWfmYT1ZwQKRE=
+Received: from mail.zoho.com by mx.zohomail.com
+        with SMTP id 1657623348256160.91761174332316; Tue, 12 Jul 2022 03:55:48 -0700 (PDT)
+Date:   Tue, 12 Jul 2022 18:55:48 +0800
+From:   Li Chen <me@linux.beauty>
+To:     "Arnd Bergmann" <arnd@arndb.de>
+Cc:     "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Frank Rowand" <frowand.list@gmail.com>,
+        "Andrew Morton" <akpm@linux-foundation.org>,
+        "Li Chen" <lchen@ambarella.com>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        "DTML" <devicetree@vger.kernel.org>,
+        "Linux-MM" <linux-mm@kvack.org>
+Message-ID: <181f20d0403.121f433c8600165.2068876337784123868@linux.beauty>
+In-Reply-To: <CAK8P3a3gX-JMh6E2X3rH+U37zhkA6b0+AJDtXCJfdZiMocxLjg@mail.gmail.com>
+References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
+ <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
+ <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
+ <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com> <181f1d88b64.e2eb2601586551.453778983551010212@linux.beauty> <CAK8P3a3gX-JMh6E2X3rH+U37zhkA6b0+AJDtXCJfdZiMocxLjg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
+ page and dio support to no-map rmem
 MIME-Version: 1.0
-Message-ID: <trinity-460cb253-7fc2-438e-9e65-5c6da18c8f6c-1657623064606@3c-app-gmx-bs14>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Liang Chen <cl@rock-chips.com>, Simon Xue <xxm@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Aw: [PATCH v4 3/5] phy: rockchip: Support PCIe v3
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 12 Jul 2022 12:51:04 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20220619082605.7935-4-linux@fw-web.de>
-References: <20220619082605.7935-1-linux@fw-web.de>
- <20220619082605.7935-4-linux@fw-web.de>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:Ggue+5HxNF+HyF06ttMUnhvQbrt1IvmExsTURARRr4aRh8Ks8HyhWhSvWH1y6g+7+ylZu
- vU/tQJJsTkG4WOcA/7HLS8aezW3ykiCrnA/7eDOntz4QuhGJ6BpRrxN+hEAF239FU/w4SUTCb2WT
- 0qsFQR62hxWMur5C8Ie+rkfdBdfcKcUU+5+vVEyWZFp248dbQ3yMigghwKPzkg3ChCZ5kE/kairp
- QLLjjLJxnpwx/5IzvCdJbkKH+qzS64xOuwVTZgalpfSIMCLkWKXcQEyTtF54oykWmLjJ14ymQJGs
- xk=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:CEts49WrzYQ=:PfqATTz4enB2mCtMa3pHA6
- 4ZSug7dqIHMLNvPDFljw3T4N4kcy1v8U2AB5sB4ONneyh9gzSs115+Bp+hDtWfggwwljWe9YQ
- sGzH0np8lnOUTI9Evt2huKVMSVkLGOaQ1uTMWgXX1i9XvQbVP3101CPowrR2lS1Z26XYpHRBc
- Oi5E7sqk1MQ9cEplg20P6vf/deu3vK6HmT+cUI6ALAq8WBXTaBMfrYdY58qfgxVHYWQfyktfn
- vSe9JxhvVPrA8p9FVSQ6eLr5iy7Othm2rouIe7GJshSZsRyYpe2d3qrOeeFsMyHY7ueF1hoge
- dAPRdML/lgoHB7e0SGBz8mzrtqqgmRvp7LEl2uPc7fs5Cqbt5Bnqp1BpQS+UaoAU86VUMfe2l
- jc8ZyyxvlsKqaKuOr8fHESTWdXt2IzI3VaVvFgN31fK/LWFdAc3hu1h7ufXRVAbLh3lqIuLYs
- S/K3YZGm85aar7kQmZ/GNrfnZhsv5KGd82aJVc4pUMYA5ZBD/cX8plK/KF4pdTbqPmByvnlmL
- /jH/vU1VI6HC6l1s4yLNLjmu0XoX7r0JY7VXBq32bu5TDb4zT0kwJhSR+ORVCEqJ+h0PgLyLK
- EFRjrK61nb4DFy6krnEKTLIF6O0oJt+ZNHHxEVRCiPWHKteS2FamaxAmOb95RzvfDpuGWfmIF
- XcBvLsv0bsNtGPj49f62EW9do2UykWtfxh/3QbAaIhJDiNPrgE+r45wdln0THHFX0vN1Xqu8m
- y7bJeW90BAbJLN50psQBMJSfootzyddbhwPdYFlb5LUCoK0d7bYNGEg2ILTSJNF+3R8Ou5EPb
- Ay3WKcE
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_RED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Arnd,
+ ---- On Tue, 12 Jul 2022 18:08:10 +0800  Arnd Bergmann <arnd@arndb.de> wrote --- 
+ > On Tue, Jul 12, 2022 at 11:58 AM Li Chen <me@linux.beauty> wrote:
+ > >  > On Tue, Jul 12, 2022 at 2:26 AM Li Chen <me@linux.beauty> wrote:
+ > >  > >  ---- On Mon, 11 Jul 2022 21:28:10 +0800  Arnd Bergmann <arnd@arndb.de> wrote ---
+ > >  > >  > On Mon, Jul 11, 2022 at 2:24 PM Li Chen <me@linux.beauty> wrote:
+ > >  > >  > The problem here is that the DT is meant to describe the platform in an OS
+ > >  > >  > independent way, so having a binding that just corresponds to a user space
+ > >  > >  > interface is not a good abstraction.
+ > >  > >
+ > >  > > Gotcha, but IMO dts + rmem is the only choice for our use case. In our real
+ > >  > > case, we use reg instead of size to specify the physical address, so
+ > >  > > memremap cannot be used.
+ > >  >
+ > >  > Does your hardware require a fixed address for the buffer? If it can be
+ > >  > anywhere in memory (or at least within a certain range) but just has to
+ > >  > be physically contiguous, the normal way would be to use a CMA area
+ > >  > to allocate from, which gives you 'struct page' backed pages.
+ > >
+ > > The limitation is our DSP can only access 32bit memory, but total dram is > 4G, so I cannot use
+ > > "size = <...>" in our real case (it might get memory above 4G). I'm not sure if other vendors' DSP also has
+ > > this limitation, if so, how do they deal with it if throughput matters.
+ > 
+ > This is a common limitation that gets handled automatically by setting
+ > the dma_mask of the device through the dma-ranges property in DT.
+ > When the driver does dma_alloc_coherent() or similar to gets its buffer,
+ > it will then allocate pages below this boundary.
+ 
+Thanks for the tip! I wasn't aware that dma-ranges can be used by devices other than PCIe controllers.
 
-just a gentle ping :)
+ > If you need a large contiguous memory area, then using CMA allows
+ > you to specify a region of memory that is kept reserved for DMA
+ > allocations, so a call to dma_alloc_coherent() on your device will
+ > get contiguous pages from that area, and move other data in those
+ > pages elsewhere if necessary. non-movable data is allocated from
+ > pages outside of the CMA reserved area in this case.
 
-regards Frank
+We need a large memory pool, around 2G. I will try CMA and dma-ranges later!
 
-
-> Gesendet: Sonntag, 19. Juni 2022 um 10:26 Uhr
-> Von: "Frank Wunderlich" <linux@fw-web.de>
-> From: Shawn Lin <shawn.lin@rock-chips.com>
->
-> RK3568 supports PCIe v3 using not Combphy like PCIe v2 on rk3566.
-> It use a dedicated PCIe-phy. Add support for this.
->
-> Initial support by Shawn Lin, modifications by Peter Geis and Frank
-> Wunderlich.
->
-> Add data-lanes property for splitting pcie-lanes across controllers.
->
-> The data-lanes is an array where x=3D0 means lane is disabled and  x > 0
-> means controller x is assigned to phy lane.
->
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-> Suggested-by: Peter Geis <pgwipeout@gmail.com>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-
+Regards,
+Li
