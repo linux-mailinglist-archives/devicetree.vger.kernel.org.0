@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DDCB5715FD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 11:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA7857161A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 11:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232576AbiGLJoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 05:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36748 "EHLO
+        id S230503AbiGLJs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 05:48:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232316AbiGLJof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 05:44:35 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B61FBA43A7
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:44:33 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id bf9so12974259lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:44:33 -0700 (PDT)
+        with ESMTP id S229760AbiGLJs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 05:48:57 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 884B3A2EC7
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:48:55 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id n18so11319629lfq.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:48:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=ccOiMAgtSqX6XMOBrUrIJ0SaPuYb17sx2V9mHM1gD1E=;
-        b=Y0a/DBRjll737XFCNqzw6+eMJGYJBX6D/hxspikU6eioe8Urv+VmTU4PAYR1jlkCc1
-         JG/QXZYpVXP4sJVrD76Ej5OABuRlJqixN3zMtB1vcdxJHyc66ebGLe1VSjEbjUG30E1B
-         8+bix2IrOGOVVKtbrVUvk2m6iKYZZJk4XkiAs7OQDql9f3CTajF8DvWUSHete2hSTZuQ
-         e39cjbGzckLrRzCWgIZD4/kbCJv8Q5iAmBVEiCk672YXxIn99hLe36e9KvvKtM60H0qc
-         CmJTOhlaD+Wuf7hknq8BQ8nzKMdF9WARIbGPRVYeHotKWrC6vZlhVoCxrsvypWm1LNYi
-         ZeMw==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=/uH8F4Kby+JXg7Mpe1L96lV/BObBUJ58/FjGSd2zwrI=;
+        b=GHOwDC5960hhrGAi98lxdFsoVxYhQ2I/DQd5NEQZVKWyX92WrTsf8t2uM3S5O5Pasz
+         EaPxmoLo+up67H/T1lw9SK2ICPtDIXbpnFpjwJEtiMkaxLplr6Ne1TOqGXTgTi8dkiJA
+         Y+POzrid5V/l1fFk3bQz7NlKDjxL0IasYJ/SW4GtFYSRTmqGaVUb5ssUlJPMjQEp0dX2
+         QuR/+sJhEfI6EpUkJFI81oMNUs+Zf4ivdtf7J/KU5ISvA1qtBbwfx5fjRbkU6DYVeBma
+         +Chaapuv217t3WUW1yU+2nFRqqg5WTThyOJWMsUVHxYikwNKEpGEhL7fhgjQVQCcgH6f
+         yB1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ccOiMAgtSqX6XMOBrUrIJ0SaPuYb17sx2V9mHM1gD1E=;
-        b=iT1wiXWC7MoQ2GdTeJSiBoyYvkTzXvZGU1Lu5Wnxc8ZLI4xtEIP4KDoDtg1JVIXXpA
-         CpNYGId9zT+hcxaJLRNiz0vW+5vDfzxKGUY5jsaPlAgkfX/UisY+xncNGq716JCVIt3Z
-         G9JvrWmlX9z7nRUzOsvdAmcu9nv7Il0rm2i5JAysALFvHgX9PLjztfqrmKqTSMDvllf0
-         n5JIr8ejFsc3U1Di+6MlM8WrSNIx1twN6b5WDdHurSHwjYD/0Qc7pBBaoKoW/5sWKFXl
-         6cedPFVOJL31TNO3+JPeVwH+E9B1tiIYqtAhaDfR/73JtEVaSurufDWNFt+wkxQZIr+X
-         9+Rw==
-X-Gm-Message-State: AJIora/TDyhmm8vuf6wCQTouvOnYaGPW1awV89OxeUNk5POjtRinDG0H
-        uXuVwxI2YgoPZNQU4+IWQ8MDVw==
-X-Google-Smtp-Source: AGRyM1t0XIrqxrRUMiAPNhXh/+UpC10KkgPORctfq7pZBW+gpw3mxfsKIRyrLm7Hrb3xag7p8eKBdA==
-X-Received: by 2002:a05:6512:304c:b0:489:d0e3:2efb with SMTP id b12-20020a056512304c00b00489d0e32efbmr9494549lfb.34.1657619072024;
-        Tue, 12 Jul 2022 02:44:32 -0700 (PDT)
+        bh=/uH8F4Kby+JXg7Mpe1L96lV/BObBUJ58/FjGSd2zwrI=;
+        b=a7gBt9LTGY+mVUR0Cy4RVXxZk/J1JiULqSe4v45Qv+f9I8ep37qDs78b8KBu8DX7l5
+         yq7fPwF8cFNPx7xvgTWg2piZyRV3JO3XYSCNPLGcoMtX+TL1jg8DEw/l1j70/3nAROe3
+         kTlKaquaKSbBHatlQ/FXOt/J8ShxC06ocLANY+mFfC0ZqzuPkiF31QLSPTgsCMSbrZW0
+         ZjUhC+UfvOYIz1xURYaQY3tYavkMKQN+CvcBlrUxINPX7ysYwvzB0ok/M4mn6H6xxE6J
+         a4WOH2a6VQ+QK0XDoqjpXSYkn4zNMRYOyebN3H78eiVVp9qejMQRPFeeYGY1t8bgu+Mi
+         xqlg==
+X-Gm-Message-State: AJIora9ifXLBtDrPmhE1qGuHmSrsgavWcJ/WvFLM4HVFBVdmdd0+g9NY
+        ClIhiFBfGQc7qsOGYhVBc9EaXg==
+X-Google-Smtp-Source: AGRyM1uRD8Jy2As78zbcShpLvk3bPyap8hDx7k+p73eBuiJheG1Djr3s1kq+1523oqqWLjtGEhb0lQ==
+X-Received: by 2002:a05:6512:3b91:b0:489:e63f:47b1 with SMTP id g17-20020a0565123b9100b00489e63f47b1mr4117169lfv.410.1657619333888;
+        Tue, 12 Jul 2022 02:48:53 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id f19-20020ac25333000000b00478fe690207sm2078959lfh.286.2022.07.12.02.44.30
+        by smtp.gmail.com with ESMTPSA id s3-20020ac24643000000b0047255d2111csm2073378lfo.75.2022.07.12.02.48.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 02:44:31 -0700 (PDT)
-Message-ID: <7fe9aab5-73a2-6209-ae65-d955c426f745@linaro.org>
-Date:   Tue, 12 Jul 2022 11:44:29 +0200
+        Tue, 12 Jul 2022 02:48:53 -0700 (PDT)
+Message-ID: <8b1393e4-275b-6791-ad71-2edfeacd0a63@linaro.org>
+Date:   Tue, 12 Jul 2022 11:48:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 3/3] clk: meson: s4: add s4 SoC clock controller driver
+Subject: Re: [PATCH v1 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO
+ documentation
 Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220708062757.3662-1-yu.tu@amlogic.com>
- <20220708062757.3662-4-yu.tu@amlogic.com>
+To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, j.neuschaefer@gmx.net,
+        zhengbin13@huawei.com
+Cc:     openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220710102110.39748-1-tmaimon77@gmail.com>
+ <20220710102110.39748-2-tmaimon77@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220708062757.3662-4-yu.tu@amlogic.com>
+In-Reply-To: <20220710102110.39748-2-tmaimon77@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,685 +80,241 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2022 08:27, Yu Tu wrote:
-> Add the peripheral clock controller found in the s4 SoC family.
+On 10/07/2022 12:21, Tomer Maimon wrote:
+> Added device tree binding documentation for Nuvoton Arbel BMC NPCM8XX
+> pinmux and GPIO controller.
 > 
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 > ---
->  MAINTAINERS                |    2 +-
->  drivers/clk/meson/Kconfig  |   17 +
->  drivers/clk/meson/Makefile |    1 +
->  drivers/clk/meson/s4.c     | 4678 ++++++++++++++++++++++++++++++++++++
->  drivers/clk/meson/s4.h     |  156 ++
->  5 files changed, 4853 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/clk/meson/s4.c
->  create mode 100644 drivers/clk/meson/s4.h
+>  .../pinctrl/nuvoton,npcm845-pinctrl.yaml      | 205 ++++++++++++++++++
+>  1 file changed, 205 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e4ca46c5c8a1..f116ec0642f2 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1772,7 +1772,7 @@ M:	Jerome Brunet <jbrunet@baylibre.com>
->  L:	linux-amlogic@lists.infradead.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/clock/amlogic*
-> -F:	drivers/clk/meson/
-> +F:	drivers/clk/meson/*
-
-Why?
-
->  F:	include/dt-bindings/clock/gxbb*
->  F:	include/dt-bindings/clock/meson*
->  F:	include/dt-bindings/clock/s*
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index fc002c155bc3..1a344b0564e8 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -115,4 +115,21 @@ config COMMON_CLK_G12A
->  	help
->  	  Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
->  	  devices, aka g12a. Say Y if you want peripherals to work.
-> +
-> +config COMMON_CLK_S4
-> +	tristate "S4 SoC clock controllers support"
-> +	depends on ARM64
-> +	default y
-> +	select COMMON_CLK_MESON_REGMAP
-> +	select HAVE_ARM_SMCCC
-> +	select COMMON_CLK_MESON_DUALDIV
-> +	select COMMON_CLK_MESON_MPLL
-> +	select COMMON_CLK_MESON_PLL
-> +	select COMMON_CLK_MESON_CPU_DYNDIV
-> +	select COMMON_CLK_MESON_VID_PLL_DIV
-> +	select MFD_SYSCON
-> +	help
-> +	  Support for the clock controller on Amlogic S805X2 and S905Y4 devices,
-> +	  aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
-> +	  Say Y if you want peripherals and CPU frequency scaling to work.
->  endmenu
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index 6eca2a406ee3..b3ef5f67820f 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -19,3 +19,4 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
->  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
->  obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
->  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
-> +obj-$(CONFIG_COMMON_CLK_S4) += s4.o
-> diff --git a/drivers/clk/meson/s4.c b/drivers/clk/meson/s4.c
+> diff --git a/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
 > new file mode 100644
-> index 000000000000..a97159222f0e
+> index 000000000000..6395ef2bf5b3
 > --- /dev/null
-> +++ b/drivers/clk/meson/s4.c
-> @@ -0,0 +1,4678 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Amlogic Meson-S4 Clock Controller Driver
-> + *
-> + * Copyright (c) 2021 Amlogic, inc.
-> + * Author: Yu Tu <yu.tu@amlogic.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
+> @@ -0,0 +1,205 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/nuvoton,npcm845-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/clk-provider.h>
-> +#include <linux/init.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/clk.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <dt-bindings/clock/s4-clkc.h>
+> +title: Nuvoton NPCM845 Pin Controller and GPIO
 > +
-> +#include "clk-mpll.h"
-> +#include "clk-pll.h"
-> +#include "clk-regmap.h"
-> +#include "vid-pll-div.h"
-> +#include "clk-dualdiv.h"
-> +#include "s4.h"
-> +#include "meson-eeclk.h"
+> +maintainers:
+> +  - Tomer Maimon <tmaimon77@gmail.com>
 > +
-> +static DEFINE_SPINLOCK(meson_clk_lock);
+> +description:
+> +  The Nuvoton BMC NPCM8XX Pin Controller multi-function routed through
+> +  the multiplexing block, Each pin supports GPIO functionality (GPIOx)
+> +  and multiple functions that directly connect the pin to different
+> +  hardware blocks.
 > +
-> +static struct clk_regmap s4_fixed_pll_dco = {
+> +properties:
+> +  compatible:
+> +    const: nuvoton,npcm845-pinctrl
+> +
+> +  ranges:
+> +    maxItems: 1
 
-None of these are const?
+ranges without reg? Does it even work? Did you test the bindings?
 
-> +	.data = &(struct meson_clk_pll_data){
-> +		.en = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.m = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 8,
-> +		},
-> +		.n = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 10,
-> +			.width   = 5,
-> +		},
-> +		.frac = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL1,
-> +			.shift   = 0,
-> +			.width   = 17,
-> +		},
-> +		.l = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 31,
-> +			.width   = 1,
-> +		},
-> +		.rst = {
-> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
-> +			.shift   = 29,
-> +			.width   = 1,
-> +		},
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fixed_pll_dco",
-> +		.ops = &meson_clk_pll_ro_ops,
-> +		.parent_data = (const struct clk_parent_data []) {
-> +			{ .fw_name = "xtal", }
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
 > +
-> +static struct clk_regmap s4_fixed_pll = {
-> +	.data = &(struct clk_regmap_div_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL0,
-> +		.shift = 16,
-> +		.width = 2,
-> +		.flags = CLK_DIVIDER_POWER_OF_TWO,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fixed_pll",
-> +		.ops = &clk_regmap_divider_ro_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fixed_pll_dco.hw
-> +		},
-> +		.num_parents = 1,
-> +		/*
-> +		 * This clock won't ever change at runtime so
-> +		 * CLK_SET_RATE_PARENT is not required
-> +		 */
-> +	},
-> +};
+> +  '#address-cells':
+> +    const: 1
 > +
-> +static struct clk_fixed_factor s4_fclk_div2_div = {
-> +	.mult = 1,
-> +	.div = 2,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div2_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
+> +  '#size-cells':
+> +    const: 1
 > +
-> +static struct clk_regmap s4_fclk_div2 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 24,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div2",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div2_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		/*
-> +		 * Similar to fclk_div3, it seems that this clock is used by
-> +		 * the resident firmware and is required by the platform to
-> +		 * operate correctly.
-> +		 * Until the following condition are met, we need this clock to
-> +		 * be marked as critical:
-> +		 * a) Mark the clock used by a firmware resource, if possible
-> +		 * b) CCF has a clock hand-off mechanism to make the sure the
-> +		 *    clock stays on until the proper driver comes along
-> +		 */
-> +		.flags = CLK_IS_CRITICAL,
-> +	},
-> +};
+> +patternProperties:
+> +  "^gpio@":
+> +    type: object
 > +
-> +static struct clk_fixed_factor s4_fclk_div3_div = {
-> +	.mult = 1,
-> +	.div = 3,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div3_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
+> +    description:
+> +      Eight GPIO banks that each contain between 32 GPIOs.
 > +
-> +static struct clk_regmap s4_fclk_div3 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 20,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div3",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div3_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		/*
-> +		 * This clock is used by the resident firmware and is required
-> +		 * by the platform to operate correctly.
-> +		 * Until the following condition are met, we need this clock to
-> +		 * be marked as critical:
-> +		 * a) Mark the clock used by a firmware resource, if possible
-> +		 * b) CCF has a clock hand-off mechanism to make the sure the
-> +		 *    clock stays on until the proper driver comes along
-> +		 */
-> +		.flags = CLK_IS_CRITICAL,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div4_div = {
-> +	.mult = 1,
-> +	.div = 4,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div4_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div4 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 21,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div4",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div4_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div5_div = {
-> +	.mult = 1,
-> +	.div = 5,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div5_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div5 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 22,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div5",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div5_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div7_div = {
-> +	.mult = 1,
-> +	.div = 7,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div7_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) { &s4_fixed_pll.hw },
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div7 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 23,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div7",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div7_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor s4_fclk_div2p5_div = {
-> +	.mult = 2,
-> +	.div = 5,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div2p5_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fixed_pll.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_fclk_div2p5 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 25,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div2p5",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div2p5_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static const struct pll_mult_range s4_gp0_pll_mult_range = {
-
-Not const?
-
-> +	.min = 125,
-> +	.max = 250,
-> +};
+> +    properties:
 > +
 
-(...)
+No blank line.
 
-> +/* Convenience table to populate regmap in .probe */
-> +static struct clk_regmap *const s4_clk_regmaps[] = {
-> +	&s4_rtc_32k_by_oscin_clkin,
-> +	&s4_rtc_32k_by_oscin_div,
-> +	&s4_rtc_32k_by_oscin_sel,
-> +	&s4_rtc_32k_by_oscin,
-> +	&s4_rtc_clk,
+> +      gpio-controller: true
 > +
-> +	&s4_sysclk_b_sel,
-> +	&s4_sysclk_b_div,
-> +	&s4_sysclk_b,
-> +	&s4_sysclk_a_sel,
-> +	&s4_sysclk_a_div,
-> +	&s4_sysclk_a,
-> +	&s4_sys_clk,
+> +      '#gpio-cells':
+> +        const: 2
 > +
-> +	&s4_ceca_32k_clkin,
-> +	&s4_ceca_32k_div,
-> +	&s4_ceca_32k_sel_pre,
-> +	&s4_ceca_32k_sel,
-> +	&s4_ceca_32k_clkout,
-> +	&s4_cecb_32k_clkin,
-> +	&s4_cecb_32k_div,
-> +	&s4_cecb_32k_sel_pre,
-> +	&s4_cecb_32k_sel,
-> +	&s4_cecb_32k_clkout,
+> +      reg:
+> +        maxItems: 1
 > +
-> +	&s4_sc_clk_mux,
-> +	&s4_sc_clk_div,
-> +	&s4_sc_clk_gate,
+> +      interrupts:
+> +        maxItems: 1
 > +
-> +	&s4_12_24M_clk_gate,
-> +	&s4_12_24M_clk,
-> +	&s4_vid_pll_div,
-> +	&s4_vid_pll_sel,
-> +	&s4_vid_pll,
-> +	&s4_vclk_sel,
-> +	&s4_vclk2_sel,
-> +	&s4_vclk_input,
-> +	&s4_vclk2_input,
-> +	&s4_vclk_div,
-> +	&s4_vclk2_div,
-> +	&s4_vclk,
-> +	&s4_vclk2,
-> +	&s4_vclk_div1,
-> +	&s4_vclk_div2_en,
-> +	&s4_vclk_div4_en,
-> +	&s4_vclk_div6_en,
-> +	&s4_vclk_div12_en,
-> +	&s4_vclk2_div1,
-> +	&s4_vclk2_div2_en,
-> +	&s4_vclk2_div4_en,
-> +	&s4_vclk2_div6_en,
-> +	&s4_vclk2_div12_en,
-> +	&s4_cts_enci_sel,
-> +	&s4_cts_encp_sel,
-> +	&s4_cts_vdac_sel,
-> +	&s4_hdmi_tx_sel,
-> +	&s4_cts_enci,
-> +	&s4_cts_encp,
-> +	&s4_cts_vdac,
-> +	&s4_hdmi_tx,
+> +      gpio-ranges:
+> +        maxItems: 1
 > +
-> +	&s4_hdmi_sel,
-> +	&s4_hdmi_div,
-> +	&s4_hdmi,
-> +	&s4_ts_clk_div,
-> +	&s4_ts_clk_gate,
+> +    required:
+> +      - gpio-controller
+> +      - '#gpio-cells'
+> +      - reg
+> +      - interrupts
+> +      - gpio-ranges
 > +
-> +	&s4_mali_0_sel,
-> +	&s4_mali_0_div,
-> +	&s4_mali_0,
-> +	&s4_mali_1_sel,
-> +	&s4_mali_1_div,
-> +	&s4_mali_1,
-> +	&s4_mali_mux,
-> +
-> +	&s4_vdec_p0_mux,
-> +	&s4_vdec_p0_div,
-> +	&s4_vdec_p0,
-> +	&s4_vdec_p1_mux,
-> +	&s4_vdec_p1_div,
-> +	&s4_vdec_p1,
-> +	&s4_vdec_mux,
-> +
-> +	&s4_hevcf_p0_mux,
-> +	&s4_hevcf_p0_div,
-> +	&s4_hevcf_p0,
-> +	&s4_hevcf_p1_mux,
-> +	&s4_hevcf_p1_div,
-> +	&s4_hevcf_p1,
-> +	&s4_hevcf_mux,
-> +
-> +	&s4_vpu_0_sel,
-> +	&s4_vpu_0_div,
-> +	&s4_vpu_0,
-> +	&s4_vpu_1_sel,
-> +	&s4_vpu_1_div,
-> +	&s4_vpu_1,
-> +	&s4_vpu,
-> +	&s4_vpu_clkb_tmp_mux,
-> +	&s4_vpu_clkb_tmp_div,
-> +	&s4_vpu_clkb_tmp,
-> +	&s4_vpu_clkb_div,
-> +	&s4_vpu_clkb,
-> +	&s4_vpu_clkc_p0_mux,
-> +	&s4_vpu_clkc_p0_div,
-> +	&s4_vpu_clkc_p0,
-> +	&s4_vpu_clkc_p1_mux,
-> +	&s4_vpu_clkc_p1_div,
-> +	&s4_vpu_clkc_p1,
-> +	&s4_vpu_clkc_mux,
-> +
-> +	&s4_vapb_0_sel,
-> +	&s4_vapb_0_div,
-> +	&s4_vapb_0,
-> +	&s4_vapb_1_sel,
-> +	&s4_vapb_1_div,
-> +	&s4_vapb_1,
-> +	&s4_vapb,
-> +	&s4_ge2d_gate,
-> +
-> +	&s4_hdcp22_esmclk_mux,
-> +	&s4_hdcp22_esmclk_div,
-> +	&s4_hdcp22_esmclk_gate,
-> +	&s4_hdcp22_skpclk_mux,
-> +	&s4_hdcp22_skpclk_div,
-> +	&s4_hdcp22_skpclk_gate,
-> +
-> +	&s4_vdin_meas_mux,
-> +	&s4_vdin_meas_div,
-> +	&s4_vdin_meas_gate,
-> +
-> +	&s4_sd_emmc_c_clk0_sel,
-> +	&s4_sd_emmc_c_clk0_div,
-> +	&s4_sd_emmc_c_clk0,
-> +	&s4_sd_emmc_a_clk0_sel,
-> +	&s4_sd_emmc_a_clk0_div,
-> +	&s4_sd_emmc_a_clk0,
-> +	&s4_sd_emmc_b_clk0_sel,
-> +	&s4_sd_emmc_b_clk0_div,
-> +	&s4_sd_emmc_b_clk0,
-> +
-> +	&s4_spicc0_mux,
-> +	&s4_spicc0_div,
-> +	&s4_spicc0_gate,
-> +
-> +	&s4_pwm_a_mux,
-> +	&s4_pwm_a_div,
-> +	&s4_pwm_a_gate,
-> +	&s4_pwm_b_mux,
-> +	&s4_pwm_b_div,
-> +	&s4_pwm_b_gate,
-> +	&s4_pwm_c_mux,
-> +	&s4_pwm_c_div,
-> +	&s4_pwm_c_gate,
-> +	&s4_pwm_d_mux,
-> +	&s4_pwm_d_div,
-> +	&s4_pwm_d_gate,
-> +	&s4_pwm_e_mux,
-> +	&s4_pwm_e_div,
-> +	&s4_pwm_e_gate,
-> +	&s4_pwm_f_mux,
-> +	&s4_pwm_f_div,
-> +	&s4_pwm_f_gate,
-> +	&s4_pwm_g_mux,
-> +	&s4_pwm_g_div,
-> +	&s4_pwm_g_gate,
-> +	&s4_pwm_h_mux,
-> +	&s4_pwm_h_div,
-> +	&s4_pwm_h_gate,
-> +	&s4_pwm_i_mux,
-> +	&s4_pwm_i_div,
-> +	&s4_pwm_i_gate,
-> +	&s4_pwm_j_mux,
-> +	&s4_pwm_j_div,
-> +	&s4_pwm_j_gate,
-> +
-> +	&s4_saradc_mux,
-> +	&s4_saradc_div,
-> +	&s4_saradc_gate,
-> +
-> +	&s4_gen_clk_sel,
-> +	&s4_gen_clk_div,
-> +	&s4_gen_clk,
-> +
-> +	&s4_ddr,
-> +	&s4_dos,
-> +	&s4_ethphy,
-> +	&s4_mali,
-> +	&s4_aocpu,
-> +	&s4_aucpu,
-> +	&s4_cec,
-> +	&s4_sdemmca,
-> +	&s4_sdemmcb,
-> +	&s4_nand,
-> +	&s4_smartcard,
-> +	&s4_acodec,
-> +	&s4_spifc,
-> +	&s4_msr_clk,
-> +	&s4_ir_ctrl,
-> +	&s4_audio,
-> +	&s4_eth,
-> +	&s4_uart_a,
-> +	&s4_uart_b,
-> +	&s4_uart_c,
-> +	&s4_uart_d,
-> +	&s4_uart_e,
-> +	&s4_aififo,
-> +	&s4_ts_ddr,
-> +	&s4_ts_pll,
-> +	&s4_g2d,
-> +	&s4_spicc0,
-> +	&s4_usb,
-> +	&s4_i2c_m_a,
-> +	&s4_i2c_m_b,
-> +	&s4_i2c_m_c,
-> +	&s4_i2c_m_d,
-> +	&s4_i2c_m_e,
-> +	&s4_hdmitx_apb,
-> +	&s4_i2c_s_a,
-> +	&s4_usb1_to_ddr,
-> +	&s4_hdcp22,
-> +	&s4_mmc_apb,
-> +	&s4_rsa,
-> +	&s4_cpu_debug,
-> +	&s4_vpu_intr,
-> +	&s4_demod,
-> +	&s4_sar_adc,
-> +	&s4_gic,
-> +	&s4_pwm_ab,
-> +	&s4_pwm_cd,
-> +	&s4_pwm_ef,
-> +	&s4_pwm_gh,
-> +	&s4_pwm_ij,
-> +	&s4_demod_core_clk_mux,
-> +	&s4_demod_core_clk_div,
-> +	&s4_demod_core_clk_gate,
-> +	&s4_adc_extclk_in_mux,
-> +	&s4_adc_extclk_in_div,
-> +	&s4_adc_extclk_in_gate,
-> +
-> +	&s4_fixed_pll_dco,
-> +	&s4_fixed_pll,
-> +	&s4_fclk_div2,
-> +	&s4_fclk_div3,
-> +	&s4_fclk_div4,
-> +	&s4_fclk_div5,
-> +	&s4_fclk_div7,
-> +	&s4_fclk_div2p5,
-> +	&s4_gp0_pll_dco,
-> +	&s4_gp0_pll,
-> +
-> +	&s4_hifi_pll_dco,
-> +	&s4_hifi_pll,
-> +	&s4_hdmi_pll_dco,
-> +	&s4_hdmi_pll_od,
-> +	&s4_hdmi_pll,
-> +	&s4_mpll_50m,
-> +	&s4_mpll0_div,
-> +	&s4_mpll0,
-> +	&s4_mpll1_div,
-> +	&s4_mpll1,
-> +	&s4_mpll2_div,
-> +	&s4_mpll2,
-> +	&s4_mpll3_div,
-> +	&s4_mpll3,
-> +};
-> +
-> +static const struct reg_sequence s4_init_regs[] = {
-> +	{ .reg = ANACTRL_MPLL_CTRL0,	.def = 0x00000543 },
-> +};
-> +
-> +static const struct meson_eeclkc_data s4_clkc_data = {
-> +	.regmap_clks = s4_clk_regmaps,
-> +	.regmap_clk_num = ARRAY_SIZE(s4_clk_regmaps),
-> +	.hw_onecell_data = &s4_hw_onecell_data,
-> +	.init_regs = s4_init_regs,
-> +	.init_count = ARRAY_SIZE(s4_init_regs),
-> +};
-> +
-> +static const struct of_device_id clkc_match_table[] = {
-> +	{
-> +		.compatible = "amlogic,s4-clkc",
-> +		.data = &s4_clkc_data
-> +	},
-> +	{}
-> +};
-> +
-> +static struct platform_driver s4_driver = {
-> +	.probe		= meson_eeclkc_probe,
-> +	.driver		= {
-> +		.name	= "s4-clkc",
-> +		.of_match_table = clkc_match_table,
-> +	},
-> +};
-> +
-> +module_platform_driver(s4_driver);
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/clk/meson/s4.h b/drivers/clk/meson/s4.h
-> new file mode 100644
-> index 000000000000..d5563dcbd52e
-> --- /dev/null
-> +++ b/drivers/clk/meson/s4.h
-> @@ -0,0 +1,156 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2021 Amlogic, inc.
-> + * Author: Yu Tu <yu.tu@amlogic.com>
-> + */
-> +
-> +#ifndef __S4_H
-> +#define __S4_H
-> +
-> +/*
-> + * Clock controller register offsets
-> + * REG_BASE:  REGISTER_BASE_ADDR = 0xfe000000
-> + */
-> +#define CLKCTRL_OSCIN_CTRL                         ((0x0001 << 2))
+> +  "-pin":
+> +    $ref: pinmux-node.yaml#
 
-No need for double ((
+Shouldn't this be under bank?
 
-> +#define CLKCTRL_RTC_BY_OSCIN_CTRL0                 ((0x0002 << 2))
-> +#define CLKCTRL_RTC_BY_OSCIN_CTRL1                 ((0x0003 << 2))
+> +
+> +    properties:
+> +      groups:
+> +        description:
+> +          One or more groups of pins to mux to a certain function
+> +        items:
+> +          enum: [ iox1, iox2, smb1d, smb2d, lkgpo1, lkgpo2, ioxh, gspi,
+> +                  smb5b, smb5c, lkgpo0, pspi2, jm1, jm2, smb4den, smb4b,
+> +                  smb4c, smb15, smb16, smb17, smb18, smb19, smb20, smb21,
+> +                  smb22, smb23, smb4d, smb14, smb5, smb4, smb3, spi0cs1,
+> +                  spi0cs2, spi0cs3, smb3c, smb3b, bmcuart0a, uart1, jtag2,
+> +                  bmcuart1, uart2, bmcuart0b, r1err, r1md, r1oen, r2oen,
+> +                  rmii3, r3oen, smb3d, fanin0, fanin1, fanin2, fanin3, fanin4,
+> +                  fanin5, fanin6, fanin7, fanin8, fanin9, fanin10, fanin11,
+> +                  fanin12, fanin13, fanin14, fanin15, pwm0, pwm1, pwm2, pwm3,
+> +                  r2, r2err, r2md, r3rxer, ga20kbc, smb5d, lpc, espi, rg1,
+> +                  rg1mdio, rg2, ddr, i3c0, i3c1, i3c2, i3c3, i3c4, i3c5,
+> +                  smb0, smb1, smb2, smb2c, smb2b, smb1c, smb1b, smb8, smb9,
+> +                  smb10, smb11, sd1, sd1pwr, pwm4, pwm5, pwm6, pwm7, pwm8,
+> +                  pwm9, pwm10, pwm11, mmc8, mmc, mmcwp, mmccd, mmcrst, clkout,
+> +                  serirq, lpcclk, scipme, sci, smb6, smb7, spi1, faninx, r1,
+> +                  spi3, spi3cs1, spi3quad, spi3cs2, spi3cs3, nprd_smi, smb0b,
+> +                  smb0c, smb0den, smb0d, ddc, rg2mdio, wdog1, wdog2, smb12,
+> +                  smb13, spix, spixcs1, clkreq, hgpio0, hgpio1, hgpio2, hgpio3,
+> +                  hgpio4, hgpio5, hgpio6, hgpio7 ]
+> +
+> +      function:
+> +        description:
+> +          The function that a group of pins is muxed to
+> +        enum: [ iox1, iox2, smb1d, smb2d, lkgpo1, lkgpo2, ioxh, gspi,
+> +                smb5b, smb5c, lkgpo0, pspi2, jm1, jm2, smb4den, smb4b,
+> +                smb4c, smb15, smb16, smb17, smb18, smb19, smb20, smb21,
+> +                smb22, smb23, smb4d, smb14, smb5, smb4, smb3, spi0cs1,
+> +                spi0cs2, spi0cs3, smb3c, smb3b, bmcuart0a, uart1, jtag2,
+> +                bmcuart1, uart2, bmcuart0b, r1err, r1md, r1oen, r2oen,
+> +                rmii3, r3oen, smb3d, fanin0, fanin1, fanin2, fanin3, fanin4,
+> +                fanin5, fanin6, fanin7, fanin8, fanin9, fanin10, fanin11,
+> +                fanin12, fanin13, fanin14, fanin15, pwm0, pwm1, pwm2, pwm3,
+> +                r2, r2err, r2md, r3rxer, ga20kbc, smb5d, lpc, espi, rg1,
+> +                rg1mdio, rg2, ddr, i3c0, i3c1, i3c2, i3c3, i3c4, i3c5,
+> +                smb0, smb1, smb2, smb2c, smb2b, smb1c, smb1b, smb8, smb9,
+> +                smb10, smb11, sd1, sd1pwr, pwm4, pwm5, pwm6, pwm7, pwm8,
+> +                pwm9, pwm10, pwm11, mmc8, mmc, mmcwp, mmccd, mmcrst, clkout,
+> +                serirq, lpcclk, scipme, sci, smb6, smb7, spi1, faninx, r1,
+> +                spi3, spi3cs1, spi3quad, spi3cs2, spi3cs3, nprd_smi, smb0b,
+> +                smb0c, smb0den, smb0d, ddc, rg2mdio, wdog1, wdog2, smb12,
+> +                smb13, spix, spixcs1, clkreq, hgpio0, hgpio1, hgpio2, hgpio3,
+> +                hgpio4, hgpio5, hgpio6, hgpio7 ]
+> +
+> +    dependencies:
+> +      groups: [ function ]
+> +      function: [ groups ]
+> +
+> +    additionalProperties: false
+> +
+> +  "^pin":
+
+This is almost the same as previous property. Confusing and I think it
+does not work.
+
+> +    $ref: pincfg-node.yaml#
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          A list of pins to configure in certain ways, such as enabling
+> +          debouncing
+> +
+> +      bias-disable: true
+> +
+> +      bias-pull-up: true
+> +
+> +      bias-pull-down: true
+> +
+> +      input-enable: true
+> +
+> +      output-low: true
+> +
+> +      output-high: true
+> +
+> +      drive-push-pull: true
+> +
+> +      drive-open-drain: true
+> +
+> +      input-debounce:
+> +        description:
+> +          Debouncing periods in microseconds, one period per interrupt
+> +          bank found in the controller
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 1
+> +        maxItems: 4
+> +
+> +      slew-rate:
+> +        description: |
+> +          0: Low rate
+> +          1: High rate
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [0, 1]
+> +
+> +      drive-strength:
+> +        enum: [ 0, 1, 2, 4, 8, 12 ]
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - ranges
+> +  - '#address-cells'
+> +  - '#size-cells'
+
+Missing allOf with ref to pinctrl.yaml.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      pinctrl: pinctrl@f0800000 {
+> +        compatible = "nuvoton,npcm845-pinctrl";
+> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        gpio0: gpio@f0010000 {
+> +          gpio-controller;
+> +          #gpio-cells = <2>;
+> +          reg = <0x0 0xB0>;
+> +          interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
+> +          gpio-ranges = <&pinctrl 0 0 32>;
+> +        };
+> +
+> +        fanin0_pin: fanin0-pin {
+> +          groups = "fanin0";
+> +          function = "fanin0";
+> +        };
+> +
+> +        pin34_slew: pin34-slew {
+
+and how does it pass your checks?
+
+Did you test the bindings?
 
 
 
