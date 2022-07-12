@@ -2,92 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DC0E57197E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F13571986
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232693AbiGLMLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 08:11:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56760 "EHLO
+        id S233102AbiGLML4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 08:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232920AbiGLMLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:11:18 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09E85A474;
-        Tue, 12 Jul 2022 05:11:17 -0700 (PDT)
-Received: from mail-yb1-f181.google.com ([209.85.219.181]) by
- mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MUp8r-1o23la41Qn-00QjGg; Tue, 12 Jul 2022 14:11:16 +0200
-Received: by mail-yb1-f181.google.com with SMTP id g4so13565730ybg.9;
-        Tue, 12 Jul 2022 05:11:15 -0700 (PDT)
-X-Gm-Message-State: AJIora+1Lr1cvLsc4AlqV+YkOuCjky/g/o9+aVW+t4MQx27U6qeTzAyf
-        giwRYNe+CCFUI1Lg9G7kftU9EkxFcMoBONCyQtk=
-X-Google-Smtp-Source: AGRyM1vp7UnReXw8m+vPAVGuFyz0wyqIHLMPURrFlaroid+4yg7I9Shva7VkxiomVyWA1nkeG/dHW0BGheo4eUm7J1E=
-X-Received: by 2002:a25:7c41:0:b0:66d:766a:4815 with SMTP id
- x62-20020a257c41000000b0066d766a4815mr22157231ybc.480.1657627874679; Tue, 12
- Jul 2022 05:11:14 -0700 (PDT)
+        with ESMTP id S233067AbiGLMLw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:11:52 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 400EAA2EFD;
+        Tue, 12 Jul 2022 05:11:51 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id bp15so3667654ejb.6;
+        Tue, 12 Jul 2022 05:11:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VUup2uDXZ8o0p1sWQoMcoPhfIwXCF5ZE26LejT9YLSI=;
+        b=L01G/T8HvUDMaO5oB3F7fjPfeCZcHuQ87OMVJ5n5Z7U+PRPu6Afna1h7Y9DH2C/LkF
+         30nQ0GpWPRXviqZ6N7EvWZvZZVvuyZhRzbBjY+h42xIFEKMFseb0BcSZvAsGRQJb8jYT
+         B4S+yspb9IA94KnJ+i4Y4Ld4xQmoFhGg0N3omjLf13yxgg01lbvz59yGnW5E6QxPaTq9
+         1vkGK2bgVvwiVaBm1RXa/elbPFSXntWFsBt8yXAxGJW1K4Q/MLmhZVvJHLAT/Ej/gfuK
+         /mimE2QW9y89PSnKRUhdeW4w7U8UHKRtpElE1MQAoRZezYtqbnGtdb4mK9Fu5wTmjQbS
+         35Ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VUup2uDXZ8o0p1sWQoMcoPhfIwXCF5ZE26LejT9YLSI=;
+        b=mOqcdj7VwAaoImxiexh1yC3pbfan3eNjLaHTyPdFirCmI0bfEp6f2QoryLeensNBu1
+         f3uZgCVyHf2XrPIVscKoWlFAo0Bov3qksRbXWSNGwvzafYEi+bzjVIfkP0mQNbxBY26g
+         kr3AyeK5T/wlCYRw1BgMAw7vUcHLn4tk+46shaaepX2iEFasnuumyzC8w1lXFcu7Q9QR
+         SSmYsPDHCbsFZNdrShS34ETryzNjptkxQBbQebLwi1umjMBKlumHHW5fI15GbaSIZ+8Q
+         yE1HfxwFFWpoj842ilsWReWiqqtqo/LuHqiHWOaJoRgnRRxBwTDpyy6yUEtxnnm007M8
+         wdAw==
+X-Gm-Message-State: AJIora+/5ZAriMyUlnjQgGwWOpGsQsssB4SxqC95RAhFPIfj4eX5EfLR
+        Q/zyOx+cFmAvx6kqFc8m0F1ZI2SJ5Bgzd/kfkUw=
+X-Google-Smtp-Source: AGRyM1sSFVDbDH06DtJDlcsIYdLZJAcNINyNcdyUrh6tJPGsBlmIB44bi9Qwv4B+3NVBe7/GScLQREPobt/sEFSXyeQ=
+X-Received: by 2002:a17:906:6d91:b0:715:7d4e:84a2 with SMTP id
+ h17-20020a1709066d9100b007157d4e84a2mr22498321ejt.504.1657627909594; Tue, 12
+ Jul 2022 05:11:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
- <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
- <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
- <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
- <181f1d88b64.e2eb2601586551.453778983551010212@linux.beauty>
- <CAK8P3a3gX-JMh6E2X3rH+U37zhkA6b0+AJDtXCJfdZiMocxLjg@mail.gmail.com> <181f20d0403.121f433c8600165.2068876337784123868@linux.beauty>
-In-Reply-To: <181f20d0403.121f433c8600165.2068876337784123868@linux.beauty>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 12 Jul 2022 14:10:56 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3bSYZyKV_BywQFE5vi5RE4WoPwspXfTtO1ycV1zQDbmw@mail.gmail.com>
-Message-ID: <CAK8P3a3bSYZyKV_BywQFE5vi5RE4WoPwspXfTtO1ycV1zQDbmw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
- page and dio support to no-map rmem
-To:     Li Chen <me@linux.beauty>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Li Chen <lchen@ambarella.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+References: <20220712082146.1192215-1-peng.fan@oss.nxp.com> <20220712082146.1192215-3-peng.fan@oss.nxp.com>
+In-Reply-To: <20220712082146.1192215-3-peng.fan@oss.nxp.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Tue, 12 Jul 2022 07:11:38 -0500
+Message-ID: <CAHCN7xLhSKQa3-ueiOz4ptg7Sp1vF3rmN5JRzqA+euVKYbZoOQ@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: soc: imx: add i.MX8MP vpu blk ctrl
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, paul.elder@ideasonboard.com,
+        Markus.Niebel@ew.tq-group.com,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Linux-MM <linux-mm@kvack.org>
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:+zjAhnLj95+ph1V+04ZyezVsXW3m6sCrtwFXluUV99lipKO4NdF
- mAEgpzpGlWFbao+AgoilRE37FQdcPyk1U9p/lYP1LlKPXLglU1lZkbRD/Vx/jPlaQLBKfF0
- 4Qr5xWbLaNuHwt2pPm0tv9hWCqowia+LZ1FMGawOwxvw3zSOVXqlFtRhmsacXrW50BGnJNG
- JYnO8FDLhy6mG46f8Qrmg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:tHoxLQUteDw=:YxduVIBuHjw2g/yDkWz0jq
- wn7FOoMuQ/UHM86DOKWpYBxULK+nrBmxGqAZ3bMVADZSSLubHQPnS0yf/TnF/heEU9O3aPZ88
- ejzov7VWOyaQeLaEjqebEMirYsjrMm0PK2uBhCuFRjjhJeK4ij1tkI+Ggh6gbdDNNVngXG315
- wueP3aMQd9eT/TcluiractUJukw4MVd92FY0JC0CDL9H3v2OHbXgBiqE8xhLfdqlRzGvePPfD
- g2JE763x0KFn2IN0yP8n3brE3JJsG1unMfc6TZCf7my8/Vv3I0FlB1yrXuANCK6XSAKWmeXvA
- MsfnzZUN7YZhdapNpHbLfa55Kve+sV9kJGJntlBx48VpPdS261zamq0GxaqNs+5opQ5wlL08M
- tXS5Q3vB0M9zrWQRPVQ3Z2R7sj/F7MTkn+mccArOjXYt/yJ+t5PgbJGqfcWoHXiAuVbz0hWNa
- tPMsbCg2VEwwduFAwNCsM8OlOqAIFJmEfASdMYSXm0B4HDX0E/BsOp71QGrBE+oJWldyaM2Mb
- 6lpIqXxaPXYm1mNAj+JlsDIhQnY8F6moBfK5eQ71TXpdDwKHuNfY7xv/QVxvTSF9KIecAB9Oq
- 6RysTxkdvnyu545cY5FpiDr0hgClhWb0BH5ys6KSBy2ydfmzEFoT9s/uTCfgjzs5C9d9NCUk4
- 6b5Rw4kgWKt6HAbvPhh5HBn7LS3njB/21l7y7wIpuvllE40a22VqfrPVJzKCMkeElpkQrDFaj
- levSiPr/NA61BGixZcJ/MHtu3WHCHto/9wdyww==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 12:55 PM Li Chen <me@linux.beauty> wrote:
->  >
->  > This is a common limitation that gets handled automatically by setting
->  > the dma_mask of the device through the dma-ranges property in DT.
->  > When the driver does dma_alloc_coherent() or similar to gets its buffer,
->  > it will then allocate pages below this boundary.
+On Tue, Jul 12, 2022 at 3:20 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
 >
-> Thanks for the tip! I wasn't aware that dma-ranges can be used by devices other than PCIe controllers.
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> i.MX8MP VPU blk ctrl module has similar design as i.MX8MM, so reuse
+> the i.MX8MM VPU blk ctrl yaml file.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml        | 17 ++++++++++++++---
+>  include/dt-bindings/power/imx8mp-power.h        |  4 ++++
+>  2 files changed, 18 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
+> index 26487daa64d9..edbd267cdd67 100644
+> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
+> @@ -4,20 +4,22 @@
+>  $id: http://devicetree.org/schemas/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+> -title: NXP i.MX8MM VPU blk-ctrl
+> +title: NXP i.MX8MM/P VPU blk-ctrl
+>
+>  maintainers:
+>    - Lucas Stach <l.stach@pengutronix.de>
+>
+>  description:
+> -  The i.MX8MM VPU blk-ctrl is a top-level peripheral providing access to
+> +  The i.MX8MM/P VPU blk-ctrl is a top-level peripheral providing access to
+>    the NoC and ensuring proper power sequencing of the VPU peripherals
+>    located in the VPU domain of the SoC.
+>
+>  properties:
+>    compatible:
+>      items:
+> -      - const: fsl,imx8mm-vpu-blk-ctrl
+> +      - enum:
+> +          - fsl,imx8mm-vpu-blk-ctrl
+> +          - fsl,imx8mp-vpu-blk-ctrl
+>        - const: syscon
+>
+>    reg:
+> @@ -47,6 +49,15 @@ properties:
+>        - const: g2
+>        - const: h1
+>
+> +  interconnects:
+> +    maxItems: 3
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: g1
+> +      - const: g2
+> +      - const: h1
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/include/dt-bindings/power/imx8mp-power.h b/include/dt-bindings/power/imx8mp-power.h
+> index 14b9c5ac9c82..11d43fc7a18e 100644
+> --- a/include/dt-bindings/power/imx8mp-power.h
+> +++ b/include/dt-bindings/power/imx8mp-power.h
+> @@ -52,4 +52,8 @@
+>  #define IMX8MP_HDMIBLK_PD_HDCP                         7
+>  #define IMX8MP_HDMIBLK_PD_HRV                          8
+>
+> +#define IMX8MP_VPUBLK_PD_G1                            0
+> +#define IMX8MP_VPUBLK_PD_G2                            1
+> +#define IMX8MP_VPUBLK_PD_H1                            2
 
-You should actually have dma-ranges listed in the parent of any DMA master
-capable device, to list the exact DMA capabilities. Without this, devices
-fall back to the default 32-bit address limit, which would be correct for your
-video device but is often wrong in other devices.
-
-        Arnd
+Is H1 even correct for 8MP? The TRM calls the encoder a VC800E.  Since
+the Encoder on the 8MM is a Hantro H1, this might add confusion if
+people start thinking they are the same.
+> +
+>  #endif
+> --
+> 2.25.1
+>
