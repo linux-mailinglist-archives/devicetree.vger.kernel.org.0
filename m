@@ -2,151 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55521571E6C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12521571E74
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:11:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230011AbiGLPJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 11:09:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35066 "EHLO
+        id S230197AbiGLPL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 11:11:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230004AbiGLPJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:09:24 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80921C8E89
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:02:49 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 19so10206825ljz.4
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:02:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ysY8+Szjqk/lrdwwPO/ndEqlhqBj7oxmsr4P9sxksRA=;
-        b=EhCHtHuWeCN/Yu+oALFreHL4jL2A34MqhFjL5bAlqM2YAAkQucb7S9s9BYb50eX6Mo
-         MnnQDw7jLeSXJDdS42W3R7yB1eLVGX47ev55LTPa5YL10rRex80V7S/A+ceQR96GN7zU
-         xiw8+AYyiQHTDYyOEj7hIyQegtTmOty39sSG4MJPsrUghCX/1J+mzFhQMg4f5yOQ2qvE
-         fiMBTr7BZENIs6xAhLMIM4SQ15jEFSu5G7rvCx6ijWXVqPz+qUFPca0AY2BwClkmkn4o
-         erZ+vOVqKgdROsJnaYn5iIxv0WR/HlzCelmVxuKjpFqpw5+MfnzHtbXAdE+zXo0qfIIc
-         DSGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ysY8+Szjqk/lrdwwPO/ndEqlhqBj7oxmsr4P9sxksRA=;
-        b=Pp7fbBbN9kJUU3eVqNXp+7CR5rBwgnUX/yLmAE3pjYqEVuGTDMGEua8jXX16Scqjme
-         ZK8bg8tpqYSN3rzKp1G6yd7NKO3ru4TjdqFMF6HFUC69T36xvIWxPUz2u0eAuXDePHOI
-         1waao9jNIwAKOO2oCBY4x6Ck6TN+0EV9bebxQguAZrpvngCtu3zKRX+66enlz42w5RG6
-         PnQhWH/CcLdQ8uwG0C7n5aH6a3dFxmMp76duEARcl+8wH+09lxtt8Uk5cZ2RwNjzx71q
-         RtyBbd4LIUvRwHiBuOnE810QFKckVERnO3kiXkoDq2rvngT38ZQRGoUxfed+wimHH9M6
-         +SNQ==
-X-Gm-Message-State: AJIora9j8U2+NMfGRF0s4wOzxxfdLEgduici1kP7gkXTdYB9IafJmsPV
-        ZyAJImc3eecaVTVms+jjt31JPg==
-X-Google-Smtp-Source: AGRyM1uHIlbYFnwjXR/jabbsTH7ryUQs+sGBXXfD4IrrppWQi92rqSKeplNAt5NyiRVNwm6X6omS2w==
-X-Received: by 2002:a05:651c:504:b0:25b:cb73:52af with SMTP id o4-20020a05651c050400b0025bcb7352afmr13848250ljp.391.1657638168200;
-        Tue, 12 Jul 2022 08:02:48 -0700 (PDT)
-Received: from krzk-bin.. (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id 4-20020ac25f44000000b0047f9614203esm2224649lfz.173.2022.07.12.08.02.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 08:02:47 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Doug Anderson <dianders@chromium.org>
-Subject: [PATCH v2 3/3] mmc: sdhci-msm: drop redundant of_device_id entries
-Date:   Tue, 12 Jul 2022 17:02:19 +0200
-Message-Id: <20220712150219.20539-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220712150219.20539-1-krzysztof.kozlowski@linaro.org>
-References: <20220712150219.20539-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S234094AbiGLPLN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:11:13 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CF39CB47F;
+        Tue, 12 Jul 2022 08:04:54 -0700 (PDT)
+X-UUID: 2dd2c6e62d9d440680d7796eac713480-20220712
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:87bbe036-dda0-4fea-a66d-e41fb863bdde,OB:10,L
+        OB:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:90
+X-CID-INFO: VERSION:1.1.8,REQID:87bbe036-dda0-4fea-a66d-e41fb863bdde,OB:10,LOB
+        :0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
+        CTION:quarantine,TS:90
+X-CID-META: VersionHash:0f94e32,CLOUDID:11ce1664-0b3f-4b2c-b3a6-ed5c044366a0,C
+        OID:c2c42f8f366f,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 2dd2c6e62d9d440680d7796eac713480-20220712
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 3148393; Tue, 12 Jul 2022 23:04:45 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 12 Jul 2022 23:04:44 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 12 Jul 2022 23:04:43 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <angelogioacchino.delregno@collabora.com>
+CC:     <aaronyu@google.com>, <matthias.bgg@gmail.com>,
+        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
+        <julianbraha@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>
+Subject: [PATCH v9 0/8] ASoC: mediatek: Add support for MT8186 SoC
+Date:   Tue, 12 Jul 2022 23:04:34 +0800
+Message-ID: <20220712150442.32504-1-jiaxin.yu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts three commits:
-1. Revert "mmc: sdhci-msm: Add compatible string check for sdx65"
-   This reverts commit 953706844f0f2fd4dc6984cc010fe6cf51c041f2.
+This series of patches adds support for Mediatek AFE of MT8186 Soc.
+Patches are based on broonie tree "for-next" branch.
 
-2. Revert "mmc: sdhci-msm: Add compatible string check for sm8150"
-   This reverts commit 5acd6adb65802cc6f9986be3750179a820580d37.
+Changes since v8:
+  - Remove unnecessary comments and blank line.
+  - Use devm_add_action_or_reset to ease error handling when dev probe.
+  - Remove .remove callback in plaform driver.
 
-3. Revert "mmc: sdhci-msm: Add SoC specific compatibles"
-   This reverts commit 466614a9765c6fb67e1464d0a3f1261db903834b.
+Changes since v7:
+  - Optimize the code logic, such as the return value and position of a
+    function.
+  - Use devm_pm_runtime_enable() instead of pm_runtime_enable().
+  - Use pm_runtime_resume_and_get() instead of pm_runtime_get_sync().
 
-The oldest commit 466614a9765c ("mmc: sdhci-msm: Add SoC specific
-compatibles") did not specify what benefits such multiple compatibles
-bring, therefore assume there is none.  On the other hand such approach
-brings a lot of churn to driver maintenance by expecting commit for
-every new compatible, even though it is already covered by the fallback.
+Changes since v6:
+  - The Makefile and Kconfig updates are moved into the driver patches so that can
+    keep independence of each patch.
 
-There is really no sense in duplicating of_device_id for each
-variant, which is already covered by generic compatible fallback
-qcom,sdhci-msm-v4 or qcom,sdhci-msm-v5.
+Changes since v5:
+  - fix build error about function snd_soc_card_jack_new that modified by:
+    Link: https://lore.kernel.org/r/20220408041114.6024-1-akihiko.odaki@gmail.com
+  - some have been accepted, details are in the link below:
+    Link: https://lore.kernel.org/all/165459931885.399031.2621579592368573898.b4-ty@kernel.org/
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes since v4:
+  - [v5 07/20]
+    - remove unsusd controls
+  - [v5 09/20]
+    - correct indent error
+  - [v5 10/20]
+  - [v5 13/20]
+  - [v5 14/20]
+    - fix the return value if the value is different from the previous
+      value in mixer controls
+  - [v5 17/20]
+  - [v5 19/20]
+    - correct the compatible name with '_' instead of '-'
+  - [v5 18/20]
+  - [v5 20/20]
+    - correct the yaml after 'pip3 install dtschema --upgrade'
 
----
+Changes since v3:
+  - [v4 09/18]
+    - remove DEBUG_COEFF debugging code
+  - [v4 10/18]
+    - simplify the logic of the code
+  - [v4 13/18]
+    - split out the MT6366 bits into mt8186-mt6366-commom.c
+    - fix build error of "error: 'struct dev_pm_info' has no member named 'runtime_error'"
+    - fix bug of adda dai driver
+    - add route for pcm interface channel 2.
+  - [v4 15/18]
+  - [v4 17/18]
+    - commonize the configuration of the codec
+    - move MT6366 common bits into mt8186-mt6366-common.c
 
-Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc: Doug Anderson <dianders@chromium.org>
----
- drivers/mmc/host/sdhci-msm.c | 25 -------------------------
- 1 file changed, 25 deletions(-)
+Changes since v2:
+  - add a new compatible string "mediatek,mt6366-sound"
+  - modify the log level for simplicity
+  - use dev_err_probe(...) instead of dev_err(...) in dev probe()
+  - optimized the logic of some code
+  - use BIT() and GENMASK() macros to descript the registers
 
-diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-index e395411fb6fd..ff9f5b63c337 100644
---- a/drivers/mmc/host/sdhci-msm.c
-+++ b/drivers/mmc/host/sdhci-msm.c
-@@ -2435,33 +2435,8 @@ static const struct sdhci_msm_variant_info sdm845_sdhci_var = {
- };
- 
- static const struct of_device_id sdhci_msm_dt_match[] = {
--	 /* Following two entries are deprecated (kept only for backward compatibility) */
- 	{.compatible = "qcom,sdhci-msm-v4", .data = &sdhci_msm_mci_var},
- 	{.compatible = "qcom,sdhci-msm-v5", .data = &sdhci_msm_v5_var},
--	/* Add entries for sdcc versions less than 5.0 here */
--	{.compatible = "qcom,apq8084-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8226-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8916-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8953-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8974-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8992-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8994-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8996-sdhci", .data = &sdhci_msm_mci_var},
--	/*
--	 * Add entries for sdcc version 5.0 here. For SDCC version 5.0.0,
--	 * MCI registers are removed from SDCC interface and some registers
--	 * are moved to HC.
--	 */
--	{.compatible = "qcom,qcs404-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sdx55-sdhci",  .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sdx65-sdhci",  .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sdm630-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sm6125-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sm6350-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sm8150-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sm8250-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sc7280-sdhci", .data = &sdhci_msm_v5_var},
--	/* Add entries where soc specific handling is required, here */
- 	{.compatible = "qcom,sdm845-sdhci", .data = &sdm845_sdhci_var},
- 	{.compatible = "qcom,sc7180-sdhci", .data = &sdm845_sdhci_var},
- 	{},
+  Thanks for AngeloGioacchino's careful reviews.
+
+Changes since v1:
+  [v2 01/17]
+    - add a new ID to the existing mt6358 codec driver
+  [v2 03/17]
+    - modify log level in DAPM events
+    - use standard numeric control with name ending in Switch
+    - return 1 when the value changed in mixer control's .get callback
+  [v2 05/17]
+    - ending in Switch to the standard on/off controls
+    - change to "HW Gain 1 Volume" and "HW Gain 2 Volume"
+  [v2 09/17]
+    - return an error in the default case rather than just picking one of
+      the behaviours when do .set_fmt
+    - use the new defines that are _PROVIDER_MASK, _DAIFMT_CBP_CFP and
+      _DAIFMT_CBC_CFC
+  [v2 10/17]
+  [v2 11/17]
+    - the clock and gpio are aplit out into separate  patches
+
+  The source file's GPL comment use c++ style, and the header fils's GPL
+  comment use c style. We have added "Switch" after the names of all the
+  controls that just are simple on/off.
+
+Jiaxin Yu (8):
+  dt-bindings: mediatek: mt6358: add new compatible for using mt6366
+  ASoC: mediatek: mt8186: add platform driver
+  ASoC: mediatek: mt8186: add mt8186-mt6366 common driver
+  dt-bindings: mediatek: mt8186: add audio afe document
+  ASoC: mediatek: mt8186: add machine driver with mt6366, da7219 and
+    max98357
+  dt-bindings: mediatek: mt8186: add mt8186-mt6366-da7219-max98357
+    document
+  ASoC: mediatek: mt8186: add machine driver with mt6366, rt1019 and
+    rt5682s
+  dt-bindings: mediatek: mt8186: add mt8186-mt6366-rt1019-rt5682s
+    document
+
+ .../devicetree/bindings/sound/mt6358.txt      |    4 +-
+ .../bindings/sound/mt8186-afe-pcm.yaml        |  175 +
+ .../sound/mt8186-mt6366-da7219-max98357.yaml  |   75 +
+ .../sound/mt8186-mt6366-rt1019-rt5682s.yaml   |   75 +
+ sound/soc/mediatek/Kconfig                    |   44 +
+ sound/soc/mediatek/Makefile                   |    1 +
+ sound/soc/mediatek/mt8186/Makefile            |   22 +
+ sound/soc/mediatek/mt8186/mt8186-afe-clk.c    |    3 +-
+ sound/soc/mediatek/mt8186/mt8186-afe-clk.h    |    2 +-
+ sound/soc/mediatek/mt8186/mt8186-afe-common.h |  235 ++
+ .../soc/mediatek/mt8186/mt8186-afe-control.c  |  255 ++
+ sound/soc/mediatek/mt8186/mt8186-afe-pcm.c    | 3000 +++++++++++++++++
+ .../mediatek/mt8186/mt8186-mt6366-common.c    |   57 +
+ .../mediatek/mt8186/mt8186-mt6366-common.h    |   17 +
+ .../mt8186/mt8186-mt6366-da7219-max98357.c    | 1002 ++++++
+ .../mt8186/mt8186-mt6366-rt1019-rt5682s.c     |  978 ++++++
+ 16 files changed, 5942 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/mt8186-afe-pcm.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-max98357.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
+ create mode 100644 sound/soc/mediatek/mt8186/Makefile
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-common.h
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-control.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-mt6366-common.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-mt6366-common.h
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c
+
 -- 
-2.34.1
+2.18.0
 
