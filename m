@@ -2,99 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE9A9571727
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:21:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D66F4571733
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:22:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229752AbiGLKVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 06:21:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44914 "EHLO
+        id S230187AbiGLKW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 06:22:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230285AbiGLKVE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:21:04 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329B7ACF5D;
-        Tue, 12 Jul 2022 03:21:03 -0700 (PDT)
-Received: from mail-yb1-f173.google.com ([209.85.219.173]) by
- mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MdNHa-1nc9JF0wls-00ZOxM; Tue, 12 Jul 2022 12:21:01 +0200
-Received: by mail-yb1-f173.google.com with SMTP id 136so13148962ybl.5;
-        Tue, 12 Jul 2022 03:21:00 -0700 (PDT)
-X-Gm-Message-State: AJIora9BGr/85byGURXkGZi6AhKJ7Rsgu24rtZ/tG25+W2Sgak8izLVv
-        RE4hYV31OHI4Sh+XelXi1Q1wNMDTJQ0ffrz4ptg=
-X-Google-Smtp-Source: AGRyM1u0DfpNZFdtacLh454XdE0+/eSeOxQ9MmfhnisUAQEL792GTH29k4R54VpGVR8P2rYD8K6yZWp6ilnLKqt0FsQ=
-X-Received: by 2002:a25:73d1:0:b0:66e:aee4:feb3 with SMTP id
- o200-20020a2573d1000000b0066eaee4feb3mr22274006ybc.452.1657621259882; Tue, 12
- Jul 2022 03:20:59 -0700 (PDT)
+        with ESMTP id S232690AbiGLKWy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:22:54 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D482ADD48
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 03:22:53 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id c131-20020a1c3589000000b003a2cc290135so4933934wma.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 03:22:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rYt9mJQXaGbahl8QZrYNjHB9pJ9eAjTgp/ns4Eb/t8M=;
+        b=C5cPOGc9EqUsoFUWmrc7jVCibS5iN0UUoBC/PfD22KAgo7wUifuge6eKtWgdHhTmhK
+         fvpH/mXMm0hRgT9dWl3DZZDJL93EODM9jrUcKm7gjTFh/xMon7EdLXhbB2YK122pbx73
+         rwuP0BAxkambkdp1i6kemqXPccg0rBuRv2ni0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rYt9mJQXaGbahl8QZrYNjHB9pJ9eAjTgp/ns4Eb/t8M=;
+        b=gx4yqE/Oc/RNF7EwBkssN5vYeASNNqT9LnYqfP3f3eOWjUn//3PiGVYFxWKvfLNvOi
+         09lkyy0Fd86i1AdI+QZzwfV0hTpUreVrlmdW9nwPxqd0bY/r4Y2fPRCm2o5U6d+PATfh
+         Ps/wjdQPxvjXq8O79TQYyObmOtIcPdb1OldHU93EQ8RJ+WLJXvVJEopeOX/wKR4MCOG2
+         7hZpzP9NIz4CnXH5Dglq6Iq0MatZ0zL4aG7CRsLmfCSsT/PQFW1Kx0dCKJOmpc4/D/5Q
+         RCngyURA9LEb/UKJ5w7nRCUWtV8Ry7+KClGA3wkO7Fb9faEC0dyVYSvLG0eKDm94ANAd
+         1wnw==
+X-Gm-Message-State: AJIora9IEg8nZz9WG+jPb3+TlHwgLqWdxHrxQNVSJXB5PKmqO3IcJWEX
+        rlv5157/u45yfLa0YRlqznoD1Ie0Xxxb1sL/xXZvrhTnaot86A==
+X-Google-Smtp-Source: AGRyM1svSmDLIfSSDkmMhxcC2NCCDtQdNFo2Jmf8Eb2S0Zy+X9IE/1D5IMRYMtZUefJka9rOnNuo/87dPKq7cEDP4jA=
+X-Received: by 2002:a05:600c:3d13:b0:3a2:cb5f:87e7 with SMTP id
+ bh19-20020a05600c3d1300b003a2cb5f87e7mr3008291wmb.178.1657621371850; Tue, 12
+ Jul 2022 03:22:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
- <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
- <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
- <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
- <181f1d88b64.e2eb2601586551.453778983551010212@linux.beauty> <CAK8P3a3gX-JMh6E2X3rH+U37zhkA6b0+AJDtXCJfdZiMocxLjg@mail.gmail.com>
-In-Reply-To: <CAK8P3a3gX-JMh6E2X3rH+U37zhkA6b0+AJDtXCJfdZiMocxLjg@mail.gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 12 Jul 2022 12:20:43 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0hRmedaQpbKr1rJhHr6XZAqGnp0zmHgzz_Q5bwP6jE4A@mail.gmail.com>
-Message-ID: <CAK8P3a0hRmedaQpbKr1rJhHr6XZAqGnp0zmHgzz_Q5bwP6jE4A@mail.gmail.com>
-Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
- page and dio support to no-map rmem
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Li Chen <me@linux.beauty>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
+References: <20220622173605.1168416-1-pmalani@chromium.org>
+ <20220622173605.1168416-6-pmalani@chromium.org> <CAE-0n517BB8YbN5AZG6M3ZrZGOJDV=+t0R9d8wD+gVqO1aD1Xg@mail.gmail.com>
+ <CACeCKafR8hFke_tc2=1VGDNF-CFrZoAG1aUKuxGJG-6pd37hbg@mail.gmail.com>
+ <CAE-0n50XbO5Wu4-429Ao05A4QrbSXoi1wBjTpGFjKm3pZj1Ybg@mail.gmail.com>
+ <CACeCKafzB0wW_B2TOEWywLMyB+UhYCpXYDVBV=UbyxBiGnv1Rw@mail.gmail.com>
+ <CAE-0n50Akd8QikGhaAQgxLkJBhE-7KQf5aJ_P2ajOmCjLk555g@mail.gmail.com>
+ <CACeCKafQT_RBrkHJNE2ezahSsHLPrbnS69QbfnjxBoUhi6hjwQ@mail.gmail.com>
+ <CACeCKafya_XA+C3eJUvT4vjQSgsjdewVkCb+Jr2tA1605jjfjg@mail.gmail.com> <CAE-0n53kujMrzFG++5kaS4QKj2YrzLJEu5R76W887rCW_S592g@mail.gmail.com>
+In-Reply-To: <CAE-0n53kujMrzFG++5kaS4QKj2YrzLJEu5R76W887rCW_S592g@mail.gmail.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Tue, 12 Jul 2022 18:22:40 +0800
+Message-ID: <CAEXTbpdVr07Ur2L1NQjk8Vn=yUK=70K0sgbfTxsMJEvGd7CD2A@mail.gmail.com>
+Subject: Re: [PATCH v5 5/9] drm/bridge: anx7625: Add typec_mux_set callback function
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Prashant Malani <pmalani@chromium.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        bleung@chromium.org, heikki.krogerus@linux.intel.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Li Chen <lchen@ambarella.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Linux-MM <linux-mm@kvack.org>
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:OhWq2gQu4ykQh5L9z/AYaKpcig8BYTAwtIqFNUzQkyV76jRF6I2
- 0xuhN+n6LeKTSY/gISejcWQjcM5lwKpEZfEdgUR+XFnW0xOXCST1LPdbj1sIG54fJkYvgoh
- 75O+qFaXLXdTHIJlKWtjB8OJNpMg708crfjNRD3/wcNhokAFN3hsa7k9I+VqipaH1B3PJmq
- rwQ5oVLACrRftHZV10Uaw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:BF3DBGx3ui8=:x6gKsivD8BODwEjo3vB3R6
- dqrQkIWMWnk6WVFVyPHrvIVQwdLLGyBEl7Ditp6J3f1ocWolb13LO/IhJuXRdhmJ5mw2m1DxV
- Baf/RRAV8BkObEAnL4kEX7r/e3V6h0MFvqnOckWCfd4fxoCHNMvTzGcP+tkCR2VEZf37q6GEv
- FkADiopXmfNZ5msLcAmmkxgOCc7tHuBeOGN4v2HlXW0f/Mr82frm8rT45ORpuYNe0HfSde+/y
- OzS8qEVJVf/ubQLrVLDMXAr9d9gzbU4soa5DhCywtQ+VHV9jHXTZDB++5D/0iRYQO3niYDmXl
- Ts6mZ6JJPEmPjVtgqRzuObkT2abM3JS43asvZRZQhV96jEFoOcEA67EZyGvkdwqOmcS2fQtjB
- 1R1yjul9C71vHsSWSmnmF10zKyQPYwxKCpMdsfEnclnlPNO6At54wO0jU+QYUheECId/QXDzM
- PStiwmAk5qlLKHfOEVh6k/pVmVgJwruWBHuJvO8YuJUGDqt4hDzmCFzRfGeJB6Ql3lO9OfpYr
- op0SU4SLzJLTTtJASJGVc/p8XfT4lkig2U7cxkJ/GiUULEaUuqXwyeu8FMpl/jfdMy4E9zjRv
- n55mQqBPGIIZ9xODn/Rg70KwcNJsfVYUhMT0Y8sxOY/bn6ii0fPY7Qox48weEDpGtTYpQBypM
- NHpkB8xgz7lHzVt94/VGMOS5wtmF/8p3nRG/ppzT7utQEOu352SRn7+JWLeI+8+ify0JhlUKM
- ruuGg2h+UskP0tnh+t+r9eEZxK0tyfxE9qV+lUhWaDb2cR7oYkMZbOdwGH/9fKIDptC1YjQKo
- KJEWLYIZ40vZYG1UbRUNl0ustOsz2GrV4CyvrzFFk+bPo7+z1V+OcRLMTiCtdD5CP8DD7Vjc5
- BohngiPyKoNW48vA0kz8NWMvaddaxtcJHr78ygiLU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 12:08 PM Arnd Bergmann <arnd@arndb.de> wrote:
-> On Tue, Jul 12, 2022 at 11:58 AM Li Chen <me@linux.beauty> wrote:
-> >
-> > The limitation is our DSP can only access 32bit memory, but total dram is > 4G, so I cannot use
-> > "size = <...>" in our real case (it might get memory above 4G). I'm not sure if other vendors' DSP also has
-> > this limitation, if so, how do they deal with it if throughput matters.
+On Thu, Jul 7, 2022 at 8:17 AM Stephen Boyd <swboyd@chromium.org> wrote:
 >
-> This is a common limitation that gets handled automatically by setting
-> the dma_mask of the device through the dma-ranges property in DT.
-> When the driver does dma_alloc_coherent() or similar to gets its buffer,
-> it will then allocate pages below this boundary.
+> Quoting Prashant Malani (2022-07-06 11:26:19)
+> >
+> > Stephen, any pending concerns?
+>
+> No more pending concerns.
+>
+> > If not,I will post a v6 series with the suggested changes:
+> > - Drop typec-switch binding; instead add a new top-level port with
+> > end-points for each Type-C connector's switch.
+> > - Drop it6505 patches.
+> > - Squash anx7625 driver patches into one patch.
+> > - Add a comment mentioning that we aren't registering the orientation-switch.
 
-To clarify: in the DT, you can either add a 'alloc-ranges' property to limit
-where the CMA area gets allocated, or use a 'reg' property instead of the
-'size' property to force a specific address. I would expect that in either
-case, you get the type of memory area you want (a reserved set of
-addresses with page structures that you can use for contiguous
-allocations within the first 4GB), but it's possible that I'm missing
-some more details here.
+We've been working on these changes, and the new DT node looks like this:
 
-         Arnd
+```
+    anx_bridge_dp: anx7625-dp@58 {
+        [...]
+        mode-switch;
+        ports {
+            [...]
+            typec_switches: port@2 {
+                #adderss-cells = <1>;
+                #size-cells = <0>;
+                reg = <2>;
+
+                anx_typec0: endpoint@0 {
+                    reg = <0>;
+                    remote-endpoint = <&typec_port0>;
+                };
+                anx_typec1: endpoint@1 {
+                    reg = <1>;
+                    remote-endpoint = <&typec_port1>;
+                };
+            };
+        };
+```
+
+However we found some issues with that approach:
+1. The current typec mux API does not allow us to put muxes into
+`ports` directly.
+`fwnode_typec_mux_get` searches for the parent node behind the port(s)
+nodes, so we cannot register the muxes with the port nodes unless we
+change the interface.
+2. We need a compatible string between the `endpoint` nodes and the
+parent node (anx7625-dp@58).
+This is because when the driver core builds the device links, they
+only add links on nodes with a compatible string for `remote-endpoint`
+properties[1].
+Without a compatible string, the parent node of `typec_port0`
+(cros-ec-typec in our case) has to be probed before anx7625, but this
+leads to a deadlock because cros-ec-typec requires anx7625 to register
+the typec_mux drivers first. I'm not sure if this is cros-ec-typec
+specific, though.
+*Any* compatible string fixes this issue, and it doesn't have to be
+"typec-switch".
+
+--
+
+Alternatively, can we split the two muxes into two sub-nodes, like the
+following snippet?
+
+```
+    anx_bridge_dp: anx7625-dp@58 {
+        [...]
+        mode-switch;
+
+        anx_mux0 {
+            compatible = "typec-switch";
+            reg = <0>;
+
+            port {
+                anx_typec0: endpoint {
+                    remote-endpoint = <&typec_port0>;
+                };
+            };
+        };
+
+        anx_mux1 {
+            compatible = "typec-switch";
+            reg = <1>;
+
+            port {
+                anx_typec1: endpoint {
+                    remote-endpoint = <&typec_port1>;
+                };
+            };
+        };
+```
+
+This eliminates the additional "switches" node in the devicetree. The
+sub-nodes also describe our hardware design, which split the DP lanes
+of anx7625 to two type-c ports.
+
+[1]: The `node_not_dev` property searches for a node with a compatible
+string: https://elixir.bootlin.com/linux/latest/source/drivers/of/property.c#L1390
+
+
+
+>
+> Ok. I'll take a look on v6.
