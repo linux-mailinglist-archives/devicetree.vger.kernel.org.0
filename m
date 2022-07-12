@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29F475714E9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:42:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F330571506
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:47:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232263AbiGLIm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:42:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44344 "EHLO
+        id S232450AbiGLIrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:47:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232254AbiGLImv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:42:51 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71FDDA5E77
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:42:50 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id u13so12772424lfn.5
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:42:50 -0700 (PDT)
+        with ESMTP id S230294AbiGLIrv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:47:51 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D887BA6F2E
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:47:49 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id r9so9066838ljp.9
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:47:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=beH/rg/vfB+Yd9R/ZZN+HNd6fMmwTTRKCdj3qxzIlfw=;
-        b=GUOcZRDeJq7SuRAbLTR5dTQL/L2f6miqFoSHCX4KDoodgtL270sNff1V+yvO8IFApl
-         kMEovUjRNw4KZlCPuZbB5MercZlupfI4VW1u4loKgkm5TbgtqGIanbocEVmeRZeD1mtH
-         jShb0iJnYSOpmCHoSP0cgmO2yAbZaL2Glza21F2siIzojGJvgxdFw7q7bEWsSA34DKFK
-         Dtg9j5IzA8BPN4NaLFhwuvr7JXmSnX6MDFJPSQz35ncezYeTnPSIH60Xvk5d4mMquaRc
-         lwGuY6dnKmMvA1Wxh1eAuMo2Oezs2YtjVnBdedA6Bp8dKxbw0CqfsHWZdO7N2CacS+nS
-         TavQ==
+        bh=BoX+rp4PoiS5Atec4w7HqPMg4nXltL8P8j6D72BzscY=;
+        b=sMoxnxlbxggNYM8BAq2Lcy19LzB6d3G+PJ0RClZQVELEnW4CL9uBpEkIPB9Ijg0XTj
+         xrvFU4Fp+xf5KzAG5/YmhTAHbgd6nxxhaj7oY2XoAGi3zDqrolEC4MAjDU3hxPioaLlX
+         F7TE0AMpMwjTPwRXFlXuXuQFY524HfhbYHo+Vb4WeaptAATCfJFtr7ZA6xL+KLJKgJpH
+         JNcO9XyTNzXxf0LoF+6vvFgOyqqdLnamHLmLvfiBjgYHO4cLSTe9jVs5AA6pYPoAdoD/
+         plB2usym8nVYcM+zQoWxtpcSeWef7tI3LuMUDk4xKDqxLU3HBsq/LJEBepaaBXbrecF/
+         vscA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=beH/rg/vfB+Yd9R/ZZN+HNd6fMmwTTRKCdj3qxzIlfw=;
-        b=JS9aJIPVjzSvV7taBMDoA+p9wYRBz/IuaSKD6NyeSmlOeCe1R8wQJFAgl98CsZ6Ggi
-         jum8+0cAnguP1SLgje8gbXuKePOQMOqNgUznWUruI4LgXBp1VH7BnD4bD9BwNjZcUpt6
-         CMVA8+K7JadNQ5RlFpwqdaV7s+dnmy9aFMESdFqn3uSNHMhoycLAher8v/AfRfm4xnWZ
-         Qqcv58lgPC1h26XD+bkR6k5DqF21EhPr2NtbeAa+JrM/dm0Kea6DZYtdzLipUG0Mkw9Y
-         YR74WDNtc83hhUbODAW0GIkXiis2Nazt5P6/37y6uHc6Db6h49avGZnkGUBY6c0i/Bff
-         /QrA==
-X-Gm-Message-State: AJIora8lO68oZTA7Mco5/zBZYneRUk0gvqjW25S67GddhwDy4UDnC0+X
-        xlj3XcVJgZPAkTXjIwtFymEScQ==
-X-Google-Smtp-Source: AGRyM1sI2eIEo4Bwc0oYhOPsU94ZRQCA0G+Z66pXFLubJDzxUZkVGSP9W+OSBkXqr6pURGtafmmu0Q==
-X-Received: by 2002:a05:6512:2823:b0:485:6312:2a07 with SMTP id cf35-20020a056512282300b0048563122a07mr14123734lfb.525.1657615368769;
-        Tue, 12 Jul 2022 01:42:48 -0700 (PDT)
+        bh=BoX+rp4PoiS5Atec4w7HqPMg4nXltL8P8j6D72BzscY=;
+        b=AspJCnq9n5YlxS0InNAFUGUSuBj7QLH32F5E0w1Ni2zT8EYY3BJ+FGMnp7reuGQPfo
+         7PKd1gSQfH+FTMmS0ejeFFM1cxsI+bjS740IvxICeHO11tRQsrY3NWI75bzuxGd8PvTf
+         yIs1lJ9UZ2ddCtFVJt6pVJbvI1GrHsMM3pi2m/7qG2H389Ox/yVOL9b9vajXmuFutLUe
+         FB74ZmOXgilxmurna0bBORkixGwXzUTGRDHhb5sGkkYpuXAWsuGVppqt+eW2GcFi8aF6
+         VtcX3FurMQikArkXo0NQ9BMb9Hw0uMF6biZcL6vuaCKe0pgHuSYtCsKsgMkr5y/JcXS9
+         okxQ==
+X-Gm-Message-State: AJIora+c87vAGJ4rLKUBib+X74zgo/w0AcHHTypl7uZQXaD02z3CYGwA
+        LCJ53FjYkcz/AGQj7+D39vxxUg==
+X-Google-Smtp-Source: AGRyM1vNKk2hrAz+F5i8IgmeZ6aMdIA8yvFym7dtAAyKnTQEQaOnXisA+5/D71f6YI3DToiYzV6C8A==
+X-Received: by 2002:a2e:8303:0:b0:25b:d18a:75d9 with SMTP id a3-20020a2e8303000000b0025bd18a75d9mr11995412ljh.495.1657615668155;
+        Tue, 12 Jul 2022 01:47:48 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id g18-20020a2eb5d2000000b0025c068f123dsm2287413ljn.30.2022.07.12.01.42.46
+        by smtp.gmail.com with ESMTPSA id b40-20020a0565120ba800b004785b66a9a4sm2063432lfv.126.2022.07.12.01.47.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:42:48 -0700 (PDT)
-Message-ID: <403ba7a3-7e3d-4daa-6c14-d8bb4a3d6087@linaro.org>
-Date:   Tue, 12 Jul 2022 10:42:45 +0200
+        Tue, 12 Jul 2022 01:47:47 -0700 (PDT)
+Message-ID: <4584120c-8e6f-6943-1bd3-aa6942525eda@linaro.org>
+Date:   Tue, 12 Jul 2022 10:47:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: usb: typec: add bindings for stm32g0
- controller
+Subject: Re: [RFC PATCH net-next 1/9] dt-bindings: net: Add lynx PCS
 Content-Language: en-US
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
-Cc:     christophe.jaillet@wanadoo.fr, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com
-References: <20220711120122.25804-1-fabrice.gasnier@foss.st.com>
- <20220711120122.25804-2-fabrice.gasnier@foss.st.com>
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20220711160519.741990-1-sean.anderson@seco.com>
+ <20220711160519.741990-2-sean.anderson@seco.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711120122.25804-2-fabrice.gasnier@foss.st.com>
+In-Reply-To: <20220711160519.741990-2-sean.anderson@seco.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,86 +83,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 14:01, Fabrice Gasnier wrote:
-> Add DT schema documentation for the STM32G0 Type-C PD (Power Delivery)
-> controller.
-> STM32G0 provides an integrated USB Type-C and power delivery interface.
-> It can be programmed with a firmware to handle UCSI protocol over I2C
-> interface. A GPIO is used as an interrupt line.
-> It may be used as a wakeup source, so use optional "wakeup-source" and
-> "power-domains" properties to support wakeup.
+On 11/07/2022 18:05, Sean Anderson wrote:
+> This adds bindings for the PCS half of the Lynx 10g/28g SerDes drivers.
 > 
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-
-Thank you for your patch. There is something to discuss/improve.
-
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
-> Changes in v2:
-> - Krzysztof's review comments: update commit message, use ports, use
->   unevaluatedProperties: false for usb-connector schema, define maxItems
->   for power-domains, adopt generic node names, remove quotes
-> ---
->  .../bindings/usb/st,typec-stm32g0.yaml        | 90 +++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
+>  .../devicetree/bindings/net/fsl,lynx-pcs.yaml | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/fsl,lynx-pcs.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/fsl,lynx-pcs.yaml b/Documentation/devicetree/bindings/net/fsl,lynx-pcs.yaml
 > new file mode 100644
-> index 0000000000000..7b3a2c2124e38
+> index 000000000000..49dee66ab679
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/st,typec-stm32g0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32G0 USB Type-C PD controller
-> +
-> +description: |
-> +  The STM32G0 MCU can be programmed to control Type-C connector(s) through I2C
-> +  typically using the UCSI protocol over I2C, with a dedicated alert
-> +  (interrupt) pin.
-> +
-> +maintainers:
-> +  - Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32g0-typec
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  connector:
-> +    type: object
-> +    $ref: /schemas/connector/usb-connector.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  firmware-name:
-> +    description: |
-> +      Should contain the name of the default firmware image
-> +      file located on the firmware search path
-> +
-> +  wakeup-source: true
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
+> +++ b/Documentation/devicetree/bindings/net/fsl,lynx-pcs.yaml
 
-Isn't connector a required property? I would assume the device does not
-make much sense to operate without it.
+Shouldn't this be under net/pcs?
 
-What about firmware-name? Do you expect hardware to work fine without it
-(default firmware?)?
+Rest looks good to me:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
