@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F85F5713DA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7B7E5713DF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232549AbiGLICU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:02:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35316 "EHLO
+        id S232552AbiGLICo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:02:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232471AbiGLICP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:02:15 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E75024958
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:02:14 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id t25so12614578lfg.7
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:02:14 -0700 (PDT)
+        with ESMTP id S232536AbiGLICf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:02:35 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC899E447
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:02:32 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 19so8970924ljz.4
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:02:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8pDDUTCLyl+0VPUb9vCl9+PQj1k0LcM84yg9J/H9QBw=;
-        b=dcC0Ul9g125S3vaBRkM++E4UOOh+we3TQuyJEtjdnURZGSeGck8fhIsO/Tbj1+Zi8k
-         3q9wPZQHfJkaSX2s7F2/VkpQPMArhAzhXwsbajLJ8JmzRSRGSNC50trfv2tbnOZ+JegJ
-         EkrfVivx5wf+zMiuOmIcdb+L2UUhsKq8div+2XjCHNgSs3A6dx6FrJS6UWvaD4ekWXZ1
-         MhV/1npds2NPScbbX+IqEQXmbdp1E1BbXVJcWw63UjNXRxN/pD4OWPtl3KUpNFS6Pl0t
-         hIll6UbCssxLzvb1BIFkugVsqX0SHPzfHWEy41LCSRUs88P2pRllnCFH/4K8dO1H/3wA
-         Kz2g==
+        bh=8pNbEmXsZPlGcxQ/woTELDMNQSFJK4nHknSxZixJDtk=;
+        b=BClNTX6rjcddNSokWeew/BeNmjrVSgfp3LdDrj8mYehbBryFN8r8PNxc38CBpR0Q09
+         2qHY904ooL6ug9HFMfTOjPdTzCglODQNfh9guOEh5vveoWmJvSnvl8wJiRHL24AkoPo6
+         lLWgaXajDVlYw0ZYpUNy+ztAb0U8T1KZ2YgqNamQi69CxcddawROzEhoBLYcQI/Pq9tr
+         QJY1kOseKdhCCWz9fzi8oGKioWbkE8FNKW/UCajt4uGsPxhT0l0jGFWIw7lLywsw/D4P
+         yG1zjnx7p0jHCJ50mU2wkp1gyxPH7n1QfJqAlSMroF7oK+ANraK1UCxop8Q37sdSLqeH
+         CK6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=8pDDUTCLyl+0VPUb9vCl9+PQj1k0LcM84yg9J/H9QBw=;
-        b=Y4Y9pD7XA8j3NHYA4Ei6Y7JvCy5OKGPv4I3g7tB7HIZ0XdjpCyVemPJombSSZTRZXn
-         nIktJLt1xi1o8zBYlhDRhGloddtQN0LT3KziAwgigsQE6W5YqSUlGLGNRdQNOz4ZDmni
-         iPatFLz0+GLWlI0YNDEx8sTuMAYSvsEjyxQCoO/rWyx516j2ShEaQYtwfYLQAiScWImJ
-         JO2+OCO1llpC1v4wb/6TCReWCKUFyJ4ycza2eI/YoubtDaPXPFyce3Zgzrcq6FOwQHlR
-         4mKAfzqiDRWA4mTz3G/GCfCm+RJ2A2l1bPnGI90VWS9ix2R44a3CYSnT2ieNSvf75Vif
-         eu5Q==
-X-Gm-Message-State: AJIora84H2GhykINf+6P2Uyb7Lgs+7lfSPEnzOZuopLUowLZBIhnkYYw
-        b7NxHK+W5AvmvMuPlTG7V4Z7ZA==
-X-Google-Smtp-Source: AGRyM1tUjP31uGw3j/W8J2dlAqbG7oY2WLGmv3DUCVdpDWWNll1dOlteH1A+nzVCO8hlxN8BGndhxg==
-X-Received: by 2002:a05:6512:32c1:b0:489:e9de:2f0 with SMTP id f1-20020a05651232c100b00489e9de02f0mr2436575lfg.117.1657612932572;
-        Tue, 12 Jul 2022 01:02:12 -0700 (PDT)
+        bh=8pNbEmXsZPlGcxQ/woTELDMNQSFJK4nHknSxZixJDtk=;
+        b=BaYvmhHlUvFrrTIQOGe3QgE8pIMwRa34LdFVu/TLhaght2wTDIdn4G1z9mho5ahNMC
+         NZFek4Wp1CCJUs1hgDIahF6I8MfORui34w/FMkYd80NgsMOpjKfN1UXoKTvHBdB3aTGi
+         VYMStFx+Mdq+7Q59QlWqRTYKppueFyqsmoIOa2NuouC5RqFSU0hIbZau6OD2vh16IrcW
+         VGr/729rJokTaCy3RDyxOv3RyYXr5iMu6UGetHFAzEBcRLVFhNSOACGEcnCzVvaHOlSc
+         I0QAGyMzRi1KErhTidsI3ZReP8wkba4Mnue27gS8/7ExeeyDCumNpwoKRTufwyYK2Qs1
+         tAlw==
+X-Gm-Message-State: AJIora/WMSx2XHK6VVFLfwgpmk+JJacw5wO4/nIuxl/Svb35MMYS/pJ6
+        NI35AEjiqaIJtk6+19M6DfAt2w==
+X-Google-Smtp-Source: AGRyM1sb9X2kygY/k3ZF8KSfgbHXg29S2zHrcl2esgC138PNfe3kp9ndeQl7bbyF1mgzROvNc5iUSQ==
+X-Received: by 2002:a05:651c:2111:b0:25d:6b28:3c96 with SMTP id a17-20020a05651c211100b0025d6b283c96mr5385849ljq.39.1657612950379;
+        Tue, 12 Jul 2022 01:02:30 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id z23-20020a195057000000b00489f0c8bddesm274281lfj.207.2022.07.12.01.02.10
+        by smtp.gmail.com with ESMTPSA id h9-20020a2e9ec9000000b00253ceefb668sm2189909ljk.60.2022.07.12.01.02.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:02:12 -0700 (PDT)
-Message-ID: <b6c3cfae-2af4-7d87-48c0-8b58697f45dc@linaro.org>
-Date:   Tue, 12 Jul 2022 10:02:09 +0200
+        Tue, 12 Jul 2022 01:02:29 -0700 (PDT)
+Message-ID: <5f7cdd8e-a57e-33c5-9eb5-9a0bd67031a2@linaro.org>
+Date:   Tue, 12 Jul 2022 10:02:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: mailbox: qcom,apcs-kpss-global: Add
- syscon const for relevant entries
+Subject: Re: [PATCH v2 2/2] dt-bindings: mailbox: qcom,apcs-kpss-global: Add
+ clock-output-names
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
         bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
@@ -63,14 +63,14 @@ To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         shawn.guo@linaro.org
 References: <20220707150933.1889371-1-bryan.odonoghue@linaro.org>
- <20220707150933.1889371-2-bryan.odonoghue@linaro.org>
+ <20220707150933.1889371-3-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220707150933.1889371-2-bryan.odonoghue@linaro.org>
+In-Reply-To: <20220707150933.1889371-3-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,19 +79,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/07/2022 17:09, Bryan O'Donoghue wrote:
-> msm8916, msm8939, msm8953, msm8994 and qcs404 already declare or should
-> declare syscon as they have drivers that use syscon inside of the apcs-kpss
-> block.
-> 
-> grep apcs arch/arm64/boot/dts/qcom/* | grep syscon
-> 
-> Add in the additional syscon in the documentation for the above mentioned
-> parts.
+> Add clock-output-names as optional so that SoCs such as the msm8939 which
+> have multiple a53 PLLs can latch the appropriate output name in
+> drivers/clk/qcom/apcs-msm8916.c.
 > 
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
