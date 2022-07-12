@@ -2,99 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A41A571441
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A41E8571447
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:19:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231584AbiGLITY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:19:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49602 "EHLO
+        id S232644AbiGLITm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:19:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232314AbiGLITW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:19:22 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648C42CE11
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:19:21 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id p6so6202824ljc.8
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:19:21 -0700 (PDT)
+        with ESMTP id S232317AbiGLITm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:19:42 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F244AA1247;
+        Tue, 12 Jul 2022 01:19:40 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id d12so12655126lfq.12;
+        Tue, 12 Jul 2022 01:19:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mPwiUa/I/QF58z2fuTg90NSWV/C3Pn2OArh1aSAWDBY=;
-        b=jLek+wGEDNJr7KlZ2GnQ0XU5mNwTvxszDPPwOGmyicqVu+M1ttCGXYUxjaNlvJWjx2
-         ZXn8IakQMQ2Fi3eRnDTj/3Cc9YQluDxcoFFZd0umPFkD/tEFJ33rCGlkvB/PNGRbQnbH
-         VvZNbI0OPOlkGSUjHCH36jPbxKpFFHBgPOUHBcJDNcUKUvaDX5mIHojkV/qFPA3w8lWw
-         qeQAzVZjcLtLvobTRHJnddCRKeqNNSBlEIBs5ie5MOmkvAfgpPvOHHxI82UKh7KOt45N
-         7cmCnjOPWe5EligYe5MdZ8hfVVc3eYF1SNp4dx5N3LoZoPDp1dnzUSYtJX37Qy2mHIAw
-         sk/Q==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fsZS54G0TF7yfO7aK95cWjaqDjAEFLG+zKLdqz5qOj8=;
+        b=CPUwdWfRzwbAZFcSL/+Xjt3FqB3hWjH8AYkd4hQjSi3iRLxbnAuxssCAMlVoJeLxXF
+         R2rqxjUOMH8oK5mvIgpsFFIckigyPFYdhRmKN7ikguePeF+GqelHrrPuUbGmPlFb0eXK
+         Jbxm0I0xcjyCVr9O+cnxT+f9RUKy26jP2K/hnfCFAGh7YLrXQM7JHXwIFVmm0rdpX41B
+         OlrLqKNm4H+2V3Mp10n1LO7FN0iVDPDaiXWaQ4FT9F1yjW1K7QvX47SxNMQsihnUY54i
+         JeFp01ka7yVdBkFXLbj2Hnfs08y62O63V5PKVJMcdl804+g3nbRXAhwiNxXMmrXiaC1n
+         c3Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=mPwiUa/I/QF58z2fuTg90NSWV/C3Pn2OArh1aSAWDBY=;
-        b=l6bBdckKdvAu76TuIFZrtBuNuVSQPBlXFsYHXOACR27SUNFVA4yQibpZGHZgsJctyt
-         jrXJKy28n4U9VV9O3ptCuRU2MZH1uC4OhwbxxDajtzFG38sxxxaS/7+QCkqXFiXjwlvw
-         nySrG74nCWIY0T8hb44OpoZaRLzdAwATuAUXVEPdSqFkQFeNe5uLJ0CUMc21LBkCzadH
-         JLnV2oqW6wlNx3PnAzY2MP8eLc0nH5hmHGIfNEn4spgUB6LmIzvzxIGEAvU7do/Jlyy8
-         XRBTPrenLiKrp6VbfvM55gITehDl754YCO46zyS/TqAzh/wjq9oweCr4r0XN+3Mnvvrm
-         /fag==
-X-Gm-Message-State: AJIora8kf1y40TLIva88uUY7qExnTZUEXB+Mkofyuees8AoQkfEfCZER
-        urZdENQaBmTP8FSYDiWghKALVMcSwqiKH7o6
-X-Google-Smtp-Source: AGRyM1u0bOgIZMac3Bmr5k6icpSTgbmhYm6M1PQ7kvFztaYK4kYaxEMiNHHj+r1fR6aBeaJ2BqISuQ==
-X-Received: by 2002:a05:651c:154a:b0:25d:7a5c:b854 with SMTP id y10-20020a05651c154a00b0025d7a5cb854mr968511ljp.193.1657613959768;
-        Tue, 12 Jul 2022 01:19:19 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id s28-20020a05651c201c00b0025d547bf08asm2274689ljo.74.2022.07.12.01.19.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:19:19 -0700 (PDT)
-Message-ID: <600d7287-091c-48b3-9e43-fb2e6bd79042@linaro.org>
-Date:   Tue, 12 Jul 2022 10:19:17 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fsZS54G0TF7yfO7aK95cWjaqDjAEFLG+zKLdqz5qOj8=;
+        b=6BweLTMqSrl2alCcnesB+4MAplom2QL9FvO8PNzdAbnAd9JH+T9Uy1LXG2kP9GvMoO
+         0mqD8efQNZBGZq9ruzJtEPP3U0fMz2zU/rZHBF1ntfVHjPQYY5FzJxjY6Xxltw8gMeyz
+         MRatt5Si83Hsr/AbcJJADZ4ReWnmvqbwjtspmd70o+hixsI6WwaT5Rj5MApABL1oJiRY
+         jTtSmdjo17223tTsihGgTxz0RkhPPQ4N9c+x8CKY2soAMYPaoMZw9sjmgRYeLYhY8dsQ
+         aaojQDtNYXc7jrZ3XyHX8taq1Lv5Ps1lrGvdVnJp9bvzBEkhYZdNozdXjRjuby+M5/db
+         Nw0w==
+X-Gm-Message-State: AJIora9QKBRVzSXVAoUSMJDe/FMVt97VCFh0HNS44gvXHhxXpV3gB4Vp
+        Tg5a7klnvACKz8e5PcjgecYL42E+BNU/hjydj+M=
+X-Google-Smtp-Source: AGRyM1uwm5voGsujOseVCxcKpWGEQUFJOWHea1M5BQx/JSJlJYHEAMBsAxCGRsQCxXgwON5GZlvbfB6CpmpGIIyW154=
+X-Received: by 2002:a05:6512:3103:b0:489:cdd7:b360 with SMTP id
+ n3-20020a056512310300b00489cdd7b360mr10578125lfb.111.1657613979260; Tue, 12
+ Jul 2022 01:19:39 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/5] dt-bindings: arm: tegra: flowctrl: Convert to
- json-schema
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
+References: <20220711134312.234268-1-tmaimon77@gmail.com> <20220711134312.234268-2-tmaimon77@gmail.com>
+ <154dd9ef-cb8c-d8d7-ae62-a73bac160089@linaro.org>
+In-Reply-To: <154dd9ef-cb8c-d8d7-ae62-a73bac160089@linaro.org>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Tue, 12 Jul 2022 11:19:27 +0300
+Message-ID: <CAP6Zq1gMNeU9Ah5vWmhFyd_=XWhAAOsX2sQ8v1KLF2W+DSH=QQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: npcm: Add npcm845
+ compatible string
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20220711152020.688461-1-thierry.reding@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711152020.688461-1-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2022 17:20, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Convert the Tegra flow controller bindings from the free-form text
-> format to json-schema.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../arm/tegra/nvidia,tegra20-flowctrl.txt     | 18 --------
->  .../arm/tegra/nvidia,tegra20-flowctrl.yaml    | 41 +++++++++++++++++++
+Hi Krzysztof,
 
-arm directory is for top-level stuff only. SoC components which do not
-fit any subsustem, should go to "soc". Can you move it here to "soc" or
-to respective subsystem (net?) if there is such?
-
-Rest looks good, so with different directory:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+On Tue, 12 Jul 2022 at 11:15, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/07/2022 15:43, Tomer Maimon wrote:
+> > Add a compatible string for Nuvoton BMC NPCM845 ADC.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+> >  .../devicetree/bindings/iio/adc/nuvoton,npcm750-adc.yaml     | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,npcm750-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,npcm750-adc.yaml
+> > index 001cf263b7d5..c9e9c5bf5e5b 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/nuvoton,npcm750-adc.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,npcm750-adc.yaml
+> > @@ -14,7 +14,10 @@ description:
+> >
+> >  properties:
+> >    compatible:
+> > -    const: nuvoton,npcm750-adc
+> > +    oneOf:
+> > +      - items:
+>
+> This does not make sense. oneOf with one item. You also create now list
+> breaking all existing users/ABI.
+>
+> You probably wanted an enum here.
+indeed, thanks for your comment.
+>
+> > +          - const: nuvoton,npcm750-adc
+> > +          - const: nuvoton,npcm845-adc
+> >
+> >    reg:
+> >      maxItems: 1
+>
+>
+> Best regards,
+> Krzysztof
 
 Best regards,
-Krzysztof
+
+Tomer
