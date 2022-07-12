@@ -2,75 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB0F357209B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 18:18:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F16DD5720D3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 18:28:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234340AbiGLQSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 12:18:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
+        id S229970AbiGLQ2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 12:28:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234333AbiGLQSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 12:18:04 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E217CA6DA
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 09:18:02 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id r14so11912817wrg.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 09:18:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=OdZUFjk6k+XBMCjbJiAxWvJwwXz/OLi+EFuy7XZoz3U=;
-        b=DxkWlUNf6XY3YOvpCrNB5+DhFycC/AVcyTij5uF3oKtLQ3wG+cy4vY4xk7g7bwpwFS
-         fgEQUVpwWKjXDwrkQiPQ/IobBJ/OnkD5KjYh/GXPI5TuqgwDV4ry2xXJQeP9XNuJc909
-         gr4+dXKAYKDZ2lNUDy63g8dTM8eBdH0YgJSVQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OdZUFjk6k+XBMCjbJiAxWvJwwXz/OLi+EFuy7XZoz3U=;
-        b=Agwwk2qguhSrd539rTWa9p7V8UdTIDF0JEJ78Hv05NglNgPX0n7eThiUtvAXHMh/N+
-         dwXI1Zo5HlD51lvE8Ak65GO0feHHQjDgEEaFLzuzO8k5S7bs1q36uY4k45PQHj+7zPzx
-         ocplBzqFei94r3WAkIELHb+GJASpf5eJDn4WKbStJZt/dX1uKVzA+m1IG6cKX5Q5I6uy
-         XrPJ3k3RcRx5SmqdIWUKCI5D59Mv7Pz/aMl8TZ2O6fPjeHMWL1g+B+qJaILs5nk9K0ms
-         JsVga7FD0EGNepQFi4szhVwI3no1egtgWLqhB8GvZRHoLWPF50Qp7NPdLnceSQz7Rp00
-         ovLw==
-X-Gm-Message-State: AJIora8KXRMsB5tUofw5jSXBKDRCj3IvK8sbferlCTwWKRLQldEr+jmF
-        VY2J0ph2VTwFGvWSsPoPTP66Ww==
-X-Google-Smtp-Source: AGRyM1tLRY8QkAwWoYjWpNb7dQSE9V/O7PC5G15mDGsmQxQqF2oc9KjbuKFCpvpFUlpBzoqptfdDgQ==
-X-Received: by 2002:a5d:6a09:0:b0:21d:7a73:c48a with SMTP id m9-20020a5d6a09000000b0021d7a73c48amr22127747wru.366.1657642680691;
-        Tue, 12 Jul 2022 09:18:00 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-53-214.cust.vodafonedsl.it. [188.217.53.214])
-        by smtp.gmail.com with ESMTPSA id g1-20020a05600c000100b00397623ff335sm9631398wmc.10.2022.07.12.09.17.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 09:18:00 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 18:17:57 +0200
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        quentin.schulz@theobroma-systems.com,
-        Daniel Scally <djrscally@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 5/6] media: dt-bindings: ov5693: document YAML binding
-Message-ID: <20220712161757.GA1304540@tom-ThinkPad-T14s-Gen-2i>
-References: <20220630134835.592521-1-tommaso.merciai@amarulasolutions.com>
- <20220630134835.592521-6-tommaso.merciai@amarulasolutions.com>
- <20220711093659.mf7i4uqtrejtfong@uno.localdomain>
- <20220712152538.jh4ufxik7icllox6@uno.localdomain>
- <47aa4fbc-9cf4-7ac3-2fb4-2135a7703212@linaro.org>
- <20220712161236.le6wvdhdbleoxeyf@uno.localdomain>
+        with ESMTP id S233188AbiGLQ2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 12:28:37 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73F81FE5;
+        Tue, 12 Jul 2022 09:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1657643313; x=1689179313;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=I3mUL3/zAiCGwntN0HY2apn/gTgpJHWfc8dI+sFDedg=;
+  b=R9x9RD8Nb4XUanuPGaXyePTLej7vd/AVWXfJntPQjn5ffVqi4ihGYsJd
+   7KVC6rewtImA3K887tmy429c2DmkD6jfpWZJpVarVQvficOSQbLrgDMyM
+   L8cT/J9MCn/O1veuMj1z5mI864H/piBvJu8+ftdZarcUHLuDufjDnEoFd
+   tI82uRY54q1qlW3/pKAOz3uVNWD/aLPvuMoRYC/CmHNnCEM+qyB8IG1Nc
+   ywncALbGVD7a57fzc4j4z8XlrlsZVfK6FsR4asVP5FbqIZeMEimkJBOn5
+   /cVTf3fqNM36qoqqf5KrDBj84SG7Nvt46HvupGtCud/7Am6ObpqGnnr6/
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,266,1650956400"; 
+   d="scan'208";a="104127836"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Jul 2022 09:28:03 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 12 Jul 2022 09:28:01 -0700
+Received: from ROB-ULT-M68701.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 12 Jul 2022 09:27:54 -0700
+From:   Sergiu Moga <sergiu.moga@microchip.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Kavyasree.Kotagiri@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <tudor.ambarus@microchip.com>,
+        Sergiu Moga <sergiu.moga@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3] spi: dt-bindings: atmel,at91rm9200-spi: convert to json-schema
+Date:   Tue, 12 Jul 2022 19:25:55 +0300
+Message-ID: <20220712162554.148741-1-sergiu.moga@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220712161236.le6wvdhdbleoxeyf@uno.localdomain>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,179 +65,157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+Convert SPI DT binding for Atmel/Microchip SoCs to json-schema.
 
-On Tue, Jul 12, 2022 at 06:12:36PM +0200, Jacopo Mondi wrote:
-> Hi Krzysztof
-> 
-> On Tue, Jul 12, 2022 at 05:32:45PM +0200, Krzysztof Kozlowski wrote:
-> > On 12/07/2022 17:25, Jacopo Mondi wrote:
-> > > Hi Krzysztof
-> > >    could you have a look at the below question ?
-> >
-> > Sorry, there was a bunch of quoted text without end. When you reply
-> > under quote, please remove the rest of the quote. None of us have a lot
-> > of time to waste on scrolling emails...
-> >
-> 
-> I should have kept a counter of the times I've been told "please do
-> not remove context, I'm so busy I do not have time to read the whole
-> thread" and "please remove context, I'm so busy I cannot read the
-> whole email".
-> 
-> After 5 years of kernel development I would now know what to do.
-> 
-> > >
-> > > If no need to resend from Tommaso I think the series could be
-> > > collected for v5.20.
-> > >
-> > > On Mon, Jul 11, 2022 at 11:37:05AM +0200, Jacopo Mondi wrote:
-> > >> Hi Tommaso, Krzysztof,
-> > >>
-> > >>    This has been reviewed by Krzysztof already, so I guess it's fine,
-> > >> but let me ask anyway
-> > >>
-> > >> On Thu, Jun 30, 2022 at 03:48:34PM +0200, Tommaso Merciai wrote:
-> > >>> Add documentation of device tree in YAML schema for the OV5693
-> > >>> CMOS image sensor from Omnivision
-> > >>>
-> > >>> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> > >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > >>> ---
-> > >>> Changes since v1:
-> > >>>  - Fix allOf position as suggested by Krzysztof
-> > >>>  - Remove port description as suggested by Krzysztof
-> > >>>  - Fix EOF as suggested by Krzysztof
-> > >>>
-> > >>> Changes since v2:
-> > >>>  - Fix commit body as suggested by Krzysztof
-> > >>>
-> > >>> Changes since v3:
-> > >>>  - Add reviewed-by tags, suggested by Jacopo, Krzysztof
-> > >>>
-> > >>> Changes since v4:
-> > >>>  - Remove wrong Sakari reviewed-by tag, suggested by Krzysztof, Sakari
-> > >>>
-> > >>>  .../bindings/media/i2c/ovti,ov5693.yaml       | 106 ++++++++++++++++++
-> > >>>  MAINTAINERS                                   |   1 +
-> > >>>  2 files changed, 107 insertions(+)
-> > >>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> > >>>
-> > >>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> > >>> new file mode 100644
-> > >>> index 000000000000..b83c9fc04023
-> > >>> --- /dev/null
-> > >>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> > >>> @@ -0,0 +1,106 @@
-> > >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > >>> +# Copyright (c) 2022 Amarulasolutions
-> > >>> +%YAML 1.2
-> > >>> +---
-> > >>> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5693.yaml#
-> > >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > >>> +
-> > >>> +title: Omnivision OV5693 CMOS Sensor
-> > >>> +
-> > >>> +maintainers:
-> > >>> +  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> > >>> +
-> > >>> +description: |
-> > >>> +  The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
-> > >>> +  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
-> > >>> +  sub-sampled, and windowed 10-bit MIPI images in various formats via the
-> > >>> +  Serial Camera Control Bus (SCCB) interface.
-> > >>> +
-> > >>> +  OV5693 is controlled via I2C and two-wire Serial Camera Control Bus (SCCB).
-> > >>> +  The sensor output is available via CSI-2 serial data output (up to 2-lane).
-> > >>> +
-> > >>> +allOf:
-> > >>> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> > >>> +
-> > >>> +properties:
-> > >>> +  compatible:
-> > >>> +    const: ovti,ov5693
-> > >>> +
-> > >>> +  reg:
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +  clocks:
-> > >>> +    description:
-> > >>> +      System input clock (aka XVCLK). From 6 to 27 MHz.
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +  dovdd-supply:
-> > >>> +    description:
-> > >>> +      Digital I/O voltage supply, 1.8V.
-> > >>> +
-> > >>> +  avdd-supply:
-> > >>> +    description:
-> > >>> +      Analog voltage supply, 2.8V.
-> > >>> +
-> > >>> +  dvdd-supply:
-> > >>> +    description:
-> > >>> +      Digital core voltage supply, 1.2V.
-> > >>> +
-> > >>> +  reset-gpios:
-> > >>> +    description:
-> > >>> +      The phandle and specifier for the GPIO that controls sensor reset.
-> > >>> +      This corresponds to the hardware pin XSHUTDN which is physically
-> > >>> +      active low.
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +required:
-> > >>> +  - compatible
-> > >>> +  - reg
-> > >>> +  - clocks
-> > >>> +  - dovdd-supply
-> > >>> +  - avdd-supply
-> > >>> +  - dvdd-supply
-> > >>
-> > >> Should supplies be made mandatory ? Sensors are often powered by fixed
-> > >> rails. Do we want DTS writers to create "fixed-regulators" for all of
-> > >> them ? The fact the regulator framework creates dummies if there's no
-> > >> entry in .dts for a regulator makes me think it's fine to have them
-> > >> optional, but I understand how Linux works should not be an indication
-> > >> of how a bindings should look like.
-> > >>
-> > >
-> > > This question ^ :)
-> >
-> > My generic answer for generic devices would be - if resource is
-> > physically required (one need to connect the wire), I would say it
-> > should be also required in the bindings. This also forces driver
-> > developer to think about these resources and might result on
-> > portable/better code.
-> >
-> > However your point is correct that it might create many "fake"
-> > regulators, because pretty often these are fixed on the board and not
-> > controllable. Therefore I am fine with not requiring them - to adjust
-> > the bindings to real life cases.
-> 
-> Tommaso if you can re-send this one with the supplies dropped I think
-> the series is still in time for being collected for this merge window
-> (Sakari to confirm this).
+Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
-Perfect, I'll send v6 with your suggestion.
+v1 -> v2:
+- change subject headline prefix from "dt-bindings: spi" to "spi: atmel"
+- change maintainer
+- kept the compatbile as items (instead of switching to enums) and at91rm9200
+as fallback for sam9x60, since the evolution of IP's is incremental.
+- removed unnecessay "cs-gpios" property and descriptions
+- added min/max for fifo-size property.
 
-Thanks,
-Tommaso
 
-> 
-> Thanks
->   j
-> 
-> >
-> > Best regards,
-> > Krzysztof
+v2 -> v3:
+- change subject headline prefix from "spi: atmel" to
+"spi: dt-bindings: atmel,at91rm9200-spi: convert to json-schema"
+- use enum instead of a range for "atmel,fifo-size"
 
+
+ .../bindings/spi/atmel,at91rm9200-spi.yaml    | 76 +++++++++++++++++++
+ .../devicetree/bindings/spi/spi_atmel.txt     | 36 ---------
+ 2 files changed, 76 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi_atmel.txt
+
+diff --git a/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+new file mode 100644
+index 000000000000..084897cc8f66
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/atmel,spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel SPI device
++
++maintainers:
++  - Tudor Ambarus <tudor.ambarus@microchip.com>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - const: atmel,at91rm9200-spi
++      - items:
++          - const: microchip,sam9x60-spi
++          - const: atmel,at91rm9200-spi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clock-names:
++    contains:
++      const: spi_clk
++
++  clocks:
++    maxItems: 1
++
++  atmel,fifo-size:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Maximum number of data the RX and TX FIFOs can store for FIFO
++      capable SPI controllers.
++  enum: [ 16, 32 ]
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clock-names
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi1: spi@fffcc000 {
++        compatible = "atmel,at91rm9200-spi";
++        reg = <0xfffcc000 0x4000>;
++        interrupts = <13 IRQ_TYPE_LEVEL_HIGH 5>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        clocks = <&spi1_clk>;
++        clock-names = "spi_clk";
++        cs-gpios = <&pioB 3 GPIO_ACTIVE_HIGH>;
++        atmel,fifo-size = <32>;
++
++        mmc@0 {
++            compatible = "mmc-spi-slot";
++            reg = <0>;
++            gpios = <&pioC 4 GPIO_ACTIVE_HIGH>;    /* CD */
++            spi-max-frequency = <25000000>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/spi/spi_atmel.txt b/Documentation/devicetree/bindings/spi/spi_atmel.txt
+deleted file mode 100644
+index 5bb4a8f1df7a..000000000000
+--- a/Documentation/devicetree/bindings/spi/spi_atmel.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-Atmel SPI device
+-
+-Required properties:
+-- compatible : should be "atmel,at91rm9200-spi" or "microchip,sam9x60-spi".
+-- reg: Address and length of the register set for the device
+-- interrupts: Should contain spi interrupt
+-- cs-gpios: chipselects (optional for SPI controller version >= 2 with the
+-  Chip Select Active After Transfer feature).
+-- clock-names: tuple listing input clock names.
+-	Required elements: "spi_clk"
+-- clocks: phandles to input clocks.
+-
+-Optional properties:
+-- atmel,fifo-size: maximum number of data the RX and TX FIFOs can store for FIFO
+-  capable SPI controllers.
+-
+-Example:
+-
+-spi1: spi@fffcc000 {
+-	compatible = "atmel,at91rm9200-spi";
+-	reg = <0xfffcc000 0x4000>;
+-	interrupts = <13 4 5>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	clocks = <&spi1_clk>;
+-	clock-names = "spi_clk";
+-	cs-gpios = <&pioB 3 0>;
+-	atmel,fifo-size = <32>;
+-
+-	mmc-slot@0 {
+-		compatible = "mmc-spi-slot";
+-		reg = <0>;
+-		gpios = <&pioC 4 0>;	/* CD */
+-		spi-max-frequency = <25000000>;
+-	};
+-};
 -- 
-Tommaso Merciai
-Embedded Linux Engineer
-tommaso.merciai@amarulasolutions.com
-__________________________________
+2.25.1
 
-Amarula Solutions SRL
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-T. +39 042 243 5310
-info@amarulasolutions.com
-www.amarulasolutions.com
