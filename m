@@ -2,78 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97267572831
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D94E57283B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:04:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbiGLVDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 17:03:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40426 "EHLO
+        id S230470AbiGLVEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 17:04:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232823AbiGLVCx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:02:53 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605B4BF4A
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:02:51 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id c15so11361600ljr.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:02:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wYfMN1U2Pe3jpUIv6aB3aQPgJskkEEj7WPI7YhpZ+iM=;
-        b=iZXAjAw4olgV0sdKbWutYFhrJLkIBmMclGHtIompGla2ei8+ABHriBhI3sAyRBwQyj
-         Nw2uJ1ShRyvRClLPSTGtOg4VPZ0yWWO/bu2LK5ACyTY3P3Vxd2OqnEglT6D73HK8ZBiL
-         y3KWoycp98U2TrSmE6EyY1dsNCf6O7S/5QV3IptfC+BBb/UBl7G0TeSgRUwA7N41wYt0
-         6baOu7/yvywfkoVIsP7t18eTdmHY/3OFsh7hxDRf41UBd539R56ut+rL+60/+Ino0JEk
-         Zeb4/cZRkx3zlM6qSBHpmHhErgzjbrmO4U0hXW3/GdsV3lsL/V95Cn57P5SYMCn5vCvV
-         +uJQ==
+        with ESMTP id S229711AbiGLVEf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:04:35 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A95BCAF1B;
+        Tue, 12 Jul 2022 14:04:35 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id u6so8947737iop.5;
+        Tue, 12 Jul 2022 14:04:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wYfMN1U2Pe3jpUIv6aB3aQPgJskkEEj7WPI7YhpZ+iM=;
-        b=bJN7iiSlL+mjbDWFo/fWsoQq7RkMq8LMN0u3i7CKAO41aptTrWfuNzYhC3j0xGiRKL
-         HsDyYbsd/bndmVQtkR0xFcnPtFDyFF5WupIswVxZURYt1ftbeAnhzcCW2qTyWkXEs7ir
-         ECJ4Ktc+hzG0ux7gBFayZe21Trmqg8KwGCqXea/rOhr0xy3hJQrtOBrPGAQR88VmSNds
-         HxI1r0u6a0GxRKz8EaZb6iq5cYZSMddxfNn7DzG3/jiO4oVrXfapf+NaoYlHmB/eJ6lJ
-         /D79Ap+/49Iivz3QtewV61HoYNK0unHK0QMDgBCe7NitINgwpWi0uh49EEOp/FvpiFMU
-         VxbA==
-X-Gm-Message-State: AJIora9/pPobJxeLcmse165kp3bSgD02uuWRiwudXHh4zxD86/SolfEP
-        iOhzXSZmPCXm6CZRyWllG2RtBQ==
-X-Google-Smtp-Source: AGRyM1v+9fnhivd68F9zNYLDGadJBtEWyFQcWpvtuIzRBBdhrlhiHwQ4slZrz/esjHrNn6MtFsgZPg==
-X-Received: by 2002:a2e:888e:0:b0:25d:8112:dfc7 with SMTP id k14-20020a2e888e000000b0025d8112dfc7mr2100485lji.270.1657659769611;
-        Tue, 12 Jul 2022 14:02:49 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id v12-20020ac258ec000000b00489dfb5d622sm1390518lfo.257.2022.07.12.14.02.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 14:02:49 -0700 (PDT)
-Message-ID: <db31ded1-d240-e5a0-c4ec-03ad7aef6af8@linaro.org>
-Date:   Tue, 12 Jul 2022 23:02:46 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=B9l0hEIECVZDQ3QXPwtwyskyfVTnfIEfp72jU2ng/o4=;
+        b=cvVYCOvOnf3nxvx+egPGO+FmvzirlF+Af7B9hUeZVTGTFHuCpg5AliiYZ2KycFPDWp
+         P6/wwUAe6qHEqDv6AKV8bSpXOg7TwJ5oXA7w+cnvNmYVYEG0hipXRJAJBWqFERQLaMsj
+         cNZDUGXOx6Ms0mR2euVtMK55xbUNtB33rNXLJfADhIpHc7jwy1EwnDC81mPMPpfJ48eG
+         BRWiQNUDZYfx8YIowbvhPoGuy1rFs6zU5IQ74937Qp3X4k70RN3/q9EzL9v//YwwWAuX
+         2y39mMaOocHmhVrIsomLnij4wzsKPGsGPowIZ+7Z3EY0aSAcGqHRDNmVqsk5WWYyV/QV
+         tN1w==
+X-Gm-Message-State: AJIora//Y8NSxKiIKmh7q7OyHfpsm/RlZG8XcbpNCgNXgcs+67Q6XQyw
+        zBYG1EThGBqca3nnoNeHHw==
+X-Google-Smtp-Source: AGRyM1s4D6fFKHbmJgajbZApfQiCmilN6Wafon4NHMPyM2CPmy1WKz/5rLttQgt0pobnReBbHVKJlA==
+X-Received: by 2002:a05:6638:3494:b0:33f:62fa:d95d with SMTP id t20-20020a056638349400b0033f62fad95dmr15721jal.318.1657659874064;
+        Tue, 12 Jul 2022 14:04:34 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id u6-20020a5edd46000000b0067b7360dd5dsm5529940iop.4.2022.07.12.14.04.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 14:04:33 -0700 (PDT)
+Received: (nullmailer pid 2359803 invoked by uid 1000);
+        Tue, 12 Jul 2022 21:04:32 -0000
+Date:   Tue, 12 Jul 2022 15:04:32 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Isaac True <isaac.true@canonical.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        wim@linux-watchdog.org
+Subject: Re: [PATCH 2/2] watchdog: gpio: add configurable minimum interval
+Message-ID: <20220712210432.GP1823936-robh@kernel.org>
+References: <20220629110626.2158127-1-isaac.true@canonical.com>
+ <20220629110626.2158127-2-isaac.true@canonical.com>
+ <20220701171829.GA1149706-robh@kernel.org>
+ <0d045bb8-a519-39d4-17fa-123f90969bd9@roeck-us.net>
+ <CALkPoPYKNxAeP6HM1cMh1zzW6jw4fktCp42b7+79Qf8DVJis-w@mail.gmail.com>
+ <20220705195614.GA2503171-robh@kernel.org>
+ <CALkPoPY49PGNk84spUF3BesdZoUFpq++D1NYd_1ouT2Cv4wDYQ@mail.gmail.com>
+ <20220708114425.GA2164221@roeck-us.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Update lpassaudio clock
- controller for resets
-Content-Language: en-US
-To:     Satya Priya <quic_c_skakit@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Taniya Das <tdas@codeaurora.org>, mka@chromium.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>
-References: <1657181739-32052-1-git-send-email-quic_c_skakit@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1657181739-32052-1-git-send-email-quic_c_skakit@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220708114425.GA2164221@roeck-us.net>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,41 +69,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 10:15, Satya Priya wrote:
-> From: Taniya Das <quic_tdas@quicinc.com>
+On Fri, Jul 08, 2022 at 04:44:25AM -0700, Guenter Roeck wrote:
+> On Thu, Jul 07, 2022 at 11:00:45AM +0200, Isaac True wrote:
+> > On Tue, 5 Jul 2022 at 21:56, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Mon, Jul 04, 2022 at 01:05:04PM +0200, Isaac True wrote:
+> > > > On Fri, 1 Jul 2022 at 19:48, Guenter Roeck <linux@roeck-us.net> wrote:
+> > > > >
+> > > > > On 7/1/22 10:18, Rob Herring wrote:
+> > > > > > On Wed, Jun 29, 2022 at 01:06:26PM +0200, Isaac True wrote:
+> > > > > >> Add the "min_hw_margin_ms" parameter to gpio_wdt devices, allowing a
+> > > > > >> minimum interval to be specified, stopping watchdog devices from being
+> > > > > >> fed too quickly if they require a certain interval between feeds.
+> > > > > >
+> > > > > > I assume there is some real platform with a real problem you are trying
+> > > > > > to solve? Details please.
+> > > > > >
+> > > > >
+> > > > > Agreed, this should be explained in more detail.
+> > > >
+> > > > Yes this is a real platform using a TI TPS3850 watchdog chip. With
+> > > > this chip you can configure a "window" which can detect early faults
+> > > > (i.e. too frequent) in addition to the standard watchdog features. I
+> > > > needed to add this minimum timeout to avoid watchdog resets in
+> > > > situations such as where first U-Boot and then the Linux kernel feed
+> > > > the watchdog with too short of an interval between them, or when
+> > > > systemd was configured to use the watchdog device and was feeding it
+> > > > too soon after taking over from the kernel.
+> > > >
+> > > > > > Can you just hardcode some min? Maybe 10% of the max or something. Is
+> > > > > > there a downside to a larger than necessary min?
+> > > > > >
+> > > > >
+> > > > > That would result in extra overhead in the watchdog core which would not
+> > > > > be required for all other hardware using this driver. I'd rather avoid that.
+> > > > >
+> > > >
+> > > > In the case of the TI TPS3850, the minimum timeout is configurable, so
+> > > > I didn't want to add a hard-coded value to the driver.
+> > > >
+> > > > > > Wouldn't be better to fix this without requiring a DT change and that
+> > > > > > could work on stable kernels if needed.
+> > > > > >
+> > > > >
+> > > > > Presumably that is some new hardware. Most of the watchdog drivers
+> > > > > needing this value can derive it from the compatible property. The
+> > > > > gpio watchdog driver is a bit different since it is supposed to work
+> > > > > on a variety of hardware using gpio pins for watchdog control.
+> > > > >
+> > > >
+> > > > Yes this is new hardware. This use case is also not very common as
+> > > > most watchdog chips don't have this window function or a minimum
+> > > > interval, at least in my experience, so I did not want to make it the
+> > > > default for everything.
+> > >
+> > > Okay. However the existing property you copied has 2 problems. It uses
+> > > underscores rather than hypens and doesn't use a standard unit suffix.
+> > > So 'min-hw-margin-ms'.
+> > >
+> > > Though maybe a new property instead:
+> > >
+> > > timeout-range-ms = <min max>;
+> > >
+> > > That's somewhat aligned to 'timeout-sec', and IMO, clearer meaning than
+> > > 'hw margin'.
+> > >
+> > > Rob
+> > 
+> > I agree that both the original property name and the new one aren't
+> > great, but I didn't want to go changing the existing property for
+> > everyone.  I could definitely add a new "timeout-range-ms" property -
+> > should that be added in parallel to the original hw_margin_ms (i.e.
+> > you can use one or the other), or completely replace the original?
 > 
-> The lpass audio supports TX/RX/WSA block resets. Disable the LPASS PIL
-> clock by default, boards can enable it if needed.
+> I wonder how that made it in in the first place. Embarrassed ...
+> of course it wasn't reviewed by a DT maintainer. I'd suggest to mark
+> the old property as deprecated (if that is possible) and define
+> the new one.
 
-You made here few different changes at once but I fail to see why. The
-most important message in commit msg is "why?". Why are you disabling
-LPASS PIL by default?
+Seems doable. Only 1 user upstream.
 
-> 
-> Also to keep consistency update lpasscore to lpass_core.
+Also, note that there is also 'rohm,hw-timeout-ms' which is a range.
 
-This definitely should not be backported to stable.
-
-> 
-> Fixes: 9499240d15f2 ("arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio clock controllers")
-
-This does not look right or I did not understand where the bug is.
-Please describe what is the error/issue/bug being fixed (which would
-explain the need of backporting).
-
-More over, the patch alone brings regression - disables the LPASS PIL
-while before it was enabled. For sure it should not be backported.
-
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> ---
-> Changes since V1:
->  - Updated the phandle reference in lpass_aon node.
->  - As per Matthias' comment updated the commit text.
-> 
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-
-
-Best regards,
-Krzysztof
+Rob
