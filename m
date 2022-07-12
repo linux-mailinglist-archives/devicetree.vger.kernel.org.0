@@ -2,83 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E9F571EDB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACEDB571EEB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:23:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233800AbiGLPVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 11:21:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55466 "EHLO
+        id S233524AbiGLPXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 11:23:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233014AbiGLPVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:21:09 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5ED5C176A
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:18:14 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id w2so10266060ljj.7
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:18:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Tj5Gg27gp6guU9o9CDqxeuyaEnEIyrvYSMIuKpk5DD8=;
-        b=tGqKNetCeWXzqGSSNavFzF6GgOnaP8uE2YFx+VXS9WdGV5+5ap7lYe4ilTL/1ca+f+
-         ouoKcLg2D+XuplmIZ64Lz27n+Eh3j2Ya6E+NSRFRl3bnp1leC9bzqMmv7HUj60q49LET
-         rIvE/HVfZH7a4dyRgaENaiFzB5AsCD1r63XXMdITydVZRxTVBgbNgWAB2rO9AxLLVuaC
-         AzOFcDK+tXjAOimM2VbjoHL+V5TK3gLBOqx+O79eaba0f8hHPr9JyQA8CWPolOaN8rpT
-         6B9s+95UGjNRSOzF5Y3dhERiewU2/lC5qnFS8oZu/sLrVVw+82sAAOSBpGrbvWYEnvPL
-         5OrQ==
+        with ESMTP id S233183AbiGLPWq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:22:46 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 948A4C1761;
+        Tue, 12 Jul 2022 08:21:34 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id h200so8117280iof.9;
+        Tue, 12 Jul 2022 08:21:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Tj5Gg27gp6guU9o9CDqxeuyaEnEIyrvYSMIuKpk5DD8=;
-        b=4QCGJlpBY/zi2lGV7dr/LSuMvZkUOV0kUzP6moa4cGqnYecDU42h+EfcvSI8U08dtq
-         5IhV2A83yXWApbobjSjAT5iyx3UTwP53kg7GCwHp9/nFXLyyJwuSazrmL9sPYaDcap6H
-         XuZr7sivWdYMMC8KMt0hfctbjftZ6i53DvwW0/JxjcXY7CRYBK3i5ihPh8HNWfGqNC0Q
-         mC3uFOmN60RatTwmn8dm4Gq0yrPQGHlZEk/V5ajw+Cl4Ut4YJxrrJyISCv4AlpX+kqzf
-         VRRBfvQxVmMq3opFWH/Hvo2zA/wanv0W7dcXdQzAm7e/4Q3/b/FccLS5bIEU+NhC8m3v
-         8WMA==
-X-Gm-Message-State: AJIora+gi5WoTDhwjK+3xoHeL1+PovaSzikVRNSwZYBKhyR1E32M+NEw
-        hnTV4PKLDR1EMiMs3isdnl8LRg==
-X-Google-Smtp-Source: AGRyM1s3SKYPr8wCbAab/dh6Yo/xp76xDbLfy2u6JUJeWpoicCcLEvo3aAi857vpfyk8jA3cDKyCLA==
-X-Received: by 2002:a2e:9547:0:b0:24f:2e31:6078 with SMTP id t7-20020a2e9547000000b0024f2e316078mr12469910ljh.102.1657639093026;
-        Tue, 12 Jul 2022 08:18:13 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id o28-20020a198c1c000000b00482bb812713sm2232708lfd.94.2022.07.12.08.18.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 08:18:12 -0700 (PDT)
-Message-ID: <d84899e7-06f7-1a20-964f-90b6f0ff96fd@linaro.org>
-Date:   Tue, 12 Jul 2022 17:18:05 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dDdtW6rNYIAp97Z79cLxZ45hBOzgYdm8qs6dwMe06kE=;
+        b=udXhXjgi2WEeMemHhvb5hdhOGX3OIAtuCq1xW9wadYLW0gst3vybHdwF2jgRF4pYNv
+         SbJOLjf+naRZhPgXPtt1IH+5e2rdKXrkcSQa5YsHbGm3wC/tH0gG6YanjlWksRZ2MWG0
+         hW1wBjondEaoVCVZ3Qk2hwmivJ9lJsX4ZvrCiPM+V8wjngIOSq+1TAJWt3wb3M/DKjIc
+         sAGc6qZmpnEiey0vOiKQUuaRZyXYnLBgV/rHNl1yDxw+YQ0YPvvXjqQSxZFKdXAWaYCX
+         H4x4bholJ/OIcgjMqQp3fDVJQW+x2l/CmVaR5gt2h4DpytBWSV5csN54KIh09IPv+f1+
+         uwUA==
+X-Gm-Message-State: AJIora92EYhDyEyP3MEl9oN+sqZvnUqDP+DJS3KEWfLQSJGNWxJOrPx5
+        9Og2BaxthyoKcM+4saQJ6g==
+X-Google-Smtp-Source: AGRyM1u4Wa6kjd1im1mCu+hIdmoX1OrX7mux3KsADPgZgjKXuPCus7u6YBCHY1jBifOYL9R8YJ2wCg==
+X-Received: by 2002:a05:6638:4126:b0:33f:6bc0:f8e7 with SMTP id ay38-20020a056638412600b0033f6bc0f8e7mr3449861jab.189.1657639293815;
+        Tue, 12 Jul 2022 08:21:33 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id m21-20020a02a155000000b00339e2f0a9bfsm4228957jah.13.2022.07.12.08.21.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 08:21:33 -0700 (PDT)
+Received: (nullmailer pid 1879877 invoked by uid 1000);
+        Tue, 12 Jul 2022 15:21:31 -0000
+Date:   Tue, 12 Jul 2022 09:21:31 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, vkoul@kernel.org, kishon@ti.com,
+        rtanwar@maxlinear.com
+Subject: Re: [PATCH v1 3/9] dt-bindings: reset: intel,rcu-gw: Update bindings
+ for "legacy" SoCs
+Message-ID: <20220712152131.GC1823936-robh@kernel.org>
+References: <20220628124441.2385023-1-martin.blumenstingl@googlemail.com>
+ <20220628124441.2385023-4-martin.blumenstingl@googlemail.com>
+ <20220701163350.GA1078312-robh@kernel.org>
+ <CAFBinCARuO0WFLufwgPxQkY_Mh+Pfn6V8QAe-HZ8sjUBKTYhtQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [RFC PATCH net-next 2/9] dt-bindings: net: Expand pcs-handle to
- an array
-Content-Language: en-US
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20220711160519.741990-1-sean.anderson@seco.com>
- <20220711160519.741990-3-sean.anderson@seco.com>
- <ecaf9d0f-6ddb-5842-790e-3d5ee80e2a77@linaro.org>
- <fdd34075-4e5e-a617-696d-15c5ac6e9bfe@seco.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fdd34075-4e5e-a617-696d-15c5ac6e9bfe@seco.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFBinCARuO0WFLufwgPxQkY_Mh+Pfn6V8QAe-HZ8sjUBKTYhtQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,54 +67,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2022 17:06, Sean Anderson wrote:
-> Hi Krzysztof,
+On Sun, Jul 03, 2022 at 01:04:20AM +0200, Martin Blumenstingl wrote:
+>  Hi Rob,
 > 
-> On 7/12/22 4:51 AM, Krzysztof Kozlowski wrote:
->> On 11/07/2022 18:05, Sean Anderson wrote:
->>> This allows multiple phandles to be specified for pcs-handle, such as
->>> when multiple PCSs are present for a single MAC. To differentiate
->>> between them, also add a pcs-names property.
->>>
->>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->>> ---
->>>
->>>  .../devicetree/bindings/net/ethernet-controller.yaml       | 7 ++++++-
->>>  1 file changed, 6 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
->>> index 4f15463611f8..c033e536f869 100644
->>> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
->>> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
->>> @@ -107,11 +107,16 @@ properties:
->>>      $ref: "#/properties/phy-connection-type"
->>>  
->>>    pcs-handle:
->>> -    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>>      description:
->>>        Specifies a reference to a node representing a PCS PHY device on a MDIO
->>>        bus to link with an external PHY (phy-handle) if exists.
->>
->> You need to update all existing bindings and add maxItems:1.
->>
->>>  
->>> +  pcs-names:
->>
->> To be consistent with other properties this should be "pcs-handle-names"
->> and the other "pcs-handles"... and then actually drop the "handle".
+> On Fri, Jul 1, 2022 at 6:33 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Tue, Jun 28, 2022 at 02:44:35PM +0200, Martin Blumenstingl wrote:
+> > > The Lantiq Amazon-SE, Danube, xRX100 and xRX200 SoCs have up to two USB2
+> > > PHYs which are part of the RCU register space. The RCU registers on
+> > > these SoCs are using big endian. Update the binding for these SoCs to
+> > > properly describe this IP:
+> > > - Add compatible strings for Amazon-SE, Danube and xRX100
+> > > - Rename the xRX200 compatible string (which is not used anywhere) and
+> > >   switch to the one previously documented in mips/lantiq/rcu.txt
+> > > - Allow usage of "simple-mfd" and "syscon" in the compatible string so the
+> > >   child devices (USB2 PHYs) can be described
+> > > - Allow #address-cells and #size-cells to be set to 1 for describing the
+> > >   child devices (USB2 PHYs)
+> > > - #reset-cells must always be 3 (offset, reset bit and status bit) on the
+> > >   legacy SoCs while LGM uses a fixed value of 2 (offset and reset bit -
+> > >   status bit is always identical to the reset bit).
+> > >
+> > > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > > ---
+> > >  .../bindings/reset/intel,rcu-gw.yaml          | 84 +++++++++++++++++--
+> > >  1 file changed, 79 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml b/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml
+> > > index be64f8597710..b90913c7b7d3 100644
+> > > --- a/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml
+> > > +++ b/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml
+> > > @@ -11,9 +11,16 @@ maintainers:
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    enum:
+> > > -      - intel,rcu-lgm
+> > > -      - intel,rcu-xrx200
+> >
+> > It is okay to remove/change this because ?
+> I'll update the description in v2. The "intel,rcu-xrx200" compatible
+> string isn't used anywhere (upstream or downstream in OpenWrt).
+> u-boot on Lantiq xRX200 SoCs is too old to pass a dtb to the kernel,
+> so we're appending the DTB to the kernel image.
 > 
-> Sorry, I'm not sure what you're recommending in the second half here.
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - lantiq,ase-rcu
+> > > +              - lantiq,danube-rcu
+> > > +              - lantiq,xrx100-rcu
+> > > +              - lantiq,xrx200-rcu
+> > > +          - const: simple-mfd
+> >
+> > This says child nodes have 0 dependence on anything in the parent node.
+> > Such as a clock in the parent needing to be enabled.
+> >
+> > > +          - const: syscon
+> >
+> > Given the child nodes depend on this, I find the combination to be a
+> > contradiction. But it's widely used, so oh well.
+> I can think of two ways to solve this:
+> 1) remove the simple-mfd compatible string and make the driver also
+> discover child nodes
+> 2) remove the simple-mfd compatible string and remove the USB PHY
+> child nodes - then add add #phy-cells = <1> to the RCU node itself
+> (and somehow update the RCU and USB PHY drivers accordingly)
+> 3) introduce a separate child node for the reset-controller, then the
+> child nodes depend on each other (but there's no strict dependency on
+> the parent anymore other than the fact that the parent needs a
+> "syscon" compatible string).
+> 
+> My understanding of this IP block is that it was initially designed as
+> a reset controller, hence its name "reset controller unit" (RCU). Then
+> additional logic was added after the fact.
+> So I think 1) (dropping the simple-mfd compatible string) or 2)
+> (dropping the simple-mfd compatible string and the child nodes
+> altogether) is the right way to go here. Which route would you go and
+> why?
 
-I would be happy to see consistent naming with other xxxs/xxx-names
-properties, therefore I recommend to:
-1. deprecate pcs-handle because anyway the naming is encoding DT spec
-into the name ("handle"),
-2. add new property 'pcs' or 'pcss' (the 's' at the end like clocks but
-maybe that's too much) with pcs-names.
+2 would be my choice. That's the simplest binding. Unless the phy 
+registers show up in different places on multiple devices, then maybe 
+it's worth keeping the child node.
 
-However before implementing this, please wait for more feedback. Maybe
-Rob or net folks will have different opinions.
-
-Best regards,
-Krzysztof
+Rob
