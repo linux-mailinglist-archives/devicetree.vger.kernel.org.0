@@ -2,82 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A370A571C8D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EA53571C9B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232706AbiGLO3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47374 "EHLO
+        id S233061AbiGLOaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:30:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232987AbiGLO3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:29:23 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4462021AA
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:29:22 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id ss3so8605115ejc.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:29:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UpQJKKbtg93cX86UuSBO9tVRJrPAdwmdctCEOdnSRnU=;
-        b=ijq11B8dVKWd4WwXQdLWGL47Ff65ZWhCh8I3SE5MaxMAad6+ff+0LigbAoCe2JY4iV
-         3LYhRmAzDWby1Q6v0gv1VaqErS7z7UeZOhoWW35oxwjCuJ3tvmQYNhvS3m9DSj3ZipSe
-         75C5HfTf7UALfjjpZlu/UxdxlwILLB1WhqUf4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UpQJKKbtg93cX86UuSBO9tVRJrPAdwmdctCEOdnSRnU=;
-        b=TUEslzQ+Y9jAgP1Ctz1p5+LabUKHG83onucAAtMWA6zm0y4vMvCma7VJ+Gm/smtXh+
-         4cSlOXzAHngjbONuNKXxrt4IJtJiLFUHFPXrgC/f8yHgPwIRwAC2my2vjuhs5LAEVECs
-         bH420MbRscUQjRhSilFWPCxy8BVgs3B2SVyFRE84Fj24j6fuY4zLTJMNYk3FSC04kdb6
-         nvEGxSKc6Sqfb5wDjzsuyHI/65ZZaUPlLTtrO9Ft8Xzinc3CCg4ijNZiQ710ksc0Cs2n
-         8efbcj8uxUtuAUls7R5zxaXBI++bfGaQfV/SBAHBJOmXoKhYj2gsWFPHy7NRErVkk3+w
-         T04w==
-X-Gm-Message-State: AJIora/Ogo3rjJHPXF1Qz7NEypKM0zwBw9H2XQDwRi4Ry72cGFcFi+aZ
-        r33yvPxjs0OGHAL3IfYwpa55v4wA2FZQDfF1Xz8=
-X-Google-Smtp-Source: AGRyM1uJfbzBdPYb2B3DXZ7tC493LwOOQ3Hxi7xfYkAp2VKdBE2gte8GU0iKtn3y5ERLIFaWtmPEyQ==
-X-Received: by 2002:a17:907:2c47:b0:6d7:31b0:e821 with SMTP id hf7-20020a1709072c4700b006d731b0e821mr23377909ejc.334.1657636160550;
-        Tue, 12 Jul 2022 07:29:20 -0700 (PDT)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com. [209.85.221.41])
-        by smtp.gmail.com with ESMTPSA id y26-20020a056402135a00b00435a742e350sm6146800edw.75.2022.07.12.07.29.19
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 07:29:19 -0700 (PDT)
-Received: by mail-wr1-f41.google.com with SMTP id bk26so11401930wrb.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:29:19 -0700 (PDT)
-X-Received: by 2002:adf:d1c1:0:b0:21b:a5e9:b7b2 with SMTP id
- b1-20020adfd1c1000000b0021ba5e9b7b2mr22505619wrd.405.1657636159126; Tue, 12
- Jul 2022 07:29:19 -0700 (PDT)
+        with ESMTP id S229829AbiGLO36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:29:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018D22871F;
+        Tue, 12 Jul 2022 07:29:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 91A80618F8;
+        Tue, 12 Jul 2022 14:29:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB807C341C8;
+        Tue, 12 Jul 2022 14:29:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657636196;
+        bh=eD8CW9WNiJT8VXhu8zwAPpJ2nHI6u87NDwtq5Ro4Zkk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pT24m+7R6+CJHODdS4TaCZnUnta0iUdEIVJOWr7keb/BUm3h8P7woBbOS3bnGjyDG
+         H3mH8VlmYAOdfSrROvE1aHkFMIrbycy6ANEXqEhrJW/Ghrz44jlSwKPyBdILAs2wA5
+         dTcNFqENehXUrSK18juekpJWXSpPHviib7ngzjdlwddI71q7gznYGIbaAmWW+U2G8z
+         M5f1BeBaM1PtpaPkUS7tBWvBBD/0i7SHYyhqxoiuKn0pkMhz5sQ7X+GG/6nWvkREZi
+         JyK9eAkIQNR4bQKKM63DQCF2McAsV1jsJBarnKRktOrNLnYL0zGgJ7UELJG3t4trgV
+         Vs7l2LXgTXxcw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oBGth-0001zS-P1; Tue, 12 Jul 2022 16:29:57 +0200
+Date:   Tue, 12 Jul 2022 16:29:57 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Nishanth Menon <nm@ti.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>, linux-pm@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH V2 00/13] OPP: Add support for multiple clocks*
+Message-ID: <Ys2FZa6YDwt7d/Zc@hovoldconsulting.com>
+References: <cover.1657003420.git.viresh.kumar@linaro.org>
+ <YsxSkswzsqgMOc0l@hovoldconsulting.com>
+ <20220712075240.lsjd42yhcskqlzrh@vireshk-i7>
 MIME-Version: 1.0
-References: <20220711082940.39539-1-krzysztof.kozlowski@linaro.org>
- <20220711082940.39539-3-krzysztof.kozlowski@linaro.org> <CAD=FV=WUCPzzZHAPqoz-vhmcVxzYDxkKQs=+1tLZvsQjWe4q3Q@mail.gmail.com>
- <f8744ff8-15a0-bf31-c49f-b1bb35ba5cdd@linaro.org> <CAD=FV=X2ZfwwDO_hSSN35ObfvBbBbPjMoSB4GvS7m0yJieNg3Q@mail.gmail.com>
- <629ede41-326b-9c84-4bb8-2f7e695ca928@linaro.org>
-In-Reply-To: <629ede41-326b-9c84-4bb8-2f7e695ca928@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 12 Jul 2022 07:29:06 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=W7dypM9=uqaY650TGfiV4EaZR9EBH_3svQefyNv-oE7Q@mail.gmail.com>
-Message-ID: <CAD=FV=W7dypM9=uqaY650TGfiV4EaZR9EBH_3svQefyNv-oE7Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] dt-bindings: mmc: sdhci-msm: constrain reg-names
- perp variants
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220712075240.lsjd42yhcskqlzrh@vireshk-i7>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,181 +74,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, Jul 12, 2022 at 01:22:40PM +0530, Viresh Kumar wrote:
+> On 11-07-22, 18:40, Johan Hovold wrote:
+> > This break OPP parsing on SC8280XP and hence cpufreq and other things:
+> > 
+> > [  +0.010890] cpu cpu0: _opp_add_static_v2: opp key field not found
+> > [  +0.000019] cpu cpu0: _of_add_opp_table_v2: Failed to add OPP, -19
+> > [  +0.000060] cpu cpu0: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 300000000, volt: 576000, enabled: 1. New: freq: 403200000, volt: 576000, enabled: 1
+> > [  +0.000030] cpu cpu0: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 300000000, volt: 576000, enabled: 1. New: freq: 499200000, volt: 576000, enabled: 1
+> > ...
+> > 
+> > I just did a rebase on next-20220708 and hit this.
+> > 
+> > I've narrowed it down to _read_rate() now returning -ENODEV since
+> > opp_table->clk_count is zero.
+> > 
+> > Similar to what was reported for tegra for v1:
+> > 
+> > 	https://lore.kernel.org/all/58cc8e3c-74d4-e432-8502-299312a1f15e@collabora.com/
+> > 
+> > I don't have time to look at this any more today, but it would we nice
+> > if you could unbreak linux-next.
+> > 
+> > Perhaps Bjorn or Mani can help with further details, but this doesn't
+> > look like something that is specific to SC8280XP.
+> 
+> It is actually. This is yet another corner case, Tegra had one as
+> well.
 
-On Tue, Jul 12, 2022 at 12:02 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 11/07/2022 17:11, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Mon, Jul 11, 2022 at 7:53 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 11/07/2022 16:52, Doug Anderson wrote:
-> >>> Hi
-> >>>
-> >>> On Mon, Jul 11, 2022 at 1:29 AM Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>>
-> >>>> The entries in arrays must have fixed order, so the bindings and Linux
-> >>>> driver expecting various combinations of 'reg' addresses was never
-> >>>> actually conforming to guidelines.
-> >>>>
-> >>>> The 'core' reg entry is valid only for SDCC v4 and lower, so disallow it
-> >>>> in SDCC v5.  SDCC v4 supports CQE and ICE, so allow them, even though
-> >>>> the qcom,sdhci-msm-v4 compatible is used also for earlier SoCs with SDCC
-> >>>> v2 or v3, so it is not entirely accurate.
-> >>>>
-> >>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>>>
-> >>>> ---
-> >>>>
-> >>>> Changes since v1:
-> >>>> 1. Rework the patch based on Doug's feedback.
-> >>>> ---
-> >>>>  .../devicetree/bindings/mmc/sdhci-msm.yaml    | 61 ++++++++++++-------
-> >>>>  1 file changed, 38 insertions(+), 23 deletions(-)
-> >>>
-> >>> In the ${SUBJECT} I'm not sure what a "perp variant" is. Is that a
-> >>> typo or just a phrase I'm not aware of?
-> >>
-> >> Should be:
-> >> "per variants"
-> >>
-> >>>
-> >>>
-> >>>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> >>>> index fc6e5221985a..2f0fdd65e908 100644
-> >>>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> >>>> @@ -49,33 +49,11 @@ properties:
-> >>>>
-> >>>>    reg:
-> >>>>      minItems: 1
-> >>>> -    items:
-> >>>> -      - description: Host controller register map
-> >>>> -      - description: SD Core register map
-> >>>> -      - description: CQE register map
-> >>>> -      - description: Inline Crypto Engine register map
-> >>>> +    maxItems: 4
-> >>>>
-> >>>>    reg-names:
-> >>>>      minItems: 1
-> >>>>      maxItems: 4
-> >>>> -    oneOf:
-> >>>> -      - items:
-> >>>> -          - const: hc
-> >>>> -      - items:
-> >>>> -          - const: hc
-> >>>> -          - const: core
-> >>>> -      - items:
-> >>>> -          - const: hc
-> >>>> -          - const: cqhci
-> >>>> -      - items:
-> >>>> -          - const: hc
-> >>>> -          - const: cqhci
-> >>>> -          - const: ice
-> >>>> -      - items:
-> >>>> -          - const: hc
-> >>>> -          - const: core
-> >>>> -          - const: cqhci
-> >>>> -          - const: ice
-> >>>>
-> >>>>    clocks:
-> >>>>      minItems: 3
-> >>>> @@ -177,6 +155,43 @@ required:
-> >>>>  allOf:
-> >>>>    - $ref: mmc-controller.yaml#
-> >>>>
-> >>>> +  - if:
-> >>>> +      properties:
-> >>>> +        compatible:
-> >>>> +          contains:
-> >>>> +            enum:
-> >>>> +              - qcom,sdhci-msm-v4
-> >>>> +    then:
-> >>>> +      properties:
-> >>>> +        reg:
-> >>>> +          minItems: 2
-> >>>> +          items:
-> >>>> +            - description: Host controller register map
-> >>>> +            - description: SD Core register map
-> >>>> +            - description: CQE register map
-> >>>> +            - description: Inline Crypto Engine register map
-> >>>> +        reg-names:
-> >>>> +          minItems: 2
-> >>>> +          items:
-> >>>> +            - const: hc
-> >>>> +            - const: core
-> >>>> +            - const: cqhci
-> >>>> +            - const: ice
-> >>>> +    else:
-> >>>> +      properties:
-> >>>> +        reg:
-> >>>> +          minItems: 1
-> >>>> +          items:
-> >>>> +            - description: Host controller register map
-> >>>> +            - description: CQE register map
-> >>>> +            - description: Inline Crypto Engine register map
-> >>>> +        reg-names:
-> >>>> +          minItems: 1
-> >>>> +          items:
-> >>>> +            - const: hc
-> >>>> +            - const: cqhci
-> >>>> +            - const: ice
-> >>>
-> >>> Do you need to set "maxItems" here? If you don't then will it inherit
-> >>> the maxItems of 4 from above?
-> >>
-> >> No, items determine the size instead.
-> >
-> > Can you just remove the "maxItems" from above then? Does it buy us anything?
->
-> There is no maxItems directly here...
+I literally meant that it does not appear to be SC8280XP specific. Bjorn
+reported seeing similar problems on multiple Qualcomm SoCs.
 
-Sorry, I mean above in the schema. After your patch the schema is effectively:
+> I have tried to understand the Qcom code / setup to best of my
+> abilities, and the problem as per me is that qcom-cpufreq-hw doesn't
+> provide a clk to the OPP core, which breaks it after the new updates
+> to the OPP core. I believe following will solve it. Can someone please
+> try this ? I will then merge it with the right commit.
+> 
+> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+> index 666e1ebf91d1..4f4a285886fa 100644
+> --- a/drivers/opp/core.c
+> +++ b/drivers/opp/core.c
+> @@ -1384,6 +1384,20 @@ static struct opp_table *_update_opp_table_clk(struct device *dev,
+>         }
+> 
+>         if (ret == -ENOENT) {
+> +               /*
+> +                * There are few platforms which don't want the OPP core to
+> +                * manage device's clock settings. In such cases neither the
+> +                * platform provides the clks explicitly to us, nor the DT
+> +                * contains a valid clk entry. The OPP nodes in DT may still
+> +                * contain "opp-hz" property though, which we need to parse and
+> +                * allow the platform to find an OPP based on freq later on.
+> +                *
+> +                * This is a simple solution to take care of such corner cases,
+> +                * i.e. make the clk_count 1, which lets us allocate space for
+> +                * frequency in opp->rates and also parse the entries in DT.
+> +                */
+> +               opp_table->clk_count = 1;
+> +
+>                 dev_dbg(dev, "%s: Couldn't find clock: %d\n", __func__, ret);
+>                 return opp_table;
+>         }
 
-reg:
-  minItems: 1
-  maxItems: 4
-reg-names:
-  minItems: 1
-  maxItems: 4
+This looks like a hack. And it also triggers a bunch of new warning when
+opp is trying to create debugfs entries for an entirely different table
+which now gets clk_count set to 1:
 
-...
+[  +0.000979]  cx: _update_opp_table_clk: Couldn't find clock: -2
+[  +0.000022] debugfs: Directory 'opp:0' with parent 'cx' already present!
+[  +0.000004] debugfs: Directory 'opp:0' with parent 'cx' already present!
+[  +0.000004] debugfs: Directory 'opp:0' with parent 'cx' already present!
+[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
+[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
+[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
+[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
+[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
+[  +0.000003] debugfs: Directory 'opp:0' with parent 'cx' already present!
 
-allOf:
-  - if:
-      blah-blah-blah
-    then:
-      properties:
-        reg:
-          minItems: 2
-          items:
-            - description: ...
-            - description: ...
-            - description: ...
-            - description: ...
-        reg-names:
-          blah-blah-blah
-    else:
-      blah-blah-blah
+This is for the rpmhpd whose opp table does not have either opp-hz or
+clocks (just opp-level).
 
-I'm asking about the maxItems _above_, AKA in the section:
+The above unbreaks cpufreq though.
 
-reg:
-  minItems: 1
-  maxItems: 4
-reg-names:
-  minItems: 1
-  maxItems: 4
-
-Can we remove the "maxItems: 4" from the above and have it just be:
-
-reg:
-  minItems: 1
-reg-names:
-  minItems: 1
-
--Doug
+Johan
