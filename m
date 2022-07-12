@@ -2,126 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77B1A571136
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 06:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5535571190
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 06:55:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229518AbiGLEYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 00:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43036 "EHLO
+        id S229731AbiGLEzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 00:55:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbiGLEXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 00:23:53 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D08B1A385;
-        Mon, 11 Jul 2022 21:23:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1657599818; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=lYy2koBE8WQhh9HsLuGC8iyWBoYe4JjtACHNpzHZH99GbFxPjOIcaR4+kATOZVHTaT/RW42it+SRCDKNO7SqfnxQBf9Lj/vwWsHU3U4tzEM5RZGSk2zShNWfpNA9mINgA1Lmhu5fid3g9iEp7HsMNPgJC9TZ+daMGh1bMf1xKUQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1657599818; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=AYZhl4Tgx5eXsw054d7yEPiQv66vkg0JPurDrzFEdv0=; 
-        b=Hdd/Ff0B9wGPEc5WEtB/YnzgqXvJFPIGnI4JP9rkFCd4T95isyhFcaOJjSqFkcNL6ywomEXaiOo1rFVaZuXe8OkwjgIwOB4G9PWOSMcToXV4ptjNuDGw/mMJELLqd/JxYig3dn1HXJULFgYa5JSv/EK744xmc+Tlo9HK72p2NbQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=linux.beauty;
-        spf=pass  smtp.mailfrom=me@linux.beauty;
-        dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1657599818;
-        s=zmail; d=linux.beauty; i=me@linux.beauty;
-        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=AYZhl4Tgx5eXsw054d7yEPiQv66vkg0JPurDrzFEdv0=;
-        b=V5rJcwOxbzzZIC4sbkyYEN3bVl2QRlwZdwcw8n/JqG1DQE7qXaM9iEx4PRnRF5Rg
-        jBhigsObcYHRzKwGoCtW9bFxFhuE+jbM+bv+RYhGpXYtiF5Xk45KmebxhDRoVOF1m1W
-        6KEa90MDYHaWYOyAjS1Tk2dCMOh0jcVeoYHUV6q8=
-Received: from mail.zoho.com by mx.zohomail.com
-        with SMTP id 1657599816384969.9914766883284; Mon, 11 Jul 2022 21:23:36 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 12:23:36 +0800
-From:   Li Chen <me@linux.beauty>
-To:     "David Hildenbrand" <david@redhat.com>
-Cc:     "Catalin Marinas" <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Frank Rowand" <frowand.list@gmail.com>,
-        "Andrew Morton" <akpm@linux-foundation.org>,
-        "Li Chen" <lchen@ambarella.com>,
-        "linux-arm-kernel" <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel" <linux-kernel@vger.kernel.org>,
-        "devicetree" <devicetree@vger.kernel.org>,
-        "linux-mm" <linux-mm@kvack.org>
-Message-ID: <181f0a5f2a5.cf94ce78513585.4158910057206462182@linux.beauty>
-In-Reply-To: <c2d4c6ac-fad7-d5b3-8cbf-f62a7db5b998@redhat.com>
-References: <20220711122459.13773-1-me@linux.beauty>
- <20220711122459.13773-3-me@linux.beauty> <c2d4c6ac-fad7-d5b3-8cbf-f62a7db5b998@redhat.com>
-Subject: Re: [PATCH 2/4] mm/sparse: skip no-map memblock check when
- fill_subsection_map
+        with ESMTP id S229476AbiGLEzV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 00:55:21 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E33067D7B4;
+        Mon, 11 Jul 2022 21:55:19 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d10so6515993pfd.9;
+        Mon, 11 Jul 2022 21:55:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EJ2Bim60TG2OxgO2j6ASbQ/DUCglgOK7bbA5rKQk8eQ=;
+        b=bLatEUazrt//trW4HpTh0UEeBPI7te4dkwE7/4DjtxJbPrg3TQoLG9lepE9xTZGkQc
+         oJh6uBlX0bpjmT1gETW2sIBfK0ujKjf8gvEqq7nvYQZOzA0vhsOZ13LBS+KYSj7MUQfZ
+         mqGT4TsfQPLuFpPzYVpRrjUP9kijh53TMyhysj0FsF7lerMH/E1v/G1ciSUU9B/A6Btn
+         VNMefZACUJj7c9W9ux5Us3b7qGYiFSBRod7JVoeZfy9BYkLKNsjFhqxC82+lhESBxeQM
+         ZLvFZTpRFjIbsns3yaKce/GrH3zVIC2CaeUCXGPoYqLPaVFlcsOpYssPRwNWXfYTFAM8
+         qOKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EJ2Bim60TG2OxgO2j6ASbQ/DUCglgOK7bbA5rKQk8eQ=;
+        b=1ymVKR0LDUuIykihwbqDH14nmW7nL48PSMLnofak1GlHiDP1QM5q6kpEZsre/GginO
+         FaSMUzu0I2lsjzXsS4SUCPsG/FY3NkNwVcGEHYkGgR4nhwBIrxmTQDCM1rZoQk6hKVGG
+         WUFciKI7lKBQCprEnf2zCvFM6ytQ0jYBHivvTnaeVlk+vt65Z9CWisYa49hAwUOPiIFZ
+         +1Y9lHoYmH026y8mSs05bc6WKnmWTfUnFT1IGCERQ3UKJBxteCuVJteVTj6QGMxOiFB2
+         wyHC7JVsLwbK2+4VMgSvVxubMiqOxF4hJeg11VnYtnzXi6fr2WS+IgDA36IPmOd31BfX
+         cusA==
+X-Gm-Message-State: AJIora9l9u1zliP7g1nvpXFZMsQ5TC/3keMwUXjz0i2f2zb0Ai/rDh1h
+        We2vBTL+I0s1NFYv870ePlEgF7n8+aQ=
+X-Google-Smtp-Source: AGRyM1ve+57NtRM2fKzZ/JikDXTNLLIT/Uj+hr6NMMo7xWcuDR6JZkKVakuRbhfj7zyPVH5v3KFYLQ==
+X-Received: by 2002:a05:6a00:16ca:b0:525:a5d5:d16f with SMTP id l10-20020a056a0016ca00b00525a5d5d16fmr22135061pfc.9.1657601719428;
+        Mon, 11 Jul 2022 21:55:19 -0700 (PDT)
+Received: from debian.moxa.com ([123.51.145.104])
+        by smtp.gmail.com with ESMTPSA id n6-20020a170903110600b0016be0d5483asm5664677plh.252.2022.07.11.21.55.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jul 2022 21:55:18 -0700 (PDT)
+From:   Jimmy Chen <u7702045@gmail.com>
+X-Google-Original-From: Jimmy Chen <jimmy.chen@moxa.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jimmy Chen <jimmy.chen@moxa.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] Remove an entry for MOXA platform board
+Date:   Tue, 12 Jul 2022 12:55:02 +0800
+Message-Id: <20220712045505.4500-1-jimmy.chen@moxa.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Importance: Medium
-User-Agent: Zoho Mail
-X-Mailer: Zoho Mail
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_RED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
- ---- On Mon, 11 Jul 2022 22:53:36 +0800  David Hildenbrand <david@redhat.com> wrote --- 
- > On 11.07.22 14:24, Li Chen wrote:
- > > From: Li Chen <lchen@ambarella.com>
- > > 
- > > When mhp use sparse_add_section, don't check no-map region,
- > > so that to allow no-map reserved memory to get struct page
- > > support.
- > > 
- > > Signed-off-by: Li Chen <lchen@ambarella.com>
- > > Change-Id: I0d2673cec1b66adf695251037a00c240976b226f
- > > ---
- > >  mm/sparse.c | 4 +++-
- > >  1 file changed, 3 insertions(+), 1 deletion(-)
- > > 
- > > diff --git a/mm/sparse.c b/mm/sparse.c
- > > index 120bc8ea5293..a29cd1e7014f 100644
- > > --- a/mm/sparse.c
- > > +++ b/mm/sparse.c
- > > @@ -690,7 +690,9 @@ static int fill_subsection_map(unsigned long pfn, unsigned long nr_pages)
- > >  
- > >      if (bitmap_empty(map, SUBSECTIONS_PER_SECTION))
- > >          rc = -EINVAL;
- > > -    else if (bitmap_intersects(map, subsection_map, SUBSECTIONS_PER_SECTION))
- > > +    else if (memblock_is_map_memory(PFN_PHYS(pfn)) &&
- > > +         bitmap_intersects(map, subsection_map,
- > > +                   SUBSECTIONS_PER_SECTION))
- > >          rc = -EEXIST;
- > >      else
- > >          bitmap_or(subsection_map, map, subsection_map,
- > 
- > I'm not sure I follow completely what you are trying to achieve. But if
- > you have to add memblock hacks into mm/sparse.c you're most probably
- > doing something wrong.
- > 
- > Please explain why that change is necessary, and why it is safe.
+use Freescale instead of create new MOXA entry
 
-In the current sparse memory model, free_area_init will insert all memblock.memory into subsection_map and no-map rmem is also a 
-memblock.memory. So, without this change, fill_subsection_map will return -EEXIST.
+Signed-off-by: Jimmy Chen <jimmy.chen@moxa.com>
+---
+ .../devicetree/bindings/arm/moxa.yaml         | 21 -------------------
+ 1 file changed, 21 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/moxa.yaml
 
-I would say it's not a good idea to insert no-map memblock into subsection_map, and I have no idea why sparse do this.
-So, I simply skip no-map region here.
+diff --git a/Documentation/devicetree/bindings/arm/moxa.yaml b/Documentation/devicetree/bindings/arm/moxa.yaml
+deleted file mode 100644
+index 73f4bf883b06..000000000000
+--- a/Documentation/devicetree/bindings/arm/moxa.yaml
++++ /dev/null
+@@ -1,21 +0,0 @@
+-# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+-%YAML 1.2
+----
+-$id: http://devicetree.org/schemas/arm/moxa.yaml#
+-$schema: http://devicetree.org/meta-schemas/core.yaml#
+-
+-title: MOXA platform device tree bindings
+-
+-maintainers:
+-  - Jimmy Chen <jimmy.chen@moxa.com>
+-
+-properties:
+-  compatible:
+-    description: UC-82XX-LX embedded computer
+-    items:
+-      - const: moxa,uc-8210
+-      - const: moxa,uc-8220
+-
+-additionalProperties: true
+-...
+-
+-- 
+2.20.1
 
-As for safety:
-1. The caller of fill_subsection_map are mhp and *_memremap_pages functions, no-map regions are not related to them, so existing codes won't be broken.
-2. This change doesn't change memblock and subsection_map.
-
- > 
- > If the subsection map already spans memory (iow, subsection map is set)
- > you intend to add, then something already added memory in that range?
-
-No matter with or without this patch, fill_subsection_map will always return -EEXIST for mapped memory, so that's not a problem.
-The key point here is I allowed no-map region to pass the check and didn't change anything to the mapped region.
-
-Regards,
-Li
