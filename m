@@ -2,129 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 651925718CD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 13:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C552A5719AE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:16:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbiGLLph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 07:45:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57992 "EHLO
+        id S229568AbiGLMQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 08:16:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbiGLLpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 07:45:36 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1663EADD55
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 04:45:35 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-31bf3656517so77742157b3.12
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 04:45:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=oslTq8Z7mBSpt+X5H9Q37Nxd1ONulQCEf83R9cxfg5c=;
-        b=GvyQMDr8kuHWKKnQu43mVwP3PFW+ufsZx4OSccq4s8TL68AqqTxluvQdDXvURx3qVE
-         Aui6kwcAMTS3303H8dMDpLdSVcNfdCT+7Jcvcrf2dLaLmcC1Prfvo5UAeIUe7Il34EW0
-         wirWuLEKagX/PmkV3ipny2IQyVGaXMbvCg204dKlvW0yfpOT1GOKZmgSa/Jyy6RkiScl
-         KT9ZuysMZ8y5Q6QU+4MG8vs3OneFywcL/W4olapfEq6KKxQYkUJwOS16V4f610HZSYKB
-         kNjnJo1tUkmeL8IEKMabzYJ/39RQ/aS9btBbO025/budPm/vocsH7BYLpHZlwqVqqVu5
-         8UHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=oslTq8Z7mBSpt+X5H9Q37Nxd1ONulQCEf83R9cxfg5c=;
-        b=m2Au39l5GAG4qNKytrvnYtxZXBF5O9hJwJd2bJqn81aB80MRZr0oGi/GIef+SiVEOo
-         VHJOWWno37I922dsRRd+Ofw9y5KO2Rs7J7CpwT1lt0XxqpZA45Rz6zToNH4SlH3pV/qJ
-         5+la2wIKoBovXGIaTkK+6++TPcX3JNXKW8OJKoXB+FpTejfPCMkZIINdwshQzzvLo6bP
-         53LDF5tohOy13TZd/OURazUyLgxjm6ua49oaC2W5cTbGvNvhIFqg4J4L2EaYIcE2FAE9
-         XJ0LyGST7POQSXOqhN+rm83bqcgyzvPwswALbm1zbqrMz8bAP5QOJDzRCe7Oca9a75i8
-         482w==
-X-Gm-Message-State: AJIora/KULTE5kilDBAJLUOmNaKUWj37OZpLljCUhNLhV25oeksvK/Z9
-        AxNho5NiVIJoi2vYMlQQm621Ty2/wHgoa9xXpdE=
-X-Google-Smtp-Source: AGRyM1uZMs7VTMxVGUBZp7TylPJ7DyLIkuPBgim12M0wIAwcbHUewM7EvTEeeZ/JOkCRgUIQDpRXqU5eY3HAMnzIUKQ=
-X-Received: by 2002:a0d:dc42:0:b0:31c:7b70:1f31 with SMTP id
- f63-20020a0ddc42000000b0031c7b701f31mr24479528ywe.513.1657626333935; Tue, 12
- Jul 2022 04:45:33 -0700 (PDT)
-MIME-Version: 1.0
-Sender: ireneraya0@gmail.com
-Received: by 2002:a05:7108:909f:0:0:0:0 with HTTP; Tue, 12 Jul 2022 04:45:33
- -0700 (PDT)
-From:   Mrs Aisha Gaddafi <aishagaddafiaisha20@gmail.com>
-Date:   Tue, 12 Jul 2022 04:45:33 -0700
-X-Google-Sender-Auth: xMAc1A59nWVlaMTcF98747Tpro8
-Message-ID: <CAOGarBK1cSA+vUG_E07iZw=PAzdCE6M-0EPd8s55cPyrKfan9w@mail.gmail.com>
-Subject: ASSALAMU ALAIKUM FROM AISHA GADDAFI.
-To:     undisclosed-recipients:;
+        with ESMTP id S233183AbiGLMQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:16:28 -0400
+X-Greylist: delayed 602 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Jul 2022 05:16:06 PDT
+Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com [51.81.35.219])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C56AE558;
+        Tue, 12 Jul 2022 05:16:06 -0700 (PDT)
+Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
+        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 2A613201AE;
+        Tue, 12 Jul 2022 11:57:56 +0000 (UTC)
+Received: from relay2.mymailcheap.com (relay2.mymailcheap.com [217.182.113.132])
+        by relay5.mymailcheap.com (Postfix) with ESMTPS id 5CE24206D3;
+        Tue, 12 Jul 2022 11:57:53 +0000 (UTC)
+Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
+        by relay2.mymailcheap.com (Postfix) with ESMTPS id 01CD73ECD9;
+        Tue, 12 Jul 2022 13:57:51 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by filter1.mymailcheap.com (Postfix) with ESMTP id 565912A37A;
+        Tue, 12 Jul 2022 11:57:50 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
+Received: from filter1.mymailcheap.com ([127.0.0.1])
+        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id M5DJ4iuCCZiA; Tue, 12 Jul 2022 11:57:49 +0000 (UTC)
+Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by filter1.mymailcheap.com (Postfix) with ESMTPS;
+        Tue, 12 Jul 2022 11:57:49 +0000 (UTC)
+Received: from edelgard.icenowy.me (unknown [59.41.160.3])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 42D17401CE;
+        Tue, 12 Jul 2022 11:57:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
+        t=1657627068; bh=ngIZLTuVH9bK77KIsBS8/RQadlTRO2EmRZFRx9q6pic=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=legNVkDF7C6eeEdfhizFOZu6xr38rsC6eHTxb8EoeQJZFlO5hbwJXtVo71Q6znPff
+         GlcbGVi35E7LcHRbnqH5JEmuc55DX567CisvB0fDIhE8yWpU14AZmtGFt2P1lnyo00
+         x12JEgzd3uzbPPieUjRTJBMJh/HgFomrIp2e3Kc8=
+Message-ID: <4fc9873e87c11dce23099a24be34465f09f3a9a4.camel@aosc.io>
+Subject: Re: [PATCH 06/12] clk: sunxi=ng: add support for R329 CCUs
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Date:   Tue, 12 Jul 2022 19:57:29 +0800
+In-Reply-To: <c858b944-d72f-4e59-6a1a-329b5b8949c4@sholland.org>
+References: <20220422140902.1058101-1-icenowy@aosc.io>
+         <BYAPR20MB2472930AAFFBDC0ACB9A7487BCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
+         <c858b944-d72f-4e59-6a1a-329b5b8949c4@sholland.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=7.6 required=5.0 tests=BAYES_99,BAYES_999,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORM_FRAUD_5,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,LOTS_OF_MONEY,MILLION_HUNDRED,
-        MILLION_USD,MONEY_FORM_SHORT,MONEY_FRAUD_5,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,T_FILL_THIS_FORM_SHORT,
-        T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY,URG_BIZ
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:1131 listed in]
-        [list.dnswl.org]
-        *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
-        *      [score: 1.0000]
-        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
-        *      [score: 1.0000]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [aishagaddafiaisha20[at]gmail.com]
-        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [ireneraya0[at]gmail.com]
-        *  0.0 MILLION_HUNDRED BODY: Million "One to Nine" Hundred
-        *  0.0 MILLION_USD BODY: Talks about millions of dollars
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        *  0.6 URG_BIZ Contains urgent matter
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-        *      information
-        *  0.0 MONEY_FORM_SHORT Lots of money if you fill out a short form
-        *  2.8 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-        *  0.0 MONEY_FRAUD_5 Lots of money and many fraud phrases
-        *  0.0 FORM_FRAUD_5 Fill a form and many fraud phrases
-X-Spam-Level: *******
+User-Agent: Evolution 3.40.4 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_SOFTFAIL,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-May i use this medium to open a mutual communication with you seeking
-your acceptance towards investing in your country under your
-management as my partner, My name is Aisha  Gaddafi and presently
-living in Oman, i am a Widow and single Mother with three Children,
-the only biological Daughter of late Libyan President (Late Colonel
-Muammar Gaddafi) and presently i am under political asylum protection
-by the Omani Government.
+在 2022-04-23星期六的 21:12 -0500，Samuel Holland写道：
+> On 4/22/22 10:41 AM, icenowy@outlook.com wrote:
+> > From: Icenowy Zheng <icenowy@aosc.io>
+> > 
+> > Allwinner R329 has two CCUs, one in CPUX and another in PRCM.
+> > 
+> > Add support for them.
+> > 
+> > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> 
+> There is a typo in your commit title. = should be -.
+> 
+> Thanks for updating the driver to use .fw_name and be loadable as a
+> module. All
+> of those changes look good.
+> 
+> There are still some missing clocks here compared to the BSP, and a
+> couple of
+> other minor issues. Please see my earlier review:
+> 
+> https://lore.kernel.org/linux-sunxi/99a74950-fdc0-ecfe-e5f0-ba4a7d8751f0@sholland.org/
+> 
+> So far it's been consistent that any settable bits in the CCU
+> registers actually
+> do something. So I would expect all of those bits to have an index
+> reserved in
+> the binding, even if we do not model them. I want to avoid having to
 
-I have funds worth " Seven Million Five Hundred Thousand United State
-Dollars" -usd$7M.500.000.00 US Dollars which I want to entrust to you
-for investment projects in your country. If you are willing to handle
-this project on my behalf, kindly reply urgent to enable me provide
-you more details to start the transfer process, I shall appreciate
-your urgent response through my private email address below:
-aishagaddafiaisha20@gmail.com
+Sorry but I don't think it proper to reserve unclear bits, because
+we're just allocating the numbers as a random sequence (in fact it's
+the sequence that it gets implemented).
 
-You can know more through the BBC news links below:
+Or consider a structural number scheme, in which a value can be
+uniquely predicted by its name?
 
-http://www.bbc.com/news/world-africa-19966059
+> go back and
+> add gates to the binding out-of-order later, like we are doing for
+> H6.
+> 
+> Regards,
+> Samuel
 
 
-Thanks
-Yours Truly Aisha
-aishagaddafiaisha20@gmail.com
