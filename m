@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E77D95715F1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 11:42:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B055715F7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 11:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232585AbiGLJmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 05:42:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35028 "EHLO
+        id S232502AbiGLJnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 05:43:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232530AbiGLJmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 05:42:01 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B105DA2EF0
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:41:58 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id n18so11292518lfq.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:41:58 -0700 (PDT)
+        with ESMTP id S229762AbiGLJnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 05:43:03 -0400
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A963A4390
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:43:00 -0700 (PDT)
+Received: by mail-qv1-xf2b.google.com with SMTP id v5so2178469qvq.8
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:42:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=GtNcbY+thFGWFHGivawuvM8/TzJCNdYcEcpdyt/HTv8=;
-        b=hoRNHMu8pbtSEJjWc0m3nLg/0i3njcuDyG9QY2f1J/vveCAjVVnfz55Bg91uTGhnKe
-         XYBssxeZgADKTrcOiJh0Rij6uJPRQUEBP/ngjz3n/5rotwAGg8U+spSNBrQnx+CpZGcF
-         vpyaNQFMmEkrr3yZ5A1MC4hliwn51WAPyVsieQGp3uvlr2CCkPBBj4nUqmxi8Ej9bLJo
-         LQ0P8Am3KthThasD4RgN/H2R2CsKsCOdwSSuubdgmhla/oVJnS/PxvEQIkkEwf879Ulq
-         fF+oEt9tatuSegeLS7W4HeG9yYPdktL8opTtf8PiubBdhPuYxQMBmKQRMieTZrFHTvTY
-         PtjQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YoZBYZy41JFnQOGO3Hk17+jt5jdA+Ko/TmjpBwiSidA=;
+        b=Mp56ho49ONCB9YdoaKjrcHN9VWBBj/JQHylIy8Y66ZDWzu6613aEVMlt4rXLr4xbnT
+         /EAd5UzTDUYiryhZdDscI62gJ5lqGH6tOEoClYAJwYKjdWHqTtnEzRM7gY5AfpO6KvfJ
+         IdcWdko+YQZQjfCIa7XmsgynjbgkayMyaVnVEybhLgR0nwoUN9uHpzAa61o2YvQAROu9
+         9XKte3wpeBCxjHFQ+HRDKFbY2VKQMtC6xLwMlqGrDUVx79hrhUrjEhCjDMhlgFb5d3EE
+         hPb+EZyqgDTxqoG8689V7XSNtZ2AbdDG+swssRacz8vsQ3qM+byfPSmjl+zwRPTsES5T
+         C5BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=GtNcbY+thFGWFHGivawuvM8/TzJCNdYcEcpdyt/HTv8=;
-        b=FIn7eTc22JGMU7UGgKu5odX4AFfMFBMgz4z4HRqhCdfTHwRMxPat5QviavUPM+oU6b
-         v5vUQYJxhCxtRG0Bii57TAxyOXNfkf31mRNN55cniFPF/f8xqvOHT7bz3hPtesLROk2i
-         5LvGNq0eHjlYfElgSXcsq58t5vNmR4e8X3Vmh8I+Lk5wvYGr1Ebf3K2uVRTZIZPcnSXJ
-         BZT5/f1SVrXC73FoOx1HBwYmgx2UlUorQ1W2fUf5ACkhAfJNVWK1GYX7OS+9JfNA2JVQ
-         /L1ouFlXFyR5MKqBTVeDlCDoyPTKqbFU8CuG61PdZGEOdcVR3PRKyX2pRFXhRHCRk+tm
-         bYvA==
-X-Gm-Message-State: AJIora9QeFJMjA5329xi0AhFGeZ9Tdi4/ssmp27EO5sRkXfmsAk4zcAD
-        ich8SXYp/h9syQofpbfWQ/K5SA==
-X-Google-Smtp-Source: AGRyM1tk3WkRoJLINYQJslACTfyPMhidqRMvgky2hVLupgjFPZNabqHdygz2W63mTSnI8afdU1JbhQ==
-X-Received: by 2002:a05:6512:a89:b0:481:1327:6ff6 with SMTP id m9-20020a0565120a8900b0048113276ff6mr15376395lfu.471.1657618917082;
-        Tue, 12 Jul 2022 02:41:57 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id o15-20020a05651205cf00b00488d0e38283sm2068224lfo.153.2022.07.12.02.41.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 02:41:56 -0700 (PDT)
-Message-ID: <f5b3e2de-ec60-88ee-4066-6b3860b6c89a@linaro.org>
-Date:   Tue, 12 Jul 2022 11:41:54 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YoZBYZy41JFnQOGO3Hk17+jt5jdA+Ko/TmjpBwiSidA=;
+        b=ED29n9BouOXSDYI4b7tj6wJCaKNxhpuUTopraYosgAjH+9vsnE6Ph7z64ED8/vTcTF
+         TbLMH6PqP4WfQbwUs7U09FvS9uNYdSkLth5hJNCUYTIhc83xECpcsT4p/i2yOMxDwDf1
+         2uh2Admr/10CVuIoR8RQgrVqMBDhEn6rq+FndNmP2cpyl3f5lZfdF6vS5gK7biZz7s9l
+         L6dXaRw/S0ox3AkHcYCx0TtKkezm8BIvHzrEVqsOdsBVmGk2aopSY2l5C4h3N8/yo6WR
+         G9EZr5swDEJsNx1l54aPMRqmtgSLDH/aAhxL3R5+HO0G6PPUmYvnfqaNq9Ec1AtWUE5E
+         MaVg==
+X-Gm-Message-State: AJIora83PdyyM8ffk9FZW7c380LUn1j7CC4WZznD8SZt9OUBxVwWvptK
+        /RJ888UTtOJunAv6LfV1TYo7WJ20zeHGVEH+LPJ+GQ==
+X-Google-Smtp-Source: AGRyM1tHoH02JA0eu1BvlGmolAYocWBMRLvOM+ZDeFF0Ju9sWVnKd2I++G5vKn9D8D1RhgOguQYeeGDqDOcrYk768oM=
+X-Received: by 2002:a0c:8ecc:0:b0:473:2fa4:df7c with SMTP id
+ y12-20020a0c8ecc000000b004732fa4df7cmr16692462qvb.55.1657618979170; Tue, 12
+ Jul 2022 02:42:59 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/3] arm64: dts: meson: add S4 Soc clock controller in DT
-Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
+ <20220710084133.30976-9-dmitry.baryshkov@linaro.org> <20220711231638.GA449827-robh@kernel.org>
+In-Reply-To: <20220711231638.GA449827-robh@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 12 Jul 2022 12:42:48 +0300
+Message-ID: <CAA8EJpoHKewcM3upa9GvNhUyKNC3sjqYa2rA-zQk5m1TpZmAtg@mail.gmail.com>
+Subject: Re: [PATCH v2 8/9] dt-bindings: msm/dp: add missing properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220708062757.3662-1-yu.tu@amlogic.com>
- <20220708062757.3662-3-yu.tu@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220708062757.3662-3-yu.tu@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,47 +76,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2022 08:27, Yu Tu wrote:
-> Added information about the S4 SOC Clock controller in DT.
-> 
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index ff213618a598..ad2ec26a1f4a 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -86,7 +86,7 @@ gic: interrupt-controller@fff01000 {
->  		};
->  
->  		apb4: apb4@fe000000 {
-> -			compatible = "simple-bus";
-> +			compatible = "simple-bus", "syscon";
+On Tue, 12 Jul 2022 at 02:16, Rob Herring <robh@kernel.org> wrote:
+>
+> On Sun, Jul 10, 2022 at 11:41:32AM +0300, Dmitry Baryshkov wrote:
+> > Document missing definitions for opp-table (DP controller OPPs), aux-bus
+> > (DP AUX BUS) and data-lanes (DP/eDP lanes mapping) properties.
+> >
+> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  .../bindings/display/msm/dp-controller.yaml          | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> > index 391910d91e43..52cbf00df0ba 100644
+> > --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> > +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> > @@ -70,9 +70,21 @@ properties:
+> >    operating-points-v2:
+> >      maxItems: 1
+> >
+> > +  opp-table: true
+> > +
+> >    power-domains:
+> >      maxItems: 1
+> >
+> > +  aux-bus:
+> > +    $ref: /schemas/display/dp-aux-bus.yaml#
+> > +
+> > +  data-lanes:
+>
+> But this is the wrong location for 'data-lanes'. It belongs in an
+> endpoint node.
 
-This is not allowed.
-1. syscon needs also dedicated compatible
-2. simple-bus with syscon means it is not a simple bus anymore, so nope.
+Ack. Then I'll drop this for v3.
 
->  			reg = <0x0 0xfe000000 0x0 0x480000>;
->  			#address-cells = <2>;
->  			#size-cells = <2>;
-> @@ -118,6 +118,13 @@ gpio_intc: interrupt-controller@4080 {
->  					<10 11 12 13 14 15 16 17 18 19 20 21>;
->  			};
->  
-> +			clkc: clock-controller {
-> +				compatible = "amlogic,s4-clkc";
-> +				#clock-cells = <1>;
-> +				clocks = <&xtal>;
-> +				clock-names = "xtal";
-> +			};
-> +
->  			uart_B: serial@7a000 {
->  				compatible = "amlogic,meson-s4-uart",
->  					     "amlogic,meson-ao-uart";
+>
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    minItems: 1
+> > +    maxItems: 4
+> > +    items:
+> > +      maximum: 3
+> > +
+> >    "#sound-dai-cells":
+> >      const: 0
+> >
+> > --
+> > 2.35.1
+> >
+> >
 
 
-Best regards,
-Krzysztof
+
+-- 
+With best wishes
+Dmitry
