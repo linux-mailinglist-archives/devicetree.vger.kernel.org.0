@@ -2,82 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C39F35719EE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0685571A0A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:32:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233046AbiGLM0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 08:26:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42184 "EHLO
+        id S233206AbiGLMcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 08:32:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233072AbiGLMZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:25:53 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3814DAF77C
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 05:25:52 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id b2so7112393plx.7
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 05:25:52 -0700 (PDT)
+        with ESMTP id S233146AbiGLMcn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:32:43 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA6EACF61
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 05:32:33 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id g16-20020a17090a7d1000b001ea9f820449so11252851pjl.5
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 05:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=P7Kkdpw0CXoEWIErTCFA3Qrrlf9LnDXlc1tDM9FQEkM=;
-        b=KuK+XxEAiZqgqYpARe+Ajp5+Xdwyu7FklH95kCtVjkvgG+1uPVQMUhmdejypzwsmBf
-         Mo2dlK8V3ZWr/GxLdSczjCIlGFxuf+SqP2UzOA52DGrUp6dLD+xeFAsYTL7PgJ9kPAcC
-         mtW+6fqF7M412Pj8YOHBXLLFEqiOasGTHcx72eZTsMfr0dyK5VfHFh4gXRbcW1fCUoIE
-         ttT5O3cTky3v+47P0Y/IlYrTawdf8t75/PedOHBBnreEgIdlJw5oqHKarJN4588BL/XE
-         cXPVJCIqGBTASqn3khqMiRBtsFwDl2IZaS8yUbgvRmdVE4+r+UWADTpcbBUaaXatoyu0
-         Ih+Q==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=j9fXFYaNQGjPNAdSqU+JqLaWphZlD2jMWmDigPpHlo4=;
+        b=pmneYWxKG+l0k7o2Ru2dxkX4IkbK/Fxm0bXrMyEHqXMLA14sQqZ7MsSenGcQrG/1Go
+         +kuFzTediLQI/bFPYptiyOAwdPg31hRKe/C7evmecYM+KTK6gPriSw+z57xC2d8vdMD9
+         7Ezlp8qZv/WSEssoPCNgBm5WvsEv8p5Gidw/jporcs7peuUPV/GKeGClGBhrgyRy/7Ol
+         a3RQZ9qAcFLjlpYcjVnC5+0+CY5gixedZd9H6FLY1D3kzwvRWxbW8NFgz8b8X4VzboRK
+         EUZZHltR7NxoXworKxq64sMu3O30AsvWfSmJBTOPtLWhv6mVfUmOdY9jJHtYYU/wBrhT
+         1lwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=P7Kkdpw0CXoEWIErTCFA3Qrrlf9LnDXlc1tDM9FQEkM=;
-        b=2lKmGTPaWNO8dABEWDCkkt0Qa2DcZOuBZhOsNWp+o7vFfizaC0xd2jx0q/tGA+kx/B
-         LLDzaePxY6PmD8ppJvIWjJbVz03Rb/xiGeQRixOMdxoQCnLeCaj7FJTmizDjMO348hnJ
-         DI8yj5aW1BP3taElgOc/pwpNvbnSjU1UrFRsiavS3xVkSbFWyQeiRmURei6UWvW8+CTF
-         0en5qCUZU81Q6nji2CGk0KTkgqt0RG4YyV/MMbHI6sOX5MWuZsbrVrY1NbtNJFEPtmAU
-         WVEPMK92K6cqDNk8PuzcEyHENdPBoLzG0sKmEMCfW4t75DqvCuLGOUjggWw5DgP7Pgxd
-         gnBQ==
-X-Gm-Message-State: AJIora8T8kvViIZGSfOJgrT9st8ZYH58ItiS6Ocu1sd18df6riOUmNIJ
-        kBDa0zqGGRXGw8ioCoB1uQ46
-X-Google-Smtp-Source: AGRyM1uKDhZojzscbBh0F9qg+DTu0azBDT/jsX0vJ6G1yxcsnu7T8U/Es7XsMpSg8z41cXpj/4V+GQ==
-X-Received: by 2002:a17:902:be16:b0:16c:151d:3e21 with SMTP id r22-20020a170902be1600b0016c151d3e21mr24149386pls.49.1657628751649;
-        Tue, 12 Jul 2022 05:25:51 -0700 (PDT)
-Received: from workstation ([117.207.31.14])
-        by smtp.gmail.com with ESMTPSA id f12-20020a170902860c00b0016191b843e2sm6698327plo.235.2022.07.12.05.25.44
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 12 Jul 2022 05:25:51 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 17:55:41 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Johan Hovold <johan@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>, linux-pm@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V2 00/13] OPP: Add support for multiple clocks*
-Message-ID: <20220712122541.GA21746@workstation>
-References: <cover.1657003420.git.viresh.kumar@linaro.org>
- <YsxSkswzsqgMOc0l@hovoldconsulting.com>
- <20220712075240.lsjd42yhcskqlzrh@vireshk-i7>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=j9fXFYaNQGjPNAdSqU+JqLaWphZlD2jMWmDigPpHlo4=;
+        b=hDMAf5zPWlUQpoiOS814VxZQvi1Ix7QitGEH8JW9iXY0mv+PC69NYtVYR2NE3MLO9E
+         YU4lZdMb2eotjIE2R+5ALgLFiWNXWLTfyePc/vuIRC2ZK29sI3p/5CBSXQP/XJddTECJ
+         b0g/obQc+bxbXdOEhsVIlnLcmALemn5J16naFbGxk85K3Jy1Ue57M/9G7bSuLiCmN4Ov
+         NeMDoX1kdBzNSYfGzPmn+rJxUJjKGzZnGsFSDjMzN09fpUDbBZ09cWz8Wm/vagVXJfq6
+         yJ0m5D72e0Sr3jqNPDrHrV3iiIMq5jYgPzFvI5y0OWIMiz9m7u+IGmMmXZi9b9xlVayT
+         Nr2A==
+X-Gm-Message-State: AJIora/XllMHlE7411h88Aa1PmOh/3v20pv8nQXgYgT+YbJb/TaIp5Kh
+        LDL2XDvawFxU4B532/COd4KGx/NL7y8t/kE6T6yU3w==
+X-Google-Smtp-Source: AGRyM1usKHhbiNuirIEtFbgkVYmXSAQgGJk1Z0lyvxaBgA862fn4bUlQFqtHHnNCwtZHDInbXjYzA94jWde7qdQc2d8=
+X-Received: by 2002:a17:90b:2096:b0:1f0:1c73:f62d with SMTP id
+ hb22-20020a17090b209600b001f01c73f62dmr4065323pjb.120.1657629153338; Tue, 12
+ Jul 2022 05:32:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220712075240.lsjd42yhcskqlzrh@vireshk-i7>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20220711083038.1518529-1-sumit.garg@linaro.org> <20220711154632.w5qtmroc22qc7yqq@maple.lan>
+In-Reply-To: <20220711154632.w5qtmroc22qc7yqq@maple.lan>
+From:   Sumit Garg <sumit.garg@linaro.org>
+Date:   Tue, 12 Jul 2022 18:02:22 +0530
+Message-ID: <CAFA6WYPUX8aLGScx7er=3-iqEU9Vp+TsQAck_BnLz1RNMbr9cQ@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: qcs404: Fix incorrect USB2 PHYs assignment
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        shawn.guo@linaro.org, bryan.odonoghue@linaro.org,
+        nicolas.dechesne@linaro.org, mworsfold@impinj.com,
+        andrey.konovalov@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -88,74 +70,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 01:22:40PM +0530, Viresh Kumar wrote:
-> On 11-07-22, 18:40, Johan Hovold wrote:
-> > This break OPP parsing on SC8280XP and hence cpufreq and other things:
-> > 
-> > [  +0.010890] cpu cpu0: _opp_add_static_v2: opp key field not found
-> > [  +0.000019] cpu cpu0: _of_add_opp_table_v2: Failed to add OPP, -19
-> > [  +0.000060] cpu cpu0: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 300000000, volt: 576000, enabled: 1. New: freq: 403200000, volt: 576000, enabled: 1
-> > [  +0.000030] cpu cpu0: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 300000000, volt: 576000, enabled: 1. New: freq: 499200000, volt: 576000, enabled: 1
-> > ...
-> > 
-> > I just did a rebase on next-20220708 and hit this.
-> > 
-> > I've narrowed it down to _read_rate() now returning -ENODEV since
-> > opp_table->clk_count is zero.
-> > 
-> > Similar to what was reported for tegra for v1:
-> > 
-> > 	https://lore.kernel.org/all/58cc8e3c-74d4-e432-8502-299312a1f15e@collabora.com/
-> > 
-> > I don't have time to look at this any more today, but it would we nice
-> > if you could unbreak linux-next.
-> > 
-> > Perhaps Bjorn or Mani can help with further details, but this doesn't
-> > look like something that is specific to SC8280XP.
-> 
-> It is actually. This is yet another corner case, Tegra had one as
-> well.
-> 
-> I have tried to understand the Qcom code / setup to best of my
-> abilities, and the problem as per me is that qcom-cpufreq-hw doesn't
-> provide a clk to the OPP core, which breaks it after the new updates
-> to the OPP core. I believe following will solve it. Can someone please
-> try this ? I will then merge it with the right commit.
-> 
+On Mon, 11 Jul 2022 at 21:16, Daniel Thompson
+<daniel.thompson@linaro.org> wrote:
+>
+> On Mon, Jul 11, 2022 at 02:00:38PM +0530, Sumit Garg wrote:
+> > Currently the DT for QCS404 SoC has setup for 2 USB2 PHYs with one each
+> > assigned to USB3 controller and USB2 controller. This assignment is
+> > incorrect which only works by luck: as when each USB HCI comes up it
+> > configures the *other* controllers PHY which is enough to make them
+> > happy. If, for any reason, we were to disable one of the controllers th=
+en
+> > both would stop working.
+> >
+> > This was a difficult inconsistency to be caught which was found while
+> > trying to enable USB support in u-boot. So with all the required driver=
+s
+> > ported to u-boot, I couldn't get the same USB storage device enumerated
+> > in u-boot which was being enumerated fine by the kernel.
+> >
+> > The root cause of the problem came out to be that I wasn't enabling USB=
+2
+> > PHY: "usb2_phy_prim" in u-boot. Then I realised that via simply disabli=
+ng
+> > the same USB2 PHY currently assigned to USB2 host controller in the
+> > kernel disabled enumeration for USB3 host controller as well.
+> >
+> > So fix this inconsistency by correctly assigning USB2 PHYs.
+> >
+> > Fixes: 9375e7d719b3 ("arm64: dts: qcom: qcs404: Add USB devices and PHY=
+s")
+> > Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
+>
+> I've not got one of these board (nor any documentation for them) but the
+> description and change look OK. Thus FWIW:
+>
+> Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
+>
 
-I gave it a shot on Lenovo X13s based on SC8280 SoC and it fixes the OPP
-issue. So you can add,
+Thanks Daniel for the review.
 
-Tested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+BTW, I did confirmed that this fix is correct with respect to
+documentation (SA2150P LINUX USB TECHNICAL OVERVIEW) as well:
 
-Thanks,
-Mani
+2.1 USB memory addresses
+=E2=96=A0 USB3.0 core address starts with 0x7580000. USB3.0 is connected to=
+:
+ =E2=96=A1 SS PHY with start address as 0x78000
+ =E2=96=A1 HS PHY with start address as 0x7a000.
+=E2=96=A0 USB2.0 core address starts with 0x78c0000; it is connected only t=
+o
+HS PHY with the start address as 0x7c000.
 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 666e1ebf91d1..4f4a285886fa 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -1384,6 +1384,20 @@ static struct opp_table *_update_opp_table_clk(struct device *dev,
->         }
-> 
->         if (ret == -ENOENT) {
-> +               /*
-> +                * There are few platforms which don't want the OPP core to
-> +                * manage device's clock settings. In such cases neither the
-> +                * platform provides the clks explicitly to us, nor the DT
-> +                * contains a valid clk entry. The OPP nodes in DT may still
-> +                * contain "opp-hz" property though, which we need to parse and
-> +                * allow the platform to find an OPP based on freq later on.
-> +                *
-> +                * This is a simple solution to take care of such corner cases,
-> +                * i.e. make the clk_count 1, which lets us allocate space for
-> +                * frequency in opp->rates and also parse the entries in DT.
-> +                */
-> +               opp_table->clk_count = 1;
-> +
->                 dev_dbg(dev, "%s: Couldn't find clock: %d\n", __func__, ret);
->                 return opp_table;
->         }
-> 
-> -- 
-> viresh
+-Sumit
+
+>
+> Daniel.
+>
+>
+> > ---
+> >
+> > Changes in v2:
+> > - Update commit message description.
+> >
+> >  arch/arm64/boot/dts/qcom/qcs404.dtsi | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts=
+/qcom/qcs404.dtsi
+> > index 513bf7343b2c..50edc11a5bb5 100644
+> > --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> > @@ -557,7 +557,7 @@ usb3_dwc3: usb@7580000 {
+> >                               compatible =3D "snps,dwc3";
+> >                               reg =3D <0x07580000 0xcd00>;
+> >                               interrupts =3D <GIC_SPI 26 IRQ_TYPE_LEVEL=
+_HIGH>;
+> > -                             phys =3D <&usb2_phy_sec>, <&usb3_phy>;
+> > +                             phys =3D <&usb2_phy_prim>, <&usb3_phy>;
+> >                               phy-names =3D "usb2-phy", "usb3-phy";
+> >                               snps,has-lpm-erratum;
+> >                               snps,hird-threshold =3D /bits/ 8 <0x10>;
+> > @@ -586,7 +586,7 @@ usb@78c0000 {
+> >                               compatible =3D "snps,dwc3";
+> >                               reg =3D <0x078c0000 0xcc00>;
+> >                               interrupts =3D <GIC_SPI 44 IRQ_TYPE_LEVEL=
+_HIGH>;
+> > -                             phys =3D <&usb2_phy_prim>;
+> > +                             phys =3D <&usb2_phy_sec>;
+> >                               phy-names =3D "usb2-phy";
+> >                               snps,has-lpm-erratum;
+> >                               snps,hird-threshold =3D /bits/ 8 <0x10>;
+> > --
+> > 2.25.1
+> >
