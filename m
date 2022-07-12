@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58587571BEA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:05:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91155571BF9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:08:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbiGLOFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:05:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52394 "EHLO
+        id S232486AbiGLOIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:08:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229772AbiGLOFT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:05:19 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716662655C
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:05:16 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 9-20020a1c0209000000b003a2dfdebe47so4019931wmc.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:05:16 -0700 (PDT)
+        with ESMTP id S232308AbiGLOIN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:08:13 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BAD52F382
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:08:10 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id y11so7599434lfs.6
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:08:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=EbY6tHWvazkWCJy7nC2dYFidxky+mMBT9U9QXeNX5cU=;
-        b=MLC0wh2EgwMYH0EcbHriAtDyO31KDeTQWbD6NQsSgUNOLkezpf1tIaFlbW8iUOkd1b
-         SU87E2ewuDbXUGszWnfnuKkwEUZsnr3BoKf0tFwX7BMvDGOmsAidSkiyYFW6xfbbxqE5
-         pqm3LIFLRv/Zqx3e9VJ8366ubyFqfF1K1fYiKqTp69bZjZcTzD/L2iwmZUvlA9LlD7j1
-         o6Qcv1w9/mcwbh7dVUO0Tl6qSqsdgZrPR29Yz13evMRw6UE31mkrqnDLwqi3wVy5GWWD
-         DNr70ydMPDyQW+c7bbObVu3v34M43gCneH9gsEkeL2PFHCZQzglixIlwW7rTCqU1F99E
-         a6uQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=IUDupCeEXQ/0U2Mq+8j8TVT3HkTwF7WNPO4buPs4r6M=;
+        b=QYvKlU7dEHkaxWeAgxfsF7vxBdm/zDsF+uuntI0ZjZp2eHQW3sdICr52wnSvfAAqk/
+         xqPicfiGubAHcZxPV0vqcT7lcEqnZI8C7Q0mwu+pDS0gH9qj+XmkB8OxDjDi561+v38E
+         C+sElDXj830YwXWoYoAqURjSNfMYBVM2zw/QUM2x9489UNhtzbCZ5+a5BSVAZEQQbc8Z
+         ThNy5NFkPiYV+DIle2PSnvuqSlll+S8ql+SEjRPKQYzuqfXwduHzAYcpxcJRsqUCLqPI
+         Akbpi8mXiuBQYdtH/68IF5DKjpEfFw+oUXv8BB8hMaQv9Uk2cJ754oyLE645GWMGbij/
+         9Kdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=EbY6tHWvazkWCJy7nC2dYFidxky+mMBT9U9QXeNX5cU=;
-        b=l+cBvy+TRfMxnTU08NAOoxXTTdn6S8QvpVYRlPLKpdnOpNgynbx9+MNV9lX9BYtsEk
-         9mLECJ+AWbWzR8HB9sWlgaADONNhg10lWHcykQniAnEgpALkyjoFsH5blpUKUbVxKU25
-         eZQ24KIj8aTnp1FFlJffG4IcETuJvEH6rlI0npNpBAqVjkB0kc8IylRmb1UP+PCa7ikR
-         l24gz5cdJcaHIzFGehDA3kDQ7YqE0UhSnG1gIjCN378YvFjsPdQ/l+E/U/+MaNtG+DLm
-         1eoaQNmG2vc5G+VsJipgErsBsfPNiWAfPj+vL2sV7rNLfc5C7l3SNxdptFTGJnQdujuv
-         CDHQ==
-X-Gm-Message-State: AJIora8hyTvGu9eG3sLx6DHbF7rpDgNqWDngN9fbADDiREKfPbeRf+b4
-        XpB3eaLGQ+zcGCLdA/LG5K2R3w==
-X-Google-Smtp-Source: AGRyM1uGY0XfduxwS8+uCPx2vfjxyvO7CQwk7oXGPS8lpze0/6XyGfQCkpZ78lNX2XCQg2JunfpBuQ==
-X-Received: by 2002:a05:600c:34ce:b0:3a0:3b4b:9022 with SMTP id d14-20020a05600c34ce00b003a03b4b9022mr4134479wmq.66.1657634714965;
-        Tue, 12 Jul 2022 07:05:14 -0700 (PDT)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id n35-20020a05600c502300b003a2d0f0ccaesm13628303wmr.34.2022.07.12.07.05.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 07:05:14 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 15:05:12 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Sumit Garg <sumit.garg@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        shawn.guo@linaro.org, bryan.odonoghue@linaro.org,
-        nicolas.dechesne@linaro.org, mworsfold@impinj.com,
-        andrey.konovalov@linaro.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: qcs404: Fix incorrect USB2 PHYs
- assignment
-Message-ID: <20220712140512.y7fezq2kjnuyq33b@maple.lan>
-References: <20220711083038.1518529-1-sumit.garg@linaro.org>
- <20220711154632.w5qtmroc22qc7yqq@maple.lan>
- <CAFA6WYPUX8aLGScx7er=3-iqEU9Vp+TsQAck_BnLz1RNMbr9cQ@mail.gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=IUDupCeEXQ/0U2Mq+8j8TVT3HkTwF7WNPO4buPs4r6M=;
+        b=LXnezoGYkpPlp8xVqh4QbXfBXmjLuZPgMk4YUEJcbmYPf4tW2UsxHAKFdVz2QFgFNj
+         vOw39U4q1W/CT48QU3lb3dIUP2PZb+0dbtE6nqdq57qyOR+7yt6T87+NBdb3DLYN2EuG
+         Wmms35SE7rOnnjOLE87t3c9my9N/FKzfcGCpG7OOXsXzjwbbD2hYO4CQoYLkyd9PrRjG
+         kQhInb/x6dvh/OQNAg1nZ3jB5ddyOp+1q7CAzktofObcKtjX0KM4UsnSR+mrZxmcGVwb
+         c+RGRgHwOtmi2G/KfnWDufsXNi4RaqjIr8PUj4FoB1HhgGPKn9lzls1K3m7+Tg91IFLi
+         yQ+g==
+X-Gm-Message-State: AJIora97iichJbZ0WgwSr0bXBEf0hIX5N5zsHxLDqUotkjAb6EWMKep6
+        RT7CFBEBRYVGMreDsq1cqobWgA==
+X-Google-Smtp-Source: AGRyM1tCEXL8eb8yUBVXFnt5nQBt+dmZ3X4wqpUocjCz9IgpH1o5xI4GOGU1U4fDZ6ZvjrzDPG72Mg==
+X-Received: by 2002:a05:6512:2394:b0:489:e432:bca5 with SMTP id c20-20020a056512239400b00489e432bca5mr5786126lfv.537.1657634888923;
+        Tue, 12 Jul 2022 07:08:08 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id y3-20020a056512044300b0047e789b9700sm2187900lfk.118.2022.07.12.07.08.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 07:08:08 -0700 (PDT)
+Message-ID: <1c90df71-4db0-9d20-e41b-2dfdce8d6456@linaro.org>
+Date:   Tue, 12 Jul 2022 16:08:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFA6WYPUX8aLGScx7er=3-iqEU9Vp+TsQAck_BnLz1RNMbr9cQ@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Add Novatek NT35596S
+ panel bindings
+Content-Language: en-US
+To:     MollySophia <mollysophia379@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220709141136.58298-1-mollysophia379@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220709141136.58298-1-mollysophia379@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,58 +82,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 06:02:22PM +0530, Sumit Garg wrote:
-> On Mon, 11 Jul 2022 at 21:16, Daniel Thompson
-> <daniel.thompson@linaro.org> wrote:
-> >
-> > On Mon, Jul 11, 2022 at 02:00:38PM +0530, Sumit Garg wrote:
-> > > Currently the DT for QCS404 SoC has setup for 2 USB2 PHYs with one each
-> > > assigned to USB3 controller and USB2 controller. This assignment is
-> > > incorrect which only works by luck: as when each USB HCI comes up it
-> > > configures the *other* controllers PHY which is enough to make them
-> > > happy. If, for any reason, we were to disable one of the controllers then
-> > > both would stop working.
-> > >
-> > > This was a difficult inconsistency to be caught which was found while
-> > > trying to enable USB support in u-boot. So with all the required drivers
-> > > ported to u-boot, I couldn't get the same USB storage device enumerated
-> > > in u-boot which was being enumerated fine by the kernel.
-> > >
-> > > The root cause of the problem came out to be that I wasn't enabling USB2
-> > > PHY: "usb2_phy_prim" in u-boot. Then I realised that via simply disabling
-> > > the same USB2 PHY currently assigned to USB2 host controller in the
-> > > kernel disabled enumeration for USB3 host controller as well.
-> > >
-> > > So fix this inconsistency by correctly assigning USB2 PHYs.
-> > >
-> > > Fixes: 9375e7d719b3 ("arm64: dts: qcom: qcs404: Add USB devices and PHYs")
-> > > Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
-> >
-> > I've not got one of these board (nor any documentation for them) but the
-> > description and change look OK. Thus FWIW:
-> >
-> > Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
-> >
->
-> Thanks Daniel for the review.
+On 09/07/2022 16:11, MollySophia wrote:
+> Add documentation for "novatek,nt35596s" panel.
+> 
+> Signed-off-by: MollySophia <mollysophia379@gmail.com>
 
-No worries.
+I see now three different patchsets, twice v1 and once v2 (send shortly
+after v1). This is confusing.
 
-
-> BTW, I did confirmed that this fix is correct with respect to
-> documentation (SA2150P LINUX USB TECHNICAL OVERVIEW) as well:
->
-> 2.1 USB memory addresses
-> ■ USB3.0 core address starts with 0x7580000. USB3.0 is connected to:
->  □ SS PHY with start address as 0x78000
->  □ HS PHY with start address as 0x7a000.
-> ■ USB2.0 core address starts with 0x78c0000; it is connected only to
-> HS PHY with the start address as 0x7c000.
-
-I didn't mean to imply the patch was in any way deficient (the patch
-description showed your experimental method pretty clearly).  I just
-wanted to be clear that I hadn't double checked anything outside of the
-patch itself!
-
-
-Daniel.
+Best regards,
+Krzysztof
