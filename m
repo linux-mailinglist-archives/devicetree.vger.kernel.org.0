@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73F4C571418
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A821571422
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:14:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231753AbiGLIMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:12:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43726 "EHLO
+        id S232590AbiGLIOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232486AbiGLIMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:12:47 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFA8E9E47C
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:12:45 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id bx13so9006573ljb.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:12:45 -0700 (PDT)
+        with ESMTP id S231160AbiGLIOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:14:19 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 315862616
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:14:18 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id t25so12659453lfg.7
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:14:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4i+nNQOuAb8IG2LCXMELsIxWqCoAxgrduDi9ilKLzsE=;
-        b=pOERgv7kAwfTbBdUZl2J0fvQqLb2TJPjIKf0/MLehDvfOHf3Vq/Ja+0r2KdIE2DYi1
-         M7G35G9vxOc8M20VHcCFu32WI1SoeNTxsMd118uT8gxYxByoE5b88+Yrgv4g6LfHkUTH
-         td4Di/pOO0qMOqxpZn9OxAv8wvyshM6pgD7B4dtgboG9zAZL5H/NocWliMDBxXS3YwvJ
-         igk15uwnxeddra/y9++sEO9j5SDtIyxKJzXnbT5v8dIVHXwd/pOWCGrbsS5aW6IyFUwu
-         oD1YIzv6lOD6Mc4DTFPapjH7GzEVoXtQl4j1IfnKLB+WwRl1PymgN1b0nN6AZb6U7B0X
-         64/w==
+        bh=piVMAlOpffJwid9tZ0g858Wy2lJidXX23spAtayy7OI=;
+        b=StLfu8nwjSGQBtoVu4xYBsPLaD86GA58kvcFstln0NzGJ/tDTYxbzgh3KFuopdgHNF
+         fK+aRHHn5QwzVLgwmscm7kPdZVWj+Lyj+G6BTDqzEVOJMulJ+zd4o8+JeCOdURYADhdN
+         dJCsIuavIfqIWAzB5j1VjwTnovlSzB+zyXJM5URY8uDY5idEMKcQGkhk7QT6ka1njyOs
+         gXDpjtdnsNFSHZQh59Az9HtdqoLcByUS4I9wjlO4d2zx4Q5iGdnSiL+FyuVfIbPlvJOO
+         oD26l4vQ80PEHbSKsVUliv8Ke8if2qF42yz+10hJLfWg54eG43XGUooXN25VQE3E2Fkd
+         ugfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=4i+nNQOuAb8IG2LCXMELsIxWqCoAxgrduDi9ilKLzsE=;
-        b=5bHNQzea2SVChGBn7aspkyEKRIB31UsJiJA2Er4Zaz1Le4r4XP01bjsCogkkSeFbZP
-         l9y9kYTy5gbcPJQycRPZp96lb5qYTD/vWyL7XGeYXu5ZZdIlrCydN+sM1vffMLda5iGP
-         +iTyvK1sjXjnnK9X916XUpMULH9OaEzfTbv23MnFNoIZGiTJGpoU6QiUlgcEq/V7rHXW
-         UdYEqVO5a1eUJ3B+5tjMqG7sko3STCFXykQHHWU6msZoi0EKJmbQRXHMBkaqK6+o43VM
-         xT5tjUw73w7w4humedK5+9eZhZQDzESgqo3eaNCCGgPHOR0VQ5itfAHPV+MwzlGI3AsF
-         B2eQ==
-X-Gm-Message-State: AJIora89Rjphq96OQw9DYQUm+rtHnFKxUIVCFb2u3K3lD0B0/AOj/FPC
-        JDn+bmPGo7M7frJemdzme4EbPg==
-X-Google-Smtp-Source: AGRyM1uUFoce+sveQIYWnlaJl7QTr6WypMjZW9F4ekLQddnWC/D9rLAkayD78wLc7Spj5OyzsVjCCg==
-X-Received: by 2002:a2e:880a:0:b0:25d:73af:52b5 with SMTP id x10-20020a2e880a000000b0025d73af52b5mr3098674ljh.298.1657613564070;
-        Tue, 12 Jul 2022 01:12:44 -0700 (PDT)
+        bh=piVMAlOpffJwid9tZ0g858Wy2lJidXX23spAtayy7OI=;
+        b=kLYJIGL3gPbBouAPOlrp0zNyuOLuztxVtnOHcqUs6OeB4Ro5Xer7bziShmwnG8dPos
+         +FHhYHFvpxqw3+cQpt3Co4mwbzbFINmLYQwFO6DEEY0NHN36+/P6Br8ZJULZZkjr8Cn1
+         rhn53nXeClVuJrYvobDCabFV2rka/phDTrOyoUCEMYFvvKTGoi24/VE5/0YYtFEvJt8p
+         rETtnpdysh6G/e7MqVColMnz/n8JpSedeURRXrucs/FLtFE6rONXhWD5iDYS3r/znKuT
+         5c0um8hwuIDSn9tUBOA55Iu0cnWxkrsgptJ+Z6qLTQe63VbuCHr5UTMuc1HVU+2q+dXQ
+         82SQ==
+X-Gm-Message-State: AJIora/g66j06cxeo86UgcIJhxK48WzZw86pOOFEmzR4NKqQS7OKzcOz
+        vDuzzC5R6CTa4Yab9lnAWsM+fA==
+X-Google-Smtp-Source: AGRyM1vqqp5s0BWN1F/7Lz3d6Rxo5GmlvLhM0XjExtACcM8zjS7RAxUFqyw3vof8bqYboTmuemBL4g==
+X-Received: by 2002:a05:6512:2345:b0:489:e76e:cc1a with SMTP id p5-20020a056512234500b00489e76ecc1amr3619483lfu.219.1657613656558;
+        Tue, 12 Jul 2022 01:14:16 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id f26-20020ac2509a000000b0047f6e590f08sm2048431lfm.128.2022.07.12.01.12.42
+        by smtp.gmail.com with ESMTPSA id f14-20020a05651c02ce00b0025d754ba5f4sm639397ljo.99.2022.07.12.01.14.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:12:43 -0700 (PDT)
-Message-ID: <2e279f04-04da-80a0-deaa-633740350991@linaro.org>
-Date:   Tue, 12 Jul 2022 10:12:41 +0200
+        Tue, 12 Jul 2022 01:14:16 -0700 (PDT)
+Message-ID: <1d048162-8051-f95b-c359-0ab59e32e507@linaro.org>
+Date:   Tue, 12 Jul 2022 10:14:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: sound: atmel,classd: Convert to
+Subject: Re: [PATCH v2 2/2] dt-binding: sound: atmel,pdmic: Convert to
  json-schema
 Content-Language: en-US
 To:     Ryan.Wanner@microchip.com, lgirdwood@gmail.com, broonie@kernel.org,
@@ -63,9 +63,9 @@ To:     Ryan.Wanner@microchip.com, lgirdwood@gmail.com, broonie@kernel.org,
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220711183010.39123-1-Ryan.Wanner@microchip.com>
- <20220711183010.39123-2-Ryan.Wanner@microchip.com>
+ <20220711183010.39123-3-Ryan.Wanner@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220711183010.39123-2-Ryan.Wanner@microchip.com>
+In-Reply-To: <20220711183010.39123-3-Ryan.Wanner@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,56 +81,48 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 11/07/2022 20:30, Ryan.Wanner@microchip.com wrote:
 > From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> Convert atmel CLASSD devicetree binding to json-schema.
-> Change file name to match json-schema naming.
+> Convert Atmel PDMIC devicetree binding to json-schema.
+> Change file naming to match json-schema naming.
 > 
 > Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 > ---
 > v1 -> v2:
 > - Fix title.
-
-Still wrong subsystem prefix. use git log --oneline --
-
-> - Fix formatting.
 > - Removed trivial descriptions.
-> - Fix filename.
+> - Fix formatting.
 > 
->  .../bindings/sound/atmel,sama5d2-classd.yaml  | 104 ++++++++++++++++++
->  .../bindings/sound/atmel-classd.txt           |  55 ---------
->  2 files changed, 104 insertions(+), 55 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/atmel-classd.txt
+>  .../bindings/sound/atmel,sama5d2-pdmic.yaml   | 98 +++++++++++++++++++
+>  .../devicetree/bindings/sound/atmel-pdmic.txt | 55 -----------
+>  2 files changed, 98 insertions(+), 55 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/atmel-pdmic.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
+> diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
 > new file mode 100644
-> index 000000000000..9ef8c6dde8a8
+> index 000000000000..88fa92a30147
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-classd.yaml
-> @@ -0,0 +1,104 @@
+> +++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-pdmic.yaml
+> @@ -0,0 +1,98 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/atmel,sama5d2-classd.yaml#
+> +$id: http://devicetree.org/schemas/sound/atmel,sama5d2-pdmic.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Atmel ClassD Amplifier
+> +title: Atmel PDMIC decoder
 > +
 > +maintainers:
-> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
 > +  - Claudiu Beznea <claudiu.beznea@microchip.com>
 > +
 > +description:
-> +  The Audio Class D Amplifier (CLASSD) is a digital input, Pulse Width Modulated (PWM)
-
-Wrap at 80, like Linux coding style asks for.
-
-> +  output stereo Class D amplifier.
+> +  Atmel Pulse Density Modulation Interface Controller
+> +  (PDMIC) peripheral is a mono PDM decoder module
+> +  that decodes an incoming PDM sample stream.
 > +
 > +properties:
 > +  compatible:
-> +    const: atmel,sama5d2-classd
+> +    const: atmel,sama5d2-pdmic
 > +
 > +  reg:
 > +    maxItems: 1
@@ -138,60 +130,69 @@ Wrap at 80, like Linux coding style asks for.
 > +  interrupts:
 > +    maxItems: 1
 > +
-> +  dmas:
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    const: tx
-> +
 > +  clocks:
-> +    maxItems: 2
+> +    items:
+> +      - description: peripheral clock
+> +      - description: generated clock
 > +
 > +  clock-names:
 > +    items:
 > +      - const: pclk
 > +      - const: gclk
 > +
-> +  assigned-clocks:
+> +  dmas:
 > +    maxItems: 1
-> +    description: classd_gclk
-
-Usually assigned-clocks are not mentioned (they come from core schema),
-so why do you need to add it? Maybe just skip it.
-
+> +
+> +  dma-names:
+> +    const: rx
+> +
+> +  atmel,mic-min-freq:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The minimal frequency that the microphone supports.
+> +
+> +  atmel,mic-max-freq:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The maximal frequency that the microphone supports.
 > +
 > +  atmel,model:
+> +    description: The user-visible name of this sound card.
+
+In previous properties the description was the last one, so keep it
+consistent.
+
 > +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: The user-visible name of this sound complex.
-> +    default: CLASSD
+> +    default: PDMIC
 > +
-> +  atmel,pwm-type:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - single
-> +      - diff
-> +    default: single
-> +    description: PWM modulation type, "single" or "diff".
-
-Remove last part - , "single" or "diff" - it duplicates enum.
-
+> +  atmel,mic-offset:
+> +    $ref: /schemas/types.yaml#/definitions/int32
+> +    description: The offset that should be added.
+> +    default: 0
 > +
-> +  atmel,non-overlap-time:
-> +    description:
-> +      Set non-overlapping time, the unit is nanosecond(ns).
-> +      Non-overlapping will be disabled if not specified.
-
-Keep description in consistent place, so either as first property or
-last. Don't mix.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum:
-> +      - 5
-> +      - 10
-> +      - 15
-> +      - 20
-> +    default: 10
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - dmas
+> +  - dma-names
+> +  - clock-names
+> +  - clocks
+> +  - atmel,mic-min-freq
+> +  - atmel,mic-max-freq
 > +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/dma/at91.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    pdmic: sound@f8018000 {
+> +    	compatible = "atmel,sama5d2-pdmic";
+
+Wrong indentation. I already asked for this.
+
 
 Best regards,
 Krzysztof
