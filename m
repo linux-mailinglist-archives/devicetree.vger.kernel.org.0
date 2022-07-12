@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA33B571C66
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 468E6571C71
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232830AbiGLO00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:26:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42762 "EHLO
+        id S233606AbiGLO0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:26:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233567AbiGLO0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:26:15 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9386B8EA1;
-        Tue, 12 Jul 2022 07:26:14 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id h200so7947510iof.9;
-        Tue, 12 Jul 2022 07:26:14 -0700 (PDT)
+        with ESMTP id S233585AbiGLO0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:26:35 -0400
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AA25B93D6;
+        Tue, 12 Jul 2022 07:26:18 -0700 (PDT)
+Received: by mail-il1-f176.google.com with SMTP id p13so4937164ilq.0;
+        Tue, 12 Jul 2022 07:26:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=Mwfd/m3zpk78sJK7nn2vE1VYk2hb35cFLS9pd42jCiI=;
-        b=sOLx8NOPqcbkhqqTQtOXlwj3BU4MfcAKBFdVlUpiB/pR09UKmkx+uY7hxCdgcAB3sS
-         SAn+vAEq0Jxlqh9mjdYSKLRa3Tkry2Ewo82T/KL0Rb9C+IhsXJdZzdWb0ZH1kV8tZQfU
-         nL0o6wcKGVQpqMRtWPKd2TmtpbYJ7ZVuWD5wQ10VhnNgMPrfWDgPT20Ha0GG8Ld34sx6
-         tkmfXkVUI5QP3CRxRur/a626v/GwqO94mz565Qyr9Hp/MX3vSOXAPsIbIgYOYk/vJujd
-         0EtkqR9MiC4vZH8iFiRoytHGbXpdjkBwCj0RCfZyOO2EhZncFyk7sjvWJICy1ugku/Wa
-         z/TQ==
-X-Gm-Message-State: AJIora+Nk4Vq7WICIZQIOlFgCbcNTfth8qK7/OMKbVrDcKcVFACeGdmU
-        GjQRzce8yVS0IJn/f3aLIg==
-X-Google-Smtp-Source: AGRyM1uQLAcirqFEfLkDKLsk9TU4a8owrMVfxUjgaeO2hrKaXbUywPSmFTal17hen3JlJmxPkXBYqQ==
-X-Received: by 2002:a05:6638:218c:b0:33c:9cae:166d with SMTP id s12-20020a056638218c00b0033c9cae166dmr13409432jaj.223.1657635973941;
-        Tue, 12 Jul 2022 07:26:13 -0700 (PDT)
+        bh=1krryCxXZpZ7zRDoyHmJlv2p3l9oqnjU6GHeaTd0+R8=;
+        b=T+Ow9FZdAsgkqR/mucvWZ/7kOqWTCb6XpK/tbPLei6VufBz0GbY9H5ofD5gZQi3is+
+         LFAgf+NMk8OgrRrYWaapfYuQSDTc/2NJ3pzwaJJS7MbHGmihvPrw6TSy4lQPWcl7PYzw
+         8PqU8/dl6dJpTsbNKYNHE6UMn5Dl1LgYO3GtxfB2EMwF7A1PLTMC6ECDHgijOn7TKSds
+         sfEopNzxRB1mGlH3OrooDNTTJeG1pKw5T1K2Lgp62lZ3nC/tmq3qAvZPhewjEDCqbDn0
+         myWRvDVLR2GC0OFdpPWJDFtY36YdHqa+cNgNETFhiMI0bxvnO9aDzvE4AePHo0B+Wrjg
+         +qFw==
+X-Gm-Message-State: AJIora8HDSIyixAicBMHgn1ppnv9rHBhXncSNzuQcZFxc6cGitBGp0CI
+        5DM6HCZeW8Iwl8FS/mpGuQ==
+X-Google-Smtp-Source: AGRyM1uhyieVNNMFSH9Fn+BMc4R7p6v+ljgAI1PZHfX3Z0Pg5ptWKgDm8FaP+gLvnmaZxcO2Gg6EvQ==
+X-Received: by 2002:a05:6e02:1d95:b0:2dc:4746:6a2d with SMTP id h21-20020a056e021d9500b002dc47466a2dmr11933000ila.322.1657635977511;
+        Tue, 12 Jul 2022 07:26:17 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id w8-20020a92d608000000b002dc0e7027edsm3799668ilm.32.2022.07.12.07.26.12
+        by smtp.gmail.com with ESMTPSA id r25-20020a02b119000000b0032e271a558csm4138264jah.168.2022.07.12.07.26.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 07:26:13 -0700 (PDT)
-Received: (nullmailer pid 1805847 invoked by uid 1000);
+        Tue, 12 Jul 2022 07:26:17 -0700 (PDT)
+Received: (nullmailer pid 1805852 invoked by uid 1000);
         Tue, 12 Jul 2022 14:26:12 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jiucheng Xu <jiucheng.xu@amlogic.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Chris Healy <cphealy@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Cc:     Sireesh Kodali <sireeshkodali1@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Mark Rutland <mark.rutland@arm.com>
-In-Reply-To: <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
-References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com> <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
-Subject: Re: [PATCH 4/4] dt-binding:perf: Add Amlogic DDR PMU
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-remoteproc@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>, Luca Weiss <luca@z3ntu.xyz>
+In-Reply-To: <20220712124421.3129206-3-stephan.gerhold@kernkonzept.com>
+References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com> <20220712124421.3129206-3-stephan.gerhold@kernkonzept.com>
+Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916 to schema
 Date:   Tue, 12 Jul 2022 08:26:12 -0600
-Message-Id: <1657635972.094089.1805846.nullmailer@robh.at.kernel.org>
+Message-Id: <1657635972.125667.1805851.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,16 +66,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Jul 2022 14:36:41 +0800, Jiucheng Xu wrote:
-> Add binding documentation for the Amlogic G12 series DDR
-> performance monitor unit.
+On Tue, 12 Jul 2022 14:44:17 +0200, Stephan Gerhold wrote:
+> qcom,q6v5.txt covers multiple SoCs with quite different binding
+> requirements. Converting this into one DT schema would require
+> several if statements, making the DT schema overall harder to
+> read and understand.
 > 
-> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> To avoid this, follow the example of SC7180/SC7280 and split
+> "qcom,msm8916-mss-pil" (and the equivalent deprecated "qcom,q6v5-pil"
+> compatible) into a separate DT schema. The schema is somewhat based
+> on the one for SC7180/SC7280 but adjusted for the old platforms.
+> 
+> Compared to the old plain text bindings, add missing documentation for
+> the "bam-dmux" subnode and recommend one particular approach to specify
+> the MBA/MPSS "memory-region" (the other one is marked as deprecated).
+> 
+> Cc: Sireesh Kodali <sireeshkodali1@gmail.com>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 > ---
->  .../devicetree/bindings/perf/aml-ddr-pmu.yaml | 51 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
+> Like Sibi's patch series for SC7180/SC7820 [1] this is somewhat related
+> to Sireesh's series that converts all of qcom,q6v5.txt [2] (with a lot
+> of if statements). However, this series focuses on MSM8916/MSM8974 (or
+> actually MSM8909) only.
+> 
+> [1]: https://lore.kernel.org/linux-arm-msm/1657020721-24939-1-git-send-email-quic_sibis@quicinc.com/
+> [2]: https://lore.kernel.org/linux-arm-msm/20220511161602.117772-7-sireeshkodali1@gmail.com/
+> ---
+>  .../remoteproc/qcom,msm8916-mss-pil.yaml      | 246 ++++++++++++++++++
+>  .../bindings/remoteproc/qcom,q6v5.txt         |  19 --
+>  2 files changed, 246 insertions(+), 19 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -85,29 +104,9 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/perf/aml-ddr-pmu.example.dts'
-Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml:51:5: did not find expected '-' indicator
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/perf/aml-ddr-pmu.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Traceback (most recent call last):
-  File "/usr/bin/yamllint", line 33, in <module>
-    sys.exit(load_entry_point('yamllint==1.26.3', 'console_scripts', 'yamllint')())
-  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 210, in run
-    prob_level = show_problems(problems, file, args_format=args.format,
-  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 106, in show_problems
-    for problem in problems:
-  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 203, in _run
-    for problem in get_cosmetic_problems(buffer, conf, filepath):
-  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 140, in get_cosmetic_problems
-    for problem in rule.check(rule_conf,
-  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 580, in check
-    for problem in _check(conf, token, prev, next, nextnext, context):
-  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 346, in _check
-    'wrong indentation: expected %d but found %d' %
-TypeError: %d format: a real number is required, not NoneType
-./Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml:51:5: did not find expected '-' indicator
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml: ignoring, error parsing file
-make: *** [Makefile:1404: dt_binding_check] Error 2
+./Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/remoteproc/qcom,smd-edge.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.example.dtb: remoteproc@4080000: smd-edge: False schema does not allow {'interrupts': [[0, 25, 1]], 'qcom,smd-edge': [[0]], 'qcom,ipc': [[4294967295, 8, 12]], 'qcom,remote-pid': [[1]], 'label': ['hexagon']}
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
 
 doc reference errors (make refcheckdocs):
 
