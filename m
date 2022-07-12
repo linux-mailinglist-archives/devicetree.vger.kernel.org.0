@@ -2,121 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C552A5719AE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DC0E57197E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbiGLMQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 08:16:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33484 "EHLO
+        id S232693AbiGLMLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 08:11:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233183AbiGLMQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:16:28 -0400
-X-Greylist: delayed 602 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Jul 2022 05:16:06 PDT
-Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com [51.81.35.219])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C56AE558;
-        Tue, 12 Jul 2022 05:16:06 -0700 (PDT)
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
-        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 2A613201AE;
-        Tue, 12 Jul 2022 11:57:56 +0000 (UTC)
-Received: from relay2.mymailcheap.com (relay2.mymailcheap.com [217.182.113.132])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 5CE24206D3;
-        Tue, 12 Jul 2022 11:57:53 +0000 (UTC)
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay2.mymailcheap.com (Postfix) with ESMTPS id 01CD73ECD9;
-        Tue, 12 Jul 2022 13:57:51 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id 565912A37A;
-        Tue, 12 Jul 2022 11:57:50 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id M5DJ4iuCCZiA; Tue, 12 Jul 2022 11:57:49 +0000 (UTC)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Tue, 12 Jul 2022 11:57:49 +0000 (UTC)
-Received: from edelgard.icenowy.me (unknown [59.41.160.3])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 42D17401CE;
-        Tue, 12 Jul 2022 11:57:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1657627068; bh=ngIZLTuVH9bK77KIsBS8/RQadlTRO2EmRZFRx9q6pic=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=legNVkDF7C6eeEdfhizFOZu6xr38rsC6eHTxb8EoeQJZFlO5hbwJXtVo71Q6znPff
-         GlcbGVi35E7LcHRbnqH5JEmuc55DX567CisvB0fDIhE8yWpU14AZmtGFt2P1lnyo00
-         x12JEgzd3uzbPPieUjRTJBMJh/HgFomrIp2e3Kc8=
-Message-ID: <4fc9873e87c11dce23099a24be34465f09f3a9a4.camel@aosc.io>
-Subject: Re: [PATCH 06/12] clk: sunxi=ng: add support for R329 CCUs
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Date:   Tue, 12 Jul 2022 19:57:29 +0800
-In-Reply-To: <c858b944-d72f-4e59-6a1a-329b5b8949c4@sholland.org>
-References: <20220422140902.1058101-1-icenowy@aosc.io>
-         <BYAPR20MB2472930AAFFBDC0ACB9A7487BCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
-         <c858b944-d72f-4e59-6a1a-329b5b8949c4@sholland.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 
+        with ESMTP id S232920AbiGLMLS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:11:18 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09E85A474;
+        Tue, 12 Jul 2022 05:11:17 -0700 (PDT)
+Received: from mail-yb1-f181.google.com ([209.85.219.181]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MUp8r-1o23la41Qn-00QjGg; Tue, 12 Jul 2022 14:11:16 +0200
+Received: by mail-yb1-f181.google.com with SMTP id g4so13565730ybg.9;
+        Tue, 12 Jul 2022 05:11:15 -0700 (PDT)
+X-Gm-Message-State: AJIora+1Lr1cvLsc4AlqV+YkOuCjky/g/o9+aVW+t4MQx27U6qeTzAyf
+        giwRYNe+CCFUI1Lg9G7kftU9EkxFcMoBONCyQtk=
+X-Google-Smtp-Source: AGRyM1vp7UnReXw8m+vPAVGuFyz0wyqIHLMPURrFlaroid+4yg7I9Shva7VkxiomVyWA1nkeG/dHW0BGheo4eUm7J1E=
+X-Received: by 2002:a25:7c41:0:b0:66d:766a:4815 with SMTP id
+ x62-20020a257c41000000b0066d766a4815mr22157231ybc.480.1657627874679; Tue, 12
+ Jul 2022 05:11:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_SOFTFAIL,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
+ <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
+ <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
+ <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
+ <181f1d88b64.e2eb2601586551.453778983551010212@linux.beauty>
+ <CAK8P3a3gX-JMh6E2X3rH+U37zhkA6b0+AJDtXCJfdZiMocxLjg@mail.gmail.com> <181f20d0403.121f433c8600165.2068876337784123868@linux.beauty>
+In-Reply-To: <181f20d0403.121f433c8600165.2068876337784123868@linux.beauty>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 12 Jul 2022 14:10:56 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3bSYZyKV_BywQFE5vi5RE4WoPwspXfTtO1ycV1zQDbmw@mail.gmail.com>
+Message-ID: <CAK8P3a3bSYZyKV_BywQFE5vi5RE4WoPwspXfTtO1ycV1zQDbmw@mail.gmail.com>
+Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
+ page and dio support to no-map rmem
+To:     Li Chen <me@linux.beauty>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Li Chen <lchen@ambarella.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, Linux-MM <linux-mm@kvack.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:+zjAhnLj95+ph1V+04ZyezVsXW3m6sCrtwFXluUV99lipKO4NdF
+ mAEgpzpGlWFbao+AgoilRE37FQdcPyk1U9p/lYP1LlKPXLglU1lZkbRD/Vx/jPlaQLBKfF0
+ 4Qr5xWbLaNuHwt2pPm0tv9hWCqowia+LZ1FMGawOwxvw3zSOVXqlFtRhmsacXrW50BGnJNG
+ JYnO8FDLhy6mG46f8Qrmg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:tHoxLQUteDw=:YxduVIBuHjw2g/yDkWz0jq
+ wn7FOoMuQ/UHM86DOKWpYBxULK+nrBmxGqAZ3bMVADZSSLubHQPnS0yf/TnF/heEU9O3aPZ88
+ ejzov7VWOyaQeLaEjqebEMirYsjrMm0PK2uBhCuFRjjhJeK4ij1tkI+Ggh6gbdDNNVngXG315
+ wueP3aMQd9eT/TcluiractUJukw4MVd92FY0JC0CDL9H3v2OHbXgBiqE8xhLfdqlRzGvePPfD
+ g2JE763x0KFn2IN0yP8n3brE3JJsG1unMfc6TZCf7my8/Vv3I0FlB1yrXuANCK6XSAKWmeXvA
+ MsfnzZUN7YZhdapNpHbLfa55Kve+sV9kJGJntlBx48VpPdS261zamq0GxaqNs+5opQ5wlL08M
+ tXS5Q3vB0M9zrWQRPVQ3Z2R7sj/F7MTkn+mccArOjXYt/yJ+t5PgbJGqfcWoHXiAuVbz0hWNa
+ tPMsbCg2VEwwduFAwNCsM8OlOqAIFJmEfASdMYSXm0B4HDX0E/BsOp71QGrBE+oJWldyaM2Mb
+ 6lpIqXxaPXYm1mNAj+JlsDIhQnY8F6moBfK5eQ71TXpdDwKHuNfY7xv/QVxvTSF9KIecAB9Oq
+ 6RysTxkdvnyu545cY5FpiDr0hgClhWb0BH5ys6KSBy2ydfmzEFoT9s/uTCfgjzs5C9d9NCUk4
+ 6b5Rw4kgWKt6HAbvPhh5HBn7LS3njB/21l7y7wIpuvllE40a22VqfrPVJzKCMkeElpkQrDFaj
+ levSiPr/NA61BGixZcJ/MHtu3WHCHto/9wdyww==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-在 2022-04-23星期六的 21:12 -0500，Samuel Holland写道：
-> On 4/22/22 10:41 AM, icenowy@outlook.com wrote:
-> > From: Icenowy Zheng <icenowy@aosc.io>
-> > 
-> > Allwinner R329 has two CCUs, one in CPUX and another in PRCM.
-> > 
-> > Add support for them.
-> > 
-> > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> 
-> There is a typo in your commit title. = should be -.
-> 
-> Thanks for updating the driver to use .fw_name and be loadable as a
-> module. All
-> of those changes look good.
-> 
-> There are still some missing clocks here compared to the BSP, and a
-> couple of
-> other minor issues. Please see my earlier review:
-> 
-> https://lore.kernel.org/linux-sunxi/99a74950-fdc0-ecfe-e5f0-ba4a7d8751f0@sholland.org/
-> 
-> So far it's been consistent that any settable bits in the CCU
-> registers actually
-> do something. So I would expect all of those bits to have an index
-> reserved in
-> the binding, even if we do not model them. I want to avoid having to
+On Tue, Jul 12, 2022 at 12:55 PM Li Chen <me@linux.beauty> wrote:
+>  >
+>  > This is a common limitation that gets handled automatically by setting
+>  > the dma_mask of the device through the dma-ranges property in DT.
+>  > When the driver does dma_alloc_coherent() or similar to gets its buffer,
+>  > it will then allocate pages below this boundary.
+>
+> Thanks for the tip! I wasn't aware that dma-ranges can be used by devices other than PCIe controllers.
 
-Sorry but I don't think it proper to reserve unclear bits, because
-we're just allocating the numbers as a random sequence (in fact it's
-the sequence that it gets implemented).
+You should actually have dma-ranges listed in the parent of any DMA master
+capable device, to list the exact DMA capabilities. Without this, devices
+fall back to the default 32-bit address limit, which would be correct for your
+video device but is often wrong in other devices.
 
-Or consider a structural number scheme, in which a value can be
-uniquely predicted by its name?
-
-> go back and
-> add gates to the binding out-of-order later, like we are doing for
-> H6.
-> 
-> Regards,
-> Samuel
-
-
+        Arnd
