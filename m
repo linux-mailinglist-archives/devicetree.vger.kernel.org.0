@@ -2,160 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52F13571986
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE11D5719AB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 14:16:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233102AbiGLML4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 08:11:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57660 "EHLO
+        id S233140AbiGLMPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 08:15:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233067AbiGLMLw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:11:52 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 400EAA2EFD;
-        Tue, 12 Jul 2022 05:11:51 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id bp15so3667654ejb.6;
-        Tue, 12 Jul 2022 05:11:51 -0700 (PDT)
+        with ESMTP id S233115AbiGLMPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 08:15:19 -0400
+Received: from mail.baikalelectronics.com (mail.baikalelectronics.com [87.245.175.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6E7894504D;
+        Tue, 12 Jul 2022 05:15:17 -0700 (PDT)
+Received: from mail (mail.baikal.int [192.168.51.25])
+        by mail.baikalelectronics.com (Postfix) with ESMTP id E9416D55;
+        Tue, 12 Jul 2022 15:17:08 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.com E9416D55
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VUup2uDXZ8o0p1sWQoMcoPhfIwXCF5ZE26LejT9YLSI=;
-        b=L01G/T8HvUDMaO5oB3F7fjPfeCZcHuQ87OMVJ5n5Z7U+PRPu6Afna1h7Y9DH2C/LkF
-         30nQ0GpWPRXviqZ6N7EvWZvZZVvuyZhRzbBjY+h42xIFEKMFseb0BcSZvAsGRQJb8jYT
-         B4S+yspb9IA94KnJ+i4Y4Ld4xQmoFhGg0N3omjLf13yxgg01lbvz59yGnW5E6QxPaTq9
-         1vkGK2bgVvwiVaBm1RXa/elbPFSXntWFsBt8yXAxGJW1K4Q/MLmhZVvJHLAT/Ej/gfuK
-         /mimE2QW9y89PSnKRUhdeW4w7U8UHKRtpElE1MQAoRZezYtqbnGtdb4mK9Fu5wTmjQbS
-         35Ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VUup2uDXZ8o0p1sWQoMcoPhfIwXCF5ZE26LejT9YLSI=;
-        b=mOqcdj7VwAaoImxiexh1yC3pbfan3eNjLaHTyPdFirCmI0bfEp6f2QoryLeensNBu1
-         f3uZgCVyHf2XrPIVscKoWlFAo0Bov3qksRbXWSNGwvzafYEi+bzjVIfkP0mQNbxBY26g
-         kr3AyeK5T/wlCYRw1BgMAw7vUcHLn4tk+46shaaepX2iEFasnuumyzC8w1lXFcu7Q9QR
-         SSmYsPDHCbsFZNdrShS34ETryzNjptkxQBbQebLwi1umjMBKlumHHW5fI15GbaSIZ+8Q
-         yE1HfxwFFWpoj842ilsWReWiqqtqo/LuHqiHWOaJoRgnRRxBwTDpyy6yUEtxnnm007M8
-         wdAw==
-X-Gm-Message-State: AJIora+/5ZAriMyUlnjQgGwWOpGsQsssB4SxqC95RAhFPIfj4eX5EfLR
-        Q/zyOx+cFmAvx6kqFc8m0F1ZI2SJ5Bgzd/kfkUw=
-X-Google-Smtp-Source: AGRyM1sSFVDbDH06DtJDlcsIYdLZJAcNINyNcdyUrh6tJPGsBlmIB44bi9Qwv4B+3NVBe7/GScLQREPobt/sEFSXyeQ=
-X-Received: by 2002:a17:906:6d91:b0:715:7d4e:84a2 with SMTP id
- h17-20020a1709066d9100b007157d4e84a2mr22498321ejt.504.1657627909594; Tue, 12
- Jul 2022 05:11:49 -0700 (PDT)
+        d=baikalelectronics.ru; s=mail; t=1657628229;
+        bh=I3BqipZnlSoZ4zjQmP5m9pmq2YSrZyjEN8smWhboj70=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
+        b=Yg9l10qz3WFb7rLl6YOlM0jejlesRRAGcltZ7+rASck9vHOrYMg1j2nS9xbalSLAc
+         PquGTg6jPdbIaa2n2HbGp4vZCmkdvQmCe/wt8ktreqyOh29Z/Xfa6Gyrb7ZMyeKpM5
+         PYA7MW9k8WJEOcloACwRl3iCxzuwPMNG9m6903iw=
+Received: from localhost (192.168.53.207) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 12 Jul 2022 15:15:14 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        <linux-clk@vger.kernel.org>, <linux-mips@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v8 6/7] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
+Date:   Tue, 12 Jul 2022 15:15:04 +0300
+Message-ID: <20220712121505.5671-7-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20220712121505.5671-1-Sergey.Semin@baikalelectronics.ru>
+References: <20220712121505.5671-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-References: <20220712082146.1192215-1-peng.fan@oss.nxp.com> <20220712082146.1192215-3-peng.fan@oss.nxp.com>
-In-Reply-To: <20220712082146.1192215-3-peng.fan@oss.nxp.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Tue, 12 Jul 2022 07:11:38 -0500
-Message-ID: <CAHCN7xLhSKQa3-ueiOz4ptg7Sp1vF3rmN5JRzqA+euVKYbZoOQ@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: soc: imx: add i.MX8MP vpu blk ctrl
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Marek Vasut <marex@denx.de>, paul.elder@ideasonboard.com,
-        Markus.Niebel@ew.tq-group.com,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 3:20 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> i.MX8MP VPU blk ctrl module has similar design as i.MX8MM, so reuse
-> the i.MX8MM VPU blk ctrl yaml file.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml        | 17 ++++++++++++++---
->  include/dt-bindings/power/imx8mp-power.h        |  4 ++++
->  2 files changed, 18 insertions(+), 3 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
-> index 26487daa64d9..edbd267cdd67 100644
-> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
-> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
-> @@ -4,20 +4,22 @@
->  $id: http://devicetree.org/schemas/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->
-> -title: NXP i.MX8MM VPU blk-ctrl
-> +title: NXP i.MX8MM/P VPU blk-ctrl
->
->  maintainers:
->    - Lucas Stach <l.stach@pengutronix.de>
->
->  description:
-> -  The i.MX8MM VPU blk-ctrl is a top-level peripheral providing access to
-> +  The i.MX8MM/P VPU blk-ctrl is a top-level peripheral providing access to
->    the NoC and ensuring proper power sequencing of the VPU peripherals
->    located in the VPU domain of the SoC.
->
->  properties:
->    compatible:
->      items:
-> -      - const: fsl,imx8mm-vpu-blk-ctrl
-> +      - enum:
-> +          - fsl,imx8mm-vpu-blk-ctrl
-> +          - fsl,imx8mp-vpu-blk-ctrl
->        - const: syscon
->
->    reg:
-> @@ -47,6 +49,15 @@ properties:
->        - const: g2
->        - const: h1
->
-> +  interconnects:
-> +    maxItems: 3
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: g1
-> +      - const: g2
-> +      - const: h1
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/include/dt-bindings/power/imx8mp-power.h b/include/dt-bindings/power/imx8mp-power.h
-> index 14b9c5ac9c82..11d43fc7a18e 100644
-> --- a/include/dt-bindings/power/imx8mp-power.h
-> +++ b/include/dt-bindings/power/imx8mp-power.h
-> @@ -52,4 +52,8 @@
->  #define IMX8MP_HDMIBLK_PD_HDCP                         7
->  #define IMX8MP_HDMIBLK_PD_HRV                          8
->
-> +#define IMX8MP_VPUBLK_PD_G1                            0
-> +#define IMX8MP_VPUBLK_PD_G2                            1
-> +#define IMX8MP_VPUBLK_PD_H1                            2
+Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
+additional blocks with directly controlled reset signals. In particular it
+concerns DDR full and initial resets and various PCIe sub-domains resets.
+Let's add the direct reset assertion/de-assertion of the corresponding
+flags support into the Baikal-T1 CCU driver then. It will be required at
+least for the PCIe platform driver. Obviously the DDR controller isn't
+supposed to be fully reset in the kernel, so the corresponding controls
+are added just for the sake of the interface implementation completeness.
 
-Is H1 even correct for 8MP? The TRM calls the encoder a VC800E.  Since
-the Encoder on the 8MM is a Hantro H1, this might add confusion if
-people start thinking they are the same.
-> +
->  #endif
-> --
-> 2.25.1
->
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+---
+
+Changelog v6:
+- Refactor the code to support the linear reset IDs only. (@Philipp)
+
+Changelog v7:
+- Drop empty line from the sys_rst_info structure initialization block.
+  (@Philipp)
+---
+ drivers/clk/baikal-t1/ccu-rst.c     | 66 +++++++++++++++++++++++++++++
+ drivers/clk/baikal-t1/ccu-rst.h     | 10 +++++
+ include/dt-bindings/reset/bt1-ccu.h |  9 ++++
+ 3 files changed, 85 insertions(+)
+
+diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
+index 7db52633270f..40023ea67463 100644
+--- a/drivers/clk/baikal-t1/ccu-rst.c
++++ b/drivers/clk/baikal-t1/ccu-rst.c
+@@ -35,18 +35,29 @@
+ #define CCU_AXI_HWA_BASE		0x054
+ #define CCU_AXI_SRAM_BASE		0x058
+ 
++#define CCU_SYS_DDR_BASE		0x02c
+ #define CCU_SYS_SATA_REF_BASE		0x060
+ #define CCU_SYS_APB_BASE		0x064
++#define CCU_SYS_PCIE_BASE		0x144
+ 
+ #define CCU_RST_DELAY_US		1
+ 
+ #define CCU_RST_TRIG(_base, _ofs)		\
+ 	{					\
++		.type = CCU_RST_TRIG,		\
++		.base = _base,			\
++		.mask = BIT(_ofs),		\
++	}
++
++#define CCU_RST_DIR(_base, _ofs)		\
++	{					\
++		.type = CCU_RST_DIR,		\
+ 		.base = _base,			\
+ 		.mask = BIT(_ofs),		\
+ 	}
+ 
+ struct ccu_rst_info {
++	enum ccu_rst_type type;
+ 	unsigned int base;
+ 	unsigned int mask;
+ };
+@@ -79,6 +90,15 @@ static const struct ccu_rst_info axi_rst_info[] = {
+ static const struct ccu_rst_info sys_rst_info[] = {
+ 	[CCU_SYS_SATA_REF_RST] = CCU_RST_TRIG(CCU_SYS_SATA_REF_BASE, 1),
+ 	[CCU_SYS_APB_RST] = CCU_RST_TRIG(CCU_SYS_APB_BASE, 1),
++	[CCU_SYS_DDR_FULL_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 1),
++	[CCU_SYS_DDR_INIT_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 2),
++	[CCU_SYS_PCIE_PCS_PHY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 0),
++	[CCU_SYS_PCIE_PIPE0_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 4),
++	[CCU_SYS_PCIE_CORE_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 8),
++	[CCU_SYS_PCIE_PWR_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 9),
++	[CCU_SYS_PCIE_STICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 10),
++	[CCU_SYS_PCIE_NSTICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 11),
++	[CCU_SYS_PCIE_HOT_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 12),
+ };
+ 
+ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
+@@ -86,6 +106,9 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
+ 	struct ccu_rst *rst = to_ccu_rst(rcdev);
+ 	const struct ccu_rst_info *info = &rst->rsts_info[idx];
+ 
++	if (info->type != CCU_RST_TRIG)
++		return -EOPNOTSUPP;
++
+ 	regmap_update_bits(rst->sys_regs, info->base, info->mask, info->mask);
+ 
+ 	/* The next delay must be enough to cover all the resets. */
+@@ -94,8 +117,51 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
+ 	return 0;
+ }
+ 
++static int ccu_rst_set(struct reset_controller_dev *rcdev,
++		       unsigned long idx, bool high)
++{
++	struct ccu_rst *rst = to_ccu_rst(rcdev);
++	const struct ccu_rst_info *info = &rst->rsts_info[idx];
++
++	if (info->type != CCU_RST_DIR)
++		return high ? -EOPNOTSUPP : 0;
++
++	return regmap_update_bits(rst->sys_regs, info->base,
++				  info->mask, high ? info->mask : 0);
++}
++
++static int ccu_rst_assert(struct reset_controller_dev *rcdev,
++			  unsigned long idx)
++{
++	return ccu_rst_set(rcdev, idx, true);
++}
++
++static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
++			    unsigned long idx)
++{
++	return ccu_rst_set(rcdev, idx, false);
++}
++
++static int ccu_rst_status(struct reset_controller_dev *rcdev,
++			  unsigned long idx)
++{
++	struct ccu_rst *rst = to_ccu_rst(rcdev);
++	const struct ccu_rst_info *info = &rst->rsts_info[idx];
++	u32 val;
++
++	if (info->type != CCU_RST_DIR)
++		return -EOPNOTSUPP;
++
++	regmap_read(rst->sys_regs, info->base, &val);
++
++	return !!(val & info->mask);
++}
++
+ static const struct reset_control_ops ccu_rst_ops = {
+ 	.reset = ccu_rst_reset,
++	.assert = ccu_rst_assert,
++	.deassert = ccu_rst_deassert,
++	.status = ccu_rst_status,
+ };
+ 
+ struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *rst_init)
+diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
+index 68214d777465..d6e8b2f671f4 100644
+--- a/drivers/clk/baikal-t1/ccu-rst.h
++++ b/drivers/clk/baikal-t1/ccu-rst.h
+@@ -13,6 +13,16 @@
+ 
+ struct ccu_rst_info;
+ 
++/*
++ * enum ccu_rst_type - CCU Reset types
++ * @CCU_RST_TRIG: Self-deasserted reset signal.
++ * @CCU_RST_DIR: Directly controlled reset signal.
++ */
++enum ccu_rst_type {
++	CCU_RST_TRIG,
++	CCU_RST_DIR,
++};
++
+ /*
+  * struct ccu_rst_init_data - CCU Resets initialization data
+  * @sys_regs: Baikal-T1 System Controller registers map.
+diff --git a/include/dt-bindings/reset/bt1-ccu.h b/include/dt-bindings/reset/bt1-ccu.h
+index 3578e83026bc..c691efaa678f 100644
+--- a/include/dt-bindings/reset/bt1-ccu.h
++++ b/include/dt-bindings/reset/bt1-ccu.h
+@@ -21,5 +21,14 @@
+ 
+ #define CCU_SYS_SATA_REF_RST		0
+ #define CCU_SYS_APB_RST			1
++#define CCU_SYS_DDR_FULL_RST		2
++#define CCU_SYS_DDR_INIT_RST		3
++#define CCU_SYS_PCIE_PCS_PHY_RST	4
++#define CCU_SYS_PCIE_PIPE0_RST		5
++#define CCU_SYS_PCIE_CORE_RST		6
++#define CCU_SYS_PCIE_PWR_RST		7
++#define CCU_SYS_PCIE_STICKY_RST		8
++#define CCU_SYS_PCIE_NSTICKY_RST	9
++#define CCU_SYS_PCIE_HOT_RST		10
+ 
+ #endif /* __DT_BINDINGS_RESET_BT1_CCU_H */
+-- 
+2.35.1
+
