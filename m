@@ -2,93 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57B885716F4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:15:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1489571701
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:16:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232459AbiGLKPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 06:15:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38214 "EHLO
+        id S232837AbiGLKQd convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 12 Jul 2022 06:16:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbiGLKPD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:15:03 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25756AAB0F;
-        Tue, 12 Jul 2022 03:15:02 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id B67325C0223;
-        Tue, 12 Jul 2022 06:14:59 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Tue, 12 Jul 2022 06:14:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1657620899; x=
-        1657707299; bh=v0+CmKWP2loTCoFQCysnsurtV75oEd9q2EXIWMHg5G8=; b=o
-        WEp3IO5JG0BJyeXFFtLCdU98eQKJ8c2mFFnkxAVVl5wnbzNZUYwSos4nIBajtUKw
-        HyfKD/0yEdmn536AkVyAAiB569drM0c5GHk/pqN8AggbVehaLizP9mRwq99S1DB2
-        SLgU3NW8kYvWf9TWSFnN4O0eAZAeySVq+IXZwxtBpgCbQ8mlaihhvwROiwx07tn3
-        TV/whk9JkujdyM90LVP+OrL2AG8gRQXOeLxVSIxPLomjcin3mFvF0XWHTLfNXLu8
-        X5wUxtUJExMYhkDyVJJngQwzdfiexguZReFJRUYFul2xwt2TCLGeGEsjogfHBJto
-        /z8aQ5OfyywJeIu2dpzvQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1657620899; x=
-        1657707299; bh=v0+CmKWP2loTCoFQCysnsurtV75oEd9q2EXIWMHg5G8=; b=a
-        jE3Sw1L2U+FQzaAjg7GzxHpYJ69GRATwL0/nWdjVHlMdVZPWFoUbehNIioHuM5r9
-        wB3Q7KzRuWVqRCItA3jS4iUQZbvpfB0YIUN6PgJQjVcTnKg2vP6/RldytpHlS0GQ
-        rIt/YgITu7DTqA6Y9l1jIRuBxYlN6pNoRYv/m9Ts5lnvvKOXtaiBZX5Q5m0gRSl3
-        uIJLi3ubR539EpNz/Txi7qO+lG7tLbdB8GgKzNC4VTCFXQjk9IvYwvAIjImBafDK
-        EfQ0n+Rb9y1BGD96yqoP7eSBwCBaEVntgDOpod7IKenQg0NxoPhbl8h359+SveEt
-        VUpA7Vfe8PRW1Fn96/Xtg==
-X-ME-Sender: <xms:oknNYvuz4lsXsLEmy0KQIoSCiwdrJpRKQyBNOVDeU7ZrNvK2NeOLTQ>
-    <xme:oknNYgdAlKrhMPCRlOVjBAThFjb7FsCJ5Xc1flP1ixejHef-Qwk4DNrwcMaSwfwZf
-    7w32LVS6wsSstY_lQ>
-X-ME-Received: <xmr:oknNYizleeJvReSYmDtL4qj73KfaS-FAQ-E8mHAuG1plPLJISsJvDnfuArxfY4t-QB7Lrwat83OAmmt8-JwJ4cbXB0AMmKd3ebW7AKKQuesorx2ETijB8E3XIg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudejhedgvdeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpefftdevkedvgeekueeutefgteffieelvedukeeuhfehledvhfei
-    tdehudfhudehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:oknNYuOHP6O5r1KRG-24Sr9ateMDvk6aeVG4kqg1THqLTrtwwn-m5g>
-    <xmx:oknNYv-RqvFyYUbiCxD5iwlDiLquLYeuLXcJYMTzyuU6X6-u5xa7uQ>
-    <xmx:oknNYuXfxV5hmusWWxOCkeOvJ9oaZr3ufcXj0kQd0Avov0hQ6bhkfg>
-    <xmx:o0nNYuW1Vy4mq7_mZ1PaUMuYu3V2G3QBjeQ3a8-qT-0b1bc26ieFag>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 12 Jul 2022 06:14:58 -0400 (EDT)
-Subject: Re: [PATCH 1/6] dt-bindings: pinctrl: Add compatibles for Allwinner
- D1/D1s
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>, Ondrej Jirman <x@xff.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        Andre Przywara <andre.przywara@arm.com>
-References: <20220626021148.56740-1-samuel@sholland.org>
- <20220626021148.56740-2-samuel@sholland.org>
- <CACRpkdY65q12sjDwH0UOOAa8GkBO--EDTsKrnEwn8NoTYTgtPQ@mail.gmail.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <879fb3b2-4bcb-82d6-e186-e845d62c9843@sholland.org>
-Date:   Tue, 12 Jul 2022 05:14:57 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S232396AbiGLKQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:16:31 -0400
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9A783AC040
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 03:16:30 -0700 (PDT)
+Received: from CHE01-GV0-obe.outbound.protection.outlook.com
+ (mail-gv0che01lp2046.outbound.protection.outlook.com [104.47.22.46]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-25-EQpRHVZBN42z8RkcWOP7Dg-3; Tue, 12 Jul 2022 12:16:26 +0200
+X-MC-Unique: EQpRHVZBN42z8RkcWOP7Dg-3
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8) by
+ GVAP278MB0165.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:3c::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5417.20; Tue, 12 Jul 2022 10:16:24 +0000
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::3d:ca30:8c24:1a95]) by ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::3d:ca30:8c24:1a95%7]) with mapi id 15.20.5417.026; Tue, 12 Jul 2022
+ 10:16:24 +0000
+From:   Francesco Dolcini <francesco.dolcini@toradex.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] Input: touchscreen: Minor colibri-vf50-ts cleanups
+Date:   Tue, 12 Jul 2022 12:16:17 +0200
+Message-ID: <20220712101619.326120-1-francesco.dolcini@toradex.com>
+X-Mailer: git-send-email 2.25.1
+X-ClientProxiedBy: MR1P264CA0170.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:501:55::18) To ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:2e::8)
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdY65q12sjDwH0UOOAa8GkBO--EDTsKrnEwn8NoTYTgtPQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c1a2e06b-746e-40ed-876d-08da63ef9365
+X-MS-TrafficTypeDiagnostic: GVAP278MB0165:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0
+X-Microsoft-Antispam-Message-Info: c9+iiZ3wXs5CIbU8dZhJlDkmUpvM2wuOkiDcgmJzYtaiCz6bsNHXQeh2fJbV/7Ahko28q+P+cMyTQsAAYJ97nul+IWrY3ggKRyhsusEtXM3wbUgdIpB+4V+/12sivvVIT5lS10sEMpu1mCjpk7wvQr6GUSGDDbVQSRnakGI++DaMU1t/5m1JtUV1sXCB/M4sA2ThNizNEF1ecTB9nbxUbReG0JcxtCndgOALWIF1LmNLvGRnPUTTjYxLQoerWRVR5Q/dfGSxHUOBxDjym5VjPeWUk5GUOjr6f89yLzrRShSzwTRG3+BUTqeQEguWPIdh32VwuiyUhX7z3oJZ/C0RQjt216NCtcZTh4QtSF3O9EEvzcgQU+wM1rHZ3dBEtd8+YFhUstZl+qghEpy30e7GiLYwbaj4MFDSGIWOluGF4CcQ5RAQph+yjYwzW03NE2O0erOUvFaDUp9OhsAn99PcRHAXgLSkcZaPRpu2WWUQBo3yFDr7AeMOzNyysrl11+J1Cru29VYBlsenFK9plb88g2CUkVsuMsKYknh+tVOghj32pPRWmuYvCLUMMpNo/pJI4NoynioFFPxYYr2l3nj5AK6pmksl2gDvHF0ep0/D3Bed9/RF8KgPQdaW6EiR82lwb0SwWgoNXylOwJTSFBKXxlVDZiwbHuSeAA0ZIIVv+X9On/CgcXXuxm33I8EC72zchh49cWMzBOFPGWZeHizJXqgqSDQUbTMpZAKf4SyLZhycBW4cWqHKcfxXcadtkt4y4TLl6zdQ5EjMx79igxB4Xff2pQYllgh917l990xVVZk6t0h2mQG5DPZM85Vk54J7
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(346002)(396003)(366004)(39850400004)(136003)(5660300002)(4744005)(8936002)(86362001)(26005)(6506007)(6666004)(6512007)(2906002)(478600001)(52116002)(6486002)(41300700001)(44832011)(38350700002)(38100700002)(1076003)(2616005)(186003)(36756003)(4326008)(316002)(8676002)(66946007)(66556008)(66476007)(83380400001)(110136005);DIR:OUT;SFP:1102
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gtzv/B6CnXAwhEplu6ylbMm+ri2/m/3AiZQut/d1rtNhS8PAyuqrr9IG6+GP?=
+ =?us-ascii?Q?BVIz7q3fTbEvx7ArT0GkWky2kCibAisV/dHOjd1d6i54b/O1ymn1OQ3VG7ZW?=
+ =?us-ascii?Q?7itgsM6sAilE8hob/KrTI1RUlivWN5stS9mDlole6BidtVp2pwwqkwg1u5Sw?=
+ =?us-ascii?Q?mtj817Wvfk4V+g8DVUWrYXrDj3CcsJfvLu1rIrCT5jTz5CjGeU9F3XpW/Zol?=
+ =?us-ascii?Q?kZHVwOcBU2ZOSehv0jh8or7rYldIJKw2i1uV41jtFCuz7jRIwmneeltwoSn3?=
+ =?us-ascii?Q?R5N8mxDktZRf3iFHLtfMJVHJwipzd805oqQZtWq3ABewv+R94jpoLURcL6eU?=
+ =?us-ascii?Q?IjSIZUdrl1Ep43gulstv2CsBqztICQVnjBQmTq48mxoUO44tpjLRZbFxw9i8?=
+ =?us-ascii?Q?dtJUhL1M4mQuSwJWkYdG8jhURbSpgQyqgj51lm2AzNayQVREqGfDzE9oSPJM?=
+ =?us-ascii?Q?kUCzTPVrc9NEDDPzc4+qKAWwrGUFBl6cTG6bHgUpC3ZbzD6Ur5tD+P3FA6FM?=
+ =?us-ascii?Q?PQltKkSMeAozDVyR0LpUvjyICI1Pysy3Oi+h94kO0O+bztwiWlusu/PxIMKP?=
+ =?us-ascii?Q?9HENJYrGRoy1xRKHuiDzdZXBKETQ8AB6Ux06Lx7MChjvW/uQNYIHxVQ6q9fW?=
+ =?us-ascii?Q?4sIxjj+u0VC3Ev6FdtaxSDF9iPqQ2Q63n2kufPo57wRllnSyFhjFh9g+kmJ5?=
+ =?us-ascii?Q?ZOXtFZrEYXmCUP9gQUuRQQQEI6tSm/gnIEA2bIQ03ZKR6kGG5mPss7dDmv8B?=
+ =?us-ascii?Q?0WwHy+2dvt/2dCIlKJ5EMAlFcq+kUi9rNmSy5g4KjWQDMn5ofmZLo4+6d7N0?=
+ =?us-ascii?Q?u7kKD4Dz9Urv10JOp+bpYOVfQtfhoRdNlJclFrkHN2XLB76Tpr64+T6hSPFi?=
+ =?us-ascii?Q?YBV3apJjZmsT10ADJ8emiAMTN6UIeMeMaOncbp948gDP3YckTF1cY88djWby?=
+ =?us-ascii?Q?ge3dGJh0Dat8ke17SwJVp+wwiUDKch1E2WtZhdYIudoUabh0AO9LFQ7EQP3b?=
+ =?us-ascii?Q?y+/wN7FuISi3YL2ke5T7qdTlF1zSRosjthn0QTXsm9Rwqar6iP0QiZx/ZGeR?=
+ =?us-ascii?Q?07N+mue9tM9xfeJTiaVEBatmkBh9cJte1tCvK9Q+dP5Ytfqopuuj+abwN9ZS?=
+ =?us-ascii?Q?/v3YaKPt9+tjYFpG0Af50siiiDElaz6KI0OZos3WyBaKMMBngXWUG5Y5BeU/?=
+ =?us-ascii?Q?KAaVOdWHh0HJuKrtgkLw2WAU6yAqVykRd7alRvy95pGnuvL7aRKaHJmIbJr+?=
+ =?us-ascii?Q?Qp8DS3+KTpx/3oj6LHE4YMXI2knc9eVh6VgJqt4Fzo1BrQSFWBMzLx3qf6sv?=
+ =?us-ascii?Q?q8FndZbjtnamyoTyCznr0yVPhqFFzkBufCigiq6mOftZtBK6C7fBxpx/IFr5?=
+ =?us-ascii?Q?jemn+ilze0/DYMIfaBIx3sMBd+Yu4RFSYvhCnRd2KaEUQXbx3STASXSRWoJt?=
+ =?us-ascii?Q?G+atdob0QNAcXv6KuxnICHaXoY+S8Vz+Gf4DN7bGC7GR1ToNXv1/LlNKW/56?=
+ =?us-ascii?Q?eoKVINRx7eCXGDIUxVAcnxdVED7HSuFPRmkAYM7tZIJdl3vfcXZPVc66vmWE?=
+ =?us-ascii?Q?5Jdno/z61J833GDaowIs0DejZtcaU11+fy08/hzBnVi72yVGkemkQnKeOnjb?=
+ =?us-ascii?Q?MQ=3D=3D?=
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1a2e06b-746e-40ed-876d-08da63ef9365
+X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2022 10:16:24.8209
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 30JoF7TlfCRj7RyLd+pXXqxhPTgY6PDYVGkn04MyIcgm5+cO5jTyBznwQ5JAP+Mi6ia9+jK/FEqLX7yEvW4lxF0L6QtgidLEjtLw+cHiJco=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0165
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CDE13A77 smtp.mailfrom=francesco.dolcini@toradex.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=WINDOWS-1252
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,30 +106,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Hi all,
+This series introduce some minor cleanups on colibri-vf50-ts, allow using it
+with any IIO ADC input and fix a couple of mistakes in the dt-bindings
+documentation.
 
-On 7/11/22 3:58 AM, Linus Walleij wrote:
-> On Sun, Jun 26, 2022 at 4:11 AM Samuel Holland <samuel@sholland.org> wrote:
-> 
->> D1 contains a pin controller similar to previous SoCs, but with some
->> register layout changes. It includes 6 interrupt-capable pin banks.
->>
->> D1s is a low pin count version of the D1 SoC, with some pins omitted.
->> The remaining pins have the same function assignments as D1.
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> 
-> All 6 patches applied to the pinctrl tree, the last patch 6/6
-> required some fuzzing so please check the result!
+Francesco
 
-Somehow the version of patch 6 applied to the pinctrl tree did not include the
-new driver source file. It only applied changes to existing files (including the
-Makefile reference to the new file).
+Max Krummenacher (2):
+  Input: touchscreen: colibri-vf50-ts: don't depend on VF610_ADC
+  dt-bindings: input: colibri-vf50-ts: Improve documentation
 
-I also needed to make some minor changes to patch 6 to resolve comments from Andre.
+ .../input/touchscreen/colibri-vf50-ts.txt        | 16 ++++++++--------
+ drivers/input/touchscreen/Kconfig                |  2 +-
+ 2 files changed, 9 insertions(+), 9 deletions(-)
 
-Is it okay if I send a v2 of just patch 6? Or do I need to send a follow-up
-based on what was already applied?
+-- 
+2.25.1
 
-Regards,
-Samuel
