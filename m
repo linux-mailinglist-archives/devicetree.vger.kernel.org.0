@@ -2,107 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DA385718BF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 13:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 651925718CD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 13:45:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232586AbiGLLlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 07:41:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53910 "EHLO
+        id S230272AbiGLLph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 07:45:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232548AbiGLLk6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 07:40:58 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 497F8AE3B5;
-        Tue, 12 Jul 2022 04:40:57 -0700 (PDT)
-X-UUID: af65d2b188e04f13ab1e8d6c30e29316-20220712
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:0bc8c407-d7db-4082-be49-b95e5be60b50,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:-5
-X-CID-META: VersionHash:0f94e32,CLOUDID:ff2d46d7-5d6d-4eaf-a635-828a3ee48b7c,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: af65d2b188e04f13ab1e8d6c30e29316-20220712
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 757573389; Tue, 12 Jul 2022 19:40:53 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 12 Jul 2022 19:40:52 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Tue, 12 Jul 2022 19:40:52 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH v3 5/5] arm64: dts: mt8192: Add dsi node
-Date:   Tue, 12 Jul 2022 19:40:46 +0800
-Message-ID: <20220712114046.15574-6-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220712114046.15574-1-allen-kh.cheng@mediatek.com>
-References: <20220712114046.15574-1-allen-kh.cheng@mediatek.com>
+        with ESMTP id S229634AbiGLLpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 07:45:36 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1663EADD55
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 04:45:35 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-31bf3656517so77742157b3.12
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 04:45:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=oslTq8Z7mBSpt+X5H9Q37Nxd1ONulQCEf83R9cxfg5c=;
+        b=GvyQMDr8kuHWKKnQu43mVwP3PFW+ufsZx4OSccq4s8TL68AqqTxluvQdDXvURx3qVE
+         Aui6kwcAMTS3303H8dMDpLdSVcNfdCT+7Jcvcrf2dLaLmcC1Prfvo5UAeIUe7Il34EW0
+         wirWuLEKagX/PmkV3ipny2IQyVGaXMbvCg204dKlvW0yfpOT1GOKZmgSa/Jyy6RkiScl
+         KT9ZuysMZ8y5Q6QU+4MG8vs3OneFywcL/W4olapfEq6KKxQYkUJwOS16V4f610HZSYKB
+         kNjnJo1tUkmeL8IEKMabzYJ/39RQ/aS9btBbO025/budPm/vocsH7BYLpHZlwqVqqVu5
+         8UHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=oslTq8Z7mBSpt+X5H9Q37Nxd1ONulQCEf83R9cxfg5c=;
+        b=m2Au39l5GAG4qNKytrvnYtxZXBF5O9hJwJd2bJqn81aB80MRZr0oGi/GIef+SiVEOo
+         VHJOWWno37I922dsRRd+Ofw9y5KO2Rs7J7CpwT1lt0XxqpZA45Rz6zToNH4SlH3pV/qJ
+         5+la2wIKoBovXGIaTkK+6++TPcX3JNXKW8OJKoXB+FpTejfPCMkZIINdwshQzzvLo6bP
+         53LDF5tohOy13TZd/OURazUyLgxjm6ua49oaC2W5cTbGvNvhIFqg4J4L2EaYIcE2FAE9
+         XJ0LyGST7POQSXOqhN+rm83bqcgyzvPwswALbm1zbqrMz8bAP5QOJDzRCe7Oca9a75i8
+         482w==
+X-Gm-Message-State: AJIora/KULTE5kilDBAJLUOmNaKUWj37OZpLljCUhNLhV25oeksvK/Z9
+        AxNho5NiVIJoi2vYMlQQm621Ty2/wHgoa9xXpdE=
+X-Google-Smtp-Source: AGRyM1uZMs7VTMxVGUBZp7TylPJ7DyLIkuPBgim12M0wIAwcbHUewM7EvTEeeZ/JOkCRgUIQDpRXqU5eY3HAMnzIUKQ=
+X-Received: by 2002:a0d:dc42:0:b0:31c:7b70:1f31 with SMTP id
+ f63-20020a0ddc42000000b0031c7b701f31mr24479528ywe.513.1657626333935; Tue, 12
+ Jul 2022 04:45:33 -0700 (PDT)
 MIME-Version: 1.0
+Sender: ireneraya0@gmail.com
+Received: by 2002:a05:7108:909f:0:0:0:0 with HTTP; Tue, 12 Jul 2022 04:45:33
+ -0700 (PDT)
+From:   Mrs Aisha Gaddafi <aishagaddafiaisha20@gmail.com>
+Date:   Tue, 12 Jul 2022 04:45:33 -0700
+X-Google-Sender-Auth: xMAc1A59nWVlaMTcF98747Tpro8
+Message-ID: <CAOGarBK1cSA+vUG_E07iZw=PAzdCE6M-0EPd8s55cPyrKfan9w@mail.gmail.com>
+Subject: ASSALAMU ALAIKUM FROM AISHA GADDAFI.
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: Yes, score=7.6 required=5.0 tests=BAYES_99,BAYES_999,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORM_FRAUD_5,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,LOTS_OF_MONEY,MILLION_HUNDRED,
+        MILLION_USD,MONEY_FORM_SHORT,MONEY_FRAUD_5,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,T_FILL_THIS_FORM_SHORT,
+        T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY,URG_BIZ
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:1131 listed in]
+        [list.dnswl.org]
+        *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
+        *      [score: 1.0000]
+        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
+        *      [score: 1.0000]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [aishagaddafiaisha20[at]gmail.com]
+        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [ireneraya0[at]gmail.com]
+        *  0.0 MILLION_HUNDRED BODY: Million "One to Nine" Hundred
+        *  0.0 MILLION_USD BODY: Talks about millions of dollars
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        *  0.6 URG_BIZ Contains urgent matter
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+        *      information
+        *  0.0 MONEY_FORM_SHORT Lots of money if you fill out a short form
+        *  2.8 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+        *  0.0 MONEY_FRAUD_5 Lots of money and many fraud phrases
+        *  0.0 FORM_FRAUD_5 Fill a form and many fraud phrases
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dsi node for mt8192 SoC.
+May i use this medium to open a mutual communication with you seeking
+your acceptance towards investing in your country under your
+management as my partner, My name is Aisha  Gaddafi and presently
+living in Oman, i am a Widow and single Mother with three Children,
+the only biological Daughter of late Libyan President (Late Colonel
+Muammar Gaddafi) and presently i am under political asylum protection
+by the Omani Government.
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+I have funds worth " Seven Million Five Hundred Thousand United State
+Dollars" -usd$7M.500.000.00 US Dollars which I want to entrust to you
+for investment projects in your country. If you are willing to handle
+this project on my behalf, kindly reply urgent to enable me provide
+you more details to start the transfer process, I shall appreciate
+your urgent response through my private email address below:
+aishagaddafiaisha20@gmail.com
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 92478e57f16f..fcb4f87ad824 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -1345,6 +1345,25 @@
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xe000 0x1000>;
- 		};
- 
-+		dsi0: dsi@14010000 {
-+			compatible = "mediatek,mt8183-dsi";
-+			reg = <0 0x14010000 0 0x1000>;
-+			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&mmsys CLK_MM_DSI0>,
-+				 <&mmsys CLK_MM_DSI_DSI0>,
-+				 <&mipi_tx0>;
-+			clock-names = "engine", "digital", "hs";
-+			phys = <&mipi_tx0>;
-+			phy-names = "dphy";
-+			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-+			resets = <&mmsys MT8192_MMSYS_SW0_RST_B_DISP_DSI0>;
-+			status = "disabled";
-+
-+			port {
-+				dsi_out: endpoint { };
-+			};
-+		};
-+
- 		ovl_2l2: ovl@14014000 {
- 			compatible = "mediatek,mt8192-disp-ovl-2l";
- 			reg = <0 0x14014000 0 0x1000>;
--- 
-2.18.0
+You can know more through the BBC news links below:
 
+http://www.bbc.com/news/world-africa-19966059
+
+
+Thanks
+Yours Truly Aisha
+aishagaddafiaisha20@gmail.com
