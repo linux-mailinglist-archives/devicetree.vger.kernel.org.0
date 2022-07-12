@@ -2,102 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACCCC571638
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 11:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 494A557164E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 11:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231571AbiGLJzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 05:55:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44784 "EHLO
+        id S229920AbiGLJ67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 05:58:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiGLJzW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 05:55:22 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C78AA810
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:55:20 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id d12so13029085lfq.12
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:55:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=axICpN3J/kMmaCf6S84TqGPCux368wms9PQ9I5oaU1Y=;
-        b=sgRn9iuPJDgWVdjaKv2jASetCuvgyB1fPCM+Uk+k1rQUY3idehVWK1F4ch8IyPAEL5
-         FLVBeM9+sq3kyoUucHx7vTTLeD+achPZeHZy3NRQrkkyVfNWc9F7WQWm+Oj2EuYQPdpz
-         YXxhCFWIt7xsMqneckUIjOBUTiPboVK1aOSBEj/wO+dTDnBnKSvtzuwMQk08jASq7gNo
-         9JD7RhZ8ken9hZb2xjtdeNiAvgrDcyErGBZ1dvLfdvb2636w+OTb7KBnEmJVvfILLFpA
-         +V+7xgf0gQlYirp33ZUZFPzMd/R7CdXvfPH9MK2WANEwqze1NZIyyqKWFx86eZNeXxcg
-         Q5dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=axICpN3J/kMmaCf6S84TqGPCux368wms9PQ9I5oaU1Y=;
-        b=DxwotfIBtaiT6KNaZllirydIMr4KCmNq29qsgZ8saBXGBxir2RKyxImtNrjBIe0Qzw
-         5SuWw7cg5SnzbXaXzXfBSTaZONK67M5xbZa1zArvXq4yfdpX0/y6r5fbPx1ESd43NHxd
-         QD/AXZTBR+RJaM8Pf6Wyb9JVpK8xYLtkHsBQYdIJipuiJ2n4lYdqTQ3n7T57XXStU8pZ
-         8yKzcXEEr2BNfutvLOMbfxlFax21PK4MxjGBenYHTXzNFAj2leAKRYj2NgMJBAWCVZeG
-         QDtKRW7VegYTIE8nL1p/YEgbwTtBHYyIhIgJMxd8y1RnQ8gqPc6nb55HW5/knftkiB1g
-         XcAg==
-X-Gm-Message-State: AJIora9Fx6z1kKNAVh/PhWjpaih8pcgjctmOe/Hw3oCon4Hf9xOuEMUF
-        Z2LoYPdlDG5xAzBi+96l3vBcBA==
-X-Google-Smtp-Source: AGRyM1ssaxls1fUxMc6/WdaimSgtDYowXLkqFMFTIULBRqh8A9jBeagdf7UHpFRz2wr0G30u76TsUw==
-X-Received: by 2002:a05:6512:108d:b0:489:e640:df8c with SMTP id j13-20020a056512108d00b00489e640df8cmr4334829lfg.332.1657619718613;
-        Tue, 12 Jul 2022 02:55:18 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id f28-20020a05651c03dc00b0025d40241c1dsm2354259ljp.6.2022.07.12.02.55.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 02:55:17 -0700 (PDT)
-Message-ID: <6f9d2ea8-1ffd-41d1-9441-00c2b35187ec@linaro.org>
-Date:   Tue, 12 Jul 2022 11:55:13 +0200
+        with ESMTP id S229780AbiGLJ66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 05:58:58 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1ED62529E;
+        Tue, 12 Jul 2022 02:58:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1657619911; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=N8Wwh5ZrxfDe+GMBeGfpPZ3e1nuPgwR/Ify54BgR/Yfuw59X3b4hF88u7M5kFxD6JtdN7DccyjsoC3jHAdFWdgVyKs7RVH5GuAOcRvy6t81XuUX+Y519PMYa4Vekry9GKbkm6Kv5DGvql91k2q5sQRG7+P2Oq2otk5Mtjo4DcNA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1657619911; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=oYmnSNasXsz26eSg9mhjVYwcpWPPoFUecXawM5smvMI=; 
+        b=MzX9q3FPWhevfCqNo9ft00EODGHInwZJvoozx7vsSY6Gfb0tp+RNI2/BYX0QMYjm4VoG9OcW6ui3zOmBjlh+kOBAyBzlyuQUViE9RuIX1H51jBvQmh8S13h+8+6gDP0yBK27K1+nY0LgjuXoJjwqxkZ7xBBPhapQvei/GTYlnKs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=linux.beauty;
+        spf=pass  smtp.mailfrom=me@linux.beauty;
+        dmarc=pass header.from=<me@linux.beauty>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1657619911;
+        s=zmail; d=linux.beauty; i=me@linux.beauty;
+        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=oYmnSNasXsz26eSg9mhjVYwcpWPPoFUecXawM5smvMI=;
+        b=mKhuxwbrK9EMCJnF4zTdx0uxUgK8wH1F7Xd/+pDIdxpnyLBwQikRq8VQ47b/dbvN
+        sQcsiMof1gsZvHJJMLSB62FG0KgoJN0N+rMygSmQA5ch3Q83q+uk/NroA5OD1AHKBkB
+        q2bqkah1dvzWqGHOLbk+Oqd1XBeiBUU8hQemu1xM=
+Received: from mail.zoho.com by mx.zohomail.com
+        with SMTP id 1657619909505764.9703126327654; Tue, 12 Jul 2022 02:58:29 -0700 (PDT)
+Date:   Tue, 12 Jul 2022 17:58:29 +0800
+From:   Li Chen <me@linux.beauty>
+To:     "Arnd Bergmann" <arnd@arndb.de>
+Cc:     "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Frank Rowand" <frowand.list@gmail.com>,
+        "Andrew Morton" <akpm@linux-foundation.org>,
+        "Li Chen" <lchen@ambarella.com>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        "DTML" <devicetree@vger.kernel.org>,
+        "Linux-MM" <linux-mm@kvack.org>
+Message-ID: <181f1d88b64.e2eb2601586551.453778983551010212@linux.beauty>
+In-Reply-To: <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
+References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
+ <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com> <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty> <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
+ page and dio support to no-map rmem
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v8 09/15] dt-bindings: firmware: Add fsl,scu yaml file
-Content-Language: en-US
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Peng Fan <peng.fan@nxp.com>, Liu Ying <victor.liu@nxp.com>,
-        Shijie Qin <shijie.qin@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220707125022.1156498-1-viorel.suman@oss.nxp.com>
- <20220707125022.1156498-10-viorel.suman@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220707125022.1156498-10-viorel.suman@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_RED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -105,21 +69,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 14:50, Viorel Suman (OSS) wrote:
-> From: Abel Vesa <abel.vesa@nxp.com>
-> 
-> In order to replace the fsl,scu txt file from bindings/arm/freescale,
-> we need to split it between the right subsystems. This patch adds the
-> fsl,scu.yaml in the firmware bindings folder. This one is only for
-> the main SCU node. The old txt file will be removed only after all
-> the child nodes have been properly switch to yaml.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
+Hi Arnd,
+ ---- On Tue, 12 Jul 2022 15:50:46 +0800  Arnd Bergmann <arnd@arndb.de> wrote --- 
+ > On Tue, Jul 12, 2022 at 2:26 AM Li Chen <me@linux.beauty> wrote:
+ > >  ---- On Mon, 11 Jul 2022 21:28:10 +0800  Arnd Bergmann <arnd@arndb.de> wrote ---
+ > >  > On Mon, Jul 11, 2022 at 2:24 PM Li Chen <me@linux.beauty> wrote:
+ > >  > >
+ > >  > > From: Li Chen <lchen@ambarella.com>
+ > >  > >
+ > >  > > This sample driver shows how to build struct pages support to no-map rmem.
+ > >  > >
+ > >  > > Signed-off-by: Li Chen <lchen@ambarella.com>
+ > >  >
+ > >  > Not sure what a sample driver helps here if there are no actual users in-tree.
+ > >  >
+ > >  > It would make more sense to merge the driver that wants to actually use this
+ > >  > first, and then add the additional feature.
+ > >
+ > > Totally agree, but we plan to start rewriting our video driver in a long time, it
+ > > has many legacy codes and I need to rewrite a lot of codes to migrate to v4l2.
+ > > That's why I also submit a sample driver here: to make the review progress
+ > > easier and don't need reviewers to read video driver codes.
+ > 
+ > The problem is that this patch may not be the right solution for your new
+ > driver either.  As Christoph also commented, what you do here is rather
+ > unusual, and without seeing the video driver first, we have no way of
+ > knowing whether there is something the driver should be doing
+ > differently to solve the original problem.
 
+Ok, I will update the patch series after rewriting and upstreaming our video driver.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ > 
+ > >  > > +/*
+ > >  > > + * dts example
+ > >  > > + * rmem: rmem@1 {
+ > >  > > + *                     compatible = "shared-dma-pool";
+ > >  > > + *                     no-map;
+ > >  > > + *                     size = <0x0 0x20000000>;
+ > >  > > + *             };
+ > >  > > + * perf {
+ > >  > > + *             compatible = "example,rmem";
+ > >  > > + *             memory-region = <&rmem>;
+ > >  > > + *     };
+ > >  >
+ > >  > The problem here is that the DT is meant to describe the platform in an OS
+ > >  > independent way, so having a binding that just corresponds to a user space
+ > >  > interface is not a good abstraction.
+ > >
+ > > Gotcha, but IMO dts + rmem is the only choice for our use case. In our real
+ > > case, we use reg instead of size to specify the physical address, so
+ > > memremap cannot be used.
+ > 
+ > Does your hardware require a fixed address for the buffer? If it can be
+ > anywhere in memory (or at least within a certain range) but just has to
+ > be physically contiguous, the normal way would be to use a CMA area
+ > to allocate from, which gives you 'struct page' backed pages.
 
+The limitation is our DSP can only access 32bit memory, but total dram is > 4G, so I cannot use
+"size = <...>" in our real case (it might get memory above 4G). I'm not sure if other vendors' DSP also has
+this limitation, if so, how do they deal with it if throughput matters.
 
-Best regards,
-Krzysztof
+Regards,
+Li
