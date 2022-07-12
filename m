@@ -2,220 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B99C571F57
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7314B571F85
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 17:37:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233634AbiGLPdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 11:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40806 "EHLO
+        id S233100AbiGLPg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 11:36:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234033AbiGLPc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:32:56 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84283C08D8
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:32:50 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id o7so14545322lfq.9
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 08:32:50 -0700 (PDT)
+        with ESMTP id S231190AbiGLPg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 11:36:57 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F7CDBFAF4;
+        Tue, 12 Jul 2022 08:36:57 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id o18so7882595pgu.9;
+        Tue, 12 Jul 2022 08:36:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0q9Gvx7Z0ksjLoxHmNPJnvLZ0oMYX7lpjYwHt0sE3fY=;
-        b=w1mXmlabNp7dsC4bzvKsmcIcHQmEvT2/nTr4wV3astV6R7wsM/Y3KEWDhi8VGGY/4s
-         evwhRNKn/n0u+ioYAxtYWQSMyMQR2xMgDdKdgH+zyl4XHQQaYXUafRl/igGum8KnxsG5
-         Pt1Q4ShK3MiGycJtVvPYflF7Rag6Pz8XRrM0SZY7EWlZ7Ks7Zs1X1FLPrrGOtn6DwERU
-         XhxKezmuU0jd+dr+K12auSGEtfanVThQaTPMebB2f9cpXatHPG79i/5S4JNyZinVdfxU
-         DxYgKiFJ8vsP4q4Gutn5FkxUva0K9ImgORxRgBBvLTPxd8pYoaYw4zwVabVpbG+4Y7es
-         IxhQ==
+        bh=D62EEaJdJ1cUDqfOx+/9az3sZV4zojbFZZeqG8QPACA=;
+        b=pPihGnCaQ8cg4w9ldLfV/i3WKugrLc0QWCh/PQl9YbPVFL3Lr2UWaZYamHmhOSy+z5
+         6kd/s6iACNpW3siXrot7bnlQbK1UEWaVvShA1bj88SSom3/SWCY2SWBAu4In9dDzJruR
+         7LpD+fCGACefbn/FGfiIwamPAESY6hD4RedrmqZ5NI9N0X2x1VEMZFHdi15rSu5pNuoe
+         +kDi11Xgmfzl5z/FPbx+DOAzN/QamSMltJOzXMBTP47kzvhHn8hn7MsYseXR/h1SoO6/
+         Npamb8b+ZWs+QsDJ+nEAAdmgBnE7dy7t1vYUqZap2QePe7H7cJjSlsCc4deJDZ5hO9q4
+         xfQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=0q9Gvx7Z0ksjLoxHmNPJnvLZ0oMYX7lpjYwHt0sE3fY=;
-        b=dGrYGQeGqjsTJgLvu3ocNzIETyn3R34CMa1osv3IeOnuAFTSD9eCtMMwaE+BIZdI/f
-         uMJRGAjhG259b4Ogzt0xn8j+aXXn2FGRn8VWC8W8CpmF+IEhqGj2Fnv/l892KPjrt+C0
-         qJKjsPh8JIFiyoeijkiF0rtt88LQzF+ai73iAUchUTwFd3M9vvkdTnFFCRn7OAFhcPZ7
-         CO8DDm8+CSIKfiQ2+Aa8SyBVARz0ZGKDVsK2WsK2EaRWe5/DjRr7AwTYCUdpKLXAZ3wa
-         T1/vEvV7XsEdMGlZpbLNW0t6X0f+Bhatz1kHhDJ2l2LHaEsQJl7UMzJEPAC9OTGm7irp
-         21Cg==
-X-Gm-Message-State: AJIora+CAz0dCpgfEl2mrxyNWDqVaSacAKsqet33sKoa49TyfHp0BjAF
-        QnDm+rv3CZrIoYymC9Pj0yCwHQ==
-X-Google-Smtp-Source: AGRyM1u9OoXz2cnj7jxSe/4JrF0ANDFELXJh2uu8x0qBIeg/tFjLu0qZuQHQLJznN8oGVOZnqiE6QA==
-X-Received: by 2002:a19:6754:0:b0:489:c7ff:10e1 with SMTP id e20-20020a196754000000b00489c7ff10e1mr12485200lfj.585.1657639968769;
-        Tue, 12 Jul 2022 08:32:48 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id u10-20020ac258ca000000b00478a311d399sm2249135lfo.0.2022.07.12.08.32.46
+        bh=D62EEaJdJ1cUDqfOx+/9az3sZV4zojbFZZeqG8QPACA=;
+        b=olbpYgxyO4d6pCVaBr6zb0q14WKnDKLpyrXAaYAwTJr+Lzn5WEAoeN4pYUcSaPYzzh
+         zXh1KoiEqBTGTT53MJnMaH8sihezHM6yvCEzTko5TXlvXQMSdKby5eqoh21s6l8uNrAJ
+         1KhFt59dO/Wwy757Ck9RzL3d8/jneLx/iGHAty+ja/zz/qCk5x4r28dYFlKNMB2XtrNk
+         zpV2lPWwLKtl+NC+/QuKtK9dkaLAz8NK1cMOukeIUyfXCl3J1I+OKXYqcYIKZabPZuqq
+         5iSIHeEycuOfYjtGXnFa9RsuGgfUrcHJN5cKi8WeKcBC7XH8QvYoMsVmVX7hzUN8ZbiM
+         1qkQ==
+X-Gm-Message-State: AJIora+60EoH1eqXZ44CS/Jq39QEGHWmMZH9lkeL+/oV9SfgQKQ7Dam5
+        HGmjrIoEMnIgUwIW1EtwA5k=
+X-Google-Smtp-Source: AGRyM1tluCYwfEtElbpLtsdITpCG6+RpxuiTKPvI5GF5WI1YAPknTx8/9d7FprFKfKYM/f2ciRnDng==
+X-Received: by 2002:a63:4619:0:b0:419:83a8:bced with SMTP id t25-20020a634619000000b0041983a8bcedmr853782pga.319.1657640216474;
+        Tue, 12 Jul 2022 08:36:56 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id rm10-20020a17090b3eca00b001ed27d132c1sm3994068pjb.2.2022.07.12.08.36.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 08:32:48 -0700 (PDT)
-Message-ID: <47aa4fbc-9cf4-7ac3-2fb4-2135a7703212@linaro.org>
-Date:   Tue, 12 Jul 2022 17:32:45 +0200
+        Tue, 12 Jul 2022 08:36:55 -0700 (PDT)
+Message-ID: <900ac3ed-a77c-3cc0-f5ab-c45267a1a4ba@gmail.com>
+Date:   Tue, 12 Jul 2022 08:36:53 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v5 5/6] media: dt-bindings: ov5693: document YAML binding
+ Thunderbird/91.9.1
+Subject: Re: [RFC PATCH 3/3] arm64: dts: bcmbca: update bcm4808 board dts file
 Content-Language: en-US
-To:     Jacopo Mondi <jacopo@jmondi.org>,
-        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        quentin.schulz@theobroma-systems.com,
-        Daniel Scally <djrscally@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        William Zhang <william.zhang@broadcom.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     kursad.oney@broadcom.com, anand.gore@broadcom.com,
+        dan.beygelman@broadcom.com, f.fainelli@gmail.com,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        joel.peshkin@broadcom.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220630134835.592521-1-tommaso.merciai@amarulasolutions.com>
- <20220630134835.592521-6-tommaso.merciai@amarulasolutions.com>
- <20220711093659.mf7i4uqtrejtfong@uno.localdomain>
- <20220712152538.jh4ufxik7icllox6@uno.localdomain>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220712152538.jh4ufxik7icllox6@uno.localdomain>
-Content-Type: text/plain; charset=UTF-8
+References: <20220712021144.7068-1-william.zhang@broadcom.com>
+ <20220712021144.7068-4-william.zhang@broadcom.com>
+ <d93e55fa-3359-2609-aad5-c80eca78f380@linaro.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <d93e55fa-3359-2609-aad5-c80eca78f380@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2022 17:25, Jacopo Mondi wrote:
-> Hi Krzysztof
->    could you have a look at the below question ?
-
-Sorry, there was a bunch of quoted text without end. When you reply
-under quote, please remove the rest of the quote. None of us have a lot
-of time to waste on scrolling emails...
-
+On 7/12/22 00:47, Krzysztof Kozlowski wrote:
+> On 12/07/2022 04:11, William Zhang wrote:
+>> Update compatible string based on the new bcmbca binding rule
+>> for BCM4908 famliy based boards
 > 
-> If no need to resend from Tommaso I think the series could be
-> collected for v5.20.
+> Typo - family
 > 
-> On Mon, Jul 11, 2022 at 11:37:05AM +0200, Jacopo Mondi wrote:
->> Hi Tommaso, Krzysztof,
->>
->>    This has been reviewed by Krzysztof already, so I guess it's fine,
->> but let me ask anyway
->>
->> On Thu, Jun 30, 2022 at 03:48:34PM +0200, Tommaso Merciai wrote:
->>> Add documentation of device tree in YAML schema for the OV5693
->>> CMOS image sensor from Omnivision
->>>
->>> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>> Changes since v1:
->>>  - Fix allOf position as suggested by Krzysztof
->>>  - Remove port description as suggested by Krzysztof
->>>  - Fix EOF as suggested by Krzysztof
->>>
->>> Changes since v2:
->>>  - Fix commit body as suggested by Krzysztof
->>>
->>> Changes since v3:
->>>  - Add reviewed-by tags, suggested by Jacopo, Krzysztof
->>>
->>> Changes since v4:
->>>  - Remove wrong Sakari reviewed-by tag, suggested by Krzysztof, Sakari
->>>
->>>  .../bindings/media/i2c/ovti,ov5693.yaml       | 106 ++++++++++++++++++
->>>  MAINTAINERS                                   |   1 +
->>>  2 files changed, 107 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
->>> new file mode 100644
->>> index 000000000000..b83c9fc04023
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
->>> @@ -0,0 +1,106 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +# Copyright (c) 2022 Amarulasolutions
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5693.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Omnivision OV5693 CMOS Sensor
->>> +
->>> +maintainers:
->>> +  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
->>> +
->>> +description: |
->>> +  The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
->>> +  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
->>> +  sub-sampled, and windowed 10-bit MIPI images in various formats via the
->>> +  Serial Camera Control Bus (SCCB) interface.
->>> +
->>> +  OV5693 is controlled via I2C and two-wire Serial Camera Control Bus (SCCB).
->>> +  The sensor output is available via CSI-2 serial data output (up to 2-lane).
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/media/video-interface-devices.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: ovti,ov5693
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    description:
->>> +      System input clock (aka XVCLK). From 6 to 27 MHz.
->>> +    maxItems: 1
->>> +
->>> +  dovdd-supply:
->>> +    description:
->>> +      Digital I/O voltage supply, 1.8V.
->>> +
->>> +  avdd-supply:
->>> +    description:
->>> +      Analog voltage supply, 2.8V.
->>> +
->>> +  dvdd-supply:
->>> +    description:
->>> +      Digital core voltage supply, 1.2V.
->>> +
->>> +  reset-gpios:
->>> +    description:
->>> +      The phandle and specifier for the GPIO that controls sensor reset.
->>> +      This corresponds to the hardware pin XSHUTDN which is physically
->>> +      active low.
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - clocks
->>> +  - dovdd-supply
->>> +  - avdd-supply
->>> +  - dvdd-supply
->>
->> Should supplies be made mandatory ? Sensors are often powered by fixed
->> rails. Do we want DTS writers to create "fixed-regulators" for all of
->> them ? The fact the regulator framework creates dummies if there's no
->> entry in .dts for a regulator makes me think it's fine to have them
->> optional, but I understand how Linux works should not be an indication
->> of how a bindings should look like.
->>
-> 
-> This question ^ :)
+> Please explain why breaking the ABI (and users of these DTS_ is acceptable.
 
-My generic answer for generic devices would be - if resource is
-physically required (one need to connect the wire), I would say it
-should be also required in the bindings. This also forces driver
-developer to think about these resources and might result on
-portable/better code.
+This will be largely targeted towards Rafal who supports these kinds of 
+devices with an upstream kernel. My understanding is that this is OK 
+because we will always ship a DTB matching the Linux kernel, and I 
+believe this is true for both the way that William and his group support 
+these devices, as well as how OpenWrt, buildroot or other build systems 
+envision to support these devices.
 
-However your point is correct that it might create many "fake"
-regulators, because pretty often these are fixed on the board and not
-controllable. Therefore I am fine with not requiring them - to adjust
-the bindings to real life cases.
-
-Best regards,
-Krzysztof
+Rafal, does that sound about right?
+-- 
+Florian
