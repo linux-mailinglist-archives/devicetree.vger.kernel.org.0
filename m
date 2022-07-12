@@ -2,73 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D44957217C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 18:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8282057218A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 19:05:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232878AbiGLQ7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 12:59:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47178 "EHLO
+        id S230475AbiGLRFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 13:05:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231321AbiGLQ7f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 12:59:35 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68E14DEE7;
-        Tue, 12 Jul 2022 09:59:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=HUhWfnGEox2/HCo9PEzTsvKGjQ6EBjpsz0Yndja9NZM=; b=Ep
-        sxnW5MGBYWBmxGFwxMClpi0GfrQWE+l8RciaaicdBmaJVZR19x3efheTGNPBSQU3uy2VrrsXq508a
-        taa/+Go1MQ98907VUYTKtDBApBZ8XIGBzpPF9ZYn5CknU4gUulp9y29QMRhLMLC96xnBHc1Ksnk8q
-        4ZUr0b3Wq8hyVFY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oBJEG-00A4be-HE; Tue, 12 Jul 2022 18:59:20 +0200
-Date:   Tue, 12 Jul 2022 18:59:20 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
+        with ESMTP id S229760AbiGLRFi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 13:05:38 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8D2C1FC8
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 10:05:37 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id 190so8470769iou.6
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 10:05:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=OkqY94hQ2MXdwJn9n/E8wY9GKpYzMuYU7Utx/QH/V1s=;
+        b=Ml/Lof+TuImuODsEmuS3+aV0cSDlgagURUxDupkSJdho9cb3EwtWw2Nu2sitBcG/iU
+         QVB5XujqAlbX3msi63WNIQhXccnGWHFtjnsXeEqSmbgrrBP/UWdMdnVFOi54xNpVDG1S
+         mVGHEPjueZTzEvqWJ9TGnXPJLK8lElQmQHyMbfUgGbzayOCAH5BP49/O0xRjNmtcCDQr
+         wrAjfUnmWMCEx4MdqpBBMrYOlflsVcWsOedrUrvKqSVODL5fyi8ONOmWyV+Ejbz4S2q+
+         B1NM6b3EF25zcgIMnGbxJjpRG0rrSHrhloSxbh3//GSFVcWgkTDEn0nHmUJ5p32wA4wW
+         TaJQ==
+X-Gm-Message-State: AJIora/nYZfMRvFkSVjW1S2f7VivF+81PuLLJ5mSxuQ6obBEaVRF0d1z
+        NXiGw+bpsmrI6o7dBvkZ/Tenz0ocsQ==
+X-Google-Smtp-Source: AGRyM1tjURPoMBnumWknn8IvfiQbgA6friT3LiauGNRSX7afgXRpCabz+SyXT5zH9ZmuAvX182M/LQ==
+X-Received: by 2002:a5d:9148:0:b0:672:4bfc:dcf8 with SMTP id y8-20020a5d9148000000b006724bfcdcf8mr12596652ioq.21.1657645536584;
+        Tue, 12 Jul 2022 10:05:36 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id f96-20020a0284e9000000b00331d764e5b5sm4328452jai.97.2022.07.12.10.05.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 10:05:36 -0700 (PDT)
+Received: (nullmailer pid 2027439 invoked by uid 1000);
+        Tue, 12 Jul 2022 17:05:35 -0000
+Date:   Tue, 12 Jul 2022 11:05:35 -0600
+From:   Rob Herring <robh@kernel.org>
 To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/10] ARM: dts: mvebu: Add definitions for PCIe
- legacy INTx interrupts
-Message-ID: <Ys2oaL7U7Ue5syU4@lunn.ch>
-References: <20220712164108.30262-1-kabel@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Subject: Re: [PATCH] dt-bindings: bus: add device tree bindings for
+ fsl,p1021rdb-pc-cpld
+Message-ID: <20220712170535.GF1823936-robh@kernel.org>
+References: <20220705175450.11886-1-kabel@kernel.org>
+ <CAL_Jsq+9H3YQgugiRpXsiLuHpfvKDYVSgLVsXq2kcbz-Uaqocg@mail.gmail.com>
+ <20220706185602.656f883a@thinkpad>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220712164108.30262-1-kabel@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220706185602.656f883a@thinkpad>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 06:40:58PM +0200, Marek Behún wrote:
-> As suggested by Gregory [1] (although he suggested it only for armada
-> 380), add definitions for PCIe legacy INTx interrupts into every DTS
-> file used by the pci-mvebu.c controller driver.
+On Wed, Jul 06, 2022 at 06:56:02PM +0200, Marek Behún wrote:
+> On Tue, 5 Jul 2022 14:09:36 -0600
+> Rob Herring <robh+dt@kernel.org> wrote:
 > 
-> It was tested on 88F6820 (A385) and 88F6281 (Kirkwood) SoCs.
+> > Not really a simple-bus if it has registers to init/program the bus.
 > 
-> [1] https://lore.kernel.org/linux-arm-kernel/87wnhxjxlq.fsf@BL-laptop/
-> 
-> Changes since v1:
-> - dropped armada-385 patch, which was already applied
-> - added commit messages
+> It doesn't.
 
-Thanks for updating the commit message.
+Then what is in 'reg'? It looks the same range as 'ranges', so maybe you 
+don't need 'reg'.
 
-I don't see any Fixes: tags here. So from that, can i assume that
-there are no known broken devices? We don't need to involve stable.
-
-      Andrew
+Rob
