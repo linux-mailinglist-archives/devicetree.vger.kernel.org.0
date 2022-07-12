@@ -2,183 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47AA757152D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:56:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22813571546
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 11:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232307AbiGLI4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:56:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55976 "EHLO
+        id S232606AbiGLJD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 05:03:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbiGLI4k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:56:40 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B88A9E44;
-        Tue, 12 Jul 2022 01:56:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1657616199; x=1689152199;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BAj2BVRnVHVx4BIVLBA7qJLUD2eGU+U6NgPxuH9MK6w=;
-  b=CXn1ALiGUpqKSWxID864AJr6C1DSgZLl8XuNELr2l1G/vqLp98vCpaXG
-   76DHBvXartoseZJ1pF1XwvNBXVR6daJ/f6yXhID5rUgOFM5MtR1jB6zFx
-   rn2lHkgXKR9Et0nwnRNfjx/PEfjsBuH+QWPxL1126cEHnJBX8TWqFX9A4
-   pMPw0QkOzO8G/A4RA347wmzl7WwgxqgqbzLuFGXIjqq0d2Alz016vJdFb
-   p9H9VAt9VR70k9jOop65sFHwtLAJPyfTSMGoJONEnszuVe6xvBq9Nhnf9
-   xircbxGARfroy/q6LuDFRhIpYomY8qCvBTAN9o7e1eryOhrph2KRW6G6+
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10405"; a="286008335"
-X-IronPort-AV: E=Sophos;i="5.92,265,1650956400"; 
-   d="scan'208";a="286008335"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2022 01:56:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,265,1650956400"; 
-   d="scan'208";a="737408607"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 12 Jul 2022 01:56:35 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 12 Jul 2022 11:56:34 +0300
-Date:   Tue, 12 Jul 2022 11:56:34 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org, christophe.jaillet@wanadoo.fr,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com
-Subject: Re: [PATCH v2 4/4] usb: typec: ucsi: stm32g0: add support for power
- management
-Message-ID: <Ys03QgD0aIF1Zl9R@kuha.fi.intel.com>
-References: <20220711120122.25804-1-fabrice.gasnier@foss.st.com>
- <20220711120122.25804-5-fabrice.gasnier@foss.st.com>
+        with ESMTP id S231806AbiGLJDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 05:03:21 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B4F7A4C88
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:03:19 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id bu42so12908362lfb.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 02:03:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=qJxUyqqHev67tpfClaZNAocOsbllu9hMYiypPtjySTQ=;
+        b=omEU2Ab2IkEDRlh2Hu2HNGB8ChfxSCNmR9dyDAZn9HZlo/p4u4XFaYstZ4agyHy4GI
+         0xkIMmpkbVnWpVj1urLHZdVpU8l56N3Kfv3dGm7rDQ7/eYR7F33OJ80IU4QXCoDBOQg9
+         b3Sl6iYT4S2SGvoGnGHtPqHYWkMXqezq+O69BNnQn8M/LR5DbDVq56GkS+LR0v6MRagn
+         N0S3mjnrJdGoNMaQWEtABwJPENqNg6e2mK/eWHzGGDktxY68xcC9PvwQxIfjETxNfZFT
+         CSh6tqpevrraUr3U8nIb5k+NT4zhbwJJDsbFwv6sx4M128174WijWDlSsgxF8hAvd6rv
+         3oNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=qJxUyqqHev67tpfClaZNAocOsbllu9hMYiypPtjySTQ=;
+        b=tPT3p7yXMCw8qZ+VZ55mCR/YB9j33lsbw3soS5fgb3mRlfafmQyyL2qg+usDorEP6O
+         NKn8NoGrbLSgl/Tf1CUH4BUy2EugMvq2x26RZCXawpHmmWPKLcq3vpPfapD3HLP7NK1h
+         R0lYNJ9+vXhfrP+kbmrqRQMNp7QeAgrPCzkg1EWD+SbWDVey/7432gAsgtCVyuhMUgMD
+         lXgVjPSuGYkDK0q2t7wXjBFXYcYl+WZ2moV0BVIVVuGeN+djFAUcomEw81dAPabwoxVd
+         P6siQu9mhBX5V4WTAyY4cW1WvIBVZlgfhWwes+ncukbs5j1+Tkn013PmTdzgc2lLKkKI
+         Ieeg==
+X-Gm-Message-State: AJIora/SeQaAtDpZ4zWThMsssoarf05LUc8ShTx1B21eO0t04py3V3gw
+        r5mudJ/p2a6VDDVwJKOmZce+1g==
+X-Google-Smtp-Source: AGRyM1vbDloanlf1JX4n1W5PjwRlQVj5gqoAPuLaNpzCxXvb1SDDgQlxyHSSFGNX9p+0kfp29S4bFQ==
+X-Received: by 2002:ac2:4d43:0:b0:489:cb6e:b293 with SMTP id 3-20020ac24d43000000b00489cb6eb293mr11303350lfp.376.1657616597891;
+        Tue, 12 Jul 2022 02:03:17 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
+        by smtp.gmail.com with ESMTPSA id f19-20020ac25333000000b00478fe690207sm2059505lfh.286.2022.07.12.02.03.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 02:03:17 -0700 (PDT)
+Message-ID: <d8bc3b20-45db-a869-2aff-9cda8e0fca92@linaro.org>
+Date:   Tue, 12 Jul 2022 11:03:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220711120122.25804-5-fabrice.gasnier@foss.st.com>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v1 08/16] arm64: dts: mt8195: Add power domains controller
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220704100028.19932-1-tinghan.shen@mediatek.com>
+ <20220704100028.19932-9-tinghan.shen@mediatek.com>
+ <3b65405d-167f-a0c7-d15e-5da6f08d99b3@linaro.org>
+ <eec6aee5cd023fff6d986882db0330e1ab85a59d.camel@mediatek.com>
+ <0301ebc6-1222-e813-f237-f14ad8444940@linaro.org>
+ <b6523c64-dfe2-13b0-db60-fb4f53ed1e31@collabora.com>
+ <1eb212ea-c5a9-b06f-606f-1271ac52adf9@linaro.org>
+ <c243bc9c-0862-450d-6bff-00ec5591e791@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c243bc9c-0862-450d-6bff-00ec5591e791@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Mon, Jul 11, 2022 at 02:01:22PM +0200, Fabrice Gasnier kirjoitti:
-> Type-C connector can be used as a wakeup source (typically to detect
-> changes on the port, attach or detach...).
-> Add suspend / resume routines to enable wake irqs, and signal a wakeup
-> event in case the IRQ has fired while in suspend.
-> The i2c core is doing the necessary initialization when the "wakeup-source"
-> flag is provided.
-> Note: the interrupt handler shouldn't be called before the i2c bus resumes.
-> So, the interrupts are disabled during suspend period, and re-enabled
-> upon resume, to avoid i2c transfer while suspended, from the irq handler.
+On 12/07/2022 10:53, AngeloGioacchino Del Regno wrote:
+> Il 12/07/22 10:37, Krzysztof Kozlowski ha scritto:
+>> On 12/07/2022 10:17, AngeloGioacchino Del Regno wrote:
+>>> Il 06/07/22 17:18, Krzysztof Kozlowski ha scritto:
+>>>> On 06/07/2022 14:00, Tinghan Shen wrote:
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> After discussing your message with our power team,
+>>>>> we realized that we need your help to ensure we fully understand you.
+>>>>>
+>>>>> On Mon, 2022-07-04 at 14:38 +0200, Krzysztof Kozlowski wrote:
+>>>>>> On 04/07/2022 12:00, Tinghan Shen wrote:
+>>>>>>> Add power domains controller node for mt8195.
+>>>>>>>
+>>>>>>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+>>>>>>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+>>>>>>> ---
+>>>>>>>    arch/arm64/boot/dts/mediatek/mt8195.dtsi | 327 +++++++++++++++++++++++
+>>>>>>>    1 file changed, 327 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>>>>>> index 8d59a7da3271..d52e140d9271 100644
+>>>>>>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>>>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>>>>>> @@ -10,6 +10,7 @@
+>>>>>>>    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>>>>    #include <dt-bindings/phy/phy.h>
+>>>>>>>    #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
+>>>>>>> +#include <dt-bindings/power/mt8195-power.h>
+>>>>>>>    
+>>>>>>>    / {
+>>>>>>>    	compatible = "mediatek,mt8195";
+>>>>>>> @@ -338,6 +339,332 @@
+>>>>>>>    			#interrupt-cells = <2>;
+>>>>>>>    		};
+>>>>>>>    
+>>>>>>> +		scpsys: syscon@10006000 {
+>>>>>>> +			compatible = "syscon", "simple-mfd";
+>>>>>>
+>>>>>> These compatibles cannot be alone.
+>>>>>
+>>>>> the scpsys sub node has the compatible of the power domain driver.
+>>>>> do you suggest that the compatible in the sub node should move to here?
+>>>>
+>>>> Not necessarily, depends. You have here device node representing system
+>>>> registers. They need they own compatibles, just like everywhere in the
+>>>> kernel (except the broken cases...).
+>>>>
+>>>> Whether this should be compatible of power-domain driver, it depends
+>>>> what this device node is. I don't know, I don't have your datasheets or
+>>>> your architecture diagrams...
+>>>>
+>>>>>
+>>>>>>> +			reg = <0 0x10006000 0 0x1000>;
+>>>>>>> +			#power-domain-cells = <1>;
+>>>>>>
+>>>>>> If it is simple MFD, then probably it is not a power domain provider.
+>>>>>> Decide.
+>>>>>
+>>>>> this MFD device is the power controller on mt8195.
+>>>>
+>>>> Then it is not a simple MFD but a power controller. Do not use
+>>>> "simple-mfd" compatible.
+>>>>
+>>>>> Some features need
+>>>>> to do some operations on registers in this node. We think that implement
+>>>>> the operation of these registers as the MFD device can provide flexibility
+>>>>> for future use. We want to clarify if you're saying that an MFD device
+>>>>> cannot be a power domain provider.
+>>>>
+>>>> MFD device is Linuxism, so it has nothing to do here. I am talking only
+>>>> about simple-mfd. simple-mfd is a simple device only instantiating
+>>>> children and not providing anything to anyone. Neither to children. This
+>>>>    the most important part. The children do not depend on anything from
+>>>> simple-mfd device. For example simple-mfd device can be shut down
+>>>> (gated) and children should still operate. Being a power domain
+>>>> controller, contradicts this usually.
+>>>>
+>>>
+>>> If my interpretation of this issue is right, I have pushed a solution for it.
+>>> Krzysztof, Matthias, can you please check [1] and give feedback, so that
+>>> Tinghan can rewrite this commit ASAP?
+>>>
+>>> Reason is - I need the MT8195 devicetree to be complete to push the remaining
+>>> pieces for Tomato Chromebooks, of course.
+>>>
+>>> [1]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=658527
+>>
+>> I have two or three similar discussions, so maybe I lost the context,
+>> but I don't understand how your fix is matching real hardware.
+>>
+>> In the patchset here, Tinghan claimed that power domain controller is a
+>> child of 10006000. 10006000 is also a power domain controller. This was
+>> explicitly described by the DTS code.
+>>
+>> Now you abandon this hierarchy in favor of syscon. If the hierarchy was
+>> correct, your patchset does not match the hardware, so it's a no-go.
+>> Describe the hardware.
+>>
+>> However maybe this patch did not make any sense and there is no
+>> relationship parent-child... so what do you guys send here? Bunch of
+>> hacks and work-arounds?
+>>
 > 
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-
-Does this really need a separate patch? Does the support depend on the
-second patch somehow?
-
-If not, then just merge this into the first patch. That
-g0->in_bootloader check you can add in the second patch.
-
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
-> ---
->  drivers/usb/typec/ucsi/ucsi_stm32g0.c | 52 +++++++++++++++++++++++++++
->  1 file changed, 52 insertions(+)
+> For how I get it, hardware side, the SPM (System Power Manager) resides inside
+> of the SCPSYS block (consequently, in that iospace).
 > 
-> diff --git a/drivers/usb/typec/ucsi/ucsi_stm32g0.c b/drivers/usb/typec/ucsi/ucsi_stm32g0.c
-> index b1d891c9a92c0..061551d464f12 100644
-> --- a/drivers/usb/typec/ucsi/ucsi_stm32g0.c
-> +++ b/drivers/usb/typec/ucsi/ucsi_stm32g0.c
-> @@ -66,6 +66,8 @@ struct ucsi_stm32g0 {
->  	unsigned long flags;
->  	const char *fw_name;
->  	struct ucsi *ucsi;
-> +	bool suspended;
-> +	bool wakeup_event;
->  };
->  
->  /*
-> @@ -416,6 +418,9 @@ static irqreturn_t ucsi_stm32g0_irq_handler(int irq, void *data)
->  	u32 cci;
->  	int ret;
->  
-> +	if (g0->suspended)
-> +		g0->wakeup_event = true;
-> +
->  	ret = ucsi_stm32g0_read(g0->ucsi, UCSI_CCI, &cci, sizeof(cci));
->  	if (ret)
->  		return IRQ_NONE;
-> @@ -696,6 +701,52 @@ static int ucsi_stm32g0_remove(struct i2c_client *client)
->  	return 0;
->  }
->  
-> +static int ucsi_stm32g0_suspend(struct device *dev)
-> +{
-> +	struct ucsi_stm32g0 *g0 = dev_get_drvdata(dev);
-> +	struct i2c_client *client = g0->client;
-> +
-> +	if (g0->in_bootloader)
-> +		return 0;
-> +
-> +	/* Keep the interrupt disabled until the i2c bus has been resumed */
-> +	disable_irq(client->irq);
-> +
-> +	g0->suspended = true;
-> +	g0->wakeup_event = false;
-> +
-> +	if (device_may_wakeup(dev) || device_wakeup_path(dev))
-> +		enable_irq_wake(client->irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ucsi_stm32g0_resume(struct device *dev)
-> +{
-> +	struct ucsi_stm32g0 *g0 = dev_get_drvdata(dev);
-> +	struct i2c_client *client = g0->client;
-> +
-> +	if (g0->in_bootloader)
-> +		return 0;
-> +
-> +	if (device_may_wakeup(dev) || device_wakeup_path(dev))
-> +		disable_irq_wake(client->irq);
-> +
-> +	enable_irq(client->irq);
-> +
-> +	/* Enforce any pending handler gets called to signal a wakeup_event */
-> +	synchronize_irq(client->irq);
-> +
-> +	if (g0->wakeup_event)
-> +		pm_wakeup_event(g0->dev, 0);
-> +
-> +	g0->suspended = false;
-> +
-> +	return 0;
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(ucsi_stm32g0_pm_ops, ucsi_stm32g0_suspend, ucsi_stm32g0_resume);
-> +
->  static const struct of_device_id __maybe_unused ucsi_stm32g0_typec_of_match[] = {
->  	{ .compatible = "st,stm32g0-typec" },
->  	{},
-> @@ -712,6 +763,7 @@ static struct i2c_driver ucsi_stm32g0_i2c_driver = {
->  	.driver = {
->  		.name = "ucsi-stm32g0-i2c",
->  		.of_match_table = of_match_ptr(ucsi_stm32g0_typec_of_match),
-> +		.pm = pm_sleep_ptr(&ucsi_stm32g0_pm_ops),
->  	},
->  	.probe = ucsi_stm32g0_probe,
->  	.remove = ucsi_stm32g0_remove,
-> -- 
-> 2.25.1
+> As Matthias pointed out earlier, SCPSYS provides more functionality, but the
+> only one that's currently implemented upstream is the System Power Manager,
+> responsible for managing the MTCMOS (power domains).
+> 
+> In any case, now I'm a little confused on how to proceed, can you please give
+> some suggestion?
 
--- 
-heikki
+You should make SCPSYS (0x10006000, AFAIU) a proper driver with its own
+compatible (followed by syscon if needed), even if now it is almost
+empty stub. The driver should populate OF children and then you can
+embed SPM inside and reference to parent's regmap. No need for
+simple-mfd. Later the SCPSYS can grow, if you ever need it.
+
+
+
+Best regards,
+Krzysztof
