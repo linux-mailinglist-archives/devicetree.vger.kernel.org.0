@@ -2,93 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91155571BF9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC8CA571C37
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232486AbiGLOIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:08:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53942 "EHLO
+        id S232671AbiGLOTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:19:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232308AbiGLOIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:08:13 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BAD52F382
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:08:10 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id y11so7599434lfs.6
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 07:08:10 -0700 (PDT)
+        with ESMTP id S230441AbiGLOTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:19:37 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF803340A;
+        Tue, 12 Jul 2022 07:19:35 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id t1so10661103lft.8;
+        Tue, 12 Jul 2022 07:19:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IUDupCeEXQ/0U2Mq+8j8TVT3HkTwF7WNPO4buPs4r6M=;
-        b=QYvKlU7dEHkaxWeAgxfsF7vxBdm/zDsF+uuntI0ZjZp2eHQW3sdICr52wnSvfAAqk/
-         xqPicfiGubAHcZxPV0vqcT7lcEqnZI8C7Q0mwu+pDS0gH9qj+XmkB8OxDjDi561+v38E
-         C+sElDXj830YwXWoYoAqURjSNfMYBVM2zw/QUM2x9489UNhtzbCZ5+a5BSVAZEQQbc8Z
-         ThNy5NFkPiYV+DIle2PSnvuqSlll+S8ql+SEjRPKQYzuqfXwduHzAYcpxcJRsqUCLqPI
-         Akbpi8mXiuBQYdtH/68IF5DKjpEfFw+oUXv8BB8hMaQv9Uk2cJ754oyLE645GWMGbij/
-         9Kdw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7U7RsYqGMW/Fuz5G2Ml9y4+TwTHhAM4/OuSGIAeWbUM=;
+        b=opkQ5LRmeZQfW7OxvixldzYBv/+hIidMoUVZf13hKz5+zku8M/PtCuwFuwaTdTMFRp
+         5oUdZgmSizQJ2YyKGTkbAOIEyemv9Nf0qk1VWum6QBkGcsDf+yS1qr89Sg5/LQ0RiE5o
+         4KSUa5LSRsgFmqN81eiHygwnn0fUu6YfFVNQ4YyX/7Cx/+MyP8r9Emk4mUyzGKhIA+b4
+         bie6NVVcSKZCFiRQDpNL0ke49gkNI4XrAkWDUY+vupjYblUBVmPK9pJ0vCTFJ9v6SrEA
+         lVwrvlb3JlRPQ54xZQ9b/WtBWhFyXh7gNOYf5easL+4DSzD4J60nDBYbX7adGd5dVJIA
+         qyUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=IUDupCeEXQ/0U2Mq+8j8TVT3HkTwF7WNPO4buPs4r6M=;
-        b=LXnezoGYkpPlp8xVqh4QbXfBXmjLuZPgMk4YUEJcbmYPf4tW2UsxHAKFdVz2QFgFNj
-         vOw39U4q1W/CT48QU3lb3dIUP2PZb+0dbtE6nqdq57qyOR+7yt6T87+NBdb3DLYN2EuG
-         Wmms35SE7rOnnjOLE87t3c9my9N/FKzfcGCpG7OOXsXzjwbbD2hYO4CQoYLkyd9PrRjG
-         kQhInb/x6dvh/OQNAg1nZ3jB5ddyOp+1q7CAzktofObcKtjX0KM4UsnSR+mrZxmcGVwb
-         c+RGRgHwOtmi2G/KfnWDufsXNi4RaqjIr8PUj4FoB1HhgGPKn9lzls1K3m7+Tg91IFLi
-         yQ+g==
-X-Gm-Message-State: AJIora97iichJbZ0WgwSr0bXBEf0hIX5N5zsHxLDqUotkjAb6EWMKep6
-        RT7CFBEBRYVGMreDsq1cqobWgA==
-X-Google-Smtp-Source: AGRyM1tCEXL8eb8yUBVXFnt5nQBt+dmZ3X4wqpUocjCz9IgpH1o5xI4GOGU1U4fDZ6ZvjrzDPG72Mg==
-X-Received: by 2002:a05:6512:2394:b0:489:e432:bca5 with SMTP id c20-20020a056512239400b00489e432bca5mr5786126lfv.537.1657634888923;
-        Tue, 12 Jul 2022 07:08:08 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id y3-20020a056512044300b0047e789b9700sm2187900lfk.118.2022.07.12.07.08.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 07:08:08 -0700 (PDT)
-Message-ID: <1c90df71-4db0-9d20-e41b-2dfdce8d6456@linaro.org>
-Date:   Tue, 12 Jul 2022 16:08:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Add Novatek NT35596S
- panel bindings
-Content-Language: en-US
-To:     MollySophia <mollysophia379@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        bh=7U7RsYqGMW/Fuz5G2Ml9y4+TwTHhAM4/OuSGIAeWbUM=;
+        b=0ReUyD2pJgdA+3oBc1RxlpCBMoCBD2qVMU/qJvsbWurS6JgaoIKbtLG8luvtLoFVMy
+         1r2n9kt60mst8MRKnNYbS9W59+g8uH1nI6UbyRE2iOZeesBIwIxkzGsmfdGjYk0g1ea6
+         VQ5CoEb2ffwA5OKL3FYQImxQUcOTogBlH6QrhwI5yQD4Aq8EWu/skYq2LhZXPgcReo7R
+         slwQS/9G2r5iD090jd3eaOyGJId1fj+UMWvi87toRoMX9LmhUJezqo1onQU6/Q6ghF2b
+         2aEH2HOPBDgZtjMhfJrXeCWzZUNmGG8BRwWd/gU1KMNb3To89V/g2gMasZXk7WwPo3yy
+         UfZw==
+X-Gm-Message-State: AJIora+b8xzMFLJRUkwGHMPWGZdaDK8/ABvWeJZcMzuKX9HYRvFafCHv
+        5HboTc/TKtpsU+UlkT3tdDcHUhOc1EtzLg==
+X-Google-Smtp-Source: AGRyM1tVrlnrOfg8pwo/F6ioRtUvp/BhxrW3YH3CUSeqJ2l2ax7KrKyDDTSNAmQu/5A5zzNZz889yQ==
+X-Received: by 2002:a05:6512:10d1:b0:489:feee:3b80 with SMTP id k17-20020a05651210d100b00489feee3b80mr85265lfg.212.1657635573757;
+        Tue, 12 Jul 2022 07:19:33 -0700 (PDT)
+Received: from localhost (95-31-189-152.broadband.corbina.ru. [95.31.189.152])
+        by smtp.gmail.com with ESMTPSA id o16-20020a2e9b50000000b0025d6856933fsm1854964ljj.134.2022.07.12.07.19.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 07:19:33 -0700 (PDT)
+From:   Mikhail Rudenko <mike.rudenko@gmail.com>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220709141136.58298-1-mollysophia379@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220709141136.58298-1-mollysophia379@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Cc:     Mikhail Rudenko <mike.rudenko@gmail.com>
+Subject: [PATCH 0/2] Add Omnivision OV4689 image sensor driver
+Date:   Tue, 12 Jul 2022 17:19:08 +0300
+Message-Id: <20220712141925.678595-1-mike.rudenko@gmail.com>
+X-Mailer: git-send-email 2.37.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/07/2022 16:11, MollySophia wrote:
-> Add documentation for "novatek,nt35596s" panel.
-> 
-> Signed-off-by: MollySophia <mollysophia379@gmail.com>
+Hello,
 
-I see now three different patchsets, twice v1 and once v2 (send shortly
-after v1). This is confusing.
+this series implements support for Omnivision OV4689 image
+sensor. The Omnivision OV4689 is a high performance, 1/3-inch, 4
+megapixel image sensor. Ihis chip supports high frame rate speeds up
+to 90 fps at 2688x1520 resolution. It is programmable through an I2C
+interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
+connection.
 
-Best regards,
-Krzysztof
+The driver is based on Rockchip BSP kernel [1]. It implements 4-lane CSI-2
+and single 2688x1520 @ 30 fps mode. The driver was tested on Rockchip
+3399-based FriendlyElec NanoPi M4 board with MCAM400 camera module.
+
+While porting the driver, I stumbled upon two issues:
+
+(1) In the original driver, horizontal total size (HTS) was set to a
+value (2584) lower then the frame width (2688), resulting in negative
+hblank. In this driver, I increased HTS to 2688, but fps dropped from
+29.88 to 28.73. What is the preferred way to handle this?
+
+(2) The original driver exposes analog gain range 0x0 - 0x7ff, but the
+gain is not linear across that range. Instead, it is piecewise linear
+(and discontinuous). 0x0-0xff register values result in 0x-2x gain,
+0x100-0x1ff to 0x-4x, 0x300-0x3ff to 0x-8x, and 0x700-0x7ff to 0x-16x,
+with more linear segments in between. Rockchip's camera engine code
+chooses one of the above segments depenging on the desired gain
+value. The question is, how should we proceed keeping in mind
+libcamera use case? Should the whole 0x0-0x7ff be exposed as-is and
+libcamera will do the mapping, or the driver will do the mapping
+itself and expose some logical gain units not tied to the actual gain
+register value? Meanwhile, this driver conservatively exposes only
+0x0-0xf8 gain register range.
+
+[1] https://github.com/rockchip-linux/kernel/blob/develop-4.19/drivers/media/i2c/ov4689.c
+
+Mikhail Rudenko (2):
+  media: dt-bindings: media: i2c: document OV4689 DT bindings
+  media: i2c: add support for ov4689
+
+ .../bindings/media/i2c/ovti,ov4689.yaml       | 122 +++
+ MAINTAINERS                                   |   8 +
+ drivers/media/i2c/Kconfig                     |  14 +
+ drivers/media/i2c/Makefile                    |   1 +
+ drivers/media/i2c/ov4689.c                    | 899 ++++++++++++++++++
+ 5 files changed, 1044 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+ create mode 100644 drivers/media/i2c/ov4689.c
+
+--
+2.37.0
