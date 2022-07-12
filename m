@@ -2,66 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D94E57283B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC370572846
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230470AbiGLVEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 17:04:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45248 "EHLO
+        id S229881AbiGLVMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 17:12:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbiGLVEf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:04:35 -0400
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A95BCAF1B;
-        Tue, 12 Jul 2022 14:04:35 -0700 (PDT)
-Received: by mail-io1-f47.google.com with SMTP id u6so8947737iop.5;
-        Tue, 12 Jul 2022 14:04:35 -0700 (PDT)
+        with ESMTP id S230051AbiGLVMM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:12:12 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D452139B80
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:12:10 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id r9so11328038ljp.9
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:12:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=aA1qRDMQdHcGVvyUmLU6fqZTSPwU+IQ4oW2ncgYSbDs=;
+        b=THMzW+zSqgG2BmIzWvvJj7lysQzD/3SLYng4Z+lMijoMjpJVpn64kaPQ1q6+R5Cqqi
+         p5UtStIJDmY3Bs9xeDKvJe45BqyYWDc80DJebwelP2muK0jsyv1otgjhYas0ZsORTNYs
+         tCccJ7mYr6MVguLsa3JSMkFzg8rXyFBeAqEeRKjnFcIr6IsoqG/V0ddRJ9RY+hjW4JM0
+         onGO6UQX7oq0KtNgtmpm6cP/qrYmTs5R1j64qGS/w4D0pjJ1xjPOpZ3koXV5AYK4BEdQ
+         S/Ov7+RGmnAz8ZTt/flJv0KL3rSix57nTv6COE3NvfCpkSeMPNnTUvgda6gRHGthvXQO
+         Di1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=B9l0hEIECVZDQ3QXPwtwyskyfVTnfIEfp72jU2ng/o4=;
-        b=cvVYCOvOnf3nxvx+egPGO+FmvzirlF+Af7B9hUeZVTGTFHuCpg5AliiYZ2KycFPDWp
-         P6/wwUAe6qHEqDv6AKV8bSpXOg7TwJ5oXA7w+cnvNmYVYEG0hipXRJAJBWqFERQLaMsj
-         cNZDUGXOx6Ms0mR2euVtMK55xbUNtB33rNXLJfADhIpHc7jwy1EwnDC81mPMPpfJ48eG
-         BRWiQNUDZYfx8YIowbvhPoGuy1rFs6zU5IQ74937Qp3X4k70RN3/q9EzL9v//YwwWAuX
-         2y39mMaOocHmhVrIsomLnij4wzsKPGsGPowIZ+7Z3EY0aSAcGqHRDNmVqsk5WWYyV/QV
-         tN1w==
-X-Gm-Message-State: AJIora//Y8NSxKiIKmh7q7OyHfpsm/RlZG8XcbpNCgNXgcs+67Q6XQyw
-        zBYG1EThGBqca3nnoNeHHw==
-X-Google-Smtp-Source: AGRyM1s4D6fFKHbmJgajbZApfQiCmilN6Wafon4NHMPyM2CPmy1WKz/5rLttQgt0pobnReBbHVKJlA==
-X-Received: by 2002:a05:6638:3494:b0:33f:62fa:d95d with SMTP id t20-20020a056638349400b0033f62fad95dmr15721jal.318.1657659874064;
-        Tue, 12 Jul 2022 14:04:34 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id u6-20020a5edd46000000b0067b7360dd5dsm5529940iop.4.2022.07.12.14.04.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 14:04:33 -0700 (PDT)
-Received: (nullmailer pid 2359803 invoked by uid 1000);
-        Tue, 12 Jul 2022 21:04:32 -0000
-Date:   Tue, 12 Jul 2022 15:04:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Isaac True <isaac.true@canonical.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        wim@linux-watchdog.org
-Subject: Re: [PATCH 2/2] watchdog: gpio: add configurable minimum interval
-Message-ID: <20220712210432.GP1823936-robh@kernel.org>
-References: <20220629110626.2158127-1-isaac.true@canonical.com>
- <20220629110626.2158127-2-isaac.true@canonical.com>
- <20220701171829.GA1149706-robh@kernel.org>
- <0d045bb8-a519-39d4-17fa-123f90969bd9@roeck-us.net>
- <CALkPoPYKNxAeP6HM1cMh1zzW6jw4fktCp42b7+79Qf8DVJis-w@mail.gmail.com>
- <20220705195614.GA2503171-robh@kernel.org>
- <CALkPoPY49PGNk84spUF3BesdZoUFpq++D1NYd_1ouT2Cv4wDYQ@mail.gmail.com>
- <20220708114425.GA2164221@roeck-us.net>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=aA1qRDMQdHcGVvyUmLU6fqZTSPwU+IQ4oW2ncgYSbDs=;
+        b=RNqnN0NzcqW6hIjkKH4t/ALNltIpdC/eSxLOBvaw6UU455+sJIjdWd1xH+ji1r2eXI
+         qfWAeVjwXHcNTmg6tAyvhX8M676Ut4bj9XO9Eim6CJ/sJAb9w6FGPd/eq1Qrp1cYCFdY
+         uhSh+b5dSX+wLH94c/qTF6zZpckf6JG8PuFWO9bMLrTMhL8lZpQWbmwP1Ts8xd8JXc9I
+         XdevblFqBqVpL6IPd/hIzXaN+GwmSDQv8hg8g8Ry6ed5qJBdT6ozA7XMJCngBMY6ymNL
+         Cfpu3H93bTKgv3Ocd2CIYM0W7anpg7AcQ1KNNfMwDgneNs4hse6XmyjMHmpTCzyemDZK
+         4Lbw==
+X-Gm-Message-State: AJIora+1oVTpJZzkfYhR7ryFxod4SLJDSTqp4S1lTrO6m/XQJoNlSdMZ
+        alGehkE6bbBrYUhKyMbqNV9Mxg==
+X-Google-Smtp-Source: AGRyM1s6+q73AgxvmBolc9anwkHnfpTMlx2LHi2vSLJMomIzxa7vkLsATnZFmtB04YrlCAgK3cruYA==
+X-Received: by 2002:a2e:a98b:0:b0:25d:605f:1acb with SMTP id x11-20020a2ea98b000000b0025d605f1acbmr11249584ljq.311.1657660329162;
+        Tue, 12 Jul 2022 14:12:09 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id x5-20020a056512078500b0048159b43083sm2392015lfr.201.2022.07.12.14.12.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 14:12:08 -0700 (PDT)
+Message-ID: <34e2a75a-b6dc-d5ae-4820-58cee2b0dd29@linaro.org>
+Date:   Tue, 12 Jul 2022 23:12:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220708114425.GA2164221@roeck-us.net>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/3] dt-bindings: usb: Add binding for TI USB8041 hub
+ controller
+Content-Language: en-US
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com>
+ <Ys2uiei+ZOVYaOMy@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Ys2uiei+ZOVYaOMy@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,86 +78,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 08, 2022 at 04:44:25AM -0700, Guenter Roeck wrote:
-> On Thu, Jul 07, 2022 at 11:00:45AM +0200, Isaac True wrote:
-> > On Tue, 5 Jul 2022 at 21:56, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Mon, Jul 04, 2022 at 01:05:04PM +0200, Isaac True wrote:
-> > > > On Fri, 1 Jul 2022 at 19:48, Guenter Roeck <linux@roeck-us.net> wrote:
-> > > > >
-> > > > > On 7/1/22 10:18, Rob Herring wrote:
-> > > > > > On Wed, Jun 29, 2022 at 01:06:26PM +0200, Isaac True wrote:
-> > > > > >> Add the "min_hw_margin_ms" parameter to gpio_wdt devices, allowing a
-> > > > > >> minimum interval to be specified, stopping watchdog devices from being
-> > > > > >> fed too quickly if they require a certain interval between feeds.
-> > > > > >
-> > > > > > I assume there is some real platform with a real problem you are trying
-> > > > > > to solve? Details please.
-> > > > > >
-> > > > >
-> > > > > Agreed, this should be explained in more detail.
-> > > >
-> > > > Yes this is a real platform using a TI TPS3850 watchdog chip. With
-> > > > this chip you can configure a "window" which can detect early faults
-> > > > (i.e. too frequent) in addition to the standard watchdog features. I
-> > > > needed to add this minimum timeout to avoid watchdog resets in
-> > > > situations such as where first U-Boot and then the Linux kernel feed
-> > > > the watchdog with too short of an interval between them, or when
-> > > > systemd was configured to use the watchdog device and was feeding it
-> > > > too soon after taking over from the kernel.
-> > > >
-> > > > > > Can you just hardcode some min? Maybe 10% of the max or something. Is
-> > > > > > there a downside to a larger than necessary min?
-> > > > > >
-> > > > >
-> > > > > That would result in extra overhead in the watchdog core which would not
-> > > > > be required for all other hardware using this driver. I'd rather avoid that.
-> > > > >
-> > > >
-> > > > In the case of the TI TPS3850, the minimum timeout is configurable, so
-> > > > I didn't want to add a hard-coded value to the driver.
-> > > >
-> > > > > > Wouldn't be better to fix this without requiring a DT change and that
-> > > > > > could work on stable kernels if needed.
-> > > > > >
-> > > > >
-> > > > > Presumably that is some new hardware. Most of the watchdog drivers
-> > > > > needing this value can derive it from the compatible property. The
-> > > > > gpio watchdog driver is a bit different since it is supposed to work
-> > > > > on a variety of hardware using gpio pins for watchdog control.
-> > > > >
-> > > >
-> > > > Yes this is new hardware. This use case is also not very common as
-> > > > most watchdog chips don't have this window function or a minimum
-> > > > interval, at least in my experience, so I did not want to make it the
-> > > > default for everything.
-> > >
-> > > Okay. However the existing property you copied has 2 problems. It uses
-> > > underscores rather than hypens and doesn't use a standard unit suffix.
-> > > So 'min-hw-margin-ms'.
-> > >
-> > > Though maybe a new property instead:
-> > >
-> > > timeout-range-ms = <min max>;
-> > >
-> > > That's somewhat aligned to 'timeout-sec', and IMO, clearer meaning than
-> > > 'hw margin'.
-> > >
-> > > Rob
-> > 
-> > I agree that both the original property name and the new one aren't
-> > great, but I didn't want to go changing the existing property for
-> > everyone.  I could definitely add a new "timeout-range-ms" property -
-> > should that be added in parallel to the original hw_margin_ms (i.e.
-> > you can use one or the other), or completely replace the original?
+On 12/07/2022 19:25, Matthias Kaehlcke wrote:
+> Hi Alexander,
 > 
-> I wonder how that made it in in the first place. Embarrassed ...
-> of course it wasn't reviewed by a DT maintainer. I'd suggest to mark
-> the old property as deprecated (if that is possible) and define
-> the new one.
+> On Tue, Jul 12, 2022 at 05:06:25PM +0200, Alexander Stein wrote:
+>> The TI USB8041 is a USB 3.0 hub controller with 4 ports.
+>>
+>> This initial version of the binding only describes USB related aspects
+>> of the USB8041, it does not cover the option of connecting the controller
+>> as an i2c slave.
+>>
+>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>> ---
+>> Well, this is essentially a ripoff of
+>> Documentation/devicetree/bindings/usb/realtek,rts5411.yaml with USB IDs
+>> replaced, reset-gpio added and example adjusted.
+>> IMHO this should be merged together with realtek,rts5411.yaml. Is it ok
+>> to rename bindings files? I guess a common onboard-usb-hub.yaml matching
+>> the driver seens reasonable. Any recommendations how to proceed?
+> 
+> It's a tradeoff between keeping the individual bindings simple and avoid
+> unnecessary duplication. The current RTS5411 and TI USB8041 bindings are
+> very similar, which suggests combining them. However over time hubs with
+> diverging features could be added (e.g. with multiple regulators, a link
+> to an I2C/SPI bus, a clock, ...). With that a common binding might become
+> too messy.
+> 
+> From a quick look through Documentation/devicetree/bindings it doesn't
+> seem common to have generic bindings that cover components from multiple
+> vendors. In that sense I'm leaning towards separate bindings.
+> 
+> Rob, do you have any particular preference or suggestion?
 
-Seems doable. Only 1 user upstream.
+Not Rob, but my suggestion is not to merge bindings of unrelated
+devices, even if they are the same class. By unrelated I mean, made by
+different companies, designed differently and having nothing in common
+by design. Bindings can be still similar, but should not be merged just
+because they are similar.
 
-Also, note that there is also 'rohm,hw-timeout-ms' which is a range.
 
-Rob
+Best regards,
+Krzysztof
