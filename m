@@ -2,92 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7B7E5713DF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6EF5713E3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 10:03:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232552AbiGLICo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 04:02:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35500 "EHLO
+        id S230310AbiGLIDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 04:03:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232536AbiGLICf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:02:35 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC899E447
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:02:32 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 19so8970924ljz.4
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 01:02:31 -0700 (PDT)
+        with ESMTP id S232223AbiGLIDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 04:03:45 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 079026579;
+        Tue, 12 Jul 2022 01:03:44 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id n18so10912072lfq.1;
+        Tue, 12 Jul 2022 01:03:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8pNbEmXsZPlGcxQ/woTELDMNQSFJK4nHknSxZixJDtk=;
-        b=BClNTX6rjcddNSokWeew/BeNmjrVSgfp3LdDrj8mYehbBryFN8r8PNxc38CBpR0Q09
-         2qHY904ooL6ug9HFMfTOjPdTzCglODQNfh9guOEh5vveoWmJvSnvl8wJiRHL24AkoPo6
-         lLWgaXajDVlYw0ZYpUNy+ztAb0U8T1KZ2YgqNamQi69CxcddawROzEhoBLYcQI/Pq9tr
-         QJY1kOseKdhCCWz9fzi8oGKioWbkE8FNKW/UCajt4uGsPxhT0l0jGFWIw7lLywsw/D4P
-         yG1zjnx7p0jHCJ50mU2wkp1gyxPH7n1QfJqAlSMroF7oK+ANraK1UCxop8Q37sdSLqeH
-         CK6Q==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=A/bW8s0zoH5UpbLSo1+jfXj3G0A2yQEqrO879sTZg5Q=;
+        b=VxhyLif+q+1G5dGPSu8k90vU6hL373LvHxZVzMk2MsBLRbSavwWVZuWG4a7zM8cQyY
+         BMMgqdsHgFtEmT177VKDRc/pI12Gty4TW6NC70OWWz8TefcTzMbk/okzFrp8kY4+EiP6
+         EjB100143GnuOMTbCmW7YjtnPof97VLNkIz1GsOc5nw/85fSnZTJDtl+RpRTrsd+dG31
+         XfgxLsHc1ubY3Z8e1zzV2DOQzihtp+ayYK15qMCNTM/Ald/3WoVLN3ljCiaXNNhCd/4m
+         5yGdhq5+Ck5mb9puVd2BGr5QutymWQVbpD/CLv/Ve8fAXdHvonmIwHoolZB1N4oioj0h
+         3ayQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=8pNbEmXsZPlGcxQ/woTELDMNQSFJK4nHknSxZixJDtk=;
-        b=BaYvmhHlUvFrrTIQOGe3QgE8pIMwRa34LdFVu/TLhaght2wTDIdn4G1z9mho5ahNMC
-         NZFek4Wp1CCJUs1hgDIahF6I8MfORui34w/FMkYd80NgsMOpjKfN1UXoKTvHBdB3aTGi
-         VYMStFx+Mdq+7Q59QlWqRTYKppueFyqsmoIOa2NuouC5RqFSU0hIbZau6OD2vh16IrcW
-         VGr/729rJokTaCy3RDyxOv3RyYXr5iMu6UGetHFAzEBcRLVFhNSOACGEcnCzVvaHOlSc
-         I0QAGyMzRi1KErhTidsI3ZReP8wkba4Mnue27gS8/7ExeeyDCumNpwoKRTufwyYK2Qs1
-         tAlw==
-X-Gm-Message-State: AJIora/WMSx2XHK6VVFLfwgpmk+JJacw5wO4/nIuxl/Svb35MMYS/pJ6
-        NI35AEjiqaIJtk6+19M6DfAt2w==
-X-Google-Smtp-Source: AGRyM1sb9X2kygY/k3ZF8KSfgbHXg29S2zHrcl2esgC138PNfe3kp9ndeQl7bbyF1mgzROvNc5iUSQ==
-X-Received: by 2002:a05:651c:2111:b0:25d:6b28:3c96 with SMTP id a17-20020a05651c211100b0025d6b283c96mr5385849ljq.39.1657612950379;
-        Tue, 12 Jul 2022 01:02:30 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5cab-55.bb.online.no. [88.92.171.55])
-        by smtp.gmail.com with ESMTPSA id h9-20020a2e9ec9000000b00253ceefb668sm2189909ljk.60.2022.07.12.01.02.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 01:02:29 -0700 (PDT)
-Message-ID: <5f7cdd8e-a57e-33c5-9eb5-9a0bd67031a2@linaro.org>
-Date:   Tue, 12 Jul 2022 10:02:28 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=A/bW8s0zoH5UpbLSo1+jfXj3G0A2yQEqrO879sTZg5Q=;
+        b=7Vjq8M+HLbtN5alxc2pw6Nexr542QSj3FrYRgRCnBPNXhzEm2TzfERxDBV5rq5LH8U
+         xuvY0pt6YPPJrC9nDWgXGEN7j4/dQjyug8qMTVP1GbvCUBdtr0DJjKViCDZG6rt2NLMn
+         JaBR0Pt9N++O1sD96hond4N2Nc696qVe/0XprsRAhL2yRIDXjEYhy7u0ofc55Cjj1qc6
+         liLeG9fPMoITeklsz7NfpUydFbj9NLE19/XuI230Ngekij3cmSHOSJckWpMyXmXNWnNq
+         pFp9LfLHQKVCbBdODki14T5d2e/ztVgBdbgbw45uT5PV/FUWyoVHD8SJ4b5kmYZZC8f5
+         1RjQ==
+X-Gm-Message-State: AJIora9596abcU0SCGQUmnyYMez/LZjCmxRLX/Le9MhnXrz1FNTDJKWv
+        JH0BRhiSzGtcRStvohizhndI++eb6LlDdk+lS8U=
+X-Google-Smtp-Source: AGRyM1uetHv/UaG2R06jgnf9Ql2EOiVLPNLAlyTB3qAJPBJR9BfzPSFpwGS8ztIHge2xsMxx4c18CNJkdJ+rPX76K6M=
+X-Received: by 2002:a05:6512:1188:b0:481:2eb7:f2 with SMTP id
+ g8-20020a056512118800b004812eb700f2mr13946842lfr.401.1657613022433; Tue, 12
+ Jul 2022 01:03:42 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: mailbox: qcom,apcs-kpss-global: Add
- clock-output-names
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
-        jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        shawn.guo@linaro.org
-References: <20220707150933.1889371-1-bryan.odonoghue@linaro.org>
- <20220707150933.1889371-3-bryan.odonoghue@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220707150933.1889371-3-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220711134312.234268-1-tmaimon77@gmail.com> <20220711134312.234268-2-tmaimon77@gmail.com>
+ <1657562119.172361.4172123.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1657562119.172361.4172123.nullmailer@robh.at.kernel.org>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Tue, 12 Jul 2022 11:03:30 +0300
+Message-ID: <CAP6Zq1jAzHysKaVMt960hsL2rN05_kfC265CS8Xcz1r8KOQDPg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: npcm: Add npcm845
+ compatible string
+To:     Rob Herring <robh@kernel.org>
+Cc:     zhengbin13@huawei.com,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Nancy Yuen <yuenn@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Patrick Venture <venture@google.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 17:09, Bryan O'Donoghue wrote:
-> Add clock-output-names as optional so that SoCs such as the msm8939 which
-> have multiple a53 PLLs can latch the appropriate output name in
-> drivers/clk/qcom/apcs-msm8916.c.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Hi Rob,
 
+Thanks for your comment, it will be addressed next version.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+On Mon, 11 Jul 2022 at 20:55, Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, 11 Jul 2022 16:43:10 +0300, Tomer Maimon wrote:
+> > Add a compatible string for Nuvoton BMC NPCM845 ADC.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+> >  .../devicetree/bindings/iio/adc/nuvoton,npcm750-adc.yaml     | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> >
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nuvoton,npcm750-adc.example.dtb: adc@f000c000: compatible: 'oneOf' conditional failed, one must be fixed:
+>         ['nuvoton,npcm750-adc'] is too short
+>         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nuvoton,npcm750-adc.yaml
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/patch/
+>
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
+>
 
 Best regards,
-Krzysztof
+
+Tomer
