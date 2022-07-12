@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA0E2572881
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:23:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48E37572886
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 23:23:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233333AbiGLVXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 17:23:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57336 "EHLO
+        id S233430AbiGLVXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 17:23:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232801AbiGLVXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:23:17 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7591D0E2B
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:23:13 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id r9so8036371lfp.10
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:23:13 -0700 (PDT)
+        with ESMTP id S233343AbiGLVXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 17:23:19 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0850CD0E21
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:23:18 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id bu42so16118077lfb.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 14:23:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=KhYX7FuYQUxi67GuZ2ixbS/AMyDFa/KK/jRr3sISomk=;
-        b=PNYcPmnzi0W8n5Qtze2ZGtkUJF6xrJGoMW1UtKbz/qf4aFBw0uwxVsdjsE1FYnr+TT
-         Q6zQ9r3NE0BBSn4wxEAmrmlBZXa0SgM8P2O03nMK+Ky6vybEH3e8KIWSAVmHzzM8XMhp
-         jmWGiYZBMNJTb0zFfevEw8EBjvSCqH65bPomEEPe/t0BHdUSxSL2ogvtEYbIx49l9XX6
-         L2AY5zchLiQBOS4t/SijMsdbd9kDZPK5lvN6g4Mc5080gAbg1Y6+rdG5m8jhXwA5M39T
-         K2yus7s4Ud0SUOlKgo+QBoaAmFCgwSgRrntdIx+qzyn/4z0qo6WIN5GCC9Cee4T/ontm
-         RgwA==
+        bh=ZIixC2bV5bk0+HIicGoB7Neycw0Y+e5g1F3XyfSlUow=;
+        b=lEd2am2qFIvJv6mvwUPXijftjd8L/Wyv9Yx+kKh+EvPQy2tACUdBFYr9SBMhe52bh4
+         oypuIStUzdaV9hnFKV8CZx6YYvxyWyBt+hdEKrL0xT8OBGD7oRh55m4WKmqzfkbzj5Dp
+         XMjQMxMW8vWxEpXgr3S5Y1Ti7r5bCIkZ4ftbbTBEg93nORt5WH5trqMQe35/+EvhDdak
+         RVOBEB9WpNO4QJ8LX7couSF9n0zEMJpevFZOlFiQKveOzKA8dDVowBooFkhWIfiz5GRv
+         kiov8wQwDs2OA8iiTDK4cv5moIrCKR7v3VOys92mWJTzS/unkodYL9b7uHt/oeRUfBuP
+         lbBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=KhYX7FuYQUxi67GuZ2ixbS/AMyDFa/KK/jRr3sISomk=;
-        b=q86pra4Fm4m5vMQgsODRNKJZMmvvsyf9C1CXw3ycClNGtYXGnX1Y8BsJn/h8w5vqtE
-         Vamp6MG59G5zMTt1XD37qEwxbCdQQ/3/gPtOSOKPMMaH2SP2XKTNZfwzWsoUOUATVzi6
-         xaXlBnIpd4qRbteg/5+AF9rVYJ+LZT7vyuHkZZ9Ru7Yhw3OIn/jYGxDglUKY2bA+yn+F
-         mALuCmHBeTTao+YAWYFyPRv+gAqjmDS5xxSnSWog21quagFbdtAMis95ErBb9IVlzHNV
-         sL5XqReUtEXysEnc9t/zFKND+OYsx1/vjukDYHyrU7Yv54o8YLTMBYxyjzFClkD2mxvo
-         JJaw==
-X-Gm-Message-State: AJIora8jl2MCQ8HfgIwGRPoJjf3f0lnjvoAP5XxNg6u9WzeR0tXlbmZU
-        mOIsQnq2F1DlmSJIb84PLWr90A==
-X-Google-Smtp-Source: AGRyM1s66esIFctUVClm4vc8Pa35fg55yA4QdNJhc8vEMh41lEP2nWRKR8ihjRFw3wJ2U/EW5Q3z0w==
-X-Received: by 2002:a05:6512:1683:b0:47f:78ca:8ac5 with SMTP id bu3-20020a056512168300b0047f78ca8ac5mr16213908lfb.663.1657660991981;
-        Tue, 12 Jul 2022 14:23:11 -0700 (PDT)
+        bh=ZIixC2bV5bk0+HIicGoB7Neycw0Y+e5g1F3XyfSlUow=;
+        b=uBA8YYpRRX+rETgMskkyPMouNnd/ZQBWPFJ1NQTVyLKZaWKRgtkLe1tw1QwH4zJQO1
+         eo2qGW+xgnc9UsiINQKfgfHHonHuVj02r6YAGApbl4uh0ZW11og4D5tsXljtcxCYDHJ+
+         9fM9qvfTtSlofrbY/MGKVlzIFJ9Ehy0lukzuEhyF9565Xl3VaxeLQ8aIuMIQpOSJM0+A
+         qN/sJ0N7BvsmhoNopjUoXVQeiaKycdUbb/aaEv+f5k1pzgWsIExg9EDmv3H9mhMc4muH
+         SEpcjwIsW1O/d5JSIk1LS8SabRvwzBu1qct32Ea5E1BeMIzb+aR2fjFcPAMbUfishVRg
+         VV+Q==
+X-Gm-Message-State: AJIora/5CRfGOZTEB0MNIrZKwEQCn4WIQDtHEOYlUaRKWlMUzb7vQMzC
+        RcLGYB1g1vCDyTcLXxY5dk15Wg==
+X-Google-Smtp-Source: AGRyM1sLfpcYmbiEjWfaKm08jr8ScrE2GfPqP64cecPIr1DDlLCmyOl86WwUnjYrA+y/rjH/i6DnAQ==
+X-Received: by 2002:a05:6512:3b8f:b0:489:c6c9:f522 with SMTP id g15-20020a0565123b8f00b00489c6c9f522mr11797lfv.244.1657660996339;
+        Tue, 12 Jul 2022 14:23:16 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id b23-20020a056512061700b0047fac1feb6fsm2392578lfe.210.2022.07.12.14.23.09
+        by smtp.gmail.com with ESMTPSA id v11-20020ac2560b000000b0047f9dca3708sm2391737lfd.51.2022.07.12.14.23.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 14:23:11 -0700 (PDT)
-Message-ID: <01e7b72f-a044-676c-16b0-d8ce556a1100@linaro.org>
-Date:   Tue, 12 Jul 2022 23:23:08 +0200
+        Tue, 12 Jul 2022 14:23:15 -0700 (PDT)
+Message-ID: <ca26630c-a09c-6f4d-51de-7a2ba615bd58@linaro.org>
+Date:   Tue, 12 Jul 2022 23:23:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 4/5] dt-bindings: iio: adc: stmpe: Remove node name
- requirement
+Subject: Re: [PATCH v2 5/5] dt-bindings: input: touchscreen: stmpe: Remove
+ node name requirement
 Content-Language: en-US
 To:     Francesco Dolcini <francesco.dolcini@toradex.com>,
         Lee Jones <lee.jones@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -70,14 +69,14 @@ Cc:     linux-input@vger.kernel.org,
         linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-iio@vger.kernel.org
 References: <20220712163345.445811-1-francesco.dolcini@toradex.com>
- <20220712163345.445811-5-francesco.dolcini@toradex.com>
+ <20220712163345.445811-6-francesco.dolcini@toradex.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220712163345.445811-5-francesco.dolcini@toradex.com>
+In-Reply-To: <20220712163345.445811-6-francesco.dolcini@toradex.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,7 +90,8 @@ On 12/07/2022 18:33, Francesco Dolcini wrote:
 > 
 > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 > ---
->  Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml | 3 +--
+>  Documentation/devicetree/bindings/input/touchscreen/stmpe.txt | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
