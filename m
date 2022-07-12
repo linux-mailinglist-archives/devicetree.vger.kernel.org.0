@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 468E6571C71
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:26:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45F93571C6F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 16:26:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233606AbiGLO0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 10:26:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43104 "EHLO
+        id S232154AbiGLO0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 10:26:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233585AbiGLO0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:26:35 -0400
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AA25B93D6;
-        Tue, 12 Jul 2022 07:26:18 -0700 (PDT)
-Received: by mail-il1-f176.google.com with SMTP id p13so4937164ilq.0;
-        Tue, 12 Jul 2022 07:26:18 -0700 (PDT)
+        with ESMTP id S233577AbiGLO0Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 10:26:25 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7F6BB93C5;
+        Tue, 12 Jul 2022 07:26:16 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id p128so7985408iof.1;
+        Tue, 12 Jul 2022 07:26:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=1krryCxXZpZ7zRDoyHmJlv2p3l9oqnjU6GHeaTd0+R8=;
-        b=T+Ow9FZdAsgkqR/mucvWZ/7kOqWTCb6XpK/tbPLei6VufBz0GbY9H5ofD5gZQi3is+
-         LFAgf+NMk8OgrRrYWaapfYuQSDTc/2NJ3pzwaJJS7MbHGmihvPrw6TSy4lQPWcl7PYzw
-         8PqU8/dl6dJpTsbNKYNHE6UMn5Dl1LgYO3GtxfB2EMwF7A1PLTMC6ECDHgijOn7TKSds
-         sfEopNzxRB1mGlH3OrooDNTTJeG1pKw5T1K2Lgp62lZ3nC/tmq3qAvZPhewjEDCqbDn0
-         myWRvDVLR2GC0OFdpPWJDFtY36YdHqa+cNgNETFhiMI0bxvnO9aDzvE4AePHo0B+Wrjg
-         +qFw==
-X-Gm-Message-State: AJIora8HDSIyixAicBMHgn1ppnv9rHBhXncSNzuQcZFxc6cGitBGp0CI
-        5DM6HCZeW8Iwl8FS/mpGuQ==
-X-Google-Smtp-Source: AGRyM1uhyieVNNMFSH9Fn+BMc4R7p6v+ljgAI1PZHfX3Z0Pg5ptWKgDm8FaP+gLvnmaZxcO2Gg6EvQ==
-X-Received: by 2002:a05:6e02:1d95:b0:2dc:4746:6a2d with SMTP id h21-20020a056e021d9500b002dc47466a2dmr11933000ila.322.1657635977511;
-        Tue, 12 Jul 2022 07:26:17 -0700 (PDT)
+        bh=2smug+m1Lke8wFpPEM5ppWOdoo/9ROT7QK4c9TYtB6U=;
+        b=0IF9BcxGXIoEh6yGwI13UQbu0z1sKuFoLkAjY7ezSfTk1Mh/6u2sCpNIBE8v/kv2WE
+         y6k2I74rZL6VShto6O0Gy5/drgvX8XVy7lujFYPE4x+pq80FM/hAV6HC5jojItRmmtmB
+         Lus3JKQVQUCu8RfphiCwBMAh5voOc2hRI4XEkdaKVnA+A9tUEV993NCB7S3gxpUdnDCF
+         N78UdUjSWEc+IV34r66OKumwkgVP5GO2/MWFDIfkKpGz8V7hbKrZJsgihosXyFR+pDSu
+         CBUtbgsSd6eB5mjeK+v7oGwsakp/phMxD3sQd5qBWGm6XNNRtPNQPO0sYCPNJSXT5m5g
+         lGxg==
+X-Gm-Message-State: AJIora8OnJpToZchLuM5l7sgDBfK8ppygZWQ9aF5p59vDJ2aC2NJ2Vvy
+        tRQAtEX57DPanUoQ4l+L1Q==
+X-Google-Smtp-Source: AGRyM1u9UVtNz1Lq5TBvtlHE6sfHP3e+TCv3kW8PIg+n1aqq/Z1DAjz9ef1ZYwzKBGpoy+zzrudY0Q==
+X-Received: by 2002:a05:6638:2688:b0:33e:abf9:908d with SMTP id o8-20020a056638268800b0033eabf9908dmr13403331jat.166.1657635975713;
+        Tue, 12 Jul 2022 07:26:15 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r25-20020a02b119000000b0032e271a558csm4138264jah.168.2022.07.12.07.26.16
+        by smtp.gmail.com with ESMTPSA id ay2-20020a5d9d82000000b00678ea668a39sm5086524iob.36.2022.07.12.07.26.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 07:26:17 -0700 (PDT)
-Received: (nullmailer pid 1805852 invoked by uid 1000);
+        Tue, 12 Jul 2022 07:26:15 -0700 (PDT)
+Received: (nullmailer pid 1805850 invoked by uid 1000);
         Tue, 12 Jul 2022 14:26:12 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Cc:     Sireesh Kodali <sireeshkodali1@gmail.com>,
+To:     Ben Dooks <ben.dooks@sifive.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Greentime Hu <greentime.hu@sifive.com>,
+        u.kleine-koenig@pengutronix.de,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-remoteproc@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>, Luca Weiss <luca@z3ntu.xyz>
-In-Reply-To: <20220712124421.3129206-3-stephan.gerhold@kernkonzept.com>
-References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com> <20220712124421.3129206-3-stephan.gerhold@kernkonzept.com>
-Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916 to schema
+        devicetree@vger.kernel.org,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-pwm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
+In-Reply-To: <20220712100113.569042-4-ben.dooks@sifive.com>
+References: <20220712100113.569042-1-ben.dooks@sifive.com> <20220712100113.569042-4-ben.dooks@sifive.com>
+Subject: Re: [PATCH 3/7] pwm: dwc: add of/platform support
 Date:   Tue, 12 Jul 2022 08:26:12 -0600
-Message-Id: <1657635972.125667.1805851.nullmailer@robh.at.kernel.org>
+Message-Id: <1657635972.108769.1805849.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,47 +67,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Jul 2022 14:44:17 +0200, Stephan Gerhold wrote:
-> qcom,q6v5.txt covers multiple SoCs with quite different binding
-> requirements. Converting this into one DT schema would require
-> several if statements, making the DT schema overall harder to
-> read and understand.
+On Tue, 12 Jul 2022 11:01:09 +0100, Ben Dooks wrote:
+> The dwc pwm controller can be used in non-PCI systems, so allow
+> either platform or OF based probing.
 > 
-> To avoid this, follow the example of SC7180/SC7280 and split
-> "qcom,msm8916-mss-pil" (and the equivalent deprecated "qcom,q6v5-pil"
-> compatible) into a separate DT schema. The schema is somewhat based
-> on the one for SC7180/SC7280 but adjusted for the old platforms.
-> 
-> Compared to the old plain text bindings, add missing documentation for
-> the "bam-dmux" subnode and recommend one particular approach to specify
-> the MBA/MPSS "memory-region" (the other one is marked as deprecated).
-> 
-> Cc: Sireesh Kodali <sireeshkodali1@gmail.com>
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
 > ---
-> Like Sibi's patch series for SC7180/SC7820 [1] this is somewhat related
-> to Sireesh's series that converts all of qcom,q6v5.txt [2] (with a lot
-> of if statements). However, this series focuses on MSM8916/MSM8974 (or
-> actually MSM8909) only.
-> 
-> [1]: https://lore.kernel.org/linux-arm-msm/1657020721-24939-1-git-send-email-quic_sibis@quicinc.com/
-> [2]: https://lore.kernel.org/linux-arm-msm/20220511161602.117772-7-sireeshkodali1@gmail.com/
-> ---
->  .../remoteproc/qcom,msm8916-mss-pil.yaml      | 246 ++++++++++++++++++
->  .../bindings/remoteproc/qcom,q6v5.txt         |  19 --
->  2 files changed, 246 insertions(+), 19 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+>  .../devicetree/bindings/pwm/pwm-synposys.yaml | 40 ++++++++++++++
+>  drivers/pwm/Kconfig                           |  5 +-
+>  drivers/pwm/pwm-dwc.c                         | 53 +++++++++++++++++++
+>  3 files changed, 96 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/pwm/pwm-synposys.yaml:11:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
+./Documentation/devicetree/bindings/pwm/pwm-synposys.yaml:31:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/remoteproc/qcom,smd-edge.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.example.dtb: remoteproc@4080000: smd-edge: False schema does not allow {'interrupts': [[0, 25, 1]], 'qcom,smd-edge': [[0]], 'qcom,ipc': [[4294967295, 8, 12]], 'qcom,remote-pid': [[1]], 'label': ['hexagon']}
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
 
 doc reference errors (make refcheckdocs):
 
