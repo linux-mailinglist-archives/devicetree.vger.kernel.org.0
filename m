@@ -2,73 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD385571B5C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 15:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5FA6571BA2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 15:45:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbiGLNdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 09:33:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48012 "EHLO
+        id S231474AbiGLNph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 09:45:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229918AbiGLNdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 09:33:18 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D94CB6294
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 06:33:17 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id bk26so11172342wrb.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 06:33:16 -0700 (PDT)
+        with ESMTP id S232693AbiGLNpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 09:45:30 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F7FE29832
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 06:45:29 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id y11so7483695lfs.6
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 06:45:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=1FNQrGGLfgdOgMRKiUwsbzE3SGEjtGBgzxsXljwQUHE=;
-        b=hTDsqLoXRixjt/Sxz4pnsbxPZ2ChVkl5G3Efink/BugEruXacu1c14dFTFwKa0c3gY
-         o/+eryoGjW9zyuyJ7wemDQirD4D04/nXfYPkHa1G3NtRldyCDQ/2zs/zyzMfMEI8HTWr
-         iYlsUd6VZ1BdSYB6OpRejTRfbS/3+NfNcv56pt8/W3na5GXCHJ5oq4VO25FksgV9cQFP
-         OOzwUmFoXuLhNwWST4eb5B14ImeEhE4+FdqOm1DF6nMbC5rCYGWDPXDwqd7SkScILR7N
-         gec2/C7+2gfE3s/eAraUC8ItcbP1D33rLOfkl66gtcp/BtJDaEyGPr/I+63MxweebsQZ
-         wKaQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zBdmor3ebYTz4M9G/JpFZaGhUnOIPV+4b94hb7PZEos=;
+        b=IPE6fTbLabiis/jTdAiQrM62Q2T+deFH1WYVaOvljATrO6pfjrSpwDPz1LECJSdqGq
+         F7GENV15O+V79DNAeQSjed4PXhExPnziSb8wnTWtogcqKjCQb0Zkyct85FN9V54Imn95
+         Pq/b+AHsZKAfzlBG6Rd8Q91h2EBFas+J2+UM2nwlsPawa0TOWf08IAk/dsAxihNWnuE2
+         CyZB7zxIeh/koJILOf/5YR0z3s4zi76vMEnFhk/yVIRubXR+K3c3nVAEuBoQclT9eVV3
+         rzg88JZZ4s627F7JzF6p5+Hjq77gxYTqKKkLhCHd0rQ+VslLzaIlwnMYbWWbkw+pTZRd
+         y7Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=1FNQrGGLfgdOgMRKiUwsbzE3SGEjtGBgzxsXljwQUHE=;
-        b=gptUD+4+xikpqffDIS8PXsiBFTvWab4wt/sUcOLpOw4Rcs4MuDTlH/KC6XewTERGgc
-         6mgvoFIZRB1exdFK11KJ3C2+4672MUMld2WK6VPpGskLxzCnRJ7ltFW/0FhMuvRfRlfb
-         RNrmXJ02tg9KoSSm6+G8higcIMFVHvqnuCCrlq0/SHEjHYz4Z2kx50PlqXzVrf2lA4s4
-         Sx/1JXjIYTXLCUdl4/3PWedRAviMmrj21oTqNOYvZuPdxuroqqU4glDq3Za8T8HmRyDb
-         Hqx48soxQ2Fs02+5c2nNksHYGez1PTOo7iM0ZxXnn9jX9maVK+Kh6e0xC4ibTwIRmABN
-         gjgQ==
-X-Gm-Message-State: AJIora/OK1lqB8IhkBsFnNomRSlU1EWoU7U5CL4KQ2CvCnpZsVhlz3kQ
-        QN97oaIK9r2we/VT3vTusrLL8g==
-X-Google-Smtp-Source: AGRyM1tDxqUM6cVCSs98mVzMblL7DYw1ebw4b5m50i0FuBi3jTzjyS1F+201+kxSFQ4/IZUzwFtrpw==
-X-Received: by 2002:a05:6000:178c:b0:21d:b6d0:11a8 with SMTP id e12-20020a056000178c00b0021db6d011a8mr1741057wrg.547.1657632795572;
-        Tue, 12 Jul 2022 06:33:15 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id g4-20020adff404000000b0021d87798237sm8320371wro.20.2022.07.12.06.33.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 06:33:14 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 14:33:13 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=zBdmor3ebYTz4M9G/JpFZaGhUnOIPV+4b94hb7PZEos=;
+        b=4gYK/11EDak9N1xBaiKrgj4sgyQHkLMSMOdsN25XAmWFbPu9J8hJx2Z9F3TIQ+yZWR
+         PE9H9al57vKhCVG+rKNK+6bbOC8B1d7En64N/tWbZ2SNZNFVAUJ5U2Pc4bE93zdGsFIz
+         CAXwdRAolM2JjMmlZxSrGntaW4kDH0EoeSDl9lxXg5dxWExjZFmfbVNNhi1KjLyUAxwt
+         MDHpcwCGiLKqo/T4J06dmqd59NC+ExVmz8PgaZzhXcUgFIXKB5dYzv06YcIn9sYr2vMD
+         d/HtycVF2aZhS8jxMfySs3HOfolj/uhIerAeTvh8kMipNug99Y3ZOZkHPbgoZNU9JdlZ
+         pBWw==
+X-Gm-Message-State: AJIora8LbIDvExTt2EapQH021ywl22SRfeAvKciQ3jJigf8oRYFskJqb
+        /PZTJUQTYc7cdH3aX27U3KSvgg==
+X-Google-Smtp-Source: AGRyM1seDrDaus34guCoomrD0xee7IUSvzKkKV8gR/Jz7H2Tpc7jd3+CHxhj7TZoLefb/LQfdAOVfg==
+X-Received: by 2002:a05:6512:1087:b0:489:ee61:ba58 with SMTP id j7-20020a056512108700b00489ee61ba58mr2443773lfg.408.1657633527414;
+        Tue, 12 Jul 2022 06:45:27 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id p27-20020a056512329b00b00482bb824214sm1889067lfe.221.2022.07.12.06.45.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 06:45:26 -0700 (PDT)
+Message-ID: <4ffc1060-671e-cbec-a100-5e26f1957eeb@linaro.org>
+Date:   Tue, 12 Jul 2022 15:45:18 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v1 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO
+ documentation
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH v1 1/4] mfd: stmpe: Probe sub-function by compatible
-Message-ID: <Ys14GboRr4+GVMX1@google.com>
-References: <20220712110232.329164-1-francesco.dolcini@toradex.com>
- <20220712110232.329164-2-francesco.dolcini@toradex.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220712110232.329164-2-francesco.dolcini@toradex.com>
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20220710102110.39748-1-tmaimon77@gmail.com>
+ <20220710102110.39748-2-tmaimon77@gmail.com>
+ <8b1393e4-275b-6791-ad71-2edfeacd0a63@linaro.org>
+ <CAP6Zq1iuMPD21dM7Gpg4AEfM1cqE1mFhnO5hhUWvDZvEz=rTqw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAP6Zq1iuMPD21dM7Gpg4AEfM1cqE1mFhnO5hhUWvDZvEz=rTqw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,131 +89,260 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Jul 2022, Francesco Dolcini wrote:
-
-> Use sub-function of_compatible during probe, instead of using the node
-> name. The code should not rely on the node names during probe, in
-> addition to that the previously hard-coded node names are not compliant
-> to the latest naming convention (they are not generic and they use
-> underscores), and it was broken by mistake already once [1].
+On 12/07/2022 15:29, Tomer Maimon wrote:
+> Hi Krzysztof,
 > 
-> While doing this change `rotator` entry was removed, it is not
-> used in any device tree file, there is no cell defined, it's just dead
-> non-working code with no of_compatible for it.
+> Thanks for your comments.
 > 
-> [1] commit 56086b5e804f ("ARM: dts: imx6qdl-apalis: Avoid underscore in node name")
+> On Tue, 12 Jul 2022 at 12:48, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 10/07/2022 12:21, Tomer Maimon wrote:
+>>> Added device tree binding documentation for Nuvoton Arbel BMC NPCM8XX
+>>> pinmux and GPIO controller.
+>>>
+>>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+>>> ---
+>>>  .../pinctrl/nuvoton,npcm845-pinctrl.yaml      | 205 ++++++++++++++++++
+>>>  1 file changed, 205 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
+>>> new file mode 100644
+>>> index 000000000000..6395ef2bf5b3
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
+>>> @@ -0,0 +1,205 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/pinctrl/nuvoton,npcm845-pinctrl.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Nuvoton NPCM845 Pin Controller and GPIO
+>>> +
+>>> +maintainers:
+>>> +  - Tomer Maimon <tmaimon77@gmail.com>
+>>> +
+>>> +description:
+>>> +  The Nuvoton BMC NPCM8XX Pin Controller multi-function routed through
+>>> +  the multiplexing block, Each pin supports GPIO functionality (GPIOx)
+>>> +  and multiple functions that directly connect the pin to different
+>>> +  hardware blocks.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: nuvoton,npcm845-pinctrl
+>>> +
+>>> +  ranges:
+>>> +    maxItems: 1
+>>
+>> ranges without reg? Does it even work? Did you test the bindings?
+> The ranges related to GPIO node reg
+
+But you do not allow here a 'reg', do you? So how can you have an unit
+address in pinctrl node?
+
 > 
-> Suggested-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> ---
->  drivers/mfd/stmpe.c | 31 +++++++++++++++++--------------
->  1 file changed, 17 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/mfd/stmpe.c b/drivers/mfd/stmpe.c
-> index aeb9ea55f97d..90a07a94455f 100644
-> --- a/drivers/mfd/stmpe.c
-> +++ b/drivers/mfd/stmpe.c
-> @@ -23,6 +23,12 @@
->  #include <linux/regulator/consumer.h>
->  #include "stmpe.h"
->  
-> +#define STMPE_GPIO_COMPATIBLE   "st,stmpe-gpio"
-> +#define STMPE_KEYPAD_COMPATIBLE "st,stmpe-keypad"
-> +#define STMPE_PWM_COMPATIBLE    "st,stmpe-pwm"
-> +#define STMPE_TS_COMPATIBLE     "st,stmpe-ts"
-> +#define STMPE_ADC_COMPATIBLE    "st,stmpe-adc"
+> I did test the pin controller document and it passed.
+> bash-4.2$ make ARCH=arm64 dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
+>   LINT    Documentation/devicetree/bindings
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   DTEX    Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.example.dts
+>   DTC     Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.example.dtb
+>   CHECK   Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.example.dtb
+> Did I need to run anything else than dt_binding_check for testing the document?
 
-This is horrible.
+Indeed it will pass, because you do not have reg in pinctrl node. But
+your dts won't pass make dtbs W=1
 
-Please refrain from defining device/compatible strings.
 
->  /**
->   * struct stmpe_platform_data - STMPE platform data
->   * @id: device id to distinguish between multiple STMPEs on the same board
-> @@ -321,14 +327,14 @@ static struct resource stmpe_gpio_resources[] = {
->  
->  static const struct mfd_cell stmpe_gpio_cell = {
->  	.name		= "stmpe-gpio",
-> -	.of_compatible	= "st,stmpe-gpio",
-> +	.of_compatible	= STMPE_GPIO_COMPATIBLE,
->  	.resources	= stmpe_gpio_resources,
->  	.num_resources	= ARRAY_SIZE(stmpe_gpio_resources),
->  };
->  
->  static const struct mfd_cell stmpe_gpio_cell_noirq = {
->  	.name		= "stmpe-gpio",
-> -	.of_compatible	= "st,stmpe-gpio",
-> +	.of_compatible	= STMPE_GPIO_COMPATIBLE,
->  	/* gpio cell resources consist of an irq only so no resources here */
->  };
->  
-> @@ -350,7 +356,7 @@ static struct resource stmpe_keypad_resources[] = {
->  
->  static const struct mfd_cell stmpe_keypad_cell = {
->  	.name		= "stmpe-keypad",
-> -	.of_compatible  = "st,stmpe-keypad",
-> +	.of_compatible  = STMPE_KEYPAD_COMPATIBLE,
->  	.resources	= stmpe_keypad_resources,
->  	.num_resources	= ARRAY_SIZE(stmpe_keypad_resources),
->  };
-> @@ -376,7 +382,7 @@ static struct resource stmpe_pwm_resources[] = {
->  
->  static const struct mfd_cell stmpe_pwm_cell = {
->  	.name		= "stmpe-pwm",
-> -	.of_compatible  = "st,stmpe-pwm",
-> +	.of_compatible  = STMPE_PWM_COMPATIBLE,
->  	.resources	= stmpe_pwm_resources,
->  	.num_resources	= ARRAY_SIZE(stmpe_pwm_resources),
->  };
-> @@ -461,7 +467,7 @@ static struct resource stmpe_ts_resources[] = {
->  
->  static const struct mfd_cell stmpe_ts_cell = {
->  	.name		= "stmpe-ts",
-> -	.of_compatible	= "st,stmpe-ts",
-> +	.of_compatible	= STMPE_TS_COMPATIBLE,
->  	.resources	= stmpe_ts_resources,
->  	.num_resources	= ARRAY_SIZE(stmpe_ts_resources),
->  };
-> @@ -484,7 +490,7 @@ static struct resource stmpe_adc_resources[] = {
->  
->  static const struct mfd_cell stmpe_adc_cell = {
->  	.name		= "stmpe-adc",
-> -	.of_compatible	= "st,stmpe-adc",
-> +	.of_compatible	= STMPE_ADC_COMPATIBLE,
->  	.resources	= stmpe_adc_resources,
->  	.num_resources	= ARRAY_SIZE(stmpe_adc_resources),
->  };
-> @@ -1362,19 +1368,16 @@ static void stmpe_of_probe(struct stmpe_platform_data *pdata,
->  	pdata->autosleep = (pdata->autosleep_timeout) ? true : false;
->  
->  	for_each_available_child_of_node(np, child) {
-> -		if (of_node_name_eq(child, "stmpe_gpio")) {
-> +		if (of_device_is_compatible(child, STMPE_GPIO_COMPATIBLE))
->  			pdata->blocks |= STMPE_BLOCK_GPIO;
-> -		} else if (of_node_name_eq(child, "stmpe_keypad")) {
-> +		else if (of_device_is_compatible(child, STMPE_KEYPAD_COMPATIBLE))
->  			pdata->blocks |= STMPE_BLOCK_KEYPAD;
-> -		} else if (of_node_name_eq(child, "stmpe_touchscreen")) {
-> +		else if (of_device_is_compatible(child, STMPE_TS_COMPATIBLE))
->  			pdata->blocks |= STMPE_BLOCK_TOUCHSCREEN;
-> -		} else if (of_node_name_eq(child, "stmpe_adc")) {
-> +		else if (of_device_is_compatible(child, STMPE_ADC_COMPATIBLE))
->  			pdata->blocks |= STMPE_BLOCK_ADC;
-> -		} else if (of_node_name_eq(child, "stmpe_pwm")) {
-> +		else if (of_device_is_compatible(child, STMPE_PWM_COMPATIBLE))
->  			pdata->blocks |= STMPE_BLOCK_PWM;
-> -		} else if (of_node_name_eq(child, "stmpe_rotator")) {
-> -			pdata->blocks |= STMPE_BLOCK_ROTATOR;
-> -		}
+>>
+>>> +
+>>> +  '#address-cells':
+>>> +    const: 1
+>>> +
+>>> +  '#size-cells':
+>>> +    const: 1
+>>> +
+>>> +patternProperties:
+>>> +  "^gpio@":
+>>> +    type: object
+>>> +
+>>> +    description:
+>>> +      Eight GPIO banks that each contain between 32 GPIOs.
+>>> +
+>>> +    properties:
+>>> +
+>>
+>> No blank line.
+> O.K.
+>>
+>>> +      gpio-controller: true
+>>> +
+>>> +      '#gpio-cells':
+>>> +        const: 2
+>>> +
+>>> +      reg:
+>>> +        maxItems: 1
+>>> +
+>>> +      interrupts:
+>>> +        maxItems: 1
+>>> +
+>>> +      gpio-ranges:
+>>> +        maxItems: 1
+>>> +
+>>> +    required:
+>>> +      - gpio-controller
+>>> +      - '#gpio-cells'
+>>> +      - reg
+>>> +      - interrupts
+>>> +      - gpio-ranges
+>>> +
+>>> +  "-pin":
+>>> +    $ref: pinmux-node.yaml#
+>>
+>> Shouldn't this be under bank?
+> Do you mean after the group and function properties?
+> The -pin shouldn't use for the group property naming?
 
-This should be a separate patch.
+Hm, I guess it's fine, I actually don't remember the recommendation for
+gpio banks in relation to pinmux nodes.
 
->  	}
->  }
->  
+>>
+>>> +
+>>> +    properties:
+>>> +      groups:
+>>> +        description:
+>>> +          One or more groups of pins to mux to a certain function
+>>> +        items:
+>>> +          enum: [ iox1, iox2, smb1d, smb2d, lkgpo1, lkgpo2, ioxh, gspi,
+>>> +                  smb5b, smb5c, lkgpo0, pspi2, jm1, jm2, smb4den, smb4b,
+>>> +                  smb4c, smb15, smb16, smb17, smb18, smb19, smb20, smb21,
+>>> +                  smb22, smb23, smb4d, smb14, smb5, smb4, smb3, spi0cs1,
+>>> +                  spi0cs2, spi0cs3, smb3c, smb3b, bmcuart0a, uart1, jtag2,
+>>> +                  bmcuart1, uart2, bmcuart0b, r1err, r1md, r1oen, r2oen,
+>>> +                  rmii3, r3oen, smb3d, fanin0, fanin1, fanin2, fanin3, fanin4,
+>>> +                  fanin5, fanin6, fanin7, fanin8, fanin9, fanin10, fanin11,
+>>> +                  fanin12, fanin13, fanin14, fanin15, pwm0, pwm1, pwm2, pwm3,
+>>> +                  r2, r2err, r2md, r3rxer, ga20kbc, smb5d, lpc, espi, rg1,
+>>> +                  rg1mdio, rg2, ddr, i3c0, i3c1, i3c2, i3c3, i3c4, i3c5,
+>>> +                  smb0, smb1, smb2, smb2c, smb2b, smb1c, smb1b, smb8, smb9,
+>>> +                  smb10, smb11, sd1, sd1pwr, pwm4, pwm5, pwm6, pwm7, pwm8,
+>>> +                  pwm9, pwm10, pwm11, mmc8, mmc, mmcwp, mmccd, mmcrst, clkout,
+>>> +                  serirq, lpcclk, scipme, sci, smb6, smb7, spi1, faninx, r1,
+>>> +                  spi3, spi3cs1, spi3quad, spi3cs2, spi3cs3, nprd_smi, smb0b,
+>>> +                  smb0c, smb0den, smb0d, ddc, rg2mdio, wdog1, wdog2, smb12,
+>>> +                  smb13, spix, spixcs1, clkreq, hgpio0, hgpio1, hgpio2, hgpio3,
+>>> +                  hgpio4, hgpio5, hgpio6, hgpio7 ]
+>>> +
+>>> +      function:
+>>> +        description:
+>>> +          The function that a group of pins is muxed to
+>>> +        enum: [ iox1, iox2, smb1d, smb2d, lkgpo1, lkgpo2, ioxh, gspi,
+>>> +                smb5b, smb5c, lkgpo0, pspi2, jm1, jm2, smb4den, smb4b,
+>>> +                smb4c, smb15, smb16, smb17, smb18, smb19, smb20, smb21,
+>>> +                smb22, smb23, smb4d, smb14, smb5, smb4, smb3, spi0cs1,
+>>> +                spi0cs2, spi0cs3, smb3c, smb3b, bmcuart0a, uart1, jtag2,
+>>> +                bmcuart1, uart2, bmcuart0b, r1err, r1md, r1oen, r2oen,
+>>> +                rmii3, r3oen, smb3d, fanin0, fanin1, fanin2, fanin3, fanin4,
+>>> +                fanin5, fanin6, fanin7, fanin8, fanin9, fanin10, fanin11,
+>>> +                fanin12, fanin13, fanin14, fanin15, pwm0, pwm1, pwm2, pwm3,
+>>> +                r2, r2err, r2md, r3rxer, ga20kbc, smb5d, lpc, espi, rg1,
+>>> +                rg1mdio, rg2, ddr, i3c0, i3c1, i3c2, i3c3, i3c4, i3c5,
+>>> +                smb0, smb1, smb2, smb2c, smb2b, smb1c, smb1b, smb8, smb9,
+>>> +                smb10, smb11, sd1, sd1pwr, pwm4, pwm5, pwm6, pwm7, pwm8,
+>>> +                pwm9, pwm10, pwm11, mmc8, mmc, mmcwp, mmccd, mmcrst, clkout,
+>>> +                serirq, lpcclk, scipme, sci, smb6, smb7, spi1, faninx, r1,
+>>> +                spi3, spi3cs1, spi3quad, spi3cs2, spi3cs3, nprd_smi, smb0b,
+>>> +                smb0c, smb0den, smb0d, ddc, rg2mdio, wdog1, wdog2, smb12,
+>>> +                smb13, spix, spixcs1, clkreq, hgpio0, hgpio1, hgpio2, hgpio3,
+>>> +                hgpio4, hgpio5, hgpio6, hgpio7 ]
+>>> +
+>>> +    dependencies:
+>>> +      groups: [ function ]
+>>> +      function: [ groups ]
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>> +  "^pin":
+>>
+>> This is almost the same as previous property. Confusing and I think it
+>> does not work.
+> if I remove it I get the following error:
+> pinctrl@f0800000: 'pin34-slew' does not match any of the regexes:
+> '-pin', '^gpio@', 'pinctrl-[0-9]+'
+> Can you advise what I should do?
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Ah, the pattern is indeed different - you start with pin. Anyway it's
+confusing to have cfg starting with pin and mux ending in pin. How
+"pin-pin" would work? :)
+
+Use maybe similar pattern, so start with mux for mux and pin for cfg.
+Look at wpcm450 pinctrl.
+
+
+>>
+>>> +    $ref: pincfg-node.yaml#
+>>> +
+>>> +    properties:
+>>> +      pins:
+>>> +        description:
+>>> +          A list of pins to configure in certain ways, such as enabling
+>>> +          debouncing
+>>> +
+>>> +      bias-disable: true
+>>> +
+>>> +      bias-pull-up: true
+>>> +
+>>> +      bias-pull-down: true
+>>> +
+>>> +      input-enable: true
+>>> +
+>>> +      output-low: true
+>>> +
+>>> +      output-high: true
+>>> +
+>>> +      drive-push-pull: true
+>>> +
+>>> +      drive-open-drain: true
+>>> +
+>>> +      input-debounce:
+>>> +        description:
+>>> +          Debouncing periods in microseconds, one period per interrupt
+>>> +          bank found in the controller
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +        minItems: 1
+>>> +        maxItems: 4
+>>> +
+>>> +      slew-rate:
+>>> +        description: |
+>>> +          0: Low rate
+>>> +          1: High rate
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>> +        enum: [0, 1]
+>>> +
+>>> +      drive-strength:
+>>> +        enum: [ 0, 1, 2, 4, 8, 12 ]
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - ranges
+>>> +  - '#address-cells'
+>>> +  - '#size-cells'
+>>
+>> Missing allOf with ref to pinctrl.yaml.
+> Do you mean adding
+> allOf:
+>   - $ref: "pinctrl.yaml#"
+
+Yes.
+
+
+
+Best regards,
+Krzysztof
