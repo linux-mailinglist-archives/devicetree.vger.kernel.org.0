@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66C2A570EC4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 02:16:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 501CB570EEE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 02:26:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230143AbiGLAQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jul 2022 20:16:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50334 "EHLO
+        id S229764AbiGLA0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jul 2022 20:26:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231794AbiGLAQX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 20:16:23 -0400
+        with ESMTP id S229690AbiGLA0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jul 2022 20:26:30 -0400
 Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C0A31352;
-        Mon, 11 Jul 2022 17:15:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1657584897; cv=none; 
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395F22DA85;
+        Mon, 11 Jul 2022 17:26:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1657585576; cv=none; 
         d=zohomail.com; s=zohoarc; 
-        b=bJmObJhUXPfREMqCN/WvVFaSBUz3AzVlTwIJKfvLDHoe1aG6K7Iqc4ovk/XOOtlgXLTGsjOwF4JoS8ZWQfquvAZ+nspaUKHGAabfjufMaeksl3J0Wma8w3FrjHTrYGL/azYM2wZr1L7giIUz5mvI/OeW1d/maBtAD4yGIyjVZIk=
+        b=mtb8jFe3/4+KkVb5dM6qz1JRAB7qefaldXT89p6pXK6rdhAIRyC5ZqAWeOEKLZ1IWKCuEgkZi2zBDUe12Nhfr/JdzYaBcjAFKVPqdnTntFyAB6XUgp3BQxG8saRVwkU4Lih2mFTYKjRBmKYTu+dhShXWYpPOt2KUY3j8OHAdaWo=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1657584897; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=fhJVT85aTlBQWQb6yaeXraBInDSuiyuvEmq9JyUyXYE=; 
-        b=HJXLnQdePfBzYS5gYvF2NWYq6Ar0h+zlTQeWYGDsmpy47vOMKQ1cguN2NJ3nOFpcdqRWJEYd0V0ewebpw87dq4EmRKZC1Mt1eEv6zcO0Hj50baqOiLSxitRYwkUC33qqZQ05ygR7jv4iKMRhZ2KOt7bR4+5Xp7O8A08iD42DfB0=
+        t=1657585576; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=jFBczO4Z9TfDcxdB0ArqJHoDxH8ici/TI/3XLJb7X3M=; 
+        b=cdZcTbIsOwFaXI2jkalL2uFsW/IBksDLq9RALhunhNE69mFkn9TliQ7HZ2QNcanWnH/JzCon1YZK5cvBziPhu5Cqn72ZPd7q4640LwIRQNaXeTbBXOII0RXZkOiRh3qoxftIyFp4r905dQntTSvMQEMi0gsD0kAz7sp9dJGUS/Q=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
         dkim=pass  header.i=linux.beauty;
         spf=pass  smtp.mailfrom=me@linux.beauty;
         dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1657584897;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1657585576;
         s=zmail; d=linux.beauty; i=me@linux.beauty;
         h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=fhJVT85aTlBQWQb6yaeXraBInDSuiyuvEmq9JyUyXYE=;
-        b=ht469zLCvWSqlKO3GMKF5L1p8SJlW6uMKUtxZUtAmkO/WlFcm1aMBSqQvNJ/dgUN
-        vTxuNTnejwgRWnlF1T5TDGb3pDxejhjEgsaZYCNzMF3F/15bHdKcnGgUDFjdVU02U6D
-        TZdqG93CB0fZCtau2mX8Ml/V9B1YS81TCUVheAU8=
+        bh=jFBczO4Z9TfDcxdB0ArqJHoDxH8ici/TI/3XLJb7X3M=;
+        b=Qxdai5D/7eund7w0ApVgHQPm3iT1PEKhQUQr/EKe6+bZWVe6dGmw46m7vQzLluIt
+        KqVJkuBBUm+pEf0bNY/sg1MtjYSuEEev22U45PkSvtEbg4YwgfUVkOrqR0rfLZFGusa
+        3/CwneaPhUp564pkpdxcZkMdvtNdwWP9q9ZmqKFI=
 Received: from mail.zoho.com by mx.zohomail.com
-        with SMTP id 1657584897026777.3647169706071; Mon, 11 Jul 2022 17:14:57 -0700 (PDT)
-Date:   Tue, 12 Jul 2022 08:14:56 +0800
+        with SMTP id 1657585575627718.8384328597048; Mon, 11 Jul 2022 17:26:15 -0700 (PDT)
+Date:   Tue, 12 Jul 2022 08:26:15 +0800
 From:   Li Chen <me@linux.beauty>
-To:     "Christoph Hellwig" <hch@infradead.org>
+To:     "Arnd Bergmann" <arnd@arndb.de>
 Cc:     "Catalin Marinas" <catalin.marinas@arm.com>,
         "Will Deacon" <will@kernel.org>,
         "Rob Herring" <robh+dt@kernel.org>,
         "Frank Rowand" <frowand.list@gmail.com>,
         "Andrew Morton" <akpm@linux-foundation.org>,
-        "linux-arm-kernel" <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel" <linux-kernel@vger.kernel.org>,
-        "devicetree" <devicetree@vger.kernel.org>,
-        "linux-mm" <linux-mm@kvack.org>
-Message-ID: <181efc24bdd.108279419521615.7697137316951540027@linux.beauty>
-In-Reply-To: <YsxLU66tNvi10c82@infradead.org>
-References: <20220711122459.13773-1-me@linux.beauty>
- <Ysw7TMFO8Mw0nq8x@infradead.org>
- <181ee01d384.b809bd01412268.496620746959082770@linux.beauty> <YsxLU66tNvi10c82@infradead.org>
-Subject: Re: [PATCH 0/4] add struct page and Direct I/O support to reserved
- memory
+        "Li Chen" <lchen@ambarella.com>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        "DTML" <devicetree@vger.kernel.org>,
+        "Linux-MM" <linux-mm@kvack.org>
+Message-ID: <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
+In-Reply-To: <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
+References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty> <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
+ page and dio support to no-map rmem
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
@@ -69,27 +68,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christoph,
- ---- On Tue, 12 Jul 2022 00:09:55 +0800  Christoph Hellwig <hch@infradead.org> wrote --- 
- > On Tue, Jul 12, 2022 at 12:05:06AM +0800, Li Chen wrote:
- > > My use case has been stated in the cover letter, but our driver is not ready for upstream yet.
+Hi Arnd,
+ ---- On Mon, 11 Jul 2022 21:28:10 +0800  Arnd Bergmann <arnd@arndb.de> wrote --- 
+ > On Mon, Jul 11, 2022 at 2:24 PM Li Chen <me@linux.beauty> wrote:
+ > >
+ > > From: Li Chen <lchen@ambarella.com>
+ > >
+ > > This sample driver shows how to build struct pages support to no-map rmem.
+ > >
+ > > Signed-off-by: Li Chen <lchen@ambarella.com>
  > 
- > Which means we can't review the use case.  I'd suggest you come back
- > when you submit your driver.
+ > Not sure what a sample driver helps here if there are no actual users in-tree.
+ > 
+ > It would make more sense to merge the driver that wants to actually use this
+ > first, and then add the additional feature.
 
-Totally agree, but we plan to start rewriting the code of our video driver in a long time, it has many legacy codes and I need to rewrite a lot of codes to migrate to v4l2.
+Totally agree, but we plan to start rewriting our video driver in a long time, it has many legacy codes and I need to rewrite a lot of codes to migrate to v4l2.
 That's why I also submit a sample driver here: to make the review progress easier and don't need reviewers to read video driver codes.
 
+ > > +/*
+ > > + * dts example
+ > > + * rmem: rmem@1 {
+ > > + *                     compatible = "shared-dma-pool";
+ > > + *                     no-map;
+ > > + *                     size = <0x0 0x20000000>;
+ > > + *             };
+ > > + * perf {
+ > > + *             compatible = "example,rmem";
+ > > + *             memory-region = <&rmem>;
+ > > + *     };
  > 
- > > With DMA allocator, we can access buffer in kernel space, not userspace, however, this patch
- > 
- > Take a look at dma_mmap_* on how to map DMA coherent allocations to
- > usersapce.  This is of course easily possible.
- > 
+ > The problem here is that the DT is meant to describe the platform in an OS
+ > independent way, so having a binding that just corresponds to a user space
+ > interface is not a good abstraction.
 
-Yes, I know them. They take use of remap_pfn_range, which set VM_IO and VM_PFNMAP on vma, so dio is not possible with them.
-IIUC, if you want to expose the kernel's reserved memory to userspace, it doesn't matter whether the memory came from dma allocator or something else.
-The point is if they want to get better throughput, they can consider replacing their dma_mmap_* with my reserved_mem_memremap_pages + reserved_mem_dio_mmap.
+Gotcha, but IMO dts + rmem is the only choice for our use case. In our real case, we use reg instead of size to specify the physical address, so memremap cannot be used.
 
-Regards,
-Li
+ > 
+ > > +       vaddr = reserved_mem_memremap_pages(dev, rmem);
+ > > +       if (IS_ERR_OR_NULL(vaddr))
+ > > +               return PTR_ERR(vaddr);
+ > 
+ >  Using IS_ERR_OR_NULL() is usually an indication of a bad interface.
+ > 
+ > For the reserved_mem_memremap_pages(), you should decide whether to return
+ > NULL on error or an error pointer, but not both.
+
+Thanks, will fix in v2.
+
+ > 
+ >        Arnd
+ > 
