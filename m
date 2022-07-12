@@ -2,159 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A32D5571B14
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 15:23:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58ABD571B1D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 15:25:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232284AbiGLNXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 09:23:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37304 "EHLO
+        id S230010AbiGLNZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 09:25:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiGLNXk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 09:23:40 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CFDC116C
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 06:23:38 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id r9so9839583ljp.9
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 06:23:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7NpE50xIJlThXUXFOjYSw2lGGIuqwPnQSpmI3jRYAy0=;
-        b=FyPS0gCOocU+YW6bG2aEfkbmbd6ZeNmQtaGPBKwFG66toMzzJF5mX1ANCO2q67C51A
-         6+hKJ1SVkXJTFlffOvZpjYkh35W2hueRb18Sx+rZtaxpNH8rPDGLUFzuu/hDJ3jJs80m
-         1JcdpoJqFMdmmg3SOUh6kU446SWQNKDdIBeNPiTqBXzm5F7qWl478y0XQs97FmG4vtIb
-         1fhreWvfVk73PV9quj9WYoMeNs3dJ6SX2hkBmC5LBdE00T2UHtk4MgHAyyzef5y5pm4g
-         XJlnBLIlJWCGM9nQxaP+kYwmQ5muCr4oasukTlI9n5SrQmIYnFG5n/1Sgw8h8yFERwuZ
-         70Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7NpE50xIJlThXUXFOjYSw2lGGIuqwPnQSpmI3jRYAy0=;
-        b=HNXJ5yqQhDq6h2QaWLzGV/ehF94aIup3X0kTETxIpJBYAdCNSCdXgpAM9qkuvNR2M3
-         kMcMNNb7v8Ke4p4eN8q5h2Zy1L99AGvzSfkafVB0zEz2CqDGHgr5ABcdSGFIZrAojP/v
-         4enoZfRW6wedHUQ1iMfs3anHZi8sFN4r5og53AibmOKgyI+crLKH+jHAgRY2jT5ZTkHe
-         Tit5HjaMY6KRCfVJoH66PXJC4mBH/imi5g2kR7nnyC1jMqF/Sv23D8XlDisXZqwqVd11
-         eLBUaJpB1in1F09pxMOwbQO16S81sWZiVbYq77lFYB2DhOJXYTYaPHuTtcQs0yYmBFNP
-         BeHw==
-X-Gm-Message-State: AJIora876nqJ6sRfsQvznxQ/wtNZy/nJJr/4iZaXBLi1+JAoYS2nFzVH
-        4K8mIsNl1XYjWPTTh8/QuaK2mZM6Qrry87jf
-X-Google-Smtp-Source: AGRyM1s5e/ZHQtmXKenogZYrIc+DpEwBLIre9ljOLnNr7JILkNKpTESrtc+pzI2VAATS1W9KZ/xK2g==
-X-Received: by 2002:a2e:95ca:0:b0:25d:4ac4:1387 with SMTP id y10-20020a2e95ca000000b0025d4ac41387mr12349270ljh.145.1657632216570;
-        Tue, 12 Jul 2022 06:23:36 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id s3-20020a05651c200300b0025d5eb5dde7sm2350063ljo.104.2022.07.12.06.23.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 06:23:36 -0700 (PDT)
-Message-ID: <b3cf4950-4b0a-23ff-2622-4d554cf041c2@linaro.org>
-Date:   Tue, 12 Jul 2022 15:23:32 +0200
-MIME-Version: 1.0
+        with ESMTP id S229814AbiGLNZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 09:25:22 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A0361B07;
+        Tue, 12 Jul 2022 06:25:22 -0700 (PDT)
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26CD5GUM002635;
+        Tue, 12 Jul 2022 13:25:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=YAEFtiMD5+u10/+PC1Fc0a9VR8y5YIWCiK8+QDE6278=;
+ b=YQCXjN+zxjMWouvwYt0wSGdpTlAOYv62daxUtlavi8c2wXbU4HaE7cXBmXFhhv4neuKj
+ IuLiUukqO6HSnQJcXyZKEU21BByKeh3ddRM0qTCnTk6BWuhMEx08/yo1YSvbShIWVLOf
+ i6cu52ldc0XWvges4uJ/NiFIyIQh38ka8BZYXbxKQr+vXKv00eLL63v0f5ti14aqGALL
+ noGYtkzRNoIoYCxr4/EDbepTFobko8Rb/KCCiB3hdWJPuPCDpDWSUl+r1jwuDfH1/1i8
+ WKaHqiDJDLBIsiy7KUX2og7X+y58A1dPphySJKLB0FjapPvl5wBZfvjHrjYTCe8kDooW 4Q== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3h99hh0pma-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Jul 2022 13:25:04 +0000
+Received: from m0098420.ppops.net (m0098420.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 26CD6E4V007126;
+        Tue, 12 Jul 2022 13:25:04 GMT
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3h99hh0pkw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Jul 2022 13:25:04 +0000
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 26CDKX5e003548;
+        Tue, 12 Jul 2022 13:25:03 GMT
+Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
+        by ppma03dal.us.ibm.com with ESMTP id 3h71a9kae9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Jul 2022 13:25:03 +0000
+Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
+        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 26CDP19S13042006
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 12 Jul 2022 13:25:01 GMT
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id A4ADE78060;
+        Tue, 12 Jul 2022 13:25:01 +0000 (GMT)
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id F31C278063;
+        Tue, 12 Jul 2022 13:25:00 +0000 (GMT)
+Received: from [9.47.158.152] (unknown [9.47.158.152])
+        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Tue, 12 Jul 2022 13:25:00 +0000 (GMT)
+Message-ID: <3780329f-0197-0e47-81a1-22ceae28fd1c@linux.ibm.com>
+Date:   Tue, 12 Jul 2022 09:25:00 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Novatek NT35596S
- panel bindings
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v6 4/6] tpm: of: Make of-tree specific function commonly
+ available
 Content-Language: en-US
-To:     MollySophia <mollysophia379@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Mimi Zohar <zohar@linux.ibm.com>, kexec@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Cc:     nayna@linux.ibm.com, nasastry@in.ibm.com, mpe@ellerman.id.au,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Jason Gunthorpe <jgg@ziepe.ca>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220709140422.56851-1-mollysophia379@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220709140422.56851-1-mollysophia379@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Frank Rowand <frowand.list@gmail.com>
+References: <20220707172026.831614-1-stefanb@linux.ibm.com>
+ <20220707172026.831614-5-stefanb@linux.ibm.com>
+ <9fc4f6dc2ee497a4d4998df17392ac73ebdf3d63.camel@linux.ibm.com>
+From:   Stefan Berger <stefanb@linux.ibm.com>
+In-Reply-To: <9fc4f6dc2ee497a4d4998df17392ac73ebdf3d63.camel@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: zfIXDZutaERNnJii3LMuF_IWJx2l4fhv
+X-Proofpoint-GUID: ywZSBDORtiUmK_Pr09djCcNdU0Gi5d3h
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-12_08,2022-07-12_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=953
+ priorityscore=1501 clxscore=1015 spamscore=0 mlxscore=0 phishscore=0
+ suspectscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2206140000 definitions=main-2207120051
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/07/2022 16:04, MollySophia wrote:
-> Add documentation for "novatek,nt35596s" panel.
+
+
+On 7/11/22 18:04, Mimi Zohar wrote:
+> Hi Stefan,
 > 
-> Signed-off-by: MollySophia <mollysophia379@gmail.com>
-> ---
->  .../display/panel/novatek,nt35596s.yaml       | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt35596s.yaml
+> On Thu, 2022-07-07 at 13:20 -0400, Stefan Berger wrote:
+>> -       /*
+>> -        * For both vtpm/tpm, firmware has log addr and log size in big
+>> -        * endian format. But in case of vtpm, there is a method called
+>> -        * sml-handover which is run during kernel init even before
+>> -        * device tree is setup. This sml-handover function takes care
+>> -        * of endianness and writes to sml-base and sml-size in little
+>> -        * endian format. For this reason, vtpm doesn't need conversion
+>> -        * but physical tpm needs the conversion.
+>> -        */
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt35596s.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt35596s.yaml
-> new file mode 100644
-> index 000000000000..f724f101a6fd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt35596s.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/novatek,nt35596s.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Novatek NT35596S based DSI display Panels
-> +
-> +maintainers:
-> +  - Molly Sophia <mollysophia379@gmail.com>
-> +
-> +description: |
-> +  The nt35596s IC from Novatek is a generic DSI Panel IC used to drive dsi
-> +  panels.
-> +  Right now, support is added only for a JDI FHD+ LCD display panel with a
-> +  resolution of 1080x2160. It is a video mode DSI panel.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - jdi,fhd-nt35596s
-> +      - const: novatek,nt35596s
+> This comment is dropped.  Perhaps not in such detail, but shouldn't a
+> comment or function description exist in the new function.
 
-You need to document the novatek and idi vendor prefix in vendor-prefixes.
+I am adding back the comment in v7.
 
-> +    description: This indicates the panel manufacturer of the panel that is
-> +      in turn using the NT35596S panel driver. This compatible string
-> +      determines how the NT35596S panel driver is configured for the indicated
-> +      panel. The novatek,nt35596s compatible shall always be provided as a fallback.
-
-Drop description, it does not make sense and last sentence duplicates
-the schema.
-
-> +
-> +  vddi0-supply:
-> +    description: regulator that provides the supply voltage
-> +      Power IC supply
-
-"regulator that provides the supply voltage" is redundant, drop it.
-Instead what is it supplying?
-
-> +
-> +  vddpos-supply:
-> +    description: positive boost supply regulator
-> +
-> +  vddneg-supply:
-> +    description: negative boost supply regulator
-> +
-> +  reg: true
-
-Any reg is accepted or is there only one reg? Does it come from other
-schema?
-
-
-
-Best regards,
-Krzysztof
+> 
+> Otherwise,
+> Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>
+> 
+> thanks,
+> 
+> Mimi
+> 
+> 
+> _______________________________________________
+> kexec mailing list
+> kexec@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/kexec
