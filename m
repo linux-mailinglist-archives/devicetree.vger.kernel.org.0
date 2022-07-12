@@ -2,124 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 353E8571687
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2E457168B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jul 2022 12:07:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232416AbiGLKGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 06:06:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54254 "EHLO
+        id S232203AbiGLKHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 06:07:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232351AbiGLKGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:06:30 -0400
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C688AAB05;
-        Tue, 12 Jul 2022 03:06:29 -0700 (PDT)
-Received: by mail-pl1-f172.google.com with SMTP id q5so6830756plr.11;
-        Tue, 12 Jul 2022 03:06:29 -0700 (PDT)
+        with ESMTP id S229962AbiGLKHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 06:07:39 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 151E4AAB38;
+        Tue, 12 Jul 2022 03:07:38 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id y8so9462393eda.3;
+        Tue, 12 Jul 2022 03:07:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kTqxGKRaQ+4R4vGFv2ndzSh2OvA6/IVMbt55ouGGu20=;
+        b=pkwqT0p9reHxG5NNziBFKHep3mzeSWMdQjuLqBj3Z93BDYrG5PosjiWli6sI0OaXfG
+         Ruht+6uwaL0YFUH5vEQs8gnKIMMGItsxgRm3AY9zADh/Vi7ONTCV48SFMAZ3YM23zvIO
+         k/0cAJFtISgK+BGOQtCry2XPRJ74hFrpPs2bJO7QmBuX3FqWsLDZuFlx+XfKg+7H9CMg
+         YP5TcMBV/rFakXL44rQHE8BF+kmiFo6otU13ZD6pSyxmb7mZrnv5F12HXLi9f8xBx5xP
+         BgygRgSROnAqmch1bfNwfIIgUOmK25Oek6z6aMy7E+WsTUM1YZkSOW3q9rctT8Teh9i+
+         YVMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I/GNme+MtVJkgqzMSsHjFjb6byOWszb8bonzRL3iNS0=;
-        b=pkbmKYnswFHa8Ow74jbNkUokMGZS0kURrYLWZhlVPND3c2pYDySTN9qiypzPNGshOu
-         ZlN6xZVlAGaCkQLeyl6+EiRr6WsOXCS+uoIngV+BVExHh20CA/p59FInOVAPnvf3HjwL
-         eu1sGVrNY95idmh7/c5z1i7R/+9YB3G2RC9ikKonrkwrfnjlmO1s5R7NyNMrFNmcCXl6
-         n3PN5/lN7ew51qU7mOjZg907g06OEdv3WojIfJ4S6ZNGyyf5ms5cMou0u2M5IXHiq7/d
-         0FXOO1ddf+x+fHSjf0fuwCNAnU763U0jiUrEb9yJWIfhDRsqpB0ZalV3ttxjuVjEJjps
-         N9qQ==
-X-Gm-Message-State: AJIora/JOShkUrzY2293WX2rFCJUmEaGy9U9GW1mMz3ofxW5SB5/FjlG
-        9PfieBmiT+nq/JksaRdVgm4gGhMixIiZXD6Pv3Q=
-X-Google-Smtp-Source: AGRyM1sXl72aEPLr4xAqWhAchej63N/4nkbWw1wGQRhxvxjivf3WMEdGdZSd/0v4llF2oWc11raqubKhdHiP03Rr7XY=
-X-Received: by 2002:a17:903:1c8:b0:16c:4e2f:926f with SMTP id
- e8-20020a17090301c800b0016c4e2f926fmr8713764plh.76.1657620388698; Tue, 12 Jul
- 2022 03:06:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kTqxGKRaQ+4R4vGFv2ndzSh2OvA6/IVMbt55ouGGu20=;
+        b=cuoQjw9BXz8WIIWz0Gcl1Y/chmORHi1eblF3Pr7xBbSaKUdMNZ2vcOvTfsEt1IPpHp
+         Q99q7Kj20DREV9g/OodmvvElrGjRj+QnI/F+kjP4P4hLMEI2QIJYCZw8zQ0fZo6on7h1
+         Xg3LCTAZdkaGIkmb02pQZNRZ2BXy1d5n5Ky8+uOVSMiYbpwT6mFtXFyePjWdTi5KRIg2
+         K64DwLp11uo8I3AraL68K6/CbhICJvrz1AlsUQLI7obGIaeiGRB0i1pyc9R4cApxziyM
+         wTpuaaEIidu4CJB5EEhj9k0LUYkY2pvPoCeZTCiWPK9CgZw3nkYlIBgzIg7d9BO4igM6
+         5MRg==
+X-Gm-Message-State: AJIora8IIAQr7QkRFP/cxX9qMAaw9btnPqDUsF+R7zQFF9GKVyjQhynY
+        xYyMJJvHYeA6uWi5iHGYn6k=
+X-Google-Smtp-Source: AGRyM1vsV7oT7VKKqx70BYd9loPyNBlyHXC2igMEcGuYerOS2SXyzGyFprw2BKPwaynm0IdBgUt1/g==
+X-Received: by 2002:a50:fd93:0:b0:43a:71e2:781e with SMTP id o19-20020a50fd93000000b0043a71e2781emr30883012edt.396.1657620456614;
+        Tue, 12 Jul 2022 03:07:36 -0700 (PDT)
+Received: from fedora.robimarko.hr (cpe-94-253-165-104.zg.cable.xnet.hr. [94.253.165.104])
+        by smtp.googlemail.com with ESMTPSA id bd27-20020a056402207b00b0043a21e3b4a5sm5799675edb.40.2022.07.12.03.07.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jul 2022 03:07:36 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        konrad.dybcio@somainline.org, jassisinghbrar@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v8 1/4] dt-bindings: mailbox: qcom: set correct #clock-cells
+Date:   Tue, 12 Jul 2022 12:07:30 +0200
+Message-Id: <20220712100733.34261-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-References: <20220711184325.1367393-1-mail@conchuod.ie> <20220711184325.1367393-3-mail@conchuod.ie>
-In-Reply-To: <20220711184325.1367393-3-mail@conchuod.ie>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Tue, 12 Jul 2022 12:06:17 +0200
-Message-ID: <CANBLGcw6=EKZhS3t9+1G3_eczoid_jcTRV3=XD6wSwVkFQr_Gw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] riscv: dts: starfive: add the missing monitor core
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Jul 2022 at 20:44, Conor Dooley <mail@conchuod.ie> wrote:
->
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> The JH7100 has a 32 bit monitor core that is missing from the device
-> tree. Add it (and its cpu-map entry) to more accurately reflect the
-> actual topology of the SoC.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+IPQ6018 and IPQ8074 require #clock-cells to be set to 1 as their APSS
+clock driver provides multiple clock outputs.
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+So allow setting 1 as #clock-cells and check that its set to 1 for IPQ6018
+and IPQ8074, check others for 0 as its currently.
 
-Thanks!
-/Emil
-> ---
->  arch/riscv/boot/dts/starfive/jh7100.dtsi | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> index c617a61e26e2..92fce5b66d3d 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> @@ -67,6 +67,23 @@ cpu1_intc: interrupt-controller {
->                         };
->                 };
->
-> +               E24: cpu@2 {
-> +                       compatible = "sifive,e24", "riscv";
-> +                       reg = <2>;
-> +                       device_type = "cpu";
-> +                       i-cache-block-size = <32>;
-> +                       i-cache-sets = <256>;
-> +                       i-cache-size = <16384>;
-> +                       riscv,isa = "rv32imafc";
-> +                       status = "disabled";
-> +
-> +                       cpu2_intc: interrupt-controller {
-> +                               compatible = "riscv,cpu-intc";
-> +                               interrupt-controller;
-> +                               #interrupt-cells = <1>;
-> +                       };
-> +               };
-> +
->                 cpu-map {
->                         cluster0 {
->                                 core0 {
-> @@ -76,6 +93,10 @@ core0 {
->                                 core1 {
->                                         cpu = <&U74_1>;
->                                 };
-> +
-> +                               core2 {
-> +                                       cpu = <&E24>;
-> +                               };
->                         };
->                 };
->         };
-> --
-> 2.37.0
->
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes in v3:
+* Drop not needed blank line
+
+Changes in v2:
+* Correct subject name
+---
+ .../bindings/mailbox/qcom,apcs-kpss-global.yaml | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+index 3b5ba7ecc19d..95ecb84e3278 100644
+--- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
++++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+@@ -50,7 +50,7 @@ properties:
+     const: 1
+ 
+   '#clock-cells':
+-    const: 0
++    enum: [0, 1]
+ 
+   clock-names:
+     minItems: 2
+@@ -96,6 +96,21 @@ allOf:
+       properties:
+         clocks:
+           maxItems: 3
++  - if:
++      properties:
++        compatible:
++          enum:
++            - qcom,ipq6018-apcs-apps-global
++            - qcom,ipq8074-apcs-apps-global
++    then:
++      properties:
++        '#clock-cells':
++          const: 1
++    else:
++      properties:
++        '#clock-cells':
++          const: 0
++
+ examples:
+ 
+   # Example apcs with msm8996
+-- 
+2.36.1
+
