@@ -2,96 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C79FD573CF2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 21:08:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC76E573D35
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 21:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236627AbiGMTIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 15:08:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34772 "EHLO
+        id S232001AbiGMTem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 15:34:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236689AbiGMTIv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 15:08:51 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE7512739;
-        Wed, 13 Jul 2022 12:08:50 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id u20so11755863iob.8;
-        Wed, 13 Jul 2022 12:08:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=gPp4fL4X3RNG52iSlBWKs2UeWMn8GTEKPSSMMNjkH1U=;
-        b=uv27YH5MpIKsASt8dx6h+RFbi/cLznfNbEYCv/hiokoGcVPzENaXbtP4rmMZ2Axdrp
-         LLGVb+M11NQCjW29Kp2gAbBc7PeYEqvS4/SWxA0x9ME1LVERMdZOFOndfQgP6fIjbO09
-         zlW9VIfMRXv3TnmWJsTv9v5WXHp7imDr4xJY0deLP7EUD0WF6d1E9APJW0u9E76ozCuK
-         l1TzPWSwYQ0FHvhFg8kOBTHcLY5I6JbQRrCdtfBmIy5gegMpL2z+68qsFUr/HZJ+AO7Q
-         ApXHPk8bJVRHNod7Z9Fj1OWKFVqkR0Ucsy/fLcEEXmFDXqI3RpWfsR4TQ+OTVT7p5wz9
-         4k/g==
-X-Gm-Message-State: AJIora/+jhFx3ZFKN+k494NDDVvMlXInz2e3UZm37iOqok2Kzc7G798d
-        ZhvxvrRxZAJL5xRa22PAwo/IgyF+vA==
-X-Google-Smtp-Source: AGRyM1tgUY0yKG9P+IdNnaJ3ki7q6couzh1ID98oZ135ss6SXwXJQaykZeC8PS/uAXkXV0PG2IJogg==
-X-Received: by 2002:a05:6638:4185:b0:33d:c7da:b119 with SMTP id az5-20020a056638418500b0033dc7dab119mr2732685jab.101.1657739329931;
-        Wed, 13 Jul 2022 12:08:49 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h41-20020a022b29000000b0033f0a3a5fbbsm5566358jaa.175.2022.07.13.12.08.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jul 2022 12:08:49 -0700 (PDT)
-Received: (nullmailer pid 246144 invoked by uid 1000);
-        Wed, 13 Jul 2022 19:08:47 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Ryan.Wanner@microchip.com
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lgirdwood@gmail.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        alexandre.belloni@bootlin.com
-In-Reply-To: <20220713162538.139115-1-Ryan.Wanner@microchip.com>
-References: <20220713162538.139115-1-Ryan.Wanner@microchip.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: atmel-i2s: Convert to json-schema
-Date:   Wed, 13 Jul 2022 13:08:47 -0600
-Message-Id: <1657739327.994394.246143.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231329AbiGMTel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 15:34:41 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEBCA27160;
+        Wed, 13 Jul 2022 12:34:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1657740880; x=1689276880;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=uz2sgm8GjwPKR98F7NkplBl1G37I0DkhynDs1KtQ2sE=;
+  b=r7yTRg1H9U9gL4x7dfQXq6fzoViRdhQ5U523w+PmuubSam1Nxunn0Wkk
+   qzLx/f9nJCEuVWZh/Rsq2Oyux0FwRDlkyjygFBn9X59t6dWeyrnNJa8F2
+   HijAeU7EzhSWWQeHSCa7M6INfC49ZA/TSOKTCt1C85SZU4+EuZ2/AUDlM
+   c=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 13 Jul 2022 12:34:40 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2022 12:34:40 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 13 Jul 2022 12:34:39 -0700
+Received: from hu-amelende-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 13 Jul 2022 12:34:38 -0700
+From:   Anjelique Melendez <quic_amelende@quicinc.com>
+To:     <corbet@lwn.net>, <sre@kernel.org>, <robh+dt@kernel.org>,
+        <agross@kernel.org>, <bjorn.andersson@linaro.org>
+CC:     <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Anjelique Melendez <quic_amelende@quicinc.com>
+Subject: [PATCH v3 0/2] add support for PON GEN3 device
+Date:   Wed, 13 Jul 2022 12:33:49 -0700
+Message-ID: <20220713193350.29796-1-quic_amelende@quicinc.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Jul 2022 09:25:38 -0700, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
-> 
-> Convert atmel i2s devicetree binding to json-schema.
-> Change file name to match json-schema naming.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-> ---
->  .../bindings/sound/atmel,sama5d2-i2s.yaml     | 83 +++++++++++++++++++
->  .../devicetree/bindings/sound/atmel-i2s.txt   | 46 ----------
->  2 files changed, 83 insertions(+), 46 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/atmel-i2s.txt
-> 
+Changes from v2:
+  - Added new "qcom,pmk8350-pon" compatible string as per Krysztof's
+    advice
+  - Updated dt logic to use comptaible strings to decide constraints
+    as per Krysztof's comment
+  - Added new patch (v3 2/2) to support new compatible string
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Changes from v1:
+  - Updated path which was missing Documentation/devicetree prefix
+  - Updated CC list
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+New patch series to seperate this patch from applied patches.
+Comments from original patch can be found
+https://lore.kernel.org/linux-arm-msm/27515993-18f3-8891-4835-9b6a8d7f86b0@quicinc.com/
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+David Collins (1):
+  dt-bindings: power: reset: qcom-pon: update "reg" property details
 
+Anjelique Melendez (1):
+  power: reset: qcom-pon: add support for qcom,pmk8350-pon compatible string
+  
 
-i2s@fc04c000: 'assigned-parrents' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/at91-kizbox3-hs.dtb
-	arch/arm/boot/dts/at91-sama5d27_som1_ek.dtb
-	arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dtb
-	arch/arm/boot/dts/at91-sama5d2_icp.dtb
-	arch/arm/boot/dts/at91-sama5d2_ptc_ek.dtb
-	arch/arm/boot/dts/at91-sama5d2_xplained.dtb
+ Documentation/devicetree/bindings/power/reset/qcom,pon.yaml | 73 ++++++++++++++++++++++++++++--
+ drivers/power/reset/qcom-pon.c | 1 +
+ 2 file changed, 70 insertions(+), 4 deletions(-)
+
+-- 
+2.35.1
 
