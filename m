@@ -2,87 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26A78573D84
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 22:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E20573D86
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 22:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236359AbiGMUDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 16:03:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40470 "EHLO
+        id S236898AbiGMUED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 16:04:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236667AbiGMUDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 16:03:46 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B068E2DF4;
-        Wed, 13 Jul 2022 13:03:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05403B8214D;
-        Wed, 13 Jul 2022 20:03:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EDCCC34114;
-        Wed, 13 Jul 2022 20:03:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657742619;
-        bh=WuHHTJxCbMvxN9wOlvDm7LaxQgBF717ppnpA3S+GxJw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Otqhsatk+zG3w/OGnMokbqmkoqhqT+TdezG8+TfKHeMK7CjrnXZ6Ie8LvEb7A8Y+8
-         refthA7uSe93O7E9rXehuO0kU/a9MX9dsYLXlQ8sWAwUshIV278Otlz7MkmnIE0JZD
-         Tuqr9mdYtta8lkwTgidRGFw5zKelRtbKDSdK196Sgv1tFr6QK8BYMCJGvCqMtTKnD1
-         HegdRWGVJi4evBKktBfrRQi4pgcQJZoUfgoh+BiIqA1AXRSarL5fwmWLergtiMvXwB
-         Kr42lqFg9G4pqlWFcg8/HO9+UShkiEXMDBNI8905xf3QcY+dqs6BwYvFFL5dyKQp1k
-         6sNjrlgEJeR4w==
-Received: by pali.im (Postfix)
-        id D5D069D9; Wed, 13 Jul 2022 22:03:36 +0200 (CEST)
-Date:   Wed, 13 Jul 2022 22:03:36 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S237024AbiGMUEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 16:04:02 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49DB0DF9B
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 13:04:00 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id dn9so21745211ejc.7
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 13:04:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2SGW61JURl6spHdcZUPXC5nNCZBAg6B4jWuGQuAyeu8=;
+        b=A7hyB5o6+HsqXXoO4OIrKXXbFKv0unJH8gwMXBEUx3GH/TEYRBix3oi89mKml4bavt
+         plajyFDz4nT2RIFFvuv7rul1OEPZzcZERyBgwgkgCNTsKnF1m3+gWTarvBAJTT17QBE9
+         XFZwlgRPJx4aTP+Z0JwWCC3m0k2KDXT03fNrQs7vyWW65L7I5mxav4vKXeOj7WkqjpY2
+         Vz8CWhk62LTKSd6uJZ8NTtvulWsH/McK/2IdRpeZo1ilBThqYz3TFH8waifnq2QkRl/C
+         9kVqzEIl9kdrf+rlfn+5vl1Lrks4xsnMfwVEjQZR5EKPpN8DNGCbawRSzHoTePP/nnxM
+         4dSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2SGW61JURl6spHdcZUPXC5nNCZBAg6B4jWuGQuAyeu8=;
+        b=jRdZLJS78SYWEWRURy2eEfo4beMJAD0/FEw0dlzfdb1ut+WUwtq4Kds25qnisECQ2z
+         tiu4xpQaHbYoJOxQZSKTtFC6ruJWxhu2p1uhkAV3Uaoh8tE9g5mgK8HcC1oMY2QVUTAc
+         sqi+i2ahSGDxDt4V1zVgx9qTXX6poRLvYcXl+bGcv6wLTsL/HOTadp3W0DFzcIfaCdya
+         uaSmuW7bHcimfdCKdlp/H7usgqflvPfB8xolP5y36fk8NAv5s19CF2nNacw/8dZPmOI5
+         sPkrXQBBf4cG2Qiri+/xVJ5vfe9hKxu7X+1fs6wZctxxRrsf2s7VJLgQyKgZJ+lJmdX5
+         GQvA==
+X-Gm-Message-State: AJIora/FaMJOGU4En74NALx/No+EskB8+pK6dJN7A/fRHa25wKLksrMc
+        QaErn+3/c6tJ/n+RXyfn0RA=
+X-Google-Smtp-Source: AGRyM1vFL7ifsm7KMj10C8KdfHuMIfUSC+dvyS2X76ll7VbPckz9amOTyEWMJZnk3GVEfBI2CaAuxA==
+X-Received: by 2002:a17:907:2848:b0:72b:5ba5:1db5 with SMTP id el8-20020a170907284800b0072b5ba51db5mr5405862ejc.703.1657742638686;
+        Wed, 13 Jul 2022 13:03:58 -0700 (PDT)
+Received: from localhost.lan ([194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id l10-20020a1709060cca00b0072b1cb2818csm5300695ejh.158.2022.07.13.13.03.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jul 2022 13:03:58 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        William Zhang <william.zhang@broadcom.com>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: Fix compatible strings for Armada
- 3720 boards
-Message-ID: <20220713200336.addvyfjhakrx72am@pali>
-References: <20220713125644.3117-1-pali@kernel.org>
- <a9e1ccb7-6caa-2f7c-b879-b3ff4945794c@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] dt-bindings: arm: Add Asus GT-AX6000 based on BCM4912
+Date:   Wed, 13 Jul 2022 22:03:50 +0200
+Message-Id: <20220713200351.28526-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a9e1ccb7-6caa-2f7c-b879-b3ff4945794c@linaro.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 13 July 2022 21:42:43 Krzysztof Kozlowski wrote:
-> On 13/07/2022 14:56, Pali Rohár wrote:
-> > All Armada 3720 boards have Armada 3720 processor which is of Armada 3700
-> > family and do not have Armada 3710 processor. So none of them should have
-> > compatible string for Armada 3710 processor.
-> > 
-> > Fix compatible string for all these boards by removing wrong processor
-> > string "marvell,armada3710" and adding family string "marvell,armada3700"
-> > as the last one. (Note that this is same way how are defined Armada 3710
-> > DTS files).
-> 
-> Please do not introduce some changes just in DTS, but start from the
-> bindings. Someone wrote the bindings like that and expected to be that
-> way, so first change the bindings with proper rationale. Then change the
-> DTS files.
-> 
-> 
-> Best regards,
-> Krzysztof
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Ok, I tried to update bindings and fix example in it, see patch:
-https://lore.kernel.org/linux-devicetree/20220713200123.22612-1-pali@kernel.org/
+It's a home router, the first BCM4912 SoC based public device.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
+index d9dc4f22f4a5..324e59104360 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
+@@ -31,6 +31,7 @@ properties:
+       - description: BCM4912 based boards
+         items:
+           - enum:
++              - asus,gt-ax6000
+               - brcm,bcm94912
+           - const: brcm,bcm4912
+           - const: brcm,bcmbca
+-- 
+2.34.1
+
