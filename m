@@ -2,197 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4562E573349
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 11:46:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 764505733BA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 12:06:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234850AbiGMJqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 05:46:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37052 "EHLO
+        id S235174AbiGMKGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 06:06:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235697AbiGMJqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 05:46:06 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197E5F90EC;
-        Wed, 13 Jul 2022 02:45:48 -0700 (PDT)
-X-UUID: fd6ec3c671494f468202f516ad68e594-20220713
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:6c925a24-eda3-476d-80fe-f49c592c48eb,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:51
-X-CID-INFO: VERSION:1.1.8,REQID:6c925a24-eda3-476d-80fe-f49c592c48eb,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:51
-X-CID-META: VersionHash:0f94e32,CLOUDID:cf64dd32-b9e4-42b8-b28a-6364427c76bb,C
-        OID:0974ccde4ec2,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: fd6ec3c671494f468202f516ad68e594-20220713
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1170456231; Wed, 13 Jul 2022 17:45:43 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 13 Jul 2022 17:45:41 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 13 Jul 2022 17:45:41 +0800
-Message-ID: <1dc880e7b5b6a28911a0c7acb29fa423ddb10da0.camel@mediatek.com>
-Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 13 Jul 2022 17:45:41 +0800
-In-Reply-To: <20220712111223.13080-6-rex-bc.chen@mediatek.com>
-References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
-         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230295AbiGMKGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 06:06:19 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E57F2DA997
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 03:06:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=k1; bh=OFtpbHyPxPsBorl70r188hepc7O
+        Li4w0ef89SaUq7CI=; b=1hrGRpKahehHPT1CueheTInAqe/tt6vqLN8aQkzirdN
+        rWiLp78tETZecuMbydhDQQ10VvfcMV1dsN1sfJWd8Nil2hiL0CWPvnE8EaWrjkvV
+        MegpmNUXMq50EouLVzBVG5tUV6JNY2shTmi3KgdR5050Q2B+Cd/djLcrbYJKaeIQ
+        =
+Received: (qmail 123341 invoked from network); 13 Jul 2022 12:06:13 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Jul 2022 12:06:13 +0200
+X-UD-Smtp-Session: l3s3148p1@1rUt76zjzLwgAwDtxwdRAEXXn+yo/Rze
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] clocksource: sh_cmt: add Gen4 and r8a779f0 support
+Date:   Wed, 13 Jul 2022 12:06:00 +0200
+Message-Id: <20220713100603.3391-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+These three patches update the bindings and the CMT driver for Renesas
+R-Car Gen4 and the r8a779f0 SoC.
 
-On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
-> 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+Wolfram Sang (3):
+  dt-bindings: timer: renesas,cmt: Add r8a779f0 and generic Gen4 CMT
+    support
+  dt-bindings: timer: renesas,cmt: R-Car V3U is R-Car Gen4
+  clocksource/drivers/sh_cmt: Add R-Car Gen4 support
 
-[snip]
+ .../devicetree/bindings/timer/renesas,cmt.yaml     | 14 ++++++++++++--
+ drivers/clocksource/sh_cmt.c                       |  8 ++++++++
+ 2 files changed, 20 insertions(+), 2 deletions(-)
 
-> +
-> +static void mtk_dp_set_msa(struct mtk_dp *mtk_dp)
-> +{
-> +	struct drm_display_mode mode;
-> +	struct mtk_dp_timings *timings = &mtk_dp->info.timings;
-> +
-> +	drm_display_mode_from_videomode(&timings->vm, &mode);
-> +
-> +	/* horizontal */
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3010,
-> +			   mode.htotal, HTOTAL_SW_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3018,
-> +			   timings->vm.hsync_len + timings-
-> >vm.hback_porch,
-> +			   HSTART_SW_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3028,
-> +			   timings->vm.hsync_len <<
-> HSW_SW_DP_ENC0_P0_SHIFT,
-
-Directly use a number for shift because we know it's a shift, so it's
-not necessary to define a symbol for shift.
-
-> +			   HSW_SW_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3028,
-> +			   0, HSP_SW_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3020,
-> +			   timings->vm.hactive,
-> HWIDTH_SW_DP_ENC0_P0_MASK);
-> +
-> +	/* vertical */
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3014,
-> +			   mode.vtotal, VTOTAL_SW_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_301C,
-> +			   timings->vm.vsync_len + timings-
-> >vm.vback_porch,
-> +			   VSTART_SW_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_302C,
-> +			   timings->vm.vsync_len <<
-> VSW_SW_DP_ENC0_P0_SHIFT,
-
-Ditto.
-
-Regards,
-CK
-
-> +			   VSW_SW_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_302C,
-> +			   0, VSP_SW_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3024,
-> +			   timings->vm.vactive,
-> VHEIGHT_SW_DP_ENC0_P0_MASK);
-> +
-> +	/* horizontal */
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3064,
-> +			   timings->vm.hactive,
-> HDE_NUM_LAST_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3154,
-> +			   mode.htotal, PGEN_HTOTAL_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3158,
-> +			   timings->vm.hfront_porch,
-> +			   PGEN_HSYNC_RISING_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_315C,
-> +			   timings->vm.hsync_len,
-> +			   PGEN_HSYNC_PULSE_WIDTH_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3160,
-> +			   timings->vm.hback_porch + timings-
-> >vm.hsync_len,
-> +			   PGEN_HFDE_START_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3164,
-> +			   timings->vm.hactive,
-> +			   PGEN_HFDE_ACTIVE_WIDTH_DP_ENC0_P0_MASK);
-> +
-> +	/* vertical */
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3168,
-> +			   mode.vtotal,
-> +			   PGEN_VTOTAL_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_316C,
-> +			   timings->vm.vfront_porch,
-> +			   PGEN_VSYNC_RISING_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3170,
-> +			   timings->vm.vsync_len,
-> +			   PGEN_VSYNC_PULSE_WIDTH_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3174,
-> +			   timings->vm.vback_porch + timings-
-> >vm.vsync_len,
-> +			   PGEN_VFDE_START_DP_ENC0_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3178,
-> +			   timings->vm.vactive,
-> +			   PGEN_VFDE_ACTIVE_WIDTH_DP_ENC0_P0_MASK);
-> +}
-> +
+-- 
+2.35.1
 
