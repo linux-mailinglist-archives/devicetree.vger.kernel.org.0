@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AF43572CBA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 06:52:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C97F572CC2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 06:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231689AbiGMEvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 00:51:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44524 "EHLO
+        id S231481AbiGMEyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 00:54:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231917AbiGMEvu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 00:51:50 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93803D7B82
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 21:51:49 -0700 (PDT)
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220713045145epoutp032576520ade82862f80cbef2edea730b7~BSl3vC6Dx1713417134epoutp03i
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 04:51:45 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220713045145epoutp032576520ade82862f80cbef2edea730b7~BSl3vC6Dx1713417134epoutp03i
+        with ESMTP id S230120AbiGMEyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 00:54:05 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2AF61572A
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 21:54:03 -0700 (PDT)
+Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220713045359epoutp01d641e7737871bc1a28c9cf8b2382c58d~BSn0_FV8K1230512305epoutp015
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 04:53:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220713045359epoutp01d641e7737871bc1a28c9cf8b2382c58d~BSn0_FV8K1230512305epoutp015
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1657687905;
-        bh=TblPlY55/EOOD018/ryeW2448bsOy0lHAL2yF5l+2HA=;
+        s=mail20170921; t=1657688039;
+        bh=tPsEacl3T9QwI1DRgqlseU8fnaZER9fU2P3/wRUgcVA=;
         h=Subject:Reply-To:From:To:CC:Date:References:From;
-        b=kttSIqGqej2XqVJtGTRxXgxbJtP2fUMBgbbrf9iTMQD9YjgTafmU54lYqeiNR4LVv
-         UIOJzZJrVTH3edeaIqZoqvKk3QJ7c0XppcCpMPThC8BucdttNQava98uUZsfzfdbes
-         EvCoHBetHniHn0x55qHqqA7RuocgrMScCOfbrHq4=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20220713045144epcas1p1a143f2a35bb52c2ce776729d99c2a19e~BSl3Kw1kw3208932089epcas1p1O;
-        Wed, 13 Jul 2022 04:51:44 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.36.100]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4LjQFW4v0dz4x9Pw; Wed, 13 Jul
-        2022 04:51:43 +0000 (GMT)
-X-AuditID: b6c32a35-71dff700000025b9-72-62ce4f5f8835
-Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
-        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        C9.CE.09657.F5F4EC26; Wed, 13 Jul 2022 13:51:43 +0900 (KST)
+        b=OzPBoxM7Hw5Td72jLCBmfZoiAC46YcePrvtDJ71EJezsfOoolrojeBIFDUafnScSc
+         qfrztmVk8dlUPRFxp+FwyK36BDt9dcSqMFQf94YRFWqHQFqsyq+97XO17fyUmzTeO6
+         sIphvHuIhYMtZBVr/gEMx5JsDYyjK+EkogKde5SE=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTP id
+        20220713045359epcas1p4ae1158164221a0fbac6db4c990fa947e~BSn0f3-N73062830628epcas1p4p;
+        Wed, 13 Jul 2022 04:53:59 +0000 (GMT)
+Received: from epsmges1p4.samsung.com (unknown [182.195.36.92]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4LjQJ63t6Gz4x9Q5; Wed, 13 Jul
+        2022 04:53:58 +0000 (GMT)
+X-AuditID: b6c32a38-5adff700000027db-d4-62ce4fe67129
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmges1p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        54.05.10203.6EF4EC26; Wed, 13 Jul 2022 13:53:58 +0900 (KST)
 Mime-Version: 1.0
-Subject: [PATCH 0/4] Add Samsung system manager and secure service
+Subject: [PATCH 1/4] dt-bindings: firmware: Add bindings for Samsung smc
 Reply-To: dj76.yang@samsung.com
 Sender: Dongjin Yang <dj76.yang@samsung.com>
 From:   Dongjin Yang <dj76.yang@samsung.com>
@@ -62,38 +62,38 @@ X-Drm-Type: N,general
 X-Msg-Generator: Mail
 X-Msg-Type: PERSONAL
 X-Reply-Demand: N
-Message-ID: <20220713045143epcms1p5483300a3cf9ed97308a1bcfe5b889a02@epcms1p5>
-Date:   Wed, 13 Jul 2022 13:51:43 +0900
-X-CMS-MailID: 20220713045143epcms1p5483300a3cf9ed97308a1bcfe5b889a02
+Message-ID: <20220713045357epcms1p8ccfe1c489edfd066d0e41ff928c0af71@epcms1p8>
+Date:   Wed, 13 Jul 2022 13:53:57 +0900
+X-CMS-MailID: 20220713045357epcms1p8ccfe1c489edfd066d0e41ff928c0af71
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="utf-8"
 X-Sendblock-Type: AUTO_CONFIDENTIAL
 X-CPGSPASS: Y
 X-CPGSPASS: Y
 CMS-TYPE: 101P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNJsWRmVeSWpSXmKPExsWy7bCmnm68/7kkgz+nVC1O73/HYvHykKbF
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrHJsWRmVeSWpSXmKPExsWy7bCmge4z/3NJBls7ZC1O73/HYvHykKbF
         /CPnWC12z1jOZDFz6hlmi4XTljNaPD80i9ni5ax7bBZH3nxktrj/9Sijxf7jK5ksLu+aw2Zx
         bnGmReveI+wWdw6fZXHg97i+LsBj06pONo871/awebzfd5XNo2/LKkaPz5vkAtiism0yUhNT
         UosUUvOS81My89JtlbyD453jTc0MDHUNLS3MlRTyEnNTbZVcfAJ03TJzgA5WUihLzCkFCgUk
-        Fhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYF+gVJ+YWl+al6+WlllgZGhgYmQIVJmRnzLscUbCS
-        t+Le7sAGxpecXYwcHBICJhJ9bbpdjFwcQgI7GCW6W0+wgMR5BQQl/u4Q7mLk5BAWcJJ4d3Un
-        G0hYSEBe4vPESoiwjkTH26dg1WwCWhKz+xNBpogIfGaUeLztMTuIwyxwhFmi4chcNpAGCQFe
-        iRntIA0gtrTE9uVbGSFsDYkfy3qZIWxRiZur37LD2O+PzYeqEZFovXcWqkZQ4sHP3VBxKYlH
-        zQeg7GqJc+29YIslBBoYJQ5+3sgG8aO+xI7rxiA1vAK+ElPW7mIFCbMIqEpMXJIE0eoicaXj
-        I9iZzEAvbn87hxmkhFlAU2L9Ln2IIcoSR26xwDzSsPE3OzqbWYBP4t3XHlaY+I55T5ggbGWJ
-        z82voXolJRZPnsk8gVFpFiKYZyHZOwth7wJG5lWMYqkFxbnpqcWGBYbwaE3Oz93ECE61WqY7
-        GCe+/aB3iJGJg/EQowQHs5II75+zp5KEeFMSK6tSi/Lji0pzUosPMZoCPTyRWUo0OR+Y7PNK
-        4g1NLA1MzIxMTQ0NLEyUxHlXTTudKCSQnliSmp2aWpBaBNPHxMEp1cD08OfDA3mXJrClcWw4
-        o7MlqEin07MkMT/ddoHhg+4NUjOdTPJv/7TI3XamyN5Wy+d5FovN7H1S7bxqPKkzrwU55m18
-        x9m3dRbvLMPDp3e/KTSffqh4/ZM1n5JP7mtt8tc+/33ytinCKyXffZ64tzggJ3pvya3nSV8V
-        Xlw/GxFd1WPxaM2z3SlbLaUZHyy/rrmYc/XMdVohvyQ4CrWyxX9mLM7N7v7DoDvDTSwgvtp6
-        01Pu/bwH526tMlqdGFNq9YQpcLLJfvnSpRe0eP9+v3x61ZQYvYbqtbMlm99xfPk46Ur16it8
-        avJOeTbTHghXrt73IsbDVH6XxAKR3M6Wrys5LL4u+LKqRsnMkXPemtIlSizFGYmGWsxFxYkA
-        Dhugxz4EAAA=
+        Fhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYF+gVJ+YWl+al6+WlllgZGhgYmQIVJmRnTH9bW7BD
+        oGLl/SeMDYz3eLsYOTkkBEwk1k1pZuxi5OIQEtjBKLF9wlWmLkYODl4BQYm/O4RBaoQFPCT6
+        V/exgISFBOQlPk+shAjrSHS8fQoWZhPQkpjdnwgyRUTgM6PE422P2UEcZoEjzBINR+ayQezi
+        lZjRDtIAYktLbF++lRHC1pD4sayXGcIWlbi5+i07jP3+2HyoGhGJ1ntnoWoEJR783A0Vl5J4
+        1HwAyq6WONfeC7ZYQqCBUeLg541sINdJCOhL7LhuDFLDK+ArMf3yerA5LAKqEvM/nYC6x0Vi
+        z9v5YHcyA/24/e0cZpBWZgFNifW79CGmKEscucUC80nDxt/s6GxmAT6Jd197WGHiO+Y9YYKw
+        lSU+N7+G6pWUWDx5JvMERqVZiHCehWTvLIS9CxiZVzGKpRYU56anFhsWmMBjNjk/dxMjOOFq
+        WexgnPv2g94hRiYOxkOMEhzMSiK8f86eShLiTUmsrEotyo8vKs1JLT7EaAr08URmKdHkfGDK
+        zyuJNzSxNDAxMzI1NTSwMFES5+2dejpRSCA9sSQ1OzW1ILUIpo+Jg1OqgamdP9vZ/LmLeNjF
+        oCXfAl+nOn9wFzA7EVFeVXXXN+z/UfmYXWu5zsxXUVW+UWw9aaXAs3fb3eYFTf0RtnPuU/PN
+        91WUkp4vfR7idSpGX/mR7wLvKQeF3/i3xNyXKj+/q7vxnpZO3vc1r19t8OG7O7v5U9f5y7fS
+        U5cyrVsdWHf+5HH99/f2qEVdjLsx9XvDj/Pmv+p/yFlJZMqtvfxyXcY+o/WOn65Ofsl+Ian/
+        +ZTVtys3pf84dOqrcfXGYjWtgCffteT27OVk9o1Tdt3vd/m7zDv+E3JZbJH3hY+e7UgVS394
+        5/SENf1/Ys5x3lV6XPO4aAm7av8j8dDqiMQ1kpkq9jcl02IUtLa1/wiqmWClxFKckWioxVxU
+        nAgA/1Bu1UEEAAA=
 DLP-Filter: Pass
 X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220713045143epcms1p5483300a3cf9ed97308a1bcfe5b889a02
-References: <CGME20220713045143epcms1p5483300a3cf9ed97308a1bcfe5b889a02@epcms1p5>
+X-CMS-RootMailID: 20220713045357epcms1p8ccfe1c489edfd066d0e41ff928c0af71
+References: <CGME20220713045357epcms1p8ccfe1c489edfd066d0e41ff928c0af71@epcms1p8>
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
@@ -105,36 +105,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Samsung System manager driver and Secure Service code.
-Samsung System manager is for SoCs produced by Samsung Foundry
-to provide system read/write request by System Manager API.
-Samsung Secure service is for SoCs produced by Samsung Foundry
-to provide secure monitor service using Trusted Foundations.
+Add an devicetree bindings for Samsung secure monitor call service.
+This driver is used for SoCs produced by Samsung Foundry to provide
+SMC call. This patch supports register read/write request to secure
+monitor. Also, SMC call request which uses shared memory to exchange
+the data between kernel and secure monitor.
 
-Dongjin Yang (4):
-  dt-bindings: firmware: Add bindings for Samsung smc
-  firmware: Samsung: Add secure monitor driver
-  dt-bindings: mfd: Add bindings for Samsung SysMgr
-  mfd: Samsung: Add Samsung sysmgr driver
-
- .../bindings/firmware/samsung,smccc-svc.yaml       |  31 ++++
- .../devicetree/bindings/mfd/samsung,sys-mgr.yaml   |  42 ++++++
- MAINTAINERS                                        |   6 +
- drivers/firmware/Kconfig                           |  11 ++
- drivers/firmware/Makefile                          |   1 +
- drivers/firmware/samsung-smc-svc.c                 | 154 +++++++++++++++++++
- drivers/mfd/Kconfig                                |  11 ++
- drivers/mfd/Makefile                               |   1 +
- drivers/mfd/samsung-sysmgr.c                       | 167 +++++++++++++++++++++
- include/linux/firmware/samsung-smc-svc.h           |  59 ++++++++
- include/linux/mfd/samsung-sysmgr.h                 |  30 ++++
- 11 files changed, 513 insertions(+)
+Signed-off-by: Dongjin Yang <dj76.yang@samsung.com>
+---
+ .../bindings/firmware/samsung,smccc-svc.yaml       | 31 ++++++++++++++++++++++
+ MAINTAINERS                                        |  1 +
+ 2 files changed, 32 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/firmware/samsung,smccc-svc.yaml
- create mode 100644 Documentation/devicetree/bindings/mfd/samsung,sys-mgr.yaml
- create mode 100644 drivers/firmware/samsung-smc-svc.c
- create mode 100644 drivers/mfd/samsung-sysmgr.c
- create mode 100644 include/linux/firmware/samsung-smc-svc.h
- create mode 100644 include/linux/mfd/samsung-sysmgr.h
 
+diff --git a/Documentation/devicetree/bindings/firmware/samsung,smccc-svc.yaml b/Documentation/devicetree/bindings/firmware/samsung,smccc-svc.yaml
+new file mode 100644
+index 000000000000..427c42a6cd75
+--- /dev/null
++++ b/Documentation/devicetree/bindings/firmware/samsung,smccc-svc.yaml
+@@ -0,0 +1,31 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/firmware/samsung,smccc-svc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung Secure Monitor call service
++
++maintainers:
++  - Jesper Nilsson <jesper.nilsson@axis.com>
++
++description: |
++  The file documents device tree bindings of Samsung secure monitor
++  call service.
++
++properties:
++  compatible:
++    const: samsung,smccc-svc
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++
++    samsung-svc {
++        compatible = "samsung,smccc-svc";
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 20133dcd8ce9..6763746c349f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1862,6 +1862,7 @@ M:	Jesper Nilsson <jesper.nilsson@axis.com>
+ M:	Lars Persson <lars.persson@axis.com>
+ L:	linux-arm-kernel@axis.com
+ S:	Maintained
++F:	Documentation/devicetree/bindings/firmware/samsung,smccc-svc.yaml
+ F:	Documentation/devicetree/bindings/pinctrl/axis,artpec6-pinctrl.txt
+ F:	arch/arm/boot/dts/artpec6*
+ F:	arch/arm/mach-artpec
 -- 
 2.9.5
