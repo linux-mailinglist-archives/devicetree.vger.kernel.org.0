@@ -2,128 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 474DA57355E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 13:28:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 307CA5734A7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 12:53:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234464AbiGML2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 07:28:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51388 "EHLO
+        id S229941AbiGMKxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 06:53:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbiGML23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 07:28:29 -0400
-X-Greylist: delayed 1203 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 13 Jul 2022 04:28:26 PDT
-Received: from 10.mo584.mail-out.ovh.net (10.mo584.mail-out.ovh.net [188.165.33.109])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60DB31020A7
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 04:28:26 -0700 (PDT)
-Received: from player755.ha.ovh.net (unknown [10.109.143.249])
-        by mo584.mail-out.ovh.net (Postfix) with ESMTP id 3B1F4246BB
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 10:51:10 +0000 (UTC)
-Received: from RCM-web6.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player755.ha.ovh.net (Postfix) with ESMTPSA id 137262CA9DA91;
-        Wed, 13 Jul 2022 10:50:56 +0000 (UTC)
+        with ESMTP id S231169AbiGMKxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 06:53:41 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE58C20F6F;
+        Wed, 13 Jul 2022 03:53:38 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id j27so974641qtv.4;
+        Wed, 13 Jul 2022 03:53:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=DtbNdnUc44YIlF6TRQBufQhc3QEyoL5MrmX0wLT8k54=;
+        b=Gyo9ib/QcIdb16MTJkh9cbA18WvicHplsE0W3sU861LHrnSg07BYqH7gJMgBhngnKz
+         HcevAv8xN2yoj76j2VtRiK2gtKJVtYu4yl5/zly8b+NniYgUqKX802rsbScX12+DWFC4
+         f0KpI6KMxAijdVif10K4Yr7TL49g59ksBWPF+FSCOp555hmLxPKqliprXs0MwfV8RcVf
+         ETobhf/JgYbtx1rqJ3zRweW6zFE9EFO0mg+t95Av28GUjrByGd6Dv732KM7J1jq47j2b
+         8+Q496cjjPl2IE4bcmCDO+D9bk6yPPzE9JlJzEBLhQ3fyJGOnWiUMtJcmMXwpI3pw5T7
+         noUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=DtbNdnUc44YIlF6TRQBufQhc3QEyoL5MrmX0wLT8k54=;
+        b=2dlLst/eKigysqG5Qlhy5ahBIvichPs1QHnAmRIt4BupqfA2zVMjiac5KhdhcxC07a
+         lpbv0f3b6yd238ANL0KfdlGyJJbnJMtvvLrVcmV8fNOMrU8ikBhlHcfJGvFTfn9dKDKB
+         vZhxZzijHWm5YFiXCVF0d5fXNTHevC5y4t3ijPJLN8TVTRvQ/zWt7oKNDICElMI/S8fE
+         2lU+m+RV2Z2tmsGw+0WtqejFLX8s7kQ404g2q5rxpvLGyQrrt8TCDpuTOefM05Kk7TtA
+         E5Ewaa4HSwVor8N4et1Jhkbp9wT+EBT/NRPIAaXwDVACGAcJQw/SBUMlF9RR98FdbJJc
+         SlgQ==
+X-Gm-Message-State: AJIora8T/IGO2g/aL5RWQLCwcj2gedHWyfzCf9euRsZLd/R2dwKQoU8A
+        zEm3KBzwCI1S5l6FH3RHpLyUpHhOZao5Dtv5U8s=
+X-Google-Smtp-Source: AGRyM1tW+7suTTjQXEmy3r5fN1iawLpKRhb3LKUTHZNBYRUSHZBiLtacjGwqLvPQVKDWfDQQGVrgegFbKhRRnQe+Kts=
+X-Received: by 2002:a05:622a:1755:b0:31e:cbdf:2e32 with SMTP id
+ l21-20020a05622a175500b0031ecbdf2e32mr1387023qtk.548.1657709618139; Wed, 13
+ Jul 2022 03:53:38 -0700 (PDT)
 MIME-Version: 1.0
-Date:   Wed, 13 Jul 2022 12:50:55 +0200
-From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To:     William Zhang <william.zhang@broadcom.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        kursad.oney@broadcom.com, anand.gore@broadcom.com,
-        dan.beygelman@broadcom.com, f.fainelli@gmail.com,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        joel.peshkin@broadcom.com,
+References: <20220704053901.728-1-peterwu.pub@gmail.com> <20220704053901.728-14-peterwu.pub@gmail.com>
+ <CAHp75VdwEc9AW1w8ejsxkw+sBTF1dumd99QyzTY9BZaXiViRWQ@mail.gmail.com>
+In-Reply-To: <CAHp75VdwEc9AW1w8ejsxkw+sBTF1dumd99QyzTY9BZaXiViRWQ@mail.gmail.com>
+From:   ChiaEn Wu <peterwu.pub@gmail.com>
+Date:   Wed, 13 Jul 2022 18:53:26 +0800
+Message-ID: <CABtFH5K-2+2hbpvpq2nPE5AsznkQxZF2r3MVC64Q39DJhVuUtA@mail.gmail.com>
+Subject: Re: [PATCH v4 13/13] video: backlight: mt6370: Add Mediatek MT6370 support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/3] dt-bindings: arm64: bcmbca: Merge BCM4908 into
- BCMBCA
-In-Reply-To: <6efb1cfe-6129-276a-eeb3-44147304d211@broadcom.com>
-References: <20220712021144.7068-1-william.zhang@broadcom.com>
- <20220712021144.7068-2-william.zhang@broadcom.com>
- <ca8c3003-1bcb-6658-592c-566609fd7bd2@linaro.org>
- <94b0ab39-279d-d3c2-98a4-054c10ad041c@broadcom.com>
- <c40f20c7-59ee-99f4-9a11-e928b41eda9f@linaro.org>
- <6efb1cfe-6129-276a-eeb3-44147304d211@broadcom.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <e4356c5e89492eb690e3dc863ba281bd@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 194.187.74.233
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Ovh-Tracer-Id: 11789860877335440347
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudejjedgfedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtjehjtddtredvnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeegvdffjeelvdeggeetheegveejieetgeeiiefggeelveejffehieekhfduueelhfenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehplhgrhigvrhejheehrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkeeg
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Alice Chen <alice_chen@richtek.com>,
+        cy_huang <cy_huang@richtek.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        szuni chen <szunichen@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-07-13 02:57, William Zhang wrote:
-> On 7/12/22 11:18, Krzysztof Kozlowski wrote:
->> On 12/07/2022 19:37, William Zhang wrote:
->>>>> +      - description: BCM4908 Family based boards
->>>>> +        items:
->>>>> +          - enum:
->>>>> +              # BCM4908 SoC based boards
->>>>> +              - brcm,bcm94908
->>>>> +              - asus,gt-ac5300
->>>>> +              - netgear,raxe500
->>>>> +              # BCM4906 SoC based boards
->>>>> +              - brcm,bcm94906
->>>>> +              - netgear,r8000p
->>>>> +              - tplink,archer-c2300-v1
->>>>> +          - enum:
->>>>> +              - brcm,bcm4908
->>>>> +              - brcm,bcm4906
->>>>> +              - brcm,bcm49408
->>>> 
->>>> This is wrong.  brcm,bcm94908 followed by brcm,bcm4906 does not look
->>>> like valid list of compatibles.
->>>> 
->>> For 4908 board variant, it will need to be followed by 4908 chip. 
->>> Sorry
->>> for the basic question but is there any requirement to enforce this 
->>> kind
->>> of rule?  I would assume dts writer know what he/she is doing and 
->>> select
->>> the right combination.
->> 
->> The entire point of DT schema is to validate DTS. Combination like 
->> above
->> prevents that goal.
->> 
->> Best regards,
->> Krzysztof
-> Understand the DT schema purpose. But items property allows multiple
-> enums in the list which gives a lot of flexibility but make it hard to
-> validate. I am not familiar with DT schema, is there any directive to
-> specify one enum value depending on another so dts validation tool can
-> report error if combination is wrong?
-> 
-> This is our preferred format of all bcmbca compatible string
-> especially when we could have more than 10 chip variants for the same
-> chip family and we really want to work on the chip family id.  We will
-> make sure they are in the right combination in our own patch and patch
-> from other contributors. Would this work? If not, I will probably have
-> to revert the change of 4908(maybe append brcm,bcmbca as this chip
-> belongs to the same bca group) and use "enum board variant", "const
-> main chip id", "brcm,bca" for all other chips as our secondary choice.
+Hi Andy,
+Thanks for your reply! I have some questions want to ask you below.
 
-I'm not sure why I didn't even receive 1/3 and half of discussion
-e-mails.
+Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=
+=885=E6=97=A5 =E9=80=B1=E4=BA=8C =E6=B8=85=E6=99=A85:14=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> On Mon, Jul 4, 2022 at 7:43 AM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+> >
+> > From: ChiaEn Wu <chiaen_wu@richtek.com>
+> >
+> > Add Mediatek MT6370 Backlight support.
+>
+> ...
+>
+> > +         This driver can also be built as a module. If so the module
+>
+> If so,
+>
+> > +         will be called "mt6370-backlight.ko".
+>
+> No ".ko" part.
+>
+> ...
+>
+> > +#include <linux/gpio/driver.h>
+>
+> Can you elaborate on this?
+>
+> > +#include <linux/kernel.h>
+> > +#include <linux/log2.h>
+> > +#include <linux/minmax.h>
+> > +#include <linux/module.h>
+>
+> > +#include <linux/of.h>
+>
+> Can you elaborate on this?
+>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+>
+> Missed mod_devicetable.h.
+>
+> ...
+>
+> > +               brightness_val[0] =3D (brightness - 1) & MT6370_BL_DIM2=
+_MASK;
+> > +               brightness_val[1] =3D (brightness - 1)
+> > +                                   >> fls(MT6370_BL_DIM2_MASK);
+>
+> Bad indentation. One line?
 
-You can't just put all strings into a single bag and allow mixing them
-in any combos. Please check how it's properly handled in the current
-existing binding:
-Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+Well... if indent to one line, it will be over 80 characters(or called colu=
+mns?)
+From my understanding, it is not allowed, right??
 
-Above binding enforces that non-matching compatible strings are not used
-together.
+>
+> ...
+>
+> > +       if (priv->enable_gpio)
+>
+> Dup check.
+>
+> > +               gpiod_set_value(priv->enable_gpio, brightness ? 1 : 0);
+>
+> ...
+>
+> > +       brightness =3D brightness_val[1] << fls(MT6370_BL_DIM2_MASK);
+> > +       brightness +=3D (brightness_val[0] & MT6370_BL_DIM2_MASK);
+>
+> Too many parentheses.
+>
+> ...
+>
+> > +               /*
+> > +                * prop_val =3D  1      -->  1 steps --> 0x00
+> > +                * prop_val =3D  2 ~  4 -->  4 steps --> 0x01
+> > +                * prop_val =3D  5 ~ 16 --> 16 steps --> 0x10
+> > +                * prop_val =3D 17 ~ 64 --> 64 steps --> 0x11
+> > +                */
+> > +               prop_val =3D (ilog2(roundup_pow_of_two(prop_val)) + 1) =
+>> 1;
+>
+> Isn't something closer to get_order() or fls()?
+
+I will revise it to "(get_order(prop_va * PAGE_SIZE) + 1) / 2" and
+this change is meet your expectations??
+
+>
+> ...
+>
+> > +       props->max_brightness =3D min_t(u32, brightness,
+> > +                                     MT6370_BL_MAX_BRIGHTNESS);
+>
+> One line?
+
+ Ditto, it will be over 80 characters...
+
+>
+> ...
+>
+> > +       val =3D 0;
+>
+> Do you need this here?
+>
+> > +       prop_val =3D 0;
+>
+> Useless.
+>
+> > +       ret =3D device_property_read_u8(dev, "mediatek,bled-channel-use=
+",
+> > +                                     &prop_val);
+> > +       if (ret) {
+> > +               dev_err(dev, "mediatek,bled-channel-use DT property mis=
+sing\n");
+> > +               return ret;
+> > +       }
+> > +
+> > +       if (!prop_val || prop_val > MT6370_BL_MAX_CH) {
+> > +               dev_err(dev,
+> > +                       "No channel specified or over than upper bound =
+(%d)\n",
+> > +                       prop_val);
+> > +               return -EINVAL;
+> > +       }
+>
+> ...
+>
+> > +static int mt6370_bl_probe(struct platform_device *pdev)
+> > +{
+> > +       struct mt6370_priv *priv;
+> > +       struct backlight_properties props =3D {
+> > +               .type =3D BACKLIGHT_RAW,
+> > +               .scale =3D BACKLIGHT_SCALE_LINEAR,
+> > +       };
+> > +       int ret;
+>
+>   struct device *dev =3D &pdev->dev;
+>
+> will save you a few LoCs.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+
+Best regards,
+ChiaEn Wu
