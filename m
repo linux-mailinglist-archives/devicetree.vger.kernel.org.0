@@ -2,76 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 546435739B8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 17:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C98975739BD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 17:08:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236810AbiGMPIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 11:08:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41110 "EHLO
+        id S236761AbiGMPIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 11:08:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236897AbiGMPHe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 11:07:34 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109FC4C62F
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 08:06:50 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id be14-20020a05600c1e8e00b003a04a458c54so1370240wmb.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 08:06:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=S870gAIGJJG5wbnKkLGfuHM1oPY3XJ0b8gnuuYnNBhk=;
-        b=HSaBi7kNblhwXwZ5+3BBnlTAa+0J+16JMVqfF+/WUAwzL/ajz/czXYl5lheiAmF8MV
-         l7pJ4rIxyoCDWNy9/NevaJewgVkbfsDVtwPKgQkzTyx1Mye/lskFbTQggS0fblSMT6vq
-         oW7lf25+g+v0KCk4y//xck/3pYqHkPUz8mmzc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=S870gAIGJJG5wbnKkLGfuHM1oPY3XJ0b8gnuuYnNBhk=;
-        b=RY7AMnIggzBwoBverv/s7FbmJR5uX5l1Q7P+EA2Fo+f7ULb9CDE4SAmahFrwyqfeTh
-         jfCXyZ3yOnQA7pGmHHL2pn8w6P8d2hrtKDh7v0nT83+3MKjDx+mWydHuBrm29s29cySP
-         Bvqx5bpel46r93UHKhJnIrrXepjf3AHdx9QY343tJ3GWN0CfI7i+BvgQJS/6rOxh6b6b
-         tyHYnEEluoSy/kUouGK0KwvRQF4ipGeejJF4yzduQpsOUdnV+NRA4G9K/xvb/z0+2du6
-         zhpIJGZG8M37pv0Zf8ch2QAXd0tDOM6Oqvxdeq6urrxZrbJ/EjildLIcKMMmfX7SaSTZ
-         MKlQ==
-X-Gm-Message-State: AJIora+820vyCAiA1ofStR2/nMBAxlDnByl/0eZnXa1jlcgpHwz5Mrpx
-        Ml9rEQwj1+vrhgDYA36SM0DeQA==
-X-Google-Smtp-Source: AGRyM1vZGJwn8mfldPvJhnlwK/C8tCWflZBhZAobYR+Xmu7mnOWQcypB3EgZo3C/S9q70UytXZ7HTA==
-X-Received: by 2002:a05:600c:511c:b0:3a2:e2e9:6563 with SMTP id o28-20020a05600c511c00b003a2e2e96563mr10287808wms.204.1657724808544;
-        Wed, 13 Jul 2022 08:06:48 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-51-7.cust.vodafonedsl.it. [188.217.51.7])
-        by smtp.gmail.com with ESMTPSA id n7-20020a5d4c47000000b0021baf5e590dsm11214523wrt.71.2022.07.13.08.06.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jul 2022 08:06:48 -0700 (PDT)
-Date:   Wed, 13 Jul 2022 17:06:45 +0200
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
-        quentin.schulz@theobroma-systems.com,
-        Daniel Scally <djrscally@gmail.com>,
-        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231838AbiGMPI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 11:08:26 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA8EB4C620
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 08:08:04 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oBdy4-0001Jr-Tk; Wed, 13 Jul 2022 17:08:00 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oBdy3-000jno-4t; Wed, 13 Jul 2022 17:07:59 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oBdy2-004wvj-E3; Wed, 13 Jul 2022 17:07:58 +0200
+Date:   Wed, 13 Jul 2022 17:07:55 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Ben Dooks <ben.dooks@sifive.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 5/6] media: dt-bindings: ov5693: document YAML binding
-Message-ID: <20220713150645.GB1725944@tom-ThinkPad-T14s-Gen-2i>
-References: <20220712163349.1308540-1-tommaso.merciai@amarulasolutions.com>
- <20220712163349.1308540-6-tommaso.merciai@amarulasolutions.com>
- <1657664975.862137.2476655.nullmailer@robh.at.kernel.org>
- <20220713064845.GA1386778@tom-ThinkPad-T14s-Gen-2i>
- <87086513-787c-3b0d-80df-b90ebdc3a28c@linaro.org>
- <20220713132451.GA1725944@tom-ThinkPad-T14s-Gen-2i>
- <Ys7YPIveQHRbG7BE@valkosipuli.retiisi.eu>
+        Greentime Hu <greentime.hu@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>
+Subject: Re: [PATCH 3/7] pwm: dwc: add of/platform support
+Message-ID: <20220713150755.bimcq2yiuvxn6n6v@pengutronix.de>
+References: <20220712100113.569042-1-ben.dooks@sifive.com>
+ <20220712100113.569042-4-ben.dooks@sifive.com>
+ <20220712221715.GT1823936-robh@kernel.org>
+ <feaacf44-f9a8-b892-d8ba-8a396b49d56b@sifive.com>
+ <20220713135230.gjbd3v6iih2uicpu@pengutronix.de>
+ <7999fec2-847a-86ce-ed78-d2a9008bf654@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="r7fomtcfvjlx7yip"
 Content-Disposition: inline
-In-Reply-To: <Ys7YPIveQHRbG7BE@valkosipuli.retiisi.eu>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <7999fec2-847a-86ce-ed78-d2a9008bf654@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,121 +65,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
 
-On Wed, Jul 13, 2022 at 05:35:40PM +0300, Sakari Ailus wrote:
-> Hi Tommaso, Krzysztof,
-> 
-> On Wed, Jul 13, 2022 at 03:24:51PM +0200, Tommaso Merciai wrote:
-> > On Wed, Jul 13, 2022 at 08:52:34AM +0200, Krzysztof Kozlowski wrote:
-> > > On 13/07/2022 08:48, Tommaso Merciai wrote:
-> > > > Hi Rob,
-> > > > 
-> > > > On Tue, Jul 12, 2022 at 04:29:35PM -0600, Rob Herring wrote:
-> > > >> On Tue, 12 Jul 2022 18:33:48 +0200, Tommaso Merciai wrote:
-> > > >>> Add documentation of device tree in YAML schema for the OV5693
-> > > >>> CMOS image sensor from Omnivision
-> > > >>>
-> > > >>> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> > > >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > >>> ---
-> > > >>> Changes since v1:
-> > > >>>  - Fix allOf position as suggested by Krzysztof
-> > > >>>  - Remove port description as suggested by Krzysztof
-> > > >>>  - Fix EOF as suggested by Krzysztof
-> > > >>>
-> > > >>> Changes since v2:
-> > > >>>  - Fix commit body as suggested by Krzysztof
-> > > >>>
-> > > >>> Changes since v3:
-> > > >>>  - Add reviewed-by tags, suggested by Jacopo, Krzysztof
-> > > >>>
-> > > >>> Changes since v4:
-> > > >>>  - Remove wrong Sakari reviewed-by tag, suggested by Krzysztof, Sakari
-> > > >>>
-> > > >>> Changes since v5:
-> > > >>>  - Remove dovdd-supply, avdd-supply, dvdd-supply from required properties
-> > > >>> as suggested by Jacopo
-> > > >>>
-> > > >>>  .../bindings/media/i2c/ovti,ov5693.yaml       | 103 ++++++++++++++++++
-> > > >>>  MAINTAINERS                                   |   1 +
-> > > >>>  2 files changed, 104 insertions(+)
-> > > >>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> > > >>>
-> > > >>
-> > > >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > > >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > > >>
-> > > >> yamllint warnings/errors:
-> > > >>
-> > > >> dtschema/dtc warnings/errors:
-> > > >> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb: camera@36: Unevaluated properties are not allowed ('port' was unexpected)
-> > > >> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> > > >>
-> > > >> doc reference errors (make refcheckdocs):
-> > > >>
-> > > >> See https://patchwork.ozlabs.org/patch/
-> > > >>
-> > > >> This check can fail if there are any dependencies. The base for a patch
-> > > >> series is generally the most recent rc1.
-> > > >>
-> > > >> If you already ran 'make dt_binding_check' and didn't see the above
-> > > >> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > > >> date:
-> > > >>
-> > > >> pip3 install dtschema --upgrade
-> > > >>
-> > > >> Please check and re-submit.
-> > > >>
-> > > > 
-> > > > I run:
-> > > > 
-> > > > pip3 install dtschema --upgrade
-> > > > 
-> > > > Then I check .yaml using:
-> > > > 
-> > > > make DT_CHECKER_FLAGS=-m dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> > > > DTEX    Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dts
-> > > > LINT    Documentation/devicetree/bindings
-> > > > CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> > > > SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > > > DTC     Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb
-> > > > CHECK   Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb
-> > > > 
-> > > > No error on my side. I'm missing something?
-> > > 
-> > > Rob's check are running newer dtschema, from master branch. The error he
-> > > reports is about missing port, although I thought it is coming from
-> > > video-interface-devices.
-> > 
-> > Hi Krzysztof, 
-> > Thanks for the info! :)
-> 
-> These bindings are indeed missing the port node, please add one. See e.g.
-> Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml for an
-> example.
-> 
-> The reason why video-interfaces and video-interface-device are sparate is
-> because they deal with different nodes (device vs. port).
+--r7fomtcfvjlx7yip
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, sent v7.
+On Wed, Jul 13, 2022 at 03:30:07PM +0100, Ben Dooks wrote:
+> On 13/07/2022 14:52, Uwe Kleine-K=F6nig wrote:
+> > On Wed, Jul 13, 2022 at 12:56:55PM +0100, Ben Dooks wrote:
+> > > On 12/07/2022 23:17, Rob Herring wrote:
+> > > > On Tue, Jul 12, 2022 at 11:01:09AM +0100, Ben Dooks wrote:
+> > > > > The dwc pwm controller can be used in non-PCI systems, so allow
+> > > > > either platform or OF based probing.
+> > > > >=20
+> > > > > Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>=20
+> [snip]
+>=20
+> > > > > +properties:
+> > > > > +  "#pwm-cells":
+> > > > > +    description: |
+> > > > > +      See pwm.yaml in this directory for a description of the ce=
+lls format.
+> > > >=20
+> > > > pwm.yaml doesn't define how many cells. You need to. And you don't =
+need
+> > > > generic descriptions.
+> > >=20
+> > >   "#pwm-cells":
+> > >      const: 1
+> > >=20
+> > > should be sufficient then?
+> >=20
+> > I would expect a value of (at least) 2 or (better) 3.
+>=20
+> OOPS, forgot the phandle.
+>=20
+> I will have to check if we have any support yet for dealing
+> with any of the pwm flags yet.
 
-Tommaso
+I didn't double check, but given that the driver only supports inversed
+polarity it might not even work without passing the flag for inversed
+polarity. Having said that, I expect you have to only add "#pwm-cells =3D
+<3>;" to your dts and then everything should work just fine.
 
-> 
-> -- 
-> Kind regards,
-> 
-> Sakari Ailus
+Best regards
+Uwe
 
--- 
-Tommaso Merciai
-Embedded Linux Engineer
-tommaso.merciai@amarulasolutions.com
-__________________________________
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-Amarula Solutions SRL
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-T. +39 042 243 5310
-info@amarulasolutions.com
-www.amarulasolutions.com
+--r7fomtcfvjlx7yip
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLO38gACgkQwfwUeK3K
+7AlmswgAiqMblcZKY2HC5SkMnNz6H6mHLNEgzeCkHIteMgyJPzS3xsuSjuwWz+3m
+iA0HC08MY1I3nWzSTnnJjMakMX5dUIgn6Q95KVUSshSP2WHXX17DyOYwnZ18Du+0
+hxvFsp6x1tOEuFbcMSzYSxVwDCXahYUszFVz22O9ieNBsxk3/tf1v17lD9+kq8qt
+8YGnzYHLuL3m+7UENkVpqsXfDpWp2Nzshupq7g8TZFXfXX08lje5c7WK85q9JrKb
+dhyk6VsWrCJa4yXoNKpEE2WTZ8VZbQPwYyK+wyNgx83zI4l6wLKpkRjo2+4gQm2q
+0XbMxpCuONMAOhmV/BqzA46zdi6ggA==
+=CVm7
+-----END PGP SIGNATURE-----
+
+--r7fomtcfvjlx7yip--
