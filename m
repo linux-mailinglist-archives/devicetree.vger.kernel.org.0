@@ -2,103 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D12AE5733EF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 12:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 474DA57355E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 13:28:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234699AbiGMKPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 06:15:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40998 "EHLO
+        id S234464AbiGML2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 07:28:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234934AbiGMKPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 06:15:20 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3DF9E7AFF;
-        Wed, 13 Jul 2022 03:15:16 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-31cf1adbf92so107542267b3.4;
-        Wed, 13 Jul 2022 03:15:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WYDOSgJ5NnZWQaiNiMMrpM7JfcdIK7GvasjcwWRXaTc=;
-        b=Vs9KktZrNStk7Gb+Q53QQHAx25Obv0AT++AQan+rXKOPJKW/9utoZ0luYdqMShPdGo
-         +iI663FR/w2xxsIdlbSXYGEQLspqaKb62rucUmZcYSNput22YEEk+T+KnWHIMrP/8Ehm
-         w79BD+PzInzZfui+DtnS2hCVsDSRvKjpOrZph+Wp9prdGr370SJCBA7HK6mD0tMLfwNp
-         Y+mLiO7nnmGn/UMt6JiEGHa6WgLh4zrlOc0jl6LSJ0JtyPYANk3vSgbPeZOyLszAiv54
-         Q7vMpmpCfR3vWaCS/557XKTBeBeVcl0qd4Z5RMBDSg+JKdLfS63boOWifporZ8KOKTg6
-         R+xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WYDOSgJ5NnZWQaiNiMMrpM7JfcdIK7GvasjcwWRXaTc=;
-        b=xP/hIyDTmAbib0hXokgkpBcKuevXHlM6Z7Oscv/F+2JyguB5PRduLxxgjoR1hdgxkP
-         2GyP4SZ/GSd5XL+RoXLE7C9aSIshJ8pO5PuReU/Q/yHRhHSb08d3V58VSv0wtrpTjzxV
-         QJq+USHCPOvZt2Bsxu/tymEBz7/ZpzcQ+H3lUI55ICKOY5/RSEdhbUd0uZmyQSSjJENp
-         p9AlfhMf1X2c43ie7IZdak2e0dG7BlTYel2AgPl1UxU7bNhZ/Ca2BVxB5eEeI7Dr++Gr
-         uLEy7JIZkLDOMrPStJg5QZ55l72AdQ67RchyfRVx3Rgo52a9ZGWjqvEgSHOFU5Q49jED
-         L4Ow==
-X-Gm-Message-State: AJIora8My3bh1RFKJBjcouFJiGRDY0Md01imtiMIJlSAASGZFuEDB4SZ
-        JLCragw+BVNTEzlDt83q5QeIzHnSTvLJrWUF15KEPhF8Ai0MtA==
-X-Google-Smtp-Source: AGRyM1sQXRfigyKAuelhDXMbGkqWFtkCmYoj5dAwRd8ziMquql5BHqHo/TFXo8YxnVXNKf8I1chgJXedUPi/ksvtqDk=
-X-Received: by 2002:a81:8397:0:b0:31c:8a02:3f6d with SMTP id
- t145-20020a818397000000b0031c8a023f6dmr3282416ywf.486.1657707315877; Wed, 13
- Jul 2022 03:15:15 -0700 (PDT)
+        with ESMTP id S229724AbiGML23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 07:28:29 -0400
+X-Greylist: delayed 1203 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 13 Jul 2022 04:28:26 PDT
+Received: from 10.mo584.mail-out.ovh.net (10.mo584.mail-out.ovh.net [188.165.33.109])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60DB31020A7
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 04:28:26 -0700 (PDT)
+Received: from player755.ha.ovh.net (unknown [10.109.143.249])
+        by mo584.mail-out.ovh.net (Postfix) with ESMTP id 3B1F4246BB
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 10:51:10 +0000 (UTC)
+Received: from RCM-web6.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player755.ha.ovh.net (Postfix) with ESMTPSA id 137262CA9DA91;
+        Wed, 13 Jul 2022 10:50:56 +0000 (UTC)
 MIME-Version: 1.0
-References: <20220713070517.172852-1-tmaimon77@gmail.com> <20220713070517.172852-3-tmaimon77@gmail.com>
-In-Reply-To: <20220713070517.172852-3-tmaimon77@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 13 Jul 2022 12:14:39 +0200
-Message-ID: <CAHp75Vcx_G-b2GHLmNcs1AUOzchOQHbvKhq=2FZJyLdAPWunVA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: adc: npcm: Add NPCM8XX support
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+Date:   Wed, 13 Jul 2022 12:50:55 +0200
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     William Zhang <william.zhang@broadcom.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        kursad.oney@broadcom.com, anand.gore@broadcom.com,
+        dan.beygelman@broadcom.com, f.fainelli@gmail.com,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        joel.peshkin@broadcom.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/3] dt-bindings: arm64: bcmbca: Merge BCM4908 into
+ BCMBCA
+In-Reply-To: <6efb1cfe-6129-276a-eeb3-44147304d211@broadcom.com>
+References: <20220712021144.7068-1-william.zhang@broadcom.com>
+ <20220712021144.7068-2-william.zhang@broadcom.com>
+ <ca8c3003-1bcb-6658-592c-566609fd7bd2@linaro.org>
+ <94b0ab39-279d-d3c2-98a4-054c10ad041c@broadcom.com>
+ <c40f20c7-59ee-99f4-9a11-e928b41eda9f@linaro.org>
+ <6efb1cfe-6129-276a-eeb3-44147304d211@broadcom.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <e4356c5e89492eb690e3dc863ba281bd@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 194.187.74.233
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Ovh-Tracer-Id: 11789860877335440347
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudejjedgfedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtjehjtddtredvnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeegvdffjeelvdeggeetheegveejieetgeeiiefggeelveejffehieekhfduueelhfenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehplhgrhigvrhejheehrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkeeg
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 13, 2022 at 9:07 AM Tomer Maimon <tmaimon77@gmail.com> wrote:
->
-> Adding ADC NPCM8XX support to NPCM ADC driver.
-> ADC NPCM8XX uses a different resolution and voltage reference.
->
-> As part of adding NPCM8XX support:
-> - Add NPCM8XX specific compatible string.
-> - Add data to handle architecture-specific ADC parameters.
+On 2022-07-13 02:57, William Zhang wrote:
+> On 7/12/22 11:18, Krzysztof Kozlowski wrote:
+>> On 12/07/2022 19:37, William Zhang wrote:
+>>>>> +      - description: BCM4908 Family based boards
+>>>>> +        items:
+>>>>> +          - enum:
+>>>>> +              # BCM4908 SoC based boards
+>>>>> +              - brcm,bcm94908
+>>>>> +              - asus,gt-ac5300
+>>>>> +              - netgear,raxe500
+>>>>> +              # BCM4906 SoC based boards
+>>>>> +              - brcm,bcm94906
+>>>>> +              - netgear,r8000p
+>>>>> +              - tplink,archer-c2300-v1
+>>>>> +          - enum:
+>>>>> +              - brcm,bcm4908
+>>>>> +              - brcm,bcm4906
+>>>>> +              - brcm,bcm49408
+>>>> 
+>>>> This is wrong.  brcm,bcm94908 followed by brcm,bcm4906 does not look
+>>>> like valid list of compatibles.
+>>>> 
+>>> For 4908 board variant, it will need to be followed by 4908 chip. 
+>>> Sorry
+>>> for the basic question but is there any requirement to enforce this 
+>>> kind
+>>> of rule?  I would assume dts writer know what he/she is doing and 
+>>> select
+>>> the right combination.
+>> 
+>> The entire point of DT schema is to validate DTS. Combination like 
+>> above
+>> prevents that goal.
+>> 
+>> Best regards,
+>> Krzysztof
+> Understand the DT schema purpose. But items property allows multiple
+> enums in the list which gives a lot of flexibility but make it hard to
+> validate. I am not familiar with DT schema, is there any directive to
+> specify one enum value depending on another so dts validation tool can
+> report error if combination is wrong?
+> 
+> This is our preferred format of all bcmbca compatible string
+> especially when we could have more than 10 chip variants for the same
+> chip family and we really want to work on the chip family id.  We will
+> make sure they are in the right combination in our own patch and patch
+> from other contributors. Would this work? If not, I will probably have
+> to revert the change of 4908(maybe append brcm,bcmbca as this chip
+> belongs to the same bca group) and use "enum board variant", "const
+> main chip id", "brcm,bca" for all other chips as our secondary choice.
 
-...
+I'm not sure why I didn't even receive 1/3 and half of discussion
+e-mails.
 
-> +       struct npcm_adc_info *data;
+You can't just put all strings into a single bag and allow mixing them
+in any combos. Please check how it's properly handled in the current
+existing binding:
+Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
 
-Can it be const?
-
-...
-
-> +       info->data = (struct npcm_adc_info *)device_get_match_data(dev);
-
-...and hence no dropping qualifier is needed here, i.e. remove the casting.
-
--- 
-With Best Regards,
-Andy Shevchenko
+Above binding enforces that non-matching compatible strings are not used
+together.
