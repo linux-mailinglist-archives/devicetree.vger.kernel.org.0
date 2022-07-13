@@ -2,65 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8D1572EE2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 09:14:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17336572EF6
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 09:21:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234672AbiGMHO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 03:14:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43048 "EHLO
+        id S230364AbiGMHU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 03:20:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234790AbiGMHOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 03:14:24 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EE5A2B606;
-        Wed, 13 Jul 2022 00:14:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229706AbiGMHU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 03:20:58 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF5773935;
+        Wed, 13 Jul 2022 00:20:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657696856; x=1689232856;
+  h=subject:from:to:cc:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=zGRFqnL8wey+C+xRbb7l2vPyx9racNuOsu3Vhe4v1JU=;
+  b=VTp1jr2ZZLJ76bIAjt8JQynb4roz65XI93CMUk1+28FFTrGzlmCvCTAm
+   BK38MKGDBgnBcMI5U/WnqvOSjwweFSuEPBRf3Jf/8W06GmpoCFOx0cdME
+   mRMn2OXcsIaoee+oaObk0FTDTZs8/LLYwXemRbZodk6Q/33tE1aPSsjgb
+   xwnCKAlwOL0MylbiPcOla6LaBJBEzLY/fj/6+udHTRF2pSeCERQkXYkQr
+   S2M4etHS8FuqQHjdC68VcaziUR+bqso1WLGHgagTNSQJlP57uz/My0xw7
+   xhcVtu6GGMyajLPr3aWdUgZ4n2bGGuOVEkbwRsUo9gMCWe8ZtcWF4UBsE
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,267,1650924000"; 
+   d="scan'208";a="25017947"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 13 Jul 2022 09:20:54 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 13 Jul 2022 09:20:54 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 13 Jul 2022 09:20:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657696854; x=1689232854;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=zGRFqnL8wey+C+xRbb7l2vPyx9racNuOsu3Vhe4v1JU=;
+  b=UoSlSRdAY+f2tQa+kEcAbw/ftq2OLZJZ0TYIRONw0OTydXlChp9eyRdT
+   gT3LJ5++YQ0j/yeqmCCZ6ye9b1wGdOu0E2esv47UwCXllqwZLw8522ayh
+   jCHlcUcXAr0kXI1VHOEdiN+3GXV1m02K0ntu3Opj3dDy9jpArKQQtGPvD
+   CncBPbWnVabPaNSV5wIhGKbj05SOL+NcLDM8lcCWkYCbmhvdlRq7OfPGi
+   luDrUbTTdW0svPeAbovTNSlXAcnp9f1TY6uOweZTGYf/Qf3iVi8qh7H0+
+   t6WPFXbd6v+uVeoxZTqDvTfrYVvvem59L+ErElhPp2UzqVLBNcNJzY7Lu
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,267,1650924000"; 
+   d="scan'208";a="25017946"
+Subject: Re: Re: [PATCH 1/3] dt-bindings: usb: Add binding for TI USB8041 hub
+ controller
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 13 Jul 2022 09:20:54 +0200
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1BC40B81CBD;
-        Wed, 13 Jul 2022 07:14:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB8FAC34114;
-        Wed, 13 Jul 2022 07:14:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657696460;
-        bh=7DHxolcsZ8sgDrhV/+4giGupHL5PwedaRGNt6h/lQrQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TrGnwMcQuimxhM49Sr5I3innckUA300c+IeC5YSTnY4/W0abAnp5Fx/nBZWQ4suRe
-         tAyCEz/RZXxzM1N4O7Qgadsj8EMjUFtWrqFDYrP4ZeI6YqOv5kP/SpSDUZ5M+sQRDo
-         bLExpm8T0SzdfxMDMvhUEEBN+0w4c0Biolmfnz5CcqHAOJipZoR4ymYtHaXlGKsUah
-         Rq0LPOyDX2YmnUuHIMyOs7JVUS1aFn9pxqfOUzQhkH60apbs8RBObkoCq+b6wO+RAw
-         BG0egc7tasE/B/Ns7QIwCo1YNbee+T5kTJtYJQVceih+uh+X+btvB8fC6cAKX1ql4y
-         XV1HllVZLrXMg==
-Message-ID: <313e2dc6-e8cf-f6c9-20e2-d7c766b4ecee@kernel.org>
-Date:   Wed, 13 Jul 2022 09:14:11 +0200
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 4F7C4280056;
+        Wed, 13 Jul 2022 09:20:54 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Date:   Wed, 13 Jul 2022 09:20:54 +0200
+Message-ID: <8966410.CDJkKcVGEf@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <7c838790-1dd9-732a-e5cb-f2ea6454411a@linaro.org>
+References: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com> <7c838790-1dd9-732a-e5cb-f2ea6454411a@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 3/4] dt-bindings: mfd: Add bindings for Samsung SysMgr
-Content-Language: en-US
-To:     dj76.yang@samsung.com,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>
-Cc:     "javierm@redhat.com" <javierm@redhat.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Wangseok Lee <wangseok.lee@samsung.com>
-References: <CGME20220713045628epcms1p3b5b195e2f1adf6be2a5fbeb90e567fef@epcms1p3>
- <20220713045628epcms1p3b5b195e2f1adf6be2a5fbeb90e567fef@epcms1p3>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220713045628epcms1p3b5b195e2f1adf6be2a5fbeb90e567fef@epcms1p3>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,60 +84,140 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2022 06:56, Dongjin Yang wrote:
-> Add an devicetree binding for Samsung system manager.
-> This driver is used for SoCs produced by Samsung Foundry to provide
-> Samsung sysmgr API. The read/write request of sysmgr is delivered to
-> Samsung secure monitor call.
+Hi Krzysztof,
 
-Nope. Second patch with the same - you need to describe the hardware or
-underlying firmware, not the driver. "This driver" is not acceptable for
-bindings.
+thanks for the feedback on DT bindings.
 
+Am Dienstag, 12. Juli 2022, 23:16:21 CEST schrieb Krzysztof Kozlowski:
+> On 12/07/2022 17:06, Alexander Stein wrote:
+> > The TI USB8041 is a USB 3.0 hub controller with 4 ports.
+> > 
+> > This initial version of the binding only describes USB related aspects
+> > of the USB8041, it does not cover the option of connecting the controller
+> > as an i2c slave.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > Well, this is essentially a ripoff of
+> > Documentation/devicetree/bindings/usb/realtek,rts5411.yaml with USB IDs
+> > replaced, reset-gpio added and example adjusted.
+> > IMHO this should be merged together with realtek,rts5411.yaml. Is it ok
+> > to rename bindings files? I guess a common onboard-usb-hub.yaml matching
+> > the driver seens reasonable. Any recommendations how to proceed?
+> > 
+> >  .../devicetree/bindings/usb/ti,usb8041.yaml   | 69 +++++++++++++++++++
+> >  1 file changed, 69 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+> > b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml new file mode
+> > 100644
+> > index 000000000000..9a49d60527b1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/ti,usb8041.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Binding for the TI USB8041 USB 3.0 hub controller
+> > +
+> > +maintainers:
+> > +  - Matthias Kaehlcke <mka@chromium.org>
+> > +
+> > +allOf:
+> > +  - $ref: usb-device.yaml#
+> > +
+> > +properties:
+> > +  compatible:
 > 
-> Signed-off-by: Dongjin Yang <dj76.yang@samsung.com>
-> ---
->  .../devicetree/bindings/mfd/samsung,sys-mgr.yaml   | 42 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/samsung,sys-mgr.yaml
+> > +    items:
+> No items. It's just one item.
+
+Sure, will change.
+
+> > +      - enum:
+> > +          - usb451,8140
+> > +          - usb451,8142
+> > +
+> > +  reg: true
+> > +
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/samsung,sys-mgr.yaml b/Documentation/devicetree/bindings/mfd/samsung,sys-mgr.yaml
-> new file mode 100644
-> index 000000000000..83b9d73a5420
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/samsung,sys-mgr.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/firmware/samsung,sys-mgr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung System Manager
-> +
-> +maintainers:
-> +  - Jesper Nilsson <jesper.nilsson@axis.com>
+> > +  reset-gpio:
+> reset-gpios
 
-How is this related to Axis platforms?
+Will change.
 
-> +
-> +description: |
-> +  The file documents device tree bindings of Samsung system manager.
+> > +    maxItems: 1
+> > +    description:
+> > +      GPIO specifier for GSRT# pin.
+> 
+> Combine maxItems and above into:
+> items:
+>  - description: GPIO specifier for GSRT# pin.
 
-Useless description. Describe the hardw
+Will change, looks much nicer.
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - samsung,sys-mgr
-> +      - samsung,sys-mgr-smccc
+> > +
+> > +  vdd-supply:
+> > +    description:
+> > +      phandle to the regulator that provides power to the hub.
+> 
+> s/phandle to the regulator that provides//
+> and create some nice sentence from left-over, like "VDD power supply to
+> the hub"
 
-Sorry, this does not look like hardware. It could be description of
-underlying firmware, but you would need to justify it. Look at Qualcomm
-SCM for example. Or ARM SCMI, SCPI.
+Thanks for that suggestion. Will change.
+
+> > +
+> > +  peer-hub:
+> > +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> 
+> No quotes.
+
+Sure, will do so.
+
+> > +    description:
+> > +      phandle to the peer hub on the controller.
+> > +
+> > +required:
+> > +  - peer-hub
+> > +  - compatible
+> > +  - reg
+> 
+> Messed order. Use same as they appear in properties, so
+> compatible+reg+peer-hub.
+> 
+> But another question - why "peer-hub"? I remember some discussion about
+> naming, so was peer preferred over companion?
+> 
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    usb {
+> > +        dr_mode = "host";
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        /* 2.0 hub on port 1 */
+> > +        hub_2_0: hub@1 {
+> > +          compatible = "usb451,8142";
+> > +          reg = <1>;
+> > +          peer-hub = <&hub_3_0>;
+> > +          reset-gpio = <&gpio1 11 GPIO_ACTIVE_LOW>;
+> 
+> reset-gpios
+
+Yes, 'make dt_binding_check' does not raise any error about this binding.
+
+Thanks and best regards,
+Alexander
 
 
-Best regards,
-Krzysztof
+
