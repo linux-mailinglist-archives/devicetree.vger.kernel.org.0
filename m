@@ -2,183 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3ABE573786
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 15:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B49B657380A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 15:54:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234201AbiGMNf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 09:35:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36168 "EHLO
+        id S230303AbiGMNy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 09:54:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229769AbiGMNf6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 09:35:58 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B882DBE;
-        Wed, 13 Jul 2022 06:35:57 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id t25so19107017lfg.7;
-        Wed, 13 Jul 2022 06:35:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OYKoXtQBi+UHHvlNJzsiB51zZLZoDshebAIvkG4Ze80=;
-        b=h9bIngDNE7y+/fKX/oHw7+azOdfnTz2i7MgBHs5a3O0NBQRb9Jhkr8NN2D43RoxyaQ
-         JfUUqNxRf2r2xyx2nr4o8UNpakeH0ch8O8dWrBQI6SYIqEOWBlqDbVQ3TBs4GPXW6srI
-         p5ZXpOypyN4OimKhc5jlB186gygVDd4N0/Qii6mfN6TSSuKSh/11YEtz9bf/yameG/xy
-         iC6f3xvZ8U3eAj68RJBuEiLDxNrnb0yGrSf/Qbvq9YIypvHGX/XJ+oApN9+olMdZ0pQA
-         sSJA4NHPhXzcg87Q+SzqCMW0+e0mS4OdDvc7z5y6nJuyk6I2OyYTaAh7tLbCfJJadw7b
-         srWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OYKoXtQBi+UHHvlNJzsiB51zZLZoDshebAIvkG4Ze80=;
-        b=sHpyXunXcCHoe1R6i9d135KDjTkN6nj9DVM1RPIQCc4RiMjHHXauHsxjqQ4n4hrYMT
-         n9jhprhvrp2NyooBaTFeFVOEEH9nWgO1ztWPhmnJCmPIrWjLaCnvX3vyo8i42v5hxRi1
-         Ctr/ef92iWADGCNvod0n1iqg4yrvtvdQRAk5GMrn5vnN8hZcn6/46/ft4OYiDIR00bke
-         IN2Y1Y1HlYt4JMRzt1fzFxZXkK18Filwkmw2QITIN7G/gi7uPy7H5Wj8jxzcgxr3FZYJ
-         kQ7Jj8YX3ghWsJUVFCzr84Eq0boH7+1bH2oKaYKEwOVaiVFpQRdskg1hsx+wS+aASI2z
-         efNw==
-X-Gm-Message-State: AJIora8Q3m4WVGorp60fYjgM2c4i+0ZoHKqdA4tesvHgDKTHBEcX1AW+
-        BEpbDS4t6+QGeb70MXFcDkGbqf05Ov4IyOQ3wDo=
-X-Google-Smtp-Source: AGRyM1vZwX/9j0zxDeNWK/kUwAPgULFU7qG8J/00nPnrZg/qF45PRYUI3V3dq8xEhcBmSYrsRfjR+Ysv5M0gTCzqdeo=
-X-Received: by 2002:a05:6512:2382:b0:48a:24d:51cc with SMTP id
- c2-20020a056512238200b0048a024d51ccmr1936006lfv.108.1657719355396; Wed, 13
- Jul 2022 06:35:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220710102110.39748-1-tmaimon77@gmail.com> <20220710102110.39748-3-tmaimon77@gmail.com>
- <95d12b72-be9d-5503-c4ea-801303bb7776@linaro.org>
-In-Reply-To: <95d12b72-be9d-5503-c4ea-801303bb7776@linaro.org>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Wed, 13 Jul 2022 16:35:43 +0300
-Message-ID: <CAP6Zq1geFJsKrdQEN5Vqjw6e8bsiArDe1tzJ-jkQm-2XT-0KyQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] pinctrl: nuvoton: add NPCM8XX pinctrl and GPIO driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230057AbiGMNy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 09:54:27 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA981240;
+        Wed, 13 Jul 2022 06:54:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 904DAB81F66;
+        Wed, 13 Jul 2022 13:54:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 051ECC34114;
+        Wed, 13 Jul 2022 13:54:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657720463;
+        bh=/tvxZwralFJ4cZXdPkXxJEQCgvBw9Ua4U7XdiklwROc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NPugggpNWrapctlNOMvCLfTS/6nQRBp4qtBMpShlx6IuKz8VtqvV92KmfK6a055Tb
+         LiJm0Itggmfb7TuXYij4Qj6U/BGcO0EHimH0uvGiXoRZJ7NEHvEROtj1fYTQlSfPxK
+         R/tWGZ91pxAnfu7R8AQykRLoxbSlFGaVYImN/9d2g5A+SbMhW2DvPn9ogQ/BGfCmR9
+         Hvik6QiYCSrsweYDeehsB7cCqGeCVaf5oiWomt2MANb/k699X3JxZDTJXczafFUY/o
+         18S9t443e72R5l29VEEe9usJERuwbaF9WLxXASWJNiX/TKwYBa4SMiBkto4yLcAk0N
+         udxMjiowqC0vQ==
+Received: by pali.im (Postfix)
+        id 3B1619D9; Wed, 13 Jul 2022 15:54:20 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] powerpc: dts: turris1x.dts: Add CPLD reboot node
+Date:   Wed, 13 Jul 2022 15:44:29 +0200
+Message-Id: <20220713134429.18748-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+CPLD firmware can reset board by writing value 0x01 at CPLD memory offset
+0x0d. Define syscon-reboot node for this reset support.
 
-Thanks for your comments.
+Fixes: 54c15ec3b738 ("powerpc: dts: Add DTS file for CZ.NIC Turris 1.x routers")
+Signed-off-by: Pali Rohár <pali@kernel.org>
+---
+ arch/powerpc/boot/dts/turris1x.dts | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-On Tue, 12 Jul 2022 at 12:50, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 10/07/2022 12:21, Tomer Maimon wrote:
-> > Add pinctrl and GPIO controller driver support to Arbel BMC NPCM8XX SoC.
-> >
-> > Arbel BMC NPCM8XX pinctrl driver based on Poleg NPCM7XX, except the
-> > pin mux mapping difference the NPCM8XX GPIO supports adjust debounce
-> > period time.
-> >
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->
-> (...)
->
-> > +
-> > +static int npcm8xx_pinctrl_probe(struct platform_device *pdev)
-> > +{
-> > +     struct npcm8xx_pinctrl *pctrl;
-> > +     int ret;
-> > +
-> > +     pctrl = devm_kzalloc(&pdev->dev, sizeof(*pctrl), GFP_KERNEL);
-> > +     if (!pctrl)
-> > +             return -ENOMEM;
-> > +
-> > +     pctrl->dev = &pdev->dev;
-> > +     dev_set_drvdata(&pdev->dev, pctrl);
-> > +
-> > +     pctrl->gcr_regmap =
-> > +             syscon_regmap_lookup_by_compatible("nuvoton,npcm845-gcr");
->
-> No. Use property. By this patchset, I would expect that you learnt from
-> previous mistakes around this. Why repeating the same trouble second time?
-You suggest to use phandle property like nuvoton,sysgcr even that the
-NPCM8XX pin controller driver is used only NPCM8XX SoC, so the only
-GCR node in the NPCM8XX SoC is nuvoton,npcm845-gcr?
->
-> > +     if (IS_ERR(pctrl->gcr_regmap)) {
-> > +             dev_err(pctrl->dev, "didn't find nuvoton,npcm845-gcr\n");
-> > +             return PTR_ERR(pctrl->gcr_regmap);
-> > +     }
-> > +
-> > +     ret = npcm8xx_gpio_of(pctrl);
-> > +     if (ret < 0) {
-> > +             dev_err(pctrl->dev, "Failed to gpio dt-binding %u\n", ret);
-> > +             return ret;
-> > +     }
-> > +
-> > +     pctrl->pctldev = devm_pinctrl_register(&pdev->dev,
-> > +                                            &npcm8xx_pinctrl_desc, pctrl);
-> > +     if (IS_ERR(pctrl->pctldev)) {
-> > +             dev_err(&pdev->dev, "Failed to register pinctrl device\n");
-> > +             return PTR_ERR(pctrl->pctldev);
-> > +     }
-> > +
-> > +     ret = npcm8xx_gpio_register(pctrl);
-> > +     if (ret < 0) {
-> > +             dev_err(pctrl->dev, "Failed to register gpio %u\n", ret);
-> > +             return ret;
-> > +     }
-> > +
-> > +     pr_info("npcm8xx Pinctrl driver probed\n");
->
->
-> No pr_ in devices. No success debug messages.
->
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct of_device_id npcm8xx_pinctrl_match[] = {
-> > +     { .compatible = "nuvoton,npcm845-pinctrl" },
-> > +     { },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, npcm8xx_pinctrl_match);
-> > +
-> > +static struct platform_driver npcm8xx_pinctrl_driver = {
-> > +     .probe = npcm8xx_pinctrl_probe,
-> > +     .driver = {
-> > +             .name = "npcm8xx-pinctrl",
-> > +             .of_match_table = npcm8xx_pinctrl_match,
-> > +             .suppress_bind_attrs = true,
-> > +     },
-> > +};
-> > +
-> > +static int __init npcm8xx_pinctrl_register(void)
-> > +{
-> > +     return platform_driver_register(&npcm8xx_pinctrl_driver);
-> > +}
-> > +arch_initcall(npcm8xx_pinctrl_register);
-> > +
-> > +MODULE_LICENSE("GPL v2");
-> > +MODULE_AUTHOR("tomer.maimon@nuvoton.com");
-> > +MODULE_DESCRIPTION("Nuvoton NPCM8XX Pinctrl and GPIO driver");
->
->
-> Best regards,
-> Krzysztof
+diff --git a/arch/powerpc/boot/dts/turris1x.dts b/arch/powerpc/boot/dts/turris1x.dts
+index c76b628cf026..12e08271e61f 100644
+--- a/arch/powerpc/boot/dts/turris1x.dts
++++ b/arch/powerpc/boot/dts/turris1x.dts
+@@ -332,7 +332,7 @@
+ 			 * Turris CPLD firmware is open source and available at:
+ 			 * https://gitlab.nic.cz/turris/hw/turris_cpld/-/blob/master/CZ_NIC_Router_CPLD.v
+ 			 */
+-			compatible = "cznic,turris1x-cpld", "fsl,p1021rdb-pc-cpld", "simple-bus";
++			compatible = "cznic,turris1x-cpld", "fsl,p1021rdb-pc-cpld", "simple-bus", "syscon";
+ 			reg = <0x3 0x0 0x30>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+@@ -352,6 +352,14 @@
+ 				gpios = <&gpio 11 GPIO_ACTIVE_LOW>;
+ 			};
+ 
++			reboot@d {
++				compatible = "syscon-reboot";
++				reg = <0x0d 0x01>;
++				offset = <0x0d>;
++				mask = <0x01>;
++				value = <0x01>;
++			};
++
+ 			led-controller@13 {
+ 				/*
+ 				 * LEDs are controlled by CPLD firmware.
+-- 
+2.20.1
 
-Best regards,
-
-Tomer
