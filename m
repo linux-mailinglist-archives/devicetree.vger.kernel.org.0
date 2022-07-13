@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BC6557310D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 10:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CDE3573118
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 10:28:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235706AbiGMI1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 04:27:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59122 "EHLO
+        id S234854AbiGMI2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 04:28:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235533AbiGMI0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 04:26:43 -0400
+        with ESMTP id S235654AbiGMI1e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 04:27:34 -0400
 Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEE935F5B
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 01:26:00 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id d12so17851467lfq.12
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 01:26:00 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BFE89B9C5
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 01:27:12 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id o7so17856561lfq.9
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 01:27:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0GpYX1jWMK2wrDqmjLZTKM0tzfJSoRl5a+p8xGs1L+E=;
-        b=pdCfJp38OeUftbo762CFDDj5npKj6Py/1UeuPSNL/cdemmSWkBvyMlzXFPOEEYfTO+
-         uICnasyNJ03Wqf+BpdGGFzdVDJu+2y3kDr+Bal6uWRYdxl5VdAXQxop6eye/08pefgf2
-         lDHncP5gYvViaMTZJgU854s5c9RfnbNy5zBYiAkMafNfrVR+Ui93pyD9i1583n+IaJKn
-         3f85L7fv675HnvQBPrYHOzA9pJsa6RwEYs9K3F+o0J8VNqnNwQEyAiu3U5NuTL1ZxXIR
-         Wm1UEHsdx1fe0RTSBrjpctO4poq+ZH7aVB41O35tJ+NVJgL88dY7a03mtAW0+LtrLNMQ
-         6RoQ==
+        bh=EaV/rroW+dQe7iYZ/YnJOFxdJwgnAadz2Ja67j4jgO4=;
+        b=LUjO5qhY2tjcEVKD8B+TSFWdlzTe3qW3jv9SO0ESq+AaRaqyZo9jwoKTjgvGVBtPcZ
+         gNg0xSHgT7thnoelrVnS1Xn1K+vhF6otpZxgQUK4KMe3fUXybjhpAT1yQY0G4ow4TFae
+         sQFwM/2rP7RZJTNeoUyYEjyhTQcQro9OR8DuMJ58wGRXRuDTa1hh0HMIR7Pxcy3ohpQE
+         6MXRIN22NRjho9MsulkMWHqv2hJBYhTy+ieUmE1TqxD4ilRpKrCiKtg+0htwzCQ/sVBJ
+         Y0POU828ThNwL0gsAxoQR9KcPAoa6E7XF8rWmRS1fYDQSAV5ZY7HoiqZ+5bNdM+votAi
+         fTEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=0GpYX1jWMK2wrDqmjLZTKM0tzfJSoRl5a+p8xGs1L+E=;
-        b=59r7CACnej7vnYUlCKD4YwkNpWIa2iJtFq4MKA5dbkN23VcqDFywIDa2QX+aDKr0RM
-         wSZmC1BWAktzonAbfrRnCFjOfg2f9MqxKH6QlCeS1AMyk/n4EcmBKhGnyvQrxKU90A8/
-         2BQkyLkemoOhrKfhjmM5iNFRvaHwjt1PH1rqBiTnAfcD5xWaC0CwqDxalAmyxtRANuDQ
-         4aOS0d3QwNgYb5HZNXk2YHVTRFwX1OkfqYVGRyoTOUALuv9kvevjuv0bj6U4rOqSWaO8
-         DcfHV1eo5JkPbLne5NLBfIyuRKY7UQLUjeAid0OrUkNdj1yylc6RxEcfD4uDYkiLTUpC
-         otkA==
-X-Gm-Message-State: AJIora84uT0xaraGPKLJBLqbr7//BwL0HWyRegqqcfDT3m5hNaNOZ2ve
-        3NxHn8/zJ8MgoDh9pEwgsb88mg==
-X-Google-Smtp-Source: AGRyM1sRhL07eFmV0OQSuYnU/YB2yIeFw+0PcB8uCGbrqwTlS4eUMyCu/IxtSO6yGnTIoJvjjHsX0w==
-X-Received: by 2002:a19:6d09:0:b0:481:3c54:ad52 with SMTP id i9-20020a196d09000000b004813c54ad52mr1351736lfc.393.1657700758243;
-        Wed, 13 Jul 2022 01:25:58 -0700 (PDT)
+        bh=EaV/rroW+dQe7iYZ/YnJOFxdJwgnAadz2Ja67j4jgO4=;
+        b=22RkFfJPDaAupT+RUVZ8IJ4pPorNG5b9SVuijFYzAjSdlWV9Nx+1EJnIkfpV/dc+q1
+         einG91cT7XQ/1REQq8UEvav9xOkTJB1sbU2KtryiAdtJf9RnjfGunut7+XSxFFq5kk/R
+         zB+DPbDM1fTm1vmyiqcN7R9ADR8hqNCPstDrWwqJULrFaptTP8qa49dMbN+n2SvoEurq
+         mTBZ0aQY2MDNwcOLMCNx0S0mEnp1QnR8NngZ7oLvY1gK0iTQuztVbLjRYLPlqMbbL/hu
+         NKzgCWOV+FkbQINsugPhK/khmKB0cgp4nEPc0ZEZqYmjKcpywWJX/OoDLiAFE3gfdjjv
+         bD+Q==
+X-Gm-Message-State: AJIora/KNsVP4YCfY3EL+FKXrWodAHr7n5O5l7J//xjWoZJLJa1eFKYt
+        32ziLuso18PvkpeMQjanv6peIQ==
+X-Google-Smtp-Source: AGRyM1s2gLKEqx6vWnMmnxpoB9EkV7fOAVI0KGdYbPRp5LroYG358skPN2ZCi8n4aTuU1JBI49oMmQ==
+X-Received: by 2002:a05:6512:220d:b0:488:c3ba:acc4 with SMTP id h13-20020a056512220d00b00488c3baacc4mr1339256lfu.196.1657700831281;
+        Wed, 13 Jul 2022 01:27:11 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id a24-20020a056512201800b0047f6b4f82d1sm2660260lfb.250.2022.07.13.01.25.56
+        by smtp.gmail.com with ESMTPSA id f14-20020a05651c02ce00b0025d754ba5f4sm1336234ljo.99.2022.07.13.01.27.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Jul 2022 01:25:57 -0700 (PDT)
-Message-ID: <1cbe0b48-c472-2bd8-9153-6ef0412adefe@linaro.org>
-Date:   Wed, 13 Jul 2022 10:25:55 +0200
+        Wed, 13 Jul 2022 01:27:10 -0700 (PDT)
+Message-ID: <86fdd777-3c68-1f1f-3515-50426430bd85@linaro.org>
+Date:   Wed, 13 Jul 2022 10:27:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v17 1/2] dt-bindings: usb: Add analogix anx7411 PD binding
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: npcm: Add npcm845
+ compatible string
 Content-Language: en-US
-To:     Xin Ji <xji@analogixsemi.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     bliang@analogixsemi.com, qwen@analogixsemi.com,
-        jli@analogixsemi.com, Rob Herring <robh@kernel.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220713072943.2789612-1-xji@analogixsemi.com>
+To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, jic23@kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, j.neuschaefer@gmx.net,
+        zhengbin13@huawei.com
+Cc:     openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220713070517.172852-1-tmaimon77@gmail.com>
+ <20220713070517.172852-2-tmaimon77@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220713072943.2789612-1-xji@analogixsemi.com>
+In-Reply-To: <20220713070517.172852-2-tmaimon77@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,96 +80,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2022 09:29, Xin Ji wrote:
-> Add analogix PD chip anx7411 device binding
+On 13/07/2022 09:05, Tomer Maimon wrote:
+> Add a compatible string for Nuvoton BMC NPCM845 ADC.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> 
-> ---
-> v16 -> v17 : Add node name "usb_typec"
-> v15 -> v16 : No changes
-> v14 -> v15 : No changes
-> v13 -> v14 :
->     1. Fix Robot compile error. Fix node name not correct.
->     2. Change HEX to lowercase.
->     3. Use "ports" property.
-> v12 -> v13 :
->     1. Drop the quotes for "$id" and "$schema"
->     2. Remove "allOf" label
->     3. Change node name from "i2c1" to "i2c"
->     4. Change node name from "typec" to "usb-typec"
-> ---
->  .../bindings/usb/analogix,anx7411.yaml        | 81 +++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> new file mode 100644
-> index 000000000000..60aac5765320
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/analogix,anx7411.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analogix ANX7411 Type-C controller bindings
-> +
-> +maintainers:
-> +  - Xin Ji <xji@analogixsemi.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - analogix,anx7411
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  connector:
-> +    type: object
-> +    $ref: ../connector/usb-connector.yaml
-> +    description:
-> +      Properties for usb c connector.
-> +
-> +    properties:
-> +      compatible:
-> +        const: usb-c-connector
-> +
-> +      power-role: true
-> +
-> +      data-role: true
-> +
-> +      try-power-role: true
-> +
-> +    required:
-> +      - compatible
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - connector
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        usb_typec: anx7411@2c {
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 
-Node name is still specific.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-make it "typec".
+I assume all properties from NPCM750 apply here as well:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
