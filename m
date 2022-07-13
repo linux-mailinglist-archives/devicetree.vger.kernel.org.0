@@ -2,71 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B64B573936
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 16:51:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE91757393A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 16:51:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236589AbiGMOvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 10:51:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54374 "EHLO
+        id S234652AbiGMOvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 10:51:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234652AbiGMOvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 10:51:18 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BB443C142;
-        Wed, 13 Jul 2022 07:51:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1657723878; x=1689259878;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=usEfZWG3K+DfGjkb7INoXNmqgT2ynC9Rk8m0pztykNE=;
-  b=G3bBANNsQFl/6rkTep8Od1gu3IbsEY8UjhpdGqkFi3imoB1sngbcRHOR
-   xLGr80hS2SV0pFguyCmF7mu31IeWLVjTsJuLlInCS+DvHgQdedTYtya6Q
-   1ABFILm7IJVgJmSdNVE1bbGYf2ZAlyz6KoHszH9oQEAHaFd99shj8DxPb
-   o=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 13 Jul 2022 07:51:18 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2022 07:51:17 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 13 Jul 2022 07:51:17 -0700
-Received: from [10.216.22.132] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 13 Jul
- 2022 07:51:10 -0700
-Message-ID: <b5776efd-4d30-3dbf-796d-4f29ed1e3a92@quicinc.com>
-Date:   Wed, 13 Jul 2022 20:21:07 +0530
+        with ESMTP id S236587AbiGMOvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 10:51:35 -0400
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95003C8C9
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:51:32 -0700 (PDT)
+Received: by mail-il1-f176.google.com with SMTP id b12so6824755ilh.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:51:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cbWdiZoh5wzyuIDkAn23C3lc8R+dDJHxrU38In/KSpg=;
+        b=0Tw9HDhDCSVacz32lIkVUa6QA5HqxB6G/QzPwaXP7BFlvBcoI1hV/eW2jZ2VzMl2c+
+         7N8iU1lL1bi8SPh6kc0mqiuZrpAvJDSogVcTWA8rsyA1NTYVrbwa+XRHzsJ5XQcxPirg
+         779/bwvWCrI7kE0B0iQ13qJtfqMIuVvqaYy6vygmnXNUFRCwXmxbA7uQv74iAfmZ9Idp
+         LOpvt84KKpINPm6YHVMybTs5SnAno5Ihi0L12Izgp8z+AmY+4foYtqD2mTEFROKdnS3c
+         vdxONqbQqNZ9g20JjfcJ5iyazb5cN/yg2kib5ZQzufr8CZpFy31YzZoX86eUbiS+lwA9
+         WKnQ==
+X-Gm-Message-State: AJIora+VID6Wd5R3Dnb2Y9fH3uZLg+NvYTk/blLiFpW9CkdUmgw3odJM
+        r/cNi43XzwQ0rZD3Gu3bXw==
+X-Google-Smtp-Source: AGRyM1vlqSyqn/DNiLH0sEZqhnwl+nomOxIJLs8Dxya4Zqtw2DMih3DWzYvv0ZGf6BRBeofDYeIzjg==
+X-Received: by 2002:a92:b00f:0:b0:2d6:5628:6865 with SMTP id x15-20020a92b00f000000b002d656286865mr1976996ilh.230.1657723892195;
+        Wed, 13 Jul 2022 07:51:32 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id u3-20020a05663825c300b00339dfb793aesm5395787jat.86.2022.07.13.07.51.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jul 2022 07:51:31 -0700 (PDT)
+Received: (nullmailer pid 3941026 invoked by uid 1000);
+        Wed, 13 Jul 2022 14:51:30 -0000
+Date:   Wed, 13 Jul 2022 08:51:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Raphael-Xu <13691752556@139.com>
+Cc:     alsa-devel@alsa-project.org, raphael-xu@ti.com,
+        shenghao-ding@ti.com, navada@ti.com, asyrus@ti.com,
+        broonie@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5] update tas2780.yaml
+Message-ID: <20220713145130.GA3909157-robh@kernel.org>
+References: <20220712050857.267-1-13691752556@139.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] soundwire: qcom: Update error prints to debug prints
-Content-Language: en-US
-To:     Andrew Halaney <ahalaney@redhat.com>
-CC:     <vkoul@kernel.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>
-References: <1657714921-28072-1-git-send-email-quic_srivasam@quicinc.com>
- <20220713135603.4vkyofw6x4mldxzp@halaneylaptop>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <20220713135603.4vkyofw6x4mldxzp@halaneylaptop>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220712050857.267-1-13691752556@139.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,51 +62,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jul 12, 2022 at 01:08:57PM +0800, Raphael-Xu wrote:
+> 1.remove unused item in DT 2.revise the format
 
-On 7/13/2022 7:26 PM, Andrew Halaney wrote:
-Thanks for your time Andrew.
-> A couple of drive by nits:
->
-> On Wed, Jul 13, 2022 at 05:52:01PM +0530, Srinivasa Rao Mandadapu wrote:
->> Upadte error prints to debug prints to avoid redundant logging in kernel
->> boot time, as these prints are informative prints in irq handler.
-> s/Upadte/Update/
-Okay. Will fix it.
->
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> ---
->>   drivers/soundwire/qcom.c | 5 ++---
->>   1 file changed, 2 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
->> index 9df970e..a4293d0 100644
->> --- a/drivers/soundwire/qcom.c
->> +++ b/drivers/soundwire/qcom.c
->> @@ -573,11 +573,10 @@ static irqreturn_t qcom_swrm_irq_handler(int irq, void *dev_id)
->>   				break;
->>   			case SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED:
->>   			case SWRM_INTERRUPT_STATUS_CHANGE_ENUM_SLAVE_STATUS:
->> -				dev_err_ratelimited(swrm->dev, "%s: SWR new slave attached\n",
->> -					__func__);
->> +				dev_dbg(swrm->dev, "%s: SWR new slave attached\n", __func__);
-> There's no need for __func__ usage with dev_dbg() when giving +f flag
-> when enabling adds this for you!
-Okay. Will remove __func__ and change dev_dbg() to dev_dbg_ratelimited().
->
-> With those changes feel free to add:
->
->      Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
->
-> Thanks,
-> Andrew
->
->>   				swrm->reg_read(swrm, SWRM_MCP_SLV_STATUS, &slave_status);
->>   				if (swrm->slave_status == slave_status) {
->> -					dev_err(swrm->dev, "Slave status not changed %x\n",
->> +					dev_dbg(swrm->dev, "Slave status not changed %x\n",
->>   						slave_status);
->>   				} else {
->>   					qcom_swrm_get_device_status(swrm);
->> -- 
->> 2.7.4
->>
+Again, fix your subject. Run 'git log --oneline 
+Documentation/devicetree/bindings/sound/' for inspiration of the format 
+of the subject.
+
+However, there's a bigger issue here. We already have a binding for this 
+device. It's in tas27xx.yaml. And you added 2780 to it, so why did you 
+add another schema? (All the same issues in that patch too. wrong 
+subject, broken schema. So you haven't learned.)
+
+And then there is also tas2770.yaml which appears to be about the same 
+as well.
+
+> 
+> Signed-off-by: Raphael-Xu <13691752556@139.com>
+> ---
+>  .../devicetree/bindings/sound/tas2780.yaml    | 19 +++++++++++--------
+>  1 file changed, 11 insertions(+), 8 deletions(-)
