@@ -2,75 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D8E65730EB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 10:23:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 794B65730FB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 10:25:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235608AbiGMIXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 04:23:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53422 "EHLO
+        id S234731AbiGMIZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 04:25:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235585AbiGMIWn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 04:22:43 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37FA2E95F6;
-        Wed, 13 Jul 2022 01:20:25 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7F2796601A38;
-        Wed, 13 Jul 2022 09:20:23 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657700424;
-        bh=yUZfFeWX08WQ/h5QZHogA0CwHAk3IBZ1IURWDjXkS94=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=khuBMLoFTYzGB7cWlzNd6mF6vKuHAyJnQAYpzWiDtyBL3aj2pahqgwvfWG4YsWbBb
-         5plNZNtCLN2aNVHLY07BlTDzQcM7r+GpEOMg63+na0OOmxN/+YB5YM5QAOPGDj1bmd
-         PtixwRkB2fydejmOlqHUzd7cXYPC0CLZp7AZuG/WhzVUeRnpCeY9Z/d2CfyzLiklTH
-         /TH/i6I7GTuNMfKHMeK4ceg4Oz2y+8qt7jvWGWmiLCDt/inmgTh0OHYVt56PzM5fU3
-         /vx4jZZsqYzpM1lZ0z6lfjRIfCF44sQSC4G8dIhSgzfpS3/yYq17GHAd53wKyZIzea
-         TtWQEccGBo7rA==
-Message-ID: <4b6a4a1f-2e33-f037-6736-b2dfb1750ed6@collabora.com>
-Date:   Wed, 13 Jul 2022 10:20:20 +0200
+        with ESMTP id S235672AbiGMIYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 04:24:39 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20AC8E9217;
+        Wed, 13 Jul 2022 01:22:20 -0700 (PDT)
+X-UUID: a43b601f061e426a85f8b533d8140218-20220713
+X-CID-UNFAMILIAR: 1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:60600421-3364-45f5-a5f9-953964b8a25a,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:54
+X-CID-INFO: VERSION:1.1.8,REQID:60600421-3364-45f5-a5f9-953964b8a25a,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_HamU,ACTI
+        ON:release,TS:54
+X-CID-META: VersionHash:0f94e32,CLOUDID:850e5dd7-5d6d-4eaf-a635-828a3ee48b7c,C
+        OID:1182dfb5da53,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: a43b601f061e426a85f8b533d8140218-20220713
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 253897115; Wed, 13 Jul 2022 16:22:16 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 13 Jul 2022 16:22:15 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Wed, 13 Jul 2022 16:22:15 +0800
+Message-ID: <6ba15d8532b726bd1a16cf2956140b2cba5d74f7.camel@mediatek.com>
+Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 13 Jul 2022 16:22:15 +0800
+In-Reply-To: <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
+         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: mediatek: add mdp3 mutex support
- for mt8186
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Xiandong Wang <xiandong.wang@mediatek.com>
-References: <20220711123247.15807-1-allen-kh.cheng@mediatek.com>
- <20220711123247.15807-2-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220711123247.15807-2-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/07/22 14:32, Allen-KH Cheng ha scritto:
-> Add mdp3 mutex compatible for mt8186 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Signed-off-by: Xiandong Wang <xiandong.wang@mediatek.com>
+Hi, Bo-Chen:
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> This patch adds a embedded displayport driver for the MediaTek mt8195
+> SoC.
+> 
+> It supports the MT8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jitao shi <jitao.shi@mediatek.com>
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
+
+[snip]
+
+> +
+> +static int mtk_dp_bridge_atomic_check(struct drm_bridge *bridge,
+> +				      struct drm_bridge_state
+> *bridge_state,
+> +				      struct drm_crtc_state
+> *crtc_state,
+> +				      struct drm_connector_state
+> *conn_state)
+> +{
+> +	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
+> +	struct drm_crtc *crtc = conn_state->crtc;
+> +	unsigned int input_bus_format;
+> +
+> +	input_bus_format = bridge_state->input_bus_cfg.format;
+> +
+> +	dev_dbg(mtk_dp->dev, "input format 0x%04x, output format
+> 0x%04x\n",
+> +		bridge_state->input_bus_cfg.format,
+> +		 bridge_state->output_bus_cfg.format);
+> +
+> +	if (input_bus_format == MEDIA_BUS_FMT_YUYV8_1X16)
+> +		mtk_dp->info.format = DP_PIXELFORMAT_YUV422;
+> +	else
+> +		mtk_dp->info.format = DP_PIXELFORMAT_RGB;
+> +
+> +	if (!crtc) {
+> +		drm_err(mtk_dp->drm_dev,
+> +			"Can't enable bridge as connector state doesn't
+> have a crtc\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	mtk_dp_parse_drm_mode_timings(mtk_dp, &crtc_state-
+> >adjusted_mode);
+> +	if (mtk_dp_parse_capabilities(mtk_dp)) {
+
+mtk_dp_bridge_atomic_enable() would call mtk_dp_parse_capabilities(),
+so this is redundant.
+
+Regards,
+CK
+
+> +		drm_err(mtk_dp->drm_dev,
+> +			"Can't enable bridge as nothing is plugged
+> in\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
 
