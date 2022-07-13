@@ -2,81 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A34465738D9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 16:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D365738F4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 16:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233865AbiGMOaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 10:30:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36690 "EHLO
+        id S234201AbiGMOew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 10:34:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234827AbiGMOaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 10:30:11 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F26F357D7
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:30:10 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id v16so15735521wrd.13
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:30:10 -0700 (PDT)
+        with ESMTP id S231628AbiGMOev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 10:34:51 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE410357CF
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:34:50 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id q5-20020a17090a304500b001efcc885cc4so3939661pjl.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:34:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Vr7v5OA4OBuFn4xzfn7voat0f0rlZBh//6y8zR8UEcQ=;
-        b=LtGaDNd02/pBkiCw4rEu+Gg/LmhFDe5JyvbuCpuQz0R0RLL0zwI0IqV7m1KqKHGYq9
-         DHg6KR2gh+D3zbOwOr8Gp4JNhU8p+8BGBrC+wTGOmFpYgLnhJH/66d3djS58eqCVb2gY
-         iW1k/s2orJDLs2s4pQAox0fl6ytbUDHeGeL0f/TY5e9qA/H51tBJyzmmqffQumTA2QjX
-         aOXkQruEVyHiK+R8eSBULNtiyVZf7VrP7/iwFyim1BZrEmJEJwRpe22Nzg58P7Lgc/S9
-         3I3QC0vtUctDypg5meE2/CO8+SHH6ixssB0L6vseZscCk0ly/6meNrkXc3kG1oOU9k6Y
-         +S7w==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2EojiiqnaR1Vv9soFAihFtCV+EF4ew9tNYkxtmv1eok=;
+        b=yF01ur2I88yDa32mCYv4eenhFmUAzs9Y5pELgNgyAZI7lHRy1yd0lpdl31fiViswHU
+         ZouLyEyPQuRqG0TRkC6nao2r/n4qG0AgC7d+Elq711xNGqlF/G8rfVi5ZgJG3/wREA8j
+         W+36NFgQrPayuMmnK816i+J/8qmDDT3XlgpnyF5nL7JxYsPwQQPAgGYmZR6vOQvVDlwX
+         mD3nqeQvVtlLcETnbUsYmbklEMBnyPmH/reXSf/BZFpCXZUwru/Onf5sR72wKcr0w+Ns
+         KhKLfyc8x7LH+YNyszuaiO83rF71CeA5/oQl256IQq/c/MQY7mg+UzdinOfCj2x9IoNH
+         ax3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Vr7v5OA4OBuFn4xzfn7voat0f0rlZBh//6y8zR8UEcQ=;
-        b=2k3Hm3Astq/B2S9aggCt7J3wwVcPwpzXO7WucrFlzQ5r93+sYQ3nJaWhEM+9ig++f0
-         tU+dzh3faGm9dtNSeiHjavFEM4gDvLztG6+P7wNaU81H8iOYVWHIodQBjuSQ+oxE70aF
-         1R7xTRdOEFFiXFx4d/RXFyioTrAxzk8WABRCP0kddz1EbQACL35BDWkhrpmkC/TI19J2
-         CILZbHHXLCdekMMp8JMEFWTo64vx6qBZKREJwvMnbRk87QrqT3lmYnmt98Ji4MY7Ni+O
-         EafciyQeepdrCc1rYjOMVkxYSvZHpW8U2JBOs7I6jFxKkgG31U8/TBRQen2RHw/guYfD
-         MU7A==
-X-Gm-Message-State: AJIora+iGtnHNeYMEEI2cCOoGAsw3tCCjxi6CPjQ3b+QQYqxO6EHdb26
-        lvV44XWvCItFTYulJ9FDrPlK9g==
-X-Google-Smtp-Source: AGRyM1ucGrsnIOn+8xcBsGNx/uvSJl2zH2BOQbgbn2UCEBQxGPft+r17LbuIlwfpB09Pv8tj1i3Gog==
-X-Received: by 2002:adf:fb84:0:b0:21a:10f2:1661 with SMTP id a4-20020adffb84000000b0021a10f21661mr3629310wrr.2.1657722609075;
-        Wed, 13 Jul 2022 07:30:09 -0700 (PDT)
-Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
-        by smtp.gmail.com with ESMTPSA id f11-20020adfe90b000000b0021d7b41255esm11100425wrm.98.2022.07.13.07.30.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Jul 2022 07:30:08 -0700 (PDT)
-Message-ID: <7999fec2-847a-86ce-ed78-d2a9008bf654@sifive.com>
-Date:   Wed, 13 Jul 2022 15:30:07 +0100
+        bh=2EojiiqnaR1Vv9soFAihFtCV+EF4ew9tNYkxtmv1eok=;
+        b=HMuoJxbTltVSj5yXREHN87C8JfxmRoTlOSNEhDbxYGiBM1zmNsOb5ImGjndIaz3fnK
+         m8yoDzZwcmOy86aPY2yIe6o4qVSFu4Bg5H+LbCnMijl5JCPP7eT20qo2Ko8JO0Ewq3PM
+         nO8vbD6r91wQ1GrnCwVJ6d43rob5jz/hiwOStkdgQM19/Cdrhq1s1ft1d0MZLgsLDoAl
+         XsvUYgRAiHY4JZl+spJemO+oAmguRnyPdfXzSi9yfsQZXGaNULZ28ih/ClMK0qoBzAOL
+         exCSrO8mKOeAZxE7/ApgUznUr3HuovVTUJ3hwjNC8En8A7rBmB3ofuYiDNYAAjZ6dz13
+         8irQ==
+X-Gm-Message-State: AJIora/1r8GFXtJwIdKiuqg0xiNkMMB0rJR+JeI9s6losnjBHGs7+a1j
+        1B6swzIm3j3ZkBqkhNl/QLzs
+X-Google-Smtp-Source: AGRyM1t+5vdlca/j5x85wtZOkOXyR6Zw1Jdx14KpG1VbIXcgYR/E5OG0uRpCCrwYLmM4Mrqv86DE+Q==
+X-Received: by 2002:a17:903:32c3:b0:16b:fbc3:3269 with SMTP id i3-20020a17090332c300b0016bfbc33269mr3808418plr.117.1657722890168;
+        Wed, 13 Jul 2022 07:34:50 -0700 (PDT)
+Received: from localhost.localdomain ([117.248.1.226])
+        by smtp.gmail.com with ESMTPSA id p14-20020a170902780e00b001620960f1dfsm8977872pll.198.2022.07.13.07.34.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jul 2022 07:34:49 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Steve Capper <Steve.Capper@arm.com>
+Subject: [PATCH] arm64: dts: qcom: sc8280xp: Fix PMU interrupt
+Date:   Wed, 13 Jul 2022 20:04:29 +0530
+Message-Id: <20220713143429.22624-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 3/7] pwm: dwc: add of/platform support
-Content-Language: en-GB
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Rob Herring <robh@kernel.org>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
-        William Salmon <william.salmon@sifive.com>,
-        Adnan Chowdhury <adnan.chowdhury@sifive.com>
-References: <20220712100113.569042-1-ben.dooks@sifive.com>
- <20220712100113.569042-4-ben.dooks@sifive.com>
- <20220712221715.GT1823936-robh@kernel.org>
- <feaacf44-f9a8-b892-d8ba-8a396b49d56b@sifive.com>
- <20220713135230.gjbd3v6iih2uicpu@pengutronix.de>
-From:   Ben Dooks <ben.dooks@sifive.com>
-In-Reply-To: <20220713135230.gjbd3v6iih2uicpu@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,38 +70,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2022 14:52, Uwe Kleine-König wrote:
-> On Wed, Jul 13, 2022 at 12:56:55PM +0100, Ben Dooks wrote:
->> On 12/07/2022 23:17, Rob Herring wrote:
->>> On Tue, Jul 12, 2022 at 11:01:09AM +0100, Ben Dooks wrote:
->>>> The dwc pwm controller can be used in non-PCI systems, so allow
->>>> either platform or OF based probing.
->>>>
->>>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+PPI interrupt should be 7 for the PMU.
 
-[snip]
+Cc: Johan Hovold <johan+linaro@kernel.org>
+Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+Reported-by: Steve Capper <Steve.Capper@arm.com>
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->>>> +properties:
->>>> +  "#pwm-cells":
->>>> +    description: |
->>>> +      See pwm.yaml in this directory for a description of the cells format.
->>>
->>> pwm.yaml doesn't define how many cells. You need to. And you don't need
->>> generic descriptions.
->>
->>   "#pwm-cells":
->>      const: 1
->>
->> should be sufficient then?
-> 
-> I would expect a value of (at least) 2 or (better) 3.
-
-OOPS, forgot the phandle.
-
-I will have to check if we have any support yet for dealing
-with any of the pwm flags yet.
-
-> Best regards
-> Uwe
-> 
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index 268ab423577a..2d7823cb783c 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -477,7 +477,7 @@ memory@80000000 {
+ 
+ 	pmu {
+ 		compatible = "arm,armv8-pmuv3";
+-		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ 
+ 	psci {
+-- 
+2.25.1
 
