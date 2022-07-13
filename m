@@ -2,71 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2106572E66
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 08:48:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B644B572E70
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 08:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234283AbiGMGsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 02:48:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46280 "EHLO
+        id S229706AbiGMGvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 02:51:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234288AbiGMGsw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 02:48:52 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205D82B1A8
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 23:48:50 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id r127-20020a1c4485000000b003a2fb7c1274so178248wma.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 23:48:50 -0700 (PDT)
+        with ESMTP id S230344AbiGMGvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 02:51:51 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3BFBC48CC
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 23:51:49 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id r9so12404658ljp.9
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 23:51:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6CjzYYkj2xapcxsDDDggL035MIFSdHC3l1JLuT4VW8E=;
-        b=GkZbIJVp+OD28e4F8pwCTxhDe7DnTOdWYrLN7IepZgVQoKgR8jYtowTU9cyGpnzgWc
-         hGF2EGVqg2KDz+D5j99px35SkMSxy31YeAtfnTIgcRwWt1DkOeFIFvrsPXdocUVRglKy
-         TQF1Af7ccbVzx8/rWHmjlLyyU9EIpKppxIoB8=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=h+uct/42Q8M6Hz8PpnusIGnQ/q1XqpsJvX0E6hd4PoA=;
+        b=D5oHkdR48+vS3Om/EyDHPKxoqu2leWD6lqgxKuWpJonXrwEj85+HDq9Kd3mmAXrwDg
+         FnFY6PQGFjWsTAkf6+5cphIlxrymVJr+t0eg6+gY9n/3mhNrvSRuiQg2cs+mS8SVn9OQ
+         wcOG2PEl3kJb1HdqlTEKBhtTIxezc7Ub2fTXUsam850ynui27elsUyPG7u1Yc5LdWSUN
+         Vwg9tV5mF5XctRpgN7sAGsy59Harx9nY8l6IjAsvfHpIag/AqA3F+Pe7qd1ohOeXbvrH
+         NaRFoIj0MNcf9O6zViNH/Kvxn63AhnSfvK3EFbWWQAO1y4OHRo/UlAbCOt0NkWACrt/b
+         l3JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6CjzYYkj2xapcxsDDDggL035MIFSdHC3l1JLuT4VW8E=;
-        b=I9fKiB0cs6LXf5YYhxOFpu11jaAQR/RSuk74oQAX1IqHfwk+vQjrDjwF2aRyC6iSzh
-         Nhi9iENzlEjWpVCwfGbLlmbdOmmViuc6Qg9XiVTm1H5206R8I/7eNjibrFgEbZvYux7F
-         Yj6V6qxyM26JLfAP+zXQUEDuGvh/c2G5xL9CbtFMnP4hizkcG4/KNo7VznHlikLrsFnY
-         tLwIdL28j7Bg0ZXjGpO+KVBr+FApleYVkWr+3VUYjZgNAH5/zRd4IsuMbko4Lyf8KUzJ
-         abbTqqN2B1gJCPxRMDtgsQwIi8g+YNPKEDgqP3qMO1hYgx2i2taKVtC3C/BnpuW8LCKH
-         yc5A==
-X-Gm-Message-State: AJIora9eNCdgTOG+4RA8yYoyxKovbaRGtvKk2BiOlPvgl5SZCInNeICO
-        8gT5GcGYdQoaWonHoqtkD8uJtQ==
-X-Google-Smtp-Source: AGRyM1tCqkeFqv3bxkdwlpJaliNQsq7+cpPl4uF6hn89LfZJQPmZGQiEm8+wpwIFx3iKAa+DHgIwQQ==
-X-Received: by 2002:a05:600c:3641:b0:3a2:df38:7ec8 with SMTP id y1-20020a05600c364100b003a2df387ec8mr1840095wmq.34.1657694928629;
-        Tue, 12 Jul 2022 23:48:48 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-53-214.cust.vodafonedsl.it. [188.217.53.214])
-        by smtp.gmail.com with ESMTPSA id b10-20020a5d634a000000b0021b89f8662esm10359503wrw.13.2022.07.12.23.48.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jul 2022 23:48:48 -0700 (PDT)
-Date:   Wed, 13 Jul 2022 08:48:45 +0200
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-media@vger.kernel.org, quentin.schulz@theobroma-systems.com,
-        Daniel Scally <djrscally@gmail.com>,
-        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 5/6] media: dt-bindings: ov5693: document YAML binding
-Message-ID: <20220713064845.GA1386778@tom-ThinkPad-T14s-Gen-2i>
-References: <20220712163349.1308540-1-tommaso.merciai@amarulasolutions.com>
- <20220712163349.1308540-6-tommaso.merciai@amarulasolutions.com>
- <1657664975.862137.2476655.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=h+uct/42Q8M6Hz8PpnusIGnQ/q1XqpsJvX0E6hd4PoA=;
+        b=ihV6a7nKgMQkEqPmY1DSgCFlr3crrP0e7Mv0F30G5pc7+e602A0qBFOZJkx+oxJaoy
+         n1peBDhJU43CgpIvO44mdREwNdAaFebCs5J+bVs/0fTUhwT68L5JpuzlkKnSsqJqwdYC
+         y5LGO8KG7AkEyZ0GJxJfcCepKmkMUB8ghw+HX+hsOD0qc0kbzDuKFRZprOR8Nkh2Yk2z
+         1dX8gXG7jfvFbqeXtpzKRnoq7trXM23Ct9dUBynaBhnqedbt5K0fy0/hw+fOArRtdFdv
+         cxL7MlqUaWEZquNz8mgGYqyoXWebF0PYyhKdD7k0BFw971OxE4SNsiEY6WLkf4T5lxdq
+         4qEg==
+X-Gm-Message-State: AJIora+E7Ji3oB4qJPdbCNVJjVSQw1XPedEbKfm9RkS2dMMENmYUImw0
+        I+w6VLSZWw8hiCiKVWXU9b7j8Q==
+X-Google-Smtp-Source: AGRyM1uaJ4J3MO1KmIouHLS+USEPJTlTXorStkT7p9tkjJEXg7tnQjXa8+W5Dr/66Y5NkqHYYbDyXA==
+X-Received: by 2002:a2e:b889:0:b0:25d:38ce:976 with SMTP id r9-20020a2eb889000000b0025d38ce0976mr943413ljp.357.1657695108134;
+        Tue, 12 Jul 2022 23:51:48 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id v1-20020a05651203a100b0047f7419de4asm2625735lfp.180.2022.07.12.23.51.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jul 2022 23:51:47 -0700 (PDT)
+Message-ID: <3184e602-33ea-14fb-485c-5f54d020cd8b@linaro.org>
+Date:   Wed, 13 Jul 2022 08:51:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1657664975.862137.2476655.nullmailer@robh.at.kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 0/5] Add support for Xiaomi Poco F1 EBBG variant
+Content-Language: en-US
+To:     Joel Selvaraj <jo@jsfamily.in>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <MN2PR02MB702415D7BF12B7B7A41B2D38D9829@MN2PR02MB7024.namprd02.prod.outlook.com>
+ <b1829902-c271-a677-f423-99dbc85cba89@linaro.org>
+ <BY5PR02MB700920503721C0C490BDAE2FD9899@BY5PR02MB7009.namprd02.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <BY5PR02MB700920503721C0C490BDAE2FD9899@BY5PR02MB7009.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,93 +79,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 13/07/2022 06:35, Joel Selvaraj wrote:
+> Hi Krzysztof Kozlowski
+> 
+> On 12/07/22 18:57, Krzysztof Kozlowski wrote:
+>> None of your patches reached recipients and mailing lists.
+> 
+> Thanks for letting me know. I didnt notice. It was shown in patchwork
+> website and I thought it reached the mailing list too. I have RESEND the
+> patches. This time, the cover letter (0/5) seems to be in a different
+> thread and the rest of the patches (1 to 5/5) seems to be in a different
+> thread. But all of them reached the mailing list though. I am not sure
+> what is causing the issue though. Can this accepted? or do I need to
+> resend them again?
 
-On Tue, Jul 12, 2022 at 04:29:35PM -0600, Rob Herring wrote:
-> On Tue, 12 Jul 2022 18:33:48 +0200, Tommaso Merciai wrote:
-> > Add documentation of device tree in YAML schema for the OV5693
-> > CMOS image sensor from Omnivision
-> > 
-> > Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> > Changes since v1:
-> >  - Fix allOf position as suggested by Krzysztof
-> >  - Remove port description as suggested by Krzysztof
-> >  - Fix EOF as suggested by Krzysztof
-> > 
-> > Changes since v2:
-> >  - Fix commit body as suggested by Krzysztof
-> > 
-> > Changes since v3:
-> >  - Add reviewed-by tags, suggested by Jacopo, Krzysztof
-> > 
-> > Changes since v4:
-> >  - Remove wrong Sakari reviewed-by tag, suggested by Krzysztof, Sakari
-> > 
-> > Changes since v5:
-> >  - Remove dovdd-supply, avdd-supply, dvdd-supply from required properties
-> > as suggested by Jacopo
-> > 
-> >  .../bindings/media/i2c/ovti,ov5693.yaml       | 103 ++++++++++++++++++
-> >  MAINTAINERS                                   |   1 +
-> >  2 files changed, 104 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb: camera@36: Unevaluated properties are not allowed ('port' was unexpected)
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+I saw your patches but not connected to cover letter. As you said, lore
+also misses them from cover letter:
+https://lore.kernel.org/all/BY5PR02MB700954C6003BC5D5B6AAB1B7D9899@BY5PR02MB7009.namprd02.prod.outlook.com/
+but they are on the lists:
+https://lore.kernel.org/all/BY5PR02MB7009A49AD394747ACB80F746D9899@BY5PR02MB7009.namprd02.prod.outlook.com/
 
-I run:
+It's fine, but you should fix your setup. You can use whatever tools you
+prefer as long as you create proper result. The easiest is however to
+use git format-patch --cover-letter -5 && git send-email ....
+(and useful also git branch --edit-description && git git format-patch
+--cover-letter --cover-from-description=subject).
 
-pip3 install dtschema --upgrade
-
-Then I check .yaml using:
-
-make DT_CHECKER_FLAGS=-m dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-DTEX    Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dts
-LINT    Documentation/devicetree/bindings
-CHKDT   Documentation/devicetree/bindings/processed-schema.json
-SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-DTC     Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb
-CHECK   Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb
-
-No error on my side. I'm missing something?
-Let me know.
-
-Thanks,
-Tommaso
-
--- 
-Tommaso Merciai
-Embedded Linux Engineer
-tommaso.merciai@amarulasolutions.com
-__________________________________
-
-Amarula Solutions SRL
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-T. +39 042 243 5310
-info@amarulasolutions.com
-www.amarulasolutions.com
+Best regards,
+Krzysztof
