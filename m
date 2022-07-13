@@ -2,39 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA14A5732E4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 11:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4562E573349
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 11:46:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235829AbiGMJfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 05:35:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53264 "EHLO
+        id S234850AbiGMJqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 05:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235705AbiGMJfi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 05:35:38 -0400
+        with ESMTP id S235697AbiGMJqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 05:46:06 -0400
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5E131380;
-        Wed, 13 Jul 2022 02:33:52 -0700 (PDT)
-X-UUID: dc83719dc6aa49389a9f4ee898ac56b0-20220713
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197E5F90EC;
+        Wed, 13 Jul 2022 02:45:48 -0700 (PDT)
+X-UUID: fd6ec3c671494f468202f516ad68e594-20220713
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:4740321d-ea39-4deb-848a-676b3c1d834d,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:06845fd7-5d6d-4eaf-a635-828a3ee48b7c,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: dc83719dc6aa49389a9f4ee898ac56b0-20220713
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+X-CID-O-INFO: VERSION:1.1.8,REQID:6c925a24-eda3-476d-80fe-f49c592c48eb,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:51
+X-CID-INFO: VERSION:1.1.8,REQID:6c925a24-eda3-476d-80fe-f49c592c48eb,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:51
+X-CID-META: VersionHash:0f94e32,CLOUDID:cf64dd32-b9e4-42b8-b28a-6364427c76bb,C
+        OID:0974ccde4ec2,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: fd6ec3c671494f468202f516ad68e594-20220713
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
         (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 630642156; Wed, 13 Jul 2022 17:33:45 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1170456231; Wed, 13 Jul 2022 17:45:43 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
  mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 13 Jul 2022 17:33:44 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ Wed, 13 Jul 2022 17:45:41 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 13 Jul 2022 17:33:44 +0800
-Message-ID: <039bc647aaf4f0b744e40164ff6eae2032345c1a.camel@mediatek.com>
+ Transport; Wed, 13 Jul 2022 17:45:41 +0800
+Message-ID: <1dc880e7b5b6a28911a0c7acb29fa423ddb10da0.camel@mediatek.com>
 Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
  driver
 From:   CK Hu <ck.hu@mediatek.com>
@@ -52,7 +55,7 @@ CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-fbdev@vger.kernel.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 13 Jul 2022 17:33:43 +0800
+Date:   Wed, 13 Jul 2022 17:45:41 +0800
 In-Reply-To: <20220712111223.13080-6-rex-bc.chen@mediatek.com>
 References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
          <20220712111223.13080-6-rex-bc.chen@mediatek.com>
@@ -102,19 +105,94 @@ On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
 [snip]
 
 > +
-> +static void mtk_dp_aux_fill_write_fifo(struct mtk_dp *mtk_dp, u8
-> *buf,
-> +				       size_t length)
+> +static void mtk_dp_set_msa(struct mtk_dp *mtk_dp)
 > +{
-> +	mtk_dp_bulk_16bit_write(mtk_dp, MTK_DP_AUX_P0_3708, buf,
-> length);
+> +	struct drm_display_mode mode;
+> +	struct mtk_dp_timings *timings = &mtk_dp->info.timings;
+> +
+> +	drm_display_mode_from_videomode(&timings->vm, &mode);
+> +
+> +	/* horizontal */
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3010,
+> +			   mode.htotal, HTOTAL_SW_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3018,
+> +			   timings->vm.hsync_len + timings-
+> >vm.hback_porch,
+> +			   HSTART_SW_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3028,
+> +			   timings->vm.hsync_len <<
+> HSW_SW_DP_ENC0_P0_SHIFT,
 
-mtk_dp_aux_fill_write_fifo() directly call mtk_dp_bulk_16bit_write(),
-so I think we could just keep one of them and drop another one.
+Directly use a number for shift because we know it's a shift, so it's
+not necessary to define a symbol for shift.
+
+> +			   HSW_SW_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3028,
+> +			   0, HSP_SW_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3020,
+> +			   timings->vm.hactive,
+> HWIDTH_SW_DP_ENC0_P0_MASK);
+> +
+> +	/* vertical */
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3014,
+> +			   mode.vtotal, VTOTAL_SW_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_301C,
+> +			   timings->vm.vsync_len + timings-
+> >vm.vback_porch,
+> +			   VSTART_SW_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_302C,
+> +			   timings->vm.vsync_len <<
+> VSW_SW_DP_ENC0_P0_SHIFT,
+
+Ditto.
 
 Regards,
 CK
 
+> +			   VSW_SW_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_302C,
+> +			   0, VSP_SW_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3024,
+> +			   timings->vm.vactive,
+> VHEIGHT_SW_DP_ENC0_P0_MASK);
+> +
+> +	/* horizontal */
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3064,
+> +			   timings->vm.hactive,
+> HDE_NUM_LAST_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3154,
+> +			   mode.htotal, PGEN_HTOTAL_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3158,
+> +			   timings->vm.hfront_porch,
+> +			   PGEN_HSYNC_RISING_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_315C,
+> +			   timings->vm.hsync_len,
+> +			   PGEN_HSYNC_PULSE_WIDTH_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3160,
+> +			   timings->vm.hback_porch + timings-
+> >vm.hsync_len,
+> +			   PGEN_HFDE_START_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3164,
+> +			   timings->vm.hactive,
+> +			   PGEN_HFDE_ACTIVE_WIDTH_DP_ENC0_P0_MASK);
+> +
+> +	/* vertical */
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3168,
+> +			   mode.vtotal,
+> +			   PGEN_VTOTAL_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_316C,
+> +			   timings->vm.vfront_porch,
+> +			   PGEN_VSYNC_RISING_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3170,
+> +			   timings->vm.vsync_len,
+> +			   PGEN_VSYNC_PULSE_WIDTH_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3174,
+> +			   timings->vm.vback_porch + timings-
+> >vm.vsync_len,
+> +			   PGEN_VFDE_START_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3178,
+> +			   timings->vm.vactive,
+> +			   PGEN_VFDE_ACTIVE_WIDTH_DP_ENC0_P0_MASK);
 > +}
 > +
 
