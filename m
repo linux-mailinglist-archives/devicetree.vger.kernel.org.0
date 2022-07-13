@@ -2,107 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B64E7573742
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 15:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 745915735F4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 14:06:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235820AbiGMNUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 09:20:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43408 "EHLO
+        id S233523AbiGMMGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 08:06:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234608AbiGMNTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 09:19:50 -0400
-X-Greylist: delayed 3599 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 13 Jul 2022 06:19:28 PDT
-Received: from 14.mo550.mail-out.ovh.net (14.mo550.mail-out.ovh.net [178.32.97.215])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB79C5F5A
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 06:19:28 -0700 (PDT)
-Received: from player792.ha.ovh.net (unknown [10.109.146.143])
-        by mo550.mail-out.ovh.net (Postfix) with ESMTP id 645F523E11
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 12:00:19 +0000 (UTC)
-Received: from RCM-web6.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player792.ha.ovh.net (Postfix) with ESMTPSA id 19EB52C978016;
-        Wed, 13 Jul 2022 12:00:07 +0000 (UTC)
+        with ESMTP id S230496AbiGMMGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 08:06:13 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7A91034F3
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 05:06:12 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id l68so6379244wml.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 05:06:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=cFzXm7FkqFEGmY7ZvWygg5JPqy1rrXb63f/H3RTjw5Q=;
+        b=juOeqYB/IHvxzcxziLjgU4xWOupolDlaODbTlG6FvpPD3xDBnH0GQxGui2SIml5Rcl
+         igb32w0V9g54LnYLDQoCdCtug1jYv7EUF/EVxJkNMJnfbuBo0HrjaMnAfN+guMMPv+jG
+         SqCmppCluiwhKlLwgnPHlHTwkHM5ydWXuW6hPEg0FARANUUg+4WBiWsNBI3hFsmlVUHx
+         cpM8opBxPgVV5erzkvtlEcmKHB2LA2qA6FhU0Fbtpbzg984cTBduJhqTM4qCNOaK6Z+X
+         dIztYOOWn0ke76zCnIFV7TkAhxeOfkB0lIxAAQqqZ7WCIQDcZC+0OF0Ap7TWiCL7Zgox
+         U1WA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=cFzXm7FkqFEGmY7ZvWygg5JPqy1rrXb63f/H3RTjw5Q=;
+        b=60fpHQsGdFWu2a4NeOsMzG2FQMxMbXezEZh0xAtZ8O6Mw7yihVwhMTbHoQzVWnMRTt
+         8b77lxYR034YgEJxOam5qrvFtzkelj66CD+b0+oYVoUj1/p2JCgjQyTl7qvQldDeMNDn
+         smg4OAvaYtpUIsFrRyWRkI/s0hFuLw3E1CRL7C4rnqhOpUstFhDmprF6nvjK2IPjqse4
+         TjzaMFdyJXCQ+fLJYfxMfaR5sK1ZBQUTCA2b1MaxG8uerM4b0QmrQqswtpeW91uCxTod
+         7FJkm8+2xFwIb4JXwjakEj7g9aoHDiWTdzTBzdrEXKV5jcRMyQnlFesva48bf9y3HghZ
+         /TiQ==
+X-Gm-Message-State: AJIora/RcMA/77xzwHe1dScJB9LrVHIoy660Ff86++xaCXVOLeRtSviF
+        0TyiCZAZIoUO2rZvk9eQ/z5f3Q==
+X-Google-Smtp-Source: AGRyM1swYzam1sNiQvAydj9MjXOvIWnRc8kJtUr8l9k3XC1v6bhQu6SWwAo5FoeVNHcD2VJMg8Ek7Q==
+X-Received: by 2002:a05:600c:4e16:b0:3a2:ef34:dbe3 with SMTP id b22-20020a05600c4e1600b003a2ef34dbe3mr3305655wmq.71.1657713971324;
+        Wed, 13 Jul 2022 05:06:11 -0700 (PDT)
+Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id z8-20020a1c4c08000000b003942a244f40sm1932870wmf.25.2022.07.13.05.06.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Jul 2022 05:06:11 -0700 (PDT)
+Message-ID: <32f8770c-2440-742a-0282-0cfc437b27df@sifive.com>
+Date:   Wed, 13 Jul 2022 13:06:09 +0100
 MIME-Version: 1.0
-Date:   Wed, 13 Jul 2022 14:00:06 +0200
-From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        William Zhang <william.zhang@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        kursad.oney@broadcom.com, anand.gore@broadcom.com,
-        dan.beygelman@broadcom.com,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        joel.peshkin@broadcom.com,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 3/7] pwm: dwc: add of/platform support
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Greentime Hu <greentime.hu@sifive.com>,
+        u.kleine-koenig@pengutronix.de,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 3/3] arm64: dts: bcmbca: update bcm4808 board dts file
-In-Reply-To: <7cf0e9b7-4316-1a23-3484-03e5f0491393@linaro.org>
-References: <20220712021144.7068-1-william.zhang@broadcom.com>
- <20220712021144.7068-4-william.zhang@broadcom.com>
- <d93e55fa-3359-2609-aad5-c80eca78f380@linaro.org>
- <900ac3ed-a77c-3cc0-f5ab-c45267a1a4ba@gmail.com>
- <b350020eee4de0caf36f88f299e61930@milecki.pl>
- <7cf0e9b7-4316-1a23-3484-03e5f0491393@linaro.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <b653ba68e070d00853367de9344abd81@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 194.187.74.233
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 12957700555834698715
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudejjedggeeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtkehjtddtreejnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeevjefhffffveeludejfedtvdfftdekgffghfegieeliedvfeeigfejteejjeekfeenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehplhgrhigvrhejledvrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehhedt
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-pwm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
+References: <20220712100113.569042-1-ben.dooks@sifive.com>
+ <20220712100113.569042-4-ben.dooks@sifive.com>
+ <1657635972.108769.1805849.nullmailer@robh.at.kernel.org>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <1657635972.108769.1805849.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-07-13 13:09, Krzysztof Kozlowski wrote:
-> On 13/07/2022 12:55, Rafał Miłecki wrote:
->> On 2022-07-12 17:36, Florian Fainelli wrote:
->>> On 7/12/22 00:47, Krzysztof Kozlowski wrote:
->>>> On 12/07/2022 04:11, William Zhang wrote:
->>>>> Update compatible string based on the new bcmbca binding rule
->>>>> for BCM4908 famliy based boards
->>>> 
->>>> Typo - family
->>>> 
->>>> Please explain why breaking the ABI (and users of these DTS_ is
->>>> acceptable.
->>> 
->>> This will be largely targeted towards Rafal who supports these kinds
->>> of devices with an upstream kernel. My understanding is that this is
->>> OK because we will always ship a DTB matching the Linux kernel, and I
->>> believe this is true for both the way that William and his group
->>> support these devices, as well as how OpenWrt, buildroot or other
->>> build systems envision to support these devices.
->>> 
->>> Rafal, does that sound about right?
->> 
->> Right - in all cases I'm aware of - Linux gets shipped with DTB files.
->> So such change won't actually break anything in real world.
+On 12/07/2022 15:26, Rob Herring wrote:
+> On Tue, 12 Jul 2022 11:01:09 +0100, Ben Dooks wrote:
+>> The dwc pwm controller can be used in non-PCI systems, so allow
+>> either platform or OF based probing.
+>>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>> ---
+>>   .../devicetree/bindings/pwm/pwm-synposys.yaml | 40 ++++++++++++++
+>>   drivers/pwm/Kconfig                           |  5 +-
+>>   drivers/pwm/pwm-dwc.c                         | 53 +++++++++++++++++++
+>>   3 files changed, 96 insertions(+), 2 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
+>>
 > 
-> We don't really talk here about Linux, but other projects, like
-> bootloaders or *BSD...
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Right, let me more specific.
+Is the following equivalent:
 
-BCM4908 uses pkgtb firmware images. Those images contain:
-1. bootfs (atf, u-boot, kernel, DTB files)
-2. rootfs (filesystem)
+> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/snps,pwm.yaml 
 
-So when you flash BCM4908 firmware it always contains:
-1. U-Boot and DTB for it
-2. Kernel and DTB for it
-(+ more stuff)
 
-There isn't any on-flash DTB file that doesn't get updated when flashing
-a new image.
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/pwm/pwm-synposys.yaml:11:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
+> ./Documentation/devicetree/bindings/pwm/pwm-synposys.yaml:31:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> 
+> dtschema/dtc warnings/errors:
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+
+Whoops, turns out I hadn't installed yamllint.
+
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
+
