@@ -2,86 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85D955738D4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 16:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A34465738D9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 16:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236451AbiGMO3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 10:29:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35662 "EHLO
+        id S233865AbiGMOaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 10:30:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236321AbiGMO3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 10:29:03 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD6133E0A
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:29:02 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id q7so13668884lji.12
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:29:01 -0700 (PDT)
+        with ESMTP id S234827AbiGMOaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 10:30:11 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F26F357D7
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:30:10 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id v16so15735521wrd.13
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:30:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=sifive.com; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tkoow3fvqNobh0Z0Fm1iQlmk1WvKd33czLctPY8NUUk=;
-        b=BtBdnKWQ8M+XWyv7RZn7ZYmpSJhSucnf+p6MM/o2UIAAjxfbJQwo5jChdZyQF/qieO
-         L+jWLYPTyPQcPgEeo3WTE7NaRej5JwBqEyGykzbyRI+wg4SVUphX/f+RHPjtq90t31qm
-         5Ph8PCuWxltnqU6BaiIsEzmTQjpvM8RJfImviIsxpQNK69PPJSGKIRMd9d1ZTPLwIZ5s
-         CgelLDIiVlBTYo71b+JEm5SEk8llgpa1SDpRL+sfzEcAnjH35LWrm2Di8YxRHlbRJYbS
-         r5V8uxN2ffERsob0DJL/JWFBySFgvzhQ0Ou36h+6nRdmRNpDB9nxWiAX+7WLOzWFI8XX
-         Rdag==
+        bh=Vr7v5OA4OBuFn4xzfn7voat0f0rlZBh//6y8zR8UEcQ=;
+        b=LtGaDNd02/pBkiCw4rEu+Gg/LmhFDe5JyvbuCpuQz0R0RLL0zwI0IqV7m1KqKHGYq9
+         DHg6KR2gh+D3zbOwOr8Gp4JNhU8p+8BGBrC+wTGOmFpYgLnhJH/66d3djS58eqCVb2gY
+         iW1k/s2orJDLs2s4pQAox0fl6ytbUDHeGeL0f/TY5e9qA/H51tBJyzmmqffQumTA2QjX
+         aOXkQruEVyHiK+R8eSBULNtiyVZf7VrP7/iwFyim1BZrEmJEJwRpe22Nzg58P7Lgc/S9
+         3I3QC0vtUctDypg5meE2/CO8+SHH6ixssB0L6vseZscCk0ly/6meNrkXc3kG1oOU9k6Y
+         +S7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=tkoow3fvqNobh0Z0Fm1iQlmk1WvKd33czLctPY8NUUk=;
-        b=geSWmEjT1Dc4swd/xEygssK67TZC1zCmNy94F2NhOINpMVKMEqIC1IZlfqmDjNdxx3
-         FHx+4qtlihxjnYh7BSBhl4KIG6vaAOgqoanK3UpdlN7/+CU0bLT77x38Mi8Jj/XEDVIf
-         91LG1NPbaWxFPAZowNkI1dH+wX5n+U/9rne/SLvF4VcvqhLU6vP0u0E/1baFB4D74wBs
-         87J633fHTMVNLOWEzUiRNToBqq9KfEdQWDPSGQBqUVeztIi9bo+7snUHNwmNLNSM7TVe
-         GCkQ22ytPGXO7YCvI02mcPgpbusNMetzzyuOvppDvAeVCAs7pFJAN00WgLMHEDs7WV5y
-         bI0g==
-X-Gm-Message-State: AJIora81ASznlz7C+zjEReK1/CCdwNVVXCib1n64okvQnKid9NzeuRiJ
-        tYWHq+sSI2f2UadzEEd8aPehng==
-X-Google-Smtp-Source: AGRyM1s0wCRklqZfZDg0CtJDPtzkFa3x9a1E5zKhkT8PO5l+kIj3kSsvlqE3LG/qbIaA230cykFwpA==
-X-Received: by 2002:a2e:557:0:b0:25d:466a:31b8 with SMTP id 84-20020a2e0557000000b0025d466a31b8mr1874204ljf.243.1657722540371;
-        Wed, 13 Jul 2022 07:29:00 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id j13-20020a056512344d00b00489de206812sm1906840lfr.151.2022.07.13.07.28.57
+        bh=Vr7v5OA4OBuFn4xzfn7voat0f0rlZBh//6y8zR8UEcQ=;
+        b=2k3Hm3Astq/B2S9aggCt7J3wwVcPwpzXO7WucrFlzQ5r93+sYQ3nJaWhEM+9ig++f0
+         tU+dzh3faGm9dtNSeiHjavFEM4gDvLztG6+P7wNaU81H8iOYVWHIodQBjuSQ+oxE70aF
+         1R7xTRdOEFFiXFx4d/RXFyioTrAxzk8WABRCP0kddz1EbQACL35BDWkhrpmkC/TI19J2
+         CILZbHHXLCdekMMp8JMEFWTo64vx6qBZKREJwvMnbRk87QrqT3lmYnmt98Ji4MY7Ni+O
+         EafciyQeepdrCc1rYjOMVkxYSvZHpW8U2JBOs7I6jFxKkgG31U8/TBRQen2RHw/guYfD
+         MU7A==
+X-Gm-Message-State: AJIora+iGtnHNeYMEEI2cCOoGAsw3tCCjxi6CPjQ3b+QQYqxO6EHdb26
+        lvV44XWvCItFTYulJ9FDrPlK9g==
+X-Google-Smtp-Source: AGRyM1ucGrsnIOn+8xcBsGNx/uvSJl2zH2BOQbgbn2UCEBQxGPft+r17LbuIlwfpB09Pv8tj1i3Gog==
+X-Received: by 2002:adf:fb84:0:b0:21a:10f2:1661 with SMTP id a4-20020adffb84000000b0021a10f21661mr3629310wrr.2.1657722609075;
+        Wed, 13 Jul 2022 07:30:09 -0700 (PDT)
+Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id f11-20020adfe90b000000b0021d7b41255esm11100425wrm.98.2022.07.13.07.30.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Jul 2022 07:28:59 -0700 (PDT)
-Message-ID: <d8bc7a14-a9c5-4d34-997a-48a8d27c5edd@linaro.org>
-Date:   Wed, 13 Jul 2022 16:28:57 +0200
+        Wed, 13 Jul 2022 07:30:08 -0700 (PDT)
+Message-ID: <7999fec2-847a-86ce-ed78-d2a9008bf654@sifive.com>
+Date:   Wed, 13 Jul 2022 15:30:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 2/2] pinctrl: nuvoton: add NPCM8XX pinctrl and GPIO
- driver
-Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 3/7] pwm: dwc: add of/platform support
+Content-Language: en-GB
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Rob Herring <robh@kernel.org>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-References: <20220710102110.39748-1-tmaimon77@gmail.com>
- <20220710102110.39748-3-tmaimon77@gmail.com>
- <95d12b72-be9d-5503-c4ea-801303bb7776@linaro.org>
- <CAP6Zq1geFJsKrdQEN5Vqjw6e8bsiArDe1tzJ-jkQm-2XT-0KyQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1geFJsKrdQEN5Vqjw6e8bsiArDe1tzJ-jkQm-2XT-0KyQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Greentime Hu <greentime.hu@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>
+References: <20220712100113.569042-1-ben.dooks@sifive.com>
+ <20220712100113.569042-4-ben.dooks@sifive.com>
+ <20220712221715.GT1823936-robh@kernel.org>
+ <feaacf44-f9a8-b892-d8ba-8a396b49d56b@sifive.com>
+ <20220713135230.gjbd3v6iih2uicpu@pengutronix.de>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <20220713135230.gjbd3v6iih2uicpu@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,31 +85,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2022 15:35, Tomer Maimon wrote:
+On 13/07/2022 14:52, Uwe Kleine-König wrote:
+> On Wed, Jul 13, 2022 at 12:56:55PM +0100, Ben Dooks wrote:
+>> On 12/07/2022 23:17, Rob Herring wrote:
+>>> On Tue, Jul 12, 2022 at 11:01:09AM +0100, Ben Dooks wrote:
+>>>> The dwc pwm controller can be used in non-PCI systems, so allow
+>>>> either platform or OF based probing.
+>>>>
+>>>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
 
->>> +static int npcm8xx_pinctrl_probe(struct platform_device *pdev)
->>> +{
->>> +     struct npcm8xx_pinctrl *pctrl;
->>> +     int ret;
->>> +
->>> +     pctrl = devm_kzalloc(&pdev->dev, sizeof(*pctrl), GFP_KERNEL);
->>> +     if (!pctrl)
->>> +             return -ENOMEM;
->>> +
->>> +     pctrl->dev = &pdev->dev;
->>> +     dev_set_drvdata(&pdev->dev, pctrl);
->>> +
->>> +     pctrl->gcr_regmap =
->>> +             syscon_regmap_lookup_by_compatible("nuvoton,npcm845-gcr");
+[snip]
+
+>>>> +properties:
+>>>> +  "#pwm-cells":
+>>>> +    description: |
+>>>> +      See pwm.yaml in this directory for a description of the cells format.
+>>>
+>>> pwm.yaml doesn't define how many cells. You need to. And you don't need
+>>> generic descriptions.
 >>
->> No. Use property. By this patchset, I would expect that you learnt from
->> previous mistakes around this. Why repeating the same trouble second time?
-> You suggest to use phandle property like nuvoton,sysgcr even that the
-> NPCM8XX pin controller driver is used only NPCM8XX SoC, so the only
-> GCR node in the NPCM8XX SoC is nuvoton,npcm845-gcr?
+>>   "#pwm-cells":
+>>      const: 1
+>>
+>> should be sufficient then?
+> 
+> I would expect a value of (at least) 2 or (better) 3.
 
-Yes. The previous case (reset driver, AFAIR) was also about driver used
-only in one SoC, wasn't it?
+OOPS, forgot the phandle.
 
-Best regards,
-Krzysztof
+I will have to check if we have any support yet for dealing
+with any of the pwm flags yet.
+
+> Best regards
+> Uwe
+> 
+
