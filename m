@@ -2,168 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A34C7573758
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 15:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1B3357376F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 15:31:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236002AbiGMN1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 09:27:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52678 "EHLO
+        id S232449AbiGMNbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 09:31:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231625AbiGMN1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 09:27:07 -0400
-Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E738E2B9;
-        Wed, 13 Jul 2022 06:27:05 -0700 (PDT)
-Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
-        by maillog.nuvoton.com (Postfix) with ESMTP id 3A8901C8121E;
-        Wed, 13 Jul 2022 21:27:05 +0800 (CST)
-Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Wed, 13 Jul
- 2022 21:27:04 +0800
-Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS03.nuvoton.com
- (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1847.3; Wed, 13 Jul
- 2022 21:27:04 +0800
-Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
- (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Wed, 13 Jul 2022 21:27:04 +0800
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id 631E163A23; Wed, 13 Jul 2022 16:27:03 +0300 (IDT)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
-        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
-        <benjaminfair@google.com>, <jic23@kernel.org>, <lars@metafoo.de>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <j.neuschaefer@gmx.net>, <zhengbin13@huawei.com>
-CC:     <openbmc@lists.ozlabs.org>, <linux-iio@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v3 2/2] iio: adc: npcm: Add NPCM8XX support
-Date:   Wed, 13 Jul 2022 16:26:40 +0300
-Message-ID: <20220713132640.215916-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220713132640.215916-1-tmaimon77@gmail.com>
-References: <20220713132640.215916-1-tmaimon77@gmail.com>
+        with ESMTP id S231352AbiGMNbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 09:31:47 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5941A1BF;
+        Wed, 13 Jul 2022 06:31:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1657719103; x=1689255103;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=7RAwLlkavri+ef+7yhzzyVKIadFCcedXqPX61KMv+Gc=;
+  b=p6yGxL8zaFAFoRQG5MOfDu3on7R+0BLevhQD9r4rkdUvS+JAI3TerhMi
+   5vy4aCpcXtHFvTxozNzRx/l7qobe9YLnMLVsiS/nG+xLDvSqTqCduQ/Nd
+   sIybsV7Hm/ujt6iOQZprGFoY1PT+qRO5DGmWcUJlZ6x8SrKW+hz4y8bPq
+   yx/s5BzSTfD1IFpV+t/0ej5I6017mj5c+odvVp2EosYtoPzh0W9dSBhgX
+   NlZ1nOC1QoxqxSenZePcjfwfTPqz86sti/QL4ROQ5XbsI9PvABLb9raI6
+   Z3lUY8wK7pzepxlPskK2KrIA4C1BfrEO0jNwCA6Voc2mwEkosG/+7vvOH
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,267,1650956400"; 
+   d="scan'208";a="171925387"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jul 2022 06:31:42 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 13 Jul 2022 06:31:39 -0700
+Received: from ROB-ULT-M68701.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Wed, 13 Jul 2022 06:31:31 -0700
+From:   Sergiu Moga <sergiu.moga@microchip.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Kavyasree.Kotagiri@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <tudor.ambarus@microchip.com>,
+        Sergiu Moga <sergiu.moga@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4] spi: dt-bindings: atmel,at91rm9200-spi: convert to json-schema
+Date:   Wed, 13 Jul 2022 16:29:10 +0300
+Message-ID: <20220713132908.175026-1-sergiu.moga@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding ADC NPCM8XX support to NPCM ADC driver.
-ADC NPCM8XX uses a different resolution and voltage reference.
+Convert SPI DT binding for Atmel/Microchip SoCs to json-schema.
 
-As part of adding NPCM8XX support:
-- Add NPCM8XX specific compatible string.
-- Add data to handle architecture-specific ADC parameters.
-
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/iio/adc/npcm_adc.c | 35 ++++++++++++++++++++++++++++-------
- 1 file changed, 28 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/iio/adc/npcm_adc.c b/drivers/iio/adc/npcm_adc.c
-index f7bc0bb7f112..4c7ebcd57b88 100644
---- a/drivers/iio/adc/npcm_adc.c
-+++ b/drivers/iio/adc/npcm_adc.c
-@@ -16,6 +16,12 @@
- #include <linux/uaccess.h>
- #include <linux/reset.h>
- 
-+struct npcm_adc_info {
-+	u32 data_mask;
-+	u32 internal_vref;
-+	u32 res_bits;
-+};
+v1 -> v2:
+- change subject headline prefix from "dt-bindings: spi" to "spi: atmel"
+- change maintainer
+- kept the compatbile as items (instead of switching to enums) and at91rm9200
+as fallback for sam9x60, since the evolution of IP's is incremental.
+- removed unnecessay "cs-gpios" property and descriptions
+- added min/max for fifo-size property.
+
+
+v2 -> v3:
+- change subject headline prefix from "spi: atmel" to
+"spi: dt-bindings: atmel,at91rm9200-spi: convert to json-schema"
+- use enum instead of a range for "atmel,fifo-size"
+- change file name from "atmel,spi" to "atmel,at91rm9200-spi"
+
+
+v3 -> v4:
+- use "atmel,at91rm9200-spi.yaml" (the new file name) in $id
+- use "const" instead of "items" for single compatible
+
+
+ .../bindings/spi/atmel,at91rm9200-spi.yaml    | 75 +++++++++++++++++++
+ .../devicetree/bindings/spi/spi_atmel.txt     | 36 ---------
+ 2 files changed, 75 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi_atmel.txt
+
+diff --git a/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+new file mode 100644
+index 000000000000..d85d54024b2e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+@@ -0,0 +1,75 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/atmel,at91rm9200-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- struct npcm_adc {
- 	bool int_status;
- 	u32 adc_sample_hz;
-@@ -34,6 +40,7 @@ struct npcm_adc {
- 	 * has finished.
- 	 */
- 	struct mutex lock;
-+	const struct npcm_adc_info *data;
- };
- 
- /* ADC registers */
-@@ -52,13 +59,21 @@ struct npcm_adc {
- #define NPCM_ADCCON_CH(x)		((x) << 24)
- #define NPCM_ADCCON_DIV_SHIFT		1
- #define NPCM_ADCCON_DIV_MASK		GENMASK(8, 1)
--#define NPCM_ADC_DATA_MASK(x)		((x) & GENMASK(9, 0))
- 
- #define NPCM_ADC_ENABLE		(NPCM_ADCCON_ADC_EN | NPCM_ADCCON_ADC_INT_EN)
- 
- /* ADC General Definition */
--#define NPCM_RESOLUTION_BITS		10
--#define NPCM_INT_VREF_MV		2000
-+static const struct npcm_adc_info npxm7xx_adc_info = {
-+	.data_mask = GENMASK(9, 0),
-+	.internal_vref = 2048,
-+	.res_bits = 10,
-+};
++title: Atmel SPI device
 +
-+static const struct npcm_adc_info npxm8xx_adc_info = {
-+	.data_mask = GENMASK(11, 0),
-+	.internal_vref = 1229,
-+	.res_bits = 12,
-+};
- 
- #define NPCM_ADC_CHAN(ch) {					\
- 	.type = IIO_VOLTAGE,					\
-@@ -129,7 +144,8 @@ static int npcm_adc_read(struct npcm_adc *info, int *val, u8 channel)
- 	if (ret < 0)
- 		return ret;
- 
--	*val = NPCM_ADC_DATA_MASK(ioread32(info->regs + NPCM_ADCDATA));
-+	*val = ioread32(info->regs + NPCM_ADCDATA);
-+	*val &= info->data->data_mask;
- 
- 	return 0;
- }
-@@ -157,9 +173,9 @@ static int npcm_adc_read_raw(struct iio_dev *indio_dev,
- 			vref_uv = regulator_get_voltage(info->vref);
- 			*val = vref_uv / 1000;
- 		} else {
--			*val = NPCM_INT_VREF_MV;
-+			*val = info->data->internal_vref;
- 		}
--		*val2 = NPCM_RESOLUTION_BITS;
-+		*val2 = info->data->res_bits;
- 		return IIO_VAL_FRACTIONAL_LOG2;
- 	case IIO_CHAN_INFO_SAMP_FREQ:
- 		*val = info->adc_sample_hz;
-@@ -176,7 +192,8 @@ static const struct iio_info npcm_adc_iio_info = {
- };
- 
- static const struct of_device_id npcm_adc_match[] = {
--	{ .compatible = "nuvoton,npcm750-adc", },
-+	{ .compatible = "nuvoton,npcm750-adc", .data = &npxm7xx_adc_info},
-+	{ .compatible = "nuvoton,npcm845-adc", .data = &npxm8xx_adc_info},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, npcm_adc_match);
-@@ -196,6 +213,10 @@ static int npcm_adc_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	info = iio_priv(indio_dev);
- 
-+	info->data = device_get_match_data(dev);
-+	if (!info->data)
-+		return -EINVAL;
++maintainers:
++  - Tudor Ambarus <tudor.ambarus@microchip.com>
 +
- 	mutex_init(&info->lock);
- 
- 	info->dev = &pdev->dev;
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: atmel,at91rm9200-spi
++      - items:
++          - const: microchip,sam9x60-spi
++          - const: atmel,at91rm9200-spi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clock-names:
++    contains:
++      const: spi_clk
++
++  clocks:
++    maxItems: 1
++
++  atmel,fifo-size:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Maximum number of data the RX and TX FIFOs can store for FIFO
++      capable SPI controllers.
++    enum: [ 16, 32 ]
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clock-names
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi1: spi@fffcc000 {
++        compatible = "atmel,at91rm9200-spi";
++        reg = <0xfffcc000 0x4000>;
++        interrupts = <13 IRQ_TYPE_LEVEL_HIGH 5>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        clocks = <&spi1_clk>;
++        clock-names = "spi_clk";
++        cs-gpios = <&pioB 3 GPIO_ACTIVE_HIGH>;
++        atmel,fifo-size = <32>;
++
++        mmc@0 {
++            compatible = "mmc-spi-slot";
++            reg = <0>;
++            gpios = <&pioC 4 GPIO_ACTIVE_HIGH>;    /* CD */
++            spi-max-frequency = <25000000>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/spi/spi_atmel.txt b/Documentation/devicetree/bindings/spi/spi_atmel.txt
+deleted file mode 100644
+index 5bb4a8f1df7a..000000000000
+--- a/Documentation/devicetree/bindings/spi/spi_atmel.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-Atmel SPI device
+-
+-Required properties:
+-- compatible : should be "atmel,at91rm9200-spi" or "microchip,sam9x60-spi".
+-- reg: Address and length of the register set for the device
+-- interrupts: Should contain spi interrupt
+-- cs-gpios: chipselects (optional for SPI controller version >= 2 with the
+-  Chip Select Active After Transfer feature).
+-- clock-names: tuple listing input clock names.
+-	Required elements: "spi_clk"
+-- clocks: phandles to input clocks.
+-
+-Optional properties:
+-- atmel,fifo-size: maximum number of data the RX and TX FIFOs can store for FIFO
+-  capable SPI controllers.
+-
+-Example:
+-
+-spi1: spi@fffcc000 {
+-	compatible = "atmel,at91rm9200-spi";
+-	reg = <0xfffcc000 0x4000>;
+-	interrupts = <13 4 5>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	clocks = <&spi1_clk>;
+-	clock-names = "spi_clk";
+-	cs-gpios = <&pioB 3 0>;
+-	atmel,fifo-size = <32>;
+-
+-	mmc-slot@0 {
+-		compatible = "mmc-spi-slot";
+-		reg = <0>;
+-		gpios = <&pioC 4 0>;	/* CD */
+-		spi-max-frequency = <25000000>;
+-	};
+-};
 -- 
-2.33.0
+2.25.1
 
