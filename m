@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38770573E74
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 23:02:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54B13573E7F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 23:05:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236851AbiGMVC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 17:02:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55810 "EHLO
+        id S237131AbiGMVFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 17:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231348AbiGMVC5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 17:02:57 -0400
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E27BC32BA5
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 14:02:55 -0700 (PDT)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-10bf634bc50so107718fac.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 14:02:55 -0700 (PDT)
+        with ESMTP id S235133AbiGMVFN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 17:05:13 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7E32983D
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 14:05:12 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id n206so92700oia.6
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 14:05:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=IK7HzOOjB/YRFSR7VtNB/n1Tcb53AZBNpdOAwR1E0eE=;
-        b=n/06Hkl30Gvy7TKjCGQan1GIKtORgd1KXX1HcjZ6llewGOvbkjS1MGOvilFTZh3kMO
-         RAQ2vRNRynCmaKT5+s9DdytQf0ZbI6uJ+Za7Vev1VqOoemL9A/RlV1TsvqX4b42ncu+0
-         pGUaxcb2ALQS3cy4RfL3kI77J0P+DErzEe9sSs1BMEPeakBV+UCg8crfcrpLqKd7X+tl
-         0AUmmaimfftnv2UxndJVwT3WFCcE1rufdCYHYPwaWZdM8C9C85kHW6WigKZNx4wuc/Zx
-         7yld8N25N9FQ5fC+o8NmItuSxHjNR8/b9bdK05x8Chmwdz77yOc1VnIzhoaN0Z2+p558
-         ngSw==
+        bh=8UQgy4Q8FGdA/Aqfe2MOpvAi3K11kCF5PxsjUjKpa3k=;
+        b=QNwqtUTst2ieKisRxsycHIPorcglviR+QQHNAbZWN57M3wDvzSQCtlaQarVAVY6sJE
+         0pJOAEJDibWaJYWCR0O1acrbZnRJY82DT8tQImWP9nK0QngUv1LwInkDoxu6QchlkTPH
+         Li9abQzJw/5r7RAbc06x4ZBp3VJ76PlMmSHvfjtCqlxyQas9y9k7Su6SteBTA9BFo4wn
+         YlogJZzpmb1cGSI5JztShADD2E2JLfJUjo09/Q4clky58JK6htdp/f8WAf+dtD+6KC/K
+         TccH+cJJXROu5AMHBO0iBIYpiE9BiHuDmkMer7+vqHEUKTarCNsn0lM/W8ExpqourOxU
+         RSHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=IK7HzOOjB/YRFSR7VtNB/n1Tcb53AZBNpdOAwR1E0eE=;
-        b=HiJAlt1a+m9oyZltz8S8jEGbxN3zh9yeYRMMrlaNNpUFR4CNx/58YVuXW6iOMEGOaO
-         PXoZIarEhMfhyh2gi32DKJXoxmwe7R+PnOYcRhT+AEBvltI5802iZFEVqO3fIT4M4DxV
-         gA1IMpf7O1jhUDSTfOHPCaj6XWWx9yIPvE74DeMe3xFETVqTtt7D+h2neUnzpCWSR9dc
-         nF91ghJ4xIFyEi//TWr0FCnxv5vG8L9jz+LHQCxrDTgD7Ctl2ONrQwkezztcC7MMLpc7
-         yHFfHNU9qDOV87i6Bzpp1gI/KxJR8kp4zaCk2Ue5FO+VQ25qgWYdFAt9c+CYORkYqw+l
-         UwZA==
-X-Gm-Message-State: AJIora/oL8VPePBqENf+UnC/cJVd+s9VPKjPRDCFJ8nYZLUJTZfLK/6k
-        VhM6yTMeDyV+n7/sKdRLx/VIJgcMwUeatw==
-X-Google-Smtp-Source: AGRyM1uAB82b7HJZhMHsI15ICK/mZgZgMu+xab6E2swRNoGW92ufBzJOT+w8X4NyhfNKiAdV3gkmfw==
-X-Received: by 2002:a05:6870:558b:b0:101:d77c:3369 with SMTP id n11-20020a056870558b00b00101d77c3369mr2932757oao.213.1657746175273;
-        Wed, 13 Jul 2022 14:02:55 -0700 (PDT)
+        bh=8UQgy4Q8FGdA/Aqfe2MOpvAi3K11kCF5PxsjUjKpa3k=;
+        b=EE7NSDNc1gg8QH4M4D0N9UJXDZgpgnq38vgFxCpBGQ0PBJvG1De9JURMMueSXcS/jb
+         SUvFK/8a340mivqYXPZ6R8KlQdx6ALESr4qBC/Ah8j+Wora4+YgT00tcpGp6EVuq3A/t
+         psARlqHbYXQtK7w+hMuVQMCchaB7iSWzFlLfZUpzJ1EqTIve5c/+frqpYBRJQHgkfC1Q
+         QmyAbcxvXSNtZq6K3ADmnqiRd7R9lfvG5oEB56JT4XVvidBq+rw5KohH+wvcY9rl31Na
+         CuC49/cOKoewdjskMaqCru4G8yKRvGH2Y34iySEc5PjZxRR2gq5YfTWEECSpnnl3ah6L
+         nVFg==
+X-Gm-Message-State: AJIora/C+Zz2XEsthu8+Fyrxw5etZk4UtD2Ej/e5fDhxFPkEQTKlXRZz
+        gRHvkGUFQgQTbcuc2MG24uIoag==
+X-Google-Smtp-Source: AGRyM1tESh5p5JLl5SU0h1S49SXHXt7hpXZIB4yl/kKklZ8Tofs49GNKgqxZBaFmxw/s/jewgCXh8Q==
+X-Received: by 2002:a05:6808:1595:b0:33a:16b7:21b8 with SMTP id t21-20020a056808159500b0033a16b721b8mr5845066oiw.30.1657746312187;
+        Wed, 13 Jul 2022 14:05:12 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r13-20020a056870438d00b0010c33621645sm6413069oah.55.2022.07.13.14.02.54
+        by smtp.gmail.com with ESMTPSA id 68-20020a9d0bca000000b00616d25dc933sm5156134oth.69.2022.07.13.14.05.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jul 2022 14:02:54 -0700 (PDT)
-Date:   Wed, 13 Jul 2022 16:02:52 -0500
+        Wed, 13 Jul 2022 14:05:11 -0700 (PDT)
+Date:   Wed, 13 Jul 2022 16:05:09 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Robert Marko <robimarko@gmail.com>
 Cc:     agross@kernel.org, konrad.dybcio@somainline.org, amitk@kernel.org,
@@ -56,18 +56,17 @@ Cc:     agross@kernel.org, konrad.dybcio@somainline.org, amitk@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
         linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/5] drivers: thermal: tsens: allow configuring min
- and max trips
-Message-ID: <Ys8y/HRtdgD1f3uH@builder.lan>
+Subject: Re: [PATCH v5 4/5] drivers: thermal: tsens: add IPQ8074 support
+Message-ID: <Ys8zhW2YmJKNvqC3@builder.lan>
 References: <20220708132930.595897-1-robimarko@gmail.com>
- <20220708132930.595897-3-robimarko@gmail.com>
+ <20220708132930.595897-4-robimarko@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220708132930.595897-3-robimarko@gmail.com>
+In-Reply-To: <20220708132930.595897-4-robimarko@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,11 +76,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Fri 08 Jul 08:29 CDT 2022, Robert Marko wrote:
 
-> IPQ8074 and IPQ6018 dont support negative trip temperatures and support
-> up to 204 degrees C as the max trip temperature.
-> 
-> So, instead of always setting the -40 as min and 120 degrees C as max
-> allow it to be configured as part of the features.
+> Qualcomm IPQ8074 uses tsens v2.3 IP, however unlike other tsens v2 IP
+> it only has one IRQ, that is used for up/low as well as critical.
+> It also does not support negative trip temperatures.
 > 
 > Signed-off-by: Robert Marko <robimarko@gmail.com>
 
