@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4A6F573AF6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 18:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 616C9573B25
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 18:25:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236670AbiGMQO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 12:14:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50698 "EHLO
+        id S237160AbiGMQZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 12:25:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236207AbiGMQO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 12:14:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B94650046;
-        Wed, 13 Jul 2022 09:14:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CC3CB61B13;
-        Wed, 13 Jul 2022 16:14:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F714C341C0;
-        Wed, 13 Jul 2022 16:14:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657728896;
-        bh=gQk38Tovd/97VewdZYhK8DXuDAR70xdR3qj+gN5TMgI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=QcH0BYnPExpm1LS39IcYTOWfPoGQDLY/XvzXyaDrIE/SzvAh5dCB5YlBvT4H1mX8q
-         ScvN6XEYtq6z7Q3Y7ZXnaB7gxKNUelkWZ3/Dm+++oSxTdU3nyhNNDpH2Odp58Rw0u2
-         6HXeKb0i0j2jjS6FpSxBE8L4MWFAyYnnjy7nySUVg0C597PL4/6u+qH5dCm+iRSsuV
-         JXcLqIW2OCxNmF8XlvfR7x9ingo/AgR6OOAdCiaabfExl7LHvy9QYm+h3NFeifto1b
-         Dr/RmoTBG+vCMbYFn0ANtk84KvtwxaZcBT9sLsWtxlBA5EcTWJ/8kF46DaNdAY5rOM
-         kXoicS1/TPpDw==
-Date:   Wed, 13 Jul 2022 17:24:43 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] dt-bindings: iio: adc: stmpe: Remove node name
- requirement
-Message-ID: <20220713172443.00ab80b2@jic23-huawei>
-In-Reply-To: <20220712163345.445811-5-francesco.dolcini@toradex.com>
-References: <20220712163345.445811-1-francesco.dolcini@toradex.com>
-        <20220712163345.445811-5-francesco.dolcini@toradex.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S237167AbiGMQZp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 12:25:45 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CEFC308;
+        Wed, 13 Jul 2022 09:25:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1657729544; x=1689265544;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=RktsUe463dGeJ6JVuFeGZ56J3iA/MJCDqhL6VP3o8oc=;
+  b=UTHQhH0McW/S9p1VrDqBUOH94eHB7gnrk62EryS/npHsQrSm5nHsAlmd
+   qcwzE5unVZ4Ml3ehxExBYAIhAhFAamMIq0VwOUfB/9X0zMvOmgxBqp92P
+   xOw3cuvhFv98BWeHVzMQQlb6dO6KA+zdUzD1+wEJ3SMkm3UwWcFvY0FoU
+   QHNqqoMuiX5fr2MFhj/9WxZiy8r6VflLdi9At2OZbGmWlDLLpMx0gtwZb
+   Vl377Ha+RII1CviX2o2/na4gPQldilnz5PV/7QlDtpiHYNBhalKesivKD
+   kdT3yeQ1tE8U6ReomjNVlFW+xiqfmDLCs52VkwIlc7jANa7cAG7FqPl1i
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,267,1650956400"; 
+   d="scan'208";a="171953385"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jul 2022 09:25:29 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 13 Jul 2022 09:25:27 -0700
+Received: from ryan-Precision-5560.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Wed, 13 Jul 2022 09:25:27 -0700
+From:   <Ryan.Wanner@microchip.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Ryan Wanner" <Ryan.Wanner@microchip.com>
+Subject: [PATCH] ASoC: dt-bindings: atmel-i2s: Convert to json-schema
+Date:   Wed, 13 Jul 2022 09:25:38 -0700
+Message-ID: <20220713162538.139115-1-Ryan.Wanner@microchip.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,34 +63,160 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Jul 2022 18:33:44 +0200
-Francesco Dolcini <francesco.dolcini@toradex.com> wrote:
+From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-> STMPE driver does not require a specific node name anymore, only the
-> compatible is checked, update binding according to this.
-> 
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-I'm assuming this will go through mfd (or at least some tree that isn't
-IIO :)  Shout if I should pick this up in the IIO tree.
+Convert atmel i2s devicetree binding to json-schema.
+Change file name to match json-schema naming.
 
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+---
+ .../bindings/sound/atmel,sama5d2-i2s.yaml     | 83 +++++++++++++++++++
+ .../devicetree/bindings/sound/atmel-i2s.txt   | 46 ----------
+ 2 files changed, 83 insertions(+), 46 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/atmel-i2s.txt
 
-> ---
->  Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml
-> index 9049c699152f..333744a2159c 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml
-> @@ -13,8 +13,7 @@ description:
->    This ADC forms part of an ST microelectronics STMPE multifunction device .
->    The ADC is shared with the STMPE touchscreen. As a result some ADC related
->    settings are specified in the parent node.
-> -  The node name myst be stmpe_adc and should be a child node of the stmpe node
-> -  to which it belongs.
-> +  The node should be a child node of the stmpe node to which it belongs.
->  
->  properties:
->    compatible:
+diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
+new file mode 100644
+index 000000000000..1cadc476565c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
+@@ -0,0 +1,83 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/atmel,sama5d2-i2s.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel I2S controller
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++  - Alexandre Belloni <alexandre.belloni@bootlin.com>
++  - Claudiu Beznea <claudiu.beznea@microchip.com>
++
++description:
++  Atmel I2S (Inter-IC Sound Controller) bus is the standard
++  interface for connecting audio devices, such as audio codecs.
++
++properties:
++  compatible:
++    const: atmel,sama5d2-i2s
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    description:
++      Only the peripheral clock (pclk) is required. The generated clock (gclk)
++      and the I2S mux clock (muxclk) are optional and should only be set together,
++      when Master Mode is required.
++
++  clock-names:
++    items:
++      - const: pclk
++      - const: gclk
++      - const: muxclk
++    minItems: 1
++
++  dmas:
++    description:
++      Should be one per channel name listed in the dma-names property.
++    maxItems: 2
++
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - dmas
++  - dma-names
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/dma/at91.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    i2s@f8050000 {
++        compatible = "atmel,sama5d2-i2s";
++        reg = <0xf8050000 0x300>;
++        interrupts = <54 IRQ_TYPE_LEVEL_HIGH 7>;
++        dmas = <&dma0
++                (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
++                AT91_XDMAC_DT_PERID(31))>,
++               <&dma0
++                (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
++                AT91_XDMAC_DT_PERID(32))>;
++        dma-names = "tx", "rx";
++        clocks = <&i2s0_clk>, <&i2s0_gclk>, <&i2s0muxck>;
++        clock-names = "pclk", "gclk", "muxclk";
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_i2s0_default>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/atmel-i2s.txt b/Documentation/devicetree/bindings/sound/atmel-i2s.txt
+deleted file mode 100644
+index 40549f496a81..000000000000
+--- a/Documentation/devicetree/bindings/sound/atmel-i2s.txt
++++ /dev/null
+@@ -1,46 +0,0 @@
+-* Atmel I2S controller
+-
+-Required properties:
+-- compatible:     Should be "atmel,sama5d2-i2s".
+-- reg:            Should be the physical base address of the controller and the
+-                  length of memory mapped region.
+-- interrupts:     Should contain the interrupt for the controller.
+-- dmas:           Should be one per channel name listed in the dma-names property,
+-                  as described in atmel-dma.txt and dma.txt files.
+-- dma-names:      Two dmas have to be defined, "tx" and "rx".
+-                  This IP also supports one shared channel for both rx and tx;
+-                  if this mode is used, one "rx-tx" name must be used.
+-- clocks:         Must contain an entry for each entry in clock-names.
+-                  Please refer to clock-bindings.txt.
+-- clock-names:    Should be one of each entry matching the clocks phandles list:
+-                  - "pclk" (peripheral clock) Required.
+-                  - "gclk" (generated clock) Optional (1).
+-                  - "muxclk" (I2S mux clock) Optional (1).
+-
+-Optional properties:
+-- pinctrl-0:      Should specify pin control groups used for this controller.
+-- princtrl-names: Should contain only one value - "default".
+-
+-
+-(1) : Only the peripheral clock is required. The generated clock and the I2S
+-      mux clock are optional and should only be set together, when Master Mode
+-      is required.
+-
+-Example:
+-
+-	i2s@f8050000 {
+-		compatible = "atmel,sama5d2-i2s";
+-		reg = <0xf8050000 0x300>;
+-		interrupts = <54 IRQ_TYPE_LEVEL_HIGH 7>;
+-		dmas = <&dma0
+-			(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+-			 AT91_XDMAC_DT_PERID(31))>,
+-		       <&dma0
+-			(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
+-			 AT91_XDMAC_DT_PERID(32))>;
+-		dma-names = "tx", "rx";
+-		clocks = <&i2s0_clk>, <&i2s0_gclk>, <&i2s0muxck>;
+-		clock-names = "pclk", "gclk", "muxclk";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_i2s0_default>;
+-	};
+-- 
+2.34.1
 
