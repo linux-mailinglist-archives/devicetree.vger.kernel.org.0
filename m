@@ -2,205 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DFB8572FAC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 09:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCBC6572FC1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 09:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231410AbiGMHxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 03:53:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49402 "EHLO
+        id S234823AbiGMH4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 03:56:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234812AbiGMHw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 03:52:57 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14DC3E7ACD;
-        Wed, 13 Jul 2022 00:52:54 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id 70so9572469pfx.1;
-        Wed, 13 Jul 2022 00:52:54 -0700 (PDT)
+        with ESMTP id S230344AbiGMHzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 03:55:47 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC37DF60F
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 00:55:43 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id t25so17766331lfg.7
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 00:55:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/iTG0Znyy8dcxoJ240RfYELWXGLIYvTXqlX00eUFqRU=;
-        b=XFnuUh7pWfs6hqZpVLZW0mzy9uT4SQCOuwVQwFv2esdhnASBvDo6XHmJXrOBLXMNWF
-         kiQloL02tBWBUz2F0nKyABsg+QAgHTOUnRFJsn1NwoczD70ewWsNIY/YC/l6NbGHmnQX
-         EHUjN9dw9m6dazSxZrWnegtpEwunhqaeR4F4jIS4LUXvR0Hqb+2CBXj5fpCzsfEesYMy
-         K3nmcj8okqwqSQQFunuAemtyEpwIhWRf+b1YTx9DA2h/oXTHTW/I3OlGbRiX0V9egw74
-         15j1eeLtmhx+DaE+YkD/gHP3ZPBMb9CvmYAxvXF2i5LG8hDwfaQ+aBWQTKdIC0bIDYlA
-         /PXw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=C5Ahe8CvJV6+IQFuNVZ6Ixp4DRWhIc+0zA/0isLezHI=;
+        b=XUVo67Dw9xqvlJmrue7uzkCPHKs+bFRHK30wxWFnKLnwjH2P3G7IbvSCRzdrh7G3OW
+         HlZEeDM9FC63nB+SaUZH53P3q7UIhjg3mjtfagduM4u5f4ut5vzJlBr/hrwm2OQbGoBN
+         8U+0UpSwcACi3K2zweMsbpBBcurC8RTY5flBmApNIAXA1tS9KpMTbveKKISDIYdN9oa3
+         S+B1LoMRSFbMft3ljWhQ0mKwZ5FznuhsfWpOWqDJfW4V6ZnbAJctK6d2Pyxs09A32JcL
+         EwX/mrTd6Hh171ZqqEKJKI51UGwtpemu5tWLGeg9zglPX4dW1wzufPj5mCvojOW25wS6
+         3AWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/iTG0Znyy8dcxoJ240RfYELWXGLIYvTXqlX00eUFqRU=;
-        b=E023YXm2yt6+Qh3T2sLnHlarInv2ldMVFk+URYS+q3U3elFc584nbfIfz8iMrRslzt
-         Yy3YxuCFNgMJbkDl/nVsE9tLxWG8CkjjMxMAKV9FsCLD5d5URXhnS96i03y2rg6/Z5P7
-         pAD1K7t2MicUD63uKeNONX3xDpmW7hS9rZqmzJOEb1WoEk0KimqhtZSp4X0QS7cz/1Po
-         vn7yCeqqf2Y8bpdLZ4NXUfcypvxEZ5AKoOpsI+091b3QqHcQ9RnMQurUE4mRzhy2wTN6
-         WFGvZCx2AaznCpo0mKX69gh9sJ2wAMFJTiG4trd+WLutb+vIbp88MuTNEWs7albvjHC1
-         sM7A==
-X-Gm-Message-State: AJIora+X+/2O7MbKqzHNtQwWAbaBV/q70Ql+ct7TGHBCxSrN0bjt3J+K
-        HiW0/+DB44hpb4ziUkSjYjMjqh+xRXdo0SMEyhWtrGoZqtc=
-X-Google-Smtp-Source: AGRyM1t0G8qSuYZKwi/pJD6mvfU21cYcWr1VNiJ8de1QrHTdhFi7PcogfX5Do+I37VeRgjkS5vw59uKlHK9LXg92HLs=
-X-Received: by 2002:a63:1943:0:b0:411:5e12:4e4f with SMTP id
- 3-20020a631943000000b004115e124e4fmr1901430pgz.400.1657698774474; Wed, 13 Jul
- 2022 00:52:54 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=C5Ahe8CvJV6+IQFuNVZ6Ixp4DRWhIc+0zA/0isLezHI=;
+        b=1mC9F7LGwXWlQqbNDM1IHEMYaybbjBGS5IWFlnSrrMPItjTqUMPO6aXBQljtpIvWXp
+         5TVRLfNu3ORbGKYxeHyRTm7z8V8df7NG+NYzIQ4LV1joO+lfhRPXi0XKjct9yaVyJBd8
+         Zd0Kf0EyteYVeZWi76EEXuhkEABjn+h/gBSGXPGdrJ5UqbPNxSTrXjtftZMUGcU/7tAD
+         7ZnVCbtl01MfhgWdPBHH7sdHHe1qNfkuoCjXk7aznZUK9l5LyBxjCtlBE7v7jA18ue4B
+         hli5dLHp8l0PhEdPRhSmJzWr6kzD3I1FCUf68jTJLa2bFm1dFldTyean4rlNpIgL8yW8
+         R/Hw==
+X-Gm-Message-State: AJIora/4jAukofu248R8zoSCKlljYC8eFRiTg+y4b+R58U3j8dECo2Gr
+        aDMULjvEyLh+uNCr5fmPv4uNiQ==
+X-Google-Smtp-Source: AGRyM1sJ+Aoga+YSt8y82rZb0WvZry1rJA8/m5aIOJMBVmqPrfEcfkdABOmkQm81VFS5o5twsFandg==
+X-Received: by 2002:a05:6512:3b9f:b0:489:e009:ae0c with SMTP id g31-20020a0565123b9f00b00489e009ae0cmr1281654lfv.213.1657698942073;
+        Wed, 13 Jul 2022 00:55:42 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id p23-20020a2e9ad7000000b0025d6f3f40b2sm1666017ljj.21.2022.07.13.00.55.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Jul 2022 00:55:41 -0700 (PDT)
+Message-ID: <e8e0143c-88f6-95c1-7fa9-78cafa7a6d18@linaro.org>
+Date:   Wed, 13 Jul 2022 09:55:38 +0200
 MIME-Version: 1.0
-References: <20220713074118.14733-1-frieder@fris.de> <20220713074118.14733-5-frieder@fris.de>
-In-Reply-To: <20220713074118.14733-5-frieder@fris.de>
-From:   Heiko Thiery <heiko.thiery@gmail.com>
-Date:   Wed, 13 Jul 2022 09:52:42 +0200
-Message-ID: <CAEyMn7a7S6UZOTsubM3pY95diY0oR0WNvhQpTUSmedjG59Qn9g@mail.gmail.com>
-Subject: Re: [PATCH 4/6] arm64: dts: imx8mm-kontron: Use upper case PMIC
- regulator names
-To:     Frieder Schrempf <frieder@fris.de>
-Cc:     devicetree@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 6/6] dt-bindings: arm: fsl: Add Kontron BL i.MX8MM OSM-S
+ board
+Content-Language: en-US
+To:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Fabio Estevam <festevam@denx.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Marek Vasut <marex@denx.de>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Rob Herring <robh@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>
+References: <20220713074118.14733-1-frieder@fris.de>
+ <20220713074118.14733-7-frieder@fris.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220713074118.14733-7-frieder@fris.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frieder,
-
-Am Mi., 13. Juli 2022 um 09:41 Uhr schrieb Frieder Schrempf <frieder@fris.de>:
->
+On 13/07/2022 09:41, Frieder Schrempf wrote:
 > From: Frieder Schrempf <frieder.schrempf@kontron.de>
->
-> Use upper case PMIC regulator names to comply with the bindings.
->
+> 
+> Add bindings for the Kontron BL i.MX8MM OSM-S board.
+> 
 > Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  .../freescale/imx8mm-kontron-n801x-som.dtsi   | 22 +++++++++----------
->  1 file changed, 11 insertions(+), 11 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> index 2d0661cce89b..2e3d51bbf92e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> @@ -85,7 +85,7 @@ pca9450: pmic@25 {
->
->                 regulators {
->                         reg_vdd_soc: BUCK1 {
-> -                               regulator-name = "buck1";
-> +                               regulator-name = "BUCK1";
 
-Wouldn't it be better to use the real signal or voltage rail names
-used in the schematics?
 
-Like it is done here as example:
-https://elixir.bootlin.com/linux/v5.19-rc6/source/arch/arm64/boot/dts/freescale/imx8mn-evk.dts#L44
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Or use a name that includes both information (signal + PMIC out):
-https://elixir.bootlin.com/linux/v5.19-rc6/source/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi#L445
 
->                                 regulator-min-microvolt = <800000>;
->                                 regulator-max-microvolt = <850000>;
->                                 regulator-boot-on;
-> @@ -96,7 +96,7 @@ reg_vdd_soc: BUCK1 {
->                         };
->
->                         reg_vdd_arm: BUCK2 {
-> -                               regulator-name = "buck2";
-> +                               regulator-name = "BUCK2";
->                                 regulator-min-microvolt = <850000>;
->                                 regulator-max-microvolt = <950000>;
->                                 regulator-boot-on;
-> @@ -107,7 +107,7 @@ reg_vdd_arm: BUCK2 {
->                         };
->
->                         reg_vdd_dram: BUCK3 {
-> -                               regulator-name = "buck3";
-> +                               regulator-name = "BUCK3";
->                                 regulator-min-microvolt = <850000>;
->                                 regulator-max-microvolt = <950000>;
->                                 regulator-boot-on;
-> @@ -115,7 +115,7 @@ reg_vdd_dram: BUCK3 {
->                         };
->
->                         reg_vdd_3v3: BUCK4 {
-> -                               regulator-name = "buck4";
-> +                               regulator-name = "BUCK4";
->                                 regulator-min-microvolt = <3300000>;
->                                 regulator-max-microvolt = <3300000>;
->                                 regulator-boot-on;
-> @@ -123,7 +123,7 @@ reg_vdd_3v3: BUCK4 {
->                         };
->
->                         reg_vdd_1v8: BUCK5 {
-> -                               regulator-name = "buck5";
-> +                               regulator-name = "BUCK5";
->                                 regulator-min-microvolt = <1800000>;
->                                 regulator-max-microvolt = <1800000>;
->                                 regulator-boot-on;
-> @@ -131,7 +131,7 @@ reg_vdd_1v8: BUCK5 {
->                         };
->
->                         reg_nvcc_dram: BUCK6 {
-> -                               regulator-name = "buck6";
-> +                               regulator-name = "BUCK6";
->                                 regulator-min-microvolt = <1100000>;
->                                 regulator-max-microvolt = <1100000>;
->                                 regulator-boot-on;
-> @@ -139,7 +139,7 @@ reg_nvcc_dram: BUCK6 {
->                         };
->
->                         reg_nvcc_snvs: LDO1 {
-> -                               regulator-name = "ldo1";
-> +                               regulator-name = "LDO1";
->                                 regulator-min-microvolt = <1800000>;
->                                 regulator-max-microvolt = <1800000>;
->                                 regulator-boot-on;
-> @@ -147,7 +147,7 @@ reg_nvcc_snvs: LDO1 {
->                         };
->
->                         reg_vdd_snvs: LDO2 {
-> -                               regulator-name = "ldo2";
-> +                               regulator-name = "LDO2";
->                                 regulator-min-microvolt = <800000>;
->                                 regulator-max-microvolt = <900000>;
->                                 regulator-boot-on;
-> @@ -155,7 +155,7 @@ reg_vdd_snvs: LDO2 {
->                         };
->
->                         reg_vdda: LDO3 {
-> -                               regulator-name = "ldo3";
-> +                               regulator-name = "LDO3";
->                                 regulator-min-microvolt = <1800000>;
->                                 regulator-max-microvolt = <1800000>;
->                                 regulator-boot-on;
-> @@ -163,7 +163,7 @@ reg_vdda: LDO3 {
->                         };
->
->                         reg_vdd_phy: LDO4 {
-> -                               regulator-name = "ldo4";
-> +                               regulator-name = "LDO4";
->                                 regulator-min-microvolt = <900000>;
->                                 regulator-max-microvolt = <900000>;
->                                 regulator-boot-on;
-> @@ -171,7 +171,7 @@ reg_vdd_phy: LDO4 {
->                         };
->
->                         reg_nvcc_sd: LDO5 {
-> -                               regulator-name = "ldo5";
-> +                               regulator-name = "LDO5";
->                                 regulator-min-microvolt = <1800000>;
->                                 regulator-max-microvolt = <3300000>;
->                         };
-> --
-> 2.37.0
->
+Best regards,
+Krzysztof
