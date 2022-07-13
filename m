@@ -2,162 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F21F2572E46
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 08:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A09A1572E62
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 08:47:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232024AbiGMGgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 02:36:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36156 "EHLO
+        id S230179AbiGMGrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 02:47:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234167AbiGMGf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 02:35:59 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2078.outbound.protection.outlook.com [40.107.21.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08C8AD6CC1;
-        Tue, 12 Jul 2022 23:35:54 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CQb7Y+KRLJGeU3IC+ACgmEknYZOi+j5zJ0BVkJva62Cd5bg4+h5bC8pPTdC/R1BnoHAjcFAIz3vrKm06uumHhfVJPvK/OI1/A+vmeEcQ7xgAEQOmJAxjW7N6XeIWgODkr9Wg0o1i0VH3Udr5WCuEp+y00GgQul+X3E59QAV9b+zFPSV9P1eraRI43iDZZYXeg+lCy4aye35+FC+UdwG62Fv5uRt8gZ78RcYb/Lde0LcIH+P9KDFDXvUhxg8pDG2KNLuW5KOefFxlYGH/+ZMmUcw1vpBWwYdJcJ90m2c26WIBryJvAylZxFPT7M4QEZdQ5sj5OWGcYo1Zt8nXBQOOWQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=olONIe1IcfxoeeiMmRevLFQZZOGiT0LONaCz3vBzlbo=;
- b=D4rq6Ybl+j/Qm0vbrZuQOl4FHrpZTRlG3fyKWR2quBuAUYFM926mm2uvoAhDv2VYPnI+u5Uk5bKFty4bxGyUT+yutWNqP4iUBXfV5eykjfA+qnMH0vL9pm+AfARlcVmfqvN9AM3DxmLib09ajPHxv031b4iM7w8L+Se8WYVPbhu4+Z33dQzjrQPI2s1f+FjBEcZS333qAidrher25+smkPRDds9g15Z2G+h+4x5+ygxFQLcWncmImkayzauV0rjuLxGyQ1eYKr+grVqG5Ev0CVXj/p+rZaouoclO0dIt+afTWMx9Ltf8hpkr+x9V0I522CESW7XYKBzGqEK2srnzFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=olONIe1IcfxoeeiMmRevLFQZZOGiT0LONaCz3vBzlbo=;
- b=msYBip0Wc3ExHGZpmnFVVLT2i+/rmQyzKHVADqaLwaIJ/U6fhmC3q54H4wNECcKNEI35kb3GCbRmqP3oVVuxkxUclzYuwCBNsMeT6HhYHplRU0noVXBI3RpnvTB09n5okPUQhKkqQ7mMox+ddbF8Y+UhHt18cmoZ/murdgnZLeE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DBBPR04MB6026.eurprd04.prod.outlook.com (2603:10a6:10:d2::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26; Wed, 13 Jul
- 2022 06:35:51 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::fdd4:8557:334b:180d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::fdd4:8557:334b:180d%7]) with mapi id 15.20.5417.026; Wed, 13 Jul 2022
- 06:35:51 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, l.stach@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, aford173@gmail.com,
-        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V2 6/6] arm64: dts: imx8mp: add VPU blk ctrl node
-Date:   Wed, 13 Jul 2022 14:36:53 +0800
-Message-Id: <20220713063653.2584488-7-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220713063653.2584488-1-peng.fan@oss.nxp.com>
-References: <20220713063653.2584488-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: KL1P15301CA0052.APCP153.PROD.OUTLOOK.COM
- (2603:1096:820:3d::10) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S234217AbiGMGrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 02:47:12 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16AEADF612;
+        Tue, 12 Jul 2022 23:47:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657694830; x=1689230830;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=DFlYWvFCkyJizptxG0AsrXEYU06KJo/BgPWMRmnxIF0=;
+  b=G+shTsEd/ULX9TFEQq8iK1RdmFrIA1qa8xcPD9/z+RVyqhGUPAwDALTL
+   qZVBplh+jW3lOYE2FkwVGC+S43nuCL2DnBK9iER9zJK7WxH7ta+aHTJcn
+   6+6CRCJg+4LhJVIg15SShMIY64xeMRktLlK5U/E+NNHZ22xXZheRdQn0E
+   SCcHBB9w1CmPxjQbZjLwmsFpDOdrULurUUc8xI/bBSs1zbP/teZ/4KL9J
+   YJLT7N5VWCzsKFElfDZTHqDGLMHXILZchKSLeZi0OEDo6YFdRDecRUkcB
+   dp0pGbl7Z7XJJZ1mCykwIK6jYt6ooxlGdAGecHKfwTCczMqa67u/jQWXR
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,267,1650924000"; 
+   d="scan'208";a="25016104"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 13 Jul 2022 08:47:08 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 13 Jul 2022 08:47:08 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 13 Jul 2022 08:47:08 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657694828; x=1689230828;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=DFlYWvFCkyJizptxG0AsrXEYU06KJo/BgPWMRmnxIF0=;
+  b=Y0STHqi/m8sQ7M8zVbulxO+zP+LKA3IlF2OOTvuTAq55+e2VzTxJaEMp
+   n2JGOfYKX2gkq3mVspQMWd1NpLj1oYlYxUwKVEC4V7FaNjGq9VxxlW+Lo
+   gX90T56jQGFUVdG2ALaMJp3bGREyXINoykuUhYTH9JIIOuV58mWy0EnRM
+   6MRtLA6YPw2JMyKdWl2UqMAAqHmpbtSUaJsjbgvl7NGAbjuVGNGqzHjHA
+   iJiUU+PBPo2ta5VTXwWc1769RWnW/yoya+El1s4umUbsbdeZ+ZI4twY+3
+   kb4npQo5XlSilycFG/3q5sczcq9e68LXmfBG63TZyRR4kkNc6LoiVC1Sn
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,267,1650924000"; 
+   d="scan'208";a="25016102"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 13 Jul 2022 08:47:02 +0200
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A0541280056;
+        Wed, 13 Jul 2022 08:46:58 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] usb: misc: onboard_usb_hub: Add reset-gpio support
+Date:   Wed, 13 Jul 2022 08:46:56 +0200
+Message-ID: <1902562.PYKUYFuaPT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <Ys263f5K4WRoSZ45@google.com>
+References: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com> <20220712150627.1444761-2-alexander.stein@ew.tq-group.com> <Ys263f5K4WRoSZ45@google.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bda36431-e77a-4fba-b033-08da6499edc3
-X-MS-TrafficTypeDiagnostic: DBBPR04MB6026:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TccjlKo7gnnqlayKnBZq3spwkrzz/8b2IWHd/cglqRyMNkTIy6KBqwwq28yQSJM4cMqAzxn+TVttM7k3W6o81rX1BmBC2zlzsxVO8h+AyuEMV8J86v5RAANPqnN2j/OMylSgeWKSJph4MQJMuuNEDFMh2N+3dhNhqtV7XNxdsW2/TirGCIWMJnkPWBuPIHGYW3lOqOngIG5zypx+GWV4dqK3tQuDC/mZyQh5yl8pR83c8IDoFAfypzFRO5qcA93LDBXJ13FrC6NNeoMZKM2oHZf1fovdr8JcThxmDjn6O3LWwFhelrMpcUq8iJQ3FPHJlxYhTQ5qFJRYJRNsXCS8FwjoC/MsiNZiw3QZpumKQLYZ59ybegO0sEjWERdVLrljyWN34wXXtpC1ASd0+lnHxuqAYtCec3xaJQYxYAmNzN7hOUq+9WX5/v3MZiPD/jFHYrtgBPUuirQnBezaRLx28U/tkRBIwOCHxWNQm9q7ws1Xm1uiHk+R2LZiYuthLBZjaV+rghQMS5FSwiXAb4rMGtuRwgP/u6RrBoxklZAqzfG3cPZ9T9wCwgLFZWKXBu3P1GAim00oicf43SD4XK8/2eib2pbuyczVPx+fA6k4MjRWnQyUofVEqheRM1d9/uo6Fj8usIl6EtQFlXnNPzxfNznXCxXgTz0E6DA8SX6QAI4U2hfIPZqtmp/R+2acd8QQPd9Dglf5PYtetH5jNFNg3u49O5o9YLxreoamUMDgtDvDgoewZMiIX/GLBP/ID2WO9ObmsTVf/+g/xCPq2fbGyNK7ANczkovblytOicqQ5eV0So7I50Qm0BSowZAYqe+6ktvj/aIfErgntKdWg49O/g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(346002)(376002)(396003)(39860400002)(366004)(6486002)(2906002)(83380400001)(186003)(6506007)(1076003)(41300700001)(38350700002)(4326008)(8936002)(86362001)(52116002)(8676002)(66476007)(66556008)(26005)(6512007)(66946007)(316002)(478600001)(5660300002)(7416002)(2616005)(38100700002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aPBdAL4ZiwlIa1frRH/I8N8aVESbGRYsTgu0D8jyPvqZr2tjv6WkU1CHgYKR?=
- =?us-ascii?Q?MvwCBrnpGbTUhye9P2TTQ7NeC6KaupFeza7XtW6BfCaK1rmCN3vF2pIcb8Mg?=
- =?us-ascii?Q?45wLx9yVQjBoeUq720EKCuQ8LriFwqIj9x7TrlQgixB7xqMjLthw8u/GHbML?=
- =?us-ascii?Q?h3YOUGHtja4LOKb0C9RN3E5XWS0+wr+MrTc5oEFWFTSRbWPseaB4+YksY7Hl?=
- =?us-ascii?Q?DqAiZ8sqOqHlyYzb68oTRr/idSnZM9RtZamIaNwW0E4umLoY5O1ZaoKOkM5I?=
- =?us-ascii?Q?jNOj/Um+R+zXQwfVHpRX8X+AwJ6Zmi6p91UsxqlwyIbPuheMHtne3BXOqBL6?=
- =?us-ascii?Q?4eGsoChSbAbSo2ATic6Z7gJgKeALqpkkzaY/BtWWJUrUe2ES6hSw2PFSAO0a?=
- =?us-ascii?Q?2ldAFIB9Ka2ydSgFG4OJflVEf9To5q7SRcRGH49QWQwsvbaus86KVrZzdTqK?=
- =?us-ascii?Q?OcJB8kn82aI/L58fhhlLaUis7yOs+HCPtib1voeSz55+o7uw7jHrOu5ZbCRR?=
- =?us-ascii?Q?HvrGgxhLVM5yB6/xPVgB0uLjKWX5j6bBCyR/eHMnRGBwniQKGWgN3iLQHHtH?=
- =?us-ascii?Q?t28JFFvzh/Y2m3/tyOhfBY/7i6rNi4/rSWoGf96kD5rYdn6ekuNf5rK1tKKV?=
- =?us-ascii?Q?UVJyACjqemJ/K4fSj9be4tqczXgNwiCu6moWKsqC+TzJPE/HoQ6ve5uR+83t?=
- =?us-ascii?Q?akcjPWocQHuSRqOBQrWtO8GU9ew/+SDg0pQn9o4UgqAmkCHz/5Ce6oMvetrW?=
- =?us-ascii?Q?qKkULLlCHHnSdtcHE2ko5AKo+YtVHZvGmCiig/lmajfFm36jMhcW4hd90oLH?=
- =?us-ascii?Q?qeYlU9OZvk/b29HO7ycRiyOZPAQQkdrdvH1EvXaSyLzjaxx21ye/FzcmR1XX?=
- =?us-ascii?Q?hpaYbcVF/Gd92GJe//CDTZ0E+OsfVZOXLaUOUXyFzAJudkIkIrUUV1a2AsZ+?=
- =?us-ascii?Q?yfJEtNbd/oQjU6dEn+4jxxQ/gmolfxCLp0mlqgsdDJ7yNGn+EoZDyp74fRc2?=
- =?us-ascii?Q?My3clLhJUVHZ1UfAhv62CWiz7sP0GIQtacbCpWBn7xeCqcsRU2rsmDiw1D6G?=
- =?us-ascii?Q?goJWiyh4dkE+/s2WBFeFk1nJTFNhFhdW2cQTk+zDgN+NLvEVpy9PHeGKYcW4?=
- =?us-ascii?Q?cXtdaCPndEnHg1G9/xAgRf9z28MW/wKYmA8h2End8cjMpguDkCjSqH6CmBgz?=
- =?us-ascii?Q?yYSsQN/qJ9s3V3mDl3mOTIi8MA2kb/o/tZP0m7c8B5QhrtYThI9IBvg2/XHn?=
- =?us-ascii?Q?krNmkcMx8B8ZNcR0LnKyijcb5tTpCyMKFnrdA4GZ1kiAPi5/xAYbTd6hD7up?=
- =?us-ascii?Q?tNWCqIaZlwDQ0piSJl5AFNguQF84GPmKCdynZCD1pvMGI1PVD6h+HLVZxS0/?=
- =?us-ascii?Q?GehEnN+og2275H1gZLajfnXzQ+R76F48u+vpknAMAKtpO4zP8P1j+LoWoleK?=
- =?us-ascii?Q?6TIueonBHMLHiMKymtK6sw6Sp3TzeliDMJ78BL22uAe7LpiAWz3rgOmYtvOZ?=
- =?us-ascii?Q?n4dtSI+p4vIHjVN3H0XJHPNk2eiLUx5fxbCq6kXwk12EjsV2ZeZf8062qE/v?=
- =?us-ascii?Q?h93I1MoE1R3suem4MY67Gi/su0JNRlJ3zA4LVPnz?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bda36431-e77a-4fba-b033-08da6499edc3
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2022 06:35:51.0019
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: y1xcRTyrZmLh9A5KULO5odi2n34nT8lW5fyf44e8i3YY9xIkqiKxT0imQJIsgcn7h4y7auqzzu2hDIRaPdwO+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB6026
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi Matthias,
 
-Add i.MX8MP VPU blk ctrl node
+Am Dienstag, 12. Juli 2022, 20:18:05 CEST schrieb Matthias Kaehlcke:
+> On Tue, Jul 12, 2022 at 05:06:26PM +0200, Alexander Stein wrote:
+> > Despite default reset upon probe, release reset line after powering up
+> > the hub and assert reset again before powering down.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > My current DT node on my TQMa8MPxL looks like this
+> > ```
+> > &usb_dwc3_1 {
+> > 
+> > 	dr_mode = "host";
+> > 	#address-cells = <1>;
+> > 	#size-cells = <0>;
+> > 	pinctrl-names = "default";
+> > 	pinctrl-0 = <&pinctrl_usbhub>;
+> > 	status = "okay";
+> > 	
+> > 	hub_2_0: hub@1 {
+> > 	
+> > 		compatible = "usb451,8142";
+> > 		reg = <1>;
+> > 		peer-hub = <&hub_3_0>;
+> > 		reset-gpio = <&gpio1 11 GPIO_ACTIVE_LOW>;
+> > 	
+> > 	};
+> > 	
+> > 	hub_3_0: hub@2 {
+> > 	
+> > 		compatible = "usb451,8140";
+> > 		reg = <2>;
+> > 		peer-hub = <&hub_2_0>;
+> > 		reset-gpio = <&gpio1 11 GPIO_ACTIVE_LOW>;
+> > 	
+> > 	};
+> > 
+> > };
+> > ```
+> > which I don't like much for 2 reasons:
+> > * the pinctrl has to be put in a common top-node of USB hub node. The
+> > pinctrl> 
+> >   can not be requested twice.
+> 
+> Agreed, that's not great. The pinctrl doesn't have to be necessarily in the
+> USB controller node, it could also be in the static section of the board,
+> but that isn't really much of an improvement :( Not sure there is much to
+> do given that the USB devices also process the pinctrl info (besides the
+> onboard_hub platform device doing the same).
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+I tend to keep the pinctrl property next to the ones actually using them. But 
+in this case it's not possible unfortunately.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 34af983b0210..493fc3ceec1f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1185,6 +1185,24 @@ gic: interrupt-controller@38800000 {
- 			interrupt-parent = <&gic>;
- 		};
- 
-+		vpumix_blk_ctrl: blk-ctrl@38330000 {
-+			compatible = "fsl,imx8mp-vpu-blk-ctrl", "syscon";
-+			reg = <0x38330000 0x100>;
-+			#power-domain-cells = <1>;
-+			power-domains = <&pgc_vpumix>, <&pgc_vpu_g1>,
-+					<&pgc_vpu_g2>, <&pgc_vpu_vc8000e>;
-+			power-domain-names = "bus", "g1", "g2", "vc8000e";
-+			clocks = <&clk IMX8MP_CLK_VPU_G1_ROOT>,
-+				 <&clk IMX8MP_CLK_VPU_G2_ROOT>,
-+				 <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
-+			clock-names = "g1", "g2", "vc8000e";
-+			interconnects = <&noc IMX8MP_ICM_VPU_G1 &noc IMX8MP_ICN_VIDEO>,
-+					<&noc IMX8MP_ICM_VPU_G2 &noc IMX8MP_ICN_VIDEO>,
-+					<&noc IMX8MP_ICM_VPU_H1 &noc IMX8MP_ICN_VIDEO>;
-+			interconnect-names = "g1", "g2", "vc8000e";
-+		};
-+
-+
- 		edacmc: memory-controller@3d400000 {
- 			compatible = "snps,ddrc-3.80a";
- 			reg = <0x3d400000 0x400000>;
--- 
-2.25.1
+> > * Apparently there is no conflict on the reset-gpio only because just one
+> > device> 
+> >   gets probed here:
+> > > $ ls /sys/bus/platform/drivers/onboard-usb-hub/
+> > > 38200000.usb:hub@1  bind  uevent  unbind
+> 
+> Right, the driver creates a single platform device for each physical hub.
+
+Thanks for confirmation.
+
+> > But this seems better than to use a common fixed-regulator referenced by
+> > both hub nodes, which just is controlled by GPIO and does not supply any
+> > voltages.
+> Agreed, if the GPIO controls a reset line it should be implemented as such.
+> 
+> > Note: It might also be necessary to add bindings to specify ramp up times
+> > and/or reset timeouts.
+> 
+> The times are hub specific, not board specific, right? If that's the case
+> then a binding shouldn't be needed, the timing can be derived from the
+> compatible string.
+
+Well, yes they are hub specific, but board design might influence them as 
+well, as in increased ramp up delay.
+
+> >  drivers/usb/misc/onboard_usb_hub.c | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> > 
+> > diff --git a/drivers/usb/misc/onboard_usb_hub.c
+> > b/drivers/usb/misc/onboard_usb_hub.c index 6b9b949d17d3..348fb5270266
+> > 100644
+> > --- a/drivers/usb/misc/onboard_usb_hub.c
+> > +++ b/drivers/usb/misc/onboard_usb_hub.c
+> > @@ -7,6 +7,7 @@
+> > 
+> >  #include <linux/device.h>
+> >  #include <linux/export.h>
+> > 
+> > +#include <linux/gpio/consumer.h>
+> > 
+> >  #include <linux/init.h>
+> >  #include <linux/kernel.h>
+> >  #include <linux/list.h>
+> > 
+> > @@ -38,6 +39,7 @@ struct usbdev_node {
+> > 
+> >  struct onboard_hub {
+> >  
+> >  	struct regulator *vdd;
+> >  	struct device *dev;
+> > 
+> > +	struct gpio_desc *reset_gpio;
+> > 
+> >  	bool always_powered_in_suspend;
+> >  	bool is_powered_on;
+> >  	bool going_away;
+> > 
+> > @@ -56,6 +58,10 @@ static int onboard_hub_power_on(struct onboard_hub
+> > *hub)
+> > 
+> >  		return err;
+> >  	
+> >  	}
+> > 
+> > +	/* Deassert reset */
+> 
+> The comment isn't really needed, it's clear from the context.
+
+Ok, removed.
+
+> > +	usleep_range(3000, 3100);
+> 
+> These shouldn't be hard coded. Instead you could add a model specific struct
+> 'hub_data' (or similar) and associate it with the compatible string through
+> onboard_hub_match.data
+
+Will do.
+
+> You could use fsleep() instead of usleep_range(). It does the _range part
+> automatically (with a value of 2x).
+
+Nice idea.
+
+> > +	gpiod_set_value_cansleep(hub->reset_gpio, 0);
+> 
+> Since this includes delays maybe put the reset inside an 'if
+> (hub->reset_gpio)' block. Not super important for these short delays, but
+> they might be longer for some hubs.
+
+gpiod_set_value_cansleep includes delays? Without gpio_desc it returns early 
+on. Or do you mean the usleep_range before?
+Actually in this case the 3ms is the minimum time from VDD stable to de-
+assertion of GRST. So even in case the GPIO is manged by hardware itself, 
+software has to wait here before proceeding, IMHO.
+
+> > +
+> > 
+> >  	hub->is_powered_on = true;
+> >  	
+> >  	return 0;
+> > 
+> > @@ -65,6 +71,10 @@ static int onboard_hub_power_off(struct onboard_hub
+> > *hub)> 
+> >  {
+> >  
+> >  	int err;
+> > 
+> > +	/* Assert reset */
+> 
+> drop comment
+
+Will do.
+
+> > +	gpiod_set_value_cansleep(hub->reset_gpio, 1);
+> 
+> Put inside 'if (hub->reset_gpio)' to avoid unnecessary delays when no reset
+> is configured.
+> 
+> > +	usleep_range(4000, 5000);
+> 
+> Use per-model values.
+
+Will do.
+
+> > +
+> > 
+> >  	err = regulator_disable(hub->vdd);
+> >  	if (err) {
+> >  	
+> >  		dev_err(hub->dev, "failed to disable regulator: %d\n", 
+err);
+> > 
+> > @@ -231,6 +241,14 @@ static int onboard_hub_probe(struct platform_device
+> > *pdev)> 
+> >  	if (IS_ERR(hub->vdd))
+> >  	
+> >  		return PTR_ERR(hub->vdd);
+> > 
+> > +	/* Put the hub into reset, pull reset line low, and assure 4ms 
+reset low
+> > timing. */
+> drop comment, it's mostly evident from the code. Maybe not the
+> usleep_range() part, but that should become clearer when per model values
+> are used.
+
+Will do.
+
+> > +	hub->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> > +						  
+GPIOD_OUT_HIGH);
+> > +	if (IS_ERR(hub->reset_gpio))
+> > +		return dev_err_probe(dev, PTR_ERR(hub->reset_gpio), 
+"failed to get
+> > reset GPIO\n"); +
+> > +	usleep_range(4000, 5000);
+> > +
+> > 
+> >  	hub->dev = dev;
+> >  	mutex_init(&hub->lock);
+> >  	INIT_LIST_HEAD(&hub->udev_list);
+
+
+
 
