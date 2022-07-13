@@ -2,94 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00D885733BE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 12:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D12AE5733EF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 12:15:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234820AbiGMKGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 06:06:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59096 "EHLO
+        id S234699AbiGMKPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 06:15:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235126AbiGMKGT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 06:06:19 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10598F1E39
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 03:06:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=RwlRP0+XZpEu9g
-        bd52Kgdnx1/AyOrPvBxqA0I9LuK3k=; b=hNczMtK1XkutUuRzGMX2hD/S8LJtGb
-        rIYmEPsvVkn+yffj5arVA+rMYjCamkGf+DcRjUTt4HByXY2kPbiYcYY0GF1KbZpO
-        mbk/Xa4jGENH2WinM8rWe4GRLv+pBezZYNDk7/BzbOGekIrjnB39UtGcy20CLDfe
-        +vJricX+UC7rE=
-Received: (qmail 123437 invoked from network); 13 Jul 2022 12:06:15 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Jul 2022 12:06:15 +0200
-X-UD-Smtp-Session: l3s3148p1@6tt276zjotYgAwDtxwdRAEXXn+yo/Rze
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S234934AbiGMKPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 06:15:20 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3DF9E7AFF;
+        Wed, 13 Jul 2022 03:15:16 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-31cf1adbf92so107542267b3.4;
+        Wed, 13 Jul 2022 03:15:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WYDOSgJ5NnZWQaiNiMMrpM7JfcdIK7GvasjcwWRXaTc=;
+        b=Vs9KktZrNStk7Gb+Q53QQHAx25Obv0AT++AQan+rXKOPJKW/9utoZ0luYdqMShPdGo
+         +iI663FR/w2xxsIdlbSXYGEQLspqaKb62rucUmZcYSNput22YEEk+T+KnWHIMrP/8Ehm
+         w79BD+PzInzZfui+DtnS2hCVsDSRvKjpOrZph+Wp9prdGr370SJCBA7HK6mD0tMLfwNp
+         Y+mLiO7nnmGn/UMt6JiEGHa6WgLh4zrlOc0jl6LSJ0JtyPYANk3vSgbPeZOyLszAiv54
+         Q7vMpmpCfR3vWaCS/557XKTBeBeVcl0qd4Z5RMBDSg+JKdLfS63boOWifporZ8KOKTg6
+         R+xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WYDOSgJ5NnZWQaiNiMMrpM7JfcdIK7GvasjcwWRXaTc=;
+        b=xP/hIyDTmAbib0hXokgkpBcKuevXHlM6Z7Oscv/F+2JyguB5PRduLxxgjoR1hdgxkP
+         2GyP4SZ/GSd5XL+RoXLE7C9aSIshJ8pO5PuReU/Q/yHRhHSb08d3V58VSv0wtrpTjzxV
+         QJq+USHCPOvZt2Bsxu/tymEBz7/ZpzcQ+H3lUI55ICKOY5/RSEdhbUd0uZmyQSSjJENp
+         p9AlfhMf1X2c43ie7IZdak2e0dG7BlTYel2AgPl1UxU7bNhZ/Ca2BVxB5eEeI7Dr++Gr
+         uLEy7JIZkLDOMrPStJg5QZ55l72AdQ67RchyfRVx3Rgo52a9ZGWjqvEgSHOFU5Q49jED
+         L4Ow==
+X-Gm-Message-State: AJIora8My3bh1RFKJBjcouFJiGRDY0Md01imtiMIJlSAASGZFuEDB4SZ
+        JLCragw+BVNTEzlDt83q5QeIzHnSTvLJrWUF15KEPhF8Ai0MtA==
+X-Google-Smtp-Source: AGRyM1sQXRfigyKAuelhDXMbGkqWFtkCmYoj5dAwRd8ziMquql5BHqHo/TFXo8YxnVXNKf8I1chgJXedUPi/ksvtqDk=
+X-Received: by 2002:a81:8397:0:b0:31c:8a02:3f6d with SMTP id
+ t145-20020a818397000000b0031c8a023f6dmr3282416ywf.486.1657707315877; Wed, 13
+ Jul 2022 03:15:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220713070517.172852-1-tmaimon77@gmail.com> <20220713070517.172852-3-tmaimon77@gmail.com>
+In-Reply-To: <20220713070517.172852-3-tmaimon77@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 13 Jul 2022 12:14:39 +0200
+Message-ID: <CAHp75Vcx_G-b2GHLmNcs1AUOzchOQHbvKhq=2FZJyLdAPWunVA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: npcm: Add NPCM8XX support
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/3] dt-bindings: timer: renesas,cmt: R-Car V3U is R-Car Gen4
-Date:   Wed, 13 Jul 2022 12:06:02 +0200
-Message-Id: <20220713100603.3391-3-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220713100603.3391-1-wsa+renesas@sang-engineering.com>
-References: <20220713100603.3391-1-wsa+renesas@sang-engineering.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Despite the name, R-Car V3U is the first member of the R-Car Gen4
-family. Hence move its compatible value to the R-Car Gen4 section.
+On Wed, Jul 13, 2022 at 9:07 AM Tomer Maimon <tmaimon77@gmail.com> wrote:
+>
+> Adding ADC NPCM8XX support to NPCM ADC driver.
+> ADC NPCM8XX uses a different resolution and voltage reference.
+>
+> As part of adding NPCM8XX support:
+> - Add NPCM8XX specific compatible string.
+> - Add data to handle architecture-specific ADC parameters.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- Documentation/devicetree/bindings/timer/renesas,cmt.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+...
 
-diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-index 7cc1ec4b4e38..433ddb49620c 100644
---- a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-+++ b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-@@ -80,11 +80,11 @@ properties:
-               - renesas,r8a77980-cmt0     # 32-bit CMT0 on R-Car V3H
-               - renesas,r8a77990-cmt0     # 32-bit CMT0 on R-Car E3
-               - renesas,r8a77995-cmt0     # 32-bit CMT0 on R-Car D3
--              - renesas,r8a779a0-cmt0     # 32-bit CMT0 on R-Car V3U
-           - const: renesas,rcar-gen3-cmt0 # 32-bit CMT0 on R-Car Gen3 and RZ/G2
- 
-       - items:
-           - enum:
-+              - renesas,r8a779a0-cmt0     # 32-bit CMT0 on R-Car V3U
-               - renesas,r8a779f0-cmt0     # 32-bit CMT0 on R-Car S4-8
-           - const: renesas,rcar-gen4-cmt0 # 32-bit CMT0 on R-Car Gen4
- 
-@@ -102,11 +102,11 @@ properties:
-               - renesas,r8a77980-cmt1     # 48-bit CMT on R-Car V3H
-               - renesas,r8a77990-cmt1     # 48-bit CMT on R-Car E3
-               - renesas,r8a77995-cmt1     # 48-bit CMT on R-Car D3
--              - renesas,r8a779a0-cmt1     # 48-bit CMT on R-Car V3U
-           - const: renesas,rcar-gen3-cmt1 # 48-bit CMT on R-Car Gen3 and RZ/G2
- 
-       - items:
-           - enum:
-+              - renesas,r8a779a0-cmt1     # 48-bit CMT on R-Car V3U
-               - renesas,r8a779f0-cmt1     # 48-bit CMT on R-Car S4-8
-           - const: renesas,rcar-gen4-cmt1 # 48-bit CMT on R-Car Gen4
- 
+> +       struct npcm_adc_info *data;
+
+Can it be const?
+
+...
+
+> +       info->data = (struct npcm_adc_info *)device_get_match_data(dev);
+
+...and hence no dropping qualifier is needed here, i.e. remove the casting.
+
 -- 
-2.35.1
-
+With Best Regards,
+Andy Shevchenko
