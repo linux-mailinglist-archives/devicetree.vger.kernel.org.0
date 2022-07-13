@@ -2,231 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CC49573BA3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 18:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8758573C0F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 19:37:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231687AbiGMQ7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 12:59:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34524 "EHLO
+        id S231764AbiGMRhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 13:37:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230487AbiGMQ7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 12:59:48 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D285D24BF4
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 09:59:46 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id o5-20020a17090a3d4500b001ef76490983so4610327pjf.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 09:59:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=F1CzeIKWJ0IMK4EfYtHrzT59PipvD4EsITImnKg8JKs=;
-        b=dP6aEMSWBaStQQaHU0xC4ZpXviTXPhkywI6GjNZG58tw+TjEf+lr1f3DbCjWFP0deq
-         mrhGoYTX8da+NziUrwofnRFG7sHq4SFMVfT199Or8nLKY2cnWs0pb1dkQrIccTZ7ZnK1
-         tuVVN8XK2+Ka/3MbOub914tkqkqZOdxCVJYp4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=F1CzeIKWJ0IMK4EfYtHrzT59PipvD4EsITImnKg8JKs=;
-        b=4CofFglJ0ts4b+plQlao9ags2QOkYX2fQ2cyGPQejdbDeSHl06LUsG0YBgODVnmKdc
-         G1rLjgIDKTYbb6fgrvgG2vam+FYsjcoeLPxFn20awhycKeRBEjJq1Wb6oCc82TBdpn5e
-         LcDN3XHXG5AuOROiFd3I7Z4z0ROYnBOgpqNRVhzu2oJvFUt52/u7snqP9yKzmTH1tMH4
-         tlOAQt9UlNboL7TIH9k/Efgp/dqMv6MNjTyUATXIh8B4Jm8kiX95iJ8COyWECtEpb10/
-         aVUWgUFgaygWxu7kZVQUkhwRxWtof4xqF3LMDzz0TbS/lYhxuFr/eHVgOJ468o8nKqUs
-         O6hg==
-X-Gm-Message-State: AJIora9aE5rEXqodQh3yh2T3zpoQy0vIMxOMmrP1eqT4qqxvZIjcnswd
-        +TiijO7Ubs9/4+YgftKjk7BDQw==
-X-Google-Smtp-Source: AGRyM1scsheb9eqnRWWNOgAZyMDwHb21wBXHY5/zCtbVFlU4pMvQzH9u88Xxb7k58ALEdTZG3BFGnQ==
-X-Received: by 2002:a17:903:4091:b0:16b:e3d5:b2da with SMTP id z17-20020a170903409100b0016be3d5b2damr3984681plc.58.1657731586355;
-        Wed, 13 Jul 2022 09:59:46 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:31cc:631b:4291:60b5])
-        by smtp.gmail.com with UTF8SMTPSA id w14-20020a1709027b8e00b0016a4db13435sm9071178pll.191.2022.07.13.09.59.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Jul 2022 09:59:45 -0700 (PDT)
-Date:   Wed, 13 Jul 2022 09:59:44 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229654AbiGMRhs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 13:37:48 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A24BA2CCBA;
+        Wed, 13 Jul 2022 10:37:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657733867; x=1689269867;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=jkI+8p3nzS5uhRs0bvgZsKIkyptdyJilhkJ4VnAOZB8=;
+  b=nzW0QCVonDb0+aaSm1DsX6WCaoJ9VVj9wgH/r+h8U0Yr6Kn1U8pHDKVW
+   c5mARU3sT4n0fwrilAqt1GLzQiQn+2O/qB9DZ33d+s3nmVGJiFO9/6wmV
+   MKocvowpCoLTucPGyVwacSAFtP64VAe0F58UIMwsYMkrvjcyzgUgsxtuh
+   38rQqXhapmqTkVW5g7FogOqkH6EFMl3k9ToKEBKAFEcg19yHRUXmVYE4c
+   O+FY/7wXZ1FCBGX2EHAasAJMv4x2Ur3kDwxBzz+f+y8YuG9Y0H3KdrfBc
+   J+FuBCVbLsQL/gnLYwvYUWiCBy4/F2CXVbtBHiQZ8PCFJEA56ufNvaJ/N
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10407"; a="371609382"
+X-IronPort-AV: E=Sophos;i="5.92,267,1650956400"; 
+   d="scan'208";a="371609382"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2022 10:36:45 -0700
+X-IronPort-AV: E=Sophos;i="5.92,267,1650956400"; 
+   d="scan'208";a="737966971"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2022 10:36:42 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1oBgHv-001CZF-0z;
+        Wed, 13 Jul 2022 20:36:39 +0300
+Date:   Wed, 13 Jul 2022 20:36:38 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] usb: misc: onboard_usb_hub: Add reset-gpio support
-Message-ID: <Ys76AHBx/T4kTqnO@google.com>
-References: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com>
- <20220712150627.1444761-2-alexander.stein@ew.tq-group.com>
- <Ys263f5K4WRoSZ45@google.com>
- <1902562.PYKUYFuaPT@steina-w>
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 1/4] gpiolib: add support for bias pull disable
+Message-ID: <Ys8CpqYhWp7zVNC8@smile.fi.intel.com>
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+ <20220713131421.1527179-2-nuno.sa@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1902562.PYKUYFuaPT@steina-w>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220713131421.1527179-2-nuno.sa@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
+On Wed, Jul 13, 2022 at 03:14:18PM +0200, Nuno Sá wrote:
+> This change prepares the gpio core to look at firmware flags and set
+> 'FLAG_BIAS_DISABLE' if necessary. It works in similar way to
+> 'GPIO_PULL_DOWN' and 'GPIO_PULL_UP'.
 
-On Wed, Jul 13, 2022 at 08:46:56AM +0200, Alexander Stein wrote:
-> Hi Matthias,
-> 
-> Am Dienstag, 12. Juli 2022, 20:18:05 CEST schrieb Matthias Kaehlcke:
-> > On Tue, Jul 12, 2022 at 05:06:26PM +0200, Alexander Stein wrote:
-> > > Despite default reset upon probe, release reset line after powering up
-> > > the hub and assert reset again before powering down.
-> > > 
-> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > ---
-> > > My current DT node on my TQMa8MPxL looks like this
-> > > ```
-> > > &usb_dwc3_1 {
-> > > 
-> > > 	dr_mode = "host";
-> > > 	#address-cells = <1>;
-> > > 	#size-cells = <0>;
-> > > 	pinctrl-names = "default";
-> > > 	pinctrl-0 = <&pinctrl_usbhub>;
-> > > 	status = "okay";
-> > > 	
-> > > 	hub_2_0: hub@1 {
-> > > 	
-> > > 		compatible = "usb451,8142";
-> > > 		reg = <1>;
-> > > 		peer-hub = <&hub_3_0>;
-> > > 		reset-gpio = <&gpio1 11 GPIO_ACTIVE_LOW>;
-> > > 	
-> > > 	};
-> > > 	
-> > > 	hub_3_0: hub@2 {
-> > > 	
-> > > 		compatible = "usb451,8140";
-> > > 		reg = <2>;
-> > > 		peer-hub = <&hub_2_0>;
-> > > 		reset-gpio = <&gpio1 11 GPIO_ACTIVE_LOW>;
-> > > 	
-> > > 	};
-> > > 
-> > > };
-> > > ```
-> > > which I don't like much for 2 reasons:
-> > > * the pinctrl has to be put in a common top-node of USB hub node. The
-> > > pinctrl> 
-> > >   can not be requested twice.
-> > 
-> > Agreed, that's not great. The pinctrl doesn't have to be necessarily in the
-> > USB controller node, it could also be in the static section of the board,
-> > but that isn't really much of an improvement :( Not sure there is much to
-> > do given that the USB devices also process the pinctrl info (besides the
-> > onboard_hub platform device doing the same).
-> 
-> I tend to keep the pinctrl property next to the ones actually using them. But 
-> in this case it's not possible unfortunately.
-> 
-> > > * Apparently there is no conflict on the reset-gpio only because just one
-> > > device> 
-> > >   gets probed here:
-> > > > $ ls /sys/bus/platform/drivers/onboard-usb-hub/
-> > > > 38200000.usb:hub@1  bind  uevent  unbind
-> > 
-> > Right, the driver creates a single platform device for each physical hub.
-> 
-> Thanks for confirmation.
-> 
-> > > But this seems better than to use a common fixed-regulator referenced by
-> > > both hub nodes, which just is controlled by GPIO and does not supply any
-> > > voltages.
-> > Agreed, if the GPIO controls a reset line it should be implemented as such.
-> > 
-> > > Note: It might also be necessary to add bindings to specify ramp up times
-> > > and/or reset timeouts.
-> > 
-> > The times are hub specific, not board specific, right? If that's the case
-> > then a binding shouldn't be needed, the timing can be derived from the
-> > compatible string.
-> 
-> Well, yes they are hub specific, but board design might influence them as 
-> well, as in increased ramp up delay.
+...
 
-Isn't the ramp up delay something that should be configured on the regulator
-side with 'regulator-ramp-delay'?
+>  	GPIO_PULL_UP			= (1 << 4),
+>  	GPIO_PULL_DOWN			= (1 << 5),
+> +	GPIO_PULL_DISABLE		= (1 << 6),
 
-> > >  drivers/usb/misc/onboard_usb_hub.c | 18 ++++++++++++++++++
-> > >  1 file changed, 18 insertions(+)
-> > > 
-> > > diff --git a/drivers/usb/misc/onboard_usb_hub.c
-> > > b/drivers/usb/misc/onboard_usb_hub.c index 6b9b949d17d3..348fb5270266
-> > > 100644
-> > > --- a/drivers/usb/misc/onboard_usb_hub.c
-> > > +++ b/drivers/usb/misc/onboard_usb_hub.c
-> > > @@ -7,6 +7,7 @@
-> > > 
-> > >  #include <linux/device.h>
-> > >  #include <linux/export.h>
-> > > 
-> > > +#include <linux/gpio/consumer.h>
-> > > 
-> > >  #include <linux/init.h>
-> > >  #include <linux/kernel.h>
-> > >  #include <linux/list.h>
-> > > 
-> > > @@ -38,6 +39,7 @@ struct usbdev_node {
-> > > 
-> > >  struct onboard_hub {
-> > >  
-> > >  	struct regulator *vdd;
-> > >  	struct device *dev;
-> > > 
-> > > +	struct gpio_desc *reset_gpio;
-> > > 
-> > >  	bool always_powered_in_suspend;
-> > >  	bool is_powered_on;
-> > >  	bool going_away;
-> > > 
-> > > @@ -56,6 +58,10 @@ static int onboard_hub_power_on(struct onboard_hub
-> > > *hub)
-> > > 
-> > >  		return err;
-> > >  	
-> > >  	}
-> > > 
-> > > +	/* Deassert reset */
-> > 
-> > The comment isn't really needed, it's clear from the context.
-> 
-> Ok, removed.
-> 
-> > > +	usleep_range(3000, 3100);
-> > 
-> > These shouldn't be hard coded. Instead you could add a model specific struct
-> > 'hub_data' (or similar) and associate it with the compatible string through
-> > onboard_hub_match.data
-> 
-> Will do.
-> 
-> > You could use fsleep() instead of usleep_range(). It does the _range part
-> > automatically (with a value of 2x).
-> 
-> Nice idea.
-> 
-> > > +	gpiod_set_value_cansleep(hub->reset_gpio, 0);
-> > 
-> > Since this includes delays maybe put the reset inside an 'if
-> > (hub->reset_gpio)' block. Not super important for these short delays, but
-> > they might be longer for some hubs.
-> 
-> gpiod_set_value_cansleep includes delays? Without gpio_desc it returns early 
-> on. Or do you mean the usleep_range before?
+To me it seems superfluous. You have already two flags:
+PUp
+PDown
+When none is set --> Pdisable
 
-Yes, I was referring to the usleep_range() before.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> Actually in this case the 3ms is the minimum time from VDD stable to de-
-> assertion of GRST. So even in case the GPIO is manged by hardware itself,
-> software has to wait here before proceeding, IMHO.
 
-Agreed.
