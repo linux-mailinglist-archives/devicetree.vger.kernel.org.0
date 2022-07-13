@@ -2,107 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 177DC572F70
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 09:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D6DE572F8B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 09:48:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234712AbiGMHoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 03:44:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40230 "EHLO
+        id S234865AbiGMHs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 03:48:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234751AbiGMHoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 03:44:08 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C176E6F7D8
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 00:44:06 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id g1so12995890edb.12
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 00:44:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XpXyhJ4QNFnL4f5EJCGYwB18DxuLMU3vuswmDUU/6LM=;
-        b=dv3RBfCUzpoDhS6Aea9fT3Naw2N/mY3ENtgcsvmkZHsy0KNLqjQJD/v4UUGYYT65Bv
-         L42ePuEoaXv/CD2/0uxp4pR+Hk1qomsNDWmfSSncSfwjW74/Uy4iVCSiFHpQHjYU1jjR
-         NGrqCSVjggpKE46fk3cabnS3319GztqOzcgIkw/Lncbgn7eBhO4m1ffr7mATJwIWL1LJ
-         N2pPTmCI2kAMFJ3m5VnH6tFz8nYeAukT1AoyfYmrO4nVWXA51RstI6RO8+9iK5gPRGMR
-         a2F6/+etVy9DY7zf0MJF6p/PRDsRk6EtY/DxEGWsFb+KqZDKhBN1si7KrDXIuTAT5fDL
-         8SGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XpXyhJ4QNFnL4f5EJCGYwB18DxuLMU3vuswmDUU/6LM=;
-        b=bZoluFHNR/LunkbQNRjO2gshygwmrQQLEM6WIuCMCVS9vdtNRhhen4fOw/16j4+EUX
-         N08/TqnjffZoF0zyako4dPh63PXg0Fkpz+qCzSgBpTu/htbmJ36i7Dy77wvwLJVfiLH3
-         F69t8+8xXnCpz2jHXuX8MnitTnlfjPyicAyltO+TXl1iJbKB3a1owFxCpaZtG/oJeJvu
-         OYvfHpDHdzCFQROduQi8D66k6Hxe6JeIjukcmUFaUuQ9wU3PKUX72pjlpbpmV2SQpX7u
-         3ezhAdQqJoJM3YVHIoumnNfagz76wlA8CWdG8IvMQR/dKhNbULv1z0Skfe2TnDjxw0al
-         pBpw==
-X-Gm-Message-State: AJIora9xJaH2BDu2sAay5Tdyt71b6/DR6/Ua7SISeFI9/5psI5dKDtZj
-        kr1wql0oJxGmWHB+b/PQrM3jOpRoqI49TsPB6ngNXg==
-X-Google-Smtp-Source: AGRyM1sX4F6SiKqMB+JxZ5Wx2Pmtxkg3bpG8fzVwjszy4OPlIxdaH/u7IdCdfjlRCKG7QJCUEHdRq0RDeziupAcS4J8=
-X-Received: by 2002:a05:6402:430f:b0:43a:d521:bda with SMTP id
- m15-20020a056402430f00b0043ad5210bdamr3077496edc.69.1657698245380; Wed, 13
- Jul 2022 00:44:05 -0700 (PDT)
+        with ESMTP id S234869AbiGMHsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 03:48:18 -0400
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 63417E5DF9;
+        Wed, 13 Jul 2022 00:48:05 -0700 (PDT)
+Received: from [192.168.87.140] (unknown [50.47.106.71])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 9B42E204DE8E;
+        Wed, 13 Jul 2022 00:48:04 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9B42E204DE8E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1657698485;
+        bh=KZ3W7Lm0ppPu0mxu7WcxzkIS3QqQzFKigKl1JQiFt2Y=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=P6+Zhlbq0DMsnVL+ep7Gw05EZe/vUerKqkJmmAvdzE0pSRyQXm6vhKjOFnTdc84dI
+         Wr5o/o68+rQ16YtPQgftXDkZ3oY7JvtHA9SjKygZ+43CrDgiRDmcJS/qnvQ8OjqHRv
+         Hs3mxf8ksl5o7PzzC4HWh10dRPhLpoAdGUpHVLUs=
+Message-ID: <e5c47d13-bbb9-e607-47cb-6bf4cf6bebd9@linux.microsoft.com>
+Date:   Wed, 13 Jul 2022 00:48:04 -0700
 MIME-Version: 1.0
-References: <20220712110232.329164-1-francesco.dolcini@toradex.com> <20220712110232.329164-3-francesco.dolcini@toradex.com>
-In-Reply-To: <20220712110232.329164-3-francesco.dolcini@toradex.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 13 Jul 2022 09:43:54 +0200
-Message-ID: <CAMRc=MeBE=V8cE2ZnuHzw65i5mx2S6iM9LDC8=M-Pa0RWHR7yg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] dt-bindings: gpio: stmpe: Remove node name requirement
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v7 3/5] ARM: dts: aspeed: Add HACE device controller node
+Content-Language: en-US
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Dhananjay Phadke <dhphadke@microsoft.com>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        BMC-SW@aspeedtech.com, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220705020936.1751771-1-neal_liu@aspeedtech.com>
+ <20220705020936.1751771-4-neal_liu@aspeedtech.com>
+From:   Dhananjay Phadke <dphadke@linux.microsoft.com>
+In-Reply-To: <20220705020936.1751771-4-neal_liu@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 1:02 PM Francesco Dolcini
-<francesco.dolcini@toradex.com> wrote:
->
-> STMPE driver does not require a specific node name anymore, only the
-> compatible is checked, update binding according to this.
->
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+On 7/4/2022 7:09 PM, Neal Liu wrote:
+> Add hace node to device tree for AST2500/AST2600.
+> 
+> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
+> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
 > ---
->  Documentation/devicetree/bindings/gpio/gpio-stmpe.txt | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-stmpe.txt b/Documentation/devicetree/bindings/gpio/gpio-stmpe.txt
-> index a0e4cf885213..b33f8f02c0d7 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-stmpe.txt
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-stmpe.txt
-> @@ -8,8 +8,7 @@ Optional properties:
->   - st,norequest-mask: bitmask specifying which GPIOs should _not_ be requestable
->     due to different usage (e.g. touch, keypad)
->
-> -Node name must be stmpe_gpio and should be child node of stmpe node to which it
-> -belongs.
-> +Node should be child node of stmpe node to which it belongs.
->
->  Example:
->         stmpe_gpio {
-> --
-> 2.25.1
->
+>   arch/arm/boot/dts/aspeed-g5.dtsi | 8 ++++++++
+>   arch/arm/boot/dts/aspeed-g6.dtsi | 8 ++++++++
+>   2 files changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
+> index c89092c3905b..04f98d1dbb97 100644
+> --- a/arch/arm/boot/dts/aspeed-g5.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g5.dtsi
+> @@ -262,6 +262,14 @@ rng: hwrng@1e6e2078 {
+>   				quality = <100>;
+>   			};
+>   
+> +			hace: crypto@1e6e3000 {
+> +				compatible = "aspeed,ast2500-hace";
+> +				reg = <0x1e6e3000 0x100>;
+> +				interrupts = <4>;
+> +				clocks = <&syscon ASPEED_CLK_GATE_YCLK>;
+> +				resets = <&syscon ASPEED_RESET_HACE>;
+> +			};
+> +
+>   			gfx: display@1e6e6000 {
+>   				compatible = "aspeed,ast2500-gfx", "syscon";
+>   				reg = <0x1e6e6000 0x1000>;
+> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+> index 6660564855ff..095cf8d03616 100644
+> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+> @@ -323,6 +323,14 @@ apb {
+>   			#size-cells = <1>;
+>   			ranges;
+>   
+> +			hace: crypto@1e6d0000 {
+> +				compatible = "aspeed,ast2600-hace";
+> +				reg = <0x1e6d0000 0x200>;
+> +				interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&syscon ASPEED_CLK_GATE_YCLK>;
+> +				resets = <&syscon ASPEED_RESET_HACE>;
+> +			};
+> +
 
-Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+
+Thank you for addressing ast2500, for this patch -
+
+Reviewed-by: Dhananjay Phadke <dphadke@linux.microsoft.com>
