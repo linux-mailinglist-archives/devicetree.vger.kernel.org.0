@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6205C573EDC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 23:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A11573EFC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 23:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237401AbiGMVVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 17:21:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38922 "EHLO
+        id S231769AbiGMV3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 17:29:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237434AbiGMVVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 17:21:22 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18F9CAE41
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 14:20:47 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-f2a4c51c45so128550fac.9
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 14:20:47 -0700 (PDT)
+        with ESMTP id S237408AbiGMV3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 17:29:18 -0400
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F02E022531
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 14:29:16 -0700 (PDT)
+Received: by mail-oo1-xc34.google.com with SMTP id u31-20020a4a9722000000b004356f5f0d8aso9882ooi.5
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 14:29:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jDIsFRxXwtCqxyONdxF5c1K9paBtFr3+08L7z2qU5vA=;
-        b=j6cOJrctkCf7KseVBRdjSV7xlcfNt+7koxFBfEzD+TqfkyzpEbWiMDN5+d1JFAlUR1
-         4UWAlA7Y7QVimCdgfMGCV5T5leqdGRaLoe8ws+Uj9fgqQwS4b8SOpsIZtuehvXuI+xQo
-         UFJKWvgemXRzSTOEgy/A+jHJpgXoPOrnxi+IEalxaNKcrp0DgtDTmzaU9N6aQ+abSW1S
-         IilnnvVXk0xNL9DD52vVgrih36f14uWbKP9rFimyB5zdAH32DVassCoYu35wrNoqLNi7
-         lk9demUWCLl4bQ8ke7GM5ZQOmqIJbWNNbduoF8eLZRDgNLeyQB3Ohsx8x5GSTbEkfbnL
-         uufw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=DAIvkORMY0eHuzO0UF6055+MNm4d5HssuHFf88BN1UI=;
+        b=EZHKhsguEAPEJy9bBeWQHr2VgpR//He8sO1V7us4Fzth0GlBVpYEHAbDtuFKNlH9AX
+         ny4twiBDh0XOIO+FoW/82qhpHPTv68i4wjXJbIBMsIgYhSEndRHS2N9oXDmFTmXDcvLi
+         LSjGvIngTBa94+CxCH9h3iTSF+Mz99KUszPUGVie1LtGTQgPeVkqBLVleOhpa3U9UI7m
+         yuRyEbLU3Up0vor3aU8X9Rkqq9KqU27n20PBYMPAKdkj3ADB1Y11r73Bc+B6GleagTY2
+         h9TqQFEQkZ+W0RPjFPj2tN4CtAmo1dhIozLNP9tlwXbZIF/9jmnszVbaCq2bekApqi7p
+         CliA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jDIsFRxXwtCqxyONdxF5c1K9paBtFr3+08L7z2qU5vA=;
-        b=lrf89BXnFESZZ/d0NaZ+OP0HnN1T7611ZC3njeFHaAoUJQNk/PDgIovgnrttaEktLQ
-         nJPlkhXqEyDSXT4LYoKyWBsSvcM6w2e1DY+NJkxsGuzLWRHwNJi7AaGedoUeuq9uHQMK
-         z4fHiYZmHXBAAjtuqaK6bHT5obpEPy756RozK089IyhzQWVCXCK0l5Hq0K5BMnU2tS4s
-         V61+AiwRbrf0qwrHJbjQpm3L6WcVtyHRaz0o/mhVvWNMh/GXegCGJ5E9fQ/4HICI8pZZ
-         +MjJ3ToH+jeCHmYaGolqsT+h882zd4RXOJmsXT8Wfo/8aMmUYSCKSCbJfZUcVfy3eL37
-         e/Gg==
-X-Gm-Message-State: AJIora+X7GZw/uuH8m7ZnxZbEyiF/b+lZakWWXUB/WUiFftKajzuip4W
-        rll7x0ga+YKQykTlXY4aRe+4tjlpRK1YKw==
-X-Google-Smtp-Source: AGRyM1tJqqpZcbdmf0IjLs3JPzHYVSJn1XpT0FPSi1cB/Be9qVNnpyy+gRwJUYwTuBP+IukgYZYe8w==
-X-Received: by 2002:a05:6870:41ca:b0:101:d588:6241 with SMTP id z10-20020a05687041ca00b00101d5886241mr5611485oac.175.1657747246489;
-        Wed, 13 Jul 2022 14:20:46 -0700 (PDT)
-Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id i19-20020a056871029300b0010c17e6c699sm6647897oae.47.2022.07.13.14.20.45
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=DAIvkORMY0eHuzO0UF6055+MNm4d5HssuHFf88BN1UI=;
+        b=VQnBC+rYzThpIFfpNROeGSTd5vo16gInZz5uIKxHl0Afet+MrtIWDE+pbl5eUEzj4z
+         CD3gzk/BeteQg8/VhoPCVJgvdC7p8HifCaVw5aGxDaoDm2JiAlx6dpCLXDM4hXXM23lJ
+         JRaPB0RwM3Cm7nY74gth4HbsCerOrxxwGR4XSlHfFqsSjxISQUYwOl74mhJ3aIcds+Km
+         IIspI27QLEZLWK7N/iGPIj6smzInEYy6MMnMQH/27GA88J7EzPbeXhjrxQf/mcezmfCU
+         xGauZ/jWcDeTYv32BWx+/6/Ifu6A6lw6UawQYYuBs4/bQcHyO4yaimzMb8chkyu2i3hr
+         Obsg==
+X-Gm-Message-State: AJIora+vip7BReTAZTl2+6zv2Rt6NJ3P9lffnHwYNfXmYdcWEqy7WGrM
+        R3G5RBNZX24c2jkvdMkH3xmUCw==
+X-Google-Smtp-Source: AGRyM1tHTIAmGVl8qjAwCJwYZFFQqlZezy4v4mw7f2zjYYHeDaow0QxrcsOXFWlylngpaVlqoaEBMQ==
+X-Received: by 2002:a4a:8f51:0:b0:425:a539:f876 with SMTP id f17-20020a4a8f51000000b00425a539f876mr1973480ool.88.1657747756247;
+        Wed, 13 Jul 2022 14:29:16 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id r31-20020a4a9662000000b00431d44849e9sm4907783ooi.20.2022.07.13.14.29.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jul 2022 14:20:45 -0700 (PDT)
+        Wed, 13 Jul 2022 14:29:15 -0700 (PDT)
+Date:   Wed, 13 Jul 2022 16:29:13 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh+dt@kernel.org>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] ARM: dts: qcom: msm8974-sony: Enable LPG
-Date:   Wed, 13 Jul 2022 14:23:09 -0700
-Message-Id: <20220713212309.130230-3-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220713212309.130230-1-bjorn.andersson@linaro.org>
-References: <20220713212309.130230-1-bjorn.andersson@linaro.org>
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/4] ARM: dts: qcom: msm8660: add pxo/cxo clocks to the
+ GCC node
+Message-ID: <Ys85KUGnlXlUI+zE@builder.lan>
+References: <20220620110739.1598514-1-dmitry.baryshkov@linaro.org>
+ <20220620110739.1598514-4-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220620110739.1598514-4-dmitry.baryshkov@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -73,115 +76,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Both Castor and Honami has RGB LEDs driven by the PM8941 LPG, define
-these.
+On Mon 20 Jun 06:07 CDT 2022, Dmitry Baryshkov wrote:
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+> Add pxo/cxo clocks to the GCC device tree node.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm/boot/dts/qcom-msm8660.dtsi | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom-msm8660.dtsi
+> index 47b97daecef1..61e3ab0ebfd3 100644
+> --- a/arch/arm/boot/dts/qcom-msm8660.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8660.dtsi
+> @@ -50,13 +50,13 @@ cpu-pmu {
+>  	};
+>  
+>  	clocks {
+> -		cxo_board {
+> +		cxo_board: cxo_board {
 
-Changes since v1:
-- Corrected unit addresses and sort order of channels
+As requested by Krzysztof, please use clock-output-names to specify the
+name of the clock, and rename the node "cxo-board-clk".
 
- .../dts/qcom-msm8974-sony-xperia-rhine.dtsi   | 30 +++++++++++++++++++
- ...-msm8974pro-sony-xperia-shinano-castor.dts | 30 +++++++++++++++++++
- 2 files changed, 60 insertions(+)
+Thanks,
+Bjorn
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
-index d42b85bda33a..5a70683d9103 100644
---- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
-@@ -3,6 +3,7 @@
- #include "qcom-pm8841.dtsi"
- #include "qcom-pm8941.dtsi"
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- 
- / {
-@@ -172,6 +173,35 @@ gpio_keys_pin_a: gpio-keys-active-state {
- 	};
- };
- 
-+&pm8941_lpg {
-+	status = "okay";
-+
-+	qcom,power-source = <1>;
-+
-+	rgb-led {
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@5 {
-+			reg = <5>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+
-+		led@6 {
-+			reg = <6>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@7 {
-+			reg = <7>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+	};
-+};
-+
- &pm8941_wled {
- 	status = "okay";
- 
-diff --git a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-index 9fc696a7399a..3f45f5c5d37b 100644
---- a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-@@ -3,6 +3,7 @@
- #include "qcom-pm8841.dtsi"
- #include "qcom-pm8941.dtsi"
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- 
- / {
-@@ -288,6 +289,35 @@ lcd_dcdc_en_pin_a: lcd-dcdc-en-active-state {
- 
- };
- 
-+&pm8941_lpg {
-+	status = "okay";
-+
-+	qcom,power-source = <1>;
-+
-+	rgb-led {
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@5 {
-+			reg = <5>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+
-+		led@6 {
-+			reg = <6>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@7 {
-+			reg = <7>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+	};
-+};
-+
- &rpm_requests {
- 	pm8941-regulators {
- 		compatible = "qcom,rpm-pm8941-regulators";
--- 
-2.35.1
-
+>  			compatible = "fixed-clock";
+>  			#clock-cells = <0>;
+>  			clock-frequency = <19200000>;
+>  		};
+>  
+> -		pxo_board {
+> +		pxo_board: pxo_board {
+>  			compatible = "fixed-clock";
+>  			#clock-cells = <0>;
+>  			clock-frequency = <27000000>;
+> @@ -129,6 +129,8 @@ gcc: clock-controller@900000 {
+>  			#power-domain-cells = <1>;
+>  			#reset-cells = <1>;
+>  			reg = <0x900000 0x4000>;
+> +			clocks = <&pxo_board>, <&cxo_board>;
+> +			clock-names = "pxo", "cxo";
+>  		};
+>  
+>  		gsbi6: gsbi@16500000 {
+> -- 
+> 2.35.1
+> 
