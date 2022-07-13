@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A2EC57398B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 17:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D0FC5739A2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 17:05:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236727AbiGMPDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 11:03:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38392 "EHLO
+        id S236778AbiGMPFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 11:05:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236720AbiGMPDK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 11:03:10 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949683E75F;
-        Wed, 13 Jul 2022 08:03:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 39E03B82025;
-        Wed, 13 Jul 2022 15:03:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB238C34114;
-        Wed, 13 Jul 2022 15:03:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657724585;
-        bh=wsIdfHIG7F2tnroKm1i5VUPbK8CQs4fRT2cEONpz1T4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b/rJW8Pfre4Q9JN0Jnqo33d4lqnajvsL6J8Pni/Hux2OPtNt+YiEqpigBdqi5UYG4
-         3BV0vEExnz1iTWzkgHxS5UenP5DLkbbABNJ9mrGlgup6K1Qlsae1Xow4ibzIbpDK5H
-         j0mDspbQ5j205vjJiAjHlYzU7A96Rn9tQB2edRsnKRb9VlomGluaE11F3OpYS1lw9E
-         mSZxHB5+dJouGYT00bmK51zf11pH7/a3hyihMqjDAX8QeqGn/8Lp0YUmJ81/TZH6vx
-         dAAtOtTpA8NIHl1G7ZxFarhOJag9ms48K4Hsa9VK3QjFqHTThlDpT2IfupjcaNgWGN
-         6qap4R7lMiGhA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oBdtN-0001SX-GJ; Wed, 13 Jul 2022 17:03:09 +0200
-Date:   Wed, 13 Jul 2022 17:03:09 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S236784AbiGMPF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 11:05:28 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53975422EB
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 08:05:20 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id l22-20020a05600c4f1600b003a2e10c8cdeso2237282wmq.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 08:05:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=SFLYTnxGltOS1OadQL4iHNlIKerC7uXMw8HZbX2h5Bw=;
+        b=pWJ2mDStBxvqxqXEyUi5/wzW/gakcUiJFUflrpQlBba7NBb0yWb2gWSnqUtp+ydGEU
+         lB04w2koWZ60Yk8CW6v3QYjPG8phb1dnMYAmCYKbZEeJaU1mKQH6T9p83F/TgRhO0mIf
+         YeczGts5Bz8QQS1mUT3srd6mT2h+fDzbYFvN4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=SFLYTnxGltOS1OadQL4iHNlIKerC7uXMw8HZbX2h5Bw=;
+        b=a6/5PSIPLCD3ep6laZnh4pn16p1qPdjHjzD7gGiq2OaBcG4lMuj4AxUtL1IMhV1W54
+         7tAe+V5ucQ2K+HJtOYGR2MLpTVQ9xVbWoapqE1nS/gILXlNZz9Xdwu1wd12zWiVPVyNH
+         /QTh/RkCPIYK2+yTDnGNwhS0tPPaS9NqydhKkHhieV6+4dgTcab/rTKGep/K0dS2NXgI
+         oJtXBVXHIkxdkzdnp4Jjs85O6DKPWcFQac8naAHuS5k1IjTWuG4hS/uE1S2rbi2qE1kh
+         XNiQPPeJzhng88BSOZJ6M6S56jvjsAx2kylkFXgRehEU55p6DOQODhfTeLIruGV8her3
+         xbAg==
+X-Gm-Message-State: AJIora9RZsx5ojJhpTbQ8KpxEXaS3aB/06jiVzz7tVMIeG0ug9iTElHO
+        AE7Wqzx3mde1AWyKXTRdYraiNg==
+X-Google-Smtp-Source: AGRyM1vKDLV5XMD/EiFbzgEkFckN+SUKqhPWdZjReQCFv4hhO6CPOuc3kfklirPAo3JWhXvjEuI3KQ==
+X-Received: by 2002:a1c:a1c7:0:b0:3a2:f171:8d68 with SMTP id k190-20020a1ca1c7000000b003a2f1718d68mr4139777wme.111.1657724718777;
+        Wed, 13 Jul 2022 08:05:18 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i.station (net-188-217-51-7.cust.vodafonedsl.it. [188.217.51.7])
+        by smtp.gmail.com with ESMTPSA id f17-20020a05600c4e9100b003a2d87aea57sm1465537wmq.10.2022.07.13.08.05.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jul 2022 08:05:18 -0700 (PDT)
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     tommaso.merciai@amarulasolutions.com
+Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        quentin.schulz@theobroma-systems.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/7] arm64: dts: qcom: sc8280xp: fix USB interrupts
-Message-ID: <Ys7erer+lLaHqLqe@hovoldconsulting.com>
-References: <20220713131340.29401-1-johan+linaro@kernel.org>
- <20220713131340.29401-6-johan+linaro@kernel.org>
- <20220713141228.5z5rmgepj6mepjyp@halaneylaptop>
- <Ys7YKkRAAI0Vbseh@hovoldconsulting.com>
- <20220713144310.kehfuqvfhsjb36ri@halaneylaptop>
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 5/6] media: dt-bindings: ov5693: document YAML binding
+Date:   Wed, 13 Jul 2022 17:05:05 +0200
+Message-Id: <20220713150506.2085214-6-tommaso.merciai@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220713150506.2085214-1-tommaso.merciai@amarulasolutions.com>
+References: <20220713150506.2085214-1-tommaso.merciai@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220713144310.kehfuqvfhsjb36ri@halaneylaptop>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,15 +73,180 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 13, 2022 at 09:43:10AM -0500, Andrew Halaney wrote:
-> On Wed, Jul 13, 2022 at 04:35:22PM +0200, Johan Hovold wrote:
+Add documentation of device tree in YAML schema for the OV5693
+CMOS image sensor from Omnivision
 
-> > Do you mind if I fold a fix for that into a v2 of this patch?
+Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v1:
+ - Fix allOf position as suggested by Krzysztof
+ - Remove port description as suggested by Krzysztof
+ - Fix EOF as suggested by Krzysztof
 
-> Sounds good, feel free to add my R-B with that change as well!
+Changes since v2:
+ - Fix commit body as suggested by Krzysztof
 
-Done. I'll wait a bit for any further comments before reposting.
+Changes since v3:
+ - Add reviewed-by tags, suggested by Jacopo, Krzysztof
 
-Thanks again.
+Changes since v4:
+ - Remove wrong Sakari reviewed-by tag, suggested by Krzysztof, Sakari
 
-Johan
+Changes since v5:
+ - Remove dovdd-supply, avdd-supply, dvdd-supply from required properties
+as suggested by Jacopo
+
+Changes since v6:
+ - Add missing port node as suggested by Sakari, Rob bot
+
+ .../bindings/media/i2c/ovti,ov5693.yaml       | 124 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 125 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+new file mode 100644
+index 000000000000..359dc08440a8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+@@ -0,0 +1,124 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2022 Amarulasolutions
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5693.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Omnivision OV5693 CMOS Sensor
++
++maintainers:
++  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
++
++description: |
++  The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
++  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
++  sub-sampled, and windowed 10-bit MIPI images in various formats via the
++  Serial Camera Control Bus (SCCB) interface.
++
++  OV5693 is controlled via I2C and two-wire Serial Camera Control Bus (SCCB).
++  The sensor output is available via CSI-2 serial data output (up to 2-lane).
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: ovti,ov5693
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description:
++      System input clock (aka XVCLK). From 6 to 27 MHz.
++    maxItems: 1
++
++  dovdd-supply:
++    description:
++      Digital I/O voltage supply, 1.8V.
++
++  avdd-supply:
++    description:
++      Analog voltage supply, 2.8V.
++
++  dvdd-supply:
++    description:
++      Digital core voltage supply, 1.2V.
++
++  reset-gpios:
++    description:
++      The phandle and specifier for the GPIO that controls sensor reset.
++      This corresponds to the hardware pin XSHUTDN which is physically
++      active low.
++    maxItems: 1
++
++  port:
++    description: MIPI CSI-2 transmitter port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          link-frequencies: true
++
++          data-lanes:
++            minItems: 1
++            maxItems: 2
++
++        required:
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/px30-cru.h>
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov5693: camera@36 {
++            compatible = "ovti,ov5693";
++            reg = <0x36>;
++
++            reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&cif_clkout_m0>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clock-rates = <19200000>;
++
++            avdd-supply = <&vcc_1v8>;
++            dvdd-supply = <&vcc_1v2>;
++            dovdd-supply = <&vcc_2v8>;
++
++            rotation = <90>;
++            orientation = <0>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2>;
++                    link-frequencies = /bits/ 64 <450000000>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f679152bdbad..61c2d28aff4f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14838,6 +14838,7 @@ M:	Daniel Scally <djrscally@gmail.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+ F:	drivers/media/i2c/ov5693.c
+ 
+ OMNIVISION OV5695 SENSOR DRIVER
+-- 
+2.25.1
+
