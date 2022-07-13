@@ -2,120 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6275F573827
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 16:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE7615738FF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 16:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236391AbiGMOAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 10:00:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34868 "EHLO
+        id S235133AbiGMOh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 10:37:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235830AbiGMOAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 10:00:11 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4712E27FC1
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:00:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1657720810;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=LVM/9+bL0Plqw8a52QPl3k4n9Q1+GAafg2rUTujh0Gc=;
-        b=C7MeA/4Cvzux7KlM9poxwLLOphu8PWeg/WjqbwGM9Gufr63eGbZBsoRhWvCslo6Z+EpLod
-        2VRMFcy9MGUROEnhQrxLp2+sSev16rE5TS32z7p5kLa+9bnRHqe+H6/5jpCUoAa6O2y/WE
-        ztIGCHspJ+JGWN8iOAQD0YOPaHvpvZc=
-Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com
- [209.85.210.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-656-OXAtORjGMtmm0nW0Q-6i4g-1; Wed, 13 Jul 2022 10:00:08 -0400
-X-MC-Unique: OXAtORjGMtmm0nW0Q-6i4g-1
-Received: by mail-ot1-f72.google.com with SMTP id z6-20020a9d2486000000b0061c46e2f6e3so3824421ota.21
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:00:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LVM/9+bL0Plqw8a52QPl3k4n9Q1+GAafg2rUTujh0Gc=;
-        b=foWY390Mot2QWhvLG9E9xt7kZUJ5JFfcBiPTTUBrYuQIZMWxlrDdI69OEvi46d2HtN
-         263t4hUYBL0LxkTbcqEBogBJzRk1PaFB+EiX2ZYMFt1uyTsWC2MZ3EjHK5MscMCcW9nZ
-         CjIUVaDeM3CvDG+TL0DW7zLFMk+yBRkW+rIvWXhUuJQd6qbMzdNbp2ZGVAA+kTBqF6PN
-         x7LusqeyIlhhbyWcm1o19Ha5Jd9QEN6UbsqdLlrbJ2B/2/I9F974DjBFjSsVCMVzWQUR
-         l/viXlJwyqExnXF4l+eDrczE6gWRXD2x0WcbIUY57oMcmMz7cSdkPEXXGHk0+nE89ACP
-         mTCQ==
-X-Gm-Message-State: AJIora/4QTndDPu46/E9ozvPSiDIazJL++45RamPYHCgi/NV7qXvFos5
-        okcLHBTj8WOmENf6gd5SumSNB7OvDZxBRf+GH8nKTNTzqMo5mtmkwzpTyQ0OFTuct0UX1cHHPWR
-        QJLfIunttp5bnWjLZpgSSGQ==
-X-Received: by 2002:a05:6870:f149:b0:de:e873:4a46 with SMTP id l9-20020a056870f14900b000dee8734a46mr1710705oac.286.1657720807869;
-        Wed, 13 Jul 2022 07:00:07 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1tWU5P/M2v4yhf5rjgNK8fNjmlmpbF71huQvwUWO4e55Sg67LK3nJe2ebY/U445BU5Ynrdnxw==
-X-Received: by 2002:a05:6870:f149:b0:de:e873:4a46 with SMTP id l9-20020a056870f14900b000dee8734a46mr1710691oac.286.1657720807684;
-        Wed, 13 Jul 2022 07:00:07 -0700 (PDT)
-Received: from halaneylaptop ([2600:1700:1ff0:d0e0::2e])
-        by smtp.gmail.com with ESMTPSA id h82-20020aca3a55000000b00339ff117f38sm3726085oia.53.2022.07.13.07.00.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jul 2022 07:00:07 -0700 (PDT)
-Date:   Wed, 13 Jul 2022 09:00:05 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/7] usb: dwc3: qcom: fix missing optional irq warnings
-Message-ID: <20220713140005.qw3nhjlin4vobhvd@halaneylaptop>
-References: <20220713131340.29401-1-johan+linaro@kernel.org>
- <20220713131340.29401-4-johan+linaro@kernel.org>
+        with ESMTP id S230439AbiGMOh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 10:37:26 -0400
+X-Greylist: delayed 12601 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 13 Jul 2022 07:37:24 PDT
+Received: from 14.mo561.mail-out.ovh.net (14.mo561.mail-out.ovh.net [188.165.43.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D25E39B96
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 07:37:24 -0700 (PDT)
+Received: from player792.ha.ovh.net (unknown [10.109.143.216])
+        by mo561.mail-out.ovh.net (Postfix) with ESMTP id C808224341
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 10:58:33 +0000 (UTC)
+Received: from RCM-web6.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player792.ha.ovh.net (Postfix) with ESMTPSA id 177F12C96E135;
+        Wed, 13 Jul 2022 10:58:21 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220713131340.29401-4-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Date:   Wed, 13 Jul 2022 12:58:20 +0200
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     William Zhang <william.zhang@broadcom.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        kursad.oney@broadcom.com, anand.gore@broadcom.com,
+        dan.beygelman@broadcom.com, f.fainelli@gmail.com,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        joel.peshkin@broadcom.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/3] dt-bindings: arm64: bcmbca: Merge BCM4908 into
+ BCMBCA
+In-Reply-To: <e4356c5e89492eb690e3dc863ba281bd@milecki.pl>
+References: <20220712021144.7068-1-william.zhang@broadcom.com>
+ <20220712021144.7068-2-william.zhang@broadcom.com>
+ <ca8c3003-1bcb-6658-592c-566609fd7bd2@linaro.org>
+ <94b0ab39-279d-d3c2-98a4-054c10ad041c@broadcom.com>
+ <c40f20c7-59ee-99f4-9a11-e928b41eda9f@linaro.org>
+ <6efb1cfe-6129-276a-eeb3-44147304d211@broadcom.com>
+ <e4356c5e89492eb690e3dc863ba281bd@milecki.pl>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <85219d59e2906534409fc24ad2e5e4c9@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 194.187.74.233
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 11914554292197501915
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudejjedgfeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtkehjtddtreejnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeevjefhffffveeludejfedtvdfftdekgffghfegieeliedvfeeigfejteejjeekfeenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehplhgrhigvrhejledvrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehiedu
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 13, 2022 at 03:13:36PM +0200, Johan Hovold wrote:
-> Not all platforms have all of the four currently supported wakeup
-> interrupts so use the optional irq helpers when looking up interrupts to
-> avoid printing error messages when an optional interrupt is not found:
+On 2022-07-13 12:50, Rafał Miłecki wrote:
+> On 2022-07-13 02:57, William Zhang wrote:
+>> On 7/12/22 11:18, Krzysztof Kozlowski wrote:
+>>> On 12/07/2022 19:37, William Zhang wrote:
+>>>>>> +      - description: BCM4908 Family based boards
+>>>>>> +        items:
+>>>>>> +          - enum:
+>>>>>> +              # BCM4908 SoC based boards
+>>>>>> +              - brcm,bcm94908
+>>>>>> +              - asus,gt-ac5300
+>>>>>> +              - netgear,raxe500
+>>>>>> +              # BCM4906 SoC based boards
+>>>>>> +              - brcm,bcm94906
+>>>>>> +              - netgear,r8000p
+>>>>>> +              - tplink,archer-c2300-v1
+>>>>>> +          - enum:
+>>>>>> +              - brcm,bcm4908
+>>>>>> +              - brcm,bcm4906
+>>>>>> +              - brcm,bcm49408
+>>>>> 
+>>>>> This is wrong.  brcm,bcm94908 followed by brcm,bcm4906 does not 
+>>>>> look
+>>>>> like valid list of compatibles.
+>>>>> 
+>>>> For 4908 board variant, it will need to be followed by 4908 chip. 
+>>>> Sorry
+>>>> for the basic question but is there any requirement to enforce this 
+>>>> kind
+>>>> of rule?  I would assume dts writer know what he/she is doing and 
+>>>> select
+>>>> the right combination.
+>>> 
+>>> The entire point of DT schema is to validate DTS. Combination like 
+>>> above
+>>> prevents that goal.
+>>> 
+>>> Best regards,
+>>> Krzysztof
+>> Understand the DT schema purpose. But items property allows multiple
+>> enums in the list which gives a lot of flexibility but make it hard to
+>> validate. I am not familiar with DT schema, is there any directive to
+>> specify one enum value depending on another so dts validation tool can
+>> report error if combination is wrong?
+>> 
+>> This is our preferred format of all bcmbca compatible string
+>> especially when we could have more than 10 chip variants for the same
+>> chip family and we really want to work on the chip family id.  We will
+>> make sure they are in the right combination in our own patch and patch
+>> from other contributors. Would this work? If not, I will probably have
+>> to revert the change of 4908(maybe append brcm,bcmbca as this chip
+>> belongs to the same bca group) and use "enum board variant", "const
+>> main chip id", "brcm,bca" for all other chips as our secondary choice.
 > 
-> 	dwc3-qcom a6f8800.usb: error -ENXIO: IRQ hs_phy_irq not found
+> I'm not sure why I didn't even receive 1/3 and half of discussion
+> e-mails.
 > 
-> Fixes: a4333c3a6ba9 ("usb: dwc3: Add Qualcomm DWC3 glue driver")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> You can't just put all strings into a single bag and allow mixing them
+> in any combos. Please check how it's properly handled in the current
+> existing binding:
+> Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
 > 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 77036551987a..c5e482f53e9d 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -490,9 +490,9 @@ static int dwc3_qcom_get_irq(struct platform_device *pdev,
->  	int ret;
->  
->  	if (np)
-> -		ret = platform_get_irq_byname(pdev_irq, name);
-> +		ret = platform_get_irq_byname_optional(pdev_irq, name);
->  	else
-> -		ret = platform_get_irq(pdev_irq, num);
-> +		ret = platform_get_irq_optional(pdev_irq, num);
->  
->  	return ret;
->  }
-> -- 
-> 2.35.1
-> 
+> Above binding enforces that non-matching compatible strings are not 
+> used
+> together.
 
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+I just noticed you're actually removing brcm,bcm4908.yaml in the 2/3 so
+you must be aware of that file.
 
+So you see a cleanly working binding in the brcm,bcm4908.yaml but
+instead copying it you decided to wrote your own one from scratch.
+Incorrectly.
+
+This smells of NIH (not invented here). Please just use that binding I
+wrote and move if it needed.
