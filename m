@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D6DE572F8B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 09:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A58572FA1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 09:51:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234865AbiGMHs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 03:48:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43944 "EHLO
+        id S234795AbiGMHu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 03:50:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234869AbiGMHsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 03:48:18 -0400
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 63417E5DF9;
-        Wed, 13 Jul 2022 00:48:05 -0700 (PDT)
-Received: from [192.168.87.140] (unknown [50.47.106.71])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 9B42E204DE8E;
-        Wed, 13 Jul 2022 00:48:04 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9B42E204DE8E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1657698485;
-        bh=KZ3W7Lm0ppPu0mxu7WcxzkIS3QqQzFKigKl1JQiFt2Y=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=P6+Zhlbq0DMsnVL+ep7Gw05EZe/vUerKqkJmmAvdzE0pSRyQXm6vhKjOFnTdc84dI
-         Wr5o/o68+rQ16YtPQgftXDkZ3oY7JvtHA9SjKygZ+43CrDgiRDmcJS/qnvQ8OjqHRv
-         Hs3mxf8ksl5o7PzzC4HWh10dRPhLpoAdGUpHVLUs=
-Message-ID: <e5c47d13-bbb9-e607-47cb-6bf4cf6bebd9@linux.microsoft.com>
-Date:   Wed, 13 Jul 2022 00:48:04 -0700
+        with ESMTP id S234690AbiGMHux (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 03:50:53 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 204C9C84C5
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 00:50:52 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id n18so16047958lfq.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 00:50:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=NYflSyzJGWVmdo/FfUNnh/uWyzXsbzDiU5Kfi3yNT/s=;
+        b=T8PSBsSZ/kqgVoJWl1fOj4dHcsCxbJGi1zOLnZJzpdNI3O5NOJwql6sobP0r3Z1OQd
+         oFnUu6Vr5VpQoaF5ZA2ltfQIhfhw0KOj0IC7ZY6BXomA+yv50aY2SHmUkNJi1T7t1iuK
+         clsGR5WG4tBsWwsBQDdKv9WX3smAnXnZ1/NdCLShi1x1Aztc3iwzPdK2r7QbfLOgJ8SY
+         Bsctvhnv3CXHSZT1zMF9vzwZ8fBXuRXU0B0dcBY8wsCLgCTsR3y5JEc9lYDqF74bBdJU
+         ErJWwbjZs6rYngrmSRBQggbaEzWhRoPB6mj3QhoDpZVLZfjP5SK3mLs9nwpO/54HNeDt
+         rd2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=NYflSyzJGWVmdo/FfUNnh/uWyzXsbzDiU5Kfi3yNT/s=;
+        b=dhDAcSkmxEBTToquzWMywTK1OgC0P092pkMAXQ3klLEKMNH8YDxL5fouZjgzgjD1Dr
+         S8wNmyBxRFNqKnuv+wWIMRj1BEsmPnikfeOF79294Tx39iYPsqaKhPjdDohGKoLWKo4F
+         W4ORk+8Jy9mkLMZK69Fsii5n46EPsWWboCJ1hQTN5SB+yfll6ZtfgpYfWwrpqJ22l89d
+         y45MoPTMi2WkmExWVnuS+Lmxy3/jA8QZW2px1ckAYWVa4D2IihC00e4Q8MY0NnoUKmkp
+         ClE/mdLUHzfk4gvHltdEV0/36RFQuaAV5+wxIcHPBrUPjVEksEqXSgARlrl/lMxlm5wA
+         JUVA==
+X-Gm-Message-State: AJIora/6CQLybtW9lxw5P+9tjVT6nsBznCj+uVqkwYpZKSJhu0JND9sE
+        mwdLkJFJx82lEvLIjjWE99K+yg==
+X-Google-Smtp-Source: AGRyM1uhLHRvLlcQa7QUDMxWa/Z5td7UZ9SmBf3XHNCP14Y3Qepv291ZjDvXremjm/dWmogsSMB6og==
+X-Received: by 2002:a05:6512:150e:b0:481:60af:a5a5 with SMTP id bq14-20020a056512150e00b0048160afa5a5mr1161136lfb.524.1657698650422;
+        Wed, 13 Jul 2022 00:50:50 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id 3-20020a2e0503000000b0025d39993856sm2955769ljf.127.2022.07.13.00.50.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Jul 2022 00:50:50 -0700 (PDT)
+Message-ID: <27cd6e98-50c6-14b2-aec0-b4bbd49a9da8@linaro.org>
+Date:   Wed, 13 Jul 2022 09:50:47 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v7 3/5] ARM: dts: aspeed: Add HACE device controller node
+Subject: Re: [PATCH v10 2/2] dt-bindings: thermal: Add Sunplus schema
 Content-Language: en-US
-To:     Neal Liu <neal_liu@aspeedtech.com>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Dhananjay Phadke <dhphadke@microsoft.com>,
-        Johnny Huang <johnny_huang@aspeedtech.com>
-Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        BMC-SW@aspeedtech.com, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220705020936.1751771-1-neal_liu@aspeedtech.com>
- <20220705020936.1751771-4-neal_liu@aspeedtech.com>
-From:   Dhananjay Phadke <dphadke@linux.microsoft.com>
-In-Reply-To: <20220705020936.1751771-4-neal_liu@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Li-hao Kuo <lhjeff911@gmail.com>, rafael@kernel.org,
+        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     lh.kuo@sunplus.com
+References: <cover.1654660009.git.lhjeff911@gmail.com>
+ <5d2c95959dd6efaa204bc80ca9b24a8be9293d2f.1654660009.git.lhjeff911@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5d2c95959dd6efaa204bc80ca9b24a8be9293d2f.1654660009.git.lhjeff911@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,53 +76,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/4/2022 7:09 PM, Neal Liu wrote:
-> Add hace node to device tree for AST2500/AST2600.
+On 12/07/2022 09:30, Li-hao Kuo wrote:
+> Add bindings for Sunplus thermal driver
 > 
-> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
-> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
+> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
 > ---
->   arch/arm/boot/dts/aspeed-g5.dtsi | 8 ++++++++
->   arch/arm/boot/dts/aspeed-g6.dtsi | 8 ++++++++
->   2 files changed, 16 insertions(+)
+> Changes in v10:
+>  - Fix wrong indentation.
+>  - Change the setting of compatible.
+>  - Mosdify the setting of remove funciton.
 > 
-> diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
-> index c89092c3905b..04f98d1dbb97 100644
-> --- a/arch/arm/boot/dts/aspeed-g5.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g5.dtsi
-> @@ -262,6 +262,14 @@ rng: hwrng@1e6e2078 {
->   				quality = <100>;
->   			};
->   
-> +			hace: crypto@1e6e3000 {
-> +				compatible = "aspeed,ast2500-hace";
-> +				reg = <0x1e6e3000 0x100>;
-> +				interrupts = <4>;
-> +				clocks = <&syscon ASPEED_CLK_GATE_YCLK>;
-> +				resets = <&syscon ASPEED_RESET_HACE>;
-> +			};
+>  .../bindings/thermal/sunplus,thermal.yaml          | 43 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml b/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
+> new file mode 100644
+> index 0000000..52094da
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Co., Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/sunplus,thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->   			gfx: display@1e6e6000 {
->   				compatible = "aspeed,ast2500-gfx", "syscon";
->   				reg = <0x1e6e6000 0x1000>;
-> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-> index 6660564855ff..095cf8d03616 100644
-> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> @@ -323,6 +323,14 @@ apb {
->   			#size-cells = <1>;
->   			ranges;
->   
-> +			hace: crypto@1e6d0000 {
-> +				compatible = "aspeed,ast2600-hace";
-> +				reg = <0x1e6d0000 0x200>;
-> +				interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&syscon ASPEED_CLK_GATE_YCLK>;
-> +				resets = <&syscon ASPEED_RESET_HACE>;
-> +			};
+> +title: Sunplus Thermal controller
 > +
+> +maintainers:
+> +  - Li-hao Kuo <lhjeff911@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sunplus,sp7021-thermal
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  nvmem-cells:
+> +    maxItems: 1
+> +
+> +  nvmem-cell-names:
+> +    const: calib
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - nvmem-cells
+> +  - nvmem-cell-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    thermal@9c000280 {
+> +        compatible = "sunplus,sp7021-thermal";
+> +        reg = <0x9c000280 0xc>;
+> +        nvmem-cells = <&calib>;
+> +        nvmem-cell-names = "calib";
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 23bde07..a8c44eb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19107,6 +19107,7 @@ SUNPLUS THERMAL DRIVER
+>  M:	Li-hao Kuo <lhjeff911@gmail.com>
+>  L:	linux-pm@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
 
+Not a correct path anymore.
 
-Thank you for addressing ast2500, for this patch -
+Around v7 I asked to name the file either sunplus,thermal.yaml or
+sunplus,sp7021-thermal.yaml, but actually that was my mistake a bit
+which I learnt later. The only recommended name is the latter, based on
+compatible, so:
+sunplus,sp7021-thermal.yaml
 
-Reviewed-by: Dhananjay Phadke <dphadke@linux.microsoft.com>
+Please name the bindings "sunplus,sp7021-thermal.yaml", change the $id
+and maintainers entry to new filename.
+
+Best regards,
+Krzysztof
