@@ -2,179 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2046A57374F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 15:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4853573754
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 15:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235819AbiGMNY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 09:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50810 "EHLO
+        id S234565AbiGMN1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 09:27:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231764AbiGMNY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 09:24:56 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A493B65
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 06:24:55 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id bu1so14319713wrb.9
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 06:24:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=yLLf2RupUAGZKj8nEeG0LSBEp5u3/qfodgo6k8ZYoVQ=;
-        b=IbphrEpSNyolpp1NbysNG4wrCuerEaN0u+GrfUaqkpgfE2iwK3cWmYy5Ry5eOZHA/F
-         LpuuNbiojQmj2LcHHHU3aN+H/UBSjVSM6jFoPjBfVaRodQkzp6RC86qbAhYJSkclrcgq
-         ktdFqKZGBsC0k5DM8MkPias9TS5byU5qDy1TU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yLLf2RupUAGZKj8nEeG0LSBEp5u3/qfodgo6k8ZYoVQ=;
-        b=Vc2NNR2q6Lzsw/f2kPZ6OtVOojgDidbXYJeBYfxgDW943V9IVEZJ+jsnrcnqmfi/xx
-         5+7w5CSMUP4/WwglsUOZ9ljv364geDddOrIbZOBFkMeACMgkUMhj4+1D85lqKs0Momwm
-         m3OtcEufQI0pi3r5Q8KH3eHgjdutKkCrMnTrjXBi3G3BVK/LRiHbmPGBEbHOgKbVtWrc
-         XKnFPB9sadfphlnRlvf92fXpbGUkYfGuBX/uEAMg50tKgRofo4+Q2VRYKV59h1y2S6Ov
-         RXo6Y9LGPtA3YcQvaFbfrid8eDcttffqusEtDND4/568Sk0sjdwbCUopIGfjdVB+p7/P
-         0Uhg==
-X-Gm-Message-State: AJIora8E1p6JR3T9YYsOplpNxAVQZFbUY0Zk/8i8VL2YdZDzJYpNt8Hh
-        5F19iXLmoCD2R/hAUXENA3J73w==
-X-Google-Smtp-Source: AGRyM1sJgKfY+g8GvrSMzl/KBZW/B0KYhfoYIllSy9Fh3tv9EC2rCfNnX5e5CdMZTgruAmdrENUrQQ==
-X-Received: by 2002:a5d:4145:0:b0:21d:68ab:3bf with SMTP id c5-20020a5d4145000000b0021d68ab03bfmr3241320wrq.641.1657718693965;
-        Wed, 13 Jul 2022 06:24:53 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-51-7.cust.vodafonedsl.it. [188.217.51.7])
-        by smtp.gmail.com with ESMTPSA id ay15-20020a05600c1e0f00b003a2fb1224d9sm1886641wmb.19.2022.07.13.06.24.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jul 2022 06:24:53 -0700 (PDT)
-Date:   Wed, 13 Jul 2022 15:24:51 +0200
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
-        quentin.schulz@theobroma-systems.com,
-        Daniel Scally <djrscally@gmail.com>,
-        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 5/6] media: dt-bindings: ov5693: document YAML binding
-Message-ID: <20220713132451.GA1725944@tom-ThinkPad-T14s-Gen-2i>
-References: <20220712163349.1308540-1-tommaso.merciai@amarulasolutions.com>
- <20220712163349.1308540-6-tommaso.merciai@amarulasolutions.com>
- <1657664975.862137.2476655.nullmailer@robh.at.kernel.org>
- <20220713064845.GA1386778@tom-ThinkPad-T14s-Gen-2i>
- <87086513-787c-3b0d-80df-b90ebdc3a28c@linaro.org>
+        with ESMTP id S230206AbiGMN1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 09:27:05 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4D2F32B9;
+        Wed, 13 Jul 2022 06:27:02 -0700 (PDT)
+Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
+        by maillog.nuvoton.com (Postfix) with ESMTP id B89101C8117B;
+        Wed, 13 Jul 2022 21:27:01 +0800 (CST)
+Received: from NTHCML01B.nuvoton.com (10.1.8.178) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 13
+ Jul 2022 21:27:01 +0800
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCML01B.nuvoton.com
+ (10.1.8.178) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Wed, 13 Jul
+ 2022 21:27:01 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Wed, 13 Jul 2022 21:27:00 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 3C65763A23; Wed, 13 Jul 2022 16:27:00 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <jic23@kernel.org>, <lars@metafoo.de>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <j.neuschaefer@gmx.net>, <zhengbin13@huawei.com>
+CC:     <openbmc@lists.ozlabs.org>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v3 0/2] iio: adc: npcm: add Arbel NPCM8XX support
+Date:   Wed, 13 Jul 2022 16:26:38 +0300
+Message-ID: <20220713132640.215916-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87086513-787c-3b0d-80df-b90ebdc3a28c@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 13, 2022 at 08:52:34AM +0200, Krzysztof Kozlowski wrote:
-> On 13/07/2022 08:48, Tommaso Merciai wrote:
-> > Hi Rob,
-> > 
-> > On Tue, Jul 12, 2022 at 04:29:35PM -0600, Rob Herring wrote:
-> >> On Tue, 12 Jul 2022 18:33:48 +0200, Tommaso Merciai wrote:
-> >>> Add documentation of device tree in YAML schema for the OV5693
-> >>> CMOS image sensor from Omnivision
-> >>>
-> >>> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>> ---
-> >>> Changes since v1:
-> >>>  - Fix allOf position as suggested by Krzysztof
-> >>>  - Remove port description as suggested by Krzysztof
-> >>>  - Fix EOF as suggested by Krzysztof
-> >>>
-> >>> Changes since v2:
-> >>>  - Fix commit body as suggested by Krzysztof
-> >>>
-> >>> Changes since v3:
-> >>>  - Add reviewed-by tags, suggested by Jacopo, Krzysztof
-> >>>
-> >>> Changes since v4:
-> >>>  - Remove wrong Sakari reviewed-by tag, suggested by Krzysztof, Sakari
-> >>>
-> >>> Changes since v5:
-> >>>  - Remove dovdd-supply, avdd-supply, dvdd-supply from required properties
-> >>> as suggested by Jacopo
-> >>>
-> >>>  .../bindings/media/i2c/ovti,ov5693.yaml       | 103 ++++++++++++++++++
-> >>>  MAINTAINERS                                   |   1 +
-> >>>  2 files changed, 104 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> >>>
-> >>
-> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >>
-> >> yamllint warnings/errors:
-> >>
-> >> dtschema/dtc warnings/errors:
-> >> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb: camera@36: Unevaluated properties are not allowed ('port' was unexpected)
-> >> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> >>
-> >> doc reference errors (make refcheckdocs):
-> >>
-> >> See https://patchwork.ozlabs.org/patch/
-> >>
-> >> This check can fail if there are any dependencies. The base for a patch
-> >> series is generally the most recent rc1.
-> >>
-> >> If you already ran 'make dt_binding_check' and didn't see the above
-> >> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> >> date:
-> >>
-> >> pip3 install dtschema --upgrade
-> >>
-> >> Please check and re-submit.
-> >>
-> > 
-> > I run:
-> > 
-> > pip3 install dtschema --upgrade
-> > 
-> > Then I check .yaml using:
-> > 
-> > make DT_CHECKER_FLAGS=-m dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> > DTEX    Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dts
-> > LINT    Documentation/devicetree/bindings
-> > CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> > SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > DTC     Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb
-> > CHECK   Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb
-> > 
-> > No error on my side. I'm missing something?
-> 
-> Rob's check are running newer dtschema, from master branch. The error he
-> reports is about missing port, although I thought it is coming from
-> video-interface-devices.
+This patch set adds Arbel NPCM8XX Analog-to-Digital Converter (ADC) support 
+to ADC NPCM driver.
 
-Hi Krzysztof, 
-Thanks for the info! :)
+The NPCM8XX ADC is a 12-bit converter for eight channel inputs.
 
-Regards,
-Tommaso
- 
-> 
-> Best regards,
-> Krzysztof
+The NPCM ADC driver tested on NPCM845 evaluation board.
+
+Addressed comments from:
+ - Andy Shevchenko : https://www.spinics.net/lists/kernel/msg4436806.html
+
+Changes since version 2:
+ - Drop npcm_adc_info casting. 
+
+Changes since version 1:
+ - Modify dt-binding compatible property.
+ - Use device_get_match_data function instead of_match_node function.
+
+Tomer Maimon (2):
+  dt-bindings: iio: adc: npcm: Add npcm845 compatible string
+  iio: adc: npcm: Add NPCM8XX support
+
+ .../bindings/iio/adc/nuvoton,npcm750-adc.yaml |  7 ++--
+ drivers/iio/adc/npcm_adc.c                    | 35 +++++++++++++++----
+ 2 files changed, 33 insertions(+), 9 deletions(-)
 
 -- 
-Tommaso Merciai
-Embedded Linux Engineer
-tommaso.merciai@amarulasolutions.com
-__________________________________
+2.33.0
 
-Amarula Solutions SRL
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-T. +39 042 243 5310
-info@amarulasolutions.com
-www.amarulasolutions.com
