@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5174F572A85
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 02:57:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BAE7572A8D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 02:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232206AbiGMA5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jul 2022 20:57:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43664 "EHLO
+        id S229993AbiGMA7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jul 2022 20:59:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbiGMA5i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 20:57:38 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB70ED0382
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 17:57:35 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id s21so9791984pjq.4
-        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 17:57:35 -0700 (PDT)
+        with ESMTP id S229781AbiGMA7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jul 2022 20:59:54 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B477DC7492
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 17:59:53 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id r186so1873856pgr.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 17:59:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=message-id:date:mime-version:user-agent:subject:to:cc:references
          :from:in-reply-to;
-        bh=SdtspjBKZNi7s1cnjc8dAAm5UA4l1F43YJeitiD86zo=;
-        b=BOg4ZLAOwxkOb7kXSR+dF6upmUtpbX44ZcGXhZ/4qdeXyu1vaJBJm96z1dwhUdIzip
-         nbBfnXdzBL4bS/ML5nbfq3gmIR4pc9GVqyb+ksZK/ilfz/hv31QkSAb3H1PExjCoDRq7
-         rcFWi9liqFyFbJl3TCziwrvUfrGIkuQsJe69Q=
+        bh=j70XwR1LXO8w6sy1YUPQ5xzHAOeCvJHYetbyn4msous=;
+        b=f5xkFT7T82g0m0e+qCEvWNQzKYM/0Rf1i6RspkYIbX+7xKKlfZGks8a3n3u8cmViHA
+         5Oby9x5XFWcb0nLQh/HzWqDeWUON880uvFgzEo6W0wSaK+ifdBOsketDdJwG/Dx8ER9s
+         zBgkJlVIUdfwtkVc4pAv6f8wuEPSNMi5705ZM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :to:cc:references:from:in-reply-to;
-        bh=SdtspjBKZNi7s1cnjc8dAAm5UA4l1F43YJeitiD86zo=;
-        b=2yt/LPCGo9pndVTX+Mw0SPO4/hIYohlqRPySZ4WgsXZZi0Zpn0RzbpeUgVv2fbPmtg
-         5xei0V0hujqPmxLHmfeJ/q51ev36vNUdHK4CCNtfyvjRgB+eVBflqMJ24rcbP0OM/CPj
-         tnNzzBPL7XJO8GEraRz4QtqbCMx8GWflJD4+JsA3UjX2fgRMV5JsGmAhFR3b7yyLSM5l
-         zPT1zw4CK20MQGkvXFKraPBosYOqBJ/QDFHTeE7wMjTHXwY4fuMDUKDjF49FjM/YuDk9
-         EK6ojgLdPQh7Ka3u09V0uv1rVxx6ERyyLyErSRqTueX0W/bbzr/EwutCYyrtEXKyKl2p
-         WqZQ==
-X-Gm-Message-State: AJIora917lkESI12TZtBAp/lQ1C4mzQQnVvtw/a+mqhkIHXk7qFaHpY7
-        1uQNRxk4XUqlvrgo9A1jDe05ag==
-X-Google-Smtp-Source: AGRyM1vALZcyF1V69ql1Qy2kNcw4ifQrMsHzaBRsfnTbbscALd6WRemTOm7e55BONMd8+UdxcqYi4A==
-X-Received: by 2002:a17:90a:474c:b0:1ec:f898:d85b with SMTP id y12-20020a17090a474c00b001ecf898d85bmr998008pjg.11.1657673855171;
-        Tue, 12 Jul 2022 17:57:35 -0700 (PDT)
+        bh=j70XwR1LXO8w6sy1YUPQ5xzHAOeCvJHYetbyn4msous=;
+        b=FbsLa0Ieqwr0Nfrc01EC5VR6NDlW5WqFWdVN88gz+G333H+wSRna85juQ/vcztPa5C
+         ByIuhBWu4OgwISD7p7VuGhFRTHiRf5GUeLphjYxVgjlPDeDiELZ/m234XxALgeUGA2c+
+         0YH4xrUOtW+9GsfAq1ftH2ACsSyBLPNvTKYJUcI4iYQi+DUJxC1woFRXPx7jCn9A3DJ6
+         vB9fwW3AdPOB8PzUE/PsgFCha1qox6UBagZCjuWxXDMFB9ZalZLaQ1Tj+ut3KaR0fcZQ
+         33rjEgqOzDPG51TQXaFd2tnQMuTpCK1cvO9c8qi/q5eABBpTZ411KSURiXs+XmmkgrbM
+         NHTg==
+X-Gm-Message-State: AJIora+sDfQTYVOwJAUCX9R1zvH6J6QRYHELA9YkkaxRPiRX+rDAtqRW
+        Y+DEEoFJnV9Om7CxfTuZWcEdLg==
+X-Google-Smtp-Source: AGRyM1tpEGAcRUVIqHwjZXKHpwYlMAXu5liPTH4UT0YVgvJuOkPWjVLmiF5d7ziQxIRl+2zYtQXkxA==
+X-Received: by 2002:aa7:9985:0:b0:528:d798:1de2 with SMTP id k5-20020aa79985000000b00528d7981de2mr861866pfh.84.1657673993150;
+        Tue, 12 Jul 2022 17:59:53 -0700 (PDT)
 Received: from [192.168.52.129] ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id v2-20020a626102000000b00529a0667ff9sm7467906pfb.126.2022.07.12.17.57.33
+        by smtp.gmail.com with ESMTPSA id b7-20020a170903228700b0016c50179b1esm4231433plh.152.2022.07.12.17.59.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jul 2022 17:57:34 -0700 (PDT)
-Message-ID: <6efb1cfe-6129-276a-eeb3-44147304d211@broadcom.com>
-Date:   Tue, 12 Jul 2022 17:57:32 -0700
+        Tue, 12 Jul 2022 17:59:52 -0700 (PDT)
+Message-ID: <478e4189-f026-b4f8-b525-948cc7d7fd5a@broadcom.com>
+Date:   Tue, 12 Jul 2022 17:59:50 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [RFC PATCH 1/3] dt-bindings: arm64: bcmbca: Merge BCM4908 into
- BCMBCA
+Subject: Re: [RFC PATCH 3/3] arm64: dts: bcmbca: update bcm4808 board dts file
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 Cc:     kursad.oney@broadcom.com, anand.gore@broadcom.com,
-        dan.beygelman@broadcom.com, f.fainelli@gmail.com,
+        dan.beygelman@broadcom.com,
         Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
         joel.peshkin@broadcom.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rafal@milecki.pl
+        linux-kernel@vger.kernel.org
 References: <20220712021144.7068-1-william.zhang@broadcom.com>
- <20220712021144.7068-2-william.zhang@broadcom.com>
- <ca8c3003-1bcb-6658-592c-566609fd7bd2@linaro.org>
- <94b0ab39-279d-d3c2-98a4-054c10ad041c@broadcom.com>
- <c40f20c7-59ee-99f4-9a11-e928b41eda9f@linaro.org>
+ <20220712021144.7068-4-william.zhang@broadcom.com>
+ <d93e55fa-3359-2609-aad5-c80eca78f380@linaro.org>
+ <900ac3ed-a77c-3cc0-f5ab-c45267a1a4ba@gmail.com>
+ <6b7bab04-90ce-6111-35bd-42cb3a1f73f8@linaro.org>
+ <9bc3e0b6-833e-375e-70d6-1dbd036ef25a@broadcom.com>
+ <5c79330d-7786-61a8-b464-d7e7171a7aab@linaro.org>
 From:   William Zhang <william.zhang@broadcom.com>
-In-Reply-To: <c40f20c7-59ee-99f4-9a11-e928b41eda9f@linaro.org>
+In-Reply-To: <5c79330d-7786-61a8-b464-d7e7171a7aab@linaro.org>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000050d7bf05e3a545f2"
+        boundary="0000000000008917d105e3a54d1b"
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
@@ -79,61 +82,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000050d7bf05e3a545f2
+--0000000000008917d105e3a54d1b
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 7/12/22 11:18, Krzysztof Kozlowski wrote:
-> On 12/07/2022 19:37, William Zhang wrote:
->>>> +      - description: BCM4908 Family based boards
->>>> +        items:
->>>> +          - enum:
->>>> +              # BCM4908 SoC based boards
->>>> +              - brcm,bcm94908
->>>> +              - asus,gt-ac5300
->>>> +              - netgear,raxe500
->>>> +              # BCM4906 SoC based boards
->>>> +              - brcm,bcm94906
->>>> +              - netgear,r8000p
->>>> +              - tplink,archer-c2300-v1
->>>> +          - enum:
->>>> +              - brcm,bcm4908
->>>> +              - brcm,bcm4906
->>>> +              - brcm,bcm49408
+On 7/12/22 11:20, Krzysztof Kozlowski wrote:
+> On 12/07/2022 19:48, William Zhang wrote:
 >>>
->>> This is wrong.  brcm,bcm94908 followed by brcm,bcm4906 does not look
->>> like valid list of compatibles.
->>>
->> For 4908 board variant, it will need to be followed by 4908 chip. Sorry
->> for the basic question but is there any requirement to enforce this kind
->> of rule?  I would assume dts writer know what he/she is doing and select
->> the right combination.
+>>> Best regards,
+>>> Krzysztof
+>>
+>> The reason for this patch is to keep the bcmbca board dts in the same
+>> format and keep everything in the same yaml file.
 > 
-> The entire point of DT schema is to validate DTS. Combination like above
-> prevents that goal.
+> Not a good reason to change compatibles. You can have the same format
+> and keep everything in same YAML file without replacing compatibles.
 > 
+Well the existing 4908 compatible string is not the same format as we 
+are proposing here: "board variant", "chip variant", "brcm, bcmbca"
+
+>> Understand 4908 was
+>> already upstream but luckily there is no driver in linux and u-boot that
+>> uses these 4908 compatible strings. They are only used in the board dts
+>> as far as I can see.  So it does not really break anything in the end,
+>> unless someone use them in any driver but never upstream their code...
+> 
+> So maybe just briefly mention it in the commit msg?
+> 
+I can do that for sure.
+
 > Best regards,
 > Krzysztof
-Understand the DT schema purpose. But items property allows multiple 
-enums in the list which gives a lot of flexibility but make it hard to 
-validate. I am not familiar with DT schema, is there any directive to 
-specify one enum value depending on another so dts validation tool can 
-report error if combination is wrong?
 
-This is our preferred format of all bcmbca compatible string especially 
-when we could have more than 10 chip variants for the same chip family 
-and we really want to work on the chip family id.  We will make sure 
-they are in the right combination in our own patch and patch from other 
-contributors. Would this work? If not, I will probably have to revert 
-the change of 4908(maybe append brcm,bcmbca as this chip belongs to the 
-same bca group) and use "enum board variant", "const main chip id", 
-"brcm,bca" for all other chips as our secondary choice.
-
-
---00000000000050d7bf05e3a545f2
+--0000000000008917d105e3a54d1b
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -204,13 +188,13 @@ W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
 1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
 MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
 VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOafCauqt4o1IyWKwClnPVmk3jX1
-gMp5i+e6UvwZR2x8MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDcxMzAwNTczNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJEiNF3X6SrZ4vmqQ/JEeRcztX2Z
+yFrvcQJkH0/ifgrLMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDcxMzAwNTk1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
 CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQB7a7UGWo/LRPYt38ZY84AQ5QNF/YwLDdCipYwzvf8VLIDV
-Has6b67XKVMEAVN+/0nlhYS+WCZz9STTL3f7Iyl72/2+WDi++6C0Nt6N0qyZL+D42cAMWzTOdZY+
-NIBQ4bUDmidMNGfqzzBVuIaVm1zH3abnSQ4Bud4XIBqnGSQ6LLHCiyt7FWxbmbjIwW5iVGXPlwVZ
-WHVRnRRfzjfmL0O1JbpZQthxtqS8F1I6wrWMjgaKDI3TezFAlbTMUOF6IvykNb2Fg2HKv9jNia4F
-6dWa+OF3jIAgOtume8b/PKanlQ8aTtNYLaPv2WTYc0evkxC4P6u8BnIwc0Q1yNDMuZJb
---00000000000050d7bf05e3a545f2--
+AwQCATANBgkqhkiG9w0BAQEFAASCAQC0r86ERM4Od0HWvQNLiz1O6p3ADM4aU+pkgz7TUjU6iKLH
+xD0Ym7gqCACxv5LUBc+jp/LgcggfhuGHMsuiy0rO32NYfXCfDmAmTkZCYNwDnpu8rnbLbWDhIQPL
+tpLio4l7Vh3HMztEu7bPUhxMhwY5ACmHF0fani0ST/4SeTzJyVCV3XBDFFaKQJnGSBHN10rc7hfB
+zLz3+57I+NKdeS+PTjJeCVWQg1oeBWtz2m2Ymy6EfABj3ucKQVWq/3my0GPAk09Qt5AdJJdDxH8S
+kZZtgDsPsp5SpyT54D9ciq0UMVk94nnGXeGCG456iM3riYcHzL9WYo685zDtHR+BcFNH
+--0000000000008917d105e3a54d1b--
