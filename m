@@ -2,90 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26F19573D39
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 21:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4574573D4D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 21:42:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236895AbiGMTen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 15:34:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50280 "EHLO
+        id S236821AbiGMTmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 15:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236132AbiGMTem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 15:34:42 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3E9A286ED;
-        Wed, 13 Jul 2022 12:34:41 -0700 (PDT)
+        with ESMTP id S236622AbiGMTms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 15:42:48 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B731C2C678
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 12:42:47 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id r9so12779684lfp.10
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 12:42:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1657740881; x=1689276881;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=h02mNx2EPfukJ8KeZkU7qKUi1nlfwjxtfdCaxPTiFIY=;
-  b=XgzyYBw0UhJfI9ORENYApgPKu8SgNBshxPP4oN7qeLKxl1KVePf5heix
-   KlMZMxdfQGgsNsgbI5nqKcNjsxAy7/H2wTM28T7Nvr55eXGqQTm4qbVmm
-   XMMQLEThHSkAjmwlVN+LLtdTiY0CeIUotkzrirw81uLAGyk4jk+nI0z3Y
-   Y=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 13 Jul 2022 12:34:41 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2022 12:34:40 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 13 Jul 2022 12:34:40 -0700
-Received: from hu-amelende-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 13 Jul 2022 12:34:39 -0700
-From:   Anjelique Melendez <quic_amelende@quicinc.com>
-To:     <corbet@lwn.net>, <sre@kernel.org>, <robh+dt@kernel.org>,
-        <agross@kernel.org>, <bjorn.andersson@linaro.org>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Anjelique Melendez <quic_amelende@quicinc.com>
-Subject: [PATCH v3 2/2] power: reset: qcom-pon: add support for qcom,pmk8350-pon compatible string
-Date:   Wed, 13 Jul 2022 12:33:51 -0700
-Message-ID: <20220713193350.29796-3-quic_amelende@quicinc.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220713193350.29796-1-quic_amelende@quicinc.com>
-References: <20220713193350.29796-1-quic_amelende@quicinc.com>
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ldc6EH3f0PCrz9DFtr2JKghEU6+WJ+6Kwsia41CZb2o=;
+        b=U2864nCS2RTRnOm/zhwLgraRfau1uEITErI////4/3D8VystBt4uPXZpklLUMMT2eN
+         gtbC4pcNO6Ch5Jn848muxQ2OECUluQ9wDGRChRQ79CtEfmiHG4PbkaZGMg6b+yG0I9Hv
+         Azx5rqGjLvLblXBDQnotHF1AbP3Oznn8m92shBFd/YRcU5/6nvoguZREMx63M2hFqL+f
+         8svsAOU9M67FrU47oa/dYT08eHyEdxWTdfHWjgxtjr5ppihH64oVtT/V07QQNX/49RtN
+         oHcRuYbcnxN/AM/dOGrPdfIo43rX6HvCWjtVbYTsA1jXGvLMC3HIHSwsVmSvdCgcTr3g
+         hY7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ldc6EH3f0PCrz9DFtr2JKghEU6+WJ+6Kwsia41CZb2o=;
+        b=0sjfzRbRL1q1Y/LGTQtXssaUqRK9ENgWFgJ64QPQkDHeMHalOuLHWtz6TAsvyM+lCB
+         5sd4myoDmvdi7ofaxWKjQr/PHDpe8qN6/Tbd2/h1OjlOdki2XEIZwNzgcLgFxwxuxDQZ
+         xtptO03GCBNDX/JncAwYmpKH6agUQaUcOGkZDpEvjPO8Ri6p6jltieo4XzLpLH3WOUgW
+         oGvm6rsYqhXEN/GvZ8bkfYbQ9Rjubg5B63OZgOPqTpd9n0UbClzT6Cg6Tq4oTtdGFVTD
+         7i/5OCX6wmMSn7JFWkIzpxO/wCYnExVvfQDnS23zVR11uKjz1/D//N8TdT3God0j2AIC
+         IpSg==
+X-Gm-Message-State: AJIora9wkpznEjJbd3QFLzMfumbGbWoceSki7Dt1w/0/Tz65b43XYKf0
+        pKVlSZsTMhJnJffFeZSm8TD63Q==
+X-Google-Smtp-Source: AGRyM1ubh9NqE683R2zfQZ0ChzL1PyNugIevDbn1eR9hv3KkNP9YLc1dhgGADZBEmoWmCPTnZtwMpA==
+X-Received: by 2002:a05:6512:3612:b0:48a:14b1:ec09 with SMTP id f18-20020a056512361200b0048a14b1ec09mr14842lfs.681.1657741366105;
+        Wed, 13 Jul 2022 12:42:46 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id 6-20020a05651c00c600b0025a891f7b8dsm3309629ljr.32.2022.07.13.12.42.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Jul 2022 12:42:45 -0700 (PDT)
+Message-ID: <a9e1ccb7-6caa-2f7c-b879-b3ff4945794c@linaro.org>
+Date:   Wed, 13 Jul 2022 21:42:43 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] arm64: dts: marvell: Fix compatible strings for Armada
+ 3720 boards
+Content-Language: en-US
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220713125644.3117-1-pali@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220713125644.3117-1-pali@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the new "qcom,pmk8350-pon" comptaible string.
+On 13/07/2022 14:56, Pali Rohár wrote:
+> All Armada 3720 boards have Armada 3720 processor which is of Armada 3700
+> family and do not have Armada 3710 processor. So none of them should have
+> compatible string for Armada 3710 processor.
+> 
+> Fix compatible string for all these boards by removing wrong processor
+> string "marvell,armada3710" and adding family string "marvell,armada3700"
+> as the last one. (Note that this is same way how are defined Armada 3710
+> DTS files).
 
-Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
----
- drivers/power/reset/qcom-pon.c | 1 +
- 1 file changed, 1 insertion(+)
+Please do not introduce some changes just in DTS, but start from the
+bindings. Someone wrote the bindings like that and expected to be that
+way, so first change the bindings with proper rationale. Then change the
+DTS files.
 
-diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
-index 4a688741a88a..16bc01738be9 100644
---- a/drivers/power/reset/qcom-pon.c
-+++ b/drivers/power/reset/qcom-pon.c
-@@ -82,6 +82,7 @@ static const struct of_device_id pm8916_pon_id_table[] = {
- 	{ .compatible = "qcom,pm8916-pon", .data = (void *)GEN1_REASON_SHIFT },
- 	{ .compatible = "qcom,pms405-pon", .data = (void *)GEN1_REASON_SHIFT },
- 	{ .compatible = "qcom,pm8998-pon", .data = (void *)GEN2_REASON_SHIFT },
-+	{ .compatible = "qcom,pmk8350-pon", .data = (void *)GEN2_REASON_SHIFT },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, pm8916_pon_id_table);
--- 
-2.35.1
 
+Best regards,
+Krzysztof
