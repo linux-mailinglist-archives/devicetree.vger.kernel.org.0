@@ -2,151 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96A32572DE6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 08:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10E35572DEF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 08:10:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbiGMGJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 02:09:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46650 "EHLO
+        id S234267AbiGMGKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 02:10:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230249AbiGMGJs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 02:09:48 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C03C549F;
-        Tue, 12 Jul 2022 23:09:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1657692585; x=1689228585;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=4nFKxO4afJQpvsWiPSIl6nUGp+NfKatTVDsQqfZtJvw=;
-  b=pWN1ofIR8JY7QZIHKg/1OYT3EEr1gLwqfqvBUqdVgY/lqc517/JTQyBK
-   62YKAdCDwuk38fe1tFor2TULcXmQP9krO7Kk6cGQ+ySaoF9hSNaUMYMgd
-   KB5NhcxLq2RhVZXZPeZppyCW/H+UsHax7d3nlTIgl46xrt5pqO8mrrAk7
-   Bt0n5ncgxu7IRKAffQM6cpgwfmKZx4tpVKlOUHXg5Gi2yUmeUVWvVYMus
-   rLXfwO6j1HaAB0LTZcDRoQ6IsqgP7P3J3fVOQXXkPbPP/Vg4GpK+1vMyF
-   uHPl2QY9s+fHZTZd6jLWHnPcRjY0VE3pYy7cF6DmKXXoQaW58ShM6aovL
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.92,267,1650924000"; 
-   d="scan'208";a="25014832"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 13 Jul 2022 08:09:43 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 13 Jul 2022 08:09:43 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 13 Jul 2022 08:09:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1657692583; x=1689228583;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=4nFKxO4afJQpvsWiPSIl6nUGp+NfKatTVDsQqfZtJvw=;
-  b=fbu1777g4YrFNfun75T6lRt+wHdwoqR6JZmABUhlksFWBI1PDWrOp5WH
-   HKAA1HTr6ilTTILrb5EIwV62f/Oc9tCGD28KU5PlvfN2QBqA0BAnRNG2s
-   b/B3D7qlXXgR7mnkLiRBLsBUtoeZ8fJrDgTwXnCU/sjSSFWLuufESkKkc
-   KXghvwX69YmDlpl0QYuyoMHdcsf/XqQnVI5wiWDBZvwswfiA9fOMWctst
-   +FrsRss8mFYPJ+9z0vWGh6eWECh37BZ15B4n5/wlkMw5ntn3fJcIrFGva
-   6137aClBm8D9sK5iKKrm19LkgTScS93+i9u2mWqq3aChtG6wHMoqrDR+0
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.92,267,1650924000"; 
-   d="scan'208";a="25014831"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 13 Jul 2022 08:09:43 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D9F1A280056;
-        Wed, 13 Jul 2022 08:09:42 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229826AbiGMGKd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 02:10:33 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A2CC74A8
+        for <devicetree@vger.kernel.org>; Tue, 12 Jul 2022 23:10:32 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oBVZt-0006mS-FF; Wed, 13 Jul 2022 08:10:29 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oBVZs-000eq7-Eq; Wed, 13 Jul 2022 08:10:28 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oBVZr-004sba-E4; Wed, 13 Jul 2022 08:10:27 +0200
+Date:   Wed, 13 Jul 2022 08:10:24 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Ben Dooks <ben.dooks@sifive.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: usb: Add binding for TI USB8041 hub controller
-Date:   Wed, 13 Jul 2022 08:09:40 +0200
-Message-ID: <2249043.ElGaqSPkdT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <b2476f28-6830-860d-9bd6-502aa24031e5@linaro.org>
-References: <20220712150627.1444761-1-alexander.stein@ew.tq-group.com> <Ys3mrAukkXXDHopg@google.com> <b2476f28-6830-860d-9bd6-502aa24031e5@linaro.org>
+        Greentime Hu <greentime.hu@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>
+Subject: Re: [PATCH 5/7] pwm: dwc: add timer clock
+Message-ID: <20220713061024.aapsqqtofb5y54zd@pengutronix.de>
+References: <20220712100113.569042-1-ben.dooks@sifive.com>
+ <20220712100113.569042-6-ben.dooks@sifive.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="emcef65jx2exq74x"
+Content-Disposition: inline
+In-Reply-To: <20220712100113.569042-6-ben.dooks@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
 
-Am Dienstag, 12. Juli 2022, 23:32:12 CEST schrieb Krzysztof Kozlowski:
-> On 12/07/2022 23:25, Matthias Kaehlcke wrote:
-> > On Tue, Jul 12, 2022 at 11:12:06PM +0200, Krzysztof Kozlowski wrote:
-> >> On 12/07/2022 19:25, Matthias Kaehlcke wrote:
-> >>> Hi Alexander,
-> >>> 
-> >>> On Tue, Jul 12, 2022 at 05:06:25PM +0200, Alexander Stein wrote:
-> >>>> The TI USB8041 is a USB 3.0 hub controller with 4 ports.
-> >>>> 
-> >>>> This initial version of the binding only describes USB related aspects
-> >>>> of the USB8041, it does not cover the option of connecting the
-> >>>> controller
-> >>>> as an i2c slave.
-> >>>> 
-> >>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >>>> ---
-> >>>> Well, this is essentially a ripoff of
-> >>>> Documentation/devicetree/bindings/usb/realtek,rts5411.yaml with USB IDs
-> >>>> replaced, reset-gpio added and example adjusted.
-> >>>> IMHO this should be merged together with realtek,rts5411.yaml. Is it ok
-> >>>> to rename bindings files? I guess a common onboard-usb-hub.yaml
-> >>>> matching
-> >>>> the driver seens reasonable. Any recommendations how to proceed?
-> >>> 
-> >>> It's a tradeoff between keeping the individual bindings simple and avoid
-> >>> unnecessary duplication. The current RTS5411 and TI USB8041 bindings are
-> >>> very similar, which suggests combining them. However over time hubs with
-> >>> diverging features could be added (e.g. with multiple regulators, a link
-> >>> to an I2C/SPI bus, a clock, ...). With that a common binding might
-> >>> become
-> >>> too messy.
-> >>> 
-> >>> From a quick look through Documentation/devicetree/bindings it doesn't
-> >>> seem common to have generic bindings that cover components from multiple
-> >>> vendors. In that sense I'm leaning towards separate bindings.
-> >>> 
-> >>> Rob, do you have any particular preference or suggestion?
-> >> 
-> >> Not Rob, but my suggestion is not to merge bindings of unrelated
-> >> devices, even if they are the same class. By unrelated I mean, made by
-> >> different companies, designed differently and having nothing in common
-> >> by design. Bindings can be still similar, but should not be merged just
-> >> because they are similar.
-> > 
-> > Thanks for your advice, let's keep separate bindings then.
+--emcef65jx2exq74x
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Ok, thanks for the feedback.
+On Tue, Jul 12, 2022 at 11:01:11AM +0100, Ben Dooks wrote:
+> Add a configurable clock base rate for the pwm as when
+> being built for non-PCI the block may be sourced from
+> an internal clock.
+>=20
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+> ---
+>  drivers/pwm/pwm-dwc.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>=20
+> diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
+> index 235cb730c888..aa0486b89bdd 100644
+> --- a/drivers/pwm/pwm-dwc.c
+> +++ b/drivers/pwm/pwm-dwc.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/pci.h>
+> +#include <linux/clk.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/pwm.h>
+> @@ -35,7 +36,12 @@
+>  #define DWC_TIMERS_COMP_VERSION	0xac
+> =20
+>  #define DWC_TIMERS_TOTAL	8
+> +
+> +#ifndef CONFIG_OF
+>  #define DWC_CLK_PERIOD_NS	10
+> +#else
+> +#define DWC_CLK_PERIOD_NS	dwc->clk_ns
+> +#endif
 
-> Although for the record let me add that we did merge some trivial hwmon
-> devices like LM75 or LM90 but their bindings are trivial and programming
-> model is also similar between each other (handled by same device
-> driver). I guess we can be here flexible, so the question would be how
-> similar these USB hubs are.
-> 
-> If in doubt, just keep it separate.
+Hmm, that looks wrong. If you have CONFIG_OF but use the pci device ...
 
-Right now it might seem sensible to have the bindings merged, as the features 
-are quite similar. But things might change, if/once i2c support is added. So 
-this is one additional matter to keep them separated.
+IMHO it would help readability if you used ifdef. When there is an #else
+branch anyhow, there is no reason to use the negative variant.
 
-Best regards,
-Alexander
+>  /* Timer Control Register */
+>  #define DWC_TIM_CTRL_EN		BIT(0)
+> @@ -54,6 +60,8 @@ struct dwc_pwm_ctx {
+>  struct dwc_pwm {
+>  	struct pwm_chip chip;
+>  	void __iomem *base;
+> +	struct clk *clk;
+> +	unsigned int clk_ns;
+>  	struct dwc_pwm_ctx ctx[DWC_TIMERS_TOTAL];
+>  };
+>  #define to_dwc_pwm(p)	(container_of((p), struct dwc_pwm, chip))
+> @@ -336,6 +344,14 @@ static int dwc_pwm_plat_probe(struct platform_device=
+ *pdev)
+>  		return dev_err_probe(dev, PTR_ERR(dwc->base),
+>  				     "failed to map IO\n");
+> =20
+> +	dwc->clk =3D devm_clk_get(dev, "timer");
+> +	if (IS_ERR(dwc->clk))
+> +		return dev_err_probe(dev, PTR_ERR(dwc->clk),
+> +				     "failed to get timer clock\n");
+> +
+> +	clk_prepare_enable(dwc->clk);
+> +	dwc->clk_ns =3D 1000000000 /clk_get_rate(dwc->clk);
+> +
+>  	ret =3D pwmchip_add(&dwc->chip);
+>  	if (ret)
+>  		return ret;
 
+Here you're missing clk_disable_unprepare(). (Alternatively use
+devm_clk_get_enabled().)
 
+> @@ -347,6 +363,7 @@ static int dwc_pwm_plat_remove(struct platform_device=
+ *pdev)
+>  {
+>  	struct dwc_pwm *dwc =3D platform_get_drvdata(pdev);
+> =20
+> +	clk_disable_unprepare(dwc->clk);
+>  	pwmchip_remove(&dwc->chip);
 
+The order is wrong here. You must only stop the clk when the pwmchip is
+removed. Until that the PWM is supposed to stay functional.
+
+>  	return 0;
+>  }
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--emcef65jx2exq74x
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLOYc0ACgkQwfwUeK3K
+7AmAUAf/XdDJHJMPrKmm8NeYvTXFPxbVIExnG2y6hwtGCMAts2C5wo7JY0wwUys4
+H5KgFGh8N0qNWw3a2QL9uGnCWznXwRXB+ir/rwYrBlRzcopQI03wzpfB88U1o2XG
+aEAQSBD+TjO1p5JtD/DswY052Olc5P/taAEgHnHb/k09rwCBOtK9XQAxrpv+pZ5R
+qD6+54LP1FMLVKaahcLZLT2gfTNU/qKlxF26r4FJZemOsels9zosJ+IuLDJ39GZF
+Bp/jEMdaqYpxqSPsanSScf3qlQkTY3hlYGCHMiFI3wccamyjoUvniWr4WJphZ3/O
+N443D1mPYj9YpFRcf8lDJUJ90Qiwbw==
+=rsdR
+-----END PGP SIGNATURE-----
+
+--emcef65jx2exq74x--
