@@ -2,87 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D31D55735B6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 13:44:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A4BE5735DF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 13:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236312AbiGMLoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 07:44:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37516 "EHLO
+        id S236105AbiGML5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 07:57:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbiGMLoH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 07:44:07 -0400
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DAFA904D6
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 04:44:06 -0700 (PDT)
-Received: by mail-il1-x12c.google.com with SMTP id v1so6492536ilg.11
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 04:44:06 -0700 (PDT)
+        with ESMTP id S235023AbiGML5C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 07:57:02 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B0451034D7
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 04:56:58 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id v16so15129362wrd.13
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 04:56:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WLxVrcxXgnjSp9TpDd96NJc4CQ3HVsum5LRxx9e4Msg=;
-        b=a/Irga5qRYBiUtyQmAMOpxXtWi1EPIKLXCDrBA3camn2ekBHIsynPa/aSlm/UZS5zf
-         sVoHN0hMzic02URy0gNQaV241sPaVpvAREknOM91WcRQfKbHeL+MOvyV1qGyxfBG+s6o
-         pciYha+QzZpU17oBk6ugjbu+zMss9Xa1c95Aud3D0bvIgudp6eV0hzY1mieJ2yVHh2JG
-         1M9K7hbgH9o+8ThQwefKesPTI0Poc+mEWvNUe1lGIDgacy0q0OGB99/rsWnALOvZWvRM
-         y0GCT1QFuQuFKRpUxPRkGOnGavflqZhDmLzi9psyQ6pPm63FrBJaC5F36WtlotE+AGAt
-         7tfg==
+        d=sifive.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=qxcQt+R1BQvmSe81l8pzxUpsvc5Hyp+NVDBvjQReI90=;
+        b=ON7C9i7WOOVBRXKaAud5rrqEbU/g7AYTogs8RVrkq6VdFMNXxFOM4TVG7EvX26yTpf
+         5bWyg8bOVguB1IgWsxEzjHJHIsLJlcwSMa0EUGLKDQfDj6xaXi9NZrI0F0C0dh8SuNjH
+         UaW5VxA0s2M7e/H4hQqXHJ2ALmm3m8Q1PeNHcwCa41tzR2mRwUE3aYZZ9GDW7NFG/z+j
+         lxUfVKANakXLyxEit6MtAqCiGcbMBr1mvM2gkmvtKFhw/tWypq/tC7wxv7D5iLSWwHFV
+         AEFOSqHE13YRwE/ieEl02mHKEkovXbB900aiC5zI5A1Fk9JfWa0ViblCjWnNP0aS35kG
+         E/Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WLxVrcxXgnjSp9TpDd96NJc4CQ3HVsum5LRxx9e4Msg=;
-        b=qxdvYY3FzpFdMLaAILktaEJy3R210toUg80fnHSB1D5Iw360OunXySqvEUnagVpgK7
-         FiF6fZ8PBRK1ZwZ6ZSP1HvIM0/OdLaJfsslGOslxWXP5fyIOJ+TYm9hs1J/NVkm5gITj
-         k2F4Of/TpLGCSbgMpHdWHIVEeqsI1OFlyWiR4IYgNA8aLwdYE7cBr8AGZshCzfenMitK
-         UFMjYExIL6VHp6fkCz2WY6GARjk6lKuWRdw114Tv23yDlGhcYE621cxSJ0IUsKJr6GE0
-         h2TKx8YGAwKEEm9R6GF11L3cUvO5i/BBjxzjqQyGnAdUi539m7eArdODFaNBAaig5F8I
-         6kuw==
-X-Gm-Message-State: AJIora/SmjCl/htW3GJRtOT95przrUx1oOhKVLygFWcLZK7/Vlz72xAC
-        BAmzcfzD4RnrROgnq9xbt4pQBVRNRHakDPTAsyL+yA==
-X-Google-Smtp-Source: AGRyM1t85lDfdQ4Z5QbtPLSh4NEnsvoB0PJTYo8PE4j/gwAn6XzTV7Z5ZQI87aDgZkp32lmm4e+pg/BUr27cfrC09aw=
-X-Received: by 2002:a92:cd82:0:b0:2dc:9263:720f with SMTP id
- r2-20020a92cd82000000b002dc9263720fmr1582299ilb.226.1657712645797; Wed, 13
- Jul 2022 04:44:05 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=qxcQt+R1BQvmSe81l8pzxUpsvc5Hyp+NVDBvjQReI90=;
+        b=4Bl/OTomFfD39JmLjtErkpm5LIpqd256hmjIBUxSp9YW2+44A4MYuxXErYCrwP3OIW
+         KnqCG/BsiFRzlpirvs1moYcvxVhDlbECn68efU5i2zdXZxsc3D6DTr0un8ii1PefEsof
+         d7Ks8sZnSJTKNu2IH6+Rb6AipbIPQblN3YB8bV0Jk+j4JMniAltqt55EzdJWe4Bnj4Db
+         gmkJCuFvQe+8NV+KGcEOJ7zAza0Tc32toNXcvBOv49sfjPrxghERbuJy033gcMjyuZXt
+         2Wlya/I95+aQCeOX9831YgcxsuzzRWqMQ4KBQiZVPQpeLvtdSaHx8Z1X3VUFA3k2zSzE
+         gH5g==
+X-Gm-Message-State: AJIora8G71XTZ5FoNQPJIRGV2Uh22iJpWk+dF3wRQchKWyAYR5iKgK8x
+        O0CAfpGnWDIrc1z7Z0ZkgLEjQQ==
+X-Google-Smtp-Source: AGRyM1uBP9gd3wmaygD60IXxI6xdqVBlMdxdPX5CyGEgDY02YRkMmPcOJuBUbid86a+KEk70Qvz55Q==
+X-Received: by 2002:adf:efd1:0:b0:21d:6731:221e with SMTP id i17-20020adfefd1000000b0021d6731221emr3028637wrp.404.1657713417102;
+        Wed, 13 Jul 2022 04:56:57 -0700 (PDT)
+Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id s14-20020a5d424e000000b0021d4d6355efsm10772676wrr.109.2022.07.13.04.56.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Jul 2022 04:56:56 -0700 (PDT)
+Message-ID: <feaacf44-f9a8-b892-d8ba-8a396b49d56b@sifive.com>
+Date:   Wed, 13 Jul 2022 12:56:55 +0100
 MIME-Version: 1.0
-References: <20220609150851.23084-1-max.oss.09@gmail.com> <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
- <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
-In-Reply-To: <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 13 Jul 2022 13:43:28 +0200
-Message-ID: <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
- which controls
-To:     Max Krummenacher <max.oss.09@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 3/7] pwm: dwc: add of/platform support
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Greentime Hu <greentime.hu@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>
+References: <20220712100113.569042-1-ben.dooks@sifive.com>
+ <20220712100113.569042-4-ben.dooks@sifive.com>
+ <20220712221715.GT1823936-robh@kernel.org>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <20220712221715.GT1823936-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -91,100 +83,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Jun 2022 at 18:14, Max Krummenacher <max.oss.09@gmail.com> wrote:
->
-> Hi all
->
-> On Thu, Jun 16, 2022 at 2:51 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> >
-> > On Thu, Jun 9, 2022 at 5:10 PM Max Krummenacher <max.oss.09@gmail.com> wrote:
-> >
-> > > This series adds a PM domain provider driver which enables/disables
-> > > a regulator to control its power state.
-> >
-> > Actually, we did this on the U8500 in 2011.
-> >
-> > IIRC this led to problems because we had to invent "atomic regulators"
-> > because regulators use kernel abstractions that assume slowpath
-> > (process context) and power domains does not, i.e. they execute in
-> > fastpath, such as an interrupt handler.
+On 12/07/2022 23:17, Rob Herring wrote:
+> On Tue, Jul 12, 2022 at 11:01:09AM +0100, Ben Dooks wrote:
+>> The dwc pwm controller can be used in non-PCI systems, so allow
+>> either platform or OF based probing.
+>>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>> ---
+>>   .../devicetree/bindings/pwm/pwm-synposys.yaml | 40 ++++++++++++++
+> 
+> Use compatible string for filename.
 
-This isn't entirely correct. The callbacks of a genpd, *may* execute
-in atomic context, but that depends on whether the GENPD_FLAG_IRQ_SAFE
-is set for it or not.
+ok, will fix.
 
-Similar to what we have for runtime PM callbacks, with pm_runtime_irq_safe().
+>>   drivers/pwm/Kconfig                           |  5 +-
+>>   drivers/pwm/pwm-dwc.c                         | 53 +++++++++++++++++++
+>>   3 files changed, 96 insertions(+), 2 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml b/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
+>> new file mode 100644
+>> index 000000000000..38ac0da75272
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
+>> @@ -0,0 +1,40 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2022 SiFive, Inc.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pwm/pwm-synposys.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Synopsys PWM controller
+>> +
+>> +maintainers:
+>> +   - Ben Dooks <ben.dooks@sifive.com>
+>> +
+>> +properties:
+>> +  "#pwm-cells":
+>> +    description: |
+>> +      See pwm.yaml in this directory for a description of the cells format.
+> 
+> pwm.yaml doesn't define how many cells. You need to. And you don't need
+> generic descriptions.
 
-> >
-> > The atomic regulator was a subset of regulator that only handled
-> > regulators that would result in something like an atomic register write.
-> >
-> > In the end it was not worth trying to upstream this approach, and
-> > as I remember it, Ulf Hansson intended to let the power domains poke
-> > these registers directly, which was easier. (It's on Ulfs TODO list to
-> > actually implement this, hehe.)
+  "#pwm-cells":
+     const: 1
 
-Yep, unfortunately I never got to the point. However, poking the
-registers directly from the genpd provider's on/off callbacks has
-never been my plan.
+should be sufficient then?
 
-Instead I would rather expect us to call into a Ux500 specific
-interface for the prcmu FW. Simply because it's not really a regulator
-and must not be modelled like it. Instead it is a voltage/frequency
-domain that is managed behind a FW interface.
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Interface bus clock
+>> +      - description: PWM reference clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: bus
+>> +      - const: timer
+>> +
+>> +  compatible:
+> 
+> Convention is compatible comes first in the list.
 
-> >
-> > Yours,
-> > Linus Walleij
->
-> Thanks for all the feedback.
->
-> The approach taken with the patchset seems to be architecturally wrong
-> and as Linus pointed out has additionally the flaw that the regulator
-> would need to be controllable in atomic context which depending on
-> the regulator driver / configuration may not be fulfilled.
+ok, fixed.
 
-See above. Perhaps GENPD_FLAG_IRQ_SAFE and pm_runtime_irq_safe() can
-help with this?
 
-Note that, power domains can be modelled with child/parents too, which
-perhaps can help around this too.
+>> +    oneOf:
+>> +      - items:
+>> +        - const: snps,pwm
+> 
+> Don't need oneOf or items. Just 'const: snps,pwm'.
 
->
-> So our plan is to explicitly handle a (shared) regulator in every
-> driver involved, adding that regulator capability for drivers not
-> already having one.
+ok, fixed.
 
-Please don't! I have recently rejected a similar approach for Tegra
-platforms, which now have been converted into using the power domain
-approach.
 
-If it's a powerail that is shared between controllers (devices), used
-to keep their registers values for example, that should be modelled as
-a power domain. Moreover for power domains, we can support
-voltage/frequency (performance) scaling, which isn't really applicable
-to a plain regulator.
+> That's pretty generic for a compatible. There's only 1 version of the IP
+> or is the version discoverable?
 
-However, if the actual powerrail fits well to be modelled as
-regulator, please go ahead. Although, in this case, the regulator must
-only be controlled behind a genpd provider's on/off callback, so you
-still need the power domain approach, rather than using the regulator
-in each driver and for each device.
+This IP block doesn't seem to have evolved much since being included so
+I don't think so at this point, most of the revision list is for the
+internal options and cleanup.
 
->
->
-> The question which remains is on how one would model functionality
-> which by itself does not need a driver but would need regulator
-> support to switch its supply on in run state and off in suspend
-> states and poweroff, like for example a simple level shifter.
+I will go through and check if all the compile-time properties are deal
+with, but that'll be adding more properiteis if they are needed.
 
-Not sure I understand the question properly, but perhaps by adopting
-my proposal above this problem becomes easier to solve?
+>> +
+>> +required:
+>> +  - "#pwm-cells"
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
 
-> Any suggestions on this topic? Thanks.
->
-> Cheers
-> Max
-
-Kind regards
-Uffe
