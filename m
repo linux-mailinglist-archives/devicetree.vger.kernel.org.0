@@ -2,92 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 523EB57326F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 11:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 747DF5732D8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 11:33:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234603AbiGMJ2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 05:28:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41376 "EHLO
+        id S236130AbiGMJdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 05:33:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234664AbiGMJ2W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 05:28:22 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F71F2E3B
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 02:28:21 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id w17so11230415ljh.6
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 02:28:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=geaCj81ycceeJeyXEXcktsHsVE7AX6bBBwQNAJ0pr/A=;
-        b=S9UUOPTrazzxnheUfpX3I67Pd3ngtwGlwrZqkw4oH5mr1bKsYmCavkQel245szv62F
-         s4arzlvdOfTd1dbMTCq83Gkjozr6T/gW6c0Bw5IlktPUIaZ7rI1iPokcIVeMXPtWiwIR
-         VmTAC+OAIG/RcV9mR2slJm3AIYbKkL/ZsBD71sNqogZsTllb67OPGdJuu2OGH92Omn80
-         koRg5l6IlJB15f5Sr9jDO6nbOgMlNZnzMBTC/InVB3RLWD657uZgiQUPbTUIfRZMZVpu
-         BbOdV+n0fXDsbdzy89aVce+EJ6IdssfNbrzuK0kDY5q0+Jyzgap+HKZ9CnKNT2BVVstG
-         091w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=geaCj81ycceeJeyXEXcktsHsVE7AX6bBBwQNAJ0pr/A=;
-        b=k1JB6nZ4iviDq3esjYP+2rBpsvoos70gSsKrRlf9uJH67q/6qCebc8yUv0igissQfO
-         dnvJihANo0+OVs+RkMWXBe9719Su6LGwEt6aQH7vp0enGKUMx6Kp9UHI5+4kJUzEbYgF
-         rvd8+0OPjd0/S8bD3jaI64uNf0xVJq2ta3380126VqF8wV0NVrILvOyBUHWxOYATOeOY
-         gaz97HRv1CnJjnVOvjuh/xv4wR+qOyk6ZEYJ/W0PDuNBQvFVwWuq3g0Dxo3kAin2FQn5
-         3A7Kywk5dB7WuP7XTb00l45gUXRQu5Jj4HrbAHyZk0KmodMzknFTv3pAxnluVwkLYc/H
-         Taiw==
-X-Gm-Message-State: AJIora8x4c0LwgYGJgSB4wzzAqXDRTB/9XEB++ilkYM9GNho0wEvjhpR
-        oyi3uxLbihM6rEMYtAX1WeS2QI4O0DWUsA==
-X-Google-Smtp-Source: AGRyM1stmOMnrs7WjrVZAWSyI7MmKoT76g3H1/dYirwNw8pzpVrkFiBFzsSgP1oFmVuQx70bMEdPPw==
-X-Received: by 2002:a2e:a9a6:0:b0:25d:6062:91af with SMTP id x38-20020a2ea9a6000000b0025d606291afmr1187100ljq.144.1657704499441;
-        Wed, 13 Jul 2022 02:28:19 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id l26-20020a2e909a000000b0025d4d4b4edbsm2990436ljg.34.2022.07.13.02.28.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Jul 2022 02:28:18 -0700 (PDT)
-Message-ID: <f9e1ad3b-d6ed-7392-2fd9-ca6ff0417b16@linaro.org>
-Date:   Wed, 13 Jul 2022 11:28:16 +0200
+        with ESMTP id S236068AbiGMJci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 05:32:38 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51EAFF4239;
+        Wed, 13 Jul 2022 02:31:11 -0700 (PDT)
+X-UUID: 7c9ab3c345e64b41b9926e33f6bbac94-20220713
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:ca50afd8-b7df-4c67-9166-916496b64597,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:0f94e32,CLOUDID:a3715fd7-5d6d-4eaf-a635-828a3ee48b7c,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 7c9ab3c345e64b41b9926e33f6bbac94-20220713
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 568296446; Wed, 13 Jul 2022 17:31:03 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 13 Jul 2022 17:31:02 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Wed, 13 Jul 2022 17:31:02 +0800
+Message-ID: <9eceb5412bfed5f408153fe05bc2f8a4e3570b77.camel@mediatek.com>
+Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 13 Jul 2022 17:31:02 +0800
+In-Reply-To: <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
+         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v18 1/2] dt-bindings: usb: Add analogix anx7411 PD binding
-Content-Language: en-US
-To:     Xin Ji <xji@analogixsemi.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     bliang@analogixsemi.com, qwen@analogixsemi.com,
-        jli@analogixsemi.com, Rob Herring <robh@kernel.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220713084139.2810115-1-xji@analogixsemi.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220713084139.2810115-1-xji@analogixsemi.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2022 10:41, Xin Ji wrote:
-> Add analogix PD chip anx7411 device binding
+Hi, Bo-Chen:
+
+On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> This patch adds a embedded displayport driver for the MediaTek mt8195
+> SoC.
 > 
+> It supports the MT8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jitao shi <jitao.shi@mediatek.com>
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
 > ---
-> v17 -> v18 : Change node name from "usb_typec" to "typec"
 
-Node name was anx7411, not usb_typec. What are you changing here? The label?
+[snip]
 
-Best regards,
-Krzysztof
+> +
+> +static void mtk_dp_bulk_16bit_write(struct mtk_dp *mtk_dp, u32
+> offset, u8 *buf,
+> +				    size_t length)
+
+The offset would always be MTK_DP_AUX_P0_3708, so drop offset and use
+MTK_DP_AUX_P0_3708 directly.
+
+> +{
+> +	int i;
+> +	int num_regs = (length + 1) / 2;
+> +
+> +	/* 2 bytes per register */
+> +	for (i = 0; i < num_regs; i++) {
+> +		u32 val = buf[i * 2] |
+> +			  (i * 2 + 1 < length ? buf[i * 2 + 1] << 8 :
+> 0);
+> +
+> +		if (mtk_dp_write(mtk_dp, offset + i * 4, val))
+> +			return;
+> +	}
+
+for (i = 0; i < length; i += 2) {
+	val = buf[i] | (i + 1 < length ? buf[i + 1] << 8 : 0);
+	if (mtk_dp_write(mtk_dp, MTK_DP_AUX_P0_3708 + i * 2, val))
+		return;
+}
+
+Regards,
+CK
+
+> +}
+> +
+
