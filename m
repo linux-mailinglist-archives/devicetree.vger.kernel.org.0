@@ -2,75 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4574573D4D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 21:42:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2BFD573D77
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 22:01:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236821AbiGMTmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 15:42:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55336 "EHLO
+        id S236986AbiGMUBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 16:01:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236622AbiGMTms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 15:42:48 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B731C2C678
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 12:42:47 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id r9so12779684lfp.10
-        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 12:42:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ldc6EH3f0PCrz9DFtr2JKghEU6+WJ+6Kwsia41CZb2o=;
-        b=U2864nCS2RTRnOm/zhwLgraRfau1uEITErI////4/3D8VystBt4uPXZpklLUMMT2eN
-         gtbC4pcNO6Ch5Jn848muxQ2OECUluQ9wDGRChRQ79CtEfmiHG4PbkaZGMg6b+yG0I9Hv
-         Azx5rqGjLvLblXBDQnotHF1AbP3Oznn8m92shBFd/YRcU5/6nvoguZREMx63M2hFqL+f
-         8svsAOU9M67FrU47oa/dYT08eHyEdxWTdfHWjgxtjr5ppihH64oVtT/V07QQNX/49RtN
-         oHcRuYbcnxN/AM/dOGrPdfIo43rX6HvCWjtVbYTsA1jXGvLMC3HIHSwsVmSvdCgcTr3g
-         hY7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ldc6EH3f0PCrz9DFtr2JKghEU6+WJ+6Kwsia41CZb2o=;
-        b=0sjfzRbRL1q1Y/LGTQtXssaUqRK9ENgWFgJ64QPQkDHeMHalOuLHWtz6TAsvyM+lCB
-         5sd4myoDmvdi7ofaxWKjQr/PHDpe8qN6/Tbd2/h1OjlOdki2XEIZwNzgcLgFxwxuxDQZ
-         xtptO03GCBNDX/JncAwYmpKH6agUQaUcOGkZDpEvjPO8Ri6p6jltieo4XzLpLH3WOUgW
-         oGvm6rsYqhXEN/GvZ8bkfYbQ9Rjubg5B63OZgOPqTpd9n0UbClzT6Cg6Tq4oTtdGFVTD
-         7i/5OCX6wmMSn7JFWkIzpxO/wCYnExVvfQDnS23zVR11uKjz1/D//N8TdT3God0j2AIC
-         IpSg==
-X-Gm-Message-State: AJIora9wkpznEjJbd3QFLzMfumbGbWoceSki7Dt1w/0/Tz65b43XYKf0
-        pKVlSZsTMhJnJffFeZSm8TD63Q==
-X-Google-Smtp-Source: AGRyM1ubh9NqE683R2zfQZ0ChzL1PyNugIevDbn1eR9hv3KkNP9YLc1dhgGADZBEmoWmCPTnZtwMpA==
-X-Received: by 2002:a05:6512:3612:b0:48a:14b1:ec09 with SMTP id f18-20020a056512361200b0048a14b1ec09mr14842lfs.681.1657741366105;
-        Wed, 13 Jul 2022 12:42:46 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id 6-20020a05651c00c600b0025a891f7b8dsm3309629ljr.32.2022.07.13.12.42.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Jul 2022 12:42:45 -0700 (PDT)
-Message-ID: <a9e1ccb7-6caa-2f7c-b879-b3ff4945794c@linaro.org>
-Date:   Wed, 13 Jul 2022 21:42:43 +0200
+        with ESMTP id S231772AbiGMUBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 16:01:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DD2930558;
+        Wed, 13 Jul 2022 13:01:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DC1F861E32;
+        Wed, 13 Jul 2022 20:01:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20D95C34114;
+        Wed, 13 Jul 2022 20:01:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657742511;
+        bh=F2E5dTQrZQzujB+fPdwCFv/cDpnr/di8xaRzs4Sanec=;
+        h=From:To:Cc:Subject:Date:From;
+        b=njfILizSPShD5KwRKjs9jYbdTfQG5oNFVfF6vVIRTnYUjDj3l7JGdIPfObdXJ314x
+         JAHJrvD+g4iUCQ1ijJ4124KrQWTEoea2JSsDV9K4CAcouVCWdJY+ig+LJSsU1ytw8Q
+         eW/KtF4upgoC1bCBoalGZ7en9AmQ86A6tbFX9Ing8wbQEllwK1RwHu9mztEwKtZ7Lq
+         p7FqEzoQmjZOQG/yYHKmjOfYl22sT88woGSlh6aePLVBq9pqK5iWMLRX6EUzqFcRho
+         V8XvhYqVxBLaFSiBYNtAAS8yRQXocKHfmkrgJk9W+juC/7JsNNYJhCl/72reMfXT9y
+         9hGFhCGiGBLcA==
+Received: by pali.im (Postfix)
+        id 302519D9; Wed, 13 Jul 2022 22:01:48 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: marvell: Update Armada 37xx platform bindings
+Date:   Wed, 13 Jul 2022 22:01:23 +0200
+Message-Id: <20220713200123.22612-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: marvell: Fix compatible strings for Armada
- 3720 boards
-Content-Language: en-US
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220713125644.3117-1-pali@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220713125644.3117-1-pali@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,21 +54,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2022 14:56, Pali Rohár wrote:
-> All Armada 3720 boards have Armada 3720 processor which is of Armada 3700
-> family and do not have Armada 3710 processor. So none of them should have
-> compatible string for Armada 3710 processor.
-> 
-> Fix compatible string for all these boards by removing wrong processor
-> string "marvell,armada3710" and adding family string "marvell,armada3700"
-> as the last one. (Note that this is same way how are defined Armada 3710
-> DTS files).
+Distinguish between Armada 3700 family, Armada 3710 SoC and Armada 3720 SoC.
+Armada 3720 DB is name of the board with Armada 3720 SoC, so correctly
+indicate SoC in example.
 
-Please do not introduce some changes just in DTS, but start from the
-bindings. Someone wrote the bindings like that and expected to be that
-way, so first change the bindings with proper rationale. Then change the
-DTS files.
+Signed-off-by: Pali Rohár <pali@kernel.org>
+---
+ .../devicetree/bindings/arm/marvell/armada-37xx.txt        | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+index f6d6642d81c0..d2ca008de266 100644
+--- a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
++++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+@@ -4,6 +4,11 @@ Marvell Armada 37xx Platforms Device Tree Bindings
+ Boards using a SoC of the Marvell Armada 37xx family must carry the
+ following root node property:
+ 
++ - compatible: must contain "marvell,armada3700"
++
++In addition, boards using the Marvell Armada 3710 SoC shall have the
++following property before the previous one:
++
+  - compatible: must contain "marvell,armada3710"
+ 
+ In addition, boards using the Marvell Armada 3720 SoC shall have the
+@@ -13,7 +18,7 @@ following property before the previous one:
+ 
+ Example:
+ 
+-compatible = "marvell,armada-3720-db", "marvell,armada3720", "marvell,armada3710";
++compatible = "marvell,armada-3720-db", "marvell,armada3720", "marvell,armada3700";
+ 
+ 
+ Power management
+-- 
+2.20.1
 
-Best regards,
-Krzysztof
