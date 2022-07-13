@@ -2,110 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 475CD572DF7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 08:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C15572E39
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 08:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234371AbiGMGMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 02:12:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48476 "EHLO
+        id S233984AbiGMGfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 02:35:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbiGMGMI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 02:12:08 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2115.outbound.protection.outlook.com [40.107.220.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F78DDA9BC;
-        Tue, 12 Jul 2022 23:12:04 -0700 (PDT)
+        with ESMTP id S233928AbiGMGfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 02:35:20 -0400
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com (mail-eopbgr10088.outbound.protection.outlook.com [40.107.1.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1E65AEF43;
+        Tue, 12 Jul 2022 23:35:19 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Om/S2dEq7tsOdi8DJCrgw8JjgUJI7G/Lc0Rxe5xWUmBy3NSa/22Hl5XS0wh67yFXtT8b3Oj6J39G1jJvKBQosO4S+MH/LrRcx6EyoTwrT6MloZAayMSpKMcljuEYnjrhtiObncir7MwxtODC6BLr+Rfwbia7BOC0AI7jFF1LZs1vfN5AVcRq986AfY+lWNdb2xFdI41XJ4TFKY6MNhJE9MLTNuNHc6kv6cA6PUOkoJvGwmlAUB4O37u0N+OD074nlmO3dR/GUt21dtOWpNGYx64yaC5h9q8w7nMqMW6x00oEfvCUDpu9HWrm+Y187ryVox8IyHWqhaJlrdQkG8OS/Q==
+ b=BNaA2K3d4b5e7oxCpXdG/h33hZIjSmsKAqv+KdIyUtRJJaLO0ZCUROB9288Q1o2q7bd8j6v5OxIUNGTTMagPD+RQO64gz9Jj18PXns5sESR/WDxjY8zp9rqZZ1wyb7VTFAB8HCxUg+6imLTSSAWakJIubxpWmic6ZyhQgxiXcnTbiuXBszVMF4INJeETArrAPaGG65eaxvSxE8V+2pX6uHSS8PzjoKeNd1B0AnPiZpVAdMsX38shlsBQSdM8yaYpPCLo1FDkWAzj+b6oRtb+RKgICDsUu8Lb0t2qacp3Zg0MGOzBBQ9uC3+CEQhhEf1YNvxWf1B7cFrPa/WjH/lJTw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qPXPyF94IDydSA03OEzxRNjINvwA1/Jy4Enq3QwlYto=;
- b=ZmmCYIyGy+HxAWjmJ1I0RYUwiXqlU2XeJKZGjK0YUY0TMyJ5JYJOFZc+o4CNN+aeC58IVWa55tBNVHpdYT0dPOfUb6ziGC7gGUbfTuw2aOXZT3X1TO8fk43mumoyBS05Y0MQgAkaBCY6cV9IpCPiYLFDjUZeTVq2JptCj5ieZJKFH5gtq/ej2+CF6bfpWcOe11Zbozr3oEPk/Ptanx2BIOKe4kU6huaaOI1yi1cHxBWtO1PHWW9asy5fE67PyrzAJCdgsNsQXoEj6CqzAitKGmxyCZmXXqaZLPSaLrPWh96QzpuNmNrWRhzHYQkhq2DNmLu+HSogxVHOhMef9YCGeQ==
+ bh=F+IOgO4cP1AflIYs/hlzZd88PKJvzyh1SG607IqoTgU=;
+ b=I2HgVr/oH8hE0oBNFEviZy0JtAKugtGdn0/SZXFmqfgSOBavlWIjyVIWuqX2ws+umh9wzA3g8PM+ordcIVbETVFLJEM8gHqw81Lu6NqbCBHMPG9a7A0TcUpFHzWPWRz0s0fLQBw5HqjaKzlpCjQs4USSc6Hjway5mM/nRsNGoREiazYSxXOgr2pWCLj64Tbk5Kqy4/OoagLXHpa+5pd2yW1M1AFC5ayLbAy0LIuiNbwXKPXDhOiMUjHxE6GlJtWW9FNuRJyL+LOM4VUB20wm+ZkO+q3H6gYxuxi2VJNOgnt6kNNh8X3iqT78kgcbNLii4bpqkfKEgFrtVo0oyKULqg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qPXPyF94IDydSA03OEzxRNjINvwA1/Jy4Enq3QwlYto=;
- b=l4o967BjHllWZOfyDcMcvqdjIFZjSTS7b56Vrlg1OronGQapVbRFORBxTVR0Ax4KV2BkfviBojW58Tw/oOYF/YsIUpLP6DABflWPjnX8NezCTQe5DTvCyBT+sGJ+MvSK9gNstq52a7Y4wYk1AGPJndS/CWFiKN4Cx6xanXo+pes=
+ bh=F+IOgO4cP1AflIYs/hlzZd88PKJvzyh1SG607IqoTgU=;
+ b=gLwK5YuXh+TseGJn39a6ZqOz4to4NabYSxjqqVbNvgRGTl4quP52gDr2C+qJa5uhgJkd4/OXudmItydja8lD768cUj4F6jCa9UnuAWJhoJb0U/vyAXM6gq/r0B0aEFWm1C66kIW3IxC3Zys5bXcKroPcqSgL3VJ222vtFvlGNJQ=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by DM5PR04MB1018.namprd04.prod.outlook.com (2603:10b6:4:3f::21) with
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by VI1PR04MB4080.eurprd04.prod.outlook.com (2603:10a6:803:45::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26; Wed, 13 Jul
- 2022 06:12:01 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::f02d:f2e:cba9:223b]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::f02d:f2e:cba9:223b%5]) with mapi id 15.20.5417.026; Wed, 13 Jul 2022
- 06:12:01 +0000
-Date:   Wed, 13 Jul 2022 14:11:52 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     bliang@analogixsemi.com, qwen@analogixsemi.com,
-        jli@analogixsemi.com, Rob Herring <robh@kernel.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v16 2/3] dt-bindings: usb: Add analogix anx7411 PD binding
-Message-ID: <20220713061152.GA2788915@anxtwsw-Precision-3640-Tower>
-References: <20220712090534.2783494-1-xji@analogixsemi.com>
- <20220712090534.2783494-2-xji@analogixsemi.com>
- <a281de26-0900-94b1-c139-f7af27a57d42@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a281de26-0900-94b1-c139-f7af27a57d42@linaro.org>
-X-ClientProxiedBy: TYXPR01CA0052.jpnprd01.prod.outlook.com
- (2603:1096:403:a::22) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.12; Wed, 13 Jul
+ 2022 06:35:15 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::fdd4:8557:334b:180d]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::fdd4:8557:334b:180d%7]) with mapi id 15.20.5417.026; Wed, 13 Jul 2022
+ 06:35:15 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, l.stach@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        paul.elder@ideasonboard.com, aford173@gmail.com,
+        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2 0/6] imx: add i.MX8MP hdmi blk ctrl hdcp/hrv and vpu blk ctrl
+Date:   Wed, 13 Jul 2022 14:36:47 +0800
+Message-Id: <20220713063653.2584488-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: KL1P15301CA0052.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:820:3d::10) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 291e3c3d-891a-4d1d-da98-08da64969939
-X-MS-TrafficTypeDiagnostic: DM5PR04MB1018:EE_
+X-MS-Office365-Filtering-Correlation-Id: a334725c-5d79-4d89-22ed-08da6499d840
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4080:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1aMGCTyvLJdRO9ehGSojBKRfKU2Gqe0rQU6hECxsdtxpOydkhA3vrAtB00yKx1KJ+42fHUfZzEENXxu1AKcNvYRg8n6T6dS7PlJcGa17En02ZJE3sFUVwuXf+nrAUXmLZm6RJKDHmo1KvFwzuCmY8SUZIQbujeaci8rD/xIA+ZEdQl8axYCD69F4nB1xAFeE8OBcC28WjgEbO3KdxH7LZqpuzXbTsN14VXwlI8FgRg+NbqP8LC4T0Ra2Pk/fZn1BI5zuTx6WbJCFAnnh9PCNFZ/FBTJBGBMaijWk+rcSOt1UCY+c1NWzHLwTO1ZqL45YZS2Rd4cLVVEGo3IkFwbkV16jUvtiINha6saXnDKLRQM385RBF+Zc5tph7IparAa3EyCNDTUB+joub3QNKySQ+1hqTYHOiY17gOQN6bS2TTvmU5UpwvJjZOyvLqrObs5OfMjntIxnPzPpwrCedqb9Ma/bs1Bj5/SdBmZXtsgBf5lpEs1iVQaTVhIXs3AJlRWpT4UVXURITDR11yFt1mczotFLu+mLStH4wUp1x6WglLtInoET1727Ee2yUqabWQ9R4+D1Hq6dnEOXzcqi5EpFFcI4Va3OZIXN38VNKZ/GKIrJBKb+FbI8YQCWIk8Qxbr9PYPzGYEhYmZsTTa/wi5xgDjw5TwV7qSIvJgHXHFqVmL9x/oyb+66JaXysWBuTZRas6Jyl8qbOUzilUVAhk9P1SLVu8FzFUYJNPf6mjrVou5PMrIb5coGugqsOm682qFm3wWjo93usv8oDLaculbcf1SzBIRmji0cK0UKMNuowsb4aVOsmjWkWjdyoHzMgT0+KJaMjc2HJwy1ymFkuJu6Kg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(136003)(376002)(366004)(346002)(396003)(39850400004)(6916009)(66946007)(4326008)(66556008)(316002)(6512007)(9686003)(53546011)(52116002)(6666004)(8676002)(186003)(1076003)(41300700001)(45080400002)(6506007)(66476007)(26005)(86362001)(6486002)(33656002)(55236004)(478600001)(38350700002)(38100700002)(33716001)(2906002)(8936002)(966005)(5660300002);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam-Message-Info: JrjjX185TqgMUdg3CIAnmoSzFtJsg5ElAzpdk6TnygkdSpqCT9fafbBQc3WvDN0IKHUwn75+g42YO/BJvSk1DGq0Fg2vsOECvyURoCeyQx/yZiDREVPfaGSxaybIEQV9e8+CFqZIb+nHva8n6OYsRlZKUDLJiC9xL3tt2tAHQRmEn0vrkbiZgNAGrDqAhtPY7yi03a7ibR1ES+rxDOeYoWz3NEdG4YPeu8WSn+gZXtH242mPcTSnUxSeq8IQGOmZThYcXPpG80C/Ml5F7357BEFcMTEZLEyAZaP3jr05aaYERJI5VD7zRNVRLygj2dh0ggODBu3REHU2TDXPXhbptto4d7ZVDWFvyoCCKi2qcQyI9llSLpDsMDAfepIxLxKPoqtebyVuYWKjYPQR+fJTOhTU4rt2NhU0MB+nGd5y4IOJFE2kRhrTMrJpTIdDkwT7tzgXGHN3ImrNOW4va83IGu5ZekQuWcK0V2QD8yrF8u4A+uYSuxHpNJrPRXlmq795OcTvNMODDfqAMM4d95IT0AOhj/FeiriQBlXInWZQDC65LeYH0XIdJkp0kZjRRkNZY5FAWVqEw/akrETblKj/0L1ShdtkGKRcrtO3F7r53VK0db1+rVNspsMWvbHS76ie13SxXM3vji7pUN3OvS4BtXYkRonw/WLe2YQ6UOZ/iF9kBqgpTlmj9JzmbCy7wzAFtWTtT6qKjXhtXh+Z/WmmpVQyDaj/4ah9so0RMbTVvTl6hUO4Jvsp9mT8X1OHemQb/rugMtK2+4tOhslfQHZql5iJLGyAp4waUqABL3SxWmkAAEyDhJ5Ak0x1SDrBmiat4pxNFaj4wmgrjFqRfNoKbM5Gyl+oY6DK8GderLDfRy/CQ0BHezTO2+9JYnW+Wt7F
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(346002)(376002)(136003)(366004)(39860400002)(478600001)(52116002)(6506007)(8676002)(6512007)(6666004)(41300700001)(7416002)(4326008)(26005)(66946007)(66556008)(66476007)(8936002)(2906002)(5660300002)(966005)(6486002)(316002)(38100700002)(86362001)(83380400001)(186003)(1076003)(2616005)(38350700002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ksL9er+uei6GRTlnMW6UDXkJ2P4wZtQOtvhqCKsmzeQYCqmC0D60/9x5RYM9?=
- =?us-ascii?Q?GBOvkriLKo+iMPC2mghc7+U6FnRXPXhO9GSCR6ouZsNPCdptv5uVn9TzWJrn?=
- =?us-ascii?Q?p1Iox0gUn39frW5xJrI339fJDxQVCkyCAYeTvNMNpKIqWmJfoTTliMRtCvrY?=
- =?us-ascii?Q?jQ5lfRt4YChV6hyr/EKd1l+I4gd/4Z5NgUwKCXYbQDfnSEx+m/HTyGTVGPyW?=
- =?us-ascii?Q?yEXgyZHLDGkGes6dJhVla7mmlY79HG4d8EReOgY5ZjmWW979cnInDb7KKlXd?=
- =?us-ascii?Q?RX/7Y8UEyb8XDbtQ4ZK1EFl1LP29WF9h0/mbgN8kMWBKDDQ1e83TDLMTEoqi?=
- =?us-ascii?Q?bqkCIP2BM/Dt9UZw68G4W/VU1A552QLfwJLw+8xzgDSok4Sjh/hvhbImhwjA?=
- =?us-ascii?Q?3jGuKYhMqLtE9ZRQdUbQ3zs9UszK1xHUMyeUux0914xIVhmPSsEnUmWIRv8N?=
- =?us-ascii?Q?xLQl+IQ0dfjfRu/SQiabd98Lxg5/WOwmHaUOhh1Tvt7jWC6Yt0af8eQIRqZy?=
- =?us-ascii?Q?UhagmNNJ9sDNaworO38YY2sLGyhmeZP6RBUoiehF8xDwR1bBQjZF+Ry5oaa2?=
- =?us-ascii?Q?9WOyYIcYYQLVdO8pB/0b5RnpHKhE09LR3+FZjiYoj4DTQhW0C6mhlIEbW4/7?=
- =?us-ascii?Q?5OcFKuTV3ZWZyyQ0XY8hZfzsN2ZjGk3mYsq6lh3I2NGA6yH14pfXuqmUIpHl?=
- =?us-ascii?Q?ZS5zHSw9d16Q9geSfLUWi3nKl1N6WemjC06rw9nzRbZV/kPHlHsEuCfeiyHq?=
- =?us-ascii?Q?5HGnYTLNaC4jkaTOXZ9cf15aTtLFLbGzIhf304vn/6kcM5Zt9UIvvJCW53kz?=
- =?us-ascii?Q?IIMiDccrwQyKGlHrwh0nq1hkRdg5lHMRJOO1ZuV5m+/kCqn7d9VZO6ciOBC9?=
- =?us-ascii?Q?YsFNNg3NUy+QPzf0s+NA2JW7tRDYJ3yEN/e29QOwb01xco0dEx0RiXtcwywW?=
- =?us-ascii?Q?R3d/m0U36iNgvXhwtDPMzA9Ezpm+mk+eY+h3ce4kyIGMYPYAObjl4myK/uOm?=
- =?us-ascii?Q?VEXP4IvfpmmpWU9sYoNo81Pvqg6K0fqAhG0fnMkDh7JrvhMgV1IgCbL8EL+9?=
- =?us-ascii?Q?K9QyL+G1deSpSsJy5pUEevD72ieWMfyJAn2wlx0NvLKrAMNvUDjRKVTBu5w9?=
- =?us-ascii?Q?XG0OB59d1WFrScCCCX0oeBXOq6GlYigfnFnfx4NeBfXlak3l3xoT/y/ybxYq?=
- =?us-ascii?Q?qNVLln8rxG3wIFpgK+UITKUfk7KjS1ele5N31R6OcknDe91O5dZuFPe//m9d?=
- =?us-ascii?Q?CbSujgUmUmSUn0/lG9TS1qZMuGXY7shaOK55DSKjJfK1qaDRotc4t1I7Ovuu?=
- =?us-ascii?Q?lqMX6wZ6Agd1vLSmXQpQ5R7U1nXtxMspYet1SowzSoCYl5YoVML9jfkPn1Fb?=
- =?us-ascii?Q?Uv4xA7FZfv8Nq2LsXnuJukoB4l1mouYXnEw2uq6esOedzYFrF0cTarzW5cCz?=
- =?us-ascii?Q?8wulI8QVBAMcXEtHI45cJRDnllp8u+JObbIkgRmPvtYwRlMmwljo6S9FekmN?=
- =?us-ascii?Q?ceL7NbxX50ac47yF1VvcltH0Su+9oQzB+pxN7mQNeeEn3dLrss4FLS23qwAQ?=
- =?us-ascii?Q?widEYqxBdBpJiUQSB2ELkVzw1EbEq2B0MIoCourU?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 291e3c3d-891a-4d1d-da98-08da64969939
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EAQoEy6jcnH8XEDYJi8vh1EeunsgWrc1IJyxSkDRN84hJ8kdFWZT2Pf2udEn?=
+ =?us-ascii?Q?bnL9vJKnB2UA/CY2KrIxH+M9bmR4Qn2Kr3leO2DjpGjBVY/NOR/eEWfW2z3P?=
+ =?us-ascii?Q?wp1A12XXmBPQbHliJA54cnVykmVYtmv7S8cyA+0Vf8VVZ2WIv4tkUbzut84m?=
+ =?us-ascii?Q?XVtbTo87/AlkeK6SUWHCPqqgFcocOijL5IPyjmV1E3F5bzavHR3vgwIfiOZA?=
+ =?us-ascii?Q?loX4b9nil8ZBpWspyv0wd22ObvE4UtJ9OhI+f1EG+MIwVMEC+kzvXLN/e/Xc?=
+ =?us-ascii?Q?lDVW/Oo2wKxCQIA//xEgmaONcz6v0QkDr0Rie7QvSKjinctmp7b+XdfVuTFx?=
+ =?us-ascii?Q?m9ckOTb18aDUlBkkHbLeojtNljFF3mxgt997d4gvAD16/PPnpPlak6XBQIfp?=
+ =?us-ascii?Q?I7uv9CUTAPzf/qSl9W1D+IpsgG9Rccb2s+BtycFHUQBT+C2I2efhnaMLDrrn?=
+ =?us-ascii?Q?YFV9NcEftR0e8k64wNEdSPVFZdL1dn1IzKAjqFNrhtfDNG34x7qBBwVuaSOl?=
+ =?us-ascii?Q?4BpecPuZ65u99pSwMthi2pixJmLt/Jk/jTx+hPxEszbh4k7AZxRRAF47vuUT?=
+ =?us-ascii?Q?HBXurzuHn014RFlI9yzByUZVBZ/hCwjAXdyXBvKpcZb/KS7zm5W7SXJcaVBA?=
+ =?us-ascii?Q?XyeEpWjMOZq9UCdLJFDeLX9EFZEXhG2NocL6knFZ1cVGqw2BIgIgCD08GW3N?=
+ =?us-ascii?Q?xSJ63VkzgDk9oYC1j2DpvrX0Xijc8lbZ44bTVqxoKbcGaGaxNlSfaKVmKbO4?=
+ =?us-ascii?Q?8PdQNwH15c9Fq0CW3kYDJjdQIYXKJltYnIbHXJQTWKrhXDwVsZpVWFRyz41T?=
+ =?us-ascii?Q?dN+53e9w0m622I93msaXZuXeLbYhVEEb0QSyoM3/TcyTmQcdgBQyNWbs7Att?=
+ =?us-ascii?Q?7w9hWbqdMr3PQvEXWR3MbLjMXvMQgGEK14ez5d4xNITXhmP+mdIK2sPOLwJK?=
+ =?us-ascii?Q?P6Yr0yIwLAk02u5qr92NW+Cu3vRavdoH0zWHaQFDUL8JZSM2nQcj08Mfgn34?=
+ =?us-ascii?Q?LvNGYTOgwaeiu7/USxpQX6HW/6aYKBwJccJXuI11VBXjfCW5bw2FY66XRU7E?=
+ =?us-ascii?Q?QtlfcoSz8sEipgTY2+6lPz2xqpdWI+Z1i330nr49X176BjJSC06reNSLjKk3?=
+ =?us-ascii?Q?lbDbsSynIoUQE7pGcDHpYTVQl89Ib++EBByUIpHxhcdoxBfQ3+xtjl9p8AqW?=
+ =?us-ascii?Q?ujWghDXGaUwEqd5B7zhQ6KK6O4gcSnEsD9NrNSHeejGjGjAA5UC/EWw0m31W?=
+ =?us-ascii?Q?4JlND1V5sI8ATLRcH3qW1gdXee9gfiSTbDR04i9+/zFUJtSgP2O4XyerXnj5?=
+ =?us-ascii?Q?ACfdspoNKwGaVroV+SSCsWVzP2DIskFc0BGWJvl5o4ysY1Yrhwv1gcaqc414?=
+ =?us-ascii?Q?SBRHM3QsoMlzrrKUILTPhz63YZwx8s3FmLKCJbMX0vTgLwXS0aPnYuezuG6w?=
+ =?us-ascii?Q?aKkd8x6dyAeXZjuIDogXgarzFwrUQKw+Ys3h3Ne1v0qcpS7EUKOoT7satkiq?=
+ =?us-ascii?Q?Sp3bb56V2qJR9WrcK9uTenaJBj+jLIYB5+BsHP7eetg7CWAC6QEV2BGy5q9d?=
+ =?us-ascii?Q?4IOn3qwOTUmfBo/dg8360jsyh+cG6aSKDFfEsE/Q?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a334725c-5d79-4d89-22ed-08da6499d840
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2022 06:12:00.7892
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2022 06:35:15.0795
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Nt5YD2fjxJCa0DmlVwfqywsibipUVlXFeTR/3zWzzrZ+WVGxr+X162CF5h14WLDysF431DLoJHrrNpSJ1aHi8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR04MB1018
+X-MS-Exchange-CrossTenant-UserPrincipalName: tQTTPFyGohqCEqkylgNoTedAot0kv4g6VPIeOq6EDdQwKDOADX1wMj6iHavtH2IlDf1srI+2nbueExXdx6lDeQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4080
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -115,128 +118,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 11:38:47AM +0200, Krzysztof Kozlowski wrote:
-> On 12/07/2022 11:05, Xin Ji wrote:
-> > Add analogix PD chip anx7411 device binding
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > 
-> > ---
-> > v13 -> v14 :
-> >     1. Fix Robot compile error. Fix node name not correct.
-> 
-> Node name is still not correct.
-Hi Krzysztof, I'll add it.
-Thanks,
-Xin
-> 
-> >     2. Change HEX to lowercase.
-> >     3. Use "ports" property.
-> > v12 -> v13 :
-> >     1. Drop the quotes for "$id" and "$schema"
-> >     2. Remove "allOf" label
-> >     3. Change node name from "i2c1" to "i2c"
-> >     4. Change node name from "typec" to "usb-typec"
-> > 
-> > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > ---
-> >  .../bindings/usb/analogix,anx7411.yaml        | 81 +++++++++++++++++++
-> >  1 file changed, 81 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> > new file mode 100644
-> > index 000000000000..bbd071ba338f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-> > @@ -0,0 +1,81 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: https://nam10.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fusb%2Fanalogix%2Canx7411.yaml%23&amp;data=05%7C01%7Cxji%40analogixsemi.com%7Ccaae32a981aa4c347a8e08da63ea5518%7Cb099b0b4f26c4cf59a0fd5be9acab205%7C0%7C0%7C637932155353583707%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=BGHo5E1W33sWfdhApWzq94%2F5TrDvfQc5lVF%2FSWl2m5A%3D&amp;reserved=0
-> > +$schema: https://nam10.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Cxji%40analogixsemi.com%7Ccaae32a981aa4c347a8e08da63ea5518%7Cb099b0b4f26c4cf59a0fd5be9acab205%7C0%7C0%7C637932155353583707%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=7wG732uVpVNVjtxm14xiXKweazjop4xRTUe4HRZVTWM%3D&amp;reserved=0
-> > +
-> > +title: Analogix ANX7411 Type-C controller bindings
-> > +
-> > +maintainers:
-> > +  - Xin Ji <xji@analogixsemi.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - analogix,anx7411
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  connector:
-> > +    type: object
-> > +    $ref: ../connector/usb-connector.yaml
-> > +    description:
-> > +      Properties for usb c connector.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: usb-c-connector
-> > +
-> > +      power-role: true
-> > +
-> > +      data-role: true
-> > +
-> > +      try-power-role: true
-> > +
-> > +    required:
-> > +      - compatible
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - connector
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        anx7411@2c {
-> 
-> Use generic node name:
-> https://nam10.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdevicetree-specification.readthedocs.io%2Fen%2Flatest%2Fchapter2-devicetree-basics.html%23generic-names-recommendation&amp;data=05%7C01%7Cxji%40analogixsemi.com%7Ccaae32a981aa4c347a8e08da63ea5518%7Cb099b0b4f26c4cf59a0fd5be9acab205%7C0%7C0%7C637932155353583707%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=ACf4IGwVwtO7CsvL%2BYj4bbl%2BG88o5k6PyEyxZCl2as8%3D&amp;reserved=0
-> 
-> > +            compatible = "analogix,anx7411";
-> > +            reg = <0x2c>;
-> > +            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-> > +            interrupt-parent = <&gpio0>;
-> > +
-> > +            typec_con: connector {
-> > +                compatible = "usb-c-connector";
-> > +                power-role = "dual";
-> > +                data-role = "dual";
-> > +                try-power-role = "source";
-> > +
-> > +                ports {
-> > +                    #address-cells = <1>;
-> > +                    #size-cells = <0>;
-> > +                    port@0 {
-> > +                        reg = <0>;
-> > +                        typec_con_ep: endpoint {
-> > +                            remote-endpoint = <&usbotg_hs_ep>;
-> > +                        };
-> > +                    };
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +...
-> 
-> 
-> Best regards,
-> Krzysztof
+From: Peng Fan <peng.fan@nxp.com>
+
+V2:
+ - Add A-b from DT maintainer for patch 1
+ - Per DT maintainer, I added description for items. To
+ make it consistent, I also added description to i.MX8MM.
+ - Per Adam, change VPU H1/h1 to VC8000E/vc8000e in the patchset.
+
+This patchset is to add more blk ctrl support for i.MX8MP
+ - Add HDMI HDCP/HRV BLK CTRL support
+ - Add VPU BLK CTRL support
+ - Add PGC VPU node which supplies power domain for VPU BLK
+This patchset is based on:
+https://lore.kernel.org/all/20220708085632.1918323-1-peng.fan@oss.nxp.com/
+
+repo: https://github.com/MrVan/linux/tree/imx8mp-blk-ctrl
+
+Peng Fan (6):
+  dt-bindings: power: imx8mp-power: add HDMI HDCP/HRV
+  dt-bindings: soc: imx: add i.MX8MP vpu blk ctrl
+  soc: imx: add i.MX8MP HDMI blk ctrl HDCP/HRV
+  soc: imx: imx8m-blk-ctrl: add i.MX8MP VPU blk ctrl
+  arm64: dts: imx8mp: add vpu pgc nodes
+  arm64: dts: imx8mp: add VPU blk ctrl node
+
+ .../soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml      | 93 ++++++++++++++++---
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 45 +++++++++
+ drivers/soc/imx/imx8m-blk-ctrl.c              | 43 +++++++++
+ drivers/soc/imx/imx8mp-blk-ctrl.c             | 30 ++++++
+ include/dt-bindings/power/imx8mp-power.h      |  6 ++
+ 5 files changed, 206 insertions(+), 11 deletions(-)
+
+-- 
+2.25.1
+
