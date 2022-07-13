@@ -2,116 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04BA6573AB8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 18:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54F27573AD3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 18:09:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236760AbiGMQAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 12:00:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37314 "EHLO
+        id S235383AbiGMQJo convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Jul 2022 12:09:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbiGMQAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 12:00:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C002AC4F;
-        Wed, 13 Jul 2022 09:00:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C2B5E61AB2;
-        Wed, 13 Jul 2022 16:00:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61F17C341C0;
-        Wed, 13 Jul 2022 16:00:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657728009;
-        bh=bFWOI4UxpK/hr5FcAv7o+ieA49JQ3MWwm/BdnMrCFBA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=thIKBxuQgeGewGAXw1qMeJCP80P9kn4HtEHYl61UoMzMe8GzTcBTD3OJkhorQhXtP
-         WDpB7QbyPBT4OYdPhTMV3g4cCKpS0Ago8Vuso+vCy3i4gwZgPQcmFhN6oiChW9Dxjs
-         w+39X50Ie+Y/H+m5UPHmUWweot1+WlSasKgS4J6AE9esCSkUIl9UdHAWhRNB4K5R/e
-         vukTQCDgGX42wnC0Ge5EABigyRBrfOLxHpp6BcW/s30+BQh1BXREmjFdKJWm5UlptR
-         FauhbldGxQ8S+cKppWsV/O6v8gAGNbdIwXb2GC/CG1AMiVDOaZ1ziaLrQ7CyFFCMC3
-         nTP+LMVfQHxJA==
-Date:   Wed, 13 Jul 2022 17:09:56 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Bagas Sanjaya <bagasdotme@gmail.com>,
-        Linux Documentation List <linux-doc@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Andrea Merello <andrea.merello@iit.it>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        jmondi <jacopo@jmondi.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] Documentation: bno055: separate SPDX identifier and
- page title
-Message-ID: <20220713170956.3ac9320a@jic23-huawei>
-In-Reply-To: <CAHp75VfEzNJSAJrjcY_cUj7=k4fNL+TcpEWc9k=wSWB5qb8wJg@mail.gmail.com>
-References: <YsGVa8KFmdvGY92e@debian.me>
-        <20220704034041.15448-1-bagasdotme@gmail.com>
-        <CAHp75Vdg=NG9fnd0EQWg5D4WoW9hGJM+MMBRLSacgQUptuGe9Q@mail.gmail.com>
-        <5418fb0b-47e2-d251-a6c7-a9bacbaf3dc1@gmail.com>
-        <CAHp75VfEzNJSAJrjcY_cUj7=k4fNL+TcpEWc9k=wSWB5qb8wJg@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S229490AbiGMQJm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 12:09:42 -0400
+Received: from relay3.hostedemail.com (smtprelay0010.hostedemail.com [216.40.44.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DA082315D;
+        Wed, 13 Jul 2022 09:09:40 -0700 (PDT)
+Received: from omf18.hostedemail.com (a10.router.float.18 [10.200.18.1])
+        by unirelay06.hostedemail.com (Postfix) with ESMTP id CFEA934F0C;
+        Wed, 13 Jul 2022 16:01:22 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf18.hostedemail.com (Postfix) with ESMTPA id 16A9E34;
+        Wed, 13 Jul 2022 16:01:16 +0000 (UTC)
+Message-ID: <75404573094d1c46172fcd51dad6a4e564da1542.camel@perches.com>
+Subject: Re: [PATCH] soundwire: qcom: Update error prints to debug prints
+From:   Joe Perches <joe@perches.com>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        vkoul@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        quic_plai@quicinc.com, bgoswami@quicinc.com, perex@perex.cz,
+        tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Date:   Wed, 13 Jul 2022 09:01:16 -0700
+In-Reply-To: <8cde58d2-3b10-b88b-2d10-88e76fbcac06@quicinc.com>
+References: <1657714921-28072-1-git-send-email-quic_srivasam@quicinc.com>
+         <75e9b775-3bbe-0b34-2bd6-b4ac74620672@linux.intel.com>
+         <8cde58d2-3b10-b88b-2d10-88e76fbcac06@quicinc.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.44.1-0ubuntu1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Rspamd-Server: rspamout06
+X-Rspamd-Queue-Id: 16A9E34
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=no
         autolearn_force=no version=3.4.6
+X-Stat-Signature: oamptbghkx51eutk1cq8n1rajg7frenc
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX1/ELQpropLow+VPSUREm5LEbTNOk8SYDOE=
+X-HE-Tag: 1657728076-660807
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 Jul 2022 11:02:32 +0200
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On Wed, 2022-07-13 at 20:22 +0530, Srinivasa Rao Mandadapu wrote:
+> On 7/13/2022 7:53 PM, Pierre-Louis Bossart wrote:
+> Thanks for your time Pierre-Louis!!!
+> > 
+> > On 7/13/22 07:22, Srinivasa Rao Mandadapu wrote:
+> > > Upadte error prints to debug prints to avoid redundant logging in kernel
+> > update
+[]
+> > > diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+[]
+> > > @@ -573,11 +573,10 @@ static irqreturn_t qcom_swrm_irq_handler(int irq, void *dev_id)
+> > >   				break;
+> > >   			case SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED:
+> > >   			case SWRM_INTERRUPT_STATUS_CHANGE_ENUM_SLAVE_STATUS:
+> > > -				dev_err_ratelimited(swrm->dev, "%s: SWR new slave attached\n",
+> > > -					__func__);
+> > > +				dev_dbg(swrm->dev, "%s: SWR new slave attached\n", __func__);
 
-> On Tue, Jul 5, 2022 at 3:13 AM Bagas Sanjaya <bagasdotme@gmail.com> wrote:
-> > On 7/5/22 02:49, Andy Shevchenko wrote:  
-> 
-> ...
-> 
-> > >> Cc: Jonathan Corbet <corbet@lwn.net>
-> > >> Cc: Andrea Merello <andrea.merello@iit.it>
-> > >> Cc: Jonathan Cameron <jic23@kernel.org>
-> > >> Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > >> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> > >> Cc: Rob Herring <robh+dt@kernel.org>
-> > >> Cc: Matt Ranostay <matt.ranostay@konsulko.com>
-> > >> Cc: Alexandru Ardelean <ardeleanalex@gmail.com>
-> > >> Cc: jacopo@jmondi.org
-> > >> Cc: linux-iio@vger.kernel.org
-> > >> Cc: devicetree@vger.kernel.org
-> > >> Cc: linux-kernel@vger.kernel.org (open list)  
-> > >
-> > > It's a very noisy Cc list which will go in the git history. Instead,
-> > > use --to and --cc parameters of `git format-patch`. Maintainers
-> > > usually use `b4` tool that adds a Link tag to the patch itself on the
-> > > Lore archive which will keep track on the Cc list anyway.  
-> 
-> > Thanks for reminding me.
-> >
-> > I think something like `b4 am -l`, right?
-> >
-> > Anyway, should I resend (reroll)?  
-> 
-> Depends on the maintainer's wishes. Maybe they can drop them when
-> applying, I dunno.
-> 
+Could also drop the "%s: ", __func__ as it's already a unique message
+and dynamic debug could add it back if really desired.
 
-At the moment this is a fix to a series we haven't actually accepted.
-Nice to have an all, but up to Andrea on how to handle it.
-One reasonable option would be just to squish it into the original
-patch for v7 with an appropriate note in the patch description / changelog.
-
-Thanks,
-
-Jonathan
