@@ -2,66 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18E3F57370F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 15:14:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2046A57374F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 15:24:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235830AbiGMNOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 09:14:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37350 "EHLO
+        id S235819AbiGMNY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 09:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbiGMNOq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 09:14:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E01A426EF;
-        Wed, 13 Jul 2022 06:14:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A3FF61C0C;
-        Wed, 13 Jul 2022 13:14:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69EACC3411E;
-        Wed, 13 Jul 2022 13:14:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657718083;
-        bh=oYk6PAgMGiWtXcXkOteGGgjoV/CevK+hQrC/zso1/ho=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=c7s3VQUaUTgBEpZbTYQ/g9id58XYAj62kISYhHz4P0BPSxl+KoceK/qbP/KRdHrXF
-         UocQcai75ia/i/SIPs5wsUmzWCz7zrc6qkF6BZn1RaCPhjg480pMf6rEl/gw1qGKKY
-         J/3Xr3cpMqD0aA7RrIP1qOSUwPXcrrGyawWujdOsijq0OltFskrib24nNh8QWvfcZN
-         pX8DWwedxRtHSQ10uVDWORCZgOISyjl/+egESBQDA4IIhBc7X6uVXfeajah8hH7PlH
-         SRsGJxS9IeOOehA0udENI66mtj4fx4vIlp6s69RPnMRbujePKsQeQ0p2UTSE2NN8o0
-         5W0e3YNmi2xtA==
-Date:   Wed, 13 Jul 2022 14:14:38 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S231764AbiGMNY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 09:24:56 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A493B65
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 06:24:55 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id bu1so14319713wrb.9
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 06:24:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=yLLf2RupUAGZKj8nEeG0LSBEp5u3/qfodgo6k8ZYoVQ=;
+        b=IbphrEpSNyolpp1NbysNG4wrCuerEaN0u+GrfUaqkpgfE2iwK3cWmYy5Ry5eOZHA/F
+         LpuuNbiojQmj2LcHHHU3aN+H/UBSjVSM6jFoPjBfVaRodQkzp6RC86qbAhYJSkclrcgq
+         ktdFqKZGBsC0k5DM8MkPias9TS5byU5qDy1TU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=yLLf2RupUAGZKj8nEeG0LSBEp5u3/qfodgo6k8ZYoVQ=;
+        b=Vc2NNR2q6Lzsw/f2kPZ6OtVOojgDidbXYJeBYfxgDW943V9IVEZJ+jsnrcnqmfi/xx
+         5+7w5CSMUP4/WwglsUOZ9ljv364geDddOrIbZOBFkMeACMgkUMhj4+1D85lqKs0Momwm
+         m3OtcEufQI0pi3r5Q8KH3eHgjdutKkCrMnTrjXBi3G3BVK/LRiHbmPGBEbHOgKbVtWrc
+         XKnFPB9sadfphlnRlvf92fXpbGUkYfGuBX/uEAMg50tKgRofo4+Q2VRYKV59h1y2S6Ov
+         RXo6Y9LGPtA3YcQvaFbfrid8eDcttffqusEtDND4/568Sk0sjdwbCUopIGfjdVB+p7/P
+         0Uhg==
+X-Gm-Message-State: AJIora8E1p6JR3T9YYsOplpNxAVQZFbUY0Zk/8i8VL2YdZDzJYpNt8Hh
+        5F19iXLmoCD2R/hAUXENA3J73w==
+X-Google-Smtp-Source: AGRyM1sJgKfY+g8GvrSMzl/KBZW/B0KYhfoYIllSy9Fh3tv9EC2rCfNnX5e5CdMZTgruAmdrENUrQQ==
+X-Received: by 2002:a5d:4145:0:b0:21d:68ab:3bf with SMTP id c5-20020a5d4145000000b0021d68ab03bfmr3241320wrq.641.1657718693965;
+        Wed, 13 Jul 2022 06:24:53 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-51-7.cust.vodafonedsl.it. [188.217.51.7])
+        by smtp.gmail.com with ESMTPSA id ay15-20020a05600c1e0f00b003a2fb1224d9sm1886641wmb.19.2022.07.13.06.24.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jul 2022 06:24:53 -0700 (PDT)
+Date:   Wed, 13 Jul 2022 15:24:51 +0200
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
+        quentin.schulz@theobroma-systems.com,
+        Daniel Scally <djrscally@gmail.com>,
+        linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
-Message-ID: <Ys7FPt/KfRjgj3nL@sirena.org.uk>
-References: <Yr18M9dzTOWL0m2c@google.com>
- <de1f3f33-0a8c-eb87-694c-16ebf2835720@quicinc.com>
- <Yr6oLlmfWRkiAZG7@google.com>
- <52c6ab15-1cd8-324e-4bcc-c449d8bceb19@quicinc.com>
- <Yr66ZZqEnBApHYMA@google.com>
- <0481d3cc-4bb9-4969-0232-76ba57ff260d@quicinc.com>
- <YsLhxx+L3+GJDRyO@google.com>
- <bcc5f059-b991-296a-bba6-9cb1236097f2@quicinc.com>
- <Ys1tYAO39LKzEAOE@google.com>
- <08460c2a-8e21-f149-edec-ee3523f1b727@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 5/6] media: dt-bindings: ov5693: document YAML binding
+Message-ID: <20220713132451.GA1725944@tom-ThinkPad-T14s-Gen-2i>
+References: <20220712163349.1308540-1-tommaso.merciai@amarulasolutions.com>
+ <20220712163349.1308540-6-tommaso.merciai@amarulasolutions.com>
+ <1657664975.862137.2476655.nullmailer@robh.at.kernel.org>
+ <20220713064845.GA1386778@tom-ThinkPad-T14s-Gen-2i>
+ <87086513-787c-3b0d-80df-b90ebdc3a28c@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fME9Yj+i5Rh9lYLw"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <08460c2a-8e21-f149-edec-ee3523f1b727@quicinc.com>
-X-Cookie: Positively no smoking.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <87086513-787c-3b0d-80df-b90ebdc3a28c@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,68 +76,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jul 13, 2022 at 08:52:34AM +0200, Krzysztof Kozlowski wrote:
+> On 13/07/2022 08:48, Tommaso Merciai wrote:
+> > Hi Rob,
+> > 
+> > On Tue, Jul 12, 2022 at 04:29:35PM -0600, Rob Herring wrote:
+> >> On Tue, 12 Jul 2022 18:33:48 +0200, Tommaso Merciai wrote:
+> >>> Add documentation of device tree in YAML schema for the OV5693
+> >>> CMOS image sensor from Omnivision
+> >>>
+> >>> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>> ---
+> >>> Changes since v1:
+> >>>  - Fix allOf position as suggested by Krzysztof
+> >>>  - Remove port description as suggested by Krzysztof
+> >>>  - Fix EOF as suggested by Krzysztof
+> >>>
+> >>> Changes since v2:
+> >>>  - Fix commit body as suggested by Krzysztof
+> >>>
+> >>> Changes since v3:
+> >>>  - Add reviewed-by tags, suggested by Jacopo, Krzysztof
+> >>>
+> >>> Changes since v4:
+> >>>  - Remove wrong Sakari reviewed-by tag, suggested by Krzysztof, Sakari
+> >>>
+> >>> Changes since v5:
+> >>>  - Remove dovdd-supply, avdd-supply, dvdd-supply from required properties
+> >>> as suggested by Jacopo
+> >>>
+> >>>  .../bindings/media/i2c/ovti,ov5693.yaml       | 103 ++++++++++++++++++
+> >>>  MAINTAINERS                                   |   1 +
+> >>>  2 files changed, 104 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> >>>
+> >>
+> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >>
+> >> yamllint warnings/errors:
+> >>
+> >> dtschema/dtc warnings/errors:
+> >> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb: camera@36: Unevaluated properties are not allowed ('port' was unexpected)
+> >> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> >>
+> >> doc reference errors (make refcheckdocs):
+> >>
+> >> See https://patchwork.ozlabs.org/patch/
+> >>
+> >> This check can fail if there are any dependencies. The base for a patch
+> >> series is generally the most recent rc1.
+> >>
+> >> If you already ran 'make dt_binding_check' and didn't see the above
+> >> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> >> date:
+> >>
+> >> pip3 install dtschema --upgrade
+> >>
+> >> Please check and re-submit.
+> >>
+> > 
+> > I run:
+> > 
+> > pip3 install dtschema --upgrade
+> > 
+> > Then I check .yaml using:
+> > 
+> > make DT_CHECKER_FLAGS=-m dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> > DTEX    Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dts
+> > LINT    Documentation/devicetree/bindings
+> > CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> > SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> > DTC     Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb
+> > CHECK   Documentation/devicetree/bindings/media/i2c/ovti,ov5693.example.dtb
+> > 
+> > No error on my side. I'm missing something?
+> 
+> Rob's check are running newer dtschema, from master branch. The error he
+> reports is about missing port, although I thought it is coming from
+> video-interface-devices.
 
---fME9Yj+i5Rh9lYLw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Krzysztof, 
+Thanks for the info! :)
 
-On Wed, Jul 13, 2022 at 11:20:43AM +0530, Satya Priya Kakitapalli (Temp) wr=
-ote:
-> On 7/12/2022 6:17 PM, Lee Jones wrote:
-> > On Mon, 11 Jul 2022, Satya Priya Kakitapalli (Temp) wrote:
-> >=20
-> > > On 7/4/2022 6:19 PM, Lee Jones wrote:
-> > > > On Mon, 04 Jul 2022, Satya Priya Kakitapalli (Temp) wrote:
-> > > >=20
-> > > > > On 7/1/2022 2:42 PM, Lee Jones wrote:
-> > > > > > On Fri, 01 Jul 2022, Satya Priya Kakitapalli (Temp) wrote:
-> > > > > >=20
-> > > > > > > On 7/1/2022 1:24 PM, Lee Jones wrote:
-> > > > > > > > On Fri, 01 Jul 2022, Satya Priya Kakitapalli (Temp) wrote:
-> > > > > > > >=20
-> > > > > > > > > On 6/30/2022 4:04 PM, Lee Jones wrote:
-> > > > > > > > > > On Thu, 30 Jun 2022, Satya Priya Kakitapalli (Temp) wro=
-te:
-> > > > > > > > > >=20
-> > > > > > > > > > > On 6/29/2022 8:48 PM, Lee Jones wrote:
-> > > > > > > > > > > > On Wed, 29 Jun 2022, Satya Priya Kakitapalli (Temp)=
- wrote:
+Regards,
+Tommaso
+ 
+> 
+> Best regards,
+> Krzysztof
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+-- 
+Tommaso Merciai
+Embedded Linux Engineer
+tommaso.merciai@amarulasolutions.com
+__________________________________
 
-> > That's not to say that the v9 submission was the right way to go
-> > either.  Everything in relation to:
-> >=20
-> >    i2c_add_driver(&pm8008_regulators_driver);
-> >=20
-> > ... should be moved into the Regulator driver itself.
-
-> Mark/Stephen,
->=20
->=20
-> Could you please share your inputs on this approach?
-
-I don't have particularly strong opinions.  It does seem like the chip
-should be visible as being a single entity in DT if it's a single
-physical thing in the schematic and board.
-
---fME9Yj+i5Rh9lYLw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLOxT0ACgkQJNaLcl1U
-h9AIqwf/c822cuT8MEVNWVx2rTUwfteCeDrmeqoF8J1KMp7PSj/eyNcgDapREaTu
-09uM6kYsnXaAhJp/beBtFFlkSsxthl5nNdD02+VV1Ynu7UQXzWqCJAls9CpQPYAk
-dW2eSlhQfq2lgvWgJ+C821TpHEX1zTGPC1AnsntOxErTa/ojQeC4wtpW6gIC7qM6
-nJpy2Uayl4VD0Ll02U//WYvXbHoaPK0k+6DMUIevfZLqHUDozfaszoUxN26oh6jl
-94RVzmPA2WjC1E6NM2cTE9sRaBJOY6XGhCmT/YhrpfZh4yXXtb9UJVlU95PZjsVy
-1Gc/djp0iZWyHhChDWnXt3S4khRFvw==
-=Sr/t
------END PGP SIGNATURE-----
-
---fME9Yj+i5Rh9lYLw--
+Amarula Solutions SRL
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+T. +39 042 243 5310
+info@amarulasolutions.com
+www.amarulasolutions.com
