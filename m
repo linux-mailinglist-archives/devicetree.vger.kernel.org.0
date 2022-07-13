@@ -2,221 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 616C9573B25
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 18:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D6C6573B3F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jul 2022 18:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237160AbiGMQZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 12:25:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60478 "EHLO
+        id S235537AbiGMQaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jul 2022 12:30:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237167AbiGMQZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 12:25:45 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CEFC308;
-        Wed, 13 Jul 2022 09:25:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1657729544; x=1689265544;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=RktsUe463dGeJ6JVuFeGZ56J3iA/MJCDqhL6VP3o8oc=;
-  b=UTHQhH0McW/S9p1VrDqBUOH94eHB7gnrk62EryS/npHsQrSm5nHsAlmd
-   qcwzE5unVZ4Ml3ehxExBYAIhAhFAamMIq0VwOUfB/9X0zMvOmgxBqp92P
-   xOw3cuvhFv98BWeHVzMQQlb6dO6KA+zdUzD1+wEJ3SMkm3UwWcFvY0FoU
-   QHNqqoMuiX5fr2MFhj/9WxZiy8r6VflLdi9At2OZbGmWlDLLpMx0gtwZb
-   Vl377Ha+RII1CviX2o2/na4gPQldilnz5PV/7QlDtpiHYNBhalKesivKD
-   kdT3yeQ1tE8U6ReomjNVlFW+xiqfmDLCs52VkwIlc7jANa7cAG7FqPl1i
-   A==;
-X-IronPort-AV: E=Sophos;i="5.92,267,1650956400"; 
-   d="scan'208";a="171953385"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jul 2022 09:25:29 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 13 Jul 2022 09:25:27 -0700
-Received: from ryan-Precision-5560.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Wed, 13 Jul 2022 09:25:27 -0700
-From:   <Ryan.Wanner@microchip.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Ryan Wanner" <Ryan.Wanner@microchip.com>
-Subject: [PATCH] ASoC: dt-bindings: atmel-i2s: Convert to json-schema
-Date:   Wed, 13 Jul 2022 09:25:38 -0700
-Message-ID: <20220713162538.139115-1-Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S237213AbiGMQ37 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 12:29:59 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873752B614;
+        Wed, 13 Jul 2022 09:29:58 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id o15so12814110pjh.1;
+        Wed, 13 Jul 2022 09:29:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3l+uleoAPt8BxfVBFyrnEYeSqQSnYyMWqVD87CGK33w=;
+        b=c9EahvZpuYw1Reguire61QGDyhdSmRRFTiN5xYDrePD0BCAWlEEqgpFdz/tboQExF7
+         bpIP9fyWEfopcC6uVUPo6OUt3vHNHftJYN+qh/14jesxSUW8wIcfsKDl0rDSh/LL+GDr
+         4/oqmeLCy0splGy6ZCvbG7wmpMZhoqlwlDw5EDDL5T7BYut8xRkxrgVnMIMH6GzS+IXX
+         uhlnH1fnBanrRbw3kX1+p6fLbkNrYZ7zDXOkhxPWY5+UJkk1anoMBnfiCHAT3vmxESly
+         5wnmqk88c9/qaWzKZ9fF+mp/wsRG8OJxkXnR09BbFCHr6tRBcWildc5WemnvAXNNa+Xw
+         Aq1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3l+uleoAPt8BxfVBFyrnEYeSqQSnYyMWqVD87CGK33w=;
+        b=ncOoz7mEVDgC/bI7EqV6ruXK9H8OGiR89kfPGjVgpZfnnyHPuUOIw7YfEuRHyFYd8J
+         ka5XfXAX1LqgSL6wpymQJvDvO5fiOW2Mzr3GOiSpZsS+YOK9b+COHaxVodD/KDB3T5ze
+         aggxHK+VJgreRzRATQM7kdpy7Wxwe0lorAaiYa5Dsc929SFMbiwkZtAzKpUh7bLv4wpC
+         Cx9A4zu4Z77RHeBup+3Aypz/jjuxrAiJaCVQGZ7vRVcLFPFwMlKAGh+yUe58C8e8+gUD
+         JGPBQZ/YP+vN63ajKp2wbwfk8dLcSSTCO19TMp3RVBGgQwkneT47fgoMln+QG3Gkidrf
+         GYQA==
+X-Gm-Message-State: AJIora91Cnnqjv5YrXrJz3w65V54mxngCuvt3Hi1JztNuzwcJXPXjb+z
+        tqMZTCvNtv1A92TrHPpRjPk=
+X-Google-Smtp-Source: AGRyM1vhA1eebogPmExtb/BUe38Y58U5j92SFwtL1fJRZ7Pf7Z3mryF+BoNTgBpBt6EyeMUqrM/d5Q==
+X-Received: by 2002:a17:902:f7cc:b0:16c:10a6:9e25 with SMTP id h12-20020a170902f7cc00b0016c10a69e25mr4008048plw.162.1657729797971;
+        Wed, 13 Jul 2022 09:29:57 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id v11-20020a1709028d8b00b0016b90620910sm6210028plo.71.2022.07.13.09.29.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Jul 2022 09:29:57 -0700 (PDT)
+Message-ID: <5bab132b-d6e2-045d-3960-0ece99da9723@gmail.com>
+Date:   Wed, 13 Jul 2022 09:29:56 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: bcm4908: Fix timer node for
+ BCM4906 SoC
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        William Zhang <william.zhang@broadcom.com>
+Cc:     Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220708182507.23542-1-william.zhang@broadcom.com>
+ <50bd9abda381ebdcaea41d116b4baa9c@milecki.pl>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <50bd9abda381ebdcaea41d116b4baa9c@milecki.pl>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On 7/12/22 23:49, Rafał Miłecki wrote:
+> On 2022-07-08 20:25, William Zhang wrote:
+>> The cpu mask value in interrupt property inherits from bcm4908.dtsi
+>> which sets to four cpus. Correct the value to two cpus for dual core
+>> BCM4906 SoC.
+>>
+>> Fixes: c8b404fb05dc ("arm64: dts: broadcom: bcm4908: add BCM4906
+>> Netgear R8000P DTS files")
+> 
+> Well, one note. You shouldn't line break Fixes: line.
 
-Convert atmel i2s devicetree binding to json-schema.
-Change file name to match json-schema naming.
+Took care of that before applying the two patches:
 
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
----
- .../bindings/sound/atmel,sama5d2-i2s.yaml     | 83 +++++++++++++++++++
- .../devicetree/bindings/sound/atmel-i2s.txt   | 46 ----------
- 2 files changed, 83 insertions(+), 46 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/atmel-i2s.txt
+https://github.com/torvalds/linux/commit/b4a544e415e9be33b37d9bfa9d9f9f4d13f553d6
 
-diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
-new file mode 100644
-index 000000000000..1cadc476565c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/atmel,sama5d2-i2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel I2S controller
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+  - Claudiu Beznea <claudiu.beznea@microchip.com>
-+
-+description:
-+  Atmel I2S (Inter-IC Sound Controller) bus is the standard
-+  interface for connecting audio devices, such as audio codecs.
-+
-+properties:
-+  compatible:
-+    const: atmel,sama5d2-i2s
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    description:
-+      Only the peripheral clock (pclk) is required. The generated clock (gclk)
-+      and the I2S mux clock (muxclk) are optional and should only be set together,
-+      when Master Mode is required.
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: gclk
-+      - const: muxclk
-+    minItems: 1
-+
-+  dmas:
-+    description:
-+      Should be one per channel name listed in the dma-names property.
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - dmas
-+  - dma-names
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/dma/at91.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    i2s@f8050000 {
-+        compatible = "atmel,sama5d2-i2s";
-+        reg = <0xf8050000 0x300>;
-+        interrupts = <54 IRQ_TYPE_LEVEL_HIGH 7>;
-+        dmas = <&dma0
-+                (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
-+                AT91_XDMAC_DT_PERID(31))>,
-+               <&dma0
-+                (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
-+                AT91_XDMAC_DT_PERID(32))>;
-+        dma-names = "tx", "rx";
-+        clocks = <&i2s0_clk>, <&i2s0_gclk>, <&i2s0muxck>;
-+        clock-names = "pclk", "gclk", "muxclk";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_i2s0_default>;
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/atmel-i2s.txt b/Documentation/devicetree/bindings/sound/atmel-i2s.txt
-deleted file mode 100644
-index 40549f496a81..000000000000
---- a/Documentation/devicetree/bindings/sound/atmel-i2s.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--* Atmel I2S controller
--
--Required properties:
--- compatible:     Should be "atmel,sama5d2-i2s".
--- reg:            Should be the physical base address of the controller and the
--                  length of memory mapped region.
--- interrupts:     Should contain the interrupt for the controller.
--- dmas:           Should be one per channel name listed in the dma-names property,
--                  as described in atmel-dma.txt and dma.txt files.
--- dma-names:      Two dmas have to be defined, "tx" and "rx".
--                  This IP also supports one shared channel for both rx and tx;
--                  if this mode is used, one "rx-tx" name must be used.
--- clocks:         Must contain an entry for each entry in clock-names.
--                  Please refer to clock-bindings.txt.
--- clock-names:    Should be one of each entry matching the clocks phandles list:
--                  - "pclk" (peripheral clock) Required.
--                  - "gclk" (generated clock) Optional (1).
--                  - "muxclk" (I2S mux clock) Optional (1).
--
--Optional properties:
--- pinctrl-0:      Should specify pin control groups used for this controller.
--- princtrl-names: Should contain only one value - "default".
--
--
--(1) : Only the peripheral clock is required. The generated clock and the I2S
--      mux clock are optional and should only be set together, when Master Mode
--      is required.
--
--Example:
--
--	i2s@f8050000 {
--		compatible = "atmel,sama5d2-i2s";
--		reg = <0xf8050000 0x300>;
--		interrupts = <54 IRQ_TYPE_LEVEL_HIGH 7>;
--		dmas = <&dma0
--			(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
--			 AT91_XDMAC_DT_PERID(31))>,
--		       <&dma0
--			(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
--			 AT91_XDMAC_DT_PERID(32))>;
--		dma-names = "tx", "rx";
--		clocks = <&i2s0_clk>, <&i2s0_gclk>, <&i2s0muxck>;
--		clock-names = "pclk", "gclk", "muxclk";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_i2s0_default>;
--	};
+https://github.com/torvalds/linux/commit/8bd582ae9a71d7f14c4e0c735b2eacaf7516d626
 -- 
-2.34.1
-
+Florian
