@@ -2,110 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDDD057555F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 20:52:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F0CD575580
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 20:58:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239552AbiGNSv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 14:51:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36674 "EHLO
+        id S232348AbiGNS54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 14:57:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240364AbiGNSvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 14:51:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A24C466AC0;
-        Thu, 14 Jul 2022 11:51:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3EE83621CC;
-        Thu, 14 Jul 2022 18:51:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A16FDC3411C;
-        Thu, 14 Jul 2022 18:51:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657824664;
-        bh=rN074FtrJ8R9G6o+chaH544/17JWvBJOlSaAc7tJsLk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Q8FyqhWZitWwxrB9QerGJMezpMKADzG0PS11dw8/CD3GySV4rL2T0AysJ7ufOI1V9
-         SaXOHo/+XcJgwqavB2/IHm8H4cdQP6W4Y2KIm+qpnHdihm492cRRsy8VG3jNJyobFe
-         2za00y6sXlrD3h99MkBKlVj/ukK7EHjz18iZiQ8TxMLlMrsXGSHEnCWrBpRxUacAXt
-         dHiXe2SOd0n6ny9ZqB0dwJFrgB9MqKPgL18rVUa41UrDOl+DkxUzVG43RWn26f5f72
-         vTXs+569C0//nENp6A13/SEkd0dpPni0XZy3IoBo6zAadEAGPtfmW8YescGDHGmOwQ
-         OL5xYrIEqD8IA==
-Received: by mail-vs1-f50.google.com with SMTP id t127so2302055vsb.8;
-        Thu, 14 Jul 2022 11:51:04 -0700 (PDT)
-X-Gm-Message-State: AJIora+3r9CWFBOMCwZXEshAMRRw7IV8JPqKAw44yV+wsdMSgHBaM+T/
-        rNB9c/WC3Su4O7CxO+wWZbA0r4NLmMj+9lxdSg==
-X-Google-Smtp-Source: AGRyM1vUsSaoKpbdafru34s5RwN0ZR6mPRZFDN0cvIm/7IlQDf7RUjZdUbmtoHe+Qifs3lUXJunq6h01WhDwNiTPp5Y=
-X-Received: by 2002:a67:d194:0:b0:357:8ea:5554 with SMTP id
- w20-20020a67d194000000b0035708ea5554mr4227834vsi.0.1657824663603; Thu, 14 Jul
- 2022 11:51:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220626191630.176835-1-david@ixit.cz>
-In-Reply-To: <20220626191630.176835-1-david@ixit.cz>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 14 Jul 2022 12:50:52 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJi_Nx90BoJsZoht-HCdUoEG_Hsg+FjPKu=xa1-PZOAmg@mail.gmail.com>
-Message-ID: <CAL_JsqJi_Nx90BoJsZoht-HCdUoEG_Hsg+FjPKu=xa1-PZOAmg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: mfd: convert to yaml Qualcomm SPMI PMIC
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
+        with ESMTP id S240904AbiGNS5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 14:57:47 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC3C6B761;
+        Thu, 14 Jul 2022 11:57:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657825065; x=1689361065;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=RBXA5YMni4ppfmOh6qTG6JfKVzyVRTHw2zW+lP6A+9E=;
+  b=WS5h96JwtXTzgMPfGzd/vvA8CkSzlrhoGqbI5aNGgkL/N8QohOs9C1n0
+   xNMqKD4pjRweSsPPnFtThPW9j5BGjBov9+ou7woQbbBzy0sLiHuwEeIxi
+   D+1RKj6z+2eAtaP4t3PbNUetBC33ciQlfUharJaIrYZinS2uRrCLexJL9
+   TiYkkrY+NTJKO8VMNymCbTlD3yloDEQWJqqg2y3UJthPeuagoZO7a/lsR
+   2Y6RRpJ16E3gE17U32W5VyR4Femml5Qrkqi1sRPn4N+IkZ/jYgDU1QQL3
+   Jb88Rcw0V5isDpyT+DFB2OGSE8wan3XRvVApDvXNfcrIaAcZXIBgs0Mg8
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="285629136"
+X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
+   d="scan'208";a="285629136"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 11:57:44 -0700
+X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
+   d="scan'208";a="698917092"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 11:57:42 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1oC41r-001Dd3-1W;
+        Thu, 14 Jul 2022 21:57:39 +0300
+Date:   Thu, 14 Jul 2022 21:57:39 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, ~okias/devicetree@lists.sr.ht,
-        Caleb Connolly <caleb@connolly.tech>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+Message-ID: <YtBnIxh6rDJMwpEm@smile.fi.intel.com>
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+ <YtAvHMmGay/3HACZ@smile.fi.intel.com>
+ <e0638b02bdcd0ee452846b86ce83458173912ef1.camel@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e0638b02bdcd0ee452846b86ce83458173912ef1.camel@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 26, 2022 at 1:16 PM David Heidelberg <david@ixit.cz> wrote:
->
-> Convert Qualcomm SPMI PMIC binding to yaml format.
->
-> Additional changes:
->  - filled many missing compatibles
->
-> Co-developed-by: Caleb Connolly <caleb@connolly.tech>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> v3:
->  - added subnodes, there are two not converted to YAML yet, but it works
->  - now it prints milion directly unrelated warning to this binding
->    (it's related to the included subnodes bindings, can be merged,
->     but it'll generate more warnings and preferably anyone can takeover
->     from here)
->  - add qcom,pmx65
->
-> v2:
->  - changed author to myself, kept Caleb as co-author
->  - moved nodename to properties
->  - add nodenames for pm* with deprecated property
->  - add ^$ to pattern properties
->  - dropped interrupt-names property
->  - added reg prop. to the nodes which have register in nodename
->  - added compatible pmx55
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  .../bindings/mfd/qcom,spmi-pmic.txt           |  94 ---------
->  .../bindings/mfd/qcom,spmi-pmic.yaml          | 191 ++++++++++++++++++
->  2 files changed, 191 insertions(+), 94 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+On Thu, Jul 14, 2022 at 05:43:41PM +0200, Nuno Sá wrote:
+> On Thu, 2022-07-14 at 17:58 +0300, Andy Shevchenko wrote:
+> > On Wed, Jul 13, 2022 at 03:14:17PM +0200, Nuno Sá wrote:
+> > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
+> > > calling the
+> > > gpiochip 'set_config()' hook. However, AFAICT, there's no way that
+> > > this
+> > > flag is set because there's no support for it in firwmare code.
+> > > Moreover,
+> > > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
+> > > being
+> > > handled.
+> > > 
+> > > On top of this, there are some users that are looking at
+> > > 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So, unless
+> > > I'm
+> > > missing something, it looks like this was never working for these
+> > > chips.
+> > > 
+> > > Note that the ACPI case is only compiled tested. At first glance,
+> > > it seems
+> > > the current patch is enough but i'm not really sure...
+> > 
+> > So, I looked closer to the issue you are trying to describe here.
+> > 
+> > As far as I understand we have 4 state of BIAS in the hardware:
+> > 1/ AS IS (defined by firnware)
+> > 2/ Disabled (neither PU, not PD)
+> > 3/ PU
+> > 4/ PD
+> > 
+> > The case when the default of bias is not disabled (for example
+> > specific, and I
+> > think very special, hardware may reset it to PD or PU), it's a
+> > hardware driver
+> > responsibility to inform the framework about the real state of the
+> > lines and
+> > synchronize it.
+> > 
+> > Another case is when the firmware sets the line in non-disabled state
+> > and
+> > by some reason you need to disable it. The question is, why?
+> 
+> Not getting this point... 
 
-Looks like the referenced file is in linux-next, so:
+I understand that in your case "firmware" is what DTB provides.
+So taking into account that the default of hardware is PU, it needs
+a mechanism to override that, correct?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> > > As a side note, this came to my attention during this patchset [1]
+> > > (and, ofr OF,  was tested with it).
+> > > 
+> > > [1]:
+> > > https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@analog.com/
+> > 
+> > Since this provides a GPIO chip, correct?, it's responsibility of the
+> > driver to
+> > synchronize it, no? Basically if you really don't trust firmware, you
+> > may
+> 
+> What do you mean by synchronize?
 
-This should fix a lot of undocumented compatible warnings.
+Full duplex sync, i.e. setting flag to PU for the pins that should stay PU:ed
+and disabling bias for the ones, that want it to be disabled. (PD accordingly)
 
-Rob
+> > go via all GPIO lines and switch them to the known (in software)
+> > state. This
+> > approach on the other hand is error prone, because firmware should
+> > know better
+> > which pin is used for which purpose, no? If you don't trust firwmare
+> > (in some
+> > cases), then it's a matter of buggy platform that has to be quirked
+> > out.
+> 
+> I'm not getting what you mean by "firmware should know better"? So,
+> basically, and let's take OF as example, you can request a GPIO in OF
+> by doing something like:
+> 
+> 	foo-gpios = <&gpio 1 GPIO_PULL_UP>;
+> 
+> In this way, when the consumer driver gets the gpio, all the flags will
+> be properly set so that when we set a direction (for example) the
+> gpiochip's 'set_config()' will be called and the driver does what it
+> needs to setup the pull-up. If we want BIAS_DISABLED on the pin,
+> there's no way to the same as the above. So basically, this can ever
+> happen:
+> 
+> https://elixir.bootlin.com/linux/latest/source/drivers/gpio/gpiolib.c#L2227
+> 
+> (only possible from the gpiochip cdev interface)
+> 
+> So, what I'm proposing is to be possible to do from OF:
+> 
+> 	foo-gpios = <&gpio 1 GPIO_PULL_DISABLE>;
+> 
+> And then we will get into the gpiochip's 'set_config()' to disable the
+> pull-up or pull-down.
+> 
+> As I said, my device is an input keymap that can export pins as GPIOs
+> (to be consumed by gpio_keys). The pins by default have pull-ups that
+> can be disabled by doing a device i2c write. I'm just trying to use the
+> infrastructure that already exists in gpiolib (for pull-up|down) to
+> accomplish this. There's no pinctrl driver controlling the pins. The
+> device itself controls them and having this device as a pinctrl one is
+> not really applicable.
+
+Yes, I have got it eventually. The root cause is that after reset you have a
+hardware that doesn't disable bias.
+
+Now, we have DT properties for PD and PU, correct?
+For each requested pin you decide either to leave the state as it is, or
+apply bias.
+
+in ->probe() of your GPIO you reset hardware and for each GPIO descriptor you
+set PU flag.
+In ->request(), don;t know the name by heart, you disable BIAS based on absence
+of flags, it can be done without an additional properties, purely in the GPIO
+OF code. Do I understand this correctly?
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
