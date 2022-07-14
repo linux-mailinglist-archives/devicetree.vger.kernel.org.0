@@ -2,156 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC05D5747EA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD278574805
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:13:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237703AbiGNJLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:11:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60832 "EHLO
+        id S229904AbiGNJNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:13:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237702AbiGNJK7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:10:59 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D29C23BC5
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:10:57 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id q7so1392260lji.12
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:10:57 -0700 (PDT)
+        with ESMTP id S237690AbiGNJNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:13:36 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F231B1;
+        Thu, 14 Jul 2022 02:13:33 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id 6so2146006ybc.8;
+        Thu, 14 Jul 2022 02:13:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CZPLNxoOrlBXnnELoaUQZiTp1bpHPpDagke/CdxO/sA=;
-        b=w40AoTU9ec62G6Pl7RJx0BX5Ba8XLiFWwt17SYbTMi6qtaF4sjXjMnIxmV4DKjLlLj
-         nBCnYUUvpJRI/dVKSdA/nQw1+AnLNx2cqk/j/plX8ZpGctfz+BdBPmFov/dM2Av7KvdX
-         xbToaDKOk1/WcU/JRqQbGQS0EY/TJ15+F/9N7pFpbmS18Yh6mlYjd/0x72E+mKSseBUT
-         tjkd3Y4bUKRgJyL0ROSfBdxyPCif1GdeXNq+hkioC0FCayl+QgAf5ghvpSyFoL5qTI3m
-         hHD/A5LGcWJm0nnf3z3BBJVZqhoH1ziR/CBuId+ReckCsAgGKu4040WmwRhvq1SWwRcu
-         L+Aw==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=nD+0N5Ck5WL/nVS2PgpANbQsU9EZRR9EBSE+SFbkBOM=;
+        b=SVYi8kUQWW22wxu91LW3l/SArgfjTfGT3AneCppkhpJYvcXEPOpgEIq3f691NGt7IU
+         2g09GZJA/JMgDR2IjkPFdYUSOkS7ScfWsMNIFn8V0PM2Qcj0D1wxxjTo8S5YXrdUczKl
+         nXePFW2cfbYCap+LM6vc4hU4KLCHyJobwWqhXIqXx0MR7CRMZUDTlu6hVyKDjD7h/ZYA
+         DfzjfhVrUfEGHLtR9uMR99M8i3NL9jP6srLI1DRZl2MYJgiF7Z1jmQNUXgjytnWv1KVO
+         iNDp1eingY42qNiLFBPV3y/CiYV4lG4qWTCAHZ75OLig1JY64EA/4RDmj9hvnVX7g1KH
+         wCHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CZPLNxoOrlBXnnELoaUQZiTp1bpHPpDagke/CdxO/sA=;
-        b=eEhS4v+WvhrNLrTF+xu+XcB4L+4D1PL1pMyF80RfI+GGk50fWsHOMXprL1vBomi9ac
-         kOSC5HC7qeL8xfoGAh7/ZYP51BdLMOQ1Xl2wZVaeiswrrMVDl4GvDVmXrt1mJbYTzxXy
-         8pSOrwqD//nkF6P+9b4ZGWPasRWIIVK1QBcWlHWuSADNNJZUmr6SiXWtaSjKSyEjFfQE
-         zKUteYxiknZ4JgfCrKmH5ZFD3nRYDzLM50b+g29a4DLGrcvkZ8gM8Jvp8KEiYM1uVZO1
-         vHDbYU0mdN4ftsnA4EAxDeTyoHpS1AYxpd4YxQh611c1azSe0lxuTU6fr8F0NJCYN19z
-         eEBw==
-X-Gm-Message-State: AJIora9ltp1gSQ/+hv6qpiEE7Khp3aJWa1ltcWGlA808C8RvGMis++fd
-        PreklWgppQfJ8qhCXFloohEWMw==
-X-Google-Smtp-Source: AGRyM1txAJKSbvRFtUvOJa0mWbsnIAkKGgiWNta1hCJHavlH87N+jCrX8rb96Wx9KKeggeag63bq9A==
-X-Received: by 2002:a2e:8093:0:b0:25d:63ce:4d56 with SMTP id i19-20020a2e8093000000b0025d63ce4d56mr3790440ljg.105.1657789855541;
-        Thu, 14 Jul 2022 02:10:55 -0700 (PDT)
-Received: from krzk-bin.. (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id d8-20020a056512368800b004790ef191e3sm250006lfs.216.2022.07.14.02.10.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jul 2022 02:10:55 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>
-Subject: [PATCH v3 3/3] mmc: sdhci-msm: drop redundant of_device_id entries
-Date:   Thu, 14 Jul 2022 11:10:42 +0200
-Message-Id: <20220714091042.22287-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220714091042.22287-1-krzysztof.kozlowski@linaro.org>
-References: <20220714091042.22287-1-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=nD+0N5Ck5WL/nVS2PgpANbQsU9EZRR9EBSE+SFbkBOM=;
+        b=1bMTU54Ej2uPpQoAMnGnHDf80BCb5uaIcNv1s959/kltgRe9risxt9pYCH9/wAN1Dw
+         eq9/rmB1YOke6BgjerVRZMhOt8WH8lZ/8lehjqfdtACKLS5VjQPo+Uz/ciJ96ghDmn8V
+         u71dlMFGoJ4LU6dIkTDL/Tjm9fkhe4URO58TXtq7bR8/Nh/Z5+81ExVYuR1LXCP8TsgS
+         QmahW466JxTfuqpOtM4gT72eLPJSYrIBs8BORT4QxerMnp5hKHVKIk6LiwIv6u6e+RYz
+         asiTeMTk3QbYpXwC6cKQbCYQNLqprJS0ThdUIN8pCp0gnXIJVE6ZtgDZdgfMeeyYuQdg
+         kTUA==
+X-Gm-Message-State: AJIora9m8xBfiJIkt959F4unmvQy7bMcIuiPkSCwTLJaSipYEMcTqtDn
+        m0PcA+pgzSgPopeosSyzVyWC5gzFk/cW8lpSatg=
+X-Google-Smtp-Source: AGRyM1sQvn80/A2vNEn15Jx0WTcdl/AG57MJXn8FJjNjYk2q/1eOKyXJ13qX1UVQuk740CM3kPLgoefYDufOeT/l0zc=
+X-Received: by 2002:a05:6902:686:b0:66e:627f:4d29 with SMTP id
+ i6-20020a056902068600b0066e627f4d29mr7114482ybt.385.1657790012251; Thu, 14
+ Jul 2022 02:13:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220713131421.1527179-1-nuno.sa@analog.com> <Ys8DPCzRa1qo2AKJ@smile.fi.intel.com>
+ <62ccf0c91d32df557a2bc91c45adb45593302534.camel@gmail.com>
+In-Reply-To: <62ccf0c91d32df557a2bc91c45adb45593302534.camel@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 14 Jul 2022 11:12:55 +0200
+Message-ID: <CAHp75VcEBE3kMDi5Q+89GmS9V=aF+pOcyROY9MdfyB_5OaruPg@mail.gmail.com>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+To:     =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts three commits:
-1. Revert "mmc: sdhci-msm: Add compatible string check for sdx65"
-   This reverts commit 953706844f0f2fd4dc6984cc010fe6cf51c041f2.
+On Thu, Jul 14, 2022 at 9:10 AM Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+> On Wed, 2022-07-13 at 20:39 +0300, Andy Shevchenko wrote:
+> > On Wed, Jul 13, 2022 at 03:14:17PM +0200, Nuno S=C3=A1 wrote:
+> > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
+> > > calling the
+> > > gpiochip 'set_config()' hook. However, AFAICT, there's no way that
+> > > this
+> > > flag is set because there's no support for it in firwmare code.
+> > > Moreover,
+> > > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
+> > > being
+> > > handled.
+> >
+> > Isn't it enough?
+>
+> I might be missing something but don't think so. Look at this driver
+> which seems a lot like the reference i put in the cover:
+>
+> https://elixir.bootlin.com/linux/v5.19-rc6/source/drivers/gpio/gpio-pca95=
+3x.c#L573
+>
+> I just don't see an in-kernel path (I'm aware now that we can get here
+> through gpio cdev) to get to the point where we want to disable the pin
+> BIAS.
 
-2. Revert "mmc: sdhci-msm: Add compatible string check for sm8150"
-   This reverts commit 5acd6adb65802cc6f9986be3750179a820580d37.
+Ah, that driver should be converted to pin control. It's definitely a
+problem with the driver.
 
-3. Revert "mmc: sdhci-msm: Add SoC specific compatibles"
-   This reverts commit 466614a9765c6fb67e1464d0a3f1261db903834b.
+But let me look into the library code to understand better what your
+point is in general.
 
-The oldest commit 466614a9765c ("mmc: sdhci-msm: Add SoC specific
-compatibles") did not specify what benefits such multiple compatibles
-bring, therefore assume there is none.  On the other hand such approach
-brings a lot of churn to driver maintenance by expecting commit for
-every new compatible, even though it is already covered by the fallback.
+P.S. Pin muxing has nothing to do with the pin control, many (I guess
+more than 90%) of GPIO controllers do have pin control features.
 
-There is really no sense in duplicating of_device_id for each
-variant, which is already covered by generic compatible fallback
-qcom,sdhci-msm-v4 or qcom,sdhci-msm-v5.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
----
-
-Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc: Doug Anderson <dianders@chromium.org>
----
- drivers/mmc/host/sdhci-msm.c | 29 ++++-------------------------
- 1 file changed, 4 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-index e395411fb6fd..dc2991422a87 100644
---- a/drivers/mmc/host/sdhci-msm.c
-+++ b/drivers/mmc/host/sdhci-msm.c
-@@ -2435,33 +2435,12 @@ static const struct sdhci_msm_variant_info sdm845_sdhci_var = {
- };
- 
- static const struct of_device_id sdhci_msm_dt_match[] = {
--	 /* Following two entries are deprecated (kept only for backward compatibility) */
--	{.compatible = "qcom,sdhci-msm-v4", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,sdhci-msm-v5", .data = &sdhci_msm_v5_var},
--	/* Add entries for sdcc versions less than 5.0 here */
--	{.compatible = "qcom,apq8084-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8226-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8916-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8953-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8974-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8992-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8994-sdhci", .data = &sdhci_msm_mci_var},
--	{.compatible = "qcom,msm8996-sdhci", .data = &sdhci_msm_mci_var},
- 	/*
--	 * Add entries for sdcc version 5.0 here. For SDCC version 5.0.0,
--	 * MCI registers are removed from SDCC interface and some registers
--	 * are moved to HC.
-+	 * Do not add new variants to the driver which are compatible with
-+	 * generic ones, unless they need customization.
- 	 */
--	{.compatible = "qcom,qcs404-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sdx55-sdhci",  .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sdx65-sdhci",  .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sdm630-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sm6125-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sm6350-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sm8150-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sm8250-sdhci", .data = &sdhci_msm_v5_var},
--	{.compatible = "qcom,sc7280-sdhci", .data = &sdhci_msm_v5_var},
--	/* Add entries where soc specific handling is required, here */
-+	{.compatible = "qcom,sdhci-msm-v4", .data = &sdhci_msm_mci_var},
-+	{.compatible = "qcom,sdhci-msm-v5", .data = &sdhci_msm_v5_var},
- 	{.compatible = "qcom,sdm845-sdhci", .data = &sdm845_sdhci_var},
- 	{.compatible = "qcom,sc7180-sdhci", .data = &sdm845_sdhci_var},
- 	{},
--- 
-2.34.1
-
+--=20
+With Best Regards,
+Andy Shevchenko
