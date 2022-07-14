@@ -2,160 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D69D35741D4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 05:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 324C857422C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 06:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbiGNDWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jul 2022 23:22:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43870 "EHLO
+        id S231607AbiGNEU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 00:20:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230055AbiGNDWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jul 2022 23:22:47 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3F7240AA;
-        Wed, 13 Jul 2022 20:22:45 -0700 (PDT)
-Received: from [10.88.19.41] (10.88.19.41) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server id 15.1.2176.2; Thu, 14 Jul 2022 11:22:42 +0800
-Message-ID: <6543a75a-fd9f-7395-70b2-15a19d872339@amlogic.com>
-Date:   Thu, 14 Jul 2022 11:22:42 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH 4/4] dt-binding:perf: Add Amlogic DDR PMU
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229710AbiGNEU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 00:20:58 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07802252A8;
+        Wed, 13 Jul 2022 21:20:58 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id 89-20020a17090a09e200b001ef7638e536so7056679pjo.3;
+        Wed, 13 Jul 2022 21:20:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=mrgABAOPXIqnoxNX/Ij0KBpROHcNGooVUjMudajcz/g=;
+        b=cl07ZWIwxwnTInCiRgVPiZA/H/npfaSPXfYzoMYNB05WNyren7DToX+zPthoxaDmhW
+         6QLS5/pW3yXZWfoN4ZW4R5+a8BpboPEoJhL83ekvendzpWbfY1fjCtXYVqY+XGjuYC/M
+         DHSJultXsCoqXFGxx/NPR+zx+4VhDhhwrunRjOAMtmLCBcdxNB0SXBYPYYtrJ1LFOOBe
+         KKl84YF1jzvEhLKhPKggCsKiX6jm60G5OIUaifYrhgNwfpVxjPMP0YOmrayHlxw4XoPr
+         GmL4DpJuTCi57l6tS+NhyPW2cSFla7A4QtglZMLot4iNyRPBXFr5dFbiLcA68JfepH1l
+         CF6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=mrgABAOPXIqnoxNX/Ij0KBpROHcNGooVUjMudajcz/g=;
+        b=g7Q4SSST16ydshudlFnRtyFKi+NslMGmREEiJ3tqJleq0rrNNYV1PApovMCy2om9cU
+         OJWByQ7HXG4UEFYqJEtN2/iOs+pynUN5QjVS6HmY5YfcbgUgpKlB1rgQE+p1FtW7P7ng
+         1tDVxS50bcWhSxETlI1uIwkM9IqMeRh+ay/Uvf4lgHW2hvuHLI/egHaD6TyLtWnKZT9N
+         7GpEZ6FUeohrdh4Digb5jqZPcR2jjSQmjZN6w1aNWDe3VI3LM2hlErtG85hP+GmuHFtI
+         NWA5Z9HphCPl4NmDakO59AJc3Sroaex84Em/3ce0IPAUSb63bZGxp7KnyTWy4n5ZyiHF
+         KMBg==
+X-Gm-Message-State: AJIora+N3DpInx+BxdW2CrVps0+02AjlHWIMRwfxzABStuP1vseBDRXz
+        G5TRumyy+pRAq27IdYfqPTY=
+X-Google-Smtp-Source: AGRyM1v/oGRNKBO7rocEOzLw4mxg2piFBftuYiOjM7kJLTGjMSFaoHKOGfyDvfTKL9BCmdNFEwiR+A==
+X-Received: by 2002:a17:902:a618:b0:16c:abb9:d7a6 with SMTP id u24-20020a170902a61800b0016cabb9d7a6mr1874336plq.119.1657772457460;
+        Wed, 13 Jul 2022 21:20:57 -0700 (PDT)
+Received: from sol (110-174-58-111.static.tpgi.com.au. [110.174.58.111])
+        by smtp.gmail.com with ESMTPSA id y3-20020a1709027c8300b00161947ecc82sm264763pll.199.2022.07.13.21.20.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jul 2022 21:20:56 -0700 (PDT)
+Date:   Thu, 14 Jul 2022 12:20:50 +0800
+From:   Kent Gibson <warthog618@gmail.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>
-References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
- <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
- <1aa8e9aa-8cb3-8537-6d65-dd9441d5ee07@linaro.org>
-From:   Jiucheng Xu <jiucheng.xu@amlogic.com>
-In-Reply-To: <1aa8e9aa-8cb3-8537-6d65-dd9441d5ee07@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 1/4] gpiolib: add support for bias pull disable
+Message-ID: <20220714042050.GA76737@sol>
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+ <20220713131421.1527179-2-nuno.sa@analog.com>
+ <Ys8CpqYhWp7zVNC8@smile.fi.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.88.19.41]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <Ys8CpqYhWp7zVNC8@smile.fi.intel.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for your time ^^.
+On Wed, Jul 13, 2022 at 08:36:38PM +0300, Andy Shevchenko wrote:
+> On Wed, Jul 13, 2022 at 03:14:18PM +0200, Nuno Sá wrote:
+> > This change prepares the gpio core to look at firmware flags and set
+> > 'FLAG_BIAS_DISABLE' if necessary. It works in similar way to
+> > 'GPIO_PULL_DOWN' and 'GPIO_PULL_UP'.
+> 
+> ...
+> 
+> >  	GPIO_PULL_UP			= (1 << 4),
+> >  	GPIO_PULL_DOWN			= (1 << 5),
+> > +	GPIO_PULL_DISABLE		= (1 << 6),
+> 
+> To me it seems superfluous. You have already two flags:
+> PUp
+> PDown
+> When none is set --> Pdisable
+> 
 
-On 7/12/2022 3:15 PM, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
->
-> On 12/07/2022 08:36, Jiucheng Xu wrote:
->> Add binding documentation for the Amlogic G12 series DDR
->> performance monitor unit.
-> You need to fix subject - use a prefix matching subsystem. Space after
-> each ':'.
-I will make the change.
->
->> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
->> ---
->>   .../devicetree/bindings/perf/aml-ddr-pmu.yaml | 51 +++++++++++++++++++
->>   MAINTAINERS                                   |  1 +
->>   2 files changed, 52 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
->> new file mode 100644
->> index 000000000000..c586b4ab4009
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
-> Filename: aml,g12-ddr-pmu.yaml
-I will make the change.
->
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/perf/aml-ddr-pmu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic G12 DDR performance monitor
->> +
->> +maintainers:
->> +  - Jiucheng Xu <jiucheng.xu@amlogic.com>
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - enum:
->> +          - aml,g12-ddr-pmu
->> +      - items:
->> +          - enum:
->> +              - aml,g12-ddr-pmu
->> +          - const: aml,g12-ddr-pmu
-> This does not make any sense. Why do you use two compatibles
-> "aml,g12-ddr-pmu", "aml,g12-ddr-pmu" after each other?
-Sorry, I think I have a wrong understanding. I will make the change.
->
->> +
->> +  reg:
->> +    maxItems: 2
-> You need to describe the items.
-I will make the change.
->
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - model
->> +  - dmc_nr
->> +  - chann_nr
-> How these ended up here?
-> No underscores.
-I will make the change.
->
->> +  - reg
->> +  - interrupts
->> +  - interrupt-names
-> Also something new. No.
-I will make the change.
->
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +          ddr_pmu: ddr_pmu {
-> Wrong indentation. 4 spaces for DTS example.
->
-> Generic node name, so "pmu", no underscores in node names.
-Okay, I will make the change.
->
->> +                  compatible = "amlogic,g12-ddr-pmu";
->> +                  model = "g12a";
->> +                  dmc_nr = <1>;
->> +                  chann_nr = <4>;
-> This does not pass the test. Please do not send untested bindings.
+Agree with Andy on this.  The FLAG_BIAS_DISABLE was added, by me, to
+allow the cdev interface to support bias.  cdev requires a "don't care"
+state, distinct from an explicit BIAS_DISABLE.
+The FLAG_BIAS_DISABLE allows gpiolib-cdev to communicate that to
+gpiolib, without altering the interpretation of the existing PULL_UP and
+PULL_DOWN flags.
+That is not an issue on the machine interface, where the two GPIO_PULL
+flags suffice.
 
-Sorry,Â  due to some problems, I got wrong patch sent. I will make the 
-change.
+If you are looking for the place where FLAG_BIAS_DISABLE is set it is in
+gpio_v2_line_config_flags_to_desc_flags() in gpiolib-cdev.c.
 
+Referring to gpio_set_bias(), the only place in gpiolib the
+FLAG_BIAS_DISABLE is used, if neither FLAG_PULL_UP, FLAG_PULL_DOWN,
+nor FLAG_BIAS_DISABLE are set then the bias configuration remains
+unchanged (the don't care case) - no change is passed to the driver.
+Otherwise the corresponding PIN_CONFIG_BIAS flag is passed to the
+driver.
 
-Thanks & Best Regards,
+If there are cases of drivers not fully or correctly supporting those
+PIN_CONFIG_BIAS flags, then that is an issue with those drivers.
 
-Jiucheng
-
->
->
-> Best regards,
-> Krzysztof
->
+Cheers,
+Kent.
