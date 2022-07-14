@@ -2,527 +2,414 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92FF1575396
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 19:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6E4B5753E6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 19:20:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238068AbiGNRAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 13:00:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60912 "EHLO
+        id S239496AbiGNRUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 13:20:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233286AbiGNRAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 13:00:21 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D180954CA7;
-        Thu, 14 Jul 2022 10:00:19 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-31df2545d87so660027b3.10;
-        Thu, 14 Jul 2022 10:00:19 -0700 (PDT)
+        with ESMTP id S238988AbiGNRUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 13:20:20 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A8551A29
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 10:20:19 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id cp18-20020a17090afb9200b001ef79e8484aso6432537pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 10:20:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Yu/LZMM77+OazDEA02pgMpteAkMyBK5KRAEy7jXL1hc=;
-        b=P95AxEiTCYrt5Ytz+lhANp961rSuf/fzAjmzc3J2QUpf8SClRz433C8fBhKh3IzBsh
-         acaEoKK3SnheOhA/Pj7mgSfHwQ3gygZ+O6oYOw7xP6Qet5slvS1xFYuL5lTyYvQOXH5x
-         5KJFCJHkE4GyU2vJKJXwjDgWTn5ApEl7JN89ZB90LqpQ4gDzNK0AdD9PvmT0lTCdVlKE
-         11FyFCvW5dJaqZuOmHGw+NGOKYECLpbpVSewYCsXQNRQ+h6UrCkuIQZgZtITv9aDpNMv
-         NuUe+UnTYDK6NSNaOXX6Sdo4WRmYLSER7did0XSgYAQkXd/ChQ0EXeYDvuMvx2sCB/6s
-         dh4A==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=XpvW2ymzKXrv9XdhdhAGUH37nh1CVQaUik8iOsE6ihA=;
+        b=UI6MGQ4G5BE3kZOHCs8ik/cARdpZ+m9DWrnLAGlLv9AzJBwC++gC7pnVoUVhYyovdi
+         WlaIYyfG9oY7mQ63OyBUcggDJ1HoCZOROzzLmBdDUMpF0mPszh1hIBXXDrG88yELjyyz
+         D3PVlrhmjWiauNM7dtYMf6IjpLYjozuYDSWE1Z/FJl0x8vpbkQlAAAHauf9GQK52PvO+
+         ARkdKx76cWFX4j/WlELzcW33vm5YqPeCIpHMjygc0NzPqGzRjphGPh52fsczayfVYLdv
+         z83dwsQRdDOFaSS8sXGFaBR635b0ySalqg+8foaetBd3r+5jqnR1qpKTh4qAmML+c59M
+         Ii0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Yu/LZMM77+OazDEA02pgMpteAkMyBK5KRAEy7jXL1hc=;
-        b=fA8u2TfqCcFt56tCkwTv+E91M231XJ2iwor341fr2EgP5U2XSgdKamhkgERVqTlO3G
-         1uZQa4TLycEmX/ANUkq7N+dAYwHOwoqM/Viak1OrCFiSjiATfCunzU+FDkdxN2PqCdM1
-         WVu5uuT2Re5yrbD+EOz8adFW3VwRBU6ELgb408K+JSQ/cL99kgbb8PtjyanPuUph6hhO
-         6dOHYiMpTZDf71Pvvl3bZ1sEujK4nZ+mZnMHrkydPqYuaS7ze0kKiPpIMjZ4P28eWGOB
-         U5/5MrbdQubvM7B3yT1HS5Ul3Hu+cNKWF42ZlpC/CMLed6lcWYADsim0xWCkzKPM6rTs
-         nNeg==
-X-Gm-Message-State: AJIora9j69D8mFyWsnhSJABv6PCofGk/MjB8pAcsGILUaB6REgNS3pRE
-        yAFv/CZiAfaaJZxrx9JTiTa80/jGRUX9Ap7bhAhrqatMYXxauA==
-X-Google-Smtp-Source: AGRyM1tiRQoLtYjVrbOFk7dYSy0ZmYajnsvawCRXoRCvK6Q/kGNGmrKzOer306s/JQTOiJUr4hO4x9B9oBkJxh6GwzM=
-X-Received: by 2002:a81:54c1:0:b0:31d:ec18:fd5d with SMTP id
- i184-20020a8154c1000000b0031dec18fd5dmr1282433ywb.277.1657818018838; Thu, 14
- Jul 2022 10:00:18 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XpvW2ymzKXrv9XdhdhAGUH37nh1CVQaUik8iOsE6ihA=;
+        b=lWpkDhc1ANGYkVhnvnUhHf6TReqmHk/7s7gZpjOpnXdfWhCAQNf0fbaVBXToRcQ8ts
+         jYW+7CKVfyruRh0EM65KrmBVOCHuuKnNqLD/hTNZG8ZHnZsG7ZR2qw2vTcFuo5q1e+Bg
+         cpr/P2n47prQO6Oqa4LDlR5umI6PDTFmftrRjHgo2M5gz1Ls8itd4tdWlF8mMbhakh9+
+         eVGLhk90YhMLTQtGkt1YzbOOL4/jN3ni1PERArU8+e3vZ8rydTf9MLnGVpW6o3aCW4fF
+         k+G2PxH2IPteNk7ibaIPh4nO7vDyJUq8xAavlG9TQcy04ou6SYiRtE3xouvtyH2TMBTP
+         po7A==
+X-Gm-Message-State: AJIora/0+9z3TMXsLaFauzNSx78mmkIxNWwJA1eIVPkudmeLX/xA9gPn
+        Tu7dr5sbS7QVFlkVmgEMSkhUbQ==
+X-Google-Smtp-Source: AGRyM1sjp2lb8DE8ew2b/8kii0iT9GYepkUaYLGAKZZPIrfv5+bpbeDS8xY2ZHT6emfP3InrWwgFpA==
+X-Received: by 2002:a17:90a:d252:b0:1f0:c1f4:24eb with SMTP id o18-20020a17090ad25200b001f0c1f424ebmr3988375pjw.172.1657819218733;
+        Thu, 14 Jul 2022 10:20:18 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id q25-20020a635059000000b0040c644e82efsm1637766pgl.43.2022.07.14.10.20.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jul 2022 10:20:17 -0700 (PDT)
+Date:   Thu, 14 Jul 2022 11:20:15 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Puranjay Mohan <p-mohan@ti.com>
+Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
+        linux-arm-kernel@lists.infradead.org, rogerq@kernel.org,
+        grygorii.strashko@ti.com, vigneshr@ti.com, kishon@ti.com,
+        robh@kernel.org
+Subject: Re: [PATCH v5 2/6] remoteproc: pru: Add APIs to get and put the PRU
+ cores
+Message-ID: <20220714172015.GA3106020@p14s>
+References: <20220607045650.4999-1-p-mohan@ti.com>
+ <20220607045650.4999-3-p-mohan@ti.com>
+ <20220712175949.GB2945984@p14s>
 MIME-Version: 1.0
-References: <20220714122322.63663-1-tmaimon77@gmail.com> <20220714122322.63663-3-tmaimon77@gmail.com>
-In-Reply-To: <20220714122322.63663-3-tmaimon77@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 14 Jul 2022 18:59:41 +0200
-Message-ID: <CAHp75Vcd6vATJQoJMh_SQ27ijOpiCjMWuSZ04d2OOnExunveqg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] pinctrl: nuvoton: add NPCM8XX pinctrl and GPIO driver
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220712175949.GB2945984@p14s>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 2:29 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+On Tue, Jul 12, 2022 at 11:59:49AM -0600, Mathieu Poirier wrote:
+> Hi Puranjay,
+> 
+> On Tue, Jun 07, 2022 at 10:26:46AM +0530, Puranjay Mohan wrote:
+> > From: Tero Kristo <t-kristo@ti.com>
+> > 
+> > Add two new APIs, pru_rproc_get() and pru_rproc_put(), to the PRU
+> > driver to allow client drivers to acquire and release the remoteproc
+> > device associated with a PRU core. The PRU cores are treated as
+> > resources with only one client owning it at a time.
+> > 
+> > The pru_rproc_get() function returns the rproc handle corresponding
+> > to a PRU core identified by the device tree "ti,prus" property under
+> > the client node. The pru_rproc_put() is the complementary function
+> > to pru_rproc_get().
+> > 
+> > Co-developed-by: Suman Anna <s-anna@ti.com>
+> > Signed-off-by: Suman Anna <s-anna@ti.com>
+> > Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> > Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> > Co-developed-by: Puranjay Mohan <p-mohan@ti.com>
+> > Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> > ---
+> >  drivers/remoteproc/pru_rproc.c | 138 +++++++++++++++++++++++++++++++--
+> >  include/linux/pruss.h          |  56 +++++++++++++
+> >  2 files changed, 189 insertions(+), 5 deletions(-)
+> >  create mode 100644 include/linux/pruss.h
+> > 
+> > diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> > index 1777a01fa84e..7a35b400287a 100644
+> > --- a/drivers/remoteproc/pru_rproc.c
+> > +++ b/drivers/remoteproc/pru_rproc.c
+> > @@ -2,12 +2,13 @@
+> >  /*
+> >   * PRU-ICSS remoteproc driver for various TI SoCs
+> >   *
+> > - * Copyright (C) 2014-2020 Texas Instruments Incorporated - https://www.ti.com/
+> > + * Copyright (C) 2014-2022 Texas Instruments Incorporated - https://www.ti.com/
+> >   *
+> >   * Author(s):
+> >   *	Suman Anna <s-anna@ti.com>
+> >   *	Andrew F. Davis <afd@ti.com>
+> >   *	Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org> for Texas Instruments
+> > + *	Puranjay Mohan <p-mohan@ti.com>
+> >   */
+> >  
+> >  #include <linux/bitops.h>
+> > @@ -16,6 +17,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/of_device.h>
+> >  #include <linux/of_irq.h>
+> > +#include <linux/pruss.h>
+> >  #include <linux/pruss_driver.h>
+> >  #include <linux/remoteproc.h>
+> >  
+> > @@ -111,6 +113,8 @@ struct pru_private_data {
+> >   * @rproc: remoteproc pointer for this PRU core
+> >   * @data: PRU core specific data
+> >   * @mem_regions: data for each of the PRU memory regions
+> > + * @client_np: client device node
+> > + * @lock: mutex to protect client usage
+> >   * @fw_name: name of firmware image used during loading
+> >   * @mapped_irq: virtual interrupt numbers of created fw specific mapping
+> >   * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
+> > @@ -126,6 +130,8 @@ struct pru_rproc {
+> >  	struct rproc *rproc;
+> >  	const struct pru_private_data *data;
+> >  	struct pruss_mem_region mem_regions[PRU_IOMEM_MAX];
+> > +	struct device_node *client_np;
+> > +	struct mutex lock; /* client access lock */
+> >  	const char *fw_name;
+> >  	unsigned int *mapped_irq;
+> >  	struct pru_irq_rsc *pru_interrupt_map;
+> > @@ -146,6 +152,125 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
+> >  	writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+> >  }
+> >  
+> > +static struct rproc *__pru_rproc_get(struct device_node *np, int index)
+> > +{
+> > +	struct device_node *rproc_np = NULL;
+> > +	struct platform_device *pdev;
+> > +	struct rproc *rproc;
+> > +
+> > +	rproc_np = of_parse_phandle(np, "ti,prus", index);
+> > +	if (!rproc_np || !of_device_is_available(rproc_np))
+> > +		return ERR_PTR(-ENODEV);
+> > +
+> > +	pdev = of_find_device_by_node(rproc_np);
+> > +	of_node_put(rproc_np);
+> > +
+> > +	if (!pdev || !(&pdev->dev) || !((&pdev->dev)->driver))
+> > +		/* probably PRU not yet probed */
+> > +		return ERR_PTR(-EPROBE_DEFER);
+> > +
+> > +	/* make sure it is PRU rproc */
+> > +	if (!is_pru_rproc(&pdev->dev)) {
+> > +		put_device(&pdev->dev);
+> > +		return ERR_PTR(-ENODEV);
+> > +	}
+> > +
+> > +	rproc = platform_get_drvdata(pdev);
+> > +	put_device(&pdev->dev);
+> > +	if (!rproc)
+> > +		return ERR_PTR(-EPROBE_DEFER);
+> > +
+> > +	get_device(&rproc->dev);
+> > +
+> > +	return rproc;
+> > +}
+> > +
+> > +/**
+> > + * pru_rproc_get() - get the PRU rproc instance from a device node
+> > + * @np: the user/client device node
+> > + * @index: index to use for the ti,prus property
+> > + * @pru_id: optional pointer to return the PRU remoteproc processor id
+> > + *
+> > + * This function looks through a client device node's "ti,prus" property at
+> > + * index @index and returns the rproc handle for a valid PRU remote processor if
+> > + * found. The function allows only one user to own the PRU rproc resource at a
+> > + * time. Caller must call pru_rproc_put() when done with using the rproc, not
+> > + * required if the function returns a failure.
+> > + *
+> > + * When optional @pru_id pointer is passed the PRU remoteproc processor id is
+> > + * returned.
+> > + *
+> > + * Return: rproc handle on success, and an ERR_PTR on failure using one
+> > + * of the following error values
+> > + *    -ENODEV if device is not found
+> > + *    -EBUSY if PRU is already acquired by anyone
+> > + *    -EPROBE_DEFER is PRU device is not probed yet
+> > + */
+> > +struct rproc *pru_rproc_get(struct device_node *np, int index,
+> > +			    enum pruss_pru_id *pru_id)
+> > +{
+> > +	struct rproc *rproc;
+> > +	struct pru_rproc *pru;
+> > +	struct device *dev;
+> > +
+> > +	try_module_get(THIS_MODULE);
+> 
+> There should be a module_put() in pru_rproc_put()...
+
+... and in the error path of this function.
+
+> 
+> More comments to come tomorrow.  I'm especially worried about this API racing
+> with a remote processor being removed or detached.
 >
-> Add pinctrl and GPIO controller driver support to Arbel BMC NPCM8XX SoC.
->
-> Arbel BMC NPCM8XX pinctrl driver based on Poleg NPCM7XX, except the
-> pin mux mapping difference the NPCM8XX GPIO supports adjust debounce
-> period time.
 
-...
-
-> +config PINCTRL_NPCM8XX
-> +       bool "Pinctrl and GPIO driver for Nuvoton NPCM8XX"
-
-Why boolean?
-
-> +       depends on (ARCH_NPCM || COMPILE_TEST) && OF
-
-I believe the OF is not compile time dependency, hence you may for it
-as functional one by
-
-  depends on (ARCH_NPCM && OF) || COMPILE_TEST
-
-> +       select PINMUX
-> +       select PINCONF
-> +       select GENERIC_PINCONF
-> +       select GPIOLIB
-> +       select GPIO_GENERIC
-> +       select GPIOLIB_IRQCHIP
-> +       help
-> +         Say Y here to enable pin controller and GPIO support
-> +         for Nuvoton NPCM8XX SoC.
-
-Depends on the answer above, this might need an addition on how module
-will be called.
-
-...
-
-Missed bits.h.
-
-> +#include <linux/device.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irq.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-
-Missed mod_devicetable.h.
-
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_irq.h>
-
-How are these being used?
-
-> +#include <linux/pinctrl/machine.h>
-> +#include <linux/pinctrl/pinconf.h>
-> +#include <linux/pinctrl/pinconf-generic.h>
-> +#include <linux/pinctrl/pinctrl.h>
-> +#include <linux/pinctrl/pinmux.h>
-> +#include <linux/platform_device.h>
-
-+ property.h.
-
-> +#include <linux/regmap.h>
-
-...
-
-> +/* GCR registers */
-> +#define NPCM8XX_GCR_PDID       0x00
-> +#define NPCM8XX_GCR_SRCNT      0x68
-> +#define NPCM8XX_GCR_FLOCKR1    0x74
-> +#define NPCM8XX_GCR_DSCNT      0x78
-> +#define NPCM8XX_GCR_I2CSEGCTL  0xE4
-> +#define NPCM8XX_GCR_I2CSEGSEL  0xE0
-
-Format them with the same width, e.g. 0x0E0.
-And, btw, why capital letters in the numbers?
-
-> +#define NPCM8XX_GCR_MFSEL1     0x260
-> +#define NPCM8XX_GCR_MFSEL2     0x264
-> +#define NPCM8XX_GCR_MFSEL3     0x268
-> +#define NPCM8XX_GCR_MFSEL4     0x26C
-> +#define NPCM8XX_GCR_MFSEL5     0x270
-> +#define NPCM8XX_GCR_MFSEL6     0x274
-> +#define NPCM8XX_GCR_MFSEL7     0x278
-
-...
-
-> +/* GPIO registers */
-
-Ditto.
-
-...
-
-> +#define NPCM8XX_DEBOUNCE_NANOSEC       40
-
-_NSEC is enough.
-
-...
-
-> +#define NPCM8XX_DEBOUNCE_VAL_MASK      GENMASK(23, 4)
-> +#define NPCM8XX_DEBOUNCE_MAX_VAL       0xFFFFF7
-
-How MAX_VAL is different from the MASK ?
-
-...
-
-> +struct npcm8xx_gpio {
-> +       void __iomem            *base;
-
-> +       struct gpio_chip        gc;
-
-Making this first member in the structure may reduce the code base at
-compile time due to pointer arithmetic. You may confirm that by using
-bloat-o-meter.
-
-> +       struct debounce_time    debounce;
-> +       int                     irqbase;
-> +       int                     irq;
-> +       struct irq_chip         irq_chip;
-> +       u32                     pinctrl_id;
-> +       int (*direction_input)(struct gpio_chip *chip, unsigned int offset);
-> +       int (*direction_output)(struct gpio_chip *chip, unsigned int offset,
-> +                               int value);
-> +       int (*request)(struct gpio_chip *chip, unsigned int offset);
-> +       void (*free)(struct gpio_chip *chip, unsigned int offset);
-> +};
-
-...
-
-> +       val = ioread32(reg) | pinmask;
-> +       iowrite32(val, reg);
-
-With this kind of indentation you may even reduce codebase with
-
-iowrite32(ioread32(reg) | pinmask, reg);
-
-...
-
-> +       val = ioread32(reg) & ~pinmask;
-> +       iowrite32(val, reg);
-
-Ditto.
-
-...
-
-> +static void npcmgpio_dbg_show(struct seq_file *s, struct gpio_chip *chip)
-> +{
-> +       seq_printf(s, "-- module %d [gpio%d - %d]\n",
-
-Hmm... Isn't pin range is showed in a separate debugfs node?
-
-> +}
-
-...
-
-> +       for_each_set_bit(bit, (const void *)&sts, NPCM8XX_GPIO_PER_BANK)
-
-Why this casting?
-
-> +               generic_handle_domain_irq(gc->irq.domain, bit);
-
-...
-
-> +       unsigned int gpio = BIT(d->hwirq);
-
-There is a special helper to get an H/W IRQ, which is type of
-irq_hw_number_t IIRC.
-
-...
-
-> +       if (type & (IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_LEVEL_LOW)) {
-
-IRQ_TYPE_LEVEL_MASK
-
-> +               npcm_gpio_clr(&bank->gc, bank->base + NPCM8XX_GP_N_EVTYP, gpio);
-> +               irq_set_handler_locked(d, handle_level_irq);
-
-> +       } else if (type & (IRQ_TYPE_EDGE_BOTH | IRQ_TYPE_EDGE_RISING
-> +                          | IRQ_TYPE_EDGE_FALLING)) {
-
-Why duplicating RISING and FAILING? Isn't it covered by BOTH?
-
-> +               npcm_gpio_set(&bank->gc, bank->base + NPCM8XX_GP_N_EVTYP, gpio);
-> +               irq_set_handler_locked(d, handle_edge_irq);
-> +       }
-
-...
-
-> +       unsigned int gpio = d->hwirq;
-
-Read the documentation on how the mask()/unmask() has to be
-implemented (there are examples):
-https://www.kernel.org/doc/html/latest/driver-api/gpio/driver.html#infrastructure-helpers-for-gpio-irqchips
-
-...
-
-> +/*
-> + * pin:             name, number
-> + * group:    name, npins,   pins
-> + * function: name, ngroups, groups
-> + */
-> +struct npcm8xx_group {
-> +       const char *name;
-> +       const unsigned int *pins;
-> +       int npins;
-> +};
-
-NIH struct pingroup.
-
-...
-
-Temporary variable here
-
- ...reg = base + OSCR;
-
-> +       int gpio = BIT(pin % bank->gc.ngpio);
-> +
-> +       if (pincfg[pin].flag & SLEW) {
-> +               switch (arg) {
-> +               case 0:
-> +                       npcm_gpio_clr(&bank->gc, bank->base + NPCM8XX_GP_N_OSRC,
-> +                                     gpio);
-> +                       return 0;
-> +               case 1:
-> +                       npcm_gpio_set(&bank->gc, bank->base + NPCM8XX_GP_N_OSRC,
-> +                                     gpio);
-
-...will save one LoC in this switch-case.
-
-> +                       return 0;
-> +               default:
-> +                       return -EINVAL;
-> +               }
-> +       }
-
-...
-
-> +       int gpio = (pin % bank->gc.ngpio);
-
-Too many parentheses.
-
-...
-
-> +       u32 ds = 0;
-
-This assignment is redundant, if...
-
-> +       flg = pincfg[pin].flag;
-> +       if (flg & DRIVE_STRENGTH_MASK) {
-
-you use traditional pattern, i.e.
-
-if (error_condition)
-  return an_error;
-
-> +               val = ioread32(bank->base + NPCM8XX_GP_N_ODSC) & pinmask;
-> +               ds = val ? DSHI(flg) : DSLO(flg);
-> +               dev_dbg(bank->gc.parent, "pin %d strength %d = %d\n", pin, val, ds);
-> +               return ds;
-> +       }
-> +
-> +       return -EINVAL;
-
-...
-
-> +       v = (pincfg[pin].flag & DRIVE_STRENGTH_MASK);
-
-Too many parentheses.
-
-> +       if (!nval || !v)
-> +               return -ENOTSUPP;
-> +       if (DSLO(v) == nval) {
-> +               npcm_gpio_clr(&bank->gc, bank->base + NPCM8XX_GP_N_ODSC, gpio);
-> +               return 0;
-> +       }
-> +       if (DSHI(v) == nval) {
-> +               npcm_gpio_set(&bank->gc, bank->base + NPCM8XX_GP_N_ODSC, gpio);
-> +               return 0;
-> +       }
-> +
-> +       return -ENOTSUPP;
-
-Traditional pattern:
-
-if (LO == nval)
-  clr()
-else if (HI == nval)
-  set()
-else
-  return -ENOTSUPP;
-
-return 0;
-
-...
-
-> +static int npcm8xx_gpio_request_enable(struct pinctrl_dev *pctldev,
-> +                                      struct pinctrl_gpio_range *range,
-> +                                      unsigned int offset)
-> +{
-> +       struct npcm8xx_pinctrl *npcm = pinctrl_dev_get_drvdata(pctldev);
-
-> +       if (!range) {
-> +               dev_err(npcm->dev, "invalid range\n");
-> +               return -EINVAL;
-> +       }
-
-> +       if (!range->gc) {
-> +               dev_err(npcm->dev, "invalid gpiochip\n");
-> +               return -EINVAL;
-> +       }
-
-I'm wondering when you can have one of these triggered.
-
-> +
-> +       npcm8xx_setfunc(npcm->gcr_regmap, &offset, 1, fn_gpio);
-> +
-> +       return 0;
-> +}
-
-...
-
-> +static int debounce_timing_setting(struct npcm8xx_gpio *bank, u32 gpio,
-> +                                  u32 nanosecs)
-> +{
-> +       int gpio_debounce = (gpio % 16) * 2;
-> +       u32 dbncp_val, dbncp_val_mod;
-> +       int DBNCS_offset = gpio / 16;
-
-Can you group it together with gpio%16 line? It would be easier for
-the reader who knows that on some architectures the both assignments
-may be done in one assembly instruction.
-
-> +       int debounce_select;
-
-This logically would be grouped with above int:s.
-
-       u32 dbncp_val, dbncp_val_mod;
-       int gpio_debounce = (gpio % 16) * 2;
-       int DBNCS_offset = gpio / 16;
-       int debounce_select;
-
-...
-
-> +                               npcm_gpio_set(&bank->gc, bank->base + NPCM8XX_GP_N_DBNCS0 + (DBNCS_offset * 4), debounce_select);
-
-> +                       npcm_gpio_set(&bank->gc, bank->base + NPCM8XX_GP_N_DBNCS0 + (DBNCS_offset * 4), debounce_select);
-
-We can make this line much shorter with help of a temporary variable.
-
-...
-
-> +                               iowrite32(0x40, bank->base + NPCM8XX_GP_N_DBNCP0 + (i * 4));
-> +                               iowrite32(0x50, bank->base + NPCM8XX_GP_N_DBNCP0 + (i * 4));
-> +                               iowrite32(0x60, bank->base + NPCM8XX_GP_N_DBNCP0 + (i * 4));
-> +                               iowrite32(0x70, bank->base + NPCM8XX_GP_N_DBNCP0 + (i * 4));
-
-And this lines can be shorter with a helper function, but this is up to you.
-
-...
-
-> +                               dbncp_val_mod = dbncp_val & 0xF;
-
-GENMASK() ?
-Or (BIT(x) - 1) if it's a limitation by the hardware in bits, this
-will show it directly (like 4 bits limit).
-
-> +                               if (dbncp_val_mod > 0x7)
-
-In similar way.
-
-...
-
-> +       int ret = 0;
-
-Redundant assignment.
-
-Such assignments in some cases may hide real bugs.
-
-> +       if (nanosecs) {
-> +               ret = debounce_timing_setting(bank, pin % bank->gc.ngpio,
-> +                                             nanosecs);
-> +               if (!ret) {
-
-Why not positive conditional and in this case aka "traditional pattern":
-  if (error) {
-    ...handle error...
-    return error;
-  }
-
-> +                       npcm_gpio_set(&bank->gc, bank->base + NPCM8XX_GP_N_DBNC,
-> +                                     gpio);
-> +               } else {
-
-> +                       dev_info(npcm->dev, "All four debounce timing values are used, please use one of exist debounce values\n");
-> +                       dev_err(npcm->dev, "Pin %d debounce_timing_setting failed, ret=%d\n", pin, ret);
-
-Too much noise in the messages. Create one error message
-
-> +               }
-> +
-> +               return ret;
-> +       }
-> +
-> +       npcm_gpio_clr(&bank->gc, bank->base + NPCM8XX_GP_N_DBNC, gpio);
-> +
-> +       return 0;
-
-...
-
-> +               if (param == PIN_CONFIG_BIAS_DISABLE)
-> +                       rc = (!pu && !pd);
-> +               else if (param == PIN_CONFIG_BIAS_PULL_UP)
-> +                       rc = (pu && !pd);
-> +               else if (param == PIN_CONFIG_BIAS_PULL_DOWN)
-> +                       rc = (!pu && pd);
-
-In many places (and not only in this function) you are using too many
-parentheses, why? Can you clean all them up?
-
-...
-
-> +static int npcm8xx_gpio_of(struct npcm8xx_pinctrl *pctrl)
-
-_fw
-
-...
-
-> +       char gpioirqname[30];
-
-How 30 was chosen?
-
-...
-
-> +               pctrl->gpio_bank[id].gc.label = devm_kasprintf(dev, GFP_KERNEL, "%pfw", child);
-> +               if (!pctrl->gpio_bank[id].gc.label)
-> +                       dev_err_probe(dev, -ENOMEM, "No GPIO label %u\n", id);
-
--ENOMEM doesn't need an error message.
-
-...
-
-> +       dev_set_drvdata(&pdev->dev, pctrl);
-
-platform_set_drvdata();
-
--- 
-With Best Regards,
-Andy Shevchenko
+Looking at what is done in wkup_m3_ipc_probe(), it should be possible to call
+rproc_get_by_handle() here and that would make sure the remote processor doesn't
+go away before the end of the function.
+
+More comments to come...
+
+
+> Thanks,
+> Mathieu
+> 
+> > +
+> > +	rproc = __pru_rproc_get(np, index);
+> > +	if (IS_ERR(rproc))
+> > +		return rproc;
+> > +
+> > +	pru = rproc->priv;
+> > +	dev = &rproc->dev;
+> > +
+> > +	mutex_lock(&pru->lock);
+> > +
+> > +	if (pru->client_np) {
+> > +		mutex_unlock(&pru->lock);
+> > +		put_device(dev);
+> > +		return ERR_PTR(-EBUSY);
+> > +	}
+> > +
+> > +	pru->client_np = np;
+> > +
+> > +	mutex_unlock(&pru->lock);
+> > +
+> > +	if (pru_id)
+> > +		*pru_id = pru->id;
+> > +
+> > +	return rproc;
+> > +}
+> > +EXPORT_SYMBOL_GPL(pru_rproc_get);
+> > +
+> > +/**
+> > + * pru_rproc_put() - release the PRU rproc resource
+> > + * @rproc: the rproc resource to release
+> > + *
+> > + * Releases the PRU rproc resource and makes it available to other
+> > + * users.
+> > + */
+> > +void pru_rproc_put(struct rproc *rproc)
+> > +{
+> > +	struct pru_rproc *pru;
+> > +
+> > +	if (IS_ERR_OR_NULL(rproc) || !is_pru_rproc(rproc->dev.parent))
+> > +		return;
+> > +
+> > +	pru = rproc->priv;
+> > +
+> > +	mutex_lock(&pru->lock);
+> > +
+> > +	if (!pru->client_np) {
+> > +		mutex_unlock(&pru->lock);
+> > +		return;
+> > +	}
+> > +
+> > +	pru->client_np = NULL;
+> > +	mutex_unlock(&pru->lock);
+> > +
+> > +	put_device(&rproc->dev);
+> > +}
+> > +EXPORT_SYMBOL_GPL(pru_rproc_put);
+> > +
+> >  static inline u32 pru_debug_read_reg(struct pru_rproc *pru, unsigned int reg)
+> >  {
+> >  	return readl_relaxed(pru->mem_regions[PRU_IOMEM_DEBUG].va + reg);
+> > @@ -438,7 +563,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+> >  	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+> >  	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+> >  	/* PRU1 has its local RAM addresses reversed */
+> > -	if (pru->id == 1)
+> > +	if (pru->id == PRUSS_PRU1)
+> >  		swap(dram0, dram1);
+> >  	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+> >  
+> > @@ -747,14 +872,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
+> >  	case RTU0_IRAM_ADDR_MASK:
+> >  		fallthrough;
+> >  	case PRU0_IRAM_ADDR_MASK:
+> > -		pru->id = 0;
+> > +		pru->id = PRUSS_PRU0;
+> >  		break;
+> >  	case TX_PRU1_IRAM_ADDR_MASK:
+> >  		fallthrough;
+> >  	case RTU1_IRAM_ADDR_MASK:
+> >  		fallthrough;
+> >  	case PRU1_IRAM_ADDR_MASK:
+> > -		pru->id = 1;
+> > +		pru->id = PRUSS_PRU1;
+> >  		break;
+> >  	default:
+> >  		ret = -EINVAL;
+> > @@ -816,6 +941,8 @@ static int pru_rproc_probe(struct platform_device *pdev)
+> >  	pru->pruss = platform_get_drvdata(ppdev);
+> >  	pru->rproc = rproc;
+> >  	pru->fw_name = fw_name;
+> > +	pru->client_np = NULL;
+> > +	mutex_init(&pru->lock);
+> >  
+> >  	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
+> >  		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> > @@ -903,7 +1030,7 @@ MODULE_DEVICE_TABLE(of, pru_rproc_match);
+> >  
+> >  static struct platform_driver pru_rproc_driver = {
+> >  	.driver = {
+> > -		.name   = "pru-rproc",
+> > +		.name   = PRU_RPROC_DRVNAME,
+> >  		.of_match_table = pru_rproc_match,
+> >  		.suppress_bind_attrs = true,
+> >  	},
+> > @@ -915,5 +1042,6 @@ module_platform_driver(pru_rproc_driver);
+> >  MODULE_AUTHOR("Suman Anna <s-anna@ti.com>");
+> >  MODULE_AUTHOR("Andrew F. Davis <afd@ti.com>");
+> >  MODULE_AUTHOR("Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>");
+> > +MODULE_AUTHOR("Puranjay Mohan <p-mohan@ti.com>");
+> >  MODULE_DESCRIPTION("PRU-ICSS Remote Processor Driver");
+> >  MODULE_LICENSE("GPL v2");
+> > diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+> > new file mode 100644
+> > index 000000000000..fdc719b43db0
+> > --- /dev/null
+> > +++ b/include/linux/pruss.h
+> > @@ -0,0 +1,56 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > +/**
+> > + * PRU-ICSS Subsystem user interfaces
+> > + *
+> > + * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+> > + *	Suman Anna <s-anna@ti.com>
+> > + */
+> > +
+> > +#ifndef __LINUX_PRUSS_H
+> > +#define __LINUX_PRUSS_H
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/types.h>
+> > +
+> > +#define PRU_RPROC_DRVNAME "pru-rproc"
+> > +
+> > +/*
+> > + * enum pruss_pru_id - PRU core identifiers
+> > + */
+> > +enum pruss_pru_id {
+> > +	PRUSS_PRU0 = 0,
+> > +	PRUSS_PRU1,
+> > +	PRUSS_NUM_PRUS,
+> > +};
+> > +
+> > +struct device_node;
+> > +
+> > +#if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+> > +
+> > +struct rproc *pru_rproc_get(struct device_node *np, int index,
+> > +			    enum pruss_pru_id *pru_id);
+> > +void pru_rproc_put(struct rproc *rproc);
+> > +
+> > +#else
+> > +
+> > +static inline struct rproc *
+> > +pru_rproc_get(struct device_node *np, int index, enum pruss_pru_id *pru_id)
+> > +{
+> > +	return ERR_PTR(-EOPNOTSUPP);
+> > +}
+> > +
+> > +static inline void pru_rproc_put(struct rproc *rproc) { }
+> > +
+> > +#endif /* CONFIG_PRU_REMOTEPROC */
+> > +
+> > +static inline bool is_pru_rproc(struct device *dev)
+> > +{
+> > +	const char *drv_name = dev_driver_string(dev);
+> > +
+> > +	if (strncmp(drv_name, PRU_RPROC_DRVNAME, sizeof(PRU_RPROC_DRVNAME)))
+> > +		return false;
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +#endif /* __LINUX_PRUSS_H */
+> > -- 
+> > 2.17.1
+> > 
