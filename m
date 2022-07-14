@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4705D575590
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 21:01:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75B015755BE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 21:20:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232128AbiGNTBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 15:01:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44956 "EHLO
+        id S232389AbiGNTT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 15:19:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbiGNTBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 15:01:55 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 589C53D595;
-        Thu, 14 Jul 2022 12:01:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1657825309;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=pRes7n5R1DDewbC5DkuuzmUV6aRqrRqkonDzKoWO2YA=;
-    b=ADfadyMPNMAVvhlYSoYx5qX0yarkzFWusjPc5ok/xwEujzf07lGtvh6niU4i0ehErE
-    Xn/Jd+opGuPnRxl7tBdDUek8AXzFum2DS0elsEdW3qgp8CLGiEdxtu4TBkCVNkbORmym
-    U+6W9wbYQ8eufVZBM9UeR6oZo5ta1+KDgW3q8C7Ph+zOGxQ0HNWkSNpmoxcqOD2jw2Ii
-    nszz192AZ5TLGZjDQWgbhyd9NKDFF67aYpzlJoRNSZ9txVxsw9kLESXrwXRCFDCDq0KI
-    ql11T6lTzhr484m6G6x4vf9gyWkhXg52lm9UoJmgrSuegH4NVWbkHTvQdQ1hKTGb7p84
-    UIkg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw8+6Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.47.0 AUTH)
-    with ESMTPSA id he04d0y6EJ1n8CC
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 14 Jul 2022 21:01:49 +0200 (CEST)
-Date:   Thu, 14 Jul 2022 21:01:47 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S232237AbiGNTT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 15:19:59 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2970C2C647;
+        Thu, 14 Jul 2022 12:19:58 -0700 (PDT)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id C4D9234D34;
+        Thu, 14 Jul 2022 19:19:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1657826396; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+        bh=J1TVAvphNmTpAWW61VUw6mw/9ks964p5lRoXg8fT5pQ=;
+        b=yaCt/W2pKkPFnDaETQRiTHkJCEF9k9sdkjq5JwaHQnawjSKoiYi4DI8vi/+Uw5d+Sul19z
+        37o2WGZVI43rBZhYukzagHSaK4SmQbA7jQM9qetajPGOmDZ520FSpw9IloUNbGKlSSf9kP
+        bRh46ZyDYQTdv+Zp8n1jh86KwnMJjmE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1657826396;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+        bh=J1TVAvphNmTpAWW61VUw6mw/9ks964p5lRoXg8fT5pQ=;
+        b=wngWGUvhjqDObMv9OkYHJzzRhkbc88uRRchYKwwT861i6KWlF4AscZVrctIi5rsYr2VauG
+        Qs7ENmMlzAFzaQBw==
+Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
+        by relay2.suse.de (Postfix) with ESMTP id 80F252C141;
+        Thu, 14 Jul 2022 19:19:55 +0000 (UTC)
+From:   Michal Suchanek <msuchanek@suse.de>
+To:     linux-sunxi@lists.linux.dev
+Cc:     Michal Suchanek <msuchanek@suse.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sireesh Kodali <sireeshkodali1@gmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/6] ARM: dts: qcom: msm8974: Disable remoteprocs by
- default
-Message-ID: <YtBoG1mAwOlylGP2@gerhold.net>
-References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
- <20220712124421.3129206-4-stephan.gerhold@kernkonzept.com>
- <bcb1e0ec-f0b7-ce45-a63f-7272c1f398c9@linaro.org>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+Subject: [PATCH 1/2] mtd: spi-nor: When a flash memory is missing do not report an error
+Date:   Thu, 14 Jul 2022 21:19:47 +0200
+Message-Id: <701967b0c418db333c66b48d225df60aa9d03ead.1657826188.git.msuchanek@suse.de>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bcb1e0ec-f0b7-ce45-a63f-7272c1f398c9@linaro.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,50 +66,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 11:55:44AM +0200, Krzysztof Kozlowski wrote:
-> On 12/07/2022 14:44, Stephan Gerhold wrote:
-> > The remoteproc configuration in qcom-msm8974.dtsi is incomplete because
-> > 
-> > diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > index 814ad0b46232..35246bd02132 100644
-> > --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > @@ -1172,6 +1172,8 @@ remoteproc_mss: remoteproc@fc880000 {
-> >  			qcom,smem-states = <&modem_smp2p_out 0>;
-> >  			qcom,smem-state-names = "stop";
-> >  
-> > +			status = "disabled";
-> > +
-> >  			mba {
-> >  				memory-region = <&mba_region>;
-> >  			};
-> > @@ -1639,6 +1641,8 @@ remoteproc_adsp: remoteproc@fe200000 {
-> >  			qcom,smem-states = <&adsp_smp2p_out 0>;
-> >  			qcom,smem-state-names = "stop";
-> >  
-> > +			status = "disabled";
-> > +
-> >  			smd-edge {
-> >  				interrupts = <GIC_SPI 156 IRQ_TYPE_EDGE_RISING>;
-> >  
-> > diff --git a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
-> > index 58cb2ce1e4df..8a6b8e4de887 100644
-> > --- a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
-> > +++ b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
-> > @@ -147,10 +147,12 @@ wcnss {
-> >  };
-> >  
-> >  &remoteproc_adsp {
-> > +	status = "okay";
-> 
-> These go to the end of properties.
-> 
+It is normal that devices are designed with multiple types of storage,
+and only some types of storage are present.
 
-All the other nodes in these two files have the 'status = "okay"' at the
-beginning (just like most of the Qualcomm boards actually). I know there
-have been some discussion to change this, but until existing boards have
-been changed I would rather not introduce a wild mix of both approaches
-(within the same file at least).
+The kernel can handle this situation gracefully for many types of
+storage devices such as mmc or ata but it reports and error when spi
+flash is not present.
 
-Thanks,
-Stephan
+Only print a notice that the storage device is missing when no response
+to the identify command is received.
+
+Consider reply buffers with all bits set to the same value no response.
+
+Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+---
+ drivers/mtd/spi-nor/core.c | 25 +++++++++++++++++++++++--
+ 1 file changed, 23 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+index 502967c76c5f..6bab540171a4 100644
+--- a/drivers/mtd/spi-nor/core.c
++++ b/drivers/mtd/spi-nor/core.c
+@@ -1652,6 +1652,24 @@ static const struct flash_info *spi_nor_match_id(struct spi_nor *nor,
+ 	return NULL;
+ }
+ 
++static const bool buffer_uniform(const u8 *buffer, size_t length)
++{
++	bool all0;
++	size_t i;
++
++	for (all0 = true, i = 0; i < length; i++)
++		if (buffer[i] != 0) {
++			all0 = false;
++			break;
++		}
++	if (all0)
++		return true;
++	for (i = 0; i < length; i++)
++		if (buffer[i] != 0xff)
++			return false;
++	return true;
++}
++
+ static const struct flash_info *spi_nor_detect(struct spi_nor *nor)
+ {
+ 	const struct flash_info *info;
+@@ -1666,8 +1684,11 @@ static const struct flash_info *spi_nor_detect(struct spi_nor *nor)
+ 
+ 	info = spi_nor_match_id(nor, id);
+ 	if (!info) {
+-		dev_err(nor->dev, "unrecognized JEDEC id bytes: %*ph\n",
+-			SPI_NOR_MAX_ID_LEN, id);
++		if (buffer_uniform(id, SPI_NOR_MAX_ID_LEN))
++			dev_info(nor->dev, "No flash memory detected.\n");
++		else
++			dev_err(nor->dev, "unrecognized JEDEC id bytes: %*ph\n",
++				SPI_NOR_MAX_ID_LEN, id);
+ 		return ERR_PTR(-ENODEV);
+ 	}
+ 	return info;
+-- 
+2.35.3
+
