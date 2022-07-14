@@ -2,190 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4311574C03
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 809D6574C1C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:30:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238796AbiGNL1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 07:27:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36264 "EHLO
+        id S229920AbiGNLaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 07:30:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238797AbiGNL1J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:27:09 -0400
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on20604.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e83::604])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BADF5885A;
-        Thu, 14 Jul 2022 04:27:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XJl8QtY10eG9Q1fch8sR8R0892BnMgn5/JRdD6qKJcmjr1etyahnKFU95FngHk1Vstz9DHoU/mn0qW89zHR1Yut3l4WnOH98V1VwcizJf+JUFKmdcXYX5ACnSKCgAmYbWdLjWxIV6NxefF6XecO0fYXce0GdOC/tYg6jfoVcPP14Y6ZNbTfV76PcDrFjWjwx3/ePc0lbpT0roozie2U7dPWrHfCy9hs6AgqQOJ9XsWwojuBHK3oiiaVDTqBrtLbGxBWWb+vc+oS6IG4c6P5I1qN7kN29FxyFdKoxidFe6MUK/SgJLuvJjXlzWg8G3JOXsAWwksQWfDBO2LD7ZFvWGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RLS3/kE86UTPO297iPfeEkTCgSKGF6sqQdihn4AI2rA=;
- b=gbtKidMNSSpmrDDlteuUJylIjWCLMs+07ODNCgiT3v4fHFfyHT4hHfyx/6tO0N+MGHzxULtPeDqHpphVmy+w1/ezF9spsOBwiOSj62n+sQXjmxraipgoYVm3FWXzoLkGKd5rELNIebNQoceDqB9dMr6ZBK3PxAN41H6B9jGM/ZsNOrJ+xg5N+aXq6amzHlL8a1OfmedjlE/melEYnQCLdH0POYESgPxGkrJUjzvA8dnWhMNHmocUIjOjnwjzAP67cbXXv6nwK07PqQVmLRpkRHZjHkfVixpLbnK7kkPgGeIK5rpwfj+6mTTDUyx5mCQtBQ3wHA5ExO4nd4OmQMpYuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=xilinx.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RLS3/kE86UTPO297iPfeEkTCgSKGF6sqQdihn4AI2rA=;
- b=t4y0h1MMf4BKbH/Ic5USWUfydHvr5ERZDay26t+PPShQ7jsoHuAakTRfpeA9gheLXC1jXE+2al5XkrVR3c7JrTXtOhkdygVEIxJ6HoeyBuO9dI6gHKQetPaEoQSN1dPB8LXaCDnNeP4IoC+BPWSTwmv8yzrVFJOSfg1hpBuKTlk=
-Received: from DM6PR06CA0074.namprd06.prod.outlook.com (2603:10b6:5:336::7) by
- MWHPR1201MB0174.namprd12.prod.outlook.com (2603:10b6:301:55::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.20; Thu, 14 Jul
- 2022 11:27:04 +0000
-Received: from DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:336:cafe::f5) by DM6PR06CA0074.outlook.office365.com
- (2603:10b6:5:336::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.25 via Frontend
- Transport; Thu, 14 Jul 2022 11:27:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT047.mail.protection.outlook.com (10.13.172.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5438.12 via Frontend Transport; Thu, 14 Jul 2022 11:27:04 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 14 Jul
- 2022 06:27:01 -0500
-Message-ID: <155c77c3-25d9-7edc-35bd-56e6cfb19ac6@amd.com>
-Date:   Thu, 14 Jul 2022 13:26:58 +0200
+        with ESMTP id S230299AbiGNLaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:30:19 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 727FDDF4;
+        Thu, 14 Jul 2022 04:30:18 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 36F4D383;
+        Thu, 14 Jul 2022 13:30:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1657798216;
+        bh=Or7nK+vpR9I8taKnPpezvAX+IORJBNyv0MOgkeEcaEg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=m0Xzs4xl3WQ9UrDbg7dzbd9a9P6DlsXq931E/WDcfpeBTpu/HZkQLy0oUm2+8LK2f
+         UlPslSI2AHCXcgIFwGlLN5cC78AmVA7+h1+oZ+W8hwwWHk5/g5PH9Ykc98lIPAapBx
+         wtsZur3WVw/u7LiSJok3MdhoM7WeiKDj+Jxfdx9A=
+Date:   Thu, 14 Jul 2022 14:29:45 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org,
+        Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
+ camera sensor binding
+Message-ID: <Ys/+KaNltkZZmRE4@pendragon.ideasonboard.com>
+References: <cover.1657786765.git.vkh@melexis.com>
+ <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
+ <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
+ <c87132c4-5801-2f1f-8ef9-3997474cf7a5@linaro.org>
+ <Ys/zvH3ICr4zpTLH@pendragon.ideasonboard.com>
+ <7e362d83-36c2-00ed-6525-37197ee8e5d7@linaro.org>
+ <Ys/6O2H/eDEWYHei@pendragon.ideasonboard.com>
+ <20a88191-0c4e-710f-e6ab-4087e5980533@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v14 0/5] clk: clocking-wizard: Driver updates
-Content-Language: en-US
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        <linux-clk@vger.kernel.org>, git <git@xilinx.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Arnd Bergmann <arnd@arndb.de>
-CC:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220411100443.15132-1-shubhrajyoti.datta@xilinx.com>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <20220411100443.15132-1-shubhrajyoti.datta@xilinx.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 80fc2ff7-902c-4a0d-8083-08da658bc770
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB0174:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?U283dCt6WDEzRlNMU3IyeDgwejl3L0czN1VoZkpHSitRK2x0a0dQSEJQSE1p?=
- =?utf-8?B?WXUzWjB1ckdLWjMvRm12dXQxQWlkUzlDMTVOdVJTZDVNZ3RUTHhxeWlwemU0?=
- =?utf-8?B?YkFGN0FCcUdONTB4L21wckxoVk8rVm5ZVXhVV1lIV2ExU0dXb3JSQUFUWTlu?=
- =?utf-8?B?a1o0czQzRHVqL29UZ1FrKzlKRHFxSm9UWU1mYkVhWnBBU0owUDA4OGx0cDRB?=
- =?utf-8?B?RjAwZFpMckZwdjMxUnVYdENaSWh2T2ExZEFTRk5iZytXL0xtMHU3N2Z2bHdx?=
- =?utf-8?B?Qm04a0FyenNEanRvY2dmdmxJVTJsQVVwMjJpeEtnQXdLM1Z1NWtaN3N3a2JK?=
- =?utf-8?B?WUZUL0U0UXJOc0dnRHVXRTJVSXJiM0xqYlVLNG9ScGwwVzBxQVVvOGlqbzEx?=
- =?utf-8?B?eWpTS2EvTEFtd0JadjNUbDJJTDRhRFZKWGxKZE8welFOZjhUQ3RVK3E5Q0xs?=
- =?utf-8?B?clBzNTZqWkRFN3FncGpmcXdrbjNreWhCb2xrVk9sRUd2OUNyTG1NNEk5RFBy?=
- =?utf-8?B?RDVhUDBwRlFkYnYvU0M1MEpKUVNEWiswZ0FBVndCdHhvUjVtZTBMTVEyR1Fy?=
- =?utf-8?B?b04zZS9FRXJSdlhEZ2VONGNwWDVOZnZ3QXRmM3dCSHVCZXRoWDBERExqU3pF?=
- =?utf-8?B?ZkxwSVNvdnBlRlpMbVRRRGtrZGJHNnMyMGpGMEhyYU5wRzdtNVRvNzRxRXV3?=
- =?utf-8?B?SHo5dlZrbTYwL24wcG5hRGQrQkZrQXp3NHdzVzQ2NTJqR0NBc0w5SlBXcVRS?=
- =?utf-8?B?NnJYelRaUzc3R3phdlg4dk1rYXdteHZicEYzOUIvYWFxVGMxTVZrU0UyaGYv?=
- =?utf-8?B?RDFmd3EwdExOZG81Q09vZ1JJNmRsaDgrUVdFTHJCVno1eW5HVEF4czc1cWJN?=
- =?utf-8?B?VUNBc2U1Vmowb2s3S2hIZXZ3dDFnV09FMkE5RjlMZldWNjM0bzJHQkRoNlI5?=
- =?utf-8?B?ckUxTFl6MVVOQ1Yza2VaY0p2L0t2c1NOUUl5d2hpZ2R3QlIxSWxXV3VyeDVx?=
- =?utf-8?B?U2JyS3Z4NDdQY1p6aTE4a3BDSGtwWVNBeldrMmlVWU50aEVQRC9KNWN3Ri9M?=
- =?utf-8?B?UEc5eXF6UFExMEdkKzluQU1uWHhFNkorQURGTFhkViszcVlwK3lzTE5Kc0xo?=
- =?utf-8?B?bjlxMDljNU5yTmZsVk1hbXUwY1Z6RngyVFNRdE1CWVZUaDBtTGJUNy9nM3Zr?=
- =?utf-8?B?eGdNOW1qKzFrVGNJeDl5NDdqb2ZMcU4wWXlnMXozcHMvaVZzVlBZUFd1Wkh3?=
- =?utf-8?B?VzNjN3U2K2JsRWQ1QTlIbjlFb0I5Y0hPaHFPalRQQlRHT09HQT09?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(376002)(39860400002)(396003)(346002)(136003)(46966006)(40470700004)(36840700001)(966005)(36756003)(53546011)(6666004)(31686004)(83380400001)(478600001)(426003)(47076005)(26005)(16526019)(2616005)(82310400005)(41300700001)(336012)(186003)(2906002)(44832011)(40480700001)(36860700001)(110136005)(15650500001)(54906003)(8936002)(356005)(31696002)(5660300002)(82740400003)(70206006)(86362001)(316002)(16576012)(81166007)(70586007)(4326008)(8676002)(40460700003)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2022 11:27:04.6151
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80fc2ff7-902c-4a0d-8083-08da658bc770
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0174
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20a88191-0c4e-710f-e6ab-4087e5980533@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen and Michael,
-
-On 4/11/22 12:04, Shubhrajyoti Datta wrote:
-> The patch does the following
-> Update the versions of the clocking wizard ip.
-> Move from staging to clk directory.
-> Update the bindings.
+On Thu, Jul 14, 2022 at 01:23:41PM +0200, Krzysztof Kozlowski wrote:
+> On 14/07/2022 13:12, Laurent Pinchart wrote:
+> >>>>> One option would be to support the following three compatible values:
+> >>>>>
+> >>>>> 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
+> >>>>> 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
+> >>>>> 	compatible = "melexis,mlx7502x";
+> >>>>>
+> >>>>> The last one only would trigger autodetection. I'm still not sure how to
+> >>>>> document that properly in bindings though.
+> >>>>
+> >>>> I missed that part of binding.
+> >>>>
+> >>>> Wildcards are not allowed in compatible, so mlx7502x has to go.
+> >>>
+> >>> Really ? We've had fallback generic compatible strings since the
+> >>> beginning.
+> >>
+> >> Fallback generic compatibles are allowed. Wildcards not. Wildcards were
+> >> actually never explicitly allowed, they just slipped in to many
+> >> bindings... We have several discussions on this on mailing list, so no
+> >> real point to repeat the arguments.
+> >>
+> >> There is a difference between generic fallback. If the device follows
+> >> clear specification and version, e.g. "foo-bar-v4", you can use it for
+> >> generic compatible. This is more common in SoC components. Requirement -
+> >> there is a clear mapping between versions and SoCs.
+> > 
+> > I'm not sure to see a clear difference between the two concepts.
 > 
-> v12:
-> No change.
-> Rebased
-> v13:
-> Update the clocking compatible
-> Add the change removing the driver from staging
-> v14:
-> Moved to the xilinx folder
+> The clear difference is that you have a versioned and re-usable hardware
+> block plus clear mapping which version goes to which SoC. Version
+> numbers usually start with 1, not with 75025. 75025 is a model name.
+
+How about Documentation/devicetree/bindings/serial/renesas,scif.yaml for
+instance, where the version number isn't known and the SoC name is used
+instead ? Is that acceptable ?
+
+How should we deal with devices that have different models, where the
+model is irrelevant to the kernel driver, but relevant to userspace ?
+Imagine, for instance, a light sensor with 10 models than only differ by
+the filter they use to tune the sensitivity to different light spectrums
+? They are all "compatible" from a software point of view, would the
+driver need to list all 10 compatible strings ?
+
+> >>>> Anyway what does this autodetection mean?
+> >>>
+> >>> As far as I understand, it means that the driver will use a hardware
+> >>> identification register to figure out if the sensor is a 75026 or 75027.
+> >>
+> >> Then there is no need to define 75027 compatible. DT is for cases where
+> >> autodetection does not work...
+> > 
+> > It's autodetection of the exact device model, those are I2C devices so
+> > we still need DT, and we still need to know that it's one of the
+> > MLX75026 or MLX75027.
+> > 
+> >>> The upside is that one doesn't need to change the device tree when
+> >>> swapping between those two sensors. The downside is that the sensor
+> >>> needs to be powered up at probe time. Depending on the platform, one of
+> >>> those two behaviours is preferred. Auto-detection is nice, but in
+> >>> laptops or tablets (not a use case for this particular device, but the
+> >>> problem applies to camera sensors in general), it would mean that the
+> >>> privacy LED of the camera could be briefly lit at boot time due to the
+> >>> sensor being powered on, which can worry users.
+> >>
+> >> OK, that's reasonable argument for dedicated compatible but I don't
+> >> understand why you cannot perform autodetection the moment device is
+> >> actually powered up (first time). I understand it is nice and easy to
+> >> make everything in the probe and most devices perform it that way. But
+> >> if you don't want to do it in the probe - DT is not a workaround for this...
+> > 
+> > For cameras, we often deal with complex pipelines with multiple external
+> > devices and multiple IP cores, with drivers that need to communicate
+> > with each other to initialize the complete camera system. For instance,
+> > each camera-related component in the system registers itself in a media
+> > graph that can be queried from userspace and exposes information about
+> > all devices, including their model. There's no power up of any device
+> > when this query is being performed from userspace. It could possibly be
+> > changed (and maybe it should, for reasons unrelated to this discussion),
+> > but we're looking at pretty much a complete redesign of V4L2 and MC
+> > then.
 > 
-> Shubhrajyoti Datta (5):
->    dt-bindings: add documentation of xilinx clocking wizard
->    clk: clocking-wizard: Add the clockwizard to clk directory
->    clk: clocking-wizard: Rename nr-outputs to xlnx,nr-outputs
->    clk: clocking-wizard: Fix the reconfig for 5.2
->    clk: clocking-wizard: Update the compatible
-> 
->   .../bindings/clock/xlnx,clocking-wizard.yaml  | 77 +++++++++++++++++++
->   drivers/clk/xilinx/Kconfig                    | 11 +++
->   drivers/clk/xilinx/Makefile                   |  1 +
->   .../xilinx}/clk-xlnx-clock-wizard.c           | 19 +++--
->   drivers/staging/Kconfig                       |  2 -
->   drivers/staging/Makefile                      |  1 -
->   drivers/staging/clocking-wizard/Kconfig       | 10 ---
->   drivers/staging/clocking-wizard/Makefile      |  2 -
->   drivers/staging/clocking-wizard/TODO          | 13 ----
->   .../staging/clocking-wizard/dt-binding.txt    | 30 --------
->   10 files changed, 103 insertions(+), 63 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
->   rename drivers/{staging/clocking-wizard => clk/xilinx}/clk-xlnx-clock-wizard.c (96%)
->   delete mode 100644 drivers/staging/clocking-wizard/Kconfig
->   delete mode 100644 drivers/staging/clocking-wizard/Makefile
->   delete mode 100644 drivers/staging/clocking-wizard/TODO
->   delete mode 100644 drivers/staging/clocking-wizard/dt-binding.txt
-> 
+> Is then autodetection a real use case since you have to power up the
+> sensor each time system boots and this violates privacy? Several I2C
+> sensors do not care about this and they always do it on power up, so
+> aren't we solving here something unimportant?
 
-I was looking at comment in v13 and moving to xilinx folder was done in v14.
-v13: https://lore.kernel.org/r/cover.1631623906.git.shubhrajyoti.datta@xilinx.com
+In a laptop or tablet with a camera sensor, you likely don't want
+autodetection. In an industrial device, you don't care, and having the
+ability to auto-detect the exact sensor model when booting saves cost in
+the production chain as a single image can work across different models.
 
-dt binding is also reviewed by Rob already.
+-- 
+Regards,
 
-You asked there to get confirmation from Greg that it can be moved out of 
-staging. I didn't see any reply from Greg about it but not sure if this is 
-really required to get.
-Greg: Can you please ACK it or comment?
-
-And in your v13 reply you said that you will pick it up
-https://lore.kernel.org/all/20220112204055.CF098C36AE9@smtp.kernel.org/#t
-but I can't see this patch in your linux clk tree yet.
-
-I have also see that some people are sending you pull requests to merge it to 
-clock tree. If this is something what you prefer I have really not a problem to 
-do it.
-
-Thanks,
-Michal
+Laurent Pinchart
