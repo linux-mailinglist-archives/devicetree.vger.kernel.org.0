@@ -2,149 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A31A574590
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 09:13:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E44A5745EC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 09:41:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235638AbiGNHNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 03:13:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49080 "EHLO
+        id S234681AbiGNHlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 03:41:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230038AbiGNHNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 03:13:22 -0400
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5CC3137E;
-        Thu, 14 Jul 2022 00:13:21 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id cf13so756963qtb.13;
-        Thu, 14 Jul 2022 00:13:21 -0700 (PDT)
+        with ESMTP id S231246AbiGNHlG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 03:41:06 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E0131F63D
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 00:41:05 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id t25so1433290lfg.7
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 00:41:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=3x5Z7sURPAiBBvhPNtgfhlp1hUKAN6RFhStnhJpbX54=;
-        b=HKc4BqUfLrvgL7aqg30gqWbuhQCm4W8Xg59ytlVJc1RTXy3Q0B8f10eAC0nIGNXd7n
-         GPIS8kyX72num3BvwrJYEsyJRsHtjT2Y2Kqkto5plh79a/0ssEQjuTq/gDGIyqLUTe3V
-         uh6GHxx+2YIpUS9ouWst/xzk80Y8bKTUNjK0H+YWx2b+r0kiVtSFfuPwl4KPtUqa1jFr
-         D46Q+i3chkIIhf/114xlrJlMCm01PiAguSn87T4yASMUMKQiSvFgyFobA2K77CWxPgeK
-         LK7kMeTL/GonRe4mrfnhozUWoxzQjj9E8SWHd0487d9s88RlZ3szDvqy5rSJ/yv6v+j6
-         juyQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=HgFqzbnGex/viFGpubqhq0dmXVFonIW0bw0LdRvMvsE=;
+        b=OGTPYuUdvmlcQPFyx/Kys+T0o68/AI6USKJuhqgcRdfIKPZ6C502xLBQbmnuv6+GNd
+         mgxRDwBlLv0DJsg5GEiC+4SIXv+/wL9hYKCusTv0vpiLtIf8Q/Gk6zRlIeOzWTRuqnaS
+         p4AQeE5WpvQbDOOTYHvg0vRFv4OG/2veUz7u62ICUQYzUO7DotDIRhLV2SdT4tZF7Anc
+         crDkN08rWDTYmt6r8qkT7YjDRPzO5ZQOGvNr2EBm0udfvfnFV3PTBMmD1Ojo5WKk8lEx
+         sWjBvzEl7xaMhv5pW/F3JEPWamnYWyWTjdaCcsY2znAZ1gPfxF5d8gOdi9ni424QV3kT
+         z7ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=3x5Z7sURPAiBBvhPNtgfhlp1hUKAN6RFhStnhJpbX54=;
-        b=Lhbw+eKYYo/m1V8EnKuG681wyh8JgNk15QQNEhze7s47OCjdpNO9mPa5y0JoMKStkf
-         01mH18ec+kyXJfgQ2lMH+DCscyKroPuAvgLAAhsDyNHh36I6lRGd9X+EQG2r/OdZAd1k
-         iBEXWvuR1JRKcLlraZeMcN/Zbu3Oxzttt8gFYQOAmfqBElxwG5KqJ3+DHT9krMCOeOuW
-         H/4Rk6CzQCYoTdm1bLm4C5eKPaJNhh0G/LcG+AI0JfZ2jmPqzx2vPWOqY0JF3MXYkRqE
-         ICqvlkjXweq7P09zYA0scBUSV6EmEwKvQofRvGnfpIchhgV1B90iPCf6hMwpOOp6L1tw
-         U8rw==
-X-Gm-Message-State: AJIora81PsmYuxv/7H4z7mTmLmgMxBU36001E1JkymM8RUVr/zWq9BbL
-        tvJ2C27YXxfeK9wdOaZBbYpuNm3+CvUbHTvL
-X-Google-Smtp-Source: AGRyM1uc+CAK4DPBng3jHeXSpSnPAY8kVQG56zP4+6Qr+UlfQ7TIJDjGRQYEMutExjRKyRTozCqF6A==
-X-Received: by 2002:a05:622a:1194:b0:31e:d3e5:3b3d with SMTP id m20-20020a05622a119400b0031ed3e53b3dmr100359qtk.398.1657782801066;
-        Thu, 14 Jul 2022 00:13:21 -0700 (PDT)
-Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
-        by smtp.gmail.com with ESMTPSA id x66-20020a376345000000b006a6d7c3a82esm744335qkb.15.2022.07.14.00.13.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jul 2022 00:13:20 -0700 (PDT)
-Message-ID: <4bf06ba5994f559499c45275cd7f44bfee1bbde1.camel@gmail.com>
-Subject: Re: [PATCH 1/4] gpiolib: add support for bias pull disable
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Kent Gibson <warthog618@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 14 Jul 2022 09:14:21 +0200
-In-Reply-To: <20220714042050.GA76737@sol>
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
-         <20220713131421.1527179-2-nuno.sa@analog.com>
-         <Ys8CpqYhWp7zVNC8@smile.fi.intel.com> <20220714042050.GA76737@sol>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.3 
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HgFqzbnGex/viFGpubqhq0dmXVFonIW0bw0LdRvMvsE=;
+        b=EB4/mAbDP1fuZwJm1elGBHNNdXm+cAk739+r5QwEjNNwvMFam97Nd6s7ffzFKcLhnK
+         Eva9pEB1cLGEcFIzh5TECfvw8fSaErucL5gEw95TpMJ+oEBdY+kyJTHpjI0FtIKrFKy7
+         PHP6aTcu93BOGK3WdvvSs9vZfZxMZDR1zzR2OS4mXxLp1SSP1eBOJCSQch9W/Qn5w4jl
+         kIFJZvGhGc/OUpVBFIs9AdzxBDGAJddQQsTpxcOufr4apB5NZFY/XpPC/ufmdbIGgSnP
+         Up3gZ8e9sinqTX1YJ67dKY858feIIpLXf3VZRyj2Zt20glM7ifqpD6b+TsqknCbOe9Ng
+         ZnFw==
+X-Gm-Message-State: AJIora/H4YWoquFyxSCDvejw5BtncGPnW332F4rU5Zfmg0YjcgHh/tIs
+        hgu9tWWpo3Nsl5JrGasEY59Lnhy/eQ4o4g==
+X-Google-Smtp-Source: AGRyM1vUem2jmxH1oSZWWgvjndTc6uWdIU3yhZJH4Ldw9SB3oVGbaxs0KwY0Wq1OLiYV1H7G+pd3jA==
+X-Received: by 2002:a05:6512:3503:b0:481:4470:4134 with SMTP id h3-20020a056512350300b0048144704134mr4340287lfs.42.1657784463417;
+        Thu, 14 Jul 2022 00:41:03 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id j8-20020a2eb708000000b0025d696f5fe6sm135783ljo.73.2022.07.14.00.41.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 00:41:02 -0700 (PDT)
+Message-ID: <50ce334b-4c13-1eb3-0e6e-96c9ccee7e1d@linaro.org>
+Date:   Thu, 14 Jul 2022 10:41:02 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 4/4] ARM: dts: qcom: msm8660: add pxo/cxo clocks to the
+ GCC node
+Content-Language: en-GB
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220620110739.1598514-1-dmitry.baryshkov@linaro.org>
+ <20220620110739.1598514-4-dmitry.baryshkov@linaro.org>
+ <Ys85KUGnlXlUI+zE@builder.lan>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Ys85KUGnlXlUI+zE@builder.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-07-14 at 12:20 +0800, Kent Gibson wrote:
-> On Wed, Jul 13, 2022 at 08:36:38PM +0300, Andy Shevchenko wrote:
-> > On Wed, Jul 13, 2022 at 03:14:18PM +0200, Nuno S=C3=A1 wrote:
-> > > This change prepares the gpio core to look at firmware flags and
-> > > set
-> > > 'FLAG_BIAS_DISABLE' if necessary. It works in similar way to
-> > > 'GPIO_PULL_DOWN' and 'GPIO_PULL_UP'.
-> >=20
-> > ...
-> >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0GPIO_PULL_UP=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=3D (1 << 4),
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0GPIO_PULL_DOWN=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=3D (1 << 5),
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0GPIO_PULL_DISABLE=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=3D (1 << 6),
-> >=20
-> > To me it seems superfluous. You have already two flags:
-> > PUp
-> > PDown
-> > When none is set --> Pdisable
-> >=20
->=20
-> Agree with Andy on this.=C2=A0 The FLAG_BIAS_DISABLE was added, by me, to
-> allow the cdev interface to support bias.=C2=A0 cdev requires a "don't
-> care"
-> state, distinct from an explicit BIAS_DISABLE.
-> The FLAG_BIAS_DISABLE allows gpiolib-cdev to communicate that to
-> gpiolib, without altering the interpretation of the existing PULL_UP
-> and
-> PULL_DOWN flags.
-> That is not an issue on the machine interface, where the two
-> GPIO_PULL
-> flags suffice.
->=20
+On 14/07/2022 00:29, Bjorn Andersson wrote:
+> On Mon 20 Jun 06:07 CDT 2022, Dmitry Baryshkov wrote:
+> 
+>> Add pxo/cxo clocks to the GCC device tree node.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   arch/arm/boot/dts/qcom-msm8660.dtsi | 6 ++++--
+>>   1 file changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom-msm8660.dtsi
+>> index 47b97daecef1..61e3ab0ebfd3 100644
+>> --- a/arch/arm/boot/dts/qcom-msm8660.dtsi
+>> +++ b/arch/arm/boot/dts/qcom-msm8660.dtsi
+>> @@ -50,13 +50,13 @@ cpu-pmu {
+>>   	};
+>>   
+>>   	clocks {
+>> -		cxo_board {
+>> +		cxo_board: cxo_board {
+> 
+> As requested by Krzysztof, please use clock-output-names to specify the
+> name of the clock, and rename the node "cxo-board-clk".
 
-I see, but this means we can only disable the pin BIAS through
-userspace. I might be wrong but I don't see a reason why it wouldn't be
-valid to do it from an in kernel path as we do for PULL-UPS and PULL-
-DOWNS=20
+Actually I believe Krzysztof agreed (and acked) this change, as it 
+follows the example of existing boards.
 
-> If you are looking for the place where FLAG_BIAS_DISABLE is set it is
-> in
-> gpio_v2_line_config_flags_to_desc_flags() in gpiolib-cdev.c.
->=20
-> Referring to gpio_set_bias(), the only place in gpiolib the
-> FLAG_BIAS_DISABLE is used, if neither FLAG_PULL_UP, FLAG_PULL_DOWN,
-> nor FLAG_BIAS_DISABLE are set then the bias configuration remains
-> unchanged (the don't care case) - no change is passed to the driver.
-> Otherwise the corresponding PIN_CONFIG_BIAS flag is passed to the
-> driver.
->=20
+> 
+> Thanks,
+> Bjorn
+> 
+>>   			compatible = "fixed-clock";
+>>   			#clock-cells = <0>;
+>>   			clock-frequency = <19200000>;
+>>   		};
+>>   
+>> -		pxo_board {
+>> +		pxo_board: pxo_board {
+>>   			compatible = "fixed-clock";
+>>   			#clock-cells = <0>;
+>>   			clock-frequency = <27000000>;
+>> @@ -129,6 +129,8 @@ gcc: clock-controller@900000 {
+>>   			#power-domain-cells = <1>;
+>>   			#reset-cells = <1>;
+>>   			reg = <0x900000 0x4000>;
+>> +			clocks = <&pxo_board>, <&cxo_board>;
+>> +			clock-names = "pxo", "cxo";
+>>   		};
+>>   
+>>   		gsbi6: gsbi@16500000 {
+>> -- 
+>> 2.35.1
+>>
 
-Exactly, but note FLAG_BIAS_DISABLE can only be set from userspace at
-this point (IIUTC). If everyone agrees that should be case, so be it.
-But as I said, I just don't see why it's wrong to do it within the
-kernel.
 
-> If there are cases of drivers not fully or correctly supporting those
-> PIN_CONFIG_BIAS flags, then that is an issue with those drivers.
->=20
-
-Look at my reply to Andy in the cover for more details
-
-- Nuno S=C3=A1
+-- 
+With best wishes
+Dmitry
