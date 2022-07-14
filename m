@@ -2,123 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 164F357573A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 23:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 216D4575757
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 00:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240443AbiGNVwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 17:52:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47122 "EHLO
+        id S241010AbiGNWEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 18:04:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232764AbiGNVwC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 17:52:02 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70128419A6;
-        Thu, 14 Jul 2022 14:52:00 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id EEABB22238;
-        Thu, 14 Jul 2022 23:51:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1657835518;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=eUOOklFf429NJHGjFaL0HxFv89LnFvPtMIbNqZTM4d0=;
-        b=HSkIfATqx+Z/1khW1hK+6puc0ECVGu02CCNcVyvWwwxFtkmNvepbMsWDMYOqDCJN9552/Q
-        jpV5u9uj2zXqR6KVmUiRi6qnHalq2wx1hvKHbXfAZ7L5VYX18olHGeTivSo0mSj4iuktL4
-        opgvlduW4U0xYcytb9s/OnvmWHuLf7o=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+        with ESMTP id S240907AbiGNWEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 18:04:05 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E97C4D4C1
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 15:04:03 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id t5-20020a17090a6a0500b001ef965b262eso4342226pjj.5
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 15:04:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KDtjlRiNkbkwbyu0K1cWU8KeaAVIJpnnNwqLxbVq1SM=;
+        b=ZVwA55GEKeisOGGK59fMpJ4hYruRMbnUWD907flsikQqWcIGC9s4PaNtfzDSK9+AiM
+         R4ob13YAe7zJrPTRE64X4XlhssTohU0uoCxt5DFrJLdflknyfdLqBs+jiFWw2peGBhSX
+         gRk83oWFWZZbAAFqoxTR9K+Y50UdHYCSaQcyDX/ogDknUaWlFVIvvnlVMojoDkLGqaqj
+         CDORZNdUuRSS6rgHiZi41QwjEjyUYScQjFC6VT+cr4XeR3f7lKEkeOywc4PmGM0Xyk0Z
+         4yturnY2DIJMEnbPtDaYpgEqlBWspLGoVP2j/lbjtrv83Nm8/v4+iqJNQcYqm0E3Iaga
+         TIag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=KDtjlRiNkbkwbyu0K1cWU8KeaAVIJpnnNwqLxbVq1SM=;
+        b=TMx5kohQiObW1SQEIyFE/f0bH2blhxLm47pmyz/RAQowNZNBWqBK60ajv55ml1a+U2
+         RSst2MTpGqKuFIgelcgV1IUYHacAA60DehNemmgoYyvqK+4WWXrzW5qJ3sWpLuhEXbiK
+         QpYzHjkNV7AnsUUlpX0qne9Ojo08p6gnWhYzqm4B3WZZPiqpeDiGm0gV8zdp+gIvDj+G
+         0IyDqG9Cp8HeP6eikLlISY1yT2xROLiTO5BTCPqUksyZf2PBDDXpvs+LwvTBigV+e9Iy
+         NMc4bcPWrpfm29KWTD4QDv79+QnoGHOr62qrELD4SyEC4oGGu9VWmS5O1/an1YbW3ATt
+         +/yQ==
+X-Gm-Message-State: AJIora/c8NVjqjD3XIEbMzvChNodphwDokkjkEhh/xodBdpjPUY/d75j
+        DP2UUdD0INg49bGovhG95eySJw==
+X-Google-Smtp-Source: AGRyM1uqiwhNrcoDyi7BO/M6oUSKAHXy3k3IByQCDQyMTQXgqTtuGVQdh9q861VVmOOyihKz1THYlA==
+X-Received: by 2002:a17:902:cad1:b0:16c:9816:648a with SMTP id y17-20020a170902cad100b0016c9816648amr7997084pld.166.1657836242750;
+        Thu, 14 Jul 2022 15:04:02 -0700 (PDT)
+Received: from localhost ([50.221.140.186])
+        by smtp.gmail.com with ESMTPSA id y3-20020a17090a134300b001ef82d23125sm4129123pjf.25.2022.07.14.15.03.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jul 2022 15:03:59 -0700 (PDT)
+Date:   Thu, 14 Jul 2022 15:03:59 -0700 (PDT)
+X-Google-Original-Date: Thu, 14 Jul 2022 14:33:22 PDT (-0700)
+Subject:     Re: [PATCH] riscv: dts: align gpio-key node names with dtschema
+In-Reply-To: <20220624170811.66395-1-krzysztof.kozlowski@linaro.org>
+CC:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski@linaro.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     krzysztof.kozlowski@linaro.org
+Message-ID: <mhng-26d4c307-b754-4c87-8858-789dca71c0ae@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Date:   Thu, 14 Jul 2022 23:51:56 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     =?UTF-8?Q?Michal_Such=C3=A1nek?= <msuchanek@suse.de>
-Cc:     linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
-Subject: Re: [PATCH 1/2] mtd: spi-nor: When a flash memory is missing do not
- report an error
-In-Reply-To: <20220714205529.GE17705@kitsune.suse.cz>
-References: <701967b0c418db333c66b48d225df60aa9d03ead.1657826188.git.msuchanek@suse.de>
- <d8de86aa0331be697fbef33d5ab2c57a@walle.cc>
- <20220714205529.GE17705@kitsune.suse.cz>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <33abf7b84860049c4a22605578303ff2@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-07-14 22:55, schrieb Michal Suchánek:
-> On Thu, Jul 14, 2022 at 09:41:48PM +0200, Michael Walle wrote:
->> Hi,
->> 
->> Am 2022-07-14 21:19, schrieb Michal Suchanek:
->> > It is normal that devices are designed with multiple types of storage,
->> > and only some types of storage are present.
->> >
->> > The kernel can handle this situation gracefully for many types of
->> > storage devices such as mmc or ata but it reports and error when spi
->> > flash is not present.
->> >
->> > Only print a notice that the storage device is missing when no response
->> > to the identify command is received.
->> >
->> > Consider reply buffers with all bits set to the same value no response.
->> 
->> I'm not sure you can compare SPI with ATA and MMC. I'm just speaking 
->> of
->> DT now, but there, for ATA and MMC you just describe the controller 
->> and
->> it will auto-detect the connected storage. Whereas with SPI you 
->> describe
-> 
-> Why does mmc assume storage and SDIO must be descibed? Why the special
-> casing?
+On Fri, 24 Jun 2022 10:08:11 PDT (-0700), krzysztof.kozlowski@linaro.org wrote:
+> The node names should be generic and DT schema expects certain pattern
+> (e.g. with key/button/switch).
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> ---
+>
+> See: https://lore.kernel.org/all/20220616005224.18391-1-krzysztof.kozlowski@linaro.org/
+> ---
+>  arch/riscv/boot/dts/canaan/canaan_kd233.dts     | 2 +-
+>  arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts  | 2 +-
+>  arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts | 2 +-
+>  arch/riscv/boot/dts/canaan/sipeed_maix_go.dts   | 6 +++---
+>  arch/riscv/boot/dts/canaan/sipeed_maixduino.dts | 2 +-
+>  5 files changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/canaan/canaan_kd233.dts b/arch/riscv/boot/dts/canaan/canaan_kd233.dts
+> index 039b92abf046..f72540bd14a3 100644
+> --- a/arch/riscv/boot/dts/canaan/canaan_kd233.dts
+> +++ b/arch/riscv/boot/dts/canaan/canaan_kd233.dts
+> @@ -35,7 +35,7 @@ led1 {
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>
+> -		key0 {
+> +		key {
+>  			label = "KEY0";
+>  			linux,code = <BTN_0>;
+>  			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+> diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
+> index b9e30df127fe..8abdbe26a1d0 100644
+> --- a/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
+> +++ b/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
+> @@ -47,7 +47,7 @@ led2 {
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>
+> -		boot {
+> +		key-boot {
+>  			label = "BOOT";
+>  			linux,code = <BTN_0>;
+>  			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
+> diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
+> index 8d23401b0bbb..3c6df1ecf76f 100644
+> --- a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
+> +++ b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
+> @@ -52,7 +52,7 @@ led2 {
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>
+> -		boot {
+> +		key-boot {
+>  			label = "BOOT";
+>  			linux,code = <BTN_0>;
+>  			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
+> diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
+> index 24fd83b43d9d..03c9843d503e 100644
+> --- a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
+> +++ b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
+> @@ -46,19 +46,19 @@ led2 {
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>
+> -		up {
+> +		key-up {
+>  			label = "UP";
+>  			linux,code = <BTN_1>;
+>  			gpios = <&gpio1_0 7 GPIO_ACTIVE_LOW>;
+>  		};
+>
+> -		press {
+> +		key-press {
+>  			label = "PRESS";
+>  			linux,code = <BTN_0>;
+>  			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
+>  		};
+>
+> -		down {
+> +		key-down {
+>  			label = "DOWN";
+>  			linux,code = <BTN_2>;
+>  			gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
+> diff --git a/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts b/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
+> index 25341f38292a..7164ad063178 100644
+> --- a/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
+> +++ b/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
+> @@ -23,7 +23,7 @@ chosen {
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>
+> -		boot {
+> +		key-boot {
+>  			label = "BOOT";
+>  			linux,code = <BTN_0>;
+>  			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
 
-I can't follow you here. My SDIO wireless card just works in an SD
-slot and doesn't have to be described.
-
->> both the controller and the flash. So I'd argue that your hardware
->> description is wrong if it describes a flash which is not present.
-> 
-> At any rate the situation is the same - the storage may be present
-> sometimes. I don't think assuming some kind of device by defualt is a
-> sound practice.
-
-Where is the assumption when the DT tells you there is a flash
-on a specific chip select but actually there it isn't. Shouldn't
-the DT then be fixed?
-
-Maybe I don't understand your problem. What are you trying to
-solve? I mean this just demotes an error to an info message.
-
-> However, when the board is designed for a specific kind of device which
-> is not always present, and the kernel can detect the device, it is
-> perfectly fine to describe it.
-> 
-> The alternative is to not use the device at all, even when present,
-> which is kind of useless.
-
-Or let the bootloader update your device tree and disable the device
-if it's not there? Or load an overlay if it is there?
-
--michael
+Thanks, this is on fixes.
