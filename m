@@ -2,99 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 548EF575773
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 00:12:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 663B65757BE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 00:41:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241057AbiGNWMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 18:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32978 "EHLO
+        id S232281AbiGNWl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 18:41:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241042AbiGNWM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 18:12:28 -0400
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BFB671717;
-        Thu, 14 Jul 2022 15:12:28 -0700 (PDT)
-Received: from mx0.riseup.net (mx0-pn.riseup.net [10.0.1.42])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
-         client-signature RSA-PSS (2048 bits) client-digest SHA256)
-        (Client CN "mx0.riseup.net", Issuer "R3" (not verified))
-        by mx1.riseup.net (Postfix) with ESMTPS id 4LkTHv6R59zDqrK;
-        Thu, 14 Jul 2022 22:12:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
-        t=1657836747; bh=nN8OVxxrhkv2QzlJp1RLZitf9bmBRAzLYPYKcObmvks=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PwBypvbd4BhT1CnxxBgb10Eghf2HC18nAciiYzlJPO9RG71gKSZdutQQqk5eZDOlS
-         qL68rwDKWDK6b8rV589dtwA9ufvhwF35VFd87H2/xL2AtrPXKh17NvQkDSk9l7HMCy
-         BL6z82pB7ZkLHiXWRWEdUrJFQLjrKyP15Uv42k1I=
-Received: from fews2.riseup.net (fews2-pn.riseup.net [10.0.1.84])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
-         client-signature RSA-PSS (2048 bits) client-digest SHA256)
-        (Client CN "mail.riseup.net", Issuer "R3" (not verified))
-        by mx0.riseup.net (Postfix) with ESMTPS id 4LkTHt3DDCz9sQt;
-        Thu, 14 Jul 2022 22:12:26 +0000 (UTC)
-X-Riseup-User-ID: 52F8D95B0879F3E12E6299DA0CB9927E43DA238409F402D037997E981A91189D
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-         by fews2.riseup.net (Postfix) with ESMTPSA id 4LkTHp3lGJz1yWZ;
-        Thu, 14 Jul 2022 22:12:22 +0000 (UTC)
-From:   =?UTF-8?q?Ma=C3=ADra=20Canal?= <mairacanal@riseup.net>
-To:     mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
-        andrzej.hajda@intel.com
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Ma=C3=ADra=20Canal?= <maira.canal@usp.br>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        =?UTF-8?q?Ma=C3=ADra=20Canal?= <mairacanal@riseup.net>
-Subject: [PATCH RESEND 2/2] dt-bindings: media: s5c73m3: Fix reset-gpio descriptor
-Date:   Thu, 14 Jul 2022 19:12:02 -0300
-Message-Id: <20220714221202.86768-3-mairacanal@riseup.net>
-In-Reply-To: <20220714221202.86768-1-mairacanal@riseup.net>
-References: <20220714221202.86768-1-mairacanal@riseup.net>
+        with ESMTP id S229448AbiGNWl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 18:41:28 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED116EE84;
+        Thu, 14 Jul 2022 15:41:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=dF8P5lISOtudOc5lOEvkHblck5rhWyzYdp8lqqJ3+zw=; b=D9FGt5VqSNX0rsos3zTvPMyDFR
+        UZnT82UcOpsn7UobKS+m0vYaem/Z+clRc8Nopat5VtPsgycp0FdSiVnra/1L2ubqgbQHH2CV5SCph
+        LNDnfhyb1OGCSsw3peijBxcBkmH8Hu8xr1KDKfFiFxyuYL4QB/2Jm1NTAn35hRAuldkXQp6V3QSPh
+        QGeAvtLqANohYScyXdwtdTd+d58a6MQW053ls525MD8vqv00Xqa2FgfnX+cRu0eyVZgRYaFcQPv4t
+        QFB6Adm7oFbd+xIM9wcmTpwNfm1cSxXUHqpHT3ejs8WtSJ9KbXxkO186NONdfbRhADxwUGnLh4Mp0
+        OCT9xCTw==;
+Received: from [2601:1c0:6280:3f0::a6b3]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1oC7WP-0026H6-JW; Thu, 14 Jul 2022 22:41:25 +0000
+Message-ID: <fb9751d2-0ca1-2d6b-bd3d-e008a7676f43@infradead.org>
+Date:   Thu, 14 Jul 2022 15:41:23 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 05/11] virt: gunyah: Add sysfs nodes
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Cc:     Trilok Soni <quic_tsoni@quicinc.com>,
+        Murali Nalajala <quic_mnalajala@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagiri@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20220223233729.1571114-1-quic_eberman@quicinc.com>
+ <20220714212940.2988436-1-quic_eberman@quicinc.com>
+ <20220714212940.2988436-6-quic_eberman@quicinc.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20220714212940.2988436-6-quic_eberman@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maíra Canal <maira.canal@usp.br>
 
-The reset-gpios is described as xshutdown-gpios on the required
-properties, as it is on the driver. Despite that, the device tree
-example set the property 'reset-gpios' instead of the property
-'xshutdown-gpios'.
 
-Therefore, this patch updates the example to match the property specified
-on the driver.
+On 7/14/22 14:29, Elliot Berman wrote:
+> diff --git a/drivers/virt/gunyah/Kconfig b/drivers/virt/gunyah/Kconfig
+> new file mode 100644
+> index 000000000000..e88289963518
+> --- /dev/null
+> +++ b/drivers/virt/gunyah/Kconfig
+> @@ -0,0 +1,13 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +
+> +config GUNYAH
+> +	tristate "Gunyah Virtualization drivers"
+> +	depends on ARM64
+> +	select SYS_HYPERVISOR
+> +	help
+> +	  The Gunyah drivers are the helper interfaces that runs in a guest VM
+> +	  such as basic inter-VM IPC and signaling mechanism,s and higher level
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Maíra Canal <mairacanal@riseup.net>
----
- Documentation/devicetree/bindings/media/samsung-s5c73m3.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+	Drop the "comma" ..................................^^^^
 
-diff --git a/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt b/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
-index 21f31fdf5543..f0ea9adad442 100644
---- a/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
-+++ b/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
-@@ -76,7 +76,7 @@ i2c@138a000000 {
- 		clock-frequency = <24000000>;
- 		clocks = <&clk 0>;
- 		clock-names = "cis_extclk";
--		reset-gpios = <&gpf1 3 1>;
-+		xshutdown-gpios = <&gpf1 3 1>;
- 		standby-gpios = <&gpm0 1 1>;
- 		port {
- 			s5c73m3_ep: endpoint {
+> +	  services such as memory/device sharing, IRQ sharing, and so on.
+> +
+> +	  Say Y here to enable the drivers needed to interact in a Gunyah
+> +	  virtual environment.
+
 -- 
-2.36.1
-
+~Randy
