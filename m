@@ -2,201 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A36C574A85
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5D97574AA4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231265AbiGNKVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 06:21:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33378 "EHLO
+        id S237605AbiGNKcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 06:32:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237809AbiGNKVx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:21:53 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4BE1222B7;
-        Thu, 14 Jul 2022 03:21:51 -0700 (PDT)
-X-UUID: b2b634651a5e41c693ba2f87c87e5099-20220714
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:48061111-a145-4f1d-ba54-267d8bf77698,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:142cfb32-b9e4-42b8-b28a-6364427c76bb,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: b2b634651a5e41c693ba2f87c87e5099-20220714
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 800925553; Thu, 14 Jul 2022 18:21:45 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 14 Jul 2022 18:21:44 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 14 Jul 2022 18:21:42 +0800
-Message-ID: <7c847b4177b9420b98bd6ecde473f149463e50b1.camel@mediatek.com>
-Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?= 
-        <LiangXu.Xu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 14 Jul 2022 18:21:41 +0800
-In-Reply-To: <b04f4a68e012157db43f8f7b0887d611f790a9c5.camel@mediatek.com>
-References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
-         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
-         <8fad0421bb7a61ae5e2ecabfc93790f1e2f30b63.camel@mediatek.com>
-         <b04f4a68e012157db43f8f7b0887d611f790a9c5.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229981AbiGNKcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:32:08 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3697747B9A;
+        Thu, 14 Jul 2022 03:32:07 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5FA77383;
+        Thu, 14 Jul 2022 12:32:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1657794725;
+        bh=jmip/PMCfB/ioznhF5DcgU6XsiQx58FU5J2Vq+R3FgI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kG4CSkq7AlF26wO7wkgvGfN+eY8hHIhjwzPegvMUrv3G7hUOFwLYvU0q3LuhzG+wP
+         SR0owL5fWVxmWXlzjaJrK6Hn1U+cz2RgNilwDIl0YXapcZQaWKuwFVC/vwAwsLTH0t
+         e/Z5/G/DXQkHsr9sbc4ByhPI5ggEwp8BhwXqcGys=
+Date:   Thu, 14 Jul 2022 13:31:35 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Volodymyr Kharuk <vkh@melexis.com>
+Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] media: uapi: Add mlx7502x header file
+Message-ID: <Ys/wh1wUvQlmpHrg@pendragon.ideasonboard.com>
+References: <cover.1657786765.git.vkh@melexis.com>
+ <0765b2ef8eea43dce67232a109e9f8b338aa06bd.1657786765.git.vkh@melexis.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <0765b2ef8eea43dce67232a109e9f8b338aa06bd.1657786765.git.vkh@melexis.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+Hi Volodymyr,
 
-On Thu, 2022-07-14 at 16:24 +0800, Rex-BC Chen wrote:
-> On Wed, 2022-07-13 at 16:10 +0800, CK Hu wrote:
-> > Hi, Bo-Chen:
-> > 
-> > On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
-> > > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > 
-> > > This patch adds a embedded displayport driver for the MediaTek
-> > > mt8195
-> > > SoC.
-> > > 
-> > > It supports the MT8195, the embedded DisplayPort units. It offers
-> > > DisplayPort 1.4 with up to 4 lanes.
-> > > 
-> > > The driver creates a child device for the phy. The child device
-> > > will
-> > > never exist without the parent being active. As they are sharing
-> > > a
-> > > register range, the parent passes a regmap pointer to the child
-> > > so
-> > > that
-> > > both can work with the same register range. The phy driver sets
-> > > device
-> > > data that is read by the parent to get the phy device that can be
-> > > used
-> > > to control the phy properties.
-> > > 
-> > > This driver is based on an initial version by
-> > > Jitao shi <jitao.shi@mediatek.com>
-> > > 
-> > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > > ---
-> > 
-> > [snip]
-> > 
-> > > +
-> > > +struct mtk_dp_timings {
-> > > +	struct videomode vm;
-> > > +};
-> > > +
-> > > +struct mtk_dp_irq_sta {
-> > > +	bool hpd_inerrupt;
-> > > +};
-> > > +
-> > > +struct mtk_dp_train_info {
-> > > +	bool tps3;
-> > > +	bool tps4;
-> > > +	bool sink_ssc;
-> > > +	bool cable_plugged_in;
-> > > +	bool cable_state_change;
-> > > +	bool cr_done;
-> > > +	bool eq_done;
-> > > +	/* link_rate is in multiple of 0.27Gbps */
-> > > +	int link_rate;
-> > > +	int lane_count;
-> > > +	struct mtk_dp_irq_sta irq_sta;
-> > 
-> > There is only one member in struct mtk_dp_irq_sta, so drop struct
-> > mtk_dp_irq_sta and use bool hpd_inerrupt directly here.
-> > 
-> 
-> Hello CK,
-> 
-> ok, I will drop this.
-> 
-> > > +};
-> > > +
-> > > +struct mtk_dp_info {
-> > > +	u32 depth;
-> > > +	enum dp_pixelformat format;
-> > > +	struct mtk_dp_timings timings;
-> > 
-> > There is only one member in struct mtk_dp_timings, so drop struct
-> > mtk_dp_timings and use struct videomode vm directly here.
-> > 
-> 
-> This structure will add more variable in following patch.
-> whole struct is like,
-> struct mtk_dp_timings {
-> 	struct videomode vm;
-> 	u8 frame_rate;
-> 	u32 pix_rate_khz;
-> };
-> 
-> I want to keep this.
+Thank you for the patch.
 
-I think we could just drop struct mtk_dp_timings and place these member
-directly in struct mtk_dp_info.
+On Thu, Jul 14, 2022 at 11:34:46AM +0300, Volodymyr Kharuk wrote:
+> Define user controls for mlx7502x driver and update MAINTAINERS
+> 
+> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+> ---
+>  MAINTAINERS                   |  7 +++++++
+>  include/uapi/linux/mlx7502x.h | 31 +++++++++++++++++++++++++++++++
+>  2 files changed, 38 insertions(+)
+>  create mode 100644 include/uapi/linux/mlx7502x.h
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ef3ec334fae9..1a68d888ee14 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12673,6 +12673,13 @@ S:	Supported
+>  W:	http://www.melexis.com
+>  F:	drivers/iio/temperature/mlx90632.c
+>  
+> +MELEXIS MLX7502X DRIVER
+> +M:	Volodymyr Kharuk <vkh@melexis.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Supported
+> +W:	http://www.melexis.com
+> +F:	include/uapi/linux/mlx7502x.h
+> +
+>  MELFAS MIP4 TOUCHSCREEN DRIVER
+>  M:	Sangwon Jee <jeesw@melfas.com>
+>  S:	Supported
+> diff --git a/include/uapi/linux/mlx7502x.h b/include/uapi/linux/mlx7502x.h
+> new file mode 100644
+> index 000000000000..44386f3d6f5a
+> --- /dev/null
+> +++ b/include/uapi/linux/mlx7502x.h
+> @@ -0,0 +1,31 @@
+> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> +/*
+> + * Melexis 7502x ToF cameras driver.
+> + *
+> + * Copyright (C) 2021 Melexis N.V.
+> + *
+> + */
+> +
+> +#ifndef __UAPI_MLX7502X_H_
+> +#define __UAPI_MLX7502X_H_
+> +
+> +#include <linux/v4l2-controls.h>
+> +
 
+These controls should be documented, in
+Documentation/userspace-api/media/drivers/.
+
+> +/* number of phases per frame: 1..8 */
+> +#define V4L2_CID_MLX7502X_PHASE_NUMBER  (V4L2_CID_USER_MLX7502X_BASE + 0)
+> +/* shift of each phase in frame, this is an array of 8 elements, each 16bits */
+> +#define V4L2_CID_MLX7502X_PHASE_SEQ	(V4L2_CID_USER_MLX7502X_BASE + 1)
+> +/* frequency modulation in MHz */
+> +#define V4L2_CID_MLX7502X_FMOD		(V4L2_CID_USER_MLX7502X_BASE + 2)
+> +/* time integration of each phase in us */
+> +#define V4L2_CID_MLX7502X_TINT		(V4L2_CID_USER_MLX7502X_BASE + 3)
+
+Are these control very device-specific, or are they concept that apply
+in general to ToF sensors ? Same for V4L2_CID_MLX7502X_OUTPUT_MODE.
+
+> +/* mode could sw(sending i2c packet), hw(pin triggering), and continuous(self triggering) */
+> +#define V4L2_CID_MLX7502X_TRIGGER_MODE	(V4L2_CID_USER_MLX7502X_BASE + 4)
+> +/* in case sw or hw trigger mode is used */
+> +#define V4L2_CID_MLX7502X_TRIGGER	(V4L2_CID_USER_MLX7502X_BASE + 5)
+
+Trigger control is likely something we need to standardize at the V4L2
+level.
+
+> +/* this is related to the taps in ToF cameras, usually A minus B is the best option */
+> +#define V4L2_CID_MLX7502X_OUTPUT_MODE	(V4L2_CID_USER_MLX7502X_BASE + 6)
+> +/* ToF camers has its own temperature sensor, which can be read out only during streaming */
+> +#define V4L2_CID_MLX7502X_TEMPERATURE	(V4L2_CID_USER_MLX7502X_BASE + 7)
+
+This should probably use the proposed temperature control from
+https://lore.kernel.org/linux-media/20220415111845.27130-3-benjamin.mugnier@foss.st.com/
+
+> +
+> +#endif /* __UAPI_MLX7502X_H_ */
+
+-- 
 Regards,
-CK
 
-> 
-> BRs,
-> Bo-Chen
-> 
-> 
-> > Regards,
-> > CK
-> > 
-> > > +};
-> > > +
-> > 
-> > 
-> 
-> 
-
+Laurent Pinchart
