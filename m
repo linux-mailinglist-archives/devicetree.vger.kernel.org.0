@@ -2,65 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D34CC575519
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 20:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F345E57554C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 20:45:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240741AbiGNSdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 14:33:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50456 "EHLO
+        id S238458AbiGNSpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 14:45:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240711AbiGNSdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 14:33:53 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3497D175B4;
-        Thu, 14 Jul 2022 11:33:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D7B95B82886;
-        Thu, 14 Jul 2022 18:33:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F11EC34114;
-        Thu, 14 Jul 2022 18:33:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657823629;
-        bh=bHCnfGkhpaHt2kUmFet5jXNnahSMUqgBM2cXP2rBui0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bZd0G25prIji2WDZJmJlw3IwGC+82ufpan0eYMMxgadiOkf/SPXupvckuyP2PdRT3
-         rdlqcmCvpQN2Pj0CeTQLJ4v/2ntGHKdfgRAkAimuzt9IJaIBVnc6+PmBFpLmCNlqrh
-         LEqIM9sr4TkUPgFzHTKZCL8IF1wWwzuW4mHnj3/H3eWtDjKyvWdjo76bwEUqG1z8+I
-         Rho9hfyg8vagdie1yhw6ldFpE2Jv4ATrCpujEwNQ6sa6ErtwlxpigOdjmYYMpoRm5x
-         XpKPLY/ipudlE+oV15ZBbK7+qqI8LVmgndIhJdcrPWHgdd8FyM4ADmcRPb42xAd2Q2
-         bUJVq8LTihxHA==
-Received: by pali.im (Postfix)
-        id AE7DC277A; Thu, 14 Jul 2022 20:33:46 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S237741AbiGNSpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 14:45:36 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCB652657A;
+        Thu, 14 Jul 2022 11:45:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657824335; x=1689360335;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pPi3eWsIlBGTVv6fqrE93d3yLDmKbn4WssjJSQISjSw=;
+  b=Y7dSfBq3XlI1tsSfx8LY6mXh2WHAYuJaacJTNBNRzrD70uWFEjG4pynd
+   BhbHCDi/44H5yS1j6IypjQ58VcF9b5jcPVA8TLyKNr73rWakPQ5tvacxT
+   oHmzvetE+a9wYPmRzXXYa8MSY9jEYCRAOPLqyIFOIMSI/xyHBMsBehB4y
+   iN2Whl8wPEXyGECSY2HgozyRwB6iayWx6ZFC29DaKi9iPGMeYOYvFLQKV
+   fBk8aPqP6ScdigGIYYxgVd3ak0a/Y6A8O47BwuCKMrVtioCT6NIJmdcY7
+   fo7eps3At7N8FQtWFkTxbflP35pz8lgBiEwXU6QXv6fQop21adFq2f+G/
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="265392860"
+X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
+   d="scan'208";a="265392860"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 11:45:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
+   d="scan'208";a="842248488"
+Received: from lkp-server01.sh.intel.com (HELO fd2c14d642b4) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 14 Jul 2022 11:45:32 -0700
+Received: from kbuild by fd2c14d642b4 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1oC3q8-00010F-8A;
+        Thu, 14 Jul 2022 18:45:32 +0000
+Date:   Fri, 15 Jul 2022 02:45:12 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Li Chen <me@linux.beauty>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Cc:     linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/4] ARM: dts: armada-39x: Fix compatible string for gpios
-Date:   Thu, 14 Jul 2022 20:33:28 +0200
-Message-Id: <20220714183328.4137-4-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220714183328.4137-1-pali@kernel.org>
-References: <20220714115515.5748-1-pali@kernel.org>
- <20220714183328.4137-1-pali@kernel.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Linux Memory Management List <linux-mm@kvack.org>,
+        Li Chen <lchen@ambarella.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] mm/sparse: skip no-map memblock check when
+ fill_subsection_map
+Message-ID: <202207150209.3Svjqq9D-lkp@intel.com>
+References: <20220711122459.13773-3-me@linux.beauty>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220711122459.13773-3-me@linux.beauty>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,41 +72,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Armada 39x supports per CPU interrupts for gpios, like Armada XP.
+Hi Li,
 
-So add compatible string "marvell,armadaxp-gpio" for Armada 39x GPIO nodes.
+Thank you for the patch! Perhaps something to improve:
 
-Driver gpio-mvebu.c which handles both pre-XP and XP variants already
-provides support for per CPU interrupts on XP and newer variants.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on arm64/for-next/core arm-perf/for-next/perf linus/master v5.19-rc6 next-20220714]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
-Fixes: d81a914fc630 ("ARM: dts: mvebu: armada-39x: add missing nodes describing GPIO's")
----
- arch/arm/boot/dts/armada-39x.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Li-Chen/add-struct-page-and-Direct-I-O-support-to-reserved-memory/20220711-202957
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: x86_64-randconfig-k001 (https://download.01.org/0day-ci/archive/20220715/202207150209.3Svjqq9D-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 5e61b9c556267086ef9b743a0b57df302eef831b)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d9809d17afee6693084b417325807c7123432fab
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Li-Chen/add-struct-page-and-Direct-I-O-support-to-reserved-memory/20220711-202957
+        git checkout d9809d17afee6693084b417325807c7123432fab
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
 
-diff --git a/arch/arm/boot/dts/armada-39x.dtsi b/arch/arm/boot/dts/armada-39x.dtsi
-index e0b7c2099831..ef3a3859802c 100644
---- a/arch/arm/boot/dts/armada-39x.dtsi
-+++ b/arch/arm/boot/dts/armada-39x.dtsi
-@@ -213,7 +213,7 @@
- 			};
- 
- 			gpio0: gpio@18100 {
--				compatible = "marvell,orion-gpio";
-+				compatible = "marvell,armadaxp-gpio", "marvell,orion-gpio";
- 				reg = <0x18100 0x40>;
- 				ngpios = <32>;
- 				gpio-controller;
-@@ -227,7 +227,7 @@
- 			};
- 
- 			gpio1: gpio@18140 {
--				compatible = "marvell,orion-gpio";
-+				compatible = "marvell,armadaxp-gpio", "marvell,orion-gpio";
- 				reg = <0x18140 0x40>;
- 				ngpios = <28>;
- 				gpio-controller;
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>, old ones prefixed by <<):
+
+>> WARNING: modpost: vmlinux.o(.text+0x346d8f): Section mismatch in reference from the function fill_subsection_map() to the function .meminit.text:memblock_is_map_memory()
+The function fill_subsection_map() references
+the function __meminit memblock_is_map_memory().
+This is often because fill_subsection_map lacks a __meminit
+annotation or the annotation of memblock_is_map_memory is wrong.
+
 -- 
-2.20.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
