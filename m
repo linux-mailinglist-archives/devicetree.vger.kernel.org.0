@@ -2,174 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84315574BAE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0280574BD9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:24:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230512AbiGNLTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 07:19:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57054 "EHLO
+        id S237839AbiGNLYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 07:24:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230016AbiGNLTW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:19:22 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1272A42AFB;
-        Thu, 14 Jul 2022 04:19:20 -0700 (PDT)
-X-UUID: 87323f8443794ff2bdacbc3f052a3eb3-20220714
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:dd6261c3-b5af-4250-a2c9-126d182e9630,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:586a4c64-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 87323f8443794ff2bdacbc3f052a3eb3-20220714
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1722459032; Thu, 14 Jul 2022 19:19:17 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 14 Jul 2022 19:19:16 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 14 Jul 2022 19:19:15 +0800
-Message-ID: <f0ba5478d77a5190a9050e4518ebbd44bcd889a6.camel@mediatek.com>
-Subject: Re: [PATCH v14 03/10] drm/edid: Add cea_sad helpers for freq/length
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <ck.hu@mediatek.com>, <liangxu.xu@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 14 Jul 2022 19:19:10 +0800
-In-Reply-To: <67b3a842-66aa-2336-3955-d5aa760cdd4b@collabora.com>
-References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
-         <20220712111223.13080-4-rex-bc.chen@mediatek.com>
-         <67b3a842-66aa-2336-3955-d5aa760cdd4b@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S238699AbiGNLXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:23:47 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 228B4F589
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:23:46 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id t1so2256426lft.8
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:23:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=HvvFaUR5bXY5BZZNecv98EVTmNE2OacreTsFOQhpBFU=;
+        b=doYkZSEz2un16ZFvgiaI2FMwS94GxnUmCHQO8N7NoKhxkNxKaydfkJ9TFIB4pnjzV9
+         m7DygNZ+j8xWFasx88z+RA9oxcARFs728OzMQcr0AXGYutc1SDGY5+oacRKa6f/n8+3E
+         bkL6aBct7g6QoAFTjnkjEhZ1XSvkuFWm6yDfXN/92CkuT5CTqlvIqS+hsaEuqIhc9iLN
+         PSXZFS0Q5nj0tWpQExYv/3Ls6JrTUIX/VfQ1niDwJ4/E8DrV9VNmWy/2/Uo6eheI7eA8
+         cHWoEkdnodYbTpikky94rwzmly8+b+LsyTkaQQ8YD/ZsUGaxHJAE7XtLiPeCACM/wWdr
+         c1qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HvvFaUR5bXY5BZZNecv98EVTmNE2OacreTsFOQhpBFU=;
+        b=4w9Qbb4g2ZPXyxNZRfrC9o11gvo7DjU7hlhHMtD2ZxP7CwGmwMSc6H+Kis2DfZ5p4E
+         uSN9EqqdIJpTJd8cMBSTaD/f2Tm3S20w9bnLX4CpzqEDtr6KZsag5CiQZZjiPIwiSBHe
+         0xZRgg65s2A+PiwZAKhKrFog04DlndYkfuzlErpQL52l0Srq/8qGqgMVlqKbP6EInNl0
+         z7jOu+IppaxLAH8Mos3fzntRDKm4XZQWMBs+ovAE5+7nctmYdPR1OkFLdv2MQ76t7iLY
+         sMGayyH5GRD/VRN1RPuQINwdNIrl9I2dJRBy5/94TdpynlnIHgxg5WykiC+PT4sAEQBV
+         KAIw==
+X-Gm-Message-State: AJIora/VZoEWIuu5ym+1WXIOtKxdKVz9UK4xGfeUPy2PlehrHfFTlRgu
+        1+pPk35y6R1vRvNhWEoNe7p3KA==
+X-Google-Smtp-Source: AGRyM1uS0KaiJyicc7GDsROKAP5c3u5hRQ92wasnzsfAJLIR1n7pW45ZSBBRj55ec2eGuZxhpBy/yw==
+X-Received: by 2002:a05:6512:3c86:b0:489:cef9:18bd with SMTP id h6-20020a0565123c8600b00489cef918bdmr4873452lfv.386.1657797824467;
+        Thu, 14 Jul 2022 04:23:44 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id u19-20020a05651c131300b0025d87a16111sm239000lja.31.2022.07.14.04.23.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 04:23:43 -0700 (PDT)
+Message-ID: <20a88191-0c4e-710f-e6ab-4087e5980533@linaro.org>
+Date:   Thu, 14 Jul 2022 13:23:41 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
+ camera sensor binding
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org,
+        Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+References: <cover.1657786765.git.vkh@melexis.com>
+ <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
+ <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
+ <c87132c4-5801-2f1f-8ef9-3997474cf7a5@linaro.org>
+ <Ys/zvH3ICr4zpTLH@pendragon.ideasonboard.com>
+ <7e362d83-36c2-00ed-6525-37197ee8e5d7@linaro.org>
+ <Ys/6O2H/eDEWYHei@pendragon.ideasonboard.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Ys/6O2H/eDEWYHei@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-07-14 at 13:12 +0200, AngeloGioacchino Del Regno wrote:
-> Il 12/07/22 13:12, Bo-Chen Chen ha scritto:
-> > From: Guillaume Ranquet <granquet@baylibre.com>
-> > 
-> > This patch adds two helper functions that extract the frequency and
-> > word
-> > length from a struct cea_sad.
-> > 
-> > For these helper functions new defines are added that help
-> > translate the
-> > 'freq' and 'byte2' fields into real numbers.
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >   drivers/gpu/drm/drm_edid.c | 73
-> > ++++++++++++++++++++++++++++++++++++++
-> >   include/drm/drm_edid.h     | 14 ++++++++
-> >   2 files changed, 87 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_edid.c
-> > b/drivers/gpu/drm/drm_edid.c
-> > index bc43e1b32092..79316d7f1fd8 100644
-> > --- a/drivers/gpu/drm/drm_edid.c
-> > +++ b/drivers/gpu/drm/drm_edid.c
-> > @@ -4916,6 +4916,79 @@ int drm_edid_to_speaker_allocation(const
-> > struct edid *edid, u8 **sadb)
-> >   }
-> >   EXPORT_SYMBOL(drm_edid_to_speaker_allocation);
-> >   
-> > +/**
-> > + * drm_cea_sad_get_sample_rate - Extract the sample rate from
-> > cea_sad
-> > + * @sad: Pointer to the cea_sad struct
-> > + *
-> > + * Extracts the cea_sad frequency field and returns the sample
-> > rate in Hz.
-> > + *
-> > + * Return: Sample rate in Hz or a negative errno if parsing
-> > failed.
-> > + */
-> > +int drm_cea_sad_get_sample_rate(const struct cea_sad *sad)
-> > +{
-> > +	switch (sad->freq) {
-> > +	case DRM_CEA_SAD_FREQ_32KHZ:
-> > +		return 32000;
-> > +	case DRM_CEA_SAD_FREQ_44KHZ:
-> > +		return 44100;
-> > +	case DRM_CEA_SAD_FREQ_48KHZ:
-> > +		return 48000;
-> > +	case DRM_CEA_SAD_FREQ_88KHZ:
-> > +		return 88200;
-> > +	case DRM_CEA_SAD_FREQ_96KHZ:
-> > +		return 96000;
-> > +	case DRM_CEA_SAD_FREQ_176KHZ:
-> > +		return 176400;
-> > +	case DRM_CEA_SAD_FREQ_192KHZ:
-> > +		return 192000;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +}
-> > +EXPORT_SYMBOL(drm_cea_sad_get_sample_rate);
-> > +
-> > +static bool drm_cea_sad_is_pcm(const struct cea_sad *sad)
-> > +{
-> > +	switch (sad->format) {
-> > +	case HDMI_AUDIO_CODING_TYPE_PCM:
-> > +		return true;
-> > +	default:
-> > +		return false;
-> > +	}
+On 14/07/2022 13:12, Laurent Pinchart wrote:
+>>>>> One option would be to support the following three compatible values:
+>>>>>
+>>>>> 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
+>>>>> 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
+>>>>> 	compatible = "melexis,mlx7502x";
+>>>>>
+>>>>> The last one only would trigger autodetection. I'm still not sure how to
+>>>>> document that properly in bindings though.
+>>>>
+>>>> I missed that part of binding.
+>>>>
+>>>> Wildcards are not allowed in compatible, so mlx7502x has to go.
+>>>
+>>> Really ? We've had fallback generic compatible strings since the
+>>> beginning.
+>>
+>> Fallback generic compatibles are allowed. Wildcards not. Wildcards were
+>> actually never explicitly allowed, they just slipped in to many
+>> bindings... We have several discussions on this on mailing list, so no
+>> real point to repeat the arguments.
+>>
+>> There is a difference between generic fallback. If the device follows
+>> clear specification and version, e.g. "foo-bar-v4", you can use it for
+>> generic compatible. This is more common in SoC components. Requirement -
+>> there is a clear mapping between versions and SoCs.
 > 
-> Are you sure that you need this helper? That's used only in one
-> function...
-> ...if you really need this one, though, I don't think that using a
-> switch
-> is the best option here.
+> I'm not sure to see a clear difference between the two concepts.
+
+The clear difference is that you have a versioned and re-usable hardware
+block plus clear mapping which version goes to which SoC. Version
+numbers usually start with 1, not with 75025. 75025 is a model name.
+
+>>>> Anyway what does this autodetection mean?
+>>>
+>>> As far as I understand, it means that the driver will use a hardware
+>>> identification register to figure out if the sensor is a 75026 or 75027.
+>>
+>> Then there is no need to define 75027 compatible. DT is for cases where
+>> autodetection does not work...
 > 
-> Unless anyone is against that (please, reason?), I would be for doing
-> it like:
+> It's autodetection of the exact device model, those are I2C devices so
+> we still need DT, and we still need to know that it's one of the
+> MLX75026 or MLX75027.
 > 
-> 	return sad->format == HDMI_AUDIO_CODING_TYPE_PCM;
+>>> The upside is that one doesn't need to change the device tree when
+>>> swapping between those two sensors. The downside is that the sensor
+>>> needs to be powered up at probe time. Depending on the platform, one of
+>>> those two behaviours is preferred. Auto-detection is nice, but in
+>>> laptops or tablets (not a use case for this particular device, but the
+>>> problem applies to camera sensors in general), it would mean that the
+>>> privacy LED of the camera could be briefly lit at boot time due to the
+>>> sensor being powered on, which can worry users.
+>>
+>> OK, that's reasonable argument for dedicated compatible but I don't
+>> understand why you cannot perform autodetection the moment device is
+>> actually powered up (first time). I understand it is nice and easy to
+>> make everything in the probe and most devices perform it that way. But
+>> if you don't want to do it in the probe - DT is not a workaround for this...
 > 
-> Everything else looks good to me (and working, too).
-> 
-> Cheers,
-> Angelo
+> For cameras, we often deal with complex pipelines with multiple external
+> devices and multiple IP cores, with drivers that need to communicate
+> with each other to initialize the complete camera system. For instance,
+> each camera-related component in the system registers itself in a media
+> graph that can be queried from userspace and exposes information about
+> all devices, including their model. There's no power up of any device
+> when this query is being performed from userspace. It could possibly be
+> changed (and maybe it should, for reasons unrelated to this discussion),
+> but we're looking at pretty much a complete redesign of V4L2 and MC
+> then.
 
-Hello Angelo,
+Is then autodetection a real use case since you have to power up the
+sensor each time system boots and this violates privacy? Several I2C
+sensors do not care about this and they always do it on power up, so
+aren't we solving here something unimportant?
 
-I think you are right,
-in this case, we don't need this help function.
-I will merge this function into
-drm_cea_sad_get_uncompressed_word_length()
-
-BRs,
-Bo-Chen
-
-
+Best regards,
+Krzysztof
