@@ -2,50 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6D30575123
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 16:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF83F575136
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 16:58:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232288AbiGNOzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 10:55:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60936 "EHLO
+        id S229986AbiGNO6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 10:58:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229986AbiGNOzB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 10:55:01 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BF1D2BB2B;
-        Thu, 14 Jul 2022 07:55:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 471A3B826C0;
-        Thu, 14 Jul 2022 14:54:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36310C3411C;
-        Thu, 14 Jul 2022 14:54:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1657810497;
-        bh=nZAl/M9yCCjXCxofy9D8zOlauT5qfrQNarNo+cTtzGY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=07sPYhnSnpZo6EAb/64UVfYDTjvqGLlXqViVTZBCM2gCnJ94OKqEMX7Q0Gugc2x+W
-         liJtqJedq+KKCnZT/NMUQ7gzXoh2HprkZvQFBngXaTf5XR+w5j9NA9CSi+FIr8aeMA
-         Xr2ffmhwMK7nO+pQXAnFnsTVe9ItUJxZXQoz484s=
-Date:   Thu, 14 Jul 2022 16:54:54 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Sebastian Ene <sebastianene@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v12 0/2] Detect stalls on guest vCPUS
-Message-ID: <YtAuPh7NCbGX8jFB@kroah.com>
-References: <20220711081720.2870509-1-sebastianene@google.com>
+        with ESMTP id S238171AbiGNO6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 10:58:05 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 016FC5F10F
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 07:58:03 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id os14so3915203ejb.4
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 07:58:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rmwz5UdPDv24j9r/+qXMLUwb1qPdbsCqRql7+qkdLJs=;
+        b=cBnF70BmBTyQ0KYw65AGC7GPK0gtdqWmk/Tf/JXFG8mMNz0BzuRU/6XEtfPK7jI2oH
+         JcrIEjJLGRShuiUNIupNKcqHaWlWWgRpJIz+NlfLHgHWAthrpbz1xMJb/0zgX+TJPsBI
+         d8vPIChTYB8Njs0gL8IgYBdFj4WFO2ABsZawg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rmwz5UdPDv24j9r/+qXMLUwb1qPdbsCqRql7+qkdLJs=;
+        b=Q1DZqvcqhk8EnD86WVUvzQDfnHIKFiKpgBKXXiqVh8JI6XMcwtVPuCFFYhnYzDF8Hd
+         iaKLwosz7IyK/vTIFpFW6gL73iBXX47MYVv1JwWt29uEpNs3Xb30FGb4d2uowqHtIl3K
+         JdEgeaZ5tEyWQsh82rUUfPj1sQ1+PTJmlfoLvrFonIgFC1Z42EWoTDdAO9vIcXwjDjC1
+         mZSYi2tlJp67QzuL4pI+OVheocio2kuUbHFG+X0U+33jNYr2gx1IbQiAZ0bLhsIiHpTD
+         BdhJQ2OsNiJOik55jNTbjQySSUMwXNwtS8P5VvbZdMxMmNSMs9DFe0/5Cynwkomc9juZ
+         i+Nw==
+X-Gm-Message-State: AJIora9MjimjUTx4+e/KAkrFCd8XIfPPTIoKHOSA+XUrp9mAXTWIYcJP
+        QZa+RTWaqmrmjB/80p0ZB40p1NkXn8ryR9WM
+X-Google-Smtp-Source: AGRyM1teB18NbVwfgzLm9ToGsjhCvO/X+GUvit2k8oMkZhi89tADsTVs7TUoEizD4JRF9VqZQtaaHg==
+X-Received: by 2002:a17:907:2c74:b0:72b:5ba7:d96f with SMTP id ib20-20020a1709072c7400b0072b5ba7d96fmr9343891ejc.33.1657810681386;
+        Thu, 14 Jul 2022 07:58:01 -0700 (PDT)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
+        by smtp.gmail.com with ESMTPSA id k8-20020a056402048800b00435a08a3557sm1161782edv.27.2022.07.14.07.57.59
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 07:58:00 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id b6so685836wmq.5
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 07:57:59 -0700 (PDT)
+X-Received: by 2002:a05:600c:3ace:b0:3a0:4ea4:5f77 with SMTP id
+ d14-20020a05600c3ace00b003a04ea45f77mr9537025wms.57.1657810679294; Thu, 14
+ Jul 2022 07:57:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220711081720.2870509-1-sebastianene@google.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220714074958.86721-1-jinghung.chen3@hotmail.com> <SG2PR03MB500619860DC13133A0B5EB4FCC889@SG2PR03MB5006.apcprd03.prod.outlook.com>
+In-Reply-To: <SG2PR03MB500619860DC13133A0B5EB4FCC889@SG2PR03MB5006.apcprd03.prod.outlook.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 14 Jul 2022 07:57:47 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XFCjCx=uXHWpEi04C-V9p-3qOp1W1g_0WXA4k-nRr1Zw@mail.gmail.com>
+Message-ID: <CAD=FV=XFCjCx=uXHWpEi04C-V9p-3qOp1W1g_0WXA4k-nRr1Zw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: arm: qcom: document sc7280 and
+ villager board
+To:     Jimmy Chen <jinghung.chen3@hotmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Alan Huang <alan-huang@quanta.corp-partner.google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,33 +81,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 11, 2022 at 08:17:18AM +0000, Sebastian Ene wrote:
-> Minor change from v11 which cleans up the Kconfig option selection.
-> 
-> This adds a mechanism to detect stalls on the guest vCPUS by creating a
-> per CPU hrtimer which periodically 'pets' the host backend driver.
-> On a conventional watchdog-core driver, the userspace is responsible for
-> delivering the 'pet' events by writing to the particular /dev/watchdogN node.
-> In this case we require a strong thread affinity to be able to
-> account for lost time on a per vCPU basis.
-> 
-> This device driver acts as a soft lockup detector by relying on the host
-> backend driver to measure the elapesed time between subsequent 'pet' events.
-> If the elapsed time doesn't match an expected value, the backend driver
-> decides that the guest vCPU is locked and resets the guest. The host
-> backend driver takes into account the time that the guest is not
-> running. The communication with the backend driver is done through MMIO
-> and the register layout of the virtual watchdog is described as part of
-> the backend driver changes.
-> 
-> The host backend driver is implemented as part of:
-> https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
-> 
-> Changelog v12:
->  - don't select LOCKUP_DETECTOR from Kconfig when VCPU_STALL_DETECTOR is
->    compiled in as suggested by Greg
->  - add the review-by tag received from Guenter
+Hi,
 
-Thanks for sticking with this, now applied to my tree!
+On Thu, Jul 14, 2022 at 12:50 AM Jimmy Chen <jinghung.chen3@hotmail.com> wrote:
+>
+> This adds a LTE skus for Chromebook Villager to the yaml.
+>
+> Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
+>
+> ---
+>
+> (no changes since v2)
+>
+> Changes in v2:
+> -Add this patch
+>
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 
-greg k-h
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
