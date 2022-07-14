@@ -2,152 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1918357513F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 16:58:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE1BD575144
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 16:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239642AbiGNO6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 10:58:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36058 "EHLO
+        id S238794AbiGNO6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 10:58:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239720AbiGNO6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 10:58:33 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 212895F9B6
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 07:58:32 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id x91so2787467ede.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 07:58:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Gqvn61K0EIzqga5ZsmwE37Nmr0weGybQOppfrqBQs5Y=;
-        b=icHjNfv2FUgdYdYEMXmROTOoNS9JW11vjJJi67wVg8YgRPCvAIKAkjjl/AsD5cdEKI
-         OGGlXe4tj+abtMFrHjNNQSr/iaDwR2KZ3R+2cwwS7s8/ngpw7IX/xUuznNRBFh/kT1gu
-         Sw3XijASuHCr5UKmpktcOViQo8ujJHxE2yXhQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Gqvn61K0EIzqga5ZsmwE37Nmr0weGybQOppfrqBQs5Y=;
-        b=kbijUyGgC5Oe2EhV6rgd7IaNmcn5g4yFv2HmTaN3nLbxQkFop6gt4mfgHJzWVMj9+K
-         bgzMOd7bg5vtb0W3/UzDEqk7TsNvwGlZRjjt0BW206i7u7K5lZgYPtPwQRFTJWxZhdlb
-         7BHcbARkQnDtiBa+3SRRRww6wMxYsKBZs8Re6fO7+owkPAR7iCXWsu8DE2LbmE6Ye2NI
-         tNE1i6yHOCjTRg7GxlaOUdHzmKZV9a7Ynpkda3OcjpWm8v25ecmDLBz10x+4lBRR2J9Y
-         U3GZOTB/B7PUOP3o7yFmVl8+095ZUJKowZ9BlKaNM0FgJIDjSQ/4Rk1rYw7utfg+c01+
-         U2uQ==
-X-Gm-Message-State: AJIora8dIWXUW1VLTEzWfnLrwFkSnqar9fDW2RolSW+wRdIEzxmCy26u
-        kZjQfZ/OT8M/Vj146sd+Fjqd62CKek/QtFe9
-X-Google-Smtp-Source: AGRyM1vXpR5q9et6HHbivZHyRQEd3aB9iWRdOjPBz71JddEMEHOA0NNpO3whkb1o3+GrUZR/1aIXfQ==
-X-Received: by 2002:a05:6402:5245:b0:43a:a024:82cc with SMTP id t5-20020a056402524500b0043aa02482ccmr13081852edd.56.1657810710375;
-        Thu, 14 Jul 2022 07:58:30 -0700 (PDT)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
-        by smtp.gmail.com with ESMTPSA id u9-20020a1709061da900b00722e50e259asm782708ejh.102.2022.07.14.07.58.29
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 07:58:29 -0700 (PDT)
-Received: by mail-wm1-f46.google.com with SMTP id o8so1214895wms.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 07:58:29 -0700 (PDT)
-X-Received: by 2002:a05:600c:285:b0:3a2:e5fd:84eb with SMTP id
- 5-20020a05600c028500b003a2e5fd84ebmr9737438wmk.151.1657810708973; Thu, 14 Jul
- 2022 07:58:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220714074958.86721-1-jinghung.chen3@hotmail.com> <SG2PR03MB5006A1A4A5F9942C1EA9FA22CC889@SG2PR03MB5006.apcprd03.prod.outlook.com>
-In-Reply-To: <SG2PR03MB5006A1A4A5F9942C1EA9FA22CC889@SG2PR03MB5006.apcprd03.prod.outlook.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 14 Jul 2022 07:58:17 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XST+cuy=EM1A_08H2+_CHFvhuzYOkWe5RAxsTvht_z=Q@mail.gmail.com>
-Message-ID: <CAD=FV=XST+cuy=EM1A_08H2+_CHFvhuzYOkWe5RAxsTvht_z=Q@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: Add LTE SKUs for sc7280-villager family
-To:     Jimmy Chen <jinghung.chen3@hotmail.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Alan Huang <alan-huang@quanta.corp-partner.google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S239735AbiGNO6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 10:58:48 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8406C6276;
+        Thu, 14 Jul 2022 07:58:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657810722; x=1689346722;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=/k3U6MM/QU/ipwYFEym0fsVVyXCQEiy/mFvGfF6OsGQ=;
+  b=SumbVcfui8Mnyiyj5p4qGRuWLUsK6BdudPfwy+XBW+y0EEL+dvMRMIcF
+   J2N0Xf3YMPsdkWUdIUNxuBULb0BKHDapcv7SHc+uzEmzU1rjoSXQU3aW5
+   fntPoDSzsQ9nKBaHzAMFcO/5oxXbiSznviSfa9g+RTcBwzjWjhxtDvh5m
+   fNSvBbpxzPdx/ap9u+H+UzCUgyg0NYXaECwOSYABTsBFKXPo+tQiQC9zJ
+   n27pWMZRyfZrwbp11UO2skfUu+f8hinoDl+sQCoCAc36HQ9zk7+d1ARkH
+   0sVmVu+wtE59TTq4sGrxgx5MDlU626Y5Fs8K2Fv7qeAamsH7CWVUKFVdw
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="347212130"
+X-IronPort-AV: E=Sophos;i="5.92,271,1650956400"; 
+   d="scan'208";a="347212130"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 07:58:42 -0700
+X-IronPort-AV: E=Sophos;i="5.92,271,1650956400"; 
+   d="scan'208";a="628732300"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 07:58:39 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1oC0IW-001DNE-21;
+        Thu, 14 Jul 2022 17:58:36 +0300
+Date:   Thu, 14 Jul 2022 17:58:36 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+Message-ID: <YtAvHMmGay/3HACZ@smile.fi.intel.com>
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220713131421.1527179-1-nuno.sa@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Jul 13, 2022 at 03:14:17PM +0200, Nuno Sá wrote:
+> The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of calling the
+> gpiochip 'set_config()' hook. However, AFAICT, there's no way that this
+> flag is set because there's no support for it in firwmare code. Moreover,
+> in 'gpiod_configure_flags()', only pull-ups and pull-downs are being
+> handled.
+> 
+> On top of this, there are some users that are looking at
+> 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So, unless I'm
+> missing something, it looks like this was never working for these chips.
+> 
+> Note that the ACPI case is only compiled tested. At first glance, it seems
+> the current patch is enough but i'm not really sure...
 
-On Thu, Jul 14, 2022 at 12:50 AM Jimmy Chen <jinghung.chen3@hotmail.com> wrote:
->
-> This adds LTE skus for villager device tree files.
->
-> Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
->
-> ---
->
-> Changes in v4:
->  - Reorder 'status' last
->
->  arch/arm64/boot/dts/qcom/Makefile                |  3 +++
->  .../boot/dts/qcom/sc7280-chrome-common.dtsi      | 11 -----------
->  .../arm64/boot/dts/qcom/sc7280-herobrine-crd.dts |  1 +
->  .../dts/qcom/sc7280-herobrine-herobrine-r1.dts   |  1 +
->  .../boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi  | 16 ++++++++++++++++
->  .../qcom/sc7280-herobrine-villager-r0-lte.dts    | 14 ++++++++++++++
->  .../qcom/sc7280-herobrine-villager-r1-lte.dts    | 14 ++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts          |  1 +
->  8 files changed, 50 insertions(+), 11 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
->
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index bb9f4eb3e65a0..7fe7c78a79369 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -103,6 +103,9 @@ dtb-$(CONFIG_ARCH_QCOM)     += sc7180-trogdor-r1-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-herobrine-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-villager-r0.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-villager-r1.dtb
+So, I looked closer to the issue you are trying to describe here.
 
-As per my comments in the previous patch, the "-r1" entry should be
-moved from patch #3 to patch #2.
+As far as I understand we have 4 state of BIAS in the hardware:
+1/ AS IS (defined by firnware)
+2/ Disabled (neither PU, not PD)
+3/ PU
+4/ PD
 
-Also the above line seems to be indented incorrectly.
+The case when the default of bias is not disabled (for example specific, and I
+think very special, hardware may reset it to PD or PU), it's a hardware driver
+responsibility to inform the framework about the real state of the lines and
+synchronize it.
 
+Another case is when the firmware sets the line in non-disabled state and
+by some reason you need to disable it. The question is, why?
 
-> +dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-villager-r0-lte.dtb
+> As a side note, this came to my attention during this patchset [1]
+> (and, ofr OF,  was tested with it).
+> 
+> [1]: https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@analog.com/
 
-For all the sc7180 Chromebook devices the "r0" variants are all sorted
-together. Thus the order should end up being:
+Since this provides a GPIO chip, correct?, it's responsibility of the driver to
+synchronize it, no? Basically if you really don't trust firmware, you may
+go via all GPIO lines and switch them to the known (in software) state. This
+approach on the other hand is error prone, because firmware should know better
+which pin is used for which purpose, no? If you don't trust firwmare (in some
+cases), then it's a matter of buggy platform that has to be quirked out.
 
-sc7280-herobrine-villager-r0.dtb
-sc7280-herobrine-villager-r0-lte.dtb
-sc7280-herobrine-villager-r1.dtb
-sc7280-herobrine-villager-r1-lte.dtb
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Herobrine dts fragment for LTE SKUs
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +/* Modem setup is different on Chrome setups than typical Qualcomm setup */
-> +
-> +&remoteproc_mpss {
-> +       compatible = "qcom,sc7280-mss-pil";
-> +       iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
-
-You accidentally dropped the "interconnects" property that was added
-by commit a0cdc83fa89b ("arm64: dts: qcom: sc7280: Add proxy
-interconnect requirements for modem"). Please put it back.
