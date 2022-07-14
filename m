@@ -2,167 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17CF5574A03
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FD94574A1D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:07:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237937AbiGNKEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 06:04:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44200 "EHLO
+        id S238005AbiGNKHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 06:07:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237845AbiGNKEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:04:00 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3309BDFC5
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:03:58 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id u13so1972016lfn.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:03:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iSjDY003YCEJCAL+QFpIk6XgpVGUGc1D7V9hV3sdds8=;
-        b=oaKJTR9qMGTUFrv93sM3Up09q7/CKcNxyofNpoGaPGkSmp4EtVTp5IVfdwZaMIQT38
-         XPzYHZyPvazmKC/t7fzVwj+BG5o3nA7LJRYC2m5VhtBNwYdzTiPepjkrZf1LlLsgCJmU
-         68AdPk4IU8WEYaFntkDYx/Fm6tqG6//xUXA+JXRkfQHVQEKnDBiGdPVVSfMLkJ7DnEF4
-         oi8lVTx8sdM4115m4mYPLmbbygLex75c/S3mJT73A+XFuf5fZSAdkb1RCsahZhvAqnlB
-         KGFalhqEWWaXPuv7KJR18upfMshC2GYAg4Gr6cnDTin3gDwkkHLAPkRrPkya6XDuu3WE
-         iEAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iSjDY003YCEJCAL+QFpIk6XgpVGUGc1D7V9hV3sdds8=;
-        b=LLzz/K1z2akIL0DedQhdKFWKzvnCfs+gSgtFDmyZeDfK2G25DU6RS8+pfF9XViH04E
-         yMIYavWoHEafa/DuzV11Ohjx32shYNQM9t6yTqJSX/7ftyMGt92W+WZG/ibxejY7qOwp
-         NrXEzgFEEATVEtB/2S+iX6ULBZ/0Qm6+64R+kTC6rIuqCQfHWylrSG9B2UbLHJpCy9Fv
-         +tZPOFdfGQiUQh6mH/98HL6mg+i/cK2LYJ1F5y/wryX21EH2Ot3YKxHz/olOi1bzdGeP
-         DWNJ6ghuTf8t5O7XeS0ws6onRFWmGBn/ztS+T+yntAriiATewf3st/UVRxPw9+kyzZP4
-         Risw==
-X-Gm-Message-State: AJIora+qOJUafbOyiiEmv+aGeR6Xp9tkcRbgUfA+QNP37qAVPpxuKO3J
-        5FSw99oJMmVYfC4c3lluPTtIkw==
-X-Google-Smtp-Source: AGRyM1vns3Jat5Zluvzc1MJY1pz1ufsAxWFrQ6prhmCJo119bmbWhsaH88i+Ow0IrOG2G1oh12Xupw==
-X-Received: by 2002:a05:6512:ba3:b0:489:ed8b:a172 with SMTP id b35-20020a0565120ba300b00489ed8ba172mr4621121lfv.584.1657793037760;
-        Thu, 14 Jul 2022 03:03:57 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id c9-20020a056512074900b00489c92779f8sm273355lfs.184.2022.07.14.03.03.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jul 2022 03:03:57 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S237998AbiGNKHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:07:10 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9413A509D2;
+        Thu, 14 Jul 2022 03:07:09 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8DF4C383;
+        Thu, 14 Jul 2022 12:07:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1657793226;
+        bh=MVl5aU7IJeIW69QWt0zAFuc+51OhBV0nnSKU72uq4J0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vyuMw9eNI5ZzkQaYFsk+eRFRLlklk8Qv+B4wLK8DRQo1YzGMcuZ+vOrWWuyjTGQpA
+         eJev8YXJsVEU2D5w4dtPpCiMWCGaj/bnVHph9nC34X0wEt3Mf5d2/46m+s3B+KnL9u
+         244ZFfpA50laLlvgy5cGgnqMYXrhy2AZ8jFfFN00=
+Date:   Thu, 14 Jul 2022 13:06:35 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Volodymyr Kharuk <vkh@melexis.com>
+Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: [PATCH 6/6] clk: qcom: cpu-8996: use constant mask for pmux
-Date:   Thu, 14 Jul 2022 13:03:51 +0300
-Message-Id: <20220714100351.1834711-7-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220714100351.1834711-1-dmitry.baryshkov@linaro.org>
-References: <20220714100351.1834711-1-dmitry.baryshkov@linaro.org>
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
+ camera sensor binding
+Message-ID: <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
+References: <cover.1657786765.git.vkh@melexis.com>
+ <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Both pmux instances share the same width and shift. Specify the mask at
-compile time to simplify functions.
+Hi Volodymyr,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/clk/qcom/clk-cpu-8996.c | 19 ++++++-------------
- 1 file changed, 6 insertions(+), 13 deletions(-)
+Thank you for the patch.
 
-diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
-index 0a336adb02b5..ee76ef958d31 100644
---- a/drivers/clk/qcom/clk-cpu-8996.c
-+++ b/drivers/clk/qcom/clk-cpu-8996.c
-@@ -49,6 +49,7 @@
-  * detect voltage droops.
-  */
- 
-+#include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/io.h>
-@@ -76,6 +77,8 @@ enum _pmux_input {
- #define ALT_PLL_OFFSET	0x100
- #define SSSCTL_OFFSET 0x160
- 
-+#define PMUX_MASK	0x3
-+
- static const u8 prim_pll_regs[PLL_OFF_MAX_REGS] = {
- 	[PLL_OFF_L_VAL] = 0x04,
- 	[PLL_OFF_ALPHA_VAL] = 0x08,
-@@ -244,8 +247,6 @@ static struct clk_alpha_pll perfcl_alt_pll = {
- 
- struct clk_cpu_8996_pmux {
- 	u32	reg;
--	u8	shift;
--	u8	width;
- 	struct notifier_block nb;
- 	struct clk_regmap clkr;
- };
-@@ -265,26 +266,22 @@ static u8 clk_cpu_8996_pmux_get_parent(struct clk_hw *hw)
- {
- 	struct clk_regmap *clkr = to_clk_regmap(hw);
- 	struct clk_cpu_8996_pmux *cpuclk = to_clk_cpu_8996_pmux_hw(hw);
--	u32 mask = GENMASK(cpuclk->width - 1, 0);
- 	u32 val;
- 
- 	regmap_read(clkr->regmap, cpuclk->reg, &val);
--	val >>= cpuclk->shift;
- 
--	return val & mask;
-+	return FIELD_GET(PMUX_MASK, val);
- }
- 
- static int clk_cpu_8996_pmux_set_parent(struct clk_hw *hw, u8 index)
- {
- 	struct clk_regmap *clkr = to_clk_regmap(hw);
- 	struct clk_cpu_8996_pmux *cpuclk = to_clk_cpu_8996_pmux_hw(hw);
--	u32 mask = GENMASK(cpuclk->width + cpuclk->shift - 1, cpuclk->shift);
- 	u32 val;
- 
--	val = index;
--	val <<= cpuclk->shift;
-+	val = FIELD_PREP(PMUX_MASK, index);
- 
--	return regmap_update_bits(clkr->regmap, cpuclk->reg, mask, val);
-+	return regmap_update_bits(clkr->regmap, cpuclk->reg, PMUX_MASK, val);
- }
- 
- static int clk_cpu_8996_pmux_determine_rate(struct clk_hw *hw,
-@@ -366,8 +363,6 @@ static const struct clk_hw *perfcl_pmux_parents[] = {
- 
- static struct clk_cpu_8996_pmux pwrcl_pmux = {
- 	.reg = PWRCL_REG_OFFSET + MUX_OFFSET,
--	.shift = 0,
--	.width = 2,
- 	.nb.notifier_call = cpu_clk_notifier_cb,
- 	.clkr.hw.init = &(struct clk_init_data) {
- 		.name = "pwrcl_pmux",
-@@ -381,8 +376,6 @@ static struct clk_cpu_8996_pmux pwrcl_pmux = {
- 
- static struct clk_cpu_8996_pmux perfcl_pmux = {
- 	.reg = PERFCL_REG_OFFSET + MUX_OFFSET,
--	.shift = 0,
--	.width = 2,
- 	.nb.notifier_call = cpu_clk_notifier_cb,
- 	.clkr.hw.init = &(struct clk_init_data) {
- 		.name = "perfcl_pmux",
+On Thu, Jul 14, 2022 at 11:34:47AM +0300, Volodymyr Kharuk wrote:
+> Add device tree binding of the mlx7502x and update MAINTAINERS
+> 
+> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+> ---
+>  .../bindings/media/i2c/melexis,mlx7502x.yaml  | 146 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 147 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+> new file mode 100644
+> index 000000000000..4ac91f7a26b6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+> @@ -0,0 +1,146 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/melexis,mlx7502x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Melexis ToF 7502x MIPI CSI-2 Sensor
+> +
+> +maintainers:
+> +  - Volodymyr Kharuk <vkh@melexis.com>
+> +
+> +description: |-
+> +  Melexis ToF 7502x sensors has a CSI-2 output. It supports 2 and 4 lanes,
+> +  and mipi speeds are 300, 600, 704, 800, 904, 960Mbs. Supported format is RAW12.
+> +  Sensor 75026 is QVGA, while 75027 is VGA sensor.
+> +  If you use compatible = "melexis,mlx7502x", then autodetect will be called.
+
+I'd move this last line as a description of the compatible property, but
+I'm also not sure this should be mentioned in the DT bindings, as it's a
+driver implementation detail. I'm actually not sure we should support it
+with three different compatible values as proposed, as without this
+documentation users will have a hard time figuring out what compatible
+value to pick.
+
+One option would be to support the following three compatible values:
+
+	compatible = "melexis,mlx75026", "melexis,mlx7502x";
+	compatible = "melexis,mlx75027", "melexis,mlx7502x";
+	compatible = "melexis,mlx7502x";
+
+The last one only would trigger autodetection. I'm still not sure how to
+document that properly in bindings though.
+
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - melexis,mlx7502x
+> +          - melexis,mlx75026
+> +          - melexis,mlx75027
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  assigned-clocks: true
+> +  assigned-clock-parents: true
+> +  assigned-clock-rates: true
+> +
+> +  clocks:
+> +    description: Clock frequency 8MHz
+> +    maxItems: 1
+> +
+> +  vdda-supply:
+> +    description:
+> +      Definition of the regulator used as analog power supply(2.7V).
+> +
+> +  vddif-supply:
+> +    description:
+> +      Definition of the regulator used as interface power supply(1.8V).
+> +
+> +  vddd-supply:
+> +    description:
+> +      Definition of the regulator used as digital power supply(1.2V).
+> +
+> +  vdmix-supply:
+> +    description:
+> +      Definition of the regulator used as mixed driver power supply(1.2V).
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: Reset Sensor GPIO Control (active low)
+> +
+> +  melexis,trig-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Hardware Trigger GPIO Control (active low)
+> +      When the hardware trigger mode is enabled, this GPIO is used to generate
+> +      a low level impulse for about 100us. The impulse triggers a new
+> +      measurement cycle.
+> +
+> +  melexis,leden-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Led driver enable GPIO Control (active high)
+> +      This GPIO notifies the illumination driver when it is safe to use led
+> +      signals from the sensor.
+
+As far as I understand this isn't an input of the sensor, but a signal
+that is driven by the driver and controls the separate illuminator. It
+shouldn't be specified in this binding, as it's not a property of the
+sensor. You should instead have a DT node for the illumination driver.
+
+> +  port:
+> +    description: MIPI CSI-2 transmitter port
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            oneOf:
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +
+> +          clock-noncontinuous: true
+> +          link-frequencies: true
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - port
+
+Let's make the supplies mandatory too, as the chip can't operate without
+them.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mlx7502x: camera@57 {
+> +            compatible = "melexis,mlx7502x";
+> +            reg = <0x57>;
+> +            clocks = <&mlx7502x_clk>;
+> +
+> +            assigned-clocks = <&mlx7502x_clk>;
+> +            assigned-clock-parents = <&mlx7502x_clk_parent>;
+> +            assigned-clock-rates = <8000000>;
+> +
+> +            vddd-supply = <&mlx_7502x_reg>;
+> +
+> +            reset-gpios = <&gpio_exp 6 GPIO_ACTIVE_HIGH>;
+> +            melexis,trig-gpios = <&gpio_exp 2 GPIO_ACTIVE_HIGH>;
+> +            melexis,leden-gpios = <&gpio_exp 7 GPIO_ACTIVE_HIGH>;
+> +
+> +            port {
+> +                mlx7502x_out_mipi_csi2: endpoint {
+> +                    remote-endpoint = <&mipi_csi2_from_mlx7502x>;
+> +                    data-lanes = <1 2 3 4>;
+> +                    link-frequencies = /bits/ 64 < 960000000
+> +                                                   904000000
+> +                                                   800000000
+> +                                                   704000000
+> +                                                   600000000
+> +                                                   300000000 >;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1a68d888ee14..b00a726bb3db 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12678,6 +12678,7 @@ M:	Volodymyr Kharuk <vkh@melexis.com>
+>  L:	linux-media@vger.kernel.org
+>  S:	Supported
+>  W:	http://www.melexis.com
+> +F:	Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+>  F:	include/uapi/linux/mlx7502x.h
+>  
+>  MELFAS MIP4 TOUCHSCREEN DRIVER
+
 -- 
-2.35.1
+Regards,
 
+Laurent Pinchart
