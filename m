@@ -2,98 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A53C8574976
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EB75574966
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:45:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234822AbiGNJqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:46:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52554 "EHLO
+        id S237825AbiGNJpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:45:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238399AbiGNJpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:45:47 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5911A4B4B4;
-        Thu, 14 Jul 2022 02:45:46 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id c3so453230pfb.13;
-        Thu, 14 Jul 2022 02:45:46 -0700 (PDT)
+        with ESMTP id S238208AbiGNJpc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:45:32 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E66B1A061
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:45:31 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id n18so1921427lfq.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:45:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=d5dQ5EQwn8mX60+IF0sZKf5rrEpnkwl9K3LbLZ9fU5E=;
-        b=WE4NfXRNJOlUu1nI7eT+yjooUYkwHuL4Zc+a7jJMb4lu9txVWiagY+QSWpsMOrq+gH
-         PbpvPaON+EDr4kxaRPLJPplEKL2VGjHUmt62T3pJjHuMlaZtQ8GdOHAJRdMZiJJaqF6x
-         p38Xbrt6natRwjkfQZEtR35yknaQFEK6eOUuFGJQA61XlJLoQryAyIMOfbpY2KSsfDGm
-         5rsQFXP3pDQ7wBm3srYVqET1kPj++qY/XQ39iG9zmPBepXJK7OCCUQzzXKkHmuCeaPnU
-         3uyjQoKWWOkGfru/5uvglL1jymz+NSVwWxg/aL53jU38Q35nRus892c66oIiRve1j+rV
-         Pt/w==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=U7bE4AFFaqlBpYGWGp2bDcGNToCNNNh+R2dU+aim+1I=;
+        b=aAacLcEaAKm5bx3USPkdVVrwv0zguEu8rs1lY5F6lNOeMAWK+8D/A9m4WBr/44c1XH
+         LjpTQrqg2GOuzh62iX8vVHYvrvM1BmWkK0TdoeVHMYGqu7iNBK9Pb2WlWt2yiiW55k7O
+         a1Uewv3Eh3QXfplrqJHwnIuip7m5R6MSqvAol32na8mvx6P5EFZjqtYZI27p/kvwznqU
+         hFCVjuNsjXUEC8J4Oz2Br3ZlaUgC47Cmx086b+Cinv7CqI2/LLhOBboXUA1tbSATjM0q
+         iRvtW5lwOF31ZgAmE0CDH0K6oNH0tLR1IJyD/s/wWqaUMm1KTImvgYg5uALvwAQ1+2Oz
+         3/dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=d5dQ5EQwn8mX60+IF0sZKf5rrEpnkwl9K3LbLZ9fU5E=;
-        b=m0qdB42MEBXdpaUXeXNiTqpbl0z/lhUlIodrNpXVlXuEQ1jBKl5t4/eE3tQZHo+L2z
-         IZB1FU6bQ1PKTbqRPaqh4oGaamJsyZC5ZxRPjYnzAyutFBl7r0dMscWwhLnlDYpdflf5
-         jeiUS63jMiltx32qbtViVK8yxe1caFhvB8/2Dvrus/BXKb4GjhCe2I1kZJog5HySfP/c
-         BMnThSLxLyA8Cp5ZaRisZoGJxwp11nZN1zKg88SgoFgzONxKKj7GLdniP/X61BvMQLHQ
-         JyuSnuDp987bAH1JJmDzwZHPY3apDYqUVSMnW3I4RHa2+J0Jr3Lq5DyvZsFePG9nrFOb
-         6wtQ==
-X-Gm-Message-State: AJIora9RBFmmczqVy7R4wpBrpMhH4pwDjhXkfIGSIqrCJCH/I7cUZqal
-        KSzfpQLiNp1qW/OPxg+PI7g=
-X-Google-Smtp-Source: AGRyM1t20DkAevcHeaiJX+bQcVXqEihBXsE5IoQKn3N3qunX3d7UgtfRsZtk9UUAN8tXLf9a8S1NEg==
-X-Received: by 2002:a63:5c5e:0:b0:412:a2f1:d0dd with SMTP id n30-20020a635c5e000000b00412a2f1d0ddmr7069106pgm.251.1657791945809;
-        Thu, 14 Jul 2022 02:45:45 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:488:5f89:217d:a3c8:f1ea:4115])
-        by smtp.gmail.com with ESMTPSA id i1-20020a056a00004100b0052acb753b8bsm1169233pfk.158.2022.07.14.02.45.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 14 Jul 2022 02:45:45 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     jic23@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v6 3/3] Documentation: ABI: testing: rtq6056: Update ABI docs
-Date:   Thu, 14 Jul 2022 17:45:25 +0800
-Message-Id: <1657791925-23929-4-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1657791925-23929-1-git-send-email-u0084500@gmail.com>
-References: <1657791925-23929-1-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=U7bE4AFFaqlBpYGWGp2bDcGNToCNNNh+R2dU+aim+1I=;
+        b=VZQlkL4PNmDHQg2hdXluBUOryu7EGPEeGZGeXW26LQNxpob15S6qNsjX9j2jvqxeuN
+         OLKunKZX7H+Zi/XI92c+Ka5H2Kw0rZLGVt0zt9F236SgkCGmkZRlqwSWms7Zr0udeocP
+         IZ8HgiRDIZDvghZhbTpSpLXfzfFsqPHO463uIDN1kfu13zt/MHYtYR6NR5Jxi2ZEdBjd
+         S7hVg3DBEtLhucJOr0MHn9Xp/qc/pPaXjAeLT8vKyTD73E+XZfuhZjcXtOCfuN7dmPLv
+         dCM48rxtlzksOGEWDJyOlYZR4sGoDknYdQG4xcANGiEaLqu8qwv7ve0rShjFgFsTOlEW
+         R+Aw==
+X-Gm-Message-State: AJIora+CMaZe77FFwFKKT0n+buTZigp6eGWwGYLH2rASY3CgoSmQhv/H
+        avLiopShuXsKdRWYQo/QYNawca5NUx49AA==
+X-Google-Smtp-Source: AGRyM1vGpON0DG4ORvaWqjTmXe+q+KTMeS1n2R2I9F705IDWK+oapuyCfjSrtWQhaNSEqjPpmb36Ug==
+X-Received: by 2002:a05:6512:139a:b0:48a:1a73:8adc with SMTP id p26-20020a056512139a00b0048a1a738adcmr757796lfa.226.1657791929867;
+        Thu, 14 Jul 2022 02:45:29 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id 10-20020a05651c008a00b0025d2d495dc6sm185480ljq.66.2022.07.14.02.45.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 02:45:29 -0700 (PDT)
+Message-ID: <4936df27-e5b5-8ef5-5831-82fdf414ea90@linaro.org>
+Date:   Thu, 14 Jul 2022 11:45:27 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: msm8916: Drop MSS fallback
+ compatible
+Content-Language: en-US
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
+ <20220712124421.3129206-2-stephan.gerhold@kernkonzept.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220712124421.3129206-2-stephan.gerhold@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+On 12/07/2022 14:44, Stephan Gerhold wrote:
+> MSM8916 was originally using the "qcom,q6v5-pil" compatible for the
+> MSS remoteproc. Later it was decided to use SoC-specific compatibles
+> instead, so "qcom,msm8916-mss-pil" is now the preferred compatible.
+> 
+> Commit 60a05ed059a0 ("arm64: dts: qcom: msm8916: Add MSM8916-specific
+> compatibles to SCM/MSS") updated the MSM8916 device tree to make use of
+> the new compatible but still kept the old "qcom,q6v5-pil" as fallback.
+> 
+> This is inconsistent with other SoCs and conflicts with the description
+> in the binding documentation (which says that only one compatible should
+> be present). Also, it has no functional advantage since older kernels
+> could not handle this DT anyway (e.g. "power-domains" in the MSS node is
+> only supported by kernels that also support "qcom,msm8916-mss-pil").
+> 
+> Make this consistent with other SoCs by using only the
+> "qcom,msm8916-mss-pil" compatible.
+> 
+> Fixes: 60a05ed059a0 ("arm64: dts: qcom: msm8916: Add MSM8916-specific compatibles to SCM/MSS")
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> ---
 
-Add documentation for the usage of voltage channel integration time.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- Documentation/ABI/testing/sysfs-bus-iio | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-index d4ccc68..1f7d327 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio
-+++ b/Documentation/ABI/testing/sysfs-bus-iio
-@@ -2030,3 +2030,13 @@ Description:
- 		Available range for the forced calibration value, expressed as:
- 
- 		- a range specified as "[min step max]"
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_integration_time
-+KernelVersion:	5.20
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		For voltage sensing hardware, there may be different time between
-+		channel conversion and sample update. 'Integration time' is used to
-+		specify the channel internal conversion time. And sample update
-+		interval is equal to average sample count multiple integration time.
-+		Unit as microsecond.
--- 
-2.7.4
 
+Best regards,
+Krzysztof
