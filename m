@@ -2,175 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62D335756A3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 22:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AF355756AA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 22:59:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240299AbiGNUzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 16:55:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36048 "EHLO
+        id S232572AbiGNU7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 16:59:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232614AbiGNUzf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 16:55:35 -0400
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33B8A6BC19;
-        Thu, 14 Jul 2022 13:55:34 -0700 (PDT)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id 2C6B534D5B;
-        Thu, 14 Jul 2022 20:55:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1657832131; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ZSgLilWzZarIXH8KzBy6OT9I39r0sIeov6Pzt1qEHic=;
-        b=nSr8kGasBJrL9zy9v/TR8zRF6R/eRp45Pz+YgEV/RFQzJW2h0SpZrpKOcqhNVwNooxlDgb
-        jHJICz0Mq9cQEvMm58k493YT6sDeuIWcyZwf1pGWJfz4lu/eO4WhjlHafw4r/o3mtUp6sv
-        RCrIPzWp+W8io03l3sRAgmwebDr9pdg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1657832131;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ZSgLilWzZarIXH8KzBy6OT9I39r0sIeov6Pzt1qEHic=;
-        b=ufQJZG8R3C8c6LL3tJzJWynk44IsBIZWEuds+q7tjGpm8wJCEAt2d2e89HDT6IVJrn20kG
-        YFOLLBrw4tZBTiAw==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id 658E22C142;
-        Thu, 14 Jul 2022 20:55:30 +0000 (UTC)
-Date:   Thu, 14 Jul 2022 22:55:29 +0200
-From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
-Subject: Re: [PATCH 1/2] mtd: spi-nor: When a flash memory is missing do not
- report an error
-Message-ID: <20220714205529.GE17705@kitsune.suse.cz>
-References: <701967b0c418db333c66b48d225df60aa9d03ead.1657826188.git.msuchanek@suse.de>
- <d8de86aa0331be697fbef33d5ab2c57a@walle.cc>
+        with ESMTP id S229458AbiGNU7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 16:59:44 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A56313F86;
+        Thu, 14 Jul 2022 13:59:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657832383; x=1689368383;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ysF2hIDjCGBABdVcJ1bsRwdEQVYuIg82pWmVPZ4wXjs=;
+  b=nZEpszVSWkmSV74iW0jZP2kNa89i2g2tg5ICOptobDcYyvFe6tfCpGqT
+   LuW2eWygRT2DdVV22St1Np/Lm8n71uDRbLJHcrwxIOgZtEVtxSs+hm2B6
+   n+MaV3gWZOA5s2/dCHf3je8WPZ6kZAxloog3MlbyJQXDVNYtnkCQNcsLm
+   rFrQRVF3LObkzIoKNsmZJF7OiNKEVcJ7vBbqXrr5N1OWcO6mCJzHLphJf
+   bhH4cpJNNUXuKAbdi3ouuH4qbMoTXnZLwW+8mSKdiP6R/oJfnxkkhj7nQ
+   OQk+xl+H0pYaCIoyi3ohNkH7bsso4RRWNCScm/eTMCmZOkOm0KFJ3wgpz
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="284384480"
+X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
+   d="scan'208";a="284384480"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 13:59:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
+   d="scan'208";a="596232227"
+Received: from lkp-server01.sh.intel.com (HELO fd2c14d642b4) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 14 Jul 2022 13:59:39 -0700
+Received: from kbuild by fd2c14d642b4 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1oC5vu-00019R-Ml;
+        Thu, 14 Jul 2022 20:59:38 +0000
+Date:   Fri, 15 Jul 2022 04:58:44 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 07/23] ata: libahci_platform: Convert to using devm
+ bulk clocks API
+Message-ID: <202207150410.A4kg5upp-lkp@intel.com>
+References: <20220713052917.27036-8-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d8de86aa0331be697fbef33d5ab2c57a@walle.cc>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220713052917.27036-8-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 09:41:48PM +0200, Michael Walle wrote:
-> Hi,
-> 
-> Am 2022-07-14 21:19, schrieb Michal Suchanek:
-> > It is normal that devices are designed with multiple types of storage,
-> > and only some types of storage are present.
-> > 
-> > The kernel can handle this situation gracefully for many types of
-> > storage devices such as mmc or ata but it reports and error when spi
-> > flash is not present.
-> > 
-> > Only print a notice that the storage device is missing when no response
-> > to the identify command is received.
-> > 
-> > Consider reply buffers with all bits set to the same value no response.
-> 
-> I'm not sure you can compare SPI with ATA and MMC. I'm just speaking of
-> DT now, but there, for ATA and MMC you just describe the controller and
-> it will auto-detect the connected storage. Whereas with SPI you describe
+Hi Serge,
 
-Why does mmc assume storage and SDIO must be descibed? Why the special
-casing?
+I love your patch! Yet something to improve:
 
-> both the controller and the flash. So I'd argue that your hardware
-> description is wrong if it describes a flash which is not present.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on axboe-block/for-next linus/master v5.19-rc6 next-20220714]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-At any rate the situation is the same - the storage may be present
-sometimes. I don't think assuming some kind of device by defualt is a
-sound practice.
+url:    https://github.com/intel-lab-lkp/linux/commits/Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220713-133437
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: riscv-randconfig-r004-20220714 (https://download.01.org/0day-ci/archive/20220715/202207150410.A4kg5upp-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 5e61b9c556267086ef9b743a0b57df302eef831b)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install riscv cross compiling tool for clang build
+        # apt-get install binutils-riscv64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/7225145d9ff95641c04bdc1dd85915be6cd5ce57
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220713-133437
+        git checkout 7225145d9ff95641c04bdc1dd85915be6cd5ce57
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/ata/
 
-However, when the board is designed for a specific kind of device which
-is not always present, and the kernel can detect the device, it is
-perfectly fine to describe it.
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-The alternative is to not use the device at all, even when present,
-which is kind of useless.
+All errors (new ones prefixed by >>):
 
-Thanks
+>> drivers/ata/ahci_dm816.c:72:6: error: invalid argument type 'struct clk_bulk_data' to unary expression
+           if (!hpriv->clks[1]) {
+               ^~~~~~~~~~~~~~~
+>> drivers/ata/ahci_dm816.c:77:29: error: passing 'struct clk_bulk_data' to parameter of incompatible type 'struct clk *'
+           refclk_rate = clk_get_rate(hpriv->clks[1]);
+                                      ^~~~~~~~~~~~~~
+   include/linux/clk.h:584:40: note: passing argument to parameter 'clk' here
+   unsigned long clk_get_rate(struct clk *clk);
+                                          ^
+   2 errors generated.
 
-Michal
 
-> 
-> > Signed-off-by: Michal Suchanek <msuchanek@suse.de>
-> > ---
-> >  drivers/mtd/spi-nor/core.c | 25 +++++++++++++++++++++++--
-> >  1 file changed, 23 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-> > index 502967c76c5f..6bab540171a4 100644
-> > --- a/drivers/mtd/spi-nor/core.c
-> > +++ b/drivers/mtd/spi-nor/core.c
-> > @@ -1652,6 +1652,24 @@ static const struct flash_info
-> > *spi_nor_match_id(struct spi_nor *nor,
-> >  	return NULL;
-> >  }
-> > 
-> > +static const bool buffer_uniform(const u8 *buffer, size_t length)
-> > +{
-> > +	bool all0;
-> > +	size_t i;
-> > +
-> > +	for (all0 = true, i = 0; i < length; i++)
-> > +		if (buffer[i] != 0) {
-> > +			all0 = false;
-> > +			break;
-> > +		}
-> > +	if (all0)
-> > +		return true;
-> > +	for (i = 0; i < length; i++)
-> > +		if (buffer[i] != 0xff)
-> > +			return false;
-> > +	return true;
-> > +}
-> 
-> That seems unnecessarily complex.
-> if (!memchr_inv(id, '\x00', SPI_NOR_MAX_ID_LEN) ||
->     !memchr_inv(id, '\xff', SPI_NOR_MAX_ID_LEN))
-> 
-> should be the same.
-> 
-> -michael
-> 
-> > +
-> >  static const struct flash_info *spi_nor_detect(struct spi_nor *nor)
-> >  {
-> >  	const struct flash_info *info;
-> > @@ -1666,8 +1684,11 @@ static const struct flash_info
-> > *spi_nor_detect(struct spi_nor *nor)
-> > 
-> >  	info = spi_nor_match_id(nor, id);
-> >  	if (!info) {
-> > -		dev_err(nor->dev, "unrecognized JEDEC id bytes: %*ph\n",
-> > -			SPI_NOR_MAX_ID_LEN, id);
-> > +		if (buffer_uniform(id, SPI_NOR_MAX_ID_LEN))
-> > +			dev_info(nor->dev, "No flash memory detected.\n");
-> > +		else
-> > +			dev_err(nor->dev, "unrecognized JEDEC id bytes: %*ph\n",
-> > +				SPI_NOR_MAX_ID_LEN, id);
-> >  		return ERR_PTR(-ENODEV);
-> >  	}
-> >  	return info;
+vim +72 drivers/ata/ahci_dm816.c
+
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   60  
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   61  static int ahci_dm816_phy_init(struct ahci_host_priv *hpriv, struct device *dev)
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   62  {
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   63  	unsigned long refclk_rate;
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   64  	int mpy;
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   65  	u32 val;
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   66  
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   67  	/*
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   68  	 * We should have been supplied two clocks: the functional and
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   69  	 * keep-alive clock and the external reference clock. We need the
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   70  	 * rate of the latter to calculate the correct value of MPY bits.
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   71  	 */
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  @72  	if (!hpriv->clks[1]) {
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   73  		dev_err(dev, "reference clock not supplied\n");
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   74  		return -EINVAL;
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   75  	}
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   76  
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  @77  	refclk_rate = clk_get_rate(hpriv->clks[1]);
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   78  	if ((refclk_rate % 100) != 0) {
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   79  		dev_err(dev, "reference clock rate must be divisible by 100\n");
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   80  		return -EINVAL;
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   81  	}
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   82  
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   83  	mpy = ahci_dm816_get_mpy_bits(refclk_rate);
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   84  	if (mpy < 0) {
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   85  		dev_err(dev, "can't calculate the MPY bits value\n");
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   86  		return -EINVAL;
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   87  	}
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   88  
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   89  	/* Enable the PHY and configure the first HBA port. */
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   90  	val = AHCI_DM816_PHY_MPY(mpy) | AHCI_DM816_PHY_LOS(1) |
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   91  	      AHCI_DM816_PHY_RXCDR(4) | AHCI_DM816_PHY_RXEQ(1) |
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   92  	      AHCI_DM816_PHY_TXSWING(3) | AHCI_DM816_PHY_ENPLL(1);
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   93  	writel(val, hpriv->mmio + AHCI_DM816_P0PHYCR_REG);
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   94  
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   95  	/* Configure the second HBA port. */
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   96  	val = AHCI_DM816_PHY_LOS(1) | AHCI_DM816_PHY_RXCDR(4) |
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   97  	      AHCI_DM816_PHY_RXEQ(1) | AHCI_DM816_PHY_TXSWING(3);
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   98  	writel(val, hpriv->mmio + AHCI_DM816_P1PHYCR_REG);
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   99  
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  100  	return 0;
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  101  }
+df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  102  
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
