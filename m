@@ -2,71 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED069574490
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 07:37:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 006CC5744A4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 07:41:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbiGNFhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 01:37:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44020 "EHLO
+        id S234785AbiGNFko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 01:40:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234036AbiGNFhL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 01:37:11 -0400
-X-Greylist: delayed 286 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 13 Jul 2022 22:37:08 PDT
-Received: from mg.sunplus.com (unknown [113.196.136.162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A8CC222B3E;
-        Wed, 13 Jul 2022 22:37:08 -0700 (PDT)
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 172.17.9.202
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(2569:0:AUTH_RELAY)
-        (envelope-from <lh.Kuo@sunplus.com>); Thu, 14 Jul 2022 13:32:08 +0800 (CST)
-Received: from sphcmbx01.sunplus.com.tw (172.17.9.202) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.32; Thu, 14 Jul 2022 13:32:07 +0800
-Received: from sphcmbx01.sunplus.com.tw ([fe80::bdb5:968f:d409:32d1]) by
- sphcmbx01.sunplus.com.tw ([fe80::bdb5:968f:d409:32d1%14]) with mapi id
- 15.00.1497.033; Thu, 14 Jul 2022 13:32:07 +0800
-From:   =?utf-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Li-hao Kuo <lhjeff911@gmail.com>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "amitk@kernel.org" <amitk@kernel.org>,
-        "rui.zhang@intel.com" <rui.zhang@intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v10 1/2] thermal: Add thermal driver for Sunplus
-Thread-Topic: [PATCH v10 1/2] thermal: Add thermal driver for Sunplus
-Thread-Index: AQHYlo2OQSnqDllFTEGHHVYnRdkiea19By6g
-Date:   Thu, 14 Jul 2022 05:32:06 +0000
-Message-ID: <a510b35f89034f60a05d6dbe7245e789@sphcmbx01.sunplus.com.tw>
-References: <cover.1654660009.git.lhjeff911@gmail.com>
- <b114b6f8ea51054561a61dc4982715bb73633ec5.1654660009.git.lhjeff911@gmail.com>
- <be752ee1-3732-bcbd-4d31-6d6fe0bd251f@linaro.org>
-In-Reply-To: <be752ee1-3732-bcbd-4d31-6d6fe0bd251f@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.51]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S234088AbiGNFkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 01:40:43 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12B8528E36;
+        Wed, 13 Jul 2022 22:40:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1657777242; x=1689313242;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=4NKbmXxhlXJ2EzhZYmyUNHWWphemE+rKL52FLwRy3ew=;
+  b=B9BO8JKy4MYh7EajcJwVG53Vgt9H5q0xNzltg4RttQMH30rtjuLqsA/l
+   9P/eyppEMyKArReYE7dKNaSLnmcp8qM/NK7xpYivLe0h6ZU+yjReWDBtH
+   eHdQ/50nQijVxVsgzrMU7W8cKQN+TyRW4b4qdIBowcyEmlWwxiAJMm9dr
+   8=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 13 Jul 2022 22:40:41 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2022 22:40:41 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 13 Jul 2022 22:40:41 -0700
+Received: from [10.216.13.53] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 13 Jul
+ 2022 22:40:33 -0700
+Message-ID: <c022538d-c616-8f1a-e1c2-c11b5f0de670@quicinc.com>
+Date:   Thu, 14 Jul 2022 11:10:29 +0530
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v2 5/7] arm64: dts: qcom: sc7280: Update gpu register list
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Taniya Das <quic_tdas@quicinc.com>, <quic_rjendra@quicinc.com>
+CC:     freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        "Stephen Boyd" <swboyd@chromium.org>
+References: <1657346375-1461-1-git-send-email-quic_akhilpo@quicinc.com>
+ <20220709112837.v2.5.I7291c830ace04fce07e6bd95a11de4ba91410f7b@changeid>
+ <CAD=FV=XzvcjS51q78BZ=FPCEVUDMD+VKJ70ksCm5V4qwHN_wRg@mail.gmail.com>
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+In-Reply-To: <CAD=FV=XzvcjS51q78BZ=FPCEVUDMD+VKJ70ksCm5V4qwHN_wRg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IHN1bnBsdXNfdGhlcm1hbF9yZW1vdmUoc3Ry
-dWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikgew0KPiA+ICsJc3RydWN0IHNwX3RoZXJtYWxfZGF0
-YSAqc3BfZGF0YSA9IHBsYXRmb3JtX2dldF9kcnZkYXRhKHBkZXYpOw0KPiA+ICsNCj4gPiArCXRo
-ZXJtYWxfem9uZV9vZl9zZW5zb3JfdW5yZWdpc3RlcigmcGRldi0+ZGV2LCBzcF9kYXRhLT5wY2Jf
-dHopOw0KPiANCj4gWW91IHVzZWQgZGV2bSB0byByZWdpc3Rlciwgc28gdGhpcyBsb29rcyB3cm9u
-ZyBhbmQgd2lsbCBsZWFkIHRvIGRvdWJsZSBmcmVlLg0KPiANCj4NCg0KWW91IG1lYW4gdGhlIHJl
-bW92ZSBmdW5jdGlvbiBpcyBub3QgbmVlZGVkLiAgPz8NCg0KDQoNCg==
+On 7/12/2022 4:57 AM, Doug Anderson wrote:
+> Hi,
+>
+> On Fri, Jul 8, 2022 at 11:00 PM Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
+>> Update gpu register array with gpucc memory region.
+>>
+>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>> ---
+>>
+>> (no changes since v1)
+>>
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++--
+>>   1 file changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index e66fc67..defdb25 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -2228,10 +2228,12 @@
+>>                          compatible = "qcom,adreno-635.0", "qcom,adreno";
+>>                          reg = <0 0x03d00000 0 0x40000>,
+>>                                <0 0x03d9e000 0 0x1000>,
+>> -                             <0 0x03d61000 0 0x800>;
+>> +                             <0 0x03d61000 0 0x800>,
+>> +                             <0 0x03d90000 0 0x2000>;
+>>                          reg-names = "kgsl_3d0_reg_memory",
+>>                                      "cx_mem",
+>> -                                   "cx_dbgc";
+>> +                                   "cx_dbgc",
+>> +                                   "gpucc";
+> This doesn't seem right. Shouldn't you be coordinating with the
+> existing gpucc instead of reaching into its registers?
+>
+> -Doug
+IIUC, qcom gdsc driver doesn't ensure hardware is collapsed since they 
+are vote-able switches. Ideally, we should ensure that the hw has 
+collapsed for gpu recovery because there could be transient votes from 
+other subsystems like hypervisor using their vote register.
+
+I am not sure how complex the plumbing to gpucc driver would be to allow 
+gpu driver to check hw status. OTOH, with this patch, gpu driver does a 
+read operation on a gpucc register which is in always-on domain. That 
+means we don't need to vote any resource to access this register.
+
+Stephen/Rajendra/Taniya, any suggestion?
+
+-Akhil.
+
+
