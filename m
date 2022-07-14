@@ -2,82 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 329145756B9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 23:11:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC4E5756DF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 23:27:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240443AbiGNVL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 17:11:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45568 "EHLO
+        id S240810AbiGNV1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 17:27:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232120AbiGNVL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 17:11:26 -0400
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E72952445;
-        Thu, 14 Jul 2022 14:11:25 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (89-27-103-169.bb.dnainternet.fi [89.27.103.169])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 123041B0011F;
-        Fri, 15 Jul 2022 00:11:21 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1657833081;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hkPRrVhg014vSftczUrkaj8GJSROx5XO5OafN6l7PA8=;
-        b=FypAc4GMVjPAXMq6zsG+lhChm69w6J1ibMQZ9MMTENG6WiwMwoDVxgSVhU4N5opxClxCDA
-        uB/MtXmPeNIW0YJn4eDQkE1REbAMH1LbLEhrGYcL68cavIQT9ttIz7Zt5yj4bJlJCt+Wxz
-        xjrf9x/4D7RQFw7cVwMEQS66C+41t+YicHhpmMmFc5of0T5umeaPbgp7xRjZr5cYXDVbWQ
-        mWCYIA0joNTOhLxBty89QdPGUUYupZ1I/eX2twZAqJjXveGRUU0sJqUmBDUmbsJS0RR3Tg
-        +oWpGe9ZeZERW6yo78P9p8rc2EHhRzCRmftSoVa92LykkI8Q8F5gJrNZkYM9dg==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id AC09E634D5F;
-        Fri, 15 Jul 2022 00:11:20 +0300 (EEST)
-Date:   Fri, 15 Jul 2022 00:11:20 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Mikhail Rudenko <mike.rudenko@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S240795AbiGNV1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 17:27:06 -0400
+Received: from smtp-out3.electric.net (smtp-out3.electric.net [208.70.128.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D62B6D9FF;
+        Thu, 14 Jul 2022 14:27:05 -0700 (PDT)
+Received: from 1oC6MM-00090K-WA by out3b.electric.net with emc1-ok (Exim 4.94.2)
+        (envelope-from <kris@embeddedTS.com>)
+        id 1oC6MQ-00096c-U9; Thu, 14 Jul 2022 14:27:02 -0700
+Received: by emcmailer; Thu, 14 Jul 2022 14:27:02 -0700
+Received: from [66.210.251.27] (helo=mail.embeddedts.com)
+        by out3b.electric.net with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <kris@embeddedTS.com>)
+        id 1oC6MM-00090K-WA; Thu, 14 Jul 2022 14:26:59 -0700
+Received: from tsdebian (97-120-89-198.ptld.qwest.net [97.120.89.198])
+        by mail.embeddedts.com (Postfix) with ESMTPSA id 9134F4DC;
+        Thu, 14 Jul 2022 14:26:57 -0700 (MST)
+Message-ID: <1657833995.2979.1.camel@embeddedTS.com>
+Subject: Re: [RFC PATCH v2] ARM: dts: Add TS-7553-V2 support
+From:   Kris Bahnsen <kris@embeddedTS.com>
+Reply-To: kris@embeddedTS.com
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] media: dt-bindings: media: i2c: document OV4689 DT
- bindings
-Message-ID: <YtCGeBp5U18ljyuX@valkosipuli.retiisi.eu>
-References: <20220712141925.678595-1-mike.rudenko@gmail.com>
- <20220712141925.678595-2-mike.rudenko@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220712141925.678595-2-mike.rudenko@gmail.com>
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1657833081; a=rsa-sha256;
-        cv=none;
-        b=vLgyybCLGayGmra7eX7USEJE6GUvJVYwEErSbfhWWk/AsmLt7k4JppDSqCbbCEeCVbcpA4
-        jcKyJZHlhRpwjjRwGxWzhthbEXrbIKyQBUOciLWpI4uU083dJWJfwSrxJQJXJH/Nfhr2uc
-        NiJFEBqpY9Wqgmub7Zy7aDAuprsU7AJpzXlXGNcJQYwPNpiI4OVW+7v5jSfdEqKspCdeY+
-        XZeOTeYS6zdFe2qf0W3G/zoBPdocC2/cG6xRfpOU4sJ8fAu625K7JR4eWiaRc5pwWsjCBA
-        rESHCeETGY31GIPTXYOH0YHV3mzEBi4KG+MeSouu3Gcipga9W35wlzQAzL1DXw==
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=lahtoruutu; t=1657833081;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hkPRrVhg014vSftczUrkaj8GJSROx5XO5OafN6l7PA8=;
-        b=RWdHu8/HFe/PAfEBxex/VjLMmgwzo7f1NVHxBTWZXu+y9QQ7JyvaYfMyMVcYxw2OoJRRYg
-        Z9mlKtVfqZhTH49v9OmURgZHKrmLTC9go3ovVEkbhrs/8rs15FlwlPr4Q2Lu4GnfsMKZCZ
-        2R38J6UPe+BdlwYrm5tuuwm//faqpctlZaeP+NY0iy2CkLcjSAOsV1/kY4MEeKWSrIM7L2
-        BBziwp1kYqXSOrfOsP5U53WsZP5/YncFYqr26rcVu3Sgq8bR4iTSgiUN9pAeIeC6K7zgdh
-        8s2dEy5+LZchTqo4FEjiSQCDc4/1whptCenIJP/tLsHIJmNZBl44nfTMkqFjYQ==
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Mark Featherston <mark@embeddedTS.com>
+Date:   Thu, 14 Jul 2022 14:26:35 -0700
+In-Reply-To: <55dccabb-41e9-dc45-f404-c333f5472e75@linaro.org>
+References: <20220713221233.8486-1-kris@embeddedTS.com>
+         <55dccabb-41e9-dc45-f404-c333f5472e75@linaro.org>
+Organization: embeddedTS
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Outbound-IP: 66.210.251.27
+X-Env-From: kris@embeddedTS.com
+X-Proto: esmtps
+X-Revdns: wsip-66-210-251-27.ph.ph.cox.net
+X-HELO: mail.embeddedts.com
+X-TLS:  TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256
+X-Authenticated_ID: 
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=embeddedTS.com; s=mailanyone20220121;h=Mime-Version:References:In-Reply-To:Date:To:From:Message-ID; bh=GseA+cRnj+YmYAVO5Y69v8C7WrdURv4BgtAoSd0DCpM=;b=hz/WBxV3h4iBrP9vWNGrG4x0jxMVhUxNOPwrX3h7o0QyBiR5HsXN/Bs9/wXVs/g8mZSku/B2FQ7BxxHy2HMleJ620RzIN3meKsr0OopL129w+iS8YtQlm1cZc9fM2omqRfbDAMVWcZ1C6Hmwar03v964/qcteuEuyFNbq0zmzg8GTgS6DERwcCqZT4FPbhy/DqTgizsF6wHXR0SKmWPgotdQCD3jt1mYnO96jx2evGcWAnpRBmUGD10KZe6zf7eo19jiK7ZA0S2DfgXKUjyi/+VjYEDAvL0nhW6RLJedYTc0BShVy6h6NLA1gj7Jad4uUFIkHfHwrVp5twI1FMw/dg==;
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,173 +90,231 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mikhail,
-
-Thanks for the patch.
-
-On Tue, Jul 12, 2022 at 05:19:09PM +0300, Mikhail Rudenko wrote:
-> Add device-tree binding documentation for OV4689 image sensor driver,
-> and the relevant MAINTAINERS entries.
+On Thu, 2022-07-14 at 10:34 +0200, Krzysztof Kozlowski wrote:
+> On 14/07/2022 00:12, Kris Bahnsen wrote:
+> > Add initial support of the i.MX6UL based TS-7553-V2 platform.
 > 
-> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
-> ---
->  .../bindings/media/i2c/ovti,ov4689.yaml       | 122 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 129 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> Use subject prefix matching the subsystem. git log --oneline --
+
+Can you please elaborate? The subject prefix is "ARM: dts:", I'm not
+sure what is missing. Should it be something like
+"ARM: dts: imx6ul-ts7553v2:" in this case?
+
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
-> new file mode 100644
-> index 000000000000..6bdebe5862b4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov4689.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Omnivision OV4689 CMOS Sensor Device Tree Bindings
-> +
-> +maintainers:
-> +  - Mikhail Rudenko <mike.rudenko@gmail.com>
-> +
-> +description: |-
-> +  The Omnivision OV4689 is a high performance, 1/3-inch, 4 megapixel
-> +  image sensor. Ihis chip supports high frame rate speeds up to 90 fps
-> +  at 2688x1520 resolution. It is programmable through an I2C
-> +  interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
-> +  connection.
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov4689
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description:
-> +      External clock for the sensor.
-> +    items:
-> +      - const: xclk
-> +
-> +  dovdd-supply:
-> +    description:
-> +      Definition of the regulator used as Digital I/O voltage supply.
-> +
-> +  avdd-supply:
-> +    description:
-> +      Definition of the regulator used as Analog voltage supply.
-> +
-> +  dvdd-supply:
-> +    description:
-> +      Definition of the regulator used as Digital core voltage supply.
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Reference to the GPIO connected to the powerdown pin (active low).
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Reference to the GPIO connected to the reset pin (active low).
-> +
-> +  orientation: true
-> +
-> +  rotation: true
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +    description:
-> +      Output port node, single endpoint describing the CSI-2 transmitter.
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
+> > 
+> > Signed-off-by: Kris Bahnsen <kris@embeddedTS.com>
+> > ---
+> > 
+> > V1->V2: Implement changes recommended by Rob Herring and dtbs_check
+> > 
+> > RFC only, not yet ready to merge, more testing needed and we're working on
+> > SPI LCD support for this platform.
+> > 
+> > Specifically, I have a few questions on some paradigms and dtbs_check output:
+> > 
+> > imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ... \
+> > 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], 'reg': [[12]]}}}} \
+> > is not of type 'array'
+> >   I'm not sure what this error is referring to as I've copied the example in
+> >   invensense,mpu6050.yaml almost verbatim. Is this an issue with our patch
+> >   or a false positive from dtbs_check?
+> 
+> You would need to paste entire error, maybe with checker flags -v.
 
-The number of lanes is needed, please require data-lanes property here (as
-well as add it to the example).
+Here is the verbose output. I'm not familiar enough yet with the schema and its
+validation code to catch what is wrong and would appreciate any insight.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - dovdd-supply
-> +  - avdd-supply
-> +  - dvdd-supply
-> +  - powerdown-gpios
-> +  - reset-gpios
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ov4689: camera@36 {
-> +            compatible = "ovti,ov4689";
-> +            reg = <0x36>;
-> +
-> +            clocks = <&ov4689_clk>;
-> +            clock-names = "xclk";
-> +
-> +            avdd-supply = <&ov4689_avdd>;
-> +            dovdd-supply = <&ov4689_dovdd>;
-> +            dvdd-supply = <&ov4689_dvdd>;
-> +
-> +            powerdown-gpios = <&pio 107 GPIO_ACTIVE_LOW>;
-> +            reset-gpios = <&pio 109 GPIO_ACTIVE_LOW>;
-> +
-> +            orientation = <2>;
-> +            rotation = <0>;
-> +
-> +            port {
-> +                wcam_out: endpoint {
-> +                    remote-endpoint = <&mipi_in_wcam>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f468864fd268..63c4844f26e6 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14523,6 +14523,13 @@ S:	Maintained
->  T:	git git://linuxtv.org/media_tree.git
->  F:	drivers/media/i2c/ov2740.c
->  
-> +OMNIVISION OV4689 SENSOR DRIVER
-> +M:	Mikhail Rudenko <mike.rudenko@gmail.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media_tree.git
-> +F:	Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
-> +
->  OMNIVISION OV5640 SENSOR DRIVER
->  M:	Steve Longerbeam <slongerbeam@gmail.com>
->  L:	linux-media@vger.kernel.org
+Check:  arch/arm/boot/dts/imx6ul-ts7553v2.dtb
+/work/arch/arm/boot/dts/imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ['i2c-gpio'], \
+'#address-cells': [[1]], '#size-cells': [[0]], 'pinctrl-names': ['default'], \
+'pinctrl-0': [[58]], 'sda-gpios': [[11, 5, 6]], 'scl-gpios': [[11, 4, 6]], \
+'imu@68': {'compatible': ['invensense,mpu9250'], 'reg': [[104]], \
+'interrupt-parent': [[55]], 'interrupts': [[1, 1]], 'i2c-gate': {'#address-cells': [[1]], \
+'#size-cells': [[0]], 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], \
+'reg': [[12]]}}}} is not of type 'array'
 
--- 
-Regards,
+Failed validating 'type' in schema['patternProperties']['(?<!,nr)-gpios?$']:
+    {'items': {'additionalItems': {'$ref': '#/definitions/cell'},
+               'items': [{'oneOf': [{'maximum': 4294967295,
+                                     'minimum': 1,
+                                     'phandle': True,
+                                     'type': 'integer'},
+                                    {'const': 0, 'type': 'integer'}]}],
+               'minItems': 1,
+               'type': 'array'},
+     'minItems': 1,
+     'type': 'array'}
 
-Sakari Ailus
+On instance['i2c-gpio']:
+    {'#address-cells': [[1]],
+     '#size-cells': [[0]],
+     'compatible': ['i2c-gpio'],
+     'imu@68': {'compatible': ['invensense,mpu9250'],
+                'i2c-gate': {'#address-cells': [[1]],
+                             '#size-cells': [[0]],
+                             'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'],
+                                                'reg': [[12]]}},
+                'interrupt-parent': [[55]],
+                'interrupts': [[1, 1]],
+                'reg': [[104]]},
+     'pinctrl-0': [[58]],
+     'pinctrl-names': ['default'],
+     'scl-gpios': [[11, 4, 6]],
+     'sda-gpios': [[11, 5, 6]]}
+        From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/gpio/gpio-consumer.yaml
+
+> 
+> > 
+> > 
+> > imx6ul-ts7553v2.dtb: spi@2010000: spidev@1: 'compatible' is a required property
+> >   Many of our devices have open-ended I2C and SPI ports that may or may not be
+> >   used in customer applications. With "spidev" compatible string no longer
+> >   supported, there is no easy way we know of to leave a placeholder or
+> >   indication that the interface is present, usable, and either needs specific
+> >   support enabled in kernel or userspace access via /dev/. We would love
+> >   feedback on how to handle this situation when submitting platforms upstream.
+> 
+> No empty devices, especially for spidev in DTS. There is really no
+> single need to add fake spidev... really, why? The customer cannot read
+> hardware manual and cannot see the header on the board? You can give him
+> a tutorial/howto guide, but don't embed dead or non-real code in DTS.
+
+We ship devices as bootable out of the box. A number of our customers end up
+attaching SPI devices that do not have existing kernel drivers and talk to them
+from userspace without having to touch a kernel build. The loss of spidev
+directly has increased support requests we receive on the matter.
+
+> 
+> > 
+> > 
+> > imx6ul-ts7553v2.dtb: wifi@0: compatible:0: 'microchip,wilc1000' was expected
+> > imx6ul-ts7553v2.dtb: wifi@0: compatible: ['microchip,wilc3000'...] is too long
+> > imx6ul-ts7553v2.dtb: wifi@0: 'chip_en-gpios' does not match any of the \
+> > regexes: pinctrl-[0-9]+'
+> >   As noted in the comments in the dts, the WILC1000 in-kernel driver doesn't
+> >   support the BLE features of the WILC3000. We maintain an external module
+> >   tree that lets us build Microchip's official driver with WILC3000 support.
+> >   Would the extraneous compatible string and property be accepted upstream
+> >   in light of this?
+> 
+> No. No undocumented comaptibles with some wrong properties. chip_en is
+> clearly wrong, so it cannot go to DTS. Upstream driver or remove the node.
+
+Unfortunate, but, understood.
+
+> 
+> > 
+> > 
+> >  Documentation/devicetree/bindings/arm/fsl.yaml |    1 +
+> 
+> This is a separate patch.
+
+Makes sense.
+
+> 
+> >  arch/arm/boot/dts/Makefile                     |    1 +
+> >  arch/arm/boot/dts/imx6ul-ts7553v2.dts          |  693 ++++++++++
+> >  arch/arm/configs/ts7970_defconfig              | 1627 ++++++++++++++++++++++++
+> >  arch/arm/configs/tsimx6ul_defconfig            |  967 ++++++++++++++
+> 
+> This as well (and won't be accepted - no new defconfigs).
+
+The defconfigs being included were an oversight and absolutely sloppy on my
+part. I sincerely apologize for that.
+
+> 
+> > 
+> > +
+> > +	leds {
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_gpio_leds>;
+> > +		compatible = "gpio-leds";
+> > +
+> > +		green-led {
+> 
+> led-0
+> 
+> > +			label = "green-led";
+> 
+> Rather use color and function, then labels.
+
+Fixed, thank you. I was unaware of this newer set of properties and I've
+found where they are clearly spelled out.
+
+> 
+> > +
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_gpio_keys>;
+> > +
+> > +		left {
+> 
+> This fails on dtbs_check. Generic node names, so "key-0" or "key-left"
+
+For reference, as of commit b047602d579b4fb028128a525f056bbdc890e7f0, there
+are no errors/warnings from dtbs_check or checkpatch.pl regarding node
+names being "key-..." and the example in gpio-keys.yaml uses "up" "left" etc.
+
+I've also changed the node name to just "keys" per devicetree specifications
+doc.
+
+> 
+> > +	i2c_gpio: i2c-gpio {
+> 
+> Generic node name, so "i2c"
+
+Understood.
+
+Are there any guidelines/restrictions on label use/schema 
+throughout a dts file? The devicetree-specification document only defines
+valid characters for a label and I've been unable to find any other docs.
+
+> 
+> > +		compatible = "i2c-gpio";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_i2cgpio>;
+> > +		sda-gpios = <&gpio5 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+> > +		scl-gpios = <&gpio5 4 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +		status = "okay";
+> 
+> Why do you add status? Isn't this a new node?
+
+That was my mistake, Rob pointed it out in v1 and I forgot to remove it.
+
+> 
+> > +
+> > +	pinctrl_i2cgpio: i2cgrpgpio {
+> 
+> Name not matching schema, as they must end with grp. Derive your board
+> from something new, not ancient...
+> > +
+> > +	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
+> 
+> Same.
+> 
+> > 
+> > +
+> > +	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
+> 
+> No really...
+> 
+
+Thanks for pointing this out, I was unable to find any specific docs on the
+pinctrl node name schema and dtbs_check gave no errors on it.
+
+> > 
+> > +};
+> > diff --git a/arch/arm/configs/ts7970_defconfig b/arch/arm/configs/ts7970_defconfig
+> > new file mode 100644
+> > index 000000000000..a96831752449
+> 
+> Rest is not accepted as not explained/justified.
+> 
+> 
+> Best regards,
+> Krzysztof
+
+Many thanks for the review. 
