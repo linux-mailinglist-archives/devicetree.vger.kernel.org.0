@@ -2,95 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A54657565C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 22:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49FF657567A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 22:43:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239131AbiGNUaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 16:30:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47092 "EHLO
+        id S240770AbiGNUnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 16:43:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232159AbiGNUaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 16:30:15 -0400
-Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com [64.147.123.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 027C9326FA;
-        Thu, 14 Jul 2022 13:30:13 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.west.internal (Postfix) with ESMTP id 158CD2B05AC2;
-        Thu, 14 Jul 2022 16:30:12 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Thu, 14 Jul 2022 16:30:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pjd.dev; h=cc:cc
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1657830611; x=1657834211; bh=A0UPaGfIQl
-        teEMIT9M1cG19ug+wy+THz1cJHr43LHH0=; b=yFA/Q6JOYrck0XdDItDjkZvGC4
-        ZyUfQUX/weG5I7DtiGOWZk8WN1bSRXdwMfHVWjm2SBnp+HoI1mMNRIk04n1J3JCm
-        MtJLAItFz+AB0T/tSzKgRzZQaJvWB0gp39V/Rx+D7356FZDu8kZb5PDGEnDi4RfW
-        WfEbSnnbIMM9AyXxs0inq0zTauBtMQh63GmqPkrv6KF/eQOcMrvSHdeqaBlZhOVi
-        Yr6c4d+F/nBzmhH0BscMTM1POdD1EjKZjdALqHOfA26G0oak8lTJurymSRpefX/b
-        6EhneKBLrHP/PPJm1UIAxjjhNTZXKYBG9aDKf7rH/i9hEJLXbHXCLK+Uz00Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1657830611; x=1657834211; bh=A0UPaGfIQlteEMIT9M1cG19ug+wy
-        +THz1cJHr43LHH0=; b=EOgzC6sjJGpgTgUh4BizKgSvrAPewkIQd7gOn+EJTNuc
-        gmHcADbUjw30mlqDjrw8craNgR1XXlvnApTDM1hKRZENwZHkQESumewpLnwB57eT
-        pWMKCaiLapfAhL5jtOXivRWUJKTJ1tUEOcSOFBv3XGNPYvahs31d7m6Sgb86/PpO
-        m/igR/ka3KJ2JM5ndhZzMRktOHvTOz7X7GQXvb36rDr20fYAk3Wg5G2K65OVtsXi
-        qIh4iA+MN4M9BJ75WnJ1sPL8aL//uzAT9UaCW0amGfH42sTcrJ2tcTbjN/lytIFw
-        Zr/KzAlSHCKfcS2tjaXi8/78rWwbei/tUCSZHHiHKw==
-X-ME-Sender: <xms:0nzQYhhoCqBmIQ43r6H5-81638aTyOEQd45hprZCGb1xtYSvft0KiA>
-    <xme:0nzQYmD-CYxZjsPegDKl5sRqvtqWcThNpn17Lt3QSdyZs1BgRCY37JIOC2U-_iNWM
-    ZyFqcYPzVnBwuT9EQA>
-X-ME-Received: <xmr:0nzQYhHnq1IuN-oMBYf-9r-NDCcK9kDk_z-n1Le22G7B2XdIvRZUhCCLOwtW3KkmxjjBLagKKty32pK3eqgWxwJE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudejledgudehudcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpefrvght
-    vghrucffvghlvghvohhrhigrshcuoehpvghtvghrsehpjhgurdguvghvqeenucggtffrrg
-    htthgvrhhnpeejudfgfedvhffhffeiudefvdffhfegffegjefffedtheekgfehgfefveeh
-    feejteenucffohhmrghinhepohhpvghntghomhhpuhhtvgdrohhrghdpkhgvrhhnvghlrd
-    horhhgpdhgihhthhhusgdrtghomhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgr
-    mhepmhgrihhlfhhrohhmpehpvghtvghrsehpjhgurdguvghv
-X-ME-Proxy: <xmx:0nzQYmQUWqvf1Lth6eDbubZZDlVKI2VPNi0OWDefextRwAsuAd_n7g>
-    <xmx:0nzQYuxKIKSE5wEfeOpl5CVMDHuWvS6SAp8D-W2JvojPQO42H0wgPg>
-    <xmx:0nzQYs6Khh_UCx3BEYiskAGjFLVp3jvnCDM-nkj0P5o95y1JDp9Gyg>
-    <xmx:03zQYjKd5rZaD5p4VqzqOiQ5rFF-mcII3U7Me-LHuGvAfRU7O9KUTKvdmZ8>
-Feedback-ID: i9e814621:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 14 Jul 2022 16:30:08 -0400 (EDT)
-Date:   Thu, 14 Jul 2022 13:30:06 -0700
-From:   Peter Delevoryas <peter@pjd.dev>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Logananth Sundararaj <logananth13.hcl@gmail.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        naveen.mosess@hcl.com, thangavel.k@hcl.com,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, Olof Johansson <olof@lixom.net>,
-        garnermic@gmail.com, velumanit@hcl.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3] The Yosemite V3.5 is a facebook multi-node server
- platform that host four OCP server. The BMC in the Yosemite V3.5 platform
- based on AST2600 SoC.
-Message-ID: <YtB8zjhjwlUXp4Mw@pdel-mbp.dhcp.thefacebook.com>
-References: <20220707132054.GA10610@logan-ThinkPad-T14-Gen-1>
- <CAK8P3a0P2u+LdXcU7As=dfNbg_J2eWfhgB9TT1-xVyH0v6OM5Q@mail.gmail.com>
- <YtBazSo/uJzFeF+L@pdel-mbp>
- <CAK8P3a1juHV6N2QtXaEcobWs6kQHBqqUn9MynvobyJtFFyOsfg@mail.gmail.com>
- <YtB7mw1YSahFg0xI@pdel-mbp.dhcp.thefacebook.com>
+        with ESMTP id S240777AbiGNUnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 16:43:20 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 711494B4AA;
+        Thu, 14 Jul 2022 13:43:17 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id w185so2898258pfb.4;
+        Thu, 14 Jul 2022 13:43:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=arr2UrZq3UNXQzLci/KP881Nin0tggEZNpMwrQSQ3Sk=;
+        b=g7z2doQqLe6iH8wS/NuwjMbvkUb/htOWUN+rVlui8asossxZ4Ce2nFZzkIN3ko6Hnl
+         TxHAqULX0dN0yjF8v/cCaPJOzpYSL/uV+9qBFQvl0PFZM1/dJDcioEmaz+DyntVDoSoj
+         Edy+jcL1IVUSnOeQqjChV8vZ/87ojmE0fykyh+eTMYwAKg25hZuggIrZkJC5JOudyKzx
+         ETn84weMjR/6F1p/idzmjwQ/igvrFkcj/75YFfNQca3dT56FuzTsPot8MrAGjeC+hUis
+         qLo2Au5yxu4UvqFBPxxqU7jBfblHkKCcBCFtfZzT34HZZZ8VICp2J1jW536cRsaAmgSP
+         fnfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=arr2UrZq3UNXQzLci/KP881Nin0tggEZNpMwrQSQ3Sk=;
+        b=II90e3562zevRZ0KmixmuSrexbp2mrWaj5Ujzz0w8sEK/dchRVeb8mdMEDwhVt+S+Y
+         //9kw071RoV89KEVRRzrur0CBXcMy3kOLmaZ7g5Lmj4u1BclVmLqVS5x1JMmfl6FvOIR
+         GNB2IuMH5q8rEQUkXXOMnF/antNSWQUsB/R9HCQbFlfA2HhWmHnuM5OT/QZHwNq7dYKJ
+         FNtTXtkICtA5ZBSGzcceGys3fImvMuPyfPEWIT7ndS4JkzOMQ1rvoNtQg70GA3sedzbt
+         vbd7M4lTOjfUj8R6NnldT7hwkBf566F472Suh3BMT1J0f9hFL35ex3pbMRrLNEag6zAN
+         XqNg==
+X-Gm-Message-State: AJIora+ahyThD/+WnJCKn5TLfal9pXxN+oCTJsens6QnSJE9RItgyVcZ
+        QAplkr/3GY7+sqHqmSMnVgI=
+X-Google-Smtp-Source: AGRyM1scd9xjyyn8+ktl7wLcfz05TjOearwg7OfKyKKDdC8P2UKLcyGuRzX63284jdgV35zhzipSXQ==
+X-Received: by 2002:a05:6a00:8cb:b0:510:9ec4:8f85 with SMTP id s11-20020a056a0008cb00b005109ec48f85mr9834389pfu.24.1657831396922;
+        Thu, 14 Jul 2022 13:43:16 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id mi9-20020a17090b4b4900b001ec84b0f199sm10506871pjb.1.2022.07.14.13.43.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 13:43:16 -0700 (PDT)
+Message-ID: <d0a3fdc9-ffee-0dc8-5352-e64290803456@gmail.com>
+Date:   Thu, 14 Jul 2022 13:43:13 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YtB7mw1YSahFg0xI@pdel-mbp.dhcp.thefacebook.com>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_FMBLA_NEWDOM28,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] mmc: sdhci-brcmstb: use clk_get_rate(base_clk) in PM
+ resume
+Content-Language: en-US
+To:     Kamal Dasu <kdasu.kdev@gmail.com>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com
+Cc:     bcm-kernel-feedback-list@broadcom.com, adrian.hunter@intel.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220714174132.18541-1-kdasu.kdev@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220714174132.18541-1-kdasu.kdev@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -98,80 +76,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 01:24:59PM -0700, Peter Delevoryas wrote:
-> On Thu, Jul 14, 2022 at 10:15:15PM +0200, Arnd Bergmann wrote:
-> > On Thu, Jul 14, 2022 at 8:05 PM Peter Delevoryas <peter@pjd.dev> wrote:
-> > > On Thu, Jul 07, 2022 at 03:33:48PM +0200, Arnd Bergmann wrote:
-> > > > > +       model = "Facebook fby35";
-> > > > > +       compatible = "facebook,fby35", "aspeed,ast2600";
-> > > > > +
-> > > > > +       aliases {
-> > > > > +               serial4 = &uart5;
-> > > > > +       };
-> > > >
-> > > > Why not start at serial0 here?
-> > >
-> > > Hey, Facebook person jumping in here (using a personal email):
-> > >
-> > > I think you're right, it should be like this:
-> > >
-> > >         aliases {
-> > >                 serial0 = &uart5;
-> > >                 serial1 = &uart1;
-> > >                 serial2 = &uart2;
-> > >                 serial3 = &uart3;
-> > >                 serial4 = &uart4;
-> > >         };
-> > 
-> > Are you actually using all five uarts though?
+On 7/14/22 10:41, Kamal Dasu wrote:
+> Use clk_get_rate for base_clk on resume before setting new rate.
+> This change ensures that the clock api returns current rate
+> and sets the clock to the desired rate and honors CLK_GET_NO_CACHE
+> attribute used by clock api.
 > 
-> Actually yes, I should have mentioned this in my previous message.
-> 
-> YosemiteV3.5 is similar to YosemiteV3, which you can see here:
-> 
-> https://www.opencompute.org/products/423/wiwynn-yosemite-v3-server
-> 
-> This dts is for the BMC on the sled baseboard, and it manages the 4 slots in the
-> sled. Each slot has a "Bridge Interconnect" (BIC) (an AST1030) that manages the
-> slot CPU/etc. uart1 is connected to a uart on slot1's BIC, uart2 to slot2, etc.
-> 
-> We also have a work-in-progress QEMU model for this:
-> 
-> https://lore.kernel.org/qemu-devel/20220714154456.2565189-1-clg@kaod.org/
-> 
-> > 
-> > > > > +       chosen {
-> > > > > +               stdout-path = &uart5;
-> > > > > +               bootargs = "console=ttyS4,57600n8 root=/dev/ram rw vmalloc=384M";
-> > > > > +       };
-> > >
-> > > Also: if we do serial0 = &uart5, it should be console=ttyS0, not ttyS4.
-> > >
-> > > >
-> > > > The bootargs should really come from the boot loader.
-> > >
-> > > What if we want to boot the kernel by itself with QEMU? It's kinda annoying to
-> > > have to specify '-append "console=ttyS0,57600n8...' everytime, or to have to use
-> > > a wrapper script. But, it's also a source of bugs: I realized yesterday the
-> > > dts we were using here:
-> > >
-> > > https://github.com/facebook/openbmc-linux/blob/e26c76992e0761d9e440ff514538009384c094b4/arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
-> > >
-> > > Has the wrong console setting.
-> > 
-> > You can encode the uart settings like
-> > 
-> >            stdout-path = "serial0:115200n8"
-> > 
-> > the rest really should be passed on the command line, not in
-> > the DT shipped with the kernel.
+> Fixes: 97904a59855c (mmc: sdhci-brcmstb: Add ability to increase max clock rate for 72116b0)
+> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
 
-Oh sorry, I missed this comment:
-
-That sounds good, I'm fine with that. We should remove the bootargs then.
-
-Thanks,
-Peter
-
-> > 
-> >         Arnd
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
