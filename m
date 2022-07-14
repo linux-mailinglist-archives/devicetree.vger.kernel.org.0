@@ -2,197 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D044F574C60
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 800D8574C75
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:48:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237782AbiGNLnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 07:43:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56552 "EHLO
+        id S238022AbiGNLsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 07:48:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238591AbiGNLnH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:43:07 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624305B783;
-        Thu, 14 Jul 2022 04:43:06 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9E0796601A3B;
-        Thu, 14 Jul 2022 12:43:03 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657798984;
-        bh=Jmgt9B9vmIXfJJid7XgjYdDGJLAKYu4OfWn1P8yPhOw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=I1CQX9JcrHhIziX/KiYO9NOOGL291FYxJwbHYiXpoaNjzvl1ZdrDpbLmEFvlzuQ3H
-         MEzRivcgfXjr/hoKURjQRYeZfURGYj+XIf5d9vBNOX0X7+HoA6ny3pnput1vOafAXl
-         mCElQXJhyaHq2Ae8y+dx2ZLIDHt0XlZl2HGEDrlISiZIiJJgIESDtGUBZ4rX0WErJ2
-         Y/qJA3pEKKn4JOmXvubSbOx3QoIIuu5bQR5EOt1uqStlUszcCeU4byTQEzr1M6hGaA
-         55H5s7UTvKlWH5UhC2xzDPk+0SWasoBJTlWQpbtW/+VfjHsBI+ncvutMUKhfYQ5SGG
-         PgIsLtQDqItZg==
-Message-ID: <32ae9ba6-55aa-1663-05f6-20a637604f70@collabora.com>
-Date:   Thu, 14 Jul 2022 13:43:01 +0200
+        with ESMTP id S239067AbiGNLsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:48:41 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FBE965AD
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:48:38 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id x10so1394469ljj.11
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:48:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=KmdkLZQTH7Au+8JqBR3UHKGQf5x82UafUt+CMJrqYow=;
+        b=ykwOYMW0SFy7xWmcHnQ1EXNmukntRLlae+V63adrgl2q5taon6yOi4QBkcZ5yYkq0F
+         rQsfSIfLMlr2bASl8+YqShrkKiUsmjlkMki8jt1v1AJPefxgpNEqfYsi89vCjKrWO1Rj
+         AX6abGCe7KI0Y1er2+nTRmPMc5vjSsiad5Pkuuo9wKclct88rO3JGyiig1nwiUo12CAS
+         BG9jzcvpXGiblYNyiaqNJopPjxPW+NcIpxwZ2Ob3nTWu6AoFjjNQL0Q2uvG/pPmfnP69
+         d3w5KMCdTj/hpHFJZxeTJj74fJ+lO0yYh0LbAuv9Xa0iZrO4TB5ahNUbpnlh47PzcJIt
+         oM8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=KmdkLZQTH7Au+8JqBR3UHKGQf5x82UafUt+CMJrqYow=;
+        b=tPczHdjLuDmQGZJc3qfJKyFS/EvEvEDIuU5jehsxx4D559c57Y+TrF4UY+LMEaMOsD
+         AG3Mv7uUrCURt16963GCmVCadAm+MNQfe5nzKEnBkLbsf+nQB3BdwlPIh8+iqhO2AvJH
+         pnuVArAQ/E3VXbSqqobLsF2OB8cEZV53qTZ2cjN5VzxTLFKM5ixgonG3OkjdLIDjxRgU
+         mFJCyc9LGbiYG6lIDUkDsgtyzjN/R6ffBcyWJxZKUNHhCNEFIXMkIzlOs+gNdRp66Axk
+         2oGpNf9Fzp7JGxSo4NdXhkUAaLtRiHTXd+4ZhqXbZer0a2R3Ncsrb2pUzuXGufdR4dUy
+         W5/A==
+X-Gm-Message-State: AJIora9g24Z72Udo1psnDgrrtoKhIRLiQ4pyBBw6jB5cP31ixsMfBnMi
+        ZmLQauYr27D3+GI7ypvfpwIONg==
+X-Google-Smtp-Source: AGRyM1uU3QSD8JP1L98Wd2/ma9Wp+GjizZuDEBOXcRlIFFWP8JTv+3GmZuQdlVAWpCpJL2ISRPH1Tg==
+X-Received: by 2002:a2e:b892:0:b0:25b:ce73:675f with SMTP id r18-20020a2eb892000000b0025bce73675fmr4185438ljp.67.1657799316481;
+        Thu, 14 Jul 2022 04:48:36 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id j28-20020ac2551c000000b0048329aa6c92sm318315lfk.139.2022.07.14.04.48.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 04:48:35 -0700 (PDT)
+Message-ID: <c129c748-4306-da64-fc18-2d224b2fc97c@linaro.org>
+Date:   Thu, 14 Jul 2022 13:48:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v14 09/10] drm/mediatek: DP audio support for MT8195
+Subject: Re: [PATCH v3 1/2] dt-bindings: power: reset: qcom-pon: update "reg"
+ property details
 Content-Language: en-US
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
-        tzimmermann@suse.de, matthias.bgg@gmail.com, deller@gmx.de,
-        airlied@linux.ie
-Cc:     msp@baylibre.com, granquet@baylibre.com, jitao.shi@mediatek.com,
-        wenst@chromium.org, ck.hu@mediatek.com, liangxu.xu@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-fbdev@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
- <20220712111223.13080-10-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220712111223.13080-10-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Anjelique Melendez <quic_amelende@quicinc.com>, corbet@lwn.net,
+        sre@kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        linux-doc@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        David Collins <quic_collinsd@quicinc.com>
+References: <20220713193350.29796-1-quic_amelende@quicinc.com>
+ <20220713193350.29796-2-quic_amelende@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220713193350.29796-2-quic_amelende@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 12/07/22 13:12, Bo-Chen Chen ha scritto:
-> From: Guillaume Ranquet <granquet@baylibre.com>
+On 13/07/2022 21:33, Anjelique Melendez wrote:
+> From: David Collins <quic_collinsd@quicinc.com>
 > 
-> This patch adds audio support to the DP driver for MT8195 with up to 8
-> channels.
+> Update the description of "reg" property to add the PON_PBS base
+> address along with PON_HLOS base address.  Also add "reg-names"
+> property description.
 > 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> Signed-off-by: David Collins <quic_collinsd@quicinc.com>
+> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
 > ---
->   drivers/gpu/drm/mediatek/mtk_dp.c     | 723 ++++++++++++++++++++++++++
->   drivers/gpu/drm/mediatek/mtk_dp_reg.h |   2 +
->   2 files changed, 725 insertions(+)
+>  Documentation/devicetree/bindings/power/reset/qcom,pon.yaml | 73 ++++++++++++++++++++++++++++--
+>  1 file changed, 69 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-> index 5ab646bd2bc4..fa7bb102a105 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+> diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> index 353f155d..562fe308 100644
+> --- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> +++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> @@ -15,18 +15,26 @@ description: |
+>  
+>    This DT node has pwrkey and resin as sub nodes.
+>  
+> -allOf:
+> -  - $ref: reboot-mode.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+>        - qcom,pm8916-pon
+>        - qcom,pms405-pon
+>        - qcom,pm8998-pon
+> +      - qcom,pmk8350-pon
+>  
+>    reg:
+> -    maxItems: 1
+> +    description: |
+> +      Specifies the SPMI base address for the PON (power-on) peripheral.  For
+> +      PMICs that have the PON peripheral (GEN3) split into PON_HLOS and PON_PBS
+> +      (e.g. PMK8350), this can hold addresses of both PON_HLOS and PON_PBS
+> +      peripherals.  In that case, the PON_PBS address needs to be specified to
+> +      facilitate software debouncing on some PMIC.
 
-..snip..
-
-> @@ -2082,6 +2693,104 @@ static void mtk_dp_debounce_timer(struct timer_list *t)
->   	mtk_dp->need_debounce = true;
->   }
->   
-> +/*
-> + * HDMI audio codec callbacks
-> + */
-> +static int mtk_dp_audio_hw_params(struct device *dev, void *data,
-> +				  struct hdmi_codec_daifmt *daifmt,
-> +				  struct hdmi_codec_params *params)
-> +{
-> +	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
-> +	struct mtk_dp_audio_cfg cfg;
-> +
-> +	if (!mtk_dp->enabled) {
-> +		pr_err("%s, DP is not ready!\n", __func__);
-
-drm_err() here please.
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	cfg.channels = params->cea.channels;
-> +	cfg.sample_rate = params->sample_rate;
-> +	cfg.word_length_bits = 24;
-> +
-> +	mtk_dp_audio_setup(mtk_dp, &cfg);
-> +
-> +	return 0;
-> +}
-> +
-
-..snip..
+You miss here min and maxItems
 
 > +
-> +static int mtk_dp_register_audio_driver(struct device *dev)
-> +{
-> +	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
-> +	struct hdmi_codec_pdata codec_data = {
-> +		.ops = &mtk_dp_audio_codec_ops,
-> +		.max_i2s_channels = 8,
-> +		.i2s = 1,
-> +		.data = mtk_dp,
-> +	};
-> +	struct platform_device *pdev;
+> +  reg-names:
+> +    description: |
+> +      For PON GEN1 and GEN2, it should be "pon". For PON GEN3 it should include
+> +      "hlos" and optionally "pbs".
+
+Skip description. You miss here min and maxItems.
+
+See
+https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+for examples.
+
+
+>  
+>    pwrkey:
+>      type: object
+> @@ -42,6 +50,63 @@ required:
+>  
+>  unevaluatedProperties: false
+>  
+> +allOf:
+> +  - $ref: reboot-mode.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,pm8916-pon
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +        reg-names:
+> +          items:
+> +            - const: pon
 > +
-> +	pdev = platform_device_register_data(dev, HDMI_CODEC_DRV_NAME,
-> +					     PLATFORM_DEVID_AUTO, &codec_data,
-> +					     sizeof(codec_data));
-> +	if (IS_ERR(pdev))
-> +		return PTR_ERR(pdev);
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,pms405-pon
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +        reg-names:
+> +          items:
+> +            - const: pon
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,pm8998-pon
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +        reg-names:
+> +          items:
+> +            - const: pon
 
-You're never unregistering this device, which is unacceptable.
-
-Please add a platform device pointer in struct mtk_dp, so that this function
-becomes, simply:
-
-	mtk_dp->audio_pdev = platform_device_register_data(dev,
-						HDMI_CODEC_DRV_NAME,
-						PLATFORM_DEVID_AUTO, &codec_data,
-						sizeof(codec_data));
-	return PTR_ERR_OR_ZERO(mtk_dp->audio_pdev);
+No clue why you made three if statements. This is one if for all three
+variants.
 
 > +
-> +	return 0;
-> +}
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,pmk8350-pon
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 1
+> +          maxItems: 2
+> +        reg-names:
+> +          minItems: 1
+> +          items:
+> +            - const: hlos
+> +            - const: pbs
 > +
->   static int mtk_dp_probe(struct platform_device *pdev)
->   {
->   	struct mtk_dp *mtk_dp;
-> @@ -2127,8 +2836,21 @@ static int mtk_dp_probe(struct platform_device *pdev)
->   		return dev_err_probe(dev, -EPROBE_DEFER,
->   				     "failed to request mediatek dptx irq\n");
->   
-> +	mutex_init(&mtk_dp->edid_lock);
-> +	mutex_init(&mtk_dp->eld_lock);
-> +	mutex_init(&mtk_dp->update_plugged_status_lock);
-> +
->   	platform_set_drvdata(pdev, mtk_dp);
->   
-> +	if (!mtk_dp_is_edp(mtk_dp)) {
-> +		ret = mtk_dp_register_audio_driver(dev);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to register audio driver: %d\n",
-> +				ret);
-> +			return ret;
-> +		}
-> +	}
-> +
->   	mtk_dp->phy_dev = platform_device_register_data(dev, "mediatek-dp-phy",
->   							PLATFORM_DEVID_AUTO,
->   							&mtk_dp->regs,
-> @@ -2174,6 +2896,7 @@ static int mtk_dp_remove(struct platform_device *pdev)
->   
->   	platform_device_unregister(mtk_dp->phy_dev);
+>  examples:
+>    - |
+>     #include <dt-bindings/interrupt-controller/irq.h>
 
-... and unregister it here:
 
-	if (mtk_dp->audio_pdev)
-		platform_device_unregister(mtk_dp->audio_pdev);
-
->   	mtk_dp_video_mute(mtk_dp, true);
-> +	mtk_dp_audio_mute(mtk_dp, true);
->   	del_timer_sync(&mtk_dp->debounce_timer);
->   
->   	pm_runtime_disable(&pdev->dev);
-
-Regards,
-Angelo
+Best regards,
+Krzysztof
