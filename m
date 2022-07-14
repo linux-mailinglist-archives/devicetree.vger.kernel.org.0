@@ -2,116 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EAA2574CA7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:59:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED756574CAC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 14:00:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239106AbiGNL7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 07:59:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43272 "EHLO
+        id S238378AbiGNMAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 08:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238458AbiGNL7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:59:17 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B38E39B84
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:59:16 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id d12so2375075lfq.12
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:59:15 -0700 (PDT)
+        with ESMTP id S238329AbiGNMAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 08:00:15 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F27F39B84;
+        Thu, 14 Jul 2022 05:00:14 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id r186so1358338pgr.2;
+        Thu, 14 Jul 2022 05:00:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EgRB3uk2eARor0EOATA0atI967xULo2Iq5wahJWcNKY=;
-        b=pkSdn509huWe8QwssIYCQ/3Et0ZHqT9xt2lBSNjiyBPfMyHLI0D/AzlBAZzNQ8Oqit
-         HI49Vyrrv9K76vvbwoPjp5q83eyoUXws593RmU18+ZOBk1YQyB7vUed46vZ/gMtHJYO6
-         mqavqHLW7rQ/i/2FOvW69MuddpBVojxD9MjUDWkNgvCTw4wA5xTgIrTZDBYFbA3RKNXz
-         qT6pnqyN5FcgP7k4rCJEBBQA2unaPQOmBBZUxe0uyJgLGOPsVhYlyRx80WzSjnE3674W
-         EIjNKOIQBZ7t+XXj++lqZkY09ZP8DWh6J6SvrY4dI3GIfqqemBA20bahTcJixbzU3OYR
-         9bcQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=E2VOjluf3ek/MQbgtRalDmdAiynIGxs26XFpbrqNpRA=;
+        b=BH8Eo1QKxCh29juExb3iCbmsHL1j4WmUkp9pZ/uE8D00211uY/uajvH5IPuMxvzUv2
+         rjK59xnQuYBDo/0UbQupa7mDGyKnNLqliXsFkK4nfz5re3e8/UrLGGnylyejiW+p/g+F
+         Cn3JssDBmTYq6cKeJv+B9FW04lBHtM3ky443F1mzQPK7rulUpAW1G7BVWp4wC7Xn9Zoq
+         SMc+kBOa/vErA9d8uzqT12FjQxdceks3jPGRBhkPbxHXIgoZs+lCvHTA/AI/NmFw6JIE
+         jOdsKpqVdODhDtaO6eXr7HT2PGgTO1finH+Gcfud2qHXxP8mo2LQnKAp5mfYJSxfmq2Q
+         BmlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=EgRB3uk2eARor0EOATA0atI967xULo2Iq5wahJWcNKY=;
-        b=gSSx5NB5CLsyC8Pp0pbh2/7dnevqtV7FE1an7ld54xp4X1QI+rKJkGLjahAzNsLC/3
-         i7xwKmmO/+RkJgi4m3P0vr7ZqYKndktcq+6xVeDz5EM3l0Jlwq5hxhYDfzJGsX1XtIMK
-         OEIa0+twKfg6UoRt95s7OPltprW74NKvcMdkZEcWQOcpE0vQMcaXKdp6FkPNQlHuIJVh
-         j2bEkmPhVIdJNPPtiXuScTl72fH21SpTMheAk9/VcO1CcuylwlX406q6qVsMAh8OvIsM
-         38QZzaeHvSoQ84N5bt2941Ontcm+dJLPbGnxrRg8p+BIjYbkKESHmUNd/W2c5YQ4m3Fj
-         zOxw==
-X-Gm-Message-State: AJIora+IAjfE6+lh1RI8hy3quqNYSRaPeh3Jbv4STke9CiT5cWQA6SXe
-        X+kO+Wvwno1Be6fIb7uT34upuA==
-X-Google-Smtp-Source: AGRyM1sp46qLjUaQ39yzSVfZFmt8J6pClvKxTyubHCvrRm+wHU/jVtGoxJMsm79yrYOE2Ii5U/62Rw==
-X-Received: by 2002:ac2:420b:0:b0:489:eac1:5d7f with SMTP id y11-20020ac2420b000000b00489eac15d7fmr5242513lfh.355.1657799954395;
-        Thu, 14 Jul 2022 04:59:14 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id c11-20020a056512324b00b00478f3bb79d6sm322573lfr.194.2022.07.14.04.59.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 04:59:13 -0700 (PDT)
-Message-ID: <9d9067f3-5b2d-6434-ec2f-93b4a97a6588@linaro.org>
-Date:   Thu, 14 Jul 2022 13:59:11 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=E2VOjluf3ek/MQbgtRalDmdAiynIGxs26XFpbrqNpRA=;
+        b=Ha84iMzJlBM3pv35Gpfw8jSgZ3A4ks6H6dg6Tzf6pDuPPqpcVrhdWX+XvVGBxR6X7E
+         z1BkYFALxONsPSTXboCRt8oougPRI4OUgkGHU6LwsDLTFdQxXkTko/Vx28Uv7VexM7fb
+         mv7R76vx3egYOf/W96cWgoNchlU1Qb4wz+cHFhhxAUAtQl4A5JlGght+SMp9HNzVoCck
+         rOUinkhZ652lENFOAmJrfhvSHX9CG81Dp2HkTu9W+hCsSwL6r5sPNcoX77l552tfLd+u
+         /MDMGrGeZnMay1/a2QGp7XcBG+RnJtdY7k1zYIZAamAwN+YEC610QXpWmWW4gN0w+fMY
+         eLew==
+X-Gm-Message-State: AJIora9gOYj6UWkujh+0QhTUaa9qIO3ZduGRebxIZFy0D+AKu9EVt+ls
+        EBzUSS/paJEvF8YSnOjD0D0=
+X-Google-Smtp-Source: AGRyM1uwFhSe52o11EuF7r4fNwvDiFP4mDw29hA5fAor2v+tXf2Q8VHfU9T/1nyN1rmyE+RJL81Skg==
+X-Received: by 2002:aa7:8186:0:b0:528:c344:ed6e with SMTP id g6-20020aa78186000000b00528c344ed6emr7908173pfi.35.1657800013446;
+        Thu, 14 Jul 2022 05:00:13 -0700 (PDT)
+Received: from sol (110-174-58-111.static.tpgi.com.au. [110.174.58.111])
+        by smtp.gmail.com with ESMTPSA id md14-20020a17090b23ce00b001ef7bcb7e61sm3596464pjb.47.2022.07.14.05.00.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jul 2022 05:00:12 -0700 (PDT)
+Date:   Thu, 14 Jul 2022 20:00:05 +0800
+From:   Kent Gibson <warthog618@gmail.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 1/4] gpiolib: add support for bias pull disable
+Message-ID: <20220714120005.GA105609@sol>
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+ <20220713131421.1527179-2-nuno.sa@analog.com>
+ <Ys8CpqYhWp7zVNC8@smile.fi.intel.com>
+ <20220714042050.GA76737@sol>
+ <4bf06ba5994f559499c45275cd7f44bfee1bbde1.camel@gmail.com>
+ <20220714082710.GA103849@sol>
+ <35e8020f513a77b8a8eb12a45d48a2b1390cce7c.camel@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
-Content-Language: en-US
-To:     Michal Simek <michal.simek@xilinx.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shubhrajyoti Datta <shubhraj@xilinx.com>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        Srinivas Goud <sgoud@xilinx.com>
-References: <cover.1637061057.git.shubhrajyoti.datta@xilinx.com>
- <e1d6913bfe5ce023d7f6ea106d0359142063e694.1637061057.git.shubhrajyoti.datta@xilinx.com>
- <YaVPYiGmDsqY+1at@robh.at.kernel.org>
- <DM6PR02MB663589B3489C53A34DC25A31AA719@DM6PR02MB6635.namprd02.prod.outlook.com>
- <MN2PR02MB6640017950EFB0FD21D2AD91AA339@MN2PR02MB6640.namprd02.prod.outlook.com>
- <DM6PR02MB66352597DBF172ACC5307274AA179@DM6PR02MB6635.namprd02.prod.outlook.com>
- <CAL_JsqLV3De0O2WDq=w_CQbvAiJVvQ-=V9XuC1tJyZNLyneDZw@mail.gmail.com>
- <CAKfKVtGrdh-iQP7YKUBe37HVeZcU-UV3A3BHKjcnggBFR94eNA@mail.gmail.com>
- <50bfd52b-6fe0-546f-9121-0145aac91289@xilinx.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <50bfd52b-6fe0-546f-9121-0145aac91289@xilinx.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <35e8020f513a77b8a8eb12a45d48a2b1390cce7c.camel@gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 12:55, Michal Simek wrote:
-> Hi Rob and Krzysztof,
+On Thu, Jul 14, 2022 at 10:47:27AM +0200, Nuno Sá wrote:
+> On Thu, 2022-07-14 at 16:27 +0800, Kent Gibson wrote:
+> > On Thu, Jul 14, 2022 at 09:14:21AM +0200, Nuno Sá wrote:
+> > > On Thu, 2022-07-14 at 12:20 +0800, Kent Gibson wrote:
+> > > > On Wed, Jul 13, 2022 at 08:36:38PM +0300, Andy Shevchenko wrote:
+> > > > > On Wed, Jul 13, 2022 at 03:14:18PM +0200, Nuno Sá wrote:
+> > > > > > This change prepares the gpio core to look at firmware flags
+> > > > > > and
+> > > > > > set
+> > > > > > 'FLAG_BIAS_DISABLE' if necessary. It works in similar way to
+> > > > > > 'GPIO_PULL_DOWN' and 'GPIO_PULL_UP'.
+> > > > > 
+> > > > > ...
+> > > > > 
+> > > > > >         GPIO_PULL_UP                    = (1 << 4),
+> > > > > >         GPIO_PULL_DOWN                  = (1 << 5),
+> > > > > > +       GPIO_PULL_DISABLE               = (1 << 6),
+> > > > > 
+> > > > > To me it seems superfluous. You have already two flags:
+> > > > > PUp
+> > > > > PDown
+> > > > > When none is set --> Pdisable
+> > > > > 
+> > > > 
+> > > > Agree with Andy on this.  The FLAG_BIAS_DISABLE was added, by me,
+> > > > to
+> > > > allow the cdev interface to support bias.  cdev requires a "don't
+> > > > care"
+> > > > state, distinct from an explicit BIAS_DISABLE.
+> > > > The FLAG_BIAS_DISABLE allows gpiolib-cdev to communicate that to
+> > > > gpiolib, without altering the interpretation of the existing
+> > > > PULL_UP
+> > > > and
+> > > > PULL_DOWN flags.
+> > > > That is not an issue on the machine interface, where the two
+> > > > GPIO_PULL
+> > > > flags suffice.
+> > > > 
+> > > 
+> > > I see, but this means we can only disable the pin BIAS through
+> > > userspace. I might be wrong but I don't see a reason why it
+> > > wouldn't be
+> > > valid to do it from an in kernel path as we do for PULL-UPS and
+> > > PULL-
+> > > DOWNS 
+> > > 
+> > 
+> > > > If you are looking for the place where FLAG_BIAS_DISABLE is set
+> > > > it is
+> > > > in
+> > > > gpio_v2_line_config_flags_to_desc_flags() in gpiolib-cdev.c.
+> > > > 
+> > > > Referring to gpio_set_bias(), the only place in gpiolib the
+> > > > FLAG_BIAS_DISABLE is used, if neither FLAG_PULL_UP,
+> > > > FLAG_PULL_DOWN,
+> > > > nor FLAG_BIAS_DISABLE are set then the bias configuration remains
+> > > > unchanged (the don't care case) - no change is passed to the
+> > > > driver.
+> > > > Otherwise the corresponding PIN_CONFIG_BIAS flag is passed to the
+> > > > driver.
+> > > > 
+> > > 
+> > > Exactly, but note FLAG_BIAS_DISABLE can only be set from userspace
+> > > at
+> > > this point (IIUTC). If everyone agrees that should be case, so be
+> > > it.
+> > > But as I said, I just don't see why it's wrong to do it within the
+> > > kernel.
+> > > 
+> > 
+> > Believe it or not gpiolib-cdev is part of the kernel, not userspace -
+> > it
+> > just provides an interface to userspace.
+> > 
 > 
-> On 6/14/22 14:21, Shubhrajyoti Datta wrote:
->>>>
->>   <snip>
->>
->>>
->>> No, I don't know what the differences are in your h/w. You have ID
->>> registers, but changed the IP and didn't change the ID registers? How
->>> has the IP changed?
->>>
->>
->> The IP is not changed and the ID registers are not updated.
->> The limitation is coming from the AXI  port that the IP is connected to.
->> The axi port is allowing only the 32 bit access.
->> The same information will be updated in the Versal TRM.
+> Yes, I do know that. But don't you still need a userspace process to
+> open the cdev and do the ioctl()?
 > 
-> Can you please give us your recommendation how to process with this?
 
-Unfortunately I don't think that anyone remembers context from last
-year, especially me who was not Cced. Rob responded at end of March and
-it took two months to get back any answer. Such slow response time from
-submitter does not help to stay in the context. :(
+Only if you want to drive the cdev interface, so not in this case.
+You would not use cdev, you would use gpiolib directly.
 
+> > Bias can be disabled by calling gpiod_direction_input() or
+> > gpiod_direction_output() after setting the FLAG_BIAS_DISABLE, as
+> > gpiolib-cdev does.
+> > 
+> > Does that work for you?
+> > 
+> 
+> I'm not seeing how would this work... We would need to make gpiod
+> consumers having to do this. Something like:
+> 
+> 
+> desc = giod_get();
+> set_bit(FLAG_BIAS_DISABLE, &desc->flags);
+> set_direction...
+> 
+> 
 
-Best regards,
-Krzysztof
+In a nutshell.
+
+If that solves your immediate problem then you need to decide what
+problem your patch is trying to address.
+
+Cheers,
+Kent.
