@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A27AA57522C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 17:46:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A48B575236
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 17:53:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232429AbiGNPqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 11:46:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52180 "EHLO
+        id S229655AbiGNPx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 11:53:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbiGNPqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 11:46:50 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78235AE4E;
-        Thu, 14 Jul 2022 08:46:47 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id az2-20020a05600c600200b003a301c985fcso1215688wmb.4;
-        Thu, 14 Jul 2022 08:46:47 -0700 (PDT)
+        with ESMTP id S229498AbiGNPx0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 11:53:26 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D991932BBA;
+        Thu, 14 Jul 2022 08:53:22 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id j12so778862plj.8;
+        Thu, 14 Jul 2022 08:53:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=8KOz6CvW48p5QqinPQHBKS23O8fbxtvv7Y3stP5AdXo=;
-        b=PT0gaQosfwj9MRRT8DN1wWKiXsmo2tvULz7G6Q9l4YTpAQ+NQTh3CymU/QMtVJKj9p
-         iGrN3eYmLrL9k70cGw8BjhRpRf+cguKgeDhshPZhcsOuKSfLc67PDA3gEwIoDZcE66eN
-         sCn94yOun9XQFUf6WEkuh4TsupoEyTQaRkIdHbsKdGheChQS8MdLp1ylm9agj0DlnOT0
-         BM53KnUTlw1qaK3Wve7Tw76uYnBMI4X2Ucgq/jPLB4YNTBf38lGFXQuFjxdbDMHupVhw
-         4OezBdn3Ori14WYr5vSIiVQLmtyNcjIDYFX4+WCU41Ji+mkPb6HcvvSPK5S0ZEckRxIx
-         OuLA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZSV9uu+AuHbrVWmSxWJ5hlL7FSlm4yniGon0X3L1vGw=;
+        b=mSOGAe0IKtLgYDltoZ2uj03mfF1ldaSBFDrVOojxM/0dInRStf82hVP8tc6hwPRUP/
+         JjGSfnACwsaSYaKJkon+JuELynFqR7GTekeURDDy4J/bQfTOi1mwG3OonHHvv0iVYWbE
+         NMU5eaCu86gstGoHoj2/7ps0eF17oGpRcyFP/0Vz3+ulQvaTy235HrBBQl3hucqtIFnB
+         QKKeMKhZwv/2hqTwFkYVio0Jv+/U1SwxBloqiSiGzU/zyFJqToSFLVmzvBVjhw/plBLa
+         yVXBHBmWIOQPowaH0vSyMdp21SqKIYsMys54UW9Y29XZBZFaZEeL0rVXWXcMnky2dTZQ
+         W8VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=8KOz6CvW48p5QqinPQHBKS23O8fbxtvv7Y3stP5AdXo=;
-        b=EnaWFm/yfZAbS5zjHvwK1Lh0w2ni7izgn8XPKIAcAQ2dIJ1RQBxbUb4wZXAmrbU5Rd
-         /Wg+LuvASq6CnbVuGOpvMV1Hfu4PvzWrUkBYnyLDfPQenMq5mgDz+1vUr+ZkOdFDncL+
-         JX2upsr+w+iMSjCwMJIb73tAsvExAAXfnm/urUjp9RUT5UaQn8OH6ID6cX/els2mpy7Y
-         fE+dS11PPA9vKR9dZVcTnUTJFz4q010s8CbZNBkmA8Uqa8sgM+Cd4cFW9hIianxLuE91
-         qzAXlAS4weMFo+C1T3VT84TP673EsZNjGkLDGN0MlZG7/RpedjcDT6rPMg1oWAcvBfg/
-         m9QQ==
-X-Gm-Message-State: AJIora+EFzN00kbWRTwX+yfBB99yh2qTK2CEAxpHW5hP6oWhXBr+uc5m
-        bfaHXIr8euQw9u7azyosHZs=
-X-Google-Smtp-Source: AGRyM1vV8d14wVlH4ovazryw4IMyTJKQK+pyLi72Fo8GnCV1EdDH6E2vyHee9P6dV7GN+Vsq91+tUw==
-X-Received: by 2002:a05:600c:35ca:b0:3a2:aee3:a8ff with SMTP id r10-20020a05600c35ca00b003a2aee3a8ffmr9744984wmq.206.1657813605912;
-        Thu, 14 Jul 2022 08:46:45 -0700 (PDT)
-Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
-        by smtp.gmail.com with ESMTPSA id n7-20020a5d6607000000b0021b9504cc83sm1736842wru.31.2022.07.14.08.46.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jul 2022 08:46:45 -0700 (PDT)
-Message-ID: <d7416381e57a4a065616105952926552b7c70415.camel@gmail.com>
-Subject: Re: [PATCH 1/4] gpiolib: add support for bias pull disable
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Kent Gibson <warthog618@gmail.com>,
-        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 14 Jul 2022 17:47:49 +0200
-In-Reply-To: <YtAxaCsQTrUiI4ir@smile.fi.intel.com>
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
-         <20220713131421.1527179-2-nuno.sa@analog.com>
-         <Ys8CpqYhWp7zVNC8@smile.fi.intel.com> <20220714042050.GA76737@sol>
-         <4bf06ba5994f559499c45275cd7f44bfee1bbde1.camel@gmail.com>
-         <20220714082710.GA103849@sol>
-         <35e8020f513a77b8a8eb12a45d48a2b1390cce7c.camel@gmail.com>
-         <20220714120005.GA105609@sol>
-         <fc0ce1235dce7303aac7bcc45b856fcca60fcb57.camel@gmail.com>
-         <YtAxaCsQTrUiI4ir@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.3 
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZSV9uu+AuHbrVWmSxWJ5hlL7FSlm4yniGon0X3L1vGw=;
+        b=ysy/KxrbZdXglaUrJyq0RSJZiUvA54xwoqW65iJUd4Dw8aJDKY0V7cdgnG8qVar+Br
+         PT45Bh68y9XHK5nphqmte7soBNHhf6XbBb4FTXNI79cMCZ4eOFf30JrxCOtaDt2USZt8
+         iMB1wIZrehf2u1kFMktHKgA+lNTrvka8SjdVcuiHPjW86wTf0FYfrsHiWaTZuohhllyQ
+         1V25nzDxau5gaNy0nktvggI+eG+UuVhptBsPTpQndCUWhfQwCauSGRapaYwe4wFg3RBn
+         ua9DVtJK7WQRUrlOKBQP/79QT2EyIDjiH68BST5AtrRFZc0e1cpahTDX7CrXmoCVOw/f
+         0mfA==
+X-Gm-Message-State: AJIora/weDxbNlIeuWUp/Dsg8VL7Xhk2aK7ATUYsfjJx1XNsIGMyBALy
+        nlrijKhn0ng7uQhFcQi9q0l1J9DsRQKO0HQIcbQ=
+X-Google-Smtp-Source: AGRyM1uObPdXPPCi/cljNCfrUnmG0La5SB8Ejt58qBm3+R9+LoCHi+EPoyalgF9uM7Lg98OYdmVCyTRBCYh7IwVOSNg=
+X-Received: by 2002:a17:90b:2243:b0:1f0:b0a:e40c with SMTP id
+ hk3-20020a17090b224300b001f00b0ae40cmr17249622pjb.76.1657814002376; Thu, 14
+ Jul 2022 08:53:22 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220713074118.14733-1-frieder@fris.de> <20220713074118.14733-2-frieder@fris.de>
+In-Reply-To: <20220713074118.14733-2-frieder@fris.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 14 Jul 2022 12:53:10 -0300
+Message-ID: <CAOMZO5DCpxiYNXPOg+Cmc+6gBxZBp0oQ=wtGf14r8Y+_k1S2Sw@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: dts: imx8mm-kontron: Adjust board and SoM
+ model strings
+To:     Frieder Schrempf <frieder@fris.de>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Heiko Thiery <heiko.thiery@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -86,38 +79,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-07-14 at 18:08 +0300, Andy Shevchenko wrote:
-> On Thu, Jul 14, 2022 at 03:02:08PM +0200, Nuno S=C3=A1 wrote:
-> > On Thu, 2022-07-14 at 20:00 +0800, Kent Gibson wrote:
-> > > On Thu, Jul 14, 2022 at 10:47:27AM +0200, Nuno S=C3=A1 wrote:
->=20
-> ...
->=20
-> > > If that solves your immediate problem then you need to decide
-> > > what
-> > > problem your patch is trying to address.
-> >=20
-> > So my patch is trying to solve exactly this case because (IMO), it
-> > does
-> > not make sense for consumers drivers to have to do the above code.
-> > Moreover, they would need some custom firmware property (eg:
-> > devicetree) for the cases where we want to disable BIAS since we
-> > cannot
-> > just assume we want to do it.
->=20
-> Why? This is the main question. Why do you need that _in kernel_ API.
->=20
-> > Well, maybe we can just assume FLAG_BIAS_DISABLE in gpiolib (when
-> > trying to get the gpiod) if no PULL is specified. However, I do
-> > have
-> > some concerns with it (see my conversation with Andy in the cover).
->=20
-> It's AS IS if you trust firmware.
->=20
+Hi Frieder,
 
-In my use case, there's no firmware controlling the pin... The input
-driver (which exposes the gpichip) directly controls the pins and I
-want to have a way to tell it (from firmware) to disable the BIAS if
-users want to do so (by default it's pull-up)...
+On Wed, Jul 13, 2022 at 4:41 AM Frieder Schrempf <frieder@fris.de> wrote:
+>
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+>
+> The official naming includes "SL" (SoM-Line) or "BL" (Board-Line).
+> The legacy identifiers are kept in brackets and are still used in
+> file names and compatible strings.
+>
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-- Nuno S=C3=A1
+The series looks good, but I cannot find patch 6/6 in my Inbox, nor in:
+https://lore.kernel.org/linux-arm-kernel/20220713074118.14733-1-frieder@fris.de/
