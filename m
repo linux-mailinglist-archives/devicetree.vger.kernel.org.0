@@ -2,68 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7026F574748
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 10:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 204DA574764
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 10:42:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231511AbiGNIi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 04:38:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60912 "EHLO
+        id S237312AbiGNImQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 04:42:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236199AbiGNIiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 04:38:25 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791EC3FA2A
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:38:10 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id bp17so1656180lfb.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:38:10 -0700 (PDT)
+        with ESMTP id S236997AbiGNImH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 04:42:07 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643A11D305
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:42:00 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id bx13so1367206ljb.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:42:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7fxd01WSVmh4sZ+rShAEvNwWTJPHinWndJQGVhp8bBI=;
-        b=AV6Hhli373vNQFbi9Ak8xtnfk65n1qJoOFR1iopuhLqNO+9rR7YVnsPRxPwQyDSQIV
-         +QSw/uYsUn0j3lTno1eRLpYu6NCmKMJ9NHXnu4MS/85dt2BIFA1oM9XA7hsrJQYOFIdC
-         hQbQbbF8+DErln2+k/IyanoaqZumXBcql8mwC+7C8GE42BE1um9abQ98AyATK4QRbSW2
-         ljWFFeMgHHg4xta7hDjX252AJNu8ISxRyUblN+e3kCPgKPRQ1EbvbtncAOYC8xFT3/bH
-         xVMAPvZIlkTEWGZd93pTeNDQCQpHIH9ToFdVKCDS72OiK4S9a+FfVKuuh/PHcI4oOCZI
-         5d5Q==
+        bh=2esk9TdP6kdtHrSrnymcj6el8b1LRAbpAWkkLqJtl+Q=;
+        b=QDY5mi3VIPpcKyFZhKZjk/KSiRRe16p/xCNRaSTyE6aOIVnY7Eoa1LCzB4pvzePsu4
+         OuXzzOzB0Hp4/7IiNtsGFu5/VGOz0UoDfBPUY0FMOOUDHGWHF6Lt/FfuK8/EX9HEUIPZ
+         LpOjPBk17d9pRExewm/BS3YZpvlUlnfs9ocNWNzzFIb4PWmhBX9DTQJus1Zw3Mq67TBx
+         KqB7EC27vMSKGI5yU6Z5Y0zrYSBPfJfOlGTDbPMNW01ZuKk/He6r+AROyg6XFJ+FxUcL
+         4l1DpDfzGopAyCdRU4HYaKK50UgoV+NE8MhM/JEx9WqzHe1WTmPSkUkeGeb7VMF8tmeI
+         f75Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=7fxd01WSVmh4sZ+rShAEvNwWTJPHinWndJQGVhp8bBI=;
-        b=XpRoFSkb8ISeKDedLfS71xzOqtBF/d/jf8zkaCcr/MHj3/MuQXZ9M/1sxHfWmELt6O
-         /L+ZvwxkHy8Mt5oRF04tpRYSp1CQL9Afy9lhbL7I+y7hb//siEllI/IX4hhJ+CfVrsE1
-         OKAtRNJNSPNtub7Lg6F9a8FmHwd2w2K/PYYYVoFo/k4HqBK7FCEpeakzqpjxIx5nqvIK
-         xiBSbXE1LCwmum4d2VOtZi1E1KunNqh0jOebs+hoCQIZZpO0DjzBqGsyhe25jtvkmbZM
-         iNwNVrz7VfdRTgW1Gs8xpyhPrZyd7HbxInPppfoN/c0LSPTC6RQk2mjbtsbfnaZ5I6Zx
-         Djxg==
-X-Gm-Message-State: AJIora/ao0VMlhQw7dnO/vUMr0TPFPbxC/UV0MCJN0VVNnHA48xtIE62
-        ecqEfPrNfoWTlX+jhcvjphjYEA==
-X-Google-Smtp-Source: AGRyM1uNnmvHoyTRHbkEvCEx1QbExHpVGO/O3M8jCnCpVPFay7j9MN3UnazfseCVeu8DlEirOYwVeg==
-X-Received: by 2002:a05:6512:2308:b0:48a:f9d:7389 with SMTP id o8-20020a056512230800b0048a0f9d7389mr3677290lfu.235.1657787888760;
-        Thu, 14 Jul 2022 01:38:08 -0700 (PDT)
+        bh=2esk9TdP6kdtHrSrnymcj6el8b1LRAbpAWkkLqJtl+Q=;
+        b=kBfRDl3hh9Vxs4f/yOuduwZQZ0zK7eAZtNLgn6z5K4wbQR87WrxWC0g9TJTrpbX68r
+         /QKQncNd3pNtcgho/1rbjuaqLGWv6r65i7pYfaMNsSCZwWuIcQnniqKuckI05BD1Q2jB
+         yuUnZ7l5aygbV3aqejUQYqAYpCYfXueqLXn8+5wUWwLt1i3dQSjb4t95h1XRm2jlCcOO
+         eoy1bmYjwYeOMcXl9SrrwztmCSUcpItgGx8NxNsnkE/vnVyWmab6QeXk6t4XevX4PHcr
+         7lhjYq++sQm0os684uqeBkz+HFeds5sVGvNJSgUJygtf6tCPul1hUfYiDjnmFLqgJomY
+         XNqA==
+X-Gm-Message-State: AJIora8v7Fsi8ackF3zRjJjAajIbQ4ehN5pUoqGEf5Eab5hs0w5AHHpH
+        d3AxzpzU14k+Jx6snXBv2e8RIQ==
+X-Google-Smtp-Source: AGRyM1v/BYdsHg1HmjFFrY68+2Ov3PsFKUBHW91Dw9/ABXYMjZxuScitqUVCt4TauEg+rSdSSQgLeg==
+X-Received: by 2002:a2e:8507:0:b0:25d:68a9:c417 with SMTP id j7-20020a2e8507000000b0025d68a9c417mr4018996lji.459.1657788118698;
+        Thu, 14 Jul 2022 01:41:58 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id k6-20020ac257c6000000b00489cd8ee61asm237159lfo.275.2022.07.14.01.38.06
+        by smtp.gmail.com with ESMTPSA id q8-20020a056512210800b00489e812f05asm244158lfr.21.2022.07.14.01.41.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 01:38:07 -0700 (PDT)
-Message-ID: <3178fad9-b761-dd28-971a-007159d10695@linaro.org>
-Date:   Thu, 14 Jul 2022 10:38:04 +0200
+        Thu, 14 Jul 2022 01:41:58 -0700 (PDT)
+Message-ID: <80453ac7-3593-c1c1-a35c-6e660850de44@linaro.org>
+Date:   Thu, 14 Jul 2022 10:41:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH] ASoC: dt-bindings: atmel-i2s: Convert to json-schema
+Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
+ camera sensor binding
 Content-Language: en-US
-To:     Ryan.Wanner@microchip.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220713162538.139115-1-Ryan.Wanner@microchip.com>
+To:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org
+Cc:     Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+References: <cover.1657786765.git.vkh@melexis.com>
+ <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220713162538.139115-1-Ryan.Wanner@microchip.com>
+In-Reply-To: <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,86 +82,154 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2022 18:25, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On 14/07/2022 10:34, Volodymyr Kharuk wrote:
+> Add device tree binding of the mlx7502x and update MAINTAINERS
 > 
+> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
 
-Thank you for your patch. There is something to discuss/improve.
+Wrong subject prefix. Remove trailing "binding".
 
-> Convert atmel i2s devicetree binding to json-schema.
-> Change file name to match json-schema naming.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 > ---
->  .../bindings/sound/atmel,sama5d2-i2s.yaml     | 83 +++++++++++++++++++
->  .../devicetree/bindings/sound/atmel-i2s.txt   | 46 ----------
->  2 files changed, 83 insertions(+), 46 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/atmel-i2s.txt
+>  .../bindings/media/i2c/melexis,mlx7502x.yaml  | 146 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 147 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
+> diff --git a/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
 > new file mode 100644
-> index 000000000000..1cadc476565c
+> index 000000000000..4ac91f7a26b6
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
-> @@ -0,0 +1,83 @@
+> +++ b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+> @@ -0,0 +1,146 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/atmel,sama5d2-i2s.yaml#
+> +$id: http://devicetree.org/schemas/media/i2c/melexis,mlx7502x.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Atmel I2S controller
+> +title: Melexis ToF 7502x MIPI CSI-2 Sensor
 > +
 > +maintainers:
-> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+> +  - Volodymyr Kharuk <vkh@melexis.com>
 > +
-> +description:
-> +  Atmel I2S (Inter-IC Sound Controller) bus is the standard
-> +  interface for connecting audio devices, such as audio codecs.
+> +description: |-
+> +  Melexis ToF 7502x sensors has a CSI-2 output. It supports 2 and 4 lanes,
+> +  and mipi speeds are 300, 600, 704, 800, 904, 960Mbs. Supported format is RAW12.
+> +  Sensor 75026 is QVGA, while 75027 is VGA sensor.
+> +  If you use compatible = "melexis,mlx7502x", then autodetect will be called.
 > +
 > +properties:
 > +  compatible:
-> +    const: atmel,sama5d2-i2s
+> +    items:
+
+No items. You have just one item.
+
+> +      - enum:
+> +          - melexis,mlx7502x
+> +          - melexis,mlx75026
+> +          - melexis,mlx75027
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +  assigned-clocks: true
+> +  assigned-clock-parents: true
+> +  assigned-clock-rates: true
+
+These are not needed.
+
 > +
 > +  clocks:
+> +    description: Clock frequency 8MHz
+> +    maxItems: 1
+> +
+> +  vdda-supply:
 > +    description:
-> +      Only the peripheral clock (pclk) is required. The generated clock (gclk)
-> +      and the I2S mux clock (muxclk) are optional and should only be set together,
-> +      when Master Mode is required.
+> +      Definition of the regulator used as analog power supply(2.7V).
 
-Skip property description, but list and describe the items.
+s/Definition of the regulator used as //
+(redundant)
 
 > +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: gclk
-> +      - const: muxclk
-> +    minItems: 1
-> +
-> +  dmas:
+> +  vddif-supply:
 > +    description:
-> +      Should be one per channel name listed in the dma-names property.
-> +    maxItems: 2
+> +      Definition of the regulator used as interface power supply(1.8V).
 
-Instead items+description. The description you pasted is obvious and not
-helping.
+s/Definition of the regulator used as //
 
 > +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
+> +  vddd-supply:
+> +    description:
+> +      Definition of the regulator used as digital power supply(1.2V).
+
+s/Definition of the regulator used as //
+
 > +
+> +  vdmix-supply:
+> +    description:
+> +      Definition of the regulator used as mixed driver power supply(1.2V).
+
+s/Definition of the regulator used as //
+
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: Reset Sensor GPIO Control (active low)
+> +
+> +  melexis,trig-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Hardware Trigger GPIO Control (active low)
+> +      When the hardware trigger mode is enabled, this GPIO is used to generate
+> +      a low level impulse for about 100us. The impulse triggers a new
+> +      measurement cycle.
+> +
+> +  melexis,leden-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Led driver enable GPIO Control (active high)
+> +      This GPIO notifies the illumination driver when it is safe to use led
+> +      signals from the sensor.
+> +
+> +  port:
+> +    description: MIPI CSI-2 transmitter port
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            oneOf:
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +
+> +          clock-noncontinuous: true
+> +          link-frequencies: true
+
+You do not need these two, they come from video-interfaces.yaml
+
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - port
+> +
+
+
+
 Best regards,
 Krzysztof
