@@ -2,177 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C41E45747FA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68187574818
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231671AbiGNJNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:13:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35018 "EHLO
+        id S237855AbiGNJOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:14:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiGNJNJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:13:09 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AACF322B34;
-        Thu, 14 Jul 2022 02:13:08 -0700 (PDT)
-Received: from [10.88.19.41] (10.88.19.41) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server id 15.1.2176.2; Thu, 14 Jul 2022 17:13:06 +0800
-Message-ID: <79ff63fc-dbd7-bc31-ebe7-7d15d121add1@amlogic.com>
-Date:   Thu, 14 Jul 2022 17:13:06 +0800
+        with ESMTP id S237800AbiGNJNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:13:50 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3971BDE;
+        Thu, 14 Jul 2022 02:13:48 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2405:201:10:3153:7fbd:8a7b:29b6:89fb])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: shreeya)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id DCC6A66015AA;
+        Thu, 14 Jul 2022 10:13:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657790026;
+        bh=LkOHAPElpBGmw5W/o7Ewpw77hnBq4cbeXMEaxiKzSzc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PFDG5gUN1tp7H34JrmcXnUESQrImKDIcibEYqZJr3O7AbquD6EOQDgkAZfuC7uwXp
+         27WAMe6t8LhKVVcfX8UPYDLQemWahJmqkI9d3zGGAcsCOHYM03vku0Cc7i68Vm09Vb
+         iSu3rw/4Zy5f4vd+xHpXVjyOePOUB+stbd1BBMxJckPRY04oYLKFzoUKOorW0zg9SV
+         Objblu1g05994nEngrhyLyzw8wLEaKHyRyWyMNsHNBaeb5mnIzbbNSsSWS+fgO+2uX
+         CWfIxKDtKCUnCAYrh1W+NJdknE7dgCFJ3+/wpyFigGrepaKzC6yQQFwKhaS78N5USF
+         ZAkN2C6qWcM6g==
+From:   Shreeya Patel <shreeya.patel@collabora.com>
+To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        dmitry.osipenko@collabora.com, Zhigang.Shi@liteon.com
+Cc:     krisman@collabora.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, alvaro.soliverez@collabora.com,
+        andy.shevchenko@gmail.com,
+        Shreeya Patel <shreeya.patel@collabora.com>
+Subject: [PATCH v8 0/2] Add LTRF216A Driver
+Date:   Thu, 14 Jul 2022 14:43:10 +0530
+Message-Id: <20220714091312.838152-1-shreeya.patel@collabora.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH 4/4] dt-binding:perf: Add Amlogic DDR PMU
-Content-Language: en-US
-To:     Robin Murphy <robin.murphy@arm.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>
-References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
- <20220712063641.2790997-4-jiucheng.xu@amlogic.com>
- <94ab770b-8a8a-4299-a54e-2ff77afb9e04@arm.com>
-From:   Jiucheng Xu <jiucheng.xu@amlogic.com>
-In-Reply-To: <94ab770b-8a8a-4299-a54e-2ff77afb9e04@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.88.19.41]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds support for ltrf216a Ambient Light Sensor
+and documents the DT bindings for the same.
 
-On 7/12/2022 8:54 PM, Robin Murphy wrote:
-> [ EXTERNAL EMAIL ]
->
-> On 2022-07-12 07:36, Jiucheng Xu wrote:
->> Add binding documentation for the Amlogic G12 series DDR
->> performance monitor unit.
->>
->> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
->> ---
->>   .../devicetree/bindings/perf/aml-ddr-pmu.yaml | 51 +++++++++++++++++++
->>   MAINTAINERS                                   |  1 +
->>   2 files changed, 52 insertions(+)
->>   create mode 100644 
->> Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml 
->> b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
->> new file mode 100644
->> index 000000000000..c586b4ab4009
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/perf/aml-ddr-pmu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic G12 DDR performance monitor
->> +
->> +maintainers:
->> +  - Jiucheng Xu <jiucheng.xu@amlogic.com>
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - enum:
->> +          - aml,g12-ddr-pmu
->> +      - items:
->> +          - enum:
->> +              - aml,g12-ddr-pmu
->> +          - const: aml,g12-ddr-pmu
->
-> Judging by what the driver actually implements, this should probably be:
->
->   compatible:
->     items:
->       - enum:
->         - amlogic,g12a-ddr-pmu
->         - amlogic,g12b-ddr-pmu
->         - amlogic,sm1-ddr-pmu
->       - const: amlogic,g12-ddr-pmu
->
-> There doesn't seem much point in allowing only the common compatible 
-> without a SoC-specific identifier. Note also that "aml," is not the 
-> documented vendor prefix.
-Okay, I finally know what you mean.
->
->> +
->> +  reg:
->> +    maxItems: 2
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - model
->
-> Remove this, and use the compatible strings properly as above.
-Okay. I will make the change.
->
->> +  - dmc_nr
->> +  - chann_nr
->
-> I suspect those could probably be inferred from the correct compatible 
-> string, but if not (i.e. within one SoC you have multiple PMUs 
-> supporting the same events but with different numbers of usable 
-> channels), then document what exactly they mean.
->
-Yes, as you mentioned, these could be inferred from the compatible 
-string. I will make the change.
->> +  - reg
->> +  - interrupts
->> +  - interrupt-names
->
-> As mentioned in the driver review, if you really want to use a named 
-> interrupt (which should usually be unnecessary when there's only one), 
-> it has to be a defined name. DT is not a mechanism for overriding what 
-> Linux shows in /proc/interrupts.
->
-> Thanks,
-> Robin.
->
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +          ddr_pmu: ddr_pmu {
->> +                  compatible = "amlogic,g12-ddr-pmu";
->> +                  model = "g12a";
->> +                  dmc_nr = <1>;
->> +                  chann_nr = <4>;
->> +                  reg = <0x0 0xff638000 0x0 0x100
->> +                         0x0 0xff638c00 0x0 0x100>;
->> +                  interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
->> +                  interrupt-names = "ddr_pmu";
->> +          };
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index fd2a56a339b4..ac0a1df4622d 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -1055,6 +1055,7 @@ M:    Jiucheng Xu <jiucheng.xu@amlogic.com>
->>   S:    Supported
->>   W:    http://www.amlogic.com
->>   F:    Documentation/admin-guide/perf/aml-ddr-pmu.rst
->> +F:    Documentation/devicetree/bindings/perf/aml-ddr-pmu.yaml
->>   F:    drivers/perf/amlogic/
->>   F:    include/soc/amlogic/
->
+Changes in v8
+  - Add caching mechanism to restore register state after h/w resume.
+  - Add callback functions and disable locking in regmap config.
+  - Update mutex comment as per it's current scope in the driver.
+  - Add Shreeya as author of the driver.
+  - Make some minor cleanups.
+
+Changes in v7
+  - Add regmap support.
+  - Fix runtime power management implementation.
+  - Fix the ordering of devm and non-devm functions.
+  - Use DEFINE_RUNTIME_DEV_PM_OPS macro
+  - Fix the error reported by kernel test robot for bindings.
+
+Changes in v6
+  - Fix some errors reported by kernel test robot.
+  - Add protocol details for the datasheet link.
+  - Remove useless assignments.
+  - Add unit details for read data delay macro.
+  - Use pm_sleep_ptr().
+
+Changes in v5
+  - Add power management support.
+  - Add reset functionality.
+  - Use readx_poll_timeout() to get data.
+  - Cleanup some of the redundant code.
+  - Update int_time_fac after I2C write is successful.
+  - Rename mutex to lock.
+  - Use Reverse Xmas tree pattern for all variable definitions.
+  - Improve error handling messages and add error codes.
+  - Add one more MODULE_AUTHOR.
+  - Remove cleardata which was reading data for infrared light.
+  - Remove patch for deprecated vendor prefix [PATCH v4 3/3].
+  - Remove deprecated string from DT binding document.
+
+Changes in v4
+  - Add more descriptive comment for mutex lock
+  - Fix mutex locking in read_raw()
+  - Use i2c_smbus_read_i2c_block_data()
+
+Changes in v3
+  - Use u16 instead of u8 for int_time_fac
+  - Reorder headers in ltrf216a.c file
+  - Remove int_time_mapping table and use int_time_available
+  - Fix indentation in the bindings file.
+
+Changes in v2
+  - Add support for 25ms and 50ms integration time.
+  - Rename some of the macros as per names given in datasheet
+  - Add a comment for the mutex lock
+  - Use read_avail callback instead of attributes and set the
+    appropriate _available bit.
+  - Use FIELD_PREP() at appropriate places.
+  - Add a constant lookup table for integration time and reg val
+  - Use BIT() macro for magic numbers.
+  - Improve error handling at few places.
+  - Use get_unaligned_le24() and div_u64()
+  - Use probe_new() callback and devm functions
+  - Return errors in probe using dev_err_probe()
+  - Use DEFINE_SIMPLE_DEV_PM_OPS()
+  - Correct the formula for lux to use 0.45 instead of 0.8
+  - Add interrupt and power supply property in DT bindings
+  - Add vendor prefix name as per the alphabetical order.
+
+Shreeya Patel (2):
+  dt-bindings: Document ltrf216a light sensor bindings
+  iio: light: Add support for ltrf216a sensor
+
+ .../bindings/iio/light/liteon,ltrf216a.yaml   |  49 ++
+ drivers/iio/light/Kconfig                     |  11 +
+ drivers/iio/light/Makefile                    |   1 +
+ drivers/iio/light/ltrf216a.c                  | 522 ++++++++++++++++++
+ 4 files changed, 583 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/liteon,ltrf216a.yaml
+ create mode 100644 drivers/iio/light/ltrf216a.c
+
+-- 
+2.30.2
+
