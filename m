@@ -2,89 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49FF657567A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 22:43:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62D335756A3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 22:55:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240770AbiGNUnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 16:43:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54892 "EHLO
+        id S240299AbiGNUzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 16:55:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240777AbiGNUnU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 16:43:20 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 711494B4AA;
-        Thu, 14 Jul 2022 13:43:17 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id w185so2898258pfb.4;
-        Thu, 14 Jul 2022 13:43:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=arr2UrZq3UNXQzLci/KP881Nin0tggEZNpMwrQSQ3Sk=;
-        b=g7z2doQqLe6iH8wS/NuwjMbvkUb/htOWUN+rVlui8asossxZ4Ce2nFZzkIN3ko6Hnl
-         TxHAqULX0dN0yjF8v/cCaPJOzpYSL/uV+9qBFQvl0PFZM1/dJDcioEmaz+DyntVDoSoj
-         Edy+jcL1IVUSnOeQqjChV8vZ/87ojmE0fykyh+eTMYwAKg25hZuggIrZkJC5JOudyKzx
-         ETn84weMjR/6F1p/idzmjwQ/igvrFkcj/75YFfNQca3dT56FuzTsPot8MrAGjeC+hUis
-         qLo2Au5yxu4UvqFBPxxqU7jBfblHkKCcBCFtfZzT34HZZZ8VICp2J1jW536cRsaAmgSP
-         fnfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=arr2UrZq3UNXQzLci/KP881Nin0tggEZNpMwrQSQ3Sk=;
-        b=II90e3562zevRZ0KmixmuSrexbp2mrWaj5Ujzz0w8sEK/dchRVeb8mdMEDwhVt+S+Y
-         //9kw071RoV89KEVRRzrur0CBXcMy3kOLmaZ7g5Lmj4u1BclVmLqVS5x1JMmfl6FvOIR
-         GNB2IuMH5q8rEQUkXXOMnF/antNSWQUsB/R9HCQbFlfA2HhWmHnuM5OT/QZHwNq7dYKJ
-         FNtTXtkICtA5ZBSGzcceGys3fImvMuPyfPEWIT7ndS4JkzOMQ1rvoNtQg70GA3sedzbt
-         vbd7M4lTOjfUj8R6NnldT7hwkBf566F472Suh3BMT1J0f9hFL35ex3pbMRrLNEag6zAN
-         XqNg==
-X-Gm-Message-State: AJIora+ahyThD/+WnJCKn5TLfal9pXxN+oCTJsens6QnSJE9RItgyVcZ
-        QAplkr/3GY7+sqHqmSMnVgI=
-X-Google-Smtp-Source: AGRyM1scd9xjyyn8+ktl7wLcfz05TjOearwg7OfKyKKDdC8P2UKLcyGuRzX63284jdgV35zhzipSXQ==
-X-Received: by 2002:a05:6a00:8cb:b0:510:9ec4:8f85 with SMTP id s11-20020a056a0008cb00b005109ec48f85mr9834389pfu.24.1657831396922;
-        Thu, 14 Jul 2022 13:43:16 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id mi9-20020a17090b4b4900b001ec84b0f199sm10506871pjb.1.2022.07.14.13.43.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 13:43:16 -0700 (PDT)
-Message-ID: <d0a3fdc9-ffee-0dc8-5352-e64290803456@gmail.com>
-Date:   Thu, 14 Jul 2022 13:43:13 -0700
+        with ESMTP id S232614AbiGNUzf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 16:55:35 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33B8A6BC19;
+        Thu, 14 Jul 2022 13:55:34 -0700 (PDT)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id 2C6B534D5B;
+        Thu, 14 Jul 2022 20:55:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1657832131; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZSgLilWzZarIXH8KzBy6OT9I39r0sIeov6Pzt1qEHic=;
+        b=nSr8kGasBJrL9zy9v/TR8zRF6R/eRp45Pz+YgEV/RFQzJW2h0SpZrpKOcqhNVwNooxlDgb
+        jHJICz0Mq9cQEvMm58k493YT6sDeuIWcyZwf1pGWJfz4lu/eO4WhjlHafw4r/o3mtUp6sv
+        RCrIPzWp+W8io03l3sRAgmwebDr9pdg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1657832131;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZSgLilWzZarIXH8KzBy6OT9I39r0sIeov6Pzt1qEHic=;
+        b=ufQJZG8R3C8c6LL3tJzJWynk44IsBIZWEuds+q7tjGpm8wJCEAt2d2e89HDT6IVJrn20kG
+        YFOLLBrw4tZBTiAw==
+Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by relay2.suse.de (Postfix) with ESMTPS id 658E22C142;
+        Thu, 14 Jul 2022 20:55:30 +0000 (UTC)
+Date:   Thu, 14 Jul 2022 22:55:29 +0200
+From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH 1/2] mtd: spi-nor: When a flash memory is missing do not
+ report an error
+Message-ID: <20220714205529.GE17705@kitsune.suse.cz>
+References: <701967b0c418db333c66b48d225df60aa9d03ead.1657826188.git.msuchanek@suse.de>
+ <d8de86aa0331be697fbef33d5ab2c57a@walle.cc>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] mmc: sdhci-brcmstb: use clk_get_rate(base_clk) in PM
- resume
-Content-Language: en-US
-To:     Kamal Dasu <kdasu.kdev@gmail.com>, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com
-Cc:     bcm-kernel-feedback-list@broadcom.com, adrian.hunter@intel.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220714174132.18541-1-kdasu.kdev@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220714174132.18541-1-kdasu.kdev@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d8de86aa0331be697fbef33d5ab2c57a@walle.cc>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/14/22 10:41, Kamal Dasu wrote:
-> Use clk_get_rate for base_clk on resume before setting new rate.
-> This change ensures that the clock api returns current rate
-> and sets the clock to the desired rate and honors CLK_GET_NO_CACHE
-> attribute used by clock api.
+On Thu, Jul 14, 2022 at 09:41:48PM +0200, Michael Walle wrote:
+> Hi,
 > 
-> Fixes: 97904a59855c (mmc: sdhci-brcmstb: Add ability to increase max clock rate for 72116b0)
-> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+> Am 2022-07-14 21:19, schrieb Michal Suchanek:
+> > It is normal that devices are designed with multiple types of storage,
+> > and only some types of storage are present.
+> > 
+> > The kernel can handle this situation gracefully for many types of
+> > storage devices such as mmc or ata but it reports and error when spi
+> > flash is not present.
+> > 
+> > Only print a notice that the storage device is missing when no response
+> > to the identify command is received.
+> > 
+> > Consider reply buffers with all bits set to the same value no response.
+> 
+> I'm not sure you can compare SPI with ATA and MMC. I'm just speaking of
+> DT now, but there, for ATA and MMC you just describe the controller and
+> it will auto-detect the connected storage. Whereas with SPI you describe
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Why does mmc assume storage and SDIO must be descibed? Why the special
+casing?
+
+> both the controller and the flash. So I'd argue that your hardware
+> description is wrong if it describes a flash which is not present.
+
+At any rate the situation is the same - the storage may be present
+sometimes. I don't think assuming some kind of device by defualt is a
+sound practice.
+
+However, when the board is designed for a specific kind of device which
+is not always present, and the kernel can detect the device, it is
+perfectly fine to describe it.
+
+The alternative is to not use the device at all, even when present,
+which is kind of useless.
+
+Thanks
+
+Michal
+
+> 
+> > Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+> > ---
+> >  drivers/mtd/spi-nor/core.c | 25 +++++++++++++++++++++++--
+> >  1 file changed, 23 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+> > index 502967c76c5f..6bab540171a4 100644
+> > --- a/drivers/mtd/spi-nor/core.c
+> > +++ b/drivers/mtd/spi-nor/core.c
+> > @@ -1652,6 +1652,24 @@ static const struct flash_info
+> > *spi_nor_match_id(struct spi_nor *nor,
+> >  	return NULL;
+> >  }
+> > 
+> > +static const bool buffer_uniform(const u8 *buffer, size_t length)
+> > +{
+> > +	bool all0;
+> > +	size_t i;
+> > +
+> > +	for (all0 = true, i = 0; i < length; i++)
+> > +		if (buffer[i] != 0) {
+> > +			all0 = false;
+> > +			break;
+> > +		}
+> > +	if (all0)
+> > +		return true;
+> > +	for (i = 0; i < length; i++)
+> > +		if (buffer[i] != 0xff)
+> > +			return false;
+> > +	return true;
+> > +}
+> 
+> That seems unnecessarily complex.
+> if (!memchr_inv(id, '\x00', SPI_NOR_MAX_ID_LEN) ||
+>     !memchr_inv(id, '\xff', SPI_NOR_MAX_ID_LEN))
+> 
+> should be the same.
+> 
+> -michael
+> 
+> > +
+> >  static const struct flash_info *spi_nor_detect(struct spi_nor *nor)
+> >  {
+> >  	const struct flash_info *info;
+> > @@ -1666,8 +1684,11 @@ static const struct flash_info
+> > *spi_nor_detect(struct spi_nor *nor)
+> > 
+> >  	info = spi_nor_match_id(nor, id);
+> >  	if (!info) {
+> > -		dev_err(nor->dev, "unrecognized JEDEC id bytes: %*ph\n",
+> > -			SPI_NOR_MAX_ID_LEN, id);
+> > +		if (buffer_uniform(id, SPI_NOR_MAX_ID_LEN))
+> > +			dev_info(nor->dev, "No flash memory detected.\n");
+> > +		else
+> > +			dev_err(nor->dev, "unrecognized JEDEC id bytes: %*ph\n",
+> > +				SPI_NOR_MAX_ID_LEN, id);
+> >  		return ERR_PTR(-ENODEV);
+> >  	}
+> >  	return info;
