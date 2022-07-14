@@ -2,135 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54EA657562E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 22:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D72657563C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 22:15:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239378AbiGNUGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 16:06:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60276 "EHLO
+        id S232321AbiGNUPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 16:15:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239412AbiGNUGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 16:06:07 -0400
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285006BC07;
-        Thu, 14 Jul 2022 13:06:05 -0700 (PDT)
-Date:   Thu, 14 Jul 2022 20:05:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1657829161; x=1658088361;
-        bh=zPqdR+HafcwDy1W0JQxmXtHI+hMl6rra+AYRnvrWqpM=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:Feedback-ID:From:To:
-         Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID;
-        b=A+ubgogu0ck5VijC32MYvvCe8jqWQWMc4W9lI3uxPxkEoCw4oeUMc6Qfc0+JALO7+
-         kqfRcLLxm6YIpAVSqztu7QcMIigRQIPSXuEEaXZtqMWqN1tUTAP4KLo9nyOi79nj5s
-         yiNg/aemKe2BENFM4dfPSE1OL07xURIr7wWLH7+l/mGhBsM1f47t9d73PUKs6/gRQ9
-         suhWJUwhy29oLNuthM0MZrmcJfpXF2U60FG5+oY0gn7/CLOxCphbMKzuT0wHBZvukU
-         xQeCztlnhid9eTdv0hTlnY0y8HdpU9GC90QhhEqvKHWMTWlAzL639N+1oHV1MCGMW3
-         8h0r0sugOY3Sw==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8916-samsung-e2015: Add touchkey
-Message-ID: <20220714200346.22263-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S231866AbiGNUPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 16:15:37 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8081F6557F;
+        Thu, 14 Jul 2022 13:15:35 -0700 (PDT)
+Received: from mail-yb1-f177.google.com ([209.85.219.177]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MFshF-1oKYMU2kEp-00HQ2v; Thu, 14 Jul 2022 22:15:33 +0200
+Received: by mail-yb1-f177.google.com with SMTP id h62so5097402ybb.11;
+        Thu, 14 Jul 2022 13:15:33 -0700 (PDT)
+X-Gm-Message-State: AJIora/BINgNX64wIUafwdXg1rhwoOf30LbcZ5PAXg79D49u1OK2Bo4o
+        +QGiONoTzHIbmiv0NFAHPXxqbB6cK61Uz8hz0Vo=
+X-Google-Smtp-Source: AGRyM1ufLR1tXyfyrelM5ysCbbKNSHqOWqFASMdGq5/rYwOY4jOjwUqmCRVpkzIQCCqnubMWRWU8c8ZFrp1nxf+t2A0=
+X-Received: by 2002:a05:6902:120f:b0:668:2228:9627 with SMTP id
+ s15-20020a056902120f00b0066822289627mr11089451ybu.134.1657829732313; Thu, 14
+ Jul 2022 13:15:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+References: <20220707132054.GA10610@logan-ThinkPad-T14-Gen-1>
+ <CAK8P3a0P2u+LdXcU7As=dfNbg_J2eWfhgB9TT1-xVyH0v6OM5Q@mail.gmail.com> <YtBazSo/uJzFeF+L@pdel-mbp>
+In-Reply-To: <YtBazSo/uJzFeF+L@pdel-mbp>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 14 Jul 2022 22:15:15 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1juHV6N2QtXaEcobWs6kQHBqqUn9MynvobyJtFFyOsfg@mail.gmail.com>
+Message-ID: <CAK8P3a1juHV6N2QtXaEcobWs6kQHBqqUn9MynvobyJtFFyOsfg@mail.gmail.com>
+Subject: Re: [PATCH v3] The Yosemite V3.5 is a facebook multi-node server
+ platform that host four OCP server. The BMC in the Yosemite V3.5 platform
+ based on AST2600 SoC.
+To:     peter@pjd.dev
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Logananth Sundararaj <logananth13.hcl@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        naveen.mosess@hcl.com, thangavel.k@hcl.com,
+        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>, Olof Johansson <olof@lixom.net>,
+        garnermic@gmail.com, velumanit@hcl.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:Nu50+VBE79L6k1vh34hmrBXE9wSXTcHVoQJ6lIPbEFsaLz13Egj
+ OTtVtT8MOTeBK1hMNyppZXptNJYn6VXfIQCpNd/iL6efAIQD1wWNRDFS8vqeyrTModqsG7m
+ IAgHBI0hPVj29kJiyLm/PVadhJXF+EGzYejq2GhH5vpZqITcQ9FgoBNOnp7fqX2kUN0MmhF
+ 2ZwAFUrjLx4QWfTlVu9+A==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:f9095GWY8sI=:mBXABKAJd064BthSr6UF9f
+ ETANIRubUtVpEZVw9b/XytQfpysPOvG8cFjxFj4LyrYoyjaAV7AvHOpSX8/xM/s0UMITtzMCn
+ hJPQtVAPXERFbkX6sC+yTHNCcaENv7x7cUdvYRCM/nOU/CRBPFzRGMxJyn94CPph0Ml3wv+ER
+ 4G/xVezp0boYqYMkT9qC6Z/z90wc5odUeeA/TCeMIsede7ghSWVWybdwp4ShiSWlVwLx4IRBW
+ UMXx7IpXeE2FU/FbIdzg7c5jzvhqqtF6bpLt7z7a12zFo/ggbbpnOb+gBA1ivmAsaCOCNaIr8
+ FtGWmCvyC5P8K1zYqKYY0opH1GBnUGqanhdjt+0RshKG8YmnSrTilNYgrYbY1UuAP6FlIEcIJ
+ HvE9aSnVrzrsGjqKfuFB68q/YMYvbR/alD5vFSeoijLjRen2S0ziwA6cghgVAhIYfUASeonnx
+ H3NMhORxGjhBI6eN+vgqSj57zceGCQT3CfUXLsphq8z9Fko23t3lSdojgo1S7o7/OSJ5m1vFd
+ +mrzv/Zcc2jSfLy+BYJGmNSZxjNdkTw5DWU0u+FBONUyk3GLK8YnM8SPlkbthLLGxJU+D4KMM
+ EGaZ0K1D4VnEJteivpTNoYPtdyTp5upaoIFW6sfKF3YMsStAi9knwVw2hXv1Xtd+K16+WITS3
+ aGgqiWi59yU8MLv/fMD7xVVOmCyUbDjDRkyZAQtMhRBZR3Rqq0P29TXWloCOWUfQOgt94rJk8
+ sQdYkgfuYx23kqfT/hjggoUDXHVF1hymYE/68g==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On the Samsung Galaxy E5 and E7 the touch key is supplied by a single
-fixed regulator (enabled via GPIO 97) that supplies both MCU and LED.
-Add it to the device tree.
+On Thu, Jul 14, 2022 at 8:05 PM Peter Delevoryas <peter@pjd.dev> wrote:
+> On Thu, Jul 07, 2022 at 03:33:48PM +0200, Arnd Bergmann wrote:
+> > > +       model = "Facebook fby35";
+> > > +       compatible = "facebook,fby35", "aspeed,ast2600";
+> > > +
+> > > +       aliases {
+> > > +               serial4 = &uart5;
+> > > +       };
+> >
+> > Why not start at serial0 here?
+>
+> Hey, Facebook person jumping in here (using a personal email):
+>
+> I think you're right, it should be like this:
+>
+>         aliases {
+>                 serial0 = &uart5;
+>                 serial1 = &uart1;
+>                 serial2 = &uart2;
+>                 serial3 = &uart3;
+>                 serial4 = &uart4;
+>         };
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../qcom/msm8916-samsung-e2015-common.dtsi    | 26 +++++++++++++++++++
- .../dts/qcom/msm8916-samsung-grandmax.dts     |  4 +++
- 2 files changed, 30 insertions(+)
+Are you actually using all five uarts though?
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi b/a=
-rch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-index 373154ee2643..9f3aca17130d 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-@@ -19,6 +19,19 @@ muic: extcon@14 {
- =09=09};
- =09};
+> > > +       chosen {
+> > > +               stdout-path = &uart5;
+> > > +               bootargs = "console=ttyS4,57600n8 root=/dev/ram rw vmalloc=384M";
+> > > +       };
+>
+> Also: if we do serial0 = &uart5, it should be console=ttyS0, not ttyS4.
+>
+> >
+> > The bootargs should really come from the boot loader.
+>
+> What if we want to boot the kernel by itself with QEMU? It's kinda annoying to
+> have to specify '-append "console=ttyS0,57600n8...' everytime, or to have to use
+> a wrapper script. But, it's also a source of bugs: I realized yesterday the
+> dts we were using here:
+>
+> https://github.com/facebook/openbmc-linux/blob/e26c76992e0761d9e440ff514538009384c094b4/arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
+>
+> Has the wrong console setting.
 
-+=09reg_touch_key: regulator-touch-key {
-+=09=09compatible =3D "regulator-fixed";
-+=09=09regulator-name =3D "touch_key";
-+=09=09regulator-min-microvolt =3D <3300000>;
-+=09=09regulator-max-microvolt =3D <3300000>;
-+
-+=09=09gpio =3D <&msmgpio 97 GPIO_ACTIVE_HIGH>;
-+=09=09enable-active-high;
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&tkey_en_default>;
-+=09};
-+
- =09vibrator: vibrator {
- =09=09compatible =3D "gpio-vibrator";
- =09=09enable-gpios =3D <&msmgpio 76 GPIO_ACTIVE_HIGH>;
-@@ -28,6 +41,11 @@ vibrator: vibrator {
- =09};
- };
+You can encode the uart settings like
 
-+&touchkey {
-+=09vcc-supply =3D <&reg_touch_key>;
-+=09vdd-supply =3D <&reg_touch_key>;
-+};
-+
- &msmgpio {
- =09motor_en_default: motor-en-default {
- =09=09pins =3D "gpio76";
-@@ -36,4 +54,12 @@ motor_en_default: motor-en-default {
- =09=09drive-strength =3D <2>;
- =09=09bias-disable;
- =09};
-+
-+=09tkey_en_default: tkey-en-default {
-+=09=09pins =3D "gpio97";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts b/arch/a=
-rm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
-index 41aada4bfb80..f68dd3d69a33 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
-@@ -27,6 +27,10 @@ / {
- =09/delete-node/ i2c-tkey;
- };
+           stdout-path = "serial0:115200n8"
 
-+&reg_touch_key {
-+=09status =3D "disabled";
-+};
-+
- &vibrator {
- =09enable-gpios =3D <&msmgpio 72 GPIO_ACTIVE_HIGH>;
- };
---
-2.30.2
+the rest really should be passed on the command line, not in
+the DT shipped with the kernel.
 
-
+        Arnd
