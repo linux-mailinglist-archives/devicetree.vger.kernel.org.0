@@ -2,93 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47C0E57499F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7569574993
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236411AbiGNJux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:50:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58626 "EHLO
+        id S237822AbiGNJuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:50:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234301AbiGNJuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:50:19 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8FAC12D26;
-        Thu, 14 Jul 2022 02:50:07 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id l11so2244959ybu.13;
-        Thu, 14 Jul 2022 02:50:07 -0700 (PDT)
+        with ESMTP id S237849AbiGNJtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:49:39 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE1738E;
+        Thu, 14 Jul 2022 02:48:34 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id r12so1054775qvm.3;
+        Thu, 14 Jul 2022 02:48:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UBLXrSfINFn+OkykEbtev0CVHfJNR4Ha91FDbpJe6vw=;
-        b=jco1TUUJamGLBjUMKQJxmHydRs46RlrJYGVBVuXrdgoujFg+bNA+FRuqu9xySWKxm+
-         iJ1MtPVhlh7NDYej/YkFvBQH1rWl4haWJzS8oJMmpCSCAzDBnx5brocoXUfXiB/uAfdM
-         OFCWFOj+Wa/coQ+L/p2yRun8h9nxwhqAUhtPNkhFXDvtJQmjTfMKd8aLu5aGAQ9r4rKt
-         pG3Pip2NDEZSbCM/gpswT2iVdDW8lMLvPHmzuu6unQZJ9SrI3aON/fekc5ofeaTFY0gc
-         5sGqoeNtKloDBRE9yF69b0PWXyQ8T9A1xzHCn4bZ9woFCXpR/laDfNHFMvp3+dX42tLc
-         fMvQ==
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=R075R0kDVbePZmaFfl37Agcye6RwOXPcO6sxjSaWjMY=;
+        b=iWBaJCPBbOJWl0KsDrDMbesQWUns2aHPJr1Hg9un2Xdp9beGINWgYHRCsmovKRG6b8
+         VtAdjw78gRFwJF/5ckXtZ/OoFY9xVKorj9HNfwssg0FySgYrvkRaQGpzSyy6YI9KrOk1
+         TXMFpsBP+OQ/D1vqRhTif9lRQGX4oSaiPLmW851MoZ05crtMQNvO4iMLet/p6xQlAx5I
+         WDv/FTYKauTZHmlRYPkakksJbO+92i0Ca77rsnHGNDKGuKlpI8ZUzoOHw3TA2PHG60kO
+         XCc3Z45huVUJHBvZ+SP9+h9BK863YuLUAkRxhiDZRA6KfUGtNMYB3DsYh9qWoefrjG8s
+         qZ1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UBLXrSfINFn+OkykEbtev0CVHfJNR4Ha91FDbpJe6vw=;
-        b=E7GOkMxKQvvxTeKx1WSSygnh68cvDjSYCp+lefeV/QDM912R3H2C6Y/dSo+9W+tsi+
-         yz21Ew4YxkhiNaZyOKtOH+y/cmbooM8xuG1XIbmcXFRPbBtn9YtlS+3UGEOG3Pq+HHJj
-         xpaWEaOyA1pRCaMMXLmCy6qfuDesdeEbS8YbAwYfQ9ur3VkI4vDMGI4gvN08Elp7eiNe
-         VYVVsSb0VfaIvkL5wZRnJZo3qwEP3eHG91p+0MmSoYeKhQsHhH778BrL/c2iuw4cThKW
-         U56TAyCOM1wjAKqHgmdhs/MO4wujVlAfoPAVuJDoZJnqSYp8CWjlFY4otQokoLt0RN4X
-         keoQ==
-X-Gm-Message-State: AJIora/NIu+kSPoBMxcmQNc7R1Ed2Ovi5gqPSTpMSOaNsixBR++rk7Tx
-        SEZvltegrip4HzPXO2DDsK6UrSxIqUIBdKNG+Hg=
-X-Google-Smtp-Source: AGRyM1uVizFvY1JstQJgDopDPPcpsJilLyYnoZh/AYBxHpJVN7WLVW/f3jKrRS5Q3mGaEk9B3sqdSTOJVu/pQIHekz4=
-X-Received: by 2002:a25:df97:0:b0:66f:6e7c:b3c0 with SMTP id
- w145-20020a25df97000000b0066f6e7cb3c0mr7544434ybg.93.1657792207178; Thu, 14
- Jul 2022 02:50:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220704053901.728-1-peterwu.pub@gmail.com> <20220704053901.728-14-peterwu.pub@gmail.com>
- <CAHp75VdwEc9AW1w8ejsxkw+sBTF1dumd99QyzTY9BZaXiViRWQ@mail.gmail.com>
- <CABtFH5K-2+2hbpvpq2nPE5AsznkQxZF2r3MVC64Q39DJhVuUtA@mail.gmail.com>
- <CAHp75VevDwdAKLYEWJgnMDvzuPuFibLuVqH-GKazEOT76wM6_A@mail.gmail.com>
- <CABtFH5LT1Ct_9-B_XRrGwYFmL5kGS6KHR7dNVyUO5z4sTy_6oA@mail.gmail.com>
- <CAHp75VcU_9Ao2CoqiUDZHqhVOjEMZor+hctPp3YYP4HOjYLDUg@mail.gmail.com> <20220714094709.6ekfnfcf5sktiegi@maple.lan>
-In-Reply-To: <20220714094709.6ekfnfcf5sktiegi@maple.lan>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 14 Jul 2022 11:49:30 +0200
-Message-ID: <CAHp75VdVSvux3HRPOj=xWXZoBdn1e=nSmWi9+BZUX69XAPcZPg@mail.gmail.com>
-Subject: Re: [PATCH v4 13/13] video: backlight: mt6370: Add Mediatek MT6370 support
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Alice Chen <alice_chen@richtek.com>,
-        cy_huang <cy_huang@richtek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=R075R0kDVbePZmaFfl37Agcye6RwOXPcO6sxjSaWjMY=;
+        b=XvIaIog/6n4hBfRTItJMeF31d1g9lxplB38kXEwlRqWcQkbGtMgQwlL2kKq79X+vwz
+         UAOrwxJB4AGgtFoaZgR2msjFj2lvlocyPfVsaO3Rs4SK54YcGAfAT25bVixwZwKzmqp4
+         552ZfepXHTqOO8mcsibwPfYPmBpfVZl5NWjGolgxYzPB+2QFhCSBYLSZR9UqJN5J5K5t
+         uiP23oN686jlSVXKIlX9CU89wFGBvVeffebWS08adXhLp5gPXHPEiWd2nqgxjJtfJT3/
+         ljxpGbL1xUuny2hYhM+4cQ3Hws/mYL0AaitzBUK7knpDhdavY1+TuA59dy9V3l2i18lJ
+         cNUg==
+X-Gm-Message-State: AJIora8xO3Zbfae1tJqT9bYZ+sVDJFuJdO7rhm8fGdC+g8Ee6q7yzJcr
+        84ZORE72kbYGjQEvEZQYXwzQfH3na2PAG5eq
+X-Google-Smtp-Source: AGRyM1sqZfxNK09gmODT6UaDYNNehQMd//5RpmjYM+w0fxd0rh9X+HZZP3aVn5RPf2fx2MbM1ywb4Q==
+X-Received: by 2002:a05:6214:23cb:b0:472:f1a5:5cea with SMTP id hr11-20020a05621423cb00b00472f1a55ceamr6624843qvb.13.1657792114009;
+        Thu, 14 Jul 2022 02:48:34 -0700 (PDT)
+Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
+        by smtp.gmail.com with ESMTPSA id c8-20020ac86608000000b0031eb6b42b26sm1028925qtp.73.2022.07.14.02.48.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jul 2022 02:48:33 -0700 (PDT)
+Message-ID: <fb3112dab2e614cba3feaf0b6a962186f07cb61b.camel@gmail.com>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        szuni chen <szunichen@gmail.com>
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 14 Jul 2022 11:49:34 +0200
+In-Reply-To: <CAHp75VcEBE3kMDi5Q+89GmS9V=aF+pOcyROY9MdfyB_5OaruPg@mail.gmail.com>
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+         <Ys8DPCzRa1qo2AKJ@smile.fi.intel.com>
+         <62ccf0c91d32df557a2bc91c45adb45593302534.camel@gmail.com>
+         <CAHp75VcEBE3kMDi5Q+89GmS9V=aF+pOcyROY9MdfyB_5OaruPg@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.3 
+MIME-Version: 1.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -99,47 +82,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 11:47 AM Daniel Thompson
-<daniel.thompson@linaro.org> wrote:
->
-> On Thu, Jul 14, 2022 at 11:27:07AM +0200, Andy Shevchenko wrote:
-> > On Thu, Jul 14, 2022 at 9:13 AM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
-> > > I have tried two methods so far, as follows
-> > > -------------------------------------------------------------
-> > > /*
-> > >  * prop_val =  1      -->  1 steps --> b'00
-> > >  * prop_val =  2 ~  4 -->  4 steps --> b'01
-> > >  * prop_val =  5 ~ 16 --> 16 steps --> b'10
-> > >  * prop_val = 17 ~ 64 --> 64 steps --> b'11
-> > > */
-> >
-> > So, for 1 --> 0, for 2 --> 1, for 5 --> 2, and for 17 --> 3.
-> > Now, consider x - 1:
-> > 0  ( 0 ) --> 0
-> > 1  (2^0) --> 1
-> > 4  (2^2) --> 2
-> > 16 (2^4) --> 3
-> > 64 (2^6) --> ? (but let's consider that the range has been checked already)
-> >
-> > Since we take the lower limit, it means ffs():
-> >
-> >   y = (ffs(x - 1) + 1) / 2;
-> >
-> > Does it work for you?
->
-> To be honest, for this tiny table, writing code that *doesn't* require intricate
-> deciphering together with a huge comment saying what is does would probably be
-> better:
->
->                 prop_val = (prop_val <=  1 ? 0 :
->                             prop_val <=  4 ? 1 :
->                             prop_val <= 16 ? 2 :
->                                              3);
->
-> This would be "obviously correct" and require no comment.
+On Thu, 2022-07-14 at 11:12 +0200, Andy Shevchenko wrote:
+> On Thu, Jul 14, 2022 at 9:10 AM Nuno S=C3=A1 <noname.nuno@gmail.com>
+> wrote:
+> > On Wed, 2022-07-13 at 20:39 +0300, Andy Shevchenko wrote:
+> > > On Wed, Jul 13, 2022 at 03:14:17PM +0200, Nuno S=C3=A1 wrote:
+> > > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
+> > > > calling the
+> > > > gpiochip 'set_config()' hook. However, AFAICT, there's no way
+> > > > that
+> > > > this
+> > > > flag is set because there's no support for it in firwmare code.
+> > > > Moreover,
+> > > > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
+> > > > being
+> > > > handled.
+> > >=20
+> > > Isn't it enough?
+> >=20
+> > I might be missing something but don't think so. Look at this
+> > driver
+> > which seems a lot like the reference i put in the cover:
+> >=20
+> > https://elixir.bootlin.com/linux/v5.19-rc6/source/drivers/gpio/gpio-pca=
+953x.c#L573
+> >=20
+> > I just don't see an in-kernel path (I'm aware now that we can get
+> > here
+> > through gpio cdev) to get to the point where we want to disable the
+> > pin
+> > BIAS.
+>=20
+> Ah, that driver should be converted to pin control. It's definitely a
+> problem with the driver.
+>=20
 
-Agree. It will also limit checking (and whatever needed for that).
+I'm not too familiar with pinctrl or even gpiochips to argue much in
+here so just looking to better understand it...
 
--- 
-With Best Regards,
-Andy Shevchenko
+The driver has it's own way to control the pin BIAS and does not rely
+on any other pinctrl chip on the system. Are you pointing that this
+driver should be converted in a pinctrl one which registers the
+gpiochip and drops the 'set_config()' callback so pin consumers could
+use pinctrl to let's say, disable BIAS? If so, then why do we have
+PIN_CONFIG_BIAS_PULL_UP|DOWN in 'set_config()'? Legacy?=20
+
+And for my test device which is an input keymap, having it converted
+into a pinctrl driver does not make much sense  (and it also supports
+pull-up pull-disable) and I guess that might make sense for other
+devices that have some optional gpiochip support...
+
+- Nuno S=C3=A1
+
