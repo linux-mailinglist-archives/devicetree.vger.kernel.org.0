@@ -2,86 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 766C1574AC5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8D0574AC9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:37:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231500AbiGNKhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 06:37:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45600 "EHLO
+        id S231150AbiGNKhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 06:37:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231150AbiGNKhE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:37:04 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3574B49F;
-        Thu, 14 Jul 2022 03:37:03 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C4EA7383;
-        Thu, 14 Jul 2022 12:37:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1657795022;
-        bh=ZNJKxj8dPKz9a/sjGzScCu7YyGk1pfDSv59mnPohi/o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Piaj4HamSjpaaOfpLGySbir7ziLgnQgUTypOaS8JTkYi35/g2V2ixbNts8VY5xMoJ
-         nY4cF913MGzbxMRNUQlxq0iZ+ndtu7/GwZoDSmWzE+2LEWWJNxbcGzAVbY5HXokZye
-         rGglwU94E60soETmL9PNrfzV5S4VHx/yqGtF/wrc=
-Date:   Thu, 14 Jul 2022 13:36:31 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Volodymyr Kharuk <vkh@melexis.com>
-Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] media: xilinx: video: Add 1X12 greyscale format
-Message-ID: <Ys/xr5LmbI83JeDc@pendragon.ideasonboard.com>
-References: <cover.1657786765.git.vkh@melexis.com>
- <e2ea1840b666ad0b4ff169b4f58c85bc0291af59.1657786765.git.vkh@melexis.com>
+        with ESMTP id S237359AbiGNKhX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:37:23 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 173C94BD26
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:37:22 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id y11so2088285lfs.6
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:37:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=uaEFO5hsaLFOuZUt6jv+BOAU4jn79YFWKdkb/288PyQ=;
+        b=R2ZI+qVyNbDDND0je3vBpsX+whHW04w068WNIxvhb21zT9Yl6mNklU1yX6mnEzRuQe
+         D9rZ0fWwMQut75SIEgZK31MGeW1Gnn5WW71LRvZd1a6sJXpOIEMvX3j8T9u4ZZGcJ0rD
+         XP5QV366XN1eMvJwp1NdjgUmeE6l0tizHxphnC6ZkaHzcolt19mdkvqoNL70EF3zXIxR
+         kgUWNfgzv4A+AjVhScdW7KjxCvDeu/bg/V0DTTCQlY1dx7kd8EAvxT2BrqQGoB9TUzvO
+         4oyWa2EpxzY93k/um3j6qRzPCCnRTBctTNBmFj3wOHKV+8w+ziaPxRxJ+TkPvHIZ2EMT
+         cUjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=uaEFO5hsaLFOuZUt6jv+BOAU4jn79YFWKdkb/288PyQ=;
+        b=Z8AOLX+DR/qs00z1BUdbkKc/mZRgXL99YGt3morX7tnqS2B3VIotMXTUywqkk4BjAA
+         YsNMqxJn1PSJW4TB/9eAbbBk5hrWvGmJCWWOxSenIHMPCbCq+VU4EEnPOY0BttVp2cYK
+         5KNGkOu7ckQLAsBQKqNo0Y2bmxbQqCSfmQZQ5RX0+q5BCn8rmwevL2w6KlbE6q2rvK0f
+         a7OdEikcHcsz3pW7hxzLV1eNNmnm/mH2C35IrJDpc8BiRgo9BcDUwHXvTbel6vyCu0Bx
+         +tk7Ccl7lPJzbL8llR9NHoYzTe6+EVz3P6YYrvfcYIXXxUdyUuDB+rdPCxbOGpdXQJE3
+         2zMw==
+X-Gm-Message-State: AJIora8Tf5Ag/Jm8GecHxM4t6JdVE0rcvi+ytjjNaQKuhg/87D2fbFWF
+        NYyjYKHQwppMXCyUvS/mUyU1Tg==
+X-Google-Smtp-Source: AGRyM1utxf3jocJYTmp4lOuPbooaWLQuu8+R22i2G4eb4lV2hNEFPxG8ZtPUZxVm2Iolc9dcifvbbw==
+X-Received: by 2002:a05:6512:3503:b0:481:4470:4134 with SMTP id h3-20020a056512350300b0048144704134mr4704424lfs.42.1657795040467;
+        Thu, 14 Jul 2022 03:37:20 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id be6-20020a056512250600b00478f174c598sm288201lfb.95.2022.07.14.03.37.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 03:37:20 -0700 (PDT)
+Message-ID: <8d31e36d-5cdb-fd5b-b807-a31e65e57d8f@linaro.org>
+Date:   Thu, 14 Jul 2022 12:37:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <e2ea1840b666ad0b4ff169b4f58c85bc0291af59.1657786765.git.vkh@melexis.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 7/9] dt-bindings: msm/dp: mark vdda supplies as
+ deprecated
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>
+References: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
+ <20220710084133.30976-8-dmitry.baryshkov@linaro.org>
+ <bd84ef20-e6e1-74e5-5681-7aa273d5255c@linaro.org>
+ <35cbf2d1-f851-fb6b-309a-8d7499b4abb3@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <35cbf2d1-f851-fb6b-309a-8d7499b4abb3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Volodymyr,
-
-Thank you for the patch.
-
-On Thu, Jul 14, 2022 at 11:34:44AM +0300, Volodymyr Kharuk wrote:
-> Extend the xilinx video driver with Y12_1X12 greyscale format
+On 14/07/2022 12:15, Dmitry Baryshkov wrote:
+> On 14/07/2022 12:38, Krzysztof Kozlowski wrote:
+>> On 10/07/2022 10:41, Dmitry Baryshkov wrote:
+>>> The commit fa384dd8b9b8 ("drm/msm/dp: delete vdda regulator related
+>>> functions from eDP/DP controller") removed support for VDDA supplies
+>>
+>> No such commit exists in next. Do not reference unpublished commits. If
+>> this is your tree, be sure that it is in next.
 > 
-> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  drivers/media/platform/xilinx/xilinx-vip.c | 2 ++
->  1 file changed, 2 insertions(+)
+> Excuse me. It might have changed at some point. I will update the patch 
+> description in the next revision. The commit in question is 7516351bebc1 
+> ("drm/msm/dp: delete vdda regulator related functions from eDP/DP 
+> controller")
 > 
-> diff --git a/drivers/media/platform/xilinx/xilinx-vip.c b/drivers/media/platform/xilinx/xilinx-vip.c
-> index a0073122798f..5b214bf7f93a 100644
-> --- a/drivers/media/platform/xilinx/xilinx-vip.c
-> +++ b/drivers/media/platform/xilinx/xilinx-vip.c
-> @@ -40,6 +40,8 @@ static const struct xvip_video_format xvip_video_formats[] = {
->  	  1, V4L2_PIX_FMT_SGBRG8 },
->  	{ XVIP_VF_MONO_SENSOR, 8, "bggr", MEDIA_BUS_FMT_SBGGR8_1X8,
->  	  1, V4L2_PIX_FMT_SBGGR8 },
-> +	{ XVIP_VF_MONO_SENSOR, 12, "mono", MEDIA_BUS_FMT_Y12_1X12,
-> +	  2, V4L2_PIX_FMT_Y12 },
->  };
->  
->  /**
+>>
+>>> from the DP controller driver. These supplies are now handled by the eDP
+>>> or QMP PHYs. Mark these properties as deprecated and drop them from the
+>>> example.
+>>
+>> Right now I cannot judge whether this is correct or not. I don't know
+>> what's in that commit, but in general driver implementation changes do
+>> not warrant changes in the binding.
+> 
+> The vdda supplies were initially made a part of DP controller binding, 
+> however lately they were moved to be a part of eDP/DP PHY binding (as 
+> this better reflects the hardware). DP driver dropped support for these 
+> supplies too. Thus I wanted to mark these supplies as deprecated to 
+> discourage using them in the DTS files.
 
--- 
-Regards,
+OK. Just better to reference the commit which adds them to PHY binding.
 
-Laurent Pinchart
+Best regards,
+Krzysztof
