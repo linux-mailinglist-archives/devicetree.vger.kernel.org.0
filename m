@@ -2,62 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E131574923
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7AA2574932
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:38:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbiGNJgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:36:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43334 "EHLO
+        id S238129AbiGNJie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237814AbiGNJgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:36:12 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 970E03718E;
-        Thu, 14 Jul 2022 02:36:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 19AF5B823DA;
-        Thu, 14 Jul 2022 09:36:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73595C34115;
-        Thu, 14 Jul 2022 09:36:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657791368;
-        bh=6MIUuvwdVpJ4tK1rbwNOev3l1SYrBB/w4GMGLdGU6sU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rLubpj75G9oFRJH1WLpBEJaKWFTpChk/WQIOVn6p+VOolGCbg405INhs9InkfmAgX
-         0YJVvED8VC2/6Rcm6tpLhKnPPEvyA8GAEBWJ/9fSnKl8o5FoCjXuehwB7jNhmOFvVb
-         a9kcfiXani+hCEfiAE8Zm67PQ5rlvVhOLK7twbiUz+WWWoP5fn6def4yK0LyZqBsIu
-         9MqyOAfLhOBeS59D23Brrpb081+fPRu406W+0f1Wc1lHhjZDLmpM4uTyj9cgTTfzMC
-         XPc5EoYNgBVFIloNs8yEIaQ8w/jS1YbG8J5dl2RsGAO4PAD8lvR0bSYDUVauvL8ymx
-         Lx+Gq63UMGfqg==
-Received: by pali.im (Postfix)
-        id 6763F1295; Thu, 14 Jul 2022 11:36:05 +0200 (CEST)
-Date:   Thu, 14 Jul 2022 11:36:05 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: Fix compatible strings for Armada
- 3720 boards
-Message-ID: <20220714093605.wdyrcxehg2ij5lvx@pali>
-References: <20220713125644.3117-1-pali@kernel.org>
- <a9e1ccb7-6caa-2f7c-b879-b3ff4945794c@linaro.org>
- <20220713200336.addvyfjhakrx72am@pali>
- <7a4fba17-9c71-a4e6-643a-62aa0dfd4774@linaro.org>
+        with ESMTP id S231724AbiGNJid (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:38:33 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D1FD37193
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:38:32 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id t1so1856362lft.8
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:38:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=TLtLAzqKjh0PR2hCiXTpWedWr6UZ/eh69O/Av6dFIUQ=;
+        b=OrBeTbStBItEd8xp+RbyOHCOHfiOQOJrv5ANEz6qxRGixDOxMAJ5IzUuiOQejXwRyZ
+         GMkAV6A+Rweq3b6Zxv0mjMm0eoJjr5PRDAQoZco1jCPPb6IAeQSgEB2x3wySZxwH92CG
+         v7eIrrSCr/lzKx0racL0bqV858CJVvFs+RCUV9Iz1I0MBxltwBK4evG6S/Rrl/H7V2lq
+         Ly6NpupvlRiBmGyepoRqeTavRvkISkRMGu8PAVRfuuZ3Oo+jFfV9oe/nSZlU3EbSClps
+         DnYZKmYZJgdiBMW09JWHhs4cqCCLdFQrr5ck858Ixns9msDblNZPtZkKYbuhOiwYqNSY
+         /OsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=TLtLAzqKjh0PR2hCiXTpWedWr6UZ/eh69O/Av6dFIUQ=;
+        b=egqbHnw7zY4d0YFe9rfb2mjVyUP/Ne2DxULsCU8X0RIqAr0qWBfEFauiI7nkOpkqPI
+         66F2vB/RNvfUXLoMQwBXMZjFHTNraSX5z9UMSsva6UF54IEsSUI03KhmkQnBR1pTd4wl
+         y7PBLaaJt/rn8URdG6WlAz1gl1xSA3e6yOdOa55NIcgUVjFhvS8WaDPJ8y4N/girusyy
+         SlQf9AHTRKkbcx5kMzKLccyQbVy1Wz7+ZP1KflK0JakxrfndzqQPIUy5iXdZUDyycDM5
+         KhFM4I+XVKz4U2F1ipsrKzTP0cuYVH6ay/Wtxux23Zw8nUVZGMWYqHunCGOCodwieJ6X
+         nFvA==
+X-Gm-Message-State: AJIora/IBRDtf+Z2xbyVsuiy+tipE+FmL2fppVNq48T5PcQIZytgibRS
+        gmE1/4skupkbjCzDVH9m/AZOVQ==
+X-Google-Smtp-Source: AGRyM1tc/J/ECeZYTPp1hWc06zGMIdJAwt8bxeNi6BFWllabpCBNba0Lt2QRG5hj0HKnx9MN0GD8zQ==
+X-Received: by 2002:a05:6512:2308:b0:48a:f9d:7389 with SMTP id o8-20020a056512230800b0048a0f9d7389mr3812939lfu.235.1657791510561;
+        Thu, 14 Jul 2022 02:38:30 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id s2-20020a056512214200b0047960b50c26sm262242lfr.78.2022.07.14.02.38.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 02:38:30 -0700 (PDT)
+Message-ID: <bd84ef20-e6e1-74e5-5681-7aa273d5255c@linaro.org>
+Date:   Thu, 14 Jul 2022 11:38:27 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7a4fba17-9c71-a4e6-643a-62aa0dfd4774@linaro.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 7/9] dt-bindings: msm/dp: mark vdda supplies as
+ deprecated
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>
+References: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
+ <20220710084133.30976-8-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220710084133.30976-8-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,38 +86,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 14 July 2022 08:56:12 Krzysztof Kozlowski wrote:
-> On 13/07/2022 22:03, Pali Rohár wrote:
-> > On Wednesday 13 July 2022 21:42:43 Krzysztof Kozlowski wrote:
-> >> On 13/07/2022 14:56, Pali Rohár wrote:
-> >>> All Armada 3720 boards have Armada 3720 processor which is of Armada 3700
-> >>> family and do not have Armada 3710 processor. So none of them should have
-> >>> compatible string for Armada 3710 processor.
-> >>>
-> >>> Fix compatible string for all these boards by removing wrong processor
-> >>> string "marvell,armada3710" and adding family string "marvell,armada3700"
-> >>> as the last one. (Note that this is same way how are defined Armada 3710
-> >>> DTS files).
-> >>
-> >> Please do not introduce some changes just in DTS, but start from the
-> >> bindings. Someone wrote the bindings like that and expected to be that
-> >> way, so first change the bindings with proper rationale. Then change the
-> >> DTS files.
-> >>
-> >>
-> >> Best regards,
-> >> Krzysztof
-> > 
-> > Ok, I tried to update bindings and fix example in it, see patch:
-> > https://lore.kernel.org/linux-devicetree/20220713200123.22612-1-pali@kernel.org/
-> 
-> The reason you used here should be expressed in that commit as well
+On 10/07/2022 10:41, Dmitry Baryshkov wrote:
+> The commit fa384dd8b9b8 ("drm/msm/dp: delete vdda regulator related
+> functions from eDP/DP controller") removed support for VDDA supplies
 
-Which I exactly did (Armada 3700 = famity, Armada 3720 = SoC, Armada
-3720 DB is name of the board with Armada 3720 SoC, so correctly indicate
-SoC in example). So what else?
+No such commit exists in next. Do not reference unpublished commits. If
+this is your tree, be sure that it is in next.
 
-> because you change the ABI and affect other users (projects, systems).
-> 
-> Best regards,
-> Krzysztof
+> from the DP controller driver. These supplies are now handled by the eDP
+> or QMP PHYs. Mark these properties as deprecated and drop them from the
+> example.
+
+Right now I cannot judge whether this is correct or not. I don't know
+what's in that commit, but in general driver implementation changes do
+not warrant changes in the binding.
+
+Best regards,
+Krzysztof
