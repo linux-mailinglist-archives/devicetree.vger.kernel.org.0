@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0D95742D0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 06:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C468C574342
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 06:32:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234381AbiGNE1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 00:27:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50250 "EHLO
+        id S237368AbiGNEbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 00:31:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234805AbiGNE0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 00:26:23 -0400
+        with ESMTP id S237370AbiGNEbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 00:31:04 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D03F4E62;
-        Wed, 13 Jul 2022 21:23:41 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 953DA29830;
+        Wed, 13 Jul 2022 21:25:20 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9EA1261E8B;
-        Thu, 14 Jul 2022 04:23:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 029DAC36AE2;
-        Thu, 14 Jul 2022 04:23:38 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 329B961E96;
+        Thu, 14 Jul 2022 04:25:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A822C341C8;
+        Thu, 14 Jul 2022 04:25:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657772620;
-        bh=4gMtC4MYtfMUqBlVzbxPARmIcm3jbCbjydwDO9lrlSw=;
+        s=k20201202; t=1657772719;
+        bh=MwrqexhpLf/SooKdi98I/BD1VAoLu+JvpTmN4MR5/aA=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oO+w7z5Gdl2gWfgz/qmvgMEgHVTRMei1FATiCy1LJoaHDWywhedbJ5JGbFJmNpojD
-         DwNUhbQNLHffh5NuwwbvFOHkRKdKsTILGhFD9aHiYzv/ZC5NA3gJfBJRc7Lz/sfLMo
-         TIyWtKlAKFjfITifOnt2TeJNXqIvxeaAAGmTWy7lptCh4ZOpJ6ox8HX6RjsNK4XUxd
-         rI4nnf7FDFdRm9dTHLr3dsRByKy17GP+wo+lw5L89i7F7+htSlFt4pFqfhL0/A4ppp
-         08wn/ky1qqugNolvt5DHnD3YW9/i4MD0kkUKfLqOV0sg5XIp4MP4PpTr8YPXvxp8TP
-         FhC8wLH7k+F0A==
+        b=eNdSJxUYEbVJKM/4kfCXOmAM7Z3YHqW2L3CfgJq7L7xyvWROfh5CVxsC4GUuA8IEL
+         diTeQ7wXdXp1yZKjI7izhVFHBtmzAFc7vPcF0XDYlpkJerwzzaxoQWMW5pHwj2PLIo
+         uWeKh7VyK57UCwzy/qUUuI7pJ5iaXsbOwzX9sEX9kAdhTl1wk29EpwfQVYzt4173np
+         /oLEw+iIbzKNYDbMVKcFswL/ORa1U9ZA+QiIkmlmQ+PqcQhjki0XIfOpXPsHvt25IR
+         eAi7sDvTAz5pColCkFwrPvInKYsmHdI9ouh4hQ67X+XeJqK1detOHSbu/qZLl4aXjC
+         wfVoYYx6/dttQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
@@ -40,12 +40,12 @@ Cc:     Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
         devicetree@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.18 31/41] ARM: dts: stm32: use the correct clock source for CEC on stm32mp151
-Date:   Thu, 14 Jul 2022 00:22:11 -0400
-Message-Id: <20220714042221.281187-31-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 22/28] ARM: dts: stm32: use the correct clock source for CEC on stm32mp151
+Date:   Thu, 14 Jul 2022 00:24:23 -0400
+Message-Id: <20220714042429.281816-22-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220714042221.281187-1-sashal@kernel.org>
-References: <20220714042221.281187-1-sashal@kernel.org>
+In-Reply-To: <20220714042429.281816-1-sashal@kernel.org>
+References: <20220714042429.281816-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -74,10 +74,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index f9aa9af31efd..4eda6c5ae4cf 100644
+index 6992a4b0ba79..714ecd339c68 100644
 --- a/arch/arm/boot/dts/stm32mp151.dtsi
 +++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -565,7 +565,7 @@ cec: cec@40016000 {
+@@ -553,7 +553,7 @@ cec: cec@40016000 {
  			compatible = "st,stm32-cec";
  			reg = <0x40016000 0x400>;
  			interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
