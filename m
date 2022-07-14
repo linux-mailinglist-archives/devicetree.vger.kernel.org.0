@@ -2,77 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCB36574AF8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B69D4574B02
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:45:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238387AbiGNKnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 06:43:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51566 "EHLO
+        id S236396AbiGNKpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 06:45:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231559AbiGNKnE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:43:04 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CD11545D3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:43:03 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id x10so1210774ljj.11
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:43:03 -0700 (PDT)
+        with ESMTP id S231232AbiGNKpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:45:00 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C6B50197
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:44:58 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id t25so2113844lfg.7
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:44:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=HpklPWRSZF3VkeOLjuA+CekBCR2uS6eub9kaGTBZ0ks=;
-        b=sqpJzEmb7JlJuOfQinW0SnLvkKVBnWVIfPCdSCyy7xvWa6/uLT189ZackdPfY5VJgF
-         j+XFLw4ug9D2LBPq0Y+b8tCg3VJ6gD/RTj2KNg72LExi4yKsJrw5MPUTZo1uMoozUVzH
-         8Jf4FnjXwXWjR3b7uijeW/uW+MAQE89q2OgxXWzd4InWc3UcI1V2RbF8kv6p+hDZ0db5
-         IfZoGdJq2GC8gpW6oBUVY2q6GO0G5OySPUCBFuFy+PwAJjUir7axJapZSBUHJPcosTae
-         2gJ/OxxiSjYM+FyYiedjAnbJRk5onkCEUZENaPKZ8ch1ePwhOcFHbSv7/JVoiUwyBYOO
-         DjLg==
+        bh=ezbe8/Zmzgiu435vISrNzCsTE1vc6aAMrCgNByBnrJY=;
+        b=yZJvspVMk3P3j/yDNQ0iYlU59yGOE1g0aXmm/O1hkZJTVFUzYET5BjWM1zGWaYkVsk
+         8EcC64WJuZyhNe1YeQEXDhKHAJTyRNNrzmmHJPdl1Yvf//71GkfwuTLQJIQFSi8N6556
+         qjbtNEiyJQF0XUWv+3uoY6X8TgWC5gIrzxi2qn83H0x+HMVz9SN6Dz9wQEemaEn6Yv1k
+         +toRwleEjwWbTe70EY3qnSKKIM3s9rMi2Xh9g8HC2lauvoGnhHkU27ucTku4d68D3vwq
+         edD68N95RnhDPANJ+rEGkpp5BSPnqUjGqtLqzosIN9/MAySciSXRC6EMB2LDc1jlEMJV
+         oPoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=HpklPWRSZF3VkeOLjuA+CekBCR2uS6eub9kaGTBZ0ks=;
-        b=rJttwZkLiHdrtKKj7/RN1d8t26UF8kNHEnMBhmH33irh1w9LERHokvcS5flQSaeQS9
-         2egQhvBvnEBgLaGXnoCTvLi6hc6sQ/2BGNTQE++w5qG5XOsvb4RHRtkwXgxnpNvob97D
-         +gjOi8dim74osUIjmcLyhy6ej3/E75IQUhlhQBEuAyuzy8J/+AzxXypySe/zeX1KIy53
-         tijyu2IWcKX87n6rkcgGzW7JayYGROmXNCy5mbaE9lFqAgc/mPaW1TflrnS0OHA8BvKt
-         ZG/oqkrInhmd9olEtI2GPWCDOXM5W7yOjhEYrFYLlquu/d4TxZ1vAgts5CjjTURZZLjj
-         jBMQ==
-X-Gm-Message-State: AJIora83VhQ+wq5HfBja5vhXPktp5gUVGJRvthSNpZ6cR/0Uw1q+wd4T
-        jkjUZBoTKFDHaLkjyyMl+1klkw==
-X-Google-Smtp-Source: AGRyM1uGHxh2vo0vrwrvXBu+cxylQzoIdS3mBxPptW69sUUfI3XzwVKLxiAxzIxdTR+TpotSyu2gng==
-X-Received: by 2002:a2e:b0d3:0:b0:25d:6888:7c70 with SMTP id g19-20020a2eb0d3000000b0025d68887c70mr4184434ljl.244.1657795381851;
-        Thu, 14 Jul 2022 03:43:01 -0700 (PDT)
+        bh=ezbe8/Zmzgiu435vISrNzCsTE1vc6aAMrCgNByBnrJY=;
+        b=JTPJS2QDpast/dVsLc933Hhx4yXGkDaTSKlN+S3ttxVBvedqZAUqvhINg6NREpMpA4
+         7A7rDJDmgIgWjWuiHzsQ/DVaS6PrEwv4hD9XRetUkVuWEjeOWskA3/Gd1/NSz6RIC2/r
+         Aj0R3t1sJhwDVaJaxXIovzLLf5uCa7jRULV1kzsmm+zr5m6ulXvrlnpsb+/9ByT/Q1G7
+         SxADtQUVdjnYi6i2/+0/VxIqvtUyKn+nE1zQLhRBlTUe2tjqMefXgpY3s9/YWcB38zpO
+         1uOVXoBIDfzE35cb9ssR3llDDu0A+1e2W4i3A88/sEVZxchLP55yq1n8UM5FmhuhZkHX
+         8New==
+X-Gm-Message-State: AJIora/DnD1c/enQjjFR45QS23ciuH1WjHCKE+YCja/2eN96a0LzF6lP
+        k4x+GrO70RDveDwU9jFshvgm1Q==
+X-Google-Smtp-Source: AGRyM1sMmH8VDImlt5yq7+wGRaj/ajBXJ+zYg6N9rK+le9CWMVJcwr3CotqWEaZ8cKLgsKJEBoeliA==
+X-Received: by 2002:ac2:4d43:0:b0:489:cb6e:b293 with SMTP id 3-20020ac24d43000000b00489cb6eb293mr5135859lfp.376.1657795496788;
+        Thu, 14 Jul 2022 03:44:56 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id o11-20020ac2494b000000b00489c5db8bb6sm290241lfi.176.2022.07.14.03.43.00
+        by smtp.gmail.com with ESMTPSA id t24-20020a195f18000000b00478a8b7ab1csm291638lfb.150.2022.07.14.03.44.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 03:43:01 -0700 (PDT)
-Message-ID: <c84de7ac-5e4f-ce04-bfca-0341f4d6bc1f@linaro.org>
-Date:   Thu, 14 Jul 2022 12:42:59 +0200
+        Thu, 14 Jul 2022 03:44:56 -0700 (PDT)
+Message-ID: <b50abf48-8aee-8d68-2800-f53fc612781b@linaro.org>
+Date:   Thu, 14 Jul 2022 12:44:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 16/30] dt-bindings: phy: qcom,qmp-ufs: add missing
- SM8450 clock
+Subject: Re: [PATCH v2 1/8] dt-bindings: PCI: qcom: Enumerate platforms with
+ single msi interrupt
 Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220707134725.3512-1-johan+linaro@kernel.org>
- <20220707134725.3512-17-johan+linaro@kernel.org>
- <e8046961-9555-07b7-721c-eeb278cb2ec7@linaro.org>
- <Ys/q1crMhS3Ou+qu@hovoldconsulting.com>
+References: <20220714071348.6792-1-johan+linaro@kernel.org>
+ <20220714071348.6792-2-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Ys/q1crMhS3Ou+qu@hovoldconsulting.com>
+In-Reply-To: <20220714071348.6792-2-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,24 +86,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 12:07, Johan Hovold wrote:
-> On Thu, Jul 14, 2022 at 11:21:52AM +0200, Krzysztof Kozlowski wrote:
->> On 07/07/2022 15:47, Johan Hovold wrote:
->>> Add the missing "qref" clock used by the SM8450 UFS QMP PHY to the
->>> binding.
->>>
->>> Fixes: e04121ba1b08 ("dt-bindings: phy: qcom,qmp: Add SM8450 UFS phy compatible")
->>> Fixes: 07fa917a335e ("arm64: dts: qcom: sm8450: add ufs nodes")
->>
->> The second fixes seems not appropriate here, because you are not fixing
->> a DTS. A fix for DTS would be a fix for that one.
+On 14/07/2022 09:13, Johan Hovold wrote:
+> Explicitly enumerate the older platforms that have a single msi host
+> interrupt. This allows for adding further platforms with, for example,
+> four msi interrupts without resorting to nested conditionals.
 > 
-> I wanted to highlight the fact the binding wasn't amended when the DTS
-> started using the new clock, which it should have. But sure, that would
-> have gone in a separate patch. I can replace the second Fixes with a
-> Link to the dts submission as a reference instead.
+> Drop the redundant comment about older chipsets instead of moving it.
+> 
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-Yes, that or mentioning as "commit xxx ..." in msg would be better.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
