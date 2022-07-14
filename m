@@ -2,121 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E826574B47
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62A50574B5C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234645AbiGNKzd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 06:55:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36468 "EHLO
+        id S238555AbiGNLAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 07:00:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231304AbiGNKzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:55:31 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2044.outbound.protection.outlook.com [40.107.92.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0579B558E8;
-        Thu, 14 Jul 2022 03:55:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oGnQXZO9km5lbJIE+ejz1iFgafcFNv4Tkt7ZMoX4KfbD4fmDCUT2odHhcjnPBJ2zdLGtwpv606kMQE9LElNNfTMQYg8H/F7xxIZ98SE29c1auPoY7EWNGQMCfQacBuPjQ7qfLAZ1Hw0DJcL8E7wtlDLBZh8jEm5ef32XI5BweGNFGsnsEwCsoQ68xjF+ECAi+X4uUXr4EL5cKBJASwdu3UqVWZoOB8KOwPbuPcH7SIytfqyrVjOUERtnxjGRdcOiYsc8ERHf+vbjHsRsHOOpz4CvMUBa9Aymr6RADj7yKXMUZcciqW1ZfiYdZ+txY01M1QcTIXAbY8Yk+rto89nRYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n4xQ5ZtCbOzae+117oJNobSa/X3RVYc+Bp6dqhipya4=;
- b=EZq1eqxPVFQ+Zojx6F3+zRNZYV+W8XduucaZGGQHCo4fTy/eHGzLKbMig0POLUla/6JMFAr+e3IGJnUSe5u3gD1tqAlHMFZlhdXhCaRw+Dh526daNarcXiFji3cXUhqgJx/Ae+RjPp6BnV0rbJ9EDzDZgujQHm4PUxZgA0IA9QSRJm+qb1qWIrYdehVV/z/cq713Zx3DsbkMCO1RXR02OJEfMR6Nw8FEGBMD0ceAIqrnAIlO/W1m/AIn1T4BzgkRDGk0+winydAlzECPSTH813J+Tq6nT6NAnHLzXcNS8aOVGa+Ze4ReuwuzwSEC9+fh7fX7li27OZbJOBNq54zPRw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=gmail.com smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        with ESMTP id S238560AbiGNLAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:00:30 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2075757204
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:00:29 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id n18so2202899lfq.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:00:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n4xQ5ZtCbOzae+117oJNobSa/X3RVYc+Bp6dqhipya4=;
- b=FQtkiykAguQfo6O3sKdYt+r6uWm2T6qEOJBYhpe07j2BwM/nHmCY1VBxrfPEQNgZjDGyBK7402claACzyQ48tZpWYyRHq0arAa4RiQbYChpRFJEY9511NpIfyjNMmdZmd9pPhpWpyekD1Mg4ebFpfuJjjqjdmkytI4L/LNKk5x0=
-Received: from BN0PR03CA0043.namprd03.prod.outlook.com (2603:10b6:408:e7::18)
- by MW4PR02MB7426.namprd02.prod.outlook.com (2603:10b6:303:66::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Thu, 14 Jul
- 2022 10:55:27 +0000
-Received: from BN1NAM02FT022.eop-nam02.prod.protection.outlook.com
- (2603:10b6:408:e7:cafe::d5) by BN0PR03CA0043.outlook.office365.com
- (2603:10b6:408:e7::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.17 via Frontend
- Transport; Thu, 14 Jul 2022 10:55:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT022.mail.protection.outlook.com (10.13.2.136) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5438.12 via Frontend Transport; Thu, 14 Jul 2022 10:55:26 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 14 Jul 2022 03:55:23 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Thu, 14 Jul 2022 03:55:23 -0700
-Envelope-to: shubhrajyoti.datta@gmail.com,
- robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org,
- linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org
-Received: from [10.254.241.52] (port=43806)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1oBwV9-000FAi-Eg; Thu, 14 Jul 2022 03:55:23 -0700
-Message-ID: <50bfd52b-6fe0-546f-9121-0145aac91289@xilinx.com>
-Date:   Thu, 14 Jul 2022 12:55:21 +0200
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=LCa+aVIC89Z/IdQehPIP96zGnlcisprBcKManxPUAMk=;
+        b=CRM+BxeMLtYC7p4g/ZUfBeHmme/BrPcvvrTNUtsRG8Tgg5bWYDqo0QV6xXxYwUoEL7
+         g9CkTSkANxsbmskWS1ev7Of+YddNas91xaESQRNInsjr0SnLIuOaaDdEWiX0OdKya7mi
+         jE12axvwYrVKOQ8nDSRSphqn7LTzbzip1R5tlUlsfHm+bowvlRMyFoUb1XykM/fR/1kJ
+         rrZAe3KZ0BiKWgX9M/kYRgfctSaYSUFZX4ZM32tkHmvIMcjtkfceyynoDMHIINJXdmD0
+         LUfzFjZypgPOFCPMdd6ewxgz0pBvI3qbHkvPKeI28YKSBgKPCquzuMeUy2v/s6d/nEjH
+         Aq9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=LCa+aVIC89Z/IdQehPIP96zGnlcisprBcKManxPUAMk=;
+        b=DruFueCmZURUAi9OFb9vKptW+AJ9nr7DG4b79vaDay4TgPYqgnsX6d0wZOrl4pynH9
+         5xrd5dqLk4WxV7BEyjnvP/ztiADT80Ur9jyAuafa0sola07/etz+W4mMZy0c/tKbyv/q
+         M+aZq1AYWB7+f6Ixh6oPjCAR6kWCGx31Q3aaWmmPQFQBzwD9Szhhwiz45tff65eZ/0my
+         JicTIZ9Znk1cTyn5Cu5zQ15ATJGKEJkf7yTv5D3Psib/pXEvEUt4YSnv+I80dz4V6YIR
+         jvWFqQNX1gbXREKZ9IjsC/M7+Jm1sa+5hHdFbJeVxqznA1MydjKJCgXLF/o+6AKgSnFI
+         SXmg==
+X-Gm-Message-State: AJIora8o3wv6OgR21W3bb0r1adzFZPLhKnVjFpG3A45YlHGp5mjxQpOv
+        SxA7uxPLmfZNR8eJRoNcw1nKEg==
+X-Google-Smtp-Source: AGRyM1uqtZe7JSbXQZ65E06xS9Rx4h4QhLEojM0uMe09sJDw4ZGgyM1X93Ze8is+aeWEv/nuDQdeRw==
+X-Received: by 2002:a05:6512:10cd:b0:489:ddd8:ba3e with SMTP id k13-20020a05651210cd00b00489ddd8ba3emr4629508lfg.62.1657796427375;
+        Thu, 14 Jul 2022 04:00:27 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id y10-20020a056512044a00b0047fbf4c8bdfsm299061lfk.143.2022.07.14.04.00.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 04:00:26 -0700 (PDT)
+Message-ID: <7e362d83-36c2-00ed-6525-37197ee8e5d7@linaro.org>
+Date:   Thu, 14 Jul 2022 13:00:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
+Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
+ camera sensor binding
 Content-Language: en-US
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Shubhrajyoti Datta <shubhraj@xilinx.com>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        Srinivas Goud <sgoud@xilinx.com>
-References: <cover.1637061057.git.shubhrajyoti.datta@xilinx.com>
- <e1d6913bfe5ce023d7f6ea106d0359142063e694.1637061057.git.shubhrajyoti.datta@xilinx.com>
- <YaVPYiGmDsqY+1at@robh.at.kernel.org>
- <DM6PR02MB663589B3489C53A34DC25A31AA719@DM6PR02MB6635.namprd02.prod.outlook.com>
- <MN2PR02MB6640017950EFB0FD21D2AD91AA339@MN2PR02MB6640.namprd02.prod.outlook.com>
- <DM6PR02MB66352597DBF172ACC5307274AA179@DM6PR02MB6635.namprd02.prod.outlook.com>
- <CAL_JsqLV3De0O2WDq=w_CQbvAiJVvQ-=V9XuC1tJyZNLyneDZw@mail.gmail.com>
- <CAKfKVtGrdh-iQP7YKUBe37HVeZcU-UV3A3BHKjcnggBFR94eNA@mail.gmail.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-In-Reply-To: <CAKfKVtGrdh-iQP7YKUBe37HVeZcU-UV3A3BHKjcnggBFR94eNA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org,
+        Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+References: <cover.1657786765.git.vkh@melexis.com>
+ <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
+ <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
+ <c87132c4-5801-2f1f-8ef9-3997474cf7a5@linaro.org>
+ <Ys/zvH3ICr4zpTLH@pendragon.ideasonboard.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Ys/zvH3ICr4zpTLH@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 388a5e03-147b-48ee-7392-08da65875c59
-X-MS-TrafficTypeDiagnostic: MW4PR02MB7426:EE_
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TDL6KLK9KNm/eijHbP0lvRY1vlg0i/4ZyBTZBRShZJ79AAVCzo8fP4kc7PgaMo5JuFprwkyeYv02tkbyPFlFWmHh0DzSHfPqJ9MmuMzQzjPDDNsSJM5yXXBGPT7zybUC+fH4+sh1XAQsWG4aakkImCYww9y4Nn7dmEo8StjSDUNUovjrcXTaPDdE023na2QKYusiR5pX3zkLPLkMY33AB5HmsgAbdcTmI4ALnIfb25cbCPMEekyCDVLmIJaVmNxSq0wUu6WJupZ3ZOpBUlyuwi0DgBElkrKPDvD7fo84MOpv7ZMRu1b3/7uA++gcsLLWTZmhJWVyL4H6qiBj5P56j1Mt/4vnhqZr6SFhBHuhk8dO1bvxFDOsK55DiRbpDB+ZKVp513rzOI/1eO6WUrU2Om6z5K9f5n5faIq6n+Sutqr1/Woeb0E7q1IAaQKZWav0egwt2oJCl633VyOvicZoXGgQhmBQhbtHaJdbZg+HcsRTRsZEqvDE+hqUalLnXYiw0+dc3ao7w567Zie/ELSyjqAsS39Yd/udV+8s4TWU/pBlBLPp1kx3DPA+U0NP1GB1JS14iSQdIVXJEnGmJhUSyWYP4Es2u1lynvidXJIUSHHeVa1Q0gkFvVFUntMp9I7Flt0U995kJqI6zsys+pQnSHt0bqfM6TTN5tRTlpxyQfIvu5ij6C1q9AuPgp5gmqsVf6QJzAEraFwnCHQqsL42NpqLYL//as68kIo4W/IvEAQ1aQTQHBX/2xXd+5AehQhgKos+VRF5vzdorJt0/1R0uaQ0qY5D8UVxvs3F3oTBHkzP4ekDknLbGebU9L0GCyiM2Z6sY9lTzKn+haGt3PVkf21JTcgQ0Q/mpEI4YZGa5oQNGM7kfZ4dY6QnnFt7g3Lg
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230016)(4636009)(346002)(39860400002)(376002)(136003)(396003)(36840700001)(40470700004)(46966006)(40460700003)(26005)(2616005)(40480700001)(356005)(9786002)(82740400003)(107886003)(31696002)(82310400005)(2906002)(426003)(336012)(47076005)(41300700001)(478600001)(8936002)(4744005)(83380400001)(186003)(44832011)(7636003)(54906003)(316002)(36860700001)(53546011)(31686004)(70206006)(70586007)(5660300002)(8676002)(4326008)(36756003)(110136005)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2022 10:55:26.9296
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 388a5e03-147b-48ee-7392-08da65875c59
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT022.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR02MB7426
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -124,25 +85,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob and Krzysztof,
-
-On 6/14/22 14:21, Shubhrajyoti Datta wrote:
+On 14/07/2022 12:45, Laurent Pinchart wrote:
+> On Thu, Jul 14, 2022 at 12:35:52PM +0200, Krzysztof Kozlowski wrote:
+>> On 14/07/2022 12:06, Laurent Pinchart wrote:
+>>> Hi Volodymyr,
 >>>
->   <snip>
-> 
+>>> Thank you for the patch.
+>>>
+>>> On Thu, Jul 14, 2022 at 11:34:47AM +0300, Volodymyr Kharuk wrote:
+>>>> Add device tree binding of the mlx7502x and update MAINTAINERS
+>>>>
+>>>> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+>>>> ---
+>>>>  .../bindings/media/i2c/melexis,mlx7502x.yaml  | 146 ++++++++++++++++++
+>>>>  MAINTAINERS                                   |   1 +
+>>>>  2 files changed, 147 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..4ac91f7a26b6
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+>>>> @@ -0,0 +1,146 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/media/i2c/melexis,mlx7502x.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Melexis ToF 7502x MIPI CSI-2 Sensor
+>>>> +
+>>>> +maintainers:
+>>>> +  - Volodymyr Kharuk <vkh@melexis.com>
+>>>> +
+>>>> +description: |-
+>>>> +  Melexis ToF 7502x sensors has a CSI-2 output. It supports 2 and 4 lanes,
+>>>> +  and mipi speeds are 300, 600, 704, 800, 904, 960Mbs. Supported format is RAW12.
+>>>> +  Sensor 75026 is QVGA, while 75027 is VGA sensor.
+>>>> +  If you use compatible = "melexis,mlx7502x", then autodetect will be called.
+>>>
+>>> I'd move this last line as a description of the compatible property, but
+>>> I'm also not sure this should be mentioned in the DT bindings, as it's a
+>>> driver implementation detail. I'm actually not sure we should support it
+>>> with three different compatible values as proposed, as without this
+>>> documentation users will have a hard time figuring out what compatible
+>>> value to pick.
+>>>
+>>> One option would be to support the following three compatible values:
+>>>
+>>> 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
+>>> 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
+>>> 	compatible = "melexis,mlx7502x";
+>>>
+>>> The last one only would trigger autodetection. I'm still not sure how to
+>>> document that properly in bindings though.
 >>
->> No, I don't know what the differences are in your h/w. You have ID
->> registers, but changed the IP and didn't change the ID registers? How
->> has the IP changed?
+>> I missed that part of binding.
 >>
+>> Wildcards are not allowed in compatible, so mlx7502x has to go.
 > 
-> The IP is not changed and the ID registers are not updated.
-> The limitation is coming from the AXI  port that the IP is connected to.
-> The axi port is allowing only the 32 bit access.
-> The same information will be updated in the Versal TRM.
+> Really ? We've had fallback generic compatible strings since the
+> beginning.
 
-Can you please give us your recommendation how to process with this?
+Fallback generic compatibles are allowed. Wildcards not. Wildcards were
+actually never explicitly allowed, they just slipped in to many
+bindings... We have several discussions on this on mailing list, so no
+real point to repeat the arguments.
 
-Thanks,
-Michal
+There is a difference between generic fallback. If the device follows
+clear specification and version, e.g. "foo-bar-v4", you can use it for
+generic compatible. This is more common in SoC components. Requirement -
+there is a clear mapping between versions and SoCs.
 
+> 
+>> Anyway what does this autodetection mean?
+> 
+> As far as I understand, it means that the driver will use a hardware
+> identification register to figure out if the sensor is a 75026 or 75027.
+
+Then there is no need to define 75027 compatible. DT is for cases where
+autodetection does not work...
+
+> The upside is that one doesn't need to change the device tree when
+> swapping between those two sensors. The downside is that the sensor
+> needs to be powered up at probe time. Depending on the platform, one of
+> those two behaviours is preferred. Auto-detection is nice, but in
+> laptops or tablets (not a use case for this particular device, but the
+> problem applies to camera sensors in general), it would mean that the
+> privacy LED of the camera could be briefly lit at boot time due to the
+> sensor being powered on, which can worry users.
+
+OK, that's reasonable argument for dedicated compatible but I don't
+understand why you cannot perform autodetection the moment device is
+actually powered up (first time). I understand it is nice and easy to
+make everything in the probe and most devices perform it that way. But
+if you don't want to do it in the probe - DT is not a workaround for this...
+
+Best regards,
+Krzysztof
