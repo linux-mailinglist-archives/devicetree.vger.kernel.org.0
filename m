@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAB4C574B2C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:51:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C449F574B31
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238514AbiGNKvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 06:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60176 "EHLO
+        id S238135AbiGNKw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 06:52:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238520AbiGNKvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:51:16 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E56558C7
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:51:14 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id w17so1697941ljh.6
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:51:14 -0700 (PDT)
+        with ESMTP id S237448AbiGNKw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:52:28 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD2D550BD
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:52:26 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id r9so1683108ljp.9
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:52:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EKF2hxWr78hWWpM47JWfd5sxYajsn2nvqoQgIyFQXzQ=;
-        b=zcB/jKufoJCWNIAZnoyfbjAvgjU6EnPBSF3Hw5mBfFlIQQh4a0cae0GVdCwLrCSSLZ
-         LiKIjkxsj7iZr/3rjXhLp8OMFv3msGNQ+8GvvRY+ZcIAOVEjNDHz4/tshhQLlZg4HvO2
-         7GyyKqOYA4hKOAHNAALXSXC/MXfdr5/odn3tCx55b7z5TiOL3IUMLcgSIj+o1NVnTVLw
-         PhrliJlxCOapPHRvcTWVDHSUV/XxGvp8VdCTojrovl51oqCTqHJ3mPjk2g3nYhCQU6Ww
-         9u+xxpytoI+JzTkgwOBxMGffjy524Pc10nJVa0m1xU7h5bZdH8TSM/LHVl7rFoGBVQ+6
-         VPOA==
+        bh=p5GjG0eV0vYuLSZs2y/SOdrMlopF9d7dRJclgcPc3hE=;
+        b=jK77VM9nUux8iXmWo7aCYe1N7UMe5+s/CNo0Rzhmar2T+6xM4PESwtVLqmr2Qml5M2
+         sF/XArXpCnWwpbqbntARJALcDpV65adze8UFvBAcZNMQ/qG4p80CD+HmiwgJv2HJOTFX
+         krn1S8WhtghCJqR4M7xvAgQaPrHj/LDpNKrT7aUzuyz/L2EEYMki6EwJNoXgjTF/T9YK
+         zV+69A8efs+AJJOWLDDXwHHq9a5A7Ai7Xoz+IJa5qBXnazG0uGrlwSNkgSJSpsl4xDOv
+         4t97dR1DSRlZDOUlpFDy8LGXgMC//cGmrCwlQtan1Z2o+xuwb4Tx1h016UWr4BCXU1/l
+         pwfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=EKF2hxWr78hWWpM47JWfd5sxYajsn2nvqoQgIyFQXzQ=;
-        b=LBBojGC0D/0vlrSRcFfJnLzfrhQpxwdcJlcCJ4MUCefczAMdVV7pfnNR+WEnRZBXHY
-         Cw+s/8xUsN0H81mn8Hkv6qz5qp0a9kOLvbJe11HDXOn6Z95W0RVfU9jUHQ9dtjo2csEE
-         eEJm8Za2sJRB2+7tNce1JL7Xu2O9aU2CIYX+RkxoP3KUjEQLs6Vw6mnMj7hEggL3ZRLq
-         KuMVNa32jU5cBI7gf5GVZI5SaT1dxZaetkBi8NUvqLlHuPsnHlXDaMHobrfv4WXe/vXY
-         dD3e0hBX0b1ccz2tx6hjIg9wkg4fZuwSmm3vwYAmiKvHX0KFz5fUnjpzxGKSmUu75BLf
-         1Mtw==
-X-Gm-Message-State: AJIora8RnNDVzuf5gL5dxoeVSegKgYLxGLE87EwM3/CJqG436lwCcXUK
-        X6Nyr5o2iFIF7XFFCu0YUye+ng==
-X-Google-Smtp-Source: AGRyM1u6H2CsK9ySyzdRHvOnSZX1xPGCVAf5kmf3IQrK0bbO1d5q55jyw/+Z5V5LZU/qTFTQxxuWjQ==
-X-Received: by 2002:a2e:b0d3:0:b0:25d:6888:7c70 with SMTP id g19-20020a2eb0d3000000b0025d68887c70mr4200675ljl.244.1657795872668;
-        Thu, 14 Jul 2022 03:51:12 -0700 (PDT)
+        bh=p5GjG0eV0vYuLSZs2y/SOdrMlopF9d7dRJclgcPc3hE=;
+        b=MI6WcQB23dDZZrk+NBGYRbRITxgIh49igDcHK9EJXzkTgw1UCq2gsK25dBxynpUnxe
+         CPR0rRUmOCPrTLBHOQZlL8ZfBHTEK13xaxrr0W8ea6XQ3Rr1ZHoNiPzCncdtlynfGIMc
+         dvSWTq/1gJhCY6uvfb+nXqhLDYcr9i0jD+Is25x1cCnaS7XNF0/fFA4/J1B7hrfDGM5x
+         tSs3WoMXUQTmJCc90rTg9LIiQgA95hHnoqQoTITw6pUZUgcS9GEhbNrlwXdjGlWeZUa6
+         fOg4J8ocI92voaP4pz9LaUL2dWi/2RpLj8huWOZrC/Bxo5j0R5Ptj0q4LjfQ9qMP+yNM
+         emOA==
+X-Gm-Message-State: AJIora9F7cF4d3XDXiybFS0mZxQKz9H4Ypb3swa6iU0z4V7P05upeBEi
+        LBqxPmwaoBsaidWNo1m+gCC/9g==
+X-Google-Smtp-Source: AGRyM1tRighpv3FSsPDbwHBARKoXOLbSJ+Y71+kNTw8wIs8dcy0FYq3u3jdkzvj4OTsNcWhwLWcZbg==
+X-Received: by 2002:a2e:83c6:0:b0:25a:d2c4:76c8 with SMTP id s6-20020a2e83c6000000b0025ad2c476c8mr4152410ljh.336.1657795945212;
+        Thu, 14 Jul 2022 03:52:25 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id v11-20020a05651203ab00b0047f9ef4cb92sm292145lfp.297.2022.07.14.03.51.10
+        by smtp.gmail.com with ESMTPSA id be6-20020a056512250600b00489da53b38esm296097lfb.224.2022.07.14.03.52.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 03:51:11 -0700 (PDT)
-Message-ID: <3936bd59-58e0-0493-a792-4aff4b73a809@linaro.org>
-Date:   Thu, 14 Jul 2022 12:51:09 +0200
+        Thu, 14 Jul 2022 03:52:24 -0700 (PDT)
+Message-ID: <093d85b9-6da2-2358-118e-7b5a2d1fa86e@linaro.org>
+Date:   Thu, 14 Jul 2022 12:52:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/7] dt-bindings: usb: qcom,dwc3: add SC8280XP binding
+Subject: Re: [PATCH 4/7] arm64: dts: qcom: sc8280xp: fix USB clock order
 Content-Language: en-US
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -67,9 +67,9 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20220713131340.29401-1-johan+linaro@kernel.org>
- <20220713131340.29401-2-johan+linaro@kernel.org>
+ <20220713131340.29401-5-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220713131340.29401-2-johan+linaro@kernel.org>
+In-Reply-To: <20220713131340.29401-5-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,21 +83,46 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13/07/2022 15:13, Johan Hovold wrote:
-> Add SC8280XP to the DT schema.
+> Fix the USB controller clock order and naming so that they match the
+> devicetree binding.
 > 
-> Note that the SC8280XP controllers use the common set of five clocks and
-> an additional set of four interconnect clocks whose purpose is not
-> entirely clear at this point.
+> Note that the driver currently simply enables all clocks in the order
+> that they are specified in the devicetree. Reordering the clocks as per
+> the binding means that the only explicit ordering constraint found in
+> the vendor driver, that cfg_noc should be enabled before the core_clk,
+> is now honoured.
 > 
-> The set of wakeup interrupts is also different for SC8280XP.
-> 
+> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 285a9828c250..45cc7d714fd2 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -1855,16 +1855,16 @@ usb_0: usb@a6f8800 {
+>  			#size-cells = <2>;
+>  			ranges;
+>  
+> -			clocks = <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+> -				 <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
+> +			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
+> +				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+>  				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+> -				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+>  				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
+> +				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+>  				 <&gcc GCC_AGGRE_USB_NOC_AXI_CLK>,
+>  				 <&gcc GCC_AGGRE_USB_NOC_NORTH_AXI_CLK>,
+>  				 <&gcc GCC_AGGRE_USB_NOC_SOUTH_AXI_CLK>,
+>  				 <&gcc GCC_SYS_NOC_USB_AXI_CLK>;
+> -			clock-names = "core", "iface", "bus_aggr", "utmi", "sleep",
+> +			clock-names = "cfg_noc", "core", "iface", "sleep", "mock_utmi",
+>  				      "noc_aggr", "noc_aggr_north", "noc_aggr_south", "noc_sys";
 
-Second patch answers my questions, so:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Your commit title should also include change of naming.
 
 Best regards,
 Krzysztof
