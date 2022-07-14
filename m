@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12702574CA4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EAA2574CA7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231293AbiGNL6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 07:58:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42774 "EHLO
+        id S239106AbiGNL7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 07:59:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238670AbiGNL6v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:58:51 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2871C248C4
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:58:50 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id u13so2412910lfn.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:58:50 -0700 (PDT)
+        with ESMTP id S238458AbiGNL7R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:59:17 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B38E39B84
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:59:16 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id d12so2375075lfq.12
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:59:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=XZ6zcs78xTBMoBW41xhfPl8mgcyOXJXlS8VDvhn/FaA=;
-        b=QrW+48G78oGpbq+WOxe6wyGen22tAhMqgzvsIpr++kA0ByojlU4fVPCdDnQM0h9hl4
-         LQ8hPvkqA22lIusPYp7JldtRnZQU3bAu9eVTUIyQryhgafMImP1lqWyA+9PaEYwvSpuF
-         sZZ3ohSyWVgw9OARxWuTc6ImU9RaGlvBKGtXRVIIBE+M44PueNU4GpT/4TFRUJX3fOES
-         kKwGa8tzpP1zbB1hCrjAHZOyx3vLzgnmOHU9WtriEMtnrrAhQu/K/6WCckEBTkESZIG9
-         3064EiIuaGNXX/pOEB0l9eDPtem/rCaQlcBrhsVdvNJXbyrExvFF267xCchAIDQIXilq
-         ou+Q==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=EgRB3uk2eARor0EOATA0atI967xULo2Iq5wahJWcNKY=;
+        b=pkSdn509huWe8QwssIYCQ/3Et0ZHqT9xt2lBSNjiyBPfMyHLI0D/AzlBAZzNQ8Oqit
+         HI49Vyrrv9K76vvbwoPjp5q83eyoUXws593RmU18+ZOBk1YQyB7vUed46vZ/gMtHJYO6
+         mqavqHLW7rQ/i/2FOvW69MuddpBVojxD9MjUDWkNgvCTw4wA5xTgIrTZDBYFbA3RKNXz
+         qT6pnqyN5FcgP7k4rCJEBBQA2unaPQOmBBZUxe0uyJgLGOPsVhYlyRx80WzSjnE3674W
+         EIjNKOIQBZ7t+XXj++lqZkY09ZP8DWh6J6SvrY4dI3GIfqqemBA20bahTcJixbzU3OYR
+         9bcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=XZ6zcs78xTBMoBW41xhfPl8mgcyOXJXlS8VDvhn/FaA=;
-        b=3hD8IVO/dkgCwGiNSPmzg+0ig6IeVveEQJ5Oxco6daZPEUrgBnTI7by90CDEY1436Q
-         moEe68328OO1Z82xXcLLr9+GeO/EdI2vRzWquxHhjGU9x/BTI9QqJtunhh2pNOQwmsNU
-         Ah5PYIjC0CXHylgd0ZZoajI1lKEMEvkuv1er9QlThUmgXhWthK53DjUOAQ/JNs+MJ/al
-         K0aPs2HhOCtSCylQxR5rdqxwvkwsiWAACih7HM8TVgQpzAoeXX2G3lqpRLrqjpKWn1QL
-         NjR58OVaiIX21VH5M3k0uj8RYZmT6eeT3HgY1EAGfNX9Z1Feg324lBb9/eUgJHc3M5/9
-         m7Pg==
-X-Gm-Message-State: AJIora80sAjaL0M9lmVqeW7uRodniDMzVnODw2jnNdy38KA79wY9X+vk
-        xKfKcFGG+dEu48liQnmBeabS/A==
-X-Google-Smtp-Source: AGRyM1tMzHQzW7BqLoNxHkx2+lnmWwhQ1bMGpdOMMs2Qr7nWdRusNUS6b3tyiC3Kycct0IxRGRnr8w==
-X-Received: by 2002:a05:6512:21d2:b0:47f:9f53:f729 with SMTP id d18-20020a05651221d200b0047f9f53f729mr5178922lft.378.1657799928521;
-        Thu, 14 Jul 2022 04:58:48 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id w9-20020a05651c118900b0025d620892cdsm240170ljo.107.2022.07.14.04.58.47
+        bh=EgRB3uk2eARor0EOATA0atI967xULo2Iq5wahJWcNKY=;
+        b=gSSx5NB5CLsyC8Pp0pbh2/7dnevqtV7FE1an7ld54xp4X1QI+rKJkGLjahAzNsLC/3
+         i7xwKmmO/+RkJgi4m3P0vr7ZqYKndktcq+6xVeDz5EM3l0Jlwq5hxhYDfzJGsX1XtIMK
+         OEIa0+twKfg6UoRt95s7OPltprW74NKvcMdkZEcWQOcpE0vQMcaXKdp6FkPNQlHuIJVh
+         j2bEkmPhVIdJNPPtiXuScTl72fH21SpTMheAk9/VcO1CcuylwlX406q6qVsMAh8OvIsM
+         38QZzaeHvSoQ84N5bt2941Ontcm+dJLPbGnxrRg8p+BIjYbkKESHmUNd/W2c5YQ4m3Fj
+         zOxw==
+X-Gm-Message-State: AJIora+IAjfE6+lh1RI8hy3quqNYSRaPeh3Jbv4STke9CiT5cWQA6SXe
+        X+kO+Wvwno1Be6fIb7uT34upuA==
+X-Google-Smtp-Source: AGRyM1sp46qLjUaQ39yzSVfZFmt8J6pClvKxTyubHCvrRm+wHU/jVtGoxJMsm79yrYOE2Ii5U/62Rw==
+X-Received: by 2002:ac2:420b:0:b0:489:eac1:5d7f with SMTP id y11-20020ac2420b000000b00489eac15d7fmr5242513lfh.355.1657799954395;
+        Thu, 14 Jul 2022 04:59:14 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id c11-20020a056512324b00b00478f3bb79d6sm322573lfr.194.2022.07.14.04.59.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 04:58:48 -0700 (PDT)
-Message-ID: <84004850-026a-980d-6c9c-3668182fc458@linaro.org>
-Date:   Thu, 14 Jul 2022 14:58:47 +0300
+        Thu, 14 Jul 2022 04:59:13 -0700 (PDT)
+Message-ID: <9d9067f3-5b2d-6434-ec2f-93b4a97a6588@linaro.org>
+Date:   Thu, 14 Jul 2022 13:59:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v17 0/6] PCI: dwc: Fix higher MSI vectors handling
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan@kernel.org>
-References: <20220707134733.2436629-1-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220707134733.2436629-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
+Content-Language: en-US
+To:     Michal Simek <michal.simek@xilinx.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Shubhrajyoti Datta <shubhraj@xilinx.com>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        Srinivas Goud <sgoud@xilinx.com>
+References: <cover.1637061057.git.shubhrajyoti.datta@xilinx.com>
+ <e1d6913bfe5ce023d7f6ea106d0359142063e694.1637061057.git.shubhrajyoti.datta@xilinx.com>
+ <YaVPYiGmDsqY+1at@robh.at.kernel.org>
+ <DM6PR02MB663589B3489C53A34DC25A31AA719@DM6PR02MB6635.namprd02.prod.outlook.com>
+ <MN2PR02MB6640017950EFB0FD21D2AD91AA339@MN2PR02MB6640.namprd02.prod.outlook.com>
+ <DM6PR02MB66352597DBF172ACC5307274AA179@DM6PR02MB6635.namprd02.prod.outlook.com>
+ <CAL_JsqLV3De0O2WDq=w_CQbvAiJVvQ-=V9XuC1tJyZNLyneDZw@mail.gmail.com>
+ <CAKfKVtGrdh-iQP7YKUBe37HVeZcU-UV3A3BHKjcnggBFR94eNA@mail.gmail.com>
+ <50bfd52b-6fe0-546f-9121-0145aac91289@xilinx.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <50bfd52b-6fe0-546f-9121-0145aac91289@xilinx.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,44 +87,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 16:47, Dmitry Baryshkov wrote:
-> I have replied with my Tested-by to the patch at [2], which has landed
-> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
-> Add support for handling MSIs from 8 endpoints"). However lately I
-> noticed that during the tests I still had 'pcie_pme=nomsi', so the
-> device was not forced to use higher MSI vectors.
+On 14/07/2022 12:55, Michal Simek wrote:
+> Hi Rob and Krzysztof,
 > 
-> After removing this option I noticed that hight MSI vectors are not
-> delivered on tested platforms. After additional research I stumbled upon
-> a patch in msm-4.14 ([1]), which describes that each group of MSI
-> vectors is mapped to the separate interrupt. Implement corresponding
-> mapping.
-
-[skipped]
-
-Gracious ping. Does this series stand a chance of getting into 5.20?
-
-> Dmitry Baryshkov (6):
->    PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
->    PCI: dwc: Convert msi_irq to the array
->    PCI: dwc: split MSI IRQ parsing/allocation to a separate function
->    PCI: dwc: Handle MSIs routed to multiple GIC interrupts
->    dt-bindings: PCI: qcom: Support additional MSI interrupts
->    arm64: dts: qcom: sm8250: provide additional MSI interrupts
+> On 6/14/22 14:21, Shubhrajyoti Datta wrote:
+>>>>
+>>   <snip>
+>>
+>>>
+>>> No, I don't know what the differences are in your h/w. You have ID
+>>> registers, but changed the IP and didn't change the ID registers? How
+>>> has the IP changed?
+>>>
+>>
+>> The IP is not changed and the ID registers are not updated.
+>> The limitation is coming from the AXI  port that the IP is connected to.
+>> The axi port is allowing only the 32 bit access.
+>> The same information will be updated in the Versal TRM.
 > 
->   .../devicetree/bindings/pci/qcom,pcie.yaml    |  51 +++++-
->   arch/arm64/boot/dts/qcom/sm8250.dtsi          |  12 +-
->   drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
->   drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
->   .../pci/controller/dwc/pcie-designware-host.c | 164 +++++++++++++-----
->   drivers/pci/controller/dwc/pcie-designware.h  |   2 +-
->   drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
->   drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
->   drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
->   9 files changed, 185 insertions(+), 54 deletions(-)
-> 
-	
+> Can you please give us your recommendation how to process with this?
 
--- 
-With best wishes
-Dmitry
+Unfortunately I don't think that anyone remembers context from last
+year, especially me who was not Cced. Rob responded at end of March and
+it took two months to get back any answer. Such slow response time from
+submitter does not help to stay in the context. :(
+
+
+Best regards,
+Krzysztof
