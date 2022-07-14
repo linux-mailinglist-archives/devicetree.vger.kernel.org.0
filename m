@@ -2,86 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FC4E5756DF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 23:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC0D45756E4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 23:30:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240810AbiGNV1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 17:27:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56126 "EHLO
+        id S240542AbiGNVaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 17:30:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240795AbiGNV1G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 17:27:06 -0400
-Received: from smtp-out3.electric.net (smtp-out3.electric.net [208.70.128.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D62B6D9FF;
-        Thu, 14 Jul 2022 14:27:05 -0700 (PDT)
-Received: from 1oC6MM-00090K-WA by out3b.electric.net with emc1-ok (Exim 4.94.2)
-        (envelope-from <kris@embeddedTS.com>)
-        id 1oC6MQ-00096c-U9; Thu, 14 Jul 2022 14:27:02 -0700
-Received: by emcmailer; Thu, 14 Jul 2022 14:27:02 -0700
-Received: from [66.210.251.27] (helo=mail.embeddedts.com)
-        by out3b.electric.net with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <kris@embeddedTS.com>)
-        id 1oC6MM-00090K-WA; Thu, 14 Jul 2022 14:26:59 -0700
-Received: from tsdebian (97-120-89-198.ptld.qwest.net [97.120.89.198])
-        by mail.embeddedts.com (Postfix) with ESMTPSA id 9134F4DC;
-        Thu, 14 Jul 2022 14:26:57 -0700 (MST)
-Message-ID: <1657833995.2979.1.camel@embeddedTS.com>
-Subject: Re: [RFC PATCH v2] ARM: dts: Add TS-7553-V2 support
-From:   Kris Bahnsen <kris@embeddedTS.com>
-Reply-To: kris@embeddedTS.com
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Mark Featherston <mark@embeddedTS.com>
-Date:   Thu, 14 Jul 2022 14:26:35 -0700
-In-Reply-To: <55dccabb-41e9-dc45-f404-c333f5472e75@linaro.org>
-References: <20220713221233.8486-1-kris@embeddedTS.com>
-         <55dccabb-41e9-dc45-f404-c333f5472e75@linaro.org>
-Organization: embeddedTS
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
+        with ESMTP id S239842AbiGNVaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 17:30:06 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D800D6EE90;
+        Thu, 14 Jul 2022 14:30:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1657834204; x=1689370204;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ohTWDd1PCrHN5v0aqrbVJeHwH3BlN0RoL4tMpz77sGI=;
+  b=EeWZ9+1MwOmrN1r/Ec8tq+XZjIwoMHyT6HqSB5Ia0p/nf8Q+uW10J3ew
+   hbVD0ITkHwEw9bGbz/P0Wd7beqNwee0bzc9hNIlUk7xrkO97pUyQ1lA4U
+   HHlSUwS2k/KH3FAJNN6BReBgPL6ySSeU5kcPW6APyr5qSy3gnGtTeKp9L
+   I=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 14 Jul 2022 14:30:04 -0700
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 14:30:03 -0700
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 14 Jul 2022 14:30:03 -0700
+From:   Elliot Berman <quic_eberman@quicinc.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Elliot Berman <quic_eberman@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Murali Nalajala <quic_mnalajala@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagiri@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Marc Zyngier" <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v2 00/11] Gunyah Hypervisor drivers
+Date:   Thu, 14 Jul 2022 14:29:29 -0700
+Message-ID: <20220714212940.2988436-1-quic_eberman@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220223233729.1571114-1-quic_eberman@quicinc.com>
+References: <20220223233729.1571114-1-quic_eberman@quicinc.com>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Outbound-IP: 66.210.251.27
-X-Env-From: kris@embeddedTS.com
-X-Proto: esmtps
-X-Revdns: wsip-66-210-251-27.ph.ph.cox.net
-X-HELO: mail.embeddedts.com
-X-TLS:  TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256
-X-Authenticated_ID: 
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=embeddedTS.com; s=mailanyone20220121;h=Mime-Version:References:In-Reply-To:Date:To:From:Message-ID; bh=GseA+cRnj+YmYAVO5Y69v8C7WrdURv4BgtAoSd0DCpM=;b=hz/WBxV3h4iBrP9vWNGrG4x0jxMVhUxNOPwrX3h7o0QyBiR5HsXN/Bs9/wXVs/g8mZSku/B2FQ7BxxHy2HMleJ620RzIN3meKsr0OopL129w+iS8YtQlm1cZc9fM2omqRfbDAMVWcZ1C6Hmwar03v964/qcteuEuyFNbq0zmzg8GTgS6DERwcCqZT4FPbhy/DqTgizsF6wHXR0SKmWPgotdQCD3jt1mYnO96jx2evGcWAnpRBmUGD10KZe6zf7eo19jiK7ZA0S2DfgXKUjyi/+VjYEDAvL0nhW6RLJedYTc0BShVy6h6NLA1gj7Jad4uUFIkHfHwrVp5twI1FMw/dg==;
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,231 +73,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-07-14 at 10:34 +0200, Krzysztof Kozlowski wrote:
-> On 14/07/2022 00:12, Kris Bahnsen wrote:
-> > Add initial support of the i.MX6UL based TS-7553-V2 platform.
-> 
-> Use subject prefix matching the subsystem. git log --oneline --
 
-Can you please elaborate? The subject prefix is "ARM: dts:", I'm not
-sure what is missing. Should it be something like
-"ARM: dts: imx6ul-ts7553v2:" in this case?
+Gunyah is a Type-1 hypervisor independent of any
+high-level OS kernel, and runs in a higher CPU privilege level. It does
+not depend on any lower-privileged OS kernel/code for its core
+functionality. This increases its security and can support a much smaller
+trusted computing base than Type-2 hypervisors. This series adds the initial
+support for Gunyah hypercalls, IPC via message queues, communication with the
+Gunyah Resource Manager to enable Gunyah's paravirtualized console.
 
-> 
-> > 
-> > Signed-off-by: Kris Bahnsen <kris@embeddedTS.com>
-> > ---
-> > 
-> > V1->V2: Implement changes recommended by Rob Herring and dtbs_check
-> > 
-> > RFC only, not yet ready to merge, more testing needed and we're working on
-> > SPI LCD support for this platform.
-> > 
-> > Specifically, I have a few questions on some paradigms and dtbs_check output:
-> > 
-> > imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ... \
-> > 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], 'reg': [[12]]}}}} \
-> > is not of type 'array'
-> >   I'm not sure what this error is referring to as I've copied the example in
-> >   invensense,mpu6050.yaml almost verbatim. Is this an issue with our patch
-> >   or a false positive from dtbs_check?
-> 
-> You would need to paste entire error, maybe with checker flags -v.
+Gunyah is an open source hypervisor. The source repo is available at
+https://github.com/quic/gunyah-hypervisor.
 
-Here is the verbose output. I'm not familiar enough yet with the schema and its
-validation code to catch what is wrong and would appreciate any insight.
+This series enables guest awareness of Gunyah and establishes the basic
+architecture of Gunyah capabilities in the Linux kernel. As an end-to-end
+use case, a TTY driver for the Gunyah-based console is added which can demonstrate
+communication with the resource manager. In a future series, we intend to add
+support for loading secondary VMs.
 
-Check:  arch/arm/boot/dts/imx6ul-ts7553v2.dtb
-/work/arch/arm/boot/dts/imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ['i2c-gpio'], \
-'#address-cells': [[1]], '#size-cells': [[0]], 'pinctrl-names': ['default'], \
-'pinctrl-0': [[58]], 'sda-gpios': [[11, 5, 6]], 'scl-gpios': [[11, 4, 6]], \
-'imu@68': {'compatible': ['invensense,mpu9250'], 'reg': [[104]], \
-'interrupt-parent': [[55]], 'interrupts': [[1, 1]], 'i2c-gate': {'#address-cells': [[1]], \
-'#size-cells': [[0]], 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], \
-'reg': [[12]]}}}} is not of type 'array'
+To self-test the console driver without other VMs, reads and writes to
+/dev/ttyGH0 will be sent to /dev/ttyGH1 via the hypervisor. In a system with
+multiple VMs, a secondary VM could use ttyGH0 as its boot console.
+The primary VM would be able to access that secondary VM's console via a ttyGHx.
 
-Failed validating 'type' in schema['patternProperties']['(?<!,nr)-gpios?$']:
-    {'items': {'additionalItems': {'$ref': '#/definitions/cell'},
-               'items': [{'oneOf': [{'maximum': 4294967295,
-                                     'minimum': 1,
-                                     'phandle': True,
-                                     'type': 'integer'},
-                                    {'const': 0, 'type': 'integer'}]}],
-               'minItems': 1,
-               'type': 'array'},
-     'minItems': 1,
-     'type': 'array'}
+Changes in v2:
+ - DT bindings clean up
+ - Switch hypercalls to follow SMCCC
 
-On instance['i2c-gpio']:
-    {'#address-cells': [[1]],
-     '#size-cells': [[0]],
-     'compatible': ['i2c-gpio'],
-     'imu@68': {'compatible': ['invensense,mpu9250'],
-                'i2c-gate': {'#address-cells': [[1]],
-                             '#size-cells': [[0]],
-                             'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'],
-                                                'reg': [[12]]}},
-                'interrupt-parent': [[55]],
-                'interrupts': [[1, 1]],
-                'reg': [[104]]},
-     'pinctrl-0': [[58]],
-     'pinctrl-names': ['default'],
-     'scl-gpios': [[11, 4, 6]],
-     'sda-gpios': [[11, 5, 6]]}
-        From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/gpio/gpio-consumer.yaml
+Elliot Berman (11):
+  docs: gunyah: Introduce Gunyah Hypervisor
+  dt-bindings: Add binding for gunyah hypervisor
+  arm64: gunyah: Add Gunyah hypercalls ABI
+  gunyah: Common types and error codes for Gunyah hypercalls
+  virt: gunyah: Add sysfs nodes
+  virt: gunyah: Add capabilities bus and devices
+  gunyah: msgq: Add Gunyah message queues
+  gunyah: rsc_mgr: Add resource manager RPC core
+  gunyah: rsc_mgr: Add auxiliary devices for console
+  gunyah: rsc_mgr: Add RPC for console services
+  gunyah: Add tty console driver for RM Console Serivces
 
-> 
-> > 
-> > 
-> > imx6ul-ts7553v2.dtb: spi@2010000: spidev@1: 'compatible' is a required property
-> >   Many of our devices have open-ended I2C and SPI ports that may or may not be
-> >   used in customer applications. With "spidev" compatible string no longer
-> >   supported, there is no easy way we know of to leave a placeholder or
-> >   indication that the interface is present, usable, and either needs specific
-> >   support enabled in kernel or userspace access via /dev/. We would love
-> >   feedback on how to handle this situation when submitting platforms upstream.
-> 
-> No empty devices, especially for spidev in DTS. There is really no
-> single need to add fake spidev... really, why? The customer cannot read
-> hardware manual and cannot see the header on the board? You can give him
-> a tutorial/howto guide, but don't embed dead or non-real code in DTS.
+ .../ABI/testing/sysfs-hypervisor-gunyah       |  37 +
+ .../bindings/firmware/gunyah-hypervisor.yaml  |  84 +++
+ Documentation/virt/gunyah/index.rst           |  99 +++
+ Documentation/virt/gunyah/message-queue.rst   |  52 ++
+ Documentation/virt/index.rst                  |   1 +
+ MAINTAINERS                                   |  12 +
+ arch/arm64/include/asm/gunyah.h               | 142 ++++
+ drivers/virt/Kconfig                          |   1 +
+ drivers/virt/Makefile                         |   1 +
+ drivers/virt/gunyah/Kconfig                   |  24 +
+ drivers/virt/gunyah/Makefile                  |   8 +
+ drivers/virt/gunyah/device.c                  | 108 +++
+ drivers/virt/gunyah/gunyah_private.h          |  18 +
+ drivers/virt/gunyah/msgq.c                    | 223 ++++++
+ drivers/virt/gunyah/rsc_mgr.c                 | 682 ++++++++++++++++++
+ drivers/virt/gunyah/rsc_mgr.h                 |  56 ++
+ drivers/virt/gunyah/rsc_mgr_console.c         | 405 +++++++++++
+ drivers/virt/gunyah/rsc_mgr_rpc.c             | 151 ++++
+ drivers/virt/gunyah/sysfs.c                   | 176 +++++
+ include/linux/gunyah.h                        | 133 ++++
+ include/linux/gunyah_rsc_mgr.h                |  45 ++
+ 21 files changed, 2458 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-hypervisor-gunyah
+ create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+ create mode 100644 Documentation/virt/gunyah/index.rst
+ create mode 100644 Documentation/virt/gunyah/message-queue.rst
+ create mode 100644 arch/arm64/include/asm/gunyah.h
+ create mode 100644 drivers/virt/gunyah/Kconfig
+ create mode 100644 drivers/virt/gunyah/Makefile
+ create mode 100644 drivers/virt/gunyah/device.c
+ create mode 100644 drivers/virt/gunyah/gunyah_private.h
+ create mode 100644 drivers/virt/gunyah/msgq.c
+ create mode 100644 drivers/virt/gunyah/rsc_mgr.c
+ create mode 100644 drivers/virt/gunyah/rsc_mgr.h
+ create mode 100644 drivers/virt/gunyah/rsc_mgr_console.c
+ create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
+ create mode 100644 drivers/virt/gunyah/sysfs.c
+ create mode 100644 include/linux/gunyah.h
+ create mode 100644 include/linux/gunyah_rsc_mgr.h
 
-We ship devices as bootable out of the box. A number of our customers end up
-attaching SPI devices that do not have existing kernel drivers and talk to them
-from userspace without having to touch a kernel build. The loss of spidev
-directly has increased support requests we receive on the matter.
+-- 
+2.25.1
 
-> 
-> > 
-> > 
-> > imx6ul-ts7553v2.dtb: wifi@0: compatible:0: 'microchip,wilc1000' was expected
-> > imx6ul-ts7553v2.dtb: wifi@0: compatible: ['microchip,wilc3000'...] is too long
-> > imx6ul-ts7553v2.dtb: wifi@0: 'chip_en-gpios' does not match any of the \
-> > regexes: pinctrl-[0-9]+'
-> >   As noted in the comments in the dts, the WILC1000 in-kernel driver doesn't
-> >   support the BLE features of the WILC3000. We maintain an external module
-> >   tree that lets us build Microchip's official driver with WILC3000 support.
-> >   Would the extraneous compatible string and property be accepted upstream
-> >   in light of this?
-> 
-> No. No undocumented comaptibles with some wrong properties. chip_en is
-> clearly wrong, so it cannot go to DTS. Upstream driver or remove the node.
-
-Unfortunate, but, understood.
-
-> 
-> > 
-> > 
-> >  Documentation/devicetree/bindings/arm/fsl.yaml |    1 +
-> 
-> This is a separate patch.
-
-Makes sense.
-
-> 
-> >  arch/arm/boot/dts/Makefile                     |    1 +
-> >  arch/arm/boot/dts/imx6ul-ts7553v2.dts          |  693 ++++++++++
-> >  arch/arm/configs/ts7970_defconfig              | 1627 ++++++++++++++++++++++++
-> >  arch/arm/configs/tsimx6ul_defconfig            |  967 ++++++++++++++
-> 
-> This as well (and won't be accepted - no new defconfigs).
-
-The defconfigs being included were an oversight and absolutely sloppy on my
-part. I sincerely apologize for that.
-
-> 
-> > 
-> > +
-> > +	leds {
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_gpio_leds>;
-> > +		compatible = "gpio-leds";
-> > +
-> > +		green-led {
-> 
-> led-0
-> 
-> > +			label = "green-led";
-> 
-> Rather use color and function, then labels.
-
-Fixed, thank you. I was unaware of this newer set of properties and I've
-found where they are clearly spelled out.
-
-> 
-> > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_gpio_keys>;
-> > +
-> > +		left {
-> 
-> This fails on dtbs_check. Generic node names, so "key-0" or "key-left"
-
-For reference, as of commit b047602d579b4fb028128a525f056bbdc890e7f0, there
-are no errors/warnings from dtbs_check or checkpatch.pl regarding node
-names being "key-..." and the example in gpio-keys.yaml uses "up" "left" etc.
-
-I've also changed the node name to just "keys" per devicetree specifications
-doc.
-
-> 
-> > +	i2c_gpio: i2c-gpio {
-> 
-> Generic node name, so "i2c"
-
-Understood.
-
-Are there any guidelines/restrictions on label use/schema 
-throughout a dts file? The devicetree-specification document only defines
-valid characters for a label and I've been unable to find any other docs.
-
-> 
-> > +		compatible = "i2c-gpio";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_i2cgpio>;
-> > +		sda-gpios = <&gpio5 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-> > +		scl-gpios = <&gpio5 4 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +		status = "okay";
-> 
-> Why do you add status? Isn't this a new node?
-
-That was my mistake, Rob pointed it out in v1 and I forgot to remove it.
-
-> 
-> > +
-> > +	pinctrl_i2cgpio: i2cgrpgpio {
-> 
-> Name not matching schema, as they must end with grp. Derive your board
-> from something new, not ancient...
-> > +
-> > +	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-> 
-> Same.
-> 
-> > 
-> > +
-> > +	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-> 
-> No really...
-> 
-
-Thanks for pointing this out, I was unable to find any specific docs on the
-pinctrl node name schema and dtbs_check gave no errors on it.
-
-> > 
-> > +};
-> > diff --git a/arch/arm/configs/ts7970_defconfig b/arch/arm/configs/ts7970_defconfig
-> > new file mode 100644
-> > index 000000000000..a96831752449
-> 
-> Rest is not accepted as not explained/justified.
-> 
-> 
-> Best regards,
-> Krzysztof
-
-Many thanks for the review. 
