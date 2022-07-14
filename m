@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6806D5747B8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E15025747BD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237568AbiGNJHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:07:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56916 "EHLO
+        id S229608AbiGNJIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:08:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237555AbiGNJHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:07:41 -0400
+        with ESMTP id S229982AbiGNJH7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:07:59 -0400
 Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D0E20F5D
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:07:40 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id bu42so1819952lfb.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:07:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC3DE20F59
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:07:58 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id bu42so1821098lfb.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:07:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=O1fNejxW8S6H3wv5VBDx0d1TMHYJMe9L7no5jLI+Oyg=;
-        b=FIWHDEbpdoMv9foYW/B/ZPtig8wu4pEhkSnJzoI/DZjVzJm5Uk9JRPlHQyfSJ2FnJA
-         jninjZNbhOXQGhuMabXHpPHWKh5WR9VGTUzQsCXD217MLSYM8KOp7AzJrWAtjPvMBaJv
-         avXKmhbuigxPKdiIk4Tb1PpAOm6WUX6kh9qL7QgTiyWMGcD99QWRxcagakI6e2hcMPqg
-         YAb0ne9PlQ6egBsDjGsQtTWy+c8CNQR4Sa07dV4VxFBcEMu53wKzCNKLK3xJOzVqX2uc
-         s+aFlE5Ek/avWAy47EsyUg114ufEFE9i0BADRMpZ1jvB0iu69NxoNNIPnrYytfdW4yRz
-         7WDw==
+        bh=Jl4DNwb2Gyurm+zGL+d676Qd+COluIRUuESVpeQKWC0=;
+        b=L3RT6QR1ni+Q+ys1fl+pnF8bB7RPAWkwFMz+tnF3P5v1Jd3wUSFvPf5Mwvsx/eJ8Xm
+         iNzAdw6xIF4RU2F1JxKzt2a4hw685/Rb8T6LbbfclXbSotZWIf3zXg5OV6ZZdC2sY+cI
+         xcQliuqOuOtC8RFonaNA7Z7Ik5jWmb8JZfLQS/v+FPQuFLHcil5o0XmKEUZzFdKtjPxz
+         HiZE0WIFMTqbi1PZdHggLX2RU/eGbRstiskNjBo0eBXT+SPIXCkim2fafcRnXtS5UCfx
+         ci+DfnRFFa7hL8mdOR9JRPvDC5vSfJyO90ldyJ7nGLjNtHLB1MBwSMe3cLgmfwbhL8Jv
+         qAtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=O1fNejxW8S6H3wv5VBDx0d1TMHYJMe9L7no5jLI+Oyg=;
-        b=GwmK1HkzzqqWzqAXXAiDat1e9NNWdeK7Ne6wBc1MB2qMLQjP/MgkqkMAQHBtb3hyzq
-         pF66/dgkDhXhj/x3lfACLrfdTTvOnFFybuhlyIAV8/TqFNlojqHzlFDuceWO2ND8n2iL
-         olvxkDOXDLkEWfgGfGkFw8jlw8uxp3/jvOOThV01IfRzADBvL/ZujtJv9WUH8HhgIUzY
-         xVwQD1vNz4Oy069vb1aM0zzUK2Is62FVjdyJ34wf7msLn3ddL1FoM4xQFsmmu2Jhp8BE
-         vVOBIMxVQnT1rfDXAHkrScpg0Jwty7kRpgQ5kghY0DJkdvjOVcsslt9i7os4iar2An7R
-         o6CQ==
-X-Gm-Message-State: AJIora+Tt1z+7QUa3xXJ0bl5SgoJzyRKQyMVWanziYwEzzMdv1j7FFMH
-        7rWwZ4CogPAGACNCLd8B+F0i/A==
-X-Google-Smtp-Source: AGRyM1vtx0KI4Lf85fLv2hVsyciC0HjRj8ejjNeCKGSnn+E/6D2Cog8AfiXPRY1s3r32AKC7+faa2g==
-X-Received: by 2002:a05:6512:3b29:b0:489:f0ad:1d18 with SMTP id f41-20020a0565123b2900b00489f0ad1d18mr4710485lfv.3.1657789658590;
-        Thu, 14 Jul 2022 02:07:38 -0700 (PDT)
+        bh=Jl4DNwb2Gyurm+zGL+d676Qd+COluIRUuESVpeQKWC0=;
+        b=PQmNFSW2jVrnztFrC4PIIQOhYqfGxfvcsKFQnwoEq/WSCA3mPhnWpSgmE4M8WsIN0l
+         RGXwpammA5CEvvGX7LAmaYA0/hs3/VOdgYgGmv4hyYS4dedBlR5SCXfXSFspFGwu1+TV
+         79XYJDQaoqDSEjG2lUcMNFjz3q/C+9rp/Pgtxf4lCqumZYwOcE0aQA2jPhgNwvS8QuGb
+         wsBNwhiXZ22BXzq4AOHY222Ii+gj9iTMlZPDkgnxcjr4uKxwpJf+Om22MHHrIT1oLctZ
+         eXEEFug/97+2Blhh/KbCsV4+RtJV4GLIwPc5WYhC3DJhXM3VG7BxPr5MLhUZm1uYy8Cs
+         AXDQ==
+X-Gm-Message-State: AJIora8NfacShSlay4aE937r0GYZicFm4jfq+w5QDXHXuYjjjREe2H3C
+        OLtuR5VkqQ5ETbzJyEavsxN22g==
+X-Google-Smtp-Source: AGRyM1tsipuDR7LJx1E5SIC+SfOIqDfrOGGC9rV1JuuIXdT8wzO+pIR201gcIftWNEW9UcvQIALmLw==
+X-Received: by 2002:ac2:4288:0:b0:489:da8b:293a with SMTP id m8-20020ac24288000000b00489da8b293amr4412363lfh.106.1657789678414;
+        Thu, 14 Jul 2022 02:07:58 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id a27-20020a2eb55b000000b0025d5b505df1sm173151ljn.136.2022.07.14.02.07.36
+        by smtp.gmail.com with ESMTPSA id q9-20020a056512210900b0048905c6103csm253120lfr.9.2022.07.14.02.07.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 02:07:37 -0700 (PDT)
-Message-ID: <b1d14a58-5f7e-f013-4f80-c63d3f1951f2@linaro.org>
-Date:   Thu, 14 Jul 2022 11:07:35 +0200
+        Thu, 14 Jul 2022 02:07:57 -0700 (PDT)
+Message-ID: <b09f8007-ffbd-94cd-e5f7-bc30f40cee0b@linaro.org>
+Date:   Thu, 14 Jul 2022 11:07:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 04/30] dt-bindings: phy: qcom,qmp: fix child node
- description
+Subject: Re: [PATCH v2 05/30] dt-bindings: phy: qcom,qmp: clean up
+ descriptions
 Content-Language: en-US
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Vinod Koul <vkoul@kernel.org>,
@@ -67,14 +67,14 @@ Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20220707134725.3512-1-johan+linaro@kernel.org>
- <20220707134725.3512-5-johan+linaro@kernel.org>
+ <20220707134725.3512-6-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220707134725.3512-5-johan+linaro@kernel.org>
+In-Reply-To: <20220707134725.3512-6-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,13 +82,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 15:46, Johan Hovold wrote:
-> Fix the incorrect description of the child nodes which claimed that one
-> node is required per lane rather than per PHY.
+On 07/07/2022 15:47, Johan Hovold wrote:
+> Clean up the remaining descriptions by using uppercase "PHY"
+> consistently and dropping redundant information from the register
+> descriptions.
 > 
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 4 +---
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
