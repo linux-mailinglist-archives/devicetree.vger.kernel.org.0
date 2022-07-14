@@ -2,234 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBA77574538
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 08:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB58D574544
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 08:50:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235321AbiGNGmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 02:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56724 "EHLO
+        id S233034AbiGNGuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 02:50:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235152AbiGNGmu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 02:42:50 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C8D220192;
-        Wed, 13 Jul 2022 23:42:49 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id g16-20020a17090a7d1000b001ea9f820449so7461746pjl.5;
-        Wed, 13 Jul 2022 23:42:49 -0700 (PDT)
+        with ESMTP id S232166AbiGNGuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 02:50:08 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEBFE248F3
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 23:50:06 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id x10so594211ljj.11
+        for <devicetree@vger.kernel.org>; Wed, 13 Jul 2022 23:50:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=CQqVk/li2uOK4C//a5rwR6TqVXPgBjhZsLgz0JKgFDU=;
-        b=AXZ9xZdpXEUtWip0sPDD/VsyxbdfHpX6risn1bku8ubHaF7a3IBDNkvE0JFKbGoqOR
-         1SBDm4GZPlAP7j3cn/YRtdXSqOZ0RVPCz4yqo2o1UAcrZj37H546OO7ie47QFIyxGRKu
-         pm0pzT2eZZoxuxa/kkHhLV4apxZfPuxj2uC8lFSqSOlTzNoOMqd42VbcVPQJqmw7LOnt
-         R2Gq5qHDbkuQP8p4aeyo/bcjLf8zMPrdiu6G4VHN8C+3DOJWZufGakNB7aWT3vWXsKkz
-         aFNp026wkYXOfa2cSw6BbvsDZYMoNpEfp/AMZglg817X4FQQBgdtPRyngTtnaAgLlUeU
-         nEeQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=kAMorpNPpq8Kl7mIQPaFEYYx6iRT5mkDQv6ldaOiuso=;
+        b=mCtgy7WJTcIR5VvYFE1mQpSdwHFub/JxquNNbGjOEDG5kerZcvfIWuR/Q4SfMdeLCM
+         LKPbhc4nez83WRVbxrYgZnSGGOfCShXYSZVg1nlUWSu3Nkz5eoiwG9GJ9dxxk8GZCVMj
+         0VGmzNW+39nIVWiAdU11NFp9Pqt0bKUKDpVd30O2rLoijaUPWKYITYSu52p4vyn1YxLK
+         itzn4rLQSdioMpwWIsLTXSl5Rm0aib09E33je8nhM053J2+ni+JPbwJds70N7qPumteu
+         aiRHfv0M8e3NXr0lJCxtybrL33+/GUf9upn7Agyqg7bvEbG8rpodGLO0VwrYap7piiPI
+         DA9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=CQqVk/li2uOK4C//a5rwR6TqVXPgBjhZsLgz0JKgFDU=;
-        b=72Zi2Ngo+wcj5HVswAlYyXwy6XQH8StfGjWRecd+lA3jDpjc+bolBXnhbSCsaWsoR1
-         eYd6AxGXKLRfcl6llj40U8+z23/Ip0CxksuZ01Ev9P707eHmHZG4272K+xhzaLw1RM35
-         nFibhzwm2AtuCh7E1t+hOIdemaPDiLR2gJBnQoD2I6s9R1hgw6RuUyeY8DuW+0meboZK
-         9ubyXWCPK7GY6TeVWKLge3DvlLoMggXtG24ddvAa2e3I3W4IXcINtEtjvI9JyuSy5/4p
-         FFZjenGzRyxoKDvsVdpXvEXTdW74afHYToxfZ8PU90NFxaeIgw5KCD8m77iU/Ae5/RAp
-         oSkw==
-X-Gm-Message-State: AJIora+hO4DnkKBjoP+zeBoHo3xfLtfuRSVe4LSdf55euB74clFl9piL
-        AQ8dhz41PwdREuRzPIcF0kZTN2oFjjY=
-X-Google-Smtp-Source: AGRyM1veZOyPzmOG8yG9Gv2+kYzBULMW5FwgCKBa5rIdnvPodMikl82BxoTfi6MEfBtDo8ueuAIACg==
-X-Received: by 2002:a17:902:c944:b0:16c:5897:7ea0 with SMTP id i4-20020a170902c94400b0016c58977ea0mr7057264pla.127.1657780968618;
-        Wed, 13 Jul 2022 23:42:48 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:486:199:217d:a3c8:f1ea:4115])
-        by smtp.gmail.com with ESMTPSA id nt14-20020a17090b248e00b001ef82e5f5aesm616291pjb.47.2022.07.13.23.42.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 13 Jul 2022 23:42:48 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, broonie@kernel.org, dmitry.torokhov@gmail.com
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: [PATCH v3 3/3] input: misc: rt5120: Add power key support
-Date:   Thu, 14 Jul 2022 14:42:17 +0800
-Message-Id: <1657780937-20891-4-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1657780937-20891-1-git-send-email-u0084500@gmail.com>
-References: <1657780937-20891-1-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=kAMorpNPpq8Kl7mIQPaFEYYx6iRT5mkDQv6ldaOiuso=;
+        b=gSoP3YIBCZP7I/cU0PyOgFfTPbAIoXC2BTXwlE6NifAiKTrnRkbrZRF2U26Y3/uXww
+         +FLNEoKe9mr6SzH6FwlDl5OM0AUUC+NjSz2DYZ9qj/R7Yy2JivQaXg05xL21D1yefbOZ
+         XIp+9qE9uq+IGK4ng3uGY6xOLfDJKzYVoVezKyrl6NZVMovBrzRnjjnAV8sl8BojfOnX
+         HDPSkFOu+jM/cEDrGW/oJn2XmU0VNPCfJCcVfH6w5+4AQBWOnai1q/g2+JYFEYiBwci5
+         tRIbC2TNTVA81OkVYoQ+y8WkhYCVa/Wl/v1It9CJTZXhD6woqhLPJJkEX2akhiDv8oKx
+         4YTQ==
+X-Gm-Message-State: AJIora93Q3SxyiPqF28eEnN2hXCUReW3gyTShb7tteQWsCnbYSdcyTpj
+        aDbiIaDBI+Sn7lf0pFj78k+WYg==
+X-Google-Smtp-Source: AGRyM1uugxfr8VnRrNRyLEftcuT/EW3N+W2M709baxf4ALu+7XKMmiU/fc1xj1s3byOkIhsLkTeYbw==
+X-Received: by 2002:a2e:968b:0:b0:25d:67ce:134c with SMTP id q11-20020a2e968b000000b0025d67ce134cmr3861590lji.277.1657781405298;
+        Wed, 13 Jul 2022 23:50:05 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id m1-20020a056512114100b00489fdc9ac15sm195626lfg.42.2022.07.13.23.50.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Jul 2022 23:50:04 -0700 (PDT)
+Message-ID: <32b30b60-26f7-50e9-7dca-c25bc3f4014d@linaro.org>
+Date:   Thu, 14 Jul 2022 08:50:02 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v10 1/2] thermal: Add thermal driver for Sunplus
+Content-Language: en-US
+To:     =?UTF-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>,
+        Li-hao Kuo <lhjeff911@gmail.com>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "amitk@kernel.org" <amitk@kernel.org>,
+        "rui.zhang@intel.com" <rui.zhang@intel.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <cover.1654660009.git.lhjeff911@gmail.com>
+ <b114b6f8ea51054561a61dc4982715bb73633ec5.1654660009.git.lhjeff911@gmail.com>
+ <be752ee1-3732-bcbd-4d31-6d6fe0bd251f@linaro.org>
+ <a510b35f89034f60a05d6dbe7245e789@sphcmbx01.sunplus.com.tw>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a510b35f89034f60a05d6dbe7245e789@sphcmbx01.sunplus.com.tw>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+On 14/07/2022 07:32, Lh Kuo 郭力豪 wrote:
+>>> +}
+>>> +
+>>> +static int sunplus_thermal_remove(struct platform_device *pdev) {
+>>> +	struct sp_thermal_data *sp_data = platform_get_drvdata(pdev);
+>>> +
+>>> +	thermal_zone_of_sensor_unregister(&pdev->dev, sp_data->pcb_tz);
+>>
+>> You used devm to register, so this looks wrong and will lead to double free.
+>>
+>>
+> 
+> You mean the remove function is not needed.  ??
 
-Add RT5120 PMIC power key support.
+At least this call but after its removal the entire function would be
+empty, I think.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-Since v3:
-- Simplify the power key irq handler key report
-- Since press and release irq not needed to keep in private data, change 'press',
-  'release' irq as local variable only.
-- Fix Kconfig typo for pwrkey.
 
----
- drivers/input/misc/Kconfig         |   9 ++++
- drivers/input/misc/Makefile        |   1 +
- drivers/input/misc/rt5120-pwrkey.c | 105 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 115 insertions(+)
- create mode 100644 drivers/input/misc/rt5120-pwrkey.c
-
-diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-index a18ab73..92daa4d 100644
---- a/drivers/input/misc/Kconfig
-+++ b/drivers/input/misc/Kconfig
-@@ -891,6 +891,15 @@ config INPUT_SC27XX_VIBRA
- 	  To compile this driver as a module, choose M here. The module will
- 	  be called sc27xx_vibra.
- 
-+config INPUT_RT5120_PWRKEY
-+	tristate "RT5120 PMIC power key support"
-+	depends on MFD_RT5120
-+	help
-+	  This enables support for RT5120 PMIC power key driver.
-+
-+	  To compile this driver as a module, choose M here. the module will
-+	  be called rt5120-pwrkey.
-+
- config INPUT_STPMIC1_ONKEY
- 	tristate "STPMIC1 PMIC Onkey support"
- 	depends on MFD_STPMIC1
-diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-index 28dfc44..d1fb00e 100644
---- a/drivers/input/misc/Makefile
-+++ b/drivers/input/misc/Makefile
-@@ -69,6 +69,7 @@ obj-$(CONFIG_INPUT_RAVE_SP_PWRBUTTON)	+= rave-sp-pwrbutton.o
- obj-$(CONFIG_INPUT_RB532_BUTTON)	+= rb532_button.o
- obj-$(CONFIG_INPUT_REGULATOR_HAPTIC)	+= regulator-haptic.o
- obj-$(CONFIG_INPUT_RETU_PWRBUTTON)	+= retu-pwrbutton.o
-+obj-$(CONFIG_INPUT_RT5120_PWRKEY)	+= rt5120-pwrkey.o
- obj-$(CONFIG_INPUT_AXP20X_PEK)		+= axp20x-pek.o
- obj-$(CONFIG_INPUT_GPIO_ROTARY_ENCODER)	+= rotary_encoder.o
- obj-$(CONFIG_INPUT_RK805_PWRKEY)	+= rk805-pwrkey.o
-diff --git a/drivers/input/misc/rt5120-pwrkey.c b/drivers/input/misc/rt5120-pwrkey.c
-new file mode 100644
-index 00000000..b6a5ac4
---- /dev/null
-+++ b/drivers/input/misc/rt5120-pwrkey.c
-@@ -0,0 +1,105 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+#include <linux/bits.h>
-+#include <linux/input.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define RT5120_REG_INTSTAT	0x1E
-+#define RT5120_PWRKEYSTAT_MASK	BIT(7)
-+
-+struct rt5120_priv {
-+	struct regmap *regmap;
-+	struct input_dev *input;
-+};
-+
-+static irqreturn_t rt5120_pwrkey_handler(int irq, void *devid)
-+{
-+	struct rt5120_priv *priv = devid;
-+	unsigned int stat;
-+	int ret;
-+
-+	ret = regmap_read(priv->regmap, RT5120_REG_INTSTAT, &stat);
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	input_report_key(priv->input, KEY_POWER,
-+			 !(stat & RT5120_PWRKEYSTAT_MASK));
-+	input_sync(priv->input);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int rt5120_pwrkey_probe(struct platform_device *pdev)
-+{
-+	struct rt5120_priv *priv;
-+	struct device *dev = &pdev->dev;
-+	int press_irq, release_irq;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->regmap = dev_get_regmap(dev->parent, NULL);
-+	if (!priv->regmap)
-+		return dev_err_probe(dev, -ENODEV, "Failed to init regmap\n");
-+
-+	press_irq = platform_get_irq_byname(pdev, "pwrkey-press");
-+	if (press_irq < 0)
-+		return press_irq;
-+
-+	release_irq = platform_get_irq_byname(pdev, "pwrkey-release");
-+	if (release_irq < 0)
-+		return release_irq;
-+
-+	/* Make input device be device resource managed */
-+	priv->input = devm_input_allocate_device(dev);
-+	if (!priv->input)
-+		return dev_err_probe(dev, -ENOMEM,
-+				     "Failed to allocate input device\n");
-+
-+	priv->input->name = "rt5120_pwrkey";
-+	priv->input->phys = "rt5120_pwrkey/input0";
-+	priv->input->id.bustype = BUS_I2C;
-+	input_set_capability(priv->input, EV_KEY, KEY_POWER);
-+
-+	ret = input_register_device(priv->input);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to register input device\n");
-+
-+	ret = devm_request_threaded_irq(dev, press_irq, NULL,
-+					rt5120_pwrkey_handler, 0,
-+					"pwrkey-press", priv);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to register pwrkey press irq\n");
-+
-+	return devm_request_threaded_irq(dev, release_irq, NULL,
-+					 rt5120_pwrkey_handler, 0,
-+					 "pwrkey-release", priv);
-+}
-+
-+static const struct of_device_id r5120_pwrkey_match_table[] = {
-+	{ .compatible = "richtek,rt5120-pwrkey" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, r5120_pwrkey_match_table);
-+
-+static struct platform_driver rt5120_pwrkey_driver = {
-+	.driver = {
-+		.name = "rt5120-pwrkey",
-+		.of_match_table = r5120_pwrkey_match_table,
-+	},
-+	.probe = rt5120_pwrkey_probe,
-+};
-+module_platform_driver(rt5120_pwrkey_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_DESCRIPTION("Richtek RT5120 power key driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
-
+Best regards,
+Krzysztof
