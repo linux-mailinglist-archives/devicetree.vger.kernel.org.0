@@ -2,135 +2,338 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7569574993
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:50:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1796574999
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:50:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237822AbiGNJuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:50:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52884 "EHLO
+        id S234209AbiGNJuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:50:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237849AbiGNJtj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:49:39 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE1738E;
-        Thu, 14 Jul 2022 02:48:34 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id r12so1054775qvm.3;
-        Thu, 14 Jul 2022 02:48:34 -0700 (PDT)
+        with ESMTP id S236660AbiGNJuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:50:37 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8089B65B1
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:50:35 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id a9so1883338lfk.11
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:50:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=R075R0kDVbePZmaFfl37Agcye6RwOXPcO6sxjSaWjMY=;
-        b=iWBaJCPBbOJWl0KsDrDMbesQWUns2aHPJr1Hg9un2Xdp9beGINWgYHRCsmovKRG6b8
-         VtAdjw78gRFwJF/5ckXtZ/OoFY9xVKorj9HNfwssg0FySgYrvkRaQGpzSyy6YI9KrOk1
-         TXMFpsBP+OQ/D1vqRhTif9lRQGX4oSaiPLmW851MoZ05crtMQNvO4iMLet/p6xQlAx5I
-         WDv/FTYKauTZHmlRYPkakksJbO+92i0Ca77rsnHGNDKGuKlpI8ZUzoOHw3TA2PHG60kO
-         XCc3Z45huVUJHBvZ+SP9+h9BK863YuLUAkRxhiDZRA6KfUGtNMYB3DsYh9qWoefrjG8s
-         qZ1g==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=IFNGmvKSIjurGjF75ExlJcbhfRadQGl32aSmkHBap5g=;
+        b=l+ZoxUrVCmXyZKPHPIXBIWC64qWGrklxTO/ckCJoMcufn8GVTGNrj43hs6u/6ep/Sk
+         2koj3zvO5GDT37GMtMQdON/WJv5uzZHmsfDosd0Vj7TdOGn7KU5fLRMKxYQoLeFrABF5
+         6MbIcyx/Y2Z8CIaPKckLlyCoMe6j4LprOzLkjk5WdtkAymR6f11sKrfW2+pQZOjcP7nK
+         amYu2HIwCqMZMlCfI/0uWM1OujLiY1DWcrY2T4ldm8CZfTbN4L43zZmykbo2AfYEVUZP
+         TNRnhaUGVVauQS/GIqnoSFOLZ4f9YLw3jBFTyLYsaJMFkgzKUvMRTdYClJLEH+gZLweB
+         ZStQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=R075R0kDVbePZmaFfl37Agcye6RwOXPcO6sxjSaWjMY=;
-        b=XvIaIog/6n4hBfRTItJMeF31d1g9lxplB38kXEwlRqWcQkbGtMgQwlL2kKq79X+vwz
-         UAOrwxJB4AGgtFoaZgR2msjFj2lvlocyPfVsaO3Rs4SK54YcGAfAT25bVixwZwKzmqp4
-         552ZfepXHTqOO8mcsibwPfYPmBpfVZl5NWjGolgxYzPB+2QFhCSBYLSZR9UqJN5J5K5t
-         uiP23oN686jlSVXKIlX9CU89wFGBvVeffebWS08adXhLp5gPXHPEiWd2nqgxjJtfJT3/
-         ljxpGbL1xUuny2hYhM+4cQ3Hws/mYL0AaitzBUK7knpDhdavY1+TuA59dy9V3l2i18lJ
-         cNUg==
-X-Gm-Message-State: AJIora8xO3Zbfae1tJqT9bYZ+sVDJFuJdO7rhm8fGdC+g8Ee6q7yzJcr
-        84ZORE72kbYGjQEvEZQYXwzQfH3na2PAG5eq
-X-Google-Smtp-Source: AGRyM1sqZfxNK09gmODT6UaDYNNehQMd//5RpmjYM+w0fxd0rh9X+HZZP3aVn5RPf2fx2MbM1ywb4Q==
-X-Received: by 2002:a05:6214:23cb:b0:472:f1a5:5cea with SMTP id hr11-20020a05621423cb00b00472f1a55ceamr6624843qvb.13.1657792114009;
-        Thu, 14 Jul 2022 02:48:34 -0700 (PDT)
-Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
-        by smtp.gmail.com with ESMTPSA id c8-20020ac86608000000b0031eb6b42b26sm1028925qtp.73.2022.07.14.02.48.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jul 2022 02:48:33 -0700 (PDT)
-Message-ID: <fb3112dab2e614cba3feaf0b6a962186f07cb61b.camel@gmail.com>
-Subject: Re: [PATCH 0/4] add support for bias pull-disable
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 14 Jul 2022 11:49:34 +0200
-In-Reply-To: <CAHp75VcEBE3kMDi5Q+89GmS9V=aF+pOcyROY9MdfyB_5OaruPg@mail.gmail.com>
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
-         <Ys8DPCzRa1qo2AKJ@smile.fi.intel.com>
-         <62ccf0c91d32df557a2bc91c45adb45593302534.camel@gmail.com>
-         <CAHp75VcEBE3kMDi5Q+89GmS9V=aF+pOcyROY9MdfyB_5OaruPg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.3 
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=IFNGmvKSIjurGjF75ExlJcbhfRadQGl32aSmkHBap5g=;
+        b=sNYFNVzIAg1yFtlQAKmUQSfXj5mOxpn+XpLCnySWSSN7XHP1E6vLesNJ/5XHuAuDFT
+         ANnfpNHE0bj7XXzlOxilUuQOAPZHtCLdEwIk7Izh08Z42jqPPY7jM+kLp5GU8gcgHxb2
+         yNPG74+oyNejl1O95hmXzvMMf2+QMAQCI91V03jfp3hHiHpaaeqyaW+JaoE602LMRLZ3
+         t6KPuEIaQvHyMvQYiPwFxvdvcrV7/XOErFLt2UVs8dREk+AWbvN//vMTdJUZBn+bRRUn
+         woYCaQdxFAhK0Wmwris6PBjKsYA12T8b97WXOUi5e6HxdVc9dVxpbfcTQfJ1XMlMyKwh
+         gbRg==
+X-Gm-Message-State: AJIora8VaEveR+v6+hvgG92g9juXEfnh6IPYSmAiK8aVI+1dAJdsT/sW
+        wWbd2hOwxLm/LyA1YkGHQLu12A==
+X-Google-Smtp-Source: AGRyM1uF7AM+bBXLHDWifq6ubfidK2KhSh8BsZqXTFLFjms4QR9CjXdZmlzTkLy3YGl0Y+G5mZEbGA==
+X-Received: by 2002:a05:6512:b27:b0:489:e045:394e with SMTP id w39-20020a0565120b2700b00489e045394emr4492693lfu.202.1657792233840;
+        Thu, 14 Jul 2022 02:50:33 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id o3-20020a056512230300b0047f6c98e243sm268747lfu.102.2022.07.14.02.50.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 02:50:33 -0700 (PDT)
+Message-ID: <434cbf73-c62d-7d5c-fe60-7d98a84bc7fe@linaro.org>
+Date:   Thu, 14 Jul 2022 11:50:30 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916 to
+ schema
+Content-Language: en-US
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
+ <20220712124421.3129206-3-stephan.gerhold@kernkonzept.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220712124421.3129206-3-stephan.gerhold@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-07-14 at 11:12 +0200, Andy Shevchenko wrote:
-> On Thu, Jul 14, 2022 at 9:10 AM Nuno S=C3=A1 <noname.nuno@gmail.com>
-> wrote:
-> > On Wed, 2022-07-13 at 20:39 +0300, Andy Shevchenko wrote:
-> > > On Wed, Jul 13, 2022 at 03:14:17PM +0200, Nuno S=C3=A1 wrote:
-> > > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
-> > > > calling the
-> > > > gpiochip 'set_config()' hook. However, AFAICT, there's no way
-> > > > that
-> > > > this
-> > > > flag is set because there's no support for it in firwmare code.
-> > > > Moreover,
-> > > > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
-> > > > being
-> > > > handled.
-> > >=20
-> > > Isn't it enough?
-> >=20
-> > I might be missing something but don't think so. Look at this
-> > driver
-> > which seems a lot like the reference i put in the cover:
-> >=20
-> > https://elixir.bootlin.com/linux/v5.19-rc6/source/drivers/gpio/gpio-pca=
-953x.c#L573
-> >=20
-> > I just don't see an in-kernel path (I'm aware now that we can get
-> > here
-> > through gpio cdev) to get to the point where we want to disable the
-> > pin
-> > BIAS.
->=20
-> Ah, that driver should be converted to pin control. It's definitely a
-> problem with the driver.
->=20
+On 12/07/2022 14:44, Stephan Gerhold wrote:
+> qcom,q6v5.txt covers multiple SoCs with quite different binding
+> requirements. Converting this into one DT schema would require
+> several if statements, making the DT schema overall harder to
+> read and understand.
+> 
+> To avoid this, follow the example of SC7180/SC7280 and split
+> "qcom,msm8916-mss-pil" (and the equivalent deprecated "qcom,q6v5-pil"
+> compatible) into a separate DT schema. The schema is somewhat based
+> on the one for SC7180/SC7280 but adjusted for the old platforms.
+> 
+> Compared to the old plain text bindings, add missing documentation for
+> the "bam-dmux" subnode and recommend one particular approach to specify
+> the MBA/MPSS "memory-region" (the other one is marked as deprecated).
+> 
+> Cc: Sireesh Kodali <sireeshkodali1@gmail.com>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> ---
+> Like Sibi's patch series for SC7180/SC7820 [1] this is somewhat related
+> to Sireesh's series that converts all of qcom,q6v5.txt [2] (with a lot
+> of if statements). However, this series focuses on MSM8916/MSM8974 (or
+> actually MSM8909) only.
+> 
 
-I'm not too familiar with pinctrl or even gpiochips to argue much in
-here so just looking to better understand it...
+Thank you for your patch. There is something to discuss/improve.
 
-The driver has it's own way to control the pin BIAS and does not rely
-on any other pinctrl chip on the system. Are you pointing that this
-driver should be converted in a pinctrl one which registers the
-gpiochip and drops the 'set_config()' callback so pin consumers could
-use pinctrl to let's say, disable BIAS? If so, then why do we have
-PIN_CONFIG_BIAS_PULL_UP|DOWN in 'set_config()'? Legacy?=20
+> [1]: https://lore.kernel.org/linux-arm-msm/1657020721-24939-1-git-send-email-quic_sibis@quicinc.com/
+> [2]: https://lore.kernel.org/linux-arm-msm/20220511161602.117772-7-sireeshkodali1@gmail.com/
+> ---
+>  .../remoteproc/qcom,msm8916-mss-pil.yaml      | 246 ++++++++++++++++++
+>  .../bindings/remoteproc/qcom,q6v5.txt         |  19 --
+>  2 files changed, 246 insertions(+), 19 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+> new file mode 100644
+> index 000000000000..3968348dc982
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+> @@ -0,0 +1,246 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/qcom,msm8916-mss-pil.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm MSM8916 MSS Peripheral Image Loader (and similar)
+> +
+> +maintainers:
+> +  - Stephan Gerhold <stephan@gerhold.net>
+> +
+> +description:
+> +  This document describes the hardware for a component that loads and boots
+> +  firmware on the Qualcomm MSM8916 Modem Hexagon Core (and similar).
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - qcom,msm8916-mss-pil
+> +
+> +      - const: qcom,q6v5-pil
+> +        description: Deprecated, prefer using qcom,msm8916-mss-pil
+> +        deprecated: true
 
-And for my test device which is an input keymap, having it converted
-into a pinctrl driver does not make much sense  (and it also supports
-pull-up pull-disable) and I guess that might make sense for other
-devices that have some optional gpiochip support...
+The last compatible does not seem applicable here. Aren't you moving
+only MSM8916 to new schema?
 
-- Nuno S=C3=A1
+> +
+> +  reg:
+> +    items:
+> +      - description: MSS QDSP6 registers
+> +      - description: RMB registers
+> +
+> +  reg-names:
+> +    items:
+> +      - const: qdsp6
+> +      - const: rmb
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Watchdog interrupt
+> +      - description: Fatal interrupt
+> +      - description: Ready interrupt
+> +      - description: Handover interrupt
+> +      - description: Stop acknowledge interrupt
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: wdog
+> +      - const: fatal
+> +      - const: ready
+> +      - const: handover
+> +      - const: stop-ack
+> +
+> +  clocks:
+> +    items:
+> +      - description: Configuration interface (AXI) clock
+> +      - description: Configuration bus (AHB) clock
+> +      - description: Boot ROM (AHB) clock
+> +      - description: XO proxy clock (control handed over after startup)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: iface
+> +      - const: bus
+> +      - const: mem
+> +      - const: xo
+> +
+> +  power-domains:
+> +    items:
+> +      - description: CX proxy power domain (control handed over after startup)
+> +      - description: MX proxy power domain (control handed over after startup)
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: cx
+> +      - const: mx
+> +
+> +  pll-supply:
+> +    description: PLL proxy supply (control handed over after startup)
+> +
+> +  resets:
+> +    items:
+> +      - description: MSS restart control
+> +
+> +  reset-names:
+> +    items:
+> +      - const: mss_restart
+> +
+> +  qcom,smem-states:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: States used by the AP to signal the Hexagon core
+> +    items:
+> +      - description: Stop modem
+> +
+> +  qcom,smem-state-names:
+> +    description: Names of the states used by the AP to signal the Hexagon core
+> +    items:
+> +      - const: stop
+> +
+> +  qcom,halt-regs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Halt registers are used to halt transactions of various sub-components
+> +      within MSS.
+> +    items:
+> +      - items:
+> +          - description: phandle to TCSR syscon region
+> +          - description: offset to the Q6 halt register
+> +          - description: offset to the modem halt register
+> +          - description: offset to the nc halt register
+> +
+> +  memory-region:
+> +    items:
+> +      - description: MBA reserved region
+> +      - description: MPSS reserved region
+> +
+> +  firmware-name:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    items:
+> +      - description: Name of MBA firmware
+> +      - description: Name of modem firmware
+> +
+> +  bam-dmux:
+> +    $ref: /schemas/net/qcom,bam-dmux.yaml#
+> +    description:
+> +      Qualcomm BAM Data Multiplexer (provides network interface to the modem)
+> +
+> +  smd-edge:
+> +    $ref: qcom,smd-edge.yaml#
+> +    description:
+> +      Qualcomm SMD subnode which represents communication edge, channels
+> +      and devices related to the DSP.
+> +
+> +    properties:
+> +      label:
+> +        enum:
+> +          - modem
+> +          - hexagon
+> +
+> +  # Deprecated properties
+> +  cx-supply:
+> +    description: CX power domain regulator supply (prefer using power-domains)
+> +    deprecated: true
 
+Blank line, here and in other places between top-level properties.
+
+> +  mx-supply:
+> +    description: MX power domain regulator supply (prefer using power-domains)
+> +    deprecated: true
+> +  mba:
+> +    type: object
+> +    description:
+> +      MBA reserved region (prefer using memory-region with two items)
+> +    properties:
+> +      memory-region: true
+> +    required:
+> +      - memory-region
+> +    deprecated: true
+> +  mpss:
+> +    type: object
+> +    description:
+> +      MPSS reserved region (prefer using memory-region with two items)
+> +    properties:
+> +      memory-region: true
+> +    required:
+> +      - memory-region
+> +    deprecated: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - pll-supply
+> +  - resets
+> +  - reset-names
+> +  - qcom,halt-regs
+> +  - qcom,smem-states
+> +  - qcom,smem-state-names
+> +  - smd-edge
+> +
+> +# Fallbacks for deprecated properties
+> +allOf:
+> +  - oneOf:
+> +      - required:
+> +          - memory-region
+> +      - required:
+> +          - mba
+> +          - mpss
+> +        deprecated: true
+
+Not sure if this is correct syntax.
+
+> +  - oneOf:
+> +      - required:
+> +          - power-domains
+> +          - power-domain-names
+> +      - required:
+> +          - cx-supply
+> +          - mx-supply
+> +        deprecated: true
+> +
+> +additionalProperties: false
+
+
+
+Best regards,
+Krzysztof
