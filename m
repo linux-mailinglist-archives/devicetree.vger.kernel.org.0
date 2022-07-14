@@ -2,136 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77131574B07
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:45:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F240574B09
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:46:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235011AbiGNKpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 06:45:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54654 "EHLO
+        id S238453AbiGNKqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 06:46:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234714AbiGNKpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:45:49 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E0051406;
-        Thu, 14 Jul 2022 03:45:48 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B5634383;
-        Thu, 14 Jul 2022 12:45:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1657795546;
-        bh=Ab93lb7xcIdvu5COypX33XV/lf1e2aV4lLRU5eabX8c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lk0t3Ssx34x6cAwNdtY5leEoPQ81ZeAgDQsO+Y0015xJacc4cpWRw9YKT7DoyOnD6
-         tO50dmdnIrlJppuXXipmNXTvxGeEOu4rbbBZTxD2pWAsMg3w+xgSTQ3gcuiPvLo6oO
-         wALzUvLArLDoKBj6wXaIaFZC8xwx9E5sohdEBepU=
-Date:   Thu, 14 Jul 2022 13:45:16 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org,
-        Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
- camera sensor binding
-Message-ID: <Ys/zvH3ICr4zpTLH@pendragon.ideasonboard.com>
-References: <cover.1657786765.git.vkh@melexis.com>
- <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
- <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
- <c87132c4-5801-2f1f-8ef9-3997474cf7a5@linaro.org>
+        with ESMTP id S234714AbiGNKqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:46:00 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F8551406
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:45:59 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id x10so1218675ljj.11
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:45:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xKqR0FW84/9+NW1iMNlSYSBMe00t6GL0Fr0lVNN1QJg=;
+        b=RRzW+U2SyCxJYMSQpmw0Ceda3JSDmQG0VnKypfT2/CnW65baSsZ5BJB0f6/6vuIOeB
+         x3rG1OG+f4f1LrcbkVeYtfNKRuZDhFWJhhPCZSutTDuR6n9G3XuO8i9/OMy+KZk6xvQO
+         iSdJfmqvsB+eh3CoNGNGXGNXKgQP4ncePzhp7jlfMhrzPvdF+Zfl38FIkCEkOXUx+F7i
+         9zhhXKreZ8ku0RERbzdiyiOA/z5uzZV13xvuJvel/+xMlab6eJfVIivddi27qlRN5xkh
+         WO0AeTFoSHtGwYSczB3uBQYWpYnmJE7U3HGXdsQK5UvicBcyDqOJOFW3We9OyjSCEOE+
+         kPZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xKqR0FW84/9+NW1iMNlSYSBMe00t6GL0Fr0lVNN1QJg=;
+        b=VYYcj6GgHhkcHLkUeKLRqlNL6eoDJcLWJbI5R90lIw2dE27eXZbNvE/Ie5rZU24s4F
+         xur20SMKgIpFTEc3WCu0sCj19U2+e7BwXpcDajjZxVcyyCcwuBqqMKUEFPhrerldI4Dg
+         fLzywp9v6olneu2DW3UanpoOmD+6PE+ULeAziUUf/asls7ahackNgoq8GZZA3jt/sN3I
+         Bbr+1JFu9NXCQ0did5jBxWHPFpYkJHZSz7CMrDi6h+kLg8TRg0SOSNWE/iz1FFAuzfCl
+         ZZu0eWfmAFszeedms1aa0vQEDq36Vp6+KG5K+9UKeP60kgbDYuxkQmL6vHPXNqPMQsdV
+         WpKA==
+X-Gm-Message-State: AJIora9pJZx1GeB76O+UzMG/W+98fp0KarfCMzSN2U3bZrHqKXQxNez3
+        YTUB8ddyhL2V61C/5YVkrN8ofA==
+X-Google-Smtp-Source: AGRyM1vvbcUEPvueAQS7ThaZipg6klecM8/8S5oPfzvcfSzlfkSt7U7OZ3hrAd+Z3nRXH0ypBljh5w==
+X-Received: by 2002:a2e:b165:0:b0:25d:8663:4dc8 with SMTP id a5-20020a2eb165000000b0025d86634dc8mr4208649ljm.87.1657795557533;
+        Thu, 14 Jul 2022 03:45:57 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id 27-20020ac25f5b000000b0047255d210e4sm295643lfz.19.2022.07.14.03.45.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 03:45:57 -0700 (PDT)
+Message-ID: <f2a29c57-be8c-88c2-1c75-f6e5d1164b8f@linaro.org>
+Date:   Thu, 14 Jul 2022 12:45:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <c87132c4-5801-2f1f-8ef9-3997474cf7a5@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [RFC PATCH net-next 2/9] dt-bindings: net: Expand pcs-handle to
+ an array
+Content-Language: en-US
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20220711160519.741990-1-sean.anderson@seco.com>
+ <20220711160519.741990-3-sean.anderson@seco.com>
+ <ecaf9d0f-6ddb-5842-790e-3d5ee80e2a77@linaro.org>
+ <fdd34075-4e5e-a617-696d-15c5ac6e9bfe@seco.com>
+ <d84899e7-06f7-1a20-964f-90b6f0ff96fd@linaro.org>
+ <Ys2aeRBGGv6ajMZ5@shell.armlinux.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Ys2aeRBGGv6ajMZ5@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 12:35:52PM +0200, Krzysztof Kozlowski wrote:
-> On 14/07/2022 12:06, Laurent Pinchart wrote:
-> > Hi Volodymyr,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Thu, Jul 14, 2022 at 11:34:47AM +0300, Volodymyr Kharuk wrote:
-> >> Add device tree binding of the mlx7502x and update MAINTAINERS
-> >>
-> >> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-> >> ---
-> >>  .../bindings/media/i2c/melexis,mlx7502x.yaml  | 146 ++++++++++++++++++
-> >>  MAINTAINERS                                   |   1 +
-> >>  2 files changed, 147 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> >> new file mode 100644
-> >> index 000000000000..4ac91f7a26b6
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> >> @@ -0,0 +1,146 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/media/i2c/melexis,mlx7502x.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Melexis ToF 7502x MIPI CSI-2 Sensor
-> >> +
-> >> +maintainers:
-> >> +  - Volodymyr Kharuk <vkh@melexis.com>
-> >> +
-> >> +description: |-
-> >> +  Melexis ToF 7502x sensors has a CSI-2 output. It supports 2 and 4 lanes,
-> >> +  and mipi speeds are 300, 600, 704, 800, 904, 960Mbs. Supported format is RAW12.
-> >> +  Sensor 75026 is QVGA, while 75027 is VGA sensor.
-> >> +  If you use compatible = "melexis,mlx7502x", then autodetect will be called.
-> > 
-> > I'd move this last line as a description of the compatible property, but
-> > I'm also not sure this should be mentioned in the DT bindings, as it's a
-> > driver implementation detail. I'm actually not sure we should support it
-> > with three different compatible values as proposed, as without this
-> > documentation users will have a hard time figuring out what compatible
-> > value to pick.
-> > 
-> > One option would be to support the following three compatible values:
-> > 
-> > 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
-> > 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
-> > 	compatible = "melexis,mlx7502x";
-> > 
-> > The last one only would trigger autodetection. I'm still not sure how to
-> > document that properly in bindings though.
+On 12/07/2022 17:59, Russell King (Oracle) wrote:
+>> However before implementing this, please wait for more feedback. Maybe
+>> Rob or net folks will have different opinions.
 > 
-> I missed that part of binding.
+> We decided on "pcs-handle" for PCS for several drivers, to be consistent
+> with the situation for network PHYs (which are "phy-handle", settled on
+> after we also had "phy" and "phy-device" and decided to deprecate these
+> two.
 > 
-> Wildcards are not allowed in compatible, so mlx7502x has to go.
+> Surely we should have consistency within the net code - so either "phy"
+> and "pcs" or "phy-handle" and "pcs-handle" but not a mixture of both?
 
-Really ? We've had fallback generic compatible strings since the
-beginning.
+True. Then the new property should be "pcs-handle-names"?
 
-> Anyway what does this autodetection mean?
-
-As far as I understand, it means that the driver will use a hardware
-identification register to figure out if the sensor is a 75026 or 75027.
-The upside is that one doesn't need to change the device tree when
-swapping between those two sensors. The downside is that the sensor
-needs to be powered up at probe time. Depending on the platform, one of
-those two behaviours is preferred. Auto-detection is nice, but in
-laptops or tablets (not a use case for this particular device, but the
-problem applies to camera sensors in general), it would mean that the
-privacy LED of the camera could be briefly lit at boot time due to the
-sensor being powered on, which can worry users.
-
--- 
-Regards,
-
-Laurent Pinchart
+Best regards,
+Krzysztof
