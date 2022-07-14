@@ -2,69 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F0CD575580
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 20:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4705D575590
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 21:01:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232348AbiGNS54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 14:57:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42158 "EHLO
+        id S232128AbiGNTBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 15:01:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240904AbiGNS5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 14:57:47 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC3C6B761;
-        Thu, 14 Jul 2022 11:57:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1657825065; x=1689361065;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=RBXA5YMni4ppfmOh6qTG6JfKVzyVRTHw2zW+lP6A+9E=;
-  b=WS5h96JwtXTzgMPfGzd/vvA8CkSzlrhoGqbI5aNGgkL/N8QohOs9C1n0
-   xNMqKD4pjRweSsPPnFtThPW9j5BGjBov9+ou7woQbbBzy0sLiHuwEeIxi
-   D+1RKj6z+2eAtaP4t3PbNUetBC33ciQlfUharJaIrYZinS2uRrCLexJL9
-   TiYkkrY+NTJKO8VMNymCbTlD3yloDEQWJqqg2y3UJthPeuagoZO7a/lsR
-   2Y6RRpJ16E3gE17U32W5VyR4Femml5Qrkqi1sRPn4N+IkZ/jYgDU1QQL3
-   Jb88Rcw0V5isDpyT+DFB2OGSE8wan3XRvVApDvXNfcrIaAcZXIBgs0Mg8
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="285629136"
-X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
-   d="scan'208";a="285629136"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 11:57:44 -0700
-X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
-   d="scan'208";a="698917092"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 11:57:42 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1oC41r-001Dd3-1W;
-        Thu, 14 Jul 2022 21:57:39 +0300
-Date:   Thu, 14 Jul 2022 21:57:39 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        with ESMTP id S229458AbiGNTBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 15:01:55 -0400
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 589C53D595;
+        Thu, 14 Jul 2022 12:01:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1657825309;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=pRes7n5R1DDewbC5DkuuzmUV6aRqrRqkonDzKoWO2YA=;
+    b=ADfadyMPNMAVvhlYSoYx5qX0yarkzFWusjPc5ok/xwEujzf07lGtvh6niU4i0ehErE
+    Xn/Jd+opGuPnRxl7tBdDUek8AXzFum2DS0elsEdW3qgp8CLGiEdxtu4TBkCVNkbORmym
+    U+6W9wbYQ8eufVZBM9UeR6oZo5ta1+KDgW3q8C7Ph+zOGxQ0HNWkSNpmoxcqOD2jw2Ii
+    nszz192AZ5TLGZjDQWgbhyd9NKDFF67aYpzlJoRNSZ9txVxsw9kLESXrwXRCFDCDq0KI
+    ql11T6lTzhr484m6G6x4vf9gyWkhXg52lm9UoJmgrSuegH4NVWbkHTvQdQ1hKTGb7p84
+    UIkg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw8+6Y="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.47.0 AUTH)
+    with ESMTPSA id he04d0y6EJ1n8CC
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 14 Jul 2022 21:01:49 +0200 (CEST)
+Date:   Thu, 14 Jul 2022 21:01:47 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 0/4] add support for bias pull-disable
-Message-ID: <YtBnIxh6rDJMwpEm@smile.fi.intel.com>
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
- <YtAvHMmGay/3HACZ@smile.fi.intel.com>
- <e0638b02bdcd0ee452846b86ce83458173912ef1.camel@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/6] ARM: dts: qcom: msm8974: Disable remoteprocs by
+ default
+Message-ID: <YtBoG1mAwOlylGP2@gerhold.net>
+References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
+ <20220712124421.3129206-4-stephan.gerhold@kernkonzept.com>
+ <bcb1e0ec-f0b7-ce45-a63f-7272c1f398c9@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e0638b02bdcd0ee452846b86ce83458173912ef1.camel@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+In-Reply-To: <bcb1e0ec-f0b7-ce45-a63f-7272c1f398c9@linaro.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
         SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,128 +68,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 05:43:41PM +0200, Nuno Sá wrote:
-> On Thu, 2022-07-14 at 17:58 +0300, Andy Shevchenko wrote:
-> > On Wed, Jul 13, 2022 at 03:14:17PM +0200, Nuno Sá wrote:
-> > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
-> > > calling the
-> > > gpiochip 'set_config()' hook. However, AFAICT, there's no way that
-> > > this
-> > > flag is set because there's no support for it in firwmare code.
-> > > Moreover,
-> > > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
-> > > being
-> > > handled.
-> > > 
-> > > On top of this, there are some users that are looking at
-> > > 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So, unless
-> > > I'm
-> > > missing something, it looks like this was never working for these
-> > > chips.
-> > > 
-> > > Note that the ACPI case is only compiled tested. At first glance,
-> > > it seems
-> > > the current patch is enough but i'm not really sure...
+On Thu, Jul 14, 2022 at 11:55:44AM +0200, Krzysztof Kozlowski wrote:
+> On 12/07/2022 14:44, Stephan Gerhold wrote:
+> > The remoteproc configuration in qcom-msm8974.dtsi is incomplete because
 > > 
-> > So, I looked closer to the issue you are trying to describe here.
-> > 
-> > As far as I understand we have 4 state of BIAS in the hardware:
-> > 1/ AS IS (defined by firnware)
-> > 2/ Disabled (neither PU, not PD)
-> > 3/ PU
-> > 4/ PD
-> > 
-> > The case when the default of bias is not disabled (for example
-> > specific, and I
-> > think very special, hardware may reset it to PD or PU), it's a
-> > hardware driver
-> > responsibility to inform the framework about the real state of the
-> > lines and
-> > synchronize it.
-> > 
-> > Another case is when the firmware sets the line in non-disabled state
-> > and
-> > by some reason you need to disable it. The question is, why?
+> > diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> > index 814ad0b46232..35246bd02132 100644
+> > --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
+> > +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> > @@ -1172,6 +1172,8 @@ remoteproc_mss: remoteproc@fc880000 {
+> >  			qcom,smem-states = <&modem_smp2p_out 0>;
+> >  			qcom,smem-state-names = "stop";
+> >  
+> > +			status = "disabled";
+> > +
+> >  			mba {
+> >  				memory-region = <&mba_region>;
+> >  			};
+> > @@ -1639,6 +1641,8 @@ remoteproc_adsp: remoteproc@fe200000 {
+> >  			qcom,smem-states = <&adsp_smp2p_out 0>;
+> >  			qcom,smem-state-names = "stop";
+> >  
+> > +			status = "disabled";
+> > +
+> >  			smd-edge {
+> >  				interrupts = <GIC_SPI 156 IRQ_TYPE_EDGE_RISING>;
+> >  
+> > diff --git a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+> > index 58cb2ce1e4df..8a6b8e4de887 100644
+> > --- a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+> > +++ b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+> > @@ -147,10 +147,12 @@ wcnss {
+> >  };
+> >  
+> >  &remoteproc_adsp {
+> > +	status = "okay";
 > 
-> Not getting this point... 
-
-I understand that in your case "firmware" is what DTB provides.
-So taking into account that the default of hardware is PU, it needs
-a mechanism to override that, correct?
-
-> > > As a side note, this came to my attention during this patchset [1]
-> > > (and, ofr OF,  was tested with it).
-> > > 
-> > > [1]:
-> > > https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@analog.com/
-> > 
-> > Since this provides a GPIO chip, correct?, it's responsibility of the
-> > driver to
-> > synchronize it, no? Basically if you really don't trust firmware, you
-> > may
+> These go to the end of properties.
 > 
-> What do you mean by synchronize?
 
-Full duplex sync, i.e. setting flag to PU for the pins that should stay PU:ed
-and disabling bias for the ones, that want it to be disabled. (PD accordingly)
+All the other nodes in these two files have the 'status = "okay"' at the
+beginning (just like most of the Qualcomm boards actually). I know there
+have been some discussion to change this, but until existing boards have
+been changed I would rather not introduce a wild mix of both approaches
+(within the same file at least).
 
-> > go via all GPIO lines and switch them to the known (in software)
-> > state. This
-> > approach on the other hand is error prone, because firmware should
-> > know better
-> > which pin is used for which purpose, no? If you don't trust firwmare
-> > (in some
-> > cases), then it's a matter of buggy platform that has to be quirked
-> > out.
-> 
-> I'm not getting what you mean by "firmware should know better"? So,
-> basically, and let's take OF as example, you can request a GPIO in OF
-> by doing something like:
-> 
-> 	foo-gpios = <&gpio 1 GPIO_PULL_UP>;
-> 
-> In this way, when the consumer driver gets the gpio, all the flags will
-> be properly set so that when we set a direction (for example) the
-> gpiochip's 'set_config()' will be called and the driver does what it
-> needs to setup the pull-up. If we want BIAS_DISABLED on the pin,
-> there's no way to the same as the above. So basically, this can ever
-> happen:
-> 
-> https://elixir.bootlin.com/linux/latest/source/drivers/gpio/gpiolib.c#L2227
-> 
-> (only possible from the gpiochip cdev interface)
-> 
-> So, what I'm proposing is to be possible to do from OF:
-> 
-> 	foo-gpios = <&gpio 1 GPIO_PULL_DISABLE>;
-> 
-> And then we will get into the gpiochip's 'set_config()' to disable the
-> pull-up or pull-down.
-> 
-> As I said, my device is an input keymap that can export pins as GPIOs
-> (to be consumed by gpio_keys). The pins by default have pull-ups that
-> can be disabled by doing a device i2c write. I'm just trying to use the
-> infrastructure that already exists in gpiolib (for pull-up|down) to
-> accomplish this. There's no pinctrl driver controlling the pins. The
-> device itself controls them and having this device as a pinctrl one is
-> not really applicable.
-
-Yes, I have got it eventually. The root cause is that after reset you have a
-hardware that doesn't disable bias.
-
-Now, we have DT properties for PD and PU, correct?
-For each requested pin you decide either to leave the state as it is, or
-apply bias.
-
-in ->probe() of your GPIO you reset hardware and for each GPIO descriptor you
-set PU flag.
-In ->request(), don;t know the name by heart, you disable BIAS based on absence
-of flags, it can be done without an additional properties, purely in the GPIO
-OF code. Do I understand this correctly?
-
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thanks,
+Stephan
