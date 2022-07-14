@@ -2,120 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61DC0574A58
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:16:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A30D574A5D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:16:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238271AbiGNKP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 06:15:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55718 "EHLO
+        id S231356AbiGNKQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 06:16:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238319AbiGNKPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:15:43 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E409A54CBF
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:15:32 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id e28so2023268lfj.4
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:15:32 -0700 (PDT)
+        with ESMTP id S230073AbiGNKQh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:16:37 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36C4F120A5;
+        Thu, 14 Jul 2022 03:16:36 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id y195so2487074yby.0;
+        Thu, 14 Jul 2022 03:16:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kZy7eak2tgSmF/ML1yqzjltWCPwtqthXqM78zNDO+OI=;
-        b=eMSSra1OPQfu7qXpz6L3saU1JxVj07p/HHh/qXvdSMrvPrpI9qzcyriFOtEcrm9xsq
-         hetCcxkb3c2U8abIkPdW++76prqun/Vd24FxpWfWpCdXT3DP1bPcplIo2B3ULIAFXyN0
-         RJBbYXxuWRYFJej6+xS6qXa9hkMoclJM97KGsgSY6KXBlG2c6tiB3t23uDbTCEfQeGJt
-         2bj5bT6Xs4/8eGC5UjkA2K5J6iOIYjIA1PW/4r1LCIRP3fxMmFj1HOkDxOoyKib9R6ot
-         tLm8NLit0aZHhCsBUusz9vadcvFZJBDpI6Fdc2ijF4xNhGgYBpjQ84xeYuUXehixkcx+
-         IXRw==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=DAB/V2thJrX7oNWAiw69xQ9s2yER1z6zgaPEDVTbARY=;
+        b=WzDjqq1pRDiX/e0JhdlBpio8zOrckRWFWYoqqx6oFzHppl1HXZKC0K0Vo9UvICBDx4
+         1IgGFxPhaOdHa0ijcMRnAWpg15ZqdMXn+A4AN+KbbyLfV+DLK/zGUswdeyoa6I/gMSWB
+         mLZcWexKeicX3ZsiBj8qG9KhT504M9qLDNPa+/3b4OVXUQmkey6iL5NUBSkO06Ql9xqx
+         7ABvX+TuwC6gjV6lZglt+ptPstfpEqlr1Yg9+65NKMHYYSOzn23aEysk+sSCVoQV5iL6
+         RIo+DgXA1m8aiBJ1aC+G2pOf803m52JzwysZxxKXTmLKrJdLDZZrFNf6ymvczZtUZHNx
+         NC+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kZy7eak2tgSmF/ML1yqzjltWCPwtqthXqM78zNDO+OI=;
-        b=OKnvhSWTTvVqpEdnMSnEG6EOP9RXLHfQ6WGK+/gb6tEr4Rm7/6Dx7taG4eQYqiA61i
-         9I6cpqoEZb6tr79WhVr1mH7L16ToidCT6DQV1GHLaqCq6CjpvRevad1mTa/utsfBq2Ic
-         bfsjgDX4D01rFd6lzuCZaihkgQSvRhNjfwPk18bPbCHHPdtLEudV1awj8noXjJDP3lr0
-         PaW9OU3ZChZz/UN9nv4zGajkWwx01LHLNdnNryIWaMhrzc+9VZ+FKKcCJ4Ppo3/pCnNq
-         +jRQJH+IIU5ple8niTuQQk9F7SoNptszCmEMO2mVju2n+VmMwfy+46r9PWJLf9I+PBYx
-         WY3w==
-X-Gm-Message-State: AJIora/ek8KrzGg7zxPkL82yZVrm8qgLcHsyfj3JyUrdBWPyfaBnTTJ4
-        pwCIlfmPDyk32MtJuRQoP28dqw==
-X-Google-Smtp-Source: AGRyM1v1V9ZiyZF7bonIiq2DwpF3Map16xUjhG7MRlmoFvEpyTCgjb4sm6OM4dfGd+xpxCSIJBPwUA==
-X-Received: by 2002:a05:6512:1399:b0:486:2ae5:be71 with SMTP id p25-20020a056512139900b004862ae5be71mr4640937lfa.246.1657793731321;
-        Thu, 14 Jul 2022 03:15:31 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id i15-20020a2e808f000000b0025a968f4ffesm205854ljg.19.2022.07.14.03.15.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 03:15:30 -0700 (PDT)
-Message-ID: <35cbf2d1-f851-fb6b-309a-8d7499b4abb3@linaro.org>
-Date:   Thu, 14 Jul 2022 13:15:30 +0300
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=DAB/V2thJrX7oNWAiw69xQ9s2yER1z6zgaPEDVTbARY=;
+        b=zd0TXa3ccyOwBBJjB+uQo+lzRSumxdbxEoV3qr/dCPj55C2RbbWDifNraEZm609qu0
+         w1QvJbffkV2WGGFkjggR4ZRI0Tb5w1O8PyrBoZcfILoHtN8621+mLzP6989YbrOaEFir
+         XVdMdrDPw4bN+fOZUSGWg4HmivMQHFqmU6w+5orxmrTaC4c+2fM+YtzsBVSNF/Wi8NYL
+         zznjtl6dwodcR2TGJwEpaCJ4RMMC2X6LYD3DhYvl+TfKTX+s9KRWu2yfxJ0cNZboDLHb
+         406SMFaviorzsXpObR8aQyJZSrubJhNBovqSc6d1tS74oC9wALA3XxgOSKHH1TJO/HaA
+         DYOw==
+X-Gm-Message-State: AJIora9n0DiigPni0fiNksHx987JPA6i7BH6qczxLrbSgkVRddkU6fGm
+        F9LhETRK4YMzSYuT6VG4aA0vySQCwqAg8E2ZLTw=
+X-Google-Smtp-Source: AGRyM1tsa04XdX6EoBLAKq/4vJYddIuWfRGN796P9MIbmkVyYowmMMx33Ee2ini1a+JW/8CzKBWdXOgF/S8Hwfl8jYQ=
+X-Received: by 2002:a05:6902:686:b0:66e:627f:4d29 with SMTP id
+ i6-20020a056902068600b0066e627f4d29mr7320510ybt.385.1657793795448; Thu, 14
+ Jul 2022 03:16:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 7/9] dt-bindings: msm/dp: mark vdda supplies as
- deprecated
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+References: <20220704053901.728-1-peterwu.pub@gmail.com> <20220704053901.728-14-peterwu.pub@gmail.com>
+ <CAHp75VdwEc9AW1w8ejsxkw+sBTF1dumd99QyzTY9BZaXiViRWQ@mail.gmail.com>
+ <CABtFH5K-2+2hbpvpq2nPE5AsznkQxZF2r3MVC64Q39DJhVuUtA@mail.gmail.com>
+ <CAHp75VevDwdAKLYEWJgnMDvzuPuFibLuVqH-GKazEOT76wM6_A@mail.gmail.com>
+ <CABtFH5LT1Ct_9-B_XRrGwYFmL5kGS6KHR7dNVyUO5z4sTy_6oA@mail.gmail.com>
+ <CAHp75VcU_9Ao2CoqiUDZHqhVOjEMZor+hctPp3YYP4HOjYLDUg@mail.gmail.com> <CAHp75VeMP4zDMmGfdya5Y1C0Hkb7=jeOQGE_HqyDdZcmd_Uyyg@mail.gmail.com>
+In-Reply-To: <CAHp75VeMP4zDMmGfdya5Y1C0Hkb7=jeOQGE_HqyDdZcmd_Uyyg@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 14 Jul 2022 12:15:58 +0200
+Message-ID: <CAHp75VdXGJtPd_oZPGkS1=DoWjFYxbQu_7Vtfj547QQkpz2KNA@mail.gmail.com>
+Subject: Re: [PATCH v4 13/13] video: backlight: mt6370: Add Mediatek MT6370 support
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>
-References: <20220710084133.30976-1-dmitry.baryshkov@linaro.org>
- <20220710084133.30976-8-dmitry.baryshkov@linaro.org>
- <bd84ef20-e6e1-74e5-5681-7aa273d5255c@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <bd84ef20-e6e1-74e5-5681-7aa273d5255c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Alice Chen <alice_chen@richtek.com>,
+        cy_huang <cy_huang@richtek.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        szuni chen <szunichen@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 12:38, Krzysztof Kozlowski wrote:
-> On 10/07/2022 10:41, Dmitry Baryshkov wrote:
->> The commit fa384dd8b9b8 ("drm/msm/dp: delete vdda regulator related
->> functions from eDP/DP controller") removed support for VDDA supplies
-> 
-> No such commit exists in next. Do not reference unpublished commits. If
-> this is your tree, be sure that it is in next.
+On Thu, Jul 14, 2022 at 11:43 AM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+> On Thu, Jul 14, 2022 at 11:27 AM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> > On Thu, Jul 14, 2022 at 9:13 AM ChiaEn Wu <peterwu.pub@gmail.com> wrote=
+:
+> > > Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B47=
+=E6=9C=8813=E6=97=A5 =E9=80=B1=E4=B8=89 =E6=99=9A=E4=B8=8A8:07=E5=AF=AB=E9=
+=81=93=EF=BC=9A
 
-Excuse me. It might have changed at some point. I will update the patch 
-description in the next revision. The commit in question is 7516351bebc1 
-("drm/msm/dp: delete vdda regulator related functions from eDP/DP 
-controller")
+...
 
-> 
->> from the DP controller driver. These supplies are now handled by the eDP
->> or QMP PHYs. Mark these properties as deprecated and drop them from the
->> example.
-> 
-> Right now I cannot judge whether this is correct or not. I don't know
-> what's in that commit, but in general driver implementation changes do
-> not warrant changes in the binding.
+> > >  * prop_val =3D  1      -->  1 steps --> b'00
+> > >  * prop_val =3D  2 ~  4 -->  4 steps --> b'01
+> > >  * prop_val =3D  5 ~ 16 --> 16 steps --> b'10
+> > >  * prop_val =3D 17 ~ 64 --> 64 steps --> b'11
+> >
+> > So, for 1 --> 0, for 2 --> 1, for 5 --> 2, and for 17 --> 3.
+> > Now, consider x - 1:
+> > 0  ( 0 ) --> 0
+> > 1  (2^0) --> 1
+> > 4  (2^2) --> 2
+> > 16 (2^4) --> 3
+> > 64 (2^6) --> ? (but let's consider that the range has been checked alre=
+ady)
+> >
+> > Since we take the lower limit, it means ffs():
+> >
+> >   y =3D (ffs(x - 1) + 1) / 2;
+> >
+> > Does it work for you?
+>
+> It wouldn't, because we need to use fls() against it actually.
+>
+> So,
+> 0..1   (-1..0)   --> 0
+> 2..4   (1..3)   --> 1
+> 5..16  (4..15)  --> 2
+> 17..64 (16..63) --> 3
+>
+> y =3D x ? ((fls(x - 1) + 1) / 2 : 0;
 
-The vdda supplies were initially made a part of DP controller binding, 
-however lately they were moved to be a part of eDP/DP PHY binding (as 
-this better reflects the hardware). DP driver dropped support for these 
-supplies too. Thus I wanted to mark these supplies as deprecated to 
-discourage using them in the DTS files.
+Okay, I nailed it down, but Daniel is right, it's simpler to have just
+conditionals.
+
+y =3D x >=3D2 ? __fls(x - 1) / 2 + 1 : 0;
 
 
--- 
-With best wishes
-Dmitry
+--
+With Best Regards,
+Andy Shevchenko
