@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 343305746D3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 10:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4D0D5746D6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 10:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235620AbiGNIe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 04:34:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58482 "EHLO
+        id S235677AbiGNIfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 04:35:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235651AbiGNIe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 04:34:56 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C784E3AE5F
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:34:55 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id b26so1580799wrc.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:34:55 -0700 (PDT)
+        with ESMTP id S235645AbiGNIfA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 04:35:00 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B3303AE5F
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:34:59 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id l22-20020a05600c4f1600b003a2e10c8cdeso3073057wmq.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:34:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=melexis.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=CZaviK4TRAYwB1ueU1rfg2T0PUe/5MyrhBt48vfDihg=;
-        b=SKISWAz8bxQLPyK7q6MASrRTa+l7kbxQORso9Ssbp5pyLJStK/EN/2nEy91Wzod0YG
-         Xr+2ZmkinnpOiwkgMrzww7XAb1pb4YoWvRRUU8Aj5vPYUinjytSnoAcNgiMficVOazwx
-         bl2tFzsaU4pEXT9fQmBamBoQMUCYCwpLbd/LKFzQbRqVPpua5k48UUfwErvM/FOngB7b
-         ZwMsrNkwcoHIdkhFlIjlFEjm5Zgx8hKa4Im/Gd9c+VSu6+R+H7XnLXJkNJiqcF2zBYny
-         RWZeHIlgt8Au0E4SnnTaAYsOK646WFWmZH0NF8hSUxCm0n5gleB2nFp+0a+/cKwQ7eg6
-         uHjw==
+        bh=525hSq4AqE/ODq1x1H64Ic6C0Ftmupp+tEU4L66GSTA=;
+        b=d/Vosp39ghLBw/KoZ0pCSfzVp/CjqUhzYOzfCGEo2/Iq+U0/mNbEi5KeTkL/0vyHBo
+         BNfsV4J+3MyEHJkgt9Q2nTEPx/0WC6t8fSSE+sPlq672yqkqI1fL5xrTqYRVLJuMNMEv
+         kdYGYrTFySE/vaw6J8jbxyL8fdveoF43USFLCanktyvwmSGnht4fTHTL3qa/nnc6ouh0
+         Qs2IrXFAa2ABaBMU9zw89M9lWV7Yvh4DsKrXoiKAzmGC3s/6ql+iUMV57eQ/gXlTYqfn
+         QHFcJtSVVtoVpttR/dBBsG4UQgsUuE9DepaDvgOGlnFsANWMzcmVxebfX+PWXfl8lOva
+         5QNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=CZaviK4TRAYwB1ueU1rfg2T0PUe/5MyrhBt48vfDihg=;
-        b=5b9HEm1t/YtaX9zHjD8uczlBC9bZvUQ4JuaDvUpFUMRSgeAv3eJbcSnAaHYurU51qO
-         ImaGYpEI0gguAio29LAglw0u0yRxtyiks9Vx90OYj5saAiJfdDHIZYrxU9jub5l6y/x9
-         wYz6hEn2xbfxlbdZr9QjnKhxnGri1JRIynp8wXGFFAhBcKnblE553zOPK19zAK8Rjirz
-         aTvizeplgjDAqe+oYhL4k7zauvfZlmOsvGCYoPf7ZQKbcSdmWIH37OCB/GZ+BDETOVRU
-         bjguafnv4eV+LLKrgroTHsfBpWL8ei0s3u6UYKWBv5P9uC7fnaXodSTvZnYu9JvIvjqn
-         ta1g==
-X-Gm-Message-State: AJIora+Ucy99qg5wPnxbpq+At8ZOPggzLElKFWtzg3luhZht+y1cjyBv
-        TCeJRfBNOGKwx14SfLpGyA0pWw==
-X-Google-Smtp-Source: AGRyM1s158dLwy7rKWDZQ+Z75dy45/m0B+9INoKUu6pUX6ft0NpWzuX4cu7SLghW+b2oX445YBYJJg==
-X-Received: by 2002:a5d:508c:0:b0:21d:68d5:83f0 with SMTP id a12-20020a5d508c000000b0021d68d583f0mr6962767wrt.505.1657787694364;
-        Thu, 14 Jul 2022 01:34:54 -0700 (PDT)
+        bh=525hSq4AqE/ODq1x1H64Ic6C0Ftmupp+tEU4L66GSTA=;
+        b=1M6ECG/JiP4nwNxr3NoN7VYNYybFIX+pu+4fENkPbBAghHcmT/jLKIxtj2YJrtJOeC
+         qtob5k3QRP1pWcfdR4ZXbseoGHKGGQA88zLUYzi66oRfvyc/xNPnYpST6EfPafX0N5xP
+         0WeCV8yt1OaE01Fh6vetqtD69FSeNKuwFso8k/BbB09sa4JbTcsxMGUHLixPIeuXbD3u
+         M392kyovmmhioljVNj81hHIVahCzQERZ2/RxHfWlUOZuFVx2a8tmxT/MUuWjBwTzdHx5
+         5P85tJQmlE9HMsx7kNL9Z8oEj4m5TLAS8B60fe8irDFnjhDiparU1mpaP1A4oqMu7G8c
+         JIYA==
+X-Gm-Message-State: AJIora/SqwDTki+UYSgebFXhPm4bFd7yoXlGPsMIUhdWF9FzIWeUV1sV
+        kr8iaIhbnzudBBcyXsnj1FJxgQ==
+X-Google-Smtp-Source: AGRyM1ukbb5VcNdvsjkgLLpNy5yzcTeBLFKa+l16FbiGprgUgnTR1SG1xSys2FsLI7/N56ZALmZi7w==
+X-Received: by 2002:a05:600c:41c7:b0:3a2:e8fd:fe52 with SMTP id t7-20020a05600c41c700b003a2e8fdfe52mr7816162wmh.123.1657787698142;
+        Thu, 14 Jul 2022 01:34:58 -0700 (PDT)
 Received: from melexis ([194.44.50.167])
-        by smtp.gmail.com with ESMTPSA id o38-20020a05600c512600b003a2e2e965absm4509004wms.20.2022.07.14.01.34.53
+        by smtp.gmail.com with ESMTPSA id d14-20020adffd8e000000b0021d6a23fdf3sm856587wrr.15.2022.07.14.01.34.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jul 2022 01:34:54 -0700 (PDT)
+        Thu, 14 Jul 2022 01:34:57 -0700 (PDT)
 From:   Volodymyr Kharuk <vkh@melexis.com>
 To:     linux-media@vger.kernel.org
 Cc:     Volodymyr Kharuk <vkh@melexis.com>,
@@ -59,9 +59,9 @@ Cc:     Volodymyr Kharuk <vkh@melexis.com>,
         Michal Simek <michal.simek@xilinx.com>,
         Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 1/6] media: xilinx: csi2rxss: Add 1X12 greyscale format
-Date:   Thu, 14 Jul 2022 11:34:43 +0300
-Message-Id: <68fc9d4edfff563995a1b3d452b57735b00ab364.1657786765.git.vkh@melexis.com>
+Subject: [PATCH v2 2/6] media: xilinx: video: Add 1X12 greyscale format
+Date:   Thu, 14 Jul 2022 11:34:44 +0300
+Message-Id: <e2ea1840b666ad0b4ff169b4f58c85bc0291af59.1657786765.git.vkh@melexis.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <cover.1657786765.git.vkh@melexis.com>
 References: <cover.1657786765.git.vkh@melexis.com>
@@ -69,7 +69,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,25 +77,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend the csi2rxss with Y12_1X12 greyscale format
+Extend the xilinx video driver with Y12_1X12 greyscale format
 
 Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
 ---
- drivers/media/platform/xilinx/xilinx-csi2rxss.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/media/platform/xilinx/xilinx-vip.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/media/platform/xilinx/xilinx-csi2rxss.c b/drivers/media/platform/xilinx/xilinx-csi2rxss.c
-index 051c60cba1e0..67574244eb2b 100644
---- a/drivers/media/platform/xilinx/xilinx-csi2rxss.c
-+++ b/drivers/media/platform/xilinx/xilinx-csi2rxss.c
-@@ -188,6 +188,7 @@ static const u32 xcsi2dt_mbus_lut[][2] = {
- 	{ MIPI_CSI2_DT_RAW12, MEDIA_BUS_FMT_SBGGR12_1X12 },
- 	{ MIPI_CSI2_DT_RAW12, MEDIA_BUS_FMT_SGBRG12_1X12 },
- 	{ MIPI_CSI2_DT_RAW12, MEDIA_BUS_FMT_SGRBG12_1X12 },
-+	{ MIPI_CSI2_DT_RAW12, MEDIA_BUS_FMT_Y12_1X12 },
- 	{ MIPI_CSI2_DT_RAW16, MEDIA_BUS_FMT_SRGGB16_1X16 },
- 	{ MIPI_CSI2_DT_RAW16, MEDIA_BUS_FMT_SBGGR16_1X16 },
- 	{ MIPI_CSI2_DT_RAW16, MEDIA_BUS_FMT_SGBRG16_1X16 },
+diff --git a/drivers/media/platform/xilinx/xilinx-vip.c b/drivers/media/platform/xilinx/xilinx-vip.c
+index a0073122798f..5b214bf7f93a 100644
+--- a/drivers/media/platform/xilinx/xilinx-vip.c
++++ b/drivers/media/platform/xilinx/xilinx-vip.c
+@@ -40,6 +40,8 @@ static const struct xvip_video_format xvip_video_formats[] = {
+ 	  1, V4L2_PIX_FMT_SGBRG8 },
+ 	{ XVIP_VF_MONO_SENSOR, 8, "bggr", MEDIA_BUS_FMT_SBGGR8_1X8,
+ 	  1, V4L2_PIX_FMT_SBGGR8 },
++	{ XVIP_VF_MONO_SENSOR, 12, "mono", MEDIA_BUS_FMT_Y12_1X12,
++	  2, V4L2_PIX_FMT_Y12 },
+ };
+ 
+ /**
 -- 
 BR,
 Volodymyr Kharuk
