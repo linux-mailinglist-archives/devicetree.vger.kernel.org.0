@@ -2,97 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 757F9574738
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 10:38:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7026F574748
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 10:39:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237056AbiGNIiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 04:38:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33262 "EHLO
+        id S231511AbiGNIi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 04:38:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236856AbiGNIhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 04:37:16 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF2E3F333
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:37:14 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id z25so1667884lfr.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:37:14 -0700 (PDT)
+        with ESMTP id S236199AbiGNIiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 04:38:25 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791EC3FA2A
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:38:10 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id bp17so1656180lfb.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 01:38:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=H3bGT1ZyGPu3PRQJlJHyQI9TvTjBPuNSyHjFOzNfiP0=;
-        b=eOKhIHPUU5qPTZbjyQcWfvRUY0zDAP8hnIUzGBjF2Jn5DfdNsbEWN2bt7ALPYmKFVp
-         Dxr1gDHkbIBW6Zt+nHPJYVynuk8AW0yQZ/Zbg6Hs/Db/0s9SnaRXX8dPxs4FUxGCTJqt
-         PUYZva9zdBfTCaw+ACjLsUUgRvbYiV1yKAF3EhOBh+YW55bYBsAw2vjNobpxCrdB648X
-         A9Vj0WSfJubet8viXTg/I9X1Zmn6KwP7YNCJiSogQMOb5VTL9XQBYGsxHSC28kklqMwQ
-         Xqm1mx/as6lOSd/UexvuUJPMkR0uIfSfLSUsGSd7SP6mXh7BeziDYVk18AfHAMhcFado
-         ZNLA==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7fxd01WSVmh4sZ+rShAEvNwWTJPHinWndJQGVhp8bBI=;
+        b=AV6Hhli373vNQFbi9Ak8xtnfk65n1qJoOFR1iopuhLqNO+9rR7YVnsPRxPwQyDSQIV
+         +QSw/uYsUn0j3lTno1eRLpYu6NCmKMJ9NHXnu4MS/85dt2BIFA1oM9XA7hsrJQYOFIdC
+         hQbQbbF8+DErln2+k/IyanoaqZumXBcql8mwC+7C8GE42BE1um9abQ98AyATK4QRbSW2
+         ljWFFeMgHHg4xta7hDjX252AJNu8ISxRyUblN+e3kCPgKPRQ1EbvbtncAOYC8xFT3/bH
+         xVMAPvZIlkTEWGZd93pTeNDQCQpHIH9ToFdVKCDS72OiK4S9a+FfVKuuh/PHcI4oOCZI
+         5d5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=H3bGT1ZyGPu3PRQJlJHyQI9TvTjBPuNSyHjFOzNfiP0=;
-        b=KzOFxp3v8px2doAsp+LJkW8eSScAhmBS4Fw9zF0P72gw5ZWsDfq/PwPwcLHtguMNrv
-         yC47YnbtCCbzBu/qxeZL8opB9gD1b7HvkfQtCh929hKYQGR8dVv8jgjlkqR91uTI9e+s
-         BXSKdeD6VS4dQcEfr+vQlKLZ6ZppOWB9a6jl3Roop19fGHwKBjF7/SABpuPLKYqI5Mzp
-         R3rjVpNRfueB7jFOfiZt9snuwTPKempS+OugwF48iNTmBlHjZ4mIXBsfGub+Wd8KhSb+
-         SuresI1h+KE2s3G3tbY+4kssYUb6KuxplizUmRT0qOUjWd5EyeZZgBGro4ClAcKRce+y
-         42xA==
-X-Gm-Message-State: AJIora8lccFYVIATouJSUTwU3HJVObiE7nGAck3nbKIQSTYafZ2w/eWI
-        Ir6CDD4cGQy0X4V9fS/SkVnFiLl/g/I6um5rIjE=
-X-Google-Smtp-Source: AGRyM1suH6kpL0bxxrdPqBdRw7fjg6QmbYsIJ5KtUWeYknhIH8CIkHpjEQ1bnLxbFcENJg0E8wYhVlYhJeESVTPizkI=
-X-Received: by 2002:a05:6512:12c8:b0:489:efbf:18d1 with SMTP id
- p8-20020a05651212c800b00489efbf18d1mr4734610lfg.192.1657787832538; Thu, 14
- Jul 2022 01:37:12 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7fxd01WSVmh4sZ+rShAEvNwWTJPHinWndJQGVhp8bBI=;
+        b=XpRoFSkb8ISeKDedLfS71xzOqtBF/d/jf8zkaCcr/MHj3/MuQXZ9M/1sxHfWmELt6O
+         /L+ZvwxkHy8Mt5oRF04tpRYSp1CQL9Afy9lhbL7I+y7hb//siEllI/IX4hhJ+CfVrsE1
+         OKAtRNJNSPNtub7Lg6F9a8FmHwd2w2K/PYYYVoFo/k4HqBK7FCEpeakzqpjxIx5nqvIK
+         xiBSbXE1LCwmum4d2VOtZi1E1KunNqh0jOebs+hoCQIZZpO0DjzBqGsyhe25jtvkmbZM
+         iNwNVrz7VfdRTgW1Gs8xpyhPrZyd7HbxInPppfoN/c0LSPTC6RQk2mjbtsbfnaZ5I6Zx
+         Djxg==
+X-Gm-Message-State: AJIora/ao0VMlhQw7dnO/vUMr0TPFPbxC/UV0MCJN0VVNnHA48xtIE62
+        ecqEfPrNfoWTlX+jhcvjphjYEA==
+X-Google-Smtp-Source: AGRyM1uNnmvHoyTRHbkEvCEx1QbExHpVGO/O3M8jCnCpVPFay7j9MN3UnazfseCVeu8DlEirOYwVeg==
+X-Received: by 2002:a05:6512:2308:b0:48a:f9d:7389 with SMTP id o8-20020a056512230800b0048a0f9d7389mr3677290lfu.235.1657787888760;
+        Thu, 14 Jul 2022 01:38:08 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id k6-20020ac257c6000000b00489cd8ee61asm237159lfo.275.2022.07.14.01.38.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 01:38:07 -0700 (PDT)
+Message-ID: <3178fad9-b761-dd28-971a-007159d10695@linaro.org>
+Date:   Thu, 14 Jul 2022 10:38:04 +0200
 MIME-Version: 1.0
-Received: by 2002:a2e:9041:0:0:0:0:0 with HTTP; Thu, 14 Jul 2022 01:37:11
- -0700 (PDT)
-Reply-To: abdwabbomaddahm@gmail.com
-From:   Abdwabbo Maddah <abdwabbomaddah746@gmail.com>
-Date:   Thu, 14 Jul 2022 09:37:11 +0100
-Message-ID: <CAFC-3icPrpmNqEMcqzAOFvzCPc-r5yv89mNAZ9SsCQvcOZ=+9g@mail.gmail.com>
-Subject: Get back to me... URGENT
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] ASoC: dt-bindings: atmel-i2s: Convert to json-schema
+Content-Language: en-US
+To:     Ryan.Wanner@microchip.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220713162538.139115-1-Ryan.Wanner@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220713162538.139115-1-Ryan.Wanner@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:129 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.4900]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [abdwabbomaddah746[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [abdwabbomaddah746[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Dear,
-I had sent you a mail but i don't think you received it that's why am
-writing you again.It is important you get back to me as soon as you
-can.
-Abd-Wabbo Maddah
+On 13/07/2022 18:25, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+> 
+
+Thank you for your patch. There is something to discuss/improve.
+
+> Convert atmel i2s devicetree binding to json-schema.
+> Change file name to match json-schema naming.
+> 
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> ---
+>  .../bindings/sound/atmel,sama5d2-i2s.yaml     | 83 +++++++++++++++++++
+>  .../devicetree/bindings/sound/atmel-i2s.txt   | 46 ----------
+>  2 files changed, 83 insertions(+), 46 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/atmel-i2s.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
+> new file mode 100644
+> index 000000000000..1cadc476565c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/atmel,sama5d2-i2s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel I2S controller
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+> +
+> +description:
+> +  Atmel I2S (Inter-IC Sound Controller) bus is the standard
+> +  interface for connecting audio devices, such as audio codecs.
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,sama5d2-i2s
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      Only the peripheral clock (pclk) is required. The generated clock (gclk)
+> +      and the I2S mux clock (muxclk) are optional and should only be set together,
+> +      when Master Mode is required.
+
+Skip property description, but list and describe the items.
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: gclk
+> +      - const: muxclk
+> +    minItems: 1
+> +
+> +  dmas:
+> +    description:
+> +      Should be one per channel name listed in the dma-names property.
+> +    maxItems: 2
+
+Instead items+description. The description you pasted is obvious and not
+helping.
+
+> +
+> +  dma-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +
+Best regards,
+Krzysztof
