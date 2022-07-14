@@ -2,133 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09934574C9E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12702574CA4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230205AbiGNL5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 07:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41094 "EHLO
+        id S231293AbiGNL6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 07:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238003AbiGNL5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:57:43 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F73C5C362;
-        Thu, 14 Jul 2022 04:57:39 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 433AD6601A3B;
-        Thu, 14 Jul 2022 12:57:37 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657799858;
-        bh=2viWGbCfExA/tWGEf8o0sIu0spzfJUPHwjKHCwMZ8QI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=EEikQaXTSB2NOfx2y1x+0VfJ4xdH2VrKYXTbbP9EmMC5RLbPYSkxCbuuEuNwD9dgJ
-         Ie/0/NTP14exe0g2Gz8fH9vR906iG3QPToKxSVur+23Y+X15k9rPlfivjD48HuaU+s
-         qZwwBrRacfVi86iXglemjk2PJHGT1f6Q/USp/8E+qMRBPfSy03E0qp093ODbHzAnuv
-         xj6QHqmqUCUclM4F71BBEN78VrxjL2MH+vzpFSY9Dom5jUwdhJRzwtVYBNrTSYpwZS
-         oPNR4m3+L/ghQYhU32xE4ETANyIrZAPozqVN9EDuNIt8wRsu1szPpqYueYyTWfqLzm
-         Ox0VBllhp0q3Q==
-Message-ID: <3b74cc48-2e18-3ad1-613c-fb90fced5d7d@collabora.com>
-Date:   Thu, 14 Jul 2022 13:57:34 +0200
+        with ESMTP id S238670AbiGNL6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:58:51 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2871C248C4
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:58:50 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id u13so2412910lfn.5
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:58:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=XZ6zcs78xTBMoBW41xhfPl8mgcyOXJXlS8VDvhn/FaA=;
+        b=QrW+48G78oGpbq+WOxe6wyGen22tAhMqgzvsIpr++kA0ByojlU4fVPCdDnQM0h9hl4
+         LQ8hPvkqA22lIusPYp7JldtRnZQU3bAu9eVTUIyQryhgafMImP1lqWyA+9PaEYwvSpuF
+         sZZ3ohSyWVgw9OARxWuTc6ImU9RaGlvBKGtXRVIIBE+M44PueNU4GpT/4TFRUJX3fOES
+         kKwGa8tzpP1zbB1hCrjAHZOyx3vLzgnmOHU9WtriEMtnrrAhQu/K/6WCckEBTkESZIG9
+         3064EiIuaGNXX/pOEB0l9eDPtem/rCaQlcBrhsVdvNJXbyrExvFF267xCchAIDQIXilq
+         ou+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=XZ6zcs78xTBMoBW41xhfPl8mgcyOXJXlS8VDvhn/FaA=;
+        b=3hD8IVO/dkgCwGiNSPmzg+0ig6IeVveEQJ5Oxco6daZPEUrgBnTI7by90CDEY1436Q
+         moEe68328OO1Z82xXcLLr9+GeO/EdI2vRzWquxHhjGU9x/BTI9QqJtunhh2pNOQwmsNU
+         Ah5PYIjC0CXHylgd0ZZoajI1lKEMEvkuv1er9QlThUmgXhWthK53DjUOAQ/JNs+MJ/al
+         K0aPs2HhOCtSCylQxR5rdqxwvkwsiWAACih7HM8TVgQpzAoeXX2G3lqpRLrqjpKWn1QL
+         NjR58OVaiIX21VH5M3k0uj8RYZmT6eeT3HgY1EAGfNX9Z1Feg324lBb9/eUgJHc3M5/9
+         m7Pg==
+X-Gm-Message-State: AJIora80sAjaL0M9lmVqeW7uRodniDMzVnODw2jnNdy38KA79wY9X+vk
+        xKfKcFGG+dEu48liQnmBeabS/A==
+X-Google-Smtp-Source: AGRyM1tMzHQzW7BqLoNxHkx2+lnmWwhQ1bMGpdOMMs2Qr7nWdRusNUS6b3tyiC3Kycct0IxRGRnr8w==
+X-Received: by 2002:a05:6512:21d2:b0:47f:9f53:f729 with SMTP id d18-20020a05651221d200b0047f9f53f729mr5178922lft.378.1657799928521;
+        Thu, 14 Jul 2022 04:58:48 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id w9-20020a05651c118900b0025d620892cdsm240170ljo.107.2022.07.14.04.58.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 04:58:48 -0700 (PDT)
+Message-ID: <84004850-026a-980d-6c9c-3668182fc458@linaro.org>
+Date:   Thu, 14 Jul 2022 14:58:47 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [V10,5/7] mtk-jpegenc: add jpeg encode worker interface
-Content-Language: en-US
-To:     "kyrie.wu" <kyrie.wu@mediatek.com>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v17 0/6] PCI: dwc: Fix higher MSI vectors handling
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        nicolas.dufresne@collabora.com, wenst@chromium.org
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
-        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
-References: <20220627025625.8956-1-irui.wang@mediatek.com>
- <20220627025625.8956-6-irui.wang@mediatek.com>
- <46eaafc0-478e-8a74-cf8b-dd1f236df035@collabora.com>
- <f8091b62835e99bac2450076c02a39c057a23ad8.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <f8091b62835e99bac2450076c02a39c057a23ad8.camel@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan@kernel.org>
+References: <20220707134733.2436629-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220707134733.2436629-1-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/07/22 10:51, kyrie.wu ha scritto:
-> On Tue, 2022-07-05 at 15:27 +0200, AngeloGioacchino Del Regno wrote:
->> Il 27/06/22 04:56, Irui Wang ha scritto:
->>> From: kyrie wu <kyrie.wu@mediatek.com>
->>>
->>> Add jpeg encoding worker to ensure that two HWs
->>> run in parallel in MT8195.
->>>
->>> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
->>> ---
->>>    .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 208
->>> ++++++++++++++++--
->>>    .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  30 ++-
->>>    .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  |  39 +++-
->>>    3 files changed, 240 insertions(+), 37 deletions(-)
->>>
->>> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
->>> b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
->>> index 0c5c85a112ca..544673a527a0 100644
->>> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
->>> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
->>
->> ..snip..
->>
-
-..snip..
-
->>> @@ -218,30 +222,37 @@ static irqreturn_t
->>> mtk_jpegenc_hw_irq_handler(int irq, void *priv)
->>>    
->>>    	cancel_delayed_work(&jpeg->job_timeout_work);
->>>    
->>> +	ctx = jpeg->hw_param.curr_ctx;
->>> +	src_buf = jpeg->hw_param.src_buffer;
->>> +	dst_buf = jpeg->hw_param.dst_buffer;
->>> +	v4l2_m2m_buf_copy_metadata(src_buf, dst_buf, true);
->>> +
->>>    	irq_status = readl(jpeg->reg_base + JPEG_ENC_INT_STS) &
->>>    		JPEG_ENC_INT_STATUS_MASK_ALLIRQ;
->>>    	if (irq_status)
->>>    		writel(0, jpeg->reg_base + JPEG_ENC_INT_STS);
->>> -	if (!(irq_status & JPEG_ENC_INT_STATUS_DONE))
->>> -		return IRQ_NONE;
->>> -
->>> -	ctx = v4l2_m2m_get_curr_priv(master_jpeg->m2m_dev);
->>> -	if (!ctx) {
->>> -		v4l2_err(&master_jpeg->v4l2_dev, "Context is NULL\n");
->>> -		return IRQ_HANDLED;
->>> +	if (!(irq_status & JPEG_ENC_INT_STATUS_DONE)) {
->>> +		dev_err(jpeg->dev, " Not JPEG_ENC_INT_STATUS_DONE\n");
->>
->> Please be more descriptive in error messages. Also, should this
->> really be
->> a dev_err?!?
-> maybe dev_warn is right, I will fix it.
+On 07/07/2022 16:47, Dmitry Baryshkov wrote:
+> I have replied with my Tested-by to the patch at [2], which has landed
+> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+> Add support for handling MSIs from 8 endpoints"). However lately I
+> noticed that during the tests I still had 'pcie_pme=nomsi', so the
+> device was not forced to use higher MSI vectors.
 > 
+> After removing this option I noticed that hight MSI vectors are not
+> delivered on tested platforms. After additional research I stumbled upon
+> a patch in msm-4.14 ([1]), which describes that each group of MSI
+> vectors is mapped to the separate interrupt. Implement corresponding
+> mapping.
 
-I think that v4l2_err() would be more appropriate.
+[skipped]
 
-Regards,
-Angelo
+Gracious ping. Does this series stand a chance of getting into 5.20?
+
+> Dmitry Baryshkov (6):
+>    PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+>    PCI: dwc: Convert msi_irq to the array
+>    PCI: dwc: split MSI IRQ parsing/allocation to a separate function
+>    PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+>    dt-bindings: PCI: qcom: Support additional MSI interrupts
+>    arm64: dts: qcom: sm8250: provide additional MSI interrupts
+> 
+>   .../devicetree/bindings/pci/qcom,pcie.yaml    |  51 +++++-
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi          |  12 +-
+>   drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+>   drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
+>   .../pci/controller/dwc/pcie-designware-host.c | 164 +++++++++++++-----
+>   drivers/pci/controller/dwc/pcie-designware.h  |   2 +-
+>   drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+>   drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
+>   drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+>   9 files changed, 185 insertions(+), 54 deletions(-)
+> 
+	
+
+-- 
+With best wishes
+Dmitry
