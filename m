@@ -2,78 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B815A57491A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E131574923
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:36:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238175AbiGNJc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:32:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36992 "EHLO
+        id S229577AbiGNJgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:36:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238322AbiGNJcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:32:08 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBA972B264
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:32:03 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id u13so1850300lfn.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:32:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=qLoqEanmHmcOVGRPRRT+aRCQvQ8+n03ZqH5LbbY6VbQ=;
-        b=qqv8VRNxws6KBp3n3JqlUE94PaWsQnNPeJTcW/Zk7KymYZX7T7kzAGVhLc59C3qlh/
-         qulRUDcoyjV10n2ah8TyFSr2vEXvjiN3x8/RyNmP8z0G3blX//ngjPZQ7Yj5JeVcp5FN
-         Ldlqh03s7WTVuguG2fVxH4JFARBX6Y5B16CsCvgLK1vGMM3URMXAC1rZ/1+aApfS49cM
-         hbPwKuQz++OeyJcZhaRdnycCqWgBjERj9nfqySGAix7X1oxJuZL17naBCWNdL4vYNniD
-         iu6dvXxReYpHt22xT+z5OUvg3zlOtLBx6TlDZK1vq9OKaf4fITbpDzIUM+r0W8Zrm3St
-         IwHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=qLoqEanmHmcOVGRPRRT+aRCQvQ8+n03ZqH5LbbY6VbQ=;
-        b=GhugjL/XZsjzm9FfJViFAeruXg7F6cT6Pzc8njwpw+ZxrqDZ/JkB9p4Z6SbysZLCXB
-         sXYWRyHgM2LvLXWgFy83KwdM4yBkPHfx2dFYtm3lxbkKO/M2FyMlIQ1o/AmAZQRJoyOC
-         dJEsLq5ng+8UFRoB4XIEdO9NFuOlS1r9x3T8yuiydqJexP+RLLpo71gzs1IOPj7x9nRY
-         nP1NohYkaNqBY5/+pKLbuzR7HnNuiy0dWwPpaYbSZxsXzaT0jUaZl9UbDO+zEuB+cwKe
-         9DOhWTJTSKYIAsukNR9X+0b+ZA9vMbhsHte74Hoo6Sl3yA+kSjDUkykUGVEHXdHERSTK
-         AW1g==
-X-Gm-Message-State: AJIora9VZePLfkYZ2n0qx+HECrWWnlPQLgFAuJn8wjljsc966oJw8PIB
-        uLXmH2hJl2s0frGnyc6ssIG0Jw==
-X-Google-Smtp-Source: AGRyM1tQqgmtfH0+ObvZ9P9WicC7fls3gdqpTXkF74E4fFHf2mZS8SoD7oxLCgJUT0sZDQDXxkXz7Q==
-X-Received: by 2002:a05:6512:238a:b0:489:e6f6:c13f with SMTP id c10-20020a056512238a00b00489e6f6c13fmr4982398lfv.673.1657791122376;
-        Thu, 14 Jul 2022 02:32:02 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id f5-20020a05651c03c500b0025a724f2935sm184502ljp.137.2022.07.14.02.32.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 02:32:01 -0700 (PDT)
-Message-ID: <2a7c5cb3-f7a6-8953-e16b-5675e62562e1@linaro.org>
-Date:   Thu, 14 Jul 2022 11:31:58 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 30/30] phy: qcom-qmp-usb: drop pipe clock lane suffix
-Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S237814AbiGNJgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:36:12 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 970E03718E;
+        Thu, 14 Jul 2022 02:36:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 19AF5B823DA;
+        Thu, 14 Jul 2022 09:36:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73595C34115;
+        Thu, 14 Jul 2022 09:36:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657791368;
+        bh=6MIUuvwdVpJ4tK1rbwNOev3l1SYrBB/w4GMGLdGU6sU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rLubpj75G9oFRJH1WLpBEJaKWFTpChk/WQIOVn6p+VOolGCbg405INhs9InkfmAgX
+         0YJVvED8VC2/6Rcm6tpLhKnPPEvyA8GAEBWJ/9fSnKl8o5FoCjXuehwB7jNhmOFvVb
+         a9kcfiXani+hCEfiAE8Zm67PQ5rlvVhOLK7twbiUz+WWWoP5fn6def4yK0LyZqBsIu
+         9MqyOAfLhOBeS59D23Brrpb081+fPRu406W+0f1Wc1lHhjZDLmpM4uTyj9cgTTfzMC
+         XPc5EoYNgBVFIloNs8yEIaQ8w/jS1YbG8J5dl2RsGAO4PAD8lvR0bSYDUVauvL8ymx
+         Lx+Gq63UMGfqg==
+Received: by pali.im (Postfix)
+        id 6763F1295; Thu, 14 Jul 2022 11:36:05 +0200 (CEST)
+Date:   Thu, 14 Jul 2022 11:36:05 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220707134725.3512-1-johan+linaro@kernel.org>
- <20220707134725.3512-31-johan+linaro@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220707134725.3512-31-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: Fix compatible strings for Armada
+ 3720 boards
+Message-ID: <20220714093605.wdyrcxehg2ij5lvx@pali>
+References: <20220713125644.3117-1-pali@kernel.org>
+ <a9e1ccb7-6caa-2f7c-b879-b3ff4945794c@linaro.org>
+ <20220713200336.addvyfjhakrx72am@pali>
+ <7a4fba17-9c71-a4e6-643a-62aa0dfd4774@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7a4fba17-9c71-a4e6-643a-62aa0dfd4774@linaro.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,18 +66,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2022 15:47, Johan Hovold wrote:
-> The pipe clock is defined in the "lane" node so there's no need to keep
-> adding a redundant lane-number suffix to the clock name.
+On Thursday 14 July 2022 08:56:12 Krzysztof Kozlowski wrote:
+> On 13/07/2022 22:03, Pali Rohár wrote:
+> > On Wednesday 13 July 2022 21:42:43 Krzysztof Kozlowski wrote:
+> >> On 13/07/2022 14:56, Pali Rohár wrote:
+> >>> All Armada 3720 boards have Armada 3720 processor which is of Armada 3700
+> >>> family and do not have Armada 3710 processor. So none of them should have
+> >>> compatible string for Armada 3710 processor.
+> >>>
+> >>> Fix compatible string for all these boards by removing wrong processor
+> >>> string "marvell,armada3710" and adding family string "marvell,armada3700"
+> >>> as the last one. (Note that this is same way how are defined Armada 3710
+> >>> DTS files).
+> >>
+> >> Please do not introduce some changes just in DTS, but start from the
+> >> bindings. Someone wrote the bindings like that and expected to be that
+> >> way, so first change the bindings with proper rationale. Then change the
+> >> DTS files.
+> >>
+> >>
+> >> Best regards,
+> >> Krzysztof
+> > 
+> > Ok, I tried to update bindings and fix example in it, see patch:
+> > https://lore.kernel.org/linux-devicetree/20220713200123.22612-1-pali@kernel.org/
 > 
-> Update driver to support the new binding where the pipe clock name has
-> been deprecated by instead requesting the clock by index.
+> The reason you used here should be expressed in that commit as well
+
+Which I exactly did (Armada 3700 = famity, Armada 3720 = SoC, Armada
+3720 DB is name of the board with Armada 3720 SoC, so correctly indicate
+SoC in example). So what else?
+
+> because you change the ABI and affect other users (projects, systems).
 > 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+> Best regards,
+> Krzysztof
