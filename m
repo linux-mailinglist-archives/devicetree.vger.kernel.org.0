@@ -2,67 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0F7B574572
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 09:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20612574580
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 09:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233252AbiGNHG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 03:06:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45242 "EHLO
+        id S235593AbiGNHIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 03:08:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229817AbiGNHG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 03:06:56 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6293614099;
-        Thu, 14 Jul 2022 00:06:54 -0700 (PDT)
-X-UUID: ad768e33beae4ed3887005b9df756985-20220714
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:a03c257e-828c-4663-ae6f-f5abf8e4a931,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:076df532-b9e4-42b8-b28a-6364427c76bb,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: ad768e33beae4ed3887005b9df756985-20220714
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1094732513; Thu, 14 Jul 2022 15:06:47 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 14 Jul 2022 15:06:46 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 14 Jul 2022 15:06:46 +0800
-Message-ID: <ecb50307b4d7b802a1e9024ed7e559e18f253769.camel@mediatek.com>
-Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 14 Jul 2022 15:06:46 +0800
-In-Reply-To: <20220712111223.13080-6-rex-bc.chen@mediatek.com>
-References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
-         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+        with ESMTP id S235636AbiGNHIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 03:08:44 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4DD6565;
+        Thu, 14 Jul 2022 00:08:41 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id mi10so852554qvb.1;
+        Thu, 14 Jul 2022 00:08:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=h/n6yRbBlHUfm041rTAam4vX/bLCIOQ4TLdRwuztXQg=;
+        b=C8kV4VFBw7fJd0KgbO1DYsWALtwNT8CsTBzpmGFtbWN+91+TY/g6o9LSUYmlnLl4Dn
+         YnFqhYfeGKCSoo+eL6/kHbwK/pbCjRwVdETmeAJsHU0lKG+pyISdPKr/M7naODnwGz3c
+         MgSTBb2nz0SNZI+Jwt1n0T6OmAa1nh/XljGVTlOTCQlI+pDdURwfhJ/r0JH/sUHZHpyF
+         5wg324vi396sK4dy8horSxpXkkERfjx+APOrOqhrE0H5kaKwRhal29S25lhsWIhjsJak
+         /m/VYIFA5uadKp8bnFD9wvGjkEnCJIzGD0oxOnCnpzULShl00ENbfCIS4w9DIzxz4OQA
+         BKIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=h/n6yRbBlHUfm041rTAam4vX/bLCIOQ4TLdRwuztXQg=;
+        b=uiAWV4IfTp5YdOdxNBkBet1fNtoqeNurkXt1isKOMDN1vEr8sedYrcPL3TAQU+Oqdh
+         N9R9eWsMfp6EMpip9jXI5UC1OiP39dpCO2Qv6UXI3G9hL3v4KFJpAA1WcUAaMf/fZOeq
+         QcOjsZQam0iAeD7GColnd5LiggTXgcVk2G0UpbdcxmPpaURSdxohGRuDlHrpVQuVbpx9
+         AhwPM4pJsBW1SZUloWp242ntpMHjVfbgBYXvFPuG5vmqybqPuXLZHGCIt6K5TVESEwSz
+         pd/ehBgIQYvx32o0b4ueoaM7o6f2ra9La0ffoUpGeTWG19RzFC4gv4ChRhDevt5F3IxD
+         xWBA==
+X-Gm-Message-State: AJIora9DVIRlNl6BBTy2YMVvpZ93XoZcJikufe2W1mQByibU0DBZSiFI
+        KmSzq1ca/h2lDpeDisrEl6c=
+X-Google-Smtp-Source: AGRyM1tn1OC1q6j/kWhFPuKSBUrFYSuQPYLM8IV0m5aPu98EjIYTj90fCMiBKVssI8sFkV0LlE6iSw==
+X-Received: by 2002:a05:6214:2302:b0:470:2d10:b6e4 with SMTP id gc2-20020a056214230200b004702d10b6e4mr6713306qvb.72.1657782520109;
+        Thu, 14 Jul 2022 00:08:40 -0700 (PDT)
+Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
+        by smtp.gmail.com with ESMTPSA id cp4-20020a05622a420400b0031eb393aa45sm819392qtb.40.2022.07.14.00.08.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jul 2022 00:08:39 -0700 (PDT)
+Message-ID: <62ccf0c91d32df557a2bc91c45adb45593302534.camel@gmail.com>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 14 Jul 2022 09:09:40 +0200
+In-Reply-To: <Ys8DPCzRa1qo2AKJ@smile.fi.intel.com>
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+         <Ys8DPCzRa1qo2AKJ@smile.fi.intel.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.3 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,145 +78,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+On Wed, 2022-07-13 at 20:39 +0300, Andy Shevchenko wrote:
+> On Wed, Jul 13, 2022 at 03:14:17PM +0200, Nuno S=C3=A1 wrote:
+> > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
+> > calling the
+> > gpiochip 'set_config()' hook. However, AFAICT, there's no way that
+> > this
+> > flag is set because there's no support for it in firwmare code.
+> > Moreover,
+> > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
+> > being
+> > handled.
+>=20
+> Isn't it enough?
+>=20
 
-On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
-> 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+I might be missing something but don't think so. Look at this driver
+which seems a lot like the reference i put in the cover:
 
-[snip]
+https://elixir.bootlin.com/linux/v5.19-rc6/source/drivers/gpio/gpio-pca953x=
+.c#L573
 
-> +
-> +static int mtk_dp_train_flow(struct mtk_dp *mtk_dp, u8
-> target_link_rate,
-> +			     u8 target_lane_count)
-> +{
-> +	u8 lane_adjust[2] = {};
-> +	bool pass_tps1 = false;
-> +	bool pass_tps2_3 = false;
-> +	int train_retries;
-> +	int status_control;
-> +	int iteration_count;
-> +	int ret;
-> +	u8 prev_lane_adjust;
-> +
-> +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_LINK_BW_SET,
-> target_link_rate);
-> +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_LANE_COUNT_SET,
-> +			   target_lane_count |
-> DP_LANE_COUNT_ENHANCED_FRAME_EN);
-> +
-> +	if (mtk_dp->train_info.sink_ssc)
-> +		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_DOWNSPREAD_CTRL,
-> +				   DP_SPREAD_AMP_0_5);
-> +
-> +	train_retries = 0;
-> +	status_control = 0;
-> +	iteration_count = 1;
-> +	prev_lane_adjust = 0xFF;
-> +
-> +	mtk_dp_set_lanes(mtk_dp, target_lane_count / 2);
-> +	ret = mtk_dp_phy_configure(mtk_dp, target_link_rate,
-> target_lane_count);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_dbg(mtk_dp->dev,
-> +		"Link train target_link_rate = 0x%x, target_lane_count
-> = 0x%x\n",
-> +		target_link_rate, target_lane_count);
-> +
-> +	do {
-> +		train_retries++;
-> +		if (!mtk_dp->train_info.cable_plugged_in)
-> +			return -ENODEV;
-> +
-> +		if (!pass_tps1) {
-> +			ret = mtk_dp_train_tps_1(mtk_dp,
-> target_lane_count,
-> +						 &iteration_count,
-> lane_adjust,
-> +						 &status_control,
-> +						 &prev_lane_adjust);
-> +			if (!ret) {
-> +				pass_tps1 = true;
-> +				train_retries = 0;
-> +			} else if (ret == -EINVAL) {
-> +				break;
-> +			}
-> +		} else {
-> +			ret = mtk_dp_train_tps_2_3(mtk_dp,
-> target_link_rate,
-> +						   target_lane_count,
-> +						   &iteration_count,
-> +						   lane_adjust,
-> &status_control,
-> +						   &prev_lane_adjust);
-> +			if (!ret) {
-> +				pass_tps2_3 = true;
-> +				break;
-> +			} else if (ret == -EINVAL) {
-> +				break;
-> +			}
-> +		}
-> +
-> +		drm_dp_dpcd_read(&mtk_dp->aux,
-> DP_ADJUST_REQUEST_LANE0_1,
-> +				 lane_adjust, sizeof(lane_adjust));
-> +		mtk_dp_train_update_swing_pre(mtk_dp,
-> target_lane_count,
-> +					      lane_adjust);
-> +	} while (train_retries < MTK_DP_TRAIN_RETRY_LIMIT &&
-> +		 iteration_count < MTK_DP_TRAIN_MAX_ITERATIONS);
+I just don't see an in-kernel path (I'm aware now that we can get here
+through gpio cdev) to get to the point where we want to disable the pin
+BIAS.
 
-train_retries and iteration_count are the same thing, so keep one and
-drop another one.
+> > On top of this, there are some users that are looking at
+> > 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So, unless
+> > I'm
+> > missing something, it looks like this was never working for these
+> > chips.
+>=20
+> It seems you are looking into wrong source of issues. Isn't it a
+> issue of
+> particular pin control driver?
+>=20
+>=20
+>=20
 
-Regards,
-CK
+Think about gpio expanders on, eg, an i2c bus which don't really have
+any pinmuxing capability [1]. For example, my device is an i2c keyboard
+which has the capability of exposing pins as gpios (to be consumed by
+gpio_keys). The pins, by default are PULL-UPs but we can disable them
+doing an i2c write on the device. So to me, the way to do it is via the
+gpiochip 'set_config()' hook but as things are, there's no way to get
+into the callback with 'PIN_CONFIG_BIAS_DISABLE'. And the driver cannot
+just assume that the default case is to disable bias...
 
-> +
-> +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_TRAINING_PATTERN_SET,
-> +			   DP_TRAINING_PATTERN_DISABLE);
-> +	mtk_dp_train_set_pattern(mtk_dp, 0);
-> +
-> +	if (!pass_tps2_3)
-> +		return -ETIMEDOUT;
-> +
-> +	mtk_dp->train_info.link_rate = target_link_rate;
-> +	mtk_dp->train_info.lane_count = target_lane_count;
-> +
-> +	mtk_dp_training_set_scramble(mtk_dp, true);
-> +
-> +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_LANE_COUNT_SET,
-> +			   target_lane_count |
-> +				   DP_LANE_COUNT_ENHANCED_FRAME_EN);
-> +	mtk_dp_set_enhanced_frame_mode(mtk_dp, true);
-> +
-> +	return ret;
-> +}
-> +
+Now taking your words (on patch 1 comments)
 
+"
+To me it seems superfluous. You have already two flags:
+PUp
+PDown
+When none is set --> Pdisable
+"
+
+I guess we could do that assumption in 'gpiod_configure_flags()' and
+extend the following code:
+
+
+if (lflags & GPIO_PULL_UP)
+	set_bit(FLAG_PULL_UP, &desc->flags);
+else if (lflags & GPIO_PULL_DOWN)
+	set_bit(FLAG_PULL_DOWN, &desc->flags);
+
+with an else clause where we do 'set_bit(FLAG_BIAS_DISABLE, &desc-
+>flags)' by default. As gpiolib does not consider '-ENOTSUPP' as an
+error, this would not "explicitly" break existing drivers.
+
+But I do have some concerns with making such an assumption. This
+*might* change behavior on existing systems. Think on a system using
+for example gpio-pca953x I linked before. If the default state of the
+pins is PULL-UP (or down), it's legit to think that, for example,
+devicetrees of such a system are not explicitly setting 'GPIO_PULL_UP'.
+That's it, this change would break it because now the pins will have
+BIAS disabled by default...
+
+Note the above is just me speculating but might be a valid concern.
+=20
+1: https://github.com/torvalds/linux/commit/ede033e1e863c
+
+
+- Nuno S=C3=A1
