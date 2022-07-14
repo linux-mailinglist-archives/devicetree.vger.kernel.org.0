@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 420E2574AF4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCB36574AF8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 12:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbiGNKmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 06:42:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50840 "EHLO
+        id S238387AbiGNKnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 06:43:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238428AbiGNKmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:42:18 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23AC854C95
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:42:15 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id a10so1684482ljj.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:42:15 -0700 (PDT)
+        with ESMTP id S231559AbiGNKnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 06:43:04 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CD11545D3
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:43:03 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id x10so1210774ljj.11
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 03:43:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=s8VpnwHhFZWAVYlNIpH9kdWPTbLI6uI4nckrgHC8pmM=;
-        b=w/T9awmLctnifdlcq+QcujLO7NnFl5WH8vXOpLTcy4qrV5vlHZnKOR1CMzdQcuaPgQ
-         HBNJFHC7ZV4d9G3OVwfea+iRJf1w0kWXl93CD0JyTwukccUZiFkgBkdzc0ae6gfWFV6P
-         A/E+Leq2hzYRI9/3vg2gWrmAhRoDRxMxLI5f1FonpBWVeVR8+Wqi323+boh/VD06g9Jo
-         pMBw3mYS33cAygwv9iKCsymMQ7jhOrgY5anq3GrH5CBqAonr8SoRUm6syMTN2OMAj7Ti
-         tOLkmLcwPFgpEfy6zdwhs0jzCl3TGJvV2Emgv/ZT5DwSDg75YoXnyVwqqE2syaIBVpTj
-         WPxg==
+        bh=HpklPWRSZF3VkeOLjuA+CekBCR2uS6eub9kaGTBZ0ks=;
+        b=sqpJzEmb7JlJuOfQinW0SnLvkKVBnWVIfPCdSCyy7xvWa6/uLT189ZackdPfY5VJgF
+         j+XFLw4ug9D2LBPq0Y+b8tCg3VJ6gD/RTj2KNg72LExi4yKsJrw5MPUTZo1uMoozUVzH
+         8Jf4FnjXwXWjR3b7uijeW/uW+MAQE89q2OgxXWzd4InWc3UcI1V2RbF8kv6p+hDZ0db5
+         IfZoGdJq2GC8gpW6oBUVY2q6GO0G5OySPUCBFuFy+PwAJjUir7axJapZSBUHJPcosTae
+         2gJ/OxxiSjYM+FyYiedjAnbJRk5onkCEUZENaPKZ8ch1ePwhOcFHbSv7/JVoiUwyBYOO
+         DjLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=s8VpnwHhFZWAVYlNIpH9kdWPTbLI6uI4nckrgHC8pmM=;
-        b=CapDpEHTsfI1M3UmFnIlgG/Rio7tyzBOW0+7oD2eTaKQe7f68013UrJdQU2lH7Oh8i
-         qohVBWL+pXsh8pIXMF5STaN4Y37pvVGwXNpvXO5L3Ayrcar5DOiLX0zmhFRzDQEJX0pm
-         wvD4aj5xXfkIJ10kvLgUaLucCRVxD/S+rHrbFfYJZ+nQz1qgjcYqOsRoTmxt2VCTeJYw
-         YtM4ByEEqbCcG15oxeg2+i/Z+HV2SbojZ2qxAD8BMcbiKykUxLiIiUqNaxIn8tRxlCfm
-         8jFAso6MtN3pV/8Ihyh6gRL3XOs77M475bxDHrwD35W9O8SlUUmgMY/KkuqLMb/ZyWW7
-         o5Gg==
-X-Gm-Message-State: AJIora9n4TvxJdDZtOCIvcJxZ8KykV2cHElDfg3dfI8renid9K/cP0tW
-        SL9Po+ENkVujYs47Ga8fVpN27w==
-X-Google-Smtp-Source: AGRyM1vDS7gTXDdroBeSqdLza2aD+ghoINa7WVmkHLbyGd09X2av2JkhdGocs3fMe6JT2umowMWNuw==
-X-Received: by 2002:a2e:8719:0:b0:25d:7650:6c06 with SMTP id m25-20020a2e8719000000b0025d76506c06mr4159705lji.330.1657795333568;
-        Thu, 14 Jul 2022 03:42:13 -0700 (PDT)
+        bh=HpklPWRSZF3VkeOLjuA+CekBCR2uS6eub9kaGTBZ0ks=;
+        b=rJttwZkLiHdrtKKj7/RN1d8t26UF8kNHEnMBhmH33irh1w9LERHokvcS5flQSaeQS9
+         2egQhvBvnEBgLaGXnoCTvLi6hc6sQ/2BGNTQE++w5qG5XOsvb4RHRtkwXgxnpNvob97D
+         +gjOi8dim74osUIjmcLyhy6ej3/E75IQUhlhQBEuAyuzy8J/+AzxXypySe/zeX1KIy53
+         tijyu2IWcKX87n6rkcgGzW7JayYGROmXNCy5mbaE9lFqAgc/mPaW1TflrnS0OHA8BvKt
+         ZG/oqkrInhmd9olEtI2GPWCDOXM5W7yOjhEYrFYLlquu/d4TxZ1vAgts5CjjTURZZLjj
+         jBMQ==
+X-Gm-Message-State: AJIora83VhQ+wq5HfBja5vhXPktp5gUVGJRvthSNpZ6cR/0Uw1q+wd4T
+        jkjUZBoTKFDHaLkjyyMl+1klkw==
+X-Google-Smtp-Source: AGRyM1uGHxh2vo0vrwrvXBu+cxylQzoIdS3mBxPptW69sUUfI3XzwVKLxiAxzIxdTR+TpotSyu2gng==
+X-Received: by 2002:a2e:b0d3:0:b0:25d:6888:7c70 with SMTP id g19-20020a2eb0d3000000b0025d68887c70mr4184434ljl.244.1657795381851;
+        Thu, 14 Jul 2022 03:43:01 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id p22-20020a2eba16000000b0025d87966100sm209373lja.140.2022.07.14.03.42.11
+        by smtp.gmail.com with ESMTPSA id o11-20020ac2494b000000b00489c5db8bb6sm290241lfi.176.2022.07.14.03.43.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 03:42:13 -0700 (PDT)
-Message-ID: <f7d544eb-4e7f-29a9-815c-693d2369761f@linaro.org>
-Date:   Thu, 14 Jul 2022 12:42:11 +0200
+        Thu, 14 Jul 2022 03:43:01 -0700 (PDT)
+Message-ID: <c84de7ac-5e4f-ce04-bfca-0341f4d6bc1f@linaro.org>
+Date:   Thu, 14 Jul 2022 12:42:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 03/30] dt-bindings: phy: qcom,qmp: drop redundant
- descriptions
+Subject: Re: [PATCH v2 16/30] dt-bindings: phy: qcom,qmp-ufs: add missing
+ SM8450 clock
 Content-Language: en-US
 To:     Johan Hovold <johan@kernel.org>
 Cc:     Johan Hovold <johan+linaro@kernel.org>,
@@ -68,16 +68,16 @@ Cc:     Johan Hovold <johan+linaro@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20220707134725.3512-1-johan+linaro@kernel.org>
- <20220707134725.3512-4-johan+linaro@kernel.org>
- <26916d41-f398-8527-96f4-9a28f4f4e789@linaro.org>
- <Ys/pQw3e0HPhLZUg@hovoldconsulting.com>
+ <20220707134725.3512-17-johan+linaro@kernel.org>
+ <e8046961-9555-07b7-721c-eeb278cb2ec7@linaro.org>
+ <Ys/q1crMhS3Ou+qu@hovoldconsulting.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Ys/pQw3e0HPhLZUg@hovoldconsulting.com>
+In-Reply-To: <Ys/q1crMhS3Ou+qu@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,51 +85,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 12:00, Johan Hovold wrote:
-> On Thu, Jul 14, 2022 at 11:07:21AM +0200, Krzysztof Kozlowski wrote:
->> On 07/07/2022 15:46, Johan Hovold wrote:
->>> Drop the redundant supply and clock descriptions which did not add much
->>> information beyond what can be inferred from the corresponding resource
->>> names.
+On 14/07/2022 12:07, Johan Hovold wrote:
+> On Thu, Jul 14, 2022 at 11:21:52AM +0200, Krzysztof Kozlowski wrote:
+>> On 07/07/2022 15:47, Johan Hovold wrote:
+>>> Add the missing "qref" clock used by the SM8450 UFS QMP PHY to the
+>>> binding.
 >>>
->>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>>> Fixes: e04121ba1b08 ("dt-bindings: phy: qcom,qmp: Add SM8450 UFS phy compatible")
+>>> Fixes: 07fa917a335e ("arm64: dts: qcom: sm8450: add ufs nodes")
 >>
->>
->> (...)
->>
->>>              - const: ref
->>>              - const: refgen
->>>          resets:
->>> -          items:
->>> -            - description: reset of phy block.
->>> +          maxItems: 1
->>>          reset-names:
->>>            items:
->>>              - const: phy
->>> @@ -376,11 +334,7 @@ allOf:
->>>      then:
->>>        properties:
->>>          clocks:
->>> -          items:
->>> -            - description: Phy aux clock.
->>> -            - description: 19.2 MHz ref clk source.
->>> -            - description: 19.2 MHz ref clk.
->>
->> Here and in other places - I think you loose information, because the
->> frequency is not mentioned in clock name.
+>> The second fixes seems not appropriate here, because you are not fixing
+>> a DTS. A fix for DTS would be a fix for that one.
 > 
-> Right, but it is also arguable redundant information for the binding
-> (similar for the vdda-pll voltage).
+> I wanted to highlight the fact the binding wasn't amended when the DTS
+> started using the new clock, which it should have. But sure, that would
+> have gone in a separate patch. I can replace the second Fixes with a
+> Link to the dts submission as a reference instead.
 
-True.
-
-> 
-> I can add a comment after the name if you prefer that?
-
-Ah, skip it.
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, that or mentioning as "commit xxx ..." in msg would be better.
 
 Best regards,
 Krzysztof
