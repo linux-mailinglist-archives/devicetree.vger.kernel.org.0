@@ -2,165 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AF355756AA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 22:59:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1F705756B1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 23:01:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232572AbiGNU7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 16:59:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39286 "EHLO
+        id S229458AbiGNVBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 17:01:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbiGNU7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 16:59:44 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A56313F86;
-        Thu, 14 Jul 2022 13:59:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1657832383; x=1689368383;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ysF2hIDjCGBABdVcJ1bsRwdEQVYuIg82pWmVPZ4wXjs=;
-  b=nZEpszVSWkmSV74iW0jZP2kNa89i2g2tg5ICOptobDcYyvFe6tfCpGqT
-   LuW2eWygRT2DdVV22St1Np/Lm8n71uDRbLJHcrwxIOgZtEVtxSs+hm2B6
-   n+MaV3gWZOA5s2/dCHf3je8WPZ6kZAxloog3MlbyJQXDVNYtnkCQNcsLm
-   rFrQRVF3LObkzIoKNsmZJF7OiNKEVcJ7vBbqXrr5N1OWcO6mCJzHLphJf
-   bhH4cpJNNUXuKAbdi3ouuH4qbMoTXnZLwW+8mSKdiP6R/oJfnxkkhj7nQ
-   OQk+xl+H0pYaCIoyi3ohNkH7bsso4RRWNCScm/eTMCmZOkOm0KFJ3wgpz
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="284384480"
-X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
-   d="scan'208";a="284384480"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 13:59:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
-   d="scan'208";a="596232227"
-Received: from lkp-server01.sh.intel.com (HELO fd2c14d642b4) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 14 Jul 2022 13:59:39 -0700
-Received: from kbuild by fd2c14d642b4 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1oC5vu-00019R-Ml;
-        Thu, 14 Jul 2022 20:59:38 +0000
-Date:   Fri, 15 Jul 2022 04:58:44 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 07/23] ata: libahci_platform: Convert to using devm
- bulk clocks API
-Message-ID: <202207150410.A4kg5upp-lkp@intel.com>
-References: <20220713052917.27036-8-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S232729AbiGNVB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 17:01:28 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 595E66D2EF
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 14:01:27 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id s21so3893122pjq.4
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 14:01:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=YTLuF9+hII6b2kivANHhA4IQuqav/O4hvQMe6A7GJDo=;
+        b=ADtXI6W9sB+RYqQZ2sGb/XNqMVNBxs82oTRYyzUq8Ap6reKkUGj6VCotNiFND1VJax
+         Cw0/5uHTaHVchvyZgRo2CEweB5AGtoRQFS9FT4ckicwAMah3cNejIu/XBkoRpsjvMUTa
+         jcZ0BLrSQwDBcux4DsVcxL4qzOMQTFaNSWfxtuGn4Ub/VbrkXIEyUbeiinnOwxUAfoJj
+         D8/OccrjHOfJ2tWRDQ1jKBujSvK8B+sjdUNyw8wJjUS6knnvtLtn4TvLzHFNzPBpsKCr
+         9FiuEQa7f6R2E2OAHOF0TYyG0Vwq+lPV7HdipMaUFnBWUVPGTHwb5zg/l/DTN7jRtTSH
+         nyyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=YTLuF9+hII6b2kivANHhA4IQuqav/O4hvQMe6A7GJDo=;
+        b=vGNNO15JE17VxZg97aV/L4URDc+Dxi/jE+Ts/2x9KTfdVTmp2GE+E0um5k8erg9B6l
+         JkUPt3/P1DL2YltVs06e/UuO+6MDUbTdrgOEYvgvqpIANvS+rLDfa2K4kvB7wXe257zU
+         y33McbSchFUe5vsxbwUGokkPmEfIXj4RCkErXOjWrUkIJr1OuRRnfJ9jpeoET80kujPx
+         Ajs7if3iEfzCgM1in1Jh5jAur6JsXblO1cgcPY/w696SxEy1sEAgRS5OdHgQLM7AvnjH
+         rBP2UChyj7rmsnZ62+KYJjYdYWCT8d8WecKSEFbv/UD25JxcV2QOOuPXbywSScOHNDe0
+         otWw==
+X-Gm-Message-State: AJIora+ONbgJXUuxRnEH9FAJq2LV/5mdzz3xFOvoAfYLrOgb67xmpX7R
+        yQRNDwK5mUGFQlybuKESko2q6pF+EIk=
+X-Google-Smtp-Source: AGRyM1usNx6EbutKxnSfxedtAv/FmhUB3NyMyzubMQ8GmCULR1Qtg1kQBmhe9H8r0jShGp7Xco/uUQ==
+X-Received: by 2002:a17:902:f68f:b0:16c:2ab9:9bdb with SMTP id l15-20020a170902f68f00b0016c2ab99bdbmr9948495plg.23.1657832486861;
+        Thu, 14 Jul 2022 14:01:26 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id ot8-20020a17090b3b4800b001ef89019352sm10289588pjb.3.2022.07.14.14.01.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jul 2022 14:01:26 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+        William Zhang <william.zhang@broadcom.com>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Add Asus GT-AX6000 based on BCM4912
+Date:   Thu, 14 Jul 2022 14:01:24 -0700
+Message-Id: <20220714210124.1389433-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220713200351.28526-1-zajec5@gmail.com>
+References: <20220713200351.28526-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220713052917.27036-8-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Serge,
+On Wed, 13 Jul 2022 22:03:50 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> It's a home router, the first BCM4912 SoC based public device.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-I love your patch! Yet something to improve:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on axboe-block/for-next linus/master v5.19-rc6 next-20220714]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220713-133437
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: riscv-randconfig-r004-20220714 (https://download.01.org/0day-ci/archive/20220715/202207150410.A4kg5upp-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 5e61b9c556267086ef9b743a0b57df302eef831b)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/7225145d9ff95641c04bdc1dd85915be6cd5ce57
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220713-133437
-        git checkout 7225145d9ff95641c04bdc1dd85915be6cd5ce57
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/ata/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/ata/ahci_dm816.c:72:6: error: invalid argument type 'struct clk_bulk_data' to unary expression
-           if (!hpriv->clks[1]) {
-               ^~~~~~~~~~~~~~~
->> drivers/ata/ahci_dm816.c:77:29: error: passing 'struct clk_bulk_data' to parameter of incompatible type 'struct clk *'
-           refclk_rate = clk_get_rate(hpriv->clks[1]);
-                                      ^~~~~~~~~~~~~~
-   include/linux/clk.h:584:40: note: passing argument to parameter 'clk' here
-   unsigned long clk_get_rate(struct clk *clk);
-                                          ^
-   2 errors generated.
-
-
-vim +72 drivers/ata/ahci_dm816.c
-
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   60  
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   61  static int ahci_dm816_phy_init(struct ahci_host_priv *hpriv, struct device *dev)
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   62  {
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   63  	unsigned long refclk_rate;
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   64  	int mpy;
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   65  	u32 val;
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   66  
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   67  	/*
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   68  	 * We should have been supplied two clocks: the functional and
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   69  	 * keep-alive clock and the external reference clock. We need the
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   70  	 * rate of the latter to calculate the correct value of MPY bits.
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   71  	 */
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  @72  	if (!hpriv->clks[1]) {
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   73  		dev_err(dev, "reference clock not supplied\n");
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   74  		return -EINVAL;
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   75  	}
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   76  
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  @77  	refclk_rate = clk_get_rate(hpriv->clks[1]);
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   78  	if ((refclk_rate % 100) != 0) {
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   79  		dev_err(dev, "reference clock rate must be divisible by 100\n");
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   80  		return -EINVAL;
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   81  	}
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   82  
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   83  	mpy = ahci_dm816_get_mpy_bits(refclk_rate);
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   84  	if (mpy < 0) {
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   85  		dev_err(dev, "can't calculate the MPY bits value\n");
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   86  		return -EINVAL;
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   87  	}
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   88  
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   89  	/* Enable the PHY and configure the first HBA port. */
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   90  	val = AHCI_DM816_PHY_MPY(mpy) | AHCI_DM816_PHY_LOS(1) |
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   91  	      AHCI_DM816_PHY_RXCDR(4) | AHCI_DM816_PHY_RXEQ(1) |
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   92  	      AHCI_DM816_PHY_TXSWING(3) | AHCI_DM816_PHY_ENPLL(1);
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   93  	writel(val, hpriv->mmio + AHCI_DM816_P0PHYCR_REG);
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   94  
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   95  	/* Configure the second HBA port. */
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   96  	val = AHCI_DM816_PHY_LOS(1) | AHCI_DM816_PHY_RXCDR(4) |
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   97  	      AHCI_DM816_PHY_RXEQ(1) | AHCI_DM816_PHY_TXSWING(3);
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   98  	writel(val, hpriv->mmio + AHCI_DM816_P1PHYCR_REG);
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14   99  
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  100  	return 0;
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  101  }
-df46e6a4c06c89a Bartosz Golaszewski 2017-03-14  102  
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
