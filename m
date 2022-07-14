@@ -2,80 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EB75574966
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64BF957498A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237825AbiGNJpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:45:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52352 "EHLO
+        id S237665AbiGNJth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:49:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238208AbiGNJpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:45:32 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E66B1A061
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:45:31 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id n18so1921427lfq.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:45:31 -0700 (PDT)
+        with ESMTP id S237968AbiGNJtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:49:11 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7CD54CA0
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:47:13 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id h17so1861320wrx.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:47:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=U7bE4AFFaqlBpYGWGp2bDcGNToCNNNh+R2dU+aim+1I=;
-        b=aAacLcEaAKm5bx3USPkdVVrwv0zguEu8rs1lY5F6lNOeMAWK+8D/A9m4WBr/44c1XH
-         LjpTQrqg2GOuzh62iX8vVHYvrvM1BmWkK0TdoeVHMYGqu7iNBK9Pb2WlWt2yiiW55k7O
-         a1Uewv3Eh3QXfplrqJHwnIuip7m5R6MSqvAol32na8mvx6P5EFZjqtYZI27p/kvwznqU
-         hFCVjuNsjXUEC8J4Oz2Br3ZlaUgC47Cmx086b+Cinv7CqI2/LLhOBboXUA1tbSATjM0q
-         iRvtW5lwOF31ZgAmE0CDH0K6oNH0tLR1IJyD/s/wWqaUMm1KTImvgYg5uALvwAQ1+2Oz
-         3/dA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=hz+S9gbmjTBRbI9IGEo00yr8q6U8gYAIZkZve+s14sI=;
+        b=jGRWumBYRWsPFRAHiNOF9bcUJ5TNxCTJ10BCXYBR6dF5XY8QP1BaD0ju5ijzduBadz
+         M7fhdhDNh9X474nV6zPJ7e1R/z8AAJRizIr/3CpUbGzGKBc7QY0JT2IoCubdKhUsVB2D
+         Fo9X7Qexd9TDha4225wY5GnXsVw+Qq4igsIWi7ZGskKx65onGrtT5A4Eai7F7A/5TU5q
+         ehpk/JuiqKYzmvo58fp5IXfwHX6D2oDhRs4pu5dG34iaFTJb/8kDr/vljaafddvSmTQt
+         FofPVS5NrtArjBlTl0domfLu4V5bkUAzCbxcFxSi14WPEKaNDZDAnaRvllsVTcVTH+E8
+         GmTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=U7bE4AFFaqlBpYGWGp2bDcGNToCNNNh+R2dU+aim+1I=;
-        b=VZQlkL4PNmDHQg2hdXluBUOryu7EGPEeGZGeXW26LQNxpob15S6qNsjX9j2jvqxeuN
-         OLKunKZX7H+Zi/XI92c+Ka5H2Kw0rZLGVt0zt9F236SgkCGmkZRlqwSWms7Zr0udeocP
-         IZ8HgiRDIZDvghZhbTpSpLXfzfFsqPHO463uIDN1kfu13zt/MHYtYR6NR5Jxi2ZEdBjd
-         S7hVg3DBEtLhucJOr0MHn9Xp/qc/pPaXjAeLT8vKyTD73E+XZfuhZjcXtOCfuN7dmPLv
-         dCM48rxtlzksOGEWDJyOlYZR4sGoDknYdQG4xcANGiEaLqu8qwv7ve0rShjFgFsTOlEW
-         R+Aw==
-X-Gm-Message-State: AJIora+CMaZe77FFwFKKT0n+buTZigp6eGWwGYLH2rASY3CgoSmQhv/H
-        avLiopShuXsKdRWYQo/QYNawca5NUx49AA==
-X-Google-Smtp-Source: AGRyM1vGpON0DG4ORvaWqjTmXe+q+KTMeS1n2R2I9F705IDWK+oapuyCfjSrtWQhaNSEqjPpmb36Ug==
-X-Received: by 2002:a05:6512:139a:b0:48a:1a73:8adc with SMTP id p26-20020a056512139a00b0048a1a738adcmr757796lfa.226.1657791929867;
-        Thu, 14 Jul 2022 02:45:29 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id 10-20020a05651c008a00b0025d2d495dc6sm185480ljq.66.2022.07.14.02.45.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 02:45:29 -0700 (PDT)
-Message-ID: <4936df27-e5b5-8ef5-5831-82fdf414ea90@linaro.org>
-Date:   Thu, 14 Jul 2022 11:45:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/6] arm64: dts: qcom: msm8916: Drop MSS fallback
- compatible
-Content-Language: en-US
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hz+S9gbmjTBRbI9IGEo00yr8q6U8gYAIZkZve+s14sI=;
+        b=h6HWm+xZUxseATLAfj1aYW5kvYpOWsjNFDeCQXuVvrcMri32+SurZM58Hpkub+OhcD
+         soR15mF4aE4GUo/DFmbGDaRNyaR1LWtc4oXRfbbrfmg5WCc5TlPOBz5ykW0RX05aupR9
+         +xkyL4N+OwaTzp868SI3zdHhHsQ2tuCF9g++85P2/EX3hYSxZTH6f1hwkOOCRJ+UqVst
+         6+JsKs8UR8F9Mqatl21t/TkY4gAa/DLvywEnLQ6NrskQaRrh/MkwF398vcCwdQmy8l6u
+         edKyzU7G88wbjMg0qk0PuzVYgYcqELKQAqr30hXaHPkXjrju6+4KDuvGhEo9g55tCO03
+         1r2w==
+X-Gm-Message-State: AJIora9K64uoXrheZSe08WfScFKvjhp2tHUeGAXwhQA3Sr2m3u2YDbnK
+        Fo1OuLnw7a19YxyxKGmbge5GhA==
+X-Google-Smtp-Source: AGRyM1vnaGqcjfiDi9IGxZuq03hn9M2jXCQvULWiEOP+eJIxh4bgzvMgPaE9Bz5dtGUwBLz/VP+cVQ==
+X-Received: by 2002:a05:6000:12c8:b0:21d:6913:89af with SMTP id l8-20020a05600012c800b0021d691389afmr7419194wrx.546.1657792031934;
+        Thu, 14 Jul 2022 02:47:11 -0700 (PDT)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id bg10-20020a05600c3c8a00b003a0323463absm1456168wmb.45.2022.07.14.02.47.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jul 2022 02:47:11 -0700 (PDT)
+Date:   Thu, 14 Jul 2022 10:47:09 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sireesh Kodali <sireeshkodali1@gmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
- <20220712124421.3129206-2-stephan.gerhold@kernkonzept.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220712124421.3129206-2-stephan.gerhold@kernkonzept.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Alice Chen <alice_chen@richtek.com>,
+        cy_huang <cy_huang@richtek.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        szuni chen <szunichen@gmail.com>
+Subject: Re: [PATCH v4 13/13] video: backlight: mt6370: Add Mediatek MT6370
+ support
+Message-ID: <20220714094709.6ekfnfcf5sktiegi@maple.lan>
+References: <20220704053901.728-1-peterwu.pub@gmail.com>
+ <20220704053901.728-14-peterwu.pub@gmail.com>
+ <CAHp75VdwEc9AW1w8ejsxkw+sBTF1dumd99QyzTY9BZaXiViRWQ@mail.gmail.com>
+ <CABtFH5K-2+2hbpvpq2nPE5AsznkQxZF2r3MVC64Q39DJhVuUtA@mail.gmail.com>
+ <CAHp75VevDwdAKLYEWJgnMDvzuPuFibLuVqH-GKazEOT76wM6_A@mail.gmail.com>
+ <CABtFH5LT1Ct_9-B_XRrGwYFmL5kGS6KHR7dNVyUO5z4sTy_6oA@mail.gmail.com>
+ <CAHp75VcU_9Ao2CoqiUDZHqhVOjEMZor+hctPp3YYP4HOjYLDUg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75VcU_9Ao2CoqiUDZHqhVOjEMZor+hctPp3YYP4HOjYLDUg@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,31 +105,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2022 14:44, Stephan Gerhold wrote:
-> MSM8916 was originally using the "qcom,q6v5-pil" compatible for the
-> MSS remoteproc. Later it was decided to use SoC-specific compatibles
-> instead, so "qcom,msm8916-mss-pil" is now the preferred compatible.
-> 
-> Commit 60a05ed059a0 ("arm64: dts: qcom: msm8916: Add MSM8916-specific
-> compatibles to SCM/MSS") updated the MSM8916 device tree to make use of
-> the new compatible but still kept the old "qcom,q6v5-pil" as fallback.
-> 
-> This is inconsistent with other SoCs and conflicts with the description
-> in the binding documentation (which says that only one compatible should
-> be present). Also, it has no functional advantage since older kernels
-> could not handle this DT anyway (e.g. "power-domains" in the MSS node is
-> only supported by kernels that also support "qcom,msm8916-mss-pil").
-> 
-> Make this consistent with other SoCs by using only the
-> "qcom,msm8916-mss-pil" compatible.
-> 
-> Fixes: 60a05ed059a0 ("arm64: dts: qcom: msm8916: Add MSM8916-specific compatibles to SCM/MSS")
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> ---
+On Thu, Jul 14, 2022 at 11:27:07AM +0200, Andy Shevchenko wrote:
+> On Thu, Jul 14, 2022 at 9:13 AM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+> > I have tried two methods so far, as follows
+> > -------------------------------------------------------------
+> > /*
+> >  * prop_val =  1      -->  1 steps --> b'00
+> >  * prop_val =  2 ~  4 -->  4 steps --> b'01
+> >  * prop_val =  5 ~ 16 --> 16 steps --> b'10
+> >  * prop_val = 17 ~ 64 --> 64 steps --> b'11
+> > */
+>
+> So, for 1 --> 0, for 2 --> 1, for 5 --> 2, and for 17 --> 3.
+> Now, consider x - 1:
+> 0  ( 0 ) --> 0
+> 1  (2^0) --> 1
+> 4  (2^2) --> 2
+> 16 (2^4) --> 3
+> 64 (2^6) --> ? (but let's consider that the range has been checked already)
+>
+> Since we take the lower limit, it means ffs():
+>
+>   y = (ffs(x - 1) + 1) / 2;
+>
+> Does it work for you?
+
+To be honest, for this tiny table, writing code that *doesn't* require intricate
+deciphering together with a huge comment saying what is does would probably be
+better:
+
+		prop_val = (prop_val <=  1 ? 0 :
+		            prop_val <=  4 ? 1 :
+			    prop_val <= 16 ? 2 :
+			                     3);
+
+This would be "obviously correct" and require no comment.
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+Daniel.
