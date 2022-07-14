@@ -2,227 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF82D575051
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 16:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 391E057505A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 16:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239886AbiGNOGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 10:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44438 "EHLO
+        id S232196AbiGNOId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 10:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240076AbiGNOGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 10:06:47 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C042B13CFE;
-        Thu, 14 Jul 2022 07:06:45 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id fd6so2567110edb.5;
-        Thu, 14 Jul 2022 07:06:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:subject:to:cc:message-id:in-reply-to:references
-         :mime-version;
-        bh=0hOtpE8/DojU1Gra2Zcppwv31AJSFLzQNq6R8EQC+4g=;
-        b=eh+g1jMnhER3KxbGx8XlnkuEL8uvIzkJC+Hbfxugn0LRfbnVUKADfDHMSiTQAEkbak
-         2RBfH+YCe1MsDHjD5DVVoEKXnFm3i6+TdtY9w/msF1M3AbL6rPOQsRhiaO3hWMBwGde+
-         QtrSjc7XWze9MA0AP30S2ywZoxO8jlMSRW69qDEZgcXtU7Js7KLEeuIE7q6NNK2UMOFa
-         RNuiWFJjSnWvKVU6mhOSM8BryTr7KU5DiYECtgHSaaoJWoN9rzYRxGUJv7s4Q1yvy1Pc
-         W5i0dgeDm5mrKZbiFAnQfqYliqfxNNEh5UrXW3d6EvoiCL1DH0xRXdEXzAHrY/4a6/JG
-         +TDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
-         :references:mime-version;
-        bh=0hOtpE8/DojU1Gra2Zcppwv31AJSFLzQNq6R8EQC+4g=;
-        b=7NhkbtZjWxpxFOMlLM9+gh5FSVL3dFrEAr2yynRsstBsGDgkFuQC/n4jynv5RjlvNC
-         ljZrtSk7BXvSaFk5C3d0HsDW2/KZEZEZpbu5yJrpRsJHgdnqgcWlSYlY9A7IKT8+ZtVp
-         KGPj0sQJHXN4X58M8OBJsPP6MyuMxf2bg5O7+JieQj7QwbeD1LI3oMJggNU4slvOeOB9
-         n6KKSXgtqUV12pimFdCrSfX5/3EFawSZhuWQ9FNlzHJBluOPQHrHp1UF5lG1sEFtfPHH
-         awnfC/m7Rrd30oLtjyS8Qt0Hjtdb0f9BAUvHrTrSbUlhijJY+cIwyhy/rdijQiM5+23l
-         BfOw==
-X-Gm-Message-State: AJIora8ov6Wse1mIgw1dLSxEBJYCuDVWi6b9vyDiS3YifdO0VAzQX/dp
-        ktcFnI2PN8PkWrpS3KVUGuI=
-X-Google-Smtp-Source: AGRyM1vNRLkkTwQrChTf+7Nhf5MHtguBSGOfNIzBuKpQq0skpIiiHl13VjT2pnZ6b/xxpjWxTczcRw==
-X-Received: by 2002:a05:6402:5513:b0:43a:b866:b9ab with SMTP id fi19-20020a056402551300b0043ab866b9abmr12723120edb.290.1657807604292;
-        Thu, 14 Jul 2022 07:06:44 -0700 (PDT)
-Received: from [192.168.11.247] (185-165-241-34.hosted-by-worldstream.net. [185.165.241.34])
-        by smtp.gmail.com with ESMTPSA id g13-20020aa7d1cd000000b00435a742e350sm1084960edp.75.2022.07.14.07.06.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jul 2022 07:06:43 -0700 (PDT)
-Date:   Thu, 14 Jul 2022 18:06:32 +0400
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH v2 3/3] media: i2c: ak7375: Add regulator management
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Lee Jackson <info@arducam.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tianshu Qiu <tian.shu.qiu@intel.com>,
-        Bingbu Cao <bingbu.cao@intel.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Message-Id: <WIK0FR.TSG3JTBEBBDN@gmail.com>
-In-Reply-To: <20220713073951.qrg3slmvqbibwc5o@uno.localdomain>
-References: <20220711144039.232196-1-y.oudjana@protonmail.com>
-        <20220711144039.232196-4-y.oudjana@protonmail.com>
-        <20220713073951.qrg3slmvqbibwc5o@uno.localdomain>
-X-Mailer: geary/40.0
+        with ESMTP id S239923AbiGNOIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 10:08:31 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C012AC5B;
+        Thu, 14 Jul 2022 07:08:30 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6B4376601A4C;
+        Thu, 14 Jul 2022 15:08:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657807709;
+        bh=Q8ugPt8B7AuXKOMmUxXFOLbei9ISDo6hGy7wscHq/eM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=V4KB5zzQIjTXQz4Y7Rtjd5CViqg1riUb69dn/P8NHT27jfsX4yMxaWkGuA1euhoih
+         exmet+dTDyOXRsY8YNOGovFn0OYO8QIZ+auAeHrzNHSD4kqA7GyaAJxKmhomjrmUXL
+         u98HUZDNvToC3A2C0SsbwCOoWg8cvSzOL/1DjlGqy1p8UjcFVU963s+x/mqdi10hog
+         JLvhIpB5IxJ2ck8bed1bxu8uDg0P7p7drf6eTot/f+Uald7k9BWRityZHOHgUc9Xjh
+         4OyHfpI1+BBn6XA4kvMmqoLHHRqXTnOp0UnCW6hvSKl2hoiBuJFqA154WyclRRgTJt
+         REmxHZQIAf1nw==
+Message-ID: <ba986bba-a90e-54f4-6984-b44674d0d377@collabora.com>
+Date:   Thu, 14 Jul 2022 16:08:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v9 2/8] ASoC: mediatek: mt8186: add platform driver
+Content-Language: en-US
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>, broonie@kernel.org,
+        robh+dt@kernel.org
+Cc:     aaronyu@google.com, matthias.bgg@gmail.com, trevor.wu@mediatek.com,
+        tzungbi@google.com, julianbraha@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220712150442.32504-1-jiaxin.yu@mediatek.com>
+ <20220712150442.32504-3-jiaxin.yu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220712150442.32504-3-jiaxin.yu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 12/07/22 17:04, Jiaxin Yu ha scritto:
+> Add mt8186 platform and affiliated driver.
+> 
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> ---
+>   sound/soc/mediatek/Kconfig                    |   12 +
+>   sound/soc/mediatek/Makefile                   |    1 +
+>   sound/soc/mediatek/mt8186/Makefile            |   19 +
+>   sound/soc/mediatek/mt8186/mt8186-afe-clk.c    |    3 +-
+>   sound/soc/mediatek/mt8186/mt8186-afe-clk.h    |    2 +-
+>   sound/soc/mediatek/mt8186/mt8186-afe-common.h |  235 ++
+>   .../soc/mediatek/mt8186/mt8186-afe-control.c  |  255 ++
+>   sound/soc/mediatek/mt8186/mt8186-afe-pcm.c    | 3000 +++++++++++++++++
+>   8 files changed, 3525 insertions(+), 2 deletions(-)
+>   create mode 100644 sound/soc/mediatek/mt8186/Makefile
+>   create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-common.h
+>   create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-control.c
+>   create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
+> 
+> diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
+> index 3b1ddea26a9e..f3c3b93226e4 100644
+> --- a/sound/soc/mediatek/Kconfig
+> +++ b/sound/soc/mediatek/Kconfig
+> @@ -152,6 +152,18 @@ config SND_SOC_MT8183_DA7219_MAX98357A
+>   	  Select Y if you have such device.
+>   	  If unsure select "N".
+>   
+> +config SND_SOC_MT8186
+> +	tristate "ASoC support for Mediatek MT8186 chip"
+> +	depends on ARCH_MEDIATEK || COMPILE_TEST
+> +	depends on COMMON_CLK
+> +	select SND_SOC_MEDIATEK
+> +	select MFD_SYSCON if SND_SOC_MT6358
+> +	help
+> +	  This adds ASoC driver for Mediatek MT8186 boards
+> +	  that can be used with other codecs.
+> +	  Select Y if you have such device.
+> +	  If unsure select "N".
+> +
+>   config SND_SOC_MTK_BTCVSD
+>   	tristate "ALSA BT SCO CVSD/MSBC Driver"
+>   	help
+> diff --git a/sound/soc/mediatek/Makefile b/sound/soc/mediatek/Makefile
+> index 34778ca12106..5571c640a288 100644
+> --- a/sound/soc/mediatek/Makefile
+> +++ b/sound/soc/mediatek/Makefile
+> @@ -4,5 +4,6 @@ obj-$(CONFIG_SND_SOC_MT2701) += mt2701/
+>   obj-$(CONFIG_SND_SOC_MT6797) += mt6797/
+>   obj-$(CONFIG_SND_SOC_MT8173) += mt8173/
+>   obj-$(CONFIG_SND_SOC_MT8183) += mt8183/
+> +obj-$(CONFIG_SND_SOC_MT8186) += mt8186/
+>   obj-$(CONFIG_SND_SOC_MT8192) += mt8192/
+>   obj-$(CONFIG_SND_SOC_MT8195) += mt8195/
+> diff --git a/sound/soc/mediatek/mt8186/Makefile b/sound/soc/mediatek/mt8186/Makefile
+> new file mode 100644
+> index 000000000000..7626bb3499dd
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt8186/Makefile
+> @@ -0,0 +1,19 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +# platform driver
+> +snd-soc-mt8186-afe-objs := \
+> +	mt8186-afe-pcm.o \
+> +	mt8186-audsys-clk.o \
+> +	mt8186-afe-clk.o \
+> +	mt8186-afe-gpio.o \
+> +	mt8186-dai-adda.o \
+> +	mt8186-afe-control.o \
+> +	mt8186-dai-i2s.o \
+> +	mt8186-dai-hw-gain.o \
+> +	mt8186-dai-pcm.o \
+> +	mt8186-dai-src.o \
+> +	mt8186-dai-hostless.o \
+> +	mt8186-dai-tdm.o \
+> +	mt8186-misc-control.o \
+> +
+> +obj-$(CONFIG_SND_SOC_MT8186) += snd-soc-mt8186-afe.o
+> diff --git a/sound/soc/mediatek/mt8186/mt8186-afe-clk.c b/sound/soc/mediatek/mt8186/mt8186-afe-clk.c
+> index 0275f66ddc18..a6b4f29049bb 100644
+> --- a/sound/soc/mediatek/mt8186/mt8186-afe-clk.c
+> +++ b/sound/soc/mediatek/mt8186/mt8186-afe-clk.c
+> @@ -645,7 +645,8 @@ int mt8186_init_clock(struct mtk_base_afe *afe)
+>   	return 0;
+>   }
+>   
+> -void mt8186_deinit_clock(struct mtk_base_afe *afe)
+> +void mt8186_deinit_clock(void *priv)
+>   {
+> +	struct mtk_base_afe *afe = priv;
+>   	mt8186_audsys_clk_unregister(afe);
+>   }
+> diff --git a/sound/soc/mediatek/mt8186/mt8186-afe-clk.h b/sound/soc/mediatek/mt8186/mt8186-afe-clk.h
+> index c539557d7c78..d5988717d8f2 100644
+> --- a/sound/soc/mediatek/mt8186/mt8186-afe-clk.h
+> +++ b/sound/soc/mediatek/mt8186/mt8186-afe-clk.h
+> @@ -81,7 +81,7 @@ enum {
+>   struct mtk_base_afe;
+>   int mt8186_set_audio_int_bus_parent(struct mtk_base_afe *afe, int clk_id);
+>   int mt8186_init_clock(struct mtk_base_afe *afe);
+> -void mt8186_deinit_clock(struct mtk_base_afe *afe);
+> +void mt8186_deinit_clock(void *priv);
+>   int mt8186_afe_enable_cgs(struct mtk_base_afe *afe);
+>   void mt8186_afe_disable_cgs(struct mtk_base_afe *afe);
+>   int mt8186_afe_enable_clock(struct mtk_base_afe *afe);
+> diff --git a/sound/soc/mediatek/mt8186/mt8186-afe-common.h b/sound/soc/mediatek/mt8186/mt8186-afe-common.h
+> new file mode 100644
+> index 000000000000..7e9e71783468
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt8186/mt8186-afe-common.h
+> @@ -0,0 +1,235 @@
+> +/* SPDX-License-Identifier: GPL-2.0
+> + *
+> + * mt8186-afe-common.h  --  Mediatek 8186 audio driver definitions
+> + *
+> + * Copyright (c) 2022 MediaTek Inc.
+> + * Author: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> + */
+> +
 
-On Wed, Jul 13 2022 at 09:39:51 +0200, Jacopo Mondi <jacopo@jmondi.org> 
-wrote:
-> Hi Yassine
-> 
-> On Mon, Jul 11, 2022 at 06:40:39PM +0400, Yassine Oudjana wrote:
->>  From: Yassine Oudjana <y.oudjana@protonmail.com>
->> 
->>  Make the driver get needed regulators on probe and enable/disable
->>  them on runtime PM callbacks.
->> 
->>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> Have you seen this ?
-> https://github.com/ArduCAM/IMX519_AK7375/blob/main/AK7375/0002-media-i2c-ak7375-driver-add-optional-regulator-suppo.patch#L172
-> 
-> It claims
-> +	* Initialisation delay between VDD low->high and the moment
-> +	* when the i2c command is available.
-> +	* From the datasheet, it should be 10ms + 2ms (max power
-> +	* up sequence duration)
-> 
-> 10ms seems like a long time, it would be nice to have the datasheet to
-> cross-check.
+..snip..
 
-It does seem quite long. I couldn't find a datasheet anywhere
-so the value I discovered is the best I have. I've added the
-author of that patch to CC; maybe they have some info to
-contribute.
+> +
+> +#define MT8186_RECORD_MEMIF MT8186_MEMIF_VUL12
+> +#define MT8186_ECHO_REF_MEMIF MT8186_MEMIF_AWB
+> +#define MT8186_PRIMARY_MEMIF MT8186_MEMIF_DL1
+> +#define MT8186_FAST_MEMIF MT8186_MEMIF_DL2
+> +#define MT8186_DEEP_MEMIF MT8186_MEMIF_DL3
+> +#define MT8186_VOIP_MEMIF MT8186_MEMIF_DL12
+> +#define MT8186_MMAP_DL_MEMIF MT8186_MEMIF_DL5
+> +#define MT8186_MMAP_UL_MEMIF MT8186_MEMIF_VUL5
+> +#define MT8186_BARGEIN_MEMIF MT8186_MEMIF_AWB
+> +
+> +enum {
+> +	MT8186_IRQ_0,
+> +	MT8186_IRQ_1,
+> +	MT8186_IRQ_2,
+> +	MT8186_IRQ_3,
+> +	MT8186_IRQ_4,
+> +	MT8186_IRQ_5,
+> +	MT8186_IRQ_6,
+> +	MT8186_IRQ_7,
+> +	MT8186_IRQ_8,
+> +	MT8186_IRQ_9,
+> +	MT8186_IRQ_10,
+> +	MT8186_IRQ_11,
+> +	MT8186_IRQ_12,
+> +	MT8186_IRQ_13,
+> +	MT8186_IRQ_14,
+> +	MT8186_IRQ_15,
+> +	MT8186_IRQ_16,
+> +	MT8186_IRQ_17,
+> +	MT8186_IRQ_18,
+> +	MT8186_IRQ_19,
+> +	MT8186_IRQ_20,
+> +	MT8186_IRQ_21,
+> +	MT8186_IRQ_22,
+> +	MT8186_IRQ_23,
+> +	MT8186_IRQ_24,
+> +	MT8186_IRQ_25,
+> +	MT8186_IRQ_26,
+> +	MT8186_IRQ_NUM,
+> +};
+> +
+> +enum {
+> +	MT8186_AFE_IRQ_DIR_MCU = 0,
+> +	MT8186_AFE_IRQ_DIR_DSP,
+> +	MT8186_AFE_IRQ_DIR_BOTH,
+> +};
+> +
+> +enum {
+> +	MTKAIF_PROTOCOL_1 = 0,
+> +	MTKAIF_PROTOCOL_2,
+> +	MTKAIF_PROTOCOL_2_CLK_P2,
+> +};
+> +
+> +enum {
+> +	MTK_AFE_ADDA_DL_GAIN_MUTE = 0,
+> +	MTK_AFE_ADDA_DL_GAIN_NORMAL = 0xf74f,
+> +	/* SA suggest apply -0.3db to audio/speech path */
+> +};
+> +
+> +#define MTK_SPK_NOT_SMARTPA_STR "MTK_SPK_NOT_SMARTPA"
+> +#define MTK_SPK_RICHTEK_RT5509_STR "MTK_SPK_RICHTEK_RT5509"
+> +#define MTK_SPK_MEDIATEK_MT6660_STR "MTK_SPK_MEDIATEK_MT6660"
+> +#define MTK_SPK_GOODIX_TFA9874_STR "MTK_SPK_GOODIX_TFA9874"
+> +
+> +#define MTK_SPK_I2S_0_STR "MTK_SPK_I2S_0"
+> +#define MTK_SPK_I2S_1_STR "MTK_SPK_I2S_1"
+> +#define MTK_SPK_I2S_2_STR "MTK_SPK_I2S_2"
+> +#define MTK_SPK_I2S_3_STR "MTK_SPK_I2S_3"
+> +#define MTK_SPK_I2S_5_STR "MTK_SPK_I2S_5"
+> +#define MTK_SPK_I2S_6_STR "MTK_SPK_I2S_6"
+> +#define MTK_SPK_I2S_7_STR "MTK_SPK_I2S_7"
+> +#define MTK_SPK_I2S_8_STR "MTK_SPK_I2S_8"
+> +#define MTK_SPK_I2S_9_STR "MTK_SPK_I2S_9"
 
-> 
-> Thanks
->    j
-> 
->>  ---
->>  Changes since v1:
->>    - Reorganize variable declaration
->>    - Change the power-on delay range to 3000-3500 microseconds.
->> 
->>   drivers/media/i2c/ak7375.c | 39 
->> ++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 39 insertions(+)
->> 
->>  diff --git a/drivers/media/i2c/ak7375.c b/drivers/media/i2c/ak7375.c
->>  index 40b1a4aa846c..c2b2542a0056 100644
->>  --- a/drivers/media/i2c/ak7375.c
->>  +++ b/drivers/media/i2c/ak7375.c
->>  @@ -6,6 +6,7 @@
->>   #include <linux/i2c.h>
->>   #include <linux/module.h>
->>   #include <linux/pm_runtime.h>
->>  +#include <linux/regulator/consumer.h>
->>   #include <media/v4l2-ctrls.h>
->>   #include <media/v4l2-device.h>
->> 
->>  @@ -23,17 +24,32 @@
->>    */
->>   #define AK7375_CTRL_STEPS	64
->>   #define AK7375_CTRL_DELAY_US	1000
->>  +/*
->>  + * The vcm takes around 3 ms to power on and start taking
->>  + * I2C messages. This value was found experimentally due to
->>  + * lack of documentation.
->>  + */
->>  +#define AK7375_POWER_DELAY_US	3000
->> 
->>   #define AK7375_REG_POSITION	0x0
->>   #define AK7375_REG_CONT		0x2
->>   #define AK7375_MODE_ACTIVE	0x0
->>   #define AK7375_MODE_STANDBY	0x40
->> 
->>  +static const char * const ak7375_supply_names[] = {
->>  +	"vdd",
->>  +	"vio",
->>  +};
->>  +
->>  +#define AK7375_NUM_SUPPLIES ARRAY_SIZE(ak7375_supply_names)
->>  +
->>   /* ak7375 device structure */
->>   struct ak7375_device {
->>   	struct v4l2_ctrl_handler ctrls_vcm;
->>   	struct v4l2_subdev sd;
->>   	struct v4l2_ctrl *focus;
->>  +	struct regulator_bulk_data supplies[AK7375_NUM_SUPPLIES];
->>  +
->>   	/* active or standby mode */
->>   	bool active;
->>   };
->>  @@ -133,12 +149,24 @@ static int ak7375_probe(struct i2c_client 
->> *client)
->>   {
->>   	struct ak7375_device *ak7375_dev;
->>   	int ret;
->>  +	int i;
->> 
->>   	ak7375_dev = devm_kzalloc(&client->dev, sizeof(*ak7375_dev),
->>   				  GFP_KERNEL);
->>   	if (!ak7375_dev)
->>   		return -ENOMEM;
->> 
->>  +	for (i = 0; i < AK7375_NUM_SUPPLIES; i++)
->>  +		ak7375_dev->supplies[i].supply = ak7375_supply_names[i];
->>  +
->>  +	ret = devm_regulator_bulk_get(&client->dev, AK7375_NUM_SUPPLIES,
->>  +				      ak7375_dev->supplies);
->>  +	if (ret) {
->>  +		dev_err(&client->dev, "Failed to get regulators: %pe",
->>  +			ERR_PTR(ret));
->>  +		return ret;
->>  +	}
->>  +
->>   	v4l2_i2c_subdev_init(&ak7375_dev->sd, client, &ak7375_ops);
->>   	ak7375_dev->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
->>   	ak7375_dev->sd.internal_ops = &ak7375_int_ops;
->>  @@ -210,6 +238,10 @@ static int __maybe_unused 
->> ak7375_vcm_suspend(struct device *dev)
->>   	if (ret)
->>   		dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
->> 
->>  +	ret = regulator_bulk_disable(AK7375_NUM_SUPPLIES, 
->> ak7375_dev->supplies);
->>  +	if (ret)
->>  +		return ret;
->>  +
->>   	ak7375_dev->active = false;
->> 
->>   	return 0;
->>  @@ -230,6 +262,13 @@ static int __maybe_unused 
->> ak7375_vcm_resume(struct device *dev)
->>   	if (ak7375_dev->active)
->>   		return 0;
->> 
->>  +	ret = regulator_bulk_enable(AK7375_NUM_SUPPLIES, 
->> ak7375_dev->supplies);
->>  +	if (ret)
->>  +		return ret;
->>  +
->>  +	/* Wait for vcm to become ready */
->>  +	usleep_range(AK7375_POWER_DELAY_US, AK7375_POWER_DELAY_US + 500);
->>  +
->>   	ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_CONT,
->>   		AK7375_MODE_ACTIVE, 1);
->>   	if (ret) {
->>  --
->>  2.37.0
->> 
+These definitions (and some more) are unused. Please drop.
 
+Everything else looks ok to me.
 
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
