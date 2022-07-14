@@ -2,177 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D97C574B9C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:13:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99133574B9E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 13:14:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234232AbiGNLNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 07:13:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52432 "EHLO
+        id S238023AbiGNLOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 07:14:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230354AbiGNLNd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:13:33 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDEB94;
-        Thu, 14 Jul 2022 04:13:32 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B8BB7383;
-        Thu, 14 Jul 2022 13:13:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1657797209;
-        bh=a034zt1CHGts0wkKQYLVZY2fHsIPM2I6OaTz0ppUIac=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FPEEbMigYADxGc+pdwKEMadeJHTkLcNrDswOYIrINNEBSZgExORD0H7imUnpPcZMp
-         bf+vqFZ1ktHf7UGMxsEg/UDNAvBN2xLR1yZcbOTmrH9W0muyHUfLR/QS411VFsmWwI
-         NGlyq3Ps6ohOKbhQXpjEeMs3n0GpASnWPlewk7IM=
-Date:   Thu, 14 Jul 2022 14:12:59 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org,
-        Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S230354AbiGNLOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 07:14:00 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4500BDFBC
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:13:58 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id t1so2218810lft.8
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 04:13:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=PT/4K4arBk0MnJ0M0dc1KtDYYfffmFSSHZchX6nK/Ts=;
+        b=pf4++Jveg52p97y240axHMxQDcWVufltds5BIwpqNEEdokgGLbvGXxhdnmQvXFYNhD
+         SOPL7g724E5yqW1esWnTaCzkujDBKANOISH0TPctyzq3U7t7+yqYpfJsiRfLzikQwwtr
+         AhD0ALAD9huWSDA5ChdwJzCMM0GaBrdBp54Kq4dNPdCg6XjWxPdMbVLK+DYpDWKK08iQ
+         f9Xnvp/XsrW5G2JoMXLaExIK8vKDTQdaGQXHjXWvGrX+m7UhcUtGcEgVfezv1difa5MQ
+         bFDyN7Eg+W4JdWMTml0yhdQRmoZYBCjCe89C86m43Eq6HW1+oPZS5r+xhDRMYo3s+diH
+         4GYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PT/4K4arBk0MnJ0M0dc1KtDYYfffmFSSHZchX6nK/Ts=;
+        b=VNgg3wqe1/hQvGUZutAux01Z9Lu3sYVEkEzfNvN8AAmagddE6FJWBwVasG6jgblc2d
+         KzwbIq6AGC96uK7rHlFuNBV/cLI/m+TwdZwG1CTP29i5LEcQm17iViYZAEKWHg+sMNXa
+         a4FeVevjcmCHPlA/WRQaAA3thEJWYYk1FEZ19Vvix3KpApa+h69PHJmPb5/qgsskrKAs
+         iyv3UKUnv5uDta5TsDgliSyx2XwZ5rLuktbOLt/WT1V07S1bbUC3deNXbGNXJEmf6Hjn
+         KjBgsa2nRHVjtRFckh2idUb28AEKEBioAH2v4WrT51/1atyleTs446HddSWacsMsVjKp
+         xLOA==
+X-Gm-Message-State: AJIora+xewPtsTQR2WUE78oa2VYuQ6gEj5t9IFcCoROdpvifQhyQPcr0
+        Y6046QBWIAIDT/4uP3cbUHcQ8w==
+X-Google-Smtp-Source: AGRyM1tgyfO4kzaAmSUqA5QzYgflARPcKrYmikUVFSwIhu+b+fdsGMhLvkoOeZsyDKJUvBtulfFuXQ==
+X-Received: by 2002:a05:6512:12cc:b0:481:338:d3f with SMTP id p12-20020a05651212cc00b0048103380d3fmr4729553lfg.464.1657797236663;
+        Thu, 14 Jul 2022 04:13:56 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id 13-20020a05651c128d00b0025d39993856sm229553ljc.127.2022.07.14.04.13.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jul 2022 04:13:56 -0700 (PDT)
+Message-ID: <879c9348-7841-4569-7dce-5714b4b3f535@linaro.org>
+Date:   Thu, 14 Jul 2022 13:13:53 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sm8450: Add SDHCI2
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
- camera sensor binding
-Message-ID: <Ys/6O2H/eDEWYHei@pendragon.ideasonboard.com>
-References: <cover.1657786765.git.vkh@melexis.com>
- <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
- <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
- <c87132c4-5801-2f1f-8ef9-3997474cf7a5@linaro.org>
- <Ys/zvH3ICr4zpTLH@pendragon.ideasonboard.com>
- <7e362d83-36c2-00ed-6525-37197ee8e5d7@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <7e362d83-36c2-00ed-6525-37197ee8e5d7@linaro.org>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220713201047.1449786-1-konrad.dybcio@somainline.org>
+ <20220713201047.1449786-3-konrad.dybcio@somainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220713201047.1449786-3-konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 01:00:24PM +0200, Krzysztof Kozlowski wrote:
-> On 14/07/2022 12:45, Laurent Pinchart wrote:
-> > On Thu, Jul 14, 2022 at 12:35:52PM +0200, Krzysztof Kozlowski wrote:
-> >> On 14/07/2022 12:06, Laurent Pinchart wrote:
-> >>> Hi Volodymyr,
-> >>>
-> >>> Thank you for the patch.
-> >>>
-> >>> On Thu, Jul 14, 2022 at 11:34:47AM +0300, Volodymyr Kharuk wrote:
-> >>>> Add device tree binding of the mlx7502x and update MAINTAINERS
-> >>>>
-> >>>> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-> >>>> ---
-> >>>>  .../bindings/media/i2c/melexis,mlx7502x.yaml  | 146 ++++++++++++++++++
-> >>>>  MAINTAINERS                                   |   1 +
-> >>>>  2 files changed, 147 insertions(+)
-> >>>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> >>>> new file mode 100644
-> >>>> index 000000000000..4ac91f7a26b6
-> >>>> --- /dev/null
-> >>>> +++ b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> >>>> @@ -0,0 +1,146 @@
-> >>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >>>> +%YAML 1.2
-> >>>> +---
-> >>>> +$id: http://devicetree.org/schemas/media/i2c/melexis,mlx7502x.yaml#
-> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>> +
-> >>>> +title: Melexis ToF 7502x MIPI CSI-2 Sensor
-> >>>> +
-> >>>> +maintainers:
-> >>>> +  - Volodymyr Kharuk <vkh@melexis.com>
-> >>>> +
-> >>>> +description: |-
-> >>>> +  Melexis ToF 7502x sensors has a CSI-2 output. It supports 2 and 4 lanes,
-> >>>> +  and mipi speeds are 300, 600, 704, 800, 904, 960Mbs. Supported format is RAW12.
-> >>>> +  Sensor 75026 is QVGA, while 75027 is VGA sensor.
-> >>>> +  If you use compatible = "melexis,mlx7502x", then autodetect will be called.
-> >>>
-> >>> I'd move this last line as a description of the compatible property, but
-> >>> I'm also not sure this should be mentioned in the DT bindings, as it's a
-> >>> driver implementation detail. I'm actually not sure we should support it
-> >>> with three different compatible values as proposed, as without this
-> >>> documentation users will have a hard time figuring out what compatible
-> >>> value to pick.
-> >>>
-> >>> One option would be to support the following three compatible values:
-> >>>
-> >>> 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
-> >>> 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
-> >>> 	compatible = "melexis,mlx7502x";
-> >>>
-> >>> The last one only would trigger autodetection. I'm still not sure how to
-> >>> document that properly in bindings though.
-> >>
-> >> I missed that part of binding.
-> >>
-> >> Wildcards are not allowed in compatible, so mlx7502x has to go.
-> > 
-> > Really ? We've had fallback generic compatible strings since the
-> > beginning.
+On 13/07/2022 22:10, Konrad Dybcio wrote:
+> Add and configure the SDHCI host responsible for (mostly) SD Card and
+> its corresponding pins' sleep states.
 > 
-> Fallback generic compatibles are allowed. Wildcards not. Wildcards were
-> actually never explicitly allowed, they just slipped in to many
-> bindings... We have several discussions on this on mailing list, so no
-> real point to repeat the arguments.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 59 ++++++++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 > 
-> There is a difference between generic fallback. If the device follows
-> clear specification and version, e.g. "foo-bar-v4", you can use it for
-> generic compatible. This is more common in SoC components. Requirement -
-> there is a clear mapping between versions and SoCs.
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 09e7587de0de..daea2fe7f83d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -2355,6 +2355,26 @@ tlmm: pinctrl@f100000 {
+>  			gpio-ranges = <&tlmm 0 0 211>;
+>  			wakeup-parent = <&pdc>;
+>  
+> +			sdc2_sleep_state: sdc2-sleep {
+> +				clk {
+> +					pins = "sdc2_clk";
+> +					drive-strength = <2>;
+> +					bias-disable;
+> +				};
+> +
+> +				cmd {
+> +					pins = "sdc2_cmd";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				data {
+> +					pins = "sdc2_data";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +			};
+> +
+>  			pcie0_default_state: pcie0-default-state {
+>  				perst {
+>  					pins = "gpio94";
+> @@ -3101,6 +3121,45 @@ ufs_mem_phy_lanes: phy@1d87400 {
+>  			};
+>  		};
+>  
+> +		sdhc_2: sdhci@8804000 {
+> +			compatible = "qcom,sm8450-sdhci", "qcom,sdhci-msm-v5";
+> +			reg = <0 0x08804000 0 0x1000>;
+> +
+> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hc_irq", "pwr_irq";
+> +
+> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+> +				 <&gcc GCC_SDCC2_APPS_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "iface", "core", "xo";
+> +			resets = <&gcc GCC_SDCC2_BCR>;
+> +			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
+> +			interconnect-names = "sdhc-ddr","cpu-sdhc";
+> +			iommus = <&apps_smmu 0x4a0 0x0>;
+> +			power-domains = <&rpmhpd SM8450_CX>;
+> +			operating-points-v2 = <&sdhc2_opp_table>;
+> +			bus-width = <4>;
+> +			dma-coherent;
+> +
+> +			status = "disabled";
+> +
+> +			sdhc2_opp_table: sdhc2-opp-table {
 
-I'm not sure to see a clear difference between the two concepts.
+This does not match the bindings. Just "opp-table".
 
-> >> Anyway what does this autodetection mean?
-> > 
-> > As far as I understand, it means that the driver will use a hardware
-> > identification register to figure out if the sensor is a 75026 or 75027.
-> 
-> Then there is no need to define 75027 compatible. DT is for cases where
-> autodetection does not work...
 
-It's autodetection of the exact device model, those are I2C devices so
-we still need DT, and we still need to know that it's one of the
-MLX75026 or MLX75027.
-
-> > The upside is that one doesn't need to change the device tree when
-> > swapping between those two sensors. The downside is that the sensor
-> > needs to be powered up at probe time. Depending on the platform, one of
-> > those two behaviours is preferred. Auto-detection is nice, but in
-> > laptops or tablets (not a use case for this particular device, but the
-> > problem applies to camera sensors in general), it would mean that the
-> > privacy LED of the camera could be briefly lit at boot time due to the
-> > sensor being powered on, which can worry users.
-> 
-> OK, that's reasonable argument for dedicated compatible but I don't
-> understand why you cannot perform autodetection the moment device is
-> actually powered up (first time). I understand it is nice and easy to
-> make everything in the probe and most devices perform it that way. But
-> if you don't want to do it in the probe - DT is not a workaround for this...
-
-For cameras, we often deal with complex pipelines with multiple external
-devices and multiple IP cores, with drivers that need to communicate
-with each other to initialize the complete camera system. For instance,
-each camera-related component in the system registers itself in a media
-graph that can be queried from userspace and exposes information about
-all devices, including their model. There's no power up of any device
-when this query is being performed from userspace. It could possibly be
-changed (and maybe it should, for reasons unrelated to this discussion),
-but we're looking at pretty much a complete redesign of V4L2 and MC
-then.
-
--- 
-Regards,
-
-Laurent Pinchart
+Best regards,
+Krzysztof
