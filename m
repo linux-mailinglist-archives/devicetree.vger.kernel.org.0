@@ -2,93 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84AF3575083
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 16:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 767DE575090
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 16:16:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231937AbiGNONT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 10:13:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50790 "EHLO
+        id S238189AbiGNOQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 10:16:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239185AbiGNONI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 10:13:08 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3380F57265;
-        Thu, 14 Jul 2022 07:13:07 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S240319AbiGNOPw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 10:15:52 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873DB643DB
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 07:15:50 -0700 (PDT)
+Received: from SoMainline.org (D57D4C6E.static.ziggozakelijk.nl [213.125.76.110])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B6EFC6601A3B;
-        Thu, 14 Jul 2022 15:13:04 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657807985;
-        bh=K1pAx4yUym6fPpWmvpm8rAcGNbLZfMNPgYQz3MOq/KM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=KkuVebcLx9P3YNSG5CYljp9B98IOxqVxAVxR3Z5DXxVLFCO+yM9qMTKuKQxVkUg0x
-         pxpEm2JYS8pt7RkXL8eG4YquZ2Q/pIF3pUQ9QIpecnHutC6jxUFr4mIyJplFhnpAma
-         AKqpbRQh/9D5UXVYx79cdq5cynV3pV8Q/Nk9xehoS4cucN25RG8a0HNRaWpdipcs2R
-         PeOV6P3gCzUcTCi22FNwHoG+fgblDAhXkGhVr9pPito0xY66ujKkrbRY8Jlh183eQy
-         wvUmwpMItZTzcRGfLOgoK9qXCmwUM154IToVD4OsPNoHHiXfMJc540R5WZdVutvGK/
-         LYYyPSkRARddw==
-Message-ID: <6991dcc6-5902-a9ed-78c4-c7bd4f60f91c@collabora.com>
-Date:   Thu, 14 Jul 2022 16:13:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v9 5/8] ASoC: mediatek: mt8186: add machine driver with
- mt6366, da7219 and max98357
-Content-Language: en-US
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>, broonie@kernel.org,
-        robh+dt@kernel.org
-Cc:     aaronyu@google.com, matthias.bgg@gmail.com, trevor.wu@mediatek.com,
-        tzungbi@google.com, julianbraha@gmail.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220712150442.32504-1-jiaxin.yu@mediatek.com>
- <20220712150442.32504-6-jiaxin.yu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 9FEB23F72A;
+        Thu, 14 Jul 2022 16:15:47 +0200 (CEST)
+Date:   Thu, 14 Jul 2022 16:15:45 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220712150442.32504-6-jiaxin.yu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        jamipkettunen@somainline.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: Add device tree for Sony Xperia
+ 1 IV
+Message-ID: <20220714141545.2z65355wgjuqeuwl@SoMainline.org>
+References: <20220714123406.1919836-1-konrad.dybcio@somainline.org>
+ <20220714123406.1919836-5-konrad.dybcio@somainline.org>
+ <ef935a6f-77a2-5c9a-2cbc-0b0192aee56b@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ef935a6f-77a2-5c9a-2cbc-0b0192aee56b@collabora.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 12/07/22 17:04, Jiaxin Yu ha scritto:
-> Add support for mt8186 board with mt6366, da7219 and max98357.
+On 2022-07-14 14:51:36, AngeloGioacchino Del Regno wrote:
+[..]
+> > +&i2c14 {
+> > +	clock-frequency = <1000000>;
+> > +	status = "okay";
+> > +
+> > +	cs35l41_l: speaker-amp@40 {
 > 
-> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> ---
->   sound/soc/mediatek/Kconfig                    |   16 +
->   sound/soc/mediatek/mt8186/Makefile            |    1 +
->   .../mt8186/mt8186-mt6366-da7219-max98357.c    | 1002 +++++++++++++++++
->   3 files changed, 1019 insertions(+)
->   create mode 100644 sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.c
-> 
+> What about an even more generic audio-amplifier@40 ?
 
-> +
-> +static int mt8186_mt6366_da7219_max98357_dev_probe(struct platform_device *pdev)
-> +{
-> +	struct snd_soc_card *card;
-> +	struct snd_soc_dai_link *dai_link;
-> +	struct mt8186_mt6366_da7219_max98357_priv *priv;
-> +	struct device_node *platform_node, *headset_codec, *playback_codec;
-> +	int ret, i;
-> +
-> +	card = (struct snd_soc_card *)of_device_get_match_data(&pdev->dev);
+If I understood Krzystof's comment correctly the "generic name" request
+is to describe in human terms what kind of device this is and perhaps
+what it is used for.  Since it is specifically driving a physical
+speaker on this phone, carrying the word "speaker" in the name is better
+than "audio", IMO.
 
-You don't really need this cast, plus, you can use device_get_match_data() instead.
+I'm indifferent as to whether amp is written out as amplifier.
 
-After that:
+- Marijn
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > +		compatible = "cirrus,cs35l41";
+> > +		reg = <0x40>;
+> > +		interrupt-parent = <&tlmm>;
+> > +		interrupts = <182 IRQ_TYPE_LEVEL_LOW>;
+> > +		reset-gpios = <&tlmm 183 GPIO_ACTIVE_HIGH>;
+> > +		cirrus,boost-peak-milliamp = <4000>;
+> > +		cirrus,boost-ind-nanohenry = <1000>;
+> > +		cirrus,boost-cap-microfarad = <15>;
+> > +		cirrus,gpio2-src-select = <2>;
+> > +		cirrus,gpio2-output-enable;
+> > +		cirrus,asp-sdout-hiz = <3>;
+> > +		#sound-dai-cells = <1>;
+> > +	};
+> > +
+> > +	cs35l41_r: speaker-amp@41 {
+> > +		compatible = "cirrus,cs35l41";
+> > +		reg = <0x41>;
+> > +		interrupt-parent = <&tlmm>;
+> > +		interrupts = <182 IRQ_TYPE_LEVEL_LOW>;
+> > +		reset-gpios = <&tlmm 183 GPIO_ACTIVE_HIGH>;
+> > +		cirrus,boost-peak-milliamp = <4000>;
+> > +		cirrus,boost-ind-nanohenry = <1000>;
+> > +		cirrus,boost-cap-microfarad = <15>;
+> > +		cirrus,gpio2-src-select = <2>;
+> > +		cirrus,gpio2-output-enable;
+> > +		cirrus,asp-sdout-hiz = <3>;
+> > +		#sound-dai-cells = <1>;
+> > +	};
+> > +};
+> > +
