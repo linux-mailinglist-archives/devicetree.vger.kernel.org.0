@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03FD7574905
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E35E574910
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jul 2022 11:31:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237349AbiGNJae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 05:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35418 "EHLO
+        id S238364AbiGNJba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 05:31:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234808AbiGNJaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:30:19 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 850C72D1C0
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:29:45 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id a9so1804058lfk.11
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:29:45 -0700 (PDT)
+        with ESMTP id S238322AbiGNJbC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 05:31:02 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E7D2C674
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:30:41 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id t1so1826304lft.8
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 02:30:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yEOuNrBYev+o1IcwiET9jNJzGDCPmfSFpx+DLuvyDlw=;
-        b=ADGZGqHS+KsPPXQ2vye8T68IwBUeTG5I19gcCOX86Xr6TeAKosTtwALFoPE+2m4XQK
-         t7cxRmQTf22lsmvDTwxcoLpbkgIzoPomlFKlm+RFeQkKN66C4jvX8UM6b7QvNYzDV5uE
-         I/7E/1YvL9dP6BGotOxJ/gyihFzm175LEspNeODYpsQaQ3Ltf3Hxd7C6H6V/MAyOV4cs
-         WVOk4mapQluVrdenPXMTWgZHs1zhG5kJNyhKax8WKphHyfZeMu58Urwv7XDmgad5lzIR
-         ighJygKdnSY1pI/a5HffGtZ07ndjkgiFBSRfL+XDdVeQOZl8DbeZsnbwqybdSHgGU8J9
-         IFzA==
+        bh=SHM451NPbgKsmNQ8PtztjljKT0jHIg5pN+JDdK2LOGc=;
+        b=JGBVhHIf2Ztn+/rTU20oGHT3tRc+uVB74gZZOjFy/Oq4+pilCf+trBlX2JYNeOWhfy
+         HIsDDNEGlB/opLqgZwih4kcG9bVjpkXRKAQMQo/BBZnOL49xGsEEhHAtesqMWaf0sP2H
+         4KM1n3403NMikdrDY5LvSOgXPvH+qMXNROXjvbBpy1Gpeo8Aq5tGC8DGkWwRcGuG4phH
+         DNCHnWnaFiBGakxRgtEa6Omf+pisz8qLAJGenYcJR2QwM4uPnQGsciqVkCrq41L4sN0V
+         mhm1vQhnA1idS6q7gUEmq7sWUrSZ4QPUs9jYOcvwfsFW8KQjI4mjQRqN8oBhgHG4jyDP
+         9Pzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=yEOuNrBYev+o1IcwiET9jNJzGDCPmfSFpx+DLuvyDlw=;
-        b=XKMCmhAHYzEYJom0dMMzbapCzXkT4+gtkb9W7KEKX3/9aXNZOb+pfRGJB8YpvkJKea
-         pkliOv0IW0ewfZ6Qetz9181xVooqulhiK1fF0Rn096HQN8SpIa4wKOV6I7/9ylLYxstD
-         bs48+MhMmAzGp+HYeaL6GM3aZ2qZNJ8qz/8AydQl0uonP0Ax2pfODmXUBnfSWdVZqYFa
-         W7e5xQIo7dy6NQRLyiQfRM+ujhIpHYpJc3FMD+wfSAAFDOGI1q12DKAfaoid9mehkHgH
-         LkBCmgzVN9jvAIe9LBXTgQD+xr67XQy6q/fhkpXpVocjL+kZtWmEKTRd03XetftEsvky
-         Sq/g==
-X-Gm-Message-State: AJIora/pDQxmYSGebx9DgJNRFvWXjnmNtaPOZjhtpziKW11oGvSMwO9v
-        FNq/Q5C9N18AMjJ/c7R75bcRKQ==
-X-Google-Smtp-Source: AGRyM1uIZ8Aq9O28VGC8BeThyVI5AV6EvuwlsA2x0KZizc6umgDcOhBraI/zRvUjGs9IFGZaOwJ4gw==
-X-Received: by 2002:a05:6512:2308:b0:48a:f9d:7389 with SMTP id o8-20020a056512230800b0048a0f9d7389mr3791536lfu.235.1657790983374;
-        Thu, 14 Jul 2022 02:29:43 -0700 (PDT)
+        bh=SHM451NPbgKsmNQ8PtztjljKT0jHIg5pN+JDdK2LOGc=;
+        b=sQ7xQMgUWjwRXgm5Fg7i8m00BCrumdmn/B1Ip2gzHiFUMTgu3Rd23JH4JjaDdIDEuJ
+         GdJS9kVjYJnPy5UMfsPAy/4fc8nsGz5/sMGr/mKLGz1jbecksWIDNNe+q+TMCUsvdqQ3
+         Q0YxQPxTstqFFN0t3WsJggQPMrxKdK8hbtVtwSoiHv3rGVjLENf0lb9jgNr4+CvvAYqW
+         qfp4oUWeeqFT+wEWdIMJizDCFKUX7WWY/Lz/xnPk8CkHLX861WNtg4VytGzKhG9y2tD9
+         uBQ8rYVBGe6ysWtTAMU7UtBRdr+XfP/6g0fuIajyJu2EzJOps9rTg08mOTIakm3HRE2M
+         /OXA==
+X-Gm-Message-State: AJIora/4y93H/+gBukethPoqGYsMdvhl7T+iw7rF6ODFk/5c1V4L1mDJ
+        QE/qDbmKa8nU9U1p6HT6zKFl/g==
+X-Google-Smtp-Source: AGRyM1vZbPmXWd/Rg+BwcDzMyac2id4EVE5D5arZiQqoCdYui/t3G6LCIBqQ6q4eve6FLfeArgfxkA==
+X-Received: by 2002:a05:6512:22c8:b0:488:e69b:9311 with SMTP id g8-20020a05651222c800b00488e69b9311mr4450974lfu.564.1657791039566;
+        Thu, 14 Jul 2022 02:30:39 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id f13-20020ac251ad000000b00482d0643976sm256243lfk.258.2022.07.14.02.29.41
+        by smtp.gmail.com with ESMTPSA id k12-20020ac257cc000000b004811bf4999csm257295lfo.290.2022.07.14.02.30.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 02:29:42 -0700 (PDT)
-Message-ID: <90a56db5-f41e-681d-2b3e-c16b6ab456a5@linaro.org>
-Date:   Thu, 14 Jul 2022 11:29:40 +0200
+        Thu, 14 Jul 2022 02:30:39 -0700 (PDT)
+Message-ID: <a2706253-41c1-84fa-2e17-053759888214@linaro.org>
+Date:   Thu, 14 Jul 2022 11:30:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
@@ -92,10 +92,20 @@ On 07/07/2022 15:47, Johan Hovold wrote:
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
 >  drivers/phy/qualcomm/phy-qcom-qmp-pcie-msm8996.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie-msm8996.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie-msm8996.c
+> index 812d14afb5ec..af2f14a53b38 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie-msm8996.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie-msm8996.c
+> @@ -872,7 +872,6 @@ int qcom_qmp_phy_pcie_msm8996_create(struct device *dev, struct device_node *np,
+>  	struct qcom_qmp *qmp = dev_get_drvdata(dev);
+>  	struct phy *generic_phy;
+>  	struct qmp_phy *qphy;
+> -	char prop_name[MAX_PROP_NAME];
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Wait, it looks like your patchset is not bisectable. Be sure each commit
+compiles cleanly.
 
 Best regards,
 Krzysztof
