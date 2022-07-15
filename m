@@ -2,295 +2,737 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90592575EB5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:39:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55557575ED9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:53:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231519AbiGOJiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 05:38:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54046 "EHLO
+        id S232190AbiGOJxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 05:53:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbiGOJiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 05:38:11 -0400
-Received: from mail-40132.protonmail.ch (mail-40132.protonmail.ch [185.70.40.132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A1B7E834
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:38:10 -0700 (PDT)
-Date:   Fri, 15 Jul 2022 09:37:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1657877888; x=1658137088;
-        bh=nJjBOg+KZDuep5ju6jcUjcAcUZtT4ZszCml4jwBd4aU=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:Feedback-ID:From:To:
-         Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID;
-        b=fCGrqFROQUXc5onX+HyIw45ZzERCbHcWcbThFtPtsi1d0jpMP44nL5j8jgYUVJPrO
-         YFLrZmYO1LTl2rj1pVsX9oFmT9oHZ/Vu4/kJQprUw8awrk+/3G0CLfKShnHY9RElWt
-         dt9BR42o6aUmjTQsA+DFL5cUt0UqwHPQMUPkhBlVO4gPopaT3Aw3gTiHfnxtzySAZ5
-         /eXtkRsH1XUkO3PgJ4/2bQschdESmheCBqearkncWb2kMYUFcc5GCAfFJY9BAj4X1h
-         hbleveKnmRi9JRWphvSvoV3woskH4Rcct4xC8sCO9b/moQRXS88HdxZKcmDCCFy+CW
-         9j9Co+0aC3LtQ==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S232217AbiGOJxO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 05:53:14 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F7D7AB21
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:53:10 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id a10so5152893ljj.5
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:53:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iWnFHdJkpHs2zY2dBDf4t+WlNVKjMqc8zpf/aZJAmpo=;
+        b=qOH3sNOStNit+gxBsEgvbVZ1NARteYO7cNa1eTXNmsQ50grcdqQtxcn/JbJvFKOEch
+         Z9Zgbv7I4bgEaYCtDFvuD+fiiI4JN26pl7qidz6kc4s819sWSMdPhP/d5157eUnqFfhz
+         Gqbb52/ybOPvzVcA9f7ja3ux0/De0FDN7RjisqeJ5GkzXYLB4Jun04rXL447infvEVq2
+         Hr3PGgGWMw/s3lxOhaU6PlHP6En+8WLXEVzP/8C53R+jQHJCmLsV1IbbjYqk2jNN+khp
+         4k/LO1H/RgDdHhihZ+R87Y05PsAYCTgYcaUrfl0+X6etMUyVoRtJbPUsRt0oqlFe7rqN
+         +2Ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iWnFHdJkpHs2zY2dBDf4t+WlNVKjMqc8zpf/aZJAmpo=;
+        b=yIRL4sWbSIpnF/WOYSqk3n1bmak3V7TC22jQuO9ohXPUI//QQYvy+HZbhGDBKwa9pi
+         yKexDx/Isc9r/N4BYc1DeFRgHXdTKNtNGm9na44SFWy0WbCpIG9n0/NzZ1UsllAahDVb
+         4fgPc0+ja8TPz/MhsGw93I5BCM8jGKQuIEB8grrjYEP1dZkfaLwe+e0lyhQoqclrunvG
+         c0/ocGyMXFHpfNYiBOClTvsEjMXR5YnAioISqD7wgmrvHs+Xy2v4Ji+btcqWncbBC7Xa
+         qjc9UMwByw5jpYtu5pc39vJ1c8abb5hVw3vCItDfFu16FslsN4r7YQA0k0hKix/cF0kg
+         HEJQ==
+X-Gm-Message-State: AJIora9FPkfDSenxzZxLzEwL/guGogP1QDRLFHio2M/9PALYBLSbWL1c
+        2BVYwb7rTop9eCQugSZwW8yMyA==
+X-Google-Smtp-Source: AGRyM1v3T6c8Gz65tvi7jm/1E82uX3ZyTk33AETMHjR0AKvb9qI1lNUO86YvGTPjaArRZji/Bhg6gw==
+X-Received: by 2002:a2e:805a:0:b0:25d:3f51:3cac with SMTP id p26-20020a2e805a000000b0025d3f513cacmr6750434ljg.30.1657878788966;
+        Fri, 15 Jul 2022 02:53:08 -0700 (PDT)
+Received: from krzk-bin.. (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id e5-20020a2e9845000000b0025d9f28db3esm487795ljj.20.2022.07.15.02.53.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jul 2022 02:53:08 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Subject: [PATCH v2 1/4] arm64: dts: qcom: msm8916-samsung-e2015: Add initial common dtsi
-Message-ID: <20220715093653.61933-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Kent Gustavsson <kent@minoris.se>,
+        Tomislav Denis <tomislav.denis@avl.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Beniamin Bia <beniamin.bia@analog.com>,
+        Patrick Vasseur <patrick.vasseur@c-s.fr>,
+        Vladimir Barinov <vladimir.barinov@cogentembedded.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Philippe Reynes <tremyfr@yahoo.fr>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Akinobu Mita <akinobu.mita@gmail.com>,
+        Alexandru Lazar <alazar@startmail.com>,
+        Oskar Andero <oskar.andero@gmail.com>,
+        =?UTF-8?q?M=C3=A5rten=20Lindahl?= <martenli@axis.com>,
+        Bogdan Pricop <bogdan.pricop@emutex.com>,
+        Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-fbdev@vger.kernel.org
+Cc:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RFC PATCH] dt-bindings: iio: adc: use spi-peripheral-props.yaml
+Date:   Fri, 15 Jul 2022 11:53:02 +0200
+Message-Id: <20220715095302.214276-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,SPF_HELO_PASS,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung Galaxy E5, E7 and Grand Max are smartphones using the MSM8916 SoC
-released in 2015.
+Instead of listing directly properties typical for SPI peripherals,
+reference the spi-peripheral-props.yaml schema.  This allows using all
+properties typical for SPI-connected devices, even these which device
+bindings author did not tried yet.
 
-e2015 and a2015 are similar, with some differences in accelerometer,
-MUIC and Vibrator. The common parts are shared in
-msm8916-samsung-a2015-common.dtsi to reduce duplication.
+Remove the spi-* properties which now come via spi-peripheral-props.yaml
+schema, except for the cases when device schema adds some constraints
+like maximum frequency.
 
-Add a common device tree for with initial support for:
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-- GPIO keys and vibrator
-- Hall sensor (except Grand Max)
-- SDHCI (internal and external storage)
-- USB Device Mode
-- UART (on USB connector via the SM5504 MUIC)
-- WCNSS (WiFi/BT)
-- Regulators
-- S3FWRN5 NFC (except Grand Max)
-
-The three devices (and all other variants of E5/E7/Grand Max released in
-2015) are very similar, with some differences in display, touchscreen,
-sensors and NFC. The common parts are shared in
-msm8916-samsung-e2015-common.dtsi to reduce duplication.
-
-Unfortunately, some E5/E7/Grand Max were released with outdated 32-bit
-only firmware and never received any update from Samsung. Since the 32-bit
-TrustZone firmware is signed there seems to be no way currently to
-actually boot this device tree on arm64 Linux on those variants at the
-moment.
-
-However, it is possible to use this device tree by compiling an ARM32
-kernel instead. The device tree can be easily built on ARM32 with
-an #include and it works really well there. To avoid confusion for others
-it is still better to add this device tree on arm64. Otherwise it's easy
-to forget to update this one when making some changes that affect all
-MSM8916 devices.
-
-Maybe someone finds a way to boot ARM64 Linux on those device at some
-point. In this case I expect that this device tree can be simply used
-as-is.
-
-Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
 ---
- arch/arm64/boot/dts/qcom/Makefile             |  3 ++
- .../qcom/msm8916-samsung-e2015-common.dtsi    | 39 +++++++++++++++++++
- .../boot/dts/qcom/msm8916-samsung-e5.dts      | 24 ++++++++++++
- .../boot/dts/qcom/msm8916-samsung-e7.dts      | 29 ++++++++++++++
- .../dts/qcom/msm8916-samsung-grandmax.dts     | 36 +++++++++++++++++
- 5 files changed, 131 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.d=
-tsi
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-e7.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/M=
-akefile
-index 2f8aec2cc6db..941494553b9e 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -15,6 +15,9 @@ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-longcheer-l8910.dt=
-b
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-a3u-eur.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-a5u-eur.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-e5.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-e7.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-grandmax.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-j5.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-serranove.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-wingtech-wt88047.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi b/a=
-rch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-new file mode 100644
-index 000000000000..373154ee2643
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include "msm8916-samsung-a2015-common.dtsi"
-+
-+/ {
-+=09i2c-muic {
-+=09=09/* SM5504 MUIC instead of SM5502 */
-+=09=09/delete-node/ extcon@25;
-+
-+=09=09muic: extcon@14 {
-+=09=09=09compatible =3D "siliconmitus,sm5504-muic";
-+=09=09=09reg =3D <0x14>;
-+
-+=09=09=09interrupt-parent =3D <&msmgpio>;
-+=09=09=09interrupts =3D <12 IRQ_TYPE_EDGE_FALLING>;
-+
-+=09=09=09pinctrl-names =3D "default";
-+=09=09=09pinctrl-0 =3D <&muic_int_default>;
-+=09=09};
-+=09};
-+
-+=09vibrator: vibrator {
-+=09=09compatible =3D "gpio-vibrator";
-+=09=09enable-gpios =3D <&msmgpio 76 GPIO_ACTIVE_HIGH>;
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&motor_en_default>;
-+=09};
-+};
-+
-+&msmgpio {
-+=09motor_en_default: motor-en-default {
-+=09=09pins =3D "gpio76";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts b/arch/arm64/b=
-oot/dts/qcom/msm8916-samsung-e5.dts
-new file mode 100644
-index 000000000000..777eb934eb4b
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-samsung-e2015-common.dtsi"
-+
-+/*
-+ * NOTE: The original firmware from Samsung can only boot ARM32 kernels on=
- some
-+ * variants.
-+ * Unfortunately, the firmware is signed and cannot be replaced easily.
-+ * There seems to be no way to boot ARM64 kernels on 32-bit devices at the
-+ * moment, even though the hardware would support it.
-+ *
-+ * However, it is possible to use this device tree by compiling an ARM32 k=
-ernel
-+ * instead. For clarity and build testing this device tree is maintained n=
-ext
-+ * to the other MSM8916 device trees. However, it is actually used through
-+ * arch/arm/boot/dts/qcom-msm8916-samsung-e5.dts
-+ */
-+
-+/ {
-+=09model =3D "Samsung Galaxy E5";
-+=09compatible =3D "samsung,e5", "qcom,msm8916";
-+=09chassis-type =3D "handset";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e7.dts b/arch/arm64/b=
-oot/dts/qcom/msm8916-samsung-e7.dts
-new file mode 100644
-index 000000000000..b412b61ca258
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e7.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-samsung-e2015-common.dtsi"
-+
-+/*
-+ * NOTE: The original firmware from Samsung can only boot ARM32 kernels on=
- some
-+ * variants.
-+ * Unfortunately, the firmware is signed and cannot be replaced easily.
-+ * There seems to be no way to boot ARM64 kernels on 32-bit devices at the
-+ * moment, even though the hardware would support it.
-+ *
-+ * However, it is possible to use this device tree by compiling an ARM32 k=
-ernel
-+ * instead. For clarity and build testing this device tree is maintained n=
-ext
-+ * to the other MSM8916 device trees. However, it is actually used through
-+ * arch/arm/boot/dts/qcom-msm8916-samsung-e7.dts
-+ */
-+
-+/ {
-+=09model =3D "Samsung Galaxy E7";
-+=09compatible =3D "samsung,e7", "qcom,msm8916";
-+=09chassis-type =3D "handset";
-+};
-+
-+&pm8916_l17 {
-+=09regulator-min-microvolt =3D <3000000>;
-+=09regulator-max-microvolt =3D <3000000>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts b/arch/a=
-rm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
-new file mode 100644
-index 000000000000..41aada4bfb80
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-samsung-e2015-common.dtsi"
-+
-+/*
-+ * NOTE: The original firmware from Samsung can only boot ARM32 kernels on=
- some
-+ * variants.
-+ * Unfortunately, the firmware is signed and cannot be replaced easily.
-+ * There seems to be no way to boot ARM64 kernels on 32-bit devices at the
-+ * moment, even though the hardware would support it.
-+ *
-+ * However, it is possible to use this device tree by compiling an ARM32 k=
-ernel
-+ * instead. For clarity and build testing this device tree is maintained n=
-ext
-+ * to the other MSM8916 device trees. However, it is actually used through
-+ * arch/arm/boot/dts/qcom-msm8916-samsung-grandmax.dts
-+ */
-+
-+/ {
-+=09model =3D "Samsung Galaxy Grand Max";
-+=09compatible =3D "samsung,grandmax", "qcom,msm8916";
-+=09chassis-type =3D "handset";
-+
-+=09/delete-node/ gpio-hall-sensor;
-+=09/delete-node/ i2c-nfc;
-+=09/delete-node/ i2c-tkey;
-+};
-+
-+&vibrator {
-+=09enable-gpios =3D <&msmgpio 72 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&motor_en_default {
-+=09pins =3D "gpio72";
-+};
---
-2.30.2
+This is an RFC with only some files changed, as I am still not sure of
+benefits for typical case - device node has just spi-max-frequency and
+nothing more.  I still find useful to reference the schema, but maybe I
+am missing something?
 
+Before doing wide-tree cleanup like this, I would be happy to receive
+some feedback whether this makes sense.
+---
+ .../bindings/iio/adc/adi,ad7124.yaml          |  7 ++---
+ .../bindings/iio/adc/adi,ad7192.yaml          | 11 +++-----
+ .../bindings/iio/adc/adi,ad7280a.yaml         |  7 ++---
+ .../bindings/iio/adc/adi,ad7292.yaml          |  9 +++----
+ .../bindings/iio/adc/adi,ad7476.yaml          |  8 +++---
+ .../bindings/iio/adc/adi,ad7606.yaml          | 11 +++-----
+ .../bindings/iio/adc/adi,ad7768-1.yaml        | 11 +++-----
+ .../bindings/iio/adc/adi,ad7923.yaml          |  7 ++---
+ .../bindings/iio/adc/holt,hi8435.yaml         |  7 ++---
+ .../bindings/iio/adc/lltc,ltc2496.yaml        |  8 +++---
+ .../bindings/iio/adc/maxim,max1027.yaml       |  5 +++-
+ .../bindings/iio/adc/maxim,max11100.yaml      |  7 +++--
+ .../bindings/iio/adc/maxim,max1118.yaml       | 26 ++++++++++---------
+ .../bindings/iio/adc/maxim,max1241.yaml       |  7 ++---
+ .../bindings/iio/adc/microchip,mcp3201.yaml   |  9 +++----
+ .../bindings/iio/adc/microchip,mcp3911.yaml   |  5 +++-
+ .../bindings/iio/adc/ti,adc0832.yaml          |  7 ++---
+ .../bindings/iio/adc/ti,adc084s021.yaml       |  7 ++---
+ .../bindings/iio/adc/ti,adc108s102.yaml       |  6 +++--
+ .../bindings/iio/adc/ti,adc12138.yaml         |  7 ++---
+ .../bindings/iio/adc/ti,adc128s052.yaml       |  7 ++---
+ .../bindings/iio/adc/ti,ads124s08.yaml        |  9 +++----
+ .../bindings/iio/adc/ti,ads131e08.yaml        |  9 +++----
+ 23 files changed, 103 insertions(+), 94 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+index fb3d0dae9bae..75a7184a4735 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+@@ -52,8 +52,6 @@ properties:
+   avdd-supply:
+     description: avdd supply can be used as reference for conversion.
+ 
+-  spi-max-frequency: true
+-
+ required:
+   - compatible
+   - reg
+@@ -106,7 +104,10 @@ patternProperties:
+ 
+     additionalProperties: false
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+index 22b7ed3723f6..195c7e6e5206 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+@@ -26,12 +26,6 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-cpol: true
+-
+-  spi-cpha: true
+-
+-  spi-max-frequency: true
+-
+   clocks:
+     maxItems: 1
+     description: phandle to the master clock (mclk)
+@@ -94,7 +88,10 @@ required:
+   - spi-cpol
+   - spi-cpha
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7280a.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7280a.yaml
+index a694d5794d4a..dfb8f305e2f0 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7280a.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7280a.yaml
+@@ -28,8 +28,6 @@ properties:
+     description: IRQ line for the ADC
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+   adi,voltage-alert-last-chan:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+@@ -55,7 +53,10 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
+index a3e39a40c9b3..8ebeb06675bb 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
+@@ -28,10 +28,6 @@ properties:
+     description: |
+       The regulator supply for ADC and DAC reference voltage.
+ 
+-  spi-cpha: true
+-
+-  spi-max-frequency: true
+-
+   '#address-cells':
+     const: 1
+ 
+@@ -65,7 +61,10 @@ patternProperties:
+ 
+     additionalProperties: true
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
+index 666414a9c0de..44c671eeda73 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
+@@ -66,8 +66,6 @@ properties:
+       to the other supplies. Needed to be able to establish channel scaling
+       unless there is also an internal reference available (e.g. ad7091r)
+ 
+-  spi-max-frequency: true
+-
+   adi,conversion-start-gpios:
+     description: A GPIO used to trigger the start of a conversion
+     maxItems: 1
+@@ -76,9 +74,9 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
+-
+ allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
+   # Devices where reference is vcc
+   - if:
+       properties:
+@@ -158,6 +156,8 @@ allOf:
+       properties:
+         adi,conversion-start-gpios: false
+ 
++unevaluatedProperties: false
++
+ examples:
+   - |
+     spi {
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+index 73775174cf57..f76eaa4ca154 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+@@ -29,12 +29,6 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-cpha: true
+-
+-  spi-cpol: true
+-
+-  spi-max-frequency: true
+-
+   avcc-supply: true
+ 
+   interrupts:
+@@ -106,7 +100,10 @@ required:
+   - interrupts
+   - adi,conversion-start-gpios
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+index a85a28145ef6..117c4eb28f4e 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+@@ -50,12 +50,6 @@ properties:
+   reset-gpios:
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+-  spi-cpol: true
+-
+-  spi-cpha: true
+-
+   "#io-channel-cells":
+     const: 1
+ 
+@@ -88,7 +82,10 @@ patternProperties:
+       - reg
+     additionalProperties: false
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+index e82194974eea..24a810c23197 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+@@ -43,13 +43,14 @@ properties:
+   '#size-cells':
+     const: 0
+ 
+-  spi-max-frequency: true
+-
+ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/holt,hi8435.yaml b/Documentation/devicetree/bindings/iio/adc/holt,hi8435.yaml
+index 52490cbb0af0..56bcbe5dcd79 100644
+--- a/Documentation/devicetree/bindings/iio/adc/holt,hi8435.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/holt,hi8435.yaml
+@@ -24,8 +24,6 @@ properties:
+       GPIO used for controlling the reset pin
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+   "#io-channel-cells":
+     const: 1
+ 
+@@ -33,7 +31,10 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+index 0bd2fc0356c8..5207c919abe0 100644
+--- a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+@@ -22,15 +22,15 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-max-frequency:
+-    description: maximal spi bus frequency supported
+-
+ required:
+   - compatible
+   - vref-supply
+   - reg
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max1027.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max1027.yaml
+index 46b7747076b9..d0a7ed26d9ea 100644
+--- a/Documentation/devicetree/bindings/iio/adc/maxim,max1027.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/maxim,max1027.yaml
+@@ -45,7 +45,10 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max11100.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max11100.yaml
+index 0cf87556ef82..4f74cb33383a 100644
+--- a/Documentation/devicetree/bindings/iio/adc/maxim,max11100.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/maxim,max11100.yaml
+@@ -26,13 +26,16 @@ properties:
+     minimum: 100000
+     maximum: 4800000
+ 
+-additionalProperties: false
+-
+ required:
+   - compatible
+   - reg
+   - vref-supply
+ 
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
+ examples:
+   - |
+     spi {
+diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max1118.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max1118.yaml
+index e948b3e37b0c..bb336e33ebe2 100644
+--- a/Documentation/devicetree/bindings/iio/adc/maxim,max1118.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/maxim,max1118.yaml
+@@ -28,23 +28,25 @@ properties:
+   vref-supply:
+     description: External reference, needed to establish input scaling
+ 
+-if:
+-  properties:
+-    compatible:
+-      contains:
+-        const: maxim,max1118
+-then:
+-  required:
+-    - vref-supply
+-else:
+-  properties:
+-    vref-supply: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: maxim,max1118
++    then:
++      required:
++        - vref-supply
++    else:
++      properties:
++        vref-supply: false
+ 
+ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max1241.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max1241.yaml
+index 4c7e0d94bff1..58b12fe8070c 100644
+--- a/Documentation/devicetree/bindings/iio/adc/maxim,max1241.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/maxim,max1241.yaml
+@@ -39,15 +39,16 @@ properties:
+       thus enabling power-down mode.
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+ required:
+   - compatible
+   - reg
+   - vdd-supply
+   - vref-supply
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3201.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3201.yaml
+index fcc1ba53b20d..dc7a8a50495d 100644
+--- a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3201.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3201.yaml
+@@ -32,10 +32,6 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-  spi-cpha: true
+-  spi-cpol: true
+-
+   vref-supply:
+     description: External reference.
+ 
+@@ -51,7 +47,10 @@ required:
+   - reg
+   - vref-supply
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
+index 95ab285f4eba..067a7bbadab8 100644
+--- a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
+@@ -51,7 +51,10 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc0832.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc0832.yaml
+index f5a923cc847f..686721176a58 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,adc0832.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,adc0832.yaml
+@@ -24,8 +24,6 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+   vref-supply:
+     description: External reference, needed to establish input scaling
+ 
+@@ -37,7 +35,10 @@ required:
+   - reg
+   - vref-supply
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc084s021.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc084s021.yaml
+index 1a113b30a414..726d2cbfa368 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,adc084s021.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,adc084s021.yaml
+@@ -19,8 +19,6 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+   vref-supply:
+     description: External reference, needed to establish input scaling
+ 
+@@ -37,7 +35,10 @@ required:
+   - spi-cpol
+   - spi-cpha
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml
+index 54955f03df93..1a589ad1659f 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml
+@@ -19,7 +19,6 @@ properties:
+ 
+   reg: true
+   vref-supply: true
+-  spi-max-frequency: true
+   "#io-channel-cells":
+     const: 1
+ 
+@@ -28,7 +27,10 @@ required:
+   - reg
+   - vref-supply
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc12138.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc12138.yaml
+index ec3b2edf1fb7..076088a328c3 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,adc12138.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,adc12138.yaml
+@@ -31,8 +31,6 @@ properties:
+     maxItems: 1
+     description: Conversion clock input.
+ 
+-  spi-max-frequency: true
+-
+   vref-p-supply:
+     description: The regulator supply for positive analog voltage reference
+ 
+@@ -62,7 +60,10 @@ required:
+   - clocks
+   - vref-p-supply
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc128s052.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc128s052.yaml
+index d54a0183f024..775eee972b12 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,adc128s052.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,adc128s052.yaml
+@@ -27,8 +27,6 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+   vref-supply: true
+ 
+   "#io-channel-cells":
+@@ -39,7 +37,10 @@ required:
+   - reg
+   - vref-supply
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads124s08.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads124s08.yaml
+index 9f5e96439c01..efdc8701a2e5 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,ads124s08.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads124s08.yaml
+@@ -18,10 +18,6 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+-  spi-cpha: true
+-
+   reset-gpios:
+     maxItems: 1
+ 
+@@ -32,7 +28,10 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
+index e0670e3fbb72..b8608f58bbca 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
+@@ -28,10 +28,6 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+-  spi-cpha: true
+-
+   clocks:
+     description: |
+       Device tree identifier to the clock source (2.048 MHz).
+@@ -120,7 +116,10 @@ patternProperties:
+ 
+     additionalProperties: false
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.34.1
 
