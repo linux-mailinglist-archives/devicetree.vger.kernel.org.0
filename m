@@ -2,127 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 956D2575CE6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 10:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F0C575D60
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 10:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232426AbiGOIAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 04:00:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58816 "EHLO
+        id S231825AbiGOIZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 04:25:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiGOIAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:00:42 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601D87E00E;
-        Fri, 15 Jul 2022 01:00:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1657872039;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=OqjGwFmaNWkrx1u1GRDpZGcyuPpD51t2IUwteZ5MuqY=;
-    b=mSi3fmHDSI2ZViyITi6N7Ro1zg5ewmjI66nvjtknQwldVUyqOJ0e5V3LNaArAM9cLx
-    04eWGT95H5sj5Ok3hodAwTFbHovM7k42voW4xJ0Wk325y3oQhY1t35zpSNPIpRUgC5wm
-    /Klhw2M0Dcnm4oH5UoXKX/RRCWzQHLmYMwOmueDBKqUpfJHamiLVO5JL+l0SdZ+qOd6W
-    SVevAhwYHozWHEgw+RQDkT3fefs21xKakwh56Y/NrJgkyioqowLvWKDzJUhY7llqX6J5
-    aH50nCeyQi2T155idHa9V34uoqfc3GwWjinCSQBeDPJ5g3MslXOgvIjlM7FWCxolkZSq
-    aZww==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrKw5+aY="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.47.0 SBL|AUTH)
-    with ESMTPSA id he04d0y6F80c9Jp
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 15 Jul 2022 10:00:38 +0200 (CEST)
-Date:   Fri, 15 Jul 2022 10:00:20 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sireesh Kodali <sireeshkodali1@gmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916 to
- schema
-Message-ID: <YtEeay9JCaG2NMdT@gerhold.net>
-References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
- <20220712124421.3129206-3-stephan.gerhold@kernkonzept.com>
- <434cbf73-c62d-7d5c-fe60-7d98a84bc7fe@linaro.org>
- <YtBlGJ+lQFQg+l+I@gerhold.net>
- <cd8a2b66-ba7c-768c-f5b0-2728f0a8be99@linaro.org>
+        with ESMTP id S230304AbiGOIZq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:25:46 -0400
+X-Greylist: delayed 1001 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 15 Jul 2022 01:25:45 PDT
+Received: from mail.trueanalyze24.com (mail.trueanalyze24.com [149.154.157.156])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F0D824088
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 01:25:44 -0700 (PDT)
+Received: by mail.trueanalyze24.com (Postfix, from userid 1001)
+        id E3C38446AC; Fri, 15 Jul 2022 10:00:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trueanalyze24.com;
+        s=mail; t=1657872083;
+        bh=98Rl+Ube1Bvn+3rmK5hpfPYFv35+QFaadoOXzW/GAGM=;
+        h=Date:From:To:Subject:From;
+        b=ACN7mOHuC6Sb37QhcIEm1L7jhEyr5pTFvfFKiakhF6al1hBNE0Wt9Ym4v8xfPVtYQ
+         pPwxV20j8CMPeqdqR3zqODKhRRs5qnq+JttwC7zDQVUX/gi7cWbLhscB6tiAy/CJsc
+         RXN1MQ+kSAbJgx5wPQe7A6rcl8wgk9f6a5UXH/RiT302sdYvej/MmTiXxh/YGN/9x3
+         48DjUPoVXFe98yj12OOxpGjnXYwQTMId7sF+I21SIv7orWA1cCfZLnDSl1qLRAxbab
+         NGSyMkbxcbQHiOoy3el2otJk9jPyyj9HjR2Km9DE+u8tQJ74DvzmvCsyDzWo2gXZao
+         Iv9Uo9zgTOrYw==
+Received: by mail.trueanalyze24.com for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 08:00:12 GMT
+Message-ID: <20220715084500-0.1.31.rbqe.0.qq98odikia@trueanalyze24.com>
+Date:   Fri, 15 Jul 2022 08:00:12 GMT
+From:   "Luca Gauthier" <luca.gauthier@trueanalyze24.com>
+To:     <devicetree@vger.kernel.org>
+Subject: New collaboration
+X-Mailer: mail.trueanalyze24.com
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cd8a2b66-ba7c-768c-f5b0-2728f0a8be99@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=2.8 required=5.0 tests=BAYES_95,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 08:33:53AM +0200, Krzysztof Kozlowski wrote:
-> On 14/07/2022 20:48, Stephan Gerhold wrote:
-> > On Thu, Jul 14, 2022 at 11:50:30AM +0200, Krzysztof Kozlowski wrote:
-> >> On 12/07/2022 14:44, Stephan Gerhold wrote:
-> >>> [...]
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    oneOf:
-> >>> +      - enum:
-> >>> +          - qcom,msm8916-mss-pil
-> >>> +
-> >>> +      - const: qcom,q6v5-pil
-> >>> +        description: Deprecated, prefer using qcom,msm8916-mss-pil
-> >>> +        deprecated: true
-> >>
-> >> The last compatible does not seem applicable here. Aren't you moving
-> >> only MSM8916 to new schema?
-> >>
-> > 
-> > "qcom,q6v5-pil" is exactly the same as "qcom,msm8916-mss-pil". It's just
-> > a deprecated quite unfortunately chosen old name for the same thing. :)
-> > 
-> > See these lines in the driver:
-> > 
-> > 	{ .compatible = "qcom,q6v5-pil", .data = &msm8916_mss},
-> > 	{ .compatible = "qcom,msm8916-mss-pil", .data = &msm8916_mss},
-> 
-> Yeah, but previous bindings were not mentioning it alone, so this would
-> not be a direct conversion.
-> 
+Hi,
 
-Sorry, I'm not sure I understand you correctly: What do you mean with
-"the previous bindings were not mentioning it alone"? "qcom,q6v5-pil"
-was listed as standalone compatible just like all the other compatibles:
+I would like to discuss your needs in the scope of acquiring new Clients.
 
-- compatible:
-	Usage: required
-	Value type: <string>
-	Definition: must be one of:
-		    "qcom,q6v5-pil",         <----
-		    "qcom,ipq8074-wcss-pil"
-		    "qcom,qcs404-wcss-pil"
-		    "qcom,msm8916-mss-pil",  <----
-		    "qcom,msm8974-mss-pil"
-		    "qcom,msm8996-mss-pil"
-		    "qcom,msm8998-mss-pil"
-		    "qcom,sc7180-mss-pil"
-		    "qcom,sc7280-mss-pil"
-		    "qcom,sdm845-mss-pil"
+We operate in the Internet marketing sector, have the largest Technical D=
+epartment in Europe and have implemented more than 200 campaigns in the U=
+SA and Asia.
 
-The only non-conversion steps I did was to mark some of the redundant
-bindings as deprecated (e.g. "memory-region" with 2 items vs "mba" and
-"mpss" subnode, "qcom,msm8916-mss-pil" vs "qcom,q6v5-pil"). I can put
-the deprecations in a separate patch if that clarifies the situation.
+We are broadening the group of our Business Partners (currently more than=
+ 237 companies) and therefore we would like to offer you cooperation whic=
+h we base on mutual support in activities aimed at acquiring new clients =
+and strengthening the company=E2=80=99s image.
+Our Business Partners receive commission on the value of an agreement sig=
+ned and the group of new clients.
 
-Thanks,
-Stephan
+If I could present the details =E2=80=93 let me know when I can contact y=
+ou
+
+Luca Gauthier
