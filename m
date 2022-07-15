@@ -2,165 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9445E5762A4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 15:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D96F5762D7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 15:34:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbiGONS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 09:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55224 "EHLO
+        id S234844AbiGONeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 09:34:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbiGONSz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 09:18:55 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E89EC10FE2;
-        Fri, 15 Jul 2022 06:18:53 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id f73so8362859yba.10;
-        Fri, 15 Jul 2022 06:18:53 -0700 (PDT)
+        with ESMTP id S234588AbiGONeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 09:34:13 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 895577C1BD
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 06:34:11 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id bp15so9019840ejb.6
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 06:34:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RIDFbj9Nm/Hc84YphLe1TSejCss5csMsL3XGmdeREuc=;
-        b=LjTUeU/VvjExiFE7qVdoTT66INknzaksBvLAL0QX/hhMGm1S/DCmWjGAqEm1RDjTt0
-         nrI4wHZo/WK5aG8U5fIPVbESm+g18hEELTujXpx69+Azj8qnUnYXhFafWvDdYrxJWF8Q
-         n4alCS65LacwduwaUDBvHdbTO5eZ4k4tWaJ199RDLEdi+Nnbu8tJ4UTjcA2YPJBeHBKH
-         hWc3HEBwkV0/ygom4+Ivyr3ViE5siRsP8CdzKAgWRXLBXaArht7DgMtJUJb/WrGYsYt8
-         eWv+sETgNCGjxIJCtjEQJk1vVPGobtuRYELM3bihPsOKaqDcf5qzy1Ry+AVMll6TrQxi
-         eYjQ==
+        d=fairphone.com; s=fair;
+        h=mime-version:content-transfer-encoding:date:message-id:to:cc
+         :subject:from:references:in-reply-to;
+        bh=8n3GoEXR9Kkk97aGJD+78x7UsJH5H1Xj3Xfn857goUA=;
+        b=tqyVOSW4NZbEYE3o1b8R3/ISFMjNTzS+t4u89ICrhpZNOg6Vo4ea0M/Hxx8zRdmvm4
+         Ls+tb53zMCsvDAha6uyMzFs5ovpxI3yaUtASFLl8yIpS5CXBM/m0ovEw5Lw73BrMDrwp
+         2xGJgz7Ll3ubL3PqNXFzl+05YnVGS+kec2OZjEUnfmJffr5P1YNJ8Cxg/Dw7yKbSb8ut
+         uv45g31iXD1jC6GGGzYnikUBeMoVtTz4qgEWtVFsWRYXyXqCc3t9BmVnQdxDHZrVrsmU
+         NzpGy09f+lKzmzXU72w5SCHLhqb6+Xj9TZ2tKelwWOJY8MAjIiEILtx6WjuC/YkYErMv
+         jwLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RIDFbj9Nm/Hc84YphLe1TSejCss5csMsL3XGmdeREuc=;
-        b=VxgiEGoFQGUYqSko+lJKnHxVGH2zZsKKIQ9+fWl5TxvFC5y30oyYNFiJiWM7qvcf/8
-         wgwp1K8xIJJaXJdX9tCKzsfm3phCcmJ8mn4KJgVmLKfgUaW8scedC4sDAnZLKvPa605J
-         Xuf6pJD58ZF1Uq0SiLTwAMC41+W9qucdY3imNc1goVEWJk+yv7ELXTuqzLpXctX4h627
-         6Lx5ATaLA/TKD/lMhN21bMGyH1IWyg+s8bol5BjNho6iSX3WeTGJRDKyemoCfAUju24d
-         SL+yk0pm9MaL8GAym0K3eMQjngBLoyRpIHnFKRNOiBj0VfNEQ/UeeZcjFVYKEv9XfV9g
-         UJGw==
-X-Gm-Message-State: AJIora8ahXY1qyFHIc3AhbqzjH9ZZJ6SH3aoUgptYOIiV2Qf7yH0i2ZL
-        +DxNEioZC3N5G67lqSRU5M1RnxHjoBI+bES87pM=
-X-Google-Smtp-Source: AGRyM1tX0Yj4hhKwKn8Wh56LVxsUs+zEZtzzOqfyiqtoMPojzsjlQH4dKqby9pg3kc6AYzvHnWHIojiIQybijv0fZ+I=
-X-Received: by 2002:a25:cbcf:0:b0:66e:8893:a02c with SMTP id
- b198-20020a25cbcf000000b0066e8893a02cmr14089485ybg.460.1657891133149; Fri, 15
- Jul 2022 06:18:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220715112607.591-1-peterwu.pub@gmail.com> <20220715112607.591-10-peterwu.pub@gmail.com>
-In-Reply-To: <20220715112607.591-10-peterwu.pub@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 15 Jul 2022 15:18:16 +0200
-Message-ID: <CAHp75VfiBcaSbZy67Puwb2pBW2MHN8iQj3upA=h3VkKSFJbs0g@mail.gmail.com>
-Subject: Re: [PATCH v5 09/13] iio: adc: mt6370: Add MediaTek MT6370 support
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Alice Chen <alice_chen@richtek.com>,
-        cy_huang <cy_huang@richtek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        szuni chen <szunichen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:to:cc:subject:from:references:in-reply-to;
+        bh=8n3GoEXR9Kkk97aGJD+78x7UsJH5H1Xj3Xfn857goUA=;
+        b=wOt4aGjqoifMxu7iMYzMwO4F6jL7Zn3ZeV4+xAcMTaw/JeSOVwRoIgT9p9c5o8A65c
+         g1vKte7n/EKLCGKdA/2vRe6lF1ZwZQKJXWhJX1Io3FCbBniUp8w9N6yF3UdLxavjrieB
+         q5AqOCkjzb4YFiZpWAzzIAP4F+AVJi3F0Kb1X8v8iRVQp9J/nc+yfNf4DB8cMO0BdU09
+         GsZW/4avva9wZWgo8vufwiMuMwwex2QE74t0ymiOq9+d9tRxjdZT56OrG9f8mEkfhDfC
+         g1Opt41vyJ7rFgtE3qJ+0+Y1BsLbnHVjkUS1JiZGlcFmVf8OoICSujOO7JzPN50Qff07
+         6Sdw==
+X-Gm-Message-State: AJIora+CHUPlCtEtR3sAbQUZLoV/N8q4c0sqC2WB+K7n52a6GkZrVSOd
+        l/dCpLbQl2l0GhNXOuFAacaNTQ==
+X-Google-Smtp-Source: AGRyM1vOHLDs/wDLOiBjr+Wk5BnQYKkiUmq25vsuDPItAluSfMnaVBZnFRiDBDuuWd85vrgSDnFI9Q==
+X-Received: by 2002:a17:907:2702:b0:72b:307b:98e6 with SMTP id w2-20020a170907270200b0072b307b98e6mr13898069ejk.658.1657892050062;
+        Fri, 15 Jul 2022 06:34:10 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id f23-20020a50fe17000000b0043a734c7393sm2824102edt.31.2022.07.15.06.34.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Jul 2022 06:34:09 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 15 Jul 2022 15:34:08 +0200
+Message-Id: <CLG9OKW0OMLX.2XWU1ZHFRR9RQ@otso>
+To:     "Luca Weiss" <luca.weiss@fairphone.com>,
+        <linux-arm-msm@vger.kernel.org>
+Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        "Georgi Djakov" <georgi.djakov@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        "Odelu Kukatla" <okukatla@codeaurora.org>
+Subject: Re: [PATCH v3 0/5] Add interconnect support for SM6350
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.9.0
+References: <20220525144404.200390-1-luca.weiss@fairphone.com>
+In-Reply-To: <20220525144404.200390-1-luca.weiss@fairphone.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 1:28 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+Hi all,
+
+On Wed May 25, 2022 at 4:43 PM CEST, Luca Weiss wrote:
+> This series adds interconnect support for the various NoCs found on
+> sm6350.
 >
-> From: ChiaEn Wu <chiaen_wu@richtek.com>
+> A more special modification is allowing child NoC devices, like done for
+> rpm-based qcm2290 which was already merged, but now for rpmh-based
+> interconnect.
+
+any feedback on the two interconnect patches and the dts patch?
+Georgi? Bjorn?
+
+Thanks Krzysztof for the dt-binding review!
+
+Regards
+Luca
+
 >
-> MediaTek MT6370 is a SubPMIC consisting of a single cell battery charger
-> with ADC monitoring, RGB LEDs, dual channel flashlight, WLED backlight
-> driver, display bias voltage supply, one general purpose LDO, and the
-> USB Type-C & PD controller complies with the latest USB Type-C and PD
-> standards.
+> See also downstream dts:
+> https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/tags/=
+android-11.0.0_r0.81/qcom/lagoon-bus.dtsi
 >
-> This adds support the MT6370 ADC driver for system monitoring, including
+> Luca Weiss (5):
+>   interconnect: qcom: icc-rpmh: Support child NoC device probe
+>   dt-bindings: interconnect: qcom: Split out rpmh-common bindings
+>   dt-bindings: interconnect: Add Qualcomm SM6350 NoC support
+>   interconnect: qcom: Add SM6350 driver support
+>   arm64: dts: qcom: sm6350: Add interconnect support
+>
+>  .../interconnect/qcom,rpmh-common.yaml        |  43 ++
+>  .../bindings/interconnect/qcom,rpmh.yaml      |  22 +-
+>  .../interconnect/qcom,sm6350-rpmh.yaml        |  82 +++
+>  arch/arm64/boot/dts/qcom/sm6350.dtsi          | 109 ++++
+>  drivers/interconnect/qcom/Kconfig             |   9 +
+>  drivers/interconnect/qcom/Makefile            |   2 +
+>  drivers/interconnect/qcom/icc-rpmh.c          |   4 +
+>  drivers/interconnect/qcom/sm6350.c            | 493 ++++++++++++++++++
+>  drivers/interconnect/qcom/sm6350.h            | 139 +++++
+>  .../dt-bindings/interconnect/qcom,sm6350.h    | 148 ++++++
+>  10 files changed, 1034 insertions(+), 17 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,r=
+pmh-common.yaml
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,s=
+m6350-rpmh.yaml
+>  create mode 100644 drivers/interconnect/qcom/sm6350.c
+>  create mode 100644 drivers/interconnect/qcom/sm6350.h
+>  create mode 100644 include/dt-bindings/interconnect/qcom,sm6350.h
+>
+> --=20
+> 2.36.1
 
-This adds --> Add a
-
-> charger current, voltage, and temperature.
-
-...
-
-> +#include <linux/bits.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/sysfs.h>
-
-...
-
-> +#define MT6370_AICR_400MA              0x6
-> +#define MT6370_ICHG_500MA              0x4
-> +#define MT6370_ICHG_900MA              0x8
-
-_mA ?
-
-...
-
-> +       ret = regmap_read_poll_timeout(priv->regmap,
-> +                                      MT6370_REG_CHG_ADC, reg_val,
-> +                                      !(reg_val & MT6370_ADC_START_MASK),
-> +                                      ADC_CONV_POLLING_TIME_US,
-> +                                      ADC_CONV_TIME_MS * 1000 * 3);
-
-1000 --> MILLI ?
-
-...
-
-> +static int mt6370_adc_probe(struct platform_device *pdev)
-> +{
-
-Given comment in one place in the entire series would be good to use
-in another where appropriate. For example, here it would also be nice
-to have a temporary variable
-
-  struct device *dev = &pdev->dev;
-
-It will shorten some lines.
-
-> +       struct mt6370_adc_data *priv;
-> +       struct iio_dev *indio_dev;
-> +       struct regmap *regmap;
-> +       int ret;
-
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
