@@ -2,53 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF61A57655C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 18:39:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE80C57656E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 18:53:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233007AbiGOQjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 12:39:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56686 "EHLO
+        id S231411AbiGOQwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 12:52:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiGOQjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 12:39:01 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 699A513E38;
-        Fri, 15 Jul 2022 09:39:00 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D5A512FC;
-        Fri, 15 Jul 2022 09:39:00 -0700 (PDT)
-Received: from [10.57.86.139] (unknown [10.57.86.139])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E116B3F792;
-        Fri, 15 Jul 2022 09:38:57 -0700 (PDT)
-Message-ID: <a0c763c0-eaa0-999e-31bb-d2dbaeb988bb@arm.com>
-Date:   Fri, 15 Jul 2022 17:38:53 +0100
+        with ESMTP id S229771AbiGOQwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 12:52:06 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 958684AD40;
+        Fri, 15 Jul 2022 09:52:04 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-31c9b70c382so52578327b3.6;
+        Fri, 15 Jul 2022 09:52:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Y3fEn7k6DEbC0BSZl5T1cKqr6t4t3jgvkJEo6o2VWJg=;
+        b=MXGzp2L91pEJL+AcTAycFNXQ1RlDsP6v+gpGIgwODuesPa+p9Vkg4kB7S9nocynJGw
+         Z6eSLqvXs18KQxUaf2JoIzf80wNgEBx5lb8hmQls/pYl5cmqKU6ZV2U293CPRD7pHPxN
+         oVoCyNl0NZggmwruE29B+fIK5bXDrw9tjgIG3C8Nq+6m6OWBSRplWoiH96JI+OT2GKU0
+         e+tCPQwL8IYMCW95SAqKMM4ZmBlz4myO2waTWwKa21CY9s4W7s12O0mKU6NbZpFIBwjv
+         WQndJpk7ul+2kIlNcx4SEPMyoKdY46YyQ2MP3qjPVvRdKZ8R3yH3WQfj2xLINnsHUnDO
+         ZohA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Y3fEn7k6DEbC0BSZl5T1cKqr6t4t3jgvkJEo6o2VWJg=;
+        b=S8bBgDCaTx7vYdVu0Yek0FMny4kKKl+WrwSl5TTRd2XKbCkeygR8pl/TDjO1YjF8AG
+         4Z1aGufvqgTM35RWcjWnc5n5EY6OIe1Rnr0UzEbRL0JNpmX4jrDjHZLv0gK/H6d7GHXa
+         Vy5Q69AfmUylfx/bILXyy4N6lU/zWToat/amV+aXqQRkHQjheDt747SAFibf1JmkBaf7
+         /Btl3we1bhiVeeuzFtrD2Ix3i6YgWuQ0+W1T+ZRHn9u39P7fZBr7ReQP1SzfmSe5uM19
+         3q56cYFxZBKDIQZSNQiXVKM/icdnVtgjRR4MkU37fRBFixED1tFTnfqIh4CQGlJDuRC+
+         EB+g==
+X-Gm-Message-State: AJIora/z0DRec7AclL7m7KjlxLTV9vQI201wOsVYKCzi8pBbzuaHubgN
+        U7d39gjiA8yqx5HRvpiTr7KIvmn31RuS/QU+B1A=
+X-Google-Smtp-Source: AGRyM1sCY24F2pEPhG1uDrQQmbeNKcxn2P0g2UtmOwj7faRUDuEi5O71VSZCHL0+DLUg4GOwi/Ey7mykcBwsz36AuRU=
+X-Received: by 2002:a81:54c1:0:b0:31d:ec18:fd5d with SMTP id
+ i184-20020a8154c1000000b0031dec18fd5dmr7130568ywb.277.1657903923745; Fri, 15
+ Jul 2022 09:52:03 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/4] perf/amlogic: Add support for Amlogic meson G12 SoC
- DDR PMU driver
-Content-Language: en-GB
-To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20220715112607.591-1-peterwu.pub@gmail.com> <20220715112607.591-11-peterwu.pub@gmail.com>
+In-Reply-To: <20220715112607.591-11-peterwu.pub@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 15 Jul 2022 18:51:27 +0200
+Message-ID: <CAHp75Ve_WRAUyy=h9_F-tC1dDkb_=-F1uf7_h7R0p7xZgBAd-w@mail.gmail.com>
+Subject: Re: [PATCH v5 10/13] power: supply: mt6370: Add MediaTek MT6370
+ charger driver
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>
-References: <20220712063641.2790997-1-jiucheng.xu@amlogic.com>
- <55be073b-caf1-320b-dd42-165636b45a74@arm.com>
- <db31472c-0494-309a-0ac3-cab845b4e74f@amlogic.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <db31472c-0494-309a-0ac3-cab845b4e74f@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Alice Chen <alice_chen@richtek.com>,
+        cy_huang <cy_huang@richtek.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        szuni chen <szunichen@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,261 +95,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-07-14 09:17, Jiucheng Xu wrote:
-[...]
->>> +        list_for_each_entry((sibling), &(event)->sibling_list,
->>> +                    sibling_list) {
->>> +            if (sibling->pmu != event->pmu &&
->>> +                !is_software_event(sibling))
->>> +                return -EINVAL;
->>
->> It looks like you don't have multiple sets of hardware counters; if so 
->> you'd also need to reject the group if it contains more than one event 
->> for this PMU.
-> I have 5 HW counters and 5 relevant events. Do you mean I need reject 
-> the group?
+On Fri, Jul 15, 2022 at 1:29 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+>
+> From: ChiaEn Wu <chiaen_wu@richtek.com>
+>
+> MediaTek MT6370 is a SubPMIC consisting of a single cell battery charger
+> with ADC monitoring, RGB LEDs, dual channel flashlight, WLED backlight
+> driver, display bias voltage supply, one general purpose LDO, and the
+> USB Type-C & PD controller complies with the latest USB Type-C and PD
+> standards.
+>
+> This adds MediaTek MT6370 Charger driver support. The charger module
+> of MT6370 supports High-Accuracy Voltage/Current Regulation,
+> Average Input Current Regulation, Battery Temperature Sensing,
+> Over-Temperature Protection, DPDM Detection for BC1.2.
 
-Ah, I think I understand a bit better now, so each channel is a separate 
-counter - in that case you need to check that the group doesn't contain 
-more than one event targeting the same channel. The reason is that 
-event_add should return an error when another event is already using the 
-given counter - when that happens, perf will try to schedule different 
-combinations of events to work out which ones can count simultaneously 
-and which need to be multiplexed. However if two conflicting events are 
-in the same group, and thus required to be scheduled together 
-atomically, then it ends up in an infinite loop trying to achieve the 
-impossible. Therefore event_init must reject any group whose events 
-would never be able to be scheduled together.
+...
 
-[...]
->>> +static int ddr_perf_offline_cpu(unsigned int cpu, struct hlist_node 
->>> *node)
->>> +{
->>> +    struct ddr_pmu *pmu = hlist_entry_safe(node, struct ddr_pmu, node);
->>> +    int target;
->>> +
->>> +    if (cpu != pmu->cpu)
->>> +        return 0;
->>> +
->>> +    target = cpumask_any_but(cpu_online_mask, cpu);
->>> +    if (target >= nr_cpu_ids)
->>> +        return 0;
->>> +
->>> +    perf_pmu_migrate_context(&pmu->pmu, cpu, target);
->>> +    pmu->cpu = target;
->>> +
->>> +    WARN_ON(irq_set_affinity_hint(pmu->info.irq_num, 
->>> cpumask_of(pmu->cpu)));
->>
->> This is wrong, it needs to be irq_set_affinity().
-> 
-> Okay, Could you please tell what is the major difference between the two 
-> API?
+> +static int mt6370_chg_probe(struct platform_device *pdev)
+> +{
+> +       int ret;
+> +       struct mt6370_priv *priv;
+> +
+> +       priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +       if (!priv)
+> +               return -ENOMEM;
+> +
+> +       priv->dev = &pdev->dev;
+> +
+> +       priv->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +       if (!priv->regmap)
+> +               return dev_err_probe(&pdev->dev, -ENODEV,
+> +                                    "Failed to get regmap\n");
+> +
+> +       ret = mt6370_chg_init_rmap_fields(priv);
+> +       if (ret)
+> +               return dev_err_probe(&pdev->dev, ret,
+> +                                    "Failed to init regmap fields\n");
+> +
+> +       platform_set_drvdata(pdev, priv);
+> +
+> +       priv->iio_adcs = devm_iio_channel_get_all(priv->dev);
+> +       if (IS_ERR(priv->iio_adcs))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(priv->iio_adcs),
+> +                                    "Failed to get iio adc\n");
+> +
+> +       ret = mt6370_chg_init_otg_regulator(priv);
+> +       if (ret)
+> +               return dev_err_probe(&pdev->dev, ret,
+> +                                    "Failed to init otg regulator\n");
+> +
+> +       ret = mt6370_chg_init_psy(priv);
+> +       if (ret)
+> +               return dev_err_probe(&pdev->dev, ret, "Failed to init psy\n");
+> +
+> +       mutex_init(&priv->attach_lock);
+> +       priv->attach = MT6370_ATTACH_STAT_DETACH;
+> +
+> +       priv->wq = create_singlethread_workqueue(dev_name(priv->dev));
+> +       if (IS_ERR(priv->wq))
 
-The affinity hint is just a field exposed to userspace, for the benefit 
-of tools like irqbalance, it doesn't actually serve any purpose in the 
-kernel itself.
+> +               return dev_err_probe(priv->dev, PTR_ERR(priv->wq),
+> +                                    "Failed to create workqueue\n");
 
-Historically, it used to be the case that irq_set_affinity_hint() also 
-happened to call irq_set_affinity() internally, and this anti-pattern 
-developed around that due to module exports, but that has all been 
-cleaned up now.
+You need either wrap mutex to be deallocated by devm or don't use
+dev_err_probe() here.
 
-[...]
->>> +        goto err2;
->>> +    }
->>> +
->>> +    irq_name = of_get_property(node, "interrupt-names", NULL);
->>> +    if (!irq_name)
->>> +        irq_name = "ddr_pmu";
->>
->> That's not how the "interrupt-names" property works. If you only have 
->> a single interrupt then there's not much need for it to be named in 
->> the DT at all. If you do want to use named interrupts then use 
->> platform_get_irq_byname(), and the name should probably have a bnit 
->> more functional meaning. Either way, please don't abuse the DT like this.
-> Okay, actually there will be multiple interrupts , but not in current 
-> G12 series.
+> +       INIT_WORK(&priv->bc12_work, mt6370_chg_bc12_work_func);
+> +       INIT_DELAYED_WORK(&priv->mivr_dwork, mt6370_chg_mivr_dwork_func);
+> +
+> +       ret = mt6370_chg_init_setting(priv);
+> +       if (ret) {
+> +               dev_err(&pdev->dev, "Failed to init mt6370 charger setting\n");
+> +               goto probe_out;
+> +       }
+> +
+> +       ret = mt6370_chg_init_irq(priv);
+> +       if (ret)
+> +               goto probe_out;
+> +
+> +       mt6370_chg_pwr_rdy_check(priv);
+> +
+> +       return 0;
+> +
+> +probe_out:
+> +       cancel_delayed_work_sync(&priv->mivr_dwork);
+> +       flush_workqueue(priv->wq);
+> +       destroy_workqueue(priv->wq);
+> +       mutex_destroy(&priv->attach_lock);
+> +
+> +       return ret;
+> +}
+> +
+> +static int mt6370_chg_remove(struct platform_device *pdev)
+> +{
+> +       struct mt6370_priv *priv = platform_get_drvdata(pdev);
+> +
+> +       cancel_delayed_work_sync(&priv->mivr_dwork);
+> +       flush_workqueue(priv->wq);
+> +       destroy_workqueue(priv->wq);
+> +       mutex_destroy(&priv->attach_lock);
+> +
+> +       return 0;
+> +}
 
-That's fair enough, so we should try to anticipate it in the design of 
-the DT binding. If for instance future SoCs are going to move from 
-having a single combined overflow interrupt to a separate interrupt for 
-each counter, then the driver can reasonably continue to get them by 
-index and we'll effectively only need to update maxItems in the binding. 
-If on the other hand there's still going to be one combined overflow 
-interrupt, plus some other new interrupt for something completely 
-different, then it *could* be more appropriate to have names, and thus 
-to define and use a standard "overflow" name from the beginning even 
-when it is the only one present, so that we can remain consistent later 
-once more are added.
 
->>> +
->>> +    ret = request_irq(info->irq_num, dmc_irq_handler,
->>> +              IRQF_SHARED, irq_name, (void *)info);
->>
->> Who else is sharing the IRQ? If it's other instances of this PMU then 
->> that's still manageable under the normal paradigm, the driver just 
->> needs to coordinate affinity chanmges between all instances. If it's 
->> random other devices, then maybe it's time to reason about how system 
->> PMUs could use proper IRQ-safe locking and abandon the affinity stuff, 
->> since this seems to be coming up more and more.
-> 
-> The IRQ is private. I will change it.
-
-OK, that's good. In that case you can simply replace IRQF_SHARED with 
-IRQF_NOBALANCING here, since that is needed either way to prevent 
-userspace changing affinities behind our back.
-
-[...]
->>> +static void append_attr_list(struct attribute *attr)
->>> +{
->>> +    int i;
->>> +
->>> +    for (i = 0; g12_pmu_format_attrs[i] && i < 255; i++)
->>> +        ;
->>
->> Eww, what? :(
->>
->>> +
->>> +    g12_pmu_format_attrs[i] = attr;
->>> +
->>> +    g12_pmu_format_attrs[i + 1] = NULL;
->>
->> (that's pointless either way)
->>
->> OK, I think I see what's going on here now. Dynamically patching the 
->> attribute arrays is pretty grim - it's far cleaner and more 
->> sustainable to statically define the whole array with all the possible 
->> attributes, then use .is_visible to hide the ones which aren't 
->> relevant to the current system.
->>
-> I have not got your point yet. I have no idea how to use .is_visible to 
-> hide the irrelevant attribute. I need a little time to think it.
-
-It might be easiest to follow an example like arm_dsu_pmu - in that 
-case, the hardware has an ID register that says which event IDs are 
-supported; you could have some kind of static bitmap/lookup 
-table/function to encode the equivalent data of which AXI IDs are 
-relevant to which PMU model(s). Another approach is to encode the 
-supported models directly in each attribute itself and thus make the 
-lookup the other way round - this is probably more complex to implement, 
-and I hesitate to suggest looking at arm-cmn as an example since that's 
-rather extreme and hard to follow, but it is another possibility.
-
-A third option might be to push all the AXI ID data out to JSON in the 
-userspace perf tool, like fsl_imx8_ddr_perf seems to do, however that 
-might make it less accessible to other userspace tools, so it probably 
-depends on your expected use-cases whether that's worth considering or not.
-
-[...]
->>> +    struct device_node *node = pdev->dev.of_node;
->>> +    const char *model;
->>> +
->>> +    if (of_property_read_string(node, "model", &model))
->>> +        return -EINVAL;
->>
->> No, use of_device_is_compatible(), and define the binding properly.
-> 
-> Why the "model" property couldn't be used? Do you mean use existing 
-> property rather than creating new one?
-
-Yes, as I suggested on patch #4, the standard practice would be to have 
-hierarchical compatible strings in the DT like so:
-
-	compatible = "amlogic,g12b-ddr-pmu", "amlogic,g12-ddr-pmu";
-
-then your of_device_id table can still match on the generic 
-"amlogic,g12-ddr-pmu" string to bind the driver, and where necessary you 
-can then do:
-
-	if (of_device_is_compatible(node, "amlogic,g12b-ddr-pmu"))
-		/* do G12B-specific stuff */
-
-Alternatively, you can put all the SoC-specific compatibles directly in 
-the of_device_id table and use the .data member to associate your 
-SoC-specific identifier or static data which you can then retrieve with 
-device_get_match_data(). Both approaches are commonly used.
-
->>> +    dev_info(&pdev->dev, "%s", model);
->>> +
->>> +    if (strcmp(model, "g12a") == 0) {
->>> +        dev_info(&pdev->dev, "ddr pmu for g12a\n");
->>> +    } else if (strcmp(model, "g12b") == 0) {
->>> +        dev_info(&pdev->dev, "ddr pmu for g12b\n");
->>> +
->>> +        append_attr_list(&format_attr_nna.attr);
->>> +        append_attr_list(&format_attr_gdc.attr);
->>> +        append_attr_list(&format_attr_arm1.attr);
->>> +        append_attr_list(&format_attr_mipi_isp.attr);
->>> +        append_attr_list(&format_attr_sd_emmc_a.attr);
->>> +    } else if (strcmp(model, "sm1") == 0) {
->>> +        dev_info(&pdev->dev, "ddr pmu for sm1\n");
->>> +
->>> +        append_attr_list(&format_attr_nna.attr);
->>> +    }
->>> +#endif
->>> +    return aml_ddr_pmu_create(pdev, &g12_ops, g12_pmu_format_attrs);
->>> +}
->>> +
->>> +static int  __exit g12_ddr_pmu_remove(struct platform_device *pdev)
->>> +{
->>> +    aml_ddr_pmu_remove(pdev);
->>> +
->>> +    return 0;
->>> +}
->>> +
->>> +#ifdef CONFIG_OF
->>> +static const struct of_device_id aml_ddr_pmu_dt_match[] = {
->>> +    {
->>> +        .compatible = "amlogic,g12-ddr-pmu",
->>> +    },
->>> +    {}
->>> +};
->>> +#endif
->>> +
->>> +static struct platform_driver g12_ddr_pmu_driver = {
->>> +    .driver = {
->>> +        .name = "amlogic,ddr-pmu",
->>> +        .owner = THIS_MODULE,
->>
->> The driver core sets this automatically.
->>
->>> +    #ifdef CONFIG_OF
->>> +        .of_match_table = aml_ddr_pmu_dt_match,
->>> +    #endif
->>> +    },
->>> +    .remove = g12_ddr_pmu_remove,
->>> +};
->>> +
->>> +static int __init aml_g12_ddr_pmu_init(void)
->>> +{
->>> +    return platform_driver_probe(&g12_ddr_pmu_driver, 
->>> g12_ddr_pmu_probe);
->>> +}
->>> +
->>> +static void __exit aml_g12_ddr_pmu_exit(void)
->>> +{
->>> +    platform_driver_unregister(&g12_ddr_pmu_driver);
->>> +}
->>> +
->>> +module_init(aml_g12_ddr_pmu_init);
->>> +module_exit(aml_g12_ddr_pmu_exit);
->>
->> Use module_platform_driver_probe() (if of course you really think the 
->> __init shenanigans are beneficial, otherwise just use regular 
->> module_platform_driver() for even less surprise).
->>
->> Thanks,
->> Robin.
-> 
-> 
-> Thanks for your time, Robin! TBH I'm a little nervous since this is my 
-> first submitting to upstream. Your comments are great and helpful. I 
-> will update the driver.
-
-No worries, this is actually pretty good for a first submission. And the 
-perf APIs in particular do have some horribly subtle aspects which took 
-me a long time to fully understand too :)
-
-Thanks,
-Robin.
+-- 
+With Best Regards,
+Andy Shevchenko
