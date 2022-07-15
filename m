@@ -2,101 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1167575EE9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 12:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F321E575EFD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 12:05:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbiGOKBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 06:01:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40736 "EHLO
+        id S233903AbiGOKFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 06:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbiGOKBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 06:01:03 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C4F820DA
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 03:01:02 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id bp17so7046162lfb.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 03:01:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=49/cugRDS6TNO8LUbn+Bfa9lSPXar+32O/jfPHUtlp4=;
-        b=ryur40BTCGCsemCMQWtdESjuuEL113rZcPvz3NIOl6g8tbuOW8Xklfl8HgRSjmaz6k
-         1THJMUrcz+pGR7jj9rWarcnR0jFxMq3bT4UPxoX9Cs7gnrBy0sygxC/r9ox2DpMDxIrk
-         rWWhQG+rXwPoQBIrqDDp7hjiwAC6+KklryDE8o9wusfeRWrStrJ/mUC0upHl7Sy73a+d
-         E3E+RVsEYssFonilo3ruaIgrShHxWrUNBCfhxZ7Q9jF1ZpxQcLGqAXWQKS6dH+nId5Jz
-         kabE+WKGv7vPoAbNyjdNAUDRSEl6hhBmB/CA/AyK3xElU/3YwR97HLkySdHm2Fqgxh0o
-         PVNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=49/cugRDS6TNO8LUbn+Bfa9lSPXar+32O/jfPHUtlp4=;
-        b=MnTQ3mxyeHGR990jsHoQWvV12U8g7gwD6Y9BF3Tx6/ebf1NqZEd3pPMdFEqQmiYGPF
-         +rZahRziCEzAtXuIon3nKxi37MSbiBbu8XQRIfFlDTxwYGcKFhl6/HTOdVQ+A/9C9NKf
-         MmXfOtwBgWKm6dYXoBoJVuzyjMoZKbZWpjGqK7cbKkcqc6AiviVUVqAS1T4/PAt+ywc8
-         CtPz4WZZUDWstZeLz1AuHT2PaFB5GoFSbU8X01Xgt50NF0tazMHJ/Wj1h+nXzoJxame5
-         UF5Y0wj8eHMLpK0Yt/1ReS0GM1aHi4gLKT4wFX8XkdQX+c3b0aJ2G1B2iFlE+YTn6Crt
-         jcuQ==
-X-Gm-Message-State: AJIora+OlRK/y+UwvTvNAfEeLXFFYS5wbIDqYwQZeos015pnNBs/GjnQ
-        ZOlQkif+t0wJx4BXhL24V1xUzA==
-X-Google-Smtp-Source: AGRyM1vpVzMrr7jf9rC4afDfFN8YR9xWUS2k19sUYbnisWW3KnNHxlarI0nN8FnDlNj36TzTA4rspg==
-X-Received: by 2002:a05:6512:401c:b0:489:d49b:2462 with SMTP id br28-20020a056512401c00b00489d49b2462mr7357876lfb.640.1657879260847;
-        Fri, 15 Jul 2022 03:01:00 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id g2-20020a056512118200b0048a0e948c34sm823374lfr.195.2022.07.15.03.00.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jul 2022 03:01:00 -0700 (PDT)
-Message-ID: <9ef75900-4daf-05c7-0c9a-d76878410f1c@linaro.org>
-Date:   Fri, 15 Jul 2022 12:00:57 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: msm8916-samsung-e2015: Add
- initial common dtsi
-Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        devicetree@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20220715093653.61933-1-linmengbo0689@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220715093653.61933-1-linmengbo0689@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S230388AbiGOKFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 06:05:02 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC41B26AE6;
+        Fri, 15 Jul 2022 03:04:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
+         references;
+        bh=16lJt+/F2KwxyLeIbmfKR6Rvu0CsLyTh4mYqwqLB9E8=;
+        b=VirwO6UBdVu8IBKTFLo6bKeyXn27aluDDBYOeHMXQ9kCZWvHczOp/EktgRCrBUQ0wnzhCWr3W4jmf
+         B3ZBu1uC2fXKPJsQnTJnfx3JAcgcLHUEt7Ck2FSicoi91PaNRX7E6PsxLTKrg1YoqUCnN+wlX/Bw7U
+         PfW5/GVU5Kot57/DwThazQcp80xA9vPHmvNshi3aFzAVuFeN9ZTtDM6AjmrkEvfUu/muoigbf1OIUJ
+         TeA7jE01zvqOeC6T133q0OkP7Jwq1lOi6DEUZlJCaartHgx9xwZNzM7xeuG7HnADPZ420s8T0Dojo0
+         uOFkVFYws+bg2I54st6GB2gVZCTUJYQ==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000009,0.014599)], BW: [Enabled, t: (0.000025,0.000002)], RTDA: [Enabled, t: (0.076283), Hit: No, Details: v2.40.0; Id: 15.52kail.1g80l1u67.1r2rc; mclb], total: 0(700)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Fri, 15 Jul 2022 13:04:15 +0300
+Date:   Fri, 15 Jul 2022 13:03:56 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        system@metrotek.ru
+Subject: Re: [PATCH 2/2] dt-bindings: fpga: add binding doc for ecp5-spi fpga
+ mgr
+Message-ID: <20220715100356.fwjomifweifn6zsr@h-e2.ddg>
+References: <20220714122657.17972-1-i.bornyakov@metrotek.ru>
+ <20220714122657.17972-3-i.bornyakov@metrotek.ru>
+ <044a9736-a4ec-c250-7755-c80a5bcbe38b@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <044a9736-a4ec-c250-7755-c80a5bcbe38b@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/07/2022 11:37, Lin, Meng-Bo wrote:
-> Samsung Galaxy E5, E7 and Grand Max are smartphones using the MSM8916 SoC
-> released in 2015.
+On Fri, Jul 15, 2022 at 11:33:54AM +0200, Krzysztof Kozlowski wrote:
+> On 14/07/2022 14:26, Ivan Bornyakov wrote:
+> > Add Device Tree Binding doc for Lattice ECP5 FPGA manager using slave
+> > SPI to load .bit formatted uncompressed bitstream image.
+> > 
+> > Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> > ---
+> >  .../fpga/lattice,ecp5-spi-fpga-mgr.yaml       | 71 +++++++++++++++++++
+> >  1 file changed, 71 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
+> > new file mode 100644
+> > index 000000000000..79868f9c84e2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
+> > @@ -0,0 +1,71 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/fpga/lattice,ecp5-spi-fpga-mgr.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Lattice ECP5 FPGA manager.
+> > +
+> > +maintainers:
+> > +  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> > +
+> > +description:
+> > +  Device Tree Bindings for Lattice ECP5 FPGA Manager using slave SPI to
+> > +  load the uncompressed bitstream in .bit format.
 > 
-> e2015 and a2015 are similar, with some differences in accelerometer,
-> MUIC and Vibrator. The common parts are shared in
-> msm8916-samsung-a2015-common.dtsi to reduce duplication.
+> s/Device Tree Bindings for//
 > 
-> Add a common device tree for with initial support for:
+> Instead describe the hardware you are adding bindings for. What is a
+> "Manager"? It is so broad and unspecific... It is some dedicated
+> hardware to communicate with FPGA or you just called this regular FPGA
+> interface exposed to the CPU/SoC?
+> 
 
-I just received one patch, no cover letter, no threading (I asked for),
-no changelog against v1, no binding updates (I asked for).
+"FPGA Manager" is a kernel subsystem that exports a set of functions for
+programming an FPGA with a bitstream image.
+See Documentation/driver-api/fpga/fpga-mgr.rst
 
-Sorry, the process does not work like that.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - lattice,ecp5-spi-fpga-mgr
+> 
+> Do not encode interface name in compatible so no "spi".
+> 
 
-You receive comments, so either you apply them or you keep discussing
-with reviewer.
+Recently when I submitted FPGA manager for Microchip PolarFire, I was
+asked the opposite, to add "spi" in compatible. The reason was that FPGA
+can be programmed through other interfaces as well.
 
-Best regards,
-Krzysztof
+> > +
+> > +  reg:
+> > +    description: SPI chip select
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 60000000
+> 
+> Reference spi/spi-peripheral-props.yaml in allOf
+> 
+> > +
+> > +  program-gpios:
+> > +    description:
+> > +      A GPIO line connected to PROGRAMN (active low) pin of the device.
+> > +      Initiates configuration sequence.
+> > +    maxItems: 1
+> > +
+> > +  init-gpios:
+> > +    description:
+> > +      A GPIO line connected to INITN (active low) pin of the device.
+> > +      Indicates the FPGA is ready to be configured.
+> > +    maxItems: 1
+> > +
+> > +  done-gpios:
+> > +    description:
+> > +      A GPIO line connected to DONE (active high) pin of the device.
+> > +      Indicates that the configuration sequence is complete.
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - program-gpios
+> > +  - init-gpios
+> > +  - done-gpios
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    spi {
+> > +            #address-cells = <1>;
+> 
+> Wrong indentation. 4-spaces for DTS example.
+> 
+> > +            #size-cells = <0>;
+> > +
+> > +            fpga_mgr@0 {
+> 
+> No underscores in node names.
+> 
+> > +                    compatible = "lattice,ecp5-spi-fpga-mgr";
+> > +                    spi-max-frequency = <20000000>;
+> > +                    reg = <0>;
+> > +                    program-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
+> > +                    init-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
+> > +                    done-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
+> > +            };
+> > +    };
+> 
+> 
+> Best regards,
+> Krzysztof
+
