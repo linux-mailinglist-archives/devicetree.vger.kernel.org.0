@@ -2,175 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16607576711
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 21:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4EA7576715
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 21:04:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230432AbiGOTEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 15:04:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42888 "EHLO
+        id S230428AbiGOTEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 15:04:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230431AbiGOTEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 15:04:06 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D52B01;
-        Fri, 15 Jul 2022 12:04:02 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-31c9b70c382so55749937b3.6;
-        Fri, 15 Jul 2022 12:04:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=GvNoylKdUFrFiai+l4kyUHpO6WjmryHFiNYK1D6xN6A=;
-        b=JcLJbZ3bNqnfCoqGA+VQZ68OshK7IqcM4z9kh664iA3UNoDmVOejj2QYbmS9bHMX0d
-         jyuN+fA3JBT2iOVPvcB0PswHzrq5Dpk2WhD53peRTqLidDCahw/nYQFQnaVbAaAX3gPo
-         5c2xR6rJwyT74sgHTLWhJKEibrE4uhKpSKd32UVOB6I8qKiSibSLMoD10rd9dQOYM9pA
-         yZkkwomaguKuSoWL+I6XKhFUOIXZG7VAiv80oXnjHdHEW1jCxsDE7ZD1MejZqZ2jHERZ
-         tcTH8sCImbu4Fznw++oA/6hFUFe/7TLdsjmT4qP29E6LtPvCEEYRbeU++2ld//zuVScp
-         hDVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=GvNoylKdUFrFiai+l4kyUHpO6WjmryHFiNYK1D6xN6A=;
-        b=Rte3in0lb3JE+vw+c1F7J4KTVHWaEb7lvQGvbdfDirWlby4HpPMMdRLHboS5iC6QxX
-         hK4BO7guegWmGq2w3+gldYGlPkAAFCEvqEtZYmSoi6QGA5NH/dVhdzLtHiXDmmJgC1Vn
-         v/DI5W9XSXxRGGDzy+sACLxt3YOyL23YsUC+nIJ8UpItvy0fIsT4ZYrNRBjNzTM9+VWU
-         yYmNtJvct9flhM+U3FioGTYzQBEwukmG9k89NdrR00C1Mb5AAiQNYDrHOklTEW5r6B0k
-         53sMxmNd+Wp7w6IsTJ/oBSbAPAasofdG+X9xPtlbVm5c5Oraz1aY4bI19Ql50dEyCo5W
-         eDBw==
-X-Gm-Message-State: AJIora+yM+Tgmb8qfe12tagdj+hnOQsjwIZyDTTwtVpuMO1N411ADkam
-        a3egS6erYaFiOF0xFPOpbeItFcWoCBxGxZItD4A=
-X-Google-Smtp-Source: AGRyM1u4JjC5NUYyUjGT2sgcCJnp/jYPFLkDzsR3mAo1UbOSpuRLrdEs/lA1+F4+cyDgmjMbaow6pDNthqyeWODDNpk=
-X-Received: by 2002:a81:8397:0:b0:31c:8a02:3f6d with SMTP id
- t145-20020a818397000000b0031c8a023f6dmr17875107ywf.486.1657911841461; Fri, 15
- Jul 2022 12:04:01 -0700 (PDT)
+        with ESMTP id S229549AbiGOTEc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 15:04:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92EF13E84
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:04:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8E4F5B82E11
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 19:04:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B27C4C34115;
+        Fri, 15 Jul 2022 19:04:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657911869;
+        bh=vFOuUhDDk7ZbJ1Zwwa6YcJ0NqzmDz1ZI5+SCn128S4k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PxlC5mOw0BQ0sGfHYO7S/laafBTpQl5eCCkczwgGQMKuxoFaPrRfbhVMmYsLM0Txr
+         IRBKK4VilhWWLJJsov5KYb84q+YksPs/9T6sYarxt6hLjZAGGh2DXuhXOKQibAiC08
+         kRsRrf1rvfFTCM8GYn6c6oOfKVp+/KgzsILfJg2f2sWwcQ1cTJvvUYZriYVQK9ELhE
+         jEd0XlL6dQLwRkdMVOHZ11+rbFW2KQOOBPQg+WrS/gu/72yR4nQe1thQjZOu+G/82N
+         /5sYpRcO+16FcymVwqbAdL9gTIXpWGp05SfIO2K4yKGb2Gi7B8iwa2oYARg5AA90kC
+         vu65XnJLD5EOw==
+Date:   Fri, 15 Jul 2022 20:04:24 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Zhu Ning <zhuning0077@gmail.com>
+Cc:     alsa-devel@alsa-project.org, pierre-louis.bossart@linux.intel.com,
+        tiwai@suse.com, devicetree@vger.kernel.org,
+        David Yang <yangxiaohua@everest-semi.com>,
+        Zhu Ning <zhuning@everest-semi.com>
+Subject: Re: [PATCH] ASoC: codecs: add support for ES8326
+Message-ID: <YtG6OO5XlAFFcJjV@sirena.org.uk>
+References: <20220715054100.9240-1-zhuning0077@gmail.com>
 MIME-Version: 1.0
-References: <20220715125138.378632-1-nuno.sa@analog.com>
-In-Reply-To: <20220715125138.378632-1-nuno.sa@analog.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 15 Jul 2022 21:03:25 +0200
-Message-ID: <CAHp75VcYAErGywT=29ovPinAubVJCjVoWa6g-5N+OdowaGAmvw@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] adp5588-keys refactor and fw properties support
-To:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="WzpKlPhY3WuQ4DUk"
+Content-Disposition: inline
+In-Reply-To: <20220715054100.9240-1-zhuning0077@gmail.com>
+X-Cookie: You dialed 5483.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 2:50 PM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
->
-> The main goal of this patchset is to remove platform data and replace it =
-by
-> firmware properties. Original discussion in [1].
->
-> While in here, some refactor was done to the driver. The most noticeable =
-one
-> is to replace the GPIs events handling by irqchip support so that this gp=
-i
-> keys can be "consumed" by the gpio-keys driver (also as suggested in [1])=
-.
-> With this, the gpio-adp5588 can be removed. This change comes first so th=
-at
-> we can already remove some platform data variables making it easier to
-> completly replace it by firmware properties further down in the series.
->
-> As there's no users of the platform data, I just replace it in a single
-> patch as there's no point in having support for both (even though it migh=
-t
-> be harder to review the patch as-is).
->
-> Special note to the gpio-adp5588 driver removal. I'm aware of some change=
-s
-> to the driver in [2]. These changes are in the gpio tree and this patchse=
-t
-> is naturally based on the input tree which means that patch 2 will
-> not apply. So, I'm not really sure how to handle this. I guess in this
-> case the conflict is easy to handle :) but just let me know on how to
-> proceed in here if there's anything for me to do.
 
-You may add my tag to non-commented patches (excluding DT binding one)
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+--WzpKlPhY3WuQ4DUk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> v2 changes:
->
-> [1/10]
->  * Turn hwirq signed so we can compare < 0;
->  * Replace WARN_ON with dev_warn();
->  * Do not set of_node on gpiochip;
->  * Moved to use a const irqchip within the gpiochip;
->  * Set default handler to 'handle_bad_irq()' and change it
-> in irq_set_type;
->
-> [4/10]
->  * Dropped "-keys" from compatible and added vendor prefix;
->  * Fix -Wformat complains;
->  * Don't use abbrev in comments (fw -> Firmware).
->
-> [5/10]
->  * Be consistent on $refs;
->  * Drop "-keys" from compatible.
->
-> [7/10]
->  * Include bits.h;
->  * Use GENMASK();
->  * Use BIT() in KP_SEL();
->  * Reflect code changes in the commit message.
->
-> [9/10]
->  * One line for regulator_disable action.
->
-> [1]: https://lore.kernel.org/linux-input/20220504084617.36844-1-u.kleine-=
-koenig@pengutronix.de/
-> [2]: https://lore.kernel.org/linux-gpio/20220628193906.36350-3-andriy.she=
-vchenko@linux.intel.com/
->
-> Nuno S=C3=A1 (10):
->   input: keyboard: adp5588-keys: support gpi key events as 'gpio keys'
->   gpio: gpio-adp5588: drop the driver
->   input: keyboard: adp5588-keys: bail out on returned error
->   input: keyboard: adp5588-keys: add support for fw properties
->   dt-bindings: input: adp5588-keys: add bindings
->   input: keyboard: adp5588-keys: do not check for irq presence
->   input: keyboard: adp5588-keys: fix coding style warnings
->   input: keyboard: adp5588-keys: add optional reset gpio
->   input: keyboard: adp5588-keys: add regulator support
->   input: keyboard: adp5588-keys: Use new PM macros
->
->  .../bindings/input/adi,adp5588-keys.yaml      | 110 +++
->  MAINTAINERS                                   |   2 +-
->  drivers/gpio/Kconfig                          |  14 -
->  drivers/gpio/Makefile                         |   1 -
->  drivers/gpio/gpio-adp5588.c                   | 452 -----------
->  drivers/input/keyboard/Kconfig                |   3 +
->  drivers/input/keyboard/adp5588-keys.c         | 719 ++++++++++++------
->  include/linux/platform_data/adp5588.h         | 171 -----
->  8 files changed, 588 insertions(+), 884 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/input/adi,adp5588-k=
-eys.yaml
->  delete mode 100644 drivers/gpio/gpio-adp5588.c
->  delete mode 100644 include/linux/platform_data/adp5588.h
->
-> --
-> 2.37.1
->
+On Fri, Jul 15, 2022 at 01:41:00PM +0800, Zhu Ning wrote:
 
+Looks mostly good but there's still some issues here, plus the ones
+Pierre found.  Only one or two are substantial though, some of the
+things below are really minor:
 
---=20
-With Best Regards,
-Andy Shevchenko
+Please check the coding style matches the kernel coding style -
+checkpatch will probably help here.
+
+> +	snd_soc_dapm_mutex_unlock(dapm);
+> +}
+> +static void es8326_jack_detect_handler(struct work_struct *work)
+
+Blank line missing between functions.
+
+> +	if(!es8326->jack)
+> +		goto out;
+
+Missing space after the if.
+
+> +static int es8326_resume(struct snd_soc_component *component)
+> +{
+
+I'm not seeing anything in here to resync the register map with the
+device - the driver is using a register cache so that's going to break
+if the device looses power over suspend.  TBH it's not clear to me that
+the driver isn't hard coding a specific set of paths...
+
+> +	regmap_write(es8326->regmap, ES8326_INT_SOURCE_58, 0x08);
+> +	regmap_write(es8326->regmap, ES8326_INTOUT_IO_59, 0x45);
+
+Some of the hard coded register write sequences in here look a lot like
+they're assuming a specific board layout and might need more device tree
+configurability - what if the board doesn't use an interrupt or uses a
+different one?
+
+> +	ret = device_property_read_u8(component->dev, "everest,mic1-src", &es8326->mic1_src);
+> +	if (ret != 0) {
+
+This is adding a DT binding but there's no DT binding document.
+Previous versions of this driver did have one, please include it with
+every submission.
+
+> --- /dev/null
+> +++ b/sound/soc/codecs/es8326.h
+> @@ -0,0 +1,187 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * es8326.c -- es8326 ALSA SoC audio driver
+
+Commend has the wrong filename here.
+
+--WzpKlPhY3WuQ4DUk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLRujcACgkQJNaLcl1U
+h9CMYQf8DF6sLAnw3ygRgDwV529SWix+B4Usjc73Xe3qvGlu6hcp/cY3lxagkol3
+wckVPVTeqSRgLf8GpqWYb0cXdT8vZ4AwgJGDFD1kLf9yJ1lrv7unIdOxBZAVH5Co
+F/3I9B/kfIiR5Ewj4LmYcBpVxKbBCyHUMMl9VDgXXn5irOeH8HFpvfFqHZ+rnYGM
+gD1k3Hw6Z7NaXRT35skH6XdNauC7tsXb3fqFrbCWDmhxAoS5caftCHNeDlArOqf1
+JhBvJuTH/DGZ/fpvUdTnaz0E9pVtnZxAj93uMg1PDIgXJNGYvw4LuiD9opvnxhH+
+vbWd473I6sezF5TM3Np1QGDv5uW6qQ==
+=vHQL
+-----END PGP SIGNATURE-----
+
+--WzpKlPhY3WuQ4DUk--
