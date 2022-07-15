@@ -2,132 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6932D575E05
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CADA575E43
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbiGOI6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 04:58:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50642 "EHLO
+        id S233306AbiGOJOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 05:14:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232400AbiGOI6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:58:06 -0400
-Received: from mail-4324.protonmail.ch (mail-4324.protonmail.ch [185.70.43.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74EF61178
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 01:58:02 -0700 (PDT)
-Date:   Fri, 15 Jul 2022 08:57:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1657875481; x=1658134681;
-        bh=WMlKeie/NS7d+J8scSpWHnhHScPd94Wc8y+1O1pSeEk=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
-         Feedback-ID:Message-ID;
-        b=WujzAzp6hQSpwnp0ffb64BOrEOZ8SBLRLdpMm/dNgY4oCmbrE4GUPZxEkoDgdnGEI
-         8i6UXWC8NVzOWMtOLJfbZefzPipjHGeSwzxNNNtH0d85tHUFDstR28RkBhfIxBZqpR
-         KcJUNZPk5g9g0j8AMmkCgms3/mTaKwJ7OhTG1tHo3ixgsn2SgCcUrA3ZtZURY3uFSs
-         OmIp8A7UzuyYVFidbimAgXRgD+n/Pl0cmc+ZbwMN/zqP6dv19aWpaB19S5+oKR8Vf0
-         j0P1/jv2F+m4Pvx8eJFzSjRdAYX0KGo7yaSDIaFq4jnGempQtmldmSRVMluaPjc68P
-         RTI6IrVhwdZZw==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Subject: [PATCH 4/4] arm64: dts: qcom: msm8916-samsung-e2015: Add touchkey
-Message-ID: <20220715085712.54098-4-linmengbo0689@protonmail.com>
-In-Reply-To: <20220715085712.54098-1-linmengbo0689@protonmail.com>
-References: <20220715085712.54098-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S232919AbiGOJNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 05:13:21 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B5A5B78F;
+        Fri, 15 Jul 2022 02:13:08 -0700 (PDT)
+X-UUID: 1d41d199e36a4cd49238f9f5cc354333-20220715
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:b02bc9aa-c130-4672-95a5-f92fc34312b7,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:0f94e32,CLOUDID:071f6464-0b3f-4b2c-b3a6-ed5c044366a0,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 1d41d199e36a4cd49238f9f5cc354333-20220715
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 901452969; Fri, 15 Jul 2022 17:13:03 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 15 Jul 2022 17:13:03 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 15 Jul 2022 17:13:03 +0800
+Message-ID: <ba34c4aafcb667eba778cbb0ec7cd12f6fac6400.camel@mediatek.com>
+Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 15 Jul 2022 17:13:03 +0800
+In-Reply-To: <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
+         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On the Samsung Galaxy E5 and E7 the touch key is supplied by a single
-fixed regulator (enabled via GPIO 97) that supplies both MCU and LED.
-Add it to the device tree.
+Hi, Bo-Chen:
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../qcom/msm8916-samsung-e2015-common.dtsi    | 26 +++++++++++++++++++
- .../dts/qcom/msm8916-samsung-grandmax.dts     |  4 +++
- 2 files changed, 30 insertions(+)
+On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> This patch adds a embedded displayport driver for the MediaTek mt8195
+> SoC.
+> 
+> It supports the MT8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jitao shi <jitao.shi@mediatek.com>
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi b/a=
-rch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-index 373154ee2643..9f3aca17130d 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-@@ -19,6 +19,19 @@ muic: extcon@14 {
- =09=09};
- =09};
-=20
-+=09reg_touch_key: regulator-touch-key {
-+=09=09compatible =3D "regulator-fixed";
-+=09=09regulator-name =3D "touch_key";
-+=09=09regulator-min-microvolt =3D <3300000>;
-+=09=09regulator-max-microvolt =3D <3300000>;
-+
-+=09=09gpio =3D <&msmgpio 97 GPIO_ACTIVE_HIGH>;
-+=09=09enable-active-high;
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&tkey_en_default>;
-+=09};
-+
- =09vibrator: vibrator {
- =09=09compatible =3D "gpio-vibrator";
- =09=09enable-gpios =3D <&msmgpio 76 GPIO_ACTIVE_HIGH>;
-@@ -28,6 +41,11 @@ vibrator: vibrator {
- =09};
- };
-=20
-+&touchkey {
-+=09vcc-supply =3D <&reg_touch_key>;
-+=09vdd-supply =3D <&reg_touch_key>;
-+};
-+
- &msmgpio {
- =09motor_en_default: motor-en-default {
- =09=09pins =3D "gpio76";
-@@ -36,4 +54,12 @@ motor_en_default: motor-en-default {
- =09=09drive-strength =3D <2>;
- =09=09bias-disable;
- =09};
-+
-+=09tkey_en_default: tkey-en-default {
-+=09=09pins =3D "gpio97";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts b/arch/a=
-rm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
-index 41aada4bfb80..f68dd3d69a33 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
-@@ -27,6 +27,10 @@ / {
- =09/delete-node/ i2c-tkey;
- };
-=20
-+&reg_touch_key {
-+=09status =3D "disabled";
-+};
-+
- &vibrator {
- =09enable-gpios =3D <&msmgpio 72 GPIO_ACTIVE_HIGH>;
- };
---=20
-2.30.2
+[snip]
 
+> +
+> +static int mtk_dp_set_color_depth(struct mtk_dp *mtk_dp)
+
+This function just return 0, so let this function to be void.
+
+Regards,
+CK
+
+> +{
+> +	/* Only support 8 bits currently */
+> +	mtk_dp->info.depth = DP_MSA_MISC_8_BPC;
+> +
+> +	/* Update MISC0 */
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3034,
+> +			   DP_MSA_MISC_8_BPC, DP_TEST_BIT_DEPTH_MASK);
+> +
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_303C,
+> +			   VIDEO_COLOR_DEPTH_DP_ENC0_P0_8BIT,
+> +			   VIDEO_COLOR_DEPTH_DP_ENC0_P0_MASK);
+> +	return 0;
+> +}
+> +
 
