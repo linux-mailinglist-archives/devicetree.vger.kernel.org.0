@@ -2,101 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F184F575FA2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 13:00:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5B4F575FC0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 13:08:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232135AbiGOLAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 07:00:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55500 "EHLO
+        id S232008AbiGOLIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 07:08:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229713AbiGOLAa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 07:00:30 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E83E185FB2
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 04:00:28 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id bf9so7188221lfb.13
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 04:00:28 -0700 (PDT)
+        with ESMTP id S229753AbiGOLIX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 07:08:23 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C55868BE
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 04:08:22 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id v16so6253538wrd.13
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 04:08:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QCQCmBsf1DA1Wn9Db/rqbLuUpiiA+4ckSDT/a9GkcLg=;
-        b=KLG+3UnmIBqTm11CZQOXA3v5XkFnjQ3NnsSIXk+Wbxp3IMj+ntYW/QzFmMexKmI7te
-         gAgfNJ3enlvskxm9V/tqzEtAuVRUEmINkLeGnHOPQjTykdPoGNfqWjYOlHWsJKKaJKos
-         ACweysGLbgiJr9pAYcdRSj+V6Cshr5G6oBLVBU1FXIiwRGWqmPyr5fLQ1NUihkjqON6M
-         DZZbepq07ojP6/3sPvVU35YNZ5urb0g47ARuOONZB+FXDSRRJwgM0gQdiDAipXCz1x84
-         un+8cOEheNXU8XUopXTBigTUSznJ5QIuiEqYSKFCD6eeMO9SwA0BBK8kCmJ8jafHEh5r
-         2CdQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=OmAVkQqBTTkr9luYSoZNqmHxg6zKrdYzcTAh39XB80E=;
+        b=WHo2FU3vtMGV3aElDTXi+mGo+/8MM2a56xn0TGixZDPayyPzlYagMDJb7abO5NWLzp
+         V6QBe6cHD2iC/JjNFxLPxxOkhjL2OX/IQxZ9AxnfnJ2g07EfV1gs1EbdNy/qtP7P/2iQ
+         Fze5KHOR30JKo0qsuODX1AcxJOdEZhyqW4oE0BMVyiOfKB52QWepFHScSFaY8BWFlIsZ
+         YlSE3dUxuRILm9qIcuyDMx6m3f2l15QkleH49hBbN5FUtnO6/rYYj1LikLf/fUWV4as4
+         ctMSdWmGHme0FScQiEXP8K97X/D6Ru8dB84i8MuyaqKCuSuKuUqG7pBlCOVwR9dMXeOZ
+         LYbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=QCQCmBsf1DA1Wn9Db/rqbLuUpiiA+4ckSDT/a9GkcLg=;
-        b=bBtgtkQL9/YCZMqi1L3CWhokgY/k7V5r0EYn6VrjlkiH7FwqAhmeDJ078cZL4uBLrL
-         G68v1kvd+EjFBH+5q1WlS+NR5g6EGD3FIqKmq43s3NRUk1TAi/nKk8JJPtchMRPHWY6v
-         B96zji7n91Vd10SHLFt3px0MMLO4uLmbYYYfRGcOulXqPoSgvzm6s+B/q8CEikmMX2e3
-         VhuSbiMMNXYajqsZ9cdzPlu8lQWD4/NggJPzggfAoOJl/eZ9v9cVzjfhqkH/ZQe/CyYK
-         DEddKosV0GCMXWWHh2GNYTy+VzvxEux1zlpKYZe8L4Nbs7kOgiqdBZSSqHOx425ILfrW
-         TJjQ==
-X-Gm-Message-State: AJIora8tmMBYXMW1tgujRQq+yVt+j2L4v4nzi9Kewulfs+VRwTAzQ2+1
-        04yq+5VsuXMW8BDLSzdrmfRczw==
-X-Google-Smtp-Source: AGRyM1uud0vYpm9BdHaEw4F/cDP+GmNnJZYc1ROR+M3VRHmuHg9rOz6vgMJzDj5ccZj7a0ziUcFdBA==
-X-Received: by 2002:ac2:44cf:0:b0:48a:1251:1cf5 with SMTP id d15-20020ac244cf000000b0048a12511cf5mr5145684lfm.680.1657882827338;
-        Fri, 15 Jul 2022 04:00:27 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id u16-20020ac25190000000b0047f88d15ec0sm842600lfi.251.2022.07.15.04.00.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jul 2022 04:00:26 -0700 (PDT)
-Message-ID: <937479a6-8ad5-dc38-3c8a-f972993d23e2@linaro.org>
-Date:   Fri, 15 Jul 2022 14:00:26 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 30/30] phy: qcom-qmp-usb: drop pipe clock lane suffix
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OmAVkQqBTTkr9luYSoZNqmHxg6zKrdYzcTAh39XB80E=;
+        b=YO99z5u25ngeAIjAmIbT+lUXHoGw0W+S6+vmYm2nsZ8zQk+rMYh5AAxZ6RahEC4kJZ
+         A9FUv9nwWL2sypljYSMa4zMcNMFjvCczjwQOGSmGTlLqPPsXIV4ZP3WnzZPouujFnLA5
+         kXyNU2zzfpCbliZfo/W6RkfAJsntRpf7ESRL/JJnmhVFis0oO1cVN3KTQWf5lWJu56Cg
+         7SRTq5lwIp77bSlMdroV07bOfOP7QwS2tLkgMt9jp4XBqac1iDrCHtXWVoHh0VenAj4f
+         8K5QGwDCtSzgLYPf5s8L8LVA66AVlZzU0K46n0TRn/5e9QnJJYJnePq7dpzEzKgSae39
+         vekw==
+X-Gm-Message-State: AJIora8+4IP99RESmEVqpc6in0Oq8vf/fPcoM081341zB4Z+xlT+pZ8S
+        Ssi0LCZW82TbRbU9QEarQs7oHQ==
+X-Google-Smtp-Source: AGRyM1sEjpj7feotX5UfZAdeUwTZLkodeYC6VvTR5tSQyXV/Uekt9N0ER1lQi7rDu073X4wM9rjEKg==
+X-Received: by 2002:a5d:59ac:0:b0:21d:944a:8a0e with SMTP id p12-20020a5d59ac000000b0021d944a8a0emr12137645wrr.61.1657883300766;
+        Fri, 15 Jul 2022 04:08:20 -0700 (PDT)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id m18-20020a5d56d2000000b0021a34023ca3sm3521355wrw.62.2022.07.15.04.08.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jul 2022 04:08:20 -0700 (PDT)
+Date:   Fri, 15 Jul 2022 12:08:18 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Lee Jones <lee@kernel.org>
+Cc:     lee.jones@linaro.org, linux-kernel@vger.kernel.org,
+        Jingoo Han <jingoohan1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20220714124333.27643-1-johan+linaro@kernel.org>
- <20220714124333.27643-31-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220714124333.27643-31-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 6/8] dt-bindings: backlight: Update Lee Jones' email
+ address
+Message-ID: <20220715110818.2hxept5xuaxkpcvw@maple.lan>
+References: <20220714112533.539910-1-lee@kernel.org>
+ <20220714112533.539910-7-lee@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220714112533.539910-7-lee@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 15:43, Johan Hovold wrote:
-> The pipe clock is defined in the "lane" node so there's no need to keep
-> adding a redundant lane-number suffix to the clock name.
-> 
-> Update driver to support the new binding where the pipe clock name has
-> been deprecated by instead requesting the clock by index.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+On Thu, Jul 14, 2022 at 12:25:31PM +0100, Lee Jones wrote:
+> Going forward, I'll be using my kernel.org for upstream work.
+>
+> Cc: Daniel Thompson <daniel.thompson@linaro.org>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
 
-> ---
->   drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 4 +---
->   1 file changed, 1 insertion(+), 3 deletions(-)
 
--- 
-With best wishes
-Dmitry
+> Cc: Jingoo Han <jingoohan1@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-leds@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Lee Jones <lee.jones@linaro.org>
+> Signed-off-by: Lee Jones <lee@kernel.org>
+
+
+Daniel.
