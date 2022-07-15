@@ -2,106 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68056575D0E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 10:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C434D575D25
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 10:15:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232157AbiGOIJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 04:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37034 "EHLO
+        id S229608AbiGOIPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 04:15:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232132AbiGOIJK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:09:10 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 136981BE98
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 01:09:09 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id z25so6652892lfr.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 01:09:08 -0700 (PDT)
+        with ESMTP id S231236AbiGOIPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:15:16 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419A76BC0A
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 01:15:15 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id u14so4917516ljh.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 01:15:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Sh3qQBxtVm59D6pY3ArLd+5CvRyF7NNiw6/39bUzBx8=;
-        b=gyU9gzj7ZHkjH/AnPb/OntuoNCVNCIacmF6qdlH26K/ifCqtKbMvZrdW7mLSTr/dtk
-         dbGQVhQ0w2+lGU5Yhn8gG8qK2MecFyPsn03MlWvephuzhL817A+46HSj6ceRIenZ2Fbn
-         930LsjV/2DUW3djOZFGFHWWHqq51abLDaMRyFJWvHhi1+xPbtHytH7sCdKy94opWVQaK
-         AaWQ4mIfiLgLejIIr1ylLvtbi7O6gO8BsfDz5fi7xqKiDKAbNcNkuoQ+BRAAnKVDJBh3
-         YtZnTCbE5LgbVDSUU7jTnn6L86L0Jpnmbt9blnyG5+mICLfBQnZzKrlvh17OFAQAfRYi
-         GoTw==
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=e+ERE0KIoScFnNn+zM8jJN/meHoLJnU/KJ0nScp1cAM=;
+        b=ej3ctc4UQJ654wtTtLiTxBvgpCnZNLjLyuOrdNOd4+CszA6zehRmllfuaZyRbmchIW
+         fBkyZGtvSC/ZH5Cqqs/qqQpp5QGpdeDQkpQ3unibnm79+FkU37BUoMSM6Ow9yQOMOSa3
+         xX9sIIHxstIPDfNtEeikuNKW5bG/+RBrTvUU5nCWNiqxnbZQSm8p0/mFvaYqqug9jkMg
+         gVul9xFyT+rmkbxV7/ysJLSv25941FpziMavn0n4MR+pUtrdUHj3UnzY9u+7RshYbrxe
+         9IPYQ3QcGDIcPrhE8EkFnx0ht343qSG0X68toTsNL/ymMAY7OaTaenZ51p7VM0UWbSsw
+         hRPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:from:to:cc:references:in-reply-to
          :content-transfer-encoding;
-        bh=Sh3qQBxtVm59D6pY3ArLd+5CvRyF7NNiw6/39bUzBx8=;
-        b=h5lDgaXo7iOQx1xEq8InMeNNZhejIJeddtpdKh1+CgZZW/EyrEWaZoqAJ3M/4tNE5+
-         thysWYW5qU1XrWRIRd+UyL76lFbcrVSVKOn6sNulbLCstvynOm/q8emgqXJ4A0MhiZ1J
-         kVIyqHsIeoda5Uj8Lj/+/WhCAT8e1QANaL2AircrsduPsjCoAcUeoVJ+CRbcQOFh4oi/
-         pSS51p5q9eoBIY76ETLZVO4WiK0PbTs5i+N8iWYJbQw7Lq2ncv8KuyceKp4bfY6Alwab
-         KpqOSS8pS0fpQZFpd4/4aT+/pLK9kJLDLCfiZA2zM18g7Byn3wtAsv4n6A6DjGVXCuQc
-         E6zQ==
-X-Gm-Message-State: AJIora+YmJTg2qgKR6ce8KYrqqzyLf/taMZs21vSNaZdn9ZQCDYKfbcs
-        QZXHC59Y3DIPfDXHnkoQZE/KJw==
-X-Google-Smtp-Source: AGRyM1v2eu52JxiG7w2sijEsdgrXupqb3zrV62/uR306AkJIKmlXe3z8Jfg9np4Mel3+xiPzTI+2eQ==
-X-Received: by 2002:a05:6512:15a0:b0:489:d008:c0a2 with SMTP id bp32-20020a05651215a000b00489d008c0a2mr7847182lfb.231.1657872547466;
-        Fri, 15 Jul 2022 01:09:07 -0700 (PDT)
+        bh=e+ERE0KIoScFnNn+zM8jJN/meHoLJnU/KJ0nScp1cAM=;
+        b=1KkJlNaLasksTIc9M/Ze8ILOBY3Udm+J0KXWEvx0BAiWAJoQkOWYl6bNqBWyAuw6Ny
+         Xj6Z2/eDxwCYCsYB6uxaJ3+5m+8aOLSinojltxpx81wO4nhyRhrp43kdo4XPXp9ietOR
+         L1NoSkcoa7dVHqdJPiq3cNlI3l4sOdSOR+JTRteonSCAolHGWSs1DLu5OOOas5L/BOEY
+         Xo+g1qIkPkwXbD5RDhyOETA2ErX6GflEojHei9Lmh2nrhIZ7FDoQFTZBAGBC+XJQQLmq
+         XzbsEtOKLAqagzS7fs7k48e2JHQn9r5gB2D8PPhV/tW0J6Ac6zFASc9H+dPLm6EweJlh
+         h15Q==
+X-Gm-Message-State: AJIora8UVjGIMYvdoqgM9GBaGinAwFiUsdTnk8AHAkfGT0h64PpPaQTM
+        qolvsVL8Z/t1V2sizb7HrXdlmA==
+X-Google-Smtp-Source: AGRyM1sMtUQaH6P6ehwbJuYCX/2dAmVEbQZVwJArYB54qbYI9BEIAead4/d8WxFm00HQoj3oVBoAyQ==
+X-Received: by 2002:a2e:8719:0:b0:25d:7650:6c06 with SMTP id m25-20020a2e8719000000b0025d76506c06mr6336445lji.330.1657872913617;
+        Fri, 15 Jul 2022 01:15:13 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id x37-20020a0565123fa500b0047255d2117bsm777118lfa.170.2022.07.15.01.09.05
+        by smtp.gmail.com with ESMTPSA id p22-20020a2eba16000000b0025d87966100sm632898lja.140.2022.07.15.01.15.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jul 2022 01:09:07 -0700 (PDT)
-Message-ID: <c66a3d29-695a-1d50-b3ce-8b9741dce073@linaro.org>
-Date:   Fri, 15 Jul 2022 10:09:04 +0200
+        Fri, 15 Jul 2022 01:15:13 -0700 (PDT)
+Message-ID: <631560b2-58f7-064a-020b-d8029f04e451@linaro.org>
+Date:   Fri, 15 Jul 2022 10:15:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916 to
- schema
+Subject: Re: [PATCH v2 05/19] dt-bindings: power: mediatek: Refine multiple
+ level power domain nodes
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sireesh Kodali <sireeshkodali1@gmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
- <20220712124421.3129206-3-stephan.gerhold@kernkonzept.com>
- <434cbf73-c62d-7d5c-fe60-7d98a84bc7fe@linaro.org>
- <YtBlGJ+lQFQg+l+I@gerhold.net>
- <cd8a2b66-ba7c-768c-f5b0-2728f0a8be99@linaro.org>
- <YtEeay9JCaG2NMdT@gerhold.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YtEeay9JCaG2NMdT@gerhold.net>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        MandyJH Liu <mandyjh.liu@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220714122837.20094-1-tinghan.shen@mediatek.com>
+ <20220714122837.20094-6-tinghan.shen@mediatek.com>
+ <c2e9f890-98c2-8f09-952d-495f2b57a254@linaro.org>
+In-Reply-To: <c2e9f890-98c2-8f09-952d-495f2b57a254@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/07/2022 10:00, Stephan Gerhold wrote:
->>
-> 
-> Sorry, I'm not sure I understand you correctly: What do you mean with
-> "the previous bindings were not mentioning it alone"? "qcom,q6v5-pil"
-> was listed as standalone compatible just like all the other compatibles:
-> 
-> - compatible:
-> 	Usage: required
-> 	Value type: <string>
-> 	Definition: must be one of:
-> 		    "qcom,q6v5-pil",         <----
+On 15/07/2022 10:07, Krzysztof Kozlowski wrote:
+> On 14/07/2022 14:28, Tinghan Shen wrote:
+>> Extract duplicated properties and support more levels of power
+>> domain nodes.
 
-You're right, sorry for confusion.
+Can you guys stop cc-ing all the non-working @mediatek.com emails? Every
+time I got a bunch of bounced:
 
+550 Relaying mail to weiyi.lu@mediatek.com is not allowed
+
+and other like that.
+
+Really, it's being since some time and it became extra annoying.
 
 Best regards,
 Krzysztof
