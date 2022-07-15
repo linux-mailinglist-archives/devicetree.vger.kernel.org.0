@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3B8E576A68
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 01:06:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53FA3576A65
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 01:06:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231772AbiGOXGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 19:06:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37344 "EHLO
+        id S231761AbiGOXGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 19:06:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbiGOXGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 19:06:35 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A34028B49A;
-        Fri, 15 Jul 2022 16:06:34 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id p128so5009671iof.1;
-        Fri, 15 Jul 2022 16:06:34 -0700 (PDT)
+        with ESMTP id S229580AbiGOXGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 19:06:33 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 461238B497;
+        Fri, 15 Jul 2022 16:06:32 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id v185so4977553ioe.11;
+        Fri, 15 Jul 2022 16:06:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=YDlkhqWKsbJBSkGChagGjsv3FbYi9c+x2tAtlYBYcqs=;
-        b=LExJW4pi4GcUClBF//o6HyygHymcmueSxFiZ7WATlXvnJ02P3NwRFFJWuIIwJarE0v
-         5GG+9FbWCnjlVoC7SUYwJjz8iJ69VV00SM2NjYJDcYyrAlGLjk5+Sg1r1rwObGKwDaFG
-         h7065MUqgWlyrDK16a96exS9M1DbcZBcLK6qihBjV4hwfRayololRO4hnPJdQ8ogXNOd
-         CZV5OAuLvRw84myD2byWAf+EJ1Ck9Tl29nkTs5Sv2YEaH74cDnyxpbsMsO1HbhCyxj67
-         h2v42Vu8qloFXEYWI7pMQAq61W6a67vJktrNuuEGQ1ImwFGbzjlF4G0+gQoWzkNrsjk4
-         1Ozw==
-X-Gm-Message-State: AJIora/1JztSBNUAAFYt0SiwgKKlz7Sr+Yn7WbPu0X9XlYnKi2g6MXT7
-        bUt1xQu8bQoFni6ZaD0+hQ==
-X-Google-Smtp-Source: AGRyM1sUbyT8G+qLwBnGuz9wxAX+YT+GbATzT32jX5qUjf9gpXjD6N6hWKSTZmNym1N+6hLf7WDI3Q==
-X-Received: by 2002:a05:6638:3586:b0:33c:9df7:6dec with SMTP id v6-20020a056638358600b0033c9df76decmr8832917jal.175.1657926393834;
-        Fri, 15 Jul 2022 16:06:33 -0700 (PDT)
+        bh=WS+m6FCV1ih7kQYyoEE+Xpgv4hF6eBI9SGC0nwJm3wI=;
+        b=4QlHkrE2SWydcunm0CcgFwjypBz1SVw4Fm6XLbhNoYl5tnpDmYX9zyrP1BstyZT3Gi
+         RA2nu8KDpeLUdIVTMMJBCYCLpJk2S+pJAQFmwID/ee1eoeWZmn8n0BTMCCNeGi9GnXmJ
+         aD2yAk6RHZrWrMdZgkgZX8mC6qp/pOLnACDXn5igvYHbT5THh3KssnmWK1i3i7PiezzN
+         Cgl5D+ejkjtncR99U/XcTGWkRy7RY03WOBlWNfbvPqBIFEOTSg/UD+MzHb40KGsCa/6i
+         eYBu01kvM1zhvJA2k0KHBx5BjSWVrPhCrRRiUPhDp1zhwVzsY6j6yE+xbJQ5BcaEGHf/
+         Yb1w==
+X-Gm-Message-State: AJIora8BUEsBkOXr8LzdPmhI68lkQtKGw4vazbogXYD4kRYtmeFb7YcT
+        Uxpxaso18LlyM/mM1MnYvw==
+X-Google-Smtp-Source: AGRyM1vJzwIneWYq4VBZo4Q8Al9UejZ/c08fHYNczA4GDDXLOiIf81FvnXssYQRPzsCwTbZnDVFD6w==
+X-Received: by 2002:a05:6602:1346:b0:669:35d4:1a81 with SMTP id i6-20020a056602134600b0066935d41a81mr8128000iov.112.1657926391461;
+        Fri, 15 Jul 2022 16:06:31 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id v20-20020a02b094000000b0033c836fe144sm2453075jah.85.2022.07.15.16.06.32
+        by smtp.gmail.com with ESMTPSA id b13-20020a92ce0d000000b002dc6fd9a84bsm2149256ilo.79.2022.07.15.16.06.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jul 2022 16:06:33 -0700 (PDT)
-Received: (nullmailer pid 1631479 invoked by uid 1000);
+        Fri, 15 Jul 2022 16:06:31 -0700 (PDT)
+Received: (nullmailer pid 1631476 invoked by uid 1000);
         Fri, 15 Jul 2022 23:06:28 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20220715215954.1449214-4-sean.anderson@seco.com>
-References: <20220715215954.1449214-1-sean.anderson@seco.com> <20220715215954.1449214-4-sean.anderson@seco.com>
-Subject: Re: [PATCH net-next v3 03/47] dt-bindings: net: Convert FMan MAC bindings to yaml
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com,
+        peng.fan@nxp.com, ntb@lists.linux.dev, kernel@vger.kernel.org,
+        s.hauer@pengutronix.de, aisheng.dong@nxp.com, kw@linux.com,
+        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
+        maz@kernel.org, festevam@gmail.com, shawnguo@kernel.org,
+        tglx@linutronix.de, krzysztof.kozlowski+dt@linaro.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        jdmason@kudzu.us, linux-imx@nxp.com, kernel@pengutronix.de
+In-Reply-To: <20220715192219.1489403-4-Frank.Li@nxp.com>
+References: <20220715192219.1489403-1-Frank.Li@nxp.com> <20220715192219.1489403-4-Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: irqchip: imx mu work as msi controller
 Date:   Fri, 15 Jul 2022 17:06:28 -0600
-Message-Id: <1657926388.246596.1631478.nullmailer@robh.at.kernel.org>
+Message-Id: <1657926388.230921.1631475.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,23 +63,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jul 2022 17:59:10 -0400, Sean Anderson wrote:
-> This converts the MAC portion of the FMan MAC bindings to yaml.
+On Fri, 15 Jul 2022 14:22:18 -0500, Frank Li wrote:
+> imx mu support generate irq by write a register.
+> provide msi controller support so other driver
+> can use it by standard msi interface.
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> 
-> Changes in v3:
-> - Incorperate some minor changes into the first FMan binding commit
-> 
-> Changes in v2:
-> - New
-> 
->  .../bindings/net/fsl,fman-dtsec.yaml          | 145 ++++++++++++++++++
->  .../devicetree/bindings/net/fsl-fman.txt      | 128 +---------------
->  2 files changed, 146 insertions(+), 127 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+>  .../interrupt-controller/fsl,mu-msi.yaml      | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -89,8 +81,10 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/fsl,fman-dtsec.example.dtb: ethernet@e8000: 'phy-connection-type', 'phy-handle' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dtb: interrupt-controller@5d270000: '#interrupt-cells' is a dependency of 'interrupt-controller'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dtb: interrupt-controller@5d270000: '#interrupt-cells' is a dependency of 'interrupt-controller'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/interrupt-controller.yaml
 
 doc reference errors (make refcheckdocs):
 
