@@ -2,355 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A546575EF8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 12:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25CD8575F3A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 12:18:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232856AbiGOKEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 06:04:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43558 "EHLO
+        id S230407AbiGOKR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 06:17:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbiGOKEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 06:04:43 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5D229837;
-        Fri, 15 Jul 2022 03:04:41 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id x184so4280247pfx.2;
-        Fri, 15 Jul 2022 03:04:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fo6J+XbkB7jjFutwN0VEI7YAOj/+xVVF5CCYclhdBW8=;
-        b=cpZqSeLeXgdFr2xselYTiiyS8QmVWfuiDmxChj7HxYmgiUfjLE8/1PgSKTdXI2l6AY
-         hDVqVGF8dd9yNNRSx+ar2TvH/V4prpOelnV9VCpx6zeWFGdsf+aYsYw+2Ea4rIHWsSqF
-         tNg9bQagye59J/1AAQy8y0pbU4lyXJH7H+FWPM8uIvg1WjPQNB6zF8MIKhMhNWb8ptvt
-         7NbqvmrV1pjyRfVFhhd2UArs2lM0Fhw/hFtZ1OlfT3KrTAAajj+LRSF7IpIAxaEA2ZmP
-         QkviGo1oZ6fm4BGxoCSQIQyQYrdMaiTZzSFbQwq2SQ4IisfhWe+izHODLXyFZyWS9Bmv
-         ZDCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fo6J+XbkB7jjFutwN0VEI7YAOj/+xVVF5CCYclhdBW8=;
-        b=T00zc1G+q5ptnahUDonJzuHFwdVnU6EW+SjsjyO/Bb1ibTeqPIenPqmFXRjxUvdUCt
-         idLr60xqjV8VmJWICL6/WSBLXnrx7HzxkElsxBkY1nZjvb+axnbyEf+NR1N5oCyvcgjm
-         fD4WP2Ctya4VN44vnIEdkQ6rmhBYG92sFBAyIcv29GfLH5ID8CTv+qpd1Lp5+FQ6pezh
-         x0GR9TEQaIWvs+pUbXeEb4w418dWM/kMpyTUDx2Qged1wGdKYKYuQhACH1ZYFtji68VB
-         c9Lngf8mm+fKLWoFiU157mbqdsSflQfhQJhjimoQBXTB7PrQa7HglNNjxDhVv7jQ92dP
-         HR1Q==
-X-Gm-Message-State: AJIora9J2SPrPl3ChtDE/eLJyivacFPO4RkbEZksOBGvE+leOOpLkOdn
-        jEZAanit+U2fLs7yH4hEnwU=
-X-Google-Smtp-Source: AGRyM1tIJYCQbdShB8m/Lq0TBH8HHecZlnvolRiCPWc6nIJdTSDw0VUSFNsGsQCNp4wIVp0QnCZ4bA==
-X-Received: by 2002:a05:6a00:1d8f:b0:52a:b787:b480 with SMTP id z15-20020a056a001d8f00b0052ab787b480mr13150767pfw.71.1657879480774;
-        Fri, 15 Jul 2022 03:04:40 -0700 (PDT)
-Received: from genechen-System-Product-Name.richtek.com ([2402:7500:569:4518:3851:6d9:846d:fbd1])
-        by smtp.gmail.com with ESMTPSA id v12-20020a1709028d8c00b0016c1948ef7esm3033791plo.296.2022.07.15.03.04.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jul 2022 03:04:40 -0700 (PDT)
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, gene_chen@richtek.com,
-        cy_huang@richtek.com
-Subject: [PATCH 3/3] usb: typec: tcpci_rt1711h: Add compatible with rt1715
-Date:   Fri, 15 Jul 2022 18:04:18 +0800
-Message-Id: <20220715100418.155011-4-gene.chen.richtek@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220715100418.155011-1-gene.chen.richtek@gmail.com>
-References: <20220715100418.155011-1-gene.chen.richtek@gmail.com>
+        with ESMTP id S230258AbiGOKR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 06:17:57 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2128.outbound.protection.outlook.com [40.107.113.128])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EE7D823B2;
+        Fri, 15 Jul 2022 03:17:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=acJ7Kg9paI1m+ZhicQLMjT5KM21spfAeq+rr1UZapXNc4NO2mFaiT55l0erTQDJiZTK9ic0aOCOmk/9DHfi7LhvSS+P4IGJ9rVXAqWxLRpHbMMtEUxx6m9cmHk+Zo90tnPuG5+8MH8dnDvPPvc6kdXwTMh80ShIBCwZz10Pe23wz8SZ2Nvk8GOuMrlVZjSotck5tfaZanTDACbdLpai7u35+ACH414TVTFURbaXTdTP598yQouSQD/2LBLqOPUa1iAZi2/mIsvug9vcm1B9iCEtTNMmv7NG5KeQn70p8z4E01ijq7x+eMlog3niAFLOz8GpjsyiJhivPbnxd/XGWRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=f61EvI+pBjHc8ZQpBzhEUxBUbj51rzKVznqgxoooHno=;
+ b=PvsSFcpmzZW59MrGfK75Xij+nYWZLXKy3KgnQP3FRw22H+79B65xmr0vC+xXaZpVpGoSb8hAPWY7CkabrTbEHl1iIE5cF9B8kFYiKYueydmGxVMIEYVJ/gUFesNzu+ODa+YLnpAeI6dVHTLJsyNvzouORZD0p8Jdy3L6zeOuPbQAfrmKHNK6wHglOCeviV+gjmORta3VIsjKv/Auw9xLko0mI7tD5kdkGrAU80vI4iAGZPE684D1ps1xmyha4S2mvNOPv7MLvc+YKg1TDa9XWXrY7hWVAA0bSW7GjYox03RHDQ5b2xCmEorw6+U1RCntWrxYuze3ixllk+n5AeBDaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f61EvI+pBjHc8ZQpBzhEUxBUbj51rzKVznqgxoooHno=;
+ b=mEz60wcRysjaxucSrluPv6c+f1OmoN2MZnn0flSMVMoQeU6n83ID4mRoJTNEAbfpBBPzF7zr7xGtKJ1NtNQQpn2LDaPYiNLvuzr/JMKr//+RyjZp7pvc6UQH/EyXHL6FqxVsSXfI5ys9Ev9wGdNpSz5Urz5D6iZyibW5r4Rd5mo=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by TYWPR01MB9608.jpnprd01.prod.outlook.com (2603:1096:400:19b::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.25; Fri, 15 Jul
+ 2022 10:17:49 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::b046:d8a3:ac9c:75b5]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::b046:d8a3:ac9c:75b5%4]) with mapi id 15.20.5438.014; Fri, 15 Jul 2022
+ 10:17:49 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
+ binding
+Thread-Topic: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
+ binding
+Thread-Index: AQHYlsA8CcHBPp2Q3UiHwTGN6xabGq1/NVwAgAABOoA=
+Date:   Fri, 15 Jul 2022 10:17:49 +0000
+Message-ID: <OS0PR01MB5922CE20E15959AEF89C36D4868B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20220713135528.1386594-1-biju.das.jz@bp.renesas.com>
+ <20220713135528.1386594-2-biju.das.jz@bp.renesas.com>
+ <24903621-358d-d380-76f4-6515c6313bbd@linaro.org>
+In-Reply-To: <24903621-358d-d380-76f4-6515c6313bbd@linaro.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4c33d6a0-d7ba-4cae-2b06-08da664b4556
+x-ms-traffictypediagnostic: TYWPR01MB9608:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gZcIAtXhJdw/x/H6Tp3dGE9B+biYrbjLE0J19CuLrYXhHV6eJwSgCPBgDM+ZeRrmjjILYfYfOe4cA23LFiZAaSmgssC7hRVbSQz49rEv+Q0hayNxHufULqPxQ2vfZV/V8SK6iu/z78G7HKO3uRHwPhziO+KlgCt3OlloGbvYfSHBlY4Y3W2L8Uu6oiknK8uA8mNXlucb5LJR/8lqJO2/CANdliGucjnUU9hWviyQXs4V769fYFt9iMW3PXlo4y/wpIZIUS8RHuWcNfPPx0bg+cwlMHz6EpMZvmGZ8lFiomaSsOggZq6oM9rw4gn1yqNRqrtCMb3ISxtRcDaGhLAmL2aASESf+MzapyorCgbkVnlXchA51QdlLD5swHkeNxHmZSLcej/D4p83+VBw0c5LYqyzyuXhyGyPAG+1rQwtvoSXd9GsCQVWc6se5bdwRIQuJsPK/RAW+vZygqxucWNsfKG7m0iL848Vc6LWl+v1E+lEQrpZwtvygAuHFdjFk+Tw4mLaDfIQWE5YCBGaw+vKVVxQH2fUgt4DjxODkXbXVV8sODr1xV3jHNPPiEh0yT0W+aVPqSbK3iUfA/GEDDVaCH4fasaZYhAaz9kbAQqvtmj8mAmsIRrnSzaALdm8e7Y6gaj9i3GPqshFRcblmxVy5mn0thKJXg4eCGoqFvx8Qjhyd70D5UQmEl8d1k+26SH8UCFzHm73TiA6xbXiN2kh8/wiMu+JWCZu9E7AbAMMFyU9DQLyC94V8kg5ZQyoKFp2S3p0sFOOsqZLZTu7RtmFjITYnHQFQTqQjWlB163n7zmXFhSDzaGrA6iwELvbXQWc4dyGioa43Z5qBUtshCWCAw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(346002)(136003)(366004)(39860400002)(396003)(4326008)(186003)(66946007)(38070700005)(66556008)(83380400001)(107886003)(2906002)(8936002)(52536014)(5660300002)(76116006)(33656002)(8676002)(66446008)(64756008)(66476007)(9686003)(55016003)(110136005)(71200400001)(966005)(316002)(6506007)(7696005)(53546011)(54906003)(26005)(122000001)(38100700002)(478600001)(41300700001)(86362001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?Nwo4HvpecO3Ax4KcSxQvsPMjdAAzL219kiTq8qGzQQDFKb8/gkRuvA0doi?=
+ =?iso-8859-1?Q?hAFLA9EiaOvUQx8zjFA4RM9SpLU/vsX/uR7Z8erkRS8hF6h8aVrhc7Xhwt?=
+ =?iso-8859-1?Q?oy93f7X6qiheay+xTasL1HE6BHvg4NujEVrZS7KwXyJVoPTOGNIgXCTETT?=
+ =?iso-8859-1?Q?Wf1VgZuVNyE7GyxrzuB/apqJn1tfwHLQk++qdVEEPUuJW38Yx3oarLkEb+?=
+ =?iso-8859-1?Q?WJxTEDkUG5MLxFB82uqwetR1ZIEJ3IMUW0oUzLRJYhTZnQiw/9P7CKoWc+?=
+ =?iso-8859-1?Q?WXUozuKIBbdWQhqghpqw8RMtzNNpdKAGCFBlbV5Conx728/l30qQIf8hur?=
+ =?iso-8859-1?Q?ggdSH86s+5ZaOl3a8ZJADJPZAM6+T2HZkNRuIuluxTp9ym11vaPBuCXCbK?=
+ =?iso-8859-1?Q?0cn3BMLFED0Bxo793HUcwQ3CMA/e64spxZEWWi2MNiT7BkqfOvvFtYUwio?=
+ =?iso-8859-1?Q?XMUTdmVQrR3QKrA63QmZfj1WoO88wNDuwTjz94J9IATeVxd9QO5xUqCeeK?=
+ =?iso-8859-1?Q?QuyNp1ZIbl4dLhqTY3riMb3zWPm02/8WsLDME04Nw6YnKfjj/inLHx9fR6?=
+ =?iso-8859-1?Q?xoMDGNEVEZ7M+dr2NmyBdgJe6ROv47eacKdmCvaH6awnjXJKL98On3b9nl?=
+ =?iso-8859-1?Q?aPGjdIue7vZeMG8gr5s0BHuV/zi8R+AoCczCh2vBz3pOK2R+Wgq6s7RY4n?=
+ =?iso-8859-1?Q?84Qc5qlxEzzOJs0Lt6qypzpip6GUPZUzU0w7J7himIoudDjv4IeJXkN7y7?=
+ =?iso-8859-1?Q?M/bOKyTA+VT8v2Zxj/11N7aPEYJGAyEKDzVcIXZzPxPv3F9F6SKmFFHQ/D?=
+ =?iso-8859-1?Q?igjPbwIkIB/4m7/klLKNV2JV+57+ykXpMnrere9z6HJCs3DEwQYBEAoCaP?=
+ =?iso-8859-1?Q?/eefSgP6SDGCYdwHbJ3Zkqgu3O5yABd6RQWvdTL5FFPN9fixzTsdlnvXxZ?=
+ =?iso-8859-1?Q?nTt5BcZrdBqbsXClOhwrP9hNi2hFHAsRI4ows3yfSrpSAx+9cWfcGy2DI9?=
+ =?iso-8859-1?Q?9vywF0viPkulp4Mw1BwkSJ2Eb/PE/x3NPb+CuI9p4kk0rZwlWBKwVyVxkG?=
+ =?iso-8859-1?Q?+eQk/J2DSK6kD5Gn3dbmMG+eMgMIbDlLMP42+1VzwO+2qYXLMCTzs2Yo/Q?=
+ =?iso-8859-1?Q?JkmJh73EJYtchkmLPyNx+y36ZZ2fuY9jtpfDQKh4Eb3PuVTgk1ybGKWdAb?=
+ =?iso-8859-1?Q?9klXZyMBhz6gVQPbm1FZcyOYBzgqspLPrIMPXjgc2R5gZT/XpniXDWkB49?=
+ =?iso-8859-1?Q?R4bQ8tqRiiJwBnxZrqi9gQNDuhzGN5RoHbspbbdBhdwFCBLKRUJATE8S5g?=
+ =?iso-8859-1?Q?zQY4iDI6kLfCIs6Tzke5CQTOXFyG2bOezj6qhaAUjBBPG9u2LkllebK66y?=
+ =?iso-8859-1?Q?hM+42kNbIZH/AeNYVTig6op0LGe+Q35PppV4ag2zUqucuELEnY08k7Zmei?=
+ =?iso-8859-1?Q?Gn5XL1Iok8HKxjY6ysXLNT6x83unpe6oVOJbyYapxioDdIfgbXH06cEPqU?=
+ =?iso-8859-1?Q?TRJIAOaKddvfxY+RTlV5WGiLvqSYENf7DOOebTDO2PBA1LPa7wjpF3sPC2?=
+ =?iso-8859-1?Q?dLRbRdRRzbSAyX58RsGRAMDXeeuLt3YYB2/Ow1FuMQPkjVxWiHiruR7vUF?=
+ =?iso-8859-1?Q?pNmmKAEr9o/sKJwrlOJvbix6D8Cvw4bQyRY1ji64E3sSG7JBzXVF6olw?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c33d6a0-d7ba-4cae-2b06-08da664b4556
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2022 10:17:49.7577
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: A52itvE5PG3P0cHtOrtpUrYmBQzqeVcV1zoaixU7OlqweqWNimhOELfH6V09iTh5k8pgvZFmWR4ruLgK/BFQe705b4aaGgf0lgkYbcv3NUo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB9608
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gene Chen <gene_chen@richtek.com>
+Hi Krzysztof Kozlowski,
 
-Add compatible with rt1715
+Thanks for the feedback.
 
-Signed-off-by: Gene Chen <gene_chen@richtek.com>
----
- drivers/usb/typec/tcpm/tcpci_rt1711h.c | 168 +++++++++++++++++++++++--
- 1 file changed, 161 insertions(+), 7 deletions(-)
+> Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
+> binding
+>=20
+> On 13/07/2022 15:55, Biju Das wrote:
+> > Add device tree bindings for the RZ/G2L Port Output Enable for GPT
+> (POEG).
+> >
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > ---
+> > REF->v1:
+> >  * Modelled as pincontrol as most of its configuration is intended to
+> be
+> >    static.
+> >  * Updated reg size in example.
+> > ---
+> >  .../bindings/pinctrl/renesas,rzg2l-poeg.yaml  | 65
+> > +++++++++++++++++++
+> >  1 file changed, 65 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+> > b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+> > new file mode 100644
+> > index 000000000000..7607dd87fa68
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yam
+> > +++ l
+> > @@ -0,0 +1,65 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
+> > +
+> > +title: Renesas RZ/G2L Port Output Enable for GPT (POEG)
+> > +
+> > +maintainers:
+> > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > +
+> > +description: |
+> > +  The output pins of the general PWM timer (GPT) can be disabled by
+> > +using
+> > +  the port output enabling function for the GPT (POEG). Specifically,
+> > +  either of the following ways can be used.
+> > +  * Input level detection of the GTETRGA to GTETRGD pins.
+> > +  * Output-disable request from the GPT.
+>=20
+> Shouldn't this all be part of GPT? Is this a real separate device in the
+> SoC?
 
-diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-index b56a0880a044..1fba98e4ef03 100644
---- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-+++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-@@ -10,22 +10,31 @@
- #include <linux/i2c.h>
- #include <linux/interrupt.h>
- #include <linux/gpio/consumer.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/usb/tcpm.h>
- #include <linux/regmap.h>
- #include "tcpci.h"
- 
- #define RT1711H_VID		0x29CF
- #define RT1711H_PID		0x1711
-+#define RT1715_DID		0x2173
- 
--#define RT1711H_RTCTRL8		0x9B
-+#define RT1711H_PHYCTRL1	0x80
-+#define RT1711H_PHYCTRL2	0x81
-+
-+#define RT1711H_RTCTRL4		0x93
-+/* rx threshold of rd/rp: 1b0 for level 0.4V/0.7V, 1b1 for 0.35V/0.75V */
-+#define RT1711H_BMCIO_RXDZSEL	BIT(0)
- 
-+#define RT1711H_RTCTRL8		0x9B
- /* Autoidle timeout = (tout * 2 + 1) * 6.4ms */
- #define RT1711H_RTCTRL8_SET(ck300, ship_off, auto_idle, tout) \
- 			    (((ck300) << 7) | ((ship_off) << 5) | \
- 			    ((auto_idle) << 3) | ((tout) & 0x07))
-+#define RT1711H_AUTOIDLEEN_MASK	BIT(3)
-+#define RT1711H_ENEXTMSG_MASK	BIT(4)
- 
- #define RT1711H_RTCTRL11	0x9E
--
- /* I2C timeout = (tout + 1) * 12.5ms */
- #define RT1711H_RTCTRL11_SET(en, tout) \
- 			     (((en) << 7) | ((tout) & 0x0F))
-@@ -35,10 +44,17 @@
- #define RT1711H_RTCTRL15	0xA2
- #define RT1711H_RTCTRL16	0xA3
- 
-+#define RT1711H_RTCTRL18	0xAF
-+/* 1b0 as fixed rx threshold of rd/rp 0.55V, 1b1 depends on RTCRTL4[0] */
-+#define BMCIO_RXDZEN_MASK	BIT(0)
-+
- struct rt1711h_chip {
- 	struct tcpci_data data;
- 	struct tcpci *tcpci;
- 	struct device *dev;
-+	struct regulator *vbus;
-+	bool src_en;
-+	u16 did;
- };
- 
- static int rt1711h_read16(struct rt1711h_chip *chip, unsigned int reg, u16 *val)
-@@ -75,8 +91,9 @@ static struct rt1711h_chip *tdata_to_rt1711h(struct tcpci_data *tdata)
- 
- static int rt1711h_init(struct tcpci *tcpci, struct tcpci_data *tdata)
- {
--	int ret;
- 	struct rt1711h_chip *chip = tdata_to_rt1711h(tdata);
-+	struct regmap *regmap = chip->data.regmap;
-+	int ret;
- 
- 	/* CK 300K from 320K, shipping off, auto_idle enable, tout = 32ms */
- 	ret = rt1711h_write8(chip, RT1711H_RTCTRL8,
-@@ -84,6 +101,14 @@ static int rt1711h_init(struct tcpci *tcpci, struct tcpci_data *tdata)
- 	if (ret < 0)
- 		return ret;
- 
-+	/* Enable PD30 extended message for RT1715 */
-+	if (chip->did == RT1715_DID) {
-+		ret = regmap_update_bits(regmap, RT1711H_RTCTRL8,
-+					 RT1711H_ENEXTMSG_MASK, 0xFF);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	/* I2C reset : (val + 1) * 12.5ms */
- 	ret = rt1711h_write8(chip, RT1711H_RTCTRL11,
- 			     RT1711H_RTCTRL11_SET(1, 0x0F));
-@@ -101,7 +126,37 @@ static int rt1711h_init(struct tcpci *tcpci, struct tcpci_data *tdata)
- 		return ret;
- 
- 	/* dcSRC.DRP : 33% */
--	return rt1711h_write16(chip, RT1711H_RTCTRL16, 330);
-+	ret = rt1711h_write16(chip, RT1711H_RTCTRL16, 330);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Enable phy discard retry, retry count 7, rx filter deglitech 100 us */
-+	ret = rt1711h_write8(chip, RT1711H_PHYCTRL1, 0xF1);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Decrease wait time of BMC-encoded 1 bit from 2.67us to 2.55us */
-+	/* wait time : (val * .4167) us */
-+	return rt1711h_write8(chip, RT1711H_PHYCTRL2, 62);
-+}
-+
-+static int rt1711h_set_vbus(struct tcpci *tcpci, struct tcpci_data *tdata,
-+			    bool src, bool snk)
-+{
-+	struct rt1711h_chip *chip = tdata_to_rt1711h(tdata);
-+	int ret;
-+
-+	if (chip->src_en == src)
-+		return 1;
-+
-+	if (src)
-+		ret = regulator_enable(chip->vbus);
-+	else
-+		ret = regulator_disable(chip->vbus);
-+
-+	if (!ret)
-+		chip->src_en = src;
-+	return ret ? ret : 1;
- }
- 
- static int rt1711h_set_vconn(struct tcpci *tcpci, struct tcpci_data *tdata,
-@@ -109,8 +164,93 @@ static int rt1711h_set_vconn(struct tcpci *tcpci, struct tcpci_data *tdata,
- {
- 	struct rt1711h_chip *chip = tdata_to_rt1711h(tdata);
- 
--	return rt1711h_write8(chip, RT1711H_RTCTRL8,
--			      RT1711H_RTCTRL8_SET(0, 1, !enable, 2));
-+	return regmap_update_bits(chip->data.regmap, RT1711H_RTCTRL8,
-+				  RT1711H_AUTOIDLEEN_MASK, enable ? 0 : 0xFF);
-+}
-+
-+/*
-+ * Selects the CC PHY noise filter voltage level according to the current
-+ * CC voltage level.
-+ *
-+ * @param cc_level The CC voltage level for the port's current role
-+ * @return EC_SUCCESS if writes succeed; failure code otherwise
-+ */
-+static inline int rt1711h_init_cc_params(struct rt1711h_chip *chip,
-+	enum typec_cc_status cc1, enum typec_cc_status cc2)
-+{
-+	u32 rxdz_en = 0, rxdz_sel = 0;
-+	int ret;
-+
-+	if ((cc1 >= TYPEC_CC_RP_1_5 && cc2 < TYPEC_CC_RP_DEF) ||
-+	    (cc2 >= TYPEC_CC_RP_1_5 && cc1 < TYPEC_CC_RP_DEF)) {
-+		if (chip->did == RT1715_DID) {
-+			rxdz_en = 1;
-+			rxdz_sel = 1;
-+		} else {
-+			rxdz_en = 1;
-+			rxdz_sel = 0;
-+		}
-+	} else {
-+		rxdz_en = 0;
-+		rxdz_sel = 1;
-+	}
-+
-+	ret = regmap_update_bits(chip->data.regmap, RT1711H_RTCTRL18,
-+				 BMCIO_RXDZEN_MASK, rxdz_en);
-+	if (ret < 0)
-+		return ret;
-+
-+	return regmap_update_bits(chip->data.regmap, RT1711H_RTCTRL4,
-+				  RT1711H_BMCIO_RXDZSEL, rxdz_en);
-+}
-+
-+#define tcpc_presenting_rd(reg, cc) \
-+	(!(TCPC_ROLE_CTRL_DRP & (reg)) && \
-+	 (((reg) & (TCPC_ROLE_CTRL_## cc ##_MASK << TCPC_ROLE_CTRL_## cc ##_SHIFT)) == \
-+	  (TCPC_ROLE_CTRL_CC_RD << TCPC_ROLE_CTRL_## cc ##_SHIFT)))
-+
-+static enum typec_cc_status tcpci_to_typec_cc(unsigned int cc, bool sink)
-+{
-+	switch (cc) {
-+	case 0x1:
-+		return sink ? TYPEC_CC_RP_DEF : TYPEC_CC_RA;
-+	case 0x2:
-+		return sink ? TYPEC_CC_RP_1_5 : TYPEC_CC_RD;
-+	case 0x3:
-+		if (sink)
-+			return TYPEC_CC_RP_3_0;
-+		fallthrough;
-+	case 0x0:
-+	default:
-+		return TYPEC_CC_OPEN;
-+	}
-+}
-+
-+static int rt1711h_get_cc(struct tcpci *tcpci, struct tcpci_data *tdata,
-+			  enum typec_cc_status *cc1, enum typec_cc_status *cc2)
-+{
-+	struct rt1711h_chip *chip = tdata_to_rt1711h(tdata);
-+	unsigned int reg, role_control;
-+	int ret;
-+
-+	ret = regmap_read(chip->data.regmap, TCPC_ROLE_CTRL, &role_control);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = regmap_read(chip->data.regmap, TCPC_CC_STATUS, &reg);
-+	if (ret < 0)
-+		return ret;
-+
-+	*cc1 = tcpci_to_typec_cc((reg >> TCPC_CC_STATUS_CC1_SHIFT) &
-+				 TCPC_CC_STATUS_CC1_MASK,
-+				 reg & TCPC_CC_STATUS_TERM ||
-+				 tcpc_presenting_rd(role_control, CC1));
-+	*cc2 = tcpci_to_typec_cc((reg >> TCPC_CC_STATUS_CC2_SHIFT) &
-+				 TCPC_CC_STATUS_CC2_MASK,
-+				 reg & TCPC_CC_STATUS_TERM ||
-+				 tcpc_presenting_rd(role_control, CC2));
-+
-+	return rt1711h_init_cc_params(chip, *cc1, *cc2);
- }
- 
- static int rt1711h_start_drp_toggling(struct tcpci *tcpci,
-@@ -209,7 +349,11 @@ static int rt1711h_check_revision(struct i2c_client *i2c)
- 		dev_err(&i2c->dev, "pid is not correct, 0x%04x\n", ret);
- 		return -ENODEV;
- 	}
--	return 0;
-+	ret = i2c_smbus_read_word_data(i2c, TCPC_BCD_DEV);
-+	if (ret < 0)
-+		return ret;
-+	dev_info(&i2c->dev, "did is 0x%04x\n", ret);
-+	return ret;
- }
- 
- static int rt1711h_probe(struct i2c_client *client,
-@@ -228,6 +372,8 @@ static int rt1711h_probe(struct i2c_client *client,
- 	if (!chip)
- 		return -ENOMEM;
- 
-+	chip->did = ret;
-+
- 	chip->data.regmap = devm_regmap_init_i2c(client,
- 						 &rt1711h_regmap_config);
- 	if (IS_ERR(chip->data.regmap))
-@@ -245,8 +391,14 @@ static int rt1711h_probe(struct i2c_client *client,
- 	if (ret < 0)
- 		return ret;
- 
-+	chip->vbus = devm_regulator_get(&client->dev, "vbus");
-+	if (IS_ERR(chip->vbus))
-+		return PTR_ERR(chip->vbus);
-+
- 	chip->data.init = rt1711h_init;
-+	chip->data.set_vbus = rt1711h_set_vbus;
- 	chip->data.set_vconn = rt1711h_set_vconn;
-+	chip->data.get_cc = rt1711h_get_cc;
- 	chip->data.start_drp_toggling = rt1711h_start_drp_toggling;
- 	chip->tcpci = tcpci_register_port(chip->dev, &chip->data);
- 	if (IS_ERR_OR_NULL(chip->tcpci))
-@@ -273,6 +425,7 @@ static int rt1711h_remove(struct i2c_client *client)
- 
- static const struct i2c_device_id rt1711h_id[] = {
- 	{ "rt1711h", 0 },
-+	{ "rt1715", 0 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, rt1711h_id);
-@@ -280,6 +433,7 @@ MODULE_DEVICE_TABLE(i2c, rt1711h_id);
- #ifdef CONFIG_OF
- static const struct of_device_id rt1711h_of_match[] = {
- 	{ .compatible = "richtek,rt1711h", },
-+	{ .compatible = "richtek,rt1715", },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, rt1711h_of_match);
--- 
-2.25.1
+No, It is separate IP block, having its own register block, interrupts and =
+resets.
 
+Please see RFC discussion here[1]
+
+[1] https://lore.kernel.org/linux-renesas-soc/20220517210407.GA1635524-robh=
+@kernel.org/
+
+>=20
+> > +  * Register settings.
+>=20
+> This is confusing... so you can use POEG to mess up registers of GPT
+> independently, so GPT does not know it?
+
+POEG does not mess up registers of GPT. It is basically for protection.
+
+Using POEG register, it is possible to disable GPT output without the knowl=
+edge of GPT, after configuring the Output disable source select in the GTIN=
+TAD (General PWM Timer Interrupt Output Setting Register) register present =
+in GPT.
+
+Cheers,
+Biju
+
+>=20
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - renesas,r9a07g044-poeg  # RZ/G2{L,LC}
+> > +          - renesas,r9a07g054-poeg  # RZ/V2L
+> > +      - const: renesas,rzg2l-poeg
+> > +
+>=20
+> Best regards,
+> Krzysztof
