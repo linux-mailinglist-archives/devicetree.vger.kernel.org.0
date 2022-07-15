@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16EEE575AFC
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 07:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A03DF575B12
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 07:41:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbiGOF3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 01:29:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60882 "EHLO
+        id S229448AbiGOFlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 01:41:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiGOF3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 01:29:20 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A9779EE4
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 22:29:18 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id y9so3738570pff.12
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 22:29:18 -0700 (PDT)
+        with ESMTP id S229994AbiGOFlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 01:41:11 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE0887A51E
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 22:41:08 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id x18-20020a17090a8a9200b001ef83b332f5so10682388pjn.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 22:41:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=2ixGSTEkWjW/R4X0Wmz9LAbZkRBVixDfOzTELUMeny8=;
-        b=m9QrK0FeZPnrYkKe5E9iF5jEYmRKvzHzbRPGO7R+FdAgWBSHwwli4FS8tispZBHETx
-         bDyV2mK8VXik7OiejJSHIgZqr0O6vv1BCF7Z6u1fkn+CARGJPRx4GGNzBO/O/VFupBEf
-         MP8Lc/0d6AxUq5mY1JZjdKpw8Pybd5UPi6k3YTl5rKzHQEV/U1lF6219d8/ERECRx2sT
-         KRnf1zhks0jZqluU5veEjW2WKdthVUy5xHZYfwewmKzmvtCznWJYflPp0LZ47DNoSDHJ
-         LjECWbHivCfalaCQ8G2+TDZLpUr6bVFLaxbgKAqijUPNygwxU4GqzH3VRQs3RSkNKFho
-         GZXA==
+        b=AFps6/N8sotLhuXXQED8t2MpnSFueBx+yNgnGP5PJj2OJ37ArE/CPlyJgXIkF/1Mo/
+         Ztg8OgRha8KOzleb/4AWlmDqLmO49+wdnh7vk+R3aw+0fBNQI2H2VVSa5gALsG0YdI4h
+         NCQAAB/Ey5jdHbIdWJ5YTCiUS3AVSiF9in6L8zjNH6JYSIVxkRH38cwpHQCUr7s9bgXX
+         wT1j1PB6zcaxxr/J60ngMMRlJQPdXusd7dAeDiPQzgkrlh7WdVCjkT06bk9U3HG0GroQ
+         wJjt0CKABNqWlC0J9ToFeRlBkBYi9VY8q4+sKQwdaTrGiOSlcAjzrMurmSXX1U7qJaOs
+         OrFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=2ixGSTEkWjW/R4X0Wmz9LAbZkRBVixDfOzTELUMeny8=;
-        b=MEdmZMzEjU+6N2FiuCSyFWDNUCAl4kCUokkX5bQdh/9D9+Gfjun16La9MF21ZqA+rK
-         Gc3hA9/godDEWx2dZ4m0gdRRgwXphN9XQ9pa5RswNv6gZbeHF34Mv0lUNLS+1K8XrECE
-         hueoQ9tkvTaYbb/cVUHxKo+VZoicZltRHHAMYyLp1qdpAy0bC/gpcrDQPYa7UnS5e0wN
-         +MdFY5n0tcFPDx69t1ZLZAM8PR8qm/I0DDSIV0WstL0u1K9MaAgPXl2khjeMUI+y+ujP
-         ABqRZn5R9tF09fgJo02qeRYn/aSBSIvvOWMh6MnP5W5OLnIENN1of7UCvKhzuSYzBdxj
-         uyQQ==
-X-Gm-Message-State: AJIora9oI8eJ3EU4vztalcynunFx/QuzZCatBik+W1RKt2t0NpGm1GPN
-        GR6D6X6s2hnZKUp8jxrMxNA=
-X-Google-Smtp-Source: AGRyM1vxxXamgkifuXJP5h37B5GwdYMwQpvxQWuHM3EOa6NK6zRmqGOvEdCXCEcVD7r4auvRaSUZpA==
-X-Received: by 2002:a63:1e5f:0:b0:419:d6bf:b9d7 with SMTP id p31-20020a631e5f000000b00419d6bfb9d7mr2636903pgm.593.1657862957700;
-        Thu, 14 Jul 2022 22:29:17 -0700 (PDT)
+        b=WdopducgU6QyGey8KtCDPojhAG2SIwGK/0i7ehCyr2j6TPhVG3pxw9wi8CI5PMD2Qk
+         5fMU2M3UJ3qZcCPwLdZ9UuGsQfLmvnfTaWTyenexTYbYnC9bW/PbnDSQ+JAXWzp0iwYs
+         9kQh2XkulxpceEt8FGxF+wpmRtsO/tIta/BNCZJV0NCd0s+Zav23z6hEZpMhzmIBzWvj
+         XHk9QMtXHlZBD/rxToaVcEjwFyKBIGYZORwn+rFG+1W+VKjHyxwhN7YvdmaYL8FGjsmk
+         YAH1OITjIxNjurMFCoxNI8XhOAsmsPT4PAyHuhC1PkxINhQtJoxY44qRYc8fgnnHrRuR
+         P+8Q==
+X-Gm-Message-State: AJIora/DtjaKEyuD6Pi/tXv0yoJ3Ob36jSvn5kTFUk7Y49CZuwaikjQA
+        NygJMALo50zG9T94k1LsQrM=
+X-Google-Smtp-Source: AGRyM1tTPzDv1wTgzVMt9e1yF+lb+qkhEhDHeSWRT1lFicNzTkFpJpK/puWVinkUU49y5GO+G6ch8Q==
+X-Received: by 2002:a17:90b:3e8a:b0:1f0:6e06:92e7 with SMTP id rj10-20020a17090b3e8a00b001f06e0692e7mr17361800pjb.155.1657863668205;
+        Thu, 14 Jul 2022 22:41:08 -0700 (PDT)
 Received: from a-VirtualBox.. ([116.232.54.164])
-        by smtp.gmail.com with ESMTPSA id w15-20020a17090a15cf00b001f03287f704sm4583313pjd.57.2022.07.14.22.28.54
+        by smtp.gmail.com with ESMTPSA id z9-20020a631909000000b0041992864d69sm2279711pgl.77.2022.07.14.22.41.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jul 2022 22:29:17 -0700 (PDT)
+        Thu, 14 Jul 2022 22:41:07 -0700 (PDT)
 From:   Zhu Ning <zhuning0077@gmail.com>
 To:     alsa-devel@alsa-project.org
 Cc:     pierre-louis.bossart@linux.intel.com, tiwai@suse.com,
@@ -55,8 +55,8 @@ Cc:     pierre-louis.bossart@linux.intel.com, tiwai@suse.com,
         David Yang <yangxiaohua@everest-semi.com>,
         Zhu Ning <zhuning@everest-semi.com>
 Subject: [PATCH] ASoC: codecs: add support for ES8326
-Date:   Fri, 15 Jul 2022 13:25:58 +0800
-Message-Id: <20220715052558.4633-1-zhuning0077@gmail.com>
+Date:   Fri, 15 Jul 2022 13:41:00 +0800
+Message-Id: <20220715054100.9240-1-zhuning0077@gmail.com>
 X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
