@@ -2,66 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 849BD5767CA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 21:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2525768A2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 23:06:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231192AbiGOTup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 15:50:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51334 "EHLO
+        id S229945AbiGOVGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 17:06:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbiGOTuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 15:50:44 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F8B1EEF6
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:50:43 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id y14-20020a17090a644e00b001ef775f7118so12519144pjm.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:50:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=y32BDu7KsZwCEQIw+4o9pW5Cq7b+IeSabI5Ax2bAKjM=;
-        b=hjh+6SIee0kd1DR10cEpcUgF7jlqKSTeEhq2Vkdjbl4o5zCa5FqZEolEClXA9IXyBw
-         kuK/BuEo3zJ6kOda5UxgqoqchfAjhcUGTar8U9YCqFqc8mlIe9lXwK1Vzz7aWgLWGV2A
-         h7KMFhGRXT/JMUi0b8gQrFlgVST6UslOZ1R5Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=y32BDu7KsZwCEQIw+4o9pW5Cq7b+IeSabI5Ax2bAKjM=;
-        b=510TvHrvEpDyvqNcu+4TKpEqiU/HGQWyoBCIlT8tdoqsza6vviYNL1QTZAuxsgkiBe
-         pphd2/+GXvnbBSUeIlxuRaBcLhkOJQvpLc3oOVnyeOY92RYL4w71zFp9CZrDpB8rfEOv
-         U6cOLujv72K73Y0Vl6EOGN75RyuV455kUVSyLLDwV6PVAObOTdovdN/tZenoxEU+tkEs
-         y5OLaYfXG8flIrY7gcCDnz2rLiwotE6CS1CkOaKVpZdM57A14qAw9e71bU55vd8sDLCP
-         jrakh6hc/rabxsMztoqnbQWLlfTt+LduGoW5EqdJgZNNFiGCLvLPnSF8EcZ4FNCRNq0+
-         lCkg==
-X-Gm-Message-State: AJIora8FE6kbn2sYJL1+OhtDcyvz9lgorCq4HOTcWpnXBcq8fk1ve4RB
-        baXDOH2njd3Dosy5tXBAL4mF/A==
-X-Google-Smtp-Source: AGRyM1snLXjJAt8iLQx5+1rv//V+aNbJ1mZmUWmhG4+d+o6LGCS+TGhqiROSIXhAnq9JLkx7GhVeeA==
-X-Received: by 2002:a17:903:3093:b0:16b:deea:4d36 with SMTP id u19-20020a170903309300b0016bdeea4d36mr15137374plc.126.1657914642876;
-        Fri, 15 Jul 2022 12:50:42 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:835b:7656:818:a69a])
-        by smtp.gmail.com with UTF8SMTPSA id x3-20020a170902a38300b0015e8d4eb26esm3980768pla.184.2022.07.15.12.50.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jul 2022 12:50:42 -0700 (PDT)
-Date:   Fri, 15 Jul 2022 12:50:41 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] usb: misc: onboard_usb_hub: Add TI USB8041 hub
+        with ESMTP id S229499AbiGOVGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 17:06:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2326B762;
+        Fri, 15 Jul 2022 14:06:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C738D61445;
+        Fri, 15 Jul 2022 21:06:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4A98C34115;
+        Fri, 15 Jul 2022 21:06:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657919182;
+        bh=3rMAJ2lVe/XGnRSOvqbNg+N96brIGh5qsH92ulpVn00=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=RN3wplA05RkAtDtZSdAWzbo5g67gU4NFy+F+e7ZQXWxQqiInonor1+zpUUbOeK29L
+         NqH5IQ4vGRM1QGzNkc4tDLfHLYGDBBr1OcZ/EEwfdyrQBZIfAzSqWWkStM/+6DuziL
+         cBuiRDZNiuNPSznKzKcZKMVcJzyJJPZ/GuDUuSps4ANKLcWI83hhgaQOc8zqXktqa2
+         D0KDzTfu35ip4DitN9zjOZePcX62LrOzdhpCN5Kb/aCYSRfdZqIZTfk97+WMRhpdN1
+         xk4oF1qAjOEeq9j80hK+NLArigGm09MoNJRI15EIOcvKgQ2cnVMoOtCXM1S+ed7cfZ
+         O2bqUEFGWhNmg==
+Date:   Fri, 15 Jul 2022 16:06:19 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>, Jon Mason <jdmason@kudzu.us>
+Cc:     maz@kernel.org, tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com,
+        kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        peng.fan@nxp.com, aisheng.dong@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com,
+        lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
+Subject: Re: [PATCH v2 4/4] pcie: endpoint: pci-epf-vntb: add endpoint msi
  support
-Message-ID: <YtHFEY+iAipCROPl@google.com>
-References: <20220715073300.868087-1-alexander.stein@ew.tq-group.com>
- <20220715073300.868087-3-alexander.stein@ew.tq-group.com>
+Message-ID: <20220715210619.GA1190861@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220715073300.868087-3-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220715192219.1489403-5-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,71 +58,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 09:33:00AM +0200, Alexander Stein wrote:
-> This is a 4-port 3.0 USB hub.
+[+to Jon, since I guess he will apply or at least review this, not me]
+
+On Fri, Jul 15, 2022 at 02:22:19PM -0500, Frank Li wrote:
+> This patch add msi support for ntb endpoint(EP) side.
+> EP side driver query if system have msi controller.
+> Setup doorbell address according to struct msi_msg.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> Changes in v2:
-> * Add devtype data containing waiting times
+> So PCIe host can write this doorbell address to EP
+> side's irq.
 > 
->  drivers/usb/misc/onboard_usb_hub.c | 3 +++
->  drivers/usb/misc/onboard_usb_hub.h | 7 +++++++
->  2 files changed, 10 insertions(+)
-> 
-> diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
-> index 1dd7f4767def..319b4b1748fb 100644
-> --- a/drivers/usb/misc/onboard_usb_hub.c
-> +++ b/drivers/usb/misc/onboard_usb_hub.c
-> @@ -339,6 +339,7 @@ static struct platform_driver onboard_hub_driver = {
->  /************************** USB driver **************************/
->  
->  #define VENDOR_ID_REALTEK	0x0bda
-> +#define VENDOR_ID_TI		0x0451
->  
->  /*
->   * Returns the onboard_hub platform device that is associated with the USB
-> @@ -416,6 +417,8 @@ static const struct usb_device_id onboard_hub_id_table[] = {
->  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 */
->  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0414) }, /* RTS5414 USB 3.2 */
->  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5414) }, /* RTS5414 USB 2.1 */
-> +	{ USB_DEVICE(VENDOR_ID_TI, 0x8140) }, /* TI USB8041 3.0 */
-> +	{ USB_DEVICE(VENDOR_ID_TI, 0x8142) }, /* TI USB8041 2.0 */
->  	{}
->  };
->  MODULE_DEVICE_TABLE(usb, onboard_hub_id_table);
-> diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
-> index 7e743f4c8aaa..fcb6a9024bbd 100644
-> --- a/drivers/usb/misc/onboard_usb_hub.h
-> +++ b/drivers/usb/misc/onboard_usb_hub.h
-> @@ -11,7 +11,14 @@ struct onboard_hub_devtype_data {
->  	unsigned long reset_duration;		/* reset pulse width in us */
->  };
->  
-> +static const struct onboard_hub_devtype_data ti_tusb8041_data = {
-> +	.power_stable_time = 3000,
-> +	.reset_duration = 3000,
+> If no msi controller exist, failback software polling.
 
-Aren't these two values actually the same thing, i.e. the minimum
-duration of the reset?
+s/This patch add/Add/
+s/msi/MSI/ (several)
+s/ntb/NTB/
+s/irq/IRQ/
+s/failback/fall back to/
 
-From the data sheet:
+Rewrap commit log to fill 75 columns to make it easier to read.
 
-  A minimum reset duration of 3 ms is required
+> +static int epf_ntb_db_size(struct epf_ntb *ntb)
+> +{
+> +	const struct pci_epc_features *epc_features;
+> +	size_t	size = 4 * ntb->db_count;
+> +	u32	align;
 
-  td2: VDD and VDD33 stable before de-assertion of GRSTz (>= 3ms)
+Replace tabs with spaces in these declarations , since that's what
+code below does, e.g., in epf_ntb_db_bar_init(), etc.
 
-My understanding is that td2 is just another expression of the first
-requirement.
+> +		dev_info(dev, "Can't allocate MSI, failure back to poll mode\n");
 
-> +};
+s/failure/fall/
+
+> +		return;
+> +	}
 > +
->  static const struct of_device_id onboard_hub_match[] = {
-> +	{ .compatible = "usb451,8140", .data = &ti_tusb8041_data, },
-> +	{ .compatible = "usb451,8142", .data = &ti_tusb8041_data, },
->  	{ .compatible = "usbbda,411" },
->  	{ .compatible = "usbbda,5411" },
->  	{ .compatible = "usbbda,414" },
+> +	dev_info(dev, "vntb use MSI as doorbell\n");
 
-Ah, now I see why the struct is defined in the .h file, never mind my comment
-on the other patch.
+> +		ret = devm_request_irq(dev, virq,
+> +			       epf_ntb_interrupt_handler, 0,
+> +			       "ntb", ntb);
+> +
+> +		if (ret)
+> +			dev_err(dev, "request irq failure\n");
+
+s/irq/IRQ/ (or spell out "devm_request_irq()").
+
+Capitalize all messages or none of them.  Match the prevailing style
+of the file.
