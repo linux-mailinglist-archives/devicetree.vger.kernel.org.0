@@ -2,281 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D745757611F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 14:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4E6C576135
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 14:20:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbiGOMFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 08:05:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56370 "EHLO
+        id S233087AbiGOMUU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 15 Jul 2022 08:20:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbiGOMFs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 08:05:48 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC9E1804A7;
-        Fri, 15 Jul 2022 05:05:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1657886747; x=1689422747;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=V3vkPEC+zSZ3L2HSbO6cmV7tLXm2uvZR18LlJDZDves=;
-  b=BUFflnBBrJsVms3ut3CUDlz0X3HOkz9CHG4+YED3GILlHNPXtCiUm8Kd
-   X1kMBiyap9uzBCerZeeIc/eHgyXZUmiydc/tYYRhMPyI/EzrEsJsywUZm
-   ZZCCLvS9bfx8mffbUtdos+V4ZtIawpp2oM9MN/f7E/JrJcPc1yD+0fQTi
-   d7/COssrfsav0151CM9mzExUYBlDzDvMNVAGQLcvMgK7Z/ywDgoVBH2/b
-   NJbESqKWc1zuWaI+HPqK3OT6qDfsYwHmCYjK4ELII/+396D/iFNmgVtDi
-   9c1Fhz8eGC0I+HLgwzKq3OMllkGCeE26dC4bh4JqSLLGYbcd0xjYajm5S
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="283338228"
-X-IronPort-AV: E=Sophos;i="5.92,273,1650956400"; 
-   d="scan'208";a="283338228"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2022 05:05:47 -0700
-X-IronPort-AV: E=Sophos;i="5.92,273,1650956400"; 
-   d="scan'208";a="600475182"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2022 05:05:44 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1oCK4j-001IpI-1x;
-        Fri, 15 Jul 2022 15:05:41 +0300
-Date:   Fri, 15 Jul 2022 15:05:41 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        with ESMTP id S232973AbiGOMUT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 08:20:19 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 00D577B372;
+        Fri, 15 Jul 2022 05:20:17 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2FDFA1474;
+        Fri, 15 Jul 2022 05:20:18 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 93C003F73D;
+        Fri, 15 Jul 2022 05:20:15 -0700 (PDT)
+Date:   Fri, 15 Jul 2022 13:20:06 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Michal =?UTF-8?B?U3VjaMOhbmVr?= <msuchanek@suse.de>
+Cc:     Michael Walle <michael@walle.cc>, linux-sunxi@lists.linux.dev,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 0/4] add support for bias pull-disable
-Message-ID: <YtFYFbP+xqAUUHZa@smile.fi.intel.com>
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
- <YtAvHMmGay/3HACZ@smile.fi.intel.com>
- <e0638b02bdcd0ee452846b86ce83458173912ef1.camel@gmail.com>
- <YtBnIxh6rDJMwpEm@smile.fi.intel.com>
- <5d9f9272334177e3ea864467f50095a8709bc0d2.camel@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH 1/2] mtd: spi-nor: When a flash memory is missing do not
+ report an error
+Message-ID: <20220715132006.077c90f8@donnerap.cambridge.arm.com>
+In-Reply-To: <20220714220744.GF17705@kitsune.suse.cz>
+References: <701967b0c418db333c66b48d225df60aa9d03ead.1657826188.git.msuchanek@suse.de>
+        <d8de86aa0331be697fbef33d5ab2c57a@walle.cc>
+        <20220714205529.GE17705@kitsune.suse.cz>
+        <33abf7b84860049c4a22605578303ff2@walle.cc>
+        <20220714220744.GF17705@kitsune.suse.cz>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5d9f9272334177e3ea864467f50095a8709bc0d2.camel@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 12:20:56PM +0200, Nuno S· wrote:
-> On Thu, 2022-07-14 at 21:57 +0300, Andy Shevchenko wrote:
-> > On Thu, Jul 14, 2022 at 05:43:41PM +0200, Nuno S· wrote:
-> > > On Thu, 2022-07-14 at 17:58 +0300, Andy Shevchenko wrote:
-> > > > On Wed, Jul 13, 2022 at 03:14:17PM +0200, Nuno S· wrote:
-> > > > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
-> > > > > calling the
-> > > > > gpiochip 'set_config()' hook. However, AFAICT, there's no way
-> > > > > that
-> > > > > this
-> > > > > flag is set because there's no support for it in firwmare code.
-> > > > > Moreover,
-> > > > > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
-> > > > > being
-> > > > > handled.
-> > > > > 
-> > > > > On top of this, there are some users that are looking at
-> > > > > 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So,
-> > > > > unless
-> > > > > I'm
-> > > > > missing something, it looks like this was never working for
-> > > > > these
-> > > > > chips.
-> > > > > 
-> > > > > Note that the ACPI case is only compiled tested. At first
-> > > > > glance,
-> > > > > it seems
-> > > > > the current patch is enough but i'm not really sure...
+On Fri, 15 Jul 2022 00:07:44 +0200
+Michal Such√°nek <msuchanek@suse.de> wrote:
+
+Hi,
+
+> On Thu, Jul 14, 2022 at 11:51:56PM +0200, Michael Walle wrote:
+> > Am 2022-07-14 22:55, schrieb Michal Such√Ø¬ø¬Ωnek:  
+> > > On Thu, Jul 14, 2022 at 09:41:48PM +0200, Michael Walle wrote:  
+> > > > Hi,
 > > > > 
-> > > > So, I looked closer to the issue you are trying to describe here.
+> > > > Am 2022-07-14 21:19, schrieb Michal Suchanek:  
+> > > > > It is normal that devices are designed with multiple types of storage,
+> > > > > and only some types of storage are present.
+> > > > >
+> > > > > The kernel can handle this situation gracefully for many types of
+> > > > > storage devices such as mmc or ata but it reports and error when spi
+> > > > > flash is not present.
+> > > > >
+> > > > > Only print a notice that the storage device is missing when no response
+> > > > > to the identify command is received.
+> > > > >
+> > > > > Consider reply buffers with all bits set to the same value no response.  
 > > > > 
-> > > > As far as I understand we have 4 state of BIAS in the hardware:
-> > > > 1/ AS IS (defined by firnware)
-> > > > 2/ Disabled (neither PU, not PD)
-> > > > 3/ PU
-> > > > 4/ PD
-> > > > 
-> > > > The case when the default of bias is not disabled (for example
-> > > > specific, and I
-> > > > think very special, hardware may reset it to PD or PU), it's a
-> > > > hardware driver
-> > > > responsibility to inform the framework about the real state of
-> > > > the
-> > > > lines and
-> > > > synchronize it.
-> > > > 
-> > > > Another case is when the firmware sets the line in non-disabled
-> > > > state
+> > > > I'm not sure you can compare SPI with ATA and MMC. I'm just speaking
+> > > > of
+> > > > DT now, but there, for ATA and MMC you just describe the controller
 > > > > and
-> > > > by some reason you need to disable it. The question is, why?
+> > > > it will auto-detect the connected storage. Whereas with SPI you
+> > > > describe  
 > > > 
-> > > Not getting this point... 
+> > > Why does mmc assume storage and SDIO must be descibed? Why the special
+> > > casing?  
 > > 
-> > I understand that in your case "firmware" is what DTB provides.
-> > So taking into account that the default of hardware is PU, it needs
-> > a mechanism to override that, correct?
+> > I can't follow you here. My SDIO wireless card just works in an SD
+> > slot and doesn't have to be described.
+
+I think the difference is that MMC (so also SDIO) is a discoverable bus,
+whereas SPI is not.
+It's conceptually dangerous to blindly probe for SPI chips, and the kernel
+tries to stay out of guessing games, in general, and leaves that up to
+firmware.
+
+> > > > both the controller and the flash. So I'd argue that your hardware
+> > > > description is wrong if it describes a flash which is not present.  
+> > > 
+> > > At any rate the situation is the same - the storage may be present
+> > > sometimes. I don't think assuming some kind of device by defualt is a
+> > > sound practice.  
 > > 
+> > Where is the assumption when the DT tells you there is a flash
+> > on a specific chip select but actually there it isn't. Shouldn't
+> > the DT then be fixed?  
 > 
-> Exactly...
+> The DT says there isn't a flash on a specific chip select when there is.
+> Shouldn't that be fixed?
 > 
-> > > > > As a side note, this came to my attention during this patchset
-> > > > > [1]
-> > > > > (and, ofr OF,† was tested with it).
-> > > > > 
-> > > > > [1]:
-> > > > > https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@analog.com/
-> > > > 
-> > > > Since this provides a GPIO chip, correct?, it's responsibility of
-> > > > the
-> > > > driver to
-> > > > synchronize it, no? Basically if you really don't trust firmware,
-> > > > you
-> > > > may
-> > > 
-> > > What do you mean by synchronize?
-> > 
-> > Full duplex sync, i.e. setting flag to PU for the pins that should
-> > stay PU:ed
-> > and disabling bias for the ones, that want it to be disabled. (PD
-> > accordingly)
-> > 
-> > > > go via all GPIO lines and switch them to the known (in software)
-> > > > state. This
-> > > > approach on the other hand is error prone, because firmware
-> > > > should
-> > > > know better
-> > > > which pin is used for which purpose, no? If you don't trust
-> > > > firwmare
-> > > > (in some
-> > > > cases), then it's a matter of buggy platform that has to be
-> > > > quirked
-> > > > out.
-> > > 
-> > > I'm not getting what you mean by "firmware should know better"? So,
-> > > basically, and let's take OF as example, you can request a GPIO in
-> > > OF
-> > > by doing something like:
-> > > 
-> > > ††††††††foo-gpios = <&gpio 1 GPIO_PULL_UP>;
-> > > 
-> > > In this way, when the consumer driver gets the gpio, all the flags
-> > > will
-> > > be properly set so that when we set a direction (for example) the
-> > > gpiochip's 'set_config()' will be called and the driver does what
-> > > it
-> > > needs to setup the pull-up. If we want BIAS_DISABLED on the pin,
-> > > there's no way to the same as the above. So basically, this can
-> > > ever
-> > > happen:
-> > > 
-> > > https://elixir.bootlin.com/linux/latest/source/drivers/gpio/gpiolib.c#L2227
-> > > 
-> > > (only possible from the gpiochip cdev interface)
-> > > 
-> > > So, what I'm proposing is to be possible to do from OF:
-> > > 
-> > > ††††††††foo-gpios = <&gpio 1 GPIO_PULL_DISABLE>;
-> > > 
-> > > And then we will get into the gpiochip's 'set_config()' to disable
-> > > the
-> > > pull-up or pull-down.
-> > > 
-> > > As I said, my device is an input keymap that can export pins as
-> > > GPIOs
-> > > (to be consumed by gpio_keys). The pins by default have pull-ups
-> > > that
-> > > can be disabled by doing a device i2c write. I'm just trying to use
-> > > the
-> > > infrastructure that already exists in gpiolib (for pull-up|down) to
-> > > accomplish this. There's no pinctrl driver controlling the pins.
-> > > The
-> > > device itself controls them and having this device as a pinctrl one
-> > > is
-> > > not really applicable.
-> > 
-> > Yes, I have got it eventually. The root cause is that after reset you
-> > have a
-> > hardware that doesn't disable bias.
-> > 
-> > Now, we have DT properties for PD and PU, correct?
-> > For each requested pin you decide either to leave the state as it is,
-> > or
-> > apply bias.
-> > 
-> > in ->probe() of your GPIO you reset hardware and for each GPIO
-> > descriptor you
-> > set PU flag.
-> > In ->request(), don;t know the name by heart, you disable BIAS based
-> > on absence
-> > of flags, it can be done without an additional properties, purely in
-> > the GPIO
-> > OF code. Do I understand this correctly?
-> > 
+> > Maybe I don't understand your problem. What are you trying to
+> > solve? I mean this just demotes an error to an info message.
+
+The particular problem at hand is that on those cheap development boards
+SPI flash is somewhat optional. The PCB often has the footprint for it, but
+sometimes it is not populated, because the vendor wants to save pennies.
+
+In this case (OrangePi Zero) there was no SPI chip soldered on the first
+batches, but later boards are shipped with a flash chip. The footprint is
+on every version, and I for instance soldered a chip on an early board.
+
+> Many boards provide multiple storage options - you get a PCB designed to
+> carry different kinds of storage, some may be socketed, some can be
+> soldered on in some production batches and not others.
 > 
-> Alright, I think now you got it and we are on the same page. If I
-> understood your suggestion, users would just use GPIO_PULL_UP in dtb if
-> wanting the default behavior. I would then use the gpiochip 'request()'
-> callback to test the for pull-up flag right?
-
-Something like this, yes.
-
-> If I'm getting this right, there's a problem with it...
-> gpiod_configure_flags() is called after gpiod_request() which means
-> that the gpiod descriptor won't still have the BIAS flags set. And I
-> don't think there's a way (at least clean and easy) to get the firmware
-> lookup flags from the request callback?
+> The kernel can handle this for many kinds of storage but not SPI flash.
 > 
-> So, honestly the only option I see to do it without changing gpioblib
-> would be to hook this change in output/input callbacks which is far
-> from being optimal...
+> I don't see any reason why SPI flash should be a second class storage.
+
+See above, SPI is not discoverable, you need to know about the slave
+devices.
+
+> > > However, when the board is designed for a specific kind of device which
+> > > is not always present, and the kernel can detect the device, it is
+> > > perfectly fine to describe it.
+> > > 
+> > > The alternative is to not use the device at all, even when present,
+> > > which is kind of useless.  
+> > 
+> > Or let the bootloader update your device tree and disable the device
+> > if it's not there?  
+
+Yes, this is what I was suggesting already: U-Boot can do the job, because
+a U-Boot build is device specific, and we can take certain risks that the
+generic and single-image kernel wants to avoid.
+In this case we know that there is a SPI flash footprint, and it does no
+harm in trying to check on CS0. So I was thinking about introducing a
+U-Boot Kconfig variable to probe for and potentially disable the SPI flash
+DT node. We would set this variable in defconfigs of boards with optional
+SPI flash.
+
+> But then it must be in the device tree?
+
+However this indeed means that the SPI flash DT node must be in and enabled
+in the DT, because we (try hard to) only use original Linux DT files, and
+DTs must have been reviewed through the kernel ML first. The U-Boot driver
+relies on the DT as well, so the official kernel DT copy would need to come
+with that node enabled. Ideally U-Boot would disable it, if needed, and
+the kernel error message would never appear.
+
+> And then people will complain that if the bootloader does not have this
+> feature then the kernel prints an error message?
+
+This should not happen, if people follow the advice and use U-Boot's
+device tree directly ($fdtcontroladdr) instead of loading some DTB from
+somewhere. Then the U-Boot code (doing the check) and the DT (having
+it enabled) should be in sync, and we don't see kernel error messages.
+
+If it happens anyways (because people load some DTB), then it's a matter of
+either "live with it" or "update your firmware".
+
+Cheers,
+Andre
+
+> > Or load an overlay if it is there?  
 > 
-> So, in the end having this explicitly like this feels the best option
-> to me. Sure, I can find some workaround in my driver but that does not
-> change this...
-
-Ok, let me think about it. Meanwhile, maybe others have better ideas already?
-
-> "
-> git grep "PIN_CONFIG_BIAS_DISABLE" drivers/gpio/
-
-Hint: `git grep -lw "PIN_CONFIG_BIAS_DISABLE" -- drivers/gpio`
-
-> drivers/gpio/gpio-aspeed.c:963: else if (param ==
-> PIN_CONFIG_BIAS_DISABLE ||
-> drivers/gpio/gpio-merrifield.c:197:     if
-> ((pinconf_to_config_param(config) == PIN_CONFIG_BIAS_DISABLE) ||
-> drivers/gpio/gpio-omap.c:903:   case PIN_CONFIG_BIAS_DISABLE:
-> drivers/gpio/gpio-pca953x.c:573:        if (config ==
-> PIN_CONFIG_BIAS_DISABLE)
-> drivers/gpio/gpio-pca953x.c:592:        case PIN_CONFIG_BIAS_DISABLE:
-> "
+> Or maybe the kernel could just detect if the storage is present?
 > 
-> AFAICT, the only way this path is possible for these drivers is through
-> gpiolib cdev which might not be what the authors of the drivers were
-> expecting...
-
-gpio-merrifield is bad example, it has a pin control.
-gpio-pca953x as I said should effectively be a pin control driver.
-
-For the two left it might be the case.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> It's not like we don't have an identify command.
+> 
+> Thanks
+> 
+> Michal
+> 
 
