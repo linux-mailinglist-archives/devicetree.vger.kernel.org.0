@@ -2,187 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90C37575E1D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:02:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A004F575E12
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:02:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232055AbiGOI5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 04:57:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50276 "EHLO
+        id S229671AbiGOI5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 04:57:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbiGOI5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:57:31 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F011178
+        with ESMTP id S232157AbiGOI5c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:57:32 -0400
+X-Greylist: delayed 46291 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 15 Jul 2022 01:57:31 PDT
+Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CCA06541
         for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 01:57:30 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id t3so5503653edd.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 01:57:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WF2/Rr6KDXGTe8c1nCnqFbYnoiF8afARgQTg3crt7JU=;
-        b=GsfCPaROVaRJ+seDbyy0SpUxQlEHMhLelELpPL0pL6NwaREarezj+bi8vvMIgW1iL2
-         ZuPW+jZDJicj6I494Wa1WskWWA79CB33tg8ITfIyw7vyvomnKJTSzZa8zyo1yGk9y2WO
-         QN/613HKc6QPv2OIVZ1XSakXtfLwu8wk2HHt0+v1fA4ILgIFMv1/OmbGLTWtsaOPDwbD
-         w7LZtPDoTn0o860WjS77WScMMkxcZpFAYBysSRdR+UvdU58HzWodl2ya5xK7f+lS8orY
-         2tGnFePy/Y01T1Ds7HnSJQsoK8ZJjLQDVwmFxg3mIaLwzNtgydvRQ+CVFy3b0X9boBMC
-         48Lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WF2/Rr6KDXGTe8c1nCnqFbYnoiF8afARgQTg3crt7JU=;
-        b=dA3It1K7veZquLP3Ujj6yR2FKQwrk9MFFtu4jyZC5Fm34OqFV8YSFlBaoZxTx3jn7f
-         w2fjwUel5VVo/JcYGD1My4muojjo8V4GQAZbzoKxv11zJkfWcLVp1IilI1MvHsAK6RTX
-         OzosZBAceELJnErJOkN0P05cR3cGkLVTWqDzA2K26GjkLrcW1F38nTc2dh8mdt+LN4QJ
-         1UvGh5VuSNGb2J3K0Bb6sbHhT4Y0JHHmbHWhuzldvVzSndZVySioLauzDkHxY9z+jb+0
-         voq3NRq77u+hLDQSw+69tl890BlmoTjz5drarSp5KylX6B/0376DeBxjmTfhvTBbUEKj
-         aWiQ==
-X-Gm-Message-State: AJIora+fX7ExdGvg0AXEysbpRmPfZwi2h+4dka9FTBpKr2osfGfFAOd2
-        1RMIZX8mfPzftezIP/XOMSTRqg==
-X-Google-Smtp-Source: AGRyM1sCFgH5MOXPoSFdU3zLqxTSMMdrJ1RPoDq85DBYMCeLh9PLHaYn7hND5sH7P0L4aoJjsw0aWQ==
-X-Received: by 2002:a05:6402:27cf:b0:43a:de0b:9a82 with SMTP id c15-20020a05640227cf00b0043ade0b9a82mr17374933ede.427.1657875448691;
-        Fri, 15 Jul 2022 01:57:28 -0700 (PDT)
-Received: from vkh-ThinkPad-T490 ([194.44.56.171])
-        by smtp.gmail.com with ESMTPSA id o7-20020aa7c507000000b0043ab81e4230sm2457797edq.50.2022.07.15.01.57.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jul 2022 01:57:28 -0700 (PDT)
-Date:   Fri, 15 Jul 2022 11:57:20 +0300
-From:   Volodymyr Kharuk <vkh@melexis.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] media: uapi: Add mlx7502x header file
-Message-ID: <20220715085720.GA2295@vkh-ThinkPad-T490>
-References: <cover.1657786765.git.vkh@melexis.com>
- <0765b2ef8eea43dce67232a109e9f8b338aa06bd.1657786765.git.vkh@melexis.com>
- <Ys/wh1wUvQlmpHrg@pendragon.ideasonboard.com>
+Date:   Fri, 15 Jul 2022 08:57:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1657875448; x=1658134648;
+        bh=ahcJ39WoljRM54Bm8+EgSwRNnTEZZ96gQaP4bwdyU84=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:Feedback-ID:From:To:
+         Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID;
+        b=lddwBvMI0BSk3F8Q93X91fI4ZRzsstZjNLFK/lVSBG2IWcDb/g2h9Y+/QuXl16OBz
+         omkUPGCeIGKMFcPRslsoGISbsbi7tgO293szX04ZIbNvqqSthEskpUQ2ZIMqRC7Pbq
+         27ZDJTc6PNklej0ZKA7vGucOWa8KtC5CjtXnvMD9jWwKIWEdem6oeLIaW6NkQEFQEJ
+         PTppDq/B2bJoxhhwgK/ORLcVPmUrAKyPzGIyQoAdysE/FKh3Kp+otmdgjM5kSpge78
+         tFjUaS/SegEKaaMuEM7pFr863c9vkGmJ5NaYyuwA3UAwhIvHpuAChkMQiuXoCs/mLf
+         Kj1lNiPinrrqQ==
+To:     devicetree@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Subject: [PATCH 1/4] arm64: dts: qcom: msm8916-samsung-e2015: Add initial common dtsi
+Message-ID: <20220715085712.54098-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ys/wh1wUvQlmpHrg@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Samsung Galaxy E5, E7 and Grand Max are smartphones using the MSM8916 SoC
+released in 2015.
 
-Thank you for your review.
+e2015 and a2015 are similar, with some differences in accelerometer,
+MUIC and Vibrator. The common parts are shared in
+msm8916-samsung-a2015-common.dtsi to reduce duplication.
 
-On Thu, Jul 14, 2022 at 01:31:35PM +0300, Laurent Pinchart wrote:
-> Hi Volodymyr,
-> 
-> Thank you for the patch.
-> 
-> On Thu, Jul 14, 2022 at 11:34:46AM +0300, Volodymyr Kharuk wrote:
-> > Define user controls for mlx7502x driver and update MAINTAINERS
-> > 
-> > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-> > ---
-> >  MAINTAINERS                   |  7 +++++++
-> >  include/uapi/linux/mlx7502x.h | 31 +++++++++++++++++++++++++++++++
-> >  2 files changed, 38 insertions(+)
-> >  create mode 100644 include/uapi/linux/mlx7502x.h
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index ef3ec334fae9..1a68d888ee14 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -12673,6 +12673,13 @@ S:	Supported
-> >  W:	http://www.melexis.com
-> >  F:	drivers/iio/temperature/mlx90632.c
-> >  
-> > +MELEXIS MLX7502X DRIVER
-> > +M:	Volodymyr Kharuk <vkh@melexis.com>
-> > +L:	linux-media@vger.kernel.org
-> > +S:	Supported
-> > +W:	http://www.melexis.com
-> > +F:	include/uapi/linux/mlx7502x.h
-> > +
-> >  MELFAS MIP4 TOUCHSCREEN DRIVER
-> >  M:	Sangwon Jee <jeesw@melfas.com>
-> >  S:	Supported
-> > diff --git a/include/uapi/linux/mlx7502x.h b/include/uapi/linux/mlx7502x.h
-> > new file mode 100644
-> > index 000000000000..44386f3d6f5a
-> > --- /dev/null
-> > +++ b/include/uapi/linux/mlx7502x.h
-> > @@ -0,0 +1,31 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-> > +/*
-> > + * Melexis 7502x ToF cameras driver.
-> > + *
-> > + * Copyright (C) 2021 Melexis N.V.
-> > + *
-> > + */
-> > +
-> > +#ifndef __UAPI_MLX7502X_H_
-> > +#define __UAPI_MLX7502X_H_
-> > +
-> > +#include <linux/v4l2-controls.h>
-> > +
-> 
-> These controls should be documented, in
-> Documentation/userspace-api/media/drivers/.
-Ok, will do in v3
-> 
-> > +/* number of phases per frame: 1..8 */
-> > +#define V4L2_CID_MLX7502X_PHASE_NUMBER  (V4L2_CID_USER_MLX7502X_BASE + 0)
-> > +/* shift of each phase in frame, this is an array of 8 elements, each 16bits */
-> > +#define V4L2_CID_MLX7502X_PHASE_SEQ	(V4L2_CID_USER_MLX7502X_BASE + 1)
-> > +/* frequency modulation in MHz */
-> > +#define V4L2_CID_MLX7502X_FMOD		(V4L2_CID_USER_MLX7502X_BASE + 2)
-> > +/* time integration of each phase in us */
-> > +#define V4L2_CID_MLX7502X_TINT		(V4L2_CID_USER_MLX7502X_BASE + 3)
-> 
-> Are these control very device-specific, or are they concept that apply
-> in general to ToF sensors ? Same for V4L2_CID_MLX7502X_OUTPUT_MODE.
-These controls(except V4L2_CID_MLX7502X_OUTPUT_MODE) are general for ToF
-sensors. Do you think we should standardize them?
+Add a common device tree for with initial support for:
 
-Note that the control V4L2_CID_MLX7502X_TINT is similar to
-V4L2_CID_EXPOSURE, but the way it is done in ToF is different. They don't
-have a shutter. So I gave a separate control name. Is it ok?
-> 
-> > +/* mode could sw(sending i2c packet), hw(pin triggering), and continuous(self triggering) */
-> > +#define V4L2_CID_MLX7502X_TRIGGER_MODE	(V4L2_CID_USER_MLX7502X_BASE + 4)
-> > +/* in case sw or hw trigger mode is used */
-> > +#define V4L2_CID_MLX7502X_TRIGGER	(V4L2_CID_USER_MLX7502X_BASE + 5)
-> 
-> Trigger control is likely something we need to standardize at the V4L2
-> level.
-Ok, then I'll remove these controls for now and I will back with this as
-a separate patch.
-> 
-> > +/* this is related to the taps in ToF cameras, usually A minus B is the best option */
-> > +#define V4L2_CID_MLX7502X_OUTPUT_MODE	(V4L2_CID_USER_MLX7502X_BASE + 6)
-> > +/* ToF camers has its own temperature sensor, which can be read out only during streaming */
-> > +#define V4L2_CID_MLX7502X_TEMPERATURE	(V4L2_CID_USER_MLX7502X_BASE + 7)
-> 
-> This should probably use the proposed temperature control from
-> https://lore.kernel.org/linux-media/20220415111845.27130-3-benjamin.mugnier@foss.st.com/
-Ok, then I'll remove these controls for now.
-> 
-> > +
-> > +#endif /* __UAPI_MLX7502X_H_ */
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+- GPIO keys and vibrator
+- Hall sensor (except Grand Max)
+- SDHCI (internal and external storage)
+- USB Device Mode
+- UART (on USB connector via the SM5504 MUIC)
+- WCNSS (WiFi/BT)
+- Regulators
+- S3FWRN5 NFC (except Grand Max)
 
--- 
---
-Volodymyr Kharuk
+The three devices (and all other variants of E5/E7/Grand Max released in
+2015) are very similar, with some differences in display, touchscreen,
+sensors and NFC. The common parts are shared in
+msm8916-samsung-e2015-common.dtsi to reduce duplication.
+
+Unfortunately, some E5/E7/Grand Max were released with outdated 32-bit
+only firmware and never received any update from Samsung. Since the 32-bit
+TrustZone firmware is signed there seems to be no way currently to
+actually boot this device tree on arm64 Linux on those variants at the
+moment.
+
+However, it is possible to use this device tree by compiling an ARM32
+kernel instead. The device tree can be easily built on ARM32 with
+an #include and it works really well there. To avoid confusion for others
+it is still better to add this device tree on arm64. Otherwise it's easy
+to forget to update this one when making some changes that affect all
+MSM8916 devices.
+
+Maybe someone finds a way to boot ARM64 Linux on those device at some
+point. In this case I expect that this device tree can be simply used
+as-is.
+
+Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+---
+ arch/arm64/boot/dts/qcom/Makefile             |  3 ++
+ .../qcom/msm8916-samsung-e2015-common.dtsi    | 39 +++++++++++++++++++
+ .../boot/dts/qcom/msm8916-samsung-e5.dts      | 24 ++++++++++++
+ .../boot/dts/qcom/msm8916-samsung-e7.dts      | 29 ++++++++++++++
+ .../dts/qcom/msm8916-samsung-grandmax.dts     | 36 +++++++++++++++++
+ 5 files changed, 131 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.d=
+tsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-e7.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/M=
+akefile
+index 2f8aec2cc6db..941494553b9e 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -15,6 +15,9 @@ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-longcheer-l8910.dt=
+b
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-mtp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-a3u-eur.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-a5u-eur.dtb
++dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-e5.dtb
++dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-e7.dtb
++dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-grandmax.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-j5.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-serranove.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-wingtech-wt88047.dtb
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi b/a=
+rch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
+new file mode 100644
+index 000000000000..373154ee2643
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
+@@ -0,0 +1,39 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++#include "msm8916-samsung-a2015-common.dtsi"
++
++/ {
++=09i2c-muic {
++=09=09/* SM5504 MUIC instead of SM5502 */
++=09=09/delete-node/ extcon@25;
++
++=09=09muic: extcon@14 {
++=09=09=09compatible =3D "siliconmitus,sm5504-muic";
++=09=09=09reg =3D <0x14>;
++
++=09=09=09interrupt-parent =3D <&msmgpio>;
++=09=09=09interrupts =3D <12 IRQ_TYPE_EDGE_FALLING>;
++
++=09=09=09pinctrl-names =3D "default";
++=09=09=09pinctrl-0 =3D <&muic_int_default>;
++=09=09};
++=09};
++
++=09vibrator: vibrator {
++=09=09compatible =3D "gpio-vibrator";
++=09=09enable-gpios =3D <&msmgpio 76 GPIO_ACTIVE_HIGH>;
++
++=09=09pinctrl-names =3D "default";
++=09=09pinctrl-0 =3D <&motor_en_default>;
++=09};
++};
++
++&msmgpio {
++=09motor_en_default: motor-en-default {
++=09=09pins =3D "gpio76";
++=09=09function =3D "gpio";
++
++=09=09drive-strength =3D <2>;
++=09=09bias-disable;
++=09};
++};
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts b/arch/arm64/b=
+oot/dts/qcom/msm8916-samsung-e5.dts
+new file mode 100644
+index 000000000000..777eb934eb4b
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts
+@@ -0,0 +1,24 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++/dts-v1/;
++
++#include "msm8916-samsung-e2015-common.dtsi"
++
++/*
++ * NOTE: The original firmware from Samsung can only boot ARM32 kernels on=
+ some
++ * variants.
++ * Unfortunately, the firmware is signed and cannot be replaced easily.
++ * There seems to be no way to boot ARM64 kernels on 32-bit devices at the
++ * moment, even though the hardware would support it.
++ *
++ * However, it is possible to use this device tree by compiling an ARM32 k=
+ernel
++ * instead. For clarity and build testing this device tree is maintained n=
+ext
++ * to the other MSM8916 device trees. However, it is actually used through
++ * arch/arm/boot/dts/qcom-msm8916-samsung-e5.dts
++ */
++
++/ {
++=09model =3D "Samsung Galaxy E5";
++=09compatible =3D "samsung,e5", "qcom,msm8916";
++=09chassis-type =3D "handset";
++};
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e7.dts b/arch/arm64/b=
+oot/dts/qcom/msm8916-samsung-e7.dts
+new file mode 100644
+index 000000000000..b412b61ca258
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e7.dts
+@@ -0,0 +1,29 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++/dts-v1/;
++
++#include "msm8916-samsung-e2015-common.dtsi"
++
++/*
++ * NOTE: The original firmware from Samsung can only boot ARM32 kernels on=
+ some
++ * variants.
++ * Unfortunately, the firmware is signed and cannot be replaced easily.
++ * There seems to be no way to boot ARM64 kernels on 32-bit devices at the
++ * moment, even though the hardware would support it.
++ *
++ * However, it is possible to use this device tree by compiling an ARM32 k=
+ernel
++ * instead. For clarity and build testing this device tree is maintained n=
+ext
++ * to the other MSM8916 device trees. However, it is actually used through
++ * arch/arm/boot/dts/qcom-msm8916-samsung-e7.dts
++ */
++
++/ {
++=09model =3D "Samsung Galaxy E7";
++=09compatible =3D "samsung,e7", "qcom,msm8916";
++=09chassis-type =3D "handset";
++};
++
++&pm8916_l17 {
++=09regulator-min-microvolt =3D <3000000>;
++=09regulator-max-microvolt =3D <3000000>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts b/arch/a=
+rm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
+new file mode 100644
+index 000000000000..41aada4bfb80
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
+@@ -0,0 +1,36 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++/dts-v1/;
++
++#include "msm8916-samsung-e2015-common.dtsi"
++
++/*
++ * NOTE: The original firmware from Samsung can only boot ARM32 kernels on=
+ some
++ * variants.
++ * Unfortunately, the firmware is signed and cannot be replaced easily.
++ * There seems to be no way to boot ARM64 kernels on 32-bit devices at the
++ * moment, even though the hardware would support it.
++ *
++ * However, it is possible to use this device tree by compiling an ARM32 k=
+ernel
++ * instead. For clarity and build testing this device tree is maintained n=
+ext
++ * to the other MSM8916 device trees. However, it is actually used through
++ * arch/arm/boot/dts/qcom-msm8916-samsung-grandmax.dts
++ */
++
++/ {
++=09model =3D "Samsung Galaxy Grand Max";
++=09compatible =3D "samsung,grandmax", "qcom,msm8916";
++=09chassis-type =3D "handset";
++
++=09/delete-node/ gpio-hall-sensor;
++=09/delete-node/ i2c-nfc;
++=09/delete-node/ i2c-tkey;
++};
++
++&vibrator {
++=09enable-gpios =3D <&msmgpio 72 GPIO_ACTIVE_HIGH>;
++};
++
++&motor_en_default {
++=09pins =3D "gpio72";
++};
+--=20
+2.30.2
+
 
