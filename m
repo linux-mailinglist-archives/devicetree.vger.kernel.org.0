@@ -2,114 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6BFA576756
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 21:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB32A57676A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 21:33:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230092AbiGOTXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 15:23:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56022 "EHLO
+        id S229968AbiGOTck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 15:32:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230028AbiGOTXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 15:23:08 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2042.outbound.protection.outlook.com [40.107.22.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8E7C79ECD;
-        Fri, 15 Jul 2022 12:23:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R1dBuytd2HijtkKNWvIGL0/8firelYlk3FVjzQ2VgmugbbZBB2TqVqrROqrnsEqlNCO0By9ID2VEmw2oR6RaXEVPlr8hJFAo2ss/zGzLT4LhdbGzRbqALrfoXDQpTGFNkoFUmR0Se7A3GJhnfprd9bi/Cl0/NukwQMxg7u6XQdQK1LZc9TuNcjvu0Q/o3hy1zzW4GkKi4jqU/iJb5pHfKSNkzh2/3Ees0BkExIvvnNAHuFqe3qZuTq8Q4CBzH0GEDqyyUXpnokj88NBXt0f7g/7+ynAnGV8XnkQ0aUBX6dlgc96YArUC9LAolq5LLTQ71OT0xUmPOlAzWGN+9FwP6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ULw1nL9NyHvjmPP7EleoBnExAoN6KkMrzd8vqZ+cQxA=;
- b=WzVHJY0cOC6Vqid+smtbS3BTrOVGUygcrpd50tlneEZel4zRYvEX3FqjzHh4iYlMmFIctrMoiRkg9d1frn/78/tjzdCWAqiFp8hJrPVBzSOMWf6TGSMnyq3sIMdoG4ZfBsa7FYWPhRgx4zB/DC28H7jJXF1dfwZOopWmNRJcbU7pkKJ9cREWMfn1blNjHNBNfsGAmGdNN+7CFcqUP5K88Y+1kSusOivmfI3M3dXhaaZQnPePap6o1aU6894t/Zv5GcphVSS2n9M15AvPI5SgzB6vYDINl1E+6Sh3lWmN+XVKlojWpcEJ6MPA4nIt7F2ryGRZ6ctwO/Bs9PUZGqqzrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ULw1nL9NyHvjmPP7EleoBnExAoN6KkMrzd8vqZ+cQxA=;
- b=eRruc3LW2vYTFuOudZQW6QIUczoAQlneAHRRdAusSNZUoRzrpz4w+W6BN3FhcJ0iAlsjmCtpvG8Uacry8A/pXnU2c7Yj/sifVxbwvG4LU1WCRim2uyfVYpXTxP37MmdkZzbnFxCQRs/mol3NRZPEzSnv45KbSdmZAiPAjDr6Qp8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9186.eurprd04.prod.outlook.com (2603:10a6:102:232::18)
- by HE1PR0401MB2490.eurprd04.prod.outlook.com (2603:10a6:3:82::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.15; Fri, 15 Jul
- 2022 19:23:04 +0000
-Received: from PAXPR04MB9186.eurprd04.prod.outlook.com
- ([fe80::54aa:b7cb:a13c:66ab]) by PAXPR04MB9186.eurprd04.prod.outlook.com
- ([fe80::54aa:b7cb:a13c:66ab%7]) with mapi id 15.20.5438.017; Fri, 15 Jul 2022
- 19:23:04 +0000
-From:   Frank Li <Frank.Li@nxp.com>
-To:     maz@kernel.org, tglx@linutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com
-Cc:     kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
-Subject: [PATCH v2 4/4] pcie: endpoint: pci-epf-vntb: add endpoint msi support
-Date:   Fri, 15 Jul 2022 14:22:19 -0500
-Message-Id: <20220715192219.1489403-5-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220715192219.1489403-1-Frank.Li@nxp.com>
-References: <20220715192219.1489403-1-Frank.Li@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0084.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::29) To PAXPR04MB9186.eurprd04.prod.outlook.com
- (2603:10a6:102:232::18)
+        with ESMTP id S231482AbiGOTc1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 15:32:27 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44BD47D1E2
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:31:27 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id b11so10624431eju.10
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:31:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=uSPAlJmmriHlDlb3vXTxChyWNuSFJl3lViR/KmDCEp0=;
+        b=mGQ/fC/afrlTfsP5AGy6ti26lz3ZJEevbJSIPBoI5ke1EdbM5NU4FiqqzwdhN7bXzq
+         80j2Hl0EdfAA/b0i0EhSldowE9lrZfEvZQNTVvqv7LvLegUQ4v7Qu3UoHXBMVWxu1x/4
+         HfhRrKFxk5XQ0zUluO2159GLvjRVy+PUbNvzpzrPu21KXgttTVP98xjkRYLdiHfI9IKU
+         fUm8A9lGorzcdsZk+LH+rBk/N8sI4ixR44DEj6QmS41t5EEM/06XonnAspBpwAjt1M3T
+         qvuMGdEvLbgE9yBAtm5bUdVLmmJ2sakdxJdiY7TQdsjyDmI9aSXF+Gr+kPxPTslKGCEU
+         h3Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=uSPAlJmmriHlDlb3vXTxChyWNuSFJl3lViR/KmDCEp0=;
+        b=WPduO1TSkD3u/nMjShrTsjctDvEGt6//A0Cxr03enoIkJpV7MdurrQ44Mt2ORq/jKz
+         ldyveSR2Bw5ZjfMvLcS9OpHQ5PQqgcZyPHo87di11bJKhack5iT2FzDT8GtDpspwj0jW
+         RW/4AN9SaX8srlm17XwXYBwC/8sV9JuzQ4HO61UhwLwlv8T3qKM8VH50Z5QsL23+q1+V
+         EK769GSqrZVlqE3pExoG+bmG+Tvyl7IOno188ZcK3zZlUHR2WutqS2SJzmmIfHZqWNJW
+         nvnxpUbrh9jDJkJ9hFwPtMX6u7k2oda2dA1d195SkmEHuYoVehfqKusCZCQOGxKyCRiK
+         vWtA==
+X-Gm-Message-State: AJIora8dMAalqvrFCAmlAJawt764iJub1dmenRumnQ46fcOTMvSy4Gv3
+        /xnUwsEZRZjNOlev1gTnxBS4Y0uddf+3/MypsK7hCw==
+X-Google-Smtp-Source: AGRyM1uqQkQx8LQQMZrsiH9jK3cummGrCvx8epOPfvpKc8lsZKZ8p2R43vjWolVg90hTjkOjFDYhL4Ut7psKzBzMsXA=
+X-Received: by 2002:a17:907:87b0:b0:72b:9f0d:3f89 with SMTP id
+ qv48-20020a17090787b000b0072b9f0d3f89mr13954400ejc.734.1657913483500; Fri, 15
+ Jul 2022 12:31:23 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9d55d283-b6ea-407f-20c3-08da669770cd
-X-MS-TrafficTypeDiagnostic: HE1PR0401MB2490:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: d4FyNYa7jgxgHKZafJGLEIqsgFgMVjA2gMJuKcFoCa5eijcf9W7q9Y7EvCDNmPl/IiQmdPTY4cSNEBlBMJRvTp9VPKp7D/i3PQPfAFYMosr3ghJwpgUgJyCqnoBarwJyjqbtTsCkOyPTpQ+/dhd/iTTVT5Qs0uJdNBKh/5hFHEFZEUzQHHiWyZ0WFpJ/zXIt9kcoNGnWr5ZtPee9TRjD8TdTbh1DdIzlEqM4/dpe6GgcY2uJl/87ikZ8wc9HMmID51dA9liP+LXC8vlH6CXuwidJ0CrEtsc6RgY8uvckp1LzD4vPblCqwfKLWILTo2e/BUnvnupJMA1H6NKqohA2w3GK6D2YQ6JGgQ0BJQoZShWocYBuJH5EiCf2joVHKV+tsKAxGQ4ylIsGyBTZ+z9ojMXS0lmg3uyBEWMXLv7VjAoQCePkBlcbohEiImoqwP3DCN3W+FK6P0eOadNSLZ8kbM7lGW2/JRzLuxU2X7Q6Bqxngk4YAuGUJDPvjQmOw57PhFF2MYm66kNPhFLaH+qJgDc35jA8MjXNX14MS39Xf6QTg4XZJbYMU8gEN42SDMik5mLFeubCSR3Qj/o8Tgsx5ZnHnUiGgTwsvMDbFM2qkyyjfN03TqWAEDevcOwkcGzCh4Rv7c5CERqfc9S/eK8o7kvFr5Nw57zUTdnCNVVzTW+JzslVzlooD+3RPnfjOiibQ6OiVcN0YMWrtpXAc3DH5h/C1ss6LTOhCTUXMVkOSlMI7Lr0xp2tY7jPbrqFtQk0e0SxB/bfzwBU0p+jsMTw258vURUusGTEQOdHAYOPZ2S+4OecchKy2BLPY8JYr2HF
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9186.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(346002)(39860400002)(376002)(136003)(366004)(316002)(186003)(5660300002)(86362001)(8936002)(66476007)(66946007)(1076003)(66556008)(6486002)(4326008)(8676002)(6512007)(2616005)(41300700001)(38100700002)(38350700002)(478600001)(26005)(6666004)(6506007)(52116002)(2906002)(36756003)(7416002)(83380400001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dA1qIxcWaJFBzWcNsWVVn4xZG4kOzjQ2IdYbIKkSRo5LKvhhyWoGMBuD9kz6?=
- =?us-ascii?Q?JPX9RryDjgFAR7TGoZo0joJ32Rjan1Q8Q9pftc7e0sntXErzzjZuNI7jKfTm?=
- =?us-ascii?Q?542D6hsUQuYs5M0GekVv8VMfLqnlNpyuaem+hkLReHGeG69GyQHjBM5vWWkO?=
- =?us-ascii?Q?sKarQcoBs5n+ZSQ70hJUqvV8wNfDHTCPlIOUPlmsisL0/MQuLauGBdIg5pFR?=
- =?us-ascii?Q?DB8r/NWXv2ZTTg4FbP59jral2P+ewM9WNtOWOXo+9g3Hk9btqyjW5o8VsbId?=
- =?us-ascii?Q?m2+T7LDvuzYPO8mPgJUKUdet+1lIK8S3N2JV5EUrbyHp8oP8aQeUvoZJtP1q?=
- =?us-ascii?Q?eSU7FIiFhjeFPxDjo1GFHrmIsjjbnBrD6hosV5ds+XATqSgRdcO9JMYbmOC/?=
- =?us-ascii?Q?TNKXsW6VFjZSEBwwHCwVUKtTes3RGt2m4nkU7O2/uG+FQqQirMlIJAoEiS6+?=
- =?us-ascii?Q?bxBcIeIqwK/XgPJyb85Mdyaj9iAEG9stLEFTCIPZYNYE71qharCjP0YpiP1+?=
- =?us-ascii?Q?3tXL+TCVsapONXNWTvH8asxstxKTXbea/ZAA7EYtwzJzp5hMyJ8Z2YpsY+Uh?=
- =?us-ascii?Q?X13mFOHtFfUNH77GUS8nzOGtbkF8KVqtTfCmSCwlrLt6iXL+JmDgD+NfQEyx?=
- =?us-ascii?Q?0pR2KfjMxoQPmW1IdLOY8c4oHP99jrmZhIIwYKgbRyer315OdiE2fT2DdZpG?=
- =?us-ascii?Q?t60ccC9Z3khKhRzPCSPZV1sNtUVfSLekn3RZUK67t93A2SzyqfcdW6TjA3OZ?=
- =?us-ascii?Q?GC2h0nUll7H3Rmf2dOvO7M/MfgLNlJa8zFaLY3GorRgmpULPrWu+8eYSL3bl?=
- =?us-ascii?Q?jgIXxd1to0goEqNZqfeDawvkLRnDll6/VZOHk/SxZ++x64LcepcmIw+EF8TH?=
- =?us-ascii?Q?+qGSyYTHh2heWh9Dk5EOjpkBdRH+TYB+GtjtuKNoaYw0LBaYTCNhbIw/OmMF?=
- =?us-ascii?Q?E4BTIisckEFZN/w1iAE/Mc9+/0Nb6b76nMFQ7BaMZAZXd9f0dHe5fFF/OU4H?=
- =?us-ascii?Q?Mff7GQBWjwbFzLiUJbUP7gXIMyfvmTGF3dMVkHURGoQGI385ztqr847F/iLR?=
- =?us-ascii?Q?tRHoRPRnmHpQec0B7L1vCOjAyHPCiQ9otPBgN5JO7XUz5XYQp5Sd4DmxPVAe?=
- =?us-ascii?Q?BU6oNbNV3Ghd++LZN0lwpzrixYCdX/6lqyS5V5RqWIuvW18IizMHf5GXTro+?=
- =?us-ascii?Q?fdnw+oB0B7T0PPIoCIC7YERDBOEd56v8dzt23YWQ0DqdTrYjIOMszEI0+Tzf?=
- =?us-ascii?Q?GcuX69ybwpbyjQsnBWe8d+hXVJF6Ds7FhNVmBADtoGAdhnNuU/ZOoLktG3Ph?=
- =?us-ascii?Q?HE2U8TXsR/zPfgTS/Pf9o9wAPlj2Rpw1RcW+C6H8MkT21E2TC9Fn6Zqk+YYE?=
- =?us-ascii?Q?d67ot3BEY6arhTNKBFB+6IqdGOMxpq/8CG2c9aAimhkt82ujIFiIT/LCEamL?=
- =?us-ascii?Q?9KYn49gPq3k/l3cxq0lYV81MxzBJ97NQTXFxGN8Azc8yjmApHtyb363OH/B2?=
- =?us-ascii?Q?BpXpnHC/1VRP6MsTYiyWoyqqwYnlL7NY295iOHn4T/fw2ZZt/SASQreHq1bl?=
- =?us-ascii?Q?P3awQmEhIj7rSNSkntg=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9d55d283-b6ea-407f-20c3-08da669770cd
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9186.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2022 19:23:04.6338
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pdOgqvbwhHQMWE8QsuUYopY8/lhsxdIL4YDAF4e6wLFKtNHig+Ue/D/Fl1lsVUfQdmE/bhOT4+2xv1DPydTenQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0401MB2490
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+References: <20220713131421.1527179-1-nuno.sa@analog.com> <YtAvHMmGay/3HACZ@smile.fi.intel.com>
+ <e0638b02bdcd0ee452846b86ce83458173912ef1.camel@gmail.com>
+ <YtBnIxh6rDJMwpEm@smile.fi.intel.com> <5d9f9272334177e3ea864467f50095a8709bc0d2.camel@gmail.com>
+ <YtFYFbP+xqAUUHZa@smile.fi.intel.com> <88114aeb10f7316cf3c1396179949f2fc351ad8f.camel@gmail.com>
+In-Reply-To: <88114aeb10f7316cf3c1396179949f2fc351ad8f.camel@gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 15 Jul 2022 21:31:12 +0200
+Message-ID: <CAMRc=Mdz+8yfrATQPJ=uY33k2Dwt29g6vZbP3mSjkB_VAzP5+A@mail.gmail.com>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+To:     =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -117,235 +76,281 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add msi support for ntb endpoint(EP) side.
-EP side driver query if system have msi controller.
-Setup doorbell address according to struct msi_msg.
+On Fri, Jul 15, 2022 at 2:19 PM Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+>
+> On Fri, 2022-07-15 at 15:05 +0300, Andy Shevchenko wrote:
+> > On Fri, Jul 15, 2022 at 12:20:56PM +0200, Nuno S=C3=A1 wrote:
+> > > On Thu, 2022-07-14 at 21:57 +0300, Andy Shevchenko wrote:
+> > > > On Thu, Jul 14, 2022 at 05:43:41PM +0200, Nuno S=C3=A1 wrote:
+> > > > > On Thu, 2022-07-14 at 17:58 +0300, Andy Shevchenko wrote:
+> > > > > > On Wed, Jul 13, 2022 at 03:14:17PM +0200, Nuno S=C3=A1 wrote:
+> > > > > > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation
+> > > > > > > of
+> > > > > > > calling the
+> > > > > > > gpiochip 'set_config()' hook. However, AFAICT, there's no
+> > > > > > > way
+> > > > > > > that
+> > > > > > > this
+> > > > > > > flag is set because there's no support for it in firwmare
+> > > > > > > code.
+> > > > > > > Moreover,
+> > > > > > > in 'gpiod_configure_flags()', only pull-ups and pull-downs
+> > > > > > > are
+> > > > > > > being
+> > > > > > > handled.
+> > > > > > >
+> > > > > > > On top of this, there are some users that are looking at
+> > > > > > > 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So,
+> > > > > > > unless
+> > > > > > > I'm
+> > > > > > > missing something, it looks like this was never working for
+> > > > > > > these
+> > > > > > > chips.
+> > > > > > >
+> > > > > > > Note that the ACPI case is only compiled tested. At first
+> > > > > > > glance,
+> > > > > > > it seems
+> > > > > > > the current patch is enough but i'm not really sure...
+> > > > > >
+> > > > > > So, I looked closer to the issue you are trying to describe
+> > > > > > here.
+> > > > > >
+> > > > > > As far as I understand we have 4 state of BIAS in the
+> > > > > > hardware:
+> > > > > > 1/ AS IS (defined by firnware)
+> > > > > > 2/ Disabled (neither PU, not PD)
+> > > > > > 3/ PU
+> > > > > > 4/ PD
+> > > > > >
+> > > > > > The case when the default of bias is not disabled (for
+> > > > > > example
+> > > > > > specific, and I
+> > > > > > think very special, hardware may reset it to PD or PU), it's
+> > > > > > a
+> > > > > > hardware driver
+> > > > > > responsibility to inform the framework about the real state
+> > > > > > of
+> > > > > > the
+> > > > > > lines and
+> > > > > > synchronize it.
+> > > > > >
+> > > > > > Another case is when the firmware sets the line in non-
+> > > > > > disabled
+> > > > > > state
+> > > > > > and
+> > > > > > by some reason you need to disable it. The question is, why?
+> > > > >
+> > > > > Not getting this point...
+> > > >
+> > > > I understand that in your case "firmware" is what DTB provides.
+> > > > So taking into account that the default of hardware is PU, it
+> > > > needs
+> > > > a mechanism to override that, correct?
+> > > >
+> > >
+> > > Exactly...
+> > >
+> > > > > > > As a side note, this came to my attention during this
+> > > > > > > patchset
+> > > > > > > [1]
+> > > > > > > (and, ofr OF,  was tested with it).
+> > > > > > >
+> > > > > > > [1]:
+> > > > > > > https://lore.kernel.org/linux-input/20220708093448.42617-5-nu=
+no.sa@analog.com/
+> > > > > >
+> > > > > > Since this provides a GPIO chip, correct?, it's
+> > > > > > responsibility of
+> > > > > > the
+> > > > > > driver to
+> > > > > > synchronize it, no? Basically if you really don't trust
+> > > > > > firmware,
+> > > > > > you
+> > > > > > may
+> > > > >
+> > > > > What do you mean by synchronize?
+> > > >
+> > > > Full duplex sync, i.e. setting flag to PU for the pins that
+> > > > should
+> > > > stay PU:ed
+> > > > and disabling bias for the ones, that want it to be disabled. (PD
+> > > > accordingly)
+> > > >
+> > > > > > go via all GPIO lines and switch them to the known (in
+> > > > > > software)
+> > > > > > state. This
+> > > > > > approach on the other hand is error prone, because firmware
+> > > > > > should
+> > > > > > know better
+> > > > > > which pin is used for which purpose, no? If you don't trust
+> > > > > > firwmare
+> > > > > > (in some
+> > > > > > cases), then it's a matter of buggy platform that has to be
+> > > > > > quirked
+> > > > > > out.
+> > > > >
+> > > > > I'm not getting what you mean by "firmware should know better"?
+> > > > > So,
+> > > > > basically, and let's take OF as example, you can request a GPIO
+> > > > > in
+> > > > > OF
+> > > > > by doing something like:
+> > > > >
+> > > > >         foo-gpios =3D <&gpio 1 GPIO_PULL_UP>;
+> > > > >
+> > > > > In this way, when the consumer driver gets the gpio, all the
+> > > > > flags
+> > > > > will
+> > > > > be properly set so that when we set a direction (for example)
+> > > > > the
+> > > > > gpiochip's 'set_config()' will be called and the driver does
+> > > > > what
+> > > > > it
+> > > > > needs to setup the pull-up. If we want BIAS_DISABLED on the
+> > > > > pin,
+> > > > > there's no way to the same as the above. So basically, this can
+> > > > > ever
+> > > > > happen:
+> > > > >
+> > > > > https://elixir.bootlin.com/linux/latest/source/drivers/gpio/gpiol=
+ib.c#L2227
+> > > > >
+> > > > > (only possible from the gpiochip cdev interface)
+> > > > >
+> > > > > So, what I'm proposing is to be possible to do from OF:
+> > > > >
+> > > > >         foo-gpios =3D <&gpio 1 GPIO_PULL_DISABLE>;
+> > > > >
+> > > > > And then we will get into the gpiochip's 'set_config()' to
+> > > > > disable
+> > > > > the
+> > > > > pull-up or pull-down.
+> > > > >
+> > > > > As I said, my device is an input keymap that can export pins as
+> > > > > GPIOs
+> > > > > (to be consumed by gpio_keys). The pins by default have pull-
+> > > > > ups
+> > > > > that
+> > > > > can be disabled by doing a device i2c write. I'm just trying to
+> > > > > use
+> > > > > the
+> > > > > infrastructure that already exists in gpiolib (for pull-
+> > > > > up|down) to
+> > > > > accomplish this. There's no pinctrl driver controlling the
+> > > > > pins.
+> > > > > The
+> > > > > device itself controls them and having this device as a pinctrl
+> > > > > one
+> > > > > is
+> > > > > not really applicable.
+> > > >
+> > > > Yes, I have got it eventually. The root cause is that after reset
+> > > > you
+> > > > have a
+> > > > hardware that doesn't disable bias.
+> > > >
+> > > > Now, we have DT properties for PD and PU, correct?
+> > > > For each requested pin you decide either to leave the state as it
+> > > > is,
+> > > > or
+> > > > apply bias.
+> > > >
+> > > > in ->probe() of your GPIO you reset hardware and for each GPIO
+> > > > descriptor you
+> > > > set PU flag.
+> > > > In ->request(), don;t know the name by heart, you disable BIAS
+> > > > based
+> > > > on absence
+> > > > of flags, it can be done without an additional properties, purely
+> > > > in
+> > > > the GPIO
+> > > > OF code. Do I understand this correctly?
+> > > >
+> > >
+> > > Alright, I think now you got it and we are on the same page. If I
+> > > understood your suggestion, users would just use GPIO_PULL_UP in
+> > > dtb if
+> > > wanting the default behavior. I would then use the gpiochip
+> > > 'request()'
+> > > callback to test the for pull-up flag right?
+> >
+> > Something like this, yes.
+> >
+> > > If I'm getting this right, there's a problem with it...
+> > > gpiod_configure_flags() is called after gpiod_request() which means
+> > > that the gpiod descriptor won't still have the BIAS flags set. And
+> > > I
+> > > don't think there's a way (at least clean and easy) to get the
+> > > firmware
+> > > lookup flags from the request callback?
+> > >
+> > > So, honestly the only option I see to do it without changing
+> > > gpioblib
+> > > would be to hook this change in output/input callbacks which is far
+> > > from being optimal...
+> > >
+> > > So, in the end having this explicitly like this feels the best
+> > > option
+> > > to me. Sure, I can find some workaround in my driver but that does
+> > > not
+> > > change this...
+> >
+> > Ok, let me think about it. Meanwhile, maybe others have better ideas
+> > already?
+> >
+>
+> Sure, I'm still thinking that having this extra property and explicitly
+> set it from OF is not that bad :)
+>
+> > > "
+> > > git grep "PIN_CONFIG_BIAS_DISABLE" drivers/gpio/
+> >
+> > Hint: `git grep -lw "PIN_CONFIG_BIAS_DISABLE" -- drivers/gpio`
+> >
+>
+> nice..
+>
+> > > drivers/gpio/gpio-aspeed.c:963: else if (param =3D=3D
+> > > PIN_CONFIG_BIAS_DISABLE ||
+> > > drivers/gpio/gpio-merrifield.c:197:     if
+> > > ((pinconf_to_config_param(config) =3D=3D PIN_CONFIG_BIAS_DISABLE) ||
+> > > drivers/gpio/gpio-omap.c:903:   case PIN_CONFIG_BIAS_DISABLE:
+> > > drivers/gpio/gpio-pca953x.c:573:        if (config =3D=3D
+> > > PIN_CONFIG_BIAS_DISABLE)
+> > > drivers/gpio/gpio-pca953x.c:592:        case
+> > > PIN_CONFIG_BIAS_DISABLE:
+> > > "
+> > >
+> > > AFAICT, the only way this path is possible for these drivers is
+> > > through
+> > > gpiolib cdev which might not be what the authors of the drivers
+> > > were
+> > > expecting...
+> >
+> > gpio-merrifield is bad example, it has a pin control.
+> > gpio-pca953x as I said should effectively be a pin control driver.
+> >
+> > For the two left it might be the case.
+> >
+>
+> Well the thing is that even if we have pinctrl like for example,
+> gpio-omap, it is still true that there's no way to get into
+> 'omap_gpio_set_config()' for 'PIN_CONFIG_BIAS_DISABLE' and call
+> 'gpiochip_generic_config()'.
+>
+> (naturally in this case, one can directly use pinctrl properties to
+> control the pin but still...)
+>
+>
+> - Nuno S=C3=A1
+>
 
-So PCIe host can write this doorbell address to EP
-side's irq.
+Ideologically I don't have anything against adding this flag (except
+that it should be called BIAS_DISABLE not PULL_DISABLE IMO). Nuno is
+right in that the character device is the only way to set this mode
+ATM and. However I would like to see the first user added together
+with the series because adding features nobody uses in the mainline
+kernel tree is generally frowned upon and it's also not clear that
+anyone actually wants to use it.
 
-If no msi controller exist, failback software polling.
-
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- drivers/pci/endpoint/functions/pci-epf-vntb.c | 134 +++++++++++++++---
- 1 file changed, 112 insertions(+), 22 deletions(-)
-
-diff --git a/drivers/pci/endpoint/functions/pci-epf-vntb.c b/drivers/pci/endpoint/functions/pci-epf-vntb.c
-index 1466dd1904175..dcaebcda4d7ad 100644
---- a/drivers/pci/endpoint/functions/pci-epf-vntb.c
-+++ b/drivers/pci/endpoint/functions/pci-epf-vntb.c
-@@ -44,6 +44,7 @@
- #include <linux/pci-epc.h>
- #include <linux/pci-epf.h>
- #include <linux/ntb.h>
-+#include <linux/msi.h>
- 
- static struct workqueue_struct *kpcintb_workqueue;
- 
-@@ -143,6 +144,8 @@ struct epf_ntb {
- 	void __iomem *vpci_mw_addr[MAX_MW];
- 
- 	struct delayed_work cmd_handler;
-+
-+	int msi_virqbase;
- };
- 
- #define to_epf_ntb(epf_group) container_of((epf_group), struct epf_ntb, group)
-@@ -253,7 +256,7 @@ static void epf_ntb_cmd_handler(struct work_struct *work)
- 
- 	ntb = container_of(work, struct epf_ntb, cmd_handler.work);
- 
--	for (i = 1; i < ntb->db_count; i++) {
-+	for (i = 1; i < ntb->db_count && !ntb->epf_db_phy; i++) {
- 		if (readl(ntb->epf_db + i * 4)) {
- 			if (readl(ntb->epf_db + i * 4))
- 				ntb->db |= 1 << (i - 1);
-@@ -454,11 +457,9 @@ static int epf_ntb_config_spad_bar_alloc(struct epf_ntb *ntb)
- 	ctrl->num_mws = ntb->num_mws;
- 	ntb->spad_size = spad_size;
- 
--	ctrl->db_entry_size = 4;
--
- 	for (i = 0; i < ntb->db_count; i++) {
- 		ntb->reg->db_data[i] = 1 + i;
--		ntb->reg->db_offset[i] = 0;
-+		ntb->reg->db_offset[i] = 4 * i;
- 	}
- 
- 	return 0;
-@@ -509,6 +510,28 @@ static int epf_ntb_configure_interrupt(struct epf_ntb *ntb)
- 	return 0;
- }
- 
-+static int epf_ntb_db_size(struct epf_ntb *ntb)
-+{
-+	const struct pci_epc_features *epc_features;
-+	size_t	size = 4 * ntb->db_count;
-+	u32	align;
-+
-+	epc_features = pci_epc_get_features(ntb->epf->epc,
-+					    ntb->epf->func_no,
-+					    ntb->epf->vfunc_no);
-+	align = epc_features->align;
-+
-+	if (size < 128)
-+		size = 128;
-+
-+	if (align)
-+		size = ALIGN(size, align);
-+	else
-+		size = roundup_pow_of_two(size);
-+
-+	return size;
-+}
-+
- /**
-  * epf_ntb_db_bar_init() - Configure Doorbell window BARs
-  * @ntb: NTB device that facilitates communication between HOST and vHOST
-@@ -520,35 +543,33 @@ static int epf_ntb_db_bar_init(struct epf_ntb *ntb)
- 	struct device *dev = &ntb->epf->dev;
- 	int ret;
- 	struct pci_epf_bar *epf_bar;
--	void __iomem *mw_addr;
-+	void __iomem *mw_addr = NULL;
- 	enum pci_barno barno;
--	size_t size = 4 * ntb->db_count;
-+	size_t size;
- 
- 	epc_features = pci_epc_get_features(ntb->epf->epc,
- 					    ntb->epf->func_no,
- 					    ntb->epf->vfunc_no);
--	align = epc_features->align;
- 
--	if (size < 128)
--		size = 128;
--
--	if (align)
--		size = ALIGN(size, align);
--	else
--		size = roundup_pow_of_two(size);
-+	size = epf_ntb_db_size(ntb);
- 
- 	barno = ntb->epf_ntb_bar[BAR_DB];
-+	epf_bar = &ntb->epf->bar[barno];
- 
--	mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
--	if (!mw_addr) {
--		dev_err(dev, "Failed to allocate OB address\n");
--		return -ENOMEM;
-+	if (!ntb->epf_db_phy) {
-+		mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
-+		if (!mw_addr) {
-+			dev_err(dev, "Failed to allocate OB address\n");
-+			return -ENOMEM;
-+		}
-+	} else {
-+		epf_bar->phys_addr = ntb->epf_db_phy;
-+		epf_bar->barno = barno;
-+		epf_bar->size = size;
- 	}
- 
- 	ntb->epf_db = mw_addr;
- 
--	epf_bar = &ntb->epf->bar[barno];
--
- 	ret = pci_epc_set_bar(ntb->epf->epc, ntb->epf->func_no, ntb->epf->vfunc_no, epf_bar);
- 	if (ret) {
- 		dev_err(dev, "Doorbell BAR set failed\n");
-@@ -704,6 +725,74 @@ static int epf_ntb_init_epc_bar(struct epf_ntb *ntb)
- 	return 0;
- }
- 
-+static void epf_ntb_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
-+{
-+	struct epf_ntb *ntb = dev_get_drvdata(desc->dev);
-+	struct epf_ntb_ctrl *reg = ntb->reg;
-+	int size = epf_ntb_db_size(ntb);
-+	u64 addr;
-+
-+	addr = msg->address_hi;
-+	addr <<= 32;
-+	addr |= msg->address_lo;
-+
-+	reg->db_data[desc->msi_index] = msg->data;
-+
-+	if (desc->msi_index == 0)
-+		ntb->epf_db_phy = round_down(addr, size);
-+
-+	reg->db_offset[desc->msi_index] = addr - ntb->epf_db_phy;
-+}
-+
-+static irqreturn_t epf_ntb_interrupt_handler(int irq, void *data)
-+{
-+	struct epf_ntb *ntb = data;
-+	int index;
-+
-+	index = irq - ntb->msi_virqbase;
-+	ntb->db |= 1 << (index - 1);
-+	ntb_db_event(&ntb->ntb, index);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
-+{
-+	struct irq_domain *domain;
-+	struct device *dev = &ntb->epf->dev;
-+	int ret;
-+	int i;
-+	int virq;
-+
-+	domain = dev_get_msi_domain(ntb->epf->epc->dev.parent);
-+	if (!domain)
-+		return;
-+
-+	dev_set_msi_domain(dev, domain);
-+
-+	if (platform_msi_domain_alloc_irqs(&ntb->epf->dev,
-+		ntb->db_count,
-+		epf_ntb_write_msi_msg)) {
-+		dev_info(dev, "Can't allocate MSI, failure back to poll mode\n");
-+		return;
-+	}
-+
-+	dev_info(dev, "vntb use MSI as doorbell\n");
-+
-+	for (i = 0; i < ntb->db_count; i++) {
-+		virq = msi_get_virq(dev, i);
-+		ret = devm_request_irq(dev, virq,
-+			       epf_ntb_interrupt_handler, 0,
-+			       "ntb", ntb);
-+
-+		if (ret)
-+			dev_err(dev, "request irq failure\n");
-+
-+		if (!i)
-+			ntb->msi_virqbase = virq;
-+	}
-+}
-+
- /**
-  * epf_ntb_epc_init() - Initialize NTB interface
-  * @ntb: NTB device that facilitates communication between HOST and vHOST2
-@@ -1299,14 +1388,15 @@ static int epf_ntb_bind(struct pci_epf *epf)
- 		goto err_bar_alloc;
- 	}
- 
-+	epf_set_drvdata(epf, ntb);
-+	epf_ntb_epc_msi_init(ntb);
-+
- 	ret = epf_ntb_epc_init(ntb);
- 	if (ret) {
- 		dev_err(dev, "Failed to initialize EPC\n");
- 		goto err_bar_alloc;
- 	}
- 
--	epf_set_drvdata(epf, ntb);
--
- 	pci_space[0] = (ntb->vntb_pid << 16) | ntb->vntb_vid;
- 	pci_vntb_table[0].vendor = ntb->vntb_vid;
- 	pci_vntb_table[0].device = ntb->vntb_pid;
--- 
-2.35.1
-
+Bart
