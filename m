@@ -2,275 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADB53576668
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 19:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE09576682
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 20:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbiGORy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 13:54:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57010 "EHLO
+        id S229907AbiGOSBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 14:01:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229756AbiGORyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 13:54:54 -0400
-Received: from smtp-out3.electric.net (smtp-out3.electric.net [208.70.128.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC5B54CB5;
-        Fri, 15 Jul 2022 10:54:52 -0700 (PDT)
-Received: from 1oCPWT-000BsI-W3 by out3a.electric.net with emc1-ok (Exim 4.94.2)
-        (envelope-from <kris@embeddedTS.com>)
-        id 1oCPWb-000C2b-Uv; Fri, 15 Jul 2022 10:54:49 -0700
-Received: by emcmailer; Fri, 15 Jul 2022 10:54:49 -0700
-Received: from [66.210.251.27] (helo=mail.embeddedts.com)
-        by out3a.electric.net with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <kris@embeddedTS.com>)
-        id 1oCPWT-000BsI-W3; Fri, 15 Jul 2022 10:54:41 -0700
-Received: from tsdebian (97-120-89-198.ptld.qwest.net [97.120.89.198])
-        by mail.embeddedts.com (Postfix) with ESMTPSA id E09C21C0A;
-        Fri, 15 Jul 2022 10:54:40 -0700 (MST)
-Message-ID: <1657907657.2829.1.camel@embeddedTS.com>
-Subject: Re: [RFC PATCH v2] ARM: dts: Add TS-7553-V2 support
-From:   Kris Bahnsen <kris@embeddedTS.com>
-Reply-To: kris@embeddedTS.com
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Mark Featherston <mark@embeddedTS.com>
-Date:   Fri, 15 Jul 2022 10:54:17 -0700
-In-Reply-To: <eb993f8d-e72f-aba3-e7a4-1bbd2ac00f6c@linaro.org>
-References: <20220713221233.8486-1-kris@embeddedTS.com>
-         <55dccabb-41e9-dc45-f404-c333f5472e75@linaro.org>
-         <1657833995.2979.1.camel@embeddedTS.com>
-         <eb993f8d-e72f-aba3-e7a4-1bbd2ac00f6c@linaro.org>
-Organization: embeddedTS
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Outbound-IP: 66.210.251.27
-X-Env-From: kris@embeddedTS.com
-X-Proto: esmtps
-X-Revdns: wsip-66-210-251-27.ph.ph.cox.net
-X-HELO: mail.embeddedts.com
-X-TLS:  TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256
-X-Authenticated_ID: 
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=embeddedTS.com; s=mailanyone20220121;h=Mime-Version:References:In-Reply-To:Date:To:From:Message-ID; bh=dxvJjUrX64Cs5hkRtbhBYZ+CBeeqYYUwDDG4GscCgRg=;b=RCNRIPqG09r6kH74N7as77/3G7UZC/jdj5YvhraTRW4wujMa1l3NoCN2JRBjhbjL5PYW+69kXwBTzLYLRUeBob/vE+nszuiHZWnjSpRt0RHh/stQGD/6yo5O1NsCs3apgzZd5IvSOAnhuOgEnCNENPR9hudArlDpMtzkzTNBE8hW0ItYHd8Jsyk9mzToxeftTRmpxiXX0keBzL++UcnZKYmlSKnQipOlWRK9DoMo6gTHsKNqosF/3MOGWpRaWZXcx9l9/oMukJt2QdES/5ROglhoD6nj0FBnQNZf8RjjnTHM/82vGjSklGem2ypr40yBDtmbCTRv1ulIjGi4vdq5OQ==;
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229771AbiGOSBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 14:01:46 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C94FF4330A;
+        Fri, 15 Jul 2022 11:01:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1657908105; x=1689444105;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jHZoGwfY+YAWaEvmFIs9T/MUj4oMs56kBoAM3CyGWwU=;
+  b=ZUREJxi3wLpmQVANnZxby4KgZEuM+qOcZYI24AvAndOTCRCi1TPnCueJ
+   XsPV+W9+5AHMjFBDEPDEMYCSQ5Rcq5XifYssIwSkivO1mjOdOj7FUHQka
+   UPdjM13i/rdgMt/kJSLkHR+TvmSPg8CT028oLW4sH5LH4E2H/hsXSb9u4
+   KYBfehecnnO/E36nWQqIhiuYzX42UuCSxKIonNnNa1Bxgq75mVc8ajUQR
+   vh34SXlrrLSvyypF1Vtq5IN9mjshYn7oIxgF8VVUwnV0Rt8YFvyXHiUfo
+   qQl2Nw9XrXIyDOCguwA+xItWQCeqCzE71y10kprO7i+iWiAiSSiqjIRRK
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10409"; a="285890729"
+X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; 
+   d="scan'208";a="285890729"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2022 11:01:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; 
+   d="scan'208";a="773060392"
+Received: from lkp-server02.sh.intel.com (HELO ff137eb26ff1) ([10.239.97.151])
+  by orsmga005.jf.intel.com with ESMTP; 15 Jul 2022 11:01:40 -0700
+Received: from kbuild by ff137eb26ff1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1oCPdD-0000c9-Gw;
+        Fri, 15 Jul 2022 18:01:39 +0000
+Date:   Sat, 16 Jul 2022 02:01:21 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
+        p.zabel@pengutronix.de, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
+        tzimmermann@suse.de, matthias.bgg@gmail.com, deller@gmx.de,
+        airlied@linux.ie
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, granquet@baylibre.com,
+        jitao.shi@mediatek.com, liangxu.xu@mediatek.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        msp@baylibre.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Bo-Chen Chen <rex-bc.chen@mediatek.com>,
+        linux-mediatek@lists.infradead.org, wenst@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+Message-ID: <202207160102.zyueiI7S-lkp@intel.com>
+References: <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-07-15 at 08:42 +0200, Krzysztof Kozlowski wrote:
-> On 14/07/2022 23:26, Kris Bahnsen wrote:
-> > On Thu, 2022-07-14 at 10:34 +0200, Krzysztof Kozlowski wrote:
-> > > On 14/07/2022 00:12, Kris Bahnsen wrote:
-> > > > Add initial support of the i.MX6UL based TS-7553-V2 platform.
-> > > 
-> > > Use subject prefix matching the subsystem. git log --oneline --
-> > 
-> > Can you please elaborate? The subject prefix is "ARM: dts:", I'm not
-> > sure what is missing. Should it be something like
-> > "ARM: dts: imx6ul-ts7553v2:" in this case?
-> 
-> Run the command, you will see.
+Hi Bo-Chen,
 
-I had previously run the command and the output of it did not make sense in
-the context of your prior comment. Forgive my ignorance, but I'd like to
-understand specifically what you mean here so we can do the correct thing
-in the future.
+Thank you for the patch! Perhaps something to improve:
 
-$ git log --oneline -- | head -n 20
-d14ee2d5a506 ARM: dts: Add TS-7553-V2 support
-b047602d579b Merge tag 'trace-v5.19-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/rostedt/linux-trace
-1e1fb420fe68 samples: Use KSYM_NAME_LEN for kprobes
-e3655dfa5805 fprobe/samples: Make sample_probe static
-0bb7e14c8e15 blk-iocost: tracing: atomic64_read(&ioc->vtime_rate) is assigned an extra semicolon
-0a6d7d45414a ftrace: Be more specific about arch impact when function tracer is enabled
-495fcec8648c tracing: Fix sleeping while atomic in kdb ftdump
-7edc3945bdce tracing/histograms: Fix memory leak problem
-72a8e05d4f66 Merge tag 'ovl-fixes-5.19-rc7' of git://git.kernel.org/pub/scm/linux/kernel/git/mszeredi/vfs
-29851567d1aa Merge tag 'drm-fixes-2022-07-12' of git://anongit.freedesktop.org/drm/drm
-0d8ba24e72b6 Merge tag 'x86_bugs_retbleed' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
-c27c753ea6fd x86/static_call: Serialize __static_call_fixup() properly
-ce114c866860 Merge tag 'x86_bugs_retbleed' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
-3590b44b9434 Merge tag 'drm-misc-fixes-2022-07-07-1' of ssh://git.freedesktop.org/git/drm/drm-misc into drm-fixes
-42e0a87233e3 Merge tag 'drm-intel-fixes-2022-07-07' of git://anongit.freedesktop.org/drm/drm-intel into drm-fixes
-7de96365878f Merge tag 'amd-drm-fixes-5.19-2022-07-06' of https://gitlab.freedesktop.org/agd5f/linux into drm-fixes
-5a29232d870d Merge tag 'for-5.19-rc6-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
-23458ac91dc8 Merge tags 'free-mq_sysctls-for-v5.19' and 'ptrace_unfreeze_fix-for-v5.19' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
-8e59a6a7a4fa Merge tag 'mm-hotfixes-stable-2022-07-11' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
-b5374396e5de Merge tag 'modules-5.19-rc7' of git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on drm/drm-next pza/reset/next linus/master v5.19-rc6 next-20220715]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> 
-> > 
-> > > 
-> > > > 
-> > > > Signed-off-by: Kris Bahnsen <kris@embeddedTS.com>
-> > > > ---
-> > > > 
-> > > > V1->V2: Implement changes recommended by Rob Herring and dtbs_check
-> > > > 
-> > > > RFC only, not yet ready to merge, more testing needed and we're working on
-> > > > SPI LCD support for this platform.
-> > > > 
-> > > > Specifically, I have a few questions on some paradigms and dtbs_check output:
-> > > > 
-> > > > imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ... \
-> > > > 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], 'reg': [[12]]}}}} \
-> > > > is not of type 'array'
-> > > >   I'm not sure what this error is referring to as I've copied the example in
-> > > >   invensense,mpu6050.yaml almost verbatim. Is this an issue with our patch
-> > > >   or a false positive from dtbs_check?
-> > > 
-> > > You would need to paste entire error, maybe with checker flags -v.
-> > 
-> > Here is the verbose output. I'm not familiar enough yet with the schema and its
-> > validation code to catch what is wrong and would appreciate any insight.
-> > 
-> > Check:  arch/arm/boot/dts/imx6ul-ts7553v2.dtb
-> > /work/arch/arm/boot/dts/imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ['i2c-gpio'], \
-> > '#address-cells': [[1]], '#size-cells': [[0]], 'pinctrl-names': ['default'], \
-> > 'pinctrl-0': [[58]], 'sda-gpios': [[11, 5, 6]], 'scl-gpios': [[11, 4, 6]], \
-> > 'imu@68': {'compatible': ['invensense,mpu9250'], 'reg': [[104]], \
-> > 'interrupt-parent': [[55]], 'interrupts': [[1, 1]], 'i2c-gate': {'#address-cells': [[1]], \
-> > '#size-cells': [[0]], 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], \
-> > 'reg': [[12]]}}}} is not of type 'array'
-> > 
-> > Failed validating 'type' in schema['patternProperties']['(?<!,nr)-gpios?$']:
-> >     {'items': {'additionalItems': {'$ref': '#/definitions/cell'},
-> >                'items': [{'oneOf': [{'maximum': 4294967295,
-> >                                      'minimum': 1,
-> >                                      'phandle': True,
-> >                                      'type': 'integer'},
-> >                                     {'const': 0, 'type': 'integer'}]}],
-> >                'minItems': 1,
-> >                'type': 'array'},
-> >      'minItems': 1,
-> >      'type': 'array'}
-> > 
-> > On instance['i2c-gpio']:
-> 
-> Because you use "i2c-gpio", it seems... Fix it and check if error goes away.
+url:    https://github.com/intel-lab-lkp/linux/commits/Bo-Chen-Chen/drm-mediatek-Add-MT8195-DisplayPort-driver/20220712-191341
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20220716/202207160102.zyueiI7S-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/a3869f524e16c38015e0f124c6597927fc6d26b0
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Bo-Chen-Chen/drm-mediatek-Add-MT8195-DisplayPort-driver/20220712-191341
+        git checkout a3869f524e16c38015e0f124c6597927fc6d26b0
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/gpu/drm/mediatek/ drivers/pci/controller/dwc/
 
-You are correct, the error no longer appears after I had fixed the node name.
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-> 
-> >     {'#address-cells': [[1]],
-> >      '#size-cells': [[0]],
-> >      'compatible': ['i2c-gpio'],
-> >      'imu@68': {'compatible': ['invensense,mpu9250'],
-> >                 'i2c-gate': {'#address-cells': [[1]],
-> >                              '#size-cells': [[0]],
-> >                              'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'],
-> >                                                 'reg': [[12]]}},
-> >                 'interrupt-parent': [[55]],
-> >                 'interrupts': [[1, 1]],
-> >                 'reg': [[104]]},
-> >      'pinctrl-0': [[58]],
-> >      'pinctrl-names': ['default'],
-> >      'scl-gpios': [[11, 4, 6]],
-> >      'sda-gpios': [[11, 5, 6]]}
-> >         From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/gpio/gpio-consumer.yaml
-> > 
-> > > 
-> > > > 
-> > > > 
-> > > > imx6ul-ts7553v2.dtb: spi@2010000: spidev@1: 'compatible' is a required property
-> > > >   Many of our devices have open-ended I2C and SPI ports that may or may not be
-> > > >   used in customer applications. With "spidev" compatible string no longer
-> > > >   supported, there is no easy way we know of to leave a placeholder or
-> > > >   indication that the interface is present, usable, and either needs specific
-> > > >   support enabled in kernel or userspace access via /dev/. We would love
-> > > >   feedback on how to handle this situation when submitting platforms upstream.
-> > > 
-> > > No empty devices, especially for spidev in DTS. There is really no
-> > > single need to add fake spidev... really, why? The customer cannot read
-> > > hardware manual and cannot see the header on the board? You can give him
-> > > a tutorial/howto guide, but don't embed dead or non-real code in DTS.
-> > 
-> > We ship devices as bootable out of the box. A number of our customers end up
-> > attaching SPI devices that do not have existing kernel drivers and talk to them
-> > from userspace without having to touch a kernel build. The loss of spidev
-> > directly has increased support requests we receive on the matter.
-> 
-> Unfortunately this is an argument like - our customers always wanted
-> dead code in DTS, so we embed here such. Feel free to add a comment
-> about placeholder etc, but empty node not. Another issue is that empty
-> node without compatible also does not help your customers...
-> 
-> > 
-> 
-> (...)
-> 
-> > 
-> > > 
-> > > > +
-> > > > +	gpio-keys {
-> > > > +		compatible = "gpio-keys";
-> > > > +		pinctrl-names = "default";
-> > > > +		pinctrl-0 = <&pinctrl_gpio_keys>;
-> > > > +
-> > > > +		left {
-> > > 
-> > > This fails on dtbs_check. Generic node names, so "key-0" or "key-left"
-> > 
-> > For reference, as of commit b047602d579b4fb028128a525f056bbdc890e7f0, there
-> > are no errors/warnings from dtbs_check or checkpatch.pl regarding node
-> > names being "key-..." and the example in gpio-keys.yaml uses "up" "left" etc.
-> 
-> I know, I changed it. It's in linux-next.
-> 
-> > 
-> > I've also changed the node name to just "keys" per devicetree specifications
-> > doc.
-> > 
-> > > 
-> > > > +	i2c_gpio: i2c-gpio {
-> > > 
-> > > Generic node name, so "i2c"
-> > 
-> > Understood.
-> > 
-> > Are there any guidelines/restrictions on label use/schema 
-> > throughout a dts file? The devicetree-specification document only defines
-> > valid characters for a label and I've been unable to find any other docs.
-> 
-> For label - use underscores and that's it. Only the node names should be
-> generic.
-> 
-> > 
-> 
-> Best regards,
-> Krzysztof
-> 
+All warnings (new ones prefixed by >>):
+
+   drivers/gpu/drm/mediatek/mtk_dp.c: In function 'mtk_dp_train_tps_1':
+>> drivers/gpu/drm/mediatek/mtk_dp.c:1092:12: warning: variable 'val' set but not used [-Wunused-but-set-variable]
+    1092 |         u8 val;
+         |            ^~~
+   drivers/gpu/drm/mediatek/mtk_dp.c: In function 'mtk_dp_bridge_atomic_get_output_bus_fmts':
+   drivers/gpu/drm/mediatek/mtk_dp.c:1865:26: error: 'MEDIA_BUS_FMT_FIXED' undeclared (first use in this function)
+    1865 |         output_fmts[0] = MEDIA_BUS_FMT_FIXED;
+         |                          ^~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/mediatek/mtk_dp.c:1865:26: note: each undeclared identifier is reported only once for each function it appears in
+   drivers/gpu/drm/mediatek/mtk_dp.c: At top level:
+   drivers/gpu/drm/mediatek/mtk_dp.c:1870:9: error: 'MEDIA_BUS_FMT_RGB888_1X24' undeclared here (not in a function)
+    1870 |         MEDIA_BUS_FMT_RGB888_1X24,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/mediatek/mtk_dp.c:1871:9: error: 'MEDIA_BUS_FMT_YUV8_1X24' undeclared here (not in a function)
+    1871 |         MEDIA_BUS_FMT_YUV8_1X24,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/mediatek/mtk_dp.c:1872:9: error: 'MEDIA_BUS_FMT_YUYV8_1X16' undeclared here (not in a function)
+    1872 |         MEDIA_BUS_FMT_YUYV8_1X16,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/val +1092 drivers/gpu/drm/mediatek/mtk_dp.c
+
+  1087	
+  1088	static int mtk_dp_train_tps_1(struct mtk_dp *mtk_dp, u8 target_lane_count,
+  1089				      int *iteration_count, u8 *lane_adjust,
+  1090				      int *status_control, u8 *prev_lane_adjust)
+  1091	{
+> 1092		u8 val;
+  1093		u8 link_status[DP_LINK_STATUS_SIZE] = {};
+  1094	
+  1095		mtk_dp_training_set_scramble(mtk_dp, false);
+  1096	
+  1097		if (*status_control == 0) {
+  1098			mtk_dp_train_set_pattern(mtk_dp, 1);
+  1099			val = DP_LINK_SCRAMBLING_DISABLE |
+  1100				DP_TRAINING_PATTERN_1;
+  1101			drm_dp_dpcd_writeb(&mtk_dp->aux,
+  1102					   DP_TRAINING_PATTERN_SET,
+  1103					   DP_LINK_SCRAMBLING_DISABLE |
+  1104					   DP_TRAINING_PATTERN_1);
+  1105			drm_dp_dpcd_read(&mtk_dp->aux,
+  1106					 DP_ADJUST_REQUEST_LANE0_1,
+  1107					 lane_adjust,
+  1108					 sizeof(*lane_adjust) * 2);
+  1109	
+  1110			mtk_dp_train_update_swing_pre(mtk_dp,
+  1111						      target_lane_count, lane_adjust);
+  1112			*status_control = 1;
+  1113			(*iteration_count)++;
+  1114		}
+  1115	
+  1116		drm_dp_link_train_clock_recovery_delay(&mtk_dp->aux, mtk_dp->rx_cap);
+  1117		drm_dp_dpcd_read_link_status(&mtk_dp->aux, link_status);
+  1118	
+  1119		if (drm_dp_clock_recovery_ok(link_status,
+  1120					     target_lane_count)) {
+  1121			mtk_dp->train_info.cr_done = true;
+  1122			*iteration_count = 1;
+  1123			dev_dbg(mtk_dp->dev, "Link train CR pass\n");
+  1124			return 0;
+  1125		} else if (*prev_lane_adjust == link_status[4]) {
+  1126			(*iteration_count)++;
+  1127			if (*prev_lane_adjust & DP_ADJUST_VOLTAGE_SWING_LANE0_MASK) {
+  1128				dev_dbg(mtk_dp->dev, "Link train CQ fail\n");
+  1129				return -EINVAL;
+  1130			}
+  1131		} else {
+  1132			*prev_lane_adjust = link_status[4];
+  1133		}
+  1134		return -EAGAIN;
+  1135	}
+  1136	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
