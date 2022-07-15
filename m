@@ -2,168 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD1F7575CD9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 09:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 956D2575CE6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 10:01:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232596AbiGOH5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 03:57:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56192 "EHLO
+        id S232426AbiGOIAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 04:00:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiGOH5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 03:57:21 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E3CB7D7B8
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 00:57:20 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id w2so4849768ljj.7
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 00:57:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pVS+MTH1XwU1cvawHiiTO1k5At4xPOvBRcWn0E0JKnQ=;
-        b=nPbUHaxTybTz+hSdJPP6CMy/vM/46yKwRrdEcsM8O2DT/PEmEm8ExTH8fb2rzJxdNf
-         xjorId7Lq1mqbvJSYX2eyWQlr2irAmSAS6rnsqJDpmwkL+6QGJrJDDAQyzR9Iy8xuw+W
-         G2Ytl4E09lz7ry/bTjvMUCO5DGdJuNBD5GGICRvvIb1oJkkbuio9/j0nVaKx0WPjH71e
-         +AvFWG+fw+j8KIMVJGW2e2zw/kH23rcpmVVe6i5I+58UpQ0pAGEMQ0Ab8I1eatNJjP6W
-         PSc5bjLGmcyTLTiBxDZGy1rct8c9+FJxaOOz8NoDM7ZjauLPS6uNYjJzZUgZotVcLO5+
-         wEfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=pVS+MTH1XwU1cvawHiiTO1k5At4xPOvBRcWn0E0JKnQ=;
-        b=SmCA0Xp5NeO3nkDWeo9AkJxPrea7HcVSbKU3fO74+68bx7GDQKLRQQ/HxGVlhjVB/k
-         8q5dvsSuvYXylotQv6516Q7R81n0MY94DkqrfSapGBQ9nECSLBwusLiWHE8VnTuNmhVU
-         WIM0+BnEC+TEsVveroX/wgYg0RbeeYSEzCD8sVz6EtF1AVnZ0Lp70ROOrSmvz5rLG5gD
-         IXYzcei/oV3C5eX/JbNhw0c+vlCkZLLMajzPSk4AqZ0VaoZOx4PqsY/1O3K2l7brxl8H
-         cITEBkhRPRPgVdRZcwb6/wB3FnuQEvdy4bvz/PehYBfIP4y7lnss/nCSO4WZP3aDB+NI
-         Jmqg==
-X-Gm-Message-State: AJIora8+WvfadnikOfvpTTdnBLlnfg5Ejn9A1eyOgx+9NaTJ6e9jcbYr
-        J8wOxG0xjvbZiS0vZf5b1MqPtg==
-X-Google-Smtp-Source: AGRyM1ulJRngwtrHtmZz4bY0FMFRN0qrWGaMpBxRh+yPkwrRe6nsqVmc0rblcJXm/KEw4Ov5c3GRWw==
-X-Received: by 2002:a2e:9854:0:b0:25d:883d:faf2 with SMTP id e20-20020a2e9854000000b0025d883dfaf2mr6010968ljj.223.1657871838444;
-        Fri, 15 Jul 2022 00:57:18 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id b13-20020a056512070d00b0048960b581e3sm778642lfs.8.2022.07.15.00.57.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jul 2022 00:57:17 -0700 (PDT)
-Message-ID: <46df4ad5-5102-b5fe-95b7-5b157fb28f01@linaro.org>
-Date:   Fri, 15 Jul 2022 09:57:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 03/19] dt-bindings: power: mediatek: Add bindings for
- MediaTek SCPSYS
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229782AbiGOIAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:00:42 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601D87E00E;
+        Fri, 15 Jul 2022 01:00:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1657872039;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=OqjGwFmaNWkrx1u1GRDpZGcyuPpD51t2IUwteZ5MuqY=;
+    b=mSi3fmHDSI2ZViyITi6N7Ro1zg5ewmjI66nvjtknQwldVUyqOJ0e5V3LNaArAM9cLx
+    04eWGT95H5sj5Ok3hodAwTFbHovM7k42voW4xJ0Wk325y3oQhY1t35zpSNPIpRUgC5wm
+    /Klhw2M0Dcnm4oH5UoXKX/RRCWzQHLmYMwOmueDBKqUpfJHamiLVO5JL+l0SdZ+qOd6W
+    SVevAhwYHozWHEgw+RQDkT3fefs21xKakwh56Y/NrJgkyioqowLvWKDzJUhY7llqX6J5
+    aH50nCeyQi2T155idHa9V34uoqfc3GwWjinCSQBeDPJ5g3MslXOgvIjlM7FWCxolkZSq
+    aZww==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrKw5+aY="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.47.0 SBL|AUTH)
+    with ESMTPSA id he04d0y6F80c9Jp
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 15 Jul 2022 10:00:38 +0200 (CEST)
+Date:   Fri, 15 Jul 2022 10:00:20 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220714122837.20094-1-tinghan.shen@mediatek.com>
- <20220714122837.20094-4-tinghan.shen@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220714122837.20094-4-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916 to
+ schema
+Message-ID: <YtEeay9JCaG2NMdT@gerhold.net>
+References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
+ <20220712124421.3129206-3-stephan.gerhold@kernkonzept.com>
+ <434cbf73-c62d-7d5c-fe60-7d98a84bc7fe@linaro.org>
+ <YtBlGJ+lQFQg+l+I@gerhold.net>
+ <cd8a2b66-ba7c-768c-f5b0-2728f0a8be99@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cd8a2b66-ba7c-768c-f5b0-2728f0a8be99@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 14:28, Tinghan Shen wrote:
-> The System Control Processor System (SCPSYS) has several power
-> management related tasks in the system. Add the bindings for it.
+On Fri, Jul 15, 2022 at 08:33:53AM +0200, Krzysztof Kozlowski wrote:
+> On 14/07/2022 20:48, Stephan Gerhold wrote:
+> > On Thu, Jul 14, 2022 at 11:50:30AM +0200, Krzysztof Kozlowski wrote:
+> >> On 12/07/2022 14:44, Stephan Gerhold wrote:
+> >>> [...]
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    oneOf:
+> >>> +      - enum:
+> >>> +          - qcom,msm8916-mss-pil
+> >>> +
+> >>> +      - const: qcom,q6v5-pil
+> >>> +        description: Deprecated, prefer using qcom,msm8916-mss-pil
+> >>> +        deprecated: true
+> >>
+> >> The last compatible does not seem applicable here. Aren't you moving
+> >> only MSM8916 to new schema?
+> >>
+> > 
+> > "qcom,q6v5-pil" is exactly the same as "qcom,msm8916-mss-pil". It's just
+> > a deprecated quite unfortunately chosen old name for the same thing. :)
+> > 
+> > See these lines in the driver:
+> > 
+> > 	{ .compatible = "qcom,q6v5-pil", .data = &msm8916_mss},
+> > 	{ .compatible = "qcom,msm8916-mss-pil", .data = &msm8916_mss},
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  .../bindings/mfd/mediatek,scpsys.yaml         | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
+> Yeah, but previous bindings were not mentioning it alone, so this would
+> not be a direct conversion.
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml b/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
-> new file mode 100644
-> index 000000000000..a8b9220f2f27
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/mediatek,scpsys.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek System Control Processor System
-> +
-> +maintainers:
-> +  - MandyJH Liu <mandyjh.liu@mediatek.com>
-> +
-> +description:
-> +  MediaTek System Control Processor System (SCPSYS) has several
-> +  power management tasks. The tasks include MTCMOS power
-> +  domain control, thermal measurement, DVFS, etc.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: mediatek,scpsys
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-controller:
-> +    $ref: /schemas/power/mediatek,power-controller.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt8195-clk.h>
-> +    #include <dt-bindings/power/mt8195-power.h>
-> +
-> +    syscon@10006000 {
-> +        compatible = "mediatek,scpsys", "syscon", "simple-mfd";
 
-This should be a SoC-specific compatible (and filename).
+Sorry, I'm not sure I understand you correctly: What do you mean with
+"the previous bindings were not mentioning it alone"? "qcom,q6v5-pil"
+was listed as standalone compatible just like all the other compatibles:
 
-> +        reg = <0x10006000 0x100>;
-> +
-> +        spm: power-controller {
+- compatible:
+	Usage: required
+	Value type: <string>
+	Definition: must be one of:
+		    "qcom,q6v5-pil",         <----
+		    "qcom,ipq8074-wcss-pil"
+		    "qcom,qcs404-wcss-pil"
+		    "qcom,msm8916-mss-pil",  <----
+		    "qcom,msm8974-mss-pil"
+		    "qcom,msm8996-mss-pil"
+		    "qcom,msm8998-mss-pil"
+		    "qcom,sc7180-mss-pil"
+		    "qcom,sc7280-mss-pil"
+		    "qcom,sdm845-mss-pil"
 
-I think you created before less-portable, quite constrained bindings for
-power controller. You now require that mt8195-power-controller is always
-a child of some parent device which will share its regmap/MMIO with it.
+The only non-conversion steps I did was to mark some of the redundant
+bindings as deprecated (e.g. "memory-region" with 2 items vs "mba" and
+"mpss" subnode, "qcom,msm8916-mss-pil" vs "qcom,q6v5-pil"). I can put
+the deprecations in a separate patch if that clarifies the situation.
 
-And what if in your next block there is no scpsys block and power
-controller is the scpsys alone? It's not possible with your bindings.
-
-Wouldn't it be better to assign some address space to the
-power-controller (now as an offset from scpsys)?
-
-This is just wondering (Rockchip did the same...) and not a blocker as
-power-controller bindings are done.
-
-Best regards,
-Krzysztof
+Thanks,
+Stephan
