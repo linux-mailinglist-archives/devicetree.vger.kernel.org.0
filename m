@@ -2,54 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4EA7576715
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 21:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 444F4576748
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 21:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbiGOTEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 15:04:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43304 "EHLO
+        id S229964AbiGOTWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 15:22:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiGOTEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 15:04:32 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92EF13E84
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:04:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8E4F5B82E11
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 19:04:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B27C4C34115;
-        Fri, 15 Jul 2022 19:04:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657911869;
-        bh=vFOuUhDDk7ZbJ1Zwwa6YcJ0NqzmDz1ZI5+SCn128S4k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PxlC5mOw0BQ0sGfHYO7S/laafBTpQl5eCCkczwgGQMKuxoFaPrRfbhVMmYsLM0Txr
-         IRBKK4VilhWWLJJsov5KYb84q+YksPs/9T6sYarxt6hLjZAGGh2DXuhXOKQibAiC08
-         kRsRrf1rvfFTCM8GYn6c6oOfKVp+/KgzsILfJg2f2sWwcQ1cTJvvUYZriYVQK9ELhE
-         jEd0XlL6dQLwRkdMVOHZ11+rbFW2KQOOBPQg+WrS/gu/72yR4nQe1thQjZOu+G/82N
-         /5sYpRcO+16FcymVwqbAdL9gTIXpWGp05SfIO2K4yKGb2Gi7B8iwa2oYARg5AA90kC
-         vu65XnJLD5EOw==
-Date:   Fri, 15 Jul 2022 20:04:24 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Zhu Ning <zhuning0077@gmail.com>
-Cc:     alsa-devel@alsa-project.org, pierre-louis.bossart@linux.intel.com,
-        tiwai@suse.com, devicetree@vger.kernel.org,
-        David Yang <yangxiaohua@everest-semi.com>,
-        Zhu Ning <zhuning@everest-semi.com>
-Subject: Re: [PATCH] ASoC: codecs: add support for ES8326
-Message-ID: <YtG6OO5XlAFFcJjV@sirena.org.uk>
-References: <20220715054100.9240-1-zhuning0077@gmail.com>
+        with ESMTP id S229538AbiGOTWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 15:22:48 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2048.outbound.protection.outlook.com [40.107.22.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0B460506;
+        Fri, 15 Jul 2022 12:22:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lrxsrvgzPuvTUO2VivRGHAcXu9CBr0RNNmiCmClqrp8dTM5cnWgKeHaoo316l1eFTeB4MQQJCmptCwdlbP7Yl3wlr5XfsRUXZTAlmwszf4YcRQRx3PdzadPB00V7KolXcK+n+SwTtovCMCbDNZBh6fZurbB4lPMY2tRh/sIvolSDlH6UshXPnt0bldy8gFPDs9YDy8sftRqKkPc5QwgCg+bPcFDP72a+OoHEgPQ0UBkefHUCTkxV0mya3/Xi/UoChmsg7WJlnUN4l9c/xyZHPF/cy0m8PnIvoDEVIp1ypyb/j8amdb8F+bfxI0tjDy9N2vBZC6YAuj78QPQFVcMCTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KJ3Ek3I76ogTB3E8FeuHsTYX2B4EThq6xrU9n3WKLAc=;
+ b=gL8b2AJqX3TZCaeE+fR/X3SiDMkfZNC8V0IJJ6A8JTejtpS8RTmuZkPGUNZV9CWIbJ1ZNVpHZZlAP2PA79+1WYWTwP4p9b1/zcICoV05mei/6uHU28LBUounaE00ASZmWA7RX7xDbjgdF+JZpt/DccMwwEQQDmBrNE+rwmaRG+U7ouuLxMuYX550ey1O6SBR5Cv1Upr5tylz5WlbVugi52ne9dEtYi/gKNSefV/MxCv4L1MMf0+bvJO+nN/26wcKpTKP/oNPKOgOMIh0q7yM0L5XBtH79HH7UdKTFQXyItfbqAGYljKUvvR6p0JOZImW+AqIeX8lsJPW0TA/77fnjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KJ3Ek3I76ogTB3E8FeuHsTYX2B4EThq6xrU9n3WKLAc=;
+ b=EdI2oNIJRmPIZjmPpAUwAW2S/vsSobTd19p9+s+kel0yY4RdMChNVamwte8OgIU6U3mmaQaVTlcKPgKr5YazfmBBrmKVBn8VEaYxxU+7/lm/mIAk4hB2DWIVmDg/9S7TyEZdVuxIBylZ8uztaGeLJnVaZ5A4H9fNMDkrvPdC35c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9186.eurprd04.prod.outlook.com (2603:10a6:102:232::18)
+ by HE1PR0401MB2490.eurprd04.prod.outlook.com (2603:10a6:3:82::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.15; Fri, 15 Jul
+ 2022 19:22:42 +0000
+Received: from PAXPR04MB9186.eurprd04.prod.outlook.com
+ ([fe80::54aa:b7cb:a13c:66ab]) by PAXPR04MB9186.eurprd04.prod.outlook.com
+ ([fe80::54aa:b7cb:a13c:66ab%7]) with mapi id 15.20.5438.017; Fri, 15 Jul 2022
+ 19:22:42 +0000
+From:   Frank Li <Frank.Li@nxp.com>
+To:     maz@kernel.org, tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com
+Cc:     kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
+Subject: [PATCH v2 0/4] PCI EP driver support MSI doorbell from host
+Date:   Fri, 15 Jul 2022 14:22:15 -0500
+Message-Id: <20220715192219.1489403-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.35.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR13CA0084.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::29) To PAXPR04MB9186.eurprd04.prod.outlook.com
+ (2603:10a6:102:232::18)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="WzpKlPhY3WuQ4DUk"
-Content-Disposition: inline
-In-Reply-To: <20220715054100.9240-1-zhuning0077@gmail.com>
-X-Cookie: You dialed 5483.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2280d835-476a-47da-dc25-08da66976374
+X-MS-TrafficTypeDiagnostic: HE1PR0401MB2490:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KAfMxwN+Gnpbq9drSPyaU3riw7XqR9h1ZzDD1zj5jEhaLohxquwzSDcDEvL2lpayBUwvjM2T1I18fLTzqi70oJPqyWikMNxzjc5EKJLKGOQbO725/iaxWfhs7Q1AJXXnkxzOlg/9YMPsYFxQNQb39oIodGghVc1u44pbkZecwxKLWYWyHTWi80Gd5+zVItLmnxM8a6w8fVqp7MAS9tcmTtUamA42URE8hwjzbPX8dWNhkL7zL9Fav+qlFc0xJfgdozu/IFgfpsd/jt8wOCNJbLTWVw9ck/2x0K9o8YwMnICOuNl7Bf8mSIuPP4TdUOuzEUHr2oHUiII7vbKlgxJnE/O5O3LQ6KB5YUgy56+1QbpLa2qzC8Dujn0dGRqSclrb4odduf/g/9g8BJMoLqrdVebn8ofkGPIwEZTkQUtug5tBSanv0TrVOpbkh5IRpbYARuoxx0hQLU7q4nHQ9KuayclygbLezRG0kl3/1ywD2v1IGVCuMz/oviBo4dJW8EdR6QttxvcQ6h/tEl6jD+IT6CBhKuZ0ryNgn2wV66AsmNoRa80oz1nTrDKjGM4yZCd8WZ1pwm/LTplJrA6GqO/BoRevKP2oUKXCN+RnzrNDs0VOrWn7qpheEhTiWJaZBuGOH69LnHD05jaPSt88les16M92fj+AWkNBwb9LUqyaZxErY7dYMo6099g+oLe0iiV4yhjPbPdrgIeztTTHl/iRX1FrI+eGNmCYYBLaD6kTN+rHdWYyFdwAmx93tHnLC2LEfKMBhKs10D8nA1k90zydlpdXePYRYVRO0M4ExRYtDAX7UFAloVTtFM5BBGhiM6i+ZMCQvMSYnvX8HtmDC8WKjw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9186.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(346002)(39860400002)(376002)(136003)(366004)(316002)(186003)(966005)(5660300002)(86362001)(8936002)(66476007)(66946007)(1076003)(66556008)(6486002)(4326008)(8676002)(6512007)(2616005)(41300700001)(38100700002)(38350700002)(478600001)(26005)(6666004)(6506007)(52116002)(2906002)(36756003)(7416002)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NlM1OUJpakRZWitiUG02Sk5XUFBUdHJVK2R3czVRaTB1Z3NXaHozcFlVVmtv?=
+ =?utf-8?B?VzZBQmpKSDZSSmRjQko0NFg3MDhaVEo4TjEvbk90cTQzOXAvbHJBNWFsVng4?=
+ =?utf-8?B?T1hmZGJoTUZJQlQzMm5nVEd1VHFIWWNCRm5BS09HWmw4QXE0UkU1T3pqclhk?=
+ =?utf-8?B?WHBGVVlZV1ZDYm9iSTUzMGNOdXdLTXY0SWV0dHBoR0Y5bzJJeFd5WmRHbzMr?=
+ =?utf-8?B?clV4QTVmZDJJUy9MY1lXa1BMbHJ4YUhqQTlwZHQvZHBrSStkTG9OeEpjb2V0?=
+ =?utf-8?B?OWptOGFuSVJ4c1hyekN5NUpDdVg0aWhuNFpMKzFOR2RYOGdOT0NYN0YxaHFS?=
+ =?utf-8?B?NUVjdXBpaWx3S042SmJyMGJPSUI5VzBiQU14bXIwRFNmbkhIZThPMDFaODBt?=
+ =?utf-8?B?b201ZGRzcjJqSXZxNDRuS0NVcFExaTNERlAxdFV1dllSRllzL0ZHc2t2L3BI?=
+ =?utf-8?B?TzdzSXRWNlZOUllaY0xHVjdCUTZlUVlqaVJqbWY4enJjUThMT01CVXY1dE1n?=
+ =?utf-8?B?NUlDS204Y2djQ0VyTWQwb0doWnM0TXZnd0tNRHBnWXU2RzBhWSt1REFFaFdm?=
+ =?utf-8?B?a2M5SEYrby9iOEc3NERsMUlNQmpObVk2cnRtZnVHWnFjU2tPOXFjTVJwdWZp?=
+ =?utf-8?B?QnJXT1RVdE02a01LMGxCakRYcHRNWmh1Ris2YWk5TU1SQ0xnU2ZGbU41RXhL?=
+ =?utf-8?B?M3B2L0c1aHZlZEFnYVhYa1RMUVRVWk85M1JERzdZSklnNGhpYk80WEtKZFBG?=
+ =?utf-8?B?Y0NWVlI5M1JKNEg3TXZ4bGFkZ2lqckFMcjIzRXNaSi82S2srcHNpLzAvck80?=
+ =?utf-8?B?QU9KdEJYZGZGRk9HOVRMU0lhWElFN0k2VzdXQTlaSk5lZ3JGc3VXYVMrQWI4?=
+ =?utf-8?B?NkFIa0wvcEtualV2L1M3c3ByYmVPc1hhUlF0c002YnkxaWU5OGxKeCtPT0U2?=
+ =?utf-8?B?UkdnTHJkVjVHVlFPcnY5U2s5SEtJM3ZVTDRzQVVLRWJmT3ZXV25QbHUvMno5?=
+ =?utf-8?B?R3lVeXdYR2dCSnN4WklTbkdnaHB2SHJEY0xJRjRJMERTeDlQN0lBUlRTRmJn?=
+ =?utf-8?B?VE91bG5IZ2pkWFV5NFB3c09GOW83NGkyY3ltTXdPNmZxYitoZFBtRTdIUlJP?=
+ =?utf-8?B?N2xwZmVRZ0xKS1BvQmZ6d1pJQjF5K0MzbXdyZ21MVUI2OVBCY3FLcURIZ2k0?=
+ =?utf-8?B?OU0valFFR0w4ME82ZEorTlFRVkdFZSsvbmUzTVpOZHhWVWM4Ykh3YlVKZ3Bj?=
+ =?utf-8?B?R3BPNDVWc3VFTlZoR0RTdXVxN0J3T3g2N2g5bjduWnlROThEc0lUTjFvZ0Z1?=
+ =?utf-8?B?RFErU1dZb3QvOWNnMkNpSURMTTRCWE1NOXpicWFwZ3VGMjcrZy9OSnVqZzZ3?=
+ =?utf-8?B?NXRUTVNBODFZdWhkMkhyeVY4ZGpUWWdDYWVFcjNSdTZINUhUKzRhSnA4d0s2?=
+ =?utf-8?B?MlJGcFo3K2VybjNvK1E3NExIRkc1bjNHdFZOc3ZNQkFsL3NDRVB3QTAvTllT?=
+ =?utf-8?B?NUwwazh5dSt0VFZtUHp2OThUcTUwR2FjeGloWi8vM0JwK0VCOXRzZEtzN0tQ?=
+ =?utf-8?B?MlNnZlpuWCtoV0lqdURXdDJpOE1rSVArakVuRzFnSWk5OWxsZmdDUnlFQ04v?=
+ =?utf-8?B?NDFRZEtkbm9GZmxkRzZxZU1STnZQTG03ZkJsQ3dIdTRDRVVJbWYwb1VUbGJU?=
+ =?utf-8?B?OFgwRjg5UzRVK2loZGg0T1U2SFFqNkhmQ2JaYWN1a21vNUFlOUdpU0s3K1JE?=
+ =?utf-8?B?T0x2RThkdDdpK3EvZ01KRCtwZVFFd1VKcGVvSDhYZlhGc0Rxb0tEcGwyQjZw?=
+ =?utf-8?B?T0RWVWRSZldpaFMzTGZjRFRWYkxZNnEwbG8vSHNwNkd6Z2FPcVNydUs2ZW1r?=
+ =?utf-8?B?STdwblhSd0RwRjNoQkM1TVoycDhJR1lVU1lnUXBUNTJrclFOUHlWTmUvVUVs?=
+ =?utf-8?B?L2FLUi84RVJPdEgyQ0xzUERMVWFCcXM3b3ZicHI2ZStVOE42Rk4ySVUxMkdk?=
+ =?utf-8?B?MXVaSWdrWFhMSlJxSzU3anovVkgveTVmWEJFSFZXUk0rcTZ0Q3psUURpU0E0?=
+ =?utf-8?B?cG9XS0ZMK3kwMFZiT1l1WkdOK2pVUWN6OUQ3aCt6MXUxVHI2a1VjYmpTbDNj?=
+ =?utf-8?Q?N1u0=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2280d835-476a-47da-dc25-08da66976374
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9186.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2022 19:22:42.3075
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AgdcKci/K9G0a1W584hVPUGoN1l2TTPDFp0C31oOjCtcxZiVH0Xcyvqd5cuwvuYTqH610NH8SB3IGXSmMibTsA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0401MB2490
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -57,75 +125,86 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---WzpKlPhY3WuQ4DUk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+                  ┌───────┐          ┌──────────┐
+                  │       │          │          │
+┌─────────────┐   │       │          │ PCI Host │
+│ MSI         │◄┐ │       │          │          │
+│ Controller  │ │ │       │          │          │
+└─────────────┘ └─┼───────┼──────────┼─Bar0     │
+                  │ PCI   │          │ Bar1     │
+                  │ Func  │          │ Bar2     │
+                  │       │          │ Bar3     │
+                  │       │          │ Bar4     │
+                  │       ├─────────►│          │
+                  └───────┘          └──────────┘
 
-On Fri, Jul 15, 2022 at 01:41:00PM +0800, Zhu Ning wrote:
+Many PCI controllers provided Endpoint functions.
+Generally PCI endpoint is hardware, which is not running a rich OS, like linux.
 
-Looks mostly good but there's still some issues here, plus the ones
-Pierre found.  Only one or two are substantial though, some of the
-things below are really minor:
+But Linux also supports endpoint functions.  PCI Host write bar<n> space like
+write to memory. The EP side can't know memory changed by the Host driver. 
 
-Please check the coding style matches the kernel coding style -
-checkpatch will probably help here.
+PCI Spec has not defined a standard method to do that.  Only define MSI(x) to let
+EP notified RC status change. 
 
-> +	snd_soc_dapm_mutex_unlock(dapm);
-> +}
-> +static void es8326_jack_detect_handler(struct work_struct *work)
+The basic idea is to trigger an irq when PCI RC writes to a memory address.  That's
+what MSI controller provided.  EP drivers just need to request a platform MSI interrupt, 
+struct msi_msg *msg will pass down a memory address and data.  EP driver will
+map such memory address to one of PCI bar<n>.  Host just writes such an address to
+trigger EP side irq.
 
-Blank line missing between functions.
+If system have gic-its, only need update PCI EP side driver. But i.MX have not chip
+support gic-ites yet. So we have to use MU to simulate a MSI controller. Although
+only 4 MSI irqs are simulated, it matched vntd network requirmenent.
 
-> +	if(!es8326->jack)
-> +		goto out;
+After enable MSI, ping delay reduce < 1ms from ~8ms
 
-Missing space after the if.
+irqchip: imx mu worked as msi controller: 
+     let imx mu worked as MSI controllers. Although IP is not design as MSI controller,
+we still can use it if limiated irq number to 4.
 
-> +static int es8326_resume(struct snd_soc_component *component)
-> +{
+pcie: endpoint: pci-epf-vntb: add endpoint msi support
+	 Based on ntb-next branch. https://github.com/jonmason/ntb/commits/ntb-next
+	 Using MSI as door bell registers
 
-I'm not seeing anything in here to resync the register map with the
-device - the driver is using a register cache so that's going to break
-if the device looses power over suspend.  TBH it's not clear to me that
-the driver isn't hard coding a specific set of paths...
+i.MX EP function driver is upstreaming by Richard Zhu.
+Some dts change missed at this patches. below is reference dts change
 
-> +	regmap_write(es8326->regmap, ES8326_INT_SOURCE_58, 0x08);
-> +	regmap_write(es8326->regmap, ES8326_INTOUT_IO_59, 0x45);
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-hsio.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-hsio.dtsi
+@@ -160,5 +160,6 @@ pcieb_ep: pcie_ep@5f010000 {
+                num-ib-windows = <6>;
+                num-ob-windows = <6>;
+                status = "disabled";
++               msi-parent = <&lsio_mu12>;
+        };
 
-Some of the hard coded register write sequences in here look a lot like
-they're assuming a specific board layout and might need more device tree
-configurability - what if the board doesn't use an interrupt or uses a
-different one?
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
+@@ -172,6 +172,19 @@ lsio_mu6: mailbox@5d210000 {
+                status = "disabled";
+        };
 
-> +	ret = device_property_read_u8(component->dev, "everest,mic1-src", &es8326->mic1_src);
-> +	if (ret != 0) {
++       lsio_mu12: mailbox@5d270000 {
++               compatible = "fsl,imx6sx-mu-msi";
++               msi-controller;
++               interrupt-controller;
++               reg = <0x5d270000 0x10000>,     /* A side */
++                     <0x5d300000 0x10000>;     /* B side */
++               reg-names = "a", "b";
++               interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
++               power-domains = <&pd IMX_SC_R_MU_12A>,
++                               <&pd IMX_SC_R_MU_12B>;
++               power-domain-names = "a", "b";
++       };
++
 
-This is adding a DT binding but there's no DT binding document.
-Previous versions of this driver did have one, please include it with
-every submission.
+Change Log
+- from V1 to V2
+  Fixed fsl,mu-msi.yaml's problem
+  Fixed irq-imx-mu-msi.c problem according Marc Zyngier's feeback 
+  Added a new patch to allow pass down .pm by IRQCHIP_PLATFORM_DRIVER_END
 
-> --- /dev/null
-> +++ b/sound/soc/codecs/es8326.h
-> @@ -0,0 +1,187 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * es8326.c -- es8326 ALSA SoC audio driver
+-- 
+2.35.1
 
-Commend has the wrong filename here.
-
---WzpKlPhY3WuQ4DUk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLRujcACgkQJNaLcl1U
-h9CMYQf8DF6sLAnw3ygRgDwV529SWix+B4Usjc73Xe3qvGlu6hcp/cY3lxagkol3
-wckVPVTeqSRgLf8GpqWYb0cXdT8vZ4AwgJGDFD1kLf9yJ1lrv7unIdOxBZAVH5Co
-F/3I9B/kfIiR5Ewj4LmYcBpVxKbBCyHUMMl9VDgXXn5irOeH8HFpvfFqHZ+rnYGM
-gD1k3Hw6Z7NaXRT35skH6XdNauC7tsXb3fqFrbCWDmhxAoS5caftCHNeDlArOqf1
-JhBvJuTH/DGZ/fpvUdTnaz0E9pVtnZxAj93uMg1PDIgXJNGYvw4LuiD9opvnxhH+
-vbWd473I6sezF5TM3Np1QGDv5uW6qQ==
-=vHQL
------END PGP SIGNATURE-----
-
---WzpKlPhY3WuQ4DUk--
