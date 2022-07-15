@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D199D576942
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 00:00:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B1C9576945
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 00:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbiGOWAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 18:00:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58648 "EHLO
+        id S231448AbiGOWAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 18:00:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbiGOWAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 18:00:19 -0400
+        with ESMTP id S230350AbiGOWAW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 18:00:22 -0400
 Received: from EUR03-VE1-obe.outbound.protection.outlook.com (mail-eopbgr50072.outbound.protection.outlook.com [40.107.5.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93CF04B497;
-        Fri, 15 Jul 2022 15:00:17 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4164BD1A;
+        Fri, 15 Jul 2022 15:00:21 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IGVeSd/4QEFE7w5e7WRs7qOh/oO3ZASAgRM2ST3G4mgqvKE/9b+31Seskqotge9weWkZpkTqtVvRD1WnjJ0o2/q1lXcbYu1dhzo7BI3wogkfMapQkTGZWju2AcCy+M6UdWk4B+dksIDRu8uhHj+UnD3hBw0i8xm3nHhJJGnd8zj+XiCGqhGYEUhuhZz+65g5pPds5Bto9nbDM42VCVvhpEWNEM2wSDIp74ZXOLkCSTW84oHwndDctmbKG7oXGjsqqaNwm/tqhbIbpiA5MOwHH4VL6wcyDkM/IkX/wzXL4VTT6z5kTiEfYq5QAXAoJY7hUlyItBSI3DkTz2fPlYsl/w==
+ b=CprOmOyVGob3mQYFzbVK9eOaFG2gVUtqmNuynhSlZo063oStlkpPfD5Lw9S0V7VXuvhwT7eeGAE2F86bC6dAHYWELefuh487ZzhdrARLrGDGAwBbseGKPnwDu42Kmeq02Xjhxjl9/MvMd+SqvwGidCC/qRf+LCBf1AbfNnxPRj+PnOin5Kv30Pycm6y19F/zWbJHq44sLmEHf14BbTQLG2s79+l1cKA5s8yXaAR7sfAWCQdqfhX5A2HGpGcVbxChPjtcODuWGYWYShGeAlyq7VETaVWF0YYFFRxcy5pJR6Zns6NbKOll84snC450koahe4OhyGy8CRFNKIzkkz1g+Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rzVIwzNMrkwZxhxqNQ3gDqq2qVzLHZ0a671vqf+uEB0=;
- b=PCs4/uMnAPkViyU9Q8YPU/KJKEHkXYnWLzdyUkfoBMZtz69dfGJOyI8Zx/R9lalFKZqMVFeDdS8W9aojiO18jpLKFf1qEHHkJqJkWSQCzC60si9tXBssnXWNdo0VRQ3N3ZkX8x2RLqNNgYX1WLTVXlG2x8cS3dFxrlDmNrKZCR5OoZVHHHhv8bp7DHs4D1CswPS2Wi46fem13AYJCfNxlJWhtiqY1v88+So+NU3ovm1WFQF568DT1l7Dq3/HOuhsL//5AB8rTOsJ0Fk0e5AIvsTq/F8T5yX8BFhBcpFENtEJU68znVA9zaEJ2r2n3EtciHjLlSGFh++chySDnPUoZw==
+ bh=4oGS0BA7YPnZMylAOCZf6r95AVRgACXITcb4wnUVKXA=;
+ b=VhKNkKBKCUr+at4NEjDhjxKLFcVlcVlp5r4D7UpuU7MCcyZINaL1Qsyf/eRPc882uPU2GPen7HoGs8FbMyGpcJpmKPCz6HVtm3+6d/aXaIwtUWZUsrdIfpsgFhm/qaccWCE6NTzsryTT04I1Nug6HrXjyZ9al/OPIeH4ncTo/VcwxJxqg343aMyZS1iz0JhMuDVDVBtspzQPt7k3R6tGD/G+apzgRGFPgByLL1xjZcEks4q5945AfCm6GhMiXMWSfGTMmPwvKe0XV6NJavJ6Q3yu6XqvFMncwM6EA4I1OhWFZnjDPGJ0RDowwlkpk4+3IIsplhj9GWHtRHrGeqjkaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
  dkim=pass header.d=seco.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rzVIwzNMrkwZxhxqNQ3gDqq2qVzLHZ0a671vqf+uEB0=;
- b=lGWv5W48rRzeJHA/9RJJCDg0bZSEbNGxWpfN1hVwsAUfSWcSdGXBNSjshWQPTXHJTxm8hGVN8PUuuZK6JUPDhijtcaiv/nPjCyts2AgurjnqxLpP1h+GXKc+qJLF98loMzrjDVuu+kbvFiE2hDvdQjpgzjBhxzwmq7r2W3Ho3glFSMP2IGdjlK/jPQsMq8Ix77N9cXK81Eu40GPyG088GAtzMkruBV+ap3+QVDzbX5kH0cKK6M5iXBQsrco7HyeyU8IYg57TEjvbjS2kfeoBqOvEMPcz/Wh8YfzOGtVyBzmxOlypW/h1M2/8X7EJwZT4Ide0G5kmCAk8a6wER2O8og==
+ bh=4oGS0BA7YPnZMylAOCZf6r95AVRgACXITcb4wnUVKXA=;
+ b=Y5UErRFKHf19CgkUChhPFnC+uQr3crc0zLx3TejHWrfh0OVIdP37pmDKtIBPrfcgjOnxI+NqwqNaGT3HXpBpemrujZ5Enm+x6rJd50D3aPDpzm0d0PQVvKziM4AIBGVqXZr1Mz9nMyAJJfuHftXICySwPWn7Zji1kvwGnEhHCzdsHUKQWIawzLIO9U4OJhOcwTvZlMd4KLL4bMfZAHdCRkmGK1L1NHSFvauuF/reZ7j7COIN34yJ9exF8u0DbvcmXlfyQTYsAxO8FXeh+PeYdIWHzrxT8dFU6L2/gfZ/Tj0STBzxHKDdpybkAK69X8YZblklVKfzjzgTGhHnAee87w==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=seco.com;
 Received: from VI1PR03MB4973.eurprd03.prod.outlook.com (2603:10a6:803:c5::12)
  by DU0PR03MB8598.eurprd03.prod.outlook.com (2603:10a6:10:3e5::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.15; Fri, 15 Jul
- 2022 22:00:13 +0000
+ 2022 22:00:17 +0000
 Received: from VI1PR03MB4973.eurprd03.prod.outlook.com
  ([fe80::5c3e:4e46:703b:8558]) by VI1PR03MB4973.eurprd03.prod.outlook.com
  ([fe80::5c3e:4e46:703b:8558%7]) with mapi id 15.20.5438.015; Fri, 15 Jul 2022
- 22:00:13 +0000
+ 22:00:17 +0000
 From:   Sean Anderson <sean.anderson@seco.com>
 To:     "David S . Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
@@ -49,14 +49,12 @@ Cc:     Paolo Abeni <pabeni@redhat.com>,
         Russell King <linux@armlinux.org.uk>,
         linux-kernel@vger.kernel.org,
         Sean Anderson <sean.anderson@seco.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: [PATCH net-next v3 01/47] dt-bindings: phy: Add Lynx 10G phy binding
-Date:   Fri, 15 Jul 2022 17:59:08 -0400
-Message-Id: <20220715215954.1449214-2-sean.anderson@seco.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH net-next v3 03/47] dt-bindings: net: Convert FMan MAC bindings to yaml
+Date:   Fri, 15 Jul 2022 17:59:10 -0400
+Message-Id: <20220715215954.1449214-4-sean.anderson@seco.com>
 X-Mailer: git-send-email 2.35.1.1320.gc452695387.dirty
 In-Reply-To: <20220715215954.1449214-1-sean.anderson@seco.com>
 References: <20220715215954.1449214-1-sean.anderson@seco.com>
@@ -67,52 +65,52 @@ X-ClientProxiedBy: CH2PR10CA0009.namprd10.prod.outlook.com
  (2603:10a6:803:c5::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6240f76b-e7a4-4004-5bbd-08da66ad6466
+X-MS-Office365-Filtering-Correlation-Id: b529b101-63a4-48ad-4462-08da66ad6761
 X-MS-TrafficTypeDiagnostic: DU0PR03MB8598:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3+izDLO+KLazzR4qUGmePmnUo0C7c9hQpG5NdS9tXukCO2NMkKVOcdidMtD5BOA/a0LUHdRLNjAvS2FlJm4YcQfxs+JCFOWjMVvqN5UYHru6MEJiN/nkPwhgi9xbPJ/Nb4xWeXgQ6fMg5fLnkXKT6Nl4TiGQ6hO+Wp4WYXrRaFmsl6XwMNDsKk+AfBgFthyM5xosrUMKsk/dYb+WeDX0IzF2DhkErs88GMn9zxsFDe2ybSGK1B8EnQTzJTdqCB0yLzbzxdBPffg6nPpuWkKh5rIkBqCrBZQB8Q4l2Ed1YnKukF96CNjzzkO//qvXjZe4zQY6razAB5HQrr8t8yACcf7xkxsN6bnCtN+f9J6vg+4lOS1pferovib3QlxQCCOFfNx87VLR9PwCP892M35LCoQSjRZyOpkTDr1j45xMtBAyTbiDL4MVRZ3rnP/hSd9u35FAYS7z8mnVUzfAVhDDB/NfM1x+fWVdXFKqLzjhWUQxWIOvsdli61vk/Ls9C1nxGRyNql9eOv/bci9gas7itKeVgVEgwCLUeiTCWofcNeWjfZwbBDNqnWURd7j2U7s/ZB9aRPy9evXkBUqey2uaQGo7EyhwTYQMRjA+qIMI0Hog1r/CNObFlPLtWJuf+IXPvnViMLR9Sm2LPW+99bPKP57+o7ejXl3FaHy986LZ6G7DuaC5zXJ98odqn9d2NnAKXFVtQqh2xAQPZuXfs6+dloVlqJfaH7JacTSu8PVrV7yH++J4AGtH9a8mVqN4e7xVIRAZ24lOdLbt6G/f536Fd85yissMLJ18hWEMF6RioIRSOesiyCNWIdDM0NqIbWtvNCgospvBhCOdHk6TC+e8Hw==
+X-Microsoft-Antispam-Message-Info: jywGjyFbO47exNdp+lBV7Alve3JJMKjhoRNtsFkCS3Ys79gGLjbRxNTUp2sCa+RuoW15Bm/Lh49bZYnd77Fgo1bsDLxjZ5UzLgEJG2qMY31jdfJuENYPQuJyf12bHSCIJWL0UDvZUgN86zG/eG9lUS6QHf7Od8ma478L3ciXv2EMsVySTfERBi81k2Soe9ieg9nBG9UJUsv0MCUHNrH4xdlKxCaILLg6EtZtDjc1QVzivu5A1bY5YDCBI7Occc9HwQ4yMcdestL3QbvPkWrrPBnI86tak72XtN+huxSpN4broxwHdTC+QxIwUsxIFKatUXTqRmw4AiGz1zr4NEpG2GV8m8JVmm/eYs/imlMxVaTn1w4xGEZwcJlGOYbjOu46IRfuV1pUGKQA1n9m+rjXqTN+Fhq4qdkcanlHHdsMqyOamJGZdgzP3sx75PNxzHnzO4U3QLJe2z1z2vb5E9OezofLo85pKTOWJKhXNuxKHK1b4/PvL2Iu9uzFJpA2Lsz5uHZDizu3Zq62Y3cP+fulkmIyf0kbJ0xAzQg1/Qe8zEFRxPZ4QT5f38bEjRkNVt7dOfBzbvysJtaNYTQ7pWHUz/QOWOtMNwlk5SCkmvdhfKMEoye57+38dNgWZGdyPO+Kng08nx+z9ryRPE6JKGD3L9WUoMTwNGtgdiZ4Q6VMT24PMAj689Ma8v+C9O3A2NvDMmPqTkPShZZh/RxaTkzp6B17jpI9rj9CtRYmfE22v0SZB/N+PzkdjPuhSoWThhp4u3vtyOP0Ovx/l29nSCC5d6Fg5Ylm8TEZkcXKINH0EYx570y3PCGPRI28yuBTxa9WHupAlVqydy4hNI8beQ5N8w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR03MB4973.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(136003)(366004)(39850400004)(376002)(346002)(396003)(5660300002)(8936002)(44832011)(7416002)(2906002)(54906003)(66556008)(4326008)(8676002)(66476007)(66946007)(110136005)(86362001)(316002)(186003)(2616005)(26005)(38350700002)(52116002)(36756003)(6666004)(41300700001)(478600001)(6486002)(966005)(1076003)(6506007)(83380400001)(6512007)(38100700002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ATpelNNnp6VEa6TR42bVtnGYs/9iMOcFopwmShzjY5jI+hEdUuB0ArHGzRgv?=
- =?us-ascii?Q?0Ypjzabr56SlY4jm5JjMtkSNfgDdgN4coUHiY+Th3qmY/CNrVfnd7Ghpe+CS?=
- =?us-ascii?Q?AAGvYzUfYkaFRPvzyH28igtk44CK8M3IHzmt4fshkPYviRVk8QgLza5b5fTC?=
- =?us-ascii?Q?RNuUltyGcHdQ/BgU1H5FSiW9FyMDSpKfSvfU1IEqpLLEPYDu2kmJ9C9M9VJ1?=
- =?us-ascii?Q?lvauGSWKMJULW9QCth20komEPiyeq7TUf8SoppAFJpEFCvr4hg6mvDbakiig?=
- =?us-ascii?Q?4vp6/JwuAz6/PrW8kRxL0oiDCOGmfhMaGFyyAG4CLjaGKIy2PzAjl66yVHrM?=
- =?us-ascii?Q?GBRGPutNJnFjfnzWFopUngk/MzrMhqKGPePYpkPTQrUIwiVVHHPu+NrOKZzr?=
- =?us-ascii?Q?4OsHjQ8/ZB/aBf23fQn2D/eKbfr3fsO0JiBp8xa9skI84hhtn+JfnIGWfzqn?=
- =?us-ascii?Q?1GiwS60bDrD5DsjInuhklPypb4Gs1sjyBDiCqTSTz0rW3ki2xkBnaR938eeY?=
- =?us-ascii?Q?yKlEKTyy9Q8tZcOVYHhWfHG71HAW1bWCHYx9voiHGayyJ50pYKdgEiQQ8AVX?=
- =?us-ascii?Q?ZEH7FSv8kGvTe50YPbTFIdACYs51GJ7fE6Z23WmhIMxSyQL2jJYay4Qzbau3?=
- =?us-ascii?Q?xNf1Tabyz9S9VTTQkBMFF4zvqFNBi/0ee08+wHdmL4KvdLxufkPbnDJi0Nhy?=
- =?us-ascii?Q?Z3szfa1ixCm/narJIqwZ2Zn0taBT3s4gG6nPOEgFM75zRQfwqQq0nKPl3Un8?=
- =?us-ascii?Q?2rHeEfg7JGrvC+bVzy6tGVAyQIUh6O6ho4unNOJ/Mulnea7dSI7B+Zse2psK?=
- =?us-ascii?Q?A1VlnoIRDc89foCvNs678ofDVyvT5FPZZkUpPkoSfzSI5YIpLRJPpcvrsqoc?=
- =?us-ascii?Q?JLo2HdJBrA/Z9q8F047SinZQIuHYW1fJzNkfhyJIs1jePBHb59vSV/RnRghe?=
- =?us-ascii?Q?GXy7M7zPiV2y6zX7+lOOwRMOSxpaa/6qORedvtBZ9lrbWK7KgAoHZaAlZZHt?=
- =?us-ascii?Q?d6hhL0CgzIk78DjK4JOfZIYpkQdD6Imu87qCQDVMH/W6ujV3R1BEJfMvICdi?=
- =?us-ascii?Q?uLx5Ze0aPvaZQ921a+Yt/RnB8AzZb1MYFArD+Xu/NslYAN8ZWRjon7hBQNGE?=
- =?us-ascii?Q?iQtE0waQ0qa5NcQSwKYtU2jH5R/5yG4QJzPqZhaHWXk8gnX9qGUkbG2GG5TV?=
- =?us-ascii?Q?mTKeMTHUy5jy//beSUDhnofW3Hay5Qg1kzr+IXh6twJqfraBiD6axRQaQ7ZV?=
- =?us-ascii?Q?bIYeXlwlbmea4fcr/+KBDNOrGncx1O/CdvmrCZmrQFX4SXjiwU5h2OMD/UW3?=
- =?us-ascii?Q?T5BLSlzZXgnt9vhYZg19FsImG3jP6UyrexBchxO4ASWaIWdJfDeQSl+1Fugf?=
- =?us-ascii?Q?CLfGExY6DaPzRZ74gJsLL3051jEBtEB1J/Yw8JIlhsYNEkYer3CJ5CU3mXAt?=
- =?us-ascii?Q?HrexJoCsZ18CdwSz6MrHobAbLE4OKJiSE1awBYSjwNXRFirq8tzE0gZgYKk2?=
- =?us-ascii?Q?urPz9UP8AV+nVKgq6ucQ+Hc8vZ0cH6eePqvkHst+JCtiDuytaOh7XfVWi+Vf?=
- =?us-ascii?Q?kwue5IAV/j9WYrPk6jtZUl7POGMYYPAVYmhgGLuSZ1FemV5+885TDF5S/iwg?=
- =?us-ascii?Q?9A=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?q1Xmz8dFDVFhr1SBkVhfSDcTqIz5lDQRnO3nteB1//C0fQmw3z3tzK4xCYv2?=
+ =?us-ascii?Q?vG4Ox0Q3CB0U/P+4bwksKdtRIKva7LQ5ervOT82+cXP3PWhgLIWywgCNvYTd?=
+ =?us-ascii?Q?bZTmpiRCNJoeWE0/cn17zNjMlV/vlGykORVR867H/WRkog9IBQqvwfBdlTC7?=
+ =?us-ascii?Q?GYVcgDX2cipHGgtIkBLrY9E+rxnByM0Er4d6paAVW7sg2EgO4aWP10Munp0b?=
+ =?us-ascii?Q?NarxU7oQguj93I0sUd6TBpzmMfT/6rd3mvUQ46WZJVmQToB48I+7Dwafm1jE?=
+ =?us-ascii?Q?ha/UY57Fw56p+dk2XYopCX7NYvIJDSYin+404Dlj+zswIhFPryDMwDRtW9hZ?=
+ =?us-ascii?Q?lSO87UoXAJPIVQ++XCVi5J9Yq9KbVGV1ZhYt+Nzhh7p6QSibSHxTBieDfy6U?=
+ =?us-ascii?Q?vXrtYk/hqdb4zHUZ8I/WRa6vP0yjbmMQuVf6lPpgj3JfVrPhsrUDLdtfOCMq?=
+ =?us-ascii?Q?erdNbVV/Fbe9J4nCZ6ry9kWiN7Q+FopjlRJUCMKDCEDLVJO+GBxDafQe2Urk?=
+ =?us-ascii?Q?pqHsXHw6ounzFcA/VbIrWSZpbCgAANhjl0EjARqS908Jg0O+hg/t3pwxCnOT?=
+ =?us-ascii?Q?ZkB1kIOoyBuKvVW1Cd5FghUQ92uUO+iQ5Gxgpix9YRzpIXT3UXLH4Nbr2IIs?=
+ =?us-ascii?Q?Xz+6kgs+KvgG1AsVO1yfLz8SVwqdttxSFrx7EecwFb1SM5YvRHolZSESWlOo?=
+ =?us-ascii?Q?8sCcNgtZV+Q5VN8GJWqEAv7hQN22S61/aZv7MrKk2Z1PfW6W4q3PKBOkFTxJ?=
+ =?us-ascii?Q?Psg4yVewOIASayS5r25AfSfBVD844CzRhV/5DOdbvDSX0jFHAm2ucPn9mPw0?=
+ =?us-ascii?Q?afm1i/4R0l4ZobC8ggFsO4BDQv3G33cSU4cjf3x4QsPbZFx8XpoYQzCcUHLJ?=
+ =?us-ascii?Q?j2rFDBxaGQu8nL2BcWufRmbEUKCVATgWJiRJlcG0jUqLbKCLxOOrHGXqj4DD?=
+ =?us-ascii?Q?06UXmNUJGQfqz6fmM6QehlheG7Xw4jVm/JyX+s281uM5SsgZK9J9tm9oz2ni?=
+ =?us-ascii?Q?tgr4SllvpbmC3QXWBBESgN+a32xltiWbGr1WhsHCKNPMyDBU8SzZME87jjU6?=
+ =?us-ascii?Q?8ibqrDwQcum4oCcTZmsp0tS3wBX69Gs82sqN8puAU0Cl/djnndRNbRCqGaiM?=
+ =?us-ascii?Q?pPEU7aNwjlC+Eyk8a8o5uFATWam3aLNfvIq2yqK2jJgRr247ff1vfTeYkdsO?=
+ =?us-ascii?Q?6LiAmDwpBPa9QJE96tXoFGVWqHNN3l79jCDJ8sK51CR2nxLr13Wa9JPscMEz?=
+ =?us-ascii?Q?HW8lrIvXgt0S+AjGFsVoPsis3EMv40i5eWHCS4o42+v8GrBPyHeNwSCmkrxj?=
+ =?us-ascii?Q?s5GuidH519xROLRHzKYUlMxk+mReL34Y3zmZhtaq27zIceAl4KNfj8Aeni+m?=
+ =?us-ascii?Q?yIfzCBGQ8vucJ5fWN4OQPNsxx+Ea8JGqzT+U1KmiDLpVQkrxv/0cjNHVhqHm?=
+ =?us-ascii?Q?z5YRbS7nOfGGjXxwAEPjlpzDeSIT8cIfXPQqGIGPEiABgMTm+DmbnTh447NB?=
+ =?us-ascii?Q?lb+Hde6hzA7fmNO9S1YvH/RcCmiDfzTYxNqAV2I2Ho8j+tsp3j/PVblf2AQj?=
+ =?us-ascii?Q?GU7tccgnzEaUcGdoJFtnRmiba2WDb0xCF0mvKgHkjv76gDqTDGYwAaJNB6QT?=
+ =?us-ascii?Q?mA=3D=3D?=
 X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6240f76b-e7a4-4004-5bbd-08da66ad6466
+X-MS-Exchange-CrossTenant-Network-Message-Id: b529b101-63a4-48ad-4462-08da66ad6761
 X-MS-Exchange-CrossTenant-AuthSource: VI1PR03MB4973.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2022 22:00:12.9588
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2022 22:00:17.8024
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Me/zVX2WDrRCdj8zMuw17NDmsft3zh9cXL63w3zHVtqavuPFLbWpbiHLzhYSRA84fj93nzT+n3uiLnt/Yo27iQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: cEnzoxEYczvHTjy6X3PUT4BRavD598tzKl0aZLGwo0thHxiV1EOvhtcIc7HoTJW4DFDeMYc0Ug+WVawIt9xzGA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR03MB8598
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -124,375 +122,313 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a binding for the SerDes module found on QorIQ processors. The
-phy reference has two cells, one for the first lane and one for the
-last. This should allow for good support of multi-lane protocols when
-(if) they are added. There is no protocol option, because the driver is
-designed to be able to completely reconfigure lanes at runtime.
-Generally, the phy consumer can select the appropriate protocol using
-set_mode. For the most part there is only one protocol controller
-(consumer) per lane/protocol combination. The exception to this is the
-B4860 processor, which has some lanes which can be connected to
-multiple MACs. For that processor, I anticipate the easiest way to
-resolve this will be to add an additional cell with a "protocol
-controller instance" property.
-
-Each serdes has a unique set of supported protocols (and lanes). The
-support matrix is configured in the device tree. The format of each
-PCCR (protocol configuration register) is modeled. Although the general
-format is typically the same across different SoCs, the specific
-supported protocols (and the values necessary to select them) are
-particular to individual SerDes. A nested structure is used to reduce
-duplication of data.
-
-There are two PLLs, each of which can be used as the master clock for
-each lane. Each PLL has its own reference. For the moment they are
-required, because it simplifies the driver implementation. Absent
-reference clocks can be modeled by a fixed-clock with a rate of 0.
+This converts the MAC portion of the FMan MAC bindings to yaml.
 
 Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
 
 Changes in v3:
-- Manually expand yaml references
-- Add mode configuration to device tree
+- Incorperate some minor changes into the first FMan binding commit
 
 Changes in v2:
-- Rename to fsl,lynx-10g.yaml
-- Refer to the device in the documentation, rather than the binding
-- Move compatible first
-- Document phy cells in the description
-- Allow a value of 1 for phy-cells. This allows for compatibility with
-  the similar (but according to Ioana Ciornei different enough) lynx-28g
-  binding.
-- Remove minItems
-- Use list for clock-names
-- Fix example binding having too many cells in regs
-- Add #clock-cells. This will allow using assigned-clocks* to configure
-  the PLLs.
-- Document the structure of the compatible strings
+- New
 
- .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 311 ++++++++++++++++++
- 1 file changed, 311 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+ .../bindings/net/fsl,fman-dtsec.yaml          | 145 ++++++++++++++++++
+ .../devicetree/bindings/net/fsl-fman.txt      | 128 +---------------
+ 2 files changed, 146 insertions(+), 127 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
 
-diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+diff --git a/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml b/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
 new file mode 100644
-index 000000000000..a2c37225bb67
+index 000000000000..78579ef839bf
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-@@ -0,0 +1,311 @@
++++ b/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+@@ -0,0 +1,145 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/phy/fsl,lynx-10g.yaml#
++$id: http://devicetree.org/schemas/net/fsl,fman-dtsec.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: NXP Lynx 10G SerDes
++title: NXP FMan MAC
 +
 +maintainers:
-+  - Sean Anderson <sean.anderson@seco.com>
++  - Madalin Bucur <madalin.bucur@nxp.com>
 +
 +description: |
-+  These Lynx "SerDes" devices are found in NXP's QorIQ line of processors. The
-+  SerDes provides up to eight lanes. Each lane may be configured individually,
-+  or may be combined with adjacent lanes for a multi-lane protocol. The SerDes
-+  supports a variety of protocols, including up to 10G Ethernet, PCIe, SATA, and
-+  others. The specific protocols supported for each lane depend on the
-+  particular SoC.
-+
-+definitions:
-+  fsl,cfg:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    description: |
-+      The configuration value to program into the field.
-+
-+  fsl,first-lane:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 7
-+    description: |
-+      The first lane in the group configured by fsl,cfg. This lane will have
-+      the FIRST_LANE bit set in GCR0. The reset direction will also be set
-+      based on whether this property is less than or greater than
-+      fsl,last-lane.
-+
-+  fsl,last-lane:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 7
-+    description: |
-+      The last lane configured by fsl,cfg. If this property is absent,
-+      then it will default to the value of fsl,first-lane.
++  Each FMan has several MACs, each implementing an Ethernet interface. Earlier
++  versions of FMan used the Datapath Three Speed Ethernet Controller (dTSEC) for
++  10/100/1000 MBit/s speeds, and the 10-Gigabit Ethernet Media Access Controller
++  (10GEC) for 10 Gbit/s speeds. Later versions of FMan use the Multirate
++  Ethernet Media Access Controller (mEMAC) to handle all speeds.
 +
 +properties:
 +  compatible:
-+    items:
-+      - enum:
-+          - fsl,ls1046a-serdes
-+          - fsl,ls1088a-serdes
-+      - const: fsl,lynx-10g
++    enum:
++      - fsl,fman-dtsec
++      - fsl,fman-xgec
++      - fsl,fman-memac
 +
-+  "#clock-cells":
-+    const: 1
++  cell-index:
++    maximum: 64
 +    description: |
-+      The cell contains the index of the PLL, starting from 0. Note that when
-+      assigning a rate to a PLL, the PLLs' rates are divided by 1000 to avoid
-+      overflow. A rate of 5000000 corresponds to 5GHz.
++      FManV2:
++      register[bit]           MAC             cell-index
++      ============================================================
++      FM_EPI[16]              XGEC            8
++      FM_EPI[16+n]            dTSECn          n-1
++      FM_NPI[11+n]            dTSECn          n-1
++              n = 1,..,5
 +
-+  "#phy-cells":
-+    minimum: 1
-+    maximum: 2
-+    description: |
-+      The cells contain the following arguments:
-+      - The first lane in the group. Lanes are numbered based on the register
-+        offsets, not the I/O ports. This corresponds to the letter-based ("Lane
-+        A") naming scheme, and not the number-based ("Lane 0") naming scheme. On
-+        most SoCs, "Lane A" is "Lane 0", but not always.
-+      - Last lane. For single-lane protocols, this should be the same as the
-+        first lane.
-+      If no lanes in a SerDes can be grouped, then #phy-cells may be 1, and the
-+      first cell will specify the only lane in the group.
++      FManV3:
++      register[bit]           MAC             cell-index
++      ============================================================
++      FM_EPI[16+n]            mEMACn          n-1
++      FM_EPI[25]              mEMAC10         9
 +
-+  clocks:
-+    maxItems: 2
-+    description: |
-+      Clock for each PLL reference clock input.
++      FM_NPI[11+n]            mEMACn          n-1
++      FM_NPI[10]              mEMAC10         9
++      FM_NPI[11]              mEMAC9          8
++              n = 1,..8
 +
-+  clock-names:
-+    minItems: 2
-+    maxItems: 2
-+    items:
-+      enum:
-+        - ref0
-+        - ref1
++      FM_EPI and FM_NPI are located in the FMan memory map.
++
++      2. SoC registers:
++
++      - P2041, P3041, P4080 P5020, P5040:
++      register[bit]           FMan            MAC             cell
++                              Unit                            index
++      ============================================================
++      DCFG_DEVDISR2[7]        1               XGEC            8
++      DCFG_DEVDISR2[7+n]      1               dTSECn          n-1
++      DCFG_DEVDISR2[15]       2               XGEC            8
++      DCFG_DEVDISR2[15+n]     2               dTSECn          n-1
++              n = 1,..5
++
++      - T1040, T2080, T4240, B4860:
++      register[bit]                   FMan    MAC             cell
++                                      Unit                    index
++      ============================================================
++      DCFG_CCSR_DEVDISR2[n-1]         1       mEMACn          n-1
++      DCFG_CCSR_DEVDISR2[11+n]        2       mEMACn          n-1
++              n = 1,..6,9,10
++
++      EVDISR, DCFG_DEVDISR2 and DCFG_CCSR_DEVDISR2 are located in
++      the specific SoC "Device Configuration/Pin Control" Memory
++      Map.
 +
 +  reg:
 +    maxItems: 1
 +
-+patternProperties:
-+  '^pccr-':
-+    type: object
-+
++  fsl,fman-ports:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    maxItems: 2
 +    description: |
-+      One of the protocol configuration registers (PCCRs). These contains
-+      several fields, each of which mux a particular protocol onto a particular
-+      lane.
++      An array of two references: the first is the FMan RX port and the second
++      is the TX port used by this MAC.
 +
-+    properties:
-+      fsl,pccr:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |
-+          The index of the PCCR. This is the same as the register name suffix.
-+          For example, a node for PCCRB would use a value of '0xb' for an
-+          offset of 0x22C (0x200 + 4 * 0xb).
++  ptp-timer:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: A reference to the IEEE1588 timer
 +
-+    patternProperties:
-+      '^(q?sgmii|xfi|pcie|sata)-':
-+        type: object
++  pcsphy-handle:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: A reference to the PCS (typically found on the SerDes)
 +
-+        description: |
-+          A configuration field within a PCCR. Each field configures one
-+          protocol controller. The value of the field determines the lanes the
-+          controller is connected to, if any.
-+
-+        properties:
-+          fsl,index:
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            description: |
-+              The index of the field. This corresponds to the suffix in the
-+              documentation. For example, PEXa would be 0, PEXb 1, etc.
-+              Generally, higher fields occupy lower bits.
-+
-+              If there are any subnodes present, they will be preferred over
-+              fsl,cfg et. al.
-+
-+          fsl,cfg:
-+            $ref: "#/definitions/fsl,cfg"
-+
-+          fsl,first-lane:
-+            $ref: "#/definitions/fsl,first-lane"
-+
-+          fsl,last-lane:
-+            $ref: "#/definitions/fsl,last-lane"
-+
-+          fsl,proto:
-+            $ref: /schemas/types.yaml#/definitions/string
-+            enum:
-+              - sgmii
-+              - sgmii25
-+              - qsgmii
-+              - xfi
-+              - pcie
-+              - sata
-+            description: |
-+              Indicates the basic group protocols supported by this field.
-+              Individual protocols are selected by configuring the protocol
-+              controller.
-+
-+              - sgmii: 1000BASE-X, SGMII, and 1000BASE-KX (depending on the
-+                       SoC)
-+              - sgmii25: 2500BASE-X, 1000BASE-X, SGMII, and 1000BASE-KX
-+                         (depending on the SoC)
-+              - qsgmii: QSGMII
-+              - xfi: 10GBASE-R and 10GBASE-KR (depending on the SoC)
-+              - pcie: PCIe
-+              - sata: SATA
-+
-+        patternProperties:
-+          '^cfg-':
-+            type: object
-+
-+            description: |
-+              A single field may have multiple values which, when programmed,
-+              connect the protocol controller to different lanes. If this is the
-+              case, multiple sub-nodes may be provided, each describing a
-+              single muxing.
-+
-+            properties:
-+              fsl,cfg:
-+                $ref: "#/definitions/fsl,cfg"
-+
-+              fsl,first-lane:
-+                $ref: "#/definitions/fsl,first-lane"
-+
-+              fsl,last-lane:
-+                $ref: "#/definitions/fsl,last-lane"
-+
-+            required:
-+              - fsl,cfg
-+              - fsl,first-lane
-+
-+            dependencies:
-+              fsl,last-lane:
-+                - fsl,first-lane
-+
-+            additionalProperties: false
-+
-+        required:
-+          - fsl,index
-+          - fsl,proto
-+
-+        dependencies:
-+          fsl,last-lane:
-+            - fsl,first-lane
-+          fsl,cfg:
-+            - fsl,first-lane
-+          fsl,first-lane:
-+            - fsl,cfg
-+
-+        # I would like to require either a config subnode or the config
-+        # properties (and not both), but from what I can tell that can't be
-+        # expressed in json schema. In particular, it is not possible to
-+        # require a pattern property.
-+
-+        additionalProperties: false
-+
-+    required:
-+      - fsl,pccr
-+
-+    additionalProperties: false
++  tbi-handle:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: A reference to the (TBI-based) PCS
 +
 +required:
-+  - "#clock-cells"
-+  - "#phy-cells"
 +  - compatible
-+  - clocks
-+  - clock-names
++  - cell-index
 +  - reg
++  - fsl,fman-ports
++  - ptp-timer
++
++allOf:
++  - $ref: ethernet-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,fman-dtsec
++    then:
++      required:
++        - tbi-handle
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,fman-memac
++    then:
++      required:
++        - pcsphy-handle
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    serdes1: phy@1ea0000 {
-+      #clock-cells = <1>;
-+      #phy-cells = <2>;
-+      compatible = "fsl,ls1088a-serdes", "fsl,lynx-10g";
-+      reg = <0x1ea0000 0x2000>;
-+      clocks = <&clk_100mhz>, <&clk_156_mhz>;
-+      clock-names = "ref0", "ref1";
-+      assigned-clocks = <&serdes1 0>;
-+      assigned-clock-rates = <5000000>;
-+
-+      pccr-8 {
-+        fsl,pccr = <0x8>;
-+
-+        sgmii-0 {
-+          fsl,index = <0>;
-+          fsl,cfg = <0x1>;
-+          fsl,first-lane = <3>;
-+          fsl,proto = "sgmii";
-+        };
-+
-+        sgmii-1 {
-+          fsl,index = <1>;
-+          fsl,cfg = <0x1>;
-+          fsl,first-lane = <2>;
-+          fsl,proto = "sgmii";
-+        };
-+
-+        sgmii-2 {
-+          fsl,index = <2>;
-+          fsl,cfg = <0x1>;
-+          fsl,first-lane = <1>;
-+          fsl,proto = "sgmii25";
-+        };
-+
-+        sgmii-3 {
-+          fsl,index = <3>;
-+          fsl,cfg = <0x1>;
-+          fsl,first-lane = <0>;
-+          fsl,proto = "sgmii25";
-+        };
-+      };
-+
-+      pccr-9 {
-+        fsl,pccr = <0x9>;
-+
-+        qsgmii-0 {
-+          fsl,index = <0>;
-+          fsl,cfg = <0x1>;
-+          fsl,first-lane = <3>;
-+          fsl,proto = "qsgmii";
-+        };
-+
-+        qsgmii-1 {
-+          fsl,index = <1>;
-+          fsl,proto = "qsgmii";
-+
-+          cfg-1 {
-+            fsl,cfg = <0x1>;
-+            fsl,first-lane = <2>;
-+          };
-+
-+          cfg-2 {
-+            fsl,cfg = <0x2>;
-+            fsl,first-lane = <0>;
-+          };
-+        };
-+      };
-+
-+      pccr-b {
-+        fsl,pccr = <0xb>;
-+
-+        xfi-0 {
-+          fsl,index = <0>;
-+          fsl,cfg = <0x1>;
-+          fsl,first-lane = <1>;
-+          fsl,proto = "xfi";
-+        };
-+
-+        xfi-1 {
-+          fsl,index = <1>;
-+          fsl,cfg = <0x1>;
-+          fsl,first-lane = <0>;
-+          fsl,proto = "xfi";
-+        };
-+      };
++    ethernet@e0000 {
++            compatible = "fsl,fman-dtsec";
++            cell-index = <0>;
++            reg = <0xe0000 0x1000>;
++            fsl,fman-ports = <&fman1_rx8 &fman1_tx28>;
++            ptp-timer = <&ptp_timer>;
++            tbi-handle = <&tbi0>;
++    };
++  - |
++    ethernet@e8000 {
++            cell-index = <4>;
++            compatible = "fsl,fman-memac";
++            reg = <0xe8000 0x1000>;
++            fsl,fman-ports = <&fman0_rx_0x0c &fman0_tx_0x2c>;
++            ptp-timer = <&ptp_timer0>;
++            pcsphy-handle = <&pcsphy4>;
++            phy-handle = <&sgmii_phy1>;
++            phy-connection-type = "sgmii";
 +    };
 +...
+diff --git a/Documentation/devicetree/bindings/net/fsl-fman.txt b/Documentation/devicetree/bindings/net/fsl-fman.txt
+index 801efc7d6818..b9055335db3b 100644
+--- a/Documentation/devicetree/bindings/net/fsl-fman.txt
++++ b/Documentation/devicetree/bindings/net/fsl-fman.txt
+@@ -232,133 +232,7 @@ port@81000 {
+ =============================================================================
+ FMan dTSEC/XGEC/mEMAC Node
+ 
+-DESCRIPTION
+-
+-mEMAC/dTSEC/XGEC are the Ethernet network interfaces
+-
+-PROPERTIES
+-
+-- compatible
+-		Usage: required
+-		Value type: <stringlist>
+-		Definition: A standard property.
+-		Must include one of the following:
+-		- "fsl,fman-dtsec" for dTSEC MAC
+-		- "fsl,fman-xgec" for XGEC MAC
+-		- "fsl,fman-memac" for mEMAC MAC
+-
+-- cell-index
+-		Usage: required
+-		Value type: <u32>
+-		Definition: Specifies the MAC id.
+-
+-		The cell-index value may be used by the FMan or the SoC, to
+-		identify the MAC unit in the FMan (or SoC) memory map.
+-		In the tables below there's a description of the cell-index
+-		use, there are two tables, one describes the use of cell-index
+-		by the FMan, the second describes the use by the SoC:
+-
+-		1. FMan Registers
+-
+-		FManV2:
+-		register[bit]		MAC		cell-index
+-		============================================================
+-		FM_EPI[16]		XGEC		8
+-		FM_EPI[16+n]		dTSECn		n-1
+-		FM_NPI[11+n]		dTSECn		n-1
+-			n = 1,..,5
+-
+-		FManV3:
+-		register[bit]		MAC		cell-index
+-		============================================================
+-		FM_EPI[16+n]		mEMACn		n-1
+-		FM_EPI[25]		mEMAC10		9
+-
+-		FM_NPI[11+n]		mEMACn		n-1
+-		FM_NPI[10]		mEMAC10		9
+-		FM_NPI[11]		mEMAC9		8
+-			n = 1,..8
+-
+-		FM_EPI and FM_NPI are located in the FMan memory map.
+-
+-		2. SoC registers:
+-
+-		- P2041, P3041, P4080 P5020, P5040:
+-		register[bit]		FMan		MAC		cell
+-					Unit				index
+-		============================================================
+-		DCFG_DEVDISR2[7]	1		XGEC		8
+-		DCFG_DEVDISR2[7+n]	1		dTSECn		n-1
+-		DCFG_DEVDISR2[15]	2		XGEC		8
+-		DCFG_DEVDISR2[15+n]	2		dTSECn		n-1
+-			n = 1,..5
+-
+-		- T1040, T2080, T4240, B4860:
+-		register[bit]			FMan	MAC		cell
+-						Unit			index
+-		============================================================
+-		DCFG_CCSR_DEVDISR2[n-1]		1	mEMACn		n-1
+-		DCFG_CCSR_DEVDISR2[11+n]	2	mEMACn		n-1
+-			n = 1,..6,9,10
+-
+-		EVDISR, DCFG_DEVDISR2 and DCFG_CCSR_DEVDISR2 are located in
+-		the specific SoC "Device Configuration/Pin Control" Memory
+-		Map.
+-
+-- reg
+-		Usage: required
+-		Value type: <prop-encoded-array>
+-		Definition: A standard property.
+-
+-- fsl,fman-ports
+-		Usage: required
+-		Value type: <prop-encoded-array>
+-		Definition: An array of two phandles - the first references is
+-		the FMan RX port and the second is the TX port used by this
+-		MAC.
+-
+-- ptp-timer
+-		Usage required
+-		Value type: <phandle>
+-		Definition: A phandle for 1EEE1588 timer.
+-
+-- pcsphy-handle
+-		Usage required for "fsl,fman-memac" MACs
+-		Value type: <phandle>
+-		Definition: A phandle for pcsphy.
+-
+-- tbi-handle
+-		Usage required for "fsl,fman-dtsec" MACs
+-		Value type: <phandle>
+-		Definition: A phandle for tbiphy.
+-
+-EXAMPLE
+-
+-fman1_tx28: port@a8000 {
+-	cell-index = <0x28>;
+-	compatible = "fsl,fman-v2-port-tx";
+-	reg = <0xa8000 0x1000>;
+-};
+-
+-fman1_rx8: port@88000 {
+-	cell-index = <0x8>;
+-	compatible = "fsl,fman-v2-port-rx";
+-	reg = <0x88000 0x1000>;
+-};
+-
+-ptp-timer: ptp_timer@fe000 {
+-	compatible = "fsl,fman-ptp-timer";
+-	reg = <0xfe000 0x1000>;
+-};
+-
+-ethernet@e0000 {
+-	compatible = "fsl,fman-dtsec";
+-	cell-index = <0>;
+-	reg = <0xe0000 0x1000>;
+-	fsl,fman-ports = <&fman1_rx8 &fman1_tx28>;
+-	ptp-timer = <&ptp-timer>;
+-	tbi-handle = <&tbi0>;
+-};
++Refer to Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+ 
+ ============================================================================
+ FMan IEEE 1588 Node
 -- 
 2.35.1.1320.gc452695387.dirty
 
