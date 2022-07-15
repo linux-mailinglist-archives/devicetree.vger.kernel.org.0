@@ -2,96 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD9D575BC4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 08:46:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7EAB575BDF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 08:51:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229941AbiGOGpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 02:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54894 "EHLO
+        id S230052AbiGOGuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 02:50:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiGOGpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 02:45:15 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A6A5C950
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 23:45:14 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id d12so6317079lfq.12
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 23:45:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=s6eG0cWFmaFgptED2TWTYg714sGFdvYDMGa+KA8yB6Q=;
-        b=WrYlFULL2rrZ5fZG9trqBVtXKTCzn4hkvVsKSWIrqQvkiMQs21w76DZ+gQpAzCeJDa
-         bYJJ5Ajj5d/qW653vm8ay9eIsbm2A9xdaEGqZW9aR3FYujeiXMtXFnMUs9KgMPa8gZBT
-         IftuyN4ZHnl7BiNc3QrzyMsdbGDOyVkRA/mk/74wEFhVXeNl1hM5taeZuejPNVKvjIkj
-         spnFys8kt1VahKFwRMm/jTiufQv1m3R6mIVK5xT/9C7lncXoEERby8LfxEzC8M4R+64J
-         05spCOlX/dyuZ4eA6TcPzT89bj7ZkwGILC3DAO2A636emauUn3lwjK+6B5pUR8qLbwX5
-         Z7qQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=s6eG0cWFmaFgptED2TWTYg714sGFdvYDMGa+KA8yB6Q=;
-        b=1NuyMoU8plIM43HhiwWbY+vREqE8jfpwoZi0jWnSclnni4p266slkI/FR7xy2lj9zw
-         9PAuwaF1t5lymql4Po7/slzVvfZpkA3bGjYny5KYpEImr+qHG1Fulv6zJDCaAdsQrK1D
-         f3IPpG1T5PxUxgaePGYsdDdULmYw0GxT8+OmAGKnNmgELRLJGjYvcmR2dKGLLWw71XSs
-         sX4NN1qJ7q/p+DBbGw1WvgnvYYGWdZDHe8eR6ixNjzW2AIZIaAGS1IV6SeGseuZ6E7Pl
-         2O8ZWn1FDfLuQpSK848gy2vf3Khat3zXraQgmq7aUo3zLUFX6186lif8pcRTHxUgSS7y
-         K7uA==
-X-Gm-Message-State: AJIora+JwV5VntzqiKwGbldu5vsxE43bvmLS6wVXMgq/j11OSaGYgtjG
-        d8Ki0gOBjtkMkTOSCnzfsx0Qgw==
-X-Google-Smtp-Source: AGRyM1sxahtTvbaYmEdQrM2G7TMm3QM7tC9YNrozirTHaWcx6GFol3E84Jd5X4sFqg702kKUKzjeOw==
-X-Received: by 2002:a05:6512:3e0e:b0:489:c79f:4019 with SMTP id i14-20020a0565123e0e00b00489c79f4019mr6936351lfv.68.1657867512823;
-        Thu, 14 Jul 2022 23:45:12 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id d29-20020a0565123d1d00b0047255d21124sm752701lfv.83.2022.07.14.23.45.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 23:45:12 -0700 (PDT)
-Message-ID: <9543f3ec-0c41-fc7a-e0f5-2646eee17f0b@linaro.org>
-Date:   Fri, 15 Jul 2022 08:45:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: remoteproc: mediatek: Add binding for
- mt8188 scp
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S230388AbiGOGtt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 02:49:49 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CE1E528AD;
+        Thu, 14 Jul 2022 23:49:47 -0700 (PDT)
+X-UUID: eda7bc4e9f87494aa3e2130b9490aa1d-20220715
+X-CID-UNFAMILIAR: 1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:08637bd8-3bad-4019-8715-467800873dae,OB:10,L
+        OB:20,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,
+        ACTION:release,TS:100
+X-CID-INFO: VERSION:1.1.8,REQID:08637bd8-3bad-4019-8715-467800873dae,OB:10,LOB
+        :20,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,
+        ACTION:quarantine,TS:100
+X-CID-META: VersionHash:0f94e32,CLOUDID:e2ce5f64-0b3f-4b2c-b3a6-ed5c044366a0,C
+        OID:980f32c4a35c,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: eda7bc4e9f87494aa3e2130b9490aa1d-20220715
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <mingjia.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2004866715; Fri, 15 Jul 2022 14:49:43 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Fri, 15 Jul 2022 14:49:42 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Fri, 15 Jul 2022 14:49:40 +0800
+From:   Mingjia Zhang <mingjia.zhang@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220715051821.30707-1-tinghan.shen@mediatek.com>
- <20220715051821.30707-2-tinghan.shen@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220715051821.30707-2-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [RESEND] media: mediatek: vcodec: Add to support VP9 inner racing mode
+Date:   Fri, 15 Jul 2022 14:49:38 +0800
+Message-ID: <20220715064938.5812-1-mingjia.zhang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/07/2022 07:18, Tinghan Shen wrote:
-> Add the compatible for mt8188 SCP to the binding.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 2 ++
+In order to reduce decoder latency, enable VP9 inner racing mode.
+Send lat trans buffer information to core when trigger lat to work,
+need not to wait until lat decode done.
 
+Signed-off-by: mingjia zhang <mingjia.zhang@mediatek.com>
+---
+CTS/GTS test pass
+---
+ .../vcodec/vdec/vdec_vp9_req_lat_if.c         | 64 ++++++++++++-------
+ 1 file changed, 40 insertions(+), 24 deletions(-)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+index fba06f321baa..35462d45fbf4 100644
+--- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
++++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+@@ -436,6 +436,7 @@ struct vdec_vp9_slice_ref {
+  * @frame_ctx:		4 frame context according to VP9 Spec
+  * @frame_ctx_helper:	4 frame context according to newest kernel spec
+  * @dirty:		state of each frame context
++ * @local_vsi:		local instance vsi information
+  * @init_vsi:		vsi used for initialized VP9 instance
+  * @vsi:		vsi used for decoding/flush ...
+  * @core_vsi:		vsi used for Core stage
+@@ -482,6 +483,8 @@ struct vdec_vp9_slice_instance {
+ 	struct v4l2_vp9_frame_context frame_ctx_helper;
+ 	unsigned char dirty[4];
+ 
++	struct vdec_vp9_slice_vsi local_vsi;
++
+ 	/* MicroP vsi */
+ 	union {
+ 		struct vdec_vp9_slice_init_vsi *init_vsi;
+@@ -1617,16 +1620,10 @@ static int vdec_vp9_slice_update_single(struct vdec_vp9_slice_instance *instance
+ }
+ 
+ static int vdec_vp9_slice_update_lat(struct vdec_vp9_slice_instance *instance,
+-				     struct vdec_lat_buf *lat_buf,
+-				     struct vdec_vp9_slice_pfc *pfc)
++				     struct vdec_vp9_slice_vsi *vsi)
+ {
+-	struct vdec_vp9_slice_vsi *vsi;
+-
+-	vsi = &pfc->vsi;
+-	memcpy(&pfc->state[0], &vsi->state, sizeof(vsi->state));
+-
+ 	mtk_vcodec_debug(instance, "Frame %u LAT CRC 0x%08x %lx %lx\n",
+-			 pfc->seq, vsi->state.crc[0],
++			 (instance->seq - 1), vsi->state.crc[0],
+ 			 (unsigned long)vsi->trans.dma_addr,
+ 			 (unsigned long)vsi->trans.dma_addr_end);
+ 
+@@ -2091,6 +2088,13 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 		return ret;
+ 	}
+ 
++	if (IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability)) {
++		vdec_vp9_slice_vsi_from_remote(vsi, instance->vsi, 0);
++		memcpy(&instance->local_vsi, vsi, sizeof(*vsi));
++		vdec_msg_queue_qbuf(&ctx->dev->msg_queue_core_ctx, lat_buf);
++		vsi = &instance->local_vsi;
++	}
++
+ 	if (instance->irq) {
+ 		ret = mtk_vcodec_wait_for_done_ctx(ctx,	MTK_INST_IRQ_RECEIVED,
+ 						   WAIT_INTR_TIMEOUT_MS, MTK_VDEC_LAT0);
+@@ -2103,22 +2107,25 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	}
+ 
+ 	vdec_vp9_slice_vsi_from_remote(vsi, instance->vsi, 0);
+-	ret = vdec_vp9_slice_update_lat(instance, lat_buf, pfc);
++	ret = vdec_vp9_slice_update_lat(instance, vsi);
+ 
+-	/* LAT trans full, no more UBE or decode timeout */
+-	if (ret) {
+-		mtk_vcodec_err(instance, "VP9 decode error: %d\n", ret);
+-		return ret;
+-	}
++	if (!IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability))
++		/* LAT trans full, no more UBE or decode timeout */
++		if (ret) {
++			mtk_vcodec_err(instance, "frame[%d] decode error: %d\n",
++				       ret, (instance->seq - 1));
++			return ret;
++		}
+ 
+-	mtk_vcodec_debug(instance, "lat dma addr: 0x%lx 0x%lx\n",
+-			 (unsigned long)pfc->vsi.trans.dma_addr,
+-			 (unsigned long)pfc->vsi.trans.dma_addr_end);
+ 
+-	vdec_msg_queue_update_ube_wptr(&ctx->msg_queue,
+-				       vsi->trans.dma_addr_end +
+-				       ctx->msg_queue.wdma_addr.dma_addr);
+-	vdec_msg_queue_qbuf(&ctx->dev->msg_queue_core_ctx, lat_buf);
++	vsi->trans.dma_addr_end += ctx->msg_queue.wdma_addr.dma_addr;
++	vdec_msg_queue_update_ube_wptr(&ctx->msg_queue, vsi->trans.dma_addr_end);
++	if (!IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability))
++		vdec_msg_queue_qbuf(&ctx->dev->msg_queue_core_ctx, lat_buf);
++
++	mtk_vcodec_debug(instance, "lat trans end addr(0x%lx), ube start addr(0x%lx)\n",
++			 (unsigned long)vsi->trans.dma_addr_end,
++			 (unsigned long)ctx->msg_queue.wdma_addr.dma_addr);
+ 
+ 	return 0;
+ }
+@@ -2194,10 +2201,14 @@ static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
+ 		goto err;
+ 	}
+ 
+-	pfc->vsi.trans.dma_addr_end += ctx->msg_queue.wdma_addr.dma_addr;
+ 	mtk_vcodec_debug(instance, "core dma_addr_end 0x%lx\n",
+ 			 (unsigned long)pfc->vsi.trans.dma_addr_end);
+-	vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
++
++	if (IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability))
++		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr);
++	else
++		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
++
+ 	ctx->dev->vdec_pdata->cap_to_disp(ctx, 0, lat_buf->src_buf_req);
+ 
+ 	return 0;
+@@ -2205,7 +2216,12 @@ static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
+ err:
+ 	if (ctx && pfc) {
+ 		/* always update read pointer */
+-		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
++		if (IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability))
++			vdec_msg_queue_update_ube_rptr(&ctx->msg_queue,
++						       pfc->vsi.trans.dma_addr);
++		else
++			vdec_msg_queue_update_ube_rptr(&ctx->msg_queue,
++						       pfc->vsi.trans.dma_addr_end);
+ 
+ 		if (fb)
+ 			ctx->dev->vdec_pdata->cap_to_disp(ctx, 1, lat_buf->src_buf_req);
+-- 
+2.25.1
 
-
-Best regards,
-Krzysztof
