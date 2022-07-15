@@ -2,134 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67DDB575CBB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 09:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FFBC575CDB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 09:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232277AbiGOHtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 03:49:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
+        id S232594AbiGOH4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 03:56:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232292AbiGOHtL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 03:49:11 -0400
+        with ESMTP id S232584AbiGOH4u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 03:56:50 -0400
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7DB26109;
-        Fri, 15 Jul 2022 00:49:09 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2FDD7E004;
+        Fri, 15 Jul 2022 00:56:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1657871350; x=1689407350;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
+  t=1657871809; x=1689407809;
+  h=subject:from:to:cc:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=7/YwaUnYvtErt4hvGUG8S2dvqzopMiwsOQ51LI01u30=;
-  b=EQmBjnCwodid8pP04xL4WupZN/pe8DI3/sOGoJX1x6O2UxfIKfM9zvHP
-   E0xOPzkb0aWR5XQUxEVtc7yzUUP05ZQ8+tAErvGKuLqPzYdnH0AN1HPch
-   E0/rx5spWomCITmGwAo/PjHsd5ZxU+HXSY91coVzX5w4W0/9CUJd/HgAt
-   PZvJEXRL1pe+H43MFLPZBKdpNtaPb0YazG/7AgBSZWrg6sLwBrGBvqDEF
-   TM7wdSjh1ysIxt+gmIp7p26gQvSA0IZPsfnN3YOeRX5Xm74bIagO85sps
-   810J4ziohV4w2p5kPlM2ddyEUf6Hfsg+k9XiQkDpCMjF+lriHEnhGSt/2
-   Q==;
+  bh=3e8PWl1SbKdPwB4I8T3+mrIuGshCyHGD0HiV7NPzQK8=;
+  b=kwyVrUmkywiigit+xRfQCbMMsK4WkPpSqh1l23HcfLLN1MZus3x2K9Sg
+   bDGkiWJjG2l44XoE0ApFTphQa2r/wPg3+/qpnDyOvhQk6nQ3suwJ0sL2B
+   5/nxRMDzbsFdmX5btWaDiXyH9E3a/nlcjq4x/2SMBt6gzh/dz6NAV7RnB
+   dEzdfi0SS0VDJpmlG912+TDzyBjOWkLVYKErX778ZxXdHf9++iqbDNZIF
+   z3HYzOgv3HWqwca1q1KIYcOOOor2sqImWqTlC6pRXfsVKlz6nwrRJ16gy
+   Npuu9bdxOP0xWh3jQI0T7zqF6OAaYEllwrJpgJ6V/rsZKekr+d+37g4gH
+   w==;
 X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
-   d="scan'208";a="25069093"
+   d="scan'208";a="25069308"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 15 Jul 2022 09:49:05 +0200
+  by mx1-pgp.tq-group.com with ESMTP; 15 Jul 2022 09:56:46 +0200
 Received: from mx1.tq-group.com ([192.168.6.7])
   by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 15 Jul 2022 09:49:05 +0200
+  Fri, 15 Jul 2022 09:56:46 +0200
 X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 15 Jul 2022 09:49:05 +0200
+        by tq-pgp-pr1.tq-net.de on Fri, 15 Jul 2022 09:56:46 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1657871345; x=1689407345;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=7/YwaUnYvtErt4hvGUG8S2dvqzopMiwsOQ51LI01u30=;
-  b=DhkAnUjmOOjcepAeVCGiV2H8oEMemHVpWqpFCr6i9B38l76zLLCVNtht
-   OS/wVLIw9fDcAxbWk5g5eqZ00eb3faWV2n/qoyAyRSCuM3CgPQysPjmlH
-   aOuWWRekMYCT1bf/gcNrhCv0IiBGPlZbLDII0Jvuo/rUp7h5XE8NlGsTL
-   UaqW69pwiVFSeMeqJxHIhPnAZbE64RHVwYWO+/VD/x6PsKymKfkrYGYfy
-   kDU+Wgy64awQq7P84aTcf/AG06dPnM8d1EdbTvIKc1sJ9Y3ihJCzZyex4
-   D127Jxfg0Pmhnau+wrDaZyfmPl5FXzmneIOGRtUt69flWklz9QBBRv9E6
-   Q==;
+  t=1657871806; x=1689407806;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=3e8PWl1SbKdPwB4I8T3+mrIuGshCyHGD0HiV7NPzQK8=;
+  b=gXSpGuGkkqhUWE4ojoEh3e1qdmsFWUUqLWFijY+Qe9GK4eNmVZrOJN69
+   fTBBummlErC9VH2Hi9dQoppZKC83CZ6eQLT0xYT/vZI4Q6ga0MBJTsE/V
+   hl1QUnqovw5RUXXVjLnYb3UOAoK0dkYhzs0uRq/lwbgaNllJXO22MShYS
+   qAYsLMzAnc2L3oChHPveveQuWieUKWL6/J1Qjht/m/fgZADr1gUyr2Oq5
+   G87IyrX/h4nk6YlgaedgX8U5ajQP4C4sIfiBu0UsHVCLgBZMSZCyMakE0
+   922ANdsw4qDLcTFh2WvNX4yQwvy97L4rJWW5sPevRenVENMEyEvry330n
+   w==;
 X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
-   d="scan'208";a="25069092"
+   d="scan'208";a="25069305"
+Subject: Re: Re: [PATCH] dt-bindings: iio: adc: Add imx6ul & imx6sx compatibles
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 15 Jul 2022 09:49:05 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+  by mx1.tq-group.com with ESMTP; 15 Jul 2022 09:56:46 +0200
+Received: from steina-w.localnet (unknown [10.123.49.12])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F247A280056;
-        Fri, 15 Jul 2022 09:49:04 +0200 (CEST)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 114F3280056;
+        Fri, 15 Jul 2022 09:56:46 +0200 (CEST)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 6/6] media: i2c: ov9282: Fix device detection
-Date:   Fri, 15 Jul 2022 09:48:58 +0200
-Message-Id: <20220715074858.875808-7-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220715074858.875808-1-alexander.stein@ew.tq-group.com>
-References: <20220715074858.875808-1-alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-imx@nxp.com, linux-iio@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org
+Date:   Fri, 15 Jul 2022 09:56:45 +0200
+Message-ID: <8090017.T7Z3S40VBb@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220628210919.GB963202-robh@kernel.org>
+References: <20220613123529.466528-1-alexander.stein@ew.tq-group.com> <12003373.O9o76ZdvQC@steina-w> <20220628210919.GB963202-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apparently the Vision Components model (VC MIPI OV9281) does not support
-address auto-increment, so probe fails with:
-ov9282 2-0060: chip id mismatch: 9281!=92ff
-Instead do two 1 byte reads and combine the result.
+Am Dienstag, 28. Juni 2022, 23:09:19 CEST schrieb Rob Herring:
+> On Mon, Jun 20, 2022 at 10:12:44AM +0200, Alexander Stein wrote:
+> > Hello,
+> > 
+> > Am Samstag, 18. Juni 2022, 19:01:29 CEST schrieb Jonathan Cameron:
+> > > On Fri, 17 Jun 2022 16:44:48 -0600
+> > > 
+> > > Rob Herring <robh@kernel.org> wrote:
+> > > > On Mon, Jun 13, 2022 at 11:34:46AM -0600, Rob Herring wrote:
+> > > > > On Mon, 13 Jun 2022 14:35:29 +0200, Alexander Stein wrote:
+> > > > > > Both are already using the vf610 compatible.
+> > > > > > 
+> > > > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > > > > ---
+> > > > > > 
+> > > > > >  .../devicetree/bindings/iio/adc/fsl,vf610-adc.yaml       | 9
+> > > > > >  ++++++++-
+> > > > > >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > > > > 
+> > > > > Running 'make dtbs_check' with the schema in this patch gives the
+> > > > > following warnings. Consider if they are expected or the schema is
+> > > > > incorrect. These may not be new warnings.
+> > > > > 
+> > > > > Note that it is not yet a requirement to have 0 warnings for
+> > > > > dtbs_check.
+> > > > > This will change in the future.
+> > > > > 
+> > > > > Full log is available here: https://patchwork.ozlabs.org/patch/
+> > > > > 
+> > > > > 
+> > > > > adc@2198000: 'num-channels' does not match any of the regexes:
+> > > > > 'pinctrl-[0-9]+'>
+> > > > 
+> > > > Looks like you need to add 'num-channels'?
+> > > 
+> > > or a lot of wrong dtbs :)
+> > > 
+> > > By which I mean ones providing a property that may or may not be
+> > > actually
+> > > used by any drivers...
+> > 
+> > This got already fixed by Baruch's patch which is currently in Shawn's
+> > imx-
+> > fixes-5.19 branch at [1]
+> 
+> Great!
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v2:
-* Fix commit message
-* Add comment about prevented auto-increment
-* Return early if reading ID register failed
-* Reorder ID registers, smaller register number first
+Did this got missed? Or is it applied somwhere I' not aware of?
 
- drivers/media/i2c/ov9282.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+Best regards,
+Alexander
 
-diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
-index 263cdffc558f..532791304c3d 100644
---- a/drivers/media/i2c/ov9282.c
-+++ b/drivers/media/i2c/ov9282.c
-@@ -761,11 +761,24 @@ static int ov9282_set_stream(struct v4l2_subdev *sd, int enable)
- static int ov9282_detect(struct ov9282 *ov9282)
- {
- 	int ret;
-+	u32 id[2];
- 	u32 val;
- 
--	ret = ov9282_read_reg(ov9282, OV9282_REG_ID, 2, &val);
-+	/*
-+	 * Some vendors prevent auto-increment, so each register has to
-+	 * be read separately
-+	 */
-+	ret = ov9282_read_reg(ov9282, OV9282_REG_ID,
-+			      1, &id[0]);
- 	if (ret)
- 		return ret;
-+	ret = ov9282_read_reg(ov9282, OV9282_REG_ID + 1,
-+			      1, &id[1]);
-+	if (ret)
-+		return ret;
-+
-+	val = id[1];
-+	val |= (id[0] << 8);
- 
- 	if (val != OV9282_ID) {
- 		dev_err(ov9282->dev, "chip id mismatch: %x!=%x",
--- 
-2.25.1
+
 
