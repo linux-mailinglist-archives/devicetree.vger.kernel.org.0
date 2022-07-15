@@ -2,140 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FFBC575CDB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 09:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD1F7575CD9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 09:58:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232594AbiGOH4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 03:56:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55890 "EHLO
+        id S232596AbiGOH5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 03:57:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232584AbiGOH4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 03:56:50 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2FDD7E004;
-        Fri, 15 Jul 2022 00:56:48 -0700 (PDT)
+        with ESMTP id S229613AbiGOH5V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 03:57:21 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E3CB7D7B8
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 00:57:20 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id w2so4849768ljj.7
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 00:57:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1657871809; x=1689407809;
-  h=subject:from:to:cc:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3e8PWl1SbKdPwB4I8T3+mrIuGshCyHGD0HiV7NPzQK8=;
-  b=kwyVrUmkywiigit+xRfQCbMMsK4WkPpSqh1l23HcfLLN1MZus3x2K9Sg
-   bDGkiWJjG2l44XoE0ApFTphQa2r/wPg3+/qpnDyOvhQk6nQ3suwJ0sL2B
-   5/nxRMDzbsFdmX5btWaDiXyH9E3a/nlcjq4x/2SMBt6gzh/dz6NAV7RnB
-   dEzdfi0SS0VDJpmlG912+TDzyBjOWkLVYKErX778ZxXdHf9++iqbDNZIF
-   z3HYzOgv3HWqwca1q1KIYcOOOor2sqImWqTlC6pRXfsVKlz6nwrRJ16gy
-   Npuu9bdxOP0xWh3jQI0T7zqF6OAaYEllwrJpgJ6V/rsZKekr+d+37g4gH
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
-   d="scan'208";a="25069308"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 15 Jul 2022 09:56:46 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 15 Jul 2022 09:56:46 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 15 Jul 2022 09:56:46 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1657871806; x=1689407806;
-  h=from:to:cc:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=3e8PWl1SbKdPwB4I8T3+mrIuGshCyHGD0HiV7NPzQK8=;
-  b=gXSpGuGkkqhUWE4ojoEh3e1qdmsFWUUqLWFijY+Qe9GK4eNmVZrOJN69
-   fTBBummlErC9VH2Hi9dQoppZKC83CZ6eQLT0xYT/vZI4Q6ga0MBJTsE/V
-   hl1QUnqovw5RUXXVjLnYb3UOAoK0dkYhzs0uRq/lwbgaNllJXO22MShYS
-   qAYsLMzAnc2L3oChHPveveQuWieUKWL6/J1Qjht/m/fgZADr1gUyr2Oq5
-   G87IyrX/h4nk6YlgaedgX8U5ajQP4C4sIfiBu0UsHVCLgBZMSZCyMakE0
-   922ANdsw4qDLcTFh2WvNX4yQwvy97L4rJWW5sPevRenVENMEyEvry330n
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
-   d="scan'208";a="25069305"
-Subject: Re: Re: [PATCH] dt-bindings: iio: adc: Add imx6ul & imx6sx compatibles
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 15 Jul 2022 09:56:46 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 114F3280056;
-        Fri, 15 Jul 2022 09:56:46 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-imx@nxp.com, linux-iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org
-Date:   Fri, 15 Jul 2022 09:56:45 +0200
-Message-ID: <8090017.T7Z3S40VBb@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220628210919.GB963202-robh@kernel.org>
-References: <20220613123529.466528-1-alexander.stein@ew.tq-group.com> <12003373.O9o76ZdvQC@steina-w> <20220628210919.GB963202-robh@kernel.org>
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=pVS+MTH1XwU1cvawHiiTO1k5At4xPOvBRcWn0E0JKnQ=;
+        b=nPbUHaxTybTz+hSdJPP6CMy/vM/46yKwRrdEcsM8O2DT/PEmEm8ExTH8fb2rzJxdNf
+         xjorId7Lq1mqbvJSYX2eyWQlr2irAmSAS6rnsqJDpmwkL+6QGJrJDDAQyzR9Iy8xuw+W
+         G2Ytl4E09lz7ry/bTjvMUCO5DGdJuNBD5GGICRvvIb1oJkkbuio9/j0nVaKx0WPjH71e
+         +AvFWG+fw+j8KIMVJGW2e2zw/kH23rcpmVVe6i5I+58UpQ0pAGEMQ0Ab8I1eatNJjP6W
+         PSc5bjLGmcyTLTiBxDZGy1rct8c9+FJxaOOz8NoDM7ZjauLPS6uNYjJzZUgZotVcLO5+
+         wEfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pVS+MTH1XwU1cvawHiiTO1k5At4xPOvBRcWn0E0JKnQ=;
+        b=SmCA0Xp5NeO3nkDWeo9AkJxPrea7HcVSbKU3fO74+68bx7GDQKLRQQ/HxGVlhjVB/k
+         8q5dvsSuvYXylotQv6516Q7R81n0MY94DkqrfSapGBQ9nECSLBwusLiWHE8VnTuNmhVU
+         WIM0+BnEC+TEsVveroX/wgYg0RbeeYSEzCD8sVz6EtF1AVnZ0Lp70ROOrSmvz5rLG5gD
+         IXYzcei/oV3C5eX/JbNhw0c+vlCkZLLMajzPSk4AqZ0VaoZOx4PqsY/1O3K2l7brxl8H
+         cITEBkhRPRPgVdRZcwb6/wB3FnuQEvdy4bvz/PehYBfIP4y7lnss/nCSO4WZP3aDB+NI
+         Jmqg==
+X-Gm-Message-State: AJIora8+WvfadnikOfvpTTdnBLlnfg5Ejn9A1eyOgx+9NaTJ6e9jcbYr
+        J8wOxG0xjvbZiS0vZf5b1MqPtg==
+X-Google-Smtp-Source: AGRyM1ulJRngwtrHtmZz4bY0FMFRN0qrWGaMpBxRh+yPkwrRe6nsqVmc0rblcJXm/KEw4Ov5c3GRWw==
+X-Received: by 2002:a2e:9854:0:b0:25d:883d:faf2 with SMTP id e20-20020a2e9854000000b0025d883dfaf2mr6010968ljj.223.1657871838444;
+        Fri, 15 Jul 2022 00:57:18 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id b13-20020a056512070d00b0048960b581e3sm778642lfs.8.2022.07.15.00.57.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Jul 2022 00:57:17 -0700 (PDT)
+Message-ID: <46df4ad5-5102-b5fe-95b7-5b157fb28f01@linaro.org>
+Date:   Fri, 15 Jul 2022 09:57:14 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 03/19] dt-bindings: power: mediatek: Add bindings for
+ MediaTek SCPSYS
+Content-Language: en-US
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        MandyJH Liu <mandyjh.liu@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220714122837.20094-1-tinghan.shen@mediatek.com>
+ <20220714122837.20094-4-tinghan.shen@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220714122837.20094-4-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 28. Juni 2022, 23:09:19 CEST schrieb Rob Herring:
-> On Mon, Jun 20, 2022 at 10:12:44AM +0200, Alexander Stein wrote:
-> > Hello,
-> > 
-> > Am Samstag, 18. Juni 2022, 19:01:29 CEST schrieb Jonathan Cameron:
-> > > On Fri, 17 Jun 2022 16:44:48 -0600
-> > > 
-> > > Rob Herring <robh@kernel.org> wrote:
-> > > > On Mon, Jun 13, 2022 at 11:34:46AM -0600, Rob Herring wrote:
-> > > > > On Mon, 13 Jun 2022 14:35:29 +0200, Alexander Stein wrote:
-> > > > > > Both are already using the vf610 compatible.
-> > > > > > 
-> > > > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > > > > ---
-> > > > > > 
-> > > > > >  .../devicetree/bindings/iio/adc/fsl,vf610-adc.yaml       | 9
-> > > > > >  ++++++++-
-> > > > > >  1 file changed, 8 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > Running 'make dtbs_check' with the schema in this patch gives the
-> > > > > following warnings. Consider if they are expected or the schema is
-> > > > > incorrect. These may not be new warnings.
-> > > > > 
-> > > > > Note that it is not yet a requirement to have 0 warnings for
-> > > > > dtbs_check.
-> > > > > This will change in the future.
-> > > > > 
-> > > > > Full log is available here: https://patchwork.ozlabs.org/patch/
-> > > > > 
-> > > > > 
-> > > > > adc@2198000: 'num-channels' does not match any of the regexes:
-> > > > > 'pinctrl-[0-9]+'>
-> > > > 
-> > > > Looks like you need to add 'num-channels'?
-> > > 
-> > > or a lot of wrong dtbs :)
-> > > 
-> > > By which I mean ones providing a property that may or may not be
-> > > actually
-> > > used by any drivers...
-> > 
-> > This got already fixed by Baruch's patch which is currently in Shawn's
-> > imx-
-> > fixes-5.19 branch at [1]
+On 14/07/2022 14:28, Tinghan Shen wrote:
+> The System Control Processor System (SCPSYS) has several power
+> management related tasks in the system. Add the bindings for it.
 > 
-> Great!
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  .../bindings/mfd/mediatek,scpsys.yaml         | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml b/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
+> new file mode 100644
+> index 000000000000..a8b9220f2f27
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/mediatek,scpsys.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek System Control Processor System
+> +
+> +maintainers:
+> +  - MandyJH Liu <mandyjh.liu@mediatek.com>
+> +
+> +description:
+> +  MediaTek System Control Processor System (SCPSYS) has several
+> +  power management tasks. The tasks include MTCMOS power
+> +  domain control, thermal measurement, DVFS, etc.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: mediatek,scpsys
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-controller:
+> +    $ref: /schemas/power/mediatek,power-controller.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/power/mt8195-power.h>
+> +
+> +    syscon@10006000 {
+> +        compatible = "mediatek,scpsys", "syscon", "simple-mfd";
 
-Did this got missed? Or is it applied somwhere I' not aware of?
+This should be a SoC-specific compatible (and filename).
+
+> +        reg = <0x10006000 0x100>;
+> +
+> +        spm: power-controller {
+
+I think you created before less-portable, quite constrained bindings for
+power controller. You now require that mt8195-power-controller is always
+a child of some parent device which will share its regmap/MMIO with it.
+
+And what if in your next block there is no scpsys block and power
+controller is the scpsys alone? It's not possible with your bindings.
+
+Wouldn't it be better to assign some address space to the
+power-controller (now as an offset from scpsys)?
+
+This is just wondering (Rockchip did the same...) and not a blocker as
+power-controller bindings are done.
 
 Best regards,
-Alexander
-
-
-
+Krzysztof
