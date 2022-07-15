@@ -2,111 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D5A4575C92
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 09:44:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAE87575CC0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 09:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231922AbiGOHni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 03:43:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42824 "EHLO
+        id S231519AbiGOHtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 03:49:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230312AbiGOHne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 03:43:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A085D1DF;
-        Fri, 15 Jul 2022 00:43:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229719AbiGOHtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 03:49:07 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6445248F1;
+        Fri, 15 Jul 2022 00:49:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657871346; x=1689407346;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=eicw0z0T9aiw8jm7PfQeKRnHCaVuVH/3l4xK3EyDX0M=;
+  b=FxXNtQJ3fhrhwoH1Qks8/p7vMwhODkMJqFilQzB6UOrG1ydbN6JInGnH
+   ORHcc6nUZT3zDJCUyoun9SP2jUS2H64YhZBP2ekwaM/WmM1NTLtCAwJ1R
+   ntGrQqsxU29GSEOEZ1XVs0r9Jwt44BRbK1mJ44mq22QoMYiJiJnEn4bfo
+   7TDIJCn8/kg1Ox/Y4gQKQPIDSQQ1OD9aKF3kL0+wQ+CtqRdjInRF3foYW
+   IugYgly2LHOFI6i+az20VVniH0gg0c3fjp5vGIlJoGBA3e8CT/LRBWlWF
+   UqIfZVZr56Ux93wj6t3TAEaiXR6+skezAlR3jJtVd9rEL6o90pj2igS+u
+   w==;
+X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
+   d="scan'208";a="25069080"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 15 Jul 2022 09:49:04 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 15 Jul 2022 09:49:04 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 15 Jul 2022 09:49:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657871344; x=1689407344;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=eicw0z0T9aiw8jm7PfQeKRnHCaVuVH/3l4xK3EyDX0M=;
+  b=HSiHwSlD6pEmS5AS7j+JsA8emZX8GaHf7ULXaIV/R9g3NX0qCfQ1GWfa
+   e9BVQ8czqQoYDcCCqmJbix//NS6X9VbiU1czzx7LTzqL2xicdc9zvWE2r
+   egaHBAevBhy7+2NS1lg9Dqm93KQn7R9yDKFqpQThgFgX/gAzFp5RlA8Ic
+   dCuil0Su4Ab1999NeGHKBBmuTpZf2/B1o0+lTTZSUWjU4g+bjIRrnINDd
+   uP8iLZ0tzCG59ic9sVXC5rScoxxLFSCW4O2a0gB9F6G6rBQnB75eG6C8Z
+   PYlxOby6aAP3X3b7lCmihE3fjZeLoqifmlPiXzd1bRpzoEonaX96cCCL+
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
+   d="scan'208";a="25069079"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 15 Jul 2022 09:49:04 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D518619CB;
-        Fri, 15 Jul 2022 07:43:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A3E4C34115;
-        Fri, 15 Jul 2022 07:43:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657871012;
-        bh=0iGDNIkKNv/Up65EK2U2773EXnDVZqycw7MK0mT2K0U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gGAovutajNnUoHyY93NBbHukld9fKKNu1xIGKtRyYAsdFeIrQdRy0CLI0IaVZnGpW
-         pHnbRPPireGo6J5ShQxtpjDP2gd/YitIEvRc2ALODmhP6EdGSICookvTZsxbVXa/Sf
-         RG5PVN9W+CCe8YuikNVmRcbOKRLUlkmMFqb0vXWhKeaSdyi6EcK2xuMDAkgflXqpRN
-         b83WEOPD8/QT5nKJanjqA1SDkrNfWP/P1jbBRP9IiAm1KnTS3DaTPP2ESt2jwdrFwe
-         JLRY7zh+CCI8FW2rt504Bb8snjLg6Nv/CgpGgrzb1cy0gEnHABe3HZg/SUidN9DL3X
-         BI7hDF7fAdCWw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oCFz6-0007tQ-Od; Fri, 15 Jul 2022 09:43:37 +0200
-Date:   Fri, 15 Jul 2022 09:43:36 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Brian Masney <bmasney@redhat.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D0A90280056;
+        Fri, 15 Jul 2022 09:49:03 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     "Paul J . Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 8/8] PCI: qcom: Sort device-id table
-Message-ID: <YtEaqHT7NdXPhK+y@hovoldconsulting.com>
-References: <20220714071348.6792-1-johan+linaro@kernel.org>
- <20220714071348.6792-9-johan+linaro@kernel.org>
- <YtAny03L/RLk9nv6@xps13>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/6] OV9281 support
+Date:   Fri, 15 Jul 2022 09:48:52 +0200
+Message-Id: <20220715074858.875808-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YtAny03L/RLk9nv6@xps13>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 10:27:23AM -0400, Brian Masney wrote:
-> On Thu, Jul 14, 2022 at 09:13:48AM +0200, Johan Hovold wrote:
-> > Sort the device-id table entries alphabetically by compatible string to
-> > make it easier to find entries and add new ones.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-qcom.c | 12 ++++++------
-> >  1 file changed, 6 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > index 8dddb72f8647..fea921cca8fa 100644
-> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > @@ -1749,24 +1749,24 @@ static int qcom_pcie_remove(struct platform_device *pdev)
-> >  }
-> >  
-> >  static const struct of_device_id qcom_pcie_match[] = {
-> > +	{ .compatible = "qcom,pcie-apq8064", .data = &cfg_2_1_0 },
-> >  	{ .compatible = "qcom,pcie-apq8084", .data = &cfg_1_0_0 },
-> > +	{ .compatible = "qcom,pcie-ipq6018", .data = &cfg_2_9_0 },
-> >  	{ .compatible = "qcom,pcie-ipq8064", .data = &cfg_2_1_0 },
-> >  	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &cfg_2_1_0 },
-> > -	{ .compatible = "qcom,pcie-apq8064", .data = &cfg_2_1_0 },
-> > -	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
-> >  	{ .compatible = "qcom,pcie-ipq8074", .data = &cfg_2_3_3 },
-> >  	{ .compatible = "qcom,pcie-ipq4019", .data = &cfg_2_4_0 },
-> 
-> qcom,pcie-ipq4019 should be moved up above qcom,pcie-ipq6018.
+Hi,
 
-If we only had some sort of machine that could sort strings for us... ;)
-I'll rely on vim for this from now on.
+this is the 2nd series adding support for OV9281 which is quite similar to OV9282.
+This includes:
+* a small cleanup (Patch 1)
+* adding a new compatible (Patch 2 & 3)
+* adding support for regulators (Patch 4 & 5)
+* Fix reading ID register on VC MIPI OV9281 (Patch 6)
 
-Perhaps Bjorn H can fix that up when applying unless I'll be sending a
-v3 for some other reason. This series still depends on the MSI rework to
-be applied first.
+Thanks for anyone doing review and giving a feedback.
+Here are the changes in v2:
+* Added Krzysztof's a-b for Patch 2 & 4
+* Added Daniele's a-b for Patch 1 & 3
+* Removed additional error message in ov9282_power_off
+* Renamed function from ov9282_configure_regulators to ov9282_get_regulators
+* Cleaned-up reading ID registers
 
-Thanks for reviewing.
+The regulator support is based on the driver from Raspberry Pi downstream kernel
+[1], the ID register read fix as well. Please refer to [2] why this fix is
+required. I can confirm this is necessary by checking with a Logic analyzer on
+the i2c bus.
 
-Johan
+Best regards,
+Alexander
+
+[1] https://github.com/raspberrypi/linux/blob/rpi-5.15.y/drivers/media/i2c/ov9281.c
+[2] https://github.com/raspberrypi/linux/commit/58deee7c917e1c3c5e37987c3a89ad19d791f58a
+
+
+Alexander Stein (6):
+  media: i2c: ov9282: remove unused and unset i2c_client member
+  media: dt-bindings: media: Add compatible for ov9281
+  media: i2c: ov9282: Add ov9281 compatible
+  media: dt-bindings: media: ov9282: Add power supply properties
+  media: i2c: ov9282: Add regulator support
+  media: i2c: ov9282: Fix device detection
+
+ .../bindings/media/i2c/ovti,ov9282.yaml       | 14 ++++-
+ drivers/media/i2c/ov9282.c                    | 56 ++++++++++++++++++-
+ 2 files changed, 67 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
+
