@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B573575BB7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 08:44:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6E5F575BC2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 08:46:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231189AbiGOGmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 02:42:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46964 "EHLO
+        id S229881AbiGOGoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 02:44:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231342AbiGOGmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 02:42:20 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3CE2AC
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 23:42:19 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id a10so4687652ljj.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 23:42:19 -0700 (PDT)
+        with ESMTP id S229983AbiGOGoz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 02:44:55 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A85D53247D
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 23:44:53 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id y11so6344496lfs.6
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 23:44:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Uf6GWzYw1HwEhiM5v6Xj4T/p2Oc5BRtriA6/ink+6tw=;
-        b=x0OSq6vvQOacwZpFC9UDnHV+CShB5c+nvA7qN5zB2NqWQch1fY3NFXlHuc6w/BTgH1
-         nJYLLwCyuTc0VPWKIEv6enyMkQwDD94MZzT9JWkaI1Svq2MYhcZqCfSjQ4YbGubegZ1m
-         nvb+m7YqhyobGt48ciqacajaI/tN94hKVkodUpZF01cVvfb60JCeyI1k+KBzBY+QPf2e
-         gJVy+9cY4LBGPnGbAzcTkfTXZEYe0wCfEq1W3RJRftSNBMXdi5oF78h8qVzxFcEKIWJJ
-         2YKJ+y8/7ylSjPAwyW0pDoQDZ/lxvrM5JBZV9ZEP+OR2/Uibt/Oo1nYqhm+dQuOn20NC
-         u2SA==
+        bh=BFuyTYkBVntkAJpFDOkI8y4Hk3hNpnGc2UGb3LZbDEw=;
+        b=kfb0C6aOG8uLCkeGPJ7N8KhreB+pWGlZoCCOA+XdYGRzHO3piXPxPiSvHEqY1fHf7A
+         YEyDFcfuqO4sUOYfYwlcn46+VZn68TZ3I5jAMfns7RzO3XcqiEncV+GiHbSCBkfstC0M
+         WNNQZOjVDrSFJuX7iXO8A5M1762WuWDhihpPnMJ7CYqhkKAvLWw12b0QELoX7pOy5vww
+         KMPBjWSmgxQrNReTcTA4DxEl64UCvAeDmRiN8RixZl2Zif+a1bFlxNOnJaLze/hzvOLm
+         bUiiDlDTe+FrKs/kv3TrG7TEscIn+BsbLA91+cj0EXyYdPgZ8/ZdSFX0uaU73hAzml9M
+         hdQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Uf6GWzYw1HwEhiM5v6Xj4T/p2Oc5BRtriA6/ink+6tw=;
-        b=Wxh/vWqThJqjWcsu0ra/r0qqYnrTAH0VQY4am7BZLTDIeuBMUl85Els5QuK2nXyMfj
-         qIu5ch+72q0g8UhhiWumiQvKW98usoDFL5QhrmrTZQ0Aa2u02RE4zSVACJ7MwbfpWQk/
-         uEwh7oX9IvoKOfJClP2wmqZAYYpgyRWfNWnyjrtP4FBacxeWoCgGY7f0pNHp0UY62o8R
-         f2X5vE50VB8fjbn8YQ3iGQLisrGs+70ZRHwhNA4+0GEK4pU3iCNU7oGHOHxznNVfTXmn
-         +BaKrxvjpFoa/wCpRTOlSGgtH4xnTJDFSfsUK6q1o1FpPQQq46zC40tTQO+rMZghBWLP
-         vrZQ==
-X-Gm-Message-State: AJIora9IfDTeAyawTp1VRzQyhaiDaiYSL1H+Jaejo+6Jneu49qGH2jN6
-        WtgKo3EAwv5nQiAgHjFcBOAwXg==
-X-Google-Smtp-Source: AGRyM1uh2DyxY6QI7lAzOT7SM4BVDOfxjruegb5KhuF7CsCQmqMh2JE4R8JGyloUxcPy16Je+Vp7IQ==
-X-Received: by 2002:a2e:2284:0:b0:25d:490f:60d3 with SMTP id i126-20020a2e2284000000b0025d490f60d3mr6415545lji.486.1657867337685;
-        Thu, 14 Jul 2022 23:42:17 -0700 (PDT)
+        bh=BFuyTYkBVntkAJpFDOkI8y4Hk3hNpnGc2UGb3LZbDEw=;
+        b=oo/XfatXUwdiWLhGB0Hm1/KcccSJoQ9lzh3OZUQvChHVpW1nvLjTx91MFFfJuiPvCh
+         C3muXqgO5Zb8r8joLhtLzOG2snua4QGz0M3Lp4/yIZ+3hcpYRrG/jPJXYEKFrEQeN47A
+         Ga8zADgh5qqVgeb53gOo07ejMWiUQp2m4fQW2+1Rdo/WJ4Qnrod66q1/Y1IgP0YQmYGh
+         oDtMH9nf40VFfCGrqtbeVN4B/PdSOKVHxxb3vlP6fQV7Fv+8OM3Icrq7B9OG2KTXNV32
+         3l2v0kQ1JUuN+6dMdTN1l/6Y0pc4hCrqatOBAERXFgsB8t1FJNRVHXBN8RZkbaisQbYM
+         Dn+g==
+X-Gm-Message-State: AJIora8yGulYasxRFVy3s6n3VfbiqQkwjCxSHqtFP1GL5XcG5+XGvVXa
+        kC1tbXDc+hRe9PN8qHzyhHSexA==
+X-Google-Smtp-Source: AGRyM1tusjo7K/CrIx+FyfrDaTeHF+KvjM1lTvwa+TEaF28CXKZx96MGu9QItkPom1HWj9jfEkcnPQ==
+X-Received: by 2002:a05:6512:3d8c:b0:486:d81c:4365 with SMTP id k12-20020a0565123d8c00b00486d81c4365mr7479851lfv.194.1657867491964;
+        Thu, 14 Jul 2022 23:44:51 -0700 (PDT)
 Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id z24-20020a0565120c1800b00482e7f07dfcsm432374lfu.309.2022.07.14.23.42.16
+        by smtp.gmail.com with ESMTPSA id bg11-20020a05651c0b8b00b0025d72c1f646sm619244ljb.58.2022.07.14.23.44.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 23:42:17 -0700 (PDT)
-Message-ID: <eb993f8d-e72f-aba3-e7a4-1bbd2ac00f6c@linaro.org>
-Date:   Fri, 15 Jul 2022 08:42:15 +0200
+        Thu, 14 Jul 2022 23:44:51 -0700 (PDT)
+Message-ID: <65101d7c-a1c4-5569-922a-2f9750ce5589@linaro.org>
+Date:   Fri, 15 Jul 2022 08:44:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [RFC PATCH v2] ARM: dts: Add TS-7553-V2 support
+Subject: Re: [PATCH 3/6] ARM: dts: qcom: msm8974: Disable remoteprocs by
+ default
 Content-Language: en-US
-To:     kris@embeddedTS.com, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Mark Featherston <mark@embeddedTS.com>
-References: <20220713221233.8486-1-kris@embeddedTS.com>
- <55dccabb-41e9-dc45-f404-c333f5472e75@linaro.org>
- <1657833995.2979.1.camel@embeddedTS.com>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220712124421.3129206-1-stephan.gerhold@kernkonzept.com>
+ <20220712124421.3129206-4-stephan.gerhold@kernkonzept.com>
+ <bcb1e0ec-f0b7-ce45-a63f-7272c1f398c9@linaro.org>
+ <YtBoG1mAwOlylGP2@gerhold.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1657833995.2979.1.camel@embeddedTS.com>
+In-Reply-To: <YtBoG1mAwOlylGP2@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,152 +85,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 23:26, Kris Bahnsen wrote:
-> On Thu, 2022-07-14 at 10:34 +0200, Krzysztof Kozlowski wrote:
->> On 14/07/2022 00:12, Kris Bahnsen wrote:
->>> Add initial support of the i.MX6UL based TS-7553-V2 platform.
->>
->> Use subject prefix matching the subsystem. git log --oneline --
-> 
-> Can you please elaborate? The subject prefix is "ARM: dts:", I'm not
-> sure what is missing. Should it be something like
-> "ARM: dts: imx6ul-ts7553v2:" in this case?
-
-Run the command, you will see.
-
-> 
->>
+On 14/07/2022 21:01, Stephan Gerhold wrote:
+> On Thu, Jul 14, 2022 at 11:55:44AM +0200, Krzysztof Kozlowski wrote:
+>> On 12/07/2022 14:44, Stephan Gerhold wrote:
+>>> The remoteproc configuration in qcom-msm8974.dtsi is incomplete because
 >>>
->>> Signed-off-by: Kris Bahnsen <kris@embeddedTS.com>
->>> ---
->>>
->>> V1->V2: Implement changes recommended by Rob Herring and dtbs_check
->>>
->>> RFC only, not yet ready to merge, more testing needed and we're working on
->>> SPI LCD support for this platform.
->>>
->>> Specifically, I have a few questions on some paradigms and dtbs_check output:
->>>
->>> imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ... \
->>> 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], 'reg': [[12]]}}}} \
->>> is not of type 'array'
->>>   I'm not sure what this error is referring to as I've copied the example in
->>>   invensense,mpu6050.yaml almost verbatim. Is this an issue with our patch
->>>   or a false positive from dtbs_check?
->>
->> You would need to paste entire error, maybe with checker flags -v.
-> 
-> Here is the verbose output. I'm not familiar enough yet with the schema and its
-> validation code to catch what is wrong and would appreciate any insight.
-> 
-> Check:  arch/arm/boot/dts/imx6ul-ts7553v2.dtb
-> /work/arch/arm/boot/dts/imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ['i2c-gpio'], \
-> '#address-cells': [[1]], '#size-cells': [[0]], 'pinctrl-names': ['default'], \
-> 'pinctrl-0': [[58]], 'sda-gpios': [[11, 5, 6]], 'scl-gpios': [[11, 4, 6]], \
-> 'imu@68': {'compatible': ['invensense,mpu9250'], 'reg': [[104]], \
-> 'interrupt-parent': [[55]], 'interrupts': [[1, 1]], 'i2c-gate': {'#address-cells': [[1]], \
-> '#size-cells': [[0]], 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], \
-> 'reg': [[12]]}}}} is not of type 'array'
-> 
-> Failed validating 'type' in schema['patternProperties']['(?<!,nr)-gpios?$']:
->     {'items': {'additionalItems': {'$ref': '#/definitions/cell'},
->                'items': [{'oneOf': [{'maximum': 4294967295,
->                                      'minimum': 1,
->                                      'phandle': True,
->                                      'type': 'integer'},
->                                     {'const': 0, 'type': 'integer'}]}],
->                'minItems': 1,
->                'type': 'array'},
->      'minItems': 1,
->      'type': 'array'}
-> 
-> On instance['i2c-gpio']:
-
-Because you use "i2c-gpio", it seems... Fix it and check if error goes away.
-
->     {'#address-cells': [[1]],
->      '#size-cells': [[0]],
->      'compatible': ['i2c-gpio'],
->      'imu@68': {'compatible': ['invensense,mpu9250'],
->                 'i2c-gate': {'#address-cells': [[1]],
->                              '#size-cells': [[0]],
->                              'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'],
->                                                 'reg': [[12]]}},
->                 'interrupt-parent': [[55]],
->                 'interrupts': [[1, 1]],
->                 'reg': [[104]]},
->      'pinctrl-0': [[58]],
->      'pinctrl-names': ['default'],
->      'scl-gpios': [[11, 4, 6]],
->      'sda-gpios': [[11, 5, 6]]}
->         From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/gpio/gpio-consumer.yaml
-> 
->>
->>>
->>>
->>> imx6ul-ts7553v2.dtb: spi@2010000: spidev@1: 'compatible' is a required property
->>>   Many of our devices have open-ended I2C and SPI ports that may or may not be
->>>   used in customer applications. With "spidev" compatible string no longer
->>>   supported, there is no easy way we know of to leave a placeholder or
->>>   indication that the interface is present, usable, and either needs specific
->>>   support enabled in kernel or userspace access via /dev/. We would love
->>>   feedback on how to handle this situation when submitting platforms upstream.
->>
->> No empty devices, especially for spidev in DTS. There is really no
->> single need to add fake spidev... really, why? The customer cannot read
->> hardware manual and cannot see the header on the board? You can give him
->> a tutorial/howto guide, but don't embed dead or non-real code in DTS.
-> 
-> We ship devices as bootable out of the box. A number of our customers end up
-> attaching SPI devices that do not have existing kernel drivers and talk to them
-> from userspace without having to touch a kernel build. The loss of spidev
-> directly has increased support requests we receive on the matter.
-
-Unfortunately this is an argument like - our customers always wanted
-dead code in DTS, so we embed here such. Feel free to add a comment
-about placeholder etc, but empty node not. Another issue is that empty
-node without compatible also does not help your customers...
-
-> 
-(...)
-
-> 
->>
+>>> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+>>> index 814ad0b46232..35246bd02132 100644
+>>> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
+>>> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+>>> @@ -1172,6 +1172,8 @@ remoteproc_mss: remoteproc@fc880000 {
+>>>  			qcom,smem-states = <&modem_smp2p_out 0>;
+>>>  			qcom,smem-state-names = "stop";
+>>>  
+>>> +			status = "disabled";
 >>> +
->>> +	gpio-keys {
->>> +		compatible = "gpio-keys";
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&pinctrl_gpio_keys>;
+>>>  			mba {
+>>>  				memory-region = <&mba_region>;
+>>>  			};
+>>> @@ -1639,6 +1641,8 @@ remoteproc_adsp: remoteproc@fe200000 {
+>>>  			qcom,smem-states = <&adsp_smp2p_out 0>;
+>>>  			qcom,smem-state-names = "stop";
+>>>  
+>>> +			status = "disabled";
 >>> +
->>> +		left {
+>>>  			smd-edge {
+>>>  				interrupts = <GIC_SPI 156 IRQ_TYPE_EDGE_RISING>;
+>>>  
+>>> diff --git a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+>>> index 58cb2ce1e4df..8a6b8e4de887 100644
+>>> --- a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+>>> +++ b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+>>> @@ -147,10 +147,12 @@ wcnss {
+>>>  };
+>>>  
+>>>  &remoteproc_adsp {
+>>> +	status = "okay";
 >>
->> This fails on dtbs_check. Generic node names, so "key-0" or "key-left"
-> 
-> For reference, as of commit b047602d579b4fb028128a525f056bbdc890e7f0, there
-> are no errors/warnings from dtbs_check or checkpatch.pl regarding node
-> names being "key-..." and the example in gpio-keys.yaml uses "up" "left" etc.
-
-I know, I changed it. It's in linux-next.
-
-> 
-> I've also changed the node name to just "keys" per devicetree specifications
-> doc.
-> 
+>> These go to the end of properties.
 >>
->>> +	i2c_gpio: i2c-gpio {
->>
->> Generic node name, so "i2c"
 > 
-> Understood.
-> 
-> Are there any guidelines/restrictions on label use/schema 
-> throughout a dts file? The devicetree-specification document only defines
-> valid characters for a label and I've been unable to find any other docs.
+> All the other nodes in these two files have the 'status = "okay"' at the
+> beginning (just like most of the Qualcomm boards actually). I know there
+> have been some discussion to change this, but until existing boards have
+> been changed I would rather not introduce a wild mix of both approaches
+> (within the same file at least).
 
-For label - use underscores and that's it. Only the node names should be
-generic.
-
-> 
+I would say less code to fix later, but OK.
 
 Best regards,
 Krzysztof
