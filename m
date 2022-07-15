@@ -2,95 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5B4F575FC0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 13:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49606575FDD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 13:17:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232008AbiGOLIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 07:08:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60720 "EHLO
+        id S230198AbiGOLRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 07:17:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229753AbiGOLIX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 07:08:23 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C55868BE
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 04:08:22 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id v16so6253538wrd.13
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 04:08:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=OmAVkQqBTTkr9luYSoZNqmHxg6zKrdYzcTAh39XB80E=;
-        b=WHo2FU3vtMGV3aElDTXi+mGo+/8MM2a56xn0TGixZDPayyPzlYagMDJb7abO5NWLzp
-         V6QBe6cHD2iC/JjNFxLPxxOkhjL2OX/IQxZ9AxnfnJ2g07EfV1gs1EbdNy/qtP7P/2iQ
-         Fze5KHOR30JKo0qsuODX1AcxJOdEZhyqW4oE0BMVyiOfKB52QWepFHScSFaY8BWFlIsZ
-         YlSE3dUxuRILm9qIcuyDMx6m3f2l15QkleH49hBbN5FUtnO6/rYYj1LikLf/fUWV4as4
-         ctMSdWmGHme0FScQiEXP8K97X/D6Ru8dB84i8MuyaqKCuSuKuUqG7pBlCOVwR9dMXeOZ
-         LYbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OmAVkQqBTTkr9luYSoZNqmHxg6zKrdYzcTAh39XB80E=;
-        b=YO99z5u25ngeAIjAmIbT+lUXHoGw0W+S6+vmYm2nsZ8zQk+rMYh5AAxZ6RahEC4kJZ
-         A9FUv9nwWL2sypljYSMa4zMcNMFjvCczjwQOGSmGTlLqPPsXIV4ZP3WnzZPouujFnLA5
-         kXyNU2zzfpCbliZfo/W6RkfAJsntRpf7ESRL/JJnmhVFis0oO1cVN3KTQWf5lWJu56Cg
-         7SRTq5lwIp77bSlMdroV07bOfOP7QwS2tLkgMt9jp4XBqac1iDrCHtXWVoHh0VenAj4f
-         8K5QGwDCtSzgLYPf5s8L8LVA66AVlZzU0K46n0TRn/5e9QnJJYJnePq7dpzEzKgSae39
-         vekw==
-X-Gm-Message-State: AJIora8+4IP99RESmEVqpc6in0Oq8vf/fPcoM081341zB4Z+xlT+pZ8S
-        Ssi0LCZW82TbRbU9QEarQs7oHQ==
-X-Google-Smtp-Source: AGRyM1sEjpj7feotX5UfZAdeUwTZLkodeYC6VvTR5tSQyXV/Uekt9N0ER1lQi7rDu073X4wM9rjEKg==
-X-Received: by 2002:a5d:59ac:0:b0:21d:944a:8a0e with SMTP id p12-20020a5d59ac000000b0021d944a8a0emr12137645wrr.61.1657883300766;
-        Fri, 15 Jul 2022 04:08:20 -0700 (PDT)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id m18-20020a5d56d2000000b0021a34023ca3sm3521355wrw.62.2022.07.15.04.08.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jul 2022 04:08:20 -0700 (PDT)
-Date:   Fri, 15 Jul 2022 12:08:18 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Lee Jones <lee@kernel.org>
-Cc:     lee.jones@linaro.org, linux-kernel@vger.kernel.org,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 6/8] dt-bindings: backlight: Update Lee Jones' email
- address
-Message-ID: <20220715110818.2hxept5xuaxkpcvw@maple.lan>
-References: <20220714112533.539910-1-lee@kernel.org>
- <20220714112533.539910-7-lee@kernel.org>
+        with ESMTP id S229671AbiGOLRD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 07:17:03 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8073787234;
+        Fri, 15 Jul 2022 04:17:02 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2405:201:10:3153:7fbd:8a7b:29b6:89fb])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: shreeya)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5AFB86601A54;
+        Fri, 15 Jul 2022 12:16:57 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1657883821;
+        bh=He0gPNfWNP135C8R2wJfjaqIpobFYUr12zyypMg6Ky4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dFnd51TqZWhF0LfzULh+HT3OHRhPztw9i5S1MCMyIVP4qXhyn7RtCxNsDhsVKPhOM
+         mllh34ctq51bMZ979ZclSy6IutzabkLMBlXUIatf+YKu3vHKiS3lAlIkUqVNpvsEsq
+         emmX03BGZ8id+SV3UvrwVOtZkyiBE/7hkmQqu73daArDSe9WezqVwGNce7Cf6UAv/3
+         wSpRC5WahiT57U+hTmmwQHceaM40TeDS2JBXloamYepKPeEMr2ZNeLXkQK1U3TPwcV
+         LF1928VYu5enSNoxtMjqECrtLyZEdm++xxdZooBVh7d8k8ARKDojW0da+O+4kWv6/T
+         Kc0BqstzVqkQg==
+From:   Shreeya Patel <shreeya.patel@collabora.com>
+To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        dmitry.osipenko@collabora.com, Zhigang.Shi@liteon.com
+Cc:     krisman@collabora.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, alvaro.soliverez@collabora.com,
+        andy.shevchenko@gmail.com,
+        Shreeya Patel <shreeya.patel@collabora.com>
+Subject: [PATCH v9 0/2] Add LTRF216A Driver
+Date:   Fri, 15 Jul 2022 16:46:24 +0530
+Message-Id: <20220715111626.1066513-1-shreeya.patel@collabora.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220714112533.539910-7-lee@kernel.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 14, 2022 at 12:25:31PM +0100, Lee Jones wrote:
-> Going forward, I'll be using my kernel.org for upstream work.
->
-> Cc: Daniel Thompson <daniel.thompson@linaro.org>
+This patchset adds support for ltrf216a Ambient Light Sensor
+and documents the DT bindings for the same.
 
-Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+Changes in v9
+  - Add LTRF216A_MAIN_STATUS register in volatile function.
+  - Update the datasheet link.
+
+Changes in v8
+  - Add caching mechanism to restore register state after h/w resume.
+  - Add callback functions and disable locking in regmap config.
+  - Update mutex comment as per it's current scope in the driver.
+  - Add Shreeya as author of the driver.
+  - Make some minor cleanups.
+
+Changes in v7
+  - Add regmap support.
+  - Fix runtime power management implementation.
+  - Fix the ordering of devm and non-devm functions.
+  - Use DEFINE_RUNTIME_DEV_PM_OPS macro
+  - Fix the error reported by kernel test robot for bindings.
+
+Changes in v6
+  - Fix some errors reported by kernel test robot.
+  - Add protocol details for the datasheet link.
+  - Remove useless assignments.
+  - Add unit details for read data delay macro.
+  - Use pm_sleep_ptr().
+
+Changes in v5
+  - Add power management support.
+  - Add reset functionality.
+  - Use readx_poll_timeout() to get data.
+  - Cleanup some of the redundant code.
+  - Update int_time_fac after I2C write is successful.
+  - Rename mutex to lock.
+  - Use Reverse Xmas tree pattern for all variable definitions.
+  - Improve error handling messages and add error codes.
+  - Add one more MODULE_AUTHOR.
+  - Remove cleardata which was reading data for infrared light.
+  - Remove patch for deprecated vendor prefix [PATCH v4 3/3].
+  - Remove deprecated string from DT binding document.
+
+Changes in v4
+  - Add more descriptive comment for mutex lock
+  - Fix mutex locking in read_raw()
+  - Use i2c_smbus_read_i2c_block_data()
+
+Changes in v3
+  - Use u16 instead of u8 for int_time_fac
+  - Reorder headers in ltrf216a.c file
+  - Remove int_time_mapping table and use int_time_available
+  - Fix indentation in the bindings file.
+Changes in v2
+  - Add support for 25ms and 50ms integration time.
+  - Rename some of the macros as per names given in datasheet
+  - Add a comment for the mutex lock
+  - Use read_avail callback instead of attributes and set the
+    appropriate _available bit.
+  - Use FIELD_PREP() at appropriate places.
+  - Add a constant lookup table for integration time and reg val
+  - Use BIT() macro for magic numbers.
+  - Improve error handling at few places.
+  - Use get_unaligned_le24() and div_u64()
+  - Use probe_new() callback and devm functions
+  - Return errors in probe using dev_err_probe()
+  - Use DEFINE_SIMPLE_DEV_PM_OPS()
+  - Correct the formula for lux to use 0.45 instead of 0.8
+  - Add interrupt and power supply property in DT bindings
+  - Add vendor prefix name as per the alphabetical order.
 
 
-> Cc: Jingoo Han <jingoohan1@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-leds@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> Signed-off-by: Lee Jones <lee@kernel.org>
+Shreeya Patel (2):
+  dt-bindings: Document ltrf216a light sensor bindings
+  iio: light: Add support for ltrf216a sensor
 
+ .../bindings/iio/light/liteon,ltrf216a.yaml   |  49 ++
+ drivers/iio/light/Kconfig                     |  11 +
+ drivers/iio/light/Makefile                    |   1 +
+ drivers/iio/light/ltrf216a.c                  | 523 ++++++++++++++++++
+ 4 files changed, 584 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/liteon,ltrf216a.yaml
+ create mode 100644 drivers/iio/light/ltrf216a.c
 
-Daniel.
+-- 
+2.30.2
+
