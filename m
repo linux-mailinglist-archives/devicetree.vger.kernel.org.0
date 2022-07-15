@@ -2,105 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09920575E76
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 921E0575E88
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:30:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232072AbiGOJ0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 05:26:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44256 "EHLO
+        id S231317AbiGOJ2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 05:28:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231928AbiGOJ0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 05:26:33 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 031E17AB04
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:26:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1657877192;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Cyx4Y/rgs0Wa/WcmYfTIRodZYO11O2cxtE3O0yBB4l4=;
-        b=S+dsOaSV/G77ylEvGsalSXpeJaeIh/fPcBHn6jLC8yRjL1OmC6eJoZLZ0eyBBczHze8Cmi
-        iZGs1jIwVHuU4YHTMzb8OJn2kF3Z6CqBaBSXHWwdkW538txlfbpUeGlQHDMNwRQcsTX1JR
-        Dx4vz5z2PZ19lWnvKucsUmyhdF0pFuE=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-487-T3nckQ0rPCiisKNPgosktQ-1; Fri, 15 Jul 2022 05:26:28 -0400
-X-MC-Unique: T3nckQ0rPCiisKNPgosktQ-1
-Received: by mail-qv1-f72.google.com with SMTP id r12-20020ad4404c000000b00472ffb530e2so2755492qvp.18
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:26:28 -0700 (PDT)
+        with ESMTP id S229968AbiGOJ2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 05:28:08 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 736167B7AB
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:28:06 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 19so5086361ljz.4
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:28:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7lAKt2pLXSIw8Y78aDglwxmws3OifCrCJDIyJl/7ydQ=;
+        b=oMw5CMKaEe1o0BsrWvjAIjCpfEYcs+CRCqS2mWgW9bf2tWvsMjhXHCWCF2RBm9jAXJ
+         zrBwT9R0bJF6NZgKBseIPdhusgIkJGJZQMp13ZyMWDmMb/Po/VBaC+PVC/kzTvITCTh5
+         byGOd0DLiNG/HsO02YzZ5kag3cvPGyEl/XNYc24huSzsA1Uiy1WYIs7cHbLw3Ork5chp
+         qebxv+3HID7kY+VFDo6Ql7MAZNmZxqfcowZOtXSV2PSKAnthHnHSgXvyWDuwuKmGvxjW
+         2srdah9kti2iXNqyMZ72wOxNapfd8hxwG8T/UBOaWTRTnTU4gShq5jEWxeMpZooMkvL2
+         eI4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Cyx4Y/rgs0Wa/WcmYfTIRodZYO11O2cxtE3O0yBB4l4=;
-        b=j79j5hWj/nBL2205oWB7Vq8kBD7rv5o665N9AJtex1gOQMgFgqZK70BUbuXt/xQAfz
-         H6umEJDpKz96ZifHB7VPB4/4dngDlsPpfZnxtGpXjmpc7WN42tN/SKfg2lE1S+vCIaJT
-         JtZx+a9b23H1LoQkZYuhWGrEIueyRyZdCA9ARezFS6hxb2+Q1JN6paKWhk8YSpmq5IPi
-         CGwu4/N2RI1UgStKwYB649OlJg7OfRVPPRVgPoNo4Ly2stAVA8apiIwBZ3NzgFzMShYd
-         db9IbWly4lzAQn1GNncFDW8qeqK9Irm+OyTPlLsH+nwbQpz5Ovty6RQNfie/S2XsqafZ
-         EuAg==
-X-Gm-Message-State: AJIora8yinYSy8ZA+xwAt3wfuRD43kJfRw8Dkvd3M/pnyBpZ7FsC8uIl
-        3fTeuCUPJJWsZ9kH7/pZNXYNjoZfQCq/UDdp8TprUuyN5DC2BB0ICxOBeT92u7tvyvPPcYUxgBt
-        v3tnzBwD5f1cdveb1q8VHXQ==
-X-Received: by 2002:a05:620a:462a:b0:6b2:585c:16a6 with SMTP id br42-20020a05620a462a00b006b2585c16a6mr8850428qkb.631.1657877187932;
-        Fri, 15 Jul 2022 02:26:27 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1tb4kWhRfH7kMvJFXklN2hfIO1eVHUU+Mc1AZkI9TMXlrcPA8c3fAm5ySZDU+7KYvH9uBXnOw==
-X-Received: by 2002:a05:620a:462a:b0:6b2:585c:16a6 with SMTP id br42-20020a05620a462a00b006b2585c16a6mr8850422qkb.631.1657877187731;
-        Fri, 15 Jul 2022 02:26:27 -0700 (PDT)
-Received: from xps13 (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
-        by smtp.gmail.com with ESMTPSA id g14-20020a05620a40ce00b006af3bc9c6bbsm4297202qko.52.2022.07.15.02.26.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jul 2022 02:26:27 -0700 (PDT)
-Date:   Fri, 15 Jul 2022 05:26:26 -0400
-From:   Brian Masney <bmasney@redhat.com>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7lAKt2pLXSIw8Y78aDglwxmws3OifCrCJDIyJl/7ydQ=;
+        b=yN06VhH9VGdNNL1iCWQChDNHGSTLBJy09GJHBQVlZozgiCeEx6dY75Eb6GKJ7jpGuV
+         uSvp/FLlA27fvkCeCYiwt7rglKDeN93pTI6Mha+8ZQb9VHc9oCa7KLfnmvg8izP4jfOy
+         nFVMKn94ffPdUhMjX641DFHZExvcoRwC1mocXnEgZnid4nd0iVNK7kcb/GO3FfyoSng3
+         n4jVuQ8qgdDJKz3DXPG2SDs7xW9+DfbH3fNRBQ4QYbW8aB40JYOlmP8I53utxmnWshev
+         DD5HJqnu0OooO5m9s6MDKUOaxDvet8my4kgaem541cud+wM+MpYcaLRlZXXmbc0wa+zd
+         91eA==
+X-Gm-Message-State: AJIora+Qk4m91wWf65IVO413KvUaVyyFT04TCkgcyUFzfp2Mb684mQh8
+        7NaONhRrwjlKdyZ17dkvEpE/Dg==
+X-Google-Smtp-Source: AGRyM1uRqvzl9P25ieuUjyyi2ChznSaWsPC6k4S2UrcNBoBdi+ue0XgO6K1+kzq3688TpGu6J9w29Q==
+X-Received: by 2002:a2e:8852:0:b0:25d:4ab5:593b with SMTP id z18-20020a2e8852000000b0025d4ab5593bmr6129325ljj.261.1657877284869;
+        Fri, 15 Jul 2022 02:28:04 -0700 (PDT)
+Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
+        by smtp.gmail.com with ESMTPSA id f8-20020a056512360800b004870ef4a0c7sm817849lfs.17.2022.07.15.02.28.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Jul 2022 02:28:04 -0700 (PDT)
+Message-ID: <46f8d979-3d66-feac-95e9-a0fe73d32ef6@linaro.org>
+Date:   Fri, 15 Jul 2022 11:28:01 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v3 20/30] dt-bindings: phy: qcom,qmp-usb: add missing
+ child node schema
+Content-Language: en-US
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 8/8] PCI: qcom: Sort device-id table
-Message-ID: <YtEywsPAvJGQLAUu@xps13>
-References: <20220714071348.6792-1-johan+linaro@kernel.org>
- <20220714071348.6792-9-johan+linaro@kernel.org>
- <YtAny03L/RLk9nv6@xps13>
- <YtEaqHT7NdXPhK+y@hovoldconsulting.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YtEaqHT7NdXPhK+y@hovoldconsulting.com>
-User-Agent: Mutt/2.2.6 (2022-06-05)
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220714124333.27643-1-johan+linaro@kernel.org>
+ <20220714124333.27643-21-johan+linaro@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220714124333.27643-21-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 09:43:36AM +0200, Johan Hovold wrote:
-> If we only had some sort of machine that could sort strings for us... ;)
-> I'll rely on vim for this from now on.
+On 14/07/2022 14:43, Johan Hovold wrote:
+> Add the missing the description of the PHY-provider child node which was
+> ignored when converting to DT schema.
 > 
-> Perhaps Bjorn H can fix that up when applying unless I'll be sending a
-> v3 for some other reason. This series still depends on the MSI rework to
-> be applied first.
-> 
-> Thanks for reviewing.
+> Fixes: ccf51c1cedfd ("dt-bindings: phy: qcom,qmp: Convert QMP PHY bindings to yaml")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-OK, sounds good... once it's fixed, my R-b can be added:
+I think you missed my tag here.
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Best regards,
+Krzysztof
