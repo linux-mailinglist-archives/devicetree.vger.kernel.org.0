@@ -2,164 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C534B57665A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 19:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB53576668
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 19:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229599AbiGORrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 13:47:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48818 "EHLO
+        id S229803AbiGORy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 13:54:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiGORro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 13:47:44 -0400
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5732F3A5;
-        Fri, 15 Jul 2022 10:47:43 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-31c89111f23so54414037b3.0;
-        Fri, 15 Jul 2022 10:47:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QLat8Q/2ROY2Kt2jHQc4a4l6+yIDdGjl086waEjxxKE=;
-        b=XL/J2hlgksL1wbvaFMJVRCZJZjdsoBfyLKhywFoDx/Kv0npGAy3ykA3+yOdAaPLAYW
-         dxLNfyQMUnTPsNlZzMw4C3QN8iBPLll5/kWGwkAqhh2Noy7nMESMVDNj2+SEi+JgNNAb
-         jRUK5w6izhfqlkcvZihN4JK2tFiwAVhfhQ3FFPi7WSGla9uI4RoYKckBQoDWdmfKTAbR
-         j84gf1h14OeVOllj9DJKod6Y2Q5/Y7AxTxJMmcCtH+eec9dqwou2nJEQQ41QienVe73z
-         X3gM1O6D5YAZkDSv30PHPEgU1H/jrAF7C6g8NrECz2pP7dmqFuUj53ZnxInH5suRLBxG
-         cuCg==
-X-Gm-Message-State: AJIora+zweu0sLM5XIG5fLKU9kJR1EVkZQ3Akos8Xvp6bsMAI3TA4HyS
-        kIcNxELkNelNUqr4n57j36ysrhghj0+IUTbVEaB3Ze7A
-X-Google-Smtp-Source: AGRyM1u2kEEEFmdEOQxahhMYKJGY6tuAPHAaxtme8gcImgb36PXMz5xzib4wQEKqNyLKPEXkYJZobj+k727mYZWXYTc=
-X-Received: by 2002:a81:17d0:0:b0:31c:c5e2:fc1e with SMTP id
- 199-20020a8117d0000000b0031cc5e2fc1emr17548698ywx.196.1657907262218; Fri, 15
- Jul 2022 10:47:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220712121832.3659769-1-martin.kepplinger@puri.sm>
-In-Reply-To: <20220712121832.3659769-1-martin.kepplinger@puri.sm>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Fri, 15 Jul 2022 19:47:31 +0200
-Message-ID: <CAJZ5v0g_2Lwpdks6+NSuemxSKvdTbM0Rhot9vAy=psEiCn+MMQ@mail.gmail.com>
-Subject: Re: [PATCH v2] power: domain: handle power supplies that need interrupts
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Kevin Hilman <khilman@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+        with ESMTP id S229756AbiGORyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 13:54:54 -0400
+Received: from smtp-out3.electric.net (smtp-out3.electric.net [208.70.128.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC5B54CB5;
+        Fri, 15 Jul 2022 10:54:52 -0700 (PDT)
+Received: from 1oCPWT-000BsI-W3 by out3a.electric.net with emc1-ok (Exim 4.94.2)
+        (envelope-from <kris@embeddedTS.com>)
+        id 1oCPWb-000C2b-Uv; Fri, 15 Jul 2022 10:54:49 -0700
+Received: by emcmailer; Fri, 15 Jul 2022 10:54:49 -0700
+Received: from [66.210.251.27] (helo=mail.embeddedts.com)
+        by out3a.electric.net with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <kris@embeddedTS.com>)
+        id 1oCPWT-000BsI-W3; Fri, 15 Jul 2022 10:54:41 -0700
+Received: from tsdebian (97-120-89-198.ptld.qwest.net [97.120.89.198])
+        by mail.embeddedts.com (Postfix) with ESMTPSA id E09C21C0A;
+        Fri, 15 Jul 2022 10:54:40 -0700 (MST)
+Message-ID: <1657907657.2829.1.camel@embeddedTS.com>
+Subject: Re: [RFC PATCH v2] ARM: dts: Add TS-7553-V2 support
+From:   Kris Bahnsen <kris@embeddedTS.com>
+Reply-To: kris@embeddedTS.com
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, kernel@puri.sm,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>, aford173@gmail.com,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Mark Featherston <mark@embeddedTS.com>
+Date:   Fri, 15 Jul 2022 10:54:17 -0700
+In-Reply-To: <eb993f8d-e72f-aba3-e7a4-1bbd2ac00f6c@linaro.org>
+References: <20220713221233.8486-1-kris@embeddedTS.com>
+         <55dccabb-41e9-dc45-f404-c333f5472e75@linaro.org>
+         <1657833995.2979.1.camel@embeddedTS.com>
+         <eb993f8d-e72f-aba3-e7a4-1bbd2ac00f6c@linaro.org>
+Organization: embeddedTS
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Outbound-IP: 66.210.251.27
+X-Env-From: kris@embeddedTS.com
+X-Proto: esmtps
+X-Revdns: wsip-66-210-251-27.ph.ph.cox.net
+X-HELO: mail.embeddedts.com
+X-TLS:  TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256
+X-Authenticated_ID: 
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=embeddedTS.com; s=mailanyone20220121;h=Mime-Version:References:In-Reply-To:Date:To:From:Message-ID; bh=dxvJjUrX64Cs5hkRtbhBYZ+CBeeqYYUwDDG4GscCgRg=;b=RCNRIPqG09r6kH74N7as77/3G7UZC/jdj5YvhraTRW4wujMa1l3NoCN2JRBjhbjL5PYW+69kXwBTzLYLRUeBob/vE+nszuiHZWnjSpRt0RHh/stQGD/6yo5O1NsCs3apgzZd5IvSOAnhuOgEnCNENPR9hudArlDpMtzkzTNBE8hW0ItYHd8Jsyk9mzToxeftTRmpxiXX0keBzL++UcnZKYmlSKnQipOlWRK9DoMo6gTHsKNqosF/3MOGWpRaWZXcx9l9/oMukJt2QdES/5ROglhoD6nj0FBnQNZf8RjjnTHM/82vGjSklGem2ypr40yBDtmbCTRv1ulIjGi4vdq5OQ==;
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 26810492
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 2:19 PM Martin Kepplinger
-<martin.kepplinger@puri.sm> wrote:
->
-> If the power-domains' power-supply node (regulator) needs
-> interrupts to work, the current setup with noirq callbacks cannot
-> work; for example a pmic regulator on i2c, when suspending, usually already
-> times out during suspend_noirq:
->
-> [   41.024193] buck4: failed to disable: -ETIMEDOUT
->
-> So fix system suspend and resume for these power-domains by using the
-> "outer" suspend/resume callbacks instead. Tested on the imx8mq-librem5
-> board, but by looking at the dts, this will fix imx8mq-evk and possibly
-> other boards too.
->
-> Possibly one can find more changes than suspend/resume for this case. They
-> can be added later when testing them.
->
-> Initially system suspend problems had been discussed at
-> https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
-> which led to discussing the pmic that contains the regulators which
-> serve as power-domain power-supplies:
-> https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
+On Fri, 2022-07-15 at 08:42 +0200, Krzysztof Kozlowski wrote:
+> On 14/07/2022 23:26, Kris Bahnsen wrote:
+> > On Thu, 2022-07-14 at 10:34 +0200, Krzysztof Kozlowski wrote:
+> > > On 14/07/2022 00:12, Kris Bahnsen wrote:
+> > > > Add initial support of the i.MX6UL based TS-7553-V2 platform.
+> > > 
+> > > Use subject prefix matching the subsystem. git log --oneline --
+> > 
+> > Can you please elaborate? The subject prefix is "ARM: dts:", I'm not
+> > sure what is missing. Should it be something like
+> > "ARM: dts: imx6ul-ts7553v2:" in this case?
+> 
+> Run the command, you will see.
 
-I need Ulf to look at this.  Ulf?
+I had previously run the command and the output of it did not make sense in
+the context of your prior comment. Forgive my ignorance, but I'd like to
+understand specifically what you mean here so we can do the correct thing
+in the future.
 
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->
-> revision history
-> ----------------
-> v2: (thank you Krzysztof)
-> * rewrite: find possible regulators' interrupts property in parents
->   instead of inventing a new property.
->
-> v1: (initial idea)
-> https://lore.kernel.org/linux-arm-kernel/20220711094549.3445566-1-martin.kepplinger@puri.sm/T/#t
->
->
->  drivers/base/power/domain.c | 26 ++++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
->
-> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
-> index 3e86772d5fac..ca3e3500939d 100644
-> --- a/drivers/base/power/domain.c
-> +++ b/drivers/base/power/domain.c
-> @@ -2298,6 +2298,28 @@ static bool genpd_present(const struct generic_pm_domain *genpd)
->         return ret;
->  }
->
-> +/**
-> + * of_genpd_get_power_supply_irq() - Adjust if power-supply needs interrupts
-> + * @genpd: Pointer to PM domain associated with the PM domain provider.
-> + */
-> +static void of_genpd_get_power_supply_irq(struct generic_pm_domain *pd)
-> +{
-> +       struct device_node *dn;
-> +
-> +       dn = of_parse_phandle(pd->dev.of_node, "power-supply", 0);
-> +       if (!dn)
-> +               return;
-> +
-> +       while ((dn = of_get_next_parent(dn))) {
-> +               if (of_get_property(dn, "interrupts", NULL)) {
-> +                       pd->domain.ops.suspend = genpd_suspend_noirq;
-> +                       pd->domain.ops.resume = genpd_resume_noirq;
-> +                       pd->domain.ops.suspend_noirq = NULL;
-> +                       pd->domain.ops.resume_noirq = NULL;
-> +               }
-> +       }
-> +}
-> +
->  /**
->   * of_genpd_add_provider_simple() - Register a simple PM domain provider
->   * @np: Device node pointer associated with the PM domain provider.
-> @@ -2343,6 +2365,8 @@ int of_genpd_add_provider_simple(struct device_node *np,
->         genpd->provider = &np->fwnode;
->         genpd->has_provider = true;
->
-> +       of_genpd_get_power_supply_irq(genpd);
-> +
->         return 0;
->  }
->  EXPORT_SYMBOL_GPL(of_genpd_add_provider_simple);
-> @@ -2394,6 +2418,8 @@ int of_genpd_add_provider_onecell(struct device_node *np,
->
->                 genpd->provider = &np->fwnode;
->                 genpd->has_provider = true;
-> +
-> +               of_genpd_get_power_supply_irq(genpd);
->         }
->
->         ret = genpd_add_provider(np, data->xlate, data);
-> --
-> 2.30.2
->
+$ git log --oneline -- | head -n 20
+d14ee2d5a506 ARM: dts: Add TS-7553-V2 support
+b047602d579b Merge tag 'trace-v5.19-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/rostedt/linux-trace
+1e1fb420fe68 samples: Use KSYM_NAME_LEN for kprobes
+e3655dfa5805 fprobe/samples: Make sample_probe static
+0bb7e14c8e15 blk-iocost: tracing: atomic64_read(&ioc->vtime_rate) is assigned an extra semicolon
+0a6d7d45414a ftrace: Be more specific about arch impact when function tracer is enabled
+495fcec8648c tracing: Fix sleeping while atomic in kdb ftdump
+7edc3945bdce tracing/histograms: Fix memory leak problem
+72a8e05d4f66 Merge tag 'ovl-fixes-5.19-rc7' of git://git.kernel.org/pub/scm/linux/kernel/git/mszeredi/vfs
+29851567d1aa Merge tag 'drm-fixes-2022-07-12' of git://anongit.freedesktop.org/drm/drm
+0d8ba24e72b6 Merge tag 'x86_bugs_retbleed' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+c27c753ea6fd x86/static_call: Serialize __static_call_fixup() properly
+ce114c866860 Merge tag 'x86_bugs_retbleed' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+3590b44b9434 Merge tag 'drm-misc-fixes-2022-07-07-1' of ssh://git.freedesktop.org/git/drm/drm-misc into drm-fixes
+42e0a87233e3 Merge tag 'drm-intel-fixes-2022-07-07' of git://anongit.freedesktop.org/drm/drm-intel into drm-fixes
+7de96365878f Merge tag 'amd-drm-fixes-5.19-2022-07-06' of https://gitlab.freedesktop.org/agd5f/linux into drm-fixes
+5a29232d870d Merge tag 'for-5.19-rc6-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+23458ac91dc8 Merge tags 'free-mq_sysctls-for-v5.19' and 'ptrace_unfreeze_fix-for-v5.19' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+8e59a6a7a4fa Merge tag 'mm-hotfixes-stable-2022-07-11' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+b5374396e5de Merge tag 'modules-5.19-rc7' of git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux
+
+> 
+> > 
+> > > 
+> > > > 
+> > > > Signed-off-by: Kris Bahnsen <kris@embeddedTS.com>
+> > > > ---
+> > > > 
+> > > > V1->V2: Implement changes recommended by Rob Herring and dtbs_check
+> > > > 
+> > > > RFC only, not yet ready to merge, more testing needed and we're working on
+> > > > SPI LCD support for this platform.
+> > > > 
+> > > > Specifically, I have a few questions on some paradigms and dtbs_check output:
+> > > > 
+> > > > imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ... \
+> > > > 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], 'reg': [[12]]}}}} \
+> > > > is not of type 'array'
+> > > >   I'm not sure what this error is referring to as I've copied the example in
+> > > >   invensense,mpu6050.yaml almost verbatim. Is this an issue with our patch
+> > > >   or a false positive from dtbs_check?
+> > > 
+> > > You would need to paste entire error, maybe with checker flags -v.
+> > 
+> > Here is the verbose output. I'm not familiar enough yet with the schema and its
+> > validation code to catch what is wrong and would appreciate any insight.
+> > 
+> > Check:  arch/arm/boot/dts/imx6ul-ts7553v2.dtb
+> > /work/arch/arm/boot/dts/imx6ul-ts7553v2.dtb: /: i2c-gpio: {'compatible': ['i2c-gpio'], \
+> > '#address-cells': [[1]], '#size-cells': [[0]], 'pinctrl-names': ['default'], \
+> > 'pinctrl-0': [[58]], 'sda-gpios': [[11, 5, 6]], 'scl-gpios': [[11, 4, 6]], \
+> > 'imu@68': {'compatible': ['invensense,mpu9250'], 'reg': [[104]], \
+> > 'interrupt-parent': [[55]], 'interrupts': [[1, 1]], 'i2c-gate': {'#address-cells': [[1]], \
+> > '#size-cells': [[0]], 'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'], \
+> > 'reg': [[12]]}}}} is not of type 'array'
+> > 
+> > Failed validating 'type' in schema['patternProperties']['(?<!,nr)-gpios?$']:
+> >     {'items': {'additionalItems': {'$ref': '#/definitions/cell'},
+> >                'items': [{'oneOf': [{'maximum': 4294967295,
+> >                                      'minimum': 1,
+> >                                      'phandle': True,
+> >                                      'type': 'integer'},
+> >                                     {'const': 0, 'type': 'integer'}]}],
+> >                'minItems': 1,
+> >                'type': 'array'},
+> >      'minItems': 1,
+> >      'type': 'array'}
+> > 
+> > On instance['i2c-gpio']:
+> 
+> Because you use "i2c-gpio", it seems... Fix it and check if error goes away.
+
+You are correct, the error no longer appears after I had fixed the node name.
+
+> 
+> >     {'#address-cells': [[1]],
+> >      '#size-cells': [[0]],
+> >      'compatible': ['i2c-gpio'],
+> >      'imu@68': {'compatible': ['invensense,mpu9250'],
+> >                 'i2c-gate': {'#address-cells': [[1]],
+> >                              '#size-cells': [[0]],
+> >                              'magnetometer@c': {'compatible': ['asahi-kasei,ak8975'],
+> >                                                 'reg': [[12]]}},
+> >                 'interrupt-parent': [[55]],
+> >                 'interrupts': [[1, 1]],
+> >                 'reg': [[104]]},
+> >      'pinctrl-0': [[58]],
+> >      'pinctrl-names': ['default'],
+> >      'scl-gpios': [[11, 4, 6]],
+> >      'sda-gpios': [[11, 5, 6]]}
+> >         From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/gpio/gpio-consumer.yaml
+> > 
+> > > 
+> > > > 
+> > > > 
+> > > > imx6ul-ts7553v2.dtb: spi@2010000: spidev@1: 'compatible' is a required property
+> > > >   Many of our devices have open-ended I2C and SPI ports that may or may not be
+> > > >   used in customer applications. With "spidev" compatible string no longer
+> > > >   supported, there is no easy way we know of to leave a placeholder or
+> > > >   indication that the interface is present, usable, and either needs specific
+> > > >   support enabled in kernel or userspace access via /dev/. We would love
+> > > >   feedback on how to handle this situation when submitting platforms upstream.
+> > > 
+> > > No empty devices, especially for spidev in DTS. There is really no
+> > > single need to add fake spidev... really, why? The customer cannot read
+> > > hardware manual and cannot see the header on the board? You can give him
+> > > a tutorial/howto guide, but don't embed dead or non-real code in DTS.
+> > 
+> > We ship devices as bootable out of the box. A number of our customers end up
+> > attaching SPI devices that do not have existing kernel drivers and talk to them
+> > from userspace without having to touch a kernel build. The loss of spidev
+> > directly has increased support requests we receive on the matter.
+> 
+> Unfortunately this is an argument like - our customers always wanted
+> dead code in DTS, so we embed here such. Feel free to add a comment
+> about placeholder etc, but empty node not. Another issue is that empty
+> node without compatible also does not help your customers...
+> 
+> > 
+> 
+> (...)
+> 
+> > 
+> > > 
+> > > > +
+> > > > +	gpio-keys {
+> > > > +		compatible = "gpio-keys";
+> > > > +		pinctrl-names = "default";
+> > > > +		pinctrl-0 = <&pinctrl_gpio_keys>;
+> > > > +
+> > > > +		left {
+> > > 
+> > > This fails on dtbs_check. Generic node names, so "key-0" or "key-left"
+> > 
+> > For reference, as of commit b047602d579b4fb028128a525f056bbdc890e7f0, there
+> > are no errors/warnings from dtbs_check or checkpatch.pl regarding node
+> > names being "key-..." and the example in gpio-keys.yaml uses "up" "left" etc.
+> 
+> I know, I changed it. It's in linux-next.
+> 
+> > 
+> > I've also changed the node name to just "keys" per devicetree specifications
+> > doc.
+> > 
+> > > 
+> > > > +	i2c_gpio: i2c-gpio {
+> > > 
+> > > Generic node name, so "i2c"
+> > 
+> > Understood.
+> > 
+> > Are there any guidelines/restrictions on label use/schema 
+> > throughout a dts file? The devicetree-specification document only defines
+> > valid characters for a label and I've been unable to find any other docs.
+> 
+> For label - use underscores and that's it. Only the node names should be
+> generic.
+> 
+> > 
+> 
+> Best regards,
+> Krzysztof
+> 
