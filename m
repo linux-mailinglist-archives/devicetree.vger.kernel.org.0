@@ -2,190 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A61D3576293
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 15:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C1757629D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 15:15:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231777AbiGONLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 09:11:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49352 "EHLO
+        id S229603AbiGONPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 09:15:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiGONLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 09:11:22 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C8161EECD;
-        Fri, 15 Jul 2022 06:11:19 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-31c8bb90d09so46335157b3.8;
-        Fri, 15 Jul 2022 06:11:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+LrkSO95PVy8bw27Iig3QT1GOG3G5eqBwe6wxhmR/uU=;
-        b=QWPiN1LWPmuijdMKT5AAJLiDd75nqTOhtxH5ERUnVqh8bmSoNBzZIgc24Y12QYZbiK
-         ZZZ1bonJ6bNj4/7dxSkAiOrS74VCGiXGhWZIxtov9goqlOn5pRrD8dZwQ+LVOT0zjsij
-         ZycSe0JZLJo499082g+stfHqVo3HUWmZ9oHqx7dbKQi8DMpwGjlvzsbhEjxZCPUX1VBE
-         Uc1tcbJmyRqjXmP4pv/MISV2Q52lQXTzxZ5gH/ZSlXdpnNalR9OhXt02d2SnPVWsqiq1
-         Uz2U49YRfc8nBIp8fjPbkLZZkI0e8nu+6vgIwXaucQUeg5o34WZ1leokFfUD1AZgptQc
-         30zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+LrkSO95PVy8bw27Iig3QT1GOG3G5eqBwe6wxhmR/uU=;
-        b=tCdG9faxd1YIAQdZPVif/wRyly4LrUTJmcqmQj8pGE8hFgJIT+JqocByxW5adtCinM
-         DJ207Nn2oM5Gt07aeAWl72JyvKqZp36UVD8Ua19wPyJQcJqZQjzGdawAUnqg82XUlnSt
-         j0gwNVBYtE6yvqzmBIJJaQT3ezE0kzSdWGtXuv3SxkuWCwUxEE5wdtN/h6zAK6PnlZGQ
-         PYiUkqaT8dAYlNzu829KZkco/pjnHHFXyBPpl6ROaroupc3Ab3taaEAjzHTy9ZSRDHZb
-         wo4SJm3j4mn8WhIif8SEBjqapQLRsreKt5tprtczsi1/97mp3boAOBhHaKfsReG2RLpH
-         9qnw==
-X-Gm-Message-State: AJIora+wh1aqXAy/eMIv4XwY+oEZOEAsnX1AzV4FwJ3PXHwgxXQQgNKw
-        2cBKFiuKyUQ7FDdpaSsOwMH5s9SlnY0kNztD8Cw=
-X-Google-Smtp-Source: AGRyM1vwE3NLxsUuIe5Aj+Ad86KoIRk0zfg8IwPNre3toXOXDCYSWjHhTiLXCjbb3wl3KhuodPQdkjLVkGMg2Yk7hJQ=
-X-Received: by 2002:a81:72c4:0:b0:31c:b309:c4e8 with SMTP id
- n187-20020a8172c4000000b0031cb309c4e8mr15864875ywc.520.1657890678612; Fri, 15
- Jul 2022 06:11:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220715112607.591-1-peterwu.pub@gmail.com> <20220715112607.591-9-peterwu.pub@gmail.com>
-In-Reply-To: <20220715112607.591-9-peterwu.pub@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 15 Jul 2022 15:10:42 +0200
-Message-ID: <CAHp75VdCgdTOu-CdNo9XGY+PrhPh93v_CkAHJC6hkArsKeiXbA@mail.gmail.com>
-Subject: Re: [PATCH v5 08/13] usb: typec: tcpci_mt6370: Add MediaTek MT6370
- tcpci driver
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S229475AbiGONPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 09:15:00 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 836A3DED3;
+        Fri, 15 Jul 2022 06:14:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1657890882;
+        bh=mlnJkuI/pqDn8MWVINAL1lqJsNsNqD9rO+qAKNY1pnE=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=jFoH6gzMNI/7QiQKV4Pv+9VdbQR9MdIx/AAkYmcIqd8U3p3xdmIgbUsf/jJzE4UrD
+         hRV6FX9Fj+U6vpnt3vivD3dvniqmk1q3kgNhAYd1PX/M2vjNpMC+kDVH8vTGHBJCnw
+         5JusVg8nMyzuicjasrOMLiAesf/BglLjYxq6/GTk=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from max-esprimop556.user.selfnet.de ([141.72.241.228]) by
+ mail.gmx.net (mrgmx104 [212.227.17.168]) with ESMTPSA (Nemesis) id
+ 1MvsJ5-1nMzkj2vrT-00svcz; Fri, 15 Jul 2022 15:14:42 +0200
+From:   Max Buchholz <max.buchholz@gmx.de>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Alice Chen <alice_chen@richtek.com>,
-        cy_huang <cy_huang@richtek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        szuni chen <szunichen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>
+Cc:     Max Buchholz <Max.Buchholz@gmx.de>,
+        David Heidelberg <david@ixit.cz>,
+        Max Buchholz <max.buchholz@gmx.de>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: nvidia,tegra20-kbc: Convert to json-schema
+Date:   Fri, 15 Jul 2022 15:14:21 +0200
+Message-Id: <20220715131422.51143-1-max.buchholz@gmx.de>
+X-Mailer: git-send-email 2.37.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:n3x4oCCTVO0hBabGdWVWg7Q+DE4k2LshQjvvt4qtCppu6cTFdFT
+ 9GxzUFxoebxeIodlh4tHl4n2LzQcUNxhNkH0xu79whlaN5ERMwW/I8ITmmGQ+6Ee3Zi582K
+ OOkKXIhrxKQNIaQEc9DE42Mq3LCXjJ17IqXQdNdvJFb4OLlG93TfjAtwXIdKSgKpXqcxzMg
+ jkBl2Q6OIwkqvLzBUs/EA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:rlxgDLbS+Co=:/l/hp/b+WKG/S4WyoXLXkx
+ f/Try0qCHWBIJCdHtskZQTGknPZq4VDIxv4E3suGSjWaUoY/chyfrpZ9nTudR+P7v6C4f303d
+ D0tMQyD6/d0h7KY4CxZTLYyd61W0D4aI1WxcWGMMiedsmnAPFBvEGZQJP2uJkuS4FABQMeiY3
+ HrWG3qsGG056t0TZJeYfQFr73Oh0m/8ERCGqw8hS7g3G0TfTC/CWhLFTHdwF36eFDYz/R8TP+
+ jjOf2wSjkLvq/oIWwPkvD3jU+TCac8FwjUVRVLGIEsKJX/xL+0hWLC1mHG05hw5F8q+X2Gmbn
+ 189Vk3e+N2KYxWK2WmfwFQEA2/aEzdXhunQoviuLIADJxqExY+kARzQrbvSJvzsdElSuYIRCw
+ t8AvZDRk3dJthE1e1n700afCzdmaRrQ9uF2B74nDxFIGdF3FImioLJBfSr3REZyoVNOWHllN5
+ GiQwDDN/VGSgt3OVmUm5H45gR2SkHPHlOw1l3mrHoGuEunbizMMxP6TA8drrjR8/v/3X0b57L
+ r6thvOe5afTG6Gbw7vMELfT6L4dgSCU+uQm0S/q0u91IKsVsVNHv8hSfAfyuEYkTVAbFr9yM+
+ YtaRa4evg+l33j+bzWTyc5JnvzIN6CdQ82dNH63Vaep0ZF24DWt6Fh7ty+8AmAlQpMuBVBabV
+ G6RQqsTwlkKvdPIiK7PPqroSyVRRblVdRAONrSPaM08T1Uw2Ldo65WeSqCjw9XAvcc53e6JlV
+ Nu8CFXKSlScldv+0GPirflc/YJtb+aNx6q1b7uphHgmhwYUF5Qo/k135UPpMCH9yKuxwwQYl7
+ JPEftugEBS4wfTRcGG1Kr1+2Q1kZx41+cxSVMNqWpv9pfseNeDBI4Xqoj8blDPTOX+dsKC/sU
+ C42Xm/0m5t7HkXJvwhmHKLDZCCf2X39BKivuyuj8tjaQiqVSXsQ6+i5E5aZf36FAW2S8SPAFg
+ k+XF0WnOEhz0m3K1Kj+cSd0orVZDFYPCcTAbFSl2rewEq8JouAukwremAM6aZbUSMumdjwLm8
+ quQq+J1XaBAcouhHojgb9hDWGCcQ1NpwSbDG9PRvr2tMJwVjCGpXe9J/XpX2fL6JXSVYeR3DH
+ pE/feBgJvRzBu2A6XA7yjlqrk1g/aP1SzpTGJwrr+E+GzvFImT6h5jrEA==
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 1:28 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+From: Max Buchholz <Max.Buchholz@gmx.de>
 
-> The MT6370 is a highly-integrated smart power management IC, which
-> includes a single cell Li-Ion/Li-Polymer switching battery charger,
-> a USB Type-C & Power Delivery (PD) controller, dual Flash LED current
-> sources, a RGB LED driver, a backlight WLED driver, a display bias
-> driver and a general LDO for portable devices.
->
-> This commit add support for the Type-C & Power Delivery controller in
+This converts the Nvidia Tegra keyboard controller bindings to YAML
+and fix them up a bit.
 
-This commit add -> Add
+Reviewed-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Max Buchholz <max.buchholz@gmx.de>
+=2D--
+v3:
+ - fixed maxItems for array properties
+v2:
+ - rework the file according to the feedback
 
+ .../bindings/input/nvidia,tegra20-kbc.txt     |  55 ---------
+ .../bindings/input/nvidia,tegra20-kbc.yaml    | 111 ++++++++++++++++++
+ .../bindings/power/wakeup-source.txt          |   2 +-
+ 3 files changed, 112 insertions(+), 56 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/nvidia,tegra20=
+-kbc.txt
+ create mode 100644 Documentation/devicetree/bindings/input/nvidia,tegra20=
+-kbc.yaml
 
-> MediaTek MT6370 IC.
+diff --git a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.tx=
+t b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
+deleted file mode 100644
+index 1faa7292e21f..000000000000
+=2D-- a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
++++ /dev/null
+@@ -1,55 +0,0 @@
+-* Tegra keyboard controller
+-The key controller has maximum 24 pins to make matrix keypad. Any pin
+-can be configured as row or column. The maximum column pin can be 8
+-and maximum row pins can be 16 for Tegra20/Tegra30.
+-
+-Required properties:
+=2D- compatible: "nvidia,tegra20-kbc"
+=2D- reg: Register base address of KBC.
+=2D- interrupts: Interrupt number for the KBC.
+=2D- nvidia,kbc-row-pins: The KBC pins which are configured as row. This i=
+s an
+-  array of pin numbers which is used as rows.
+=2D- nvidia,kbc-col-pins: The KBC pins which are configured as column. Thi=
+s is an
+-  array of pin numbers which is used as column.
+=2D- linux,keymap: The keymap for keys as described in the binding documen=
+t
+-  devicetree/bindings/input/matrix-keymap.txt.
+=2D- clocks: Must contain one entry, for the module clock.
+-  See ../clocks/clock-bindings.txt for details.
+=2D- resets: Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+=2D- reset-names: Must include the following entries:
+-  - kbc
+-
+-Optional properties, in addition to those specified by the shared
+-matrix-keyboard bindings:
+-
+=2D- linux,fn-keymap: a second keymap, same specification as the
+-  matrix-keyboard-controller spec but to be used when the KEY_FN modifier
+-  key is pressed.
+=2D- nvidia,debounce-delay-ms: delay in milliseconds per row scan for debo=
+uncing
+=2D- nvidia,repeat-delay-ms: delay in milliseconds before repeat starts
+=2D- nvidia,ghost-filter: enable ghost filtering for this device
+=2D- wakeup-source: configure keyboard as a wakeup source for suspend/resu=
+me
+-		 (Legacy property supported: "nvidia,wakeup-source")
+-
+-Example:
+-
+-keyboard: keyboard {
+-	compatible =3D "nvidia,tegra20-kbc";
+-	reg =3D <0x7000e200 0x100>;
+-	interrupts =3D <0 85 0x04>;
+-	clocks =3D <&tegra_car 36>;
+-	resets =3D <&tegra_car 36>;
+-	reset-names =3D "kbc";
+-	nvidia,ghost-filter;
+-	nvidia,debounce-delay-ms =3D <640>;
+-	nvidia,kbc-row-pins =3D <0 1 2>;    /* pin 0, 1, 2 as rows */
+-	nvidia,kbc-col-pins =3D <11 12 13>; /* pin 11, 12, 13 as columns */
+-	linux,keymap =3D <0x00000074
+-			0x00010067
+-			0x00020066
+-			0x01010068
+-			0x02000069
+-			0x02010070
+-			0x02020071>;
+-};
+diff --git a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.ya=
+ml b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.yaml
+new file mode 100644
+index 000000000000..8e1eaad2fdc1
+=2D-- /dev/null
++++ b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.yaml
+@@ -0,0 +1,111 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/input/nvidia,tegra20-kbc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Nvidia Tegra keyboard controller
++
++maintainers:
++  - Jon Hunter <jonathanh@nvidia.com>
++  - Sameer Pujar <spujar@nvidia.com>
++
++description: The key controller has maximum 24 pins to make matrix keypad=
+. Any pin
++  can be configured as row or column.
++
++allOf:
++  - $ref: "/schemas/input/matrix-keymap.yaml#"
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - const: nvidia,tegra30-kbc
++          - const: nvidia,tegra20-kbc
++      - items:
++          - const: nvidia,tegra20-kbc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  nvidia,kbc-row-pins:
++    minItems: 1
++    maxItems: 16
++    description: KBC pins which are configured as row
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
++  nvidia,kbc-col-pins:
++    minItems: 1
++    maxItems: 8
++    description: KBC pins which are configured as column
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: kbc
++
++  linux,fn-keymap:
++    description: a secondary keymap to be used when the KEY_FN modifier k=
+ey is pressed
++
++  nvidia,debounce-delay-ms:
++    description: delay in milliseconds per row scan for debouncing
++
++  nvidia,repeat-delay-ms:
++    description: delay in milliseconds before repeat starts
++
++  nvidia,ghost-filter:
++    description: enable ghost filtering for this device
++    type: boolean
++
++  wakeup-source:
++    description: configure keyboard as a wakeup source for suspend/resume
++
++  nvidia,wakeup-source:
++    description: configure keyboard as a wakeup source for suspend/resume
++    deprecated: true
++    type: boolean
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - nvidia,kbc-row-pins
++  - nvidia,kbc-col-pins
++  - linux,keymap
++  - clocks
++  - resets
++  - reset-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    kbc@7000e200 {
++        compatible =3D "nvidia,tegra20-kbc";
++        reg =3D <0x7000e200 0x100>;
++        interrupts =3D <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
++        clocks =3D <&tegra_car 36>;
++        resets =3D <&tegra_car 36>;
++        reset-names =3D "kbc";
++        nvidia,ghost-filter;
++        nvidia,debounce-delay-ms =3D <640>;
++        nvidia,kbc-row-pins =3D <0 1 2>;    /* pin 0, 1, 2 as rows */
++        nvidia,kbc-col-pins =3D <11 12 13>; /* pin 11, 12, 13 as columns =
+*/
++        linux,keymap =3D <0x00000074
++                        0x00010067
++                        0x00020066
++                        0x01010068
++                        0x02000069
++                        0x02010070
++                        0x02020071>;
++    };
+diff --git a/Documentation/devicetree/bindings/power/wakeup-source.txt b/D=
+ocumentation/devicetree/bindings/power/wakeup-source.txt
+index cfd74659fbed..728f88de371d 100644
+=2D-- a/Documentation/devicetree/bindings/power/wakeup-source.txt
++++ b/Documentation/devicetree/bindings/power/wakeup-source.txt
+@@ -25,7 +25,7 @@ List of legacy properties and respective binding documen=
+t
+ 				Documentation/devicetree/bindings/input/touchscreen/ads7846.txt
+ 5. "linux,keypad-wakeup"	Documentation/devicetree/bindings/input/qcom,pm8=
+xxx-keypad.txt
+ 6. "linux,input-wakeup"		Documentation/devicetree/bindings/input/samsung-=
+keypad.txt
+-7. "nvidia,wakeup-source"	Documentation/devicetree/bindings/input/nvidia,=
+tegra20-kbc.txt
++7. "nvidia,wakeup-source"	Documentation/devicetree/bindings/input/nvidia,=
+tegra20-kbc.yaml
 
+ Examples
+ --------
+=2D-
+2.37.0
 
-> +static int mt6370_tcpc_probe(struct platform_device *pdev)
-> +{
-> +       struct mt6370_priv *priv;
-> +       struct device *dev = &pdev->dev;
-> +       int ret;
-> +
-> +       priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
-> +
-> +       priv->dev = dev;
-> +       platform_set_drvdata(pdev, priv);
-> +
-> +       priv->tcpci_data.regmap = dev_get_regmap(dev->parent, NULL);
-> +       if (!priv->tcpci_data.regmap)
-> +               return dev_err_probe(dev, -ENODEV, "Failed to init regmap\n");
-> +
-> +       ret = mt6370_check_vendor_info(priv);
-> +       if (ret)
-> +               return ret;
-> +
-> +       priv->irq = platform_get_irq(pdev, 0);
-> +       if (priv->irq < 0)
-> +               return priv->irq;
-> +
-> +       /* Assign TCPCI feature and ops */
-> +       priv->tcpci_data.auto_discharge_disconnect = 1;
-> +       priv->tcpci_data.init = mt6370_tcpc_init;
-> +       priv->tcpci_data.set_vconn = mt6370_tcpc_set_vconn;
-> +
-> +       priv->vbus = devm_regulator_get_optional(dev, "vbus");
-> +       if (!IS_ERR(priv->vbus))
-> +               priv->tcpci_data.set_vbus = mt6370_tcpc_set_vbus;
-> +
-> +       priv->tcpci = tcpci_register_port(dev, &priv->tcpci_data);
-> +       if (IS_ERR(priv->tcpci))
-> +               return dev_err_probe(dev, PTR_ERR(priv->tcpci),
-> +                                    "Failed to register tcpci port\n");
-> +
-> +       ret = devm_request_threaded_irq(dev, priv->irq, NULL,
-> +                                       mt6370_irq_handler, IRQF_ONESHOT,
-> +                                       dev_name(dev), priv);
-> +       if (ret) {
-
-> +               tcpci_unregister_port(priv->tcpci);
-
-This is wrong.
-You mixed devm_ with non-devm. Either drop devm_ *after* the first
-non-devm_ call, or convert everything to be managed.
-
-> +               return dev_err_probe(dev, ret, "Failed to allocate irq\n");
-> +       }
-> +
-> +       device_init_wakeup(dev, true);
-> +       dev_pm_set_wake_irq(dev, priv->irq);
-> +
-> +       return 0;
-> +}
-> +
-> +static int mt6370_tcpc_remove(struct platform_device *pdev)
-> +{
-> +       struct mt6370_priv *priv = platform_get_drvdata(pdev);
-
-> +       disable_irq(priv->irq);
-
-Why?
-An ugly workaround due to ordering issues in ->probe()?
-
-> +       tcpci_unregister_port(priv->tcpci);
-> +       dev_pm_clear_wake_irq(&pdev->dev);
-> +       device_init_wakeup(&pdev->dev, false);
-> +
-> +       return 0;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
