@@ -2,67 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5F0C575D60
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 10:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA68C575CFE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 10:06:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231825AbiGOIZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 04:25:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49748 "EHLO
+        id S229782AbiGOIGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 04:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230304AbiGOIZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:25:46 -0400
-X-Greylist: delayed 1001 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 15 Jul 2022 01:25:45 PDT
-Received: from mail.trueanalyze24.com (mail.trueanalyze24.com [149.154.157.156])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F0D824088
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 01:25:44 -0700 (PDT)
-Received: by mail.trueanalyze24.com (Postfix, from userid 1001)
-        id E3C38446AC; Fri, 15 Jul 2022 10:00:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trueanalyze24.com;
-        s=mail; t=1657872083;
-        bh=98Rl+Ube1Bvn+3rmK5hpfPYFv35+QFaadoOXzW/GAGM=;
-        h=Date:From:To:Subject:From;
-        b=ACN7mOHuC6Sb37QhcIEm1L7jhEyr5pTFvfFKiakhF6al1hBNE0Wt9Ym4v8xfPVtYQ
-         pPwxV20j8CMPeqdqR3zqODKhRRs5qnq+JttwC7zDQVUX/gi7cWbLhscB6tiAy/CJsc
-         RXN1MQ+kSAbJgx5wPQe7A6rcl8wgk9f6a5UXH/RiT302sdYvej/MmTiXxh/YGN/9x3
-         48DjUPoVXFe98yj12OOxpGjnXYwQTMId7sF+I21SIv7orWA1cCfZLnDSl1qLRAxbab
-         NGSyMkbxcbQHiOoy3el2otJk9jPyyj9HjR2Km9DE+u8tQJ74DvzmvCsyDzWo2gXZao
-         Iv9Uo9zgTOrYw==
-Received: by mail.trueanalyze24.com for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 08:00:12 GMT
-Message-ID: <20220715084500-0.1.31.rbqe.0.qq98odikia@trueanalyze24.com>
-Date:   Fri, 15 Jul 2022 08:00:12 GMT
-From:   "Luca Gauthier" <luca.gauthier@trueanalyze24.com>
-To:     <devicetree@vger.kernel.org>
-Subject: New collaboration
-X-Mailer: mail.trueanalyze24.com
+        with ESMTP id S229608AbiGOIGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 04:06:47 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F4D7E00E;
+        Fri, 15 Jul 2022 01:06:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657872406; x=1689408406;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=9HdCXT2PbQm9vJbMtpRbCdAbxy2aAViPdQXhEIRSHxk=;
+  b=alz/3Kb5xoPoH5N9Fgk2RyWFTpjAa3oLCidhuAvdnQEy5GlCFTGTfYBV
+   GZuH307hWQSqu6BNwyIT74fduxvrbYJrXnF5e8Fn3JdBEWWOw0izoaD3B
+   GqPrOUg0GU6hfoLhWaNHqxjqpdAlADurxNfownpMHWmxQT+SjQ01V5cJ0
+   LdZoDYQqI6lsHWINRbHLr3P54cm0RHhVB+KoWw4ZaXV9GIXzhxxMyCZtY
+   jIfVO7O4Q6hVw+ncsdHEjMQT3YrCINlKq42Tp6fV+MgFSWd/yJqYxpix1
+   1R4M+MfuM1S0ddoLHzq9AzBOFLhV5q+WsU6Hor6CT7MSYggL9azUe8FiY
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
+   d="scan'208";a="25069691"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 15 Jul 2022 10:06:43 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 15 Jul 2022 10:06:43 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 15 Jul 2022 10:06:43 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657872403; x=1689408403;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=9HdCXT2PbQm9vJbMtpRbCdAbxy2aAViPdQXhEIRSHxk=;
+  b=QYuIPz+2sw4PM+1bC9afVbEMHRqIMOflCKTNVcl9nl0iNb/bWR3/SZ/s
+   oGu2L4tpSvb0vni6pKMZTvwSH6UQ3GAfj9P1TKH6f3KE8oagS21BBGvE2
+   v4cGD5J/srDBkI70VLdQHB5S2PBU0Vkw4uaK475Ivu1Oif/uFU+cSR2Uq
+   5v5JTbTa4SaVYsJtM94JT/WNlePKb+AbOwOQteVzYhfXbFEdns/gBp89q
+   cu3WszE6uP4oxD+FD7o8dK+ZymQUyE5qT8bnNRnslqGV89VJRftHKyvqg
+   uCamD3MLKp8uaskAF+RC10rex373ndOiV3HW4EzFHMO5DXM43xUzLsYd/
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
+   d="scan'208";a="25069690"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 15 Jul 2022 10:06:43 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8CFD2280056;
+        Fri, 15 Jul 2022 10:06:43 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/1] dt-bindings: net: fsl,fec: Add nvmem-cells / nvmem-cell-names properties
+Date:   Fri, 15 Jul 2022 10:06:40 +0200
+Message-Id: <20220715080640.881316-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=2.8 required=5.0 tests=BAYES_95,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: **
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+These properties are inherited from ethernet-controller.yaml.
+This fixes the dt_binding_check warning:
+imx8mm-tqma8mqml-mba8mx.dt.yaml: ethernet@30be0000: 'nvmem-cell-names',
+'nvmem-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-I would like to discuss your needs in the scope of acquiring new Clients.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Changes in v2:
+* Add amount and names of nvmem-cells (copied from ethernet-controller.yaml)
 
-We operate in the Internet marketing sector, have the largest Technical D=
-epartment in Europe and have implemented more than 200 campaigns in the U=
-SA and Asia.
+ Documentation/devicetree/bindings/net/fsl,fec.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-We are broadening the group of our Business Partners (currently more than=
- 237 companies) and therefore we would like to offer you cooperation whic=
-h we base on mutual support in activities aimed at acquiring new clients =
-and strengthening the company=E2=80=99s image.
-Our Business Partners receive commission on the value of an agreement sig=
-ned and the group of new clients.
+diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+index daa2f79a294f..b5b55dca08cb 100644
+--- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
++++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+@@ -121,6 +121,14 @@ properties:
+ 
+   mac-address: true
+ 
++  nvmem-cells:
++    maxItems: 1
++    description:
++      Reference to an nvmem node for the MAC address
++
++  nvmem-cell-names:
++    const: mac-address
++
+   tx-internal-delay-ps:
+     enum: [0, 2000]
+ 
+-- 
+2.25.1
 
-If I could present the details =E2=80=93 let me know when I can contact y=
-ou
-
-Luca Gauthier
