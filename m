@@ -2,236 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2A6575C16
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 09:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AB37575C6D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 09:34:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230304AbiGOHGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 03:06:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40310 "EHLO
+        id S232046AbiGOHdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 03:33:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230028AbiGOHFv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 03:05:51 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7D6D3D59D
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 00:05:49 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id o7so6394535lfq.9
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 00:05:49 -0700 (PDT)
+        with ESMTP id S232039AbiGOHdL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 03:33:11 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 164307BE30;
+        Fri, 15 Jul 2022 00:33:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=edM+VSgZuPwkNgVUT8py67tbaaITMsjlVWVkcCDQAsA=;
-        b=PGglcyklYCODqhqZomhrvcCPMC/MKauEc1hIuD04gsXdjA8fEVonnXExSjLSLi5B7K
-         HiQr4SMDje4DNpD2c/sEnFCJRxiVK5yrYLSzAi2uimE3Qhc+vXDcQ3UnxChwGU/jm+6r
-         yaqIlV8ehPMvSvPYqO3o8peRoRZEqAzaYLObFflVPa7w88wV+jxUawvuHiHbqd3YPrpH
-         EYFEmwIeNN5mX8pxwKgPNQHH3+RMvJoGPQX2qzbJ+RwJYIriacRLffF72knAhR6Y++oG
-         mDHZk9IOZbFJWFiGlB6RGePG5uBK/BDFxMpqSG9zlzrlbgI8bZ+pLHajRAZLtQOzKIUG
-         COYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=edM+VSgZuPwkNgVUT8py67tbaaITMsjlVWVkcCDQAsA=;
-        b=wzAsitGgnYsn08bJph3YmJu5qYEvQqT0a5GdulCdHvNz0jImVrLulE6Md+E3CyuvUL
-         +Zt3RRJM+IMKDyIZbjbCiChyhYkrxMDOe2LTqBvXp4Df7lMVbaoiWbI7Vdq/WF0DSizq
-         XkDuBGxaB7IkrIx7Aq0MpbzTHYc5b/TK6ElZyrE4rxsvPKdMuglUAgI0pRTlvVaW7JqZ
-         C37d6zbKwUuUHI2FWo13t0c95BmLzlq8isRjyTRKdXi5Vd0NEiiO6dqWPd4F7o7guZZU
-         1+zwOCcrkBsYg3m1K1LqvwrIp+VhJzvWgoObJabAUy46JHfa/2GX3n/ugmr0Iua6dnHu
-         kDBw==
-X-Gm-Message-State: AJIora/L93cuGhhg8PMQUNLlyZcaSg4/Fv8I6+gbNEp+9AL+uaDR2g67
-        OIl47SMWfZq2cqJ7zyOrh4IFsdX0H8vEfw==
-X-Google-Smtp-Source: AGRyM1t2QQxl/yaaeAHwsPu1s24eahAxTzedj3rFOTcpWst+PXEshlEEMsPrVqxOrATaYvQNybQo/g==
-X-Received: by 2002:a05:6512:1054:b0:489:d273:be3a with SMTP id c20-20020a056512105400b00489d273be3amr7553671lfb.615.1657868748174;
-        Fri, 15 Jul 2022 00:05:48 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id v1-20020a05651203a100b00489d18e39bfsm753939lfp.288.2022.07.15.00.05.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jul 2022 00:05:47 -0700 (PDT)
-Message-ID: <573830b4-096c-a227-6c14-9fe59771e56c@linaro.org>
-Date:   Fri, 15 Jul 2022 09:05:45 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: msm8916-samsung-e2015: Add initial
- common dtsi
-Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        devicetree@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657870390; x=1689406390;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=slT0zUpV9RfPM9uPTk2NhEc4i0611l7L6RhajXWI4dc=;
+  b=Kp+ZYOfV5UFGDXjSLfVh7mrj2bU1edi3zHy6vI2c+0t9b3LSrGXwv61V
+   Kadjp+8Ob4vl3RS1nVWysrmqzvzVWnei0K6mvD3Thjfx0+ZlUoaBeoW9H
+   HXKowm8brABT9QBrllum+DNFzOSgEJL1++a34gcLNxlwSopEmIqJpijTO
+   xZ3htWaMGlU9TYCO9SkhKHF5dW15Be20Dy1V6vt4tSNVcsLB9J57JFcV0
+   dKYgYxT5ehkDOire8SMRuCLRP9BhaFB2S+By2kpplhoGAtz8liSAIcZMj
+   moPoskykzvLlJAgFWcZrwq73s4VwQWqwoUy3el9EOCKrTvK7/95tWong5
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
+   d="scan'208";a="25068549"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 15 Jul 2022 09:33:04 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 15 Jul 2022 09:33:04 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 15 Jul 2022 09:33:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1657870384; x=1689406384;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=slT0zUpV9RfPM9uPTk2NhEc4i0611l7L6RhajXWI4dc=;
+  b=qjU6c6kmyGIm9czuZNhbq1DnsBTAyvWdjf6Bs3VsWQhJ3eqlyGbEdc5s
+   s/G0edcl6rfto9n7XipGvgvMoDpYapGOeoqmIuO51ZLpog9x6eLW1zfWO
+   gbrY3oiP98uZnvjFYaWOfpPooK1YDVqM7SQ8nekSgh8c82+sEPGuNmSXB
+   A5teuCELUKyNVzFO2berMkAS6XTYRwgdUVqQf0VGq6Dl6vFzx/S17mvUF
+   XkcEFIaBiF+IJW8jy8x7xyrInNMwFxKoA6rlkRPlSp3hLRHq3oxtuCrPz
+   J7NAsPmawTIDsaUTw6MErC+W0gLqRAz19g9Rn9uIY66FIlNfZhEHOz68M
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,273,1650924000"; 
+   d="scan'208";a="25068547"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 15 Jul 2022 09:33:04 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 79FBE280056;
+        Fri, 15 Jul 2022 09:33:04 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20220714200308.22138-1-linmengbo0689@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220714200308.22138-1-linmengbo0689@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: usb: Add binding for TI USB8041 hub controller
+Date:   Fri, 15 Jul 2022 09:32:58 +0200
+Message-Id: <20220715073300.868087-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 22:05, Lin, Meng-Bo wrote:
-> Samsung Galaxy E5, E7 and Grand Max are smartphones using the MSM8916 SoC
-> released in 2015.
-> 
-> e2015 and a2015 are similar, with some differences in accelerometer,
-> MUIC and Vibrator. The common parts are shared in
-> msm8916-samsung-a2015-common.dtsi to reduce duplication.
-> 
-> Add a common device tree for with initial support for:
-> 
-> - GPIO keys and vibrator
-> - Hall sensor (except Grand Max)
-> - SDHCI (internal and external storage)
-> - USB Device Mode
-> - UART (on USB connector via the SM5504 MUIC)
-> - WCNSS (WiFi/BT)
-> - Regulators
-> - S3FWRN5 NFC (except Grand Max)
-> 
-> The three devices (and all other variants of E5/E7/Grand Max released in
-> 2015) are very similar, with some differences in display, touchscreen,
-> sensors and NFC. The common parts are shared in
-> msm8916-samsung-e2015-common.dtsi to reduce duplication.
-> 
-> Unfortunately, some E5/E7/Grand Max were released with outdated 32-bit
-> only firmware and never received any update from Samsung. Since the 32-bit
-> TrustZone firmware is signed there seems to be no way currently to
-> actually boot this device tree on arm64 Linux on those variants at the
-> moment.
-> 
-> However, it is possible to use this device tree by compiling an ARM32
-> kernel instead. The device tree can be easily built on ARM32 with
-> an #include and it works really well there. To avoid confusion for others
-> it is still better to add this device tree on arm64. Otherwise it's easy
-> to forget to update this one when making some changes that affect all
-> MSM8916 devices.
-> 
-> Maybe someone finds a way to boot ARM64 Linux on those device at some
-> point. In this case I expect that this device tree can be simply used
-> as-is.
-> 
-> Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+The TI USB8041 is a USB 3.0 hub controller with 4 ports.
 
-Please thread your patches (which is by default with git-send-email, so
-just don't disable it). Without it you are making life of reviewer much
-more difficult.
+This initial version of the binding only describes USB related aspects
+of the USB8041, it does not cover the option of connecting the controller
+as an i2c slave.
 
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |  3 ++
->  .../qcom/msm8916-samsung-e2015-common.dtsi    | 39 +++++++++++++++++++
->  .../boot/dts/qcom/msm8916-samsung-e5.dts      | 24 ++++++++++++
->  .../boot/dts/qcom/msm8916-samsung-e7.dts      | 29 ++++++++++++++
->  .../dts/qcom/msm8916-samsung-grandmax.dts     | 36 +++++++++++++++++
->  5 files changed, 131 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-e7.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 2f8aec2cc6db..941494553b9e 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -15,6 +15,9 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8910.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a3u-eur.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a5u-eur.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-e5.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-e7.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-grandmax.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-> new file mode 100644
-> index 000000000000..373154ee2643
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-> @@ -0,0 +1,39 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +#include "msm8916-samsung-a2015-common.dtsi"
-> +
-> +/ {
-> +	i2c-muic {
-> +		/* SM5504 MUIC instead of SM5502 */
-> +		/delete-node/ extcon@25;
-> +
-> +		muic: extcon@14 {
-> +			compatible = "siliconmitus,sm5504-muic";
-> +			reg = <0x14>;
-> +
-> +			interrupt-parent = <&msmgpio>;
-> +			interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&muic_int_default>;
-> +		};
-> +	};
-> +
-> +	vibrator: vibrator {
-> +		compatible = "gpio-vibrator";
-> +		enable-gpios = <&msmgpio 76 GPIO_ACTIVE_HIGH>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&motor_en_default>;
-> +	};
-> +};
-> +
-> +&msmgpio {
-> +	motor_en_default: motor-en-default {
-> +		pins = "gpio76";
-> +		function = "gpio";
-> +
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts
-> new file mode 100644
-> index 000000000000..777eb934eb4b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dts
-> @@ -0,0 +1,24 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8916-samsung-e2015-common.dtsi"
-> +
-> +/*
-> + * NOTE: The original firmware from Samsung can only boot ARM32 kernels on some
-> + * variants.
-> + * Unfortunately, the firmware is signed and cannot be replaced easily.
-> + * There seems to be no way to boot ARM64 kernels on 32-bit devices at the
-> + * moment, even though the hardware would support it.
-> + *
-> + * However, it is possible to use this device tree by compiling an ARM32 kernel
-> + * instead. For clarity and build testing this device tree is maintained next
-> + * to the other MSM8916 device trees. However, it is actually used through
-> + * arch/arm/boot/dts/qcom-msm8916-samsung-e5.dts
-> + */
-> +
-> +/ {
-> +	model = "Samsung Galaxy E5";
-> +	compatible = "samsung,e5", "qcom,msm8916";
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Changes in v2:
+* Removed 'items' from compatible, it's just en enum now
+* Rename reset-gpio to reset-gpios
+* Use 'items' for reset-gpios
+* Adjust description of vdd-supply
+* Sorted required list
+* Adjusted example
 
-You miss bindings document.
+ .../devicetree/bindings/usb/ti,usb8041.yaml   | 67 +++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/ti,usb8041.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+new file mode 100644
+index 000000000000..7fe7416e2b51
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/ti,usb8041.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Binding for the TI USB8041 USB 3.0 hub controller
++
++maintainers:
++  - Matthias Kaehlcke <mka@chromium.org>
++
++allOf:
++  - $ref: usb-device.yaml#
++
++properties:
++  compatible:
++    enum:
++      - usb451,8140
++      - usb451,8142
++
++  reg: true
++
++  reset-gpios:
++    items:
++      - description: GPIO specifier for GRST# pin.
++
++  vdd-supply:
++    description:
++      "VDD power supply to the hub"
++
++  peer-hub:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      phandle to the peer hub on the controller.
++
++required:
++  - compatible
++  - reg
++  - peer-hub
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    usb {
++        dr_mode = "host";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* 2.0 hub on port 1 */
++        hub_2_0: hub@1 {
++          compatible = "usb451,8142";
++          reg = <1>;
++          peer-hub = <&hub_3_0>;
++          reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
++        };
++
++        /* 3.0 hub on port 2 */
++        hub_3_0: hub@2 {
++          compatible = "usb451,8140";
++          reg = <2>;
++          peer-hub = <&hub_2_0>;
++          reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
++        };
++    };
+-- 
+2.25.1
+
