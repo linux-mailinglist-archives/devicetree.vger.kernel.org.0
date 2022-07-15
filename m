@@ -2,60 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A91A5767C3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 21:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 849BD5767CA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 21:51:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbiGOTt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 15:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50694 "EHLO
+        id S231192AbiGOTup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 15:50:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231214AbiGOTtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 15:49:23 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4238952FD5
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:49:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E8ED7B82E3D
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 19:49:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F77FC341C6
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 19:49:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657914553;
-        bh=laxksdvhup7dnXtmS3AAT3Sq9yxB/R7zQS73khYVs/k=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BQfl9xtgNeZx9VNOWQ/ZEmLaJkb3JTGexjbPqcxObG1BfbDIlFtCluqgAPG7JWSU5
-         U9xhmpnRbnBv4Dpe1ahWBBRWNbVtlLSzzKNfvWVQtm9RhdnmsePUxEmQde+PpFMW3V
-         m8fRwjkCa6Y4mVfzLpYolCzT5red77988YPuLx6dsZdgIshzwtYxlv2r53oM35EXpu
-         fCqXEZaWAeZt0yYSzpFDskKkh78v7fhKITnbNkk9AVNNOiB4j3/50sJpmBNxTra930
-         1SMbGrVgIm1ZUTOznGWkWyGslPOPJ5XL86fAKgEru6DdK7r8op2N9JtfrOAyq6S6R6
-         IVAFEpFRA5E6g==
-Received: by mail-vs1-f42.google.com with SMTP id d187so5135877vsd.10
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:49:13 -0700 (PDT)
-X-Gm-Message-State: AJIora92maiw1P8dcgQ6j6D556ABp0DhYqKltpPnOr4U8XRNvNpDrHF4
-        IWZhNDjTPj5FTyG4aMctavfdPTjbOwAx8CZlIA==
-X-Google-Smtp-Source: AGRyM1sKlX5BHshjR0amRBFTHhcp5O/2wkE35OJhQLseqt90axMDC3RTiX5RIHSiuSTp7wTFtAFLZq6NWhUBlnbD30k=
-X-Received: by 2002:a67:f301:0:b0:357:1b13:2691 with SMTP id
- p1-20020a67f301000000b003571b132691mr6003012vsf.6.1657914552508; Fri, 15 Jul
- 2022 12:49:12 -0700 (PDT)
+        with ESMTP id S229626AbiGOTuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 15:50:44 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F8B1EEF6
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:50:43 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id y14-20020a17090a644e00b001ef775f7118so12519144pjm.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 12:50:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=y32BDu7KsZwCEQIw+4o9pW5Cq7b+IeSabI5Ax2bAKjM=;
+        b=hjh+6SIee0kd1DR10cEpcUgF7jlqKSTeEhq2Vkdjbl4o5zCa5FqZEolEClXA9IXyBw
+         kuK/BuEo3zJ6kOda5UxgqoqchfAjhcUGTar8U9YCqFqc8mlIe9lXwK1Vzz7aWgLWGV2A
+         h7KMFhGRXT/JMUi0b8gQrFlgVST6UslOZ1R5Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=y32BDu7KsZwCEQIw+4o9pW5Cq7b+IeSabI5Ax2bAKjM=;
+        b=510TvHrvEpDyvqNcu+4TKpEqiU/HGQWyoBCIlT8tdoqsza6vviYNL1QTZAuxsgkiBe
+         pphd2/+GXvnbBSUeIlxuRaBcLhkOJQvpLc3oOVnyeOY92RYL4w71zFp9CZrDpB8rfEOv
+         U6cOLujv72K73Y0Vl6EOGN75RyuV455kUVSyLLDwV6PVAObOTdovdN/tZenoxEU+tkEs
+         y5OLaYfXG8flIrY7gcCDnz2rLiwotE6CS1CkOaKVpZdM57A14qAw9e71bU55vd8sDLCP
+         jrakh6hc/rabxsMztoqnbQWLlfTt+LduGoW5EqdJgZNNFiGCLvLPnSF8EcZ4FNCRNq0+
+         lCkg==
+X-Gm-Message-State: AJIora8FE6kbn2sYJL1+OhtDcyvz9lgorCq4HOTcWpnXBcq8fk1ve4RB
+        baXDOH2njd3Dosy5tXBAL4mF/A==
+X-Google-Smtp-Source: AGRyM1snLXjJAt8iLQx5+1rv//V+aNbJ1mZmUWmhG4+d+o6LGCS+TGhqiROSIXhAnq9JLkx7GhVeeA==
+X-Received: by 2002:a17:903:3093:b0:16b:deea:4d36 with SMTP id u19-20020a170903309300b0016bdeea4d36mr15137374plc.126.1657914642876;
+        Fri, 15 Jul 2022 12:50:42 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:835b:7656:818:a69a])
+        by smtp.gmail.com with UTF8SMTPSA id x3-20020a170902a38300b0015e8d4eb26esm3980768pla.184.2022.07.15.12.50.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Jul 2022 12:50:42 -0700 (PDT)
+Date:   Fri, 15 Jul 2022 12:50:41 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] usb: misc: onboard_usb_hub: Add TI USB8041 hub
+ support
+Message-ID: <YtHFEY+iAipCROPl@google.com>
+References: <20220715073300.868087-1-alexander.stein@ew.tq-group.com>
+ <20220715073300.868087-3-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-References: <f4d9a3e1-bb7f-353f-44e1-501fd7985b37@gmail.com>
- <CAL_Jsq+o27gCfzJH39ct8rRSY2nGgLpzNuw71aqBHQK62iAf+A@mail.gmail.com> <2fff1d95-c257-2756-ff63-5efe7b3c528c@gmail.com>
-In-Reply-To: <2fff1d95-c257-2756-ff63-5efe7b3c528c@gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 15 Jul 2022 13:49:01 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLCVjbsPfNOOqfsZQY-KUp8foJqwjK54JU+YZOfonkS7w@mail.gmail.com>
-Message-ID: <CAL_JsqLCVjbsPfNOOqfsZQY-KUp8foJqwjK54JU+YZOfonkS7w@mail.gmail.com>
-Subject: Re: of_platform_populate() for address-less nodes (OF: Bad cell count
- for ...)
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220715073300.868087-3-alexander.stein@ew.tq-group.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,109 +69,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 9:16 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
-wrote:
->
-> On 15.07.2022 17:02, Rob Herring wrote:
-> > On Fri, Jul 15, 2022 at 5:59 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.c=
-om> wrote:
-> >>
-> >> I need Linux to support MTD partitions drivers. They should get probed
-> >> for MTD partitions, access it, do their stuff. Random example:
-> >>
-> >> partitions {
-> >>          compatible =3D "fixed-partitions";
-> >>          #address-cells =3D <1>;
-> >>          #size-cells =3D <1>;
-> >>
-> >>          partition@0 {
-> >>                  compatible =3D "u-boot,bootloader";
-> >>                  label =3D "loader";
-> >>                  reg =3D <0x0 0x100000>;
-> >>          };
-> >>
-> >>          partition@100000 {
-> >>                  compatible =3D "u-boot,env";
-> >>                  label =3D "image";
-> >>                  reg =3D <0x100000 0x100000>;
-> >>          };
-> >> };
-> >>
-> >> (please don't confuse them with parsers which are MTD internals)
-> >>
-> >>
-> >> To support that I added of_platform_populate() calls, see commit
-> >> bcdf0315a61a2 ("mtd: call of_platform_populate() for MTD partitions"):
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
-mit/?id=3Dbcdf0315a61a29eb753a607d3a85a4032de72d94
-> >>
-> >>
-> >> The problem I just noticed is it triggers errors like:
-> >> OF: Bad cell count for /bus@ff800000/nand-controller@1800/nand@0/parti=
-tions
-> >>
-> >> It comes from (forward-trace):
-> >> of_platform_populate()
-> >> of_platform_bus_create()
-> >> of_platform_device_create_pdata()
-> >> of_device_alloc()
-> >> of_address_to_resource()
-> >> of_address_to_resource()
-> >> __of_address_to_resource()
-> >> of_translate_address()
-> >> __of_translate_address()
-> >> OF_CHECK_COUNTS()
-> >> pr_err()
-> >>
-> >>
-> >> It's caused by "partitions" node having 1 address cell and 0 size cell=
-s.
-> >> It's a consequence of inheriting sizes from NAND CS:
-> >>
-> >> nand-controller@1800 {
-> >>          ...
-> >>
-> >>          #address-cells =3D <1>;
-> >>          #size-cells =3D <0>;
-> >>
-> >>          nand@0 {
-> >>                  compatible =3D "brcm,nandcs";
-> >>                  reg =3D <0>;
-> >>
-> >>                  partitions {
-> >>                          ...
-> >>                  };
-> >>          };
-> >> };
-> >>
-> >>
-> >> Is that something that can / should be fixed in OF implementation?
-> >>
-> >> I don't think I should assign sizes to "partitions" node as it doesn't
-> >> use "reg" at all. All "reg" in "partitions" subnodes contain flash
-> >> relative offsets and they should not be translated.
-> >
-> > Yes, you should. The parent node of a node with 'reg' must have
-> > #address-cells and #size-cells. Simple as that.
->
-> For "parent node of a node with 'reg'" it's obvious. We have a different
-> case here though.
->
-> Please take one more look. Node named "partitions" does not have "reg".
-> That is what I don't have #foo-cells in the nand@0.
->
-> A complete example:
+On Fri, Jul 15, 2022 at 09:33:00AM +0200, Alexander Stein wrote:
+> This is a 4-port 3.0 USB hub.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Changes in v2:
+> * Add devtype data containing waiting times
+> 
+>  drivers/usb/misc/onboard_usb_hub.c | 3 +++
+>  drivers/usb/misc/onboard_usb_hub.h | 7 +++++++
+>  2 files changed, 10 insertions(+)
+> 
+> diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
+> index 1dd7f4767def..319b4b1748fb 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.c
+> +++ b/drivers/usb/misc/onboard_usb_hub.c
+> @@ -339,6 +339,7 @@ static struct platform_driver onboard_hub_driver = {
+>  /************************** USB driver **************************/
+>  
+>  #define VENDOR_ID_REALTEK	0x0bda
+> +#define VENDOR_ID_TI		0x0451
+>  
+>  /*
+>   * Returns the onboard_hub platform device that is associated with the USB
+> @@ -416,6 +417,8 @@ static const struct usb_device_id onboard_hub_id_table[] = {
+>  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 */
+>  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0414) }, /* RTS5414 USB 3.2 */
+>  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5414) }, /* RTS5414 USB 2.1 */
+> +	{ USB_DEVICE(VENDOR_ID_TI, 0x8140) }, /* TI USB8041 3.0 */
+> +	{ USB_DEVICE(VENDOR_ID_TI, 0x8142) }, /* TI USB8041 2.0 */
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(usb, onboard_hub_id_table);
+> diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
+> index 7e743f4c8aaa..fcb6a9024bbd 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.h
+> +++ b/drivers/usb/misc/onboard_usb_hub.h
+> @@ -11,7 +11,14 @@ struct onboard_hub_devtype_data {
+>  	unsigned long reset_duration;		/* reset pulse width in us */
+>  };
+>  
+> +static const struct onboard_hub_devtype_data ti_tusb8041_data = {
+> +	.power_stable_time = 3000,
+> +	.reset_duration = 3000,
 
-Okay, that looks valid.
+Aren't these two values actually the same thing, i.e. the minimum
+duration of the reset?
 
-Back to your original issue, I think the issue is that for (DT)
-platform devices, the assumption is that they are MMIO (i.e.
-translatable) based devices. Certainly that's the case for devices
-created by the DT core if not all devices created. Maybe we could
-relax this... But reg could not be a struct resource in this case
-because there's not an address space for it (it's not MEM or IO). That
-all seems to me a bit of abuse of the platform bus. Perhaps a
-partition bus and devices are needed? You'll need to ask a wider
-audience that.
+From the data sheet:
 
-Rob
+  A minimum reset duration of 3 ms is required
+
+  td2: VDD and VDD33 stable before de-assertion of GRSTz (>= 3ms)
+
+My understanding is that td2 is just another expression of the first
+requirement.
+
+> +};
+> +
+>  static const struct of_device_id onboard_hub_match[] = {
+> +	{ .compatible = "usb451,8140", .data = &ti_tusb8041_data, },
+> +	{ .compatible = "usb451,8142", .data = &ti_tusb8041_data, },
+>  	{ .compatible = "usbbda,411" },
+>  	{ .compatible = "usbbda,5411" },
+>  	{ .compatible = "usbbda,414" },
+
+Ah, now I see why the struct is defined in the .h file, never mind my comment
+on the other patch.
