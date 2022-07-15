@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6944E575A94
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 06:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E008D575AD5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 07:19:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbiGOExH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 00:53:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37108 "EHLO
+        id S229593AbiGOFSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 01:18:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbiGOExG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 00:53:06 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C5378583;
-        Thu, 14 Jul 2022 21:53:05 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id j22so6997100ejs.2;
-        Thu, 14 Jul 2022 21:53:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:cc:references:to:in-reply-to:content-transfer-encoding;
-        bh=q64YR+dz3l8N7KWsT2gr8PSkDJ8PbvnFEtZazzJt2ik=;
-        b=TZF/1PNOgat33kGEqwm0sKjVGVoe5Z3ryywyXeqsIKSWzKkmOL8q7SB++vfy6dvlx8
-         ZGN/Tv7YraG5i0iWboYaHEQ0Ye2spd1Gq8yk0cee9BFlY5PMXd2gLigAH1ZijkgpNn4T
-         utJi24RbFfbHVVW+jFTfDk0oXtmImXkBI76XzuQlsAqwVFhb/Po7MgsvKNwZ354GuZSE
-         7DnPWe2qfQvfaphiyEASVkLYcdx7dm++u9XTPBLLbEvvaNO6/qBPxmBWT0GwQquVLs/g
-         Ln+XkLZlfpb6LhlwkW+uJsqJmEtZDN4nNtKI5qmDZXLUvcBcjrKBkbxttqhmJQtCCHry
-         m1Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:cc:references:to:in-reply-to
-         :content-transfer-encoding;
-        bh=q64YR+dz3l8N7KWsT2gr8PSkDJ8PbvnFEtZazzJt2ik=;
-        b=mqV5DnZWB4V+dmQggmL+LH00u27tgtttJheck+rnXGAdkr+dmCnBlmvDnmowijKFgs
-         KSV2/EFfphx6iJRxOc0kWxrHJHNjpr+SbA7V2HbGaU2PWMIl4bdwiFRsCkuqR7638dZP
-         dECPWjucmgBOMqZrTu+rpJSlvXSYw3vhOxC/I9fYEgJm07Os1OHF46+PBgW9/HdZ/L4q
-         c/FI1jTkj9/K8IGq6BSCPmLWveHLEbrpapUMQ6m7foqCL11JxXXZ6PHKNewECcf4iv2d
-         gfPHpFJupcn6GTEXwQagZJmL74iqv4QSv4CfC7IKUekgmpGd+cpxHBxdP01YLq7+R4Nm
-         IcoA==
-X-Gm-Message-State: AJIora9Eyu+Og10pMPsj+Pej7GHKpIf2OCGpQ5JJ08ED+3LqW/R42B72
-        KiXAF7CJWtv2b299sb1x61U=
-X-Google-Smtp-Source: AGRyM1vJS2pPI+Aq0Nn7vFNE0vbKPvqiynIpJzvgmXsbMz9uZoZ7o1vfkFH/s3P6vTPnswF/3kekSg==
-X-Received: by 2002:a17:907:1c8f:b0:6e8:f898:63bb with SMTP id nb15-20020a1709071c8f00b006e8f89863bbmr12079765ejc.721.1657860783722;
-        Thu, 14 Jul 2022 21:53:03 -0700 (PDT)
-Received: from [192.168.0.182] ([79.119.98.153])
-        by smtp.gmail.com with ESMTPSA id b6-20020aa7cd06000000b004355998ec1asm2110036edw.14.2022.07.14.21.53.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jul 2022 21:53:03 -0700 (PDT)
-Message-ID: <08a9d34b-f44e-e1f2-ebc6-4123986b3c54@gmail.com>
-Date:   Fri, 15 Jul 2022 07:53:03 +0300
+        with ESMTP id S229579AbiGOFSm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 01:18:42 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A04678DDF;
+        Thu, 14 Jul 2022 22:18:29 -0700 (PDT)
+X-UUID: 966e386179a44cd09227cb36ffe41646-20220715
+X-CID-UNFAMILIAR: 1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:3b012936-3323-4a76-a289-338e7d945338,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:100
+X-CID-INFO: VERSION:1.1.8,REQID:3b012936-3323-4a76-a289-338e7d945338,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:100
+X-CID-META: VersionHash:0f94e32,CLOUDID:be470d33-b9e4-42b8-b28a-6364427c76bb,C
+        OID:8d3c919cfca6,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 966e386179a44cd09227cb36ffe41646-20220715
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1561564; Fri, 15 Jul 2022 13:18:24 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 15 Jul 2022 13:18:23 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 15 Jul 2022 13:18:22 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v1 0/2] Add support for MT8188 SCP
+Date:   Fri, 15 Jul 2022 13:18:19 +0800
+Message-ID: <20220715051821.30707-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v8 2/2] iio: adc: ad4130: add AD4130 driver
-Content-Language: en-US
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-References: <20220715044948.434149-1-cosmin.tanislav@analog.com>
- <20220715044948.434149-3-cosmin.tanislav@analog.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-In-Reply-To: <20220715044948.434149-3-cosmin.tanislav@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,44 +67,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+Tinghan Shen (2):
+  dt-bindings: remoteproc: mediatek: Add binding for mt8188 scp
+  remoteproc: Support MT8188 SCP
 
-On 7/15/22 07:49, Cosmin Tanislav wrote:
-> AD4130-8 is an ultra-low power, high precision, measurement solution for
-> low bandwidth battery operated applications.
-> 
-> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
-> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
-> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
-> selectable filter options, smart sequencer, sensor biasing and excitation
-> options, diagnostics, and a FIFO buffer.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> ...
-> +static int ad4130_gpio_init_valid_mask(struct gpio_chip *gc,
-> +				       unsigned long *valid_mask,
-> +				       unsigned int ngpios)
-> +{
-> +	struct ad4130_state *st = gpiochip_get_data(gc);
-> +	unsigned int i;
-> +
-> +	/*
-> +	 * Output-only GPIO functionality is available on pins AIN2 through
-> +	 * AIN5. If these pins are used for anything else, do not expose them.
-> +	 */
-> +	for (i = 0; i < ngpios; i++) {
-> +		unsigned int pin = i + AD4130_AIN2_P1;
-> +		bool valid = st->pins_fn[pin] == AD4130_PIN_FN_NONE;
-> +
-> +		__assign_bit(i, valid_mask, valid);
-> +	}
-> +
-> +
+ .../devicetree/bindings/remoteproc/mtk,scp.yaml     |  2 ++
+ drivers/remoteproc/mtk_scp.c                        | 13 +++++++++++++
+ 2 files changed, 15 insertions(+)
 
-I missed an extra blank line here. Maybe you could fix it while
-picking the patchset up, Jonathan?
+-- 
+2.18.0
 
-> +	return 0;
-> +}
-> +
-> ...
