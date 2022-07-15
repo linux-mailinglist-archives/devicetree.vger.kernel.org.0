@@ -2,111 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C6F6575944
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 03:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77DEF575961
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 04:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240916AbiGOB4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jul 2022 21:56:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46518 "EHLO
+        id S241208AbiGOCCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jul 2022 22:02:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240987AbiGOB4A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 21:56:00 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5618367584;
-        Thu, 14 Jul 2022 18:56:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1657850160; x=1689386160;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KChe3YiLWvtfY16v3Wrv+LYGFrMr3lG5eJioM1UXoK8=;
-  b=il5Kj2cMJEioQPWJOWQZq8uTKoDKdaGbdn5ssUDYVq6DhOD2fStruUVL
-   g5Gi7LKgymdCsDfP9Ooe6nTojPMblDn+IK7WvGfXDKcDz+gA26E65q4C+
-   Z9eCpO0MxAMdtpbNEQEGsqW3T4yCAwyqdsU1EKoPpO3tKKxoHvlnzO6V1
-   StB1BJ6LCoy062BcZNxHPStdGb1v1n31gedBEJY28OKi1d+A4ceEHsLk0
-   vPCj578z57yBsPIOBf+xXg9tISG5MlkltRxvr1bH+N4gz+Mx82pxeUsqJ
-   MxIrd1lmjpefj6MIs7w5epKx63t5pqYTpw1iZtJsUL8r/dyKa/9YaLnrn
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="371993857"
-X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
-   d="scan'208";a="371993857"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2022 18:56:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,272,1650956400"; 
-   d="scan'208";a="600335169"
-Received: from lkp-server01.sh.intel.com (HELO fd2c14d642b4) ([10.239.97.150])
-  by fmsmga007.fm.intel.com with ESMTP; 14 Jul 2022 18:55:57 -0700
-Received: from kbuild by fd2c14d642b4 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1oCAYe-0001Pp-Fp;
-        Fri, 15 Jul 2022 01:55:56 +0000
-Date:   Fri, 15 Jul 2022 09:55:18 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Vincent Shih <vincent.sunplus@gmail.com>, kishon@ti.com,
-        vkoul@kernel.org, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        wells.lu@sunplus.com
-Cc:     Paul Gazzillo <paul@pgazz.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        kbuild-all@lists.01.org, Vincent Shih <vincent.sunplus@gmail.com>
-Subject: Re: [PATCH v3 1/2] phy: usb: Add USB2.0 phy driver for Sunplus SP7021
-Message-ID: <202207150959.Pamg8oYO-lkp@intel.com>
-References: <1657529403-18084-2-git-send-email-vincent.sunplus@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1657529403-18084-2-git-send-email-vincent.sunplus@gmail.com>
+        with ESMTP id S240866AbiGOCCN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jul 2022 22:02:13 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B0773900
+        for <devicetree@vger.kernel.org>; Thu, 14 Jul 2022 19:02:11 -0700 (PDT)
+Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220715020208epoutp019a6c1e0ff0962c3eab7efb0436eb0b75~B3kWzraav1620216202epoutp01x
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:02:08 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220715020208epoutp019a6c1e0ff0962c3eab7efb0436eb0b75~B3kWzraav1620216202epoutp01x
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1657850528;
+        bh=wyxcBunwFkuku59dj613W+/U6vWm11KQddqiSNeGaiA=;
+        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
+        b=junLhXk3myh7KF9cKKqnwVAyDxL1ybBsvWQrJXAou70qRbEXCm3zR50WIqRrgepUD
+         sPvmRoiGDawU2EhJb7qhqgIl7yd9WOjB+Zh4OSLGtmoWl2fG8vDPgfXwJBtyZ1AieA
+         lQENr+tH6INkybRMHy8eRNHAQmGHMdiOmISJ1JUw=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20220715020208epcas1p28302417daadc2e071a2ab40cb85234a0~B3kWOf1Bf2222322223epcas1p2-;
+        Fri, 15 Jul 2022 02:02:08 +0000 (GMT)
+Received: from epsmges1p2.samsung.com (unknown [182.195.36.68]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4LkZNv65G4z4x9Pw; Fri, 15 Jul
+        2022 02:02:07 +0000 (GMT)
+X-AuditID: b6c32a36-05fff700000025a1-e2-62d0ca9f4e51
+Received: from epcas1p3.samsung.com ( [182.195.41.47]) by
+        epsmges1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        64.2F.09633.F9AC0D26; Fri, 15 Jul 2022 11:02:07 +0900 (KST)
+Mime-Version: 1.0
+Subject: Re: [PATCH 2/4] firmware: Samsung: Add secure monitor driver
+Reply-To: dj76.yang@samsung.com
+Sender: Dongjin Yang <dj76.yang@samsung.com>
+From:   Dongjin Yang <dj76.yang@samsung.com>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>
+CC:     "javierm@redhat.com" <javierm@redhat.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Moon-Ki Jun <moonki.jun@samsung.com>,
+        Sang Min Kim <hypmean.kim@samsung.com>,
+        Wangseok Lee <wangseok.lee@samsung.com>
+X-Priority: 3
+X-Content-Kind-Code: NORMAL
+In-Reply-To: <f4585789-cec9-0787-cd80-57afed424ee4@infradead.org>
+X-CPGS-Detection: blocking_info_exchange
+X-Drm-Type: N,general
+X-Msg-Generator: Mail
+X-Msg-Type: PERSONAL
+X-Reply-Demand: N
+Message-ID: <20220715020207epcms1p43819fd2dd937e567fc540af7b62c59a5@epcms1p4>
+Date:   Fri, 15 Jul 2022 11:02:07 +0900
+X-CMS-MailID: 20220715020207epcms1p43819fd2dd937e567fc540af7b62c59a5
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+X-CPGSPASS: Y
+X-CPGSPASS: Y
+CMS-TYPE: 101P
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMJsWRmVeSWpSXmKPExsWy7bCmvu78UxeSDKa+0rc4vf8di8XLQ5oW
+        84+cY7WYOfUMs8XCacsZLZ4fmsVs8XLWPTaLI28+Mlvc/3qU0WL/8ZVMFpd3zWGzOLc40+Lt
+        neksFq17j7Bb3Dl8lsWB3+P6ugCPzSu0PDat6mTzuHNtD5vH+31X2Tz6tqxi9Pi8SS6APSrb
+        JiM1MSW1SCE1Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoaCWFssSc
+        UqBQQGJxsZK+nU1RfmlJqkJGfnGJrVJqQUpOgXmBXnFibnFpXrpeXmqJlaGBgZEpUGFCdsb0
+        pn1MBW3CFWcOPGNtYDwm1MXIySEhYCKxqGszYxcjF4eQwA5Gieft59m7GDk4eAUEJf7uEAap
+        ERZwlThx6zpYWEhAXuLzxEqIsI5Ex9unLCBhNgEtidn9iSBTRARmMkm8u/SDHcRhFpjDLLFq
+        zis2iF28EjPaQRpAbGmJ7cu3MoLYnAKOErN77kDFNSR+LOtlhrBFJW6ufssOY78/Np8RwhaR
+        aL13FqpGUOLBz91QcSmJR80HoOxqiXPtvWBHSAg0MEoc/LyRDeRSCQF9iR3XjUFqeAV8JQ4+
+        PQJ2G4uAqsSkiVeYIHpdJGa+W8wKYjMLaEssW/iaGaSVWUBTYv0ufYgpyhJHbrHAfNWw8Tc7
+        OptZgE/i3dceVpj4jnlPoKYrS3xufs0ygVF5FiKcZyHZNQth1wJG5lWMYqkFxbnpqcWGBUbw
+        qE3Oz93ECE69WmY7GCe9/aB3iJGJg/EQowQHs5IIb/ehc0lCvCmJlVWpRfnxRaU5qcWHGE2B
+        vpzILCWanA9M/nkl8YYmlgYmZkampoYGFiZK4ryrpp1OFBJITyxJzU5NLUgtgulj4uCUamCa
+        67X6hbqmyKTth9NfmFrK8x1gWJK8tk7hvoeVw8mwyb0tOXsdtDRMk1qfcPXps9t7v7h1XiQq
+        Mcqg/tH01/fq6ivl1dm0PvS3Lq3yqTxqe0lf8Y/XyS3TJqX5O1/7+mCpcdSzFzeOeSmnPO02
+        uWb3uGrVPumOrHV3zir9DykpWt698dTR+kQL27wp4j9zYptv8tXP8WWdErcrpip8W/sCTauw
+        FpGMRTqOHd/+W5vm3WFnumb+4ekC61ztwlsbLOt989Tr5s1c3q29/JnnQS6bNcp9E5bFPQ7n
+        Ds/j3KD480SavURT1zLRD+eTi79Hp+lfbra84DepTcG5w9BnWWviirtVykcWOkxRufzjtxJL
+        cUaioRZzUXEiAKhAHJFGBAAA
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220713045516epcms1p86b3f6a8795d767faac65eb947405f911
+References: <f4585789-cec9-0787-cd80-57afed424ee4@infradead.org>
+        <20220713045516epcms1p86b3f6a8795d767faac65eb947405f911@epcms1p8>
+        <CGME20220713045516epcms1p86b3f6a8795d767faac65eb947405f911@epcms1p4>
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vincent,
-
-I love your patch! Perhaps something to improve:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on pza/reset/next linus/master v5.19-rc6 next-20220714]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Vincent-Shih/Add-USB2-0-phy-driver-for-Sunplus-SP7021/20220711-165347
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: (https://download.01.org/0day-ci/archive/20220715/202207150959.Pamg8oYO-lkp@intel.com/config)
-reproduce:
-        # https://github.com/intel-lab-lkp/linux/commit/7370e305e24f576291c9f474664b068188d6de57
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Vincent-Shih/Add-USB2-0-phy-driver-for-Sunplus-SP7021/20220711-165347
-        git checkout 7370e305e24f576291c9f474664b068188d6de57
-        # 1. reproduce by kismet
-           # install kmax per https://github.com/paulgazz/kmax/blob/master/README.md
-           kismet --linux-ksrc=linux --selectees CONFIG_NVMEM_SUNPLUS_OCOTP --selectors CONFIG_PHY_SUNPLUS_USB -a=i386
-        # 2. reproduce by make
-           # save the config file to linux source tree
-           cd linux
-           make ARCH=i386 olddefconfig
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for NVMEM_SUNPLUS_OCOTP when selected by PHY_SUNPLUS_USB
-   
-   WARNING: unmet direct dependencies detected for NVMEM_SUNPLUS_OCOTP
-     Depends on [n]: NVMEM [=n] && (SOC_SP7021 || COMPILE_TEST [=y]) && HAS_IOMEM [=y]
-     Selected by [y]:
-     - PHY_SUNPLUS_USB [=y] && OF [=y] && (SOC_SP7021 || COMPILE_TEST [=y])
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+On=C2=A07/13/22=C2=A004:58,=C2=A0Randy=20Dunlap=C2=A0wrote:=0D=0A>=20Hi--=
+=0D=0A>=20=0D=0A>=20On=C2=A07/12/22=C2=A021:55,=C2=A0Dongjin=C2=A0Yang=C2=
+=A0wrote:=0D=0A>=20>=C2=A0diff=C2=A0--git=C2=A0a/drivers/firmware/Kconfig=
+=C2=A0b/drivers/firmware/Kconfig=0D=0A>=20>=C2=A0index=C2=A0e5cfb01353d8..4=
+b0f2d033f58=C2=A0100644=0D=0A>=20>=C2=A0---=C2=A0a/drivers/firmware/Kconfig=
+=0D=0A>=20>=C2=A0+++=C2=A0b/drivers/firmware/Kconfig=0D=0A>=20>=C2=A0=40=40=
+=C2=A0-217,6=C2=A0+217,17=C2=A0=40=40=C2=A0config=C2=A0QCOM_SCM_DOWNLOAD_MO=
+DE_DEFAULT=0D=0A>=20>=C2=A0=C2=A0=0D=0A>=20>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Say=C2=A0Y=C2=A0here=C2=A0to=C2=
+=A0enable=C2=A0=22download=C2=A0mode=22=C2=A0by=C2=A0default.=0D=0A>=20>=C2=
+=A0=C2=A0=0D=0A>=20>=C2=A0+config=C2=A0SAMSUNG_SECURE_SERVICE=0D=0A>=20>=C2=
+=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bool=C2=A0=22Samsung=C2=
+=A0Foundry=C2=A0Secure=C2=A0Service=C2=A0Layer=22=0D=0A>=20>=C2=A0+=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0depends=C2=A0on=C2=A0HAVE_ARM_SMC=
+CC=0D=0A>=20>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0default=
+=C2=A0n=0D=0A>=20=0D=0A>=20Drop=C2=A0that=C2=A0line,=C2=A0it's=C2=A0the=C2=
+=A0default=C2=A0anyway.=0D=0A=0D=0ASure=20thanks.=0D=0A=0D=0A>=20=0D=0A>=20=
+>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0help=0D=0A>=20>=C2=
+=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Support=C2=
+=A0secure=C2=A0service=C2=A0layer=C2=A0for=C2=A0SoCs=C2=A0which=C2=A0is=C2=
+=A0manufactured=C2=A0by=0D=0A>=20=0D=0A>=20=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0which=C2=A0are=0D=0A=0D=0AThanks=20for=20c=
+orrecting.=0D=0A=0D=0A>=20=0D=0A>=20>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Samsung=C2=A0Foundry.=0D=0A>=20>=C2=A0+=0D=0A=
+>=20>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Thi=
+s=C2=A0option=C2=A0provide=C2=A0support=C2=A0of=C2=A0secure=C2=A0monitor=C2=
+=A0service=C2=A0call=C2=A0using=0D=0A>=20>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Trusted=C2=A0Foundations.=0D=0A>=20=0D=
+=0A>=20--=C2=A0=0D=0A>=20=7ERandy=0D=0A
