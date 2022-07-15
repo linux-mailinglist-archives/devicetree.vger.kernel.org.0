@@ -2,727 +2,460 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6C0D575FE3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 13:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6087575FF9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 13:26:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232685AbiGOLR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 07:17:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40078 "EHLO
+        id S229899AbiGOL0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 07:26:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232691AbiGOLR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 07:17:28 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52EB38723E;
-        Fri, 15 Jul 2022 04:17:26 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2405:201:10:3153:7fbd:8a7b:29b6:89fb])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: shreeya)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4AEC86601A59;
-        Fri, 15 Jul 2022 12:17:21 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657883845;
-        bh=YekOJAPWXt8aA1yC+4ASBubHa/6V3CoIkbQAs71rhy8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mWAjLjYtS45uai5tKOn1gNAoQdAs7eOd0t1WkZJ17utKkjdAO/OBx10NnTU7vmwa2
-         orQmX29gpTPw6AKhsc5/0f4GBF5phNoG6JFV1W1t7nG+xyrQWad33a3UN+eVwxQQUf
-         bYF/lLPS9gTRukM++UBfjfjsv7NG6q3anT/1XFJU4AohUW78eh+zJAtUcqEnjkbWar
-         ukOO1H39VwkiQK9EjK+7LMBykdEMI39PTfK4C+osQVlYSOrYQkhZ8bD4xOECDp0t3b
-         QVx2NtksXAQau+4khrfHP+yyfKcVlfzx4YVQypGzb77314CuYt+NAG1NNOI9AO3VhX
-         xKz4wXqfbhIZA==
-From:   Shreeya Patel <shreeya.patel@collabora.com>
-To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        dmitry.osipenko@collabora.com, Zhigang.Shi@liteon.com
-Cc:     krisman@collabora.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, alvaro.soliverez@collabora.com,
-        andy.shevchenko@gmail.com,
-        Shreeya Patel <shreeya.patel@collabora.com>
-Subject: [PATCH v9 2/2] iio: light: Add support for ltrf216a sensor
-Date:   Fri, 15 Jul 2022 16:46:26 +0530
-Message-Id: <20220715111626.1066513-3-shreeya.patel@collabora.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220715111626.1066513-1-shreeya.patel@collabora.com>
-References: <20220715111626.1066513-1-shreeya.patel@collabora.com>
+        with ESMTP id S229452AbiGOL0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 07:26:24 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 167BC13DDA;
+        Fri, 15 Jul 2022 04:26:23 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id o3-20020a17090a744300b001ef8f7f3dddso5777007pjk.3;
+        Fri, 15 Jul 2022 04:26:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gxyNAIdF8uVow3H1XhXBwg96o/plsRwQuCipoy5Ry9E=;
+        b=HUVakAht3QYDlCi6rTyHeuImXIMd379d6m8rZFlB3sH4E5dxdvR2GCC4cEqBq0hWHO
+         3mZAFFKklsIBUVZeEziNcYCKl3zu29jSR49coEkq/NEsl8fliMu4Gps15q5kYqP7H2x2
+         pBJFKtAwkAm0YIsjRhHfrikU+jVoPijPUxfVIVn4JjFXKSyP/NBe/eprcI6/hgR03rQJ
+         ETmc1N5Q2qEArmwE5va/IgZTPbmV9zI22+JK2uCOFMjlRhq72MCfo1oJCOvIr7sI8vRB
+         fkkJ6hSHZzzEKAWLjQfbpocJ6mU2MF42oDM8TC5eEwin4rpIj5+HZnjfPYFWo1igXxvk
+         ylpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gxyNAIdF8uVow3H1XhXBwg96o/plsRwQuCipoy5Ry9E=;
+        b=HTnMH46nvwcYxm4XqMIEiD+eNO/0h6/jCTu89Ilnal89R+ankotVPwr3ehn5zRvNXp
+         geleH2bIqOUuXhrTrPyiJi69mtFr5h74C31GtqKh0NJ3uZ5rnHuTPLxsBAQMQ7yEHdqy
+         4kfP+5O3i8f8VTlyu0WALaGGl+ZlbefKZyjfQqfvYcwZEW692OwmxPlvHyXrHZK/lNc4
+         SLLGDdlP7upyutkmnmL7CO1fiHTLP+PyQ4aWlapA1aXcrUnTtX5lFdqyAg4kJQ5YEgnM
+         YsVRCn5f/6ZE4Co5jXOTF5L38CN3kyZPyc8+7Ni3bcMPVDDAgglHuqpy5D0AsXmQxz/K
+         u48w==
+X-Gm-Message-State: AJIora8ftNcXzL3p0rrPcWSBg1E7RRv0Yru53PmftgKCGEQuhMbYjA+c
+        4hTGvd+VVBEzv0d5BSmAo28=
+X-Google-Smtp-Source: AGRyM1vAeOtUIfstbiXdFTS8IM2qsuNBcIlE5ZGLviTu+LOg0TWAQB6D3c0+uhw6k8SiuBspFKiMsA==
+X-Received: by 2002:a17:902:7487:b0:16b:d8ae:7e33 with SMTP id h7-20020a170902748700b0016bd8ae7e33mr12804578pll.21.1657884382451;
+        Fri, 15 Jul 2022 04:26:22 -0700 (PDT)
+Received: from RD-3580-24288.rt.l (42-72-159-86.emome-ip.hinet.net. [42.72.159.86])
+        by smtp.gmail.com with ESMTPSA id a5-20020aa78e85000000b00525b61f4792sm3550604pfr.109.2022.07.15.04.26.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jul 2022 04:26:21 -0700 (PDT)
+From:   ChiaEn Wu <peterwu.pub@gmail.com>
+To:     lee.jones@linaro.org, daniel.thompson@linaro.org,
+        jingoohan1@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        sre@kernel.org, chunfeng.yun@mediatek.com,
+        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
+        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, deller@gmx.de
+Cc:     chiaen_wu@richtek.com, alice_chen@richtek.com,
+        cy_huang@richtek.com, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        szunichen@gmail.com
+Subject: [PATCH v5 00/13] Add MediaTek MT6370 PMIC support
+Date:   Fri, 15 Jul 2022 19:25:54 +0800
+Message-Id: <20220715112607.591-1-peterwu.pub@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support for ltrf216a ambient light sensor.
+From: ChiaEn Wu <chiaen_wu@richtek.com>
 
-Datasheet: https://gitlab.collabora.com/shreeya/iio/-/blob/master/LTRF216A.pdf
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-Co-developed-by: Zhigang Shi <Zhigang.Shi@liteon.com>
-Signed-off-by: Zhigang Shi <Zhigang.Shi@liteon.com>
-Co-developed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+This patch series add MediaTek MT6370 PMIC support. The MT6370 is a
+highly-integrated smart power management IC, which includes a single
+cell Li-Ion/Li-Polymer switching battery charger, a USB
+Type-C & Power Delivery (PD) controller, dual Flash LED current sources,
+a RGB LED driver, a backlight WLED driver, a display bias driver and a
+general LDO for portable devices.
+
+In this series of patches, we based on Andy Shevchenko's mfd patch used to
+adjust the Makefile order.
+(https://lore.kernel.org/all/20220616182524.7956-2-andriy.shevchenko@linux.intel.com/)
+Among with this, we took some changes for MT6370 and refined the MT6370 device
+tree files to comply with DT specifications.
+
+"[PATCH v5 06/13] dt-bindings: mfd: Add MediaTek MT6370" depends on previous
+DT binding patches, so before applying this patch, please apply other DT
+patches first. Thanks!
+
+Thank you,
+ChiaEn Wu
+
 ---
+Changes in v5:
+- In patch 07/13:
+	- Add the comma in the last REGMAP_IRQ_REG_LINE(),
+	   DEFINE_RES_IRQ_NAMED() and MFD_CELL_RES()
+	- Add the prefix in the first parameter of all mfd_cell
+	- Move enum and struct mt6370_info to mt6370.h
+	- Remove struct device *dev in struct mt6370_info
+	- Revise the description of Kconfig help text
+	- Revise MODULE_DESCRIPTION()
 
-Note :-
+- In patch 08/13:
+	- Add comma for the last index of mt6370_reg_init.
+	- Use dev_err_probe to decrease LOC.
+	- Use 'dev' variable to make probe function more clean.
+	- Refine kconfig text.
+	- Remove both 'else' in set_vbus callback.
+	- Remove comma for of_device_id if the assigned member is only one.
 
-This patch generates the below mentioned warnings due to not documenting
-the 'ltr' string in vendors-prefix.yaml and liteon,ltrf216a.yaml files.
-The thread for the discussion of not documenting 'ltr' as deprecated
-prefix can be found here.
-https://lore.kernel.org/lkml/20220511094024.175994-2-shreeya.patel@collabora.com/
+- In patch 09/13:
+	- Replace using snprintf() with sysfs_emit() in mt6370_adc_read_label()
+	- Remove macro ADC_CONV_TIME_US
+	- Revise all variable ordering
+	- Revise the description of Kconfig help text
+	- Revise MODULE_DESCRIPTION()
 
-There are released devices which uses ltr216a light sensor and exposes the
-vendor prefix name as 'ltr' through ACPI. Hence, we would like to add
-this string under compatible property which would help probe the light sensor
-driver.
+- In patch 10/13:
+	- Replace unsigned int type of pwr_rdy with bool in
+	   mt6370_chg_set_online()
+	- Remove redundant 'else' in mt6370_chg_field_get()
+	- Revise 'if-else' in mt6370_chg_field_set()
+	- Revise 'if' condition in mt6370_chg_enable_irq()
+	- Revise all text 'otg' --> 'OTG'
+	- Revise MT6370_MIVR_IBUS_TH_100_MA --> MT6370_MIVR_IBUS_TH_100_mA
+	- Revise the description of Kconfig help text
 
-WARNING: DT compatible string "ltr,ltrf216a" appears un-documented
--- check ./Documentation/devicetree/bindings/
-#474: FILE: drivers/iio/light/ltrf216a.c:421:
-+       { .compatible = "ltr,ltrf216a", },
+- In patch 12/13:
+	- Refine descriptions.
+	- Refine the macro name.
+	- Refine the bracket and blanks.
 
-WARNING: DT compatible string vendor "ltr" appears un-documented
--- check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
-#474: FILE: drivers/iio/light/ltrf216a.c:421:
-+       { .compatible = "ltr,ltrf216a", },
-
-
-Changes in v9
-  - Add LTRF216A_MAIN_STATUS register in volatile function.
-  - Update the datasheet link.
-
-Changes in v8
-  - Add caching mechanism to restore register state after h/w resume.
-  - Add callback functions and disable locking in regmap config.
-  - Update mutex comment as per it's current scope in the driver.
-  - Add Shreeya as author of the driver.
-  - Make some minor cleanups.
-
-Changes in v7
-  - Add regmap support.
-  - Fix runtime power management implementation.
-  - Fix the ordering of devm and non-devm functions.
-  - Use DEFINE_RUNTIME_DEV_PM_OPS macro
-
-Changes in v6
-  - Fix some errors reported by kernel test robot.
-  - Add protocol details for the datasheet link.
-  - Remove useless assignments.
-  - Add unit details for read data delay macro.
-  - Use pm_sleep_ptr().
-
-Changes in v5
-  - Add power management support.
-  - Add reset functionality.
-  - Use readx_poll_timeout() to get data.
-  - Cleanup some of the redundant code.
-  - Update int_time_fac after I2C write is successful.
-  - Rename mutex to lock.
-  - Use Reverse Xmas tree pattern for all variable definitions.
-  - Improve error handling messages and add error codes.
-  - Add one more MODULE_AUTHOR.
-  - Remove cleardata which was reading data for infrared light.
-
-Changes in v4
-  - Add more descriptive comment for mutex lock
-  - Fix mutex locking in read_raw()
-  - Use i2c_smbus_read_i2c_block_data()
-
-Changes in v3
-  - Use u16 instead of u8 for int_time_fac
-  - Reorder headers in ltrf216a.c file
-  - Remove int_time_mapping table and use int_time_available
-
-Changes in v2
-  - Add support for 25ms and 50ms integration time.
-  - Rename some of the macros as per names given in datasheet
-  - Add a comment for the mutex lock
-  - Use read_avail callback instead of attributes and set the
-    appropriate _available bit.
-  - Use FIELD_PREP() at appropriate places.
-  - Add a constant lookup table for integration time and reg val
-  - Use BIT() macro for magic numbers.
-  - Improve error handling at few places.
-  - Use get_unaligned_le24() and div_u64()
-  - Use probe_new() callback and devm functions
-  - Return errors in probe using dev_err_probe()
-  - Use DEFINE_SIMPLE_DEV_PM_OPS()
-  - Correct the formula for lux to use 0.45 instead of 0.8
+- In patch 13/13:
+	- Add missed <mod_devicetable.h>
+	- Add struct device *dev in probe() to make code cleaning
+	- Remove useless including header file <gpio/driver.h>, <of.h>
+	- Remove useless variable uasage in mt6370_init_backlight_properties()
+	- Remove redundant checking enable_gpio in mt6370_bl_update_status()
+	- Remove redundant parentheses in mt6370_bl_get_brightness()
+	- Revise the description of Kconfig help text
+	- Revise the calculation of hys_th_steps
 
 
- drivers/iio/light/Kconfig    |  11 +
- drivers/iio/light/Makefile   |   1 +
- drivers/iio/light/ltrf216a.c | 523 +++++++++++++++++++++++++++++++++++
- 3 files changed, 535 insertions(+)
- create mode 100644 drivers/iio/light/ltrf216a.c
+Changes in v4:
+- In patch 02/13:
+	- Add minItems of "io-channel-names"
+	- Replace text "Mediatek" with "MediaTek"
 
-diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-index 8537e88f02e3..7cf6e8490123 100644
---- a/drivers/iio/light/Kconfig
-+++ b/drivers/iio/light/Kconfig
-@@ -331,6 +331,17 @@ config LTR501
- 	  This driver can also be built as a module.  If so, the module
- 	  will be called ltr501.
- 
-+config LTRF216A
-+	tristate "Liteon LTRF216A Light Sensor"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  If you say Y or M here, you get support for Liteon LTRF216A
-+	  Ambient Light Sensor.
-+
-+	  If built as a dynamically linked module, it will be called
-+	  ltrf216a.
-+
- config LV0104CS
- 	tristate "LV0104CS Ambient Light Sensor"
- 	depends on I2C
-diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
-index d10912faf964..6f23817fae6f 100644
---- a/drivers/iio/light/Makefile
-+++ b/drivers/iio/light/Makefile
-@@ -31,6 +31,7 @@ obj-$(CONFIG_ISL29125)		+= isl29125.o
- obj-$(CONFIG_JSA1212)		+= jsa1212.o
- obj-$(CONFIG_SENSORS_LM3533)	+= lm3533-als.o
- obj-$(CONFIG_LTR501)		+= ltr501.o
-+obj-$(CONFIG_LTRF216A)		+= ltrf216a.o
- obj-$(CONFIG_LV0104CS)		+= lv0104cs.o
- obj-$(CONFIG_MAX44000)		+= max44000.o
- obj-$(CONFIG_MAX44009)		+= max44009.o
-diff --git a/drivers/iio/light/ltrf216a.c b/drivers/iio/light/ltrf216a.c
-new file mode 100644
-index 000000000000..22916eea97b8
---- /dev/null
-+++ b/drivers/iio/light/ltrf216a.c
-@@ -0,0 +1,523 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * LTRF216A Ambient Light Sensor
-+ *
-+ * Copyright (C) 2022 Collabora, Ltd.
-+ * Author: Shreeya Patel <shreeya.patel@collabora.com>
-+ *
-+ * Copyright (C) 2021 Lite-On Technology Corp (Singapore)
-+ * Author: Shi Zhigang <Zhigang.Shi@liteon.com>
-+ *
-+ * IIO driver for LTRF216A (7-bit I2C slave address 0x53).
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/iopoll.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/pm.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/iio/iio.h>
-+
-+#include <asm/unaligned.h>
-+
-+#define LTRF216A_ALS_RESET_MASK		BIT(4)
-+#define LTRF216A_ALS_DATA_STATUS	BIT(3)
-+#define LTRF216A_ALS_ENABLE_MASK	BIT(1)
-+#define LTRF216A_MAIN_CTRL		0x00
-+#define LTRF216A_ALS_MEAS_RES		0x04
-+#define LTRF216A_ALS_GAIN		0x05
-+#define LTRF216A_PART_ID		0x06
-+#define LTRF216A_MAIN_STATUS		0x07
-+#define LTRF216A_ALS_CLEAR_DATA_0	0x0a
-+#define LTRF216A_ALS_CLEAR_DATA_1	0x0b
-+#define LTRF216A_ALS_CLEAR_DATA_2	0x0c
-+#define LTRF216A_ALS_DATA_0		0x0d
-+#define LTRF216A_ALS_DATA_1		0x0e
-+#define LTRF216A_ALS_DATA_2		0x0f
-+#define LTRF216A_INT_CFG		0x19
-+#define LTRF216A_INT_PST		0x1a
-+#define LTRF216A_ALS_THRES_UP_0		0x21
-+#define LTRF216A_ALS_THRES_UP_1		0x22
-+#define LTRF216A_ALS_THRES_UP_2		0x23
-+#define LTRF216A_ALS_THRES_LOW_0	0x24
-+#define LTRF216A_ALS_THRES_LOW_1	0x25
-+#define LTRF216A_ALS_THRES_LOW_2	0x26
-+#define LTRF216A_ALS_READ_DATA_DELAY_US	20000
-+
-+static const int ltrf216a_int_time_available[][2] = {
-+	{ 0, 400000 },
-+	{ 0, 200000 },
-+	{ 0, 100000 },
-+	{ 0,  50000 },
-+	{ 0,  25000 },
-+};
-+
-+static const int ltrf216a_int_time_reg[][2] = {
-+	{ 400, 0x03 },
-+	{ 200, 0x13 },
-+	{ 100, 0x22 },
-+	{  50, 0x31 },
-+	{  25, 0x40 },
-+};
-+
-+/*
-+ * Window Factor is needed when the device is under Window glass
-+ * with coated tinted ink. This is to compensate for the light loss
-+ * due to the lower transmission rate of the window glass and helps
-+ * in calculating lux.
-+ */
-+#define LTRF216A_WIN_FAC	1
-+
-+struct ltrf216a_data {
-+	struct regmap *regmap;
-+	struct i2c_client *client;
-+	u32 int_time;
-+	u16 int_time_fac;
-+	u8 als_gain_fac;
-+	/*
-+	 * Protects regmap accesses and makes sure integration time
-+	 * remains constant during the measurement of lux.
-+	 */
-+	struct mutex lock;
-+};
-+
-+static const struct iio_chan_spec ltrf216a_channels[] = {
-+	{
-+		.type = IIO_LIGHT,
-+		.info_mask_separate =
-+			BIT(IIO_CHAN_INFO_PROCESSED) |
-+			BIT(IIO_CHAN_INFO_INT_TIME),
-+		.info_mask_separate_available =
-+			BIT(IIO_CHAN_INFO_INT_TIME),
-+	},
-+};
-+
-+static void ltrf216a_reset(struct iio_dev *indio_dev)
-+{
-+	struct ltrf216a_data *data = iio_priv(indio_dev);
-+
-+	/* reset sensor, chip fails to respond to this, so ignore any errors */
-+	regmap_write(data->regmap, LTRF216A_MAIN_CTRL, LTRF216A_ALS_RESET_MASK);
-+
-+	/* reset time */
-+	usleep_range(1000, 2000);
-+}
-+
-+static int ltrf216a_enable(struct iio_dev *indio_dev)
-+{
-+	struct ltrf216a_data *data = iio_priv(indio_dev);
-+	struct device *dev = &data->client->dev;
-+	int ret;
-+
-+	/* enable sensor */
-+	ret = regmap_set_bits(data->regmap,
-+			      LTRF216A_MAIN_CTRL, LTRF216A_ALS_ENABLE_MASK);
-+	if (ret) {
-+		dev_err(dev, "failed to enable sensor: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/* sleep for one integration cycle after enabling the device */
-+	msleep(ltrf216a_int_time_reg[0][0]);
-+
-+	return 0;
-+}
-+
-+static int ltrf216a_disable(struct iio_dev *indio_dev)
-+{
-+	struct ltrf216a_data *data = iio_priv(indio_dev);
-+	struct device *dev = &data->client->dev;
-+	int ret;
-+
-+	ret = regmap_write(data->regmap, LTRF216A_MAIN_CTRL, 0);
-+	if (ret)
-+		dev_err(dev, "failed to disable sensor: %d\n", ret);
-+
-+	return ret;
-+}
-+
-+static int ltrf216a_set_int_time(struct ltrf216a_data *data, int itime)
-+{
-+	struct device *dev = &data->client->dev;
-+	unsigned int i;
-+	u8 reg_val;
-+	int ret;
-+
-+	for (i = 0; i < ARRAY_SIZE(ltrf216a_int_time_available); i++) {
-+		if (ltrf216a_int_time_available[i][1] == itime)
-+			break;
-+	}
-+	if (i == ARRAY_SIZE(ltrf216a_int_time_available))
-+		return -EINVAL;
-+
-+	reg_val = ltrf216a_int_time_reg[i][1];
-+
-+	ret = regmap_write(data->regmap, LTRF216A_ALS_MEAS_RES, reg_val);
-+	if (ret) {
-+		dev_err(dev, "failed to set integration time: %d\n", ret);
-+		return ret;
-+	}
-+
-+	data->int_time_fac = ltrf216a_int_time_reg[i][0];
-+	data->int_time = itime;
-+
-+	return 0;
-+}
-+
-+static int ltrf216a_get_int_time(struct ltrf216a_data *data,
-+				 int *val, int *val2)
-+{
-+	*val = 0;
-+	*val2 = data->int_time;
-+	return IIO_VAL_INT_PLUS_MICRO;
-+}
-+
-+static int ltrf216a_set_power_state(struct ltrf216a_data *data, bool on)
-+{
-+	struct device *dev = &data->client->dev;
-+	int ret;
-+
-+	if (on) {
-+		ret = pm_runtime_resume_and_get(dev);
-+		if (ret) {
-+			dev_err(dev, "failed to resume runtime PM: %d\n", ret);
-+			return ret;
-+		}
-+	} else {
-+		pm_runtime_mark_last_busy(dev);
-+		pm_runtime_put_autosuspend(dev);
-+	}
-+
-+	return ret;
-+}
-+
-+static int ltrf216a_read_data(struct ltrf216a_data *data, u8 addr)
-+{
-+	struct device *dev = &data->client->dev;
-+	int ret, val;
-+	u8 buf[3];
-+
-+	ret = regmap_read_poll_timeout(data->regmap, LTRF216A_MAIN_STATUS,
-+				       val, val & LTRF216A_ALS_DATA_STATUS,
-+				       LTRF216A_ALS_READ_DATA_DELAY_US,
-+				       LTRF216A_ALS_READ_DATA_DELAY_US * 50);
-+	if (ret) {
-+		dev_err(dev, "failed to wait for measurement data: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = regmap_bulk_read(data->regmap, addr, buf, sizeof(buf));
-+	if (ret) {
-+		dev_err(dev, "failed to read measurement data: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return get_unaligned_le24(&buf[0]);
-+}
-+
-+static int ltrf216a_get_lux(struct ltrf216a_data *data)
-+{
-+	int ret, greendata;
-+	u64 lux, div;
-+
-+	ret = ltrf216a_set_power_state(data, true);
-+	if (ret)
-+		return ret;
-+
-+	greendata = ltrf216a_read_data(data, LTRF216A_ALS_DATA_0);
-+	if (greendata < 0)
-+		return greendata;
-+
-+	ltrf216a_set_power_state(data, false);
-+
-+	lux = greendata * 45 * LTRF216A_WIN_FAC * 100;
-+	div = data->als_gain_fac * data->int_time_fac * 100;
-+
-+	return div_u64(lux, div);
-+}
-+
-+static int ltrf216a_read_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int *val,
-+			     int *val2, long mask)
-+{
-+	struct ltrf216a_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_PROCESSED:
-+		mutex_lock(&data->lock);
-+		ret = ltrf216a_get_lux(data);
-+		mutex_unlock(&data->lock);
-+		if (ret < 0)
-+			return ret;
-+		*val = ret;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_INT_TIME:
-+		mutex_lock(&data->lock);
-+		ret = ltrf216a_get_int_time(data, val, val2);
-+		mutex_unlock(&data->lock);
-+		return ret;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ltrf216a_write_raw(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan, int val,
-+			      int val2, long mask)
-+{
-+	struct ltrf216a_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_INT_TIME:
-+		if (val != 0)
-+			return -EINVAL;
-+		mutex_lock(&data->lock);
-+		ret = ltrf216a_set_int_time(data, val2);
-+		mutex_unlock(&data->lock);
-+		return ret;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ltrf216a_read_available(struct iio_dev *indio_dev,
-+				   struct iio_chan_spec const *chan,
-+				   const int **vals, int *type, int *length,
-+				   long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_INT_TIME:
-+		*length = ARRAY_SIZE(ltrf216a_int_time_available) * 2;
-+		*vals = (const int *)ltrf216a_int_time_available;
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info ltrf216a_info = {
-+	.read_raw = ltrf216a_read_raw,
-+	.write_raw = ltrf216a_write_raw,
-+	.read_avail = ltrf216a_read_available,
-+};
-+
-+static bool ltrf216a_readable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case LTRF216A_MAIN_CTRL:
-+	case LTRF216A_ALS_MEAS_RES:
-+	case LTRF216A_ALS_GAIN:
-+	case LTRF216A_PART_ID:
-+	case LTRF216A_MAIN_STATUS:
-+	case LTRF216A_ALS_CLEAR_DATA_0:
-+	case LTRF216A_ALS_CLEAR_DATA_1:
-+	case LTRF216A_ALS_CLEAR_DATA_2:
-+	case LTRF216A_ALS_DATA_0:
-+	case LTRF216A_ALS_DATA_1:
-+	case LTRF216A_ALS_DATA_2:
-+	case LTRF216A_INT_CFG:
-+	case LTRF216A_INT_PST:
-+	case LTRF216A_ALS_THRES_UP_0:
-+	case LTRF216A_ALS_THRES_UP_1:
-+	case LTRF216A_ALS_THRES_UP_2:
-+	case LTRF216A_ALS_THRES_LOW_0:
-+	case LTRF216A_ALS_THRES_LOW_1:
-+	case LTRF216A_ALS_THRES_LOW_2:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool ltrf216a_writable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case LTRF216A_MAIN_CTRL:
-+	case LTRF216A_ALS_MEAS_RES:
-+	case LTRF216A_ALS_GAIN:
-+	case LTRF216A_INT_CFG:
-+	case LTRF216A_INT_PST:
-+	case LTRF216A_ALS_THRES_UP_0:
-+	case LTRF216A_ALS_THRES_UP_1:
-+	case LTRF216A_ALS_THRES_UP_2:
-+	case LTRF216A_ALS_THRES_LOW_0:
-+	case LTRF216A_ALS_THRES_LOW_1:
-+	case LTRF216A_ALS_THRES_LOW_2:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool ltrf216a_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case LTRF216A_MAIN_STATUS:
-+	case LTRF216A_ALS_CLEAR_DATA_0:
-+	case LTRF216A_ALS_CLEAR_DATA_1:
-+	case LTRF216A_ALS_CLEAR_DATA_2:
-+	case LTRF216A_ALS_DATA_0:
-+	case LTRF216A_ALS_DATA_1:
-+	case LTRF216A_ALS_DATA_2:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool ltrf216a_precious_reg(struct device *dev, unsigned int reg)
-+{
-+	return reg == LTRF216A_MAIN_STATUS;
-+}
-+
-+static const struct regmap_config ltrf216a_regmap_config = {
-+	.name = "ltrf216a",
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.cache_type = REGCACHE_RBTREE,
-+	.max_register = LTRF216A_ALS_THRES_LOW_2,
-+	.readable_reg = ltrf216a_readable_reg,
-+	.writeable_reg = ltrf216a_writable_reg,
-+	.volatile_reg = ltrf216a_volatile_reg,
-+	.precious_reg = ltrf216a_precious_reg,
-+	.disable_locking = true,
-+};
-+
-+static int ltrf216a_probe(struct i2c_client *client)
-+{
-+	struct ltrf216a_data *data;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+
-+	data->regmap = devm_regmap_init_i2c(client, &ltrf216a_regmap_config);
-+	if (IS_ERR(data->regmap))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->regmap),
-+				     "regmap initialization failed\n");
-+
-+	i2c_set_clientdata(client, indio_dev);
-+	data->client = client;
-+
-+	mutex_init(&data->lock);
-+
-+	indio_dev->info = &ltrf216a_info;
-+	indio_dev->name = "ltrf216a";
-+	indio_dev->channels = ltrf216a_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(ltrf216a_channels);
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	/* reset sensor, chip fails to respond to this, so ignore any errors */
-+	ltrf216a_reset(indio_dev);
-+
-+	ret = regmap_reinit_cache(data->regmap, &ltrf216a_regmap_config);
-+	if (ret)
-+		return dev_err_probe(&client->dev, ret,
-+				     "failed to reinit regmap cache\n");
-+
-+	ret = devm_pm_runtime_enable(&client->dev);
-+	if (ret)
-+		return dev_err_probe(&client->dev, ret,
-+				     "failed to enable runtime PM\n");
-+
-+	pm_runtime_set_autosuspend_delay(&client->dev, 1000);
-+	pm_runtime_use_autosuspend(&client->dev);
-+
-+	if (!IS_ENABLED(CONFIG_PM)) {
-+		ret = ltrf216a_enable(indio_dev);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	data->int_time = 100000;
-+	data->int_time_fac = 100;
-+	data->als_gain_fac = 3;
-+
-+	return devm_iio_device_register(&client->dev, indio_dev);
-+}
-+
-+static int ltrf216a_runtime_suspend(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
-+	struct ltrf216a_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = ltrf216a_disable(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	regcache_cache_only(data->regmap, true);
-+
-+	return 0;
-+}
-+
-+static int ltrf216a_runtime_resume(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
-+	struct ltrf216a_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	regcache_cache_only(data->regmap, false);
-+	regcache_mark_dirty(data->regmap);
-+	ret = regcache_sync(data->regmap);
-+	if (ret)
-+		goto cache_only;
-+
-+	ret = ltrf216a_enable(indio_dev);
-+	if (ret)
-+		goto cache_only;
-+
-+	return 0;
-+
-+cache_only:
-+	regcache_cache_only(data->regmap, true);
-+
-+	return ret;
-+}
-+
-+static DEFINE_RUNTIME_DEV_PM_OPS(ltrf216a_pm_ops, ltrf216a_runtime_suspend,
-+				 ltrf216a_runtime_resume, NULL);
-+
-+static const struct i2c_device_id ltrf216a_id[] = {
-+	{ "ltrf216a" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, ltrf216a_id);
-+
-+static const struct of_device_id ltrf216a_of_match[] = {
-+	{ .compatible = "liteon,ltrf216a" },
-+	{ .compatible = "ltr,ltrf216a" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ltrf216a_of_match);
-+
-+static struct i2c_driver ltrf216a_driver = {
-+	.driver = {
-+		.name = "ltrf216a",
-+		.pm = pm_ptr(&ltrf216a_pm_ops),
-+		.of_match_table = ltrf216a_of_match,
-+	},
-+	.probe_new = ltrf216a_probe,
-+	.id_table = ltrf216a_id,
-+};
-+module_i2c_driver(ltrf216a_driver);
-+
-+MODULE_AUTHOR("Shreeya Patel <shreeya.patel@collabora.com>");
-+MODULE_AUTHOR("Shi Zhigang <Zhigang.Shi@liteon.com>");
-+MODULE_DESCRIPTION("LTRF216A ambient light sensor driver");
-+MODULE_LICENSE("GPL");
+- In patch 06/13:
+	- Roll back all "$ref: " to v2 patch style (using "/schemas/...")
+
+- In patch 07/13:
+	- Replace text "Mediatek" with "MediaTek" in Kconfig
+	- Replace "first break and then return" with "return directly"
+	   in "mt6370_check_vendor_info()"
+	- Add module name related description in Kconfig helptext
+	- Add Copyright in the source code
+	- Add header file "mt6370.h" for all "#define IRQ"
+	- Adjust Makefile order of MT6370
+	- Refine "bank_idx" and "bank_addr" in
+	  "mt6375_regmap_read()" / "mt6375_regmap_write()"
+	- Refine redundant "else if" in "mt6370_regmap_read()"
+
+- In patch 08/13:
+	- Replace text "Mediatek" with "MediaTek" in Kconfig
+	- Replace "first ret=regulator_(dis/en)able and then return"
+	   with "return directly" in "mt6370_tcpc_set_vbus()"
+	- Replace header file <linux/of.h> with <linux/mod_devicetable.h>
+	- Add Copyright in the source code
+	- Add module name related description in Kconfig helptext
+	- Remove header file <linux/of.h>
+	- Refine all probe error by using dev_err_probe()
+
+- In patch 09/13:
+	- Replace text "Mediatek" with "MediaTek"
+	- Replace all "first dev_err() and then return" with
+	   "return dev_err_probe()"
+	- Add Copyright in the source code
+	- Add module name related description in Kconfig
+	- Add unit suffix of macro "ADC_CONV_POLLING_TIME"
+	- Add new macro "ADC_CONV_TIME_MS"
+	- Adjust the position of include file <mediatek,mt6370_adc.h>
+	- Adjust the postions between <linux/module.h> and
+	   <linux/mod_devicetable.h>
+	- Fix some incorrect characters
+
+- In patch 10/13:
+	- Replace text "Mediatek" with "MediaTek" in Kconfig and
+	   MODULE_DESCRIPTION()
+	- Replace "mt6370_chg_val_to_reg" and "mt6370_chg_reg_to_val"
+	   with "linear_range" API
+	- Replace "first break and then return" with "return directly"
+	   in all cases of get/set power_supply_property
+	- Replace all "first dev_err() and then return" with "return
+	   dev_err_probe()"
+	- Replace all "return IS_ERR(priv->rdev) ? PTR_ERR(priv->rdev) : 0"
+	   with "PTR_ERR_OR_ZERO()"
+	- Replace "priv->dev->of_node" with "dev_of_node()"
+	- Add Copyright in the source code
+	- Add module name related description in Kconfig helptext
+	- Add proper unit of "MT6370_MIVR_IBUS_TH"
+	- Add error check in "mt6370_chg_get_status"
+	- Remove including <mediatek,mt6370_adc.h> header file
+	- Remove redundant comma of every enum terminator line
+	- Remove unwanted blank lines
+	- Remove the useless label (toggle_cfo_exit:)
+	- Remove using atomic
+	- Remove using of_match_ptr()
+	- Fix some incorrect characters
+	- Fix updating wrong bits when using ena_gpiod of OTG regulator
+	- Adjust the probe order in probe()
+
+- In patch 11/13:
+	- Replace text "Mediatek" with "MediaTek" in Kconfig
+	- Replace text "const" with "constant" in Kconfig
+	- Add Copyright in the source code
+
+- In patch 12/13:
+	- Replace text "Mediatek" with "MediaTek" in Kconfig
+	- Add Copyright in the source code
+
+- In patch 13/13:
+	- Replace text "Mediatek" with "MediaTek" in Kconfig
+	- Add Copyright in the source code
+	- Revise the comment of "PWM HYS STEPS"
+
+
+Changes in v3:
+- Remove ADC ABI file, which is added in v2 Patch 7
+- In patch 02/14:
+	- Add items and remove maxItems of io-channels
+	- Add io-channel-names and describe each item
+	- Add "unevaluatedProperties: false" in "usb-otg-vbus-regulator"
+	- Rename "enable-gpio" to "enable-gpios" in "usb-otg-vbus-regulator"
+- In patch 03/14:
+	- Use leds-class-multicolor.yaml instead of common.yaml.
+	- Split multi-led and led node.
+	- Add subdevice "led" in "multi-led".
+- In patch 04/14:
+	- Remove the description of enum.
+- In patch 05/14:
+	- Rename "mediatek,bled-pwm-hys-input-threshold-steps" to
+	  "mediatek,bled-pwm-hys-input-th-steps"
+	- Refine "bled-pwm-hys-input-th-steps", "bled-ovp-microvolt",
+	  "bled-ocp-microamp" enum values
+- In patch 06/14:
+	- Use " in entire patchset
+	- Refine ADC description
+	- Rename "enable-gpio" to "enable-gpios" in "regualtor"
+- In patch 07/14:
+	- Refine Kconfig help text
+	- Refine error message of unknown vendor ID in
+	  mt6370_check_vendor_info()
+	- Refine return value handling of mt6370_regmap_read()
+	- Refine all probe error by using dev_err_probe()
+	- Refine "bank_idx" and "bank_addr" in mt6370_regmap_read() and
+	  mt6370_regmap_write()
+	- Add "#define VENID*" and drop the comments in
+	  mt6370_check_vendor_info()
+	- Drop "MFD" in MODULE_DESCRIPTION()
+- In patch 09/14:
+	- Refine Kconfig help text
+- In patch 10/14:
+	- Refine Kconfig help text
+	- Refine all channel value in read_scale()
+		a. current: uA --> mA
+		b. voltage: uV --> mV
+		c. temperature: degrees Celsius --> milli degrees Celsius
+	- Add "default:" condition of switch statement in read_scale() and read_raw()
+	- Add error message for reading ADC register failed
+	- Add the comment for adc_lock
+	- Add <linux/mod_devicetable.h> header file for struct of_device_id
+	- Replace "adc" text with "ADC" in all of the error messages
+- In patch 12/14:
+	- Refine the grammer of the Kconfig.
+	- Change reg mode to the const current mode.
+- In patch 14/14:
+	- Refine bool properties parsing (pwm-enable, ovp-shutdown, ocp-shutdown) in DT
+	  parsing function
+	- Refine u32 and u8 properties parsing (pwm-hys-input-th-steps, ovp-microvolt,
+	  ocp-microamp), from using register value to using actual value
+	- Refine error string of "channle-use" parsing failed
+	- Refine Kconfig help text
+
+
+Changes in v2:
+- In patch 01/15:
+	- Add "unevaluatedProperties: false".
+	- Delete "DT bindings".
+	- Refine the description to fit in 80 columns.
+	- Skip the connector description.
+- In patch 02/15:
+	- Refine items description of interrupt-name
+	- Rename "usb-otg-vbus" to "usb-otg-vbus-regulator"
+	- Add constraint properties for ADC
+- In patch 03/15:
+	- Skip not useful description of "^(multi-)?led@[0-3]$"
+	  and reg.
+	- Due to the dependency, remove the mention of mfd
+	  document directory.
+	- Delete Soft-start property. In design aspect, we think
+	  soft-restart should always be enabled, our new chip
+	  has deleted the related setting register , also, we don’t
+	  allow user adjust this parameter in this chip.
+	- Refine the commit message.
+- In patch 04/15:
+	- Skip not useful description of "^led@[0-1]$" and reg.
+	- Add apace after '#'.
+	- Refine the commit message.
+- In patch 05/15:
+	- Remove "binding documentation" in subject title
+	- Refine description of mt6370 backlight binding
+	  document
+	- Refine properties name(bled-pwm-hys-input-bit,
+	  bled-ovp-microvolt, bled-ocp-microamp) and their
+	  description
+- In patch 06/15:
+	- Refine ADC and Regulator descriptions
+	- Refine include header usage in example
+	- Refine node name to generic node name("pmic@34")
+	- Refine led example indentation
+	- Refine license of mediatek,mt6370_adc.h
+	- Rename the dts example from IRQ define to number.
+	- Remove mediatek,mt6370.h
+- In patch 07/15:
+	- Add ABI documentation for mt6370 non-standard ADC
+	  sysfs interfaces.
+- In patch 08/15:
+	- Add all IRQ define into mt6370.c.
+	- Refine include header usage
+- In patch 09/15:
+	- No changes.
+- In patch 10/15:
+	- Use 'gpiod_get_from_of_node' to replace
+	  'fwnode_gpiod_get_index'.
+- In patch 11/15:
+	- Refine Kconfig mt6370 help text
+	- Refine mask&shift to FIELD_PREP()
+	- Refine mutex lock name ("lock" -> "adc_lock")
+	- Refine mt6370_adc_read_scale()
+	- Refine mt6370_adc_read_offset()
+	- Refine mt6370_channel_labels[] by using enum to index
+	  chan spec
+	- Refine MT6370_ADC_CHAN()
+	- Refine indio_dev->name
+	- Remove useless include header files
+- In patch 12/15:
+	- Refine mt6370_chg_otg_rdesc.of_match
+	  ("mt6370,otg-vbus" -> "usb-otg-vbus-regulator") to match
+	  DT binding
+- In patch 13/15:
+	- Refine Kconfig description.
+	- Remove include "linux/of.h" and use
+	  "linux/mod_devicetable.h".
+	- Place a comma for the last element of the const
+	  unsigned int array.
+	- Add a comment line for the mutex 'lock'.
+	- In probe function, use 'dev_err_probe' in some
+	  judgement to reduce the LOC.
+	- Refine include header usage.
+	  BIT/GENMASK -> linux/bits.h
+	  FIELD_GET -> linux/bitfield.h
+- In patch 14/15:
+	- Add blank line.
+	- Replace container_of() with to_mt6370_led() .
+	- Refine description of ramping.
+	- Refine the mt6370_init_common_properties function.
+	- Refine the probe return.
+- In patch 15/15:
+	- Refine MT6370 help text in Kconfig
+	- Refine DT Parse function
+	- Remove useless enum
+	- Add comment for 6372 backward compatible in
+	  bl_update_status() and
+	  check_vendor_info()
+	- Using dev_err_probe(); insteads dev_err()&return; in
+	  the probe()
+
+Alice Chen (2):
+  dt-bindings: leds: Add MediaTek MT6370 flashlight
+  leds: flashlight: mt6370: Add MediaTek MT6370 flashlight support
+
+ChiYuan Huang (7):
+  dt-bindings: usb: Add MediaTek MT6370 TCPC
+  dt-bindings: leds: mt6370: Add MediaTek MT6370 current sink type LED
+    indicator
+  dt-bindings: backlight: Add MediaTek MT6370 backlight
+  dt-bindings: mfd: Add MediaTek MT6370
+  mfd: mt6370: Add MediaTek MT6370 support
+  usb: typec: tcpci_mt6370: Add Mediatek MT6370 tcpci driver
+  leds: mt6370: Add MediaTek MT6370 current sink type LED Indicator
+    support
+
+ChiaEn Wu (4):
+  dt-bindings: power: supply: Add MediaTek MT6370 Charger
+  iio: adc: mt6370: Add MediaTek MT6370 support
+  power: supply: mt6370: Add MediaTek MT6370 charger driver
+  video: backlight: mt6370: Add MediaTek MT6370 support
+
+ .../leds/backlight/mediatek,mt6370-backlight.yaml  |   92 ++
+ .../bindings/leds/mediatek,mt6370-flashlight.yaml  |   41 +
+ .../bindings/leds/mediatek,mt6370-indicator.yaml   |   77 ++
+ .../devicetree/bindings/mfd/mediatek,mt6370.yaml   |  280 ++++++
+ .../power/supply/mediatek,mt6370-charger.yaml      |   88 ++
+ .../bindings/usb/mediatek,mt6370-tcpc.yaml         |   36 +
+ drivers/iio/adc/Kconfig                            |   12 +
+ drivers/iio/adc/Makefile                           |    1 +
+ drivers/iio/adc/mt6370-adc.c                       |  273 +++++
+ drivers/leds/Kconfig                               |   14 +
+ drivers/leds/Makefile                              |    1 +
+ drivers/leds/flash/Kconfig                         |   12 +
+ drivers/leds/flash/Makefile                        |    1 +
+ drivers/leds/flash/leds-mt6370-flash.c             |  661 ++++++++++++
+ drivers/leds/leds-mt6370.c                         |  994 ++++++++++++++++++
+ drivers/mfd/Kconfig                                |   16 +
+ drivers/mfd/Makefile                               |    1 +
+ drivers/mfd/mt6370.c                               |  281 ++++++
+ drivers/mfd/mt6370.h                               |   99 ++
+ drivers/power/supply/Kconfig                       |   14 +
+ drivers/power/supply/Makefile                      |    1 +
+ drivers/power/supply/mt6370-charger.c              | 1062 ++++++++++++++++++++
+ drivers/usb/typec/tcpm/Kconfig                     |   11 +
+ drivers/usb/typec/tcpm/Makefile                    |    1 +
+ drivers/usb/typec/tcpm/tcpci_mt6370.c              |  207 ++++
+ drivers/video/backlight/Kconfig                    |   12 +
+ drivers/video/backlight/Makefile                   |    1 +
+ drivers/video/backlight/mt6370-backlight.c         |  339 +++++++
+ include/dt-bindings/iio/adc/mediatek,mt6370_adc.h  |   18 +
+ 29 files changed, 4646 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/mediatek,mt6370-backlight.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/mediatek,mt6370-indicator.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/mediatek,mt6370-charger.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/mediatek,mt6370-tcpc.yaml
+ create mode 100644 drivers/iio/adc/mt6370-adc.c
+ create mode 100644 drivers/leds/flash/leds-mt6370-flash.c
+ create mode 100644 drivers/leds/leds-mt6370.c
+ create mode 100644 drivers/mfd/mt6370.c
+ create mode 100644 drivers/mfd/mt6370.h
+ create mode 100644 drivers/power/supply/mt6370-charger.c
+ create mode 100644 drivers/usb/typec/tcpm/tcpci_mt6370.c
+ create mode 100644 drivers/video/backlight/mt6370-backlight.c
+ create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6370_adc.h
+
 -- 
-2.30.2
+2.7.4
 
