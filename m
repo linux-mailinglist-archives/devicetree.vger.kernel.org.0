@@ -2,81 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 002A4575F5F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 12:30:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83290575F95
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 12:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232538AbiGOKaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 06:30:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35892 "EHLO
+        id S231563AbiGOK6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 06:58:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231239AbiGOKaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 06:30:39 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C35383F1C;
-        Fri, 15 Jul 2022 03:30:38 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E9BC86601A54;
-        Fri, 15 Jul 2022 11:30:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1657881036;
-        bh=dCWvFXNI2rIY5yBkfjhQbWu/2lwIl+50fVwcfisytEU=;
-        h=From:To:Cc:Subject:Date:From;
-        b=VMXBCUuenjDeMlHlJ/LcKhsNYLtz7OrbcEnGYXzDF9OzwDi8txzxX30LInO6OlyuO
-         8lfcUPs3tlaI0FXkN/euk048aFe+qIO75+HKm7smmo7wkPN6zNxJScqX4UCasS7zm+
-         gHe7lINPLlfLagCf8elXNEFL9nhVInxizV1w3y+Y970RMnbjH49GUW1fzfeNLDDjbj
-         iARmCY+C53JdG5IHgR74mc+7dUdVWr0P0n/O9z6ACbJD8uAUzrBRO8ZkM/s2VNuoB0
-         GS2x1gOIlnBUfhG9PwdhT9T04UAfoPeapGo74kllbcki2mtYgRVo1XfSpYt7NF1MdT
-         /66HTbEX/FPdQ==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     linus.walleij@linaro.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, sean.wang@mediatek.com,
-        angelogioacchino.delregno@collabora.com, nfraprado@collabora.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: pinctrl: mt8195: Use drive-strength-microamp in examples
-Date:   Fri, 15 Jul 2022 12:30:29 +0200
-Message-Id: <20220715103029.204500-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S229499AbiGOK6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 06:58:11 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AAFE85F86
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 03:58:09 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id d17so3466220qvs.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 03:58:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QjXJYU8Ca6zEedr5pwyFGi7gqZxYyLWinYBmJNfXr0o=;
+        b=yAw42Riqh9SF51Nq5en1JtNN5JqGWpNDiFFBWdqthtOO6QqwS7YFrGQbaAz2+Zb8Wp
+         +SPhcKkvb7k6thRa8q1b4AwjO1cONFF7jzbaUB5ORBH157jtnvfhqu540iBT2uplwl9t
+         wS7RqwZM+qu0t653Wtxhm103zENWmn7UfYY6u3Twwvv5rz9lTt26V4nBq2vajfDPK3A7
+         72W5ulCD4P3D3as3Q/iI02PAWRe0sZVUsXxo34gx4i3XU0KpLMvE63gY1S2E6w0vHmYo
+         Djsca5v/eNyBaYLkUcEMPmiitWoPjDNMwd7kRb3TRr2FUVgkMj9DMV1G5fVjBsUeWf7X
+         LuGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QjXJYU8Ca6zEedr5pwyFGi7gqZxYyLWinYBmJNfXr0o=;
+        b=2JCfNah5qWFFp9A4yvMW5MN+zuPPUOnaGw2iSpeWzrXCpBRv1VSI6NiaoigmhBisiD
+         wQ/L5qhM2ZTWh/KDLxT7++nWT3Bj7qimIdFjac3KP9yc3kQ5MfGWrcoVLYyKWcUoxYJv
+         2BP/uRkVtarVICrcupuHga7ZhZlrNTtyQtgBeCtZfgA6u788/ZaEBZQsR6Y+/n6XsXdB
+         dEyNEQ3Tkaxvag7/kWlBIGXrj6c4gzaVHenLNRmy7YTLUP7j0Doqm2gRPl6G1BE1GZnZ
+         tsApQWnULUg/WtfKHoqpzjYylxbH25DLaP4CrKvcO3Dkm1ATA06jIuAb2KSAqPhBhTrV
+         ENjg==
+X-Gm-Message-State: AJIora81IsNPdtWjye7dFgkpbGUAkIht7n5EY7SEnMb8CkU34i1k2tk6
+        CpetPpDwD6XdIvaSCnzvIqXVKPPkO1Yc/N+y8hGzXA==
+X-Google-Smtp-Source: AGRyM1tEIsAaCJg+HSR8qR8BS2VnxOA/YbkmYpyTrN1q01vkMCdJKkz8yJ46Jcn4M8eui61Owe5WqQlEXDnqA4fUe78=
+X-Received: by 2002:ad4:5f8a:0:b0:473:2108:7fe0 with SMTP id
+ jp10-20020ad45f8a000000b0047321087fe0mr11229869qvb.115.1657882688188; Fri, 15
+ Jul 2022 03:58:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220714124333.27643-1-johan+linaro@kernel.org> <20220714124333.27643-29-johan+linaro@kernel.org>
+In-Reply-To: <20220714124333.27643-29-johan+linaro@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 15 Jul 2022 13:57:57 +0300
+Message-ID: <CAA8EJpoBhFyoUrUYM3+gYk4hvORvp_3hLYJCF82-LR3_YxLFsA@mail.gmail.com>
+Subject: Re: [PATCH v3 28/30] phy: qcom-qmp-pcie-msm8996: drop pipe clock lane suffix
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The property mediatek,drive-strength-adv was deprecated: change the
-example for i2c0-pins to use drive-strength-microamp.
+On Thu, 14 Jul 2022 at 15:44, Johan Hovold <johan+linaro@kernel.org> wrote:
+>
+> The pipe clock is defined in the "lane" node so there's no need to keep
+> adding a redundant lane-number suffix to the clock name.
+>
+> Update driver to support the new binding where the pipe clock name has
+> been deprecated by instead requesting the clock by index.
+>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-Fixes: b6d9af2c6b69 ("dt-bindings: pinctrl: mt8195: Add and use drive-strength-microamp")
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-index 85e96a5e1708..66fe17e9e4d3 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-@@ -281,7 +281,7 @@ examples:
-           pinmux = <PINMUX_GPIO8__FUNC_SDA0>,
-                    <PINMUX_GPIO9__FUNC_SCL0>;
-           bias-disable;
--          mediatek,drive-strength-adv = <7>;
-+          drive-strength-microamp = <1000>;
-         };
-       };
-     };
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie-msm8996.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+
 -- 
-2.35.1
-
+With best wishes
+Dmitry
