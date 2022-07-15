@@ -2,189 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C09E2575EA1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC95D575EAF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jul 2022 11:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233193AbiGOJeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jul 2022 05:34:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51066 "EHLO
+        id S231794AbiGOJgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jul 2022 05:36:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232543AbiGOJeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 05:34:01 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDFC26AC3
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:33:59 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id t1so6925351lft.8
-        for <devicetree@vger.kernel.org>; Fri, 15 Jul 2022 02:33:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LWs7AqRcsJIuTaEyljmzXxNtVa28ecrdNGzJsWNp11U=;
-        b=ccbbBpBHnHt320KqP5R2MNVZdv9btGA2pa5tLrgDv3xqrF6qYAhVNpkdVbm8drs9mC
-         aygiC9IhevQ/w9zYa443tkCPgJHhpyUbcRO/imGQcjw4EFqiYDN7qtWkhZSl9Il6IBYz
-         EUrWfosTDV3GDXXowzRyDFA/gBBuGjnIrdXmf73VkXnj9UEU4Oh/b741OR8p9AVNbOpu
-         Gn3Hrrr4SOLXGUesNK07aogLzuBgYGnne1eXzsa38WOMv6wqxHEE/i9CR5RvHNMxX4ku
-         eTAh11ZijzVzl+OOX9/QTnELt6b7W8i/kYnBKXSiM5OpH/T7nbv9BrlhDZHkfmPqbeq1
-         guPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LWs7AqRcsJIuTaEyljmzXxNtVa28ecrdNGzJsWNp11U=;
-        b=vZyJBsHgSDj/X6tCrGexKQJpYCNmx9fmG7Co6Ogpydk6QGu3sKQ63IVVgv1m05YEMK
-         km9/utkj3yxJYfBoV3a+Y8x9sgQ+DpKLJu0StkOxWvM7ga9Z3Mn63UjzCI3nuaiUUflM
-         ieOBOxnPRWdGEZvY+8fk+zo/A/VCqcZf1ibZCC/n7karl3Cve3nvCjl+44+cuzDsXN6e
-         RSzgWKeUXwAlYUcV6VulvcBxNWUMstgijSsG42ba6t44VvQM6S/4NE9YvqoHsI2w/ZVP
-         ONQ3lo8OidUHLJ6aPQYhtlGoptRLGGssSvu1whZ9JziNOSw9pwwaW3/x5zk5yIHc8CX/
-         qdLw==
-X-Gm-Message-State: AJIora98+ujB5xBkLKatA/yagI5lrrRucJXzUgcdTJ0UdRhIuYXfaWlK
-        imcfpZ+TyLinyJmMNV13UiC8wQ==
-X-Google-Smtp-Source: AGRyM1vuK+qdbwnYF+t1IkZorHQBD9R9Bz9OTjqWnlUPp9g/klW1r18aFepZ1hRe8YwQ9/r+/TVoGw==
-X-Received: by 2002:a05:6512:228d:b0:489:c925:e045 with SMTP id f13-20020a056512228d00b00489c925e045mr7535080lfu.545.1657877637867;
-        Fri, 15 Jul 2022 02:33:57 -0700 (PDT)
-Received: from [10.0.0.8] (fwa5da9-171.bb.online.no. [88.93.169.171])
-        by smtp.gmail.com with ESMTPSA id k1-20020a2eb741000000b0025d542731ffsm682135ljo.5.2022.07.15.02.33.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jul 2022 02:33:56 -0700 (PDT)
-Message-ID: <044a9736-a4ec-c250-7755-c80a5bcbe38b@linaro.org>
-Date:   Fri, 15 Jul 2022 11:33:54 +0200
+        with ESMTP id S230138AbiGOJgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jul 2022 05:36:53 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1417D7E801;
+        Fri, 15 Jul 2022 02:36:52 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C2762993;
+        Fri, 15 Jul 2022 11:36:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1657877809;
+        bh=EHp0moRQn0J8P7EHzWyn0c8ze5yNEDJeYxMsaQuPATE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=g3jynj5FamzNz5y8dhscZqUhd3ppCWL2VxIXuuh1yttPoVxA6hgjM/muWkPSakqbh
+         JGP+OCmzWfKhGFTu0mlKyaGtWMjLxcrLkOM2flcELvnxJMwuyFoNt8Ws73tYBna5pw
+         kJBM2WiIZUy45Y+cK1M/rpTtIWMpmqVEBORH/zM0=
+Date:   Fri, 15 Jul 2022 12:36:18 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Volodymyr Kharuk <vkh@melexis.com>
+Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Subject: Re: [PATCH v2 4/6] media: uapi: Add mlx7502x header file
+Message-ID: <YtE1EgvDpfLdbWnD@pendragon.ideasonboard.com>
+References: <cover.1657786765.git.vkh@melexis.com>
+ <0765b2ef8eea43dce67232a109e9f8b338aa06bd.1657786765.git.vkh@melexis.com>
+ <Ys/wh1wUvQlmpHrg@pendragon.ideasonboard.com>
+ <20220715085720.GA2295@vkh-ThinkPad-T490>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/2] dt-bindings: fpga: add binding doc for ecp5-spi fpga
- mgr
-Content-Language: en-US
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>, mdf@kernel.org,
-        hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-References: <20220714122657.17972-1-i.bornyakov@metrotek.ru>
- <20220714122657.17972-3-i.bornyakov@metrotek.ru>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220714122657.17972-3-i.bornyakov@metrotek.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220715085720.GA2295@vkh-ThinkPad-T490>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 14:26, Ivan Bornyakov wrote:
-> Add Device Tree Binding doc for Lattice ECP5 FPGA manager using slave
-> SPI to load .bit formatted uncompressed bitstream image.
+Hello,
+
+CC'ing Benjamin Mugnier who I recall expressed an interest in ToF
+sensors (if I recall incorrectly, my apologies).
+
+On Fri, Jul 15, 2022 at 11:57:20AM +0300, Volodymyr Kharuk wrote:
+> On Thu, Jul 14, 2022 at 01:31:35PM +0300, Laurent Pinchart wrote:
+> > On Thu, Jul 14, 2022 at 11:34:46AM +0300, Volodymyr Kharuk wrote:
+> > > Define user controls for mlx7502x driver and update MAINTAINERS
+> > > 
+> > > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+> > > ---
+> > >  MAINTAINERS                   |  7 +++++++
+> > >  include/uapi/linux/mlx7502x.h | 31 +++++++++++++++++++++++++++++++
+> > >  2 files changed, 38 insertions(+)
+> > >  create mode 100644 include/uapi/linux/mlx7502x.h
+> > > 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index ef3ec334fae9..1a68d888ee14 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -12673,6 +12673,13 @@ S:	Supported
+> > >  W:	http://www.melexis.com
+> > >  F:	drivers/iio/temperature/mlx90632.c
+> > >  
+> > > +MELEXIS MLX7502X DRIVER
+> > > +M:	Volodymyr Kharuk <vkh@melexis.com>
+> > > +L:	linux-media@vger.kernel.org
+> > > +S:	Supported
+> > > +W:	http://www.melexis.com
+> > > +F:	include/uapi/linux/mlx7502x.h
+> > > +
+> > >  MELFAS MIP4 TOUCHSCREEN DRIVER
+> > >  M:	Sangwon Jee <jeesw@melfas.com>
+> > >  S:	Supported
+> > > diff --git a/include/uapi/linux/mlx7502x.h b/include/uapi/linux/mlx7502x.h
+> > > new file mode 100644
+> > > index 000000000000..44386f3d6f5a
+> > > --- /dev/null
+> > > +++ b/include/uapi/linux/mlx7502x.h
+> > > @@ -0,0 +1,31 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> > > +/*
+> > > + * Melexis 7502x ToF cameras driver.
+> > > + *
+> > > + * Copyright (C) 2021 Melexis N.V.
+> > > + *
+> > > + */
+> > > +
+> > > +#ifndef __UAPI_MLX7502X_H_
+> > > +#define __UAPI_MLX7502X_H_
+> > > +
+> > > +#include <linux/v4l2-controls.h>
+> > > +
+> > 
+> > These controls should be documented, in
+> > Documentation/userspace-api/media/drivers/.
 > 
-> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-> ---
->  .../fpga/lattice,ecp5-spi-fpga-mgr.yaml       | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
+> Ok, will do in v3
 > 
-> diff --git a/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
-> new file mode 100644
-> index 000000000000..79868f9c84e2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/fpga/lattice,ecp5-spi-fpga-mgr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lattice ECP5 FPGA manager.
-> +
-> +maintainers:
-> +  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-> +
-> +description:
-> +  Device Tree Bindings for Lattice ECP5 FPGA Manager using slave SPI to
-> +  load the uncompressed bitstream in .bit format.
+> > > +/* number of phases per frame: 1..8 */
+> > > +#define V4L2_CID_MLX7502X_PHASE_NUMBER  (V4L2_CID_USER_MLX7502X_BASE + 0)
+> > > +/* shift of each phase in frame, this is an array of 8 elements, each 16bits */
+> > > +#define V4L2_CID_MLX7502X_PHASE_SEQ	(V4L2_CID_USER_MLX7502X_BASE + 1)
+> > > +/* frequency modulation in MHz */
+> > > +#define V4L2_CID_MLX7502X_FMOD		(V4L2_CID_USER_MLX7502X_BASE + 2)
+> > > +/* time integration of each phase in us */
+> > > +#define V4L2_CID_MLX7502X_TINT		(V4L2_CID_USER_MLX7502X_BASE + 3)
+> > 
+> > Are these control very device-specific, or are they concept that apply
+> > in general to ToF sensors ? Same for V4L2_CID_MLX7502X_OUTPUT_MODE.
+> 
+> These controls(except V4L2_CID_MLX7502X_OUTPUT_MODE) are general for ToF
+> sensors. Do you think we should standardize them?
 
-s/Device Tree Bindings for//
+I would really really like to see control standardization for ToF
+sensors, yes :-)
 
-Instead describe the hardware you are adding bindings for. What is a
-"Manager"? It is so broad and unspecific... It is some dedicated
-hardware to communicate with FPGA or you just called this regular FPGA
-interface exposed to the CPU/SoC?
+Do you know of any public litterature that explains the operating
+principles of ToF sensors ? I don't expect most of the V4L2 developers
+to be familiar with the concept, so something that could bring us up to
+speed on ToF would be useful for the discussion.
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - lattice,ecp5-spi-fpga-mgr
+> Note that the control V4L2_CID_MLX7502X_TINT is similar to
+> V4L2_CID_EXPOSURE, but the way it is done in ToF is different. They don't
+> have a shutter. So I gave a separate control name. Is it ok?
 
-Do not encode interface name in compatible so no "spi".
+Yes, I think that's fine.
 
-> +
-> +  reg:
-> +    description: SPI chip select
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 60000000
+> > > +/* mode could sw(sending i2c packet), hw(pin triggering), and continuous(self triggering) */
+> > > +#define V4L2_CID_MLX7502X_TRIGGER_MODE	(V4L2_CID_USER_MLX7502X_BASE + 4)
+> > > +/* in case sw or hw trigger mode is used */
+> > > +#define V4L2_CID_MLX7502X_TRIGGER	(V4L2_CID_USER_MLX7502X_BASE + 5)
+> > 
+> > Trigger control is likely something we need to standardize at the V4L2
+> > level.
+> 
+> Ok, then I'll remove these controls for now and I will back with this as
+> a separate patch.
+> 
+> > > +/* this is related to the taps in ToF cameras, usually A minus B is the best option */
+> > > +#define V4L2_CID_MLX7502X_OUTPUT_MODE	(V4L2_CID_USER_MLX7502X_BASE + 6)
+> > > +/* ToF camers has its own temperature sensor, which can be read out only during streaming */
+> > > +#define V4L2_CID_MLX7502X_TEMPERATURE	(V4L2_CID_USER_MLX7502X_BASE + 7)
+> > 
+> > This should probably use the proposed temperature control from
+> > https://lore.kernel.org/linux-media/20220415111845.27130-3-benjamin.mugnier@foss.st.com/
+> 
+> Ok, then I'll remove these controls for now.
+> 
+> > > +
+> > > +#endif /* __UAPI_MLX7502X_H_ */
 
-Reference spi/spi-peripheral-props.yaml in allOf
+-- 
+Regards,
 
-> +
-> +  program-gpios:
-> +    description:
-> +      A GPIO line connected to PROGRAMN (active low) pin of the device.
-> +      Initiates configuration sequence.
-> +    maxItems: 1
-> +
-> +  init-gpios:
-> +    description:
-> +      A GPIO line connected to INITN (active low) pin of the device.
-> +      Indicates the FPGA is ready to be configured.
-> +    maxItems: 1
-> +
-> +  done-gpios:
-> +    description:
-> +      A GPIO line connected to DONE (active high) pin of the device.
-> +      Indicates that the configuration sequence is complete.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - program-gpios
-> +  - init-gpios
-> +  - done-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +            #address-cells = <1>;
-
-Wrong indentation. 4-spaces for DTS example.
-
-> +            #size-cells = <0>;
-> +
-> +            fpga_mgr@0 {
-
-No underscores in node names.
-
-> +                    compatible = "lattice,ecp5-spi-fpga-mgr";
-> +                    spi-max-frequency = <20000000>;
-> +                    reg = <0>;
-> +                    program-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
-> +                    init-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
-> +                    done-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
-> +            };
-> +    };
-
-
-Best regards,
-Krzysztof
+Laurent Pinchart
