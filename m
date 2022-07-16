@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AA2B576FD2
+	by mail.lfdr.de (Postfix) with ESMTP id E5F1C576FD3
 	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 17:20:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232261AbiGPPTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 11:19:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38608 "EHLO
+        id S231998AbiGPPTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 11:19:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232287AbiGPPTk (ORCPT
+        with ESMTP id S232280AbiGPPTk (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 11:19:40 -0400
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63BC61F2E0
-        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 08:19:24 -0700 (PDT)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-10cf9f5b500so11715897fac.2
-        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 08:19:24 -0700 (PDT)
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A377205CD
+        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 08:19:25 -0700 (PDT)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-10c0e6dd55eso12822500fac.7
+        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 08:19:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=UQMyqlnOl2ShQfxqO/F3cpteR/9EvTP4YzP6gZhE16Y=;
-        b=UpGj6MMOpOqt27f839h3qVkzEniiwd1if/gzWBauVzKGY/e+vLRBDeEgp7daw7DTU+
-         gT9TEAefkth7hBHefuQFpEG45OF7Studd6+ehMIDwEOQ1eoziEuWd9aB4bbfXIIxCpnr
-         2jJ0jxnZwBF5uKS/Mq2efpLppEfiuHQ1ynlbIj0qLoCF3KNKQVX974vI6YLbKHRnswmC
-         Bi23FIxMIO1Odcp3BJNsGgWgxG1DBRd0aaI/vEJ8YuWejmCjyFxKmZojVkKthQp+RuLB
-         FQVWQPz7LJKNcs2dtc8ct4H08tn68k4v3FPqN4Mi34Ujz3CF66zhh8iYAgewrsWrSLyn
-         5ZSg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ZQ+Qsz5zgM9FsGolE/SVUSRHh3M+xTy+9KH+0BNOcjA=;
+        b=nbgMNkiwe9xlZW+2ezPj0lDg90C8k/xuG5XfSXrsSNhEL1sOjmPwVQWZinS8Cspgtk
+         5mqMr3c8JPCvA8lR0NFLldOkY9W7beh7bEE3T+W/8wSkrTUCw/EaUypoV6KVaKNbbywk
+         zsZCFBdB+O2Kvot1hS2AeWe5596CnwYyi+bXrS61mc64SUQ+T63Vmj+qEefhWZ6w3eE1
+         5NZ5NH8yv2mF/dXPCWv3G7XedPOTVIKiQLdQr1OWDnpQ3lxU1zRNU429mHp4eUzS+jE3
+         7wZLlZQtVksvtLRQ1f3gOOVh/jzhYN/AXHs2mysEiSUzdfPSPNbVg3qKeXjrfBZyQhXn
+         otdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=UQMyqlnOl2ShQfxqO/F3cpteR/9EvTP4YzP6gZhE16Y=;
-        b=D1jhqWbuoRzfN74tlqBrE2pVFJag0Hm6wpmjm0///7GTurgzM8OjcDY5TqrRU0qXVo
-         4S6YUlk3W+n+zumDaSrInqs6x+ZvDpfkLgzW/RZEUAQOeD0LUlO5rFUIqXhbL6/5k48B
-         71/iBDcZlxFjxMitdT91MVxKPN0HXAtfxox67QfWNv4lqW6Bd7TnOtDfvqmA26s2BXk9
-         Ii8YXoLNTADQiC5psKALWcMkb3QiTh6unwlWZfa2epuUUt1FFBG2WivGjHB0uv9G/epY
-         TMdGh+VxQhZIZaUz7axDAy2KQ4YhfGTz9l4vnfKki0W07iESWtI0cOsOrfAcZseOWyef
-         0KcQ==
-X-Gm-Message-State: AJIora/29/3XiR5PWFWx90nDohQgc4oICXNqACyh+s4Bhta4RpxUaycD
-        I8OFvoOkJtEi9082p830Mhb3kA==
-X-Google-Smtp-Source: AGRyM1uwLUc3Mp5ZYc1Fm9wocfJF1ddieqythIKz57AodEVi2SSycAN/W31rBeV0rkAisuHJTtv96Q==
-X-Received: by 2002:a05:6870:b3a0:b0:10b:760b:c4c9 with SMTP id w32-20020a056870b3a000b0010b760bc4c9mr13729166oap.84.1657984763899;
-        Sat, 16 Jul 2022 08:19:23 -0700 (PDT)
+        bh=ZQ+Qsz5zgM9FsGolE/SVUSRHh3M+xTy+9KH+0BNOcjA=;
+        b=PHsjmyTYuR4knVHIdSzqVdmre+RUezxhXAETJxg0dkhdwRH6s983HH1O+YZV0qZCJM
+         nv+cCLVpxcHmSuGhQck/9znlnRKWnFYkh3S06r32qHdLvd4gTcQoXDGRUrCnqRxMSK8k
+         sxEqlNyhFhKsLxsIBEVaFnHKJbu5Kvx8rVR9xg/Sym5ckWbH5tgwB704o+CWTXu7FztF
+         PRgKI0To0d4Vzu30zzxs6HCHPqpDiHbBZ1955qMyQYGNGzj4l+yoELr1A96gYjCKhFf8
+         YcQ+WODwSHZTyxX2tER7tNix3ZWKUfe1LD0xuQ3woHldHZyV4bMYSwJ/EqzY9ll4VMHc
+         DZQA==
+X-Gm-Message-State: AJIora+qe6Baok16rrSlJg26tEAItNjWizy0HJxpWvnvfuyNfHHgx252
+        jze84vibtYq4VDw4/PjUDTI4QA==
+X-Google-Smtp-Source: AGRyM1ujAHW/0attGZNaMS40qL0pgNP86ALPCbbNnxdU+XXA+URVNTSxqECBfkRHN7ua1zH7jc9y4A==
+X-Received: by 2002:a05:6870:898d:b0:10d:96:732d with SMTP id f13-20020a056870898d00b0010d0096732dmr6112650oaq.107.1657984764901;
+        Sat, 16 Jul 2022 08:19:24 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m21-20020a4ad515000000b00425beedad70sm3035254oos.32.2022.07.16.08.19.22
+        by smtp.gmail.com with ESMTPSA id m21-20020a4ad515000000b00425beedad70sm3035254oos.32.2022.07.16.08.19.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Jul 2022 08:19:23 -0700 (PDT)
+        Sat, 16 Jul 2022 08:19:24 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Robert Marko <robimarko@gmail.com>, linux-arm-msm@vger.kernel.org,
-        robh+dt@kernel.org, dmitry.baryshkov@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        konrad.dybcio@somainline.org, agross@kernel.org
-Subject: Re: (subset) [PATCH v6 4/4] arm64: dts: ipq8074: add APCS node
-Date:   Sat, 16 Jul 2022 10:19:06 -0500
-Message-Id: <165798474063.1679948.3824406237045424067.b4-ty@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, Sumit Garg <sumit.garg@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     shawn.guo@linaro.org, mworsfold@impinj.com,
+        bryan.odonoghue@linaro.org, robh+dt@kernel.org, vkoul@kernel.org,
+        andrey.konovalov@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        nicolas.dechesne@linaro.org, daniel.thompson@linaro.org,
+        agross@kernel.org
+Subject: Re: (subset) [PATCH v2] arm64: dts: qcom: qcs404: Fix incorrect USB2 PHYs assignment
+Date:   Sat, 16 Jul 2022 10:19:07 -0500
+Message-Id: <165798474064.1679948.4116544372157778043.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220707173733.404947-4-robimarko@gmail.com>
-References: <20220707173733.404947-1-robimarko@gmail.com> <20220707173733.404947-4-robimarko@gmail.com>
+In-Reply-To: <20220711083038.1518529-1-sumit.garg@linaro.org>
+References: <20220711083038.1518529-1-sumit.garg@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -72,20 +74,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 7 Jul 2022 19:37:33 +0200, Robert Marko wrote:
-> APCS now has support for providing the APSS clocks as the child device
-> for IPQ8074.
-> 
-> So, add the required DT node for it as it will later be used as the CPU
-> clocksource.
-> 
+On Mon, 11 Jul 2022 14:00:38 +0530, Sumit Garg wrote:
+> Currently the DT for QCS404 SoC has setup for 2 USB2 PHYs with one each
+> assigned to USB3 controller and USB2 controller. This assignment is
+> incorrect which only works by luck: as when each USB HCI comes up it
+> configures the *other* controllers PHY which is enough to make them
+> happy. If, for any reason, we were to disable one of the controllers then
+> both would stop working.
 > 
 > [...]
 
 Applied, thanks!
 
-[4/4] arm64: dts: ipq8074: add APCS node
-      commit: 50ed9fffec3aed88bc1ffed277d291f81153bd5d
+[1/1] arm64: dts: qcom: qcs404: Fix incorrect USB2 PHYs assignment
+      commit: 58577966a42fc0b660b5e2c7c9e5a2241363ea83
 
 Best regards,
 -- 
