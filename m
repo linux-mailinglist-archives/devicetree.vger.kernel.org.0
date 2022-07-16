@@ -2,66 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B244576F83
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 16:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0647576F45
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 16:42:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbiGPOu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 10:50:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52664 "EHLO
+        id S229987AbiGPOmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 10:42:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbiGPOu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 10:50:28 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17869F3F;
-        Sat, 16 Jul 2022 07:50:25 -0700 (PDT)
+        with ESMTP id S229784AbiGPOmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 10:42:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A59518E2F;
+        Sat, 16 Jul 2022 07:42:52 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B5C1BB80A08;
-        Sat, 16 Jul 2022 14:50:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46922C34114;
-        Sat, 16 Jul 2022 14:50:22 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A22516114E;
+        Sat, 16 Jul 2022 14:42:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EBBDC34114;
+        Sat, 16 Jul 2022 14:42:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657983022;
-        bh=NGGWpUHcEC9+bYxY+zgYgLByRAr/mR69cowRWdBo/0I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SO2Xky1+d9rereWiZRoQQudL02luIZhodAJF+jW6YFdJIPdSkpg1eIwpVOu53J8hm
-         M1ZQpebdnZpYmxne4bwBKAuogNhD2zDLh5y8MDc0ZtPjo8H18r0IbFLST3c6LbNtnD
-         DGsshF5MmPEMHrm4BS0YEeC7OQjjYv47riVF7bZP23pgQ4wj7TNVbdoI62yDNgNwyJ
-         D8Z908VwuDCkZ7IxBaODUPTUDDddQQ4PRQwS2OQgqH5t+cpiI+DXeh3geZpwILhF2y
-         PyiziJoMtdmnf6+qCAduXmQOuRKt9yBWTnyEc9vJfiwIWiaiJ74o2kRHUXo6dIBgd5
-         IpzYuVD1UG1Iw==
-Received: by pali.im (Postfix)
-        id 30724A52; Sat, 16 Jul 2022 16:50:19 +0200 (CEST)
-Date:   Sat, 16 Jul 2022 16:50:19 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        s=k20201202; t=1657982571;
+        bh=eOxY2iaOr7ftCDgaaxan6wDaK+DSMrvqJd7xNzTcB9c=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Pc1VC70iFl8HAD97A0rKOSnpfLss1Amxh+DJUNbbNta6vJniHEJaBfxbou05jU5yf
+         9i0xREjE5p+9ZxO9vX975RwTMLzAVTij7Jbsnyt8EPFNTpFcriWtS85SsQuReUWnnQ
+         ugWZs3pLqtFObDAkDAbuX2Xw9lg9fVOxpAOJo3n3ZukziRz/yHtWRBDxkNz+EIp+Nb
+         7UaEIFOgIYgtAP8Y/ycUeWA/Asbm433DGzFTaLr7PKDZgfO5O7gSZBBrN7ujMKbwD6
+         TOnc7/3eGfAuNo3E4psMIWUBEtnPRsKo8eDq6JVjpeOynqbcETFT53cVVKIkOsshQ2
+         I/7AGASZuJFBg==
+Date:   Sat, 16 Jul 2022 15:52:43 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-imx@nxp.com, linux-iio@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/4] ARM: dts: armada-38x: Fix compatible string for
- gpios
-Message-ID: <20220716145019.nps3oh4a22fsuzup@pali>
-References: <20220714115515.5748-1-pali@kernel.org>
- <20220714183328.4137-1-pali@kernel.org>
- <20220714183328.4137-3-pali@kernel.org>
- <20220716144028.rzwcn4wl5uyxepjd@pengutronix.de>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: adc: Add imx6ul & imx6sx compatibles
+Message-ID: <20220716155243.4b1c8ba9@jic23-huawei>
+In-Reply-To: <8090017.T7Z3S40VBb@steina-w>
+References: <20220613123529.466528-1-alexander.stein@ew.tq-group.com>
+        <12003373.O9o76ZdvQC@steina-w>
+        <20220628210919.GB963202-robh@kernel.org>
+        <8090017.T7Z3S40VBb@steina-w>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220716144028.rzwcn4wl5uyxepjd@pengutronix.de>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -71,55 +59,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Saturday 16 July 2022 16:40:28 Uwe Kleine-König wrote:
-> On Thu, Jul 14, 2022 at 08:33:27PM +0200, Pali Rohár wrote:
-> > Armada 38x supports per CPU interrupts for gpios, like Armada XP. Pre-XP
-> > variants like Armada 370 do not support per CPU interrupts for gpios.
-> > 
-> > So change compatible string for Armada 38x from "marvell,armada-370-gpio"
-> > which indicates pre-XP variant to "marvell,armadaxp-gpio" which indicates
-> > XP variant or new.
-> > 
-> > Driver gpio-mvebu.c which handles both pre-XP and XP variants already
-> > provides support for per CPU interrupts on XP and newer variants.
-> > 
-> > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > Fixes: 7cb2acb3fbae ("ARM: dts: mvebu: Add PWM properties for armada-38x")
-> > ---
-> >  arch/arm/boot/dts/armada-38x.dtsi | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/armada-38x.dtsi b/arch/arm/boot/dts/armada-38x.dtsi
-> > index df3c8d1d8f64..9343de6947b3 100644
-> > --- a/arch/arm/boot/dts/armada-38x.dtsi
-> > +++ b/arch/arm/boot/dts/armada-38x.dtsi
-> > @@ -292,7 +292,7 @@
-> >  			};
-> >  
-> >  			gpio0: gpio@18100 {
-> > -				compatible = "marvell,armada-370-gpio",
-> > +				compatible = "marvell,armadaxp-gpio",
-> >  					     "marvell,orion-gpio";
-> 
-> If you can treat the XP variant as 370 and everything that is supposed
-> to work on 370 works then, then maybe the right incarnation is:
-> 
-> 	compatible = "marvell,armadaxp-gpio", "marvell,armada-370-gpio", "marvell,orion-gpio";
-> 
-> ?
+On Fri, 15 Jul 2022 09:56:45 +0200
+Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
 
-For pre-XP variants is "marvell,orion-gpio" enough and for XP + post-XP
-is needed "marvell,armadaxp-gpio" (with possible "marvell,orion-gpio"
-for backward compatibility).
-
-So I do not see reason why to add "marvell,armada-370-gpio" nor what
-value it brings.
-
-> Best regards
-> Uwe
+> Am Dienstag, 28. Juni 2022, 23:09:19 CEST schrieb Rob Herring:
+> > On Mon, Jun 20, 2022 at 10:12:44AM +0200, Alexander Stein wrote:  
+> > > Hello,
+> > > 
+> > > Am Samstag, 18. Juni 2022, 19:01:29 CEST schrieb Jonathan Cameron:  
+> > > > On Fri, 17 Jun 2022 16:44:48 -0600
+> > > > 
+> > > > Rob Herring <robh@kernel.org> wrote:  
+> > > > > On Mon, Jun 13, 2022 at 11:34:46AM -0600, Rob Herring wrote:  
+> > > > > > On Mon, 13 Jun 2022 14:35:29 +0200, Alexander Stein wrote:  
+> > > > > > > Both are already using the vf610 compatible.
+> > > > > > > 
+> > > > > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > > > > > ---
+> > > > > > > 
+> > > > > > >  .../devicetree/bindings/iio/adc/fsl,vf610-adc.yaml       | 9
+> > > > > > >  ++++++++-
+> > > > > > >  1 file changed, 8 insertions(+), 1 deletion(-)  
+> > > > > > 
+> > > > > > Running 'make dtbs_check' with the schema in this patch gives the
+> > > > > > following warnings. Consider if they are expected or the schema is
+> > > > > > incorrect. These may not be new warnings.
+> > > > > > 
+> > > > > > Note that it is not yet a requirement to have 0 warnings for
+> > > > > > dtbs_check.
+> > > > > > This will change in the future.
+> > > > > > 
+> > > > > > Full log is available here: https://patchwork.ozlabs.org/patch/
+> > > > > > 
+> > > > > > 
+> > > > > > adc@2198000: 'num-channels' does not match any of the regexes:
+> > > > > > 'pinctrl-[0-9]+'>  
+> > > > > 
+> > > > > Looks like you need to add 'num-channels'?  
+> > > > 
+> > > > or a lot of wrong dtbs :)
+> > > > 
+> > > > By which I mean ones providing a property that may or may not be
+> > > > actually
+> > > > used by any drivers...  
+> > > 
+> > > This got already fixed by Baruch's patch which is currently in Shawn's
+> > > imx-
+> > > fixes-5.19 branch at [1]  
+> > 
+> > Great!
+> > 
+> > Reviewed-by: Rob Herring <robh@kernel.org>  
 > 
-> -- 
-> Pengutronix e.K.                           | Uwe Kleine-König            |
-> Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+> Did this got missed? Or is it applied somwhere I' not aware of?
+Missed it.  Thanks for pointing it out!
 
+Applied to the togreg branch of iio.git and pushed out initially as testing
+for 0-day to poke at it.  Note this may well not make this cycle now unfortunately
+given the timing.
+
+Thanks,
+
+Jonathan
+
+> 
+> Best regards,
+> Alexander
+> 
+> 
+> 
 
