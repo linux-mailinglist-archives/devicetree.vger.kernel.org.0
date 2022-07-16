@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BACE1576DE6
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 14:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBD58576F19
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 16:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231934AbiGPMZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 08:25:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34954 "EHLO
+        id S230021AbiGPOkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 10:40:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231952AbiGPMZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 08:25:19 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 228601C926;
-        Sat, 16 Jul 2022 05:25:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B47DAB80171;
-        Sat, 16 Jul 2022 12:25:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAD92C34114;
-        Sat, 16 Jul 2022 12:25:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657974315;
-        bh=4Hh0Hb1VmNIO85liwlyCNlhINhQwN+E6mmhpqNPCkg8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q4RNjKn423TevH0wC1Iieib6bDyZsDEvoDRnm9+rlqi/l/QieimSfxvC60Ej/m2P9
-         niEDaooV5IeLikFGm9A0dJfi6R375PyvThdgmpMp3vtlAe/bpMjHpwAQKJmqSEEC9c
-         Gi6CitLuaDIciPK6ZpsNeaK8fbE/qmn7G321iXd0Qw3pGAqk4x8N3m//wSJv7ze5PC
-         EtmbTaadkpBxnMDFlNIU+iOOzUHatpOHKgCti4gqyDGOoqF/lgM3Umv5lHFItMwmXJ
-         sSKM4D4VSXQczgWwSikQd5XZlms6xEBn1dir5sfQ5iAvhu9YHiksd2eLonGsUkHq87
-         t67V+3zqH90aA==
-Date:   Sat, 16 Jul 2022 14:25:11 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Alain Volmat <alain.volmat@foss.st.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        pierre-yves.mordret@foss.st.com, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@foss.st.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@foss.st.com, amelie.delaunay@foss.st.com
-Subject: Re: [PATCH v2 2/2] i2c: stm32: add support for the STM32MP13 soc
-Message-ID: <YtKuJ6YFQtMFi5jD@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Alain Volmat <alain.volmat@foss.st.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, pierre-yves.mordret@foss.st.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@foss.st.com, amelie.delaunay@foss.st.com
-References: <20220707074402.2429786-1-alain.volmat@foss.st.com>
- <20220707074402.2429786-3-alain.volmat@foss.st.com>
+        with ESMTP id S229538AbiGPOks (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 10:40:48 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFFB6305
+        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 07:40:47 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oCiy9-0001mp-Lg; Sat, 16 Jul 2022 16:40:33 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oCiy7-001Kfv-TI; Sat, 16 Jul 2022 16:40:31 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oCiy6-005ZA4-Rm; Sat, 16 Jul 2022 16:40:30 +0200
+Date:   Sat, 16 Jul 2022 16:40:28 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] ARM: dts: armada-38x: Fix compatible string for
+ gpios
+Message-ID: <20220716144028.rzwcn4wl5uyxepjd@pengutronix.de>
+References: <20220714115515.5748-1-pali@kernel.org>
+ <20220714183328.4137-1-pali@kernel.org>
+ <20220714183328.4137-3-pali@kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="UmV9tOl/xeljXOjt"
+        protocol="application/pgp-signature"; boundary="zalewdgjudxxklrt"
 Content-Disposition: inline
-In-Reply-To: <20220707074402.2429786-3-alain.volmat@foss.st.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220714183328.4137-3-pali@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,39 +67,69 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---UmV9tOl/xeljXOjt
-Content-Type: text/plain; charset=us-ascii
+--zalewdgjudxxklrt
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 07, 2022 at 09:44:02AM +0200, Alain Volmat wrote:
-> Add a new compatible for the stm32mp13.  Fast Mode Plus control
-> register address differ from the one for STM32MP15.
+On Thu, Jul 14, 2022 at 08:33:27PM +0200, Pali Roh=E1r wrote:
+> Armada 38x supports per CPU interrupts for gpios, like Armada XP. Pre-XP
+> variants like Armada 370 do not support per CPU interrupts for gpios.
 >=20
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> Reviewed-by: Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
+> So change compatible string for Armada 38x from "marvell,armada-370-gpio"
+> which indicates pre-XP variant to "marvell,armadaxp-gpio" which indicates
+> XP variant or new.
+>=20
+> Driver gpio-mvebu.c which handles both pre-XP and XP variants already
+> provides support for per CPU interrupts on XP and newer variants.
+>=20
+> Signed-off-by: Pali Roh=E1r <pali@kernel.org>
+> Fixes: 7cb2acb3fbae ("ARM: dts: mvebu: Add PWM properties for armada-38x")
+> ---
+>  arch/arm/boot/dts/armada-38x.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/armada-38x.dtsi b/arch/arm/boot/dts/armada=
+-38x.dtsi
+> index df3c8d1d8f64..9343de6947b3 100644
+> --- a/arch/arm/boot/dts/armada-38x.dtsi
+> +++ b/arch/arm/boot/dts/armada-38x.dtsi
+> @@ -292,7 +292,7 @@
+>  			};
+> =20
+>  			gpio0: gpio@18100 {
+> -				compatible =3D "marvell,armada-370-gpio",
+> +				compatible =3D "marvell,armadaxp-gpio",
+>  					     "marvell,orion-gpio";
 
-Applied to for-next, thanks!
+If you can treat the XP variant as 370 and everything that is supposed
+to work on 370 works then, then maybe the right incarnation is:
 
+	compatible =3D "marvell,armadaxp-gpio", "marvell,armada-370-gpio", "marvel=
+l,orion-gpio";
 
---UmV9tOl/xeljXOjt
+?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--zalewdgjudxxklrt
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmLSricACgkQFA3kzBSg
-KbY79Q//a303XMkTPCd5Gq21pbNS57rqo0RkC0kqvj6VCM7IhAeJbX6Acuy9+0Hv
-TuBYxWFkBFiF5sMqGmz7ouhYpo0faNHNkN+8Mrg9VHyUjS5B4S2ke3FeRki7pwiq
-X+D2Or++MGSYatoXlM/D2quG9fie4KxZG7B3c6+oNbm6UkPMDiER+KciC+TMssJP
-RDWpDFkoi0pXUHkhb66LwioccIQd1BFChQWDzINz/c6D0oqITN1zgt4tV+42WTYn
-H+xq+qaoRg73Pdnf1MlS9Zdh32Dh5qFKXz+iFK7dBbGmNWKl1a4DSEniusBbWQY2
-3PDxNSM6tIyVcfqNqrjoqkm1knYRx9UInuiX7Xy93nAp9vDM6+zV1l/PXfumYooL
-FX6Rm2duQd5NlBtXW/kq/130o/NEzZn7P6y2iAOaVjCUqxc3okxRotTNXxmbiq87
-oaqs0uz5svq8+EpbhzSfrbWtgqL11dzEkZaeQFqDwKAFI07p55H4JBl4FzTmh3sK
-nQcBln2qKeSNZA6wWaBSeQOBb/6qwi7CnIPMeBnKkPHjBV5O7w2d4ofM6nhypkFM
-SIy0MtJZnOFi7Iio5Rq9YGr9SDanq6U9Cqg0T2/AApKJYTvqK35Xynxk0iPT8sBv
-gRGkEI+I13AEI83RDCU7AkNcSPUmpeqjzLUlw2snZaukyParbMI=
-=BHXX
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLSzdkACgkQwfwUeK3K
+7Akz2wf+JF6UmqztBz7omhK1mGfW33SmnWY7c88XTanbchqiMR/xEQSaimY4mLAo
+zad+Y0rz8FY7GhVlnp76zFnGkXKKBDy6PR/RUw4BA0PJPYi1UkYPXINES3PW5Hzj
+P1/i9jC6IGdcWTkwIl+wLWTXcLm4XaJuJEq63zDtPDEifeYIKpF7dcmh7py2Jd3l
+7V71pUvjMLBBGLHpHCMtn3EOfAjpHczxS6krmkadFLbG9YjDKH2t4Fdzn5n1HOUc
+ofA4Ei4OVgRiQ+pN0YdxEFxeJeW1ipk1DiFHZwhOUQWQV+LuWKHksHGme+w9xX6y
+C1ZEwTuTRFizN2nkb+imT79hdtgg2g==
+=XF96
 -----END PGP SIGNATURE-----
 
---UmV9tOl/xeljXOjt--
+--zalewdgjudxxklrt--
