@@ -2,135 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D3BE576CC2
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 11:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E694576CC4
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 11:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbiGPJ2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 05:28:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50960 "EHLO
+        id S230052AbiGPJaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 05:30:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231883AbiGPJ2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 05:28:53 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4974E013;
-        Sat, 16 Jul 2022 02:28:49 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (dkwl20tj04snw15cjtflt-3.rev.dnainternet.fi [IPv6:2001:14ba:4493:6f40:fec3:d72a:e447:8113])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229469AbiGPJaQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 05:30:16 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0569F1DA71;
+        Sat, 16 Jul 2022 02:30:16 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id C6B68202B9;
-        Sat, 16 Jul 2022 12:28:46 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1657963726;
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 577BB22239;
+        Sat, 16 Jul 2022 11:30:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1657963814;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=p05g2JQKkBK9/C2od8mJWwhH6CARhop8sa56RkQcfW8=;
-        b=xJzqQ59ggOobD05ybTWofxUjSPteY0XaFMBRL0WZ3NdAUtFkG5xZmt/UH0cY2lV60qj1Lw
-        C25fGruCEEmehrsy70VPDVc+LbXxLFfBsjEtSChqp033zLAo4VIIOyLw4wY5JV0waoxCm3
-        1V0jdG6O4Y8P+ViYu4SIoszp0tqCkxo=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 1D7E1634D5E;
-        Sat, 16 Jul 2022 12:28:46 +0300 (EEST)
-Date:   Sat, 16 Jul 2022 12:28:45 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v3 2/6] dt-bindings: Use new video interface bus type
- macros in examples
-Message-ID: <YtKEzS6j0/45E7tP@valkosipuli.retiisi.eu>
-References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
- <20220615221410.27459-3-laurent.pinchart@ideasonboard.com>
+        bh=alWQWqJmW7ZADT7MYc2k0cPnPrjW8BlVpk1tN0F8YTw=;
+        b=sS/BtGpoDtyTxY4EdLTptKbkjwAr0HDroLGkiJzisbXIXU+WH+OkV+4FDIt4WdFSJoO22g
+        9E6mMeRLFw1DxTw5GQd1lkgHQcBzQdUL5cUV/ek0bJ6l+urZi/zXN/rmJuQnbIcSaNsrtT
+        5J7MYCx0RTPCSOP+R/0DGqJgt2soMNQ=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220615221410.27459-3-laurent.pinchart@ideasonboard.com>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1657963726;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=p05g2JQKkBK9/C2od8mJWwhH6CARhop8sa56RkQcfW8=;
-        b=HE2Vvi2HOVel765S3EHbm8gjv26CEl6v6LhtN1LqPoojWFtL3khNN7hIwFscrDadz1NCTN
-        znTHxDtE+qgxfUOR09rfl7QPjOz1QcfLwwqHOLCmKfD1wYoKkt5hxo0lrk9TvjM4q4goZn
-        Qsr85Oc9WwuE4V2BRO9foSasb5JGEHk=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1657963726; a=rsa-sha256; cv=none;
-        b=EV15RjFtJPTEV21NGwQ8m+XyGp6cjFUKUutDeVdMfmai9HbdEuD/VZsshexAehlRDGsaHr
-        G+zxRDggpqZbfPCbNWt9wiovlGFI1jrApV6XXd836m5qwql0sYyeZkuX0KvxOLXeZX9uDI
-        FK6K7+A8yQsmL4i5rd/AarioYXJwSVM=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Sat, 16 Jul 2022 11:30:12 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     =?UTF-8?Q?Michal_Such=C3=A1nek?= <msuchanek@suse.de>
+Cc:     Pratyush Yadav <p.yadav@ti.com>, linux-sunxi@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH 1/2] mtd: spi-nor: When a flash memory is missing do not
+ report an error
+In-Reply-To: <20220716082027.GK17705@kitsune.suse.cz>
+References: <701967b0c418db333c66b48d225df60aa9d03ead.1657826188.git.msuchanek@suse.de>
+ <d8de86aa0331be697fbef33d5ab2c57a@walle.cc>
+ <20220714205529.GE17705@kitsune.suse.cz>
+ <33abf7b84860049c4a22605578303ff2@walle.cc>
+ <20220714220744.GF17705@kitsune.suse.cz>
+ <20220715092017.2ftoyzm22i4amrbt@ti.com>
+ <20220716082027.GK17705@kitsune.suse.cz>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <c6955eed3a445f4b87920fe0d47e7230@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Am 2022-07-16 10:20, schrieb Michal Suchánek:
 
-On Thu, Jun 16, 2022 at 01:14:06AM +0300, Laurent Pinchart wrote:
-> Now that a header exists with macros for the media interface bus-type
-> values, replace hardcoding numerical constants with the corresponding
-> macros in the DT binding examples.
+>> So if DT says there isn't a flash on a specific CS when there is, then
+>> DT should be fixed to describe the flash, and then we can probe it. 
+>> You
+>> both seem to be saying the same thing here, and I agree.
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
-> Changes since v2:
-> 
-> - Go back to PARALLEL
-> 
-> Changes since v1:
-> 
-> - Rename PARALLEL to BT601
-> ---
->  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml  | 1 +
->  Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml     | 3 ++-
->  Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml  | 3 ++-
->  .../devicetree/bindings/media/marvell,mmp2-ccic.yaml          | 3 ++-
->  Documentation/devicetree/bindings/media/microchip,xisc.yaml   | 3 ++-
->  Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml    | 4 +++-
->  6 files changed, 12 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> index 35a48515836e..b0e5585f93e2 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> @@ -118,6 +118,7 @@ additionalProperties: false
->  examples:
->    - |
->      #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/media/video-interfaces.h>
->  
->      i2c0 {
->          #address-cells = <1>;
+> The disagreement is about the situation when there is sometimes a flash
+> chip.
 
-The definition doesn't seem to be used here. Is there a need to include
-this?
+No. The disagreement is what should happen if the DT says there is
+a device but there isn't. Which right now is an error and it should
+stay that way. Your hardware description says there is a flash
+but it cannot be probed, so it is an error. What about a board
+which has an actual error and the flash isn't responding? You
+trade one use case for another.
 
-I could drop this chunk while applying. There's just one trivial change
-elsewhere in this patch to make.
+Also I've looked at the PHY subsystem and there, if a PHY is described
+in the DT but isn't there, the following error will be printed:
+   dev_err(&mdio->dev, "MDIO device at address %d is missing.\n", addr);
 
--- 
-Kind regards,
+And that is for a bus which can even be automatically be
+probed/detected.
 
-Sakari Ailus
+-michael
