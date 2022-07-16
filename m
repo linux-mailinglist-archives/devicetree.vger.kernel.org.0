@@ -2,96 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E694576CC4
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 11:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DF45576D26
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 11:39:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230052AbiGPJaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 05:30:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
+        id S233095AbiGPJjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 05:39:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiGPJaQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 05:30:16 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0569F1DA71;
-        Sat, 16 Jul 2022 02:30:16 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 577BB22239;
-        Sat, 16 Jul 2022 11:30:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1657963814;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=alWQWqJmW7ZADT7MYc2k0cPnPrjW8BlVpk1tN0F8YTw=;
-        b=sS/BtGpoDtyTxY4EdLTptKbkjwAr0HDroLGkiJzisbXIXU+WH+OkV+4FDIt4WdFSJoO22g
-        9E6mMeRLFw1DxTw5GQd1lkgHQcBzQdUL5cUV/ek0bJ6l+urZi/zXN/rmJuQnbIcSaNsrtT
-        5J7MYCx0RTPCSOP+R/0DGqJgt2soMNQ=
+        with ESMTP id S232920AbiGPJi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 05:38:58 -0400
+X-Greylist: delayed 183 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 16 Jul 2022 02:38:48 PDT
+Received: from condef-03.nifty.com (condef-03.nifty.com [202.248.20.68])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D698113E0A
+        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 02:38:46 -0700 (PDT)
+Received: from conuserg-12.nifty.com ([10.126.8.75])by condef-03.nifty.com with ESMTP id 26G9WxxJ013530
+        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 18:33:00 +0900
+Received: from grover.sesame ([133.106.62.13]) (authenticated)
+        by conuserg-12.nifty.com with ESMTP id 26G9VZu3010688;
+        Sat, 16 Jul 2022 18:31:36 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-12.nifty.com 26G9VZu3010688
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1657963897;
+        bh=lo5mfoKD7vRR8DCYCccjxLLxvc3Zerc9iud4vad1cjM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tkPRoc/IKNMhC15S0dVGMiXp5Y6Al6ATPBFzkIeDcLgtp16gxEImu4M6A3bdlZ8YW
+         EmCEgER2gk6jph2g+jCpCN7mCYNakohvyk86OoeaGpfWaP70w9BZ8h3f8DFsdcw9y/
+         4j7iwF+mm5LscWv0pbH2BnrqwZMF7Qkmx132dXeNx/245XJKojzO/HaeOnKQIvJ/yc
+         6x8kANnU2awHonRtuq8Vff0yxpsKEJQD/W89IAYrkA0oOrPRuTWZ9/bPHoP+32gHBN
+         rItGiAnsVYFx1MV62ksAvrhFn5nLIEa1pDAuO0kIfZUIvyNc8E1aypYtvv+6dl7J9Z
+         NZMe2titjEKNw==
+X-Nifty-SrcIP: [133.106.62.13]
+From:   Masahiro Yamada <masahiroy@kernel.org>
+To:     linux-kbuild@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] kbuild: add dtbs_prepare target
+Date:   Sat, 16 Jul 2022 18:31:22 +0900
+Message-Id: <20220716093122.137494-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Date:   Sat, 16 Jul 2022 11:30:12 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     =?UTF-8?Q?Michal_Such=C3=A1nek?= <msuchanek@suse.de>
-Cc:     Pratyush Yadav <p.yadav@ti.com>, linux-sunxi@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
-Subject: Re: [PATCH 1/2] mtd: spi-nor: When a flash memory is missing do not
- report an error
-In-Reply-To: <20220716082027.GK17705@kitsune.suse.cz>
-References: <701967b0c418db333c66b48d225df60aa9d03ead.1657826188.git.msuchanek@suse.de>
- <d8de86aa0331be697fbef33d5ab2c57a@walle.cc>
- <20220714205529.GE17705@kitsune.suse.cz>
- <33abf7b84860049c4a22605578303ff2@walle.cc>
- <20220714220744.GF17705@kitsune.suse.cz>
- <20220715092017.2ftoyzm22i4amrbt@ti.com>
- <20220716082027.GK17705@kitsune.suse.cz>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <c6955eed3a445f4b87920fe0d47e7230@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-07-16 10:20, schrieb Michal Suchánek:
+Factor out the common prerequisites for DT compilation into the new
+target, dtbs_prepare.
 
->> So if DT says there isn't a flash on a specific CS when there is, then
->> DT should be fixed to describe the flash, and then we can probe it. 
->> You
->> both seem to be saying the same thing here, and I agree.
-> 
-> The disagreement is about the situation when there is sometimes a flash
-> chip.
+Add comments in case you wonder why include/config/kernel.release is
+the prerequisite. Our policy is that installation targets must not
+(re)compile any build artifacts in the tree. If we make modules_install
+depend on include/config/kernel.release and it is executed under the
+root privilege, it may be owned by root.
 
-No. The disagreement is what should happen if the DT says there is
-a device but there isn't. Which right now is an error and it should
-stay that way. Your hardware description says there is a flash
-but it cannot be probed, so it is an error. What about a board
-which has an actual error and the flash isn't responding? You
-trade one use case for another.
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+---
 
-Also I've looked at the PHY subsystem and there, if a PHY is described
-in the DT but isn't there, the following error will be printed:
-   dev_err(&mdio->dev, "MDIO device at address %d is missing.\n", addr);
+ Makefile | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-And that is for a bus which can even be automatically be
-probed/detected.
+diff --git a/Makefile b/Makefile
+index a9bd55edb75e..8aa4dbb8f878 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1367,16 +1367,22 @@ endif
+ 
+ ifneq ($(dtstree),)
+ 
+-%.dtb: include/config/kernel.release scripts_dtc
++%.dtb: dtbs_prepare
+ 	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+ 
+-%.dtbo: include/config/kernel.release scripts_dtc
++%.dtbo: dtbs_prepare
+ 	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+ 
+-PHONY += dtbs dtbs_install dtbs_check
+-dtbs: include/config/kernel.release scripts_dtc
++PHONY += dtbs dtbs_prepare dtbs_install dtbs_check
++dtbs: dtbs_prepare
+ 	$(Q)$(MAKE) $(build)=$(dtstree)
+ 
++# include/config/kernel.release is not actually required for building DTBs,
++# but for installing DTBs because INSTALL_DTBS_PATH contains $(KERNELRELEASE).
++# We do not want to move it to dtbs_install. The policy is installation
++# targets (, which may run as root) must not modify the tree.
++dtbs_prepare: include/config/kernel.release scripts_dtc
++
+ ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
+ export CHECK_DTBS=y
+ dtbs: dt_binding_check
+-- 
+2.34.1
 
--michael
