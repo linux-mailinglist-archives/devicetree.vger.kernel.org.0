@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A91F4577022
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 18:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCB62577030
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 18:55:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbiGPQc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 12:32:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43196 "EHLO
+        id S231624AbiGPQzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 12:55:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbiGPQc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 12:32:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CB8D1C90E;
-        Sat, 16 Jul 2022 09:32:58 -0700 (PDT)
+        with ESMTP id S230448AbiGPQzb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 12:55:31 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4FF1EEC5;
+        Sat, 16 Jul 2022 09:55:30 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 082CB611A1;
-        Sat, 16 Jul 2022 16:32:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C692DC34114;
-        Sat, 16 Jul 2022 16:32:54 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EA763B80B04;
+        Sat, 16 Jul 2022 16:55:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1818C34114;
+        Sat, 16 Jul 2022 16:55:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1657989177;
-        bh=cJp2wu2WDji8FHYk3HEiYWSkBLJcHvkpVMIut/q0nEo=;
+        s=k20201202; t=1657990527;
+        bh=7Bl73wYbx3fceHD3aHMi9YdJdovzhBgxVjvC17TvrEw=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=fu0H7PJ3J6TzGG2svZjDCdtHIgFhyHABQVfE4G4nmx2qkO1WTZ68zxj9lCeWM7b/T
-         lUmb48OFzT8TuiX7fCs5W4MEHHXYVKpBeTyKWJtio4opOzAUajMUvSIvj38RBa2I4o
-         Yd3e4hktpLfUjpfnQn3hhHpVveKImcKZNIdDIiRnROg0+XP4tueuLF8F2hMo8KgHnM
-         7kRzRgk9RuU3lNy7b0URZO/b7smzqaf81rQ+u1MScEiTYuT2pZuTW/u/xWuvjH/BfD
-         jZLnx8ZoiBtNVfDJkGxr7n6ieuTNtt1cuPJl8PzWRvVa1KshejE9DKHr86PTvXZO41
-         TeVMisr3Rfh0w==
-Date:   Sat, 16 Jul 2022 17:42:49 +0100
+        b=mkPCdqQrZbiWc5CL5h3FYBwArX+w4roN5dP3ZflfcDw6DAPowv9xO7DfWuuXYLuxL
+         LbNRvBR1hBGOsm9LlxHkwN1T3BoIU9dMQJQOPwQXlIlPdM1fnJE9Cq6Ptx1IHG92P9
+         C7iFIknBt1surhD1nJzkV/Oak3FDwbRKNdA9zz4tVB5xbOjkrFUFFn5PPmH3Udd6dI
+         GAqLKqCzYQDgPeV4xErOnYO3cZ2bT8lLfAfv0gmNYWPtBSjkG3yI6+zqq0uObYrfSC
+         5CcMPkbLRS6Y1u+wpEU0nq7fNc3l6epxduBRbI8bxQZNbGVpmL3pkx0B/hCuhVxope
+         MBaqEAUS64mlw==
+Date:   Sat, 16 Jul 2022 18:05:19 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     <eugen.hristev@microchip.com>, <lars@metafoo.de>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 00/19] iio: adc: at91-sama5d2_adc: add support for
- temperature sensor
-Message-ID: <20220716174249.687af22b@jic23-huawei>
-In-Reply-To: <20220628151631.3116454-1-claudiu.beznea@microchip.com>
-References: <20220628151631.3116454-1-claudiu.beznea@microchip.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jakob Hauser <jahau@rocketmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v4 00/10] Add support for magnetometer Yamaha YAS537
+Message-ID: <20220716180519.05a4b93a@jic23-huawei>
+In-Reply-To: <CACRpkdZSeX-TPk4+_EEdZFMDH4bmgSZcm7vyX_d4+K4hGSbWXA@mail.gmail.com>
+References: <cover.1656883851.git.jahau.ref@rocketmail.com>
+        <cover.1656883851.git.jahau@rocketmail.com>
+        <CACRpkdZSeX-TPk4+_EEdZFMDH4bmgSZcm7vyX_d4+K4hGSbWXA@mail.gmail.com>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -58,84 +59,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022 18:16:12 +0300
-Claudiu Beznea <claudiu.beznea@microchip.com> wrote:
+On Tue, 5 Jul 2022 01:31:48 +0200
+Linus Walleij <linus.walleij@linaro.org> wrote:
 
-> Hi,
+> On Mon, Jul 4, 2022 at 12:03 AM Jakob Hauser <jahau@rocketmail.com> wrote:
 > 
-> The following series add support for temperature sensor available on
-> SAMA7G5.
+> > This patchset adds YAS537 variant to the already existing driver for
+> > Yamaha YAS magnetometers.
+> >
+> > Patch 1 is a fix on the current driver.
+> > Patches 2-9 are cleanups and refactoring.
+> > Patch 10 finally adds the YAS537 variant.  
 > 
-> Temperature sensor available on SAMA7G5 provides 2 outputs VTEMP and VBG.
-> VTEMP is proportional to the absolute temperature voltage and VBG is a
-> quasi-temperature independent voltage. Both are necessary in computing
-> the temperature (for better accuracy). Also, for better accuracy the
-> following settings were imposed when measusing the temperature:
-> oversampling rate of 256, sampling frequency of 10MHz, a startup time of
-> 512 ticks, MR.tracktim=0xf, EMR.trackx=0x3.
+> This patch set is really nice and getting nicer.
 > 
-> For computing the temperature measured by ADC calibration data is
-> necessary. This is provided via OTP memory available on SAMA7G5.
+> Maybe Jonathan could apply patches 1-5 so you don't have to
+> resend so much code and get more focus on the top 5 patches?
+> They are anyway nice in their own right.
 > 
-> Patches 1/19-4/19 provides some fixes.
-> Patches 5/19-16/19 prepares for the addition of temperature sensor
-> support.
-> Patch 17/16 adds the temperature sensor support.
-> 
-> Along with temperature sensor support I took the chance and added
-> runtime PM support in this series, too (handled in patch 19/19).
-> 
-> The rest of patches in this series are minor cleanups.
+Given I'm running way behind (at least I'm in the right month now ;)
+and my tree isn't stable currently (I'll rebase after rc1) and only
+pushed out as testing as a result that isn't a good idea right now.
+It would be at any other timing though.
 
-Other than the use of MEGA in patch 17, I'm fine with this now, but
-would like to leave more time for Eugen and others to comment if they
-wish.  Given timing, I'm afraid this is very unlikely to make the next
-merge window anyway now, so we have lots of time.
+So, please keep all the patches for v5.
 
-Sorry for the delay in my reviewing v2. Pesky covid.
+Thanks,
 
 Jonathan
 
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> Changes in v2:
-> - addressed review comments
-> - with this, new patches were intruced in this series: 2/19, 4/19,
->   8/19, 9,19
-> - runtime pm support has been adapted to work also when CONFIG_PM
->   is not enabled
-> - collected tags
-> 
-> Claudiu Beznea (19):
->   iio: adc: at91-sama5d2_adc: fix AT91_SAMA5D2_MR_TRACKTIM_MAX
->   iio: adc: at91-sama5d2_adc: check return status for pressure and touch
->   iio: adc: at91-sama5d2_adc: lock around oversampling and sample freq
->   iio: adc: at91-sama5d2_adc: disable/prepare buffer on suspend/resume
->   iio: adc: at91-sama5d2_adc: exit from write_raw() when buffers are
->     enabled
->   iio: adc: at91-sama5d2_adc: handle different EMR.OSR for different hw
->     versions
->   iio: adc: at91-sama5d2_adc: move the check of oversampling in its
->     function
->   iio: adc: at91-sama5d2_adc: drop AT91_OSR_XSAMPLES defines
->   iio: adc: at91-sama5d2_adc: add .read_avail() chan_info ops
->   iio: adc: at91-sama5d2_adc: adjust osr based on specific platform data
->   iio: adc: at91-sama5d2_adc: add 64 and 256 oversampling ratio
->   iio: adc: at91-sama5d2_adc: move oversampling storage in its function
->   iio: adc: at91-sama5d2_adc: update trackx on emr
->   iio: adc: at91-sama5d2_adc: add startup and tracktim as parameter for
->     at91_adc_setup_samp_freq()
->   iio: adc: at91-sama5d2_adc: lock around at91_adc_read_info_raw()
->   dt-bindings: iio: adc: at91-sama5d2_adc: add id for temperature
->     channel
->   iio: adc: at91-sama5d2_adc: add support for temperature sensor
->   iio: adc: at91-sama5d2_adc: add empty line after functions
->   iio: adc: at91-sama5d2_adc: add runtime pm support
-> 
->  drivers/iio/adc/at91-sama5d2_adc.c            | 683 +++++++++++++++---
->  .../dt-bindings/iio/adc/at91-sama5d2_adc.h    |   3 +
->  2 files changed, 566 insertions(+), 120 deletions(-)
-> 
+> Yours,
+> Linus Walleij
 
