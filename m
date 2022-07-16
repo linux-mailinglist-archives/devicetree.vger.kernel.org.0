@@ -2,167 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07C4B576DA8
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 13:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CB80576DE2
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 14:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbiGPL6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 07:58:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45964 "EHLO
+        id S231726AbiGPMZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 08:25:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229606AbiGPL6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 07:58:10 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D0C22BE1;
-        Sat, 16 Jul 2022 04:58:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1657972653;
-        bh=mr/pCYiVaMNMV+tbkPhD40SBlpbSeCNm1zKJ+o4vbaM=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=k35R4OnElnQiIEBbrBO2jLhjxs/arS4e9u8sBwC7wxXWp7z9QVZQjpn20Xw4yASl9
-         D43cI7VbghaqzWgFB3ZnLSjMre1XiR4LxpsxSBk3yrDInhWgd/xFGsnDKwe2BikAQA
-         PZG5dalEB/VLrWFyxkQT5CxhGLsNsDmAjr9kdq6c=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.245.77.159] ([80.245.77.159]) by web-mail.gmx.net
- (3c-app-gmx-bap26.server.lan [172.19.172.96]) (via HTTP); Sat, 16 Jul 2022
- 13:57:33 +0200
+        with ESMTP id S229931AbiGPMZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 08:25:09 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACCD51A3BC;
+        Sat, 16 Jul 2022 05:25:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 655DCB80187;
+        Sat, 16 Jul 2022 12:25:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 490FBC34114;
+        Sat, 16 Jul 2022 12:25:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1657974306;
+        bh=b73l71pfnctP3sh0f5boOKGEDg8OKCQBQOgeRaAVgNc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iW0CN0q4wN/okmwYfRluhoDdZYpd5Y6pNUH5aP58Qaae1FlVkDwPCfKpPgIWYYxrU
+         EtTR4Vm5ndWS0ZA+5QNKeAzT2NjbvwBpc5N0NACj9DucAn31jITzzQeAKBFdqpm5b9
+         yEf8MMtAKfHNc/XiUWDdn5DBzBgc5/o3GmJCGNDJDuy8ynHcS3M4M1/74r39zxqX/s
+         4k9QLbHlJYex4LHxYzxdbtApCQLfxUpKyV+EMhQrz+UwrTKSnVncw2KyZnJMew+A95
+         UCTfRJDvgcY3CXXx1IqvFlLhAdz0CwrOjtwFdqKr7Drr/pNT8dex3c7LrYnX5mWUu4
+         YNNGH0ItxHH2w==
+Date:   Sat, 16 Jul 2022 14:25:01 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Alain Volmat <alain.volmat@foss.st.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        pierre-yves.mordret@foss.st.com, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@foss.st.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        fabrice.gasnier@foss.st.com, amelie.delaunay@foss.st.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: st,stm32-i2c: add entry for
+ stm32mp13
+Message-ID: <YtKuHdUjtBvqagfT@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Alain Volmat <alain.volmat@foss.st.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, pierre-yves.mordret@foss.st.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        fabrice.gasnier@foss.st.com, amelie.delaunay@foss.st.com
+References: <20220707074402.2429786-1-alain.volmat@foss.st.com>
+ <20220707074402.2429786-2-alain.volmat@foss.st.com>
 MIME-Version: 1.0
-Message-ID: <trinity-7c08bee0-07dc-4e45-8157-50aa7fa7c3cc-1657972653195@3c-app-gmx-bap26>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-rockchip@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Simon Xue <xxm@rock-chips.com>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Shawn Lin <shawn.lin@rock-chips.com>,
-        Liang Chen <cl@rock-chips.com>
-Subject: Aw: Re: [PATCH v4 3/5] phy: rockchip: Support PCIe v3
-Content-Type: text/plain; charset=UTF-8
-Date:   Sat, 16 Jul 2022 13:57:33 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <YtFTrEzefxIYswnj@matsya>
-References: <20220619082605.7935-1-linux@fw-web.de>
- <20220619082605.7935-4-linux@fw-web.de> <YtFTrEzefxIYswnj@matsya>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:Ll0lW5FfOy8PK39ATKJ4/5EoQQotC9SLpE+mR2q2O3zLIVgoCKp1HAEYafnZ2klS2sSAg
- rOHkZVbW243ld09DQApdR5rPZOgmo3j8OZAfCIN8ObpP9JzuULItUViL2vPtyhGjcHC952WOQydW
- pSbIgnn/ufx/w9G/WaWKaPl/D8V0lFf6QHSkCv2vqFFAOmRgph11FjcSIxMnzsLmlkPYUQT6jsrW
- EAfi17jfK9lzMkTfvzY3BqosHPZ2AzpEryhLVO+GVCdCFPw4DnSgTLBuUZCdjgiQtoHwrhEMlf+r
- wk=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:WtWHZiRozh8=:gbLjeos4Y+pt3jyN6qW9cs
- gYBkeTFO9vX/UGcr7AzIYKcMm9zvwZk0fAwkWac5adpiV2lm4J2ynqjJaNvuv0coQ9Pc1WNwY
- oqGG2uCUNi2eZRNatQu2i9+ThGdvgsPuE8KIaKvWzkf5rNnRdiZT3MhZDqT6dhBR5DCkvNXGd
- Qvc0DpsYMq9FTYGnbP2sVLij3jj798d92c6ELBK2465eT8MZSHxwIywCK281T5J4FjqOfadN5
- SBtarvHQ7r2oXUO7ZQNywMw7F8fDtaZM/OGswmz60F7RtO1EbqZ2XuaYnF08OdDu7SDgsvDET
- iUKKmY4bvfFT8rrJGooZq2rRi6sCQ9iHs1jPJGUxd+jWg7pECVoP7pNm5Xe5JjBA3P8aS/OgM
- J6idQYvrc/BpeN6WQ6Zzx3p0477/UEBnTxN/IURgxdzkUWdtKm1ZcNby0c2zcPdq+XjP8iv3O
- mYBWbKB1VFqsMp/CBZb7lInSwB2NzC+BkdpCsB/8ij/ELFz9yBnqSCdKM2BIhjThD1sVSXPvb
- TCNb5bPW9jf/9gZiUWDhkPyPZ0VkMpQ+phJA00M4OB1zhv+kPWgZ8d1ysWP2gT6aCotlUnn+3
- mOgcLP1W2NcB+kerxAlVbwCLKJbbuUp0GWH7kpqmasyWeUcTnGaq1wfZvDs7DPjRuIxoWB8yy
- Dwp1akwpexbmyIY+Wlkr0tMFpq2sEXkrgycwJAWChf2RKuxSNF4FMopu55hx1rhpm5vKcnKor
- YN1eNE25CdlB4jMynamVbJ41Db86oxrgoGzKSIsri4HHbWfNmWndEvV9XIFC8q8xwmPMgXhTu
- oimi6gI
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="XpthpirdDmCJyjsk"
+Content-Disposition: inline
+In-Reply-To: <20220707074402.2429786-2-alain.volmat@foss.st.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
 
-thanks for review.
+--XpthpirdDmCJyjsk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Gesendet: Freitag, 15. Juli 2022 um 13:46 Uhr
-> Von: "Vinod Koul" <vkoul@kernel.org>
-> > + * Copyright (C) 2020 Rockchip Electronics Co., Ltd.
->
-> 2022 now :)
+On Thu, Jul 07, 2022 at 09:44:01AM +0200, Alain Volmat wrote:
+> Add the new compatible for the stm32mp13.
+>=20
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
 
-ok, i change it
+Applied to for-next, thanks!
 
-> > +	/* Deassert PCIe PMA output clamp mode */
-> > +	regmap_write(priv->phy_grf, GRF_PCIE30PHY_CON9, BIT(15) | BIT(31));
->
-> Can we define these bits..?
 
-i have no naming found for it as these are not described in the TRM
+--XpthpirdDmCJyjsk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-maybe Peter or Liang/Shawn has these?
+-----BEGIN PGP SIGNATURE-----
 
-> > +
-> > +	for (int i =3D 0; i < priv->num_lanes; i++) {
-> > +		dev_info(&phy->dev, "lane number %d, val %d\n", i, priv->lanes[i]);
-> > +		if (priv->lanes[i] > 1)
-> > +			bifurcation =3D true;
-> > +	}
-> > +
-> > +	/* Set bifurcation if needed, and it doesn't care RC/EP */
-> > +	if (bifurcation) {
-> > +		dev_info(&phy->dev, "bifurcation enabled\n");
-> > +		regmap_write(priv->phy_grf, GRF_PCIE30PHY_CON6,
-> > +			     (0xf << 16) | RK3568_BIFURCATION_LANE_0_1);
->
-> upper word 0xf?
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmLSrh0ACgkQFA3kzBSg
+Kba3jA/9GtapGevKUWhLHwFzzZUXb1n9jcmDm79L2zwP6UeNj6q+N5X3ELVst0BG
+QaX0t6+JrvgxqDJteIx38X6UsCfxXW6I1RLJKqSRthuGa47YImufQrk0RFitTwXA
+ybUB+Q3o58vOEIFcRE0AGM2NXhK/9+hUxzzDEtLK5BOkVu3U3bduSOzGDFpbSL+Z
+M78hijbwnahYBXrZqRbzF+HZhWjw65+E5HIuEfPBpzOW1aHrCol5AjPziVNhKKt6
+15oE/k7k5Zeb+pKD+G/kQENM3yqN0OjFh9tElb+Xj1cFRO43x0gVsqLgBABCB6bq
+d0BZ4I0pan5IAkFhcBmslbdMmA6R6rLTifOm4MGF8A8LWAXwPVBqFaMjWgJEpE60
+SzWioUyTm3poCHEN5r0XKxMz7qvbfnNZQY3D+YLtR2pNsU6unLblVs5A59sFC4Gu
+y34tmmtF3oXvIi+9oQdeifo/t8fKd+hsRfIGYQv7/iI42IsD+9kKL+QeT6bQy81D
+dZEsUQREkzNok/yjEa1LbWM26aGexztubystFdR3Ol2iPlBc5se1BuvTvJM+zPBz
+jAi6jqWJ69+EBAuVHfGGc/a2v5o0c2b2bwrel1vbXvQ0L1qBzuJ6Dbw9Aqc9qcoy
+6CGRGLRWWSBj9Sn7ObY6UNjg46KvSm45V1r27dHaayKGmco6EB4=
+=zQzc
+-----END PGP SIGNATURE-----
 
-afaik yes (write-enable), is there any other more readable way?
-
-> > +		regmap_write(priv->phy_grf, GRF_PCIE30PHY_CON1,
-> > +			     BIT(15) | BIT(31));
->
-> again define bits please
-
-these are not documented too
-
-> > +	} else {
-> > +		dev_info(&phy->dev, "bifurcation disabled\n");
->
-> debug level?
-
-i made them same as the "bifurcation enabled" to have always an info about=
- it in dmesg.
-
-> > +	if (ret)
-> > +		pr_err("%s: lock failed 0x%x, check input refclk and power supply\n=
-",
-> > +		       __func__, reg);
->
-> Can this be made dev_err too, I still see bunch of pr_ and at least here
-> you have driver context... while at it drop the __func__ from these logs
-> too please
-
-ok, i'll change it
-
-> > diff --git a/include/linux/phy/pcie.h b/include/linux/phy/pcie.h
-> > new file mode 100644
-> > index 000000000000..93c997f520fe
-> > --- /dev/null
-> > +++ b/include/linux/phy/pcie.h
-> > @@ -0,0 +1,12 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
->
-> Header is 2021 !
-
-i'll change
-
-> --
-> ~Vinod
-
-regards Frank
+--XpthpirdDmCJyjsk--
