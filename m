@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 639FF57711D
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 21:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C80B8577122
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 21:32:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232301AbiGPTcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 15:32:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47554 "EHLO
+        id S232300AbiGPTcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 15:32:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232145AbiGPTcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 15:32:10 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4885220BF4
-        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 12:32:09 -0700 (PDT)
+        with ESMTP id S232383AbiGPTcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 15:32:32 -0400
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE68D220F5;
+        Sat, 16 Jul 2022 12:32:31 -0700 (PDT)
 Received: from localhost.localdomain (abxj77.neoplus.adsl.tpnet.pl [83.9.3.77])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id E8BC41F94F;
-        Sat, 16 Jul 2022 21:32:05 +0200 (CEST)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 28B1C1F94F;
+        Sat, 16 Jul 2022 21:32:29 +0200 (CEST)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     ~postmarketos/upstreaming@lists.sr.ht
 Cc:     martin.botka@somainline.org,
         angelogioacchino.delregno@somainline.org,
         marijn.suijten@somainline.org, jamipkettunen@somainline.org,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: power: rpmpd: Add SM6375 power domains
-Date:   Sat, 16 Jul 2022 21:32:00 +0200
-Message-Id: <20220716193201.455728-1-konrad.dybcio@somainline.org>
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm-smmu: Add compatible for Qualcomm SM6375
+Date:   Sat, 16 Jul 2022 21:32:22 +0200
+Message-Id: <20220716193223.455859-1-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -44,49 +44,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the bindings for SM6375 RPMPDs.
+Add a compatible for Qualcomm SM6375's broken-as-usual MMU500 impl.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- .../devicetree/bindings/power/qcom,rpmpd.yaml        |  1 +
- include/dt-bindings/power/qcom-rpmpd.h               | 12 ++++++++++++
- 2 files changed, 13 insertions(+)
+ Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-index ad77a6380f38..8b58cbc298a1 100644
---- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-+++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-@@ -39,6 +39,7 @@ properties:
-       - qcom,sm6115-rpmpd
-       - qcom,sm6125-rpmpd
-       - qcom,sm6350-rpmhpd
-+      - qcom,sm6375-rpmpd
-       - qcom,sm8150-rpmhpd
-       - qcom,sm8250-rpmhpd
-       - qcom,sm8350-rpmhpd
-diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
-index 6cce5b7aa940..8b770bfcf46b 100644
---- a/include/dt-bindings/power/qcom-rpmpd.h
-+++ b/include/dt-bindings/power/qcom-rpmpd.h
-@@ -36,6 +36,18 @@
- #define SM6350_MSS	4
- #define SM6350_MX	5
- 
-+/* SM6350 Power Domain Indexes */
-+#define SM6375_VDDCX		0
-+#define SM6375_VDDCX_AO	1
-+#define SM6375_VDDCX_VFL	2
-+#define SM6375_VDDMX		3
-+#define SM6375_VDDMX_AO	4
-+#define SM6375_VDDMX_VFL	5
-+#define SM6375_VDDGX		6
-+#define SM6375_VDDGX_AO	7
-+#define SM6375_VDD_LPI_CX	8
-+#define SM6375_VDD_LPI_MX	9
-+
- /* SM8150 Power Domain Indexes */
- #define SM8150_MSS	0
- #define SM8150_EBI	1
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index 76fc2c0f4d54..9066e6df1ba1 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -42,6 +42,7 @@ properties:
+               - qcom,sdx55-smmu-500
+               - qcom,sdx65-smmu-500
+               - qcom,sm6350-smmu-500
++              - qcom,sm6375-smmu-500
+               - qcom,sm8150-smmu-500
+               - qcom,sm8250-smmu-500
+               - qcom,sm8350-smmu-500
 -- 
 2.37.0
 
