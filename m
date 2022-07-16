@@ -2,52 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF45576D26
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 11:39:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F34E576CDD
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 11:34:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233095AbiGPJjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 05:39:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35734 "EHLO
+        id S232106AbiGPJe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 05:34:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232920AbiGPJi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 05:38:58 -0400
-X-Greylist: delayed 183 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 16 Jul 2022 02:38:48 PDT
-Received: from condef-03.nifty.com (condef-03.nifty.com [202.248.20.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D698113E0A
-        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 02:38:46 -0700 (PDT)
-Received: from conuserg-12.nifty.com ([10.126.8.75])by condef-03.nifty.com with ESMTP id 26G9WxxJ013530
-        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 18:33:00 +0900
-Received: from grover.sesame ([133.106.62.13]) (authenticated)
-        by conuserg-12.nifty.com with ESMTP id 26G9VZu3010688;
-        Sat, 16 Jul 2022 18:31:36 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-12.nifty.com 26G9VZu3010688
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1657963897;
-        bh=lo5mfoKD7vRR8DCYCccjxLLxvc3Zerc9iud4vad1cjM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=tkPRoc/IKNMhC15S0dVGMiXp5Y6Al6ATPBFzkIeDcLgtp16gxEImu4M6A3bdlZ8YW
-         EmCEgER2gk6jph2g+jCpCN7mCYNakohvyk86OoeaGpfWaP70w9BZ8h3f8DFsdcw9y/
-         4j7iwF+mm5LscWv0pbH2BnrqwZMF7Qkmx132dXeNx/245XJKojzO/HaeOnKQIvJ/yc
-         6x8kANnU2awHonRtuq8Vff0yxpsKEJQD/W89IAYrkA0oOrPRuTWZ9/bPHoP+32gHBN
-         rItGiAnsVYFx1MV62ksAvrhFn5nLIEa1pDAuO0kIfZUIvyNc8E1aypYtvv+6dl7J9Z
-         NZMe2titjEKNw==
-X-Nifty-SrcIP: [133.106.62.13]
-From:   Masahiro Yamada <masahiroy@kernel.org>
-To:     linux-kbuild@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] kbuild: add dtbs_prepare target
-Date:   Sat, 16 Jul 2022 18:31:22 +0900
-Message-Id: <20220716093122.137494-1-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231927AbiGPJe0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 05:34:26 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8C4EFA;
+        Sat, 16 Jul 2022 02:34:19 -0700 (PDT)
+X-UUID: 7c3d04953ac4499f80cfcfc984a6bbb7-20220716
+X-CID-UNFAMILIAR: 1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:3d1e8b93-3694-41e6-a6da-1ac5f70148d7,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:95
+X-CID-INFO: VERSION:1.1.8,REQID:3d1e8b93-3694-41e6-a6da-1ac5f70148d7,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,A
+        CTION:quarantine,TS:95
+X-CID-META: VersionHash:0f94e32,CLOUDID:83d5a6d7-5d6d-4eaf-a635-828a3ee48b7c,C
+        OID:68c961e9a692,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 7c3d04953ac4499f80cfcfc984a6bbb7-20220716
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1846794100; Sat, 16 Jul 2022 17:34:13 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Sat, 16 Jul 2022 17:34:11 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Sat, 16 Jul 2022 17:34:10 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <nicolas.dufresne@collabora.com>, <wenst@chromium.org>,
+        kyrie wu <kyrie.wu@mediatek.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Tomasz Figa <tfiga@chromium.org>, <xia.jiang@mediatek.com>,
+        <maoguang.meng@mediatek.com>, <srv_heupstream@mediatek.com>
+Subject: [V5,0/8] Support multi-hardware jpeg decoder for MT8195
+Date:   Sat, 16 Jul 2022 17:34:00 +0800
+Message-ID: <20220716093408.29734-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_PASS,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,52 +71,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Factor out the common prerequisites for DT compilation into the new
-target, dtbs_prepare.
+From: kyrie wu <kyrie.wu@mediatek.com>
 
-Add comments in case you wonder why include/config/kernel.release is
-the prerequisite. Our policy is that installation targets must not
-(re)compile any build artifacts in the tree. If we make modules_install
-depend on include/config/kernel.release and it is executed under the
-root privilege, it may be owned by root.
+This series adds support for multi hardware jpeg decoding,
+by first adding use of_platform_populate to manage each hardware
+information: interrupt, clock, register bases and power.
+Secondly add decoding work queue to deal with the decoding requests
+of multi-hardware at the same time. Lastly, add output picture
+reorder function interface to eliminate the out of order images.
 
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+This series has been tested with both MT8195.
+Decoding worked for this chip.
+
+Patch 1 Adds jpeg decoder dt-bindings for mt8195
+
+Patches 2 jpeg decoder builds three module for using Multi-HW,
+export some functions to make them visible by other modules.
+
+Patch 3 use of_platform_populate to manage multi-hardware.
+
+Patch 4 add jpeg decoding timeout function to judge hardware timeout.
+
+Patch 5 add decoding work queue to deal with multi-hardware decoding
+at the same time.
+
+Patch 6 add output picture reorder function to order images.
+
+Patch 7 refactor jpegdec func interface for HW working.
+
+Patch 8 add stop cmd function to deal with EOS operation.
+
 ---
+This series patches dependent on:
+media_stage tree:
+[1]
+https://git.linuxtv.org/media_stage.git/commit/?id=b3627647f9ea7473d10fb08a95fd7c4133a17ca4
 
- Makefile | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+patch1 new jpegdec dt-bindings included files
+[2] MM IOMMU binding:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220217113453.13658-2-yong.wu@mediatek.com/
 
-diff --git a/Makefile b/Makefile
-index a9bd55edb75e..8aa4dbb8f878 100644
---- a/Makefile
-+++ b/Makefile
-@@ -1367,16 +1367,22 @@ endif
- 
- ifneq ($(dtstree),)
- 
--%.dtb: include/config/kernel.release scripts_dtc
-+%.dtb: dtbs_prepare
- 	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
- 
--%.dtbo: include/config/kernel.release scripts_dtc
-+%.dtbo: dtbs_prepare
- 	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
- 
--PHONY += dtbs dtbs_install dtbs_check
--dtbs: include/config/kernel.release scripts_dtc
-+PHONY += dtbs dtbs_prepare dtbs_install dtbs_check
-+dtbs: dtbs_prepare
- 	$(Q)$(MAKE) $(build)=$(dtstree)
- 
-+# include/config/kernel.release is not actually required for building DTBs,
-+# but for installing DTBs because INSTALL_DTBS_PATH contains $(KERNELRELEASE).
-+# We do not want to move it to dtbs_install. The policy is installation
-+# targets (, which may run as root) must not modify the tree.
-+dtbs_prepare: include/config/kernel.release scripts_dtc
-+
- ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
- export CHECK_DTBS=y
- dtbs: dt_binding_check
+[3] MT8195 power domain:
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=580579
+
+Changes compared with v4:
+- some modifications for patch v4's review comments.
+- fix Gstreamer test errors.
+
+Changes compared with v3:
+- some modifications for patch v3's review comments.
+
+Changes compared with v2:
+- add stop cmd function.
+- some modifications for patch v1's review comments.
+
+Changes compared with v1:
+- new yaml file for mt8195 jpeg decoder.
+- some modifications for patch v1's review comments.
+
+kyrie wu (8):
+  dt-bindings: mediatek: Add mediatek,mt8195-jpgdec compatible
+  media: mtk-jpegdec: export jpeg decoder functions
+  media: mtk-jpegdec: manage jpegdec multi-hardware
+  media: mtk-jpegdec: add jpegdec timeout func interface
+  media: mtk-jpegdec: add jpeg decode worker interface
+  media: mtk-jpegdec: add output pic reorder interface
+  media: mtk-jpegdec: refactor jpegdec func interface
+  mtk-jpegdec: add stop cmd interface for jpgdec
+
+ .../media/mediatek,mt8195-jpegdec.yaml        | 160 +++++++++
+ drivers/media/platform/mediatek/jpeg/Makefile |   5 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 232 ++++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  46 +++
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 317 ++++++++++++++++--
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.h  |   3 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_reg.h |   1 +
+ 7 files changed, 732 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+
 -- 
-2.34.1
+2.18.0
 
