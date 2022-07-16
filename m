@@ -2,67 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B8E576D0A
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 11:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD5A5576D24
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jul 2022 11:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232653AbiGPJfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 05:35:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57478 "EHLO
+        id S232760AbiGPJi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 05:38:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232670AbiGPJfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 05:35:07 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E577B2D1EB;
-        Sat, 16 Jul 2022 02:34:52 -0700 (PDT)
-X-UUID: 96becdad60284e898b01ae6ba259b964-20220716
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:d08c7e0b-96fb-48d2-8349-feb3e79beedd,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:5f5a2433-b9e4-42b8-b28a-6364427c76bb,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 96becdad60284e898b01ae6ba259b964-20220716
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1119377398; Sat, 16 Jul 2022 17:34:46 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Sat, 16 Jul 2022 17:34:45 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Sat, 16 Jul 2022 17:34:44 +0800
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <nicolas.dufresne@collabora.com>, <wenst@chromium.org>,
-        kyrie wu <kyrie.wu@mediatek.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Tomasz Figa <tfiga@chromium.org>, <xia.jiang@mediatek.com>,
-        <maoguang.meng@mediatek.com>, <srv_heupstream@mediatek.com>,
-        irui wang <irui.wang@mediatek.com>
-Subject: [V11,7/7] mtk-jpegenc: add stop cmd interface for jpgenc
-Date:   Sat, 16 Jul 2022 17:34:35 +0800
-Message-ID: <20220716093435.29796-8-irui.wang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220716093435.29796-1-irui.wang@mediatek.com>
-References: <20220716093435.29796-1-irui.wang@mediatek.com>
+        with ESMTP id S232747AbiGPJiw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 05:38:52 -0400
+X-Greylist: delayed 343 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 16 Jul 2022 02:38:42 PDT
+Received: from conssluserg-06.nifty.com (conssluserg-06.nifty.com [210.131.2.91])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55128F58;
+        Sat, 16 Jul 2022 02:38:41 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51]) (authenticated)
+        by conssluserg-06.nifty.com with ESMTP id 26G9cMi1009565;
+        Sat, 16 Jul 2022 18:38:23 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-06.nifty.com 26G9cMi1009565
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1657964304;
+        bh=+piROnj9mLzn9Znc44Hr/EP2LS2kMptLJort+MxCcoE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=0zCJXA3ZFbeXeWSGWc1BpuDqw8OQO1g8YbwuXq/pxSz1AEQQJ2I+G3GiXuIu4tb9O
+         GSA9r/3KmZ2htvyUB5oWgefNbA+sZQv/iqAnz0kb4oO1UjXYlXM1Wt9iHOXb2Dk+Mf
+         bsKUYtMmIPrCVK+iXGIYr1nC8pRsUeX7Eyz8kyr1LEYBrNmBe84NAOisMtLQXuKN7G
+         Vdis5umY/C7mF75Z9emLKC2z4sFVnWVePv5UQjAWK8E0SWvZsl9wc3QC+aeXEfxCW8
+         zinpvZmeI5EgVX+t5nAng4qi2gewMvwi6p5PR65NosPsZFtbuMCCBhSJbQhBWeaK9d
+         ZxEoJtvjQQYmw==
+X-Nifty-SrcIP: [209.85.221.51]
+Received: by mail-wr1-f51.google.com with SMTP id f2so9795684wrr.6;
+        Sat, 16 Jul 2022 02:38:23 -0700 (PDT)
+X-Gm-Message-State: AJIora9+iWICOULqY+CbcfA59PaMwUfHZT5AwRahNp7pajlzEjo4K3A3
+        oqPYE9lciovtGrRDSpkkD6W/2JIJpqVFf8kzNRg=
+X-Google-Smtp-Source: AGRyM1uXXoYzn2ED5DqKQOCpe4iWzIt1brPfXQM/ByBpjRgvccY6cDJD4uEHMhD/L9qT7xCC9J5p6J4GwE36DcXvo3Y=
+X-Received: by 2002:adf:979b:0:b0:21d:868a:7f2f with SMTP id
+ s27-20020adf979b000000b0021d868a7f2fmr15570076wrb.409.1657964302181; Sat, 16
+ Jul 2022 02:38:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+References: <20220706114407.1507412-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220706114407.1507412-1-dmitry.baryshkov@linaro.org>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Sat, 16 Jul 2022 18:37:42 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQPS+U1qq4K+7Rao9P7p94bMU3Y6g0+ALUd3t=ioZqSnw@mail.gmail.com>
+Message-ID: <CAK7LNAQPS+U1qq4K+7Rao9P7p94bMU3Y6g0+ALUd3t=ioZqSnw@mail.gmail.com>
+Subject: Re: [PATCH v2] kbuild: allow validating individual dtb files against schema
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, Tom Rini <trini@konsulko.com>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="0000000000004845d005e3e8e52c"
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,39 +65,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: kyrie wu <kyrie.wu@mediatek.com>
+--0000000000004845d005e3e8e52c
+Content-Type: text/plain; charset="UTF-8"
 
-Add stop cmd interface for jpgenc to stop stream
+On Wed, Jul 6, 2022 at 8:44 PM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> While it is possible to validate all generated dtb files against the
+> schema, it typically results in huge pile of warnings. While working on
+> a platform it is quite useful to validate just a single file against
+> schema.
+>
+> Allow specifying CHECK_DTBS=1 on a make command line to enable
+> validation while building dtb files. This reuses the infrastructure
+> existing for `make dtbs_check`, making dtbs_check a shortcut for
+> `make CHECK_DTBS=1 dt_binding_check dtbs`.
+>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Tom Rini <trini@konsulko.com>
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
+> Cc: linux-kbuild@vger.kernel.org
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>
+> Changes since v1:
+> - Added dependency to rebuild schema if `make dtbs` was used.
+>
+> ---
+>  Makefile | 20 +++++++++++++++-----
+>  1 file changed, 15 insertions(+), 5 deletions(-)
+>
+> diff --git a/Makefile b/Makefile
+> index 9aa7de1ca58f..5a9858aa4934 100644
+> --- a/Makefile
+> +++ b/Makefile
+> @@ -1464,14 +1464,18 @@ endif
+>
+>  ifneq ($(dtstree),)
+>
+> -%.dtb: include/config/kernel.release scripts_dtc
+> +ifneq ($(CHECK_DTBS),)
+> +DT_TMP_BINDING := dt_binding
+> +endif
+> +
+> +%.dtb: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
+>         $(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+>
+> -%.dtbo: include/config/kernel.release scripts_dtc
+> +%.dtbo: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
+>         $(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+>
+>  PHONY += dtbs dtbs_install dtbs_check
+> -dtbs: include/config/kernel.release scripts_dtc
+> +dtbs: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
+>         $(Q)$(MAKE) $(build)=$(dtstree)
+>
+>  ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
+> @@ -1498,8 +1502,10 @@ ifneq ($(filter dt_binding_check, $(MAKECMDGOALS)),)
+>  export CHECK_DT_BINDING=y
+>  endif
+>
+> -PHONY += dt_binding_check
+> -dt_binding_check: scripts_dtc
+> +dt_binding_check: dt_binding
+> +
+> +PHONY += dt_binding
+> +dt_binding: scripts_dtc
+>         $(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
+>
+>  # ---------------------------------------------------------------------------
+> @@ -1774,6 +1780,10 @@ help:
+>         @echo  '                3: more obscure warnings, can most likely be ignored'
+>         @echo  '                e: warnings are being treated as errors'
+>         @echo  '                Multiple levels can be combined with W=12 or W=123'
+> +       @$(if $(dtstree), \
+> +               echo '  make CHECK_DTBS=1 [targets] Check all generated dtb files against schema'; \
+> +               echo '         This can be applied both to "dtbs" and to individual "foo.dtb" targets' ; \
+> +               )
+>         @echo  ''
+>         @echo  'Execute "make" or "make all" to build all targets marked with [*] '
+>         @echo  'For further info see the ./README file'
+> --
+> 2.35.1
+>
 
-Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
-Signed-off-by: irui wang <irui.wang@mediatek.com>
 
----
- drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c | 4 ++++
- 1 file changed, 4 insertions(+)
+I think the idea seems OK to me, but we can make it simpler.
 
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-index 510abe0f84f1..386d48cc4f59 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-@@ -612,6 +612,9 @@ static const struct v4l2_ioctl_ops mtk_jpeg_enc_ioctl_ops = {
- 	.vidioc_streamoff               = v4l2_m2m_ioctl_streamoff,
- 
- 	.vidioc_unsubscribe_event	= v4l2_event_unsubscribe,
-+
-+	.vidioc_encoder_cmd		= v4l2_m2m_ioctl_encoder_cmd,
-+	.vidioc_try_encoder_cmd		= v4l2_m2m_ioctl_try_encoder_cmd,
- };
- 
- static const struct v4l2_ioctl_ops mtk_jpeg_dec_ioctl_ops = {
-@@ -1389,6 +1392,7 @@ static int mtk_jpeg_open(struct file *file)
- 	} else {
- 		v4l2_ctrl_handler_init(&ctx->ctrl_hdl, 0);
- 	}
-+
- 	mtk_jpeg_set_default_params(ctx);
- 	mutex_unlock(&jpeg->lock);
- 	return 0;
+
+First, apply the following clean-up patch to reduce the code duplication.
+https://lore.kernel.org/all/20220716093122.137494-1-masahiroy@kernel.org/T/#u
+
+
+Then, apply the attached patch.diff
+
+Please try it.
+
+
+
+
+
+
+
 -- 
-2.18.0
+Best Regards
+Masahiro Yamada
 
+--0000000000004845d005e3e8e52c
+Content-Type: text/x-patch; charset="US-ASCII"; name="patch.diff"
+Content-Disposition: attachment; filename="patch.diff"
+Content-Transfer-Encoding: base64
+Content-ID: <f_l5np37ne0>
+X-Attachment-Id: f_l5np37ne0
+
+ZGlmZiAtLWdpdCBhL01ha2VmaWxlIGIvTWFrZWZpbGUKaW5kZXggOGFhNGRiYjhmODc4Li5jYzgw
+YjZiOGQ1ZjggMTAwNjQ0Ci0tLSBhL01ha2VmaWxlCisrKyBiL01ha2VmaWxlCkBAIC0xMzgzLDEz
+ICsxMzgzLDE2IEBAIGR0YnM6IGR0YnNfcHJlcGFyZQogIyB0YXJnZXRzICgsIHdoaWNoIG1heSBy
+dW4gYXMgcm9vdCkgbXVzdCBub3QgbW9kaWZ5IHRoZSB0cmVlLgogZHRic19wcmVwYXJlOiBpbmNs
+dWRlL2NvbmZpZy9rZXJuZWwucmVsZWFzZSBzY3JpcHRzX2R0YwogCisjICdtYWtlIGR0YnNfY2hl
+Y2snIGlzIGEgc2hvcnRoYW5kIG9mICdtYWtlIENIRUNLX0RUQlM9eSBkdGJzJwogaWZuZXEgKCQo
+ZmlsdGVyIGR0YnNfY2hlY2ssICQoTUFLRUNNREdPQUxTKSksKQogZXhwb3J0IENIRUNLX0RUQlM9
+eQotZHRiczogZHRfYmluZGluZ19jaGVjawogZW5kaWYKLQogZHRic19jaGVjazogZHRicwogCitp
+Zm5lcSAoJChDSEVDS19EVEJTKSwpCitkdGJzX3ByZXBhcmU6IGR0X2JpbmRpbmdfY2hlY2sKK2Vu
+ZGlmCisKIGR0YnNfaW5zdGFsbDoKIAkkKFEpJChNQUtFKSAkKGR0Ymluc3QpPSQoZHRzdHJlZSkg
+ZHN0PSQoSU5TVEFMTF9EVEJTX1BBVEgpCiAK
+--0000000000004845d005e3e8e52c--
