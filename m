@@ -2,90 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E08DC577615
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 14:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37CD8577625
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 14:33:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232788AbiGQMME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 08:12:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50588 "EHLO
+        id S229681AbiGQMdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 08:33:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232692AbiGQML5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 08:11:57 -0400
-Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A5436165AE;
-        Sun, 17 Jul 2022 05:11:56 -0700 (PDT)
-Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
-        by maillog.nuvoton.com (Postfix) with ESMTP id E3CA51C809A0;
-        Sun, 17 Jul 2022 20:11:55 +0800 (CST)
-Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Sun, 17 Jul
- 2022 20:11:55 +0800
-Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS03.nuvoton.com
- (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1847.3; Sun, 17 Jul
- 2022 20:11:55 +0800
-Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
- (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Sun, 17 Jul 2022 20:11:55 +0800
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id 4C13B63A4C; Sun, 17 Jul 2022 15:11:54 +0300 (IDT)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
-        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
-        <benjaminfair@google.com>, <jic23@kernel.org>, <minyard@acm.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <openbmc@lists.ozlabs.org>,
-        <openipmi-developer@lists.sourceforge.net>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v1 2/2] char: ipmi: modify NPCM KCS configuration
-Date:   Sun, 17 Jul 2022 15:11:24 +0300
-Message-ID: <20220717121124.154734-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220717121124.154734-1-tmaimon77@gmail.com>
-References: <20220717121124.154734-1-tmaimon77@gmail.com>
+        with ESMTP id S229487AbiGQMdP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 08:33:15 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AABE914D29
+        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 05:33:14 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id bu1so13239542wrb.9
+        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 05:33:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BltwYbntlLYN/FN8uiEra+3WKSK9lYLxa1C0HrhOCnE=;
+        b=NTtOnIxy22YlP9LTHK3DHdIzjo1LvTaJQmj2nQjsE2ItrHwhXzFDwN2E26JblW1NNA
+         DCi8fK8I+UgLddFzn/YeAHQv7zhRmYBUpNc/jUSc2jFUy6Ia8rNh8zgdQOzroHfk0Agd
+         AmpGV7JFf4w8emEnFPjez2HglYTz7cKfXi20MltXgRnlEfWgKUvBOiSmJCnP6kOVbn87
+         qXTPfYUTRFQfDufsD4MY9c/6+HAkhdqTK3097VCz0jrjihOc1VB3tpVE65PUAMVOT9mK
+         z+4QSrSuE2Z8pnKyCsyq2eyirF/4yq2bEmH5trqW/DpVeLSM/K7ufOuW1WUJiuluQral
+         kCDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BltwYbntlLYN/FN8uiEra+3WKSK9lYLxa1C0HrhOCnE=;
+        b=mgqV5Bxs+TA6Kk4f6J8lxQ1uzTSqp1NHl0tx41i1vjeGIYSzBRSYpgikcuoAVLSXd2
+         DkUoqvoRX36ljlnS/DBlxNwH8knIUm0CPgpjTnkT6RA/D/+2+0dXcYoRWBJzmBbRe/au
+         kbOeAz6r8L3M0ylpmXbHUEGw5/bGPCOO5QGmcF0DsJT/qC223uYxTIfmnsD1AFntv0yx
+         Mt71b85JjlHkd5RuHVWySRjn2DTMziVYgEy8wxRtLaSQKKDwDuxZUHW/kpI7peBKg1KX
+         tITmTreFvBJXYimgZUgLG9P4JNp2EeqaSOdQQUc72HkaKU3th2Sai2EPR6W9iOu8zzcI
+         RR0w==
+X-Gm-Message-State: AJIora/z3xTs+lXVP8YZxIRkQ79c8YZQtqS3fLacUO1WQWiaZuTNjBiq
+        8eHw9LxwRIwA9E5ngautpY7/P1yolCpZGA==
+X-Google-Smtp-Source: AGRyM1tkZtNN0snz0vuu5u1QBiHoiEOdwxJWwjVnvVvCadM/bjgQqmDF/DHtzq5HPO7Yi2MRAMkj6g==
+X-Received: by 2002:adf:ec07:0:b0:21d:669c:6a78 with SMTP id x7-20020adfec07000000b0021d669c6a78mr19187241wrn.401.1658061193303;
+        Sun, 17 Jul 2022 05:33:13 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id m9-20020adfe949000000b0021d4694fcaesm8146790wrn.107.2022.07.17.05.33.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Jul 2022 05:33:12 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        konrad.dybcio@somainline.org, myungjoo.ham@samsung.com,
+        cw00.choi@samsung.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        marijn.suijten@somainline.org, bryan.odonoghue@linaro.org
+Subject: [PATCH v4 0/2] Fix pm8941-misc extcon interrupt dependency assumptions
+Date:   Sun, 17 Jul 2022 13:33:02 +0100
+Message-Id: <20220717123304.938259-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify NPCM IPMI KCS configuration to support all NPCM BMC SoC.
+V4:
+- Added suggested extra log text from Marjin to extcon patch
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/char/ipmi/Kconfig | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+V3:
+- Adds a cover-letter since we are now doing two patches a dt-bindings fix and
+  platform_get_irq_byname_optional fix.
+- Add Review-by -> Rob Herring, Marijn Suijten
+- Add additional patch to negate warning when one of usb_id or usb_vbus
+  is not declared in the platform DTS.
 
-diff --git a/drivers/char/ipmi/Kconfig b/drivers/char/ipmi/Kconfig
-index b061e6b513ed..39565cf74b2c 100644
---- a/drivers/char/ipmi/Kconfig
-+++ b/drivers/char/ipmi/Kconfig
-@@ -119,13 +119,13 @@ config ASPEED_KCS_IPMI_BMC
- 	  provides the access of KCS IO space for BMC side.
- 
- config NPCM7XX_KCS_IPMI_BMC
--	depends on ARCH_NPCM7XX || COMPILE_TEST
-+	depends on ARCH_NPCM || COMPILE_TEST
- 	select IPMI_KCS_BMC
- 	select REGMAP_MMIO
--	tristate "NPCM7xx KCS IPMI BMC driver"
-+	tristate "NPCM KCS IPMI BMC driver"
- 	help
- 	  Provides a driver for the KCS (Keyboard Controller Style) IPMI
--	  interface found on Nuvoton NPCM7xx SOCs.
-+	  interface found on Nuvoton NPCM SOCs.
- 
- 	  The driver implements the BMC side of the KCS contorller, it
- 	  provides the access of KCS IO space for BMC side.
+Bryan O'Donoghue (2):
+  dt-bindings: pm8941-misc: Fix usb_id and usb_vbus definitions
+  extcon: qcom-spmi: Switch to platform_get_irq_byname_optional
+
+ .../devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 12 ++++++++----
+ drivers/extcon/extcon-qcom-spmi-misc.c               |  4 ++--
+ 2 files changed, 10 insertions(+), 6 deletions(-)
+
 -- 
-2.33.0
+2.36.1
 
