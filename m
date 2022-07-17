@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75239577851
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 23:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4138F577863
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 23:37:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbiGQVb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 17:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51158 "EHLO
+        id S232790AbiGQVg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 17:36:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbiGQVb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 17:31:58 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 333301145B;
-        Sun, 17 Jul 2022 14:31:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1658093507;
-        bh=f4FfzIpkBTHPOg+j4ipx8biOOkNxFkZwARYVG5NtFms=;
-        h=X-UI-Sender-Class:Date:From:To:cc:Subject:In-Reply-To:References;
-        b=Do8rbAcDILkg69XLI7KSPaqCPCDkRLstFlxJl7QZ5ejNcz9eesYnk4TzGRVKXtsfx
-         ZezdpNEAlBeXpBa+/AEbsMqFnFIsHlS0ka42CxN0wujGU8a05qxBSB5G5HW2ee7gvB
-         yZhmqxZaNks+4rlIfAH9Xb+LUv5Iw7dXcJro341U=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from MacBookPro.fritz.box ([88.130.11.201]) by mail.gmx.net
- (mrgmx005 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1MfpOd-1ncB5v3grp-00gHsY; Sun, 17 Jul 2022 23:31:46 +0200
-Date:   Sun, 17 Jul 2022 23:31:46 +0200 (CEST)
-From:   Marc Dietrich <marvin24@gmx.de>
-To:     Thierry Reding <thierry.reding@gmail.com>
-cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Dietrich <marvin24@gmx.de>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 3/5] dt-bindings: arm: tegra: nvec: Convert to
- json-schema
-In-Reply-To: <20220711152020.688461-3-thierry.reding@gmail.com>
-Message-ID: <a8af39d5-e656-1e5e-4809-1b168bca3eda@gmx.de>
-References: <20220711152020.688461-1-thierry.reding@gmail.com> <20220711152020.688461-3-thierry.reding@gmail.com>
+        with ESMTP id S232931AbiGQVgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 17:36:45 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D193E12762;
+        Sun, 17 Jul 2022 14:36:28 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id a9so16488615lfk.11;
+        Sun, 17 Jul 2022 14:36:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mQ4UYKUzX7TyytcppzQjH+TUKoxUgRO5nyuabjhwe2w=;
+        b=iuSwtSglL2SsVyGxmwpyIFZvHF1bPJ1eudZMD5U9X3Lt+5v091w9mCSycJXoPvUBRH
+         0sITR0SWWStOS9dv8Q9ffAjpLsrwpFKEQ/ieMxGRvHjkLjc+hTPsQX9Em8yZhPR8zs7a
+         0UyEs6ocTbWd03BhITvr1vINg+u5b9fJgEYh67Ss2ghLCkQGWdFm6D2rY202LsdvYy6S
+         +RisWg80itY91QCzJMEyF2CW1eld34UUnraootd4xB0eilc/GRPGd9K0Xq9urrecBIfh
+         +Q4hHtGXSDbMXPwKJDoFYqgt5tekNXkYLLowIRniFWAXQcEkPjW2lApzD3EWwFrsMsVN
+         aooA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mQ4UYKUzX7TyytcppzQjH+TUKoxUgRO5nyuabjhwe2w=;
+        b=PrGGFHnxx/K7AwRzLxEfxIB7lii9kN8GYFlsi84yoUqiijJdf84e6+Idn/Go7vtRWA
+         fAIgXt5UNgPDqedpKlvRgpb5/DwpBXEldvnmqOC+1CA0AZ8g/Dwah1Gq6jlDr09QVmvI
+         nogDSod/G0DD5BnF6VRol1E7EEC/Q5EKOpEKddKVd9am7kGTaR1zrftkJ4yhQxPAIQug
+         l6wRlqfNUhThjGBZ+yelDfQSWi/QfcxlRcIdpwlPw/ySUjrf89M2MZlGoXaNWBm4B5KT
+         4T1kt1Flm2puabqnCEwrLJPshppnc6ZdHYXwmRqNIIRR5qjT2kV7uAb/Z0LDK76EGK6/
+         aRCQ==
+X-Gm-Message-State: AJIora+Ox12OxLZ62oFbtZ/TwO3Gvzwwjxoa8DemcJruEGRvRAlmWIRT
+        pGvpWZIUK+iiTFykQuOUMeFRha27/d+si6T73vXM+w==
+X-Google-Smtp-Source: AGRyM1vV8Fm/TR20xRXnhPE+sCDzHMO8U+rN72p+/bDNBYzGoQIQeteWrbLI4tkhxxIWRK6IEy0CLA==
+X-Received: by 2002:a05:6512:39d1:b0:489:d408:c0ae with SMTP id k17-20020a05651239d100b00489d408c0aemr13323975lfu.114.1658093786921;
+        Sun, 17 Jul 2022 14:36:26 -0700 (PDT)
+Received: from i-vetokaappi.home.lan (dsl-hkibng42-5673c7-93.dhcp.inet.fi. [86.115.199.93])
+        by smtp.gmail.com with ESMTPSA id w16-20020a05651234d000b00485caa0f5dfsm2251088lfr.44.2022.07.17.14.36.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Jul 2022 14:36:26 -0700 (PDT)
+From:   =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@codeaurora.org>
+Subject: [PATCH 0/3] Initial Samsung Galaxy Tab 4 10.1 (SM-T530) support
+Date:   Mon, 18 Jul 2022 00:34:28 +0300
+Message-Id: <20220717213432.134486-1-matti.lehtimaki@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Provags-ID: V03:K1:qgXuojO2d/XpMr3wVkvDzxXA9aMI18xf2Z3YeCCIUd+08YqppiQ
- eWqSn8UvLrUmF4+v5MFmG5YCAkyHyM0BAFWGiUbAi8B2ewXILMAifduwz1L+YhaHu6ewB8l
- NCRnuyt8VmWFiHcDhoJ3pdBw9cAxgZ8rbczQvJBgMoNivh0NpKQ8zgCG9PptpGi9CI3B9sY
- fYeLCH3m+7rk6D2BxNHAQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:9aeTu9FjRqM=:TpOvQbpdytyGtI1pq8gFeh
- HAuUBl3PgqtSmC5CeqtCv0ax6q8qfO+oAf/2bhLgL5J9rc1zIsXEmcJFi6XsXfxoQjVxsQ2cG
- YAXOthKXTgBx8W9UtKqfuxjY4SGbHb8PWiRAYRZHLI58JTUm4RmLDgwIH0YM19Da3T5WupioK
- Sb+fVn+nGnNeACpL/8hDm/0AQlm7y6ictbJwrZGWrBE8Bp7uNrLv/oqCQ6/iKndFAM/j54545
- g+NWS4XR9ZH2HBQHqA6sTN79oYNpc5uyoaYyozNWW8X1bTiu8oii/mBowW2fn3CXvyR/O0Rz7
- yKr8CO8LkclOvJJY/c8qMJ+6Nw7Ma8wy4l+bxjta5Yz7eF/kJz8BKv3HQmh7H5JGrLbXoKIuF
- dL7iE0RHCa98j9BCCxEWW2RBDLguEwYG+TtNyB/HVEaudVMZT86ZCxPKZKAKxL6cp0VZ7Bfa9
- vp1sup/gWCl9t4JjEiqOUz8rYxwsa7mGFG/fhx+EhGUwypcsLVRrZYnO7bL78l06nxOsDrol/
- tA7TZk89ALF3zF3ovrVMDH914m1aEnW7XUS+dfLddYQNJkiBX1Qu3D3I5ZWV00rNhQtz2pyiZ
- WIR/FUD8GDOeqWRVIXCrj0LkQTZzu8V5aTMq/UYlz2JV78SnluxpKNg7eiQ/98qZwj+oakC3O
- gutQGFtJbQbb3YC24cddD4m10F5sWMnAWmu1UKc28oz0jJpwjImkUuH/V9+0xftsT0QYwjNxj
- RBtLsnpXxHRcTElRzkuuuIOJINO/cvZmAR7NsOrmC46MlAXFHjpETH7BMRy6mHwawB2MbnwRK
- Jb32EyzGrjgOj2rteI+GiKyj1y4OpWv1SEARhyNKNndDyu6tiD9K+pHw8g8r9IVO/ImL6lOvN
- 397gpZY+K9V9ypZUoMXSqjN+XFTvH5FukMVfBZ2E9veg3IDaar1rbjkUPvbqqE971LEkJi6HS
- bsLJDeMP+bPf3CTD08gmluf2obAOXwJ5Xj354sRBsFh1HwZUq6mliy2Wj3jgfdAFy2jmQqlTn
- GbXE3qlRB9DRHnm7fuTZLA1Mw6zr5koIE1IljPNQxxLgOVpbvxxjAXrLcpa0Pf8YPHyFwvpgu
- fPZZee7sE05pdvwR2JyZ3Ass4ibke85iVwq2X/xrbUt1oK9Kusf2JhcvA==
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,41 +72,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Thierry,
+Add device tree node for pm8226 GPIOs and support for the Samsung Galaxy
+Tab 4 10.1 (SM-T530) tablet which is based on apq8026.
 
-On Mon, 11 Jul 2022, Thierry Reding wrote:
+Matti Lehtimäki (3):
+  ARM: dts: qcom: pm8226: Add node for the GPIOs
+  dt-bindings: arm: qcom: Document samsung,matissewifi device
+  ARM: dts: qcom: Add support for Samsung Galaxy Tab 4 10.1 (SM-T530)
 
-> From: Thierry Reding <treding@nvidia.com>
->
-> Convert the NVIDIA embedded controller bindings from the free-form text
-> format to json-schema.
->
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Marc,
->
-> you authored this binding a long time ago, which makes the default
-> license for this GPL-2.0. However, the preference is for DT bindings to
-> be dual-licensed under the more permissive GPL-2.0-only OR BSD-2-Clause
-> as done in this patch. Do you have any objections to relicensing?
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/qcom-apq8026-samsung-matissewifi.dts  | 475 ++++++++++++++++++
+ arch/arm/boot/dts/qcom-pm8226.dtsi            |  10 +
+ 4 files changed, 487 insertions(+)
+ create mode 100644 arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
 
-yeah, that was almost 11 years ago - how fast time can pass ...
-I'm ok with relicensing (and also for the conversion to yaml) - thanks for
-taking care!
-
-Acked-by: Marc Dietrich <marvin24@gmx.de>
-
-Marc
-
-
-> Thierry
->
-> .../bindings/arm/tegra/nvidia,nvec.txt        | 21 -----
-> .../bindings/arm/tegra/nvidia,nvec.yaml       | 94 +++++++++++++++++++
-> 2 files changed, 94 insertions(+), 21 deletions(-)
-> delete mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,nv=
-ec.txt
-> create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,nv=
-ec.yaml>
-....
+-- 
+2.34.1
 
