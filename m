@@ -2,194 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5814D5776DF
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 17:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBDB35777AC
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 20:10:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230015AbiGQPEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 11:04:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42224 "EHLO
+        id S231263AbiGQSKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 14:10:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbiGQPEX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 11:04:23 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23A9E1055B;
-        Sun, 17 Jul 2022 08:04:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C1F03B80E18;
-        Sun, 17 Jul 2022 15:04:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD50BC3411E;
-        Sun, 17 Jul 2022 15:04:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658070259;
-        bh=BxuIeHHjKT+QK1LwDy/gj0wFfMVCa2LuSM5eUhYt+GE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=atuzkpNQ/XRR++UOciAGLH7C+M5MiCZItNh8JcRbFDT6uLbRu066f8shCDVt2KZTV
-         G5DCwuB8InttFqL/9TyF8QNB40msPAP2el9nyJK26GP9POLfg1ASz65XT1u4zBrWYV
-         051P93Gx6sW52t/uwXdNCm5c8H0A24sGe7I2LiAhC4ldoWjAyMmPt7NOfCUaeaECg/
-         xE3nLpwOchcdiEBfCRdWwEWkhWXsDuBZ/SPDZWMweMHq/QBHBs35GwqXyk0wlCn870
-         sfBeHjs0NVl9rPw4M415qsy59BgtcQMGhBUtqNeKjzZy+9TlG3purKiB49JVGf2P2b
-         FftupYWp2WEJg==
-Date:   Sun, 17 Jul 2022 16:14:12 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
-        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
-        <benjaminfair@google.com>, <lars@metafoo.de>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <j.neuschaefer@gmx.net>,
-        <zhengbin13@huawei.com>, <openbmc@lists.ozlabs.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] iio: adc: npcm: Add NPCM8XX support
-Message-ID: <20220717161412.69b2743e@jic23-huawei>
-In-Reply-To: <20220713172132.0bc5002d@jic23-huawei>
-References: <20220713132640.215916-1-tmaimon77@gmail.com>
-        <20220713132640.215916-3-tmaimon77@gmail.com>
-        <20220713172132.0bc5002d@jic23-huawei>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S229487AbiGQSKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 14:10:16 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2EDADFB5;
+        Sun, 17 Jul 2022 11:10:15 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id 125so7747681iou.6;
+        Sun, 17 Jul 2022 11:10:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=U4N3gZV/nuDX3nI3v1SIMvgTdRQ6+jjx/bi21jCcF58=;
+        b=fbMFkRxC5NTeyMwXvTwiDCLSGPFvItl2hxsrbmGsM+eu7gMvba4R9PHXt1ILQHDEiM
+         oLAQkwjVRoeMG6POUBsNhbeS6/+CqpUtb+679XVYs3ZuAnv0lXrFuetcTdDpO1QIJ3wZ
+         6RW6PQa8OgD1RWHLqNuN3ScgHVL5Wj4CUWXdHgEsvQCKuJqxAXPF6Q9TX5NBgaVA4lM0
+         HJHu006+pZ5P5X1hHMTM5kvOu5Wy9W0eMl83CbwkJsFm7z1mSSZbCVCMfKHJLelHi7SA
+         eAk8I5D39C/8dX74Ox3t6ndaDmU2dNRDtNn8uB3CDJjgg3QO8U+xNUI1mcP4j7IS05+X
+         HYmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=U4N3gZV/nuDX3nI3v1SIMvgTdRQ6+jjx/bi21jCcF58=;
+        b=fat8ilt19+ceyKcRkuAcw2WfF2NE5t4qrGxMzNUqEbdVpGbyBkgdYXoV/mXhT/N1HW
+         hpvuDKjn5gf6MyB2JmWClxp3BsbTJ/No/wYjQFak4KVKdtYZeQbxjv5uUo8652d418p5
+         kOyyZK0sOtQuoPeM2YlwuN+VLldYygiuZQ635MPFb2TmYGlBPQUYVPkhV26HR45UjPNA
+         GU3zrpQlKfmKutExoi3MANANIq2DV+wZaUC6jYq2Xp8P/EHn1YYmk5XwxNMfWZKRfbqW
+         pkFM0yeRq9VRy+NngII4WhMV5Q1LJPjp/SL5+DdETCheKXb5DPle1h15UByqrUrXtwGk
+         ZzAQ==
+X-Gm-Message-State: AJIora/0CFGWPdk9PeqqpOiLSbZUN82OlopboosmYoZN+7lwJvJW4zjb
+        Qjy1ZfDYhTof003sekR0ujpQI5quke4=
+X-Google-Smtp-Source: AGRyM1uei0fCj7ox+EYWdwRgZ/KuxIPyuwugVxBWeEJui16Q35wWwqn04XegknYYIWwvnIuRRkhREg==
+X-Received: by 2002:a6b:b40c:0:b0:67b:e564:f977 with SMTP id d12-20020a6bb40c000000b0067be564f977mr5612709iof.130.1658081414825;
+        Sun, 17 Jul 2022 11:10:14 -0700 (PDT)
+Received: from AIO.lan ([2601:448:8400:9e8:8e1b:7df0:7e10:ddb0])
+        by smtp.gmail.com with ESMTPSA id f4-20020a056e0204c400b002dc1ea52967sm3869136ils.34.2022.07.17.11.10.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Jul 2022 11:10:14 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Adam Ford <aford173@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm-beacon: Enable Digitial Microphone
+Date:   Sun, 17 Jul 2022 13:09:54 -0500
+Message-Id: <20220717181000.1186373-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Jul 2022 17:21:32 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+There is a PDM microphone port on the baseboard which is connected to the
+micfil controller.  Create a new sound card to support this interface.
 
-> On Wed, 13 Jul 2022 16:26:40 +0300
-> Tomer Maimon <tmaimon77@gmail.com> wrote:
-> 
-> > Adding ADC NPCM8XX support to NPCM ADC driver.
-> > ADC NPCM8XX uses a different resolution and voltage reference.
-> > 
-> > As part of adding NPCM8XX support:
-> > - Add NPCM8XX specific compatible string.
-> > - Add data to handle architecture-specific ADC parameters.
-> > 
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>  
-> missing 
-> 
-> #include <linux/property.h> 
-> 
-> So in current IIO togreg tree this doesn't build.  I could fix it up
-> but given we are very late in cycle and I'd like to give this a little
-> more time on list for Andy to take another look if he wishes, chances
-> are this won't make it in until early next cycle.
-> 
-Applied to the togreg branch of iio.git and pushed out as testing for
-now only as I'll be rebaseing on rc1 once available.
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Thanks,
-
-Jonathan
-
-> Thanks,
-> 
-> Jonathan
-> 
-> > ---
-> >  drivers/iio/adc/npcm_adc.c | 35 ++++++++++++++++++++++++++++-------
-> >  1 file changed, 28 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/npcm_adc.c b/drivers/iio/adc/npcm_adc.c
-> > index f7bc0bb7f112..4c7ebcd57b88 100644
-> > --- a/drivers/iio/adc/npcm_adc.c
-> > +++ b/drivers/iio/adc/npcm_adc.c
-> > @@ -16,6 +16,12 @@
-> >  #include <linux/uaccess.h>
-> >  #include <linux/reset.h>
-> >  
-> > +struct npcm_adc_info {
-> > +	u32 data_mask;
-> > +	u32 internal_vref;
-> > +	u32 res_bits;
-> > +};
-> > +
-> >  struct npcm_adc {
-> >  	bool int_status;
-> >  	u32 adc_sample_hz;
-> > @@ -34,6 +40,7 @@ struct npcm_adc {
-> >  	 * has finished.
-> >  	 */
-> >  	struct mutex lock;
-> > +	const struct npcm_adc_info *data;
-> >  };
-> >  
-> >  /* ADC registers */
-> > @@ -52,13 +59,21 @@ struct npcm_adc {
-> >  #define NPCM_ADCCON_CH(x)		((x) << 24)
-> >  #define NPCM_ADCCON_DIV_SHIFT		1
-> >  #define NPCM_ADCCON_DIV_MASK		GENMASK(8, 1)
-> > -#define NPCM_ADC_DATA_MASK(x)		((x) & GENMASK(9, 0))
-> >  
-> >  #define NPCM_ADC_ENABLE		(NPCM_ADCCON_ADC_EN | NPCM_ADCCON_ADC_INT_EN)
-> >  
-> >  /* ADC General Definition */
-> > -#define NPCM_RESOLUTION_BITS		10
-> > -#define NPCM_INT_VREF_MV		2000
-> > +static const struct npcm_adc_info npxm7xx_adc_info = {
-> > +	.data_mask = GENMASK(9, 0),
-> > +	.internal_vref = 2048,
-> > +	.res_bits = 10,
-> > +};
-> > +
-> > +static const struct npcm_adc_info npxm8xx_adc_info = {
-> > +	.data_mask = GENMASK(11, 0),
-> > +	.internal_vref = 1229,
-> > +	.res_bits = 12,
-> > +};
-> >  
-> >  #define NPCM_ADC_CHAN(ch) {					\
-> >  	.type = IIO_VOLTAGE,					\
-> > @@ -129,7 +144,8 @@ static int npcm_adc_read(struct npcm_adc *info, int *val, u8 channel)
-> >  	if (ret < 0)
-> >  		return ret;
-> >  
-> > -	*val = NPCM_ADC_DATA_MASK(ioread32(info->regs + NPCM_ADCDATA));
-> > +	*val = ioread32(info->regs + NPCM_ADCDATA);
-> > +	*val &= info->data->data_mask;
-> >  
-> >  	return 0;
-> >  }
-> > @@ -157,9 +173,9 @@ static int npcm_adc_read_raw(struct iio_dev *indio_dev,
-> >  			vref_uv = regulator_get_voltage(info->vref);
-> >  			*val = vref_uv / 1000;
-> >  		} else {
-> > -			*val = NPCM_INT_VREF_MV;
-> > +			*val = info->data->internal_vref;
-> >  		}
-> > -		*val2 = NPCM_RESOLUTION_BITS;
-> > +		*val2 = info->data->res_bits;
-> >  		return IIO_VAL_FRACTIONAL_LOG2;
-> >  	case IIO_CHAN_INFO_SAMP_FREQ:
-> >  		*val = info->adc_sample_hz;
-> > @@ -176,7 +192,8 @@ static const struct iio_info npcm_adc_iio_info = {
-> >  };
-> >  
-> >  static const struct of_device_id npcm_adc_match[] = {
-> > -	{ .compatible = "nuvoton,npcm750-adc", },
-> > +	{ .compatible = "nuvoton,npcm750-adc", .data = &npxm7xx_adc_info},
-> > +	{ .compatible = "nuvoton,npcm845-adc", .data = &npxm8xx_adc_info},
-> >  	{ /* sentinel */ }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, npcm_adc_match);
-> > @@ -196,6 +213,10 @@ static int npcm_adc_probe(struct platform_device *pdev)
-> >  		return -ENOMEM;
-> >  	info = iio_priv(indio_dev);
-> >  
-> > +	info->data = device_get_match_data(dev);
-> > +	if (!info->data)
-> > +		return -EINVAL;
-> > +
-> >  	mutex_init(&info->lock);
-> >  
-> >  	info->dev = &pdev->dev;  
-> 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+index 03266bd90a06..16444954f873 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+@@ -98,7 +98,7 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+ 		enable-active-high;
+ 	};
+ 
+-	sound {
++	sound-codec {
+ 		compatible = "fsl,imx-audio-wm8962";
+ 		model = "wm8962-audio";
+ 		audio-cpu = <&sai3>;
+@@ -111,6 +111,18 @@ sound {
+ 			"AMIC", "MICBIAS",
+ 			"IN3R", "AMIC";
+ 	};
++
++	sound-micfil {
++		compatible = "fsl,imx-audio-card";
++		model = "imx-audio-micfil";
++		pri-dai-link {
++			link-name = "micfil hifi";
++			format = "i2s";
++			cpu {
++				sound-dai = <&micfil>;
++			};
++		};
++	};
+ };
+ 
+ &csi {
+@@ -215,6 +227,16 @@ pca6416_1: gpio@21 {
+ 	};
+ };
+ 
++&micfil {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pdm>;
++	assigned-clocks = <&clk IMX8MM_CLK_PDM>;
++	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
++	assigned-clock-rates = <196608000>;
++	#sound-dai-cells = <0>;
++	status = "okay";
++};
++
+ &mipi_csi {
+ 	status = "okay";
+ 	ports {
+@@ -354,6 +376,13 @@ MX8MM_IOMUXC_SAI2_MCLK_GPIO4_IO27		0x19
+ 		>;
+ 	};
+ 
++	pinctrl_pdm: pdmgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI5_RXC_PDM_CLK		0xd6
++			MX8MM_IOMUXC_SAI5_RXD0_PDM_DATA0	0xd6
++		>;
++	};
++
+ 	pinctrl_reg_usb_otg1: usbotg1grp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SAI3_RXC_GPIO4_IO29     0x19
+-- 
+2.34.1
 
