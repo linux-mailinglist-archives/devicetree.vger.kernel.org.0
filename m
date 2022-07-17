@@ -2,101 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD1357786A
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 23:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 630655778E4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 01:53:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232906AbiGQVhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 17:37:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54264 "EHLO
+        id S231429AbiGQXxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 19:53:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232986AbiGQVg5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 17:36:57 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DD3D12A80
-        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 14:36:55 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id h17so14660311wrx.0
-        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 14:36:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jqO12wXazmzjTuSQ7dV8WqcDOHjrC6yvS/uuR6oSvw0=;
-        b=R3mbQ2eT+VNlRmFpWLm0JoUejcecPuDHPUvwVmPaAp7iJup9ZBjClHaBp65ZeJg1m4
-         8aCspyMoYC7AQajKaPUMbYa12Nx30l3jWy2PMjAMOLq86EUavsuPsbX3jhfubg5Cz5eL
-         JEgm2ajd1WwODyAIR0Y2+sPs8vu3EJaUBnb2QqXzScXtAuOTVBltUqvP1waIk5NgRnS/
-         X+UiO9G4w0fNL3Y4q9iSZdDpJw7vMOWouHws/ldmH2v4760pnZ+Tfyh9Q3joOv6EOqwf
-         94f94pYNGjtHDMDjyBRuanlmonoCQiw0SF74ebWzyLNkEKAm10VhD6gmUfSHxM6p74Ca
-         XUJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jqO12wXazmzjTuSQ7dV8WqcDOHjrC6yvS/uuR6oSvw0=;
-        b=0omwAiM1cKdZtFgSIuoVhb/GqflQ4sAM617C8HQIxkPYYpZG0JSOaEZldW9JM95mVg
-         uwl5l3uxOiqJOPncm7/0/8Zi8FgQikbikZzehrcDK0kUGWO9tKxDcdGX6JfCR/aGiDH0
-         4Rs8o2hUDYeXYCOGaOqvNftxQ9Pqr7RUUhvFz2lyRSJdvmSF8TtUPbp+unuvTCU7ZwBh
-         qydELsTdbTY1FUxqfhGtPY7SItTeDeBlf8sFjiWHTp6ExiBYQc5Z7T4JL3SnuAovFPNC
-         N/aIHajBpqQ/wHBBFpBoiHJxECq//Zi+c1pVZiJgyrzADHghPgNlQ0IRevLuwfOyYuYK
-         lLNg==
-X-Gm-Message-State: AJIora9/ut1buvNgKDD3QqzOePxW7AkKQG+raOwxFpcdGEjIOjMYNLMs
-        O1XXAMdkhHxtdaEiqiITeMi9pg==
-X-Google-Smtp-Source: AGRyM1tiZtquDBefjxeYFd655eeTIpBagSlJJWwNkYp9WHynFda3yrliPsZIJBM+XYX/17sAHCT8Jw==
-X-Received: by 2002:adf:dd0d:0:b0:21d:666b:298e with SMTP id a13-20020adfdd0d000000b0021d666b298emr20892799wrm.412.1658093813754;
-        Sun, 17 Jul 2022 14:36:53 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id k21-20020a05600c1c9500b003a3187a2d4csm3715956wms.22.2022.07.17.14.36.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Jul 2022 14:36:53 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, jassisinghbrar@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        shawn.guo@linaro.org, bryan.odonoghue@linaro.org
-Subject: [PATCH v3 2/2] dt-bindings: mailbox: qcom,apcs-kpss-global: Add clock-output-names
-Date:   Sun, 17 Jul 2022 22:36:45 +0100
-Message-Id: <20220717213645.1147342-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220717213645.1147342-1-bryan.odonoghue@linaro.org>
-References: <20220717213645.1147342-1-bryan.odonoghue@linaro.org>
+        with ESMTP id S229535AbiGQXxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 19:53:09 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C3010FF0;
+        Sun, 17 Jul 2022 16:53:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1658101988; x=1689637988;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VNMEzfp+9oK/wqfrmdzIE3iL6TAeWOf/0OE1dADLY6c=;
+  b=OBAX0RhqQBDYz9jAeQz9uDGNdJMrI8qMuxH1NmaPc7kkTjwMo+0Ftrz+
+   pjKwCbdvL1JxV66sXid4VdLyCjZ87Uy5zNSEpgOkEQXMaKLpZV485GDjH
+   EozSexQf4qXoM5+ZytnhVqSUE5awhFhh53nur0Ty8ZnExzVRB7v7fq8A3
+   OlV0w7Mj+aKxF4hwjH/36hUg8ChI5HkUiTWDeblBzMI0/XGmd3ap9MsQ0
+   CooxFGFDBswWyNDhMcEMPhVmEj0aj2ZerR0JIiSk9jbhQxxC+hNZbGs7M
+   4rYW5UZC2l5l3ML8ow079+MS0mz12bZICi+TjnvXET30rQahcwc4gpcoP
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10411"; a="350063090"
+X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; 
+   d="scan'208";a="350063090"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jul 2022 16:53:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; 
+   d="scan'208";a="547276233"
+Received: from lkp-server02.sh.intel.com (HELO ff137eb26ff1) ([10.239.97.151])
+  by orsmga003.jf.intel.com with ESMTP; 17 Jul 2022 16:53:05 -0700
+Received: from kbuild by ff137eb26ff1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1oDE4O-0003o1-EY;
+        Sun, 17 Jul 2022 23:53:04 +0000
+Date:   Mon, 18 Jul 2022 07:52:33 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, Volodymyr Kharuk <vkh@melexis.com>,
+        Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] media: i2c: Add driver for mlx7502x ToF sensor
+Message-ID: <202207180729.RLw6oeM7-lkp@intel.com>
+References: <6f9b20bb1946d8a50170963b84e32abfdee14ba7.1657786765.git.vkh@melexis.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6f9b20bb1946d8a50170963b84e32abfdee14ba7.1657786765.git.vkh@melexis.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clock-output-names as optional so that SoCs such as the msm8939 which
-have multiple a53 PLLs can latch the appropriate output name in
-drivers/clk/qcom/apcs-msm8916.c.
+Hi Volodymyr,
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+I love your patch! Perhaps something to improve:
 
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-index f504652fc0ea2..7497e4c930ae7 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-@@ -63,6 +63,13 @@ properties:
-       - const: aux
-       - const: ref
- 
-+  clock-output-names:
-+    maxItems: 1
-+    items:
-+      - const: a53mux_c0
-+      - const: a53mux_c1
-+      - const: a53mux_cci
-+
- required:
-   - compatible
-   - reg
+[auto build test WARNING on d8e8aa866ed8636fd6c1017c3d9453eab2922496]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Volodymyr-Kharuk/media-i2c-mlx7502x-ToF-camera-support/20220714-163709
+base:   d8e8aa866ed8636fd6c1017c3d9453eab2922496
+config: parisc-randconfig-s041-20220715 (https://download.01.org/0day-ci/archive/20220718/202207180729.RLw6oeM7-lkp@intel.com/config)
+compiler: hppa64-linux-gcc (GCC) 12.1.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-39-gce1a6720-dirty
+        # https://github.com/intel-lab-lkp/linux/commit/59a691c2f449518699a328ea663098aa3ae038b9
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Volodymyr-Kharuk/media-i2c-mlx7502x-ToF-camera-support/20220714-163709
+        git checkout 59a691c2f449518699a328ea663098aa3ae038b9
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=parisc64 SHELL=/bin/bash drivers/media/i2c/ drivers/pci/ kernel/trace/ sound/soc/codecs/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/media/i2c/mlx7502x.c:1989:53: sparse: sparse: Using plain integer as NULL pointer
+
+vim +1989 drivers/media/i2c/mlx7502x.c
+
+  1987	
+  1988	static const struct of_device_id mlx7502x_of_match[] = {
+> 1989		{ .compatible = "melexis,mlx7502x", .data = 0 }, /* auto-detection */
+  1990		{ .compatible = "melexis,mlx75026", .data = &mlx75026 },
+  1991		{ .compatible = "melexis,mlx75027", .data = &mlx75027 },
+  1992		{ /* sentinel */ }
+  1993	};
+  1994	MODULE_DEVICE_TABLE(of, mlx7502x_of_match);
+  1995	
+
 -- 
-2.36.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
