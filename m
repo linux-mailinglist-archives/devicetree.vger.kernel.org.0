@@ -2,144 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CDDA577331
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 04:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B4F4577388
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 05:04:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232491AbiGQCq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 22:46:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43646 "EHLO
+        id S233038AbiGQDEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 23:04:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232448AbiGQCq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 22:46:27 -0400
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8621119C06
-        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 19:46:26 -0700 (PDT)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1013ecaf7e0so15508304fac.13
-        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 19:46:26 -0700 (PDT)
+        with ESMTP id S232970AbiGQDEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 23:04:47 -0400
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C109D14012
+        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 20:04:42 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-10d4691a687so320832fac.10
+        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 20:04:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=aqrPTFbCcN45C5/PgnZvI7IME29SUOPi1BHAqGX4TKQ=;
-        b=AU5rxjwnElbCZX/g86eYKB5ww11EkFqk8fQSA1v+tls3CR0IAy8AYB5dXqWrAQAQbQ
-         peXcia3fStSSo2tC4XrALVRhPkP02FfEPWWYWsREX2ejOq4PbTt4yT9gxrcuMJdmWzXc
-         /6CcLUp2Qq9FYqWs55gribCQjchHNEMzCGuR03yozebCodyiGIIRMqC1pLQsxhjUhv26
-         AKT2GXkA5jFJWmCZEz91BnW8zNrVL5ZMbY7M5Rfkacj53mn+V3nIp8xgah5mdaSAeEls
-         lP9YCAMdWd6VMHX+5RnkqIZYcex4gDmHZ3fImUKoCnanZqmtsFqkaQZpwKQ86CAdKrkU
-         q/ew==
+        bh=hpo48E8sj1DuK2c49zytJWXoQg4RRXwX3plQ016SBF8=;
+        b=L2c0lxLjMSR6pXr9J9CN5mx5OC2RgUZPavMO5F4XMyTvpRrXKi3dTpKE0/VFJ5mjLK
+         OlPeIzxqCRGZoY+k5BLWPKfQuLCJRAFt/jk6gRH9dMeTKsAlBO1DNyf6mjf/XKp2F/gL
+         qOPmsTNpPX5OA3bJ42ifPEFBgBMoEtI/vmSkRoDi8oDfvIgzDTbVMeelPwloVkKXJ+hp
+         yr7O8pw+v7hbJkDxJwmwtECOnw+wHRhqXjzRGrTx6dKS0GeOSHf8hZssQJYpien5n6H5
+         8aa03hDMjRZYKKQR5MQiY70TSvUdb5mqMLjxYCOKwBqkypbAERhwnE0wcC/bB7/pYKs4
+         QAyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=aqrPTFbCcN45C5/PgnZvI7IME29SUOPi1BHAqGX4TKQ=;
-        b=nQx2zV95ovuZwXqKpaGWJEIW7mDkeS+Ro8T5vrNd5+ricbf2ktM6XeuvnULU5x8dlE
-         iCcDPuaaIssIxoFL9b0J0VDId06ozAq8dN+2VXx+D5JMXVC/N26NhBNzdTu9xigS20n+
-         w7toEdl8a6UWuVA88BOX9bcaqNp992KE+orM8JiqCw+/2m6Z/GNYiwQIw27pT8F4zuEP
-         vM5wsa26COnObKclX4bGEnf6TsxmXEPOfzfA17BpU6aLdruS58NDeBzZGciFOxjxntqi
-         HifIdDLGSqxOU6gD8HDQ+Qz3Izz3LMkWmak2P9FguBQ9dtd2Ljvt4ZvnVWGvPxx5+FUb
-         vHcA==
-X-Gm-Message-State: AJIora/kthxznzfluT3E12omk3cIsfVivgc/39tisiMUhzHnhKDI0AET
-        BwmHGeBg4uniyDlcvmSIWwgcSA==
-X-Google-Smtp-Source: AGRyM1v+3j7Kq4ZxN9qQMXbnYfewiuvgVE4amerM/sq3toi4pzN7Td2bY2LWptLeUU+GOs0Jr+UmzA==
-X-Received: by 2002:a05:6871:299:b0:e1:e1a2:5c65 with SMTP id i25-20020a056871029900b000e1e1a25c65mr10838009oae.190.1658025985813;
-        Sat, 16 Jul 2022 19:46:25 -0700 (PDT)
+        bh=hpo48E8sj1DuK2c49zytJWXoQg4RRXwX3plQ016SBF8=;
+        b=M1MIVinX+Ari7ZG/2OVDGANLKqlv39ZxYl6d125Za8CWtyeIFhRKcfeYuyu9YAStcS
+         DdDjl8jKELJM1Z9xBuB8nSOHT121Bf/CyGeSTuVkFURhTR/H1Wg7HsawJ4RWcEizrQyi
+         bisNy74uy5SFfhGrtzhA1eTqZ/o8GMt0allPgpW8XyauQC6mHhmneQy2k/Pgn1edWnj1
+         qzEMWMWWtn2wcw4XNcZON/KIxq1NQtpq60drK9R9DGpfeMPmKqs7+oSdlmCQIa7H/ci3
+         aSFJMRNm4GrZSXIAV9WtRsTClMOVKWvXv7apG/1RYgK9hOaeV/BBdZZ5zJ+aE24GJ78l
+         FDTA==
+X-Gm-Message-State: AJIora9V1H6SHQ57bl4O3gHjwlWQpKkwa7OQg+vat/tiix/fVcD84y6G
+        4pTw2msCSmmnHUj9BOCtNNUHfw==
+X-Google-Smtp-Source: AGRyM1vi7sSPETLwZXXm4NqV9z9s8VsFaKMm3xfvdQshZauQuoyl2sneX/Yol14OfG8iVaLDvZbpPA==
+X-Received: by 2002:a05:6870:b40c:b0:10b:8a3c:b13d with SMTP id x12-20020a056870b40c00b0010b8a3cb13dmr11838436oap.108.1658027082070;
+        Sat, 16 Jul 2022 20:04:42 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k10-20020a4ab08a000000b004328ca9498dsm3661540oon.24.2022.07.16.19.46.24
+        by smtp.gmail.com with ESMTPSA id k20-20020a056870571400b0010c275b6376sm4479708oap.38.2022.07.16.20.04.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Jul 2022 19:46:25 -0700 (PDT)
-Date:   Sat, 16 Jul 2022 21:46:23 -0500
+        Sat, 16 Jul 2022 20:04:41 -0700 (PDT)
+Date:   Sat, 16 Jul 2022 22:04:39 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Christian Marangi <ansuelsmth@gmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/8] Add ipq806x missing bindings
-Message-ID: <YtN3/wYKFeAZEsX8@builder.lan>
-References: <20220707010943.20857-1-ansuelsmth@gmail.com>
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 2/3] ARM: dts: qcom: add missing hwlock for ipq8064
+ dtsi
+Message-ID: <YtN8R1eRTccJ+dUn@builder.lan>
+References: <20220707102040.1859-1-ansuelsmth@gmail.com>
+ <20220707102040.1859-2-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220707010943.20857-1-ansuelsmth@gmail.com>
+In-Reply-To: <20220707102040.1859-2-ansuelsmth@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 06 Jul 20:09 CDT 2022, Christian Marangi wrote:
+On Thu 07 Jul 05:20 CDT 2022, Christian Marangi wrote:
 
-> This is a respin of "Multiple addition to ipq8064 dtsi" series
-> with major changes and some commit removed.
+> Add missing hwlock for ipq8064 dtsi provided by qcom,sfpb-mutex.
 > 
-> This series try to add some of the missing bindings for ipq806x.
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm/boot/dts/qcom-ipq8064.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> This still lacks of the cpu bindings and all the bindings required
-> to scale cpu clk or L2. These will come later as the driver and
-> documentation require some changes.
-> 
-> So for now we try to add bindings that can directly applied without
-> making changes to any drivers.
-> 
-> Changes:
-> v2:
-> - Dropped "add sic non secure node for ipq8064" (no user found)
-> - Dropped "add smem node for ipq8064" (require changes to the driver
->   to remove syscon node and use regs directly, will be added in a
->   different series)
-> - Dropped "fix dtc warning for missing #address-cells for ipq8064" (
->   doesn't actually fix any warning)
-> - Changed "enable usb phy by default for ipq8064" to disable usb phy
->   by default
-> - Reworked rpm smb208 declaration to a saparate dtsi
-> - Fixed order with compatible-reg-status
-> - Squashed "remove redundant binding from ipq8064 rb3011 dts" with
->   "add multiple missing pin definition for ipq8064" to prevent dtc
->   error.
-> - Add review tag for snps patch
-> 
-> Changes from "Multiple addition to ipq8064 dtsi":
-> v3:
-> - Fix error in rb3011 dts
-> - Add tested-by tag on the entire series
-> v2:
-> - Added missing patch
-> - Added additional gsbi6 spi
-> - Added extra description for L2 cache opp
-> - Fxied smb208 enabled by default that is problematic for rb3011 devices
-> 
-> Christian Marangi (8):
->   ARM: dts: qcom: add multiple missing pin definition for ipq8064
->   ARM: dts: qcom: add gsbi6 missing definition for ipq8064
->   ARM: dts: qcom: add specific ipq8064 dtsi with smb208 rpm regulators
->   ARM: dts: qcom: add missing snps,dwmac compatible for gmac ipq8064
->   ARM: dts: qcom: disable usb phy by default for ipq8064
->   ARM: dts: qcom: reduce pci IO size to 64K for ipq8064
->   ARM: dts: qcom: fix and add some missing gsbi node for ipq8064
->   ARM: dts: qcom: add speedbin efuse nvmem node
+> diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> index 4b475d98343c..cd1b43e2cab4 100644
+> --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> @@ -1224,4 +1224,11 @@ sdcc3: mmc@12180000 {
+>  			};
+>  		};
+>  	};
+> +
+> +	sfpb_mutex: hwlock@1200600 {
 
-Please prefix your ipa8064-specific patches with
-  "ARM: dts: qcom: ipq8064: ..."
+This is an mmio device, so it should live under /soc, so I moved it
+there while applying the patch.
 
-It makes the git history easier to read, so I fixed it up while applying
-these.
 
-Thanks,
+But it would be nice if this file followed others and kept all nodes
+sorted by address (or name if they don't have an address). Also if
+addresses were padded to 8 digits, to make sorting easier.
+
+I would much appreciate if you could find the time to prepare such a
+patch.
+
+Thank you,
 Bjorn
 
-> 
->  arch/arm/boot/dts/qcom-ipq8064-ap148.dts   |   6 -
->  arch/arm/boot/dts/qcom-ipq8064-rb3011.dts  |   9 --
->  arch/arm/boot/dts/qcom-ipq8064-smb208.dtsi |  37 +++++
->  arch/arm/boot/dts/qcom-ipq8064.dtsi        | 150 +++++++++++++++++++--
->  4 files changed, 179 insertions(+), 23 deletions(-)
->  create mode 100644 arch/arm/boot/dts/qcom-ipq8064-smb208.dtsi
-> 
+> +		compatible = "qcom,sfpb-mutex";
+> +		reg = <0x01200600 0x100>;
+> +
+> +		#hwlock-cells = <1>;
+> +	};
+>  };
 > -- 
 > 2.36.1
 > 
