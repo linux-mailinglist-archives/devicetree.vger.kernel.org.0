@@ -2,79 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AADF7577393
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 05:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB978577396
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 05:08:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232592AbiGQDIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jul 2022 23:08:35 -0400
+        id S233516AbiGQDIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jul 2022 23:08:37 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233277AbiGQDIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 23:08:31 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7751401F
-        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 20:08:30 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id z12-20020a056830128c00b0061c8168d3faso4869303otp.7
-        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 20:08:30 -0700 (PDT)
+        with ESMTP id S233386AbiGQDIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jul 2022 23:08:32 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A497B140E0
+        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 20:08:31 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-10d4691a687so332996fac.10
+        for <devicetree@vger.kernel.org>; Sat, 16 Jul 2022 20:08:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=xR3y5c4srMI0k5XyH+pLoxzkf4vj+CXbSdSl7nNS6XU=;
-        b=rlVnZOb3J/UV8sZDg0O9I8psHbpeW99aBs0bqKrqunfv7+Z18hV9gwQRoHpM7n0XqK
-         7dstmPX1Qw7uY8+0Jfbgp+I61ZTcyrIyAPm4GJc3iKjqa9Yd6kZySUVYcHpISmi+PLmS
-         RJ0h5eHDCZK9YlvPRym6X74AxbcG3BqogjDavmzWLww3HAZagJAc//pyKvMFFOTFwMlx
-         PbuWLJjsC0Q9ZAyZlcuvB1f53Rgnn5/8fvgwrW+wEmCLt9i2hV8Zd96/oaK4wqqncOgv
-         Vq96vmVfT5S2a8sj8nIp+IrLsCfL5fduofEaiUK1sefW1c4Cyv/p6CF/p2tVc7UddrL5
-         om4Q==
+        bh=2GPuNdH8N0hsQIuG366Lp4ROKzuBg5e0T0hN4VGOiBA=;
+        b=XR+dh08D2rzNZVqfAj5euifs/8hKBPhSWtrJDf2/tubDYk+lRaePhmJ2qhYblYVyUH
+         5KS6svy2EXL0QBitrcjEvzie18O9k80NUysW2O+BWNHXmCgZ7lAKoM/TloW3JvTDrUjl
+         t4i++DYB7UzAh+BhNjE8Qfd8VIeHfqA8psFLi8wnHRtoZFPR4abOE7S2ERdLPp4VpR1H
+         Zw93tyK0iCWFIy3Nt9x0slA46b5KIlh60avgEetSkWfn6GMKujlbPgBVCjHeAU0yeqL7
+         2D9fsYm8b2on3XmKKcbxvKnfueVWn9PtZM4Pmv5GAFrm6evODV4uUvDxKh/tRfAjyyJe
+         9ccQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=xR3y5c4srMI0k5XyH+pLoxzkf4vj+CXbSdSl7nNS6XU=;
-        b=XnTub5OuxprNlFROhqLs0kcZHWeX650hsqEQND72QVobuzZ2KKxxYy6zyj3seMQrDm
-         RVeTPGw+jQI03xLUcVtgueYzwBLoE83kZZ9Ng7vBykc5zLzJu1wcE7Bv94HFNBg3PHg+
-         qLg8DwCcrbhtQpuGqgWOyHMeaRPqFOuEXzNSES1kVNdag15SnVB6Q7BhybkTrQQ6+ZCT
-         EtfBxH23OuERrc+UAVA87T3gQYfAmRylquIBJcGCMeefkOV4wYj7VWmvxYrH7q2GCSl4
-         ZGaB+Qc20lCFhQzzyUoFVQnJEdVrEUsKhrGIwObhySWF7nXjFbcn/dwDolFSOxM8jE7y
-         Z+vQ==
-X-Gm-Message-State: AJIora9dkLN8z4Cnb2UU1LyXIKPhhtE+NTri75SEWV+C9i+BGGscLnKC
-        cgIBTRQRvpX9hW8HAbwM65kJPA==
-X-Google-Smtp-Source: AGRyM1vDFHDVvYyuorVlMn6sghxgM7CcGK0tgRhwm404+PuwnuhCEj1EptbZZjdSaq9OCQmrkObwgw==
-X-Received: by 2002:a9d:76c4:0:b0:61c:36c1:90e1 with SMTP id p4-20020a9d76c4000000b0061c36c190e1mr8714984otl.176.1658027309931;
-        Sat, 16 Jul 2022 20:08:29 -0700 (PDT)
+        bh=2GPuNdH8N0hsQIuG366Lp4ROKzuBg5e0T0hN4VGOiBA=;
+        b=p/aF0nnzQeAJG3rYKVAPWXPkjT5vwYJTR3iYrGPi6isGfZuwhV0QlKoPCXQTCCwty9
+         hhZrfpyD4ZFg85JmdoO2QF9SnmDhHJwAeV/CzLFwxOswLlJ8t4ocbDPO6kB4HKgHZoBn
+         3g4TLI049jXKVhpt90F7RR0xMU/3Zf7Pls29G2/fSUGqaSLpqFT0j3s0iTLjO5C0sqr5
+         5LY3rw8ZLNIezC1G7Ae62WftLIS/m69B9MB1Da/oeDd80OX5zKdNS3FSoD2f3YwHaQB1
+         ihMkz8VSpb6NnGVdnV4avdnQL6POQl5f5/3YsrMAmZeJnllCDHOCylbZD/IfXKBwPIfK
+         A4mQ==
+X-Gm-Message-State: AJIora9pS4agpvQ+qA4yjXLrTSgkjN2rZsyyyCcBvkYRqnh2aBZZ4L34
+        p/Wd/8NMguJVUYNVyu7FGiL+Dg==
+X-Google-Smtp-Source: AGRyM1trKyNF8OOHDOK0LQLxiqATR6xOCrfTpI40s3Hv/J8e0ER2M0Ctz4fsjU/a+CyaziAmqZIu0g==
+X-Received: by 2002:a05:6808:f92:b0:33a:441e:979b with SMTP id o18-20020a0568080f9200b0033a441e979bmr6568901oiw.220.1658027311048;
+        Sat, 16 Jul 2022 20:08:31 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id z203-20020a4a49d4000000b0043577be222bsm3203928ooa.22.2022.07.16.20.08.29
+        by smtp.gmail.com with ESMTPSA id z203-20020a4a49d4000000b0043577be222bsm3203928ooa.22.2022.07.16.20.08.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Jul 2022 20:08:29 -0700 (PDT)
+        Sat, 16 Jul 2022 20:08:30 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: Add LPG node to pm8941
-Date:   Sat, 16 Jul 2022 22:08:20 -0500
-Message-Id: <165802729676.1737676.12212447134864274795.b4-ty@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] ARM: dts: qcom: msm8974-sony: Enable RGB LED
+Date:   Sat, 16 Jul 2022 22:08:21 -0500
+Message-Id: <165802729676.1737676.14748989855035222232.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220504205411.1510667-1-bjorn.andersson@linaro.org>
-References: <20220504205411.1510667-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20220713212309.130230-1-bjorn.andersson@linaro.org>
+References: <20220713212309.130230-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 May 2022 13:54:10 -0700, Bjorn Andersson wrote:
-> The PM8941 contains 8 LPG channels, as well as TRILED and LUT blocks.
-> Add a node for these.
+On Wed, 13 Jul 2022 14:23:07 -0700, Bjorn Andersson wrote:
+> Introduce the Light Pulse Generator block in the pm8941 and use this to
+> describe the RGB LED driven by the triled in this block.
 > 
+> Bjorn Andersson (2):
+>   ARM: dts: qcom: Add LPG node to pm8941
+>   ARM: dts: qcom: msm8974-sony: Enable LPG
 > 
+> [...]
 
 Applied, thanks!
 
