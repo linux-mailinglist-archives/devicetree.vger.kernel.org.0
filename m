@@ -2,92 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CFA65775F8
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 13:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AD7B577608
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 14:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbiGQLmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 07:42:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39760 "EHLO
+        id S231927AbiGQMCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 08:02:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiGQLmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 07:42:44 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2808813CC8;
-        Sun, 17 Jul 2022 04:42:43 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id CB91B1C000A; Sun, 17 Jul 2022 13:42:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1658058161;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=H6xkax6Ea+n4AB3Hjr5hWFu4kot7C9xfEX36H2C0lC8=;
-        b=ok0SZda8kjoz6GPrGBoTyudej1cGXwmZfpjIOh0EQwDCyXTF6jTUiU4dr5C+2jSUEFWuEi
-        myi1kR1DiDNnfIYoZ4DWvcxAUJVx8HjoTeh8x5BhUFhaJuhQsHQ1RW3joUB5t0d+/ivgs5
-        yinYLNwHN14fZM3iG8H0lgj4oWp2hd0=
-Date:   Sun, 17 Jul 2022 13:42:41 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V3 1/2] dt-bindings: leds: add Broadcom's BCM63138
- controller
-Message-ID: <20220717114241.GI14285@duo.ucw.cz>
-References: <20211227145905.2905-1-zajec5@gmail.com>
+        with ESMTP id S231911AbiGQMCo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 08:02:44 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92937140F1;
+        Sun, 17 Jul 2022 05:02:43 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id l2so6981994qvt.2;
+        Sun, 17 Jul 2022 05:02:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rHjViDcG19nS2v6Pk4XSV3A4LQsUZw5sRXj1ES5xELM=;
+        b=RBYkPgOReA/ncSIusSlg/GESvpRLCL+a90i48n8n902vK3lQWCKmsSC6OfKAb55j8A
+         D1a1MGhcpZoTCPyX7dn9gjGsKmKfgzKL2pgD5Yx0Hk1gQ5G/kTOcG1Oe9ZiY1P7xW4bd
+         rwiTLGzIzZ1ML6hkBRx+vToHtS2KHxFh2FtfjSWFbsrRwXMvqf0B+o2Z2iRwLi3Glynz
+         3ueSMPW06llj8Nvk9Ms3scQGFuCUBupvaQwDuvlKw8+6gf38/32ob9v3+a+5/Ex1u0c2
+         tMXoh0FPMJ0tH7lgHZXC5CXkJo9goiRbkkgABbeJpIkvWX7B1ufAI1i7CthYEXvO4efx
+         ULRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rHjViDcG19nS2v6Pk4XSV3A4LQsUZw5sRXj1ES5xELM=;
+        b=1tnMu0fprjf9IDnLw9ePpUAqj7T1QXBPhJFhLvGfskw4Y2gUgGG9ClUpNqnXyLL0II
+         XKalvjeIsdfE1uTf/mAOrjqpT/8nQSHo7siQP/5IAIrLWbqv2eJ/3bMhmhq5SuzcRxdj
+         hRpC9sJ/gNT01jHb5klwasrSJs+/EG4t7MmnE7aQ1aBD+lwtxYFIZemogQWOo+RQ7J2g
+         w0BwDlpqUXoGhGkK2+9hx8lqdAclgUH7YADRazJSLLzRU6KZtdyKB0cIYp1S/vQEPzO9
+         aQqnbBQeVB4WMHoJtxV01/nxyUC5dHcvtyVF57xy1noqmZ+9CBnNQ2bjFNm+6sFmDkGO
+         aAfw==
+X-Gm-Message-State: AJIora9PEwfdurZiFNXSOXNEPRhHyNLY+NtDggjONrzamUdVmNYjpJTr
+        tc9syC3n4r+tZNlTwaVZVJH1Zmrq4VmNtUbe7im9rYxOX0c=
+X-Google-Smtp-Source: AGRyM1sXxE4UwrVwgtOVJD5djOBq9v3b8Ndl5YS71faupar7eTOdYwgrkBIRmcjomOfrqst66O1q/hxyLojPIyTNWgk=
+X-Received: by 2002:a0c:eb4a:0:b0:472:f936:3ea0 with SMTP id
+ c10-20020a0ceb4a000000b00472f9363ea0mr18456835qvq.43.1658059362518; Sun, 17
+ Jul 2022 05:02:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="YhFoJY/gx7awiIuK"
-Content-Disposition: inline
-In-Reply-To: <20211227145905.2905-1-zajec5@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20220707173733.404947-1-robimarko@gmail.com> <20220707173733.404947-4-robimarko@gmail.com>
+ <165798474063.1679948.3824406237045424067.b4-ty@linaro.org>
+In-Reply-To: <165798474063.1679948.3824406237045424067.b4-ty@linaro.org>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Sun, 17 Jul 2022 14:02:29 +0200
+Message-ID: <CAOX2RU7myXLcJ4S3p=kyeugczTEikoTjpyLDaZ45=btR-M95pQ@mail.gmail.com>
+Subject: Re: (subset) [PATCH v6 4/4] arm64: dts: ipq8074: add APCS node
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 16 Jul 2022 at 17:19, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Thu, 7 Jul 2022 19:37:33 +0200, Robert Marko wrote:
+> > APCS now has support for providing the APSS clocks as the child device
+> > for IPQ8074.
+> >
+> > So, add the required DT node for it as it will later be used as the CPU
+> > clocksource.
+> >
+> >
+> > [...]
+>
+> Applied, thanks!
+>
+> [4/4] arm64: dts: ipq8074: add APCS node
+>       commit: 50ed9fffec3aed88bc1ffed277d291f81153bd5d
 
---YhFoJY/gx7awiIuK
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Bjorn,
+can you please apply the v8 series instead which superseded the v6
+series, DTS is different
+as it relies on PLL being separate and is much simpler.
 
-Hi!
+v6 is superseded and should be ignored.
 
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->=20
-> Broadcom used 2 LEDs hardware blocks for their BCM63xx SoCs:
-> 1. Older one (BCM6318, BCM6328, BCM6362, BCM63268, BCM6838)
-> 2. Newer one (BCM6848, BCM6858, BCM63138, BCM63148, BCM63381, BCM68360)
->=20
-> The newer one was also later also used on BCM4908 SoC.
->=20
-> Old block is already documented in the leds-bcm6328.yaml. This binding
-> documents the new one which uses different registers & programming. It's
-> first used in BCM63138 thus the binding name.
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20220712100733.34261-4-robimarko@gmail.com/
 
-Thanks, applied, sorry for the delay. I would not mind additional
-fixes as mentioned.
-								Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---YhFoJY/gx7awiIuK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYtP1sQAKCRAw5/Bqldv6
-8gUnAJ0VA8XVIFz6tTbMRYutj/jFVLVvbQCfXWLJVc+QTaOrmTHRCz9chJMRtdY=
-=tVi5
------END PGP SIGNATURE-----
-
---YhFoJY/gx7awiIuK--
+Regards,
+Robert
+>
+> Best regards,
+> --
+> Bjorn Andersson <bjorn.andersson@linaro.org>
