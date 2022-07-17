@@ -2,107 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD7B577608
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 14:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF576577611
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 14:11:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231927AbiGQMCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 08:02:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46500 "EHLO
+        id S229597AbiGQML4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 08:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231911AbiGQMCo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 08:02:44 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92937140F1;
-        Sun, 17 Jul 2022 05:02:43 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id l2so6981994qvt.2;
-        Sun, 17 Jul 2022 05:02:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rHjViDcG19nS2v6Pk4XSV3A4LQsUZw5sRXj1ES5xELM=;
-        b=RBYkPgOReA/ncSIusSlg/GESvpRLCL+a90i48n8n902vK3lQWCKmsSC6OfKAb55j8A
-         D1a1MGhcpZoTCPyX7dn9gjGsKmKfgzKL2pgD5Yx0Hk1gQ5G/kTOcG1Oe9ZiY1P7xW4bd
-         rwiTLGzIzZ1ML6hkBRx+vToHtS2KHxFh2FtfjSWFbsrRwXMvqf0B+o2Z2iRwLi3Glynz
-         3ueSMPW06llj8Nvk9Ms3scQGFuCUBupvaQwDuvlKw8+6gf38/32ob9v3+a+5/Ex1u0c2
-         tMXoh0FPMJ0tH7lgHZXC5CXkJo9goiRbkkgABbeJpIkvWX7B1ufAI1i7CthYEXvO4efx
-         ULRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rHjViDcG19nS2v6Pk4XSV3A4LQsUZw5sRXj1ES5xELM=;
-        b=1tnMu0fprjf9IDnLw9ePpUAqj7T1QXBPhJFhLvGfskw4Y2gUgGG9ClUpNqnXyLL0II
-         XKalvjeIsdfE1uTf/mAOrjqpT/8nQSHo7siQP/5IAIrLWbqv2eJ/3bMhmhq5SuzcRxdj
-         hRpC9sJ/gNT01jHb5klwasrSJs+/EG4t7MmnE7aQ1aBD+lwtxYFIZemogQWOo+RQ7J2g
-         w0BwDlpqUXoGhGkK2+9hx8lqdAclgUH7YADRazJSLLzRU6KZtdyKB0cIYp1S/vQEPzO9
-         aQqnbBQeVB4WMHoJtxV01/nxyUC5dHcvtyVF57xy1noqmZ+9CBnNQ2bjFNm+6sFmDkGO
-         aAfw==
-X-Gm-Message-State: AJIora9PEwfdurZiFNXSOXNEPRhHyNLY+NtDggjONrzamUdVmNYjpJTr
-        tc9syC3n4r+tZNlTwaVZVJH1Zmrq4VmNtUbe7im9rYxOX0c=
-X-Google-Smtp-Source: AGRyM1sXxE4UwrVwgtOVJD5djOBq9v3b8Ndl5YS71faupar7eTOdYwgrkBIRmcjomOfrqst66O1q/hxyLojPIyTNWgk=
-X-Received: by 2002:a0c:eb4a:0:b0:472:f936:3ea0 with SMTP id
- c10-20020a0ceb4a000000b00472f9363ea0mr18456835qvq.43.1658059362518; Sun, 17
- Jul 2022 05:02:42 -0700 (PDT)
+        with ESMTP id S229567AbiGQMLz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 08:11:55 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1B981165AD;
+        Sun, 17 Jul 2022 05:11:54 -0700 (PDT)
+Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 08A8D1C8030A;
+        Sun, 17 Jul 2022 20:11:53 +0800 (CST)
+Received: from NTHCML01A.nuvoton.com (10.1.8.177) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Sun, 17 Jul
+ 2022 20:11:52 +0800
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCML01A.nuvoton.com
+ (10.1.8.177) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Sun, 17 Jul
+ 2022 20:11:52 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Sun, 17 Jul 2022 20:11:52 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 5D0FE63A23; Sun, 17 Jul 2022 15:11:51 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <jic23@kernel.org>, <minyard@acm.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <openbmc@lists.ozlabs.org>,
+        <openipmi-developer@lists.sourceforge.net>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v1 0/2] char: ipmi: kcs: add Arbel NPCM8XX support
+Date:   Sun, 17 Jul 2022 15:11:22 +0300
+Message-ID: <20220717121124.154734-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20220707173733.404947-1-robimarko@gmail.com> <20220707173733.404947-4-robimarko@gmail.com>
- <165798474063.1679948.3824406237045424067.b4-ty@linaro.org>
-In-Reply-To: <165798474063.1679948.3824406237045424067.b4-ty@linaro.org>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Sun, 17 Jul 2022 14:02:29 +0200
-Message-ID: <CAOX2RU7myXLcJ4S3p=kyeugczTEikoTjpyLDaZ45=btR-M95pQ@mail.gmail.com>
-Subject: Re: (subset) [PATCH v6 4/4] arm64: dts: ipq8074: add APCS node
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Jul 2022 at 17:19, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Thu, 7 Jul 2022 19:37:33 +0200, Robert Marko wrote:
-> > APCS now has support for providing the APSS clocks as the child device
-> > for IPQ8074.
-> >
-> > So, add the required DT node for it as it will later be used as the CPU
-> > clocksource.
-> >
-> >
-> > [...]
->
-> Applied, thanks!
->
-> [4/4] arm64: dts: ipq8074: add APCS node
->       commit: 50ed9fffec3aed88bc1ffed277d291f81153bd5d
+This patch set adds Arbel NPCM8XX Keyboard Controller Style (KCS) support to 
+KCS NPCM driver.
 
-Bjorn,
-can you please apply the v8 series instead which superseded the v6
-series, DTS is different
-as it relies on PLL being separate and is much simpler.
+The NPCM KCS driver tested on NPCM845 evaluation board.
 
-v6 is superseded and should be ignored.
+Tomer Maimon (2):
+  dt-bindings: ipmi: Add npcm845 compatible
+  char: ipmi: modify NPCM KCS configuration
 
-https://patchwork.kernel.org/project/linux-arm-msm/patch/20220712100733.34261-4-robimarko@gmail.com/
+ Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 5 +++--
+ drivers/char/ipmi/Kconfig                                  | 6 +++---
+ 2 files changed, 6 insertions(+), 5 deletions(-)
 
-Regards,
-Robert
->
-> Best regards,
-> --
-> Bjorn Andersson <bjorn.andersson@linaro.org>
+-- 
+2.33.0
+
