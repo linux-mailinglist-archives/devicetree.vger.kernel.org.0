@@ -2,117 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51CC2577628
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 14:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15D5C577632
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 14:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232755AbiGQMdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 08:33:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58762 "EHLO
+        id S232776AbiGQMnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 08:43:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232073AbiGQMdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 08:33:17 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991681572F
-        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 05:33:16 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id z12so13267354wrq.7
-        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 05:33:16 -0700 (PDT)
+        with ESMTP id S229487AbiGQMnC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 08:43:02 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7581D140C7;
+        Sun, 17 Jul 2022 05:43:01 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id y8so11949512eda.3;
+        Sun, 17 Jul 2022 05:43:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=j2BR3h16Mhy5gM4KsP6TulbAM/2F99pvBCc7QlwzcZ4=;
-        b=ZbBiwnWJNKIr+NR37XpR7bSyqYBFbDrUDPWbNlxfXdnHWQXDVq5CxgdOJ2DGKUn/oa
-         WYxvBFZWZC6ja2EyLW2VpjNJpx2FOVobl0NvrD2nX1gDIHmmqOTzJ8PVgtyVOVWXjAxi
-         pJ/M+i1IomOyh8qmq7hHDgUE8pf2nJGcHJJPt38ZjFtRQSte4lfn7rkFXWLOgkC3Og5I
-         sPg612k6g8V0OAbkMGdlaXT7+h3MXpSCrmsdFILk1d7hzJV80OBdZ0AYlH+TkObC1i2O
-         1WAEWsI9AyVq3lIgQasMJ6eAjXIevem2cUa7OOlcspp57I+10sr/TbQD6SMcSXKmdlIG
-         Ghig==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lL4qaMaHIgn/p1MioBy3fT7HhSN7m96aHZDDTbJaHeE=;
+        b=WeTRpzV9klsbHl1g6G0DJ0alAEA8dIZ3gbUC3Bb16E1VLfDpReHXjaGT0uk5FwE88N
+         WEOVLBARtVLv8a7aUrFsK4Kt0iD1KzSPbg039gwSeATGUHifbBXFthEYAs9k0V14FP+g
+         RjnR7UF6sKhABmCzAZ1hZU6JIGEDYUNYsJJTvsSK3pd+hEL4OKWFXZmZDu9olWqOqs9S
+         4y/JyLQEyRTun8ELkbz+JJAbXnVJ3v8G8xN68X9xi9hlnZ5BPEjj5Y3QZrBdKhaSXMwc
+         BRucFsdXdfhEgQAC900m5JC/hZvUw1EnJKTtXgxMxBJ9Fg+JeIAdqmjmRGWAjgCJJLPM
+         Ikhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=j2BR3h16Mhy5gM4KsP6TulbAM/2F99pvBCc7QlwzcZ4=;
-        b=IfQoi/F0k8pmDzS1+Mx+wYG8zJ3DT/5o/Ypazr7YejkXbm6VdHlgN9SA698/eSEFyh
-         1qmJgv9kp7DR3o8iEhePPV9Y66KAGZkroau7+ohH2p3qr2MGXIEyYKFGICUd3Awj4UV9
-         p8xx6y5HOx041yYmE6Tu6xIbT+14JOeriv0JTJXgD7BaHkZZeux+OiRwMvDLEtLAHqmD
-         lchJvLQFtRM7uM1TtW01vaO8EDlgPSZ8mso84FiHh0LQ2F+xa83j1v1dB7VDBPM8CSp6
-         IVlBczXPPjkzP6YiBNwz2kTNO5gvQypyXVoXxc0KMZBsfdskGfgWYTd8elK0mfN7c+fW
-         dSLw==
-X-Gm-Message-State: AJIora/egl36qKRfa8S6JAZg9fOwkg2Q+pNM+JRxEwOV4L2xJ6NAn3Lj
-        fN0x2HNq6jsiqND3T7iFSSwBMA==
-X-Google-Smtp-Source: AGRyM1tK90tcONCCmwdcbnUBnjLYo/lZl+KlirKq1g/sxB3t+rAkHO/ZgXor1/8R6Ulss4TnZXfVUg==
-X-Received: by 2002:a05:6000:250:b0:21d:b3b5:3438 with SMTP id m16-20020a056000025000b0021db3b53438mr18010565wrz.203.1658061195148;
-        Sun, 17 Jul 2022 05:33:15 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id m9-20020adfe949000000b0021d4694fcaesm8146790wrn.107.2022.07.17.05.33.14
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lL4qaMaHIgn/p1MioBy3fT7HhSN7m96aHZDDTbJaHeE=;
+        b=s2pQezeaAn+pHkxefYlqftSKb9mF2txzmdZpWvEIHHTsD5v1tAUT2wF+yjeuXXFMaa
+         WJkw9Zp1K7MSjttsY5V1kKUkeG0EzzcdeVDoJ+OSJPcJbRapeXbb26fQiX2I/eKM0gXO
+         dXagk6tUFnkwujF+/jnnl69HuUgdY3WrGHCaBo22HmjW9Gz00KlbXsgcEBDVu3Mn99m+
+         NX7queIZ1933VniBSGCqNWSn8Q7XOtoHD1urN8HpJ4UQ/FCfRxDxw6vCHXgZ8L9XrQwg
+         1jg9ZxkKcGL3AVLtW3x08iEJ1jcD5k/uzIgXMGDzFVQuK/JMJCEZNZaLlUPq6DqjriNz
+         PaJA==
+X-Gm-Message-State: AJIora+JCOJ1P/tuzmhkrh3oIivWUOprgD19+kIxnMSKcMjyJMDz6VnE
+        AWFk0LEasAIj6xdg9HT9jnU46PdAyaI=
+X-Google-Smtp-Source: AGRyM1uE/rRhYw4J9V2Rj/WP/m+lLa7Rot5CK4y3acR2WpcI3Ophrbq37pTfD3N5qOBomkqX7MGZ0w==
+X-Received: by 2002:a05:6402:f08:b0:43a:b202:1f63 with SMTP id i8-20020a0564020f0800b0043ab2021f63mr31444819eda.207.1658061779994;
+        Sun, 17 Jul 2022 05:42:59 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id i22-20020aa7c716000000b0043a64eee322sm4520588edq.28.2022.07.17.05.42.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Jul 2022 05:33:14 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, myungjoo.ham@samsung.com,
-        cw00.choi@samsung.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        marijn.suijten@somainline.org, bryan.odonoghue@linaro.org
-Subject: [PATCH v4 2/2] extcon: qcom-spmi: Switch to platform_get_irq_byname_optional
-Date:   Sun, 17 Jul 2022 13:33:04 +0100
-Message-Id: <20220717123304.938259-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220717123304.938259-1-bryan.odonoghue@linaro.org>
-References: <20220717123304.938259-1-bryan.odonoghue@linaro.org>
+        Sun, 17 Jul 2022 05:42:59 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        William Zhang <william.zhang@broadcom.com>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-leds@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 0/3] leds-bcm63138: post apply/review fixes
+Date:   Sun, 17 Jul 2022 14:42:45 +0200
+Message-Id: <20220717124248.13562-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Valid configurations for the extcon interrupt declarations are
+From: Rafał Miłecki <rafal@milecki.pl>
 
-- usb_id
-- usb_vbus
-- (usb_id | usb_vbus)
+Hi Pavel,
 
-In the case of a standalone usb_id or usb_vbus failure to find one of the
-interrupts shouldn't generate a warning message. A warning is already in
-place if both IRQs are missing.
+Thanks a lot for accepting my patches. I'm sending those small fixups to
+address your comments.
 
-Switch to using platform_get_irq_byname_optional() in order to facilitate
-this behaviour.
+I still have to figure out how to simplify fls() code you pointed out.
 
-Suggested-by: Marijn Suijten <marijn.suijten@somainline.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/extcon/extcon-qcom-spmi-misc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Rafał Miłecki (3):
+  dt-bindings: leds: leds-bcm63138: unify full stops in descriptions
+  leds: add help info about BCM63138 module name
+  leds: leds-bcm63138: get rid of LED_OFF
 
-diff --git a/drivers/extcon/extcon-qcom-spmi-misc.c b/drivers/extcon/extcon-qcom-spmi-misc.c
-index eb02cb962b5e1..f72e90ceca53d 100644
---- a/drivers/extcon/extcon-qcom-spmi-misc.c
-+++ b/drivers/extcon/extcon-qcom-spmi-misc.c
-@@ -123,7 +123,7 @@ static int qcom_usb_extcon_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	info->id_irq = platform_get_irq_byname(pdev, "usb_id");
-+	info->id_irq = platform_get_irq_byname_optional(pdev, "usb_id");
- 	if (info->id_irq > 0) {
- 		ret = devm_request_threaded_irq(dev, info->id_irq, NULL,
- 					qcom_usb_irq_handler,
-@@ -136,7 +136,7 @@ static int qcom_usb_extcon_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	info->vbus_irq = platform_get_irq_byname(pdev, "usb_vbus");
-+	info->vbus_irq = platform_get_irq_byname_optional(pdev, "usb_vbus");
- 	if (info->vbus_irq > 0) {
- 		ret = devm_request_threaded_irq(dev, info->vbus_irq, NULL,
- 					qcom_usb_irq_handler,
+ Documentation/devicetree/bindings/leds/leds-bcm63138.yaml | 2 +-
+ drivers/leds/blink/Kconfig                                | 2 ++
+ drivers/leds/blink/leds-bcm63138.c                        | 3 +--
+ 3 files changed, 4 insertions(+), 3 deletions(-)
+
 -- 
-2.36.1
+2.34.1
 
