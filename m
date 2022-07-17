@@ -2,110 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 734415776A9
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 16:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E705776AB
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 16:33:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231381AbiGQOXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 10:23:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48262 "EHLO
+        id S231338AbiGQOdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 10:33:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229654AbiGQOXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 10:23:21 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0381D13F74;
-        Sun, 17 Jul 2022 07:23:20 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (dkwl20tj04snw15cjtflt-3.rev.dnainternet.fi [IPv6:2001:14ba:4493:6f40:fec3:d72a:e447:8113])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 1E81E2006F;
-        Sun, 17 Jul 2022 17:23:18 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1658067798;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=0TeQJHGFF0EA7jkHlIbG2RaPoSPhSSIL4cSEpXiCPSM=;
-        b=GsEkQPsAqC9xsivOr8FMpz1erGxATHhSFLC9gdDToUFAk9ZNQi/ROASkzxJeHs72FO6jsL
-        vysXrqlPrJjh7dkvrQ3JDwWguPsmzYoLqB2urXgnvloOwdGyrDJJawgp1YqIzs0cloG3Hx
-        w6vFtnWsUTTSKLK3t41dFaX7Iryz9IM=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id C0A17634D5F;
-        Sun, 17 Jul 2022 17:23:17 +0300 (EEST)
-Date:   Sun, 17 Jul 2022 17:23:17 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229601AbiGQOdU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 10:33:20 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 060AC1581F;
+        Sun, 17 Jul 2022 07:33:20 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id sz17so17039037ejc.9;
+        Sun, 17 Jul 2022 07:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HYCuLh+4GAlQy2ZlwWCAQ6a+UvjpQfzF3WBOmGXeMl0=;
+        b=keTdGnYa7Z6sl/x3TVPANinQv/ftFTAO8COa6gM0ruP+XuARHHaB/AxJ9JI7ydN8j0
+         X/a7J4HB1gXzxNw8NluwkwK4Wyv/aEtbwYtzp1hXU260hKpzcjTkt7Q1iVd0kxSnof7n
+         jDy2P4OFulLK3rAfpLYuQQVg2mXkid4GuJOc2lD0Rtb468c8OQLV23HEJXCYnXQOboKr
+         BZqNU/gcQGCpznGfEiwvLkQMpRWt8g0g+sWzd618SvCnfYZCGb+WF1uIUZ0GF6pb/xBQ
+         ilhKi0Gv+FeHBfqbJl5QcJ7uVxDAruLE0EW/aaYU3aEcG5NdhsDA1svzF/T3U84DU7TZ
+         g5yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HYCuLh+4GAlQy2ZlwWCAQ6a+UvjpQfzF3WBOmGXeMl0=;
+        b=X8wb3ws6jfXE3uSRA7HeBRB5yCscUhWswVp16JoqdZnKTschXPYZx8mTr+6AWWmkOS
+         1NdJxhORJKRD8JhTDh467JxknwbraDvtLuKbXEe/zkimU8Al43VM3xPisWqpu6mAhR56
+         hr5nADMktmnVVlB7l4fXDZzzQbevHLIt6BfGTd/Buyg/OdPvjlpZ1Sf3NXCT0A5tD2KP
+         dZyshWrrAh1cnA8fg9BMX1Q6I5L/3MumZV7NZtuXH9GTYAKUAIG44a84d5RueC2J5ua9
+         7u1hNqBsAaaa2JgYJr9qQRs4mhqsS4gql0Hv2d/pPOH07/UvQrL+Lw3NkE5w8O7aHDSb
+         U6zA==
+X-Gm-Message-State: AJIora9wlVUkMyPOwCdTrk/xMp8EJWx9Fkoo+hJ1jW7Cn/aaLwnVDuNz
+        CUge763vjk91wktLEtAsXoO9o+UmkI0Ds5MydXY=
+X-Google-Smtp-Source: AGRyM1tAqoqFouOlBGd/gaCoT7ZimJKP6LZ88Lo9W0ZUEJevkWjf6/HDA9S+QfO5VQz+oIF11XgR4g9PM35eZjcrDrc=
+X-Received: by 2002:a17:907:94cb:b0:72f:1d8e:7305 with SMTP id
+ dn11-20020a17090794cb00b0072f1d8e7305mr5339033ejc.625.1658068398540; Sun, 17
+ Jul 2022 07:33:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220714121215.22931-1-wbartczak@marvell.com> <20220714121215.22931-2-wbartczak@marvell.com>
+In-Reply-To: <20220714121215.22931-2-wbartczak@marvell.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Sun, 17 Jul 2022 09:33:07 -0500
+Message-ID: <CABb+yY1i0qUOptrBJWj05t4-MCtmsC+AhCR8udoxLAe+pygZiQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox : marvell,mbox: Add bindings
+To:     Wojciech Bartczak <wbartczak@marvell.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        wbartczak@gmail.com, Piyush Malgujar <pmalgujar@marvell.com>,
+        Sunil Goutham <sgoutham@marvell.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] media: i2c: ov9282: Add ov9281 compatible
-Message-ID: <YtQbVcpmtZjZC2go@valkosipuli.retiisi.eu>
-References: <20220715074858.875808-1-alexander.stein@ew.tq-group.com>
- <20220715074858.875808-4-alexander.stein@ew.tq-group.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220715074858.875808-4-alexander.stein@ew.tq-group.com>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1658067798;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=0TeQJHGFF0EA7jkHlIbG2RaPoSPhSSIL4cSEpXiCPSM=;
-        b=G8HiBPy7JcMrFmDRayaQR4QXa5j4hMmdFWNIL3rjMp4Qjh0a/3kakqd6kmwtG4yr7p3ac8
-        L/PZsqJ/H0fcvx8JfaJggtoZuRtXMbtZIpvpEyAjzzz/3BDL/v7XrTQSnAclXsivI1NJR6
-        OacLpXfJwwzG4LhHaSaAD8UoJwmhjfY=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1658067798; a=rsa-sha256; cv=none;
-        b=hHr0cfm6dVvnMS9iCdzE2dqixkHmHoP/S22ws7zbbR20+fhuNKPJD/Hdihx92mlcgfT2/d
-        DGgLESDTggjVJ5Np+k/LwXGcGFGYmmb8CPCu4mwCqQrPYv1/qg37Y4XCqDol9BEw153jfJ
-        lD2SlVypbd0LpdR7zdnRVCjnKVEEcFs=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Devicetree List <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
+On Thu, Jul 14, 2022 at 7:13 AM Wojciech Bartczak <wbartczak@marvell.com> wrote:
 
-On Fri, Jul 15, 2022 at 09:48:55AM +0200, Alexander Stein wrote:
-> According to product brief they are identical from software point of view.
-> Differences are a different chief ray angle (CRA) and the package.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> ---
->  drivers/media/i2c/ov9282.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
-> index 3269c1983bd5..04fda8222e07 100644
-> --- a/drivers/media/i2c/ov9282.c
-> +++ b/drivers/media/i2c/ov9282.c
-> @@ -1114,6 +1114,7 @@ static const struct dev_pm_ops ov9282_pm_ops = {
->  };
->  
->  static const struct of_device_id ov9282_of_match[] = {
-> +	{ .compatible = "ovti,ov9281" },
+...
+> +description:
+> +  The Marvell's Message Handling Unit is a mailbox controller
+> +  with a single channel used to communicate with System Control Processor.
+> +  Driver supports series of cn9x and cn10x SoC.
+> +  Sole purpose of the link is to exchange SCMI related data with SCP.
+> +  The link has hardwired configuration, it uses simple notification scheme
+> +  over shared memory block to push data back and forth.
+> +  Interrupts used by mailbox may be configured in two ways,
+> +  as SPI interrupts, then driver uses platform device forntend.
+> +  Other way is to use PCI bus frontend with LPI interrupts.
+> +
+Also have a provision of SPI vs LPI mode hint via DT.
 
-This should also be reflected in the entity name --- the user space
-deserves to know it's a different device.
+...
+> +
+> +examples:
+> +  - |
+> +    soc@0 {
+> +      reg = <0 0>;
+> +       #address-cells = <2>;
+> +       #size-cells = <2>;
+> +
+> +      sram@36,0 {
+> +        compatible = "cpc-shmem";
+> +        reg = <0x86d0 0xdd400 0 0x200>;
+> +        #address-cells = <2>;
+> +        #size-cells = <1>;
+> +        ranges = <0 0x0 0x86d0 0xdd400 0x200>;
+> +
+> +        scp_to_cpu0: scp-shmame@0 {
+>
+Just curious, what does 'scp-shmame' stand for?
 
->  	{ .compatible = "ovti,ov9282" },
->  	{ }
->  };
-
--- 
-Sakari Ailus
+thanks.
