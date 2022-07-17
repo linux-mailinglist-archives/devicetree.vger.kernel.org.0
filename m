@@ -2,49 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C9B05775B8
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 12:24:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47DD45775D1
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jul 2022 12:58:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232421AbiGQKYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 06:24:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38116 "EHLO
+        id S229670AbiGQK6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 06:58:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229731AbiGQKYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 06:24:08 -0400
+        with ESMTP id S229463AbiGQK56 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 06:57:58 -0400
 Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B2F664FA;
-        Sun, 17 Jul 2022 03:24:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB5315A02;
+        Sun, 17 Jul 2022 03:57:56 -0700 (PDT)
 Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 0EB441C0003; Sun, 17 Jul 2022 12:24:07 +0200 (CEST)
+        id 5F9541C0003; Sun, 17 Jul 2022 12:57:55 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1658053447;
+        t=1658055475;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=cz/G+c2AGMxFEDwxsaEiPePiAf+y8BVJI6soaHR5kss=;
-        b=T0KoFQX/GqrV3NWfENN0lJqx6df8hjibziTGvXZzcJK5KvTMxWIj055I9GwUrYI5y+xdkT
-        5vtqb8c8rcgbPzo2eQDPAoRXpIkeXAyQDOaNEqOzNB44N5XLJKOCCNAlTO9jAS1qWtL24T
-        /QEbmFp907AmBYA/q3IYgZqIXe53p24=
-Date:   Sun, 17 Jul 2022 12:24:06 +0200
+        bh=2PiYcVoQaJRB7ipLJ+CzHZiXAP65SK93zbBFtaADAHY=;
+        b=aNP+rDla8x8MVa/ZII4Q1KX24tDomXButkwpdsgzHhxyeB2Lyk0hTdcCpzAxJ7HyUEH/N/
+        76CDAdOSE4aqEMZ6b8tR1Y9OrAVLCZJEPXMS5nZvlRu0T8zcJJUDcElOa9Ps+vRSMsn7R5
+        O3uebTfw7bt/2fygjdjAM3Zxv+CXP1M=
+Date:   Sun, 17 Jul 2022 12:57:54 +0200
 From:   Pavel Machek <pavel@ucw.cz>
-To:     Lee Jones <lee@kernel.org>
-Cc:     lee.jones@linaro.org, linux-kernel@vger.kernel.org,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 6/8] dt-bindings: backlight: Update Lee Jones' email
- address
-Message-ID: <20220717102406.GC14285@duo.ucw.cz>
-References: <20220714112533.539910-1-lee@kernel.org>
- <20220714112533.539910-7-lee@kernel.org>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Vincent Pelletier <plr.vincent@gmail.com>,
+        Bin Meng <bin.meng@windriver.com>,
+        Aurelien Jarno <aurelien@aurel32.net>,
+        Ron Economos <w6rz@comcast.net>,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stephen L Arnold <nerdboy@gentoo.org>,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        David Abdurachmanov <davidlt@rivosinc.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1 4/4] riscv: dts: sifive unmatched: Add PWM controlled
+ LEDs
+Message-ID: <20220717105754.GE14285@duo.ucw.cz>
+References: <20220705210143.315151-1-emil.renner.berthing@canonical.com>
+ <20220705210143.315151-5-emil.renner.berthing@canonical.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="adJ1OR3c6QgCpb/j"
+        protocol="application/pgp-signature"; boundary="orO6xySwJI16pVnm"
 Content-Disposition: inline
-In-Reply-To: <20220714112533.539910-7-lee@kernel.org>
+In-Reply-To: <20220705210143.315151-5-emil.renner.berthing@canonical.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
@@ -56,33 +67,37 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---adJ1OR3c6QgCpb/j
+--orO6xySwJI16pVnm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi!
-
-> Going forward, I'll be using my kernel.org for upstream work.
->
+On Tue 2022-07-05 23:01:43, Emil Renner Berthing wrote:
+> This adds the two PWM controlled LEDs to the HiFive Unmatched device
+> tree. D12 is just a regular green diode, but D2 is an RGB diode with 3
+> PWM inputs controlling the three different colours.
+>=20
+> Signed-off-by: Emil Renner Berthing
+<emil.renner.berthing@canonical.com>
 
 Acked-by: Pavel Machek <pavel@ucw.cz>
 
-Let me know if you want to take it through the LED tree.
+(This is dts change, I'd rather not take it through the LED tree).
 
 Best regards,
-								Pavel
+							Pavel
+
 --=20
 People of Russia, stop Putin before his war on Ukraine escalates.
 
---adJ1OR3c6QgCpb/j
+--orO6xySwJI16pVnm
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYtPjRgAKCRAw5/Bqldv6
-8nV7AKCbxH4jIosCzuAbU3zYw4DixJz3RwCgve3ZW6VcKjjtgrbbPxAGoqtl3Ss=
-=JbF+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYtPrMgAKCRAw5/Bqldv6
+8vJKAKCK8iCAueRbp/sBar9NXzmMECiF6ACgp9e1BthH/ZKcWRgw97Pvc99PupI=
+=0geR
 -----END PGP SIGNATURE-----
 
---adJ1OR3c6QgCpb/j--
+--orO6xySwJI16pVnm--
