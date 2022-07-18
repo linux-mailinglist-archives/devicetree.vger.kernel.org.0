@@ -2,190 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07353578959
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 20:11:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C93C57896E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 20:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230263AbiGRSL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 14:11:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53054 "EHLO
+        id S235950AbiGRSTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 14:19:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229824AbiGRSLZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 14:11:25 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D6F11C2F;
-        Mon, 18 Jul 2022 11:11:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1658167864;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=mLmCHUMDe2eKeho/Ub+SVB6CDq8jI3pnYj0VyKsFHZM=;
-    b=i7zLoAHkveqfnKa0wvA6q30HCHeBEhdzxj1m2vySmGcqVVlB2KD9TG+Pz20UmfFIUG
-    1uJhvd5UxMHxMJjkbQSSk61wX3x1ATqouqDUpWplhPgjxmGw60DzFvUTmUUnA77YNlyg
-    2gjFqvT+oHRbztDoFV64Qd9Ki76umxysAwoyMomwS2z7BEUpiPi8bBIPTjcmig0QwMQV
-    b8hosPMw3wBD+2PX5EPxKei00ZU0lApxeBOl1+qLK0Rw8reh/uvzbgCNeGgVQ332dTEs
-    iCYKLswCYstEmX7xEWPFenYNyfUQDs52QfkI8tt7sNI0dg/IlG8WzzHDIiFpZAUS4PP3
-    2TeA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK86+6Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.47.0 AUTH)
-    with ESMTPSA id he04d0y6IIB4HZR
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 18 Jul 2022 20:11:04 +0200 (CEST)
-Date:   Mon, 18 Jul 2022 20:10:56 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Matti =?iso-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: Add support for Samsung Galaxy Tab 4
- 10.1 (SM-T530)
-Message-ID: <YtWiMP2O9BymNG7/@gerhold.net>
-References: <20220717213432.134486-1-matti.lehtimaki@gmail.com>
- <20220717213432.134486-4-matti.lehtimaki@gmail.com>
- <dc19c084-633d-9777-6dfd-b9633ac9c4ae@linaro.org>
+        with ESMTP id S235884AbiGRST2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 14:19:28 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3768B638B;
+        Mon, 18 Jul 2022 11:19:28 -0700 (PDT)
+Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 87B8F1C811EE;
+        Tue, 19 Jul 2022 02:19:27 +0800 (CST)
+Received: from NTHCCAS02.nuvoton.com (10.1.9.121) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Tue, 19 Jul
+ 2022 02:19:27 +0800
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS02.nuvoton.com
+ (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Tue, 19 Jul
+ 2022 02:19:15 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Tue, 19 Jul 2022 02:19:14 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 289EF63A20; Mon, 18 Jul 2022 21:19:14 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <gregkh@linuxfoundation.org>,
+        <stern@rowland.harvard.edu>, <tony@atomide.com>,
+        <felipe.balbi@linux.intel.com>, <jgross@suse.com>,
+        <lukas.bulwahn@gmail.com>, <arnd@arndb.de>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <openbmc@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v2 0/3] usb: host: npcm7xx-ehci: add Arbel NPCM8XX support and remove reset sequence 
+Date:   Mon, 18 Jul 2022 21:18:39 +0300
+Message-ID: <20220718181842.61040-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <dc19c084-633d-9777-6dfd-b9633ac9c4ae@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 18, 2022 at 03:51:54PM +0200, Krzysztof Kozlowski wrote:
-> On 17/07/2022 23:34, Matti Lehtimäki wrote:
-> > Add a device tree for the Samsung Galaxy Tab 4 10.1 (SM-T530) wifi tablet
-> > based on the apq8026 platform.
-> > 
-> > Currently supported are accelerometer sensor, hall sensor, internal storage, physical
-> > buttons (power & volume), screen (based on simple-framebuffer set up by
-> > the bootloader) sdcard, touchscreen and USB.
-> > 
-> > Signed-off-by: Matti LehtimÃ¤ki <matti.lehtimaki@gmail.com>
-> 
-> Thank you for your patch. There is something to discuss/improve.
-> 
-> > ---
-> >  arch/arm/boot/dts/Makefile                    |   1 +
-> >  .../dts/qcom-apq8026-samsung-matissewifi.dts  | 475 ++++++++++++++++++
-> >  2 files changed, 476 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index 5112f493f494..4d02a1740079 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -1010,6 +1010,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
-> >  	qcom-apq8016-sbc.dtb \
-> >  	qcom-apq8026-asus-sparrow.dtb \
-> >  	qcom-apq8026-lg-lenok.dtb \
-> > +	qcom-apq8026-samsung-matissewifi.dtb \
-> >  	qcom-apq8060-dragonboard.dtb \
-> >  	qcom-apq8064-cm-qs600.dtb \
-> >  	qcom-apq8064-ifc6410.dtb \
-> > diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts b/arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
-> > new file mode 100644
-> > index 000000000000..f4c5eb9db11c
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
-> > @@ -0,0 +1,475 @@
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +/*
-> > + * Copyright (c) 2022, Matti LehtimÃ¤ki <matti.lehtimaki@gmail.com>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "qcom-msm8226.dtsi"
-> > +#include "qcom-pm8226.dtsi"
-> > +#include <dt-bindings/input/input.h>
-> > +
-> > +/delete-node/ &smem_region;
-> > +
-> > +/ {
-> > +	model = "Samsung Galaxy Tab 4 10.1";
-> > +	compatible = "samsung,matissewifi", "qcom,apq8026";
-> > +	chassis-type = "tablet";
-> > +
-> > +	qcom,msm-id = <0xC708FF01 0 0x20000>,
-> > +		      <0xC708FF01 1 0x20000>,
-> > +		      <0xC708FF01 2 0x20000>,
-> > +		      <0xC708FF01 3 0x20000>;
-> 
-> Lower case hex and does not match bindings.
-> https://lore.kernel.org/all/20220705130300.100882-2-krzysztof.kozlowski@linaro.org/
-> 
-> This would need detailed explanation because it really does not look
-> correct.
-> 
+This patch set
+- Adds Arbel NPCM8XX USB EHCI host controller support to USB EHCI driver.
+- Remove the USB reset sequence because it is done in the NPCM reset driver.
 
-Just to give the explanation for reference: In general, qcom,msm-id with
-three elements is something Qualcomm used for some old platforms before
-introducing qcom,board-id.
+The NPCM USB host driver tested on the NPCM845 evaluation board.
 
-qcom,msm-id = <X Y Z> should be equivalent to:
-  qcom,msm-id = <X Z>;
-  qcom,board-id = <Y 0>;
+Addressed comments from:
+ - Arnd Bergmann : https://lore.kernel.org/all/CAK8P3a2PM9pe5tN=N7BMdkwZZKNv9Wa+CEFCyQT_6Ur=O7P5pQ@mail.gmail.com/
+ - Alan Stern: https://lore.kernel.org/all/YtVuildpxcI5By4x@rowland.harvard.edu/
 
-e.g. for apq8026-v2-mtp.dts Qualcomm used:
-   qcom,msm-id = <199 8 0x20000>;
- = qcom,msm-id = <QCOM_ID_MSM8026 QCOM_BOARD_ID_MTP 0x20000>;
- = qcom,msm-id = <QCOM_ID_MSM8026 0x20000>;
-   qcom,board-id = <QCOM_BOARD_ID_MTP 0>;
+Changes since version 1:
+ - Remove NPCM reset configuration dependency.
+ - Remove unused definitions.
 
-I guess old bootloaders may or may not accept the new form, depending on
-the age of their code base.
+Changes since version 1:
+ - Modify dt-binding compatible property.
+ - Use device_get_match_data function instead of_match_node function.
 
-Then Samsung took this and made it a lot worse, by replacing the SoC ID
-with some random magic number (the 0xC708FF01). And what's even worse is
-that all devices with the same SoC from Samsung use the same magic number
-there. It is completely useless for dynamically matching the device.
+Tomer Maimon (3):
+  usb: host: npcm7xx: remove USB EHCI host reset sequence
+  dt-bindings: usb: npcm7xx: Add npcm845 compatible
+  USB: host: npcm: Add NPCM8XX support
 
-In this case, I suggest just dropping the property because the device is
-supported by lk2nd [1] which can be loaded as intermediary bootloader to
-have a more standard boot process for mainline Linux. When booting
-through lk2nd no qcom,msm-id/qcom,board-id is required, and it also adds
-MAC addresses for WiFi/Bluetooth etc etc. :-)
+ .../devicetree/bindings/usb/npcm7xx-usb.txt   |  4 +-
+ drivers/usb/host/Kconfig                      |  8 +--
+ drivers/usb/host/ehci-npcm7xx.c               | 50 -------------------
+ 3 files changed, 7 insertions(+), 55 deletions(-)
 
-[1]: https://github.com/msm8916-mainline/lk2nd
+-- 
+2.33.0
 
-> [...]
-> > +	reserved-memory {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <1>;
-> > +		ranges;
-> > +
-> > +		framebuffer@3200000 {
-> 
-> Generic node names, so memory@
-> 
-
-Rob specifically mentioned at some point that memory@ should not be used
-in reserved-memory [1]. The device tree specification actually recommends
-doing it like it is done here (at least for "framebuffer"):
-
-> 3.5.2 /reserved-memory/ child nodes
-> Following the generic-names recommended practice, node names should
-> reflect the purpose of the node (ie. “framebuffer” or “dma-pool”).
-
-[1]: https://lore.kernel.org/linux-arm-msm/CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com/
-
-Thanks,
-Stephan
