@@ -2,116 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C86E57795F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 03:43:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 128AE577972
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 03:57:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232806AbiGRBn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 21:43:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41752 "EHLO
+        id S232852AbiGRB5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 21:57:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230080AbiGRBn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 21:43:27 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06229F582;
-        Sun, 17 Jul 2022 18:43:25 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id r70so7105575iod.10;
-        Sun, 17 Jul 2022 18:43:24 -0700 (PDT)
+        with ESMTP id S229801AbiGRB5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 21:57:47 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58040CE10
+        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 18:57:45 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id p9so10416432pjd.3
+        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 18:57:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qFwGFcEKEQw3yJ7UGKN0HjyfrAbYSulURdjdgoshPik=;
+        b=TNUZQC9kGZ+kGAQNU7B0mUUu2K646jYzhGxe13ErMPxTuWHQ5A3WufDM12XUzinf3s
+         n8goKXvkcvUhgMPyTK9Jv9ktpeJi8Wo2uXCTt6GsYBeCzvggAu8VYAy1rwuFZc2LhmKC
+         WTWbTkPsc6uYPfLkraUjACiyySCzRVjc/KIeDb5lyZOd4DLAP+Sl3WyKKEm6r5p8dH5P
+         CxiWYl0wDYuH6tFnVPPZzTlD+TRaDEsZtcdrRob4tPks5l28KR+Ws9G06PcNfRUSOUfN
+         ZW/BENjxf9NmHPC3JbGiZ1QFkUVawr0E7Jp00Fl8eJj3TxtaXaVs4I0uIf4oUdH2Hu49
+         nUkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=oj3Zm/SQRO5MOitoOMIklr7G150Ky3mACmzWauG0RBA=;
-        b=WbmMqA0qH++41O5VwVJ+DGwfVo1CJ+NBbX5hCsdrEo9o5vYbsfBurgFJn2lEM+FIq3
-         7KCORIgzAr5D84oGNL7E6RmzcrFZKGErbzC/yUmutxj1b+qR31ILpalsLWpm2qFJkPPy
-         hGDlr9FRbu6SCTtlTHFNU3awM62ZE+AXUdivXSpgFtDQB0YtM441zjHEjSYxIiYu9c5m
-         hXVA/iOFbnhpwI9DM0DxmV9ttIwVF0ydac7si0Os2Owh/i3D7K92CnJRTmnP2LPe0l7l
-         w3ih8bfRb4RZJSEyZJFH4QUFsUcUuNQw0pbO7J2D/8gCQPuGOhSjdFl35jk1AqjRo0jL
-         Wc8w==
-X-Gm-Message-State: AJIora+X85fviNYNyQyBuLc2+C2a+oPjSEM0UmtApNqPB99IojFCHsmY
-        yTDga5d2ONelQRla5g37CQ==
-X-Google-Smtp-Source: AGRyM1uiqFrYjUOelbjO2ccWrnnbbv01J29IHfmPZakQn9i+h9JEq0jlLLxuslHjF/ef6ILjcvo7fw==
-X-Received: by 2002:a6b:cd8c:0:b0:67b:90c4:43c3 with SMTP id d134-20020a6bcd8c000000b0067b90c443c3mr11863916iog.28.1658108604204;
-        Sun, 17 Jul 2022 18:43:24 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r20-20020a02aa14000000b0033202bb9829sm4854226jam.49.2022.07.17.18.43.22
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qFwGFcEKEQw3yJ7UGKN0HjyfrAbYSulURdjdgoshPik=;
+        b=aGsAugG5gi5QDJV/DgRGF/l+3yJOrVPxAK5reIccUIJEuVGQt+KhStYeEb3jv8onaO
+         GCS9VPIGnor5QmSXnU8nLywDBUjNP+Hf9+p7tBg4G3If38iRFrXQRFqf59e6sTpA6StT
+         +yZmJJBpkZJDhR/2cl10TXpzpKhpZAOTo2plKNbWVgAJ/NOmBGgnBd0BOTC+T5NVBold
+         Rlw9HZF1Nl08AG8vGHmLxuv7xGjbC5TROiaPRjhg7fE9KGTaxOZA1vP94N8D0nnIejc/
+         BHkBjQy7kubOoUs2Oc4W7DiX72c2BVUY1PMCsHOBDkDJH1I1FX2a5y3Rh2xR9OJag24p
+         dCzQ==
+X-Gm-Message-State: AJIora9rc0BnIZNcmnOmUAcULoNe7k5nmq6fQz1YmBEWOA4CWq5aE6V2
+        IjjeQibrjZHzljy7yVp9kATAkw==
+X-Google-Smtp-Source: AGRyM1voJaQBp7UiP0HnDcWi/MPZsRbjZHLfBOaFNRkC/vvTFrkjVyWxp12IzNFGk7inIbdvCOYNpg==
+X-Received: by 2002:a17:903:2c7:b0:16c:ebf6:db22 with SMTP id s7-20020a17090302c700b0016cebf6db22mr4687400plk.16.1658109464837;
+        Sun, 17 Jul 2022 18:57:44 -0700 (PDT)
+Received: from localhost ([122.171.18.80])
+        by smtp.gmail.com with ESMTPSA id w75-20020a627b4e000000b005251f4596f0sm7900487pfc.107.2022.07.17.18.57.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Jul 2022 18:43:23 -0700 (PDT)
-Received: (nullmailer pid 1667782 invoked by uid 1000);
-        Mon, 18 Jul 2022 01:43:21 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     wenst@chromium.org, angelogioacchino.delregno@collabora.com,
-        Tomasz Figa <tfiga@chromium.org>, devicetree@vger.kernel.org,
+        Sun, 17 Jul 2022 18:57:44 -0700 (PDT)
+Date:   Mon, 18 Jul 2022 07:27:42 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Manivannan Sadhasivam <mani@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, xia.jiang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        nicolas.dufresne@collabora.com,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        linux-kernel@vger.kernel.org, maoguang.meng@mediatek.com,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        kyrie wu <kyrie.wu@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org
-In-Reply-To: <20220716093408.29734-2-irui.wang@mediatek.com>
-References: <20220716093408.29734-1-irui.wang@mediatek.com> <20220716093408.29734-2-irui.wang@mediatek.com>
-Subject: Re: [V5,1/8] dt-bindings: mediatek: Add mediatek,mt8195-jpgdec compatible
-Date:   Sun, 17 Jul 2022 19:43:21 -0600
-Message-Id: <1658108601.891612.1667781.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [RFC PATCH 0/4] cpufreq: qcom-hw: Move clocks to CPU node
+Message-ID: <20220718015742.uwskqo55qd67jx2w@vireshk-i7>
+References: <cover.1657695140.git.viresh.kumar@linaro.org>
+ <20220715160933.GD12197@workstation>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220715160933.GD12197@workstation>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Jul 2022 17:34:01 +0800, Irui Wang wrote:
-> From: kyrie wu <kyrie.wu@mediatek.com>
+On 15-07-22, 21:39, Manivannan Sadhasivam wrote:
+> The clocks defined in the devicetree currently (CXO, GPLL) are the source
+> clocks of the EPSS block (cpufreq-hw). And EPSS will supply clock and
+> voltage through other blocks to the CPU domains. Even though the end
+> consumer of the source clocks are the CPUs, those clocks are not
+> directly reachign the CPUs but instead through some other blocks in EPSS.
+
+Fair enough, o these clocks should be present in the cpufreq-hw node,
+as there were.
+
+> Initially I was temped to add cpufreq-hw as the clock provider and have
+> it source clocks to the individual CPUs. This somehow models the clock
+> topology also
+
+Right.
+
+> , but after having a discussion with Bjorn we concluded that
+> it is best to leave it as it is.
 > 
-> Add mediatek,mt8195-jpgdec compatible to binding document.
-> 
-> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
-> Signed-off-by: irui wang <irui.wang@mediatek.com>
-> 
-> ---
->  .../media/mediatek,mt8195-jpegdec.yaml        | 160 ++++++++++++++++++
->  1 file changed, 160 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
-> 
+> The main issue that Bjorn pointed out was the fact that the clocks coming
+> out of EPSS are not exactly of the same frequency that was requested.
+> EPSS will do its own logic to generate the clocks to the CPUs based on
+> the input frequency vote and limits.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The OPP tables, which are part of the CPU nodes, mentions clock rates.
+Are these values for the cxo/gpll clocks or the clock that reaches the
+CPUs? I believe the latter. The DT is not really complete if the CPU
+node mentions the frequency, but not the source clock. It works for
+you because you don't want to do clk_set_rate() in this case, but then
+it leaves other frameworks, like OPP, confused and rightly so.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml:98:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
-./Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml:102:9: [error] syntax error: expected <block end>, but found '<scalar>' (syntax)
-./Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml:113:17: [warning] wrong indentation: expected 0 but found 16 (indentation)
+Normally, there is always a difference in what the OPP table contains
+as frequency value and what the hardware programs, mostly it is small
+though. It shouldn't prevent us from having the hierarchy clearly
+defined in the DT.
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.example.dts'
-Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml:102:9: did not find expected key
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml:102:9: did not find expected key
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml: ignoring, error parsing file
-make: *** [Makefile:1404: dt_binding_check] Error 2
+Based on your description, I think it would be better to make
+cpufreq-hw a clock provider and CPUs the consumer of it. It would then
+allow the OPP core to not carry the hack to make it all work.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+viresh
