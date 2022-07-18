@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55E3E577F98
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD153577FA6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:29:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233967AbiGRK0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 06:26:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38530 "EHLO
+        id S234223AbiGRK3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 06:29:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229815AbiGRK0F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:26:05 -0400
+        with ESMTP id S234044AbiGRK3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:29:47 -0400
 Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6B3E1A051
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 03:26:02 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id r6so14608678edd.7
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 03:26:02 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C0F1AF32
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 03:29:46 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id k30so14602348edk.8
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 03:29:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=dKtWhaBR01kOs5t5WfXdpceIgYotqV0N9c2snMDzhss=;
-        b=eCELGXkjvHTpXtFiONS0ZIaKrUr/5CzauZxqEEyEy3D7eaDEYpm1ZjZaMlh3e5KV17
-         0G/l0w2T63cSaQca04XnbyujUgSu71fNjvVIYf28TCD5JrkykpvdHk1yORyUPlczPOF7
-         Yvby5XaoYaaTBMTm/i2TS38nwb3haopn2n73FTpmVw1SoIP5iGwhEnWtAAaZ8lPJ3Dd/
-         xL9ldwA0LxH/CGxYxgFSxE1N+hOozkGjjIEYcWZ1j4YECHnRFQm7ezRHQ1A2Li7FPO0w
-         rtAtDc/LqCoQgrdfrxnHG0z8+axPgFjzhaT2nhP9stwoD+GYQR0zrJDyLIi4l9WPVqvu
-         4Hzg==
+        bh=sKM5awpHr7el0GeuVr26/+wwtxAG0q1PHjMwBcOjjts=;
+        b=rutmtYgUq+Ba2+Bv0EZdlEInayTULpWKgLgK1cRDVT4/jmKTMFpDnX0mr/Yt8qFu24
+         RASSdB8BiGTWF6uixdUvJTm1k3kS5IizXE0PZEHuHyJG+WwZrmLqPrfMgeGX3DoumiqF
+         ESargpIDPjE9pFbcu8JMw+TL7trxLKNn2UYsNR+F4IKDV2hNBmQY7KF1zo3thw5vJH3N
+         JqMzS1zRgjCUkJnVi2hpgZ8Yc01fai7/a4Do3+yH94njuU1w6irek2xiXGAe9BY0TREJ
+         DThjBP3p9XC45B1se7KotMA3rFKP0l77CzfU3fme1FBHrKwk3aSpjvATg7zhel1sMyk5
+         J0XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=dKtWhaBR01kOs5t5WfXdpceIgYotqV0N9c2snMDzhss=;
-        b=VfrTQGKGcjeVxj78hamHsZrUPkBJPVTWwYZvnjoYEpgDX7Ft2VZGCKznZnFjlIXcgq
-         89A7C3Y3YO7Y14hPdLCoQa3SL0780m7bZtHdT5AdDcBe9kWUEhsl5+7p/GUIfUO2SDKy
-         HDDbPxlzqqMrCO/4lEzDrsDtyjlxcyHe9kR09SDlPzS8GK7rKa00pjMnaoblDD4JerwX
-         HKtrDRYiGPJX9FO7/zmQ2VH+kJyHCfvEKgOQL3dfIsFJZZiH7vG56qmRIS6o5Eq5NqXm
-         CSUdFw7RnwXN0HLvlgU3HT3AtQyJdFicUVbP4ElK0aFf3oU4Jgpz9DblXVr0X9VH2k6M
-         e94A==
-X-Gm-Message-State: AJIora+/82f3InL3++0ZS2XMSiEzdMLgoUptz8HYqDA2cL0aQ7tJPgOv
-        1y0ov9KRfKKx2yOIBhJWWqCZhrWgFEFPQQUMR7tipQ==
-X-Google-Smtp-Source: AGRyM1vt3WBOt5SUOQM8JApj4R0R+2atCLHZPl1/KIqBj7FYHEjjfhpRUAq+5DBM/3R/CqQ+qxJnWSE+o7moxkfGnB0=
-X-Received: by 2002:a05:6402:3307:b0:43a:826c:d8b4 with SMTP id
- e7-20020a056402330700b0043a826cd8b4mr36812978eda.32.1658139961475; Mon, 18
- Jul 2022 03:26:01 -0700 (PDT)
+        bh=sKM5awpHr7el0GeuVr26/+wwtxAG0q1PHjMwBcOjjts=;
+        b=1U4nAQKxkcTnf93m1nczCUAhtbHszFJIiQ49mn7MwO+ws+lJyv/Uf4jxrVfJXt0x94
+         DkbxK7ms9RYKkuB/0YKjEqPnrynhQImTros/+MJDbGoZlPiP/D6wiv9+/V6T2/44Nubl
+         MkNw58B+G2QVDDV95gM2fL/X4RLvyYTzeBzEGyS82kBk4hX4CnUtrf4njYumjSqZ9H8n
+         jEDKUKiH639ceeFzd3kaINFhpHZ84CzWHTq5X9LavNw16BDCE7PHGDiIyIZsuNkhXzIW
+         fMpMdi7NtGheYYpBQWyT4FZN5QaMdNhj6kJmQNx+6yEjFYO4ZkGA68pqe149mLr2RVXW
+         6ivQ==
+X-Gm-Message-State: AJIora/CK0ytKbnDHehbfaQu31oV195Q2PNL21aKVJLCMw4jISC63iq+
+        yUtykulYl0G7/593t2kODVbLM0XLq6UTFUNnhpZZnw==
+X-Google-Smtp-Source: AGRyM1sQO2Si4Wai7llTNN0MLodyhtS3wCMM8NJdZjyYvK1VZyWIItNJRxT6FoP0UfHh060I+PUOTz/DTjycN3mTVz0=
+X-Received: by 2002:aa7:c0c4:0:b0:43a:20cf:3c68 with SMTP id
+ j4-20020aa7c0c4000000b0043a20cf3c68mr36444723edp.172.1658140185369; Mon, 18
+ Jul 2022 03:29:45 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220713131421.1527179-1-nuno.sa@analog.com> <YtAvHMmGay/3HACZ@smile.fi.intel.com>
  <e0638b02bdcd0ee452846b86ce83458173912ef1.camel@gmail.com>
  <YtBnIxh6rDJMwpEm@smile.fi.intel.com> <5d9f9272334177e3ea864467f50095a8709bc0d2.camel@gmail.com>
  <YtFYFbP+xqAUUHZa@smile.fi.intel.com> <88114aeb10f7316cf3c1396179949f2fc351ad8f.camel@gmail.com>
- <CAMRc=Mdz+8yfrATQPJ=uY33k2Dwt29g6vZbP3mSjkB_VAzP5+A@mail.gmail.com>
-In-Reply-To: <CAMRc=Mdz+8yfrATQPJ=uY33k2Dwt29g6vZbP3mSjkB_VAzP5+A@mail.gmail.com>
+ <CAMRc=Mdz+8yfrATQPJ=uY33k2Dwt29g6vZbP3mSjkB_VAzP5+A@mail.gmail.com> <7aa6f7bc6c528fda0649888d282aef39f1d055d4.camel@gmail.com>
+In-Reply-To: <7aa6f7bc6c528fda0649888d282aef39f1d055d4.camel@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 18 Jul 2022 12:25:50 +0200
-Message-ID: <CACRpkda3dWd=MMA=5_eaqmhJQDgMem24maGWZ+W2A+AiFhrQtw@mail.gmail.com>
+Date:   Mon, 18 Jul 2022 12:29:34 +0200
+Message-ID: <CACRpkdaZTRwvWJkgSOaCE-281Mq5KXGS9pDaUKuF7O0Jje14CA@mail.gmail.com>
 Subject: Re: [PATCH 0/4] add support for bias pull-disable
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>,
+To:     =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
         ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
@@ -77,29 +77,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 9:31 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
-> On Fri, Jul 15, 2022 at 2:19 PM Nuno S=C3=A1 <noname.nuno@gmail.com> wrot=
-e:
+On Mon, Jul 18, 2022 at 9:50 AM Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-> Ideologically I don't have anything against adding this flag (except
+> > right in that the character device is the only way to set this mode
+> > ATM and. However I would like to see the first user added together
+> > with the series because adding features nobody uses in the mainline
+> > kernel tree is generally frowned upon and it's also not clear that
+> > anyone actually wants to use it.
+>
+> Hmm, you mean something like a system's devicetree needing this flag?
+> If so, I don't really have such a thing. I did all my testing on a rpi
+> using overlays.
 
-Ugh that sounds political :)
+I would assume a driver with a .set_config() responding to this flag?
 
-> that it should be called BIAS_DISABLE not PULL_DISABLE IMO). Nuno is
-> right in that the character device is the only way to set this mode
-> ATM and. However I would like to see the first user added together
-> with the series because adding features nobody uses in the mainline
-> kernel tree is generally frowned upon and it's also not clear that
-> anyone actually wants to use it.
+I actually think some gpio drivers using pin control as back-end
+such as
+drivers/pinctrl/bcm/pinctrl-bcm2835.c
+will do this out-of-the box after this patch but I may be wrong.
 
-I agree: makers and tinkerers definitely need this flag and it will further
-emplasize the transition to the character device and to the v2 character
-device interface (which, by the way, is looking awesome, especially when
-taken into the picture the libgpiod changes and the new language
-bindings for libgpiod).
-
-So we need to add this to become ever more appealing for one-offs
-such as industrial control.
+To me supporting this on the Rpi driver is a good enough demonstrator
+of the usefulness.
 
 Yours,
 Linus Walleij
