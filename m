@@ -2,57 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C88E6578D16
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 23:50:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8214578D2C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 00:00:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233585AbiGRVuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 17:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41762 "EHLO
+        id S236386AbiGRWAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 18:00:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233484AbiGRVuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 17:50:20 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4088D2CDFB;
-        Mon, 18 Jul 2022 14:50:19 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id r70so9282041iod.10;
-        Mon, 18 Jul 2022 14:50:19 -0700 (PDT)
+        with ESMTP id S234452AbiGRWAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 18:00:17 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5C030569;
+        Mon, 18 Jul 2022 15:00:16 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id r70so9298051iod.10;
+        Mon, 18 Jul 2022 15:00:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AcSlO1npiUHLzg6tvtDZkGhWbfqQ2WJHbMcDnY+OpNg=;
-        b=CtFWfEGb/pPO3hBW+btI9GKxgQuRvWV5vdg8tE4wTx8JixOniNTEzYUA/FC0bLQW1F
-         kZzFEGcJYto9JASKJNMDptgrrW7NdzBWApL4/F2K6BHBGSbwXj0lsMCvLejQLWHVVhuY
-         JzybV+8kD71qzRYnIyfWcKovf0eWU/PG9AGa5ZYu4twuzUPEZ0CEXl9HGqi/nUdkqNvi
-         EpaVjMXkV2GkgJKe8tkUb338oOAYJLFoMKlOujE6At9BZKgpaDE2H1Zu6CE0uUxJyaOd
-         mGiVzbNSvdFT4QpE5TrQsbWCDW0m+c/acR8OiHJl7D5rNFQhGN1Yq1UXklfr7wWmg/Lc
-         Ol5g==
-X-Gm-Message-State: AJIora+LeabqZT2BK0LRI5SiX3Zt7LMuY5OhFmPy66Kk53fATM9IPF/w
-        dWiXOxjPt0lf2BNcAgdCHw==
-X-Google-Smtp-Source: AGRyM1stkhiJ8k9ndMJyxrUUTCQXY14eLka7jRMIg9uosRhBInKLtHR9Dk/HIAioEh2zvIDJ1aBHmQ==
-X-Received: by 2002:a05:6602:14d:b0:67b:9536:680f with SMTP id v13-20020a056602014d00b0067b9536680fmr13940947iot.202.1658181018441;
-        Mon, 18 Jul 2022 14:50:18 -0700 (PDT)
+        bh=gIUyF/ORGQjWXNvT5wIOVjajXgGpEkbk6f/tl0gQiac=;
+        b=di179KuRgOE3ptTOBICiYzoBzUoVyGF9NcDnAWKlJ34a3iqCe93L5MVLhfVGXDplcv
+         jQiviGqfADQCBsd5sNR40P5VXco+51oEP7/l96m1RWCCRhvC6M4EJp60E3uNtao9B+wA
+         x65ZBP19n3zU5x2ku2rO0vHRWJd//IdeBb6Odeorc3dzLOP1i8JFSl5KCEbYAa8czmMZ
+         t2Pt/NHUL1093wk95oHAtugkFByX8iqJYjCfByFFdFP391ICgCqViiWt/luytfTdvwIA
+         7aA7YU6oiuAs4D0vk1UJzSuBXR8wZeBDEKnoLBX8UqyS3AkBqN+W1Am8cYRLypIS5U+N
+         /eEg==
+X-Gm-Message-State: AJIora9SqI/5In3vPbAFmo+b4Tg8RGwirBzBn56cCvKA9YK3Qhv3XvmD
+        aUO4Y10dPA3w5NioUtw+xg==
+X-Google-Smtp-Source: AGRyM1sUfx9PknCBXVyopJZHm5bZnR/LgT1hX56ktRZLDXFdm584csRgriFVCGgWxWMs/6JjxIxhVA==
+X-Received: by 2002:a05:6602:2b84:b0:67b:d178:38bb with SMTP id r4-20020a0566022b8400b0067bd17838bbmr11138408iov.120.1658181615882;
+        Mon, 18 Jul 2022 15:00:15 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q18-20020a02b052000000b00339c3906b08sm5928218jah.177.2022.07.18.14.50.17
+        by smtp.gmail.com with ESMTPSA id 7-20020a921307000000b002dcafb975c6sm5175816ilt.82.2022.07.18.15.00.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 14:50:18 -0700 (PDT)
-Received: (nullmailer pid 3625096 invoked by uid 1000);
-        Mon, 18 Jul 2022 21:50:16 -0000
-Date:   Mon, 18 Jul 2022 15:50:16 -0600
+        Mon, 18 Jul 2022 15:00:15 -0700 (PDT)
+Received: (nullmailer pid 3640548 invoked by uid 1000);
+        Mon, 18 Jul 2022 22:00:12 -0000
+Date:   Mon, 18 Jul 2022 16:00:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Joakim Zhang <qiangqing.zhang@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] dt-bindings: net: fsl,fec: Add nvmem-cells /
- nvmem-cell-names properties
-Message-ID: <20220718215016.GA3615606-robh@kernel.org>
-References: <20220715080640.881316-1-alexander.stein@ew.tq-group.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Kent Gustavsson <kent@minoris.se>,
+        Tomislav Denis <tomislav.denis@avl.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Beniamin Bia <beniamin.bia@analog.com>,
+        Patrick Vasseur <patrick.vasseur@c-s.fr>,
+        Vladimir Barinov <vladimir.barinov@cogentembedded.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Philippe Reynes <tremyfr@yahoo.fr>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Akinobu Mita <akinobu.mita@gmail.com>,
+        Alexandru Lazar <alazar@startmail.com>,
+        Oskar Andero <oskar.andero@gmail.com>,
+        =?UTF-8?Q?M=C3=A5rten_Lindahl?= <martenli@axis.com>,
+        Bogdan Pricop <bogdan.pricop@emutex.com>,
+        Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, linux-spi@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [RFC PATCH] dt-bindings: iio: adc: use spi-peripheral-props.yaml
+Message-ID: <20220718220012.GA3625497-robh@kernel.org>
+References: <20220715095302.214276-1-krzysztof.kozlowski@linaro.org>
+ <20220716192604.21a1d835@jic23-huawei>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220715080640.881316-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20220716192604.21a1d835@jic23-huawei>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,41 +85,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 10:06:40AM +0200, Alexander Stein wrote:
-> These properties are inherited from ethernet-controller.yaml.
-> This fixes the dt_binding_check warning:
-> imx8mm-tqma8mqml-mba8mx.dt.yaml: ethernet@30be0000: 'nvmem-cell-names',
-> 'nvmem-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
+On Sat, Jul 16, 2022 at 07:26:04PM +0100, Jonathan Cameron wrote:
+> On Fri, 15 Jul 2022 11:53:02 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> Changes in v2:
-> * Add amount and names of nvmem-cells (copied from ethernet-controller.yaml)
+> > Instead of listing directly properties typical for SPI peripherals,
+> > reference the spi-peripheral-props.yaml schema.  This allows using all
+> > properties typical for SPI-connected devices, even these which device
+> > bindings author did not tried yet.
+> > 
+> > Remove the spi-* properties which now come via spi-peripheral-props.yaml
+> > schema, except for the cases when device schema adds some constraints
+> > like maximum frequency.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > ---
+> > 
+> > This is an RFC with only some files changed, as I am still not sure of
+> > benefits for typical case - device node has just spi-max-frequency and
+> > nothing more.  I still find useful to reference the schema, but maybe I
+> > am missing something?
+> > 
+> > Before doing wide-tree cleanup like this, I would be happy to receive
+> > some feedback whether this makes sense.
 > 
->  Documentation/devicetree/bindings/net/fsl,fec.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> Hi Krzysztof,
 > 
-> diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
-> index daa2f79a294f..b5b55dca08cb 100644
-> --- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
-> +++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
-> @@ -121,6 +121,14 @@ properties:
->  
->    mac-address: true
->  
-> +  nvmem-cells:
-> +    maxItems: 1
-> +    description:
-> +      Reference to an nvmem node for the MAC address
-> +
-> +  nvmem-cell-names:
-> +    const: mac-address
+> This has the side effect of allowing spi-cpol / spi-cpha for devices
+> where they weren't previously allowed by the binding.  A typical device
+> only supports a subset of combinations of those.
+> 
+> I'm not clear whether these should always be allowed (e.g. allow for inverters
+> etc in the path) or whether we should be enforcing the "correct"
+> settings for devices assuming they are directly connected.
+> 
+> Currently we have a bunch of bindings that are documenting the allowed
+> flexibility - including cases where only particular combinations of these
+> settings are allowed.
+> 
+> So we could either:
+> 1) Note that we've been doing it wrong and the binding should not enforce
+>    these constraints so remove them.
 
-Sorry, steered you wrong on this. I didn't realize 
-ethernet-controller.yaml already defined these. You just need 
-'unevaluatedProperties: false' instead additionalProperties.
+I'd lean towards this.
 
-I'm not sure what the FIXME for the additionalProperties is all about 
-though.
+> 2) Add explicit spi-cpol: false statements etc the drivers where they
+>    are not allowed.
+
+3) Drop spi-cpol / spi-cpha from spi-peripheral-props.yaml. It's purpose 
+is to collect all possible SPI controller properties that are per child 
+node. Whereas we've said spi-cpol / spi-cpha are device specific 
+properties.
 
 Rob
