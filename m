@@ -2,119 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2CF15786D7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 17:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 797AC57861D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 17:18:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235199AbiGRP4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 11:56:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36260 "EHLO
+        id S235248AbiGRPSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 11:18:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235076AbiGRP4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 11:56:50 -0400
-X-Greylist: delayed 2640 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 18 Jul 2022 08:56:48 PDT
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E70CA2A41F;
-        Mon, 18 Jul 2022 08:56:48 -0700 (PDT)
-Received: from [167.98.27.226] (helo=[10.35.4.171])
-        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1oDSQ9-002C9w-8q; Mon, 18 Jul 2022 16:12:29 +0100
-Message-ID: <7c68e645-efd7-c48c-77aa-9aa607c77033@codethink.co.uk>
-Date:   Mon, 18 Jul 2022 16:12:28 +0100
+        with ESMTP id S235245AbiGRPSV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 11:18:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB5A26AEA;
+        Mon, 18 Jul 2022 08:18:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BABE5612DD;
+        Mon, 18 Jul 2022 15:18:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02F0CC341CF;
+        Mon, 18 Jul 2022 15:18:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658157500;
+        bh=fS3JIwyGns7i79HfYwRxvlzkJBx4UPKOk1rnz8gjF/k=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rE6MPaYA9jDQhhTfnFV8uE3F/TWVIiFe9JTPIQu6gwLyutvho1fG53u9Y1G0CdCLV
+         gZyj1P2RQ+2ttJX1jraHEz4M0DNzWDL/7ZEdmtNY1+9Kj7JLTie7QrRQjULuSUzeA9
+         Jp/wjXRpgNcPcPOiLI4d4Kr0qT0ZrUysWpjnkwKcejs6Fqj7C5k88mrsgDaVrQovT9
+         NVsXv+DbZctv39K8Hl6I0Uka2Y4f6tPi/dzyiy2tmKBawiks9j3ZMwDk6WEarjnGn0
+         J2Y61jiy1jBdbbZIFHKfhfR9q1sh6UySqu2WDM9Lyq6d1yjDH4ACsUXZBHKrMXZ4jI
+         7S1CdcOEYzuWw==
+Received: by mail-vk1-f170.google.com with SMTP id c185so4470602vkh.12;
+        Mon, 18 Jul 2022 08:18:19 -0700 (PDT)
+X-Gm-Message-State: AJIora/vO6x+Q5pW36wy0KRDlQSHcPhgmqFlZp59pDrPaQW0VrdqnIto
+        LJ2UJH2+MeuuRNy3L2eEF5e055N2YU20oQksWw==
+X-Google-Smtp-Source: AGRyM1tEjgdtAkSBzJAfryPxqYha/qC7WNu+ptkZfjRlYpx7O2eXyrTO4QciZlnhnDo9upOUQov+it/yDVLzU7bVIfs=
+X-Received: by 2002:a1f:1ec8:0:b0:36c:643a:e985 with SMTP id
+ e191-20020a1f1ec8000000b0036c643ae985mr9537772vke.14.1658157498917; Mon, 18
+ Jul 2022 08:18:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v5 03/13] dt-bindings: dma: dw-axi-dmac: extend the number
- of interrupts
-Content-Language: en-GB
-To:     Conor Dooley <mail@conchuod.ie>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20220624111325.96478-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220624111325.96478-1-krzysztof.kozlowski@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 18 Jul 2022 09:18:07 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKHviWcynOu5AYJxtJ5xbQU6cU+r6tHy=ao+Wt4mE1aVQ@mail.gmail.com>
+Message-ID: <CAL_JsqKHviWcynOu5AYJxtJ5xbQU6cU+r6tHy=ao+Wt4mE1aVQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: leds: lp50xx: fix LED children names
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Pavel Machek <pavel@ucw.cz>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Niklas Cassel <niklas.cassel@wdc.com>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Rob Herring <robh@kernel.org>
-References: <20220705215213.1802496-1-mail@conchuod.ie>
- <20220705215213.1802496-4-mail@conchuod.ie>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <20220705215213.1802496-4-mail@conchuod.ie>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Dan Murphy <dmurphy@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2022 22:52, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> The Canaan k210 apparently has a Sysnopsys Designware AXI DMA
-> controller, but according to the documentation & devicetree it has 6
-> interrupts rather than the standard one. Support the 6 interrupt
-> configuration by unconditionally extending the binding to a maximum of
-> 8 per-channel interrupts thereby matching the number of possible
-> channels.
-
-I think you can still configure it to produce a single interrupt
-even if there are per-channel interrupts available. This is from
-my reading of the driver a little while ago so may not be totally
-correct now.
-
-Having per-channel irqs might be useful in the future, but as above
-I think it'll require the driver to be updated to do it (and possibly
-some sort of detection)
-
-
-> Link: https://canaan-creative.com/wp-content/uploads/2020/03/kendryte_standalone_programming_guide_20190311144158_en.pdf #Page 51
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+On Fri, Jun 24, 2022 at 5:13 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> The lp50xx LEDs expects to have single-color LED children with unit
+> addresses.  This is required by the driver and provided by existing
+> DTSes.  Fix the binding to match actual usage.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Fixes: dce1452301e7 ("dt: bindings: lp50xx: Introduce the lp50xx family of RGB drivers")
 > ---
->   .../devicetree/bindings/dma/snps,dw-axi-dmac.yaml          | 7 ++++++-
->   1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> index 4324a94b26b2..67aa7bb6d36a 100644
-> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> @@ -34,7 +34,12 @@ properties:
->         - const: axidma_apb_regs
->   
->     interrupts:
-> -    maxItems: 1
-> +    description:
-> +      If the IP-core synthesis parameter DMAX_INTR_IO_TYPE is set to 1, this
-> +      will be per-channel interrupts. Otherwise, this is a single combined IRQ
-> +      for all channels.
-> +    minItems: 1
-> +    maxItems: 8
->   
->     clocks:
->       items:
+>  Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> index f12fe5b53f30..c274a10bbde6 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> @@ -65,8 +65,14 @@ patternProperties:
+>            for the child node.  The LED modules can either be used stand alone
+>            or grouped into a module bank.
+>
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+>      patternProperties:
+> -      "(^led-[0-9a-f]$|led)":
+> +      "^led@[0-9a-f]+$":
 
+Looks like you forgot to update the example. Now failing with
+'unevaluatedProperties' fixed:
 
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/leds/leds-lp50xx.example.dtb:
+led-controller@14: multi-led@1: Unevaluated properties are not allowed
+('led-0', 'led-1', 'led-2' were unexpected)
+ From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/leds/leds-lp50xx.example.dtb:
+led-controller@14: multi-led@2: Unevaluated properties are not allowed
+('#size-cells', 'led-6', 'led-7', 'led-8' were unexpected)
+ From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/leds/leds-lp50xx.example.dtb:
+led-controller@14: multi-led@2:#size-cells:0:0: 0 was expected
+ From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
 
-https://www.codethink.co.uk/privacy.html
+Rob
