@@ -2,146 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BF90577D40
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 10:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F013577D4A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 10:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233635AbiGRIMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 04:12:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53708 "EHLO
+        id S233721AbiGRIOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 04:14:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232937AbiGRIMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 04:12:43 -0400
-Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BC68512767;
-        Mon, 18 Jul 2022 01:12:42 -0700 (PDT)
-Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
-        by maillog.nuvoton.com (Postfix) with ESMTP id BE51A1C811C8;
-        Mon, 18 Jul 2022 16:12:41 +0800 (CST)
-Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 18
- Jul 2022 16:12:41 +0800
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS03.nuvoton.com
- (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Mon, 18 Jul
- 2022 16:12:41 +0800
-Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
- (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
- Transport; Mon, 18 Jul 2022 16:12:41 +0800
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id 58E7563A20; Mon, 18 Jul 2022 11:12:40 +0300 (IDT)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
-        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
-        <benjaminfair@google.com>, <broonie@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <openbmc@lists.ozlabs.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v1 3/3] spi: npcm-fiu: Add NPCM8XX support
-Date:   Mon, 18 Jul 2022 11:11:46 +0300
-Message-ID: <20220718081146.256070-4-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220718081146.256070-1-tmaimon77@gmail.com>
-References: <20220718081146.256070-1-tmaimon77@gmail.com>
+        with ESMTP id S233580AbiGRIOJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 04:14:09 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813F37673
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 01:14:07 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id h17so15936317wrx.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 01:14:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=2omM97dYIoicKuEdzJAVf4kqUWVFvUq+yqaYGyKWESQ=;
+        b=mVxABh+bQ8W1yMDK8n/QVJ2AE2Qhe3B9nadSu3nKxdWgwKW2mCFsFl76g/OHKKKF+e
+         REldvqDm3TQ9J8LP6G343CMgS2SG+D36VI7PRtdHCWMBpeoz7kyhLI0kNqwowxY9RdBE
+         U8AeYrFc2r4Kq9bVx3dCxzARk/Pfeja9dQY7I1ygMjExPMqz1YVvOZdgNnWoXR+pbZWp
+         6EFNR2eZ3GuHB041BvmEAEik9jG218XXgWFcjbjcNX4cWGvK/OqBhDLTsPiFR6SQs2UF
+         8wFfZyO/Jfsb5/LZEbGMsDdHm2TexBMX9b/giStkjEFaW3XxtaWeFJRIuUp6/93s7LwV
+         DmKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=2omM97dYIoicKuEdzJAVf4kqUWVFvUq+yqaYGyKWESQ=;
+        b=kgtjvFFGhJ4jIN5UICL/pjOvFtB0Zg5o+jwnUncqGGaWO8zFl/fOqo5NbUa0iMdG4k
+         K4rWPf8Jx3PzjWqrgv/cqdN71asu2Je2o5h7DTqYhKzNYsQu5+VIPDTb32YhaQNFESHr
+         VUCaZkmCaUzGP768guY5lTyUrIEEUN8KLdLB6XPNBrDg7AteocRmKBMxXrWOE2DPgFBn
+         hZlXRDIUiTCwwxdtC5Edc0rzPWjW2kXfdG4JjNmaQb4l6ZbmUMg0T3NhW2GG324J40sd
+         m69Mma5gVhu+sY2qPGAXYCYDuaGEd06fnteUYiwJKDHm7xaseeaY2ltsbGZqyWj5yWS2
+         AiQQ==
+X-Gm-Message-State: AJIora9dxVuf1HzOZrYehJXvnJ/xTTBNWrU5lCSeTME7C1wxj1keJuz/
+        151T6ZvHS16AdBI0wz0zzQU+8Q==
+X-Google-Smtp-Source: AGRyM1ukjuTij8T/BXmDxEHv9q604qxIWdB2h6s4eJPjXyAyOWXh05brRbNOYm9vaw+73TuPuP5CGw==
+X-Received: by 2002:a5d:5451:0:b0:21d:2295:6a05 with SMTP id w17-20020a5d5451000000b0021d22956a05mr21528425wrv.302.1658132046025;
+        Mon, 18 Jul 2022 01:14:06 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id p13-20020adff20d000000b0020e6ce4dabdsm10194268wro.103.2022.07.18.01.14.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 01:14:05 -0700 (PDT)
+Date:   Mon, 18 Jul 2022 09:14:03 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        "katie.morris@in-advantage.com" <katie.morris@in-advantage.com>
+Subject: Re: [PATCH v13 net-next 0/9] add support for VSC7512 control over SPI
+Message-ID: <YtUWS8N2p1Ej/PeD@google.com>
+References: <20220705204743.3224692-1-colin.foster@in-advantage.com>
+ <20220708200918.131c0950@kernel.org>
+ <YsvWh8YJGeJNbQFB@google.com>
+ <20220711112116.2f931390@kernel.org>
+ <YszYKLxNyuLdH35Q@COLIN-DESKTOP1.localdomain>
+ <20220712220856.qbfyhll5o7ygloka@skbuf>
+ <YtGcdGj6yi546oWk@euler>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YtGcdGj6yi546oWk@euler>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding FIU NPCM8XX support to NPCM FIU driver.
-NPCM8XX FIU supports four controllers.
+On Fri, 15 Jul 2022, Colin Foster wrote:
 
-As part of adding NPCM8XX support:
-- Add NPCM8XX specific compatible string.
-- Using an internal burst configuration register instead of a GCR
-  register.
-- Support FIU1 controller.
+> On Tue, Jul 12, 2022 at 10:08:57PM +0000, Vladimir Oltean wrote:
+> > On Mon, Jul 11, 2022 at 07:10:48PM -0700, Colin Foster wrote:
+> > > On Mon, Jul 11, 2022 at 11:21:16AM -0700, Jakub Kicinski wrote:
+> > > > On Mon, 11 Jul 2022 08:51:35 +0100 Lee Jones wrote:
+> > > > > > Can this go into net-next if there are no more complains over the
+> > > > > > weekend? Anyone still planning to review?  
+> > > > > 
+> > > > > As the subsystem with the fewest changes, I'm not sure why it would.
+> > > > 
+> > > > Yeah, just going by the tag in the subject. I have no preference,
+> > > > looks like it applies cleanly to Linus'.
+> > > > 
+> > > > > I'd planed to route this in via MFD and send out a pull-request for
+> > > > > other sub-system maintainers to pull from.
+> > > > > 
+> > > > > If you would like to co-ordinate it instead, you'd be welcome to.
+> > > > > However, I (and probably Linus) would need a succinct immutable branch
+> > > > > to pull from.
+> > > > 
+> > > > Oh, that'd be perfect, sorry, I didn't realize there was already a plan.
+> > > > If you're willing to carry on as intended, please do.
+> > > > 
+> > > > Colin if there is another version please make a note of the above
+> > > > merging plan in the cover letter and drop the net-next tag. 
+> > > > Just in  case my goldfish brain forgets.
+> > > 
+> > > I wasn't sure of the plan, but this makes sense to bring it through MFD.
+> > > Fortunately there's enough work for me on the DSA front that there's no
+> > > way that'll land before this merge window - so I have no objection to it
+> > > going any non-net-next path.
+> > > 
+> > > I'll look to Lee as to whether there should be a v14 with the header
+> > > guard addition per Vladimir's review, or whether that should be in a
+> > > future patch set. I'm happy to go either way.
+> > 
+> > From my side, the changes to this patch set can be incremental, I'd be
+> > happy if Lee would take them as is.
+> 
+> Just making sure this hasn't slipped through the cracks. Should I resend
+> this next week (Monday / Tuesday?) with the Reviewed-by tags and switch
+> it to MFD instead of net-next?
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/spi/spi-npcm-fiu.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Not yet please.
 
-diff --git a/drivers/spi/spi-npcm-fiu.c b/drivers/spi/spi-npcm-fiu.c
-index d5b4fe7b9b62..49f6424e35af 100644
---- a/drivers/spi/spi-npcm-fiu.c
-+++ b/drivers/spi/spi-npcm-fiu.c
-@@ -36,6 +36,7 @@
- #define NPCM_FIU_UMA_DR1		0x34
- #define NPCM_FIU_UMA_DR2		0x38
- #define NPCM_FIU_UMA_DR3		0x3C
-+#define NPCM_FIU_CFG			0x78
- #define NPCM_FIU_MAX_REG_LIMIT		0x80
- 
- /* FIU Direct Read Configuration Register */
-@@ -151,6 +152,9 @@
- #define NPCM_FIU_UMA_DR3_RB13		GENMASK(15, 8)
- #define NPCM_FIU_UMA_DR3_RB12		GENMASK(7, 0)
- 
-+/* FIU Configuration Register */
-+#define NPCM_FIU_CFG_FIU_FIX		BIT(31)
-+
- /* FIU Read Mode */
- enum {
- 	DRD_SINGLE_WIRE_MODE	= 0,
-@@ -187,6 +191,7 @@ enum {
- 	FIU0 = 0,
- 	FIU3,
- 	FIUX,
-+	FIU1,
- };
- 
- struct npcm_fiu_info {
-@@ -214,6 +219,21 @@ static const struct fiu_data npcm7xx_fiu_data = {
- 	.fiu_max = 3,
- };
- 
-+static const struct npcm_fiu_info npxm8xx_fiu_info[] = {
-+	{.name = "FIU0", .fiu_id = FIU0,
-+		.max_map_size = MAP_SIZE_128MB, .max_cs = 2},
-+	{.name = "FIU3", .fiu_id = FIU3,
-+		.max_map_size = MAP_SIZE_128MB, .max_cs = 4},
-+	{.name = "FIUX", .fiu_id = FIUX,
-+		.max_map_size = MAP_SIZE_16MB, .max_cs = 2},
-+	{.name = "FIU1", .fiu_id = FIU1,
-+		.max_map_size = MAP_SIZE_16MB, .max_cs = 4} };
-+
-+static const struct fiu_data npxm8xx_fiu_data = {
-+	.npcm_fiu_data_info = npxm8xx_fiu_info,
-+	.fiu_max = 4,
-+};
-+
- struct npcm_fiu_spi;
- 
- struct npcm_fiu_chip {
-@@ -624,6 +644,10 @@ static int npcm_fiu_dirmap_create(struct spi_mem_dirmap_desc *desc)
- 		regmap_update_bits(gcr_regmap, NPCM7XX_INTCR3_OFFSET,
- 				   NPCM7XX_INTCR3_FIU_FIX,
- 				   NPCM7XX_INTCR3_FIU_FIX);
-+	} else {
-+		regmap_update_bits(fiu->regmap, NPCM_FIU_CFG,
-+				   NPCM_FIU_CFG_FIU_FIX,
-+				   NPCM_FIU_CFG_FIU_FIX);
- 	}
- 
- 	if (desc->info.op_tmpl.data.dir == SPI_MEM_DATA_IN) {
-@@ -664,6 +688,7 @@ static const struct spi_controller_mem_ops npcm_fiu_mem_ops = {
- 
- static const struct of_device_id npcm_fiu_dt_ids[] = {
- 	{ .compatible = "nuvoton,npcm750-fiu", .data = &npcm7xx_fiu_data  },
-+	{ .compatible = "nuvoton,npcm845-fiu", .data = &npxm8xx_fiu_data  },
- 	{ /* sentinel */ }
- };
- 
 -- 
-2.33.0
-
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
