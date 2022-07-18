@@ -2,104 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78478578502
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:12:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D75A57851B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233263AbiGROMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 10:12:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37844 "EHLO
+        id S232249AbiGROQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 10:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231547AbiGROMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:12:52 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBA632714C;
-        Mon, 18 Jul 2022 07:12:51 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id h145so9311805iof.9;
-        Mon, 18 Jul 2022 07:12:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=CjYtWWfAKoGBLkN3ePtgZPz8hbvJlD5dayq7LK+HM8c=;
-        b=mCwKTPYZbbdBLeNKCvNtdWJAS8kz0dp2eUmkqK5/YEpHTGlfIDwzKbJmF1OkriN3zc
-         nLU7hZofWtCSkNXp3xaT3sOjHo7XcHP9HZDACxBdiwrteP/xUdiWm3QFaCs1Bd8ABKOC
-         5Fzxy9axUPLNmffHBiJyznEDIgTcjivvcpvCh/hg12hY8dINHEejDkNJcxvIW/rmar66
-         Xq9lZKUuiiVcbnUF5B2yw8+daRbJOOgq4vVjuoixXCVMha6RAhti2o9t9lvWWl93200V
-         sXBoStAGC0Ax+IG/PeD15SB3XoKIwkFl2ODtZftK2jTjM/X1mXvVjhJiYgZnp4C+U2Km
-         nTVA==
-X-Gm-Message-State: AJIora/vIhjEhS/fhyfO9vJxRsRuxveHD+WQPegs7C8+xGkNXto73IFz
-        EJCvE5lsXKZY7xvV/azeOYfldMeiBA==
-X-Google-Smtp-Source: AGRyM1vdc6FYIMZSZdxh3LHKeIA7iTeO8nBZvbxzi60Hlrt2wYs8YOgH55g1NF3Vp4WB4jtfMlecXA==
-X-Received: by 2002:a05:6638:dd1:b0:341:595e:4ef8 with SMTP id m17-20020a0566380dd100b00341595e4ef8mr5884376jaj.26.1658153571163;
-        Mon, 18 Jul 2022 07:12:51 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id x12-20020a92dc4c000000b002dc0d743570sm4864230ilq.43.2022.07.18.07.12.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 07:12:50 -0700 (PDT)
-Received: (nullmailer pid 2879771 invoked by uid 1000);
-        Mon, 18 Jul 2022 14:12:49 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Hui Liu <hui.liu@mediatek.com>
-Cc:     zhiyong.tao@mediatek.com, linux-gpio@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, linus.walleij@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, johnson.wang@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        sean.wang@mediatek.com, srv_heupstream@mediatek.com,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20220718113813.23787-2-hui.liu@mediatek.com>
-References: <20220718113813.23787-1-hui.liu@mediatek.com> <20220718113813.23787-2-hui.liu@mediatek.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mediatek: add pinctrl definition for mt8188
-Date:   Mon, 18 Jul 2022 08:12:49 -0600
-Message-Id: <1658153569.317351.2879770.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S234492AbiGROQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:16:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D754FBF59;
+        Mon, 18 Jul 2022 07:16:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D0FF60A39;
+        Mon, 18 Jul 2022 14:16:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7383DC341C0;
+        Mon, 18 Jul 2022 14:16:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658153765;
+        bh=aLKEXqH+iK0TIbbqnSk+kdHP+hrFwQ1Kd8T8kvQmRiU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=qpyLZyEX+qCdhosZiguYz6Fkw6k8+mA1UaPjdTIeW1OSm2P4VD5/4ZcYxe+MDTplE
+         /rAYVDXhurNNN/zl5hEAJ8/SQ2Ru8B/7yrd3156oRLwtnRg3EuN5X8PN1/j1xuQON8
+         hb1YW3PPHxlt1ZgndPwp5uZwdweMCVumxPwxpQktJOOHTdsh8tect8539E6YAcZcJj
+         NgtipGFq1xlN44poqlyeyxvTRBAj4TaBiZT+WdLIp3fRwUzyO2ItV/Yu6f3MiwcNDu
+         Yri6ojb+N+2FzPDAfWL4j0GS9Nnfrd/yYdiA7DyGmSibZjf3dtLMwcKXgb+ah5dOHy
+         L2B2tt80Bat/g==
+From:   Mark Brown <broonie@kernel.org>
+To:     srinivas.kandagatla@linaro.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, johnson.wang@mediatek.com,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20220715120114.4243-1-johnson.wang@mediatek.com>
+References: <20220715120114.4243-1-johnson.wang@mediatek.com>
+Subject: Re: (subset) [PATCH 1/3] spi: dt-bindings: Add compatible for MediaTek MT8188
+Message-Id: <165815376317.235243.3004661183751772073.b4-ty@kernel.org>
+Date:   Mon, 18 Jul 2022 15:16:03 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Jul 2022 19:38:11 +0800, Hui Liu wrote:
-> From: "Hui.Liu" <hui.liu@mediatek.com>
+On Fri, 15 Jul 2022 20:01:12 +0800, Johnson Wang wrote:
+> This commit adds dt-binding documentation of spi bus for MediaTek MT8188
+> SoC platform.
 > 
-> This commit adds mt8188 compatible node in binding document.
-> 
-> Signed-off-by: Hui.Liu <hui.liu@mediatek.com>
-> ---
->  .../bindings/pinctrl/pinctrl-mt8188.yaml      | 306 ++++++++++++++++++
->  1 file changed, 306 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8188.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied to
 
-yamllint warnings/errors:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pinctrl/pinctrl-mt8188.example.dts:21:18: fatal error: dt-bindings/pinctrl/mt8188-pinfunc.h: No such file or directory
-   21 |         #include <dt-bindings/pinctrl/mt8188-pinfunc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:383: Documentation/devicetree/bindings/pinctrl/pinctrl-mt8188.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1404: dt_binding_check] Error 2
+Thanks!
 
-doc reference errors (make refcheckdocs):
+[1/3] spi: dt-bindings: Add compatible for MediaTek MT8188
+      commit: 0ee0ab0bdab4f9e6754cc6a294e90c46b53f565b
 
-See https://patchwork.ozlabs.org/patch/
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-pip3 install dtschema --upgrade
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Please check and re-submit.
-
+Thanks,
+Mark
