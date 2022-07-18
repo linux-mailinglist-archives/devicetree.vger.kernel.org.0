@@ -2,154 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E24E6578576
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:30:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A9EE57857C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234781AbiGROaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 10:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55768 "EHLO
+        id S233431AbiGROcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 10:32:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234917AbiGROah (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:30:37 -0400
-Received: from netrider.rowland.org (netrider.rowland.org [192.131.102.5])
-        by lindbergh.monkeyblade.net (Postfix) with SMTP id 0BA8D1E3C5
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:30:35 -0700 (PDT)
-Received: (qmail 122695 invoked by uid 1000); 18 Jul 2022 10:30:34 -0400
-Date:   Mon, 18 Jul 2022 10:30:34 -0400
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        gregkh@linuxfoundation.org, tony@atomide.com,
-        felipe.balbi@linux.intel.com, jgross@suse.com,
-        lukas.bulwahn@gmail.com, arnd@arndb.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, openbmc@lists.ozlabs.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] usb: host: npcm7xx: remove USB EHCI host reset
- sequence
-Message-ID: <YtVuildpxcI5By4x@rowland.harvard.edu>
-References: <20220718122922.9396-1-tmaimon77@gmail.com>
- <20220718122922.9396-2-tmaimon77@gmail.com>
+        with ESMTP id S234422AbiGROcu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:32:50 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3584237EC
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:32:46 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id x10so13362167ljj.11
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:32:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gEdQYmEqnlsP0uD7xKRiFLeBFu1VzPoHV+TkuJ6H2ao=;
+        b=SWoaDom9JBWHsN8wgxDlRqIoDnx/Cb4AlkgNgGU447NI7K2FD/z6tz6CWff3nC8TvY
+         f62Ge0qiYdQYJsSr1u+EWUWviRqwk/+scqzDvMwUW4NREU6zEh4AXFfFtHlKdQo7pB8u
+         4EeR10DLWiqRYtoNAL670UFOlHoOPmtUQBmQKXKv46isBbvpB44XuDA0H1yfq1gbb7Wu
+         PVn1Jk/ygTOps6JdSCfvxH4MlxPWl8YMpqtDvuiHjPcgyApriYxxTc5yHz55+GLNGxrF
+         FXmaWfgKlxdKj7dGVetrmpVfSBuQII/47/sQmRanGnQ0OzV4ePXD1z5gA2IcEv/CUgJI
+         y7Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gEdQYmEqnlsP0uD7xKRiFLeBFu1VzPoHV+TkuJ6H2ao=;
+        b=R672Vy/FE+kLJ05BB9GWseGqB091hC/yyiankXLwQ5U7qvB7s5+oQA78+FLE+66TF3
+         yuO1ZSzHOruqKPesY3fa9jpQ7i5OElXrNkXngmZPEzUQGjGkoW+5AeZ5NneclzEduZWL
+         CNLKErRJ/1XxuO9qyXU8acoKmFDUHky/ViSskjBvA/88fzuRYqfNmBDqvmJzLjQAsFYE
+         uIiicU20jLGfsgL/5KxI/a26Pf1H6Uar2iSbftVfNKZdZcy9dT3sldJzTO9Uxnzii5Bj
+         HQruAbliuM8sb6xMmB3ZKqdKDaZ3XGVk3EQos5csGjPyfE8W9XgQD542L7OdptUAYjT1
+         lEZQ==
+X-Gm-Message-State: AJIora+4WDNbEwF5yrhcyHuddnQBzbeJSNWaGMAc5h9Cxmu2+4GFxmH4
+        BVaxgHW1sOfWwjBfKaFk2Qclcw==
+X-Google-Smtp-Source: AGRyM1su6+TSqh/bFxly6R5TLik4Rd3lY7VPFNnUzLeF/JOUYG68BNcM2RiaMpvC62B/3SJteUU9zg==
+X-Received: by 2002:a2e:b70b:0:b0:25d:52f3:3043 with SMTP id j11-20020a2eb70b000000b0025d52f33043mr12502767ljo.380.1658154764935;
+        Mon, 18 Jul 2022 07:32:44 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id x26-20020a19e01a000000b0047f8fd27402sm2634589lfg.146.2022.07.18.07.32.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jul 2022 07:32:44 -0700 (PDT)
+Message-ID: <cca20c06-b53c-b8a2-cd8d-04420c4d1487@linaro.org>
+Date:   Mon, 18 Jul 2022 16:32:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220718122922.9396-2-tmaimon77@gmail.com>
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v3 2/2] dt-bindings: fpga: add binding doc for ecp5-spi
+ fpga mgr
+Content-Language: en-US
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        system@metrotek.ru
+References: <20220718114928.22092-1-i.bornyakov@metrotek.ru>
+ <20220718114928.22092-3-i.bornyakov@metrotek.ru>
+ <d15fcfa1-91ce-70fa-143f-748ead9a4337@linaro.org>
+ <20220718142427.vhwswafw7sa5ec6v@h-e2.ddg>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220718142427.vhwswafw7sa5ec6v@h-e2.ddg>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 18, 2022 at 03:29:20PM +0300, Tomer Maimon wrote:
-> Remove USB EHCI host controller reset sequence from NPCM7XX USB EHCI
-> host probe function because it is done in the NPCM reset driver.
+On 18/07/2022 16:24, Ivan Bornyakov wrote:
+> On Mon, Jul 18, 2022 at 03:58:22PM +0200, Krzysztof Kozlowski wrote:
+>> On 18/07/2022 13:49, Ivan Bornyakov wrote:
+>>> Add Device Tree Binding doc for Lattice ECP5 FPGA manager using slave
+>>> SPI to load .bit formatted uncompressed bitstream image.
+>>>
+>>> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+>>> ---
+>>>  .../bindings/fpga/lattice,ecp5-fpga-mgr.yaml  | 73 +++++++++++++++++++
+>>>  1 file changed, 73 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
+>>> new file mode 100644
+>>> index 000000000000..bb10fd316f94
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
+>>> @@ -0,0 +1,73 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/fpga/lattice,ecp5-fpga-mgr.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Lattice ECP5 Slave SPI FPGA manager.
+>>> +
+>>> +maintainers:
+>>> +  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
+>>> +
+>>> +description:
+>>> +  FPGA Manager capable to program Lattice ECP5 with uncompressed bitstream
+>>> +  image in .bit format over SPI.
+>>
+>> The same question as before - you need to explain what is the hardware
+>> (not Linux API or Linux subsystem).
+>>
 > 
-> Due to it, NPCM7XX EHCI driver configuration is dependent on NPCM reset.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
+> I really don't know what to say aside from "thing that capable to
+> program FPGA". Is there a good exmple of proper wording in
+> Documentation/devicetree/bindings/fpga/?
+> Otherwise I would ask FPGA Manager framework maintainers assistance on
+> how to describe a FPGA Manager driver.
 
-Regarding the changes to ehci-npcm7xx.c:
+I think my first reply had some leads to possible description. Is it a
+piece of FPGA? Is it a programmable block of FPGA? Is it dedicated chip
+on SPI line? The only problem I see with description is that word
+"manager" is too generic and people can call everything manager...
 
-Acked-by: Alan Stern <stern@rowland.harvard.edu>
-
-But you probably should remove the "#include <linux/regmap.h>" line near 
-the start of the source file.
-
-Alan Stern
-
->  drivers/usb/host/Kconfig        |  2 +-
->  drivers/usb/host/ehci-npcm7xx.c | 47 ---------------------------------
->  2 files changed, 1 insertion(+), 48 deletions(-)
-> 
-> diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-> index 682b3d2da623..e05e2cf806f8 100644
-> --- a/drivers/usb/host/Kconfig
-> +++ b/drivers/usb/host/Kconfig
-> @@ -206,7 +206,7 @@ config USB_EHCI_FSL
->  
->  config USB_EHCI_HCD_NPCM7XX
->  	tristate "Support for Nuvoton NPCM7XX on-chip EHCI USB controller"
-> -	depends on (USB_EHCI_HCD && ARCH_NPCM7XX) || COMPILE_TEST
-> +	depends on (USB_EHCI_HCD && ARCH_NPCM7XX && RESET_NPCM) || COMPILE_TEST
->  	default y if (USB_EHCI_HCD && ARCH_NPCM7XX)
->  	help
->  	  Enables support for the on-chip EHCI controller on
-> diff --git a/drivers/usb/host/ehci-npcm7xx.c b/drivers/usb/host/ehci-npcm7xx.c
-> index 6b5a7a873e01..955e7c8f3db8 100644
-> --- a/drivers/usb/host/ehci-npcm7xx.c
-> +++ b/drivers/usb/host/ehci-npcm7xx.c
-> @@ -28,13 +28,6 @@
->  #define DRIVER_DESC "EHCI npcm7xx driver"
->  
->  static const char hcd_name[] = "npcm7xx-ehci";
-> -
-> -#define  USB2PHYCTL_OFFSET 0x144
-> -
-> -#define  IPSRST2_OFFSET 0x24
-> -#define  IPSRST3_OFFSET 0x34
-> -
-> -
->  static struct hc_driver __read_mostly ehci_npcm7xx_hc_driver;
->  
->  static int __maybe_unused ehci_npcm7xx_drv_suspend(struct device *dev)
-> @@ -60,52 +53,12 @@ static int npcm7xx_ehci_hcd_drv_probe(struct platform_device *pdev)
->  {
->  	struct usb_hcd *hcd;
->  	struct resource *res;
-> -	struct regmap *gcr_regmap;
-> -	struct regmap *rst_regmap;
->  	const struct hc_driver *driver = &ehci_npcm7xx_hc_driver;
->  	int irq;
->  	int retval;
->  
->  	dev_dbg(&pdev->dev,	"initializing npcm7xx ehci USB Controller\n");
->  
-> -	gcr_regmap = syscon_regmap_lookup_by_compatible("nuvoton,npcm750-gcr");
-> -	if (IS_ERR(gcr_regmap)) {
-> -		dev_err(&pdev->dev, "%s: failed to find nuvoton,npcm750-gcr\n",
-> -			__func__);
-> -		return PTR_ERR(gcr_regmap);
-> -	}
-> -
-> -	rst_regmap = syscon_regmap_lookup_by_compatible("nuvoton,npcm750-rst");
-> -	if (IS_ERR(rst_regmap)) {
-> -		dev_err(&pdev->dev, "%s: failed to find nuvoton,npcm750-rst\n",
-> -			__func__);
-> -		return PTR_ERR(rst_regmap);
-> -	}
-> -
-> -	/********* phy init  ******/
-> -	// reset usb host
-> -	regmap_update_bits(rst_regmap, IPSRST2_OFFSET,
-> -			(0x1 << 26), (0x1 << 26));
-> -	regmap_update_bits(rst_regmap, IPSRST3_OFFSET,
-> -			(0x1 << 25), (0x1 << 25));
-> -	regmap_update_bits(gcr_regmap, USB2PHYCTL_OFFSET,
-> -			(0x1 << 28), 0);
-> -
-> -	udelay(1);
-> -
-> -	// enable phy
-> -	regmap_update_bits(rst_regmap, IPSRST3_OFFSET,
-> -			(0x1 << 25), 0);
-> -
-> -	udelay(50); // enable phy
-> -
-> -	regmap_update_bits(gcr_regmap, USB2PHYCTL_OFFSET,
-> -			(0x1 << 28), (0x1 << 28));
-> -
-> -	// enable host
-> -	regmap_update_bits(rst_regmap, IPSRST2_OFFSET,
-> -			(0x1 << 26), 0);
-> -
->  	if (usb_disabled())
->  		return -ENODEV;
->  
-> -- 
-> 2.33.0
-> 
+Best regards,
+Krzysztof
