@@ -2,129 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4360578009
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:45:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B875F57801D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233776AbiGRKpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 06:45:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52672 "EHLO
+        id S234328AbiGRKsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 06:48:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbiGRKpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:45:14 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88305101DA;
-        Mon, 18 Jul 2022 03:45:13 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id g24so5675062qtu.2;
-        Mon, 18 Jul 2022 03:45:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=dhyYncsSwNhmK/zesZRgmRNflzipmfw4AdNK0DnS8ks=;
-        b=EOQFrWCcdIyqgNyVgqdOdHQW6jFkMNZYlC9u3ZQfCjER7XFa8FislpNofV15GryMOb
-         ezBMwacJxsVO5vi48alYDlUD0KXCU1xxbZnDzgNbTBAyznJrsaYM5iZwJHfVRMVSLk8e
-         o2GtMysDYqU6NxtMohvDj4hERkwh3xyHhcIJsTgwtT72eW6/Pv09zdOA2hweEXnw4ERr
-         zdXuOoRl9XvSxHRENA3XWnr5kSTlsFHirGDLJOY2OzsGPAJOmjzgT2IV5vXbSPDm5a4t
-         imRU3lnObNZJxw5shwoARQCX7PFuviG5RVUXVvwurF35PxIVDm6YqC3spvpOSwCR3ANs
-         eluw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=dhyYncsSwNhmK/zesZRgmRNflzipmfw4AdNK0DnS8ks=;
-        b=okc4KJD1LHtO3ZJW1tCOpMZqiIPLPKUc7Ydl2BfXOKn7qR+XVKtEwSgKUT4mAWVynI
-         pQvJ+i6xUaNrttOIOoKMVC1LgQSCAHal5djYEmKHu0jwjXFOdLpxfZZJu1AZ4CbBA6Ra
-         qTeiU1CGAlWbzfyk315vSXYnTfHsG+OPAbwZHux/tVApHABuAs5n7TUkSQx97tA0e9UU
-         LotjXBKaYgTlmiBMpwIghV8kT1RT2/y2gmdHze5gyTvTFBqRL93DMj/aD+0LledOjWlF
-         Pld0+JyvLvGxXHPGkpgjSb+dzxAJAso4EPGdBytgZ77tIbdVJ5g1pRGxXyQxCfUu1Xq6
-         wRNw==
-X-Gm-Message-State: AJIora+gIAs+7sEyMr1a74c7NwxGSNUvVLe2MoMOeSPc2r6td0VM5R9w
-        f+CxdmYnpvc7Xe05cyVvR60=
-X-Google-Smtp-Source: AGRyM1uWrBsv0fVZemcmlvAm1yR7/VPuEGQfzX7ctLTMbuPRCrZ+2pr141AG043eQTrKvDkNTb/NZg==
-X-Received: by 2002:ac8:5755:0:b0:31e:d70c:acc6 with SMTP id 21-20020ac85755000000b0031ed70cacc6mr13036055qtx.587.1658141112606;
-        Mon, 18 Jul 2022 03:45:12 -0700 (PDT)
-Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
-        by smtp.gmail.com with ESMTPSA id ay31-20020a05620a179f00b006b5de51ec1asm5553847qkb.26.2022.07.18.03.45.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 03:45:12 -0700 (PDT)
-Message-ID: <9e0a4d4c9cd626bcd9850748b8202b49d461ff2b.camel@gmail.com>
-Subject: Re: [PATCH 0/4] add support for bias pull-disable
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        with ESMTP id S234412AbiGRKse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:48:34 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365D21FCE0
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 03:48:29 -0700 (PDT)
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 65BCC1BF212;
+        Mon, 18 Jul 2022 10:48:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1658141303;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=o/FH13uRGmS+AuVZhQjVBjqMHQ3DI/qobSCgCMenQ3Y=;
+        b=gWfcqCwK1KnrECMlbY9vF1HqBA9gItNlBRjbxICKmMNc3qnbM0XPRSy9oLA6BEGSjMnOKj
+        bB88xfRf6O50nH8Nwv8UmT3qfnQ0NBhUjlBpu70uuKEO6N0HSJTsoWscCWTzDGiBbTH3sY
+        qfjKmoTT/AQ44w8aYC8OTJ/X4orL8njNbef22XCh7MhAOoXejxEqg6bvwnwZfhQz89sSJr
+        4L86BYvlMAK6MfY5qnAcN3bs1X8yar3iHIFu6bsMbeutF5dQLkdy5Utn5GIbrEGsmk/09e
+        uAudjVEFEZ+0IiabcAumlkxK5vkaQwSKaXHRgEalEUFQ9Rk/6AX0RoHBHYqzIA==
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Vadym Kochan <vadym.kochan@plvision.eu>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 18 Jul 2022 12:46:14 +0200
-In-Reply-To: <CACRpkdaZTRwvWJkgSOaCE-281Mq5KXGS9pDaUKuF7O0Jje14CA@mail.gmail.com>
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
-         <YtAvHMmGay/3HACZ@smile.fi.intel.com>
-         <e0638b02bdcd0ee452846b86ce83458173912ef1.camel@gmail.com>
-         <YtBnIxh6rDJMwpEm@smile.fi.intel.com>
-         <5d9f9272334177e3ea864467f50095a8709bc0d2.camel@gmail.com>
-         <YtFYFbP+xqAUUHZa@smile.fi.intel.com>
-         <88114aeb10f7316cf3c1396179949f2fc351ad8f.camel@gmail.com>
-         <CAMRc=Mdz+8yfrATQPJ=uY33k2Dwt29g6vZbP3mSjkB_VAzP5+A@mail.gmail.com>
-         <7aa6f7bc6c528fda0649888d282aef39f1d055d4.camel@gmail.com>
-         <CACRpkdaZTRwvWJkgSOaCE-281Mq5KXGS9pDaUKuF7O0Jje14CA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.3 
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Konstantin Porotchkin <kostap@marvell.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Elad Nachman <enachman@marvell.com>
+Subject: Re: [PATCH v10 0/3] arm64: mvebu: Support for Marvell 98DX2530 (and
+ variants)
+In-Reply-To: <20220705190934.6168-1-vadym.kochan@plvision.eu>
+References: <20220705190934.6168-1-vadym.kochan@plvision.eu>
+Date:   Mon, 18 Jul 2022 12:48:20 +0200
+Message-ID: <87tu7er91n.fsf@BL-laptop>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-07-18 at 12:29 +0200, Linus Walleij wrote:
-> On Mon, Jul 18, 2022 at 9:50 AM Nuno S=C3=A1 <noname.nuno@gmail.com>
-> wrote:
->=20
-> > > right in that the character device is the only way to set this
-> > > mode
-> > > ATM and. However I would like to see the first user added
-> > > together
-> > > with the series because adding features nobody uses in the
-> > > mainline
-> > > kernel tree is generally frowned upon and it's also not clear
-> > > that
-> > > anyone actually wants to use it.
-> >=20
-> > Hmm, you mean something like a system's devicetree needing this
-> > flag?
-> > If so, I don't really have such a thing. I did all my testing on a
-> > rpi
-> > using overlays.
->=20
-> I would assume a driver with a .set_config() responding to this flag?
->=20
+Vadym Kochan <vadym.kochan@plvision.eu> writes:
 
-Ahh if that is the case, then there are actually users of this flag
-already.=20
+> This series adds support for the Marvell 98DX2530 SoC which is the Control and
+> Management CPU integrated into the AlleyCat5/AlleyCat5X series of Marvell
+> switches.
+>
+> The CPU core is an ARM Cortex-A55 with neon, simd and crypto extensions.
+>
+> This is fairly similar to the Armada-3700 SoC so most of the required
+> peripherals are already supported. This series adds a devicetree and pinctrl
+> driver for the SoC and the RD-AC5X-32G16HVG6HLG reference board.
+>
+> The pinctrl changes from v4 have been picked up and are in linux-next so I
+> haven't included them in this round. That leaves just the dts files and a minor
+> Kconfig update for arm64.
+>
+> Changes:
+>
+> v10:
+>       1) Use different cnm clock for AC5 and AC5X DTSIs
+>
+>       2) Rename device-tree yaml binding to match the $id
+>
+> v9 (proposed by Marvell):
+>    It was discussed with Chris that Marvell will add some changes:
+>       1) Rename "armada-" prefix in dts(i) file names to ac5, because
+>          Armada has not much common with AC5 SoC.
+>
+>       2) Add clock fixes:
+>          a) rename core_clock to cnm_clock
+>
+>          b) remove axi_clock
+>
+>          c) change cnm_clock to 325MHZ
+>
+>          d) use cnm_clock for the UART
+>
+> Chris Packham (3):
+>   dt-bindings: marvell: Document the AC5/AC5X compatibles
+>   arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+>   arm64: marvell: enable the 98DX2530 pinctrl driver
+>
+>  .../bindings/arm/marvell/marvell,ac5.yaml     |  32 ++
+>  arch/arm64/Kconfig.platforms                  |   2 +
+>  arch/arm64/boot/dts/marvell/Makefile          |   1 +
+>  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 291 ++++++++++++++++++
+>  .../boot/dts/marvell/ac5-98dx35xx-rd.dts      | 101 ++++++
+>  arch/arm64/boot/dts/marvell/ac5-98dx35xx.dtsi |  17 +
+>  6 files changed, 444 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/marvell,ac5.yaml
+>  create mode 100644 arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+>  create mode 100644 arch/arm64/boot/dts/marvell/ac5-98dx35xx-rd.dts
+>  create mode 100644 arch/arm64/boot/dts/marvell/ac5-98dx35xx.dtsi
+>
 
-"
-git grep -lw "PIN_CONFIG_BIAS_DISABLE" drivers/gpio
-drivers/gpio/gpio-aspeed.c
-drivers/gpio/gpio-merrifield.c
-drivers/gpio/gpio-omap.c
-drivers/gpio/gpio-pca953x.c
-"
 
-This is also one of my arguments why I think having this new flag is
-better than me adding a workaround for the device I'm supporting. Also,
-in the cover I have a link to a new user (which is an input keyboard
-driver that I'm refactoring) of this flag in .set_config().
+Series applied on mvebu/dt64
 
-- Nuno S=C3=A1
+Thanks,
 
+Gregory
+
+
+> -- 
+> 2.17.1
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
