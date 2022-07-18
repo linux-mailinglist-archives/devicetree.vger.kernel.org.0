@@ -2,85 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3D54577954
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 03:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BE0577955
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 03:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbiGRBmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 21:42:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41164 "EHLO
+        id S229976AbiGRBm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 21:42:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbiGRBmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 21:42:21 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6735D10FF5
-        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 18:42:20 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id bk26so14998249wrb.11
-        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 18:42:20 -0700 (PDT)
+        with ESMTP id S232375AbiGRBm0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 21:42:26 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B2613F3A
+        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 18:42:25 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id r14so15047938wrg.1
+        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 18:42:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=bekOncRaPF1NxvuZVFAu6mcVMT/xzfB6dU3oKKjrlTs=;
-        b=MO3SpsNBx0YdBNe4EdBAkch2ap9FSo6pYSGjO7iThVm5xswWjh7WDMVkSadj4LqS3/
-         XEbrqZ2keLt2mwq15CWMQWUTtSoWNgSHo8mOpaA2AGmuc2faUAH6nGyvznlf+/x7cBDc
-         ywkY85CJI3dGK7SJTMfS5Mx6K6YOoovVkqrxddkqoTc/mJcoM7OCyTRVb86SQDEC1xVg
-         SfdHRw6VzVi7vb1FSgZ53YCuCApOjKLd0XkldQ17Kt3wuOmRNirwLyWHLUgVR3syXgeE
-         2v8UYlsItxYNBs5DxXtoJy/+LGMNF+hU+Gx8+jCNaEFTxFGL+3ASL44OhkfTquM9c/6H
-         g4fA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=DHwIdjXDFOQsQnb1NbtoIUGvABQc1w7C+cvxti/glVo=;
+        b=pMZbtXCUkmTE4KFyjTar6kMh3v0j/aQDdXFZwbqbm9z3RCSIgI7jyU76BJQWje0ksE
+         oAzUoB0D82B9SAZPn8FnUVzdlaRH7RZ943FteB7l8htllmdP4ugqNKZsmAuqybY+HPi1
+         DCkUXnr+rr1CAZCwFYajE9Iby7wFGGyZIU9ldaGVwsAhKxnbEUnYYqD4MXuPYfoI0Ngq
+         G5S3m+9tlM/w/bz5S3LDVFHqBIV1gVt/7ZoNRlqyDO/+0UduUUDVlXGR5SXf87U9utqq
+         yaFwOLoRvlqbVCvuB6Vm425V4fq3KJYcHb4lds6yeqceXDTVsWwAXeOX2jA41xm/DOlt
+         oowg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=bekOncRaPF1NxvuZVFAu6mcVMT/xzfB6dU3oKKjrlTs=;
-        b=w6CUGYbXISVgDPzyK7fKGaITk12CYW7hi4srbILRA7Nr2UZz2nalDZdaok7cnYjgeH
-         8h4fiBJVVaYosED57Zo0m5LnTcnaznJ8cW34jvSKnf9AgRafhCe35VrZy1peKqoEY/hQ
-         bdYzLMI98O55j2prB8cqnNKD13vE6Awrnqnf7FFI2LXuzM46xHg4yB9TNpWMI2G9U1Ww
-         1tQy6VqSbFUu+WUKE25t2+YeXHaU1Q62UoOhpyodiUOO4bgIYFWMnfstPD4zUNT3NBpw
-         g9vfw3TFxRVK9Xiw2vzIa+xeGh2Ndl6QiatLvZYhjQBsyGsby5Qunhl/LXanxwF7tuow
-         Y1Hw==
-X-Gm-Message-State: AJIora/QN+jDCB3RMDbpWh+IbAE6OlTwgPNQvt4CC8hNlCO4/8Vfc/+b
-        +Vh4Ns+86GHguMhQKzSc2HBRtg==
-X-Google-Smtp-Source: AGRyM1s57C4gHhD81Q+RdMTOBoGWHjP2XZ59G3gBO6B/x4zTY5JRHxWtUpZgJoayvcpqChU55ZJXrg==
-X-Received: by 2002:a5d:5548:0:b0:21d:69c1:c09 with SMTP id g8-20020a5d5548000000b0021d69c10c09mr20573178wrw.251.1658108538957;
-        Sun, 17 Jul 2022 18:42:18 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=DHwIdjXDFOQsQnb1NbtoIUGvABQc1w7C+cvxti/glVo=;
+        b=WIrDNwS9wWrDGikPRMFJtGKUf01qNPMT3A9jbz1fZMyLRNW/Gv7iSoEgrgM3By3YOE
+         IapHjHiyaeA9Xs45mt4Ypcs2iHW1cUwCBojDOi54RUAq3kmh725GKWCglwc78Sho/tvF
+         VRAw3A+B9NrR6JQgNn8Kubhf6/ImChUBapf/1fF8Ig8lxKG2rc5YL53oJOZ19NNOWpWT
+         G+s3vgk0gz8NFQr+iPNSZ0CTHM8uM02qTL/ogjwasKIH7s9iLn/xnyHD+2i2NOE5sqtQ
+         w+71v+cQmbuc2qkCkg2hEctp450pUaK6m4hI2w2zZyH/sNaFsBaDHu8YezIZb/y+yn35
+         +Jyg==
+X-Gm-Message-State: AJIora9ZMpxDkJVJf1Ut7l+0E3O5XgiA9t4tdZ34SAIt/n5FRSp+o3GJ
+        BqLw0I5DGLP3qJ7lMGO+duuslg==
+X-Google-Smtp-Source: AGRyM1sbOD4yJONbDuqKHHrrVqYdHH7vLwyz1uNKIvugtCvbEr8lXiHbadPWZRk3VlfgfqOW1/M0uw==
+X-Received: by 2002:adf:9d92:0:b0:21d:66c4:e311 with SMTP id p18-20020adf9d92000000b0021d66c4e311mr21880111wre.575.1658108543579;
+        Sun, 17 Jul 2022 18:42:23 -0700 (PDT)
 Received: from planet9.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id v10-20020adfebca000000b0021d76a1b0e3sm1685139wrn.6.2022.07.17.18.42.18
+        by smtp.gmail.com with ESMTPSA id v10-20020adfebca000000b0021d76a1b0e3sm1685139wrn.6.2022.07.17.18.42.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Jul 2022 18:42:18 -0700 (PDT)
+        Sun, 17 Jul 2022 18:42:23 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     sakari.ailus@iki.fi, jacopo@jmondi.org, paul.j.murphy@intel.com,
         daniele.alessandrelli@intel.com, mchehab@kernel.org,
         linux-media@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     dmitry.baryshkov@linaro.org, konrad.dybcio@somainline.org,
         andrey.konovalov@linaro.org, bryan.odonoghue@linaro.org
-Subject: [PATCH v2 0/3] Add imx577 compatible to imx412
-Date:   Mon, 18 Jul 2022 02:42:12 +0100
-Message-Id: <20220718014215.1240114-1-bryan.odonoghue@linaro.org>
+Subject: [PATCH v2 1/3] media: dt-bindings: media: Rename imx412 to imx577
+Date:   Mon, 18 Jul 2022 02:42:13 +0100
+Message-Id: <20220718014215.1240114-2-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220718014215.1240114-1-bryan.odonoghue@linaro.org>
+References: <20220718014215.1240114-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-V2:
-Sakari wasn't especially satisfied with the answer imx412 and imx577 have
-the same init sequence but, suggested setting the string for imx577 as is
-done in the ccs driver.
+The yaml and driver we have right now misidentifies the imx577 as the
+imx412.
 
-https://lore.kernel.org/all/20220607134057.2427663-3-bryan.odonoghue@linaro.org/t/
-
-I went to look at that and asked myself "how would I tell the difference
-between the two silicon parts". The obvious answer is a chip identifier.
-
-Luckily this class of IMX sensor has a chip identifier at offset 0x0016.
-
-That looks like this for imx258, imx319 and imx355
+Looking at similar IMX chips which give their chip identifier via register
+0x0016 we can see:
 
 drivers/media/i2c/imx258.c:#define IMX258_REG_CHIP_ID    0x0016
 drivers/media/i2c/imx258.c:#define IMX258_CHIP_ID        0x0258
@@ -91,53 +86,102 @@ drivers/media/i2c/imx319.c:#define IMX319_CHIP_ID        0x0319
 drivers/media/i2c/imx355.c:#define IMX355_REG_CHIP_ID    0x0016
 drivers/media/i2c/imx355.c:#define IMX355_CHIP_ID        0x0355
 
-but then looks like this for imx412.
+Right now imx412.c does:
 
 drivers/media/i2c/imx412.c:#define IMX412_REG_ID         0x0016
 drivers/media/i2c/imx412.c:#define IMX412_ID             0x577
 
-This made no sense at all to me, why is the imx412 driver not named imx577 ?
+As a first step to fixing this problem rename the supporting yaml file and
+containing text from imx412 to imx577.
 
-I went and dug into the Qualcomm camx/chi-cdk sources to find that a file
-called cmk_imx577_sensor.xml has a property called sensorId which is
-constrained to 0x0577.
-
-In the Qualcomm stack this pairing of filename and identifier is
-maintained for imx258, imx376, imx476, imx576, imx519, imx362, imx481,
-imx318 imx334 and imx386.
-
-Every single example I can find of a Sony IMX sensor which returns a chip
-identifier at offset 0x0016 matches the driver name to the returned sensor
-id both here upstream in Linux and in Qualcomm's camx stack.
-
-The conclusion I draw from this is that imx412.c is inappropriately named.
-
-I think the right thing to do is to rename imx412 to imx577. It is
-confusing and I think wrong to pair imx412.c with a chip which identifies
-as 0x0577.
-
-V1:
-Right now the imx412 and imx577 are code and pin compatible however, they
-are distinct pieces of silicon.
-
-Document imx577 as a compatible enum and add the compat string to imx412.c.
-This allows us to differentiate these chips in DTS and potentially to apply
-any future imx412 or imx577 specific changes appropriately.
-
-Bryan O'Donoghue (3):
-  media: dt-bindings: media: Rename imx412 to imx577
-  media: i2c: imx577: Rename imx412.c to imx577.c
-  media: i2c: imx577: Fix chip identifier define name
-
- .../{sony,imx412.yaml => sony,imx577.yaml}    |  18 +-
- MAINTAINERS                                   |   6 +-
- drivers/media/i2c/Kconfig                     |   8 +-
- drivers/media/i2c/Makefile                    |   2 +-
- drivers/media/i2c/{imx412.c => imx577.c}      | 622 +++++++++---------
- 5 files changed, 328 insertions(+), 328 deletions(-)
+Fixes: 333b3125d130 ("media: dt-bindings: media: Add bindings for imx412")
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ .../i2c/{sony,imx412.yaml => sony,imx577.yaml} | 18 +++++++++---------
+ MAINTAINERS                                    |  6 +++---
+ 2 files changed, 12 insertions(+), 12 deletions(-)
  rename Documentation/devicetree/bindings/media/i2c/{sony,imx412.yaml => sony,imx577.yaml} (83%)
- rename drivers/media/i2c/{imx412.c => imx577.c} (55%)
 
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx577.yaml
+similarity index 83%
+rename from Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+rename to Documentation/devicetree/bindings/media/i2c/sony,imx577.yaml
+index 26d1807d0bb6..e201048490e9 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx577.yaml
+@@ -2,24 +2,24 @@
+ # Copyright (C) 2021 Intel Corporation
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/media/i2c/sony,imx412.yaml#
++$id: http://devicetree.org/schemas/media/i2c/sony,imx577.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Sony IMX412 Sensor
++title: Sony IMX577 Sensor
+ 
+ maintainers:
+   - Paul J. Murphy <paul.j.murphy@intel.com>
+   - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+ 
+ description:
+-  IMX412 sensor is a Sony CMOS active pixel digital image sensor with an active
++  IMX577 sensor is a Sony CMOS active pixel digital image sensor with an active
+   array size of 4072H x 3176V. It is programmable through I2C interface. The
+   I2C client address is fixed to 0x1a as per sensor data sheet. Image data is
+   sent through MIPI CSI-2.
+ 
+ properties:
+   compatible:
+-    const: sony,imx412
++    const: sony,imx577
+   reg:
+     description: I2C address
+     maxItems: 1
+@@ -80,16 +80,16 @@ examples:
+         #size-cells = <0>;
+ 
+         camera@1a {
+-            compatible = "sony,imx412";
++            compatible = "sony,imx577";
+             reg = <0x1a>;
+-            clocks = <&imx412_clk>;
++            clocks = <&imx577_clk>;
+ 
+-            assigned-clocks = <&imx412_clk>;
+-            assigned-clock-parents = <&imx412_clk_parent>;
++            assigned-clocks = <&imx577_clk>;
++            assigned-clock-parents = <&imx577_clk_parent>;
+             assigned-clock-rates = <24000000>;
+ 
+             port {
+-                imx412: endpoint {
++                imx577: endpoint {
+                     remote-endpoint = <&cam>;
+                     data-lanes = <1 2 3 4>;
+                     link-frequencies = /bits/ 64 <600000000>;
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 08b9ef368709..6a257af8178f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18725,14 +18725,14 @@ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
+ F:	drivers/media/i2c/imx355.c
+ 
+-SONY IMX412 SENSOR DRIVER
++SONY IMX577 SENSOR DRIVER
+ M:	Paul J. Murphy <paul.j.murphy@intel.com>
+ M:	Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
+-F:	Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+-F:	drivers/media/i2c/imx412.c
++F:	Documentation/devicetree/bindings/media/i2c/sony,imx577.yaml
++F:	drivers/media/i2c/imx577.c
+ 
+ SONY MEMORYSTICK SUBSYSTEM
+ M:	Maxim Levitsky <maximlevitsky@gmail.com>
 -- 
 2.34.1
 
