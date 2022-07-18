@@ -2,110 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A90135779A5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 04:38:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8BD5779BC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 05:24:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232460AbiGRCh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 22:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36948 "EHLO
+        id S229535AbiGRDYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 23:24:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbiGRCh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 22:37:58 -0400
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com (mail-eopbgr30049.outbound.protection.outlook.com [40.107.3.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02E5112D27;
-        Sun, 17 Jul 2022 19:37:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GW26sSoGuDOQ/L6YpLMKHi2N80F2z0QwbJYX5sB9YRDbytgBRDHCjO+MrrsSPbXjbBzERPQK76mD0kYdXhaq5qnCtW6pRKPR23hR7+7n2/UX6ak0scwe7Uj6zMFa+YGDlGqgArNTI+N868LfAawlAyc5c4JHa+1f1jrTpQLIkK+NyUFl9hkE9VNV1f50StgP9SwBYoFn7k9ygivpOlh1s4lDlryDAiBNkGXxOK1JPLmq/HZoc56OB9OJtuQq4ZdVLGjrP7lWGos0faAonLSntHMMo42qkkDDxVvLL3wd5zuR7yeOmPiwAOYvRP7PCY7wfcJOy9yjyVGVz3GOwIkcSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N4zoyq4H77PNPEBlgYv1EuYhWhpwjpbAkbn+nJ20HNY=;
- b=FaL5JVoL5CBeYWxhFGdGBRiL7u9+VY22AbbdeWKL5G4N71zyGea9PHqsa8Acgq8nQivLwizwbtqQKIiK9GfXff2Xeb6HUtaXwgsoCWQ7dHaHkKUsOJkn+9JpFlKitAZvFuFa9GJkm6eafXNHXF14LZ7v/UthRfOmb9iyFPJkmfdvLg6y3QnbTfe+2EvmWl4KurnSu/cSL/zKXVwpOtAMja0/gkBy4rPr262OSEE/1yiq6lfr4JsAYi1/bfHzUNWIonWkbbDZ9hTG3xnFbYBi83cCbf4gX8Pc8hJlXzbJHV8P23y1BecHOzVHvhCy7u1bM+QfsM7SqMCVtYFAQ+lNgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N4zoyq4H77PNPEBlgYv1EuYhWhpwjpbAkbn+nJ20HNY=;
- b=YQrTLvD5x4LngE5ml7hpg0LCBHsWe5n5O9la8ea1D8078waQmu9LpsGF66VysK+aObKUu+O2WWa040brJuDK7byRZog2At4MnZToKWzNit7J/xo7Ns0SvTZJ+i44yXcSVtEGpP341TTJ4P6KabjhCcEHAl8ejSzsctgGwMJWVdc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by DU2PR04MB8710.eurprd04.prod.outlook.com (2603:10a6:10:2dd::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.23; Mon, 18 Jul
- 2022 02:37:54 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::5db6:3f08:2e04:33c]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::5db6:3f08:2e04:33c%4]) with mapi id 15.20.5438.023; Mon, 18 Jul 2022
- 02:37:54 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     mchehab@kernel.org, mirela.rabulea@oss.nxp.com,
-        hverkuil-cisco@xs4all.nl
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] media: imx-jpeg: Add a timeout mechanism for each frame
-Date:   Mon, 18 Jul 2022 10:37:37 +0800
-Message-Id: <20220718023737.12007-1-ming.qian@nxp.com>
-X-Mailer: git-send-email 2.36.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0101.apcprd02.prod.outlook.com
- (2603:1096:4:92::17) To AM6PR04MB6341.eurprd04.prod.outlook.com
- (2603:10a6:20b:d8::14)
+        with ESMTP id S229482AbiGRDYe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 23:24:34 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B2962D5;
+        Sun, 17 Jul 2022 20:24:32 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id bk26so15168713wrb.11;
+        Sun, 17 Jul 2022 20:24:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ExHD1YWVI7dhzqB7OPxXxafdaqH/UG07zGnDnS43790=;
+        b=ON0mAlDBieFFfJn8KQ59K/FhCzwDKPe+22JhmRQvoaRG/RN8ldWQwc8CnBhitcM6C5
+         TZH5pYH6xG0tv3vbM2Co2mkp7S0BRLyNQBy5siv1PVnhcjer9dfymrdkKVYRKLhGrKRe
+         EK60U8LL8nJbf3YU6Didr7UuuA3JDkVuZn1K3VGgCH1UAbA+CllM0unwwjOzToIirfJM
+         GCVeKu/HTK7mPjm0DbQB9tPmoCrBPjlXjaWKoZwH4IWzf4Jpjr8W6Hc38n74soXBZw9+
+         sTPlJxva7hr08qlKCxUBJa4HHxOboLiUQeayEcTqPeDBSxUKMup8dX+sJLlXER7aHHQE
+         sIFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ExHD1YWVI7dhzqB7OPxXxafdaqH/UG07zGnDnS43790=;
+        b=eWZlzaNP/j5FCzU9tiHeurjxAQIEBWGHUfaphkxxqlnzjQLxCdQQ+CT4uG//5mEqYG
+         leXMigieZ9UVo8C0xCqoSu4yIXjg+FGE6sJ51/4JwbmsDGNM8eu8o1EUmu5lCnvsPeXW
+         Qfbpx7ZItSmc52xxjqjP1SiOeBP727PI4gjCmFoG0Sbg38by6T45i8B2tYiUFGo8avAf
+         awFvliVoZDpAk0SUoWW9FYKHkKJOvUWQwdX4tLFzsqy81hwVPW4OsYkJb0EuhlH73M4K
+         c1CKsMdYomnUxYOS33YwRCgEgUkisIQZn64GOq4lL/5vYxXE7rjN5uK/yTq3w1nSyF8U
+         bT1w==
+X-Gm-Message-State: AJIora9LxeeqPbGNhusQCWy3d2yWdO+O33yYzxDi4JbE3X7zcGlOvr9z
+        6LjZlXlP4dg2k4LtH3hNVrOmzLlFgh7AXl8c7nrTS1RA
+X-Google-Smtp-Source: AGRyM1vwdJ99q9td66cfd6VghxwG49B9WCer6Ob9/Z7AzfsehlfrTehkfsDBMMeAQy/4hLrZE456SNnYz3h0AMSSuoE=
+X-Received: by 2002:adf:f043:0:b0:21d:6a90:f3e6 with SMTP id
+ t3-20020adff043000000b0021d6a90f3e6mr21215994wro.277.1658114671267; Sun, 17
+ Jul 2022 20:24:31 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 94efd272-8cfe-445e-de5f-08da6866842c
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8710:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 85y/EUoOfUyOMisVj2W7C7pxipjEf5V4tJ1GSbu1EM0wZQHtU7v1qoAU+nhIstAcHVbZT5u2KubqvUuZ9bnQk4Pe46cU0RZ1MbDz6A3GCp8but2yY9OlPihgAOBHMMmBHgdDme8C100/6T0XVZH8Qhw8EeUOk/PWwe5skWgxUryt447ImpJqE1WjZIoEO9ZT9q27ufIea9bPvjI+KfeQ9GO7NEdIcDWGDekcJe265xdQUNZ4/w0zhRpWDu28XYIkZy8hqRajUtkbWrOX36T+MJzWaHaTIxOhsQDlMWIJgqG2E9DjnAPvgE4iRuVlOGQlS+lbYLQM7RFqu6oiLlnTME5KHY1sMAg9bqIpEVe9khPkzZU1aBn7wBxbrZ/4GXKT3wDdUYcTSELq8FnSfbfjxcC/IRNpEgvrMl6j6hMKkLYbSRD+Hs3uVKQlFz4eaB2mLsDNs8acwNlsEQIauApZ8Lsy3kTLsxWl8/7TbuHn7PGtULgvLDXl+GB7rmmO/pkxfJ6I35RopNDrxJ18IlgpX/XSzVRIHDgmZcyYT2A+fLPK2XdkeRaXR2NhjWFEYa2h396Nl2M9t4BI+Xt9QXJE7IPS2O696U0iRCHGCI7VGR/LzIFSXrw6MLJqgyeARzxarGU4MTEOZ2/yQCxv4Wqzcpet7MA5su2sgS6llHao+tojLOsDY66sj5Gh1UNJrnA/4IlhZMGWlAg+ukKvDoJoTGsKVs5Ms8mlXeADK/DuhuO+ZbhkqaLqqKE0EEEcXZvA7SuMOT81D2DAE9rBbxNfI1Tfa0XsdxcwXW37+koGUhDibbF/r0JhIjZZ55K70B+h
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(136003)(39860400002)(346002)(376002)(396003)(38100700002)(38350700002)(316002)(66556008)(66946007)(36756003)(4326008)(8676002)(66476007)(44832011)(26005)(2906002)(6666004)(41300700001)(6512007)(83380400001)(1076003)(7416002)(2616005)(6486002)(86362001)(5660300002)(8936002)(6506007)(52116002)(478600001)(186003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xUp7L4X9q4I7c1Ml4GEuSkQV1TfpJkEwcGBpWDCfOMIbC44zoblL1Gf6VI6c?=
- =?us-ascii?Q?iW1HXW74mwGgUU/w0rmTrmfXJCrOUtRQrnETvRQC4frcjybXVUGWlsGv+5OK?=
- =?us-ascii?Q?6lN6osw7fZtx6WXyCarFNuFaQUo3g+DFCmvGHCdvfZ1bjmkKazkKAW1npyb8?=
- =?us-ascii?Q?JrPn3WGDlATKGCI7w/1oiIGzGF0cqTF/G7yWCcbbp4EseRngweg8tLCeK2f4?=
- =?us-ascii?Q?D0ZRhZJzjzzVFCxg6aZlvEWumOQSBbAyFDyR8CqN97Jd5qJTRjmduZCYY9AR?=
- =?us-ascii?Q?4s2L3/g6+yoOFTYnt3TrHLQPoOHDnQJZiyUwF2ef0xej7ieHFvsyxH8jOk0L?=
- =?us-ascii?Q?HsE0gu9NwjdqPZuiWA0IgJiudF7yy3xovcQxYweAwKxWRliveZuzGttmHqHc?=
- =?us-ascii?Q?CeKDuWgfysarm4bPwlE2/gSddSx/xStNTBPpsi3RkFCph5w72xQLpsCp2VCW?=
- =?us-ascii?Q?P/3JtLouvktuqK4WOGOctf//aH3FXR5aAWg2uJaze+8x7pH5FEbxjPzd0oUo?=
- =?us-ascii?Q?OB2DsNrkGhyaA6DkApmR7twkxuestS3rMA9VQFqqrCHqU1xWGbxSqwFhp09G?=
- =?us-ascii?Q?xvh3SbyWNFbynLhD9fu1f437DsezbbE+3TClBuA4H0DlNb5GTbSU21jGlBGd?=
- =?us-ascii?Q?+tDZ1ZNFtC99IamwibEP33hOnUvcOZngmVm53LMl3qMYwcjwJO6r/9UxLh+h?=
- =?us-ascii?Q?W/6KToz9zbLDCND5Jhp3+uX8sFdKclvsoCUYsDWdxCrtO4/TJiVIl1/JZCTh?=
- =?us-ascii?Q?u/NXr/N/rWgMhz31FERaCmDZCHw76oz0uV/A/HaQ3OVVHR9oJjVPw6fdoO1D?=
- =?us-ascii?Q?vhgb1A8W00RntkfOiRbtjjM7vtP0BeQP7T3emKck33TN8ILsIw71DcU0bcu+?=
- =?us-ascii?Q?47TEbeipV2FwluRbs3WwbD0/LjWhH5OsWetsQxX0odWRoX4KRxp9AZC7nAXH?=
- =?us-ascii?Q?tep/qSMIFLXvS6UjbmLSMnyDqWHXz04i/ikYPh9odVvPUl8vBRnnexCu/M/0?=
- =?us-ascii?Q?HwjPbAq+XnNDIGMdURYCz8clxusHrPKh9lTnOGkCKruDko1qpQbibDUhVNhf?=
- =?us-ascii?Q?hL+UHP24jTtc6x1rZZyJNChhe4ajlFqCzlHqZp1d/kxprXj3bvHU3QHz3ZhC?=
- =?us-ascii?Q?JgVBG6aK1mKsacCytqgVu7bWqaGhiHqKOtCHdnIJeslfKNE5C9ZvpJ6CsLq5?=
- =?us-ascii?Q?73XlsNaXOswn/B4dKOF9n6Tmf2ts+sIIEQDJrw9uUxg9FNT/zRWJpNcMj5U+?=
- =?us-ascii?Q?lzqp90bflTpAF+XtqwTPYK5TkW8KPqdnvesm+M6FV5oFsnifEKQupcTLyUME?=
- =?us-ascii?Q?5ACB9oN5Hld7pHcvOnxpVhKH3NDTx8rx8DEC7GBMf6UFt39C/jMTw/J7HrXX?=
- =?us-ascii?Q?VO3Qt+8LLUe+m8EOLWg1ZjHAEn6Ay2gsTsaeBE8900a8WuW0MRZWFGeaP+0x?=
- =?us-ascii?Q?dmwLxdNs58Rf15NQXxvok9bliEHWy/6a+vC/n1gTLa0jpze0wbCKBiIh7yo0?=
- =?us-ascii?Q?Y1fm8qmCDGpNvNW2JBQ1eqMxs903QHmdoxJ0zuUXuk20jGtgIpPoAWMdkYRC?=
- =?us-ascii?Q?sh97Dx1lil1G9au2h+zkneHgImRr0BhyLup+jwAk?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94efd272-8cfe-445e-de5f-08da6866842c
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2022 02:37:54.2019
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mdNq6meh7FOMj+7UBnOaABKs8SCx4q799QOLPtorbCyooso6s7Yb1R8TubgCvGzzyEUn1TABod3VOycdx0TCeg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8710
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+References: <1657116702-24161-1-git-send-email-u0084500@gmail.com>
+ <1657116702-24161-3-git-send-email-u0084500@gmail.com> <20220707183027.342f6c88@jic23-huawei>
+ <CADiBU3_KQ=WvD-1E4SODkdEY254_b-covw-0SHcAaF3XQqdbaQ@mail.gmail.com> <20220716183750.311f449c@jic23-huawei>
+In-Reply-To: <20220716183750.311f449c@jic23-huawei>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Mon, 18 Jul 2022 11:24:19 +0800
+Message-ID: <CADiBU3_dDUMWTAYt27ngm_arQS+CSAZrcyayWJfANymfEqug7A@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] iio: adc: Add rtq6056 support
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        cy_huang <cy_huang@richtek.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -113,139 +74,423 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a timeout mechanism for each frame.
-If the frame can't be decoded or encoded,
-driver can cancel it to avoid hang.
+Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2022=E5=B9=B47=E6=9C=8817=E6=
+=97=A5 =E9=80=B1=E6=97=A5 =E5=87=8C=E6=99=A81:27=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Mon, 11 Jul 2022 10:48:17 +0800
+> ChiYuan Huang <u0084500@gmail.com> wrote:
+>
+> > Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2022=E5=B9=B47=E6=9C=888=
+=E6=97=A5 =E9=80=B1=E4=BA=94 =E5=87=8C=E6=99=A81:20=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+> > >
+> > > On Wed,  6 Jul 2022 22:11:42 +0800
+> > > cy_huang <u0084500@gmail.com> wrote:
+> > >
+> > > > From: ChiYuan Huang <cy_huang@richtek.com>
+> > > >
+> > > > Add Richtek rtq6056 supporting.
+> > > >
+> > > > It can be used for the system to monitor load current and power wit=
+h 16-bit
+> > > > resolution.
+> > > >
+> > > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > >
+> > > Various feedback inline.
+> > >
+> > > Thanks,
+> > >
+> > > Jonathan
+> > >
+> > > > ---
+> > > > Since v5
+> > > > - Fix kernel version text for ABI.
+> > > >
+> > > > Since v4
+> > > > - Add '__aligned(8)' for timestamp member in buffer_trigger_handler=
+ function.
+> > > > - Declare timestamp from 'int64_t' to more unified 's64'.
+> > > >
+> > > > Since v3
+> > > > - Refine pm_runtime API calling order in 'read_channel' API.
+> > > > - Fix vshunt wrong scale for divider.
+> > > > - Refine the comment text.
+> > > > - Use 'devm_add_action_or_reset' to decrease the code usage in prob=
+e
+> > > >   function.
+> > > > - Use RUNTIME_PM_OPS to replace SET_RUNTIME_PM_OPS.
+> > > > - minor fix for the comma.
+> > > > - Use pm_ptr to replace the direct assigned pm_ops.
+> > > >
+> > > > Since v2
+> > > > - Rename file from 'rtq6056-adc' to 'rtq6056'.
+> > > > - Refine the ABI, if generic already defined it, remove it and chec=
+k the channel
+> > > >   report unit.
+> > > > - Add copyright text.
+> > > > - include the correct header.
+> > > > - change the property parsing name.
+> > > > - To use iio_chan_spec address field.
+> > > > - Refine each channel separate and shared_by_all.
+> > > > - Use pm_runtime and pm_runtime_autosuspend.
+> > > > - Remove the shutdown callback. From the HW suggestion, it's not re=
+commended to
+> > > >   use battery as the power supply.
+> > > > - Check all scale unit (voltage->mV, current->mA, power->milliWatt)=
+.
+> > > > - Use the read_avail to provide the interface for attribute value l=
+ist.
+> > > > - Add comma for the last element in the const integer array.
+> > > > - Refine each ADC label text.
+> > > > - In read_label callback, replace snprintf to sysfs_emit.
+> > > >
+> > > > ---
+> > > >  .../ABI/testing/sysfs-bus-iio-adc-rtq6056          |   6 +
+> > > >  drivers/iio/adc/Kconfig                            |  15 +
+> > > >  drivers/iio/adc/Makefile                           |   1 +
+> > > >  drivers/iio/adc/rtq6056.c                          | 651 +++++++++=
+++++++++++++
+> > > >  4 files changed, 673 insertions(+)
+> > > >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-rtq=
+6056
+> > > >  create mode 100644 drivers/iio/adc/rtq6056.c
+> > > >
+> > > > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056 b/=
+Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+> > > > new file mode 100644
+> > > > index 00000000..e89d15b
+> > > > --- /dev/null
+> > > > +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+> > > > @@ -0,0 +1,6 @@
+> > > > +What:                /sys/bus/iio/devices/iio:deviceX/in_voltage0_=
+integration_time
+> > > > +What:                /sys/bus/iio/devices/iio:deviceX/in_voltage1_=
+integration_time
+> > > > +KernelVersion:       5.20
+> > > > +Contact:     cy_huang@richtek.com
+> > > > +Description:
+> > > > +             Each voltage conversion time in uS
+> > >
+> > > Please move this entry to sysfs-bus-iio
+> > >
+> > > It's a natural extension of existing standard ABI so doesn't need to =
+be in
+> > > a driver specific documentation file.
+> > >
+> > > However, way back in patch 1 I gave feedback on why we don't normally=
+ use integration time
+> > > for voltage channels and I thought you were changing this...
+> > >
+> > I didn't intend to change this. Just cannot find any suitable
+> > attribute for this feature.
+> > From the IC interrnal, there's only one set of ADC.
+> > And the conversion order is bus/shunt......, average sample count to
+> > control the sample update interval.
+> > That' why the sample frequency is calculated by one second to divide
+> > [(bus_ct + shunt_ct) *  average sample bit] (us)
+> >
+> > If it's not suitable for this attribute, I think it's better to change
+> > it as file attribute, not IIO channel attribute.
+> >
+> > How do you think?
+>
+> As mentioned in patch 1 discussion, we've done this before (IIRC) by defi=
+ning per channel
+> sampling frequencies and not providing a general one.
+>
+> We might want to consider improving the documentation in ABI/testing/sysf=
+s-bus-iio
+> to make that clear however.
+>
+> > > ...
+> > >
+> > > > +static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
+> > > > +                                 struct iio_chan_spec const *ch,
+> > > > +                                 int *val)
+> > > > +{
+> > > > +     struct device *dev =3D priv->dev;
+> > > > +     unsigned int addr =3D ch->address;
+> > > > +     unsigned int regval;
+> > > > +     int ret;
+> > > > +
+> > > > +     pm_runtime_get_sync(dev);
+> > > > +     ret =3D regmap_read(priv->regmap, addr, &regval);
+> > > > +     pm_runtime_mark_last_busy(dev);
+> > > > +     pm_runtime_put(dev);
+> > > > +     if (ret)
+> > > > +             return ret;
+> > > > +
+> > > > +     /* Power and VBUS is unsigned 16-bit, others are signed 16-bi=
+t */
+> > > > +     if (addr =3D=3D RTQ6056_REG_BUSVOLT || addr =3D=3D RTQ6056_RE=
+G_POWER)
+> > > > +             *val =3D regval;
+> > > > +     else
+> > > > +             *val =3D sign_extend32(regval, 16);
+> > > > +
+> > >
+> > > One blank line only.
+> > >
+> > > > +
+> > > > +     return IIO_VAL_INT;
+> > > > +}
+> > > > +
+> > > ...
+> > >
+> > >
+> > > > +
+> > > > +static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
+> > > > +                              struct iio_chan_spec const *chan, in=
+t val,
+> > > > +                              int val2, long mask)
+> > > > +{
+> > > > +     struct rtq6056_priv *priv =3D iio_priv(indio_dev);
+> > > > +
+> > > > +     if (iio_buffer_enabled(indio_dev))
+> > >
+> > > This is racy as can enter buffered mode immediately after this check.
+> > > Use iio_device_claim_direct_mode() to avoid any races around this.
+> > >
+> > for the shunt resistor attribute write, also?
+> > > > +             return -EBUSY;
+> > > > +
+> > > > +     switch (mask) {
+> > > > +     case IIO_CHAN_INFO_INT_TIME:
+> > > > +             return rtq6056_adc_set_conv_time(priv, chan, val);
+> > > > +     case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> > > > +             return rtq6056_adc_set_average(priv, val);
+> > > > +     default:
+> > > > +             return -EINVAL;
+> > > > +     }
+> > > > +}
+> > >
+> > >
+> > > > +
+> > > > +static void rtq6056_remove(void *dev)
+> > > > +{
+> > > > +     pm_runtime_dont_use_autosuspend(dev);
+> > > > +     pm_runtime_disable(dev);
+> > > > +     pm_runtime_set_suspended(dev);
+> > >
+> > > There isn't anything here to push the device into a suspend state, so=
+ why
+> > > does calling pm_runtime_set_suspended() make sense?
+> > >
+> > As I know, It is needed, at least 'pm_runtime_set_suspended' must be ke=
+pt.
+> >
+> > To think one case, adc is reading, module is removing.
+> > Who  will change the IC state to off?
+>
+> That's not what set_suspended does.  We aren't telling the device to
+> 'suspend' we are telling the runtime pm code that it already is.
+> If you want that to be the case, then you need to manually call whatever =
+your
+> driver needs to do to suspend the device.
+>
+> Note that if runtime pm is not configured into the kernel, everything sho=
+uld
+> still work. That is you should always power the device up in probe() and =
+down
+> in remove().  That powerdown is needs to not use the runtime pm paths (as=
+ they
+> aren't being built in such a kernel!)
+>
+> >
+> > pm_runtime is already disabled, the IC will be kept in 'active', right?
+> > > > +}
+> > > > +
+> > > >
+> > > > +
+> > > > +static int rtq6056_probe(struct i2c_client *i2c)
+> > > > +{
+> > > > +     struct iio_dev *indio_dev;
+> > > > +     struct rtq6056_priv *priv;
+> > > > +     struct device *dev =3D &i2c->dev;
+> > > > +     struct regmap *regmap;
+> > > > +     unsigned int vendor_id, shunt_resistor_uohm;
+> > > > +     int ret;
+> > > > +
+> > > > +     if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_SMBUS_WOR=
+D_DATA))
+> > > > +             return -EOPNOTSUPP;
+> > > > +
+> > > > +     indio_dev =3D devm_iio_device_alloc(dev, sizeof(*priv));
+> > > > +     if (!indio_dev)
+> > > > +             return -ENOMEM;
+> > > > +
+> > > > +     priv =3D iio_priv(indio_dev);
+> > > > +     priv->dev =3D dev;
+> > > > +     priv->vshuntct_us =3D priv->vbusct_us =3D 1037;
+> > > > +     priv->avg_sample =3D 1;
+> > > > +     i2c_set_clientdata(i2c, priv);
+> > > > +
+> > > > +     regmap =3D devm_regmap_init_i2c(i2c, &rtq6056_regmap_config);
+> > > > +     if (IS_ERR(regmap))
+> > > > +             return dev_err_probe(dev, PTR_ERR(regmap),
+> > > > +                                  "Failed to init regmap\n");
+> > > > +
+> > > > +     priv->regmap =3D regmap;
+> > > > +
+> > > > +     ret =3D regmap_read(regmap, RTQ6056_REG_MANUFACTID, &vendor_i=
+d);
+> > > > +     if (ret)
+> > > > +             return dev_err_probe(dev, ret,
+> > > > +                                  "Failed to get manufacturer info=
+\n");
+> > > > +
+> > > > +     if (vendor_id !=3D RTQ6056_VENDOR_ID)
+> > > > +             return dev_err_probe(dev, -ENODEV,
+> > > > +                                  "Invalid vendor id 0x%04x\n", ve=
+ndor_id);
+> > > > +
+> > > > +     ret =3D devm_regmap_field_bulk_alloc(dev, regmap, priv->rm_fi=
+elds,
+> > > > +                                        rtq6056_reg_fields, F_MAX_=
+FIELDS);
+> > > > +     if (ret)
+> > > > +             return dev_err_probe(dev, ret, "Failed to init regmap=
+ field\n");
+> > > > +
+> > > > +     /*
+> > > > +      * By default, configure average sample as 1, bus and shunt c=
+onversion
+> > > > +      * timea as 1037 microsecond, and operating mode to all on.
+> > > > +      */
+> > > > +     ret =3D regmap_write(regmap, RTQ6056_REG_CONFIG, RTQ6056_DEFA=
+ULT_CONFIG);
+> > > > +     if (ret)
+> > > > +             return dev_err_probe(dev, ret,
+> > > > +                                  "Failed to enable continuous sen=
+sing\n");
+> > > > +
+> > > > +     pm_runtime_set_autosuspend_delay(dev, MSEC_PER_SEC);
+> > > > +     pm_runtime_use_autosuspend(dev);
+> > > > +     pm_runtime_set_active(dev);
+> > > > +     pm_runtime_mark_last_busy(dev);
+> > > > +     pm_runtime_enable(dev);
+> > >
+> > > Look at whether you can use devm_pm_runtime_enable()
+> > > Note it handles disabling autosuspend for you.
+> > >
+> > > When using runtime_pm() you want to ensure that the device works with=
+out
+> > > runtime pm support being enabled.  As such, you turn the device on be=
+fore
+> > > enabling runtime_pm() and (this is missing I think) turn it off after=
+ disabling
+> > > runtime pm.  So I'd expect a devm_add_action_or_reset() call to unwin=
+d
+> > > setting the device into continuous sending above.
+> > >
+> > If so, I think it's better to configure the device keep in off state
+> > in probe stage.
+>
+> Only keep it in off state 'if' runtime pm is configured in.
+> Normally you need to power the device up in probe then
+> enable runtime pm to turn it off again (if runtime pm is supported).
+> If runtime pm isn't supported, we just leave the device powered up the wh=
+ole
+> time until remove() when we power it down.
+>
+> > The calling order may need to be changed as below
+> > devm_add_action_or_reset...
+> >
+> > pm_runtime_set_autosuspend_delay
+> > pm_runtime_use_auto_suspend
+> > devm_pm_runtime_enable
+>
+>
+>
+> >
+> > > > +
+> > > > +     ret =3D devm_add_action_or_reset(dev, rtq6056_remove, dev);
+> > >
+> > > The callback naming is too generic. It should give some indication
+> > > of what it is undoing (much of probe is handled by other devm_ callba=
+cks).
+> > >
+> > How about to change the name to 'rtq6056_enter_shutdown_state'?
+> > And in this function, to change the device state in shutdown with
+> > 'pm_runtime_set_suspended' API.
+>
+> I think this reflects back to earlier misunderstanding of what
+> pm_runtime_set_suspended() actually does (assuming I have understood it
+> correctly).
+>
+Ok, I really misunderstand it.
+> > > > +     if (ret)
+> > > > +             return ret;
+> > > > +
+> > > > +     /* By default, use 2000 micro-ohm resistor */
+> > > > +     shunt_resistor_uohm =3D 2000;
+> > > > +     device_property_read_u32(dev, "shunt-resistor-micro-ohms",
+> > > > +                              &shunt_resistor_uohm);
+> > > > +
+> > > > +     ret =3D rtq6056_set_shunt_resistor(priv, shunt_resistor_uohm)=
+;
+> > > > +     if (ret)
+> > > > +             return dev_err_probe(dev, ret,
+> > > > +                                  "Failed to init shunt resistor\n=
+");
+> > > > +
+> > > > +     indio_dev->name =3D "rtq6056";
+> > > > +     indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > > > +     indio_dev->channels =3D rtq6056_channels;
+> > > > +     indio_dev->num_channels =3D ARRAY_SIZE(rtq6056_channels);
+> > > > +     indio_dev->info =3D &rtq6056_info;
+> > > > +
+> > > > +     ret =3D devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
+> > > > +                                           rtq6056_buffer_trigger_=
+handler,
+> > > > +                                           NULL);
+> > > > +     if (ret)
+> > > > +             return dev_err_probe(dev, ret,
+> > > > +                                  "Failed to allocate iio trigger =
+buffer\n");
+> > > > +
+> > > > +     return devm_iio_device_register(dev, indio_dev);
+> > > > +}
+> > >
+> > > > +
+> > > > +static const struct dev_pm_ops rtq6056_pm_ops =3D {
+> > > > +     RUNTIME_PM_OPS(rtq6056_runtime_suspend, rtq6056_runtime_resum=
+e, NULL)
+> > >
+> > > Is there any reason we can't use these same ops to achieve at least s=
+ome power
+> > > saving in suspend?  i.e. use DEFINE_RUNTIME_PM_OPS()
+> >                                                  ~~~~~~~~~~~~~~~~~~~~~~=
+~
+> >                                                  Where can I find this?
+>
+> oops. DEFINE_RUNTIME_DEV_PM_OPS()
+> https://elixir.bootlin.com/linux/v5.19-rc6/source/include/linux/pm_runtim=
+e.h#L37
+>
 
-Fixes: 2db16c6ed72ce ("media: imx-jpeg: Add V4L2 driver for i.MX8 JPEG Encoder/Decoder")
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
-Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
----
- .../media/platform/nxp/imx-jpeg/mxc-jpeg.c    | 55 ++++++++++++++++---
- .../media/platform/nxp/imx-jpeg/mxc-jpeg.h    |  1 +
- 2 files changed, 49 insertions(+), 7 deletions(-)
+OK, it's really new API. That's why I cannot find it.
+Due to there's no reply in several days, so I already submit the v6 as
+my understanding.
 
-diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-index 32fd04a3d8bb..fd5a65e577f4 100644
---- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-+++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-@@ -330,6 +330,10 @@ static unsigned int debug;
- module_param(debug, int, 0644);
- MODULE_PARM_DESC(debug, "Debug level (0-3)");
- 
-+static unsigned int hw_timeout = 2000;
-+module_param(hw_timeout, int, 0644);
-+MODULE_PARM_DESC(hw_timeout, "MXC JPEG hw timeout, the number of milliseconds");
-+
- static void mxc_jpeg_bytesperline(struct mxc_jpeg_q_data *q, u32 precision);
- static void mxc_jpeg_sizeimage(struct mxc_jpeg_q_data *q);
- 
-@@ -570,6 +574,26 @@ static void mxc_jpeg_check_and_set_last_buffer(struct mxc_jpeg_ctx *ctx,
- 	}
- }
- 
-+static void mxc_jpeg_job_finish(struct mxc_jpeg_ctx *ctx, enum vb2_buffer_state state, bool reset)
-+{
-+	struct mxc_jpeg_dev *jpeg = ctx->mxc_jpeg;
-+	void __iomem *reg = jpeg->base_reg;
-+	struct vb2_v4l2_buffer *src_buf, *dst_buf;
-+
-+	dst_buf = v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
-+	src_buf = v4l2_m2m_next_src_buf(ctx->fh.m2m_ctx);
-+	mxc_jpeg_check_and_set_last_buffer(ctx, src_buf, dst_buf);
-+	v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
-+	v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
-+	v4l2_m2m_buf_done(src_buf, state);
-+	v4l2_m2m_buf_done(dst_buf, state);
-+
-+	mxc_jpeg_disable_irq(reg, ctx->slot);
-+	ctx->mxc_jpeg->slot_data[ctx->slot].used = false;
-+	if (reset)
-+		mxc_jpeg_sw_reset(reg);
-+}
-+
- static irqreturn_t mxc_jpeg_dec_irq(int irq, void *priv)
- {
- 	struct mxc_jpeg_dev *jpeg = priv;
-@@ -602,6 +626,9 @@ static irqreturn_t mxc_jpeg_dec_irq(int irq, void *priv)
- 		goto job_unlock;
- 	}
- 
-+	if (!jpeg->slot_data[slot].used)
-+		goto job_unlock;
-+
- 	dec_ret = readl(reg + MXC_SLOT_OFFSET(slot, SLOT_STATUS));
- 	writel(dec_ret, reg + MXC_SLOT_OFFSET(slot, SLOT_STATUS)); /* w1c */
- 
-@@ -666,14 +693,9 @@ static irqreturn_t mxc_jpeg_dec_irq(int irq, void *priv)
- 	buf_state = VB2_BUF_STATE_DONE;
- 
- buffers_done:
--	mxc_jpeg_disable_irq(reg, ctx->slot);
--	jpeg->slot_data[slot].used = false; /* unused, but don't free */
--	mxc_jpeg_check_and_set_last_buffer(ctx, src_buf, dst_buf);
--	v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
--	v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
--	v4l2_m2m_buf_done(src_buf, buf_state);
--	v4l2_m2m_buf_done(dst_buf, buf_state);
-+	mxc_jpeg_job_finish(ctx, buf_state, false);
- 	spin_unlock(&jpeg->hw_lock);
-+	cancel_delayed_work(&ctx->task_timer);
- 	v4l2_m2m_job_finish(jpeg->m2m_dev, ctx->fh.m2m_ctx);
- 	return IRQ_HANDLED;
- job_unlock:
-@@ -1004,6 +1026,23 @@ static int mxc_jpeg_job_ready(void *priv)
- 	return ctx->source_change ? 0 : 1;
- }
- 
-+static void mxc_jpeg_device_run_timeout(struct work_struct *work)
-+{
-+	struct delayed_work *dwork = to_delayed_work(work);
-+	struct mxc_jpeg_ctx *ctx = container_of(dwork, struct mxc_jpeg_ctx, task_timer);
-+	struct mxc_jpeg_dev *jpeg = ctx->mxc_jpeg;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ctx->mxc_jpeg->hw_lock, flags);
-+	if (ctx->slot < MXC_MAX_SLOTS && ctx->mxc_jpeg->slot_data[ctx->slot].used) {
-+		dev_warn(jpeg->dev, "%s timeout, cancel it\n",
-+			 ctx->mxc_jpeg->mode == MXC_JPEG_DECODE ? "decode" : "encode");
-+		mxc_jpeg_job_finish(ctx, VB2_BUF_STATE_ERROR, true);
-+		v4l2_m2m_job_finish(ctx->mxc_jpeg->m2m_dev, ctx->fh.m2m_ctx);
-+	}
-+	spin_unlock_irqrestore(&ctx->mxc_jpeg->hw_lock, flags);
-+}
-+
- static void mxc_jpeg_device_run(void *priv)
- {
- 	struct mxc_jpeg_ctx *ctx = priv;
-@@ -1089,6 +1128,7 @@ static void mxc_jpeg_device_run(void *priv)
- 					 &src_buf->vb2_buf, &dst_buf->vb2_buf);
- 		mxc_jpeg_dec_mode_go(dev, reg);
- 	}
-+	schedule_delayed_work(&ctx->task_timer, msecs_to_jiffies(hw_timeout));
- end:
- 	spin_unlock_irqrestore(&ctx->mxc_jpeg->hw_lock, flags);
- }
-@@ -1672,6 +1712,7 @@ static int mxc_jpeg_open(struct file *file)
- 	ctx->fh.ctrl_handler = &ctx->ctrl_handler;
- 	mxc_jpeg_set_default_params(ctx);
- 	ctx->slot = MXC_MAX_SLOTS; /* slot not allocated yet */
-+	INIT_DELAYED_WORK(&ctx->task_timer, mxc_jpeg_device_run_timeout);
- 
- 	if (mxc_jpeg->mode == MXC_JPEG_DECODE)
- 		dev_dbg(dev, "Opened JPEG decoder instance %p\n", ctx);
-diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
-index c508d41a906f..8104ee4a3b7a 100644
---- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
-+++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
-@@ -97,6 +97,7 @@ struct mxc_jpeg_ctx {
- 	bool				header_parsed;
- 	struct v4l2_ctrl_handler	ctrl_handler;
- 	u8				jpeg_quality;
-+	struct delayed_work		task_timer;
- };
- 
- struct mxc_jpeg_slot_data {
--- 
-2.36.1
+The last is to use 'DEFINE_RUNTIME_DEV_PM_OPS'.
+I think it's better than just to declare 'runtime_enable' and 'runtime_disa=
+ble'.
+This API also consider system suspend and resume.
 
+Will be added in v7.
+> > >
+> > > I have tidying this up in existing drivers on my todo list as I think=
+ it is almost
+> > > always a good idea.  Note this is why there isn't a define to create =
+the
+> > > particular combination you have here.
+> > >
+> > If there's no combination like as that one, why  not unify it  to
+> > '_DEFINE_DEV_PM_OPS'?
+> > > > +};
+> > > > +
+> > >
+>
