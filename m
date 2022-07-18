@@ -2,254 +2,399 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98A635784C4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:05:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B2E45784D3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:08:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235476AbiGROFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 10:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33088 "EHLO
+        id S235133AbiGROIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 10:08:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235257AbiGROFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:05:50 -0400
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34A3DF2A;
-        Mon, 18 Jul 2022 07:05:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:References
-        :In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Xs7wzf2rdkIl6A79wivxfhKpQiSvS3qbi/7VpAMI+GM=; b=A+1D2R3BsYvLCh1qriPVhfKLw2
-        O9TvzgNHKn7j40ew1cjUhqZ1L1zcPV5i3d9ZfoM5Cu+B3SGCq2rSGvIPZD942u5u0ep8jIZeYvZ9K
-        vqm/hKDTXGr4sC4TaMxmYPgL216XBgzZD3L+PxGNB4lZgy8Y0BkPJqFqc27imCfKAILvwGBgJqABn
-        96KyZjfu0U0Qy5+zNdMO12UhyOsqladVEfYJ18PJsHhyjAIaSwhmh49MgXypWRLYLjQAaevIxV4MD
-        x4a7ugrMlJSPRhm+3bhPTi0BRK2/o6le7Zw4N1NbXMFTQsDviuJriAGg56HKvisekZrcZ0gRkUcEI
-        n+4YP+8w==;
-Received: from [10.22.3.24] (helo=kernkonzept.com)
-        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
-        id 1oDRNV-008iC6-Ic; Mon, 18 Jul 2022 16:05:41 +0200
-From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sireesh Kodali <sireeshkodali1@gmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Subject: [PATCH v2 5/5] remoteproc: qcom_q6v5_mss: Add support for MSM8909
-Date:   Mon, 18 Jul 2022 16:03:44 +0200
-Message-Id: <20220718140344.1831731-6-stephan.gerhold@kernkonzept.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220718140344.1831731-1-stephan.gerhold@kernkonzept.com>
-References: <20220718140344.1831731-1-stephan.gerhold@kernkonzept.com>
+        with ESMTP id S235257AbiGROIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:08:06 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CF126129
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:08:04 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id u19so10694649lfs.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:08:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=1JhvfwSerHJevbTjrgxZbFc36NslbyY4GFSoZTR74vE=;
+        b=KE4D7qn9+mLkdL+4PkRQfxtQE9O4A17G+yqAJMBftSCdle6r2WivRGDH0OP4jDKB6L
+         pQJV/tF8SiQ8QXpTy2X2gMpKkPOLwQonvFwaIGenPNyRcGwK+3XxYayUq/FYpxpG+59c
+         D4pUDJMNV8sct8Slunl3k2nn3qiIpniVArOjeOApmXFo4Z32TbZDpg+qdb6+zIftoW0t
+         nCYWhUTsSCvo8+AiHmcIh1ctAKjLAyweaETE015yUGO8TYEnjV+MyS2j//vxdpJHR9nU
+         G58cYD/ATYHKnEm2R+sKAMn7ttduhjJnNDkBLULFUSP6W1Vzyn7TBjWi1Ht1Kxstu1/P
+         +z6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1JhvfwSerHJevbTjrgxZbFc36NslbyY4GFSoZTR74vE=;
+        b=4WVe7jSJl4+OiLbeaZYllEot7oe2JUOkwuFzdrwf9wP7xsyXwEHTe4S0+ohxfxd/vI
+         dTstYrsWFvisQGvA0twE2oZeZVf8Hudb/TXjxMhXosBo61yv0aTibyy7aQoxozXyPUw9
+         8n+R4g/S6jfHdT439+u8ytv+l1SO699TICd8Eq1610G1SNZHmThV33WuPX2hiBLpjfkm
+         Wv8ZyLhRNoJcDuCkFEMnMLo248OGn63JKpAkMjM9+8+IJgvNCnp89XMvlMrck1Bds37o
+         rQAqBXJvs9NIHd0Y+dIUZ+oqpb8kdZpiceOvb9VtpsJ95bSaawgkHp1ZGfbpRdMtSwOt
+         nUwQ==
+X-Gm-Message-State: AJIora+XFg+rZ7JFze079XMMJchS0wpaJl3if1K5JYsHj5LCDnyGx0Qc
+        IF0En/KoX+Aopgi8YlT96PGhOw==
+X-Google-Smtp-Source: AGRyM1uA4X1ZcNACiUgMDBusnkLTOMJZhCjYj6GvRd0e8+DzhcDNpPkzzbvd/GVjQgAW+wjhDtT2yg==
+X-Received: by 2002:a05:6512:4022:b0:48a:2c31:f26a with SMTP id br34-20020a056512402200b0048a2c31f26amr6529963lfb.94.1658153282930;
+        Mon, 18 Jul 2022 07:08:02 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id n3-20020a05651203e300b00485e55192a3sm2404605lfq.72.2022.07.18.07.08.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jul 2022 07:08:02 -0700 (PDT)
+Message-ID: <b28dcbe5-d15f-1c4f-9b3d-650d5c39de6b@linaro.org>
+Date:   Mon, 18 Jul 2022 16:08:00 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/3] dt-bindings: mediatek: add pinctrl definition for
+ mt8188
+Content-Language: en-US
+To:     Hui Liu <hui.liu@mediatek.com>, linus.walleij@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com
+Cc:     srv_heupstream@mediatek.com, johnson.wang@mediatek.com,
+        zhiyong.tao@mediatek.com, sean.wang@mediatek.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220718113813.23787-1-hui.liu@mediatek.com>
+ <20220718113813.23787-2-hui.liu@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220718113813.23787-2-hui.liu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Port the initialization sequence necessary for booting the modem remote
-processor on the MSM8909 SoC from Qualcomm's msm-3.10 release [1].
-The sequence is actually similar to the existing one for MSM8996 and
-MSM8998 except that there is no separate QDSP6SS_MEM_PWR_CTL register
-and most of the "memories" are enabled at once instead of sequentially.
+On 18/07/2022 13:38, Hui Liu wrote:
+> From: "Hui.Liu" <hui.liu@mediatek.com>
+> 
+> This commit adds mt8188 compatible node in binding document.
+> 
+> Signed-off-by: Hui.Liu <hui.liu@mediatek.com>
+> ---
+>  .../bindings/pinctrl/pinctrl-mt8188.yaml      | 306 ++++++++++++++++++
+>  1 file changed, 306 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8188.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8188.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8188.yaml
+> new file mode 100644
+> index 000000000000..43cc2424107f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8188.yaml
 
-To reuse the existing code just insert some if statements where needed
-and add a configuration similar to the one from MSM8916.
+vendor,soc-ip
+so:
+mediatek,mt8188-pinctrl.yaml
 
-[1]: https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/commit/56dcedc8dac8abff6b007f76a29430b2d0a44704
+> @@ -0,0 +1,306 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-mt8188.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT8188 Pin Controller
+> +
+> +maintainers:
+> +  - Sean Wang <sean.wang@mediatek.com>
+> +
+> +description: |
+> +  The MediaTek's Pin controller is used to control SoC pins.
 
-Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
----
-Changes in v2: None.
----
- drivers/remoteproc/qcom_q6v5_mss.c | 123 +++++++++++++++++++++--------
- 1 file changed, 90 insertions(+), 33 deletions(-)
+Too generic description. Just drop it or make it useful.
 
-diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
-index af217de75e4d..31f561619b19 100644
---- a/drivers/remoteproc/qcom_q6v5_mss.c
-+++ b/drivers/remoteproc/qcom_q6v5_mss.c
-@@ -110,6 +110,9 @@
- #define QDSS_BHS_ON			BIT(21)
- #define QDSS_LDO_BYP			BIT(22)
- 
-+/* QDSP6v55 parameters */
-+#define QDSP6V55_MEM_BITS		GENMASK(16, 8)
-+
- /* QDSP6v56 parameters */
- #define QDSP6v56_LDO_BYP		BIT(25)
- #define QDSP6v56_BHS_ON		BIT(24)
-@@ -233,6 +236,7 @@ struct q6v5 {
- };
- 
- enum {
-+	MSS_MSM8909,
- 	MSS_MSM8916,
- 	MSS_MSM8974,
- 	MSS_MSM8996,
-@@ -686,13 +690,14 @@ static int q6v5proc_reset(struct q6v5 *qproc)
- 			return ret;
- 		}
- 		goto pbl_wait;
--	} else if (qproc->version == MSS_MSM8996 ||
-+	} else if (qproc->version == MSS_MSM8909 ||
-+		   qproc->version == MSS_MSM8996 ||
- 		   qproc->version == MSS_MSM8998) {
--		int mem_pwr_ctl;
- 
--		/* Override the ACC value if required */
--		writel(QDSP6SS_ACC_OVERRIDE_VAL,
--		       qproc->reg_base + QDSP6SS_STRAP_ACC);
-+		if (qproc->version != MSS_MSM8909)
-+			/* Override the ACC value if required */
-+			writel(QDSP6SS_ACC_OVERRIDE_VAL,
-+			       qproc->reg_base + QDSP6SS_STRAP_ACC);
- 
- 		/* Assert resets, stop core */
- 		val = readl(qproc->reg_base + QDSP6SS_RESET_REG);
-@@ -724,36 +729,53 @@ static int q6v5proc_reset(struct q6v5 *qproc)
- 		val |= QDSP6v56_LDO_BYP;
- 		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
- 
--		/* Deassert QDSP6 compiler memory clamp */
--		val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
--		val &= ~QDSP6v56_CLAMP_QMC_MEM;
--		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
--
--		/* Deassert memory peripheral sleep and L2 memory standby */
--		val |= Q6SS_L2DATA_STBY_N | Q6SS_SLP_RET_N;
--		writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
--
--		/* Turn on L1, L2, ETB and JU memories 1 at a time */
--		if (qproc->version == MSS_MSM8996) {
--			mem_pwr_ctl = QDSP6SS_MEM_PWR_CTL;
--			i = 19;
-+		if (qproc->version != MSS_MSM8909) {
-+			int mem_pwr_ctl;
-+
-+			/* Deassert QDSP6 compiler memory clamp */
-+			val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+			val &= ~QDSP6v56_CLAMP_QMC_MEM;
-+			writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+
-+			/* Deassert memory peripheral sleep and L2 memory standby */
-+			val |= Q6SS_L2DATA_STBY_N | Q6SS_SLP_RET_N;
-+			writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+
-+			/* Turn on L1, L2, ETB and JU memories 1 at a time */
-+			if (qproc->version == MSS_MSM8996) {
-+				mem_pwr_ctl = QDSP6SS_MEM_PWR_CTL;
-+				i = 19;
-+			} else {
-+				/* MSS_MSM8998 */
-+				mem_pwr_ctl = QDSP6V6SS_MEM_PWR_CTL;
-+				i = 28;
-+			}
-+			val = readl(qproc->reg_base + mem_pwr_ctl);
-+			for (; i >= 0; i--) {
-+				val |= BIT(i);
-+				writel(val, qproc->reg_base + mem_pwr_ctl);
-+				/*
-+				 * Read back value to ensure the write is done then
-+				 * wait for 1us for both memory peripheral and data
-+				 * array to turn on.
-+				 */
-+				val |= readl(qproc->reg_base + mem_pwr_ctl);
-+				udelay(1);
-+			}
- 		} else {
--			/* MSS_MSM8998 */
--			mem_pwr_ctl = QDSP6V6SS_MEM_PWR_CTL;
--			i = 28;
--		}
--		val = readl(qproc->reg_base + mem_pwr_ctl);
--		for (; i >= 0; i--) {
--			val |= BIT(i);
--			writel(val, qproc->reg_base + mem_pwr_ctl);
--			/*
--			 * Read back value to ensure the write is done then
--			 * wait for 1us for both memory peripheral and data
--			 * array to turn on.
--			 */
--			val |= readl(qproc->reg_base + mem_pwr_ctl);
--			udelay(1);
-+			/* Turn on memories */
-+			val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+			val |= Q6SS_SLP_RET_N | Q6SS_L2DATA_STBY_N |
-+			       Q6SS_ETB_SLP_NRET_N | QDSP6V55_MEM_BITS;
-+			writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+
-+			/* Turn on L2 banks 1 at a time */
-+			for (i = 0; i <= 7; i++) {
-+				val |= BIT(i);
-+				writel(val, qproc->reg_base + QDSP6SS_PWR_CTL_REG);
-+			}
- 		}
-+
- 		/* Remove word line clamp */
- 		val = readl(qproc->reg_base + QDSP6SS_PWR_CTL_REG);
- 		val &= ~QDSP6v56_CLAMP_WL;
-@@ -2198,6 +2220,40 @@ static const struct rproc_hexagon_res msm8996_mss = {
- 	.version = MSS_MSM8996,
- };
- 
-+static const struct rproc_hexagon_res msm8909_mss = {
-+	.hexagon_mba_image = "mba.mbn",
-+	.proxy_supply = (struct qcom_mss_reg_res[]) {
-+		{
-+			.supply = "pll",
-+			.uA = 100000,
-+		},
-+		{}
-+	},
-+	.proxy_clk_names = (char*[]){
-+		"xo",
-+		NULL
-+	},
-+	.active_clk_names = (char*[]){
-+		"iface",
-+		"bus",
-+		"mem",
-+		NULL
-+	},
-+	.proxy_pd_names = (char*[]){
-+		"mx",
-+		"cx",
-+		NULL
-+	},
-+	.need_mem_protection = false,
-+	.has_alt_reset = false,
-+	.has_mba_logs = false,
-+	.has_spare_reg = false,
-+	.has_qaccept_regs = false,
-+	.has_ext_cntl_regs = false,
-+	.has_vq6 = false,
-+	.version = MSS_MSM8909,
-+};
-+
- static const struct rproc_hexagon_res msm8916_mss = {
- 	.hexagon_mba_image = "mba.mbn",
- 	.proxy_supply = (struct qcom_mss_reg_res[]) {
-@@ -2298,6 +2354,7 @@ static const struct rproc_hexagon_res msm8974_mss = {
- 
- static const struct of_device_id q6v5_of_match[] = {
- 	{ .compatible = "qcom,q6v5-pil", .data = &msm8916_mss},
-+	{ .compatible = "qcom,msm8909-mss-pil", .data = &msm8909_mss},
- 	{ .compatible = "qcom,msm8916-mss-pil", .data = &msm8916_mss},
- 	{ .compatible = "qcom,msm8974-mss-pil", .data = &msm8974_mss},
- 	{ .compatible = "qcom,msm8996-mss-pil", .data = &msm8996_mss},
--- 
-2.30.2
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8188-pinctrl
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    description: |
+> +      Number of cells in GPIO specifier. Since the generic GPIO binding is used,
+> +      the amount of cells must be specified as 2. See the below
+> +      mentioned gpio binding representation for description of particular cells.
 
+Comment does not make sense.
+
+> +    const: 2
+> +
+> +  gpio-ranges:
+> +    description: gpio valid number range.
+
+Redundant description, skip it.
+
+> +    maxItems: 1
+> +
+> +  reg:
+> +    description: |
+> +      Physical address base for gpio base registers. There are 8 GPIO
+> +      physical address base in mt8188.
+
+Redundant description, skip it. You should list the instead and describe
+each of it.
+
+> +    maxItems: 8
+> +
+> +  reg-names:
+> +    description: |
+> +      Gpio base register names.
+
+Redundant description, skip it.
+
+> +    maxItems: 8
+
+You need to list the items instead.
+
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  interrupts:
+> +    description: The interrupt outputs to sysirq.
+> +    maxItems: 1
+> +
+> +  mediatek,rsel_resistance_in_si_unit:
+
+No underscores in property names.
+
+> +    type: boolean
+> +    description: |
+> +      Identifying i2c pins pull up/down type which is RSEL. It can support
+> +      RSEL define or si unit value(ohm) to set different resistance.
+
+I cannot understand this description.
+
+> +
+> +# PIN CONFIGURATION NODES
+> +patternProperties:
+> +  '-pins$':
+> +    type: object
+> +    additionalProperties: false
+
+Blank line. Missing ref to proper generic pinctrl schema.
+
+> +    patternProperties:
+> +      '^pins':
+> +        type: object
+> +        additionalProperties: false
+
+Blank line. Missing ref to proper generic pinctrl schema.
+
+
+> +        description: |
+> +          A pinctrl node should contain at least one subnodes representing the
+> +          pinctrl groups available on the machine. Each subnode will list the
+> +          pins it needs, and how they should be configured, with regard to muxer
+> +          configuration, pullups, drive strength, input enable/disable and
+> +          input schmitt.
+> +          An example of using macro:
+> +          pincontroller {
+> +            /* GPIO0 set as multifunction GPIO0 */
+> +            gpio-pins {
+> +              pins {
+> +                pinmux = <PINMUX_GPIO0__FUNC_B_GPIO0>;
+> +              }
+> +            };
+> +            /* GPIO56 set as multifunction SDA0 */
+> +            i2c0-pins {
+> +              pins {
+> +                pinmux = <PINMUX_GPIO56__FUNC_B1_SDA0>;
+> +              }
+> +            };
+
+Drop the code from here. Put it in example.
+
+> +          };
+> +        $ref: "pinmux-node.yaml"
+
+Oh, why it's here. This should be just after type.
+
+> +
+> +        properties:
+> +          pinmux:
+> +            description: |
+> +              Integer array, represents gpio pin number and mux setting.
+> +              Supported pin number and mux varies for different SoCs, and are
+> +              defined as macros in dt-bindings/pinctrl/<soc>-pinfunc.h
+> +              directly.
+> +
+> +          drive-strength:
+> +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> +
+> +          mediatek,drive-strength-adv:
+> +            description: |
+> +              Describe the specific driving setup property.
+> +              For I2C pins, the existing generic driving setup can only support
+> +              2/4/6/8/10/12/14/16mA driving. But in specific driving setup, they
+> +              can support 0.125/0.25/0.5/1mA adjustment. If we enable specific
+> +              driving setup, the existing generic setup will be disabled.
+> +              The specific driving setup is controlled by E1E0EN.
+> +              When E1=0/E0=0, the strength is 0.125mA.
+> +              When E1=0/E0=1, the strength is 0.25mA.
+> +              When E1=1/E0=0, the strength is 0.5mA.
+> +              When E1=1/E0=1, the strength is 1mA.
+> +              EN is used to enable or disable the specific driving setup.
+> +              Valid arguments are described as below:
+> +              0: (E1, E0, EN) = (0, 0, 0)
+> +              1: (E1, E0, EN) = (0, 0, 1)
+> +              2: (E1, E0, EN) = (0, 1, 0)
+> +              3: (E1, E0, EN) = (0, 1, 1)
+> +              4: (E1, E0, EN) = (1, 0, 0)
+> +              5: (E1, E0, EN) = (1, 0, 1)
+> +              6: (E1, E0, EN) = (1, 1, 0)
+> +              7: (E1, E0, EN) = (1, 1, 1)
+> +              So the valid arguments are from 0 to 7.
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            enum: [0, 1, 2, 3, 4, 5, 6, 7]
+
+No. Use logical units instead, so this should be either mA, no register
+hard-coding in the bindings.
+
+> +
+> +          bias-pull-down:
+> +            oneOf:
+> +              - type: boolean
+> +              - enum: [100, 101, 102, 103]
+> +                description: mt8188 pull down PUPD/R0/R1 type define value.
+> +              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
+> +                description: mt8188 pull down RSEL type define value.
+> +              - enum: [75000, 5000]
+> +                description: mt8188 pull down RSEL type si unit value(ohm).
+> +            description: |
+> +              For pull down type is normal, it don't need add RSEL & R1R0 define
+> +              and resistance value.
+> +              For pull down type is PUPD/R0/R1 type, it can add R1R0 define to
+> +              set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
+> +              "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
+> +              "MTK_PUPD_SET_R1R0_11" define in mt8188.
+> +              For pull down type is RSEL, it can add RSEL define & resistance
+> +              value(ohm) to set different resistance by identifying property
+> +              "mediatek,rsel_resistance_in_si_unit".
+> +              It can support "MTK_PULL_SET_RSEL_000" & "MTK_PULL_SET_RSEL_001"
+> +              & "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011"
+> +              & "MTK_PULL_SET_RSEL_100" & "MTK_PULL_SET_RSEL_101"
+> +              & "MTK_PULL_SET_RSEL_110" & "MTK_PULL_SET_RSEL_111"
+> +              define in mt8188. It can also support resistance value(ohm)
+> +              "75000" & "5000" in mt8188.
+> +
+> +              An example of using RSEL define:
+> +              pincontroller {
+> +                i2c0_pin {
+> +                  pins {
+> +                    pinmux = <PINMUX_GPIO56__FUNC_B1_SDA0>;
+> +                    bias-pull-updown = <MTK_PULL_SET_RSEL_001>;
+> +                  }
+> +                };
+> +              };
+> +              An example of using si unit resistance value(ohm):
+> +              &pio {
+> +                mediatek,rsel_resistance_in_si_unit;
+> +              }
+> +              pincontroller {
+> +                i2c0_pin {
+> +                  pins {
+> +                    pinmux = <PINMUX_GPIO56__FUNC_B1_SDA0>;
+> +                    bias-pull-down = <75000>;
+> +                  }
+> +                };
+> +              };
+
+To the example.
+
+> +
+> +          bias-pull-up:
+> +            oneOf:
+> +              - type: boolean
+> +              - enum: [100, 101, 102, 103]
+> +                description: mt8188 pull up PUPD/R0/R1 type define value.
+> +              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
+> +                description: mt8188 pull up RSEL type define value.
+> +              - enum: [1000, 1500, 2000, 3000, 4000, 5000, 10000, 75000]
+> +                description: mt8188 pull up RSEL type si unit value(ohm).
+> +            description: |
+> +              For pull up type is normal, it don't need add RSEL & R1R0 define
+> +              and resistance value.
+> +              For pull up type is PUPD/R0/R1 type, it can add R1R0 define to
+> +              set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
+> +              "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
+> +              "MTK_PUPD_SET_R1R0_11" define in mt8188.
+> +              For pull up type is RSEL, it can add RSEL define & resistance
+> +              value(ohm) to set different resistance by identifying property
+> +              "mediatek,rsel_resistance_in_si_unit".
+> +              It can support "MTK_PULL_SET_RSEL_000" & "MTK_PULL_SET_RSEL_001"
+> +              & "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011"
+> +              & "MTK_PULL_SET_RSEL_100" & "MTK_PULL_SET_RSEL_101"
+> +              & "MTK_PULL_SET_RSEL_110" & "MTK_PULL_SET_RSEL_111"
+> +              define in mt8188. It can also support resistance value(ohm)
+> +              "1000" & "1500" & "2000" & "3000" & "4000" & "5000" & "10000" &
+> +              "75000" in mt8188.
+> +              An example of using RSEL define:
+> +              pincontroller {
+> +                i2c0-pins {
+> +                  pins {
+> +                    pinmux = <PINMUX_GPIO56__FUNC_B1_SDA0>;
+> +                    bias-pull-up = <MTK_PULL_SET_RSEL_001>;
+> +                  }
+> +                };
+> +              };
+> +              An example of using si unit resistance value(ohm):
+> +              &pio {
+> +                mediatek,rsel_resistance_in_si_unit;
+> +              }
+> +              pincontroller {
+> +                i2c0-pins {
+> +                  pins {
+> +                    pinmux = <PINMUX_GPIO56__FUNC_B1_SDA0>;
+> +                    bias-pull-up = <1000>;
+> +                  }
+> +                };
+> +              };
+
+The same.
+
+> +
+> +          bias-disable: true
+> +
+> +          output-high: true
+> +
+> +          output-low: true
+> +
+> +          input-enable: true
+> +
+> +          input-disable: true
+> +
+> +          input-schmitt-enable: true
+> +
+> +          input-schmitt-disable: true
+> +
+> +        required:
+> +          - pinmux
+> +
+> +allOf:
+> +  - $ref: "pinctrl.yaml#"
+
+No need for quotes, especially that you use different here " than in
+other places '.
+
+
+
+Best regards,
+Krzysztof
