@@ -2,89 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B13578C98
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 23:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61928578C9E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 23:21:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233997AbiGRVSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 17:18:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44586 "EHLO
+        id S234192AbiGRVVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 17:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229799AbiGRVSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 17:18:16 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C2428705;
-        Mon, 18 Jul 2022 14:18:15 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id n7so10355998ioo.7;
-        Mon, 18 Jul 2022 14:18:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=CA6cnIkj6RDBPi8wVndYenOw7BfsLn6HBSCFjK/hRkk=;
-        b=vY4E7Q0/yf8wqlPZgngrNwlmKxoXFYP+p/0wY40QylcYgo05vvW1jblY+8Y/rrD60W
-         mvB+oq3IHROxgCx9/LMzKL0ZC6HgxHTR5dQBsK4iOpDRp4oTswfEopV1nSPGHILyDLsB
-         o1msV9CvWwBPmxxITtLFY7K8KxdC3V5OPrNsFtKOYoiaJr1D54cmvBPCRml/2kfoGzn4
-         UcwLqzvx0kvUM/FyRhmuFkHgGQUW4HqSXRoEIAw+WsaITdzLMsZLcvebdzvKlEhQtXcq
-         4DpwP3spj4IlX1bvoFKwmeIVFXaLYvQNRezKfjWEh3X73CP+to6RSfCh5JbcEfsC+lkP
-         s4Ng==
-X-Gm-Message-State: AJIora8iFb7qL0NrVzKn57cr5wVF0oLrajW3ENOSrcTp2KQXihLFYLFJ
-        BJxLQ7Pval5Vfs0VR0IVLA==
-X-Google-Smtp-Source: AGRyM1tMwB1OR6cOOec4zTljTVtyHRR6P+TR082tR8av+kzniYWrINr3/JwNrtZTkmpwLMaUd9NU5w==
-X-Received: by 2002:a02:a890:0:b0:33f:22b8:cb0b with SMTP id l16-20020a02a890000000b0033f22b8cb0bmr16115281jam.136.1658179093108;
-        Mon, 18 Jul 2022 14:18:13 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j195-20020a0263cc000000b003417ba4f66asm840832jac.41.2022.07.18.14.18.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 14:18:12 -0700 (PDT)
-Received: (nullmailer pid 3574265 invoked by uid 1000);
-        Mon, 18 Jul 2022 21:18:10 -0000
-Date:   Mon, 18 Jul 2022 15:18:10 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S230317AbiGRVVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 17:21:02 -0400
+Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 985A728721;
+        Mon, 18 Jul 2022 14:21:00 -0700 (PDT)
+Date:   Mon, 18 Jul 2022 21:20:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1658179258; x=1658438458;
+        bh=3U/67mf57ng96VibBXJjsH4xTmCc+lifj3sh+mu8+qQ=;
+        h=Date:To:From:Reply-To:Subject:Message-ID:Feedback-ID:From:To:Cc:
+         Date:Subject:Reply-To:Feedback-ID:Message-ID;
+        b=f509/OtZQV8qgu8L2bThJO7xkYspuMsAslYjkiNLrNEJc9ToBJKpRa0mMYqkSCJGG
+         HnEASTkG2oaciDHOA0pSKzn0mtI993FNjrHj6aOSAV3DRHtrHS9jXYiltzHd9rsHJz
+         COYMZoK0iWfRGgLGalOnC1MRaAVl4ZBxKXCyHvqo=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        devicetree@vger.kernel.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-gpio@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] doc: gpio-mvebu: Add information about Armada 38x
- and Armada 39x
-Message-ID: <20220718211810.GA3574206-robh@kernel.org>
-References: <20220714115515.5748-1-pali@kernel.org>
- <20220714183328.4137-1-pali@kernel.org>
- <20220714183328.4137-2-pali@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Amit Pundir <amit.pundir@linaro.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: [PATCH 0/4] Initial support for the Pixel 3
+Message-ID: <20220718212019.1471265-1-caleb@connolly.tech>
+Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220714183328.4137-2-pali@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Jul 2022 20:33:26 +0200, Pali Rohár wrote:
-> Armada 38x and Armada 39x should use compatible string "marvel,armadaxp-gpio".
-> 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-> ---
->  Documentation/devicetree/bindings/gpio/gpio-mvebu.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+This series adds an initial DTS and display panel driver
+for the Pixel 3. The Pixel 3 display uses DSC (Display
+Stream Compression) which has been supported in mainline
+for some time now.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Functionality includes:
+ - Display, GPU, venus video transcoder
+ - Modem/WiFi/Bluetooth - ModemManager seems to fail
+
+The touchscreen uses some HEFTY downstream driver, hopefully
+we'll come up with an upstreamable solution for it soon and
+make this a bit more usable.
+
+Amit Pundir (1):
+  arm64: dts: qcom: add sdm845-google-blueline (Pixel 3)
+
+Caleb Connolly (1):
+  Documentation: dt-bindings: arm: qcom: add google,blueline
+
+Sumit Semwal (2):
+  dt-bindings: panel: Add LG SW43408 MIPI-DSI panel
+  drm: panel: Add lg sw43408 panel driver
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ .../bindings/display/panel/lg,43408.yaml      |  41 ++
+ .../display/panel/panel-simple-dsi.yaml       |   2 +
+ MAINTAINERS                                   |   8 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sdm845-google-blueline.dts  | 652 ++++++++++++++++++
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-lg-sw43408.c      | 586 ++++++++++++++++
+ 9 files changed, 1303 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/lg,4340=
+8.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
+ create mode 100644 drivers/gpu/drm/panel/panel-lg-sw43408.c
+
+--
+2.36.1
+
+
