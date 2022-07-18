@@ -2,79 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8214578D2C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 00:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21FB6578D42
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 00:03:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236386AbiGRWAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 18:00:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47240 "EHLO
+        id S236436AbiGRWDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 18:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234452AbiGRWAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 18:00:17 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5C030569;
-        Mon, 18 Jul 2022 15:00:16 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id r70so9298051iod.10;
-        Mon, 18 Jul 2022 15:00:16 -0700 (PDT)
+        with ESMTP id S233533AbiGRWDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 18:03:06 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6D7030575;
+        Mon, 18 Jul 2022 15:03:05 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id n138so9197866iod.4;
+        Mon, 18 Jul 2022 15:03:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gIUyF/ORGQjWXNvT5wIOVjajXgGpEkbk6f/tl0gQiac=;
-        b=di179KuRgOE3ptTOBICiYzoBzUoVyGF9NcDnAWKlJ34a3iqCe93L5MVLhfVGXDplcv
-         jQiviGqfADQCBsd5sNR40P5VXco+51oEP7/l96m1RWCCRhvC6M4EJp60E3uNtao9B+wA
-         x65ZBP19n3zU5x2ku2rO0vHRWJd//IdeBb6Odeorc3dzLOP1i8JFSl5KCEbYAa8czmMZ
-         t2Pt/NHUL1093wk95oHAtugkFByX8iqJYjCfByFFdFP391ICgCqViiWt/luytfTdvwIA
-         7aA7YU6oiuAs4D0vk1UJzSuBXR8wZeBDEKnoLBX8UqyS3AkBqN+W1Am8cYRLypIS5U+N
-         /eEg==
-X-Gm-Message-State: AJIora9SqI/5In3vPbAFmo+b4Tg8RGwirBzBn56cCvKA9YK3Qhv3XvmD
-        aUO4Y10dPA3w5NioUtw+xg==
-X-Google-Smtp-Source: AGRyM1sUfx9PknCBXVyopJZHm5bZnR/LgT1hX56ktRZLDXFdm584csRgriFVCGgWxWMs/6JjxIxhVA==
-X-Received: by 2002:a05:6602:2b84:b0:67b:d178:38bb with SMTP id r4-20020a0566022b8400b0067bd17838bbmr11138408iov.120.1658181615882;
-        Mon, 18 Jul 2022 15:00:15 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=+Ds7vAIuyuYjYIOURWWj2FmYD2WCeACWUphKceomFs8=;
+        b=Oeijp9pmKah36XYb2DkKHK3MgE5v0BdiyWuge//EHzPZyDRrxh4DmVCsCqV9dJOxYd
+         qELoT9HquOiipMDmvLggcOofvCtZcgTKh0BTlJpX3oMCC+jpBTscP/ZDSOFlZUz4Jp/a
+         1+L5KszVa1VpLZq7d2qJpyEGLvoudOjiCBNM991J0gJ5YPA6ZH9ET8vh160ZE1f/IxHl
+         44ZE74A1zMdTmc06ii3QJc2o04fVAirtdclULYA23B3ZqcWPHm5lwvSjsNCneRCNQ1VZ
+         BswECk/8ts5sbt0o+il7VeGmtpNTGyFUpiY0mIUmEpf45fj8IhepHfxsqUPeCRd7BweK
+         bP5w==
+X-Gm-Message-State: AJIora8akJMQfnA50+ro9DT7T9dedqZrW/HWcTm8xPwR1+5mag0ZvBox
+        MIU57CC1iF7vlHj88XjsrNUoqwzGKg==
+X-Google-Smtp-Source: AGRyM1tYi/nREKRfmgHFryzYPu9A0DXLc7OMJxv4NHv5FPH8FMRBz5ewJiUW220s6YJVkefCycU11w==
+X-Received: by 2002:a05:6638:1920:b0:341:4c2f:18a9 with SMTP id p32-20020a056638192000b003414c2f18a9mr9755282jal.261.1658181785058;
+        Mon, 18 Jul 2022 15:03:05 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id 7-20020a921307000000b002dcafb975c6sm5175816ilt.82.2022.07.18.15.00.13
+        by smtp.gmail.com with ESMTPSA id ch23-20020a0566383e9700b003415f2fb081sm3118377jab.125.2022.07.18.15.03.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 15:00:15 -0700 (PDT)
-Received: (nullmailer pid 3640548 invoked by uid 1000);
-        Mon, 18 Jul 2022 22:00:12 -0000
-Date:   Mon, 18 Jul 2022 16:00:12 -0600
+        Mon, 18 Jul 2022 15:03:04 -0700 (PDT)
+Received: (nullmailer pid 3645115 invoked by uid 1000);
+        Mon, 18 Jul 2022 22:03:02 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Tomislav Denis <tomislav.denis@avl.com>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Beniamin Bia <beniamin.bia@analog.com>,
-        Patrick Vasseur <patrick.vasseur@c-s.fr>,
-        Vladimir Barinov <vladimir.barinov@cogentembedded.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Philippe Reynes <tremyfr@yahoo.fr>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Akinobu Mita <akinobu.mita@gmail.com>,
-        Alexandru Lazar <alazar@startmail.com>,
-        Oskar Andero <oskar.andero@gmail.com>,
-        =?UTF-8?Q?M=C3=A5rten_Lindahl?= <martenli@axis.com>,
-        Bogdan Pricop <bogdan.pricop@emutex.com>,
-        Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, linux-spi@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [RFC PATCH] dt-bindings: iio: adc: use spi-peripheral-props.yaml
-Message-ID: <20220718220012.GA3625497-robh@kernel.org>
-References: <20220715095302.214276-1-krzysztof.kozlowski@linaro.org>
- <20220716192604.21a1d835@jic23-huawei>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220716192604.21a1d835@jic23-huawei>
+        linux-remoteproc@vger.kernel.org,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        devicetree@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220718140344.1831731-3-stephan.gerhold@kernkonzept.com>
+References: <20220718140344.1831731-1-stephan.gerhold@kernkonzept.com> <20220718140344.1831731-3-stephan.gerhold@kernkonzept.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916 to schema
+Date:   Mon, 18 Jul 2022 16:03:02 -0600
+Message-Id: <1658181782.827574.3645114.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -85,57 +66,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 16, 2022 at 07:26:04PM +0100, Jonathan Cameron wrote:
-> On Fri, 15 Jul 2022 11:53:02 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Mon, 18 Jul 2022 16:03:41 +0200, Stephan Gerhold wrote:
+> qcom,q6v5.txt covers multiple SoCs with quite different binding
+> requirements. Converting this into one DT schema would require
+> several if statements, making the DT schema overall harder to
+> read and understand.
 > 
-> > Instead of listing directly properties typical for SPI peripherals,
-> > reference the spi-peripheral-props.yaml schema.  This allows using all
-> > properties typical for SPI-connected devices, even these which device
-> > bindings author did not tried yet.
-> > 
-> > Remove the spi-* properties which now come via spi-peripheral-props.yaml
-> > schema, except for the cases when device schema adds some constraints
-> > like maximum frequency.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > 
-> > ---
-> > 
-> > This is an RFC with only some files changed, as I am still not sure of
-> > benefits for typical case - device node has just spi-max-frequency and
-> > nothing more.  I still find useful to reference the schema, but maybe I
-> > am missing something?
-> > 
-> > Before doing wide-tree cleanup like this, I would be happy to receive
-> > some feedback whether this makes sense.
+> To avoid this, follow the example of SC7180/SC7280 and split
+> "qcom,msm8916-mss-pil" (and the equivalent deprecated "qcom,q6v5-pil"
+> compatible) into a separate DT schema. The schema is somewhat based
+> on the one for SC7180/SC7280 but adjusted for the old platforms.
 > 
-> Hi Krzysztof,
+> Compared to the old plain text bindings, add missing documentation for
+> the "bam-dmux" subnode and recommend one particular approach to specify
+> the MBA/MPSS "memory-region" (the other one is marked as deprecated).
 > 
-> This has the side effect of allowing spi-cpol / spi-cpha for devices
-> where they weren't previously allowed by the binding.  A typical device
-> only supports a subset of combinations of those.
+> Cc: Sireesh Kodali <sireeshkodali1@gmail.com>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> ---
+> Changes in v2:
+>   - Add blank lines between top-level properties
+>   - Drop "deprecated" in "oneOf" list, it is not clear if this is valid
+>     and it should be redundant since the properties itself are already
+>     marked as "deprecated"
+> ---
+> Like Sibi's patch series for SC7180/SC7820 [1] this is somewhat related
+> to Sireesh's series that converts all of qcom,q6v5.txt [2] (with a lot
+> of if statements). However, this series focuses on MSM8916/MSM8974 (or
+> actually MSM8909) only.
 > 
-> I'm not clear whether these should always be allowed (e.g. allow for inverters
-> etc in the path) or whether we should be enforcing the "correct"
-> settings for devices assuming they are directly connected.
+> [1]: https://lore.kernel.org/linux-arm-msm/1657020721-24939-1-git-send-email-quic_sibis@quicinc.com/
+> [2]: https://lore.kernel.org/linux-arm-msm/20220511161602.117772-7-sireeshkodali1@gmail.com/
+> ---
+>  .../remoteproc/qcom,msm8916-mss-pil.yaml      | 247 ++++++++++++++++++
+>  .../bindings/remoteproc/qcom,q6v5.txt         |  19 --
+>  2 files changed, 247 insertions(+), 19 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
 > 
-> Currently we have a bunch of bindings that are documenting the allowed
-> flexibility - including cases where only particular combinations of these
-> settings are allowed.
-> 
-> So we could either:
-> 1) Note that we've been doing it wrong and the binding should not enforce
->    these constraints so remove them.
 
-I'd lean towards this.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> 2) Add explicit spi-cpol: false statements etc the drivers where they
->    are not allowed.
+yamllint warnings/errors:
 
-3) Drop spi-cpol / spi-cpha from spi-peripheral-props.yaml. It's purpose 
-is to collect all possible SPI controller properties that are per child 
-node. Whereas we've said spi-cpol / spi-cpha are device specific 
-properties.
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/remoteproc/qcom,smd-edge.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.example.dtb: remoteproc@4080000: smd-edge: False schema does not allow {'interrupts': [[0, 25, 1]], 'qcom,smd-edge': [[0]], 'qcom,ipc': [[4294967295, 8, 12]], 'qcom,remote-pid': [[1]], 'label': ['hexagon']}
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
 
-Rob
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
