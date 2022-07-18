@@ -2,134 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0E80578363
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F209578391
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:21:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233711AbiGRNO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 09:14:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40380 "EHLO
+        id S235368AbiGRNVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 09:21:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234477AbiGRNO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:14:58 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB3527B2E
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:14:46 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-31e0d4ad6caso45899157b3.10
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:14:46 -0700 (PDT)
+        with ESMTP id S235365AbiGRNVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:21:10 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697F2220EE
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:21:09 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id m13so5078039edc.5
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:21:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JTmwQhC3USDI8IN4iaZ/dk9RvPfB5wu0rM57dbrKez4=;
-        b=wVNLjgWAhVdmBCdnlBVBQ/7c/Ch/F5E79wR9s7P3DE64D07BEPQNwtHL8rwC37szxl
-         yX6SrZdQxe8sfnBn/YUuzxb0ofre9tJcGweEtYOOVqJ+VsJ3k2sO7h1IGj5JFnBVVKYF
-         e8vjgqgA29moVWTeXxFwvJnpzf0I8lm6rtONmNss+VTlrCyeT5ZGMLVGz4p0WQqEcvxs
-         4xzwZGhBt1KmU7Mx89K3feNwXHUZjTyFZoUsTlsxFUOrC38DEB+HJZdAY4SrRk6BuguX
-         Kzr3KNOqGIVQ9Ix6HiRDN9yoA69dadR3ObcmMYMOi6yjWfBnSEfjPk5hWLRcLkcrumQ/
-         XmYQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lB6d+lP+UT47fInxJWLkjersmnW8oCcHzLsfZtrDga0=;
+        b=MV2FP/hgIGSo6p2PqUG41k3WKG8wAf1AfM/qjTiEowSYpdImkzMkL0or1vRZ0iYpu3
+         oKRfOrtorADhLLBHPFJODGCLrxc4QIolbTcDXEpY0pHckezENeQM7756zJHOcmPBAYIh
+         AlqrhDZbUPtFnGhQ+2lsv5z2GV8WiwDsIBJSCTBVzOMnRnNGjuY37AAPcBJnEKfZIZpY
+         4hDSBh2Q9EBSsbpM8CEuykigJZvrSl+GgQPVgEkg0EOHI2mmd/M3ZfkBlci4he+JpEWQ
+         tGRrNo7qJKRwwHH3+ay820afvHfmW5S8hR61R/jlIKgKnwdB7x6Xip/zQ9z1WOyRGoH1
+         Y+bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JTmwQhC3USDI8IN4iaZ/dk9RvPfB5wu0rM57dbrKez4=;
-        b=sjS3SPGYljOQCzbRFx/4DDaglr4OwS3vUz10JkgEBEZ9qWdz5EG9z3+QtSL6ETzJap
-         kO7RYPYD8c7XtPdx4N8cGbZqFEm5iZInGH+Wa6unx4+ngYH0SUmegv85T6Oc5BPqflKV
-         io+4OjNPY5evvH+X3xJ03sdk+lrmauVq03HEj4+Vgbm+7x9ZsnZFR97MpuwmSBeRdyN1
-         HbkbapGVJsqQ11oQuhAAireT2j3ZtUoEuy/ZJTdAnCUsHUUNAz/XzOE/iS/mLbmgpeIp
-         CSPuE0vdqPVAM4iDJPypRMEKn6WTukmRPri6GxqzHMSOXVHn3zZZz7uEekYgo7MEgT49
-         4HEw==
-X-Gm-Message-State: AJIora9Fv38vy8sgM0K00XIaD4HX1qz01JjxNegLpSYpLUHm36hdP9H5
-        igio8EY0W896tGty1G51gQtfJ+jGHCCfdNIgLJZzeQ==
-X-Google-Smtp-Source: AGRyM1tIllmHvOjnAykb6ET0EILH+ku3SZfxQN9LD/0uQkJ9mwybQVzLcYeLzeZe7bTaJ8/0MUTJg5RbDbzq++pXhG0=
-X-Received: by 2002:a0d:e885:0:b0:31c:e456:c054 with SMTP id
- r127-20020a0de885000000b0031ce456c054mr29955115ywe.299.1658150085862; Mon, 18
- Jul 2022 06:14:45 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lB6d+lP+UT47fInxJWLkjersmnW8oCcHzLsfZtrDga0=;
+        b=htwv+5u9349z5unsQW+OKn0pQKlcrXcum44ZVSTkgWUK46aalnuGii2/exreOffF0i
+         7SiqIA3V4GX3NsWg7CVotSd8Yk5Awg8vDJAvfbLXU/9J0OLKZYegDWC0nZR02RH1rPCz
+         OtJFJXZyeE1j2E18Mni1ZjBvgm0p5AhtXfcH3zzuU164ypBODCEGoc/5HSh67/rg03bh
+         1Fo0hKvHkRk8g2yghfzgQqFXrAip9pXQ59fehrSuCpTcvjXtETlO17g+DX3/4pqnyHmf
+         2RvfAMNxKVX9gsivTALqV4DPGzwRReBwSKdA6WHmZXhW7O3pYzonjVk2j1Yv4HPR18Lb
+         I/uA==
+X-Gm-Message-State: AJIora8ZqXGD31/dLNjqtmkQznwB1NcURHnhWzogQSK2IfFirMJfsWMT
+        uV3BSPpb/HVHHNVNqnhvVgM=
+X-Google-Smtp-Source: AGRyM1vqhm+rXNMHWwSa+VlWZ4z7sZwno4e7IwpoUVlyM+Kw/7z+HaKtxX8vFXLYMJ+tMHKVpvvtrA==
+X-Received: by 2002:a05:6402:354c:b0:43a:dc59:657 with SMTP id f12-20020a056402354c00b0043adc590657mr36174672edd.405.1658150467918;
+        Mon, 18 Jul 2022 06:21:07 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id i8-20020a50fd08000000b0043a554818afsm8678537eds.42.2022.07.18.06.21.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 06:21:07 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 1/3] arm64: dts: broadcom: bcm4908: add remaining LED pins
+Date:   Mon, 18 Jul 2022 15:20:58 +0200
+Message-Id: <20220718132100.13277-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220715044948.434149-1-cosmin.tanislav@analog.com> <20220715044948.434149-2-cosmin.tanislav@analog.com>
-In-Reply-To: <20220715044948.434149-2-cosmin.tanislav@analog.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 18 Jul 2022 15:14:33 +0200
-Message-ID: <CACRpkdZVkXM-8DZjTaOxnS05Wz5GHon0sK1g7hDbz5SDJf9A=A@mail.gmail.com>
-Subject: Re: [PATCH v8 1/2] dt-bindings: iio: adc: add AD4130
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Cosmin,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-thanks for your patch!
+Include all 32 pins.
 
-On Fri, Jul 15, 2022 at 6:50 AM Cosmin Tanislav <demonsingur@gmail.com> wrote:
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../boot/dts/broadcom/bcm4908/bcm4908.dtsi    | 75 +++++++++++++++++++
+ 1 file changed, 75 insertions(+)
 
-> AD4130-8 is an ultra-low power, high precision, measurement solution for
-> low bandwidth battery operated applications.
->
-> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
-> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
-> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
-> selectable filter options, smart sequencer, sensor biasing and excitation
-> options, diagnostics, and a FIFO buffer.
->
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-(...)
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+index a4be040a00c0..db9f3d8e2bc8 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+@@ -350,6 +350,61 @@ pins_led_9_a: led_9-a-pins {
+ 				groups = "led_9_grp_a";
+ 			};
+ 
++			pins_led_10_a: led_10-a-pins {
++				function = "led_10";
++				groups = "led_10_grp_a";
++			};
++
++			pins_led_11_a: led_11-a-pins {
++				function = "led_11";
++				groups = "led_11_grp_a";
++			};
++
++			pins_led_12_a: led_12-a-pins {
++				function = "led_12";
++				groups = "led_12_grp_a";
++			};
++
++			pins_led_13_a: led_13-a-pins {
++				function = "led_13";
++				groups = "led_13_grp_a";
++			};
++
++			pins_led_14_a: led_14-a-pins {
++				function = "led_14";
++				groups = "led_14_grp_a";
++			};
++
++			pins_led_15_a: led_15-a-pins {
++				function = "led_15";
++				groups = "led_15_grp_a";
++			};
++
++			pins_led_16_a: led_16-a-pins {
++				function = "led_16";
++				groups = "led_16_grp_a";
++			};
++
++			pins_led_17_a: led_17-a-pins {
++				function = "led_17";
++				groups = "led_17_grp_a";
++			};
++
++			pins_led_18_a: led_18-a-pins {
++				function = "led_18";
++				groups = "led_18_grp_a";
++			};
++
++			pins_led_19_a: led_19-a-pins {
++				function = "led_19";
++				groups = "led_19_grp_a";
++			};
++
++			pins_led_20_a: led_20-a-pins {
++				function = "led_20";
++				groups = "led_20_grp_a";
++			};
++
+ 			pins_led_21_a: led_21-a-pins {
+ 				function = "led_21";
+ 				groups = "led_21_grp_a";
+@@ -360,6 +415,21 @@ pins_led_22_a: led_22-a-pins {
+ 				groups = "led_22_grp_a";
+ 			};
+ 
++			pins_led_23_a: led_23-a-pins {
++				function = "led_23";
++				groups = "led_23_grp_a";
++			};
++
++			pins_led_24_a: led_24-a-pins {
++				function = "led_24";
++				groups = "led_24_grp_a";
++			};
++
++			pins_led_25_a: led_25-a-pins {
++				function = "led_25";
++				groups = "led_25_grp_a";
++			};
++
+ 			pins_led_26_a: led_26-a-pins {
+ 				function = "led_26";
+ 				groups = "led_26_grp_a";
+@@ -385,6 +455,11 @@ pins_led_30_a: led_30-a-pins {
+ 				groups = "led_30_grp_a";
+ 			};
+ 
++			pins_led_31_a: led_31-a-pins {
++				function = "led_31";
++				groups = "led_31_grp_a";
++			};
++
+ 			pins_hs_uart: hs_uart-pins {
+ 				function = "hs_uart";
+ 				groups = "hs_uart_grp";
+-- 
+2.34.1
 
-This caught my eye:
-
-> +  adi,int-clk-out:
-> +    description: Specify if the internal clock should be exposed on the CLK pin.
-> +    type: boolean
-
-Okay, but would it not make more sense to just imply this if the clock
-on the CLK
-pin has any consumers? Like update this setting in hardware when the consumer
-does clk_prepare() or so on that externally routed clock?
-
-> +  adi,ext-clk-freq-hz:
-> +    description: Specify the frequency of the external clock.
-> +    enum: [76800, 153600]
-> +    default: 76800
-
-This looks like cheating, i.e just outputting a clock on that pin
-and ignoring to model the consumer.
-
-Shouldn't this rather be a clkout subnode with 2 #clock-cells
-and the fequency set in a cell in a consumer phandle?
-Like how I did in
-commit 7335631fcd5eecfa84555bd57433e6446d06ad21
-"dt-bindings: clock: u8500: Add clkout clock bindings"
-
-Usually it is the consumer that requests a specific clock and then the
-producer will respond.
-
-Certainly whatever is consuming this clock needs to be in the device tree
-as well, and then this is the right pattern.
-
-(In Linux you will then use the clk framework to manage the clock and callbacks
-but that is irrelevant for the DT bindings.)
-
-> +  adi,bipolar:
-> +    description: Specify if the device should be used in bipolar mode.
-> +    type: boolean
-
-Can you explain what this means? I don't understand what it would
-mean for an analog device / AFE to be in bipolar mode.
-
-Other than that it looks very nice!
-
-Yours,
-Linus Walleij
