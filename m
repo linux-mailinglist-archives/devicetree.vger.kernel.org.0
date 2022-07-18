@@ -2,66 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AC85578E69
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 01:43:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 702C2578E6E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 01:44:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234913AbiGRXm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 19:42:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
+        id S233025AbiGRXo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 19:44:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232115AbiGRXmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 19:42:55 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB02031902;
-        Mon, 18 Jul 2022 16:42:54 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id h145so10591887iof.9;
-        Mon, 18 Jul 2022 16:42:54 -0700 (PDT)
+        with ESMTP id S233050AbiGRXo2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 19:44:28 -0400
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C7A3192D;
+        Mon, 18 Jul 2022 16:44:27 -0700 (PDT)
+Received: by mail-io1-xd2e.google.com with SMTP id p81so10630119iod.2;
+        Mon, 18 Jul 2022 16:44:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dLd8cOvv8HoVPf9Qd5agJOJR3BAYQw3KP1yEY5GxLrY=;
-        b=ftUYo9BBUYjPmllV0QRe7t51MrZmLBWSJeD7F/faBJfJeEgvajx4yrs1xFF2bFN2In
-         Sx9WchAnZHDlTxzt5GeXl5XNKQ4zxA9If1Lgz40WbWeEaboWSCRSXil77S2+pat/yDtU
-         u3DQY7P9l4TcmQVBCru3FBj6LEE4iT2GYNgATMs6F6vPEBu/D2YzTllow2Mko17P48Lr
-         j0EBqg4Om/QSWJJ4G01BxpfNnx6KLm4oSh8g/gHELZzyL+CKFLxmeq+JHxS5nT/Ovj4y
-         VrbGj7u2X/sK9rZmd89AJv2s6krS1uxysr5+E7bxvSsCYvZBWogVUy/qu183eVy4s/Kh
-         qcpQ==
+        bh=bTJywUAqX3j6iJePWZLrUnkk/lwpRK52+zopJgYfdMg=;
+        b=ZzrnIuDDrStWpWKXGlfYH8jwB3wRvf5cbTYA/+IqCifYOJM1S0j1Uy4vcTgCMGKwzP
+         dSHtSWqJmEUgT1q+1BeoeC97j7KFCz57ZinZS72qvtDSG7ThxZr5PCG6a2peCH8Ku0Mz
+         jjobKwUZhocDwX16bBRY5Vwp2KwxfDMxqklKpkG4SKuPlZvMsrn8WNhjFDuFsmPp86MF
+         /EjD7KB5DEsTmDMab14aecaw9FDpfISMOd2blQ+rXiPfjq03OIvDLHqVIa1YyYOus8sn
+         4/7zHja54HzEsODNv+vINWVaQ6TuFoZm7l9BMGSpYxW/zgAPcc8UrmOiAyp9UgQzkXGv
+         N7Bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=dLd8cOvv8HoVPf9Qd5agJOJR3BAYQw3KP1yEY5GxLrY=;
-        b=MV7t0ileUEmkUJrebdbeGa7fX+hMK/6w+aps1EIyfgWOUfix2lGnavnuX0Cv1gMlOD
-         kWyZql5iy+DGyIzVA9SFqvD5FK1M4lB9vy0/fYRR1i/dr7pyx4QufK7yEHQ+gX49B3+/
-         vLXIT2FbVw1Qty2P1/nva/v5DLMoq5pAQ/afqEWljaM0OeoAPvSqCtpdMxrXQNyiabUM
-         orT+ztHc97Zttx3Crtd3RVq199fnDUR9b5U3jiG9ngiqlEDIr0H0+kurud2Qs/77w9CB
-         ManMhfCvdVCQgmGLS6updXWjxZaHxvza5LJ01G4q1NrPsdhUwROUKyxvODigrPrBMR60
-         ExiQ==
-X-Gm-Message-State: AJIora/V3qV5HT4H6iNx6Dganj1BqcdIcXj3+eo+gm/9TEnPiYJvYjrU
-        tada3ihStTcPQfnsVf78XuTpYFFJ9WyVyw==
-X-Google-Smtp-Source: AGRyM1srhjBnWDzudsBq1Jm399+BkmywIX129CiWpjDmta8FzdwBdycuNdqBt+rw/UgVPr50G5N1oQ==
-X-Received: by 2002:a05:6602:1644:b0:678:8ba4:8df6 with SMTP id y4-20020a056602164400b006788ba48df6mr13933049iow.138.1658187774092;
-        Mon, 18 Jul 2022 16:42:54 -0700 (PDT)
+        bh=bTJywUAqX3j6iJePWZLrUnkk/lwpRK52+zopJgYfdMg=;
+        b=DqP8U98vd7fnolMj11hBaWXzh/S2PYnWvkGAmG/UIGv/CVI4AhsaesnQuao8JKEtBe
+         nvIK2aw04XT/35qJtiKpHu5PAEJ7UOMmWgJ7hTH2s9seslJsWmaHNG4RcAUB72IbrgMS
+         0iw2qMST+tONgKH/UDZaC3qTq9qzeNQbNQlEBB4pPPD71X/yF6cvCfKk9ykLgqTY8XdJ
+         O1KRt2GU+IEtLI6lYwy2VPcvrOQ5+U1tfy5jtS6ltTLczNlP6aATx/DrOiznHtUBUt6y
+         Nf6taAihdXts1zFkpT4yaQuAwQ6R9E4HowHbTEC1ljS47ikUCDclAAidXZ/8cRhM9fnt
+         QesQ==
+X-Gm-Message-State: AJIora8AP7BXTpGn+W1vsQfupc6T9YKDeo/Je5Q/Kxg4P7I7XtofKq34
+        hJVGC8H3jDLv0XO1vYu8HNE=
+X-Google-Smtp-Source: AGRyM1ttUhenzTJiVmVOnzL8/ifpXfD1MqX6UtPYQTK96Gt2UOwRrC6FhJ0GfovX6/AxhVd4rwNyXw==
+X-Received: by 2002:a6b:c30c:0:b0:67b:963a:c6ef with SMTP id t12-20020a6bc30c000000b0067b963ac6efmr14712469iof.137.1658187866695;
+        Mon, 18 Jul 2022 16:44:26 -0700 (PDT)
 Received: from ?IPV6:2600:1700:2442:6db0:71f7:9f7:a010:d581? ([2600:1700:2442:6db0:71f7:9f7:a010:d581])
-        by smtp.gmail.com with ESMTPSA id e12-20020a02860c000000b0032e21876ea8sm6042489jai.72.2022.07.18.16.42.53
+        by smtp.gmail.com with ESMTPSA id y2-20020a926402000000b002dc0ccc4cafsm5191201ilb.49.2022.07.18.16.44.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 16:42:53 -0700 (PDT)
-Message-ID: <d9f2ec3f-d531-80ef-d9cc-0926893d892f@gmail.com>
-Date:   Mon, 18 Jul 2022 18:42:52 -0500
+        Mon, 18 Jul 2022 16:44:26 -0700 (PDT)
+Message-ID: <725f870b-b927-352d-85ab-675b91b7c75a@gmail.com>
+Date:   Mon, 18 Jul 2022 18:44:24 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 0/2] of: overlay: Miscellaneous improvements
+Subject: Re: [PATCH v2 1/1] of: overlay: rename overlay source files from .dts
+ to .dtso
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1657893306.git.geert+renesas@glider.be>
+        Tim Harvey <tharvey@gateworks.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Alex Marginean <alexandru.marginean@nxp.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Jason Liu <jason.hui.liu@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-pci <linux-pci@vger.kernel.org>
+References: <20220503211954.1428919-1-frowand.list@gmail.com>
+ <CAMuHMdWhn8cY4usyqao-osEcSCcmkU+NYg21co+GxVfvg5+dhw@mail.gmail.com>
 From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <cover.1657893306.git.geert+renesas@glider.be>
+In-Reply-To: <CAMuHMdWhn8cY4usyqao-osEcSCcmkU+NYg21co+GxVfvg5+dhw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,26 +99,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/15/22 09:03, Geert Uytterhoeven wrote:
-> 	Hi,
+On 7/7/22 02:21, Geert Uytterhoeven wrote:
+> Hi Frank,
 > 
-> While performing the long-overdue rebase of my topic/overlays branch[1]
-> on top of the overlay rework in v5.19-rc1, I identified a few areas for
-> improvement in the upstream code.
+> On Tue, May 3, 2022 at 11:20 PM <frowand.list@gmail.com> wrote:
+>> From: Frank Rowand <frank.rowand@sony.com>
+>>
+>> In drivers/of/unittest-data/:
+>>    - Rename .dts overlay source files to use .dtso suffix.
+>>    - Add Makefile rule to build .dtbo.o assembly file from overlay
+>>      .dtso source file.
+>>    - Update Makefile to build .dtbo.o objects instead of .dtb.o from
+>>      unittest overlay source files.
+>>
+>> Modify driver/of/unitest.c to use .dtbo.o based symbols instead of
+>> .dtb.o
+>>
+>> Modify scripts/Makefile.lib %.dtbo rule to depend upon %.dtso instead
+>> of %.dts
+>>
+>> Rename .dts overlay source files to use .dtso suffix in:
+>>    arch/arm64/boot/dts/freescale/
+>>    arch/arm64/boot/dts/xilinx/
+>>
+>> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
 > 
-> Thanks for your comments!
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/overlays
-> 
-> Geert Uytterhoeven (2):
->   of: overlay: Move devicetree_corrupt() check up
->   of: overlay: Simplify of_overlay_fdt_apply() tail
-> 
->  drivers/of/overlay.c | 20 +++++++-------------
->  1 file changed, 7 insertions(+), 13 deletions(-)
-> 
+> What is the status of this work?
+> Thanks!
 
-The patches look good, based on a visual inspection.  I'll build the kernel
-and test the patches tomorrow morning.
+I'll work on this tomorrow after I test your overlay improvement patches.
 
 -Frank
+
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+
