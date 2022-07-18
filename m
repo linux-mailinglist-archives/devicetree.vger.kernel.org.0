@@ -2,150 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11574578328
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0DD3578334
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235240AbiGRNGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 09:06:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58184 "EHLO
+        id S235327AbiGRNJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 09:09:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235306AbiGRNG1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:06:27 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0481F275F2
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:06:22 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id a10so13514014ljj.5
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:06:21 -0700 (PDT)
+        with ESMTP id S235408AbiGRNJN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:09:13 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CEB912AB1
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:09:07 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id d12so19184097lfq.12
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:09:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=a+O9vudZmIw0y8HcEu8EeY4zyTPk+O1DAP+t2vVBksA=;
-        b=DiSjKH1Qipp92JGNti6EzoCEbaLHb26NceygyY4BOdkstNYl6brT0xu9MlN20tvhTN
-         p1SZy0jvCk+w6lZHsdv52GS+OTqS1sj9kxbvT10EdxSvDbHqhzCuRCQQ9P2hnpC1b6LC
-         At5s9W/afxoD6Bs83X89slxumpRLIGNaPPay1nO8e3SmDQlWSTZDN2glQcQNa0vSoxRA
-         +DJd3FanU4ToJGcr9jGOOqNjYz7uuLjAinYUeSpIJbPNSGMDiVVwYAho+3NGAwQO0dxz
-         WNWxagJOEhw+KUMIa7luCCnXcjm5t24lpWyvm3Y/exFntB7aM4syJ52k2gNYJSssB2lP
-         yx/w==
+        bh=BOiXRJ89xuD3QarsVl3RRpR7eGEZVIxWI2G1dcCUd2E=;
+        b=a6pHOAo7dTkZI8LBo4pVDo9fnnDq9z0Hu87RvPLGN6RQBbXW8JHX8ipc612pGM5UeJ
+         9ZS9Xjx2blc/9QoWcyWzKSB8fd537aKctk6dJHumx44WxPk7ncljqMYxrT4t5XYipuvl
+         oBRjiEMxx+us9dO1qKpD5QxSLDTWLbQS/xIZI/sixyjaJZoMVzt46HOvnKlQpYBtvvHb
+         +29om5kre7KopOB9FUbJ4oVp5JFExnjg8edzv9h3Rem8am/n+npC220koLFB7zwcQ1au
+         vTAxedzz6J5SPqL2VVGfc3DMLWYp4dyTp4sw+S+LVtX5T4lc3sp665NHmiV3tXE27oVS
+         5+Iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=a+O9vudZmIw0y8HcEu8EeY4zyTPk+O1DAP+t2vVBksA=;
-        b=SyV3y1lWH86rTKxOwueF6b6j9e1zwN3YFE3zSzTDGYqytbsDf1NNWycGQivMTrh20Z
-         qRmsLzb78GllVAEl8UUZISckZv4V8/lBXIPdmVoiEi11jkPak/XgiYPcA4innMmGgTAm
-         zBn5e9mV1sJep8nHgVzAg/Q7cKQCPSLiXu8bXRie4qlR6X5pKapHl+jAssIPn/5vqhDZ
-         cNwss+iEnJ2K2RLI1ZP/prZ/435bJe5WNtddKYUJKufyiC2wdDjCZ4ZQR6cLoDMixgd+
-         InZpdL/qKxnG1/kEOz7UXkgfe1Y3IYBQnmzxyaf+DTeXyr5sxFZuvqh12GwTO+F+V1rz
-         +j5g==
-X-Gm-Message-State: AJIora8ccbu+vEIJcxQS3QFrj4vyeVnDXX0JqeTJWfyt6NB1nrTuKgIA
-        pIVK87G165B0xo4lqirgqpIBrQ==
-X-Google-Smtp-Source: AGRyM1vtwkiYg5ErQ9NCTyTYbs/3Slz+OVi7+HIoAuGUzoeHVOGBofEwhslH/MRQOOUsFT2PfU2nlQ==
-X-Received: by 2002:a05:651c:23b:b0:25d:6920:2b06 with SMTP id z27-20020a05651c023b00b0025d69202b06mr12121153ljn.226.1658149580235;
-        Mon, 18 Jul 2022 06:06:20 -0700 (PDT)
+        bh=BOiXRJ89xuD3QarsVl3RRpR7eGEZVIxWI2G1dcCUd2E=;
+        b=RiqA+2EG915Me7tTf06ZuTwPI6je9hvfQn72KTPUA4SvDGPU6sp/KTPAWwdSBHIiD4
+         0oqLS/qrblXKvcGoEPyBTPsmJXoup/bPfTzR/OiCVaD2GDsmsJBRwZKpDfXSUcd2LfG1
+         7Fdpbtfs20IfD4/TPjBeHUvqJZu5ja3suzGr1FYSlSxite7ogh4Dky1bhU1CPnowtrJO
+         2LeVPoiPnB5CLbFZzG54Sb8sXo4FFMMUn+z+HSDRXyKry4L9QZKuGahfysH2kOvbj9sz
+         65/hR8GQhal1acRLFji43CvOuR+y/V2kTy4G59Q0qNX+CfD5MGiNqfrKstHXuPwwa3wn
+         EBUA==
+X-Gm-Message-State: AJIora8b2NpAjgu+wTlVLJJGyn/IlB/onUXYfo1qwpMbTuBariPl5rGP
+        pHQA0+3lrfIxJCw1r+KiXp19OsJF+2hFYlj8
+X-Google-Smtp-Source: AGRyM1tpw4Sy5WpV1Ji1GnRm8jRqr6MFhp+pAk2JslLmag6yX1UfOOwWyNNTnIFCQPWnBF6wuZzQFA==
+X-Received: by 2002:a05:6512:3a8d:b0:489:da0d:df25 with SMTP id q13-20020a0565123a8d00b00489da0ddf25mr15865071lfu.453.1658149745920;
+        Mon, 18 Jul 2022 06:09:05 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id t8-20020a05651c204800b0025d835fe81esm2082741ljo.115.2022.07.18.06.06.18
+        by smtp.gmail.com with ESMTPSA id be39-20020a05651c172700b0025c04962b5dsm2098864ljb.139.2022.07.18.06.09.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 06:06:19 -0700 (PDT)
-Message-ID: <2a96f734-010d-b42d-8418-715d7c420272@linaro.org>
-Date:   Mon, 18 Jul 2022 15:06:18 +0200
+        Mon, 18 Jul 2022 06:09:05 -0700 (PDT)
+Message-ID: <abf9d787-d7a8-d202-560e-6c424f6a63f7@linaro.org>
+Date:   Mon, 18 Jul 2022 15:09:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/2] dt-bindings: fpga: add binding doc for ecp5-spi fpga
- mgr
+Subject: Re: [RESEND PATCH 1/4] dt-bindings: qcom: Document bindings for new
+ msm8916-samsung-e2015 devices
 Content-Language: en-US
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru
-References: <20220714122657.17972-1-i.bornyakov@metrotek.ru>
- <20220714122657.17972-3-i.bornyakov@metrotek.ru>
- <044a9736-a4ec-c250-7755-c80a5bcbe38b@linaro.org>
- <20220715100356.fwjomifweifn6zsr@h-e2.ddg>
+To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
+        devicetree@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20220715102055.3844-1-linmengbo0689@protonmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220715100356.fwjomifweifn6zsr@h-e2.ddg>
+In-Reply-To: <20220715102055.3844-1-linmengbo0689@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/07/2022 12:03, Ivan Bornyakov wrote:
-> On Fri, Jul 15, 2022 at 11:33:54AM +0200, Krzysztof Kozlowski wrote:
->> On 14/07/2022 14:26, Ivan Bornyakov wrote:
->>> Add Device Tree Binding doc for Lattice ECP5 FPGA manager using slave
->>> SPI to load .bit formatted uncompressed bitstream image.
->>>
->>> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
->>> ---
->>>  .../fpga/lattice,ecp5-spi-fpga-mgr.yaml       | 71 +++++++++++++++++++
->>>  1 file changed, 71 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
->>> new file mode 100644
->>> index 000000000000..79868f9c84e2
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
->>> @@ -0,0 +1,71 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/fpga/lattice,ecp5-spi-fpga-mgr.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Lattice ECP5 FPGA manager.
->>> +
->>> +maintainers:
->>> +  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
->>> +
->>> +description:
->>> +  Device Tree Bindings for Lattice ECP5 FPGA Manager using slave SPI to
->>> +  load the uncompressed bitstream in .bit format.
->>
->> s/Device Tree Bindings for//
->>
->> Instead describe the hardware you are adding bindings for. What is a
->> "Manager"? It is so broad and unspecific... It is some dedicated
->> hardware to communicate with FPGA or you just called this regular FPGA
->> interface exposed to the CPU/SoC?
->>
+On 15/07/2022 12:21, Lin, Meng-Bo wrote:
+> Document the new samsung,e5/e7/grandmax device tree bindings used in their
+> device trees.
 > 
-> "FPGA Manager" is a kernel subsystem that exports a set of functions for
-> programming an FPGA with a bitstream image.
-> See Documentation/driver-api/fpga/fpga-mgr.rst
+> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
 
-This is what you want to include in the bindings document? How is it
-related to bindings? We do not talk about driver API but we talk about
-hardware. Bindings are for the hardware.
+Sorry, it's confusing. There was a v1. I asked for changes Then there
+was a v2.
 
-> 
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - lattice,ecp5-spi-fpga-mgr
->>
->> Do not encode interface name in compatible so no "spi".
->>
-> 
-> Recently when I submitted FPGA manager for Microchip PolarFire, I was
-> asked the opposite, to add "spi" in compatible. The reason was that FPGA
-> can be programmed through other interfaces as well.
+...and now is resend of v1, so you decided not to implement changes.
 
-I don't see such comment from Rob (DT maintainer):
-https://lore.kernel.org/all/?q=%22dt-bindings%3A+fpga%3A+add+binding+doc+for+microchip-spi+fpga+mgr%22
-
-Can you point me to it?
+Send v3, with all changes applied or keep discussion going.
 
 Best regards,
 Krzysztof
