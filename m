@@ -2,78 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2682577D21
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 10:06:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3996B577D2B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 10:08:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233556AbiGRIGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 04:06:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49424 "EHLO
+        id S233574AbiGRIIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 04:08:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233519AbiGRIGE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 04:06:04 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D94BDEC2;
-        Mon, 18 Jul 2022 01:06:02 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id p14so8222773qvo.9;
-        Mon, 18 Jul 2022 01:06:02 -0700 (PDT)
+        with ESMTP id S233640AbiGRIIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 04:08:50 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3010398;
+        Mon, 18 Jul 2022 01:08:49 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id g17so8344110plh.2;
+        Mon, 18 Jul 2022 01:08:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=2oqv9p5uTPdEJlmgQNnXU/cXJrUt6u3xwFlX5nKvKZ4=;
-        b=DxLddlgUVAv8VKERY9UddsAGAuROSWYW7riSA26XWr6jmGC1vF0kGjPIH9VZqd/LI4
-         Zc44cq3+Zn6gcgQ5HNjhpsMd6yIBQ4/2uEexodTm+9U791ZuFn32usdK9ls2CmBPUm5s
-         NLJ2zmzh1C+LsIuOg88sg+wsirIrtsDI7NhjbybEnhlRQaV6LJ3nPR+uY9VY9d70+Hqt
-         NQBhZOwxEuU6tHAszPI1bwPG/G6XF8U/AaxkxsFr2wnogUcwPE7sQRHV5NlCh05nV/EI
-         a9vuc7FcLyLIZvkinBXpHlxyeTgTTy6RpjNGmk+TPhLoUsHxfz6CYv2DgnCyIHojqkBU
-         dJnQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=CUvUySPFulLpJMe6eEU3YtP+k2lXPFdi238dz02/TnA=;
+        b=pHUAhFihwGq4x+L9IFz64byctPKxMey+1jJrxWMXoIp6tYfspwIQNIMzp7YBTH00xn
+         MRzfhJj8RY4NA4mFvpX/dCVWMpW27h/Njmzv7MmAtFUvpbbul8t5EAe192JoL/OYQ6/s
+         zYjE+CbBzxnhn/cgTyA0Bs/GtDn+R9lbkor0iXsp+EmPI2KlVUjcMQTUQrIikQ8NHDMp
+         I2FQM1xubPFVtXGRB4dZts8UYYxW5QU7vg2DfZS27wC41UjIJhTXDckFd8tPgOzwbvc4
+         1cKXpRAi5A/FWLrXPzcBSgixvnKv1XZEewB7e2CcmvZHXmuVo8UORFDuotPcS3/M7CCo
+         WblQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=2oqv9p5uTPdEJlmgQNnXU/cXJrUt6u3xwFlX5nKvKZ4=;
-        b=hF9l0sCoNICND8cudJjQFT4xhNxD9n9AH83ucWLVYr/0sgWBunztZxxNpZi66MHxQ0
-         doOASxengbG5pdisxCmWjUwklG9fz+Qf3vO3BkvYmujtn3K3TIbmDfzvrQxWCtZNSMYC
-         bSm2lLAm1JY6/02e1C7OMe+kFVFZ8qcm86jn2Qp/jQ0FZw6PtttdsqpfJfgAZsBpKbUh
-         AJV9jjhfjaU9YEvTHrVYvJpXVxDIr/M4hFqtuJ1KoQ1w5i65CM85BaiaeKwvOXqQ0VYq
-         fgKZN52J2me+XFJiq31FabG1VZffyG5Mlb1Yv9J/fD5ZuikmkYlVc+/tjDw9r46rEixT
-         0SwQ==
-X-Gm-Message-State: AJIora8ggUxhl3OItTMLSMtW/823bP+Oj/fMYqq+F7wS4Oyf4+Asp04+
-        vQy+JzfVcGwsxTx8WXaxi4c=
-X-Google-Smtp-Source: AGRyM1sG15eHtll24jiIJ/xZtKIAcm3In9Bq9zWFFa+FuxitXT5AmiQ3J8PC5KGx740TrW69MX2tmQ==
-X-Received: by 2002:a05:6214:27cb:b0:473:5954:5951 with SMTP id ge11-20020a05621427cb00b0047359545951mr20284976qvb.2.1658131561283;
-        Mon, 18 Jul 2022 01:06:01 -0700 (PDT)
-Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
-        by smtp.gmail.com with ESMTPSA id he25-20020a05622a601900b0031ef67386a5sm314999qtb.68.2022.07.18.01.05.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 01:06:00 -0700 (PDT)
-Message-ID: <3f82afed59abaf2f8088f8d4b600736ee666ad6e.camel@gmail.com>
-Subject: Re: [PATCH v2 01/10] input: keyboard: adp5588-keys: support gpi key
- events as 'gpio keys'
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=CUvUySPFulLpJMe6eEU3YtP+k2lXPFdi238dz02/TnA=;
+        b=NaV9C/9iP7f14brAMCMAj4H68r7cOQ+N3atVFhoxoXZXC2UvZDipnM8c2ezgcvcbKq
+         XODfQfMsK4u4/Wqs1gD4z0h8OwG6bG4dGCrvO+vqONlNOSc8iUge+7pvFYJcgJt8q9RP
+         f8eosfJQdwe0IKPd755nBOuIIe3QmBkHhB4ZfRldgaQpKz+etTkl6SIP5APPJwl4YEuP
+         2m8c/IHVHpUPgayBue11gDd1PtRdLnXC/9sIH5h9utAxkcFrrV1qm6G0OdKo6Gdv3G/m
+         gLwcHeLugUkEgy2sNYFwgHS3gVnwY7piA2F7Pd+ux3lhkNKjGiiaAing+P4HWI43sTN3
+         ujRA==
+X-Gm-Message-State: AJIora9anOqwnk4HSMI+1IFDl6yGnK7b8grZHO1ZBucM0rDamNVjn1h0
+        hPSIkDNNSKqjN3OfXmFg9P0=
+X-Google-Smtp-Source: AGRyM1vhEQ3YQzNXVMn83J82E/AUt4UjMd+K2amzhrVvPs1pmkb06EqRlQYBGCtIVLv6eW+mUn8kbQ==
+X-Received: by 2002:a17:902:e888:b0:16c:33f7:89cb with SMTP id w8-20020a170902e88800b0016c33f789cbmr27448255plg.2.1658131729130;
+        Mon, 18 Jul 2022 01:08:49 -0700 (PDT)
+Received: from cyhuang-hp-elitebook-840-g3.rt ([2402:7500:587:e7ad:4982:5f13:5219:614d])
+        by smtp.gmail.com with ESMTPSA id u9-20020a170903124900b0016cabb9d77dsm8895028plh.169.2022.07.18.01.08.39
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 18 Jul 2022 01:08:48 -0700 (PDT)
+Date:   Mon, 18 Jul 2022 16:08:35 +0800
+From:   ChiYuan Huang <u0084500@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Date:   Mon, 18 Jul 2022 10:07:02 +0200
-In-Reply-To: <CAHp75VfWWP__yyWhG2urwu=k9V1_afiOwD-hynOjSa0LUHg9Tg@mail.gmail.com>
-References: <20220715125138.378632-1-nuno.sa@analog.com>
-         <20220715125138.378632-2-nuno.sa@analog.com>
-         <CAHp75VfWWP__yyWhG2urwu=k9V1_afiOwD-hynOjSa0LUHg9Tg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.3 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Alice Chen <alice_chen@richtek.com>,
+        cy_huang <cy_huang@richtek.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        szuni chen <szunichen@gmail.com>,
+        ChiYuan Huang <u0084500@gmail.com>
+Subject: Re: [PATCH v5 08/13] usb: typec: tcpci_mt6370: Add MediaTek MT6370
+ tcpci driver
+Message-ID: <20220718080831.GA31509@cyhuang-hp-elitebook-840-g3.rt>
+References: <20220715112607.591-1-peterwu.pub@gmail.com>
+ <20220715112607.591-9-peterwu.pub@gmail.com>
+ <CAHp75VdCgdTOu-CdNo9XGY+PrhPh93v_CkAHJC6hkArsKeiXbA@mail.gmail.com>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75VdCgdTOu-CdNo9XGY+PrhPh93v_CkAHJC6hkArsKeiXbA@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,192 +104,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-07-15 at 20:59 +0200, Andy Shevchenko wrote:
-> On Fri, Jul 15, 2022 at 2:50 PM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
-> >=20
-> > This change replaces the support for GPIs as key event generators.
-> > Instead of reporting the events directly, we add a gpio based
-> > irqchip
-> > so that these events can be consumed by keys defined in the gpio-
-> > keys
-> > driver (as it's goal is indeed for keys on GPIOs capable of
-> > generating
-> > interrupts). With this, the gpio-adp5588 driver can also be
-> > dropped.
-> >=20
-> > The basic idea is that all the pins that are not being used as part
-> > of
-> > the keymap matrix can be possibly requested as GPIOs by gpio-keys
-> > (it's also fine to use these pins as plain interrupts though that's
-> > not
-> > really the point).
-> >=20
-> > Since the gpiochip now also has irqchip capabilities, we should
-> > only
-> > remove it after we free the device interrupt (otherwise we could,
-> > in
-> > theory, be handling GPIs interrupts while the gpiochip is
-> > concurrently
-> > removed). Thus the call 'adp5588_gpio_add()' is moved and since the
-> > setup phase also needs to come before making the gpios visible, we
-> > also
-> > need to move 'adp5588_setup()'.
-> >=20
-> > While at it, always select GPIOLIB so that we don't need to use
-> > #ifdef
-> > guards.
->=20
-> ...
->=20
-> > +static void adp5588_irq_mask(struct irq_data *d)
+On Fri, Jul 15, 2022 at 03:10:42PM +0200, Andy Shevchenko wrote:
+> On Fri, Jul 15, 2022 at 1:28 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+> 
+> > The MT6370 is a highly-integrated smart power management IC, which
+> > includes a single cell Li-Ion/Li-Polymer switching battery charger,
+> > a USB Type-C & Power Delivery (PD) controller, dual Flash LED current
+> > sources, a RGB LED driver, a backlight WLED driver, a display bias
+> > driver and a general LDO for portable devices.
+> >
+> > This commit add support for the Type-C & Power Delivery controller in
+> 
+> This commit add -> Add
+> 
+Upper case? Or rewrite it as 'This commit is to add .....'?
+> 
+> > MediaTek MT6370 IC.
+> 
+> 
+> > +static int mt6370_tcpc_probe(struct platform_device *pdev)
 > > +{
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct gpio_chip *gc =3D irq_data=
-_get_irq_chip_data(d);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct adp5588_kpad *kpad =3D gpi=
-ochip_get_data(gc);
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long real_irq =3D kpad->=
-gpiomap[d->hwirq];
->=20
-> There is a helper to retrieve hwirq from the IRQ chip data.
->=20
-
-Will look into that...
-
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kpad->irq_mask[ADP5588_BANK(real_=
-irq)] &=3D
-> > ~ADP5588_BIT(real_irq);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpiochip_disable_irq(gc, d->hwirq=
-);
+> > +       struct mt6370_priv *priv;
+> > +       struct device *dev = &pdev->dev;
+> > +       int ret;
+> > +
+> > +       priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > +       if (!priv)
+> > +               return -ENOMEM;
+> > +
+> > +       priv->dev = dev;
+> > +       platform_set_drvdata(pdev, priv);
+> > +
+> > +       priv->tcpci_data.regmap = dev_get_regmap(dev->parent, NULL);
+> > +       if (!priv->tcpci_data.regmap)
+> > +               return dev_err_probe(dev, -ENODEV, "Failed to init regmap\n");
+> > +
+> > +       ret = mt6370_check_vendor_info(priv);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       priv->irq = platform_get_irq(pdev, 0);
+> > +       if (priv->irq < 0)
+> > +               return priv->irq;
+> > +
+> > +       /* Assign TCPCI feature and ops */
+> > +       priv->tcpci_data.auto_discharge_disconnect = 1;
+> > +       priv->tcpci_data.init = mt6370_tcpc_init;
+> > +       priv->tcpci_data.set_vconn = mt6370_tcpc_set_vconn;
+> > +
+> > +       priv->vbus = devm_regulator_get_optional(dev, "vbus");
+> > +       if (!IS_ERR(priv->vbus))
+> > +               priv->tcpci_data.set_vbus = mt6370_tcpc_set_vbus;
+> > +
+> > +       priv->tcpci = tcpci_register_port(dev, &priv->tcpci_data);
+> > +       if (IS_ERR(priv->tcpci))
+> > +               return dev_err_probe(dev, PTR_ERR(priv->tcpci),
+> > +                                    "Failed to register tcpci port\n");
+> > +
+> > +       ret = devm_request_threaded_irq(dev, priv->irq, NULL,
+> > +                                       mt6370_irq_handler, IRQF_ONESHOT,
+> > +                                       dev_name(dev), priv);
+> > +       if (ret) {
+> 
+> > +               tcpci_unregister_port(priv->tcpci);
+> 
+> This is wrong.
+> You mixed devm_ with non-devm. Either drop devm_ *after* the first
+> non-devm_ call, or convert everything to be managed.
+> 
+How about to add 'devm_add_action_or_reset' for tcpci_unregister_port?
+This will convert all as 'devm_' version.
+> > +               return dev_err_probe(dev, ret, "Failed to allocate irq\n");
+> > +       }
+> > +
+> > +       device_init_wakeup(dev, true);
+> > +       dev_pm_set_wake_irq(dev, priv->irq);
+> > +
+> > +       return 0;
 > > +}
->=20
-> ...
->=20
-> > +static void adp5588_irq_unmask(struct irq_data *d)
+> > +
+> > +static int mt6370_tcpc_remove(struct platform_device *pdev)
 > > +{
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct gpio_chip *gc =3D irq_data=
-_get_irq_chip_data(d);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct adp5588_kpad *kpad =3D gpi=
-ochip_get_data(gc);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long real_irq =3D kpad->=
-gpiomap[d->hwirq];
->=20
-> Ditto.
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpiochip_enable_irq(gc, d->hwirq)=
-;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kpad->irq_mask[ADP5588_BANK(real_=
-irq)] |=3D
-> > ADP5588_BIT(real_irq);
+> > +       struct mt6370_priv *priv = platform_get_drvdata(pdev);
+> 
+> > +       disable_irq(priv->irq);
+> 
+> Why?
+> An ugly workaround due to ordering issues in ->probe()?
+>
+Yes, due to the ordering in probe.
+'bus remove' will be called before device resource releases.
+
+Like as you said, another way is to convert all as non-devm
+version after 'tcpci_unregister_port'.
+
+If to keep the original order, 'disable_irq' before
+'tcpci_unregister_port' can make the flow more safe.
+
+Or you can think one case if irq triggers after
+'tcpci_unregister_port'. Null pointer occurs.
+
+Anyway, in next revision, I'll convert all to be 'devm_' version.
+For this remove callback, only 'dev_pm_clear_wake_irq' and
+'device_init_wakeup' will be kept.
+
+Is this better?
+
+> > +       tcpci_unregister_port(priv->tcpci);
+> > +       dev_pm_clear_wake_irq(&pdev->dev);
+> > +       device_init_wakeup(&pdev->dev, false);
+> > +
+> > +       return 0;
 > > +}
->=20
-> ...
->=20
-> > +static int adp5588_gpiomap_get_hwirq(struct device *dev, const u8
-> > *map,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned=
- int gpio, unsigned
-> > int ngpios)
-> > =C2=A0{
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int hwirq;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (hwirq =3D 0; hwirq < ngpios;=
- hwirq++)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 if (map[hwirq] =3D=3D gpio)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return hwir=
-q;
->=20
-> I'm sorry if I already asked, but can irq_valid_mask be helpful here?
->=20
-
-Yes you did and I did checked it but never replied... So, IIUC, the
-'init_valid_mask()' (I think this is the one you are referring too)
-receives a bitmap that goes from 0 ... ngpios - 1 where I would set
-some bits to 0 if I that line cannot fire interrupts. This is not the
-case in here since all lines exported can fire interrupts. This mapping
-is something else. Users might not want to have, let's say, pins 10, 15
-and 17 (device pins) as part of the keymap matrix so that they are
-exported as gpios than can be, optionally, "consumed" for something
-else. In this case, the mapping is:
-
-gpio line	device pin
-
-  0		   10
-  1		   15
-  2		   17
-
-This map was already on the original driver and I don't really intend
-to touch it in this series (if ever).
-
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* should never happen */
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_warn_ratelimited(dev, "could =
-not find the hwirq for
-> > gpio(%u)\n", gpio);
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -ENOENT;
-> > +}
->=20
-> ...
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int hwirq;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 hwirq =3D adp5588_gpiomap_get_hwi=
-rq(&client->dev, kpad-
-> > >gpiomap,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 gpio, kpad->gc.ngpio);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (hwirq < 0) {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 dev_err(&client->dev, "Could not get hwirq for
-> > key(%u)\n", key_val);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->=20
-> Instead of having it signed, can you use INVALID_HWIRQ definition?
->=20
-
-Can do that...
-
-> ...
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 irq =3D irq_find_mapping(kpad->gc=
-.irq.domain, hwirq);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (irq <=3D 0)
->=20
-> '<' ? How is it possible?
->=20
-
-Well, yes... not really possible. Will change it.
-
-
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 desc =3D irq_get_irq_data(irq);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!desc) {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 dev_err(&client->dev, "Could not get irq(%u)
-> > data\n", irq);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 irq_type =3D irqd_get_trigger_typ=
-e(desc);
->=20
-> 'desc' is quite a confusing name for IRQ chip data! Please rename (we
-> have IRQ descriptor and it's not the IRQ chip data).
->=20
-
-Yeah, make sense.
-
-- Nuno S=C3=A1
-
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
