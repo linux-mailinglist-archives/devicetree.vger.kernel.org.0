@@ -2,77 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43FBE5786EB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 18:04:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D332557873C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 18:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231316AbiGRQEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 12:04:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40834 "EHLO
+        id S229886AbiGRQYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 12:24:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231132AbiGRQEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 12:04:30 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499A0DE85;
-        Mon, 18 Jul 2022 09:04:29 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id a5so17716640wrx.12;
-        Mon, 18 Jul 2022 09:04:29 -0700 (PDT)
+        with ESMTP id S234295AbiGRQYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 12:24:01 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2836F9FE6;
+        Mon, 18 Jul 2022 09:24:00 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id v16so2000502wrr.6;
+        Mon, 18 Jul 2022 09:24:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=DQCf01R8FDGSi3ujxTj9GGbfmIZAuUcf4db7o6FQwNs=;
-        b=lK8n/Z7kwUd8iVx3jExD8J3JH9ui1a0qLDRuUSwgT79sJHtXpllECNqoyPiue8mBAK
-         h5H48oY1A/CgoSjIOm3K0kDCxNvdQCR3H3SzKfcmBGPssYZU9EGPyeMmMyGqkjY60YQu
-         /ZIMGEZxAFdLHJENR56VZJfrpC28i2dnF2YkdZ7utsOaCFHb+xTnWBP1XZaZctbW5oJj
-         lTqTiFhxgbg0QuUhcUz5/z5TRKqFG43AnRrYvnESgzGeDpBete2+DZ+TnfuaeAv+GJNv
-         u/rjoEBtOvmWNWDE2HYQSwhslK+YK37BSj00GnHVegxPsFPxI2zWqtHHGyPyJAx6OTuI
-         Ebkw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=A0+VW9WAfHDFP3xbpibU5Fke69H8iS3ox7I176HQdps=;
+        b=YwKRewUGYwHCCfSNoxojmDu8A2dhrMyHqgdu0FzkWCJWiNc6p1YBLSTkrtXer6Q++6
+         H2TDJHH4Q/Hfg/BaiP1qMYBQADRWDFQwdTrm0DcJUHwKO0DP1dzwqmQacnOryfO/cwB/
+         cExTlZEUgmP6ksnLHZ9q5ImQBF9gqdxgdBGSJf9fc5oMD8NKmoSR6AofI2EGO0HScEfl
+         JHVzlk8DxVi+uZEJj9FQkiXkCUebxcXGFGfkJqbD9RJ9W2SY70noF0YqFNEjPI50i9NB
+         YXUK+Mcuul2ApkDK0u1DGHSftsp1r9DZp7F5gu6YrPiSZNXIYgmoRUQga2wjVQX0OgA8
+         aTbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=DQCf01R8FDGSi3ujxTj9GGbfmIZAuUcf4db7o6FQwNs=;
-        b=K2UeVyZJ6X1bvlLi+Nai/7xWaubVxyJtZNV/0v5bFUx0yEmaYY8aUpD8O4gFxTuqS/
-         ltoT+IofLKuprZjHz8UgAWwPaomRQ9ihkFIE28KvOBP2ozfKpk7U7Vy3MjBAQldvu84k
-         2Bec8ml8sBCKiAPMXPDoE2SoVDbjgGBxUc/1wEYz74CGimCWs9iOg53lR4XBSETxOZdf
-         Rm1ZpgPC10fliYuFZ8jYXU5pJBabp4yX9+KqCJ7dDg8K8Be8v2BAbHI3P9dZs+3PnzPI
-         xYRAV1f5L0bjVTGEbiPPgRpTFJ71Kc/kSA1B68Jjt5Eg9odur7vPo0cNcu7rnMAzO8gg
-         Go1A==
-X-Gm-Message-State: AJIora8eD03VbU921L4SDN+66lRz6C+uhozE/mYmrMwSvTlC7yEo6u9I
-        JOkqaVzRvjADN2tdBxZSo1U=
-X-Google-Smtp-Source: AGRyM1uGmhdJOb6JH9Z96ICgqDkOVFee8KCCyYuj0S2hemKTbLOSjnvczlEZxSE1rDCAU4uWzvZ4+A==
-X-Received: by 2002:a5d:584b:0:b0:21d:bd2e:42a7 with SMTP id i11-20020a5d584b000000b0021dbd2e42a7mr22311759wrf.192.1658160267673;
-        Mon, 18 Jul 2022 09:04:27 -0700 (PDT)
-Received: from [192.168.0.14] ([37.223.147.254])
-        by smtp.gmail.com with ESMTPSA id r18-20020a05600c35d200b003a2d0f0ccaesm20527536wmq.34.2022.07.18.09.04.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 09:04:26 -0700 (PDT)
-Message-ID: <4fcc64d9-060e-6568-6eb7-d74c520593b0@gmail.com>
-Date:   Mon, 18 Jul 2022 18:04:25 +0200
+        bh=A0+VW9WAfHDFP3xbpibU5Fke69H8iS3ox7I176HQdps=;
+        b=4nB5kuP/eUHPzCYWzfbJ7Vr3BtVJwoSdA56ihsrlXdPt92lBZ+lUDU59mVHU+MGc/k
+         EQM2FKCCDkJqhbNzKBnJSlvPCxS5nIGdZDTSUJo6knhNKmucuTC0WXplC7kmutGElTsE
+         6QywNHchUZnjDvuY4i0pu2RSPcSUOouzECzdMUMWelF45tY4vXZpZvE61EHrzA4CALk8
+         0eZ4Wjqc1J7XQxXL2exf+abj1u/usMBYWzWz7gpOcKhDNG/Z58bhUJgJEJXpLhUY2GXn
+         L8DZ7dhK96aGhoLZSWQUzW7huCMfi74Zz/+eztjQpYQ+XtUzyq+CrWKrVA8Ceclxp4oP
+         W0AQ==
+X-Gm-Message-State: AJIora++KJWGf1SHm/MmvPZ9FVMD7luvCAPPC4DYuI3i80qtZo27VLHK
+        JNyMbHdHqhVEh0YSzMwzta0=
+X-Google-Smtp-Source: AGRyM1tNHdNl9YLuNZ1bTDfv88YDJm43VHX7L/WrvbjTolNdrtnMk0Q2t2dBT8s0a/z42vKdoKvlzg==
+X-Received: by 2002:a05:6000:601:b0:21d:7f3e:e231 with SMTP id bn1-20020a056000060100b0021d7f3ee231mr23565371wrb.219.1658161438342;
+        Mon, 18 Jul 2022 09:23:58 -0700 (PDT)
+Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.googlemail.com with ESMTPSA id q6-20020a1cf306000000b003a2e92edeccsm19150824wmq.46.2022.07.18.09.23.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 09:23:57 -0700 (PDT)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Christian Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH 1/3] ARM: dts: qcom: ipq8064: add v2 dtsi variant
+Date:   Mon, 18 Jul 2022 18:18:24 +0200
+Message-Id: <20220718161826.4943-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: watchdog: mediatek: Convert binding
- to YAML
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>
-References: <20220714125044.20403-1-allen-kh.cheng@mediatek.com>
- <20220714125044.20403-2-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220714125044.20403-2-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,146 +72,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add ipq8064-v2.0 dtsi variant that differ from original ipq8064 SoC for
+some additional pcie, sata and usb configuration values, additional
+reserved memory and serial output.
 
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ .../boot/dts/qcom-ipq8064-v2.0-smb208.dtsi    | 37 ++++++++++
+ arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi      | 69 +++++++++++++++++++
+ 2 files changed, 106 insertions(+)
+ create mode 100644 arch/arm/boot/dts/qcom-ipq8064-v2.0-smb208.dtsi
+ create mode 100644 arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
 
-On 14/07/2022 14:50, Allen-KH Cheng wrote:
-> Convert Mediatek watchdog devicetree binding to YAML.
-> 
+diff --git a/arch/arm/boot/dts/qcom-ipq8064-v2.0-smb208.dtsi b/arch/arm/boot/dts/qcom-ipq8064-v2.0-smb208.dtsi
+new file mode 100644
+index 000000000000..0442580b22de
+--- /dev/null
++++ b/arch/arm/boot/dts/qcom-ipq8064-v2.0-smb208.dtsi
+@@ -0,0 +1,37 @@
++// SPDX-License-Identifier: GPL-2.0
++
++#include "qcom-ipq8064-v2.0.dtsi"
++
++&rpm {
++	smb208_regulators: regulators {
++		compatible = "qcom,rpm-smb208-regulators";
++
++		smb208_s1a: s1a {
++			regulator-min-microvolt = <1050000>;
++			regulator-max-microvolt = <1150000>;
++
++			qcom,switch-mode-frequency = <1200000>;
++		};
++
++		smb208_s1b: s1b {
++			regulator-min-microvolt = <1050000>;
++			regulator-max-microvolt = <1150000>;
++
++			qcom,switch-mode-frequency = <1200000>;
++		};
++
++		smb208_s2a: s2a {
++			regulator-min-microvolt = < 800000>;
++			regulator-max-microvolt = <1250000>;
++
++			qcom,switch-mode-frequency = <1200000>;
++		};
++
++		smb208_s2b: s2b {
++			regulator-min-microvolt = < 800000>;
++			regulator-max-microvolt = <1250000>;
++
++			qcom,switch-mode-frequency = <1200000>;
++		};
++	};
++};
+diff --git a/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi b/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
+new file mode 100644
+index 000000000000..2f117d576daf
+--- /dev/null
++++ b/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
+@@ -0,0 +1,69 @@
++// SPDX-License-Identifier: GPL-2.0
++
++#include "qcom-ipq8064.dtsi"
++
++/ {
++	model = "Qualcomm Technologies, Inc. IPQ8064-v2.0";
++
++	aliases {
++		serial0 = &gsbi4_serial;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	reserved-memory {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++
++		rsvd@41200000 {
++			reg = <0x41200000 0x300000>;
++			no-map;
++		};
++	};
++};
++
++&gsbi4 {
++	qcom,mode = <GSBI_PROT_I2C_UART>;
++	status = "okay";
++
++	serial@16340000 {
++		status = "okay";
++	};
++	/*
++	 * The i2c device on gsbi4 should not be enabled.
++	 * On ipq806x designs gsbi4 i2c is meant for exclusive
++	 * RPM usage. Turning this on in kernel manifests as
++	 * i2c failure for the RPM.
++	 */
++};
++
++&pcie0 {
++	compatible = "qcom,pcie-ipq8064-v2";
++};
++
++&pcie1 {
++	compatible = "qcom,pcie-ipq8064-v2";
++};
++
++&pcie2 {
++	compatible = "qcom,pcie-ipq8064-v2";
++};
++
++&sata {
++	ports-implemented = <0x1>;
++};
++
++&ss_phy_0 {
++	qcom,rx-eq = <2>;
++	qcom,tx-deamp_3_5db = <32>;
++	qcom,mpll = <5>;
++};
++
++&ss_phy_1 {
++	qcom,rx-eq = <2>;
++	qcom,tx-deamp_3_5db = <32>;
++	qcom,mpll = <5>;
++};
+-- 
+2.36.1
 
-You are also fixing the fallback compatible here.
-
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->   .../bindings/watchdog/mediatek,wdt.yaml       | 64 +++++++++++++++++++
->   .../devicetree/bindings/watchdog/mtk-wdt.txt  | 42 ------------
->   2 files changed, 64 insertions(+), 42 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,wdt.yaml
->   delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,wdt.yaml
-> new file mode 100644
-> index 000000000000..cb90d89b9f5d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,wdt.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/mediatek,wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediatTek SoCs Watchdog timer
-> +
-> +maintainers:
-> +  - Runyang Chen <runyang.chen@mediatek.com>
-> +
-> +allOf:
-> +  - $ref: "watchdog.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - mediatek,mt2712-wdt
-> +          - mediatek,mt6589-wdt
-> +          - mediatek,mt7986-wdt
-> +          - mediatek,mt8183-wdt
-> +          - mediatek,mt8186-wdt
-> +          - mediatek,mt8192-wdt
-> +          - mediatek,mt8195-wdt
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt2701-wdt
-
-missing mt6582-wdt, mediatek,mt7623-wdt and more.
-I'd advise split this up in two patches. One fixing the fallback compatible and 
-the second one converting to yaml (or the other way round). In any case make 
-sure you have all compatibles in the end.
-
-Regards,
-Matthias
-
-> +              - mediatek,mt6797-wdt
-> +              - mediatek,mt7622-wdt
-> +              - mediatek,mt8516-wdt
-> +              - mediatek,mt8173-wdt
-> +          - const: mediatek,mt6589-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  mediatek,disable-extrst:
-> +    type: boolean
-> +    description: disable send output reset signal
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    watchdog@10007000 {
-> +        compatible = "mediatek,mt8186-wdt";
-> +        reg = <0x10007000 0x100>;
-> +        mediatek,disable-extrst;
-> +        #reset-cells = <1>;
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-> deleted file mode 100644
-> index 762c62e428ef..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-> +++ /dev/null
-> @@ -1,42 +0,0 @@
-> -Mediatek SoCs Watchdog timer
-> -
-> -The watchdog supports a pre-timeout interrupt that fires timeout-sec/2
-> -before the expiry.
-> -
-> -Required properties:
-> -
-> -- compatible should contain:
-> -	"mediatek,mt2701-wdt", "mediatek,mt6589-wdt": for MT2701
-> -	"mediatek,mt2712-wdt": for MT2712
-> -	"mediatek,mt6582-wdt", "mediatek,mt6589-wdt": for MT6582
-> -	"mediatek,mt6589-wdt": for MT6589
-> -	"mediatek,mt6797-wdt", "mediatek,mt6589-wdt": for MT6797
-> -	"mediatek,mt7622-wdt", "mediatek,mt6589-wdt": for MT7622
-> -	"mediatek,mt7623-wdt", "mediatek,mt6589-wdt": for MT7623
-> -	"mediatek,mt7629-wdt", "mediatek,mt6589-wdt": for MT7629
-> -	"mediatek,mt7986-wdt", "mediatek,mt6589-wdt": for MT7986
-> -	"mediatek,mt8183-wdt": for MT8183
-> -	"mediatek,mt8186-wdt", "mediatek,mt6589-wdt": for MT8186
-> -	"mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
-> -	"mediatek,mt8192-wdt": for MT8192
-> -	"mediatek,mt8195-wdt", "mediatek,mt6589-wdt": for MT8195
-> -
-> -- reg : Specifies base physical address and size of the registers.
-> -
-> -Optional properties:
-> -- mediatek,disable-extrst: disable send output reset signal
-> -- interrupts: Watchdog pre-timeout (bark) interrupt.
-> -- timeout-sec: contains the watchdog timeout in seconds.
-> -- #reset-cells: Should be 1.
-> -
-> -Example:
-> -
-> -watchdog: watchdog@10007000 {
-> -	compatible = "mediatek,mt8183-wdt",
-> -		     "mediatek,mt6589-wdt";
-> -	mediatek,disable-extrst;
-> -	reg = <0 0x10007000 0 0x100>;
-> -	interrupts = <GIC_SPI 139 IRQ_TYPE_NONE>;
-> -	timeout-sec = <10>;
-> -	#reset-cells = <1>;
-> -};
