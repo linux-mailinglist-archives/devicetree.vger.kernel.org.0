@@ -2,149 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA215578136
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 13:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45C35578158
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 13:55:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234493AbiGRLuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 07:50:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39400 "EHLO
+        id S234380AbiGRLzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 07:55:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233990AbiGRLuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 07:50:14 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F53F193EB;
-        Mon, 18 Jul 2022 04:50:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=6PLhnSCVS/0Hp1d4l6TlOyBGg/E0V6oM0LNabEHe2X8=;
-        b=jThlrAxAbFmIWfmP0oGThJeVUwCaYGksDyNluumcdxPqezX2agAYkOr1qgnkbr90wfwYmnFyvfebm
-         8oTVqXhcz2adVKcnpzpZlMD6MzvFB+MBXzG6+vEIC5RkHf6fD8In3Cc6hBGs/tjPMU5mVY550oTCKr
-         73PbQYVe9RTy3zvv8fmAsXygON6QJofXwtkf+I7uovlpP+he5eVa/r3Kwcgf+d1pre9n2M23RtEr3r
-         I5gOeVK9Z7F7iWGj8wF6IwPE+eefquunuTN6B3V07lLtcwARlNhqW8O0BuR3tUsBWvDGUi67zS8xDR
-         kwaFmtDjtRf8OmzxX9aNGQTW2jwEtvw==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000008,0.010833)], BW: [Enabled, t: (0.000019,0.000001)], RTDA: [Enabled, t: (0.151769), Hit: No, Details: v2.40.0; Id: 15.52k488.1g88i9g99.38vcp; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Mon, 18 Jul 2022 14:49:57 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-Subject: [PATCH v3 2/2] dt-bindings: fpga: add binding doc for ecp5-spi fpga mgr
-Date:   Mon, 18 Jul 2022 14:49:28 +0300
-Message-Id: <20220718114928.22092-3-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220718114928.22092-1-i.bornyakov@metrotek.ru>
-References: <20220718114928.22092-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S229535AbiGRLzn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 07:55:43 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77F6462C1
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 04:55:42 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id c187-20020a1c35c4000000b003a30d88fe8eso5504892wma.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 04:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8J6VHNqgZdSVLVO7nSzDZg8FCu7txJsjajqAB8vutk4=;
+        b=ytuDHPhqJSYjGdhNpDnAsAeru6R84mqSnpLyK2jzi3V/piXMMCwSLU9s65upfJ+sLh
+         vdIXSS4fIY1jsSL9J1lXespl6Lk+7qYmD1MoH58xrVoPXKNx47SFvJSJofI8UviGUse+
+         /t0r9R5byhjJEEx2wXFjn+OEjCRGxyLRg8X8pvrlJSJdl6N1guhfR40Xn/HH+MhwW2ot
+         1l8Z9ewSnOYQN2hqcXobmf8XTyDghcHXEFCIdjMlE3UEuQfz+PAWUNDtwUIWKzc7ko+V
+         m7Fb2tEUJaXkzDETHl6peXCQSlx/LcLgu5R9sD1LMUPHy+xaFerE7IbTqVrlcH6qRUKL
+         t2Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8J6VHNqgZdSVLVO7nSzDZg8FCu7txJsjajqAB8vutk4=;
+        b=LK6y63RrPU6jsvtQDSwRMET7kTC5RX3fz5bgai5fhiSvsAexGZGfCJt/EpnHBTxSDN
+         sGL9uWRc7abHP19TQRMxjFYHuH0BkN58RlLbAQu1cNey06zELnGfGVb5arFTz+9dUCLl
+         VEpTCi8SkPlbO0Lz7nHyGMK6FguYGVb9qoLwIwzSACrFPGR8tlgFwcv33Mmw1CDnEZeU
+         b7DDCisUxGs0ognyjj4wR2zfL2vZZGw68+JKUGLfAp0Hwe5fZgW0U4vuLm+PiDx0qiYx
+         pV8aGL0jQG1FNE8uGUp7ITytXmcP+jpj9l7B3wF7Y+JYbPTEQ7cd/dpUSbtizqKkbW+z
+         keHw==
+X-Gm-Message-State: AJIora9YdKOMhN5x1+prHbmDZGQZUeW/t5QJNq3O9pI6duYLWfZYNLyN
+        wXFvYSboigW31OkN7gVCt1zj9w==
+X-Google-Smtp-Source: AGRyM1u7TruxYg4fOCdzoawk+pZXqtgDvj4Xi/mBNokVLLBVSn5bDn6keVarqjaUGw6fJDeFHkt8oA==
+X-Received: by 2002:a05:600c:348d:b0:3a3:1fe6:6b38 with SMTP id a13-20020a05600c348d00b003a31fe66b38mr1214170wmq.144.1658145341063;
+        Mon, 18 Jul 2022 04:55:41 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id n15-20020a05600c500f00b003a2e655f2e6sm15474947wmr.21.2022.07.18.04.55.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 04:55:40 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        konrad.dybcio@somainline.org, jassisinghbrar@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        shawn.guo@linaro.org, bryan.odonoghue@linaro.org
+Subject: [PATCH v4 0/1] Two apcs-kpss-global.yaml fixes
+Date:   Mon, 18 Jul 2022 12:55:37 +0100
+Message-Id: <20220718115538.1247615-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for Lattice ECP5 FPGA manager using slave
-SPI to load .bit formatted uncompressed bitstream image.
+V4:
+- Drops the second patch entirely.
+  The clock-output-names are not required in the DTS - Dmitry
 
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
----
- .../bindings/fpga/lattice,ecp5-fpga-mgr.yaml  | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
+V3:
+- Include Rob and Krz Reviewed-by for patch #1
+- Defines maxItems 1 for the clock-output-name
+  I missed this error in the dtb check for V2.
 
-diff --git a/Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
-new file mode 100644
-index 000000000000..bb10fd316f94
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/lattice,ecp5-fpga-mgr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lattice ECP5 Slave SPI FPGA manager.
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description:
-+  FPGA Manager capable to program Lattice ECP5 with uncompressed bitstream
-+  image in .bit format over SPI.
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 60000000
-+
-+  compatible:
-+    enum:
-+      - lattice,ecp5-fpga-mgr
-+
-+  program-gpios:
-+    description:
-+      A GPIO line connected to PROGRAMN (active low) pin of the device.
-+      Initiates configuration sequence.
-+    maxItems: 1
-+
-+  init-gpios:
-+    description:
-+      A GPIO line connected to INITN (active low) pin of the device.
-+      Indicates that the FPGA is ready to be configured.
-+    maxItems: 1
-+
-+  done-gpios:
-+    description:
-+      A GPIO line connected to DONE (active high) pin of the device.
-+      Indicates that the configuration sequence is complete.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - program-gpios
-+  - init-gpios
-+  - done-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        fpga-mgr@0 {
-+            compatible = "lattice,ecp5-fpga-mgr";
-+            spi-max-frequency = <20000000>;
-+            reg = <0>;
-+            program-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
-+            init-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
-+            done-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
+V2:
+- Fixes example which threw an error in v1 - Rob's bot
+- Updates the patch prefix - Krzysztof
+- Fixes broken non-DT schema syntax clock-output-name - Krzysztof
+
+V1:
+Adding in msm8939.dtsi and running the binding checks is throwing up two
+errors for me.
+
+In the first instance we use syscon on the 8939 and should declare it in
+the compat list. Doing a quick grep it looks like that fix should be
+applied to a number of existing declarations too.
+
+In the second instance we just need to document clock-output-names for the
+a53 mux PLL.
+
+Bryan O'Donoghue (1):
+  dt-bindings: mailbox: qcom,apcs-kpss-global: Add syscon const for
+    relevant entries
+
+ .../mailbox/qcom,apcs-kpss-global.yaml        | 46 ++++++++++---------
+ 1 file changed, 25 insertions(+), 21 deletions(-)
+
 -- 
-2.37.1
-
+2.36.1
 
