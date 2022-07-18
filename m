@@ -2,169 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D51557793B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 03:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3D54577954
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 03:42:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232967AbiGRBYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 21:24:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58756 "EHLO
+        id S230298AbiGRBmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 21:42:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232937AbiGRBYa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 21:24:30 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7730565FD;
-        Sun, 17 Jul 2022 18:24:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658107469; x=1689643469;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2EKYGRxFwOowb+2/VvkXh77NNCMzCGVW6f9edVohmqU=;
-  b=nWRymceehoIfS+fxc+k2dI1UQ+h654LpPDxZxEABr7rCHt2Qs2wNDjAB
-   VPXBxGtqJtC5go2YJWRTQ3jm7Ux173upVpu4aIgFxD4evxYqntHtztOss
-   3fZupdfP2WH5sNphfsBhbCCAKCzfS6NOOj3Wr8FYu2gFBe86TDYIkYvFL
-   yym0oHLJnCnxH/DMzC2JcTlpI5GbhNEZBRw9t4oX0j6c0/tUDkn/VMaeq
-   ShWQtQd2RbvssIa4a6+ku383CMDM3nnhmcdGALPizUmdIX5vApTLX9aU1
-   VNIwumFLa3dqTwQLHPoOFpDXvkpKJIkV+A5HUeJbMHu7FLEHcrNhvGknl
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10411"; a="286128173"
-X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; 
-   d="scan'208";a="286128173"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jul 2022 18:24:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; 
-   d="scan'208";a="843105175"
-Received: from lkp-server02.sh.intel.com (HELO ff137eb26ff1) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 17 Jul 2022 18:24:25 -0700
-Received: from kbuild by ff137eb26ff1 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1oDFUm-0003rU-Q9;
-        Mon, 18 Jul 2022 01:24:24 +0000
-Date:   Mon, 18 Jul 2022 09:24:00 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, j.neuschaefer@gmx.net,
-        zhengbin13@huawei.com
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: Re: [PATCH v2 2/2] pinctrl: nuvoton: add NPCM8XX pinctrl and GPIO
- driver
-Message-ID: <202207180959.yy7mZtRy-lkp@intel.com>
-References: <20220714122322.63663-3-tmaimon77@gmail.com>
+        with ESMTP id S229976AbiGRBmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 21:42:21 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6735D10FF5
+        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 18:42:20 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id bk26so14998249wrb.11
+        for <devicetree@vger.kernel.org>; Sun, 17 Jul 2022 18:42:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bekOncRaPF1NxvuZVFAu6mcVMT/xzfB6dU3oKKjrlTs=;
+        b=MO3SpsNBx0YdBNe4EdBAkch2ap9FSo6pYSGjO7iThVm5xswWjh7WDMVkSadj4LqS3/
+         XEbrqZ2keLt2mwq15CWMQWUTtSoWNgSHo8mOpaA2AGmuc2faUAH6nGyvznlf+/x7cBDc
+         ywkY85CJI3dGK7SJTMfS5Mx6K6YOoovVkqrxddkqoTc/mJcoM7OCyTRVb86SQDEC1xVg
+         SfdHRw6VzVi7vb1FSgZ53YCuCApOjKLd0XkldQ17Kt3wuOmRNirwLyWHLUgVR3syXgeE
+         2v8UYlsItxYNBs5DxXtoJy/+LGMNF+hU+Gx8+jCNaEFTxFGL+3ASL44OhkfTquM9c/6H
+         g4fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bekOncRaPF1NxvuZVFAu6mcVMT/xzfB6dU3oKKjrlTs=;
+        b=w6CUGYbXISVgDPzyK7fKGaITk12CYW7hi4srbILRA7Nr2UZz2nalDZdaok7cnYjgeH
+         8h4fiBJVVaYosED57Zo0m5LnTcnaznJ8cW34jvSKnf9AgRafhCe35VrZy1peKqoEY/hQ
+         bdYzLMI98O55j2prB8cqnNKD13vE6Awrnqnf7FFI2LXuzM46xHg4yB9TNpWMI2G9U1Ww
+         1tQy6VqSbFUu+WUKE25t2+YeXHaU1Q62UoOhpyodiUOO4bgIYFWMnfstPD4zUNT3NBpw
+         g9vfw3TFxRVK9Xiw2vzIa+xeGh2Ndl6QiatLvZYhjQBsyGsby5Qunhl/LXanxwF7tuow
+         Y1Hw==
+X-Gm-Message-State: AJIora/QN+jDCB3RMDbpWh+IbAE6OlTwgPNQvt4CC8hNlCO4/8Vfc/+b
+        +Vh4Ns+86GHguMhQKzSc2HBRtg==
+X-Google-Smtp-Source: AGRyM1s57C4gHhD81Q+RdMTOBoGWHjP2XZ59G3gBO6B/x4zTY5JRHxWtUpZgJoayvcpqChU55ZJXrg==
+X-Received: by 2002:a5d:5548:0:b0:21d:69c1:c09 with SMTP id g8-20020a5d5548000000b0021d69c10c09mr20573178wrw.251.1658108538957;
+        Sun, 17 Jul 2022 18:42:18 -0700 (PDT)
+Received: from planet9.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id v10-20020adfebca000000b0021d76a1b0e3sm1685139wrn.6.2022.07.17.18.42.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Jul 2022 18:42:18 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     sakari.ailus@iki.fi, jacopo@jmondi.org, paul.j.murphy@intel.com,
+        daniele.alessandrelli@intel.com, mchehab@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     dmitry.baryshkov@linaro.org, konrad.dybcio@somainline.org,
+        andrey.konovalov@linaro.org, bryan.odonoghue@linaro.org
+Subject: [PATCH v2 0/3] Add imx577 compatible to imx412
+Date:   Mon, 18 Jul 2022 02:42:12 +0100
+Message-Id: <20220718014215.1240114-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220714122322.63663-3-tmaimon77@gmail.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomer,
+V2:
+Sakari wasn't especially satisfied with the answer imx412 and imx577 have
+the same init sequence but, suggested setting the string for imx577 as is
+done in the ccs driver.
 
-I love your patch! Perhaps something to improve:
+https://lore.kernel.org/all/20220607134057.2427663-3-bryan.odonoghue@linaro.org/t/
 
-[auto build test WARNING on linusw-pinctrl/devel]
-[also build test WARNING on linus/master v5.19-rc7 next-20220715]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I went to look at that and asked myself "how would I tell the difference
+between the two silicon parts". The obvious answer is a chip identifier.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tomer-Maimon/pinctrl-nuvoton-add-pinmux-and-GPIO-driver-for-NPCM8XX/20220714-202424
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20220718/202207180959.yy7mZtRy-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 07022e6cf9b5b3baa642be53d0b3c3f1c403dbfd)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/0a5f158322b21ab2b71cc606adc2ee7573d8be0d
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Tomer-Maimon/pinctrl-nuvoton-add-pinmux-and-GPIO-driver-for-NPCM8XX/20220714-202424
-        git checkout 0a5f158322b21ab2b71cc606adc2ee7573d8be0d
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/media/i2c/ drivers/net/pcs/ drivers/pinctrl/nuvoton/ kernel/trace/
+Luckily this class of IMX sensor has a chip identifier at offset 0x0016.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+That looks like this for imx258, imx319 and imx355
 
-All warnings (new ones prefixed by >>):
+drivers/media/i2c/imx258.c:#define IMX258_REG_CHIP_ID    0x0016
+drivers/media/i2c/imx258.c:#define IMX258_CHIP_ID        0x0258
 
->> drivers/pinctrl/nuvoton/pinctrl-npcm8xx.c:481:18: warning: unused variable 'smb14b_pins' [-Wunused-const-variable]
-   static const int smb14b_pins[] = { 32, 187 };
-                    ^
-   1 warning generated.
+drivers/media/i2c/imx319.c:#define IMX319_REG_CHIP_ID    0x0016
+drivers/media/i2c/imx319.c:#define IMX319_CHIP_ID        0x0319
 
+drivers/media/i2c/imx355.c:#define IMX355_REG_CHIP_ID    0x0016
+drivers/media/i2c/imx355.c:#define IMX355_CHIP_ID        0x0355
 
-vim +/smb14b_pins +481 drivers/pinctrl/nuvoton/pinctrl-npcm8xx.c
+but then looks like this for imx412.
 
-   439	
-   440	static const int smb0_pins[]  = { 115, 114 };
-   441	static const int smb0b_pins[] = { 195, 194 };
-   442	static const int smb0c_pins[] = { 202, 196 };
-   443	static const int smb0d_pins[] = { 198, 199 };
-   444	static const int smb0den_pins[] = { 197 };
-   445	static const int smb1_pins[]  = { 117, 116 };
-   446	static const int smb1b_pins[] = { 126, 127 };
-   447	static const int smb1c_pins[] = { 124, 125 };
-   448	static const int smb1d_pins[] = { 4, 5 };
-   449	static const int smb2_pins[]  = { 119, 118 };
-   450	static const int smb2b_pins[] = { 122, 123 };
-   451	static const int smb2c_pins[] = { 120, 121 };
-   452	static const int smb2d_pins[] = { 6, 7 };
-   453	static const int smb3_pins[]  = { 30, 31 };
-   454	static const int smb3b_pins[] = { 39, 40 };
-   455	static const int smb3c_pins[] = { 37, 38 };
-   456	static const int smb3d_pins[] = { 59, 60 };
-   457	static const int smb4_pins[]  = { 28, 29 };
-   458	static const int smb4b_pins[] = { 18, 19 };
-   459	static const int smb4c_pins[] = { 20, 21 };
-   460	static const int smb4d_pins[] = { 22, 23 };
-   461	static const int smb4den_pins[] = { 17 };
-   462	static const int smb5_pins[]  = { 26, 27 };
-   463	static const int smb5b_pins[] = { 13, 12 };
-   464	static const int smb5c_pins[] = { 15, 14 };
-   465	static const int smb5d_pins[] = { 94, 93 };
-   466	static const int smb6_pins[]  = { 172, 171 };
-   467	static const int smb6b_pins[] = { 2, 3 };
-   468	static const int smb6c_pins[]  = { 0, 1 };
-   469	static const int smb6d_pins[]  = { 10, 11 };
-   470	static const int smb7_pins[]  = { 174, 173 };
-   471	static const int smb7b_pins[]  = { 16, 141 };
-   472	static const int smb7c_pins[]  = { 24, 25 };
-   473	static const int smb7d_pins[]  = { 142, 143 };
-   474	static const int smb8_pins[]  = { 129, 128 };
-   475	static const int smb9_pins[]  = { 131, 130 };
-   476	static const int smb10_pins[] = { 133, 132 };
-   477	static const int smb11_pins[] = { 135, 134 };
-   478	static const int smb12_pins[] = { 221, 220 };
-   479	static const int smb13_pins[] = { 223, 222 };
-   480	static const int smb14_pins[] = { 22, 23 };
- > 481	static const int smb14b_pins[] = { 32, 187 };
-   482	static const int smb15_pins[] = { 20, 21 };
-   483	static const int smb15b_pins[] = { 192, 191 };
-   484	static const int smb16_pins[] = { 10, 11 };
-   485	static const int smb16b_pins[] = { 218, 219 };
-   486	static const int smb17_pins[] = { 3, 2 };
-   487	static const int smb18_pins[] = { 0, 1 };
-   488	static const int smb19_pins[] = { 60, 59 };
-   489	static const int smb20_pins[] = { 234, 235 };
-   490	static const int smb21_pins[] = { 169, 170 };
-   491	static const int smb22_pins[] = { 40, 39 };
-   492	static const int smb23_pins[] = { 38, 37 };
-   493	static const int smb23b_pins[] = { 134, 134 };
-   494	
+drivers/media/i2c/imx412.c:#define IMX412_REG_ID         0x0016
+drivers/media/i2c/imx412.c:#define IMX412_ID             0x577
+
+This made no sense at all to me, why is the imx412 driver not named imx577 ?
+
+I went and dug into the Qualcomm camx/chi-cdk sources to find that a file
+called cmk_imx577_sensor.xml has a property called sensorId which is
+constrained to 0x0577.
+
+In the Qualcomm stack this pairing of filename and identifier is
+maintained for imx258, imx376, imx476, imx576, imx519, imx362, imx481,
+imx318 imx334 and imx386.
+
+Every single example I can find of a Sony IMX sensor which returns a chip
+identifier at offset 0x0016 matches the driver name to the returned sensor
+id both here upstream in Linux and in Qualcomm's camx stack.
+
+The conclusion I draw from this is that imx412.c is inappropriately named.
+
+I think the right thing to do is to rename imx412 to imx577. It is
+confusing and I think wrong to pair imx412.c with a chip which identifies
+as 0x0577.
+
+V1:
+Right now the imx412 and imx577 are code and pin compatible however, they
+are distinct pieces of silicon.
+
+Document imx577 as a compatible enum and add the compat string to imx412.c.
+This allows us to differentiate these chips in DTS and potentially to apply
+any future imx412 or imx577 specific changes appropriately.
+
+Bryan O'Donoghue (3):
+  media: dt-bindings: media: Rename imx412 to imx577
+  media: i2c: imx577: Rename imx412.c to imx577.c
+  media: i2c: imx577: Fix chip identifier define name
+
+ .../{sony,imx412.yaml => sony,imx577.yaml}    |  18 +-
+ MAINTAINERS                                   |   6 +-
+ drivers/media/i2c/Kconfig                     |   8 +-
+ drivers/media/i2c/Makefile                    |   2 +-
+ drivers/media/i2c/{imx412.c => imx577.c}      | 622 +++++++++---------
+ 5 files changed, 328 insertions(+), 328 deletions(-)
+ rename Documentation/devicetree/bindings/media/i2c/{sony,imx412.yaml => sony,imx577.yaml} (83%)
+ rename drivers/media/i2c/{imx412.c => imx577.c} (55%)
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.34.1
+
