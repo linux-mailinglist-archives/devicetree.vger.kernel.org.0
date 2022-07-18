@@ -2,93 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CF8857896A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 20:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38CC0578983
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 20:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235930AbiGRSTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 14:19:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
+        id S235968AbiGRSZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 14:25:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235884AbiGRSTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 14:19:21 -0400
-Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F21085FF0;
-        Mon, 18 Jul 2022 11:19:20 -0700 (PDT)
-Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
-        by maillog.nuvoton.com (Postfix) with ESMTP id 422B71C811CC;
-        Tue, 19 Jul 2022 02:19:20 +0800 (CST)
-Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 19
- Jul 2022 02:19:20 +0800
-Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS03.nuvoton.com
- (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1847.3; Tue, 19 Jul
- 2022 02:19:19 +0800
-Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
- (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Tue, 19 Jul 2022 02:19:19 +0800
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id EDAA063A20; Mon, 18 Jul 2022 21:19:18 +0300 (IDT)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
-        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
-        <benjaminfair@google.com>, <gregkh@linuxfoundation.org>,
-        <stern@rowland.harvard.edu>, <tony@atomide.com>,
-        <felipe.balbi@linux.intel.com>, <jgross@suse.com>,
-        <lukas.bulwahn@gmail.com>, <arnd@arndb.de>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <openbmc@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v2 3/3] USB: host: npcm: Add NPCM8XX support
-Date:   Mon, 18 Jul 2022 21:18:42 +0300
-Message-ID: <20220718181842.61040-4-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220718181842.61040-1-tmaimon77@gmail.com>
-References: <20220718181842.61040-1-tmaimon77@gmail.com>
+        with ESMTP id S235969AbiGRSZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 14:25:52 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90DD22D1D7;
+        Mon, 18 Jul 2022 11:25:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1658168751; x=1689704751;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ZrDvrrA11F1AztQy2Nks0U7/bE0KiSaoQtsQja6PhiM=;
+  b=dVYdTtmEVHq75hzPDuYagPMXRPyx6LNdkSvhmHdM6VtxpT8eJ+K7oTvv
+   MjoPyNnkpa80riLxUS69F5kKyAtMi3dOwPYSnsjU+ccrOFx00ccxYeOdg
+   1tXKdEf9SW244GnrUz9cv2xo0XRQGuA5Xwz+Hsg3Z7NfyfAsZW9/V+q9s
+   fPn4som5uh/Yr3hJ4GXOixnx5uU0lSDBa1ZyJvdq5ASD57LrIx/YQWIZy
+   En8zK2UgpjsfbM8CirzWWBuQtmYuetMXZvDrV7Wlu9IJDrqbIV1OcdZ02
+   muBNFZo2MLrn5QlFl92/3W93T82iGRclG0c0XkOuYFB7G5EzN7jgzCqe3
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="311976686"
+X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; 
+   d="scan'208";a="311976686"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2022 11:25:43 -0700
+X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; 
+   d="scan'208";a="547601715"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2022 11:25:40 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1oDVR3-001OO1-1n;
+        Mon, 18 Jul 2022 21:25:37 +0300
+Date:   Mon, 18 Jul 2022 21:25:37 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 3/4] gpiolib: acpi: support bias pull disable
+Message-ID: <YtWloTTNtdAPl8Y4@smile.fi.intel.com>
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+ <20220713131421.1527179-4-nuno.sa@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220713131421.1527179-4-nuno.sa@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify NPCM USB EHCI host controller configuration to support all NPCM
-BMC SoC.
+On Wed, Jul 13, 2022 at 03:14:20PM +0200, Nuno Sá wrote:
+> On top of looking at PULL_UP and PULL_DOWN flags, also look at
+> PULL_DISABLE and set the appropriate GPIO flag. The GPIO core will then
+> pass down this to controllers that support it.
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/usb/host/Kconfig | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+In case this patch will be in v2,
+Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index 682b3d2da623..bcd595e30811 100644
---- a/drivers/usb/host/Kconfig
-+++ b/drivers/usb/host/Kconfig
-@@ -205,12 +205,12 @@ config USB_EHCI_FSL
- 	  Variation of ARC USB block used in some Freescale chips.
- 
- config USB_EHCI_HCD_NPCM7XX
--	tristate "Support for Nuvoton NPCM7XX on-chip EHCI USB controller"
--	depends on (USB_EHCI_HCD && ARCH_NPCM7XX) || COMPILE_TEST
--	default y if (USB_EHCI_HCD && ARCH_NPCM7XX)
-+	tristate "Support for Nuvoton NPCM on-chip EHCI USB controller"
-+	depends on (USB_EHCI_HCD && ARCH_NPCM) || COMPILE_TEST
-+	default y if (USB_EHCI_HCD && ARCH_NPCM)
- 	help
- 	  Enables support for the on-chip EHCI controller on
--	  Nuvoton NPCM7XX chips.
-+	  Nuvoton NPCM chips.
- 
- config USB_EHCI_HCD_OMAP
- 	tristate "EHCI support for OMAP3 and later chips"
+P.S. I will be on vacation till mid-August.
+
 -- 
-2.33.0
+With Best Regards,
+Andy Shevchenko
+
 
