@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68C5B578BDC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 22:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 867A1578C03
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 22:47:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236049AbiGRUep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 16:34:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40854 "EHLO
+        id S229585AbiGRUq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 16:46:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235930AbiGRUen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 16:34:43 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DFE411C1C;
-        Mon, 18 Jul 2022 13:34:43 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id h145so10264503iof.9;
-        Mon, 18 Jul 2022 13:34:43 -0700 (PDT)
+        with ESMTP id S236090AbiGRUq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 16:46:58 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCA0A30F58;
+        Mon, 18 Jul 2022 13:46:54 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id w9so3162146ilg.1;
+        Mon, 18 Jul 2022 13:46:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8fwNczFHD3Vu7v1FlEOjKVfCQSdrj4GhMrwGGzxY8cs=;
-        b=nM/ONu/4PDPwn2RQsUGVFa8oYAiNyeO3gHMZ67pelCPbWxdt8DmH5HOm+qS7hxSpb+
-         ZOWp5eQu0BiZdgFM5brwp4yKIrsjpqgg7CC2on/snt2ZtqZVlYBuU05tUKBu4uS6sqJ2
-         JlFyoSBxEFEnzOyxsURtV9+vJErVwGyWxAyfoZZ77u6gnI9gBMFwokV+aKCaI80xzQwx
-         kDbF8qRP32USqkyKYAAlc3DW8ZrK7lIU44adytvrImRig2QlL87l4yBl5IToX4md+weD
-         WgCyR5cwQSktNA0gLYdXQ8l2TV6cefM+2gFeUK0Llbf2TVSmqzGGoxzbgcfg+FazW0WE
-         rR6w==
-X-Gm-Message-State: AJIora/jllFCcglKgSDFTGHMaBeDkP2zuwY/pZ68vJnBAzrHEE8xYyYc
-        rYoojQZsvcdMIJaCCTby4w==
-X-Google-Smtp-Source: AGRyM1vfV3f9iJDVM+Ly0aKtxIJ9fMd4Qa130TnYOdinhVI9JcFvVhVnA/tmbNIXemlEq95sibFZ9A==
-X-Received: by 2002:a6b:fd0e:0:b0:67b:7fe0:c29c with SMTP id c14-20020a6bfd0e000000b0067b7fe0c29cmr13312725ioi.5.1658176482305;
-        Mon, 18 Jul 2022 13:34:42 -0700 (PDT)
+        bh=nsrM3GN1ydAPWBx+VmK+tAx9zDddS8+cskMqenrufDM=;
+        b=GUpbDkukWeUh0gi9gpp4DZ27HOJ1x6R2wadJ96f/uBueb6T9rq5Cv7RGYNtmDNyk3w
+         /8W3bm4oaWTQSMYd8/4dtcgWK2AjV02BchGdHlUxDYK/ECt0j88HBnXHXzRWaWEHOAES
+         iL91RwJu/fRySH2QWhc2E2WLBxJey2dB10CPt6HK4PDAQvIkM718ATn2JWdrQ5YD1FKR
+         pu4x8zyaV2MI+UbXn20Vjb/EUAzIR2Ejde/yX/7azwMT068IT50ZZW4iB+Fuo9HkqfK8
+         C/zjX0rOyE4q3tPq9JfT9v/RflSlb6yv8WSjF9XnA79Q2w29g0rrWWpsXLQ9SrhNVqo5
+         HkQg==
+X-Gm-Message-State: AJIora+TDAXLkmxKEuN7h+nkNzVEaoYOW65ZfbjAslhXiM3xqR1sL35l
+        GLOg30R1Olta+qtjR2fdRg==
+X-Google-Smtp-Source: AGRyM1sZBw1swY7XFZ3jNeHehuSXsWVnT5WjqKZCO9YVkFSU78+mGn1KYtm41y69GdS5z/ch9rmqCA==
+X-Received: by 2002:a05:6e02:102:b0:2dc:8fa:5f9d with SMTP id t2-20020a056e02010200b002dc08fa5f9dmr14637160ilm.231.1658177214050;
+        Mon, 18 Jul 2022 13:46:54 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id g63-20020a028545000000b0032e49fcc241sm5792945jai.176.2022.07.18.13.34.39
+        by smtp.gmail.com with ESMTPSA id ch23-20020a0566383e9700b003415f2fb081sm3047498jab.125.2022.07.18.13.46.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 13:34:40 -0700 (PDT)
-Received: (nullmailer pid 3503906 invoked by uid 1000);
-        Mon, 18 Jul 2022 20:34:39 -0000
-Date:   Mon, 18 Jul 2022 14:34:39 -0600
+        Mon, 18 Jul 2022 13:46:53 -0700 (PDT)
+Received: (nullmailer pid 3523017 invoked by uid 1000);
+        Mon, 18 Jul 2022 20:46:51 -0000
+Date:   Mon, 18 Jul 2022 14:46:51 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Hannes Reinecke <hare@suse.de>, Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Johan Hovold <johan@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-ide@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-kernel@vger.kernel.org,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 20/23] dt-bindings: ata: ahci: Add Baikal-T1 AHCI SATA
- controller DT schema
-Message-ID: <20220718203439.GA3503849-robh@kernel.org>
-References: <20220713052917.27036-1-Sergey.Semin@baikalelectronics.ru>
- <20220713052917.27036-21-Sergey.Semin@baikalelectronics.ru>
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/4] dt-bindings: cpufreq-qcom-hw: Move clocks to CPU
+ nodes
+Message-ID: <20220718204651.GA3505083-robh@kernel.org>
+References: <cover.1657695140.git.viresh.kumar@linaro.org>
+ <035fe13689dad6d3867a1d33f7d5e91d4637d14a.1657695140.git.viresh.kumar@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220713052917.27036-21-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <035fe13689dad6d3867a1d33f7d5e91d4637d14a.1657695140.git.viresh.kumar@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -70,39 +69,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Jul 2022 08:29:13 +0300, Serge Semin wrote:
-> Baikal-T1 AHCI controller is based on the DWC AHCI SATA IP-core v4.10a
-> with the next specific settings: two SATA ports, cascaded CSR access based
-> on two clock domains (APB and AXI), selectable source of the reference
-> clock (though stable work is currently available from the external source
-> only), two reset lanes for the application and SATA ports domains. Other
-> than that the device is fully compatible with the generic DWC AHCI SATA
-> bindings.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Reviewed-by: Hannes Reinecke <hare@suse.de>
-> 
-> ---
-> 
-> Changelog v2:
-> - Rename 'syscon' property to 'baikal,bt1-syscon'.
-> - Drop macro usage from the example node.
-> 
-> Changelog v4:
-> - Use the DWC AHCI port properties definition from the DWC AHCI SATA
->   common schema. (@Rob)
-> - Drop Baikal-T1 syscon reference and implement the clock signal
->   source in the framework of the clock controller. (@Rob)
-> 
-> Changelog v5:
-> - Drop generic compatible fallback "snps,dwc-ahci". (@Rob)
-> - Define SATA-port pattern property to be applicable for two ports
->   only.
-> - Drop "|" qualifier from the description property.
-> ---
->  .../bindings/ata/baikal,bt1-ahci.yaml         | 115 ++++++++++++++++++
->  1 file changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
-> 
+On Wed, Jul 13, 2022 at 12:22:56PM +0530, Viresh Kumar wrote:
+> cpufreq-hw is a hardware engine, which takes care of frequency
+> management for CPUs. The engine manages the clocks for CPU devices, but
+> it isn't the end consumer of the clocks, which are the CPUs in this
+> case.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The question is really where does the clock mux live?
+
+> For this reason, it looks incorrect to keep the clock related properties
+> in the cpufreq-hw node. They should really be present at the end user,
+> i.e. the CPUs.
+
+The issue is that the CPU itself probably only has 1 clock input (at 
+least for its core frequency). Listing out all possible clock sources in 
+CPU node 'clocks' is wrong too.
+
+> The case was simple currently as all the devices, i.e. the CPUs, that
+> the engine manages share the same clock names. What if the clock names
+> are different for different CPUs or clusters ? How will keeping the
+> clock properties in the cpufreq-hw node work in that case ?
+> 
+> This design creates further problems for frameworks like OPP, which
+> expects all such details (clocks) to be present in the end device node
+> itself, instead of another related node.
+> 
+> Move the clocks properties to the node that uses them instead.
+
+What's the purpose of freq-domain binding now? I thought the idea was to 
+use that instead of clocks directly.
+
+Rob
