@@ -2,247 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7393F577FDF
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B788A577FF0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234342AbiGRKjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 06:39:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47390 "EHLO
+        id S234418AbiGRKkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 06:40:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234339AbiGRKji (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:39:38 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA9697640
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 03:39:35 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id p6so13066862ljc.8
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 03:39:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yPxqKB77kyU9V8lnhOsK1GQJLunCLPWKLPbPXEb7VqM=;
-        b=YPdYfpqYPenGGrKjxRKOqtqEciMGsRjSAnOPoaWHAJ+bAtHCJWZlXk+oOXQSLDezmL
-         hfYl+CHNsyIAeFJCeIRsk0El/9vEWqzUcdvSxrNQhHrZC/EYDydH8D6lXhp/iSzdD4TK
-         d5uYCUMyXWyWN2haGevP2ienPhQR45g5T2K554CxHx6b7EsclFGVTbS9U68bjX9zrHpD
-         MBqc4yDKfqtLrFdttrrnq/Q+h+ZZzD6G/JRyv/WRi0KH652Lm7SGjl2LmBkjhTwaLjXq
-         zx8erGF9B6h7GkOfYd7tX0K89PmaGTVWCYT1IFViGeKLjhD5o5Hz4OrHUimdg7kM2blc
-         b0WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yPxqKB77kyU9V8lnhOsK1GQJLunCLPWKLPbPXEb7VqM=;
-        b=ZF4WtJMg9y0nycKpuOmga0UTFiVOrnh5xksNsNIa9bzEElqAqFSHe86OfIn7+xMKH3
-         LBGsgne7ULn9ZegsiUYS2KE1Dz4X2Us4bH7sBuZ0lAKdRFCE7Z8+RZylF07JK2UzM1eT
-         gdt+p0N89ciZnQMPxug8Tnl1QWm0/w1EhvqilSev0NAAQm08arFMFpIXQy6x5TgtgvGs
-         mBirVeYqjd5UT5xo83B4x5yGokod3pkAw7sqciMIGXSccv8TBlQsuZigTpk9g/WtLQRt
-         KYqVHt3jrRGa84l8qXp/YDlv13BdZis3CD59DaMkdWN8mBE5yCQgjvNtHWDLckQB4EVb
-         C9Kg==
-X-Gm-Message-State: AJIora8GzaKlX9OX+GUi/i4k9xxZux+NU0oyJl3Jf3Pfb9A6Q5YAK46W
-        EbwhWzgI9K8hKLnJJf+itItERA==
-X-Google-Smtp-Source: AGRyM1scKmN6ALHiC5oMMyrUNbx2hAFThxeUdXKc4IHkHRgeKvoKCp7Mo8e40GEOC+sL4O6jpOt3zw==
-X-Received: by 2002:a2e:9113:0:b0:25d:68a9:c39b with SMTP id m19-20020a2e9113000000b0025d68a9c39bmr11899226ljg.175.1658140773955;
-        Mon, 18 Jul 2022 03:39:33 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id b2-20020a196442000000b00478f2f2f043sm2542692lfj.147.2022.07.18.03.39.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 03:39:33 -0700 (PDT)
-Message-ID: <91edff9a-53f2-647b-04a8-76d15f22a8f2@linaro.org>
-Date:   Mon, 18 Jul 2022 13:39:32 +0300
+        with ESMTP id S234408AbiGRKkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:40:32 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C805F1EC68;
+        Mon, 18 Jul 2022 03:40:25 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 04F2B6601A05;
+        Mon, 18 Jul 2022 11:40:22 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658140824;
+        bh=yNapTY+IvffaTEBI0X0/kdVvwYn1/gbJNowfTGMSXNQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=P3/OcjQmqoB7/8Udziy16ptBdaRSZGwqC1/9u9iV81kc/CEfjdb4P3q37+93nkk40
+         VAS6HqybxkEA6xt/AXEZqtS/MOKPwr7kXRK90kpfZSkor6QlWyRtbMdFJISFT1b+lR
+         63JXc8xvhZ1vz/ScnipFicFwgFu6hAnXCXywkhvbwUYPr+FSi67CQc3JYXp5BcpvaY
+         noH2JcuXi53v2hlmf9vHu7JEU29M6Evphoae9gCc23oKPj1yB362X7ZdprHCzg9/fA
+         IgN4LxJhRBf8rIzmMcG4u3GffxzfwEgYlKkM0fYoslVFEWx/kKywhUY4Uq9OcWXpSS
+         Tx8BwA3W+BiKQ==
+Message-ID: <f8618c29-167b-a627-e4b1-d117ec860b7e@collabora.com>
+Date:   Mon, 18 Jul 2022 12:40:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 7/8] PCI: qcom: Clean up IP configurations
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-References: <20220714071348.6792-1-johan+linaro@kernel.org>
- <20220714071348.6792-8-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220714071348.6792-8-johan+linaro@kernel.org>
+ Thunderbird/91.11.0
+Subject: Re: [V11,3/7] mtk-jpegenc: manage jpegenc multi-hardware
+Content-Language: en-US
+To:     Irui Wang <irui.wang@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        nicolas.dufresne@collabora.com, wenst@chromium.org,
+        kyrie wu <kyrie.wu@mediatek.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
+References: <20220716093435.29796-1-irui.wang@mediatek.com>
+ <20220716093435.29796-4-irui.wang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220716093435.29796-4-irui.wang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2022 10:13, Johan Hovold wrote:
-> The various IP versions have different configurations that are encoded
-> in separate sets of operation callbacks. Currently, there is no need for
-> also maintaining corresponding sets of data parameters, but it is
-> conceivable that these may again be found useful (e.g. to implement
-> minor variations of the operation callbacks).
+Il 16/07/22 11:34, Irui Wang ha scritto:
+> From: kyrie wu <kyrie.wu@mediatek.com>
 > 
-> Rename the default configuration structures after the IP version they
-> apply to so that they can more easily be reused by different SoCs.
+> manage each hardware information, including irq/clk/power.
+> the hardware includes HW0 and HW1.
 > 
-> Note that SoC specific configurations can be added later if need arises
-> (e.g. cfg_sc8280xp).
+> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> Signed-off-by: irui wang <irui.wang@mediatek.com>
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-
-
-If we have nothing left in the qcom_pcie_cfg other than the .ops, what 
-about dropping the qcom_pcie_cfg completely and using the qcom_pcie_ops 
-as match data?
-
-This patch is nevertheless:
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-
 > ---
->   drivers/pci/controller/dwc/pcie-qcom.c | 89 +++++++++-----------------
->   1 file changed, 29 insertions(+), 60 deletions(-)
+>   drivers/media/platform/mediatek/jpeg/Makefile |  11 +-
+>   .../platform/mediatek/jpeg/mtk_jpeg_core.c    |  94 ++++++----
+>   .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  37 ++++
+>   .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 163 ++++++++++++++++++
+>   4 files changed, 272 insertions(+), 33 deletions(-)
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 1339f05bee65..8dddb72f8647 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -1606,66 +1606,35 @@ static const struct qcom_pcie_ops ops_2_9_0 = {
->   	.ltssm_enable = qcom_pcie_2_3_2_ltssm_enable,
+> diff --git a/drivers/media/platform/mediatek/jpeg/Makefile b/drivers/media/platform/mediatek/jpeg/Makefile
+> index 76c33aad0f3f..69703db4b0a5 100644
+> --- a/drivers/media/platform/mediatek/jpeg/Makefile
+> +++ b/drivers/media/platform/mediatek/jpeg/Makefile
+> @@ -1,6 +1,9 @@
+>   # SPDX-License-Identifier: GPL-2.0-only
+> -mtk_jpeg-objs := mtk_jpeg_core.o \
+> +obj-$(CONFIG_VIDEO_MEDIATEK_JPEG) += mtk_jpeg.o \
+> +	mtk-jpeg-enc-hw.o
+> +
+> +mtk_jpeg-y := mtk_jpeg_core.o \
+>   		 mtk_jpeg_dec_hw.o \
+> -		 mtk_jpeg_dec_parse.o \
+> -		 mtk_jpeg_enc_hw.o
+> -obj-$(CONFIG_VIDEO_MEDIATEK_JPEG) += mtk_jpeg.o
+> +		 mtk_jpeg_dec_parse.o
+> +
+> +mtk-jpeg-enc-hw-y := mtk_jpeg_enc_hw.o
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> index 724fb7aeb0ee..3286e9606505 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+
+..snip..
+
+> @@ -1497,6 +1516,18 @@ static const struct mtk_jpeg_variant mtk_jpeg_drvdata = {
+>   	.cap_q_default_fourcc = V4L2_PIX_FMT_JPEG,
 >   };
 >   
-> -static const struct qcom_pcie_cfg apq8084_cfg = {
-> +static const struct qcom_pcie_cfg cfg_1_0_0 = {
->   	.ops = &ops_1_0_0,
->   };
->   
-> -static const struct qcom_pcie_cfg ipq8064_cfg = {
-> +static const struct qcom_pcie_cfg cfg_1_9_0 = {
-> +	.ops = &ops_1_9_0,
+> +static struct mtk_jpeg_variant mtk8195_jpegenc_drvdata = {
+
+mt8195_jpegenc_drvdata, or mtk_jpegenc_multicore_drvdata
+
+(same applies for jpegdec)
+
+> +	.formats = mtk_jpeg_enc_formats,
+> +	.num_formats = MTK_JPEG_ENC_NUM_FORMATS,
+> +	.qops = &mtk_jpeg_enc_qops,
+> +	.m2m_ops = &mtk_jpeg_multicore_enc_m2m_ops,
+
+Same comment for jpgenc as well: add support for this device after adding support
+for multicore encoder.
+
+> +	.dev_name = "mtk-jpeg-enc",
+> +	.ioctl_ops = &mtk_jpeg_enc_ioctl_ops,
+> +	.out_q_default_fourcc = V4L2_PIX_FMT_YUYV,
+> +	.cap_q_default_fourcc = V4L2_PIX_FMT_JPEG,
 > +};
 > +
-> +static const struct qcom_pcie_cfg cfg_2_1_0 = {
->   	.ops = &ops_2_1_0,
+> +#if defined(CONFIG_OF)
+>   static const struct of_device_id mtk_jpeg_match[] = {
+>   	{
+>   		.compatible = "mediatek,mt8173-jpgdec",
+> @@ -1510,10 +1541,15 @@ static const struct of_device_id mtk_jpeg_match[] = {
+>   		.compatible = "mediatek,mtk-jpgenc",
+>   		.data = &mtk_jpeg_drvdata,
+>   	},
+> +	{
+> +		.compatible = "mediatek,mt8195-jpgenc",
+> +		.data = &mtk8195_jpegenc_drvdata,
+> +	},
+>   	{},
 >   };
 >   
-> -static const struct qcom_pcie_cfg msm8996_cfg = {
-> +static const struct qcom_pcie_cfg cfg_2_3_2 = {
->   	.ops = &ops_2_3_2,
->   };
+>   MODULE_DEVICE_TABLE(of, mtk_jpeg_match);
+> +#endif
 >   
-> -static const struct qcom_pcie_cfg ipq8074_cfg = {
-> +static const struct qcom_pcie_cfg cfg_2_3_3 = {
->   	.ops = &ops_2_3_3,
->   };
->   
-> -static const struct qcom_pcie_cfg ipq4019_cfg = {
-> +static const struct qcom_pcie_cfg cfg_2_4_0 = {
->   	.ops = &ops_2_4_0,
->   };
->   
-> -static const struct qcom_pcie_cfg sa8540p_cfg = {
-> -	.ops = &ops_1_9_0,
-> -};
-> -
-> -static const struct qcom_pcie_cfg sc8280xp_cfg = {
-> -	.ops = &ops_1_9_0,
-> -};
-> -
-> -static const struct qcom_pcie_cfg sdm845_cfg = {
-> +static const struct qcom_pcie_cfg cfg_2_7_0 = {
->   	.ops = &ops_2_7_0,
->   };
->   
-> -static const struct qcom_pcie_cfg sm8150_cfg = {
-> -	/* sm8150 has qcom IP rev 1.5.0. However 1.5.0 ops are same as
-> -	 * 1.9.0, so reuse the same.
-> -	 */
-> -	.ops = &ops_1_9_0,
-> -};
-> -
-> -static const struct qcom_pcie_cfg sm8250_cfg = {
-> -	.ops = &ops_1_9_0,
-> -};
-> -
-> -static const struct qcom_pcie_cfg sm8450_pcie0_cfg = {
-> -	.ops = &ops_1_9_0,
-> -};
-> -
-> -static const struct qcom_pcie_cfg sm8450_pcie1_cfg = {
-> -	.ops = &ops_1_9_0,
-> -};
-> -
-> -static const struct qcom_pcie_cfg sc7280_cfg = {
-> -	.ops = &ops_1_9_0,
-> -};
-> -
-> -static const struct qcom_pcie_cfg sc8180x_cfg = {
-> -	.ops = &ops_1_9_0,
-> -};
-> -
-> -static const struct qcom_pcie_cfg ipq6018_cfg = {
-> +static const struct qcom_pcie_cfg cfg_2_9_0 = {
->   	.ops = &ops_2_9_0,
->   };
->   
-> @@ -1780,24 +1749,24 @@ static int qcom_pcie_remove(struct platform_device *pdev)
->   }
->   
->   static const struct of_device_id qcom_pcie_match[] = {
-> -	{ .compatible = "qcom,pcie-apq8084", .data = &apq8084_cfg },
-> -	{ .compatible = "qcom,pcie-ipq8064", .data = &ipq8064_cfg },
-> -	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ipq8064_cfg },
-> -	{ .compatible = "qcom,pcie-apq8064", .data = &ipq8064_cfg },
-> -	{ .compatible = "qcom,pcie-msm8996", .data = &msm8996_cfg },
-> -	{ .compatible = "qcom,pcie-ipq8074", .data = &ipq8074_cfg },
-> -	{ .compatible = "qcom,pcie-ipq4019", .data = &ipq4019_cfg },
-> -	{ .compatible = "qcom,pcie-qcs404", .data = &ipq4019_cfg },
-> -	{ .compatible = "qcom,pcie-sa8540p", .data = &sa8540p_cfg },
-> -	{ .compatible = "qcom,pcie-sdm845", .data = &sdm845_cfg },
-> -	{ .compatible = "qcom,pcie-sm8150", .data = &sm8150_cfg },
-> -	{ .compatible = "qcom,pcie-sm8250", .data = &sm8250_cfg },
-> -	{ .compatible = "qcom,pcie-sc8180x", .data = &sc8180x_cfg },
-> -	{ .compatible = "qcom,pcie-sc8280xp", .data = &sc8280xp_cfg },
-> -	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &sm8450_pcie0_cfg },
-> -	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &sm8450_pcie1_cfg },
-> -	{ .compatible = "qcom,pcie-sc7280", .data = &sc7280_cfg },
-> -	{ .compatible = "qcom,pcie-ipq6018", .data = &ipq6018_cfg },
-> +	{ .compatible = "qcom,pcie-apq8084", .data = &cfg_1_0_0 },
-> +	{ .compatible = "qcom,pcie-ipq8064", .data = &cfg_2_1_0 },
-> +	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &cfg_2_1_0 },
-> +	{ .compatible = "qcom,pcie-apq8064", .data = &cfg_2_1_0 },
-> +	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
-> +	{ .compatible = "qcom,pcie-ipq8074", .data = &cfg_2_3_3 },
-> +	{ .compatible = "qcom,pcie-ipq4019", .data = &cfg_2_4_0 },
-> +	{ .compatible = "qcom,pcie-qcs404", .data = &cfg_2_4_0 },
-> +	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sdm845", .data = &cfg_2_7_0 },
-> +	{ .compatible = "qcom,pcie-sm8150", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sm8250", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sc8180x", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sc8280xp", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sc7280", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-ipq6018", .data = &cfg_2_9_0 },
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, qcom_pcie_match);
+>   static struct platform_driver mtk_jpeg_driver = {
+>   	.probe = mtk_jpeg_probe,
 
 
--- 
-With best wishes
-Dmitry
+
+
