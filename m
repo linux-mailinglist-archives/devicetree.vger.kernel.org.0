@@ -2,176 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FF5757848E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:58:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 693B6578495
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235421AbiGRN61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 09:58:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55730 "EHLO
+        id S235652AbiGRN7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 09:59:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232836AbiGRN61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:58:27 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE2527FDF
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:58:25 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id x10so13235016ljj.11
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:58:25 -0700 (PDT)
+        with ESMTP id S234874AbiGRN7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:59:15 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 971F8B7EB
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:59:14 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id ss3so21349530ejc.11
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:59:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=scDNluyl3Sc3xGeqgTfNYZogBEUOOlaQnjVhvnH1aKQ=;
-        b=LWRdlN3Qf31EcZGv0pnKMXuD8WmWanUevmoH/VV4mhnGAvFytZSZUD+9dTSWms+JkZ
-         N+K9p6Khl9Z0OVVT1i0H3sl+uvv/aF2a1r8ATUk5tYG7Q4JtM+okhG2FUUA8DclMfDpm
-         SySuuICQU2cM1v4B5wApQIhdzzFgYAYxnm7UxQGJwa+u0GqeIR8Tl3yajLl6iiVq6E3F
-         xmMNFceC1nCym4z9xVPxTPBzzyfLBayKrG/MipLIBb25CZWZujsrDRJqxxiht6xfQ6T2
-         8qbNWnbnzUtzpxxtbLQGlyADkv01v6HpVbWhbFK8lrSCES4ArJ04dKUW+Oxb8ifmSZh9
-         YkWQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ttujR448sg3VPiW5WpjTzlldmr9GPyMPXo0TdvdiLSg=;
+        b=f7Vv7aZMznD521+3/H5wiv7Wz2MGbpoAggAMDTOPXjb+pkkQ5rA4K8By31TKL/ROQV
+         UrH0ozGP/q5IGvVjZ9yfMfRaj8duOCz5sp5Cdw92ysXbX7ho2EQ0wWjuL4cs/vrohYl1
+         wunZBwqhsYFVKvftfMGHooTsDjDWa9X4jVLpE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=scDNluyl3Sc3xGeqgTfNYZogBEUOOlaQnjVhvnH1aKQ=;
-        b=twylZKzS2z+W3SagHMfKN2EpH4sscN9IxeK54yd24hlhall+3sTmo+NOoY6sVVadBL
-         G1xfl+1eyzMtatfXj2TjnbCVeAYXkJTLIsjoAo5/KNBIwHIPYbCV/uVtSlgqrxnClho1
-         /kCNF1ano3/PXElbwq4yRMLIw4EXZLFCpSeavNgSb752pRBw0ysPF76ak6YeNpjTJKcH
-         WagMh5DKxJ6tmChSv2yacPap8awg1RceyHVSkK0Z07jPWoM3hx6U7UfoauDZzaOyexXI
-         gjoqU+Hk0OHdxOucjVTbUblbNCcZ4d00SnuahH/c7hpCSlB16R9Fw8clTDe307iehGuw
-         f1PQ==
-X-Gm-Message-State: AJIora8YR2t6Fz/OWoQh1GQ/kk3QsoGsyIcNWjYQxLNqw5eCbm1wmZyA
-        C864slZ5+HVC/1haYJGAU1UIBw==
-X-Google-Smtp-Source: AGRyM1s7BZkKPvkYka27fRjzNLHeDCKrCHSSUZBaMaOwtazGYvyslxTkViMRRHwXDwYuRAlGKPKJUg==
-X-Received: by 2002:a2e:895a:0:b0:25d:6815:98ff with SMTP id b26-20020a2e895a000000b0025d681598ffmr11998753ljk.189.1658152704119;
-        Mon, 18 Jul 2022 06:58:24 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id m7-20020a056512114700b0047a0300746fsm2609261lfg.304.2022.07.18.06.58.22
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ttujR448sg3VPiW5WpjTzlldmr9GPyMPXo0TdvdiLSg=;
+        b=pUPf/u3d0jQxqh5l6D6k0D+vLodvNl94lIywbkkUirDU0LzpcS50pScaJyRkSq3LGx
+         LaOEg++4LIBY0Q/Fz5JhAxfYWsjmTvwtK/MPLSDfjFoL+YwT/Y7HA6mUeuqpKtN8tagu
+         LZjuE1uoXmik+vD4bB5/Na1ZKRN7V1xpuLUAiemjrGPJrXoNLC2KfM7zlE6vLgx63epi
+         gbo3Ye27JOOQxwSmvRzuQfNQeWBqs06kbnXySWLTGXOcd6aUOpemIEPANtdgsZruiTRo
+         UVL89O5HSF4HQzOsSFaQedtDzBaUjfEswVU3F+DHrnSn2bdOQlFapvUYuR/QCovY/mrS
+         Hn3g==
+X-Gm-Message-State: AJIora8ML9x7zl+mVIdNiXww7iLS9OWmVPb4LKHa9mr4IRVeG2++c7RY
+        inFEg1CLjaFgJbPGfA8KqUBTLvuvhB1m1gac
+X-Google-Smtp-Source: AGRyM1u9bSkarTEWAdp53NMbrCsuVHVZlIMKOxWk+1TfwaklxpczqM8SrPcmvEEtdhLBiwsBkrZ5ng==
+X-Received: by 2002:a17:907:2815:b0:72b:70f6:4ced with SMTP id eb21-20020a170907281500b0072b70f64cedmr25601170ejc.353.1658152753026;
+        Mon, 18 Jul 2022 06:59:13 -0700 (PDT)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com. [209.85.128.51])
+        by smtp.gmail.com with ESMTPSA id u9-20020a1709061da900b00722e50e259asm5483722ejh.102.2022.07.18.06.59.10
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 06:58:23 -0700 (PDT)
-Message-ID: <d15fcfa1-91ce-70fa-143f-748ead9a4337@linaro.org>
-Date:   Mon, 18 Jul 2022 15:58:22 +0200
+        Mon, 18 Jul 2022 06:59:11 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id h127-20020a1c2185000000b003a2fa488efdso72520wmh.4
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:59:10 -0700 (PDT)
+X-Received: by 2002:a05:600c:4e8d:b0:3a1:2e4d:1dd2 with SMTP id
+ f13-20020a05600c4e8d00b003a12e4d1dd2mr32913946wmq.85.1658152750641; Mon, 18
+ Jul 2022 06:59:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 2/2] dt-bindings: fpga: add binding doc for ecp5-spi
- fpga mgr
-Content-Language: en-US
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>, mdf@kernel.org,
-        hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-References: <20220718114928.22092-1-i.bornyakov@metrotek.ru>
- <20220718114928.22092-3-i.bornyakov@metrotek.ru>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220718114928.22092-3-i.bornyakov@metrotek.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220718073104.146985-1-jinghung.chen3@hotmail.com> <SG2PR03MB5006A2ADC6ED22199D8C88D9CC8C9@SG2PR03MB5006.apcprd03.prod.outlook.com>
+In-Reply-To: <SG2PR03MB5006A2ADC6ED22199D8C88D9CC8C9@SG2PR03MB5006.apcprd03.prod.outlook.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 18 Jul 2022 06:58:58 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UgQu877jy8Lzga54M46A5cE6_bAnbhAXfbQuwWwqC0Lg@mail.gmail.com>
+Message-ID: <CAD=FV=UgQu877jy8Lzga54M46A5cE6_bAnbhAXfbQuwWwqC0Lg@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: Add LTE SKUs for sc7280-villager family
+To:     Jimmy Chen <jinghung.chen3@hotmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alan Huang <alan-huang@quanta.corp-partner.google.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2022 13:49, Ivan Bornyakov wrote:
-> Add Device Tree Binding doc for Lattice ECP5 FPGA manager using slave
-> SPI to load .bit formatted uncompressed bitstream image.
-> 
-> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Hi,
+
+On Mon, Jul 18, 2022 at 12:31 AM Jimmy Chen <jinghung.chen3@hotmail.com> wrote:
+>
+> This adds LTE skus for villager device tree files.
+>
+> Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
 > ---
->  .../bindings/fpga/lattice,ecp5-fpga-mgr.yaml  | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
-> new file mode 100644
-> index 000000000000..bb10fd316f94
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/fpga/lattice,ecp5-fpga-mgr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lattice ECP5 Slave SPI FPGA manager.
-> +
-> +maintainers:
-> +  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-> +
-> +description:
-> +  FPGA Manager capable to program Lattice ECP5 with uncompressed bitstream
-> +  image in .bit format over SPI.
+>
+> Changes in v6:
+> - Remove v5 accidentally added sc7280-herobrine-herobrine-r1-lte.dts
+>
+> Changes in v5:
+> - Reorder '.dtb' in Makefile
+> - Put the "interconnects" line back
+>
+> Changes in v4:
+> - Reorder 'status' last
+>
+>  arch/arm64/boot/dts/qcom/Makefile               |  2 ++
+>  .../boot/dts/qcom/sc7280-chrome-common.dtsi     | 11 -----------
+>  .../boot/dts/qcom/sc7280-herobrine-crd.dts      |  1 +
+>  .../dts/qcom/sc7280-herobrine-herobrine-r1.dts  |  1 +
+>  .../boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 17 +++++++++++++++++
+>  .../qcom/sc7280-herobrine-villager-r0-lte.dts   | 14 ++++++++++++++
+>  .../qcom/sc7280-herobrine-villager-r1-lte.dts   | 14 ++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts         |  1 +
+>  8 files changed, 50 insertions(+), 11 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
 
-The same question as before - you need to explain what is the hardware
-(not Linux API or Linux subsystem).
-
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml
-> +
-> +properties:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 60000000
-> +
-> +  compatible:
-> +    enum:
-> +      - lattice,ecp5-fpga-mgr
-
-Compatible goes first in the list of properties. Change here was not
-requested, so I am surprised to see different coding style.
-
-> +
-> +  program-gpios:
-> +    description:
-> +      A GPIO line connected to PROGRAMN (active low) pin of the device.
-> +      Initiates configuration sequence.
-> +    maxItems: 1
-> +
-> +  init-gpios:
-> +    description:
-> +      A GPIO line connected to INITN (active low) pin of the device.
-> +      Indicates that the FPGA is ready to be configured.
-> +    maxItems: 1
-> +
-> +  done-gpios:
-> +    description:
-> +      A GPIO line connected to DONE (active high) pin of the device.
-> +      Indicates that the configuration sequence is complete.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - program-gpios
-> +  - init-gpios
-> +  - done-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        fpga-mgr@0 {
-> +            compatible = "lattice,ecp5-fpga-mgr";
-> +            spi-max-frequency = <20000000>;
-> +            reg = <0>;
-
-compatible then reg, then rest of properties.
-
-
-
-Best regards,
-Krzysztof
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
