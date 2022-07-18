@@ -2,121 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E171D578B3A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 21:48:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10659578B4C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 21:57:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236326AbiGRTsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 15:48:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39916 "EHLO
+        id S231875AbiGRT5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 15:57:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236338AbiGRTsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 15:48:46 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A582732446;
-        Mon, 18 Jul 2022 12:48:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1658173720; x=1689709720;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=+QLW32BMrwF3EtzLa3vht6erk15xYFiOHNVwg4JneaM=;
-  b=O02kKZFspdraUEg72DjXtGalIb86bOehL7KObUs2Rt0SR8gnfoF3q/Y6
-   hW9NaMp+wXw8ikVWt6EDIKBouZ95WLw65WZdD6chR9FQreFM/goaNEwph
-   Wuf/fauI7CpJe1qD4GvXP7PUUqUgTxkDcz4J8j9i5FmHSpqO72B6cA4I9
-   M=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 18 Jul 2022 12:48:40 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2022 12:48:39 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 18 Jul 2022 12:48:39 -0700
-Received: from [10.110.0.218] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 18 Jul
- 2022 12:48:38 -0700
-Message-ID: <e341619e-bac3-710f-8f77-1addfffa9a16@quicinc.com>
-Date:   Mon, 18 Jul 2022 12:48:38 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 2/2] power: reset: qcom-pon: add support for
- qcom,pmk8350-pon compatible string
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-CC:     <corbet@lwn.net>, <robh+dt@kernel.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <vkoul@kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220713193350.29796-1-quic_amelende@quicinc.com>
- <20220713193350.29796-3-quic_amelende@quicinc.com>
- <20220716215803.r3ldaswyhehfpcip@mercury.elektranox.org>
-From:   Anjelique Melendez <quic_amelende@quicinc.com>
-In-Reply-To: <20220716215803.r3ldaswyhehfpcip@mercury.elektranox.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235201AbiGRT47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 15:56:59 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 26A1C2D1FE;
+        Mon, 18 Jul 2022 12:56:58 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.92,281,1650898800"; 
+   d="scan'208";a="128258229"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 19 Jul 2022 04:56:57 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 75F5C40EE277;
+        Tue, 19 Jul 2022 04:56:54 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/5] Add IRQC support to Renesas RZ/G2L and RZ/V2L SoC
+Date:   Mon, 18 Jul 2022 20:56:46 +0100
+Message-Id: <20220718195651.7711-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi All,
 
+This patch series adds IRQC support to handle GPIO and external interrupts
+support to RZ/G2L and RZ/V2L SoC's. Alongside enables PHY interrupt
+support to ETH0/1 on SMARC EVK.
 
-On 7/16/2022 2:58 PM, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Wed, Jul 13, 2022 at 12:33:51PM -0700, Anjelique Melendez wrote:
->> Add support for the new "qcom,pmk8350-pon" comptaible string.
->>
->> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
->> ---
->>  drivers/power/reset/qcom-pon.c | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
->> index 4a688741a88a..16bc01738be9 100644
->> --- a/drivers/power/reset/qcom-pon.c
->> +++ b/drivers/power/reset/qcom-pon.c
->> @@ -82,6 +82,7 @@ static const struct of_device_id pm8916_pon_id_table[] = {
->>  	{ .compatible = "qcom,pm8916-pon", .data = (void *)GEN1_REASON_SHIFT },
->>  	{ .compatible = "qcom,pms405-pon", .data = (void *)GEN1_REASON_SHIFT },
->>  	{ .compatible = "qcom,pm8998-pon", .data = (void *)GEN2_REASON_SHIFT },
->> +	{ .compatible = "qcom,pmk8350-pon", .data = (void *)GEN2_REASON_SHIFT },
->>  	{ }
->>  };
->>  MODULE_DEVICE_TABLE(of, pm8916_pon_id_table);
-> 
-> No handling of the second register? Why is it needed in DT in the
-> first place?
-> 
-> -- Sebastian
+Note: The driver patches are in -next and the DT binding patch for RZ/V2L
+is posted [0].
 
-Hi Sebastian,
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+20220718193745.7472-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-The handling of the second register takes place in drivers/input/misc/pm8941-pwrkey.c.
-The patch that handles this change can be found at:
-https://lore.kernel.org/linux-arm-msm/20220422191239.6271-4-quic_amelende@quicinc.com/.
-This patch has been applied.
+Cheers,
+Prabhakar
 
-Krzystof and I discuss the need for a new compatible string here:
-https://lore.kernel.org/all/99a5d9ac-9c20-b441-44af-26772a0e989d@linaro.org/.
+Lad Prabhakar (5):
+  arm64: dts: renesas: r9a07g044: Add IRQC node to SoC DTSI
+  arm64: dts: renesas: r9a07g044: Update pinctrl node to handle GPIO
+    interrupts
+  arm64: dts: renesas: r9a07g054: Add IRQC node to SoC DTSI
+  arm64: dts: renesas: r9a07g054: Update pinctrl node to handle GPIO
+    interrupts
+  arm64: dts: renesas: rzg2l-smarc-som: Add PHY interrupt support for
+    ETH{0/1}
 
-In short, the gen1/gen2/gen3 children pon devices will use the "reg" address(es) defined
-from their parent. Currently, "qcom,pm8998-pon" is too generic as it is being used for
-both gen1/gen2 and gen3 children. So we must add the new "qcom,pmk8350-pon" compatible
-string to be used for gen3 children so that the second register can be defined. 
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 59 +++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi    | 59 +++++++++++++++++++
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     | 10 +++-
+ 3 files changed, 126 insertions(+), 2 deletions(-)
 
-Thanks,
-Anjelique
-
+-- 
+2.25.1
 
