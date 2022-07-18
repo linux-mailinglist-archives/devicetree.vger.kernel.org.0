@@ -2,108 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22903577C22
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 09:05:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E94B577C3A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 09:15:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233718AbiGRHFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 03:05:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41514 "EHLO
+        id S230146AbiGRHPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 03:15:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233732AbiGRHFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 03:05:31 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 086C317A96
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 00:05:28 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1oDKog-00044T-6h; Mon, 18 Jul 2022 09:05:18 +0200
-Message-ID: <827f51b1-b280-3c99-241c-20af750277ba@pengutronix.de>
-Date:   Mon, 18 Jul 2022 09:05:16 +0200
+        with ESMTP id S229826AbiGRHPv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 03:15:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC8C111804;
+        Mon, 18 Jul 2022 00:15:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5C9A66134B;
+        Mon, 18 Jul 2022 07:15:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24B4C341C0;
+        Mon, 18 Jul 2022 07:15:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658128549;
+        bh=Z2cmY8+eKqIV7mFoiE72EWO95/pjIwP9a1crVM1liS8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=NaY8xlRcwPnM+zohaXrpoBcxanhOI1nvQuSyg/VK+e4A0wZ2Nuias53yuUxB4xNrH
+         fj5dbm3zxoTXbY4W2y0yHDRABf2GvRwOdtFCy4P9swUIFMlsqCNBPKfrQLcbla6wNX
+         PgOJ8V3L9ruzZEQV6HBrVre7SJBPUFj39+IboOS/Z7Cikn67hJ0RtNb/ZP3BWpfHBb
+         9gDrX23ky5OSKysC3qrmbS0mG2LrKslm1MrvvdCUUjfOCFKFfA89bV9i0ae/0jwBVP
+         VGVWxSVsOxBzJl7p34+Yt4R1F3mXPIE6Pa1Sv8+ReOrPVXxGqwm03kVL5kzuXv83px
+         5NHGKmKA0qsdA==
+Message-ID: <91613bc8-8a9e-00ed-71c9-ebf4eabed396@kernel.org>
+Date:   Mon, 18 Jul 2022 10:15:44 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH V3 2/3] arm64: dts: imx8ulp: Add the fec support
+Subject: Re: [PATCH v3 0/5] Add interconnect support for SM6350
 Content-Language: en-US
-To:     wei.fang@nxp.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     aisheng.dong@nxp.com, devicetree@vger.kernel.org, peng.fan@nxp.com,
-        ping.bai@nxp.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, sudeep.holla@arm.com, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20220718142257.556248-1-wei.fang@nxp.com>
- <20220718142257.556248-3-wei.fang@nxp.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20220718142257.556248-3-wei.fang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, Odelu Kukatla <okukatla@codeaurora.org>
+References: <20220525144404.200390-1-luca.weiss@fairphone.com>
+ <CLG9OKW0OMLX.2XWU1ZHFRR9RQ@otso>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <CLG9OKW0OMLX.2XWU1ZHFRR9RQ@otso>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.07.22 16:22, wei.fang@nxp.com wrote:
-> From: Wei Fang <wei.fang@nxp.com>
+
+On 15.07.22 16:34, Luca Weiss wrote:
+> Hi all,
 > 
-> Add the fec support on i.MX8ULP platforms.
+> On Wed May 25, 2022 at 4:43 PM CEST, Luca Weiss wrote:
+>> This series adds interconnect support for the various NoCs found on
+>> sm6350.
+>>
+>> A more special modification is allowing child NoC devices, like done for
+>> rpm-based qcm2290 which was already merged, but now for rpmh-based
+>> interconnect.
 > 
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> any feedback on the two interconnect patches and the dts patch?
+> Georgi? Bjorn?
 
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+I merged the interconnect patches.
 
-> ---
-> V2 change:
-> Remove the external clocks which is related to specific board.
-> V3 change:
-> No change.
-> ---
->  arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> index 60c1b018bf03..3e8a1e4f0fc2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> @@ -16,6 +16,7 @@ / {
->  	#size-cells = <2>;
->  
->  	aliases {
-> +		ethernet0 = &fec;
->  		gpio0 = &gpiod;
->  		gpio1 = &gpioe;
->  		gpio2 = &gpiof;
-> @@ -365,6 +366,16 @@ usdhc2: mmc@298f0000 {
->  				bus-width = <4>;
->  				status = "disabled";
->  			};
-> +
-> +			fec: ethernet@29950000 {
-> +				compatible = "fsl,imx8ulp-fec", "fsl,imx6ul-fec", "fsl,imx6q-fec";
-> +				reg = <0x29950000 0x10000>;
-> +				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-names = "int0";
-> +				fsl,num-tx-queues = <1>;
-> +				fsl,num-rx-queues = <1>;
-> +				status = "disabled";
-> +			};
->  		};
->  
->  		gpioe: gpio@2d000080 {
-
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Thanks,
+Georgi
