@@ -2,203 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 283E05780CD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 13:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B47095780D1
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 13:32:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233954AbiGRLcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 07:32:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53116 "EHLO
+        id S233431AbiGRLcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 07:32:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232593AbiGRLcc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 07:32:32 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDDD71A802;
-        Mon, 18 Jul 2022 04:32:30 -0700 (PDT)
-Received: (Authenticated sender: contact@artur-rojek.eu)
-        by mail.gandi.net (Postfix) with ESMTPA id 489671BF204;
-        Mon, 18 Jul 2022 11:32:27 +0000 (UTC)
+        with ESMTP id S234034AbiGRLco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 07:32:44 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 251C81FCF7;
+        Mon, 18 Jul 2022 04:32:42 -0700 (PDT)
+X-UUID: 1245dade2e1a4e03be53d1d3bfe3c4e7-20220718
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:a56d88bc-9de3-4a0b-ad74-987de75fea68,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:56
+X-CID-INFO: VERSION:1.1.8,REQID:a56d88bc-9de3-4a0b-ad74-987de75fea68,OB:0,LOB:
+        0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:56
+X-CID-META: VersionHash:0f94e32,CLOUDID:b4184833-b9e4-42b8-b28a-6364427c76bb,C
+        OID:2313f3a8e098,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 1245dade2e1a4e03be53d1d3bfe3c4e7-20220718
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 327461093; Mon, 18 Jul 2022 19:32:38 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Mon, 18 Jul 2022 19:32:35 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Mon, 18 Jul 2022 19:32:35 +0800
+Message-ID: <bc6d59fcaa117b2058e2ce394a839e8ad3a51f93.camel@mediatek.com>
+Subject: Re: [PATCH 2/5] dt-bindings: media: mediatek: vcodec: Add encoder
+ dt-bindings for mt8188
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>
+CC:     Yong Wu <yong.wu@mediatek.com>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 18 Jul 2022 19:32:34 +0800
+In-Reply-To: <9e1b51df-6d4e-5767-3111-dd1232ad22ad@collabora.com>
+References: <20220716093808.29894-1-irui.wang@mediatek.com>
+         <20220716093808.29894-3-irui.wang@mediatek.com>
+         <9e1b51df-6d4e-5767-3111-dd1232ad22ad@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Date:   Mon, 18 Jul 2022 13:32:27 +0200
-From:   Artur Rojek <contact@artur-rojek.eu>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, maccraft123mc@gmail.com,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, dmitry.torokhov@gmail.com,
-        paul@crapouillou.net, linux-iio@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v7 2/3] Input: adc-joystick - Add polled input device
- support
-In-Reply-To: <20220716165808.70c54d7d@jic23-huawei>
-References: <20220705190354.69263-1-macromorgan@hotmail.com>
- <20220705190354.69263-3-macromorgan@hotmail.com>
- <20220716165808.70c54d7d@jic23-huawei>
-Message-ID: <bb7e12b61a56b61770def053ce42bdd9@artur-rojek.eu>
-X-Sender: contact@artur-rojek.eu
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-07-16 17:58, Jonathan Cameron wrote:
-> On Tue,  5 Jul 2022 14:03:53 -0500
-> Chris Morgan <macroalpha82@gmail.com> wrote:
+On Mon, 2022-07-18 at 11:51 +0200, AngeloGioacchino Del Regno wrote:
+> Il 16/07/22 11:38, Irui Wang ha scritto:
+> > Add encoder dt-bindings for mt8188.
+> > 
+> > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> > ---
+> >   .../devicetree/bindings/media/mediatek,vcodec-
+> > encoder.yaml       | 1 +
+> >   1 file changed, 1 insertion(+)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > encoder.yaml
+> > b/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > encoder.yaml
+> > index d36fcca04cbc..66901118d346 100644
+> > --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > encoder.yaml
+> > +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > encoder.yaml
+> > @@ -22,6 +22,7 @@ properties:
+> >         - mediatek,mt8183-vcodec-enc
 > 
->> From: Chris Morgan <macroalpha82@gmail.com>
->> 
->> Add polled input device support to the adc-joystick driver. This is
->> useful for devices which do not have hardware capable triggers on
->> their SARADC. Code modified from adc-joystick.c changes made by Maya
->> Matuszczyk.
->> 
->> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
->> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Hi.
-> 
-> One comment inline on improving the error handling slightly.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
->> ---
->>  drivers/input/joystick/adc-joystick.c | 51 
->> +++++++++++++++++++++------
->>  1 file changed, 40 insertions(+), 11 deletions(-)
->> 
->> diff --git a/drivers/input/joystick/adc-joystick.c 
->> b/drivers/input/joystick/adc-joystick.c
->> index 78ebca7d400a..2f4bd12d6344 100644
->> --- a/drivers/input/joystick/adc-joystick.c
->> +++ b/drivers/input/joystick/adc-joystick.c
->> @@ -26,8 +26,23 @@ struct adc_joystick {
->>  	struct adc_joystick_axis *axes;
->>  	struct iio_channel *chans;
->>  	int num_chans;
->> +	bool polled;
->>  };
->> 
->> +static void adc_joystick_poll(struct input_dev *input)
->> +{
->> +	struct adc_joystick *joy = input_get_drvdata(input);
->> +	int i, val, ret;
->> +
->> +	for (i = 0; i < joy->num_chans; i++) {
->> +		ret = iio_read_channel_raw(&joy->chans[i], &val);
->> +		if (ret < 0)
->> +			return;
->> +		input_report_abs(input, joy->axes[i].code, val);
->> +	}
->> +	input_sync(input);
->> +}
->> +
->>  static int adc_joystick_handle(const void *data, void *private)
->>  {
->>  	struct adc_joystick *joy = private;
->> @@ -179,6 +194,7 @@ static int adc_joystick_probe(struct 
->> platform_device *pdev)
->>  	int error;
->>  	int bits;
->>  	int i;
->> +	unsigned int poll_interval;
->> 
->>  	joy = devm_kzalloc(dev, sizeof(*joy), GFP_KERNEL);
->>  	if (!joy)
->> @@ -215,8 +231,17 @@ static int adc_joystick_probe(struct 
->> platform_device *pdev)
->>  	joy->input = input;
->>  	input->name = pdev->name;
->>  	input->id.bustype = BUS_HOST;
->> -	input->open = adc_joystick_open;
->> -	input->close = adc_joystick_close;
->> +
->> +	joy->polled = !device_property_read_u32(dev, "poll-interval",
->> +						&poll_interval);
-> Slight preference for an explicit check on presence of property
-> 
-> 	if (device_property_present(dev, "poll-interval")) {
-> 		error = device_property_read_u32();
-> 		if (error)
-> 			return error;
-> 		input_setup_polling(input, adc_joystick_poll);
-> 		input_set_poll_interval(input, poll_interval);
-> 	} else {
-> 		input->open = adc_joystick_open;
-> 		input->close = adc_joystick_close;
-> 	}
-> 
-> That way we will return an error if there is a malformed property.
-I'm fine with that, just let's keep the polling setup logic outside the 
-DT parsing code, like it was in v7:
-```
-	if (device_property_present(dev, "poll-interval")) {
-		error = device_property_read_u32(dev, "poll-interval",
-						 &poll_interval);
-		if (error)
-			return error;
-		joy->polled = true;
-	}
+> Please keep alphabetical order.
+> Add it here instead.
+Fix it in next version.
 
-	if (joy->polled) {
-		input_setup_polling(input, adc_joystick_poll);
-		input_set_poll_interval(input, poll_interval);
-	} else {
-		input->open = adc_joystick_open;
-		input->close = adc_joystick_close;
-	}
-
-```
-
-Cheers,
-Artur
+Thanks
+Best Regards
 > 
->> +
->> +	if (joy->polled) {
->> +		input_setup_polling(input, adc_joystick_poll);
->> +		input_set_poll_interval(input, poll_interval);
->> +	} else {
->> +		input->open = adc_joystick_open;
->> +		input->close = adc_joystick_close;
->> +	}
->> 
->>  	error = adc_joystick_set_axes(dev, joy);
->>  	if (error)
->> @@ -229,16 +254,20 @@ static int adc_joystick_probe(struct 
->> platform_device *pdev)
->>  		return error;
->>  	}
->> 
->> -	joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
->> -	if (IS_ERR(joy->buffer)) {
->> -		dev_err(dev, "Unable to allocate callback buffer\n");
->> -		return PTR_ERR(joy->buffer);
->> -	}
->> +	if (!joy->polled) {
->> +		joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle,
->> +						     joy);
->> +		if (IS_ERR(joy->buffer)) {
->> +			dev_err(dev, "Unable to allocate callback buffer\n");
->> +			return PTR_ERR(joy->buffer);
->> +		}
->> 
->> -	error = devm_add_action_or_reset(dev, adc_joystick_cleanup, 
->> joy->buffer);
->> -	if (error)  {
->> -		dev_err(dev, "Unable to add action\n");
->> -		return error;
->> +		error = devm_add_action_or_reset(dev, adc_joystick_cleanup,
->> +						 joy->buffer);
->> +		if (error)  {
->> +			dev_err(dev, "Unable to add action\n");
->> +			return error;
->> +		}
->>  	}
->> 
->>  	return 0;
+> >         - mediatek,mt8192-vcodec-enc
+> >         - mediatek,mt8195-vcodec-enc
+> > +      - mediatek,mt8188-vcodec-enc
+> >   
+> >     reg:
+> >       maxItems: 1
+
