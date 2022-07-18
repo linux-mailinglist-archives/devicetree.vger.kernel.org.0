@@ -2,86 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D82EB57849D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07FD45784B6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234598AbiGRN7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 09:59:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
+        id S233670AbiGROFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 10:05:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235669AbiGRN7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:59:37 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03C431FCEB;
-        Mon, 18 Jul 2022 06:59:37 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 04C2466015B2;
-        Mon, 18 Jul 2022 14:59:34 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658152775;
-        bh=k4xbc/KxSu0t1ZuCXLylgktrPrf4etvCU4uHHfVpdvo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=MSQPo+QJyrJGPQjPwq4PVuS8usKOjr0hRhGugecZWIPQD4L6WP6UFPX1u7R6MyM0s
-         5a/lfRMZJBPiHj4UX2fDddUh/ZHOQuXBntdyOCBk+022s/FvtuzabMr0Aq7TYefGGj
-         +HuXnJyaotczIGt4rYxWtkEm8AXuktNB+5ro0QFHTyYLqkM3MbpluhVsz5QnMr/xU/
-         4oZtGAZjd7DLELZhXCjXy+PI/8i/r9faWKTV01ZZ9gWkfGwT20+IC0lkyXug5czaLI
-         0m7vZZmTSLQe26iSolOJMnjqMntteCkxFk26LPF/poT/Rv8opk3mMV0cUkVHiMq2Z5
-         7+5grMXlQU+ow==
-Message-ID: <b2439e75-88a3-5f04-5fe6-b53e8d5232a7@collabora.com>
-Date:   Mon, 18 Jul 2022 15:59:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: display: mediatek: dpi: add power-domains
- property
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        with ESMTP id S233446AbiGROFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:05:44 -0400
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD5B1581D;
+        Mon, 18 Jul 2022 07:05:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:Message-Id
+        :Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=WJbMbG1S2uvxcR5r3NqyT2CvNf2y+o6Hbi3keAffiV0=; b=WT81n8CFGvilNr0lw7Vh6MJZlK
+        2vfhFvX0qXzCVMj1sthuQXC+J8UZx+waWcdEX5nXpnzEArcs4Ho0pcoLp6ZplJezY3PbZ+Ub1JQpq
+        UhZLwCZh0+Rs9hmCPCzWCAvNqH+EPCALd8giCWYqx7qtiAdzQb+8mvzDitC/Z29rMVW5deaGAChSS
+        l6NXlHn4gT5bJKi13UgeN+slhfnSH3UY75alZm/Zp3Zec+in+OjISxMfUH+UfUnbY7G7sZLoEZLjs
+        t9f7jX20qrQ/R0GCplf7I7DvY8+nnyjoN8Wb4KK5nfVj4GUlwKoG0VxlyhJ564b0/GCEHt3JH81vg
+        Bra6fYNg==;
+Received: from [10.22.3.24] (helo=kernkonzept.com)
+        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
+        id 1oDRNK-008iC6-TO; Mon, 18 Jul 2022 16:05:30 +0200
+From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        hsinyi@chromium.org, fparent@baylibre.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220718052217.29729-1-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220718052217.29729-1-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: [PATCH v2 0/5] remoteproc: qcom_q6v5_mss: Add MSM8909
+Date:   Mon, 18 Jul 2022 16:03:39 +0200
+Message-Id: <20220718140344.1831731-1-stephan.gerhold@kernkonzept.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/07/22 07:22, Allen-KH Cheng ha scritto:
-> DPI is part of the display / multimedia block in MediaTek SoCs
-> and is managed using power controller in some platforms. We add
-> the power-domains property to the binding documentation.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Convert parts of the qcom,q6v5.txt binding documentation to a DT schema
+(together with some DT fixes) in preparation of adding a new
+"qcom,msm8909-mss-pil" compatible. The schema can be easily shared
+between MSM8916, MSM8974 and MSM8909 because they have almost the same
+requirements. The other SoCs are quite different and would be better
+described in a separate DT schema to avoid a lot of complicated if
+statements.
 
-For the contents of this commit:
+Finally, add support for MSM8909 to the qcom_q6v5_mss driver by reusing
+the initialization sequence for MSM8996/8, with some minor if statements
+to handle the differences for MSM8909.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+Changes in v2:
+  - Address review comments from Krzysztof
+  - Drop "ARM: dts: qcom: msm8974: Disable remoteprocs by default"
+    since Bjorn applied it already
 
+Stephan Gerhold (5):
+  arm64: dts: qcom: msm8916: Drop MSS fallback compatible
+  dt-bindings: remoteproc: qcom,q6v5: Move MSM8916 to schema
+  dt-bindings: remoteproc: qcom,msm8916-mss-pil: Add MSM8974
+  dt-bindings: remoteproc: qcom,msm8916-mss-pil: Add MSM8909
+  remoteproc: qcom_q6v5_mss: Add support for MSM8909
 
-...but I'm not sure whether this one requires a Fixes tag (because, effectively,
-the DPI hardware *requires* that power domain to get up) - and if it does,
-which commit to reference: the first commit for this file is a TXT->schema
-conversion, but the TXT didn't have power-domains as well.
+ .../remoteproc/qcom,msm8916-mss-pil.yaml      | 264 ++++++++++++++++++
+ .../bindings/remoteproc/qcom,q6v5.txt         |  35 ---
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |   2 +-
+ drivers/remoteproc/qcom_q6v5_mss.c            | 123 +++++---
+ 4 files changed, 355 insertions(+), 69 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
 
+-- 
+2.30.2
 
-
-Regards,
-Angelo
