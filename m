@@ -2,116 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C361578110
+	by mail.lfdr.de (Postfix) with ESMTP id EB072578112
 	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 13:39:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234437AbiGRLjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 07:39:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58654 "EHLO
+        id S234425AbiGRLj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 07:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234435AbiGRLjT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 07:39:19 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E0B826C0
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 04:39:17 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id z22so5158455lfu.7
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 04:39:17 -0700 (PDT)
+        with ESMTP id S234535AbiGRLjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 07:39:22 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6F5CBBE
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 04:39:20 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id d12so18768332lfq.12
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 04:39:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=LM/hn+OVqs3HFe+jDApgRgLmW0vQU4FyOltjDqB3/Sg=;
-        b=BftAwgS+k5g/3vxqxG+3WrnB4nHH4Dq7BZDuswhBR4sT2Kue8FqghkpFrlfIHVC+P+
-         U2TkIHTyeijTBJoh8cZ4S/DCr1fy7rmpG+VJUssgK5gyMAase1O+Uo4w6dmvwwCjboIA
-         VUNWqFxJ7A/X3byP+PIS9xbH6/2tItBg2gcRaIRT5N9ypur1+ZjNu/5ovG4yXOSoIWvA
-         0lHaFbfLSK2ZDmVITerKzNh+45X6xUEOcALAD00xsKHJ3mNpT8/AYEbwd46G2soZgZfQ
-         shXWpyXa9H0x+NRGXBhiPUIZ/0XgToFO8l6GQ0pbHOoc90jR+19JHbJrQALbRnaBwBHo
-         /nBA==
+        bh=fqFXW47liSOgWesWbe3iscDHgm0d6lPu0OfhHoTpb8s=;
+        b=SoVQbmGoIB6Z/dtwpH7n/SQrerMa3pXvL0gHXILbEQwBPwXkFg7GVSDa83vCgSk0zG
+         /yqA6JsW03ZcoesOeaNM19e9y9Rp298gtecbH2tD1k2+L7GOlg0idzWMc0IfzO+1tnAE
+         VHeqGN4YGW8NL35VrjCIlugLpyC6H12R/Xg4QHXZCbFlfHfmQ9eVIb7f7zNPTeqcmR4T
+         yxe4bi7jC5a5QpPPlugweahFIPmDZqaj6CyY8bD17p+usfO3NFsdj8OoUqjWm5eJbIQV
+         ymk86s103R6B7DebZMoYbHdZrySBF+E9ztxt2sW8WYBZkf55pT106obiy8IRuX7w/Gt3
+         bK0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=LM/hn+OVqs3HFe+jDApgRgLmW0vQU4FyOltjDqB3/Sg=;
-        b=VNlv1x41ybAEcB4tKwmh8CGCS9XTLNJdzKNhnLDfMNH5wIrfpxWdf2dNU65cfQNoAk
-         yZZHo6lAvEpQuZcThaki4i5Kp8DUyrz7vxb8gs5v+dfRmD5TV2Z1HbSK8B14Ny3cNyEe
-         peKNjq/Eqz0sHRn6TkFy7wcm2/GPvYAXNYZuRfldooEH1R+EHF4ONXBADzolFuJ2uaEY
-         f6ffJs82zfPHybd/J0mt7FN5SLwFe1CfbMCd1OV8cNkO3vRR6K7Dm0VjyAELHpO+wrey
-         fU6BxBn59oxMcEYdpySaJoUjnQNJ+bjzsWmWE1NcOrHkvd6aXEaSePd2GBfnm/tIXV8r
-         2ErA==
-X-Gm-Message-State: AJIora+rdF9w8s32iR58h6ptl2jFbdkpaG91jN71jlCVUaAfDamG/jBd
-        EsBSKrju1Sm8vOo4O0uzNbOAmeyufBrXQ0Mh3jiGWA==
-X-Google-Smtp-Source: AGRyM1u7qX5AB/G++2uS/gtRhpTUCNvvrYExbLhAE2KGmAyp23WGYAhcJCO6LARGRm4eTJyZZYuNlPywKHZKt6zR2lk=
-X-Received: by 2002:a05:6512:3e28:b0:48a:a4b:c474 with SMTP id
- i40-20020a0565123e2800b0048a0a4bc474mr13415274lfv.254.1658144355761; Mon, 18
- Jul 2022 04:39:15 -0700 (PDT)
+        bh=fqFXW47liSOgWesWbe3iscDHgm0d6lPu0OfhHoTpb8s=;
+        b=vclXXNak7f7+wZuqZUJRDquWrpiuwFTv7wI7iQM+GZtokC4jWFQhGosKgHpaVfpImz
+         Yo+risrPzsv8FXzv/sGMr0rzj1K4EQ5MVJYd5S+5Yp+/c6XqtzvPCyO4AhBFs8l3L+6F
+         COnLgiNuUBw6LAVqYHI7IjZ/g5jX0gPWYs8w3oDM8M2BjRJZjSHWp7fm7XXZypDfElr/
+         RjsmtibnUvyE7R2SBRE4cHyXyI5iDJCvufLU6Xr2bvobQEH7qBIEPJCiN+L9wnLwTfVG
+         ChoDC1ypmPJGtXYyjfqOsuSYMKP1Ly7+O7p8gQ5wblAW3Dai+uy6aHRCYO6pRSj0CXSs
+         BCTA==
+X-Gm-Message-State: AJIora9PJJgaiEFqZdhn3n3Qws0BsMKg+r89C83sDdbSuJYxn64MovH2
+        ZJ/9G+M28kkBF/tth/jNKMRMqIrLis6H6aH15Ofqww==
+X-Google-Smtp-Source: AGRyM1uEYzo8g//JsgAfnPoniIwTL3KHWTaTOY9Ti9xQSb52AIAMymbZg32JURDjMsYeRRM3xXhppYzIL6cij+p5n8o=
+X-Received: by 2002:a05:6512:aca:b0:48a:1a70:d0d8 with SMTP id
+ n10-20020a0565120aca00b0048a1a70d0d8mr11175523lfu.167.1658144359079; Mon, 18
+ Jul 2022 04:39:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220714091042.22287-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220714091042.22287-1-krzysztof.kozlowski@linaro.org>
+References: <20220714123406.1919836-1-konrad.dybcio@somainline.org> <20220714123406.1919836-2-konrad.dybcio@somainline.org>
+In-Reply-To: <20220714123406.1919836-2-konrad.dybcio@somainline.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 18 Jul 2022 13:38:39 +0200
-Message-ID: <CAPDyKFoFGxjcAA7vDUzfBDzNyMfrn=g9ZJ9cnY_aX8im3G-=DQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] dt-bindings: mmc: / ARM: qcom: add MSM8998 and
- cleanup driver of_device_id
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Mon, 18 Jul 2022 13:38:42 +0200
+Message-ID: <CAPDyKFqx5oxNpih-u0icLD0o59wAdDnpGGNSn=ZNteYupWGZ5g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: mmc: sdhci-msm: Document the SM8450 compatible
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
         Bhupesh Sharma <bhupesh.sharma@linaro.org>,
         linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Doug Anderson <dianders@chromium.org>
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Jul 2022 at 11:10, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, 14 Jul 2022 at 14:34, Konrad Dybcio
+<konrad.dybcio@somainline.org> wrote:
 >
-> Hi,
+> Document the compatible for SDHCI on SM8450.
 >
-> Rationale/background:
-> https://lore.kernel.org/linux-devicetree/CAD=FV=WGxQF4vPuRi7kWKoqTpe0RFsgH+J82C=sQbmncK_AFpw@mail.gmail.com/
->
-> Changes since v2
-> ================
-> 1. Add Rb tags.
-> 2. Add a comment to SDHCI driver to hopefully prevent re-adding of compatibles
-> (suggested by Doug).
->
-> Changes since v1
-> ================
-> 1. Add Rb tags.
-> 2. Rework driver patch (now last in the series), after talk with Doug.
->
-> Best regards,
-> Krzysztof
->
-> Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> Cc: Doug Anderson <dianders@chromium.org>
->
-> Krzysztof Kozlowski (3):
->   dt-bindings: mmc: sdhci-msm: add MSM8998
->   arm64: dts: qcom: msm8998: add MSM8998 SDCC specific compatible
->   mmc: sdhci-msm: drop redundant of_device_id entries
->
->  .../devicetree/bindings/mmc/sdhci-msm.yaml    |  1 +
->  arch/arm64/boot/dts/qcom/msm8998.dtsi         |  2 +-
->  drivers/mmc/host/sdhci-msm.c                  | 29 +++----------------
->  3 files changed, 6 insertions(+), 26 deletions(-)
->
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Patch 1 and patch3 applied for next, thanks!
+Applied for next, thanks!
 
 Kind regards
 Uffe
+
+
+> ---
+> Changes since v1:
+> * Add this forgotten snowflake
+>
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index e4236334e748..4b65d0497fd6 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -38,6 +38,7 @@ properties:
+>                - qcom,sm6350-sdhci
+>                - qcom,sm8150-sdhci
+>                - qcom,sm8250-sdhci
+> +              - qcom,sm8450-sdhci
+>            - enum:
+>                - qcom,sdhci-msm-v4 # for sdcc versions less than 5.0
+>                - qcom,sdhci-msm-v5 # for sdcc version 5.0
+> --
+> 2.37.0
+>
