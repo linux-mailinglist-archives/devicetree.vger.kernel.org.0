@@ -2,113 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C25D577CE7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 09:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9320A577CEC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 09:57:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232964AbiGRHya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 03:54:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42618 "EHLO
+        id S233190AbiGRH5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 03:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbiGRHy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 03:54:29 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987905FF9
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 00:54:27 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oDLaE-0001WB-2p; Mon, 18 Jul 2022 09:54:26 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oDLaD-001fcN-2M; Mon, 18 Jul 2022 09:54:25 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oDLaC-005uvA-Af; Mon, 18 Jul 2022 09:54:24 +0200
-Date:   Mon, 18 Jul 2022 09:54:22 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Ben Dooks <ben.dooks@sifive.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
-        William Salmon <william.salmon@sifive.com>,
-        Adnan Chowdhury <adnan.chowdhury@sifive.com>
-Subject: Re: [PATCH 1/7] pwm: change &pci->dev to dev in probe
-Message-ID: <20220718075422.tpxjkua67w4y2lee@pengutronix.de>
-References: <20220712100113.569042-1-ben.dooks@sifive.com>
- <20220712100113.569042-2-ben.dooks@sifive.com>
- <20220713081633.5lsunbl5mfnngdrs@pengutronix.de>
- <2cd139dd-559e-7975-41a7-c813bc5851ea@sifive.com>
- <20220718074954.4z4qiz2pbuyrzaje@pengutronix.de>
+        with ESMTP id S230009AbiGRH5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 03:57:46 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9870183BD
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 00:57:44 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id e15so10565555wro.5
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 00:57:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=vEslTCITyimnIbsqLplwjM+NWGFZaT0Hs7X96p81Hkw=;
+        b=7RsWumKS/cfYmyRJ4MP3H3gJCDxUZGilhTzh5mFgx2JHv7QQSCOVAoF11HW/UZceyh
+         m6TYGjxr/YHwiRCtHvbmEDUO4eqF9SSsjkaP8fiJl0YmP8UU6+l3xLbT0X9UARxcoyRX
+         8nqsGx6f0bBGyTgCMbHxPmz+k0A3V7hDKsyjvskTk2KWIMyYbRtniOxmFhvUAVZGWCPa
+         3XkWspTkyyfp3FImy7eJ4Ch/xO9+sU0fLLuspGM9oyw+iLig/BpNIBDfNVpnYNnMiq2g
+         uoA6LS206TFe5Hun/lOQb9cgEJoj9qoAn5A/qkUkNvnlsOdn0DZflOze/JkimIyev7U4
+         3ppw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=vEslTCITyimnIbsqLplwjM+NWGFZaT0Hs7X96p81Hkw=;
+        b=ssRMot77eItQ3sQFzdHoddfXubMhXu40wxGBGm8RRWQIgUDqiaqk36VixCQt9ojUnK
+         lkndVnsXwk3+q9ys52C1fZis2DzjcbwDhc8igPWgxod2N6ANKzbvBclQ+JiLdt3OdNl3
+         D5Lz+Ni434lyXZeD0zwrnaKL+PcV1eK99IRukxLswOgnqnE8Ln/QVntIq25f4s5WoXRx
+         n8GjuWOkmQ4APaiFlQrKJtaWZ0dD0FTlkJyLKIGYRcv5BsSvWymq3dAV1yn6MPwDEX/d
+         HXFfVFpFCcmvBMpqcesPWW7Iq8pMwslZnei/QOrXE+HFcj/wpEkG9QbPVit2od33xBed
+         +AaQ==
+X-Gm-Message-State: AJIora8h3jGo0t20UAb5hutFtxLg8/fgjYmnLAWi26bVKIMgnO0vRBXU
+        BB+yB//moX7m91/Gwaa9CUuv3w==
+X-Google-Smtp-Source: AGRyM1t29nFzQjLeYWvn0zyBdJryjDXStwGg7Go31PP+MzU2+XxCaU1TQoV6XTBGcA6KsPOOyHfHDw==
+X-Received: by 2002:a5d:5985:0:b0:21d:b6b6:4434 with SMTP id n5-20020a5d5985000000b0021db6b64434mr21345760wri.111.1658131063310;
+        Mon, 18 Jul 2022 00:57:43 -0700 (PDT)
+Received: from ?IPV6:2001:861:44c0:66c0:a2b7:375c:fabd:3626? ([2001:861:44c0:66c0:a2b7:375c:fabd:3626])
+        by smtp.gmail.com with ESMTPSA id a7-20020adfeec7000000b0021d7050ace4sm5040248wrp.77.2022.07.18.00.57.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jul 2022 00:57:42 -0700 (PDT)
+Message-ID: <2280fc46-cd0a-6267-ad0f-9916bd0ea146@baylibre.com>
+Date:   Mon, 18 Jul 2022 09:57:41 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ngh2iorqj3djqfbj"
-Content-Disposition: inline
-In-Reply-To: <20220718074954.4z4qiz2pbuyrzaje@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 2/2] arm64: dts: meson: add support for Beelink GT1
+ Ultimate
+Content-Language: en-US
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Furkan Kardame <furkan@fkardame.com>
+References: <20220707093954.21716-1-christianshewitt@gmail.com>
+ <20220707093954.21716-2-christianshewitt@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220707093954.21716-2-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07/07/2022 11:39, Christian Hewitt wrote:
+> The Beelink GT1 Ultimate is based on the Amlogic S912 (Q200)
+> reference design with the following specifications:
+> 
+> - 3GB DDR3 RAM
+> - 32GB eMMC
+> - HDMI 2.1 video
+> - S/PDIF optical output
+> - 10/100/1000 Ethernet
+> - AP6356S Wireless (802.11 a/b/g/n, BT 4.2)
+> - 3x USB 2.0 ports
+> - IR receiver
+> - 1x micro SD card slot
+> - 1x Power LED (white)
+> - 1x Reset button (internal)
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+>   .../dts/amlogic/meson-gxm-gt1-ultimate.dts    | 91 +++++++++++++++++++
+>   2 files changed, 92 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 8773211df50e..641399fcbdd9 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -43,6 +43,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-minix-neo-u9h.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts
+> new file mode 100644
+> index 000000000000..2c267884cc16
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-gt1-ultimate.dts
+> @@ -0,0 +1,91 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) Christian Hewitt <christianshewitt@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-gxm.dtsi"
+> +#include "meson-gx-p23x-q20x.dtsi"
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	compatible = "azw,gt1-ultimate", "amlogic,s912", "amlogic,meson-gxm";
+> +	model = "Beelink GT1 Ultimate";
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-white {
+> +			color = <LED_COLOR_ID_WHITE>;
+> +			function = LED_FUNCTION_POWER;
+> +			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +			panic-indicator;
+> +		};
+> +	};
+> +
+> +	adc-keys {
+> +		compatible = "adc-keys";
+> +		io-channels = <&saradc 0>;
+> +		io-channel-names = "buttons";
+> +		keyup-threshold-microvolt = <1710000>;
+> +
+> +		button-function {
+> +			label = "update";
+> +			linux,code = <KEY_VENDOR>;
+> +			press-threshold-microvolt = <10000>;
+> +		};
+> +	};
+> +};
+> +
+> +&ethmac {
+> +	pinctrl-0 = <&eth_pins>;
+> +	pinctrl-names = "default";
+> +	phy-handle = <&external_phy>;
+> +	amlogic,tx-delay-ns = <2>;
+> +	phy-mode = "rgmii";
+> +};
+> +
+> +&external_mdio {
+> +	external_phy: ethernet-phy@0 {
+> +		/* Realtek RTL8211F (0x001cc916) */
+> +		reg = <0>;
+> +		max-speed = <1000>;
+> +
+> +		reset-assert-us = <10000>;
+> +		reset-deassert-us = <80000>;
+> +		reset-gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_LOW>;
+> +
+> +		interrupt-parent = <&gpio_intc>;
+> +		/* MAC_INTR on GPIOZ_15 */
+> +		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> +
+> +&ir {
+> +	linux,rc-map-name = "rc-beelink-gs1";
+> +};
+> +
+> +&sd_emmc_a {
+> +	brcmf: wifi@1 {
+> +		reg = <1>;
+> +		compatible = "brcm,bcm4329-fmac";
+> +	};
+> +};
+> +
+> +&uart_A {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+> +	pinctrl-names = "default";
+> +	uart-has-rtscts;
+> +
+> +	bluetooth {
+> +		compatible = "brcm,bcm43438-bt";
+> +		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+> +		max-speed = <2000000>;
+> +		clocks = <&wifi32k>;
+> +		clock-names = "lpo";
+> +	};
+> +};
 
---ngh2iorqj3djqfbj
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
-
-On Mon, Jul 18, 2022 at 09:49:54AM +0200, Uwe Kleine-K=F6nig wrote:
-> On Mon, Jul 18, 2022 at 08:19:16AM +0100, Ben Dooks wrote:
-> > On 13/07/2022 09:16, Uwe Kleine-K=F6nig wrote:
-> > > On Tue, Jul 12, 2022 at 11:01:07AM +0100, Ben Dooks wrote:
-> > > > The dwc_pwm_probe() assignes dev to be &pci->dev but then uses
-> > > > &pci->dev throughout the function. Change these all to the be
-> > > > 'dev' variable to make lines shorter.
-> > >=20
-> > > Looks reasonable.
-> > >=20
-> > > Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> >=20
-> > ack for 1/7 or the series?
->=20
-> The former. For the other patches I assume they will change in v2.
-
-Oh well, and 2/7 is so obviously a preparation patch that I'll wait to
-see v2 for that one, too.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---ngh2iorqj3djqfbj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLVEawACgkQwfwUeK3K
-7AmTggf6A0ecpKFfBLiPjo/NNYwaME/rIWapOnrvy/ycFw1mJRqbs7Yys4jnN3Wp
-PEhd18VJo1i0pzD0tTlNayIso/8vm3oBwVyfCWazfm99Z0Fg5za+prV+51Jf4Vgz
-mnzDGFuMiXFYItmDPPlGOV0FVJsH2h07dalUkFCTtReX7CW/OoLHgt1eZ2OQgKsM
-ECw8Q/k+46q7qiXc2shR9Pk+G3svCkXZtVI5lhlqZnNdGnPKEU0Ixk/uo///C9pM
-2qJ2yRCNAzCPK2YWRVf43OuT4mHhMHxv32JlkqEWuUczQsqvQNPDj4xEj5BGy8/D
-TSSiVYp1pjGib45T5rRSKLIQgKZQKw==
-=Bzbt
------END PGP SIGNATURE-----
-
---ngh2iorqj3djqfbj--
+Looks fine for me:
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
