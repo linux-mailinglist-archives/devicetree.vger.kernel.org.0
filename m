@@ -2,86 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6A7B578CA1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 23:21:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F829578CAB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 23:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234327AbiGRVVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 17:21:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46500 "EHLO
+        id S234435AbiGRV0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 17:26:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234267AbiGRVVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 17:21:12 -0400
-Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A707128727;
-        Mon, 18 Jul 2022 14:21:11 -0700 (PDT)
-Date:   Mon, 18 Jul 2022 21:21:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1658179269; x=1658438469;
-        bh=uuxbUlzCKdnpZQ6Bkv9TYCn2NI7EQjaHey/D4Mc3tUA=;
-        h=Date:To:From:Reply-To:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID;
-        b=IzB/Ub0GgV5wggzkvrEZqasbSUjxuJFUti94hWvwN4T9SiWQOiqfoiEZBaC+hOM8j
-         j6G+owLYtmjMfyApEl7cKA/gsN17SBCNTcV3YG/0VWGiiR4LBolk3QXt1ctiL36V2J
-         6T6OTTZOGHseIGqKwess0gITCrwBS3gYJ/eyOzFc=
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-From:   Caleb Connolly <caleb@connolly.tech>
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: [PATCH 1/4] Documentation: dt-bindings: arm: qcom: add google,blueline
-Message-ID: <20220718212019.1471265-2-caleb@connolly.tech>
-In-Reply-To: <20220718212019.1471265-1-caleb@connolly.tech>
-References: <20220718212019.1471265-1-caleb@connolly.tech>
-Feedback-ID: 10753939:user:proton
+        with ESMTP id S234967AbiGRV0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 17:26:11 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F972AE1D;
+        Mon, 18 Jul 2022 14:26:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1658179568; x=1689715568;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=980PssNBkKl6pJGSdycVps/zbWeYrW5Q24GPyZNMFtw=;
+  b=gEwEy7jaNHkiB52QS2QnRFSuRzrm4FVA177I0R6Hf0NFuKJS/flAasNo
+   9+Me766uL1k/gfJhwWebHZdm4jRU5GfVwCC4GOoe3E3EoZeS+QzuOKuB7
+   1tsQsxr1mFErqKTthjIVLgtkLyfU+BQt7l7ba/y3ijt3q2LMFg+JBzk91
+   jNSKN1TfXkOORUSVaqXM3r6MKiphA/eVWOxmVw89/fh9eujnTpAcABVVt
+   T2MdEumEfKW5FMaUJ8OAP192Y9B7XyGYafPK15baERgW1JGpNzVOfV2SJ
+   nY2xRUbiUmm+fYdlOKGnrI3GT878JyO8CgMIQZucyZqbWha9GwNwP1HE5
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,282,1650956400"; 
+   d="scan'208";a="182715239"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Jul 2022 14:26:07 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 18 Jul 2022 14:26:07 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Mon, 18 Jul 2022 14:26:05 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <claudiu.beznea@microchip.com>, <nicolas.ferre@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <maxime.chevallier@bootlin.com>,
+        "Horatiu Vultur" <horatiu.vultur@microchip.com>
+Subject: [PATCH 0/3] ARM: dts: lan966x: Extend pcb8291.
+Date:   Mon, 18 Jul 2022 23:29:18 +0200
+Message-ID: <20220718212921.1506984-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the bindings for the Pixel 3
+Extend pcb8291 with different features like, add support to reset the board
+using GPIO and add network support.
 
-Based on https://lore.kernel.org/all/20220521164550.91115-7-krzysztof.kozlo=
-wski@linaro.org/
+Horatiu Vultur (3):
+  ARM: dts: lan966x: Add gpio-restart
+  ARM: dts: lan966x: Disable can0 on pcb8291
+  ARM: dts: lan966x: Enable network driver on pcb8291
 
-Signed-off-by: Caleb Connolly <caleb@connolly.tech>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/lan966x-pcb8291.dts | 45 ++++++++++++++++++++++-----
+ 1 file changed, 37 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentatio=
-n/devicetree/bindings/arm/qcom.yaml
-index b727467e86c6..b3e1004673c7 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -320,6 +320,7 @@ properties:
-
-       - items:
-           - enum:
-+              - google,blueline
-               - lenovo,yoga-c630
-               - oneplus,enchilada
-               - oneplus,fajita
---
-2.36.1
-
+-- 
+2.33.0
 
