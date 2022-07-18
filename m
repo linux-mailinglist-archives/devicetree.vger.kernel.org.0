@@ -2,87 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38CC0578983
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 20:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C6C45789B4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 20:44:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235968AbiGRSZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 14:25:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33734 "EHLO
+        id S236030AbiGRSoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 14:44:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235969AbiGRSZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 14:25:52 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90DD22D1D7;
-        Mon, 18 Jul 2022 11:25:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658168751; x=1689704751;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=ZrDvrrA11F1AztQy2Nks0U7/bE0KiSaoQtsQja6PhiM=;
-  b=dVYdTtmEVHq75hzPDuYagPMXRPyx6LNdkSvhmHdM6VtxpT8eJ+K7oTvv
-   MjoPyNnkpa80riLxUS69F5kKyAtMi3dOwPYSnsjU+ccrOFx00ccxYeOdg
-   1tXKdEf9SW244GnrUz9cv2xo0XRQGuA5Xwz+Hsg3Z7NfyfAsZW9/V+q9s
-   fPn4som5uh/Yr3hJ4GXOixnx5uU0lSDBa1ZyJvdq5ASD57LrIx/YQWIZy
-   En8zK2UgpjsfbM8CirzWWBuQtmYuetMXZvDrV7Wlu9IJDrqbIV1OcdZ02
-   muBNFZo2MLrn5QlFl92/3W93T82iGRclG0c0XkOuYFB7G5EzN7jgzCqe3
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="311976686"
-X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; 
-   d="scan'208";a="311976686"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2022 11:25:43 -0700
-X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; 
-   d="scan'208";a="547601715"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2022 11:25:40 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1oDVR3-001OO1-1n;
-        Mon, 18 Jul 2022 21:25:37 +0300
-Date:   Mon, 18 Jul 2022 21:25:37 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
+        with ESMTP id S236035AbiGRSoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 14:44:02 -0400
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9E46313;
+        Mon, 18 Jul 2022 11:43:58 -0700 (PDT)
+Received: by mail-il1-f180.google.com with SMTP id w9so2970117ilg.1;
+        Mon, 18 Jul 2022 11:43:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=LD3jbsEBREK2eP4j8JRnU6BGqeHPwEv2Qmp6Ugb/5qQ=;
+        b=4KJ0HC7tmiypX1eTrjKhG6Ye9il5jBQyFKXnYIR2vbVrj7t2LKnV738+oWCmHqnHgM
+         D+hxNGlQnVX18BlSW3E3amp8BWQZwbcNIC6kVeqS/e/We6tgzBGUM+AvfNlMSYEqKYHe
+         Ue10xXaX87+UYfUss/aL/Eb4l22XBemlMN8CHVh4+YkxfsX1Cb33ig2+z2K2Zc40TLtr
+         dxdlsv+YZgN5xzIwhCahFT8pDB+WZxMQNJytRX6bZ9QgX/t1Nhumc0fI6SgLpMgnGv9c
+         xKs5JLv4eY7B2Ctu7dd2aZbgeR4+MfIlWh0kgBOuoEg0XXw1muhGAHjtX0uFk26pHn2i
+         qoDQ==
+X-Gm-Message-State: AJIora+hiVGOcnghGFS8W90xDf+sRo31dFXhdkHtYA4qi1YvXwB+/vWn
+        Ag8gy8rc6bgYa59ay12RGQ==
+X-Google-Smtp-Source: AGRyM1sfYtsdKVAWmLlEzocHZtR9Hf5/A/3tf8A57ZltfKBeCCy+zLJhYGsU+xCXjYyzTImCk0NIGg==
+X-Received: by 2002:a05:6e02:219e:b0:2dc:d166:f603 with SMTP id j30-20020a056e02219e00b002dcd166f603mr6367261ila.79.1658169838044;
+        Mon, 18 Jul 2022 11:43:58 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id bs20-20020a056638451400b00341523a2a32sm4076443jab.122.2022.07.18.11.43.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 11:43:57 -0700 (PDT)
+Received: (nullmailer pid 3325584 invoked by uid 1000);
+        Mon, 18 Jul 2022 18:43:55 -0000
+Date:   Mon, 18 Jul 2022 12:43:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>
+Cc:     brcm80211-dev-list.pdl@broadcom.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        SHA-cyfmac-dev-list@infineon.com, linux-kernel@vger.kernel.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-wireless@vger.kernel.org, van Spriel <arend@broadcom.com>,
+        Paolo Abeni <pabeni@redhat.com>, Kalle Valo <kvalo@kernel.org>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Franky Lin <franky.lin@broadcom.com>, netdev@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 3/4] gpiolib: acpi: support bias pull disable
-Message-ID: <YtWloTTNtdAPl8Y4@smile.fi.intel.com>
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
- <20220713131421.1527179-4-nuno.sa@analog.com>
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Arend van Spriel <aspriel@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: bcm4329-fmac: add optional
+ brcm,ccode-map-trivial
+Message-ID: <20220718184355.GA3325548-robh@kernel.org>
+References: <20220711123005.3055300-1-alvin@pqrs.dk>
+ <20220711123005.3055300-2-alvin@pqrs.dk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220713131421.1527179-4-nuno.sa@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220711123005.3055300-2-alvin@pqrs.dk>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 13, 2022 at 03:14:20PM +0200, Nuno S� wrote:
-> On top of looking at PULL_UP and PULL_DOWN flags, also look at
-> PULL_DISABLE and set the appropriate GPIO flag. The GPIO core will then
-> pass down this to controllers that support it.
+On Mon, 11 Jul 2022 14:30:03 +0200, Alvin Šipraga wrote:
+> From: Alvin Šipraga <alsi@bang-olufsen.dk>
+> 
+> The bindings already offer a brcm,ccode-map property to describe the
+> mapping between the kernel's ISO3166 alpha 2 country code string and the
+> firmware's country code string and revision number. This is a
+> board-specific property and determined by the CLM blob firmware provided
+> by the hardware vendor.
+> 
+> However, in some cases the firmware will also use ISO3166 country codes
+> internally, and the revision will always be zero. This implies a trivial
+> mapping: cc -> { cc, 0 }.
+> 
+> For such cases, add an optional property brcm,ccode-map-trivial which
+> obviates the need to describe every trivial country code mapping in the
+> device tree with the existing brcm,ccode-map property. The new property
+> is subordinate to the more explicit brcm,ccode-map property.
+> 
+> Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
+> ---
+>  .../bindings/net/wireless/brcm,bcm4329-fmac.yaml       | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
 
-In case this patch will be in v2,
-Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-P.S. I will be on vacation till mid-August.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Acked-by: Rob Herring <robh@kernel.org>
