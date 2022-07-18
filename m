@@ -2,54 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB73C57795D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 03:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52641577961
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 03:43:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232502AbiGRBn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jul 2022 21:43:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41754 "EHLO
+        id S232903AbiGRBnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jul 2022 21:43:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231376AbiGRBn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 21:43:27 -0400
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CAA412AFA;
-        Sun, 17 Jul 2022 18:43:26 -0700 (PDT)
-Received: by mail-il1-f176.google.com with SMTP id f15so1886684ilj.9;
-        Sun, 17 Jul 2022 18:43:26 -0700 (PDT)
+        with ESMTP id S229887AbiGRBna (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jul 2022 21:43:30 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F2F13F4B;
+        Sun, 17 Jul 2022 18:43:29 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id e69so723704iof.5;
+        Sun, 17 Jul 2022 18:43:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=c7pnuuPkH5Pi7e1WOChXFuT9fvkj/MiUne/+vUS9tYM=;
-        b=t5bEHSYeZskS2qP9vAyWuMbwVvj72La/O96Xt7v31+sRqjDqeuQ15zCHRET2vUkwQQ
-         GRoHEUATiibCmw8ErMTiOwJRzhuUdHgmkeKVrZTwx2d8iMUq/CvIPqkGFoJZ+CSqCmjL
-         Vnn0GS0afGuDDahQD/YyPgHCf08FHXxoYOU5iw7cTlfwGQ20VbwTLT4BeO38HLPneFhx
-         cGxDZZjwVuiUVbreeDeeThODPzGcB3DUltNRV7xtZceG6oBeVty25Z+jcJ95sRePscy0
-         s4vXuOH9mGzJ/R1NcJ6mSOEf4qxIkz+VGP2VnJOkHHq4csnMfQjGq2gYr0IXDohjFqh0
-         D6uA==
-X-Gm-Message-State: AJIora/KBIvlwgHFCqvx7UhM1yfpr6e4JtiudQPcSUUxCUBXd43inqJi
-        E9JqfPjLTN9mCRS1tuNvKA==
-X-Google-Smtp-Source: AGRyM1s8Bcx2Cyr8D/FFSNzWagCrmEYb6G/tUvzeoeF64FLdPr86kqHl2peT/3TxaK8hDKiAZvD4Rg==
-X-Received: by 2002:a05:6e02:20e5:b0:2dc:cd3c:a02d with SMTP id q5-20020a056e0220e500b002dccd3ca02dmr5415516ilv.195.1658108605912;
-        Sun, 17 Jul 2022 18:43:25 -0700 (PDT)
+        bh=Ai6PAExtnvwmvUQ1ZBj8kPBo45sFiw2ydYbB8VGvDYI=;
+        b=xaBVOyzJcRfQPqRR6UpGcsuRW5QydGYre4P5X/tcN4cm7+Rm9dX+lesTkZtDxMOuUf
+         fdJ5w47stDkiznJn5AEjSNPHDNYHmDDChckdA5ub9LPd1YRY+g7olZTr9thBDLlG00+h
+         MJ9N68i382EtuG13ab7AcVk9cn5VKErbr1HneiWbaa+KT64lxhWg+Ik2q0ZuEY8VUqYq
+         lN8lKTuBORPws/FkwIecv1De7Lp2DuU7g2bDP6VX5kr3A4A7Yf36qlKpNAdoz/IZod5q
+         pkxh7E7xKUZXvC/zqEHOFi5d02u2/7vpTwSrpYrfCdxGVjgxY6QmKOGEyY97Zp6o0g40
+         +9cA==
+X-Gm-Message-State: AJIora/ExN8EQq66rWi8S24s++qZitHrXBIsW0mto2eO6c9gxcsZEYAA
+        gweFdMkCXnIB6WK5OmIVkg==
+X-Google-Smtp-Source: AGRyM1tLIjs7nxXC1NQRkUwRt7fOytxB8Zpe8WQ0YFYZNW0mh8YXnaS8XfnnKx0jdKB9q/EM1AIwzA==
+X-Received: by 2002:a05:6638:4685:b0:33f:65bb:3c3c with SMTP id bq5-20020a056638468500b0033f65bb3c3cmr13493423jab.99.1658108608273;
+        Sun, 17 Jul 2022 18:43:28 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r11-20020a02aa0b000000b00339ead526e5sm4942028jam.19.2022.07.17.18.43.24
+        by smtp.gmail.com with ESMTPSA id f16-20020a05660215d000b0067c05df65aasm1456331iow.15.2022.07.17.18.43.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Jul 2022 18:43:25 -0700 (PDT)
-Received: (nullmailer pid 1667787 invoked by uid 1000);
+        Sun, 17 Jul 2022 18:43:27 -0700 (PDT)
+Received: (nullmailer pid 1667785 invoked by uid 1000);
         Mon, 18 Jul 2022 01:43:21 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org,
-        shawn.guo@linaro.org, jassisinghbrar@gmail.com,
-        bjorn.andersson@linaro.org, agross@kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20220717213645.1147342-3-bryan.odonoghue@linaro.org>
-References: <20220717213645.1147342-1-bryan.odonoghue@linaro.org> <20220717213645.1147342-3-bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: mailbox: qcom,apcs-kpss-global: Add clock-output-names
+To:     Irui Wang <irui.wang@mediatek.com>
+Cc:     Tomasz Figa <tfiga@chromium.org>, wenst@chromium.org,
+        devicetree@vger.kernel.org, Tzung-Bi Shih <tzungbi@chromium.org>,
+        kyrie wu <kyrie.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, maoguang.meng@mediatek.com,
+        xia.jiang@mediatek.com, srv_heupstream@mediatek.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        angelogioacchino.delregno@collabora.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        nicolas.dufresne@collabora.com
+In-Reply-To: <20220716093435.29796-2-irui.wang@mediatek.com>
+References: <20220716093435.29796-1-irui.wang@mediatek.com> <20220716093435.29796-2-irui.wang@mediatek.com>
+Subject: Re: [V11,1/7] dt-bindings: mediatek: Add mediatek, mt8195-jpgenc compatible
 Date:   Sun, 17 Jul 2022 19:43:21 -0600
-Message-Id: <1658108601.911967.1667786.nullmailer@robh.at.kernel.org>
+Message-Id: <1658108601.900307.1667784.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -60,27 +69,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 17 Jul 2022 22:36:45 +0100, Bryan O'Donoghue wrote:
-> Add clock-output-names as optional so that SoCs such as the msm8939 which
-> have multiple a53 PLLs can latch the appropriate output name in
-> drivers/clk/qcom/apcs-msm8916.c.
+On Sat, 16 Jul 2022 17:34:29 +0800, Irui Wang wrote:
+> From: kyrie wu <kyrie.wu@mediatek.com>
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Add mediatek,mt8195-jpgenc compatible to binding document.
+> 
+> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> Signed-off-by: irui wang <irui.wang@mediatek.com>
+> 
 > ---
->  .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../media/mediatek,mt8195-jpegenc.yaml        | 139 ++++++++++++++++++
+>  1 file changed, 139 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml:98:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
+./Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml:102:9: [error] syntax error: expected <block end>, but found '<scalar>' (syntax)
+./Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml:111:17: [warning] wrong indentation: expected 0 but found 16 (indentation)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml: properties:clock-output-names: {'maxItems': 1, 'items': [{'const': 'a53mux_c0'}, {'const': 'a53mux_c1'}, {'const': 'a53mux_cci'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml: ignoring, error in schema: properties: clock-output-names
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.example.dts'
+Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml:102:9: did not find expected key
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml:102:9: did not find expected key
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml: ignoring, error parsing file
+make: *** [Makefile:1404: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
