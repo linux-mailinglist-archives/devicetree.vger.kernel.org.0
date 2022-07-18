@@ -2,79 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF446577C05
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 08:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D04F2577C1C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 09:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233490AbiGRG52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 02:57:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36534 "EHLO
+        id S233694AbiGRHFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 03:05:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233652AbiGRG51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 02:57:27 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADDCC165B4;
-        Sun, 17 Jul 2022 23:57:25 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 6D6002223A;
-        Mon, 18 Jul 2022 08:57:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1658127442;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=sf6PNQbhIHBDnRnau7vCcYU1WYAC0tMbQT2baM/8MoA=;
-        b=L52dwrCL7c6OlpAGESjGoH7cK9TT2avA32UJDm9VCLClr/id3A5YGEPSyxsggo0Qyp8vRH
-        /Ot8YydJqBgAkYy26aWK1ODFrsY2gbQI6bGJ/xK2GpsW39uwONd1ewkdm6tm05G4PWHmZe
-        vXW4lURrmBEmz3uL5XES166g2e8dU8s=
+        with ESMTP id S233184AbiGRHFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 03:05:11 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D6AEDFD5
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 00:05:09 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1oDKoD-0003yH-CX; Mon, 18 Jul 2022 09:04:49 +0200
+Message-ID: <b5f5f87e-c690-2525-4b5f-4d178157a4d3@pengutronix.de>
+Date:   Mon, 18 Jul 2022 09:04:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V3 3/3] arm64: dts: imx8ulp-evk: Add the fec support
+Content-Language: en-US
+To:     wei.fang@nxp.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     aisheng.dong@nxp.com, devicetree@vger.kernel.org, peng.fan@nxp.com,
+        ping.bai@nxp.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, sudeep.holla@arm.com, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20220718142257.556248-1-wei.fang@nxp.com>
+ <20220718142257.556248-4-wei.fang@nxp.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20220718142257.556248-4-wei.fang@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Date:   Mon, 18 Jul 2022 08:57:10 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     haibo.chen@nxp.com
-Cc:     ashish.kumar@nxp.com, yogeshgaur.83@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        han.xu@nxp.com, singh.kuldeep87k@gmail.com,
-        tudor.ambarus@microchip.com, p.yadav@ti.com,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, zhengxunli@mxic.com.tw
-Subject: Re: [PATCH 09/11] mtd: spi-nor: macronix: add mx25uw51345g OPI mode
- support
-In-Reply-To: <1657012303-6464-9-git-send-email-haibo.chen@nxp.com>
-References: <1657012303-6464-1-git-send-email-haibo.chen@nxp.com>
- <1657012303-6464-9-git-send-email-haibo.chen@nxp.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <a21533017ffa0b6e6b0903d81d1cae0f@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-07-05 11:11, schrieb haibo.chen@nxp.com:
-> From: Haibo Chen <haibo.chen@nxp.com>
+On 18.07.22 16:22, wei.fang@nxp.com wrote:
+> From: Wei Fang <wei.fang@nxp.com>
 > 
-> mx25uw51345g has a special OPI DTR read command id, so add this
-> special fixup.
-> For RDID under OPI DTR mode, the dummy need to enlarge to 20 cycles,
-> otherwise can't get correct ID value.
+> Enable the fec on i.MX8ULP EVK board.
+> 
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> ---
+> V2 change:
+> Add clock_ext_rmii and clock_ext_ts. They are both related to EVK board.
+> V3 change:
+> No change.
+> ---
+>  arch/arm64/boot/dts/freescale/imx8ulp-evk.dts | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+> index 33e84c4e9ed8..ebce716b10e6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+> @@ -19,6 +19,21 @@ memory@80000000 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x80000000 0 0x80000000>;
+>  	};
+> +
+> +	clock_ext_rmii: clock-ext-rmii {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <50000000>;
+> +		clock-output-names = "ext_rmii_clk";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	clock_ext_ts: clock-ext-ts {
+> +		compatible = "fixed-clock";
+> +		/* External ts clock is 50MHZ from PHY on EVK board. */
+> +		clock-frequency = <50000000>;
+> +		clock-output-names = "ext_ts_clk";
+> +		#clock-cells = <0>;
+> +	};
+>  };
+>  
+>  &lpuart5 {
+> @@ -38,7 +53,49 @@ &usdhc0 {
+>  	status = "okay";
+>  };
+>  
+> +&fec {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&pinctrl_enet>;
+> +	pinctrl-1 = <&pinctrl_enet>;
+> +	clocks = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>,
+> +		 <&pcc4 IMX8ULP_CLK_ENET>,
+> +		 <&cgc1 IMX8ULP_CLK_ENET_TS_SEL>,
+> +		 <&clock_ext_rmii>;
+> +	clock-names = "ipg", "ahb", "ptp", "enet_clk_ref";
+> +	assigned-clocks = <&cgc1 IMX8ULP_CLK_ENET_TS_SEL>;
+> +	assigned-clock-parents = <&clock_ext_ts>;
+> +	phy-mode = "rmii";
+> +	phy-handle = <&ethphy>;
+> +	status = "okay";
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ethphy: ethernet-phy {
 
-Could you please dump the SFDP data of this flash, see [1]. I wonder
-if this command isn't described in the SFDP.
+@1
 
--michael
+> +			reg = <1>;
+> +			micrel,led-mode = <1>;
+> +		};
+> +	};
+> +};
+> +
+>  &iomuxc1 {
+> +	pinctrl_enet: enetgrp {
+> +		fsl,pins = <
+> +			MX8ULP_PAD_PTE15__ENET0_MDC     0x43
+> +			MX8ULP_PAD_PTE14__ENET0_MDIO    0x43
+> +			MX8ULP_PAD_PTE17__ENET0_RXER    0x43
+> +			MX8ULP_PAD_PTE18__ENET0_CRS_DV  0x43
+> +			MX8ULP_PAD_PTF1__ENET0_RXD0     0x43
+> +			MX8ULP_PAD_PTE20__ENET0_RXD1    0x43
+> +			MX8ULP_PAD_PTE16__ENET0_TXEN    0x43
+> +			MX8ULP_PAD_PTE23__ENET0_TXD0    0x43
+> +			MX8ULP_PAD_PTE22__ENET0_TXD1    0x43
+> +			MX8ULP_PAD_PTE19__ENET0_REFCLK  0x43
+> +			MX8ULP_PAD_PTF10__ENET0_1588_CLKIN 0x43
+> +		>;
+> +	};
+> +
+>  	pinctrl_lpuart5: lpuart5grp {
+>  		fsl,pins = <
+>  			MX8ULP_PAD_PTF14__LPUART5_TX	0x3
 
-[1] 
-https://lore.kernel.org/linux-mtd/4304e19f3399a0a6e856119d01ccabe0@walle.cc/
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
