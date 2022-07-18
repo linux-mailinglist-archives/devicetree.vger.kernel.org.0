@@ -2,95 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B409577F72
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22BD1577F8C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:22:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233635AbiGRKSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 06:18:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60452 "EHLO
+        id S234056AbiGRKWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 06:22:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233220AbiGRKST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:18:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A15651C906;
-        Mon, 18 Jul 2022 03:18:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S234071AbiGRKWZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:22:25 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2841CFD5;
+        Mon, 18 Jul 2022 03:22:23 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3BBC860DE9;
-        Mon, 18 Jul 2022 10:18:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 927FFC341C0;
-        Mon, 18 Jul 2022 10:18:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658139497;
-        bh=h79OFukJERJpHUHGqLQ5gkpECc0RLNV6RnpIUFe0S5s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kesXvsM0/CCvD6AHRluFa8oXOEfFSbQbsSHqNhDNtaCXlWv1S3M7nzGMu2WAj6lGP
-         JwPAgiGtF/dBUgDnq+x+Xtc+GcLUCclwtRumX8knhjcPDpZugiElP9chKqE1dLHKlt
-         B0qISQgcluiu6Eov4wvoc/VZ60ZJzP+RwqN/YoCm9qBsAfO+nj1Pt+EFkVhW2WWp/f
-         hewKgd5RhOGk3v17a0p8QUevtkvP2g0oQke0ouiyy9LCfr7d1ixfkVc7fIKCNsLEZd
-         yTfBmj2cx4HEy1/woCOrNZ4QkqCuC9reiRDUv36QTsIMNEqk3iFDppmFRUd9ahnpl1
-         xVuR3H32SmZpQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oDNpL-0004jf-2j; Mon, 18 Jul 2022 12:18:11 +0200
-Date:   Mon, 18 Jul 2022 12:18:11 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Stanimir Varbanov <svarbanov@mm-sol.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/8] PCI: qcom: Add support for SC8280XP and SA8540P
-Message-ID: <YtUzY9eYM0uhT3jj@hovoldconsulting.com>
-References: <20220714071348.6792-1-johan+linaro@kernel.org>
- <aa11b2ec-7196-7423-151c-1797966d0cd2@mm-sol.com>
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 973C66601A05;
+        Mon, 18 Jul 2022 11:22:20 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658139741;
+        bh=MBfaA4l7s9JZSP3+F+mJre4x0mO0iWTWc7gCQfQH6R4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=bgKQqeZ3BSO/JrSFq+us7gOSiaS9QQL/nZTgdDc4xU8jGJ0dJmRNikSXK4TmbX+Uz
+         TnfbQetMKhMfBw1xftjD7PcseM2CVl3zSs4wLmJW62qtZEvQtjckQ6NEZFyad5ch20
+         /QPjynMzbLT7nIgxIzsSPkJXUL5wr2uxjEu+poJFShYOVXeHKhUyslIBQW1stXP9Vq
+         SGorPakSM4X2nlNM6/DUUwpm/DaZoWoIxxqUa7ftVkHhhPpsumAfMMaSd9nP3j3vw/
+         8LJVKVM0VhX12KGP5DLBiBsHPHei28IUtxug2Dawy+KjCpS1Kzy2lBClQdNFR8I/ea
+         lepl1nve+GCiA==
+Message-ID: <00dc6bff-d87a-0d80-fe20-ae70e5ad0c4f@collabora.com>
+Date:   Mon, 18 Jul 2022 12:22:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aa11b2ec-7196-7423-151c-1797966d0cd2@mm-sol.com>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [V5,3/8] media: mtk-jpegdec: manage jpegdec multi-hardware
+Content-Language: en-US
+To:     Irui Wang <irui.wang@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        nicolas.dufresne@collabora.com, wenst@chromium.org,
+        kyrie wu <kyrie.wu@mediatek.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
+References: <20220716093408.29734-1-irui.wang@mediatek.com>
+ <20220716093408.29734-4-irui.wang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220716093408.29734-4-irui.wang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 18, 2022 at 10:49:40AM +0300, Stanimir Varbanov wrote:
-> Hi Johan,
+Il 16/07/22 11:34, Irui Wang ha scritto:
+> From: kyrie wu <kyrie.wu@mediatek.com>
 > 
-> Thank you for your work, especially for for the last three patches ;-)
+> manage each hardware information, including irq/clk/power.
+> the hardware includes HW0/HW1/HW2.
 > 
-> On 7/14/22 10:13, Johan Hovold wrote:
-> > This series adds support for the PCIe controllers found on SC8280XP and
-> > SA8540P.
-> > 
-> > Included are also three patches that clean up the way the driver handles
-> > different IP revisions (e.g. by modelling optional clocks as being truly
-> > optional).
-
-> For the whole set:
+> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> Signed-off-by: irui wang <irui.wang@mediatek.com>
 > 
-> Acked-by: Stanimir Varbanov <svarbanov@mm-sol.com>
+> ---
+>   drivers/media/platform/mediatek/jpeg/Makefile |   5 +-
+>   .../platform/mediatek/jpeg/mtk_jpeg_core.c    |  23 +++
+>   .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  37 ++++
+>   .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 172 ++++++++++++++++++
+>   4 files changed, 235 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/mediatek/jpeg/Makefile b/drivers/media/platform/mediatek/jpeg/Makefile
+> index 69703db4b0a5..26e84852523e 100644
+> --- a/drivers/media/platform/mediatek/jpeg/Makefile
+> +++ b/drivers/media/platform/mediatek/jpeg/Makefile
+> @@ -1,9 +1,10 @@
+>   # SPDX-License-Identifier: GPL-2.0-only
+>   obj-$(CONFIG_VIDEO_MEDIATEK_JPEG) += mtk_jpeg.o \
+> -	mtk-jpeg-enc-hw.o
+> +	mtk-jpeg-enc-hw.o \
+> +	mtk-jpeg-dec-hw.o
+>   
+>   mtk_jpeg-y := mtk_jpeg_core.o \
+> -		 mtk_jpeg_dec_hw.o \
+>   		 mtk_jpeg_dec_parse.o
+>   
+>   mtk-jpeg-enc-hw-y := mtk_jpeg_enc_hw.o
+> +mtk-jpeg-dec-hw-y := mtk_jpeg_dec_hw.o
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> index 386d48cc4f59..a9e8be976bb0 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> @@ -1100,6 +1100,10 @@ static void mtk_jpeg_multicore_enc_device_run(void *priv)
+>   	queue_work(jpeg->workqueue, &ctx->jpeg_work);
+>   }
+>   
+> +static void mtk_jpeg_multicore_dec_device_run(void *priv)
+> +{
 
-Thanks for the ack.
+.... why is this function empty?!
 
-Could you take a look at Dmitry's MSI series that this series depends on
-as well?
+> +}
+> +
+>   static void mtk_jpeg_dec_device_run(void *priv)
+>   {
+>   	struct mtk_jpeg_ctx *ctx = priv;
+> @@ -1166,6 +1170,10 @@ static const struct v4l2_m2m_ops mtk_jpeg_multicore_enc_m2m_ops = {
+>   	.device_run = mtk_jpeg_multicore_enc_device_run,
+>   };
+>   
+> +static const struct v4l2_m2m_ops mtk_jpeg_multicore_dec_m2m_ops = {
+> +	.device_run = mtk_jpeg_multicore_dec_device_run,
+> +};
+> +
+>   static const struct v4l2_m2m_ops mtk_jpeg_dec_m2m_ops = {
+>   	.device_run = mtk_jpeg_dec_device_run,
+>   	.job_ready  = mtk_jpeg_dec_job_ready,
+> @@ -1680,6 +1688,17 @@ static struct mtk_jpeg_variant mtk8195_jpegenc_drvdata = {
+>   	.cap_q_default_fourcc = V4L2_PIX_FMT_JPEG,
+>   };
+>   
+> +static const struct mtk_jpeg_variant mtk8195_jpegdec_drvdata = {
+> +	.formats = mtk_jpeg_dec_formats,
+> +	.num_formats = MTK_JPEG_DEC_NUM_FORMATS,
+> +	.qops = &mtk_jpeg_dec_qops,
+> +	.m2m_ops = &mtk_jpeg_multicore_dec_m2m_ops,
+> +	.dev_name = "mtk-jpeg-dec",
+> +	.ioctl_ops = &mtk_jpeg_dec_ioctl_ops,
+> +	.out_q_default_fourcc = V4L2_PIX_FMT_JPEG,
+> +	.cap_q_default_fourcc = V4L2_PIX_FMT_YUV420M,
+> +};
+> +
+>   #if defined(CONFIG_OF)
+>   static const struct of_device_id mtk_jpeg_match[] = {
+>   	{
+> @@ -1698,6 +1717,10 @@ static const struct of_device_id mtk_jpeg_match[] = {
+>   		.compatible = "mediatek,mt8195-jpgenc",
+>   		.data = &mtk8195_jpegenc_drvdata,
+>   	},
+> +	{
+> +		.compatible = "mediatek,mt8195-jpgdec",
+> +		.data = &mtk8195_jpegdec_drvdata,
+> +	},
+>   	{},
+>   };
+>   
 
-I saw you acking the binding, but not the rest of the series it seems:
+..snip..
 
-	https://lore.kernel.org/all/3f9e1c18-bc61-8690-5427-ba8dc5fad7ad@mm-sol.com/
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
+> index d2f25f43e852..232e81165dd3 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
 
-Johan
+..snip..
+
+> +
+> +static int mtk_jpegdec_hw_probe(struct platform_device *pdev)
+> +{
+> +	struct mtk_jpegdec_clk *jpegdec_clk;
+> +	struct mtk_jpeg_dev *master_dev;
+> +	struct mtk_jpegdec_comp_dev *dev;
+> +	int ret, i;
+> +
+> +	struct device *decs = &pdev->dev;
+> +
+> +	if (!decs->parent)
+> +		return -EPROBE_DEFER;
+> +
+> +	master_dev = dev_get_drvdata(decs->parent);
+> +	if (!master_dev)
+> +		return -EPROBE_DEFER;
+> +
+> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
+> +	if (!dev)
+> +		return -ENOMEM;
+> +
+> +	dev->plat_dev = pdev;
+> +	dev->dev = &pdev->dev;
+> +
+> +	if (!master_dev->is_jpgdec_multihw) {
+> +		master_dev->is_jpgdec_multihw = true;
+> +		for (i = 0; i < MTK_JPEGDEC_HW_MAX; i++)
+> +			master_dev->dec_hw_dev[i] = NULL;
+> +	}
+> +
+> +	jpegdec_clk = &dev->jdec_clk;
+> +
+> +	jpegdec_clk->clk_num = devm_clk_bulk_get_all(&pdev->dev,
+> +						     &jpegdec_clk->clks);
+> +	if (jpegdec_clk->clk_num < 0)
+> +		return dev_err_probe(&pdev->dev,
+> +				      jpegdec_clk->clk_num,
+> +				      "Failed to get jpegdec clock count.\n");
+> +
+> +	dev->reg_base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(dev->reg_base))
+> +		return PTR_ERR(dev->reg_base);
+> +
+> +	ret = mtk_jpegdec_hw_init_irq(dev);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev,
+> +				     ret,
+> +				     "Failed to register JPEGDEC irq handler.\n");
+
+Fix:
+		return dev_err_probe(&pdev->dev, ret,
+
+				     "Failed to register JPEGDEC irq handler.\n");
+
+
+Regards,
+Angelo
