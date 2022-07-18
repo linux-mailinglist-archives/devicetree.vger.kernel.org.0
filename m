@@ -2,72 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E2FB57869E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 17:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43FBE5786EB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 18:04:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234526AbiGRPpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 11:45:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55518 "EHLO
+        id S231316AbiGRQEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 12:04:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234411AbiGRPpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 11:45:06 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 272161A3A9;
-        Mon, 18 Jul 2022 08:45:05 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id y4so15876908edc.4;
-        Mon, 18 Jul 2022 08:45:05 -0700 (PDT)
+        with ESMTP id S231132AbiGRQEa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 12:04:30 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499A0DE85;
+        Mon, 18 Jul 2022 09:04:29 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id a5so17716640wrx.12;
+        Mon, 18 Jul 2022 09:04:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hLolbVXBEUER0UakSDpQJXv5E0rqxUG3yIyeZ9W9r5Q=;
-        b=plCZGiMFOXCv6zf7OYDwt4JY6+RNFu4f0tICXtFHy4L6RWr1qZHBvsnnlKQYgQODET
-         ITEZ59epuI4nQ3y+bLOIayxgNtwQl2iAdqukBlIyo2yHmz13QZW3NO7SxPgLo5x4AxsI
-         BTIGnIv5f21FLrndblO5jJ+AItTpVe92SV6L+hdppWLgnE8lzMaMyczp58RPkUl1zvkw
-         Z4H46610GhT7rdJLtNgV7lvqqsk9YzuQ3+Uhkgsglo/ABIvX/pcRmbCPQzVC3RsF04mY
-         zdxlyB3dJwyWjeJH+dLJixWMq8USQ4PTiUB5r3qnerepJR077FYCJfcAUo8G8nQqRqN/
-         ARvA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=DQCf01R8FDGSi3ujxTj9GGbfmIZAuUcf4db7o6FQwNs=;
+        b=lK8n/Z7kwUd8iVx3jExD8J3JH9ui1a0qLDRuUSwgT79sJHtXpllECNqoyPiue8mBAK
+         h5H48oY1A/CgoSjIOm3K0kDCxNvdQCR3H3SzKfcmBGPssYZU9EGPyeMmMyGqkjY60YQu
+         /ZIMGEZxAFdLHJENR56VZJfrpC28i2dnF2YkdZ7utsOaCFHb+xTnWBP1XZaZctbW5oJj
+         lTqTiFhxgbg0QuUhcUz5/z5TRKqFG43AnRrYvnESgzGeDpBete2+DZ+TnfuaeAv+GJNv
+         u/rjoEBtOvmWNWDE2HYQSwhslK+YK37BSj00GnHVegxPsFPxI2zWqtHHGyPyJAx6OTuI
+         Ebkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hLolbVXBEUER0UakSDpQJXv5E0rqxUG3yIyeZ9W9r5Q=;
-        b=Bt9hAYuyO15sa7xRBW/C9mNwlLNv0YqwaC8X5JmKSXahr7qCucT5bMtDSvw/V1KfO9
-         hGUOp4TFVFJIpn205CzKY8sPkBCKBJPxx4szQP9rwlCCpHcR66nz3AzWHkSSWY6nBfFW
-         2deu47tQduocxuCqP2+kzvkC0lcqfJzjDZFL9jzGBWc+ezradrQ+rn8l2lV2rSgEexKw
-         zt49pmjGdasga+LbZpvZwEDXBE4k1oJEQoR4Bh2jlBlqcWLyMljzRYG1VBBMiWHItqIQ
-         G0UKRnI6YWkGDyzuUsree2oixv5TRlP6/btpN7kx4uj84MaHC0g92IRGQLmB6cjz1r/x
-         NrOw==
-X-Gm-Message-State: AJIora+VbAlj+KffZAHZvIP+DMaNfYB9aZEAZT69r30YAZEHQXj9bd5x
-        8PMNNN9dPftHyW+muXFGiT6cwT1S5LAEm6K935I=
-X-Google-Smtp-Source: AGRyM1uKQNz+QND4OlGOIOojWTSJ/tbLxHrzijN9pwb5R19BT6Ju6GofoqpiNqfrXAwx/La0OGgbP/8aS6KNFi4gWOU=
-X-Received: by 2002:a50:fa91:0:b0:43a:4f13:4767 with SMTP id
- w17-20020a50fa91000000b0043a4f134767mr38536703edr.10.1658159103494; Mon, 18
- Jul 2022 08:45:03 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DQCf01R8FDGSi3ujxTj9GGbfmIZAuUcf4db7o6FQwNs=;
+        b=K2UeVyZJ6X1bvlLi+Nai/7xWaubVxyJtZNV/0v5bFUx0yEmaYY8aUpD8O4gFxTuqS/
+         ltoT+IofLKuprZjHz8UgAWwPaomRQ9ihkFIE28KvOBP2ozfKpk7U7Vy3MjBAQldvu84k
+         2Bec8ml8sBCKiAPMXPDoE2SoVDbjgGBxUc/1wEYz74CGimCWs9iOg53lR4XBSETxOZdf
+         Rm1ZpgPC10fliYuFZ8jYXU5pJBabp4yX9+KqCJ7dDg8K8Be8v2BAbHI3P9dZs+3PnzPI
+         xYRAV1f5L0bjVTGEbiPPgRpTFJ71Kc/kSA1B68Jjt5Eg9odur7vPo0cNcu7rnMAzO8gg
+         Go1A==
+X-Gm-Message-State: AJIora8eD03VbU921L4SDN+66lRz6C+uhozE/mYmrMwSvTlC7yEo6u9I
+        JOkqaVzRvjADN2tdBxZSo1U=
+X-Google-Smtp-Source: AGRyM1uGmhdJOb6JH9Z96ICgqDkOVFee8KCCyYuj0S2hemKTbLOSjnvczlEZxSE1rDCAU4uWzvZ4+A==
+X-Received: by 2002:a5d:584b:0:b0:21d:bd2e:42a7 with SMTP id i11-20020a5d584b000000b0021dbd2e42a7mr22311759wrf.192.1658160267673;
+        Mon, 18 Jul 2022 09:04:27 -0700 (PDT)
+Received: from [192.168.0.14] ([37.223.147.254])
+        by smtp.gmail.com with ESMTPSA id r18-20020a05600c35d200b003a2d0f0ccaesm20527536wmq.34.2022.07.18.09.04.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jul 2022 09:04:26 -0700 (PDT)
+Message-ID: <4fcc64d9-060e-6568-6eb7-d74c520593b0@gmail.com>
+Date:   Mon, 18 Jul 2022 18:04:25 +0200
 MIME-Version: 1.0
-References: <20220717181000.1186373-1-aford173@gmail.com> <20220717181000.1186373-5-aford173@gmail.com>
- <20220718053721.GB7333@pengutronix.de>
-In-Reply-To: <20220718053721.GB7333@pengutronix.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 18 Jul 2022 10:44:52 -0500
-Message-ID: <CAHCN7xLggy0YpimzMSxCSdfo5oEN9H55_+BZ6YXQREBYA+dgUA@mail.gmail.com>
-Subject: Re: [PATCH 4/6] arm64: dts: imx8mm-beacon: Enable Digitial Microphone
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: watchdog: mediatek: Convert binding
+ to YAML
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>
+References: <20220714125044.20403-1-allen-kh.cheng@mediatek.com>
+ <20220714125044.20403-2-allen-kh.cheng@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220714125044.20403-2-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,58 +81,146 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 18, 2022 at 12:37 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
->
-> Hi Adam,
->
-> On Sun, Jul 17, 2022 at 01:09:58PM -0500, Adam Ford wrote:
-> > There is a PDM microphone port on the baseboard which is connected to the
-> > micfil controller.  Create a new sound card to support this interface.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> > index 03266bd90a06..16444954f873 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> > @@ -98,7 +98,7 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
-> >               enable-active-high;
-> >       };
-> >
-> > -     sound {
-> > +     sound-codec {
-> >               compatible = "fsl,imx-audio-wm8962";
-> >               model = "wm8962-audio";
-> >               audio-cpu = <&sai3>;
-> > @@ -111,6 +111,18 @@ sound {
-> >                       "AMIC", "MICBIAS",
-> >                       "IN3R", "AMIC";
-> >       };
-> > +
-> > +     sound-micfil {
-> > +             compatible = "fsl,imx-audio-card";
-> > +             model = "imx-audio-micfil";
-> > +             pri-dai-link {
-> > +                     link-name = "micfil hifi";
-> > +                     format = "i2s";
-> > +                     cpu {
-> > +                             sound-dai = <&micfil>;
-> > +                     };
-> > +             };
-> > +     };
->
-> Note the micfil works well with the simple-audio-card driver which might
-> be an alternative here.
 
-I'll respin it with that and try it.  If it works we should be able to
-drop the last patch enabling the imx-audio-card module.
 
-adam
->
-> Sascha
->
-> --
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+On 14/07/2022 14:50, Allen-KH Cheng wrote:
+> Convert Mediatek watchdog devicetree binding to YAML.
+> 
+
+You are also fixing the fallback compatible here.
+
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> ---
+>   .../bindings/watchdog/mediatek,wdt.yaml       | 64 +++++++++++++++++++
+>   .../devicetree/bindings/watchdog/mtk-wdt.txt  | 42 ------------
+>   2 files changed, 64 insertions(+), 42 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,wdt.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,wdt.yaml
+> new file mode 100644
+> index 000000000000..cb90d89b9f5d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,wdt.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/mediatek,wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediatTek SoCs Watchdog timer
+> +
+> +maintainers:
+> +  - Runyang Chen <runyang.chen@mediatek.com>
+> +
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt2712-wdt
+> +          - mediatek,mt6589-wdt
+> +          - mediatek,mt7986-wdt
+> +          - mediatek,mt8183-wdt
+> +          - mediatek,mt8186-wdt
+> +          - mediatek,mt8192-wdt
+> +          - mediatek,mt8195-wdt
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt2701-wdt
+
+missing mt6582-wdt, mediatek,mt7623-wdt and more.
+I'd advise split this up in two patches. One fixing the fallback compatible and 
+the second one converting to yaml (or the other way round). In any case make 
+sure you have all compatibles in the end.
+
+Regards,
+Matthias
+
+> +              - mediatek,mt6797-wdt
+> +              - mediatek,mt7622-wdt
+> +              - mediatek,mt8516-wdt
+> +              - mediatek,mt8173-wdt
+> +          - const: mediatek,mt6589-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  mediatek,disable-extrst:
+> +    type: boolean
+> +    description: disable send output reset signal
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    watchdog@10007000 {
+> +        compatible = "mediatek,mt8186-wdt";
+> +        reg = <0x10007000 0x100>;
+> +        mediatek,disable-extrst;
+> +        #reset-cells = <1>;
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> deleted file mode 100644
+> index 762c62e428ef..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> +++ /dev/null
+> @@ -1,42 +0,0 @@
+> -Mediatek SoCs Watchdog timer
+> -
+> -The watchdog supports a pre-timeout interrupt that fires timeout-sec/2
+> -before the expiry.
+> -
+> -Required properties:
+> -
+> -- compatible should contain:
+> -	"mediatek,mt2701-wdt", "mediatek,mt6589-wdt": for MT2701
+> -	"mediatek,mt2712-wdt": for MT2712
+> -	"mediatek,mt6582-wdt", "mediatek,mt6589-wdt": for MT6582
+> -	"mediatek,mt6589-wdt": for MT6589
+> -	"mediatek,mt6797-wdt", "mediatek,mt6589-wdt": for MT6797
+> -	"mediatek,mt7622-wdt", "mediatek,mt6589-wdt": for MT7622
+> -	"mediatek,mt7623-wdt", "mediatek,mt6589-wdt": for MT7623
+> -	"mediatek,mt7629-wdt", "mediatek,mt6589-wdt": for MT7629
+> -	"mediatek,mt7986-wdt", "mediatek,mt6589-wdt": for MT7986
+> -	"mediatek,mt8183-wdt": for MT8183
+> -	"mediatek,mt8186-wdt", "mediatek,mt6589-wdt": for MT8186
+> -	"mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
+> -	"mediatek,mt8192-wdt": for MT8192
+> -	"mediatek,mt8195-wdt", "mediatek,mt6589-wdt": for MT8195
+> -
+> -- reg : Specifies base physical address and size of the registers.
+> -
+> -Optional properties:
+> -- mediatek,disable-extrst: disable send output reset signal
+> -- interrupts: Watchdog pre-timeout (bark) interrupt.
+> -- timeout-sec: contains the watchdog timeout in seconds.
+> -- #reset-cells: Should be 1.
+> -
+> -Example:
+> -
+> -watchdog: watchdog@10007000 {
+> -	compatible = "mediatek,mt8183-wdt",
+> -		     "mediatek,mt6589-wdt";
+> -	mediatek,disable-extrst;
+> -	reg = <0 0x10007000 0 0x100>;
+> -	interrupts = <GIC_SPI 139 IRQ_TYPE_NONE>;
+> -	timeout-sec = <10>;
+> -	#reset-cells = <1>;
+> -};
