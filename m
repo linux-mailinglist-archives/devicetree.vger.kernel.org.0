@@ -2,70 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BD54578445
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:50:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE40578450
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235459AbiGRNuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 09:50:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47888 "EHLO
+        id S235524AbiGRNwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 09:52:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234228AbiGRNt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:49:59 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F03DE9E
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:49:55 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id v12so15354767edc.10
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:49:55 -0700 (PDT)
+        with ESMTP id S235531AbiGRNwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:52:00 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873F727CD8
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:51:57 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id z25so19461814lfr.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:51:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=mwJEIiWxIdKoQNjurmQkm0yRpas5vKctk+tgDdWZHg4=;
-        b=Gjxbqc37suGvvKcHdZyHQkOP8g119z1gSFJflPbtTCFzR9iE6HFFGWRrpz6K27LwnT
-         apnZ9Rk4pX8i6+leqCU2usrcIA480qpyz4E/eIIqmQ+EYlcVTcMHTft5LvFUFBYlAcf5
-         +gCKzS9ROx1o7gcEKo9o784V2Lat5+3G5LbO63+arMwpTeg5wzdhdUEfSZcQXKLzFNaB
-         Qv1/Eo0Jjxvc4Mv+gcSd7q4Wb4hYCg5uF0qbiHQPaAnhJQu83DrF60tUKYwa5xhcsp/g
-         Y8WDu1/xOAXYLS2zIhZnizRodimK+894CAk8G80UElcJjv74ijWK1249znI8Ic+S+RsI
-         +v/Q==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=NXepRwCmHXNEdV0q8fO4cx6qihndjDIfVD2iW8c3B2I=;
+        b=lQz2MxiTEf9TZD7FzZAXQLlRkoy35pVVvzoGsVi9W719l1ocMKcztIuY4ZvhVEG5NK
+         +EspkvHKwE8im2Xr3MFYhET6v9f1ujeGYQaHzr4dMycjUOxRwXhVZL8VRmYXNDzLTuAy
+         g1DopHi+HyKmslpcLeMJs9y/9He6+w7c2Ei8vOouPo7hQYI0x0GJExRNVIvkN64Bu8D/
+         JhjUGkQYV/INlrDDKuSeG0gPI8bfrrsdC7UOza62gwAUApgBXJDjfg+nZan0c1oUNWEq
+         OqSpihd7rCAXgDKMkYKJs/ZZUVD65D4etll/DexCJL3KW1IlKD2vDwB4fIhQTfYjf0SS
+         slew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=mwJEIiWxIdKoQNjurmQkm0yRpas5vKctk+tgDdWZHg4=;
-        b=wrLh74gQ+fBum75clIJ+8Bl8LK2Qc4mPkeTRITWb9bRbz7hXFCqsTajt9gZ23QcBVm
-         6SvaZdOSYk8OpihfMDBYNwnQjY2kc/nSv6VKbwqmUvban3QH7PkJaZfeNEoAW/FQ/9gZ
-         I+yPkgdVyqE0H+FLgZYkZMMmSDeY470FwS7IwvaoCb5jzlb076Woc4lnwiqAlj6rq4QJ
-         hyxXgUwHhMhAhp6GvtCPPVLk8PqrJyGHK2ARI+6hF8CxRfavvta9TJypmMW8J8yOhP+2
-         11tpKw98EXhCp/AdDEEMi/TUdcPU5xRGfC4ih5EqCrgsDdJzulvOCjy5lAIYTfU1IN/7
-         RwfQ==
-X-Gm-Message-State: AJIora+ulcpndrV8U8SKIATz7XHhOrnkGpaQPwmJv2YH7CYtIVH+kRrM
-        VMs2odpdEnWKgoFIr8RtSzcIZkbF2nY57puODTPbVQ==
-X-Google-Smtp-Source: AGRyM1tVEZUfZAQ2xPekThxcM44EpBdVLVw3tbPugsbSOypyq4ohvMeUJcCd/qgm2IpP7UrCYRhZL698NHXOpUgyCgs=
-X-Received: by 2002:a05:6402:26c3:b0:43a:a846:b2c1 with SMTP id
- x3-20020a05640226c300b0043aa846b2c1mr37575469edd.133.1658152194230; Mon, 18
- Jul 2022 06:49:54 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=NXepRwCmHXNEdV0q8fO4cx6qihndjDIfVD2iW8c3B2I=;
+        b=EIQJeOp71aHEDAUQW98KmaH9ESo6J2ufg16AboG+ZOiJ8DN0GYbELohhc/AMVKJZ2a
+         MmkLQ0dOFhwRS8OnJlAFexmcxZvW4dFIdQ/nyJh49scjx5pVEkq0D1BCIQaazRkVpB/6
+         KYPGMBCYBALzj7+ce3W/bwFEnkiOEaVhdA0zc4VSZXda70zs3D8+c6jdVFxgySq/+qrG
+         GQRDx3Li3SQU/brmRi/Rql5hVdXg4jzaFM98gOmd+p21Yq1yPAEedsEkYgexutEDEJ7m
+         Uv4BBK2kkWy9/jcNnlmX3ieKyukS4+GNNnhzMRbg46nUx8OXLn/rPTwiI9Tcb2RvCPKl
+         OuRA==
+X-Gm-Message-State: AJIora9qFhK8U+3A6DoNUofp1dz40kVXyY/wfk39raMwte8gafIksvEO
+        wBR6aKOfOZ0s5Iqr1UBye+fyOg==
+X-Google-Smtp-Source: AGRyM1u8biS5A5stNNex26D8tk1YTjCm5oCNp2FTG+A4GdkeFJhuRmurktf4iXWZeIzn8veGEh/Dbg==
+X-Received: by 2002:a05:6512:4029:b0:489:c7a7:42c8 with SMTP id br41-20020a056512402900b00489c7a742c8mr14325013lfb.461.1658152315795;
+        Mon, 18 Jul 2022 06:51:55 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id k6-20020a0565123d8600b0047255d211c7sm2609276lfv.246.2022.07.18.06.51.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jul 2022 06:51:55 -0700 (PDT)
+Message-ID: <dc19c084-633d-9777-6dfd-b9633ac9c4ae@linaro.org>
+Date:   Mon, 18 Jul 2022 15:51:54 +0200
 MIME-Version: 1.0
-References: <20220713131421.1527179-1-nuno.sa@analog.com> <20220713131421.1527179-4-nuno.sa@analog.com>
- <CACRpkdbitDErSCMbKFe0yZB63+uTGwt5ROMbEV_iAPck_RN7sg@mail.gmail.com> <8461b72ae951e4311952052c467fb1275ff9e58a.camel@gmail.com>
-In-Reply-To: <8461b72ae951e4311952052c467fb1275ff9e58a.camel@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 18 Jul 2022 15:49:42 +0200
-Message-ID: <CACRpkdZDkgM-qVNfQOqdHewqM8aP-dj9hwYaBJu+q0K4Gh2Yug@mail.gmail.com>
-Subject: Re: [PATCH 3/4] gpiolib: acpi: support bias pull disable
-To:     =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
-Cc:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 3/3] ARM: dts: qcom: Add support for Samsung Galaxy Tab 4
+ 10.1 (SM-T530)
+Content-Language: en-US
+To:     =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220717213432.134486-1-matti.lehtimaki@gmail.com>
+ <20220717213432.134486-4-matti.lehtimaki@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220717213432.134486-4-matti.lehtimaki@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,35 +83,210 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 18, 2022 at 12:48 PM Nuno S=C3=A1 <noname.nuno@gmail.com> wrote=
-:
-> On Mon, 2022-07-18 at 12:32 +0200, Linus Walleij wrote:
-> > On Wed, Jul 13, 2022 at 3:13 PM Nuno S=C3=A1 <nuno.sa@analog.com> wrote=
-:
-> >
-> > > On top of looking at PULL_UP and PULL_DOWN flags, also look at
-> > > PULL_DISABLE and set the appropriate GPIO flag. The GPIO core will
-> > > then
-> > > pass down this to controllers that support it.
-> > >
-> > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> >
-> > Do we have a semantic check that PULLDOWN and PULLUP
-> > is not used in combination with NOPULL here?
-> >
-> > (We should also be checking that PULLDOWN and PULLUP
-> > are not used simultaneously but that is an unrelated thing.)
->
-> I did extended this check:
->
-> https://elixir.bootlin.com/linux/v5.19-rc7/source/drivers/gpio/gpiolib.c#=
-L3948
->
-> on patch 1 to make sure that PULLDOWN and PULLUP are not used with
-> NOPULL. Is this what you have in mind or is it something else?
+On 17/07/2022 23:34, Matti Lehtimäki wrote:
+> Add a device tree for the Samsung Galaxy Tab 4 10.1 (SM-T530) wifi tablet
+> based on the apq8026 platform.
+> 
+> Currently supported are accelerometer sensor, hall sensor, internal storage, physical
+> buttons (power & volume), screen (based on simple-framebuffer set up by
+> the bootloader) sdcard, touchscreen and USB.
+> 
+> Signed-off-by: Matti LehtimÃ¤ki <matti.lehtimaki@gmail.com>
 
-Excellent, thanks! That is exactly what we need, sorry for not being
-able to keep all floating patches in my head :D
+Thank you for your patch. There is something to discuss/improve.
 
-Yours,
-Linus Walleij
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../dts/qcom-apq8026-samsung-matissewifi.dts  | 475 ++++++++++++++++++
+>  2 files changed, 476 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 5112f493f494..4d02a1740079 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1010,6 +1010,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+>  	qcom-apq8016-sbc.dtb \
+>  	qcom-apq8026-asus-sparrow.dtb \
+>  	qcom-apq8026-lg-lenok.dtb \
+> +	qcom-apq8026-samsung-matissewifi.dtb \
+>  	qcom-apq8060-dragonboard.dtb \
+>  	qcom-apq8064-cm-qs600.dtb \
+>  	qcom-apq8064-ifc6410.dtb \
+> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts b/arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
+> new file mode 100644
+> index 000000000000..f4c5eb9db11c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
+> @@ -0,0 +1,475 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2022, Matti LehtimÃ¤ki <matti.lehtimaki@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "qcom-msm8226.dtsi"
+> +#include "qcom-pm8226.dtsi"
+> +#include <dt-bindings/input/input.h>
+> +
+> +/delete-node/ &smem_region;
+> +
+> +/ {
+> +	model = "Samsung Galaxy Tab 4 10.1";
+> +	compatible = "samsung,matissewifi", "qcom,apq8026";
+> +	chassis-type = "tablet";
+> +
+> +	qcom,msm-id = <0xC708FF01 0 0x20000>,
+> +		      <0xC708FF01 1 0x20000>,
+> +		      <0xC708FF01 2 0x20000>,
+> +		      <0xC708FF01 3 0x20000>;
+
+Lower case hex and does not match bindings.
+https://lore.kernel.org/all/20220705130300.100882-2-krzysztof.kozlowski@linaro.org/
+
+This would need detailed explanation because it really does not look
+correct.
+
+> +
+> +	aliases {
+> +		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
+> +		mmc1 = &sdhc_2; /* SDC2 SD card slot */
+> +		display0 = &framebuffer0;
+> +	};
+> +
+> +	chosen {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		stdout-path = "display0";
+> +
+> +		framebuffer0: framebuffer@3200000 {
+> +			compatible = "simple-framebuffer";
+> +			reg = <0x3200000 0x800000>;
+> +			width = <1280>;
+> +			height = <800>;
+> +			stride = <(1280 * 3)>;
+> +			format = "r8g8b8";
+> +			status = "okay";
+> +		};
+> +	};
+> +
+> +	gpio-hall-sensor {
+> +		compatible = "gpio-keys";
+> +
+> +		event-hall-sensor {
+> +			label = "Hall Effect Sensor";
+> +			gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
+> +			interrupts = <&tlmm 110 IRQ_TYPE_EDGE_FALLING>;
+> +			linux,input-type = <EV_SW>;
+> +			linux,code = <SW_LID>;
+> +			debounce-interval = <15>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		autorepeat;
+> +
+> +		key-home {
+> +			label = "Home";
+> +			gpios = <&tlmm 108 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_HOMEPAGE>;
+> +			debounce-interval = <15>;
+> +		};
+> +
+> +		key-volume-down {
+> +			label = "Volume Down";
+> +			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_VOLUMEDOWN>;
+> +			debounce-interval = <15>;
+> +		};
+> +
+> +		key-volume-up {
+> +			label = "Volume Up";
+> +			gpios = <&tlmm 106 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			debounce-interval = <15>;
+> +		};
+> +	};
+> +
+> +	i2c-muic {
+> +		compatible = "i2c-gpio";
+> +		sda-gpios = <&tlmm 14 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+> +		scl-gpios = <&tlmm 15 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&muic_i2c_default_state>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		muic: extcon@25 {
+
+extcon is Linux specific, need some generic name instead.
+
+> +			compatible = "siliconmitus,sm5502-muic";
+> +			reg = <0x25>;
+> +
+> +			interrupt-parent = <&tlmm>;
+> +			interrupts = <67 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&muic_int_default_state>;
+> +		};
+> +	};
+> +
+> +	reg_tsp_1p8v: regulator-tsp-1p8v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "tsp_1p8v";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +
+> +		gpio = <&tlmm 31 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&tsp_en_default_state>;
+> +	};
+> +
+> +	reg_tsp_3p3v: regulator-tsp-3p3v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "tsp_3p3v";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 73 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&tsp_en1_default_state>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		framebuffer@3200000 {
+
+Generic node names, so memory@
+
+> +			reg = <0x3200000 0x800000>;
+> +			no-map;
+> +		};
+> +
+> +		mpss_region: mpss@8400000 {
+
+The same and so on...
+
+> +			reg = <0x08400000 0x1f00000>;
+> +			no-map;
+> +		};
+> +
+> +		mba_region: mba@a300000 {
+
+Best regards,
+Krzysztof
