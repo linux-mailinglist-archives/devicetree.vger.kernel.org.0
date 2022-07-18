@@ -2,98 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94A2657854B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:25:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D53E3578555
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:27:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231416AbiGROZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 10:25:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52334 "EHLO
+        id S235286AbiGRO1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 10:27:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235341AbiGROZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:25:24 -0400
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C1C61146F
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:25:24 -0700 (PDT)
-Received: by mail-il1-f173.google.com with SMTP id h16so6069058ila.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:25:24 -0700 (PDT)
+        with ESMTP id S234238AbiGRO1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:27:15 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFBCAE08F
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:27:13 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id u19so10796434lfs.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:27:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7szMKoB+1l8P6x4W0Thx1sjinfdDfG1LQ+fBDOtwjms=;
+        b=mCttHvZm0t/pgbDFqurRyuFNRUwoJoZoJB1WaKvCpA3hIIEvo4ibJjmd5OR+0ex7PU
+         L9BfGChdNbv5m6Q6nAwI2MYp0rHF937G0iZO03zO0uTzjWpWmvzXbOz1X6ZvvQxgkmDQ
+         ty0CkEi+4eRojY6oqk/O+mvkxTAXfcutQFF0TE1N/YJSkuA8Nf8NXy8RYYlJs4MfS3e3
+         z0C8segewYgr/T6+dfWgacXyUpVvnUB7mx5ssYSIhNylvmDKyoLzMC1vvcMRqxw9M3pp
+         BZwHP/9GJzVRpP4KY6/9sGqUMURVVnYwNDbLsJCx1OfncvGLhAY4sTj39IQn1l5nPRsn
+         GGPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=JfNeRuaq4QUMc1UQflDNIYPoJZqS9R6+d3wgQ7WusE8=;
-        b=xQeMpF50Pfgc8Rmtp8sXzygLicBCDq6LA+8mLIc7Z+SLYPI2r2VayGTI7NHpCFHqWM
-         JIZGqaLElbjbVqXaGJhItoPxZQpAdPktX62lXCiPa03H09BkBKjf0O2qjh/ecdYQNlFW
-         PLaMZlUNz13444u8aZPAzQ4NXTIDGTgAgboU59K/600GjIveOGOg2xiRRafsRtVFCANz
-         o0l6hJqeliPfvEtiUpVfgxBBwRQQVabTw9fUhGzTzpaD4pzDrA+7B9NWMRCBUNxS0ij3
-         0f9F50nntNUkcEdAZF36keCMfp334KbQDbxiPK0bKc1eNPv4+u0Qn+xB1P/bdx/mIido
-         vuzQ==
-X-Gm-Message-State: AJIora8esF8PLoZVkjNC5BQvfO667ajgD3IWqULSHAiUsWnAUJtOTEr5
-        F1Eyjs+CYh4EarnE/A1jK1EYeJvMIQ==
-X-Google-Smtp-Source: AGRyM1v/EZOkHkYzJkV7IpFVulPzSJ6zIAShCYpgiVz7QSZ9ObMbxvmeXhOUg+0YHsA9PzHSmflswg==
-X-Received: by 2002:a05:6e02:144f:b0:2dc:2850:2956 with SMTP id p15-20020a056e02144f00b002dc28502956mr13489972ilo.258.1658154323267;
-        Mon, 18 Jul 2022 07:25:23 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c14-20020a02330e000000b0033f043929fbsm5593016jae.107.2022.07.18.07.25.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 07:25:22 -0700 (PDT)
-Received: (nullmailer pid 2902942 invoked by uid 1000);
-        Mon, 18 Jul 2022 14:25:21 -0000
-Date:   Mon, 18 Jul 2022 08:25:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        William Zhang <william.zhang@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] dt-bindings: arm: Add Asus GT-AC6000 based on BCM4912
-Message-ID: <20220718142521.GA2901770-robh@kernel.org>
-References: <20220713121234.32604-1-zajec5@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7szMKoB+1l8P6x4W0Thx1sjinfdDfG1LQ+fBDOtwjms=;
+        b=0/d0mW2I+Us00Lq2ceW893hYf4Mvr9a2lf9z0WQ/9Uw6Kbu6e/x7OB4PG6fmUBQAjY
+         9a6hcE2m5n6vI04fLxTLIwmSn7g7v8e67rXCEeS7CYiyKso8h4y8JcWHIy+RUcexq+rb
+         0XnJ+7odjQoSzUmxuBXu36eh1mfTEM1m9Y7fbU8BU7ihhFSu7bkYNpPNbxM7oyjb9geK
+         FmMZKgYRZ/9zmlxVCiXWZsoo45pChZMZCBprZRQpni3DIvu9u51M4gc8ypcFMmw8JqB6
+         Ppc5XagAmf56Lr5F0wxQlGoT9C980ARDnJ9jWH/LX7K3f7yiUWkut2udp7smhqs+e1wE
+         yOuw==
+X-Gm-Message-State: AJIora+ELeef+NJUM1icYK4jQSnJseqhg80035uU+Eq7CXmwBPQ1AssM
+        M3BfHQZo2t9KqThmi81qFdaUXA==
+X-Google-Smtp-Source: AGRyM1vlnLN6Wi63Bi3QU8Ld+M+Ob+/YIrcu+eYaAmqRKohzIsuVp4yYeCgJ6hVbu3COrCdX4CTEVg==
+X-Received: by 2002:a05:6512:304a:b0:489:d7eb:82c7 with SMTP id b10-20020a056512304a00b00489d7eb82c7mr15625955lfb.314.1658154432074;
+        Mon, 18 Jul 2022 07:27:12 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id z8-20020a0565120c0800b0047e789b9700sm2612607lfu.118.2022.07.18.07.27.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jul 2022 07:27:11 -0700 (PDT)
+Message-ID: <1c73fe9e-81f8-3ecd-edd1-60e6ddd548f3@linaro.org>
+Date:   Mon, 18 Jul 2022 16:27:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 05/10] dt-bindings: input: adp5588-keys: add bindings
+Content-Language: en-US
+To:     =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220715125138.378632-1-nuno.sa@analog.com>
+ <20220715125138.378632-6-nuno.sa@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220715125138.378632-6-nuno.sa@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220713121234.32604-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 13, 2022 at 02:12:34PM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 15/07/2022 14:51, Nuno Sá wrote:
+> Add device tree bindings for the adp5588-keys driver.
 > 
-> It's a home router, the first BCM4912 SoC based public device.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
 > ---
->  Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-> index b817051c491d..40bb5223740b 100644
-> --- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-> @@ -31,6 +31,7 @@ properties:
->        - description: BCM4912 based boards
->          items:
->            - enum:
-> +              - asus,gt-ax6000
+>  .../bindings/input/adi,adp5588-keys.yaml      | 110 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 111 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/adi,adp5588-keys.yaml
 
-The subject says it is gt-ac6000. Which is wrong?
+Thank you for your patch. There is something to discuss/improve.
 
->                - brcm,bcm94912
->            - const: brcm,bcm4912
->            - const: brcm,bcmbca
-> -- 
-> 2.34.1
 > 
-> 
+> diff --git a/Documentation/devicetree/bindings/input/adi,adp5588-keys.yaml b/Documentation/devicetree/bindings/input/adi,adp5588-keys.yaml
+> new file mode 100644
+> index 000000000000..0d262b42150a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/adi,adp5588-keys.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/adi,adp5588-keys.yaml#
+
+Is ADP5588 a multi-function device? If not, I propose to drop the "keys"
+suffix.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADP5588 Keypad Controller
+> +
+> +maintainers:
+> +  - Nuno Sá <nuno.sa@analog.com>
+> +
+> +description: |
+> +  Analog Devices Mobile I/O Expander and QWERTY Keypad Controller
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ADP5588.pdf
+> +
+> +allOf:
+> +  - $ref: matrix-keymap.yaml#
+> +  - $ref: input.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adp5588
+> +      - adi,adp5587
+
+Bring some order, like alphabetical.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vcc-supply:
+> +    description: Supply Voltage Input
+> +
+> +  reset-gpios:
+> +    description:
+> +      If specified, it will be asserted during driver probe. As the line is
+> +      active low, it should be marked GPIO_ACTIVE_LOW.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  gpio-controller:
+> +    description:
+> +      This property applies if either keypad,num-rows lower than 8 or
+> +      keypad,num-columns lower than 10.
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  interrupt-controller:
+> +    description:
+> +      This property applies if either keypad,num-rows lower than 8 or
+> +      keypad,num-columns lower than 10.
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  adi,unlock-keys:
+> +    description:
+> +      Specifies a maximum of 2 keys that can be used to unlock the keypad.
+> +      If this property is set, the keyboard will be locked and only unlocked
+> +      after these keys are pressed. If only one key is set, a double click is
+> +      needed to unlock the keypad.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 2
+
+What are the values/units? keycodes? If so, maybe "adi,unlock-keycodes"
+and add limit on values (like linux,keycodes).
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - keypad,num-rows
+> +  - keypad,num-columns
+> +  - linux,keymap
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/input/input.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +          #address-cells = <1>;
+
+Wrong indentation. 4 spaces for DTS example.
+
+> +          #size-cells = <0>;
+> +
+> +          adp5588@34 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+Best regards,
+Krzysztof
