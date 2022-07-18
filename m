@@ -2,116 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 558A0578690
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 17:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 901D457868D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 17:42:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233631AbiGRPnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 11:43:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53882 "EHLO
+        id S229824AbiGRPme convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Jul 2022 11:42:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233607AbiGRPnY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 11:43:24 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB2181A045;
-        Mon, 18 Jul 2022 08:43:23 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id bu1so17635896wrb.9;
-        Mon, 18 Jul 2022 08:43:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=nTBmCzurJnZITyZ4+vdomE5npkyVBEtub+c0MxYfnKE=;
-        b=A2wsW1np8iDyW3qo44bwOkA2Qg1lex4haTlLsKjbyygxlm93Fcg95GYGNIrsGkeCb+
-         FAhv6WxSqmameMIz5KVlSA5sk2ysBJ9GMm2NdcBeIk2wpVJfqxxsvvIFKbwMEeDr/CBF
-         8meuEKxLOU9QeSdTeYpbYybndt49ihq53F4st9nXIIRnQI2mRRcD2xJk3/+x/7MDMQ0S
-         aDzb1ghgUwLoK9IB3S4GxC8SImDYolSwl8yyWtFiw3p8euUC/H8LJ8gUF81WmCsJJtCj
-         bt3cn3TjSNIMcHZAwwph5FAixraftKkiAGpjXzscjKjX5vNxJ2PNlr3EYbSzPv8PsYQj
-         Foaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nTBmCzurJnZITyZ4+vdomE5npkyVBEtub+c0MxYfnKE=;
-        b=7JbhxPc978saze8JJo/WR4ckViKikYvaD40+doOdWSwwRqblXT+85Z379BYKLgudxr
-         FqQARJnZVu7jjUoV0WczpmuLPhUlEv469uL7AcgBVMzUIYzsCAdX3CBBOFty3x7e60mJ
-         8L3Aldj8UuaVfa7idxEm+NugJxHqH4iwRElUc8zJEbCoXYzEYnlp93BxmXDbywc7vrA9
-         AtUcu6MfYw9rkErlHUoZCjWludFsJUU8p/QWAm3x7zmzwKXAay3bepXd7I0F5MTqahsj
-         UMLFpdSXA956/FRaVUDY5dezhR3jb0ohAWfzZy5peqb09E8SLfFlxclrXUC6u7C1CDNN
-         wocA==
-X-Gm-Message-State: AJIora9TxYOODFVx6PIO7a3z6xWycw0N7nkammNa0lmXx1dHTeZpUGJZ
-        bAspIUACUSDj4xKwvp1+mi8=
-X-Google-Smtp-Source: AGRyM1vIYKez3YmOH3//zsEF0fV6nQ+Efql2eZP3eG4lBDHF97itohTvW+WzhUWiQt87XZxYbYUVpQ==
-X-Received: by 2002:a5d:6c63:0:b0:21d:bf45:f90f with SMTP id r3-20020a5d6c63000000b0021dbf45f90fmr21215186wrz.715.1658159002135;
-        Mon, 18 Jul 2022 08:43:22 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id t4-20020a1c7704000000b003a308e9a192sm13416308wmi.30.2022.07.18.08.43.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 08:43:21 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH 2/2] ARM: dts: qcom: ipq8064: pad addresses to 8 digit
-Date:   Mon, 18 Jul 2022 17:38:15 +0200
-Message-Id: <20220718153815.29414-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718153815.29414-1-ansuelsmth@gmail.com>
-References: <20220718153815.29414-1-ansuelsmth@gmail.com>
+        with ESMTP id S230240AbiGRPmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 11:42:33 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 167C611158
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 08:42:33 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1oDSsu-0003FH-Dg; Mon, 18 Jul 2022 17:42:12 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1oDSsr-001k2n-PI; Mon, 18 Jul 2022 17:42:09 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1oDSsq-000Byu-P3; Mon, 18 Jul 2022 17:42:08 +0200
+Message-ID: <b7540ac17d28cee09f6f9cce65b696248e545ae1.camel@pengutronix.de>
+Subject: Re: [PATCH v2 03/12] reset: add polarfire soc reset support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Conor.Dooley@microchip.com
+Cc:     paul.walmsley@sifive.com, Daire.McNamara@microchip.com,
+        sboyd@kernel.org, aou@eecs.berkeley.edu, robh+dt@kernel.org,
+        palmer@dabbelt.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, mturquette@baylibre.com,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org
+Date:   Mon, 18 Jul 2022 17:42:08 +0200
+In-Reply-To: <22d3a11b-a603-8406-77ec-51ec038560fc@microchip.com>
+References: <20220704121558.2088698-1-conor.dooley@microchip.com>
+         <20220704121558.2088698-4-conor.dooley@microchip.com>
+         <22d3a11b-a603-8406-77ec-51ec038560fc@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pad reg addresses to 8 digit to make sorting easier.
+Hi Conor,
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- arch/arm/boot/dts/qcom-ipq8064.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+On Mo, 2022-07-18 at 11:34 +0000, Conor.Dooley@microchip.com wrote:
+[...]
+> > +config RESET_POLARFIRE_SOC
+> > +	bool "Microchip PolarFire SoC (MPFS) Reset Driver"
+> > +	depends on AUXILIARY_BUS && MCHP_CLK_MPFS
+> > +	default MCHP_CLK_MPFS
+> > +	help
+> > +	  This driver supports peripheral reset for the Microchip PolarFire SoC
+> > +
 
-diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-index cf41d330c920..9405d6167b20 100644
---- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-@@ -348,7 +348,7 @@ vsdcc_fixed: vsdcc-regulator {
- 
- 		rpm: rpm@108000 {
- 			compatible = "qcom,rpm-ipq8064";
--			reg = <0x108000 0x1000>;
-+			reg = <0x00108000 0x1000>;
- 			qcom,ipc = <&l2cc 0x8 2>;
- 
- 			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
-@@ -389,7 +389,7 @@ tsens_calib_backup: calib_backup@410 {
- 
- 		qcom_pinmux: pinmux@800000 {
- 			compatible = "qcom,ipq8064-pinctrl";
--			reg = <0x800000 0x4000>;
-+			reg = <0x00800000 0x4000>;
- 
- 			gpio-controller;
- 			gpio-ranges = <&qcom_pinmux 0 0 69>;
-@@ -571,7 +571,7 @@ IRQ_TYPE_EDGE_RISING)>,
- 
- 		l2cc: clock-controller@2011000 {
- 			compatible = "qcom,kpss-gcc", "syscon";
--			reg = <0x2011000 0x1000>;
-+			reg = <0x02011000 0x1000>;
- 			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
- 			clock-names = "pll8_vote", "pxo";
- 			clock-output-names = "acpu_l2_aux";
--- 
-2.36.1
+Please sort alphabetically by config option.
 
+> >   config RESET_MESON
+> >   	tristate "Meson Reset Driver"
+> >   	depends on ARCH_MESON || COMPILE_TEST
+> > diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> > index a80a9c4008a7..5fac3a753858 100644
+> > --- a/drivers/reset/Makefile
+> > +++ b/drivers/reset/Makefile
+> > @@ -17,6 +17,7 @@ obj-$(CONFIG_RESET_K210) += reset-k210.o
+> >   obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
+> >   obj-$(CONFIG_RESET_LPC18XX) += reset-lpc18xx.o
+> >   obj-$(CONFIG_RESET_MCHP_SPARX5) += reset-microchip-sparx5.o
+> > +obj-$(CONFIG_RESET_POLARFIRE_SOC) += reset-mpfs.o
+
+Same here. Otherwise,
+
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+and
+
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+to merge this together with the other patches.
+
+regards
+Philipp
