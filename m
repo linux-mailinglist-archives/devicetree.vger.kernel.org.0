@@ -2,227 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22BD1577F8C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:22:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E3E577F98
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:26:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234056AbiGRKWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 06:22:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35822 "EHLO
+        id S233967AbiGRK0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 06:26:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234071AbiGRKWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:22:25 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2841CFD5;
-        Mon, 18 Jul 2022 03:22:23 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 973C66601A05;
-        Mon, 18 Jul 2022 11:22:20 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658139741;
-        bh=MBfaA4l7s9JZSP3+F+mJre4x0mO0iWTWc7gCQfQH6R4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bgKQqeZ3BSO/JrSFq+us7gOSiaS9QQL/nZTgdDc4xU8jGJ0dJmRNikSXK4TmbX+Uz
-         TnfbQetMKhMfBw1xftjD7PcseM2CVl3zSs4wLmJW62qtZEvQtjckQ6NEZFyad5ch20
-         /QPjynMzbLT7nIgxIzsSPkJXUL5wr2uxjEu+poJFShYOVXeHKhUyslIBQW1stXP9Vq
-         SGorPakSM4X2nlNM6/DUUwpm/DaZoWoIxxqUa7ftVkHhhPpsumAfMMaSd9nP3j3vw/
-         8LJVKVM0VhX12KGP5DLBiBsHPHei28IUtxug2Dawy+KjCpS1Kzy2lBClQdNFR8I/ea
-         lepl1nve+GCiA==
-Message-ID: <00dc6bff-d87a-0d80-fe20-ae70e5ad0c4f@collabora.com>
-Date:   Mon, 18 Jul 2022 12:22:17 +0200
+        with ESMTP id S229815AbiGRK0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:26:05 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6B3E1A051
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 03:26:02 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id r6so14608678edd.7
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 03:26:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=dKtWhaBR01kOs5t5WfXdpceIgYotqV0N9c2snMDzhss=;
+        b=eCELGXkjvHTpXtFiONS0ZIaKrUr/5CzauZxqEEyEy3D7eaDEYpm1ZjZaMlh3e5KV17
+         0G/l0w2T63cSaQca04XnbyujUgSu71fNjvVIYf28TCD5JrkykpvdHk1yORyUPlczPOF7
+         Yvby5XaoYaaTBMTm/i2TS38nwb3haopn2n73FTpmVw1SoIP5iGwhEnWtAAaZ8lPJ3Dd/
+         xL9ldwA0LxH/CGxYxgFSxE1N+hOozkGjjIEYcWZ1j4YECHnRFQm7ezRHQ1A2Li7FPO0w
+         rtAtDc/LqCoQgrdfrxnHG0z8+axPgFjzhaT2nhP9stwoD+GYQR0zrJDyLIi4l9WPVqvu
+         4Hzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=dKtWhaBR01kOs5t5WfXdpceIgYotqV0N9c2snMDzhss=;
+        b=VfrTQGKGcjeVxj78hamHsZrUPkBJPVTWwYZvnjoYEpgDX7Ft2VZGCKznZnFjlIXcgq
+         89A7C3Y3YO7Y14hPdLCoQa3SL0780m7bZtHdT5AdDcBe9kWUEhsl5+7p/GUIfUO2SDKy
+         HDDbPxlzqqMrCO/4lEzDrsDtyjlxcyHe9kR09SDlPzS8GK7rKa00pjMnaoblDD4JerwX
+         HKtrDRYiGPJX9FO7/zmQ2VH+kJyHCfvEKgOQL3dfIsFJZZiH7vG56qmRIS6o5Eq5NqXm
+         CSUdFw7RnwXN0HLvlgU3HT3AtQyJdFicUVbP4ElK0aFf3oU4Jgpz9DblXVr0X9VH2k6M
+         e94A==
+X-Gm-Message-State: AJIora+/82f3InL3++0ZS2XMSiEzdMLgoUptz8HYqDA2cL0aQ7tJPgOv
+        1y0ov9KRfKKx2yOIBhJWWqCZhrWgFEFPQQUMR7tipQ==
+X-Google-Smtp-Source: AGRyM1vt3WBOt5SUOQM8JApj4R0R+2atCLHZPl1/KIqBj7FYHEjjfhpRUAq+5DBM/3R/CqQ+qxJnWSE+o7moxkfGnB0=
+X-Received: by 2002:a05:6402:3307:b0:43a:826c:d8b4 with SMTP id
+ e7-20020a056402330700b0043a826cd8b4mr36812978eda.32.1658139961475; Mon, 18
+ Jul 2022 03:26:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [V5,3/8] media: mtk-jpegdec: manage jpegdec multi-hardware
-Content-Language: en-US
-To:     Irui Wang <irui.wang@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        nicolas.dufresne@collabora.com, wenst@chromium.org,
-        kyrie wu <kyrie.wu@mediatek.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
-        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
-References: <20220716093408.29734-1-irui.wang@mediatek.com>
- <20220716093408.29734-4-irui.wang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220716093408.29734-4-irui.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20220713131421.1527179-1-nuno.sa@analog.com> <YtAvHMmGay/3HACZ@smile.fi.intel.com>
+ <e0638b02bdcd0ee452846b86ce83458173912ef1.camel@gmail.com>
+ <YtBnIxh6rDJMwpEm@smile.fi.intel.com> <5d9f9272334177e3ea864467f50095a8709bc0d2.camel@gmail.com>
+ <YtFYFbP+xqAUUHZa@smile.fi.intel.com> <88114aeb10f7316cf3c1396179949f2fc351ad8f.camel@gmail.com>
+ <CAMRc=Mdz+8yfrATQPJ=uY33k2Dwt29g6vZbP3mSjkB_VAzP5+A@mail.gmail.com>
+In-Reply-To: <CAMRc=Mdz+8yfrATQPJ=uY33k2Dwt29g6vZbP3mSjkB_VAzP5+A@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 18 Jul 2022 12:25:50 +0200
+Message-ID: <CACRpkda3dWd=MMA=5_eaqmhJQDgMem24maGWZ+W2A+AiFhrQtw@mail.gmail.com>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 16/07/22 11:34, Irui Wang ha scritto:
-> From: kyrie wu <kyrie.wu@mediatek.com>
-> 
-> manage each hardware information, including irq/clk/power.
-> the hardware includes HW0/HW1/HW2.
-> 
-> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
-> Signed-off-by: irui wang <irui.wang@mediatek.com>
-> 
-> ---
->   drivers/media/platform/mediatek/jpeg/Makefile |   5 +-
->   .../platform/mediatek/jpeg/mtk_jpeg_core.c    |  23 +++
->   .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  37 ++++
->   .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 172 ++++++++++++++++++
->   4 files changed, 235 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mediatek/jpeg/Makefile b/drivers/media/platform/mediatek/jpeg/Makefile
-> index 69703db4b0a5..26e84852523e 100644
-> --- a/drivers/media/platform/mediatek/jpeg/Makefile
-> +++ b/drivers/media/platform/mediatek/jpeg/Makefile
-> @@ -1,9 +1,10 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   obj-$(CONFIG_VIDEO_MEDIATEK_JPEG) += mtk_jpeg.o \
-> -	mtk-jpeg-enc-hw.o
-> +	mtk-jpeg-enc-hw.o \
-> +	mtk-jpeg-dec-hw.o
->   
->   mtk_jpeg-y := mtk_jpeg_core.o \
-> -		 mtk_jpeg_dec_hw.o \
->   		 mtk_jpeg_dec_parse.o
->   
->   mtk-jpeg-enc-hw-y := mtk_jpeg_enc_hw.o
-> +mtk-jpeg-dec-hw-y := mtk_jpeg_dec_hw.o
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> index 386d48cc4f59..a9e8be976bb0 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> @@ -1100,6 +1100,10 @@ static void mtk_jpeg_multicore_enc_device_run(void *priv)
->   	queue_work(jpeg->workqueue, &ctx->jpeg_work);
->   }
->   
-> +static void mtk_jpeg_multicore_dec_device_run(void *priv)
-> +{
+On Fri, Jul 15, 2022 at 9:31 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> On Fri, Jul 15, 2022 at 2:19 PM Nuno S=C3=A1 <noname.nuno@gmail.com> wrot=
+e:
 
-.... why is this function empty?!
+> Ideologically I don't have anything against adding this flag (except
 
-> +}
-> +
->   static void mtk_jpeg_dec_device_run(void *priv)
->   {
->   	struct mtk_jpeg_ctx *ctx = priv;
-> @@ -1166,6 +1170,10 @@ static const struct v4l2_m2m_ops mtk_jpeg_multicore_enc_m2m_ops = {
->   	.device_run = mtk_jpeg_multicore_enc_device_run,
->   };
->   
-> +static const struct v4l2_m2m_ops mtk_jpeg_multicore_dec_m2m_ops = {
-> +	.device_run = mtk_jpeg_multicore_dec_device_run,
-> +};
-> +
->   static const struct v4l2_m2m_ops mtk_jpeg_dec_m2m_ops = {
->   	.device_run = mtk_jpeg_dec_device_run,
->   	.job_ready  = mtk_jpeg_dec_job_ready,
-> @@ -1680,6 +1688,17 @@ static struct mtk_jpeg_variant mtk8195_jpegenc_drvdata = {
->   	.cap_q_default_fourcc = V4L2_PIX_FMT_JPEG,
->   };
->   
-> +static const struct mtk_jpeg_variant mtk8195_jpegdec_drvdata = {
-> +	.formats = mtk_jpeg_dec_formats,
-> +	.num_formats = MTK_JPEG_DEC_NUM_FORMATS,
-> +	.qops = &mtk_jpeg_dec_qops,
-> +	.m2m_ops = &mtk_jpeg_multicore_dec_m2m_ops,
-> +	.dev_name = "mtk-jpeg-dec",
-> +	.ioctl_ops = &mtk_jpeg_dec_ioctl_ops,
-> +	.out_q_default_fourcc = V4L2_PIX_FMT_JPEG,
-> +	.cap_q_default_fourcc = V4L2_PIX_FMT_YUV420M,
-> +};
-> +
->   #if defined(CONFIG_OF)
->   static const struct of_device_id mtk_jpeg_match[] = {
->   	{
-> @@ -1698,6 +1717,10 @@ static const struct of_device_id mtk_jpeg_match[] = {
->   		.compatible = "mediatek,mt8195-jpgenc",
->   		.data = &mtk8195_jpegenc_drvdata,
->   	},
-> +	{
-> +		.compatible = "mediatek,mt8195-jpgdec",
-> +		.data = &mtk8195_jpegdec_drvdata,
-> +	},
->   	{},
->   };
->   
+Ugh that sounds political :)
 
-..snip..
+> that it should be called BIAS_DISABLE not PULL_DISABLE IMO). Nuno is
+> right in that the character device is the only way to set this mode
+> ATM and. However I would like to see the first user added together
+> with the series because adding features nobody uses in the mainline
+> kernel tree is generally frowned upon and it's also not clear that
+> anyone actually wants to use it.
 
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> index d2f25f43e852..232e81165dd3 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
+I agree: makers and tinkerers definitely need this flag and it will further
+emplasize the transition to the character device and to the v2 character
+device interface (which, by the way, is looking awesome, especially when
+taken into the picture the libgpiod changes and the new language
+bindings for libgpiod).
 
-..snip..
+So we need to add this to become ever more appealing for one-offs
+such as industrial control.
 
-> +
-> +static int mtk_jpegdec_hw_probe(struct platform_device *pdev)
-> +{
-> +	struct mtk_jpegdec_clk *jpegdec_clk;
-> +	struct mtk_jpeg_dev *master_dev;
-> +	struct mtk_jpegdec_comp_dev *dev;
-> +	int ret, i;
-> +
-> +	struct device *decs = &pdev->dev;
-> +
-> +	if (!decs->parent)
-> +		return -EPROBE_DEFER;
-> +
-> +	master_dev = dev_get_drvdata(decs->parent);
-> +	if (!master_dev)
-> +		return -EPROBE_DEFER;
-> +
-> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
-> +	if (!dev)
-> +		return -ENOMEM;
-> +
-> +	dev->plat_dev = pdev;
-> +	dev->dev = &pdev->dev;
-> +
-> +	if (!master_dev->is_jpgdec_multihw) {
-> +		master_dev->is_jpgdec_multihw = true;
-> +		for (i = 0; i < MTK_JPEGDEC_HW_MAX; i++)
-> +			master_dev->dec_hw_dev[i] = NULL;
-> +	}
-> +
-> +	jpegdec_clk = &dev->jdec_clk;
-> +
-> +	jpegdec_clk->clk_num = devm_clk_bulk_get_all(&pdev->dev,
-> +						     &jpegdec_clk->clks);
-> +	if (jpegdec_clk->clk_num < 0)
-> +		return dev_err_probe(&pdev->dev,
-> +				      jpegdec_clk->clk_num,
-> +				      "Failed to get jpegdec clock count.\n");
-> +
-> +	dev->reg_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(dev->reg_base))
-> +		return PTR_ERR(dev->reg_base);
-> +
-> +	ret = mtk_jpegdec_hw_init_irq(dev);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev,
-> +				     ret,
-> +				     "Failed to register JPEGDEC irq handler.\n");
-
-Fix:
-		return dev_err_probe(&pdev->dev, ret,
-
-				     "Failed to register JPEGDEC irq handler.\n");
-
-
-Regards,
-Angelo
+Yours,
+Linus Walleij
