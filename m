@@ -2,90 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E1DA57840C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:44:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F492578414
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:45:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234987AbiGRNoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 09:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39132 "EHLO
+        id S234997AbiGRNpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 09:45:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234952AbiGRNoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:44:04 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1F8B7DF
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:44:03 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id x10so13183811ljj.11
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:44:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QGPckwIqmYC0GGeLNsoZO9ZfM0x0N4ESwTfdOVnfbdo=;
-        b=f3ntLRVwskz3ZYyc2FJn8KOqs8b6ND5mDfh/7JZFWOq5l7KWLXKWX9A9rKeTa5Ij4k
-         7JGNN4tCQOemtel+6gbrSKA5gp4HIM2qxMMw+tS0YV/5naByFOtIryM0FC9tuNFVTvbr
-         Jrdds9O/F2AzeJevAMT6zuZXRuHiK+SpaTUkfIndiTuqomSVPxeatvzTOEZ6jO/E85kH
-         TBDEEb5ZqoeeM8vt0G2FyfX2kYWk6aetO28bczKUfx/RZ61pMkGe8W0OA4X7xbilIUhA
-         xNuI8calWwk6BChdv3oBhEsOCtCz5qqbICQC/cNoPm+zTJT1HvDsiK8N1OEWdA+5O5YT
-         mUlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=QGPckwIqmYC0GGeLNsoZO9ZfM0x0N4ESwTfdOVnfbdo=;
-        b=6ka18KdUxoK7SUKwjhEf2ezem0gbdusC7+LNITT67XqFBJORYu5FztAlUr5l9hWWsM
-         TFCaCCPJ/sGYJvhMKAA7MpnECudsobYw2Zx0KiQFQH7DaJvTToG0lzlz26h05k0PKcFt
-         I/07ka0ahYBqMuUInG/eSa2qeuldj8MNt9rGhYDgK7xoWGK6fbmlD5OD0qzfQ1aaepoT
-         Wj4yHY6z3Dv1+Hi8vFOPqAhVS0XJli+1i+9i483ywFYN/Qf/5xo8kF2BiVDfagRwwKw7
-         mJr+Ymy91kMsAGnvKJ3LI41sZ0dXtSY0OxSTHdOaaUA+hn/GOTn7jLL5vDZvKNYUowNv
-         LZjg==
-X-Gm-Message-State: AJIora9dn5Pb+Pya6fw4xk8jA6BM9tEoPNjaJGlGuGGtHXOkmesKLTaN
-        oiQJwfZ4y3op7ruhLVooEYHIMg==
-X-Google-Smtp-Source: AGRyM1tzhjki38V3oaMBPTSxXFp3nFxykyZ41PEs8Iaz+PAeQSFVS2lALcibNLEz/hiYCRucx9zy4w==
-X-Received: by 2002:a05:651c:1986:b0:25d:a125:eee2 with SMTP id bx6-20020a05651c198600b0025da125eee2mr8375312ljb.488.1658151841639;
-        Mon, 18 Jul 2022 06:44:01 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id e13-20020ac25cad000000b00489cc0dd59esm2606599lfq.90.2022.07.18.06.44.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 06:44:01 -0700 (PDT)
-Message-ID: <27939c76-161d-1bd4-0a2e-ec21681e0548@linaro.org>
-Date:   Mon, 18 Jul 2022 15:43:59 +0200
+        with ESMTP id S233884AbiGRNpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:45:08 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 84AA41B7A9;
+        Mon, 18 Jul 2022 06:45:07 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.92,281,1650898800"; 
+   d="scan'208";a="126513432"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 18 Jul 2022 22:45:06 +0900
+Received: from localhost.localdomain (unknown [10.226.92.65])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id B681E4003EB6;
+        Mon, 18 Jul 2022 22:45:02 +0900 (JST)
+From:   Phil Edworthy <phil.edworthy@renesas.com>
+To:     Felipe Balbi <balbi@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Adam Ford <aford173@gmail.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 0/2] Add usb gadget support for RZ/V2M
+Date:   Mon, 18 Jul 2022 14:44:56 +0100
+Message-Id: <20220718134458.19137-1-phil.edworthy@renesas.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: ipmi: Add npcm845 compatible
-Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, jic23@kernel.org,
-        minyard@acm.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     openbmc@lists.ozlabs.org, openipmi-developer@lists.sourceforge.net,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220717121124.154734-1-tmaimon77@gmail.com>
- <20220717121124.154734-2-tmaimon77@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220717121124.154734-2-tmaimon77@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2022 14:11, Tomer Maimon wrote:
-> Add a compatible string for Nuvoton BMC NPCM845 KCS and modify NPCM KCS
-> description to support all NPCM BMC SoC.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+Hi,
 
+The RZ/V2M SoC is very similar to the R-Car implementation.
+The differences are that a few DRD related registers and bits have
+moved, there is a separate interrupt for DRD, an additional clock for
+register access and reset lines for DRD and USBP.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks
+Phil
 
+Phil Edworthy (2):
+  dt-bindings: usb: renesas, usb3-peri: Document RZ/V2M r9a09g011
+    support
+  usb: gadget: udc: renesas_usb3: Add support for RZ/V2M
 
-Best regards,
-Krzysztof
+ .../bindings/usb/renesas,usb3-peri.yaml       |  81 ++++++++++---
+ drivers/usb/gadget/udc/renesas_usb3.c         | 109 +++++++++++++++---
+ 2 files changed, 157 insertions(+), 33 deletions(-)
+
+-- 
+2.34.1
+
