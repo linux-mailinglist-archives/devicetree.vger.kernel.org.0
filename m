@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C778057891D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 20:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CCD5578933
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 20:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233736AbiGRSBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 14:01:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44624 "EHLO
+        id S234656AbiGRSG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 14:06:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233614AbiGRSBN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 14:01:13 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9632B185;
-        Mon, 18 Jul 2022 11:01:12 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id c16so5169192ils.7;
-        Mon, 18 Jul 2022 11:01:12 -0700 (PDT)
+        with ESMTP id S234984AbiGRSG6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 14:06:58 -0400
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA242ED5B;
+        Mon, 18 Jul 2022 11:06:57 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id h145so9910416iof.9;
+        Mon, 18 Jul 2022 11:06:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uS29A5GywhhRm1GOXwYgUkVzR90Fyd06++Qd6OafhZM=;
-        b=zHFetA49VpXvsu45WA+Pra6I1srri/pQ1+nBKk0eZYd1bZvb2/wN/vKTkdUOVYNg3o
-         4Zq2z1+uIuQvDwR2ZGAX/43XNLSPIUYtWpbDmc3ZQ90PkoD9v5WMW1kg+E0AIXi3KV9C
-         POacBPmuxkYpWM7h9aBpRjjHGxnnsMdAP/sil3CaniGvXpNNpZy8aqg8B8BZ79RiZrbJ
-         NGKeI+9j3cC/oSNeH81+Vg7oihl/o0sLeLrZQNTX/WP8h3cgZi2DQiDeNY2McENOMx37
-         rUYHl750GpW2dOTdwyLEI8hy+Nus/ypW6LCzVY1DHbaUzvNX+8Lj4RH8Ag6HmgNtnFqJ
-         D+xw==
-X-Gm-Message-State: AJIora94rHrtf2x3HCoxl/2ACiyFEotQBLqplIkPceFsfnpEWkRB1/Gn
-        NteV0WEQY3oeLHdbHnzsew==
-X-Google-Smtp-Source: AGRyM1u+uKqc9RR5QfMfIwx5buK7kmtUs+A4/Vi0e5WWd1D/tghjxz71P0jeZ+6+ghwp/I2B0PHr8Q==
-X-Received: by 2002:a05:6e02:1445:b0:2dc:9f34:aa7c with SMTP id p5-20020a056e02144500b002dc9f34aa7cmr14129949ilo.80.1658167272187;
-        Mon, 18 Jul 2022 11:01:12 -0700 (PDT)
+        bh=2XLx27BevMMYggeW95Kf6PqEo7TObURqeNS6YT6uRbI=;
+        b=PEH/ID9jzB8pVVho+x6i/DrTPkBcjC6YsG30XT+PmivKRrLLU0Lo/ac5SfF/XtrYHj
+         cJHmRsHDdBH8KonREiyBYA+GFzaWpAR05E0P7NZrB+NWeuPiQE32Wk5V9BavgCB85kfF
+         Y8OQR1Yr7U1MXlDS69/j+tdeQQ7JqZtds138lj8dX7ZgPwn9QlMz/tc9GPRGSy6r1J43
+         GRihUN2AnRPdS4I6M9s8yFFYVuT+txLEyj7zBPrkix3s4ocNBUrEQ0BuX1vlbq6Ry1Zm
+         Mhc/c8PCTLPEuaAaaUncjF85rFpcFR3KDLt8RHKkEJJOjKZEfYpy6X+AyVwoQcGcsXUl
+         1ubg==
+X-Gm-Message-State: AJIora/GnYZFBMoWn0A+S4dl1nZ2nmyAGGW1zGlpVrRPe2ZRpaTpN1T9
+        RZSu5K/EAR4aHtb6TpcHGg==
+X-Google-Smtp-Source: AGRyM1vBi5nYgBxBwYhVAQ7Lyykz76T6YG04KzUoCurovhRE7LNmZwdfqXQIWdN5VoZD4+YmGpR/Xg==
+X-Received: by 2002:a05:6638:411f:b0:33f:8c3d:c4d9 with SMTP id ay31-20020a056638411f00b0033f8c3dc4d9mr13525413jab.259.1658167616369;
+        Mon, 18 Jul 2022 11:06:56 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id z19-20020a05663822b300b0033cd78a3612sm5673526jas.18.2022.07.18.11.01.10
+        by smtp.gmail.com with ESMTPSA id l1-20020a922801000000b002dc2b20e9cfsm4993358ilf.1.2022.07.18.11.06.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 11:01:11 -0700 (PDT)
-Received: (nullmailer pid 3256839 invoked by uid 1000);
-        Mon, 18 Jul 2022 18:01:10 -0000
-Date:   Mon, 18 Jul 2022 12:01:10 -0600
+        Mon, 18 Jul 2022 11:06:56 -0700 (PDT)
+Received: (nullmailer pid 3266350 invoked by uid 1000);
+        Mon, 18 Jul 2022 18:06:54 -0000
+Date:   Mon, 18 Jul 2022 12:06:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, aisheng.dong@nxp.com,
-        l.stach@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        chun-jie.chen@mediatek.com, weiyi.lu@mediatek.com,
+        mbrugger@suse.com, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V5 1/6] dt-bindings: soc: add i.MX93 SRC
-Message-ID: <20220718180110.GA3252763-robh@kernel.org>
-References: <20220711062452.3575032-1-peng.fan@oss.nxp.com>
- <20220711062452.3575032-2-peng.fan@oss.nxp.com>
+        linux-mediatek@lists.infradead.org, kernel@collabora.com,
+        nfraprado@collabora.com
+Subject: Re: [PATCH 2/3] dt-bindings: power: mediatek: Update example to use
+ phandle to syscon
+Message-ID: <20220718180654.GA3260460-robh@kernel.org>
+References: <20220711122503.286743-1-angelogioacchino.delregno@collabora.com>
+ <20220711122503.286743-3-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220711062452.3575032-2-peng.fan@oss.nxp.com>
+In-Reply-To: <20220711122503.286743-3-angelogioacchino.delregno@collabora.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -65,127 +67,169 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 11, 2022 at 02:24:47PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add bindings for i.MX93 System Reset Controller(SRC). SRC supports
-> resets and power gating for mixes.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On Mon, Jul 11, 2022 at 02:25:02PM +0200, AngeloGioacchino Del Regno wrote:
+> The preferred way of declaring this node is by using a phandle to
+> syscon: update the example to reflect that.
+
+Preferred by who? Not me. 
+ 
+What problem are you trying to solve? Better be a good reason for 
+breaking compatibility.
+
+
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../bindings/soc/imx/fsl,imx93-src.yaml       | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
+>  .../power/mediatek,power-controller.yaml      | 125 +++++++++---------
+>  1 file changed, 63 insertions(+), 62 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
-> new file mode 100644
-> index 000000000000..5eb22c993d59
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/imx/fsl,imx93-src.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX93 System Reset Controller
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +description: |
-> +  The System Reset Controller (SRC) is responsible for the generation of
-> +  all the system reset signals and boot argument latching.
-> +
-> +  Its main functions are as follows,
-> +  - Deals with all global system reset sources from other modules,
-> +    and generates global system reset.
-> +  - Responsible for power gating of MIXs (Slices) and their memory
-> +    low power control.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: fsl,imx93-src
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ranges: true
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +patternProperties:
-> +  "power-domain@[0-9a-f]+$":
-> +    $ref: /schemas/power/power-domain.yaml#
+> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> index 848fdff7c9d8..bed059e4401d 100644
+> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> @@ -237,76 +237,77 @@ examples:
+>          scpsys: syscon@10006000 {
+>              compatible = "syscon", "simple-mfd";
 
-No need to reference this as you have to define '#power-domain-cells' 
-constraints anyways.
+Only generic compatibles is certainly not preferred.
 
-> +
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - const: fsl,imx93-src-slice
-> +
-> +      '#power-domain-cells':
-> +        const: 0
-> +
-> +      reg:
-> +        maxItems: 2
-
-You need to define what each entry is.
-
-> +
-> +      clocks:
-> +        description: |
-> +          A number of phandles to clocks that need to be enabled
-> +          during domain power-up sequencing to ensure reset
-> +          propagation into devices located inside this power domain.
-> +        minItems: 1
-> +        maxItems: 5
-> +
-> +    required:
-> +      - compatible
-> +      - '#power-domain-cells'
-> +      - reg
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ranges
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx93-clock.h>
-> +
-> +    system-controller@44460000 {
-> +        compatible = "fsl,imx93-src", "syscon";
-> +        reg = <0x44460000 0x10000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +
-> +        mediamix: power-domain@0 {
-> +            compatible = "fsl,imx93-src-slice";
-> +            reg = <0x44462400 0x400>, <0x44465800 0x400>;
-> +            #power-domain-cells = <0>;
-> +            clocks = <&clk IMX93_CLK_MEDIA_AXI>,
-> +                     <&clk IMX93_CLK_MEDIA_APB>;
+>              reg = <0 0x10006000 0 0x1000>;
 > +        };
 > +    };
+>  
+> -            spm: power-controller {
+> -                compatible = "mediatek,mt8173-power-controller";
+> +    spm: power-controller {
+> +        compatible = "mediatek,mt8173-power-controller";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        #power-domain-cells = <1>;
+> +        syscon = <&scpsys>;
+> +
+> +        /* power domains of the SoC */
+> +        power-domain@MT8173_POWER_DOMAIN_VDEC {
+> +            reg = <MT8173_POWER_DOMAIN_VDEC>;
+> +            clocks = <&topckgen CLK_TOP_MM_SEL>;
+> +            clock-names = "mm";
+> +            #power-domain-cells = <0>;
+> +        };
+> +        power-domain@MT8173_POWER_DOMAIN_VENC {
+> +            reg = <MT8173_POWER_DOMAIN_VENC>;
+> +            clocks = <&topckgen CLK_TOP_MM_SEL>,
+> +                     <&topckgen CLK_TOP_VENC_SEL>;
+> +            clock-names = "mm", "venc";
+> +            #power-domain-cells = <0>;
+> +        };
+> +        power-domain@MT8173_POWER_DOMAIN_ISP {
+> +            reg = <MT8173_POWER_DOMAIN_ISP>;
+> +            clocks = <&topckgen CLK_TOP_MM_SEL>;
+> +            clock-names = "mm";
+> +            #power-domain-cells = <0>;
+> +        };
+> +        power-domain@MT8173_POWER_DOMAIN_MM {
+> +            reg = <MT8173_POWER_DOMAIN_MM>;
+> +            clocks = <&topckgen CLK_TOP_MM_SEL>;
+> +            clock-names = "mm";
+> +            #power-domain-cells = <0>;
+> +            mediatek,infracfg = <&infracfg>;
+> +        };
+> +        power-domain@MT8173_POWER_DOMAIN_VENC_LT {
+> +            reg = <MT8173_POWER_DOMAIN_VENC_LT>;
+> +            clocks = <&topckgen CLK_TOP_MM_SEL>,
+> +                     <&topckgen CLK_TOP_VENC_LT_SEL>;
+> +            clock-names = "mm", "venclt";
+> +            #power-domain-cells = <0>;
+> +        };
+> +        power-domain@MT8173_POWER_DOMAIN_AUDIO {
+> +            reg = <MT8173_POWER_DOMAIN_AUDIO>;
+> +            #power-domain-cells = <0>;
+> +        };
+> +        power-domain@MT8173_POWER_DOMAIN_USB {
+> +            reg = <MT8173_POWER_DOMAIN_USB>;
+> +            #power-domain-cells = <0>;
+> +        };
+> +        power-domain@MT8173_POWER_DOMAIN_MFG_ASYNC {
+> +            reg = <MT8173_POWER_DOMAIN_MFG_ASYNC>;
+> +            clocks = <&clk26m>;
+> +            clock-names = "mfg";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            #power-domain-cells = <1>;
+> +
+> +            power-domain@MT8173_POWER_DOMAIN_MFG_2D {
+> +                reg = <MT8173_POWER_DOMAIN_MFG_2D>;
+>                  #address-cells = <1>;
+>                  #size-cells = <0>;
+>                  #power-domain-cells = <1>;
+>  
+> -                /* power domains of the SoC */
+> -                power-domain@MT8173_POWER_DOMAIN_VDEC {
+> -                    reg = <MT8173_POWER_DOMAIN_VDEC>;
+> -                    clocks = <&topckgen CLK_TOP_MM_SEL>;
+> -                    clock-names = "mm";
+> -                    #power-domain-cells = <0>;
+> -                };
+> -                power-domain@MT8173_POWER_DOMAIN_VENC {
+> -                    reg = <MT8173_POWER_DOMAIN_VENC>;
+> -                    clocks = <&topckgen CLK_TOP_MM_SEL>,
+> -                             <&topckgen CLK_TOP_VENC_SEL>;
+> -                    clock-names = "mm", "venc";
+> -                    #power-domain-cells = <0>;
+> -                };
+> -                power-domain@MT8173_POWER_DOMAIN_ISP {
+> -                    reg = <MT8173_POWER_DOMAIN_ISP>;
+> -                    clocks = <&topckgen CLK_TOP_MM_SEL>;
+> -                    clock-names = "mm";
+> -                    #power-domain-cells = <0>;
+> -                };
+> -                power-domain@MT8173_POWER_DOMAIN_MM {
+> -                    reg = <MT8173_POWER_DOMAIN_MM>;
+> -                    clocks = <&topckgen CLK_TOP_MM_SEL>;
+> -                    clock-names = "mm";
+> +                power-domain@MT8173_POWER_DOMAIN_MFG {
+> +                    reg = <MT8173_POWER_DOMAIN_MFG>;
+>                      #power-domain-cells = <0>;
+>                      mediatek,infracfg = <&infracfg>;
+>                  };
+> -                power-domain@MT8173_POWER_DOMAIN_VENC_LT {
+> -                    reg = <MT8173_POWER_DOMAIN_VENC_LT>;
+> -                    clocks = <&topckgen CLK_TOP_MM_SEL>,
+> -                             <&topckgen CLK_TOP_VENC_LT_SEL>;
+> -                    clock-names = "mm", "venclt";
+> -                    #power-domain-cells = <0>;
+> -                };
+> -                power-domain@MT8173_POWER_DOMAIN_AUDIO {
+> -                    reg = <MT8173_POWER_DOMAIN_AUDIO>;
+> -                    #power-domain-cells = <0>;
+> -                };
+> -                power-domain@MT8173_POWER_DOMAIN_USB {
+> -                    reg = <MT8173_POWER_DOMAIN_USB>;
+> -                    #power-domain-cells = <0>;
+> -                };
+> -                power-domain@MT8173_POWER_DOMAIN_MFG_ASYNC {
+> -                    reg = <MT8173_POWER_DOMAIN_MFG_ASYNC>;
+> -                    clocks = <&clk26m>;
+> -                    clock-names = "mfg";
+> -                    #address-cells = <1>;
+> -                    #size-cells = <0>;
+> -                    #power-domain-cells = <1>;
+> -
+> -                    power-domain@MT8173_POWER_DOMAIN_MFG_2D {
+> -                        reg = <MT8173_POWER_DOMAIN_MFG_2D>;
+> -                        #address-cells = <1>;
+> -                        #size-cells = <0>;
+> -                        #power-domain-cells = <1>;
+> -
+> -                        power-domain@MT8173_POWER_DOMAIN_MFG {
+> -                            reg = <MT8173_POWER_DOMAIN_MFG>;
+> -                            #power-domain-cells = <0>;
+> -                            mediatek,infracfg = <&infracfg>;
+> -                        };
+> -                    };
+> -                };
+>              };
+>          };
+>      };
 > -- 
-> 2.25.1
+> 2.35.1
 > 
 > 
