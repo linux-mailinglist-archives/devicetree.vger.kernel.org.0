@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E9B6578306
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11574578328
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235171AbiGRNDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 09:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53688 "EHLO
+        id S235240AbiGRNGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 09:06:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230118AbiGRNDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:03:39 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85EB4CE00
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:03:37 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id bf9so19140149lfb.13
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:03:37 -0700 (PDT)
+        with ESMTP id S235306AbiGRNG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:06:27 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0481F275F2
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:06:22 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id a10so13514014ljj.5
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:06:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=80XUMnISBGpN/g+0WtMKW/2KdDo4w9aenz6MZvdkjys=;
-        b=nhUIUkMzZLJekrgJbmvSAAiaS3lBg4K6kT/9o/IIMPBh1Iplb9MjatPZ61rYldru1q
-         TKKlWqE/dnRB2farHBR5nLxILFdnM820hx5P7lc0727qL7Buq9IFV0IlwO3CboHP+ggJ
-         IlfIbLgo2xyGH49yiiiZYdeMVoMaRkg+kZXOdXqvJs3gnQa9VPZMuGcgCzOdnZDZlkhX
-         l4IAtfp5Qa9up+9YyT1FA3EYkVL+SN4XvC+v7H52t4988ylhxwFdN5hfwKpgY6e5HD7t
-         rjNnHhZ6wB8o4E+OCNPxja4TxjQHJjnDnpWYU4ON8r/5W7JHcurcV5y2DTcQiQtqoSQ+
-         bkaA==
+        bh=a+O9vudZmIw0y8HcEu8EeY4zyTPk+O1DAP+t2vVBksA=;
+        b=DiSjKH1Qipp92JGNti6EzoCEbaLHb26NceygyY4BOdkstNYl6brT0xu9MlN20tvhTN
+         p1SZy0jvCk+w6lZHsdv52GS+OTqS1sj9kxbvT10EdxSvDbHqhzCuRCQQ9P2hnpC1b6LC
+         At5s9W/afxoD6Bs83X89slxumpRLIGNaPPay1nO8e3SmDQlWSTZDN2glQcQNa0vSoxRA
+         +DJd3FanU4ToJGcr9jGOOqNjYz7uuLjAinYUeSpIJbPNSGMDiVVwYAho+3NGAwQO0dxz
+         WNWxagJOEhw+KUMIa7luCCnXcjm5t24lpWyvm3Y/exFntB7aM4syJ52k2gNYJSssB2lP
+         yx/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=80XUMnISBGpN/g+0WtMKW/2KdDo4w9aenz6MZvdkjys=;
-        b=D1tUd2rLd2Gr2nxBdHXHl5GTPIacXb2YGynb6AviJU7pAthhSlqS/bemJ+IdNeJksd
-         iDWAfzF0uyLUTbLn9qmMmn7k07w/A85kNDIuaI0QwVkAsBhVxLLXAHaWF01dASDl1JIs
-         Jf7XViDTLnmJWfMIKg2l/NLBSKYjp1BMd/fIixJhwb1jO3RquY9htcgmEPdH93m8EdSW
-         oeY5067tetMqmMobn1hUnRE72VGsEZnaWZNSLzLdheJdkcm28qge7+hryaAdiILlyQzT
-         pJBNHDEn2UQPwq1IN/IybWmvc4bIacm71OuckTGB+j379U9Ht7T8FkQyN5TOyAL/mQJx
-         l5EA==
-X-Gm-Message-State: AJIora+tirmeumXZC+oMV9W4CDMN0NyR9MDrO7MsycerqAhR/mtw/xag
-        cTN+Aq3p7FQT4GeQGkgqoSVi2w==
-X-Google-Smtp-Source: AGRyM1uWLpAKU6M48TF9Aap6DE7t0O0xppczTxzCbjd/1Rc2HdNP52LCXQYg9yPTRoM1zz+bQZyboQ==
-X-Received: by 2002:a05:6512:13a4:b0:477:a28a:2280 with SMTP id p36-20020a05651213a400b00477a28a2280mr14491105lfa.689.1658149415742;
-        Mon, 18 Jul 2022 06:03:35 -0700 (PDT)
+        bh=a+O9vudZmIw0y8HcEu8EeY4zyTPk+O1DAP+t2vVBksA=;
+        b=SyV3y1lWH86rTKxOwueF6b6j9e1zwN3YFE3zSzTDGYqytbsDf1NNWycGQivMTrh20Z
+         qRmsLzb78GllVAEl8UUZISckZv4V8/lBXIPdmVoiEi11jkPak/XgiYPcA4innMmGgTAm
+         zBn5e9mV1sJep8nHgVzAg/Q7cKQCPSLiXu8bXRie4qlR6X5pKapHl+jAssIPn/5vqhDZ
+         cNwss+iEnJ2K2RLI1ZP/prZ/435bJe5WNtddKYUJKufyiC2wdDjCZ4ZQR6cLoDMixgd+
+         InZpdL/qKxnG1/kEOz7UXkgfe1Y3IYBQnmzxyaf+DTeXyr5sxFZuvqh12GwTO+F+V1rz
+         +j5g==
+X-Gm-Message-State: AJIora8ccbu+vEIJcxQS3QFrj4vyeVnDXX0JqeTJWfyt6NB1nrTuKgIA
+        pIVK87G165B0xo4lqirgqpIBrQ==
+X-Google-Smtp-Source: AGRyM1vtwkiYg5ErQ9NCTyTYbs/3Slz+OVi7+HIoAuGUzoeHVOGBofEwhslH/MRQOOUsFT2PfU2nlQ==
+X-Received: by 2002:a05:651c:23b:b0:25d:6920:2b06 with SMTP id z27-20020a05651c023b00b0025d69202b06mr12121153ljn.226.1658149580235;
+        Mon, 18 Jul 2022 06:06:20 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id j10-20020a056512028a00b00481010eb312sm2584965lfp.295.2022.07.18.06.03.34
+        by smtp.gmail.com with ESMTPSA id t8-20020a05651c204800b0025d835fe81esm2082741ljo.115.2022.07.18.06.06.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 06:03:35 -0700 (PDT)
-Message-ID: <1c96a873-81f7-02c4-56cc-f33a283329eb@linaro.org>
-Date:   Mon, 18 Jul 2022 15:03:33 +0200
+        Mon, 18 Jul 2022 06:06:19 -0700 (PDT)
+Message-ID: <2a96f734-010d-b42d-8418-715d7c420272@linaro.org>
+Date:   Mon, 18 Jul 2022 15:06:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
- binding
+Subject: Re: [PATCH 2/2] dt-bindings: fpga: add binding doc for ecp5-spi fpga
+ mgr
 Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220713135528.1386594-1-biju.das.jz@bp.renesas.com>
- <20220713135528.1386594-2-biju.das.jz@bp.renesas.com>
- <24903621-358d-d380-76f4-6515c6313bbd@linaro.org>
- <OS0PR01MB5922CE20E15959AEF89C36D4868B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        system@metrotek.ru
+References: <20220714122657.17972-1-i.bornyakov@metrotek.ru>
+ <20220714122657.17972-3-i.bornyakov@metrotek.ru>
+ <044a9736-a4ec-c250-7755-c80a5bcbe38b@linaro.org>
+ <20220715100356.fwjomifweifn6zsr@h-e2.ddg>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB5922CE20E15959AEF89C36D4868B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <20220715100356.fwjomifweifn6zsr@h-e2.ddg>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,81 +79,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/07/2022 12:17, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
-> 
-> Thanks for the feedback.
-> 
->> Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
->> binding
->>
->> On 13/07/2022 15:55, Biju Das wrote:
->>> Add device tree bindings for the RZ/G2L Port Output Enable for GPT
->> (POEG).
+On 15/07/2022 12:03, Ivan Bornyakov wrote:
+> On Fri, Jul 15, 2022 at 11:33:54AM +0200, Krzysztof Kozlowski wrote:
+>> On 14/07/2022 14:26, Ivan Bornyakov wrote:
+>>> Add Device Tree Binding doc for Lattice ECP5 FPGA manager using slave
+>>> SPI to load .bit formatted uncompressed bitstream image.
 >>>
->>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
 >>> ---
->>> REF->v1:
->>>  * Modelled as pincontrol as most of its configuration is intended to
->> be
->>>    static.
->>>  * Updated reg size in example.
->>> ---
->>>  .../bindings/pinctrl/renesas,rzg2l-poeg.yaml  | 65
->>> +++++++++++++++++++
->>>  1 file changed, 65 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+>>>  .../fpga/lattice,ecp5-spi-fpga-mgr.yaml       | 71 +++++++++++++++++++
+>>>  1 file changed, 71 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
 >>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
->>> b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+>>> diff --git a/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
 >>> new file mode 100644
->>> index 000000000000..7607dd87fa68
+>>> index 000000000000..79868f9c84e2
 >>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yam
->>> +++ l
->>> @@ -0,0 +1,65 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>>> +++ b/Documentation/devicetree/bindings/fpga/lattice,ecp5-spi-fpga-mgr.yaml
+>>> @@ -0,0 +1,71 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
 >>> +---
->>> +$id:
+>>> +$id: http://devicetree.org/schemas/fpga/lattice,ecp5-spi-fpga-mgr.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>> +
->>> +title: Renesas RZ/G2L Port Output Enable for GPT (POEG)
+>>> +title: Lattice ECP5 FPGA manager.
 >>> +
 >>> +maintainers:
->>> +  - Biju Das <biju.das.jz@bp.renesas.com>
+>>> +  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
 >>> +
->>> +description: |
->>> +  The output pins of the general PWM timer (GPT) can be disabled by
->>> +using
->>> +  the port output enabling function for the GPT (POEG). Specifically,
->>> +  either of the following ways can be used.
->>> +  * Input level detection of the GTETRGA to GTETRGD pins.
->>> +  * Output-disable request from the GPT.
+>>> +description:
+>>> +  Device Tree Bindings for Lattice ECP5 FPGA Manager using slave SPI to
+>>> +  load the uncompressed bitstream in .bit format.
 >>
->> Shouldn't this all be part of GPT? Is this a real separate device in the
->> SoC?
-> 
-> No, It is separate IP block, having its own register block, interrupts and resets.
-> 
-> Please see RFC discussion here[1]
-> 
-> [1] https://lore.kernel.org/linux-renesas-soc/20220517210407.GA1635524-robh@kernel.org/
-> 
+>> s/Device Tree Bindings for//
 >>
->>> +  * Register settings.
+>> Instead describe the hardware you are adding bindings for. What is a
+>> "Manager"? It is so broad and unspecific... It is some dedicated
+>> hardware to communicate with FPGA or you just called this regular FPGA
+>> interface exposed to the CPU/SoC?
 >>
->> This is confusing... so you can use POEG to mess up registers of GPT
->> independently, so GPT does not know it?
 > 
-> POEG does not mess up registers of GPT. It is basically for protection.
-> 
-> Using POEG register, it is possible to disable GPT output without the knowledge of GPT, after configuring the Output disable source select in the GTINTAD (General PWM Timer Interrupt Output Setting Register) register present in GPT.
+> "FPGA Manager" is a kernel subsystem that exports a set of functions for
+> programming an FPGA with a bitstream image.
+> See Documentation/driver-api/fpga/fpga-mgr.rst
 
-Then what does it mean:
-"...following ways can be used. Register settings."
-I cannot parse it.
+This is what you want to include in the bindings document? How is it
+related to bindings? We do not talk about driver API but we talk about
+hardware. Bindings are for the hardware.
 
+> 
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - lattice,ecp5-spi-fpga-mgr
+>>
+>> Do not encode interface name in compatible so no "spi".
+>>
+> 
+> Recently when I submitted FPGA manager for Microchip PolarFire, I was
+> asked the opposite, to add "spi" in compatible. The reason was that FPGA
+> can be programmed through other interfaces as well.
+
+I don't see such comment from Rob (DT maintainer):
+https://lore.kernel.org/all/?q=%22dt-bindings%3A+fpga%3A+add+binding+doc+for+microchip-spi+fpga+mgr%22
+
+Can you point me to it?
 
 Best regards,
 Krzysztof
