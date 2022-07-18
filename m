@@ -2,110 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 615A3578E2A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 01:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 256D4578E37
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 01:18:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235130AbiGRXPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 19:15:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39530 "EHLO
+        id S233619AbiGRXS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 19:18:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235005AbiGRXPF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 19:15:05 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C5325C41
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 16:15:03 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id bf9so21909033lfb.13
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 16:15:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=HE1FwD+lN8EId4JRcmxRzN5D4z0DEF/FKKUfYD2j4LU=;
-        b=LfYnTGomRy0mIuYpeTaogh+8jet4b64mTTilWC1/+nP98lLhQqbJ6n382kgReMEoDH
-         WGDH48In8zPhwAKVCph+TvSagiEd7iIQ5IchM54aMRwuju+MCBZsyb+NsYh3nR8ycBZd
-         jNVUiXrJGaViaEJktW6vs8s22PYMG28TenrVv486mYDHgsDeTxeK45VpBGTJQgdw2eKH
-         QTMtbGIfxx7g+ibA/ocd9JRwxlw1KngjbM5jQid7xcBS4qpO5hPn/yf/wBejbcd2Yji2
-         EP1ak2pOKL1E0/XImoo6eVOzlGbCFwbWhDP0bXJrF7s4mx/UkH8dZuDJh6S08Ov7H4O9
-         2x4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HE1FwD+lN8EId4JRcmxRzN5D4z0DEF/FKKUfYD2j4LU=;
-        b=JudqOgyfFhzloqbFU96Ifvgk7ebInIdH4lqr6xsVp+IvQig8RY3oVmFiiutcfIdnbo
-         H5Ubct5gwDH3cRO6R3pSnWe8xY/6WGY5M1AL/0o9fkEPW6sR897uWD61cMpS2WClIMP4
-         6Np/iZeMMVmDqw7owyzVGuhc6buTI1OcRFk7ZqB/jsPNzO0BmE0yMg7C33yVDuXOsAcK
-         GfUEw167tgvymQCnPXJJQk+j8sKCOAqjy0mgfW3LnalVlUJ6ea4p3Tf9d9UI9QpBBmB3
-         cJz68mAWM0f+6pYrIUBsxDJtHZpT+5TI4udHNHvuKeTRlEtR+7zgVYNLW+GWgWMTf1LO
-         XAdg==
-X-Gm-Message-State: AJIora93We62kKZYU71hD9T/cwHDDGME1vtAszsBFc6fbsvIAkzRTGCo
-        9JrzWZvI78FyJ3iiZzzj4Rhw4w==
-X-Google-Smtp-Source: AGRyM1uK4J89ps1im4BvW/EUBiHpmWPvWyOGFjewbSGsnwyFX0y/EZKtfhz97cRYx4yctS6D/Ew9yw==
-X-Received: by 2002:a19:dc4d:0:b0:489:63cb:20c7 with SMTP id f13-20020a19dc4d000000b0048963cb20c7mr14857343lfj.101.1658186101548;
-        Mon, 18 Jul 2022 16:15:01 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id x28-20020ac2489c000000b00488ab8914b5sm2827797lfc.213.2022.07.18.16.15.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 16:15:01 -0700 (PDT)
-Message-ID: <af496488-6761-d1a3-18c4-85bc63e37b9e@linaro.org>
-Date:   Tue, 19 Jul 2022 02:15:00 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: add sdm845-google-blueline (Pixel
- 3)
-Content-Language: en-GB
-To:     Caleb Connolly <caleb@connolly.tech>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229742AbiGRXS1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 19:18:27 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 721CE33414;
+        Mon, 18 Jul 2022 16:18:26 -0700 (PDT)
+Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C584C6601A63;
+        Tue, 19 Jul 2022 00:18:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658186304;
+        bh=UM4gBJ2BtVtD84duWT1ks5rNF+2B9D8ohiEI/ecjHAE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FyBw7ORsfV6wYz+uF3dMl9dfMnwLCnH4+eMBjvEW1L1CBoE5fShAwFfD/InMUNTfT
+         YSfkN8EZrUjOvN5xfhvbjXk6fyMwsZUL6BBcekKJkiH+JlgLIv+xCo+GNb06tVHkhY
+         ootcuQKxB9duhelQ9L2p1THTz2UGG3pTo29/Y+Q0uFzKCqjSUhbIFzOiWcCgx6YtMB
+         h3r0zkUHU5QsTvJx1j7MAxYrb5HGpxnq3PMYbx4aD6FVl8FhFtngT64jGG9yETf70P
+         FBxyOwlLKm6mcwdeTZBJK5yFR2OZqY6De96DVly4u52l7wxDr/CiLYgQRotxdxFj5F
+         P8OOq6tUfBJ1g==
+Date:   Mon, 18 Jul 2022 19:18:20 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Kalle Valo <kvalo@kernel.org>
-Cc:     Amit Pundir <amit.pundir@linaro.org>, Vinod Koul <vkoul@kernel.org>
-References: <20220718213051.1475108-1-caleb@connolly.tech>
- <20220718213051.1475108-3-caleb@connolly.tech>
- <d8f24aca-2cdf-413f-2b30-ad41b81be1a5@linaro.org>
- <41a8cd51-f808-4fa2-b9b1-5c04c2aec7c0@connolly.tech>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <41a8cd51-f808-4fa2-b9b1-5c04c2aec7c0@connolly.tech>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH v3 3/5] arm64: dts: mediatek: Add mmsys #reset-cells
+ property for mt8192
+Message-ID: <20220718231820.j6dxkd5hmfsi6vrq@notapiano>
+References: <20220712114046.15574-1-allen-kh.cheng@mediatek.com>
+ <20220712114046.15574-4-allen-kh.cheng@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220712114046.15574-4-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2022 01:54, Caleb Connolly wrote:
+On Tue, Jul 12, 2022 at 07:40:44PM +0800, Allen-KH Cheng wrote:
+> To support reset of mmsys, we include mt8192-resets.h and add
+> property of #reset-cells in mmsys.
 > 
-> 
-> On 18/07/2022 23:13, Dmitry Baryshkov wrote:
->> Any idea, what is the issue here? Do you have the datasheet for the panel?
-> As Marijn just mentioned on IRC, the driver right now only calls
-> drm_dsc_pps_payload_pack() but doesn't actually send it. I haven't
-> investigated this myself but I'll look into it.
-> 
-> Unfortunately no datasheet afaik, they tend to be pretty elusive. The
-> things I would do for a phone panel datasheet...
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 
-as a side note: I checked the dtbo.img. There are three different 
-versions of the panel programming sequences in the included dtb files. 
-So you might want to check for the difference with 
-linux-mdss-dsi-panel-driver-generator.
-
--- 
-With best wishes
-Dmitry
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
