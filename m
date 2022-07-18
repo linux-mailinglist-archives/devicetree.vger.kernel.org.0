@@ -2,52 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 571775787F2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 18:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30FD8578836
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 19:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234910AbiGRQ6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 12:58:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51828 "EHLO
+        id S234117AbiGRRTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 13:19:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234906AbiGRQ6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 12:58:10 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8975E2BB31;
-        Mon, 18 Jul 2022 09:58:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4FF43B8167A;
-        Mon, 18 Jul 2022 16:58:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B89CBC341C0;
-        Mon, 18 Jul 2022 16:58:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658163487;
-        bh=Pv6CF0fctVJjOuZW4hNgdDsz8hkNLBlWN2b+uvUotbU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=L7oe73yAKMB9aQzWZKy9GH8tX+2xEIjljKKE4/fFtpQ52MaAYvZNIuiGsTvG4XnOe
-         PlU8nmcYhKjcVUQjfjppL5Jg5qd61J3S++WZrsv26TP6sn6xYRbL0g5CwBCw0o+ixI
-         Fj4tjiBkjzyPMqPO8HUPBCXgsJOwuoK4mvdyKwMHReeUquSSXCj6bzAsAcCc9TswcS
-         6k5/T/v5MiY2Mya96xBanEwIcRz5d4zDI1lxCeyI0PD0xD9dUEGgTU5bDji+zgBFiW
-         8XW1XdKhcp+VKGHg1DI5xPqsryHhCnqpDnWI6ZoPheofLGWhR2capYKZcI5WsCaqDg
-         xAPnUbtVVLxvw==
-Date:   Mon, 18 Jul 2022 18:08:02 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 2/3] iio: adc: Add rtq6056 support
-Message-ID: <20220718180802.43b66961@jic23-huawei>
-In-Reply-To: <1658123163-10039-3-git-send-email-u0084500@gmail.com>
-References: <1658123163-10039-1-git-send-email-u0084500@gmail.com>
-        <1658123163-10039-3-git-send-email-u0084500@gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S233751AbiGRRTP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 13:19:15 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DB031F62C
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 10:19:15 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id 89-20020a17090a09e200b001ef7638e536so18843518pjo.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 10:19:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6AlSG11Xz0KEmY1J4qxRxusy/iUb0jY7LfF1OTYlmoE=;
+        b=vEheWttEDztzn0wX59F2KAGkreCbHs3di+tKqkl4IAPJ8k+nkONjCaOPX0ur9T4LFn
+         HrVp5kPLFewdY8BqiqJF/XavfQqqwVJQWl6AOBEy+YbzNGvJwMKXg6qBhrucJC1j/d2f
+         /eixL9KXtAUfWaEZ6j5QcDUsb1pTei0QpfJACiz2a6oePiDheULjMRKUm+wzPiSz6E4w
+         0ZexggTDJG0McCTRtrAfYvWd0L88p05aYt0yWRNZGz/f1isLq+nSOc9bpNoaOfCzhY7g
+         YNbtNy9apzKYpB55t8+rdEKFWbEX3NqHfi3QUzYz5acc7L66jsN9JI8C3C/T5ZcpnnRY
+         PSMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6AlSG11Xz0KEmY1J4qxRxusy/iUb0jY7LfF1OTYlmoE=;
+        b=re1HyQsAA4H+Xp6F/E1W5edambgCMnUKJZdWKSU/VGNvzUuJymGKH+e2VZeCE3XiTx
+         lRDtqhEOgLWTHBKxfFXm+OZDHx7r88tWglGpYKf1IqrFZHb8ErWCPb8586Mfg3oycP2z
+         F6+8UtBZKyF9R2Ca1d9xw7b4Z0X5Xp6zLkxcQnMtLP67ENt3b67QIgEnu72IEDm7mZ7f
+         endeOoHp3SOTtfKlhmjd62gXEb3A+sXCzZPebXxXcB0PaPH/6wkdfsax99GqG5j/BtSh
+         M6aPwVnjPQtOhxPnyTkskEfr8JRv7qPCmEdPzDDj0jBfY6F4RdX0jUlXKGrbkOKLfv2R
+         vCIw==
+X-Gm-Message-State: AJIora958rrffOKffUiuB5KjOjRFR/PBQKdR0GweCeYm7xX3m3NFZofk
+        WeAArjDlS57tsEl0JaPaq26ffQ==
+X-Google-Smtp-Source: AGRyM1t9xo/AS/NKpz2t46SlZm8sa/vdqDfuyTscDK82ci703AzuOy6ziJl8eg57k0SFP6nQ2Qy72A==
+X-Received: by 2002:a17:90b:3d85:b0:1f0:7355:734 with SMTP id pq5-20020a17090b3d8500b001f073550734mr34853999pjb.24.1658164754519;
+        Mon, 18 Jul 2022 10:19:14 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id a20-20020aa794b4000000b0052abfc4b4a4sm9830384pfl.12.2022.07.18.10.19.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 10:19:13 -0700 (PDT)
+Date:   Mon, 18 Jul 2022 11:19:11 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v1 0/2] Add support for MT8188 SCP
+Message-ID: <20220718171911.GA3331732@p14s>
+References: <20220715051821.30707-1-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220715051821.30707-1-tinghan.shen@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,23 +74,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Jul 2022 13:46:02 +0800
-cy_huang <u0084500@gmail.com> wrote:
+On Fri, Jul 15, 2022 at 01:18:19PM +0800, Tinghan Shen wrote:
+> 
+> Tinghan Shen (2):
+>   dt-bindings: remoteproc: mediatek: Add binding for mt8188 scp
+>   remoteproc: Support MT8188 SCP
+> 
+>  .../devicetree/bindings/remoteproc/mtk,scp.yaml     |  2 ++
+>  drivers/remoteproc/mtk_scp.c                        | 13 +++++++++++++
+>  2 files changed, 15 insertions(+)
 
-> From: ChiYuan Huang <cy_huang@richtek.com>
-> 
-> Add Richtek rtq6056 supporting.
-> 
-> It can be used for the system to monitor load current and power with 16-bit
-> resolution.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> ---
-
-other than the ABI question around integration_time vs sampling_frequency
-in review of patch 3, this looks good to me.
+I have applied this set.
 
 Thanks,
+Mathieu
 
-Jonathan
+> 
+> -- 
+> 2.18.0
+> 
