@@ -2,180 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FE0157884B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 19:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4DF05788C7
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 19:50:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233696AbiGRR05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 13:26:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43672 "EHLO
+        id S232796AbiGRRu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 13:50:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230440AbiGRR00 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 13:26:26 -0400
-X-Greylist: delayed 621 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 18 Jul 2022 10:26:24 PDT
-Received: from mx2.mythic-beasts.com (mx2.mythic-beasts.com [IPv6:2a00:1098:0:82:1000:0:2:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE1C2A964;
-        Mon, 18 Jul 2022 10:26:24 -0700 (PDT)
-Received: from [90.247.97.225] (port=43504 helo=jic23-huawei)
-        by mailhub-hex-d.mythic-beasts.com with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <jic23@jic23.retrosnub.co.uk>)
-        id 1oDULo-000Aes-T9; Mon, 18 Jul 2022 18:16:09 +0100
-Date:   Mon, 18 Jul 2022 18:25:47 +0100
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     Shreeya Patel <shreeya.patel@collabora.com>
-Cc:     lars@metafoo.de, robh+dt@kernel.org, dmitry.osipenko@collabora.com,
-        Zhigang.Shi@liteon.com, krisman@collabora.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        alvaro.soliverez@collabora.com, andy.shevchenko@gmail.com
-Subject: Re: [PATCH v9 2/2] iio: light: Add support for ltrf216a sensor
-Message-ID: <20220718182547.360e5cf2@jic23-huawei>
-In-Reply-To: <20220715111626.1066513-3-shreeya.patel@collabora.com>
-References: <20220715111626.1066513-1-shreeya.patel@collabora.com>
-        <20220715111626.1066513-3-shreeya.patel@collabora.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S232060AbiGRRu2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 13:50:28 -0400
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 264032B608;
+        Mon, 18 Jul 2022 10:50:26 -0700 (PDT)
+Received: by mail-il1-f176.google.com with SMTP id d4so6392355ilc.8;
+        Mon, 18 Jul 2022 10:50:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Qo+O3LtYsVt3ukwggOHDQf2oi2D8i1x0+YuYG/drp00=;
+        b=MgsLkKpjp7zveAwRRm1euOrSW9KU0vDiwSJc0smXVApDTU8OdimXtsDLP/youXiwQz
+         mKevB4NmF871ra0TV+vFBdzy5GVcRKVueG7BDyBUxZrc9JtNmPcKfo31BqV+1ZIRKDHu
+         6vr8tkwOMiZAar0pfVbfCo3XLnaPcA9maXGqOpNjk0I0DIvDMhNDeRo+lxo2l5LeSWax
+         fmQ70sMx3jj30ZjGez/l3gnZ4Jwo/GZ5qsN5kwu8PkBlqSL9zqidrM8I8S+DVlYZkjiH
+         fa/Aj1DCRjQmVsWOt2wkrehkjzCFYC7FKPH6iyqDMRQve8b3wx4QAeVMA9hQ52a7TUeB
+         GXrg==
+X-Gm-Message-State: AJIora/5HPbLtLhn4H1Lk0Je7pAzlAejFvR3p898Gemm7Ub7TGSPCjIb
+        9/GCkb3aDIqHrTBfDcfFxZ/HeS6aIA==
+X-Google-Smtp-Source: AGRyM1vW0jj+2K/+MnMJmlvpDJ+vIEj6eMNRycI2GUzxrkQTlF3EGll5aFibyTPPNbtPr1MMDnGyzA==
+X-Received: by 2002:a92:dd82:0:b0:2d9:126:5bed with SMTP id g2-20020a92dd82000000b002d901265bedmr14367423iln.97.1658166625399;
+        Mon, 18 Jul 2022 10:50:25 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id y27-20020a02731b000000b0033f51b3b0d9sm5764589jab.138.2022.07.18.10.50.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 10:50:24 -0700 (PDT)
+Received: (nullmailer pid 3238778 invoked by uid 1000);
+        Mon, 18 Jul 2022 17:50:23 -0000
+Date:   Mon, 18 Jul 2022 11:50:23 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v2 11/11] dt-bindings: display/msm: move common DPU
+ properties to dpu-common.yaml
+Message-ID: <20220718175023.GA3216365-robh@kernel.org>
+References: <20220710090040.35193-1-dmitry.baryshkov@linaro.org>
+ <20220710090040.35193-12-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-BlackCat-Spam-Score: 19
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220710090040.35193-12-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jul 2022 16:46:26 +0530
-Shreeya Patel <shreeya.patel@collabora.com> wrote:
-
-> Add initial support for ltrf216a ambient light sensor.
+On Sun, Jul 10, 2022 at 12:00:40PM +0300, Dmitry Baryshkov wrote:
+> Move properties common to all DPU DT nodes to the dpu-common.yaml.
 > 
-> Datasheet: https://gitlab.collabora.com/shreeya/iio/-/blob/master/LTRF216A.pdf
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Co-developed-by: Zhigang Shi <Zhigang.Shi@liteon.com>
-> Signed-off-by: Zhigang Shi <Zhigang.Shi@liteon.com>
-> Co-developed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-
-
-The first of the two 0-day warnings confuses me. It might be spurious due
-to some unrelated issue, but I'm not certain of that...
-
-Otherwise, a few more comments around PM. The way you've done it isn't
-something I've seen before + I think you leave the device powered up in
-!CONFIG_PM after remove which isn't ideal.
-
-Thanks,
-
-Jonathan
-
-
-> +static int ltrf216a_set_power_state(struct ltrf216a_data *data, bool on)
-> +{
-> +	struct device *dev = &data->client->dev;
-> +	int ret;
-
-This one was caught by 0-day.  ret = 0; or perhaps better, just return
-directly in the two branches rather than having a single exit point.
-
+> Note, this removes description of individual DPU port@ nodes. However
+> such definitions add no additional value. The reg values do not
+> correspond to hardware INTF indices. The driver discovers and binds
+> these ports not paying any care for the order of these items. Thus just
+> leave the reference to graph.yaml#/properties/ports and the description.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/display/msm/dpu-common.yaml      | 42 ++++++++++++++++++
+>  .../bindings/display/msm/dpu-msm8998.yaml     | 43 ++-----------------
+>  .../bindings/display/msm/dpu-qcm2290.yaml     | 39 ++---------------
+>  .../bindings/display/msm/dpu-sc7180.yaml      | 43 ++-----------------
+>  .../bindings/display/msm/dpu-sc7280.yaml      | 43 ++-----------------
+>  .../bindings/display/msm/dpu-sdm845.yaml      | 43 ++-----------------
+>  6 files changed, 62 insertions(+), 191 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-common.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-common.yaml b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
+> new file mode 100644
+> index 000000000000..14eda883e149
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
+> @@ -0,0 +1,42 @@
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/msm/dpu-common.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	if (on) {
-> +		ret = pm_runtime_resume_and_get(dev);
-> +		if (ret) {
-> +			dev_err(dev, "failed to resume runtime PM: %d\n", ret);
-> +			return ret;
-> +		}
-> +	} else {
-> +		pm_runtime_mark_last_busy(dev);
-> +		pm_runtime_put_autosuspend(dev);
-> +	}
+> +title: Qualcomm Display DPU dt properties (common properties)
 > +
-> +	return ret;
-> +}
+> +maintainers:
+> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> +  - Krishna Manikandan <quic_mkrishn@quicinc.com>
+> +  - Rob Clark <robdclark@gmail.com>
 > +
+> +description: |
+> +  Common properties for QCom DPU display controller.
+> +
+> +properties:
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  operating-points-v2: true
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description: |
+> +      Contains the list of output ports from DPU device. These ports
+> +      connect to interfaces that are external to the DPU hardware,
+> +      such as DSI, DP etc.
 
+From the last version:
 
-> +
-> +static int ltrf216a_probe(struct i2c_client *client)
-> +{
-> +	struct ltrf216a_data *data;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(indio_dev);
-> +
-> +	data->regmap = devm_regmap_init_i2c(client, &ltrf216a_regmap_config);
-> +	if (IS_ERR(data->regmap))
-> +		return dev_err_probe(&client->dev, PTR_ERR(data->regmap),
-> +				     "regmap initialization failed\n");
-> +
-> +	i2c_set_clientdata(client, indio_dev);
-> +	data->client = client;
-> +
-> +	mutex_init(&data->lock);
-> +
-> +	indio_dev->info = &ltrf216a_info;
-> +	indio_dev->name = "ltrf216a";
-> +	indio_dev->channels = ltrf216a_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(ltrf216a_channels);
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	/* reset sensor, chip fails to respond to this, so ignore any errors */
-> +	ltrf216a_reset(indio_dev);
-> +
-> +	ret = regmap_reinit_cache(data->regmap, &ltrf216a_regmap_config);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "failed to reinit regmap cache\n");
-> +
-> +	ret = devm_pm_runtime_enable(&client->dev);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "failed to enable runtime PM\n");
-> +
-> +	pm_runtime_set_autosuspend_delay(&client->dev, 1000);
-> +	pm_runtime_use_autosuspend(&client->dev);
-> +
-> +	if (!IS_ENABLED(CONFIG_PM)) {
-> +		ret = ltrf216a_enable(indio_dev);
+> In case of MDSS all ports are output, they are connected to the external
+> interfaces (DSI, DP, HDMI, etc). The driver uses them to bind available
+> interfaces (using components framework). The reg property of the port is
+> completely ignored.
 
-What turns this off again?  I'd expect to see a devm_add_action_or_reset()
-to do that in the !CONFIG_PM case.
+It doesn't matter what the driver does or doesn't do. Without 
+describing port nodes at all, you are not validating what port nodes 
+can contain. Just try adding any property under a port node. You need at 
+least:
 
-This is also an unusual pattern. As far as I can tell it works.
-Normal trick for ensuring !CONFIG_PM works is to:
+'^port@[0-N]$':
+  $ref: graph.yaml#/properties/port
 
-1) Unconditionally turn device on.
-2) Register unconditional device off devm_callback. Very rarely harmful even if device already off
-   due to runtime pm.
-3) Then call pm_runtime_set_active() so the state tracking matches.
-4) Call 	
-  pm_runtime_mark_last_busy(dev);
-  pm_runtime_put_autosuspend(dev);
-  (here you have a function to do this anyway)
-  to let runtime_pm use same path as normal to autosuspend
+where N is the max number of ports.
 
-the upshot of this is that if !CONFIG_PM 3 and 4 do nothing and device
-is left turned on.  Is there something I'm missing that makes that cycle
-inappropriate here?  The main reason to do this is it then looks exactly
-like any other runtime_pm calls elsewhere in the driver, so easier to review.
-
-
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	data->int_time = 100000;
-> +	data->int_time_fac = 100;
-> +	data->als_gain_fac = 3;
-> +
-> +	return devm_iio_device_register(&client->dev, indio_dev);
-> +}
-> +
-
+Rob
