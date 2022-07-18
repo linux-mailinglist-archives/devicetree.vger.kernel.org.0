@@ -2,73 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B348578019
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C593578033
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 12:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234278AbiGRKsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 06:48:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54198 "EHLO
+        id S234084AbiGRKvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 06:51:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234305AbiGRKsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:48:21 -0400
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA301F2E2;
-        Mon, 18 Jul 2022 03:48:18 -0700 (PDT)
-Received: by mail-qv1-xf2b.google.com with SMTP id nd6so8432805qvb.6;
-        Mon, 18 Jul 2022 03:48:18 -0700 (PDT)
+        with ESMTP id S234091AbiGRKvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 06:51:41 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842BF20194;
+        Mon, 18 Jul 2022 03:51:40 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id p9so11343807pjd.3;
+        Mon, 18 Jul 2022 03:51:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=odInwset3JtekyfvwHYQ7Zjgrovk0OVJ1s+jC7toYFw=;
-        b=LjW3HvpT+uww2s2o3355LRaTe3zeVKWpHflAEtPcwJkQt04/lqcHRGoDlLS08hwCk0
-         hWg15EuDX08T0uC6JlIM48KTXBafqnCr82QwSLf55QIonwrrE6J27rk2SoH5BOMHv+8B
-         TQJ9O6CKDjJN90uvXU2s8EQ0NYJ8m/PJNxBx92FA8yUxdR8Jd59bLUisXsqyFOnwjMU/
-         O03iwUEPR23CAo2yGI2Uq4Yrq6FlY8tyaFcuLOfMQOxteL6oC0g84m397Kt4fST3aA/x
-         7v2p1RYGYfN1zQdqQt3y9HScqM9kUBGxTCPxe/f1I8A3RpqLnFC2pVFLfLH3Om8v3Lc/
-         hJTQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=a4smhlXQRPY08uZFYWaREPplMOTenvaPYfLKafzeLgY=;
+        b=AKe+sNy1gChpstieXUsxZD5p8A2lNFOyH78szTrmAd73Lmp2K1cEvITIVrP/MNLtCn
+         2r85CO3G5vrj+Gvj8fta7XfmzIxRnJw3s/zWl0OwwdJI/rcG4+v1MnVy6hX+LHOYhrsD
+         lEY/6Dz5TOoYMf8kgMvnROzDlMJ54F2Vk37i1Fc3ICDk3jH6X35iQ8aaMpO5l7Qh3Y2Q
+         dCV7iSPYj8NJdoY+lpNLXAEjZl9beB3I1tgXxXbS0tvOJ1cb5axYI9HBMnk8gMQD/Rtc
+         gXeOLoZi0ZA+MCHSbjmUVEpwfvZCAbgQsHrQDZBY8hHhm23jdSEXBVOAe94HIeqMwZi7
+         iHYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=odInwset3JtekyfvwHYQ7Zjgrovk0OVJ1s+jC7toYFw=;
-        b=OzztLjVYSoy/qHJttKu7RBs66E54FVHh8XC62wKarVmtzU59fuOecXDJINmD/AIvLA
-         GghUeBiWYP70nbBpBTyNwVjnlVr5uHgpzeFD56/n2/FX2l0dfOi8V7CvjuKRMr83P4hk
-         F8s1hzqgbh0JcN9XN8kuQrNe3LGS4YQX9HpQlXVBLIeRZGtbyb6o0EKjwiSk/qIcOguw
-         DAeOZ6lbqb/+4JTHi7XnFfxxvU4fgU/dCYPOMRCtq3rNFASkozLdjTPfyoQ1FYNOACXJ
-         Zv3+WRohUlAHu3KX6HobA8BBClDxFsfAwZ9PT9srGnI5xtLKMJfEdKbOmeitIaCGThtn
-         ibCA==
-X-Gm-Message-State: AJIora//dXnACX9Ps2VKI5Rb63N2kFI1AUwyXpkdBe6EJSKvpFz/I1/s
-        tiG3rw1/VjnPtIrqkysRztIiKU4hXex/Ib3Z
-X-Google-Smtp-Source: AGRyM1vzwysDmuzG+cF+FcZfHt6F5DwRuJ9Qdt73Z2c6zAb0Fa+XaeXhNT+gqI+qSQGFCtB5lolBjA==
-X-Received: by 2002:ad4:5be3:0:b0:473:4914:d912 with SMTP id k3-20020ad45be3000000b004734914d912mr20247040qvc.0.1658141297735;
-        Mon, 18 Jul 2022 03:48:17 -0700 (PDT)
-Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
-        by smtp.gmail.com with ESMTPSA id y7-20020a05622a164700b0031eeecd21d6sm2182327qtj.69.2022.07.18.03.48.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 03:48:17 -0700 (PDT)
-Message-ID: <8461b72ae951e4311952052c467fb1275ff9e58a.camel@gmail.com>
-Subject: Re: [PATCH 3/4] gpiolib: acpi: support bias pull disable
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 18 Jul 2022 12:49:19 +0200
-In-Reply-To: <CACRpkdbitDErSCMbKFe0yZB63+uTGwt5ROMbEV_iAPck_RN7sg@mail.gmail.com>
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
-         <20220713131421.1527179-4-nuno.sa@analog.com>
-         <CACRpkdbitDErSCMbKFe0yZB63+uTGwt5ROMbEV_iAPck_RN7sg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.3 
-MIME-Version: 1.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=a4smhlXQRPY08uZFYWaREPplMOTenvaPYfLKafzeLgY=;
+        b=XCM1m+DOeZpCvx19BoF4IEzqIkK6DO9U0Pmd2Q1Au6EpUZduI+t1c6rJ30uPh4wMDE
+         7IYgQHTwMlUJZx2MZdEcfeX8S7bFwAbeNWXWl3c5/8hsZ9qzfNoEpGw4vL/x4Fm8OcCh
+         yJLhkqoBQc7iy8xOyf2yJtXPKCF+5NaxARCnACVSzXKytPMYUJHV8hSbkRrxGjQD0tyh
+         Eal7Wu4mBZ/D2pzHs19B8aQyfcMt4HXJqVBL+0z5eR77qXzWHsVmfib4tty4t4vLCxB2
+         6WRba3g8Z6Vs/acKHESLOG5kYM0rYHdbE8mOril6Q8Yz4lW8DqnP3CNRExbZXqoC6SdU
+         F7nw==
+X-Gm-Message-State: AJIora+Ijic2lGyKXLD7DZ6kOf3jkakoZIOxCmL7veNy7gut8LKf5stD
+        SshES9L2RX5w/G3iFnu6fMc=
+X-Google-Smtp-Source: AGRyM1vWjlz2YT9znDMfpyN2OCP1gJjgGcm6C51sU4kd9nkBsZL7ktnoIxjmL2Pi8skCdAI/z5Sogw==
+X-Received: by 2002:a17:902:ecc3:b0:16c:461d:802b with SMTP id a3-20020a170902ecc300b0016c461d802bmr27958364plh.167.1658141499900;
+        Mon, 18 Jul 2022 03:51:39 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id s2-20020aa78bc2000000b0052ac1af926fsm8914641pfd.20.2022.07.18.03.51.37
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 18 Jul 2022 03:51:39 -0700 (PDT)
+From:   Vincent Shih <vincent.sunplus@gmail.com>
+To:     kishon@ti.com, vkoul@kernel.org, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com
+Cc:     Vincent Shih <vincent.sunplus@gmail.com>
+Subject: [PATCH v4 0/2] Add USB2.0 phy driver for Sunplus SP7021
+Date:   Mon, 18 Jul 2022 18:51:18 +0800
+Message-Id: <1658141480-9291-1-git-send-email-vincent.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -79,28 +66,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-07-18 at 12:32 +0200, Linus Walleij wrote:
-> On Wed, Jul 13, 2022 at 3:13 PM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
->=20
-> > On top of looking at PULL_UP and PULL_DOWN flags, also look at
-> > PULL_DISABLE and set the appropriate GPIO flag. The GPIO core will
-> > then
-> > pass down this to controllers that support it.
-> >=20
-> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
->=20
-> Do we have a semantic check that PULLDOWN and PULLUP
-> is not used in combination with NOPULL here?
->=20
-> (We should also be checking that PULLDOWN and PULLUP
-> are not used simultaneously but that is an unrelated thing.)
+This is a patch series for USB2.0 phy driver for Sunplus SP7021 SoC.
 
-I did extended this check:
+Sunplus SP7021 is an ARM Coretex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD Card and
+etc.) into a single chip. It is designed for industrial control.
 
-https://elixir.bootlin.com/linux/v5.19-rc7/source/drivers/gpio/gpiolib.c#L3=
-948
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-on patch 1 to make sure that PULLDOWN and PULLUP are not used with
-NOPULL. Is this what you have in mind or is it something else?
+Vincent Shih (2):
+  phy: usb: Add USB2.0 phy driver for Sunplus SP7021
+  dt-bindings: phy: Add bindings doc for Sunplus USB2
 
-- Nuno S=C3=A1
+ .../bindings/phy/sunplus,sp7021-usb2-phy.yaml      |  73 +++++
+ MAINTAINERS                                        |   9 +
+ drivers/phy/Kconfig                                |   1 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/sunplus/Kconfig                        |  12 +
+ drivers/phy/sunplus/Makefile                       |   2 +
+ drivers/phy/sunplus/phy-sunplus-usb2.c             | 297 +++++++++++++++++++++
+ 7 files changed, 395 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/sunplus,sp7021-usb2-phy.yaml
+ create mode 100644 drivers/phy/sunplus/Kconfig
+ create mode 100644 drivers/phy/sunplus/Makefile
+ create mode 100644 drivers/phy/sunplus/phy-sunplus-usb2.c
+
+-- 
+2.7.4
+
