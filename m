@@ -2,102 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73229578E3D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 01:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AC85578E69
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 01:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231407AbiGRXXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 19:23:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44676 "EHLO
+        id S234913AbiGRXm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 19:42:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbiGRXXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 19:23:34 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 289042CCA4;
-        Mon, 18 Jul 2022 16:23:33 -0700 (PDT)
-Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A1B876601A63;
-        Tue, 19 Jul 2022 00:23:30 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658186611;
-        bh=ueHareq2lBmSzrfXkKzx7fGfwxDmuIWF5D8pgRa5xxU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NWa23fDATco2oFnMi8UA3XKmwA+raBTNgR8E/pk0t5Kc11Pxkz+XUP82VH96guprU
-         ZMtjFx0xxB5cT5vO6Sfa24m/vIzNO+bmiic6PAv2f5vej4eHRZj1ulkSnTU1F1sCKE
-         ryBvTsL6E8xqS9TV5FvXZthYWYGAoi5VmrMJ2J0dtiIK9esBvwTecym5oeEnaA09gx
-         cMwwGck9SeYsN5unYjF7MdycYxME+C7MAVynUo7PtsL7yZUca/Fy47MVyzElvTaZqd
-         +V2vKsTSuRGIN4TMjeWaNEUzoD9qv2fFCoy/3cqZiM+b0iCPqvEc/Z53yMN/HxEqbY
-         JfFzt9San8/FQ==
-Date:   Mon, 18 Jul 2022 19:23:26 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH v3 0/5] Complete driver nodes for MT8192 SoC
-Message-ID: <20220718232326.l7cffiighmcdl3at@notapiano>
-References: <20220712114046.15574-1-allen-kh.cheng@mediatek.com>
+        with ESMTP id S232115AbiGRXmz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 19:42:55 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB02031902;
+        Mon, 18 Jul 2022 16:42:54 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id h145so10591887iof.9;
+        Mon, 18 Jul 2022 16:42:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=dLd8cOvv8HoVPf9Qd5agJOJR3BAYQw3KP1yEY5GxLrY=;
+        b=ftUYo9BBUYjPmllV0QRe7t51MrZmLBWSJeD7F/faBJfJeEgvajx4yrs1xFF2bFN2In
+         Sx9WchAnZHDlTxzt5GeXl5XNKQ4zxA9If1Lgz40WbWeEaboWSCRSXil77S2+pat/yDtU
+         u3DQY7P9l4TcmQVBCru3FBj6LEE4iT2GYNgATMs6F6vPEBu/D2YzTllow2Mko17P48Lr
+         j0EBqg4Om/QSWJJ4G01BxpfNnx6KLm4oSh8g/gHELZzyL+CKFLxmeq+JHxS5nT/Ovj4y
+         VrbGj7u2X/sK9rZmd89AJv2s6krS1uxysr5+E7bxvSsCYvZBWogVUy/qu183eVy4s/Kh
+         qcpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=dLd8cOvv8HoVPf9Qd5agJOJR3BAYQw3KP1yEY5GxLrY=;
+        b=MV7t0ileUEmkUJrebdbeGa7fX+hMK/6w+aps1EIyfgWOUfix2lGnavnuX0Cv1gMlOD
+         kWyZql5iy+DGyIzVA9SFqvD5FK1M4lB9vy0/fYRR1i/dr7pyx4QufK7yEHQ+gX49B3+/
+         vLXIT2FbVw1Qty2P1/nva/v5DLMoq5pAQ/afqEWljaM0OeoAPvSqCtpdMxrXQNyiabUM
+         orT+ztHc97Zttx3Crtd3RVq199fnDUR9b5U3jiG9ngiqlEDIr0H0+kurud2Qs/77w9CB
+         ManMhfCvdVCQgmGLS6updXWjxZaHxvza5LJ01G4q1NrPsdhUwROUKyxvODigrPrBMR60
+         ExiQ==
+X-Gm-Message-State: AJIora/V3qV5HT4H6iNx6Dganj1BqcdIcXj3+eo+gm/9TEnPiYJvYjrU
+        tada3ihStTcPQfnsVf78XuTpYFFJ9WyVyw==
+X-Google-Smtp-Source: AGRyM1srhjBnWDzudsBq1Jm399+BkmywIX129CiWpjDmta8FzdwBdycuNdqBt+rw/UgVPr50G5N1oQ==
+X-Received: by 2002:a05:6602:1644:b0:678:8ba4:8df6 with SMTP id y4-20020a056602164400b006788ba48df6mr13933049iow.138.1658187774092;
+        Mon, 18 Jul 2022 16:42:54 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:71f7:9f7:a010:d581? ([2600:1700:2442:6db0:71f7:9f7:a010:d581])
+        by smtp.gmail.com with ESMTPSA id e12-20020a02860c000000b0032e21876ea8sm6042489jai.72.2022.07.18.16.42.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jul 2022 16:42:53 -0700 (PDT)
+Message-ID: <d9f2ec3f-d531-80ef-d9cc-0926893d892f@gmail.com>
+Date:   Mon, 18 Jul 2022 18:42:52 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220712114046.15574-1-allen-kh.cheng@mediatek.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 0/2] of: overlay: Miscellaneous improvements
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1657893306.git.geert+renesas@glider.be>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <cover.1657893306.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 12, 2022 at 07:40:41PM +0800, Allen-KH Cheng wrote:
-> This series are based on matthias.bgg/linux.git, for-next.
+On 7/15/22 09:03, Geert Uytterhoeven wrote:
+> 	Hi,
 > 
-> I remove vcodec lat and core nodes PATCH from series and will comfirm
-> clocks usage then resend PATCH.
+> While performing the long-overdue rebase of my topic/overlays branch[1]
+> on top of the overlay rework in v5.19-rc1, I identified a few areas for
+> improvement in the upstream code.
 > 
-> Also should reference below PATCH for dsi in chunkuang.hu/linux.git
-> dt-bindings: display: mediatek: dsi: Convert dsi_dtbinding to .yaml
+> Thanks for your comments!
 > 
-> changes since v2:
->  - add mmsys #reset-cells PATCH
->  - add missing fallback compatible
->  - add display aliases
->  - remove vcodec lat and core nodes PATCH
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/overlays
 > 
-> changes since v1:
->  - add Reviewed-by Tag
->  - rename dsi-phy from dsi-dphy
->  - add missing power-domains in disp mutex
->  - Add remove mt8192 display rdma compatible PATCH in series
->  - use "mediatek,mt8183-disp-rdma" as fallback
->  - remove mediatek,larb from rdma node
->  - remove syscon-dsi and add power-domains in dsi
->  - add reset property in dsi and mt8192-resets.h
->  - correct Typo: s/ndoe/node in commit message
+> Geert Uytterhoeven (2):
+>   of: overlay: Move devicetree_corrupt() check up
+>   of: overlay: Simplify of_overlay_fdt_apply() tail
 > 
-> Allen-KH Cheng (5):
->   arm64: dts: mt8192: Add pwm node
->   arm64: dts: mt8192: Add mipi_tx node
->   arm64: dts: mediatek: Add mmsys #reset-cells property for mt8192
->   arm64: dts: mt8192: Add display nodes
->   arm64: dts: mt8192: Add dsi node
+>  drivers/of/overlay.c | 20 +++++++-------------
+>  1 file changed, 7 insertions(+), 13 deletions(-)
+> 
 
-For the whole series
+The patches look good, based on a visual inspection.  I'll build the kernel
+and test the patches tomorrow morning.
 
-Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Tested on mt8192-asurada-spherion. I have a working display with some additional
-nodes on the mt8192-asurada DT.
-
-Thanks,
-Nícolas
+-Frank
