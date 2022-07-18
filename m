@@ -2,99 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8472057822F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 14:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1752457824C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 14:27:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233736AbiGRMXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 08:23:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44844 "EHLO
+        id S234422AbiGRM1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 08:27:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233637AbiGRMXj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 08:23:39 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21906255B6
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 05:23:39 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id v16so949232wrr.6
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 05:23:38 -0700 (PDT)
+        with ESMTP id S234478AbiGRM1R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 08:27:17 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28D8C26106
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 05:27:14 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id n18so19034085lfq.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 05:27:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+G4kjP9mm00Z/vGeGWDzYlVNOhABgdhQM+y1cGn076c=;
-        b=60mVMwczmUfb/zk97cdndbft0pvfXpd5oQi+M9I5DCO5GFO1BQPEbxHhKoYIIFVckl
-         ENfN8nMIdbMrKtDQZ3JlpSZtH9IaD4lQ4pdkn+gfuLv6AIqaWowiUWljVH/QhylW2kye
-         c9UBBpgQPttPZ/euWPaWP7oG5j+9rjR44SJY3hrKQRwhevIY0xa0K1pMpCQYTryrASUx
-         aemrNZMGAEfcTjUfpfwkt5/pB50nouVy2oYuR/Q1M/oLXXA4T389OHrf1w/2RHMqih/U
-         odUyrsDNsMVdpD8dxDz+lELOaV6HtdbaL0z4MpiCVk7Ul1fkZh2eSsm02fdLQRYLjUN3
-         GsIA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SvNSiy3Bwyzzmb9hWm5P2ubOF+K0KPQR5bua58V/jh0=;
+        b=fvzJULg7DRCWCIpeJrHd8MszLKI1FCkIqUIlpfMgk4Y9DoLijatc6bknHRhlef65cQ
+         WSkxz+dMpXpDQuTDLRcjqChHLNrmSK1htOi3Q1Ap1XjPzlitOiadSO1j5WrlV2PdnB8E
+         bqtRarasBZWlUSAezWCCVo4ExQZu8B52noAfuFmdP/NsR5T0xIJ0in5tQtPG9DFaHdi4
+         QqCuJ6LqHK5C0/OdDwFCLUCvvBdyfHNx5u4y8d6miqg6/gZsHqeGlcNHyGb1dc6KnZPy
+         +41xCZsvOhgvrTLuk8Ii1L0cwh6uist3zpQZdMgbIFTbjXXsz50iwd/HBs+TbaV7xxiy
+         tFug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+G4kjP9mm00Z/vGeGWDzYlVNOhABgdhQM+y1cGn076c=;
-        b=3KqfysBf+/h3ioqzNR76OzIyZ1LCxGNnDmt7i+TTActidFuY76lzknlpX0f2IvXimz
-         fRHcN5SzjfoMcrfJUixWASfzz1UFq6ZD2vrzy12GQZT0N078bVSXF45M8CIe7NObGtYh
-         fEQ8XGaw5A/Q+VS6hZW4XJBj4ZemC7J7XDNT874jM+faqPh3GY43BRseYDW9U+q+3BvC
-         CsxJR0Rb9XhDkLg1XI+EsYPE9hd+YmtjZBvOmnV6u/3Q17OsC3awqoSg/GOQeqt+15S3
-         6Pyk68qOdvkbqSjQudqYhDpJtzEAqGHdJy07nUhulJtB4HReBxmKkAf/gGLmRI2j1yJ6
-         uYsw==
-X-Gm-Message-State: AJIora9cyyD6ZjGb9TpUFv1TtqWMpMrXy2qhClMfRePw1iaq0iZB65Vf
-        TpXyrfyf6Fjmu6O4bStzDhwTHA==
-X-Google-Smtp-Source: AGRyM1tBYieC5uAodNL+I506Npqiad2t1WV5UQx4dgqstQ/tQ3wlya8wyr2E1fp1VG/rZWURmyIJHg==
-X-Received: by 2002:a5d:434a:0:b0:21d:aa7e:b1bb with SMTP id u10-20020a5d434a000000b0021daa7eb1bbmr23752945wrr.619.1658147017579;
-        Mon, 18 Jul 2022 05:23:37 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:cb1d:77d:8cd7:da25:e091:44c6:f87f])
-        by smtp.gmail.com with ESMTPSA id k9-20020a5d5189000000b0021dd8e1309asm8184929wrv.75.2022.07.18.05.23.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 05:23:37 -0700 (PDT)
-From:   Julien Panis <jpanis@baylibre.com>
-To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, Julien Panis <jpanis@baylibre.com>
-Subject: [PATCH v1 2/2] arm64: dts: ti: k3-am625-sk: mark MCU and WKUP watchdogs as reserved
-Date:   Mon, 18 Jul 2022 14:23:28 +0200
-Message-Id: <20220718122328.251602-3-jpanis@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220718122328.251602-1-jpanis@baylibre.com>
-References: <20220718122328.251602-1-jpanis@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SvNSiy3Bwyzzmb9hWm5P2ubOF+K0KPQR5bua58V/jh0=;
+        b=1yIhFl6mZFUURZ91/15iqYZpK4HtH1NHTGjWIVB0QP3P2F9mVBMfIsrBF0VNItzoWb
+         TBDn6BUyf6Fmmee7z7QmLX2hL6K/6bI8wUcwoHG1b69gBJYz95DiADHx6uoUIIOsk7Jx
+         cMZzIcEsF99qgF26gw4HCyQeFxeTANOe8WXUs1sc0xQSvAgyFX05HjndODq14Q3569t8
+         balGP3VhLXsCq7+GNCqx7OCb0pib6AgRxVvp5mS0GgdqSTjuflgo4JPDA71k6HOWIQLH
+         2brT1L4TBEn1boX1hFRg4bApELYQ1gXvi76/B2rEhXKhGhnyE5AW879ZCaIxjiXdG8tX
+         hGtQ==
+X-Gm-Message-State: AJIora/AvtrWEZlNrma2a613qW36vZmSLHmoLPXFp/h6NDdLIivRy5Pm
+        KjNU0Ro9Dz5IoI+sl4THCcCJBsGRGc8/oil11hmT4g==
+X-Google-Smtp-Source: AGRyM1uKiFktgrEzxlm7H0kdDSoycjmIDjrn5dKMTQroWG6UyBZUIQ/Ro4Bg+FkT/p4F94gX2lwF5GGf0OM1CfmattE=
+X-Received: by 2002:a05:6512:aca:b0:48a:1a70:d0d8 with SMTP id
+ n10-20020a0565120aca00b0048a1a70d0d8mr11279481lfu.167.1658147232435; Mon, 18
+ Jul 2022 05:27:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220712121832.3659769-1-martin.kepplinger@puri.sm>
+ <CAPDyKFr0Lnp_3rUWcdZMcgtcFW050hOiGVZV_bVu=pqCLE8dEw@mail.gmail.com> <06ee17dfd5f5fb0cb3db4ddfee863c7b8351096e.camel@puri.sm>
+In-Reply-To: <06ee17dfd5f5fb0cb3db4ddfee863c7b8351096e.camel@puri.sm>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 18 Jul 2022 14:26:35 +0200
+Message-ID: <CAPDyKFpm1nMEeUjygapfwtBcr25AQerX4j14MPKd5NW2-BW33g@mail.gmail.com>
+Subject: Re: [PATCH v2] power: domain: handle power supplies that need interrupts
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     rafael@kernel.org, khilman@kernel.org, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz,
+        kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
+        l.stach@pengutronix.de, aford173@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MCU wdt is typically used by M4F.
-Wake up wdt is typically used by DM (R5) firmware.
+On Mon, 18 Jul 2022 at 14:08, Martin Kepplinger
+<martin.kepplinger@puri.sm> wrote:
+>
+> Am Montag, dem 18.07.2022 um 12:54 +0200 schrieb Ulf Hansson:
+> > On Tue, 12 Jul 2022 at 14:19, Martin Kepplinger
+> > <martin.kepplinger@puri.sm> wrote:
+> > >
+> > > If the power-domains' power-supply node (regulator) needs
+> > > interrupts to work, the current setup with noirq callbacks cannot
+> > > work; for example a pmic regulator on i2c, when suspending, usually
+> > > already
+> > > times out during suspend_noirq:
+> > >
+> > > [   41.024193] buck4: failed to disable: -ETIMEDOUT
+> > >
+> > > So fix system suspend and resume for these power-domains by using
+> > > the
+> > > "outer" suspend/resume callbacks instead. Tested on the imx8mq-
+> > > librem5
+> > > board, but by looking at the dts, this will fix imx8mq-evk and
+> > > possibly
+> > > other boards too.
+> > >
+> > > Possibly one can find more changes than suspend/resume for this
+> > > case. They
+> > > can be added later when testing them.
+> > >
+> > > Initially system suspend problems had been discussed at
+> > > https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
+> > > which led to discussing the pmic that contains the regulators which
+> > > serve as power-domain power-supplies:
+> > > https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
+> > >
+> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > ---
+> > >
+> > > revision history
+> > > ----------------
+> > > v2: (thank you Krzysztof)
+> > > * rewrite: find possible regulators' interrupts property in parents
+> > >   instead of inventing a new property.
+> > >
+> > > v1: (initial idea)
+> > > https://lore.kernel.org/linux-arm-kernel/20220711094549.3445566-1-martin.kepplinger@puri.sm/T/#t
+> > >
+> > >
+> > >  drivers/base/power/domain.c | 26 ++++++++++++++++++++++++++
+> > >  1 file changed, 26 insertions(+)
+> > >
+> > > diff --git a/drivers/base/power/domain.c
+> > > b/drivers/base/power/domain.c
+> > > index 3e86772d5fac..ca3e3500939d 100644
+> > > --- a/drivers/base/power/domain.c
+> > > +++ b/drivers/base/power/domain.c
+> > > @@ -2298,6 +2298,28 @@ static bool genpd_present(const struct
+> > > generic_pm_domain *genpd)
+> > >         return ret;
+> > >  }
+> > >
+> > > +/**
+> > > + * of_genpd_get_power_supply_irq() - Adjust if power-supply needs
+> > > interrupts
+> > > + * @genpd: Pointer to PM domain associated with the PM domain
+> > > provider.
+> > > + */
+> > > +static void of_genpd_get_power_supply_irq(struct generic_pm_domain
+> > > *pd)
+> > > +{
+> > > +       struct device_node *dn;
+> > > +
+> > > +       dn = of_parse_phandle(pd->dev.of_node, "power-supply", 0);
+> > > +       if (!dn)
+> > > +               return;
+> > > +
+> > > +       while ((dn = of_get_next_parent(dn))) {
+> > > +               if (of_get_property(dn, "interrupts", NULL)) {
+> > > +                       pd->domain.ops.suspend =
+> > > genpd_suspend_noirq;
+> > > +                       pd->domain.ops.resume = genpd_resume_noirq;
+> > > +                       pd->domain.ops.suspend_noirq = NULL;
+> > > +                       pd->domain.ops.resume_noirq = NULL;
+> > > +               }
+> > > +       }
+> > > +}
+> > > +
+> > >  /**
+> > >   * of_genpd_add_provider_simple() - Register a simple PM domain
+> > > provider
+> > >   * @np: Device node pointer associated with the PM domain
+> > > provider.
+> > > @@ -2343,6 +2365,8 @@ int of_genpd_add_provider_simple(struct
+> > > device_node *np,
+> > >         genpd->provider = &np->fwnode;
+> > >         genpd->has_provider = true;
+> > >
+> > > +       of_genpd_get_power_supply_irq(genpd);
+> > > +
+> > >         return 0;
+> > >  }
+> > >  EXPORT_SYMBOL_GPL(of_genpd_add_provider_simple);
+> > > @@ -2394,6 +2418,8 @@ int of_genpd_add_provider_onecell(struct
+> > > device_node *np,
+> > >
+> > >                 genpd->provider = &np->fwnode;
+> > >                 genpd->has_provider = true;
+> > > +
+> > > +               of_genpd_get_power_supply_irq(genpd);
+> > >         }
+> > >
+> > >         ret = genpd_add_provider(np, data->xlate, data);
+> >
+> > Overall I understand the need for this, but let me suggest a slightly
+> > different approach to solve this. See below.
+> >
+> > I think the OF parsing looks quite platform specific. Rather than
+> > adding this in the generic layer of genpd, I suggest that we move the
+> > OF parsing into the genpd provider code.
+> >
+> > Moreover, to inform genpd that it should use the other set of
+> > callbacks for system suspend/resume, let's add a new genpd
+> > configuration bit. The genpd provider should then set the genpd-
+> > >flag,
+> > prior to calling pm_genpd_init(), to let it know that it should pick
+> > the other callbacks.
+> >
+> > Does it make sense?
+>
+> the provider here would be gpcv2, right?
 
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
----
- arch/arm64/boot/dts/ti/k3-am625-sk.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Correct.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-index 39fb1d763037..f69d5dec7fb2 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -493,3 +493,13 @@ &ecap2 {
- &main_mcan0 {
- 	status = "disabled";
- };
-+
-+&mcu_rti0 {
-+	/* MCU RTI0 is used by M4F firmware */
-+	status = "reserved";
-+};
-+
-+&wkup_rti0 {
-+	/* WKUP RTI0 is used by DM firmware */
-+	status = "reserved";
-+};
--- 
-2.25.1
+> Conceptually I know what you
+> mean and will try to make it work later. thanks a lot!
 
+Great! Feel free to ping me if you need some help to put it together.
+
+Kind regards
+Uffe
