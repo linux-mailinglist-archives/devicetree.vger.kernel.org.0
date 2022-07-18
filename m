@@ -2,54 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E94B577C3A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 09:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD7DF577C4D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 09:18:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbiGRHPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 03:15:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47128 "EHLO
+        id S233750AbiGRHS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 03:18:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229826AbiGRHPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 03:15:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC8C111804;
-        Mon, 18 Jul 2022 00:15:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5C9A66134B;
-        Mon, 18 Jul 2022 07:15:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24B4C341C0;
-        Mon, 18 Jul 2022 07:15:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658128549;
-        bh=Z2cmY8+eKqIV7mFoiE72EWO95/pjIwP9a1crVM1liS8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=NaY8xlRcwPnM+zohaXrpoBcxanhOI1nvQuSyg/VK+e4A0wZ2Nuias53yuUxB4xNrH
-         fj5dbm3zxoTXbY4W2y0yHDRABf2GvRwOdtFCy4P9swUIFMlsqCNBPKfrQLcbla6wNX
-         PgOJ8V3L9ruzZEQV6HBrVre7SJBPUFj39+IboOS/Z7Cikn67hJ0RtNb/ZP3BWpfHBb
-         9gDrX23ky5OSKysC3qrmbS0mG2LrKslm1MrvvdCUUjfOCFKFfA89bV9i0ae/0jwBVP
-         VGVWxSVsOxBzJl7p34+Yt4R1F3mXPIE6Pa1Sv8+ReOrPVXxGqwm03kVL5kzuXv83px
-         5NHGKmKA0qsdA==
-Message-ID: <91613bc8-8a9e-00ed-71c9-ebf4eabed396@kernel.org>
-Date:   Mon, 18 Jul 2022 10:15:44 +0300
+        with ESMTP id S230131AbiGRHS1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 03:18:27 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0889417065
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 00:18:26 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id bu1so15681790wrb.9
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 00:18:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gW4rCz2Fitz5o6DAUQMXkszJ5QgTwpkr1x/wG9fwwys=;
+        b=WAfdEbULVsF5Oo7vSbNU8BB24raJXDQHcwUNULmxYsyUjA+q0FFnge4ehvHxoU9urU
+         HzjuUBe8R/xL3MgwxR2IevPYimacvL8XuQompMyWgX0ATptMMfS6+c8ze/WIf8Jx+pL4
+         iTtNK8vAPgNglwypSrHB+YpmYcIxS8gDOOH7WULeskhAMDiQTmtldoTdOQquoYqOwJK4
+         DHVkFlWIFZRZN2Q8jZnC/7BDyjxewn4//sp/grS5mRj1QEYwpGCYCaweiCo+AoeGMNYS
+         iJSVGdOznd3znMCqvOaPAZtgidh7T24R3ZMQ3D8naib1g+Ht/kQ8Ul9L9KPCKTkG+Jkf
+         tZrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gW4rCz2Fitz5o6DAUQMXkszJ5QgTwpkr1x/wG9fwwys=;
+        b=oQx+O/jGJG0PlRb0se/BmNi0LaCy5vJYuSnX9ko8vu9d8cr60WhKRGsNLG6TLojs3R
+         L91ruVofCXVT+f1P0FYntWNRoG5QjXX+BrF9uqvusuXhGOajvyDhqeusxgaY+QiYX6Uy
+         MXEZmJivIqZDVKFmC1zciEMd8tyscZxn8HdaD788hcOF5qJXlbWM3JIwMP+ahF0/ZtSe
+         KQjLfgTpKGkgrFJWTNgV3fNnVWRJ16jBWyIttEjFc/FfRu41NXg34e01vuN/OAMhTcea
+         8qScGqEobOyZu88oPpD5GC+apfWcrwsuhJkV1FZ2PasHlDAdH0aQCHXJI6OZSyw0YHFr
+         2jwg==
+X-Gm-Message-State: AJIora/97QK+VH7UW9IEBQRzHkRmWYo7ddTL2uOHhvjb6WRGhxNAlqyw
+        wxwPtTyoFuLCu5djJlG1wgGFRv+yzQy4sTYg
+X-Google-Smtp-Source: AGRyM1t+UYLA0q90Sx0OLpN5vQr5rFVtNKJ4KmLAjLMTXPex06QR2HLZKDt4VaOjk1Ct9sezG3ASHA==
+X-Received: by 2002:a5d:4750:0:b0:21e:375:2825 with SMTP id o16-20020a5d4750000000b0021e03752825mr6200608wrs.42.1658128704615;
+        Mon, 18 Jul 2022 00:18:24 -0700 (PDT)
+Received: from [10.35.4.171] ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id c12-20020a5d4ccc000000b0021d6e758752sm10075729wrt.24.2022.07.18.00.18.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jul 2022 00:18:24 -0700 (PDT)
+Message-ID: <869e52f5-e1bd-4d40-1ba8-a467a852c3ec@sifive.com>
+Date:   Mon, 18 Jul 2022 08:18:23 +0100
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 0/5] Add interconnect support for SM6350
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 3/7] pwm: dwc: add of/platform support
+Content-Language: en-GB
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Rob Herring <robh@kernel.org>, linux-pwm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Odelu Kukatla <okukatla@codeaurora.org>
-References: <20220525144404.200390-1-luca.weiss@fairphone.com>
- <CLG9OKW0OMLX.2XWU1ZHFRR9RQ@otso>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <CLG9OKW0OMLX.2XWU1ZHFRR9RQ@otso>
+        Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>
+References: <20220712100113.569042-1-ben.dooks@sifive.com>
+ <20220712100113.569042-4-ben.dooks@sifive.com>
+ <20220712221715.GT1823936-robh@kernel.org>
+ <feaacf44-f9a8-b892-d8ba-8a396b49d56b@sifive.com>
+ <20220713135230.gjbd3v6iih2uicpu@pengutronix.de>
+ <7999fec2-847a-86ce-ed78-d2a9008bf654@sifive.com>
+ <20220713150755.bimcq2yiuvxn6n6v@pengutronix.de>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <20220713150755.bimcq2yiuvxn6n6v@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,22 +86,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 15.07.22 16:34, Luca Weiss wrote:
-> Hi all,
-> 
-> On Wed May 25, 2022 at 4:43 PM CEST, Luca Weiss wrote:
->> This series adds interconnect support for the various NoCs found on
->> sm6350.
+On 13/07/2022 16:07, Uwe Kleine-König wrote:
+> On Wed, Jul 13, 2022 at 03:30:07PM +0100, Ben Dooks wrote:
+>> On 13/07/2022 14:52, Uwe Kleine-König wrote:
+>>> On Wed, Jul 13, 2022 at 12:56:55PM +0100, Ben Dooks wrote:
+>>>> On 12/07/2022 23:17, Rob Herring wrote:
+>>>>> On Tue, Jul 12, 2022 at 11:01:09AM +0100, Ben Dooks wrote:
+>>>>>> The dwc pwm controller can be used in non-PCI systems, so allow
+>>>>>> either platform or OF based probing.
+>>>>>>
+>>>>>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
 >>
->> A more special modification is allowing child NoC devices, like done for
->> rpm-based qcm2290 which was already merged, but now for rpmh-based
->> interconnect.
+>> [snip]
+>>
+>>>>>> +properties:
+>>>>>> +  "#pwm-cells":
+>>>>>> +    description: |
+>>>>>> +      See pwm.yaml in this directory for a description of the cells format.
+>>>>>
+>>>>> pwm.yaml doesn't define how many cells. You need to. And you don't need
+>>>>> generic descriptions.
+>>>>
+>>>>    "#pwm-cells":
+>>>>       const: 1
+>>>>
+>>>> should be sufficient then?
+>>>
+>>> I would expect a value of (at least) 2 or (better) 3.
+>>
+>> OOPS, forgot the phandle.
+>>
+>> I will have to check if we have any support yet for dealing
+>> with any of the pwm flags yet.
 > 
-> any feedback on the two interconnect patches and the dts patch?
-> Georgi? Bjorn?
+> I didn't double check, but given that the driver only supports inversed
+> polarity it might not even work without passing the flag for inversed
+> polarity. Having said that, I expect you have to only add "#pwm-cells =
+> <3>;" to your dts and then everything should work just fine.
 
-I merged the interconnect patches.
+I've gone back over the documentation we have for the block, and it
+should have a count for high and a count for low in the PWM mode the
+driver puts it into. I have no idea /why/ the driver is reporting it
+as inversed, unless the PCI version has this automatically set....
 
-Thanks,
-Georgi
+I will go back and talk with the engineer who did the testing of the
+PWM to get the test-bench re-set and check this, however my expectation
+is we could easily do both and for the of/plat case we should just
+report normal polarity (and we could deal with the inversed by simply
+swapping the low and high values).
+
+I also noted the v2 block supports 0 and 100% by setting a bit in the
+control and the timers to a given value, so that can also be added to
+the series (although this requires an IP generation option to be
+set) which we can also add.
+
+Thnak you for pointing this out, hopefully we can have this sorted
+today and if so we will need to change this to a range of 2..3 for
+the PWM cells.
+
+
+> Best regards
+> Uwe
+> 
+
