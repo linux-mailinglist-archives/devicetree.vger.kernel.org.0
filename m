@@ -2,96 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DE25578339
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CF62578350
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233927AbiGRNJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 09:09:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34076 "EHLO
+        id S234765AbiGRNMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 09:12:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235056AbiGRNJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:09:52 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 024E612AEA
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:09:51 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id z22so5575765lfu.7
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 06:09:50 -0700 (PDT)
+        with ESMTP id S233263AbiGRNMr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:12:47 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFBCE26133;
+        Mon, 18 Jul 2022 06:12:46 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id e28so19212412lfj.4;
+        Mon, 18 Jul 2022 06:12:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=PhK1b8reBUV699VXSqYLQPHF1tp+dIwcIa0DcdvJTNw=;
-        b=HZ9YTB0b7sxmG8a9XikFipR9NlM9c5Wrl/9w9h6Nh4NdJlf0Z/IESC2JrFD2b5JRXV
-         065Xmoxpx+zxUYcN9enVUBt3bOZ35t7LaOB/1WDQ6nEaaziJPbZzpj1mcnlSClZ10nuc
-         mgbOZ1tRGJVmNmeMy0c/dqaBfM36zBYLFbe7G3SHBXl9kKHyyvKN/3ezEMVqh7QfkCIZ
-         JoR6pkqmQdTqw/qFVhqccq0QFyX+fSVU90iGcyTxmcz/VgFzStKIwS3Tdtmtm0Uz1PD+
-         EL71wszSMscE+Tkkqt4NQDczdTS5w8ROv7LZCj87/XwvZX4i7I9txCH6idDraPMD1oja
-         zbVw==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zW26rBi6b5NN34eoig0+xNjNcL1nw0bdLAbSIFvoRIE=;
+        b=VDc+hawylJ1zylNGVUYcDnTYJ5BDNvP6SNt/pZv5L8zGwE7bLN2jlb+jl24dCIzOJg
+         /qINBIfTEdI7hlT6H+zr9LpZZinoWT9nb7EzrkOhUqRKLEt+/CnTsYIC/wiN9smwzAWs
+         9gEtr+aMDBlE5CXqlbMEadnEU2IRWEvBYdJ6m0ynMQVpQzVYGIHv9FzDW+lXV75+g7fe
+         EEmYb6j5A52TUOsLWUPT/cLBOmcBY5aQ1CYsuLUf45AB+s0LBby5UFulbTHohUcbFrLa
+         wcfkM6cOeJt2H3JkYTqEIu4azf6fNf4eVs7ecLK6YSWPTRLl2o6ffyhhhqEnjb8hNgbw
+         ClNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=PhK1b8reBUV699VXSqYLQPHF1tp+dIwcIa0DcdvJTNw=;
-        b=KXrKpa65TJZ5VNzhJ8il6XEAmCRnfg9mBZsNQDC/X6da8eClpRUmA7tfs8bIVlhDqG
-         l8D3A4e+JYRBu3XsEYclq4c3YqibsyNdB0BvAjr4/LcxdA3JxpxBzhJ6lT3tITHYyMRJ
-         jdTL7Fo3FSo7AwppdVWkXIyo73uU6HN1/Am5bFFljZdbFPimT1vRYUb7mUJ2rq8EilKl
-         F8R2yGeLnsMEJbOoSCUbzIPpSEB5jpAFewB3BxSpblimBpqhcrMLKlg0iJOGdayQHJwp
-         oGMQ/UAWPVz6vkITjOr3xlg3DsQXNHDCk+HDivyNOb+8hD2FOc3QJIY9zVbqn/5aRl7U
-         f6mg==
-X-Gm-Message-State: AJIora/GXPV/U/4D8I0i6h8eth9o4RvAjKweXwhcA2EGL1+oxnjyUj4F
-        P5el6JKtz2QhEzJ8Rak2KRYQWg==
-X-Google-Smtp-Source: AGRyM1ub7C1wNFUUzclp8W82PDBUt5OBAdhZ5vBkZnyH93vEyNyrtqqNhg9fpJ+lfNDYfchWjlRWUg==
-X-Received: by 2002:a05:6512:22c8:b0:488:e69b:9311 with SMTP id g8-20020a05651222c800b00488e69b9311mr14113807lfu.564.1658149789113;
-        Mon, 18 Jul 2022 06:09:49 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id c28-20020ac25f7c000000b0047f750ecd8csm2596389lfc.67.2022.07.18.06.09.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 06:09:48 -0700 (PDT)
-Message-ID: <78160db4-eef2-ce8b-caf7-4df5bc0a8e94@linaro.org>
-Date:   Mon, 18 Jul 2022 15:09:47 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zW26rBi6b5NN34eoig0+xNjNcL1nw0bdLAbSIFvoRIE=;
+        b=ZkC6eYcIqzmQttV+OMNINHeSHjJHvR7pzwukNLWB8AdRlARymO7MFkUCQD2jLDCx8b
+         8o97/tq3Dmcoll+yqJ+6lE++ZyNP2zbKZQSv/2eVmxzcp/hN0SXyScIXmx6OwUt+qYYW
+         yRtUS7dJSHijTPQHX0hsjg5XBCCq+phSXoRT/eadP3duYdGUjiG6e9TUt04/C44Imw+h
+         WFcxJN5/754uC64ZLfDOfwmwIWwN3jk5kj7Ys2LeU3aWHchpoFDXGQwGgTmQSZRpsJx+
+         0DYfFlIwKYlKgxQvY5ITpizjN0K3QqCKaZiKPjOhEhp8L4R6b2wwIUva7eQ1Yxy9F6Pn
+         2VeA==
+X-Gm-Message-State: AJIora/CYP1ERaY6LMTETmNLdUMV4HTAaOnQsiDiHQqfkSh1mKBQ5Eo6
+        1g/r217So7K4lKgEoZvPtURZPswwHcrof6qRh6A=
+X-Google-Smtp-Source: AGRyM1t6IrwnDXUKp8lX11UQjAriHARn8Ym+LJnivDfcR8D10MSoiFmXI75SX/xW6Wsks/l98Uqn/fXPBufvxFAHerE=
+X-Received: by 2002:a05:6512:1190:b0:48a:19d5:ef23 with SMTP id
+ g16-20020a056512119000b0048a19d5ef23mr10573130lfr.401.1658149964876; Mon, 18
+ Jul 2022 06:12:44 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [RESEND PATCH 1/4] dt-bindings: qcom: Document bindings for new
- msm8916-samsung-e2015 devices
-Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        devicetree@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+References: <20220706165406.117349-1-tmaimon77@gmail.com> <CACPK8Xd0n5cpsCJ6guPzEj8JfXkz_ERzU3VdXW-Xx2QX8ssNKg@mail.gmail.com>
+ <CAK8P3a0Ojf1hm5Q2FJZEGLygku+qkPmKnKpBD8eAZPeRZtb=gw@mail.gmail.com> <CAK8P3a3Dh+wTyPYhvv5c-wsqMK24ZgqPWHw2C7xuFh9vL53XfA@mail.gmail.com>
+In-Reply-To: <CAK8P3a3Dh+wTyPYhvv5c-wsqMK24ZgqPWHw2C7xuFh9vL53XfA@mail.gmail.com>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Mon, 18 Jul 2022 16:12:33 +0300
+Message-ID: <CAP6Zq1iCai5hSWVyeMg+xcgBXj0mdq7mcQrQfNmDFh15Q2y_-g@mail.gmail.com>
+Subject: Re: [PATCH v7 00/16] Introduce Nuvoton Arbel NPCM8XX BMC SoC
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Joel Stanley <joel@jms.id.au>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20220715102055.3844-1-linmengbo0689@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220715102055.3844-1-linmengbo0689@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Robert Hancock <robert.hancock@calian.com>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Qin Jian <qinjian@cqplus1.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/07/2022 12:21, Lin, Meng-Bo wrote:
-> Document the new samsung,e5/e7/grandmax device tree bindings used in their
-> device trees.
-> 
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 3 +++
+Hi Arnd,
 
-If this is resend of v1, why I cannot find this patch in v1?
+Appreciate you taking care of this!
 
+Are these questions direct to me or Joel?
 
-Best regards,
-Krzysztof
+On our side we will be happy that you will start to merge Arbel
+NPCM8XX without the clock driver, hopefully the NPCM8XX clock driver
+will ACK soon and maybe you can merge it as well.
+
+What do you say Joel?
+
+Thanks a lot
+
+Tomer
+
+On Mon, 18 Jul 2022 at 14:28, Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Fri, Jul 8, 2022 at 3:45 PM Arnd Bergmann <arnd@arndb.de> wrote:
+> > On Fri, Jul 8, 2022 at 8:50 AM Joel Stanley <joel@jms.id.au> wrote:
+> > > Are you happy with a cross tree new soc branch for this series? If so
+> > > I can put them in a branch and get some build coverage before sending
+> > > them out.
+> > >
+> > > (I notice the clock and reset changes are waiting on acks still)
+> >
+> > Yes, I think we should merge the parts that are reviewed already, but I'd
+> > leave out the clk (4/16) and reset (9/16) patches in this case.
+> >
+> > Krzysztof has reviewed the binding changes, so I don't mind having
+> > the DT nodes added in the soc tree even if the two drivers are still
+> > missing.
+> >
+> > I would do the same thing for the sunplus SP7021 platform that
+> > Qin Jian has been posting, as this is also waiting for a final Ack
+> > on the clk driver.
+> >
+> > I would put both of the new platforms into a single branch in the
+> > SoC tree, separate from the usual dt/drivers/soc/defconfig
+> > branches. I was already planning to pick npcm8xx up myself,
+> > but if you can do a pull request, that would be even better.
+>
+> I see there is now a v9 of the series, let me know if I should
+> apply some or all of those, or if I should wait for a pull request
+> from you.
+>
+> I've just merged the Sunplus sp7021 support leaving out the
+> clock driver in order to make progress on that one, and
+> we can do the same thing here if there is still ongoing discussion
+> about some of the drivers. It would be nice to not wait too long
+> though, as we are already past -rc7.
+>
+>       Arnd
