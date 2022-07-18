@@ -2,106 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B18675784D6
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:08:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E465784F7
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 16:12:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235713AbiGROIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 10:08:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34992 "EHLO
+        id S235772AbiGROMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 10:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235711AbiGROIv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:08:51 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 243F6FE6
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:08:49 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id z25so19554673lfr.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:08:49 -0700 (PDT)
+        with ESMTP id S235782AbiGROMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 10:12:16 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73D7327FF5
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:12:13 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id e28so19521747lfj.4
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 07:12:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8CqAs9Ua7Pm8Q2XSJh/dswnbeNdXHzd1llWNOHbIuD0=;
-        b=AZP+58llLmJC3ISGeRpqLe8S5SU5cyj1U9du0bCtxTz57c1auuFp1bdrqbtDZqmdH+
-         jsoBPRqy9ceu6SiyC5bv8BCTvN4fTtcQb8pUA+539DHYzGFvk2FHHXWj+uTKBRwiUPkX
-         yJd8kYfdlgQPDkA8rODq9IlHRtUkLX8P68eCbpivN4Cm3n+cCeIJfX9WggoGOe22Kyau
-         Crn2aYQ21U+SKMhrcO+5y5LpZNWp+DhgS8aibz/SYGLlQzPHDvDpda+v7VDtly9UEXzO
-         kJ8/IWI2xzQqXN+XzeRacveJoDw6jox0hBhtkS76wku+21Ff2wzlcHu2opjhZXXljR1J
-         SnbA==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=3A1pwYA+9FmIi8p2b6mGGlRlD8boBkr9tedQRRE3OGw=;
+        b=LtRuShdjnX5B6eYwnoEW+6QtEzDFPpA2ejTnRmXXrdZykusYnUqHAX4SotY4JxubfL
+         MbN7ksokGRoZgHHzjdJYTjwnzqPIc9gngsDhjjs2xoQ8qv9IWB9xDHmaHrku3IxHsxCG
+         T+fKxsnt4SpUciNjMQ3KSODdGp4QxDUSbOxz6ZIqx4xMVUXaW2Z7XeNSla1WML63xoYG
+         n2aA6vPFHlYAhST1/N5F/GN7uEW+VfFwsW3ueK7hUfrmUe+xA221FADW/fga/tdZ/4PW
+         W8SVtoN14bZXp375LdzaOlutOGFvdHtzc0q0HARmPHpIKd9+8gvOJVrawqDU4fmnYQQa
+         0X0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=8CqAs9Ua7Pm8Q2XSJh/dswnbeNdXHzd1llWNOHbIuD0=;
-        b=B6q5Ms1WFfUpCrgj6eXIXAbGMKpujV38hFhkCmnqpWo09EnvA4D7NAA7ZGSWW91YEL
-         P9VE1wl7P0/+eOiUyaNnN+qEk+J4hY62zhPEBVAjjMM27RnED76gXyJjK+tAGfZ+UxY2
-         VKXlLjM7Ktn+yJbRU1kJtxrvkiPDh5o9eXh+kSTA0WoKzIPaXhAGrUoon+cgc9SePHhh
-         GuL9O1IzRXMdmLPvU2C28S0Ywzf0wjHlNZGbYSnv+vzBndiqFvxY6Bdp5FSIQ3OvVcy5
-         WJgdQvefCJ3XL67vspdQmpTO2qg7HE6Dq/Yt+v+b6aJKqsNb31W9OXQn3ReEeBKxZuHX
-         7Z8Q==
-X-Gm-Message-State: AJIora8GeQkrh6Zxk7/sPZFFW0T42uskScLYPUblKnx1ry5062UN+OID
-        6erSroo3ZjrmsIXHN1U/VVsZSA==
-X-Google-Smtp-Source: AGRyM1tMdIUR9jHUwbcEC9/NAS7p2+/gpqVLsPo9FDRHsddDPnRJMiUKece0HNK6p14XKK1PqS1IrA==
-X-Received: by 2002:a05:6512:1684:b0:47f:5f27:b006 with SMTP id bu4-20020a056512168400b0047f5f27b006mr15108397lfb.225.1658153327547;
-        Mon, 18 Jul 2022 07:08:47 -0700 (PDT)
+        bh=3A1pwYA+9FmIi8p2b6mGGlRlD8boBkr9tedQRRE3OGw=;
+        b=SEdODgkFpJpEAxMmWz15VRtc2uNFH/gA4B8ygRniO1KEe86/efhGflzJ18Iu4L4+80
+         KDlg5fcMN1jyccVrqQ4SjY+XTnWF6DTL9EqEueEYkSGE3Ljkt6Y66cKJjomEzrflyuLH
+         HmDWqhOgo95eZMZQHD30nr4+0+WMCoEUsRDEUa2ktot2qw1xNwWGmxPsw1RxQLIzd7mb
+         FYt/3X1pJyiov/gkP80qrGrgr1aqkbt8L/jDxLbQBOdmT/6wEodMmTI16rodeui77YHe
+         OrLVK+EYj928iANTf4V5eovq2v1T7gu5sKSYDehF2Q8w1apVk8DTVVJYx2O9NfNbiPNU
+         O63w==
+X-Gm-Message-State: AJIora8edeL590JMvYfg3JQkNdVFuXal2/fPk0ylsLyBlAWK5iuj097e
+        u30NGLuVeTS28J7YmdCSHf+4ww==
+X-Google-Smtp-Source: AGRyM1uPqgWas+MQLu7jqyCHTRDKBBuAtsxPfwX2Ln/MOsU/F89ubYmh0biVDDxjB+NwN2IIol0VTA==
+X-Received: by 2002:ac2:5dc6:0:b0:488:e498:1d71 with SMTP id x6-20020ac25dc6000000b00488e4981d71mr14580614lfq.140.1658153531868;
+        Mon, 18 Jul 2022 07:12:11 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id p26-20020ac246da000000b0048a256f50b3sm2016576lfo.102.2022.07.18.07.08.46
+        by smtp.gmail.com with ESMTPSA id v14-20020a056512348e00b0047f6b8c2127sm2611415lfr.186.2022.07.18.07.12.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 07:08:47 -0700 (PDT)
-Message-ID: <67c5ed4a-022a-e2b4-cbbb-ca6818bf4881@linaro.org>
-Date:   Mon, 18 Jul 2022 16:08:45 +0200
+        Mon, 18 Jul 2022 07:12:11 -0700 (PDT)
+Message-ID: <13e66ec9-f9be-c384-a581-b0b05ca549ed@linaro.org>
+Date:   Mon, 18 Jul 2022 16:12:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: mt8188: add pinmux definition
+Subject: Re: [PATCH v4 2/2] dt-bindings: phy: Add bindings doc for Sunplus
+ USB2
 Content-Language: en-US
-To:     Hui Liu <hui.liu@mediatek.com>, linus.walleij@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com
-Cc:     srv_heupstream@mediatek.com, johnson.wang@mediatek.com,
-        zhiyong.tao@mediatek.com, sean.wang@mediatek.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220718113813.23787-1-hui.liu@mediatek.com>
- <20220718113813.23787-3-hui.liu@mediatek.com>
+To:     Vincent Shih <vincent.sunplus@gmail.com>, kishon@ti.com,
+        vkoul@kernel.org, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com
+References: <1658141480-9291-1-git-send-email-vincent.sunplus@gmail.com>
+ <1658141480-9291-3-git-send-email-vincent.sunplus@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220718113813.23787-3-hui.liu@mediatek.com>
+In-Reply-To: <1658141480-9291-3-git-send-email-vincent.sunplus@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2022 13:38, Hui Liu wrote:
-> From: "Hui.Liu" <hui.liu@mediatek.com>
+On 18/07/2022 12:51, Vincent Shih wrote:
+> Add bindings doc for Sunplus USB2 PHY driver
 > 
-> This commit adds pinmux definition for mt8188 platform.
-> 
-> Signed-off-by: Hui.Liu <hui.liu@mediatek.com>
+> Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
 > ---
->  include/dt-bindings/pinctrl/mt8188-pinfunc.h | 1280 ++++++++++++++++++
->  1 file changed, 1280 insertions(+)
->  create mode 100644 include/dt-bindings/pinctrl/mt8188-pinfunc.h
-> 
-> diff --git a/include/dt-bindings/pinctrl/mt8188-pinfunc.h b/include/dt-bindings/pinctrl/mt8188-pinfunc.h
-> new file mode 100644
-> index 000000000000..bb764b67159b
-> --- /dev/null
-> +++ b/include/dt-bindings/pinctrl/mt8188-pinfunc.h
+> Changes in v4:
+>  - No change
 
-Vendor,name
-mediatek,mt8188-pinfunct.h
+You should keep Rob's review tag:
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> @@ -0,0 +1,1280 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-
-Dual license.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
