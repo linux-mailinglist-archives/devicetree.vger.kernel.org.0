@@ -2,44 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77182578418
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2559E578421
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 15:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235131AbiGRNpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 09:45:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39940 "EHLO
+        id S235302AbiGRNpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 09:45:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235152AbiGRNpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:45:18 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 09CA4DFD0;
-        Mon, 18 Jul 2022 06:45:16 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.92,281,1650898800"; 
-   d="scan'208";a="128236357"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 18 Jul 2022 22:45:16 +0900
-Received: from localhost.localdomain (unknown [10.226.92.65])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5C7F34003EB6;
-        Mon, 18 Jul 2022 22:45:13 +0900 (JST)
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: [PATCH 1/2] dt-bindings: usb: renesas, usb3-peri: Document RZ/V2M r9a09g011 support
-Date:   Mon, 18 Jul 2022 14:44:57 +0100
-Message-Id: <20220718134458.19137-2-phil.edworthy@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220718134458.19137-1-phil.edworthy@renesas.com>
-References: <20220718134458.19137-1-phil.edworthy@renesas.com>
+        with ESMTP id S235240AbiGRNpm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 09:45:42 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F075624963;
+        Mon, 18 Jul 2022 06:45:37 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4FAC46601A60;
+        Mon, 18 Jul 2022 14:45:35 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658151936;
+        bh=EXKnw2OAVh4UgVY6zw8D6FiE6rIcc5hXLWhj8edCwEQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=b7IVnsGHPMh5g88WN/m/HeqRFgQ7jYT5LBJjdDNG5gehWg8aValkTW6urTd3VMSVD
+         RNsQuIWp7FLWTitkrc9L6toHnrb0Y3MXddAwe1GPuqxN80ybV9uKrZyck+6jG83cj4
+         sMjRoukjzfpVhrMF6glrxJrBe00cyb7wPdYxLnpc//4lsFosF5T8bCTDbnJEiG+Bcr
+         J1SQMhz1ZwbABKqvIlAhlZDMbZo1cx18XuWsJVrxBwvPLODfj3yWLLQ0Ta3NvKGMRy
+         VClcdoIA3/H/wNzZu1gCe2blZCzc8sP7DldFzpOIrO4TSM9mx1Fm8ZFIbI70cCPGLX
+         ZGiNNM1nI8f/A==
+Message-ID: <512118d1-c571-94fd-4fdf-16fe3995f592@collabora.com>
+Date:   Mon, 18 Jul 2022 15:45:31 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: add compatible for mt8188
+Content-Language: en-US
+To:     Hui Liu <hui.liu@mediatek.com>, jic23@kernel.org, lars@metafoo.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com
+Cc:     srv_heupstream@mediatek.com, zhiyong.tao@mediatek.com,
+        guodong.liu@mediatek.com, johnson.wang@mediatek.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220718123930.24373-1-hui.liu@mediatek.com>
+ <20220718123930.24373-2-hui.liu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220718123930.24373-2-hui.liu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,131 +62,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the RZ/V2M SoC bindings.
-The RZ/V2M SoC is a little different to the R-Car implementations.
-A few DRD related registers and bits have moved, there is a separate
-interrupt for DRD, an additional clock for register access and reset
-lines for DRD and USBP.
+Il 18/07/22 14:39, Hui Liu ha scritto:
+> From: "Hui.Liu" <hui.liu@mediatek.com>
+> 
+> This commit adds MediaTek mt8188 auxadc in dt-binding documentation.
+> 
+> Signed-off-by: Hui.Liu <hui.liu@mediatek.com>
 
-Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../bindings/usb/renesas,usb3-peri.yaml       | 81 +++++++++++++++----
- 1 file changed, 66 insertions(+), 15 deletions(-)
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-diff --git a/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-index 9fcf54b10b07..28f785dd2012 100644
---- a/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-+++ b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-@@ -11,27 +11,49 @@ maintainers:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - renesas,r8a774a1-usb3-peri # RZ/G2M
--          - renesas,r8a774b1-usb3-peri # RZ/G2N
--          - renesas,r8a774c0-usb3-peri # RZ/G2E
--          - renesas,r8a774e1-usb3-peri # RZ/G2H
--          - renesas,r8a7795-usb3-peri  # R-Car H3
--          - renesas,r8a7796-usb3-peri  # R-Car M3-W
--          - renesas,r8a77961-usb3-peri # R-Car M3-W+
--          - renesas,r8a77965-usb3-peri # R-Car M3-N
--          - renesas,r8a77990-usb3-peri # R-Car E3
--      - const: renesas,rcar-gen3-usb3-peri
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,r8a774a1-usb3-peri # RZ/G2M
-+              - renesas,r8a774b1-usb3-peri # RZ/G2N
-+              - renesas,r8a774c0-usb3-peri # RZ/G2E
-+              - renesas,r8a774e1-usb3-peri # RZ/G2H
-+              - renesas,r8a7795-usb3-peri  # R-Car H3
-+              - renesas,r8a7796-usb3-peri  # R-Car M3-W
-+              - renesas,r8a77961-usb3-peri # R-Car M3-W+
-+              - renesas,r8a77965-usb3-peri # R-Car M3-N
-+              - renesas,r8a77990-usb3-peri # R-Car E3
-+          - const: renesas,rcar-gen3-usb3-peri
-+
-+      - items:
-+          - enum:
-+              - renesas,r9a09g011-usb3-peri # RZ/V2M
-+          - const: renesas,rzv2m-usb3-peri
- 
-   reg:
-     maxItems: 1
- 
-   interrupts:
--    maxItems: 1
-+    minItems: 1
-+    items:
-+      - description: Combined interrupt for DMA, SYS and ERR
-+      - description: Dual Role Device (DRD)
-+
-+  interrupt-names:
-+    items:
-+      - const: all_p
-+      - const: drd
- 
-   clocks:
--    maxItems: 1
-+    minItems: 1
-+    items:
-+      - description: Main clock
-+      - description: Register access clock
-+
-+  clock-names:
-+    items:
-+      - const: aclk
-+      - const: reg
- 
-   phys:
-     maxItems: 1
-@@ -43,7 +65,15 @@ properties:
-     maxItems: 1
- 
-   resets:
--    maxItems: 1
-+    minItems: 1
-+    items:
-+      - description: Peripheral reset
-+      - description: DRD reset
-+
-+  reset-names:
-+    items:
-+      - const: aresetn_p
-+      - const: drd_reset
- 
-   usb-role-switch:
-     $ref: /schemas/types.yaml#/definitions/flag
-@@ -78,6 +108,27 @@ required:
-   - interrupts
-   - clocks
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzv2m-usb3-peri
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+        interrupts:
-+          minItems: 2
-+        resets:
-+          minItems: 2
-+      required:
-+        - clock-names
-+        - interrupt-names
-+        - resets
-+        - reset-names
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
+> ---
+>   .../devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml      | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+> index 65581ad4b816..7f79a06e76f5 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+> @@ -35,6 +35,7 @@ properties:
+>             - enum:
+>                 - mediatek,mt8183-auxadc
+>                 - mediatek,mt8186-auxadc
+> +              - mediatek,mt8188-auxadc
+>                 - mediatek,mt8195-auxadc
+>                 - mediatek,mt8516-auxadc
+>             - const: mediatek,mt8173-auxadc
 
