@@ -2,84 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24CF8577EF2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 11:49:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C4D1577EFD
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 11:51:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234252AbiGRJt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 05:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39988 "EHLO
+        id S234295AbiGRJvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 05:51:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233917AbiGRJtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 05:49:25 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A69826362
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 02:49:23 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-31c89653790so100699617b3.13
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 02:49:23 -0700 (PDT)
+        with ESMTP id S234286AbiGRJv3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 05:51:29 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB811AD80
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 02:51:28 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-31e0d4ad6caso40520697b3.10
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 02:51:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=SW/5uuPhfEIiVcFOfH8vJMrT6q6SXd8wiWSNhlWVZXE=;
-        b=yzDwRyaJYFlLD4KeR1jik570FoO+psDVavgR6382KBUsTWFF27tRs7D/1LwT+HWJjT
-         mDwjVM11MqgWhebI3orsvkCbbf2YP1wtIhQzDKUjD5BSOOBjO5AIHhhORzCbJMC7BiYS
-         gbgcKcBOUcarwDFW48tUxVcfkQKjoOJDB4GlHkG3YVk4r20YIfiF+bOuFKVS0k+Fc4Wc
-         o3b0kT/hRM1PkrLNjtK22jrtMiF50msOUsJ2ckaOm0IQH+kug8RmFM2Bsnuyh6PuUCw+
-         4kkK2pxWY0/C9h0kC3MTVzzTBzR1x/BmWQVDfIzgnkAYK/WbhpBlOiG6ouABV4qkL/zZ
-         RE4Q==
+        bh=M2I1pV2sf/JUqVpweWJo62P/1i0gSiIp5oWBjWp8nSA=;
+        b=VAdwyum2hOxxRktnZsEA5+p2O+7iNmpqU/GL3hqBFgrGxVwE7yJKFyoaukFIJrzqFR
+         RxnoXCt+IYceVU8pDGd6l3Ko6tY3zqRADfWG+9NCj7Jfz0KEvzx6Ifd0hXlK8H0JLAcZ
+         xa3Jh5o70hLUS8bsNuQbGCQLgGRIQ5ejB/GxaL+w+EAO5bnKNBgmtjb5V4NMewye+cot
+         9wva9denq4VDljP4pAhxa+i5PFShKRMN7DYFA6fNvcTzjZ1PwKoWy/AlDSe+f0zcBj9U
+         xkBfiFeqo0dLiFtKDgs7Nqb0/K1vyOsE/blH5fHxqfuQFISe9QnabKPTzzF8oOtbkkop
+         EFow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=SW/5uuPhfEIiVcFOfH8vJMrT6q6SXd8wiWSNhlWVZXE=;
-        b=fHzM4uEjWDMfLmD2ILkVB+i3RkZ0ML3OpkoLR7Ns380+gBxU5SdiVZdhvg6Ax1WFuW
-         LdxexpG0kKYyBYdZyGkwncNoJtj53pPolY2M0CLvP61s8wZtklDFH7FdKw30+b3YU0zU
-         DLgd2Qi+l9kNRsYX9aLmgHRiXKzHrZoD0nQGhaZf0uQNPJZDqCXKduA5WeyGMBYW45LW
-         VN8/6KMKsbUfGgBFLSGCB6CGJfOav0Kb0j1wRF6x3tj43gNYoAJ/de+bx5BmZKZpDmOp
-         lBV3p0ITE7lCJ0Mxvt9o1v2FQdXzQ6PPBiWTRu7jwZ/XRkygDjFp130s07xFAzAOFFxt
-         UH9A==
-X-Gm-Message-State: AJIora8XZrWlbwRemS9XbyfvklOvWq69qsR0pfY8BHwyD2UBy1aWLxhT
-        5ypOP9PGfDdbCo7xXwRFxJqZ+EAgzZqGdLXYlcAkJg==
-X-Google-Smtp-Source: AGRyM1tzM5DcCUNp7Icsn2kKwLcC6+vNcmEZtwfuGcBZ0rm5Uh1mv4sFBP8itRqheGt0Ud9IOxM3/h2NPr9YzaYmmsA=
-X-Received: by 2002:a0d:e885:0:b0:31c:e456:c054 with SMTP id
- r127-20020a0de885000000b0031ce456c054mr29022869ywe.299.1658137762876; Mon, 18
- Jul 2022 02:49:22 -0700 (PDT)
+        bh=M2I1pV2sf/JUqVpweWJo62P/1i0gSiIp5oWBjWp8nSA=;
+        b=2gh2WTIwRw13RaUbARVk6znvzNd9JOkxjuv6BCxkpYCx3scc9adZ8qItS1mRSca+dK
+         0XZ1/3V+2yVdfXh1SXCENjPKq5QAItVJuEBv1+V9yl9LBh3SUaKQyDcZnwiRBh6ZE303
+         By7sDE1Zce3l8Fhi0UIplRZUAmJLcKw5AhmwSh6AIxAmSbBkXrIHqb0kwbhdSwCAysWO
+         BN3um1A8cPXTJSkQommvbRs7s2IfhCeQqkl8Ok9ylWyoZCGAG5sJALX5p43D42pwiHwh
+         DgPThnziJolH6XIDov9cnsxt1Z1nOKlempJP+WXrljPl3jC91qFffZ1ZPfgcfsX9PsfH
+         3FNA==
+X-Gm-Message-State: AJIora9mb4kIiXeYMyEG6tBl2J+QYzrtf+ELDbz5YlPuJlCL9Cv9JWSS
+        uvNM2Ho04cPh5wkcL8BpLauXBNDpUqJWDnnFc0+neg==
+X-Google-Smtp-Source: AGRyM1tfVn+JAC2MQr4dXxWt6ef/fkIZilU3quKxyr9s6kkXm8v6LDRT99L/0WLdmE0wv1KUEY1Un+YTA2/Gmcd1nQA=
+X-Received: by 2002:a0d:d997:0:b0:31d:669c:5bd7 with SMTP id
+ b145-20020a0dd997000000b0031d669c5bd7mr29367588ywe.340.1658137888026; Mon, 18
+ Jul 2022 02:51:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220609150851.23084-1-max.oss.09@gmail.com> <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
- <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com> <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
-In-Reply-To: <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
+References: <20220711203408.2949888-1-robimarko@gmail.com> <20220711203408.2949888-3-robimarko@gmail.com>
+ <CACRpkdbLKXrVu9q3m1BRfRMT5q4gtrtuSNw0PmTsZBraeytVFw@mail.gmail.com> <CAOX2RU6uRbkU3VCZRuNQewndEGiJweRbr0PehARyHGjhq6-5FA@mail.gmail.com>
+In-Reply-To: <CAOX2RU6uRbkU3VCZRuNQewndEGiJweRbr0PehARyHGjhq6-5FA@mail.gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 18 Jul 2022 11:49:11 +0200
-Message-ID: <CACRpkdb4qZSUNhEjRRJi=5H-GvBi_h-0BAfDHJct5SjLKZSc3g@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
- which controls
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Max Krummenacher <max.oss.09@gmail.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
+Date:   Mon, 18 Jul 2022 11:51:16 +0200
+Message-ID: <CACRpkdYTdVeFGF5_eKuHK8J1433o8cEEHSzqYevd9kGohraanw@mail.gmail.com>
+Subject: Re: [PATCH v7 3/7] dt-bindings: pinctrl: qcom,pmic-gpio: add PMP8074
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        lee.jones@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
+        lars@metafoo.de, linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -90,43 +73,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 13, 2022 at 1:44 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-
-> > > IIRC this led to problems because we had to invent "atomic regulators"
-> > > because regulators use kernel abstractions that assume slowpath
-> > > (process context) and power domains does not, i.e. they execute in
-> > > fastpath, such as an interrupt handler.
->
-> This isn't entirely correct. The callbacks of a genpd, *may* execute
-> in atomic context, but that depends on whether the GENPD_FLAG_IRQ_SAFE
-> is set for it or not.
->
-> Similar to what we have for runtime PM callbacks, with pm_runtime_irq_safe().
-
-Aha I stand corrected!
-
-> > > The atomic regulator was a subset of regulator that only handled
-> > > regulators that would result in something like an atomic register write.
+On Wed, Jul 13, 2022 at 10:25 AM Robert Marko <robimarko@gmail.com> wrote:
+> On Tue, 12 Jul 2022 at 10:39, Linus Walleij <linus.walleij@linaro.org> wrote:
+> > On Mon, Jul 11, 2022 at 10:34 PM Robert Marko <robimarko@gmail.com> wrote:
+> >
+> > > Document the compatible for PMP8074 which has 12 GPIO-s with holes at
+> > > GPIO1 and GPIO12.
 > > >
-> > > In the end it was not worth trying to upstream this approach, and
-> > > as I remember it, Ulf Hansson intended to let the power domains poke
-> > > these registers directly, which was easier. (It's on Ulfs TODO list to
-> > > actually implement this, hehe.)
+> > > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >
+> > Patch applied to the pinctrl tree.
 >
-> Yep, unfortunately I never got to the point. However, poking the
-> registers directly from the genpd provider's on/off callbacks has
-> never been my plan.
->
-> Instead I would rather expect us to call into a Ux500 specific
-> interface for the prcmu FW. Simply because it's not really a regulator
-> and must not be modelled like it. Instead it is a voltage/frequency
-> domain that is managed behind a FW interface.
+> Hi Linus,
+> Dont want to bother you, but I am not seeing this and the GPIO patch
+> in the pinctrl tree.
 
-We should take a stab at this, PostmarketOS just added support
-for three more U8500 phones so they support all the Samsung models
-and we have actual users of these systems. I think this would save
-them quite a lot of power. Also I use these targets for a lot of
-misc testing (like Kasan etc).
+It was stuck in test loops.
+
+I will push it out soon.
 
 Yours,
 Linus Walleij
