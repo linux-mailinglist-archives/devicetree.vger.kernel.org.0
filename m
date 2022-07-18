@@ -2,127 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4899A578CB0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 23:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 772A9578CE4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jul 2022 23:37:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234006AbiGRV0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 17:26:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49394 "EHLO
+        id S235703AbiGRVhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 17:37:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233216AbiGRV0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 17:26:19 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E47442F011;
-        Mon, 18 Jul 2022 14:26:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1658179578; x=1689715578;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=4RlVufiXTHzC4WPLNtwom5sZQqrDoICj4LD/vo1jP8Y=;
-  b=UVQ62QVowMISA1vuuJe3dy8L+yymAzL65HSpvrSoX6LpPcOCo6Lcn3gw
-   2Lg4KlV/7gJKIhPP8BCHjguTzsFOcNKyfAE3NB1QxpSJq/qUPAm6Kpish
-   NNR+E1W81FSRX6jhYrpacsF/AsdU3d5qNetQcayenNa3a4eAyLxZGdS7M
-   zJ00khBmHAgC+pQUsCfAVRvv1+TAfBFpb5rRUE0Dzdlp9oQDp0h2mo1EP
-   k3blxkRyUn2V9gEMX7nPuoIP6umTLRMDIuiH+1laHLxplScY/0rYm1+kJ
-   s8Io1ZGnWRAXkP5MnAp1OHleYldsCRBdbE1hv/l2RGILqlKXUYaXaYftc
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,282,1650956400"; 
-   d="scan'208";a="105020709"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Jul 2022 14:26:17 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 18 Jul 2022 14:26:13 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 18 Jul 2022 14:26:11 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <claudiu.beznea@microchip.com>, <nicolas.ferre@microchip.com>,
-        <UNGLinuxDriver@microchip.com>, <maxime.chevallier@bootlin.com>,
-        "Horatiu Vultur" <horatiu.vultur@microchip.com>
-Subject: [PATCH 3/3] ARM: dts: lan966x: Enable network driver on pcb8291
-Date:   Mon, 18 Jul 2022 23:29:21 +0200
-Message-ID: <20220718212921.1506984-4-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220718212921.1506984-1-horatiu.vultur@microchip.com>
-References: <20220718212921.1506984-1-horatiu.vultur@microchip.com>
+        with ESMTP id S231673AbiGRVhL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 17:37:11 -0400
+X-Greylist: delayed 359 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 18 Jul 2022 14:37:07 PDT
+Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [IPv6:2a01:4f8:a0:821d::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 24140326E2;
+        Mon, 18 Jul 2022 14:37:07 -0700 (PDT)
+Received: from localhost.localdomain (unknown [81.178.197.238])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 85B24140197;
+        Mon, 18 Jul 2022 21:31:06 +0000 (UTC)
+From:   Caleb Connolly <caleb@connolly.tech>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Amit Pundir <amit.pundir@linaro.org>
+Subject: [PATCH 0/4] Initial support for the Pixel 3
+Date:   Mon, 18 Jul 2022 22:30:47 +0100
+Message-Id: <20220718213051.1475108-1-caleb@connolly.tech>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_SOFTFAIL autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pcb8291 has 2 ports that are connected to the internal ports of the
-switch. Enable them in DT.
+This series adds an initial DTS and display panel driver
+for the Pixel 3. The Pixel 3 display uses DSC (Display
+Stream Compression) which has been supported in mainline
+for some time now.
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- arch/arm/boot/dts/lan966x-pcb8291.dts | 35 +++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Functionality includes:
+ - Display, GPU, venus video transcoder
+ - Modem/WiFi/Bluetooth - ModemManager seems to fail
 
-diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts b/arch/arm/boot/dts/lan966x-pcb8291.dts
-index 2cb532aa33f0..d890e6fcdbae 100644
---- a/arch/arm/boot/dts/lan966x-pcb8291.dts
-+++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
-@@ -4,6 +4,7 @@
-  */
- /dts-v1/;
- #include "lan966x.dtsi"
-+#include "dt-bindings/phy/phy-lan966x-serdes.h"
- 
- / {
- 	model = "Microchip EVB - LAN9662";
-@@ -32,6 +33,40 @@ fc3_b_pins: fc3-b-pins {
- 	};
- };
- 
-+&mdio1 {
-+	status = "okay";
-+};
-+
-+&phy0 {
-+	status = "okay";
-+};
-+
-+&phy1 {
-+	status = "okay";
-+};
-+
-+&switch {
-+	status = "okay";
-+};
-+
-+&serdes {
-+	status = "okay";
-+};
-+
-+&port0 {
-+	status = "okay";
-+	phy-handle = <&phy0>;
-+	phy-mode = "gmii";
-+	phys = <&serdes 0 CU(0)>;
-+};
-+
-+&port1 {
-+	status = "okay";
-+	phy-handle = <&phy1>;
-+	phy-mode = "gmii";
-+	phys = <&serdes 1 CU(1)>;
-+};
-+
- &flx3 {
- 	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
- 	status = "okay";
+The touchscreen uses some HEFTY downstream driver, hopefully
+we'll come up with an upstreamable solution for it soon and
+make this a bit more usable.
+
+Amit Pundir (1):
+  arm64: dts: qcom: add sdm845-google-blueline (Pixel 3)
+
+Caleb Connolly (1):
+  Documentation: dt-bindings: arm: qcom: add google,blueline
+
+Sumit Semwal (2):
+  dt-bindings: panel: Add LG SW43408 MIPI-DSI panel
+  drm: panel: Add lg sw43408 panel driver
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ .../bindings/display/panel/lg,43408.yaml      |  41 ++
+ .../display/panel/panel-simple-dsi.yaml       |   2 +
+ MAINTAINERS                                   |   8 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sdm845-google-blueline.dts  | 652 ++++++++++++++++++
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-lg-sw43408.c      | 586 ++++++++++++++++
+ 9 files changed, 1303 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/lg,43408.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
+ create mode 100644 drivers/gpu/drm/panel/panel-lg-sw43408.c
+
 -- 
-2.33.0
+2.36.1
 
