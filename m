@@ -2,110 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF865792DE
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 07:57:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 782965792E0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 07:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235751AbiGSF5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 01:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58664 "EHLO
+        id S236409AbiGSF5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 01:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234935AbiGSF5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 01:57:24 -0400
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB9D2AC6E;
-        Mon, 18 Jul 2022 22:57:23 -0700 (PDT)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 19 Jul
- 2022 13:57:21 +0800
-Message-ID: <3cc2e18a-1813-9939-4808-a59858f6451e@amlogic.com>
-Date:   Tue, 19 Jul 2022 13:57:21 +0800
+        with ESMTP id S234935AbiGSF5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 01:57:45 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6C262AC6E
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 22:57:43 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1oDgEl-0004Rb-QY; Tue, 19 Jul 2022 07:57:39 +0200
+Message-ID: <d346f18a-d82c-4408-98d7-f5295f51907a@pengutronix.de>
+Date:   Tue, 19 Jul 2022 07:57:37 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/3] arm64: dts: meson: add S4 Soc clock controller in DT
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 1/6] arm64: dts: imx8mn-beacon: Enable Digitial Microphone
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Adam Ford <aford173@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220708062757.3662-1-yu.tu@amlogic.com>
- <20220708062757.3662-3-yu.tu@amlogic.com>
- <f5b3e2de-ec60-88ee-4066-6b3860b6c89a@linaro.org>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <f5b3e2de-ec60-88ee-4066-6b3860b6c89a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Will Deacon <will@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>
+References: <20220717181000.1186373-1-aford173@gmail.com>
+ <20220717181000.1186373-2-aford173@gmail.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20220717181000.1186373-2-aford173@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-	Thank you for your advice.
+Hello Adam,
 
-On 2022/7/12 17:41, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 08/07/2022 08:27, Yu Tu wrote:
->> Added information about the S4 SOC Clock controller in DT.
->>
->> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->> ---
->>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 9 ++++++++-
->>   1 file changed, 8 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->> index ff213618a598..ad2ec26a1f4a 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->> @@ -86,7 +86,7 @@ gic: interrupt-controller@fff01000 {
->>   		};
->>   
->>   		apb4: apb4@fe000000 {
->> -			compatible = "simple-bus";
->> +			compatible = "simple-bus", "syscon";
-> 
-> This is not allowed.
-> 1. syscon needs also dedicated compatible
-> 2. simple-bus with syscon means it is not a simple bus anymore, so nope.
-I will correct it.
-> 
->>   			reg = <0x0 0xfe000000 0x0 0x480000>;
->>   			#address-cells = <2>;
->>   			#size-cells = <2>;
->> @@ -118,6 +118,13 @@ gpio_intc: interrupt-controller@4080 {
->>   					<10 11 12 13 14 15 16 17 18 19 20 21>;
->>   			};
->>   
->> +			clkc: clock-controller {
->> +				compatible = "amlogic,s4-clkc";
->> +				#clock-cells = <1>;
->> +				clocks = <&xtal>;
->> +				clock-names = "xtal";
->> +			};
->> +
->>   			uart_B: serial@7a000 {
->>   				compatible = "amlogic,meson-s4-uart",
->>   					     "amlogic,meson-ao-uart";
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-> .
+On 17.07.22 20:09, Adam Ford wrote:
+> +
+> +	sound-micfil {
+> +		compatible = "fsl,imx-audio-card";
+> +		model = "imx-audio-micfil";
+> +		pri-dai-link {
+> +			link-name = "micfil hifi";
+> +			format = "i2s";
+
+Given that MICFIL and mic speak PDM with each other,
+is i2s the correct format here?
+
+Cheers,
+Ahmad
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
