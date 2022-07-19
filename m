@@ -2,128 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E75857A636
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 20:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEAAB57A654
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 20:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234662AbiGSSMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 14:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40984 "EHLO
+        id S238444AbiGSSSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 14:18:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239935AbiGSSLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 14:11:45 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E445E308;
-        Tue, 19 Jul 2022 11:11:19 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id mf4so28737690ejc.3;
-        Tue, 19 Jul 2022 11:11:19 -0700 (PDT)
+        with ESMTP id S234810AbiGSSSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 14:18:35 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C462048E92
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 11:18:33 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id n18so26290791lfq.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 11:18:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=oFQ5ZoRQ7xPvEwHpT6dAI/Y5WSqaXBBPZHaMSxK+Pcw=;
-        b=k7cidDMqq4R9oKOShik+Ajeb6Eb7qxkxuepRuZ3cwNVjjVnas8OG5VYKHSMBO2/X7t
-         WLT0xAL5Zn+l/+bmIEXnyt5y9VYk+91PrjKoEGQ0OZCLg1y6O1/ZLTsFQoePt84MUqze
-         smT6BeYNwVU8u60qtdZjuljctDReYPEaQgmabWuSW2ucNepkYMPo5xO3duqRnkIgh7lc
-         kj/UmBovaggwwiIZOvlqXyQ4ZbU3G0C8kEbV8LtdIeDh5Xc/Si923Nw4hLvD8mFoQC8B
-         8uysVk+KVZTYFAT3NxHpLUGluI0NgqGdo/0tcuaVuMy1NfTxzs9pjcXPBEFtTinhPcH4
-         jg5g==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=L1Nb0zh4ARUsCff9U60Czkk0oDFcczHT1EIsSWvyea0=;
+        b=Pb9pjtR5OkQ9+MzbqKUzq2B2A0hhhlY7I6X4YQwoK5F4ANZYPjLIoZxKqYfGTYfbpY
+         66AD2XM+WwdrWVQ7Rdo0orzKbBIIKu3j1iYF7woFF158jCQSZPnbhP4FQCuVpBgnlu/4
+         9kyro3WL8Ic3DJHd8OQlw4eBED9TunUWF1Ae+y0suhBDrEynsvJSyE7IhjlJ2ZSV3lqN
+         g1Hc9GQWCqkqcHJEYZiGDHGeZRUqQpgsYhwB/uqkQxLlxkgDgNKY3TtkwWOv22qX5sbw
+         8wIC5AGxGUEaYxiMyE8gZk5nf3KFw5MYx7AHDFBmNjXPBbOsr1GaKhVH8LiQqmMSxvMi
+         VHhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oFQ5ZoRQ7xPvEwHpT6dAI/Y5WSqaXBBPZHaMSxK+Pcw=;
-        b=RR4m8bFRQG9KvKXpVSHO/kfXLmKKniC2csvUkOoSR5QK8yW85jA/XEgayXh4sU/aNw
-         +uoLZGpyfMRF5n0KlcnsJ3m9rS6zWXkkdNUuzoiG6RC0c85I1YEhRlFN4+PUD0gKJ7PG
-         q8FEmSoDg5CU8o+w45HY1+zskxZxdiYeMLKgZC+WN96w83aP5kRL1H1KQOIoSWtMiQ35
-         MYVHmWAxdwK3BTDNFJwipytUIhmBP1STUq8pNDZU9HIFD4Yjxed1Lty60DW1ESmZJTM6
-         ZrLBqbnqMdK66PCnIC3PWO+hyGEhNY07/1cnhOG6Y0fzTskQw2PYWjlzBuF6VdENN2j4
-         rsJA==
-X-Gm-Message-State: AJIora+Hyzf41sOGQ2MW7PTSpd54TKsdUGW+ZP38hH3eV+hmqY52+60u
-        GgXLo8rW1ergUn1U6fDrQ7c=
-X-Google-Smtp-Source: AGRyM1vrzPMh3dqrjGlhh3PwAnXW4KQokX/IMs0HL8VvNPn0GxhvoxzZ3J4dVwz2x5GzvwSBHdZVLA==
-X-Received: by 2002:a17:907:7b92:b0:72b:67fb:8985 with SMTP id ne18-20020a1709077b9200b0072b67fb8985mr30618389ejc.569.1658254277894;
-        Tue, 19 Jul 2022 11:11:17 -0700 (PDT)
-Received: from skbuf ([188.27.185.104])
-        by smtp.gmail.com with ESMTPSA id n17-20020a170906089100b006fe0abb00f0sm6911930eje.209.2022.07.19.11.11.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jul 2022 11:11:17 -0700 (PDT)
-Date:   Tue, 19 Jul 2022 21:11:13 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Mackerras <paulus@samba.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Shawn Guo <shawnguo@kernel.org>, UNGLinuxDriver@microchip.com,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [RFC PATCH net-next 0/9] net: pcs: Add support for devices
- probed in the "usual" manner
-Message-ID: <20220719181113.q5jf7mpr7ygeioqw@skbuf>
-References: <20220711160519.741990-1-sean.anderson@seco.com>
- <20220719152539.i43kdp7nolbp2vnp@skbuf>
- <bec4c9c3-e51b-5623-3cae-6df1a8ce898f@seco.com>
- <20220719153811.izue2q7qff7fjyru@skbuf>
- <2d028102-dd6a-c9f6-9e18-5abf84eb37a1@seco.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=L1Nb0zh4ARUsCff9U60Czkk0oDFcczHT1EIsSWvyea0=;
+        b=VXHIBUwcSeMfWEiRPVzT6eBUaxpwJ8HRN7wUH/KnQ046EA6sX7ZVYBxv3Apyktnrcc
+         +XvY58Ktlx/C/NGE8EFbXiNOrVanLILK4//jb2VtxzSWyqSqvHCZIiLRGoL70dbfPhf1
+         jFtZZWReTZsI41WqsQs7sG8f9KY2Ke8aD+N2LEKJgLPMkD0vcQ44gfyqZWydvYxL1Wuk
+         P3b56ej178t6fEP/Jr0+vCjH+GWBAAP5tmsM3XM/ouTXuH6fytbn0Go9lHwDwsplheCK
+         s8fRbmGi/F2JGHXczR90VvNkaypccHXQdluv7PPnvaaCG+ApCRX9b58Mwmlpf9JIwY5X
+         IJZg==
+X-Gm-Message-State: AJIora/RrARlNTUuuV4yecoTwKtxoz+QF5l8GG50D357hBPxokFJ4n0s
+        tVR5EpdXA3/vW4RrVor+iR/utQ==
+X-Google-Smtp-Source: AGRyM1tjKIZl34mrzZ0U9cKQip/P1C+vRjH8ZHQimiHqDz2B4qRQNCIPLyhvrnUvI1sT3QZgirsdFA==
+X-Received: by 2002:a05:6512:3f0f:b0:47f:6f89:326 with SMTP id y15-20020a0565123f0f00b0047f6f890326mr17266009lfa.124.1658254712122;
+        Tue, 19 Jul 2022 11:18:32 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id m14-20020a056512358e00b00489c59819ebsm3333736lfr.66.2022.07.19.11.18.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Jul 2022 11:18:31 -0700 (PDT)
+Message-ID: <b0f17207-8f6d-77b9-3030-e2429a951a71@linaro.org>
+Date:   Tue, 19 Jul 2022 20:18:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2d028102-dd6a-c9f6-9e18-5abf84eb37a1@seco.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] arm64: dts: Add device trees for MSC SM2S-IMX8PLUS SoM
+ and carrier board
+Content-Language: en-US
+To:     Martyn Welch <martyn.welch@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20220718152310.1937899-1-martyn.welch@collabora.com>
+ <4473378f-1c14-3ec7-5380-12f49f3b1e3b@linaro.org>
+ <abd2e9affdc3e4001f9fc6f036516ddfa6654bdd.camel@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <abd2e9affdc3e4001f9fc6f036516ddfa6654bdd.camel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 19, 2022 at 11:46:23AM -0400, Sean Anderson wrote:
-> I'm saying that patches 4 and 5 [1] provide "...a working migration
-> path to [my] PCS driver model." Since enetc/ocelot do not use
-> devicetree for the PCS, patch 9 should have no effect.
+On 19/07/2022 18:37, Martyn Welch wrote:
+> On Tue, 2022-07-19 at 12:01 +0200, Krzysztof Kozlowski wrote:
+>> On 18/07/2022 17:23, Martyn Welch wrote:
+>>> Add device trees for one of a number of MSCs variants of the SM2S-
+>>> IMX8PLUS
+>>> system on module along with the compatible SM2S-SK-AL-EP1 carrier
+>>> board.
+>>> As the name suggests, this family of SoMs use the NXP i.MX8MP SoC
+>>> and
+>>> provide the SMARC module interface.
+>>>
+>>> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+>>
+>> Use subject prefix matching subsystem. I expect other folks in
+>> Collabora
+>> help you in that, so you do not need our advices for such trivial
+>> stuff. :)
+>>
 > 
-> That said, if you've tested this on actual hardware, I'm interested
-> in your results. I do not have access to enetc/ocelot hardware, so
-> I was unable to test whether my proposed migration would work.
+> Hi Krzysztof,
 > 
-> --Sean
+> Thanks for the review.
 > 
-> [1] I listed 6 but it seems like it just has some small hunks which should have been in 5 instead
+> I picked that based on the last 20-30 commits under
+> arch/arm64/boot/dts/. Would you prefer something starting "arm64: dts:
+> freescale: "? I see that "arm64: dts: imx8mp: " is typically being used
+> for changes to the more generic imx8mp device trees...
 
-Got it, thanks. So things actually work up until the end, after fixing
-the compilation errors and warnings and applying my phy_mask patch first.
-However, as mentioned by Russell King, this patch set now gives us the
-possibility of doing this, which happily kills the system:
+git log --oneline --
+gives you three popular answers (where first seems the most popular):
+arm64: dts: board-name:
+arm64: dts: freescale:
+arm64: dts: freescale: board-name:
 
-echo "0000:00:00.5-imdio:03" > /sys/bus/mdio_bus/drivers/lynx-pcs/unbind
+> 
+>>> +       extcon_usb0: extcon_usb0 {
+>>
+>> No underscores, extcon is Linux term, so use node name describing
+>> device.
+>>
+> 
+> I note that the device binding file lists an example using
+> "extcon_usb1". I also note that existing users seem to broadly use a
+> variation of "extcon-XXXX", would "extcon-usb0" be acceptable in this
+> case?
 
-For your information, pcs-rzn1-miic.c already has a device_link_add()
-call to its consumer, and it does avoid the unbinding problem. It is a
-bit of a heavy hammer as Russell points out (a DSA switch is a single
-struct device, but has multiple net_devices and phylink instances, and
-the switch device would be unregistered in its entirety), but on the
-other hand, this is one of the simpler things we can do, until we have
-something more fine-grained. I, for one, am perfectly happy with a
-device link. The alternative would be reworking phylink to react on PCS
-devices coming and going. I don't even know what the implications are
-upon mac_select_pcs() and such...
+It still uses extcon, so a Linux driver name not hardware, but I don't
+have other idea, at the moment.
+
+Best regards,
+Krzysztof
