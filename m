@@ -2,98 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 766FA57A696
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 20:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56A6E57A6E9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 21:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234588AbiGSShZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 14:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36990 "EHLO
+        id S232544AbiGSTG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 15:06:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233698AbiGSShZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 14:37:25 -0400
-Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835AD4D147;
-        Tue, 19 Jul 2022 11:37:24 -0700 (PDT)
-Received: by mail-oo1-xc35.google.com with SMTP id r193-20020a4a37ca000000b0043578138958so2792521oor.4;
-        Tue, 19 Jul 2022 11:37:24 -0700 (PDT)
+        with ESMTP id S230209AbiGSTG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 15:06:57 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E612245048
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 12:06:53 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 19so18544717ljz.4
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 12:06:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gf82HO1596zr/ZdVJzwHUoOwQLVuNiT/mo6nU8RmnGQ=;
-        b=jeIFGH+KzDKcl+MBCucwjiQRaU0pRfTTCh9SJj++4Osn6QQR73xSYQLvIuI63x7ffl
-         9VkEyM+FY3onrDQaFNgFyPCVYfeXSJ+r84k3HI8jq/fqMxd2Mm80ApYgDg/E8KGk2LLm
-         0AXTwuXwIQEnej0dTh0OJMgcvhK/8LyXaainPd3F7x3iQ23dr+CjnHAWodEq2ohxzcyg
-         I8ewG9gCaz/urqgROryMdBwuwX+cAxBySsOFMWf0y2ulVBOVzn8pfgeFQZ/6mRDJHfYW
-         7aLmho2QpsLOFDYWnRehI2leiQOzjNY+pOTTBYft9Vnt0wn8NLF3RlpjjXlt7txx5JmU
-         C0/g==
+        bh=9WfrLbUEqD/K/zLHgjn6G5Y0RngZ8vESJI2/UYnNV7E=;
+        b=v1nwr78efPyraVZ2DwS98J0DltQ1UscXD7wMW7QjGELEOpHEK2NCuG0mZBWWFX6XBI
+         RTfFG0xW0b55eYZd5RaHcxYL6Tu2itgBl9SUuJiwPZk3v6556XH/ghhWdtJ2FK+6c1+l
+         yTGljbECEZ1ER5ZtGxxfxGXAvXApLNxmmMTMn5AZZQFwFDev0KBKhKVr61hDa1wsMX0d
+         8Ziyxp7QX1YBs3hdUsufEaJpkJFxCVdk0dqkFyqNwwPcCMhbb88sKK+scOo6rNr+sh7e
+         GMyy5crraDP321z7Wc7vF/GIM/rABhkOn6UNDBbhvtcul7xCNxQOWY2k5i0nFYSC4t+e
+         9C8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=gf82HO1596zr/ZdVJzwHUoOwQLVuNiT/mo6nU8RmnGQ=;
-        b=fD9Z+BJmHeM5lB9LZt1MyxS3l54d3+w/6KoLlqUzRnWXcNjPp7uzmuBdCKVbUJ9bcv
-         4WOj+PFgatB0+iISP17Snnm1L7ZVRqecwYjnh6P3+f988FphMW8tckk4c8K0sjoQhsEj
-         SEAKDA55kauqrKJMUCgxo5XSfYnt+OHYEWGe7c43BCoXwS0GdWzh2iaFkAsBPVWrhlsh
-         wlt4ghGgkUbDl0TK9QOR0ATnojrFCvIYS61ASarmOyqrOC5nPcp0x3s6EWWI/k/UyfCc
-         JRPiJB+w557LF9TwArk+9ua7VM8U+oqeqrU+DbALoR4ZOF8r8vbxm9zZmMlpF1wXTdSX
-         eDJA==
-X-Gm-Message-State: AJIora9iJseV/q1wibKF+bKm61AQBQdE9LqqSVuJi3Cn1K3h/wlE0j1E
-        eXrJtP7rV21ZL6AM/4ZWWSU=
-X-Google-Smtp-Source: AGRyM1tt0u4BvgNqwgDe4zS80Vp20ZUXB1ZBsZUjkl3fsyZyxbDag+KEFYkMXfP5E9TiwL7bgNQNqA==
-X-Received: by 2002:a4a:ca8d:0:b0:435:772d:fca0 with SMTP id x13-20020a4aca8d000000b00435772dfca0mr9282989ooq.94.1658255843853;
-        Tue, 19 Jul 2022 11:37:23 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:18b3:c058:b2c3:9b8? ([2600:1700:2442:6db0:18b3:c058:b2c3:9b8])
-        by smtp.gmail.com with ESMTPSA id l15-20020a05683016cf00b0061c98bd6278sm3630859otr.73.2022.07.19.11.37.22
+        bh=9WfrLbUEqD/K/zLHgjn6G5Y0RngZ8vESJI2/UYnNV7E=;
+        b=cSDVkQ9KE9cKmKRU0zwYRkIcg0fcZ6VJ9mgtZReQZ9WfgMv9yyOs+cwRi3l5aOWw2R
+         3E0VH3dOdelMnJeBS5GkvuH8D3MJLAeClhoKTGGRWyl1mvvi1lCob/76iquEiUSHYoU8
+         FddgbqBK1fySX4czUU2SeC32p9thRHF8Dxv7ta6bZTWzWGPFYTaRTUj5QTDvwU0kB3yw
+         8VEPpFHfQp7mjS0EI62QXlfc0pHEdSl2xPOEPs63Yfy21a+GQDcYxe5VvDPTKiggmY8z
+         RkvHWucRNMr2hOYMokT3ys/i1KVVAKOLfez60EtDjwEEWkSwYwA3t6Ny8SPBrWUMluR0
+         EGIw==
+X-Gm-Message-State: AJIora9wVUEHW4KLa1D2iDMM2OWYvSoS39Xk8CdaqY+M5ghjqGOUz+Xd
+        o0xDFSD9V4vXJlt5MZ4t9HipZV6vOM8kIVLu
+X-Google-Smtp-Source: AGRyM1tGeJGJh+uAPPtV8Qqf9ByBy718LdrQMLH9679mpCCFVMLEV0hpolvAWrhAUuU2b39gEfhXWw==
+X-Received: by 2002:a05:651c:1a1f:b0:25d:af55:1a2b with SMTP id by31-20020a05651c1a1f00b0025daf551a2bmr7207399ljb.49.1658257612333;
+        Tue, 19 Jul 2022 12:06:52 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id f5-20020a05651c03c500b0025a724f2935sm2827767ljp.137.2022.07.19.12.06.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 11:37:23 -0700 (PDT)
-Message-ID: <aac636b3-eb69-2add-86f3-b2961c30fd07@gmail.com>
-Date:   Tue, 19 Jul 2022 13:37:22 -0500
+        Tue, 19 Jul 2022 12:06:51 -0700 (PDT)
+Message-ID: <af797d43-f1f8-6ef9-4570-5c048aac9733@linaro.org>
+Date:   Tue, 19 Jul 2022 21:06:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 0/2] of: overlay: Miscellaneous improvements
+ Thunderbird/91.11.0
+Subject: Re: [RFC PATCH v2] ARM: dts: Add TS-7553-V2 support
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1657893306.git.geert+renesas@glider.be>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <cover.1657893306.git.geert+renesas@glider.be>
+To:     kris@embeddedTS.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Mark Featherston <mark@embeddedTS.com>
+References: <20220713221233.8486-1-kris@embeddedTS.com>
+ <55dccabb-41e9-dc45-f404-c333f5472e75@linaro.org>
+ <1657833995.2979.1.camel@embeddedTS.com>
+ <eb993f8d-e72f-aba3-e7a4-1bbd2ac00f6c@linaro.org>
+ <1657907657.2829.1.camel@embeddedTS.com>
+ <add23ad7-2539-cef3-8684-10ec8e680483@linaro.org>
+ <1658252354.3157.1.camel@embeddedTS.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1658252354.3157.1.camel@embeddedTS.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/15/22 09:03, Geert Uytterhoeven wrote:
-> 	Hi,
+On 19/07/2022 19:39, Kris Bahnsen wrote:
 > 
-> While performing the long-overdue rebase of my topic/overlays branch[1]
-> on top of the overlay rework in v5.19-rc1, I identified a few areas for
-> improvement in the upstream code.
+> e.g. looking at commits of imx6ul-*
+> "ARM: dts:" is used for a number of initial devicetree commits
+> "ARM: dts: imx6ul: <board>:" is used a few times
+> "ARM: dts: imx6ul-<board>:" is also used a few times
 > 
-> Thanks for your comments!
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/overlays
-> 
-> Geert Uytterhoeven (2):
->   of: overlay: Move devicetree_corrupt() check up
->   of: overlay: Simplify of_overlay_fdt_apply() tail
-> 
->  drivers/of/overlay.c | 20 +++++++-------------
->  1 file changed, 7 insertions(+), 13 deletions(-)
-> 
+> For initial commits of a devicetree, or modifications of a devicetree,
+> what is the preferred pattern moving forward?
 
-For the entire series:
+The last two, although also these appear:
+ARM: dts: imx:
+ARM: dts: fsl:
+I don't have a clear answer which is the best, but the point is to have
+proper subarch prefix.
 
-Reviewed-by: Frank Rowand <frank.rowand@sony.com>
-Tested-by: Frank Rowand <frank.rowand@sony.com>
+
+Best regards,
+Krzysztof
