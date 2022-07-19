@@ -2,128 +2,317 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F0705791C1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 06:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5BA6579211
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 06:42:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236895AbiGSETO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 00:19:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34504 "EHLO
+        id S234129AbiGSEmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 00:42:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236859AbiGSETL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 00:19:11 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 909CE3B954
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:19:08 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id b133so8659393pfb.6
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:19:08 -0700 (PDT)
+        with ESMTP id S233271AbiGSEmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 00:42:36 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68EDA3DF12
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:42:33 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-10c0430e27dso29319898fac.4
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:42:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=DRXpkzFCaONc6uIVW7OHVXWrx1/ZSo2vjvlOlBazeIk=;
-        b=DRjY/k5F4uoLY5Z0MV/U+eii0rcgt1LVT/Y9xiRMLQK6sfxMwKS2pQCYV5UtxxNINV
-         ZNkZCzHhp4anjvWElcaBFa8siXkTy+1bJlYkPeevoaw7Vh9KU/WJ81vqGSeJ6Z1AzQDK
-         q9x8HPbiHIslAVdLTn4VnJk6yH0j4actgvI9GEbHj4LNlSJgf1m2pPaIpP3Uij6Dz36c
-         ddzx9vNbyZV7ZneqH8qdgq7YYtJVJbPNXuGZ0wrvXKo0zva2x8QejMUu8ykJ3g2Q2bk6
-         X9OG1LiWF9ofE3uYZJSLvbVKNd4I0tbmbhRsNr29Fb77EOiJALCR5tTRzBLzuVRxA8Ie
-         Ie3Q==
+        bh=DqxDvYEr+gB1MZ75zB/i+cJ3gbi/iImapHHEhKwMGp0=;
+        b=ibNhcfjJMZvLgR3nla6KMgp+uR7V8fCYS5fevoTqT8+wrsdtFuoSyDOQKXc2bWcq7S
+         KqwdbE3FUTT0f3+SAU2QUCgAfkY1LkTZ16T7US5/JoL2QfbbMctTwprDBPu65/K3SMku
+         bO4YUdWXIEthXg5pVNFA0ia201pK/lMcecHMoKIwWmCRA8N7Zf7vpuE4NMgJJgH/xiN0
+         DboSeoWjW21hm98XQOVHHOvzsZrhv81cAlOCBK+qpcGkZexwxLbAdMmqIekktpN+nlBs
+         RHLVOwruGpn2PZdBwv3/635Dpa8gDNFI/eZHMxClzJgll17Pchl+r2qyEiAnqFWhoA57
+         88Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=DRXpkzFCaONc6uIVW7OHVXWrx1/ZSo2vjvlOlBazeIk=;
-        b=H/s574BO0x4WNjZg3uRH2D8x/Cp1qxGxOMQyQPqPx2vMw/HlbpZgFXorYkDvRQhj/9
-         QsP+RkGhitEmg+eNGiV35d04NGQ9caLUhfDsMDRoxd2aSIEqD6Ex+OQJbsPqcfAqprrp
-         EDNv0ISNeoj9tkhGEIX+suO8Db1Ga/XkpX8sZ50MLnqnjt6BhxPCqIwQaK+Chy5V4Rww
-         yV0W7Sb0+PmSdjK8HpgGsnyO3SotPNycY4/b23Y+YdQeWakBdrEphf52xQrctBx+ZCbE
-         jlpfRuOKYNMEn+Z6UNvnDi2jWFFqPfkXqa4z3KkgJMWQibvTZz++FVw2BQD+mf0f4Z69
-         +Mzw==
-X-Gm-Message-State: AJIora92czz25JCyv/AxaFfKHHuQ/8sMXpDl51wzXkHu8Acizt/FNYkO
-        nQUxMoDnMYRdDyqKEQQ0MDaJ8w==
-X-Google-Smtp-Source: AGRyM1vRiMVK3BuNDcvKsw/Kos77pHtWi9dvCe41+Gc7wm8NhqjA4yMjwKTxFTF8yIkK5RM+258btA==
-X-Received: by 2002:a63:97:0:b0:41a:3c2:6238 with SMTP id 145-20020a630097000000b0041a03c26238mr11549036pga.499.1658204348031;
-        Mon, 18 Jul 2022 21:19:08 -0700 (PDT)
-Received: from localhost ([122.171.18.80])
-        by smtp.gmail.com with ESMTPSA id x9-20020a170902a38900b0016c0c82e85csm10379725pla.75.2022.07.18.21.19.07
+        bh=DqxDvYEr+gB1MZ75zB/i+cJ3gbi/iImapHHEhKwMGp0=;
+        b=xg2cCVpHOQhUWSe7hXdzeiOwiubCIoViNOBF6rDDcoc6vvwKfBm5ovgDst1I3WHZyO
+         TIL5GW0xZ65kk7g9VSR/4V1LKUjJ9wLdX2SEdU96PKvOtyHgRuGR2CY93tZyw1jq65sR
+         BE26UQMeKsKRyGQyHdVrqK57v38rrk5pbB++X04asu7Kql9y3c26xmXXdMfwpsuhTgls
+         wbFn0IzzB8kZbkudsfgxX3nauCKR/jEp0evMNF+4D9zHRLDEXQQOsVle2Ge2DkqJ3agQ
+         O6nuhg+c8IhyaaVvcL3WPDw4TtJriZLbS/D4dXgdSh3GAKGT49yromfuPMM+BJjX7jhp
+         rj+A==
+X-Gm-Message-State: AJIora+J+fQZYNPmDblDOXRFAnUWlXAPO3gawMXb2ptppqLUUHu/ShHm
+        0moxj58SlNJkQfbs6rN/7a23zA==
+X-Google-Smtp-Source: AGRyM1vSEM/3Pj/hXG3oMIuKBibX32Ek9SiDnlmhmIhRnOyrXpIprygk5BgZf4AC9vuXkgx5Db9ZCw==
+X-Received: by 2002:a05:6808:181e:b0:33a:6f26:f011 with SMTP id bh30-20020a056808181e00b0033a6f26f011mr4906731oib.57.1658205752593;
+        Mon, 18 Jul 2022 21:42:32 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id bu27-20020a0568300d1b00b0061b8653b0c9sm5905941otb.22.2022.07.18.21.42.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 21:19:07 -0700 (PDT)
-Date:   Tue, 19 Jul 2022 09:49:05 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Johan Hovold <johan@kernel.org>,
+        Mon, 18 Jul 2022 21:42:31 -0700 (PDT)
+Date:   Mon, 18 Jul 2022 23:42:29 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/4] dt-bindings: cpufreq-qcom-hw: Move clocks to CPU
- nodes
-Message-ID: <20220719041905.idpo5uemowgtu6yp@vireshk-i7>
-References: <cover.1657695140.git.viresh.kumar@linaro.org>
- <035fe13689dad6d3867a1d33f7d5e91d4637d14a.1657695140.git.viresh.kumar@linaro.org>
- <20220718204651.GA3505083-robh@kernel.org>
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] clk: qcom: lcc-ipq806x: convert to parent data
+Message-ID: <YtY2NWYq3Xbxu2pc@builder.lan>
+References: <20220708000338.26572-1-ansuelsmth@gmail.com>
+ <20220708000338.26572-3-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220718204651.GA3505083-robh@kernel.org>
+In-Reply-To: <20220708000338.26572-3-ansuelsmth@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-07-22, 14:46, Rob Herring wrote:
-> On Wed, Jul 13, 2022 at 12:22:56PM +0530, Viresh Kumar wrote:
-> > cpufreq-hw is a hardware engine, which takes care of frequency
-> > management for CPUs. The engine manages the clocks for CPU devices, but
-> > it isn't the end consumer of the clocks, which are the CPUs in this
-> > case.
+On Thu 07 Jul 19:03 CDT 2022, Christian Marangi wrote:
+
+> Convert lcc-ipq806x driver to parent_data API.
 > 
-> The question is really where does the clock mux live?
-
-As Manivannan clarified in another email, these clocks are actually consumed by
-the cpufreq-hw node, so existing code was fine.
-
-> > For this reason, it looks incorrect to keep the clock related properties
-> > in the cpufreq-hw node. They should really be present at the end user,
-> > i.e. the CPUs.
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+> v5:
+> - Fix the same compilation error (don't know what the hell happen
+>   to my buildroot)
+> v4:
+> - Fix compilation error
+> v3:
+>  - Inline pxo pll4 parent
+>  - Change .name from pxo to pxo_board
 > 
-> The issue is that the CPU itself probably only has 1 clock input (at 
-> least for its core frequency).
-
-Right, and they (Qcom) have skipped adding that in DT currently. I have
-suggested to him to add it there, which will solve the issue as well.
-
-> Listing out all possible clock sources in CPU node 'clocks' is wrong too.
-
-Yes, we need to mention only the clocks which are consumed directly by the CPU,
-maybe just one of them which comes out of cpufreq-hw node.
-
-> > The case was simple currently as all the devices, i.e. the CPUs, that
-> > the engine manages share the same clock names. What if the clock names
-> > are different for different CPUs or clusters ? How will keeping the
-> > clock properties in the cpufreq-hw node work in that case ?
-> > 
-> > This design creates further problems for frameworks like OPP, which
-> > expects all such details (clocks) to be present in the end device node
-> > itself, instead of another related node.
-> > 
-> > Move the clocks properties to the node that uses them instead.
+>  drivers/clk/qcom/lcc-ipq806x.c | 77 ++++++++++++++++++----------------
+>  1 file changed, 42 insertions(+), 35 deletions(-)
 > 
-> What's the purpose of freq-domain binding now? I thought the idea was to 
-> use that instead of clocks directly.
+> diff --git a/drivers/clk/qcom/lcc-ipq806x.c b/drivers/clk/qcom/lcc-ipq806x.c
+> index ba90bebba597..72d6aea5be30 100644
+> --- a/drivers/clk/qcom/lcc-ipq806x.c
+> +++ b/drivers/clk/qcom/lcc-ipq806x.c
+> @@ -34,7 +34,9 @@ static struct clk_pll pll4 = {
+>  	.status_bit = 16,
+>  	.clkr.hw.init = &(struct clk_init_data){
+>  		.name = "pll4",
+> -		.parent_names = (const char *[]){ "pxo" },
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "pxo", .name = "pxo_board",
 
-Not always I think. It provides register access for programming or voting for
-the clock, etc. Yes, the code won't do clk_set_rate() but the DT should still
-mention the clock in the CPU node if it mentions an OPP table with frequencies
-in it.
+This changes the behavior from looking for the globally named "pxo" to
+look for the globally named "pxo_board", in the event that no
+clock-names of "pxo" was found (based on the .fw_name).
 
--- 
-viresh
+So you probably want to keep this as .fw_name = "pxo", .name = "pxo".
+
+> +		},
+>  		.num_parents = 1,
+>  		.ops = &clk_pll_ops,
+>  	},
+> @@ -64,9 +66,9 @@ static const struct parent_map lcc_pxo_pll4_map[] = {
+>  	{ P_PLL4, 2 }
+>  };
+>  
+> -static const char * const lcc_pxo_pll4[] = {
+> -	"pxo",
+> -	"pll4_vote",
+> +static const struct clk_parent_data lcc_pxo_pll4[] = {
+> +	{ .fw_name = "pxo", .name = "pxo" },
+> +	{ .fw_name = "pll4_vote", .name = "pll4_vote" },
+
+This is a reference to a clock defined in this same driver, so you can
+use { .hw = &pll4_vote.clkr.hw } to avoid the lookup all together.
+
+>  };
+>  
+>  static struct freq_tbl clk_tbl_aif_mi2s[] = {
+> @@ -131,18 +133,14 @@ static struct clk_rcg mi2s_osr_src = {
+>  		.enable_mask = BIT(9),
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "mi2s_osr_src",
+> -			.parent_names = lcc_pxo_pll4,
+> -			.num_parents = 2,
+> +			.parent_data = lcc_pxo_pll4,
+> +			.num_parents = ARRAY_SIZE(lcc_pxo_pll4),
+>  			.ops = &clk_rcg_ops,
+>  			.flags = CLK_SET_RATE_GATE,
+>  		},
+>  	},
+>  };
+>  
+> -static const char * const lcc_mi2s_parents[] = {
+> -	"mi2s_osr_src",
+> -};
+> -
+>  static struct clk_branch mi2s_osr_clk = {
+>  	.halt_reg = 0x50,
+>  	.halt_bit = 1,
+> @@ -152,7 +150,9 @@ static struct clk_branch mi2s_osr_clk = {
+>  		.enable_mask = BIT(17),
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "mi2s_osr_clk",
+> -			.parent_names = lcc_mi2s_parents,
+> +			.parent_hws = (const struct clk_hw*[]){
+> +				&mi2s_osr_src.clkr.hw,
+> +			},
+>  			.num_parents = 1,
+>  			.ops = &clk_branch_ops,
+>  			.flags = CLK_SET_RATE_PARENT,
+> @@ -167,7 +167,9 @@ static struct clk_regmap_div mi2s_div_clk = {
+>  	.clkr = {
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "mi2s_div_clk",
+> -			.parent_names = lcc_mi2s_parents,
+> +			.parent_hws = (const struct clk_hw*[]){
+
+It would be wonderful if you could keep a space between ) and { in
+these.
+
+> +				&mi2s_osr_src.clkr.hw,
+> +			},
+>  			.num_parents = 1,
+>  			.ops = &clk_regmap_div_ops,
+>  		},
+> @@ -183,7 +185,9 @@ static struct clk_branch mi2s_bit_div_clk = {
+>  		.enable_mask = BIT(15),
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "mi2s_bit_div_clk",
+> -			.parent_names = (const char *[]){ "mi2s_div_clk" },
+> +			.parent_hws = (const struct clk_hw*[]){
+> +				&mi2s_div_clk.clkr.hw,
+> +			},
+>  			.num_parents = 1,
+>  			.ops = &clk_branch_ops,
+>  			.flags = CLK_SET_RATE_PARENT,
+> @@ -191,6 +195,10 @@ static struct clk_branch mi2s_bit_div_clk = {
+>  	},
+>  };
+>  
+> +static const struct clk_parent_data lcc_mi2s_bit_div_codec_clk[] = {
+> +	{ .hw = &mi2s_bit_div_clk.clkr.hw, },
+> +	{ .fw_name = "mi2s_codec_clk", .name = "mi2s_codec_clk" },
+
+Is mi2s_codec_clk and external clock? I don't see it documented in the
+DT binding. And if we're introducing new clock-names, perhaps we could
+skip the _clk suffix - because obviously it's a clock :)
+
+Regards,
+Bjorn
+
+> +};
+>  
+>  static struct clk_regmap_mux mi2s_bit_clk = {
+>  	.reg = 0x48,
+> @@ -199,11 +207,8 @@ static struct clk_regmap_mux mi2s_bit_clk = {
+>  	.clkr = {
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "mi2s_bit_clk",
+> -			.parent_names = (const char *[]){
+> -				"mi2s_bit_div_clk",
+> -				"mi2s_codec_clk",
+> -			},
+> -			.num_parents = 2,
+> +			.parent_data = lcc_mi2s_bit_div_codec_clk,
+> +			.num_parents = ARRAY_SIZE(lcc_mi2s_bit_div_codec_clk),
+>  			.ops = &clk_regmap_mux_closest_ops,
+>  			.flags = CLK_SET_RATE_PARENT,
+>  		},
+> @@ -245,8 +250,8 @@ static struct clk_rcg pcm_src = {
+>  		.enable_mask = BIT(9),
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "pcm_src",
+> -			.parent_names = lcc_pxo_pll4,
+> -			.num_parents = 2,
+> +			.parent_data = lcc_pxo_pll4,
+> +			.num_parents = ARRAY_SIZE(lcc_pxo_pll4),
+>  			.ops = &clk_rcg_ops,
+>  			.flags = CLK_SET_RATE_GATE,
+>  		},
+> @@ -262,7 +267,9 @@ static struct clk_branch pcm_clk_out = {
+>  		.enable_mask = BIT(11),
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "pcm_clk_out",
+> -			.parent_names = (const char *[]){ "pcm_src" },
+> +			.parent_hws = (const struct clk_hw*[]){
+> +				&pcm_src.clkr.hw,
+> +			},
+>  			.num_parents = 1,
+>  			.ops = &clk_branch_ops,
+>  			.flags = CLK_SET_RATE_PARENT,
+> @@ -270,6 +277,11 @@ static struct clk_branch pcm_clk_out = {
+>  	},
+>  };
+>  
+> +static const struct clk_parent_data lcc_pcm_clk_out_codec_clk[] = {
+> +	{ .hw = &pcm_clk_out.clkr.hw, },
+> +	{ .fw_name = "pcm_codec_clk", .name = "pcm_codec_clk" },
+> +};
+> +
+>  static struct clk_regmap_mux pcm_clk = {
+>  	.reg = 0x54,
+>  	.shift = 10,
+> @@ -277,11 +289,8 @@ static struct clk_regmap_mux pcm_clk = {
+>  	.clkr = {
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "pcm_clk",
+> -			.parent_names = (const char *[]){
+> -				"pcm_clk_out",
+> -				"pcm_codec_clk",
+> -			},
+> -			.num_parents = 2,
+> +			.parent_data = lcc_pcm_clk_out_codec_clk,
+> +			.num_parents = ARRAY_SIZE(lcc_pcm_clk_out_codec_clk),
+>  			.ops = &clk_regmap_mux_closest_ops,
+>  			.flags = CLK_SET_RATE_PARENT,
+>  		},
+> @@ -325,18 +334,14 @@ static struct clk_rcg spdif_src = {
+>  		.enable_mask = BIT(9),
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "spdif_src",
+> -			.parent_names = lcc_pxo_pll4,
+> -			.num_parents = 2,
+> +			.parent_data = lcc_pxo_pll4,
+> +			.num_parents = ARRAY_SIZE(lcc_pxo_pll4),
+>  			.ops = &clk_rcg_ops,
+>  			.flags = CLK_SET_RATE_GATE,
+>  		},
+>  	},
+>  };
+>  
+> -static const char * const lcc_spdif_parents[] = {
+> -	"spdif_src",
+> -};
+> -
+>  static struct clk_branch spdif_clk = {
+>  	.halt_reg = 0xd4,
+>  	.halt_bit = 1,
+> @@ -346,7 +351,9 @@ static struct clk_branch spdif_clk = {
+>  		.enable_mask = BIT(12),
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "spdif_clk",
+> -			.parent_names = lcc_spdif_parents,
+> +			.parent_hws = (const struct clk_hw*[]){
+> +				&spdif_src.clkr.hw,
+> +			},
+>  			.num_parents = 1,
+>  			.ops = &clk_branch_ops,
+>  			.flags = CLK_SET_RATE_PARENT,
+> @@ -384,8 +391,8 @@ static struct clk_rcg ahbix_clk = {
+>  		.enable_mask = BIT(11),
+>  		.hw.init = &(struct clk_init_data){
+>  			.name = "ahbix",
+> -			.parent_names = lcc_pxo_pll4,
+> -			.num_parents = 2,
+> +			.parent_data = lcc_pxo_pll4,
+> +			.num_parents = ARRAY_SIZE(lcc_pxo_pll4),
+>  			.ops = &clk_rcg_lcc_ops,
+>  		},
+>  	},
+> -- 
+> 2.36.1
+> 
