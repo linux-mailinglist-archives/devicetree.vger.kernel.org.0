@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 791E3579608
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:19:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B2B8579615
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237249AbiGSJSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 05:18:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46976 "EHLO
+        id S237046AbiGSJSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 05:18:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237116AbiGSJSL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:18:11 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A3DA27B17
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:18:10 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 8-20020a05600c024800b003a2fe343db1so8793003wmj.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:18:10 -0700 (PDT)
+        with ESMTP id S237198AbiGSJSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:18:13 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BB051FCF9
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:18:12 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id u14-20020a05600c00ce00b003a323062569so582318wmm.4
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:18:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=pNhfidQZPy4nesbmSTVW7vok5HUfn+3S34+KfpxEpgw=;
-        b=EnGSNGy5RdfoxqGyaL/6Mfl5Mu4xeaV+lNE4hr5eRrn20ZkeahpfXqHZuwz1pkiCIe
-         eSeBtn0JfJor56Q1n3t4BdKFhDrVc1V1dk0a612Zam9WSWVnweal1KpNVfyvnYIwtrYW
-         GiNIhhvSLMAcgPHYQ4j6JFmxLEKQI/P+aHql3gs3www91xMJZl2Xg7r4Nt9bOJmvx8sn
-         flGsgBv+NBMa0hMdQVfr1ITNdoDxx3H+0qphqxZLmxis+CI1Px8LkUqo9X1hyae5YMv9
-         KmkNvxPuLmCSiCDfCxuD9/L2rvbX//TpjkN1M5rZrCyx1lBk+5+RCTW+PmFQ2zbEeCi6
-         NZjQ==
+        bh=w4Ktoqzz1Exy/sRhoFGGavi+DDf1MrBcDPMFNzulUkQ=;
+        b=Vkp0bSB8Nexit26+dMqDfVkgDLL8G6yuCxiEtwNK7/MGprfXAbkuPNvSgoLbYv2t3u
+         2RCmgcUtfQCw34G/+lAst8GAzwacDKnT1+fbwBfnKgbIzT+lQmYHhUyLCgFi9M1U5Nc+
+         xmYljhOYlt8zOoMk6bo+Y25qqQq1XZ352KAJrtfwQU1p3+iwiU9EbHzXou1JIh9fSmra
+         ujS8kXD5by3Ibo48xrtNUYlTHu2j9VUNLgwtBeidNQbltPBWKBzvY4Lm7T/T4fn36WuW
+         4hNm3wZIPM/5191O4D+/a/ClKg+2wcQE5c1AlDBTJ7/j9btixF1Wqlt3s6ERNAV8ZKK9
+         7SUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=pNhfidQZPy4nesbmSTVW7vok5HUfn+3S34+KfpxEpgw=;
-        b=umxDuYOCabSM6b0QNLPjuCMvns8wwz+WNaB0VnRRJM/b188xAwRs9Cx6Bub6P6OxPB
-         +TvbbPUA6wtizFTBfq7cM4aKZRZZkbE06nin7YykH228FQ+pXazJrypd3+NhEmiyZ5o2
-         xPdzQ/xZG5MW9nKudiOYqWXFrmff48wVFS2sR0JMy50WSixpX+VJh5AD8FM74/wMMfbP
-         TO8P6ayvRJYl6/8/UvVcrlPksINxrI0IzC5be0FYXic1KAZvo4yszxE8XjmMlmjuTYJ4
-         YYMxCHjM8gqjR4ngK0ekKfN31s4ChB12L9gLt/165mu9h7AAc7BAiz/0TSrjLnLDf0xY
-         egKA==
-X-Gm-Message-State: AJIora94iGop/EuF3Ar5ywMP01dSPGnlAKhbuWygDgrx8l4y/ET/hhtE
-        7HNWBBY0Ue2lE0mTMURCjSh6ZA==
-X-Google-Smtp-Source: AGRyM1s8oukaSdO5ADKKkCh/UFBb/VAgqcixFfxa+iFckKbglDwEWQMz369PqIshcKY298IzgWmHQQ==
-X-Received: by 2002:a1c:7401:0:b0:3a3:182f:7be9 with SMTP id p1-20020a1c7401000000b003a3182f7be9mr10987620wmc.189.1658222290089;
-        Tue, 19 Jul 2022 02:18:10 -0700 (PDT)
+        bh=w4Ktoqzz1Exy/sRhoFGGavi+DDf1MrBcDPMFNzulUkQ=;
+        b=5nMME7e/UfbTxNdvysJVp4AFMYUj6Ni1LSq4Wa78o0POu3P5RlB0QYyW0Qsbh/zFAl
+         CgEgZTgL8l/ObVqPT+YMDMeWfluC66yXaHITltQty+s0MU/v1kuXNV0zaJIJRXuddsre
+         k4gFVtr0ZX+KJGdXqO6PXEpX03k1TrZsNLycydYum4oAukJwaubJnsfS32ITx5bhFpY1
+         O/B8SmiV27ri/4ticmBTcD4rmkBMUY6jwBNubKbhJlp0bmVWaWlCkrXS9TsNa5BxvBSC
+         N5zQNgplwoSGMErVOjCeCF+D3eME540hp/f1hsdhei5ZKWBIMHbh3ixM0iuUa4C1/CYa
+         RIeg==
+X-Gm-Message-State: AJIora8/BEAvJCydfedrAUMU2Hz8Y2QtDGiEoN3avYG520/ZizJgXnvb
+        Fv6ob5Cz7PUit5ByjJZdz9M13dtkwY+Sng==
+X-Google-Smtp-Source: AGRyM1sb2CZAbsIXskksA/XctCwJvdIcff61RVokT1M9LvtalVOVRAgbNDXjIz6XRwtYOq+RMxfjGA==
+X-Received: by 2002:a05:600c:209:b0:3a3:11a3:d6a8 with SMTP id 9-20020a05600c020900b003a311a3d6a8mr14038046wmi.13.1658222292167;
+        Tue, 19 Jul 2022 02:18:12 -0700 (PDT)
 Received: from localhost.localdomain (192.201.68.85.rev.sfr.net. [85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id bk19-20020a0560001d9300b0021d63fe0f03sm12944281wrb.12.2022.07.19.02.18.09
+        by smtp.gmail.com with ESMTPSA id bk19-20020a0560001d9300b0021d63fe0f03sm12944281wrb.12.2022.07.19.02.18.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jul 2022 02:18:09 -0700 (PDT)
+        Tue, 19 Jul 2022 02:18:11 -0700 (PDT)
 From:   Jerome Neanne <jneanne@baylibre.com>
 To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
         nm@ti.com, kristo@kernel.org
@@ -53,9 +53,9 @@ Cc:     khilman@baylibre.com, narmstrong@baylibre.com, msp@baylibre.com,
         j-keerthy@ti.c, lee.jones@linaro.org, jneanne@baylibre.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 12/14] arm64: dts: ti: Add pinmux and irq mapping for TPS65219 external interrupts
-Date:   Tue, 19 Jul 2022 11:17:40 +0200
-Message-Id: <20220719091742.3221-13-jneanne@baylibre.com>
+Subject: [PATCH v1 13/14] arm64: dts: ti: k3-am642-sk: Enable tps65219 power-button
+Date:   Tue, 19 Jul 2022 11:17:41 +0200
+Message-Id: <20220719091742.3221-14-jneanne@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220719091742.3221-1-jneanne@baylibre.com>
 References: <20220719091742.3221-1-jneanne@baylibre.com>
@@ -68,41 +68,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Interrupt occurring on PMIC TPS65219 is propagated to SOC
-through EXTINTn pin connected to gic500 interrupt controller
+From: Markus Schneider-Pargmann <msp@baylibre.com>
 
+This board uses the pin as a power-button, enable it.
+
+Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
 ---
- arch/arm64/boot/dts/ti/k3-am642-sk.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 4daf55b9d61a..7a84223406f5 100644
+index 7a84223406f5..1aa441db7097 100644
 --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
 +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -285,6 +285,12 @@
- 			AM64X_IOPAD(0x00b8, PIN_INPUT, 7) /* (Y7) PRG1_PRU0_GPO0.GPIO0_45 */
- 		>;
- 	};
-+
-+	pmic_irq_pins_default: pmic-irq-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0278, PIN_INPUT, 0) /* (C19) EXTINTn */
-+		>;
-+	};
- };
- 
- &mcu_uart0 {
-@@ -338,6 +344,12 @@
- 		compatible = "ti,tps65219";
- 		reg = <0x30>;
- 		system-power-controller;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq_pins_default>;
-+		interrupt-parent = <&gic500>;
-+		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
+@@ -350,6 +350,7 @@
+ 		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-controller;
+ 		#interrupt-cells = <1>;
++		power-button;
  
  		buck1-supply = <&vcc_3v3_sys>;
  		buck2-supply = <&vcc_3v3_sys>;
