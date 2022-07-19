@@ -2,93 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A98D357973B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 12:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E66579744
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 12:05:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237611AbiGSKD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 06:03:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
+        id S237489AbiGSKFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 06:05:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237614AbiGSKC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 06:02:59 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0AC1402D5
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 03:02:41 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id t1so23846478lft.8
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 03:02:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=n2i2xeRFbnBFO53U+/GM3T5pKxWAL2Qa7fUFZfaYQcI=;
-        b=zyVk1ZE/otqu/lHihEt3eSWYvni3MSTNDPZXfIlwzQYCPpn9cQG7jVtCmWJyHLK3st
-         bHwQrky1OQm0/K+XiBmje/a98C3IWpiZn8Va4QPF23SU6nLpY3pGvGYg/F38RGntGwBA
-         quoiawP4siohATEb2blPsM0jq9L/cyqWTTgjt76kPtQwqYO8wIXsZkruj3OShjKTT8Bm
-         wFT0IRCwKx3VSlVTYr1g60Mc2HrbgwhQXy0ii7DQzLtuUPOJlz/oHdh1E36uLW3JSArq
-         RbTQ1kZ911MUAIlErlyWapAtdrO1gDH2NraXULlRC6Evs0lESLQUqbBVe0z5gwE7YjpI
-         /NVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=n2i2xeRFbnBFO53U+/GM3T5pKxWAL2Qa7fUFZfaYQcI=;
-        b=Tidl+oSkklkRqT0Jb9XlKGtnjbzRX2nrGMI5Zx8aIFKA33VtFhA0oFdSYyfQGFGTo0
-         OwdjFg5Ge1CkKfsAli3An58nMwfOKne7E/4mTBbgFcQbYEUYpsu3x2Hrq+NPGt/9VVI4
-         fp+q/oERS1TGqVejWaWWen6LfzmdHhb/SKlRdNcz7HX8spqYu3kC+Sopa2RZ+dDphzXo
-         b3koeJsOaGzpmTzl0/2cVYucws5pRi8aUv4NPsUku35x4KL7Yg+VJkJZKiMbTta+uYWN
-         hyBqTnz4eInB3mLLYw/HqxHdc+gbOcunWWbBf+uG2AAPfuhjsNe5RSlbTC4vklJ43SRB
-         Q93g==
-X-Gm-Message-State: AJIora/dQ7hjF6ciK9a6zZRT7UvmlL6y1mtoWXCRMMNuQh2Yg5ewI1pD
-        V7C+zRPiIEyrbLc+7QvqOwzqzQ==
-X-Google-Smtp-Source: AGRyM1tnhi/HrvY6MsqgKmCLE3ncdDsOSsiLBBaS5ImUtaBlTr4Ahxus85g4bE9MOF6nhRb2wRpP6Q==
-X-Received: by 2002:a05:6512:1093:b0:489:e605:415d with SMTP id j19-20020a056512109300b00489e605415dmr17524450lfg.323.1658224961287;
-        Tue, 19 Jul 2022 03:02:41 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id s13-20020a056512214d00b0048110fd06c4sm3121121lfr.53.2022.07.19.03.02.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 03:02:40 -0700 (PDT)
-Message-ID: <74dadabb-f4d8-bec9-d6b4-fa6ff78e8560@linaro.org>
-Date:   Tue, 19 Jul 2022 12:02:39 +0200
+        with ESMTP id S237525AbiGSKFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 06:05:01 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED00F3A491;
+        Tue, 19 Jul 2022 03:04:36 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 59EF6E000E;
+        Tue, 19 Jul 2022 10:04:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1658225075;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=NwzRrHTBlq6/GPcoprPr/yVYl2AllY/DC/t0CGrDf+A=;
+        b=e7f3TXzS3kV6ulJEA/Lge79POr4lJvgvaIo82298rbQnPih9xt0d9sckb/7/J6nV+87uyc
+        v+ib1i6xG+odNmUoJoPIbHNLCNz/+Go/D5ocGreEvWWqpMnkkYHgIKrfMNhKfyNSE2c9Dj
+        Gf9qk1lXvZRJK4+RuGVQLnulDML1DL5TGuAWxVqaDvuAs5foWN2Xek1xJT9u5UGo00uHAD
+        RtFMg1Kq8Y831tdSQ6DQhdLpA0NPjiTdsXqwEJxC0IzHbKMeYN6Rw0KwiNnw65tAOClIIw
+        mPamOXd6BbCLTEKjR4dslHJTbEeMMi8Qaz+6DQWoqc0G/z+p5kozXsWst8yeKA==
+Date:   Tue, 19 Jul 2022 12:04:31 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 1/6] dt-bindings: media: Add Allwinner A31 ISP
+ bindings documentation
+Message-ID: <YtaBr3B5JMrdFVgV@aptenodytes>
+References: <20220704173523.76729-1-paul.kocialkowski@bootlin.com>
+ <20220704173523.76729-2-paul.kocialkowski@bootlin.com>
+ <YtP0YfPteyzsBWn3@paasikivi.fi.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 3/3] dt-bindings: nvmem: mediatek: efuse: Add support for
- MT8188
-Content-Language: en-US
-To:     Johnson Wang <johnson.wang@mediatek.com>, broonie@kernel.org,
-        srinivas.kandagatla@linaro.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220715120114.4243-1-johnson.wang@mediatek.com>
- <20220715120114.4243-3-johnson.wang@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220715120114.4243-3-johnson.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="3I9kBemjOHRithZP"
+Content-Disposition: inline
+In-Reply-To: <YtP0YfPteyzsBWn3@paasikivi.fi.intel.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/07/2022 14:01, Johnson Wang wrote:
-> Add compatible for MT8188 SoC.
-> 
-> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> ---
-> This patch is based on "linux-next"[1].
-> [1]https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
+--3I9kBemjOHRithZP
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Sakari,
 
+On Sun 17 Jul 22, 11:37, Sakari Ailus wrote:
+> Hi Paul,
+>=20
+> On Mon, Jul 04, 2022 at 07:35:18PM +0200, Paul Kocialkowski wrote:
+> > This introduces YAML bindings documentation for the Allwinner A31 Image
+> > Signal Processor (ISP).
+> >=20
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../media/allwinner,sun6i-a31-isp.yaml        | 97 +++++++++++++++++++
+> >  1 file changed, 97 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,s=
+un6i-a31-isp.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a3=
+1-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-is=
+p.yaml
+> > new file mode 100644
+> > index 000000000000..2fda6e05e16c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.y=
+aml
+> > @@ -0,0 +1,97 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree B=
+indings
+> > +
+> > +maintainers:
+> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - allwinner,sun6i-a31-isp
+> > +      - allwinner,sun8i-v3s-isp
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Bus Clock
+> > +      - description: Module Clock
+> > +      - description: DRAM Clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: bus
+> > +      - const: mod
+> > +      - const: ram
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: CSI0 input port
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: CSI1 input port
+>=20
+> Do both support a single PHY with a single data only? If multiple data la=
+nes
+> are supported, please require data-lanes property (on endpoint).
 
-Best regards,
-Krzysztof
+There's actually no PHY involved here: the ISP drivers gets its video stream
+=66rom these CSI controllers which are the ones interfacing with a MIPI CSI=
+-2
+receiver (on A31/V3 it uses an external D-PHY, on A83T the D-PHY is colloca=
+ted
+with the controller).
+
+So I think the data-lanes property is not relevant here.
+
+What do you think?
+
+Cheers,
+
+Paul
+
+> > +
+> > +    anyOf:
+> > +      - required:
+> > +          - port@0
+> > +      - required:
+> > +          - port@1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
+> > +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
+> > +
+> > +    isp: isp@1cb8000 {
+> > +        compatible =3D "allwinner,sun8i-v3s-isp";
+> > +        reg =3D <0x01cb8000 0x1000>;
+> > +        interrupts =3D <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> > +        clocks =3D <&ccu CLK_BUS_CSI>,
+> > +             <&ccu CLK_CSI1_SCLK>,
+> > +             <&ccu CLK_DRAM_CSI>;
+> > +        clock-names =3D "bus", "mod", "ram";
+> > +        resets =3D <&ccu RST_BUS_CSI>;
+> > +
+> > +        ports {
+> > +            #address-cells =3D <1>;
+> > +            #size-cells =3D <0>;
+> > +
+> > +            port@0 {
+> > +                reg =3D <0>;
+> > +
+> > +                isp_in_csi0: endpoint {
+> > +                    remote-endpoint =3D <&csi0_out_isp>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+>=20
+> --=20
+> Sakari Ailus
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--3I9kBemjOHRithZP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmLWga8ACgkQ3cLmz3+f
+v9EUlAf8DYEIQLUQoXOrMlsqRDJSzDzjYJfAHBgm/q9wjI7fvxHf4yHlFuSVReSH
+O42woPwdpBWLkW8Nkd710Ln/xK0bp9yBmTxJ10yWCUKdeSDrzrX0WDzU62NQIjbB
+Ue0cNaQaCXTsgdY0xP/MgkDVPp13MfebobbyM4tqLwcEZyj3yCWR3skLd47htQoq
+O1I8TAi+7j5ssrk3hSyZdS1yPsQt2a02IoZ9iA4ItXDRw0yhN+Ak6dd/VTumaA9N
+l7sn1HQZTYsAb5wodKw5sroZBQV8dtJtPuvfwXSJbwuD8pfEJlmq8J0M6tRwDZs8
+kc/jaPT0DQF4oYt8l6tpHEff5vpixA==
+=IQ69
+-----END PGP SIGNATURE-----
+
+--3I9kBemjOHRithZP--
