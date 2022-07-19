@@ -2,212 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7984A57A3DB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 17:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB08957A407
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 18:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237825AbiGSP71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 11:59:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36646 "EHLO
+        id S235627AbiGSQQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 12:16:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239708AbiGSP70 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 11:59:26 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4621A5B7B6;
-        Tue, 19 Jul 2022 08:59:24 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.92,284,1650898800"; 
-   d="scan'208";a="126662062"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 20 Jul 2022 00:59:23 +0900
-Received: from localhost.localdomain (unknown [10.226.92.160])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 23D804007F3A;
-        Wed, 20 Jul 2022 00:59:17 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
-Date:   Tue, 19 Jul 2022 16:59:09 +0100
-Message-Id: <20220719155910.576265-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220719155910.576265-1-biju.das.jz@bp.renesas.com>
-References: <20220719155910.576265-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S235705AbiGSQQa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 12:16:30 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1153F4B49D
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 09:16:29 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id s18-20020a17090aa11200b001f1e9e2438cso3477138pjp.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 09:16:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=1/iQNc3gXhjz0NA1343D9qw+UVAwvTADGGcwrjN+3GM=;
+        b=oxbpN3Gyqd2c/4XkRBh7oWvtJtFAUi6DioLRIU+O5ISqhEpCFnaxo9hd8bA8EKIVA+
+         cprpb1sL3DW86MpjliDUr0wkpsfQ0sU7ASSbPyvfDA4G03OrMBifHEUuy9VivSAxt0YH
+         8yRLBsfHCiY4kw2bPI3AzHkMciY4zCxsVlwIVN7VBgLFwr1pnyV3FDmjm8kBHuZTTe8p
+         6Lu59uObwDL/GjBoDgd8TIr+m5ShFiF7hk/UDihQwLxYTlVX58gW+zXSPabIKs9ibSbI
+         qb4pdUf3uQh4BTLjuEE9pTt0VvGkdnv00TWvSHaiGZgyCLRxToTmLFybECxjBBZxHqfZ
+         7F0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=1/iQNc3gXhjz0NA1343D9qw+UVAwvTADGGcwrjN+3GM=;
+        b=3NopkWmsv7I/N+xTgTdIyqi9onAUM3vjue4fppawbvzpNMHHdND+d0M3KuIImNwPs3
+         XsK55bNnDIDnW6w4ct3RPoPIggsXTgXtipMwyEostRpn3fwthwyKApllESA98Q84Mn04
+         uoWwkQ9omyauJb+CMGVzH5h8LxOeKMAb2kb6Dy8krrFIqNTInviHyPW456wLalk9ZXur
+         yZx2gSlgoLv2t+6zGvW4J/rirQjI2W5KopmSGP+NryGPVoT9NyE+Pvom6V2AmrGY8Vtn
+         /KadpIajIQ43NtB+eZo3Yh6GNtgRfHbq4csUrPxxnjvTkE5V9Ae0m6doHlJ4NJ2qvqIw
+         zONw==
+X-Gm-Message-State: AJIora/97OS94lF/ZCFFFyLyEji70r4ajpQmxbg9kNYzlR0uVC8inJND
+        eKn2b3k09zfkIcNOFkaebciP9Q==
+X-Google-Smtp-Source: AGRyM1uYwT+C2WlLmTkVjjapJiIuQe2wO03DCM5Zxd2mMcaMZEGKC9SCfBNEuA3IPhSKeBiNCQp5Zg==
+X-Received: by 2002:a17:903:248:b0:168:cf03:eefe with SMTP id j8-20020a170903024800b00168cf03eefemr33889666plh.124.1658247388439;
+        Tue, 19 Jul 2022 09:16:28 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id 72-20020a17090a09ce00b001efd39b7e39sm13705857pjo.37.2022.07.19.09.16.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jul 2022 09:16:27 -0700 (PDT)
+Date:   Tue, 19 Jul 2022 10:16:25 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Puranjay Mohan <p-mohan@ti.com>
+Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
+        linux-arm-kernel@lists.infradead.org, rogerq@kernel.org,
+        grygorii.strashko@ti.com, vigneshr@ti.com, kishon@ti.com,
+        robh@kernel.org
+Subject: Re: [PATCH v5 6/6] remoteproc: pru: add support for configuring
+ GPMUX based on client setup
+Message-ID: <20220719161625.GB3393732@p14s>
+References: <20220607045650.4999-1-p-mohan@ti.com>
+ <20220607045650.4999-7-p-mohan@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220607045650.4999-7-p-mohan@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the General PWM Timer (GPT).
+On Tue, Jun 07, 2022 at 10:26:50AM +0530, Puranjay Mohan wrote:
+> From: Tero Kristo <t-kristo@ti.com>
+> 
+> Client device node property ti,pruss-gp-mux-sel can now be used to
+> configure the GPMUX config value for PRU.
+> 
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> [s-anna@ti.com: simplify the pru id usage]
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> ---
+> V4->v5
+> * This patch was included in v4 and had some checkpatch errors that have
+>   been resolved in v5
+> ---
+>  drivers/remoteproc/pru_rproc.c | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> index 2977eb50631b..f2c6c55f0f20 100644
+> --- a/drivers/remoteproc/pru_rproc.c
+> +++ b/drivers/remoteproc/pru_rproc.c
+> @@ -123,6 +123,7 @@ struct pru_private_data {
+>   * @dbg_single_step: debug state variable to set PRU into single step mode
+>   * @dbg_continuous: debug state variable to restore PRU execution mode
+>   * @evt_count: number of mapped events
+> + * @gpmux_save: saved value for gpmux config
+>   */
+>  struct pru_rproc {
+>  	int id;
+> @@ -141,6 +142,7 @@ struct pru_rproc {
+>  	u32 dbg_single_step;
+>  	u32 dbg_continuous;
+>  	u8 evt_count;
+> +	u8 gpmux_save;
+>  };
+>  
+>  static inline u32 pru_control_read_reg(struct pru_rproc *pru, unsigned int reg)
+> @@ -250,6 +252,7 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
+>  	struct device *dev;
+>  	const char *fw_name;
+>  	int ret;
+> +	u32 mux;
+>  
+>  	try_module_get(THIS_MODULE);
+>  
+> @@ -273,6 +276,22 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
+>  
+>  	mutex_unlock(&pru->lock);
+>  
+> +	ret = pruss_cfg_get_gpmux(pru->pruss, pru->id, &pru->gpmux_save);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get cfg gpmux: %d\n", ret);
+> +		goto err;
+> +	}
+> +
+> +	ret = of_property_read_u32_index(np, "ti,pruss-gp-mux-sel", index,
+> +					 &mux);
+> +	if (!ret) {
+> +		ret = pruss_cfg_set_gpmux(pru->pruss, pru->id, mux);
+> +		if (ret) {
+> +			dev_err(dev, "failed to set cfg gpmux: %d\n", ret);
+> +			goto err;
+> +		}
+> +	}
+> +
+>  	if (pru_id)
+>  		*pru_id = pru->id;
+>  
+> @@ -310,6 +329,7 @@ void pru_rproc_put(struct rproc *rproc)
+>  
+>  	pru = rproc->priv;
+>  
+> +	pruss_cfg_set_gpmux(pru->pruss, pru->id, pru->gpmux_save);
+>  	pru_rproc_set_firmware(rproc, NULL);
+>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v2->v3:
- * Added Rb tag from Rob.
-v1->v2:
- * Added '|' after 'description:' to preserve formatting.
- * Removed description for pwm_cells as it is common property.
- * Changed the reg size in example from 0xa4->0x100
- * Added Rb tag from Geert.
-RFC->v1:
- * Added Description
- * Removed comments from reg and clock
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 129 ++++++++++++++++++
- 1 file changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+  CC      drivers/remoteproc/pru_rproc.o
+/home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c: In function ‘pru_rproc_get’:
+/home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:279:8: error: implicit declaration of function ‘pruss_cfg_get_gpmux’ [-Werror=implicit-function-declaration]
+  279 |  ret = pruss_cfg_get_gpmux(pru->pruss, pru->id, &pru->gpmux_save);
+      |        ^~~~~~~~~~~~~~~~~~~
+/home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:288:9: error: implicit declaration of function ‘pruss_cfg_set_gpmux’ [-Werror=implicit-function-declaration]
+  288 |   ret = pruss_cfg_set_gpmux(pru->pruss, pru->id, mux);
+      |         ^~~~~~~~~~~~~~~~~~~
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-new file mode 100644
-index 000000000000..e8f7b9947eaa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/renesas,rzg2l-gpt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L General PWM Timer (GPT)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
-+  (GPT32E). It supports the following functions
-+  * 32 bits × 8 channels.
-+  * Up-counting or down-counting (saw waves) or up/down-counting
-+    (triangle waves) for each counter.
-+  * Clock sources independently selectable for each channel.
-+  * Two I/O pins per channel.
-+  * Two output compare/input capture registers per channel.
-+  * For the two output compare/input capture registers of each channel,
-+    four registers are provided as buffer registers and are capable of
-+    operating as comparison registers when buffering is not in use.
-+  * In output compare operation, buffer switching can be at crests or
-+    troughs, enabling the generation of laterally asymmetric PWM waveforms.
-+  * Registers for setting up frame cycles in each channel (with capability
-+    for generating interrupts at overflow or underflow)
-+  * Generation of dead times in PWM operation.
-+  * Synchronous starting, stopping and clearing counters for arbitrary
-+    channels.
-+  * Starting, stopping, clearing and up/down counters in response to input
-+    level comparison.
-+  * Starting, clearing, stopping and up/down counters in response to a
-+    maximum of four external triggers.
-+  * Output pin disable function by dead time error and detected
-+    short-circuits between output pins.
-+  * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
-+  * Enables the noise filter for input capture and external trigger
-+    operation.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-gpt  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-gpt  # RZ/V2L
-+      - const: renesas,rzg2l-gpt
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#pwm-cells':
-+    const: 2
-+
-+  interrupts:
-+    items:
-+      - description: GTCCRA input capture/compare match
-+      - description: GTCCRB input capture/compare
-+      - description: GTCCRC compare match
-+      - description: GTCCRD compare match
-+      - description: GTCCRE compare match
-+      - description: GTCCRF compare match
-+      - description: GTADTRA compare match
-+      - description: GTADTRB compare match
-+      - description: GTCNT overflow/GTPR compare match
-+      - description: GTCNT underflow
-+
-+  interrupt-names:
-+    items:
-+      - const: ccmpa
-+      - const: ccmpb
-+      - const: cmpc
-+      - const: cmpd
-+      - const: cmpe
-+      - const: cmpf
-+      - const: adtrga
-+      - const: adtrgb
-+      - const: ovf
-+      - const: unf
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    gpt4: pwm@10048400 {
-+        compatible = "renesas,r9a07g044-gpt", "renesas,rzg2l-gpt";
-+        reg = <0x10048400 0x100>;
-+        interrupts = <GIC_SPI 270 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 271 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 272 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 273 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 274 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 275 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 276 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 277 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 278 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 279 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "ccmpa", "ccmpb", "cmpc", "cmpd",
-+                          "cmpe", "cmpf", "adtrga", "adtrgb",
-+                          "ovf", "unf";
-+        clocks = <&cpg CPG_MOD R9A07G044_GPT_PCLK>;
-+        power-domains = <&cpg>;
-+        resets = <&cpg R9A07G044_GPT_RST_C>;
-+        #pwm-cells = <2>;
-+    };
--- 
-2.25.1
+I get this on both rproc-next and today's linux next.  
 
+>  	mutex_lock(&pru->lock);
+> -- 
+> 2.17.1
+> 
