@@ -2,123 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F357578EB0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 02:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D891E578EF2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 02:13:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235065AbiGSABB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 20:01:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38398 "EHLO
+        id S235635AbiGSAM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 20:12:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbiGSABA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 20:01:00 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7645810A
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 17:00:59 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-10c0430e27dso28208648fac.4
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 17:00:59 -0700 (PDT)
+        with ESMTP id S236605AbiGSAMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 20:12:54 -0400
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3089037F8A
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 17:12:51 -0700 (PDT)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-10d6ddda695so304726fac.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 17:12:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=1FnYzVMiek+SlAzgVB4w6TNdP3JBRcRzdvMKcgUPF7Y=;
-        b=CYO0h1QjLiXX58sLhGBr/WMWfMcMp7XUUC3E71/2erVeeB3PEq7HzlgPmXcaqDqqB9
-         27ouDs23+xD+E8CseNTLTteZtqNesuoef3yokyaex7SFQUy/+Dii5yvhMciK+YE+k8Pr
-         zbD9yvwhtXUhPUHRUBQCpHSAXaRUDOaDjnwwrckZGwt6sZZaKeFkQd2vJErDX737FA7l
-         0W6zLgGJIGAAdqG8ifYHsCFwNoxM9nCb6+q+R5L2yfGMeaysgoWQrHRfe2v2Di6beOwO
-         Ga1tP6bc+mipfETjtiJ9SffLSCQVuXYfWfa5ya0QhVjyifEt/e1o+GaZW5Ih7haT2P/U
-         Ve3w==
+        bh=pCnOpb/tAWKWPuLC7zFzL9Qy3rXC3raHyDODfytTBvo=;
+        b=R4AhdQijFE22qPnuP8yQk+M/z15peEnGnkKXOCnjUdkAyL/8qYwcHUjbV158/lM6gk
+         sOyavYbNdkIe+MD0G2ei2o1p0XnUtTA2n1crgGwCQOVlDSiuU1QNw148fxYCb2Hn2CZ5
+         00w5GIrzsUT6WALe+OkBqMLXZNrKjZXV/x8xQSScsq84JE0y1I8C2OxrD2HrX35UrIDS
+         s/8jkY6F3XIMtaWX2O0R0XXeLtxRgzpwC9QLHT8YzHdbcbRJC6PQXYNlK3gb97tugHze
+         EAd1IOnVRw6dG/2+z2/q8ET2qWYmUZRPaLYmdlIiPl1rxuoxhQgPNeLNoyKou+G0Hlbi
+         KeVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1FnYzVMiek+SlAzgVB4w6TNdP3JBRcRzdvMKcgUPF7Y=;
-        b=T448OrJGb9kaA7toDMrd3eh9MOsV0jKbBbHo9GuDSySeHw9hbDnUcf8mgeGgDps/b9
-         SIgzn9HER6TlPvJ/SB8DWwmvR4SsNiKQ3uOJGg2f8uIyTpqjQKP+NPqreULbHNaKqkZd
-         QEmJcd1XhmlPPbKEF+jbhc5W7cq0HZ1F9oHM2zmZtSCxW/swhsRtm7dfCI/ilW6ajGUV
-         f3F+c7v+g2bl3NIGeBn3sG4DfhYU/8vQ0+gI3Ycb6OELvmXoNeTfJGlDh35AoFaYyRif
-         ep9cunBruI+kgyG05MBpOZj1PQhWkiYUphnVvQRqV3aofCmuZq9H2YU2gvQJRNVUcjwT
-         7Twg==
-X-Gm-Message-State: AJIora9DNub5P1vKCIphEEXJguWR5li/q1j+iiZ2DveIt3McbrGXVaVM
-        W6Xn2/P2AM8V7P8bmcOGAW4U2w==
-X-Google-Smtp-Source: AGRyM1s8zLIArx9kCVPBZrk37/t/2i6H01CV57jyxV4+CuXkMf6keiVbJTEX2CdHL/jrA5GmrZa2IQ==
-X-Received: by 2002:a05:6808:d4f:b0:339:afb0:ccce with SMTP id w15-20020a0568080d4f00b00339afb0cccemr14400991oik.53.1658188858777;
-        Mon, 18 Jul 2022 17:00:58 -0700 (PDT)
+        bh=pCnOpb/tAWKWPuLC7zFzL9Qy3rXC3raHyDODfytTBvo=;
+        b=5o7PdTWDy7iAZpEyYyewF8mDl2G/7ud0H3WDoErXFECgYVBvQbEToFbJdOpzYCtFJF
+         6AcLc8fSD28ARglDK5IJrM+8n3JuOg/uqhDtAFDHwDtaSar2yq/LL/wak/T8GBtqXmcg
+         +eTaEhttq+yD/kL9l2sDISgt8GHDxJXcNYI2WVOXcQv0jh5dFQ+8gxnYYRKFmKZXzHJ6
+         UrB2VF6Jtm0JrIP2SpP32qBO3fjxA7SeZsTELvE+QyNwsfJeg3zUqRwIO7CG37aAO8Q3
+         +k3ahDzozYyMdUrsVmw3y4fdjxaZBx9ydDzjooqblvkba5aBiEszsPkAC23gCpzxoBYx
+         DXfg==
+X-Gm-Message-State: AJIora8iGK4TB2JhKOWAShg7H1XX/xs1kjERYw0kXYNgkzgXVlAvVdxG
+        XrUKA3G39tLSCNqtMXM7kyCXXA==
+X-Google-Smtp-Source: AGRyM1vHxTCyv1ECJGzC7VKq76lVZumQrcmY3StVxmqIC00SmPeiy/bVkrqijGWSzpEwnT9EqgONqg==
+X-Received: by 2002:a05:6870:2423:b0:fe:4131:6db9 with SMTP id n35-20020a056870242300b000fe41316db9mr15575223oap.75.1658189570175;
+        Mon, 18 Jul 2022 17:12:50 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id z15-20020a056808064f00b0033a422b39b4sm4480419oih.49.2022.07.18.17.00.57
+        by smtp.gmail.com with ESMTPSA id n23-20020a056870559700b0010c727a3c79sm7214120oao.26.2022.07.18.17.12.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 17:00:58 -0700 (PDT)
-Date:   Mon, 18 Jul 2022 19:00:56 -0500
+        Mon, 18 Jul 2022 17:12:49 -0700 (PDT)
+Date:   Mon, 18 Jul 2022 19:12:47 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>
-Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
-        dianders@chromium.org, vkoul@kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        quic_abhinavk@quicinc.com, quic_aravindh@quicinc.com,
-        quic_sbillaka@quicinc.com, quic_mkrishn@quicinc.com,
-        quic_kalyant@quicinc.coml, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dta: qcom: sc7280: delete vdda-1p2 and
- vdda-0p9 from both dp and edp
-Message-ID: <YtX0OP2EprFRJ/wx@builder.lan>
-References: <1657556603-15024-1-git-send-email-quic_khsieh@quicinc.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] clk: qcom: gcc-ipq806x: remove cc_register_board
+ for pxo and cxo
+Message-ID: <YtX2///aNWyhKpJn@builder.lan>
+References: <20220706225321.26215-1-ansuelsmth@gmail.com>
+ <20220706225321.26215-5-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1657556603-15024-1-git-send-email-quic_khsieh@quicinc.com>
+In-Reply-To: <20220706225321.26215-5-ansuelsmth@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 11 Jul 11:23 CDT 2022, Kuogee Hsieh wrote:
+On Wed 06 Jul 17:53 CDT 2022, Christian Marangi wrote:
 
-Please double check that the subject prefix matches existing changes
-next time.
+> Now that these clock are defined as fixed clk in dts, we can drop the
+> register_board_clk for cxo_board and pxo_board in gcc_ipq806x_probe.
+> 
 
-Thanks,
+Are you trying to say, that now that we have .fw_name based lookup of
+these clocks we don't need the globally registered [cp]xo clocks to
+bridge towards the [cp]xo_board_clocks which was introduced in:
+
+30fc4212d541 ("arm: dts: qcom: Add more board clocks")
+
+I think this change would work out if you also replace .name = "pxo"
+with .name = "pxo_board_clk" (and same for cxo)...
+
+
+But I don't think we can just drop these, as it would break
+compatibility with existing devicetree.
+
+Regards,
 Bjorn
 
-> Both vdda-1p2-supply and vdda-0p9-supply regulators are controlled
-> by dp combo phy. Therefore remove them from dp controller.
-> 
-> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 2 --
->  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi     | 3 ---
->  2 files changed, 5 deletions(-)
+>  drivers/clk/qcom/gcc-ipq806x.c | 8 --------
+>  1 file changed, 8 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> index ed800817..3f8996c 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> @@ -435,8 +435,6 @@ ap_i2c_tpm: &i2c14 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&dp_hot_plug_det>;
->  	data-lanes = <0 1>;
-> -	vdda-1p2-supply = <&vdd_a_usbssdp_0_1p2>;
-> -	vdda-0p9-supply = <&vdd_a_usbssdp_0_core>;
->  };
+> diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-ipq806x.c
+> index 718de17a1e60..883629de2751 100644
+> --- a/drivers/clk/qcom/gcc-ipq806x.c
+> +++ b/drivers/clk/qcom/gcc-ipq806x.c
+> @@ -3384,14 +3384,6 @@ static int gcc_ipq806x_probe(struct platform_device *pdev)
+>  	struct regmap *regmap;
+>  	int ret;
 >  
->  &mdss_mdp {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-> index 4c25ffc..7adf31b 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-> @@ -311,9 +311,6 @@
->  
->  /* NOTE: Not all Qcards have eDP connector stuffed */
->  &mdss_edp {
-> -	vdda-0p9-supply = <&vdd_a_edp_0_0p9>;
-> -	vdda-1p2-supply = <&vdd_a_edp_0_1p2>;
+> -	ret = qcom_cc_register_board_clk(dev, "cxo_board", "cxo", 25000000);
+> -	if (ret)
+> -		return ret;
 > -
->  	aux-bus {
->  		edp_panel: panel {
->  			compatible = "edp-panel";
+> -	ret = qcom_cc_register_board_clk(dev, "pxo_board", "pxo", 25000000);
+> -	if (ret)
+> -		return ret;
+> -
+>  	if (of_machine_is_compatible("qcom,ipq8065")) {
+>  		ubi32_core1_src_clk.freq_tbl = clk_tbl_nss_ipq8065;
+>  		ubi32_core2_src_clk.freq_tbl = clk_tbl_nss_ipq8065;
 > -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
+> 2.36.1
 > 
