@@ -2,167 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF01C5798C5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 13:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02D24579912
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 13:58:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234282AbiGSLwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 07:52:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51854 "EHLO
+        id S237631AbiGSL6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 07:58:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbiGSLwX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 07:52:23 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B062D24097
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 04:52:21 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id o12so17077217ljc.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 04:52:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tWcruw9eRvvmbRP8IquaWzxGj9Fq2cYbW3H30aOciT0=;
-        b=Nv+2BSqdZA7hwKzGWq/E5xtSFwXZmz9YiFTVdJ488gYOA4qUGrNNupE+qJYkjoOmiP
-         TM0UwNFpF0jrV/T5oKcS0KQ80KD43E1lvylbf3pzMDbo55ZBZ3nBg65vc/coBK0tD/L+
-         MKvJxh5bntkrNQ2yqovME91/ArJV426KJuV3PPLD921Wu/JwfajY9hJONYb1/EKndJ07
-         AyTA6REBk+96dOghPCugnwQkLRXUAMg5QLK4KYvwMBPyBZlM6Dl6Ptx/zApKBhOs4ZAA
-         PXq5s9jyd75Bib+JTGLcE66lOyt3JtxURLDzwKO/n9l7miOIPsTw639epridxs5ibsur
-         wq/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=tWcruw9eRvvmbRP8IquaWzxGj9Fq2cYbW3H30aOciT0=;
-        b=ZRewqR3DyNTi+FxE6OXhUAf+axE6ZMK0TAAJaWvNLqNW7g4okgyUtLFYAQDA3UVt6l
-         ynkSmVteSB290zSQMS1U1hpQ06ur2lCYuGmfAI6Z5ty30LBF46pzBNy2ucjn/RNm1MVz
-         659Knn6nJKXzVkOP6Uv0J6Cizf0QPSRHVR3FotQiFSm2YxWr27vWLsm/7JA+eb3bdrC+
-         KPKaf0aSUo3GRsGB8W7tF8o8vLmdikjTT3Q+nVjEt9gvVTu0Fsfz4kZpykYM/7QssJyL
-         g0QXXOtTtmKmzSkJZDMZpMX9kuN00rtnC2DXOOhjVn8fZswXs1N6cGT8SW3tEGdw+dL7
-         Xvvw==
-X-Gm-Message-State: AJIora8MtX/D+LdU2AnVU9QQAvSOg/p1bp/TJ3puW+9IF0bwtOxAu9Ha
-        AaLQWSvG+KM3WCxBvo227ECBKw==
-X-Google-Smtp-Source: AGRyM1s9F/TDe3iQtldBfXxy+KN8vt0cV80Q7c+anR1VA0nWSzeNglTD7pHZRl1DuwQ86aoLRJAI4Q==
-X-Received: by 2002:a05:651c:1581:b0:255:48d1:fdae with SMTP id h1-20020a05651c158100b0025548d1fdaemr14711522ljq.286.1658231540064;
-        Tue, 19 Jul 2022 04:52:20 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id a4-20020ac25e64000000b00489e5ba2e26sm3170412lfr.63.2022.07.19.04.52.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 04:52:19 -0700 (PDT)
-Message-ID: <ea4a0f77-1b26-682b-89c3-1824d3f4d6e7@linaro.org>
-Date:   Tue, 19 Jul 2022 13:52:18 +0200
+        with ESMTP id S237632AbiGSL57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 07:57:59 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A524B45F50;
+        Tue, 19 Jul 2022 04:56:56 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: dmitry.osipenko)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D22036601A84;
+        Tue, 19 Jul 2022 12:56:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658231814;
+        bh=VDqNUWhqlTUZBrMhpSOtSTjzC+nlu1urwsXT5YnWpxI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=jZkdd1zfgHmmT9E0p0m0SRQjHptHtR2/oleppEIMJxjUvAP5w2xlq36BeMgejSTuN
+         RkDGgZdfEbTS7xkKLLCFZymuBo6RcUQySSvNU2SfpOYL6gBUONsDhFw0FGVhksaGx5
+         y8dweytingGYh6hFB7xQBtmEEmDnuXJkZH1c4BqRkou921FWAYjg4RLkOhfVIHNM0W
+         4bcARHAJgXcIPX16zLZxhEVlvzvDxjFnrVD1h3dOf7OArLK67i/zO3ThuXlzxz4Vzb
+         q5R+9yVgp28WTAVHoWjrXh1SdN0RLxq5UIS1qvdxuR5stxcifZjQmIrVLrgT6sSsdh
+         hnTPN5ZD6nXWQ==
+Message-ID: <1e880d3f-758b-56a8-d468-dcb06f4cbc18@collabora.com>
+Date:   Tue, 19 Jul 2022 14:56:51 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: ipq8064: reorganize node order and
- sort them
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v9 2/2] iio: light: Add support for ltrf216a sensor
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220718153815.29414-1-ansuelsmth@gmail.com>
- <7f2a4f21-5e07-9320-8f7b-573ccc562f43@linaro.org>
- <CAA8EJppCxrcQOtCDZvUX-CThGV7aZXYv__gz3KRBf28TCRTBEg@mail.gmail.com>
- <78230095-6b45-4536-f41d-12bb23308d34@linaro.org>
- <f625ccde-8ecd-c06d-e8b2-ecb51c9ac9b8@somainline.org>
- <62d686c0.1c69fb81.4a957.bf03@mx.google.com>
- <26b43f6d-2b35-aab7-f906-31458c1b824b@linaro.org>
- <343bd10e-bdcb-d097-e40b-a93dde586d14@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <343bd10e-bdcb-d097-e40b-a93dde586d14@somainline.org>
+To:     Jonathan Cameron <jic23@jic23.retrosnub.co.uk>,
+        Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     lars@metafoo.de, robh+dt@kernel.org, Zhigang.Shi@liteon.com,
+        krisman@collabora.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, alvaro.soliverez@collabora.com,
+        andy.shevchenko@gmail.com
+References: <20220715111626.1066513-1-shreeya.patel@collabora.com>
+ <20220715111626.1066513-3-shreeya.patel@collabora.com>
+ <20220718182547.360e5cf2@jic23-huawei>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220718182547.360e5cf2@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2022 13:15, Konrad Dybcio wrote:
+On 7/18/22 20:25, Jonathan Cameron wrote:
+> What turns this off again?  I'd expect to see a devm_add_action_or_reset()
+> to do that in the !CONFIG_PM case.
 > 
+> This is also an unusual pattern. As far as I can tell it works.
+> Normal trick for ensuring !CONFIG_PM works is to:
 > 
-> On 19.07.2022 12:56, Krzysztof Kozlowski wrote:
->> On 19/07/2022 10:19, Christian Marangi wrote:
->>> On Tue, Jul 19, 2022 at 12:22:24PM +0200, Konrad Dybcio wrote:
->>>>
->>>>
->>>> On 19.07.2022 12:16, Krzysztof Kozlowski wrote:
->>>>> On 19/07/2022 11:59, Dmitry Baryshkov wrote:
->>>>>> On Tue, 19 Jul 2022 at 12:56, Krzysztof Kozlowski
->>>>>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>>>>
->>>>>>> On 18/07/2022 17:38, Christian Marangi wrote:
->>>>>>>> Reorganize node order and sort them by address.
->>>>>>>>
->>>>>>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->>>>>>>> ---
->>>>>>>>
->>>>>>>> This was picked from for-next qcom branch [1]. Reorganize dtsi as requested.
->>>>>>>>
->>>>>>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/?h=for-next
->>>>>>>
->>>>>>> If this is picked by qcom branch, no need to resend it.
->>>>>>>
->>>>>>> I don't see value in such reshuffle. Reviewing is not possible and you
->>>>>>> did not mention tests (results should be equal).
->>>>>>
->>>>>> The value is usual for all the cleanups: make it follow the
->>>>>> established practice.
->>>>>
->>>>> Are you sure this is established practice?
->>>> Yes.
->>>>
->>>>  New DTSI files (see SC8280XP,
->>>>> sm8450 although sc7280 looked ordered) do not always follow it, so why
->>>>> imposing it for existing code?
->>>> Perhaps it slipped through review.. Partially my bad.
->>>>
->>>>
->>>> Such reshuffle can cause conflicts thus
->>>>> stops parallel development. Review is close to impossible...
->>>> Almost any addition or removal also causes conflicts, because git is
->>>> not as smart as we would like it to be. If the commit is structured
->>>> properly (i.e. it *only* changes the order and nothing else),
->>>> decompiling the dtbs before and after applying it and using a tool
->>>> like meld that can find similar chunks of text at different offsets
->>>> review is definitely possible, though not very pleasant (you can't
->>>> just diff them, as order is preserved & phandles change due to that)
->>>> as you have to look at it manually and can't tell much by just taking
->>>> a look at the email.
->>>>
->>>
->>> Can you give me an example of such tool? So I can put these data in the
->>> commit description. I have to rebase this anyway as more changes got
->>> merged so it might be a good idea to add more info about how this won't
->>> make actualy changes.
->>>
->>
->> scripts/dtc/dtx_diff
->> fdtdump + diff
-> Thanks for sharing this.. way better than my crude method..
+> 1) Unconditionally turn device on.
+> 2) Register unconditional device off devm_callback. Very rarely harmful even if device already off
+>    due to runtime pm.
+
+If CONFIG_PM is disabled, do we really need to care about the power
+management on removal?
+
+> 3) Then call pm_runtime_set_active() so the state tracking matches.
+
+We can add pm_runtime_set_active() before h/w is touched for more
+consistency. On Steam Deck supplies are always enabled, but this may be
+not true for other devices.
+
+> 4) Call 	
+>   pm_runtime_mark_last_busy(dev);
+>   pm_runtime_put_autosuspend(dev);
+>   (here you have a function to do this anyway)
+>   to let runtime_pm use same path as normal to autosuspend
 > 
+> the upshot of this is that if !CONFIG_PM 3 and 4 do nothing and device
+> is left turned on.  Is there something I'm missing that makes that cycle
+> inappropriate here?  The main reason to do this is it then looks exactly
+> like any other runtime_pm calls elsewhere in the driver, so easier to review.
 
-For wide-tree cleanups I run (crosc64 is shortcut for proper env settings):
+It's appropriate, although caring about PM when it's disabled in kernel
+config could be unnecessary, IMO. It was my suggestion to keep the h/w
+enabled on driver's removal with !CONFIG_PM, minimizing the code.
 
-rm -fr dts-old; cp -r out/arch/arm64/boot/dts/ dts-old
-crosc64 make -j8 dtbs
-<make the changes / git stash pop / etc>
-rm -fr dts-new; cp -r out/arch/arm64/boot/dts/ dts-new
-crosc64 make -j8 dtbs
-for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64 scripts/dtc/dtx_diff ${i} dts-new/${i#dts-old/} ; done
-
-Second method gives sometimes less false-positives:
-
-for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64 fdtdump ${i} > ${i}.fdt ; crosc64 fdtdump dts-new/${i#dts-old/} > dts-new/${i#dts-old/}.fdt ; diff -ubB ${i}.fdt dts-new/${i#dts-old/}.fdt ; done
-
-
+-- 
 Best regards,
-Krzysztof
+Dmitry
