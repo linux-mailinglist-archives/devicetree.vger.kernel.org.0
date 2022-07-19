@@ -2,121 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB66579401
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 09:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45414579429
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 09:29:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235808AbiGSHTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 03:19:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47820 "EHLO
+        id S236479AbiGSH3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 03:29:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234874AbiGSHTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 03:19:50 -0400
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D05332DA5
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 00:19:49 -0700 (PDT)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-10d7170b2fcso1278395fac.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 00:19:49 -0700 (PDT)
+        with ESMTP id S233381AbiGSH3s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 03:29:48 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B898C33431
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 00:29:47 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id m9so13724773ljp.9
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 00:29:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=sbnnlm1/PjMSPmudPPg+00uf3vfTognMn8oMjSHYKvA=;
-        b=YvreDaoClCfLMVh0kuegRr5Tb20TtMuxjFsoBfeQ/aKfhGhBmftcSgjY4V2Eg+zSgl
-         FfyMhei9a9x1UwCOdq2HcUOaccXm4XzQ0NnNDXOcLgmYZL+zL3GQAn7DDfRiicse28f1
-         RN5kaIQCf4Z4fi199iVfV3TpzhhwXflVj8guQ=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=qYJ2Ci7a1lf89U1vcDBY/8u8HhjuVkqjFLJSEkMj5js=;
+        b=YPtJ4Ht2+jDuXfhE+S4rx1PKtgJo9YPPW+4ozWIKgJ+vHqvy9qGnTbe9sWKLtoZoxU
+         CIQF/Mt1IONb9Ra5dk0390QEA2tGt1mm+GgCKjw2+4c9uyS8422nmCdd2rPx7iG3XKgW
+         ZQdhWeTtw/d/Ezu3bhQIYliiHmc1xTho/A3cWmoCvGfSaiqHx7R5YRvW2ieDYoCPzAVd
+         TW3a9EhghwNm1zI/xon36cf4dFHRTexgl/Fa5Gj5l21cFOocZ6eUB2DqaTaIfFFSb7T6
+         a11R70OvPvJ0uo1ytdEv84d5IRofuGVfuiBWdwQLAn1jpwP0TstN5ZXJsh5qcYv5hhrC
+         DTbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=sbnnlm1/PjMSPmudPPg+00uf3vfTognMn8oMjSHYKvA=;
-        b=pkh7cCJ8WGYAytuta3Ndm5bopfTHUrGl1aEpn81qTqWsjU0Tzgv8tmIAOLijGkrxOI
-         gSJfhFYR8PeUEHsvOJyHxH9IXVuVCN7CDp8wgK6gN/bpIlmm3LaiAVz4MjDb4ENnwbfk
-         DXrYZOiLnZGigUrSVGLYPT1nEmVauRIfwhCDph1Vv6PPYkC4d45vWWcVziR2zUxgvJA2
-         lBMyMsG91tiKu0/KQbH9cJG72CPfufKwcBBuyd/9Gp+SK5qAL7pgRAZ+ZjUBjOzkxX1J
-         8XpL38686gaxUd6nci7huWztEQUY8OwtZRaP0S+b4SKe4PiZqFsZYAbqMttYhax0lxeq
-         aPXA==
-X-Gm-Message-State: AJIora+JY2HTBD5YxyEeCLf9oo7wn6kt7baUWsrDNPGjoc06tBrrx3Fr
-        9bkZDoClrs/+FOhz9jyt8VVRrwosCnpUcC8nFvK9dQ==
-X-Google-Smtp-Source: AGRyM1tdmvnEmkKpCicr8GGagWVe2Y/bXDhFisbQ7fpg4AqrDBUi60mDeIFUloIr9xJ8nhMLsB/zEqXvdphhfCcaqo4=
-X-Received: by 2002:aca:db56:0:b0:33a:3dd5:86ed with SMTP id
- s83-20020acadb56000000b0033a3dd586edmr11336531oig.0.1658215188633; Tue, 19
- Jul 2022 00:19:48 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 19 Jul 2022 03:19:48 -0400
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=qYJ2Ci7a1lf89U1vcDBY/8u8HhjuVkqjFLJSEkMj5js=;
+        b=hytBQ71Egr3W5Lj5TCEuaCAJ+nxUqv13WVKoWU7rSquTEj8pw8FSeGcGQuulTcJu8x
+         IDQ4qP0oynTJEASliZOiM9evv2+GlDpYXnjWgZUJuywXSbNelB8AafTz/iRVCMfdoDaS
+         LZEGcrZ7tIf66MajNrtEMtKi1SKqSGDHjSTsGqWOWuxFJDBqE2mWRxCJqTJ8jf6nySrQ
+         t40BQUlAs7HvFE0ChCtsr0x2wfp5Lr5Ae810o+TzKqWnpupIa5FxWXIOmp9NwLHzDw/Z
+         OfqsUs6O/U6KT1Uys2n6xJir0MviSKNeXX79iJMEc3ClEttoy5DNkXzRMjcFQ+Z7lwgn
+         zeqg==
+X-Gm-Message-State: AJIora+UF3g9AG4XwtFDd8ypdN5ZZkUlXXXe4m8xP9nxB9MJiJfIKN2q
+        cGTLLtwLwCJ8ZIe2BBcYrGgYSQ==
+X-Google-Smtp-Source: AGRyM1sxC2K13iDqWHb5X25rEERWhy/0IQ2/nnzau7ycdv9fY+X1L0+CnVLZLjqYFJO9YORihTHvZg==
+X-Received: by 2002:a2e:9992:0:b0:25d:8e5f:bb96 with SMTP id w18-20020a2e9992000000b0025d8e5fbb96mr13646884lji.113.1658215785732;
+        Tue, 19 Jul 2022 00:29:45 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id h11-20020ac25d6b000000b00489d16820ecsm3067155lft.165.2022.07.19.00.29.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Jul 2022 00:29:45 -0700 (PDT)
+Message-ID: <12a2487c-6d49-af99-aa5c-edd7a2eff071@linaro.org>
+Date:   Tue, 19 Jul 2022 09:29:43 +0200
 MIME-Version: 1.0
-In-Reply-To: <0c050434-27ca-1099-d93d-8ad6ace3396e@quicinc.com>
-References: <1657346375-1461-1-git-send-email-quic_akhilpo@quicinc.com>
- <20220709112837.v2.5.I7291c830ace04fce07e6bd95a11de4ba91410f7b@changeid>
- <CAD=FV=XzvcjS51q78BZ=FPCEVUDMD+VKJ70ksCm5V4qwHN_wRg@mail.gmail.com>
- <c022538d-c616-8f1a-e1c2-c11b5f0de670@quicinc.com> <e4dcdd8d-18a9-8da3-7ac3-6cc792139f70@quicinc.com>
- <CAE-0n52TG3hsytN5nRU7W=S6PffSj8yQDmuicN0-qxoW-jxiZQ@mail.gmail.com> <0c050434-27ca-1099-d93d-8ad6ace3396e@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Tue, 19 Jul 2022 03:19:48 -0400
-Message-ID: <CAE-0n53J=dADDTrydVuNZzw38dW_-+Baf8cfn0Q6DSVX_6cLNg@mail.gmail.com>
-Subject: Re: [Freedreno] [PATCH v2 5/7] arm64: dts: qcom: sc7280: Update gpu
- register list
-To:     Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Taniya Das <quic_tdas@quicinc.com>, quic_rjendra@quicinc.com
-Cc:     devicetree@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 3/3] clk: meson: s4: add s4 SoC clock controller driver
+Content-Language: en-US
+To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220708062757.3662-1-yu.tu@amlogic.com>
+ <20220708062757.3662-4-yu.tu@amlogic.com>
+ <7fe9aab5-73a2-6209-ae65-d955c426f745@linaro.org>
+ <f5bf2abd-4d60-523a-3f84-879da2f1c78a@amlogic.com>
+ <152cee25-9a36-a948-98e7-847d9ee36c1f@linaro.org>
+ <50078eed-3c24-a4b5-1e21-3187daa9867a@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <50078eed-3c24-a4b5-1e21-3187daa9867a@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Akhil P Oommen (2022-07-18 23:37:16)
-> On 7/19/2022 11:19 AM, Stephen Boyd wrote:
-> > Quoting Akhil P Oommen (2022-07-18 21:07:05)
-> >> On 7/14/2022 11:10 AM, Akhil P Oommen wrote:
-> >>> IIUC, qcom gdsc driver doesn't ensure hardware is collapsed since they
-> >>> are vote-able switches. Ideally, we should ensure that the hw has
-> >>> collapsed for gpu recovery because there could be transient votes from
-> >>> other subsystems like hypervisor using their vote register.
-> >>>
-> >>> I am not sure how complex the plumbing to gpucc driver would be to allow
-> >>> gpu driver to check hw status. OTOH, with this patch, gpu driver does a
-> >>> read operation on a gpucc register which is in always-on domain. That
-> >>> means we don't need to vote any resource to access this register.
+On 19/07/2022 08:58, Yu Tu wrote:
+>>>>> @@ -1772,7 +1772,7 @@ M:	Jerome Brunet <jbrunet@baylibre.com>
+>>>>>    L:	linux-amlogic@lists.infradead.org
+>>>>>    S:	Maintained
+>>>>>    F:	Documentation/devicetree/bindings/clock/amlogic*
+>>>>> -F:	drivers/clk/meson/
+>>>>> +F:	drivers/clk/meson/*
+>>>>
+>>>> Why?
+>>> Warning is displayed when using checkpatch. I will correct it.
+>>
+>> What warning?
+>   ./scripts/checkpatch.pl --strict 
+> 0001-clk-meson-s4-add-s4-SoC-clock-controller-driver.patch
+> WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
+> If I add that strange change, I won't have this WARNING.
+> Should I ignore this warning?
 
-Reading between the lines here, you're saying that you have to read the
-gdsc register to make sure that the gdsc is in some state? Can you
-clarify exactly what you're doing? And how do you know that something
-else in the kernel can't cause the register to change after it is read?
-It certainly seems like we can't be certain because there is voting
-involved.
+Yes, it's not related to the patch and the change you made looks not
+correct.
 
-> >>>
-> >>> Stephen/Rajendra/Taniya, any suggestion?
-> > Why can't you assert a gpu reset signal with the reset APIs? This series
-> > seems to jump through a bunch of hoops to get the gdsc and power domain
-> > to "reset" when I don't know why any of that is necessary. Can't we
-> > simply assert a reset to the hardware after recovery completes so the
-> > device is back into a good known POR (power on reset) state?
-> That is because there is no register interface to reset GPU CX domain.
-> The recommended sequence from HW design folks is to collapse both cx and
-> gx gdsc to properly reset gpu/gmu.
->
 
-Ok. One knee jerk reaction is to treat the gdsc as a reset then and
-possibly mux that request along with any power domain on/off so that if
-the reset is requested and the power domain is off nothing happens.
-Otherwise if the power domain is on then it manually sequences and
-controls the two gdscs so that the GPU is reset and then restores the
-enable state of the power domain.
+Best regards,
+Krzysztof
