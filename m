@@ -2,139 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3422A5791A1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 06:07:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F0705791C1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 06:19:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236731AbiGSEHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 00:07:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56006 "EHLO
+        id S236895AbiGSETO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 00:19:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236723AbiGSEHS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 00:07:18 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CD432EF9;
-        Mon, 18 Jul 2022 21:07:17 -0700 (PDT)
+        with ESMTP id S236859AbiGSETL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 00:19:11 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 909CE3B954
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:19:08 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id b133so8659393pfb.6
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:19:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1658203637; x=1689739637;
-  h=message-id:date:mime-version:subject:from:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=jU56txNrlLvbYZzZ6gj0i6vcpYygudkLhnYlO1eIeYw=;
-  b=PVEn2N6NhanL20A8FTCfn+OaN8DHZGIE4JEY9hy+2O37VBe19HPk5XS+
-   s74j7Q0vVBcYn52sX1UVl3Ah2Y3hA6cF2hAYuV6+I2cEih8LLoWZnnckt
-   WlAQVhg/bgNwVquaByonXU04FHGmAZKWxkOFgLIzN1TpgD9zlFPsJbMgP
-   0=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 18 Jul 2022 21:07:17 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2022 21:07:17 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 18 Jul 2022 21:07:16 -0700
-Received: from [10.216.42.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 18 Jul
- 2022 21:07:10 -0700
-Message-ID: <e4dcdd8d-18a9-8da3-7ac3-6cc792139f70@quicinc.com>
-Date:   Tue, 19 Jul 2022 09:37:05 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [Freedreno] [PATCH v2 5/7] arm64: dts: qcom: sc7280: Update gpu
- register list
-Content-Language: en-US
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     Doug Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Taniya Das <quic_tdas@quicinc.com>, <quic_rjendra@quicinc.com>
-CC:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Jonathan Marek <jonathan@marek.ca>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=DRXpkzFCaONc6uIVW7OHVXWrx1/ZSo2vjvlOlBazeIk=;
+        b=DRjY/k5F4uoLY5Z0MV/U+eii0rcgt1LVT/Y9xiRMLQK6sfxMwKS2pQCYV5UtxxNINV
+         ZNkZCzHhp4anjvWElcaBFa8siXkTy+1bJlYkPeevoaw7Vh9KU/WJ81vqGSeJ6Z1AzQDK
+         q9x8HPbiHIslAVdLTn4VnJk6yH0j4actgvI9GEbHj4LNlSJgf1m2pPaIpP3Uij6Dz36c
+         ddzx9vNbyZV7ZneqH8qdgq7YYtJVJbPNXuGZ0wrvXKo0zva2x8QejMUu8ykJ3g2Q2bk6
+         X9OG1LiWF9ofE3uYZJSLvbVKNd4I0tbmbhRsNr29Fb77EOiJALCR5tTRzBLzuVRxA8Ie
+         Ie3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=DRXpkzFCaONc6uIVW7OHVXWrx1/ZSo2vjvlOlBazeIk=;
+        b=H/s574BO0x4WNjZg3uRH2D8x/Cp1qxGxOMQyQPqPx2vMw/HlbpZgFXorYkDvRQhj/9
+         QsP+RkGhitEmg+eNGiV35d04NGQ9caLUhfDsMDRoxd2aSIEqD6Ex+OQJbsPqcfAqprrp
+         EDNv0ISNeoj9tkhGEIX+suO8Db1Ga/XkpX8sZ50MLnqnjt6BhxPCqIwQaK+Chy5V4Rww
+         yV0W7Sb0+PmSdjK8HpgGsnyO3SotPNycY4/b23Y+YdQeWakBdrEphf52xQrctBx+ZCbE
+         jlpfRuOKYNMEn+Z6UNvnDi2jWFFqPfkXqa4z3KkgJMWQibvTZz++FVw2BQD+mf0f4Z69
+         +Mzw==
+X-Gm-Message-State: AJIora92czz25JCyv/AxaFfKHHuQ/8sMXpDl51wzXkHu8Acizt/FNYkO
+        nQUxMoDnMYRdDyqKEQQ0MDaJ8w==
+X-Google-Smtp-Source: AGRyM1vRiMVK3BuNDcvKsw/Kos77pHtWi9dvCe41+Gc7wm8NhqjA4yMjwKTxFTF8yIkK5RM+258btA==
+X-Received: by 2002:a63:97:0:b0:41a:3c2:6238 with SMTP id 145-20020a630097000000b0041a03c26238mr11549036pga.499.1658204348031;
+        Mon, 18 Jul 2022 21:19:08 -0700 (PDT)
+Received: from localhost ([122.171.18.80])
+        by smtp.gmail.com with ESMTPSA id x9-20020a170902a38900b0016c0c82e85csm10379725pla.75.2022.07.18.21.19.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 21:19:07 -0700 (PDT)
+Date:   Tue, 19 Jul 2022 09:49:05 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
         Andy Gross <agross@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Johan Hovold <johan@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>
-References: <1657346375-1461-1-git-send-email-quic_akhilpo@quicinc.com>
- <20220709112837.v2.5.I7291c830ace04fce07e6bd95a11de4ba91410f7b@changeid>
- <CAD=FV=XzvcjS51q78BZ=FPCEVUDMD+VKJ70ksCm5V4qwHN_wRg@mail.gmail.com>
- <c022538d-c616-8f1a-e1c2-c11b5f0de670@quicinc.com>
-In-Reply-To: <c022538d-c616-8f1a-e1c2-c11b5f0de670@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/4] dt-bindings: cpufreq-qcom-hw: Move clocks to CPU
+ nodes
+Message-ID: <20220719041905.idpo5uemowgtu6yp@vireshk-i7>
+References: <cover.1657695140.git.viresh.kumar@linaro.org>
+ <035fe13689dad6d3867a1d33f7d5e91d4637d14a.1657695140.git.viresh.kumar@linaro.org>
+ <20220718204651.GA3505083-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220718204651.GA3505083-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/14/2022 11:10 AM, Akhil P Oommen wrote:
-> On 7/12/2022 4:57 AM, Doug Anderson wrote:
->> Hi,
->>
->> On Fri, Jul 8, 2022 at 11:00 PM Akhil P Oommen 
->> <quic_akhilpo@quicinc.com> wrote:
->>> Update gpu register array with gpucc memory region.
->>>
->>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->>> ---
->>>
->>> (no changes since v1)
->>>
->>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++--
->>>   1 file changed, 4 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> index e66fc67..defdb25 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> @@ -2228,10 +2228,12 @@
->>>                          compatible = "qcom,adreno-635.0", 
->>> "qcom,adreno";
->>>                          reg = <0 0x03d00000 0 0x40000>,
->>>                                <0 0x03d9e000 0 0x1000>,
->>> -                             <0 0x03d61000 0 0x800>;
->>> +                             <0 0x03d61000 0 0x800>,
->>> +                             <0 0x03d90000 0 0x2000>;
->>>                          reg-names = "kgsl_3d0_reg_memory",
->>>                                      "cx_mem",
->>> -                                   "cx_dbgc";
->>> +                                   "cx_dbgc",
->>> +                                   "gpucc";
->> This doesn't seem right. Shouldn't you be coordinating with the
->> existing gpucc instead of reaching into its registers?
->>
->> -Doug
-> IIUC, qcom gdsc driver doesn't ensure hardware is collapsed since they 
-> are vote-able switches. Ideally, we should ensure that the hw has 
-> collapsed for gpu recovery because there could be transient votes from 
-> other subsystems like hypervisor using their vote register.
+On 18-07-22, 14:46, Rob Herring wrote:
+> On Wed, Jul 13, 2022 at 12:22:56PM +0530, Viresh Kumar wrote:
+> > cpufreq-hw is a hardware engine, which takes care of frequency
+> > management for CPUs. The engine manages the clocks for CPU devices, but
+> > it isn't the end consumer of the clocks, which are the CPUs in this
+> > case.
 > 
-> I am not sure how complex the plumbing to gpucc driver would be to allow 
-> gpu driver to check hw status. OTOH, with this patch, gpu driver does a 
-> read operation on a gpucc register which is in always-on domain. That 
-> means we don't need to vote any resource to access this register.
-> 
-> Stephen/Rajendra/Taniya, any suggestion?
-> 
-> -Akhil.
-> 
-> 
-Gentle ping.
+> The question is really where does the clock mux live?
 
--Akhil
+As Manivannan clarified in another email, these clocks are actually consumed by
+the cpufreq-hw node, so existing code was fine.
 
+> > For this reason, it looks incorrect to keep the clock related properties
+> > in the cpufreq-hw node. They should really be present at the end user,
+> > i.e. the CPUs.
+> 
+> The issue is that the CPU itself probably only has 1 clock input (at 
+> least for its core frequency).
+
+Right, and they (Qcom) have skipped adding that in DT currently. I have
+suggested to him to add it there, which will solve the issue as well.
+
+> Listing out all possible clock sources in CPU node 'clocks' is wrong too.
+
+Yes, we need to mention only the clocks which are consumed directly by the CPU,
+maybe just one of them which comes out of cpufreq-hw node.
+
+> > The case was simple currently as all the devices, i.e. the CPUs, that
+> > the engine manages share the same clock names. What if the clock names
+> > are different for different CPUs or clusters ? How will keeping the
+> > clock properties in the cpufreq-hw node work in that case ?
+> > 
+> > This design creates further problems for frameworks like OPP, which
+> > expects all such details (clocks) to be present in the end device node
+> > itself, instead of another related node.
+> > 
+> > Move the clocks properties to the node that uses them instead.
+> 
+> What's the purpose of freq-domain binding now? I thought the idea was to 
+> use that instead of clocks directly.
+
+Not always I think. It provides register access for programming or voting for
+the clock, etc. Yes, the code won't do clk_set_rate() but the DT should still
+mention the clock in the CPU node if it mentions an OPP table with frequencies
+in it.
+
+-- 
+viresh
