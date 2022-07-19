@@ -2,206 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 172E157A36E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 17:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7913657A3B7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 17:53:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238470AbiGSPqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 11:46:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49344 "EHLO
+        id S237440AbiGSPxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 11:53:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238540AbiGSPqd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 11:46:33 -0400
-Received: from EUR02-HE1-obe.outbound.protection.outlook.com (mail-eopbgr10049.outbound.protection.outlook.com [40.107.1.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C4B454675;
-        Tue, 19 Jul 2022 08:46:32 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U3m34DLwqLdzuXoHdTAuN/mh3sDG3sxHpSSazDUNPdsFx69PnLWyIP1xFbrOeceLz3K91TInNBPQJrF36dnKY0gAd37BHTL7Y++LQYhZ9egqDbr8GFpoo040OMjA2rgo4yiF7+nCVbWnFbnkaMdyTENijc/RYArUmkfEkWG0jWh0/A2VNVn8ZRq1eTeIW1bQSJ8OOXN34SAe4f2FiXCA9xmqrwmAtje1+eOx3zq1J6WmYao0OA5ZosmDI3OO3f2O4esIZ134iXCjcGQgnsPW8PhGuqDAiEJzOifKWQY8S1g/DOpfgcww+4ISpX/ztzTvtatduIgKbdvmZxtgUrRp9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a8APrUKZwYMl1rqcw/yb33scMyHBQI1nhZMpWU68Npc=;
- b=jOcg+mBiKfoqxIETXOMPgjJvACa3bzvl34brllzGzTTti3kfZswnxTUwscCecrWj2AyucqgiZYHVOOqvdYRn8j6wMgNOdg0Y5BEEOFk4pEBsrPEkFDpInwPOiJzYWUM1J3Sc+MdfaWMGsARpHVid9bH3kbe3nmTiNxzofVXrjfTLLuwhTP+W0ngcqBSKrOByHrBVLuphAaBVN+uJYpk2v88P7liIbrNMWM9jPT88YcTw5XVSYScqc0rRogtWS5dm8ixYspruiGVnZVVqBnCxWbfgPZ8LRCpcZYdEWBrZhPhJ8gaA95La7WCvvhaP1OVQIBrCmt2xf4qAAAzm4EHNOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a8APrUKZwYMl1rqcw/yb33scMyHBQI1nhZMpWU68Npc=;
- b=YXQ4XI6M5Or2oMW3oOqTAUCnDxhDtpTZPLcxdWfWU4OyOZayDRFOgdo7VJ3Rdlrpag2fd1j1W3nH5LWKTz0UGInPjz0kMtqO3pcABowwhUOw3rCmbXiPbURQ1RU6v32f1cUNLqEjVyp9TO6WM6Nyn2WTukWBjjRdrhv7IjnI75vnUFAvUMqGrPgJskyFL7q0ArteomdzCZAvU6hZo/pJtv+5X3jVDvazi1X9lKocVn6GyXVXRfkggmwTb2BW9VQ9kiRnhMy7gIbr0hjP/1ct6TgWoTF1rpDorHVRRAalwB9mq2wkszRxkN3mnCLWbZq8j7H8tZdwgYQUCcTk6x/JFQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
- by DB7PR03MB3579.eurprd03.prod.outlook.com (2603:10a6:5:4::26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5438.23; Tue, 19 Jul 2022 15:46:28 +0000
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::757e:b75f:3449:45b1]) by DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::757e:b75f:3449:45b1%6]) with mapi id 15.20.5438.023; Tue, 19 Jul 2022
- 15:46:28 +0000
-Subject: Re: [RFC PATCH net-next 0/9] net: pcs: Add support for devices probed
- in the "usual" manner
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Mackerras <paulus@samba.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Shawn Guo <shawnguo@kernel.org>, UNGLinuxDriver@microchip.com,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org
-References: <20220711160519.741990-1-sean.anderson@seco.com>
- <20220719152539.i43kdp7nolbp2vnp@skbuf>
- <bec4c9c3-e51b-5623-3cae-6df1a8ce898f@seco.com>
- <20220719153811.izue2q7qff7fjyru@skbuf>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <2d028102-dd6a-c9f6-9e18-5abf84eb37a1@seco.com>
-Date:   Tue, 19 Jul 2022 11:46:23 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <20220719153811.izue2q7qff7fjyru@skbuf>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR12CA0017.namprd12.prod.outlook.com
- (2603:10b6:208:a8::30) To DB7PR03MB4972.eurprd03.prod.outlook.com
- (2603:10a6:10:7d::22)
+        with ESMTP id S239351AbiGSPxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 11:53:47 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54CC53D1D
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 08:53:45 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id b9so13932984pfp.10
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 08:53:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=97PrQlIB8/07EwQL9gOpc20PS5FL9FE1rwJO80C1yVM=;
+        b=UPim7G55cZS0qbyf/En9E8FI/NhxptHgmYuDWQzwtpEQyojz3bZGdpj23WjBFWGs4j
+         WR91KmwclDvXUhcO6AmCwOM+gW1k7KmwNncAv/4uMzgMP3YLlQxoQfV9inHkHQFamXho
+         DlOzPi581rMHGTa4ypb6FDQaTJopFk5kllqZWBoUnfGEK39q3T19q00IINOBd9jT0P/+
+         BXfhh2Eehvezwa0+dO6SjyB9lKP2Kj9Vz381fzfsDM9OPNyElm6611TAAg5Dzrhs6i/7
+         JDHRnRY+bsTXv4m8u+4MtnC20HmsTSsyr5G97faGyLM2F+ZJJww09fBzX3YiSYSOSIZ3
+         Di0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=97PrQlIB8/07EwQL9gOpc20PS5FL9FE1rwJO80C1yVM=;
+        b=YkvYqmvl887vvZR85ozXfDUcLEK0pwjaH3JPgUgdVTSdSlskigsNePrwx3j5GLv1jH
+         UYb62f9DyjqBYuNujMc/LrWQsObnMuAq44KgYyLo1RIKRwVUjyrQNcX93E1PAoMiIwFo
+         ZbOf9DJNgw140bcBvaHSl7FLM4Vq7FRkW3eDb4QMN+ETVWzdogNi3FY7TJmjetfW6bAZ
+         Mbq1IGGtP2Xy5kHsm2Re9BXNO+a/wgyhFOgN36P+blXJPPcU7knIoBeKmucDHawK/hQj
+         muqUy4NbB0dn7VxZNY+rIZpm+/sSSUDLc2K9ufZSZtQTXf964y/YfDYeH4CX+KEU55rl
+         0LwQ==
+X-Gm-Message-State: AJIora9MDN9kesaVg/IwOZFwP0O2wGmvFmfZYCA4rBbKeeMVpTUxsLCA
+        IthunV0ff88n6mDa5F3ZjhHU7A==
+X-Google-Smtp-Source: AGRyM1tkkiudUZbVg8XqOG/4Xa31HkkoEf7SZ2OfYCY0g4XW4BuT8wvr+CAoqB68Sklx9GpLmM3C5A==
+X-Received: by 2002:a05:6a00:1781:b0:528:c839:9886 with SMTP id s1-20020a056a00178100b00528c8399886mr34310041pfg.71.1658246024535;
+        Tue, 19 Jul 2022 08:53:44 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id o17-20020a170902779100b0015e8d4eb27esm11779414pll.200.2022.07.19.08.53.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jul 2022 08:53:43 -0700 (PDT)
+Date:   Tue, 19 Jul 2022 09:53:40 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Puranjay Mohan <p-mohan@ti.com>
+Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
+        linux-arm-kernel@lists.infradead.org, rogerq@kernel.org,
+        grygorii.strashko@ti.com, vigneshr@ti.com, kishon@ti.com,
+        robh@kernel.org
+Subject: Re: [PATCH v5 4/6] remoteproc: pru: Add pru_rproc_set_ctable()
+ function
+Message-ID: <20220719155340.GA3393732@p14s>
+References: <20220607045650.4999-1-p-mohan@ti.com>
+ <20220607045650.4999-5-p-mohan@ti.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 26525f3b-cda5-4247-d3c5-08da699dd846
-X-MS-TrafficTypeDiagnostic: DB7PR03MB3579:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: I3ufqhIaIK9jN/kM6xFWp9k5nL+DK+7be75h45frbr5Dhfc/TJaxdI03nMi/UdA01+cmAtMVjUhX4Inm9n/I/JGHbTLd1XpVoLZJl9U/PdNzrg87ldkJ5NtgKsqf/7taigCTSF7Tcw29SBTICmPeS15dHmKeq7z1abGhnIaRwaXDEaJpkb/5Xpk77W8qmNnZ0bgVEROWUg3eK0G8mowIs9cS06Z5SY3LpsLYtjBt0bzGOwSwua3RSpLBkZt7AWlD5TlQCKeDhBsYqJhhT/kv6Mb6mgCPSLVO4YMdVuHT+TCH+j7QQ9Yn5CXnMjWW9/JB2lPZJLvfDZWAx55Syf6nAlLCn7tqO8YtOkZBK1v8CSQd1UjFqoQWugQIBpSXQ6pcxGkHq/I4HMKz8YzrBfUa801t93WD0xtDKDYhBDniowa8VMOsQXiK23t03aizLD61LLC8vlyVoe0KddFYei2xhfTfxoLwziV1uqKWz8/jgW709gyNdsGN4MnyniY1nu9/guQCjSt3+rOQCV8QHppbCtwrv312oOFypxqwg5WMI1FBNfAEUsNBueAeI+hOj/jZwdeDrM9V96GvJBJcrb1GTXTnTP1cnSRdn9R9jub0gFqH8Ux8xaawxOt/wHfvg4lyjBqavVrXen7cjxpymqv489tb9a1JhSXudZTY2J68+0zPuIaX46XjXMpHhpJG+5YbZ9Bz6uZtfUTq4rbZqkZqngBfbVTKLd/TH2jWioiRAxTFFvaiWJi14zhpDrcWXogP8CvJIJJm4ttqOrXS+iaF8P9Dj5XzB/Pcowz5OxrrNrdnh0fH3TA1k1AMWD01BRC0m318eqZR7O6wn16BlwdUZnLohS8BXZTNKdL6YtI85U57ZOnuaYEjUNsJO4QMV0wYlXZUZ04/SO0SzgJZRiUKXw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(136003)(39850400004)(346002)(366004)(396003)(376002)(6916009)(6666004)(41300700001)(31686004)(186003)(2616005)(44832011)(83380400001)(5660300002)(7406005)(6512007)(26005)(2906002)(6486002)(7416002)(31696002)(66556008)(8676002)(316002)(66946007)(4326008)(8936002)(38350700002)(38100700002)(86362001)(53546011)(66476007)(478600001)(52116002)(54906003)(36756003)(6506007)(486264002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VFFZMGQ1RmllSFhHSGNPdktBOHd4U2U2VGdyZFZhUVo2akFFeGpRanRDVTBU?=
- =?utf-8?B?V2xaZE1qeFAwOVJ5NklRakloeGJkcVFMMlV3YUljM1lNaU1wSm5OWnllcjRl?=
- =?utf-8?B?MmgwbU55MmE4RWpSL2t4cGdacWltajdKVjE1RVUyM01ZdXVBeE1yUENLdVBE?=
- =?utf-8?B?R013U2pCSmpDNzFwVlRZb3dFWkFNT0cwS2xLUCtjMzFQTE5DUGd2M1BoWk15?=
- =?utf-8?B?R1RJelA1U0lrWVd4czBwdmZUbFd2ZzA4K2FVV2o0UGVzbkkrbitLM1JlRDll?=
- =?utf-8?B?cDFPdGdJb0l3SmkxeDNZWWlxN054eCtVbktGdEhqVUFDWndKOTlIUTRROTc1?=
- =?utf-8?B?ZmIyTVh6cHJ1R3hwa0F3a0E4UFJXdVBCWlBnMEozdU9hZ3drSEpNUXN3RDNQ?=
- =?utf-8?B?WUFFbDc1QjJoNksza3BGUFlqdWdPZzlaZlFPcDIrc21URFhvR0NBYWFVM0RF?=
- =?utf-8?B?d3dQeHVVSGNDRk8xTHV2NERzWTlXNkdXK0gxYmtGOXRscDJVMEpJbGlqVzM0?=
- =?utf-8?B?QWpFMUNkc01EUG5KK0pCUjlXTUJyMWh5ZFpuemYvU003bzNNTWRPbERxTmFJ?=
- =?utf-8?B?N3V3OU5EUng3TUdPT2plcEJNdVVyUTl6YUNiYzFIYWdkRHQvL0RwdjlQdFVJ?=
- =?utf-8?B?YlIxS3RjcjdPNHUyd1VHNVRvVmNZeWs2WEpRMm8wdVloT0FZOVFmVXFmMXRz?=
- =?utf-8?B?MnFXZWdtYXpmRHVxVlZJYW5uanhpTDlML1FvR240Qk9nSzErY0hLRU5nWVZn?=
- =?utf-8?B?di9ScXRsZkoyTHlGNlF3NFRuVnRCbTMvOUIwNmVkLy9BZCtQaE5meER2WFpm?=
- =?utf-8?B?MkllL0IxbEI3ZlhUVC9kcnJSditjbW1NYjA0ckpsbjAxRU81NzBOSzZMaVJB?=
- =?utf-8?B?TS9DZlU4T3dIU0pKRmVUMkQ5elIyL2pOTVMzYW56WDBQNDUvVGJZM05iZzFS?=
- =?utf-8?B?M0VQWkpNSHlkajcvaGxCU3B1Z0trUHZiWFc4bGJiVGFLcUx4eDBna3lPYUk5?=
- =?utf-8?B?ZFlnQVMyVE5xRDlTOU1WUUlvTWo1ZmZZU0xMZk1oOHdLSmFyem5PYzN5Z256?=
- =?utf-8?B?WUg5eUhjODlwVWRYVlY0K3RzWHluT0N0SWU0WHdaUlpOUU1ZeHZ4b1NydUQz?=
- =?utf-8?B?SWdKM1N6OE9UOFdLd01VQyswcVZYMXpUNHNZTXIzdEQwVFM5MFZLUEhXcFM3?=
- =?utf-8?B?UndPc29MNmNoNXRXbFNyK1hoYzAvcU5PZVZoMTZKZlV6VHdua1pDQkhrM2hy?=
- =?utf-8?B?R1VoR1VWN0lOdDNPTk8zQWU2NVBjNVpvMEFha2ZBdmRmdVpWZkM0K2RnVkFJ?=
- =?utf-8?B?ZWZkL2VyY2FZYkVmaEw0TmtOZGFQNFQ3ckVLcTBRNVU1V0RFaXZtc3ZXdTZw?=
- =?utf-8?B?Sm1YUHJKaC9sYklkTU1zU0dtdEs2VW5pYzlqTytYRlZEY0EwcEdzV1h2ZlJu?=
- =?utf-8?B?S2Y5cVlJanVkalNLYm13NGovUTVYd3IwdGsyYXV2ZEZPTHdxS0FLLytRdHJz?=
- =?utf-8?B?WDBnQ1hKcHlWQ1hJYnI5M1pxL2hxdVZoQ0phTkFxczFNei9tQ3BQSVhSWk4y?=
- =?utf-8?B?TUwxRndJWEt2MEthK1hnVXh3S2RPTVZzeVJuMHFMY21taVhIbS9mNnNKbU11?=
- =?utf-8?B?eENCZ2hwYnkzelJ1cjF5cGpmckswRmJwcjc0cFk3Mm5TbmRaVFhGZmZlQWxW?=
- =?utf-8?B?eFBmSDZ3ZEd3ckJQN0JKYklid0g0dkpQSG1tNnZhNE8rdzYzdnd1OHJDdG9O?=
- =?utf-8?B?MklhcGdIWWtnckNESVhPV2I3WDJMeHNhUVROOURnR2lXSHV1QkpwRFNyVjFa?=
- =?utf-8?B?TytMU0RnWnFxb1NpU3NjS0kweVhzc3drV1N2MitRT1pub2dHN2JoVDVVenFp?=
- =?utf-8?B?b0NLUkt3bVA5WmZmM3k2Z0lSaE9ISmlPWDdLZ1FXZWdPWHpZSXdyeFBVYXl3?=
- =?utf-8?B?UjdqcFNDck1GRzZzR3FCUXJVWGJRaGlSTkFGOW9pWDRrVU1HeGpPTUVmWkVt?=
- =?utf-8?B?Y2pIU2dxeHAyS21UNmQ5UUFUL0ZMaDgwNEhZNEJjTFhTdjZHNjRkOU1nMzRN?=
- =?utf-8?B?T0M5TUxLRC8ySzQrcDBOZlRHdHlkV004RXNJR0JRaFhVUTU1TnYwYVB2cjdj?=
- =?utf-8?B?K2JTQnJmeUkxWm9XTlB4SFFUVGhBSG40aG0vWEJnYlk3Z2paenpKaXhmbVo4?=
- =?utf-8?B?cnc9PQ==?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26525f3b-cda5-4247-d3c5-08da699dd846
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2022 15:46:28.6898
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HROxokb8xnf4L5ihRhkeSWnShAURQUpkidNQNE5UfLBYJ0eH4LclGYyoQEIYFwqCP1UUfRVLR7wLTcVkT8awfA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR03MB3579
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220607045650.4999-5-p-mohan@ti.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/19/22 11:38 AM, Vladimir Oltean wrote:
-> On Tue, Jul 19, 2022 at 11:28:42AM -0400, Sean Anderson wrote:
->> Hi Vladimir,
->> 
->> On 7/19/22 11:25 AM, Vladimir Oltean wrote:
->> > Hi Sean,
->> > 
->> > On Mon, Jul 11, 2022 at 12:05:10PM -0400, Sean Anderson wrote:
->> >> For a long time, PCSs have been tightly coupled with their MACs. For
->> >> this reason, the MAC creates the "phy" or mdio device, and then passes
->> >> it to the PCS to initialize. This has a few disadvantages:
->> >> 
->> >> - Each MAC must re-implement the same steps to look up/create a PCS
->> >> - The PCS cannot use functions tied to device lifetime, such as devm_*.
->> >> - Generally, the PCS does not have easy access to its device tree node
->> >> 
->> >> I'm not sure if these are terribly large disadvantages. In fact, I'm not
->> >> sure if this series provides any benefit which could not be achieved
->> >> with judicious use of helper functions. In any case, here it is.
->> >> 
->> >> NB: Several (later) patches in this series should not be applied. See
->> >> the notes in each commit for details on when they can be applied.
->> > 
->> > Sorry to burst your bubble, but the networking drivers on NXP LS1028A
->> > (device tree at arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi, drivers
->> > at drivers/net/ethernet/freescale/enetc/ and drivers/net/dsa/ocelot/)
->> > do not use the Lynx PCS through a pcs-handle, because the Lynx PCS in
->> > fact has no backing OF node there, nor do the internal MDIO buses of the
->> > ENETC and of the switch.
->> > 
->> > It seems that I need to point this out explicitly: you need to provide
->> > at least a working migration path to your PCS driver model. Currently
->> > there isn't one, and as a result, networking is broken on the LS1028A
->> > with this patch set.
->> > 
->> 
->> Please refer to patches 4, 5, and 6.
+On Tue, Jun 07, 2022 at 10:26:48AM +0530, Puranjay Mohan wrote:
+> From: Roger Quadros <rogerq@ti.com>
 > 
-> I don't understand, could you be more clear? Are you saying that I
-> shouldn't have applied patch 9 while testing? When would be a good
-> moment to apply patch 9?
+> Some firmwares expect the OS drivers to configure the CTABLE
+> entries publishing dynamically allocated memory regions. For
+> example, the PRU Ethernet firmwares use the C28 and C30 entries
+> for retrieving the Shared RAM and System SRAM (OCMC) areas
+> allocated by the PRU Ethernet client driver.
+> 
+> Provide a way for users to do that through a new API,
+> pru_rproc_set_ctable(). The API returns 0 on success and
+> a negative value on error.
+> 
+> NOTE:
+> The programmable CTABLE entries are typically re-programmed by
+> the PRU firmwares when dealing with a certain block of memory
+> during block processing. This API provides an interface to the
+> PRU client drivers to publish a dynamically allocated memory
+> block with the PRU firmware using a CTABLE entry instead of a
+> negotiated address in shared memory. Additional synchronization
+> may be needed between the PRU client drivers and firmwares if
+> different addresses needs to be published at run-time reusing
+> the same CTABLE entry.
 
-I'm saying that patches 4 and 5 [1] provide "...a working migration
-path to [my] PCS driver model." Since enetc/ocelot do not use
-devicetree for the PCS, patch 9 should have no effect.
+In all this the concept of a "ctable" is not explained and as such, I have to
+guess it stands for "constant table".  I also have to guess this table stores
+memory addresses known to other drivers, making it possible to boot a system
+without all components having access to a DT.  Again, those are all guesses
+because it is not explained.  And all that guessing makes reviewing this small
+patchset quite difficult.
 
-That said, if you've tested this on actual hardware, I'm interested
-in your results. I do not have access to enetc/ocelot hardware, so
-I was unable to test whether my proposed migration would work.
+> 
+> Co-developed-by: Andrew F. Davis <afd@ti.com>
+> Signed-off-by: Andrew F. Davis <afd@ti.com>
+> Co-developed-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> ---
+>  drivers/remoteproc/pru_rproc.c | 59 ++++++++++++++++++++++++++++++++++
+>  include/linux/pruss.h          | 22 +++++++++++++
+>  2 files changed, 81 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> index 9fed3e0372d3..d06b763e995e 100644
+> --- a/drivers/remoteproc/pru_rproc.c
+> +++ b/drivers/remoteproc/pru_rproc.c
+> @@ -119,6 +119,7 @@ struct pru_private_data {
+>   * @mapped_irq: virtual interrupt numbers of created fw specific mapping
+>   * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
+>   * @pru_interrupt_map_sz: pru_interrupt_map size
+> + * @rmw_lock: lock for read, modify, write operations on registers
+>   * @dbg_single_step: debug state variable to set PRU into single step mode
+>   * @dbg_continuous: debug state variable to restore PRU execution mode
+>   * @evt_count: number of mapped events
+> @@ -136,6 +137,7 @@ struct pru_rproc {
+>  	unsigned int *mapped_irq;
+>  	struct pru_irq_rsc *pru_interrupt_map;
+>  	size_t pru_interrupt_map_sz;
+> +	spinlock_t rmw_lock; /* register access lock */
+>  	u32 dbg_single_step;
+>  	u32 dbg_continuous;
+>  	u8 evt_count;
+> @@ -152,6 +154,23 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
+>  	writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+>  }
+>  
+> +static inline
+> +void pru_control_set_reg(struct pru_rproc *pru, unsigned int reg,
+> +			 u32 mask, u32 set)
+> +{
+> +	u32 val;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&pru->rmw_lock, flags);
+> +
+> +	val = pru_control_read_reg(pru, reg);
+> +	val &= ~mask;
+> +	val |= (set & mask);
+> +	pru_control_write_reg(pru, reg, val);
+> +
+> +	spin_unlock_irqrestore(&pru->rmw_lock, flags);
+> +}
+> +
+>  static struct rproc *__pru_rproc_get(struct device_node *np, int index)
+>  {
+>  	struct device_node *rproc_np = NULL;
+> @@ -273,6 +292,45 @@ void pru_rproc_put(struct rproc *rproc)
+>  }
+>  EXPORT_SYMBOL_GPL(pru_rproc_put);
+>  
+> +/**
+> + * pru_rproc_set_ctable() - set the constant table index for the PRU
+> + * @rproc: the rproc instance of the PRU
+> + * @c: constant table index to set
+> + * @addr: physical address to set it to
+> + *
+> + * Return: 0 on success, or errno in error case.
+> + */
+> +int pru_rproc_set_ctable(struct rproc *rproc, enum pru_ctable_idx c, u32 addr)
+> +{
+> +	struct pru_rproc *pru = rproc->priv;
+> +	unsigned int reg;
+> +	u32 mask, set;
+> +	u16 idx;
+> +	u16 idx_mask;
+> +
+> +	if (IS_ERR_OR_NULL(rproc))
+> +		return -EINVAL;
+> +
+> +	if (!rproc->dev.parent || !is_pru_rproc(rproc->dev.parent))
+> +		return -ENODEV;
+> +
+> +	/* pointer is 16 bit and index is 8-bit so mask out the rest */
+> +	idx_mask = (c >= PRU_C28) ? 0xFFFF : 0xFF;
+> +
+> +	/* ctable uses bit 8 and upwards only */
+> +	idx = (addr >> 8) & idx_mask;
+> +
+> +	/* configurable ctable (i.e. C24) starts at PRU_CTRL_CTBIR0 */
+> +	reg = PRU_CTRL_CTBIR0 + 4 * (c >> 1);
+> +	mask = idx_mask << (16 * (c & 1));
+> +	set = idx << (16 * (c & 1));
+> +
 
---Sean
+Please add comments that describe the content and format of the CTABLE.
+Otherwise this code becomes unmaintainable.
 
-[1] I listed 6 but it seems like it just has some small hunks which should have been in 5 instead
+> +	pru_control_set_reg(pru, reg, mask, set);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(pru_rproc_set_ctable);
+> +
+>  static inline u32 pru_debug_read_reg(struct pru_rproc *pru, unsigned int reg)
+>  {
+>  	return readl_relaxed(pru->mem_regions[PRU_IOMEM_DEBUG].va + reg);
+> @@ -944,6 +1002,7 @@ static int pru_rproc_probe(struct platform_device *pdev)
+>  	pru->rproc = rproc;
+>  	pru->fw_name = fw_name;
+>  	pru->client_np = NULL;
+> +	spin_lock_init(&pru->rmw_lock);
+>  	mutex_init(&pru->lock);
+>  
+>  	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
+> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+> index fdc719b43db0..d830e20056c7 100644
+> --- a/include/linux/pruss.h
+> +++ b/include/linux/pruss.h
+> @@ -23,13 +23,29 @@ enum pruss_pru_id {
+>  	PRUSS_NUM_PRUS,
+>  };
+>  
+> +/*
+> + * enum pru_ctable_idx - Configurable Constant table index identifiers
+> + */
+> +enum pru_ctable_idx {
+> +	PRU_C24 = 0,
+> +	PRU_C25,
+> +	PRU_C26,
+> +	PRU_C27,
+> +	PRU_C28,
+> +	PRU_C29,
+> +	PRU_C30,
+> +	PRU_C31,
+> +};
+> +
+>  struct device_node;
+> +struct rproc;
+>  
+>  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+>  
+>  struct rproc *pru_rproc_get(struct device_node *np, int index,
+>  			    enum pruss_pru_id *pru_id);
+>  void pru_rproc_put(struct rproc *rproc);
+> +int pru_rproc_set_ctable(struct rproc *rproc, enum pru_ctable_idx c, u32 addr);
+>  
+>  #else
+>  
+> @@ -41,6 +57,12 @@ pru_rproc_get(struct device_node *np, int index, enum pruss_pru_id *pru_id)
+>  
+>  static inline void pru_rproc_put(struct rproc *rproc) { }
+>  
+> +static inline int pru_rproc_set_ctable(struct rproc *rproc,
+> +				       enum pru_ctable_idx c, u32 addr)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+> +
+>  #endif /* CONFIG_PRU_REMOTEPROC */
+>  
+>  static inline bool is_pru_rproc(struct device *dev)
+> -- 
+> 2.17.1
+> 
