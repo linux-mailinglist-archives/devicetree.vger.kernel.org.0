@@ -2,59 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9A945798AA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 13:41:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF01C5798C5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 13:52:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235987AbiGSLl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 07:41:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45288 "EHLO
+        id S234282AbiGSLwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 07:52:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235080AbiGSLl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 07:41:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587EF3F304;
-        Tue, 19 Jul 2022 04:41:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DE9A8615F4;
-        Tue, 19 Jul 2022 11:41:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87CE0C341C6;
-        Tue, 19 Jul 2022 11:41:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658230915;
-        bh=v8PeHN2Ygs1u/dbSFwAhEUja3BF2PY9zOYVkyVdHkxM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o6MNwPLlI3Ub9l2pHHovhTKP+I7WcOFoGXkzad+taoDaiJCfuEfnzALN3hRxXABao
-         wozsBjs/4s2UdYn/+F4uOg84mWsIwPC8xTVVc7twH3IFUy37Qiv1jws9GJlfvBfYkG
-         i2WYhyLJgVuRtB0rYLIEfPradMwFDelXJJAas0nWDA6qORk8BuvCGUnk7PORrJTAOl
-         7vQWOKbMwF7YSPp4DLuL8byoxNFiNt6yM67UDQ8w3aU7ujvnQvB2gPGSfcKGxKXPUp
-         +Hb6lI/2dCiiUunzHRCzVa9uJzZ0rV0VRMIZdZx2JE0M4/UPfWJk81CfhT+Uxsu70y
-         YwH+wXFjBgAoA==
-Date:   Tue, 19 Jul 2022 12:41:47 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     pierre-louis.bossart@linux.intel.com, lgirdwood@gmail.com,
-        peter.ujfalusi@linux.intel.com, yung-chuan.liao@linux.intel.com,
-        ranjani.sridharan@linux.intel.com, kai.vehmanen@linux.intel.com,
-        daniel.baluta@nxp.com, perex@perex.cz, tiwai@suse.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        shengjiu.wang@gmail.com, linux-kernel@vger.kernel.org,
-        sound-open-firmware@alsa-project.org, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] ASoC: SOF: imx: Add i.MX8ULP HW support
-Message-ID: <YtaYe58xS4ynZ+A4@sirena.org.uk>
-References: <1658208367-24376-1-git-send-email-shengjiu.wang@nxp.com>
+        with ESMTP id S230134AbiGSLwX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 07:52:23 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B062D24097
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 04:52:21 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id o12so17077217ljc.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 04:52:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=tWcruw9eRvvmbRP8IquaWzxGj9Fq2cYbW3H30aOciT0=;
+        b=Nv+2BSqdZA7hwKzGWq/E5xtSFwXZmz9YiFTVdJ488gYOA4qUGrNNupE+qJYkjoOmiP
+         TM0UwNFpF0jrV/T5oKcS0KQ80KD43E1lvylbf3pzMDbo55ZBZ3nBg65vc/coBK0tD/L+
+         MKvJxh5bntkrNQ2yqovME91/ArJV426KJuV3PPLD921Wu/JwfajY9hJONYb1/EKndJ07
+         AyTA6REBk+96dOghPCugnwQkLRXUAMg5QLK4KYvwMBPyBZlM6Dl6Ptx/zApKBhOs4ZAA
+         PXq5s9jyd75Bib+JTGLcE66lOyt3JtxURLDzwKO/n9l7miOIPsTw639epridxs5ibsur
+         wq/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=tWcruw9eRvvmbRP8IquaWzxGj9Fq2cYbW3H30aOciT0=;
+        b=ZRewqR3DyNTi+FxE6OXhUAf+axE6ZMK0TAAJaWvNLqNW7g4okgyUtLFYAQDA3UVt6l
+         ynkSmVteSB290zSQMS1U1hpQ06ur2lCYuGmfAI6Z5ty30LBF46pzBNy2ucjn/RNm1MVz
+         659Knn6nJKXzVkOP6Uv0J6Cizf0QPSRHVR3FotQiFSm2YxWr27vWLsm/7JA+eb3bdrC+
+         KPKaf0aSUo3GRsGB8W7tF8o8vLmdikjTT3Q+nVjEt9gvVTu0Fsfz4kZpykYM/7QssJyL
+         g0QXXOtTtmKmzSkJZDMZpMX9kuN00rtnC2DXOOhjVn8fZswXs1N6cGT8SW3tEGdw+dL7
+         Xvvw==
+X-Gm-Message-State: AJIora8MtX/D+LdU2AnVU9QQAvSOg/p1bp/TJ3puW+9IF0bwtOxAu9Ha
+        AaLQWSvG+KM3WCxBvo227ECBKw==
+X-Google-Smtp-Source: AGRyM1s9F/TDe3iQtldBfXxy+KN8vt0cV80Q7c+anR1VA0nWSzeNglTD7pHZRl1DuwQ86aoLRJAI4Q==
+X-Received: by 2002:a05:651c:1581:b0:255:48d1:fdae with SMTP id h1-20020a05651c158100b0025548d1fdaemr14711522ljq.286.1658231540064;
+        Tue, 19 Jul 2022 04:52:20 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id a4-20020ac25e64000000b00489e5ba2e26sm3170412lfr.63.2022.07.19.04.52.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Jul 2022 04:52:19 -0700 (PDT)
+Message-ID: <ea4a0f77-1b26-682b-89c3-1824d3f4d6e7@linaro.org>
+Date:   Tue, 19 Jul 2022 13:52:18 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Gfkuz1LFkvb5qJgu"
-Content-Disposition: inline
-In-Reply-To: <1658208367-24376-1-git-send-email-shengjiu.wang@nxp.com>
-X-Cookie: We have ears, earther...FOUR OF THEM!
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: ipq8064: reorganize node order and
+ sort them
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220718153815.29414-1-ansuelsmth@gmail.com>
+ <7f2a4f21-5e07-9320-8f7b-573ccc562f43@linaro.org>
+ <CAA8EJppCxrcQOtCDZvUX-CThGV7aZXYv__gz3KRBf28TCRTBEg@mail.gmail.com>
+ <78230095-6b45-4536-f41d-12bb23308d34@linaro.org>
+ <f625ccde-8ecd-c06d-e8b2-ecb51c9ac9b8@somainline.org>
+ <62d686c0.1c69fb81.4a957.bf03@mx.google.com>
+ <26b43f6d-2b35-aab7-f906-31458c1b824b@linaro.org>
+ <343bd10e-bdcb-d097-e40b-a93dde586d14@somainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <343bd10e-bdcb-d097-e40b-a93dde586d14@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,86 +86,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19/07/2022 13:15, Konrad Dybcio wrote:
+> 
+> 
+> On 19.07.2022 12:56, Krzysztof Kozlowski wrote:
+>> On 19/07/2022 10:19, Christian Marangi wrote:
+>>> On Tue, Jul 19, 2022 at 12:22:24PM +0200, Konrad Dybcio wrote:
+>>>>
+>>>>
+>>>> On 19.07.2022 12:16, Krzysztof Kozlowski wrote:
+>>>>> On 19/07/2022 11:59, Dmitry Baryshkov wrote:
+>>>>>> On Tue, 19 Jul 2022 at 12:56, Krzysztof Kozlowski
+>>>>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>>>>
+>>>>>>> On 18/07/2022 17:38, Christian Marangi wrote:
+>>>>>>>> Reorganize node order and sort them by address.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>>>>>>>> ---
+>>>>>>>>
+>>>>>>>> This was picked from for-next qcom branch [1]. Reorganize dtsi as requested.
+>>>>>>>>
+>>>>>>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/?h=for-next
+>>>>>>>
+>>>>>>> If this is picked by qcom branch, no need to resend it.
+>>>>>>>
+>>>>>>> I don't see value in such reshuffle. Reviewing is not possible and you
+>>>>>>> did not mention tests (results should be equal).
+>>>>>>
+>>>>>> The value is usual for all the cleanups: make it follow the
+>>>>>> established practice.
+>>>>>
+>>>>> Are you sure this is established practice?
+>>>> Yes.
+>>>>
+>>>>  New DTSI files (see SC8280XP,
+>>>>> sm8450 although sc7280 looked ordered) do not always follow it, so why
+>>>>> imposing it for existing code?
+>>>> Perhaps it slipped through review.. Partially my bad.
+>>>>
+>>>>
+>>>> Such reshuffle can cause conflicts thus
+>>>>> stops parallel development. Review is close to impossible...
+>>>> Almost any addition or removal also causes conflicts, because git is
+>>>> not as smart as we would like it to be. If the commit is structured
+>>>> properly (i.e. it *only* changes the order and nothing else),
+>>>> decompiling the dtbs before and after applying it and using a tool
+>>>> like meld that can find similar chunks of text at different offsets
+>>>> review is definitely possible, though not very pleasant (you can't
+>>>> just diff them, as order is preserved & phandles change due to that)
+>>>> as you have to look at it manually and can't tell much by just taking
+>>>> a look at the email.
+>>>>
+>>>
+>>> Can you give me an example of such tool? So I can put these data in the
+>>> commit description. I have to rebase this anyway as more changes got
+>>> merged so it might be a good idea to add more info about how this won't
+>>> make actualy changes.
+>>>
+>>
+>> scripts/dtc/dtx_diff
+>> fdtdump + diff
+> Thanks for sharing this.. way better than my crude method..
+> 
 
---Gfkuz1LFkvb5qJgu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+For wide-tree cleanups I run (crosc64 is shortcut for proper env settings):
 
-On Tue, Jul 19, 2022 at 01:26:06PM +0800, Shengjiu Wang wrote:
+rm -fr dts-old; cp -r out/arch/arm64/boot/dts/ dts-old
+crosc64 make -j8 dtbs
+<make the changes / git stash pop / etc>
+rm -fr dts-new; cp -r out/arch/arm64/boot/dts/ dts-new
+crosc64 make -j8 dtbs
+for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64 scripts/dtc/dtx_diff ${i} dts-new/${i#dts-old/} ; done
 
-Not a thorough review, just a few nitpicks:
+Second method gives sometimes less false-positives:
 
-> +#define MBOX_SIZE		0x1000
-> +
-> +struct arm_smccc_res		smc_resource;
+for i in dts-old/*/*dtb dts-old/*/*/*dtb; do echo $i; crosc64 fdtdump ${i} > ${i}.fdt ; crosc64 fdtdump dts-new/${i#dts-old/} > dts-new/${i#dts-old/}.fdt ; diff -ubB ${i}.fdt dts-new/${i#dts-old/}.fdt ; done
 
-This should be static shouldn't it?
 
-> +static void imx8ulp_dsp_handle_reply(struct imx_dsp_ipc *ipc)
-> +{
-> +	struct imx8ulp_priv *priv = imx_dsp_get_data(ipc);
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&priv->sdev->ipc_lock, flags);
-> +
-> +	imx8ulp_get_reply(priv->sdev);
-> +	snd_sof_ipc_reply(priv->sdev, 0);
-> +	spin_unlock_irqrestore(&priv->sdev->ipc_lock, flags);
-
-Minor nitpick but a blank line before the unlock to match the one after
-the lock would be a bit easier to read.
-
-> +	regmap_update_bits(priv->regmap, SYSCTRL0, EXECUTE_BIT, EXECUTE_BIT);
-> +	usleep_range(1, 2);
-> +
-> +	arm_smccc_smc(FSL_SIP_HIFI_XRDC, 0, 0, 0, 0, 0, 0, 0, &smc_resource);
-
-You need linux/arm-smccc.h for this (as 0day said).
-
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failed to init reserved memory region %d\n", ret);
-> +		goto exit_pdev_unregister;
-> +	}
-> +
-> +	priv->clks->dsp_clks = imx8ulp_dsp_clks;
-> +	priv->clks->num_dsp_clks = ARRAY_SIZE(imx8ulp_dsp_clks);
-> +
-> +	ret = imx8_parse_clocks(sdev, priv->clks);
-> +	if (ret < 0)
-> +		goto exit_pdev_unregister;
-> +
-> +	ret = imx8_enable_clocks(sdev, priv->clks);
-> +	if (ret < 0)
-> +		goto exit_pdev_unregister;
-
-We're registering the platform device before we enable the clocks - is
-that safe?
-
-> +static int imx8ulp_remove(struct snd_sof_dev *sdev)
-> +{
-> +	struct imx8ulp_priv *priv = sdev->pdata->hw_pdata;
-> +
-> +	platform_device_unregister(priv->ipc_dev);
-> +
-> +	return 0;
-> +}
-
-Could we just use devm?  I'm not seeing an ordering issue but I might be
-missing something.
-
---Gfkuz1LFkvb5qJgu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLWmHoACgkQJNaLcl1U
-h9C2gQf/cgh8vX+NSAVJKcFpo8TGYQkH6ILglXaaVQyN7G9PGgvBvaMK7gyCH2PS
-eidTok4O5f6KCB3wDcLc9wIzO7M6K6iAlU/HTphK0wCizWtpEMZ+N9Hv20w141kx
-O77/69rr687IfYRekqkka1438ED2L1AMYz/4bt3mDD/9XxuxLmKkZCvcCfyzgn8q
-WyhbDCKNOgswfgyxEwMJecQ8wCS1amf99hx103P0xAejrT4V2uwdqptJ1AOz9dL0
-iEp79naTEpE0uBX/4LM3bOTLaim1AOMOk3yPPaCBOIX8lu0QmapcXgigVt8iaQCM
-PhxtfFs93bcc32VrmeqIXvWsCRF9fw==
-=RXwS
------END PGP SIGNATURE-----
-
---Gfkuz1LFkvb5qJgu--
+Best regards,
+Krzysztof
