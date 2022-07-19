@@ -2,113 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C90E57977F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 12:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A37579788
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 12:20:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235133AbiGSKSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 06:18:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43572 "EHLO
+        id S236217AbiGSKUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 06:20:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235263AbiGSKSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 06:18:50 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED64223BE5
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 03:18:48 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id e28so23914340lfj.4
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 03:18:48 -0700 (PDT)
+        with ESMTP id S236479AbiGSKU2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 06:20:28 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E70F13FA5;
+        Tue, 19 Jul 2022 03:20:27 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id kh20so10714123qvb.5;
+        Tue, 19 Jul 2022 03:20:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Yhp40Fa8dIbWLUYQgUZLu34l1mYT1p2F4FG3i88o/a0=;
-        b=YdB/5QY2IMSi4iu67sdHg01+fHyTTjIyNd++A0oIojzG3sOw+aBnKPPjGgWO3gaTEN
-         E0VfXsbXzmmM4D3sY3iX+Ka7B85t/7bdOidi41PqOSY3LeCTV1ASF4GKkBLxE0v43QuS
-         a3N+TYhsAA3gibWJPyG/WX+JpgH+2ef6K60J/Mil2twm8R/IrB/d3w+jyjIhdjbyw85p
-         Vn/beV7b6XNf80Y8MU9L5TkeiByD7U3ICjNYiN+CGn4XQDItCIkRAoWw2y7oeMW/N/Fu
-         bZPaoeENUcZxdcAuJSCeLi4uKX+3FKvAXItS/QSIX7S/4Y1HJy3n7F7LxUWumnVVSqr5
-         veOw==
+        d=gmail.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=w2ggDjwTVu+YFp9lbW40/ezM7FTqimjDcgzL0L7cezQ=;
+        b=KDx+k+CwVkTR4lsP3WIXXRHa48gJvs0EjIGVLu6MKO4Xxr0LUeObRr/ycr4eR1atsj
+         5gPDhiJmkiBqB3OZ95f95uIG9PTaIxt2Aw1yy+wPydPpBe8N0tj6Jv14pgbU1pjJ9AQf
+         DozRu96ve+yLf8TQP0xBvK05ir6xXHw2DqVIuxJG7iRpDQoTRUEBiKe0WxWtUXWJlYMi
+         LBt4EhbOc6l9Jsjd6BBkt+ZyYGRse6FaymskBaZhVvPyXrN4AObsOGRGcGYNQOhgb7+I
+         tdhZG4UgRqLNl2bCQM0/SV1uhBWqtXMnfPHNvOYZ1Om6XZ1a8vbvzrluD/GXnW3eOOYT
+         rfwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Yhp40Fa8dIbWLUYQgUZLu34l1mYT1p2F4FG3i88o/a0=;
-        b=Nw4gXoB8008sZlYDtDUTHx/1cVVN3Zx2fTFmtidfmILv24SHU4UjARHDfW8pwQ5q8A
-         fmDIDwTnEk1t5Qfcs4BObHzHPY+4h/frurdR1j1/9s8QYXnaxBF+4qNsT9Fg31+ilxE+
-         EQri3UbsiIBKbmNyk8VPygbJsN16Oh2+mwABKAbH3ctiJt2gvOV/9YHYtG9kq75/7nrf
-         WpCVvnP0W0pvY1u5od/l9QAvz7kivzMCJvPf89zAmNfS1cjZxJKAUIoprr9my0CjnJfD
-         9eysLfxrK3DDf+p2v0S0eUK0MS7Np2UuL7RBBQS3OuYOeAHlXj0sQfJaiR4gc2vy5H6f
-         DeuQ==
-X-Gm-Message-State: AJIora/z2igxQhlKMfA4N+Jj/EaMo9VZ/MppdMWBjLcINz8jRZ/ngfa2
-        k46Ph5vmhCNdyIvDrKf71MdtsQ==
-X-Google-Smtp-Source: AGRyM1s8HgTuaZJ6SpD6cl0+QVA5btQeNUibFBZWLlyB0luN//n9+1IhA3B2PQI+96AApneuoLUUpw==
-X-Received: by 2002:a05:6512:12c2:b0:489:c921:552e with SMTP id p2-20020a05651212c200b00489c921552emr18510784lfg.391.1658225927362;
-        Tue, 19 Jul 2022 03:18:47 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id s10-20020a2e2c0a000000b0025d70efeaaasm2606935ljs.75.2022.07.19.03.18.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 03:18:46 -0700 (PDT)
-Message-ID: <895e7df5-65e5-7b26-81d6-864e68957ab6@linaro.org>
-Date:   Tue, 19 Jul 2022 12:18:45 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: Add device trees for MSC SM2S-IMX8PLUS SoM
- and carrier board
-Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     Martyn Welch <martyn.welch@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=w2ggDjwTVu+YFp9lbW40/ezM7FTqimjDcgzL0L7cezQ=;
+        b=HG0WJ0SDv99cnDe1xRS+ck2pKyzsW5+L5Vmay7ae4txcAikG8/0SK1XCTNrRZrQ4f6
+         tDZodY/GGCOBwaEHmIV8xtTv83lV5VIGRMN+uLYYZtFpev02dAWptvnqpVz329sZsYwl
+         sF183+ICcTNOxIftcTFKEqL2ba30AfksJAGEkYfEsQ4xxtDBA5R0Oclef+MDrRI4pkKK
+         LNjZIBbBtS0GEw2gp3ve3IqdGCNTy1gSBWrBdxvKjV+yDADzjFFzVavpG85qW4KX69ve
+         BLh0zDZf9oDgHO3AUy0Ti+8YpRVCNmlMaUH4hdfq6DdfUS7QoQP2bIX/foOl8uMxxWPJ
+         XYAg==
+X-Gm-Message-State: AJIora+hRqd/R5cu4mwAApPPYRLD6oUVebJWTLH2BWPYRbeiD5+toVuF
+        nnq5vrRq9S5erJtoxd868MA=
+X-Google-Smtp-Source: AGRyM1u4lD7kHp+/dXY/ChUfGSPgDGzDqwudNpn31eirT0/l7+rLmDCMYxgsdcSHsSNDhi075Scn4w==
+X-Received: by 2002:a05:6214:19c8:b0:472:f250:2d97 with SMTP id j8-20020a05621419c800b00472f2502d97mr24127371qvc.13.1658226026062;
+        Tue, 19 Jul 2022 03:20:26 -0700 (PDT)
+Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
+        by smtp.gmail.com with ESMTPSA id x2-20020ac87002000000b0031ed3d79556sm10301644qtm.53.2022.07.19.03.20.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jul 2022 03:20:25 -0700 (PDT)
+Message-ID: <6539cb490bfc6fd0956505e9bcb51f84596b932e.camel@gmail.com>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20220718152310.1937899-1-martyn.welch@collabora.com>
- <4473378f-1c14-3ec7-5380-12f49f3b1e3b@linaro.org>
- <YtaEUvP4jpO5Dggg@gaggiata.pivistrello.it>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YtaEUvP4jpO5Dggg@gaggiata.pivistrello.it>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 19 Jul 2022 12:21:27 +0200
+In-Reply-To: <CAMRc=Mcgydibw_GXNS_S6=gFZuojo5bBb8ELUc1tTQhbQ2V7hA@mail.gmail.com>
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+         <CAMRc=Mf1w7DCGMAku0wPHAhTtDWoWkWOfvxkx=_b1pKp8U8yOg@mail.gmail.com>
+         <14af555c630654d0a780dc3bf9ecca6f29dcf61a.camel@gmail.com>
+         <CAMRc=Mcgydibw_GXNS_S6=gFZuojo5bBb8ELUc1tTQhbQ2V7hA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.3 
+MIME-Version: 1.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2022 12:15, Francesco Dolcini wrote:
-> Hello Krzysztof,
-> 
-> On Tue, Jul 19, 2022 at 12:01:34PM +0200, Krzysztof Kozlowski wrote:
->> On 18/07/2022 17:23, Martyn Welch wrote:
->>> +	tca6424: gpio@22 {
->>> +		compatible = "ti,tca6424";
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&pinctrl_tca6424>;
->>> +		reg = <0x22>;
->>
->> compatible, then reg, then all other properties. This applies everywhere.
-> 
-> Is this documented somewhere? It would be easier to enable new people to
-> contribute, if it was.
+On Tue, 2022-07-19 at 11:14 +0200, Bartosz Golaszewski wrote:
+> On Tue, Jul 19, 2022 at 10:51 AM Nuno S=C3=A1 <noname.nuno@gmail.com>
+> wrote:
+> >=20
+> > On Tue, 2022-07-19 at 10:25 +0200, Bartosz Golaszewski wrote:
+> > > On Wed, Jul 13, 2022 at 3:13 PM Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > wrote:
+> > > >=20
+> > > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
+> > > > calling the
+> > > > gpiochip 'set_config()' hook. However, AFAICT, there's no way
+> > > > that
+> > > > this
+> > > > flag is set because there's no support for it in firwmare code.
+> > > > Moreover,
+> > > > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
+> > > > being
+> > > > handled.
+> > > >=20
+> > > > On top of this, there are some users that are looking at
+> > > > 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So,
+> > > > unless
+> > > > I'm
+> > > > missing something, it looks like this was never working for
+> > > > these
+> > > > chips.
+> > > >=20
+> > > > Note that the ACPI case is only compiled tested. At first
+> > > > glance,
+> > > > it seems
+> > > > the current patch is enough but i'm not really sure...
+> > > >=20
+> > > > As a side note, this came to my attention during this patchset
+> > > > [1]
+> > > > (and, ofr OF,=C2=A0 was tested with it).
+> > > >=20
+> > > > [1]:
+> > > > https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@=
+analog.com/
+> > > >=20
+> > > > Nuno S=C3=A1 (4):
+> > > > =C2=A0 gpiolib: add support for bias pull disable
+> > > > =C2=A0 gpiolib: of: support bias pull disable
+> > > > =C2=A0 gpiolib: acpi: support bias pull disable
+> > > > =C2=A0 dt-bindings: gpio: add pull-disable flag
+> > > >=20
+> > > > =C2=A0drivers/gpio/gpiolib-acpi.c=C2=A0=C2=A0=C2=A0=C2=A0 | 3 +++
+> > > > =C2=A0drivers/gpio/gpiolib-of.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 7 +++++++
+> > > > =C2=A0drivers/gpio/gpiolib.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 8 ++++++--
+> > > > =C2=A0include/dt-bindings/gpio/gpio.h | 3 +++
+> > > > =C2=A0include/linux/gpio/machine.h=C2=A0=C2=A0=C2=A0 | 1 +
+> > > > =C2=A0include/linux/of_gpio.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 1 +
+> > > > =C2=A06 files changed, 21 insertions(+), 2 deletions(-)
+> > > >=20
+> > > > --
+> > > > 2.37.0
+> > > >=20
+> > >=20
+> > > Series applied, thanks!
+> >=20
+> > Hi Bart,
+> >=20
+> > I was actually planning to spin a v2 with your suggestion for the
+> > naming of the new define... Did you changed it while applying or
+> > should
+> > I still send it? Or (last option), we just leave it like this :)?
+> >=20
+> > - Nuno S=C3=A1
+>=20
+> Yeah, I'm alright with it how it is after a second though: uAPI uses
+> the BIAS_PULL_UP/DOWN/DISABLE notation while the in-kernel API uses
+> the same scheme but without the BIAS prefix. Unless you want to
+> change
+> something else - let's keep it as you first submitted it.
+>=20
 
-Unfortunately it's not documented. It's a common practice - most
-popular, but of course you will find other examples. There is reasoning
-behind - compatible is the most important property. Reg is useful to
-have at the top as it must match unit address.
+Alright, works for me...
 
-> Anyway, I would add to this list status as last, when present, 
+- Nuno S=C3=A1
 
-Yes, this as well in some trees is recommended/enforced although not
-documented.
-
-> and I do
-> try to order alphabetically all the other properties.
-Best regards,
-Krzysztof
