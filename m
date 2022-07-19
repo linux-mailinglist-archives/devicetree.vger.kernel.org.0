@@ -2,116 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0D0F57A0C2
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 16:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2703457A0DD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 16:12:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238755AbiGSOJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 10:09:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43936 "EHLO
+        id S238580AbiGSOMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 10:12:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238898AbiGSOJJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 10:09:09 -0400
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723425E833;
-        Tue, 19 Jul 2022 06:25:46 -0700 (PDT)
-Received: by mail-qk1-f179.google.com with SMTP id v28so9552671qkg.13;
-        Tue, 19 Jul 2022 06:25:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=C/im0kzyVGziE3zKsgqLb+DjQl4kTj2uzoC+14ZuwX0=;
-        b=U4NaTgzqxqvvc2I6QeUzD+mD9HmWGP/CSCueP50PtlCF5DSceh3DaoJG5CLrcugdQ/
-         q+hBth61hL2FSCytU08g5Nw1xUZ3jZDy/5O6LVRB7MxAc0eng2Od4bd8brNj4tZR6DD6
-         UnvcM3V5QCnBZY8E8s/e+6lRm5PgyRKAeA0JWzURma9ZrrQPb/uBXfkMipzQrGHOmJtV
-         BcAf2Pkh4ydHpUBNqbds6OXsyjVOJIWuCdCzJS+AIz4zBgII9KjAzou9MLunskIPUtQt
-         e1gOzn/qWJQ3rSVft55jfa9YVA1xZ9IiI1kFZyaNkqHAvDVOtxqVO2uir3F0R6/ZDhxa
-         gaYw==
-X-Gm-Message-State: AJIora80pfCmSSycObkqoJILWTWpagMvm68OiEMI8vd5P+kn4+QDgfUq
-        gDsgxnQl3oKv/MsSa996IIV+fjDIVebGBg==
-X-Google-Smtp-Source: AGRyM1vaUAOdgo2mIg4Rr0L0N22J6sB7B3pQqHw4uTEQ1nMPYyoCI05W7cN6K/gkdS6+xGyzgWeEWw==
-X-Received: by 2002:a05:620a:4091:b0:6b5:f03f:dd9b with SMTP id f17-20020a05620a409100b006b5f03fdd9bmr5233061qko.357.1658237145079;
-        Tue, 19 Jul 2022 06:25:45 -0700 (PDT)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id v3-20020a05620a440300b006a6a4b43c01sm7942771qkp.38.2022.07.19.06.25.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 06:25:44 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id 64so26391321ybt.12;
-        Tue, 19 Jul 2022 06:25:44 -0700 (PDT)
-X-Received: by 2002:a05:6902:154f:b0:66e:e2d3:ce1 with SMTP id
- r15-20020a056902154f00b0066ee2d30ce1mr29652418ybu.365.1658237144139; Tue, 19
- Jul 2022 06:25:44 -0700 (PDT)
+        with ESMTP id S238608AbiGSOLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 10:11:49 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03044820FF;
+        Tue, 19 Jul 2022 06:33:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C101EB81B84;
+        Tue, 19 Jul 2022 13:33:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2780C341C6;
+        Tue, 19 Jul 2022 13:33:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658237585;
+        bh=KmR8tfAQ9eE542jYNhTNtY7nfxX4kwpdPzlaxf3sLt8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=seW9K4at5nVQ/Q8nukFkt9W9kRQtMR/DXkKUUQYWp2yWcjv2awfL8XaVkAUhVnQUK
+         bLb1vtVymoYpiAZPS56w+bnW3F8F5suJ+SpSk+Xc64YUFldgCcgsTLB9XPx3KkMZj1
+         WnO75Q16lSW3h2KxomnAiEznijzPykQ8dBt+kMuBeGHjwigJKoOA1Zx8d3EbgDFmfU
+         CQ/66+TBMTNxDurp+nT0roRa8aa7PRg2UCTJN9ZSL4mtNc2AaZv2zc9tqsbivTnCls
+         tzkE+1jw84sTk/nR5A6fFbq0iazB7yUtYnebQTNqOhXp7O0DMttpYv0c5Ej3d8bkT7
+         6/M76a8ifxdwQ==
+Date:   Tue, 19 Jul 2022 14:32:58 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Neanne <jneanne@baylibre.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, nm@ti.com,
+        kristo@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.c, lee.jones@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 08/14] regulator: drivers: Add TI TPS65219 PMIC
+ regulators support
+Message-ID: <YtayikFdidxXXubS@sirena.org.uk>
+References: <20220719091742.3221-1-jneanne@baylibre.com>
+ <20220719091742.3221-9-jneanne@baylibre.com>
 MIME-Version: 1.0
-References: <20220701085420.870306-1-yoshihiro.shimoda.uh@renesas.com> <20220701085420.870306-10-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20220701085420.870306-10-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 19 Jul 2022 15:25:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWH1XL3PrPc8UujotDwCB+AabvUpS1-V-p7dLKF8N=+SA@mail.gmail.com>
-Message-ID: <CAMuHMdWH1XL3PrPc8UujotDwCB+AabvUpS1-V-p7dLKF8N=+SA@mail.gmail.com>
-Subject: Re: [PATCH v3 09/13] PCI: renesas: Add R-Car Gen4 PCIe Host support
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zBpfrOEWtgLbiYl8"
+Content-Disposition: inline
+In-Reply-To: <20220719091742.3221-9-jneanne@baylibre.com>
+X-Cookie: We have ears, earther...FOUR OF THEM!
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
 
-On Fri, Jul 1, 2022 at 10:55 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add R-Car Gen4 PCIe Host support. This controller is based on
-> Synopsys DesignWare PCIe.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+--zBpfrOEWtgLbiYl8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
-> @@ -0,0 +1,195 @@
+On Tue, Jul 19, 2022 at 11:17:36AM +0200, Jerome Neanne wrote:
+
+> @@ -0,0 +1,414 @@
 > +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * PCIe host controller driver for Renesas R-Car Gen4 Series SoCs
-> + * Copyright (C) 2022 Renesas Electronics Corporation
-> + */
+> + * tps65219-regulator.c
+> + *
+
+Please make the entire comment a C++ one so things look more
+intentional.
+
+> +static int tps65219_pmic_set_voltage_sel(struct regulator_dev *dev,
+> +					 unsigned int selector)
+> +{
+> +	int ret;
+> +	struct tps65219 *tps =3D rdev_get_drvdata(dev);
 > +
-> +#include <linux/interrupt.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
+> +	/* Set the voltage based on vsel value */
+> +	ret =3D regmap_update_bits(tps->regmap, dev->desc->vsel_reg,
+> +				 dev->desc->vsel_mask, selector);
+> +	if (ret) {
+> +		dev_dbg(tps->dev, "%s failed for regulator %s: %d ",
+> +			__func__, dev->desc->name, ret);
+> +	}
+> +	return ret;
+> +}
+
+This should just be able to use the standard regmap helper, as should
+the enable and disable operations?
+
+> +static int tps65219_set_mode(struct regulator_dev *dev, unsigned int mod=
+e)
+> +{
+> +	struct tps65219 *tps =3D rdev_get_drvdata(dev);
 > +
-> +#include "pcie-rcar-gen4.h"
-> +#include "pcie-designware.h"
+> +	switch (mode) {
+> +	case REGULATOR_MODE_NORMAL:
+> +		return regmap_set_bits(tps->regmap, TPS65219_REG_STBY_1_CONFIG,
+> +				       dev->desc->enable_mask);
 > +
-> +static int rcar_gen4_pcie_host_init(struct pcie_port *pp)
+> +	case REGULATOR_MODE_STANDBY:
+> +		return regmap_clear_bits(tps->regmap,
+> +					 TPS65219_REG_STBY_1_CONFIG,
+> +					 dev->desc->enable_mask);
+> +	}
+> +
+> +	return -EINVAL;
 
-FTR, s/pcie_port/dw_pcie_rp/g since commit 60b3c27fb9b92b8b ("PCI:
-dwc: Rename struct pcie_port to dw_pcie_rp") in pci/next.
+It'd be a little clearer to have that -EINVAL in a default statement.
 
-Gr{oetje,eeting}s,
+> +static irqreturn_t tps65219_regulator_irq_handler(int irq, void *data)
+> +{
+> +	struct tps65219_regulator_irq_data *irq_data =3D data;
+> +
+> +	if (irq_data->type->event_name[0] =3D=3D '\0') {
+> +		/* This is the timeout interrupt */
+> +		dev_err(irq_data->dev, "System was put in shutdown during an active or=
+ standby transition.\n");
+> +		return IRQ_HANDLED;
+> +	}
+> +
+> +	dev_err(irq_data->dev, "Registered %s for %s\n",
+> +		irq_data->type->event_name, irq_data->type->regulator_name);
 
-                        Geert
+This should be reporting the events through the notification API, see
+regulator_notifier_call_chain().  That will require a bit of refactoring
+of the way the driver is registering interrupts unfortunately, at the
+minute it doesn't have data joining them up with the=20
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+I'd also reword that log message to be something more like "Error %s
+reported for %s" - at the minute it looks more like a probe message.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Otherwise this looks good.
+
+--zBpfrOEWtgLbiYl8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLWsokACgkQJNaLcl1U
+h9AF+gf/QEBDuiPJXAhqxJOMjcTKQGe2EGbChi3FnnmfjZcl0uqL9RsiSnchsJcQ
+pleLjPyp1GlnRDwl/O0Vg2weZJRTNRlcKnfh9HhER9C0VKW91zIvbyNX78uCpPPw
+zXBAylmh26YknpAjtUz9gh7uO0x1TNnZX2TvI4+M5rd2ioDqrvyIhTWWKy5QCFt3
+3oyzHQfCdlwWqS6lvIz+hl0dfY5R0/qJA408EIQ+VQrGWb0TIcWK5VrdshH4p1oy
+V8y91syEOGvOIXP1UnJBKe3EaAimcNmGtKLXPf1MVhDvC7dcTW/20sBpPeBzB0w4
+/RnTiTspHVXIM1D3u4KcaD//S/WZ1A==
+=LDKf
+-----END PGP SIGNATURE-----
+
+--zBpfrOEWtgLbiYl8--
