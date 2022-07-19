@@ -2,143 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 542C05795E7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:14:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 542965795FD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:18:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236631AbiGSJO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 05:14:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
+        id S237083AbiGSJRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 05:17:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236560AbiGSJOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:14:50 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA2FA2558F
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:14:48 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id m16so18689984edb.11
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:14:48 -0700 (PDT)
+        with ESMTP id S235941AbiGSJRv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:17:51 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E6511FCD5
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:17:49 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id i132-20020a1c3b8a000000b003a2fa488efdso1182204wma.4
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:17:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=/ACTSpTsTqX7A3W4uLC3rV5eMlRf/qILnDAzAz4VXdI=;
-        b=d5D7ElkUQFzhtHOaEl/PtsmXs1fpH23EV43d/mkA4zlsjs4qkUl1933urX2GBWN35F
-         nXKg+moRX3k/RiKRqaAFbhrxekFy+2o210oBH0kl+YEAcKpWU60pcdcImFxDbd5WoOHl
-         MUySqWRBTNsIuvAsJgN6ZyQ8KflPOA3xWrNDw9O5cBMKzZJM+YwLX9HbSGzerb+1BmSI
-         bbEgATU5tfLrfsgQ1OHoDuZS3UrI7TMAJ+S9CAW51DqZA/YnBkKavHAA9wgyqfflFvKZ
-         MFtiD3Co16DqDhFDa2+BExkCZ5CgxCMtwZQXC1FMSAx8NCglskgyBOaH4kFoT63nyd4E
-         L1vg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=SZZ37ggY8cL3lV2zqapt5R6LZtjQRuWfQn9rSYJzCQc=;
+        b=NAznUbwI5zPQQxFF+/UKcS02hHALSB60T9byhzp09iDqHIySZEV1o2iw4DibD06t/1
+         1dYnMVLwa1GKmzOSetFn090mFrvBsZTHiy4Dbj4tJOoN4pGaNEtWiB/0GcGPmfUhLx+x
+         9OQjAaif0daX3G/Nz9VBcuy6JzVI46Swn9oVh7RihbtUEg9PTeAINzMuqIAsRJz49GW0
+         VLmBdatok+NjPPCi50T7z5cryfVibbysFZljUvvkLVLNE2V13lC7NfSXY9ORRBvLAd1s
+         Qa78tpOyopiy6y2QVXfSwGL+9BjW1dZXzJZhr0d2L4uy/QYNNst+Ltd10Y0b1WEEVLim
+         4pnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=/ACTSpTsTqX7A3W4uLC3rV5eMlRf/qILnDAzAz4VXdI=;
-        b=JmoUK97GU5+7iOz5AkHcJyhpyi+mlmMlUQ2Z9oWc8a7ZYK3whlKrdNth+7KfqVF4R7
-         M4ag+5iKQ3LHWC3RP7cfRoceHt1yxdloVmAj/C5iuAtYtyZiktjMkExSFpzxOt4hT44R
-         sLL1eD44BhkQnurqCA5XvTIRtvWAN8kd8tAT/SC4z1yUIBe6/v/9kPfyulr0az2r3+KF
-         PSjpza+zizCF9OWWPxZlOCquQqStbgYip05DZtMbBtvaO/gKkf2zeVC/KFwNj8ZHx0P5
-         iOii+z1DuThbmJ8a5GK2fNp+7g4tQ966f2ZcXHF8ksv//m+9DzMzakfJLnfzri+Tnv7L
-         Of+g==
-X-Gm-Message-State: AJIora9zFFMpGaDZiXmNCdZ40Rf8NPzA1iS2KRDxewjyv5WQW+tSGdcS
-        QWUSWGhcsvJD96C1YmkI0iR8EMp3RrD6QgI53nzyuA==
-X-Google-Smtp-Source: AGRyM1t15DGxlnJ8KDfBuNALNYBrQ/tIiuIFbbjsarwTCSGbhSYa64cau9lXmZT0YGKYCk+FR/ArnEPt0iEB0wCL5po=
-X-Received: by 2002:a05:6402:4c3:b0:43a:f612:179d with SMTP id
- n3-20020a05640204c300b0043af612179dmr42764636edw.422.1658222087537; Tue, 19
- Jul 2022 02:14:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220713131421.1527179-1-nuno.sa@analog.com> <CAMRc=Mf1w7DCGMAku0wPHAhTtDWoWkWOfvxkx=_b1pKp8U8yOg@mail.gmail.com>
- <14af555c630654d0a780dc3bf9ecca6f29dcf61a.camel@gmail.com>
-In-Reply-To: <14af555c630654d0a780dc3bf9ecca6f29dcf61a.camel@gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 19 Jul 2022 11:14:36 +0200
-Message-ID: <CAMRc=Mcgydibw_GXNS_S6=gFZuojo5bBb8ELUc1tTQhbQ2V7hA@mail.gmail.com>
-Subject: Re: [PATCH 0/4] add support for bias pull-disable
-To:     =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
-Cc:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=SZZ37ggY8cL3lV2zqapt5R6LZtjQRuWfQn9rSYJzCQc=;
+        b=ghv3NPV+D7Db/TvyKAIMALElpZSCOTflor+Ich/MiFhh5RfUjSlIt+10RVYvurZsKq
+         0B1/4xFUxhSXklEfi9Bn5mkfzryBrq1b+4EzBGZ5Y5RwOhLlT1WAUa40USaH8cgAzoGQ
+         MzVUGySiotx9s6Tre52cf1jbbUqLP6Bwut7nVmpMFer7XpOH9yxmgk1Uefs2sl1wgWni
+         b/gVXRI8a96/HYntUty8GEGTZutlKxnqYM10cGzmFv4BGZVXzTWbMZGu/vsmSohweq/e
+         3K/X1YD8ImUtPkSi/8lRU0cvO0dk7WE1u9UoKaggoRRPTxpdmXk6cgj8Y3Rvl72zN7g6
+         SMEg==
+X-Gm-Message-State: AJIora8eU2nucPlcI0F1xlhGJ8O8W//n5HAjJ/P5Zq76NgCIQDWbQiZ0
+        TmlCpwyAqMpmzisegUVtkFewIA==
+X-Google-Smtp-Source: AGRyM1ucBnTJMXb3ACZMAXwW8pNBRooM87FAlYHu4qmN5qFiTH9nR4nVhX4m4+Vg291qmM13QHsKDA==
+X-Received: by 2002:a1c:7209:0:b0:3a3:1f31:ef3a with SMTP id n9-20020a1c7209000000b003a31f31ef3amr5552976wmc.87.1658222268142;
+        Tue, 19 Jul 2022 02:17:48 -0700 (PDT)
+Received: from localhost.localdomain (192.201.68.85.rev.sfr.net. [85.68.201.192])
+        by smtp.gmail.com with ESMTPSA id bk19-20020a0560001d9300b0021d63fe0f03sm12944281wrb.12.2022.07.19.02.17.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jul 2022 02:17:47 -0700 (PDT)
+From:   Jerome Neanne <jneanne@baylibre.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org
+Cc:     khilman@baylibre.com, narmstrong@baylibre.com, msp@baylibre.com,
+        j-keerthy@ti.c, lee.jones@linaro.org, jneanne@baylibre.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1 00/14] Add support for TI TPS65219 PMIC.
+Date:   Tue, 19 Jul 2022 11:17:28 +0200
+Message-Id: <20220719091742.3221-1-jneanne@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 19, 2022 at 10:51 AM Nuno S=C3=A1 <noname.nuno@gmail.com> wrote=
-:
->
-> On Tue, 2022-07-19 at 10:25 +0200, Bartosz Golaszewski wrote:
-> > On Wed, Jul 13, 2022 at 3:13 PM Nuno S=C3=A1 <nuno.sa@analog.com> wrote=
-:
-> > >
-> > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
-> > > calling the
-> > > gpiochip 'set_config()' hook. However, AFAICT, there's no way that
-> > > this
-> > > flag is set because there's no support for it in firwmare code.
-> > > Moreover,
-> > > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
-> > > being
-> > > handled.
-> > >
-> > > On top of this, there are some users that are looking at
-> > > 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So, unless
-> > > I'm
-> > > missing something, it looks like this was never working for these
-> > > chips.
-> > >
-> > > Note that the ACPI case is only compiled tested. At first glance,
-> > > it seems
-> > > the current patch is enough but i'm not really sure...
-> > >
-> > > As a side note, this came to my attention during this patchset [1]
-> > > (and, ofr OF,  was tested with it).
-> > >
-> > > [1]:
-> > > https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@an=
-alog.com/
-> > >
-> > > Nuno S=C3=A1 (4):
-> > >   gpiolib: add support for bias pull disable
-> > >   gpiolib: of: support bias pull disable
-> > >   gpiolib: acpi: support bias pull disable
-> > >   dt-bindings: gpio: add pull-disable flag
-> > >
-> > >  drivers/gpio/gpiolib-acpi.c     | 3 +++
-> > >  drivers/gpio/gpiolib-of.c       | 7 +++++++
-> > >  drivers/gpio/gpiolib.c          | 8 ++++++--
-> > >  include/dt-bindings/gpio/gpio.h | 3 +++
-> > >  include/linux/gpio/machine.h    | 1 +
-> > >  include/linux/of_gpio.h         | 1 +
-> > >  6 files changed, 21 insertions(+), 2 deletions(-)
-> > >
-> > > --
-> > > 2.37.0
-> > >
-> >
-> > Series applied, thanks!
->
-> Hi Bart,
->
-> I was actually planning to spin a v2 with your suggestion for the
-> naming of the new define... Did you changed it while applying or should
-> I still send it? Or (last option), we just leave it like this :)?
->
-> - Nuno S=C3=A1
+Not implemented
+- DVS
 
-Yeah, I'm alright with it how it is after a second though: uAPI uses
-the BIAS_PULL_UP/DOWN/DISABLE notation while the in-kernel API uses
-the same scheme but without the BIAS prefix. Unless you want to change
-something else - let's keep it as you first submitted it.
+1-Regulators:
+Full implementation and test
+Visual check: cat /sys/kernel/debug/regulator/regulator_summary
+Full validation requires userspace-consumer and virtual-regulator
+LDO1 is not used and output can be probbed on TP84.
 
-Bart
+Changes vs RFC:
+Use standard regmap helpers only.
+Reshaped integrating review feedbacks.
+
+2-Reset WARM/COLD
+test procedure: launch reboot on the console and check visually
+
+warm vs. cold can be configured on the kernel command-line at boot time.
+Default is cold, but adding `reboot=w`
+to kernel command allow testing warm reboot.
+
+Alternative:
+`# echo warm > /sys/kernel/reboot/mode` 
+
+Changes vs RFC:
+Hooked to standard linux/reboot.h
+Add pr_flush to ensure output to console happens.
+
+
+3-SW Shutdown
+test procedure: launch halt on the console and check visually
+
+Note: enters in competition with other source during probe
+
+Board Test Points can be used to check voltage after system shutdown.
+baseport is not handling wakeup.
+A power OFF/ON cycle is needed to recover.
+
+Changes vs RFC:
+Standard system-power-controller has been implemented to enable override.
+
+4-Interrupt Pin (nINT): NEW, was not implemented in RFC
+
+Interrupt occurring on PMIC TPS65219 is propagated to SOC
+through EXTINTn pin connected to gic500 interrupt controller
+
+Interrupt lines for TPS65219 shows-up on console:
+cat /proc/interrupts
+
+Validation:
+Create a Residual Voltage interrupt and handling and interrupt source is cleared.
+`tps65219 0-0030: Registered residual voltage for LDO1`
+`533:          1          0  tps65219_irq  35 Edge      LDO1_RV`
+
+Mapped to power button (use TP90 to GND to emulate a physical button)
+
+5-PB Startup and Shutdown: NEW, was not implemented in RFC
+New implementation to support both rising and falling edge.
+
+TPS65219 has different interrupts compared to other TPS6521* chips.
+TPS65219 defines two interrupts for the powerbutton one for push and one
+for release.
+
+
+Interrupt support: cat proc/interrupts
+`557:          0          0  tps65219_irq  47 Edge      tps65219-pwrbutton.1.auto`
+`558:          0          0  tps65219_irq  48 Edge      tps65219-pwrbutton.1.auto`
+
+Jerome Neanne (9):
+  regulator: dt-bindings: Add TI TPS65219 PMIC bindings
+  regulator: dt-bindings: Add interrupts support to TPS65219 PMIC
+    bindings
+  mfd: drivers: Add TI TPS65219 PMIC support
+  mfd: drivers: Add interrupts support to TI TPS65219 PMIC
+  regulator: drivers: Add TI TPS65219 PMIC regulators support
+  arm64: defconfig: Add tps65219 as modules
+  arm64: dts: ti: Add TI TPS65219 PMIC support for AM642 SK board.
+  arm64: dts: ti: Add pinmux and irq mapping for TPS65219 external
+    interrupts
+  arm64: defconfig: Add tps65219 power-button as module
+
+Markus Schneider-Pargmann (5):
+  MAINTAINERS: OMAP2+ support, add tps65218-pwrbutton
+  regulator: dt-bindings: tps65219: Add power-button property
+  mfd: tps65219: Add power-button support
+  Input: Add tps65219 interrupt driven powerbutton
+  arm64: dts: ti: k3-am642-sk: Enable tps65219 power-button
+
+ .../bindings/regulator/ti,tps65219.yaml       | 178 +++++++
+ MAINTAINERS                                   |   4 +
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        | 117 +++++
+ arch/arm64/configs/defconfig                  |   3 +
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/tps65219-pwrbutton.c       | 150 ++++++
+ drivers/mfd/Kconfig                           |  15 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/tps65219.c                        | 438 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/tps65219-regulator.c        | 414 +++++++++++++++++
+ include/linux/mfd/tps65219.h                  | 364 +++++++++++++++
+ 14 files changed, 1705 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+ create mode 100644 drivers/input/misc/tps65219-pwrbutton.c
+ create mode 100644 drivers/mfd/tps65219.c
+ create mode 100644 drivers/regulator/tps65219-regulator.c
+ create mode 100644 include/linux/mfd/tps65219.h
+
+-- 
+2.17.1
+
