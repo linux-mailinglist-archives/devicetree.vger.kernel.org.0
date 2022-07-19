@@ -2,91 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC80D57960E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:19:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 072C1579644
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237276AbiGSJSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 05:18:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47044 "EHLO
+        id S237192AbiGSJ0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 05:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237215AbiGSJSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:18:15 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7118124BF0
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:18:14 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 8-20020a05600c024800b003a2fe343db1so8793101wmj.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:18:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=xUvxPK3wvjz6wrAaAefISZM8lHT5S+UWYfl0mNo8LFc=;
-        b=yHuO7w+m2vULMOjaZc4jlaxpkVrzCUrrdDP2o6ziPAlg3ZOJ2O6uxfX/jHClmyyvgp
-         oLIeGKDr1apXl4s1XErTsBIAYR4IQi8e9vvW2wG7ObcE0aFF1+XaDkRn1dFKX0UBAC97
-         ICsHn0c+gS1vCcpo/rZkd/oRhDingBIytUi0ySbOSWlXf5OTdfdrkf+4tvt+2B2S8VE9
-         8xjerX9Pz+0n52KqxkX1J/XDGHVLeTiXnWiLNeY5wVQ0PZmVq5cSJpLIXsO0mG8wVRyx
-         RRufeAcyTnsdI/8j2qSsdq4CY71oEDad8pI3iNc07eLJS2yNy6bBSEDQBO2E0+TyWEjC
-         zcyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=xUvxPK3wvjz6wrAaAefISZM8lHT5S+UWYfl0mNo8LFc=;
-        b=XjUA8rV88h/0pPlhKIHKXSs9koy0DNhby04HqdIF8koRGy125wdX+QRgCt1uy/1x68
-         1SFmeyXPHDwvbjXHUqMRCBimyHHjxwlNrfedgEbmOr0EEBX9/6/7NUuKHrXZjNbvElC4
-         oXlJPtyPJGfHjbcSihtxmv9WFfUp4O4I7ip7YUC1MQL+XR0uVwrAlr5BkTG0wn5sCwno
-         GKoXLqfMuUcUewBwtGurpVzbfs3D8z1pl3R/yitu8SX3X6xhsY6m1lCpXFWi2xVsI9MJ
-         gsnuz+qgWAymMuf6bXG2CfI5KavV5fgyfERlxNWuiMur/zrd2fvW17b0dILlb9Jh7PoW
-         fYhw==
-X-Gm-Message-State: AJIora/z6yPy+29KjsVmrUSo49oU09qPjWevhVdbmgNaTW252KPhDnno
-        3Lu6js38oibz2FL7d//rsvjTpw==
-X-Google-Smtp-Source: AGRyM1sxc5nUpteA5h6hsnpiYbZzru/E61N6j0MEK1Rw9B+2HbLK/90dY900bz+A845w3aSu+hCg6w==
-X-Received: by 2002:a05:600c:3b91:b0:3a3:1cbe:d531 with SMTP id n17-20020a05600c3b9100b003a31cbed531mr7005748wms.159.1658222294054;
-        Tue, 19 Jul 2022 02:18:14 -0700 (PDT)
-Received: from localhost.localdomain (192.201.68.85.rev.sfr.net. [85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id bk19-20020a0560001d9300b0021d63fe0f03sm12944281wrb.12.2022.07.19.02.18.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jul 2022 02:18:13 -0700 (PDT)
-From:   Jerome Neanne <jneanne@baylibre.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        nm@ti.com, kristo@kernel.org
-Cc:     khilman@baylibre.com, narmstrong@baylibre.com, msp@baylibre.com,
-        j-keerthy@ti.c, lee.jones@linaro.org, jneanne@baylibre.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 14/14] arm64: defconfig: Add tps65219 power-button as module
-Date:   Tue, 19 Jul 2022 11:17:42 +0200
-Message-Id: <20220719091742.3221-15-jneanne@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220719091742.3221-1-jneanne@baylibre.com>
-References: <20220719091742.3221-1-jneanne@baylibre.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S235924AbiGSJ00 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:26:26 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96C4B205F0;
+        Tue, 19 Jul 2022 02:26:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=HjArIFUMElFnZpuy5xrA0s3oMM3zvqLR8XxtmEJmSDY=;
+        b=OC8csUcju5yCZ2T/ErMqELNGjdLRU4O3P0JH2nGx5VJ3ZejF6sAsTQm5IopFtyLOB64VW+rchEOPO
+         jvHWM5ya4e6H2R+yQu+zhxteZM1renubx7yB/wsKkVjJ9+iAidJ5IkO0i8tI4AkOThEetHlugrk/0z
+         DKmO0J2QMjOMjzSh4dFVs4aSmBW0aleoxeWXaYORdnBVYAAzOM7YkyzzY3EHUeDrceWHOrUTDpyDOx
+         33wy+JgguDh9zKNcLKnalDGU+tDDMg6g8bwk/LVOgfUEGPlMjYBWC7YgDabT9zh/Cu+DXQ2VdXr5wi
+         ncdSgcbxVrKPrKOXD0rE4533T30A1UA==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000008,0.005642)], BW: [Enabled, t: (0.000013,0.000001)], RTDA: [Enabled, t: (0.073759), Hit: No, Details: v2.40.0; Id: 15.52k9pv.1g8asetbo.1fj1f; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Tue, 19 Jul 2022 12:26:08 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, system@metrotek.ru
+Subject: [PATCH v4 0/2] Lattice ECP5 FPGA manager
+Date:   Tue, 19 Jul 2022 12:25:37 +0300
+Message-Id: <20220719092539.6748-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.37.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds defconfig option to support TPS65219 PMIC power-button.
+Add support to the FPGA manager for programming Lattice ECP5 FPGA over
+slave SPI interface with .bit formatted uncompressed bitstream image.
 
-Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ChangeLog:
+  v1 -> v2:
+    * remove "spi" from compatible string
+    * reword description in dt-bindings doc
+    * add reference to spi-peripheral-props.yaml in dt-binding doc
+    * fix DTS example in dt-bindings doc: 4-spaces indentations, no
+      undersores in node names.
+  v2 -> v3:
+    * fix typo "##size-cells" -> "#size-cells" in dt-bindings example
+  v3 -> v4:
+    * dt-bindings: reword description
+    * dt-bindings: revert props order
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index f031dd6a9f76..988397574e3c 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -412,6 +412,7 @@ CONFIG_TOUCHSCREEN_GOODIX=m
- CONFIG_TOUCHSCREEN_EDT_FT5X06=m
- CONFIG_INPUT_MISC=y
- CONFIG_INPUT_PM8941_PWRKEY=y
-+CONFIG_INPUT_TPS65219_PWRBUTTON=m
- CONFIG_INPUT_PM8XXX_VIBRATOR=m
- CONFIG_INPUT_PWM_BEEPER=m
- CONFIG_INPUT_PWM_VIBRA=m
+Ivan Bornyakov (2):
+  fpga: ecp5-spi: add Lattice ECP5 FPGA manager
+  dt-bindings: fpga: add binding doc for ecp5-spi fpga mgr
+
+ .../bindings/fpga/lattice,ecp5-fpga-mgr.yaml  |  75 +++++
+ drivers/fpga/Kconfig                          |   7 +
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/ecp5-spi.c                       | 275 ++++++++++++++++++
+ 4 files changed, 358 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
+ create mode 100644 drivers/fpga/ecp5-spi.c
+
 -- 
-2.17.1
+2.37.1
+
 
