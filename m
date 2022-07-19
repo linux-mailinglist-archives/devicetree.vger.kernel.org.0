@@ -2,256 +2,543 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A0FB57A12B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 16:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A39357A169
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 16:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239028AbiGSOUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 10:20:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33778 "EHLO
+        id S237867AbiGSO0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 10:26:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239903AbiGSOTf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 10:19:35 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C15D546DB9;
-        Tue, 19 Jul 2022 06:58:49 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id y11so24930319lfs.6;
-        Tue, 19 Jul 2022 06:58:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+2aJAl0rRfbzSKkiIftk8ldOFxfh5EXLt3BAbAT41JQ=;
-        b=B/ONy45MnsJccYM7mg0CgiUa0J3wDHVOzPTDwYrw2gXv+iVdO+kVOQJMPy9qv67HFd
-         376UIbXeWBXxc1ev5+VAHnlltdzq7ICMlAIz7aK2UDeAVzi+t80CFTYtmY9B0TFovHq+
-         WS9nbWCeAuT7Y13+9jbkp/jwySDzOsaD0qTN7FOZ/bfylRLxb9g/wCnCzEUeoS+8rgpo
-         AzFpobpVUKsRSHPnQmfcIns79xY/XnXa8ZnKmkHbTgB8A9EzNVVHWLYOe/iiBh8ecw/e
-         eqUznLouomgZmwUwR0TrEDmW50HnYmveaqrPSB82Gh/xuAQxrKgzZ0T7W1ZHHn/yxFsT
-         RS6Q==
+        with ESMTP id S237627AbiGSO0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 10:26:05 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85AE0638E;
+        Tue, 19 Jul 2022 07:11:05 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id r70so10719692iod.10;
+        Tue, 19 Jul 2022 07:11:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+2aJAl0rRfbzSKkiIftk8ldOFxfh5EXLt3BAbAT41JQ=;
-        b=4m4Dc7JFCDPJy12u5eUctOo6SoXh9Kad6gLpCfMeVd/JAW/Rwm7HkzCFDMaJ0pDi5x
-         XHWkHywlJiOIspNUrJaysy/N/a5zy3GNFGh2LXdrF7//GJ8SJu83R71j4qLPYxM3Lwen
-         QOUCo7nVY4F7ZQMURlcPUnJlloHGnKsumgTH3c3Ijat6SHWMPfJAnwOVG0DmzNs6hOmh
-         1ROkx9pUtST0dY3SegTcO1b/8VMAeXJd9RxHO3BGcAkmQ34UtYdHG/3k83QUaKsLARWN
-         /TtS+3lT6ni1hxjKZuaYVarOc0glK+OY8asXw/xGztCI32Y38BupYtK6GZlsuz/OE2Xa
-         YAwg==
-X-Gm-Message-State: AJIora9sEXqniVM688B1hNMAlxPz3+7y8M6+tjfBS7+bZ5jHrdoX/YDe
-        AcMJYfk9ALIJ/BDR78hGK30=
-X-Google-Smtp-Source: AGRyM1ur8+BWTKBaz162gwI4bD871JbUmpMCZkEqrK1qZeLrDpPwNz+LSFkAjJubVIsH51V2wxmGlQ==
-X-Received: by 2002:a05:6512:10d1:b0:489:feee:3b80 with SMTP id k17-20020a05651210d100b00489feee3b80mr17413587lfg.212.1658239127946;
-        Tue, 19 Jul 2022 06:58:47 -0700 (PDT)
-Received: from [192.168.3.10] ([194.39.226.133])
-        by smtp.gmail.com with ESMTPSA id h11-20020ac25d6b000000b00489d16820ecsm3232351lft.165.2022.07.19.06.58.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 06:58:47 -0700 (PDT)
-Message-ID: <295e1809-f6f2-ca31-5c36-be133ffdc93b@gmail.com>
-Date:   Tue, 19 Jul 2022 16:58:45 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v5 4/5] mfd: sm5703: Add support for SM5703 MFD
-Content-Language: en-US
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        devicetree@vger.kernel.org
-References: <20220423085319.483524-1-markuss.broks@gmail.com>
- <20220423085319.483524-5-markuss.broks@gmail.com>
- <Yqj+aUNLC00Tcu49@google.com>
- <5498bf71-66a5-957e-ed3d-13e68b982562@gmail.com>
- <YtUXFTx1+vSrXx70@google.com>
-From:   Markuss Broks <markuss.broks@gmail.com>
-In-Reply-To: <YtUXFTx1+vSrXx70@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=pKy/R5KX6sCJNbKzy3wq4JWIbR/nHdBCv+veD6KOwdM=;
+        b=unW0Jbkk1Rl0lNzcA9JSS4hpBpsUIdytVUROg0M6OwiPtfax6dygFACr8ZiOm4uo+U
+         L7Jfak65rr+HiTyrYZZYtLYzovmwv2U2Ie2RezKnuYr69QAEC7RNkHcnt31MxJwfvr/P
+         D/tklSkUZZouxyzs92/pqK74H0gMXEk+BzZLCqCjFYUkbrsu6t2wLLvytBzLMLTGW65I
+         6LI7gzG7bU4y7xlv7dQq8AjAtm1lGQPPa+qH7PdZSqes40ju/PJYe47UEZiA4IvxkWz4
+         dTh3amoS5jNnEqIoWjSbCkWAHMu7FXt/4xqyNdM8skIXwCOxNR8hhfo0PGBWrEbNZYb2
+         XbSw==
+X-Gm-Message-State: AJIora/UhQlkIWhAIXVimxNNYlvg1XOWwaAfj37JvctJrRx02Fvl05pM
+        RmZ/CF3wT9MLUvgm0G7IqA==
+X-Google-Smtp-Source: AGRyM1v2k5zcleTp/PdHRF2FCPOoujIZ/b0Y3udaUA47m0tQb/SlWPxYzTi0Olr3WDj4v/gNgR8Cxg==
+X-Received: by 2002:a05:6602:27c6:b0:657:7e7a:11f3 with SMTP id l6-20020a05660227c600b006577e7a11f3mr15477902ios.40.1658239864590;
+        Tue, 19 Jul 2022 07:11:04 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id e44-20020a02212c000000b0033f25da5228sm6771991jaa.93.2022.07.19.07.11.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jul 2022 07:11:04 -0700 (PDT)
+Received: (nullmailer pid 1153348 invoked by uid 1000);
+        Tue, 19 Jul 2022 14:11:00 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, lorenzo.pieralisi@arm.com, kishon@ti.com,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com, kw@linux.com, robh+dt@kernel.org,
+        bhelgaas@google.com, shawnguo@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        frank.li@nxp.com, linux-pci@vger.kernel.org
+In-Reply-To: <1658223939-25478-2-git-send-email-hongxing.zhu@nxp.com>
+References: <1658223939-25478-1-git-send-email-hongxing.zhu@nxp.com> <1658223939-25478-2-git-send-email-hongxing.zhu@nxp.com>
+Subject: Re: [PATCH v1 01/10] dt-bindings: imx6q-pcie: Add iMX8MM PCIe EP mode compatible string
+Date:   Tue, 19 Jul 2022 08:11:00 -0600
+Message-Id: <1658239860.449467.1153347.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+On Tue, 19 Jul 2022 17:45:30 +0800, Richard Zhu wrote:
+> Add i.MX8MM PCIe endpoint mode compatible string.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-On 7/18/22 11:17, Lee Jones wrote:
-> On Fri, 15 Jul 2022, Markuss Broks wrote:
->
->> Hi Lee,
->>
->> Sorry to bother you again, but I've got additional questions while I was
->> preparing the next version of the series:
->>
->> On 6/15/22 00:32, Lee Jones wrote:
->>> On Sat, 23 Apr 2022, Markuss Broks wrote:
->>>
->>>> Silicon Mitus SM5703 is a multi-function device, meant to be
->>> Please avoid using the term MFD.
->>>
->>> How is the device described in the data-sheet?
->>>
->>> What do you mean by "meant to be"?
->>>
->>>> used in mobile devices. It has several modules: LDO, BUCK regulators,
->>> Modules or functions?
->>>
->>>> charger circuit, flash LED driver, a fuel gauge for monitoring the battery
->>>> and a MUIC USB switcher. The MUIC and fuel gauge parts are separate in that
->>>> they use separate i2c lines to communicate with the device, while charger
->>> "I2C"
->>>
->>>> circuit, LED driver and regulators are on the main i2c line the device is
->>>> controlled with.
->>>>
->>>> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
->>>> ---
->>>>    MAINTAINERS                |   8 +++
->>>>    drivers/mfd/Kconfig        |  13 +++++
->>>>    drivers/mfd/Makefile       |   1 +
->>>>    drivers/mfd/sm5703.c       |  78 +++++++++++++++++++++++++++
->>>>    include/linux/mfd/sm5703.h | 105 +++++++++++++++++++++++++++++++++++++
->>>>    5 files changed, 205 insertions(+)
->>>>    create mode 100644 drivers/mfd/sm5703.c
->>>>    create mode 100644 include/linux/mfd/sm5703.h
->>>>
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index 6157e706ed02..6125ed1a3be4 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -18172,6 +18172,14 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu.git dev
->>>>    F:	include/linux/srcu*.h
->>>>    F:	kernel/rcu/srcu*.c
->>>> +SM5703 MFD DRIVER
->>>> +M:	Markuss Broks <markuss.broks@gmail.com>
->>>> +S:	Maintained
->>>> +F:	Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
->>>> +F:	Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
->>>> +F:	drivers/mfd/sm5703.c
->>>> +F:	drivers/regulator/sm5703-regulator.c
->>>> +
->>>>    SMACK SECURITY MODULE
->>>>    M:	Casey Schaufler <casey@schaufler-ca.com>
->>>>    L:	linux-security-module@vger.kernel.org
->>>> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
->>>> index 3b59456f5545..c13a99ceae99 100644
->>>> --- a/drivers/mfd/Kconfig
->>>> +++ b/drivers/mfd/Kconfig
->>>> @@ -1237,6 +1237,19 @@ config MFD_SM501
->>>>    	  interface. The device may be connected by PCI or local bus with
->>>>    	  varying functions enabled.
->>>> +config MFD_SM5703
->>>> +	tristate "Silicon Mitus SM5703 MFD"
->>>> +	depends on I2C
->>>> +	depends on OF
->>>> +	select MFD_CORE
->>>> +	select REGMAP_I2C
->>>> +	help
->>>> +	  This is the core driver for the Silicon Mitus SM5703 multi-function
->>> Please drop the MFD term, as above.
->>>
->>>> +	  device. This device is meant to be used in phones and it has numerous
->>> "meant to be"?
->>>
->>>> +	  modules, including LED controller, regulators, fuel gauge, MUIC and
->>> Either "an LED controller" or "LED controllers"
->>>
->>> Same with "charger circuit" below.
->>>
->>>> +	  charger circuit. It also support muxing a serial interface over USB
->>> "supports"
->>>
->>> What kind of serial?
->>>
->>>> +	  data lines.
->>>> +
->>>>    config MFD_SM501_GPIO
->>>>    	bool "Export GPIO via GPIO layer"
->>>>    	depends on MFD_SM501 && GPIOLIB
->>>> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
->>>> index 858cacf659d6..ca8b86736a36 100644
->>>> --- a/drivers/mfd/Makefile
->>>> +++ b/drivers/mfd/Makefile
->>>> @@ -275,3 +275,4 @@ rsmu-i2c-objs			:= rsmu_core.o rsmu_i2c.o
->>>>    rsmu-spi-objs			:= rsmu_core.o rsmu_spi.o
->>>>    obj-$(CONFIG_MFD_RSMU_I2C)	+= rsmu-i2c.o
->>>>    obj-$(CONFIG_MFD_RSMU_SPI)	+= rsmu-spi.o
->>>> +obj-$(CONFIG_MFD_SM5703)	+= sm5703.o
->>>> diff --git a/drivers/mfd/sm5703.c b/drivers/mfd/sm5703.c
->>>> new file mode 100644
->>>> index 000000000000..7f9838149051
->>>> --- /dev/null
->>>> +++ b/drivers/mfd/sm5703.c
->>>> @@ -0,0 +1,78 @@
->>>> +// SPDX-License-Identifier: GPL-2.0-only
->>>> +
->>>> +#include <linux/err.h>
->>>> +#include <linux/delay.h>
->>>> +#include <linux/gpio/consumer.h>
->>>> +#include <linux/i2c.h>
->>>> +#include <linux/mfd/core.h>
->>>> +#include <linux/mfd/sm5703.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/of_device.h>
->>>> +#include <linux/regmap.h>
->>>> +
->>>> +static const struct mfd_cell sm5703_devs[] = {
->>>> +	{ .name = "sm5703-regulator", },
->>>> +};
->>> Where are the rest of the child drivers?
->> Should those devices still be present even though there's no driver for them
->> (yet) ? I have a WIP version of driver for almost every function, but I
->> currently lack time to get them done.
-> Without them the driver-set is useless, no?
->
-> We try to refrain from applying dead code.
->
-> A lot of it has a tendency to stay that way.
-Well, in my opinion, having just the regulator driver is already useful 
-enough: my board (Samsung Galaxy J5 (2015) ) uses one of LDO outputs for 
-powering the touchscreen. Touchscreen is kind of vital functionality for 
-a phone so I decided to upstream parts that are necessary for it first 
-and finish up other stuff later. It's not the only board that uses 
-SM5703's regulators for supplying all different kinds of hardware, either.
->
-> [...]
->
->>>> +++ b/include/linux/mfd/sm5703.h
->>>> @@ -0,0 +1,105 @@
->>>> +/* SPDX-License-Identifier: GPL-2.0-only */
->>>> +
->>>> +#ifndef _SM5703_H
->>>> +#define _SM5703_H
->>>> +
->>>> +struct sm5703_dev {
->>>> +	struct device *dev;
->>>> +	struct regmap *regmap;
->>>> +	struct gpio_desc *reset_gpio;
->>>> +};
->>>> +
->>>> +// Regulator-related defines
->>> No C++ style comments.
->>>
->>>> +#define SM5703_REG_LDO1				0x1A
->>> I'd drop the REG parts from these.
->> I have no issues with that, however the already upstreamed sm5703-regulator
->> driver uses those defines. If I change the define name, how should I make
->> changes in that driver, would it be reasonable to send an additional patch
->> together with the new MFD series?
-> It would.  You could also keep them in for now.
->
-> They're not a major blocker.
->
-- Markuss
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+pcie@1ffc000: Unevaluated properties are not allowed ('disable-gpio' was unexpected)
+	arch/arm/boot/dts/imx6dl-emcon-avari.dtb
+	arch/arm/boot/dts/imx6q-emcon-avari.dtb
+
+pcie@33800000: clock-names:1: 'pcie_bus' was expected
+	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+
+pcie@33800000: clock-names:2: 'pcie_phy' was expected
+	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
+
+pcie@33800000: clock-names:3: 'pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie' was expected
+	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+
+pcie@33800000: power-domains: [[100]] is too short
+	arch/arm/boot/dts/imx7d-colibri-aster.dtb
+	arch/arm/boot/dts/imx7d-colibri-emmc-aster.dtb
+
+pcie@33800000: power-domains: [[102]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+
+pcie@33800000: power-domains: [[103]] is too short
+	arch/arm/boot/dts/imx7d-colibri-emmc-eval-v3.dtb
+	arch/arm/boot/dts/imx7d-colibri-eval-v3.dtb
+
+pcie@33800000: power-domains: [[106]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
+
+pcie@33800000: power-domains: [[108]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
+
+pcie@33800000: power-domains: [[124]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb
+
+pcie@33800000: power-domains: [[125]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dtb
+
+pcie@33800000: power-domains: [[55]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+
+pcie@33800000: power-domains: [[59]] is too short
+	arch/arm/boot/dts/imx7d-cl-som-imx7.dtb
+
+pcie@33800000: power-domains: [[61]] is too short
+	arch/arm/boot/dts/imx7d-sbc-imx7.dtb
+
+pcie@33800000: power-domains: [[63]] is too short
+	arch/arm/boot/dts/imx7d-zii-rmu2.dtb
+
+pcie@33800000: power-domains: [[64]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
+	arch/arm/boot/dts/imx7d-remarkable2.dtb
+
+pcie@33800000: power-domains: [[66]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
+
+pcie@33800000: power-domains: [[68]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
+	arch/arm/boot/dts/imx7d-meerkat96.dtb
+
+pcie@33800000: power-domains: [[69]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
+
+pcie@33800000: power-domains: [[70]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-phanbell.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
+
+pcie@33800000: power-domains: [[72]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
+
+pcie@33800000: power-domains: [[73]] is too short
+	arch/arm/boot/dts/imx7d-flex-concentrator.dtb
+	arch/arm/boot/dts/imx7d-flex-concentrator-mfg.dtb
+	arch/arm/boot/dts/imx7d-smegw01.dtb
+
+pcie@33800000: power-domains: [[76]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
+
+pcie@33800000: power-domains: [[78]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
+
+pcie@33800000: power-domains: [[79]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dtb
+
+pcie@33800000: power-domains: [[80]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+
+pcie@33800000: power-domains: [[81]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
+
+pcie@33800000: power-domains: [[82]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb
+
+pcie@33800000: power-domains: [[84]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+
+pcie@33800000: power-domains: [[86]] is too short
+	arch/arm/boot/dts/imx7d-nitrogen7.dtb
+	arch/arm/boot/dts/imx7d-pico-nymph.dtb
+
+pcie@33800000: power-domains: [[87]] is too short
+	arch/arm/boot/dts/imx7d-sdb-reva.dtb
+
+pcie@33800000: power-domains: [[88]] is too short
+	arch/arm/boot/dts/imx7d-pico-dwarf.dtb
+	arch/arm/boot/dts/imx7d-pico-hobbit.dtb
+	arch/arm/boot/dts/imx7d-sdb.dtb
+	arch/arm/boot/dts/imx7d-sdb-sht11.dtb
+
+pcie@33800000: power-domains: [[89]] is too short
+	arch/arm/boot/dts/imx7d-pico-pi.dtb
+	arch/arm/boot/dts/imx7d-zii-rpu2.dtb
+
+pcie@33800000: power-domains: [[92]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+
+pcie@33800000: power-domains: [[96]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
+	arch/arm/boot/dts/imx7d-mba7.dtb
+
+pcie@33800000: power-domains: [[97]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb
+
+pcie@33800000: power-domains: [[98]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+
+pcie@33800000: reset-names:0: 'pciephy' was expected
+	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
+
+pcie@33800000: reset-names:1: 'apps' was expected
+	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
+
+pcie@33800000: reset-names: ['apps', 'turnoff'] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
+
+pcie@33800000: resets: [[25, 28], [25, 29]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+
+pcie@33800000: resets: [[26, 28], [26, 29]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
+
+pcie@33800000: resets: [[27, 28], [27, 29]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
+
+pcie@33800000: resets: [[28, 28], [28, 29]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
+
+pcie@33800000: resets: [[29, 28], [29, 29]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dtb
+
+pcie@33800000: resets: [[31, 28], [31, 29]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+
+pcie@33800000: resets: [[33, 28], [33, 29]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
+
+pcie@33800000: resets: [[39, 28], [39, 29]] is too short
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
+
+pcie@33800000: Unevaluated properties are not allowed ('clock-names', 'epdev_on-supply', 'hard-wired', 'power-domains' were unexpected)
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+
+pcie@33800000: Unevaluated properties are not allowed ('clock-names', 'power-domains', 'reset-names', 'resets' were unexpected)
+	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
+
+pcie@33800000: Unevaluated properties are not allowed ('clock-names', 'power-domains' were unexpected)
+	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+
+pcie@33800000: Unevaluated properties are not allowed ('power-domains', 'reset-names', 'resets' were unexpected)
+	arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dtb
+	arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
+
+pcie@33800000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+	arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-phanbell.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb
+	arch/arm/boot/dts/imx7d-cl-som-imx7.dtb
+	arch/arm/boot/dts/imx7d-colibri-aster.dtb
+	arch/arm/boot/dts/imx7d-colibri-emmc-aster.dtb
+	arch/arm/boot/dts/imx7d-colibri-emmc-eval-v3.dtb
+	arch/arm/boot/dts/imx7d-colibri-eval-v3.dtb
+	arch/arm/boot/dts/imx7d-flex-concentrator.dtb
+	arch/arm/boot/dts/imx7d-flex-concentrator-mfg.dtb
+	arch/arm/boot/dts/imx7d-mba7.dtb
+	arch/arm/boot/dts/imx7d-meerkat96.dtb
+	arch/arm/boot/dts/imx7d-nitrogen7.dtb
+	arch/arm/boot/dts/imx7d-pico-dwarf.dtb
+	arch/arm/boot/dts/imx7d-pico-hobbit.dtb
+	arch/arm/boot/dts/imx7d-pico-nymph.dtb
+	arch/arm/boot/dts/imx7d-pico-pi.dtb
+	arch/arm/boot/dts/imx7d-remarkable2.dtb
+	arch/arm/boot/dts/imx7d-sbc-imx7.dtb
+	arch/arm/boot/dts/imx7d-sdb.dtb
+	arch/arm/boot/dts/imx7d-sdb-reva.dtb
+	arch/arm/boot/dts/imx7d-sdb-sht11.dtb
+	arch/arm/boot/dts/imx7d-smegw01.dtb
+	arch/arm/boot/dts/imx7d-zii-rmu2.dtb
+	arch/arm/boot/dts/imx7d-zii-rpu2.dtb
+
+pcie@33c00000: 'bus-range' is a required property
+	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+
+pcie@33c00000: clock-names:1: 'pcie_bus' was expected
+	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+
+pcie@33c00000: clock-names:3: 'pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie' was expected
+	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+
+pcie@33c00000: power-domains: [[102]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+
+pcie@33c00000: power-domains: [[124]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb
+
+pcie@33c00000: power-domains: [[125]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dtb
+
+pcie@33c00000: power-domains: [[70]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-phanbell.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
+
+pcie@33c00000: power-domains: [[78]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
+
+pcie@33c00000: power-domains: [[79]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dtb
+
+pcie@33c00000: power-domains: [[80]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+
+pcie@33c00000: power-domains: [[82]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb
+
+pcie@33c00000: power-domains: [[92]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+
+pcie@33c00000: power-domains: [[97]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb
+
+pcie@33c00000: power-domains: [[98]] is too short
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+
+pcie@33c00000: Unevaluated properties are not allowed ('clock-names', 'epdev_on-supply', 'hard-wired', 'power-domains' were unexpected)
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+
+pcie@33c00000: Unevaluated properties are not allowed ('clock-names', 'power-domains' were unexpected)
+	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+
+pcie@33c00000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+	arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-phanbell.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb
+
+pcie@8ffc000: clock-names:3: 'pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie' was expected
+	arch/arm/boot/dts/imx6sx-nitrogen6sx.dtb
+	arch/arm/boot/dts/imx6sx-sabreauto.dtb
+	arch/arm/boot/dts/imx6sx-sdb.dtb
+	arch/arm/boot/dts/imx6sx-sdb-mqs.dtb
+	arch/arm/boot/dts/imx6sx-sdb-reva.dtb
+	arch/arm/boot/dts/imx6sx-sdb-sai.dtb
+	arch/arm/boot/dts/imx6sx-softing-vining-2000.dtb
+	arch/arm/boot/dts/imx6sx-udoo-neo-basic.dtb
+	arch/arm/boot/dts/imx6sx-udoo-neo-extended.dtb
+	arch/arm/boot/dts/imx6sx-udoo-neo-full.dtb
+
+pcie@8ffc000: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	arch/arm/boot/dts/imx6sx-nitrogen6sx.dtb
+	arch/arm/boot/dts/imx6sx-sabreauto.dtb
+	arch/arm/boot/dts/imx6sx-sdb.dtb
+	arch/arm/boot/dts/imx6sx-sdb-mqs.dtb
+	arch/arm/boot/dts/imx6sx-sdb-reva.dtb
+	arch/arm/boot/dts/imx6sx-sdb-sai.dtb
+	arch/arm/boot/dts/imx6sx-softing-vining-2000.dtb
+	arch/arm/boot/dts/imx6sx-udoo-neo-basic.dtb
+	arch/arm/boot/dts/imx6sx-udoo-neo-extended.dtb
+	arch/arm/boot/dts/imx6sx-udoo-neo-full.dtb
+
