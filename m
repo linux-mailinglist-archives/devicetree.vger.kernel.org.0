@@ -2,186 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B359957951A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:17:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1480C579524
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:20:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236211AbiGSIR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 04:17:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32988 "EHLO
+        id S232925AbiGSIUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 04:20:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234967AbiGSIR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:17:26 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F2724F18;
-        Tue, 19 Jul 2022 01:17:25 -0700 (PDT)
-X-UUID: d21d494d581d44cd925db6dcf01ec486-20220719
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:4fd9f2e5-67de-4d5d-8288-37defb56e580,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:768fae64-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: d21d494d581d44cd925db6dcf01ec486-20220719
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1610973080; Tue, 19 Jul 2022 16:17:17 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 19 Jul 2022 16:17:16 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Tue, 19 Jul 2022 16:17:16 +0800
-Message-ID: <c4480c9ea0822ae693ff6a501c073c365e983b83.camel@mediatek.com>
-Subject: Re: [PATCH v2 03/19] dt-bindings: power: mediatek: Add bindings for
- MediaTek SCPSYS
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-CC:     <iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 19 Jul 2022 16:17:16 +0800
-In-Reply-To: <46df4ad5-5102-b5fe-95b7-5b157fb28f01@linaro.org>
-References: <20220714122837.20094-1-tinghan.shen@mediatek.com>
-         <20220714122837.20094-4-tinghan.shen@mediatek.com>
-         <46df4ad5-5102-b5fe-95b7-5b157fb28f01@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230483AbiGSIUx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:20:53 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4CA2AE3D
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:20:51 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id bu1so20419772wrb.9
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:20:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xd0Nc+zNCPBmUNJaS2OhYDDTwIO4yuqtAZex5tQXAwY=;
+        b=KKTnV56L2I48XJSkwd71YzfFHWnJ6hVS7EBPHqF7YAFYqcpiMOZAdj7w4WkyPSVlhM
+         PVOdyHwoltehxoPYDPltF8QL2MpdK1M8V8GoLAWsJd6K8QTwtftTjpCKfHyCQi74aE3u
+         9E148AQz5DJmXBhRwyTFUmmek6rKToMgbu0yA1zs6BvYlEe+t3KE43G3dMQc2oPtx8nq
+         +5yG81pEmqTyg17UU0vND6WRzQNghnQiliz1+2+fhinspiE8KW4eTocRjEJ8ze7ppgQc
+         UeemB2I2f6bnsznb1t5K5s16J5Tt4ZbOI9BQK/VV0dEADnYWdBeh3jB4NEuZT3RUlGK8
+         qYjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xd0Nc+zNCPBmUNJaS2OhYDDTwIO4yuqtAZex5tQXAwY=;
+        b=SHdQbKPsvkpARHU9FwP9cvl8ldQvm2uNSQmffSiDKJI+T+QKoVziK38jbHSraEF2B3
+         XncVWux4bcFjP59mOE9h35xdM/Uz6ARqP967UaHZ0UJXcFJ8a8kARQwmRHu9EnFCPSI6
+         hkQ9GCfSqTzIIXb/Fk2kOXFONQgs1GkkHetplQl1mj/VUiiuV6kO6LfPiAtsuF3ls6PN
+         DPxgu/7YJzXr0LZ+Bhuvt6CKLIBERUSlco5PiQ+RCFW9q28IJdWydGKJR1jTjdPDIV4I
+         o1wqCmH2zBjZczXmLASwK49CQGQAdmc0C7BqxoZoTRv8ZA3c3FTE6NJ+dQtCIUT2vIub
+         GxGA==
+X-Gm-Message-State: AJIora+cDLYpxTvXKWcp4f/bL5BAkTR5n96b7hL+9czKmvq5szM5G987
+        WhoZkDJIRCIy/+MeFd6BjlkFRw==
+X-Google-Smtp-Source: AGRyM1uRPrVhXybr+/OpVvs2JrvOxXfHp6ae4STNmjP1jNiXbtdo4HafHXzI9Q6EnMnSbvPw6pDYhQ==
+X-Received: by 2002:a05:6000:156b:b0:21d:9daf:3cdb with SMTP id 11-20020a056000156b00b0021d9daf3cdbmr25978919wrz.492.1658218850304;
+        Tue, 19 Jul 2022 01:20:50 -0700 (PDT)
+Received: from [10.35.4.171] ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id h24-20020adfa4d8000000b0021d83eed0e9sm12490145wrb.30.2022.07.19.01.20.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Jul 2022 01:20:49 -0700 (PDT)
+Message-ID: <b318df5a-bf11-bfb8-aa7a-59d719081f8b@sifive.com>
+Date:   Tue, 19 Jul 2022 09:20:48 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 7/7] pwm: dwc: add snps,pwm-number to limit pwm count
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>
+References: <20220712100113.569042-1-ben.dooks@sifive.com>
+ <20220712100113.569042-8-ben.dooks@sifive.com>
+ <20220718200828.GA3453680-robh@kernel.org>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <20220718200828.GA3453680-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Fri, 2022-07-15 at 09:57 +0200, Krzysztof Kozlowski wrote:
-> On 14/07/2022 14:28, Tinghan Shen wrote:
-> > The System Control Processor System (SCPSYS) has several power
-> > management related tasks in the system. Add the bindings for it.
-> > 
-> > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> > ---
-> >  .../bindings/mfd/mediatek,scpsys.yaml         | 62 +++++++++++++++++++
-> >  1 file changed, 62 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
-> > b/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
-> > new file mode 100644
-> > index 000000000000..a8b9220f2f27
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
-> > @@ -0,0 +1,62 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> > https://urldefense.com/v3/__http://devicetree.org/schemas/mfd/mediatek,scpsys.yaml*__;Iw!!CTRNKA9wMg0ARbw!1TUl-dhD0p8qh3rYVk8RtfoKEP88jg8OADMd19qP6siBCQHhFnHWCgsyUqiETyBzxw8$
-> >  
-> > +$schema: 
-> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!1TUl-dhD0p8qh3rYVk8RtfoKEP88jg8OADMd19qP6siBCQHhFnHWCgsyUqiEJQmakAI$
-> >  
-> > +
-> > +title: MediaTek System Control Processor System
-> > +
-> > +maintainers:
-> > +  - MandyJH Liu <mandyjh.liu@mediatek.com>
-> > +
-> > +description:
-> > +  MediaTek System Control Processor System (SCPSYS) has several
-> > +  power management tasks. The tasks include MTCMOS power
-> > +  domain control, thermal measurement, DVFS, etc.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: mediatek,scpsys
-> > +      - const: syscon
-> > +      - const: simple-mfd
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  power-controller:
-> > +    $ref: /schemas/power/mediatek,power-controller.yaml#
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/mt8195-clk.h>
-> > +    #include <dt-bindings/power/mt8195-power.h>
-> > +
-> > +    syscon@10006000 {
-> > +        compatible = "mediatek,scpsys", "syscon", "simple-mfd";
+On 18/07/2022 21:08, Rob Herring wrote:
+> On Tue, Jul 12, 2022 at 11:01:13AM +0100, Ben Dooks wrote:
+>> Add snps,pwm-number property to indicate if the block does not have
+>> all 8 of the PWM blocks.
+>>
+>> Not sure if this should be a general PWM property consider optional
+>> for all PWM types, so have added a specific one here (there is only
+>> one other controller with a property for PWM count at the moment)
+>>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>> ---
+>>   Documentation/devicetree/bindings/pwm/pwm-synposys.yaml | 5 +++++
+>>   drivers/pwm/pwm-dwc.c                                   | 8 ++++++++
+>>   2 files changed, 13 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml b/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
+>> index 38ac0da75272..15bdf764b46a 100644
+>> --- a/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
+>> +++ b/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
+>> @@ -30,11 +30,16 @@ properties:
+>>         - items:
+>>           - const: snps,pwm
+>>   
+>> +  snps,pwm-number:
+>> +    $ref: '/schemas/types.yaml#/definitions/uint32'
+>> +    description: u32 value representing the number of PWM devices
 > 
-> This should be a SoC-specific compatible (and filename).
+> Why do we need to know this? Are you going to have a consumer to a
+> non-existent PWM? If you do need to know how many, it should be implied
+> by the compatible string.
 
-Ok. I think that you mean "mediatek,mt8195-scpsys".
-I'll update it in next version.
-
-> 
-> > +        reg = <0x10006000 0x100>;
-> > +
-> > +        spm: power-controller {
-> 
-> I think you created before less-portable, quite constrained bindings for
-> power controller. You now require that mt8195-power-controller is always
-> a child of some parent device which will share its regmap/MMIO with it.
-> 
-> And what if in your next block there is no scpsys block and power
-> controller is the scpsys alone? It's not possible with your bindings.
-
-Do you mean a power controller node that looks like this?
-
-scpsys: power-controller@10006000 {
-	compatible = "mediatek,mt6797-scpsys";
-	#power-domain-cells = <1>;
-
-	// ...
-};
-
-> 
-> Wouldn't it be better to assign some address space to the
-> power-controller (now as an offset from scpsys)?
-
-Is this mean adding an offset after the node name?
-
-spm: power-controller@0 {
-                     ^^
-
-> 
-> This is just wondering (Rockchip did the same...) and not a blocker as
-> power-controller bindings are done.
-> 
-> Best regards,
-> Krzysztof
+For this IP block it is a build time option for 1..8 timers
+so I thought it best we don't register non-existant timers
 
 
-Thanks,
-TingHan
+The system we are working on only has 1 PWM timer per block.
 
+-- 
+Ben
 
