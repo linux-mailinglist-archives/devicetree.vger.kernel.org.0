@@ -2,241 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39723579578
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1167E57958C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:50:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235329AbiGSIpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 04:45:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51918 "EHLO
+        id S237100AbiGSIuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 04:50:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237096AbiGSIpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:45:25 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FC2237189
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:45:23 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id o12so16565705ljc.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:45:23 -0700 (PDT)
+        with ESMTP id S237110AbiGSIue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:50:34 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 219BBDFCF
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:50:32 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id e28so23559458lfj.4
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:50:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LHAH2NUYMzb+gHfcEBuvD4gwfDzYc08nLpdMrmdwOds=;
-        b=Hf9qT2AJbfpICrSD29yZqmB+mj74t94EVQm/cDU27MwXePgAv60Zqe/IGKC6QfaHqX
-         oPGp6p7bAzCk4E/G1lVcQd6453VNPIKBNsqjEZZq/bo3SzpoiX1fxUOzeFZ/PH8otp0u
-         fpt/WgEL4QCLjfcYItFky4eNh6+nv35duK4nHl1hTqxWtKJxZWM9GEpKtMXELx9z78FM
-         C1GQ3bcMHwmSv8UOdrEq99obVrhfqtYf61BU+tNzMGRsH6g+xYebpdsrZa1YVpwTBKoW
-         KHoYvup0QCKtBKXnfOQoNRrm3mmDAzoYNuC6SURvQYbeLhxCDLGd8Y6bXICw+jHnL727
-         aljg==
+        bh=3pxJNE6gYc8cb6d4rkA2eV3Aswi0lfTlAlrCacdvP2w=;
+        b=ijFr0es238AtzUmBFcdhNq9P7S2bQTfENXLr/NSqt5rREGLk235GS2OEVXk806dVZu
+         LZhIf326MJ344Gx/3K/y1+Q6E/BWtau/4SA8q6hRckQA2KZEcTBciFBoUT+zTJN3gZaw
+         bFBVZKNsc1osyAVPJRoYq8QtRgh72fYlykSBxstzpzgPawA/NqvgBZs+xrpGXLRWJhjT
+         9SD45XZSuqB7Vs8eD2J9dcHuuZZpQhFfY+3HxlEDezCy6d74cAfqv7KzmJjpiPVDUPtG
+         V1426Zg579DI0aFdtzg9S6F1fJK5ZFHyrAIZvjtii2W5Ch4dtUqAJY9efj+r6HtPk7BL
+         k65Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=LHAH2NUYMzb+gHfcEBuvD4gwfDzYc08nLpdMrmdwOds=;
-        b=xKuM3oH8dmRsQSSRyQylIQCxqWLKv6d3Ea49Ips2l/tg4lVQSaDn3adBO0fSdW4jHT
-         oaqC2sD37BwX1LwRbDDZ3BQS6qHvy4ABK6czv6YoFICugg6z+00Skb9GcISUQrvpQE70
-         gRfIUFH/5WtWCUE68hEjAfLfj3Hakvc1az1/yZU6JGrDVYU14lTbe1Kef2tgNFiAmtOw
-         yxnj5hz9GnAtddYkO3m7qhubSO9+340FmvESspxs3ofs+41jE1Wkh955F2NClKYk3ca4
-         ZTUZpMGXauUFiALICJN/J/x3Q9QfLUEIIWJfeUhN9iV1XcB5Rs0aSnJtb9M/Y0SufhFB
-         75tw==
-X-Gm-Message-State: AJIora/Lpu861EBMPKgaoWu7aSOLMGqE8TQu+mnlDn8Uy+9jgb5vObB+
-        2257YwC6rBPe2yt8hdgQ8MX7mA==
-X-Google-Smtp-Source: AGRyM1vKeOohI6tFEuXQpGxF2ieOs2+QyZ+WNG0CgTqglEypV3aVfrKO6JATeAaSINVOUSbnRvz2qA==
-X-Received: by 2002:a2e:bc19:0:b0:25d:9c9e:d13a with SMTP id b25-20020a2ebc19000000b0025d9c9ed13amr10597512ljf.91.1658220321753;
-        Tue, 19 Jul 2022 01:45:21 -0700 (PDT)
+        bh=3pxJNE6gYc8cb6d4rkA2eV3Aswi0lfTlAlrCacdvP2w=;
+        b=LFMiZQzkl0+CZzzWZqtDPLA6K0+gcq3Mv1rKeHjaOtnCuOdGf9QiAfzCj+JFaqP9mh
+         N2saylOcDyC78JbjSJNEDV7UtPrhrjwNjm14NYlv/AilP+b65/debYeclIvP8exA1e4U
+         G6RVS9JRjL4Lcewyat8vXYL3FGgR1nfYOoowjhaJAA5KYQPNQPQrXvtewa1j0XqrP8Q3
+         AXsskN8l45JDc4Gz5Vn+cnIaTqhkWFeIzZb75OoZkM3I9ju01qvE8kmF8meL34jdy0xc
+         4LevzMckekqy6r4d6VlmterIz7We0Q05njO9IulmOA6IC/fcW0ro87luDCH1+V7Yz6AY
+         vA2Q==
+X-Gm-Message-State: AJIora9O85LzKJdz3Pn+dgPquGAhS2KytoXM4ZnIsZLGtzlqoKj7nrIK
+        rVAxRz8YRqkfFw0kmN4VN1GmAQ==
+X-Google-Smtp-Source: AGRyM1us868YPpB392tMn7H3KK4A7rfaBwjaayrkHiss5VCTlo/g5OiMzIp0NjvcgAuBi9wC02cPVg==
+X-Received: by 2002:a05:6512:1595:b0:489:da32:ec68 with SMTP id bp21-20020a056512159500b00489da32ec68mr16232700lfb.573.1658220631316;
+        Tue, 19 Jul 2022 01:50:31 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id d42-20020a0565123d2a00b004795d64f37dsm3081322lfv.105.2022.07.19.01.45.20
+        by smtp.gmail.com with ESMTPSA id e22-20020a195016000000b00489de206812sm3061580lfb.151.2022.07.19.01.50.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 01:45:21 -0700 (PDT)
-Message-ID: <f988df59-d56f-51ae-dc64-a09db305ce1c@linaro.org>
-Date:   Tue, 19 Jul 2022 10:45:19 +0200
+        Tue, 19 Jul 2022 01:50:30 -0700 (PDT)
+Message-ID: <2a7280cb-2bcc-4297-8beb-a9249c5bf899@linaro.org>
+Date:   Tue, 19 Jul 2022 10:50:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: add sdm845-google-blueline (Pixel
- 3)
+Subject: Re: [PATCH v2 03/19] dt-bindings: power: mediatek: Add bindings for
+ MediaTek SCPSYS
 Content-Language: en-US
-To:     Caleb Connolly <caleb@connolly.tech>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Cc:     Amit Pundir <amit.pundir@linaro.org>, Vinod Koul <vkoul@kernel.org>
-References: <20220718213051.1475108-1-caleb@connolly.tech>
- <20220718213051.1475108-3-caleb@connolly.tech>
+        Lee Jones <lee.jones@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        MandyJH Liu <mandyjh.liu@mediatek.com>
+Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220714122837.20094-1-tinghan.shen@mediatek.com>
+ <20220714122837.20094-4-tinghan.shen@mediatek.com>
+ <46df4ad5-5102-b5fe-95b7-5b157fb28f01@linaro.org>
+ <c4480c9ea0822ae693ff6a501c073c365e983b83.camel@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220718213051.1475108-3-caleb@connolly.tech>
+In-Reply-To: <c4480c9ea0822ae693ff6a501c073c365e983b83.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2022 23:30, Caleb Connolly wrote:
-> From: Amit Pundir <amit.pundir@linaro.org>
+On 19/07/2022 10:17, Tinghan Shen wrote:
+>>> +    syscon@10006000 {
+>>> +        compatible = "mediatek,scpsys", "syscon", "simple-mfd";
+>>
+>> This should be a SoC-specific compatible (and filename).
 > 
-> This adds an initial dts for the Blueline (Pixel 3). Supported
-> functionality includes display, Debug UART, UFS, USB-C (peripheral), WiFi,
-> Bluetooth and modem.
+> Ok. I think that you mean "mediatek,mt8195-scpsys".
+> I'll update it in next version.
+
+Yes.
+
 > 
+>>
+>>> +        reg = <0x10006000 0x100>;
+>>> +
+>>> +        spm: power-controller {
+>>
+>> I think you created before less-portable, quite constrained bindings for
+>> power controller. You now require that mt8195-power-controller is always
+>> a child of some parent device which will share its regmap/MMIO with it.
+>>
+>> And what if in your next block there is no scpsys block and power
+>> controller is the scpsys alone? It's not possible with your bindings.
+> 
+> Do you mean a power controller node that looks like this?
+> 
+> scpsys: power-controller@10006000 {
+> 	compatible = "mediatek,mt6797-scpsys";
+> 	#power-domain-cells = <1>;
+> 
+> 	// ...
+> };
 
-Thank you for your patch. There is something to discuss/improve.
+Yes, I mean, with an unit address.
 
-(...)
+> 
+>>
+>> Wouldn't it be better to assign some address space to the
+>> power-controller (now as an offset from scpsys)?
+> 
+> Is this mean adding an offset after the node name?
+> 
+> spm: power-controller@0 {
 
-> +	volume-keys {
-> +		compatible = "gpio-keys";
-> +		label = "Volume keys";
-> +		autorepeat;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&volume_up_gpio>;
-> +
-> +		vol-up {
+This or above. I think it does not matter for the bindings - it's an
+implementation detail, whether you give to the child absolute SoC
+address or you give an bus-specific (scpsys) sub-address/offset.
 
-key-vol-up
-(DT schema requires it now)
+The point is that you have an unit address, thus in the future this
+could be a device node separate from scpsys.
 
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&pm8998_gpio 6 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		mpss_region: memory@8e000000 {
-> +			reg = <0 0x8e000000 0 0x9800000>;
-> +			no-map;
-> +		};
-> +
-> +		venus_mem: venus@97800000 {
-> +			reg = <0 0x97800000 0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_mem: cdsp-mem@97D00000 {
-> +			reg = <0 0x97D00000 0 0x800000>;
-> +			no-map;
-> +		};
-> +
-> +		mba_region: mba@98500000 {
-> +			reg = <0 0x98500000 0 0x200000>;
-> +			no-map;
-> +		};
-> +
-> +		slpi_mem: slpi@98700000 {
-> +			reg = <0 0x98700000 0 0x1400000>;
-> +			no-map;
-> +		};
-> +
-> +		spss_mem: spss@99B00000 {
-> +			reg = <0 0x99B00000 0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		/* rmtfs lower guard */
-> +		memory@f2700000 {
-> +			reg = <0 0xf2700000 0 0x1000>;
-> +			no-map;
-> +		};
-> +
-> +		rmtfs_mem: memory@f2701000 {
-> +			compatible = "qcom,rmtfs-mem";
-> +			reg = <0 0xf2701000 0 0x200000>;
-> +			no-map;
-> +
-> +			qcom,client-id = <1>;
-> +			qcom,vmid = <15>;
-> +		};
-> +
-> +		/* rmtfs upper guard */
-> +		memory@f2901000 {
-> +			reg = <0 0xf2901000 0 0x1000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +	};
-> +
-> +	vreg_s4a_1p8: vreg-s4a-1p8 {
-
-Please use consistent naming, so if previous was "xxx-regulator", keep
-similar pattern here.
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vreg_s4a_1p8";
-> +
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		vin-supply = <&vph_pwr>;
-> +	};
-> +};
-> +
-> +&adsp_pas {
-
-(...)
-
-> +
-> +&pm8998_gpio {
-> +	volume_up_gpio: vol-up-active {
-
-The bindings require node name to finish with "-state"
-
-> +		pins = "gpio6";
-> +		function = "normal";
-> +		input-enable;
-> +		bias-pull-up;
-> +		qcom,drive-strength = <0>;
-> +	};
-> +
-> +	panel_pmgpio_pins: panel-pmgpio-active {
-
-Ditto.
-
-> +		pins = "gpio2", "gpio5";
-> +		function = "normal";
-> +		input-enable;
-> +		bias-disable;
-> +		power-source = <0>;
-> +	};
-> +};
-> +
-> +&pm8998_pon {
-> +	resin {
-> +		compatible = "qcom,pm8941-resin";
-> +		interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-> +		debounce = <15625>;
-> +		bias-pull-up;
-> +		linux,code = <KEY_VOLUMEDOWN>;
-> +	};
-> +};
-> +
 Best regards,
 Krzysztof
