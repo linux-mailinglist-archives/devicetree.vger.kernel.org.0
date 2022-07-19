@@ -2,81 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7861057A7C6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 21:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1F2257A7D7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 21:59:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239724AbiGST6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 15:58:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45718 "EHLO
+        id S240194AbiGST7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 15:59:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239876AbiGST5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 15:57:44 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 199EF5F989;
-        Tue, 19 Jul 2022 12:57:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0F24AB81D14;
-        Tue, 19 Jul 2022 19:57:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79776C341CE;
-        Tue, 19 Jul 2022 19:57:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658260631;
-        bh=ttr13LeCzuWb0mQqZMCxUwMmOqVOMkpEHDBdwO513xY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tIIL85hj56Is7sR+SPakwhka9ukvoxiTzAWPskjP2Qa8yF8YZN+0zCaHUuNu9uehN
-         mwylr9+YuUhvL412WqlCUMP6DgdbxFALCLh++U1sU2BmW5VA2sYC5x7JtltaWfwPkf
-         37w/KdCKA5gau7xHNm0jXRNEDipWseFYG1KNjOseoplrAMBH033Ld9i8uhu2ZmrD/G
-         oGc6ZpNbHJkKudwdiGmGI/63UY4Txt65sBndbXozpSFMSZRknNyOdeFKj93pI+kNb0
-         GKeKBv01WK9mZbSC5szPlcCVPEVLi6z53bHeVSU3qWA2W3wFlo3Hk5oqmImvTWXzg1
-         4xwCzUGe6H/OA==
-From:   Will Deacon <will@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        marijn.suijten@somainline.org, Joerg Roedel <joro@8bytes.org>,
-        iommu@lists.linux.dev, Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, jamipkettunen@somainline.org,
-        Rob Herring <robh+dt@kernel.org>, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add compatible for Qualcomm SM6375
-Date:   Tue, 19 Jul 2022 20:56:53 +0100
-Message-Id: <165825146901.2951100.17739649475708755118.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220716193223.455859-1-konrad.dybcio@somainline.org>
-References: <20220716193223.455859-1-konrad.dybcio@somainline.org>
+        with ESMTP id S240329AbiGST7R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 15:59:17 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C4B599E1;
+        Tue, 19 Jul 2022 12:58:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1658260720; x=1689796720;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=tPtPB7gEIdG+j7cej44s8jQsR5obrLeMzi2gzAetFUA=;
+  b=UI688Cr77ybQxf18C4X4CdeKC9XGZdmx8J+F9bUheKijSYpk/x3CK7Cv
+   yFWwpOJBsvJqu25MAc7upno4HYTqBu3jfk0NWhIykObj4fYFRPjzn7fcz
+   wgFoDIZHK5+LDv5txHISN4+Jf5cMmF8ILpHfZRxXM2N5o1Ph6I+QkeGa2
+   FBGRSLGBSsQ0cemkjbldjF8C41GCg1uoS7jU4/XQXPaPfbc5lKvCQDfCI
+   Nf+/LskWLS588JbFr8uTX5SwG0YeGWesPSSs2uR3tqIVYuUWCpHOaGFWi
+   dANJ6MTOHIfgwSgKxw2CUYuBo/Ib3hqDV/sxkOtR5+soKXUvUQN+X+aov
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,285,1650956400"; 
+   d="scan'208";a="165487102"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Jul 2022 12:58:39 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 19 Jul 2022 12:58:28 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Tue, 19 Jul 2022 12:58:28 -0700
+Date:   Tue, 19 Jul 2022 22:02:35 +0200
+From:   Horatiu Vultur - M31836 <Horatiu.Vultur@microchip.com>
+To:     Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>,
+        UNGLinuxDriver <UNGLinuxDriver@microchip.com>,
+        "maxime.chevallier@bootlin.com" <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH 1/3] ARM: dts: lan966x: Add gpio-restart
+Message-ID: <20220719200235.sojkdhcfbnzsvund@soft-dev3-1.localhost>
+References: <20220718212921.1506984-1-horatiu.vultur@microchip.com>
+ <20220718212921.1506984-2-horatiu.vultur@microchip.com>
+ <3e0b7137-08d1-fef2-86b5-a48419dd2101@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Disposition: inline
+In-Reply-To: <3e0b7137-08d1-fef2-86b5-a48419dd2101@microchip.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Jul 2022 21:32:22 +0200, Konrad Dybcio wrote:
-> Add a compatible for Qualcomm SM6375's broken-as-usual MMU500 impl.
+The 07/19/2022 07:52, Claudiu Beznea - M18063 wrote:
+> On 19.07.2022 00:29, Horatiu Vultur wrote:
+> > The pcb8291 can be rebooted by toggling the GPIO 56. Therefore enable
+> > this in DT.
+> > 
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  arch/arm/boot/dts/lan966x-pcb8291.dts | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts b/arch/arm/boot/dts/lan966x-pcb8291.dts
+> > index d56d2054c38d..02fbf7371a8d 100644
+> > --- a/arch/arm/boot/dts/lan966x-pcb8291.dts
+> > +++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
+> > @@ -16,6 +16,12 @@ chosen {
+> >  	aliases {
+> >  		serial0 = &usart3;
+> >  	};
+> > +
+> > +	gpio-restart {
+> > +		compatible = "gpio-restart";
+> > +		gpios = <&gpio 56 GPIO_ACTIVE_LOW>;
 > 
+> Could you, please, add also pinctrl-names, pinctrl-0 for this gpio?
+
+I am not sure I need to set pinctrl-names and pinctrl-0.
+Because I don't need to setup any function for GPIO 56 to be able to
+reset.
+It is something similar sparx5 [1].
+
+[1] https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi#L10
+
+> 
+> > +		priority = <200>;
+> > +	};
+> >  };
+> >  
+> >  &gpio {
 > 
 
-Applied to will (for-joerg/arm-smmu/updates), thanks!
-
-[1/2] dt-bindings: arm-smmu: Add compatible for Qualcomm SM6375
-      https://git.kernel.org/will/c/743302d4ad6c
-[2/2] iommu/arm-smmu-qcom: Add SM6375 SMMU compatible
-      https://git.kernel.org/will/c/ef660de424cf
-
-Cheers,
 -- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+/Horatiu
