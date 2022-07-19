@@ -2,116 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 069A057952E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20662579551
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236847AbiGSIZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 04:25:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37682 "EHLO
+        id S236426AbiGSIgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 04:36:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236795AbiGSIZX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:25:23 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF8366456
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:25:21 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id r6so18563487edd.7
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:25:21 -0700 (PDT)
+        with ESMTP id S235114AbiGSIgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:36:11 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B818724F0B
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:36:08 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id r14so1790882ljp.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:36:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=0Bx1R2Q+QF2P7tkGM2MKWEw3+rYL23IE8pFzoPZ9ico=;
-        b=6hRcrdCJ2BshcOCbYbe2sRHcqlivkYOUKRE84I+rX41yRyrvRQEK1XIK1HlJYruEkv
-         INRDvJcb8qFVqYqWqyjzaSjix4VOwkqzR0rSH8VLpU6uGw5Q7TheEZmmQp+0NFfy7BZU
-         /0VAY1N8UHLevRO0WAJotK4G+8idOGuGfcKqSPD4VFSgoDoS1B4PE3AyCQdJO4cPf0S3
-         o2CEs/zOR0Mn+671sWr3uuWQb6/jD1NFbJcObX9OTzA+g7riPHkzdwDxnVAlOlw/UDM3
-         yYwOF/EZ02Zs9rAJU2lSS68Ak8f3palKQfiglqmB+HAAZ+nGJTmoSMod/6wmhTxKkRLG
-         b29Q==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=Ih2Fy5cmAbEG8aUeZ5+zEsRAma5SiCd0h+PRnEnInBQ=;
+        b=x98MUCTYJFJ9Z26jtehRzVhXFT+bVTlVx7ka32+gC4lXF/vFCQFBbQqSJ1cvCpCcR6
+         dnTj87s1W25Bl/RSlTWhxMAFk/DWZMDUPJHGEgRozZwWQa1Gzxay7b5NeYjnbvHCQiC6
+         f/hmvGA6c0feZCV4UeLRoLeNZ0YdsA72rOR4DiKYbVK+CJG3llNXhfqI9FjwKH+ci33Q
+         OvDMcRDL41Y8/ZZBB97qbHz2wReWnGpxo+15X+3IhTHfj4K4J+Z7bC3k0M2GthbRMe2Y
+         /iZLhgmG/xGrDMamO41V85rE2pRJrUAe9lt9EVsNXc/gydePXGVZQnkaHhci5HOxvPtO
+         RAZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=0Bx1R2Q+QF2P7tkGM2MKWEw3+rYL23IE8pFzoPZ9ico=;
-        b=mRcZgNY7LvhClC9p7mkXoPmamWbIi+CLjs47RRNWtwQpKXtlIIogDXfwVGwrAiaP2j
-         SnEo1HuCJ42A7lJuVO7keKXBcNn6M0E52Gx4Fj3BZkJlPUjowp3BEB/M+oPiht+HEpC+
-         KOGOsEkqgLHknxW0YKsBmskv+n1Qq6JY/kJL4+nC47mF+fj0cCx4/YLt/2aOPiHSMtaX
-         5D1qGX8WissIOSjv03NAywqN486GYxMRGVubQsb0toNW5I/VZ2AO3ljcsgjb5sACUsc5
-         2MaSgFo/MZ+qRODArCNCeLrcrTeI7KZP9tfClXumw3dTycWr8nTLRhU3sk/bG1nvtkB0
-         Njkg==
-X-Gm-Message-State: AJIora+ZYX1D51T1YGSGgKfrIwKl6GPzI7qnpThx25CUGLjTWl/6fzBg
-        /zbcFrmJuH9uKk+1kQJHWmdVSVLe22+ZPC85jNdRpQ==
-X-Google-Smtp-Source: AGRyM1vU1xwjz1SfwM44SYQkgwe8ke45JUbb6IETgCphk3Y4YooIsTzECQ56OEJIjeBIYNUTQcXYhmMF5sC/VjWZhHc=
-X-Received: by 2002:a05:6402:4c3:b0:43a:f612:179d with SMTP id
- n3-20020a05640204c300b0043af612179dmr42549702edw.422.1658219120252; Tue, 19
- Jul 2022 01:25:20 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Ih2Fy5cmAbEG8aUeZ5+zEsRAma5SiCd0h+PRnEnInBQ=;
+        b=257XWRff8+g5aohKexPiNOgKPUnoLPwJxOa36Z1i/Lh4Y2Krkj2dWrep8bFi/5qDgW
+         ioHzyB/t5pelpC10lY+U/xHZMfE8NocNg8fxCnDkrseK+vv0JQvDtwIo5KwnnB0WK035
+         UIWsmFFLEVCnl3QsDF3Xc13Gs/enA9ULALvQDluX27VXyXWBjs141/UZ4oIQxHv2xDn9
+         OWzIITt2ZT+Al9+MX8vVVJVVcO1Eut1WrHjOzp6mbILuKJuFLNxuEdhKbWi7lIf8lxlA
+         nhJ7JOA04VRSc0B1Re2EbfU6VMFuNePRanzBR0DXpFOZftyBbRrXkrdJ9v1oC3VJB944
+         /oow==
+X-Gm-Message-State: AJIora9wlqvDWHwasjen78SN8PIZuSqek3/qeQcYPtTbC1Mo4uYmswP1
+        Dcr1/XXUPrNu7GheRksQ6uUgpg==
+X-Google-Smtp-Source: AGRyM1vV+5j0ZPlFEmdIh9COqsj7+E+TRr0bBKPc2QSCAnmyySjYW/ahXyifHPU75ZwOUj6O4xi1og==
+X-Received: by 2002:a2e:8004:0:b0:25d:80c0:1e93 with SMTP id j4-20020a2e8004000000b0025d80c01e93mr14006416ljg.210.1658219767106;
+        Tue, 19 Jul 2022 01:36:07 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id i28-20020a2ea37c000000b002557c48cc4csm2534638ljn.95.2022.07.19.01.36.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Jul 2022 01:36:06 -0700 (PDT)
+Message-ID: <472e5d12-9faf-4a8f-1cfe-49f5d0449560@linaro.org>
+Date:   Tue, 19 Jul 2022 10:36:05 +0200
 MIME-Version: 1.0
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
-In-Reply-To: <20220713131421.1527179-1-nuno.sa@analog.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 19 Jul 2022 10:25:09 +0200
-Message-ID: <CAMRc=Mf1w7DCGMAku0wPHAhTtDWoWkWOfvxkx=_b1pKp8U8yOg@mail.gmail.com>
-Subject: Re: [PATCH 0/4] add support for bias pull-disable
-To:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
-Cc:     ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/4] Documentation: dt-bindings: arm: qcom: add
+ google,blueline
+Content-Language: en-US
+To:     Caleb Connolly <caleb@connolly.tech>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20220718213051.1475108-1-caleb@connolly.tech>
+ <20220718213051.1475108-2-caleb@connolly.tech>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220718213051.1475108-2-caleb@connolly.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 13, 2022 at 3:13 PM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
->
-> The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of calling the
-> gpiochip 'set_config()' hook. However, AFAICT, there's no way that this
-> flag is set because there's no support for it in firwmare code. Moreover,
-> in 'gpiod_configure_flags()', only pull-ups and pull-downs are being
-> handled.
->
-> On top of this, there are some users that are looking at
-> 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So, unless I'm
-> missing something, it looks like this was never working for these chips.
->
-> Note that the ACPI case is only compiled tested. At first glance, it seem=
-s
-> the current patch is enough but i'm not really sure...
->
-> As a side note, this came to my attention during this patchset [1]
-> (and, ofr OF,  was tested with it).
->
-> [1]: https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@a=
-nalog.com/
->
-> Nuno S=C3=A1 (4):
->   gpiolib: add support for bias pull disable
->   gpiolib: of: support bias pull disable
->   gpiolib: acpi: support bias pull disable
->   dt-bindings: gpio: add pull-disable flag
->
->  drivers/gpio/gpiolib-acpi.c     | 3 +++
->  drivers/gpio/gpiolib-of.c       | 7 +++++++
->  drivers/gpio/gpiolib.c          | 8 ++++++--
->  include/dt-bindings/gpio/gpio.h | 3 +++
->  include/linux/gpio/machine.h    | 1 +
->  include/linux/of_gpio.h         | 1 +
->  6 files changed, 21 insertions(+), 2 deletions(-)
->
-> --
-> 2.37.0
->
+On 18/07/2022 23:30, Caleb Connolly wrote:
+> Document the bindings for the Pixel 3
+> 
+> Based on https://lore.kernel.org/all/20220521164550.91115-7-krzysztof.kozlowski@linaro.org/
 
-Series applied, thanks!
+Thanks for mention dependency. However this should not go to the final
+commit, thus please put such references after '---' marker.
 
-Bart
+With that change:
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+> 
+> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> ---
+
+Best regards,
+Krzysztof
