@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0BE05795FB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:18:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 761C9579600
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:18:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237124AbiGSJR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 05:17:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46640 "EHLO
+        id S237180AbiGSJSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 05:18:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237116AbiGSJR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:17:56 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC141FCF9
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:17:55 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 8-20020a05600c024800b003a2fe343db1so8792573wmj.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:17:55 -0700 (PDT)
+        with ESMTP id S237129AbiGSJR6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:17:58 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A4E51FCF9
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:17:57 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id e15so15390509wro.5
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:17:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=gWwRESa9J0yNbZSjwboqJyHJMna1CUnVXKB6rAgRc4g=;
-        b=4Rkw/Zz4aSmR3I3I7F+AgW+Uia1wlPtvYovolwnrfGK9xqXvg5XZPl34TOFoDx/i4/
-         eWL1RcNZDXoN/82lrZmVNs/XL91axqmAUiNScqUVEwZrkrvQq3+mebIu3ObkL2aBF1eJ
-         C/TSqe/Sm0yWqmZQyhxwnJ7OKxurPdrDxp4lRu6vHLydeaAiUjwOGX8AQ952PLyheLNp
-         1NKI5m7OIFq9AZg00WW2mRbAHiSHphKiIaDo2QzM+nFbBm/wf3hqyzeC5IIdxnA61lmF
-         SxpaVCP3yoEEsncqf2hvGkxIG56WBx2U61mg0NoVux0NuuFtdc+QaJztHeeFHfcB5E0z
-         3D0A==
+        bh=F2cq2f4gsqT38Y5X3SDISvBVmQ+0SNOYPEuSXySidWQ=;
+        b=Wb3wgHkeRrKQxt/ruuLete1XtM9dgGHYJgGrI2oVSe4qtTwDR6pWW4+8W1xONMtei+
+         4ok5giAepngi1PKCfZURhIrG8BAsgOJyc4U+1qZnps+/0i5C3L7QpPCZmT61umFGs616
+         RZFEV89eE2OzQvuzcX/gVBRI/N7YnQK9Ir8n7ybe5hWucGqVCWAkoa270s9G2s/nZONZ
+         vzlJ+nsi/C1G7eQuGugCE8i4ncTJaSFVNtJNR2KQzgTn4TmYEdegT/5Ftpefu2PN+1UV
+         ijDcY23TWJa64uNE664R64MbL9hhrP0xC50ZoZdeRyDhibxaMb8+QTrSt6XsEIz5b0i8
+         GCZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=gWwRESa9J0yNbZSjwboqJyHJMna1CUnVXKB6rAgRc4g=;
-        b=AaN8aTL9WQ0Y35PX+ZFq9xlsmedFIWWaqT1sW9hVZeQuDcgwpyCgQjBwPZiLuFunOZ
-         yx6ANOMJeaEWf3fzlNMhVf4Y/Ic2mA/iK51LtMNfB5Xkem0sK4bFSy3C3Gu60oqWJOqR
-         Rlu8rnaPjfNQpnaPx0hQAVsB7crBusxzqh8CztvjT7/SgGdygTeRxK46MtHlJb9JkX+S
-         jlC+XJXZaLZlHL2J1/B2BAyqYZrBqr4zHyInuXnUh6h3BujcO9PiU2UapExByMTm/F3i
-         xpukChDQeDBN9fzvRvO9SGfxYzCeqsNVByvU+gjySW4qJMl1SHh5tPmWl7bN0sx/4H34
-         E0nw==
-X-Gm-Message-State: AJIora+Ym72b07JeNa+qUNGGn2QUu6attI9sf2WOc/XBrjrG3Sx/vFsr
-        Jf9Dk0r8XEFR++3eCsPOar/hsQ==
-X-Google-Smtp-Source: AGRyM1s2xTteGx/uUdFNVFd9HMvfqm+eJC3mfAgx17yl6DKt6zA87nTkC0mZp2BfN3nkABVTRxPegw==
-X-Received: by 2002:a7b:c314:0:b0:3a0:5750:1b4a with SMTP id k20-20020a7bc314000000b003a057501b4amr35516371wmj.20.1658222274088;
-        Tue, 19 Jul 2022 02:17:54 -0700 (PDT)
+        bh=F2cq2f4gsqT38Y5X3SDISvBVmQ+0SNOYPEuSXySidWQ=;
+        b=qK6JE+P114YITdwY9v8MSp25TOhnc9cUNOMpzA0/CYYG81qqY2IVwVtxP+3/gdDgVP
+         CQG+g5AsOrET8buraAu9k4oNnjwhMfKs5E7Ih7SdADzOv5aXB4s6TmJqJG9W1QcmtghL
+         5oaDFQETnl7H5iA/OJZnPveJ6y0i7lARLgTCREJx/Ul2Fc9Ezoq8QadDSD60ZiKCg2aV
+         LqPV0UH+JWEgij30c2i1Y3Q6BWWtflX7II1VPM2MfJYualNrqVk86wIYveYUxYBleKGX
+         V1xrS9y9K+JJwPMye581qfPNdi2A/0/gS1XFeGqfCnKh+Rvvg9n8LBSTZbfS3exVJl2b
+         DKyg==
+X-Gm-Message-State: AJIora94yQW0743663LbdRIrMf9eoN7GBngPCrsickzCYjy7owNwA3LC
+        5o0J/FaQO6rEk5n7NKPUU/nmkw==
+X-Google-Smtp-Source: AGRyM1uXPplmrT3YM1LVUa3KUvhxwsTgkdFEUsG9NkBsnYNKcQQARoFpyXfbfG1F2ZapCNIXKVlEOQ==
+X-Received: by 2002:a05:6000:250:b0:21d:b3b5:3438 with SMTP id m16-20020a056000025000b0021db3b53438mr24127233wrz.203.1658222275768;
+        Tue, 19 Jul 2022 02:17:55 -0700 (PDT)
 Received: from localhost.localdomain (192.201.68.85.rev.sfr.net. [85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id bk19-20020a0560001d9300b0021d63fe0f03sm12944281wrb.12.2022.07.19.02.17.53
+        by smtp.gmail.com with ESMTPSA id bk19-20020a0560001d9300b0021d63fe0f03sm12944281wrb.12.2022.07.19.02.17.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jul 2022 02:17:53 -0700 (PDT)
+        Tue, 19 Jul 2022 02:17:55 -0700 (PDT)
 From:   Jerome Neanne <jneanne@baylibre.com>
 To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
         nm@ti.com, kristo@kernel.org
@@ -53,9 +53,9 @@ Cc:     khilman@baylibre.com, narmstrong@baylibre.com, msp@baylibre.com,
         j-keerthy@ti.c, lee.jones@linaro.org, jneanne@baylibre.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 03/14] regulator: dt-bindings: Add interrupts support to TPS65219 PMIC bindings
-Date:   Tue, 19 Jul 2022 11:17:31 +0200
-Message-Id: <20220719091742.3221-4-jneanne@baylibre.com>
+Subject: [PATCH v1 04/14] regulator: dt-bindings: tps65219: Add power-button property
+Date:   Tue, 19 Jul 2022 11:17:32 +0200
+Message-Id: <20220719091742.3221-5-jneanne@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220719091742.3221-1-jneanne@baylibre.com>
 References: <20220719091742.3221-1-jneanne@baylibre.com>
@@ -68,66 +68,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add interrupt properties in PMIC TPS65219 bindings
+From: Markus Schneider-Pargmann <msp@baylibre.com>
 
+Add a power-button property to configure the EN/PB/VSENSE pin as a
+powerbutton.
+
+Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
 ---
- .../bindings/regulator/ti,tps65219.yaml       | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ Documentation/devicetree/bindings/regulator/ti,tps65219.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-index 2c655432b889..6a60e62a313c 100644
+index 6a60e62a313c..3f7f4c0280c3 100644
 --- a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
 +++ b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-@@ -25,6 +25,17 @@ properties:
-     description: Optional property that indicates that this device is
-       controlling system power.
+@@ -36,6 +36,11 @@ properties:
+       include/dt-bindings/interrupt-controller/irq.h
+     const: 1
  
-+  interrupts:
-+    description: Short-circuit, over-current, under-voltage for regulators, PB interrupts.
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    description: Specifies the PIN numbers and Flags, as defined in
-+      include/dt-bindings/interrupt-controller/irq.h
-+    const: 1
++  power-button:
++    type: boolean
++    description: Optional property that sets the EN/PB/VSENSE pin to be a
++      power-button.
 +
  patternProperties:
    "^buck[1-3]-supply$":
      description: Input supply phandle of one regulator.
-@@ -71,12 +82,16 @@ patternProperties:
- required:
-   - compatible
-   - reg
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-   - regulators
- 
- additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-     i2c {
-         #address-cells = <1>;
-         #size-cells = <0>;
-@@ -92,6 +107,13 @@ examples:
-             ldo3-supply = <&vcc_3v3_sys>;
-             ldo4-supply = <&vcc_3v3_sys>;
- 
-+            pinctrl-0 = <&pmic_irq_pins_default>;
-+
-+            interrupt-parent = <&gic500>;
-+            interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-controller;
-+            #interrupt-cells = <1>;
-+
-             regulators {
-                 buck1_reg: buck1 {
-                     regulator-name = "VDD_CORE";
 -- 
 2.17.1
 
