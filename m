@@ -2,52 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98871579725
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 12:02:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 254F1579735
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 12:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237571AbiGSKCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 06:02:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56742 "EHLO
+        id S237637AbiGSKDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 06:03:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237570AbiGSKCP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 06:02:15 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E673DF0C;
-        Tue, 19 Jul 2022 03:01:57 -0700 (PDT)
-Received: from [192.168.1.101] (abxj77.neoplus.adsl.tpnet.pl [83.9.3.77])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 6DA4F1F4F6;
-        Tue, 19 Jul 2022 12:01:54 +0200 (CEST)
-Message-ID: <7f5e602c-a02c-2a4d-2b00-7cd934a8867e@somainline.org>
-Date:   Tue, 19 Jul 2022 12:01:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom: rpmcc: Add BIMC_FREQ_LOG
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S237585AbiGSKCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 06:02:54 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FB53B959;
+        Tue, 19 Jul 2022 03:02:28 -0700 (PDT)
+X-UUID: 15efdf309db2477391a962a2bd5cac8e-20220719
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:114e74ca-c1c9-4a93-aa9d-f3170abe1501,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:100
+X-CID-INFO: VERSION:1.1.8,REQID:114e74ca-c1c9-4a93-aa9d-f3170abe1501,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:100
+X-CID-META: VersionHash:0f94e32,CLOUDID:9912e4d7-5d6d-4eaf-a635-828a3ee48b7c,C
+        OID:3618e9eac85c,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 15efdf309db2477391a962a2bd5cac8e-20220719
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <jianhua.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 950618124; Tue, 19 Jul 2022 18:02:21 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 19 Jul 2022 18:02:20 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 19 Jul 2022 18:02:20 +0800
+From:   Jianhua Lin <jianhua.lin@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220716192714.454031-1-konrad.dybcio@somainline.org>
- <20220716192714.454031-2-konrad.dybcio@somainline.org>
- <20220719071324.55706C341C6@smtp.kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220719071324.55706C341C6@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jianhua Lin <jianhua.lin@mediatek.com>
+Subject: [PATCH 1/2] dt-bindings: media: mediatek-jpeg-decoder: Add MT8188 compatible string
+Date:   Tue, 19 Jul 2022 18:02:13 +0800
+Message-ID: <20220719100214.2096-1-jianhua.lin@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,28 +64,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add compatible for MT8188 jpeg decoder.
 
+Signed-off-by: Jianhua Lin <jianhua.lin@mediatek.com>
+---
+ .../devicetree/bindings/media/mediatek-jpeg-decoder.yaml         | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 19.07.2022 09:13, Stephen Boyd wrote:
-> Quoting Konrad Dybcio (2022-07-16 12:27:13)
->> Add the missing definition for the aforementioned clock.
->>
-> 
-> What does the bimc freq log do?
-It does not seem used by any driver downstream, not from a quick glance at
-least. It is however exposed on the downstream kernel and here's what
-debugfs has to say about it on mainline:
+diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+index 052e752157b4..3c77adfa320c 100644
+--- a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
++++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+@@ -22,6 +22,7 @@ properties:
+       - items:
+           - enum:
+               - mediatek,mt7623-jpgdec
++              - mediatek,mt8188-jpgdec
+           - const: mediatek,mt2701-jpgdec
+ 
+   reg:
+-- 
+2.18.0
 
-clk_accuracy:0
-clk_duty_cycle:1/2
-clk_enable_count:0
-clk_max_rate:18446744073709551615
-clk_min_rate:0
-clk_notifier_count:0
-clk_parent:xo_board
-clk_phase:0
-clk_prepare_count:0
-clk_protect_count:0
-clk_rate:1
-
-Konrad 
