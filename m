@@ -2,51 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E06D57A95B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 23:50:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B8EA57A95D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 23:50:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240541AbiGSVuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 17:50:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58110 "EHLO
+        id S238073AbiGSVuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 17:50:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235209AbiGSVuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 17:50:09 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4831CF5;
-        Tue, 19 Jul 2022 14:50:06 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id n138so11704021iod.4;
-        Tue, 19 Jul 2022 14:50:06 -0700 (PDT)
+        with ESMTP id S240383AbiGSVuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 17:50:18 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C70121272;
+        Tue, 19 Jul 2022 14:50:16 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id x64so4591129iof.1;
+        Tue, 19 Jul 2022 14:50:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=uc8dTbCs7ii6OtIpUoNiWI+bZ2IGfa5Sn9yPhzaCkic=;
-        b=ERKBkeCef4Wwnw8kKvK6fr3YT4j0Vtp7HRMU0twFyVY3ahfOjbBlEEET1vZu3Lj3cc
-         rhr83Ap3yOEe3SRxTGCdvob11eeK+TOOLu0Na2WIyx3+d3zR+YCKcSfnGshmpdEd9jnH
-         Jdat2o5Y/HXBOZ+6oHT1GUL1L6Cnq1M5pK2/IVIbrclgBZvc5XbCN0SN3nnhZcto6EUf
-         2dcepZvDPddw9S1nN5u35O38lgWfCP92rS52BNYKtd8P0D16ywBLYVwQ/Zjp8xQ8jsZ2
-         jTaZ+K3GlbHhekzlLC1DkBjUJ9VL9XmD9+r/7GbbZI2JCqhfndF+E+QLOv/DrOoyAjtf
-         UINg==
-X-Gm-Message-State: AJIora9TOWPsVcSwGKR51yJufWGMYeSjoeM1hkBV6uLzd6VpUTS1w5qU
-        MPvJYR1+nyWP3SCXSYQvqw==
-X-Google-Smtp-Source: AGRyM1sSjCNPW0y8claL4HT40MMZy1QtSqugJ1KONdXeSON48IRYgp7p0MLK3JCLiUcY4Abp5Db2Qg==
-X-Received: by 2002:a05:6638:168e:b0:341:5b82:a46f with SMTP id f14-20020a056638168e00b003415b82a46fmr9722732jat.201.1658267405972;
-        Tue, 19 Jul 2022 14:50:05 -0700 (PDT)
+        bh=gK0kv8pzfi7sBWv/sRFwiBZu8X91coIITSZKvB6RExY=;
+        b=BIJ4JJ1Rv9DJUQ1tTgVtEDg8l6dyq8t86XClcH4rnqhwO7T0k+MX9zoGvjEkU/1phY
+         sRo0+4eDzXAZ27l2tmLIG9fAqnbLh662hMiiyqMnJ3SgauscVjsnC7pKDa5IKu7oCvOQ
+         1gcpn+b4h2V3DZod5jL6szOdr3HyG1rNphtYQGbA9H46JMmRJO1jaEnVDE1Kga6+6YGb
+         jyZ1VX+a3qqKJZB+sVmjlD9q/FhrERXJJ9nnBSj474Cd37WkQSXfxfs1wPGcdRwqL2m8
+         CyCCbgWF3hZzSZHGMGnToMDteUZQ5oWCryUfX2r00qOl9tQz2oQjxBmUw08DebzTLwMx
+         d9Dw==
+X-Gm-Message-State: AJIora8pCZS9GrkRcymvhDAf+2EjgXMEjRpBIcJMMrT0aNYhGWGwCjMa
+        w1/roMzSMjNCNb5yWZheKw==
+X-Google-Smtp-Source: AGRyM1v5qelrR/U10kjLdrLXUQpTQ0//gcja8OXPSL+u6Un5VXnugNdh62IsZdi/+Y/01zw+rO7vZw==
+X-Received: by 2002:a05:6602:168d:b0:67c:44c3:9ba5 with SMTP id s13-20020a056602168d00b0067c44c39ba5mr39474iow.190.1658267415685;
+        Tue, 19 Jul 2022 14:50:15 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.248])
-        by smtp.googlemail.com with ESMTPSA id z8-20020a05660229c800b00674c8448c3csm7811758ioq.6.2022.07.19.14.50.04
+        by smtp.googlemail.com with ESMTPSA id y17-20020a92d811000000b002dd0875c67asm364937ilm.69.2022.07.19.14.50.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jul 2022 14:50:05 -0700 (PDT)
+        Tue, 19 Jul 2022 14:50:15 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: pinctrl: st,stm32: Correct 'resets' property name
-Date:   Tue, 19 Jul 2022 15:49:54 -0600
-Message-Id: <20220719214955.1875020-1-robh@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: regulator: Add missing type for 'regulator-microvolt-offset'
+Date:   Tue, 19 Jul 2022 15:50:09 -0600
+Message-Id: <20220719215010.1875363-1-robh@kernel.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -60,38 +57,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The correct property name for the reset binding is 'resets', not 'reset'.
-Assuming actual users are correct, this error didn't show up due to
-missing 'additionalProperties: false'. Fix the name and add missing
-'additionalProperties'.
+'regulator-microvolt-offset' is missing a type definition. The type should
+be 'uint32'.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml         | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/regulator/regulator.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-index 335ffc1353b5..d35dcc4f0242 100644
---- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-@@ -59,6 +59,7 @@ properties:
- patternProperties:
-   '^gpio@[0-9a-f]*$':
-     type: object
-+    additionalProperties: false
-     properties:
-       gpio-controller: true
-       '#gpio-cells':
-@@ -68,8 +69,7 @@ patternProperties:
-         maxItems: 1
-       clocks:
-         maxItems: 1
--      reset:
--        minItems: 1
-+      resets:
-         maxItems: 1
-       gpio-ranges:
-         minItems: 1
+diff --git a/Documentation/devicetree/bindings/regulator/regulator.yaml b/Documentation/devicetree/bindings/regulator/regulator.yaml
+index a9b66ececccf..6e8aa9eed3aa 100644
+--- a/Documentation/devicetree/bindings/regulator/regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/regulator.yaml
+@@ -23,6 +23,7 @@ properties:
+ 
+   regulator-microvolt-offset:
+     description: Offset applied to voltages to compensate for voltage drops
++    $ref: "/schemas/types.yaml#/definitions/uint32"
+ 
+   regulator-min-microamp:
+     description: smallest current consumers may set
 -- 
 2.34.1
 
